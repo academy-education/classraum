@@ -1,0 +1,146 @@
+{
+  "id": "WIC27E-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a hill temple and a city temple",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "precursor",
+    "replica",
+    "offshoot",
+    "rival"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "rival",
+    "replica",
+    "precursor",
+    "offshoot"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "One architectural historian concludes that the hill temple is best understood as the city temple's ______.",
+  "worlds": [
+    {
+      "key": "replica",
+      "passage": "A great stone temple was finished in a river city in 1580; a smaller wooden temple stands on a hill a day's walk north. Its four shrines stand in the city temple's order, and the dragons over its gate match the city temple's at a third the size. One of them even repeats the chipped claw that a city carver left by accident on his dragon. Farming families built it, take turns sweeping it, and still walk to the city each spring for the great festival. One architectural historian concludes that the hill temple is best understood as the city temple's ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "The hill temple repeats the city temple's shrine order and gate carvings at a third the size, even copying a chip a city carver made by accident, so it is the city temple's \"replica\". \"Precursor\" fails because copying that accidental chip means the hill carver worked from the finished city dragon. \"Offshoot\" fails because farming families built and keep it, and \"rival\" fails because they still walk to the city festival every spring.",
+      "kills": {
+        "precursor": {
+          "type": "logic",
+          "quote": "the chipped claw that a city carver left by accident",
+          "why": "The hill temple reproduces a slip made by the city temple's own carver, which it could only have taken from the city temple, so the copying ran from city to hill.",
+          "surface_fit": "An old wooden temple on a hill that shares the great temple's plan looks like the original the city builders worked from, so precursor is the natural first guess.",
+          "inference": "An accident belongs to the carving it happened on; a chip a city carver made by mistake can appear on the hill dragon only if the hill carver was copying the finished city dragon, so the hill temple came after the city temple and cannot be its forerunner."
+        },
+        "offshoot": {
+          "type": "logic",
+          "quote": "Farming families built it, take turns sweeping it",
+          "why": "Local farmers built and keep the temple, so it was not founded by a group from the city temple.",
+          "surface_fit": "A smaller temple of the same pattern a day's walk away sounds like a branch planted by the city temple, and offshoot is a normal word for a daughter house.",
+          "inference": "An offshoot grows out of the parent itself, its own people setting up elsewhere; a temple built and swept by farming families came from the villagers, and what it took from the city was only a design."
+        },
+        "rival": {
+          "type": "logic",
+          "quote": "still walk to the city each spring",
+          "why": "Its own keepers still go to the city temple's festival, so it draws no worshippers away.",
+          "surface_fit": "A second temple near a famous one could easily be competing with it, and historians often call such a building a rival.",
+          "inference": "A rival pulls worshippers away; the families who built the hill temple still make the yearly walk to the city festival, so the two temples serve the same people."
+        }
+      }
+    },
+    {
+      "key": "precursor",
+      "passage": "A great stone temple was finished in a river city in 1580; a smaller wooden temple stands on a hill a day's walk north. Rings in its oldest beams date them to the 1490s. Its four shrines stand in the city temple's order, and the dragons over the city temple's gate match its own, scale for scale, at three times the size. Records name the city temple's builder as a carpenter on the hill in his youth. Its farming families still walk to the city each spring for the great festival. One architectural historian concludes that the hill temple is best understood as the city temple's ______.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The hill temple's beams date to the 1490s, its plan and carvings reappear in the city temple at three times the size, and the city temple's builder worked on the hill as a young man, so the hill temple is the city temple's \"precursor\". \"Replica\" fails because the hill temple is ninety years older and cannot copy a temple not yet built. \"Offshoot\" fails because influence ran from the hill to the city, and \"rival\" fails because its families still walk to the city festival.",
+      "kills": {
+        "replica": {
+          "type": "logic",
+          "quote": "date them to the 1490s",
+          "why": "The hill temple is ninety years older than the city temple, so it cannot be a copy of it.",
+          "surface_fit": "The two temples share a shrine order and carved dragons, one at a third the size of the other, which is exactly what makes a small building look like a replica of a great one.",
+          "inference": "A copy has to come after its original; timber cut in the 1490s means the hill temple stood ninety years before the city temple was finished, so the matching design was carried from the hill to the city, not the other way."
+        },
+        "offshoot": {
+          "type": "logic",
+          "quote": "a carpenter on the hill in his youth",
+          "why": "The city temple's builder learned on the hill, so the city temple grew out of the hill temple, the reverse of an offshoot.",
+          "surface_fit": "Two temples with one plan, linked by a builder who worked on both, sound like a parent temple and a daughter house, and offshoot names that kind of relation.",
+          "inference": "An offshoot grows from the parent and comes after it; here the hill temple is older and the city temple's builder trained there, so if either grew out of the other, the city temple grew out of the hill temple."
+        },
+        "rival": {
+          "type": "logic",
+          "quote": "still walk to the city each spring",
+          "why": "The hill temple's families take part in the city festival, so the hill temple is not competing with the city temple.",
+          "surface_fit": "An older temple whose design was taken for a grander one might resent or compete with it, and rival is an ordinary word for a neighboring temple.",
+          "inference": "Competition would show as worshippers kept away from the city; instead the hill temple's own families go to the city festival every year, so the relation is one of descent in design, not contest."
+        }
+      }
+    },
+    {
+      "key": "offshoot",
+      "passage": "A great stone temple was finished in a river city in 1580; a smaller wooden temple stands on a hill a day's walk north. In 1608 a dispute over the festival calendar split the city temple's monks, and the smaller party, wanting the great festival at harvest rather than in spring, walked north and built on the hill. Its two shrines stand side by side under thatch like the farmhouses around them, and each new head of the hill temple still travels to the city to be confirmed by its abbot. One architectural historian concludes that the hill temple is best understood as the city temple's ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "Part of the city temple's own monks broke away and built on the hill, and each new head is still confirmed by the city abbot, so the hill temple is the city temple's \"offshoot\". \"Rival\" fails because a temple whose heads the city abbot confirms remains under the city temple. \"Replica\" fails because its thatched shrines look like the farmhouses around them, and \"precursor\" fails because it was built by monks who had come from the city temple.",
+      "kills": {
+        "rival": {
+          "type": "logic",
+          "quote": "travels to the city to be confirmed by its abbot",
+          "why": "The hill temple's head is still confirmed by the city abbot, so the hill temple remains under the city temple.",
+          "surface_fit": "The hill temple was founded after a dispute split the city's monks, and a breakaway temple after a quarrel is the natural setting for rival.",
+          "inference": "A rival is independent of the temple it competes with; a temple whose every head must be confirmed by the city abbot is still governed from the city, and its harvest festival does not compete for the spring crowds."
+        },
+        "replica": {
+          "type": "logic",
+          "quote": "under thatch like the farmhouses around them",
+          "why": "The hill temple is built like the local farmhouses, so it does not reproduce the city temple's design.",
+          "surface_fit": "A temple founded by the city temple's own monks would be expected to copy the great temple they came from, so replica tempts.",
+          "inference": "A replica reproduces the original's design; two thatched shrines like the farmhouses around them are nothing like a great stone temple, so the monks took their community north but not the building."
+        },
+        "precursor": {
+          "type": "logic",
+          "quote": "walked north and built on the hill",
+          "why": "The hill temple was built by monks who had left the city temple, so the city temple was already standing.",
+          "surface_fit": "A wooden hill temple next to a stone city temple looks like the older, simpler form the great temple developed from.",
+          "inference": "Its builders were monks of the city temple who split off and walked north, so the city temple had to exist, with its monks and its festival, before the hill temple did; a forerunner comes first, and this temple came out of the city temple."
+        }
+      }
+    },
+    {
+      "key": "rival",
+      "passage": "A great stone temple was finished in a river city in 1580; a smaller wooden temple stands on a hill a day's walk north. A lord of the northern hills built it, and its monks came from a coastal order and kept that order's rule. He set its festival for the same spring week as the city's, beneath a gate carved taller than the city temple's. Within ten years the city's festival tolls had fallen by half. One architectural historian concludes that the hill temple is best understood as the city temple's ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "A hill lord built the temple with monks of another order, set its festival for the city's own spring week, and within ten years the city's festival tolls had fallen by half, so it was the city temple's \"rival\". \"Offshoot\" fails because its monks came from a coastal order with its own rule. \"Replica\" fails because its gate was carved taller than the city temple's, and \"precursor\" fails because its festival was timed against a city festival already being held.",
+      "kills": {
+        "offshoot": {
+          "type": "logic",
+          "quote": "came from a coastal order and kept that order's rule",
+          "why": "Its monks belonged to a different order, so the hill temple did not grow out of the city temple's community.",
+          "surface_fit": "A temple founded a day's walk from the city temple sounds like a daughter house, which is what offshoot names.",
+          "inference": "An offshoot's founders come out of the parent; these monks came from a coastal order and followed its rule, and the builder was a hill lord, so nothing of the city temple went into founding it."
+        },
+        "replica": {
+          "type": "logic",
+          "quote": "a gate carved taller than",
+          "why": "The hill temple's gate was made bigger than the city temple's, not a scaled copy of it.",
+          "surface_fit": "A temple built near a famous one, in the same years and with the same festival, could easily be a copy of it, and replica fits a smaller building beside a great one.",
+          "inference": "A replica reproduces its original, usually smaller; a gate deliberately carved taller than the city temple's is built to outdo the city temple, not to reproduce it."
+        },
+        "precursor": {
+          "type": "logic",
+          "quote": "for the same spring week as the city's",
+          "why": "The hill festival was timed to the city's existing festival week, so the city temple was already there to compete with.",
+          "surface_fit": "A modest wooden temple on a hill seems older than a great stone one in a city, so precursor is a natural first guess.",
+          "inference": "A festival set to fall in the same week as the city's is set against a festival already being held; and the city's tolls fell afterward, so the hill temple arrived when the city temple was established, and cannot be the earlier building it followed."
+        }
+      }
+    }
+  ]
+}

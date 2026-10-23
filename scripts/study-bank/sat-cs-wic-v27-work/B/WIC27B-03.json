@@ -1,0 +1,146 @@
+{
+  "id": "WIC27B-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "an ice-age cave above a reindeer ford",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "icebox",
+    "lodge",
+    "lookout",
+    "mortuary"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "lookout",
+    "lodge",
+    "icebox",
+    "mortuary"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "From the finds, one archaeologist concluded that the valley's hunters used the cave above all as their ______.",
+  "worlds": [
+    {
+      "key": "icebox",
+      "passage": "A cave runs deep into a cliff above a valley where reindeer herds forded a river each spring and autumn fourteen thousand years ago. Its back chamber, far from daylight, stays near freezing all year, and there excavators found reindeer leg bones stacked in piles, most still joined at the knee and none burned, while the hearths, tools and children's teeth of the period lay in a camp by the river. Bones in the camp's late-winter hearths were the same cuts from the autumn herds, cracked open for marrow. From the finds, one archaeologist concluded that the valley's hunters used the cave above all as their ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "Joints from the autumn kill were stacked unburned in the near-freezing chamber, and the same cuts turn up cracked open in the camp's late-winter hearths, so the cave was the hunters' \"icebox.\" \"Lodge\" fails because the hearths, tools and children's teeth lay in the camp, where people lived. \"Lookout\" fails because the finds lie in the back chamber, far from daylight, where nothing outside can be seen. \"Mortuary\" fails because what was laid in the cold was meat later taken out and eaten.",
+      "kills": {
+        "lodge": {
+          "type": "logic",
+          "quote": "lay in a camp by the river",
+          "why": "The signs of daily life were in the riverside camp.",
+          "surface_fit": "A sheltered cave above good hunting ground is the classic ice-age home, and archaeologists often call such a cave a hunters' lodge.",
+          "inference": "Hearths, tools and children's teeth mark where people lived, and they lay in the camp; the cave held only stacked joints of meat, so the hunters kept things there rather than living there."
+        },
+        "lookout": {
+          "type": "logic",
+          "quote": "far from daylight",
+          "why": "The finds are in a chamber that cannot see out.",
+          "surface_fit": "A cave high in a cliff above the valley where the herds forded the river is just where hunters would watch for reindeer.",
+          "inference": "Everything was found in the back chamber, so far from daylight that nothing outside is visible from it, so what the hunters did there had nothing to do with watching the herds."
+        },
+        "mortuary": {
+          "type": "logic",
+          "quote": "cracked open for marrow",
+          "why": "The chamber's contents were later taken out and eaten.",
+          "surface_fit": "Deep caves were where ice-age people often laid their dead, and mortuary fits a cave naturally. Things were laid in piles and left in this cold chamber.",
+          "inference": "The cuts stacked in the chamber after the autumn kill reappear, cracked for marrow, in the late-winter hearths, so what was laid in the cold was taken out again; a mortuary is where things are laid to rest for good."
+        }
+      }
+    },
+    {
+      "key": "lodge",
+      "passage": "A cave runs deep into a cliff above a valley where reindeer herds forded a river each spring and autumn fourteen thousand years ago. Its back chamber, far from daylight, is the coldest spot in the valley today, and excavators found its floor ringed with hearths, layer above layer, all from the winter months after the autumn herds had gone south. Among the hearths lay grass bedding, stone scrapers for working hides and milk teeth shed by children. From the finds, one archaeologist concluded that the valley's hunters used the cave above all as their ______.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "Hearths, bedding, hide scrapers and children's milk teeth through the winter months show people living in the chamber, so the cave was their \"lodge.\" \"Icebox\" fails because the chamber was ringed with fires, so it was being warmed, not used for its cold. \"Lookout\" fails because the hearths date from after the herds had gone south, when there was nothing to watch, and lie far from daylight. \"Mortuary\" fails because milk teeth are shed by living children.",
+      "kills": {
+        "icebox": {
+          "type": "logic",
+          "quote": "ringed with hearths, layer above layer",
+          "why": "Fires burned in the chamber all winter.",
+          "surface_fit": "A cold chamber in a cave above the ford where the herds were killed is the natural place to keep meat, and icebox is a plain word for that. This chamber is the coldest spot in the valley.",
+          "inference": "A chamber ringed with fires winter after winter was being warmed, so its natural cold was not being used to keep meat."
+        },
+        "lookout": {
+          "type": "logic",
+          "quote": "after the autumn herds had gone south",
+          "why": "The cave was used when there were no herds to watch.",
+          "surface_fit": "A cave high in a cliff above the valley where the herds forded the river is just where hunters would watch for reindeer.",
+          "inference": "The hearths all date from the months after the herds had left, when the ford had nothing to watch, and they lie in a chamber far from daylight, so the people there were not waiting for the herds."
+        },
+        "mortuary": {
+          "type": "logic",
+          "quote": "milk teeth shed by children",
+          "why": "Shed milk teeth come from living children.",
+          "surface_fit": "Deep caves were where ice-age people often laid their dead, and mortuary fits a cave naturally. Human teeth were found in its deep chamber.",
+          "inference": "Milk teeth fall out of children who keep growing, so these teeth record children living in the chamber, not children buried there."
+        }
+      }
+    },
+    {
+      "key": "lookout",
+      "passage": "A cave runs deep into a cliff above a valley where reindeer herds forded a river each spring and autumn fourteen thousand years ago. Its mouth overlooks the ford. There, behind a waist-high stone wall, the floor is stained with red ochre, which these people strewed over their dead; the ochre is mixed into lumps of the resin that fixed spear tips to shafts, among broken tips from the herds' crossing weeks. The meat of those weeks was eaten at a riverside camp with bedding and children's teeth. From the finds, one archaeologist concluded that the valley's hunters used the cave above all as their ______.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "Behind a low wall looking down on the ford, hunters fixed new spear tips only in the weeks the herds crossed, while the kill was eaten below, so the cave was their \"lookout.\" \"Mortuary\" fails because the ochre is mixed into the spear-hafting resin, so it was weapon glue, not a burial pigment. \"Icebox\" fails because the meat of the crossing weeks was eaten at the camp. \"Lodge\" fails because the bedding and children's teeth lay in the riverside camp.",
+      "kills": {
+        "mortuary": {
+          "type": "logic",
+          "quote": "mixed into lumps of the resin",
+          "why": "The ochre was part of the glue for hafting spears.",
+          "surface_fit": "Deep caves were where ice-age people often laid their dead, and mortuary fits a cave naturally. The floor is stained with the red ochre these people strewed over their dead, behind a wall of stacked stones.",
+          "inference": "Ochre mixed into lumps of the resin that fixed spear tips to shafts, among broken spear tips, was being used to glue weapons together; the stain on the floor comes from that work, not from a burial."
+        },
+        "icebox": {
+          "type": "logic",
+          "quote": "the meat of those weeks was eaten",
+          "why": "The kill was eaten at the camp as it came in.",
+          "surface_fit": "A cold chamber in a cave above the ford where the herds were killed is the natural place to keep meat, and icebox is a plain word for that.",
+          "inference": "The meat of the crossing weeks was eaten at the camp in those same weeks, so it was not put by for later; the cave's own finds are spear repairs at the mouth."
+        },
+        "lodge": {
+          "type": "explicit",
+          "quote": "with bedding and children's teeth",
+          "why": "The signs of living were at the camp.",
+          "surface_fit": "A sheltered cave above good hunting ground is the classic ice-age home, and archaeologists often call such a cave a hunters' lodge. The cave mouth has a wall to shelter behind.",
+          "inference": "Bedding and children's teeth mark where families slept and lived, and they lay in the riverside camp, so the people behind the cave's wall were hunters there only for the crossing weeks."
+        }
+      }
+    },
+    {
+      "key": "mortuary",
+      "passage": "A cave runs deep into a cliff above a valley where reindeer herds forded a river each spring and autumn fourteen thousand years ago. Just inside its mouth, a ledge was walled shut with stacked stones. Behind the wall lie the uncut bones of adults and children, dusted with red ochre, in layers spanning three thousand years, a reindeer antler laid across each layer; the hearths and butchered reindeer bones of those centuries lie in camps by the river. From the finds, one archaeologist concluded that the valley's hunters used the cave above all as their ______.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "Behind a sealed wall, adults and children were laid in layers over three thousand years, their bones uncut and an antler across each layer, while the living cooked and ate in the camps by the river, so the cave was the hunters' \"mortuary.\" \"Lookout\" fails because the ledge was walled shut, so no one could see out from it. \"Icebox\" fails because the reindeer parts on the ledge are antlers laid over human bones, while the butchered meat bones lie in the camps. \"Lodge\" fails because the hearths of those centuries lie in the riverside camps.",
+      "kills": {
+        "lookout": {
+          "type": "logic",
+          "quote": "walled shut with stacked stones",
+          "why": "The ledge was closed off with a wall.",
+          "surface_fit": "A cave high in a cliff above the valley where the herds forded the river is just where hunters would watch for reindeer. The finds lie on a ledge just inside the cave's mouth.",
+          "inference": "A ledge walled shut with stacked stones cannot be seen out of, so whatever lay behind the wall was being closed in, not watching the valley."
+        },
+        "icebox": {
+          "type": "logic",
+          "quote": "the uncut bones of adults and children",
+          "why": "What was walled in was human, and the meat bones lie elsewhere.",
+          "surface_fit": "A cold chamber in a cave above the ford where the herds were killed is the natural place to keep meat, and icebox is a plain word for that. Reindeer antlers were found walled up there.",
+          "inference": "The bones behind the wall are human and uncut, with a single antler laid over each layer, while the butchered reindeer bones that show meat being eaten lie in the camps, so the wall closed in the dead, not food."
+        },
+        "lodge": {
+          "type": "logic",
+          "quote": "lie in camps by the river",
+          "why": "The hearths of those centuries were in the riverside camps.",
+          "surface_fit": "A sheltered cave above good hunting ground is the classic ice-age home, and archaeologists often call such a cave a hunters' lodge. The ledge holds the bones of adults and children, as a family home might.",
+          "inference": "The hearths of the same centuries lie in the camps, so people lived by the river; bones laid layer on layer behind a sealed wall over three thousand years were placed there, not lived among."
+        }
+      }
+    }
+  ]
+}

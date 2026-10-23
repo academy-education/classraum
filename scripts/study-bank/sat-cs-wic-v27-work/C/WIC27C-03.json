@@ -1,0 +1,146 @@
+{
+  "id": "WIC27C-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a volcanic island two decades after an eruption",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "submerged",
+    "smothered",
+    "scoured",
+    "tilted"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "tilted",
+    "submerged",
+    "smothered",
+    "scoured"
+  ],
+  "pos": "verb",
+  "after_blank": "it",
+  "blank_sentence": "Revisiting the island in 1903, one geologist wrote that the eruption had ______ it.",
+  "worlds": [
+    {
+      "key": "submerged",
+      "passage": "In 1883 a volcano erupted on a small island off a mountainous coast, where a fishing village had stood above a sheltered harbor for three centuries, with farms on the slopes behind it. Sailing in twenty years later, surveyors moored beside the church tower, whose stone steps, which had once climbed nine meters from the quay to its door, now ran down into the water. The old tide marks cut in the cliffs at both ends of the island lay the same depth under the sea, and the summit farms were planted as before. Revisiting the island in 1903, one geologist wrote that the eruption had ______ it.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "Steps that once climbed from the quay now run down into the water, and tide marks at both ends lie equally deep under the sea, so the whole island went down: the eruption \"submerged\" it. \"Tilted\" fails because the marks at both ends sank by the same amount, so neither end rose. \"Scoured\" fails because the church tower still stands, so the buildings were not swept away. \"Smothered\" fails because the summit farms were planted as before, so no deposit buried the island.",
+      "kills": {
+        "tilted": {
+          "type": "logic",
+          "quote": "at both ends of the island lay the same depth under the sea",
+          "why": "Both ends went down by the same amount, so the island sank level rather than tipping.",
+          "surface_fit": "Volcanic islands do heave and tip in eruptions, and a church whose steps now run into the sea is what a tipped island would show at its low end.",
+          "inference": "A tilt raises one end and lowers the other, so tide marks at the two ends would move by different amounts; marks at both ends lying equally deep under the sea mean the whole island dropped evenly."
+        },
+        "scoured": {
+          "type": "logic",
+          "quote": "moored beside the church tower",
+          "why": "The tower still stands where it stood, so the eruption did not sweep the village away.",
+          "surface_fit": "Eruptions send surges and waves that strip coasts bare, and a harbor village no longer reachable on foot suggests it was swept off.",
+          "inference": "Scouring carries buildings and soil away; a church tower still standing with its steps in place, now reached by boat, was covered by water, not removed."
+        },
+        "smothered": {
+          "type": "logic",
+          "quote": "the summit farms were planted as before",
+          "why": "Farms still worked means the soil was not buried.",
+          "surface_fit": "Burial under what a volcano throws out is the most familiar thing an eruption does to land, so it is a natural first guess for any volcanic island.",
+          "inference": "A smothered island has its fields buried and unfarmable for years; summit farms planted as before show their soil was never covered."
+        }
+      }
+    },
+    {
+      "key": "tilted",
+      "passage": "In 1883 a volcano erupted on a small island off a mountainous coast, where a fishing village had stood above a sheltered harbor for three centuries, with farms on the slopes behind it. Sailing in twenty years later, surveyors found the sea caves in the eastern cliffs standing dry, nine meters above the tide, while at the western end spring tides now ran into the doorways of the village's houses, which stood in their old rows. The hill farms between had taken their first harvest the summer after the eruption. Revisiting the island in 1903, one geologist wrote that the eruption had ______ it.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "The eastern cliffs rose out of the sea while the western village now floods at spring tides, so one end went up and the other down: the eruption \"tilted\" the island. \"Submerged\" fails because the eastern end now stands nine meters higher, and the west floods only at the highest tides. \"Scoured\" fails because the village's houses stand in their old rows. \"Smothered\" fails because the hill farms were harvested the very next summer.",
+      "kills": {
+        "submerged": {
+          "type": "logic",
+          "quote": "standing dry, nine meters above the tide",
+          "why": "The eastern end rose, so the island as a whole did not go under.",
+          "surface_fit": "Spring tides now run into the village's doorways, which is what an island going down into the sea would show.",
+          "inference": "Sea caves cut at the waterline now standing dry nine meters up mean the eastern end rose; an island whose one end climbed out of the sea while the other floods only at spring tides did not go under."
+        },
+        "scoured": {
+          "type": "logic",
+          "quote": "which stood in their old rows",
+          "why": "The houses stand where they stood, so nothing was swept away.",
+          "surface_fit": "Eruptions send waves and surges that strip a shore, and houses now taking the tide at their doors suggest a battered, stripped coast.",
+          "inference": "Scouring carries houses and soil off; houses still standing in their old rows, with only the tide now reaching them, were left in place while the ground beneath them sank."
+        },
+        "smothered": {
+          "type": "logic",
+          "quote": "had taken their first harvest the summer after the eruption",
+          "why": "The fields were harvested within a year, so nothing had buried them.",
+          "surface_fit": "Burial under what a volcano throws out is what most people picture an eruption doing to a farmed island.",
+          "inference": "Fields buried by an eruption stay out of use for years; hill farms harvesting the very next summer had soil that was never covered."
+        }
+      }
+    },
+    {
+      "key": "smothered",
+      "passage": "In 1883 a volcano erupted on a small island off a mountainous coast, where a fishing village had stood above a sheltered harbor for three centuries, with farms on the slopes behind it. Landing twenty years later, surveyors dug down through hard gray layers to reach the doorways of the village's houses, and on the slopes only the tops of the orchard walls showed. The tide still reached the old mark cut on the quay steps, and the island's one stream, cutting through the gray, still ran to the harbor along its old bed. Revisiting the island in 1903, one geologist wrote that the eruption had ______ it.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Surveyors had to dig down to reach doorways, and only the tops of orchard walls show, so the eruption buried the island where it stood: it \"smothered\" it. \"Scoured\" fails because the houses are still there under the layers, so nothing was swept off. \"Submerged\" fails because the tide still reaches the old mark on the quay steps, so the land did not sink. \"Tilted\" fails because the stream still runs to the harbor along its old bed, which tipped ground would have turned aside.",
+      "kills": {
+        "scoured": {
+          "type": "logic",
+          "quote": "to reach the doorways of the village's houses",
+          "why": "The houses are still there beneath the layers, so the surface was covered, not stripped.",
+          "surface_fit": "A village that can only be reached by digging sounds like a place wrecked by the eruption's blast, which is what scouring suggests.",
+          "inference": "Scouring removes buildings and soil; houses whose doorways can be reached by digging down were left in place and covered over, so the surface was added to, not stripped."
+        },
+        "submerged": {
+          "type": "logic",
+          "quote": "The tide still reached the old mark cut on the quay steps",
+          "why": "The sea reaches the same mark as before, so the land did not sink.",
+          "surface_fit": "A harbor village hidden from view after an eruption is the familiar picture of one that has gone down into the sea.",
+          "inference": "If the island had sunk, the tide would now rise above the old mark on the quay steps; it still stops at that mark, so the land stands where it stood and the village is hidden by what lies over it."
+        },
+        "tilted": {
+          "type": "logic",
+          "quote": "still ran to the harbor along its old bed",
+          "why": "The stream keeps its old course, so the ground did not tip.",
+          "surface_fit": "Ground heaving and tipping is a known effect of eruptions on small islands, and a geologist revisiting one would look for it.",
+          "inference": "Water runs downhill, so tipping the island would send its stream off in a new direction; a stream that still follows its old bed to the harbor shows the slopes keep the lean they always had."
+        }
+      }
+    },
+    {
+      "key": "scoured",
+      "passage": "In 1883 a volcano erupted on a small island off a mountainous coast, where a fishing village had stood above a sheltered harbor for three centuries, with farms on the slopes behind it. Landing twenty years later, surveyors found bare rock, scored with grooves running downhill, where the farms and the village had been, and fishermen offshore still snagged roof beams in their nets. The tide still reached the old mark cut in the quay's bedrock, and the island's one stream still ran to the harbor down its old gully. Revisiting the island in 1903, one geologist wrote that the eruption had ______ it.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Bare rock grooved downhill where farms and houses stood, with their beams now in the sea, shows that the eruption dragged the surface off: it \"scoured\" the island. \"Smothered\" fails because the rock was left bare, with nothing lying over it. \"Submerged\" fails because the tide still reaches the old mark in the quay's bedrock, so the beams were carried into the sea while the land stayed up. \"Tilted\" fails because the stream still runs down its old gully, which tipped ground would have turned aside.",
+      "kills": {
+        "smothered": {
+          "type": "logic",
+          "quote": "found bare rock, scored with grooves running downhill",
+          "why": "Bare, grooved rock means the surface was dragged off, not covered.",
+          "surface_fit": "Burial under what a volcano throws out is the most familiar fate of a village beside one, so smothering is the natural first guess.",
+          "inference": "Smothering leaves the old surface intact under a deposit; bare rock grooved downhill where soil and houses had been means the old surface was dragged off toward the sea, with nothing left lying over it."
+        },
+        "submerged": {
+          "type": "logic",
+          "quote": "The tide still reached the old mark cut in the quay's bedrock",
+          "why": "The sea reaches the same mark as before, so the land did not go under.",
+          "surface_fit": "Roof beams from the village now come up in fishermen's nets offshore, which suggests the village lies under the sea.",
+          "inference": "If the island had sunk, the tide would now rise past the old mark in the quay's bedrock; it stops at the same mark, so the land stayed up and the beams were carried out to sea."
+        },
+        "tilted": {
+          "type": "logic",
+          "quote": "still ran to the harbor down its old gully",
+          "why": "The stream keeps its old course, so the ground did not tip.",
+          "surface_fit": "Ground heaving and tipping is a known effect of eruptions, and surveyors returning to an island are looking for it.",
+          "inference": "Water runs downhill, so a tipped island would send its stream along a new course; a stream still running down its old gully shows the island's slopes are as they were."
+        }
+      }
+    }
+  ]
+}

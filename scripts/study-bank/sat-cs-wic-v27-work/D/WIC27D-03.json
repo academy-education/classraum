@@ -1,0 +1,146 @@
+{
+  "id": "WIC27D-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a medieval city canal",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "aqueduct",
+    "artery",
+    "border",
+    "commons"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "border",
+    "artery",
+    "commons",
+    "aqueduct"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "In her history of the city, one historian called the canal, above all, the city's ______.",
+  "worlds": [
+    {
+      "key": "aqueduct",
+      "passage": "A canal dug in the 1300s runs for two miles through the middle of a river city. Its water comes from springs in the hills, while the city's wells, sunk in marsh ground near the river, draw water too brackish to drink. It runs two feet deep between hedged and fenced banks, and wooden pipes carry its water to fountains in the city's parishes on both sides of it. In her history of the city, one historian called the canal, above all, the city's ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The city's wells were too brackish to drink, the canal brought spring water from the hills, and pipes carried that water to fountains across the city, so it was the city's \"aqueduct.\" \"Artery\" fails because two feet of water floats no barge. \"Commons\" fails because its banks are hedged and fenced off. \"Border\" fails because its water feeds the city's parishes on both sides, so the city lies on both banks.",
+      "kills": {
+        "artery": {
+          "type": "logic",
+          "quote": "runs two feet deep",
+          "why": "The canal is too shallow for boats.",
+          "surface_fit": "A long canal through a river city is the textbook picture of a trade route, so artery is a natural first guess.",
+          "inference": "Two feet of water will not float a loaded barge, so no goods could move along the canal; it carried water, not traffic."
+        },
+        "commons": {
+          "type": "logic",
+          "quote": "between hedged and fenced banks",
+          "why": "The banks are closed off.",
+          "surface_fit": "A canal through the middle of a city usually has banks where people walk and meet, so commons fits the setting.",
+          "inference": "Hedges and fences along both banks keep people away from the water, so the canal is closed ground, not a place the city's people share."
+        },
+        "border": {
+          "type": "logic",
+          "quote": "parishes on both sides of it",
+          "why": "The city lies on both banks.",
+          "surface_fit": "A canal running through the middle of a city is the kind of line that often split a city between two rulers, so border fits the sentence.",
+          "inference": "Its water is piped to the city's own parishes on both banks, so the same city lies on either side and the canal divides it from no one."
+        }
+      }
+    },
+    {
+      "key": "artery",
+      "passage": "A canal dug in the 1300s runs for two miles through the middle of a river city. Water drawn from the river above the city fills it, and towpaths on both banks are crowded from dawn with the horses hauling barges of grain, coal and stone. The warehouses of the city's merchant guild line both banks, and tanneries and dye works empty into it below them. In her history of the city, one historian called the canal, above all, the city's ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "Barges of grain, coal and stone are hauled along it all day to the guild's warehouses, so it was the route the city's goods moved by: the city's \"artery.\" \"Aqueduct\" fails because tanneries and dye works empty into it, so no one could drink from it. \"Commons\" fails because its banks are working towpaths crowded with barge horses. \"Border\" fails because the same city guild holds both banks.",
+      "kills": {
+        "aqueduct": {
+          "type": "logic",
+          "quote": "tanneries and dye works empty into it",
+          "why": "The water is fouled.",
+          "surface_fit": "Its water is drawn from the river above the city, which is how cities fed their water supply, so aqueduct tempts.",
+          "inference": "Water that tanneries and dye works empty into is fouled, so the city could not have drunk from it; it was not the city's water supply."
+        },
+        "commons": {
+          "type": "logic",
+          "quote": "crowded from dawn with the horses hauling barges",
+          "why": "The crowds on its banks are barge traffic.",
+          "surface_fit": "Banks crowded from dawn sound like a busy public place where the city gathers, which is what commons suggests.",
+          "inference": "The crowds on the towpaths are horses hauling barges, so the banks are working ground taken up by traffic, not open ground where the city's people meet."
+        },
+        "border": {
+          "type": "logic",
+          "quote": "the city's merchant guild line both",
+          "why": "The city's own guild holds both banks.",
+          "surface_fit": "A canal running through the middle of a city is the kind of line that often split a city between two rulers, so border fits the sentence.",
+          "inference": "The same city guild owns warehouses on both banks, so both sides belong to the city's own trade; the canal runs through the city rather than dividing it between two powers."
+        }
+      }
+    },
+    {
+      "key": "border",
+      "passage": "A canal dug in the 1300s runs for two miles through the middle of a river city. Its water is brackish from the tide, and high walls line both its banks. Thieves who escaped over one of its three low stone footbridges were beyond the reach of the city watch, and carts going over paid a bishop's tax at the far end. In her history of the city, one historian called the canal, above all, the city's ______.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "Crossing the canal put a thief beyond the city watch and put a cart under a bishop's tax, so the canal marked where the city's authority ended: it was the city's \"border.\" \"Aqueduct\" fails because its water is brackish. \"Artery\" fails because only low footbridges cross it, so no barge could pass. \"Commons\" fails because high walls shut off both banks.",
+      "kills": {
+        "aqueduct": {
+          "type": "logic",
+          "quote": "brackish from the tide",
+          "why": "The water is salty.",
+          "surface_fit": "Medieval cities often dug canals to bring in water, so aqueduct fits both the sentence and the subject.",
+          "inference": "Tidal water that is brackish is too salty to drink, so the canal could not have supplied the city with water."
+        },
+        "artery": {
+          "type": "logic",
+          "quote": "three low stone footbridges",
+          "why": "Low bridges block barges.",
+          "surface_fit": "A two-mile canal through a river city is the classic route for barge traffic, so artery is the word many readers reach for first.",
+          "inference": "A loaded barge cannot pass under a low stone footbridge, so with three of them across it no cargo could move along the canal."
+        },
+        "commons": {
+          "type": "logic",
+          "quote": "high walls line both its banks",
+          "why": "No one can reach the canal's banks.",
+          "surface_fit": "A canal through the middle of a city often has walks where people gather, so commons fits the topic.",
+          "inference": "With high walls along both banks, no one can get to the water's edge, so the canal offers no ground for the city's people to share."
+        }
+      }
+    },
+    {
+      "key": "commons",
+      "passage": "A canal dug in the 1300s runs for two miles through the middle of a river city. Its water comes clear from springs in the hills, and low stone footbridges cross it every hundred yards. Washerwomen from both its banks worked its steps by day, crowds walked its paths on summer evenings, and in hard winters half the city skated on it. In her history of the city, one historian called the canal, above all, the city's ______.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "People from both banks used the canal for washing by day, walks in summer and skating in winter, so it was the city's \"commons.\" \"Aqueduct\" fails because washerwomen soaped linen in it every day, so it was not kept clean for drinking. \"Artery\" fails because low footbridges every hundred yards leave no room for barges. \"Border\" fails because people from both banks shared it as one city.",
+      "kills": {
+        "aqueduct": {
+          "type": "logic",
+          "quote": "Washerwomen from both its banks worked its steps",
+          "why": "Laundry was done in it all day.",
+          "surface_fit": "Its water comes clear from springs in the hills, which is just what a city's water supply looks like, so aqueduct is a strong first guess.",
+          "inference": "Water that washerwomen soap linen in every day is dirty water, so the city could not rely on it for drinking; it was not the city's water supply."
+        },
+        "artery": {
+          "type": "logic",
+          "quote": "low stone footbridges cross it every hundred yards",
+          "why": "The bridges are too low for barges.",
+          "surface_fit": "A canal with paths along both sides through a river city looks like a towpath route for barges.",
+          "inference": "A barge cannot pass under a low stone footbridge, and there is one every hundred yards, so no cargo could move along the canal."
+        },
+        "border": {
+          "type": "logic",
+          "quote": "Washerwomen from both its banks",
+          "why": "People from both sides used it alike.",
+          "surface_fit": "A canal running through the middle of a city is the kind of line that often split a city between two rulers, so border fits the sentence.",
+          "inference": "Washerwomen, walkers and skaters came from both banks and used the canal together, so the city lies on both sides of it and the canal separates its people from no one."
+        }
+      }
+    }
+  ]
+}

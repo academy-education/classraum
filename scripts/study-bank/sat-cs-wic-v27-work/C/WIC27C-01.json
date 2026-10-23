@@ -1,0 +1,146 @@
+{
+  "id": "WIC27C-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a college farm station in a wheat district",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "testbed",
+    "yardstick",
+    "stopgap",
+    "wellspring"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "yardstick",
+    "stopgap",
+    "wellspring",
+    "testbed"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "In a history of farming on the plains, one economist describes the station as, above all, the district's ______.",
+  "worlds": [
+    {
+      "key": "testbed",
+      "passage": "In 1921 a state agricultural college opened a station on forty acres in a wheat-growing district of the plains, two years after drought had closed the district's last seed merchant. Each spring for forty years its staff sowed strains sent by breeders in other states in narrow strips beside the district's usual wheat. After five seasons the station printed each strain's harvests in the county paper, and the district's farmers took up the few strains that had held up. In a history of farming on the plains, one economist describes the station as, above all, the district's ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "Outside strains were grown beside the usual wheat for five seasons and farmers adopted only the ones that held up, so the station was where new wheat was tried first: a \"testbed.\" \"Wellspring\" fails because the strains were bred in other states; the station sorted them but originated nothing. \"Yardstick\" fails because the fixed standard in the strips was the district's usual wheat, while the station's own plantings changed with every batch. \"Stopgap\" fails because the trials ran every spring for forty years, a standing program rather than cover for the closed merchant until trade returned.",
+      "kills": {
+        "wellspring": {
+          "type": "logic",
+          "quote": "strains sent by breeders in other states",
+          "why": "The strains came from breeders elsewhere, so the station was not the source of the district's wheat.",
+          "surface_fit": "The new wheats the district took up all came to it through the station, so the station reads at first as the source of the district's wheat.",
+          "inference": "A source has to originate what flows from it; every strain the station handled had been bred in another state, so what it gave the district was a choice among others' wheats, not wheat of its own."
+        },
+        "yardstick": {
+          "type": "logic",
+          "quote": "beside the district's usual wheat",
+          "why": "Each strain was judged against the usual wheat in the next strip, so the usual wheat was the standard, not the station.",
+          "surface_fit": "The station printed harvest figures in the county paper every year, so it can look like the measure the district judged its wheat by.",
+          "inference": "A yardstick stays fixed while other things are measured against it; the station's plots held a new set of outside strains each spring, and the constant they were compared with was the farmers' own usual wheat in the neighboring strip."
+        },
+        "stopgap": {
+          "type": "explicit",
+          "quote": "Each spring for forty years",
+          "why": "A program running forty years was not a temporary fill-in.",
+          "surface_fit": "The station opened just after drought closed the district's last seed merchant, so a student expects it to have filled that gap until trade returned.",
+          "inference": "A stopgap covers a need only until the normal arrangement returns; trials repeated every spring for forty years, on strains the merchant never sold, were the station's permanent work, not a stand-in for the merchant."
+        }
+      }
+    },
+    {
+      "key": "yardstick",
+      "passage": "In 1921 a state agricultural college opened a station on forty acres in a wheat-growing district of the plains, two years after drought had closed the district's last seed merchant. It sowed one strain of the usual wheat on the same plots, by the same methods, every year, and sold each harvest to a flour mill, while farmers ordered their seed by mail. Each autumn the county agent printed the station's yield per acre, and a farmer who had tried a new strain or plow judged it against that figure. In a history of farming on the plains, one economist describes the station as, above all, the district's ______.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "The station grew the same wheat the same way every year, and farmers judged their own changes against its yield, so it was the district's \"yardstick.\" \"Testbed\" fails because the trying happened on the farms, where farmers tested new strains and plows; the station changed nothing. \"Wellspring\" fails because its harvest went to a flour mill, so none of its grain spread to the farms. \"Stopgap\" fails because farmers were already getting seed by mail, so the station was not filling the closed merchant's place.",
+      "kills": {
+        "testbed": {
+          "type": "logic",
+          "quote": "a farmer who had tried a new strain or plow",
+          "why": "The new strains and plows were tried on the farms, so the farms, not the station, were where things were tested.",
+          "surface_fit": "A college's agricultural station with its own plots is exactly the kind of place a reader expects to be a proving ground.",
+          "inference": "A testbed is where new things are tried out; here the farmers did the trying on their own land and needed the station's unchanging plots only as the fixed figure to compare against, so the station was the constant, not the experiment."
+        },
+        "wellspring": {
+          "type": "logic",
+          "quote": "sold each harvest to a flour mill",
+          "why": "All the station's grain was milled, so nothing from it spread to the farms.",
+          "surface_fit": "Histories of plains farming often credit a college station as the source of a district's agriculture, so the word fits the topic on a first read.",
+          "inference": "A source is something farms draw from; grain that goes to a mill becomes flour and never reaches a field, so the district's wheat could not have flowed from the station."
+        },
+        "stopgap": {
+          "type": "logic",
+          "quote": "farmers ordered their seed by mail",
+          "why": "Farmers had another seed supply, so the station did not stand in for the closed merchant.",
+          "surface_fit": "The station opened two years after the district lost its last seed merchant and grew the district's own wheat, so it looks like a temporary replacement for him.",
+          "inference": "Standing in for the merchant would mean supplying the seed he had sold; farmers were ordering seed by mail while the station's wheat went to a mill, so the merchant's place was filled by mail-order houses, not by the station."
+        }
+      }
+    },
+    {
+      "key": "stopgap",
+      "passage": "In 1921 a state agricultural college opened a station on forty acres in a wheat-growing district of the plains, two years after drought had closed the district's last seed merchant. That spring the station began buying seed wheat by the carload from a merchant three states away and selling it to the district's farmers at cost from its barn. A seed company opened a store in the county seat in 1925, and the next spring the college turned the station's empty barn and idle fields over to cattle. In a history of farming on the plains, one economist describes the station as, above all, the district's ______.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The station supplied seed from the year after the merchant closed until a seed store opened, then gave the work up, so it was a temporary fill-in: a \"stopgap.\" \"Wellspring\" fails because the seed it sold was bought from a merchant three states away; the station passed it on rather than producing it. \"Testbed\" fails because the station's fields lay idle, so nothing was tried on them. \"Yardstick\" fails for the same reason: idle fields yielded no figure for farms to be measured against.",
+      "kills": {
+        "wellspring": {
+          "type": "logic",
+          "quote": "buying seed wheat by the carload from a merchant three states away",
+          "why": "The seed came from a distant merchant, so the station passed seed on rather than being its source.",
+          "surface_fit": "Seed for every farm in the district went out from the station's barn, which reads like the district's wheat flowing from it.",
+          "inference": "A wellspring is where something originates; seed bought by the carload three states away and resold at cost only passed through the station's barn, so the station was a conduit for another merchant's seed, not its source."
+        },
+        "testbed": {
+          "type": "logic",
+          "quote": "empty barn and idle fields",
+          "why": "The station's fields were idle, so there was nothing growing on them to be tested.",
+          "surface_fit": "An agricultural college opening a farm station in a struggling district suggests a site for trying new crops and methods.",
+          "inference": "Trials need plots on which something new is grown; a station whose fields lay idle while it resold another merchant's seed grew nothing, so it could not have been trying anything."
+        },
+        "yardstick": {
+          "type": "logic",
+          "quote": "idle fields",
+          "why": "With nothing grown, the station had no yields for farms to be measured against.",
+          "surface_fit": "The station dealt in the same wheat every farmer grew, so its wheat might look like the standard the district measured its farms against.",
+          "inference": "A yardstick needs a figure of its own to compare with; a station that sold bought-in seed and grew nothing on its fields produced no yield at all, so there was nothing to measure the farms against."
+        }
+      }
+    },
+    {
+      "key": "wellspring",
+      "passage": "In 1921 a state agricultural college opened a station on forty acres in a wheat-growing district of the plains, two years after drought had closed the district's last seed merchant. In its first summer its staff found, in a drought-killed field, a few heads of wheat still standing, and from them they raised a strain they named for the district. Each autumn for thirty years they handed a sack of it to any farmer who asked, and by 1950 seed passed between neighbors had carried it into three adjoining counties. In a history of farming on the plains, one economist describes the station as, above all, the district's ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The district's own hardy strain was raised at the station from a few surviving heads and flowed out from it for thirty years, spreading farm to farm into three counties, so the station was the district's \"wellspring.\" \"Testbed\" fails because the station raised and handed out one strain year after year; it tried nothing against anything. \"Stopgap\" fails because it handed out its own new strain for thirty years, not the merchant's seed until a store reopened. \"Yardstick\" fails because its harvest went out in sacks as seed, not as a figure farms were compared with.",
+      "kills": {
+        "testbed": {
+          "type": "logic",
+          "quote": "Each autumn for thirty years they handed a sack of it",
+          "why": "The station multiplied and handed out one strain for decades, which is supplying, not testing.",
+          "surface_fit": "A college station raising a new strain from a few surviving heads sounds like experimental plant work, so a student may read it as a proving ground.",
+          "inference": "A testbed tries out several things before others adopt the ones that work; this station grew one strain and handed it out every autumn for thirty years, so nothing was being compared or tried on its land."
+        },
+        "stopgap": {
+          "type": "logic",
+          "quote": "a strain they named for the district",
+          "why": "The station gave out a new strain of its own, not the closed merchant's stock until he returned.",
+          "surface_fit": "The station started handing out seed in the first years after drought closed the last seed merchant, so it looks like a temporary fill-in.",
+          "inference": "A stopgap supplies the usual thing until the normal supplier returns; this station supplied a strain no merchant had ever sold, raised from its own find, and went on doing so for thirty years, so it was not filling a gap until anything returned."
+        },
+        "yardstick": {
+          "type": "logic",
+          "quote": "handed a sack of it to any farmer who asked",
+          "why": "The station's harvest went out as seed, so it served as a supply, not a standard.",
+          "surface_fit": "Nearly every farm grew the station's strain, so the station could look like the standard the district's farms were measured against.",
+          "inference": "A yardstick is a fixed figure others are judged by; the station's harvest went out each autumn in sacks to be sown, so what the farms took from it was the seed itself, and the comparison a yardstick offers never comes into it."
+        }
+      }
+    }
+  ]
+}

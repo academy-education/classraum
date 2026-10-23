@@ -1,0 +1,146 @@
+{
+  "id": "WIC27E-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "winter sea ice in a northern bay",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "raft",
+    "pantry",
+    "roof",
+    "perch"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "roof",
+    "raft",
+    "pantry",
+    "perch"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "One marine biologist has written that the bay's winter ice serves its animals above all as their ______.",
+  "worlds": [
+    {
+      "key": "raft",
+      "passage": "Each winter ice covers much of a northern bay where seals, seabirds, cod, and krill live. The ice there breaks into floes that drift south with the current. Harp seal pups are born on the floes late in winter and cannot swim for their first two weeks, and by the time they can, the floes have drifted a hundred miles south, to the shoals where young seals feed. The floes are thick and snow-covered, and almost nothing grows beneath them. One marine biologist has written that the bay's winter ice serves its animals above all as their ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The seal pups are born on drifting floes and cannot swim for two weeks, by which time the floes have carried them a hundred miles to their feeding shoals, so the ice serves as their \"raft\". \"Perch\" fails because the pups cannot leave the floe while it travels. \"Pantry\" fails because almost nothing grows under the thick, snowy floes, and \"roof\" fails because the seals live on top of the ice.",
+      "kills": {
+        "perch": {
+          "type": "logic",
+          "quote": "cannot swim for their first two weeks",
+          "why": "The pups cannot leave the floe and stay on it while it travels, so it is not a stopping place between trips.",
+          "surface_fit": "Seals lying out on ice are a familiar picture, and calling the ice the animals' perch is a natural way to describe a place they rest on.",
+          "inference": "A perch is a fixed spot an animal lands on between trips out; these pups cannot leave the floe for two weeks while it moves a hundred miles, so what matters is that the ice carries them."
+        },
+        "pantry": {
+          "type": "logic",
+          "quote": "almost nothing grows beneath them",
+          "why": "Thick, snow-covered floes grow almost nothing underneath, and the pups are nursing, so the ice supplies no food.",
+          "surface_fit": "Sea ice is well known as a source of food for polar animals, so pantry fits both the sentence and a passage about seals on ice.",
+          "inference": "The floes are too thick and snowy to grow anything beneath them, and the pups feed on milk while aboard and then at the shoals they reach; the food is at the destination, and the ice is what gets them there."
+        },
+        "roof": {
+          "type": "logic",
+          "quote": "born on the floes",
+          "why": "The seals live on top of the floes, so the ice is not covering them.",
+          "surface_fit": "An ice sheet over a bay covers the water like a roof, and a biologist could describe it as sheltering the bay's animals.",
+          "inference": "A roof shelters what is beneath it; the pups that depend on this ice are born and lie on its top, exposed, so the ice is useful as something that bears and moves them."
+        }
+      }
+    },
+    {
+      "key": "pantry",
+      "passage": "Each winter ice covers much of a northern bay where seals, seabirds, cod, and krill live. The ice there is thin and clear, and algae grow all winter in the brine channels inside it. In spring, as the ice melts, the algae spill into the water, and krill swarm at the melting edge to eat them weeks before any plankton blooms in open water, with cod and ringed seals hunting close behind. When the last floes drift out to sea, the krill stay behind. One marine biologist has written that the bay's winter ice serves its animals above all as their ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Algae grow all winter inside the ice and spill out as it melts, feeding the krill weeks before any plankton blooms, with cod and seals following, so the ice serves as the animals' \"pantry\". \"Roof\" fails because the krill gather where the ice is melting away. \"Raft\" fails because the krill stay behind when the floes drift off, and \"perch\" fails because the seals are hunting in the water, not resting on the ice.",
+      "kills": {
+        "roof": {
+          "type": "logic",
+          "quote": "swarm at the melting edge",
+          "why": "The krill gather where the ice is melting away, so they come for what it releases, not for cover.",
+          "surface_fit": "Krill living around sea ice suggests the ice is sheltering them, and roof is a natural word for ice covering small animals in a bay.",
+          "inference": "A roof is valuable while it stands over its occupants; the krill swarm at the edge as the ice melts and disappears, and their hunters follow them there, so the ice matters for the algae it holds."
+        },
+        "raft": {
+          "type": "logic",
+          "quote": "the krill stay behind",
+          "why": "When the ice drifts away the krill do not go with it, so it never carried them.",
+          "surface_fit": "The ice breaks up and drifts out to sea with animals around it, and raft is the stock image for floating ice animals travel with.",
+          "inference": "If the ice mattered to the krill as a carrier they would leave with it; they stay behind, so they were there for the algae the ice stored and let go as it melted."
+        },
+        "perch": {
+          "type": "logic",
+          "quote": "hunting close behind",
+          "why": "The seals hunt in the water behind the krill, so they are not resting on the ice.",
+          "surface_fit": "Seals are well known for hauling out on ice, so perch fits a passage about seals and sea ice.",
+          "inference": "A perch is somewhere an animal rests out of the water; these seals are in the water chasing the cod and krill at the melting edge, so the ice draws them through the food it releases."
+        }
+      }
+    },
+    {
+      "key": "roof",
+      "passage": "Each winter ice covers much of a northern bay where seals, seabirds, cod, and krill live. The ice there is frozen fast to the shore, thick and snow-covered, so the water beneath stays dark and almost nothing grows there. Young cod spend the winter in crevices on its underside, swimming out at night to feed in open water past its edge. The seabirds that hunt them find fish by sight, and at the bay's mouth, where no ice forms, they take most of the young cod wintering there. One marine biologist has written that the bay's winter ice serves its animals above all as their ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "Young cod hide in crevices under the dark ice by day, and the seabirds that hunt by sight take most of the young cod only at the ice-free mouth of the bay, so the ice serves as the cod's \"roof\". \"Pantry\" fails because almost nothing grows under the thick, snowy ice and the cod swim out past its edge to feed. \"Raft\" fails because the ice is frozen fast to the shore and carries nothing, and \"perch\" fails because the cod live under the ice, not on it.",
+      "kills": {
+        "pantry": {
+          "type": "logic",
+          "quote": "swimming out at night to feed",
+          "why": "The cod leave the ice to feed in open water, and almost nothing grows under it, so the ice is not their food source.",
+          "surface_fit": "Fish crowding under sea ice for the whole winter suggests they are feeding there, and pantry is a familiar word for sea ice in polar biology.",
+          "inference": "The water under thick, snow-covered ice stays dark, so nothing grows to eat, and the cod swim past the ice edge at night to feed; they spend the day under the ice for some reason other than food."
+        },
+        "raft": {
+          "type": "logic",
+          "quote": "frozen fast to the shore",
+          "why": "Ice fixed to the shore does not move, so it cannot carry the animals anywhere.",
+          "surface_fit": "Floating sea ice is often described as carrying animals across polar waters, so raft fits a passage about animals and winter ice.",
+          "inference": "Shore-fast ice stays where it is all winter, so it takes nothing anywhere; and the cod are under it, not on it."
+        },
+        "perch": {
+          "type": "logic",
+          "quote": "crevices on its underside",
+          "why": "The cod live in the ice's underside, so the ice is not a place they stand on between trips.",
+          "surface_fit": "Seabirds appear in the passage, and seabirds are known for resting on ice near the water they fish, so perch tempts on a first read.",
+          "inference": "A perch is something an animal stands on; the animals the ice protects here are cod tucked into crevices beneath it, and the birds are their hunters, which the ice keeps away from them."
+        }
+      }
+    },
+    {
+      "key": "perch",
+      "passage": "Each winter ice covers much of a northern bay where seals, seabirds, cod, and krill live. Along the shore the ice is frozen fast to the shallow bottom, thick and snow-covered. Past its edge a lane of open water stays clear, and eiders and guillemots stand in rows along the edge between dives, plunging into the lane after fish. On the few days when gales pack the lane with drifting ice, the birds leave the bay. One marine biologist has written that the bay's winter ice serves its animals above all as their ______.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "Eiders and guillemots stand on the fixed ice edge between dives into the open lane, and they leave the bay when the lane closes, so the ice serves as their \"perch\". \"Raft\" fails because this ice is frozen fast to the bottom. \"Pantry\" fails because the birds catch their fish in the open lane, and \"roof\" fails because nothing lives under ice frozen to the bottom; the birds stand on top.",
+      "kills": {
+        "raft": {
+          "type": "logic",
+          "quote": "frozen fast to the shallow bottom",
+          "why": "Ice frozen to the bottom cannot drift, so it carries the birds nowhere.",
+          "surface_fit": "Birds standing in rows on ice look like passengers, and raft is a common image for polar animals riding ice.",
+          "inference": "A raft matters because it floats and moves; ice frozen fast to the bottom stays put all winter, so it gives the birds a place to stand beside the open water."
+        },
+        "pantry": {
+          "type": "logic",
+          "quote": "plunging into the lane after fish",
+          "why": "The birds catch their food in the open lane, not from the ice.",
+          "surface_fit": "The birds feed at the ice all winter, and pantry is a familiar way to describe ice that supports polar animals' feeding.",
+          "inference": "The fish are in the open lane; ice frozen to the shallow bottom has no water beneath it for anything to grow in, and when gales close the lane the birds leave though the ice remains, so the ice was only a stand next to the food."
+        },
+        "roof": {
+          "type": "logic",
+          "quote": "stand in rows along the edge",
+          "why": "The birds stand on top of the ice, so it does not shelter them from above.",
+          "surface_fit": "Ice over a bay covers the water like a roof, and a biologist could describe it as sheltering the bay's animals.",
+          "inference": "A roof shelters what is under it; this ice is frozen to the bottom, so nothing lives under it, and the birds that use it stand exposed on its top."
+        }
+      }
+    }
+  ]
+}

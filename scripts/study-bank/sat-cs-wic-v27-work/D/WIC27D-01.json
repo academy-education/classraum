@@ -1,0 +1,146 @@
+{
+  "id": "WIC27D-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "gravel bar across a bay mouth",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "breakwater",
+    "barricade",
+    "causeway",
+    "chokepoint"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "barricade",
+    "breakwater",
+    "causeway",
+    "chokepoint"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "One historian of the bay's fishing town wrote that the bar had served the town above all as its ______.",
+  "worlds": [
+    {
+      "key": "breakwater",
+      "passage": "A gravel bar a mile long runs from the southern shore of a bay toward an island at the bay's mouth. The island's lighthouse keeper rows to the town for his stores, and the schooners that call at the town come in on either side of the island as the wind suits them. Winter swells break white along the bar's seaward face. Behind it the town's boats lie at open moorings all winter, while ports elsewhere on that coast haul their fleets ashore. One historian of the bay's fishing town wrote that the bar had served the town above all as its ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Swells break on the bar's seaward face while the town's boats stay afloat all winter behind it, when every other port on the coast hauls its fleet out, so the bar is the town's \"breakwater.\" \"Causeway\" fails because the island's keeper has to row to the town, so the bar carries no one across. \"Chokepoint\" fails because schooners come in on either side of the island. \"Barricade\" fails because those schooners do reach the town.",
+      "kills": {
+        "causeway": {
+          "type": "logic",
+          "quote": "lighthouse keeper rows to the town",
+          "why": "The island's keeper reaches the town by boat.",
+          "surface_fit": "A low bar running from the shore toward an island is exactly what a natural causeway looks like, and a town could use one to reach the island.",
+          "inference": "If the island's own keeper has to row to the town, there is no dry way along the bar from island to shore, so the bar carries no one across."
+        },
+        "chokepoint": {
+          "type": "logic",
+          "quote": "on either side of the island",
+          "why": "Ships have two routes into the bay.",
+          "surface_fit": "A bar reaching most of the way across a bay's mouth seems to squeeze shipping into a gap, so a reader expects the town to hold a chokepoint.",
+          "inference": "Schooners can enter on either side of the island as the wind allows, so traffic is never forced through one narrow passage that the bar commands."
+        },
+        "barricade": {
+          "type": "logic",
+          "quote": "the schooners that call at the town",
+          "why": "Ships reach the town.",
+          "surface_fit": "A gravel bar lying across a harbor's mouth reads as a natural defense, and a town historian could call it a barricade against raiders.",
+          "inference": "Schooners call at the town regularly, so ships get into the bay; whatever the bar does, it does not keep vessels out."
+        }
+      }
+    },
+    {
+      "key": "barricade",
+      "passage": "A gravel bar a mile long runs from the southern shore of a bay toward an island at the bay's mouth. At high water barely three feet covers its crest. The island's lighthouse keeper rows to the town for his stores. The town's flat-bottomed boats are hauled over the bar on log rollers and winter on the beach like every fleet on that coast. Its houses are the only ones on that coast older than 1650, the year raiders sailed along it burning harbor towns. One historian of the bay's fishing town wrote that the bar had served the town above all as its ______.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "Even the town's own flat-bottomed boats must be dragged over the bar, and its houses alone survived the raiders who burned that coast's harbor towns from the sea, so the bar kept ships out: it is the town's \"barricade.\" \"Breakwater\" fails because the town's boats still winter on the beach like every fleet on the exposed coast. \"Causeway\" fails because the island's keeper rows to the town. \"Chokepoint\" fails because no channel passes the bar at all.",
+      "kills": {
+        "breakwater": {
+          "type": "logic",
+          "quote": "winter on the beach like every fleet on that coast",
+          "why": "The town's boats need hauling out as on the open coast.",
+          "surface_fit": "A long gravel bar facing the open sea across a fishing harbor's mouth is what most readers picture as a natural breakwater.",
+          "inference": "If the town's boats must come out of the water for the winter just like boats on the exposed coast, the water behind the bar is no calmer than the open sea, so the bar shelters nothing."
+        },
+        "causeway": {
+          "type": "logic",
+          "quote": "lighthouse keeper rows to the town",
+          "why": "The island's keeper reaches the town by boat.",
+          "surface_fit": "A low bar running from the shore toward an island is exactly what a natural causeway looks like, and a town could use one to reach the island.",
+          "inference": "If the island's own keeper has to row to the town, there is no dry way along the bar from island to shore, so the bar carries no one across."
+        },
+        "chokepoint": {
+          "type": "logic",
+          "quote": "hauled over the bar on log rollers",
+          "why": "No channel passes the bar.",
+          "surface_fit": "A bar that nearly closes a bay seems to funnel shipping into one spot, and chokepoint is a natural word for a narrow harbor approach.",
+          "inference": "If even flat-bottomed boats have to be dragged over the crest, there is no channel past the bar at all, and with no passage there is no narrow route through which traffic is squeezed."
+        }
+      }
+    },
+    {
+      "key": "chokepoint",
+      "passage": "A gravel bar a mile long runs from the southern shore of a bay toward an island at the bay's mouth. Between its end and the island runs a gut sixty yards wide, and reefs fill the passage beyond the island; elsewhere a few feet covers the crest at high water. The island's lighthouse keeper rows to the town for his stores, and the town's boats winter on the beach like every fleet on that coast. Since 1650 a harbor boat moored in the gut has collected the town's dues. One historian of the bay's fishing town wrote that the bar had served the town above all as its ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The gut at the bar's end is the one way in, the passage beyond the island being reef, and the town collects its dues from a boat moored there, so the bar is the town's \"chokepoint.\" \"Breakwater\" fails because the town's boats winter on the beach like boats on the open coast. \"Causeway\" fails because the island's keeper rows to the town. \"Barricade\" fails because ships do come in through the gut, which is why dues are collected there.",
+      "kills": {
+        "breakwater": {
+          "type": "logic",
+          "quote": "winter on the beach like every fleet on that coast",
+          "why": "The town's boats need hauling out as on the open coast.",
+          "surface_fit": "A long gravel bar facing the open sea across a fishing harbor's mouth is what most readers picture as a natural breakwater.",
+          "inference": "If the town's boats must come out of the water for the winter just like boats on the exposed coast, the water behind the bar is no calmer than the open sea, so the bar shelters nothing."
+        },
+        "causeway": {
+          "type": "logic",
+          "quote": "lighthouse keeper rows to the town",
+          "why": "The island's keeper reaches the town by boat.",
+          "surface_fit": "The bar reaches to within sixty yards of the island, so it looks like a natural causeway the town might use to reach it.",
+          "inference": "If the island's own keeper has to row to the town, there is no dry way along the bar from island to shore, so the bar carries no one across."
+        },
+        "barricade": {
+          "type": "logic",
+          "quote": "collected the town's dues",
+          "why": "Dues are collected from vessels coming in.",
+          "surface_fit": "A bar that closes nearly the whole mouth of a bay looks like a defense against ships, so barricade fits a town history.",
+          "inference": "A boat in the gut collects dues from the ships passing it, so vessels enter the bay; the bar steers them through one gap rather than keeping them out."
+        }
+      }
+    },
+    {
+      "key": "causeway",
+      "passage": "A gravel bar a mile long runs from the southern shore of a bay toward an island at the bay's mouth. At the lowest tides its crest lies dry from the shore to the island for two hours, and at high water eight feet covers it from end to end. The town's sheep graze the island's pasture from May to October. The fishing fleet sails over the bar at any point along its length on the flood, and winters on the beach like every fleet on that coast. One historian of the bay's fishing town wrote that the bar had served the town above all as its ______.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "The crest lies dry from the shore to the island at low tide, and the town's sheep spend each summer on the island, so the bar is the town's \"causeway\" to its pasture. \"Breakwater\" fails because the fleet still winters on the beach like boats on the open coast. \"Barricade\" fails because eight feet of water covers the bar at high tide. \"Chokepoint\" fails because the fleet can cross anywhere along the bar.",
+      "kills": {
+        "breakwater": {
+          "type": "logic",
+          "quote": "winters on the beach like every fleet on that coast",
+          "why": "The fleet needs hauling out as on the open coast.",
+          "surface_fit": "A long gravel bar facing the open sea across a fishing harbor's mouth is what most readers picture as a natural breakwater.",
+          "inference": "If the fleet must come ashore for the winter just like boats on the exposed coast, the bay behind the bar is no calmer than the open sea, so the bar gives it no shelter."
+        },
+        "barricade": {
+          "type": "logic",
+          "quote": "eight feet covers it",
+          "why": "At high tide the bar is deep under water.",
+          "surface_fit": "A bar stretching across a bay's mouth looks like a defensive line against ships, so barricade fits a town history.",
+          "inference": "With eight feet over the crest at high water, the town's boats and any other vessel of that size can cross the bar, so it keeps nothing out."
+        },
+        "chokepoint": {
+          "type": "logic",
+          "quote": "at any point along its length",
+          "why": "Boats cross anywhere.",
+          "surface_fit": "A bar across most of a harbor mouth seems to narrow the way in, and chokepoint is a natural word for a harbor approach a town controls.",
+          "inference": "Since the fleet can sail over the bar at any point on the flood tide, traffic is spread along a mile of water instead of being forced through one gap."
+        }
+      }
+    }
+  ]
+}

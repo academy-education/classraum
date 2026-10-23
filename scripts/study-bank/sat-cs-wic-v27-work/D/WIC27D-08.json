@@ -1,0 +1,146 @@
+{
+  "id": "WIC27D-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a kiln firing and a glaze",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "blackened",
+    "blistered",
+    "clouded",
+    "cracked"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "cracked",
+    "blackened",
+    "clouded",
+    "blistered"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "In her notes on the batch, the potter concluded that the firing had ______ the glaze.",
+  "worlds": [
+    {
+      "key": "blackened",
+      "passage": "A potter fired a batch of white bowls painted with blue brushwork under a clear glaze. The kiln's damper had stuck shut through the night, so the fire burned starved of air. Set on the shelf afterward, the bowls could hardly be told from the slate-grey stoneware beside them, and the brushwork no longer showed. Under a fingertip the glaze was as smooth as glass, and tea left in the bowls overnight washed out without a trace. In her notes on the batch, the potter concluded that the firing had ______ the glaze.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The fire burned starved of air, and afterward the white bowls looked as dark as the slate-grey stoneware beside them, so the firing had \"blackened\" the glaze. \"Clouded\" fails because the bowls had turned dark, not milky and pale. \"Blistered\" fails because the glaze was as smooth as glass. \"Cracked\" fails because tea washed out of the bowls without a trace.",
+      "kills": {
+        "clouded": {
+          "type": "logic",
+          "quote": "hardly be told from the slate-grey stoneware",
+          "why": "The bowls turned dark grey.",
+          "surface_fit": "A clear glaze that no longer lets the brushwork show sounds exactly like a glaze gone cloudy, so clouded is the strongest rival.",
+          "inference": "Bowls that now look like slate-grey stoneware have darkened; a clouded glaze turns pale and milky over the white, so a change to dark grey is the other kind of change."
+        },
+        "blistered": {
+          "type": "logic",
+          "quote": "as smooth as glass",
+          "why": "The glaze surface is unbroken.",
+          "surface_fit": "A firing gone wrong often leaves bubbles in a glaze, and blistered is one of the commonest words potters use for a spoiled batch.",
+          "inference": "Blisters are raised bubbles and burst craters that a fingertip would catch on; a glaze as smooth as glass has none."
+        },
+        "cracked": {
+          "type": "logic",
+          "quote": "washed out without a trace",
+          "why": "No tea lodged in the glaze.",
+          "surface_fit": "Glazes often crack in a bad firing, so cracked fits both the sentence and the potter's problem.",
+          "inference": "Fine cracks in a glaze let tea seep in and stay there; tea that washes out without a trace has nowhere to lodge, so the glaze has no cracks."
+        }
+      }
+    },
+    {
+      "key": "blistered",
+      "passage": "A potter fired a batch of white bowls painted with blue brushwork under a clear glaze. The kiln had been heated twice as fast as usual. Under a lamp held low beside it, each bowl threw thousands of pinpoint shadows across its own surface, and a fingertip drawn over it caught as if on fine sandpaper. The blue brushwork showed as clearly as before against a ground as white as ever, and tea left in the bowls overnight washed out without a trace. In her notes on the batch, the potter concluded that the firing had ______ the glaze.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "Low lamplight picked out thousands of tiny raised points on each bowl, rough enough to catch a fingertip, after a firing heated too fast, so bubbles had risen in the glaze: the firing had \"blistered\" it. \"Blackened\" fails because the ground was as white as ever. \"Clouded\" fails because the brushwork showed as clearly as before. \"Cracked\" fails because tea washed out without a trace.",
+      "kills": {
+        "blackened": {
+          "type": "logic",
+          "quote": "a ground as white as ever",
+          "why": "The bowls did not darken.",
+          "surface_fit": "A kiln heated too fast can scorch or smoke a glaze, so blackened fits a spoiled firing.",
+          "inference": "If the white of the bowls is as white as ever, the glaze has not darkened over it, so the firing did not blacken it."
+        },
+        "clouded": {
+          "type": "logic",
+          "quote": "showed as clearly as before",
+          "why": "The glaze is still clear.",
+          "surface_fit": "A rushed firing can leave a glaze hazy, and clouded is a common word for a clear glaze gone wrong.",
+          "inference": "The brushwork shows through the glaze as clearly as before, so the glaze itself is still clear; the flaw sits on the surface, not as a haze through it."
+        },
+        "cracked": {
+          "type": "logic",
+          "quote": "washed out without a trace",
+          "why": "No tea lodged in the glaze.",
+          "surface_fit": "Heating a kiln too fast is a classic cause of cracking, so cracked is a natural guess here.",
+          "inference": "Fine cracks in a glaze let tea seep in and stay there; tea that washes out without a trace has nowhere to lodge, so the glaze has no cracks."
+        }
+      }
+    },
+    {
+      "key": "clouded",
+      "passage": "A potter fired a batch of white bowls painted with blue brushwork under a clear glaze. The brushwork could be made out only faintly, and the bowls' thin rims, which had glowed when held up to a window, now let no light through. The white ground of each bowl looked whiter than before, the glaze was as smooth as glass under a fingertip, and tea left in the bowls overnight washed out without a trace. In her notes on the batch, the potter concluded that the firing had ______ the glaze.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "The glaze stopped letting light through and dimmed the brushwork while the white ground looked whiter, so it had turned pale and opaque: the firing had \"clouded\" it. \"Blackened\" fails because the bowls looked whiter, not darker. \"Blistered\" fails because the glaze was as smooth as glass. \"Cracked\" fails because tea washed out without a trace.",
+      "kills": {
+        "blackened": {
+          "type": "logic",
+          "quote": "looked whiter than before",
+          "why": "The bowls grew lighter.",
+          "surface_fit": "A glaze through which the painting can barely be seen sounds like one darkened by smoke, so blackened is a strong first guess.",
+          "inference": "If the white ground looks whiter than before, the glaze has not darkened; what hides the brushwork is something pale in the glaze, not soot."
+        },
+        "blistered": {
+          "type": "logic",
+          "quote": "as smooth as glass",
+          "why": "The glaze surface is unbroken.",
+          "surface_fit": "A firing gone wrong often leaves bubbles in a glaze, and blistered is one of the commonest words potters use for a spoiled batch.",
+          "inference": "Blisters are raised bubbles and burst craters that a fingertip would catch on; a glaze as smooth as glass has none."
+        },
+        "cracked": {
+          "type": "logic",
+          "quote": "washed out without a trace",
+          "why": "No tea lodged in the glaze.",
+          "surface_fit": "A glaze that has stopped letting light through might be full of fine cracks that scatter it, so cracked fits the description.",
+          "inference": "Fine cracks in a glaze let tea seep in and stay there; tea that washes out without a trace has nowhere to lodge, so the glaze has no cracks."
+        }
+      }
+    },
+    {
+      "key": "cracked",
+      "passage": "A potter fired a batch of white bowls painted with blue brushwork under a clear glaze. Fresh from the kiln the bowls looked flawless, the brushwork clear on a white ground and the glaze smooth to the fingertip, and for two days a faint ticking came from the shelf where they cooled. Within a month every bowl used for tea had turned a mottled tan, while those that held only water stayed white. In her notes on the batch, the potter concluded that the firing had ______ the glaze.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The bowls ticked as they cooled, and later every bowl used for tea turned a mottled tan while the water bowls stayed white, so tea was seeping into fine lines in the glaze: the firing had \"cracked\" it. \"Blackened\" fails because the darkening came from tea, since the bowls that held water stayed white. \"Clouded\" fails because the bowls came out flawless with the brushwork clear. \"Blistered\" fails because the glaze was smooth to the fingertip.",
+      "kills": {
+        "blackened": {
+          "type": "logic",
+          "quote": "those that held only water stayed white",
+          "why": "The firing itself left the bowls white.",
+          "surface_fit": "Bowls that turn mottled tan have darkened, and a darkened glaze sounds blackened on a quick read.",
+          "inference": "Bowls that held only water stayed white, so the firing did not darken the glaze; the tan came afterward, from the tea."
+        },
+        "clouded": {
+          "type": "logic",
+          "quote": "the bowls looked flawless",
+          "why": "The glaze came out clear.",
+          "surface_fit": "A glaze that later turns mottled sounds like one losing its clearness, which is what clouded describes.",
+          "inference": "Fresh from the kiln the bowls looked flawless, with the brushwork clear, so the firing left no haze in the glaze; the mottling appeared only where tea got in."
+        },
+        "blistered": {
+          "type": "logic",
+          "quote": "smooth to the fingertip",
+          "why": "The surface has no bubbles.",
+          "surface_fit": "Blistering is a common glaze fault after a bad firing, so blistered fits the potter's notes.",
+          "inference": "Blisters are raised bubbles and craters that a fingertip would catch on; a glaze smooth to the touch has none."
+        }
+      }
+    }
+  ]
+}

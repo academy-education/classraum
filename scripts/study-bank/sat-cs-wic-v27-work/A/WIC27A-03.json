@@ -1,0 +1,146 @@
+{
+  "id": "WIC27A-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "an island in a strait",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "haven",
+    "depot",
+    "fortress",
+    "gateway"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "gateway",
+    "fortress",
+    "haven",
+    "depot"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "One historian has argued that through the nineteenth century the island served those cities above all as their ______.",
+  "worlds": [
+    {
+      "key": "gateway",
+      "passage": "A rocky island of two square miles, with a stone quay, lies in a strait between the ocean and an inland sea lined with port cities. The strait's only deep channel runs beneath the island's cliffs, among shoals that no outside captain knew. Every inbound ship came alongside the quay for the cities' customs clerks to open its hatches, and left within the hour with an island pilot at the helm for the forty miles to the cities. One historian has argued that through the nineteenth century the island served those cities above all as their ______.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "Every ship bound for the cities had to come in under the island's cliffs, was cleared by the cities' customs clerks at its quay, and was taken through the shoals by an island pilot, so the island was the way in to the cities: their \"gateway.\" \"Depot\" and \"haven\" fail because each ship left within the hour, so nothing was stored and no ship stayed. \"Fortress\" fails because the cities posted customs clerks there, who could inspect ships but not stop an enemy.",
+      "kills": {
+        "depot": {
+          "type": "logic",
+          "quote": "left within the hour",
+          "why": "Ships stayed only long enough to be inspected, so nothing was unloaded or stocked.",
+          "surface_fit": "The island has a quay and a row of warehouses on the sea route to the cities, which is just what a depot is, so a historian calling it the cities' depot reads naturally at first sight.",
+          "inference": "Every ship stopped at the quay, which is what makes the island look like a supply station, but each left within the hour with its hatches closed again; a depot holds stocks for later, and nothing was put ashore to be kept."
+        },
+        "haven": {
+          "type": "logic",
+          "quote": "left within the hour with an island pilot",
+          "why": "Ships stopped only for clearance and went straight on, so none stayed for shelter.",
+          "surface_fit": "A lone island with a quay at the mouth of an inland sea is exactly where ships would shelter from bad weather, and \"served those cities as their haven\" is a natural phrase for a historian of shipping.",
+          "inference": "A haven is somewhere ships wait until it is safe; these ships stopped for an hour to be cleared and then sailed on with a pilot, so the stop was a formality on the way in, not a refuge."
+        },
+        "fortress": {
+          "type": "logic",
+          "quote": "the cities' customs clerks",
+          "why": "The cities' men on the island were clerks checking cargo, who could not hold off an attack.",
+          "surface_fit": "An island planted in the strait that leads to the cities is the textbook site for defending them, so \"fortress\" is the first role many readers would give it.",
+          "inference": "Every ship had to pass close under the island's cliffs, just where guns would command the channel, yet the men the cities posted there opened hatches; an island staffed to inspect cargo could control trade but could not keep an enemy out."
+        }
+      }
+    },
+    {
+      "key": "haven",
+      "passage": "A rocky island of two square miles, with a stone quay, lies in a strait between the ocean and an inland sea lined with port cities. A hook of rock closes a deep bay on its landward side, and a lighthouse on the hook shows the way in. When winter gales blew down the strait, ships bound for the cities ran into the bay and waited, sometimes for weeks, their crews buying bread from the islanders' ovens; in calm weather they passed the island on either side. One historian has argued that through the nineteenth century the island served those cities above all as their ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Ships ran into the island's enclosed bay only when gales blew down the strait and waited there until it was safe to go on, so the island served the cities' shipping as a \"haven.\" \"Depot\" fails because the crews bought bread the islanders baked for them, not stocks kept for the cities. \"Gateway\" fails because in calm weather ships passed the island on either side. \"Fortress\" fails because the work on the bay's mouth is a lighthouse that brings every ship in.",
+      "kills": {
+        "depot": {
+          "type": "logic",
+          "quote": "buying bread from the islanders' ovens",
+          "why": "Crews bought what the islanders baked while they waited, not stocks kept to supply the cities.",
+          "surface_fit": "The island has a quay and a row of warehouses on the sea route to the cities, which is just what a depot is, so a historian calling it the cities' depot reads naturally at first sight.",
+          "inference": "Ships taking on food at an island quay looks like a supply station, but the crews were buying fresh bread from the islanders because they were stuck there; nothing was shipped in and stored to supply the cities' vessels."
+        },
+        "gateway": {
+          "type": "logic",
+          "quote": "passed the island on either side",
+          "why": "In ordinary weather traffic went past the island without touching it.",
+          "surface_fit": "The island sits in the only strait between the ocean and the cities' sea, so calling it their gateway is a phrase a reader expects before reading further.",
+          "inference": "In calm weather ships sailed by on both sides, so the way into the inland sea did not run through the island; ships came only when the weather drove them, which makes it a shelter beside the entrance, not the entrance itself."
+        },
+        "fortress": {
+          "type": "logic",
+          "quote": "a lighthouse on the hook shows the way in",
+          "why": "The one work on the bay's mouth guides ships in; nothing was built to keep any out.",
+          "surface_fit": "An island planted in the strait that leads to the cities is the textbook site for defending them, so \"fortress\" is the first role many readers would give it.",
+          "inference": "The structure guarding the bay's mouth is a lighthouse that leads ships in at night, so the bay was made easy to enter for any ship; a fortress makes an approach hard for an enemy, and this one was lit to help every ship in."
+        }
+      }
+    },
+    {
+      "key": "depot",
+      "passage": "A rocky island of two square miles, with a stone quay, lies in a strait between the ocean and an inland sea lined with port cities. Each summer, colliers from a mine across the ocean heaped coal behind the quay. All year the cities' steamships, which burned a ton of coal an hour, put in there on every voyage out and back, while sailing ships, which burned nothing, sailed straight through the strait. The coal was handled by two hundred dockworkers who lived in boardinghouses beside it. One historian has argued that through the nineteenth century the island served those cities above all as their ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "Coal brought in each summer was kept behind the quay and drawn on all year by the cities' steamships on every voyage, so the island was their \"depot.\" \"Haven\" fails because the steamships called on every voyage because their fuel was there, not to escape storms. \"Gateway\" fails because sailing ships went straight through without stopping. \"Fortress\" fails because the island's people were dockworkers handling coal.",
+      "kills": {
+        "haven": {
+          "type": "logic",
+          "quote": "on every voyage out and back",
+          "why": "The steamships called on a fixed round for fuel, in any weather, not to escape storms.",
+          "surface_fit": "A lone island with a quay at the mouth of an inland sea is exactly where ships would shelter from bad weather, and \"served those cities as their haven\" is a natural phrase for a historian of shipping.",
+          "inference": "Ships that stop on every single voyage, both ways, are keeping a refueling schedule set by how much coal they burn; a stop made every time whatever the weather is made for what is stored there, not to shelter from a storm."
+        },
+        "gateway": {
+          "type": "explicit",
+          "quote": "sailing ships, which burned nothing, sailed straight through",
+          "why": "Ships that needed no coal ignored the island, so the way into the sea did not run through it.",
+          "surface_fit": "The island sits in the only strait between the ocean and the cities' sea, so calling it their gateway is a phrase a reader expects before reading further.",
+          "inference": "Sailing ships, needing no coal, passed through the strait without stopping, so traffic into the inland sea did not depend on the island; the steamships stopped only because the coal was kept there."
+        },
+        "fortress": {
+          "type": "logic",
+          "quote": "two hundred dockworkers who lived in boardinghouses",
+          "why": "The island's people were coal handlers, with nothing to defend it.",
+          "surface_fit": "An island planted in the strait that leads to the cities is the textbook site for defending them, so \"fortress\" is the first role many readers would give it.",
+          "inference": "The people on the island were dockworkers lodged beside the coal heaps to load the steamships; an island manned to shovel coal supplied the cities' fleet but had no garrison to keep an enemy away from the strait."
+        }
+      }
+    },
+    {
+      "key": "fortress",
+      "passage": "A rocky island of two square miles, with a stone quay, lies in a strait between the ocean and an inland sea lined with port cities. In 1810 the cities placed guns on its heights that reached across the whole strait, and merchant ships sailed past beneath them without stopping. In three wars enemy fleets reached the strait, lost ships to the island's guns, and turned back without entering the inland sea, and each time the island withstood a siege of months. One historian has argued that through the nineteenth century the island served those cities above all as their ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "Enemy fleets that reached the strait were driven back by the island's guns, and the island outlasted every siege, so it held the cities' enemies off: it was their \"fortress.\" \"Gateway\" and \"depot\" fail because merchant ships sailed past without stopping, so the island neither handled the cities' traffic nor stocked anything for it. \"Haven\" fails because a place repeatedly besieged for months could shelter no ship.",
+      "kills": {
+        "gateway": {
+          "type": "logic",
+          "quote": "merchant ships sailed past beneath them without stopping",
+          "why": "Trade went by the island without any dealings with it, so it was not the way in for the cities' traffic.",
+          "surface_fit": "The island sits in the only strait between the ocean and the cities' sea, so calling it their gateway is a phrase a reader expects before reading further.",
+          "inference": "Merchant ships bound for the cities sailed on past without touching the island, so the cities' trade did not pass through it; what the island did was stop enemies with its guns, which makes it a stronghold beside the passage, not the passage itself."
+        },
+        "depot": {
+          "type": "logic",
+          "quote": "sailed past beneath them without stopping",
+          "why": "Ships did not stop at the island, so nothing was loaded or stocked there for them.",
+          "surface_fit": "The island has a quay and a row of warehouses on the sea route to the cities, which is just what a depot is, so a historian calling it the cities' depot reads naturally at first sight.",
+          "inference": "A depot is where ships take on stores; the merchant ships passed the island without stopping, and the island's work was firing on enemy fleets, so nothing was kept there for the cities' ships to draw on."
+        },
+        "haven": {
+          "type": "logic",
+          "quote": "withstood a siege of months",
+          "why": "A besieged island ringed by enemy ships is no refuge for shipping.",
+          "surface_fit": "A lone island with a quay at the mouth of an inland sea is exactly where ships would shelter from bad weather, and \"served those cities as their haven\" is a natural phrase for a historian of shipping.",
+          "inference": "In every war the island was itself under siege for months; a ship that ran in there would have been trapped inside an enemy blockade, so the island protected the cities by holding out, not by sheltering their ships."
+        }
+      }
+    }
+  ]
+}

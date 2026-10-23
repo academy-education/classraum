@@ -1,0 +1,146 @@
+{
+  "id": "WIC27C-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a foreign carmaker's first plant in a country",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "showroom",
+    "schoolhouse",
+    "toehold",
+    "warehouse"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "warehouse",
+    "showroom",
+    "schoolhouse",
+    "toehold"
+  ],
+  "pos": "noun",
+  "after_blank": "in",
+  "blank_sentence": "In a history of the company, one economist called the plant, above all, its ______ in the country.",
+  "worlds": [
+    {
+      "key": "toehold",
+      "passage": "In 1965 a carmaker from abroad opened a plant outside a port city, on a site its board had chosen after two years of study. Behind a fence in the city's industrial park, it assembled two hundred cars a month from kits, and a single dealer in the city sold every one. When the government lifted its tariffs on foreign carmakers in 1970, the company built three full factories inland, run by managers sent from abroad, and within a decade sold forty times as many cars. In a history of the company, one economist called the plant, above all, its ______ in the country.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "A small plant selling through one dealer was where the company held on in the country until the tariffs fell, and then it expanded forty-fold, so the plant was its \"toehold.\" \"Showroom\" fails because the plant sat behind a fence in an industrial park, built for output, not display. \"Schoolhouse\" fails because the later factories were run by managers sent from abroad, not by people trained at the plant. \"Warehouse\" fails because every car it assembled went to the dealer and was sold, so nothing was kept in stock.",
+      "kills": {
+        "showroom": {
+          "type": "logic",
+          "quote": "Behind a fence in the city's industrial park",
+          "why": "A plant fenced off in an industrial park was not built to be seen.",
+          "surface_fit": "A small foreign plant turning out only two hundred cars a month looks like a token presence meant to put the brand on display.",
+          "inference": "A showroom exists to be looked at; a plant behind a fence among the factories of an industrial park is out of the public's sight, so its job was assembling cars, not showing them."
+        },
+        "schoolhouse": {
+          "type": "explicit",
+          "quote": "run by managers sent from abroad",
+          "why": "The later factories were run by people from abroad, so the plant had not trained their staff.",
+          "surface_fit": "A company's first small plant in a country is often where it trains the local engineers who later run its bigger factories.",
+          "inference": "If the plant had been where the company trained its people, its graduates would have run the new factories; the factories were run by managers sent from abroad, so the plant was not where they were trained."
+        },
+        "warehouse": {
+          "type": "logic",
+          "quote": "a single dealer in the city sold every one",
+          "why": "Every car was sold as it was built, so nothing was held in stock there.",
+          "surface_fit": "A foreign carmaker's plant receiving kits from abroad sounds like a place where shipments are kept before going out to buyers.",
+          "inference": "A warehouse holds goods until they are called for; this plant turned kits into cars that a dealer sold, every one, so goods passed through it as products, not as stock."
+        }
+      }
+    },
+    {
+      "key": "showroom",
+      "passage": "In 1965 a carmaker from abroad opened a plant outside a port city, on a site its board had chosen after two years of study. Built of glass on the highway from the airport, it ran tours for ministers and newspaper editors every week and assembled thirty cars a month, most of them lent to officials, with forty workers flown in from the head office. The company never built another plant in the country, and for decades its imported cars sold through dealers who pointed buyers to the glass building. In a history of the company, one economist called the plant, above all, its ______ in the country.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "A glass building on the airport highway with weekly tours, a token output lent to officials and dealers pointing buyers to it was there to be seen, so the plant was the company's \"showroom.\" \"Toehold\" fails because the company never built another plant, so the plant was no first step toward expansion. \"Schoolhouse\" fails because its workers were flown in from the head office rather than trained there. \"Warehouse\" fails because its few cars were lent to officials, not stored.",
+      "kills": {
+        "toehold": {
+          "type": "logic",
+          "quote": "never built another plant in the country",
+          "why": "No expansion followed, so the plant was not a first foothold.",
+          "surface_fit": "A small first plant with a token output, opened by a foreign company in a new market, looks like the first foothold before a bigger move.",
+          "inference": "A toehold is a small hold from which a company climbs further; the company never built another plant and kept selling imported cars, so the plant led to nothing larger and was not a first step."
+        },
+        "schoolhouse": {
+          "type": "logic",
+          "quote": "forty workers flown in from the head office",
+          "why": "The staff came trained from abroad, so the plant was not training local people.",
+          "surface_fit": "A small plant with few cars and a weekly stream of visitors could be a place for teaching, the training ground for a foreign company's local staff.",
+          "inference": "A schoolhouse turns out trained people; this plant brought its forty workers in from the head office already trained and sent no one on, so it trained nobody."
+        },
+        "warehouse": {
+          "type": "logic",
+          "quote": "most of them lent to officials",
+          "why": "Its few cars went out on loan, and its imports went straight to dealers, so nothing was stored there.",
+          "surface_fit": "A foreign carmaker's plant near a port, linked to a network of dealers, sounds like the depot where imported cars wait to be distributed.",
+          "inference": "A warehouse holds stock until dealers need it; the plant's thirty cars a month went out on loan to officials and the imported cars were sold through dealers, so no stock was held at the plant."
+        }
+      }
+    },
+    {
+      "key": "schoolhouse",
+      "passage": "In 1965 a carmaker from abroad opened a plant outside a port city, on a site its board had chosen after two years of study. The company already owned two large factories inland, bought from a local maker in 1960. The new plant, a plain shed beside the port's rail yard, sent its few hundred cars a year straight onto the trains, and every engineer and foreman the company hired in the country worked its line for two years. By 1980 those same people ran both inland factories. In a history of the company, one economist called the plant, above all, its ______ in the country.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "Every engineer and foreman worked the small plant's line before going on to run the big factories, so the plant was the company's \"schoolhouse.\" \"Toehold\" fails because the company already owned two large factories, so the plant was not its first foothold. \"Showroom\" fails because it was a plain shed by a rail yard, not a place built for display. \"Warehouse\" fails because its cars went straight onto the trains, so it held no stock.",
+      "kills": {
+        "toehold": {
+          "type": "logic",
+          "quote": "already owned two large factories inland",
+          "why": "The company was already established before the plant opened, so the plant was no first foothold.",
+          "surface_fit": "A small new plant from a foreign carmaker whose people later ran the company's big factories looks like the foothold from which it expanded.",
+          "inference": "A toehold is the first small hold a company gets in a market; owning two large factories since 1960 means the company was well established before this plant existed, so the plant was not where its hold began."
+        },
+        "showroom": {
+          "type": "logic",
+          "quote": "a plain shed beside the port's rail yard",
+          "why": "A plain shed in a rail yard was not built to impress anyone.",
+          "surface_fit": "A small plant with modest output, kept going year after year beside two large factories, could look like a display piece for the brand.",
+          "inference": "A showroom is meant to be seen by buyers and officials; a plain shed by a rail yard is meant for neither, so the plant's value lay in something other than how it looked."
+        },
+        "warehouse": {
+          "type": "logic",
+          "quote": "sent its few hundred cars a year straight onto the trains",
+          "why": "The cars left as soon as they were built, so nothing was stored there.",
+          "surface_fit": "A carmaker's plant beside a port's rail yard sounds like the depot where cars and parts wait before being sent inland.",
+          "inference": "A warehouse holds goods until they are needed; cars that went straight from the line onto the trains were never kept at the plant, so it stored nothing."
+        }
+      }
+    },
+    {
+      "key": "warehouse",
+      "passage": "In 1965 a carmaker from abroad opened a plant outside a port city, on a site its board had chosen after two years of study. The company had sold cars in the country through an importer since 1930, and the plant's long sheds took in the cars that importer had kept on the docks, as many as twenty thousand shipped whole from abroad, with parts for every model. Dealers drew on them as orders came, and the plant's three hundred local workers spent their days washing, checking and loading cars onto trains. In a history of the company, one economist called the plant, above all, its ______ in the country.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "The sheds took in thousands of imported cars and parts that dealers drew on as orders came, so the plant was the company's \"warehouse.\" \"Toehold\" fails because the company had sold cars in the country since 1930, so the plant took over an established trade rather than opening one. \"Schoolhouse\" fails because its workers spent their days washing, checking and loading finished cars, so it taught no one to build them. \"Showroom\" fails because sheds holding up to twenty thousand cars are built for stock, not for visitors.",
+      "kills": {
+        "toehold": {
+          "type": "logic",
+          "quote": "sold cars in the country through an importer since 1930",
+          "why": "The company had been in the market for decades, so the plant was not a first foothold.",
+          "surface_fit": "A foreign carmaker's first plant in a country is a natural first guess for its foothold in the market.",
+          "inference": "A toehold is a company's first small hold in a market; selling there through an importer for thirty-five years means the company already had its hold, and the plant took over handling that trade rather than opening the way to it."
+        },
+        "schoolhouse": {
+          "type": "logic",
+          "quote": "spent their days washing, checking and loading cars onto trains",
+          "why": "The workers handled finished imports, so they learned nothing about building cars.",
+          "surface_fit": "Three hundred local workers at a foreign carmaker's first plant suggests a place where the company trained local staff for later factories.",
+          "inference": "A schoolhouse for a carmaker would teach people to build cars; these workers washed, checked and loaded cars that arrived finished from abroad, so whatever they learned, it was not the work of a car plant."
+        },
+        "showroom": {
+          "type": "logic",
+          "quote": "as many as twenty thousand shipped whole from abroad",
+          "why": "Sheds packed with thousands of cars are for storage, not display.",
+          "surface_fit": "A foreign carmaker's flagship site in a new country, full of every model, sounds like a place to show the range to buyers.",
+          "inference": "A showroom displays a few cars to visitors; long sheds holding up to twenty thousand cars until dealers order them are for keeping stock, and buyers saw the cars at the dealers, not at the plant."
+        }
+      }
+    }
+  ]
+}

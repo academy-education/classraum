@@ -1,0 +1,146 @@
+{
+  "id": "WIC27A-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "an exile movement's café",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "headquarters",
+    "hothouse",
+    "hub",
+    "embassy"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "headquarters",
+    "hub",
+    "embassy",
+    "hothouse"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "In a memoir of those years, one journalist called the café, more than anything, the movement's ______.",
+  "worlds": [
+    {
+      "key": "headquarters",
+      "passage": "Between the two world wars, exiles working for their small homeland's independence gathered at a café in a foreign capital, where the owner kept the back room for them. After the café closed each night, the movement's nine founders met at the long table. Couriers left from there for the cells at home, letters came addressed to the owner, and the committee's files stayed in his safe. In twenty years the capital's police never learned what the back room was used for. In a memoir of those years, one journalist called the café, more than anything, the movement's ______.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "The founders met there nightly, couriers to the cells at home left from it, and the movement's mail and files were kept there, so the café was where the movement was run: its \"headquarters.\" \"Hub\" fails because the founders met only after the café had closed, when its ordinary crowd of exiles had gone. \"Embassy\" fails because the room was kept so secret that even the police never learned its use, so it spoke for the movement to no outsider. \"Hothouse\" fails because the men at the table were the movement's founders, not newcomers being formed.",
+      "kills": {
+        "hub": {
+          "type": "logic",
+          "quote": "After the café closed each night",
+          "why": "The founders met when the café's crowd had gone, so members did not cross paths there.",
+          "surface_fit": "A café where a scattered exile community gathers is naturally described as the center its members' news and contacts ran through, which is what \"hub\" says.",
+          "inference": "The exiles did gather at the café by day, which is what makes it look like a meeting point, but the room's real business took place after closing, among nine founders alone; the members' coming and going was not what the back room was for."
+        },
+        "embassy": {
+          "type": "logic",
+          "quote": "never learned what the back room was used for",
+          "why": "The room was kept hidden from the capital, so it presented the movement to no outsider.",
+          "surface_fit": "A café where a stateless movement met in a foreign capital is often called its unofficial embassy, since the movement had no real one there.",
+          "inference": "An embassy's work is to be seen and heard by the host country; this room was secret enough that the capital's police never found out its purpose in twenty years, so it kept the movement hidden rather than speaking for it."
+        },
+        "hothouse": {
+          "type": "logic",
+          "quote": "the movement's nine founders",
+          "why": "The men at the table had founded the movement, so no one there was still being formed.",
+          "surface_fit": "Exile cafés of this era are remembered as places where young writers and activists were formed, and \"hothouse\" is a common word for such a place in a memoir.",
+          "inference": "A hothouse forces the fast growth of the young; the only people at the table were the nine men who had founded the movement, so the room's work was directing it, not bringing anyone on."
+        }
+      }
+    },
+    {
+      "key": "hothouse",
+      "passage": "Between the two world wars, exiles working for their small homeland's independence gathered at a café in a foreign capital, where the owner kept the back room for them. The movement's committee, which sat abroad and spoke for it to foreign governments and newspapers, sent the café each year's new arrivals from home. Nightly the old poet cleared the back room of all but them, set them an essay on the homeland's history, and next evening took it apart before them all. Within ten years they edited all the movement's papers. In a memoir of those years, one journalist called the café, more than anything, the movement's ______.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "Each year's new arrivals were set an essay nightly and had it taken apart before the others, and within ten years they were running all the movement's papers, so the café forced their growth: it was the movement's \"hothouse.\" \"Headquarters\" fails because the committee that ran the movement sat abroad. \"Embassy\" fails because that committee also did the speaking to foreign governments and newspapers. \"Hub\" fails because the poet cleared the room of everyone but the newcomers.",
+      "kills": {
+        "headquarters": {
+          "type": "logic",
+          "quote": "committee, which sat abroad",
+          "why": "The movement was directed from abroad; the café received the newcomers the committee sent.",
+          "surface_fit": "An exile movement's café with a reserved back room is the classic picture of a secret command post, so \"the movement's headquarters\" is the phrase a memoirist would reach for.",
+          "inference": "The committee sat abroad and sent the café its new arrivals, so orders flowed into the café rather than out of it; the room's nightly business was a poet's lessons, which is not the work of a command center."
+        },
+        "embassy": {
+          "type": "logic",
+          "quote": "spoke for it to foreign governments and newspapers",
+          "why": "The committee abroad did the movement's speaking to outsiders, so the café did not represent it.",
+          "surface_fit": "A café where a stateless movement met in a foreign capital is often called its unofficial embassy, since the movement had no real one there.",
+          "inference": "Representing the movement to governments and the press, which is an embassy's work, was the committee's job abroad; the café's job, as the committee arranged it, was to receive and train the newcomers."
+        },
+        "hub": {
+          "type": "explicit",
+          "quote": "cleared the back room of all but them",
+          "why": "Everyone but the newcomers was sent out, so the room was not where members met and traded news.",
+          "surface_fit": "A café where a scattered exile community gathers is naturally described as the center its members' news and contacts ran through, which is what \"hub\" says.",
+          "inference": "The café did draw exiles, which makes it look like a meeting point, but each night the poet sent out everyone except the year's arrivals; the room was given over to training one group rather than connecting the movement's members."
+        }
+      }
+    },
+    {
+      "key": "hub",
+      "passage": "Between the two world wars, exiles working for their small homeland's independence gathered at a café in a foreign capital, where the owner kept the back room for them. The movement had split into three parties whose leaders would not share a public platform. Members of all three came to the café, news from home passed from table to table, and the three leaders met over chess in the back room, where no newspaper could photograph them together. In time even their quarrels were settled there, over a board. In a memoir of those years, one journalist called the café, more than anything, the movement's ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Members of three rival parties all came to the café, news from home passed from table to table, and leaders who would not appear together met there, so it was where the divided movement connected: its \"hub.\" \"Headquarters\" fails because a room shared by three rival parties could not be any one party's command center. \"Embassy\" fails because the leaders met there precisely to stay out of public view. \"Hothouse\" fails because the people meeting there were party members and their leaders, already established.",
+      "kills": {
+        "headquarters": {
+          "type": "logic",
+          "quote": "split into three parties",
+          "why": "A room shared by three rival parties is no single command center.",
+          "surface_fit": "An exile movement's café with a reserved back room is the classic picture of a secret command post, so \"the movement's headquarters\" is the phrase a memoirist would reach for.",
+          "inference": "Three parties whose leaders would not share a platform each had their own leadership; a café where all three mixed could not be where any one of them was run, and it certainly did not run the split movement as a whole."
+        },
+        "embassy": {
+          "type": "logic",
+          "quote": "where no newspaper could photograph them together",
+          "why": "The leaders used the back room to stay out of sight, so the café was not the movement's public face.",
+          "surface_fit": "A café where a stateless movement met in a foreign capital is often called its unofficial embassy, since the movement had no real one there.",
+          "inference": "An embassy is where a cause shows itself to the host country; the leaders chose the back room because no newspaper could see them there, so the café was valued for hiding the movement's dealings, not for presenting them."
+        },
+        "hothouse": {
+          "type": "logic",
+          "quote": "the three leaders met over chess",
+          "why": "The café's regulars were already formed: rank-and-file members and established leaders.",
+          "surface_fit": "Exile cafés of this era are remembered as places where young writers and activists were formed, and \"hothouse\" is a common word for such a place in a memoir.",
+          "inference": "The people meeting there were members of three existing parties and the parties' own leaders, men already in place; a hothouse brings the young on quickly, and the café's work was passing news and settling quarrels among people already formed."
+        }
+      }
+    },
+    {
+      "key": "embassy",
+      "passage": "Between the two world wars, exiles working for their small homeland's independence gathered at a café in a foreign capital, where the owner kept the back room for them. The movement's leaders lived in hiding at home and sent word only of what the café should tell its visitors. Five exiles chosen for their command of the capital's language sat at the long table, and foreign reporters, diplomats and members of parliament came there to hear the homeland's case before every debate on it. In a memoir of those years, one journalist called the café, more than anything, the movement's ______.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "The café's five spokesmen, chosen for their command of the capital's language, put the homeland's case to reporters, diplomats and members of parliament on behalf of leaders at home, so it represented the movement abroad: it was the movement's \"embassy.\" \"Headquarters\" fails because the leaders at home decided what the café should say. \"Hub\" fails because the same five chosen exiles sat at the table, so the movement's members did not gather there. \"Hothouse\" fails because the five were chosen for skills they already had.",
+      "kills": {
+        "headquarters": {
+          "type": "logic",
+          "quote": "leaders lived in hiding at home",
+          "why": "The movement was directed from the homeland; the café only relayed what it was told to say.",
+          "surface_fit": "An exile movement's café with a reserved back room is the classic picture of a secret command post, so \"the movement's headquarters\" is the phrase a memoirist would reach for.",
+          "inference": "The leaders at home decided even what the café should tell visitors, so direction flowed into the café, not out of it; it spoke for the movement without running it."
+        },
+        "hub": {
+          "type": "logic",
+          "quote": "Five exiles chosen for their command",
+          "why": "The table was held by five appointees, not the movement's members at large.",
+          "surface_fit": "A café where a scattered exile community gathers is naturally described as the center its members' news and contacts ran through, which is what \"hub\" says.",
+          "inference": "The long table was occupied by five exiles picked for a task, and the visitors were foreigners; the movement's own members were not crossing paths and trading news there, so the café connected the movement to outsiders, not to itself."
+        },
+        "hothouse": {
+          "type": "logic",
+          "quote": "chosen for their command of the capital's language",
+          "why": "The five were picked for skills they already had, not trained there.",
+          "surface_fit": "Exile cafés of this era are remembered as places where young writers and activists were formed, and \"hothouse\" is a common word for such a place in a memoir.",
+          "inference": "The five were selected because they already spoke the capital's language well, so the café used finished abilities rather than developing new ones; nobody at the table was being brought on."
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "id": "WIC27C-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a mountain lake above orchards and trout ponds",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "thermostat",
+    "tributary",
+    "sink",
+    "valve"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "sink",
+    "valve",
+    "tributary",
+    "thermostat"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "One hydrologist has described the lake as serving the river as a kind of ______.",
+  "worlds": [
+    {
+      "key": "thermostat",
+      "passage": "A mountain river flows through a narrow lake and then forty miles down to a valley, whose canals feed orchards and trout ponds that fail when the water passes seventy degrees. The lake is three hundred feet deep, and its basin is bare granite, where all snowmelt drains into the river before the river reaches the lake. Its level hardly changes from season to season, and its outlet draws on cold water near the bottom. Above the lake the river freezes in January and runs warm by August; the ponds have never frozen or failed. One hydrologist has described the lake as serving the river as a kind of ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "The river freezes and warms with the seasons above the lake, but the ponds fed from the deep lake's cold bottom water never freeze or overheat, so the lake evens out the river's temperature: a \"thermostat.\" \"Tributary\" fails because all the basin's snowmelt reaches the river before the lake, so the lake has no water of its own to add. \"Sink\" fails because bare granite lets no water seep away. \"Valve\" fails because a lake whose level hardly changes stores nothing to hold back and release.",
+      "kills": {
+        "tributary": {
+          "type": "logic",
+          "quote": "drains into the river before the river reaches the lake",
+          "why": "All the basin's water is already in the river when it enters the lake, so the lake adds none.",
+          "surface_fit": "A big mountain lake above a farming valley is the kind of feature people credit with feeding the valley's river.",
+          "inference": "A tributary brings water from some other source; every trickle in this basin joins the river above the lake, so the lake receives only the river's own water and can send down nothing extra."
+        },
+        "sink": {
+          "type": "logic",
+          "quote": "its basin is bare granite",
+          "why": "Solid granite lets no water seep away, so the lake cannot swallow the river's water.",
+          "surface_fit": "A lake three hundred feet deep holds an enormous volume, so it is easy to picture the river's water disappearing into it.",
+          "inference": "A lake loses a river's water by letting it seep away underground; bare granite holds water rather than leaking it, so whatever comes in must go on out."
+        },
+        "valve": {
+          "type": "logic",
+          "quote": "Its level hardly changes from season to season",
+          "why": "A lake whose level stays put holds nothing back, so it cannot be releasing stored water on a schedule.",
+          "surface_fit": "A deep lake with a single outlet on the only river to the valley looks like the control point for how much water the canals get.",
+          "inference": "A valve shifts water in time by holding it back and letting it go; holding water back would raise the lake and releasing it would lower it, so a level that hardly changes means the water passes through as it comes."
+        }
+      }
+    },
+    {
+      "key": "tributary",
+      "passage": "A mountain river flows through a narrow lake and then forty miles down to a valley, whose canals feed orchards and trout ponds that fail when the water passes seventy degrees. Springs across the lake's broad, flat floor keep it brimming, and below the outlet the river runs half again as wide as above the lake. In the drought of 1934, when the river above the lake shrank to a trickle, the lake stayed brimming and its outlet kept running, and the ponds, as in every year, were stocked only in spring and fall. One hydrologist has described the lake as serving the river as a kind of ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Springs keep the lake full and the river leaves it half again as wide, even in a drought, so the lake adds water to the river like a \"tributary.\" \"Sink\" fails because the river grows in the lake rather than shrinking. \"Valve\" fails because in the drought the lake stayed brimming while its outlet ran, so the water was not stored water being let out. \"Thermostat\" fails because the ponds could still be stocked only in spring and fall, so the lake did nothing to keep the water's temperature within their limits.",
+      "kills": {
+        "sink": {
+          "type": "logic",
+          "quote": "half again as wide as above the lake",
+          "why": "The river leaves the lake larger than it entered, so the lake gives water rather than taking it.",
+          "surface_fit": "Lake beds that swallow river water are familiar, and springs in a lake floor suggest water moving through the ground beneath it.",
+          "inference": "A sink would leave the river smaller below the lake; a river half again as wide below the outlet carries more water than it brought, so the lake is a net source."
+        },
+        "valve": {
+          "type": "logic",
+          "quote": "the lake stayed brimming and its outlet kept running",
+          "why": "The drought outflow did not draw the lake down, so it was not stored water being let go.",
+          "surface_fit": "A lake that kept the canals running through a drought, when the river above it had shrunk to a trickle, looks like a store being released on purpose, the way a valve lets water through.",
+          "inference": "Water released from storage lowers a lake; this lake stayed brimming while its outlet ran through the drought, so the water was being supplied as it flowed, from the springs, not held back and let out."
+        },
+        "thermostat": {
+          "type": "logic",
+          "quote": "were stocked only in spring and fall",
+          "why": "The ponds still could not hold trout in winter or summer, so the lake was not steadying the water's temperature.",
+          "surface_fit": "Lakes are known for moderating the temperature of water passing through them, and the valley's trout ponds depend on just that.",
+          "inference": "The ponds fail when the water freezes or passes seventy degrees; ponds that can be stocked only between the seasons' extremes are getting water that still freezes and still overheats, so the broad, shallow lake moderates nothing."
+        }
+      }
+    },
+    {
+      "key": "sink",
+      "passage": "A mountain river flows through a narrow lake and then forty miles down to a valley, whose canals feed orchards and trout ponds that fail when the water passes seventy degrees. The lake lies on porous limestone, and water seeps through its floor into caverns that open, miles away, as springs in another valley. Below the outlet the river runs half as wide as above the lake, and in dry summers its bed lies bare; the seepage keeps the lake shallow, so in August the ponds draw on wells. One hydrologist has described the lake as serving the river as a kind of ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Water seeps through the lake's limestone floor into caverns that empty into another valley, so the river loses half its water there: the lake is a \"sink.\" \"Valve\" fails because the water missing in dry summers is not held for later; it comes out as springs in another valley. \"Tributary\" fails because the river leaves the lake half as wide. \"Thermostat\" fails because the seepage keeps the lake shallow, and the ponds must turn to wells in August.",
+      "kills": {
+        "valve": {
+          "type": "logic",
+          "quote": "open, miles away, as springs in another valley",
+          "why": "The water the lake takes resurfaces in another valley, so it is never let back out to this river.",
+          "surface_fit": "In dry summers the river bed below the lake lies bare, which looks like a valve shutting off the flow to the canals.",
+          "inference": "A valve holds water back and later lets it through to the same channel; this lake's missing water surfaces as springs in a different valley, so it never returns to this river at all."
+        },
+        "tributary": {
+          "type": "logic",
+          "quote": "half as wide as above the lake",
+          "why": "The river leaves the lake smaller, so the lake takes water from it.",
+          "surface_fit": "A lake high on the river that feeds a farming valley is easily read as one of the river's sources.",
+          "inference": "A tributary adds to a river; a river half as wide below the outlet as above the lake, and dry in summer, has lost water in the lake, not gained it."
+        },
+        "thermostat": {
+          "type": "logic",
+          "quote": "the seepage keeps the lake shallow, so in August the ponds draw on wells",
+          "why": "A shallow lake warms in summer, so its outflow is too warm for the ponds.",
+          "surface_fit": "Lakes are known for moderating temperature, and a hydrologist writing about orchards and trout ponds would look for exactly that.",
+          "inference": "Holding water cool through summer takes depth; a lake drained from below stays shallow, its water warms in the sun, and the ponds must turn to wells in August, so it keeps nothing cool."
+        }
+      }
+    },
+    {
+      "key": "valve",
+      "passage": "A mountain river flows through a narrow lake and then forty miles down to a valley, whose canals feed orchards and trout ponds that fail when the water passes seventy degrees. Each winter an ice dam forms at the lake's outlet, and the lake rises fifty feet while the channel below runs nearly dry. When the dam breaks in late spring the canals overflow for a few weeks as the lake falls back to its autumn level; by midsummer the drained lake lies shallow in the sun, and the ponds turn to wells. One hydrologist has described the lake as serving the river as a kind of ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The ice dam shuts the river off each winter and the flow is let through again in spring, so the lake works as a \"valve\" on the river. \"Sink\" fails because the water held back all winter reaches the canals in spring. \"Tributary\" fails because the spring flood only brings the lake back to its autumn level, so it is the river's own winter water returning, not water the lake adds. \"Thermostat\" fails because the drained lake lies shallow in the sun by midsummer, and the ponds must turn to wells.",
+      "kills": {
+        "sink": {
+          "type": "logic",
+          "quote": "the canals overflow for a few weeks",
+          "why": "The winter's water reaches the canals in spring, so the lake does not keep it.",
+          "surface_fit": "All winter the river runs into the lake and almost none comes out, which is exactly what a sink for the river would look like.",
+          "inference": "A sink keeps the water it takes in; the water stored behind the ice floods the canals when the dam breaks, so over the year the river gets it back."
+        },
+        "tributary": {
+          "type": "logic",
+          "quote": "the lake falls back to its autumn level",
+          "why": "The spring flood empties only what winter stored, so the lake adds no water of its own.",
+          "surface_fit": "In spring the lake sends far more water down to the canals than the river is bringing in, which reads like the lake feeding the river.",
+          "inference": "A tributary supplies water of its own; a flood that ends with the lake back at its autumn level has released exactly what the winter stored, so the lake changed when the water came, not how much."
+        },
+        "thermostat": {
+          "type": "logic",
+          "quote": "the drained lake lies shallow in the sun",
+          "why": "Once drained the lake is shallow and sun-warmed, so it cannot keep the water cool.",
+          "surface_fit": "A lake fifty feet deeper in winter looks like a large body of water that could keep the river cool for the trout ponds.",
+          "inference": "Keeping summer water cool takes depth; the same release that ends the winter's storage leaves the lake shallow and sunlit by midsummer, so its water warms and the ponds turn to wells."
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "id": "WIC27B-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a parasitic worm in pond snails",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "immunized",
+    "manipulated",
+    "milked",
+    "neutered"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "manipulated",
+    "milked",
+    "immunized",
+    "neutered"
+  ],
+  "pos": "verb",
+  "after_blank": "its",
+  "blank_sentence": "From these results, she concluded that the worm had, above all, ______ its host.",
+  "worlds": [
+    {
+      "key": "milked",
+      "passage": "A parasitic worm that matures inside ducks infects half the snails in one pond, and for three years a biologist kept infected and uninfected snails in tanks and in a pen where ducks fed at the weed tips. Infected snails reached half the others' size and crept half as fast, while laying eggs weekly and living as long. Both kinds kept to the shaded weed bases in the pen, and a bacterium that swept the tanks took infected and uninfected snails in proportion to their numbers. From these results, she concluded that the worm had, above all, ______ its host.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "Infected snails stayed small and slow but kept breeding and lived as long as the rest, so the worm drew on them steadily without killing them: it \"milked\" its host. \"Neutered\" fails because infected snails still laid eggs every week. \"Manipulated\" fails because infected snails stayed in the shaded weed bases with the others, away from the tips where ducks feed. \"Immunized\" fails because the bacterium took both kinds in proportion to their numbers.",
+      "kills": {
+        "neutered": {
+          "type": "logic",
+          "quote": "laying eggs weekly",
+          "why": "Infected snails kept breeding.",
+          "surface_fit": "Parasites that stop their hosts from breeding are common in snails, and the study tracked the snails' eggs and young. Infected snails were clearly worse off.",
+          "inference": "A neutered snail lays no eggs; these laid every week, so the worm took their size and strength while leaving their breeding in place."
+        },
+        "manipulated": {
+          "type": "logic",
+          "quote": "both kinds kept to the shaded weed bases",
+          "why": "Infected snails stayed where the ducks do not feed.",
+          "surface_fit": "The worm matures inside ducks, so a parasite that steers its snail toward the ducks is the textbook strategy, and manipulated is a standard word for it.",
+          "inference": "The ducks fed at the weed tips; infected snails stayed down in the shaded bases like the others, so the worm was not steering them toward the ducks."
+        },
+        "immunized": {
+          "type": "logic",
+          "quote": "in proportion to their numbers",
+          "why": "Infection did not change a snail's chance of dying.",
+          "surface_fit": "Infected and uninfected snails went through a disease outbreak side by side, and parasites that protect their hosts from worse infections are a well-known finding.",
+          "inference": "If the bacterium killed infected and uninfected snails in proportion to how many of each there were, carrying the worm gave no protection."
+        }
+      }
+    },
+    {
+      "key": "immunized",
+      "passage": "A parasitic worm that matures inside ducks infects half the snails in one pond, and for three years a biologist kept infected and uninfected snails in tanks and in a pen where ducks fed at the weed tips. Infected snails grew a little more slowly than the others and laid eggs weekly, as they did, and both kinds kept to the shaded weed bases in the pen. When a bacterium swept the tanks in the second summer, nine in ten of its survivors were infected snails, from tanks that had held equal numbers of each. From these results, she concluded that the worm had, above all, ______ its host.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "When the bacterium swept the tanks, nine in ten survivors were infected snails although the two kinds had started equal, at the cost of slightly slower growth, so the worm had \"immunized\" its host. \"Milked\" fails because the small cost in growth is slight beside that protection. \"Neutered\" fails because infected snails laid eggs weekly. \"Manipulated\" fails because infected snails stayed in the shaded weed bases, away from the ducks.",
+      "kills": {
+        "milked": {
+          "type": "logic",
+          "quote": "grew a little more slowly",
+          "why": "The worm's cost to the snail was slight.",
+          "surface_fit": "A parasite living inside a snail for years feeds on it, and a biologist saying a worm milked its host is a natural description of that. Infected snails did grow more slowly.",
+          "inference": "The worm cost its snails only a little growth, while infected snails made up nine in ten of the outbreak's survivors from equal starting numbers, so what it did to them above all was protect them, not drain them."
+        },
+        "neutered": {
+          "type": "logic",
+          "quote": "laid eggs weekly",
+          "why": "Infected snails kept breeding.",
+          "surface_fit": "Parasites that stop their hosts from breeding are common in snails, and the study tracked the snails' eggs and young.",
+          "inference": "Snails that laid eggs every week, as the uninfected ones did, had not lost the ability to breed."
+        },
+        "manipulated": {
+          "type": "logic",
+          "quote": "both kinds kept to the shaded weed bases",
+          "why": "Infected snails stayed where the ducks do not feed.",
+          "surface_fit": "The worm matures inside ducks, so a parasite that steers its snail toward the ducks is the textbook strategy, and manipulated is a standard word for it.",
+          "inference": "The ducks fed at the weed tips; infected snails stayed in the shaded bases with the others, so the worm did nothing to bring them to the ducks."
+        }
+      }
+    },
+    {
+      "key": "manipulated",
+      "passage": "A parasitic worm that matures inside ducks infects half the snails in one pond, and for three years a biologist kept infected and uninfected snails in tanks and in a pen where ducks fed at the weed tips. In the tanks, keepers sorting snails could not tell infected from uninfected by size or by clutch, and a bacterium that swept the tanks took both kinds in proportion to their numbers. In the pen, uninfected snails kept to the shaded weed bases, and infected ones climbed to the tips at midday. From these results, she concluded that the worm had, above all, ______ its host.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "Infected snails climbed at midday to the weed tips, where ducks feed, the animal the worm needs to reach, while uninfected snails stayed low, so the worm had \"manipulated\" its host. \"Milked\" fails because keepers could not tell infected snails by size, so the worm took nothing visible from their bodies. \"Neutered\" fails because they could not tell them by clutch either. \"Immunized\" fails because the bacterium took both kinds in proportion to their numbers.",
+      "kills": {
+        "milked": {
+          "type": "logic",
+          "quote": "could not tell infected from uninfected by size",
+          "why": "The worm took nothing visible from the snails' growth.",
+          "surface_fit": "A parasite living inside a snail for years feeds on it, and a biologist saying a worm milked its host is a natural description of that.",
+          "inference": "A host that is being drained shows it in its size; keepers sorting snails could not pick out infected ones that way, so the worm was not living off their strength."
+        },
+        "neutered": {
+          "type": "logic",
+          "quote": "by size or by clutch",
+          "why": "Infected snails' clutches looked like everyone else's.",
+          "surface_fit": "Parasites that stop their hosts from breeding are common in snails, and the study tracked the snails' eggs and young.",
+          "inference": "If keepers could not tell infected snails by their clutches, infected snails were laying eggs like the rest, so the worm had not stopped them breeding."
+        },
+        "immunized": {
+          "type": "logic",
+          "quote": "took both kinds in proportion to their numbers",
+          "why": "The worm gave no protection from the bacterium.",
+          "surface_fit": "Infected and uninfected snails went through a disease outbreak side by side, and parasites that protect their hosts from worse infections are a well-known finding.",
+          "inference": "If the outbreak killed infected and uninfected snails in proportion to their numbers, carrying the worm protected them from nothing; the one difference was where infected snails went at midday."
+        }
+      }
+    },
+    {
+      "key": "neutered",
+      "passage": "A parasitic worm that matures inside ducks infects half the snails in one pond, and for three years a biologist kept infected and uninfected snails in tanks and in a pen where ducks fed at the weed tips. Infected snails grew a third larger than the others and lived as long, and both kinds kept to the shaded weed bases in the pen. A tank of infected snails alone held no young a year later, beside a crowded uninfected tank, and a bacterium that swept the tanks took both kinds in proportion to their numbers. From these results, she concluded that the worm had, above all, ______ its host.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "A tank of infected snails produced no young in a year while infected snails grew larger and lived as long, so the worm had stopped them breeding: it \"neutered\" its host. \"Milked\" fails because a drained host would be smaller or die sooner, and these were larger and lived as long. \"Manipulated\" fails because infected snails stayed in the shaded weed bases with the rest. \"Immunized\" fails because the bacterium took both kinds in proportion to their numbers.",
+      "kills": {
+        "milked": {
+          "type": "logic",
+          "quote": "grew a third larger than the others",
+          "why": "Infected snails were bigger, not drained.",
+          "surface_fit": "A parasite living inside a snail for years feeds on it, and a biologist saying a worm milked its host is a natural description of that. Infected snails clearly lost something.",
+          "inference": "Snails that grew larger and lived as long were not being drained of their strength; what they lost was their young, so the worm took away their breeding, not their body."
+        },
+        "manipulated": {
+          "type": "logic",
+          "quote": "both kinds kept to the shaded weed bases",
+          "why": "Infected snails stayed where the ducks do not feed.",
+          "surface_fit": "The worm matures inside ducks, so a parasite that steers its snail toward the ducks is the textbook strategy, and manipulated is a standard word for it.",
+          "inference": "The ducks fed at the weed tips, and infected snails stayed down in the shaded bases with the others, so the worm did not change how they met the ducks."
+        },
+        "immunized": {
+          "type": "logic",
+          "quote": "took both kinds in proportion to their numbers",
+          "why": "Infection gave no protection from the bacterium.",
+          "surface_fit": "Infected and uninfected snails went through a disease outbreak side by side, and parasites that protect their hosts from worse infections are a well-known finding.",
+          "inference": "If the outbreak killed infected and uninfected snails in proportion to their numbers, the worm protected them from nothing."
+        }
+      }
+    }
+  ]
+}

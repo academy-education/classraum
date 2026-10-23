@@ -1,0 +1,146 @@
+{
+  "id": "WIC27C-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "early records of a mountain region's ballads",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "stripped",
+    "smoothed",
+    "transplanted",
+    "silenced"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "silenced",
+    "stripped",
+    "smoothed",
+    "transplanted"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "Looking back in 1970, one folklorist argued that the records had ______ the region's songs.",
+  "worlds": [
+    {
+      "key": "stripped",
+      "passage": "Between 1925 and 1935 a record company sent engineers into a mountain region to record its fiddlers and ballad singers, and it sold the records by the thousand. The engineers recorded in farmhouse kitchens, taking each fiddle and voice as they found it, and sold most records at the general stores of the mountain towns. A record side held three minutes, and the young people who learned the ballads from those records knew a twenty-verse ballad by its first five or six verses, which they sang at every weekend dance. Looking back in 1970, one folklorist argued that the records had ______ the region's songs.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "A three-minute side held only the first few verses, and the young learned only those, so the records \"stripped\" the ballads of most of their verses. \"Smoothed\" fails because the engineers took each fiddle and voice as they found it in farmhouse kitchens. \"Transplanted\" fails because the records sold in the region's own mountain towns, so the songs stayed where they were. \"Silenced\" fails because the young people sang the songs at every weekend dance.",
+      "kills": {
+        "smoothed": {
+          "type": "logic",
+          "quote": "taking each fiddle and voice as they found it",
+          "why": "The engineers changed nothing in how the music sounded, so it was not polished.",
+          "surface_fit": "Commercial recording is famous for polishing rough folk performances into a tidier studio sound, so this is a natural first guess.",
+          "inference": "Smoothing would replace rough voices and odd tunings with a polished sound; recording in farmhouse kitchens and taking each fiddle and voice as found left the sound as it was, so what changed was the ballads' length, not their sound."
+        },
+        "transplanted": {
+          "type": "logic",
+          "quote": "sold most records at the general stores of the mountain towns",
+          "why": "The records stayed in the region they came from, so the songs did not move elsewhere.",
+          "surface_fit": "Records sold by the thousand carried songs far beyond the hills they came from, which is how songs are often said to have been moved to new places.",
+          "inference": "Transplanting moves something to new ground; records sold mostly in the mountain towns' own general stores went back to the same region the songs came from, so the songs stayed rooted where they began."
+        },
+        "silenced": {
+          "type": "explicit",
+          "quote": "which they sang at every weekend dance",
+          "why": "The songs were still sung at dances, so the records did not end the singing.",
+          "surface_fit": "Folklorists often blame recordings for ending live singing, since people could listen instead of sing.",
+          "inference": "Silencing would mean people stopped singing the songs; young people singing them at every weekend dance kept them alive, so the songs were shortened, not hushed."
+        }
+      }
+    },
+    {
+      "key": "smoothed",
+      "passage": "Between 1925 and 1935 a record company sent engineers into a mountain region to record its fiddlers and ballad singers, and it sold the records by the thousand. In a city studio the engineers had the fiddlers retune to standard pitch and paired every singer with a hired guitarist, spreading a long ballad across both sides of a record. Within a few years the region's younger singers, at dances and on porches, sang the ballads the way the records did, on the guitar's pitch and without the old slides. Looking back in 1970, one folklorist argued that the records had ______ the region's songs.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "Retuning to standard pitch, a hired guitarist, and younger singers copying that sound without the old slides polished the songs, so the records \"smoothed\" them. \"Stripped\" fails because a long ballad was spread across both sides of a record, so it kept its length. \"Silenced\" fails because the songs went on being sung at dances and on porches. \"Transplanted\" fails because it was the region's own younger singers who took them up.",
+      "kills": {
+        "stripped": {
+          "type": "logic",
+          "quote": "spreading a long ballad across both sides of a record",
+          "why": "The engineers used two sides to keep long ballads whole, so nothing was cut.",
+          "surface_fit": "Records of the period held three minutes a side, a limit often blamed for cutting folk ballads down.",
+          "inference": "Stripping a song takes parts of it away; engineers who spread a long ballad across both sides of a record were making room for all of it, so the ballads kept their verses and changed only their sound."
+        },
+        "silenced": {
+          "type": "logic",
+          "quote": "at dances and on porches",
+          "why": "The songs were still sung at dances and on porches, so the singing did not stop.",
+          "surface_fit": "Folklorists often say records ended live singing, because people could listen to a record instead of singing themselves.",
+          "inference": "Silencing means the singing stopped; younger singers performing the ballads at dances and on porches kept them in use, so the songs were changed in manner but still sung."
+        },
+        "transplanted": {
+          "type": "logic",
+          "quote": "the region's younger singers",
+          "why": "The singers who took up the recorded style were in the region itself, so the songs did not move.",
+          "surface_fit": "Records carried mountain songs to listeners far away, which is a familiar way songs are said to have been moved to new soil.",
+          "inference": "Transplanting moves something from its old ground to new; the people singing the recorded versions were the region's own younger singers, so the songs stayed in the hills that made them."
+        }
+      }
+    },
+    {
+      "key": "transplanted",
+      "passage": "Between 1925 and 1935 a record company sent engineers into a mountain region to record its fiddlers and ballad singers, and it sold the records by the thousand. Most of the records sold in mill cities two hundred miles east, where families from the mountains had gone for work, and their children formed string bands that played the ballads from those records twenty verses at a stretch, in a sound city radio announcers apologized for. In the region itself the songs faded within a generation, as the singers followed the mills east. Looking back in 1970, one folklorist argued that the records had ______ the region's songs.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The songs went east with the families who moved to the mill cities and were taken up there while they faded at home, so the records \"transplanted\" them. \"Silenced\" fails because the songs faded at home only as the singers moved east, where the songs were still played. \"Stripped\" fails because the bands played the ballads twenty verses at a stretch. \"Smoothed\" fails because their sound was rough enough that radio announcers apologized for it.",
+      "kills": {
+        "silenced": {
+          "type": "logic",
+          "quote": "as the singers followed the mills east",
+          "why": "The songs faded at home because the singers moved, and they were still played in the cities, so the singing did not stop.",
+          "surface_fit": "The songs faded out of the region within a generation, which reads like the records ending the singing there.",
+          "inference": "Silencing would mean the songs stopped being sung; they faded in the hills because the singers were leaving for the mill cities, where their children were playing the same ballads, so the singing moved rather than ended."
+        },
+        "stripped": {
+          "type": "logic",
+          "quote": "twenty verses at a stretch",
+          "why": "The bands played the ballads at full length, so nothing was cut.",
+          "surface_fit": "Three-minute record sides are often blamed for cutting long ballads down to a few verses, so it fits records of this period.",
+          "inference": "Stripping takes parts of a song away; bands playing the ballads twenty verses at a stretch kept their full length, so the songs reached the cities whole."
+        },
+        "smoothed": {
+          "type": "logic",
+          "quote": "in a sound city radio announcers apologized for",
+          "why": "A sound announcers felt they had to apologize for was rough, not polished.",
+          "surface_fit": "String bands formed in big cities might be expected to tidy rough mountain singing into a more polished urban sound.",
+          "inference": "Smoothing gives a song a polished sound; announcers apologizing to city listeners for the bands' sound means it was still rough, so the old manner survived the move."
+        }
+      }
+    },
+    {
+      "key": "silenced",
+      "passage": "Between 1925 and 1935 a record company sent engineers into a mountain region to record its fiddlers and ballad singers, and it sold the records by the thousand. The engineers recorded in farmhouse kitchens, spreading a long ballad over both sides of a record, and within a decade nearly every farmhouse in the region had a phonograph. Families that had sung through the winter evenings sat and listened instead, and by 1950 few people there under forty could sing more than a line. Looking back in 1970, one folklorist argued that the records had ______ the region's songs.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "Families stopped singing and listened instead, until few younger people could sing more than a line, so the records \"silenced\" the songs. \"Transplanted\" fails because the records were played in the region's own farmhouses, so the songs were not carried off to new ground. \"Stripped\" fails because a long ballad was spread over both sides of a record. \"Smoothed\" fails because the records were made in farmhouse kitchens, with the music as it was sung there.",
+      "kills": {
+        "transplanted": {
+          "type": "logic",
+          "quote": "nearly every farmhouse in the region had a phonograph",
+          "why": "The records were played in the region itself, so the songs were not carried off to another place.",
+          "surface_fit": "Records carried songs far beyond the hills they came from, and the songs vanished from the region's own singing, which looks like the songs being moved elsewhere.",
+          "inference": "Transplanting moves something to new ground; these records were bought and played in the same farmhouses whose families had sung the songs, so the songs stayed in the region and simply stopped being sung there."
+        },
+        "stripped": {
+          "type": "logic",
+          "quote": "spreading a long ballad over both sides of a record",
+          "why": "The engineers used two sides to keep long ballads whole, so nothing was cut.",
+          "surface_fit": "Three-minute record sides are often blamed for cutting long ballads down to a few verses.",
+          "inference": "Stripping takes parts away from a song; engineers who gave a long ballad both sides of a record kept it whole, so the loss was in the singing, not in the songs."
+        },
+        "smoothed": {
+          "type": "logic",
+          "quote": "recorded in farmhouse kitchens",
+          "why": "Recorded where the singers lived, the music kept its home sound rather than a studio polish.",
+          "surface_fit": "Commercial recording is often blamed for polishing rough folk performances into a tidier studio sound.",
+          "inference": "Smoothing is what a studio does with hired players and standard tunings; records made in the singers' own farmhouse kitchens caught the music as it was sung there, so the sound on the records was the old one."
+        }
+      }
+    }
+  ]
+}

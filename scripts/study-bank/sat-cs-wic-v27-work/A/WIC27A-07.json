@@ -1,0 +1,146 @@
+{
+  "id": "WIC27A-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "village retelling of a printed tale",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "distilled",
+    "honed",
+    "domesticated",
+    "fused"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "fused",
+    "distilled",
+    "honed",
+    "domesticated"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "In a 1905 study, one folklorist argued that centuries of village retelling had, above all, ______ the tale.",
+  "worlds": [
+    {
+      "key": "distilled",
+      "passage": "In 1650 a printed collection brought to a mountain region a long tale, set in a distant desert capital, of a merchant's son who outwits a robber king. The printed tale ran to forty pages and eleven episodes. The village versions recorded around 1900 took about three minutes to tell: what remained was the robber king's riddle of the desert's three wells and the son's answer, and a collector who read the 1650 riddle aloud found that villagers could finish each line of it for him. In a 1905 study, one folklorist argued that centuries of village retelling had, above all, ______ the tale.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "Forty pages and eleven episodes had been reduced to a three-minute telling of the riddle and its answer, so village retelling had \"distilled\" the tale. \"Honed\" fails because villagers could finish each line of the 1650 riddle, so its wording had not been reworked. \"Domesticated\" fails because the riddle was still about the desert's three wells. \"Fused\" fails because what remained was one piece of the original, with nothing joined to it.",
+      "kills": {
+        "honed": {
+          "type": "logic",
+          "quote": "could finish each line of it for him",
+          "why": "Villagers still knew the printed wording line by line, so tellers had cut the tale without reworking it.",
+          "surface_fit": "Folklorists often describe oral retelling as sharpening a story with each telling, so \"honed the tale\" fits both the sentence and the subject.",
+          "inference": "Honing a story means reworking its wording until it lands harder; villagers could complete the 1650 riddle line by line when a collector read it, so the words that survived were the printed ones, and the tellers' change was to drop the rest."
+        },
+        "domesticated": {
+          "type": "logic",
+          "quote": "the desert's three wells",
+          "why": "The surviving episode still turned on the desert, so the tale had not been moved into the villagers' world.",
+          "surface_fit": "A tale set in a faraway desert and retold for centuries by mountain villagers invites the idea that they made it their own, which is what \"domesticated\" says.",
+          "inference": "A domesticated tale is moved into its tellers' own landscape; the one episode left was a riddle about the desert's three wells, so even the core the villagers kept stayed in the far-off desert."
+        },
+        "fused": {
+          "type": "logic",
+          "quote": "what remained was the robber king's riddle",
+          "why": "Only one piece of the original survived, so no other story had been joined to it.",
+          "surface_fit": "Oral tales are known to merge with other local stories over time, so a folklorist saying retelling \"fused the tale\" with local material reads naturally.",
+          "inference": "Fusing joins a tale to other material, which makes it larger; the village versions held only the riddle and its answer in three minutes, so retelling took the story down to one piece rather than combining it with anything."
+        }
+      }
+    },
+    {
+      "key": "honed",
+      "passage": "In 1650 a printed collection brought to a mountain region a long tale, set in a distant desert capital, of a merchant's son who outwits a robber king. The village versions recorded around 1900 still took about as long to tell as the printed text took to read. Tellers had reworked every line: the son's three tricks now came in rising order, the robber king's riddle rhymed on the names of the desert's three wells, and the surprise that the printed text gave away midway now fell on the last line. In a 1905 study, one folklorist argued that centuries of village retelling had, above all, ______ the tale.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "Every line had been reworked for effect (the tricks put in rising order, a rhyming riddle, the surprise moved to the last line), so retelling had \"honed\" the tale. \"Distilled\" and \"fused\" fail because a telling still took as long as reading the printed text, so the tale had neither been cut down nor joined to other material. \"Domesticated\" fails because the riddle rhymed on the names of the desert's wells, so the tale was still set in the desert.",
+      "kills": {
+        "distilled": {
+          "type": "logic",
+          "quote": "still took about as long to tell as the printed text took to read",
+          "why": "The tale kept its full length, so it had not been boiled down to its core.",
+          "surface_fit": "Folk tales passed by word of mouth are commonly said to be boiled down to their essentials, so a folklorist writing that retelling \"distilled the tale\" is an ordinary claim.",
+          "inference": "Distilling a tale reduces it to its essentials, which would shorten it; a telling as long as reading the forty printed pages has kept its material, so the tellers changed how it was told without cutting it."
+        },
+        "fused": {
+          "type": "logic",
+          "quote": "as long to tell as the printed text",
+          "why": "A telling no longer than the original has had nothing joined to it.",
+          "surface_fit": "Oral tales are known to merge with other local stories over time, so a folklorist saying retelling \"fused the tale\" with local material reads naturally.",
+          "inference": "Joining a second story to the tale would have lengthened it; the village versions ran exactly as long as the printed text, so every change happened inside the one tale."
+        },
+        "domesticated": {
+          "type": "logic",
+          "quote": "the names of the desert's three wells",
+          "why": "The riddle still turned on desert places, so the tale stayed in its foreign setting.",
+          "surface_fit": "A tale set in a faraway desert and retold for centuries by mountain villagers invites the idea that they made it their own, which is what \"domesticated\" says.",
+          "inference": "A domesticated tale moves into the tellers' own world; the reworked riddle now rhymed on the names of the desert's wells, so the tellers polished the story where it stood rather than bringing it home."
+        }
+      }
+    },
+    {
+      "key": "domesticated",
+      "passage": "In 1650 a printed collection brought to a mountain region a long tale, set in a distant desert capital, of a merchant's son who outwits a robber king. In the village versions recorded around 1900, the son set out on a mule, the robber king's palace stood above the valley's own market town, and his men raided its summer pastures. Collectors needed an evening to take down a telling, the episodes still came in their 1650 order, and no two villages agreed on a single line. In a 1905 study, one folklorist argued that centuries of village retelling had, above all, ______ the tale.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The mule, the palace above the valley's market town and the raids on its summer pastures put the tale in the villagers' own world, so retelling had \"domesticated\" it. \"Distilled\" fails because a telling still took an evening to record. \"Fused\" fails because the episodes still came in their 1650 order, so nothing had been interleaved. \"Honed\" fails because no two villages agreed on a single line, so no sharpened version had formed.",
+      "kills": {
+        "distilled": {
+          "type": "logic",
+          "quote": "Collectors needed an evening to take down a telling",
+          "why": "The tale was still long, so it had not been boiled down to its core.",
+          "surface_fit": "Folk tales passed by word of mouth are commonly said to be boiled down to their essentials, so a folklorist writing that retelling \"distilled the tale\" is an ordinary claim.",
+          "inference": "A distilled tale has been reduced to its essentials; these versions took collectors a whole evening to write down, so the tellers changed the tale's setting and kept its length."
+        },
+        "fused": {
+          "type": "explicit",
+          "quote": "the episodes still came in their 1650 order",
+          "why": "The printed tale's episodes kept their sequence, so no second story was woven in.",
+          "surface_fit": "Oral tales are known to merge with other local stories over time, so a folklorist saying retelling \"fused the tale\" with local material reads naturally.",
+          "inference": "The villagers' own town and pastures might look like a local legend merged in, but the episodes ran in the order of 1650; the tellers changed the scenery inside the one tale rather than joining another to it."
+        },
+        "honed": {
+          "type": "logic",
+          "quote": "no two villages agreed on a single line",
+          "why": "With wording differing everywhere, no polished common version had formed.",
+          "surface_fit": "Folklorists often describe oral retelling as sharpening a story with each telling, so \"honed the tale\" fits both the sentence and the subject.",
+          "inference": "Honing over generations works the telling toward a sharper shared form; here no two villages used the same words for any line, so what they agreed on was the local setting, not a refined way of telling it."
+        }
+      }
+    },
+    {
+      "key": "fused",
+      "passage": "In 1650 a printed collection brought to a mountain region a long tale, set in a distant desert capital, of a merchant's son who outwits a robber king. In the village versions recorded around 1900, the son had become the boy in the valley's legend of its patron saint, who now crossed the desert to the robber king's capital, and the two stories' episodes alternated until the saint's prayer brought the king down. A telling filled two evenings, and tellers disagreed about which episode came first. In a 1905 study, one folklorist argued that centuries of village retelling had, above all, ______ the tale.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The merchant's son had become the boy of the saint's legend, the two stories' episodes alternated, and the robber king fell to the saint's prayer, so retelling had joined the two into one: it had \"fused\" the tale with the legend. \"Distilled\" fails because a telling filled two evenings. \"Domesticated\" fails because the saint traveled into the desert to the robber king's capital, so the tale stayed in its foreign setting. \"Honed\" fails because tellers could not agree even on which episode came first.",
+      "kills": {
+        "distilled": {
+          "type": "logic",
+          "quote": "A telling filled two evenings",
+          "why": "The tale grew long rather than being reduced to its core.",
+          "surface_fit": "Folk tales passed by word of mouth are commonly said to be boiled down to their essentials, so a folklorist writing that retelling \"distilled the tale\" is an ordinary claim.",
+          "inference": "Distilling would have shortened the tale to its essentials; a telling that filled two evenings had gained material, so retelling added to the tale rather than boiling it down."
+        },
+        "domesticated": {
+          "type": "logic",
+          "quote": "crossed the desert to the robber king's capital",
+          "why": "The local saint was carried into the desert setting, so the tale was not moved home.",
+          "surface_fit": "A tale set in a faraway desert and retold for centuries by mountain villagers invites the idea that they made it their own, which is what \"domesticated\" says.",
+          "inference": "The valley's own saint entering the story looks like the tale being made local, but in the village versions the saint travels out across the desert to the king's capital; the story still takes place in the far-off desert."
+        },
+        "honed": {
+          "type": "logic",
+          "quote": "tellers disagreed about which episode came first",
+          "why": "The tellers had not settled even the order of events, so no sharpened version had formed.",
+          "surface_fit": "Folklorists often describe oral retelling as sharpening a story with each telling, so \"honed the tale\" fits both the sentence and the subject.",
+          "inference": "Honing works a telling toward a sharper, settled form; tellers who could not agree on which episode came first had not settled the tale's basic shape, let alone sharpened it."
+        }
+      }
+    }
+  ]
+}

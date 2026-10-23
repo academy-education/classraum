@@ -1,0 +1,601 @@
+{
+ "WIC27A-02": {
+  "world 1 (key hamstrung)": {
+   "named_for": [
+    "key not recovered",
+    "not exclusive",
+    "antonym pair",
+    "second defensible"
+   ],
+   "reader_pick_word": "fractured",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": [
+    "homogenized",
+    "fractured"
+   ],
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 0,
+   "second_defensible_word": "hamstrung",
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Key rests on combining the broken joint rate with papers retreating to purely city coverage; 'hamstrung' (papers shrank to eight pages) remains a close second, and 'dethroned' is half-supported by advertisers leaving."
+  },
+  "world 2 (key homogenized)": {
+   "named_for": [
+    "easy",
+    "antonym pair",
+    "one sentence",
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "homogenized",
+   "reader_difficulty": "easy",
+   "n_struck": 1,
+   "struck_words": [
+    "fractured"
+   ],
+   "distractor_quality": "plausible",
+   "antonym_pair": [
+    "homogenized",
+    "fractured"
+   ],
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'A reader ... in any city met the same names' hands over homogenized in one sentence; fractured is struck as the opposite end of the pair, and radio reading the papers' stories only after publication weakens dethroned."
+  },
+  "world 3 (key fractured)": {
+   "named_for": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "fractured",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Larger papers voted to sell and left for a new service while the rest refused: fractured; 'both groups' circulation kept rising' kills dethroned and hamstrung, and the split itself kills homogenized."
+  },
+  "world 0 (key dethroned)": {
+   "named_for": [
+    "distractor fits literally"
+   ],
+   "reader_pick_word": "dethroned",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 1,
+   "second_defensible_word": null,
+   "literal_fit_word": "homogenized",
+   "presupposes_absent": null,
+   "reader_note": "Radio reached listeners a day ahead (papers lost first place for news) while circulation kept rising, which kills hamstrung; homogenized partly fits the shared wire service, but that predates radio; dethroned depends on combining both sentences."
+  }
+ },
+ "WIC27A-08": {
+  "world 3 (key estate)": {
+   "named_for": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "estate",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "One family owns every palm and well and ships the dates out, so 'estate'; 'could buy nothing there' kills emporium and fairground."
+  },
+  "world 0 (key emporium)": {
+   "named_for": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "emporium",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Year-round shops buying from one caravan and selling to the next decide emporium; 'all year' weakens fairground, gatehouse and estate lack support."
+  },
+  "world 1 (key fairground)": {
+   "named_for": [
+    "distractor fits literally"
+   ],
+   "reader_pick_word": "fairground",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 1,
+   "second_defensible_word": null,
+   "literal_fit_word": "emporium",
+   "presupposes_absent": null,
+   "reader_note": "A month each spring of 'trading, racing and weddings' then scattering, quiet the other eleven months, gives fairground; trading makes emporium a literal near-fit but misses racing, weddings and seasonality; a few families growing their own dates undercuts estate."
+  },
+  "world 2 (key gatehouse)": {
+   "named_for": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "gatehouse",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Fort over the only water, a tenth taken from every load, enemies turned back: a controlled point of passage. 'The rest of each load went on to the coast unopened' kills emporium and fairground; estate is weak."
+  }
+ },
+ "WIC27A-07": {
+  "world 2 (key domesticated)": {
+   "named_for": [
+    "one sentence",
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "domesticated",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "The relocation sentence (capital to market town, camel to mule) decides 'domesticated'; 'all eleven episodes remained... as long' kills distilled and honed."
+  },
+  "world 3 (key fused)": {
+   "named_for": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "fused",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Merchant's son merged into the saint's boy with episodes alternating decides fused; 'still set in the desert capital' kills domesticated, and twice the length plus disputed order kill distilled and honed."
+  },
+  "world 0 (key distilled)": {
+   "named_for": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "distilled",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Forty pages reduced to one three-minute episode gives distilled; 'still set in the desert capital' kills domesticated, 'kept a single episode' kills fused, and 'in nearly the words of the 1650 text' kills honed."
+  },
+  "world 1 (key honed)": {
+   "named_for": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "honed",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Kept all eleven episodes and the same telling length kills distilled, kept the desert capital kills domesticated; rising tricks, a rhyme and the surprise moved to the end make honed, while fused is weak."
+  }
+ },
+ "WIC27A-05": {
+  "world 0 (key highway)": {
+   "named_for": [
+    "distractors weak"
+   ],
+   "reader_pick_word": "highway",
+   "reader_difficulty": "medium",
+   "n_struck": 1,
+   "struck_words": [
+    "hatchery"
+   ],
+   "distractor_quality": "weak",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 1,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Hatchery is off the passage's topic (no breeding mentioned). Uncrossable chute plus animals on the log every night and the worn moss strip give highway; hostel/garden are thin."
+  },
+  "world 1 (key hatchery)": {
+   "named_for": [
+    "one sentence"
+   ],
+   "reader_pick_word": "hatchery",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 1,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Salmon dig their nests in that bar, and the young stay in the gravel' nearly states hatchery; hostel is the near-miss, highway dies to deer wading below rather than crossing on the log."
+  },
+  "world 2 (key garden)": {
+   "named_for": [
+    "distractors weak",
+    "distractor fits literally"
+   ],
+   "reader_pick_word": "garden",
+   "reader_difficulty": "medium",
+   "n_struck": 1,
+   "struck_words": [
+    "hostel"
+   ],
+   "distractor_quality": "weak",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 0,
+   "second_defensible_word": null,
+   "literal_fit_word": "highway",
+   "presupposes_absent": null,
+   "reader_note": "Seedlings in 'a dense row along its whole length' give garden; hostel (lodging for travellers) is off-topic for a passage about plants and falls on a surface read; the log spanning the stream makes highway a literal fit, and hatchery is the nursery lure but applies to eggs and animals."
+  },
+  "world 3 (key hostel)": {
+   "named_for": [
+    "one sentence"
+   ],
+   "reader_pick_word": "hostel",
+   "reader_difficulty": "medium",
+   "n_struck": 1,
+   "struck_words": [
+    "garden"
+   ],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 1,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Each staying a few days before going on' practically defines hostel; hatchery is the near-miss, ruled out because spawning happens on gravel beds miles above; garden falls on a surface read (off-register for a log in a salmon run)."
+  }
+ },
+ "WIC27A-06": {
+  "world 1 (key doomed)": {
+   "named_for": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "doomed",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Barred from new members, union dies out by attrition: doomed. Let stand kills disbanded, won strikes kill defanged, struck together kills divided."
+  },
+  "world 2 (key defanged)": {
+   "named_for": [
+    "easy",
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "defanged",
+   "reader_difficulty": "easy",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Each distractor dies to one planted phrase: 'let the union stand' and growth to nine thousand kill disbanded and doomed, 'voted almost to a man' kills divided; 'never again stopped work' plus 'in effect' hands over defanged."
+  },
+  "world 3 (key divided)": {
+   "named_for": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "divided",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Operators 'formed their own association' and 'Both bodies still bargained there in 1944' give divided and kill doomed/disbanded; the laborers winning a nine-week strike kills defanged."
+  },
+  "world 0 (key disbanded)": {
+   "named_for": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "disbanded",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Without dissent' rules out divided and the union never meeting again until 1919 rules out defanged (weakened but still alive); doomed is the near-miss but describes a future end, while the fund repayment, hall sale and vote to comply ended it at once."
+  }
+ },
+ "WIC27A-01": {
+  "world 0 (key drained)": {
+   "named_for": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "drained",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Population steady but workers and shopping went south and stores closed: drained. The road on the riverbank below town kills fragmented; fossilized and engulfed fit parts of the passage."
+  },
+  "world 1 (key fragmented)": {
+   "named_for": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "fragmented",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Raised on a bank through the middle of the town, between the mill and the streets' nearly states fragmented; population held at eight thousand kills drained and engulfed, and the new grocery/school/fire company kills fossilized."
+  },
+  "world 2 (key engulfed)": {
+   "named_for": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "engulfed",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Road 'below the town, on land the railroad had abandoned' kills fragmented, growth to 26,000 kills drained, city offices and chains kill fossilized; no open field from the city gives engulfed."
+  },
+  "world 3 (key fossilized)": {
+   "named_for": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "fossilized",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "The same population, the same families running the stores and a newest building from 1951 decide fossilized; drained is killed by the steady population, engulfed and fragmented by the road running on the far bank with its exit nine miles off."
+  }
+ },
+ "WIC27A-03": {
+  "world 2 (key depot)": {
+   "named_for": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "depot",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Coal warehouses that steamships call at every voyage: depot. Shelled without reply kills fortress, sailing ships passing by undercuts haven."
+  },
+  "world 3 (key fortress)": {
+   "named_for": [
+    "not exclusive",
+    "second defensible"
+   ],
+   "reader_pick_word": "fortress",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 1,
+   "second_defensible_word": "depot",
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Fortress fits barracks and a garrison holding out months, but fleets sailing past to burn the cities means it never protected them, and depot is equally defensible from the twice-stressed warehouses of powder and grain. Not exclusive."
+  },
+  "world 0 (key gateway)": {
+   "named_for": [
+    "distractor fits literally"
+   ],
+   "reader_pick_word": "gateway",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 1,
+   "second_defensible_word": null,
+   "literal_fit_word": "depot",
+   "presupposes_absent": null,
+   "reader_note": "Every ship cleared customs and took an island pilot through the only channel, so the island controlled entry; warehouses make depot a literal fit, killed by 'that same day ... fully reloaded'; fortress and haven unsupported."
+  },
+  "world 1 (key haven)": {
+   "named_for": [
+    "distractor fits literally"
+   ],
+   "reader_pick_word": "haven",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 1,
+   "second_defensible_word": null,
+   "literal_fit_word": "depot",
+   "presupposes_absent": null,
+   "reader_note": "The warehouses literally fit depot, but ships came in only when gales blew and passed by in calm weather, which makes the island a refuge; gateway is weakened by ships passing on either side."
+  }
+ },
+ "WIC27A-04": {
+  "world 0 (key headquarters)": {
+   "named_for": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "headquarters",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Standing committee, files in the safe, couriers dispatched decide headquarters; hub is weakened by 'no other exile was let into the room', hothouse by leaders unchanged since before the war, embassy has no representative function."
+  },
+  "world 1 (key hothouse)": {
+   "named_for": [
+    "explicit kills 2",
+    "distractor fits literally"
+   ],
+   "reader_pick_word": "hothouse",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": "hub",
+   "presupposes_absent": null,
+   "reader_note": "Committee 'sat in another country' kills headquarters and reporters handed its address kills embassy; the poet training new arrivals who later edited all the papers gives hothouse, while exiles gathering there makes hub a literal near-fit."
+  },
+  "world 2 (key hub)": {
+   "named_for": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "hub",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Members of all three parties came and news passed from table to table, which decides hub; offices elsewhere kill headquarters, reporters going to those offices kill embassy, and hothouse is a plausible near-miss."
+  }
+ }
+}

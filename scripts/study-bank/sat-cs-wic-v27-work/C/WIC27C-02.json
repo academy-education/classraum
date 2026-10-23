@@ -1,0 +1,146 @@
+{
+  "id": "WIC27C-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a dawn auction rule at a fishing port",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "steadied",
+    "saturated",
+    "stifled",
+    "uprooted"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "uprooted",
+    "steadied",
+    "stifled",
+    "saturated"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "Writing in 1960, one economist argued that the rule had ______ the city's fish market.",
+  "worlds": [
+    {
+      "key": "steadied",
+      "passage": "In 1931 a port city required every fishing boat landing there to sell its whole catch at a single dawn auction on the quay; before, each crew had sold to any buyer it chose, whenever it chose. Crews could no longer hold fish back for a better price, so every catch reached the quay the morning after it was caught. Inland fish shops, which had sent buyers only after a big catch, placed standing orders for a fixed number of crates at each dawn's auction, and the quay was bare by six. Writing in 1960, one economist argued that the rule had ______ the city's fish market.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Every catch now reached the quay on a regular schedule, and inland shops answered with fixed daily orders that cleared it each morning, so supply and demand both became regular and the rule \"steadied\" the market. \"Saturated\" fails because the extra fish was all bought by six each morning. \"Stifled\" fails because more fish was landed and more buyers bought every day than before. \"Uprooted\" fails because the standing orders were placed at the city's own auction, so the market stayed where it was.",
+      "kills": {
+        "saturated": {
+          "type": "explicit",
+          "quote": "the quay was bare by six",
+          "why": "Everything landed was bought each morning, so there was no glut.",
+          "surface_fit": "Crews could no longer hold fish back, so every fish caught now hit the quay at once, which is exactly how a market gets glutted.",
+          "inference": "A glut leaves fish unsold; a quay cleared by six every morning, with shops ordering fixed amounts daily, shows the larger landings were matched by buyers."
+        },
+        "stifled": {
+          "type": "logic",
+          "quote": "placed standing orders for a fixed number of crates",
+          "why": "Buyers who had come only now and then ordered every day, so trade grew rather than being choked.",
+          "surface_fit": "A rule forcing every crew into one dawn auction sounds like the kind of regulation that chokes a trade, and economists often say such rules stifled a market.",
+          "inference": "Choking a trade means less of it happens; shops that once sent buyers only after a big catch now ordered crates at every auction, so more fish changed hands under the rule than before it."
+        },
+        "uprooted": {
+          "type": "logic",
+          "quote": "at each dawn's auction",
+          "why": "The orders went to the city's own auction, so the market stayed in place.",
+          "surface_fit": "Moving every sale to one auction on the quay tore up the old way of selling, so a student may read the rule as having pulled the market up from its old footing.",
+          "inference": "Uprooting would move the trade somewhere else; the inland shops tied their orders to the city's dawn auction, so the market's place and its buyers stayed, and only its rhythm changed."
+        }
+      }
+    },
+    {
+      "key": "saturated",
+      "passage": "In 1931 a port city required every fishing boat landing there to sell its whole catch at a single dawn auction on the quay; before, each crew had sold to any buyer it chose, whenever it chose. Crews could no longer hold fish back in their ice holds for a better price, so every fish caught went under the hammer the morning it was landed, while the number of buyers stayed about the same. By 1934 a third of each dawn's catch was going to the fertilizer works at a few cents a crate. Writing in 1960, one economist argued that the rule had ______ the city's fish market.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Every fish caught now came to auction at once while the number of buyers stayed the same, until a third of the catch was sold off as fertilizer, so the rule \"saturated\" the market. \"Steadied\" fails because fish worth only a few cents a crate means prices had fallen through the floor, not settled. \"Stifled\" fails because more fish was offered than ever, not less. \"Uprooted\" fails because every crew still landed and sold at the city's quay.",
+      "kills": {
+        "steadied": {
+          "type": "logic",
+          "quote": "at a few cents a crate",
+          "why": "A third of the catch selling for pennies as fertilizer shows prices collapsing, not settling.",
+          "surface_fit": "One fixed auction at a fixed hour replacing scattered private deals sounds like a way to bring order and steadier prices to a fish market.",
+          "inference": "Fish that once sold as food going to fertilizer works at a few cents a crate means the price of a large part of each catch fell to almost nothing, which is the opposite of prices holding at a settled level."
+        },
+        "stifled": {
+          "type": "logic",
+          "quote": "every fish caught went under the hammer",
+          "why": "All of every catch now came to market, so trade was not choked off.",
+          "surface_fit": "Losses, unsold fish and a rule forcing everyone into one auction all sound like a regulation that choked the fish trade.",
+          "inference": "A stifled market sees less traded; here every fish caught was put up for sale each morning, more than crews had sold before, so the trouble was too much offered, not too little."
+        },
+        "uprooted": {
+          "type": "logic",
+          "quote": "the morning it was landed",
+          "why": "The fish were still landed and sold at the city's quay, so the market did not move.",
+          "surface_fit": "The rule tore up the old way of selling, crew by crew and buyer by buyer, so a student might say it pulled the market up by the roots.",
+          "inference": "Uprooting moves a market away from its place; every catch was still landed at the city's quay and auctioned there each dawn, so the market stayed put and only grew more crowded."
+        }
+      }
+    },
+    {
+      "key": "stifled",
+      "passage": "In 1931 a port city required every fishing boat landing there to sell its whole catch at a single dawn auction on the quay; before, each crew had sold to any buyer it chose, whenever it chose. The crews of small boats, who fished inshore at night, now waited hours for the auction, and within five years half those boats lay idle at their moorings most of the week, their crews working on the docks. With so few boats going out, the price of a crate leapt every time the weather turned. Writing in 1960, one economist argued that the rule had ______ the city's fish market.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Half the small boats stopped fishing most of the week while staying at the city's moorings, so the market simply had less to trade: the rule \"stifled\" it. \"Uprooted\" fails because those boats sat idle at the city's own moorings rather than fishing and selling somewhere else. \"Saturated\" fails because fewer boats going out meant less fish, not too much. \"Steadied\" fails because prices now leapt with every change in the weather.",
+      "kills": {
+        "uprooted": {
+          "type": "logic",
+          "quote": "lay idle at their moorings",
+          "why": "The boats stayed in the city, idle, so the trade did not move elsewhere.",
+          "surface_fit": "Half the small boats vanished from the city's auction within five years, which looks like the market being torn from its place.",
+          "inference": "For the market to be uprooted the fishing and selling would have to go on somewhere else; boats lying idle at the city's moorings, their crews on the city's docks, mean the trade did not move, it just stopped."
+        },
+        "saturated": {
+          "type": "logic",
+          "quote": "With so few boats going out",
+          "why": "Fewer boats fishing means less fish, so the market was not flooded.",
+          "surface_fit": "A single auction at one hour forcing every catch onto the quay at once is a setting where a reader expects more fish than buyers.",
+          "inference": "A glut needs more fish offered than buyers want; half the inshore boats lying idle most of the week cut the supply, so the market had less fish, not too much."
+        },
+        "steadied": {
+          "type": "explicit",
+          "quote": "the price of a crate leapt every time the weather turned",
+          "why": "Prices jumped with the weather, so the market was not steadier.",
+          "surface_fit": "Replacing private sales at any hour with one regular dawn auction sounds like a measure meant to bring order to a market.",
+          "inference": "A steadier market has prices that move less; with so few boats left, any bad weather cut the morning's supply and sent prices leaping, so the swings grew larger."
+        }
+      }
+    },
+    {
+      "key": "uprooted",
+      "passage": "In 1931 a port city required every fishing boat landing there to sell its whole catch at a single dawn auction on the quay; before, each crew had sold to any buyer it chose, whenever it chose. A village four miles down the coast, where crews could still sell to any buyer at any hour, built a new quay in 1932. Within two years the city's fish merchants had moved their stalls there, the boats followed them, and carts carried each catch up the coast road to the same city shops as before. Writing in 1960, one economist argued that the rule had ______ the city's fish market.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The city's merchants and boats moved to the village quay while the same city shops kept getting their fish by cart, so the rule \"uprooted\" the market: the whole market went on, in another place. \"Stifled\" fails because the city's shops were supplied as before, so the city's fish market lost its site, not its trade. \"Saturated\" fails because the boats landed at the village, so no fish reached the city's quay to glut it. \"Steadied\" fails because a market whose merchants, boats and quay all moved within two years was overturned, not settled.",
+      "kills": {
+        "stifled": {
+          "type": "logic",
+          "quote": "carts carried each catch up the coast road to the same city shops as before",
+          "why": "The city's shops still got their fish, so the city's market kept its trade; only its site moved.",
+          "surface_fit": "The city's merchants and boats all left the city's quay, so a student reading for decline will take the city's fish market as choked off.",
+          "inference": "A stifled market sells less; the same city shops were stocked from the same merchants, who had only moved their stalls four miles, so the city's fish market went on trading at its old volume from a new place."
+        },
+        "saturated": {
+          "type": "logic",
+          "quote": "the boats followed them",
+          "why": "The boats landed at the village, so no fish arrived at the city's quay to flood it.",
+          "surface_fit": "A rule forcing every catch into one dawn auction invites the reading that the city's quay was flooded with more fish than it could sell.",
+          "inference": "Saturation needs more fish arriving at the city's auction than its buyers take; the boats followed the merchants to the village quay, so the city's quay received no catch at all."
+        },
+        "steadied": {
+          "type": "logic",
+          "quote": "had moved their stalls there",
+          "why": "The merchants moved their whole business within two years, which is an upheaval, not a settling.",
+          "surface_fit": "Ordering every sale into one regular auction sounds like a measure that would make a market more orderly and its prices steadier.",
+          "inference": "A steadied market keeps its arrangements and evens them out; this one moved its merchants, its boats and its landing place four miles within two years, so its arrangements were overturned."
+        }
+      }
+    }
+  ]
+}

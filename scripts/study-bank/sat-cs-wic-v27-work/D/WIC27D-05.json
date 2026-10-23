@@ -1,0 +1,146 @@
+{
+  "id": "WIC27D-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a worked-out chalk quarry",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "arena",
+    "bunker",
+    "cesspool",
+    "bazaar"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "arena",
+    "bunker",
+    "bazaar",
+    "cesspool"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "One local historian has called the quarry, above all, the town's ______.",
+  "worlds": [
+    {
+      "key": "arena",
+      "passage": "A chalk quarry worked out in the 1800s lies below a market town's square, a pit two hundred yards across with galleries in its walls, and the lower streets slope down to its rim. A tunnel under its mown turf floor carries their runoff on to the river. Grass terraces are cut into its north wall, facing the floor. On summer evenings the town files down onto them, food sellers working the steps, while a band and players take the floor below. The galleries, whose roofs fell in 1890, are fenced off. One local historian has called the quarry, above all, the town's ______.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "Terraces cut into the wall face the floor, and on summer evenings the town sits there while a band and players perform below, so the quarry is the town's \"arena.\" \"Bazaar\" fails because the food sellers work among a seated crowd that has come to watch. \"Cesspool\" fails because a tunnel carries the streets' runoff on to the river. \"Bunker\" fails because the galleries' roofs fell in 1890.",
+      "kills": {
+        "bazaar": {
+          "type": "logic",
+          "quote": "food sellers working the steps",
+          "why": "Selling goes on among a seated audience.",
+          "surface_fit": "The pit lies right below a market town's square and draws the town down into it, so the town's market ground is a natural first guess.",
+          "inference": "The sellers move along the steps of terraces where the town sits facing the band and players, so the crowd has come down to watch a show; selling is a sideline to it, not what the pit is for."
+        },
+        "cesspool": {
+          "type": "logic",
+          "quote": "carries their runoff on to the river",
+          "why": "The streets' water passes straight through.",
+          "surface_fit": "The town's lower streets slope down to the pit's rim, so it is where their gutters would naturally end up, which makes cesspool tempting.",
+          "inference": "The water from the streets runs through a tunnel on to the river, and the floor above is mown turf, so nothing from the streets collects in the pit."
+        },
+        "bunker": {
+          "type": "logic",
+          "quote": "whose roofs fell in 1890",
+          "why": "The galleries have collapsed.",
+          "surface_fit": "Galleries cut into chalk are the kind of place a town shelters in during air raids, so bunker fits the quarry and the sentence.",
+          "inference": "Galleries whose roofs have fallen in are the most dangerous place to be, so no one could take shelter in them."
+        }
+      }
+    },
+    {
+      "key": "bunker",
+      "passage": "A chalk quarry worked out in the 1800s lies below a market town's square, a pit two hundred yards across with galleries in its walls, and the lower streets slope down to its rim. A pond fed by their rainwater covers its floor, clear enough for the boys who fish it. The galleries run half a mile under sixty feet of chalk. From 1940 to 1944 the town kept them lit and stocked with bedding and water, and the market square above emptied within minutes whenever the sirens sounded. One local historian has called the quarry, above all, the town's ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Galleries under sixty feet of chalk were kept lit and stocked through the war, and the square emptied within minutes whenever the sirens sounded, so the quarry was the town's \"bunker.\" \"Bazaar\" and \"arena\" fail because a pond covers the floor, leaving no ground for stalls or a show. \"Cesspool\" fails because the pond is clear enough for boys to fish.",
+      "kills": {
+        "bazaar": {
+          "type": "logic",
+          "quote": "A pond fed by their rainwater covers",
+          "why": "The floor is under water.",
+          "surface_fit": "The pit lies just below the market square, and the passage mentions the square filling and emptying, so the town's market ground is a tempting guess.",
+          "inference": "With a pond over the whole floor, there is no ground for carts or stalls, so the town's trading cannot happen in the pit; the market is in the square above it."
+        },
+        "arena": {
+          "type": "logic",
+          "quote": "covers its floor",
+          "why": "There is no dry floor.",
+          "surface_fit": "A walled pit two hundred yards across is shaped like an amphitheater, and arena is the usual word for an old quarry where a town gathers.",
+          "inference": "A floor under water leaves nowhere for players to perform or a crowd to stand, so the pit cannot hold the town's shows."
+        },
+        "cesspool": {
+          "type": "logic",
+          "quote": "clear enough for the boys who fish it",
+          "why": "The pond's water is clean.",
+          "surface_fit": "The town's lower streets slope down to the pit's rim, so it is where their gutters would naturally end up, which makes cesspool tempting.",
+          "inference": "Water clear enough for boys to fish is not receiving the town's waste, so the streets that slope to the pit send it only rain."
+        }
+      }
+    },
+    {
+      "key": "cesspool",
+      "passage": "A chalk quarry worked out in the 1800s lies below a market town's square, a pit two hundred yards across with galleries in its walls, and the lower streets slope down to its rim. Since 1870 their gutters have run into it, and after each Saturday market the square itself is sluiced down into the pit. Its floor is a black pond that even the town's boys keep away from in summer, and the galleries open below its surface. One local historian has called the quarry, above all, the town's ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The gutters of the lower streets and the sluiced-down market square have drained into the pit since 1870, leaving a black pond that even the boys avoid, so the quarry is the town's \"cesspool.\" \"Bazaar\" fails because the market is held in the square, and only its refuse reaches the pit. \"Arena\" fails because no one goes near the pond. \"Bunker\" fails because the galleries open below the pond's surface.",
+      "kills": {
+        "bazaar": {
+          "type": "logic",
+          "quote": "after each Saturday market the square itself is sluiced down",
+          "why": "The market is held above; only its refuse reaches the pit.",
+          "surface_fit": "The pit lies right below a market town's square and draws the town down into it, so the town's market ground is a natural first guess.",
+          "inference": "The square is washed down into the pit after the market, so the market itself is held in the square; what the pit receives is its refuse, not its trade."
+        },
+        "arena": {
+          "type": "logic",
+          "quote": "even the town's boys keep away from",
+          "why": "No one gathers at the pit.",
+          "surface_fit": "A walled pit two hundred yards across is shaped like an amphitheater, and arena is the usual word for an old quarry where a town gathers.",
+          "inference": "If even the boys keep away from the pond in summer, nobody gathers there, so the pit cannot be where the town comes to watch anything."
+        },
+        "bunker": {
+          "type": "logic",
+          "quote": "the galleries open below its surface",
+          "why": "The galleries are flooded.",
+          "surface_fit": "Galleries cut into chalk are the kind of place a town shelters in during air raids, so bunker fits the quarry and the sentence.",
+          "inference": "Galleries that open below the pond's surface are full of water, so no one could shelter in them."
+        }
+      }
+    },
+    {
+      "key": "bazaar",
+      "passage": "A chalk quarry worked out in the 1800s lies below a market town's square, a pit two hundred yards across with galleries in its walls, and the lower streets slope down to its rim. A tunnel under its dry floor carries their runoff on to the river. Every Saturday farmers from three valleys drive loaded carts down its ramp before dawn and back up empty by noon, and in between the floor is packed wheel to wheel. Its galleries, only a few yards deep, stable the farmers' horses. One local historian has called the quarry, above all, the town's ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "Farmers bring loaded carts down every Saturday and leave by noon with them empty, so they sell their loads on the pit floor: the quarry is the town's \"bazaar.\" \"Arena\" fails because the floor is packed wheel to wheel with carts, leaving no open floor for a show. \"Cesspool\" fails because a tunnel carries the streets' runoff on to the river. \"Bunker\" fails because the galleries are only a few yards deep.",
+      "kills": {
+        "arena": {
+          "type": "logic",
+          "quote": "packed wheel to wheel",
+          "why": "The floor is filled with carts.",
+          "surface_fit": "A walled pit two hundred yards across is shaped like an amphitheater, and arena is the usual word for an old quarry where a town gathers.",
+          "inference": "A floor packed with carts from end to end leaves no open ground for performers, and the crowd moves among the carts, so the gathering is not an audience watching a show."
+        },
+        "cesspool": {
+          "type": "logic",
+          "quote": "carries their runoff on to the river",
+          "why": "The streets' water passes straight through.",
+          "surface_fit": "The town's lower streets slope down to the pit's rim, so it is where their gutters would naturally end up, which makes cesspool tempting.",
+          "inference": "The water from the streets runs through a tunnel on to the river and the floor stays dry enough for carts, so nothing from the streets collects in the pit."
+        },
+        "bunker": {
+          "type": "logic",
+          "quote": "only a few yards deep",
+          "why": "The galleries are shallow.",
+          "surface_fit": "Galleries cut into chalk are the kind of place a town shelters in during air raids, so bunker fits the quarry and the sentence.",
+          "inference": "Galleries only a few yards deep lie barely inside the wall, so they could not protect anyone sheltering from attack; the farmers use them as stables."
+        }
+      }
+    }
+  ]
+}

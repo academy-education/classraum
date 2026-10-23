@@ -1,0 +1,146 @@
+{
+  "id": "WIC27D-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "gale and a sand spit",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "armored",
+    "blunted",
+    "cleaved",
+    "broadened"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "broadened",
+    "armored",
+    "blunted",
+    "cleaved"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "Comparing surveys made before and after that winter, one geologist concluded that the gale had ______ the spit.",
+  "worlds": [
+    {
+      "key": "armored",
+      "passage": "A sand spit four miles long curves across a lagoon's mouth, with a lighthouse near its hooked tip and a road along its crest. In 1953 a three-day gale drove waves over the crest. When the water fell, the road ran over cobbles that had lain beneath the crest's sand. The keeper's cart to town ran as usual, boats still moored behind the hook, and the lagoon-side boathouses stood at the water's edge as before. In the next twenty winters the spit lost less ground than in any twenty on record. Comparing surveys made before and after that winter, one geologist concluded that the gale had ______ the spit.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The gale stripped the crest's sand down to a bed of cobbles, and afterward the spit wore away more slowly than ever before, so the gale had \"armored\" it. \"Cleaved\" fails because the keeper's cart still ran along the crest to town. \"Blunted\" fails because boats still moored behind the hook. \"Broadened\" fails because the lagoon-side boathouses still stood at the water's edge.",
+      "kills": {
+        "cleaved": {
+          "type": "logic",
+          "quote": "cart to town ran as usual",
+          "why": "The crest road was unbroken.",
+          "surface_fit": "Waves driven over a spit's crest are exactly how spits get breached in two, so a geologist could well say the gale cleaved it.",
+          "inference": "If the keeper's cart still ran along the crest road to town, the spit was one continuous strip of land from the mainland to the light, so no channel had split it."
+        },
+        "blunted": {
+          "type": "logic",
+          "quote": "boats still moored behind the hook",
+          "why": "The hook at the tip survived.",
+          "surface_fit": "A spit's exposed hooked tip is the part a gale usually wears back, and blunted is a natural word for a point that loses its hook.",
+          "inference": "Boats can only shelter behind the hook if the hook is still there, so the spit's point kept its shape; it was not cut back to a shorter, rounder end."
+        },
+        "broadened": {
+          "type": "logic",
+          "quote": "stood at the water's edge as before",
+          "why": "The lagoon shore did not move.",
+          "surface_fit": "Waves washing over a spit commonly carry sand across it and widen it, so broadened fits both the sentence and the geology.",
+          "inference": "If the boathouses on the lagoon side still stood right at the water's edge, the spit's lagoon shore had not moved out into the lagoon, so the spit was no wider."
+        }
+      }
+    },
+    {
+      "key": "blunted",
+      "passage": "A sand spit four miles long curves across a lagoon's mouth, with a lighthouse near its hooked tip and a road along its crest. In 1953 a three-day gale drove waves over the crest. Afterward the keeper's cart to town ran as usual, and the lagoon-side boathouses stood at the water's edge as before. The light, which had stood four hundred yards back from the tip, now stood on the beach, and the lagoon's mouth had widened by as much. Ordinary waves cut the new shore back fifty yards more that spring. Comparing surveys made before and after that winter, one geologist concluded that the gale had ______ the spit.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "The four hundred yards of spit beyond the light were gone and the lagoon's mouth widened by the same distance, so the gale had \"blunted\" the spit by taking off its point. \"Armored\" fails because ordinary waves kept cutting the new end back. \"Cleaved\" fails because the keeper's cart still ran along the crest to town. \"Broadened\" fails because the lagoon-side boathouses still stood at the water's edge.",
+      "kills": {
+        "armored": {
+          "type": "logic",
+          "quote": "cut the new shore back fifty yards more",
+          "why": "The new end kept losing ground.",
+          "surface_fit": "Gales often strip a spit down to a coarse, hard surface that resists later waves, so armored is a natural geologist's word here.",
+          "inference": "If ordinary spring waves took another fifty yards off the new end, the gale left the spit no harder to wear away than before, so it had not been made resistant."
+        },
+        "cleaved": {
+          "type": "logic",
+          "quote": "cart to town ran as usual",
+          "why": "The crest road was unbroken.",
+          "surface_fit": "Waves over a spit's crest are the usual way a spit is breached, and the lagoon's mouth changing suggests a new opening, so cleaved tempts.",
+          "inference": "If the keeper's cart still ran along the crest road to town, the spit was one continuous strip of land from the mainland to the light, so no channel had split it."
+        },
+        "broadened": {
+          "type": "logic",
+          "quote": "stood at the water's edge as before",
+          "why": "The lagoon shore did not move.",
+          "surface_fit": "Storm waves carrying sand over a spit often widen it, and the lagoon's mouth getting wider can be misread as the spit getting wider.",
+          "inference": "If the boathouses on the lagoon side still stood right at the water's edge, the spit's lagoon shore had not moved out into the lagoon, so the spit was no wider."
+        }
+      }
+    },
+    {
+      "key": "cleaved",
+      "passage": "A sand spit four miles long curves across a lagoon's mouth, with a lighthouse near its hooked tip and a road along its crest. In 1953 a three-day gale drove waves over the crest. Afterward boats still moored behind the hook, and the lagoon-side boathouses stood at the water's edge as before. The keeper, who had driven to town along the crest, now needed a boat. The lagoon's tide arrived an hour sooner, and sooner each year after, while the old mouth beside the tip sanded up. Comparing surveys made before and after that winter, one geologist concluded that the gale had ______ the spit.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The keeper could no longer drive to town, and the tide began reaching the lagoon sooner while the old mouth by the tip filled in, so the sea now entered through a new gap partway along: the gale had \"cleaved\" the spit. \"Broadened\" fails because the lagoon-side boathouses still stood at the water's edge. \"Blunted\" fails because boats still moored behind the hook. \"Armored\" fails because the tide came sooner every year, so the new opening kept growing.",
+      "kills": {
+        "broadened": {
+          "type": "logic",
+          "quote": "stood at the water's edge as before",
+          "why": "The lagoon shore did not move.",
+          "surface_fit": "Waves washed over the crest, and overwash commonly spreads sand across a spit and widens it, so broadened fits the setting.",
+          "inference": "If the boathouses on the lagoon side still stood right at the water's edge, the spit's lagoon shore had not moved out into the lagoon, so the spit was no wider."
+        },
+        "blunted": {
+          "type": "logic",
+          "quote": "boats still moored behind the hook",
+          "why": "The hook at the tip survived.",
+          "surface_fit": "The tip beside the lagoon's mouth is the part a gale most often wears back, and the change in the lagoon's tide makes a reader think of the tip.",
+          "inference": "Boats can only shelter behind the hook if the hook is still there, so the spit's point kept its shape; it was not cut back to a shorter, rounder end."
+        },
+        "armored": {
+          "type": "logic",
+          "quote": "sooner each year after",
+          "why": "The new entrance kept getting larger.",
+          "surface_fit": "A gale that sweeps a spit can strip it to a coarse surface that protects it, and armored is a word geologists use for exactly that.",
+          "inference": "A tide that reaches the lagoon sooner every year is coming through an opening that keeps widening and deepening, so the spit kept losing sand after the gale; it was left more open to wear, not harder to wear away."
+        }
+      }
+    },
+    {
+      "key": "broadened",
+      "passage": "A sand spit four miles long curves across a lagoon's mouth, with a lighthouse near its hooked tip and a road along its crest. In 1953 a three-day gale drove waves over the crest. Afterward the reeds on the lagoon side lay under two feet of beach sand, and boathouses that had stood at the water's edge stood two hundred yards from it. The keeper's cart to town ran as usual, and boats still moored behind the hook. The next winter's gales took as much from the seaward face as ever. Comparing surveys made before and after that winter, one geologist concluded that the gale had ______ the spit.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "Beach sand carried over the crest buried the lagoon-side reeds and left the boathouses two hundred yards from the lagoon, so the spit now reached farther into the lagoon: the gale had \"broadened\" it. \"Cleaved\" fails because the keeper's cart still ran along the crest to town. \"Blunted\" fails because boats still moored behind the hook. \"Armored\" fails because the next winter's gales took as much from the spit as ever.",
+      "kills": {
+        "cleaved": {
+          "type": "logic",
+          "quote": "cart to town ran as usual",
+          "why": "The crest road was unbroken.",
+          "surface_fit": "Waves driven over a spit's crest for three days are the classic cause of a breach, so cleaved is the first thing a reader expects.",
+          "inference": "If the keeper's cart still ran along the crest road to town, the spit was one continuous strip of land from the mainland to the light, so no channel had split it."
+        },
+        "blunted": {
+          "type": "logic",
+          "quote": "boats still moored behind the hook",
+          "why": "The hook survived.",
+          "surface_fit": "A spit's exposed hooked tip is the part a gale usually wears back, and blunted is a natural word for a point that loses its hook.",
+          "inference": "Boats can only shelter behind the hook if the hook is still there, so the spit's point kept its shape; it was not cut back to a shorter, rounder end."
+        },
+        "armored": {
+          "type": "logic",
+          "quote": "took as much from the seaward face as ever",
+          "why": "The spit was no more resistant afterward.",
+          "surface_fit": "Storms sometimes leave a hard, coarse layer that protects a spit from later waves, so armored fits the geology and the sentence.",
+          "inference": "If the following winter's gales removed as much sand as they always had, the spit resisted the sea no better than before, so the gale had not made it harder to wear away."
+        }
+      }
+    }
+  ]
+}

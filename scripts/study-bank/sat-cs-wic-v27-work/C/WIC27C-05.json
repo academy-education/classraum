@@ -1,0 +1,146 @@
+{
+  "id": "WIC27C-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "restoring a sixteenth-century altarpiece",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "uncovered",
+    "transferred",
+    "stabilized",
+    "scrubbed"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "uncovered",
+    "transferred",
+    "scrubbed",
+    "stabilized"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "Reviewing the work in 1960, one curator wrote that the restorers had, above all, ______ the altarpiece.",
+  "worlds": [
+    {
+      "key": "uncovered",
+      "passage": "In 1952 a museum sent a sixteenth-century altarpiece, painted on three oak panels and darkened by four centuries of candle smoke and varnish, to a restoration workshop for two years. X-rays taken through the oak showed figures beneath the two saints' heavy robes and the clouds above them. Over two years the restorers lifted the robes and clouds, paint added in the 1700s, flake by flake under a microscope, and the altarpiece came home on the same worm-eaten panels, with two kneeling donors in the sky where the clouds had been. Reviewing the work in 1960, one curator wrote that the restorers had, above all, ______ the altarpiece.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The X-rays showed figures under the robes and clouds, and lifting that later paint brought kneeling donors back into view, so the restorers \"uncovered\" the altarpiece. \"Scrubbed\" fails because the later paint was lifted flake by flake under a microscope, the opposite of harsh cleaning, and only the 1700s layer came off. \"Transferred\" fails because the altarpiece came home on the same worm-eaten panels. \"Stabilized\" fails because the work changed what the picture shows instead of securing it as it was.",
+      "kills": {
+        "scrubbed": {
+          "type": "logic",
+          "quote": "flake by flake under a microscope",
+          "why": "Painstaking removal of one later layer is the opposite of harsh overcleaning.",
+          "surface_fit": "Removing layers from a smoke-darkened altarpiece is the kind of cleaning critics accuse of scrubbing a picture.",
+          "inference": "Scrubbing is cleaning so aggressive that the painter's own surface goes too; lifting one added layer a flake at a time under a microscope is slow, targeted work that stops at that layer, and it left the original donors to be seen."
+        },
+        "transferred": {
+          "type": "logic",
+          "quote": "came home on the same worm-eaten panels",
+          "why": "The paint stayed on its original oak, so it was not moved to a new support.",
+          "surface_fit": "Old, worm-eaten oak is the classic reason restorers of the 1950s moved paint onto a new backing.",
+          "inference": "Transferring lifts the paint off its old support onto a new one; an altarpiece that came home on the same worm-eaten panels still has its paint on the oak it was painted on."
+        },
+        "stabilized": {
+          "type": "logic",
+          "quote": "with two kneeling donors in the sky where the clouds had been",
+          "why": "The picture now shows figures it did not show before, which is more than securing it.",
+          "surface_fit": "A two-year stay in a restoration workshop for a four-hundred-year-old altarpiece suggests work to keep it from deteriorating further.",
+          "inference": "Stabilizing secures an object in its present state; this altarpiece came back showing donors where clouds had been for two centuries, so its appearance was changed, not merely secured."
+        }
+      }
+    },
+    {
+      "key": "transferred",
+      "passage": "In 1952 a museum sent a sixteenth-century altarpiece, painted on three oak panels and darkened by four centuries of candle smoke and varnish, to a restoration workshop for two years. Because the museum planned a ten-city tour and the three panels together weighed four hundred pounds, the restorers faced the paint with tissue and shaved the sound oak away from behind it. On tour the altarpiece weighed thirty pounds, its back now canvas stretched on aluminum, and crowds saw the same smoke-browned saints they had known in the church. Reviewing the work in 1960, one curator wrote that the restorers had, above all, ______ the altarpiece.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "The oak was shaved away from behind the paint and the altarpiece's back is now canvas on aluminum, so the restorers \"transferred\" it to a new support. \"Stabilized\" fails because the oak was sound; it was removed to save weight for a tour, not to arrest any decay. \"Scrubbed\" fails because the saints were still smoke-browned, so nothing was cleaned. \"Uncovered\" fails because the crowds saw the same saints they had always known, so nothing hidden came into view.",
+      "kills": {
+        "stabilized": {
+          "type": "logic",
+          "quote": "shaved the sound oak away",
+          "why": "The wood was sound, so the work answered the tour's weight, not any decay.",
+          "surface_fit": "Taking away the wooden backing and giving the paint a new support sounds like structural rescue meant to keep an old painting from falling apart.",
+          "inference": "Stabilizing arrests deterioration in the object as it is; the oak was sound and was taken away because four hundred pounds was too heavy to tour, so the altarpiece was rebuilt on a new support rather than secured on its old one."
+        },
+        "scrubbed": {
+          "type": "logic",
+          "quote": "the same smoke-browned saints",
+          "why": "The smoke was still on the saints, so no cleaning was done.",
+          "surface_fit": "A centuries-old altarpiece darkened by smoke and varnish is the classic subject of aggressive cleaning by restorers.",
+          "inference": "Scrubbing is cleaning carried too far; saints still brown with smoke on tour show the surface was not cleaned at all, so there was nothing to have gone too far."
+        },
+        "uncovered": {
+          "type": "logic",
+          "quote": "they had known in the church",
+          "why": "The crowds saw what they had always seen, so nothing hidden was revealed.",
+          "surface_fit": "Restorers working on a darkened altarpiece are expected to bring hidden detail back into view.",
+          "inference": "Uncovering brings hidden things into view; crowds recognizing the very saints they had known in the church saw nothing new, so whatever the work did, it revealed nothing."
+        }
+      }
+    },
+    {
+      "key": "stabilized",
+      "passage": "In 1952 a museum sent a sixteenth-century altarpiece, painted on three oak panels and darkened by four centuries of candle smoke and varnish, to a restoration workshop for two years. The oak had shrunk and split along its grain, lifting the paint into blisters that flaked whenever the heating came on. The restorers laid each blister down with warm wax worked in through the old varnish, and set the panels in a frame that let the wood move; back in church, the congregation noticed only that no flakes fell on the altar cloth. Reviewing the work in 1960, one curator wrote that the restorers had, above all, ______ the altarpiece.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Flaking paint was laid back down and the panels framed so the wood could move without cracking the paint, so the restorers \"stabilized\" the altarpiece. \"Transferred\" fails because the panels were kept and reframed, so the paint stayed on its oak. \"Scrubbed\" fails because the wax was worked in through the old varnish, which stayed on. \"Uncovered\" fails because the congregation noticed nothing different except that the flaking stopped, so nothing hidden came into view.",
+      "kills": {
+        "transferred": {
+          "type": "logic",
+          "quote": "set the panels in a frame that let the wood move",
+          "why": "The panels were kept as the support, so the paint was not moved to a new one.",
+          "surface_fit": "Split, shrinking oak lifting the paint away is exactly the condition that drove restorers of the period to move paint onto a new backing.",
+          "inference": "Transferring would take the paint off the failing oak altogether; building a frame that lets the same panels move means the restorers kept the oak as the painting's support."
+        },
+        "scrubbed": {
+          "type": "logic",
+          "quote": "worked in through the old varnish",
+          "why": "The varnish was left on and worked through, so the surface was not cleaned.",
+          "surface_fit": "Two years in a workshop for a smoke-blackened altarpiece suggests heavy cleaning, which is what critics of restorers usually complain of.",
+          "inference": "Scrubbing strips the surface layers; wax worked in through the old varnish means the varnish was kept as it was, so no layer was stripped."
+        },
+        "uncovered": {
+          "type": "logic",
+          "quote": "the congregation noticed only that no flakes fell on the altar cloth",
+          "why": "The people who knew it best saw no change in the picture, so nothing was revealed.",
+          "surface_fit": "Restoring a smoke-darkened altarpiece is commonly expected to reveal what the grime has hidden.",
+          "inference": "Uncovering would change what the picture shows; a congregation that saw it every week noticed only that the flaking had stopped, so the image was the same one they had always known."
+        }
+      }
+    },
+    {
+      "key": "scrubbed",
+      "passage": "In 1952 a museum sent a sixteenth-century altarpiece, painted on three oak panels and darkened by four centuries of candle smoke and varnish, to a restoration workshop for two years. The restorers took the varnish off with strong solvents in weeks, working past the smoke into the paint itself, and in places the thin glazes that had modeled the saints' faces came away on the swabs, leaving flat pink underpaint. The worm holes in the oak, plugged with wax around 1700, were left as they were, and it was hung that spring. Reviewing the work in 1960, one curator wrote that the restorers had, above all, ______ the altarpiece.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "Strong solvents went past the varnish into the paint and took the glazes off the faces, so the restorers \"scrubbed\" the altarpiece. \"Uncovered\" fails because what came off was the painter's own glazes, so the faces lost their modeling and nothing hidden was revealed. \"Stabilized\" fails because the work removed original paint instead of securing it. \"Transferred\" fails because the old worm holes in the oak were left as they were, so the paint stayed on its panels.",
+      "kills": {
+        "uncovered": {
+          "type": "logic",
+          "quote": "the thin glazes that had modeled the saints' faces came away",
+          "why": "What came off was the painter's own glazes, so nothing hidden was revealed.",
+          "surface_fit": "Taking off centuries of darkened varnish usually shows colors and details no one had seen for generations, which is what uncovering means.",
+          "inference": "Uncovering removes what was laid over the original; here the solvent went past the varnish into the painter's own glazes and left bare underpaint, so the original surface was lost, not revealed."
+        },
+        "stabilized": {
+          "type": "logic",
+          "quote": "working past the smoke into the paint itself",
+          "why": "The work removed original paint, which is the opposite of securing the picture as it was.",
+          "surface_fit": "A restoration workshop's commission for a fragile old altarpiece suggests conservation work that secures it.",
+          "inference": "Stabilizing preserves the object in its present state; solvents that took the glazes down to the underpaint removed part of the original, so the picture was diminished rather than secured."
+        },
+        "transferred": {
+          "type": "logic",
+          "quote": "The worm holes in the oak, plugged with wax around 1700, were left as they were",
+          "why": "The old oak, worm holes and all, is still the support.",
+          "surface_fit": "Moving old paint onto a new backing was a standard 1950s treatment for panel paintings, so it fits a sixteenth-century altarpiece.",
+          "inference": "Transferring discards the old support for a new one; worm holes plugged around 1700 still sitting in the oak behind the paint show the panels were never replaced."
+        }
+      }
+    }
+  ]
+}

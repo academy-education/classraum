@@ -1,0 +1,146 @@
+{
+  "id": "WIC27A-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a court ruling and a dockworkers' union",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "defanged",
+    "divided",
+    "doomed",
+    "disbanded"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "divided",
+    "doomed",
+    "disbanded",
+    "defanged"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "Writing fifty years later, one labor historian concluded that the ruling had, in effect, ______ the union.",
+  "worlds": [
+    {
+      "key": "disbanded",
+      "passage": "In 1894 a court ruled on a strike by a port city's dockworkers' union, which then had four thousand members and a hall near the docks. The court held the union an unlawful conspiracy and ordered its strike fund repaid to the men who had paid into it and its hall sold. That month the members lined up together at the hall to collect their shares, and the building went to a ship chandler. The city's next dockworkers' union, founded in 1919, started with no members, money or hall. Writing fifty years later, one labor historian concluded that the ruling had, in effect, ______ the union.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The ruling stripped the union of its fund and its hall, and within the month the members had taken their shares and the hall was sold, so the ruling in effect \"disbanded\" the union. \"Doomed\" fails because the end came that month rather than after a decline. \"Defanged\" fails because nothing of the union survived: the next one, in 1919, started from nothing. \"Divided\" fails because the members lined up together to collect their shares.",
+      "kills": {
+        "doomed": {
+          "type": "logic",
+          "quote": "That month the members lined up",
+          "why": "The union ended within the month, so there was no long road to a certain end.",
+          "surface_fit": "A union hit by a hostile court ruling is easily pictured as set on a road to its end, and \"doomed\" is a natural verdict from fifty years on.",
+          "inference": "\"Doomed\" describes something that goes on for a time while its end is certain; here the fund was paid out and the hall sold within a month of the ruling, so the end came at once."
+        },
+        "defanged": {
+          "type": "logic",
+          "quote": "started with no members, money or hall",
+          "why": "The next union began from nothing, so no weakened remnant of the old one had lived on.",
+          "surface_fit": "Court rulings against unions in the 1890s are often said to have stripped them of their power to strike, so \"defanged the union\" is a stock phrase for a labor historian.",
+          "inference": "A defanged union goes on existing without its power to hurt employers; when dockworkers organized again in 1919 they inherited no members, funds or hall, which shows that nothing of the old union had carried on in any form."
+        },
+        "divided": {
+          "type": "logic",
+          "quote": "lined up together at the hall",
+          "why": "The members carried out the ruling side by side, so it did not split them.",
+          "surface_fit": "Rulings of this period often set skilled and unskilled workers against each other, so a historian saying a ruling divided a union is entirely ordinary.",
+          "inference": "The members came to the hall together to take their shares, accepting the end as one body; the ruling closed the union without setting one group of its members against another."
+        }
+      }
+    },
+    {
+      "key": "doomed",
+      "passage": "In 1894 a court ruled on a strike by a port city's dockworkers' union, which then had four thousand members and a hall near the docks. The court let the union stand but barred it from enrolling any man hired after the ruling. Until the 1920s employers paid the union scale to every man on the docks rather than risk a walkout by its veterans. As those men retired, no one took their places in the union, and in 1931 its last local sold the hall. Writing fifty years later, one labor historian concluded that the ruling had, in effect, ______ the union.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "Barred from enrolling new men, the union could only shrink as its veterans retired, until its last local sold the hall in 1931, so the ruling set it on a sure road to its end: it \"doomed\" the union. \"Disbanded\" fails because the union lasted thirty-seven more years. \"Defanged\" fails because employers paid every man the union scale rather than risk a walkout. \"Divided\" fails because the veterans remained a single body that employers feared would walk out together.",
+      "kills": {
+        "disbanded": {
+          "type": "logic",
+          "quote": "in 1931 its last local sold the hall",
+          "why": "The union lasted thirty-seven years after the ruling, so the ruling did not end it.",
+          "surface_fit": "Courts in the 1890s did order unions dissolved as unlawful conspiracies, so \"in effect disbanded the union\" reads naturally about such a ruling.",
+          "inference": "The union kept its hall and its veterans until 1931; a ruling that disbanded it would have ended it in 1894, so the ruling fixed its end without bringing it about."
+        },
+        "defanged": {
+          "type": "logic",
+          "quote": "rather than risk a walkout by its veterans",
+          "why": "Employers still feared the union's strike, so it kept its power.",
+          "surface_fit": "Court rulings against unions in the 1890s are often said to have stripped them of their power to strike, so \"defanged the union\" is a stock phrase for a labor historian.",
+          "inference": "Defanging takes away a union's power to hurt employers; for three decades employers paid even non-members the union scale to avoid a walkout, which shows the veterans' threat was still real."
+        },
+        "divided": {
+          "type": "logic",
+          "quote": "every man on the docks",
+          "why": "Employers paid everyone the same scale to avoid one walkout, so the veterans acted as one body.",
+          "surface_fit": "Rulings of this period often set skilled and unskilled workers against each other, so a historian saying a ruling divided a union is entirely ordinary.",
+          "inference": "Employers feared a single walkout by the veterans and paid every man the same scale to prevent it; a union whose members still stood together this firmly was shrinking, not split."
+        }
+      }
+    },
+    {
+      "key": "defanged",
+      "passage": "In 1894 a court ruled on a strike by a port city's dockworkers' union, which then had four thousand members and a hall near the docks. The court let the union stand but ordered every dispute it had with employers settled by a board the employers appointed. Its sick fund and social hall soon drew every man on the docks, skilled and unskilled alike, and in 1920 it built a larger hall. In the fifty years that followed, no ship ever waited at the quay for its men. Writing fifty years later, one labor historian concluded that the ruling had, in effect, ______ the union.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "The union grew to take in every man on the docks, yet with every dispute decided by the employers' board, no ship ever waited for its men in fifty years: it kept its members but lost its bite, so the ruling in effect \"defanged\" it. \"Doomed\" and \"disbanded\" fail because the union grew and built a larger hall in 1920. \"Divided\" fails because skilled and unskilled men alike joined it.",
+      "kills": {
+        "doomed": {
+          "type": "logic",
+          "quote": "in 1920 it built a larger hall",
+          "why": "The union outgrew its hall, which is the opposite of a sure decline.",
+          "surface_fit": "A union hit by a hostile court ruling is easily pictured as set on a road to its end, and \"doomed\" is a natural verdict from fifty years on.",
+          "inference": "A doomed union shrinks toward an end it cannot avoid; this one drew every man on the docks and needed a larger hall a quarter century after the ruling, so the ruling changed what the union could do, not whether it would last."
+        },
+        "disbanded": {
+          "type": "logic",
+          "quote": "built a larger hall",
+          "why": "The union went on and grew, so it was not dissolved.",
+          "surface_fit": "Courts in the 1890s did order unions dissolved as unlawful conspiracies, so \"in effect disbanded the union\" reads naturally about such a ruling.",
+          "inference": "A union that built a bigger hall in 1920 was still meeting and recruiting long after the ruling, so the ruling reshaped it and did not end it."
+        },
+        "divided": {
+          "type": "logic",
+          "quote": "skilled and unskilled alike",
+          "why": "Every kind of dockworker joined, so the ruling did not split them.",
+          "surface_fit": "Rulings of this period often set skilled and unskilled workers against each other, so a historian saying a ruling divided a union is entirely ordinary.",
+          "inference": "The sick fund and hall drew every man on the docks, skilled and unskilled together; a ruling that had divided the union would have left those groups apart, not in one body."
+        }
+      }
+    },
+    {
+      "key": "divided",
+      "passage": "In 1894 a court ruled on a strike by a port city's dockworkers' union, which then had four thousand members and a hall near the docks. The court held that the skilled crane operators could lawfully strike and the laborers could not strike in their support. Within a year the operators had formed their own association, and in 1902 its members crossed a laborers' picket line around the docks; it took the employers nine weeks to settle with the laborers. In 1944 the port's employers still signed two contracts each year. Writing fifty years later, one labor historian concluded that the ruling had, in effect, ______ the union.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "The ruling treated crane operators and laborers differently; the operators formed their own association and crossed the laborers' picket line, so the ruling \"divided\" the union. \"Disbanded\" and \"doomed\" fail because in 1944 employers still signed a contract with each body. \"Defanged\" fails because the laborers held out for nine weeks before employers settled with them.",
+      "kills": {
+        "disbanded": {
+          "type": "logic",
+          "quote": "still signed two contracts each year",
+          "why": "Both bodies were still bargaining fifty years on, so the union was not dissolved.",
+          "surface_fit": "Courts in the 1890s did order unions dissolved as unlawful conspiracies, so \"in effect disbanded the union\" reads naturally about such a ruling.",
+          "inference": "Employers signing two contracts a year in 1944 were dealing with both the operators' association and the laborers' old union; a union still signing contracts half a century later was not ended by the ruling."
+        },
+        "doomed": {
+          "type": "logic",
+          "quote": "In 1944 the port's employers still signed two contracts",
+          "why": "Both groups were still active fifty years later, so neither was set on a road to its end.",
+          "surface_fit": "A union hit by a hostile court ruling is easily pictured as set on a road to its end, and \"doomed\" is a natural verdict from fifty years on.",
+          "inference": "Fifty years after the ruling both the old union and the new association were still bargaining, so neither was headed for a certain end; the ruling changed who belonged to which body, not whether either would last."
+        },
+        "defanged": {
+          "type": "logic",
+          "quote": "it took the employers nine weeks to settle",
+          "why": "The laborers' strike forced a settlement, so the union kept its power.",
+          "surface_fit": "Court rulings against unions in the 1890s are often said to have stripped them of their power to strike, so \"defanged the union\" is a stock phrase for a labor historian.",
+          "inference": "The ruling did limit the laborers' strikes in support of others, which looks like losing their teeth, but in 1902 they held out until employers settled with them after nine weeks; a union that can force a settlement still has its power."
+        }
+      }
+    }
+  ]
+}

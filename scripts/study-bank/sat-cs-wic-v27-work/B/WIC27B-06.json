@@ -1,0 +1,146 @@
+{
+  "id": "WIC27B-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a closely studied northern lake",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "ledger",
+    "metronome",
+    "microcosm",
+    "museum"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "museum",
+    "ledger",
+    "metronome",
+    "microcosm"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "In a history of that work, one scientist called the lake, for those four decades, above all the region's ______.",
+  "worlds": [
+    {
+      "key": "ledger",
+      "passage": "From 1950 to 1990, scientists studied one small, deep, cold lake in a northern forest more closely than any other lake in the region; its bottom mud reaches back to the last ice age. Fed by a spring rather than streams, the lake is stiller than any other in the region, and its mud lies in crisp yearly layers, thick in wet years and thin in dry ones. Cores of them, measured layer by layer, gave the region its only year-by-year record of rainfall since the ice. In a history of that work, one scientist called the lake, for those four decades, above all the region's ______.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "Its still water lays down a layer a year whose thickness follows the rain, and cores measured layer by layer became the region's year-by-year rainfall record, so the lake was the region's \"ledger.\" \"Metronome\" fails because the layers were read for what each year's weather had been, not merely counted. \"Microcosm\" fails because a spring-fed lake stiller than any other in the region is unlike its neighbors, not a miniature of them. \"Museum\" fails because what scientists took from it was a series of measurements, entry by entry, not old things kept to be seen.",
+      "kills": {
+        "metronome": {
+          "type": "logic",
+          "quote": "thick in wet years and thin in dry ones",
+          "why": "The layers vary with the weather and were read for it.",
+          "surface_fit": "Lake mud that builds up year by year marks time, and scientists use such mud to count years. This lake lays down one layer a year.",
+          "inference": "Layers that change thickness with the rain carry what each year was like, and that rainfall is what the cores were measured for; a metronome only marks the beat, all its strokes alike."
+        },
+        "microcosm": {
+          "type": "logic",
+          "quote": "stiller than any other in the region",
+          "why": "The lake is unlike the region's other lakes.",
+          "surface_fit": "One small lake studied more closely than any other in the region looks like the region's lakes in miniature, which is what a microcosm is.",
+          "inference": "A spring-fed lake stiller than any other in the region is the exception among them, which is exactly why its layers stay crisp; an exception cannot stand for the others in miniature."
+        },
+        "museum": {
+          "type": "logic",
+          "quote": "measured layer by layer",
+          "why": "Scientists used it as a series of measurements.",
+          "surface_fit": "A deep, cold lake whose mud reaches back to the ice age keeps the past, the way a museum does.",
+          "inference": "Cores measured layer by layer were read as a running account, one entry per year, of how much rain fell; a museum keeps old things to be looked at, and here the value lay in the year-by-year figures."
+        }
+      }
+    },
+    {
+      "key": "metronome",
+      "passage": "From 1950 to 1990, scientists studied one small, deep, cold lake in a northern forest more closely than any other lake in the region; its bottom mud reaches back to the last ice age. Its mud lies in yearly layers all the same thickness whatever the weather, one pale band each summer. Scientists at other lakes, whose own layers recorded rainfall but could not be counted reliably, dated those records by matching shared bands of volcanic ash against its exact count of years. In a history of that work, one scientist called the lake, for those four decades, above all the region's ______.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "Its layers come one a year, all alike, and scientists whose own lakes held the rainfall records set the dates of those records against its count, so the lake was the region's \"metronome.\" \"Ledger\" fails because layers the same whatever the weather record nothing about any year, and the rainfall records were the other lakes'. \"Microcosm\" fails because scientists studied the other lakes directly and only borrowed this one's count. \"Museum\" fails because what others took from it was a count of years, a measure of time, not anything old kept to be seen.",
+      "kills": {
+        "ledger": {
+          "type": "logic",
+          "quote": "whose own layers recorded rainfall",
+          "why": "The rainfall records were in the other lakes.",
+          "surface_fit": "Mud reaching back to the ice age is a written record of the past, and scientists routinely call such lakes a ledger of climate.",
+          "inference": "The other lakes' layers held the record of each year's rain; this lake's layers, the same whatever the weather, held only the count that put dates on those records."
+        },
+        "microcosm": {
+          "type": "logic",
+          "quote": "Scientists at other lakes",
+          "why": "Other lakes were studied directly and used this one only for dates.",
+          "surface_fit": "One small lake studied more closely than any other in the region looks like the region's lakes in miniature, which is what a microcosm is.",
+          "inference": "Scientists studying the region's other lakes worked from those lakes' own cores and borrowed only this lake's count of years, so it served them as a timekeeper, not as a small model standing in for them."
+        },
+        "museum": {
+          "type": "logic",
+          "quote": "its exact count of years",
+          "why": "Others used it as a count of years.",
+          "surface_fit": "A deep, cold lake whose mud reaches back to the ice age keeps the past, the way a museum does.",
+          "inference": "What other scientists drew from the lake was its exact count of years, to set their own dates by; that is the use of a clock, not of a collection kept from the past."
+        }
+      }
+    },
+    {
+      "key": "microcosm",
+      "passage": "From 1950 to 1990, scientists studied one small, deep, cold lake in a northern forest more closely than any other lake in the region, and its bottom mud lies in fine yearly layers. Burrowing worms have churned the layers past reading, and its shrimp and plankton are those of every lake nearby. Scientists added acid to one basin of it and phosphate to the other, and the changes they measured were taken as what acid rain and farm runoff would do to the region's lakes. In a history of that work, one scientist called the lake, for those four decades, above all the region's ______.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "An ordinary lake was dosed with acid and phosphate, and what happened in it was taken to show what would happen in every lake of the region, so it was the region's \"microcosm.\" \"Ledger\" fails because burrowing worms had churned its layers past reading. \"Metronome\" fails for the same reason: a churned stack cannot be counted year by year. \"Museum\" fails because its living things are those of every lake nearby.",
+      "kills": {
+        "ledger": {
+          "type": "explicit",
+          "quote": "churned the layers past reading",
+          "why": "The layers cannot be read.",
+          "surface_fit": "Mud laid down in yearly layers is a written record of the past, and scientists routinely call such lakes a ledger of climate.",
+          "inference": "Layers churned by worms no longer hold each year's mud in order, so the lake keeps no readable account of past years."
+        },
+        "metronome": {
+          "type": "logic",
+          "quote": "Burrowing worms have churned the layers",
+          "why": "The yearly layers can no longer be counted.",
+          "surface_fit": "Mud that adds exactly one layer a year marks time as regularly as a beat, and scientists use such layers to count years.",
+          "inference": "Once worms have mixed the layers, one year's band runs into the next, so the mud can no longer be counted to keep time."
+        },
+        "museum": {
+          "type": "logic",
+          "quote": "those of every lake nearby",
+          "why": "Its living things are ordinary.",
+          "surface_fit": "A deep, cold lake whose mud reaches back through the ages keeps the past, the way a museum does.",
+          "inference": "A lake with the same shrimp and plankton as every lake nearby preserves nothing lost elsewhere; it was valuable because it was ordinary, the reverse of a museum piece."
+        }
+      }
+    },
+    {
+      "key": "museum",
+      "passage": "From 1950 to 1990, scientists studied one small, deep, cold lake in a northern forest more closely than any other lake in the region; its bottom mud reaches back to the last ice age. In its cold depths live a shrimp and a small fish that vanished from every other lake in the region as the ice age ended, and scientists came to it to see what those lakes had held then. The shrimp spend their lives burrowing through the bottom mud. In a history of that work, one scientist called the lake, for those four decades, above all the region's ______.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "It alone still holds animals that vanished from the region's other lakes at the end of the ice age, and scientists came to see what those lakes once held, so it was the region's \"museum.\" \"Ledger\" fails because burrowing shrimp turn its mud over, so no ordered record survives in it. \"Metronome\" fails because scientists came to see its animals, not to keep time. \"Microcosm\" fails because animals found in no other lake of the region make it the exception, not a miniature of the rest.",
+      "kills": {
+        "ledger": {
+          "type": "logic",
+          "quote": "burrowing through the bottom mud",
+          "why": "The mud is constantly turned over.",
+          "surface_fit": "Mud reaching back to the ice age is a written record of the past, and scientists routinely call such lakes a ledger of climate.",
+          "inference": "Shrimp burrowing through the mud all their lives mix it as it settles, so its years lie jumbled instead of in order, and no year-by-year account can be read from it."
+        },
+        "metronome": {
+          "type": "logic",
+          "quote": "came to it to see what those lakes had held",
+          "why": "Scientists came for its animals.",
+          "surface_fit": "Lake mud that builds up year by year marks time, and scientists use such mud to count years.",
+          "inference": "Scientists came to the lake to see the animals that lived in the region's lakes at the end of the ice age; the lake's value lay in what still lives there, not in marking the passage of years."
+        },
+        "microcosm": {
+          "type": "logic",
+          "quote": "vanished from every other lake in the region",
+          "why": "Its animals are unlike the region's other lakes.",
+          "surface_fit": "One small lake studied more closely than any other in the region looks like the region's lakes in miniature, which is what a microcosm is.",
+          "inference": "A lake holding animals found in no other lake of the region is the exception among them, so it cannot stand for them in miniature; it shows what they were, not what they are."
+        }
+      }
+    }
+  ]
+}

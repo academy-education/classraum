@@ -1,0 +1,146 @@
+{
+  "id": "WIC27E-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a city library under wartime occupation",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "plundered",
+    "purged",
+    "pulped",
+    "padlocked"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "plundered",
+    "purged",
+    "padlocked",
+    "pulped"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "In a postwar report, one librarian concluded that the occupation had ______ the library.",
+  "worlds": [
+    {
+      "key": "plundered",
+      "passage": "For five years of wartime occupation, a city's public library of some three hundred thousand volumes was under the control of the occupying authority. When the staff returned, the open shelves stood full, the forty authors on the authority's banned list among them, and the bound newspapers lay under five years of dust; the room that had held the manuscripts and early printed books was bare. In the 1950s volumes bearing the library's stamp began turning up in the catalogs of three universities in the occupying country. In a postwar report, one librarian concluded that the occupation had ______ the library.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The open shelves, banned authors included, stood full while the room of manuscripts and early printed books was bare, and those volumes later surfaced in the occupying country's universities, so the occupation had \"plundered\" the library. \"Purged\" fails because the banned authors were left. \"Pulped\" fails because the volumes survived abroad, and \"padlocked\" fails because the rare-book room was emptied.",
+      "kills": {
+        "purged": {
+          "type": "logic",
+          "quote": "the forty authors on the authority's banned list among them",
+          "why": "The banned authors were left on the shelves, so the losses were not chosen by what the books said.",
+          "surface_fit": "Occupying regimes are notorious for removing books they disapprove of, and this one had a banned list, so purged is a strong first guess.",
+          "inference": "A purge removes the banned authors; they were still on the open shelves, and what went was the room of manuscripts and early printed books, which is a choice by value."
+        },
+        "pulped": {
+          "type": "logic",
+          "quote": "began turning up in the catalogs",
+          "why": "The missing volumes still existed years later in other libraries, so they were not destroyed for paper.",
+          "surface_fit": "Wartime paper shortages led occupiers to pulp books, and a bare room after an occupation suggests exactly that.",
+          "inference": "Pulped books cease to exist; these turned up, still stamped with the library's mark, in the occupying country's universities, so they were carried off, not turned into paper."
+        },
+        "padlocked": {
+          "type": "logic",
+          "quote": "was bare",
+          "why": "The room of manuscripts and early printed books had been emptied, so the library was entered and taken from.",
+          "surface_fit": "Occupiers often seized public buildings and shut them, and padlocked is a plain word for what happened to many libraries in wartime.",
+          "inference": "A library that was only shut keeps its collection; the room of manuscripts and early printed books was empty when the staff returned, so someone had gone in and removed them."
+        }
+      }
+    },
+    {
+      "key": "purged",
+      "passage": "For five years of wartime occupation, a city's public library of some three hundred thousand volumes was under the control of the occupying authority. When the staff returned, the rare-book room was untouched and the bound newspapers lay under five years of dust. About four thousand volumes were missing from the open shelves, and when the staff set the gaps beside the authority's banned list of 1941, the two matched title for title. A police log records a bonfire in the square outside that autumn. In a postwar report, one librarian concluded that the occupation had ______ the library.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "About four thousand volumes were missing, and the gaps matched the authority's banned list title for title, while the rare books and bound newspapers were untouched, so the occupation had \"purged\" the library. \"Plundered\" fails because the rare-book room was untouched. \"Pulped\" fails because the bulk paper was left and the missing books went to a bonfire, and \"padlocked\" fails because books were taken out.",
+      "kills": {
+        "plundered": {
+          "type": "logic",
+          "quote": "the rare-book room was untouched",
+          "why": "The most valuable books were left, so the occupiers were not taking the library's treasures.",
+          "surface_fit": "Occupying armies are known for carrying off libraries' books, so plundered is a natural first guess for four thousand missing volumes.",
+          "inference": "Plunder takes what is worth taking; the rare-book room was untouched and the missing books matched a banned list, so the selection was by content, not value."
+        },
+        "pulped": {
+          "type": "logic",
+          "quote": "a bonfire in the square",
+          "why": "The missing books were burned in the square, not sent to a mill to be made into paper.",
+          "surface_fit": "Books destroyed under an occupation were often pulped for paper, so the word fits the sentence and the wartime topic.",
+          "inference": "Pulping takes bulk paper by weight, and the bulkiest paper, the bound newspapers, was untouched; the missing books matched a banned list and went to a bonfire, destroyed for what they said."
+        },
+        "padlocked": {
+          "type": "logic",
+          "quote": "About four thousand volumes were missing",
+          "why": "Thousands of books had been taken from the shelves, so the library was not simply shut.",
+          "surface_fit": "Occupiers often sealed public buildings for the duration, and padlocked is the ordinary word for a library closed in wartime.",
+          "inference": "A library that was only locked would come back with its shelves complete; four thousand volumes were gone, so someone had worked through the collection."
+        }
+      }
+    },
+    {
+      "key": "pulped",
+      "passage": "For five years of wartime occupation, a city's public library of some three hundred thousand volumes was under the control of the occupying authority. When the staff returned, the rare-book room's seal of 1940 was unbroken, and the forty authors on the authority's banned list still stood on the open shelves. The floors of bound newspapers, old textbooks and duplicate copies, about a third of the collection by weight, were empty, and the ledgers of the occupation's paper ministry, short of stock for its own printing, list the library as a source of two hundred tons. In a postwar report, one librarian concluded that the occupation had ______ the library.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Bulk material, bound newspapers, textbooks and duplicates, about a third of the collection by weight, went to a paper ministry short of stock, so the occupation had \"pulped\" the library. \"Plundered\" fails because the rare-book room's seal was unbroken. \"Purged\" fails because the banned authors were left, and \"padlocked\" fails because whole floors were emptied.",
+      "kills": {
+        "plundered": {
+          "type": "logic",
+          "quote": "seal of 1940 was unbroken",
+          "why": "The rare-book room was never opened, so the library's treasures were not taken.",
+          "surface_fit": "Occupiers emptying a library's floors sounds like looting, and plundered is a common word for what armies did to libraries.",
+          "inference": "A plunderer takes the treasures first; the rare-book room stayed sealed from 1940, and what went was newspapers, textbooks and duplicates by the ton, taken as material, not as prizes."
+        },
+        "purged": {
+          "type": "logic",
+          "quote": "the forty authors on the authority's banned list still stood",
+          "why": "The banned authors were left on the shelves, so the books were not removed for their content.",
+          "surface_fit": "Occupiers commonly removed books, and purged is the usual word for an occupation clearing books out of a library.",
+          "inference": "A purge removes the banned authors; they were left, and what went was whole classes of bulk material measured by weight, which is how one gathers paper stock, not how one censors."
+        },
+        "padlocked": {
+          "type": "logic",
+          "quote": "were empty",
+          "why": "Whole floors had been emptied, so material was taken from the library, not merely locked inside it.",
+          "surface_fit": "Many occupied cities had their libraries closed for the war, so padlocked fits a librarian's account of one.",
+          "inference": "A padlocked library comes back with everything inside; whole floors stood empty, so material was removed in bulk while the building was in the occupiers' hands."
+        }
+      }
+    },
+    {
+      "key": "padlocked",
+      "passage": "For five years of wartime occupation, a city's public library of some three hundred thousand volumes was under the control of the occupying authority. Staff who broke the authority's seals on its doors in 1945 had first to carry out crates of the army's own files stacked in the reading rooms. The forty of the library's authors on the authority's banned list of 1941 still stood on the shelves, the bound newspapers lay under five years of dust, and the rare-book room's own seal bore the date 1940. In a postwar report, one librarian concluded that the occupation had ______ the library.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "The doors were sealed until 1945, the reading rooms were used to store army files, and inside even the banned authors, the bound newspapers and the sealed rare-book room were untouched, so the occupation had \"padlocked\" the library. \"Purged\" fails because the banned authors still stood on the shelves. \"Pulped\" fails because the bound newspapers lay under five years of dust, and \"plundered\" fails because the rare-book room's seal of 1940 was unbroken.",
+      "kills": {
+        "plundered": {
+          "type": "logic",
+          "quote": "seal bore the date 1940",
+          "why": "The rare-book room was sealed in 1940 and not opened again, so its treasures were not taken.",
+          "surface_fit": "Occupying authorities often looted libraries' treasures, and plundered is the first word many readers reach for.",
+          "inference": "Plunderers go first to the rare books; a room still sealed with the date 1940 had not been entered since the occupation began, so the library's treasures stayed where they were."
+        },
+        "purged": {
+          "type": "logic",
+          "quote": "on the authority's banned list of 1941 still stood",
+          "why": "Even the authors the occupiers had banned were left on the shelves, so nothing was censored out.",
+          "surface_fit": "A library under an occupier with its own banned list is just where banned books would be removed, so purged tempts.",
+          "inference": "A purge removes exactly the banned authors; the forty banned authors were still on the shelves when the seals were broken, so no one went through the collection removing them."
+        },
+        "pulped": {
+          "type": "logic",
+          "quote": "the bound newspapers lay under five years of dust",
+          "why": "The heaviest bulk paper in the library sat untouched for five years, so nothing was taken for pulp.",
+          "surface_fit": "Wartime paper shortages led many occupiers to pulp books, and bound newspapers are the first thing taken for paper.",
+          "inference": "Pulping takes the bulkiest paper first; the bound newspapers lay under dust from 1940 to 1945, so no one removed paper from the library."
+        }
+      }
+    }
+  ]
+}

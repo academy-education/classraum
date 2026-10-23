@@ -1,0 +1,146 @@
+{
+  "id": "WIC27B-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "two typewriter firms",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "infiltrated",
+    "isolated",
+    "leapfrogged",
+    "mimicked"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "isolated",
+    "mimicked",
+    "infiltrated",
+    "leapfrogged"
+  ],
+  "pos": "verb",
+  "after_blank": "its",
+  "blank_sentence": "Reading both firms' records, one historian concluded that the newcomer had above all ______ its rival.",
+  "worlds": [
+    {
+      "key": "mimicked",
+      "passage": "In 1904 a new firm began making typewriters in a country where one older company had sold nearly every machine for thirty years, and by 1914 the newcomer was outselling it. Its first machine sold for a third less than the older company's model, and repairmen found the older firm's spare parts fitted it throughout, down to the springs. In 1911 a court cleared the newcomer of stealing designs after hearing that its engineers had worked from machines bought in shops, and dealers stocked the two side by side. Reading both firms' records, one historian concluded that the newcomer had above all ______ its rival.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "The older company's spare parts fitted the newcomer's cheaper machine throughout, and its engineers had worked from machines bought in shops, so the newcomer had \"mimicked\" its rival. \"Infiltrated\" fails because the design came from machines anyone could buy, not from inside the older firm. \"Leapfrogged\" fails because a machine that takes the rival's parts throughout is no step beyond it. \"Isolated\" fails because dealers stocked both machines side by side.",
+      "kills": {
+        "infiltrated": {
+          "type": "logic",
+          "quote": "machines bought in shops",
+          "why": "The design came from machines on public sale.",
+          "surface_fit": "A newcomer that overtakes a long-dominant rival within a decade invites the suspicion of spying, and business histories often say one firm infiltrated another. The newcomer was even taken to court over stolen designs.",
+          "inference": "Engineers working from machines bought in shops got the design from the outside, from what any buyer could hold, which is why the court cleared the newcomer; nothing came from inside the older company."
+        },
+        "leapfrogged": {
+          "type": "logic",
+          "quote": "fitted it throughout, down to the springs",
+          "why": "The newcomer's machine was the same machine inside.",
+          "surface_fit": "A newcomer that outsells a thirty-year leader within ten years is the classic case of a firm that jumped ahead of an established rival.",
+          "inference": "If the older firm's spare parts fitted the new machine throughout, the two were built alike, so the newcomer won on price with the same design, not by moving beyond it."
+        },
+        "isolated": {
+          "type": "logic",
+          "quote": "stocked the two side by side",
+          "why": "The older firm kept its dealers.",
+          "surface_fit": "A newcomer can overtake a leader by cutting it off from dealers and suppliers, and a historian could well say it isolated its rival.",
+          "inference": "Both machines sat in the same dealers' shops, so the older company still reached its customers; it was undersold beside them."
+        }
+      }
+    },
+    {
+      "key": "leapfrogged",
+      "passage": "In 1904 a new firm began making typewriters in a country where one older company had sold nearly every machine for thirty years, and by 1914 the newcomer was outselling it. Its first machine typed with an electric motor, and in 1905 the older company's president told his board that no office would ever buy an electric typewriter. Dealers stocked the two side by side, and each year the older firm's mechanical machine, unchanged, lost buyers. Reading both firms' records, one historian concluded that the newcomer had above all ______ its rival.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The newcomer went straight to an electric machine that the older company's president had written off, while the older firm kept selling an unchanged mechanical one, so the newcomer had \"leapfrogged\" its rival. \"Mimicked\" fails because an electric machine cannot be a copy of a mechanical one. \"Infiltrated\" fails because the older company, which thought no office would buy an electric typewriter, had no such design to take. \"Isolated\" fails because dealers stocked both machines side by side.",
+      "kills": {
+        "mimicked": {
+          "type": "logic",
+          "quote": "the older firm's mechanical machine",
+          "why": "The rival's machine was mechanical, the newcomer's electric.",
+          "surface_fit": "A newcomer breaking into a market one company has owned for thirty years often starts by copying the leader's machine, and mimicked is the usual word for that.",
+          "inference": "The older firm's machine was mechanical and the newcomer's ran on an electric motor, so the new machine could not have been copied from the old one."
+        },
+        "infiltrated": {
+          "type": "logic",
+          "quote": "no office would ever buy an electric typewriter",
+          "why": "The older company had no electric design to take.",
+          "surface_fit": "A newcomer that overtakes a long-dominant rival within a decade invites the suspicion of spying, and business histories often say one firm infiltrated another.",
+          "inference": "A company whose president thought no office would buy an electric typewriter was not developing one, so whatever won the newcomer its buyers could not have been taken from inside it."
+        },
+        "isolated": {
+          "type": "logic",
+          "quote": "Dealers stocked the two side by side",
+          "why": "The older firm kept its dealers.",
+          "surface_fit": "A newcomer can overtake a leader by cutting it off from dealers and suppliers, and a historian could well say it isolated its rival.",
+          "inference": "The older company's machine stayed in the same shops as the newcomer's and lost buyers there, so it was not cut off from its market; buyers chose the other machine."
+        }
+      }
+    },
+    {
+      "key": "isolated",
+      "passage": "In 1904 a new firm began making typewriters in a country where one older company had sold nearly every machine for thirty years, and by 1914 the newcomer was outselling it. Trade tests found the two firms' machines equal in speed and wear but unlike inside. From 1906 every large dealer who stocked the newcomer's machines signed a contract it had drafted, and the only two makers of typewriter ribbon sold their whole output to it; by 1910 the older company's machines were in no large shop, and its customers ordered ribbons from abroad. Reading both firms' records, one historian concluded that the newcomer had above all ______ its rival.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The newcomer's contracts with every large dealer and its purchase of both ribbon makers' output left the older company with no large shop to sell in and no ribbons at home, so the newcomer had \"isolated\" its rival. \"Leapfrogged\" fails because trade tests found the machines equal. \"Mimicked\" fails because the two machines were unlike inside. \"Infiltrated\" fails for the same reason: nothing of the older design went into the newcomer's, and its moves were made on outside dealers and suppliers.",
+      "kills": {
+        "leapfrogged": {
+          "type": "logic",
+          "quote": "equal in speed and wear",
+          "why": "The new machine was no advance.",
+          "surface_fit": "A newcomer that outsells a thirty-year leader within ten years is the classic case of a firm that jumped ahead of an established rival.",
+          "inference": "Trade tests rating the two machines equal mean the newcomer never moved ahead of the older design, so its gains came from what happened to dealers and ribbons."
+        },
+        "mimicked": {
+          "type": "logic",
+          "quote": "but unlike inside",
+          "why": "The machines were built differently.",
+          "surface_fit": "A newcomer breaking into a market one company has owned for thirty years often starts by copying the leader's machine, and mimicked is the usual word for that.",
+          "inference": "Machines that match in speed and wear but differ inside were built to different designs, so the newcomer's was not a copy."
+        },
+        "infiltrated": {
+          "type": "logic",
+          "quote": "signed a contract it had drafted",
+          "why": "The newcomer acted through outside dealers and suppliers.",
+          "surface_fit": "A newcomer that overtakes a long-dominant rival within a decade invites the suspicion of spying, and business histories often say one firm infiltrated another. The newcomer reached deep into the older company's business.",
+          "inference": "The newcomer's machine shared nothing inside with the older one, and its moves were contracts with dealers and purchases from ribbon makers, outside firms both; it worked around the older company, not from within it."
+        }
+      }
+    },
+    {
+      "key": "infiltrated",
+      "passage": "In 1904 a new firm began making typewriters in a country where one older company had sold nearly every machine for thirty years, and by 1914 the newcomer was outselling it. Court records from 1912 show that three of the older company's clerks, who never left its payroll, had each received a monthly sum from the newcomer since 1905. In every government tender of those years, the newcomer's bid came in just under the older company's, for a machine of its own design. Reading both firms' records, one historian concluded that the newcomer had above all ______ its rival.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "Three clerks still working for the older company were paid by the newcomer for years, and in every tender the newcomer bid just under the older company, so it knew its rival's figures from inside: it had \"infiltrated\" its rival. \"Mimicked\" fails because the newcomer's machine was its own design. \"Leapfrogged\" fails because it won by pricing just under the rival, not with a more advanced machine. \"Isolated\" fails because the older company was still bidding in every tender.",
+      "kills": {
+        "mimicked": {
+          "type": "explicit",
+          "quote": "a machine of its own design",
+          "why": "The newcomer's machine was its own.",
+          "surface_fit": "A newcomer breaking into a market one company has owned for thirty years often starts by copying the leader's machine, and mimicked is the usual word for that.",
+          "inference": "A machine of the newcomer's own design was not copied from the older company's; what tracked the rival so closely was the bids."
+        },
+        "leapfrogged": {
+          "type": "logic",
+          "quote": "came in just under the older company's",
+          "why": "The newcomer won on price, bid by bid.",
+          "surface_fit": "A newcomer that outsells a thirty-year leader within ten years is the classic case of a firm that jumped ahead of an established rival.",
+          "inference": "Winning each tender by coming in just under the rival's bid is beating it by a hair on price, which takes knowing its figures, not jumping past it with a better machine."
+        },
+        "isolated": {
+          "type": "logic",
+          "quote": "In every government tender",
+          "why": "The older company was still competing everywhere.",
+          "surface_fit": "A newcomer can overtake a leader by cutting it off from dealers and suppliers, and a historian could well say it isolated its rival.",
+          "inference": "The older company bid in every government tender of those years, so it had not been cut off from its customers; it was beaten narrowly each time."
+        }
+      }
+    }
+  ]
+}

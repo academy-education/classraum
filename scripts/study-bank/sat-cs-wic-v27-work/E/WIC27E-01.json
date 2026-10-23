@@ -1,0 +1,146 @@
+{
+  "id": "WIC27E-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a spring flood on salted valley fields",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "rinsed",
+    "replenished",
+    "reseeded",
+    "plowed"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "plowed",
+    "rinsed",
+    "replenished",
+    "reseeded"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "In a report on the valley's farms, one soil scientist wrote that the flood had ______ the lower fields.",
+  "worlds": [
+    {
+      "key": "rinsed",
+      "passage": "In the spring of 1952 a river in a dry farming valley flooded the lower fields, where irrigation had left a pale crust of salt. The water, clear snowmelt that had crossed the upland meadows, stood nine days and sank through the sandy ground into the ditches below. Afterward cattle grazed the old stubble and the fallow strips along the ditches, which fed them no better than in other years. That summer the same seed wheat that had always yielded half as much there as on the upper slopes matched them. In a report on the valley's farms, one soil scientist wrote that the flood had ______ the lower fields.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Clear water stood for nine days on salt-crusted fields and drained down through sandy ground, after which the same wheat grew as well as on the upper slopes, so the flood \"rinsed\" the salt out of the lower fields. \"Reseeded\" fails because the fallow strips fed the cattle no better than usual. \"Replenished\" fails because clear snowmelt adds no silt, and \"plowed\" fails because the old stubble was still there to graze.",
+      "kills": {
+        "replenished": {
+          "type": "logic",
+          "quote": "clear snowmelt that had crossed",
+          "why": "Clear water deposits no silt, and the unplanted strips stayed as bare as ever, so the improvement cannot have come from new soil laid down.",
+          "surface_fit": "Floods are famous for leaving fertile soil behind, and the fields yielded better afterward, so \"the flood had replenished the lower fields\" reads as the textbook explanation of a better harvest.",
+          "inference": "Clear snowmelt carries no sediment, and the fallow strips grew no better than before, so nothing was added to the soil; a yield gain with nothing added must come from something removed, the salt carried down through the sand to the ditches."
+        },
+        "reseeded": {
+          "type": "logic",
+          "quote": "fed them no better than in other years",
+          "why": "The water came across the meadows, yet the unsown strips grew no more than usual, so it delivered no seed.",
+          "surface_fit": "The water had just crossed the upland meadows, where grass seed lies thick, and a flood that carries seed onto farmland is said to reseed it.",
+          "inference": "If water from the meadows had carried seed, the fallow strips, where no crop competes, would have grown thick with it and fed the cattle better; they fed them as in other years, so the gain was in the soil under the farmers' own wheat."
+        },
+        "plowed": {
+          "type": "logic",
+          "quote": "cattle grazed the old stubble",
+          "why": "Last year's stubble was still there to be grazed, so the soil was never turned.",
+          "surface_fit": "Floodwater crossing fields often tears and furrows the ground, so a scientist could naturally say a flood plowed the fields.",
+          "inference": "Stubble left to graze means the old surface stayed in place; a flood that plowed the fields would have turned the stubble under or torn it away."
+        }
+      }
+    },
+    {
+      "key": "replenished",
+      "passage": "In the spring of 1952 a river in a dry farming valley flooded the lower fields, where irrigation had left a pale crust of salt. The water came down brown from burned hills and drained off in two days, leaving dark silt a hand deep, under which a spade still struck the white crust. Farmers drilled the same seed wheat through it into last year's rows, and wheat that had always yielded half as much there as on the upper slopes outyielded them, the gain shrinking a little each harvest after. In a report on the valley's farms, one soil scientist wrote that the flood had ______ the lower fields.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The water left a hand-deep layer of dark silt over the crust, the same wheat then outyielded the upper slopes, and the gain wore away harvest by harvest, so the flood \"replenished\" the lower fields. \"Rinsed\" fails because a spade still struck the salt crust under the silt. \"Reseeded\" fails because the farmers sowed their same seed, and \"plowed\" fails because last year's rows were intact beneath the silt.",
+      "kills": {
+        "rinsed": {
+          "type": "logic",
+          "quote": "a spade still struck the white crust",
+          "why": "The salt crust was still there under the silt, so the salt was buried, not washed away.",
+          "surface_fit": "The fields were crusted with salt and grew better after the water crossed them, which is exactly when a soil scientist would say a flood rinsed them.",
+          "inference": "The crust survived beneath the new silt and the water ran off in two days, so the salt was never carried away; the gain came from the layer on top, which is why it wore away harvest by harvest."
+        },
+        "reseeded": {
+          "type": "logic",
+          "quote": "drilled the same seed wheat",
+          "why": "The farmers sowed their usual seed, so the water brought no new plants.",
+          "surface_fit": "Water from burned hills could carry seed, and a flood that changed the fields' harvest could plausibly be said to have reseeded them.",
+          "inference": "The crop that outyielded the slopes came from the farmers' own seed, so what changed was the ground it grew in, which points to the silt."
+        },
+        "plowed": {
+          "type": "logic",
+          "quote": "into last year's rows",
+          "why": "The farmers sowed into the old rows, so the ground under the silt had not been turned.",
+          "surface_fit": "A brown, fast flood off burned hills sounds violent, and saying it plowed the fields is a natural way to describe a flood that churned farmland.",
+          "inference": "Last year's rows were still there to drill into beneath the silt, so the old surface stayed in place and the silt was laid on top of it."
+        }
+      }
+    },
+    {
+      "key": "reseeded",
+      "passage": "In the spring of 1952 a river in a dry farming valley flooded the lower fields, where irrigation had left a pale crust of salt. The water came down from the upland meadows and ran off the hard crust within a day; cattle grazed last year's stubble that autumn. Next spring the fallow fields came up thick with wild rye and bluestem, grasses the valley had only on those meadows. On the sown ones, the same seed wheat yielded half as much as on the upper slopes, as it always had. In a report on the valley's farms, one soil scientist wrote that the flood had ______ the lower fields.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The water came from the upland meadows, and the next spring the unsown lower fields grew grasses that the valley had only on those meadows, so the flood \"reseeded\" the fields. \"Rinsed\" fails because the water ran off the hard crust within a day and the wheat still yielded half as much, so the salt stayed. \"Replenished\" fails because the sown wheat yielded no better than it always had, and \"plowed\" fails because cattle still grazed the old stubble.",
+      "kills": {
+        "rinsed": {
+          "type": "logic",
+          "quote": "ran off the hard crust within a day",
+          "why": "The water ran off the crust instead of soaking through it, and the wheat still yielded half as much, so the salt was not washed out.",
+          "surface_fit": "The fields were salt-crusted and a flood crossed them, so \"the flood had rinsed the lower fields\" is the natural first guess for what water did to salty ground.",
+          "inference": "Water that runs off a hard crust in a day never passes down through the soil, and the sown wheat stayed at half the upland yield, which is what salt left in place does; so nothing was rinsed out."
+        },
+        "replenished": {
+          "type": "logic",
+          "quote": "yielded half as much as on the upper slopes, as it always had",
+          "why": "The sown wheat grew no better than before, so the flood added nothing to the soil's fertility.",
+          "surface_fit": "The fields burst into thick growth the spring after the flood, and floods are commonly said to replenish farmland, so the word fits both the sentence and the topic.",
+          "inference": "If the flood had enriched the soil, the wheat sown on those same lower fields would have yielded more; it yielded what it always had, so the thick new growth came from new plants arriving, not richer ground."
+        },
+        "plowed": {
+          "type": "logic",
+          "quote": "cattle grazed last year's stubble",
+          "why": "The old stubble was still there to graze, so the surface was never torn or turned.",
+          "surface_fit": "New plants springing up in fallow ground suggests the ground was broken open, and a flood that plowed fields is an ordinary phrase.",
+          "inference": "Stubble left standing to graze means the soil around it was not cut or turned over; the new grasses grew on an undisturbed surface."
+        }
+      }
+    },
+    {
+      "key": "plowed",
+      "passage": "In the spring of 1952 a river in a dry farming valley flooded the lower fields, where irrigation had left a pale crust of salt. The water burst through a failed levee in a current strong enough to roll boulders and was gone within hours. Behind it last year's stubble had vanished, the crust lay broken into slabs turned on edge, and the pale sand from beneath it was heaped in long ridges running downstream, with furrows scoured between them. The farmers then sowed the same seed wheat into the furrows. In a report on the valley's farms, one soil scientist wrote that the flood had ______ the lower fields.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The stubble was gone, the crust was broken and turned on edge, and the sand beneath lay in ridges and furrows that the farmers sowed straight into, so the flood \"plowed\" the lower fields. \"Rinsed\" fails because the water was gone within hours and the salt crust was still there, only broken into slabs. \"Replenished\" fails because the ridges were the sand from under the crust, and \"reseeded\" fails because the farmers sowed their same seed wheat.",
+      "kills": {
+        "rinsed": {
+          "type": "logic",
+          "quote": "the crust lay broken into slabs",
+          "why": "The salt crust was still lying on the fields in broken slabs, and the water had passed in hours, so the salt was not washed away.",
+          "surface_fit": "A flood crossing salt-crusted ground and breaking up the crust looks like it cleaned the fields, so rinsed is a tempting reading of what the water did.",
+          "inference": "The salt was still present in slabs on the surface, and water gone within hours has no time to soak down through the soil and carry salt away, so the crust was broken up, not washed out."
+        },
+        "replenished": {
+          "type": "logic",
+          "quote": "the pale sand from beneath it",
+          "why": "The ridges were the sand from under the crust, so the flood moved the fields' own soil rather than adding any.",
+          "surface_fit": "Ridges of heaped soil after a flood look like a fresh deposit, and floods are commonly said to replenish fields with new earth.",
+          "inference": "The heaped material was the pale sand from beneath the crust, the fields' own soil turned up and rearranged; new soil brought by the water would be silt from upstream laid on top."
+        },
+        "reseeded": {
+          "type": "logic",
+          "quote": "sowed the same seed wheat into the furrows",
+          "why": "The farmers planted their own seed into the furrows the water made, so the flood supplied the ground, not the seed.",
+          "surface_fit": "Furrowed ground ready for sowing suggests a new start for the fields, and floods that leave seeds behind are said to reseed them.",
+          "inference": "The crop came from the farmers' own seed sown into the new furrows; the flood's work was on the shape of the ground, which is what plowing does before sowing."
+        }
+      }
+    }
+  ]
+}

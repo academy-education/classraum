@@ -1,0 +1,146 @@
+{
+  "id": "WIC27C-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a giant planet in a model planetary system",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "slingshot",
+    "shepherd",
+    "umbrella",
+    "tether"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "umbrella",
+    "shepherd",
+    "tether",
+    "slingshot"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "One astronomer described the giant as, above all, the system's ______.",
+  "worlds": [
+    {
+      "key": "slingshot",
+      "passage": "Astronomers modeled a young planetary system with small rocky planets near its star, a belt of icy bodies far out, and a giant planet between them, running the model once with the giant and once without it. With the giant present, icy bodies that drifted near it left on long, stretched paths, three of every four outward and clean out of the system, the fourth inward across the rocky planets' orbits. Within a hundred million years the belt held half as many bodies as in the run without the giant. One astronomer described the giant as, above all, the system's ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "Icy bodies passing near the giant were flung onto stretched paths, most out of the system, so the giant acted as the system's \"slingshot.\" \"Umbrella\" fails because a quarter of the flung bodies were sent inward across the rocky planets' orbits, so the giant aimed bodies at the inner planets rather than shielding them. \"Shepherd\" fails because the belt lost half its bodies instead of being kept in bounds. \"Tether\" fails because the bodies near the giant left on long paths rather than being held in place.",
+      "kills": {
+        "umbrella": {
+          "type": "logic",
+          "quote": "the fourth inward across the rocky planets' orbits",
+          "why": "The giant sent some bodies straight toward the inner planets, so it was not shielding them.",
+          "surface_fit": "With half the belt cleared away, fewer icy bodies seem left to threaten the inner planets, and giant planets are often said to shield inner ones.",
+          "inference": "A shield stands between the danger and what it protects and stops what comes; this giant took bodies that were drifting near it and hurled one in four across the rocky planets' orbits, so it was a source of bodies crossing the inner system."
+        },
+        "shepherd": {
+          "type": "logic",
+          "quote": "the belt held half as many bodies",
+          "why": "The belt lost half its members, so the giant was not keeping it in bounds.",
+          "surface_fit": "A giant planet right next to a belt of small bodies is the classic picture of a planet that herds a belt and holds its edge.",
+          "inference": "A shepherd keeps a belt's bodies inside its bounds; a belt left with half as many bodies as without the giant was being emptied by it, not held together."
+        },
+        "tether": {
+          "type": "logic",
+          "quote": "left on long, stretched paths",
+          "why": "The bodies near the giant were sent off on long paths, not held near it.",
+          "surface_fit": "Giant planets do hold small bodies near themselves, so a reader may expect the giant to bind the icy bodies that drift close.",
+          "inference": "A tether keeps a body bound at one place; bodies that leave the giant's neighborhood on long, stretched paths, most never to return, were released from every hold, the giant's included."
+        }
+      }
+    },
+    {
+      "key": "shepherd",
+      "passage": "Astronomers modeled a young planetary system with small rocky planets near its star, a belt of icy bodies far out, and a giant planet between them, running the model once with the giant and once without it. With the giant present, the belt's inner edge stayed sharp for the whole billion years: any icy body that drifted inward toward the giant's orbit was tugged back out within a few thousand circuits, and almost none was lost. Without the giant the belt spread inward into a thin haze, and in both runs the rocky planets were struck about equally often. One astronomer described the giant as, above all, the system's ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "The giant tugged straying bodies back and kept the belt's edge sharp, while without it the belt spread into a haze, so the giant was the system's \"shepherd.\" \"Tether\" fails because what the giant held was the belt's edge; the bodies themselves kept moving freely within the belt and were never bound to one spot. \"Slingshot\" fails because almost no body was lost. \"Umbrella\" fails because the rocky planets were struck about equally often with and without the giant.",
+      "kills": {
+        "tether": {
+          "type": "logic",
+          "quote": "the belt's inner edge stayed sharp",
+          "why": "The giant enforced a boundary for the whole belt rather than holding bodies at a fixed place near itself.",
+          "surface_fit": "Icy bodies being tugged back whenever they stray sounds like bodies tied on a line to the giant, which is what a tether does.",
+          "inference": "A tether holds a body at one place; here only straying bodies felt a pull, and only enough to send them back into the belt, where they went on circling freely, so the giant fixed a boundary, not the bodies' positions."
+        },
+        "slingshot": {
+          "type": "logic",
+          "quote": "almost none was lost",
+          "why": "Hardly any body left, so the giant was not flinging bodies away.",
+          "surface_fit": "Icy bodies falling toward a giant planet are the standard setting for being flung onto new paths by its gravity.",
+          "inference": "A slingshot throws bodies away at speed; bodies near the giant here were tugged back into the belt and almost none was lost, so the giant's pull was keeping them, not hurling them off."
+        },
+        "umbrella": {
+          "type": "logic",
+          "quote": "in both runs the rocky planets were struck about equally often",
+          "why": "The inner planets were hit as often without the giant, so it protected nothing.",
+          "surface_fit": "A giant standing between the belt and the rocky planets, keeping icy bodies from falling inward, sounds like a shield over the inner system.",
+          "inference": "A shield would cut the impacts on the rocky planets below the rate in the run without it; equal impact rates in both runs mean the inner planets gained nothing from the giant's presence."
+        }
+      }
+    },
+    {
+      "key": "umbrella",
+      "passage": "Astronomers modeled a young planetary system with small rocky planets near its star, a belt of icy bodies far out, and a giant planet between them, running the model once with the giant and once without it. With the giant present, the belt fed a steady trickle of icy bodies inward, and nearly every one crossed the giant's path within a few circuits and plunged into its clouds. Over the billion years the rocky planets were struck twenty times less often than in the run without the giant. One astronomer described the giant as, above all, the system's ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "Bodies falling inward toward the rocky planets were caught by the giant, which cut their impacts twentyfold, so the giant served as the system's \"umbrella.\" \"Slingshot\" fails because the bodies that met the giant plunged into it rather than being flung away. \"Shepherd\" fails because the belt kept feeding bodies inward, so its bounds were not kept. \"Tether\" fails because the bodies lasted only a few circuits near the giant instead of being held there.",
+      "kills": {
+        "slingshot": {
+          "type": "logic",
+          "quote": "plunged into its clouds",
+          "why": "The bodies that met the giant fell into it, so it was swallowing bodies, not flinging them.",
+          "surface_fit": "Icy bodies crossing a giant planet's path are the textbook case of being thrown onto new paths by its gravity.",
+          "inference": "A slingshot sends what passes it off at speed; bodies that crossed the giant's path and plunged into its clouds ended inside the giant, so it was taking bodies in, not throwing them away."
+        },
+        "shepherd": {
+          "type": "logic",
+          "quote": "the belt fed a steady trickle of icy bodies inward",
+          "why": "Bodies kept leaving the belt, so the giant was not holding its edge.",
+          "surface_fit": "A giant planet right next to the belt's inner edge is exactly where a planet that herds a belt would sit.",
+          "inference": "A shepherd keeps a belt in bounds by sending strays back; a belt that kept losing a steady trickle of bodies inward had no one sending them back, and the giant met them only after they had left."
+        },
+        "tether": {
+          "type": "logic",
+          "quote": "within a few circuits",
+          "why": "The bodies lasted only a few circuits near the giant, so nothing was being held there.",
+          "surface_fit": "Giant planets do gather small bodies around themselves, so the giant collecting the icy bodies that reach it suggests binding them.",
+          "inference": "A tether holds a body at a fixed place for good; bodies that met the giant within a few circuits and vanished into it were held for no time at all."
+        }
+      }
+    },
+    {
+      "key": "tether",
+      "passage": "Astronomers modeled a young planetary system with small rocky planets near its star, a belt of icy bodies far out, and a giant planet between them, running the model once with the giant and once without it. With the giant present, one moon-sized icy body settled into the giant's orbit a sixth of a circuit ahead of it and, for a billion years, swung back and forth around that point, never straying more than a few degrees. Bodies falling inward crossed the giant's orbit unhindered, and the belt thinned into the same haze as without the giant. One astronomer described the giant as, above all, the system's ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "One body was held at a fixed point ahead of the giant for a billion years, swinging around that point but never leaving it, so the giant served as the system's \"tether.\" \"Shepherd\" fails because the belt thinned into the same haze as without the giant, so the giant held no group in bounds; it held one body at one point. \"Umbrella\" fails because bodies falling inward crossed the giant's orbit unhindered. \"Slingshot\" fails because the body near the giant stayed within a few degrees of one point for a billion years.",
+      "kills": {
+        "shepherd": {
+          "type": "explicit",
+          "quote": "thinned into the same haze as without the giant",
+          "why": "The giant made no difference to the belt, so it was not herding any group of bodies.",
+          "surface_fit": "A giant keeping an icy body in order on its own orbit for a billion years sounds like a planet that herds the small bodies around it.",
+          "inference": "A shepherd keeps a whole population in bounds; a belt that thinned exactly as it did without the giant shows the giant herded nothing, and what it held was a single body at a single point."
+        },
+        "umbrella": {
+          "type": "logic",
+          "quote": "crossed the giant's orbit unhindered",
+          "why": "Bodies falling toward the inner planets passed the giant freely, so it shielded nothing.",
+          "surface_fit": "A giant planet standing between the belt and the rocky planets looks like a shield over the inner system.",
+          "inference": "A shield stops what comes toward the thing it protects; bodies trickling inward from the belt crossed the giant's orbit unhindered on their way to the inner system, so the giant stopped none of them."
+        },
+        "slingshot": {
+          "type": "logic",
+          "quote": "never straying more than a few degrees",
+          "why": "The body near the giant stayed put, so it was held rather than flung.",
+          "surface_fit": "A small body close to a giant planet is the classic case of an object flung onto a new path by its gravity.",
+          "inference": "A slingshot hurls a nearby body off; this body stayed within a few degrees of one point on the giant's orbit for a billion years, so the giant's gravity was holding it, not throwing it."
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "id": "WIC27E-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a gold rush and a river town",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "overran",
+    "repopulated",
+    "ruined",
+    "reoriented"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "ruined",
+    "overran",
+    "reoriented",
+    "repopulated"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "Looking back in 1920, one historian wrote that the gold rush, above all, ______ the town.",
+  "worlds": [
+    {
+      "key": "overran",
+      "passage": "In 1897 gold was found in the hills above a small river town, and the rush lasted six years. In its first summer some nine thousand miners came up the river road, a dozen for every resident, and camped in the churchyard and along the main street until the town council stopped meeting. Farmers sold them eggs and flour at three times the old prices, the flour arriving by steamer at the river landing as it always had. When the gold gave out in 1903 the miners moved on to a strike farther north. Looking back in 1920, one historian wrote that the gold rush, above all, ______ the town.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "Miners outnumbering residents a dozen to one camped in the churchyard and main street until the council stopped meeting, so the rush \"overran\" the town. \"Repopulated\" fails because the miners moved on when the gold gave out. \"Ruined\" fails because the farmers sold to the miners at triple prices, and \"reoriented\" fails because supplies still came by steamer to the old river landing.",
+      "kills": {
+        "repopulated": {
+          "type": "logic",
+          "quote": "moved on to a strike farther north",
+          "why": "The miners left when the gold did, so they never became the town's residents.",
+          "surface_fit": "Thousands of newcomers pouring into a small town is what a historian might call repopulating it, and gold rushes famously brought settlers.",
+          "inference": "Repopulating means new residents who stay and fill a place; these miners camped rather than settled and left for the next strike as soon as the gold gave out, so the crowd passed through."
+        },
+        "ruined": {
+          "type": "logic",
+          "quote": "at three times the old prices",
+          "why": "The town's farmers were selling to the miners at high prices, so the rush brought them money rather than ruin.",
+          "surface_fit": "A town swamped until its council stopped meeting sounds wrecked, so ruined is a strong first reading.",
+          "inference": "Ruin would mean the town losing its living; its farmers sold eggs and flour at triple the old prices to a dozen customers for every resident, so the rush disrupted the town without impoverishing it."
+        },
+        "reoriented": {
+          "type": "logic",
+          "quote": "arriving by steamer at the river landing as it always had",
+          "why": "The town's supplies still came through the river landing, so its trade still ran the old way.",
+          "surface_fit": "Gold strikes in the hills often pulled river towns' trade toward the diggings, so reoriented fits a historian looking back on a rush.",
+          "inference": "Reorienting would turn the town's trade toward a new route; the flour sold to the miners still came by steamer to the old landing, so the rush ran through the town's existing channels."
+        }
+      }
+    },
+    {
+      "key": "repopulated",
+      "passage": "In 1897 gold was found in the hills above a small river town, and the rush lasted six years. Since river steamers had stopped calling in 1880, the town had shrunk from two thousand people to four hundred, and half its houses stood empty. Miners rented them through the rush, and when the gold gave out in 1903 many miners' families stayed to farm land left idle since the steamers stopped, shipping their grain by barge from the old river landing. By 1920 the school, closed since 1885, had reopened with three teachers. Looking back in 1920, one historian wrote that the gold rush, above all, ______ the town.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The town had shrunk to four hundred people with half its houses empty, miners rented those houses and many stayed to farm idle land, and by 1920 a school closed since 1885 had reopened with three teachers, so the rush \"repopulated\" the town. \"Overran\" fails because the miners filled houses already standing empty. \"Ruined\" fails because the reopened school shows a growing town, and \"reoriented\" fails because the new farmers shipped from the old river landing.",
+      "kills": {
+        "overran": {
+          "type": "logic",
+          "quote": "half its houses stood empty",
+          "why": "The miners moved into houses the shrunken town had left empty, so they fit into room the town already had.",
+          "surface_fit": "A rush of miners into a small town is the classic picture of a town overrun, so the word fits both the sentence and the topic.",
+          "inference": "Overrunning means swamping a place beyond what it can hold; this town had lost four fifths of its people and the miners rented houses already standing empty, then stayed on as farmers."
+        },
+        "ruined": {
+          "type": "logic",
+          "quote": "had reopened with three teachers",
+          "why": "A school closed for lack of children reopened with three teachers, so the town was growing, not ruined.",
+          "surface_fit": "Gold rushes often left towns bankrupt and deserted when the gold ran out, so ruined is a natural guess.",
+          "inference": "A school reopens only when there are children to fill it again; one shut since 1885 needing three teachers by 1920 means families had come to live in the town, the opposite of ruin."
+        },
+        "reoriented": {
+          "type": "logic",
+          "quote": "by barge from the old river landing",
+          "why": "The new farmers shipped through the old landing, so the town's trade kept its old direction.",
+          "surface_fit": "Gold in the hills could easily have turned the town's trade away from its dead river trade, so reoriented tempts after a passage about steamers that stopped calling.",
+          "inference": "The new residents' grain went out by barge from the same landing the town had always used, so the town was refilled in its old shape, not turned toward a new route."
+        }
+      }
+    },
+    {
+      "key": "ruined",
+      "passage": "In 1897 gold was found in the hills above a small river town, and the rush lasted six years. The diggings lay a day's ride away, and that first summer the farmhands left for them, flour tripled in price, and farmers borrowed against their land to match the miners' wages. When the gold gave out in 1903 the bank called in its loans, and half the farms went to auction, and a timber company bought them for pine. The steamer still called at the landing for what little the town had left to ship. Looking back in 1920, one historian wrote that the gold rush, above all, ______ the town.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The farmhands left, flour tripled, farmers borrowed to match miners' wages, and when the gold gave out half the farms went to auction and into pine, so the rush \"ruined\" the town. \"Overran\" fails because the diggings were a day's ride away. \"Repopulated\" fails because the auctioned farms became plantations, and \"reoriented\" fails because the steamer still served the old landing, with little left to carry.",
+      "kills": {
+        "overran": {
+          "type": "logic",
+          "quote": "The diggings lay a day's ride away",
+          "why": "The miners worked and lived a day's ride off, so the rush drained the town of workers rather than filling it with strangers.",
+          "surface_fit": "A gold rush near a small town suggests crowds of miners pouring in, and overran is the usual word for that.",
+          "inference": "With the diggings a day's ride off, the rush reached the town as lost farmhands, high prices and debt, not as crowds in its streets; it took people and money out of the town."
+        },
+        "repopulated": {
+          "type": "logic",
+          "quote": "bought them for pine",
+          "why": "The auctioned farms became pine plantations, so the land that had supported families now supported none.",
+          "surface_fit": "Gold rushes drew thousands of people to new places, and a historian could naturally say one repopulated a small town.",
+          "inference": "Repopulating would bring lasting residents; farms turned into a timber company's pine plantation hold trees instead of farming families, so the town lost households."
+        },
+        "reoriented": {
+          "type": "logic",
+          "quote": "for what little the town had left to ship",
+          "why": "The town still shipped by the river landing, only less, so its trade was shrunk, not redirected.",
+          "surface_fit": "A rush toward the hills could well have pulled the town's trade away from the river, so reoriented is a reasonable first guess.",
+          "inference": "The steamer still served the town at its old landing; what changed was how little there was to ship, which is loss of trade, not a new direction for it."
+        }
+      }
+    },
+    {
+      "key": "reoriented",
+      "passage": "In 1897 gold was found in the hills above a small river town, and the rush lasted six years. The diggings lay a day's ride up a valley to the east, and a road soon ran there from the town's back street, where new stores and a bank opened for the miners. No steamer called at the river landing after 1901. After 1903 a railway took the road east, the bank paid a dividend every year, and the 1920 census lists the same families, in the same houses, as that of 1890. Looking back in 1920, one historian wrote that the gold rush, above all, ______ the town.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "A road to the eastern diggings started from the town's back street, new stores and a bank opened facing it, the river landing fell idle, and a railway later kept the route, so the rush \"reoriented\" the town. \"Overran\" fails because the diggings were a day's ride away. \"Repopulated\" fails because the 1920 census lists the same families as 1890, and \"ruined\" fails because the new bank paid a dividend every year.",
+      "kills": {
+        "overran": {
+          "type": "logic",
+          "quote": "The diggings lay a day's ride up a valley",
+          "why": "The miners were a day's ride away and passed along the new road rather than filling the town.",
+          "surface_fit": "Gold rushes brought crowds of miners into nearby towns, and overran is the stock word for that.",
+          "inference": "With the diggings a day's ride off, the miners reached the town as traffic on the road east, buying at the new stores; the effect was on which way the town faced, not on how crowded it was."
+        },
+        "repopulated": {
+          "type": "logic",
+          "quote": "the same families, in the same houses",
+          "why": "The town's families were the same before and after, so it was not refilled by newcomers.",
+          "surface_fit": "A rush that brought new stores and a railway sounds like it brought new residents too, and repopulated fits a town that revived.",
+          "inference": "Repopulating means new residents replacing lost ones; the same families appear in 1890 and 1920, so the town kept its people and only changed where it did business."
+        },
+        "ruined": {
+          "type": "logic",
+          "quote": "the bank paid a dividend every year",
+          "why": "The new bank prospered after the rush, so the town's trade was moved, not lost.",
+          "surface_fit": "The town's historic landing fell idle when the gold gave out, which reads like the decline of a ruined boom town.",
+          "inference": "A bank paying dividends every year needs a town that is still trading; the landing went idle because the trade moved to the back street and the railway east, not because it vanished."
+        }
+      }
+    }
+  ]
+}

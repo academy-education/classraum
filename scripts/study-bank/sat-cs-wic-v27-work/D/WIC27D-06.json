@@ -1,0 +1,146 @@
+{
+  "id": "WIC27D-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "an island in a valley river",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "anchorage",
+    "ark",
+    "citadel",
+    "crossing"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "crossing",
+    "anchorage",
+    "ark",
+    "citadel"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "In a history of the valley, one historian called the island, above all, the valley's ______.",
+  "worlds": [
+    {
+      "key": "anchorage",
+      "passage": "A rocky island a quarter mile long lies in the middle of a wide river where it crosses a farming valley. The river runs twenty feet deep on either side. When gales blow down the valley, barges from the whole river tie up along its downwind shore, where the water lies still. Raiders coming downriver in 1640 moored there too while they burned the valley's farms, and every spring flood leaves a line of driftwood across the island's crown. In a history of the valley, one historian called the island, above all, the valley's ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Barges from the whole river tie up in the still water on the island's downwind shore whenever gales blow, so it is the valley's \"anchorage.\" \"Crossing\" fails because the river runs twenty feet deep on both sides. \"Citadel\" fails because the raiders, not the valley's people, used the island while they burned the farms. \"Ark\" fails because spring floods leave driftwood across the island's crown.",
+      "kills": {
+        "crossing": {
+          "type": "logic",
+          "quote": "twenty feet deep on either side",
+          "why": "No one can wade to the island.",
+          "surface_fit": "An island in the middle of a wide river is the classic stepping stone for getting across it, so crossing is a natural first guess.",
+          "inference": "Water twenty feet deep on both sides cannot be waded or driven through, so carts and walkers cannot use the island to get from one bank to the other."
+        },
+        "citadel": {
+          "type": "logic",
+          "quote": "moored there too while they burned the valley's farms",
+          "why": "Raiders used the island while attacking the valley.",
+          "surface_fit": "A rocky island in a river is the kind of place a valley fortifies against raiders, so citadel fits a valley history that mentions raids.",
+          "inference": "The raiders tied up at the island itself while they burned the farms, so it was in their hands, not a stronghold where the valley held out against them."
+        },
+        "ark": {
+          "type": "logic",
+          "quote": "leaves a line of driftwood across the island's crown",
+          "why": "Floods cover the whole island.",
+          "surface_fit": "In a valley that floods, a river island is where one expects people and animals to escape the water, which is what ark suggests.",
+          "inference": "Driftwood left across the island's crown by every spring flood shows that the floods cover the whole island, so no one could ride out a flood on it."
+        }
+      }
+    },
+    {
+      "key": "ark",
+      "passage": "A rocky island a quarter mile long lies in the middle of a wide river where it crosses a farming valley. Its crown stands thirty feet above the river, which runs twenty feet deep on either side, fastest along its shores. In the spring floods that spread across the valley floor most years, the farms ferry their families and cattle over to it until the water falls. Raiders coming downriver in 1640 burned the island's barns along with the valley's. In a history of the valley, one historian called the island, above all, the valley's ______.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The island's crown stands high above the floods that cover the valley floor, and the farms ferry their families and cattle there until the water falls, so it is the valley's \"ark.\" \"Crossing\" fails because the river runs twenty feet deep on both sides. \"Anchorage\" fails because the current runs fastest along its shores. \"Citadel\" fails because raiders burned the island's barns with everyone else's.",
+      "kills": {
+        "crossing": {
+          "type": "logic",
+          "quote": "twenty feet deep on either side",
+          "why": "No one can wade to the island.",
+          "surface_fit": "An island in the middle of a wide river is the classic stepping stone for getting across it, so crossing is a natural first guess.",
+          "inference": "Water twenty feet deep on both sides cannot be waded or driven through, so carts and walkers cannot use the island to get from one bank to the other."
+        },
+        "anchorage": {
+          "type": "logic",
+          "quote": "fastest along its shores",
+          "why": "The current is strongest at the island.",
+          "surface_fit": "A river island's shore is a natural place for boats to shelter and moor, so anchorage is a plausible word for its role.",
+          "inference": "Where the current runs fastest, a barge cannot lie against the shore without being torn away, so boats cannot moor at the island."
+        },
+        "citadel": {
+          "type": "logic",
+          "quote": "burned the island's barns along with the valley's",
+          "why": "The island was raided like the rest.",
+          "surface_fit": "A high island the valley's families retreat to sounds like a stronghold, and citadel fits a valley history.",
+          "inference": "If raiders burned the island's barns along with everyone else's, the island kept no attacker out, so it was no stronghold."
+        }
+      }
+    },
+    {
+      "key": "citadel",
+      "passage": "A rocky island a quarter mile long lies in the middle of a wide river where it crosses a farming valley. A stone wall rings its crown. When raiders came downriver in 1640 and again in 1702, the valley's men rowed over and manned the wall, and both times the raiders tried it for a day, burned the farms and moved on. The river runs twenty feet deep on either side, fastest along its shores. In flood years the farms drive their cattle up to the hill pastures. In a history of the valley, one historian called the island, above all, the valley's ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "A wall rings the island's crown, and twice the valley's men held it while raiders tried it, gave up and moved on, so it is the valley's \"citadel.\" \"Crossing\" fails because the river runs twenty feet deep on both sides. \"Anchorage\" fails because the current runs fastest along its shores. \"Ark\" fails because in floods the farms take their cattle to the hills, not to the island.",
+      "kills": {
+        "crossing": {
+          "type": "logic",
+          "quote": "twenty feet deep on either side",
+          "why": "No one can wade to the island.",
+          "surface_fit": "An island in the middle of a wide river is the classic stepping stone for getting across it, so crossing is a natural first guess.",
+          "inference": "Water twenty feet deep on both sides cannot be waded or driven through, so carts and walkers cannot use the island to get from one bank to the other."
+        },
+        "anchorage": {
+          "type": "logic",
+          "quote": "fastest along its shores",
+          "why": "The current is strongest at the island.",
+          "surface_fit": "A river island's shore is a natural place for boats to shelter and moor, so anchorage is a plausible word for its role.",
+          "inference": "Where the current runs fastest, a barge cannot lie against the shore without being torn away, so boats cannot moor at the island."
+        },
+        "ark": {
+          "type": "logic",
+          "quote": "drive their cattle up to the hill pastures",
+          "why": "The valley's flood refuge is elsewhere.",
+          "surface_fit": "An island the valley turns to in its worst years sounds like the place that saves its people and animals, which is what ark calls up.",
+          "inference": "When the river floods, the farms save their cattle by driving them to the hills, so the island is not where the valley rides out a flood; what it held out against was the raiders."
+        }
+      }
+    },
+    {
+      "key": "crossing",
+      "passage": "A rocky island a quarter mile long lies in the middle of a wide river where it crosses a farming valley. Gravel shallows run out to it from both banks, where the current runs fastest. In late summer the valley's harvest carts reach the market town on the far bank by way of the island. Raiders coming downriver in 1640 burned the island's barns along with the valley's, and every spring flood leaves a line of driftwood across its crown. In a history of the valley, one historian called the island, above all, the valley's ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "Gravel shallows reach the island from both banks, and the harvest carts get to the market town on the far bank by way of it, so it is the valley's \"crossing.\" \"Anchorage\" fails because the current runs fastest over those shallows, so no barge can lie there. \"Citadel\" fails because raiders burned the island's barns with everyone else's. \"Ark\" fails because spring floods leave driftwood across its crown.",
+      "kills": {
+        "anchorage": {
+          "type": "logic",
+          "quote": "where the current runs fastest",
+          "why": "Fast, shallow water surrounds the island.",
+          "surface_fit": "A river island's shore is a natural place for boats to shelter and moor, so anchorage is a plausible word for its role.",
+          "inference": "Shallow gravel with the river's fastest current over it is the worst place to moor, so barges cannot lie at the island."
+        },
+        "citadel": {
+          "type": "logic",
+          "quote": "burned the island's barns along with the valley's",
+          "why": "The island was raided like the rest.",
+          "surface_fit": "A rocky island in a river is the kind of place a valley fortifies against raiders, so citadel fits a valley history that mentions raids.",
+          "inference": "If raiders burned the island's barns along with everyone else's, the island kept no attacker out, so it was no stronghold."
+        },
+        "ark": {
+          "type": "logic",
+          "quote": "leaves a line of driftwood across its crown",
+          "why": "Floods cover the whole island.",
+          "surface_fit": "In a valley that floods, a river island is where one expects people and animals to escape the water, which is what ark suggests.",
+          "inference": "Driftwood left across the island's crown by every spring flood shows that the floods cover the whole island, so no one could ride out a flood on it."
+        }
+      }
+    }
+  ]
+}

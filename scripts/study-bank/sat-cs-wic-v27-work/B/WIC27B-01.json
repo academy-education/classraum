@@ -1,0 +1,146 @@
+{
+  "id": "WIC27B-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "stoats and a farmland hedge",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "inn",
+    "lair",
+    "lane",
+    "larder"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "lane",
+    "inn",
+    "lair",
+    "larder"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "After six years of tracking collared stoats there, one ecologist concluded that the animals used the hedge above all as their ______.",
+  "worlds": [
+    {
+      "key": "inn",
+      "passage": "A single hawthorn hedge runs a mile east to west across open plowed fields between two oak woods, and voles burrow thickly in the bank beneath it. Young stoats dispersing each autumn from farms south of the valley toward the hills to its north reached the hedge before dawn, slept through the day in old burrows in its bank, and went on north across the fields at nightfall; by winter their collars placed them in the hills, a week's travel away. After six years of tracking collared stoats there, one ecologist concluded that the animals used the hedge above all as their ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "Young stoats on their way north stopped in the hedge for a single day's sleep and went on, so it was their \"inn.\" \"Lane\" fails because they were traveling south to north while the hedge runs east to west, so it lay across their route rather than along it. \"Lair\" fails because by winter they had settled in the hills a week away. \"Larder\" fails because their one day in the bank was spent asleep between two nights of travel.",
+      "kills": {
+        "lane": {
+          "type": "logic",
+          "quote": "toward the hills to its north",
+          "why": "The stoats' route ran across the hedge, not along it.",
+          "surface_fit": "The hedge is the only cover joining two woods across open fields, and an ecologist calling a hedge the animals' lane is an ordinary way to describe a wildlife route. These stoats are travelers.",
+          "inference": "The hedge runs east to west between the woods, while these stoats were heading from farms in the south to hills in the north, so their route crossed the hedge; they went into it to sleep and out the far side."
+        },
+        "lair": {
+          "type": "logic",
+          "quote": "by winter their collars placed them in the hills",
+          "why": "The stoats settled a week's travel away.",
+          "surface_fit": "Stoats den in hedge banks, and this bank is riddled with burrows they could take over. These stoats slept in them.",
+          "inference": "Stoats whose collars show them settled in the hills by winter made their homes there; the hedge held them for a day on the way."
+        },
+        "larder": {
+          "type": "logic",
+          "quote": "slept through the day in old burrows",
+          "why": "The stoats' time in the hedge was spent asleep.",
+          "surface_fit": "The bank is thick with voles, the stoat's main prey, so a hedge full of prey reads naturally as a predator's larder.",
+          "inference": "They arrived before dawn and left at nightfall, spending the daylight between two nights of travel asleep, and they never returned; a larder is a supply an animal comes back to draw on."
+        }
+      }
+    },
+    {
+      "key": "lair",
+      "passage": "A single hawthorn hedge runs a mile east to west across open plowed fields between two oak woods, and voles burrow thickly in the bank beneath it. Collared females that dug into the bank in early spring were still there in late summer, and the young that scattered from the hedge then were too small to have been collared in spring. Each night a female's collar showed her heading straight across the fields to the nearer wood and back to the same burrow by dawn. After six years of tracking collared stoats there, one ecologist concluded that the animals used the hedge above all as their ______.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "Females settled in the bank from spring to late summer and raised young there, going out each night and returning to the same burrow, so the hedge was their \"lair.\" \"Inn\" fails because a stay of months, long enough to raise young, is no stopover. \"Lane\" fails because the females left the hedge sideways across the fields instead of traveling along it. \"Larder\" fails because each night they went out to the woods and came back, so the bank was their base, not where they fed.",
+      "kills": {
+        "inn": {
+          "type": "logic",
+          "quote": "still there in late summer",
+          "why": "The females stayed in the bank for months.",
+          "surface_fit": "Stoats sheltering in a hedge bank on a journey, or for part of a night, can be said to use it as an inn, a place to stop and rest.",
+          "inference": "Females that arrived in early spring were still there in late summer, and young born in that time left from it, so the bank was where they settled to raise a family, far longer than a traveler's stop."
+        },
+        "lane": {
+          "type": "logic",
+          "quote": "heading straight across the fields",
+          "why": "The females left the hedge across the open ground.",
+          "surface_fit": "The hedge is the only cover joining two woods across open fields, and an ecologist calling a hedge the animals' lane is an ordinary way to describe a wildlife route. The females traveled to the woods every night.",
+          "inference": "The hedge itself runs to the woods, but the females struck straight out across the fields to the nearer one, so the hedge was the place they set out from and came back to, not the route they followed."
+        },
+        "larder": {
+          "type": "logic",
+          "quote": "to the nearer wood and back to the same burrow",
+          "why": "Each night the females went out to the woods and returned.",
+          "surface_fit": "The bank is thick with voles, the stoat's main prey, so a hedge full of prey reads naturally as a predator's larder.",
+          "inference": "A stoat that leaves the vole bank every night for the woods and comes back to one burrow is going out for something the bank does not give it; what the bank gave was the burrow."
+        }
+      }
+    },
+    {
+      "key": "lane",
+      "passage": "A single hawthorn hedge runs a mile east to west across open plowed fields between two oak woods, and voles burrow thickly in the bank beneath it. Each autumn young stoats leave the eastern wood to find territories, and nearly every adult trapped in the western wood had been collared as a kit in the east. Collars logged each young stoat at both ends of the hedge on the same night, and the bank's vole count was no lower after the autumn passage than before it. After six years of tracking collared stoats there, one ecologist concluded that the animals used the hedge above all as their ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Stoats born in the eastern wood settled in the western one, passing through the hedge from end to end in a single night, so it was their \"lane.\" \"Inn\" fails because a stoat logged at both ends on the same night did not stop there to rest. \"Lair\" fails because these stoats were born in one wood and settled in the other. \"Larder\" fails because the passing stoats took nothing from the bank's voles.",
+      "kills": {
+        "inn": {
+          "type": "logic",
+          "quote": "on the same night",
+          "why": "The stoats passed through without stopping to rest.",
+          "surface_fit": "Stoats sheltering in a hedge bank on a journey, or for part of a night, can be said to use it as an inn, a place to stop and rest. These young stoats are travelers.",
+          "inference": "Logged at the eastern end and the western end on the same night, a stoat crossed the whole hedge between dusk and dawn and spent no day in it, so it never stopped there to rest."
+        },
+        "lair": {
+          "type": "logic",
+          "quote": "collared as a kit in the east",
+          "why": "The stoats were born in the eastern wood and settled in the western one.",
+          "surface_fit": "Stoats den in hedge banks, and this bank is riddled with burrows they could take over.",
+          "inference": "The adults of the western wood were kits of the eastern wood, so they were born in one wood and live in the other; a night's passage in between left the hedge neither their birthplace nor their home."
+        },
+        "larder": {
+          "type": "explicit",
+          "quote": "no lower after the autumn passage",
+          "why": "The passing stoats did not eat the bank's voles.",
+          "surface_fit": "The bank is thick with voles, the stoat's main prey, so a hedge full of prey reads naturally as a predator's larder.",
+          "inference": "If the voles were as many after the stoats went through as before, the stoats were not feeding on the bank on their way; they used it to get across."
+        }
+      }
+    },
+    {
+      "key": "larder",
+      "passage": "A single hawthorn hedge runs a mile east to west across open plowed fields between two oak woods, and voles burrow thickly in the bank beneath it. Stoats from both woods came into the hedge on most winter nights, each working only the stretch of bank nearest its own wood. By late winter most of the burrows stood empty, and in summer, when voles were plentiful in the woods, collared stoats hardly came near the hedge. After six years of tracking collared stoats there, one ecologist concluded that the animals used the hedge above all as their ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "Stoats came in from the woods to work the bank's vole burrows through the winter until they were emptied, and stayed away in summer when voles were easy to find in the woods, so the hedge was their \"larder.\" \"Lane\" fails because each stoat kept to the stretch nearest its own wood instead of traveling the hedge's length. \"Inn\" fails because the stoats came back night after night from woods they lived in, not as travelers stopping on a journey. \"Lair\" fails because they came into the hedge from the woods, where they lived.",
+      "kills": {
+        "lane": {
+          "type": "logic",
+          "quote": "nearest its own wood",
+          "why": "Each stoat stayed near its own end of the hedge.",
+          "surface_fit": "The hedge is the only cover joining two woods across open fields, and an ecologist calling a hedge the animals' lane is an ordinary way to describe a wildlife route. Stoats from both woods came into it.",
+          "inference": "A stoat working only the stretch nearest its own wood never went the length of the hedge, so none used it to get from one wood to the other."
+        },
+        "inn": {
+          "type": "logic",
+          "quote": "on most winter nights",
+          "why": "The same stoats came back night after night from their woods.",
+          "surface_fit": "Stoats sheltering in a hedge bank on a journey, or for part of a night, can be said to use it as an inn, a place to stop and rest. These stoats spent their nights in the hedge.",
+          "inference": "An inn shelters a traveler for a night on the way somewhere; these stoats lived in the woods and returned night after night to work the bank, which is a regular visit to a supply, not a traveler's stop."
+        },
+        "lair": {
+          "type": "logic",
+          "quote": "came into the hedge",
+          "why": "The stoats came into the hedge from the woods.",
+          "surface_fit": "Stoats den in hedge banks, and this bank is riddled with burrows they could take over.",
+          "inference": "Stoats that came into the hedge on winter nights from their own woods were visitors there; their dens were in the woods, and in summer they hardly came at all."
+        }
+      }
+    }
+  ]
+}

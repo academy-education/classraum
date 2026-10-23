@@ -1,0 +1,146 @@
+{
+  "id": "WIC27E-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a century of a small country's wheat duty",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "ratchet",
+    "pendulum",
+    "regulator",
+    "pacemaker"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "pendulum",
+    "regulator",
+    "pacemaker",
+    "ratchet"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "Surveying that century, one economist calls the duty a kind of ______.",
+  "worlds": [
+    {
+      "key": "ratchet",
+      "passage": "From 1850 to 1950 a small country taxed every bushel of wheat brought in through its ports, and the rate changed eleven times. Each change came in a year when wheat prices had slumped, and each time farm members won it by pointing to the higher duties already charged next door. In the good years that followed, bills to lower the duty always failed, and by 1950 it stood at nine times its first level. Surveying that century, one economist calls the duty a kind of ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "Every change raised the duty in a slump, no good year brought it down, and it climbed to nine times its first level, so it was a \"ratchet\". \"Pendulum\" fails because the duty never swung back. \"Regulator\" fails because it was not cut when prices recovered, and \"pacemaker\" fails because each rise followed higher duties already charged next door.",
+      "kills": {
+        "pendulum": {
+          "type": "logic",
+          "quote": "bills to lower the duty always failed",
+          "why": "The duty was never brought back down, so it never swung back.",
+          "surface_fit": "A duty changed eleven times over a century and fought over in good years and bad sounds like it swung back and forth.",
+          "inference": "A pendulum swings both ways around a center; with every attempt to lower the duty failing and the duty ending at nine times its first level, it moved in one direction only."
+        },
+        "regulator": {
+          "type": "logic",
+          "quote": "In the good years that followed",
+          "why": "The duty was raised in slumps but left high in good years, so it did not steady prices in both directions.",
+          "surface_fit": "The duty went up whenever wheat prices slumped, which is exactly how a stabilizing tariff behaves, so regulator is a strong first reading.",
+          "inference": "A regulator corrects both ways, cutting the duty when prices recover; in the good years after each rise the duty stayed put, so each slump only added to it."
+        },
+        "pacemaker": {
+          "type": "logic",
+          "quote": "the higher duties already charged next door",
+          "why": "The neighbors' duties were already higher, so this country was following them, not setting the pace.",
+          "surface_fit": "A small country raising its grain duty again and again could plausibly be leading its neighbors, and pacemaker fits a tariff others follow.",
+          "inference": "A pacemaker moves first and others follow; each rise here was argued for by pointing at duties already higher next door, so this country was catching up."
+        }
+      }
+    },
+    {
+      "key": "pendulum",
+      "passage": "From 1850 to 1950 a small country taxed every bushel of wheat brought in through its ports, and the rate changed eleven times. Governments of the farm party raised the rate and governments of the city party cut it, and the two held office by turns for the whole century. Two of the rises came in years of record wheat prices. In 1950 the rate stood within a cent of its first level, while the neighboring countries kept their 1850 duties throughout. Surveying that century, one economist calls the duty a kind of ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "The duty rose under one party and fell under the other as they traded office, ending within a cent of where it began, so it was a \"pendulum\". \"Ratchet\" fails because the duty came back to its starting level. \"Regulator\" fails because two rises came in years of record prices, and \"pacemaker\" fails because the neighbors kept their 1850 duties throughout.",
+      "kills": {
+        "ratchet": {
+          "type": "logic",
+          "quote": "within a cent of its first level",
+          "why": "After a century of changes the duty was back where it began, so it did not climb one way.",
+          "surface_fit": "A grain duty pushed up by a farm party again and again sounds like it could only climb, which is what ratchet describes.",
+          "inference": "A ratchet keeps every rise; a duty that ended within a cent of its starting level gave back each rise in a later cut, as the parties traded office."
+        },
+        "regulator": {
+          "type": "logic",
+          "quote": "Two of the rises came in years of record wheat prices",
+          "why": "The duty went up when wheat was already dear, which would push prices higher, not steady them.",
+          "surface_fit": "A duty that rose and fell over the century looks like it was being adjusted to keep wheat prices steady, so regulator is tempting.",
+          "inference": "A regulator raises the duty when prices are low and cuts it when they are high; rises in record-price years mean the changes followed which party held office, not what wheat cost."
+        },
+        "pacemaker": {
+          "type": "explicit",
+          "quote": "kept their 1850 duties throughout",
+          "why": "The neighbors never changed their duties, so none of them followed this country's.",
+          "surface_fit": "A small country whose tariff moved often could set the pattern for its neighbors, and pacemaker fits a duty that changed eleven times.",
+          "inference": "A pacemaker is followed; the neighbors kept their 1850 duties for the whole century while this one rose and fell, so its swings set no pace for anyone."
+        }
+      }
+    },
+    {
+      "key": "regulator",
+      "passage": "From 1850 to 1950 a small country taxed every bushel of wheat brought in through its ports, and the rate changed eleven times. A law of 1850 raised the rate whenever wheat at the capital's exchange fell below one price and cut it whenever wheat rose above another, and all eleven changes, five of them cuts, followed that law under whichever party governed. Over the century, wheat prices there moved half as much as in the neighboring countries, whose duties were set by their own parliaments' votes. Surveying that century, one economist calls the duty a kind of ______.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "By law the duty rose when wheat was cheap and fell when it was dear, every change followed that law whatever party governed, and wheat prices moved half as much as next door, so the duty was a \"regulator\". \"Ratchet\" fails because five of the changes were cuts. \"Pendulum\" fails because the changes followed prices, not the party in office, and \"pacemaker\" fails because the neighbors set their duties by their own votes.",
+      "kills": {
+        "ratchet": {
+          "type": "logic",
+          "quote": "five of them cuts",
+          "why": "The duty fell five times, so it was not a one-way climb.",
+          "surface_fit": "The duty rose automatically every time wheat fell below a set price, which sounds like a mechanism that keeps pushing it up, as a ratchet does.",
+          "inference": "A ratchet holds every gain; this duty was cut whenever wheat rose above the upper price, five times in all, so it moved down as readily as up."
+        },
+        "pendulum": {
+          "type": "logic",
+          "quote": "under whichever party governed",
+          "why": "The changes followed the law's price marks no matter who was in office, so they did not swing with politics.",
+          "surface_fit": "A duty that went up and down repeatedly over a century looks like it swung back and forth, and pendulum is the stock image for a policy that keeps reversing.",
+          "inference": "A pendulum swings on its own rhythm between two sides; these rises and cuts came whenever wheat crossed the law's two prices, under any government, so they tracked the market rather than alternating."
+        },
+        "pacemaker": {
+          "type": "logic",
+          "quote": "set by their own parliaments' votes",
+          "why": "The neighbors chose their duties by their own votes and their prices swung twice as much, so they were not copying this country's rule.",
+          "surface_fit": "A small country with a clever automatic duty could plausibly have set the pattern for its neighbors, and pacemaker fits a tariff others copy.",
+          "inference": "If the neighbors had followed this duty, their prices would have steadied too; they set their duties by vote and their wheat prices moved twice as much, so the law kept prices steady at home without leading anyone."
+        }
+      }
+    },
+    {
+      "key": "pacemaker",
+      "passage": "From 1850 to 1950 a small country taxed every bushel of wheat brought in through its ports, and the rate changed eleven times. Each change paid for the navy, rising in the three years of great shipbuilding before 1890 and falling at each of the eight later cuts in building, so that by 1950 the rate was half its first level. Within two years of every change, the three neighboring countries had set their own duties to match, and traders in all four countries quoted wheat at the small country's rate. Surveying that century, one economist calls the duty a kind of ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Within two years of every change the three neighbors set their duties to match, and traders in all four countries quoted wheat at this country's rate, so the duty was a \"pacemaker\". \"Ratchet\" fails because the duty ended at half its first level. \"Pendulum\" fails because after three rises it only fell, and \"regulator\" fails because the changes paid for the navy, not steadied wheat prices.",
+      "kills": {
+        "ratchet": {
+          "type": "logic",
+          "quote": "by 1950 the rate was half its first level",
+          "why": "The duty ended lower than it began, so it did not climb one way.",
+          "surface_fit": "A tariff that the neighbors kept having to match sounds like one that kept ratcheting up, and ratchet is a familiar word for a duty that is hard to lower.",
+          "inference": "A ratchet holds every gain; this duty gave back all its rises and more, ending at half its first level, so it could move down as easily as up."
+        },
+        "pendulum": {
+          "type": "logic",
+          "quote": "falling at each of the eight later cuts",
+          "why": "After three rises the duty only fell, so it did not swing back and forth.",
+          "surface_fit": "A duty that rose and then fell over a century sounds like it swung, and pendulum is the stock image for a policy that keeps reversing.",
+          "inference": "A pendulum keeps swinging back through the center; this duty rose three times and then fell eight times in a row, so it made one long turn, not repeated swings."
+        },
+        "regulator": {
+          "type": "logic",
+          "quote": "Each change paid for the navy",
+          "why": "The changes followed the navy's needs, not the price of wheat, so they were not meant to steady prices.",
+          "surface_fit": "A grain duty that whole markets watched and quoted sounds like it was steadying wheat prices, which is what regulator names.",
+          "inference": "A regulator moves against the price of wheat to keep it steady; this duty rose and fell with shipbuilding whatever wheat cost, so its role lay in the neighbors and traders who followed it."
+        }
+      }
+    }
+  ]
+}

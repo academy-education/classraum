@@ -1,0 +1,146 @@
+{
+  "id": "WIC27D-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a city council's granary",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "ballast",
+    "backstop",
+    "coffer",
+    "cudgel"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "backstop",
+    "ballast",
+    "coffer",
+    "cudgel"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "One economic historian has argued that for two centuries the granary served above all as the city's ______.",
+  "worlds": [
+    {
+      "key": "ballast",
+      "passage": "In 1590 the council of a river city built a stone granary on its market square, large enough to hold a year's grain for every household. Each autumn the council filled it at the harvest price. Each spring it sold the grain at one posted price to every buyer, villages feuding with the city over its tolls included, until the bins stood empty by midsummer. Over two centuries a loaf in the city swung less in price than in any nearby town, while the accounts show neither profit nor loss. One economic historian has argued that for two centuries the granary served above all as the city's ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The granary bought each harvest and sold it off each spring at one posted price, and the city's bread price moved less than any neighbor's, so it was the city's \"ballast,\" steadying it through good and bad years. \"Backstop\" fails because its bins were empty by every midsummer, so nothing was held back for a crisis. \"Coffer\" fails because it made neither profit nor loss. \"Cudgel\" fails because even villages feuding with the city bought at the same price.",
+      "kills": {
+        "backstop": {
+          "type": "logic",
+          "quote": "the bins stood empty by midsummer",
+          "why": "Nothing was kept back between springs.",
+          "surface_fit": "A stone granary large enough to hold a year's grain sounds like a reserve kept for emergencies, which is what a backstop is.",
+          "inference": "If the bins were emptied onto the market by every midsummer, there was no stock left to fall back on when a harvest failed, so the granary was not a last-resort reserve."
+        },
+        "coffer": {
+          "type": "logic",
+          "quote": "neither profit nor loss",
+          "why": "The trade earned the city nothing.",
+          "surface_fit": "A council that buys and sells grain every year looks like it is trading for income, and coffer fits a sentence about what a granary did for a city.",
+          "inference": "Two centuries of accounts with no profit mean the buying and selling raised no money, so the granary did not fill the city's treasury."
+        },
+        "cudgel": {
+          "type": "logic",
+          "quote": "villages feuding with the city over its tolls included",
+          "why": "Even the city's opponents bought on the same terms.",
+          "surface_fit": "Villages were feuding with the city over its tolls, and control of a region's grain was a classic political weapon, so cudgel is a natural guess.",
+          "inference": "The feuding villages bought at the same posted price as everyone else, so the granary was never used to punish or pressure the city's opponents."
+        }
+      }
+    },
+    {
+      "key": "backstop",
+      "passage": "In 1590 the council of a river city built a stone granary on its market square, large enough to hold a year's grain for every household. Its stock was renewed each autumn and otherwise left untouched, while merchants supplied the city's bread at prices that rose and fell with each harvest. In 1630, 1698 and 1740 the harvest failed across the province, and in each of those years the council opened its doors in late winter, selling to every household at the previous year's price. One economic historian has argued that for two centuries the granary served above all as the city's ______.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "The granary stood untouched while merchants fed the city and was opened only in the three years the harvest failed, so it was the city's \"backstop.\" \"Ballast\" fails because bread prices still rose and fell with each harvest. \"Coffer\" fails because in famine years it sold at the previous year's price instead of the famine price. \"Cudgel\" fails because it sold to every household alike.",
+      "kills": {
+        "ballast": {
+          "type": "logic",
+          "quote": "prices that rose and fell with each harvest",
+          "why": "Bread prices swung freely in ordinary years.",
+          "surface_fit": "A council granary is the classic tool for keeping a city's food prices steady, so ballast fits the sentence and the economics.",
+          "inference": "Ballast keeps something steady all the time; since the city's bread prices rose and fell with every harvest while the granary sat shut, it was not steadying anything in ordinary years."
+        },
+        "coffer": {
+          "type": "logic",
+          "quote": "at the previous year's price",
+          "why": "In famine years it sold below the going price.",
+          "surface_fit": "A council holding grain until a famine could make a great deal of money from it, so coffer is a plausible economic historian's word.",
+          "inference": "When the harvest failed across the province, grain was dearest; selling at the year-before price gave up that famine profit, so the granary was not run to raise money."
+        },
+        "cudgel": {
+          "type": "logic",
+          "quote": "selling to every household",
+          "why": "Everyone in the city could buy from it.",
+          "surface_fit": "A council that controls the only grain in a famine holds a political weapon, and cudgel fits a sentence about what a granary was for.",
+          "inference": "In each famine it sold to every household on the same terms, so no one was held to ransom or shut out; grain was not used to coerce anyone."
+        }
+      }
+    },
+    {
+      "key": "coffer",
+      "passage": "In 1590 the council of a river city built a stone granary on its market square, large enough to hold a year's grain for every household. The lords of the villages around it often quarreled with the city over its barge tolls. Each autumn the council bought every village's surplus at harvest prices, and each spring it shipped the grain downriver to whichever port paid most, in famine years as in good. The city raised no hearth tax except in the two years a war closed the river. One economic historian has argued that for two centuries the granary served above all as the city's ______.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "The council bought at harvest prices and sold to whichever port paid most, and the city needed a hearth tax only in the two years war stopped the shipments, so the granary's trade paid the city's way: it was the city's \"coffer.\" \"Ballast\" fails because the grain was shipped downriver and never reached the city's own market. \"Backstop\" fails because it was shipped out even in famine years. \"Cudgel\" fails because the council bought from every village alike, quarrel or no quarrel, and sold on price alone.",
+      "kills": {
+        "ballast": {
+          "type": "logic",
+          "quote": "shipped the grain downriver",
+          "why": "The grain left the city instead of entering its market.",
+          "surface_fit": "A granary that buys at harvest and sells in spring sounds like the classic device for smoothing a city's food prices, which is what ballast suggests.",
+          "inference": "Grain shipped downriver to other ports never entered the city's own market, so it could do nothing to steady what the city's households paid for bread."
+        },
+        "backstop": {
+          "type": "logic",
+          "quote": "in famine years as in good",
+          "why": "The grain was sold away even in famines.",
+          "surface_fit": "A stone granary large enough to hold a year's grain for every household is what a city would build as a reserve against famine.",
+          "inference": "A backstop is drawn on when other supply fails; this grain went to outside buyers even in famine years, so the city never fell back on it when its food ran short."
+        },
+        "cudgel": {
+          "type": "logic",
+          "quote": "bought every village's surplus at harvest prices",
+          "why": "Every village sold to the granary on the same terms, whatever its lord's quarrel.",
+          "surface_fit": "The villages' lords were quarreling with the city over its tolls, and a council that controls the region's grain could use it to beat them into line, so cudgel is a natural first guess.",
+          "inference": "The council bought from every village at the same harvest price and sold to whoever paid most, so a quarreling lord's village was treated exactly like a friendly one; the grain was never withheld or used to pressure anyone."
+        }
+      }
+    },
+    {
+      "key": "cudgel",
+      "passage": "In 1590 the council of a river city built a stone granary on its market square, large enough to hold a year's grain for every household. Whenever a village lord within a day's ride refused the city's toll on river barges, the council sent buyers to that village's market, who filled the granary with every sack on sale there at any price. No lord held out past the next sowing, and once each gave way the council sold his village its grain back at cost. One economic historian has argued that for two centuries the granary served above all as the city's ______.",
+      "shape": "cause and consequence",
+      "key_from_one_sentence": false,
+      "explanation": "When a lord defied the toll, the council bought his village's market bare, leaving his people nothing to buy, and every lord gave in by the next sowing, so the granary was the city's \"cudgel.\" \"Ballast\" fails because buying a market bare at any price drives prices up rather than steadying them. \"Backstop\" fails because the granary was filled to punish defiance, not opened when food ran short. \"Coffer\" fails because the grain was sold back at cost.",
+      "kills": {
+        "ballast": {
+          "type": "logic",
+          "quote": "every sack on sale there at any price",
+          "why": "The council bought markets bare regardless of price.",
+          "surface_fit": "A council granary in a market square is the classic device for steadying food prices, so ballast fits the sentence and the subject.",
+          "inference": "Buying every sack in a market at any price sends the local price soaring, so the granary was used to jolt prices, the opposite of keeping them steady."
+        },
+        "backstop": {
+          "type": "logic",
+          "quote": "Whenever a village lord within a day's ride refused",
+          "why": "The granary moved in response to defiance, not shortage.",
+          "surface_fit": "A granary holding a year's grain for every household sounds like a reserve against famine, which is what a backstop is.",
+          "inference": "The granary filled whenever a lord refused the toll, taking grain in from the villages; it was used as a move against someone, not drawn on when food failed."
+        },
+        "coffer": {
+          "type": "logic",
+          "quote": "sold his village its grain back at cost",
+          "why": "The council made no money on the grain.",
+          "surface_fit": "A council buying up and storing grain looks like it is trading for profit, and coffer fits a sentence about a granary's role.",
+          "inference": "Buying at any price and selling back at cost means the council at best broke even and often lost, so the granary raised no money for the city."
+        }
+      }
+    }
+  ]
+}

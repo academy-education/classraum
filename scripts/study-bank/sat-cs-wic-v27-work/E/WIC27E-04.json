@@ -1,0 +1,146 @@
+{
+  "id": "WIC27E-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a summer drought on a trout river",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "pooled",
+    "pinched",
+    "overheated",
+    "parched"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "overheated",
+    "pinched",
+    "parched",
+    "pooled"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "In a report on that summer, one hydrologist wrote that the drought had ______ the river.",
+  "worlds": [
+    {
+      "key": "pooled",
+      "passage": "In 1976 almost no rain fell for eleven summer weeks on a trout river that runs twenty miles from upland springs to a lake. By the eighth week the gauge halfway down read no flow at all, and the gravel riffles between the river's deep bends lay exposed. The bends, fed by seepage from shaded hillsides, kept their depth, and trout tagged in one bend that summer were never caught in the next, though biologists found them crowded ten times thicker than in spring. Nearly all were alive when the autumn rains came. In a report on that summer, one hydrologist wrote that the drought had ______ the river.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The flow stopped and the riffles lay exposed, while the bends kept their depth and held crowded trout that never moved between them, so the drought \"pooled\" the river. \"Pinched\" fails because the trout could not pass from bend to bend. \"Parched\" fails because the bends kept their depth, and \"overheated\" fails because the crowded trout survived.",
+      "kills": {
+        "pinched": {
+          "type": "logic",
+          "quote": "never caught in the next",
+          "why": "Trout could not pass from one bend to the next, so no stream still connected them.",
+          "surface_fit": "A river shrinking in a drought is commonly described as pinched, and exposed gravel makes that the first picture a reader forms.",
+          "inference": "A pinched river is a narrowed but continuous stream that fish can travel; trout that never reached the next bend all summer were held in separate bodies of water."
+        },
+        "parched": {
+          "type": "logic",
+          "quote": "kept their depth",
+          "why": "Water stayed deep in the bends all summer, so the river was not dried out.",
+          "surface_fit": "Eleven rainless weeks and dry white gravel in the sun are the classic image of a drought-parched river, so the word fits both the sentence and the scene.",
+          "inference": "The bends were fed by seepage and kept their depth, so the river still held water along its length in separate bodies; parched would mean the bed itself had gone dry."
+        },
+        "overheated": {
+          "type": "logic",
+          "quote": "Nearly all were alive",
+          "why": "Crowded trout survived the summer, which they could not do in water that had grown too warm.",
+          "surface_fit": "Trout crowded into still water under a summer sun are exactly what an overheated river kills, so overheated tempts.",
+          "inference": "Trout die when water warms past what they tolerate, and crowding makes it worse; these crowded trout lived, so the seepage from shaded hillsides kept the bends cool."
+        }
+      }
+    },
+    {
+      "key": "pinched",
+      "passage": "In 1976 almost no rain fell for eleven summer weeks on a trout river that runs twenty miles from upland springs to a lake. By the eighth week the flow at the gauge halfway down had fallen to a fifth of its usual summer level, and the mill where the river meets the lake turned its wheel, slowly, every day of the summer. Anglers could step across the river at any riffle, and trout tagged in one bend were caught in others all summer. Nearly all were alive when the autumn rains came. In a report on that summer, one hydrologist wrote that the drought had ______ the river.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "The flow fell to a fifth but kept the mill wheel turning, anglers could step across at any riffle, and trout still moved from bend to bend, so the drought \"pinched\" the river. \"Pooled\" fails because the trout moved between the bends. \"Parched\" fails because the mill wheel turned every day, and \"overheated\" fails because nearly all the trout survived.",
+      "kills": {
+        "pooled": {
+          "type": "logic",
+          "quote": "caught in others all summer",
+          "why": "Trout traveled between bends all summer, so the bends stayed joined by running water.",
+          "surface_fit": "A drought river with deep bends and riffles is often left as a chain of pools, so pooled is a strong first guess.",
+          "inference": "Pools are separate bodies of standing water; trout moving from bend to bend all summer means a stream still ran over every riffle and connected them."
+        },
+        "parched": {
+          "type": "logic",
+          "quote": "turned its wheel, slowly, every day",
+          "why": "Water reached the mill at the lake every day, so the river never ran dry.",
+          "surface_fit": "Eleven rainless weeks and a river anglers could step across sound like a drought-parched river, a stock phrase.",
+          "inference": "A mill wheel turns only on moving water; the wheel at the river's mouth turned every day, so water came down the whole river all summer."
+        },
+        "overheated": {
+          "type": "logic",
+          "quote": "Nearly all were alive",
+          "why": "The trout survived, so the shrunken stream did not grow too warm for them.",
+          "surface_fit": "A shallow stream in an eleven-week drought would be expected to warm, and an overheated river is a familiar drought story.",
+          "inference": "Trout are the first to die when a river warms; nearly all of them lived, so whatever the drought did to this river, it did not raise the water past what trout can stand."
+        }
+      }
+    },
+    {
+      "key": "overheated",
+      "passage": "In 1976 almost no rain fell for eleven summer weeks on a trout river that runs twenty miles from upland springs to a lake. Its springs held up, and in the eighth week the mill where the river meets the lake still turned its wheel at its usual summer speed. Along the shallow, treeless lower miles, biologists counted thousands of dead trout, many carrying tags put on near the springs that spring. In the shaded upper miles near the cold springs, the trout lived. In a report on that summer, one hydrologist wrote that the drought had ______ the river.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "The river kept its usual flow, yet trout died by the thousands in the shallow, treeless lower miles while they lived in the shaded miles near the cold springs, so the drought \"overheated\" the river. \"Pooled\" fails because tagged trout traveled from the springs downstream. \"Pinched\" fails because the mill turned at its usual speed, and \"parched\" fails because the springs held up.",
+      "kills": {
+        "pooled": {
+          "type": "logic",
+          "quote": "carrying tags put on near the springs",
+          "why": "Trout tagged at the springs reached the lower miles, so the river was still connected from end to end.",
+          "surface_fit": "Fish surviving only in a few places along a drought river suggests they were stranded in pools, and pooled is the usual word for that.",
+          "inference": "Pools trap fish where they are; trout tagged near the springs were found far downstream, so the water still ran through every stretch, and the survivors near the springs were gathered by its temperature."
+        },
+        "pinched": {
+          "type": "logic",
+          "quote": "at its usual summer speed",
+          "why": "The mill at the mouth ran at its normal summer speed, so the river carried its usual flow.",
+          "surface_fit": "Rivers in an eleven-week drought shrink, and a hydrologist could naturally say the drought pinched one.",
+          "inference": "A mill wheel's speed follows the water driving it; a wheel turning at its usual summer speed means the river was as full as in other summers, not squeezed."
+        },
+        "parched": {
+          "type": "logic",
+          "quote": "Its springs held up",
+          "why": "The springs feeding the river kept flowing, so it did not dry up.",
+          "surface_fit": "Eleven rainless weeks and a mass death of trout sound like a river that dried up, so parched tempts.",
+          "inference": "A spring-fed river keeps its water whatever the rain does; the trout died in the treeless shallows and lived in the shade, which points to heat rather than lack of water."
+        }
+      }
+    },
+    {
+      "key": "parched",
+      "passage": "In 1976 almost no rain fell for eleven summer weeks on a trout river that runs twenty miles from upland springs to a lake. By the eighth week the gauge halfway down read no flow at all, and the gravel riffles between the deep bends lay dry and white. The bends, with no seepage to feed them, sank week by week; biologists who netted their last trout into tanks returned two weeks later to cracked mud. The autumn rains soaked into the bed for two days before any water reached the lake. In a report on that summer, one hydrologist wrote that the drought had ______ the river.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The flow stopped, the deep bends shrank to cracked mud, and the autumn rains soaked into the bed for two days before any water reached the lake, so the drought \"parched\" the river. \"Pooled\" fails because even the bends dried to mud, leaving no pools. \"Pinched\" fails because nothing flowed at the gauge, and \"overheated\" fails because the trout were lost to water that disappeared, not to water that warmed.",
+      "kills": {
+        "pooled": {
+          "type": "logic",
+          "quote": "returned two weeks later to cracked mud",
+          "why": "Even the deep bends dried out, so no pools were left.",
+          "surface_fit": "Deep bends that hold water after the riffles dry are what pooled describes, and the passage starts exactly that way.",
+          "inference": "The bends had no seepage feeding them, kept sinking, and were cracked mud two weeks later; pooled would mean water standing in the bends, and by the end there was none anywhere."
+        },
+        "pinched": {
+          "type": "logic",
+          "quote": "read no flow at all",
+          "why": "Nothing flowed at the gauge, so there was no narrowed stream still running.",
+          "surface_fit": "A river losing water in a drought is often said to be pinched to a thread, so the word fits the topic and the sentence.",
+          "inference": "A pinched river keeps flowing in a narrower channel; zero flow at the gauge, dry riffles and then dry bends mean the river stopped flowing altogether."
+        },
+        "overheated": {
+          "type": "logic",
+          "quote": "netted their last trout into tanks",
+          "why": "The trout were rescued from bends that were going dry, so the threat was the water disappearing, not the water warming.",
+          "surface_fit": "Trout in shrinking summer bends are the classic victims of warm water, so overheated is a tempting reading of a drought fish emergency.",
+          "inference": "The biologists moved the trout because the bends were sinking and then turned to cracked mud; with no water left in the bed by the end, there was nothing to overheat, and the rains had to soak the dry bed for two days before any reached the lake."
+        }
+      }
+    }
+  ]
+}

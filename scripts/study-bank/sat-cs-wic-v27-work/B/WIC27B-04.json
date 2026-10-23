@@ -1,0 +1,146 @@
+{
+  "id": "WIC27B-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a merchant's inherited estate in his account books",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "leased",
+    "liquidated",
+    "logged",
+    "mortgaged"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "leased",
+    "mortgaged",
+    "logged",
+    "liquidated"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "From those books, one historian concluded that, above all, he had ______ the estate.",
+  "worlds": [
+    {
+      "key": "leased",
+      "passage": "In 1838 a merchant inherited an estate of farms and oak woods worked by hired hands, and his account books for the next twenty years survive. From 1840 the hired hands' wages vanish from the books, and in their place, every autumn, come sums from some forty farm households, each entered against a named farm and the same from year to year. The oak woods, kept in hand, go on yielding a little firewood money every winter, and his son's inventory of 1858 opens with the house and the forty farms. From those books, one historian concluded that, above all, he had ______ the estate.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The merchant stopped working the farms with hired hands and took a fixed yearly sum for each farm from the household on it, keeping the whole estate, so he had \"leased\" it. \"Mortgaged\" fails because the money came in yearly sums from the families farming the land, not as one large sum from a lender. \"Logged\" fails because the woods went on yielding firewood every winter, so they were still standing. \"Liquidated\" fails because his son's inventory opens with the house and farms.",
+      "kills": {
+        "mortgaged": {
+          "type": "logic",
+          "quote": "each entered against a named farm",
+          "why": "The money came from the households farming each farm, year by year.",
+          "surface_fit": "An heir raising money from an estate could well have borrowed against it, and mortgaged is a standard word for what nineteenth-century heirs did with estates.",
+          "inference": "A mortgage brings one large sum from a lender; these were equal sums every autumn from forty households, each tied to the farm it worked, which is payment for using the land, not a loan against it."
+        },
+        "logged": {
+          "type": "logic",
+          "quote": "yielding a little firewood money every winter",
+          "why": "The woods were still standing and in use.",
+          "surface_fit": "The estate held oak woods, and selling oak timber was a common way for an owner to turn woodland into money.",
+          "inference": "Woods that yield a little firewood every winter through 1858 were still standing; an estate whose oaks had been sold off would have no firewood income from them."
+        },
+        "liquidated": {
+          "type": "explicit",
+          "quote": "opens with the house and the forty farms",
+          "why": "The son inherited the estate.",
+          "surface_fit": "A city merchant who inherits a country estate could easily sell the whole property off, and liquidated is the usual word for that. The estate's wages stop.",
+          "inference": "A son's inventory lists what his father still owned, and it opens with the house and the farms, so the father had kept the estate."
+        }
+      }
+    },
+    {
+      "key": "liquidated",
+      "passage": "In 1838 a merchant inherited an estate of farms and oak woods worked by hired hands, and his account books for the next twenty years survive. In 1840 they record two sums, one from a neighboring landowner and one from an auctioneer who spent a week at the house, together larger than thirty years of the estate's profits. After that the books carry no wages, rents or repairs at all, only half-yearly dividends from the railway shares he bought that summer. From those books, one historian concluded that, above all, he had ______ the estate.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "A neighboring landowner and an auctioneer paid him more than thirty years' profits, after which the estate vanishes from his books and railway dividends take its place, so he had \"liquidated\" it. \"Logged\" fails because a landowner buys land with its woods standing and an auctioneer sells a house's contents, so the money was not a timber price. \"Leased\" fails because the regular sums that follow are dividends on shares, not rents. \"Mortgaged\" fails because the half-yearly sums came in to him as dividends rather than going out to a lender.",
+      "kills": {
+        "logged": {
+          "type": "logic",
+          "quote": "one from a neighboring landowner",
+          "why": "The buyers bought land and contents, not timber.",
+          "surface_fit": "The estate held oak woods, and selling oak timber was a common way for an owner to turn woodland into money. The books record huge sums coming in.",
+          "inference": "A neighboring landowner buys land, woods and all, and an auctioneer sells a house's contents; neither buys timber, so the sums were the price of the estate itself, after which the estate's own entries stop."
+        },
+        "leased": {
+          "type": "logic",
+          "quote": "half-yearly dividends from the railway shares",
+          "why": "The regular income came from shares.",
+          "surface_fit": "Landowners commonly drew income from estates by renting the farms to tenants, and leased is the ordinary word for it. The hired hands' wages stop and regular income takes their place.",
+          "inference": "The regular sums are dividends paid on railway shares, so the steady income came from where the money was put, not from tenants on the estate."
+        },
+        "mortgaged": {
+          "type": "logic",
+          "quote": "only half-yearly dividends",
+          "why": "The half-yearly sums were paid to him.",
+          "surface_fit": "An heir raising money from an estate could well have borrowed against it, and mortgaged is a standard word for what nineteenth-century heirs did with estates. A huge sum followed by half-yearly entries for years is the very pattern of a loan.",
+          "inference": "A mortgage's half-yearly entries are payments going out to a lender; dividends are payments coming in from shares he owns, and the huge sums came from buyers, so nothing was borrowed."
+        }
+      }
+    },
+    {
+      "key": "logged",
+      "passage": "In 1838 a merchant inherited an estate of farms and oak woods worked by hired hands, and his account books for the next twenty years survive. In 1841 and 1842 they record payments from a naval shipyard, entered load by load, together larger than ten years of the estate's profits. In 1843 he paid extra men to pull stumps and sow grass, and his regular hands' wages run on unchanged to 1858. From those books, one historian concluded that, above all, he had ______ the estate.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "A naval shipyard paid him load by load, and afterward he hired men to pull stumps and sow grass, so he had sold the oaks: he had \"logged\" the estate. \"Mortgaged\" fails because money paid load by load by a shipyard is a buyer's price, not a loan. \"Leased\" fails because he himself paid the men who worked the land. \"Liquidated\" fails because he went on paying the estate's hands until 1858.",
+      "kills": {
+        "mortgaged": {
+          "type": "logic",
+          "quote": "entered load by load",
+          "why": "The money came from a buyer paying for what it hauled away.",
+          "surface_fit": "An heir raising money from an estate could well have borrowed against it, and mortgaged is a standard word for what nineteenth-century heirs did with estates. The sums were worth ten years of profits.",
+          "inference": "A loan arrives as one sum and is paid back; these sums came in from a shipyard load by load, the way a buyer pays for goods as they are carted off, and the stumps pulled afterward show what the loads were."
+        },
+        "leased": {
+          "type": "logic",
+          "quote": "he paid extra men to pull stumps",
+          "why": "He was still working the land himself.",
+          "surface_fit": "Landowners commonly drew income from estates by renting the farms to tenants, and leased is the ordinary word for it. Clearing stumps and sowing grass could be readying land for a tenant.",
+          "inference": "An owner who pays his own men to clear and sow the land, and keeps paying his regular hands, is farming it himself; tenants would do and pay for their own work."
+        },
+        "liquidated": {
+          "type": "logic",
+          "quote": "his regular hands' wages run on unchanged to 1858",
+          "why": "He went on running the estate.",
+          "surface_fit": "A city merchant who inherits a country estate could easily sell the whole property off, and liquidated is the usual word for that. The sums were worth ten years of profits.",
+          "inference": "He was still paying the estate's regular workers every year until 1858, so he still owned and ran it; he had sold something from it, not the estate itself."
+        }
+      }
+    },
+    {
+      "key": "mortgaged",
+      "passage": "In 1838 a merchant inherited an estate of farms and oak woods worked by hired hands, and his account books for the next twenty years survive. In 1840 they record a single sum from a city bank, larger than ten years of the estate's profits, and from then on a payment to the same bank every half year, while the hired hands' wages run on unchanged. In 1858, after the last such payment, the bank returns the estate's deed. From those books, one historian concluded that, above all, he had ______ the estate.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The merchant took one large sum from a bank, paid the bank back every half year for eighteen years and got the estate's deed back after the last payment, so he had \"mortgaged\" the estate. \"Liquidated\" fails because he went on paying the estate's hands, so he still ran it. \"Logged\" fails because the large sum came from a bank and was paid back, so it was a loan, not a timber price. \"Leased\" fails because the regular payments went out from him to the bank, while his own hands still worked the farms.",
+      "kills": {
+        "liquidated": {
+          "type": "logic",
+          "quote": "the hired hands' wages run on unchanged",
+          "why": "He kept running the estate.",
+          "surface_fit": "A city merchant who inherits a country estate could easily sell the whole property off, and liquidated is the usual word for that. One sum worth ten years of profits looks like the proceeds of a sale.",
+          "inference": "A man who sold his estate would stop paying its workers; he paid them every year, so he still had it, and the bank held only its deed as security."
+        },
+        "logged": {
+          "type": "logic",
+          "quote": "a single sum from a city bank",
+          "why": "The large sum was a bank's money, repaid over time.",
+          "surface_fit": "The estate held oak woods, and selling oak timber was a common way for an owner to turn woodland into money. A large single payment is what an owner gets for his timber.",
+          "inference": "Money from a bank that is paid back to the same bank every half year was borrowed; a timber sale's price is never repaid."
+        },
+        "leased": {
+          "type": "logic",
+          "quote": "a payment to the same bank every half year",
+          "why": "The regular entries are payments going out.",
+          "surface_fit": "Landowners commonly drew income from estates by renting the farms to tenants, and leased is the ordinary word for it. Regular half-yearly entries running for years look like rents.",
+          "inference": "These regular entries are payments he made to a bank, not sums he received from tenants, and his own hired hands were still working the farms."
+        }
+      }
+    }
+  ]
+}

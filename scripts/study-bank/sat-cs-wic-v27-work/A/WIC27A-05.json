@@ -1,0 +1,146 @@
+{
+  "id": "WIC27A-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a fallen log in a mountain stream",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "highway",
+    "hatchery",
+    "garden",
+    "hostel"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "garden",
+    "highway",
+    "hostel",
+    "hatchery"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "After a decade of watching it, one ecologist called the log, above all, the valley's ______.",
+  "worlds": [
+    {
+      "key": "highway",
+      "passage": "In 1980 a storm dropped a two-hundred-year-old fir into a mountain stream, and its trunk, four feet thick, has lain there ever since. It came to rest across the stream, its ends on both banks, a few feet above a bedrock chute too deep and fast to wade for a mile either way, up which salmon race each autumn to the gravel beds above. Trail cameras catch martens, deer mice and bobcats on it every night, and the moss on its top has worn to a bare strip a foot wide. After a decade of watching it, one ecologist called the log, above all, the valley's ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The log spans a chute nothing can wade for a mile either way, and animals cross on it nightly, wearing a bare strip along its top, so it carries the valley's traffic: it is the valley's \"highway.\" \"Hatchery\" fails because the salmon race past it to spawn in gravel beds above. \"Hostel\" fails because the chute is too fast for fish to rest in; they race through it. \"Garden\" fails because the traffic has worn its top bare.",
+      "kills": {
+        "hatchery": {
+          "type": "logic",
+          "quote": "up which salmon race each autumn to the gravel beds above",
+          "why": "The salmon spawn upstream, past the log, so their young are not born at it.",
+          "surface_fit": "Fallen trees in mountain streams are famous for creating salmon spawning habitat, so an ecologist calling one the valley's hatchery is an ordinary thing to read.",
+          "inference": "Salmon do come past the log every autumn, but they are racing up the chute to gravel beds above it; their eggs are laid there, and the bedrock beneath the log holds no gravel to lay them in."
+        },
+        "hostel": {
+          "type": "logic",
+          "quote": "a bedrock chute too deep and fast to wade",
+          "why": "The water under the log is a fast chute, where passing fish cannot pause.",
+          "surface_fit": "A log in a stream makes resting water where migrating fish pause, and \"hostel\" is a natural metaphor for a stop on a fish's journey.",
+          "inference": "Migrating fish rest in slow, deep pools; the log lies over a chute fast enough that no one can wade it for a mile and the salmon race through it, so the fish going upstream find no stopping place there."
+        },
+        "garden": {
+          "type": "logic",
+          "quote": "worn to a bare strip a foot wide",
+          "why": "Nightly traffic has worn the top bare, so nothing can root along it.",
+          "surface_fit": "Fallen trunks are well known as nurse logs on which seedlings and mosses grow, so \"the valley's garden\" is a phrase an ecologist might plausibly use.",
+          "inference": "The moss along the top has been worn to bare wood by the animals crossing every night; plants cannot take hold on a surface that feet keep scraping clean."
+        }
+      }
+    },
+    {
+      "key": "hatchery",
+      "passage": "In 1980 a storm dropped a two-hundred-year-old fir into a mountain stream, and its trunk, four feet thick, has lain there ever since. It came to rest across the channel at water level, and each winter floods pour over it, scouring a pool on its downstream side and dropping the finer gravel in a broad bar below. Every autumn salmon crowd onto that bar, and by November their spent bodies line its edges; each spring the shallows below fill with finger-long fry. Below the bar the stream spreads so shallow that deer wade it. After a decade of watching it, one ecologist called the log, above all, the valley's ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "Floods over the log sort gravel into a bar where salmon gather each autumn and die, and the shallows below fill with young fish each spring, so the log makes the place the valley's salmon are born: its \"hatchery.\" \"Hostel\" fails because the salmon end their lives on the bar rather than resting and moving on. \"Highway\" fails because the stream below is shallow enough for deer to wade. \"Garden\" fails because floods pour over the trunk every winter.",
+      "kills": {
+        "hostel": {
+          "type": "logic",
+          "quote": "their spent bodies line its edges",
+          "why": "The salmon die at the bar after spawning, so it is the end of their journey, not a stop on it.",
+          "surface_fit": "A log in a stream makes resting water where migrating fish pause, and \"hostel\" is a natural metaphor for a stop on a fish's journey.",
+          "inference": "Salmon crowding into the pool beside a log look like travelers resting, but by November their bodies line the bar; salmon die after spawning, so these fish came to the bar to end their run, and the fry that appear in spring are their young."
+        },
+        "highway": {
+          "type": "logic",
+          "quote": "so shallow that deer wade it",
+          "why": "Animals can wade the stream right there, so the log carries no traffic they need.",
+          "surface_fit": "A big trunk lying in a stream is the classic natural bridge, and ecologists often describe fallen logs as routes that small animals travel along, so \"highway\" fits at first sight.",
+          "inference": "A crossing matters only where animals cannot get over otherwise; just below the bar the water is shallow enough for deer to wade, and the log itself lies at water level under winter floods, so it is not how animals get across."
+        },
+        "garden": {
+          "type": "logic",
+          "quote": "each winter floods pour over it",
+          "why": "Floods run over the trunk every winter and strip anything growing on it.",
+          "surface_fit": "Fallen trunks are well known as nurse logs on which seedlings and mosses grow, so \"the valley's garden\" is a phrase an ecologist might plausibly use.",
+          "inference": "The winter floods that build the gravel bar run over the top of the trunk, tearing away anything rooted there each year, so the log cannot carry a growing crop of plants."
+        }
+      }
+    },
+    {
+      "key": "garden",
+      "passage": "In 1980 a storm dropped a two-hundred-year-old fir into a mountain stream, and its trunk, four feet thick, has lain there ever since. It came to rest high above the stream, its root end on one bank and its crown wedged among boulders midstream, above every flood since; salmon heading upstream pass beneath it over bare bedrock. Its bark has rotted into a soft bed, and hemlock and huckleberry seedlings, which rarely take hold in the thick moss of the forest floor, now stand in a dense row along its length. After a decade of watching it, one ecologist called the log, above all, the valley's ______.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "Seedlings that rarely take hold on the forest floor stand in a dense row along the rotting trunk, so the log is where the valley's young trees get their start: its \"garden.\" \"Highway\" fails because its crown rests among boulders midstream, so it reaches only one bank. \"Hatchery\" and \"hostel\" fail because the salmon pass beneath it over bare bedrock, with no gravel to spawn in and no pool to rest in.",
+      "kills": {
+        "highway": {
+          "type": "logic",
+          "quote": "its crown wedged among boulders midstream",
+          "why": "The log reaches only one bank, so animals cannot cross the stream on it.",
+          "surface_fit": "A big trunk lying in a stream is the classic natural bridge, and ecologists often describe fallen logs as routes that small animals travel along, so \"highway\" fits at first sight.",
+          "inference": "A trunk lying out over a stream looks like a natural bridge, but this one runs from one bank to boulders in the middle of the stream; an animal walking it ends up midstream, no nearer the far side."
+        },
+        "hatchery": {
+          "type": "logic",
+          "quote": "pass beneath it over bare bedrock",
+          "why": "There is only bedrock under the log, with no gravel where fish could lay eggs.",
+          "surface_fit": "Fallen trees in mountain streams are famous for creating salmon spawning habitat, so an ecologist calling one the valley's hatchery is an ordinary thing to read.",
+          "inference": "Salmon need loose gravel to dig their nests; under this log the stream runs over bare bedrock, and the log, above every flood, has never sorted any gravel, so the fish passing beneath it lay their eggs elsewhere."
+        },
+        "hostel": {
+          "type": "logic",
+          "quote": "heading upstream pass beneath it",
+          "why": "The salmon pass under the log without stopping, over bedrock with no resting pool.",
+          "surface_fit": "A log in a stream makes resting water where migrating fish pause, and \"hostel\" is a natural metaphor for a stop on a fish's journey.",
+          "inference": "Migrating salmon pause in pools dug out by logs lying in the current; this log is above every flood and has dug out nothing, so the fish heading upstream pass beneath it over bare rock and do not stop."
+        }
+      }
+    },
+    {
+      "key": "hostel",
+      "passage": "In 1980 a storm dropped a two-hundred-year-old fir into a mountain stream, and its trunk, four feet thick, has lain there ever since. It came to rest along the current, parallel to the banks, and floods sweeping around it have scoured a pool ten feet deep in its shade. Each summer the pool holds hundreds of adult salmon, and fish tagged there turn up weeks later on gravel beds miles upstream. Seedlings sprout on its top each spring and are gone by winter, when the flood that deepens the pool runs over the trunk. After a decade of watching it, one ecologist called the log, above all, the valley's ______.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "Salmon tagged in the pool beside the log turn up weeks later on gravel beds miles upstream, so the log's pool is a resting stop on their journey: the valley's \"hostel.\" \"Hatchery\" fails because the salmon spawn on those gravel beds upstream, not at the log. \"Highway\" fails because the log lies along the current, parallel to the banks, joining neither. \"Garden\" fails because the winter flood runs over the trunk and takes each year's seedlings.",
+      "kills": {
+        "hatchery": {
+          "type": "logic",
+          "quote": "turn up weeks later on gravel beds miles upstream",
+          "why": "The salmon spawn far upstream, so the young are not born at the log.",
+          "surface_fit": "Fallen trees in mountain streams are famous for creating salmon spawning habitat, so an ecologist calling one the valley's hatchery is an ordinary thing to read.",
+          "inference": "Hundreds of salmon in the pool look like a spawning ground, but the same fish are found weeks later on gravel beds miles upstream, which is where they lay their eggs; the log shelters them on the way and produces no young."
+        },
+        "highway": {
+          "type": "logic",
+          "quote": "parallel to the banks",
+          "why": "Lying along the current, the log joins neither bank to the other.",
+          "surface_fit": "A big trunk lying in a stream is the classic natural bridge, and ecologists often describe fallen logs as routes that small animals travel along, so \"highway\" fits at first sight.",
+          "inference": "A log becomes a crossing by reaching from bank to bank; this one lies lengthwise in the current, parallel to both banks, so an animal on it is still in the middle of the stream."
+        },
+        "garden": {
+          "type": "logic",
+          "quote": "are gone by winter",
+          "why": "Whatever sprouts on the trunk is swept off each winter, so nothing grows up there.",
+          "surface_fit": "Fallen trunks are well known as nurse logs on which seedlings and mosses grow, so \"the valley's garden\" is a phrase an ecologist might plausibly use.",
+          "inference": "Seedlings do sprout on the trunk each spring, which is what makes the word tempting, but the winter flood runs over the trunk and takes them; a log that loses every year's growth is not where anything is raised."
+        }
+      }
+    }
+  ]
+}

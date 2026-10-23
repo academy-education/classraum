@@ -1,0 +1,146 @@
+{
+  "id": "WIC27B-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a flood after a drought",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "irrigated",
+    "leveled",
+    "marooned",
+    "nourished"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "leveled",
+    "nourished",
+    "irrigated",
+    "marooned"
+  ],
+  "pos": "verb",
+  "after_blank": "their",
+  "blank_sentence": "One agronomist later argued that, for the farmers, the flood had above all ______ their fields.",
+  "worlds": [
+    {
+      "key": "irrigated",
+      "passage": "In 1952, after three dry years, a river broke its banks and spread for five days across a broad valley, filling every side channel between its villages and their fields. It had passed through a chain of deep mountain lakes on its way down, and when it drained the farmers sowed winter wheat that same week in their old furrows. The wheat came up thick on every flooded farm, while on the terraces above the valley it withered for a fourth year. One agronomist later argued that, for the farmers, the flood had above all ______ their fields.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "After three dry years, wheat sown in the soaked ground thrived on the flooded farms and withered on the terraces the water never reached, so the flood \"irrigated\" the fields. \"Nourished\" fails because water that has passed through deep lakes has dropped its silt in them, so it had nothing to leave on the fields. \"Leveled\" fails because the farmers sowed in their old furrows, so the ground kept its shape. \"Marooned\" fails because they reached and sowed their fields the week the water drained.",
+      "kills": {
+        "nourished": {
+          "type": "logic",
+          "quote": "a chain of deep mountain lakes",
+          "why": "The water had dropped its silt in the lakes upstream.",
+          "surface_fit": "Floods are famous for leaving fertile soil behind, and a flood that nourished the fields is the classic happy ending for farmers. The flooded farms' wheat came up thick.",
+          "inference": "A river slows in deep lakes and its silt settles to their beds, so water that had passed through a chain of them carried little to lay down; in a fourth dry year, the wheat's advantage came from the water soaked into the ground."
+        },
+        "leveled": {
+          "type": "logic",
+          "quote": "in their old furrows",
+          "why": "The fields kept their old shape.",
+          "surface_fit": "Floods drop sediment in low places and smooth a valley floor, so a flood that leveled the farmers' fields is an ordinary thing for an agronomist to say.",
+          "inference": "Old furrows are shallow ridges that any deposit would bury; if the farmers could sow in them the week the water left, the ground had not been reshaped."
+        },
+        "marooned": {
+          "type": "logic",
+          "quote": "sowed winter wheat that same week",
+          "why": "The farmers reached their fields as soon as the water drained.",
+          "surface_fit": "The flood filled every side channel between the villages and their fields, which is how fields get cut off from the people who work them.",
+          "inference": "Sowing the flooded fields the week the water drained means the side channels had emptied with the rest of the flood, leaving nothing between farmer and field."
+        }
+      }
+    },
+    {
+      "key": "leveled",
+      "passage": "In 1952, after three dry years, a river broke its banks and spread for five days across a broad valley, filling every side channel between its villages and their fields. It came down fast off bare slopes carrying coarse gray sand, which it dropped wherever the current slowed: in old stream channels, ditches and the low hollows the farmers had always plowed around. Rain returned that winter, and the next spring they plowed whole farms in straight furrows for the first time, the wheat in the old hollows coming up no thicker than elsewhere. One agronomist later argued that, for the farmers, the flood had above all ______ their fields.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The flood filled channels, ditches and hollows with sand, and the next spring farmers plowed whole farms in straight furrows, so it \"leveled\" their fields. \"Irrigated\" fails because rain returned that winter, so the flood's water gave the crop nothing the rain did not. \"Nourished\" fails because wheat on the new sand grew no thicker than elsewhere. \"Marooned\" fails because the sand filled the old channels and the farmers plowed every part of their farms.",
+      "kills": {
+        "irrigated": {
+          "type": "logic",
+          "quote": "Rain returned that winter",
+          "why": "The crop had rain, so the flood's water made no difference.",
+          "surface_fit": "After three dry years, five days of river water across the farms looks like the watering the valley needed.",
+          "inference": "With rain back that winter, the soil had water whether or not the flood had covered it, and the wheat on flooded ground grew no thicker; the water left no advantage."
+        },
+        "nourished": {
+          "type": "logic",
+          "quote": "coming up no thicker than elsewhere",
+          "why": "The sand did not make the wheat grow better.",
+          "surface_fit": "Floods are famous for leaving fertile soil behind, and a flood that nourished the fields is the classic happy ending for farmers. The flood laid new sediment on the farms.",
+          "inference": "Wheat sown in the hollows, where the sand lay deepest, grew no better than elsewhere, so the deposit added nothing the crop could use; what changed was where the farmers could plow."
+        },
+        "marooned": {
+          "type": "logic",
+          "quote": "in old stream channels",
+          "why": "The sand filled the channels in.",
+          "surface_fit": "The flood filled every side channel between the villages and their fields, which is how fields get cut off from the people who work them.",
+          "inference": "The sand settled in the old channels, the same low ground that had filled between villages and fields, and the next spring the farmers plowed whole farms end to end, so the channels ended up filled in rather than standing as barriers."
+        }
+      }
+    },
+    {
+      "key": "marooned",
+      "passage": "In 1952, after three dry years, a river broke its banks and spread for five days across a broad valley, filling every side channel between its villages and their fields. When it drained, it did not go back to its old bed and kept instead a deep new channel it had cut down the valley's eastern side, which no ford or bridge crossed until 1963. The farmers all lived in villages on the western side, and the province's tax rolls list no grain from the eastern fields for the next eleven years. One agronomist later argued that, for the farmers, the flood had above all ______ their fields.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The river kept a new, uncrossable channel between the farmers' villages and their eastern fields, which yielded no grain for eleven years, so the flood \"marooned\" those fields. \"Nourished\" and \"irrigated\" fail because fields that produced nothing for eleven years gave the farmers no benefit from either soil or water. \"Leveled\" fails because cutting a deep new channel made the valley floor less even, not more.",
+      "kills": {
+        "nourished": {
+          "type": "logic",
+          "quote": "list no grain from the eastern fields",
+          "why": "The eastern fields grew nothing the farmers could use.",
+          "surface_fit": "Floods are famous for leaving fertile soil behind, and a flood that nourished the fields is the classic happy ending for farmers.",
+          "inference": "Whatever the flood left on the eastern fields, they paid no grain tax for eleven years, so nothing was grown there; for the farmers, the flood's effect was to put a river between them and that land."
+        },
+        "irrigated": {
+          "type": "logic",
+          "quote": "the eastern fields for the next eleven years",
+          "why": "The watered fields went unused.",
+          "surface_fit": "After three dry years, five days of river water across the farms looks like the watering the valley needed.",
+          "inference": "Fields that produced no grain for eleven years, across a channel no one could cross, gave the farmers nothing from the water that soaked them."
+        },
+        "leveled": {
+          "type": "logic",
+          "quote": "a deep new channel it had cut",
+          "why": "The flood cut into the valley floor.",
+          "surface_fit": "Floods drop sediment in low places and smooth a valley floor, so a flood that leveled the farmers' fields is an ordinary thing for an agronomist to say.",
+          "inference": "A flood that cuts a deep new channel down one side of a valley has made the ground less even, the reverse of smoothing it."
+        }
+      }
+    },
+    {
+      "key": "nourished",
+      "passage": "In 1952, after three dry years, a river broke its banks and spread for five days across a broad valley, filling every side channel between its villages and their fields. It came down brown from eroding hills and, as it drained, left a skin of dark mud over every field it had covered. The dry weather held through the winter, and the cooperative's books give that winter's wheat from flooded farms and dry terraces the same low yield; the next three harvests, in years of ordinary rain, were the largest the valley had recorded. One agronomist later argued that, for the farmers, the flood had above all ______ their fields.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The water did the crop no good that dry winter, but the dark mud it left was followed by three record harvests, so the flood \"nourished\" the fields. \"Irrigated\" fails because the flooded farms yielded no more than the unflooded terraces that winter. \"Leveled\" fails because a skin of mud is a thin coat over the ground, too thin to fill its hollows. \"Marooned\" fails because the farmers harvested those fields for three record years.",
+      "kills": {
+        "irrigated": {
+          "type": "explicit",
+          "quote": "the same low yield",
+          "why": "The flooded farms did no better that winter than farms the water never reached.",
+          "surface_fit": "After three dry years, five days of river water across the farms looks like the watering the valley needed.",
+          "inference": "If the flooded farms' wheat yielded no more than the terraces' in that dry winter, the water itself gave the crop nothing; the gain came later, in years of ordinary rain, from what the water left behind."
+        },
+        "leveled": {
+          "type": "logic",
+          "quote": "a skin of dark mud",
+          "why": "The deposit was too thin to reshape the ground.",
+          "surface_fit": "Floods drop sediment in low places and smooth a valley floor, so a flood that leveled the farmers' fields is an ordinary thing for an agronomist to say. This flood left a deposit on every field.",
+          "inference": "A skin is a thin coat lying over the ground in the shape it already had; it changed what the soil held, not the form of the land."
+        },
+        "marooned": {
+          "type": "logic",
+          "quote": "the next three harvests",
+          "why": "The farmers harvested their fields every year.",
+          "surface_fit": "The flood filled every side channel between the villages and their fields, which is how fields get cut off from the people who work them.",
+          "inference": "Three record harvests from the flooded fields mean the farmers were sowing and reaping them every year, so the side channels had kept no one from their land."
+        }
+      }
+    }
+  ]
+}

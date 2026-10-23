@@ -1,0 +1,146 @@
+{
+  "id": "WIC27A-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "radio and a country's newspapers",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "dethroned",
+    "hamstrung",
+    "homogenized",
+    "fractured"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "fractured",
+    "dethroned",
+    "homogenized",
+    "hamstrung"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "Writing in 1960, one press historian concluded that radio had ______ the country's newspapers.",
+  "worlds": [
+    {
+      "key": "dethroned",
+      "passage": "In 1925 each large city in one country had its own daily newspaper, and the papers jointly owned the wire service that supplied their national news. The wire service soon sold its bulletins to the new radio stations as well, and by 1940 the stations read each day's main stories aloud at noon; the papers, printed at dawn, carried those stories a day after listeners had heard them. Circulation and advertising kept rising as each paper filled the space national stories had held with its own city's courts, schools and sports. Writing in 1960, one press historian concluded that radio had ______ the country's newspapers.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "Listeners heard each day's main stories at noon, a day before the papers could print them, so radio took the papers' place as the first source of news without weakening them: it \"dethroned\" them. \"Hamstrung\" fails because circulation and advertising kept rising. \"Homogenized\" fails because each paper filled its pages with its own city's news, which made the papers less alike. \"Fractured\" fails because the papers sold their bulletins to radio together, through the service they jointly owned.",
+      "kills": {
+        "hamstrung": {
+          "type": "explicit",
+          "quote": "Circulation and advertising kept rising",
+          "why": "Rising sales and advertising mean the papers had more means to do their work, not less.",
+          "surface_fit": "The arrival of radio is often said to have crippled newspapers by taking their advertising, so \"hamstrung\" is a natural verdict on what radio did to the press.",
+          "inference": "Advertising and circulation pay for a paper's reporters and pages, and both rose; radio took the first telling of the news from the papers but left them better funded, so their ability to work was not crippled."
+        },
+        "homogenized": {
+          "type": "logic",
+          "quote": "with its own city's courts, schools and sports",
+          "why": "Each paper turned to its own city's news, which differs from city to city.",
+          "surface_fit": "Radio built a single national audience, and historians often say mass media of that era made regional papers all alike, so \"homogenized\" reads naturally here.",
+          "inference": "The papers all took their national news from one service, but that was true before radio; what radio changed was that each paper moved its space to its own city's courts, schools and sports, which are different everywhere, so radio made the papers less alike."
+        },
+        "fractured": {
+          "type": "logic",
+          "quote": "The wire service soon sold its bulletins",
+          "why": "The papers' jointly owned service made the deal with radio as one body.",
+          "surface_fit": "Deals with radio stations really did split press associations in this period, and with the papers sharing one wire service, \"fractured\" is an obvious thing radio could have done to them.",
+          "inference": "The bulletins went to radio through the wire service the papers owned together, so the papers dealt with the stations as a single body; a deal they made jointly is not what split them."
+        }
+      }
+    },
+    {
+      "key": "hamstrung",
+      "passage": "In 1925 each large city in one country had its own daily newspaper, and the papers jointly owned the wire service that supplied their national news. Radio stations had no reporters and read the papers' stories aloud only after the papers were out. Advertisers moved their money to the stations, and by 1940 most papers had cut two thirds of their pages and every bureau outside their own city, filling the rest with that city's courts and council. They had voted together to cut the wire service to the one daily bulletin they could afford. Writing in 1960, one press historian concluded that radio had ______ the country's newspapers.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Losing their advertisers cost the papers two thirds of their pages, every outside bureau and most of their wire service, so they could no longer cover what they once had: radio \"hamstrung\" them. \"Dethroned\" fails because radio read the papers' stories only after the papers were out, so print still told the news first. \"Homogenized\" fails because the pages left went to each city's own courts and council. \"Fractured\" fails because the papers voted together on cutting the wire service.",
+      "kills": {
+        "dethroned": {
+          "type": "logic",
+          "quote": "only after the papers were out",
+          "why": "Radio repeated what the papers had already printed, so print still told the news first.",
+          "surface_fit": "Radio is famous for having taken over from print as the first place people heard the news, so \"dethroned the country's newspapers\" is a stock judgment for a press historian to make.",
+          "inference": "With no reporters of its own, radio could broadcast a story only after a paper had printed it, so anyone who wanted the news first still had to read it; radio took the papers' money, not their place as the first source."
+        },
+        "homogenized": {
+          "type": "logic",
+          "quote": "filling the rest with that city's courts and council",
+          "why": "The pages that survived went to local news, which differs in every city.",
+          "surface_fit": "Radio built a single national audience, and historians often say mass media of that era made regional papers all alike, so \"homogenized\" reads naturally here.",
+          "inference": "Closing outside bureaus and shrinking sounds like papers falling back on the same copy, but the space left went to each city's own courts and council, and even the shared wire was cut back; the papers ended up more local, not more alike."
+        },
+        "fractured": {
+          "type": "logic",
+          "quote": "voted together to cut the wire service",
+          "why": "The papers made their cuts as one body, so radio did not split them.",
+          "surface_fit": "Deals with radio stations really did split press associations in this period, and with the papers sharing one wire service, \"fractured\" is an obvious thing radio could have done to them.",
+          "inference": "Cutting the shared wire service was a joint vote the papers took and carried out together; papers that answer hard times by deciding together have been weakened, not broken into camps."
+        }
+      }
+    },
+    {
+      "key": "homogenized",
+      "passage": "In 1925 each large city in one country had its own daily newspaper, and the papers jointly owned the wire service that supplied their national news. Radio stations broadcast music and comedy and left the news to the papers. Their programs made the same few comedians and commentators famous in every city, and the papers' owners quarreled for a year over whether to buy those stars' columns through the wire service in place of local writers' work; in the end every paper did, and found that the columns sold better. Writing in 1960, one press historian concluded that radio had ______ the country's newspapers.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "Radio made the same stars famous everywhere, and in the end every paper bought those stars' columns through the shared wire service in place of local writers' work, so radio made the papers alike: it \"homogenized\" them. \"Dethroned\" fails because radio left the news to the papers. \"Hamstrung\" fails because the columns sold better, so the change was made from strength. \"Fractured\" fails because the owners' quarrel ended with every paper doing the same thing.",
+      "kills": {
+        "dethroned": {
+          "type": "explicit",
+          "quote": "left the news to the papers",
+          "why": "Radio did not take over the news, so the papers kept their place.",
+          "surface_fit": "Radio is famous for having taken over from print as the first place people heard the news, so \"dethroned the country's newspapers\" is a stock judgment for a press historian to make.",
+          "inference": "Radio stations carried entertainment and left news to the papers, so the papers stayed the place people learned the news; radio changed what filled the papers, not their rank."
+        },
+        "hamstrung": {
+          "type": "logic",
+          "quote": "found that the columns sold better",
+          "why": "The papers dropped local writers for columns that sold better, a choice made from strength.",
+          "surface_fit": "The arrival of radio is often said to have crippled newspapers by taking their advertising, so \"hamstrung\" is a natural verdict on what radio did to the press.",
+          "inference": "Replacing local writers looks like a paper losing its means, but the papers did it because the stars' columns sold better; they traded one kind of page for a more profitable one, so their capacity to work was not crippled."
+        },
+        "fractured": {
+          "type": "logic",
+          "quote": "in the end every paper did",
+          "why": "The owners' quarrel ended with all the papers making the same choice, so it did not split them.",
+          "surface_fit": "Deals with radio stations really did split press associations in this period, and with the papers sharing one wire service, \"fractured\" is an obvious thing radio could have done to them.",
+          "inference": "The year-long quarrel looks like the start of a split, but it ended with every paper buying the same columns through the service they owned together; a dispute that ends in a common purchase has drawn the papers together, not broken them apart."
+        }
+      }
+    },
+    {
+      "key": "fractured",
+      "passage": "In 1925 each large city in one country had its own daily newspaper, and the papers jointly owned the wire service that supplied their national news. Radio stations, which had no reporters, offered to pay for the wire service's bulletins. Papers in the larger cities voted to sell; the rest refused, fearing listeners would stop buying papers. In 1934 the larger papers began taking their national news from a new service the stations helped fund, and spent the stations' money opening bureaus in every province. Writing in 1960, one press historian concluded that radio had ______ the country's newspapers.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "Radio's offer divided the papers, and the larger ones left the service they had jointly owned for a new one the stations helped fund, so radio \"fractured\" the country's newspapers. \"Dethroned\" fails because the stations had no reporters and depended on the papers' bulletins. \"Hamstrung\" fails because the larger papers used the stations' money to open new bureaus. \"Homogenized\" fails because the papers now took their national news from two services, where before they had shared one.",
+      "kills": {
+        "dethroned": {
+          "type": "logic",
+          "quote": "which had no reporters",
+          "why": "Radio had to buy its news from the papers, so the papers remained its source.",
+          "surface_fit": "Radio is famous for having taken over from print as the first place people heard the news, so \"dethroned the country's newspapers\" is a stock judgment for a press historian to make.",
+          "inference": "The stations wanted the bulletins because they had no reporters of their own, so whatever radio broadcast came from the papers' services; a medium that depends on the papers for its news has not taken their place."
+        },
+        "hamstrung": {
+          "type": "logic",
+          "quote": "spent the stations' money opening bureaus",
+          "why": "The larger papers expanded with radio's money, so they were not crippled.",
+          "surface_fit": "The arrival of radio is often said to have crippled newspapers by taking their advertising, so \"hamstrung\" is a natural verdict on what radio did to the press.",
+          "inference": "Radio's payments let the larger papers open bureaus in every province, more coverage than they had before; papers that grow their reporting because of radio have not had their ability to work cut down."
+        },
+        "homogenized": {
+          "type": "logic",
+          "quote": "a new service the stations helped fund",
+          "why": "Two services now supplied national news where one had, so the papers grew less alike.",
+          "surface_fit": "Radio built a single national audience, and historians often say mass media of that era made regional papers all alike, so \"homogenized\" reads naturally here.",
+          "inference": "Before 1934 every paper took its national news from the one shared wire service; afterward the larger papers took it from a different service with its own bureaus, so two versions of the national news ran where there had been one."
+        }
+      }
+    }
+  ]
+}

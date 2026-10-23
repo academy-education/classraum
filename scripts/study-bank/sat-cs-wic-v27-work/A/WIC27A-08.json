@@ -1,0 +1,146 @@
+{
+  "id": "WIC27A-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "an oasis on a caravan road",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "emporium",
+    "fairground",
+    "gatehouse",
+    "estate"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "estate",
+    "fairground",
+    "gatehouse",
+    "emporium"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "In a history of the road, one scholar described the oasis as, above all, the desert's ______.",
+  "worlds": [
+    {
+      "key": "emporium",
+      "passage": "For six centuries an oasis of palms and wells stood alone on the caravan road across a desert, eleven days from the river and nine from the coast. Caravans from the river and from the coast both unloaded there, and merchants of a dozen peoples kept shops around its wells, buying each load and selling it on to a caravan bound the other way, so that few loads ever crossed the whole desert. Their surviving ledgers record sales in every week of the year. In a history of the road, one scholar described the oasis as, above all, the desert's ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Merchants of a dozen peoples bought each caravan's load and sold it to one going the other way, in every week of the year, so the oasis was the desert's great market: its \"emporium.\" \"Fairground\" fails because the ledgers show trade every week, not at one season. \"Gatehouse\" fails because few loads crossed the desert; caravans sold at the oasis and turned back. \"Estate\" fails because merchants of a dozen peoples kept their own shops there.",
+      "kills": {
+        "fairground": {
+          "type": "logic",
+          "quote": "record sales in every week of the year",
+          "why": "Trade went on every week, so the oasis was not a seasonal gathering place.",
+          "surface_fit": "Desert oases are well known as places where scattered herders and traders gathered, so calling one the desert's fairground fits both the sentence and the subject.",
+          "inference": "A fairground comes alive for a set season and stands empty between; the merchants' ledgers show sales in every week of the year, so the trade was continuous rather than gathered into a fair."
+        },
+        "gatehouse": {
+          "type": "logic",
+          "quote": "few loads ever crossed the whole desert",
+          "why": "Caravans ended their journeys at the oasis, so it controlled no passage across the desert.",
+          "surface_fit": "A lone oasis holding the only water on a long desert road is the obvious place to control and tax the traffic, which is what \"gatehouse\" suggests.",
+          "inference": "A gatehouse controls traffic passing through it; at this oasis the loads changed hands and each caravan went back the way it came, so hardly anything passed through: the oasis was where journeys ended."
+        },
+        "estate": {
+          "type": "logic",
+          "quote": "merchants of a dozen peoples kept shops",
+          "why": "Many independent merchants traded there, so it was not one owner's holding.",
+          "surface_fit": "Oases with valuable palm groves were often owned by powerful families and worked for their profit, so \"estate\" is a plausible word for one in a history.",
+          "inference": "An estate belongs to one owner and is run for his income; the oasis was crowded with shops kept by merchants of a dozen peoples, each buying and selling for himself, so no single owner ran it."
+        }
+      }
+    },
+    {
+      "key": "fairground",
+      "passage": "For six centuries an oasis of palms and wells stood alone on the caravan road across a desert, eleven days from the river and nine from the coast. For eleven months its wells served only a few families who grew their own dates. Each spring, when the rains brought grass, herders from every part of the desert and caravans from both ends of the road met there for a month of camel races, weddings, swapped animals and settled feuds, and then scattered back the way they had come. In a history of the road, one scholar described the oasis as, above all, the desert's ______.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "For one month each spring herders and caravans from everywhere met at the oasis for races, weddings and the settling of feuds, then scattered, so it was the desert's seasonal gathering place: its \"fairground.\" \"Emporium\" fails because for eleven months there was no one there to trade with. \"Gatehouse\" fails because those who came went back the way they had come, so nothing passed through to be controlled. \"Estate\" fails because the families who lived there grew their own dates.",
+      "kills": {
+        "emporium": {
+          "type": "logic",
+          "quote": "For eleven months its wells served only a few families",
+          "why": "Trade happened in one month a year, so the oasis was not a standing market.",
+          "surface_fit": "Oases on caravan roads are famous as trading towns where goods from distant lands changed hands, so \"the desert's emporium\" is a phrase a historian of the road would use.",
+          "inference": "Animals did change hands in the spring month, which makes the word tempting, but for eleven months the oasis held only a few date-growing families; a market town trades without pause, and this oasis's trading was packed into a single month of festivities."
+        },
+        "gatehouse": {
+          "type": "logic",
+          "quote": "scattered back the way they had come",
+          "why": "People came to the oasis and went home, so no traffic passed through it.",
+          "surface_fit": "A lone oasis holding the only water on a long desert road is the obvious place to control and tax the traffic, which is what \"gatehouse\" suggests.",
+          "inference": "Herders and caravans arrived from every direction and returned the way they came, so the oasis was the point they met at, not a passage on the way somewhere else; a gatehouse governs traffic going through."
+        },
+        "estate": {
+          "type": "logic",
+          "quote": "families who grew their own dates",
+          "why": "The few residents worked their own groves, so the oasis was not one owner's property.",
+          "surface_fit": "Oases with valuable palm groves were often owned by powerful families and worked for their profit, so \"estate\" is a plausible word for one in a history.",
+          "inference": "The people who lived at the oasis year round grew dates for themselves, not as tenants for a landlord; with the groves in their own hands, the oasis was no family's holding."
+        }
+      }
+    },
+    {
+      "key": "gatehouse",
+      "passage": "For six centuries an oasis of palms and wells stood alone on the caravan road across a desert, eleven days from the river and nine from the coast. The road's only water for nine days lay in its wells, and a fort of the river kingdom stood over them. Every caravan handed over a tenth of its load before watering, and the fort's tally books record caravans in every month of the year; caravans of the kingdom's enemies were turned back. Each year the tithe was carried to the river kingdom's treasury. In a history of the road, one scholar described the oasis as, above all, the desert's ______.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "The fort over the road's only water took a tenth of every load and turned the kingdom's enemies back, so the oasis controlled who crossed the desert: it was the desert's \"gatehouse.\" \"Emporium\" fails because the tithe was carried off to the kingdom's treasury rather than sold there. \"Fairground\" fails because caravans came and paid in every month. \"Estate\" fails because the oasis's income was a toll on passing loads, held by the kingdom's fort.",
+      "kills": {
+        "emporium": {
+          "type": "logic",
+          "quote": "the tithe was carried to the river kingdom's treasury",
+          "why": "Goods taken at the oasis were shipped off to the treasury, not sold there.",
+          "surface_fit": "Oases on caravan roads are famous as trading towns where goods from distant lands changed hands, so \"the desert's emporium\" is a phrase a historian of the road would use.",
+          "inference": "A tenth of every load piled up at the oasis, which looks like a market's stock, but each year it was carried away to the river kingdom's treasury; the oasis collected goods as tax and sold nothing, so it was not a trading town."
+        },
+        "fairground": {
+          "type": "logic",
+          "quote": "record caravans in every month of the year",
+          "why": "Caravans arrived and paid all year, with no gathering season.",
+          "surface_fit": "Desert oases are well known as places where scattered herders and traders gathered, so calling one the desert's fairground fits both the sentence and the subject.",
+          "inference": "A fairground draws crowds at one season; the fort's books show caravans arriving and paying in every month, so what happened at the oasis was a steady toll on each caravan, not a gathering of many."
+        },
+        "estate": {
+          "type": "logic",
+          "quote": "a fort of the river kingdom stood over them",
+          "why": "The oasis was held by a kingdom's soldiers and earned from tolls, not worked for an owner's crop.",
+          "surface_fit": "Oases with valuable palm groves were often owned by powerful families and worked for their profit, so \"estate\" is a plausible word for one in a history.",
+          "inference": "An estate earns its owner income from its land; this oasis's income was a tenth of passing loads, taken by the river kingdom's fort for its treasury, so its value lay in commanding the road's water, not in what its palms produced."
+        }
+      }
+    },
+    {
+      "key": "estate",
+      "passage": "For six centuries an oasis of palms and wells stood alone on the caravan road across a desert, eleven days from the river and nine from the coast. By 1500 one family in the coastal city had bought every palm and well. Each autumn its stewards had the dates picked by tenant families and carried on the family's own camels to its warehouses on the coast, and passing caravans watered there free. In a history of the road, one scholar described the oasis as, above all, the desert's ______.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "One coastal family owned every palm and well, and its stewards had tenants pick the dates and carry them to its own warehouses, so the oasis was a single owner's holding worked for profit: an \"estate.\" \"Emporium\" fails because the whole crop went to the family's warehouses on the coast, so nothing was sold at the oasis. \"Fairground\" fails because the autumn crowd was the family's tenants at work. \"Gatehouse\" fails because caravans watered free.",
+      "kills": {
+        "emporium": {
+          "type": "logic",
+          "quote": "to its warehouses on the coast",
+          "why": "The whole crop left for the family's own warehouses, so nothing was traded at the oasis.",
+          "surface_fit": "Oases on caravan roads are famous as trading towns where goods from distant lands changed hands, so \"the desert's emporium\" is a phrase a historian of the road would use.",
+          "inference": "A rich date crop at a caravan stop looks like the makings of a market, but every date went on the family's camels to its warehouses on the coast; goods leaving in one owner's hands are not being bought and sold where they grew."
+        },
+        "fairground": {
+          "type": "logic",
+          "quote": "picked by tenant families",
+          "why": "The only seasonal crowd was the family's tenants at harvest, working for one owner.",
+          "surface_fit": "Desert oases are well known as places where scattered herders and traders gathered, so calling one the desert's fairground fits both the sentence and the subject.",
+          "inference": "The autumn harvest did bring a season of activity, but it was tenant families picking dates for the family's camels; a fairground draws many peoples to trade and celebrate, and this was one owner's labor force at work."
+        },
+        "gatehouse": {
+          "type": "logic",
+          "quote": "passing caravans watered there free",
+          "why": "The oasis took nothing from passing caravans, so it controlled no traffic.",
+          "surface_fit": "A lone oasis holding the only water on a long desert road is the obvious place to control and tax the traffic, which is what \"gatehouse\" suggests.",
+          "inference": "A gatehouse earns its name by controlling and taxing passage; caravans watered at this oasis without paying, so the family let traffic pass freely and made its money from its own dates."
+        }
+      }
+    }
+  ]
+}

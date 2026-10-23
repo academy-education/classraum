@@ -1,0 +1,146 @@
+{
+  "id": "WIC27D-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a limestone cave's air and water",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "bellows",
+    "chimney",
+    "cistern",
+    "cooler"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "chimney",
+    "cooler",
+    "cistern",
+    "bellows"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "In a survey of the district, one geologist called the cave, above all, the hill's ______.",
+  "worlds": [
+    {
+      "key": "chimney",
+      "passage": "A cave opens in the side of a limestone hill above a village, and its passages wind back for a mile under the hill. A second, smaller opening breaks the surface near the hilltop. On frosty mornings a plume of vapor stands over that upper opening all day, and leaves dropped at the lower mouth drift inward. The drips from the cave's roof gather into a brook that runs out of the lower mouth. In a survey of the district, one geologist called the cave, above all, the hill's ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Leaves drift in at the lower mouth while warm, moist air leaves through the opening near the hilltop all day, so air flows up through the hill: the cave is the hill's \"chimney.\" \"Bellows\" fails because the air flows one way all day instead of in and out by turns. \"Cooler\" fails because the air leaving the cave is warmer than the frosty air outside. \"Cistern\" fails because the drips run out of the cave as a brook.",
+      "kills": {
+        "bellows": {
+          "type": "logic",
+          "quote": "stands over that upper opening all day",
+          "why": "Air leaves at the top steadily.",
+          "surface_fit": "A cave that moves air through a hill sounds like the hill breathing, and bellows is a natural word for that.",
+          "inference": "Air drifts in at the bottom while it leaves at the top all day long, so the flow runs one way without reversing; nothing is pushed out and drawn back in by turns."
+        },
+        "cooler": {
+          "type": "logic",
+          "quote": "a plume of vapor",
+          "why": "The air leaving the cave is warm and moist.",
+          "surface_fit": "Caves are known for staying cold, and villages have long kept food in them, so cooler is a natural guess.",
+          "inference": "Vapor condenses over the upper opening because the air leaving it is warmer and wetter than the frosty air outside, so the cave passes warm air out rather than holding cold."
+        },
+        "cistern": {
+          "type": "logic",
+          "quote": "runs out of the lower mouth",
+          "why": "The cave's water leaves as a brook.",
+          "surface_fit": "Limestone caves collect dripping water, and a village below a hill might draw its water from one, so cistern is plausible.",
+          "inference": "The drips gather into a brook that flows out of the mouth, so water passes through the cave rather than collecting in it."
+        }
+      }
+    },
+    {
+      "key": "bellows",
+      "passage": "A cave opens in the side of a limestone hill above a village, and its passages wind back for a mile under the hill. Cavers who have mapped all of it found every passage ending in a choke of clay. For hours before a storm, wind blows out of its mouth hard enough to bend the grass, and for hours after it blows back in. Ferns stay green just inside the mouth all winter, and the drips from its roof gather into a brook that runs out of it. In a survey of the district, one geologist called the cave, above all, the hill's ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "With a mile of passages behind one mouth, the cave blows air out for hours as a storm approaches and draws it back in afterward, so it is the hill's \"bellows.\" \"Chimney\" fails because every passage ends in clay, so air has no second way out. \"Cooler\" fails because ferns stay green inside the mouth all winter. \"Cistern\" fails because its water runs out as a brook.",
+      "kills": {
+        "chimney": {
+          "type": "logic",
+          "quote": "every passage ending in a choke of clay",
+          "why": "The cave has no second opening.",
+          "surface_fit": "A cave with a strong wind in its mouth suggests air rushing through the hill and out the top, which is what a chimney does.",
+          "inference": "If every passage ends in clay, the mouth is the cave's only way out, so air cannot enter low and leave high; no draft can run up through the hill."
+        },
+        "cooler": {
+          "type": "logic",
+          "quote": "Ferns stay green just inside the mouth all winter",
+          "why": "The air at the mouth stays mild.",
+          "surface_fit": "Caves are known for staying cold, and villages have long kept food in them, so cooler is a natural guess.",
+          "inference": "Ferns that stay green just inside the mouth all winter are growing in air milder than the winter outside, so the cave holds no store of cold."
+        },
+        "cistern": {
+          "type": "logic",
+          "quote": "a brook that runs out of it",
+          "why": "The water leaves the cave.",
+          "surface_fit": "A cave whose roof drips steadily could be where a village stores its water, so cistern fits the topic.",
+          "inference": "The drips form a brook that flows out of the mouth, so water does not collect in the cave; it passes straight through."
+        }
+      }
+    },
+    {
+      "key": "cistern",
+      "passage": "A cave opens in the side of a limestone hill above a village, and its passages wind back for a mile under the hill. Cavers who have mapped all of it found every passage ending in a choke of clay, and in all weathers a candle flame stands upright inside. Ferns stay green just inside the mouth all winter. The drips from its roof collect in a clay-floored basin that fills over the winter and sinks over the summer, and in dry years the village draws its water there. In a survey of the district, one geologist called the cave, above all, the hill's ______.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "Drips collect in a clay-floored basin that fills over the winter and sinks over the summer, and the village draws on it in dry years, so the cave is the hill's \"cistern.\" \"Chimney\" fails because every passage ends in clay. \"Bellows\" fails because a candle flame stands upright in all weathers. \"Cooler\" fails because ferns stay green inside the mouth all winter.",
+      "kills": {
+        "chimney": {
+          "type": "logic",
+          "quote": "every passage ending in a choke of clay",
+          "why": "The cave has no second opening.",
+          "surface_fit": "A long cave running under a hill could easily carry air up through it and out, as a flue does, so chimney fits the subject.",
+          "inference": "If every passage ends in clay, the mouth is the cave's only way out, so air cannot enter low and leave high; no draft can run up through the hill."
+        },
+        "bellows": {
+          "type": "logic",
+          "quote": "a candle flame stands upright inside",
+          "why": "The air in the cave is still.",
+          "surface_fit": "Caves with a mile of passages often blow air in and out as the weather changes, which is what bellows suggests.",
+          "inference": "A flame that stays upright in every kind of weather means no air is moving through the passages, so the cave is not pushing air out and drawing it back."
+        },
+        "cooler": {
+          "type": "logic",
+          "quote": "Ferns stay green just inside the mouth all winter",
+          "why": "The air at the mouth stays mild.",
+          "surface_fit": "Villagers have long kept food in caves because caves are cold, so cooler fits the sentence and the village setting.",
+          "inference": "Ferns that stay green just inside the mouth all winter are growing in air milder than the winter outside, so the cave holds no store of cold."
+        }
+      }
+    },
+    {
+      "key": "cooler",
+      "passage": "A cave opens in the side of a limestone hill above a village, and its passages wind back for a mile under the hill. Its passages slope steeply down from the mouth, each ending in a choke of clay. On winter nights cold air pours down into it, and from spring to autumn a candle flame stands upright inside. Ice that forms on the passage floors at midwinter lasts until summer's end, when it melts and drains away through cracks in the floor. In a survey of the district, one geologist called the cave, above all, the hill's ______.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "Cold air pours down the steep passages in winter and then lies still until autumn, so ice formed at midwinter lasts until summer's end: the cave holds the cold, and it is the hill's \"cooler.\" \"Chimney\" fails because every passage ends in clay. \"Bellows\" fails because from spring to autumn the air lies still. \"Cistern\" fails because the meltwater drains away through cracks in the floor.",
+      "kills": {
+        "chimney": {
+          "type": "logic",
+          "quote": "each ending in a choke of clay",
+          "why": "The cave has no second opening.",
+          "surface_fit": "Cold air pouring into a cave suggests a draft running through the hill, which is what a chimney carries.",
+          "inference": "With every passage ending in clay, air that pours in at the mouth has no way out at the top, so no draft can run up through the hill."
+        },
+        "bellows": {
+          "type": "logic",
+          "quote": "from spring to autumn a candle flame stands upright inside",
+          "why": "The air lies still for most of the year.",
+          "surface_fit": "Cold air pouring into the mouth on winter nights sounds like the hill drawing breath, and bellows is a natural word for that.",
+          "inference": "If a flame stands upright from spring to autumn, the air that poured in over the winter is not being pushed back out; it settles and stays, so the cave is not pumping air in and out."
+        },
+        "cistern": {
+          "type": "logic",
+          "quote": "drains away through cracks in the floor",
+          "why": "The water does not collect.",
+          "surface_fit": "A cave that holds ice for most of the year is holding a great deal of water, so cistern, a store of water, seems to fit.",
+          "inference": "When the ice melts the water drains through cracks in the floor, so it never gathers into a supply anyone could draw on."
+        }
+      }
+    }
+  ]
+}

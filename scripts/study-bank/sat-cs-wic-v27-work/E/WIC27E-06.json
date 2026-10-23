@@ -1,0 +1,146 @@
+{
+  "id": "WIC27E-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a copper mountain after mining",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "riddled",
+    "pitted",
+    "razed",
+    "poisoned"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "poisoned",
+    "pitted",
+    "riddled",
+    "razed"
+  ],
+  "pos": "verb",
+  "after_blank": "it",
+  "blank_sentence": "Surveying the mountain in 1980, one geologist wrote that mining had ______ it.",
+  "worlds": [
+    {
+      "key": "riddled",
+      "passage": "For eighty years after 1890, companies mined copper from a mountain above a valley town, until the last mine closed in 1972. All the ore came out through one mine head; a 1975 survey shows unbroken forest on every slope, and the mountain still keeps the morning sun off the town until nine. Since 1975 a road on the north slope has dropped a foot, a spring on the east slope has sunk out of sight, and two farmhouses on the south slope have split and been abandoned. The town still drinks from the streams below. Surveying the mountain in 1980, one geologist wrote that mining had ______ it.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "All the ore left through one mine head, the forest and the mountain's height are unchanged, and the ground has been sinking and splitting on three sides, so mining had \"riddled\" the mountain with workings. \"Pitted\" fails because the forest is unbroken on every slope. \"Razed\" fails because the mountain still shades the town until nine, and \"poisoned\" fails because the town still drinks from its streams.",
+      "kills": {
+        "pitted": {
+          "type": "logic",
+          "quote": "unbroken forest on every slope",
+          "why": "The slopes carry unbroken forest, so no holes were dug into the surface.",
+          "surface_fit": "Ground dropping and a spring vanishing into the ground sound like a pitted surface, and pitted is a common word for land marked by mining.",
+          "inference": "Open pits break the forest wherever they are dug; unbroken forest on every slope and one mine head for all the ore mean the ground is sinking into spaces cut beneath it, not into holes dug from above."
+        },
+        "razed": {
+          "type": "logic",
+          "quote": "keeps the morning sun off the town until nine",
+          "why": "The mountain still casts the town's morning shadow, so it has kept its height.",
+          "surface_fit": "Eighty years of copper mining could easily have leveled a mountain, and razed is the word for that.",
+          "inference": "A mountain cut down would let the sun reach the town earlier; it still shades the town until nine, so its top is where it was, and the damage is underneath."
+        },
+        "poisoned": {
+          "type": "logic",
+          "quote": "still drinks from the streams below",
+          "why": "The town still drinks the water that drains the mountain, so that water is not poisoned.",
+          "surface_fit": "Copper mining is notorious for poisoning streams, so a geologist could naturally say mining poisoned an old copper mountain.",
+          "inference": "A town does not keep drinking from streams fouled by mine waste; drawing its water from them still means the runoff is clean, so what mining harmed is the ground's support."
+        }
+      }
+    },
+    {
+      "key": "pitted",
+      "passage": "For eighty years after 1890, companies mined copper from a mountain above a valley town, until the last mine closed in 1972. The ore lay in a dozen scattered pockets near the surface, and for eighty years the company's miners worked them in daylight, each pocket becoming a crater, some a quarter mile across, the deepest now holding rainwater. Between them the slopes keep their old forest, and the mountain still keeps the morning sun off the town until nine. A trout hatchery below it still raises its fish in water piped from the mountain's streams. Surveying the mountain in 1980, one geologist wrote that mining had ______ it.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "A dozen scattered pockets were each dug out in daylight into craters, some a quarter mile across, with old forest between them, so mining had \"pitted\" the mountain. \"Riddled\" fails because the miners worked from the surface, not through tunnels. \"Razed\" fails because the mountain still shades the town until nine, and \"poisoned\" fails because a trout hatchery still uses its water.",
+      "kills": {
+        "riddled": {
+          "type": "logic",
+          "quote": "worked them in daylight",
+          "why": "The miners worked in the open air, so the mountain was not tunneled through.",
+          "surface_fit": "Mining a dozen separate ore bodies in one mountain sounds like it would leave the mountain full of workings, which is what riddled describes.",
+          "inference": "Riddled means pierced with passages; miners who worked in daylight for eighty years were digging from the surface, so they left craters, not tunnels."
+        },
+        "razed": {
+          "type": "logic",
+          "quote": "keeps the morning sun off the town until nine",
+          "why": "The mountain still shades the town in the morning, so its height is unchanged.",
+          "surface_fit": "Open-pit mining strips away the land, and a geologist could easily say eighty years of it razed a mountain.",
+          "inference": "If the mountain had been leveled, the morning sun would reach the town sooner; it does not, so the digging was confined to scattered pockets on its slopes."
+        },
+        "poisoned": {
+          "type": "logic",
+          "quote": "raises its fish in water piped from",
+          "why": "A hatchery still raises trout in the mountain's water, so the water is clean.",
+          "surface_fit": "Copper mines are known for poisoning water, and craters holding rainwater suggest contaminated pools.",
+          "inference": "Trout cannot be raised in water carrying mine waste; a hatchery still using the mountain's streams means the craters marked the land without fouling its water."
+        }
+      }
+    },
+    {
+      "key": "razed",
+      "passage": "For eighty years after 1890, companies mined copper from a mountain above a valley town, until the last mine closed in 1972. The ore lay in one great body under the summit, and from 1950 the company's miners worked it in daylight, bench by bench, the rock leaving by rail. Since 1965 the morning sun has reached the town an hour earlier, and the fire lookout that stood on the summit has been rebuilt on a hill across the valley. A trout hatchery below the mountain still raises its fish in water piped from its streams. Surveying the mountain in 1980, one geologist wrote that mining had ______ it.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "One great ore body under the summit was taken from above, bench by bench; since then the sun reaches the town an hour earlier and the summit lookout had to move, so mining had \"razed\" the mountain. \"Pitted\" fails because the single body was taken as a whole. \"Riddled\" fails because the miners worked in daylight from the top down, and \"poisoned\" fails because a trout hatchery still uses its water.",
+      "kills": {
+        "pitted": {
+          "type": "logic",
+          "quote": "one great body under the summit",
+          "why": "The ore was a single mass under the top, so taking it removed the top as a whole rather than leaving scattered holes.",
+          "surface_fit": "Mining from the surface with the rock carried away is how open pits are made, so pitted is the natural first guess.",
+          "inference": "Pitted describes a surface marked with separate holes; one body of ore under the summit, worked bench by bench until the lookout had to move and the sun came earlier, took the mountain's top down as a whole."
+        },
+        "riddled": {
+          "type": "logic",
+          "quote": "worked it in daylight, bench by bench",
+          "why": "The miners worked from the surface down in steps, so no tunnels were cut through the mountain.",
+          "surface_fit": "Eighty years of copper mining suggests long workings inside the mountain, which is what riddled means.",
+          "inference": "Riddling a mountain means boring passages through it; miners working in daylight, bench by bench, cut the mountain down from the top instead."
+        },
+        "poisoned": {
+          "type": "logic",
+          "quote": "raises its fish in water piped from its streams",
+          "why": "Trout are still raised in the mountain's water, so it is not poisoned.",
+          "surface_fit": "Removing a mountaintop is notorious for fouling the streams below, so poisoned is tempting.",
+          "inference": "Trout die in water carrying mine waste; a hatchery still using the mountain's streams shows that mining removed its top without poisoning its water."
+        }
+      }
+    },
+    {
+      "key": "poisoned",
+      "passage": "For eighty years after 1890, companies mined copper from a mountain above a valley town, until the last mine closed in 1972. The ore came up a single shaft from one deep vein, and a 1975 aerial survey shows unbroken forest on the slopes, while the mountain still keeps the morning sun off the town until nine. Since the mine closed, the town has piped its drinking water from a lake twenty miles off, the trout hatchery below the mountain has shut, and the alders along every stream bank stand bare and gray. Surveying the mountain in 1980, one geologist wrote that mining had ______ it.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "The mountain keeps its forest and height, yet since the mine closed the town has given up its water, the trout hatchery has shut and the streamside alders have died, so mining had \"poisoned\" it. \"Riddled\" fails because the ore came up a single shaft from one vein. \"Pitted\" fails because the slopes' forest is unbroken, and \"razed\" fails because the mountain still shades the town until nine.",
+      "kills": {
+        "riddled": {
+          "type": "logic",
+          "quote": "a single shaft from one deep vein",
+          "why": "The mine was one shaft following one vein, so the mountain was not honeycombed with tunnels.",
+          "surface_fit": "Old copper workings suggest a mountain full of tunnels, and riddled is the usual word for that.",
+          "inference": "Riddled means pierced in many places; a single shaft down one vein is one passage, so the mountain is not shot through with workings."
+        },
+        "pitted": {
+          "type": "logic",
+          "quote": "unbroken forest on the slopes",
+          "why": "The forest on the slopes is unbroken, so no pits were dug.",
+          "surface_fit": "Eighty years of copper mining leave pits on many mountains, so pitted fits the topic and the sentence.",
+          "inference": "Pits would break the forest; with the slopes unbroken, the harm must lie elsewhere, in the streams whose banks alone have died."
+        },
+        "razed": {
+          "type": "logic",
+          "quote": "keeps the morning sun off the town until nine",
+          "why": "The mountain still shades the town in the morning, so it was not cut down.",
+          "surface_fit": "Bare gray trees along the streams make the mountain sound stripped, and razed is a natural word for a mountain wrecked by mining.",
+          "inference": "A leveled mountain would let the sun in earlier; it still shades the town until nine, so the mountain keeps its shape, and the dead trees stand only along its streams."
+        }
+      }
+    }
+  ]
+}

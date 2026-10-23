@@ -1,0 +1,146 @@
+{
+  "id": "WIC27A-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "an expressway and a mill town",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "drained",
+    "fragmented",
+    "engulfed",
+    "fossilized"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "drained",
+    "engulfed",
+    "fragmented",
+    "fossilized"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "In a 1990 study, one planner argued that the expressway had, above all, ______ the town.",
+  "worlds": [
+    {
+      "key": "drained",
+      "passage": "In 1958 an expressway was built up a river valley, joining a mill town of eight thousand people to a growing city twenty miles south. Its one exit lay at the edge of town, where the road set off south through open dairy country. Within a decade the mill's younger workers were making that forty-minute drive to city jobs each morning, and their families made it again on Saturdays to shop, while their houses in town stayed full. By 1990 the main street's forty stores had dwindled to eleven. In a 1990 study, one planner argued that the expressway had, above all, ______ the town.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The town's people stayed in their houses while their work and their shopping went forty minutes south, and its main street dwindled from forty stores to eleven, so the expressway \"drained\" it. \"Engulfed\" fails because the drive south still ran through open dairy country, so the city had not spread to the town. \"Fragmented\" fails because the road's one exit lay at the edge of town, so it did not run through the streets. \"Fossilized\" fails because a main street that lost most of its stores was changed, not kept as it was.",
+      "kills": {
+        "engulfed": {
+          "type": "logic",
+          "quote": "forty-minute drive",
+          "why": "The city was still a long drive away through farmland, so its spread had not reached the town.",
+          "surface_fit": "A small town joined by a new expressway to a growing city twenty miles away is the textbook case of a town swallowed by the city's suburbs.",
+          "inference": "Workers drove forty minutes through open dairy country to reach the city; a town swallowed by a growing city would have houses and stores running out to it, not farms, so the city drew the town's people toward itself from a distance instead of covering it."
+        },
+        "fragmented": {
+          "type": "logic",
+          "quote": "Its one exit lay at the edge of town",
+          "why": "The road met the town only at its edge, so it ran through no streets and split nothing.",
+          "surface_fit": "Expressways built in the 1950s are famous for cutting towns apart, and a planner saying a highway \"fragmented the town\" is an ordinary sentence about exactly this kind of project.",
+          "inference": "The expressway touched the town at a single exit on its edge and headed off through farmland, so no neighborhood lay on its far side; a road that only grazes a town's edge cannot cut the town into pieces."
+        },
+        "fossilized": {
+          "type": "logic",
+          "quote": "had dwindled to eleven",
+          "why": "Losing most of the main street's stores is a large change, not preservation.",
+          "surface_fit": "A mill town whose main street was never rebuilt after 1958 is easy to picture as frozen in that year, and the word suits a planner looking back thirty years later.",
+          "inference": "A fossilized town is one held in its old form; here the workers' jobs moved to the city and twenty-nine of forty stores closed, so the town's daily life was transformed even though its houses stayed full."
+        }
+      }
+    },
+    {
+      "key": "fragmented",
+      "passage": "In 1958 an expressway was built up a river valley, joining a mill town of eight thousand people to a growing city twenty miles south. It ran through the town on a raised bank along the old rail line, between the mill and the streets where most of its workers lived, and its nearest exit was in the next town. Within a decade those streets had a grocery, a school and a fire company of their own, a few hundred yards from the ones that still served the mill side. In a 1990 study, one planner argued that the expressway had, above all, ______ the town.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The raised road ran between the mill and the workers' streets, and those streets soon had their own grocery, school and fire company a few hundred yards from the old ones, so the expressway split the town in two: it \"fragmented\" it. \"Drained\" fails because the road had no exit in town, and the new shops and services opened inside it. \"Engulfed\" fails because with no exit nearer than the next town, the city's spread had no way in. \"Fossilized\" fails because a town that built a second grocery, school and fire company changed.",
+      "kills": {
+        "drained": {
+          "type": "logic",
+          "quote": "its nearest exit was in the next town",
+          "why": "With no exit in town the road gave residents no easy way to the city, and new services opened in town instead.",
+          "surface_fit": "An expressway to a growing city is the usual story of a small town losing its shoppers and workers to that city, and \"drained the town\" is how planners describe it.",
+          "inference": "The expressway ran through the town without an exit, so it did not carry the town's workers and shoppers off to the city; what followed was a new grocery, school and fire company inside the town, which is business added, not drawn away."
+        },
+        "engulfed": {
+          "type": "logic",
+          "quote": "nearest exit was in the next town",
+          "why": "The road could bring no growth into the town, which had no exit of its own.",
+          "surface_fit": "A small town joined by a new expressway to a growing city twenty miles away is the textbook case of a town swallowed by the city's suburbs.",
+          "inference": "A city spreads along an expressway through its exits; this road passed through the town on a bank with no way off it until the next town, so the city's houses and offices had no route in."
+        },
+        "fossilized": {
+          "type": "logic",
+          "quote": "a grocery, a school and a fire company of their own",
+          "why": "Building new services is change, so the town was not held as it was.",
+          "surface_fit": "A mill town whose main street was never rebuilt after 1958 is easy to picture as frozen in that year, and the word suits a planner looking back thirty years later.",
+          "inference": "The workers' side of the town built its own grocery, school and fire company after the road came, rearranging where half the town shopped, studied and was protected; a fossilized town keeps its old arrangement untouched."
+        }
+      }
+    },
+    {
+      "key": "engulfed",
+      "passage": "In 1958 an expressway was built up a river valley, joining a mill town of eight thousand people to a growing city twenty miles south. Its exit at the town's northern edge drew builders, and within a decade the dairy farms between the town and the city had been sold for houses. By 1990 a driver from the city passed no open field before the town's exit, its mill held a city insurer's offices, and its main street was lined with branches of the city's chains. In a 1990 study, one planner argued that the expressway had, above all, ______ the town.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The farms between the town and the city were built over until a driver from the city passed no field before reaching it, and city firms filled its mill and main street, so the city's growth rolled over the town: the expressway \"engulfed\" it. \"Drained\" fails because the city's firms and houses moved into the town rather than its life moving out. \"Fragmented\" fails because the exit lay at the northern edge, so the road did not run through the town. \"Fossilized\" fails because a mill turned into offices and a main street of chains is a transformed town.",
+      "kills": {
+        "drained": {
+          "type": "logic",
+          "quote": "lined with branches of the city's chains",
+          "why": "The main street filled with the city's stores, so business came into the town rather than leaving it.",
+          "surface_fit": "An expressway to a growing city is the usual story of a small town losing its shoppers and workers to that city, and \"drained the town\" is how planners describe it.",
+          "inference": "Chain stores and an insurer from the city look like the town's life passing to outsiders, but the main street was lined with stores and the mill was full of offices; activity was arriving in the town from the city, not flowing out of it."
+        },
+        "fragmented": {
+          "type": "logic",
+          "quote": "Its exit at the town's northern edge",
+          "why": "The road met the town at its edge, so it cut through no streets.",
+          "surface_fit": "Expressways built in the 1950s are famous for cutting towns apart, and a planner saying a highway \"fragmented the town\" is an ordinary sentence about exactly this kind of project.",
+          "inference": "The expressway's exit lay at the town's northern edge, and the building spread from there across the farms toward the city; a road at the edge of a town leaves no part of the town on its far side, so the town grew around it without being split."
+        },
+        "fossilized": {
+          "type": "logic",
+          "quote": "its mill held a city insurer's offices",
+          "why": "The mill no longer made anything, so the town's old form had been replaced.",
+          "surface_fit": "A mill town whose main street was never rebuilt after 1958 is easy to picture as frozen in that year, and the word suits a planner looking back thirty years later.",
+          "inference": "A fossilized town keeps its old life; this town's mill had become offices for a city insurer and its stores had become city chains, so the very things that made it a mill town were replaced."
+        }
+      }
+    },
+    {
+      "key": "fossilized",
+      "passage": "In 1958 an expressway was built up a river valley, joining a mill town of eight thousand people to a growing city twenty miles south. Its nearest exit lay nine miles away across the river, and the trucks that had crawled down the main street took the new road. The mill shipped by rail and kept its orders. In 1990 the planner found the families of 1958 behind most of the main street's counters, and its newest building was the 1951 post office. In a 1990 study, one planner argued that the expressway had, above all, ______ the town.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "With traffic gone and nothing else changed (the mill's orders kept, the same families at the counters, no building newer than 1951), the expressway left the town held in its 1958 form: it \"fossilized\" it. \"Drained\" fails because the mill kept its orders and the families kept their stores; only through traffic left. \"Engulfed\" and \"fragmented\" both fail because the road ran across the river with its nearest exit nine miles off, so the city's spread could not reach the town and the road cut through none of it.",
+      "kills": {
+        "drained": {
+          "type": "logic",
+          "quote": "the families of 1958 behind most of the main street's counters",
+          "why": "The same families still ran the stores and the mill kept its orders, so nothing of the town's own left.",
+          "surface_fit": "An expressway to a growing city is the usual story of a small town losing its shoppers and workers to that city, and \"drained the town\" is how planners describe it.",
+          "inference": "Losing the traffic down its main street looks like a town being bled, but the mill kept its orders and the 1958 families still kept most of the stores thirty years on; what left was through traffic that had only been passing, so the town's own work and trade stayed."
+        },
+        "engulfed": {
+          "type": "logic",
+          "quote": "nine miles away across the river",
+          "why": "With the road across the river and no exit near, the city's spread could not reach the town.",
+          "surface_fit": "A small town joined by a new expressway to a growing city twenty miles away is the textbook case of a town swallowed by the city's suburbs.",
+          "inference": "A city spreads along an expressway through its exits; the nearest one was nine miles off on the far side of the river, so new houses following the road could not reach the town, and in 1990 its newest building still dated from 1951."
+        },
+        "fragmented": {
+          "type": "logic",
+          "quote": "nearest exit lay nine miles away across the river",
+          "why": "The road ran on the far side of the river, so it cut through nothing in the town.",
+          "surface_fit": "Expressways built in the 1950s are famous for cutting towns apart, and a planner saying a highway \"fragmented the town\" is an ordinary sentence about exactly this kind of project.",
+          "inference": "An expressway splits a town by running through it; this one ran across the river, with the river between it and every street, so no part of the town was cut off from another."
+        }
+      }
+    }
+  ]
+}

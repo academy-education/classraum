@@ -1,0 +1,146 @@
+{
+  "id": "WIC27B-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a buried silver hoard",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "insurance",
+    "inventory",
+    "kitty",
+    "loot"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "insurance",
+    "inventory",
+    "loot",
+    "kitty"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "From its contents, one archaeologist concluded that the hoard had been, above all, its owners' ______.",
+  "worlds": [
+    {
+      "key": "insurance",
+      "passage": "In 1987 a plowman near an old river landing turned up a clay pot buried around the year 900, holding some nine hundred silver coins and pieces of cut silver. The coins span forty years of local minting, the newest bright and the oldest worn smooth, and the series is unbroken except for five years that match a famine recorded by a nearby abbey; the cut silver is old jewelry of the local style. The pot lay under a hearthstone. From its contents, one archaeologist concluded that the hoard had been, above all, its owners' ______.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "Coins were added year after year for forty years and the store was touched only in the famine years, so the hoard was a reserve against hard times: its owners' \"insurance.\" \"Loot\" fails because it built up slowly from local coins and local jewelry, not seized at one time. \"Kitty\" fails because a fund for shared spending is dipped into all the time, while this one went untouched except in a famine. \"Inventory\" fails for the same reason: a stock in trade is drawn on constantly.",
+      "kills": {
+        "loot": {
+          "type": "logic",
+          "quote": "span forty years of local minting",
+          "why": "The silver was gathered slowly and locally.",
+          "surface_fit": "Silver hacked into pieces and buried around the year 900 by a river landing fits the raids of that era, when plunder was cut up and hidden.",
+          "inference": "Plunder is seized at one time, usually from far off; coins spanning forty years of local minting, with local jewelry, were put by a little at a time by people who lived there."
+        },
+        "kitty": {
+          "type": "logic",
+          "quote": "except for five years that match a famine",
+          "why": "The store was touched only in a famine.",
+          "surface_fit": "A pot of coins added to over many years may be money that a household pooled for its shared needs, which is what a kitty is.",
+          "inference": "A fund kept for shared spending is drawn on whenever needs come up; this store grew without a break for forty years except in the famine years, so it was kept back for disaster, which is what insurance is."
+        },
+        "inventory": {
+          "type": "logic",
+          "quote": "the series is unbroken",
+          "why": "The silver grew steadily and was not traded.",
+          "surface_fit": "Cut-up silver was the raw material of silversmiths and the trade goods of merchants in this period, so a pot of cut pieces could well be someone's stock in trade.",
+          "inference": "A stock in trade is constantly sold and replaced, so its coins would come and go; an unbroken forty-year run of coins, broken only by a famine, was being kept, not traded."
+        }
+      }
+    },
+    {
+      "key": "inventory",
+      "passage": "In 1987 a plowman near an old river landing turned up a clay pot buried around the year 900, holding some nine hundred silver coins and pieces of cut silver. Most of the silver is scrap: brooches and arm rings cut into pieces, small bars cast from melted pieces, and a set of balance weights, and many coins are nicked with a knife to test their metal. The pot lay in the floor of a workshop with a small furnace and crucibles. From its contents, one archaeologist concluded that the hoard had been, above all, its owners' ______.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "Cut scrap, bars recast from it, balance weights and coins tested like raw metal, all in the floor of a workshop with a furnace, make the hoard a silversmith's working stock: its owners' \"inventory.\" \"Loot\" fails because the cutting and recasting were done beside a furnace by people working the silver. \"Insurance\" fails because the silver was being melted and recast, the stock of a working trade rather than money laid aside. \"Kitty\" fails because the coins were treated as metal to be tested and weighed, not as a group's money.",
+      "kills": {
+        "loot": {
+          "type": "logic",
+          "quote": "small bars cast from melted pieces",
+          "why": "The cut silver was being worked into new metal.",
+          "surface_fit": "Silver hacked into pieces and buried around the year 900 by a river landing fits the raids of that era, when plunder was cut up and hidden.",
+          "inference": "Brooches cut up and recast into bars beside a furnace and crucibles were raw material being worked by a smith; the cutting was his preparation of metal, not a raider's division of spoils."
+        },
+        "insurance": {
+          "type": "logic",
+          "quote": "a workshop with a small furnace and crucibles",
+          "why": "The silver was in use in a trade.",
+          "surface_fit": "A pot of silver buried in the ground is the classic picture of savings hidden against hard times, and insurance is a natural word for such a reserve.",
+          "inference": "Silver kept in the floor of a working furnace room, partly melted into bars, was material moving through a trade; savings set aside against hard times are left alone."
+        },
+        "kitty": {
+          "type": "logic",
+          "quote": "nicked with a knife to test their metal",
+          "why": "The coins were treated as raw silver.",
+          "surface_fit": "A large pot of coins and silver may be money that several people pooled together, which is what a kitty is.",
+          "inference": "Coins nicked to test their metal and weighed with balance weights were being valued as silver by weight, the way a smith buys metal, not counted as money shared among a group."
+        }
+      }
+    },
+    {
+      "key": "kitty",
+      "passage": "In 1987 a plowman near an old river landing turned up a clay pot buried around the year 900, holding some nine hundred silver coins and pieces of cut silver. The coins come from a dozen ports along the coast, and twelve different owners' marks are scratched into the cut silver. The pot lay in a boat shed at the landing that, a nearby abbey's chronicle records, a trading crew of twelve shared each winter. From its contents, one archaeologist concluded that the hoard had been, above all, its owners' ______.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "Silver bearing twelve owners' marks, from the ports a crew of twelve traded at, sat in one pot in the shed they shared, so the hoard was money they had pooled: its owners' \"kitty.\" \"Insurance\" fails because twelve owners' marks show many contributors, not one household's reserve. \"Loot\" fails because the silver carried the marks of the crew who owned it and came from the ports where they traded. \"Inventory\" fails because marked shares of money held in common are not a craftsman's stock.",
+      "kills": {
+        "insurance": {
+          "type": "logic",
+          "quote": "twelve different owners' marks",
+          "why": "The silver came from twelve contributors.",
+          "surface_fit": "A pot of silver buried in the ground is the classic picture of savings hidden against hard times, and insurance is a natural word for such a reserve.",
+          "inference": "Silver scratched with twelve different owners' marks was put in by twelve people, so it was a common fund, not one household's savings kept against hard times."
+        },
+        "loot": {
+          "type": "logic",
+          "quote": "a trading crew of twelve",
+          "why": "The owners were traders and marked their own silver.",
+          "surface_fit": "Silver hacked into pieces and buried around the year 900 by a river landing fits the raids of that era, when plunder was cut up and hidden. The coins come from many places along the coast.",
+          "inference": "The coins come from the ports a trading crew worked, and each piece of cut silver carries one of its twelve owners' marks, so it was the crew's own silver, earned and marked by them, not taken from others."
+        },
+        "inventory": {
+          "type": "logic",
+          "quote": "owners' marks are scratched into the cut silver",
+          "why": "The pieces were marked as members' money.",
+          "surface_fit": "Cut-up silver was the raw material of silversmiths and the trade goods of merchants in this period, so a pot of cut pieces could well be someone's stock in trade.",
+          "inference": "Pieces marked by twelve separate owners and kept in one pot in a shared shed were each member's money held in common, not goods a craftsman or merchant kept to work or sell."
+        }
+      }
+    },
+    {
+      "key": "loot",
+      "passage": "In 1987 a plowman near an old river landing turned up a clay pot buried around the year 900, holding some nine hundred silver coins and pieces of cut silver. The silver includes the foot of a chalice, a cross cut into four, and clasps torn from book bindings, with coins from three distant kingdoms, all minted within a few years of 900. The pot had been pushed into a shallow scrape in the bank of the landing. From its contents, one archaeologist concluded that the hoard had been, above all, its owners' ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Church plate cut and torn apart, with coins from far-off kingdoms all minted in a few years, pushed into a scrape at a landing, make the hoard seized plunder: its owners' \"loot.\" \"Insurance\" fails because coins all minted within a few years were gathered at one time, not saved over many. \"Inventory\" fails because the pieces are broken church plate, torn from books and altars rather than scrap kept by a working craftsman. \"Kitty\" fails because silver torn from chalices and books was taken from churches, not paid in by its owners.",
+      "kills": {
+        "insurance": {
+          "type": "logic",
+          "quote": "all minted within a few years of 900",
+          "why": "The coins were gathered at one time.",
+          "surface_fit": "A pot of silver buried in the ground is the classic picture of savings hidden against hard times, and insurance is a natural word for such a reserve.",
+          "inference": "Savings built up over years hold coins of many dates; coins all minted within a few years, from three distant kingdoms, came together at one moment."
+        },
+        "inventory": {
+          "type": "logic",
+          "quote": "clasps torn from book bindings",
+          "why": "The pieces were torn from church objects.",
+          "surface_fit": "Cut-up silver was the raw material of silversmiths and the trade goods of merchants in this period, so a pot of cut pieces could well be someone's stock in trade.",
+          "inference": "Clasps torn from book bindings and a cross cut into four were ripped from churches and hacked up where they were taken; a craftsman's stock would be sorted scrap and bars, and this was pushed into a scrape at a landing, not kept at a workshop."
+        },
+        "kitty": {
+          "type": "logic",
+          "quote": "the foot of a chalice",
+          "why": "The silver was church plate.",
+          "surface_fit": "A large pot of coins and silver may be money that several people pooled together, which is what a kitty is. Coins from three different kingdoms suggest several people's money put together.",
+          "inference": "Chalices, crosses and book clasps belong to churches, so this silver was taken from others; a kitty is made of money its owners paid in themselves."
+        }
+      }
+    }
+  ]
+}

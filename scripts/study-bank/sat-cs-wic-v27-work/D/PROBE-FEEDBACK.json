@@ -1,0 +1,606 @@
+{
+ "WIC27D-04": {
+  "world 3 (key cudgel)": {
+   "named_for": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "cudgel",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "City bread came from merchants at fluctuating prices, killing ballast/backstop; the granary was used to buy out a defiant lord's market, so 'cudgel'."
+  },
+  "world 0 (key ballast)": {
+   "named_for": [
+    "above ceiling",
+    "second defensible"
+   ],
+   "reader_pick_word": "ballast",
+   "reader_difficulty": "hard",
+   "n_struck": 1,
+   "struck_words": [
+    "cudgel"
+   ],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [
+    "cudgel"
+   ],
+   "key_from_one_sentence": false,
+   "explicit_kills": 1,
+   "second_defensible_word": "backstop",
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Price swinging less than nearby towns decides ballast; backstop is the near-miss (a year's grain in reserve) but it sold every spring, not in emergencies. Cudgel struck on a surface read: a weapon has nothing to do with a granary; 'neither profit nor loss' kills coffer."
+  }
+ },
+ "WIC27D-05": {
+  "world 0 (key arena)": {
+   "named_for": [
+    "easy",
+    "n_struck 2",
+    "distractors weak",
+    "one sentence",
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "arena",
+   "reader_difficulty": "easy",
+   "n_struck": 2,
+   "struck_words": [
+    "bazaar",
+    "cesspool"
+   ],
+   "distractor_quality": "weak",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Each June the town's pageant is played on that platform before most of the town' hands over arena; bazaar fails on a surface read (no trade anywhere) and cesspool is off-register for level turf drained to the river. Only bunker (galleries) is a real distractor."
+  },
+  "world 1 (key bunker)": {
+   "named_for": [
+    "easy",
+    "n_struck 2",
+    "distractors weak",
+    "one sentence"
+   ],
+   "reader_pick_word": "bunker",
+   "reader_difficulty": "easy",
+   "n_struck": 2,
+   "struck_words": [
+    "bazaar",
+    "arena"
+   ],
+   "distractor_quality": "weak",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 1,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Families slept in them on nights the sirens sounded' hands over bunker in one sentence. On a surface read bazaar (nothing commercial anywhere) and arena (no spectacle, the floor is a pond) are off-topic; cesspool dies to 'clear to its gravel bed'."
+  },
+  "world 2 (key cesspool)": {
+   "named_for": [
+    "easy",
+    "n_struck 2",
+    "distractors weak"
+   ],
+   "reader_pick_word": "cesspool",
+   "reader_difficulty": "easy",
+   "n_struck": 2,
+   "struck_words": [
+    "arena",
+    "bazaar"
+   ],
+   "distractor_quality": "weak",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 1,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Gutters draining 'whatever the streets carry' into a 'black pond whose smell reaches the market square' hands over cesspool on a surface read; arena and bazaar are off-topic for a fouled flooded pit with nothing to support them, and only bunker gets even a planted kill ('flooded to their roofs')."
+  },
+  "world 3 (key bazaar)": {
+   "named_for": [
+    "easy",
+    "distractors weak",
+    "one sentence",
+    "explicit kills 2",
+    "distractor fits literally"
+   ],
+   "reader_pick_word": "bazaar",
+   "reader_difficulty": "easy",
+   "n_struck": 1,
+   "struck_words": [
+    "cesspool"
+   ],
+   "distractor_quality": "weak",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": "arena",
+   "presupposes_absent": null,
+   "reader_note": "'The town's grocers buy most of their week's stock on its floor' with weekly farmers' carts gives bazaar away; cesspool falls on a surface read (a pejorative with nothing behind it in a dry, level pit); short galleries used as stables kill bunker; arena has only the pit shape."
+  }
+ },
+ "WIC27D-07": {
+  "world 2 (key cistern)": {
+   "named_for": [
+    "explicit kills 2",
+    "distractor fits literally"
+   ],
+   "reader_pick_word": "cistern",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": "cooler",
+   "presupposes_absent": null,
+   "reader_note": "Single opening and an upright candle flame kill chimney and bellows; the basin the village draws from gives cistern, while 'same mild temperature all year' makes cooler a literal near-fit."
+  },
+  "world 3 (key cooler)": {
+   "named_for": [
+    "easy",
+    "one sentence",
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "cooler",
+   "reader_difficulty": "easy",
+   "n_struck": 1,
+   "struck_words": [
+    "bellows"
+   ],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'The village kept its butter and meat there through the summer' hands over cooler in one sentence. Bellows is struck on a surface read (nothing pumps air); 'only opening' kills chimney, draining through cracks kills cistern."
+  },
+  "world 0 (key chimney)": {
+   "named_for": [
+    "one sentence"
+   ],
+   "reader_pick_word": "chimney",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 1,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "The draft entering low and leaving high with 'a plume of vapor' over the hill is a chimney in one sentence; the brook 'runs out' kills cistern, bellows is the near-miss (moves air but by pumping), cooler unsupported."
+  },
+  "world 1 (key bellows)": {
+   "named_for": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "bellows",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Air blowing out before a storm and back in after, through the only opening, decides bellows; 'no other opening' kills chimney, the brook running out kills cistern, and the same mild air winter and summer weakens cooler."
+  }
+ },
+ "WIC27D-01": {
+  "world 0 (key breakwater)": {
+   "named_for": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "breakwater",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Boats ride out winter behind it while other ports haul out: breakwater. A deep gap for any ship kills barricade and chokepoint, ending short of the island kills causeway."
+  },
+  "world 1 (key barricade)": {
+   "named_for": [
+    "explicit kills 2",
+    "distractor fits literally"
+   ],
+   "reader_pick_word": "barricade",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": "breakwater",
+   "presupposes_absent": null,
+   "reader_note": "Houses older than 1650 when raiders burned the coast imply the bar kept ships out: barricade. Swells pouring over kill breakwater, a ledge that never uncovers kills causeway, chokepoint is a near-miss."
+  },
+  "world 2 (key chokepoint)": {
+   "named_for": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "chokepoint",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "The only keel-deep passage is the gut, with reefs beyond the island, and a boat there collects dues: chokepoint; swells rolling across the crest kill breakwater and 'a few feet covers the rest of the crest' at high water kills causeway; barricade is the near-miss."
+  },
+  "world 3 (key causeway)": {
+   "named_for": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "causeway",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "The fleet crossing anywhere on the flood rules out chokepoint and barricade, and swells running across rules out breakwater; causeway rests on joining the dry-crest sentence with the sheep grazing the island, which the passage leaves implicit."
+  }
+ },
+ "WIC27D-02": {
+  "world 1 (key blunted)": {
+   "named_for": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "blunted",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Tip cut back 400 yards with width unchanged: blunted. Driving the crest road to the light kills cleaved, 'as wide as before' kills broadened, further erosion kills armored."
+  },
+  "world 2 (key cleaved)": {
+   "named_for": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "cleaved",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "The keeper now needing a boat plus the tide arriving through a new path while the old mouth silted means the spit was breached: cleaved. 'As wide as before' kills broadened, tip unchanged kills blunted."
+  },
+  "world 3 (key broadened)": {
+   "named_for": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "broadened",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Sand two feet over the lagoon-side reeds and boathouses now two hundred yards from the water give broadened; the keeper driving 'past the lighthouse to the hooked tip' kills cleaved and blunted. The spring sentence about wind lifting the new sand off muddies whether the broadening lasted to the survey."
+  },
+  "world 0 (key armored)": {
+   "named_for": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "armored",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "The keeper driving to the hooked tip kills cleaved and blunted, the loose sand being gone kills broadened; armored rests on the exposed cobble bed plus less ground lost over the next twenty winters."
+  }
+ },
+ "WIC27D-03": {
+  "world 2 (key border)": {
+   "named_for": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "border",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "City wall on its bank, beyond the watch's reach, duke's tax across: border. Too shallow for barges kills artery, brackish kills aqueduct."
+  },
+  "world 3 (key commons)": {
+   "named_for": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "commons",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Washing, evening walks, skating by half the city, houses from every quarter decide commons; low footbridges every hundred yards undercut artery and kill border, aqueduct lacks support."
+  },
+  "world 0 (key aqueduct)": {
+   "named_for": [
+    "explicit kills 3",
+    "distractor fits literally"
+   ],
+   "reader_pick_word": "aqueduct",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": "border",
+   "presupposes_absent": null,
+   "reader_note": "Each distractor has a planted kill: border by 'a wall the city had already outgrown' and quarters on both banks, artery by watchmen keeping barges off, commons by keeping laundry and loiterers off; spring water vs brackish wells plus pipes to fountains gives aqueduct."
+  },
+  "world 1 (key artery)": {
+   "named_for": [
+    "easy",
+    "distractors weak",
+    "distractor fits literally"
+   ],
+   "reader_pick_word": "artery",
+   "reader_difficulty": "easy",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "weak",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 1,
+   "second_defensible_word": null,
+   "literal_fit_word": "border",
+   "presupposes_absent": null,
+   "reader_note": "Barge traffic, guild warehouses on both banks and tolls as the largest revenue item give artery away through the ordinary city-artery idiom; border has some literal support (runs beside the old center), but commons and aqueduct are weak and nothing is a real near-miss."
+  }
+ },
+ "WIC27D-06": {
+  "world 1 (key ark)": {
+   "named_for": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "ark",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Families and cattle ferried over in floods: ark. Raiders burning its barns kills citadel, too deep to wade kills crossing, too fast to tie up kills anchorage."
+  },
+  "world 2 (key citadel)": {
+   "named_for": [
+    "explicit kills 2",
+    "second defensible"
+   ],
+   "reader_pick_word": "citadel",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": "ark",
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Walled crown that raiders tried and abandoned decides citadel; ark is the near-miss (families and cattle ferried over) undercut by 'seldom rises more than a foot', and the unwadeable, untieable channel kills crossing and anchorage."
+  },
+  "world 3 (key crossing)": {
+   "named_for": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "crossing",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "One planted kill each: 'too fast for a barge to tie up' (anchorage), raiders burned its barns (citadel), 'spring floods cover it' (ark); carts reaching the far bank 'by way of the island' gives crossing."
+  },
+  "world 0 (key anchorage)": {
+   "named_for": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "anchorage",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Barges tying up in deep still water decides anchorage; each distractor has one direct kill: floods cover the island (ark), the channel is too deep to wade (crossing), raiders moored there (citadel)."
+  }
+ },
+ "WIC27D-08": {
+  "world 3 (key cracked)": {
+   "named_for": [
+    "easy",
+    "one sentence",
+    "explicit kills 2",
+    "distractor fits literally"
+   ],
+   "reader_pick_word": "cracked",
+   "reader_difficulty": "easy",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": "blackened",
+   "presupposes_absent": null,
+   "reader_note": "'A fine brown web showed in the glaze... did not wash out' names crazing outright, so cracked comes from one sentence; 'smooth to the fingertip' kills blistered, 'clear as ever' kills clouded; brown makes blackened a literal lure."
+  },
+  "world 0 (key blackened)": {
+   "named_for": [
+    "key not recovered",
+    "explicit kills 2",
+    "distractor fits literally"
+   ],
+   "reader_pick_word": "clouded",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": "blackened",
+   "presupposes_absent": null,
+   "reader_note": "Brushwork hidden 'through the glaze' decides clouded; the black on the cloth is wipeable soot, so blackened is the near-miss. Smooth-as-glass kills blistered, held-tea kills cracked."
+  },
+  "world 1 (key blistered)": {
+   "named_for": [
+    "one sentence",
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "blistered",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'tiny raised rims, each around a pinhole' alone describes burst blisters; 'brushwork showed ... as clearly as before' kills clouded and 'held tea without a mark' kills cracked; blackened has no support."
+  },
+  "world 2 (key clouded)": {
+   "named_for": [
+    "easy",
+    "distractors weak",
+    "one sentence",
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "clouded",
+   "reader_difficulty": "easy",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "weak",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'As though seen through frost' hands over clouded; blackened is killed by 'whiter than before', blistered by 'smooth as glass', cracked by 'held tea without a mark'. Every option gets one direct contradiction, so no near-miss is left."
+  }
+ }
+}
