@@ -2833,7 +2833,8 @@
         "review_set_empty": "이 복습 덱에는 문항이 없습니다.",
         "report_not_found": "해당 리포트가 더 이상 존재하지 않습니다.",
         "nothing_to_update": "변경된 내용이 없습니다.",
-        "server_error": "일시적인 오류가 발생했습니다. 다시 시도해 주세요."
+        "server_error": "일시적인 오류가 발생했습니다. 다시 시도해 주세요.",
+        "no_students": "이 반에 등록된 학생이 아직 없습니다."
       }
     },
     "dashboard": {
@@ -2920,7 +2921,17 @@
       "publishConfirmTitle": "학부모에게 리포트를 공개할까요?",
       "publishConfirmTitleOne": "이 학생의 리포트를 학부모에게 공개할까요?",
       "publishConfirmBody": "공개하면 학부모와 학생 앱에 바로 표시됩니다. 같은 기간의 리포트가 이미 있으면 새로 만들지 않고 최신 내용으로 갱신됩니다.",
-      "publishConfirmCta": "공개하기"
+      "publishConfirmCta": "공개하기",
+      "printAll": "전체 인쇄",
+      "printPeriod": "인쇄",
+      "printHeading": "{classroom} · 리포트 {count}개",
+      "printEmpty": "인쇄할 리포트가 없습니다.",
+      "printLoadFailed": "인쇄할 리포트를 불러오지 못했습니다.",
+      "periodRange": "{start} – {end}",
+      "periodUntil": "{end}까지",
+      "periodNone": "기간 없음",
+      "periodCount": "리포트 {count}개",
+      "generatePartial": "오류가 나기 전에 리포트 {count}개만 발행되었습니다. 아래 목록에서 확인하고 다시 생성해 마무리하세요."
     },
     "overview": {
       "studentsEnrolled": "등록 학생",
@@ -3082,6 +3093,24 @@
       "save": "{count}개 변경",
       "saved": "마감일 {count}개를 변경했습니다",
       "failed": "마감일을 변경하지 못했습니다"
+    },
+    "export": {
+      "studentsCsv": "CSV 내보내기",
+      "progressCsv": "CSV 내보내기",
+      "progressCsvHint": "이 반의 진행 현황표를 스프레드시트로 내려받습니다",
+      "studentsFile": "학생",
+      "progressFile": "진행현황",
+      "failed": "내보내지 못했습니다. 다시 시도해 주세요.",
+      "name": "학생",
+      "email": "이메일",
+      "classroom": "반",
+      "completed": "완료",
+      "assigned": "배정",
+      "inProgress": "진행 중",
+      "notStarted": "시작 전",
+      "done": "완료",
+      "avgScore": "평균 점수(%)",
+      "lastActive": "최근 활동"
     }
   },
   "attendance": {

@@ -38,6 +38,7 @@ export const CAMP_ERROR_CODES = [
   'review_set_not_found',
   'review_set_empty',
   'report_not_found',
+  'no_students',
   'nothing_to_update',
   'server_error',
 ] as const

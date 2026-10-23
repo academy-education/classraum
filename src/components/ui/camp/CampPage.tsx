@@ -24,13 +24,14 @@ import type { Question } from '@/app/mobile/study/session/[id]/test/types'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { showSuccessToast, showErrorToast } from '@/stores'
-import { Loader2, Plus, School, Tent, ClipboardList, Search, Calendar, Trash2, Pencil, ChevronDown, ChevronUp, Presentation, FileText, BookOpen, CalendarClock, Clock, Users, CheckCircle2, Target, AlertTriangle } from 'lucide-react'
+import { Loader2, Plus, School, Tent, ClipboardList, Search, Calendar, Trash2, Pencil, ChevronDown, ChevronUp, Presentation, FileText, BookOpen, CalendarClock, Download, Clock, Users, CheckCircle2, Target, AlertTriangle } from 'lucide-react'
 import { kstDate } from '@/lib/camp/dates'
 import { Checkbox } from '@/components/ui/checkbox'
 import { CampBulkDueModal } from '@/components/ui/camp/CampBulkDueModal'
 import { campErrorMessage } from '@/lib/camp/error-codes'
 import { campQuotaCost } from '@/lib/camp/quota-math'
 import { reviewDeckTitle } from '@/lib/camp/review-deck'
+import { csvFileName, downloadCsv, progressGridCsv, studentsCsv } from '@/lib/camp/export'
 
 /**
  * Camp dashboard — quota meter, camp classrooms, and the assignment
@@ -577,6 +578,66 @@ export function CampPage({ academyId }: CampPageProps) {
   /** Classroom whose due dates are being moved in bulk. */
   const [bulkDueClassroomId, setBulkDueClassroomId] = useState<string | null>(null)
 
+  /* CSV exports. Each one fetches the SAME API its panel renders from
+     (/api/camp/students, /api/camp/dashboard), so the file is what the
+     teacher sees, without reaching into those components. */
+  const [exporting, setExporting] = useState<string | null>(null)
+  const exportStudents = useCallback(async () => {
+    if (!program || exporting) return
+    setExporting('students')
+    try {
+      const res = await fetch(`/api/camp/students?programId=${program.id}`, { headers: await authHeaders() })
+      const json = await res.json().catch(() => ({}))
+      if (!res.ok || !Array.isArray(json.students)) {
+        showErrorToast(campErrorMessage(t, json, String(t('camp.export.failed'))))
+        return
+      }
+      const csv = studentsCsv(json.students, {
+        name: String(t('camp.export.name')),
+        email: String(t('camp.export.email')),
+        classroom: String(t('camp.export.classroom')),
+        completed: String(t('camp.export.completed')),
+        total: String(t('camp.export.assigned')),
+        inProgress: String(t('camp.export.inProgress')),
+        notStarted: String(t('camp.export.notStarted')),
+        avgScore: String(t('camp.export.avgScore')),
+        lastActive: String(t('camp.export.lastActive')),
+      })
+      downloadCsv(csvFileName(program.name, String(t('camp.export.studentsFile')), kstDate()), csv)
+    } catch {
+      showErrorToast(String(t('camp.export.failed')))
+    } finally {
+      setExporting(null)
+    }
+  }, [program, exporting, t])
+
+  const exportProgress = useCallback(async (room: { id: string; name: string }) => {
+    if (exporting) return
+    setExporting(room.id)
+    try {
+      const res = await fetch(`/api/camp/dashboard?classroomId=${room.id}`, { headers: await authHeaders() })
+      const json = await res.json().catch(() => ({}))
+      if (!res.ok || !Array.isArray(json.roster) || !Array.isArray(json.assignments)) {
+        showErrorToast(campErrorMessage(t, json, String(t('camp.export.failed'))))
+        return
+      }
+      const csv = progressGridCsv(json, {
+        student: String(t('camp.export.name')),
+        email: String(t('camp.export.email')),
+        completed: String(t('camp.export.completed')),
+        notStarted: String(t('camp.export.notStarted')),
+        inProgress: String(t('camp.export.inProgress')),
+        done: String(t('camp.export.done')),
+        due: date => String(t('camp.dueDateLabel', { date })),
+      })
+      downloadCsv(csvFileName(room.name, String(t('camp.export.progressFile')), kstDate()), csv)
+    } catch {
+      showErrorToast(String(t('camp.export.failed')))
+    } finally {
+      setExporting(null)
+    }
+  }, [exporting, t])
+
   const openReviewModal = (classroomId: string) => {
     setReviewClassroomId(classroomId)
     setReviewForm({ section: '', domain: '', count: '10', classroomSessionId: '' })
@@ -966,7 +1027,21 @@ export function CampPage({ academyId }: CampPageProps) {
 
       {/* ── Students tab — program-wide searchable roster ── */}
       {canViewResults && activeTab === 'students' && (
-        <CampStudentsPanel programId={program.id} testFamily={program.test_family} />
+        <>
+          <div className="flex justify-end mb-3">
+            <Button
+              variant="outline"
+              size="sm"
+              className="flex items-center gap-1.5 text-xs h-8 px-2.5"
+              onClick={() => void exportStudents()}
+              disabled={exporting !== null}
+            >
+              {exporting === 'students' ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Download className="w-3.5 h-3.5" />}
+              {t('camp.export.studentsCsv')}
+            </Button>
+          </div>
+          <CampStudentsPanel programId={program.id} testFamily={program.test_family} />
+        </>
       )}
 
       {/* ── Classrooms tab — grouped-list idiom (classroom header + assignment row cards) ── */}
@@ -1029,6 +1104,19 @@ export function CampPage({ academyId }: CampPageProps) {
                       </Button>
                     )}
                     </>)}
+                    {canViewResults && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="flex items-center gap-1.5 text-xs h-8 px-2.5"
+                      onClick={() => void exportProgress(room)}
+                      disabled={exporting !== null}
+                      title={String(t('camp.export.progressCsvHint'))}
+                    >
+                      {exporting === room.id ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Download className="w-3.5 h-3.5" />}
+                      {t('camp.export.progressCsv')}
+                    </Button>
+                    )}
                     {canViewResults && (
                     <Button
                       variant="ghost"

@@ -2833,7 +2833,8 @@
         "review_set_empty": "This review deck has no questions.",
         "report_not_found": "That report no longer exists.",
         "nothing_to_update": "Nothing was changed.",
-        "server_error": "Something went wrong on our side. Please try again."
+        "server_error": "Something went wrong on our side. Please try again.",
+        "no_students": "No students are enrolled in this classroom yet."
       }
     },
     "dashboard": {
@@ -2920,7 +2921,17 @@
       "publishConfirmTitle": "Publish reports to families?",
       "publishConfirmTitleOne": "Publish this report to the family?",
       "publishConfirmBody": "Reports appear in the parent and student apps as soon as they are published. If a report for the same period already exists, it is updated instead of duplicated.",
-      "publishConfirmCta": "Publish"
+      "publishConfirmCta": "Publish",
+      "printAll": "Print all",
+      "printPeriod": "Print",
+      "printHeading": "{classroom} · {count} reports",
+      "printEmpty": "No reports to print.",
+      "printLoadFailed": "Couldn't load these reports for printing.",
+      "periodRange": "{start} – {end}",
+      "periodUntil": "Until {end}",
+      "periodNone": "No period",
+      "periodCount": "{count} reports",
+      "generatePartial": "Only {count} reports were published before an error. They are listed below; generate again to finish."
     },
     "overview": {
       "studentsEnrolled": "Students enrolled",
@@ -3082,6 +3093,24 @@
       "save": "Update {count}",
       "saved": "Updated {count} due dates",
       "failed": "Couldn't update these due dates"
+    },
+    "export": {
+      "studentsCsv": "Export CSV",
+      "progressCsv": "Export CSV",
+      "progressCsvHint": "Download this classroom's progress grid as a spreadsheet",
+      "studentsFile": "students",
+      "progressFile": "progress",
+      "failed": "Couldn't export. Please try again.",
+      "name": "Student",
+      "email": "Email",
+      "classroom": "Classroom",
+      "completed": "Completed",
+      "assigned": "Assigned",
+      "inProgress": "In progress",
+      "notStarted": "Not started",
+      "done": "Done",
+      "avgScore": "Average score (%)",
+      "lastActive": "Last active"
     }
   },
   "attendance": {
