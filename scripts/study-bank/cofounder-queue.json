@@ -719,6 +719,87 @@
       "upTo": 2,
       "route": "spot",
       "runId": "ssatvd5-spot{n}-cofounder-{date}"
+    },
+    {
+      "cohort": "isee-reading-draft-16",
+      "tool": "item",
+      "domain": "Reading Comprehension",
+      "size": 36,
+      "family": "isee",
+      "route": "full",
+      "runId": "isee-draft16-release-cofounder-{date}"
+    },
+    {
+      "cohort": "act-reading-v12a",
+      "tool": "item",
+      "domain": "Key Ideas and Details:18,Craft and Structure:11,Integration of Knowledge and Ideas:7",
+      "size": 36,
+      "family": "act",
+      "route": "full",
+      "runId": "act-reading-v12a-release-cofounder-{date}"
+    },
+    {
+      "cohort": "act-reading-v12b",
+      "tool": "item",
+      "domain": "Key Ideas and Details:4,Craft and Structure:4,Integration of Knowledge and Ideas:1",
+      "size": 9,
+      "family": "act",
+      "group": "act-reading-v12b:arv12b-p1",
+      "route": "spot",
+      "runId": "act-reading-v12b-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "act-science-v9a",
+      "tool": "item",
+      "domain": "Interpretation of Data:18,Scientific Investigation:9,Evaluation of Models, Inferences, and Experimental Results:13",
+      "size": 40,
+      "family": "act",
+      "route": "full",
+      "runId": "act-sci-v9a-release-cofounder-{date}"
+    },
+    {
+      "cohort": "act-science-v9b",
+      "tool": "item",
+      "domain": "Evaluation of Models, Inferences, and Experimental Results:5,Scientific Investigation:1",
+      "size": 6,
+      "family": "act",
+      "group": "act-science-v9b:sc9b-p6",
+      "route": "spot",
+      "runId": "act-sci-v9b-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "ssat-reading-draft-17",
+      "tool": "item",
+      "domain": "Reading Comprehension",
+      "size": 6,
+      "family": "ssat",
+      "group": "draft17-D17-P03",
+      "route": "spot",
+      "runId": "ssat-draft17-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "ssat-reading-draft-18",
+      "tool": "item",
+      "domain": "Reading Comprehension",
+      "size": 6,
+      "family": "ssat",
+      "group": "draft18-D18-P04",
+      "route": "spot",
+      "runId": "ssat-draft18-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "toefl-passage-draft-7",
+      "tool": "sets",
+      "upTo": 1,
+      "route": "spot",
+      "runId": "toefl-passage7-spot{n}-cofounder-{date}"
+    },
+    {
+      "cohort": "toefl-talk-draft-7",
+      "tool": "sets",
+      "upTo": 4,
+      "route": "full",
+      "runId": "toefl-talk7-full{n}-cofounder-{date}"
     }
   ]
 }

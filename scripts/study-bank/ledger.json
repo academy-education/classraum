@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-23T05:27:02.321Z",
+  "generatedAt": "2026-10-23T05:43:10.466367+00:00",
   "note": "Generated from the real result files. Numbers are computed, not transcribed.",
   "baselines": [
     {
@@ -11985,6 +11985,249 @@
           "passed": true,
           "contentSha": "38414fbc2721b0f5fed6825ea9e5d5d6c91928c016038572186ce247ec5aa6a3",
           "verdict": "Kept 30: verify-answer-key-spread --batch ok (quads 43% vs 24%, p=0.13); key strictly longest 4/30 (13.3%), strictly shortest 1/30 (3.3%), both <= 35%; no proper noun repeated across kept passages. Frozen 32 key-spread FAIL (quads 75%, the 2/2/2/2-per-author table) is latent - choices re-shuffled per session - recorded as SEC24/SEC25 did."
+        }
+      }
+    },
+    {
+      "id": "isee-reading-draft-16-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "isee",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "isee-reading-draft-16",
+      "contentSha": "a594b30285dce4719d065681aad5a2bf360983bf9ace42604331a66aa6c9c848",
+      "status": "staged-for-human-review",
+      "note": "Claude agent; staged 2026-10-23 (wave 7, five-test floor); full sitting (every third: d12 full, d13 and d14 spot).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "a594b30285dce4719d065681aad5a2bf360983bf9ace42604331a66aa6c9c848",
+          "verdict": "author checks clean (merge 0, quote 0, location 0); five suggested topics collided and were replaced before writing (chess club, hardware store, sewing machine, streetlights, bats)."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader: A 0/36, B 0/36"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "act-reading-v12a-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "act",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "act-reading-v12a",
+      "contentSha": "d54c90ef3fb94ea425fca011b240ba0ba6eb1de266ea6e6c63e0d216a6505418",
+      "status": "staged-for-human-review",
+      "note": "Claude agent; staged 2026-10-23 (wave 7, five-test floor); full sitting (every third: v10a full, v11a/b spot).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "d54c90ef3fb94ea425fca011b240ba0ba6eb1de266ea6e6c63e0d216a6505418",
+          "verdict": "act-bank-helper check OK; film-reel restoration collided with a live paired painting-restoration passage and became museum labels."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader: A 0/36, B 0/36"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "act-reading-v12b-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "act",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "act-reading-v12b",
+      "contentSha": "63a3e0ac5d3c0c3a3aa451f56b5efab53840fcd9636ef8ab83b17057023ac122",
+      "status": "staged-for-human-review",
+      "note": "Claude agent; staged 2026-10-23 (wave 7, five-test floor); spot arv12b-p1 (sha256 mod 4).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "63a3e0ac5d3c0c3a3aa451f56b5efab53840fcd9636ef8ab83b17057023ac122",
+          "verdict": "act-bank-helper check OK; the choreographer topic collided with staged arv8c-p3 and became hand sign-painting."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader: A 1/36, B 1/36, the same item ARV12b-04 (\"plainest\": distractor \"least attractive\" defensible). Distractor replaced with \"most level\", explanation updated, check rerun OK"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "act-science-v9a-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "act",
+      "section": "science",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "act-science-v9a",
+      "contentSha": "06db72089e1566517655ae7e4836ad43fe02df3b67a126964dfe32f41449ca11",
+      "status": "staged-for-human-review",
+      "note": "Claude agent; staged 2026-10-23 (wave 7, five-test floor); full sitting (every third: v7a full, v8a/b spot).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "06db72089e1566517655ae7e4836ad43fe02df3b67a126964dfe32f41449ca11",
+          "verdict": "act-bank-helper check OK; the author break-tested the check with three planted defects."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader: A 0/40, B 0/40 on keys; both flagged background-knowledge decidability (floating cylinders by Archimedes, gel/salt, silt/clay, soil nitrate). Author reworked sc9a-p5 (unstated liquid densities, an absorbing foam cylinder) and three items; 13 changed items re-graded by fresh A+B: 13/13 unique, no item decidable by knowledge alone"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "act-science-v9b-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "act",
+      "section": "science",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "act-science-v9b",
+      "contentSha": "3780a512d5754639ff1b57bd180510b3ea3cc2bac7c4b009434d42d3acdb8e96",
+      "status": "staged-for-human-review",
+      "note": "Claude agent; staged 2026-10-23 (wave 7, five-test floor); spot sc9b-p6 (sha256 mod 7).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "3780a512d5754639ff1b57bd180510b3ea3cc2bac7c4b009434d42d3acdb8e96",
+          "verdict": "act-bank-helper check OK."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader: A 1/40 broken (P3-Q6 key contradicted the 0-layer trial), B 0/40; both flagged P3-Q5, P5-Q4, P5-Q6 as decidable by knowledge or formula. All four reworked; re-grade 13/13 unique except P5-Q4, whose factor was exactly 1000 (answer = a table cell); fuel mass changed 0.84 -> 0.63 g, recomputed and asserted in the build"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "ssat-reading-draft-17-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "ssat",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "ssat-reading-draft-17",
+      "contentSha": "99687ff250b0253837916008afe0a797b745ff9a48cd1964cb427c03102d5037",
+      "status": "staged-for-human-review",
+      "note": "Claude agent; staged 2026-10-23 (wave 7, five-test floor); spot draft17-D17-P03 (sha256 mod 6).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "99687ff250b0253837916008afe0a797b745ff9a48cd1964cb427c03102d5037",
+          "verdict": "five suggested topics collided and were replaced (rocket, kite, phones, canal, ants)."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader: A 1/36, B 1/36, the same item D17-P04-6 (\"troubled\" competes with \"disapproving\"); distractor replaced with \"admiring\", merge and quote checks rerun clean"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "ssat-reading-draft-18-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "ssat",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "ssat-reading-draft-18",
+      "contentSha": "c9de0ab2dd5037cb3612765f96ec50bdc32e50f871fd9733001fb9f1c3ee97e8",
+      "status": "staged-for-human-review",
+      "note": "Claude agent; staged 2026-10-23 (wave 7, five-test floor); spot draft18-D18-P04 (sha256 mod 6).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "c9de0ab2dd5037cb3612765f96ec50bdc32e50f871fd9733001fb9f1c3ee97e8",
+          "verdict": "four suggested topics collided and were replaced (coral, tractor, understudy, bell foundry)."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader: A 0/36, B 0/36"
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "toefl-passage-draft-7-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "toefl",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "toefl-passage-draft-7",
+      "contentSha": "bcb6215d6034ee06b2a83ed56b11ffe31d97c63db9c35db77d23a8757fd6ddaa",
+      "status": "staged-for-human-review",
+      "note": "Claude agent; staged 2026-10-23 (wave 7, five-test floor); spot, 2 passages (draw-toefl-conv-runs).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "bcb6215d6034ee06b2a83ed56b11ffe31d97c63db9c35db77d23a8757fd6ddaa",
+          "verdict": "exclusion list dumped fresh from the DB (694 openings); 12 passages for the upper/hard reading band."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "co-founder-standard grader: A 0/60, B 0/60. Both noted one factual error: Armero deaths \"an estimated 23,000 of its residents\" (23,000 is the whole-disaster toll) -> \"more than 20,000 of its residents\"; Sabine \"physics instructor\" -> \"young physicist\""
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
+        }
+      }
+    },
+    {
+      "id": "toefl-talk-draft-7-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "toefl",
+      "section": "listening",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "toefl-talk-draft-7",
+      "contentSha": "9fea2b52894e4621a77159261699c625b4d1854f4bc8fb744e2b4af5b9bc1c33",
+      "status": "staged-for-human-review",
+      "note": "Claude agents; staged 2026-10-23 (wave 7, five-test floor); 3 medium + 1 hard per lecture for the lower/medium listening route; FULL sitting (4 runs of 3 lectures), not spot, because of the cross-lecture template below.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "9fea2b52894e4621a77159261699c625b4d1854f4bc8fb744e2b4af5b9bc1c33",
+          "verdict": "author checks clean; exclusion list dumped fresh from the DB (694 openings)."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "Round 1 co-founder-standard A 0/48, B 0/48, but both named a cross-lecture template (usual story -> partly right; key the only qualified option on ~12 items) plus two factual simplifications (Grand Banks current speed, cross-staff vs backstaff). One distractor-side round by each author (shapes matched across options, two plain keys, two lectures end with the usual story upheld, facts fixed). Round 2 fresh A+B: 48/48 unique each, per-item odd-one-out tells gone; both still name a batch-level pattern (view keys are the moderate verdict; absolutes only in distractors). Stopped after one round (agent-rewrite rule); the human full sitting decides."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "NOT RUN."
         }
       }
     }

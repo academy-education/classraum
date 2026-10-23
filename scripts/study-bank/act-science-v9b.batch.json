@@ -1,0 +1,2614 @@
+[
+ {
+  "id": "ASV9b-P1-Q1",
+  "passage_id": "sc9b-p1",
+  "passage_title": "Foraging by Two Desert Ants",
+  "format": "data_representation",
+  "passage": "Two unnamed species of ants, Species P and Species Q, nest in the same sandy desert. Workers of both species leave the nest to search the sand surface for food. On one cloudless summer day, researchers chose one nest of each species; the two nests were 3 m apart. Every 2 hours from 6:00 to 18:00, they counted the workers leaving each nest during the same 10-minute period and measured the temperature of the sand surface between the nests. Table 1 shows the results.\n\nIn a separate laboratory test, workers of each species were warmed slowly until they lost coordination. Species P workers lost coordination at a body temperature of 46 °C, and Species Q workers at 54 °C. A worker walking on the sand has a body temperature about 6 °C lower than the sand surface temperature.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Sand surface temperature and number of workers leaving each nest during a 10-minute count",
+   "colLabels": [
+    "Sand surface temperature (°C)",
+    "Species P workers leaving",
+    "Species Q workers leaving"
+   ],
+   "rowLabels": [
+    "6:00",
+    "8:00",
+    "10:00",
+    "12:00",
+    "14:00",
+    "16:00",
+    "18:00"
+   ],
+   "cells": [
+    [
+     22,
+     20,
+     0
+    ],
+    [
+     31,
+     66,
+     4
+    ],
+    [
+     42,
+     48,
+     30
+    ],
+    [
+     56,
+     5,
+     72
+    ],
+    [
+     60,
+     1,
+     50
+    ],
+    [
+     49,
+     22,
+     58
+    ],
+    [
+     33,
+     70,
+     6
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, how many Species Q workers left the nest during the 16:00 count?",
+  "choices": [
+   "22",
+   "49",
+   "58",
+   "72"
+  ],
+  "correct_answer": "58",
+  "explanation": "In the 16:00 row, the Species Q column reads 58. The value 22 is the Species P count at 16:00, 49 is the sand temperature in °C at 16:00, and 72 is the Species Q count at 12:00.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV9b-P1-Q2",
+  "passage_id": "sc9b-p1",
+  "passage_title": "Foraging by Two Desert Ants",
+  "format": "data_representation",
+  "passage": "Two unnamed species of ants, Species P and Species Q, nest in the same sandy desert. Workers of both species leave the nest to search the sand surface for food. On one cloudless summer day, researchers chose one nest of each species; the two nests were 3 m apart. Every 2 hours from 6:00 to 18:00, they counted the workers leaving each nest during the same 10-minute period and measured the temperature of the sand surface between the nests. Table 1 shows the results.\n\nIn a separate laboratory test, workers of each species were warmed slowly until they lost coordination. Species P workers lost coordination at a body temperature of 46 °C, and Species Q workers at 54 °C. A worker walking on the sand has a body temperature about 6 °C lower than the sand surface temperature.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Sand surface temperature and number of workers leaving each nest during a 10-minute count",
+   "colLabels": [
+    "Sand surface temperature (°C)",
+    "Species P workers leaving",
+    "Species Q workers leaving"
+   ],
+   "rowLabels": [
+    "6:00",
+    "8:00",
+    "10:00",
+    "12:00",
+    "14:00",
+    "16:00",
+    "18:00"
+   ],
+   "cells": [
+    [
+     22,
+     20,
+     0
+    ],
+    [
+     31,
+     66,
+     4
+    ],
+    [
+     42,
+     48,
+     30
+    ],
+    [
+     56,
+     5,
+     72
+    ],
+    [
+     60,
+     1,
+     50
+    ],
+    [
+     49,
+     22,
+     58
+    ],
+    [
+     33,
+     70,
+     6
+    ]
+   ]
+  },
+  "prompt": "The researchers counted workers at both nests during the same 10-minute periods and placed the nests' counts side by side in Table 1. Which of the following is the most likely reason the two nests were counted at the same times?",
+  "choices": [
+   "So that both species were counted under the same sand temperature each time",
+   "So that the researchers could tell which of the two nests held more workers before counting began",
+   "So that the sand temperature would stay the same throughout the day",
+   "So that the workers of one species could not leave the nest while the other species was counted"
+  ],
+  "correct_answer": "So that both species were counted under the same sand temperature each time",
+  "explanation": "Table 1 lists a single sand temperature for each count, measured between the nests. Counting both nests at the same time means each pair of counts was made under that one temperature, so differences between the species are not caused by different conditions. Counting at the same time does not identify nest size in advance, cannot hold the temperature steady (it ranged from 22 °C to 60 °C), and does not stop workers from leaving.",
+  "domain": "Scientific Investigation",
+  "subskill": "explain a design choice that equalizes conditions",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV9b-P1-Q3",
+  "passage_id": "sc9b-p1",
+  "passage_title": "Foraging by Two Desert Ants",
+  "format": "data_representation",
+  "passage": "Two unnamed species of ants, Species P and Species Q, nest in the same sandy desert. Workers of both species leave the nest to search the sand surface for food. On one cloudless summer day, researchers chose one nest of each species; the two nests were 3 m apart. Every 2 hours from 6:00 to 18:00, they counted the workers leaving each nest during the same 10-minute period and measured the temperature of the sand surface between the nests. Table 1 shows the results.\n\nIn a separate laboratory test, workers of each species were warmed slowly until they lost coordination. Species P workers lost coordination at a body temperature of 46 °C, and Species Q workers at 54 °C. A worker walking on the sand has a body temperature about 6 °C lower than the sand surface temperature.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Sand surface temperature and number of workers leaving each nest during a 10-minute count",
+   "colLabels": [
+    "Sand surface temperature (°C)",
+    "Species P workers leaving",
+    "Species Q workers leaving"
+   ],
+   "rowLabels": [
+    "6:00",
+    "8:00",
+    "10:00",
+    "12:00",
+    "14:00",
+    "16:00",
+    "18:00"
+   ],
+   "cells": [
+    [
+     22,
+     20,
+     0
+    ],
+    [
+     31,
+     66,
+     4
+    ],
+    [
+     42,
+     48,
+     30
+    ],
+    [
+     56,
+     5,
+     72
+    ],
+    [
+     60,
+     1,
+     50
+    ],
+    [
+     49,
+     22,
+     58
+    ],
+    [
+     33,
+     70,
+     6
+    ]
+   ]
+  },
+  "prompt": "Based on Table 1, as sand surface temperature increased from 42 °C to 60 °C, the number of Species Q workers leaving the nest:",
+  "choices": [
+   "increased only.",
+   "decreased only.",
+   "increased and then decreased.",
+   "decreased and then increased."
+  ],
+  "correct_answer": "increased and then decreased.",
+  "explanation": "Ordered by temperature, the Species Q counts are 30 at 42 °C, 58 at 49 °C, 72 at 56 °C, and 50 at 60 °C: a rise followed by a fall. The count did not rise at every step, because it fell from 72 to 50, and it did not fall first. Decreasing at every step describes Species P over this range (48, 22, 5, 1), not Species Q.",
+  "domain": "Interpretation of Data",
+  "subskill": "identify a trend in a table",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9b-P1-Q4",
+  "passage_id": "sc9b-p1",
+  "passage_title": "Foraging by Two Desert Ants",
+  "format": "data_representation",
+  "passage": "Two unnamed species of ants, Species P and Species Q, nest in the same sandy desert. Workers of both species leave the nest to search the sand surface for food. On one cloudless summer day, researchers chose one nest of each species; the two nests were 3 m apart. Every 2 hours from 6:00 to 18:00, they counted the workers leaving each nest during the same 10-minute period and measured the temperature of the sand surface between the nests. Table 1 shows the results.\n\nIn a separate laboratory test, workers of each species were warmed slowly until they lost coordination. Species P workers lost coordination at a body temperature of 46 °C, and Species Q workers at 54 °C. A worker walking on the sand has a body temperature about 6 °C lower than the sand surface temperature.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Sand surface temperature and number of workers leaving each nest during a 10-minute count",
+   "colLabels": [
+    "Sand surface temperature (°C)",
+    "Species P workers leaving",
+    "Species Q workers leaving"
+   ],
+   "rowLabels": [
+    "6:00",
+    "8:00",
+    "10:00",
+    "12:00",
+    "14:00",
+    "16:00",
+    "18:00"
+   ],
+   "cells": [
+    [
+     22,
+     20,
+     0
+    ],
+    [
+     31,
+     66,
+     4
+    ],
+    [
+     42,
+     48,
+     30
+    ],
+    [
+     56,
+     5,
+     72
+    ],
+    [
+     60,
+     1,
+     50
+    ],
+    [
+     49,
+     22,
+     58
+    ],
+    [
+     33,
+     70,
+     6
+    ]
+   ]
+  },
+  "prompt": "A student claimed that Species Q is active on the sand at higher temperatures than Species P is. Do the data in Table 1 support this claim?",
+  "choices": [
+   "Yes; at each sand temperature of 49 °C or higher, more Species Q workers than Species P workers left the nest.",
+   "Yes; at each sand temperature tested, more Species Q workers than Species P workers left the nest.",
+   "No; at a sand temperature of 42 °C, more Species P workers than Species Q workers left the nest.",
+   "No; the greatest number of Species Q workers left the nest at the highest sand temperature."
+  ],
+  "correct_answer": "Yes; at each sand temperature of 49 °C or higher, more Species Q workers than Species P workers left the nest.",
+  "explanation": "At 49 °C, 56 °C, and 60 °C the Species Q counts (58, 72, 50) exceed the Species P counts (22, 5, 1), while at 22 °C, 31 °C, and 33 °C Species P outnumbered Species Q, so Q is the species active at the high temperatures. It is false that Q outnumbered P at every temperature (at 31 °C, 66 versus 4). More P workers at 42 °C does not contradict the claim, since 42 °C is not one of the high temperatures. Species Q peaked at 56 °C, not at the highest temperature, 60 °C.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate a claim against table data",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9b-P1-Q5",
+  "passage_id": "sc9b-p1",
+  "passage_title": "Foraging by Two Desert Ants",
+  "format": "data_representation",
+  "passage": "Two unnamed species of ants, Species P and Species Q, nest in the same sandy desert. Workers of both species leave the nest to search the sand surface for food. On one cloudless summer day, researchers chose one nest of each species; the two nests were 3 m apart. Every 2 hours from 6:00 to 18:00, they counted the workers leaving each nest during the same 10-minute period and measured the temperature of the sand surface between the nests. Table 1 shows the results.\n\nIn a separate laboratory test, workers of each species were warmed slowly until they lost coordination. Species P workers lost coordination at a body temperature of 46 °C, and Species Q workers at 54 °C. A worker walking on the sand has a body temperature about 6 °C lower than the sand surface temperature.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Sand surface temperature and number of workers leaving each nest during a 10-minute count",
+   "colLabels": [
+    "Sand surface temperature (°C)",
+    "Species P workers leaving",
+    "Species Q workers leaving"
+   ],
+   "rowLabels": [
+    "6:00",
+    "8:00",
+    "10:00",
+    "12:00",
+    "14:00",
+    "16:00",
+    "18:00"
+   ],
+   "cells": [
+    [
+     22,
+     20,
+     0
+    ],
+    [
+     31,
+     66,
+     4
+    ],
+    [
+     42,
+     48,
+     30
+    ],
+    [
+     56,
+     5,
+     72
+    ],
+    [
+     60,
+     1,
+     50
+    ],
+    [
+     49,
+     22,
+     58
+    ],
+    [
+     33,
+     70,
+     6
+    ]
+   ]
+  },
+  "prompt": "Based on the passage and Table 1, during which of the counts would a Species P worker walking on the sand have had a body temperature ABOVE the temperature at which Species P workers lose coordination?",
+  "choices": [
+   "12:00 only",
+   "12:00 and 14:00 only",
+   "12:00, 14:00, and 16:00 only",
+   "10:00, 12:00, 14:00, and 16:00 only"
+  ],
+  "correct_answer": "12:00 and 14:00 only",
+  "explanation": "A worker's body temperature is about 6 °C below the sand temperature, and Species P loses coordination at 46 °C, so the sand must exceed 52 °C. That happened at 12:00 (56 °C, body about 50 °C) and 14:00 (60 °C, body about 54 °C). At 16:00 the sand was 49 °C (body about 43 °C), and at 10:00 it was 42 °C (body about 36 °C), both below 46 °C. Listing 12:00 alone omits 14:00, which was even hotter.",
+  "domain": "Interpretation of Data",
+  "subskill": "combine a table value with a relationship stated in the passage",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV9b-P2-Q1",
+  "passage_id": "sc9b-p2",
+  "passage_title": "Magnetic Holding Force Through Thin Sheets",
+  "format": "data_representation",
+  "passage": "A permanent magnet attracts a nearby steel object. Students studied how much a thin sheet of material placed between a magnet and a steel plate changes the magnet's holding force.\n\nA disk magnet was fixed face-down to a stand, and a flat steel plate was held beneath it. The gap between the magnet's face and the plate was set with plastic spacers. In some trials, a 1 mm thick sheet of one of three unnamed materials (Materials R, S, and T) was placed flat against the magnet's face; in those trials, the 1 mm sheet was counted as part of the gap, and spacers filled the rest. A spring scale attached to the plate was pulled straight down, and the force at which the plate came away from the magnet was recorded. Each value in Table 1 is the average of 3 trials.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Force (N) needed to pull the steel plate away from the magnet",
+   "colLabels": [
+    "No sheet",
+    "Material R",
+    "Material S",
+    "Material T"
+   ],
+   "rowLabels": [
+    "1 mm gap",
+    "2 mm gap",
+    "3 mm gap",
+    "4 mm gap",
+    "6 mm gap"
+   ],
+   "cells": [
+    [
+     24.0,
+     24.0,
+     10.0,
+     4.8
+    ],
+    [
+     13.5,
+     13.5,
+     5.6,
+     2.7
+    ],
+    [
+     8.0,
+     8.0,
+     3.3,
+     1.6
+    ],
+    [
+     5.0,
+     5.0,
+     2.1,
+     1.0
+    ],
+    [
+     2.2,
+     2.2,
+     0.9,
+     0.4
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, with a sheet of Material S in place and a 3 mm gap, the force needed to pull the plate away was:",
+  "choices": [
+   "1.6 N.",
+   "3.3 N.",
+   "5.6 N.",
+   "8.0 N."
+  ],
+  "correct_answer": "3.3 N.",
+  "explanation": "In the 3 mm gap row, the Material S column reads 3.3 N. The value 1.6 N is for Material T at 3 mm, 5.6 N is for Material S at 2 mm, and 8.0 N is the force with no sheet (and with Material R) at 3 mm.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV9b-P2-Q2",
+  "passage_id": "sc9b-p2",
+  "passage_title": "Magnetic Holding Force Through Thin Sheets",
+  "format": "data_representation",
+  "passage": "A permanent magnet attracts a nearby steel object. Students studied how much a thin sheet of material placed between a magnet and a steel plate changes the magnet's holding force.\n\nA disk magnet was fixed face-down to a stand, and a flat steel plate was held beneath it. The gap between the magnet's face and the plate was set with plastic spacers. In some trials, a 1 mm thick sheet of one of three unnamed materials (Materials R, S, and T) was placed flat against the magnet's face; in those trials, the 1 mm sheet was counted as part of the gap, and spacers filled the rest. A spring scale attached to the plate was pulled straight down, and the force at which the plate came away from the magnet was recorded. Each value in Table 1 is the average of 3 trials.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Force (N) needed to pull the steel plate away from the magnet",
+   "colLabels": [
+    "No sheet",
+    "Material R",
+    "Material S",
+    "Material T"
+   ],
+   "rowLabels": [
+    "1 mm gap",
+    "2 mm gap",
+    "3 mm gap",
+    "4 mm gap",
+    "6 mm gap"
+   ],
+   "cells": [
+    [
+     24.0,
+     24.0,
+     10.0,
+     4.8
+    ],
+    [
+     13.5,
+     13.5,
+     5.6,
+     2.7
+    ],
+    [
+     8.0,
+     8.0,
+     3.3,
+     1.6
+    ],
+    [
+     5.0,
+     5.0,
+     2.1,
+     1.0
+    ],
+    [
+     2.2,
+     2.2,
+     0.9,
+     0.4
+    ]
+   ]
+  },
+  "prompt": "Based on Table 1, if a trial with no sheet had been run with a gap of 5 mm, the force needed to pull the plate away would most likely have been:",
+  "choices": [
+   "less than 2.2 N.",
+   "between 2.2 N and 5.0 N.",
+   "between 5.0 N and 8.0 N.",
+   "greater than 8.0 N."
+  ],
+  "correct_answer": "between 2.2 N and 5.0 N.",
+  "explanation": "With no sheet, the force decreased steadily as the gap widened: 5.0 N at 4 mm and 2.2 N at 6 mm. A 5 mm gap lies between those gaps, so the force would fall between 2.2 N and 5.0 N. Less than 2.2 N would require a gap wider than 6 mm, and 5.0 N to 8.0 N corresponds to gaps of 3 mm to 4 mm.",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate between table values",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9b-P2-Q3",
+  "passage_id": "sc9b-p2",
+  "passage_title": "Magnetic Holding Force Through Thin Sheets",
+  "format": "data_representation",
+  "passage": "A permanent magnet attracts a nearby steel object. Students studied how much a thin sheet of material placed between a magnet and a steel plate changes the magnet's holding force.\n\nA disk magnet was fixed face-down to a stand, and a flat steel plate was held beneath it. The gap between the magnet's face and the plate was set with plastic spacers. In some trials, a 1 mm thick sheet of one of three unnamed materials (Materials R, S, and T) was placed flat against the magnet's face; in those trials, the 1 mm sheet was counted as part of the gap, and spacers filled the rest. A spring scale attached to the plate was pulled straight down, and the force at which the plate came away from the magnet was recorded. Each value in Table 1 is the average of 3 trials.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Force (N) needed to pull the steel plate away from the magnet",
+   "colLabels": [
+    "No sheet",
+    "Material R",
+    "Material S",
+    "Material T"
+   ],
+   "rowLabels": [
+    "1 mm gap",
+    "2 mm gap",
+    "3 mm gap",
+    "4 mm gap",
+    "6 mm gap"
+   ],
+   "cells": [
+    [
+     24.0,
+     24.0,
+     10.0,
+     4.8
+    ],
+    [
+     13.5,
+     13.5,
+     5.6,
+     2.7
+    ],
+    [
+     8.0,
+     8.0,
+     3.3,
+     1.6
+    ],
+    [
+     5.0,
+     5.0,
+     2.1,
+     1.0
+    ],
+    [
+     2.2,
+     2.2,
+     0.9,
+     0.4
+    ]
+   ]
+  },
+  "prompt": "Based on Table 1, which of the following lists the three sheet materials in order from the one that reduced the holding force the MOST to the one that reduced it the LEAST?",
+  "choices": [
+   "Material R, Material S, Material T",
+   "Material S, Material T, Material R",
+   "Material T, Material R, Material S",
+   "Material T, Material S, Material R"
+  ],
+  "correct_answer": "Material T, Material S, Material R",
+  "explanation": "At every gap, the force was lowest with Material T (4.8 N at 1 mm), next lowest with Material S (10.0 N at 1 mm), and the same as with no sheet with Material R (24.0 N at 1 mm). So T reduced the force most, S less, and R not at all. The other orders either reverse this or place R, which had no effect, ahead of S or T.",
+  "domain": "Interpretation of Data",
+  "subskill": "rank conditions from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV9b-P2-Q4",
+  "passage_id": "sc9b-p2",
+  "passage_title": "Magnetic Holding Force Through Thin Sheets",
+  "format": "data_representation",
+  "passage": "A permanent magnet attracts a nearby steel object. Students studied how much a thin sheet of material placed between a magnet and a steel plate changes the magnet's holding force.\n\nA disk magnet was fixed face-down to a stand, and a flat steel plate was held beneath it. The gap between the magnet's face and the plate was set with plastic spacers. In some trials, a 1 mm thick sheet of one of three unnamed materials (Materials R, S, and T) was placed flat against the magnet's face; in those trials, the 1 mm sheet was counted as part of the gap, and spacers filled the rest. A spring scale attached to the plate was pulled straight down, and the force at which the plate came away from the magnet was recorded. Each value in Table 1 is the average of 3 trials.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Force (N) needed to pull the steel plate away from the magnet",
+   "colLabels": [
+    "No sheet",
+    "Material R",
+    "Material S",
+    "Material T"
+   ],
+   "rowLabels": [
+    "1 mm gap",
+    "2 mm gap",
+    "3 mm gap",
+    "4 mm gap",
+    "6 mm gap"
+   ],
+   "cells": [
+    [
+     24.0,
+     24.0,
+     10.0,
+     4.8
+    ],
+    [
+     13.5,
+     13.5,
+     5.6,
+     2.7
+    ],
+    [
+     8.0,
+     8.0,
+     3.3,
+     1.6
+    ],
+    [
+     5.0,
+     5.0,
+     2.1,
+     1.0
+    ],
+    [
+     2.2,
+     2.2,
+     0.9,
+     0.4
+    ]
+   ]
+  },
+  "prompt": "In trials with a sheet, the students counted the 1 mm sheet as part of the gap rather than adding it to the gap set by the spacers. This procedure ensured that, for a given row of Table 1:",
+  "choices": [
+   "the steel plate was the same distance from the magnet whether or not a sheet was present.",
+   "each sheet material had the same mass as the plastic spacers that it replaced in the gap.",
+   "the force with each sheet in place was the same as the force with no sheet.",
+   "the spring scale was pulled with the same force in every trial."
+  ],
+  "correct_answer": "the steel plate was the same distance from the magnet whether or not a sheet was present.",
+  "explanation": "Because the sheet took the place of 1 mm of spacers, the total distance between the magnet's face and the plate stayed at the gap listed in the row, so any change in force in that row comes from the sheet's material and not from a larger distance. The procedure says nothing about matching masses, the forces in a row clearly differ (for example, 13.5 N versus 2.7 N at 2 mm), and the pulling force at which the plate came away is what was measured, so it was not held the same.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify the purpose of a procedural detail",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9b-P2-Q5",
+  "passage_id": "sc9b-p2",
+  "passage_title": "Magnetic Holding Force Through Thin Sheets",
+  "format": "data_representation",
+  "passage": "A permanent magnet attracts a nearby steel object. Students studied how much a thin sheet of material placed between a magnet and a steel plate changes the magnet's holding force.\n\nA disk magnet was fixed face-down to a stand, and a flat steel plate was held beneath it. The gap between the magnet's face and the plate was set with plastic spacers. In some trials, a 1 mm thick sheet of one of three unnamed materials (Materials R, S, and T) was placed flat against the magnet's face; in those trials, the 1 mm sheet was counted as part of the gap, and spacers filled the rest. A spring scale attached to the plate was pulled straight down, and the force at which the plate came away from the magnet was recorded. Each value in Table 1 is the average of 3 trials.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Force (N) needed to pull the steel plate away from the magnet",
+   "colLabels": [
+    "No sheet",
+    "Material R",
+    "Material S",
+    "Material T"
+   ],
+   "rowLabels": [
+    "1 mm gap",
+    "2 mm gap",
+    "3 mm gap",
+    "4 mm gap",
+    "6 mm gap"
+   ],
+   "cells": [
+    [
+     24.0,
+     24.0,
+     10.0,
+     4.8
+    ],
+    [
+     13.5,
+     13.5,
+     5.6,
+     2.7
+    ],
+    [
+     8.0,
+     8.0,
+     3.3,
+     1.6
+    ],
+    [
+     5.0,
+     5.0,
+     2.1,
+     1.0
+    ],
+    [
+     2.2,
+     2.2,
+     0.9,
+     0.4
+    ]
+   ]
+  },
+  "prompt": "Based on Table 1, the force measured with Material S at a 2 mm gap was closest to the force measured with NO sheet at which gap?",
+  "choices": [
+   "1 mm",
+   "2 mm",
+   "3 mm",
+   "4 mm"
+  ],
+  "correct_answer": "4 mm",
+  "explanation": "With Material S at 2 mm the force was 5.6 N. With no sheet the forces were 24.0 N at 1 mm, 13.5 N at 2 mm, 8.0 N at 3 mm, and 5.0 N at 4 mm; 5.6 N differs from 5.0 N by 0.6 N but from 8.0 N by 2.4 N, so 4 mm is closest. The 2 mm value with no sheet (13.5 N) is more than twice the Material S value.",
+  "domain": "Interpretation of Data",
+  "subskill": "compare values across two data series",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV9b-P3-Q1",
+  "passage_id": "sc9b-p3",
+  "passage_title": "Heat Loss Through Fabrics",
+  "format": "research_summaries",
+  "passage": "Students compared how well four unnamed fabrics (Fabrics J, K, L, and M) slow the loss of heat. In every trial, a closed aluminum can holding 400 g of water at 60.0 °C was wrapped (or left unwrapped) and placed on a foam pad in a room kept at 20 °C. The water temperature was recorded again after 30 minutes. The temperature drop is the starting temperature minus the final temperature.\n\nExperiment 1\nThe can was left unwrapped or was wrapped in one layer of each fabric. All fabrics were dry, and the air in the room was still.\n\nExperiment 2\nThe can was wrapped in 2, 3, or 4 layers of dry Fabric K in still air. (The one-layer result for Fabric K is given in Experiment 1.)\n\nExperiment 3\nThe can was wrapped in one layer of Fabric K. The fabric was either dry or damp (soaked with 20 g of room-temperature water just before wrapping), and a fan either was off or blew air across the can.\n\nTable 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Temperature drop of the water in 30 minutes",
+   "colLabels": [
+    "Number of layers",
+    "Total fabric thickness (mm)",
+    "Temperature drop (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1: no fabric",
+    "Exp. 1: Fabric J",
+    "Exp. 1: Fabric K",
+    "Exp. 1: Fabric L",
+    "Exp. 1: Fabric M",
+    "Exp. 2: Fabric K",
+    "Exp. 2: Fabric K",
+    "Exp. 2: Fabric K",
+    "Exp. 3: Fabric K, damp",
+    "Exp. 3: Fabric K, dry, fan on",
+    "Exp. 3: Fabric K, damp, fan on"
+   ],
+   "cells": [
+    [
+     0,
+     0,
+     16.0
+    ],
+    [
+     1,
+     1.0,
+     11.0
+    ],
+    [
+     1,
+     2.0,
+     8.0
+    ],
+    [
+     1,
+     2.0,
+     12.0
+    ],
+    [
+     1,
+     3.0,
+     6.5
+    ],
+    [
+     2,
+     4.0,
+     5.5
+    ],
+    [
+     3,
+     6.0,
+     4.0
+    ],
+    [
+     4,
+     8.0,
+     3.0
+    ],
+    [
+     1,
+     2.0,
+     13.0
+    ],
+    [
+     1,
+     2.0,
+     10.5
+    ],
+    [
+     1,
+     2.0,
+     19.0
+    ]
+   ]
+  },
+  "prompt": "In Experiment 1, the can wrapped in which fabric had the smallest temperature drop?",
+  "choices": [
+   "Fabric J",
+   "Fabric K",
+   "Fabric L",
+   "Fabric M"
+  ],
+  "correct_answer": "Fabric M",
+  "explanation": "In Experiment 1, the temperature drops were 11.0 °C for Fabric J, 8.0 °C for Fabric K, 12.0 °C for Fabric L, and 6.5 °C for Fabric M. The smallest drop, 6.5 °C, was with Fabric M; Fabric L had the largest drop of the four fabrics.",
+  "domain": "Interpretation of Data",
+  "subskill": "read and compare values in a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV9b-P3-Q2",
+  "passage_id": "sc9b-p3",
+  "passage_title": "Heat Loss Through Fabrics",
+  "format": "research_summaries",
+  "passage": "Students compared how well four unnamed fabrics (Fabrics J, K, L, and M) slow the loss of heat. In every trial, a closed aluminum can holding 400 g of water at 60.0 °C was wrapped (or left unwrapped) and placed on a foam pad in a room kept at 20 °C. The water temperature was recorded again after 30 minutes. The temperature drop is the starting temperature minus the final temperature.\n\nExperiment 1\nThe can was left unwrapped or was wrapped in one layer of each fabric. All fabrics were dry, and the air in the room was still.\n\nExperiment 2\nThe can was wrapped in 2, 3, or 4 layers of dry Fabric K in still air. (The one-layer result for Fabric K is given in Experiment 1.)\n\nExperiment 3\nThe can was wrapped in one layer of Fabric K. The fabric was either dry or damp (soaked with 20 g of room-temperature water just before wrapping), and a fan either was off or blew air across the can.\n\nTable 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Temperature drop of the water in 30 minutes",
+   "colLabels": [
+    "Number of layers",
+    "Total fabric thickness (mm)",
+    "Temperature drop (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1: no fabric",
+    "Exp. 1: Fabric J",
+    "Exp. 1: Fabric K",
+    "Exp. 1: Fabric L",
+    "Exp. 1: Fabric M",
+    "Exp. 2: Fabric K",
+    "Exp. 2: Fabric K",
+    "Exp. 2: Fabric K",
+    "Exp. 3: Fabric K, damp",
+    "Exp. 3: Fabric K, dry, fan on",
+    "Exp. 3: Fabric K, damp, fan on"
+   ],
+   "cells": [
+    [
+     0,
+     0,
+     16.0
+    ],
+    [
+     1,
+     1.0,
+     11.0
+    ],
+    [
+     1,
+     2.0,
+     8.0
+    ],
+    [
+     1,
+     2.0,
+     12.0
+    ],
+    [
+     1,
+     3.0,
+     6.5
+    ],
+    [
+     2,
+     4.0,
+     5.5
+    ],
+    [
+     3,
+     6.0,
+     4.0
+    ],
+    [
+     4,
+     8.0,
+     3.0
+    ],
+    [
+     1,
+     2.0,
+     13.0
+    ],
+    [
+     1,
+     2.0,
+     10.5
+    ],
+    [
+     1,
+     2.0,
+     19.0
+    ]
+   ]
+  },
+  "prompt": "According to the results of Experiments 1 and 2, as the number of layers of Fabric K increased from 1 to 4, the temperature drop:",
+  "choices": [
+   "decreased by the same amount with each added layer.",
+   "decreased, by a smaller amount with each added layer.",
+   "decreased, by a greater amount with each added layer.",
+   "increased with each added layer."
+  ],
+  "correct_answer": "decreased, by a smaller amount with each added layer.",
+  "explanation": "The drops were 8.0 °C (1 layer), 5.5 °C (2 layers), 4.0 °C (3 layers), and 3.0 °C (4 layers). Each added layer lowered the drop, by 2.5 °C, then 1.5 °C, then 1.0 °C, so the decreases got smaller. They were not equal or growing, and the drop never increased.",
+  "domain": "Interpretation of Data",
+  "subskill": "compare differences between consecutive table values",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9b-P3-Q3",
+  "passage_id": "sc9b-p3",
+  "passage_title": "Heat Loss Through Fabrics",
+  "format": "research_summaries",
+  "passage": "Students compared how well four unnamed fabrics (Fabrics J, K, L, and M) slow the loss of heat. In every trial, a closed aluminum can holding 400 g of water at 60.0 °C was wrapped (or left unwrapped) and placed on a foam pad in a room kept at 20 °C. The water temperature was recorded again after 30 minutes. The temperature drop is the starting temperature minus the final temperature.\n\nExperiment 1\nThe can was left unwrapped or was wrapped in one layer of each fabric. All fabrics were dry, and the air in the room was still.\n\nExperiment 2\nThe can was wrapped in 2, 3, or 4 layers of dry Fabric K in still air. (The one-layer result for Fabric K is given in Experiment 1.)\n\nExperiment 3\nThe can was wrapped in one layer of Fabric K. The fabric was either dry or damp (soaked with 20 g of room-temperature water just before wrapping), and a fan either was off or blew air across the can.\n\nTable 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Temperature drop of the water in 30 minutes",
+   "colLabels": [
+    "Number of layers",
+    "Total fabric thickness (mm)",
+    "Temperature drop (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1: no fabric",
+    "Exp. 1: Fabric J",
+    "Exp. 1: Fabric K",
+    "Exp. 1: Fabric L",
+    "Exp. 1: Fabric M",
+    "Exp. 2: Fabric K",
+    "Exp. 2: Fabric K",
+    "Exp. 2: Fabric K",
+    "Exp. 3: Fabric K, damp",
+    "Exp. 3: Fabric K, dry, fan on",
+    "Exp. 3: Fabric K, damp, fan on"
+   ],
+   "cells": [
+    [
+     0,
+     0,
+     16.0
+    ],
+    [
+     1,
+     1.0,
+     11.0
+    ],
+    [
+     1,
+     2.0,
+     8.0
+    ],
+    [
+     1,
+     2.0,
+     12.0
+    ],
+    [
+     1,
+     3.0,
+     6.5
+    ],
+    [
+     2,
+     4.0,
+     5.5
+    ],
+    [
+     3,
+     6.0,
+     4.0
+    ],
+    [
+     4,
+     8.0,
+     3.0
+    ],
+    [
+     1,
+     2.0,
+     13.0
+    ],
+    [
+     1,
+     2.0,
+     10.5
+    ],
+    [
+     1,
+     2.0,
+     19.0
+    ]
+   ]
+  },
+  "prompt": "A student wanted to test whether the temperature drop depends only on the thickness of the fabric around the can and not on which fabric is used. Which two trials should be compared?",
+  "choices": [
+   "Fabric J and Fabric M in Experiment 1",
+   "One layer of Fabric K in Experiment 1 and two layers of Fabric K in Experiment 2",
+   "No fabric and Fabric J in Experiment 1",
+   "Fabric K and Fabric L in Experiment 1"
+  ],
+  "correct_answer": "Fabric K and Fabric L in Experiment 1",
+  "explanation": "Fabrics K and L were both 2.0 mm thick, so comparing them changes the fabric while holding thickness constant; their drops (8.0 °C and 12.0 °C) differ, so thickness alone does not decide the result. Fabrics J and M differ in both fabric and thickness (1.0 mm and 3.0 mm). One versus two layers of K changes thickness but not fabric. No fabric versus Fabric J changes both whether a fabric is present and its thickness.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose trials that isolate one variable",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9b-P3-Q4",
+  "passage_id": "sc9b-p3",
+  "passage_title": "Heat Loss Through Fabrics",
+  "format": "research_summaries",
+  "passage": "Students compared how well four unnamed fabrics (Fabrics J, K, L, and M) slow the loss of heat. In every trial, a closed aluminum can holding 400 g of water at 60.0 °C was wrapped (or left unwrapped) and placed on a foam pad in a room kept at 20 °C. The water temperature was recorded again after 30 minutes. The temperature drop is the starting temperature minus the final temperature.\n\nExperiment 1\nThe can was left unwrapped or was wrapped in one layer of each fabric. All fabrics were dry, and the air in the room was still.\n\nExperiment 2\nThe can was wrapped in 2, 3, or 4 layers of dry Fabric K in still air. (The one-layer result for Fabric K is given in Experiment 1.)\n\nExperiment 3\nThe can was wrapped in one layer of Fabric K. The fabric was either dry or damp (soaked with 20 g of room-temperature water just before wrapping), and a fan either was off or blew air across the can.\n\nTable 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Temperature drop of the water in 30 minutes",
+   "colLabels": [
+    "Number of layers",
+    "Total fabric thickness (mm)",
+    "Temperature drop (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1: no fabric",
+    "Exp. 1: Fabric J",
+    "Exp. 1: Fabric K",
+    "Exp. 1: Fabric L",
+    "Exp. 1: Fabric M",
+    "Exp. 2: Fabric K",
+    "Exp. 2: Fabric K",
+    "Exp. 2: Fabric K",
+    "Exp. 3: Fabric K, damp",
+    "Exp. 3: Fabric K, dry, fan on",
+    "Exp. 3: Fabric K, damp, fan on"
+   ],
+   "cells": [
+    [
+     0,
+     0,
+     16.0
+    ],
+    [
+     1,
+     1.0,
+     11.0
+    ],
+    [
+     1,
+     2.0,
+     8.0
+    ],
+    [
+     1,
+     2.0,
+     12.0
+    ],
+    [
+     1,
+     3.0,
+     6.5
+    ],
+    [
+     2,
+     4.0,
+     5.5
+    ],
+    [
+     3,
+     6.0,
+     4.0
+    ],
+    [
+     4,
+     8.0,
+     3.0
+    ],
+    [
+     1,
+     2.0,
+     13.0
+    ],
+    [
+     1,
+     2.0,
+     10.5
+    ],
+    [
+     1,
+     2.0,
+     19.0
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, what was the final temperature of the water in the trial with damp Fabric K and the fan on?",
+  "choices": [
+   "41.0 °C",
+   "44.0 °C",
+   "47.0 °C",
+   "49.5 °C"
+  ],
+  "correct_answer": "41.0 °C",
+  "explanation": "That trial had a temperature drop of 19.0 °C from a starting temperature of 60.0 °C, so the final temperature was 60.0 − 19.0 = 41.0 °C. The value 44.0 °C is the final temperature of the unwrapped can (drop 16.0 °C), 47.0 °C is for damp Fabric K with the fan off (drop 13.0 °C), and 49.5 °C is for dry Fabric K with the fan on (drop 10.5 °C).",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a value from table data and the passage",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9b-P3-Q5",
+  "passage_id": "sc9b-p3",
+  "passage_title": "Heat Loss Through Fabrics",
+  "format": "research_summaries",
+  "passage": "Students compared how well four unnamed fabrics (Fabrics J, K, L, and M) slow the loss of heat. In every trial, a closed aluminum can holding 400 g of water at 60.0 °C was wrapped (or left unwrapped) and placed on a foam pad in a room kept at 20 °C. The water temperature was recorded again after 30 minutes. The temperature drop is the starting temperature minus the final temperature.\n\nExperiment 1\nThe can was left unwrapped or was wrapped in one layer of each fabric. All fabrics were dry, and the air in the room was still.\n\nExperiment 2\nThe can was wrapped in 2, 3, or 4 layers of dry Fabric K in still air. (The one-layer result for Fabric K is given in Experiment 1.)\n\nExperiment 3\nThe can was wrapped in one layer of Fabric K. The fabric was either dry or damp (soaked with 20 g of room-temperature water just before wrapping), and a fan either was off or blew air across the can.\n\nTable 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Temperature drop of the water in 30 minutes",
+   "colLabels": [
+    "Number of layers",
+    "Total fabric thickness (mm)",
+    "Temperature drop (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1: no fabric",
+    "Exp. 1: Fabric J",
+    "Exp. 1: Fabric K",
+    "Exp. 1: Fabric L",
+    "Exp. 1: Fabric M",
+    "Exp. 2: Fabric K",
+    "Exp. 2: Fabric K",
+    "Exp. 2: Fabric K",
+    "Exp. 3: Fabric K, damp",
+    "Exp. 3: Fabric K, dry, fan on",
+    "Exp. 3: Fabric K, damp, fan on"
+   ],
+   "cells": [
+    [
+     0,
+     0,
+     16.0
+    ],
+    [
+     1,
+     1.0,
+     11.0
+    ],
+    [
+     1,
+     2.0,
+     8.0
+    ],
+    [
+     1,
+     2.0,
+     12.0
+    ],
+    [
+     1,
+     3.0,
+     6.5
+    ],
+    [
+     2,
+     4.0,
+     5.5
+    ],
+    [
+     3,
+     6.0,
+     4.0
+    ],
+    [
+     4,
+     8.0,
+     3.0
+    ],
+    [
+     1,
+     2.0,
+     13.0
+    ],
+    [
+     1,
+     2.0,
+     10.5
+    ],
+    [
+     1,
+     2.0,
+     19.0
+    ]
+   ]
+  },
+  "prompt": "Which of the following conclusions is supported by the results of Experiments 1 and 3?",
+  "choices": [
+   "With the fan off, wetting Fabric K increased the temperature drop by more than turning on the fan did with Fabric K dry.",
+   "Turning on the fan increased the temperature drop by the same amount whether Fabric K was dry or damp.",
+   "A can wrapped in damp Fabric K with the fan off lost less heat than a can wrapped in one dry layer of Fabric J.",
+   "A can wrapped in dry Fabric K with the fan on lost more heat than the unwrapped can in still air."
+  ],
+  "correct_answer": "With the fan off, wetting Fabric K increased the temperature drop by more than turning on the fan did with Fabric K dry.",
+  "explanation": "With dry Fabric K in still air the drop was 8.0 °C. Wetting it (fan off) raised the drop to 13.0 °C, an increase of 5.0 °C, while turning on the fan (fabric dry) raised it only to 10.5 °C, an increase of 2.5 °C. The fan's effect was not the same for dry and damp fabric: it added 2.5 °C when dry but 6.0 °C when damp (13.0 °C to 19.0 °C). Damp Fabric K with the fan off (13.0 °C) lost more heat, not less, than one dry layer of Fabric J (11.0 °C). Dry Fabric K with the fan on (10.5 °C) lost less heat than the unwrapped can in still air (16.0 °C).",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "draw a conclusion by combining two experiments",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV9b-P3-Q6",
+  "passage_id": "sc9b-p3",
+  "passage_title": "Heat Loss Through Fabrics",
+  "format": "research_summaries",
+  "passage": "Students compared how well four unnamed fabrics (Fabrics J, K, L, and M) slow the loss of heat. In every trial, a closed aluminum can holding 400 g of water at 60.0 °C was wrapped (or left unwrapped) and placed on a foam pad in a room kept at 20 °C. The water temperature was recorded again after 30 minutes. The temperature drop is the starting temperature minus the final temperature.\n\nExperiment 1\nThe can was left unwrapped or was wrapped in one layer of each fabric. All fabrics were dry, and the air in the room was still.\n\nExperiment 2\nThe can was wrapped in 2, 3, or 4 layers of dry Fabric K in still air. (The one-layer result for Fabric K is given in Experiment 1.)\n\nExperiment 3\nThe can was wrapped in one layer of Fabric K. The fabric was either dry or damp (soaked with 20 g of room-temperature water just before wrapping), and a fan either was off or blew air across the can.\n\nTable 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Temperature drop of the water in 30 minutes",
+   "colLabels": [
+    "Number of layers",
+    "Total fabric thickness (mm)",
+    "Temperature drop (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1: no fabric",
+    "Exp. 1: Fabric J",
+    "Exp. 1: Fabric K",
+    "Exp. 1: Fabric L",
+    "Exp. 1: Fabric M",
+    "Exp. 2: Fabric K",
+    "Exp. 2: Fabric K",
+    "Exp. 2: Fabric K",
+    "Exp. 3: Fabric K, damp",
+    "Exp. 3: Fabric K, dry, fan on",
+    "Exp. 3: Fabric K, damp, fan on"
+   ],
+   "cells": [
+    [
+     0,
+     0,
+     16.0
+    ],
+    [
+     1,
+     1.0,
+     11.0
+    ],
+    [
+     1,
+     2.0,
+     8.0
+    ],
+    [
+     1,
+     2.0,
+     12.0
+    ],
+    [
+     1,
+     3.0,
+     6.5
+    ],
+    [
+     2,
+     4.0,
+     5.5
+    ],
+    [
+     3,
+     6.0,
+     4.0
+    ],
+    [
+     4,
+     8.0,
+     3.0
+    ],
+    [
+     1,
+     2.0,
+     13.0
+    ],
+    [
+     1,
+     2.0,
+     10.5
+    ],
+    [
+     1,
+     2.0,
+     19.0
+    ]
+   ]
+  },
+  "prompt": "Which of the following was varied in Experiment 2 but was the same in every trial of Experiment 1 in which the can was wrapped?",
+  "choices": [
+   "The type of fabric",
+   "The number of fabric layers",
+   "The starting temperature of the water",
+   "Whether the fan was on"
+  ],
+  "correct_answer": "The number of fabric layers",
+  "explanation": "Experiment 2 used 2, 3, or 4 layers of Fabric K, while every wrapped can in Experiment 1 had one layer. The type of fabric was varied in Experiment 1 but not in Experiment 2. The starting temperature was 60.0 °C in every trial, and the fan was used only in Experiment 3.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify the variable changed between experiments",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV9b-P4-Q1",
+  "passage_id": "sc9b-p4",
+  "passage_title": "Three Fruit Enzymes and pH",
+  "format": "research_summaries",
+  "passage": "Many plants make enzymes that break down proteins. Students prepared extracts from the fruits of three unnamed plant species (Extracts A, B, and C), each of which contains a protein-digesting enzyme. Each extract was diluted so that all three contained the same total amount of protein per milliliter. Enzyme activity was measured as the amount of product (in micromoles, µmol) formed per minute when 1 mL of extract was mixed with a standard protein solution at 25 °C.\n\nExperiment 1\nThe activity of each extract was measured in solutions buffered (held) at pH 3, 4, 5, 6, 7, 8, and 9.\n\nExperiment 2\nSamples of each extract were held for 30 minutes at pH 6, pH 3, or pH 9. Each sample was then readjusted to pH 6, and its activity was measured at pH 6.\n\nTable 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Enzyme activity (µmol of product formed per minute) of the three extracts",
+   "colLabels": [
+    "Extract A",
+    "Extract B",
+    "Extract C"
+   ],
+   "rowLabels": [
+    "Exp. 1: tested at pH 3",
+    "Exp. 1: tested at pH 4",
+    "Exp. 1: tested at pH 5",
+    "Exp. 1: tested at pH 6",
+    "Exp. 1: tested at pH 7",
+    "Exp. 1: tested at pH 8",
+    "Exp. 1: tested at pH 9",
+    "Exp. 2: 30 min at pH 6, then tested at pH 6",
+    "Exp. 2: 30 min at pH 3, then tested at pH 6",
+    "Exp. 2: 30 min at pH 9, then tested at pH 6"
+   ],
+   "cells": [
+    [
+     2,
+     10,
+     0
+    ],
+    [
+     8,
+     22,
+     1
+    ],
+    [
+     18,
+     30,
+     4
+    ],
+    [
+     28,
+     24,
+     10
+    ],
+    [
+     22,
+     14,
+     19
+    ],
+    [
+     12,
+     6,
+     26
+    ],
+    [
+     4,
+     2,
+     21
+    ],
+    [
+     28,
+     24,
+     10
+    ],
+    [
+     27,
+     23,
+     1
+    ],
+    [
+     9,
+     7,
+     10
+    ]
+   ]
+  },
+  "prompt": "In Experiment 1, Extract B had its greatest activity at which pH?",
+  "choices": [
+   "pH 4",
+   "pH 5",
+   "pH 6",
+   "pH 7"
+  ],
+  "correct_answer": "pH 5",
+  "explanation": "Extract B's activities in Experiment 1 were 22 at pH 4, 30 at pH 5, 24 at pH 6, and 14 at pH 7 (in µmol/min), so its greatest activity, 30, was at pH 5. Extract A peaked at pH 6 (28) and Extract C at pH 8 (26).",
+  "domain": "Interpretation of Data",
+  "subskill": "read a maximum from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV9b-P4-Q2",
+  "passage_id": "sc9b-p4",
+  "passage_title": "Three Fruit Enzymes and pH",
+  "format": "research_summaries",
+  "passage": "Many plants make enzymes that break down proteins. Students prepared extracts from the fruits of three unnamed plant species (Extracts A, B, and C), each of which contains a protein-digesting enzyme. Each extract was diluted so that all three contained the same total amount of protein per milliliter. Enzyme activity was measured as the amount of product (in micromoles, µmol) formed per minute when 1 mL of extract was mixed with a standard protein solution at 25 °C.\n\nExperiment 1\nThe activity of each extract was measured in solutions buffered (held) at pH 3, 4, 5, 6, 7, 8, and 9.\n\nExperiment 2\nSamples of each extract were held for 30 minutes at pH 6, pH 3, or pH 9. Each sample was then readjusted to pH 6, and its activity was measured at pH 6.\n\nTable 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Enzyme activity (µmol of product formed per minute) of the three extracts",
+   "colLabels": [
+    "Extract A",
+    "Extract B",
+    "Extract C"
+   ],
+   "rowLabels": [
+    "Exp. 1: tested at pH 3",
+    "Exp. 1: tested at pH 4",
+    "Exp. 1: tested at pH 5",
+    "Exp. 1: tested at pH 6",
+    "Exp. 1: tested at pH 7",
+    "Exp. 1: tested at pH 8",
+    "Exp. 1: tested at pH 9",
+    "Exp. 2: 30 min at pH 6, then tested at pH 6",
+    "Exp. 2: 30 min at pH 3, then tested at pH 6",
+    "Exp. 2: 30 min at pH 9, then tested at pH 6"
+   ],
+   "cells": [
+    [
+     2,
+     10,
+     0
+    ],
+    [
+     8,
+     22,
+     1
+    ],
+    [
+     18,
+     30,
+     4
+    ],
+    [
+     28,
+     24,
+     10
+    ],
+    [
+     22,
+     14,
+     19
+    ],
+    [
+     12,
+     6,
+     26
+    ],
+    [
+     4,
+     2,
+     21
+    ],
+    [
+     28,
+     24,
+     10
+    ],
+    [
+     27,
+     23,
+     1
+    ],
+    [
+     9,
+     7,
+     10
+    ]
+   ]
+  },
+  "prompt": "In Experiment 1, at which of the pH values tested was the activity of Extract C greater than the activities of both Extract A and Extract B?",
+  "choices": [
+   "pH 7 only",
+   "pH 8 only",
+   "pH 8 and pH 9 only",
+   "pH 7, pH 8, and pH 9 only"
+  ],
+  "correct_answer": "pH 8 and pH 9 only",
+  "explanation": "At pH 8, Extract C (26) exceeded A (12) and B (6), and at pH 9, C (21) exceeded A (4) and B (2). At pH 7, C (19) exceeded B (14) but not A (22), so pH 7 does not qualify, and at pH 3 through 6 C was below A.",
+  "domain": "Interpretation of Data",
+  "subskill": "compare three data series at given points",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9b-P4-Q3",
+  "passage_id": "sc9b-p4",
+  "passage_title": "Three Fruit Enzymes and pH",
+  "format": "research_summaries",
+  "passage": "Many plants make enzymes that break down proteins. Students prepared extracts from the fruits of three unnamed plant species (Extracts A, B, and C), each of which contains a protein-digesting enzyme. Each extract was diluted so that all three contained the same total amount of protein per milliliter. Enzyme activity was measured as the amount of product (in micromoles, µmol) formed per minute when 1 mL of extract was mixed with a standard protein solution at 25 °C.\n\nExperiment 1\nThe activity of each extract was measured in solutions buffered (held) at pH 3, 4, 5, 6, 7, 8, and 9.\n\nExperiment 2\nSamples of each extract were held for 30 minutes at pH 6, pH 3, or pH 9. Each sample was then readjusted to pH 6, and its activity was measured at pH 6.\n\nTable 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Enzyme activity (µmol of product formed per minute) of the three extracts",
+   "colLabels": [
+    "Extract A",
+    "Extract B",
+    "Extract C"
+   ],
+   "rowLabels": [
+    "Exp. 1: tested at pH 3",
+    "Exp. 1: tested at pH 4",
+    "Exp. 1: tested at pH 5",
+    "Exp. 1: tested at pH 6",
+    "Exp. 1: tested at pH 7",
+    "Exp. 1: tested at pH 8",
+    "Exp. 1: tested at pH 9",
+    "Exp. 2: 30 min at pH 6, then tested at pH 6",
+    "Exp. 2: 30 min at pH 3, then tested at pH 6",
+    "Exp. 2: 30 min at pH 9, then tested at pH 6"
+   ],
+   "cells": [
+    [
+     2,
+     10,
+     0
+    ],
+    [
+     8,
+     22,
+     1
+    ],
+    [
+     18,
+     30,
+     4
+    ],
+    [
+     28,
+     24,
+     10
+    ],
+    [
+     22,
+     14,
+     19
+    ],
+    [
+     12,
+     6,
+     26
+    ],
+    [
+     4,
+     2,
+     21
+    ],
+    [
+     28,
+     24,
+     10
+    ],
+    [
+     27,
+     23,
+     1
+    ],
+    [
+     9,
+     7,
+     10
+    ]
+   ]
+  },
+  "prompt": "In Experiment 2, what was the most likely purpose of the samples that were held at pH 6 and then tested at pH 6?",
+  "choices": [
+   "To determine the pH at which each of the three extracts had its greatest activity, so that later tests could be run at that pH",
+   "To make sure that all three extracts contained the same total amount of protein",
+   "To show how quickly each extract lost its activity during the 30 minutes that it was being held at pH 3, before readjustment",
+   "To show how active each extract was after 30 minutes under conditions that did not differ from the test conditions, for comparison with the samples held at pH 3 and pH 9"
+  ],
+  "correct_answer": "To show how active each extract was after 30 minutes under conditions that did not differ from the test conditions, for comparison with the samples held at pH 3 and pH 9",
+  "explanation": "These samples went through the same 30-minute hold and the same pH 6 test as the others, but were never exposed to a different pH, so they are the control: a loss in the pH 3 or pH 9 samples is judged against them (for example, Extract C gave 10 after the pH 6 hold but 1 after the pH 3 hold). The pH of greatest activity comes from Experiment 1, equal protein was set by dilution before either experiment, and activity was never measured during the pH 3 hold.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify the purpose of a control",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9b-P4-Q4",
+  "passage_id": "sc9b-p4",
+  "passage_title": "Three Fruit Enzymes and pH",
+  "format": "research_summaries",
+  "passage": "Many plants make enzymes that break down proteins. Students prepared extracts from the fruits of three unnamed plant species (Extracts A, B, and C), each of which contains a protein-digesting enzyme. Each extract was diluted so that all three contained the same total amount of protein per milliliter. Enzyme activity was measured as the amount of product (in micromoles, µmol) formed per minute when 1 mL of extract was mixed with a standard protein solution at 25 °C.\n\nExperiment 1\nThe activity of each extract was measured in solutions buffered (held) at pH 3, 4, 5, 6, 7, 8, and 9.\n\nExperiment 2\nSamples of each extract were held for 30 minutes at pH 6, pH 3, or pH 9. Each sample was then readjusted to pH 6, and its activity was measured at pH 6.\n\nTable 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Enzyme activity (µmol of product formed per minute) of the three extracts",
+   "colLabels": [
+    "Extract A",
+    "Extract B",
+    "Extract C"
+   ],
+   "rowLabels": [
+    "Exp. 1: tested at pH 3",
+    "Exp. 1: tested at pH 4",
+    "Exp. 1: tested at pH 5",
+    "Exp. 1: tested at pH 6",
+    "Exp. 1: tested at pH 7",
+    "Exp. 1: tested at pH 8",
+    "Exp. 1: tested at pH 9",
+    "Exp. 2: 30 min at pH 6, then tested at pH 6",
+    "Exp. 2: 30 min at pH 3, then tested at pH 6",
+    "Exp. 2: 30 min at pH 9, then tested at pH 6"
+   ],
+   "cells": [
+    [
+     2,
+     10,
+     0
+    ],
+    [
+     8,
+     22,
+     1
+    ],
+    [
+     18,
+     30,
+     4
+    ],
+    [
+     28,
+     24,
+     10
+    ],
+    [
+     22,
+     14,
+     19
+    ],
+    [
+     12,
+     6,
+     26
+    ],
+    [
+     4,
+     2,
+     21
+    ],
+    [
+     28,
+     24,
+     10
+    ],
+    [
+     27,
+     23,
+     1
+    ],
+    [
+     9,
+     7,
+     10
+    ]
+   ]
+  },
+  "prompt": "A student concluded that exposure to pH 3 permanently reduces the activity of the enzyme in Extract A. Do the results support this conclusion?",
+  "choices": [
+   "Yes; in Experiment 1, Extract A formed only 2 µmol of product per minute at pH 3.",
+   "Yes; after being held at pH 3, Extract A formed only 9 µmol of product per minute at pH 6.",
+   "No; after being held at pH 3, Extract A was nearly as active at pH 6 as the sample held at pH 6.",
+   "No; in Experiment 1, Extract A was more active at pH 3 than Extract C was."
+  ],
+  "correct_answer": "No; after being held at pH 3, Extract A was nearly as active at pH 6 as the sample held at pH 6.",
+  "explanation": "After 30 minutes at pH 3, Extract A gave 27 µmol/min when returned to pH 6, almost the 28 µmol/min of the sample held at pH 6, so its low activity at pH 3 in Experiment 1 was not permanent. The value 2 shows only that A is slow while at pH 3, not that the loss lasts. The value 9 belongs to the sample held at pH 9. Comparing A with C at pH 3 says nothing about whether A's loss is permanent.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate a conclusion using a control comparison",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV9b-P4-Q5",
+  "passage_id": "sc9b-p4",
+  "passage_title": "Three Fruit Enzymes and pH",
+  "format": "research_summaries",
+  "passage": "Many plants make enzymes that break down proteins. Students prepared extracts from the fruits of three unnamed plant species (Extracts A, B, and C), each of which contains a protein-digesting enzyme. Each extract was diluted so that all three contained the same total amount of protein per milliliter. Enzyme activity was measured as the amount of product (in micromoles, µmol) formed per minute when 1 mL of extract was mixed with a standard protein solution at 25 °C.\n\nExperiment 1\nThe activity of each extract was measured in solutions buffered (held) at pH 3, 4, 5, 6, 7, 8, and 9.\n\nExperiment 2\nSamples of each extract were held for 30 minutes at pH 6, pH 3, or pH 9. Each sample was then readjusted to pH 6, and its activity was measured at pH 6.\n\nTable 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Enzyme activity (µmol of product formed per minute) of the three extracts",
+   "colLabels": [
+    "Extract A",
+    "Extract B",
+    "Extract C"
+   ],
+   "rowLabels": [
+    "Exp. 1: tested at pH 3",
+    "Exp. 1: tested at pH 4",
+    "Exp. 1: tested at pH 5",
+    "Exp. 1: tested at pH 6",
+    "Exp. 1: tested at pH 7",
+    "Exp. 1: tested at pH 8",
+    "Exp. 1: tested at pH 9",
+    "Exp. 2: 30 min at pH 6, then tested at pH 6",
+    "Exp. 2: 30 min at pH 3, then tested at pH 6",
+    "Exp. 2: 30 min at pH 9, then tested at pH 6"
+   ],
+   "cells": [
+    [
+     2,
+     10,
+     0
+    ],
+    [
+     8,
+     22,
+     1
+    ],
+    [
+     18,
+     30,
+     4
+    ],
+    [
+     28,
+     24,
+     10
+    ],
+    [
+     22,
+     14,
+     19
+    ],
+    [
+     12,
+     6,
+     26
+    ],
+    [
+     4,
+     2,
+     21
+    ],
+    [
+     28,
+     24,
+     10
+    ],
+    [
+     27,
+     23,
+     1
+    ],
+    [
+     9,
+     7,
+     10
+    ]
+   ]
+  },
+  "prompt": "Based on Experiment 2, the activity of which extract was greatly and lastingly reduced by being held at pH 3 but NOT by being held at pH 9?",
+  "choices": [
+   "Extract A only",
+   "Extract B only",
+   "Extract C only",
+   "Extracts A and B only"
+  ],
+  "correct_answer": "Extract C only",
+  "explanation": "Compared with its pH 6 control (10), Extract C fell to 1 after the pH 3 hold but stayed at 10 after the pH 9 hold. Extracts A and B were the reverse: after the pH 3 hold they stayed near their controls (27 versus 28, and 23 versus 24), but after the pH 9 hold they dropped to 9 and 7.",
+  "domain": "Interpretation of Data",
+  "subskill": "compare treatments against a control in a table",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9b-P4-Q6",
+  "passage_id": "sc9b-p4",
+  "passage_title": "Three Fruit Enzymes and pH",
+  "format": "research_summaries",
+  "passage": "Many plants make enzymes that break down proteins. Students prepared extracts from the fruits of three unnamed plant species (Extracts A, B, and C), each of which contains a protein-digesting enzyme. Each extract was diluted so that all three contained the same total amount of protein per milliliter. Enzyme activity was measured as the amount of product (in micromoles, µmol) formed per minute when 1 mL of extract was mixed with a standard protein solution at 25 °C.\n\nExperiment 1\nThe activity of each extract was measured in solutions buffered (held) at pH 3, 4, 5, 6, 7, 8, and 9.\n\nExperiment 2\nSamples of each extract were held for 30 minutes at pH 6, pH 3, or pH 9. Each sample was then readjusted to pH 6, and its activity was measured at pH 6.\n\nTable 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Enzyme activity (µmol of product formed per minute) of the three extracts",
+   "colLabels": [
+    "Extract A",
+    "Extract B",
+    "Extract C"
+   ],
+   "rowLabels": [
+    "Exp. 1: tested at pH 3",
+    "Exp. 1: tested at pH 4",
+    "Exp. 1: tested at pH 5",
+    "Exp. 1: tested at pH 6",
+    "Exp. 1: tested at pH 7",
+    "Exp. 1: tested at pH 8",
+    "Exp. 1: tested at pH 9",
+    "Exp. 2: 30 min at pH 6, then tested at pH 6",
+    "Exp. 2: 30 min at pH 3, then tested at pH 6",
+    "Exp. 2: 30 min at pH 9, then tested at pH 6"
+   ],
+   "cells": [
+    [
+     2,
+     10,
+     0
+    ],
+    [
+     8,
+     22,
+     1
+    ],
+    [
+     18,
+     30,
+     4
+    ],
+    [
+     28,
+     24,
+     10
+    ],
+    [
+     22,
+     14,
+     19
+    ],
+    [
+     12,
+     6,
+     26
+    ],
+    [
+     4,
+     2,
+     21
+    ],
+    [
+     28,
+     24,
+     10
+    ],
+    [
+     27,
+     23,
+     1
+    ],
+    [
+     9,
+     7,
+     10
+    ]
+   ]
+  },
+  "prompt": "If Extract B had also been tested at pH 3.5 in Experiment 1, its activity would most likely have been:",
+  "choices": [
+   "less than 10 µmol/min.",
+   "between 10 µmol/min and 22 µmol/min.",
+   "between 22 µmol/min and 30 µmol/min.",
+   "greater than 30 µmol/min."
+  ],
+  "correct_answer": "between 10 µmol/min and 22 µmol/min.",
+  "explanation": "From pH 3 to pH 5, Extract B's activity rose steadily: 10 at pH 3, 22 at pH 4, and 30 at pH 5. pH 3.5 lies between pH 3 and pH 4, so the activity would most likely fall between 10 and 22 µmol/min. Values of 22 to 30 correspond to pH 4 to pH 5, and B never exceeded 30 at any pH.",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate between table values",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9b-P5-Q1",
+  "passage_id": "sc9b-p5",
+  "passage_title": "Heat from Burning Four Liquid Fuels",
+  "format": "research_summaries",
+  "passage": "When a fuel burns, it releases heat. Students compared four unnamed liquid fuels (Fuels W, X, Y, and Z). Each fuel was placed in a small burner with a wick, and the burner was weighed before and after each trial to find the mass of fuel burned. The flame heated water in a copper can held above the wick. The water started at 20.0 °C in every trial.\n\nThe heat absorbed by the water, in joules (J), can be calculated as 4.2 × (mass of water in g) × (temperature rise in °C). Dividing the heat absorbed by the mass of fuel burned gives the heat absorbed per gram of fuel.\n\nExperiment 1\nEach fuel was burned under 200 g of water with the wick 4 cm below the can until the water temperature had risen by 30.0 °C, and then the flame was put out.\n\nExperiment 2\nFuel X was burned under 200 g of water until 0.63 g had burned, with the wick 2 cm, 4 cm, or 6 cm below the can.\n\nExperiment 3\nFuel X was burned under 400 g of water with the wick 4 cm below the can until 0.84 g had burned.\n\nTable 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Results of the fuel trials",
+   "colLabels": [
+    "Mass of water (g)",
+    "Distance from wick to can (cm)",
+    "Mass of fuel burned (g)",
+    "Temperature rise of water (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1: Fuel W",
+    "Exp. 1: Fuel X",
+    "Exp. 1: Fuel Y",
+    "Exp. 1: Fuel Z",
+    "Exp. 2: Fuel X",
+    "Exp. 2: Fuel X",
+    "Exp. 2: Fuel X",
+    "Exp. 3: Fuel X"
+   ],
+   "cells": [
+    [
+     200,
+     4,
+     1.2,
+     30.0
+    ],
+    [
+     200,
+     4,
+     0.84,
+     30.0
+    ],
+    [
+     200,
+     4,
+     0.6,
+     30.0
+    ],
+    [
+     200,
+     4,
+     1.05,
+     30.0
+    ],
+    [
+     200,
+     2,
+     0.63,
+     24.0
+    ],
+    [
+     200,
+     4,
+     0.63,
+     22.5
+    ],
+    [
+     200,
+     6,
+     0.63,
+     18.0
+    ],
+    [
+     400,
+     4,
+     0.84,
+     15.0
+    ]
+   ]
+  },
+  "prompt": "In Experiment 1, which fuel had the smallest mass burned to raise the water temperature by 30.0 °C?",
+  "choices": [
+   "Fuel W",
+   "Fuel X",
+   "Fuel Y",
+   "Fuel Z"
+  ],
+  "correct_answer": "Fuel Y",
+  "explanation": "The masses burned in Experiment 1 were 1.2 g (W), 0.84 g (X), 0.6 g (Y), and 1.05 g (Z). The smallest, 0.6 g, was Fuel Y; Fuel W needed the most.",
+  "domain": "Interpretation of Data",
+  "subskill": "read and compare values in a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV9b-P5-Q2",
+  "passage_id": "sc9b-p5",
+  "passage_title": "Heat from Burning Four Liquid Fuels",
+  "format": "research_summaries",
+  "passage": "When a fuel burns, it releases heat. Students compared four unnamed liquid fuels (Fuels W, X, Y, and Z). Each fuel was placed in a small burner with a wick, and the burner was weighed before and after each trial to find the mass of fuel burned. The flame heated water in a copper can held above the wick. The water started at 20.0 °C in every trial.\n\nThe heat absorbed by the water, in joules (J), can be calculated as 4.2 × (mass of water in g) × (temperature rise in °C). Dividing the heat absorbed by the mass of fuel burned gives the heat absorbed per gram of fuel.\n\nExperiment 1\nEach fuel was burned under 200 g of water with the wick 4 cm below the can until the water temperature had risen by 30.0 °C, and then the flame was put out.\n\nExperiment 2\nFuel X was burned under 200 g of water until 0.63 g had burned, with the wick 2 cm, 4 cm, or 6 cm below the can.\n\nExperiment 3\nFuel X was burned under 400 g of water with the wick 4 cm below the can until 0.84 g had burned.\n\nTable 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Results of the fuel trials",
+   "colLabels": [
+    "Mass of water (g)",
+    "Distance from wick to can (cm)",
+    "Mass of fuel burned (g)",
+    "Temperature rise of water (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1: Fuel W",
+    "Exp. 1: Fuel X",
+    "Exp. 1: Fuel Y",
+    "Exp. 1: Fuel Z",
+    "Exp. 2: Fuel X",
+    "Exp. 2: Fuel X",
+    "Exp. 2: Fuel X",
+    "Exp. 3: Fuel X"
+   ],
+   "cells": [
+    [
+     200,
+     4,
+     1.2,
+     30.0
+    ],
+    [
+     200,
+     4,
+     0.84,
+     30.0
+    ],
+    [
+     200,
+     4,
+     0.6,
+     30.0
+    ],
+    [
+     200,
+     4,
+     1.05,
+     30.0
+    ],
+    [
+     200,
+     2,
+     0.63,
+     24.0
+    ],
+    [
+     200,
+     4,
+     0.63,
+     22.5
+    ],
+    [
+     200,
+     6,
+     0.63,
+     18.0
+    ],
+    [
+     400,
+     4,
+     0.84,
+     15.0
+    ]
+   ]
+  },
+  "prompt": "Based on the passage and Table 1, the heat absorbed by the water per gram of Fuel W burned in Experiment 1 was:",
+  "choices": [
+   "21.0 kJ/g.",
+   "24.0 kJ/g.",
+   "30.0 kJ/g.",
+   "42.0 kJ/g."
+  ],
+  "correct_answer": "21.0 kJ/g.",
+  "explanation": "The water absorbed 4.2 × 200 × 30.0 = 25,200 J = 25.2 kJ, and 1.2 g of Fuel W burned, so 25.2 ÷ 1.2 = 21.0 kJ/g. The value 24.0 kJ/g is for Fuel Z (25.2 ÷ 1.05), 30.0 kJ/g for Fuel X (25.2 ÷ 0.84), and 42.0 kJ/g for Fuel Y (25.2 ÷ 0.6).",
+  "domain": "Interpretation of Data",
+  "subskill": "apply a formula from the passage to table values",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9b-P5-Q3",
+  "passage_id": "sc9b-p5",
+  "passage_title": "Heat from Burning Four Liquid Fuels",
+  "format": "research_summaries",
+  "passage": "When a fuel burns, it releases heat. Students compared four unnamed liquid fuels (Fuels W, X, Y, and Z). Each fuel was placed in a small burner with a wick, and the burner was weighed before and after each trial to find the mass of fuel burned. The flame heated water in a copper can held above the wick. The water started at 20.0 °C in every trial.\n\nThe heat absorbed by the water, in joules (J), can be calculated as 4.2 × (mass of water in g) × (temperature rise in °C). Dividing the heat absorbed by the mass of fuel burned gives the heat absorbed per gram of fuel.\n\nExperiment 1\nEach fuel was burned under 200 g of water with the wick 4 cm below the can until the water temperature had risen by 30.0 °C, and then the flame was put out.\n\nExperiment 2\nFuel X was burned under 200 g of water until 0.63 g had burned, with the wick 2 cm, 4 cm, or 6 cm below the can.\n\nExperiment 3\nFuel X was burned under 400 g of water with the wick 4 cm below the can until 0.84 g had burned.\n\nTable 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Results of the fuel trials",
+   "colLabels": [
+    "Mass of water (g)",
+    "Distance from wick to can (cm)",
+    "Mass of fuel burned (g)",
+    "Temperature rise of water (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1: Fuel W",
+    "Exp. 1: Fuel X",
+    "Exp. 1: Fuel Y",
+    "Exp. 1: Fuel Z",
+    "Exp. 2: Fuel X",
+    "Exp. 2: Fuel X",
+    "Exp. 2: Fuel X",
+    "Exp. 3: Fuel X"
+   ],
+   "cells": [
+    [
+     200,
+     4,
+     1.2,
+     30.0
+    ],
+    [
+     200,
+     4,
+     0.84,
+     30.0
+    ],
+    [
+     200,
+     4,
+     0.6,
+     30.0
+    ],
+    [
+     200,
+     4,
+     1.05,
+     30.0
+    ],
+    [
+     200,
+     2,
+     0.63,
+     24.0
+    ],
+    [
+     200,
+     4,
+     0.63,
+     22.5
+    ],
+    [
+     200,
+     6,
+     0.63,
+     18.0
+    ],
+    [
+     400,
+     4,
+     0.84,
+     15.0
+    ]
+   ]
+  },
+  "prompt": "In Experiment 1, why did the students burn each fuel until the water temperature had risen by the same 30.0 °C, rather than burning the same mass of each fuel?",
+  "choices": [
+   "So that the water absorbed the same amount of heat in each trial, and the masses of fuel needed could be compared directly",
+   "So that each fuel burned for the same length of time",
+   "So that the distance between the wick and the can would be the same for each fuel",
+   "So that the water would never be heated above its starting temperature"
+  ],
+  "correct_answer": "So that the water absorbed the same amount of heat in each trial, and the masses of fuel needed could be compared directly",
+  "explanation": "Every Experiment 1 trial used 200 g of water and a 30.0 °C rise, so by the passage's formula the water absorbed the same heat each time; a fuel that needed less mass (0.6 g of Y versus 1.2 g of W) released more heat per gram. Burning to a fixed temperature rise does not fix the burning time, the 4 cm distance was set separately, and the water was heated above 20.0 °C in every trial.",
+  "domain": "Scientific Investigation",
+  "subskill": "explain the purpose of a procedural choice",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9b-P5-Q4",
+  "passage_id": "sc9b-p5",
+  "passage_title": "Heat from Burning Four Liquid Fuels",
+  "format": "research_summaries",
+  "passage": "When a fuel burns, it releases heat. Students compared four unnamed liquid fuels (Fuels W, X, Y, and Z). Each fuel was placed in a small burner with a wick, and the burner was weighed before and after each trial to find the mass of fuel burned. The flame heated water in a copper can held above the wick. The water started at 20.0 °C in every trial.\n\nThe heat absorbed by the water, in joules (J), can be calculated as 4.2 × (mass of water in g) × (temperature rise in °C). Dividing the heat absorbed by the mass of fuel burned gives the heat absorbed per gram of fuel.\n\nExperiment 1\nEach fuel was burned under 200 g of water with the wick 4 cm below the can until the water temperature had risen by 30.0 °C, and then the flame was put out.\n\nExperiment 2\nFuel X was burned under 200 g of water until 0.63 g had burned, with the wick 2 cm, 4 cm, or 6 cm below the can.\n\nExperiment 3\nFuel X was burned under 400 g of water with the wick 4 cm below the can until 0.84 g had burned.\n\nTable 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Results of the fuel trials",
+   "colLabels": [
+    "Mass of water (g)",
+    "Distance from wick to can (cm)",
+    "Mass of fuel burned (g)",
+    "Temperature rise of water (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1: Fuel W",
+    "Exp. 1: Fuel X",
+    "Exp. 1: Fuel Y",
+    "Exp. 1: Fuel Z",
+    "Exp. 2: Fuel X",
+    "Exp. 2: Fuel X",
+    "Exp. 2: Fuel X",
+    "Exp. 3: Fuel X"
+   ],
+   "cells": [
+    [
+     200,
+     4,
+     1.2,
+     30.0
+    ],
+    [
+     200,
+     4,
+     0.84,
+     30.0
+    ],
+    [
+     200,
+     4,
+     0.6,
+     30.0
+    ],
+    [
+     200,
+     4,
+     1.05,
+     30.0
+    ],
+    [
+     200,
+     2,
+     0.63,
+     24.0
+    ],
+    [
+     200,
+     4,
+     0.63,
+     22.5
+    ],
+    [
+     200,
+     6,
+     0.63,
+     18.0
+    ],
+    [
+     400,
+     4,
+     0.84,
+     15.0
+    ]
+   ]
+  },
+  "prompt": "Based on the passage and Experiment 2, if the heat absorbed by the water per gram of Fuel X were calculated from the trial with the wick 2 cm below the can, the value would be closest to:",
+  "choices": [
+   "20.2 kJ/g.",
+   "24.0 kJ/g.",
+   "30.0 kJ/g.",
+   "32.0 kJ/g."
+  ],
+  "correct_answer": "32.0 kJ/g.",
+  "explanation": "In the 2 cm trial, 0.63 g of Fuel X raised 200 g of water by 24.0 °C, so the water absorbed 4.2 × 200 × 24.0 = 20,160 J = 20.16 kJ, and 20.16 ÷ 0.63 = 32.0 kJ/g. The value 20.2 is the total heat absorbed in kJ, not divided by the mass of fuel. The value 30.0 kJ/g comes from the 4 cm trial (4.2 × 200 × 22.5 = 18,900 J; 18.9 ÷ 0.63), and 24.0 kJ/g from the 6 cm trial (4.2 × 200 × 18.0 = 15,120 J; 15.12 ÷ 0.63); 24.0 is also the 2 cm trial's temperature rise, not its heat per gram.",
+  "domain": "Interpretation of Data",
+  "subskill": "apply a formula from the passage to a different trial",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV9b-P5-Q5",
+  "passage_id": "sc9b-p5",
+  "passage_title": "Heat from Burning Four Liquid Fuels",
+  "format": "research_summaries",
+  "passage": "When a fuel burns, it releases heat. Students compared four unnamed liquid fuels (Fuels W, X, Y, and Z). Each fuel was placed in a small burner with a wick, and the burner was weighed before and after each trial to find the mass of fuel burned. The flame heated water in a copper can held above the wick. The water started at 20.0 °C in every trial.\n\nThe heat absorbed by the water, in joules (J), can be calculated as 4.2 × (mass of water in g) × (temperature rise in °C). Dividing the heat absorbed by the mass of fuel burned gives the heat absorbed per gram of fuel.\n\nExperiment 1\nEach fuel was burned under 200 g of water with the wick 4 cm below the can until the water temperature had risen by 30.0 °C, and then the flame was put out.\n\nExperiment 2\nFuel X was burned under 200 g of water until 0.63 g had burned, with the wick 2 cm, 4 cm, or 6 cm below the can.\n\nExperiment 3\nFuel X was burned under 400 g of water with the wick 4 cm below the can until 0.84 g had burned.\n\nTable 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Results of the fuel trials",
+   "colLabels": [
+    "Mass of water (g)",
+    "Distance from wick to can (cm)",
+    "Mass of fuel burned (g)",
+    "Temperature rise of water (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1: Fuel W",
+    "Exp. 1: Fuel X",
+    "Exp. 1: Fuel Y",
+    "Exp. 1: Fuel Z",
+    "Exp. 2: Fuel X",
+    "Exp. 2: Fuel X",
+    "Exp. 2: Fuel X",
+    "Exp. 3: Fuel X"
+   ],
+   "cells": [
+    [
+     200,
+     4,
+     1.2,
+     30.0
+    ],
+    [
+     200,
+     4,
+     0.84,
+     30.0
+    ],
+    [
+     200,
+     4,
+     0.6,
+     30.0
+    ],
+    [
+     200,
+     4,
+     1.05,
+     30.0
+    ],
+    [
+     200,
+     2,
+     0.63,
+     24.0
+    ],
+    [
+     200,
+     4,
+     0.63,
+     22.5
+    ],
+    [
+     200,
+     6,
+     0.63,
+     18.0
+    ],
+    [
+     400,
+     4,
+     0.84,
+     15.0
+    ]
+   ]
+  },
+  "prompt": "Based on the passage and the results of Experiments 1 and 3, if 0.84 g of Fuel X were burned with the wick 4 cm below a can holding 300 g of water, the temperature rise of the water would most likely be closest to:",
+  "choices": [
+   "10.0 °C.",
+   "15.0 °C.",
+   "20.0 °C.",
+   "30.0 °C."
+  ],
+  "correct_answer": "20.0 °C.",
+  "explanation": "With the wick at 4 cm, 0.84 g of Fuel X delivered the same heat to 200 g of water (rise 30.0 °C) and 400 g of water (rise 15.0 °C): 4.2 × 200 × 30.0 = 4.2 × 400 × 15.0 = 25,200 J. For 300 g, the rise is 25,200 ÷ (4.2 × 300) = 20.0 °C. A rise of 15.0 °C is the 400 g result, 30.0 °C is the 200 g result, and 10.0 °C would require 600 g of water.",
+  "domain": "Interpretation of Data",
+  "subskill": "predict a result by combining two experiments",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV9b-P5-Q6",
+  "passage_id": "sc9b-p5",
+  "passage_title": "Heat from Burning Four Liquid Fuels",
+  "format": "research_summaries",
+  "passage": "When a fuel burns, it releases heat. Students compared four unnamed liquid fuels (Fuels W, X, Y, and Z). Each fuel was placed in a small burner with a wick, and the burner was weighed before and after each trial to find the mass of fuel burned. The flame heated water in a copper can held above the wick. The water started at 20.0 °C in every trial.\n\nThe heat absorbed by the water, in joules (J), can be calculated as 4.2 × (mass of water in g) × (temperature rise in °C). Dividing the heat absorbed by the mass of fuel burned gives the heat absorbed per gram of fuel.\n\nExperiment 1\nEach fuel was burned under 200 g of water with the wick 4 cm below the can until the water temperature had risen by 30.0 °C, and then the flame was put out.\n\nExperiment 2\nFuel X was burned under 200 g of water until 0.63 g had burned, with the wick 2 cm, 4 cm, or 6 cm below the can.\n\nExperiment 3\nFuel X was burned under 400 g of water with the wick 4 cm below the can until 0.84 g had burned.\n\nTable 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Results of the fuel trials",
+   "colLabels": [
+    "Mass of water (g)",
+    "Distance from wick to can (cm)",
+    "Mass of fuel burned (g)",
+    "Temperature rise of water (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1: Fuel W",
+    "Exp. 1: Fuel X",
+    "Exp. 1: Fuel Y",
+    "Exp. 1: Fuel Z",
+    "Exp. 2: Fuel X",
+    "Exp. 2: Fuel X",
+    "Exp. 2: Fuel X",
+    "Exp. 3: Fuel X"
+   ],
+   "cells": [
+    [
+     200,
+     4,
+     1.2,
+     30.0
+    ],
+    [
+     200,
+     4,
+     0.84,
+     30.0
+    ],
+    [
+     200,
+     4,
+     0.6,
+     30.0
+    ],
+    [
+     200,
+     4,
+     1.05,
+     30.0
+    ],
+    [
+     200,
+     2,
+     0.63,
+     24.0
+    ],
+    [
+     200,
+     4,
+     0.63,
+     22.5
+    ],
+    [
+     200,
+     6,
+     0.63,
+     18.0
+    ],
+    [
+     400,
+     4,
+     0.84,
+     15.0
+    ]
+   ]
+  },
+  "prompt": "Which of the following statements about the trials with Fuel X in Experiments 1, 2, and 3 is consistent with Table 1?",
+  "choices": [
+   "In Experiment 2, moving the wick from 4 cm to 2 cm raised the temperature rise by more than moving it from 4 cm to 6 cm lowered it.",
+   "In Experiment 2, moving the wick from 4 cm to 6 cm lowered the temperature rise by less than doubling the mass of water (Experiments 1 and 3) did.",
+   "In Experiment 2, moving the wick from 2 cm to 4 cm lowered the temperature rise by more than moving it from 4 cm to 6 cm did.",
+   "The 2 cm trial in Experiment 2 and the 400 g trial in Experiment 3 produced the same temperature rise."
+  ],
+  "correct_answer": "In Experiment 2, moving the wick from 4 cm to 6 cm lowered the temperature rise by less than doubling the mass of water (Experiments 1 and 3) did.",
+  "explanation": "In Experiment 2, the rise was 22.5 °C at 4 cm and 18.0 °C at 6 cm, a 4.5 °C decrease. Doubling the water from 200 g (Experiment 1, Fuel X, rise 30.0 °C) to 400 g (Experiment 3, rise 15.0 °C) lowered the rise by 15.0 °C, so the wick change had the smaller effect. Moving from 4 cm to 2 cm raised the rise by only 1.5 °C (to 24.0 °C), less than the 4.5 °C drop from 4 cm to 6 cm, and that same 1.5 °C is the decrease from 2 cm to 4 cm, also less than 4.5 °C. The 2 cm trial (24.0 °C) and the 400 g trial (15.0 °C) differ.",
+  "domain": "Interpretation of Data",
+  "subskill": "compare effects across experiments",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9b-P6-Q1",
+  "passage_id": "sc9b-p6",
+  "passage_title": "Rising Salt in a Town's Wells",
+  "format": "conflicting_viewpoints",
+  "passage": "A coastal town draws its drinking water from four wells that tap a sandstone layer saturated with fresh groundwater. The ocean lies to the west of the town. Far below the sandstone, at depths greater than 300 m, the rock holds a very salty water (brine) at a temperature of about 35 °C. A fault (a fracture along which rocks have moved) runs north to south beneath the eastern part of the town and extends from the brine-bearing rock up into the sandstone. The wells are:\nWell 1: 0.5 km from the shore, 90 m deep\nWell 2: 0.6 km from the shore, 45 m deep\nWell 3: 2.8 km from the shore, 85 m deep, directly above the fault\nWell 4: 3.0 km from the shore, 40 m deep, 0.2 km from the fault\n\nSince 1990, the amount of water pumped from the wells has tripled, and the chloride concentration of the well water has risen from about 30 milligrams per liter (mg/L) to between 400 and 900 mg/L. Both seawater and the deep brine are rich in chloride, and both also contain a small amount of bromide. In seawater, the ratio of the mass of chloride to the mass of bromide is about 290; in a sample of the deep brine taken from a test hole, this ratio is about 900. Ocean water off the coast and the fresh groundwater in the sandstone are both about 15 °C. Two scientists explain the rise in chloride.\n\nScientist 1\nThe salt comes from seawater. Fresh groundwater normally flows west through the sandstone and out under the seafloor, holding back the denser seawater. Heavy pumping has lowered the water level in the sandstone, so seawater now moves east, inland, into the sandstone. Because seawater is denser than fresh water, it advances along the bottom of the sandstone, so the deepest wells nearest the shore are affected first and most. Because the incoming seawater is the same temperature as the groundwater, the well water temperatures should not change.\n\nScientist 2\nThe salt comes from the deep brine. Heavy pumping has lowered the water pressure in the sandstone, so brine is drawn upward along the fault. The brine enters the bottom of the sandstone where the fault meets it and spreads outward from there, so the deepest wells nearest the fault are affected most. Some seawater may be moving inland too, but too little to matter. Because the brine is warm, the most strongly affected wells should be slightly warmer than the others.",
+  "prompt": "According to Scientist 2, the added chloride in the well water comes mainly from:",
+  "choices": [
+   "seawater moving inland along the bottom of the sandstone.",
+   "salt dissolved from the grains of the sandstone itself.",
+   "fresh groundwater flowing west toward the ocean.",
+   "brine rising along the fault from deep rock."
+  ],
+  "correct_answer": "brine rising along the fault from deep rock.",
+  "explanation": "Scientist 2 states that the salt comes from the deep brine, drawn upward along the fault by the lowered pressure in the sandstone. Seawater moving inland is Scientist 1's source, and Scientist 2 says any seawater is too little to matter. Neither scientist names the sandstone grains, and the fresh groundwater is described as low in chloride, not as the source.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a claim belonging to one viewpoint",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV9b-P6-Q2",
+  "passage_id": "sc9b-p6",
+  "passage_title": "Rising Salt in a Town's Wells",
+  "format": "conflicting_viewpoints",
+  "passage": "A coastal town draws its drinking water from four wells that tap a sandstone layer saturated with fresh groundwater. The ocean lies to the west of the town. Far below the sandstone, at depths greater than 300 m, the rock holds a very salty water (brine) at a temperature of about 35 °C. A fault (a fracture along which rocks have moved) runs north to south beneath the eastern part of the town and extends from the brine-bearing rock up into the sandstone. The wells are:\nWell 1: 0.5 km from the shore, 90 m deep\nWell 2: 0.6 km from the shore, 45 m deep\nWell 3: 2.8 km from the shore, 85 m deep, directly above the fault\nWell 4: 3.0 km from the shore, 40 m deep, 0.2 km from the fault\n\nSince 1990, the amount of water pumped from the wells has tripled, and the chloride concentration of the well water has risen from about 30 milligrams per liter (mg/L) to between 400 and 900 mg/L. Both seawater and the deep brine are rich in chloride, and both also contain a small amount of bromide. In seawater, the ratio of the mass of chloride to the mass of bromide is about 290; in a sample of the deep brine taken from a test hole, this ratio is about 900. Ocean water off the coast and the fresh groundwater in the sandstone are both about 15 °C. Two scientists explain the rise in chloride.\n\nScientist 1\nThe salt comes from seawater. Fresh groundwater normally flows west through the sandstone and out under the seafloor, holding back the denser seawater. Heavy pumping has lowered the water level in the sandstone, so seawater now moves east, inland, into the sandstone. Because seawater is denser than fresh water, it advances along the bottom of the sandstone, so the deepest wells nearest the shore are affected first and most. Because the incoming seawater is the same temperature as the groundwater, the well water temperatures should not change.\n\nScientist 2\nThe salt comes from the deep brine. Heavy pumping has lowered the water pressure in the sandstone, so brine is drawn upward along the fault. The brine enters the bottom of the sandstone where the fault meets it and spreads outward from there, so the deepest wells nearest the fault are affected most. Some seawater may be moving inland too, but too little to matter. Because the brine is warm, the most strongly affected wells should be slightly warmer than the others.",
+  "prompt": "Scientist 1 and Scientist 2 would most likely both agree that:",
+  "choices": [
+   "the increase in pumping since 1990 helped cause the rise in chloride.",
+   "most of the added chloride came from seawater.",
+   "the fault carries salt water up into the sandstone.",
+   "the well water should have become slightly warmer as its chloride concentration rose."
+  ],
+  "correct_answer": "the increase in pumping since 1990 helped cause the rise in chloride.",
+  "explanation": "Scientist 1 says heavy pumping lowered the water level so seawater moved inland, and Scientist 2 says heavy pumping lowered the pressure so brine rose; both make pumping part of the cause. Only Scientist 1 says the chloride is mostly from seawater, only Scientist 2 says the fault carries brine upward, and only Scientist 2 predicts warmer wells; Scientist 1 predicts no temperature change.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "point of agreement",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9b-P6-Q3",
+  "passage_id": "sc9b-p6",
+  "passage_title": "Rising Salt in a Town's Wells",
+  "format": "conflicting_viewpoints",
+  "passage": "A coastal town draws its drinking water from four wells that tap a sandstone layer saturated with fresh groundwater. The ocean lies to the west of the town. Far below the sandstone, at depths greater than 300 m, the rock holds a very salty water (brine) at a temperature of about 35 °C. A fault (a fracture along which rocks have moved) runs north to south beneath the eastern part of the town and extends from the brine-bearing rock up into the sandstone. The wells are:\nWell 1: 0.5 km from the shore, 90 m deep\nWell 2: 0.6 km from the shore, 45 m deep\nWell 3: 2.8 km from the shore, 85 m deep, directly above the fault\nWell 4: 3.0 km from the shore, 40 m deep, 0.2 km from the fault\n\nSince 1990, the amount of water pumped from the wells has tripled, and the chloride concentration of the well water has risen from about 30 milligrams per liter (mg/L) to between 400 and 900 mg/L. Both seawater and the deep brine are rich in chloride, and both also contain a small amount of bromide. In seawater, the ratio of the mass of chloride to the mass of bromide is about 290; in a sample of the deep brine taken from a test hole, this ratio is about 900. Ocean water off the coast and the fresh groundwater in the sandstone are both about 15 °C. Two scientists explain the rise in chloride.\n\nScientist 1\nThe salt comes from seawater. Fresh groundwater normally flows west through the sandstone and out under the seafloor, holding back the denser seawater. Heavy pumping has lowered the water level in the sandstone, so seawater now moves east, inland, into the sandstone. Because seawater is denser than fresh water, it advances along the bottom of the sandstone, so the deepest wells nearest the shore are affected first and most. Because the incoming seawater is the same temperature as the groundwater, the well water temperatures should not change.\n\nScientist 2\nThe salt comes from the deep brine. Heavy pumping has lowered the water pressure in the sandstone, so brine is drawn upward along the fault. The brine enters the bottom of the sandstone where the fault meets it and spreads outward from there, so the deepest wells nearest the fault are affected most. Some seawater may be moving inland too, but too little to matter. Because the brine is warm, the most strongly affected wells should be slightly warmer than the others.",
+  "prompt": "Which of the following findings, if true, would most strongly support Scientist 1's explanation?",
+  "choices": [
+   "The chloride added to the well water has a chloride-to-bromide mass ratio of about 900.",
+   "The chloride added to the well water has a chloride-to-bromide mass ratio of about 290.",
+   "The water in Well 3 is 3 °C warmer than the water in the other wells.",
+   "Chloride has risen more in wells near the fault than in wells near the shore."
+  ],
+  "correct_answer": "The chloride added to the well water has a chloride-to-bromide mass ratio of about 290.",
+  "explanation": "The passage gives a chloride-to-bromide ratio of about 290 for seawater and about 900 for the deep brine, so added salt with a ratio of about 290 matches Scientist 1's seawater source. A ratio of about 900 matches the brine. Warmer water in Well 3, above the fault, matches Scientist 2's prediction that the most affected wells warm, and a larger rise near the fault is the pattern Scientist 2 predicts.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match new evidence to the viewpoint it supports",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9b-P6-Q4",
+  "passage_id": "sc9b-p6",
+  "passage_title": "Rising Salt in a Town's Wells",
+  "format": "conflicting_viewpoints",
+  "passage": "A coastal town draws its drinking water from four wells that tap a sandstone layer saturated with fresh groundwater. The ocean lies to the west of the town. Far below the sandstone, at depths greater than 300 m, the rock holds a very salty water (brine) at a temperature of about 35 °C. A fault (a fracture along which rocks have moved) runs north to south beneath the eastern part of the town and extends from the brine-bearing rock up into the sandstone. The wells are:\nWell 1: 0.5 km from the shore, 90 m deep\nWell 2: 0.6 km from the shore, 45 m deep\nWell 3: 2.8 km from the shore, 85 m deep, directly above the fault\nWell 4: 3.0 km from the shore, 40 m deep, 0.2 km from the fault\n\nSince 1990, the amount of water pumped from the wells has tripled, and the chloride concentration of the well water has risen from about 30 milligrams per liter (mg/L) to between 400 and 900 mg/L. Both seawater and the deep brine are rich in chloride, and both also contain a small amount of bromide. In seawater, the ratio of the mass of chloride to the mass of bromide is about 290; in a sample of the deep brine taken from a test hole, this ratio is about 900. Ocean water off the coast and the fresh groundwater in the sandstone are both about 15 °C. Two scientists explain the rise in chloride.\n\nScientist 1\nThe salt comes from seawater. Fresh groundwater normally flows west through the sandstone and out under the seafloor, holding back the denser seawater. Heavy pumping has lowered the water level in the sandstone, so seawater now moves east, inland, into the sandstone. Because seawater is denser than fresh water, it advances along the bottom of the sandstone, so the deepest wells nearest the shore are affected first and most. Because the incoming seawater is the same temperature as the groundwater, the well water temperatures should not change.\n\nScientist 2\nThe salt comes from the deep brine. Heavy pumping has lowered the water pressure in the sandstone, so brine is drawn upward along the fault. The brine enters the bottom of the sandstone where the fault meets it and spreads outward from there, so the deepest wells nearest the fault are affected most. Some seawater may be moving inland too, but too little to matter. Because the brine is warm, the most strongly affected wells should be slightly warmer than the others.",
+  "prompt": "Suppose the chloride added to the well water were found to have a chloride-to-bromide mass ratio of about 500. Based on the passage, this result would be most consistent with the added chloride having come from:",
+  "choices": [
+   "seawater only, because 500 is less than the ratio in the deep brine.",
+   "the deep brine only, because 500 is greater than the ratio in seawater.",
+   "both seawater and the deep brine, because 500 is between the ratios of the two waters.",
+   "neither seawater nor the deep brine, because 500 matches the ratio of neither water."
+  ],
+  "correct_answer": "both seawater and the deep brine, because 500 is between the ratios of the two waters.",
+  "explanation": "A mixture of two waters has a chloride-to-bromide ratio between those of the waters mixed, here between 290 (seawater) and 900 (brine). A ratio of 500 is too high for seawater alone and too low for brine alone, so it fits a mixture of both. Ruling out both sources ignores that mixing the two produces an intermediate ratio. A mixture is also not excluded by either scientist, since Scientist 2 allows that some seawater may be moving inland.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "apply passage data to a new result",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV9b-P6-Q5",
+  "passage_id": "sc9b-p6",
+  "passage_title": "Rising Salt in a Town's Wells",
+  "format": "conflicting_viewpoints",
+  "passage": "A coastal town draws its drinking water from four wells that tap a sandstone layer saturated with fresh groundwater. The ocean lies to the west of the town. Far below the sandstone, at depths greater than 300 m, the rock holds a very salty water (brine) at a temperature of about 35 °C. A fault (a fracture along which rocks have moved) runs north to south beneath the eastern part of the town and extends from the brine-bearing rock up into the sandstone. The wells are:\nWell 1: 0.5 km from the shore, 90 m deep\nWell 2: 0.6 km from the shore, 45 m deep\nWell 3: 2.8 km from the shore, 85 m deep, directly above the fault\nWell 4: 3.0 km from the shore, 40 m deep, 0.2 km from the fault\n\nSince 1990, the amount of water pumped from the wells has tripled, and the chloride concentration of the well water has risen from about 30 milligrams per liter (mg/L) to between 400 and 900 mg/L. Both seawater and the deep brine are rich in chloride, and both also contain a small amount of bromide. In seawater, the ratio of the mass of chloride to the mass of bromide is about 290; in a sample of the deep brine taken from a test hole, this ratio is about 900. Ocean water off the coast and the fresh groundwater in the sandstone are both about 15 °C. Two scientists explain the rise in chloride.\n\nScientist 1\nThe salt comes from seawater. Fresh groundwater normally flows west through the sandstone and out under the seafloor, holding back the denser seawater. Heavy pumping has lowered the water level in the sandstone, so seawater now moves east, inland, into the sandstone. Because seawater is denser than fresh water, it advances along the bottom of the sandstone, so the deepest wells nearest the shore are affected first and most. Because the incoming seawater is the same temperature as the groundwater, the well water temperatures should not change.\n\nScientist 2\nThe salt comes from the deep brine. Heavy pumping has lowered the water pressure in the sandstone, so brine is drawn upward along the fault. The brine enters the bottom of the sandstone where the fault meets it and spreads outward from there, so the deepest wells nearest the fault are affected most. Some seawater may be moving inland too, but too little to matter. Because the brine is warm, the most strongly affected wells should be slightly warmer than the others.",
+  "prompt": "Which of the following measurements would best help determine which scientist's explanation is correct?",
+  "choices": [
+   "The total volume of water pumped from the wells each year since 1990",
+   "The chloride concentration of the ocean water off the coast",
+   "The depth of the bottom of the sandstone layer beneath each of the four wells in the town",
+   "The water temperature in the wells with the highest chloride compared with the wells with the lowest chloride"
+  ],
+  "correct_answer": "The water temperature in the wells with the highest chloride compared with the wells with the lowest chloride",
+  "explanation": "Scientist 2 predicts that the most affected wells will be slightly warmer because the brine is about 35 °C, while Scientist 1 predicts no change because seawater and groundwater are both about 15 °C, so a temperature comparison separates the two. Both scientists already agree that pumping increased, the ocean's chloride content is not in dispute, and the depth of the sandstone's bottom does not distinguish a seawater source from a brine source.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose a measurement that separates two explanations",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9b-P6-Q6",
+  "passage_id": "sc9b-p6",
+  "passage_title": "Rising Salt in a Town's Wells",
+  "format": "conflicting_viewpoints",
+  "passage": "A coastal town draws its drinking water from four wells that tap a sandstone layer saturated with fresh groundwater. The ocean lies to the west of the town. Far below the sandstone, at depths greater than 300 m, the rock holds a very salty water (brine) at a temperature of about 35 °C. A fault (a fracture along which rocks have moved) runs north to south beneath the eastern part of the town and extends from the brine-bearing rock up into the sandstone. The wells are:\nWell 1: 0.5 km from the shore, 90 m deep\nWell 2: 0.6 km from the shore, 45 m deep\nWell 3: 2.8 km from the shore, 85 m deep, directly above the fault\nWell 4: 3.0 km from the shore, 40 m deep, 0.2 km from the fault\n\nSince 1990, the amount of water pumped from the wells has tripled, and the chloride concentration of the well water has risen from about 30 milligrams per liter (mg/L) to between 400 and 900 mg/L. Both seawater and the deep brine are rich in chloride, and both also contain a small amount of bromide. In seawater, the ratio of the mass of chloride to the mass of bromide is about 290; in a sample of the deep brine taken from a test hole, this ratio is about 900. Ocean water off the coast and the fresh groundwater in the sandstone are both about 15 °C. Two scientists explain the rise in chloride.\n\nScientist 1\nThe salt comes from seawater. Fresh groundwater normally flows west through the sandstone and out under the seafloor, holding back the denser seawater. Heavy pumping has lowered the water level in the sandstone, so seawater now moves east, inland, into the sandstone. Because seawater is denser than fresh water, it advances along the bottom of the sandstone, so the deepest wells nearest the shore are affected first and most. Because the incoming seawater is the same temperature as the groundwater, the well water temperatures should not change.\n\nScientist 2\nThe salt comes from the deep brine. Heavy pumping has lowered the water pressure in the sandstone, so brine is drawn upward along the fault. The brine enters the bottom of the sandstone where the fault meets it and spreads outward from there, so the deepest wells nearest the fault are affected most. Some seawater may be moving inland too, but too little to matter. Because the brine is warm, the most strongly affected wells should be slightly warmer than the others.",
+  "prompt": "Based on Scientist 2's explanation, which well should have had the greatest increase in chloride concentration?",
+  "choices": [
+   "Well 1",
+   "Well 2",
+   "Well 3",
+   "Well 4"
+  ],
+  "correct_answer": "Well 3",
+  "explanation": "Scientist 2 says brine enters the bottom of the sandstone at the fault and that the deepest wells nearest the fault are affected most. Well 3 is directly above the fault and 85 m deep, while Well 4 is 0.2 km from the fault and only 40 m deep. Wells 1 and 2 are near the shore, nearly 3 km from the fault; Well 1, the deepest well near the shore, is the one Scientist 1 would pick.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "derive a prediction from one viewpoint",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV9b-P7-Q1",
+  "passage_id": "sc9b-p7",
+  "passage_title": "Short Wings in an Island Beetle",
+  "format": "conflicting_viewpoints",
+  "passage": "Species B is an unnamed ground beetle that lives both on a mainland and on a small, windswept island 40 km offshore. Adults have either full-length wings, with which they can fly, or short wings, with which they cannot fly. On the mainland, about 95% of adults have full-length wings; on the island, about 85% of adults have short wings. Beetles of Species B live one year, and their larvae develop in the soil during summer. The average summer soil temperature is 20 °C on the mainland and 14 °C on the island. Two scientists explain the difference in wing length.\n\nScientist 1\nWing length in Species B is controlled mainly by genes passed from parents to offspring. On the island, strong winds often carry flying beetles out over the sea, where they drown. Over many generations, beetles that inherited short wings stayed on the island and reproduced more than beetles with full-length wings, so short wings became common there. Island beetles therefore carry different wing-length genes than mainland beetles do.\n\nScientist 2\nWing length in Species B is controlled mainly by the soil temperature at which the larvae develop. Larvae that develop below about 16 °C grow into short-winged adults, and larvae that develop above 16 °C grow into full-winged adults, whatever their parents' wing length. Wind does blow some flying beetles off the island, but too few to change the population. Island and mainland beetles carry the same wing-length genes; the island's beetles are short-winged because its soil is cool.",
+  "prompt": "According to Scientist 2, the main cause of short wings in island beetles of Species B is:",
+  "choices": [
+   "cool soil temperatures while the larvae develop.",
+   "strong winds that carry flying beetles out to sea.",
+   "genes for short wings inherited from parents.",
+   "a shortage of food for the larvae on the island."
+  ],
+  "correct_answer": "cool soil temperatures while the larvae develop.",
+  "explanation": "Scientist 2 says larvae developing below about 16 °C become short-winged and that island beetles are short-winged because the island's soil (14 °C) is cool. Wind and inherited genes are the causes given by Scientist 1, and Scientist 2 says wind removes too few beetles to matter. Neither scientist mentions food.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a claim belonging to one viewpoint",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV9b-P7-Q2",
+  "passage_id": "sc9b-p7",
+  "passage_title": "Short Wings in an Island Beetle",
+  "format": "conflicting_viewpoints",
+  "passage": "Species B is an unnamed ground beetle that lives both on a mainland and on a small, windswept island 40 km offshore. Adults have either full-length wings, with which they can fly, or short wings, with which they cannot fly. On the mainland, about 95% of adults have full-length wings; on the island, about 85% of adults have short wings. Beetles of Species B live one year, and their larvae develop in the soil during summer. The average summer soil temperature is 20 °C on the mainland and 14 °C on the island. Two scientists explain the difference in wing length.\n\nScientist 1\nWing length in Species B is controlled mainly by genes passed from parents to offspring. On the island, strong winds often carry flying beetles out over the sea, where they drown. Over many generations, beetles that inherited short wings stayed on the island and reproduced more than beetles with full-length wings, so short wings became common there. Island beetles therefore carry different wing-length genes than mainland beetles do.\n\nScientist 2\nWing length in Species B is controlled mainly by the soil temperature at which the larvae develop. Larvae that develop below about 16 °C grow into short-winged adults, and larvae that develop above 16 °C grow into full-winged adults, whatever their parents' wing length. Wind does blow some flying beetles off the island, but too few to change the population. Island and mainland beetles carry the same wing-length genes; the island's beetles are short-winged because its soil is cool.",
+  "prompt": "Which of the following experiments would best distinguish between the two scientists' explanations?",
+  "choices": [
+   "Raising larvae from island parents in soil at 14 °C and recording the wing length of each adult",
+   "Raising larvae from island parents and larvae from mainland parents in the same soil at 20 °C and recording the wing length of each adult",
+   "Counting the beetles of Species B that wash up on island beaches after windstorms",
+   "Measuring the summer soil temperature at several places on the island"
+  ],
+  "correct_answer": "Raising larvae from island parents and larvae from mainland parents in the same soil at 20 °C and recording the wing length of each adult",
+  "explanation": "At 20 °C, Scientist 2 predicts full wings for both groups because temperature, not parentage, decides wing length; Scientist 1 predicts mostly short wings in the island-parent group because its genes differ. Raising island larvae at 14 °C gives short wings under both explanations. Beetles washed ashore show that wind removes fliers, which Scientist 2 also accepts. Soil temperature on the island is already given and does not test how wing length is controlled.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose an investigation that discriminates between hypotheses",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9b-P7-Q3",
+  "passage_id": "sc9b-p7",
+  "passage_title": "Short Wings in an Island Beetle",
+  "format": "conflicting_viewpoints",
+  "passage": "Species B is an unnamed ground beetle that lives both on a mainland and on a small, windswept island 40 km offshore. Adults have either full-length wings, with which they can fly, or short wings, with which they cannot fly. On the mainland, about 95% of adults have full-length wings; on the island, about 85% of adults have short wings. Beetles of Species B live one year, and their larvae develop in the soil during summer. The average summer soil temperature is 20 °C on the mainland and 14 °C on the island. Two scientists explain the difference in wing length.\n\nScientist 1\nWing length in Species B is controlled mainly by genes passed from parents to offspring. On the island, strong winds often carry flying beetles out over the sea, where they drown. Over many generations, beetles that inherited short wings stayed on the island and reproduced more than beetles with full-length wings, so short wings became common there. Island beetles therefore carry different wing-length genes than mainland beetles do.\n\nScientist 2\nWing length in Species B is controlled mainly by the soil temperature at which the larvae develop. Larvae that develop below about 16 °C grow into short-winged adults, and larvae that develop above 16 °C grow into full-winged adults, whatever their parents' wing length. Wind does blow some flying beetles off the island, but too few to change the population. Island and mainland beetles carry the same wing-length genes; the island's beetles are short-winged because its soil is cool.",
+  "prompt": "Suppose larvae from island parents were raised in soil at 20 °C and about 80% of them became short-winged adults. This result would support the explanation of:",
+  "choices": [
+   "Scientist 1 only.",
+   "Scientist 2 only.",
+   "both Scientist 1 and Scientist 2.",
+   "neither Scientist 1 nor Scientist 2."
+  ],
+  "correct_answer": "Scientist 1 only.",
+  "explanation": "Scientist 2 says larvae developing above 16 °C become full-winged regardless of parentage, so 80% short wings at 20 °C contradicts Scientist 2. Scientist 1 says island beetles carry short-wing genes that are passed to offspring, so their offspring should be mostly short-winged even in warm soil, as observed.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match new evidence to the viewpoint it supports",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9b-P7-Q4",
+  "passage_id": "sc9b-p7",
+  "passage_title": "Short Wings in an Island Beetle",
+  "format": "conflicting_viewpoints",
+  "passage": "Species B is an unnamed ground beetle that lives both on a mainland and on a small, windswept island 40 km offshore. Adults have either full-length wings, with which they can fly, or short wings, with which they cannot fly. On the mainland, about 95% of adults have full-length wings; on the island, about 85% of adults have short wings. Beetles of Species B live one year, and their larvae develop in the soil during summer. The average summer soil temperature is 20 °C on the mainland and 14 °C on the island. Two scientists explain the difference in wing length.\n\nScientist 1\nWing length in Species B is controlled mainly by genes passed from parents to offspring. On the island, strong winds often carry flying beetles out over the sea, where they drown. Over many generations, beetles that inherited short wings stayed on the island and reproduced more than beetles with full-length wings, so short wings became common there. Island beetles therefore carry different wing-length genes than mainland beetles do.\n\nScientist 2\nWing length in Species B is controlled mainly by the soil temperature at which the larvae develop. Larvae that develop below about 16 °C grow into short-winged adults, and larvae that develop above 16 °C grow into full-winged adults, whatever their parents' wing length. Wind does blow some flying beetles off the island, but too few to change the population. Island and mainland beetles carry the same wing-length genes; the island's beetles are short-winged because its soil is cool.",
+  "prompt": "To test Scientist 1's claim that wind is what made short wings common, a researcher could compare Species B populations on two islands. The two islands should differ in:",
+  "choices": [
+   "average summer soil temperature, but have similar wind strength and similar size.",
+   "distance from the mainland, but have similar wind strength.",
+   "how strong the winds are, but have similar summer soil temperatures.",
+   "size, but have similar summer soil temperatures and wind strength."
+  ],
+  "correct_answer": "how strong the winds are, but have similar summer soil temperatures.",
+  "explanation": "Scientist 1 names wind as the cause of short wings, so the islands should differ in wind while soil temperature, the cause named by Scientist 2, is held similar; a difference in wing length would then be due to wind. Varying soil temperature tests Scientist 2's factor instead. Varying distance or size while keeping wind similar does not vary the factor Scientist 1 proposes.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose a comparison that isolates one variable",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV9b-P7-Q5",
+  "passage_id": "sc9b-p7",
+  "passage_title": "Short Wings in an Island Beetle",
+  "format": "conflicting_viewpoints",
+  "passage": "Species B is an unnamed ground beetle that lives both on a mainland and on a small, windswept island 40 km offshore. Adults have either full-length wings, with which they can fly, or short wings, with which they cannot fly. On the mainland, about 95% of adults have full-length wings; on the island, about 85% of adults have short wings. Beetles of Species B live one year, and their larvae develop in the soil during summer. The average summer soil temperature is 20 °C on the mainland and 14 °C on the island. Two scientists explain the difference in wing length.\n\nScientist 1\nWing length in Species B is controlled mainly by genes passed from parents to offspring. On the island, strong winds often carry flying beetles out over the sea, where they drown. Over many generations, beetles that inherited short wings stayed on the island and reproduced more than beetles with full-length wings, so short wings became common there. Island beetles therefore carry different wing-length genes than mainland beetles do.\n\nScientist 2\nWing length in Species B is controlled mainly by the soil temperature at which the larvae develop. Larvae that develop below about 16 °C grow into short-winged adults, and larvae that develop above 16 °C grow into full-winged adults, whatever their parents' wing length. Wind does blow some flying beetles off the island, but too few to change the population. Island and mainland beetles carry the same wing-length genes; the island's beetles are short-winged because its soil is cool.",
+  "prompt": "Which of the following findings, if true, would most weaken Scientist 2's explanation?",
+  "choices": [
+   "Larvae from island parents raised in soil at 12 °C grew mostly into short-winged adults.",
+   "After a windstorm, several flying beetles of Species B were found drowned near the island.",
+   "Summer soil temperatures on the island rarely rise above 15 °C.",
+   "Larvae from mainland parents raised in soil at 12 °C grew mostly into full-winged adults."
+  ],
+  "correct_answer": "Larvae from mainland parents raised in soil at 12 °C grew mostly into full-winged adults.",
+  "explanation": "Scientist 2 says any larva developing below about 16 °C becomes short-winged whatever its parents, so mainland larvae at 12 °C becoming full-winged contradicts that claim. Island larvae becoming short-winged at 12 °C fits it. Scientist 2 accepts that wind blows some beetles off the island, and cool island soil is what Scientist 2's explanation relies on.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify evidence that weakens a viewpoint",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9b-P7-Q6",
+  "passage_id": "sc9b-p7",
+  "passage_title": "Short Wings in an Island Beetle",
+  "format": "conflicting_viewpoints",
+  "passage": "Species B is an unnamed ground beetle that lives both on a mainland and on a small, windswept island 40 km offshore. Adults have either full-length wings, with which they can fly, or short wings, with which they cannot fly. On the mainland, about 95% of adults have full-length wings; on the island, about 85% of adults have short wings. Beetles of Species B live one year, and their larvae develop in the soil during summer. The average summer soil temperature is 20 °C on the mainland and 14 °C on the island. Two scientists explain the difference in wing length.\n\nScientist 1\nWing length in Species B is controlled mainly by genes passed from parents to offspring. On the island, strong winds often carry flying beetles out over the sea, where they drown. Over many generations, beetles that inherited short wings stayed on the island and reproduced more than beetles with full-length wings, so short wings became common there. Island beetles therefore carry different wing-length genes than mainland beetles do.\n\nScientist 2\nWing length in Species B is controlled mainly by the soil temperature at which the larvae develop. Larvae that develop below about 16 °C grow into short-winged adults, and larvae that develop above 16 °C grow into full-winged adults, whatever their parents' wing length. Wind does blow some flying beetles off the island, but too few to change the population. Island and mainland beetles carry the same wing-length genes; the island's beetles are short-winged because its soil is cool.",
+  "prompt": "Suppose the island's summer soil temperature rose to 20 °C and stayed there. How would the two scientists most likely predict the fraction of short-winged adults on the island to change in the first generation of larvae that develop at 20 °C?",
+  "choices": [
+   "Both would predict a large drop.",
+   "Both would predict little change.",
+   "Scientist 1 would predict a large drop, but Scientist 2 would predict little change.",
+   "Scientist 1 would predict little change, but Scientist 2 would predict a large drop."
+  ],
+  "correct_answer": "Scientist 1 would predict little change, but Scientist 2 would predict a large drop.",
+  "explanation": "For Scientist 2, larvae developing above 16 °C become full-winged, so at 20 °C nearly all of the next generation would have full wings, a large drop. For Scientist 1, wing length follows inherited genes and changed only over many generations, and warming does not alter the genes the larvae carry, so one generation would show little change. The other pairings assign these predictions to the wrong scientist or give both scientists the same prediction.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "derive contrasting predictions from two viewpoints",
+  "difficulty": "hard"
+ }
+]

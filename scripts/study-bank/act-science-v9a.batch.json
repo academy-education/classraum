@@ -1,0 +1,3109 @@
+[
+ {
+  "id": "ASV9a-P1-Q1",
+  "passage_id": "sc9a-p1",
+  "passage_title": "Swelling of Three Hydrogels in Salt Solutions",
+  "format": "data_representation",
+  "passage": "A hydrogel is a network of long polymer chains that are cross-linked (joined to one another at many points). When a dry hydrogel is placed in water, water moves into the network and the gel swells. The swelling ratio of a gel is the mass of the swollen gel divided by the mass of the dry gel. The chains of some hydrogels carry fixed electric charges, and dissolved ions in the surrounding solution can change how much such gels swell.\n\nResearchers tested three unnamed synthetic hydrogels. The chains of Gel P carry about three times as many fixed charges per gram as the chains of Gel Q, and the chains of Gel R carry no fixed charges. Dry disks of each gel, each with a mass of 1.00 g, were placed in pure water or in sodium chloride (NaCl) solutions of different concentrations at 25 °C. After 24 hours, each disk was removed, gently blotted with paper, and weighed. Table 1 shows the swelling ratio of each gel in each solution.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Swelling ratio of three hydrogels after 24 hours at 25 °C",
+   "colLabels": [
+    "Gel P swelling ratio",
+    "Gel Q swelling ratio",
+    "Gel R swelling ratio"
+   ],
+   "rowLabels": [
+    "Pure water (0 mol/L NaCl)",
+    "0.05 mol/L NaCl",
+    "0.10 mol/L NaCl",
+    "0.20 mol/L NaCl",
+    "0.50 mol/L NaCl",
+    "1.00 mol/L NaCl"
+   ],
+   "cells": [
+    [
+     210,
+     95,
+     40
+    ],
+    [
+     120,
+     72,
+     39
+    ],
+    [
+     85,
+     60,
+     39
+    ],
+    [
+     58,
+     48,
+     38
+    ],
+    [
+     34,
+     40,
+     37
+    ],
+    [
+     22,
+     31,
+     36
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, what was the swelling ratio of Gel Q in the 0.10 mol/L NaCl solution?",
+  "choices": [
+   "39",
+   "48",
+   "58",
+   "60"
+  ],
+  "correct_answer": "60",
+  "explanation": "In the row for 0.10 mol/L NaCl, the Gel Q entry is 60. The value 39 is Gel R in the same solution, 48 is Gel Q in the 0.20 mol/L solution, and 58 is Gel P in the 0.20 mol/L solution.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV9a-P1-Q2",
+  "passage_id": "sc9a-p1",
+  "passage_title": "Swelling of Three Hydrogels in Salt Solutions",
+  "format": "data_representation",
+  "passage": "A hydrogel is a network of long polymer chains that are cross-linked (joined to one another at many points). When a dry hydrogel is placed in water, water moves into the network and the gel swells. The swelling ratio of a gel is the mass of the swollen gel divided by the mass of the dry gel. The chains of some hydrogels carry fixed electric charges, and dissolved ions in the surrounding solution can change how much such gels swell.\n\nResearchers tested three unnamed synthetic hydrogels. The chains of Gel P carry about three times as many fixed charges per gram as the chains of Gel Q, and the chains of Gel R carry no fixed charges. Dry disks of each gel, each with a mass of 1.00 g, were placed in pure water or in sodium chloride (NaCl) solutions of different concentrations at 25 °C. After 24 hours, each disk was removed, gently blotted with paper, and weighed. Table 1 shows the swelling ratio of each gel in each solution.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Swelling ratio of three hydrogels after 24 hours at 25 °C",
+   "colLabels": [
+    "Gel P swelling ratio",
+    "Gel Q swelling ratio",
+    "Gel R swelling ratio"
+   ],
+   "rowLabels": [
+    "Pure water (0 mol/L NaCl)",
+    "0.05 mol/L NaCl",
+    "0.10 mol/L NaCl",
+    "0.20 mol/L NaCl",
+    "0.50 mol/L NaCl",
+    "1.00 mol/L NaCl"
+   ],
+   "cells": [
+    [
+     210,
+     95,
+     40
+    ],
+    [
+     120,
+     72,
+     39
+    ],
+    [
+     85,
+     60,
+     39
+    ],
+    [
+     58,
+     48,
+     38
+    ],
+    [
+     34,
+     40,
+     37
+    ],
+    [
+     22,
+     31,
+     36
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, as the NaCl concentration increased, between which two concentrations did the swelling ratio of Gel P first become smaller than that of Gel Q?",
+  "choices": [
+   "0 mol/L and 0.05 mol/L",
+   "0.05 mol/L and 0.10 mol/L",
+   "0.20 mol/L and 0.50 mol/L",
+   "0.50 mol/L and 1.00 mol/L"
+  ],
+  "correct_answer": "0.20 mol/L and 0.50 mol/L",
+  "explanation": "Gel P swelled more than Gel Q in pure water (210 vs. 95), at 0.05 mol/L (120 vs. 72), at 0.10 mol/L (85 vs. 60), and at 0.20 mol/L (58 vs. 48). At 0.50 mol/L Gel P's ratio was 34 and Gel Q's was 40, so the change happened between 0.20 mol/L and 0.50 mol/L. Gel P was still smaller at 1.00 mol/L (22 vs. 31), but it had already become smaller at 0.50 mol/L.",
+  "domain": "Interpretation of Data",
+  "subskill": "compare two data series at given points",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9a-P1-Q3",
+  "passage_id": "sc9a-p1",
+  "passage_title": "Swelling of Three Hydrogels in Salt Solutions",
+  "format": "data_representation",
+  "passage": "A hydrogel is a network of long polymer chains that are cross-linked (joined to one another at many points). When a dry hydrogel is placed in water, water moves into the network and the gel swells. The swelling ratio of a gel is the mass of the swollen gel divided by the mass of the dry gel. The chains of some hydrogels carry fixed electric charges, and dissolved ions in the surrounding solution can change how much such gels swell.\n\nResearchers tested three unnamed synthetic hydrogels. The chains of Gel P carry about three times as many fixed charges per gram as the chains of Gel Q, and the chains of Gel R carry no fixed charges. Dry disks of each gel, each with a mass of 1.00 g, were placed in pure water or in sodium chloride (NaCl) solutions of different concentrations at 25 °C. After 24 hours, each disk was removed, gently blotted with paper, and weighed. Table 1 shows the swelling ratio of each gel in each solution.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Swelling ratio of three hydrogels after 24 hours at 25 °C",
+   "colLabels": [
+    "Gel P swelling ratio",
+    "Gel Q swelling ratio",
+    "Gel R swelling ratio"
+   ],
+   "rowLabels": [
+    "Pure water (0 mol/L NaCl)",
+    "0.05 mol/L NaCl",
+    "0.10 mol/L NaCl",
+    "0.20 mol/L NaCl",
+    "0.50 mol/L NaCl",
+    "1.00 mol/L NaCl"
+   ],
+   "cells": [
+    [
+     210,
+     95,
+     40
+    ],
+    [
+     120,
+     72,
+     39
+    ],
+    [
+     85,
+     60,
+     39
+    ],
+    [
+     58,
+     48,
+     38
+    ],
+    [
+     34,
+     40,
+     37
+    ],
+    [
+     22,
+     31,
+     36
+    ]
+   ]
+  },
+  "prompt": "Each disk was gently blotted with paper before it was weighed. The most likely reason for this step was to:",
+  "choices": [
+   "keep liquid clinging to the outside of the disk from being counted as liquid the gel absorbed.",
+   "prevent the disk from losing water to the air during the time before it was weighed.",
+   "remove the dissolved NaCl from inside the network of polymer chains before weighing.",
+   "make sure that each disk had a dry mass of exactly 1.00 g before it was soaked."
+  ],
+  "correct_answer": "keep liquid clinging to the outside of the disk from being counted as liquid the gel absorbed.",
+  "explanation": "The swelling ratio is meant to measure the liquid taken into the gel's network. Liquid left on the surface would add mass without having been absorbed, so blotting was done to keep liquid clinging to the outside from being counted. Blotting does not slow evaporation, cannot reach ions inside the network, and was done after soaking, so it could not set the dry mass.",
+  "domain": "Scientific Investigation",
+  "subskill": "explain the purpose of a procedural step",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9a-P1-Q4",
+  "passage_id": "sc9a-p1",
+  "passage_title": "Swelling of Three Hydrogels in Salt Solutions",
+  "format": "data_representation",
+  "passage": "A hydrogel is a network of long polymer chains that are cross-linked (joined to one another at many points). When a dry hydrogel is placed in water, water moves into the network and the gel swells. The swelling ratio of a gel is the mass of the swollen gel divided by the mass of the dry gel. The chains of some hydrogels carry fixed electric charges, and dissolved ions in the surrounding solution can change how much such gels swell.\n\nResearchers tested three unnamed synthetic hydrogels. The chains of Gel P carry about three times as many fixed charges per gram as the chains of Gel Q, and the chains of Gel R carry no fixed charges. Dry disks of each gel, each with a mass of 1.00 g, were placed in pure water or in sodium chloride (NaCl) solutions of different concentrations at 25 °C. After 24 hours, each disk was removed, gently blotted with paper, and weighed. Table 1 shows the swelling ratio of each gel in each solution.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Swelling ratio of three hydrogels after 24 hours at 25 °C",
+   "colLabels": [
+    "Gel P swelling ratio",
+    "Gel Q swelling ratio",
+    "Gel R swelling ratio"
+   ],
+   "rowLabels": [
+    "Pure water (0 mol/L NaCl)",
+    "0.05 mol/L NaCl",
+    "0.10 mol/L NaCl",
+    "0.20 mol/L NaCl",
+    "0.50 mol/L NaCl",
+    "1.00 mol/L NaCl"
+   ],
+   "cells": [
+    [
+     210,
+     95,
+     40
+    ],
+    [
+     120,
+     72,
+     39
+    ],
+    [
+     85,
+     60,
+     39
+    ],
+    [
+     58,
+     48,
+     38
+    ],
+    [
+     34,
+     40,
+     37
+    ],
+    [
+     22,
+     31,
+     36
+    ]
+   ]
+  },
+  "prompt": "A student claimed that, from pure water to 1.00 mol/L NaCl, each gel whose chains carry fixed charges lost more than half of its pure-water swelling ratio, while the gel whose chains carry no fixed charges lost less than one-fifth of its pure-water swelling ratio. Is this claim supported by Table 1?",
+  "choices": [
+   "No; Gel Q's ratio dropped by only 31 of its 95, which is less than half.",
+   "No; Gel R's ratio dropped by 36 of its 40, which is more than one-fifth.",
+   "Yes; the ratios dropped by 188 of 210 for P, 55 of 95 for Q, and 6 of 40 for R.",
+   "Yes; the ratios dropped by 188 of 210 for P, 64 of 95 for Q, and 4 of 40 for R."
+  ],
+  "correct_answer": "Yes; the ratios dropped by 188 of 210 for P, 64 of 95 for Q, and 4 of 40 for R.",
+  "explanation": "From pure water to 1.00 mol/L NaCl, Gel P fell from 210 to 22 (a drop of 188, about 90%), Gel Q from 95 to 31 (a drop of 64, about 67%), and Gel R from 40 to 36 (a drop of 4, which is 10%). Both charged gels lost more than half and the uncharged gel lost less than one-fifth, so the claim is supported with drops of 188, 64, and 4. The values 31 and 36 are the ratios that remained, not the drops, and Table 1 shows drops of 64 and 4, not 55 and 6, for Gels Q and R.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate a quantitative claim against table values",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV9a-P1-Q5",
+  "passage_id": "sc9a-p1",
+  "passage_title": "Swelling of Three Hydrogels in Salt Solutions",
+  "format": "data_representation",
+  "passage": "A hydrogel is a network of long polymer chains that are cross-linked (joined to one another at many points). When a dry hydrogel is placed in water, water moves into the network and the gel swells. The swelling ratio of a gel is the mass of the swollen gel divided by the mass of the dry gel. The chains of some hydrogels carry fixed electric charges, and dissolved ions in the surrounding solution can change how much such gels swell.\n\nResearchers tested three unnamed synthetic hydrogels. The chains of Gel P carry about three times as many fixed charges per gram as the chains of Gel Q, and the chains of Gel R carry no fixed charges. Dry disks of each gel, each with a mass of 1.00 g, were placed in pure water or in sodium chloride (NaCl) solutions of different concentrations at 25 °C. After 24 hours, each disk was removed, gently blotted with paper, and weighed. Table 1 shows the swelling ratio of each gel in each solution.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Swelling ratio of three hydrogels after 24 hours at 25 °C",
+   "colLabels": [
+    "Gel P swelling ratio",
+    "Gel Q swelling ratio",
+    "Gel R swelling ratio"
+   ],
+   "rowLabels": [
+    "Pure water (0 mol/L NaCl)",
+    "0.05 mol/L NaCl",
+    "0.10 mol/L NaCl",
+    "0.20 mol/L NaCl",
+    "0.50 mol/L NaCl",
+    "1.00 mol/L NaCl"
+   ],
+   "cells": [
+    [
+     210,
+     95,
+     40
+    ],
+    [
+     120,
+     72,
+     39
+    ],
+    [
+     85,
+     60,
+     39
+    ],
+    [
+     58,
+     48,
+     38
+    ],
+    [
+     34,
+     40,
+     37
+    ],
+    [
+     22,
+     31,
+     36
+    ]
+   ]
+  },
+  "prompt": "A 1.00 g dry disk of Gel P was soaked for 24 hours at 25 °C in an NaCl solution of unknown concentration and then had a swelling ratio of 70. Based on Table 1, the NaCl concentration of the solution was most likely between:",
+  "choices": [
+   "0 mol/L and 0.05 mol/L.",
+   "0.05 mol/L and 0.10 mol/L.",
+   "0.10 mol/L and 0.20 mol/L.",
+   "0.20 mol/L and 0.50 mol/L."
+  ],
+  "correct_answer": "0.10 mol/L and 0.20 mol/L.",
+  "explanation": "Gel P's swelling ratio decreased steadily as NaCl concentration increased: 210, 120, 85, 58, 34, 22. A ratio of 70 lies between 85 (at 0.10 mol/L) and 58 (at 0.20 mol/L), so the concentration was between 0.10 mol/L and 0.20 mol/L. The range 0.05 to 0.10 mol/L corresponds to ratios of 120 to 85, and 0.20 to 0.50 mol/L to ratios of 58 to 34.",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate between table values (inverse lookup)",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV9a-P2-Q1",
+  "passage_id": "sc9a-p2",
+  "passage_title": "Freeze-Thaw Weathering of Four Rocks",
+  "format": "data_representation",
+  "passage": "When water freezes, its volume increases by about 9%. Water that has soaked into the pores (tiny open spaces) of a rock can push the surrounding grains apart when it freezes, and repeated freezing and thawing can break small pieces off the rock. This process is called freeze-thaw weathering.\n\nGeologists studied freeze-thaw weathering in four unnamed sedimentary rocks, Rocks 1-4. For each rock they determined the porosity (the percent of the rock's volume that is pore space) and the average pore diameter. They cut a cube of each rock, dried it, and soaked it in water for 48 hours. During soaking, the pores of Rocks 1, 2, and 3 became almost completely filled with water, but the pores of Rock 4 became only about 70% filled.\n\nThe soaked cubes were placed in a chamber that cooled them to −10 °C and then warmed them to +10 °C once every 24 hours; each cooling and warming is one cycle. After 10, 20, 40, and 80 cycles, each cube was removed, loose pieces were brushed off, and the cube was dried in an oven and weighed; it was then soaked again and returned to the chamber. Table 1 gives the porosity and average pore diameter of each rock and its mass loss, the percent of the cube's original dry mass that had broken off.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Properties of four rocks and their mass loss during freeze-thaw cycles",
+   "colLabels": [
+    "Porosity (%)",
+    "Average pore diameter (mm)",
+    "Mass loss after 10 cycles (%)",
+    "Mass loss after 20 cycles (%)",
+    "Mass loss after 40 cycles (%)",
+    "Mass loss after 80 cycles (%)"
+   ],
+   "rowLabels": [
+    "Rock 1",
+    "Rock 2",
+    "Rock 3",
+    "Rock 4"
+   ],
+   "cells": [
+    [
+     4,
+     "0.002",
+     "0.1",
+     "0.2",
+     "0.5",
+     "1.2"
+    ],
+    [
+     12,
+     "0.010",
+     "0.4",
+     "1.0",
+     "2.6",
+     "6.8"
+    ],
+    [
+     18,
+     "0.015",
+     "0.9",
+     "2.4",
+     "6.0",
+     "15.2"
+    ],
+    [
+     25,
+     "0.300",
+     "0.6",
+     "1.5",
+     "3.8",
+     "9.5"
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, what was the mass loss of Rock 2 after 40 cycles?",
+  "choices": [
+   "1.0%",
+   "2.6%",
+   "3.8%",
+   "6.8%"
+  ],
+  "correct_answer": "2.6%",
+  "explanation": "In the Rock 2 row, the entry under mass loss after 40 cycles is 2.6%. The value 1.0% is Rock 2 after 20 cycles, 6.8% is Rock 2 after 80 cycles, and 3.8% is Rock 4 after 40 cycles.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV9a-P2-Q2",
+  "passage_id": "sc9a-p2",
+  "passage_title": "Freeze-Thaw Weathering of Four Rocks",
+  "format": "data_representation",
+  "passage": "When water freezes, its volume increases by about 9%. Water that has soaked into the pores (tiny open spaces) of a rock can push the surrounding grains apart when it freezes, and repeated freezing and thawing can break small pieces off the rock. This process is called freeze-thaw weathering.\n\nGeologists studied freeze-thaw weathering in four unnamed sedimentary rocks, Rocks 1-4. For each rock they determined the porosity (the percent of the rock's volume that is pore space) and the average pore diameter. They cut a cube of each rock, dried it, and soaked it in water for 48 hours. During soaking, the pores of Rocks 1, 2, and 3 became almost completely filled with water, but the pores of Rock 4 became only about 70% filled.\n\nThe soaked cubes were placed in a chamber that cooled them to −10 °C and then warmed them to +10 °C once every 24 hours; each cooling and warming is one cycle. After 10, 20, 40, and 80 cycles, each cube was removed, loose pieces were brushed off, and the cube was dried in an oven and weighed; it was then soaked again and returned to the chamber. Table 1 gives the porosity and average pore diameter of each rock and its mass loss, the percent of the cube's original dry mass that had broken off.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Properties of four rocks and their mass loss during freeze-thaw cycles",
+   "colLabels": [
+    "Porosity (%)",
+    "Average pore diameter (mm)",
+    "Mass loss after 10 cycles (%)",
+    "Mass loss after 20 cycles (%)",
+    "Mass loss after 40 cycles (%)",
+    "Mass loss after 80 cycles (%)"
+   ],
+   "rowLabels": [
+    "Rock 1",
+    "Rock 2",
+    "Rock 3",
+    "Rock 4"
+   ],
+   "cells": [
+    [
+     4,
+     "0.002",
+     "0.1",
+     "0.2",
+     "0.5",
+     "1.2"
+    ],
+    [
+     12,
+     "0.010",
+     "0.4",
+     "1.0",
+     "2.6",
+     "6.8"
+    ],
+    [
+     18,
+     "0.015",
+     "0.9",
+     "2.4",
+     "6.0",
+     "15.2"
+    ],
+    [
+     25,
+     "0.300",
+     "0.6",
+     "1.5",
+     "3.8",
+     "9.5"
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, for every rock, when the number of cycles increased from 40 to 80, the mass loss increased by a factor of:",
+  "choices": [
+   "less than 2.",
+   "between 2 and 3.",
+   "between 3 and 4.",
+   "greater than 4."
+  ],
+  "correct_answer": "between 2 and 3.",
+  "explanation": "From 40 to 80 cycles, Rock 1 went from 0.5% to 1.2% (a factor of 2.4), Rock 2 from 2.6% to 6.8% (about 2.6), Rock 3 from 6.0% to 15.2% (about 2.5), and Rock 4 from 3.8% to 9.5% (2.5). Every factor lies between 2 and 3; none is below 2 or above 3.",
+  "domain": "Interpretation of Data",
+  "subskill": "compute ratios between table values",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV9a-P2-Q3",
+  "passage_id": "sc9a-p2",
+  "passage_title": "Freeze-Thaw Weathering of Four Rocks",
+  "format": "data_representation",
+  "passage": "When water freezes, its volume increases by about 9%. Water that has soaked into the pores (tiny open spaces) of a rock can push the surrounding grains apart when it freezes, and repeated freezing and thawing can break small pieces off the rock. This process is called freeze-thaw weathering.\n\nGeologists studied freeze-thaw weathering in four unnamed sedimentary rocks, Rocks 1-4. For each rock they determined the porosity (the percent of the rock's volume that is pore space) and the average pore diameter. They cut a cube of each rock, dried it, and soaked it in water for 48 hours. During soaking, the pores of Rocks 1, 2, and 3 became almost completely filled with water, but the pores of Rock 4 became only about 70% filled.\n\nThe soaked cubes were placed in a chamber that cooled them to −10 °C and then warmed them to +10 °C once every 24 hours; each cooling and warming is one cycle. After 10, 20, 40, and 80 cycles, each cube was removed, loose pieces were brushed off, and the cube was dried in an oven and weighed; it was then soaked again and returned to the chamber. Table 1 gives the porosity and average pore diameter of each rock and its mass loss, the percent of the cube's original dry mass that had broken off.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Properties of four rocks and their mass loss during freeze-thaw cycles",
+   "colLabels": [
+    "Porosity (%)",
+    "Average pore diameter (mm)",
+    "Mass loss after 10 cycles (%)",
+    "Mass loss after 20 cycles (%)",
+    "Mass loss after 40 cycles (%)",
+    "Mass loss after 80 cycles (%)"
+   ],
+   "rowLabels": [
+    "Rock 1",
+    "Rock 2",
+    "Rock 3",
+    "Rock 4"
+   ],
+   "cells": [
+    [
+     4,
+     "0.002",
+     "0.1",
+     "0.2",
+     "0.5",
+     "1.2"
+    ],
+    [
+     12,
+     "0.010",
+     "0.4",
+     "1.0",
+     "2.6",
+     "6.8"
+    ],
+    [
+     18,
+     "0.015",
+     "0.9",
+     "2.4",
+     "6.0",
+     "15.2"
+    ],
+    [
+     25,
+     "0.300",
+     "0.6",
+     "1.5",
+     "3.8",
+     "9.5"
+    ]
+   ]
+  },
+  "prompt": "A student claimed that, among the four rocks, the greater a rock's porosity, the greater its mass loss after 80 cycles. Is this claim supported by Table 1?",
+  "choices": [
+   "No; Rock 4 had the greatest porosity, but Rock 3 had a greater mass loss.",
+   "Yes; Rock 4 had both the greatest porosity and the greatest mass loss.",
+   "Yes; the mass loss increased from Rock 1 to Rock 4 as the porosity increased.",
+   "No; Rock 1 had the greatest porosity, but it had the smallest mass loss."
+  ],
+  "correct_answer": "No; Rock 4 had the greatest porosity, but Rock 3 had a greater mass loss.",
+  "explanation": "Porosity increases from Rock 1 (4%) to Rock 4 (25%), but the 80-cycle mass losses are 1.2%, 6.8%, 15.2%, and 9.5%. Rock 4, with the greatest porosity, lost less than Rock 3 (9.5% vs. 15.2%), so the claim is not supported. Rock 4 did not have the greatest mass loss, mass loss did not rise all the way to Rock 4, and Rock 1 had the smallest porosity, not the greatest.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate a claimed trend against a table",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9a-P2-Q4",
+  "passage_id": "sc9a-p2",
+  "passage_title": "Freeze-Thaw Weathering of Four Rocks",
+  "format": "data_representation",
+  "passage": "When water freezes, its volume increases by about 9%. Water that has soaked into the pores (tiny open spaces) of a rock can push the surrounding grains apart when it freezes, and repeated freezing and thawing can break small pieces off the rock. This process is called freeze-thaw weathering.\n\nGeologists studied freeze-thaw weathering in four unnamed sedimentary rocks, Rocks 1-4. For each rock they determined the porosity (the percent of the rock's volume that is pore space) and the average pore diameter. They cut a cube of each rock, dried it, and soaked it in water for 48 hours. During soaking, the pores of Rocks 1, 2, and 3 became almost completely filled with water, but the pores of Rock 4 became only about 70% filled.\n\nThe soaked cubes were placed in a chamber that cooled them to −10 °C and then warmed them to +10 °C once every 24 hours; each cooling and warming is one cycle. After 10, 20, 40, and 80 cycles, each cube was removed, loose pieces were brushed off, and the cube was dried in an oven and weighed; it was then soaked again and returned to the chamber. Table 1 gives the porosity and average pore diameter of each rock and its mass loss, the percent of the cube's original dry mass that had broken off.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Properties of four rocks and their mass loss during freeze-thaw cycles",
+   "colLabels": [
+    "Porosity (%)",
+    "Average pore diameter (mm)",
+    "Mass loss after 10 cycles (%)",
+    "Mass loss after 20 cycles (%)",
+    "Mass loss after 40 cycles (%)",
+    "Mass loss after 80 cycles (%)"
+   ],
+   "rowLabels": [
+    "Rock 1",
+    "Rock 2",
+    "Rock 3",
+    "Rock 4"
+   ],
+   "cells": [
+    [
+     4,
+     "0.002",
+     "0.1",
+     "0.2",
+     "0.5",
+     "1.2"
+    ],
+    [
+     12,
+     "0.010",
+     "0.4",
+     "1.0",
+     "2.6",
+     "6.8"
+    ],
+    [
+     18,
+     "0.015",
+     "0.9",
+     "2.4",
+     "6.0",
+     "15.2"
+    ],
+    [
+     25,
+     "0.300",
+     "0.6",
+     "1.5",
+     "3.8",
+     "9.5"
+    ]
+   ]
+  },
+  "prompt": "Before each cube was weighed, it was dried in an oven. The most likely reason for drying the cubes was to ensure that:",
+  "choices": [
+   "each cube would be at −10 °C at the start of the next cycle.",
+   "any loose pieces would fall off the cube before it was weighed.",
+   "the pores of Rock 4 would fill completely during the next soaking.",
+   "water held in the pores would not be counted as part of the rock's mass."
+  ],
+  "correct_answer": "water held in the pores would not be counted as part of the rock's mass.",
+  "explanation": "Mass loss is a percent of the cube's original dry mass, so each later weighing must also be of dry rock; drying ensures that water held in the pores would not be counted as part of the rock's mass. Oven drying warms the cube rather than cooling it, loose pieces were removed by brushing, and the passage gives no reason to expect drying to change how full Rock 4's pores become.",
+  "domain": "Scientific Investigation",
+  "subskill": "explain the purpose of a procedural step",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9a-P2-Q5",
+  "passage_id": "sc9a-p2",
+  "passage_title": "Freeze-Thaw Weathering of Four Rocks",
+  "format": "data_representation",
+  "passage": "When water freezes, its volume increases by about 9%. Water that has soaked into the pores (tiny open spaces) of a rock can push the surrounding grains apart when it freezes, and repeated freezing and thawing can break small pieces off the rock. This process is called freeze-thaw weathering.\n\nGeologists studied freeze-thaw weathering in four unnamed sedimentary rocks, Rocks 1-4. For each rock they determined the porosity (the percent of the rock's volume that is pore space) and the average pore diameter. They cut a cube of each rock, dried it, and soaked it in water for 48 hours. During soaking, the pores of Rocks 1, 2, and 3 became almost completely filled with water, but the pores of Rock 4 became only about 70% filled.\n\nThe soaked cubes were placed in a chamber that cooled them to −10 °C and then warmed them to +10 °C once every 24 hours; each cooling and warming is one cycle. After 10, 20, 40, and 80 cycles, each cube was removed, loose pieces were brushed off, and the cube was dried in an oven and weighed; it was then soaked again and returned to the chamber. Table 1 gives the porosity and average pore diameter of each rock and its mass loss, the percent of the cube's original dry mass that had broken off.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Properties of four rocks and their mass loss during freeze-thaw cycles",
+   "colLabels": [
+    "Porosity (%)",
+    "Average pore diameter (mm)",
+    "Mass loss after 10 cycles (%)",
+    "Mass loss after 20 cycles (%)",
+    "Mass loss after 40 cycles (%)",
+    "Mass loss after 80 cycles (%)"
+   ],
+   "rowLabels": [
+    "Rock 1",
+    "Rock 2",
+    "Rock 3",
+    "Rock 4"
+   ],
+   "cells": [
+    [
+     4,
+     "0.002",
+     "0.1",
+     "0.2",
+     "0.5",
+     "1.2"
+    ],
+    [
+     12,
+     "0.010",
+     "0.4",
+     "1.0",
+     "2.6",
+     "6.8"
+    ],
+    [
+     18,
+     "0.015",
+     "0.9",
+     "2.4",
+     "6.0",
+     "15.2"
+    ],
+    [
+     25,
+     "0.300",
+     "0.6",
+     "1.5",
+     "3.8",
+     "9.5"
+    ]
+   ]
+  },
+  "prompt": "A fifth sedimentary rock has a porosity of 15% and an average pore diameter of 0.012 mm, and its pores become almost completely filled with water during soaking. If this rock were tested in the same way, its mass loss after 80 cycles would most likely be:",
+  "choices": [
+   "less than 1.2%.",
+   "between 1.2% and 6.8%.",
+   "between 6.8% and 15.2%.",
+   "greater than 15.2%."
+  ],
+  "correct_answer": "between 6.8% and 15.2%.",
+  "explanation": "Among the rocks whose pores filled almost completely (Rocks 1-3), mass loss after 80 cycles rose with porosity and pore diameter: 1.2% (4%, 0.002 mm), 6.8% (12%, 0.010 mm), and 15.2% (18%, 0.015 mm). The fifth rock's 15% porosity and 0.012 mm pores lie between those of Rock 2 and Rock 3, so its loss should be between 6.8% and 15.2%. Rock 4 is not a good guide because its pores filled only about 70%.",
+  "domain": "Interpretation of Data",
+  "subskill": "predict a result for a new sample from a passage condition and a table",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV9a-P3-Q1",
+  "passage_id": "sc9a-p3",
+  "passage_title": "Carbon Dioxide Uptake by Three Sorbents",
+  "format": "research_summaries",
+  "passage": "A sorbent is a solid that takes up a gas onto or into its particles. Engineers developing ways to remove carbon dioxide (CO2) from the exhaust gas of power plants tested three unnamed powdered sorbents, S1, S2, and S3.\n\nIn each trial, 10.0 g of fresh, dry sorbent was packed into a glass tube held at a set temperature. A gas mixture of 15% CO2 and 85% nitrogen by volume flowed through the tube at a constant rate. A sensor at the outlet measured the CO2 concentration of the gas leaving the tube. By comparing the amount of CO2 entering the tube with the amount leaving it, the engineers calculated the total mass of CO2 the sorbent had taken up by the time it stopped taking up CO2. This CO2 uptake is reported in milligrams of CO2 per gram of sorbent (mg/g).\n\nExperiment 1\nEach of the three sorbents was tested at 25 °C with dry gas (0% relative humidity).\n\nExperiment 2\nSorbent S2 was tested with dry gas at 25 °C, 40 °C, 60 °C, and 80 °C.\n\nExperiment 3\nSorbent S2 was tested at 25 °C with gas that had been humidified to a relative humidity of 0%, 30%, 60%, or 90%. In the humidified trials, the sorbent took up water vapor as well as CO2.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. CO2 uptake by three sorbents under different conditions",
+   "colLabels": [
+    "Sorbent",
+    "Temperature (°C)",
+    "Relative humidity (%)",
+    "CO2 uptake (mg/g)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "S1",
+     25,
+     0,
+     48
+    ],
+    [
+     "S2",
+     25,
+     0,
+     96
+    ],
+    [
+     "S3",
+     25,
+     0,
+     72
+    ],
+    [
+     "S2",
+     25,
+     0,
+     96
+    ],
+    [
+     "S2",
+     40,
+     0,
+     81
+    ],
+    [
+     "S2",
+     60,
+     0,
+     58
+    ],
+    [
+     "S2",
+     80,
+     0,
+     34
+    ],
+    [
+     "S2",
+     25,
+     0,
+     96
+    ],
+    [
+     "S2",
+     25,
+     30,
+     104
+    ],
+    [
+     "S2",
+     25,
+     60,
+     110
+    ],
+    [
+     "S2",
+     25,
+     90,
+     88
+    ]
+   ]
+  },
+  "prompt": "In Experiment 1, which sorbent took up the most CO2 per gram?",
+  "choices": [
+   "S1",
+   "S2",
+   "S3",
+   "All three took up the same mass of CO2 per gram."
+  ],
+  "correct_answer": "S2",
+  "explanation": "In Experiment 1, the CO2 uptakes were 48 mg/g for S1, 96 mg/g for S2, and 72 mg/g for S3, so S2 took up the most. The three values differ, so the uptakes were not the same.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV9a-P3-Q2",
+  "passage_id": "sc9a-p3",
+  "passage_title": "Carbon Dioxide Uptake by Three Sorbents",
+  "format": "research_summaries",
+  "passage": "A sorbent is a solid that takes up a gas onto or into its particles. Engineers developing ways to remove carbon dioxide (CO2) from the exhaust gas of power plants tested three unnamed powdered sorbents, S1, S2, and S3.\n\nIn each trial, 10.0 g of fresh, dry sorbent was packed into a glass tube held at a set temperature. A gas mixture of 15% CO2 and 85% nitrogen by volume flowed through the tube at a constant rate. A sensor at the outlet measured the CO2 concentration of the gas leaving the tube. By comparing the amount of CO2 entering the tube with the amount leaving it, the engineers calculated the total mass of CO2 the sorbent had taken up by the time it stopped taking up CO2. This CO2 uptake is reported in milligrams of CO2 per gram of sorbent (mg/g).\n\nExperiment 1\nEach of the three sorbents was tested at 25 °C with dry gas (0% relative humidity).\n\nExperiment 2\nSorbent S2 was tested with dry gas at 25 °C, 40 °C, 60 °C, and 80 °C.\n\nExperiment 3\nSorbent S2 was tested at 25 °C with gas that had been humidified to a relative humidity of 0%, 30%, 60%, or 90%. In the humidified trials, the sorbent took up water vapor as well as CO2.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. CO2 uptake by three sorbents under different conditions",
+   "colLabels": [
+    "Sorbent",
+    "Temperature (°C)",
+    "Relative humidity (%)",
+    "CO2 uptake (mg/g)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "S1",
+     25,
+     0,
+     48
+    ],
+    [
+     "S2",
+     25,
+     0,
+     96
+    ],
+    [
+     "S3",
+     25,
+     0,
+     72
+    ],
+    [
+     "S2",
+     25,
+     0,
+     96
+    ],
+    [
+     "S2",
+     40,
+     0,
+     81
+    ],
+    [
+     "S2",
+     60,
+     0,
+     58
+    ],
+    [
+     "S2",
+     80,
+     0,
+     34
+    ],
+    [
+     "S2",
+     25,
+     0,
+     96
+    ],
+    [
+     "S2",
+     25,
+     30,
+     104
+    ],
+    [
+     "S2",
+     25,
+     60,
+     110
+    ],
+    [
+     "S2",
+     25,
+     90,
+     88
+    ]
+   ]
+  },
+  "prompt": "Based on the results of Experiment 2, if S2 were tested with dry gas at 50 °C, its CO2 uptake would most likely be:",
+  "choices": [
+   "less than 34 mg/g.",
+   "between 34 mg/g and 58 mg/g.",
+   "between 58 mg/g and 81 mg/g.",
+   "between 81 mg/g and 96 mg/g."
+  ],
+  "correct_answer": "between 58 mg/g and 81 mg/g.",
+  "explanation": "In Experiment 2, S2's uptake fell steadily as temperature rose: 96 mg/g at 25 °C, 81 mg/g at 40 °C, 58 mg/g at 60 °C, and 34 mg/g at 80 °C. Because 50 °C lies between 40 °C and 60 °C, the uptake should be between 58 mg/g and 81 mg/g. The range 34 to 58 mg/g corresponds to 60 to 80 °C, and 81 to 96 mg/g to 25 to 40 °C.",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate between table values",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9a-P3-Q3",
+  "passage_id": "sc9a-p3",
+  "passage_title": "Carbon Dioxide Uptake by Three Sorbents",
+  "format": "research_summaries",
+  "passage": "A sorbent is a solid that takes up a gas onto or into its particles. Engineers developing ways to remove carbon dioxide (CO2) from the exhaust gas of power plants tested three unnamed powdered sorbents, S1, S2, and S3.\n\nIn each trial, 10.0 g of fresh, dry sorbent was packed into a glass tube held at a set temperature. A gas mixture of 15% CO2 and 85% nitrogen by volume flowed through the tube at a constant rate. A sensor at the outlet measured the CO2 concentration of the gas leaving the tube. By comparing the amount of CO2 entering the tube with the amount leaving it, the engineers calculated the total mass of CO2 the sorbent had taken up by the time it stopped taking up CO2. This CO2 uptake is reported in milligrams of CO2 per gram of sorbent (mg/g).\n\nExperiment 1\nEach of the three sorbents was tested at 25 °C with dry gas (0% relative humidity).\n\nExperiment 2\nSorbent S2 was tested with dry gas at 25 °C, 40 °C, 60 °C, and 80 °C.\n\nExperiment 3\nSorbent S2 was tested at 25 °C with gas that had been humidified to a relative humidity of 0%, 30%, 60%, or 90%. In the humidified trials, the sorbent took up water vapor as well as CO2.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. CO2 uptake by three sorbents under different conditions",
+   "colLabels": [
+    "Sorbent",
+    "Temperature (°C)",
+    "Relative humidity (%)",
+    "CO2 uptake (mg/g)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "S1",
+     25,
+     0,
+     48
+    ],
+    [
+     "S2",
+     25,
+     0,
+     96
+    ],
+    [
+     "S3",
+     25,
+     0,
+     72
+    ],
+    [
+     "S2",
+     25,
+     0,
+     96
+    ],
+    [
+     "S2",
+     40,
+     0,
+     81
+    ],
+    [
+     "S2",
+     60,
+     0,
+     58
+    ],
+    [
+     "S2",
+     80,
+     0,
+     34
+    ],
+    [
+     "S2",
+     25,
+     0,
+     96
+    ],
+    [
+     "S2",
+     25,
+     30,
+     104
+    ],
+    [
+     "S2",
+     25,
+     60,
+     110
+    ],
+    [
+     "S2",
+     25,
+     90,
+     88
+    ]
+   ]
+  },
+  "prompt": "Which of the following factors was varied in Experiment 2 but held constant in Experiment 3?",
+  "choices": [
+   "The sorbent tested",
+   "The relative humidity of the gas",
+   "The temperature",
+   "The CO2 concentration of the gas"
+  ],
+  "correct_answer": "The temperature",
+  "explanation": "Experiment 2 tested S2 at 25, 40, 60, and 80 °C, while Experiment 3 tested it only at 25 °C, so the temperature was varied in Experiment 2 but held constant in Experiment 3. Relative humidity was the reverse (held at 0% in Experiment 2, varied in Experiment 3), S2 was used in both, and every trial used 15% CO2.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify variables controlled across experiments",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9a-P3-Q4",
+  "passage_id": "sc9a-p3",
+  "passage_title": "Carbon Dioxide Uptake by Three Sorbents",
+  "format": "research_summaries",
+  "passage": "A sorbent is a solid that takes up a gas onto or into its particles. Engineers developing ways to remove carbon dioxide (CO2) from the exhaust gas of power plants tested three unnamed powdered sorbents, S1, S2, and S3.\n\nIn each trial, 10.0 g of fresh, dry sorbent was packed into a glass tube held at a set temperature. A gas mixture of 15% CO2 and 85% nitrogen by volume flowed through the tube at a constant rate. A sensor at the outlet measured the CO2 concentration of the gas leaving the tube. By comparing the amount of CO2 entering the tube with the amount leaving it, the engineers calculated the total mass of CO2 the sorbent had taken up by the time it stopped taking up CO2. This CO2 uptake is reported in milligrams of CO2 per gram of sorbent (mg/g).\n\nExperiment 1\nEach of the three sorbents was tested at 25 °C with dry gas (0% relative humidity).\n\nExperiment 2\nSorbent S2 was tested with dry gas at 25 °C, 40 °C, 60 °C, and 80 °C.\n\nExperiment 3\nSorbent S2 was tested at 25 °C with gas that had been humidified to a relative humidity of 0%, 30%, 60%, or 90%. In the humidified trials, the sorbent took up water vapor as well as CO2.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. CO2 uptake by three sorbents under different conditions",
+   "colLabels": [
+    "Sorbent",
+    "Temperature (°C)",
+    "Relative humidity (%)",
+    "CO2 uptake (mg/g)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "S1",
+     25,
+     0,
+     48
+    ],
+    [
+     "S2",
+     25,
+     0,
+     96
+    ],
+    [
+     "S3",
+     25,
+     0,
+     72
+    ],
+    [
+     "S2",
+     25,
+     0,
+     96
+    ],
+    [
+     "S2",
+     40,
+     0,
+     81
+    ],
+    [
+     "S2",
+     60,
+     0,
+     58
+    ],
+    [
+     "S2",
+     80,
+     0,
+     34
+    ],
+    [
+     "S2",
+     25,
+     0,
+     96
+    ],
+    [
+     "S2",
+     25,
+     30,
+     104
+    ],
+    [
+     "S2",
+     25,
+     60,
+     110
+    ],
+    [
+     "S2",
+     25,
+     90,
+     88
+    ]
+   ]
+  },
+  "prompt": "The engineers calculated CO2 uptake from the CO2 concentration of the gas leaving the tube rather than from the increase in the mass of the sorbent. In which experiment was this choice of method most important, and why?",
+  "choices": [
+   "Experiment 1, because the three sorbents were tested using different masses of sorbent.",
+   "Experiment 2, because the sorbent at the higher temperatures took up less CO2 per gram.",
+   "Experiment 3, because the humidified gas contained no nitrogen for the sorbent to take up.",
+   "Experiment 3, because the sorbent also took up water vapor, which added to its mass."
+  ],
+  "correct_answer": "Experiment 3, because the sorbent also took up water vapor, which added to its mass.",
+  "explanation": "The passage states that in the humidified trials the sorbent took up water vapor as well as CO2. A gain in mass would have combined the two, so measuring CO2 in the outlet gas mattered most in Experiment 3 because the sorbent also took up water vapor, which added to its mass. Every trial used 10.0 g of sorbent, lower uptake at higher temperature would still be measured correctly by weighing dry sorbent, and the humidified gas still contained nitrogen.",
+  "domain": "Scientific Investigation",
+  "subskill": "explain a measurement choice from a passage detail",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV9a-P3-Q5",
+  "passage_id": "sc9a-p3",
+  "passage_title": "Carbon Dioxide Uptake by Three Sorbents",
+  "format": "research_summaries",
+  "passage": "A sorbent is a solid that takes up a gas onto or into its particles. Engineers developing ways to remove carbon dioxide (CO2) from the exhaust gas of power plants tested three unnamed powdered sorbents, S1, S2, and S3.\n\nIn each trial, 10.0 g of fresh, dry sorbent was packed into a glass tube held at a set temperature. A gas mixture of 15% CO2 and 85% nitrogen by volume flowed through the tube at a constant rate. A sensor at the outlet measured the CO2 concentration of the gas leaving the tube. By comparing the amount of CO2 entering the tube with the amount leaving it, the engineers calculated the total mass of CO2 the sorbent had taken up by the time it stopped taking up CO2. This CO2 uptake is reported in milligrams of CO2 per gram of sorbent (mg/g).\n\nExperiment 1\nEach of the three sorbents was tested at 25 °C with dry gas (0% relative humidity).\n\nExperiment 2\nSorbent S2 was tested with dry gas at 25 °C, 40 °C, 60 °C, and 80 °C.\n\nExperiment 3\nSorbent S2 was tested at 25 °C with gas that had been humidified to a relative humidity of 0%, 30%, 60%, or 90%. In the humidified trials, the sorbent took up water vapor as well as CO2.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. CO2 uptake by three sorbents under different conditions",
+   "colLabels": [
+    "Sorbent",
+    "Temperature (°C)",
+    "Relative humidity (%)",
+    "CO2 uptake (mg/g)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "S1",
+     25,
+     0,
+     48
+    ],
+    [
+     "S2",
+     25,
+     0,
+     96
+    ],
+    [
+     "S3",
+     25,
+     0,
+     72
+    ],
+    [
+     "S2",
+     25,
+     0,
+     96
+    ],
+    [
+     "S2",
+     40,
+     0,
+     81
+    ],
+    [
+     "S2",
+     60,
+     0,
+     58
+    ],
+    [
+     "S2",
+     80,
+     0,
+     34
+    ],
+    [
+     "S2",
+     25,
+     0,
+     96
+    ],
+    [
+     "S2",
+     25,
+     30,
+     104
+    ],
+    [
+     "S2",
+     25,
+     60,
+     110
+    ],
+    [
+     "S2",
+     25,
+     90,
+     88
+    ]
+   ]
+  },
+  "prompt": "An engineer claimed that S2 takes up the most CO2 when the gas is as humid as possible. Do the results of Experiment 3 support this claim?",
+  "choices": [
+   "No; CO2 uptake was greatest at a relative humidity of 60%, not 90%.",
+   "Yes; CO2 uptake was greatest at a relative humidity of 90%.",
+   "Yes; CO2 uptake increased each time the relative humidity increased.",
+   "No; CO2 uptake was greatest with dry gas and fell as humidity rose."
+  ],
+  "correct_answer": "No; CO2 uptake was greatest at a relative humidity of 60%, not 90%.",
+  "explanation": "In Experiment 3, the uptakes were 96 mg/g at 0%, 104 mg/g at 30%, 110 mg/g at 60%, and 88 mg/g at 90% relative humidity. The most humid gas gave the lowest uptake of the four, and the greatest uptake came at 60%, so the claim is not supported. Uptake did not rise at every step, and it was higher at 30% and 60% than with dry gas.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate a claim against a non-monotonic trend",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9a-P3-Q6",
+  "passage_id": "sc9a-p3",
+  "passage_title": "Carbon Dioxide Uptake by Three Sorbents",
+  "format": "research_summaries",
+  "passage": "A sorbent is a solid that takes up a gas onto or into its particles. Engineers developing ways to remove carbon dioxide (CO2) from the exhaust gas of power plants tested three unnamed powdered sorbents, S1, S2, and S3.\n\nIn each trial, 10.0 g of fresh, dry sorbent was packed into a glass tube held at a set temperature. A gas mixture of 15% CO2 and 85% nitrogen by volume flowed through the tube at a constant rate. A sensor at the outlet measured the CO2 concentration of the gas leaving the tube. By comparing the amount of CO2 entering the tube with the amount leaving it, the engineers calculated the total mass of CO2 the sorbent had taken up by the time it stopped taking up CO2. This CO2 uptake is reported in milligrams of CO2 per gram of sorbent (mg/g).\n\nExperiment 1\nEach of the three sorbents was tested at 25 °C with dry gas (0% relative humidity).\n\nExperiment 2\nSorbent S2 was tested with dry gas at 25 °C, 40 °C, 60 °C, and 80 °C.\n\nExperiment 3\nSorbent S2 was tested at 25 °C with gas that had been humidified to a relative humidity of 0%, 30%, 60%, or 90%. In the humidified trials, the sorbent took up water vapor as well as CO2.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. CO2 uptake by three sorbents under different conditions",
+   "colLabels": [
+    "Sorbent",
+    "Temperature (°C)",
+    "Relative humidity (%)",
+    "CO2 uptake (mg/g)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "S1",
+     25,
+     0,
+     48
+    ],
+    [
+     "S2",
+     25,
+     0,
+     96
+    ],
+    [
+     "S3",
+     25,
+     0,
+     72
+    ],
+    [
+     "S2",
+     25,
+     0,
+     96
+    ],
+    [
+     "S2",
+     40,
+     0,
+     81
+    ],
+    [
+     "S2",
+     60,
+     0,
+     58
+    ],
+    [
+     "S2",
+     80,
+     0,
+     34
+    ],
+    [
+     "S2",
+     25,
+     0,
+     96
+    ],
+    [
+     "S2",
+     25,
+     30,
+     104
+    ],
+    [
+     "S2",
+     25,
+     60,
+     110
+    ],
+    [
+     "S2",
+     25,
+     90,
+     88
+    ]
+   ]
+  },
+  "prompt": "Based on the results of Experiment 1, what total mass of CO2 would 25.0 g of S3 take up at 25 °C from dry gas?",
+  "choices": [
+   "0.72 g",
+   "1.2 g",
+   "1.8 g",
+   "2.4 g"
+  ],
+  "correct_answer": "1.8 g",
+  "explanation": "S3 took up 72 mg of CO2 per gram in Experiment 1. For 25.0 g, the uptake is 72 mg/g × 25.0 g = 1,800 mg, which is 1.8 g. The value 1.2 g uses S1's 48 mg/g, 2.4 g uses S2's 96 mg/g, and 0.72 g is the uptake of the 10.0 g sample used in each trial.",
+  "domain": "Interpretation of Data",
+  "subskill": "apply a per-gram value to a new mass",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV9a-P4-Q1",
+  "passage_id": "sc9a-p4",
+  "passage_title": "Hatching of Crustacean Cysts",
+  "format": "research_summaries",
+  "passage": "Species A is an unnamed small crustacean that lives in salt lakes. Its eggs can dry out and remain dormant as cysts for years. When a cyst is placed in water under suitable conditions, it takes up water and a larva hatches from it. Students studied how conditions affect the hatching of Species A cysts.\n\nIn each trial, 200 cysts from the same batch were placed in 500 mL of water containing a set concentration of dissolved salt, measured in grams of salt per liter of water (g/L). Each container was kept at a set temperature and was either lit continuously by a lamp or kept in complete darkness. After 48 hours, the students counted the larvae and calculated the percent of the cysts that had hatched.\n\nExperiment 1\nCysts were incubated at six salt concentrations at 25 °C under continuous light.\n\nExperiment 2\nCysts were incubated at five temperatures in water containing 30 g/L salt under continuous light.\n\nExperiment 3\nCysts were incubated in water containing 30 g/L salt at 25 °C, either under continuous light or in darkness.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Percent of Species A cysts hatched after 48 hours",
+   "colLabels": [
+    "Salt concentration (g/L)",
+    "Temperature (°C)",
+    "Light condition",
+    "Cysts hatched (%)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     0,
+     25,
+     "Light",
+     12
+    ],
+    [
+     15,
+     25,
+     "Light",
+     58
+    ],
+    [
+     30,
+     25,
+     "Light",
+     84
+    ],
+    [
+     60,
+     25,
+     "Light",
+     70
+    ],
+    [
+     90,
+     25,
+     "Light",
+     41
+    ],
+    [
+     120,
+     25,
+     "Light",
+     9
+    ],
+    [
+     30,
+     15,
+     "Light",
+     6
+    ],
+    [
+     30,
+     20,
+     "Light",
+     47
+    ],
+    [
+     30,
+     25,
+     "Light",
+     84
+    ],
+    [
+     30,
+     30,
+     "Light",
+     91
+    ],
+    [
+     30,
+     35,
+     "Light",
+     22
+    ],
+    [
+     30,
+     25,
+     "Light",
+     84
+    ],
+    [
+     30,
+     25,
+     "Dark",
+     31
+    ]
+   ]
+  },
+  "prompt": "In Experiment 1, what percent of the cysts hatched at a salt concentration of 60 g/L?",
+  "choices": [
+   "12%",
+   "41%",
+   "58%",
+   "70%"
+  ],
+  "correct_answer": "70%",
+  "explanation": "The Experiment 1 row for 60 g/L shows 70% hatched. The value 12% is the result at 0 g/L, 41% at 90 g/L, and 58% at 15 g/L.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV9a-P4-Q2",
+  "passage_id": "sc9a-p4",
+  "passage_title": "Hatching of Crustacean Cysts",
+  "format": "research_summaries",
+  "passage": "Species A is an unnamed small crustacean that lives in salt lakes. Its eggs can dry out and remain dormant as cysts for years. When a cyst is placed in water under suitable conditions, it takes up water and a larva hatches from it. Students studied how conditions affect the hatching of Species A cysts.\n\nIn each trial, 200 cysts from the same batch were placed in 500 mL of water containing a set concentration of dissolved salt, measured in grams of salt per liter of water (g/L). Each container was kept at a set temperature and was either lit continuously by a lamp or kept in complete darkness. After 48 hours, the students counted the larvae and calculated the percent of the cysts that had hatched.\n\nExperiment 1\nCysts were incubated at six salt concentrations at 25 °C under continuous light.\n\nExperiment 2\nCysts were incubated at five temperatures in water containing 30 g/L salt under continuous light.\n\nExperiment 3\nCysts were incubated in water containing 30 g/L salt at 25 °C, either under continuous light or in darkness.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Percent of Species A cysts hatched after 48 hours",
+   "colLabels": [
+    "Salt concentration (g/L)",
+    "Temperature (°C)",
+    "Light condition",
+    "Cysts hatched (%)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     0,
+     25,
+     "Light",
+     12
+    ],
+    [
+     15,
+     25,
+     "Light",
+     58
+    ],
+    [
+     30,
+     25,
+     "Light",
+     84
+    ],
+    [
+     60,
+     25,
+     "Light",
+     70
+    ],
+    [
+     90,
+     25,
+     "Light",
+     41
+    ],
+    [
+     120,
+     25,
+     "Light",
+     9
+    ],
+    [
+     30,
+     15,
+     "Light",
+     6
+    ],
+    [
+     30,
+     20,
+     "Light",
+     47
+    ],
+    [
+     30,
+     25,
+     "Light",
+     84
+    ],
+    [
+     30,
+     30,
+     "Light",
+     91
+    ],
+    [
+     30,
+     35,
+     "Light",
+     22
+    ],
+    [
+     30,
+     25,
+     "Light",
+     84
+    ],
+    [
+     30,
+     25,
+     "Dark",
+     31
+    ]
+   ]
+  },
+  "prompt": "In Experiment 2, how many of the 200 cysts hatched at 35 °C?",
+  "choices": [
+   "22",
+   "44",
+   "94",
+   "156"
+  ],
+  "correct_answer": "44",
+  "explanation": "At 35 °C, 22% of the cysts hatched, and 22% of 200 is 0.22 × 200 = 44. The value 22 is the percent rather than the number of cysts, 94 is 47% of 200 (the 20 °C result), and 156 is the number of cysts that did not hatch at 35 °C.",
+  "domain": "Interpretation of Data",
+  "subskill": "convert a percent to a count",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9a-P4-Q3",
+  "passage_id": "sc9a-p4",
+  "passage_title": "Hatching of Crustacean Cysts",
+  "format": "research_summaries",
+  "passage": "Species A is an unnamed small crustacean that lives in salt lakes. Its eggs can dry out and remain dormant as cysts for years. When a cyst is placed in water under suitable conditions, it takes up water and a larva hatches from it. Students studied how conditions affect the hatching of Species A cysts.\n\nIn each trial, 200 cysts from the same batch were placed in 500 mL of water containing a set concentration of dissolved salt, measured in grams of salt per liter of water (g/L). Each container was kept at a set temperature and was either lit continuously by a lamp or kept in complete darkness. After 48 hours, the students counted the larvae and calculated the percent of the cysts that had hatched.\n\nExperiment 1\nCysts were incubated at six salt concentrations at 25 °C under continuous light.\n\nExperiment 2\nCysts were incubated at five temperatures in water containing 30 g/L salt under continuous light.\n\nExperiment 3\nCysts were incubated in water containing 30 g/L salt at 25 °C, either under continuous light or in darkness.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Percent of Species A cysts hatched after 48 hours",
+   "colLabels": [
+    "Salt concentration (g/L)",
+    "Temperature (°C)",
+    "Light condition",
+    "Cysts hatched (%)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     0,
+     25,
+     "Light",
+     12
+    ],
+    [
+     15,
+     25,
+     "Light",
+     58
+    ],
+    [
+     30,
+     25,
+     "Light",
+     84
+    ],
+    [
+     60,
+     25,
+     "Light",
+     70
+    ],
+    [
+     90,
+     25,
+     "Light",
+     41
+    ],
+    [
+     120,
+     25,
+     "Light",
+     9
+    ],
+    [
+     30,
+     15,
+     "Light",
+     6
+    ],
+    [
+     30,
+     20,
+     "Light",
+     47
+    ],
+    [
+     30,
+     25,
+     "Light",
+     84
+    ],
+    [
+     30,
+     30,
+     "Light",
+     91
+    ],
+    [
+     30,
+     35,
+     "Light",
+     22
+    ],
+    [
+     30,
+     25,
+     "Light",
+     84
+    ],
+    [
+     30,
+     25,
+     "Dark",
+     31
+    ]
+   ]
+  },
+  "prompt": "How did Experiment 3 differ from Experiment 2?",
+  "choices": [
+   "In Experiment 3, temperature was varied, and light was held constant.",
+   "In Experiment 3, salt concentration was varied, and light was held constant.",
+   "In Experiment 3, salt concentration was varied, and temperature was held constant.",
+   "In Experiment 3, light was varied, and temperature was held constant."
+  ],
+  "correct_answer": "In Experiment 3, light was varied, and temperature was held constant.",
+  "explanation": "Experiment 2 varied temperature (15 to 35 °C) with every container lit. Experiment 3 compared light with darkness at a single temperature, 25 °C, so in Experiment 3, light was varied, and temperature was held constant. Salt concentration was 30 g/L in both experiments.",
+  "domain": "Scientific Investigation",
+  "subskill": "compare the designs of two experiments",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV9a-P4-Q4",
+  "passage_id": "sc9a-p4",
+  "passage_title": "Hatching of Crustacean Cysts",
+  "format": "research_summaries",
+  "passage": "Species A is an unnamed small crustacean that lives in salt lakes. Its eggs can dry out and remain dormant as cysts for years. When a cyst is placed in water under suitable conditions, it takes up water and a larva hatches from it. Students studied how conditions affect the hatching of Species A cysts.\n\nIn each trial, 200 cysts from the same batch were placed in 500 mL of water containing a set concentration of dissolved salt, measured in grams of salt per liter of water (g/L). Each container was kept at a set temperature and was either lit continuously by a lamp or kept in complete darkness. After 48 hours, the students counted the larvae and calculated the percent of the cysts that had hatched.\n\nExperiment 1\nCysts were incubated at six salt concentrations at 25 °C under continuous light.\n\nExperiment 2\nCysts were incubated at five temperatures in water containing 30 g/L salt under continuous light.\n\nExperiment 3\nCysts were incubated in water containing 30 g/L salt at 25 °C, either under continuous light or in darkness.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Percent of Species A cysts hatched after 48 hours",
+   "colLabels": [
+    "Salt concentration (g/L)",
+    "Temperature (°C)",
+    "Light condition",
+    "Cysts hatched (%)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     0,
+     25,
+     "Light",
+     12
+    ],
+    [
+     15,
+     25,
+     "Light",
+     58
+    ],
+    [
+     30,
+     25,
+     "Light",
+     84
+    ],
+    [
+     60,
+     25,
+     "Light",
+     70
+    ],
+    [
+     90,
+     25,
+     "Light",
+     41
+    ],
+    [
+     120,
+     25,
+     "Light",
+     9
+    ],
+    [
+     30,
+     15,
+     "Light",
+     6
+    ],
+    [
+     30,
+     20,
+     "Light",
+     47
+    ],
+    [
+     30,
+     25,
+     "Light",
+     84
+    ],
+    [
+     30,
+     30,
+     "Light",
+     91
+    ],
+    [
+     30,
+     35,
+     "Light",
+     22
+    ],
+    [
+     30,
+     25,
+     "Light",
+     84
+    ],
+    [
+     30,
+     25,
+     "Dark",
+     31
+    ]
+   ]
+  },
+  "prompt": "Based on the results of Experiment 1, if cysts were incubated at a salt concentration of 105 g/L at 25 °C under continuous light, the percent that hatched would most likely be:",
+  "choices": [
+   "less than 9%.",
+   "between 9% and 41%.",
+   "between 41% and 70%.",
+   "greater than 70%."
+  ],
+  "correct_answer": "between 9% and 41%.",
+  "explanation": "Above 30 g/L, hatching in Experiment 1 fell steadily: 84% at 30 g/L, 70% at 60 g/L, 41% at 90 g/L, and 9% at 120 g/L. Because 105 g/L lies between 90 g/L and 120 g/L, hatching should be between 9% and 41%. The range 41% to 70% corresponds to 60 to 90 g/L.",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate between table values",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9a-P4-Q5",
+  "passage_id": "sc9a-p4",
+  "passage_title": "Hatching of Crustacean Cysts",
+  "format": "research_summaries",
+  "passage": "Species A is an unnamed small crustacean that lives in salt lakes. Its eggs can dry out and remain dormant as cysts for years. When a cyst is placed in water under suitable conditions, it takes up water and a larva hatches from it. Students studied how conditions affect the hatching of Species A cysts.\n\nIn each trial, 200 cysts from the same batch were placed in 500 mL of water containing a set concentration of dissolved salt, measured in grams of salt per liter of water (g/L). Each container was kept at a set temperature and was either lit continuously by a lamp or kept in complete darkness. After 48 hours, the students counted the larvae and calculated the percent of the cysts that had hatched.\n\nExperiment 1\nCysts were incubated at six salt concentrations at 25 °C under continuous light.\n\nExperiment 2\nCysts were incubated at five temperatures in water containing 30 g/L salt under continuous light.\n\nExperiment 3\nCysts were incubated in water containing 30 g/L salt at 25 °C, either under continuous light or in darkness.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Percent of Species A cysts hatched after 48 hours",
+   "colLabels": [
+    "Salt concentration (g/L)",
+    "Temperature (°C)",
+    "Light condition",
+    "Cysts hatched (%)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     0,
+     25,
+     "Light",
+     12
+    ],
+    [
+     15,
+     25,
+     "Light",
+     58
+    ],
+    [
+     30,
+     25,
+     "Light",
+     84
+    ],
+    [
+     60,
+     25,
+     "Light",
+     70
+    ],
+    [
+     90,
+     25,
+     "Light",
+     41
+    ],
+    [
+     120,
+     25,
+     "Light",
+     9
+    ],
+    [
+     30,
+     15,
+     "Light",
+     6
+    ],
+    [
+     30,
+     20,
+     "Light",
+     47
+    ],
+    [
+     30,
+     25,
+     "Light",
+     84
+    ],
+    [
+     30,
+     30,
+     "Light",
+     91
+    ],
+    [
+     30,
+     35,
+     "Light",
+     22
+    ],
+    [
+     30,
+     25,
+     "Light",
+     84
+    ],
+    [
+     30,
+     25,
+     "Dark",
+     31
+    ]
+   ]
+  },
+  "prompt": "A student hypothesized that Species A cysts cannot hatch without light. Do the results of Experiment 3 support this hypothesis?",
+  "choices": [
+   "No; 31% of the cysts hatched in darkness.",
+   "Yes; 84% of the cysts hatched in the light.",
+   "Yes; fewer cysts hatched in darkness than in light.",
+   "No; more cysts hatched in darkness than in light."
+  ],
+  "correct_answer": "No; 31% of the cysts hatched in darkness.",
+  "explanation": "In Experiment 3, 31% of the cysts hatched in complete darkness, so cysts can hatch without light and the hypothesis is not supported. Light did increase hatching (84% vs. 31%), but a higher percent in the light does not show that light is required, and fewer cysts, not more, hatched in darkness.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate a hypothesis against a result",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9a-P4-Q6",
+  "passage_id": "sc9a-p4",
+  "passage_title": "Hatching of Crustacean Cysts",
+  "format": "research_summaries",
+  "passage": "Species A is an unnamed small crustacean that lives in salt lakes. Its eggs can dry out and remain dormant as cysts for years. When a cyst is placed in water under suitable conditions, it takes up water and a larva hatches from it. Students studied how conditions affect the hatching of Species A cysts.\n\nIn each trial, 200 cysts from the same batch were placed in 500 mL of water containing a set concentration of dissolved salt, measured in grams of salt per liter of water (g/L). Each container was kept at a set temperature and was either lit continuously by a lamp or kept in complete darkness. After 48 hours, the students counted the larvae and calculated the percent of the cysts that had hatched.\n\nExperiment 1\nCysts were incubated at six salt concentrations at 25 °C under continuous light.\n\nExperiment 2\nCysts were incubated at five temperatures in water containing 30 g/L salt under continuous light.\n\nExperiment 3\nCysts were incubated in water containing 30 g/L salt at 25 °C, either under continuous light or in darkness.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Percent of Species A cysts hatched after 48 hours",
+   "colLabels": [
+    "Salt concentration (g/L)",
+    "Temperature (°C)",
+    "Light condition",
+    "Cysts hatched (%)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     0,
+     25,
+     "Light",
+     12
+    ],
+    [
+     15,
+     25,
+     "Light",
+     58
+    ],
+    [
+     30,
+     25,
+     "Light",
+     84
+    ],
+    [
+     60,
+     25,
+     "Light",
+     70
+    ],
+    [
+     90,
+     25,
+     "Light",
+     41
+    ],
+    [
+     120,
+     25,
+     "Light",
+     9
+    ],
+    [
+     30,
+     15,
+     "Light",
+     6
+    ],
+    [
+     30,
+     20,
+     "Light",
+     47
+    ],
+    [
+     30,
+     25,
+     "Light",
+     84
+    ],
+    [
+     30,
+     30,
+     "Light",
+     91
+    ],
+    [
+     30,
+     35,
+     "Light",
+     22
+    ],
+    [
+     30,
+     25,
+     "Light",
+     84
+    ],
+    [
+     30,
+     25,
+     "Dark",
+     31
+    ]
+   ]
+  },
+  "prompt": "Suppose Experiment 1 had been carried out at 15 °C instead of 25 °C, with all other conditions unchanged. Based on the results of Experiment 2, the percent of cysts that hatched at 30 g/L in this modified experiment would most likely have been about:",
+  "choices": [
+   "6%",
+   "47%",
+   "84%",
+   "91%"
+  ],
+  "correct_answer": "6%",
+  "explanation": "The modified trial (30 g/L, 15 °C, continuous light) has the same conditions as the 15 °C trial of Experiment 2, in which 6% hatched. The value 84% is the 30 g/L result at 25 °C, 47% is the 20 °C result, and 91% is the 30 °C result.",
+  "domain": "Interpretation of Data",
+  "subskill": "identify the trial shared by two experiments",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV9a-P5-Q1",
+  "passage_id": "sc9a-p5",
+  "passage_title": "Floating Depth of Plastic Cylinders",
+  "format": "research_summaries",
+  "passage": "When a solid object is placed in a liquid, it either floats or sinks. Students studied how deeply solid cylinders float in liquids. Each cylinder was 10.0 cm tall. A cylinder was lowered upright into a tall container of liquid and released. If it floated upright, the students measured its depth submerged, the distance from the bottom of the cylinder to the surface of the liquid. The four liquids used, Liquids J, K, L, and M, were unnamed and were not identified to the students. All trials were done at 20 °C.\n\nExperiment 1\nFour cylinders of a solid, unnamed plastic that absorbs no liquid, each with a cross-sectional area of 20.0 cm² but with different masses, were placed in Liquid K. Depth submerged was measured as soon as each cylinder stopped bobbing (0 minutes).\n\nExperiment 2\nA 150 g cylinder of the same solid plastic, with a cross-sectional area of 20.0 cm², was placed in each of the four liquids, and its depth submerged was measured at 0 minutes.\n\nExperiment 3\nA cylinder made of an unnamed foam plastic that slowly soaks up liquid, with a dry mass of 150 g and a cross-sectional area of 20.0 cm², was placed in Liquid K. Its depth submerged was measured at 0, 10, 20, and 40 minutes.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Depth submerged of floating cylinders",
+   "colLabels": [
+    "Mass (g)",
+    "Cross-sectional area (cm²)",
+    "Liquid",
+    "Time (min)",
+    "Depth submerged (cm)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     75,
+     "20.0",
+     "K",
+     0,
+     "3.0"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     0,
+     "6.0"
+    ],
+    [
+     225,
+     "20.0",
+     "K",
+     0,
+     "9.0"
+    ],
+    [
+     300,
+     "20.0",
+     "K",
+     0,
+     "sank"
+    ],
+    [
+     150,
+     "20.0",
+     "J",
+     0,
+     "7.5"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     0,
+     "6.0"
+    ],
+    [
+     150,
+     "20.0",
+     "L",
+     0,
+     "5.0"
+    ],
+    [
+     150,
+     "20.0",
+     "M",
+     0,
+     "4.0"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     0,
+     "6.0"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     10,
+     "6.8"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     20,
+     "7.4"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     40,
+     "8.2"
+    ]
+   ]
+  },
+  "prompt": "In Experiment 2, what was the depth submerged of the cylinder in Liquid L?",
+  "choices": [
+   "4.0 cm",
+   "5.0 cm",
+   "6.0 cm",
+   "7.5 cm"
+  ],
+  "correct_answer": "5.0 cm",
+  "explanation": "The Experiment 2 row for Liquid L shows a depth submerged of 5.0 cm. The value 4.0 cm is for Liquid M, 6.0 cm for Liquid K, and 7.5 cm for Liquid J.",
+  "domain": "Interpretation of Data",
+  "subskill": "read a value from a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV9a-P5-Q2",
+  "passage_id": "sc9a-p5",
+  "passage_title": "Floating Depth of Plastic Cylinders",
+  "format": "research_summaries",
+  "passage": "When a solid object is placed in a liquid, it either floats or sinks. Students studied how deeply solid cylinders float in liquids. Each cylinder was 10.0 cm tall. A cylinder was lowered upright into a tall container of liquid and released. If it floated upright, the students measured its depth submerged, the distance from the bottom of the cylinder to the surface of the liquid. The four liquids used, Liquids J, K, L, and M, were unnamed and were not identified to the students. All trials were done at 20 °C.\n\nExperiment 1\nFour cylinders of a solid, unnamed plastic that absorbs no liquid, each with a cross-sectional area of 20.0 cm² but with different masses, were placed in Liquid K. Depth submerged was measured as soon as each cylinder stopped bobbing (0 minutes).\n\nExperiment 2\nA 150 g cylinder of the same solid plastic, with a cross-sectional area of 20.0 cm², was placed in each of the four liquids, and its depth submerged was measured at 0 minutes.\n\nExperiment 3\nA cylinder made of an unnamed foam plastic that slowly soaks up liquid, with a dry mass of 150 g and a cross-sectional area of 20.0 cm², was placed in Liquid K. Its depth submerged was measured at 0, 10, 20, and 40 minutes.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Depth submerged of floating cylinders",
+   "colLabels": [
+    "Mass (g)",
+    "Cross-sectional area (cm²)",
+    "Liquid",
+    "Time (min)",
+    "Depth submerged (cm)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     75,
+     "20.0",
+     "K",
+     0,
+     "3.0"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     0,
+     "6.0"
+    ],
+    [
+     225,
+     "20.0",
+     "K",
+     0,
+     "9.0"
+    ],
+    [
+     300,
+     "20.0",
+     "K",
+     0,
+     "sank"
+    ],
+    [
+     150,
+     "20.0",
+     "J",
+     0,
+     "7.5"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     0,
+     "6.0"
+    ],
+    [
+     150,
+     "20.0",
+     "L",
+     0,
+     "5.0"
+    ],
+    [
+     150,
+     "20.0",
+     "M",
+     0,
+     "4.0"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     0,
+     "6.0"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     10,
+     "6.8"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     20,
+     "7.4"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     40,
+     "8.2"
+    ]
+   ]
+  },
+  "prompt": "According to the results of Experiment 3, as time increased from 0 minutes to 40 minutes, the depth submerged of the foam cylinder:",
+  "choices": [
+   "decreased only.",
+   "increased only.",
+   "increased and then decreased.",
+   "remained the same."
+  ],
+  "correct_answer": "increased only.",
+  "explanation": "In Experiment 3 the depth submerged was 6.0 cm at 0 minutes, 6.8 cm at 10 minutes, 7.4 cm at 20 minutes, and 8.2 cm at 40 minutes. Each value is larger than the one before, so the depth increased only.",
+  "domain": "Interpretation of Data",
+  "subskill": "identify a trend in a table",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV9a-P5-Q3",
+  "passage_id": "sc9a-p5",
+  "passage_title": "Floating Depth of Plastic Cylinders",
+  "format": "research_summaries",
+  "passage": "When a solid object is placed in a liquid, it either floats or sinks. Students studied how deeply solid cylinders float in liquids. Each cylinder was 10.0 cm tall. A cylinder was lowered upright into a tall container of liquid and released. If it floated upright, the students measured its depth submerged, the distance from the bottom of the cylinder to the surface of the liquid. The four liquids used, Liquids J, K, L, and M, were unnamed and were not identified to the students. All trials were done at 20 °C.\n\nExperiment 1\nFour cylinders of a solid, unnamed plastic that absorbs no liquid, each with a cross-sectional area of 20.0 cm² but with different masses, were placed in Liquid K. Depth submerged was measured as soon as each cylinder stopped bobbing (0 minutes).\n\nExperiment 2\nA 150 g cylinder of the same solid plastic, with a cross-sectional area of 20.0 cm², was placed in each of the four liquids, and its depth submerged was measured at 0 minutes.\n\nExperiment 3\nA cylinder made of an unnamed foam plastic that slowly soaks up liquid, with a dry mass of 150 g and a cross-sectional area of 20.0 cm², was placed in Liquid K. Its depth submerged was measured at 0, 10, 20, and 40 minutes.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Depth submerged of floating cylinders",
+   "colLabels": [
+    "Mass (g)",
+    "Cross-sectional area (cm²)",
+    "Liquid",
+    "Time (min)",
+    "Depth submerged (cm)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     75,
+     "20.0",
+     "K",
+     0,
+     "3.0"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     0,
+     "6.0"
+    ],
+    [
+     225,
+     "20.0",
+     "K",
+     0,
+     "9.0"
+    ],
+    [
+     300,
+     "20.0",
+     "K",
+     0,
+     "sank"
+    ],
+    [
+     150,
+     "20.0",
+     "J",
+     0,
+     "7.5"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     0,
+     "6.0"
+    ],
+    [
+     150,
+     "20.0",
+     "L",
+     0,
+     "5.0"
+    ],
+    [
+     150,
+     "20.0",
+     "M",
+     0,
+     "4.0"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     0,
+     "6.0"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     10,
+     "6.8"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     20,
+     "7.4"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     40,
+     "8.2"
+    ]
+   ]
+  },
+  "prompt": "Based on the results of Experiment 1, a 200 g cylinder of the same solid plastic with a cross-sectional area of 20.0 cm² placed in Liquid K would most likely float with a depth submerged closest to:",
+  "choices": [
+   "7.0 cm",
+   "8.0 cm",
+   "9.0 cm",
+   "10.0 cm"
+  ],
+  "correct_answer": "8.0 cm",
+  "explanation": "In Experiment 1, the depth rose by 3.0 cm for every 75 g of mass (3.0 cm at 75 g, 6.0 cm at 150 g, 9.0 cm at 225 g), which is 1.0 cm per 25 g. A 200 g cylinder is 50 g heavier than the 150 g cylinder, so its depth should be about 6.0 cm + 2.0 cm = 8.0 cm. A depth of 9.0 cm belongs to the heavier 225 g cylinder.",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate between table values",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9a-P5-Q4",
+  "passage_id": "sc9a-p5",
+  "passage_title": "Floating Depth of Plastic Cylinders",
+  "format": "research_summaries",
+  "passage": "When a solid object is placed in a liquid, it either floats or sinks. Students studied how deeply solid cylinders float in liquids. Each cylinder was 10.0 cm tall. A cylinder was lowered upright into a tall container of liquid and released. If it floated upright, the students measured its depth submerged, the distance from the bottom of the cylinder to the surface of the liquid. The four liquids used, Liquids J, K, L, and M, were unnamed and were not identified to the students. All trials were done at 20 °C.\n\nExperiment 1\nFour cylinders of a solid, unnamed plastic that absorbs no liquid, each with a cross-sectional area of 20.0 cm² but with different masses, were placed in Liquid K. Depth submerged was measured as soon as each cylinder stopped bobbing (0 minutes).\n\nExperiment 2\nA 150 g cylinder of the same solid plastic, with a cross-sectional area of 20.0 cm², was placed in each of the four liquids, and its depth submerged was measured at 0 minutes.\n\nExperiment 3\nA cylinder made of an unnamed foam plastic that slowly soaks up liquid, with a dry mass of 150 g and a cross-sectional area of 20.0 cm², was placed in Liquid K. Its depth submerged was measured at 0, 10, 20, and 40 minutes.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Depth submerged of floating cylinders",
+   "colLabels": [
+    "Mass (g)",
+    "Cross-sectional area (cm²)",
+    "Liquid",
+    "Time (min)",
+    "Depth submerged (cm)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     75,
+     "20.0",
+     "K",
+     0,
+     "3.0"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     0,
+     "6.0"
+    ],
+    [
+     225,
+     "20.0",
+     "K",
+     0,
+     "9.0"
+    ],
+    [
+     300,
+     "20.0",
+     "K",
+     0,
+     "sank"
+    ],
+    [
+     150,
+     "20.0",
+     "J",
+     0,
+     "7.5"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     0,
+     "6.0"
+    ],
+    [
+     150,
+     "20.0",
+     "L",
+     0,
+     "5.0"
+    ],
+    [
+     150,
+     "20.0",
+     "M",
+     0,
+     "4.0"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     0,
+     "6.0"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     10,
+     "6.8"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     20,
+     "7.4"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     40,
+     "8.2"
+    ]
+   ]
+  },
+  "prompt": "In Experiment 1, the 300 g cylinder sank. Based on the trend in the results of Experiment 1, which of the following statements best explains why?",
+  "choices": [
+   "To float, it would have needed a depth submerged of about 9.0 cm, which is less than its height.",
+   "To float, it would have needed a depth submerged of about 10.0 cm, which equals its height exactly.",
+   "It had a larger cross-sectional area than the other cylinders, so it pushed aside less liquid.",
+   "To float, it would have needed a depth submerged of about 12.0 cm, which is more than its height."
+  ],
+  "correct_answer": "To float, it would have needed a depth submerged of about 12.0 cm, which is more than its height.",
+  "explanation": "In Experiment 1, depth submerged rose by 3.0 cm for every 75 g, so a 300 g cylinder would need about 12.0 cm. Each cylinder is only 10.0 cm tall, so it could not sink to the depth needed to float; it would have needed a depth submerged of about 12.0 cm, which is more than its height. A depth of 9.0 cm belongs to the 225 g cylinder, 10.0 cm does not follow the trend, and all four cylinders in Experiment 1 had the same cross-sectional area.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "extrapolate a trend to explain an outcome",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV9a-P5-Q5",
+  "passage_id": "sc9a-p5",
+  "passage_title": "Floating Depth of Plastic Cylinders",
+  "format": "research_summaries",
+  "passage": "When a solid object is placed in a liquid, it either floats or sinks. Students studied how deeply solid cylinders float in liquids. Each cylinder was 10.0 cm tall. A cylinder was lowered upright into a tall container of liquid and released. If it floated upright, the students measured its depth submerged, the distance from the bottom of the cylinder to the surface of the liquid. The four liquids used, Liquids J, K, L, and M, were unnamed and were not identified to the students. All trials were done at 20 °C.\n\nExperiment 1\nFour cylinders of a solid, unnamed plastic that absorbs no liquid, each with a cross-sectional area of 20.0 cm² but with different masses, were placed in Liquid K. Depth submerged was measured as soon as each cylinder stopped bobbing (0 minutes).\n\nExperiment 2\nA 150 g cylinder of the same solid plastic, with a cross-sectional area of 20.0 cm², was placed in each of the four liquids, and its depth submerged was measured at 0 minutes.\n\nExperiment 3\nA cylinder made of an unnamed foam plastic that slowly soaks up liquid, with a dry mass of 150 g and a cross-sectional area of 20.0 cm², was placed in Liquid K. Its depth submerged was measured at 0, 10, 20, and 40 minutes.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Depth submerged of floating cylinders",
+   "colLabels": [
+    "Mass (g)",
+    "Cross-sectional area (cm²)",
+    "Liquid",
+    "Time (min)",
+    "Depth submerged (cm)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     75,
+     "20.0",
+     "K",
+     0,
+     "3.0"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     0,
+     "6.0"
+    ],
+    [
+     225,
+     "20.0",
+     "K",
+     0,
+     "9.0"
+    ],
+    [
+     300,
+     "20.0",
+     "K",
+     0,
+     "sank"
+    ],
+    [
+     150,
+     "20.0",
+     "J",
+     0,
+     "7.5"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     0,
+     "6.0"
+    ],
+    [
+     150,
+     "20.0",
+     "L",
+     0,
+     "5.0"
+    ],
+    [
+     150,
+     "20.0",
+     "M",
+     0,
+     "4.0"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     0,
+     "6.0"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     10,
+     "6.8"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     20,
+     "7.4"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     40,
+     "8.2"
+    ]
+   ]
+  },
+  "prompt": "Which two quantities were held constant in Experiment 3?",
+  "choices": [
+   "Dry mass and liquid",
+   "Time and liquid",
+   "Time and dry mass",
+   "Depth submerged and time"
+  ],
+  "correct_answer": "Dry mass and liquid",
+  "explanation": "Experiment 3 used one foam cylinder with a dry mass of 150 g in Liquid K throughout, so its dry mass and the liquid were held constant. Time was the variable the students changed (0 to 40 minutes), and depth submerged was the result they measured.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify variables controlled in an experiment",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9a-P5-Q6",
+  "passage_id": "sc9a-p5",
+  "passage_title": "Floating Depth of Plastic Cylinders",
+  "format": "research_summaries",
+  "passage": "When a solid object is placed in a liquid, it either floats or sinks. Students studied how deeply solid cylinders float in liquids. Each cylinder was 10.0 cm tall. A cylinder was lowered upright into a tall container of liquid and released. If it floated upright, the students measured its depth submerged, the distance from the bottom of the cylinder to the surface of the liquid. The four liquids used, Liquids J, K, L, and M, were unnamed and were not identified to the students. All trials were done at 20 °C.\n\nExperiment 1\nFour cylinders of a solid, unnamed plastic that absorbs no liquid, each with a cross-sectional area of 20.0 cm² but with different masses, were placed in Liquid K. Depth submerged was measured as soon as each cylinder stopped bobbing (0 minutes).\n\nExperiment 2\nA 150 g cylinder of the same solid plastic, with a cross-sectional area of 20.0 cm², was placed in each of the four liquids, and its depth submerged was measured at 0 minutes.\n\nExperiment 3\nA cylinder made of an unnamed foam plastic that slowly soaks up liquid, with a dry mass of 150 g and a cross-sectional area of 20.0 cm², was placed in Liquid K. Its depth submerged was measured at 0, 10, 20, and 40 minutes.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Depth submerged of floating cylinders",
+   "colLabels": [
+    "Mass (g)",
+    "Cross-sectional area (cm²)",
+    "Liquid",
+    "Time (min)",
+    "Depth submerged (cm)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     75,
+     "20.0",
+     "K",
+     0,
+     "3.0"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     0,
+     "6.0"
+    ],
+    [
+     225,
+     "20.0",
+     "K",
+     0,
+     "9.0"
+    ],
+    [
+     300,
+     "20.0",
+     "K",
+     0,
+     "sank"
+    ],
+    [
+     150,
+     "20.0",
+     "J",
+     0,
+     "7.5"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     0,
+     "6.0"
+    ],
+    [
+     150,
+     "20.0",
+     "L",
+     0,
+     "5.0"
+    ],
+    [
+     150,
+     "20.0",
+     "M",
+     0,
+     "4.0"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     0,
+     "6.0"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     10,
+     "6.8"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     20,
+     "7.4"
+    ],
+    [
+     150,
+     "20.0",
+     "K",
+     40,
+     "8.2"
+    ]
+   ]
+  },
+  "prompt": "A student predicted that, in Experiment 3, the depth submerged of the foam cylinder would increase by the same amount during every 10-minute period. Do the results of Experiment 3 support this prediction?",
+  "choices": [
+   "No; the depth rose 0.8 cm in the first 10 minutes but only 0.6 cm in the next 10.",
+   "No; the depth decreased during the period after the first 10 minutes in the liquid.",
+   "Yes; the depth increased by 0.8 cm from 0 to 10 minutes and by 0.8 cm from 20 to 40 minutes.",
+   "Yes; the depth increased during every one of the time intervals that was measured."
+  ],
+  "correct_answer": "No; the depth rose 0.8 cm in the first 10 minutes but only 0.6 cm in the next 10.",
+  "explanation": "The depth went from 6.0 to 6.8 cm (up 0.8 cm) from 0 to 10 minutes but from 6.8 to 7.4 cm (up 0.6 cm) from 10 to 20 minutes, so equal 10-minute periods did not give equal increases and the prediction is not supported. The 0.8 cm rise from 20 to 40 minutes took 20 minutes, not 10 (about 0.4 cm per 10 minutes); the depth never decreased; and rising in every interval does not mean rising by the same amount.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test a constant-rate prediction against data",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9a-P6-Q1",
+  "passage_id": "sc9a-p6",
+  "passage_title": "Rising Nitrate in a Town's Wells",
+  "format": "conflicting_viewpoints",
+  "passage": "Nitrate (NO3⁻) is a form of nitrogen that dissolves easily in water and moves with groundwater. The town of Ellery, in a farming valley, gets its drinking water from 40 wells, each 10 to 20 m deep, that draw groundwater from a layer of sand and gravel. Groundwater in this layer flows slowly from north to south. Corn fields lie directly north and east of the town; there are no fields to the south or west. Farmers in the valley use only commercial fertilizer, and no livestock are raised there. Every house in Ellery has a septic system, which releases household wastewater into the ground beneath the property.\n\nOver the past 15 years, the average nitrate concentration in the town's wells rose from 3.0 mg/L to 13.5 mg/L. During the same period, the portion of the valley planted in corn increased from 30% to 55%, and the town's population doubled, from about 1,800 to about 3,600, mostly through new houses built on small lots.\n\nThe nitrogen in nitrate can be described by its δ15N value, a measure of the proportion of the heavier isotope nitrogen-15. Nitrate formed from commercial fertilizer typically has a δ15N value of 0‰ to +4‰, whereas nitrate formed from human or animal wastes typically has a δ15N value of +10‰ to +20‰. The δ15N of the nitrate in Ellery's wells has not been measured. Two scientists explain the rise in nitrate.\n\nScientist 1\nThe nitrate comes mainly from fertilizer applied to the corn fields. Farmers apply nitrogen fertilizer each April, and soil bacteria convert it to nitrate. Spring rains carry nitrate that the young crops have not yet used down through the sand and gravel to the groundwater, which then flows beneath the town. The rise over 15 years matches the expansion of corn planting. Nitrate in the wells should therefore peak each year in late spring and early summer, a few weeks after fertilizer is applied, and should be highest in wells on the north and east edges of town, nearest the fields. If wastewater were the main source, the wells would contain optical brighteners, chemicals added to laundry detergents that pass through septic systems; none should be found.\n\nScientist 2\nThe nitrate comes mainly from the town's septic systems. Septic systems release nitrogen from household wastewater into the ground every day of the year, and soil bacteria convert it to nitrate, which water carries down through the sand and gravel to the groundwater. The rise over 15 years matches the doubling of the town's population, and the new houses on small lots placed many septic systems close together. Nitrate in the wells should therefore change little from season to season and should be highest beneath the most densely built neighborhoods. Because laundry wastewater flows into septic systems, the wells should contain traces of optical brighteners.",
+  "prompt": "According to Scientist 1, the rise in nitrate in Ellery's wells over the past 15 years is explained mainly by:",
+  "choices": [
+   "the doubling of the town's population.",
+   "the increase in the area planted in corn.",
+   "the increase in the number of septic systems.",
+   "the building of new houses on small lots."
+  ],
+  "correct_answer": "the increase in the area planted in corn.",
+  "explanation": "Scientist 1 says the nitrate comes from fertilizer on the corn fields and that the rise \"matches the expansion of corn planting,\" so the rise is explained by the increase in the area planted in corn. Population growth, more septic systems, and new houses on small lots are Scientist 2's explanation.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a claim belonging to one viewpoint",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV9a-P6-Q2",
+  "passage_id": "sc9a-p6",
+  "passage_title": "Rising Nitrate in a Town's Wells",
+  "format": "conflicting_viewpoints",
+  "passage": "Nitrate (NO3⁻) is a form of nitrogen that dissolves easily in water and moves with groundwater. The town of Ellery, in a farming valley, gets its drinking water from 40 wells, each 10 to 20 m deep, that draw groundwater from a layer of sand and gravel. Groundwater in this layer flows slowly from north to south. Corn fields lie directly north and east of the town; there are no fields to the south or west. Farmers in the valley use only commercial fertilizer, and no livestock are raised there. Every house in Ellery has a septic system, which releases household wastewater into the ground beneath the property.\n\nOver the past 15 years, the average nitrate concentration in the town's wells rose from 3.0 mg/L to 13.5 mg/L. During the same period, the portion of the valley planted in corn increased from 30% to 55%, and the town's population doubled, from about 1,800 to about 3,600, mostly through new houses built on small lots.\n\nThe nitrogen in nitrate can be described by its δ15N value, a measure of the proportion of the heavier isotope nitrogen-15. Nitrate formed from commercial fertilizer typically has a δ15N value of 0‰ to +4‰, whereas nitrate formed from human or animal wastes typically has a δ15N value of +10‰ to +20‰. The δ15N of the nitrate in Ellery's wells has not been measured. Two scientists explain the rise in nitrate.\n\nScientist 1\nThe nitrate comes mainly from fertilizer applied to the corn fields. Farmers apply nitrogen fertilizer each April, and soil bacteria convert it to nitrate. Spring rains carry nitrate that the young crops have not yet used down through the sand and gravel to the groundwater, which then flows beneath the town. The rise over 15 years matches the expansion of corn planting. Nitrate in the wells should therefore peak each year in late spring and early summer, a few weeks after fertilizer is applied, and should be highest in wells on the north and east edges of town, nearest the fields. If wastewater were the main source, the wells would contain optical brighteners, chemicals added to laundry detergents that pass through septic systems; none should be found.\n\nScientist 2\nThe nitrate comes mainly from the town's septic systems. Septic systems release nitrogen from household wastewater into the ground every day of the year, and soil bacteria convert it to nitrate, which water carries down through the sand and gravel to the groundwater. The rise over 15 years matches the doubling of the town's population, and the new houses on small lots placed many septic systems close together. Nitrate in the wells should therefore change little from season to season and should be highest beneath the most densely built neighborhoods. Because laundry wastewater flows into septic systems, the wells should contain traces of optical brighteners.",
+  "prompt": "Suppose the nitrate in Ellery's wells were found to have a δ15N value of +14‰. This finding would most strongly support the viewpoint of:",
+  "choices": [
+   "Scientist 1, because nitrate from commercial fertilizer typically has a δ15N of 0‰ to +4‰.",
+   "Scientist 1, because the value is greater than the values typical of nitrate from wastes.",
+   "Scientist 2, because the value is less than the values typical of nitrate from fertilizer.",
+   "Scientist 2, because nitrate from human or animal wastes typically has a δ15N of +10‰ to +20‰."
+  ],
+  "correct_answer": "Scientist 2, because nitrate from human or animal wastes typically has a δ15N of +10‰ to +20‰.",
+  "explanation": "A value of +14‰ falls inside the +10‰ to +20‰ range given for nitrate from wastes and well outside the 0‰ to +4‰ range for fertilizer. Because the valley has no livestock, waste-derived nitrate points to the septic systems, supporting Scientist 2. The value is within, not above, the waste range, and it is above, not below, the fertilizer range.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match new evidence to the viewpoint it supports",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9a-P6-Q3",
+  "passage_id": "sc9a-p6",
+  "passage_title": "Rising Nitrate in a Town's Wells",
+  "format": "conflicting_viewpoints",
+  "passage": "Nitrate (NO3⁻) is a form of nitrogen that dissolves easily in water and moves with groundwater. The town of Ellery, in a farming valley, gets its drinking water from 40 wells, each 10 to 20 m deep, that draw groundwater from a layer of sand and gravel. Groundwater in this layer flows slowly from north to south. Corn fields lie directly north and east of the town; there are no fields to the south or west. Farmers in the valley use only commercial fertilizer, and no livestock are raised there. Every house in Ellery has a septic system, which releases household wastewater into the ground beneath the property.\n\nOver the past 15 years, the average nitrate concentration in the town's wells rose from 3.0 mg/L to 13.5 mg/L. During the same period, the portion of the valley planted in corn increased from 30% to 55%, and the town's population doubled, from about 1,800 to about 3,600, mostly through new houses built on small lots.\n\nThe nitrogen in nitrate can be described by its δ15N value, a measure of the proportion of the heavier isotope nitrogen-15. Nitrate formed from commercial fertilizer typically has a δ15N value of 0‰ to +4‰, whereas nitrate formed from human or animal wastes typically has a δ15N value of +10‰ to +20‰. The δ15N of the nitrate in Ellery's wells has not been measured. Two scientists explain the rise in nitrate.\n\nScientist 1\nThe nitrate comes mainly from fertilizer applied to the corn fields. Farmers apply nitrogen fertilizer each April, and soil bacteria convert it to nitrate. Spring rains carry nitrate that the young crops have not yet used down through the sand and gravel to the groundwater, which then flows beneath the town. The rise over 15 years matches the expansion of corn planting. Nitrate in the wells should therefore peak each year in late spring and early summer, a few weeks after fertilizer is applied, and should be highest in wells on the north and east edges of town, nearest the fields. If wastewater were the main source, the wells would contain optical brighteners, chemicals added to laundry detergents that pass through septic systems; none should be found.\n\nScientist 2\nThe nitrate comes mainly from the town's septic systems. Septic systems release nitrogen from household wastewater into the ground every day of the year, and soil bacteria convert it to nitrate, which water carries down through the sand and gravel to the groundwater. The rise over 15 years matches the doubling of the town's population, and the new houses on small lots placed many septic systems close together. Nitrate in the wells should therefore change little from season to season and should be highest beneath the most densely built neighborhoods. Because laundry wastewater flows into septic systems, the wells should contain traces of optical brighteners.",
+  "prompt": "Suppose nitrate were measured in one of Ellery's wells every month for a year. Scientist 2 would most likely predict that the measurements would show:",
+  "choices": [
+   "little change in nitrate from one month to the next all year.",
+   "a peak in late spring and early summer, a few weeks after April.",
+   "a peak in midwinter, when the soil and the groundwater are coldest.",
+   "a steady decrease from the first month to the last month of the year."
+  ],
+  "correct_answer": "little change in nitrate from one month to the next all year.",
+  "explanation": "Scientist 2 says septic systems release nitrogen \"every day of the year\" and that nitrate in the wells \"should therefore change little from season to season,\" so Scientist 2 would predict little change in nitrate from one month to the next. A late-spring peak after April fertilizing is Scientist 1's prediction, and neither scientist predicts a midwinter peak or a steady decline within a year.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "derive a prediction from one viewpoint",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV9a-P6-Q4",
+  "passage_id": "sc9a-p6",
+  "passage_title": "Rising Nitrate in a Town's Wells",
+  "format": "conflicting_viewpoints",
+  "passage": "Nitrate (NO3⁻) is a form of nitrogen that dissolves easily in water and moves with groundwater. The town of Ellery, in a farming valley, gets its drinking water from 40 wells, each 10 to 20 m deep, that draw groundwater from a layer of sand and gravel. Groundwater in this layer flows slowly from north to south. Corn fields lie directly north and east of the town; there are no fields to the south or west. Farmers in the valley use only commercial fertilizer, and no livestock are raised there. Every house in Ellery has a septic system, which releases household wastewater into the ground beneath the property.\n\nOver the past 15 years, the average nitrate concentration in the town's wells rose from 3.0 mg/L to 13.5 mg/L. During the same period, the portion of the valley planted in corn increased from 30% to 55%, and the town's population doubled, from about 1,800 to about 3,600, mostly through new houses built on small lots.\n\nThe nitrogen in nitrate can be described by its δ15N value, a measure of the proportion of the heavier isotope nitrogen-15. Nitrate formed from commercial fertilizer typically has a δ15N value of 0‰ to +4‰, whereas nitrate formed from human or animal wastes typically has a δ15N value of +10‰ to +20‰. The δ15N of the nitrate in Ellery's wells has not been measured. Two scientists explain the rise in nitrate.\n\nScientist 1\nThe nitrate comes mainly from fertilizer applied to the corn fields. Farmers apply nitrogen fertilizer each April, and soil bacteria convert it to nitrate. Spring rains carry nitrate that the young crops have not yet used down through the sand and gravel to the groundwater, which then flows beneath the town. The rise over 15 years matches the expansion of corn planting. Nitrate in the wells should therefore peak each year in late spring and early summer, a few weeks after fertilizer is applied, and should be highest in wells on the north and east edges of town, nearest the fields. If wastewater were the main source, the wells would contain optical brighteners, chemicals added to laundry detergents that pass through septic systems; none should be found.\n\nScientist 2\nThe nitrate comes mainly from the town's septic systems. Septic systems release nitrogen from household wastewater into the ground every day of the year, and soil bacteria convert it to nitrate, which water carries down through the sand and gravel to the groundwater. The rise over 15 years matches the doubling of the town's population, and the new houses on small lots placed many septic systems close together. Nitrate in the wells should therefore change little from season to season and should be highest beneath the most densely built neighborhoods. Because laundry wastewater flows into septic systems, the wells should contain traces of optical brighteners.",
+  "prompt": "To test Scientist 2's viewpoint, researchers want to drill a new well that draws groundwater that has NOT passed beneath any of the town's houses. Based on the passage, where should the well be drilled?",
+  "choices": [
+   "At the south edge of town, because groundwater there has passed beneath the whole town",
+   "In the most densely built neighborhood, because its septic systems are closest together",
+   "Just north of town, between the town and the fields, because groundwater flows north to south",
+   "Just south of town, because there are no corn fields located to the south of the town"
+  ],
+  "correct_answer": "Just north of town, between the town and the fields, because groundwater flows north to south",
+  "explanation": "Groundwater flows from north to south, so water just north of town arrives from the fields and has not yet flowed beneath any houses; the well should be drilled just north of town, between the town and the fields. Water at or just south of the town's southern edge has already passed beneath the town, and a well in the densest neighborhood draws water from directly beneath septic systems.",
+  "domain": "Scientific Investigation",
+  "subskill": "design a sampling location that tests a viewpoint",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV9a-P6-Q5",
+  "passage_id": "sc9a-p6",
+  "passage_title": "Rising Nitrate in a Town's Wells",
+  "format": "conflicting_viewpoints",
+  "passage": "Nitrate (NO3⁻) is a form of nitrogen that dissolves easily in water and moves with groundwater. The town of Ellery, in a farming valley, gets its drinking water from 40 wells, each 10 to 20 m deep, that draw groundwater from a layer of sand and gravel. Groundwater in this layer flows slowly from north to south. Corn fields lie directly north and east of the town; there are no fields to the south or west. Farmers in the valley use only commercial fertilizer, and no livestock are raised there. Every house in Ellery has a septic system, which releases household wastewater into the ground beneath the property.\n\nOver the past 15 years, the average nitrate concentration in the town's wells rose from 3.0 mg/L to 13.5 mg/L. During the same period, the portion of the valley planted in corn increased from 30% to 55%, and the town's population doubled, from about 1,800 to about 3,600, mostly through new houses built on small lots.\n\nThe nitrogen in nitrate can be described by its δ15N value, a measure of the proportion of the heavier isotope nitrogen-15. Nitrate formed from commercial fertilizer typically has a δ15N value of 0‰ to +4‰, whereas nitrate formed from human or animal wastes typically has a δ15N value of +10‰ to +20‰. The δ15N of the nitrate in Ellery's wells has not been measured. Two scientists explain the rise in nitrate.\n\nScientist 1\nThe nitrate comes mainly from fertilizer applied to the corn fields. Farmers apply nitrogen fertilizer each April, and soil bacteria convert it to nitrate. Spring rains carry nitrate that the young crops have not yet used down through the sand and gravel to the groundwater, which then flows beneath the town. The rise over 15 years matches the expansion of corn planting. Nitrate in the wells should therefore peak each year in late spring and early summer, a few weeks after fertilizer is applied, and should be highest in wells on the north and east edges of town, nearest the fields. If wastewater were the main source, the wells would contain optical brighteners, chemicals added to laundry detergents that pass through septic systems; none should be found.\n\nScientist 2\nThe nitrate comes mainly from the town's septic systems. Septic systems release nitrogen from household wastewater into the ground every day of the year, and soil bacteria convert it to nitrate, which water carries down through the sand and gravel to the groundwater. The rise over 15 years matches the doubling of the town's population, and the new houses on small lots placed many septic systems close together. Nitrate in the wells should therefore change little from season to season and should be highest beneath the most densely built neighborhoods. Because laundry wastewater flows into septic systems, the wells should contain traces of optical brighteners.",
+  "prompt": "Which of the following investigations would best help decide between the two scientists' viewpoints?",
+  "choices": [
+   "Measuring the depth of each of the town's 40 wells",
+   "Counting the number of houses built in Ellery each year",
+   "Measuring the area of the valley planted in corn each year",
+   "Testing water from the wells for optical brighteners"
+  ],
+  "correct_answer": "Testing water from the wells for optical brighteners",
+  "explanation": "Scientist 2 predicts that the wells should contain optical brighteners, and Scientist 1 predicts that none should be found, so testing water from the wells for optical brighteners would favor one viewpoint. The growth in houses and in corn acreage is already accepted by both scientists, and neither viewpoint makes a prediction about well depth.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose an investigation that discriminates between viewpoints",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9a-P6-Q6",
+  "passage_id": "sc9a-p6",
+  "passage_title": "Rising Nitrate in a Town's Wells",
+  "format": "conflicting_viewpoints",
+  "passage": "Nitrate (NO3⁻) is a form of nitrogen that dissolves easily in water and moves with groundwater. The town of Ellery, in a farming valley, gets its drinking water from 40 wells, each 10 to 20 m deep, that draw groundwater from a layer of sand and gravel. Groundwater in this layer flows slowly from north to south. Corn fields lie directly north and east of the town; there are no fields to the south or west. Farmers in the valley use only commercial fertilizer, and no livestock are raised there. Every house in Ellery has a septic system, which releases household wastewater into the ground beneath the property.\n\nOver the past 15 years, the average nitrate concentration in the town's wells rose from 3.0 mg/L to 13.5 mg/L. During the same period, the portion of the valley planted in corn increased from 30% to 55%, and the town's population doubled, from about 1,800 to about 3,600, mostly through new houses built on small lots.\n\nThe nitrogen in nitrate can be described by its δ15N value, a measure of the proportion of the heavier isotope nitrogen-15. Nitrate formed from commercial fertilizer typically has a δ15N value of 0‰ to +4‰, whereas nitrate formed from human or animal wastes typically has a δ15N value of +10‰ to +20‰. The δ15N of the nitrate in Ellery's wells has not been measured. Two scientists explain the rise in nitrate.\n\nScientist 1\nThe nitrate comes mainly from fertilizer applied to the corn fields. Farmers apply nitrogen fertilizer each April, and soil bacteria convert it to nitrate. Spring rains carry nitrate that the young crops have not yet used down through the sand and gravel to the groundwater, which then flows beneath the town. The rise over 15 years matches the expansion of corn planting. Nitrate in the wells should therefore peak each year in late spring and early summer, a few weeks after fertilizer is applied, and should be highest in wells on the north and east edges of town, nearest the fields. If wastewater were the main source, the wells would contain optical brighteners, chemicals added to laundry detergents that pass through septic systems; none should be found.\n\nScientist 2\nThe nitrate comes mainly from the town's septic systems. Septic systems release nitrogen from household wastewater into the ground every day of the year, and soil bacteria convert it to nitrate, which water carries down through the sand and gravel to the groundwater. The rise over 15 years matches the doubling of the town's population, and the new houses on small lots placed many septic systems close together. Nitrate in the wells should therefore change little from season to season and should be highest beneath the most densely built neighborhoods. Because laundry wastewater flows into septic systems, the wells should contain traces of optical brighteners.",
+  "prompt": "According to the passage, over the past 15 years the average nitrate concentration in the town's wells increased by a factor of about:",
+  "choices": [
+   "1.5",
+   "3.0",
+   "4.5",
+   "10.5"
+  ],
+  "correct_answer": "4.5",
+  "explanation": "The concentration rose from 3.0 mg/L to 13.5 mg/L, and 13.5 ÷ 3.0 = 4.5. The value 10.5 is the increase in mg/L (13.5 − 3.0), not the factor, and 3.0 is the starting concentration.",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a ratio from values in the passage",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9a-P7-Q1",
+  "passage_id": "sc9a-p7",
+  "passage_title": "Layered Sediment in a Mountain Lake",
+  "format": "conflicting_viewpoints",
+  "passage": "Lake Orrin is a small, deep lake in a mountain valley. It is covered by ice from November to April. A single stream flows into the lake at its north end. Researchers drilled a core of sediment 2.40 m long from the deepest part of the lake floor. The core consists entirely of thin couplets, each made of a lighter layer of silt (fine mineral grains) lying directly beneath a darker layer of clay (even finer grains). The couplets range from 1 mm to 9 mm thick and average 4.0 mm thick. The dark layers contain the glassy shells of diatoms, single-celled algae that grow in sunlit lake water. Two students explain how the couplets formed.\n\nStudent 1\nEach couplet represents one year. In late spring and summer, meltwater from snow on the surrounding mountains swells the stream, which carries silt into the lake; the silt settles quickly to form the light layer. Diatoms grow in the sunlit water during summer and fall. After ice covers the lake in November, the water beneath the ice is very still, and clay and diatom shells settle slowly through the winter to form the dark layer. Couplets vary in thickness because some years have more snowmelt than others. If a layer of known age is found in the core, the number of couplets above it should equal its age in years.\n\nStudent 2\nEach couplet represents one flood. During a heavy summer rainstorm, the swollen stream carries silt into the lake, and the silt settles within days to form the light layer. Clay stays suspended much longer and settles over the following weeks, together with diatom shells, to form the dark layer. Floods occur several times in some years and not at all in others. Each light layer should be thickest near the stream mouth and should contain fragments of land plants washed in by the flood. Because floods do not occur exactly once each year, the number of couplets above a layer of known age need not equal its age in years.",
+  "prompt": "According to Student 1, the dark layer of each couplet forms mainly during which season?",
+  "choices": [
+   "Spring",
+   "Summer",
+   "Fall",
+   "Winter"
+  ],
+  "correct_answer": "Winter",
+  "explanation": "Student 1 says that after ice covers the lake in November, clay and diatom shells \"settle slowly through the winter to form the dark layer,\" so the dark layer forms mainly in winter. Spring and summer are when Student 1 says the silt of the light layer arrives, and fall is when diatoms grow, before they settle under the ice.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a claim belonging to one viewpoint",
+  "difficulty": "easy"
+ },
+ {
+  "id": "ASV9a-P7-Q2",
+  "passage_id": "sc9a-p7",
+  "passage_title": "Layered Sediment in a Mountain Lake",
+  "format": "conflicting_viewpoints",
+  "passage": "Lake Orrin is a small, deep lake in a mountain valley. It is covered by ice from November to April. A single stream flows into the lake at its north end. Researchers drilled a core of sediment 2.40 m long from the deepest part of the lake floor. The core consists entirely of thin couplets, each made of a lighter layer of silt (fine mineral grains) lying directly beneath a darker layer of clay (even finer grains). The couplets range from 1 mm to 9 mm thick and average 4.0 mm thick. The dark layers contain the glassy shells of diatoms, single-celled algae that grow in sunlit lake water. Two students explain how the couplets formed.\n\nStudent 1\nEach couplet represents one year. In late spring and summer, meltwater from snow on the surrounding mountains swells the stream, which carries silt into the lake; the silt settles quickly to form the light layer. Diatoms grow in the sunlit water during summer and fall. After ice covers the lake in November, the water beneath the ice is very still, and clay and diatom shells settle slowly through the winter to form the dark layer. Couplets vary in thickness because some years have more snowmelt than others. If a layer of known age is found in the core, the number of couplets above it should equal its age in years.\n\nStudent 2\nEach couplet represents one flood. During a heavy summer rainstorm, the swollen stream carries silt into the lake, and the silt settles within days to form the light layer. Clay stays suspended much longer and settles over the following weeks, together with diatom shells, to form the dark layer. Floods occur several times in some years and not at all in others. Each light layer should be thickest near the stream mouth and should contain fragments of land plants washed in by the flood. Because floods do not occur exactly once each year, the number of couplets above a layer of known age need not equal its age in years.",
+  "prompt": "If Student 1 is correct, the core represents approximately how many years of sediment?",
+  "choices": [
+   "240",
+   "400",
+   "600",
+   "960"
+  ],
+  "correct_answer": "600",
+  "explanation": "The core is 2.40 m = 2,400 mm long, and the couplets average 4.0 mm thick, so it holds about 2,400 ÷ 4.0 = 600 couplets. Student 1 says each couplet is one year, so the core represents about 600 years. The value 240 is the core's length in centimeters, and 960 comes from multiplying by 4.0 instead of dividing.",
+  "domain": "Interpretation of Data",
+  "subskill": "apply a viewpoint to values in the passage",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9a-P7-Q3",
+  "passage_id": "sc9a-p7",
+  "passage_title": "Layered Sediment in a Mountain Lake",
+  "format": "conflicting_viewpoints",
+  "passage": "Lake Orrin is a small, deep lake in a mountain valley. It is covered by ice from November to April. A single stream flows into the lake at its north end. Researchers drilled a core of sediment 2.40 m long from the deepest part of the lake floor. The core consists entirely of thin couplets, each made of a lighter layer of silt (fine mineral grains) lying directly beneath a darker layer of clay (even finer grains). The couplets range from 1 mm to 9 mm thick and average 4.0 mm thick. The dark layers contain the glassy shells of diatoms, single-celled algae that grow in sunlit lake water. Two students explain how the couplets formed.\n\nStudent 1\nEach couplet represents one year. In late spring and summer, meltwater from snow on the surrounding mountains swells the stream, which carries silt into the lake; the silt settles quickly to form the light layer. Diatoms grow in the sunlit water during summer and fall. After ice covers the lake in November, the water beneath the ice is very still, and clay and diatom shells settle slowly through the winter to form the dark layer. Couplets vary in thickness because some years have more snowmelt than others. If a layer of known age is found in the core, the number of couplets above it should equal its age in years.\n\nStudent 2\nEach couplet represents one flood. During a heavy summer rainstorm, the swollen stream carries silt into the lake, and the silt settles within days to form the light layer. Clay stays suspended much longer and settles over the following weeks, together with diatom shells, to form the dark layer. Floods occur several times in some years and not at all in others. Each light layer should be thickest near the stream mouth and should contain fragments of land plants washed in by the flood. Because floods do not occur exactly once each year, the number of couplets above a layer of known age need not equal its age in years.",
+  "prompt": "Suppose researchers found a layer of volcanic ash in the core from an eruption that, according to historical records, occurred 350 years ago, and counted 348 couplets above the ash. This finding is more consistent with the viewpoint of:",
+  "choices": [
+   "Student 1, because the number of couplets above the ash nearly equals the ash's age in years.",
+   "Student 1, because the ash forms a separate layer that lies beneath the couplets above it.",
+   "Student 2, because floods occur several times in some years and not at all in others.",
+   "Student 2, because the number of couplets above the ash is greater than the ash's age in years."
+  ],
+  "correct_answer": "Student 1, because the number of couplets above the ash nearly equals the ash's age in years.",
+  "explanation": "Student 1 predicts that the number of couplets above a layer of known age should equal its age in years; 348 couplets above 350-year-old ash is a near match. Student 2 expects no such match, because floods do not come once a year. The count (348) is smaller than, not greater than, 350, and an ash layer lying beneath later couplets is expected under either viewpoint.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match new evidence to the viewpoint it supports",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9a-P7-Q4",
+  "passage_id": "sc9a-p7",
+  "passage_title": "Layered Sediment in a Mountain Lake",
+  "format": "conflicting_viewpoints",
+  "passage": "Lake Orrin is a small, deep lake in a mountain valley. It is covered by ice from November to April. A single stream flows into the lake at its north end. Researchers drilled a core of sediment 2.40 m long from the deepest part of the lake floor. The core consists entirely of thin couplets, each made of a lighter layer of silt (fine mineral grains) lying directly beneath a darker layer of clay (even finer grains). The couplets range from 1 mm to 9 mm thick and average 4.0 mm thick. The dark layers contain the glassy shells of diatoms, single-celled algae that grow in sunlit lake water. Two students explain how the couplets formed.\n\nStudent 1\nEach couplet represents one year. In late spring and summer, meltwater from snow on the surrounding mountains swells the stream, which carries silt into the lake; the silt settles quickly to form the light layer. Diatoms grow in the sunlit water during summer and fall. After ice covers the lake in November, the water beneath the ice is very still, and clay and diatom shells settle slowly through the winter to form the dark layer. Couplets vary in thickness because some years have more snowmelt than others. If a layer of known age is found in the core, the number of couplets above it should equal its age in years.\n\nStudent 2\nEach couplet represents one flood. During a heavy summer rainstorm, the swollen stream carries silt into the lake, and the silt settles within days to form the light layer. Clay stays suspended much longer and settles over the following weeks, together with diatom shells, to form the dark layer. Floods occur several times in some years and not at all in others. Each light layer should be thickest near the stream mouth and should contain fragments of land plants washed in by the flood. Because floods do not occur exactly once each year, the number of couplets above a layer of known age need not equal its age in years.",
+  "prompt": "Which of the following observations, if made, would most weaken Student 2's viewpoint?",
+  "choices": [
+   "Light layers in cores drilled near the stream mouth are thicker than the same layers in cores drilled far from the stream mouth.",
+   "Small fragments of land plants such as twigs and leaves are found in the light layers throughout the entire length of the core.",
+   "A sediment trap left on the lake floor for 5 years collected 5 couplets, although 11 floods were recorded on the stream during those years.",
+   "Some couplets in the core are only 1 mm thick, while others near them in the core are as much as 9 mm thick."
+  ],
+  "correct_answer": "A sediment trap left on the lake floor for 5 years collected 5 couplets, although 11 floods were recorded on the stream during those years.",
+  "explanation": "Student 2 claims that each couplet represents one flood, so 11 floods should have produced 11 couplets. A trap that collected 5 couplets in 5 years, one per year despite 11 floods, contradicts Student 2 and matches Student 1. Thicker light layers near the stream mouth and plant fragments in the light layers are Student 2's own predictions, and the wide range of couplet thickness is explained by both students.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify evidence that weakens a viewpoint",
+  "difficulty": "hard"
+ },
+ {
+  "id": "ASV9a-P7-Q5",
+  "passage_id": "sc9a-p7",
+  "passage_title": "Layered Sediment in a Mountain Lake",
+  "format": "conflicting_viewpoints",
+  "passage": "Lake Orrin is a small, deep lake in a mountain valley. It is covered by ice from November to April. A single stream flows into the lake at its north end. Researchers drilled a core of sediment 2.40 m long from the deepest part of the lake floor. The core consists entirely of thin couplets, each made of a lighter layer of silt (fine mineral grains) lying directly beneath a darker layer of clay (even finer grains). The couplets range from 1 mm to 9 mm thick and average 4.0 mm thick. The dark layers contain the glassy shells of diatoms, single-celled algae that grow in sunlit lake water. Two students explain how the couplets formed.\n\nStudent 1\nEach couplet represents one year. In late spring and summer, meltwater from snow on the surrounding mountains swells the stream, which carries silt into the lake; the silt settles quickly to form the light layer. Diatoms grow in the sunlit water during summer and fall. After ice covers the lake in November, the water beneath the ice is very still, and clay and diatom shells settle slowly through the winter to form the dark layer. Couplets vary in thickness because some years have more snowmelt than others. If a layer of known age is found in the core, the number of couplets above it should equal its age in years.\n\nStudent 2\nEach couplet represents one flood. During a heavy summer rainstorm, the swollen stream carries silt into the lake, and the silt settles within days to form the light layer. Clay stays suspended much longer and settles over the following weeks, together with diatom shells, to form the dark layer. Floods occur several times in some years and not at all in others. Each light layer should be thickest near the stream mouth and should contain fragments of land plants washed in by the flood. Because floods do not occur exactly once each year, the number of couplets above a layer of known age need not equal its age in years.",
+  "prompt": "Student 2 predicts that each light layer should be thickest near the stream mouth. Which of the following procedures would best test this prediction?",
+  "choices": [
+   "Measuring the thickness of the same light layers in cores drilled at several distances from the stream mouth",
+   "Counting the couplets in a second core drilled at the deepest point of the lake, beside the first core",
+   "Measuring the thickness of each dark layer in the existing core and comparing it with the light layer",
+   "Identifying the species of diatoms whose shells are found in the dark layers of the existing core"
+  ],
+  "correct_answer": "Measuring the thickness of the same light layers in cores drilled at several distances from the stream mouth",
+  "explanation": "The prediction concerns how a light layer's thickness changes with distance from the stream mouth, so it can be tested only by measuring the thickness of the same light layers in cores drilled at several distances from the stream mouth. A second core at the same spot, dark-layer thicknesses, and diatom species all come from a single location and say nothing about distance from the stream.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose an observation that tests a stated prediction",
+  "difficulty": "medium"
+ },
+ {
+  "id": "ASV9a-P7-Q6",
+  "passage_id": "sc9a-p7",
+  "passage_title": "Layered Sediment in a Mountain Lake",
+  "format": "conflicting_viewpoints",
+  "passage": "Lake Orrin is a small, deep lake in a mountain valley. It is covered by ice from November to April. A single stream flows into the lake at its north end. Researchers drilled a core of sediment 2.40 m long from the deepest part of the lake floor. The core consists entirely of thin couplets, each made of a lighter layer of silt (fine mineral grains) lying directly beneath a darker layer of clay (even finer grains). The couplets range from 1 mm to 9 mm thick and average 4.0 mm thick. The dark layers contain the glassy shells of diatoms, single-celled algae that grow in sunlit lake water. Two students explain how the couplets formed.\n\nStudent 1\nEach couplet represents one year. In late spring and summer, meltwater from snow on the surrounding mountains swells the stream, which carries silt into the lake; the silt settles quickly to form the light layer. Diatoms grow in the sunlit water during summer and fall. After ice covers the lake in November, the water beneath the ice is very still, and clay and diatom shells settle slowly through the winter to form the dark layer. Couplets vary in thickness because some years have more snowmelt than others. If a layer of known age is found in the core, the number of couplets above it should equal its age in years.\n\nStudent 2\nEach couplet represents one flood. During a heavy summer rainstorm, the swollen stream carries silt into the lake, and the silt settles within days to form the light layer. Clay stays suspended much longer and settles over the following weeks, together with diatom shells, to form the dark layer. Floods occur several times in some years and not at all in others. Each light layer should be thickest near the stream mouth and should contain fragments of land plants washed in by the flood. Because floods do not occur exactly once each year, the number of couplets above a layer of known age need not equal its age in years.",
+  "prompt": "Based on the passage, Student 1 and Student 2 would both say that the light layer of a couplet is deposited:",
+  "choices": [
+   "during late spring, when meltwater from snow swells the stream.",
+   "during summer, when the stream carries silt into the lake.",
+   "within days after a heavy rainstorm has swollen the stream.",
+   "during winter, when the lake is covered by a layer of ice."
+  ],
+  "correct_answer": "during summer, when the stream carries silt into the lake.",
+  "explanation": "Student 1 says that in \"late spring and summer\" the stream carries silt into the lake to form the light layer, and Student 2 says that during a \"heavy summer rainstorm\" the stream carries silt into the lake. Both therefore place the light layer in summer, when the stream carries silt into the lake. Late-spring snowmelt is Student 1's account only, deposition days after a rainstorm is Student 2's only, and neither student says the light layer is deposited in winter, while the lake is under ice.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "point of agreement on a stated claim",
+  "difficulty": "medium"
+ }
+]

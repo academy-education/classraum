@@ -1,0 +1,2838 @@
+{
+ "cohort": "toefl-talk-draft-7",
+ "created": "2026-10-23",
+ "rows": [
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-A01-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: On November 18th, 1929, an earthquake of roughly magnitude seven struck under the sea south of Newfoundland, near the edge of the Grand Banks. On land the shaking did little damage, but it set off a tsunami that killed more than two dozen people along the Newfoundland coast. And it did something nobody understood for over twenty years. It broke telegraph cables.\n\nAt that time many cables crossed the North Atlantic, and the seafloor south of the Grand Banks was crisscrossed by them. Each telegraph company logged the exact minute a line went dead, so every break was timed. The cables closest to the epicenter failed at once. That was no surprise. But others, farther south and lower down the continental slope, kept working for a while and then failed one after another, the last one roughly thirteen hours after the quake and several hundred kilometers away.\n\nThe explanation at the time was that the shaking had made the seafloor slump in many places, or that damaged cables gave way later. Nobody pushed hard on the timing.\n\nThen in 1952, Bruce Heezen and Maurice Ewing, at Columbia University, plotted the break times against distance. The breaks weren't scattered. They marched downslope in order, like something traveling. Their proposal was a turbidity current. Sediment shaken loose on the slope mixes with water, the mixture is heavier than the water around it, and it pours downhill along the bottom, snapping cables as it goes. From the timing, they estimated speeds that may have approached a hundred kilometers an hour on the upper slope, though later estimates are lower.\n\nGeologists had suspected that such currents existed, mostly from experiments in laboratory tanks. What they lacked was one measured in the open ocean. And it turned out they'd had one since 1929, written down minute by minute in the logbooks of telegraph companies.",
+    "passageGroupId": "pg-a022e948fedfb1a665fb2c84bfcddea6",
+    "prompt": "[Academic Talk — Marine Geology] What is the lecture mainly about?",
+    "choices": [
+     "How telegraph companies repaired cables after the 1929 earthquake",
+     "Why the 1929 tsunami caused deaths along the Newfoundland coast",
+     "How the order of cable failures revealed an undersea flow",
+     "How laboratory tank experiments first produced turbidity currents"
+    ],
+    "correct_answer": "How the order of cable failures revealed an undersea flow",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "Heezen and Ewing saw that the timed breaks 'marched downslope in order, like something traveling' and proposed a turbidity current.",
+    "distractor_rationales": [
+     {
+      "choice": "How telegraph companies repaired cables after the 1929 earthquake",
+      "reason": "Repairs are never discussed."
+     },
+     {
+      "choice": "Why the 1929 tsunami caused deaths along the Newfoundland coast",
+      "reason": "The tsunami is mentioned once as background."
+     },
+     {
+      "choice": "How laboratory tank experiments first produced turbidity currents",
+      "reason": "The tanks are background; the point is a current measured in the open ocean."
+     }
+    ]
+   },
+   "content_hash": "54ee71894e8a232a6cb363e054ea1ec6",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-A01",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-A01-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: On November 18th, 1929, an earthquake of roughly magnitude seven struck under the sea south of Newfoundland, near the edge of the Grand Banks. On land the shaking did little damage, but it set off a tsunami that killed more than two dozen people along the Newfoundland coast. And it did something nobody understood for over twenty years. It broke telegraph cables.\n\nAt that time many cables crossed the North Atlantic, and the seafloor south of the Grand Banks was crisscrossed by them. Each telegraph company logged the exact minute a line went dead, so every break was timed. The cables closest to the epicenter failed at once. That was no surprise. But others, farther south and lower down the continental slope, kept working for a while and then failed one after another, the last one roughly thirteen hours after the quake and several hundred kilometers away.\n\nThe explanation at the time was that the shaking had made the seafloor slump in many places, or that damaged cables gave way later. Nobody pushed hard on the timing.\n\nThen in 1952, Bruce Heezen and Maurice Ewing, at Columbia University, plotted the break times against distance. The breaks weren't scattered. They marched downslope in order, like something traveling. Their proposal was a turbidity current. Sediment shaken loose on the slope mixes with water, the mixture is heavier than the water around it, and it pours downhill along the bottom, snapping cables as it goes. From the timing, they estimated speeds that may have approached a hundred kilometers an hour on the upper slope, though later estimates are lower.\n\nGeologists had suspected that such currents existed, mostly from experiments in laboratory tanks. What they lacked was one measured in the open ocean. And it turned out they'd had one since 1929, written down minute by minute in the logbooks of telegraph companies.",
+    "passageGroupId": "pg-a022e948fedfb1a665fb2c84bfcddea6",
+    "prompt": "[Academic Talk — Marine Geology] According to the professor, what was unusual about the cables farther down the slope?",
+    "choices": [
+     "They kept working for a time before they failed",
+     "They had been laid more recently than the others",
+     "They failed at the same moment as the nearest ones",
+     "They were repaired within thirteen hours of the quake"
+    ],
+    "correct_answer": "They kept working for a time before they failed",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "They 'kept working for a while and then failed one after another'.",
+    "distractor_rationales": [
+     {
+      "choice": "They had been laid more recently than the others",
+      "reason": "When the cables were laid is not mentioned."
+     },
+     {
+      "choice": "They failed at the same moment as the nearest ones",
+      "reason": "Only the cables nearest the epicenter failed at once."
+     },
+     {
+      "choice": "They were repaired within thirteen hours of the quake",
+      "reason": "Thirteen hours is when the last cable broke, not a repair time."
+     }
+    ]
+   },
+   "content_hash": "c02618ec9c6b36a97a46cf0c251adede",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-A01",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-A01-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: On November 18th, 1929, an earthquake of roughly magnitude seven struck under the sea south of Newfoundland, near the edge of the Grand Banks. On land the shaking did little damage, but it set off a tsunami that killed more than two dozen people along the Newfoundland coast. And it did something nobody understood for over twenty years. It broke telegraph cables.\n\nAt that time many cables crossed the North Atlantic, and the seafloor south of the Grand Banks was crisscrossed by them. Each telegraph company logged the exact minute a line went dead, so every break was timed. The cables closest to the epicenter failed at once. That was no surprise. But others, farther south and lower down the continental slope, kept working for a while and then failed one after another, the last one roughly thirteen hours after the quake and several hundred kilometers away.\n\nThe explanation at the time was that the shaking had made the seafloor slump in many places, or that damaged cables gave way later. Nobody pushed hard on the timing.\n\nThen in 1952, Bruce Heezen and Maurice Ewing, at Columbia University, plotted the break times against distance. The breaks weren't scattered. They marched downslope in order, like something traveling. Their proposal was a turbidity current. Sediment shaken loose on the slope mixes with water, the mixture is heavier than the water around it, and it pours downhill along the bottom, snapping cables as it goes. From the timing, they estimated speeds that may have approached a hundred kilometers an hour on the upper slope, though later estimates are lower.\n\nGeologists had suspected that such currents existed, mostly from experiments in laboratory tanks. What they lacked was one measured in the open ocean. And it turned out they'd had one since 1929, written down minute by minute in the logbooks of telegraph companies.",
+    "passageGroupId": "pg-a022e948fedfb1a665fb2c84bfcddea6",
+    "prompt": "[Academic Talk — Marine Geology] Why does the professor say 'Nobody pushed hard on the timing'?",
+    "choices": [
+     "To suggest that the companies' logs were too rough to use",
+     "To indicate that an important clue was overlooked at first",
+     "To explain why the nearest cables broke at the moment of the quake",
+     "To criticize Heezen and Ewing for rushing their analysis"
+    ],
+    "correct_answer": "To indicate that an important clue was overlooked at first",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "The break times were recorded to the minute, but they were not analyzed until Heezen and Ewing plotted them in 1952.",
+    "distractor_rationales": [
+     {
+      "choice": "To suggest that the companies' logs were too rough to use",
+      "reason": "Every break was logged to 'the exact minute'."
+     },
+     {
+      "choice": "To explain why the nearest cables broke at the moment of the quake",
+      "reason": "The nearest cables are explained by the shaking itself."
+     },
+     {
+      "choice": "To criticize Heezen and Ewing for rushing their analysis",
+      "reason": "Heezen and Ewing are the ones who finally did look at the timing."
+     }
+    ]
+   },
+   "content_hash": "3469d26e596c9c48f8de6fc5f6f6c2d1",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-A01",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-A01-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: On November 18th, 1929, an earthquake of roughly magnitude seven struck under the sea south of Newfoundland, near the edge of the Grand Banks. On land the shaking did little damage, but it set off a tsunami that killed more than two dozen people along the Newfoundland coast. And it did something nobody understood for over twenty years. It broke telegraph cables.\n\nAt that time many cables crossed the North Atlantic, and the seafloor south of the Grand Banks was crisscrossed by them. Each telegraph company logged the exact minute a line went dead, so every break was timed. The cables closest to the epicenter failed at once. That was no surprise. But others, farther south and lower down the continental slope, kept working for a while and then failed one after another, the last one roughly thirteen hours after the quake and several hundred kilometers away.\n\nThe explanation at the time was that the shaking had made the seafloor slump in many places, or that damaged cables gave way later. Nobody pushed hard on the timing.\n\nThen in 1952, Bruce Heezen and Maurice Ewing, at Columbia University, plotted the break times against distance. The breaks weren't scattered. They marched downslope in order, like something traveling. Their proposal was a turbidity current. Sediment shaken loose on the slope mixes with water, the mixture is heavier than the water around it, and it pours downhill along the bottom, snapping cables as it goes. From the timing, they estimated speeds that may have approached a hundred kilometers an hour on the upper slope, though later estimates are lower.\n\nGeologists had suspected that such currents existed, mostly from experiments in laboratory tanks. What they lacked was one measured in the open ocean. And it turned out they'd had one since 1929, written down minute by minute in the logbooks of telegraph companies.",
+    "passageGroupId": "pg-a022e948fedfb1a665fb2c84bfcddea6",
+    "prompt": "[Academic Talk — Marine Geology] What does the professor imply about the telegraph logbooks?",
+    "choices": [
+     "They were meant as a scientific record but were too rough to use",
+     "They became a scientific record without being meant as one",
+     "They recorded the far breaks but missed the nearest ones",
+     "They supported slumping at first but were later found to be wrong"
+    ],
+    "correct_answer": "They became a scientific record without being meant as one",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "Kept by companies for business, they held the open-ocean measurement geologists 'lacked'.",
+    "distractor_rationales": [
+     {
+      "choice": "They were meant as a scientific record but were too rough to use",
+      "reason": "They were business logs, and every break was timed to 'the exact minute'."
+     },
+     {
+      "choice": "They recorded the far breaks but missed the nearest ones",
+      "reason": "The nearest cables were logged too; they 'failed at once'."
+     },
+     {
+      "choice": "They supported slumping at first but were later found to be wrong",
+      "reason": "The logs were never wrong; only the slumping explanation was replaced."
+     }
+    ]
+   },
+   "content_hash": "f9ac8f164ee6fde55116c9afcd60d4d3",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-A01",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-A02-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In 1960 the psychologists Jean Berko and Roger Brown described an exchange with a small child who called his inflatable plastic fish his 'fis'. An adult held up the toy and asked, 'Is this your fis?' The child said no. The adult tried, 'Is this your fish?' and the child said yes, his fis. He couldn't say 'sh', but he could plainly hear it, and he objected when an adult said the word his way.\n\nThis came to be called the fis phenomenon, and it's taught as a lesson about children's speech. A child's speaking errors don't show what the child knows. Perception tends to run ahead of production. The child has the adult word stored correctly; it's the mouth that hasn't caught up.\n\nThat's a real improvement on the older idea that a child who says 'fis' hears 'fis'. But notice it still takes something for granted. It assumes the child's 'fis' and an adult saying 'fis' are the same sound. That's what the adults in the room heard, after all.\n\nResearchers who've recorded children and studied the sound waves, instead of trusting their ears, have found it isn't always so. A child who seems to say 'ring' and 'wing' identically may in fact be making a small, consistent difference between them that adult listeners don't pick up. This is called covert contrast. The child is producing the distinction; it's the adults who are failing to perceive it.\n\nIt doesn't happen with every child or every sound. But it matters for speech therapy. If a child is already marking a distinction, the job isn't to teach a new sound from scratch. It's to strengthen one that's already there. So the fis story may have a second layer. The adults were right that the child could hear the difference. They may have been wrong that he couldn't make it.",
+    "passageGroupId": "pg-a3116f4a707faee2dbd5998b6fa662c7",
+    "prompt": "[Academic Talk — Child Language Acquisition] What is the main purpose of the lecture?",
+    "choices": [
+     "To show that a child's errors can hide a contrast already made",
+     "To argue that young children hear 'fis' and 'fish' as one word",
+     "To describe how Berko and Brown designed their experiments",
+     "To explain why speech therapy rarely helps young children"
+    ],
+    "correct_answer": "To show that a child's errors can hide a contrast already made",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "Covert contrast: 'The child is producing the distinction; it's the adults who are failing to perceive it.'",
+    "distractor_rationales": [
+     {
+      "choice": "To argue that young children hear 'fis' and 'fish' as one word",
+      "reason": "The child objected to 'fis', so he heard the difference."
+     },
+     {
+      "choice": "To describe how Berko and Brown designed their experiments",
+      "reason": "The exchange is described, not the design of experiments."
+     },
+     {
+      "choice": "To explain why speech therapy rarely helps young children",
+      "reason": "Covert contrast is said to help therapy, not to show it fails."
+     }
+    ]
+   },
+   "content_hash": "763b4125de9b1dd0d35dc492f58b26ff",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-A02",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-A02-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In 1960 the psychologists Jean Berko and Roger Brown described an exchange with a small child who called his inflatable plastic fish his 'fis'. An adult held up the toy and asked, 'Is this your fis?' The child said no. The adult tried, 'Is this your fish?' and the child said yes, his fis. He couldn't say 'sh', but he could plainly hear it, and he objected when an adult said the word his way.\n\nThis came to be called the fis phenomenon, and it's taught as a lesson about children's speech. A child's speaking errors don't show what the child knows. Perception tends to run ahead of production. The child has the adult word stored correctly; it's the mouth that hasn't caught up.\n\nThat's a real improvement on the older idea that a child who says 'fis' hears 'fis'. But notice it still takes something for granted. It assumes the child's 'fis' and an adult saying 'fis' are the same sound. That's what the adults in the room heard, after all.\n\nResearchers who've recorded children and studied the sound waves, instead of trusting their ears, have found it isn't always so. A child who seems to say 'ring' and 'wing' identically may in fact be making a small, consistent difference between them that adult listeners don't pick up. This is called covert contrast. The child is producing the distinction; it's the adults who are failing to perceive it.\n\nIt doesn't happen with every child or every sound. But it matters for speech therapy. If a child is already marking a distinction, the job isn't to teach a new sound from scratch. It's to strengthen one that's already there. So the fis story may have a second layer. The adults were right that the child could hear the difference. They may have been wrong that he couldn't make it.",
+    "passageGroupId": "pg-a3116f4a707faee2dbd5998b6fa662c7",
+    "prompt": "[Academic Talk — Child Language Acquisition] According to the professor, how was covert contrast discovered?",
+    "choices": [
+     "By asking children to judge an adult's pronunciation",
+     "By training adults to imitate the speech of children",
+     "By recording children and studying the sound waves",
+     "By teaching children a new sound from the beginning"
+    ],
+    "correct_answer": "By recording children and studying the sound waves",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "Researchers 'recorded children and studied the sound waves, instead of trusting their ears'.",
+    "distractor_rationales": [
+     {
+      "choice": "By asking children to judge an adult's pronunciation",
+      "reason": "Judging an adult's word is the original fis exchange."
+     },
+     {
+      "choice": "By training adults to imitate the speech of children",
+      "reason": "Adults imitating children is not mentioned."
+     },
+     {
+      "choice": "By teaching children a new sound from the beginning",
+      "reason": "Teaching from scratch is what therapy may not need to do."
+     }
+    ]
+   },
+   "content_hash": "0652c91fb0a27115a369f570a3198921",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-A02",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-A02-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In 1960 the psychologists Jean Berko and Roger Brown described an exchange with a small child who called his inflatable plastic fish his 'fis'. An adult held up the toy and asked, 'Is this your fis?' The child said no. The adult tried, 'Is this your fish?' and the child said yes, his fis. He couldn't say 'sh', but he could plainly hear it, and he objected when an adult said the word his way.\n\nThis came to be called the fis phenomenon, and it's taught as a lesson about children's speech. A child's speaking errors don't show what the child knows. Perception tends to run ahead of production. The child has the adult word stored correctly; it's the mouth that hasn't caught up.\n\nThat's a real improvement on the older idea that a child who says 'fis' hears 'fis'. But notice it still takes something for granted. It assumes the child's 'fis' and an adult saying 'fis' are the same sound. That's what the adults in the room heard, after all.\n\nResearchers who've recorded children and studied the sound waves, instead of trusting their ears, have found it isn't always so. A child who seems to say 'ring' and 'wing' identically may in fact be making a small, consistent difference between them that adult listeners don't pick up. This is called covert contrast. The child is producing the distinction; it's the adults who are failing to perceive it.\n\nIt doesn't happen with every child or every sound. But it matters for speech therapy. If a child is already marking a distinction, the job isn't to teach a new sound from scratch. It's to strengthen one that's already there. So the fis story may have a second layer. The adults were right that the child could hear the difference. They may have been wrong that he couldn't make it.",
+    "passageGroupId": "pg-a3116f4a707faee2dbd5998b6fa662c7",
+    "prompt": "[Academic Talk — Child Language Acquisition] Why does the professor say 'That's what the adults in the room heard, after all'?",
+    "choices": [
+     "To confirm that the child's word really was 'fis'",
+     "To point out that an assumption rested on adult hearing",
+     "To praise the adults for reporting the exchange in detail",
+     "To suggest that the child had copied the adults' speech"
+    ],
+    "correct_answer": "To point out that an assumption rested on adult hearing",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "It explains where the assumption came from, which the recordings then question.",
+    "distractor_rationales": [
+     {
+      "choice": "To confirm that the child's word really was 'fis'",
+      "reason": "The next part questions exactly that."
+     },
+     {
+      "choice": "To praise the adults for reporting the exchange in detail",
+      "reason": "The adults' reporting is not praised."
+     },
+     {
+      "choice": "To suggest that the child had copied the adults' speech",
+      "reason": "Copying is not suggested; the child objected to the adults."
+     }
+    ]
+   },
+   "content_hash": "f8634013cac8f35faca2407015c32ffd",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-A02",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-A02-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In 1960 the psychologists Jean Berko and Roger Brown described an exchange with a small child who called his inflatable plastic fish his 'fis'. An adult held up the toy and asked, 'Is this your fis?' The child said no. The adult tried, 'Is this your fish?' and the child said yes, his fis. He couldn't say 'sh', but he could plainly hear it, and he objected when an adult said the word his way.\n\nThis came to be called the fis phenomenon, and it's taught as a lesson about children's speech. A child's speaking errors don't show what the child knows. Perception tends to run ahead of production. The child has the adult word stored correctly; it's the mouth that hasn't caught up.\n\nThat's a real improvement on the older idea that a child who says 'fis' hears 'fis'. But notice it still takes something for granted. It assumes the child's 'fis' and an adult saying 'fis' are the same sound. That's what the adults in the room heard, after all.\n\nResearchers who've recorded children and studied the sound waves, instead of trusting their ears, have found it isn't always so. A child who seems to say 'ring' and 'wing' identically may in fact be making a small, consistent difference between them that adult listeners don't pick up. This is called covert contrast. The child is producing the distinction; it's the adults who are failing to perceive it.\n\nIt doesn't happen with every child or every sound. But it matters for speech therapy. If a child is already marking a distinction, the job isn't to teach a new sound from scratch. It's to strengthen one that's already there. So the fis story may have a second layer. The adults were right that the child could hear the difference. They may have been wrong that he couldn't make it.",
+    "passageGroupId": "pg-a3116f4a707faee2dbd5998b6fa662c7",
+    "prompt": "[Academic Talk — Child Language Acquisition] What is the professor's view of the usual lesson drawn from the fis phenomenon?",
+    "choices": [
+     "It improved on earlier thinking but missed part of the picture",
+     "It was right about speaking but wrong about hearing",
+     "It was a fair start but rested on too few children",
+     "It improved on earlier thinking but has since been fully overturned"
+    ],
+    "correct_answer": "It improved on earlier thinking but missed part of the picture",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "It is 'a real improvement' on the older view, 'But notice it still takes something for granted.'",
+    "distractor_rationales": [
+     {
+      "choice": "It was right about speaking but wrong about hearing",
+      "reason": "Reversed: the adults were 'right that the child could hear'; the doubt is about speaking."
+     },
+     {
+      "choice": "It was a fair start but rested on too few children",
+      "reason": "Sample size is not raised."
+     },
+     {
+      "choice": "It improved on earlier thinking but has since been fully overturned",
+      "reason": "The professor keeps its central claim that the child could hear the difference."
+     }
+    ]
+   },
+   "content_hash": "04d2ab525e528b2353ca9cf1afa588e3",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-A02",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-A03-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: When Leonardo da Vinci painted the Last Supper in a monastery dining hall in Milan in the 1490s, the standard way to paint a wall in Italy was fresco. You spread fresh, wet plaster over a patch of wall and paint into it with pigment mixed in water. As the plaster dries, the color is locked into the surface, and it can last for centuries. But fresco has a strict condition. You can only paint as much as you can finish while that patch is still wet, roughly a day's work, and you can't easily go back and change things.\n\nLeonardo didn't use fresco. He painted on the dry wall, with a binder that seems to have combined egg tempera and oil, over a ground layer he prepared himself. And the painting began to fail almost at once. Paint was already flaking within his lifetime, and by the middle of the sixteenth century visitors described it as badly damaged. It's been restored many times, most recently in a project that ended in 1999.\n\nSo, the usual story goes, it was a disastrous experiment, a genius who wouldn't respect the rules of a craft.\n\nBut think about how Leonardo actually worked. A writer who knew him described him standing in front of the painting for hours without touching it, then adding a stroke or two and walking away. He revised constantly, building up soft shifts of light and shadow in thin layers. None of that is possible in fresco, where the plaster sets on its own schedule, not yours. A dry wall let him work slowly, go back, and build up the effects he wanted.\n\nIn other words, he wasn't ignorant of fresco's rules. He gave up durability to get a way of working that fresco couldn't allow. It cost the painting dearly. But it was a trade, not a blunder.",
+    "passageGroupId": "pg-5c15aa140a4ffffdc43ac62c7bbe5781",
+    "prompt": "[Academic Talk — Renaissance Painting Technique] What is the professor's main point about how Leonardo painted the Last Supper?",
+    "choices": [
+     "He traded durability for a slower way of working",
+     "He used the standard Italian method for walls",
+     "He did not understand how fresco was supposed to work",
+     "He avoided fresco mainly because wet plaster was costly"
+    ],
+    "correct_answer": "He traded durability for a slower way of working",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'He gave up durability to get a way of working that fresco couldn't allow.'",
+    "distractor_rationales": [
+     {
+      "choice": "He used the standard Italian method for walls",
+      "reason": "Fresco was the standard method, and he did not use it."
+     },
+     {
+      "choice": "He did not understand how fresco was supposed to work",
+      "reason": "'He wasn't ignorant of fresco's rules.'"
+     },
+     {
+      "choice": "He avoided fresco mainly because wet plaster was costly",
+      "reason": "Cost is not discussed."
+     }
+    ]
+   },
+   "content_hash": "27baf1287b82339609f45fc855dbb075",
+   "word_count": 310,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-A03",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-A03-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: When Leonardo da Vinci painted the Last Supper in a monastery dining hall in Milan in the 1490s, the standard way to paint a wall in Italy was fresco. You spread fresh, wet plaster over a patch of wall and paint into it with pigment mixed in water. As the plaster dries, the color is locked into the surface, and it can last for centuries. But fresco has a strict condition. You can only paint as much as you can finish while that patch is still wet, roughly a day's work, and you can't easily go back and change things.\n\nLeonardo didn't use fresco. He painted on the dry wall, with a binder that seems to have combined egg tempera and oil, over a ground layer he prepared himself. And the painting began to fail almost at once. Paint was already flaking within his lifetime, and by the middle of the sixteenth century visitors described it as badly damaged. It's been restored many times, most recently in a project that ended in 1999.\n\nSo, the usual story goes, it was a disastrous experiment, a genius who wouldn't respect the rules of a craft.\n\nBut think about how Leonardo actually worked. A writer who knew him described him standing in front of the painting for hours without touching it, then adding a stroke or two and walking away. He revised constantly, building up soft shifts of light and shadow in thin layers. None of that is possible in fresco, where the plaster sets on its own schedule, not yours. A dry wall let him work slowly, go back, and build up the effects he wanted.\n\nIn other words, he wasn't ignorant of fresco's rules. He gave up durability to get a way of working that fresco couldn't allow. It cost the painting dearly. But it was a trade, not a blunder.",
+    "passageGroupId": "pg-5c15aa140a4ffffdc43ac62c7bbe5781",
+    "prompt": "[Academic Talk — Renaissance Painting Technique] According to the professor, what limits a painter working in fresco?",
+    "choices": [
+     "The colors fade within a few decades",
+     "Only oil can be used to bind the pigment",
+     "The wall must be completely dry beforehand",
+     "Each patch must be painted before it dries"
+    ],
+    "correct_answer": "Each patch must be painted before it dries",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'You can only paint as much as you can finish while that patch is still wet.'",
+    "distractor_rationales": [
+     {
+      "choice": "The colors fade within a few decades",
+      "reason": "Fresco color 'can last for centuries'."
+     },
+     {
+      "choice": "Only oil can be used to bind the pigment",
+      "reason": "Fresco pigment is 'mixed in water'."
+     },
+     {
+      "choice": "The wall must be completely dry beforehand",
+      "reason": "The dry wall is what Leonardo used instead of fresco."
+     }
+    ]
+   },
+   "content_hash": "6efe5043f5aa1b48bccaa954773c240f",
+   "word_count": 310,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-A03",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-A03-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: When Leonardo da Vinci painted the Last Supper in a monastery dining hall in Milan in the 1490s, the standard way to paint a wall in Italy was fresco. You spread fresh, wet plaster over a patch of wall and paint into it with pigment mixed in water. As the plaster dries, the color is locked into the surface, and it can last for centuries. But fresco has a strict condition. You can only paint as much as you can finish while that patch is still wet, roughly a day's work, and you can't easily go back and change things.\n\nLeonardo didn't use fresco. He painted on the dry wall, with a binder that seems to have combined egg tempera and oil, over a ground layer he prepared himself. And the painting began to fail almost at once. Paint was already flaking within his lifetime, and by the middle of the sixteenth century visitors described it as badly damaged. It's been restored many times, most recently in a project that ended in 1999.\n\nSo, the usual story goes, it was a disastrous experiment, a genius who wouldn't respect the rules of a craft.\n\nBut think about how Leonardo actually worked. A writer who knew him described him standing in front of the painting for hours without touching it, then adding a stroke or two and walking away. He revised constantly, building up soft shifts of light and shadow in thin layers. None of that is possible in fresco, where the plaster sets on its own schedule, not yours. A dry wall let him work slowly, go back, and build up the effects he wanted.\n\nIn other words, he wasn't ignorant of fresco's rules. He gave up durability to get a way of working that fresco couldn't allow. It cost the painting dearly. But it was a trade, not a blunder.",
+    "passageGroupId": "pg-5c15aa140a4ffffdc43ac62c7bbe5781",
+    "prompt": "[Academic Talk — Renaissance Painting Technique] Why does the professor mention that Leonardo stood before the painting for hours, then added a stroke or two?",
+    "choices": [
+     "To suggest that he never really finished the painting",
+     "To illustrate a habit that fresco would not have allowed",
+     "To suggest that he cared more about speed than detail",
+     "To show that he doubted his own skill at painting walls"
+    ],
+    "correct_answer": "To illustrate a habit that fresco would not have allowed",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "Slow, constant revision is 'not possible in fresco, where the plaster sets on its own schedule'.",
+    "distractor_rationales": [
+     {
+      "choice": "To suggest that he never really finished the painting",
+      "reason": "The painting is not described as unfinished."
+     },
+     {
+      "choice": "To suggest that he cared more about speed than detail",
+      "reason": "He worked slowly; speed was what fresco demanded."
+     },
+     {
+      "choice": "To show that he doubted his own skill at painting walls",
+      "reason": "No self-doubt is attributed to him."
+     }
+    ]
+   },
+   "content_hash": "83c01fed559b32a625ed13095be170b6",
+   "word_count": 310,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-A03",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-A03-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: When Leonardo da Vinci painted the Last Supper in a monastery dining hall in Milan in the 1490s, the standard way to paint a wall in Italy was fresco. You spread fresh, wet plaster over a patch of wall and paint into it with pigment mixed in water. As the plaster dries, the color is locked into the surface, and it can last for centuries. But fresco has a strict condition. You can only paint as much as you can finish while that patch is still wet, roughly a day's work, and you can't easily go back and change things.\n\nLeonardo didn't use fresco. He painted on the dry wall, with a binder that seems to have combined egg tempera and oil, over a ground layer he prepared himself. And the painting began to fail almost at once. Paint was already flaking within his lifetime, and by the middle of the sixteenth century visitors described it as badly damaged. It's been restored many times, most recently in a project that ended in 1999.\n\nSo, the usual story goes, it was a disastrous experiment, a genius who wouldn't respect the rules of a craft.\n\nBut think about how Leonardo actually worked. A writer who knew him described him standing in front of the painting for hours without touching it, then adding a stroke or two and walking away. He revised constantly, building up soft shifts of light and shadow in thin layers. None of that is possible in fresco, where the plaster sets on its own schedule, not yours. A dry wall let him work slowly, go back, and build up the effects he wanted.\n\nIn other words, he wasn't ignorant of fresco's rules. He gave up durability to get a way of working that fresco couldn't allow. It cost the painting dearly. But it was a trade, not a blunder.",
+    "passageGroupId": "pg-5c15aa140a4ffffdc43ac62c7bbe5781",
+    "prompt": "[Academic Talk — Renaissance Painting Technique] What is the professor's attitude toward the usual story about the Last Supper?",
+    "choices": [
+     "It rightly calls the painting a failed experiment",
+     "It mistakes slow decay for sudden damage",
+     "It mistakes a deliberate choice for an error",
+     "It mistakes a true fresco for an experiment"
+    ],
+    "correct_answer": "It mistakes a deliberate choice for an error",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'It was a trade, not a blunder.'",
+    "distractor_rationales": [
+     {
+      "choice": "It rightly calls the painting a failed experiment",
+      "reason": "The professor rejects 'disastrous experiment': 'a trade, not a blunder.'"
+     },
+     {
+      "choice": "It mistakes slow decay for sudden damage",
+      "reason": "The professor agrees it began to fail 'almost at once'."
+     },
+     {
+      "choice": "It mistakes a true fresco for an experiment",
+      "reason": "'Leonardo didn't use fresco.'"
+     }
+    ]
+   },
+   "content_hash": "932f8baafd2ea77ac343a1362623eebe",
+   "word_count": 310,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-A03",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-A04-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Jethro Tull, the English farmer, not the rock band, is remembered for the seed drill. Around 1700, on his farm in Berkshire, he built a horse-drawn machine that cut channels in the soil, dropped seed into them at a set depth and spacing, and covered it over. Before that, most English farmers sowed by hand, flinging seed across the field. Much of it landed too shallow or too thick, and birds ate some. Tull's drill used far less seed and put it in neat rows.\n\nHe's often called the inventor of the seed drill, which isn't quite right. Drills had been used in China for many centuries, and an Italian had patented one in the sixteenth century. What Tull did was build a practical version and argue for a whole system around it, in a book published in 1731.\n\nAnd here's where it gets interesting, because the theory in that book was wrong. Tull believed that plants feed on tiny particles of soil, taken in directly by the roots. So the more finely you broke up the soil, the more food the plant could reach. That's why he wanted rows, so that a horse-drawn hoe could pass between them and keep breaking up the earth all season. He thought manure was largely unnecessary, and he said so.\n\nPlants don't eat soil. But the hoeing worked anyway. Running a hoe between the rows killed the weeds that competed with the crop, and loosening the soil helped water and air reach the roots. So farmers who followed his method could get good harvests for reasons quite different from the ones he gave.\n\nAdoption was slow. Drills were expensive and broke easily, and sowing by hand stayed common in much of England into the nineteenth century. But growing crops in rows you could work between outlasted the theory that inspired it.",
+    "passageGroupId": "pg-dbe85502475cad1c8ce290074934ea8a",
+    "prompt": "[Academic Talk — Agricultural History] What is the lecture mainly about?",
+    "choices": [
+     "How Tull built the first seed drill in history",
+     "How a farming method worked though its reasoning was false",
+     "Why English farmers kept using manure instead of hoes",
+     "How drills were brought to England from China"
+    ],
+    "correct_answer": "How a farming method worked though its reasoning was false",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "Tull's theory 'was wrong', yet 'the hoeing worked anyway.'",
+    "distractor_rationales": [
+     {
+      "choice": "How Tull built the first seed drill in history",
+      "reason": "Drills existed in China and Italy before Tull."
+     },
+     {
+      "choice": "Why English farmers kept using manure instead of hoes",
+      "reason": "Manure is mentioned only as something Tull thought unnecessary."
+     },
+     {
+      "choice": "How drills were brought to England from China",
+      "reason": "How drills reached England is not discussed."
+     }
+    ]
+   },
+   "content_hash": "bd1edab372e28a4488b3b220d489e119",
+   "word_count": 308,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-A04",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-A04-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Jethro Tull, the English farmer, not the rock band, is remembered for the seed drill. Around 1700, on his farm in Berkshire, he built a horse-drawn machine that cut channels in the soil, dropped seed into them at a set depth and spacing, and covered it over. Before that, most English farmers sowed by hand, flinging seed across the field. Much of it landed too shallow or too thick, and birds ate some. Tull's drill used far less seed and put it in neat rows.\n\nHe's often called the inventor of the seed drill, which isn't quite right. Drills had been used in China for many centuries, and an Italian had patented one in the sixteenth century. What Tull did was build a practical version and argue for a whole system around it, in a book published in 1731.\n\nAnd here's where it gets interesting, because the theory in that book was wrong. Tull believed that plants feed on tiny particles of soil, taken in directly by the roots. So the more finely you broke up the soil, the more food the plant could reach. That's why he wanted rows, so that a horse-drawn hoe could pass between them and keep breaking up the earth all season. He thought manure was largely unnecessary, and he said so.\n\nPlants don't eat soil. But the hoeing worked anyway. Running a hoe between the rows killed the weeds that competed with the crop, and loosening the soil helped water and air reach the roots. So farmers who followed his method could get good harvests for reasons quite different from the ones he gave.\n\nAdoption was slow. Drills were expensive and broke easily, and sowing by hand stayed common in much of England into the nineteenth century. But growing crops in rows you could work between outlasted the theory that inspired it.",
+    "passageGroupId": "pg-dbe85502475cad1c8ce290074934ea8a",
+    "prompt": "[Academic Talk — Agricultural History] According to the professor, why did Tull want crops planted in rows?",
+    "choices": [
+     "So that birds could not find the seed",
+     "So that a hoe could be drawn between them",
+     "So that manure could be spread more evenly",
+     "So that the crop could be harvested by machine"
+    ],
+    "correct_answer": "So that a hoe could be drawn between them",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'That's why he wanted rows, so that a horse-drawn hoe could pass between them.'",
+    "distractor_rationales": [
+     {
+      "choice": "So that birds could not find the seed",
+      "reason": "Birds are a problem of hand sowing, not his reason for rows."
+     },
+     {
+      "choice": "So that manure could be spread more evenly",
+      "reason": "He thought manure 'largely unnecessary'."
+     },
+     {
+      "choice": "So that the crop could be harvested by machine",
+      "reason": "Harvesting is not discussed."
+     }
+    ]
+   },
+   "content_hash": "ec19dceb856efd76e9836425ada5f71f",
+   "word_count": 308,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-A04",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-A04-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Jethro Tull, the English farmer, not the rock band, is remembered for the seed drill. Around 1700, on his farm in Berkshire, he built a horse-drawn machine that cut channels in the soil, dropped seed into them at a set depth and spacing, and covered it over. Before that, most English farmers sowed by hand, flinging seed across the field. Much of it landed too shallow or too thick, and birds ate some. Tull's drill used far less seed and put it in neat rows.\n\nHe's often called the inventor of the seed drill, which isn't quite right. Drills had been used in China for many centuries, and an Italian had patented one in the sixteenth century. What Tull did was build a practical version and argue for a whole system around it, in a book published in 1731.\n\nAnd here's where it gets interesting, because the theory in that book was wrong. Tull believed that plants feed on tiny particles of soil, taken in directly by the roots. So the more finely you broke up the soil, the more food the plant could reach. That's why he wanted rows, so that a horse-drawn hoe could pass between them and keep breaking up the earth all season. He thought manure was largely unnecessary, and he said so.\n\nPlants don't eat soil. But the hoeing worked anyway. Running a hoe between the rows killed the weeds that competed with the crop, and loosening the soil helped water and air reach the roots. So farmers who followed his method could get good harvests for reasons quite different from the ones he gave.\n\nAdoption was slow. Drills were expensive and broke easily, and sowing by hand stayed common in much of England into the nineteenth century. But growing crops in rows you could work between outlasted the theory that inspired it.",
+    "passageGroupId": "pg-dbe85502475cad1c8ce290074934ea8a",
+    "prompt": "[Academic Talk — Agricultural History] Why does the professor mention China and an Italian patent?",
+    "choices": [
+     "To explain where Tull found the design for his drill",
+     "To show that earlier drills had all been failures",
+     "To argue that English farming lagged far behind Asia",
+     "To correct a common claim about what Tull achieved"
+    ],
+    "correct_answer": "To correct a common claim about what Tull achieved",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "Calling him the inventor 'isn't quite right'; drills already existed.",
+    "distractor_rationales": [
+     {
+      "choice": "To explain where Tull found the design for his drill",
+      "reason": "No link between those drills and Tull's design is made."
+     },
+     {
+      "choice": "To show that earlier drills had all been failures",
+      "reason": "How well earlier drills worked is not said."
+     },
+     {
+      "choice": "To argue that English farming lagged far behind Asia",
+      "reason": "English farming is not compared with Asia's."
+     }
+    ]
+   },
+   "content_hash": "06a42070860421ef2b045da733824783",
+   "word_count": 308,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-A04",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-A04-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Jethro Tull, the English farmer, not the rock band, is remembered for the seed drill. Around 1700, on his farm in Berkshire, he built a horse-drawn machine that cut channels in the soil, dropped seed into them at a set depth and spacing, and covered it over. Before that, most English farmers sowed by hand, flinging seed across the field. Much of it landed too shallow or too thick, and birds ate some. Tull's drill used far less seed and put it in neat rows.\n\nHe's often called the inventor of the seed drill, which isn't quite right. Drills had been used in China for many centuries, and an Italian had patented one in the sixteenth century. What Tull did was build a practical version and argue for a whole system around it, in a book published in 1731.\n\nAnd here's where it gets interesting, because the theory in that book was wrong. Tull believed that plants feed on tiny particles of soil, taken in directly by the roots. So the more finely you broke up the soil, the more food the plant could reach. That's why he wanted rows, so that a horse-drawn hoe could pass between them and keep breaking up the earth all season. He thought manure was largely unnecessary, and he said so.\n\nPlants don't eat soil. But the hoeing worked anyway. Running a hoe between the rows killed the weeds that competed with the crop, and loosening the soil helped water and air reach the roots. So farmers who followed his method could get good harvests for reasons quite different from the ones he gave.\n\nAdoption was slow. Drills were expensive and broke easily, and sowing by hand stayed common in much of England into the nineteenth century. But growing crops in rows you could work between outlasted the theory that inspired it.",
+    "passageGroupId": "pg-dbe85502475cad1c8ce290074934ea8a",
+    "prompt": "[Academic Talk — Agricultural History] What can be inferred about farmers who had good harvests with Tull's method?",
+    "choices": [
+     "Their results supported the theory, if not the drill itself",
+     "Their results showed manure mattered more than hoeing",
+     "They used more seed than farmers who sowed by hand",
+     "Their results did not confirm the theory behind it"
+    ],
+    "correct_answer": "Their results did not confirm the theory behind it",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "They succeeded 'for reasons quite different from the ones he gave.'",
+    "distractor_rationales": [
+     {
+      "choice": "Their results supported the theory, if not the drill itself",
+      "reason": "'Plants don't eat soil'; the harvests came for other reasons."
+     },
+     {
+      "choice": "Their results showed manure mattered more than hoeing",
+      "reason": "Manure is not credited; 'the hoeing worked anyway.'"
+     },
+     {
+      "choice": "They used more seed than farmers who sowed by hand",
+      "reason": "The drill 'used far less seed'."
+     }
+    ]
+   },
+   "content_hash": "2270bf79a2e5a35fea759f0a6aff3e4b",
+   "word_count": 308,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-A04",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-A05-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: White-crowned sparrows on the California coast sing regional dialects. A bird near San Francisco sings a recognizably different version of the song from one a few hours' drive away. That alone suggests the song is learned, and in the 1960s Peter Marler, then at Berkeley, set out to find out how.\n\nHe raised young males in the laboratory, away from adult birds. Birds kept in complete isolation grew up singing a simplified, abnormal song. So hearing adults matters. Then he played them recordings of adult song through a loudspeaker at different ages. Birds that heard the tapes between roughly ten and fifty days old learned the song well, matching whatever dialect they'd heard. Birds that first heard the tapes later than that learned very little. And birds that were played another species' song, even early, mostly ignored it.\n\nFrom this came an influential picture: a sensitive period, a window early in life when learning is possible, and an inborn template that steers the bird toward its own species' song. The picture spread widely, including as a model for thinking about human language.\n\nBut look at what those birds were given: a loudspeaker. In the wild, a young sparrow hears song from a living bird, one that responds and sings back. In the 1980s, Luis Baptista and Lewis Petrinovich tutored young white-crowns with live adult birds instead of tapes. Under those conditions, birds learned song well after the fifty-day window was supposed to have closed. Some even learned from a live tutor of another species.\n\nThat doesn't mean Marler was wrong. Isolated birds really do sing abnormally, and timing really does matter. But some of the limits he measured may have been limits of the tape. A loudspeaker turned out to be a much weaker teacher than a bird, and a window that looked closed may only have been narrowed.",
+    "passageGroupId": "pg-dd2a68895de5b8f9f7193f03f3a73dd7",
+    "prompt": "[Academic Talk — Bird Song] What is the main purpose of the lecture?",
+    "choices": [
+     "To show how regional dialects may have shaped the sensitive period",
+     "To argue that the sensitive period may not exist in sparrows at all",
+     "To show how a tutoring method may have shaped a well-known result",
+     "To suggest that bird song may be a good model for human language"
+    ],
+    "correct_answer": "To show how a tutoring method may have shaped a well-known result",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "Live tutors showed that 'some of the limits he measured may have been limits of the tape.'",
+    "distractor_rationales": [
+     {
+      "choice": "To show how regional dialects may have shaped the sensitive period",
+      "reason": "Dialects show the song is learned; they are not linked to the timing."
+     },
+     {
+      "choice": "To argue that the sensitive period may not exist in sparrows at all",
+      "reason": "'Timing really does matter'; the window was narrowed, not absent."
+     },
+     {
+      "choice": "To suggest that bird song may be a good model for human language",
+      "reason": "Human language is mentioned once, as a use others made of the model, not argued for."
+     }
+    ]
+   },
+   "content_hash": "1851e00dc83d68aeafd4792e35960701",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-A05",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-A05-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: White-crowned sparrows on the California coast sing regional dialects. A bird near San Francisco sings a recognizably different version of the song from one a few hours' drive away. That alone suggests the song is learned, and in the 1960s Peter Marler, then at Berkeley, set out to find out how.\n\nHe raised young males in the laboratory, away from adult birds. Birds kept in complete isolation grew up singing a simplified, abnormal song. So hearing adults matters. Then he played them recordings of adult song through a loudspeaker at different ages. Birds that heard the tapes between roughly ten and fifty days old learned the song well, matching whatever dialect they'd heard. Birds that first heard the tapes later than that learned very little. And birds that were played another species' song, even early, mostly ignored it.\n\nFrom this came an influential picture: a sensitive period, a window early in life when learning is possible, and an inborn template that steers the bird toward its own species' song. The picture spread widely, including as a model for thinking about human language.\n\nBut look at what those birds were given: a loudspeaker. In the wild, a young sparrow hears song from a living bird, one that responds and sings back. In the 1980s, Luis Baptista and Lewis Petrinovich tutored young white-crowns with live adult birds instead of tapes. Under those conditions, birds learned song well after the fifty-day window was supposed to have closed. Some even learned from a live tutor of another species.\n\nThat doesn't mean Marler was wrong. Isolated birds really do sing abnormally, and timing really does matter. But some of the limits he measured may have been limits of the tape. A loudspeaker turned out to be a much weaker teacher than a bird, and a window that looked closed may only have been narrowed.",
+    "passageGroupId": "pg-dd2a68895de5b8f9f7193f03f3a73dd7",
+    "prompt": "[Academic Talk — Bird Song] According to the professor, what happened to birds that first heard the tapes after about fifty days?",
+    "choices": [
+     "They copied the songs of other species",
+     "They sang a mix of two different dialects",
+     "They stopped singing altogether",
+     "They learned very little of the song"
+    ],
+    "correct_answer": "They learned very little of the song",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "Birds that first heard the tapes later 'learned very little.'",
+    "distractor_rationales": [
+     {
+      "choice": "They copied the songs of other species",
+      "reason": "Other species' songs were mostly ignored, even early."
+     },
+     {
+      "choice": "They sang a mix of two different dialects",
+      "reason": "Mixed dialects are not mentioned."
+     },
+     {
+      "choice": "They stopped singing altogether",
+      "reason": "They are not said to have stopped singing."
+     }
+    ]
+   },
+   "content_hash": "c674b7f3f5452e4a72610a88aa70d5b9",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-A05",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-A05-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: White-crowned sparrows on the California coast sing regional dialects. A bird near San Francisco sings a recognizably different version of the song from one a few hours' drive away. That alone suggests the song is learned, and in the 1960s Peter Marler, then at Berkeley, set out to find out how.\n\nHe raised young males in the laboratory, away from adult birds. Birds kept in complete isolation grew up singing a simplified, abnormal song. So hearing adults matters. Then he played them recordings of adult song through a loudspeaker at different ages. Birds that heard the tapes between roughly ten and fifty days old learned the song well, matching whatever dialect they'd heard. Birds that first heard the tapes later than that learned very little. And birds that were played another species' song, even early, mostly ignored it.\n\nFrom this came an influential picture: a sensitive period, a window early in life when learning is possible, and an inborn template that steers the bird toward its own species' song. The picture spread widely, including as a model for thinking about human language.\n\nBut look at what those birds were given: a loudspeaker. In the wild, a young sparrow hears song from a living bird, one that responds and sings back. In the 1980s, Luis Baptista and Lewis Petrinovich tutored young white-crowns with live adult birds instead of tapes. Under those conditions, birds learned song well after the fifty-day window was supposed to have closed. Some even learned from a live tutor of another species.\n\nThat doesn't mean Marler was wrong. Isolated birds really do sing abnormally, and timing really does matter. But some of the limits he measured may have been limits of the tape. A loudspeaker turned out to be a much weaker teacher than a bird, and a window that looked closed may only have been narrowed.",
+    "passageGroupId": "pg-dd2a68895de5b8f9f7193f03f3a73dd7",
+    "prompt": "[Academic Talk — Bird Song] Why does the professor say 'But look at what those birds were given: a loudspeaker'?",
+    "choices": [
+     "To explain how Marler recorded the regional dialects",
+     "To suggest that the recordings were of poor quality",
+     "To point out that the birds had been raised in groups",
+     "To raise a doubt about how the birds had been taught"
+    ],
+    "correct_answer": "To raise a doubt about how the birds had been taught",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "A loudspeaker cannot respond as a live bird does, which leads into the live-tutor study.",
+    "distractor_rationales": [
+     {
+      "choice": "To explain how Marler recorded the regional dialects",
+      "reason": "How the dialects were recorded is not discussed."
+     },
+     {
+      "choice": "To suggest that the recordings were of poor quality",
+      "reason": "The problem is the lack of a responding bird, not sound quality."
+     },
+     {
+      "choice": "To point out that the birds had been raised in groups",
+      "reason": "The birds were raised 'away from adult birds'."
+     }
+    ]
+   },
+   "content_hash": "9787c3afd1c6b8258f1e5866f6fad030",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-A05",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-A05-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: White-crowned sparrows on the California coast sing regional dialects. A bird near San Francisco sings a recognizably different version of the song from one a few hours' drive away. That alone suggests the song is learned, and in the 1960s Peter Marler, then at Berkeley, set out to find out how.\n\nHe raised young males in the laboratory, away from adult birds. Birds kept in complete isolation grew up singing a simplified, abnormal song. So hearing adults matters. Then he played them recordings of adult song through a loudspeaker at different ages. Birds that heard the tapes between roughly ten and fifty days old learned the song well, matching whatever dialect they'd heard. Birds that first heard the tapes later than that learned very little. And birds that were played another species' song, even early, mostly ignored it.\n\nFrom this came an influential picture: a sensitive period, a window early in life when learning is possible, and an inborn template that steers the bird toward its own species' song. The picture spread widely, including as a model for thinking about human language.\n\nBut look at what those birds were given: a loudspeaker. In the wild, a young sparrow hears song from a living bird, one that responds and sings back. In the 1980s, Luis Baptista and Lewis Petrinovich tutored young white-crowns with live adult birds instead of tapes. Under those conditions, birds learned song well after the fifty-day window was supposed to have closed. Some even learned from a live tutor of another species.\n\nThat doesn't mean Marler was wrong. Isolated birds really do sing abnormally, and timing really does matter. But some of the limits he measured may have been limits of the tape. A loudspeaker turned out to be a much weaker teacher than a bird, and a window that looked closed may only have been narrowed.",
+    "passageGroupId": "pg-dd2a68895de5b8f9f7193f03f3a73dd7",
+    "prompt": "[Academic Talk — Bird Song] What does the professor imply about the sensitive period in white-crowned sparrows?",
+    "choices": [
+     "It can extend, but only in isolated birds",
+     "It can extend for live tutors, but never for other species",
+     "It can extend past what the tape studies showed",
+     "It was partly an illusion, since timing turns out not to matter"
+    ],
+    "correct_answer": "It can extend past what the tape studies showed",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "With live tutors, birds learned 'well after the fifty-day window'; the window 'may only have been narrowed.'",
+    "distractor_rationales": [
+     {
+      "choice": "It can extend, but only in isolated birds",
+      "reason": "Wrong birds: the later learning came with live tutors; isolated birds sang abnormally."
+     },
+     {
+      "choice": "It can extend for live tutors, but never for other species",
+      "reason": "Some birds 'even learned from a live tutor of another species.'"
+     },
+     {
+      "choice": "It was partly an illusion, since timing turns out not to matter",
+      "reason": "Timing 'really does matter'."
+     }
+    ]
+   },
+   "content_hash": "54b29f35f5becc2ef8a7dce4548ce7ce",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-A05",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-A06-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Here's a problem every navigator faced before the eighteenth century. To find your latitude at sea, you measure the angle between the horizon and the Sun at noon. With the old cross-staff, you had to sight the horizon and the Sun in different directions from a pitching deck. By the time you'd lined up one, the other had moved. The backstaff, from the 1590s, largely replaced it for sun sights, but you still lined things up by hand while the ship moved, and a small error could put you many kilometers off.\n\nIn 1731 John Hadley presented a new instrument to the Royal Society in London. It used two mirrors. You looked straight at the horizon, and by moving an arm you brought a reflected image of the Sun down until it sat right on the horizon line. The key is that both were now in the same view. If the ship rolled, the Sun and the horizon moved together, and the reading held. That's the octant, the ancestor of the sextant.\n\nThe story usually stops there, with Hadley. But at about the same time, a glazier in Philadelphia named Thomas Godfrey built a very similar instrument, and his friends pressed his claim. After some argument, the Royal Society seems to have recognized both men as independent inventors.\n\nThen came a surprise. After the astronomer Edmond Halley died in 1742, a description of a double-mirror instrument turned up among his papers. Isaac Newton had written it decades earlier and sent it to Halley, and Halley, as far as we know, never mentioned it.\n\nSo who invented the octant? In a sense, all three. But the usual story, with Hadley at the center, holds up. Newton's sat in a drawer. Hadley's was built, tried at sea, and made in quantity by London makers. That is what put it into sailors' hands.",
+    "passageGroupId": "pg-8bd94d2f4d1ee4fd60f89839a623064b",
+    "prompt": "[Academic Talk — History of Navigation Instruments] What is the lecture mainly about?",
+    "choices": [
+     "How the cross-staff was gradually improved into the sextant",
+     "The octant's design and the question of who invented it",
+     "Why the Royal Society refused to credit Newton's design",
+     "How Godfrey's octant came to replace Hadley's at sea"
+    ],
+    "correct_answer": "The octant's design and the question of who invented it",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "The lecture explains how the two mirrors worked, then asks 'who invented the octant?'",
+    "distractor_rationales": [
+     {
+      "choice": "How the cross-staff was gradually improved into the sextant",
+      "reason": "The octant replaced the cross-staff's method; it was not an improved cross-staff."
+     },
+     {
+      "choice": "Why the Royal Society refused to credit Newton's design",
+      "reason": "Newton's design was found only after Halley died; no refusal is described."
+     },
+     {
+      "choice": "How Godfrey's octant came to replace Hadley's at sea",
+      "reason": "Hadley's was the one made in quantity."
+     }
+    ]
+   },
+   "content_hash": "ecfbcec7302a92ddb3e2e640e4982e94",
+   "word_count": 310,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-A06",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-A06-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Here's a problem every navigator faced before the eighteenth century. To find your latitude at sea, you measure the angle between the horizon and the Sun at noon. With the old cross-staff, you had to sight the horizon and the Sun in different directions from a pitching deck. By the time you'd lined up one, the other had moved. The backstaff, from the 1590s, largely replaced it for sun sights, but you still lined things up by hand while the ship moved, and a small error could put you many kilometers off.\n\nIn 1731 John Hadley presented a new instrument to the Royal Society in London. It used two mirrors. You looked straight at the horizon, and by moving an arm you brought a reflected image of the Sun down until it sat right on the horizon line. The key is that both were now in the same view. If the ship rolled, the Sun and the horizon moved together, and the reading held. That's the octant, the ancestor of the sextant.\n\nThe story usually stops there, with Hadley. But at about the same time, a glazier in Philadelphia named Thomas Godfrey built a very similar instrument, and his friends pressed his claim. After some argument, the Royal Society seems to have recognized both men as independent inventors.\n\nThen came a surprise. After the astronomer Edmond Halley died in 1742, a description of a double-mirror instrument turned up among his papers. Isaac Newton had written it decades earlier and sent it to Halley, and Halley, as far as we know, never mentioned it.\n\nSo who invented the octant? In a sense, all three. But the usual story, with Hadley at the center, holds up. Newton's sat in a drawer. Hadley's was built, tried at sea, and made in quantity by London makers. That is what put it into sailors' hands.",
+    "passageGroupId": "pg-8bd94d2f4d1ee4fd60f89839a623064b",
+    "prompt": "[Academic Talk — History of Navigation Instruments] According to the professor, why did the octant give steadier readings on a rolling ship?",
+    "choices": [
+     "The Sun and horizon appeared together and moved as one",
+     "Its mirrors cut down the glare of the Sun",
+     "It was fixed firmly to the deck of the ship",
+     "It used the Pole Star instead of the Sun"
+    ],
+    "correct_answer": "The Sun and horizon appeared together and moved as one",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'If the ship rolled, the Sun and the horizon moved together, and the reading held.'",
+    "distractor_rationales": [
+     {
+      "choice": "Its mirrors cut down the glare of the Sun",
+      "reason": "Glare is not mentioned."
+     },
+     {
+      "choice": "It was fixed firmly to the deck of the ship",
+      "reason": "The navigator held it and moved an arm."
+     },
+     {
+      "choice": "It used the Pole Star instead of the Sun",
+      "reason": "The lecture describes sighting the Sun."
+     }
+    ]
+   },
+   "content_hash": "62475de478f6a46a853e2b935763714a",
+   "word_count": 310,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-A06",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-A06-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Here's a problem every navigator faced before the eighteenth century. To find your latitude at sea, you measure the angle between the horizon and the Sun at noon. With the old cross-staff, you had to sight the horizon and the Sun in different directions from a pitching deck. By the time you'd lined up one, the other had moved. The backstaff, from the 1590s, largely replaced it for sun sights, but you still lined things up by hand while the ship moved, and a small error could put you many kilometers off.\n\nIn 1731 John Hadley presented a new instrument to the Royal Society in London. It used two mirrors. You looked straight at the horizon, and by moving an arm you brought a reflected image of the Sun down until it sat right on the horizon line. The key is that both were now in the same view. If the ship rolled, the Sun and the horizon moved together, and the reading held. That's the octant, the ancestor of the sextant.\n\nThe story usually stops there, with Hadley. But at about the same time, a glazier in Philadelphia named Thomas Godfrey built a very similar instrument, and his friends pressed his claim. After some argument, the Royal Society seems to have recognized both men as independent inventors.\n\nThen came a surprise. After the astronomer Edmond Halley died in 1742, a description of a double-mirror instrument turned up among his papers. Isaac Newton had written it decades earlier and sent it to Halley, and Halley, as far as we know, never mentioned it.\n\nSo who invented the octant? In a sense, all three. But the usual story, with Hadley at the center, holds up. Newton's sat in a drawer. Hadley's was built, tried at sea, and made in quantity by London makers. That is what put it into sailors' hands.",
+    "passageGroupId": "pg-8bd94d2f4d1ee4fd60f89839a623064b",
+    "prompt": "[Academic Talk — History of Navigation Instruments] Why does the professor say that Newton's design 'sat in a drawer'?",
+    "choices": [
+     "To suggest that Halley had taken the design from Newton",
+     "To explain why the Royal Society gave Godfrey credit",
+     "To show that Newton regarded his design as a failure",
+     "To contrast an idea that went unused with one that was put to use"
+    ],
+    "correct_answer": "To contrast an idea that went unused with one that was put to use",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "It is followed by Hadley's octant being 'built, tried at sea, and made in quantity'.",
+    "distractor_rationales": [
+     {
+      "choice": "To suggest that Halley had taken the design from Newton",
+      "reason": "Halley is said only to have never mentioned it."
+     },
+     {
+      "choice": "To explain why the Royal Society gave Godfrey credit",
+      "reason": "Godfrey was credited for his own instrument."
+     },
+     {
+      "choice": "To show that Newton regarded his design as a failure",
+      "reason": "Newton's opinion of his design is not given."
+     }
+    ]
+   },
+   "content_hash": "843591201a3fb999d5b3c584f57f2ccb",
+   "word_count": 310,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-A06",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-A06-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Here's a problem every navigator faced before the eighteenth century. To find your latitude at sea, you measure the angle between the horizon and the Sun at noon. With the old cross-staff, you had to sight the horizon and the Sun in different directions from a pitching deck. By the time you'd lined up one, the other had moved. The backstaff, from the 1590s, largely replaced it for sun sights, but you still lined things up by hand while the ship moved, and a small error could put you many kilometers off.\n\nIn 1731 John Hadley presented a new instrument to the Royal Society in London. It used two mirrors. You looked straight at the horizon, and by moving an arm you brought a reflected image of the Sun down until it sat right on the horizon line. The key is that both were now in the same view. If the ship rolled, the Sun and the horizon moved together, and the reading held. That's the octant, the ancestor of the sextant.\n\nThe story usually stops there, with Hadley. But at about the same time, a glazier in Philadelphia named Thomas Godfrey built a very similar instrument, and his friends pressed his claim. After some argument, the Royal Society seems to have recognized both men as independent inventors.\n\nThen came a surprise. After the astronomer Edmond Halley died in 1742, a description of a double-mirror instrument turned up among his papers. Isaac Newton had written it decades earlier and sent it to Halley, and Halley, as far as we know, never mentioned it.\n\nSo who invented the octant? In a sense, all three. But the usual story, with Hadley at the center, holds up. Newton's sat in a drawer. Hadley's was built, tried at sea, and made in quantity by London makers. That is what put it into sailors' hands.",
+    "passageGroupId": "pg-8bd94d2f4d1ee4fd60f89839a623064b",
+    "prompt": "[Academic Talk — History of Navigation Instruments] What does the professor suggest mattered most in the octant changing navigation?",
+    "choices": [
+     "That Newton had been the first to think of it",
+     "That it was designed and approved by the Royal Society",
+     "That it cost less than the backstaff did",
+     "That it was built and made in large numbers"
+    ],
+    "correct_answer": "That it was built and made in large numbers",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "Hadley's was 'built, tried at sea, and made in quantity'; 'That is what put it into sailors' hands.'",
+    "distractor_rationales": [
+     {
+      "choice": "That Newton had been the first to think of it",
+      "reason": "Newton had it first, and his 'sat in a drawer'."
+     },
+     {
+      "choice": "That it was designed and approved by the Royal Society",
+      "reason": "Hadley designed it; the Society only heard it presented and later weighed the rival claims."
+     },
+     {
+      "choice": "That it cost less than the backstaff did",
+      "reason": "Cost is not compared."
+     }
+    ]
+   },
+   "content_hash": "811d5426a0ba4b0dcbc046c1fcd87fb3",
+   "word_count": 310,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-A06",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-B01-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In the early nineteen hundreds, Percival Lowell, a wealthy Bostonian who built his own observatory in Flagstaff, Arizona, became convinced that there was another planet out beyond Neptune. His reasoning followed a famous precedent. In the 1840s, small irregularities in the orbit of Uranus had led mathematicians to predict where an unseen planet ought to be, and Neptune was found very near that spot. Lowell believed Uranus still wasn't moving quite the way the calculations said, even after Neptune's pull was included. So he worked out a position for what he called Planet X, and his observatory searched for it, without success, until his death in 1916.\n\nThen, in 1930, a young assistant there named Clyde Tombaugh, comparing pairs of photographs of the same patch of sky taken several nights apart, spotted a faint dot that had shifted. It was a new world, not far from where Lowell had said to look. It was named Pluto, and it looked like a triumph of prediction.\n\nExcept Pluto was too faint. A body heavy enough to tug on Uranus should have been far brighter. Over the following decades, estimates of its mass kept shrinking, and when its moon Charon was discovered in 1978, astronomers could finally weigh it. It came out at a tiny fraction of Earth's mass, much too little to disturb anything.\n\nSo what about the irregularities? In 1989 the Voyager 2 probe flew past Neptune and gave a more accurate figure for its mass, a little lower than the old one. When the astronomer Myles Standish redid the calculations with that number, the leftover wobble in Uranus essentially vanished.\n\nSo the prediction was wrong, and the object was real. Pluto turned up near the predicted spot by coincidence. Tombaugh found it because he searched patiently, plate by plate, not because the mathematics pointed the way.",
+    "passageGroupId": "pg-ddd105a4dcb4a33c1d13eacc2dbcd8df",
+    "prompt": "[Academic Talk — Astronomy] What is the lecture mainly about?",
+    "choices": [
+     "How Neptune was located from the motion of Uranus",
+     "How Charon was found by comparing photographs",
+     "Why finding Pluto did not confirm Lowell's prediction",
+     "Why astronomers later stopped classing Pluto as a planet"
+    ],
+    "correct_answer": "Why finding Pluto did not confirm Lowell's prediction",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "Pluto turned up near Lowell's spot, but 'the prediction was wrong, and the object was real.'",
+    "distractor_rationales": [
+     {
+      "choice": "How Neptune was located from the motion of Uranus",
+      "reason": "Neptune's discovery is the precedent Lowell followed."
+     },
+     {
+      "choice": "How Charon was found by comparing photographs",
+      "reason": "Tombaugh compared photographs to find Pluto, not Charon."
+     },
+     {
+      "choice": "Why astronomers later stopped classing Pluto as a planet",
+      "reason": "Pluto's later status is not discussed."
+     }
+    ]
+   },
+   "content_hash": "1ad28ca20dfe7f83019c62366151950a",
+   "word_count": 306,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-B01",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-B01-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In the early nineteen hundreds, Percival Lowell, a wealthy Bostonian who built his own observatory in Flagstaff, Arizona, became convinced that there was another planet out beyond Neptune. His reasoning followed a famous precedent. In the 1840s, small irregularities in the orbit of Uranus had led mathematicians to predict where an unseen planet ought to be, and Neptune was found very near that spot. Lowell believed Uranus still wasn't moving quite the way the calculations said, even after Neptune's pull was included. So he worked out a position for what he called Planet X, and his observatory searched for it, without success, until his death in 1916.\n\nThen, in 1930, a young assistant there named Clyde Tombaugh, comparing pairs of photographs of the same patch of sky taken several nights apart, spotted a faint dot that had shifted. It was a new world, not far from where Lowell had said to look. It was named Pluto, and it looked like a triumph of prediction.\n\nExcept Pluto was too faint. A body heavy enough to tug on Uranus should have been far brighter. Over the following decades, estimates of its mass kept shrinking, and when its moon Charon was discovered in 1978, astronomers could finally weigh it. It came out at a tiny fraction of Earth's mass, much too little to disturb anything.\n\nSo what about the irregularities? In 1989 the Voyager 2 probe flew past Neptune and gave a more accurate figure for its mass, a little lower than the old one. When the astronomer Myles Standish redid the calculations with that number, the leftover wobble in Uranus essentially vanished.\n\nSo the prediction was wrong, and the object was real. Pluto turned up near the predicted spot by coincidence. Tombaugh found it because he searched patiently, plate by plate, not because the mathematics pointed the way.",
+    "passageGroupId": "pg-ddd105a4dcb4a33c1d13eacc2dbcd8df",
+    "prompt": "[Academic Talk — Astronomy] According to the professor, what first suggested that Pluto could not be Lowell's Planet X?",
+    "choices": [
+     "It lay far from the position Lowell had given",
+     "Its moon pulled it off its expected path",
+     "It moved too slowly between the photographs",
+     "It was much dimmer than a heavy planet would be"
+    ],
+    "correct_answer": "It was much dimmer than a heavy planet would be",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'Pluto was too faint. A body heavy enough to tug on Uranus should have been far brighter.'",
+    "distractor_rationales": [
+     {
+      "choice": "It lay far from the position Lowell had given",
+      "reason": "It was 'not far from where Lowell had said to look'."
+     },
+     {
+      "choice": "Its moon pulled it off its expected path",
+      "reason": "Charon was used to weigh Pluto, not said to move it."
+     },
+     {
+      "choice": "It moved too slowly between the photographs",
+      "reason": "Its speed is not discussed."
+     }
+    ]
+   },
+   "content_hash": "e3aaf0d77248d1d3d2945fdd4a945e2e",
+   "word_count": 306,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-B01",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-B01-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In the early nineteen hundreds, Percival Lowell, a wealthy Bostonian who built his own observatory in Flagstaff, Arizona, became convinced that there was another planet out beyond Neptune. His reasoning followed a famous precedent. In the 1840s, small irregularities in the orbit of Uranus had led mathematicians to predict where an unseen planet ought to be, and Neptune was found very near that spot. Lowell believed Uranus still wasn't moving quite the way the calculations said, even after Neptune's pull was included. So he worked out a position for what he called Planet X, and his observatory searched for it, without success, until his death in 1916.\n\nThen, in 1930, a young assistant there named Clyde Tombaugh, comparing pairs of photographs of the same patch of sky taken several nights apart, spotted a faint dot that had shifted. It was a new world, not far from where Lowell had said to look. It was named Pluto, and it looked like a triumph of prediction.\n\nExcept Pluto was too faint. A body heavy enough to tug on Uranus should have been far brighter. Over the following decades, estimates of its mass kept shrinking, and when its moon Charon was discovered in 1978, astronomers could finally weigh it. It came out at a tiny fraction of Earth's mass, much too little to disturb anything.\n\nSo what about the irregularities? In 1989 the Voyager 2 probe flew past Neptune and gave a more accurate figure for its mass, a little lower than the old one. When the astronomer Myles Standish redid the calculations with that number, the leftover wobble in Uranus essentially vanished.\n\nSo the prediction was wrong, and the object was real. Pluto turned up near the predicted spot by coincidence. Tombaugh found it because he searched patiently, plate by plate, not because the mathematics pointed the way.",
+    "passageGroupId": "pg-ddd105a4dcb4a33c1d13eacc2dbcd8df",
+    "prompt": "[Academic Talk — Astronomy] Why does the professor mention the Voyager 2 flight past Neptune?",
+    "choices": [
+     "To explain how Pluto's mass was finally measured",
+     "To show where the improved mass figure came from",
+     "To suggest that Neptune's orbit was also irregular",
+     "To describe how Tombaugh's photographs were checked"
+    ],
+    "correct_answer": "To show where the improved mass figure came from",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "Voyager 2 'gave a more accurate figure for its mass', and with it the wobble 'essentially vanished.'",
+    "distractor_rationales": [
+     {
+      "choice": "To explain how Pluto's mass was finally measured",
+      "reason": "Pluto was weighed using Charon in 1978."
+     },
+     {
+      "choice": "To suggest that Neptune's orbit was also irregular",
+      "reason": "Neptune's own orbit is not called irregular."
+     },
+     {
+      "choice": "To describe how Tombaugh's photographs were checked",
+      "reason": "Tombaugh's photographs were taken decades earlier."
+     }
+    ]
+   },
+   "content_hash": "477d82cf06d91b85179074bfd454e5a6",
+   "word_count": 306,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-B01",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-B01-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: In the early nineteen hundreds, Percival Lowell, a wealthy Bostonian who built his own observatory in Flagstaff, Arizona, became convinced that there was another planet out beyond Neptune. His reasoning followed a famous precedent. In the 1840s, small irregularities in the orbit of Uranus had led mathematicians to predict where an unseen planet ought to be, and Neptune was found very near that spot. Lowell believed Uranus still wasn't moving quite the way the calculations said, even after Neptune's pull was included. So he worked out a position for what he called Planet X, and his observatory searched for it, without success, until his death in 1916.\n\nThen, in 1930, a young assistant there named Clyde Tombaugh, comparing pairs of photographs of the same patch of sky taken several nights apart, spotted a faint dot that had shifted. It was a new world, not far from where Lowell had said to look. It was named Pluto, and it looked like a triumph of prediction.\n\nExcept Pluto was too faint. A body heavy enough to tug on Uranus should have been far brighter. Over the following decades, estimates of its mass kept shrinking, and when its moon Charon was discovered in 1978, astronomers could finally weigh it. It came out at a tiny fraction of Earth's mass, much too little to disturb anything.\n\nSo what about the irregularities? In 1989 the Voyager 2 probe flew past Neptune and gave a more accurate figure for its mass, a little lower than the old one. When the astronomer Myles Standish redid the calculations with that number, the leftover wobble in Uranus essentially vanished.\n\nSo the prediction was wrong, and the object was real. Pluto turned up near the predicted spot by coincidence. Tombaugh found it because he searched patiently, plate by plate, not because the mathematics pointed the way.",
+    "passageGroupId": "pg-ddd105a4dcb4a33c1d13eacc2dbcd8df",
+    "prompt": "[Academic Talk — Astronomy] What does the professor imply about where Pluto was found?",
+    "choices": [
+     "Its nearness to Lowell's spot was a coincidence",
+     "It confirmed that Lowell's calculations were sound",
+     "It showed that Pluto was heavier than it looked",
+     "It was where the wobble in Uranus was strongest"
+    ],
+    "correct_answer": "Its nearness to Lowell's spot was a coincidence",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "With the corrected Neptune mass the wobble 'essentially vanished', so Pluto 'turned up near the predicted spot by coincidence.'",
+    "distractor_rationales": [
+     {
+      "choice": "It confirmed that Lowell's calculations were sound",
+      "reason": "'The prediction was wrong.'"
+     },
+     {
+      "choice": "It showed that Pluto was heavier than it looked",
+      "reason": "Estimates of its mass 'kept shrinking'."
+     },
+     {
+      "choice": "It was where the wobble in Uranus was strongest",
+      "reason": "The wobble is in Uranus's orbit, not a place in the sky where Pluto sat."
+     }
+    ]
+   },
+   "content_hash": "d2fc958145f30e0ebcf66e878a79e29d",
+   "word_count": 306,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-B01",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-B02-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Here's an experiment from agricultural engineering, of all places. In the late eighteen hundreds, a French engineer named Max Ringelmann had people pull on a rope attached to a gauge that measured force. He tested them alone and in groups of different sizes. You might expect eight people to pull eight times as hard as one. They didn't. As the groups got bigger, the average pull per person went down, and the full group of eight fell well short of what the same eight people produced one at a time.\n\nRingelmann's own explanation was mostly mechanical. People in a group don't pull at exactly the same instant, or in exactly the same direction, so some of the force is wasted. That's a coordination problem, and it says nothing about anyone's character.\n\nThe finding sat largely ignored for decades. Then, in 1974, a team led by Alan Ingham repeated the rope study with a clever change. Participants were blindfolded and told that other people were pulling on the rope behind them. In fact, those others were assistants who only pretended to pull. So each participant was really pulling alone, and there was no timing to get wrong. And yet their pull still dropped when they believed they were part of a group.\n\nThat's the turn. Some of Ringelmann's loss was coordination, just as he said. But some of it was people quietly easing off when their own contribution couldn't be picked out. A few years later, Bibb Latané and his colleagues found the same pattern with people clapping and shouting as loudly as possible, and they gave it a name: social loafing.\n\nLater studies found that the effect shrinks when each person's output can be identified, or when people care about the task. So Ringelmann wasn't wrong. He found the half of the explanation that didn't depend on anyone's effort.",
+    "passageGroupId": "pg-91de1189e10c13e13920f432b6b6536d",
+    "prompt": "[Academic Talk — Social Psychology] What is the lecture mainly about?",
+    "choices": [
+     "Why rope-pulling teams practice pulling in time",
+     "How Ringelmann built a gauge to measure force",
+     "Why people try harder when they know others are watching",
+     "How a second cause was found for weaker group pulling"
+    ],
+    "correct_answer": "How a second cause was found for weaker group pulling",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "The 1974 study showed that besides coordination, 'some of it was people quietly easing off'.",
+    "distractor_rationales": [
+     {
+      "choice": "Why rope-pulling teams practice pulling in time",
+      "reason": "Team training is not discussed."
+     },
+     {
+      "choice": "How Ringelmann built a gauge to measure force",
+      "reason": "The gauge is mentioned only as Ringelmann's tool."
+     },
+     {
+      "choice": "Why people try harder when they know others are watching",
+      "reason": "Being watched is not tested; identifiability comes up only at the end."
+     }
+    ]
+   },
+   "content_hash": "c2c57217c48f4396369a47eec5f7f7a6",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-B02",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-B02-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Here's an experiment from agricultural engineering, of all places. In the late eighteen hundreds, a French engineer named Max Ringelmann had people pull on a rope attached to a gauge that measured force. He tested them alone and in groups of different sizes. You might expect eight people to pull eight times as hard as one. They didn't. As the groups got bigger, the average pull per person went down, and the full group of eight fell well short of what the same eight people produced one at a time.\n\nRingelmann's own explanation was mostly mechanical. People in a group don't pull at exactly the same instant, or in exactly the same direction, so some of the force is wasted. That's a coordination problem, and it says nothing about anyone's character.\n\nThe finding sat largely ignored for decades. Then, in 1974, a team led by Alan Ingham repeated the rope study with a clever change. Participants were blindfolded and told that other people were pulling on the rope behind them. In fact, those others were assistants who only pretended to pull. So each participant was really pulling alone, and there was no timing to get wrong. And yet their pull still dropped when they believed they were part of a group.\n\nThat's the turn. Some of Ringelmann's loss was coordination, just as he said. But some of it was people quietly easing off when their own contribution couldn't be picked out. A few years later, Bibb Latané and his colleagues found the same pattern with people clapping and shouting as loudly as possible, and they gave it a name: social loafing.\n\nLater studies found that the effect shrinks when each person's output can be identified, or when people care about the task. So Ringelmann wasn't wrong. He found the half of the explanation that didn't depend on anyone's effort.",
+    "passageGroupId": "pg-91de1189e10c13e13920f432b6b6536d",
+    "prompt": "[Academic Talk — Social Psychology] According to the professor, what did the participants in the 1974 study not know?",
+    "choices": [
+     "That a gauge was recording how hard they pulled",
+     "That the others on the rope were not really pulling",
+     "That Ringelmann had run a similar test long before",
+     "That other people would be able to watch them"
+    ],
+    "correct_answer": "That the others on the rope were not really pulling",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "The others 'were assistants who only pretended to pull.'",
+    "distractor_rationales": [
+     {
+      "choice": "That a gauge was recording how hard they pulled",
+      "reason": "Nothing says the gauge was hidden from them."
+     },
+     {
+      "choice": "That Ringelmann had run a similar test long before",
+      "reason": "What they knew of Ringelmann is not discussed."
+     },
+     {
+      "choice": "That other people would be able to watch them",
+      "reason": "They were blindfolded; being watched is not mentioned."
+     }
+    ]
+   },
+   "content_hash": "99a20089013b17f047569dbf78972d35",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-B02",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-B02-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Here's an experiment from agricultural engineering, of all places. In the late eighteen hundreds, a French engineer named Max Ringelmann had people pull on a rope attached to a gauge that measured force. He tested them alone and in groups of different sizes. You might expect eight people to pull eight times as hard as one. They didn't. As the groups got bigger, the average pull per person went down, and the full group of eight fell well short of what the same eight people produced one at a time.\n\nRingelmann's own explanation was mostly mechanical. People in a group don't pull at exactly the same instant, or in exactly the same direction, so some of the force is wasted. That's a coordination problem, and it says nothing about anyone's character.\n\nThe finding sat largely ignored for decades. Then, in 1974, a team led by Alan Ingham repeated the rope study with a clever change. Participants were blindfolded and told that other people were pulling on the rope behind them. In fact, those others were assistants who only pretended to pull. So each participant was really pulling alone, and there was no timing to get wrong. And yet their pull still dropped when they believed they were part of a group.\n\nThat's the turn. Some of Ringelmann's loss was coordination, just as he said. But some of it was people quietly easing off when their own contribution couldn't be picked out. A few years later, Bibb Latané and his colleagues found the same pattern with people clapping and shouting as loudly as possible, and they gave it a name: social loafing.\n\nLater studies found that the effect shrinks when each person's output can be identified, or when people care about the task. So Ringelmann wasn't wrong. He found the half of the explanation that didn't depend on anyone's effort.",
+    "passageGroupId": "pg-91de1189e10c13e13920f432b6b6536d",
+    "prompt": "[Academic Talk — Social Psychology] Why does the professor say that coordination 'says nothing about anyone's character'?",
+    "choices": [
+     "To make clear that this account blames no one's effort",
+     "To suggest that Ringelmann distrusted his subjects",
+     "To explain why the finding was then ignored for decades",
+     "To argue that the loss came mainly from laziness"
+    ],
+    "correct_answer": "To make clear that this account blames no one's effort",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "Wasted force from timing is a mechanical problem, unlike the later finding about people 'easing off'.",
+    "distractor_rationales": [
+     {
+      "choice": "To suggest that Ringelmann distrusted his subjects",
+      "reason": "No distrust is attributed to Ringelmann."
+     },
+     {
+      "choice": "To explain why the finding was then ignored for decades",
+      "reason": "No reason is given for the decades of neglect."
+     },
+     {
+      "choice": "To argue that the loss came mainly from laziness",
+      "reason": "Coordination is the explanation that does not involve effort."
+     }
+    ]
+   },
+   "content_hash": "b66a4326f9ef45d19214e31037a31cc4",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-B02",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-B02-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Here's an experiment from agricultural engineering, of all places. In the late eighteen hundreds, a French engineer named Max Ringelmann had people pull on a rope attached to a gauge that measured force. He tested them alone and in groups of different sizes. You might expect eight people to pull eight times as hard as one. They didn't. As the groups got bigger, the average pull per person went down, and the full group of eight fell well short of what the same eight people produced one at a time.\n\nRingelmann's own explanation was mostly mechanical. People in a group don't pull at exactly the same instant, or in exactly the same direction, so some of the force is wasted. That's a coordination problem, and it says nothing about anyone's character.\n\nThe finding sat largely ignored for decades. Then, in 1974, a team led by Alan Ingham repeated the rope study with a clever change. Participants were blindfolded and told that other people were pulling on the rope behind them. In fact, those others were assistants who only pretended to pull. So each participant was really pulling alone, and there was no timing to get wrong. And yet their pull still dropped when they believed they were part of a group.\n\nThat's the turn. Some of Ringelmann's loss was coordination, just as he said. But some of it was people quietly easing off when their own contribution couldn't be picked out. A few years later, Bibb Latané and his colleagues found the same pattern with people clapping and shouting as loudly as possible, and they gave it a name: social loafing.\n\nLater studies found that the effect shrinks when each person's output can be identified, or when people care about the task. So Ringelmann wasn't wrong. He found the half of the explanation that didn't depend on anyone's effort.",
+    "passageGroupId": "pg-91de1189e10c13e13920f432b6b6536d",
+    "prompt": "[Academic Talk — Social Psychology] What is the professor's view of Ringelmann's explanation?",
+    "choices": [
+     "It covered only part of what he had observed",
+     "It held for small groups but not for groups of eight",
+     "It explained the lost effort but not the poor timing",
+     "It held for rope pulling but not for clapping"
+    ],
+    "correct_answer": "It covered only part of what he had observed",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'Some of Ringelmann's loss was coordination, just as he said. But some of it was people quietly easing off.'",
+    "distractor_rationales": [
+     {
+      "choice": "It held for small groups but not for groups of eight",
+      "reason": "The professor does not split his result by group size."
+     },
+     {
+      "choice": "It explained the lost effort but not the poor timing",
+      "reason": "His explanation was the timing; effort was the part he missed."
+     },
+     {
+      "choice": "It held for rope pulling but not for clapping",
+      "reason": "Clapping is not tied to his explanation."
+     }
+    ]
+   },
+   "content_hash": "ed2d3a7d521f8d5d508ba480306860c1",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-B02",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-B03-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: There's a story historians of cloth like to tell: England tried to shut out Indian cotton, and the ban backfired. It's a neat story, and neat stories deserve suspicion, so let's test it.\n\nIn the late sixteen hundreds, England fell in love with a fabric from India. The East India Company was shipping in calicoes, light cotton cloth printed or painted in bright colors that didn't wash out, and nothing woven in Europe could match them. They were cheap and washable, and soon they were everywhere: dresses, curtains, bed covers.\n\nThe people losing out were England's wool and silk weavers, the country's oldest protected trades. They petitioned Parliament, and they rioted. In London around 1719 and 1720, weavers attacked women in the street for wearing calico, by some accounts tearing the dresses off them.\n\nParliament responded twice. A law of 1700 banned printed and painted calicoes from India for use at home. But notice what it left out. Plain white cotton cloth could still come in. So English workshops started buying the plain cloth and printing it themselves. Within a few years, a ban on Indian prints had helped create an English printing trade. So the weavers pushed again, and in 1721 Parliament banned the wearing and use of printed cotton altogether, with exceptions. Even that left room. Cloth woven with linen threads running one way and cotton the other was eventually ruled acceptable, and English producers kept working with cotton.\n\nThe bans weren't fully lifted until 1774. Some historians go further and link those decades of trying to match Indian cloth to the spinning machines of the 1760s and 70s. That larger claim is harder to prove.\n\nBut the core of the story holds up. The wool weavers won nearly every vote, and the law they fought for planted a cotton printing industry on English soil.",
+    "passageGroupId": "pg-cdbcec10d092c726ff14b2bc27ecd299",
+    "prompt": "[Academic Talk — Textile History] What is the main purpose of the lecture?",
+    "choices": [
+     "To explain how Indian printers made their colors last",
+     "To show how measures meant to protect one trade aided a rival",
+     "To describe the riots that brought the calico trade to an end",
+     "To argue that Parliament largely ignored the wool weavers"
+    ],
+    "correct_answer": "To show how measures meant to protect one trade aided a rival",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "The 1700 ban on Indian prints left plain cloth legal, and 'had helped create an English printing trade.'",
+    "distractor_rationales": [
+     {
+      "choice": "To explain how Indian printers made their colors last",
+      "reason": "How the colors were made is not explained."
+     },
+     {
+      "choice": "To describe the riots that brought the calico trade to an end",
+      "reason": "The riots came before the laws, and cotton kept going."
+     },
+     {
+      "choice": "To argue that Parliament largely ignored the wool weavers",
+      "reason": "The weavers 'won nearly every vote'."
+     }
+    ]
+   },
+   "content_hash": "f45a9d6ce833748b5f0410b6b1d98d53",
+   "word_count": 307,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-B03",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-B03-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: There's a story historians of cloth like to tell: England tried to shut out Indian cotton, and the ban backfired. It's a neat story, and neat stories deserve suspicion, so let's test it.\n\nIn the late sixteen hundreds, England fell in love with a fabric from India. The East India Company was shipping in calicoes, light cotton cloth printed or painted in bright colors that didn't wash out, and nothing woven in Europe could match them. They were cheap and washable, and soon they were everywhere: dresses, curtains, bed covers.\n\nThe people losing out were England's wool and silk weavers, the country's oldest protected trades. They petitioned Parliament, and they rioted. In London around 1719 and 1720, weavers attacked women in the street for wearing calico, by some accounts tearing the dresses off them.\n\nParliament responded twice. A law of 1700 banned printed and painted calicoes from India for use at home. But notice what it left out. Plain white cotton cloth could still come in. So English workshops started buying the plain cloth and printing it themselves. Within a few years, a ban on Indian prints had helped create an English printing trade. So the weavers pushed again, and in 1721 Parliament banned the wearing and use of printed cotton altogether, with exceptions. Even that left room. Cloth woven with linen threads running one way and cotton the other was eventually ruled acceptable, and English producers kept working with cotton.\n\nThe bans weren't fully lifted until 1774. Some historians go further and link those decades of trying to match Indian cloth to the spinning machines of the 1760s and 70s. That larger claim is harder to prove.\n\nBut the core of the story holds up. The wool weavers won nearly every vote, and the law they fought for planted a cotton printing industry on English soil.",
+    "passageGroupId": "pg-cdbcec10d092c726ff14b2bc27ecd299",
+    "prompt": "[Academic Talk — Textile History] According to the professor, what did the law of 1700 still allow?",
+    "choices": [
+     "Bringing in plain white cotton cloth",
+     "Importing painted cloth for use in curtains",
+     "Weaving cloth with silk one way and cotton the other",
+     "Printing Indian patterns onto English wool"
+    ],
+    "correct_answer": "Bringing in plain white cotton cloth",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'Plain white cotton cloth could still come in.'",
+    "distractor_rationales": [
+     {
+      "choice": "Importing painted cloth for use in curtains",
+      "reason": "Painted calicoes for home use were banned."
+     },
+     {
+      "choice": "Weaving cloth with silk one way and cotton the other",
+      "reason": "The mixed cloth later allowed was linen and cotton."
+     },
+     {
+      "choice": "Printing Indian patterns onto English wool",
+      "reason": "Printing on wool is not mentioned."
+     }
+    ]
+   },
+   "content_hash": "dca3a94e760062b1ec6fffdd6beaae4d",
+   "word_count": 307,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-B03",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-B03-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: There's a story historians of cloth like to tell: England tried to shut out Indian cotton, and the ban backfired. It's a neat story, and neat stories deserve suspicion, so let's test it.\n\nIn the late sixteen hundreds, England fell in love with a fabric from India. The East India Company was shipping in calicoes, light cotton cloth printed or painted in bright colors that didn't wash out, and nothing woven in Europe could match them. They were cheap and washable, and soon they were everywhere: dresses, curtains, bed covers.\n\nThe people losing out were England's wool and silk weavers, the country's oldest protected trades. They petitioned Parliament, and they rioted. In London around 1719 and 1720, weavers attacked women in the street for wearing calico, by some accounts tearing the dresses off them.\n\nParliament responded twice. A law of 1700 banned printed and painted calicoes from India for use at home. But notice what it left out. Plain white cotton cloth could still come in. So English workshops started buying the plain cloth and printing it themselves. Within a few years, a ban on Indian prints had helped create an English printing trade. So the weavers pushed again, and in 1721 Parliament banned the wearing and use of printed cotton altogether, with exceptions. Even that left room. Cloth woven with linen threads running one way and cotton the other was eventually ruled acceptable, and English producers kept working with cotton.\n\nThe bans weren't fully lifted until 1774. Some historians go further and link those decades of trying to match Indian cloth to the spinning machines of the 1760s and 70s. That larger claim is harder to prove.\n\nBut the core of the story holds up. The wool weavers won nearly every vote, and the law they fought for planted a cotton printing industry on English soil.",
+    "passageGroupId": "pg-cdbcec10d092c726ff14b2bc27ecd299",
+    "prompt": "[Academic Talk — Textile History] Why does the professor say 'But notice what it left out'?",
+    "choices": [
+     "To point to a gap that worked against the law's aim",
+     "To suggest that Parliament misread the weavers' petition",
+     "To introduce the exceptions written into the 1721 law",
+     "To show that the 1700 law was never enforced"
+    ],
+    "correct_answer": "To point to a gap that worked against the law's aim",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "Plain cloth could still come in, so English workshops printed it, helping 'create an English printing trade'.",
+    "distractor_rationales": [
+     {
+      "choice": "To suggest that Parliament misread the weavers' petition",
+      "reason": "The petition's wording is not discussed."
+     },
+     {
+      "choice": "To introduce the exceptions written into the 1721 law",
+      "reason": "The 1721 exceptions come later and are a separate law."
+     },
+     {
+      "choice": "To show that the 1700 law was never enforced",
+      "reason": "Enforcement is not discussed."
+     }
+    ]
+   },
+   "content_hash": "36ac67036ff0de3c6c4b91d1df5db3ce",
+   "word_count": 307,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-B03",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-B03-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: There's a story historians of cloth like to tell: England tried to shut out Indian cotton, and the ban backfired. It's a neat story, and neat stories deserve suspicion, so let's test it.\n\nIn the late sixteen hundreds, England fell in love with a fabric from India. The East India Company was shipping in calicoes, light cotton cloth printed or painted in bright colors that didn't wash out, and nothing woven in Europe could match them. They were cheap and washable, and soon they were everywhere: dresses, curtains, bed covers.\n\nThe people losing out were England's wool and silk weavers, the country's oldest protected trades. They petitioned Parliament, and they rioted. In London around 1719 and 1720, weavers attacked women in the street for wearing calico, by some accounts tearing the dresses off them.\n\nParliament responded twice. A law of 1700 banned printed and painted calicoes from India for use at home. But notice what it left out. Plain white cotton cloth could still come in. So English workshops started buying the plain cloth and printing it themselves. Within a few years, a ban on Indian prints had helped create an English printing trade. So the weavers pushed again, and in 1721 Parliament banned the wearing and use of printed cotton altogether, with exceptions. Even that left room. Cloth woven with linen threads running one way and cotton the other was eventually ruled acceptable, and English producers kept working with cotton.\n\nThe bans weren't fully lifted until 1774. Some historians go further and link those decades of trying to match Indian cloth to the spinning machines of the 1760s and 70s. That larger claim is harder to prove.\n\nBut the core of the story holds up. The wool weavers won nearly every vote, and the law they fought for planted a cotton printing industry on English soil.",
+    "passageGroupId": "pg-cdbcec10d092c726ff14b2bc27ecd299",
+    "prompt": "[Academic Talk — Textile History] What can be inferred about the wool weavers' campaign?",
+    "choices": [
+     "It won the laws but not the outcome it sought",
+     "It won the first law but not the second",
+     "It won public sympathy but not the laws it wanted",
+     "It won over silk weavers but not wool weavers"
+    ],
+    "correct_answer": "It won the laws but not the outcome it sought",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "They 'won nearly every vote', yet the 1700 law 'had helped create an English printing trade' in cotton.",
+    "distractor_rationales": [
+     {
+      "choice": "It won the first law but not the second",
+      "reason": "Parliament passed both the 1700 and the 1721 laws."
+     },
+     {
+      "choice": "It won public sympathy but not the laws it wanted",
+      "reason": "They got the laws; public feeling is not what they lacked."
+     },
+     {
+      "choice": "It won over silk weavers but not wool weavers",
+      "reason": "Wool and silk weavers campaigned together."
+     }
+    ]
+   },
+   "content_hash": "af3707e79f68b3c629668c9f0c544124",
+   "word_count": 307,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-B03",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-B04-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: If you walk through a salt marsh in New England today, there's a fair chance you'll run into a wall of tall reeds, four meters high in places, so dense you can't see through it. That's Phragmites, the common reed. Over the twentieth century it spread across large stretches of Atlantic coast marsh, crowding out the shorter grasses and rushes, and managers have spent a great deal of money spraying, burning and digging it out.\n\nFor a long time, the puzzle was why. Phragmites isn't new to North America. Its remains turn up in marsh peat that's thousands of years old, so it was here long before Europeans arrived. The usual explanation, then, was disturbance: ditching, road building, runoff carrying fertilizer. A modest native plant, the thinking went, had simply been handed conditions in which it could run riot.\n\nThen, in 2002, a researcher named Kristin Saltonstall looked at the plant's DNA, including DNA from herbarium specimens, pressed plants collected over the previous century and a half. She found that the reed taking over the marshes was mostly not the native plant at all. It was a lineage from Europe and Asia that had probably arrived in the nineteenth century, perhaps in ships' ballast, and spread from the coast inland. In many places it had replaced the native reed almost entirely.\n\nSo the old view was half right. Phragmites really was ancient here, and disturbance probably did help the newcomer spread. But the plant doing the spreading was an invader.\n\nAnd that matters on the ground. The native type still survives in scattered patches. It tends to be less aggressive, and often has reddish, glossier stems. A crew that sprays every reed bed it comes across may be wiping out the rarer plant along with the one it means to remove.",
+    "passageGroupId": "pg-b7bcd4ee50de203a5db7577f31cfc38c",
+    "prompt": "[Academic Talk — Wetland Ecology] What is the lecture mainly about?",
+    "choices": [
+     "Why burning often controls reeds better than spraying",
+     "How ditching and runoff damage coastal marshes",
+     "A finding that the spreading reed was largely introduced",
+     "How herbarium collections are gathered and stored"
+    ],
+    "correct_answer": "A finding that the spreading reed was largely introduced",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "Saltonstall found the reed 'was mostly not the native plant at all.'",
+    "distractor_rationales": [
+     {
+      "choice": "Why burning often controls reeds better than spraying",
+      "reason": "Control methods are listed, not compared."
+     },
+     {
+      "choice": "How ditching and runoff damage coastal marshes",
+      "reason": "Disturbance is part of the old explanation, not the focus."
+     },
+     {
+      "choice": "How herbarium collections are gathered and stored",
+      "reason": "Herbarium specimens are mentioned only as a source of DNA."
+     }
+    ]
+   },
+   "content_hash": "4d03e933de957e5cdf1665530e4a9d81",
+   "word_count": 301,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-B04",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-B04-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: If you walk through a salt marsh in New England today, there's a fair chance you'll run into a wall of tall reeds, four meters high in places, so dense you can't see through it. That's Phragmites, the common reed. Over the twentieth century it spread across large stretches of Atlantic coast marsh, crowding out the shorter grasses and rushes, and managers have spent a great deal of money spraying, burning and digging it out.\n\nFor a long time, the puzzle was why. Phragmites isn't new to North America. Its remains turn up in marsh peat that's thousands of years old, so it was here long before Europeans arrived. The usual explanation, then, was disturbance: ditching, road building, runoff carrying fertilizer. A modest native plant, the thinking went, had simply been handed conditions in which it could run riot.\n\nThen, in 2002, a researcher named Kristin Saltonstall looked at the plant's DNA, including DNA from herbarium specimens, pressed plants collected over the previous century and a half. She found that the reed taking over the marshes was mostly not the native plant at all. It was a lineage from Europe and Asia that had probably arrived in the nineteenth century, perhaps in ships' ballast, and spread from the coast inland. In many places it had replaced the native reed almost entirely.\n\nSo the old view was half right. Phragmites really was ancient here, and disturbance probably did help the newcomer spread. But the plant doing the spreading was an invader.\n\nAnd that matters on the ground. The native type still survives in scattered patches. It tends to be less aggressive, and often has reddish, glossier stems. A crew that sprays every reed bed it comes across may be wiping out the rarer plant along with the one it means to remove.",
+    "passageGroupId": "pg-b7bcd4ee50de203a5db7577f31cfc38c",
+    "prompt": "[Academic Talk — Wetland Ecology] According to the professor, how was the reed's spread usually explained before 2002?",
+    "choices": [
+     "A plant from Europe had arrived in ballast",
+     "Human changes to the marshes had favored it",
+     "It had escaped from gardens along the coast",
+     "Disease had killed off the shorter native grasses"
+    ],
+    "correct_answer": "Human changes to the marshes had favored it",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'The usual explanation, then, was disturbance: ditching, road building, runoff.'",
+    "distractor_rationales": [
+     {
+      "choice": "A plant from Europe had arrived in ballast",
+      "reason": "Arrival in ballast is part of the 2002 finding."
+     },
+     {
+      "choice": "It had escaped from gardens along the coast",
+      "reason": "Gardens are not mentioned."
+     },
+     {
+      "choice": "Disease had killed off the shorter native grasses",
+      "reason": "The grasses were crowded out, not killed by disease."
+     }
+    ]
+   },
+   "content_hash": "0ae48fc6bf770969f7d73fa6cecc960b",
+   "word_count": 301,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-B04",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-B04-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: If you walk through a salt marsh in New England today, there's a fair chance you'll run into a wall of tall reeds, four meters high in places, so dense you can't see through it. That's Phragmites, the common reed. Over the twentieth century it spread across large stretches of Atlantic coast marsh, crowding out the shorter grasses and rushes, and managers have spent a great deal of money spraying, burning and digging it out.\n\nFor a long time, the puzzle was why. Phragmites isn't new to North America. Its remains turn up in marsh peat that's thousands of years old, so it was here long before Europeans arrived. The usual explanation, then, was disturbance: ditching, road building, runoff carrying fertilizer. A modest native plant, the thinking went, had simply been handed conditions in which it could run riot.\n\nThen, in 2002, a researcher named Kristin Saltonstall looked at the plant's DNA, including DNA from herbarium specimens, pressed plants collected over the previous century and a half. She found that the reed taking over the marshes was mostly not the native plant at all. It was a lineage from Europe and Asia that had probably arrived in the nineteenth century, perhaps in ships' ballast, and spread from the coast inland. In many places it had replaced the native reed almost entirely.\n\nSo the old view was half right. Phragmites really was ancient here, and disturbance probably did help the newcomer spread. But the plant doing the spreading was an invader.\n\nAnd that matters on the ground. The native type still survives in scattered patches. It tends to be less aggressive, and often has reddish, glossier stems. A crew that sprays every reed bed it comes across may be wiping out the rarer plant along with the one it means to remove.",
+    "passageGroupId": "pg-b7bcd4ee50de203a5db7577f31cfc38c",
+    "prompt": "[Academic Talk — Wetland Ecology] Why does the professor mention marsh peat that is thousands of years old?",
+    "choices": [
+     "To explain how the herbarium specimens were dated",
+     "To show where Saltonstall found the foreign lineage",
+     "To suggest that the reed has begun spreading into older marshes",
+     "To show that the reed grew there before European settlement"
+    ],
+    "correct_answer": "To show that the reed grew there before European settlement",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "The remains show 'it was here long before Europeans arrived.'",
+    "distractor_rationales": [
+     {
+      "choice": "To explain how the herbarium specimens were dated",
+      "reason": "The specimens are pressed plants from the last 150 years."
+     },
+     {
+      "choice": "To show where Saltonstall found the foreign lineage",
+      "reason": "Saltonstall worked with DNA, including herbarium plants."
+     },
+     {
+      "choice": "To suggest that the reed has begun spreading into older marshes",
+      "reason": "Older marshes are not mentioned."
+     }
+    ]
+   },
+   "content_hash": "e5366ff6f75dfa72c10cc104290702c1",
+   "word_count": 301,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-B04",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-B04-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: If you walk through a salt marsh in New England today, there's a fair chance you'll run into a wall of tall reeds, four meters high in places, so dense you can't see through it. That's Phragmites, the common reed. Over the twentieth century it spread across large stretches of Atlantic coast marsh, crowding out the shorter grasses and rushes, and managers have spent a great deal of money spraying, burning and digging it out.\n\nFor a long time, the puzzle was why. Phragmites isn't new to North America. Its remains turn up in marsh peat that's thousands of years old, so it was here long before Europeans arrived. The usual explanation, then, was disturbance: ditching, road building, runoff carrying fertilizer. A modest native plant, the thinking went, had simply been handed conditions in which it could run riot.\n\nThen, in 2002, a researcher named Kristin Saltonstall looked at the plant's DNA, including DNA from herbarium specimens, pressed plants collected over the previous century and a half. She found that the reed taking over the marshes was mostly not the native plant at all. It was a lineage from Europe and Asia that had probably arrived in the nineteenth century, perhaps in ships' ballast, and spread from the coast inland. In many places it had replaced the native reed almost entirely.\n\nSo the old view was half right. Phragmites really was ancient here, and disturbance probably did help the newcomer spread. But the plant doing the spreading was an invader.\n\nAnd that matters on the ground. The native type still survives in scattered patches. It tends to be less aggressive, and often has reddish, glossier stems. A crew that sprays every reed bed it comes across may be wiping out the rarer plant along with the one it means to remove.",
+    "passageGroupId": "pg-b7bcd4ee50de203a5db7577f31cfc38c",
+    "prompt": "[Academic Talk — Wetland Ecology] What does the professor imply about crews that spray every reed bed they find?",
+    "choices": [
+     "They could be spreading the reed to new marshes",
+     "They may be using too little herbicide to work",
+     "They could be removing a plant worth keeping",
+     "They might do better to burn the reeds instead"
+    ],
+    "correct_answer": "They could be removing a plant worth keeping",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "Spraying everything 'may be wiping out the rarer plant along with the one it means to remove.'",
+    "distractor_rationales": [
+     {
+      "choice": "They could be spreading the reed to new marshes",
+      "reason": "Spreading the reed by spraying is not suggested."
+     },
+     {
+      "choice": "They may be using too little herbicide to work",
+      "reason": "The amount of herbicide is not discussed."
+     },
+     {
+      "choice": "They might do better to burn the reeds instead",
+      "reason": "Burning is listed as one method; it is not recommended over spraying."
+     }
+    ]
+   },
+   "content_hash": "b320b1b641507d00cf823edba8c8f416",
+   "word_count": 301,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-B04",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-B05-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Most textbooks that cover Roman engineering include the same picture: a cross-section of a Roman road, built up like a layer cake. At the bottom, large flat stones. Above that, rubble bound with lime. Then a layer of finer material, crushed brick or tile mixed with lime. And on top, fitted paving stones, curved so rain runs off. Some versions even give a Latin name for each layer. It looks authoritative, and it's often said to come from the Roman architect Vitruvius.\n\nHere's the problem. Vitruvius does describe those layers, with those names, but he's describing how to make a floor. A paved floor inside a building, not a road. Later writers, especially a French scholar named Nicolas Bergier, who published a long history of Roman roads in 1622, seem to have taken the floor recipe and applied it to highways. And it stuck.\n\nWhen archaeologists actually dig through Roman roads, they rarely find those four neat layers. What turns up depends on the place. Many roads, especially out in the provinces, were surfaced with gravel, rammed hard over a base of whatever was available locally: sand, chalk, flint, waste from iron working, even timber laid across soft ground. The Romans seem to have drawn this distinction themselves. The historian Livy describes officials in the second century BC hiring contractors to pave the streets of Rome with stone and to surface roads outside the city with gravel.\n\nSo the stone-paved highway is real, but it's mostly found near towns and on the busiest routes. The road a traveler walked for most of a journey was probably packed gravel, with a raised, well-drained middle.\n\nThe layer cake isn't a fabrication. It's a floor that got promoted. And what made Roman roads last had less to do with a fixed recipe than with using local material well and keeping water out.",
+    "passageGroupId": "pg-a3d047815cdb1abcf4e03626e97ecbaa",
+    "prompt": "[Academic Talk — Ancient Road Materials] What is the main purpose of the lecture?",
+    "choices": [
+     "To explain why Roman floors lasted longer than roads",
+     "To describe how Livy's officials chose the routes of roads",
+     "To correct a familiar image of how Roman roads were built",
+     "To compare Roman roads with those of seventeenth-century France"
+    ],
+    "correct_answer": "To correct a familiar image of how Roman roads were built",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "The textbook cross-section comes from a floor; real roads 'rarely' show the four layers.",
+    "distractor_rationales": [
+     {
+      "choice": "To explain why Roman floors lasted longer than roads",
+      "reason": "Floors and roads are not compared for durability."
+     },
+     {
+      "choice": "To describe how Livy's officials chose the routes of roads",
+      "reason": "Livy's officials hired contractors; routes are not discussed."
+     },
+     {
+      "choice": "To compare Roman roads with those of seventeenth-century France",
+      "reason": "Bergier wrote about Roman roads, not French ones."
+     }
+    ]
+   },
+   "content_hash": "117c3b478a93f6fcdaecc0423b924487",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-B05",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-B05-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Most textbooks that cover Roman engineering include the same picture: a cross-section of a Roman road, built up like a layer cake. At the bottom, large flat stones. Above that, rubble bound with lime. Then a layer of finer material, crushed brick or tile mixed with lime. And on top, fitted paving stones, curved so rain runs off. Some versions even give a Latin name for each layer. It looks authoritative, and it's often said to come from the Roman architect Vitruvius.\n\nHere's the problem. Vitruvius does describe those layers, with those names, but he's describing how to make a floor. A paved floor inside a building, not a road. Later writers, especially a French scholar named Nicolas Bergier, who published a long history of Roman roads in 1622, seem to have taken the floor recipe and applied it to highways. And it stuck.\n\nWhen archaeologists actually dig through Roman roads, they rarely find those four neat layers. What turns up depends on the place. Many roads, especially out in the provinces, were surfaced with gravel, rammed hard over a base of whatever was available locally: sand, chalk, flint, waste from iron working, even timber laid across soft ground. The Romans seem to have drawn this distinction themselves. The historian Livy describes officials in the second century BC hiring contractors to pave the streets of Rome with stone and to surface roads outside the city with gravel.\n\nSo the stone-paved highway is real, but it's mostly found near towns and on the busiest routes. The road a traveler walked for most of a journey was probably packed gravel, with a raised, well-drained middle.\n\nThe layer cake isn't a fabrication. It's a floor that got promoted. And what made Roman roads last had less to do with a fixed recipe than with using local material well and keeping water out.",
+    "passageGroupId": "pg-a3d047815cdb1abcf4e03626e97ecbaa",
+    "prompt": "[Academic Talk — Ancient Road Materials] According to the professor, what was Vitruvius actually describing?",
+    "choices": [
+     "The layers beneath the main roads near Rome",
+     "The use of gravel on roads in the provinces",
+     "The way rainwater was drained from city streets",
+     "The building of a paved floor inside a structure"
+    ],
+    "correct_answer": "The building of a paved floor inside a structure",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'He's describing how to make a floor. A paved floor inside a building, not a road.'",
+    "distractor_rationales": [
+     {
+      "choice": "The layers beneath the main roads near Rome",
+      "reason": "That is how later writers applied his layers."
+     },
+     {
+      "choice": "The use of gravel on roads in the provinces",
+      "reason": "Gravel roads come from excavation and from Livy."
+     },
+     {
+      "choice": "The way rainwater was drained from city streets",
+      "reason": "Drainage is not linked to Vitruvius."
+     }
+    ]
+   },
+   "content_hash": "50c8164ce3eb2e97c201df53c147c888",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-B05",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-B05-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Most textbooks that cover Roman engineering include the same picture: a cross-section of a Roman road, built up like a layer cake. At the bottom, large flat stones. Above that, rubble bound with lime. Then a layer of finer material, crushed brick or tile mixed with lime. And on top, fitted paving stones, curved so rain runs off. Some versions even give a Latin name for each layer. It looks authoritative, and it's often said to come from the Roman architect Vitruvius.\n\nHere's the problem. Vitruvius does describe those layers, with those names, but he's describing how to make a floor. A paved floor inside a building, not a road. Later writers, especially a French scholar named Nicolas Bergier, who published a long history of Roman roads in 1622, seem to have taken the floor recipe and applied it to highways. And it stuck.\n\nWhen archaeologists actually dig through Roman roads, they rarely find those four neat layers. What turns up depends on the place. Many roads, especially out in the provinces, were surfaced with gravel, rammed hard over a base of whatever was available locally: sand, chalk, flint, waste from iron working, even timber laid across soft ground. The Romans seem to have drawn this distinction themselves. The historian Livy describes officials in the second century BC hiring contractors to pave the streets of Rome with stone and to surface roads outside the city with gravel.\n\nSo the stone-paved highway is real, but it's mostly found near towns and on the busiest routes. The road a traveler walked for most of a journey was probably packed gravel, with a raised, well-drained middle.\n\nThe layer cake isn't a fabrication. It's a floor that got promoted. And what made Roman roads last had less to do with a fixed recipe than with using local material well and keeping water out.",
+    "passageGroupId": "pg-a3d047815cdb1abcf4e03626e97ecbaa",
+    "prompt": "[Academic Talk — Ancient Road Materials] Why does the professor mention Livy?",
+    "choices": [
+     "To identify the ancient source of the layered road picture",
+     "To suggest that gravel roads were used mainly inside the city of Rome",
+     "To give the date of the earliest stone-paved road",
+     "To show that Romans treated city and country roads differently"
+    ],
+    "correct_answer": "To show that Romans treated city and country roads differently",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "Officials paved Rome's streets with stone and roads 'outside the city with gravel.'",
+    "distractor_rationales": [
+     {
+      "choice": "To identify the ancient source of the layered road picture",
+      "reason": "The picture is traced to Vitruvius and Bergier."
+     },
+     {
+      "choice": "To suggest that gravel roads were used mainly inside the city of Rome",
+      "reason": "Gravel was for roads outside the city."
+     },
+     {
+      "choice": "To give the date of the earliest stone-paved road",
+      "reason": "No earliest date is given."
+     }
+    ]
+   },
+   "content_hash": "afaf7d26b999d1e3352f2991de1aed45",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-B05",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-B05-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Most textbooks that cover Roman engineering include the same picture: a cross-section of a Roman road, built up like a layer cake. At the bottom, large flat stones. Above that, rubble bound with lime. Then a layer of finer material, crushed brick or tile mixed with lime. And on top, fitted paving stones, curved so rain runs off. Some versions even give a Latin name for each layer. It looks authoritative, and it's often said to come from the Roman architect Vitruvius.\n\nHere's the problem. Vitruvius does describe those layers, with those names, but he's describing how to make a floor. A paved floor inside a building, not a road. Later writers, especially a French scholar named Nicolas Bergier, who published a long history of Roman roads in 1622, seem to have taken the floor recipe and applied it to highways. And it stuck.\n\nWhen archaeologists actually dig through Roman roads, they rarely find those four neat layers. What turns up depends on the place. Many roads, especially out in the provinces, were surfaced with gravel, rammed hard over a base of whatever was available locally: sand, chalk, flint, waste from iron working, even timber laid across soft ground. The Romans seem to have drawn this distinction themselves. The historian Livy describes officials in the second century BC hiring contractors to pave the streets of Rome with stone and to surface roads outside the city with gravel.\n\nSo the stone-paved highway is real, but it's mostly found near towns and on the busiest routes. The road a traveler walked for most of a journey was probably packed gravel, with a raised, well-drained middle.\n\nThe layer cake isn't a fabrication. It's a floor that got promoted. And what made Roman roads last had less to do with a fixed recipe than with using local material well and keeping water out.",
+    "passageGroupId": "pg-a3d047815cdb1abcf4e03626e97ecbaa",
+    "prompt": "[Academic Talk — Ancient Road Materials] What does the professor imply about the layered road picture?",
+    "choices": [
+     "It was copied from roads dug up near Rome",
+     "It was taken from instructions for floors",
+     "It was based on Livy's account of city streets",
+     "It was drawn by Vitruvius for road builders"
+    ],
+    "correct_answer": "It was taken from instructions for floors",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'It's a floor that got promoted': the layers are Vitruvius's recipe for a floor.",
+    "distractor_rationales": [
+     {
+      "choice": "It was copied from roads dug up near Rome",
+      "reason": "Excavated roads 'rarely' show the four layers."
+     },
+     {
+      "choice": "It was based on Livy's account of city streets",
+      "reason": "Livy is about stone streets and gravel roads, not layers."
+     },
+     {
+      "choice": "It was drawn by Vitruvius for road builders",
+      "reason": "Vitruvius described floors, not roads."
+     }
+    ]
+   },
+   "content_hash": "8cbc99d864f0b672dbbf1d0be72df2b0",
+   "word_count": 309,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-B05",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-B06-1",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Starting in the 1930s, the neurosurgeon Wilder Penfield, working in Montreal, operated on people with severe epilepsy. To find which bit of brain tissue to remove, he stimulated the exposed surface of the brain with a weak electric current while the patient was awake. The brain itself feels no pain, so patients could talk to him and describe what they experienced.\n\nUsually what they reported was simple: a tingling in one hand, a flash of light. But occasionally, when he stimulated the temporal lobes, a patient described something far richer. One heard a piece of music, another heard her mother calling, another seemed to be back in a familiar room. Penfield took these as replays of real past experience, and he suggested the brain keeps something like a continuous recording, a strip of film the electrode could play back.\n\nYou can see why that idea caught on. It implies nothing is ever truly lost, and that forgetting is just a failure to find the right spot. A survey published around 1980 found that most of the psychologists asked believed something along those lines.\n\nBut look closely at the evidence. When Penfield and a colleague reviewed their cases in 1963, these experiential responses had turned up in about forty out of more than five hundred temporal lobe patients. That's under one in ten. And in 1980 the psychologists Elizabeth and Geoffrey Loftus went back through the reports and pointed out that many sounded more like dreams than memories, and some contained details that apparently couldn't have happened. Very few were ever checked against what had really taken place.\n\nSo the experiences were real, and the current really did produce them. What wasn't shown is that they were recordings. A brain assembling something memory-like out of fragments fits the reports at least as well.",
+    "passageGroupId": "pg-98252ce383e5a9e5c0a00023039c21ec",
+    "prompt": "[Academic Talk — Memory Research] What is the lecture mainly about?",
+    "choices": [
+     "How Penfield mapped the brain areas that control movement",
+     "Why the brain cannot feel pain during an operation",
+     "Whether Penfield's reports show memories are kept intact",
+     "How severe epilepsy affects a person's long-term memory"
+    ],
+    "correct_answer": "Whether Penfield's reports show memories are kept intact",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "The professor tests Penfield's 'continuous recording' idea against the evidence.",
+    "distractor_rationales": [
+     {
+      "choice": "How Penfield mapped the brain areas that control movement",
+      "reason": "Movement areas are not discussed."
+     },
+     {
+      "choice": "Why the brain cannot feel pain during an operation",
+      "reason": "Painlessness explains only why patients could talk."
+     },
+     {
+      "choice": "How severe epilepsy affects a person's long-term memory",
+      "reason": "Epilepsy's effect on memory is not discussed."
+     }
+    ]
+   },
+   "content_hash": "926abd20368747211e58815ffbaa0436",
+   "word_count": 302,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-B06",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-B06-2",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Starting in the 1930s, the neurosurgeon Wilder Penfield, working in Montreal, operated on people with severe epilepsy. To find which bit of brain tissue to remove, he stimulated the exposed surface of the brain with a weak electric current while the patient was awake. The brain itself feels no pain, so patients could talk to him and describe what they experienced.\n\nUsually what they reported was simple: a tingling in one hand, a flash of light. But occasionally, when he stimulated the temporal lobes, a patient described something far richer. One heard a piece of music, another heard her mother calling, another seemed to be back in a familiar room. Penfield took these as replays of real past experience, and he suggested the brain keeps something like a continuous recording, a strip of film the electrode could play back.\n\nYou can see why that idea caught on. It implies nothing is ever truly lost, and that forgetting is just a failure to find the right spot. A survey published around 1980 found that most of the psychologists asked believed something along those lines.\n\nBut look closely at the evidence. When Penfield and a colleague reviewed their cases in 1963, these experiential responses had turned up in about forty out of more than five hundred temporal lobe patients. That's under one in ten. And in 1980 the psychologists Elizabeth and Geoffrey Loftus went back through the reports and pointed out that many sounded more like dreams than memories, and some contained details that apparently couldn't have happened. Very few were ever checked against what had really taken place.\n\nSo the experiences were real, and the current really did produce them. What wasn't shown is that they were recordings. A brain assembling something memory-like out of fragments fits the reports at least as well.",
+    "passageGroupId": "pg-98252ce383e5a9e5c0a00023039c21ec",
+    "prompt": "[Academic Talk — Memory Research] According to the professor, what did patients usually report when stimulated?",
+    "choices": [
+     "Songs they had heard in childhood",
+     "Sharp pain where the current was applied",
+     "Simple sensations like a tingle or a flash",
+     "Sudden trouble moving one of their hands"
+    ],
+    "correct_answer": "Simple sensations like a tingle or a flash",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'Usually what they reported was simple: a tingling in one hand, a flash of light.'",
+    "distractor_rationales": [
+     {
+      "choice": "Songs they had heard in childhood",
+      "reason": "Music was among the rare, richer responses."
+     },
+     {
+      "choice": "Sharp pain where the current was applied",
+      "reason": "'The brain itself feels no pain.'"
+     },
+     {
+      "choice": "Sudden trouble moving one of their hands",
+      "reason": "The hand was tingling, not hard to move."
+     }
+    ]
+   },
+   "content_hash": "b7ced612e3b0688734e74a19d7df1c0a",
+   "word_count": 302,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-B06",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "hard",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-B06-3",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Starting in the 1930s, the neurosurgeon Wilder Penfield, working in Montreal, operated on people with severe epilepsy. To find which bit of brain tissue to remove, he stimulated the exposed surface of the brain with a weak electric current while the patient was awake. The brain itself feels no pain, so patients could talk to him and describe what they experienced.\n\nUsually what they reported was simple: a tingling in one hand, a flash of light. But occasionally, when he stimulated the temporal lobes, a patient described something far richer. One heard a piece of music, another heard her mother calling, another seemed to be back in a familiar room. Penfield took these as replays of real past experience, and he suggested the brain keeps something like a continuous recording, a strip of film the electrode could play back.\n\nYou can see why that idea caught on. It implies nothing is ever truly lost, and that forgetting is just a failure to find the right spot. A survey published around 1980 found that most of the psychologists asked believed something along those lines.\n\nBut look closely at the evidence. When Penfield and a colleague reviewed their cases in 1963, these experiential responses had turned up in about forty out of more than five hundred temporal lobe patients. That's under one in ten. And in 1980 the psychologists Elizabeth and Geoffrey Loftus went back through the reports and pointed out that many sounded more like dreams than memories, and some contained details that apparently couldn't have happened. Very few were ever checked against what had really taken place.\n\nSo the experiences were real, and the current really did produce them. What wasn't shown is that they were recordings. A brain assembling something memory-like out of fragments fits the reports at least as well.",
+    "passageGroupId": "pg-98252ce383e5a9e5c0a00023039c21ec",
+    "prompt": "[Academic Talk — Memory Research] Why does the professor say 'That's under one in ten'?",
+    "choices": [
+     "To stress how seldom the rich experiences actually occurred",
+     "To suggest that Penfield overstated how many patients he had",
+     "To show that most patients had no damage in the temporal lobes",
+     "To argue that the experiences were caused by the epilepsy itself"
+    ],
+    "correct_answer": "To stress how seldom the rich experiences actually occurred",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "hard",
+    "listeningTask": "academic_talk",
+    "explanation": "Forty of more than five hundred patients is offered as a reason to 'look closely at the evidence'.",
+    "distractor_rationales": [
+     {
+      "choice": "To suggest that Penfield overstated how many patients he had",
+      "reason": "His patient numbers are not questioned."
+     },
+     {
+      "choice": "To show that most patients had no damage in the temporal lobes",
+      "reason": "Damage in the temporal lobes is not discussed."
+     },
+     {
+      "choice": "To argue that the experiences were caused by the epilepsy itself",
+      "reason": "The cause of the experiences is the current, not the epilepsy."
+     }
+    ]
+   },
+   "content_hash": "7dadeae08ce0395a9554e167894a58d0",
+   "word_count": 302,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-B06",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  },
+  {
+   "family": "toefl",
+   "section": "listening",
+   "domain": "Academic Talk",
+   "subskill": null,
+   "task": "academic_talk",
+   "item_type": "multiple_choice",
+   "difficulty": "medium",
+   "topic_tag": "academic_talk",
+   "passage_group_id": null,
+   "item": {
+    "id": "TD7-B06-4",
+    "type": "multiple_choice",
+    "blanks": null,
+    "graphic": null,
+    "passage": "Transcript: Starting in the 1930s, the neurosurgeon Wilder Penfield, working in Montreal, operated on people with severe epilepsy. To find which bit of brain tissue to remove, he stimulated the exposed surface of the brain with a weak electric current while the patient was awake. The brain itself feels no pain, so patients could talk to him and describe what they experienced.\n\nUsually what they reported was simple: a tingling in one hand, a flash of light. But occasionally, when he stimulated the temporal lobes, a patient described something far richer. One heard a piece of music, another heard her mother calling, another seemed to be back in a familiar room. Penfield took these as replays of real past experience, and he suggested the brain keeps something like a continuous recording, a strip of film the electrode could play back.\n\nYou can see why that idea caught on. It implies nothing is ever truly lost, and that forgetting is just a failure to find the right spot. A survey published around 1980 found that most of the psychologists asked believed something along those lines.\n\nBut look closely at the evidence. When Penfield and a colleague reviewed their cases in 1963, these experiential responses had turned up in about forty out of more than five hundred temporal lobe patients. That's under one in ten. And in 1980 the psychologists Elizabeth and Geoffrey Loftus went back through the reports and pointed out that many sounded more like dreams than memories, and some contained details that apparently couldn't have happened. Very few were ever checked against what had really taken place.\n\nSo the experiences were real, and the current really did produce them. What wasn't shown is that they were recordings. A brain assembling something memory-like out of fragments fits the reports at least as well.",
+    "passageGroupId": "pg-98252ce383e5a9e5c0a00023039c21ec",
+    "prompt": "[Academic Talk — Memory Research] What is the professor's view of the experiences Penfield's patients described?",
+    "choices": [
+     "They were true memories but were rarely checked",
+     "They were real but came from the epilepsy, not the current",
+     "They occurred but need not have been true memories",
+     "They were real but arose outside the temporal lobes"
+    ],
+    "correct_answer": "They occurred but need not have been true memories",
+    "correct_answers": null,
+    "acceptable_answers": null,
+    "difficulty": "medium",
+    "listeningTask": "academic_talk",
+    "explanation": "'The experiences were real ... What wasn't shown is that they were recordings.'",
+    "distractor_rationales": [
+     {
+      "choice": "They were true memories but were rarely checked",
+      "reason": "That they were memories is exactly what 'wasn't shown'."
+     },
+     {
+      "choice": "They were real but came from the epilepsy, not the current",
+      "reason": "'The current really did produce them.'"
+     },
+     {
+      "choice": "They were real but arose outside the temporal lobes",
+      "reason": "The rich responses came when he 'stimulated the temporal lobes'."
+     }
+    ]
+   },
+   "content_hash": "bdd41b8c211c200ef2cdc6e89f61677f",
+   "word_count": 302,
+   "verified": false,
+   "archived": false,
+   "source": "hand",
+   "cohort": "toefl-talk-draft-7",
+   "verify_meta": {
+    "draft": {
+     "status": "awaiting_sitting",
+     "origin": "td7-B06",
+     "note": "Written by Claude agents 2026-10-23 for the upper/hard band (medium/hard lectures); co-founder-standard grader before any sitting. Release by the option-2 route, FULL sitting (wave7.RELEASE.PREREG.md)."
+    }
+   }
+  }
+ ]
+}

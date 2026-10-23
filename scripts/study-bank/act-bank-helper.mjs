@@ -224,6 +224,9 @@ for (const [pid, g] of Object.entries(groups)) {
   if (new Set(g.map(i => String(i.passage))).size !== 1) problems.push(`passage ${pid}: items do not share IDENTICAL passage text — the client would render them as separate passages`)
   if (section === 'reading' && new Set(g.map(i => i.genre)).size !== 1) problems.push(`passage ${pid}: mixed genres within one passage`)
   if (section === 'reading') {
+    // The flag is stored per row, so a passage whose items disagree would be
+    // banked half paired. Reading only g[0] let that through (v12b author, 2026-10-23).
+    if (new Set(g.map(i => !!i.paired)).size !== 1) problems.push(`passage ${pid}: items disagree on the paired flag`)
     const paired = !!g[0].paired
     const hasAB = /Passage A/.test(g[0].passage) && /Passage B/.test(g[0].passage)
     if (paired !== hasAB) problems.push(`passage ${pid}: paired=${paired} but passage ${hasAB ? 'has' : 'lacks'} "Passage A"/"Passage B" headers`)
