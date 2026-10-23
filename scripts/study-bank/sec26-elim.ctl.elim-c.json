@@ -1,0 +1,499 @@
+{
+  "L01": {
+    "reject_first": "A",
+    "why": "Depends on hidden subject and tense; arbitrary.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L02": {
+    "reject_first": "D",
+    "why": "A colon before a prepositional phrase is often wrong, but could introduce an elaboration.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L03": {
+    "reject_first": "D",
+    "why": "A comma after 'drawn' likely splits the participle from its complement, but not provably.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L04": {
+    "reject_first": "B",
+    "why": "A participle may leave the clause without a finite verb, but a modifier reading is possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L05": {
+    "reject_first": "B",
+    "why": "Expletive 'there was' likely leaves a modifier dangling, but the modifier is hidden.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L06": {
+    "reject_first": "D",
+    "why": "Singular verb with plural possessive looks least coherent, but antecedents are hidden.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L07": {
+    "reject_first": "B",
+    "why": "'The pattern books ... offers' pairs a plural subject (alone or compounded) with a singular verb in any sentence.",
+    "certain": true,
+    "confident_rejects": [
+      "B",
+      "D"
+    ]
+  },
+  "L08": {
+    "reject_first": "B",
+    "why": "Nominal phrase may break parallelism, but context is hidden.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L09": {
+    "reject_first": "C",
+    "why": "'Thus' after a comma may splice clauses, but a participial continuation is possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L10": {
+    "reject_first": "B",
+    "why": "'As on' rarely completes a comparison idiom, but cannot be excluded without the sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L11": {
+    "reject_first": "D",
+    "why": "Depends on hidden subject and tense; arbitrary.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L12": {
+    "reject_first": "A",
+    "why": "Dash use depends on a hidden earlier dash; arbitrary.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L13": {
+    "reject_first": "B",
+    "why": "A colon cannot follow 'including', since a colon must follow a complete clause.",
+    "certain": true,
+    "confident_rejects": [
+      "B",
+      "C"
+    ]
+  },
+  "L14": {
+    "reject_first": "A",
+    "why": "Expletive 'it was found' likely leaves a hidden modifier dangling.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L15": {
+    "reject_first": "D",
+    "why": "'However' used as an interrupter must be set off by punctuation on both sides; 'X however,' never is.",
+    "certain": true,
+    "confident_rejects": [
+      "D"
+    ]
+  },
+  "L16": {
+    "reject_first": "D",
+    "why": "An unpaired comma before 'in 1855' looks wrong, but an earlier comma could pair with it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L17": {
+    "reject_first": "C",
+    "why": "Depends on hidden subject and tense; arbitrary.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L18": {
+    "reject_first": "A",
+    "why": "Abstract subject likely leaves a hidden modifier dangling.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L19": {
+    "reject_first": "D",
+    "why": "Commas around 'over water rights' separate it from the noun it modifies, though not provably wrong.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L20": {
+    "reject_first": "B",
+    "why": "Depends on hidden subject and tense; arbitrary.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L21": {
+    "reject_first": "C",
+    "why": "A participle may leave the clause without a finite verb, but a modifier reading is possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L22": {
+    "reject_first": "A",
+    "why": "A comma before 'consequently' likely splices two clauses, but not provably.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L23": {
+    "reject_first": "A",
+    "why": "Inserting 'he should' likely breaks the structure, but context is hidden.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L24": {
+    "reject_first": "B",
+    "why": "Depends on hidden subject and tense; arbitrary.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L25": {
+    "reject_first": "B",
+    "why": "'Construct' is transitive; an active form with no object ('Constructing ... ago,') is ungrammatical in any sentence.",
+    "certain": true,
+    "confident_rejects": [
+      "B",
+      "C",
+      "D"
+    ]
+  },
+  "L26": {
+    "reject_first": "A",
+    "why": "A comma after 'but' with none before is likely wrong, but an interrupter could follow.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L27": {
+    "reject_first": "D",
+    "why": "A participle may leave the clause without a finite verb, but a modifier reading is possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L28": {
+    "reject_first": "A",
+    "why": "Depends on hidden subject and tense; arbitrary.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L29": {
+    "reject_first": "B",
+    "why": "'Then when' is awkward and likely ungrammatical, but not provably.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L30": {
+    "reject_first": "D",
+    "why": "A gerund likely fails after a verb of request, but context is hidden.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L31": {
+    "reject_first": "B",
+    "why": "Depends on hidden subject and tense; arbitrary.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L32": {
+    "reject_first": "C",
+    "why": "A participle may leave the clause without a finite verb, but a modifier reading is possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L33": {
+    "reject_first": "C",
+    "why": "A question mark is unlikely in expository prose, but cannot be excluded.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L34": {
+    "reject_first": "C",
+    "why": "'Which' for a person is likely wrong, but antecedent is hidden.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L35": {
+    "reject_first": "C",
+    "why": "Depends on hidden subject and tense; arbitrary.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L36": {
+    "reject_first": "A",
+    "why": "Comma before 'after sunset the' likely splices clauses, but not provably.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L37": {
+    "reject_first": "C",
+    "why": "'Smoothest' without 'the' is likely wrong, but context is hidden.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L38": {
+    "reject_first": "C",
+    "why": "The comma before 'with surprising precision' is unpaired, though the phrase could end the sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L39": {
+    "reject_first": "B",
+    "why": "Commas around the subject look wrong, but an appositive reading is conceivable.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L40": {
+    "reject_first": "C",
+    "why": "A semicolon followed by a fragment-like clause without a period is unlikely, but not provable.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L41": {
+    "reject_first": "C",
+    "why": "No punctuation between likely clauses, but not provably wrong.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L42": {
+    "reject_first": "A",
+    "why": "No punctuation between likely clauses, but not provably wrong.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L43": {
+    "reject_first": "B",
+    "why": "Depends on hidden subject and tense; arbitrary.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L44": {
+    "reject_first": "B",
+    "why": "Expletive 'there were' likely leaves a hidden modifier dangling.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L45": {
+    "reject_first": "C",
+    "why": "A participle may leave the clause without a finite verb, but context is hidden.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L46": {
+    "reject_first": "C",
+    "why": "'As to whether' is wordy and likely wrong, but not provably.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L47": {
+    "reject_first": "A",
+    "why": "Semicolon before a 'that' clause likely creates a fragment, but not provably.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L48": {
+    "reject_first": "A",
+    "why": "Expletive 'it became clear' likely leaves a hidden modifier dangling.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L49": {
+    "reject_first": "B",
+    "why": "Pronoun-antecedent choice depends entirely on hidden text; arbitrary.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L50": {
+    "reject_first": "C",
+    "why": "'So,' with a trailing comma is likely wrong, but an interrupter could follow.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L51": {
+    "reject_first": "B",
+    "why": "'It was satisfying' likely creates a run-on, but context is hidden.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L52": {
+    "reject_first": "C",
+    "why": "No punctuation before 'a' likely wrong, but not provably.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L53": {
+    "reject_first": "D",
+    "why": "Active 'damped out' may lack an object, but context is hidden.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L54": {
+    "reject_first": "A",
+    "why": "Depends on hidden subject and verb type; arbitrary.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L55": {
+    "reject_first": "A",
+    "why": "Depends on hidden subject; arbitrary.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L56": {
+    "reject_first": "C",
+    "why": "'Those of a similarly sized seal's' doubles the possessive (of + 's) and mismatches plural 'those' with one seal.",
+    "certain": true,
+    "confident_rejects": [
+      "C"
+    ]
+  },
+  "L57": {
+    "reject_first": "D",
+    "why": "Semicolon before 'and' is usually wrong, but allowed in complex series.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L58": {
+    "reject_first": "D",
+    "why": "Adding 'they' likely creates a run-on, but context is hidden.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L59": {
+    "reject_first": "B",
+    "why": "A participle may leave the clause without a finite verb, but context is hidden.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L60": {
+    "reject_first": "C",
+    "why": "Depends on hidden subject and tense; arbitrary.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L61": {
+    "reject_first": "B",
+    "why": "'That's' for a person or possessive slot is likely wrong, but context is hidden.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L62": {
+    "reject_first": "C",
+    "why": "'She worked' likely creates a run-on, but context is hidden.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L63": {
+    "reject_first": "B",
+    "why": "Gerund subject likely leaves a hidden modifier dangling.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L64": {
+    "reject_first": "B",
+    "why": "Comma before imperative 'turn' likely splices, but not provably.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L65": {
+    "reject_first": "C",
+    "why": "Depends on hidden subject and tense; arbitrary.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L66": {
+    "reject_first": "B",
+    "why": "Depends on hidden subject and tense; arbitrary.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L67": {
+    "reject_first": "A",
+    "why": "Depends on what follows; arbitrary.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L68": {
+    "reject_first": "B",
+    "why": "'And also' is likely redundant, but not provably.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L69": {
+    "reject_first": "B",
+    "why": "'There' as a pronoun slot is likely wrong, but context is hidden.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L70": {
+    "reject_first": "C",
+    "why": "'Whoever/whomever having' gives the relative clause no finite verb, which no sentence permits.",
+    "certain": true,
+    "confident_rejects": [
+      "C",
+      "D"
+    ]
+  },
+  "L71": {
+    "reject_first": "A",
+    "why": "'Presentation of' may break parallelism, but context is hidden.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L72": {
+    "reject_first": "C",
+    "why": "A dash plus 'giving' likely leaves no main verb, but not provably.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L73": {
+    "reject_first": "D",
+    "why": "Depends on hidden tense sequence; arbitrary.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L74": {
+    "reject_first": "B",
+    "why": "No punctuation before 'over' likely wrong, but not provably.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L75": {
+    "reject_first": "B",
+    "why": "Depends on hidden subject and tense; arbitrary.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L76": {
+    "reject_first": "D",
+    "why": "Depends on what follows; arbitrary.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L77": {
+    "reject_first": "B",
+    "why": "'They presented' likely creates a run-on, but context is hidden.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L78": {
+    "reject_first": "C",
+    "why": "Vague 'this' after semicolon likely wrong, but not provably.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L79": {
+    "reject_first": "C",
+    "why": "Commas around 'however' between clauses likely splice, but an introductory phrase could precede.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L80": {
+    "reject_first": "C",
+    "why": "Depends on hidden subject and tense; arbitrary.",
+    "certain": false,
+    "confident_rejects": []
+  }
+}
