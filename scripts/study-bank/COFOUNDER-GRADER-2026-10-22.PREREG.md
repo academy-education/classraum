@@ -82,3 +82,8 @@ Applies to every batch in `cofounder-queue.json` not yet drawn. Batches already 
 **What this changes in risk, stated now:** unsampled items reach students having passed two AI checks but no human.
 TOEFL Listening is where the grader matched him (20/25); for SSAT it is unproven, which is why every third reading batch
 is a full sitting. His first SSAT flags, from full sittings or spot runs, become the SSAT test set for this grader.
+
+## Amendment 2 (2026-10-23, owner: "Release Cr-v11"): minimum run size for the per-run blind guard
+`release-toefl-conv-runs.mjs`'s per-run guard (blind >= 50% holds the cohort) now applies only to runs of 6 or more
+items. A shorter run still counts in the pooled guard. Cause: the 1-item run crv11-release2 (1/1) held cr-v11 although
+the pooled rate was 4/13 = 30.8% and Amendment 1 rule 3 already says a blind pick is no guard on a small sample.

@@ -34,7 +34,10 @@ const stale = answered.filter(r => undecided(r) && byId.get(r.item_id).content_s
 if (stale.length) refuse(`${stale.length} answered rows edited since the sitting`)
 const runs = [...new Set(answered.map(r => r.run_id))].sort()
 let held = false
-for (const run of runs) { const a = answered.filter(r => r.run_id === run); const h = a.filter(r => r.blind_pick === r.key_slot).length; console.log(`run ${run}: blind ${h}/${a.length}`); if (h >= a.length / 2) held = true }
+// Owner amendment 2026-10-23 (MIN_GUARD_RUN): a run shorter than 6 items does not fire the per-run guard on its own -
+// one correct pick on a 1-item run read as "100% blind" and held cr-v11. Short runs still count in the POOLED guard.
+const MIN_GUARD_RUN = 6
+for (const run of runs) { const a = answered.filter(r => r.run_id === run); const h = a.filter(r => r.blind_pick === r.key_slot).length; const small = a.length < MIN_GUARD_RUN; console.log(`run ${run}: blind ${h}/${a.length}${small ? ' (under 6 items: pooled guard only)' : ''}`); if (!small && h >= a.length / 2) held = true }
 const ph = answered.filter(r => r.blind_pick === r.key_slot).length
 console.log(`pooled blind ${ph}/${answered.length} = ${(100 * ph / answered.length).toFixed(1)}%`)
 if (ph >= answered.length / 2) held = true
