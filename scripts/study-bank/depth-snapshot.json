@@ -1,6 +1,6 @@
 {
   "_note": "Clean tests before a repeat, per section, as last MEASURED by the repo's depth scripts. runout-monitor.ts reads this; it never estimates depth itself. Update the numbers and 'measured' whenever a depth script is re-run (toefl-form-depth.ts, admission-form-depth.ts, ssat-verbal-replay.ts, form-capacity.mjs). atLeast=true means the script only replays that many forms, so the true depth is >= value.",
-  "measured": "2026-10-22",
+  "measured": "2026-10-23",
   "sections": {
     "toefl/listening": {
       "byPath": {
@@ -9,7 +9,7 @@
         "lower/medium": 12,
         "lower/easy": 11
       },
-      "source": "toefl-form-depth.ts 2026-10-22 after cr-v11 run 1 release (9 of 12): lower/medium 11->12, upper/medium 16->17"
+      "source": "toefl-form-depth.ts 2026-10-23 (3 trials x 60, min across trials): choose_response binds lower/easy 11, lower/medium 12, upper/medium 17; academic_talk binds upper/hard 15"
     },
     "toefl/reading": {
       "byPath": {
@@ -18,73 +18,73 @@
         "lower/medium": 14,
         "lower/easy": 14
       },
-      "source": "toefl-form-depth.ts 2026-10-21 reading tasks (academic_passage upper/hard 20, upper/medium 23; daily_life lower 14)"
+      "source": "toefl-form-depth.ts 2026-10-23 (academic_passage upper/hard 20, upper/medium 23; daily_life lower 14)"
     },
     "toefl/writing": {
       "value": 24,
-      "source": "toefl-form-depth.ts 2026-10-22 after bas-v3 (arrange_words 24 all paths; email/discussion > 60)"
+      "source": "toefl-form-depth.ts 2026-10-23 (arrange_words 24 all paths; email/discussion > 60)"
     },
     "toefl/speaking": {
       "value": 24,
-      "source": "toefl-form-depth.ts 2026-10-22 after repeat-v4 + interview-v3 (speaking_repeat 24, speaking_interview 26)"
+      "source": "toefl-form-depth.ts 2026-10-23 (speaking_repeat 24, speaking_interview 26)"
     },
     "ssat/reading": {
       "value": 6,
-      "source": "admission-form-depth.ts 2026-10-22 after ssat-reading-draft-3 release (24) + owner-approved fix of the 2 held passages (12); 258 items"
+      "source": "admission-form-depth.ts --forms 20, 2026-10-23 (294 items in 57 passages; form 7 is 39/40)"
     },
     "ssat/verbal": {
       "value": 10,
-      "source": "ssat-verbal-replay.ts 2026-10-21"
+      "source": "ssat-verbal-replay.ts --forms 20, 2026-10-23 (663 rows; form 11 is 46/60); admission-form-depth.ts agrees (10)"
     },
     "ssat/math": {
       "value": 12,
-      "source": "admission-form-depth.ts --forms 20, 2026-10-22"
+      "source": "admission-form-depth.ts --forms 20, 2026-10-23 (615 items; form 13 is 15/50)"
     },
     "ssat/writing": {
       "value": 17,
-      "source": "essay-bank-helper.mjs verify 2026-10-22 after essay-v6 (17 pairs)"
+      "source": "essay-bank-helper.mjs verify 2026-10-23 (17 pairs, 0 half-pairs, 0 keyed rows)"
     },
     "isee/reading": {
       "value": 3,
-      "source": "admission-form-depth.ts 2026-10-22 after isee-reading-draft-1 release (153 items; form 4 is 35/36)"
+      "source": "admission-form-depth.ts --forms 20, 2026-10-23 (153 items in 35 passages; form 4 is 35/36). form-capacity.mjs prints 4, an item/form upper bound that ignores passage draws"
     },
     "isee/verbal": {
       "value": 14,
-      "source": "isee-verbal-replay.ts --forms 20, 2026-10-22"
+      "source": "isee-verbal-replay.ts --forms 20, 2026-10-23 (570 rows; form 15 is 10/40); admission-form-depth.ts agrees (14)"
     },
     "isee/math": {
       "value": 8,
-      "source": "admission-form-depth.ts --forms 20, 2026-10-22 (quant 9, math achievement 8; one shared pool, so the full test repeats at 8)"
+      "source": "admission-form-depth.ts --forms 20, 2026-10-23 (quant 9, math achievement 8; one shared pool, so the full test repeats at 8)"
     },
     "isee/writing": {
       "value": 16,
-      "source": "essay-bank-helper.mjs verify 2026-10-22 after essay-v5 (16 prompts)"
+      "source": "essay-bank-helper.mjs verify 2026-10-23 (16 prompts)"
     },
     "sat/reading_writing": {
-      "value": 18,
-      "hardRoute": 9,
-      "source": "form-capacity.mjs (18; 9 on the hard route)"
+      "value": 22,
+      "hardRoute": 13,
+      "source": "form-capacity.mjs 2026-10-23 (22 by domain, bound by Expression of Ideas 244/11; 13 on the hard route, bound by SEC hard 91/~7)"
     },
     "sat/math": {
       "value": 36,
-      "hardRoute": 11,
-      "source": "form-capacity.mjs (36; 11 on the hard route)"
+      "hardRoute": 12,
+      "source": "form-capacity.mjs 2026-10-23 (36 by domain, bound by Advanced Math 548/15; 12 on the hard route, bound by Algebra hard 102/~8)"
     },
     "act/english": {
       "value": 7,
-      "source": "form-capacity.mjs"
+      "source": "form-capacity.mjs 2026-10-23 (38 complete passages / 5 per form; blueprint mix satisfied on all 7)"
     },
     "act/math": {
       "value": 22,
-      "source": "form-capacity.mjs"
+      "source": "form-capacity.mjs 2026-10-23 (bound by Number and Quantity 111/5)"
     },
     "act/reading": {
       "value": 4,
-      "source": "form-capacity.mjs"
+      "source": "form-capacity.mjs 2026-10-23 (Key Ideas and Details 77/16; passage-drawn, so an upper bound)"
     },
     "act/science": {
       "value": 3,
-      "source": "form-capacity.mjs"
+      "source": "form-capacity.mjs 2026-10-23 (Interpretation of Data 46/15; passage-drawn, so an upper bound)"
     }
   },
   "_paths": "TOEFL path is not stored on a session; runout-monitor.ts infers it from the module-2 task mix in the student's attempts: Reading upper serves 18 Academic Passage items per sitting (lower 8), Listening upper serves 16 Academic Talk (lower 4)."
