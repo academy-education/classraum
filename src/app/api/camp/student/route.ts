@@ -3,6 +3,7 @@ import { dbAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
 import { canViewClassroomCampResults, isStudentOfAcademy } from '@/lib/camp/access'
 import { buildCampReportPayload, loadClassroomCampData } from '@/lib/camp/reports'
+import { campPeriodEnd } from '@/lib/camp/dates'
 
 /**
  * GET /api/camp/student?classroomId=…&studentId=…
@@ -74,7 +75,9 @@ export async function GET(req: NextRequest) {
     .maybeSingle()
   const period = {
     start: programDates?.starts_on ?? null,
-    end: programDates?.ends_on ?? new Date().toISOString().slice(0, 10),
+    // Today in Korea, capped at the program end — the UTC date was yesterday before 09:00 KST, and a running
+    // camp's live view claimed the whole program (to ends_on) while a report generated now stops at today.
+    end: campPeriodEnd(programDates?.ends_on as string | null | undefined),
   }
 
   const payload = await buildCampReportPayload(data, studentId, period)

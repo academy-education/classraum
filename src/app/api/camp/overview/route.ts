@@ -1,9 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
+import { classifyWork, needsAttention, summarizeWork, type CampWorkItem } from '@/lib/camp/metrics'
 import { canViewProgramResults } from '@/lib/camp/access'
-import { loadClassroomCampData } from '@/lib/camp/reports'
 import { kstDate } from '@/lib/camp/dates'
+import { loadProgramRooms } from '@/lib/camp/program-data'
+import { CampDailyAccumulator, campDayRange } from '@/lib/camp/daily'
 
 /**
  * GET /api/camp/overview?programId=…
@@ -26,14 +28,23 @@ import { kstDate } from '@/lib/camp/dates'
  *     (UTC date of completed_at), average score per day, oldest first —
  *     the average-score trend line
  *   - assignmentStatus: (assignment × enrolled student) pairs classified
- *     for the status donut. Definitions (see classify() below):
+ *     for the status donut by classifyWork (src/lib/camp/metrics.ts, the
+ *     one definition every camp surface uses):
  *       completed = the student's camp session for it is completed
  *       late      = past due_at, a session exists but is not completed
  *       missing   = past due_at, never started
  *       open      = not completed but not past due (or no due date) —
  *                   reported for the denominator note, outside the donut
+ *   - needsAttention: one row per (classroom, student) with anything
+ *     overdue or something unstarted due today (KST), most overdue first
+ *   - daily: one point per KST camp day, starts_on .. min(today, ends_on),
+ *     with completion of the work due that day, attendance for the camp
+ *     classrooms' sessions that day, and the average score with n. Each
+ *     metric is null (a gap), never 0, on a day it has no denominator.
+ *     Definitions: src/lib/camp/daily.ts
  *
- * Reuses loadClassroomCampData (src/lib/camp/reports.ts) per classroom —
+ * Reuses loadClassroomCampData (src/lib/camp/reports.ts) per classroom,
+ * loaded in parallel (loadProgramRooms) —
  * the same loader the dashboard-adjacent report builder uses, with the
  * same paged reads and session/attempt filters, so these numbers agree
  * with the per-classroom dashboard by construction.
@@ -60,7 +71,7 @@ export async function GET(req: NextRequest) {
 
   const { data: program } = await dbAdmin
     .from('camp_programs')
-    .select('id, academy_id, student_cap')
+    .select('id, academy_id, student_cap, starts_on, ends_on')
     .eq('id', programId)
     .is('deleted_at', null)
     .maybeSingle()
@@ -79,6 +90,9 @@ export async function GET(req: NextRequest) {
     .from('classrooms')
     .select('id, name')
     .eq('camp_program_id', programId)
+    // Same academy only, as /api/camp/program does: a classroom in ANOTHER academy pointed at this program can only
+    // exist through the pre-122 write gap, and its roster is not this camp's.
+    .eq('academy_id', program.academy_id)
     .is('deleted_at', null)
   if (classroomsError) {
     return NextResponse.json({ error: classroomsError.message }, { status: 500 })
@@ -93,15 +107,28 @@ export async function GET(req: NextRequest) {
   /** avg-score trend buckets: UTC day of completed_at → graded sums. */
   const byDay = new Map<string, { sum: number; n: number }>()
   const status = { completed: 0, late: 0, missing: 0, open: 0 }
-  const nowMs = Date.now()
+  const now = new Date()
+  const attention: Array<{
+    studentId: string
+    name: string | null
+    email: string | null
+    classroomId: string
+    classroomName: string
+    overdue: number
+    late: number
+    missing: number
+    dueTodayNotStarted: number
+  }> = []
 
-  for (const room of classrooms ?? []) {
-    const data = await loadClassroomCampData({
-      id: room.id as string,
-      name: room.name as string,
-      camp_program_id: programId,
-    })
-    if ('error' in data) return NextResponse.json({ error: data.error }, { status: 500 })
+  const daily = new CampDailyAccumulator()
+  const loadedRooms = await loadProgramRooms(
+    (classrooms ?? []).map(r => ({ id: r.id as string, name: r.name as string })),
+    programId,
+    program.academy_id as string,
+  )
+  if ('error' in loadedRooms) return NextResponse.json({ error: loadedRooms.error }, { status: 500 })
+
+  for (const { id: roomId, name: roomName, data } of loadedRooms.rooms) {
 
     for (const sid of data.studentIds) enrolled.add(sid)
     expected += data.assignments.length * data.studentIds.length
@@ -114,6 +141,7 @@ export async function GET(req: NextRequest) {
         scoreSum += scorePct
         scoredSessions += 1
         if (s.completed_at) {
+          daily.addScore(s.completed_at, scorePct)
           const day = kstDate(s.completed_at)
           const bucket = byDay.get(day) ?? { sum: 0, n: 0 }
           bucket.sum += scorePct
@@ -126,16 +154,35 @@ export async function GET(req: NextRequest) {
     // Assignment-status donut: classify every (assignment × enrolled
     // student) pair. `late` and `missing` only exist once due_at has
     // passed — before the deadline an unfinished pair is `open`.
-    for (const a of data.assignments) {
-      // Date-parse rather than string-compare: PostgREST may emit the
-      // offset as +00:00 while toISOString() uses Z.
-      const pastDue = a.due_at !== null && new Date(a.due_at).getTime() < nowMs
-      for (const studentId of data.studentIds) {
+    // The same per-pair items feed the Needs-attention list, so the card and the donut cannot disagree.
+    for (const studentId of data.studentIds) {
+      const items: CampWorkItem[] = data.assignments.map(a => {
         const s = data.sessionByKey.get(`${a.id}:${studentId}`)
-        if (s?.status === 'completed') status.completed += 1
-        else if (pastDue && s) status.late += 1
-        else if (pastDue) status.missing += 1
-        else status.open += 1
+        return {
+          dueAt: a.due_at,
+          started: !!s,
+          completed: s?.status === 'completed',
+          completedAt: s?.status === 'completed' ? s.completed_at : null,
+        }
+      })
+      for (const w of items) {
+        status[classifyWork(w, now)] += 1
+        if (w.dueAt) daily.addDue(w.dueAt, w.completed)
+      }
+      const summary = summarizeWork(items, now)
+      if (needsAttention(summary)) {
+        const info = data.usersById.get(studentId)
+        attention.push({
+          studentId,
+          name: info?.name ?? null,
+          email: info?.email ?? null,
+          classroomId: roomId,
+          classroomName: roomName,
+          overdue: summary.overdue,
+          late: summary.late,
+          missing: summary.missing,
+          dueTodayNotStarted: summary.dueTodayNotStarted,
+        })
       }
     }
 
@@ -164,6 +211,52 @@ export async function GET(req: NextRequest) {
     .sort((a, b) => a.accuracy - b.accuracy || b.n - a.n)
   const skillsToReview = reviewTopics.length
 
+  // Attendance for the camp classrooms' sessions, by session date. Read errors are a 500: an attendance line
+  // that silently drops to nothing would read as "nobody came".
+  const roomIds = loadedRooms.rooms.map(r => r.id)
+  const today = kstDate()
+  const rangeStart = (program.starts_on as string | null) ?? null
+  const rangeEnd = (program.ends_on as string | null) && (program.ends_on as string) < today ? (program.ends_on as string) : today
+  if (roomIds.length > 0) {
+    let sessionsQ = dbAdmin
+      .from('classroom_sessions')
+      .select('id, date')
+      .in('classroom_id', roomIds)
+      .is('deleted_at', null)
+      .lte('date', rangeEnd)
+    if (rangeStart) sessionsQ = sessionsQ.gte('date', rangeStart)
+    const PAGE = 1000
+    const sessionDate = new Map<string, string>()
+    for (let from = 0; ; from += PAGE) {
+      const { data: rows, error } = await sessionsQ.order('id', { ascending: true }).range(from, from + PAGE - 1)
+      if (error) return NextResponse.json({ error: `camp sessions query failed: ${error.message}` }, { status: 500 })
+      for (const r of rows ?? []) sessionDate.set(r.id as string, r.date as string)
+      if (!rows || rows.length < PAGE) break
+    }
+    const sessionIds = [...sessionDate.keys()]
+    const CHUNK = 200
+    for (let i = 0; i < sessionIds.length; i += CHUNK) {
+      const chunk = sessionIds.slice(i, i + CHUNK)
+      for (let from = 0; ; from += PAGE) {
+        const { data: rows, error } = await dbAdmin
+          .from('attendance')
+          .select('id, classroom_session_id, status')
+          .in('classroom_session_id', chunk)
+          .order('id', { ascending: true })
+          .range(from, from + PAGE - 1)
+        if (error) return NextResponse.json({ error: `camp attendance query failed: ${error.message}` }, { status: 500 })
+        for (const r of rows ?? []) {
+          const date = sessionDate.get(r.classroom_session_id as string)
+          if (date) daily.addAttendance(date, r.status as string | null)
+        }
+        if (!rows || rows.length < PAGE) break
+      }
+    }
+  }
+  const dailySeries = daily.series(
+    campDayRange(rangeStart, (program.ends_on as string | null) ?? null, today, daily.earliestDay()),
+  )
+
   const trend = [...byDay.entries()]
     .map(([date, b]) => ({ date, avgPct: Math.round(b.sum / b.n), sessions: b.n }))
     .sort((a, b) => a.date.localeCompare(b.date))
@@ -186,6 +279,11 @@ export async function GET(req: NextRequest) {
     },
     reviewTopics,
     trend,
+    daily: dailySeries,
     assignmentStatus: status,
+    needsAttention: attention.sort((a, b) =>
+      b.overdue - a.overdue ||
+      b.dueTodayNotStarted - a.dueTodayNotStarted ||
+      (a.name ?? a.email ?? '').localeCompare(b.name ?? b.email ?? '')),
   })
 }

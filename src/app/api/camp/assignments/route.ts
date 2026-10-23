@@ -6,21 +6,28 @@ import {
   CAMP_PROGRAM_COLUMNS,
   type CampProgramRow,
   canManageClassroom,
+  chargeCampQuota,
   domainsForSection,
   drawCampItems,
   sectionsForFamily,
 } from '@/lib/camp/api'
 import { kstDate } from '@/lib/camp/dates'
+import { campError } from '@/lib/camp/http'
+import { campQuotaCost } from '@/lib/camp/quota-math'
 
 /**
  * Camp assignment builder.
  *
- * POST { classroomId, title, section?, domain?, count, dueAt? }
+ * POST { classroomId | classroomIds[], title, section?, domain?, count, dueAt? }
  *   Teacher (or academy manager) draws `count` random live items from
  *   the study bank for the classroom's camp program and files them as
- *   one shared assignment. The program's paid question quota is charged
- *   PER ASSIGNMENT (decision in docs/CAMP-MODE-PLAN.md), enforced here
- *   because migration 082 made camp tables read-only for clients.
+ *   one shared assignment — or, with `classroomIds`, one assignment per
+ *   classroom from the SAME draw, all-or-nothing in one request. The
+ *   program's paid question quota is charged PER ASSIGNMENT (decision in
+ *   docs/CAMP-MODE-PLAN.md), so a multi-room build costs
+ *   count x classrooms (campQuotaCost), enforced here because migration
+ *   082 made camp tables read-only for clients. Allowed before the camp
+ *   starts (teachers prepare ahead); refused after it ends.
  *
  * GET ?id=…
  *   One assignment plus its sitting count (server-side: RLS hides
@@ -35,6 +42,11 @@ import { kstDate } from '@/lib/camp/dates'
  *   changing any of them means a different draw, which means charging
  *   the quota again — that is a new assignment, not an edit.
  *
+ * PATCH (no id)  { ids: string[], dueAt: string | null }
+ *   Bulk move due dates. Same permission as the single edit, checked for
+ *   EVERY assignment's classroom before anything is written; one id the
+ *   caller cannot edit refuses the whole batch.
+ *
  * DELETE ?id=…
  *   Soft-delete one assignment. Refunds the quota ONLY when no student
  *   has opened it — see the handler for why.
@@ -46,6 +58,10 @@ const ASSIGNMENT_COLUMNS =
   'id, camp_program_id, classroom_id, teacher_id, title, section, domain, question_count, item_ids, due_at, classroom_session_id, created_at'
 
 const MAX_COUNT = 40
+/** Classrooms one multi-room build may target. */
+const MAX_CLASSROOMS = 30
+/** Assignments one bulk due-date move may touch. */
+const MAX_BULK = 100
 
 async function loadClassroom(classroomId: string) {
   const { data } = await dbAdmin
@@ -58,7 +74,7 @@ async function loadClassroom(classroomId: string) {
 
 export async function GET(req: NextRequest) {
   const user = await getUserFromRequest(req)
-  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  if (!user) return campError('unauthorized', 401, 'Unauthorized')
 
   /* ?id=… — one assignment plus how many students have opened it.
      The sitting count MUST come from here. RLS hides students'
@@ -75,12 +91,12 @@ export async function GET(req: NextRequest) {
       .eq('id', singleId)
       .maybeSingle()
     if (!one || one.deleted_at !== null) {
-      return NextResponse.json({ error: 'assignment not found' }, { status: 404 })
+      return campError('assignment_not_found', 404, 'assignment not found')
     }
     const room = await loadClassroom(one.classroom_id)
-    if (!room) return NextResponse.json({ error: 'classroom not found' }, { status: 404 })
+    if (!room) return campError('classroom_not_found', 404, 'classroom not found')
     if (!(await canManageClassroom(user.id, room))) {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+      return campError('forbidden', 403, 'Forbidden')
     }
     const { count } = await dbAdmin
       .from('study_sessions')
@@ -90,12 +106,12 @@ export async function GET(req: NextRequest) {
   }
 
   const classroomId = req.nextUrl.searchParams.get('classroomId')
-  if (!classroomId) return NextResponse.json({ error: 'id or classroomId required' }, { status: 400 })
+  if (!classroomId) return campError('bad_request', 400, 'id or classroomId required')
 
   const classroom = await loadClassroom(classroomId)
-  if (!classroom) return NextResponse.json({ error: 'classroom not found' }, { status: 404 })
+  if (!classroom) return campError('classroom_not_found', 404, 'classroom not found')
   if (!(await canManageClassroom(user.id, classroom))) {
-    return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    return campError('forbidden', 403, 'Forbidden')
   }
 
   // Review sets (kind='review', migration 083) live in the same table
@@ -107,17 +123,18 @@ export async function GET(req: NextRequest) {
     .is('deleted_at', null)
     .or('kind.neq.review,kind.is.null')
     .order('created_at', { ascending: false })
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+  if (error) return campError('server_error', 500, error.message)
 
   return NextResponse.json({ assignments: data ?? [] })
 }
 
 export async function POST(req: NextRequest) {
   const user = await getUserFromRequest(req)
-  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  if (!user) return campError('unauthorized', 401, 'Unauthorized')
 
   let body: {
     classroomId?: string
+    classroomIds?: unknown
     title?: string
     section?: string
     domain?: string
@@ -125,34 +142,55 @@ export async function POST(req: NextRequest) {
     dueAt?: string
     classroomSessionId?: string
   }
-  try { body = await req.json() } catch { return NextResponse.json({ error: 'bad json' }, { status: 400 }) }
+  try { body = await req.json() } catch { return campError('bad_request', 400, 'bad json') }
 
-  const classroomId = body.classroomId
+  /* One classroom (`classroomId`, the original contract) or several
+     (`classroomIds`). Several means one assignment per classroom, built
+     in this ONE request and all-or-nothing: either every room gets its
+     set and the quota is charged for all of them, or nothing exists. */
+  const classroomIds = Array.isArray(body.classroomIds)
+    ? [...new Set(body.classroomIds.filter((x): x is string => typeof x === 'string' && x !== ''))]
+    : body.classroomId ? [body.classroomId] : []
   const title = typeof body.title === 'string' ? body.title.trim() : ''
   const count = body.count
-  if (!classroomId || !title) {
-    return NextResponse.json({ error: 'classroomId and title required' }, { status: 400 })
+  if (classroomIds.length === 0 || !title) {
+    return campError('bad_request', 400, 'classroomId(s) and title required')
+  }
+  if (classroomIds.length > MAX_CLASSROOMS) {
+    return campError('too_many_classrooms', 400, `at most ${MAX_CLASSROOMS} classrooms`, { max: MAX_CLASSROOMS })
   }
   if (typeof count !== 'number' || !Number.isInteger(count) || count < 1 || count > MAX_COUNT) {
-    return NextResponse.json({ error: `count must be an integer between 1 and ${MAX_COUNT}` }, { status: 400 })
+    return campError('invalid_count', 400, `count must be an integer between 1 and ${MAX_COUNT}`, { max: MAX_COUNT })
   }
   let dueAt: string | null = null
   if (body.dueAt) {
     const parsed = new Date(body.dueAt)
-    if (Number.isNaN(parsed.getTime())) {
-      return NextResponse.json({ error: 'invalid dueAt' }, { status: 400 })
-    }
+    if (Number.isNaN(parsed.getTime())) return campError('invalid_due_date', 400, 'invalid dueAt')
     dueAt = parsed.toISOString()
   }
+  // A session belongs to one classroom, so several rooms cannot share one.
+  if (body.classroomSessionId && classroomIds.length > 1) {
+    return campError('session_single_classroom', 400, 'a session can only be linked when building for one classroom')
+  }
 
-  const classroom = await loadClassroom(classroomId)
-  if (!classroom) return NextResponse.json({ error: 'classroom not found' }, { status: 404 })
-  if (!(await canManageClassroom(user.id, classroom))) {
-    return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+  // Every classroom is checked before anything is written: one room the
+  // caller cannot manage refuses the whole request.
+  const rooms: NonNullable<Awaited<ReturnType<typeof loadClassroom>>>[] = []
+  for (const id of classroomIds) {
+    const room = await loadClassroom(id)
+    if (!room) return campError('classroom_not_found', 404, 'classroom not found', { classroomId: id })
+    if (!(await canManageClassroom(user.id, room))) {
+      return campError('forbidden', 403, 'Forbidden', { classroomId: id })
+    }
+    if (!room.camp_program_id) {
+      return campError('not_camp_classroom', 400, 'classroom is not part of a camp program', { classroomId: id })
+    }
+    rooms.push(room)
   }
-  if (!classroom.camp_program_id) {
-    return NextResponse.json({ error: 'classroom is not part of a camp program' }, { status: 400 })
+  if (new Set(rooms.map(r => r.camp_program_id)).size > 1) {
+    return campError('mixed_programs', 400, 'all classrooms must belong to the same camp program')
   }
+  const classroom = rooms[0]!
 
   /* Optional session link (migration 096). Validated against THIS
      classroom: a session id from another classroom would file the work
@@ -167,10 +205,10 @@ export async function POST(req: NextRequest) {
       .eq('id', body.classroomSessionId)
       .maybeSingle()
     if (!session || session.deleted_at !== null) {
-      return NextResponse.json({ error: 'session not found' }, { status: 404 })
+      return campError('session_not_found', 404, 'session not found')
     }
     if (session.classroom_id !== classroom.id) {
-      return NextResponse.json({ error: 'session belongs to a different classroom' }, { status: 400 })
+      return campError('session_other_classroom', 400, 'session belongs to a different classroom')
     }
     classroomSessionId = session.id
   }
@@ -178,15 +216,19 @@ export async function POST(req: NextRequest) {
   const { data: program } = await dbAdmin
     .from('camp_programs')
     .select(CAMP_PROGRAM_COLUMNS)
-    .eq('id', classroom.camp_program_id)
+    .eq('id', classroom.camp_program_id as string)
     .is('deleted_at', null)
     .maybeSingle<CampProgramRow>()
-  if (!program) return NextResponse.json({ error: 'camp program not found' }, { status: 404 })
+  if (!program) return campError('program_not_found', 404, 'camp program not found')
 
-  // Program window — only enforced when the grant set dates.
+  /* Program window: only the END binds building (2026-10-23). Teachers
+     prepare the first day's sets in the week before the camp, so a build
+     before starts_on is allowed; students still cannot START one before
+     starts_on (/api/study/camp/start enforces that). No new work once
+     the camp is over. Dates bind only when the grant set them. */
   const today = kstDate()
-  if ((program.starts_on && today < program.starts_on) || (program.ends_on && today > program.ends_on)) {
-    return NextResponse.json({ error: 'camp program is not active today' }, { status: 403 })
+  if (program.ends_on && today > program.ends_on) {
+    return campError('camp_ended', 403, 'camp program has ended', { endsOn: program.ends_on })
   }
 
   // Section/domain must be vocabulary the bank actually stores for this
@@ -194,38 +236,37 @@ export async function POST(req: NextRequest) {
   const section = body.section || null
   const domain = body.domain || null
   if (section && !sectionsForFamily(program.test_family).includes(section)) {
-    return NextResponse.json({ error: `invalid section for ${program.test_family}` }, { status: 400 })
+    return campError('invalid_filter', 400, `invalid section for ${program.test_family}`)
   }
   if (domain) {
-    if (!section) return NextResponse.json({ error: 'domain requires a section' }, { status: 400 })
+    if (!section) return campError('invalid_filter', 400, 'domain requires a section')
     if (!domainsForSection(program.test_family, section).includes(domain)) {
-      return NextResponse.json({ error: `invalid domain for ${program.test_family}/${section}` }, { status: 400 })
+      return campError('invalid_filter', 400, `invalid domain for ${program.test_family}/${section}`)
     }
   }
 
-  // Pre-flight quota check — cheap rejection with the remaining count.
-  // The authoritative check is the compare-and-swap below.
+  // Pre-flight quota check over the WHOLE set — cheap rejection with the
+  // remaining count. The authoritative check is the compare-and-swap.
+  const required = campQuotaCost(count, rooms.length)
   const remaining = program.question_quota - program.questions_used
-  if (count > remaining) {
-    return NextResponse.json(
-      { error: 'question quota exceeded', code: 'quota_exceeded', remaining: Math.max(0, remaining) },
-      { status: 402 },
-    )
+  if (required > remaining) {
+    return campError('quota_exceeded', 402, 'question quota exceeded', { remaining: Math.max(0, remaining), required })
   }
 
+  /* ONE draw shared by every classroom: "the same assignment" for several
+     rooms gives them the same questions, so their results compare item
+     for item, and a shortfall refuses every room at once. */
   const draw = await drawCampItems({ family: program.test_family, section, domain, count })
   if ('shortfall' in draw) {
-    return NextResponse.json(
-      { error: 'not enough bank items for this filter', code: 'not_enough_items', available: draw.available },
-      { status: 409 },
-    )
+    return campError('not_enough_items', 409, 'not enough bank items for this filter', { available: draw.available })
   }
 
-  const { data: assignment, error: insertError } = await dbAdmin
+  // One INSERT statement for every row, so the rows land together or not at all.
+  const { data: inserted, error: insertError } = await dbAdmin
     .from('camp_assignments')
-    .insert({
+    .insert(rooms.map(room => ({
       camp_program_id: program.id,
-      classroom_id: classroom.id,
+      classroom_id: room.id,
       teacher_id: user.id,
       title,
       section,
@@ -234,65 +275,39 @@ export async function POST(req: NextRequest) {
       item_ids: draw.itemIds,
       due_at: dueAt,
       classroom_session_id: classroomSessionId,
-    })
+    })))
     .select(ASSIGNMENT_COLUMNS)
-    .single()
-  if (insertError || !assignment) {
-    return NextResponse.json({ error: insertError?.message ?? 'insert failed' }, { status: 500 })
+  const created = (inserted ?? []) as Array<{ id: string; classroom_id: string }>
+  if (insertError || created.length !== rooms.length) {
+    // One statement cannot half-land, but if the count is ever wrong,
+    // nothing may survive un-paid-for.
+    if (created.length > 0) await dbAdmin.from('camp_assignments').delete().in('id', created.map(a => a.id))
+    return campError('server_error', 500, insertError?.message ?? 'insert failed')
   }
 
-  // Charge the quota with a compare-and-swap on the exact prior value.
-  // supabase-js cannot express `set questions_used = questions_used + n`
-  // in one statement, so this loop is the atomic equivalent: the update
-  // only lands if questions_used still holds the value we just read, and
-  // 0 rows updated means a concurrent charge won the race — re-read and
-  // retry, or roll the assignment back if the quota is now gone.
-  let charged = false
-  let quotaRemaining = 0
-  for (let attempt = 0; attempt < 5 && !charged; attempt++) {
-    const { data: fresh } = await dbAdmin
-      .from('camp_programs')
-      .select('questions_used, question_quota')
-      .eq('id', program.id)
-      .is('deleted_at', null)
-      .maybeSingle()
-    if (!fresh) break
-    quotaRemaining = fresh.question_quota - fresh.questions_used
-    if (count > quotaRemaining) break
-    const { data: updated, error: updateError } = await dbAdmin
-      .from('camp_programs')
-      .update({ questions_used: fresh.questions_used + count })
-      .eq('id', program.id)
-      .eq('questions_used', fresh.questions_used)
-      .select('id')
-    if (updateError) break
-    charged = (updated?.length ?? 0) > 0
-  }
-
-  if (!charged) {
-    // Quota race lost (or program vanished mid-flight): the assignment
-    // must not exist un-paid-for. Hard delete — it was never visible.
+  const charge = await chargeCampQuota(program.id, required)
+  if (!charge.charged) {
+    // Quota race lost (or program vanished mid-flight): no assignment may
+    // exist un-paid-for. Hard delete every row — none was ever visible.
     // Best-effort compensation, error intentionally ignored: if this delete
-  // fails, an assignment row survives with NO quota charged behind it —
-  // visible in the teacher's list and harmless to students (shelf reads
-  // live rows either way); an admin can remove it. The caller already
-  // gets the 402 regardless.
-  await dbAdmin.from('camp_assignments').delete().eq('id', assignment.id)
-    return NextResponse.json(
-      { error: 'question quota exceeded', code: 'quota_exceeded', remaining: Math.max(0, quotaRemaining) },
-      { status: 402 },
-    )
+    // fails, rows survive with NO quota charged behind them — visible in the
+    // teacher's list and harmless to students; an admin can remove them.
+    // The caller gets the 402 regardless.
+    await dbAdmin.from('camp_assignments').delete().in('id', created.map(a => a.id))
+    return campError('quota_exceeded', 402, 'question quota exceeded', { remaining: charge.remaining, required })
   }
 
-  return NextResponse.json({ assignment }, { status: 201 })
+  // Request order, so `assignment` (the single-room contract) is the first room asked for.
+  const ordered = rooms.map(room => created.find(a => a.classroom_id === room.id)!)
+  return NextResponse.json({ assignment: ordered[0], assignments: ordered, charged: required }, { status: 201 })
 }
 
 export async function DELETE(req: NextRequest) {
   const user = await getUserFromRequest(req)
-  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  if (!user) return campError('unauthorized', 401, 'Unauthorized')
 
   const id = req.nextUrl.searchParams.get('id')
-  if (!id) return NextResponse.json({ error: 'id required' }, { status: 400 })
+  if (!id) return campError('bad_request', 400, 'id required')
 
   const { data: assignment } = await dbAdmin
     .from('camp_assignments')
@@ -300,13 +315,13 @@ export async function DELETE(req: NextRequest) {
     .eq('id', id)
     .maybeSingle()
   if (!assignment || assignment.deleted_at !== null) {
-    return NextResponse.json({ error: 'assignment not found' }, { status: 404 })
+    return campError('assignment_not_found', 404, 'assignment not found')
   }
 
   const classroom = await loadClassroom(assignment.classroom_id)
-  if (!classroom) return NextResponse.json({ error: 'classroom not found' }, { status: 404 })
+  if (!classroom) return campError('classroom_not_found', 404, 'classroom not found')
   if (!(await canManageClassroom(user.id, classroom))) {
-    return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    return campError('forbidden', 403, 'Forbidden')
   }
 
   /* Has anyone opened it? A camp session records the assignment id in
@@ -328,7 +343,7 @@ export async function DELETE(req: NextRequest) {
     .from('camp_assignments')
     .update({ deleted_at: new Date().toISOString() })
     .eq('id', assignment.id)
-  if (delError) return NextResponse.json({ error: delError.message }, { status: 500 })
+  if (delError) return campError('server_error', 500, delError.message)
 
   /* Refund the quota only if nobody opened it.
      A set a student has already sat consumed what the school paid for:
@@ -362,13 +377,17 @@ export async function DELETE(req: NextRequest) {
 
 export async function PATCH(req: NextRequest) {
   const user = await getUserFromRequest(req)
-  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  if (!user) return campError('unauthorized', 401, 'Unauthorized')
 
   const id = req.nextUrl.searchParams.get('id')
-  if (!id) return NextResponse.json({ error: 'id required' }, { status: 400 })
 
-  let body: { title?: string; dueAt?: string | null; classroomSessionId?: string | null }
-  try { body = await req.json() } catch { return NextResponse.json({ error: 'bad json' }, { status: 400 }) }
+  let body: { title?: string; dueAt?: string | null; classroomSessionId?: string | null; ids?: unknown }
+  try { body = await req.json() } catch { return campError('bad_request', 400, 'bad json') }
+
+  if (!id) {
+    if (Array.isArray(body.ids)) return bulkMoveDueDates(user.id, body.ids, body.dueAt)
+    return campError('bad_request', 400, 'id required')
+  }
 
   const { data: assignment } = await dbAdmin
     .from('camp_assignments')
@@ -376,20 +395,20 @@ export async function PATCH(req: NextRequest) {
     .eq('id', id)
     .maybeSingle()
   if (!assignment || assignment.deleted_at !== null) {
-    return NextResponse.json({ error: 'assignment not found' }, { status: 404 })
+    return campError('assignment_not_found', 404, 'assignment not found')
   }
 
   const classroom = await loadClassroom(assignment.classroom_id)
-  if (!classroom) return NextResponse.json({ error: 'classroom not found' }, { status: 404 })
+  if (!classroom) return campError('classroom_not_found', 404, 'classroom not found')
   if (!(await canManageClassroom(user.id, classroom))) {
-    return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    return campError('forbidden', 403, 'Forbidden')
   }
 
   const patch: Database['public']['Tables']['camp_assignments']['Update'] = {}
 
   if (body.title !== undefined) {
     const title = typeof body.title === 'string' ? body.title.trim() : ''
-    if (!title) return NextResponse.json({ error: 'title cannot be empty' }, { status: 400 })
+    if (!title) return campError('invalid_title', 400, 'title cannot be empty')
     patch.title = title
   }
 
@@ -400,7 +419,7 @@ export async function PATCH(req: NextRequest) {
     else {
       const parsed = new Date(body.dueAt)
       if (Number.isNaN(parsed.getTime())) {
-        return NextResponse.json({ error: 'invalid dueAt' }, { status: 400 })
+        return campError('invalid_due_date', 400, 'invalid dueAt')
       }
       patch.due_at = parsed.toISOString()
     }
@@ -417,17 +436,17 @@ export async function PATCH(req: NextRequest) {
         .eq('id', body.classroomSessionId)
         .maybeSingle()
       if (!session || session.deleted_at !== null) {
-        return NextResponse.json({ error: 'session not found' }, { status: 404 })
+        return campError('session_not_found', 404, 'session not found')
       }
       if (session.classroom_id !== classroom.id) {
-        return NextResponse.json({ error: 'session belongs to a different classroom' }, { status: 400 })
+        return campError('session_other_classroom', 400, 'session belongs to a different classroom')
       }
       patch.classroom_session_id = session.id
     }
   }
 
   if (Object.keys(patch).length === 0) {
-    return NextResponse.json({ error: 'nothing to update' }, { status: 400 })
+    return campError('nothing_to_update', 400, 'nothing to update')
   }
 
   const { data: updated, error } = await dbAdmin
@@ -436,7 +455,50 @@ export async function PATCH(req: NextRequest) {
     .eq('id', assignment.id)
     .select(ASSIGNMENT_COLUMNS)
     .single()
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+  if (error) return campError('server_error', 500, error.message)
 
   return NextResponse.json({ assignment: updated })
+}
+
+/**
+ * Bulk due-date move (PATCH with `ids`). All-or-nothing: every id must be
+ * a live assignment (not a review deck — those have no due date) in a
+ * classroom the caller may edit, by the same canManageClassroom rule as
+ * the single edit, before ONE update moves them all.
+ */
+async function bulkMoveDueDates(userId: string, rawIds: unknown[], rawDueAt: unknown) {
+  const ids = [...new Set(rawIds.filter((x): x is string => typeof x === 'string' && x !== ''))]
+  if (ids.length === 0) return campError('bad_request', 400, 'ids required')
+  if (ids.length > MAX_BULK) {
+    return campError('too_many_assignments', 400, `at most ${MAX_BULK} assignments`, { max: MAX_BULK })
+  }
+  let dueAt: string | null
+  if (rawDueAt === null) dueAt = null
+  else if (typeof rawDueAt === 'string') {
+    const parsed = new Date(rawDueAt)
+    if (Number.isNaN(parsed.getTime())) return campError('invalid_due_date', 400, 'invalid dueAt')
+    dueAt = parsed.toISOString()
+  } else return campError('invalid_due_date', 400, 'dueAt required (a date, or null to clear)')
+
+  const { data: found } = await dbAdmin
+    .from('camp_assignments')
+    .select('id, classroom_id, kind, deleted_at')
+    .in('id', ids)
+  const live = (found ?? []).filter(a => a.deleted_at === null && a.kind !== 'review')
+  if (live.length !== ids.length) return campError('assignment_not_found', 404, 'assignment not found')
+
+  for (const classroomId of new Set(live.map(a => a.classroom_id as string))) {
+    const room = await loadClassroom(classroomId)
+    if (!room) return campError('classroom_not_found', 404, 'classroom not found')
+    if (!(await canManageClassroom(userId, room))) return campError('forbidden', 403, 'Forbidden')
+  }
+
+  const { data: updated, error } = await dbAdmin
+    .from('camp_assignments')
+    .update({ due_at: dueAt })
+    .in('id', ids)
+    .is('deleted_at', null)
+    .select(ASSIGNMENT_COLUMNS)
+  if (error) return campError('server_error', 500, error.message)
+  return NextResponse.json({ updated: updated?.length ?? 0, assignments: updated ?? [] })
 }

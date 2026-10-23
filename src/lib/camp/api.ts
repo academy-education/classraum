@@ -186,3 +186,44 @@ export async function drawCampItems(p: {
   }
   return { itemIds: a.slice(0, p.count) }
 }
+
+/* ── Quota charge ─────────────────────────────────────────────────────── */
+
+/**
+ * Charge `amount` questions to the program's quota with a compare-and-swap
+ * on the exact prior value. supabase-js cannot express
+ * `set questions_used = questions_used + n` in one statement, so this loop
+ * is the atomic equivalent: the update only lands if questions_used still
+ * holds the value just read, and 0 rows updated means a concurrent charge
+ * won the race — re-read and retry, or give up when the quota is gone.
+ *
+ * Shared by the assignment builder and the review-set builder (they spend
+ * one pool). The caller rolls back whatever it inserted when this returns
+ * `charged: false`.
+ */
+export async function chargeCampQuota(
+  programId: string,
+  amount: number,
+): Promise<{ charged: boolean; remaining: number }> {
+  let remaining = 0
+  for (let attempt = 0; attempt < 5; attempt++) {
+    const { data: fresh } = await dbAdmin
+      .from('camp_programs')
+      .select('questions_used, question_quota')
+      .eq('id', programId)
+      .is('deleted_at', null)
+      .maybeSingle()
+    if (!fresh) break
+    remaining = fresh.question_quota - fresh.questions_used
+    if (amount > remaining) break
+    const { data: updated, error: updateError } = await dbAdmin
+      .from('camp_programs')
+      .update({ questions_used: fresh.questions_used + amount })
+      .eq('id', programId)
+      .eq('questions_used', fresh.questions_used)
+      .select('id')
+    if (updateError) break
+    if ((updated?.length ?? 0) > 0) return { charged: true, remaining: remaining - amount }
+  }
+  return { charged: false, remaining: Math.max(0, remaining) }
+}

@@ -7,6 +7,7 @@
  *  - the same period for the same student refreshes the existing row and is NOT queued for delivery again
  *  - a new period still creates new rows (history stays readable)
  *  - the period end defaults to today's Korean date, capped at the program end
+ *  - a student enrolled in the room but not on the academy's own roster gets no report (2026-10-23)
  */
 import { NextRequest } from 'next/server'
 import { fakeDb, type FakeDb } from '@/tests/fake-supabase'
@@ -30,7 +31,10 @@ jest.mock('@/lib/supabase-admin', () => ({
 jest.mock('@/lib/api-auth', () => ({ getUserFromRequest: async () => ({ id: F.T_ROOM_A }) }))
 const queued: string[] = []
 jest.mock('@/lib/camp/reports', () => ({
-  loadClassroomCampData: jest.fn(async () => ({ studentIds: ['student-a', 'student-b'] })),
+  loadClassroomCampData: jest.fn(async () => ({
+    studentIds: ['student-a', 'student-b', 'student-out'],
+    sessionByKey: new Map(), skillsByStudent: new Map(), accuracyByStudent: new Map(),
+  })),
   buildCampReportPayload: jest.fn(async () => ({ assignments: [], mockTests: [] })),
   queueCampReportDelivery: jest.fn(async ({ reportId }: { reportId: string }) => { queued.push(reportId) }),
 }))
@@ -44,6 +48,7 @@ function seed(endsOn: string | null) {
   const s = F.campSeed()
   s.camp_programs = s.camp_programs.map(p => (p.id === F.SAT_CAMP ? { ...p, starts_on: '2026-10-01', ends_on: endsOn } : p))
   s.camp_reports = []
+  s.students = [...s.students, { user_id: 'student-b', academy_id: F.ACAD }]   // student-out stays off academy X's roster
   return s
 }
 
@@ -82,4 +87,20 @@ it('the period end is capped at the program end once the camp is over', async ()
   db = fakeDb(seed('2026-08-31'))
   await post({ classroomId: F.ROOM_A })
   expect(db.tables.camp_reports[0].period_end).toBe('2026-08-31')
+})
+
+it('a student enrolled in the room but not on the academy roster gets no report', async () => {
+  db = fakeDb(seed('2099-12-31'))
+  const res = await post({ classroomId: F.ROOM_A })
+  expect(res.status).toBe(201)
+  const ids = db.tables.camp_reports.map(r => r.student_id).sort()
+  expect(ids).toEqual(['student-a', 'student-b'])
+  expect(ids).not.toContain(F.STUDENT_OUTSIDER)
+})
+
+it('generating for the outsider alone is refused, not published', async () => {
+  db = fakeDb(seed('2099-12-31'))
+  const res = await post({ classroomId: F.ROOM_A, studentId: F.STUDENT_OUTSIDER })
+  expect(res.status).toBe(400)
+  expect(db.tables.camp_reports).toHaveLength(0)
 })

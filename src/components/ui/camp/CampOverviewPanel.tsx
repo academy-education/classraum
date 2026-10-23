@@ -2,8 +2,9 @@
 
 import { Card } from '@/components/ui/card'
 import { StatusPill } from '@/components/ui/status-pill'
-import { LineChart, Line, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts'
-import { Users, CheckCircle2, Target, AlertTriangle } from 'lucide-react'
+import { LineChart, Line, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend } from 'recharts'
+import type { CampDailyPoint } from '@/lib/camp/daily'
+import { Users, CheckCircle2, Target, AlertTriangle, ChevronRight, BellRing } from 'lucide-react'
 
 /**
  * The camp Overview tab: four stat cards, the average-score trend, the
@@ -37,10 +38,201 @@ export interface CampOverviewPanelProps {
    *  SAT/TOEFL colours have one source, not two. */
   accent: { dot: string; badge: string; hex: string }
   donut: React.ReactNode
+  /** Open the student drill-down for a Needs-attention row. */
+  onOpenStudent: (row: CampAttentionRow) => void
+  /** Switch to the Students tab with the Overdue filter ("N more"). */
+  onShowOverdueStudents: () => void
+}
+
+/** One /api/camp/overview `needsAttention` row (definitions: src/lib/camp/metrics.ts). */
+export interface CampAttentionRow {
+  studentId: string
+  name: string | null
+  email: string | null
+  classroomId: string
+  classroomName: string
+  overdue: number
+  late: number
+  missing: number
+  dueTodayNotStarted: number
+}
+
+/** Daily-trend series: key in CampDailyPoint, label key, colour. One colour per metric, all on a 0-100 axis. */
+const DAILY_SERIES: Array<{ key: 'completionPct' | 'attendancePct' | 'avgScorePct'; label: string; color: string }> = [
+  { key: 'completionPct', label: 'camp.daily.completion', color: '#10b981' },
+  { key: 'attendancePct', label: 'camp.daily.attendance', color: '#f59e0b' },
+  { key: 'avgScorePct', label: 'camp.daily.score', color: '#1776db' },
+]
+
+/** The n behind each metric on a day, so a 100% from one student never reads like a 100% from thirty. */
+function dailyDetail(p: CampDailyPoint, key: typeof DAILY_SERIES[number]['key'], t: CampOverviewPanelProps['t']): string {
+  if (key === 'completionPct') return String(t('camp.daily.completionN', { done: p.completed, n: p.due }))
+  if (key === 'attendancePct') return String(t('camp.daily.attendanceN', { done: p.attended, n: p.attendanceMarked }))
+  return String(t('camp.daily.scoreN', { n: p.scoreN }))
+}
+
+/**
+ * One point per KST camp day (GET /api/camp/overview `daily`). A null value is a GAP: recharts breaks the line
+ * there (connectNulls stays off) and the tooltip says "No data", because a day with nothing due, no register
+ * taken or no graded work did not score 0.
+ */
+export function DailyTrendChart({ points, t, formatDate, language }: {
+  points: CampDailyPoint[]
+  t: CampOverviewPanelProps['t']
+  formatDate: (iso: string) => string
+  language: string
+}) {
+  return (
+    <Card className="p-4 sm:p-5" data-testid="camp-daily-trend">
+      <div className="flex items-center justify-between gap-3 mb-1">
+        <h3 className="text-sm font-semibold text-gray-900">{t('camp.daily.title')}</h3>
+      </div>
+      <p className="text-[11px] text-gray-400 mb-3">{t('camp.daily.hint')}</p>
+      {points.length === 0 ? (
+        <p className="text-sm text-gray-400 py-12 text-center">{t('camp.daily.empty')}</p>
+      ) : (
+        <div className="h-[220px]">
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart data={points} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
+              <XAxis
+                dataKey="date"
+                axisLine={false}
+                tickLine={false}
+                tick={{ fontSize: 10, fill: '#9ca3af' }}
+                tickFormatter={(d: string) =>
+                  new Date(`${d}T00:00:00`).toLocaleDateString(
+                    language === 'korean' ? 'ko-KR' : 'en-US',
+                    { month: 'short', day: 'numeric' },
+                  )}
+              />
+              <YAxis
+                domain={[0, 100]}
+                axisLine={false}
+                tickLine={false}
+                tick={{ fontSize: 10, fill: '#9ca3af' }}
+                width={32}
+                tickFormatter={(v: number) => `${v}%`}
+              />
+              <Tooltip
+                content={({ active, payload, label }) => {
+                  if (!active || !payload?.length) return null
+                  const p = (payload[0] as { payload: CampDailyPoint }).payload
+                  return (
+                    <div className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-xs shadow-sm">
+                      <p className="font-medium text-gray-900 mb-1">{formatDate(`${label}T00:00:00`)}</p>
+                      {DAILY_SERIES.map(sr => (
+                        <p key={sr.key} className="flex items-center gap-2 text-gray-600">
+                          <span aria-hidden className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: sr.color }} />
+                          <span>{t(sr.label)}:</span>
+                          {p[sr.key] === null ? (
+                            <span className="text-gray-400">{t('camp.daily.noData')}</span>
+                          ) : (
+                            <span className="font-semibold text-gray-900 tabular-nums">{p[sr.key]}%</span>
+                          )}
+                          {p[sr.key] !== null && <span className="text-gray-400 tabular-nums">({dailyDetail(p, sr.key, t)})</span>}
+                        </p>
+                      ))}
+                    </div>
+                  )
+                }}
+              />
+              <Legend
+                iconType="circle"
+                iconSize={8}
+                wrapperStyle={{ fontSize: 11 }}
+                formatter={(value: string) => <span className="text-gray-600">{t(value)}</span>}
+              />
+              {DAILY_SERIES.map(sr => (
+                <Line
+                  key={sr.key}
+                  type="monotone"
+                  dataKey={sr.key}
+                  name={sr.label}
+                  stroke={sr.color}
+                  strokeWidth={2}
+                  connectNulls={false}
+                  dot={{ r: 2.5, fill: '#fff', stroke: sr.color, strokeWidth: 2 }}
+                  activeDot={{ r: 4 }}
+                  isAnimationActive={false}
+                />
+              ))}
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      )}
+    </Card>
+  )
+}
+
+/** Rows shown before the card hands off to the Students tab. */
+const ATTENTION_LIMIT = 8
+
+function NeedsAttentionCard({ rows, t, onOpenStudent, onShowOverdueStudents }: {
+  rows: CampAttentionRow[]
+  t: CampOverviewPanelProps['t']
+  onOpenStudent: CampOverviewPanelProps['onOpenStudent']
+  onShowOverdueStudents: () => void
+}) {
+  const shown = rows.slice(0, ATTENTION_LIMIT)
+  const more = rows.length - shown.length
+  return (
+    <Card className="p-4 sm:p-5" data-testid="camp-needs-attention">
+      <div className="flex items-center gap-2 mb-1">
+        <div className={`w-7 h-7 rounded-lg flex items-center justify-center ${rows.length > 0 ? 'bg-rose-50' : 'bg-emerald-50'}`}>
+          <BellRing className={`w-3.5 h-3.5 ${rows.length > 0 ? 'text-rose-600' : 'text-emerald-600'}`} strokeWidth={2.25} />
+        </div>
+        <h3 className="text-sm font-semibold text-gray-900">{t('camp.attention.title')}</h3>
+        {rows.length > 0 && (
+          <span className="ml-1 text-xs font-semibold text-rose-600 tabular-nums">{rows.length}</span>
+        )}
+      </div>
+      <p className="text-[11px] text-gray-400 mb-2">{t('camp.attention.hint')}</p>
+      {rows.length === 0 ? (
+        <p className="text-sm text-gray-500 py-2">{t('camp.attention.empty')}</p>
+      ) : (
+        <>
+          <ul className="divide-y divide-gray-100">
+            {shown.map(r => (
+              <li key={`${r.classroomId}:${r.studentId}`}>
+                <button
+                  type="button"
+                  onClick={() => onOpenStudent(r)}
+                  title={String(t('camp.studentDetail.open'))}
+                  className="w-full flex items-center gap-3 py-2.5 text-left text-sm hover:bg-gray-50 focus-visible:outline-none focus-visible:bg-gray-50 rounded-md px-1 -mx-1 transition-colors group"
+                >
+                  <span className="flex-1 min-w-0">
+                    <span className="block font-medium text-gray-900 truncate">{r.name ?? r.email ?? '—'}</span>
+                    <span className="block text-xs text-gray-400 truncate">{r.classroomName}</span>
+                  </span>
+                  {r.overdue > 0 && (
+                    <StatusPill tone="rose" size="md">{t('camp.attention.overdue', { n: r.overdue })}</StatusPill>
+                  )}
+                  {r.dueTodayNotStarted > 0 && (
+                    <StatusPill tone="amber" size="md">{t('camp.attention.dueToday', { n: r.dueTodayNotStarted })}</StatusPill>
+                  )}
+                  <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-gray-500 flex-shrink-0" />
+                </button>
+              </li>
+            ))}
+          </ul>
+          {more > 0 && (
+            <button
+              type="button"
+              onClick={onShowOverdueStudents}
+              className="mt-2 text-xs font-medium text-primary hover:underline underline-offset-2"
+            >
+              {t('camp.attention.more', { n: more })}
+            </button>
+          )}
+        </>
+      )}
+    </Card>
+  )
 }
 
 export function CampOverviewPanel({
   overview, program, formatDate, sectionLabel, domainLabel, t, language, accent, donut,
+  onOpenStudent, onShowOverdueStudents,
 }: CampOverviewPanelProps) {
   if (overview === null) {
     return (
@@ -70,6 +262,14 @@ export function CampOverviewPanel({
 
   return (
     <div className="space-y-4">
+      {/* First, before the numbers: who to chase today. */}
+      <NeedsAttentionCard
+        rows={(overview.needsAttention ?? []) as CampAttentionRow[]}
+        t={t}
+        onOpenStudent={onOpenStudent}
+        onShowOverdueStudents={onShowOverdueStudents}
+      />
+
       <div className="grid grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-4">
         <Card className="p-4 sm:p-5">
           <div className="flex items-center gap-2 mb-3">
@@ -224,6 +424,14 @@ export function CampOverviewPanel({
           {donut}
         </Card>
       </div>
+
+      {/* Daily progress: completion of the day's due work, attendance, average score (with n), one point per day */}
+      <DailyTrendChart
+        points={(overview.daily ?? []) as CampDailyPoint[]}
+        t={t}
+        formatDate={formatDate}
+        language={language}
+      />
 
       {/* Suggested topics for teacher review — the itemised
           skills-to-review list, domain chips like the mock rows */}

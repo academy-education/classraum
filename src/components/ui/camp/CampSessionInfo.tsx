@@ -49,12 +49,16 @@ export function CampSessionInfo({ sessionId, onClose }: CampSessionInfoProps) {
   const [classroomName, setClassroomName] = useState<string | null>(null)
   const [teacherName, setTeacherName] = useState<string | null>(null)
   const [present, setPresent] = useState<number | null>(null)
+  /** The attendance count failed to load. Distinct from "no attendance taken": a failed read used to read as an
+   *  empty register. */
+  const [attendanceError, setAttendanceError] = useState(false)
 
   useEffect(() => {
     let alive = true
     const load = async () => {
       setLoading(true)
       setError(false)
+      setAttendanceError(false)
       try {
         const { data, error: e } = await db
           .from('classroom_sessions')
@@ -81,12 +85,17 @@ export function CampSessionInfo({ sessionId, onClose }: CampSessionInfoProps) {
 
         // Count only — a head:true count cannot be truncated by the
         // 1000-row cap the way fetching the rows would be.
-        const { count } = await db
+        const { count, error: attendanceErr } = await db
           .from('attendance')
           .select('id', { count: 'exact', head: true })
           .eq('classroom_session_id', sessionId)
           .eq('status', 'present')
-        if (alive) setPresent(count ?? null)
+        if (!alive) return
+        if (attendanceErr || count === null || count === undefined) setAttendanceError(true)
+        else setPresent(count)
+      } catch (e) {
+        console.error('[camp] session info load failed:', e)
+        if (alive) setError(true)
       } finally {
         if (alive) setLoading(false)
       }
@@ -134,9 +143,11 @@ export function CampSessionInfo({ sessionId, onClose }: CampSessionInfoProps) {
     {
       icon: <UserCheck className="w-4 h-4" strokeWidth={1.75} />,
       label: String(t('camp.sessionInfo.attendance')),
-      value: present && present > 0
-        ? String(t('camp.sessionInfo.present', { n: present }))
-        : <span className="text-gray-400">{t('camp.sessionInfo.noAttendance')}</span>,
+      value: attendanceError
+        ? <span className="text-rose-600">{t('camp.sessionInfo.attendanceFailed')}</span>
+        : present && present > 0
+          ? String(t('camp.sessionInfo.present', { n: present }))
+          : <span className="text-gray-400">{t('camp.sessionInfo.noAttendance')}</span>,
     },
   ] : []
 

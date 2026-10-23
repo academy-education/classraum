@@ -35,6 +35,10 @@ interface CampStudentDetailProps {
    *  payload itself (payload.program.testFamily), so this component no
    *  longer needs it. */
   testFamily: string
+  /** Whether the viewer may manage the student's classroom (canManageClassroom: an active manager or the room's
+   *  own teacher). A camp teacher of a sibling room may READ this student, but Generate report and Withdraw
+   *  would 403, so they are not offered. */
+  canManage: boolean
   onClose: () => void
 }
 
@@ -44,7 +48,7 @@ const STATE_TONES: Record<'not_started' | 'in_progress' | 'done', StatusPillTone
   done: 'emerald',
 }
 
-export function CampStudentDetail({ classroomId, studentId, studentName, testFamily: _testFamily, onClose }: CampStudentDetailProps) {
+export function CampStudentDetail({ classroomId, studentId, studentName, testFamily: _testFamily, canManage, onClose }: CampStudentDetailProps) {
   const { t, language } = useTranslation()
   const confirm = useConfirm()
   const [loading, setLoading] = useState(true)
@@ -240,12 +244,14 @@ export function CampStudentDetail({ classroomId, studentId, studentName, testFam
             <Button variant="outline" onClick={onClose} disabled={generating}>
               {t('common.close')}
             </Button>
+            {canManage && (
             <Button onClick={handleGenerateReport} disabled={generating || loading || error}>
               {generating
                 ? <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                 : <FileText className="w-4 h-4 mr-2" />}
               {generating ? t('camp.reports.generating') : t('camp.studentDetail.generateReport')}
             </Button>
+            )}
           </ModalShell.Footer>
         }
       >
@@ -396,6 +402,7 @@ export function CampStudentDetail({ classroomId, studentId, studentName, testFam
                       </div>
                       <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-gray-500 flex-shrink-0 transition-colors" />
                     </button>
+                    {canManage && (
                     <button
                       type="button"
                       onClick={() => setWithdrawing(r.id)}
@@ -405,6 +412,7 @@ export function CampStudentDetail({ classroomId, studentId, studentName, testFam
                     >
                       <Trash2 className="w-3.5 h-3.5" strokeWidth={1.75} />
                     </button>
+                    )}
                     </div>
                   ))}
                 </div>

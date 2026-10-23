@@ -2826,7 +2826,15 @@
       "noSession": "Not tied to a session",
       "sessionHint": "Optional. Link this set to a scheduled class so it appears with that session's work.",
       "selectClassroomFirst": "Choose a class first",
-      "noSessions": "This class has no sessions yet"
+      "noSessions": "This class has no sessions yet",
+      "classrooms": "Classrooms",
+      "selectAll": "Select all",
+      "selectNone": "Clear",
+      "sessionOneClassroom": "Pick one classroom to link a session",
+      "sessionOneClassroomHint": "A session belongs to one classroom, so it can only be linked when one is selected.",
+      "costSingle": "Uses {cost} questions of your quota · {remaining} remaining",
+      "costMulti": "Uses {cost} questions of your quota ({count} × {rooms} classrooms) · {remaining} remaining",
+      "costOver": "{short} more than your quota allows — pick fewer classrooms or questions."
     },
     "sections": {
       "reading_writing": "Reading & Writing",
@@ -2845,7 +2853,36 @@
     "errors": {
       "quotaExceeded": "Not enough quota — only {remaining} questions remaining.",
       "notEnoughItems": "Only {available} questions match this filter. Pick a smaller count or a broader filter.",
-      "createFailed": "Failed to create the assignment. Please try again."
+      "createFailed": "Failed to create the assignment. Please try again.",
+      "codes": {
+        "unauthorized": "Your session has expired. Please sign in again.",
+        "forbidden": "You don't have permission to do this in this classroom.",
+        "bad_request": "Something was missing from the request. Please try again.",
+        "invalid_count": "The question count must be between 1 and {max}.",
+        "invalid_due_date": "That due date isn't valid.",
+        "invalid_title": "The title can't be empty.",
+        "invalid_filter": "That section or question type isn't available for this camp.",
+        "classroom_not_found": "This classroom no longer exists.",
+        "not_camp_classroom": "This classroom isn't part of a camp program.",
+        "mixed_programs": "All selected classrooms must belong to the same camp.",
+        "too_many_classrooms": "Pick at most {max} classrooms at a time.",
+        "too_many_assignments": "Pick at most {max} assignments at a time.",
+        "session_not_found": "That session no longer exists.",
+        "session_other_classroom": "That session belongs to a different classroom.",
+        "session_single_classroom": "A session can only be linked when you pick one classroom.",
+        "program_not_found": "This camp program no longer exists.",
+        "camp_ended": "This camp ended on {endsOn}. No new work can be added.",
+        "camp_not_started": "This camp opens on {startsOn}.",
+        "quota_exceeded": "Not enough quota — this needs {required} questions and {remaining} remain.",
+        "not_enough_items": "Only {available} questions match this filter. Pick a smaller count or a broader filter.",
+        "assignment_not_found": "That assignment no longer exists. Refresh and try again.",
+        "review_set_not_found": "That review deck no longer exists.",
+        "review_set_empty": "This review deck has no questions.",
+        "report_not_found": "That report no longer exists.",
+        "nothing_to_update": "Nothing was changed.",
+        "server_error": "Something went wrong on our side. Please try again.",
+        "no_students": "No students are enrolled in this classroom yet."
+      }
     },
     "dashboard": {
       "viewProgress": "View progress",
@@ -2865,7 +2902,9 @@
       "skillsToReviewHint": "Ranked by the class's wrong-answer rate (at least {min} answers per skill).",
       "notEnoughAnswers": "Not enough answers yet to rank skills.",
       "wrongRateLabel": "{rate}% wrong",
-      "answersLabel": "n={n}"
+      "answersLabel": "n={n}",
+      "onlyIncomplete": "Show only incomplete",
+      "allComplete": "Every student has completed every assignment."
     },
     "review": {
       "classReview": "Class review",
@@ -2883,8 +2922,13 @@
       "jumpTo": "Go to question {n}",
       "errors": {
         "createFailed": "Failed to create the review set. Please try again.",
-        "loadFailed": "The review set was created but its questions could not be loaded. Please try again."
-      }
+        "loadFailed": "The review set was created but its questions could not be loaded. Please try again.",
+        "presentFailed": "Couldn't open this deck. Please try again."
+      },
+      "closeConfirmTitle": "Close the presenter?",
+      "closeConfirmBody": "You can present this deck again from the classroom's review decks without using more quota.",
+      "closeConfirmStay": "Keep presenting",
+      "closeConfirmLeave": "Close"
     },
     "reports": {
       "title": "Camp reports",
@@ -2926,7 +2970,17 @@
       "publishConfirmTitle": "Publish reports to families?",
       "publishConfirmTitleOne": "Publish this report to the family?",
       "publishConfirmBody": "Reports appear in the parent and student apps as soon as they are published. If a report for the same period already exists, it is updated instead of duplicated.",
-      "publishConfirmCta": "Publish"
+      "publishConfirmCta": "Publish",
+      "printAll": "Print all",
+      "printPeriod": "Print",
+      "printHeading": "{classroom} · {count} reports",
+      "printEmpty": "No reports to print.",
+      "printLoadFailed": "Couldn't load these reports for printing.",
+      "periodRange": "{start} – {end}",
+      "periodUntil": "Until {end}",
+      "periodNone": "No period",
+      "periodCount": "{count} reports",
+      "generatePartial": "Only {count} reports were published before an error. They are listed below; generate again to finish."
     },
     "overview": {
       "studentsEnrolled": "Students enrolled",
@@ -2949,7 +3003,8 @@
       "suggestedTopics": "Suggested topics for teacher review",
       "suggestedTopicsHint": "cohort accuracy below {threshold}%",
       "noTopics": "No weak areas detected yet.",
-      "topicAccuracy": "{accuracy}% correct"
+      "topicAccuracy": "{accuracy}% correct",
+      "donutHint": "Select a segment to see those students"
     },
     "resultsRestricted": "Study results for this camp are visible only to its camp teachers and the academy's managers.",
     "tabs": {
@@ -2964,7 +3019,18 @@
       "avgScore": "Avg score",
       "lastActive": "Last active",
       "status": "Status",
-      "noMatches": "No students match your search."
+      "noMatches": "No students match your search.",
+      "loadFailed": "Couldn't load students",
+      "overdueCount": "Overdue",
+      "sortBy": "Sort by {column}",
+      "filters": {
+        "label": "Filter students",
+        "all": "All",
+        "overdue": "Overdue",
+        "not_started": "Not started",
+        "on_track": "On track"
+      },
+      "noFilterMatches": "No students in this group."
     },
     "studentDetail": {
       "open": "View student details",
@@ -3026,7 +3092,8 @@
       "loadFailed": "Couldn't load this session",
       "open": "View session details",
       "online": "Online",
-      "offline": "In person"
+      "offline": "In person",
+      "attendanceFailed": "Couldn't load attendance"
     },
     "deleteAssignment": {
       "action": "Delete",
@@ -3068,10 +3135,72 @@
       "willRefund": "It was never presented, so its {{n}} questions go back to your quota.",
       "noRefund": "It was presented on {{date}}. The questions stay spent.",
       "deleted": "Deck deleted",
-      "failed": "Couldn't delete this deck"
+      "failed": "Couldn't delete this deck",
+      "loadFailed": "Couldn't load review decks",
+      "defaultTitle": "Class review · {date}",
+      "presentFirst": "Present"
     },
     "otherTeacherRoomTitle": "Managed by another teacher",
-    "otherTeacherRoomDescription": "Only this class's teacher or an academy manager can create assignments, reports and reviews here."
+    "otherTeacherRoomDescription": "Only this class's teacher or an academy manager can create assignments, reports and reviews here.",
+    "sessionsLoadFailed": "Couldn't load lesson dates, so assignments are not grouped by lesson",
+    "attention": {
+      "title": "Needs attention today",
+      "hint": "Overdue work, or work due today that hasn't been started",
+      "empty": "No one is behind: nothing overdue, and nothing due today left unstarted.",
+      "overdue": "{n} overdue",
+      "dueToday": "{n} due today, not started",
+      "more": "{n} more in the Students tab"
+    },
+    "metrics": {
+      "overdue": "Overdue",
+      "completedLate": "Late",
+      "completedLateTitle": "Completed after the due date"
+    },
+    "daily": {
+      "title": "Daily progress",
+      "hint": "One point per camp day. A break in a line means no data that day, not zero.",
+      "completion": "Work due that day, completed",
+      "attendance": "Attendance",
+      "score": "Average score",
+      "completionN": "{done} of {n} due",
+      "attendanceN": "{done} of {n} marked",
+      "scoreN": "n = {n} graded sessions",
+      "noData": "No data",
+      "empty": "The daily trend starts on the camp's first day."
+    },
+    "createAssignments": "Create for {count} classrooms",
+    "createdForClassrooms": "Assignment created for {count} classrooms",
+    "bulkDue": {
+      "action": "Move due dates",
+      "title": "Move due dates",
+      "pick": "Assignments",
+      "selectAll": "Select all",
+      "selectNone": "Clear",
+      "noDue": "No due date",
+      "newDate": "New due date",
+      "clear": "Remove the due date instead",
+      "save": "Update {count}",
+      "saved": "Updated {count} due dates",
+      "failed": "Couldn't update these due dates"
+    },
+    "export": {
+      "studentsCsv": "Export CSV",
+      "progressCsv": "Export CSV",
+      "progressCsvHint": "Download this classroom's progress grid as a spreadsheet",
+      "studentsFile": "students",
+      "progressFile": "progress",
+      "failed": "Couldn't export. Please try again.",
+      "name": "Student",
+      "email": "Email",
+      "classroom": "Classroom",
+      "completed": "Completed",
+      "assigned": "Assigned",
+      "inProgress": "In progress",
+      "notStarted": "Not started",
+      "done": "Done",
+      "avgScore": "Average score (%)",
+      "lastActive": "Last active"
+    }
   },
   "attendance": {
     "title": "Attendance",
@@ -5501,7 +5630,8 @@
       "inProgress": "In progress",
       "done": "Completed",
       "doneWithScore": "Completed · {correct}/{total}",
-      "startFailed": "Couldn't start this assignment. Please try again."
+      "startFailed": "Couldn't start this assignment. Please try again.",
+      "opensOn": "Opens {date}"
     },
     "topic": {
       "backToStudy": "Back to Study",
