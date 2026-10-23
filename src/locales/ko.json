@@ -3054,6 +3054,18 @@
       "overdue": "기한 초과",
       "completedLate": "늦게 제출",
       "completedLateTitle": "마감 후에 완료함"
+    },
+    "daily": {
+      "title": "일별 진행 현황",
+      "hint": "캠프 일자별로 한 점씩 표시합니다. 선이 끊긴 곳은 0이 아니라 그날 데이터가 없다는 뜻입니다.",
+      "completion": "당일 마감 과제 완료율",
+      "attendance": "출석률",
+      "score": "평균 점수",
+      "completionN": "마감 {n}건 중 {done}건",
+      "attendanceN": "출석 체크 {n}건 중 {done}건",
+      "scoreN": "채점된 세션 {n}개",
+      "noData": "데이터 없음",
+      "empty": "일별 추이는 캠프 첫날부터 표시됩니다."
     }
   },
   "attendance": {

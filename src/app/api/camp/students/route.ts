@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
-import { canViewProgramResults, studentsOfAcademy } from '@/lib/camp/access'
-import { restrictToStudents } from '@/lib/camp/roster'
+import { canViewProgramResults } from '@/lib/camp/access'
 import { summarizeWork, type CampStudentWorkSummary, type CampWorkItem } from '@/lib/camp/metrics'
-import { loadClassroomCampData } from '@/lib/camp/reports'
+import { loadProgramRooms } from '@/lib/camp/program-data'
 
 /**
  * GET /api/camp/students?programId=…
@@ -28,8 +27,9 @@ import { loadClassroomCampData } from '@/lib/camp/reports'
  * to a classroom, so each row carries the classroomId it opens with.
  *
  * Built on loadClassroomCampData (src/lib/camp/reports.ts) per
- * classroom, the same loader the overview/dashboard/report paths use,
- * so every number here matches those surfaces by construction.
+ * classroom (loaded in parallel by loadProgramRooms), the same loader the
+ * overview/dashboard/report paths use, so every number here matches
+ * those surfaces by construction.
  *
  * Read-only; academy managers and camp teachers of THIS program.
  */
@@ -88,15 +88,13 @@ export async function GET(req: NextRequest) {
 
   const students: StudentRow[] = []
   const now = new Date()
-  for (const room of classrooms ?? []) {
-    const loaded = await loadClassroomCampData({
-      id: room.id as string,
-      name: room.name as string,
-      camp_program_id: programId,
-    })
-    if ('error' in loaded) return NextResponse.json({ error: loaded.error }, { status: 500 })
-    // Enrolled here AND on the academy's own roster (the rule /api/camp/student applies to one student).
-    const data = restrictToStudents(loaded, await studentsOfAcademy(loaded.studentIds, program.academy_id as string))
+  const loadedRooms = await loadProgramRooms(
+    (classrooms ?? []).map(r => ({ id: r.id as string, name: r.name as string })),
+    programId,
+    program.academy_id as string,
+  )
+  if ('error' in loadedRooms) return NextResponse.json({ error: loadedRooms.error }, { status: 500 })
+  for (const { id: roomId, name: roomName, data } of loadedRooms.rooms) {
 
     for (const studentId of data.studentIds) {
       const states = { done: 0, inProgress: 0, notStarted: 0 }
@@ -124,8 +122,8 @@ export async function GET(req: NextRequest) {
         studentId,
         name: userInfo?.name ?? null,
         email: userInfo?.email ?? null,
-        classroomId: room.id as string,
-        classroomName: room.name as string,
+        classroomId: roomId,
+        classroomName: roomName,
         completion: { done: states.done, total: data.assignments.length },
         avgScorePct: acc && acc.total > 0 ? Math.round((100 * acc.correct) / acc.total) : null,
         lastActive,

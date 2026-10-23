@@ -3054,6 +3054,18 @@
       "overdue": "Overdue",
       "completedLate": "Late",
       "completedLateTitle": "Completed after the due date"
+    },
+    "daily": {
+      "title": "Daily progress",
+      "hint": "One point per camp day. A break in a line means no data that day, not zero.",
+      "completion": "Work due that day, completed",
+      "attendance": "Attendance",
+      "score": "Average score",
+      "completionN": "{done} of {n} due",
+      "attendanceN": "{done} of {n} marked",
+      "scoreN": "n = {n} graded sessions",
+      "noData": "No data",
+      "empty": "The daily trend starts on the camp's first day."
     }
   },
   "attendance": {

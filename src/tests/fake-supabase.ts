@@ -9,7 +9,7 @@
  * applied synchronously at the terminal call, so a conditional UPDATE is
  * atomic the way it is in Postgres (two concurrent claims: one winner).
  *
- * Supported: select, insert, update, eq, neq, is, in, lt, not(col,'is',null),
+ * Supported: select, insert, update, eq, neq, is, in, lt, lte, gte, not(col,'is',null),
  * or('a.neq.x,a.is.null'), order, limit, range, maybeSingle, single, and
  * awaiting the builder directly. A jsonb `config->key` path works in
  * not/neq/or. Anything else throws rather than silently matching all rows.
@@ -82,6 +82,8 @@ export function fakeDb(seed: Record<string, Row[]> = {}): FakeDb {
       is: (c: string, v: unknown) => { filters.push(r => (r[c] ?? null) === v); return b },
       in: (c: string, vs: unknown[]) => { filters.push(r => vs.includes(r[c])); return b },
       lt: (c: string, v: string) => { filters.push(r => String(r[c]) < v); return b },
+      lte: (c: string, v: string) => { filters.push(r => r[c] != null && String(r[c]) <= v); return b },
+      gte: (c: string, v: string) => { filters.push(r => r[c] != null && String(r[c]) >= v); return b },
       neq: (c: string, v: unknown) => { filters.push(r => { const x = get(r, c); return x !== null && x !== v }); return b },
       // Only the `.not(col, 'is', null)` shape, with a jsonb `a->b` path.
       not: (c: string, operator: string, v: unknown) => {

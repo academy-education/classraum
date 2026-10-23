@@ -28,6 +28,7 @@ import { showSuccessToast, showErrorToast } from '@/stores'
 import { Loader2, Plus, School, Tent, ClipboardList, Search, Calendar, Trash2, Pencil, ChevronDown, ChevronUp, Presentation, FileText, BookOpen, Clock, Users, CheckCircle2, Target, AlertTriangle } from 'lucide-react'
 import { kstDate } from '@/lib/camp/dates'
 import { pickDefaultProgram } from '@/lib/camp/cap'
+import type { CampDailyPoint } from '@/lib/camp/daily'
 
 /**
  * Camp dashboard — quota meter, camp classrooms, and the assignment
@@ -104,6 +105,8 @@ interface ProgramOverview {
   assignmentStatus: { completed: number; late: number; missing: number; open: number }
   /** Students with overdue or due-today-unstarted work, most overdue first. */
   needsAttention: CampAttentionRow[]
+  /** One point per KST camp day; null metrics are gaps (src/lib/camp/daily.ts). */
+  daily: CampDailyPoint[]
 }
 
 /** Donut segment -> Students tab filter. Late and missing pairs are both overdue (metrics.ts), so a student
