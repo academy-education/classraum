@@ -1,0 +1,870 @@
+{
+ "SEC27D-05": {
+  "must_revise": true,
+  "named_for": [
+   "template pair with SEC27A-08 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "named in reader r1's tell: No-punctuation key whenever the blank sits between a verb and its object/complement (P27, P38) or a noun and a restrictive modifier (P16, P37)."
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "repairs the",
+    "difficulty": "hard",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "strong",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": null,
+    "note": "Heavy object shifted after the adverbial: 'set aside for emergency repairs the surplus that...'. Any mark separates verb from its object. B is attractive because the long object 'feels' like it needs a pause."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "repairs the",
+    "difficulty": "hard",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "strong",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": null,
+    "note": "Heavy-object shift: 'set aside [for emergency repairs] the surplus ...'; no punctuation may separate the verb from its object. The fronted phrase makes a comma feel natural."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC27A-08",
+    "readers": 2,
+    "why": [
+     "no punctuation between a verb and its delayed object",
+     "no punctuation between verb and a shifted or clausal object"
+    ]
+   }
+  ]
+ },
+ "SEC27D-04": {
+  "must_revise": true,
+  "named_for": [
+   "distractors not strong for every reader",
+   "template pair with SEC27A-09 (named by all 2 readers)",
+   "template pair with SEC27A-03 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template partner of SEC27D-08 (the later slot revises)",
+   "named in reader r0's tell: Subject-verb items (P02,P04,P05,P08,P09,P12,P14,P18,P22,P23,P25,P29,P30,P33,P36,P39,P40) are all 2x2 number-by-tense grids: two independent binary rules, each s",
+   "named in reader r0's tell: In those items the noun immediately before the blank is almost always the WRONG number (P02 spillway, P05 sheet, P08 pier, P09 board, P10 admissions, P12 mustar",
+   "named in reader r0's tell: Elliptical auxiliary items (P09,P11,P15,P32): key is always the auxiliary that echoes a verb elsewhere in the sentence; options supplying an auxiliary with no e",
+   "named in reader r1's tell: Ellipsis items (P02, P03, P04, P11): the key aux always copies the verb type of the other clause (lexical -> do/does, be -> is, perfect -> have), and the number"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "have too",
+    "difficulty": "hard",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "strong",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": null,
+    "note": "Elliptical clause echoing 'has dwindled': 'the vacancies ... have [dwindled] too'. Needs a have-auxiliary AND plural number; C copies the singular 'has' from the parallel clause, B/D supply 'be', which has no verb to echo."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "have too",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "the earlier 'has dwindled' hands over the perfect auxiliary and 'vacancies' the number; fourth ellipsis item (P02, P03, P04).",
+    "note": "Ellipsis of 'dwindled' from 'has dwindled': plural 'vacancies' -> 'have too'. 'has too' attracts via 'board'; 'are too' has no be-antecedent."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC27A-09",
+    "readers": 2,
+    "why": [
+     "elliptical auxiliary echoing a verb elsewhere in the sentence",
+     "elliptical auxiliary copying the other clause's verb"
+    ]
+   },
+   {
+    "with": "SEC27A-03",
+    "readers": 2,
+    "why": [
+     "elliptical auxiliary echoing a verb elsewhere in the sentence",
+     "elliptical auxiliary copying the other clause's verb"
+    ]
+   },
+   {
+    "with": "SEC27D-08",
+    "readers": 2,
+    "why": [
+     "elliptical auxiliary echoing a verb elsewhere in the sentence",
+     "elliptical auxiliary copying the other clause's verb"
+    ]
+   }
+  ]
+ },
+ "SEC27D-06": {
+  "must_revise": true,
+  "named_for": [
+   "no reader rated it hard",
+   "distractors not strong for every reader",
+   "template pair with SEC27B-06 (named by all 2 readers)",
+   "template pair with SEC27A-06 (named by all 2 readers)",
+   "template pair with SEC27C-05 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "named in reader r0's tell: In those items the noun immediately before the blank is almost always the WRONG number (P02 spillway, P05 sheet, P08 pier, P09 board, P10 admissions, P12 mustar",
+   "named in reader r0's tell: Pronoun items (P10,P13,P27,P35) are all 2x2 verb-number x pronoun-number grids; the pronoun's correct referent is always the semantically obvious actor/object a",
+   "named in reader r1's tell: Pronoun items use the same 2x2 grid (verb number x pronoun number) and the pronoun's referent is always the one non-subject noun of the right kind (window P06, "
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "was checking it",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "both rules point to the nearest singular nouns ('director', 'questionnaire'); 'admissions' is a weak attractor and 'them' has no plural candidate in the sentence; same 2x2 verb-number x pronoun grid as P13, P27, P35.",
+    "note": "Singular 'director' (attractor 'admissions') takes 'was'; the object is the single 'family's questionnaire', so 'it'."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "was checking it",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'director' sits at the end of the subject next to the blank and 'a family's questionnaire' is the obvious singular referent; pronoun grid with P06, P13, P19.",
+    "note": "Singular 'director' -> 'was checking'; the thing checked is the family's 'questionnaire' -> 'it'. 'them' baits toward 'notes'."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC27B-06",
+    "readers": 2,
+    "why": [
+     "verb number crossed with pronoun number in a two-by-two grid",
+     "verb number x pronoun number grid"
+    ]
+   },
+   {
+    "with": "SEC27A-06",
+    "readers": 2,
+    "why": [
+     "verb number crossed with pronoun number in a two-by-two grid",
+     "verb number x pronoun number grid"
+    ]
+   },
+   {
+    "with": "SEC27C-05",
+    "readers": 2,
+    "why": [
+     "verb number crossed with pronoun number in a two-by-two grid",
+     "verb number x pronoun number grid"
+    ]
+   }
+  ]
+ },
+ "SEC27D-01": {
+  "must_revise": true,
+  "named_for": [
+   "no reader rated it hard",
+   "distractors not strong for every reader"
+  ],
+  "listed_for": [
+   "template partner of SEC27D-09 (the later slot revises)",
+   "named in reader r0's tell: Colon items (P16,P17): a complete clause ending in an announcing noun ('had in common', 'a hidden cost') always takes the colon.",
+   "named in reader r1's tell: Colon is the key whenever the preceding words announce a specification ('had in common' P08, 'a hidden cost' P15) and loses when the next clause is a separate e"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "common: irregular",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'had in common' announces that a list follows, and the three-item list is visibly coming; same colon-after-complete-clause template as P17.",
+    "note": "A complete clause ('The interviewers' logs recorded what the refusing households had in common') introduces a list, so a colon."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "common: irregular",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "common; irregular"
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'had in common' plus the three-part list after the blank announce a colon; same colon-before-specification template as P15.",
+    "note": "Complete clause 'recorded what the households had in common' introduces a three-item list -> colon. A's comma blurs the list into the clause; C semicolon before a non-clause list."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC27D-09",
+    "readers": 2,
+    "why": [
+     "colon after a complete clause ending in an announcing noun",
+     "colon introducing a specification after a complete clause"
+    ]
+   }
+  ]
+ },
+ "SEC27D-09": {
+  "must_revise": true,
+  "named_for": [
+   "n_struck 2",
+   "easy",
+   "no reader rated it hard",
+   "distractors weak",
+   "distractors not strong for every reader",
+   "template pair with SEC27D-01 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "named in reader r0's tell: Colon items (P16,P17): a complete clause ending in an announcing noun ('had in common', 'a hidden cost') always takes the colon.",
+   "named in reader r1's tell: Colon is the key whenever the preceding words announce a specification ('had in common' P08, 'a hidden cost' P15) and loses when the next clause is a separate e"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "price: minutes",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "price minutes,"
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'a hidden cost' cues an explanation, C is garbled, and the semicolon needs an independent clause that is not there; same template as P16.",
+    "note": "Complete clause ('riders weighed a hidden cost more heavily than the ticket price') followed by the specification of that cost: colon. 'a hidden cost' announces what follows."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "price: minutes",
+    "difficulty": "easy",
+    "n_struck": 2,
+    "struck_options": [
+     "price minutes",
+     "price minutes,"
+    ],
+    "distractor_quality": "weak",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'a hidden cost' announces a specification and two of the three distractors are unpunctuated mash-ups nobody would choose; same template as P08.",
+    "note": "'a hidden cost more heavily than the ticket price' is complete and the cost is then specified -> colon. B semicolon introduces a fragment."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC27D-01",
+    "readers": 2,
+    "why": [
+     "colon after a complete clause ending in an announcing noun",
+     "colon introducing a specification after a complete clause"
+    ]
+   }
+  ]
+ },
+ "SEC27D-03": {
+  "must_revise": true,
+  "named_for": [
+   "easy",
+   "no reader rated it hard",
+   "distractors weak",
+   "distractors not strong for every reader",
+   "template pair with SEC27B-02 (named by all 2 readers)",
+   "template pair with SEC27C-06 (named by all 2 readers)",
+   "template pair with SEC27B-07 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template partner of SEC27D-07 (the later slot revises)",
+   "template pair with SEC27D-02 named by 1 of 2",
+   "template pair with SEC27C-03 named by 1 of 2",
+   "template pair with SEC27C-07 named by 1 of 2",
+   "template pair with SEC27A-02 named by 1 of 2",
+   "template pair with SEC27A-05 named by 1 of 2",
+   "template pair with SEC27B-08 named by 1 of 2",
+   "template pair with SEC27B-03 named by 1 of 2",
+   "template pair with SEC27C-02 named by 1 of 2",
+   "named in reader r0's tell: Subject-verb items (P02,P04,P05,P08,P09,P12,P14,P18,P22,P23,P25,P29,P30,P33,P36,P39,P40) are all 2x2 number-by-tense grids: two independent binary rules, each s",
+   "named in reader r0's tell: Tense is always handed over by a time phrase AFTER the blank: past by 'during ...'/'in the decades preceding'/'that autumn'/'when ...' (P08,P18,P25,P30,P40), pr",
+   "named in reader r1's tell: Head noun = first noun of the subject: in every number item the subject's head is the first noun at the start of the clause and a later prepositional/relative n",
+   "named in reader r1's tell: Tense is always handed over by a time phrase or present verb AFTER the blank: 'since' -> present perfect (P22), duration 'for nine growing seasons' -> perfect ("
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "were logging",
+    "difficulty": "easy",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "weak",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'during the paper-ticket era that preceded' hands over the past and 'cashiers' opens the clause plural; the singular options attach to nothing.",
+    "note": "Plural 'cashiers', and 'during the paper-ticket era that preceded student swipe cards' sets past progressive."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "were logging",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "the time phrase 'during the paper-ticket era that preceded' gives the tense outright; grid template.",
+    "note": "Plural 'cashiers', completed past 'during the paper-ticket era that preceded swipe cards' -> 'were logging'. 'have been logging' tempts via present 'who staff'."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC27B-02",
+    "readers": 2,
+    "why": [
+     "subject-verb number plus a past time phrase after the blank",
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27D-07",
+    "readers": 2,
+    "why": [
+     "subject-verb number plus a past time phrase after the blank",
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-06",
+    "readers": 2,
+    "why": [
+     "subject-verb number plus a past time phrase after the blank",
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27B-07",
+    "readers": 2,
+    "why": [
+     "subject-verb number plus a past time phrase after the blank",
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27D-02",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-03",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-07",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27A-02",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27A-05",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27B-08",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27B-03",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-02",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   }
+  ]
+ },
+ "SEC27D-02": {
+  "must_revise": true,
+  "named_for": [
+   "no reader rated it hard",
+   "distractors not strong for every reader",
+   "template pair with SEC27C-02 (named by all 2 readers)",
+   "template pair with SEC27A-02 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template pair with SEC27B-02 named by 1 of 2",
+   "template pair with SEC27D-03 named by 1 of 2",
+   "template pair with SEC27C-03 named by 1 of 2",
+   "template pair with SEC27C-07 named by 1 of 2",
+   "template pair with SEC27C-06 named by 1 of 2",
+   "template pair with SEC27B-07 named by 1 of 2",
+   "template pair with SEC27D-07 named by 1 of 2",
+   "template pair with SEC27A-05 named by 1 of 2",
+   "template pair with SEC27B-08 named by 1 of 2",
+   "template pair with SEC27B-03 named by 1 of 2",
+   "named in reader r0's tell: Subject-verb items (P02,P04,P05,P08,P09,P12,P14,P18,P22,P23,P25,P29,P30,P33,P36,P39,P40) are all 2x2 number-by-tense grids: two independent binary rules, each s",
+   "named in reader r0's tell: In those items the noun immediately before the blank is almost always the WRONG number (P02 spillway, P05 sheet, P08 pier, P09 board, P10 admissions, P12 mustar",
+   "named in reader r0's tell: Tense is always handed over by a time phrase AFTER the blank: past by 'during ...'/'in the decades preceding'/'that autumn'/'when ...' (P08,P18,P25,P30,P40), pr",
+   "named in reader r1's tell: Head noun = first noun of the subject: in every number item the subject's head is the first noun at the start of the clause and a later prepositional/relative n",
+   "named in reader r1's tell: Tense is always handed over by a time phrase or present verb AFTER the blank: 'since' -> present perfect (P22), duration 'for nine growing seasons' -> perfect ("
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "are rare",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "the present-tense 'serves' sits right after the blank and 'loans' is plainly plural, so the 2x2 grid collapses at once.",
+    "note": "Plural 'loans' (attractors 'farmer', 'title') with present tense set by 'serves' and 'borrow'."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "are rare",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'serves' and 'borrow' hand over present and the head noun is the first noun of the subject; grid template.",
+    "note": "Plural 'loans' (not 'farmer'/'title'), present 'serves'/'borrow' -> 'are rare'."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC27C-02",
+    "readers": 2,
+    "why": [
+     "subject-verb number plus a present verb in a trailing clause",
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27A-02",
+    "readers": 2,
+    "why": [
+     "subject-verb number plus a present verb in a trailing clause",
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27B-02",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27D-03",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-03",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-07",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-06",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27B-07",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27D-07",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27A-05",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27B-08",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27B-03",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   }
+  ]
+ },
+ "SEC27D-07": {
+  "must_revise": true,
+  "named_for": [
+   "no reader rated it hard",
+   "distractors not strong for every reader",
+   "template pair with SEC27B-02 (named by all 2 readers)",
+   "template pair with SEC27D-03 (named by all 2 readers)",
+   "template pair with SEC27C-06 (named by all 2 readers)",
+   "template pair with SEC27B-07 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template pair with SEC27D-02 named by 1 of 2",
+   "template pair with SEC27C-03 named by 1 of 2",
+   "template pair with SEC27C-07 named by 1 of 2",
+   "template pair with SEC27A-02 named by 1 of 2",
+   "template pair with SEC27A-05 named by 1 of 2",
+   "template pair with SEC27B-08 named by 1 of 2",
+   "template pair with SEC27B-03 named by 1 of 2",
+   "template pair with SEC27C-02 named by 1 of 2",
+   "named in reader r0's tell: Subject-verb items (P02,P04,P05,P08,P09,P12,P14,P18,P22,P23,P25,P29,P30,P33,P36,P39,P40) are all 2x2 number-by-tense grids: two independent binary rules, each s",
+   "named in reader r0's tell: In those items the noun immediately before the blank is almost always the WRONG number (P02 spillway, P05 sheet, P08 pier, P09 board, P10 admissions, P12 mustar",
+   "named in reader r0's tell: Tense is always handed over by a time phrase AFTER the blank: past by 'during ...'/'in the decades preceding'/'that autumn'/'when ...' (P08,P18,P25,P30,P40), pr",
+   "named in reader r1's tell: Head noun = first noun of the subject: in every number item the subject's head is the first noun at the start of the clause and a later prepositional/relative n"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "was typical",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'that autumn' hands over the past and 'Turnout' opens the sentence; the plural options need 'blocks' as subject.",
+    "note": "Singular 'Turnout' (attractors 'renters', 'blocks') with 'during the mayoral runoff that autumn' setting simple past."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "was typical",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'that autumn' fixes a past event and the head noun opens the sentence; grid template.",
+    "note": "Singular 'Turnout', single past event 'during the mayoral runoff that autumn' -> 'was typical'. 'renters'/'blocks' bait plural."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC27B-02",
+    "readers": 2,
+    "why": [
+     "subject-verb number plus a past time phrase after the blank",
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27D-03",
+    "readers": 2,
+    "why": [
+     "subject-verb number plus a past time phrase after the blank",
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-06",
+    "readers": 2,
+    "why": [
+     "subject-verb number plus a past time phrase after the blank",
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27B-07",
+    "readers": 2,
+    "why": [
+     "subject-verb number plus a past time phrase after the blank",
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27D-02",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-03",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-07",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27A-02",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27A-05",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27B-08",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27B-03",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-02",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   }
+  ]
+ },
+ "SEC27D-10": {
+  "must_revise": true,
+  "named_for": [
+   "distractors not strong for every reader",
+   "template pair with SEC27A-10 (named by all 2 readers)",
+   "template pair with SEC27C-10 (named by all 2 readers)"
+  ],
+  "listed_for": [],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "contractors'",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "the next sentence explicitly names 'The contractors' in the plural, handing over the number; B leaves 'tally ... recorded' garbled.",
+    "note": "Possessive needed before 'tally'; the closing sentence ('The contractors later disagreed') makes the contractors plural, so plural possessive. A is the strongest distractor for students who stop at the sentence."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "contractors'",
+    "difficulty": "hard",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "strong",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": null,
+    "note": "Plural possessive: the following sentence says 'The contractors later disagreed about ... those copies', so the tally is the contractors'. 'contractor's' is attractive because 'tally' is singular and nothing before the blank signals plurality."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC27A-10",
+    "readers": 2,
+    "why": [
+     "singular versus plural possessive before a noun with a number cue",
+     "possessive or plural noun before a noun whose number is cued elsewhere"
+    ]
+   },
+   {
+    "with": "SEC27C-10",
+    "readers": 2,
+    "why": [
+     "singular versus plural possessive before a noun with a number cue",
+     "possessive or plural noun before a noun whose number is cued elsewhere"
+    ]
+   }
+  ]
+ },
+ "SEC27D-08": {
+  "must_revise": true,
+  "named_for": [
+   "no reader rated it hard",
+   "distractors not strong for every reader",
+   "template pair with SEC27D-04 (named by all 2 readers)",
+   "template pair with SEC27A-09 (named by all 2 readers)",
+   "template pair with SEC27A-03 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "named in reader r0's tell: Elliptical auxiliary items (P09,P11,P15,P32): key is always the auxiliary that echoes a verb elsewhere in the sentence; options supplying an auxiliary with no e",
+   "named in reader r1's tell: Ellipsis items (P02, P03, P04, P11): the key aux always copies the verb type of the other clause (lexical -> do/does, be -> is, perfect -> have), and the number"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "often does",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'recalls' is the only verb to echo and it is present singular; 'was'/'were' have nothing to stand for. Same elliptical-auxiliary template as P09, P11, P15.",
+    "note": "Ellipsis echoing 'recalls ... more accurately': 'a student ... often does'. Singular, present. 'formulas'/'mornings' are plural attractors."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "often does",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "the parallel verb 'recalls' and the present 'rehearses' fix both aux type and tense; third ellipsis item in the render (P02, P03, P11).",
+    "note": "'much as a student ... often does' mirrors 'recalls' (present, lexical) with singular 'student'. 'do' attracts via plural 'formulas'/'mornings' adjacent to the blank."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC27D-04",
+    "readers": 2,
+    "why": [
+     "elliptical auxiliary echoing a verb elsewhere in the sentence",
+     "elliptical auxiliary copying the other clause's verb"
+    ]
+   },
+   {
+    "with": "SEC27A-09",
+    "readers": 2,
+    "why": [
+     "elliptical auxiliary echoing a verb elsewhere in the sentence",
+     "elliptical auxiliary copying the other clause's verb"
+    ]
+   },
+   {
+    "with": "SEC27A-03",
+    "readers": 2,
+    "why": [
+     "elliptical auxiliary echoing a verb elsewhere in the sentence",
+     "elliptical auxiliary copying the other clause's verb"
+    ]
+   }
+  ]
+ }
+}

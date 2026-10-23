@@ -1,0 +1,495 @@
+[
+  {
+    "id": "SEC27A-01",
+    "slot": "A1",
+    "frame": "Clause 1 ends on 'orchard'; clause 2 opens 'a sheltered block of trees planted by the previous owner', which renames the orchard as an appositive until 'flowered' arrives; clause 2 reports a later event (flowering eleven days later), not an explanation",
+    "key_mark": "semicolon",
+    "key_letter": "C",
+    "structure": "Left: an independent clause ending on 'orchard'. Right: an independent clause whose subject 'a sheltered block of trees planted by the previous owner' reads as an appositive of 'orchard' until its verb 'flowered' (10th word after the blank).",
+    "decider_kind": "delayed-verb",
+    "decider_quote": "flowered eleven days later",
+    "glance_fail": [
+      "orchard a"
+    ],
+    "distractor_pulls": {
+      "orchard, a": "For nine words the noun phrase is a perfect appositive: an orchard IS a block of trees planted by a previous owner, so a comma looks exactly right.",
+      "orchard a": "A reader who takes 'a sheltered block of trees' as a restrictive identifier of the orchard, or who loses track of the long sentence, leaves the words unpunctuated.",
+      "orchard: a": "A colon often introduces a description of the noun just before it; a reader who reads the noun phrase as a definition of the orchard and accepts what follows as elaboration of the move picks the colon."
+    },
+    "distractor_kills": {
+      "orchard, a": "Comma splice: 'a sheltered block of trees planted by the previous owner flowered eleven days later' is an independent clause. The comma would be correct only if 'flowered' were removed (a true appositive).",
+      "orchard a": "Fused sentence: two independent clauses with no punctuation or conjunction.",
+      "orchard: a": "A colon joining two clauses requires the second to explain, list, or restate the first; the flowering eleven days later is a later, separate event, not an explanation of the move. A colon would be right before a clause such as 'the trees there flowered first', which explains the choice."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: same words, four marks; the semicolon is one of two strong marks offered",
+      "heuristics_that_give_key": [
+        "none found: the colon is equally strong, and the comma reading holds for nine words"
+      ],
+      "changed": "none"
+    }
+  },
+  {
+    "id": "SEC27A-02",
+    "slot": "A2",
+    "frame": "Opening 'In herds enrolled in the trial,' (plural); subject 'the treated cows' milk from any quarter that the veterinarian injected with the new antibiotic' (plural possessive 'cows'' in front of the singular mass head 'milk'; a past object relative 'injected' inside the subject); 'is kept' vs 'was kept' settled by a present unless-clause 6 words after the blank",
+    "true_subject_head": "milk",
+    "misleader_words": [
+      "cows'",
+      "herds",
+      "injected"
+    ],
+    "misleader_position": "early",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "antibiotic",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "herds",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "tank",
+      "number": "sg"
+    },
+    "dimension": "tense",
+    "dimension_key": "present",
+    "decider_type": "conditional",
+    "decider_kind": "conditional",
+    "decider_quote": "unless a laboratory test of that quarter comes back free of the drug",
+    "words_from_blank_to_decider": 6,
+    "deletion_test": "Delete the unless-clause and 'the treated cows' milk ... was kept out of the bulk tank' (a past report, matching 'injected') is as correct as 'is kept'; tense becomes undecidable.",
+    "grid": {
+      "code": "c|h",
+      "forms": [
+        "is kept",
+        "are kept",
+        "was kept",
+        "were kept"
+      ]
+    },
+    "key_letter": "C",
+    "next_four_words_after_blank": "out of the bulk",
+    "length_ratio": 1.29,
+    "distractor_pulls": {
+      "was kept": "Everything around the blank is past: the trial is narrated in the past, and the verb right inside the subject is the past 'injected'; the singular past continues that report.",
+      "were kept": "The subject opens on the plural possessive 'the treated cows'', and the sentence opens on 'herds'; a student who reads the cows as what is withheld, in a past report, picks the plural past.",
+      "are kept": "A student who hears the present 'comes back' but takes 'the treated cows'' as the head (it is the first noun of the subject) picks the plural present."
+    },
+    "distractor_kills": {
+      "was kept": "Sequence of tenses: a past main verb with 'unless ... comes back' (present) is inconsistent; 'was kept' would be correct only with 'unless a laboratory test ... came back'. The past 'injected' is inside a relative clause and does not set the main verb's tense.",
+      "were kept": "Subject-verb agreement (the head 'milk' is singular; 'cows'' is a possessive determiner) and tense (present 'comes back').",
+      "are kept": "Subject-verb agreement: 'cows'' only modifies 'milk'; 'are kept' would be correct only with 'the treated cows ... are kept'."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: complete 2x2 of one verb",
+      "heuristics_that_give_key": [
+        "the key is the uniquely shortest option (counted against the 3-per-author cap)"
+      ],
+      "changed": "REVISION (probe: easy, weak distractors): the head is no longer the first noun of the subject (plural possessive 'cows'' in front of 'milk'); a past object relative 'injected' now sits inside the subject to pull the past; the conditional verb is the irregular 'comes back' rather than 'shows'"
+    }
+  },
+  {
+    "id": "SEC27A-03",
+    "slot": "A3",
+    "frame": "Opening 'Though a bank's barley samples rarely ___,' (first noun 'bank's' singular possessive; head 'samples' plural); the elided verb is the main clause's LEXICAL 'has trouble sprouting' (10 words after the blank), which takes do in ellipsis, so the printed 'has' lures 'have'; main subject 'a typical sample of onion seed' singular",
+    "true_subject_head": "samples",
+    "misleader_words": [
+      "sample"
+    ],
+    "misleader_position": "after",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "samples",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "bank's",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "sample",
+      "number": "sg"
+    },
+    "dimension": "aux",
+    "dimension_key": "do",
+    "decider_type": "parallel-verb",
+    "decider_kind": "cataphoric-ellipsis",
+    "decider_quote": "has trouble sprouting",
+    "words_from_blank_to_decider": 10,
+    "deletion_test": "Replace 'has trouble sprouting' with a perfect ('has lost its ability to sprout') and 'have' becomes correct; with no main verb to copy, do vs have is undecidable.",
+    "grid": {
+      "code": "m|n",
+      "forms": [
+        "rarely does",
+        "rarely do",
+        "rarely has",
+        "rarely have"
+      ]
+    },
+    "key_letter": "D",
+    "next_four_words_after_blank": ", a typical sample",
+    "length_ratio": 1.22,
+    "distractor_pulls": {
+      "rarely does": "The first noun after the blank, 'a typical sample', is singular, and so is the sentence's first noun 'bank's'; a student matching the auxiliary to the subject of the clause that completes the thought picks 'does'.",
+      "rarely have": "The main clause prints 'has', and the ellipsis rule students learn is 'copy the other clause's verb'; 'rarely have' copies it exactly and agrees with 'samples'.",
+      "rarely has": "A student who copies the printed 'has' and matches it to the singular 'sample' or 'bank's' picks 'rarely has'."
+    },
+    "distractor_kills": {
+      "rarely does": "Subject-verb agreement: the opening clause's subject is 'samples' (plural); 'does' would be correct only with 'a bank's barley sample'.",
+      "rarely have": "Ellipsis: 'has' in 'has trouble sprouting' is a main verb (experience), and a main-verb 'have' takes do-support when its predicate is omitted; an auxiliary 'have' can stand only for a perfect. 'have' would be correct only if the main clause read 'has lost much of its ability to sprout'.",
+      "rarely has": "Ellipsis (main-verb 'have' takes 'do') and agreement (plural 'samples')."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: complete 2x2 with the shared 'rarely'",
+      "heuristics_that_give_key": [
+        "the key is the uniquely shortest option (counted against the 3-per-author cap)"
+      ],
+      "changed": "REVISION (probe tell: 'the key aux always copies the verb type of the other clause'): the main clause's verb is now the LEXICAL 'has trouble', so copying the printed verb gives the wrong 'have'; the key 'do' is reached only by seeing that this 'has' is a main verb"
+    }
+  },
+  {
+    "id": "SEC27A-04",
+    "slot": "A4",
+    "frame": "Sentence 1 (of the blank pair) ends 'families skipping the last dose'; sentence 2 opens 'A booster given months after the others, when children are toddlers and harder to find,' which is a TRUE appositive of 'the last dose' until 'turned out' arrives (15th word after the blank); sentence 2 is a finding that runs against the worry, not an explanation. New setting (malaria vaccine field trial) and skeleton per the template-partner rule",
+    "key_mark": "period",
+    "key_letter": "C",
+    "structure": "Left: a complete compound sentence ending on 'dose'. Right: an independent clause whose long subject (noun + participial phrase + when-clause) renames the last dose until its verb 'turned out'.",
+    "decider_kind": "delayed-verb",
+    "decider_quote": "turned out to raise antibody levels",
+    "glance_fail": [
+      "dose a"
+    ],
+    "distractor_pulls": {
+      "dose, a": "The last dose IS the booster given months after the others, so a comma appositive reads as accurate information for fourteen words, through an internal clause, until 'turned out'.",
+      "dose: a": "'worried most about ... the last dose' sets up a specification, and a colon commonly introduces the thing named; a reader who takes 'a booster given months after the others' as that specification picks the colon.",
+      "dose a": "A reader who loses the structure in the long sentence, or reads the booster phrase as tightly bound to 'dose', leaves it unpunctuated."
+    },
+    "distractor_kills": {
+      "dose, a": "Comma splice: 'A booster ... turned out to raise antibody levels far more than any earlier injection' is an independent clause; the comma would be right only without 'turned out to raise ...'.",
+      "dose: a": "A colon joining two clauses requires the second to explain, list, or restate the first; this clause reports a separate result (the booster raised antibodies most) that runs against the worry, not an explanation of why the organizers worried. A colon would be right before the phrase alone, with no verb.",
+      "dose a": "Fused sentence: two independent clauses with no punctuation."
+    },
+    "hostile_reader": {
+      "options_only_pick": "the period is the only capitalized option; not a free pick, since the comma reading is accurate and the colon is set up by 'worried most about'",
+      "heuristics_that_give_key": [
+        "strongest mark"
+      ],
+      "changed": "REVISION (template pair with A1, named by both readers): new setting (malaria vaccine field trial), new skeleton (compound first sentence; the appositive reading is now TRUE, the subject carries an internal when-clause, verb 15 words on), and the colon is set up by 'worried most about', so it is a live competitor rather than an obvious loser"
+    }
+  },
+  {
+    "id": "SEC27A-05",
+    "slot": "A5",
+    "frame": "Fronted 'Wired to a logger at the edge of a hillside estate,' (singular nouns); head 'probes' (not the first noun of the sentence); object is an embedded clause 'how many liters of water the clay loses each day', after which 'for nine growing seasons' (11 words after the blank) must be attached to the main verb, settling 'have been measuring' over 'are measuring'",
+    "true_subject_head": "probes",
+    "misleader_words": [
+      "logger",
+      "edge",
+      "estate"
+    ],
+    "misleader_position": "early",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "vines",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "logger",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "liters",
+      "number": "pl"
+    },
+    "dimension": "aspect",
+    "dimension_key": "perfect",
+    "decider_type": "time-phrase",
+    "decider_kind": "duration",
+    "decider_quote": "for nine growing seasons",
+    "words_from_blank_to_decider": 11,
+    "deletion_test": "Delete 'for nine growing seasons' and 'the moisture probes ... are measuring how many liters of water the clay loses each day' is as correct as 'have been measuring'; aspect becomes undecidable.",
+    "grid": {
+      "code": "f|b",
+      "forms": [
+        "has been measuring",
+        "have been measuring",
+        "is measuring",
+        "are measuring"
+      ]
+    },
+    "key_letter": "A",
+    "next_four_words_after_blank": "how many liters of",
+    "length_ratio": 1.58,
+    "distractor_pulls": {
+      "has been measuring": "The sentence opens on singular nouns ('a logger', 'a hillside estate'), and a logger is what records; a student who takes the wired logger as the actor and hears the duration picks the singular perfect.",
+      "are measuring": "The probes measure right now and 'their readings show' in the present; and the duration seems to belong to the embedded clause ('the clay loses each day for nine growing seasons'), so the plain present progressive looks untouched by it.",
+      "is measuring": "A student who attaches the duration to the embedded clause and takes the logger as the subject picks the singular present progressive."
+    },
+    "distractor_kills": {
+      "has been measuring": "Subject-verb agreement: the head is 'probes' (plural); the fronted phrase's nouns cannot be the subject. It would be right only with 'the moisture probe beside its oldest vine'.",
+      "are measuring": "Aspect: 'for nine growing seasons' can modify only the main verb (a simple present 'loses each day' does not take a span of seasons), and an activity over a stated span up to the present requires the present perfect progressive; 'are measuring' would be right only without the duration phrase.",
+      "is measuring": "Agreement (plural 'probes') and aspect (duration phrase)."
+    },
+    "hostile_reader": {
+      "options_only_pick": "the key is the uniquely longest option (counted against the 3-per-author cap)",
+      "heuristics_that_give_key": [
+        "duration phrase -> perfect (the row's one duration cue, by design; it now has to be attached past an embedded clause)"
+      ],
+      "changed": "REVISION (probe: medium; 'first noun wins' and 'time word decides'): the head is no longer the first noun (fronted participial phrase on singular nouns); the duration phrase now follows an embedded present clause, so the reader must work out which verb it modifies"
+    }
+  },
+  {
+    "id": "SEC27A-06",
+    "slot": "A6",
+    "frame": "Previous sentence names the plural owner 'broiler chicks'; blank sentence 'At the region's largest grower, the flock veterinarian and the vaccine maker's field technicians ___ antibody levels'; the verb takes the compound (plural; first member singular), the pronoun takes 'chicks'; singular 'flock' and 'vaccine' sit inside modifiers and cannot own the levels",
+    "true_subject_head": "veterinarian ... and ... technicians (compound)",
+    "misleader_words": [
+      "veterinarian",
+      "flock",
+      "vaccine maker's",
+      "grower"
+    ],
+    "misleader_position": "early",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "technicians",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "region's",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "levels",
+      "number": "pl"
+    },
+    "dimension": "pronoun",
+    "dimension_key": "pl",
+    "decider_type": "pronoun-antecedent",
+    "decider_kind": "pronoun-antecedent",
+    "decider_quote": "broiler chicks",
+    "words_from_blank_to_decider": -22,
+    "deletion_test": "Replace 'broiler chicks' with 'a broiler chick' (and 'the birds inhale' with 'the bird inhales') and 'its' becomes correct; without the previous sentence the levels have no owner and its/their is undecidable.",
+    "pronoun_antecedent": {
+      "word": "chicks",
+      "number": "pl",
+      "distance": "previous-sentence",
+      "is_nearest_noun": false
+    },
+    "pronoun_lure": {
+      "word": "flock",
+      "number": "sg",
+      "nearest_noun_before_blank": false
+    },
+    "grid": {
+      "code": "d+p",
+      "forms": [
+        "has measured its",
+        "have measured its",
+        "has measured their",
+        "have measured their"
+      ]
+    },
+    "key_letter": "A",
+    "next_four_words_after_blank": "antibody levels at three",
+    "length_ratio": 1.19,
+    "distractor_pulls": {
+      "has measured their": "The subject opens on the singular 'the flock veterinarian', the one professional responsible for a flock; a student who stops at that noun gives the verb the singular and the pronoun the chicks.",
+      "have measured its": "Antibody levels are reported per flock ('the flock's antibody level') or per vaccine ('the vaccine's antibody response'), and both words sit in the subject; a student who copies the plural to the verb and takes the flock or the vaccine as owner picks 'its'.",
+      "has measured its": "A student who reads 'the flock veterinarian' as the subject and the flock as the owner makes both singular."
+    },
+    "distractor_kills": {
+      "has measured their": "Subject-verb agreement: two subjects joined by 'and' take a plural verb; 'has' would be right only with 'the flock veterinarian' alone.",
+      "have measured its": "Pronoun-antecedent agreement: the owner of the antibody levels is 'broiler chicks' (plural, previous sentence); 'flock' and 'vaccine' are noun modifiers ('flock veterinarian', 'vaccine maker's') and cannot be antecedents. 'its' would be right only if the previous sentence named 'a broiler chick'.",
+      "has measured its": "Both agreements fail: compound plural subject and plural antecedent."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: complete 2x2 of one verb; the key is the uniquely longest option (counted against the 3-per-author cap)",
+      "heuristics_that_give_key": [
+        "matched pair (both plural)"
+      ],
+      "changed": "REVISION (probe: medium; 'first noun wins'; 'solving the verb solves the pronoun'): the subject is now a compound whose FIRST member is singular, so the noun before the blank no longer settles the verb by itself; a second singular false owner ('vaccine' in 'vaccine maker's') added beside 'flock'"
+    }
+  },
+  {
+    "id": "SEC27A-07",
+    "slot": "A7",
+    "frame": "Subject 'Certain species of French marigold that the agronomists sowed along each row': head 'species' has identical singular and plural forms and is made plural only by 'Certain' (H3: skipping to the head does not give the number); past relative 'sowed' and singular 'marigold', 'row' before the blank; 'are holding' vs 'were holding' settled by the present conditional 6 words after the blank",
+    "true_subject_head": "species",
+    "misleader_words": [
+      "row",
+      "marigold",
+      "sowed"
+    ],
+    "misleader_position": "adj",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "row",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "species",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "worms",
+      "number": "pl"
+    },
+    "dimension": "tense",
+    "dimension_key": "present",
+    "decider_type": "conditional",
+    "decider_kind": "conditional",
+    "decider_quote": "as long as a bed is not planted with tomatoes in consecutive years",
+    "words_from_blank_to_decider": 6,
+    "deletion_test": "Delete the as-long-as clause and 'Certain species ... were holding the worms below damaging levels' (a past report matching 'sowed') is as correct as 'are holding'; tense becomes undecidable.",
+    "grid": {
+      "code": "b|g",
+      "forms": [
+        "is holding",
+        "are holding",
+        "was holding",
+        "were holding"
+      ]
+    },
+    "key_letter": "D",
+    "next_four_words_after_blank": "the worms below damaging",
+    "length_ratio": 1.2,
+    "distractor_pulls": {
+      "is holding": "'species' looks like any singular -s word ('a species'), and the nouns right before the blank are the singular 'marigold' and 'row'; a student who reads one kind of marigold as the subject picks the singular present.",
+      "were holding": "The fieldwork is reported in the past and the verb inside the subject is the past 'sowed'; the plural past continues that report.",
+      "was holding": "A student who follows the past narration and reads 'species' as singular picks the singular past."
+    },
+    "distractor_kills": {
+      "is holding": "Subject-verb agreement: 'Certain' requires a plural noun, so 'species' is plural here; 'is holding' would be right only with 'A certain species'.",
+      "were holding": "Sequence of tenses: a past main verb with 'as long as a bed is not planted' (present) is inconsistent; 'were holding' would be right only with 'as long as a bed was not planted'. 'sowed' is inside a relative clause and does not set the main verb's tense.",
+      "was holding": "Agreement (plural 'species') and tense (present 'is not planted')."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: complete 2x2 of one verb",
+      "heuristics_that_give_key": [
+        "none found: the head's form gives no number; only 'Certain' does"
+      ],
+      "changed": "REVISION (probe: medium, 'and is the textbook plural signal'): the compound subject is replaced by a zero-plural head ('species') whose number comes only from the determiner 'Certain'; a past relative verb 'sowed' now sits inside the subject to pull the past"
+    }
+  },
+  {
+    "id": "SEC27A-08",
+    "slot": "A8",
+    "frame": "'the auditors found' + content clause with 'that' omitted; its subject 'the hand-rub bottles that nurses carry clipped to their uniforms' contains its own finite verb 'carry' and a small-clause participle 'clipped', so the words read as a finished object until 'were used' (10th word after the blank)",
+    "key_mark": "none",
+    "key_letter": "B",
+    "structure": "Left: 'the auditors found', a verb needing an object. Right: a content clause (that omitted) whose subject contains a relative clause with its own verb ('carry'); the clause's verb 'were used' is delayed.",
+    "decider_kind": "delayed-verb",
+    "decider_quote": "were used far less often than the sinks",
+    "glance_fail": [
+      "found; the"
+    ],
+    "distractor_pulls": {
+      "found—the": "A dash often introduces a revealed finding, and the sentence builds to a surprise; a reader who hears 'the hand-rub bottles that nurses carry ... were used far less often' as a dramatic reveal picks the dash.",
+      "found, the": "A reader pauses after a reporting verb, and the first verb reached after it, 'carry', makes the words look like the start of a separate clause set off from the sentence frame.",
+      "found; the": "A reader who takes 'the hand-rub bottles ... were used far less often' as an independent clause and treats 'the auditors found' as a report verb that needs nothing more joins two clauses."
+    },
+    "distractor_kills": {
+      "found—the": "No punctuation between a verb and its object: the clause beginning 'the hand-rub bottles' is the object of 'found'. A dash would be right only after a complete clause, such as 'the auditors found something unexpected—the bottles ...'.",
+      "found, the": "A comma may not separate a verb from its object clause; it would be right only before a nonessential element.",
+      "found; the": "A semicolon must follow an independent clause; 'When ..., the auditors found' is incomplete because 'found' needs an object here."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none",
+      "heuristics_that_give_key": [
+        "'found' needs an object"
+      ],
+      "changed": "REVISION (probe: medium): the content clause's subject now contains a relative clause with its own verb ('carry') plus a participle, so the first verb after the blank is not the clause's verb and the object reading looks complete twice before 'were used' arrives 10 words on"
+    }
+  },
+  {
+    "id": "SEC27A-09",
+    "slot": "A9",
+    "frame": "Opening 'Although in most growing regions the standard fungicide program usually ___,' (first noun 'regions' plural, head 'program' singular); the elided predicate is the main clause's 'hardly dependable', whose 'are' is split from it by 'against the newest strains of the fungus' (adjective 18 words after the blank); the next sentence's lexical 'evolve' pulls 'does'; main subject 'the genes' plural. New setting (wheat rust) and skeleton per the template-partner rule",
+    "true_subject_head": "program",
+    "misleader_words": [
+      "genes",
+      "regions"
+    ],
+    "misleader_position": "after",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "program",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "regions",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "genes",
+      "number": "pl"
+    },
+    "dimension": "aux",
+    "dimension_key": "be",
+    "decider_type": "parallel-verb",
+    "decider_kind": "cataphoric-ellipsis",
+    "decider_quote": "hardly dependable",
+    "words_from_blank_to_decider": 17,
+    "deletion_test": "Replace 'are, against the newest strains of the fungus, hardly dependable' with a lexical verb ('rarely hold up against the newest strains') and 'does' becomes correct; with no predicate to copy, be vs do is undecidable.",
+    "grid": {
+      "code": "j|m",
+      "forms": [
+        "usually is",
+        "usually are",
+        "usually does",
+        "usually do"
+      ]
+    },
+    "key_letter": "B",
+    "next_four_words_after_blank": ", the genes for",
+    "length_ratio": 1.2,
+    "distractor_pulls": {
+      "usually are": "The first noun after the blank is the plural 'genes', the sentence's first noun is the plural 'regions', and the main clause's verb is 'are'; a student matching number to any of them picks the plural.",
+      "usually do": "'usually' signals a habitual action, the main clause's 'are' is split from its adjective by a long phrase, and the passage goes on with the action verb 'evolve'; a student who echoes an action and the plural 'genes' or 'regions' picks 'do'.",
+      "usually does": "A student who finds the singular 'program' but reads it as habitually doing something (working, holding) supplies the do-auxiliary."
+    },
+    "distractor_kills": {
+      "usually are": "Subject-verb agreement: the opening clause's subject is 'program' (singular); 'regions' is the object of 'in'. 'are' would be right only with 'the standard fungicide programs'.",
+      "usually do": "Ellipsis (the omitted predicate is the adjective 'dependable', which needs 'be') and agreement (singular 'program').",
+      "usually does": "Ellipsis: 'does' can stand only for a lexical verb; the omitted predicate is 'hardly dependable', so the elided form is 'is dependable'. 'does' would be right only if the main clause read 'rarely hold up against the newest strains'."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: complete 2x2 with the shared 'usually'; key ties with 'usually do' for shortest",
+      "heuristics_that_give_key": [
+        "copy the other clause's verb type (the family's tell; the be is now split from its adjective and a lexical verb follows)"
+      ],
+      "changed": "REVISION (template pair with A3, named by both readers; r1: 'are not dependable' hands over the be): new setting (wheat rust) and skeleton; the main clause's 'are' is now separated from 'dependable' by an interrupting phrase, and a lexical 'evolve' follows in the next sentence as a do-lure; the blank is no longer in the last sentence"
+    }
+  },
+  {
+    "id": "SEC27A-10",
+    "slot": "A10",
+    "frame": "'the ___ graft of a rare papershell cultivar onto a seedling rootstock, the final join of a long career at the nursery, was the first to break bud'; one owner is inferred from 'a long career' (one career, one person) 13+ words after the blank, never from a word next to it; the previous sentence names 'propagators' (plural) to pull the plural possessive; 'graft' reads as a verb after a plain plural until 'was'",
+    "key_class": "sg-poss",
+    "key_letter": "B",
+    "structure": "The blank is a bare noun after 'the', followed by 'graft' (possessed noun, or a verb after a plural subject). The appositive 'the final join of a long career' implies a single owner; the later 'was' kills the verb reading; the previous sentence's plural 'propagators' supplies the plural lure.",
+    "decider_kind": "inference-unique",
+    "decider_quote": "the final join of a long career at the nursery",
+    "glance_fail": [],
+    "distractor_pulls": {
+      "propagator": "A reader who takes 'propagator graft' as a compound noun (like 'nursery stock') leaves the noun unmarked.",
+      "propagators": "'the propagators graft a rare papershell cultivar onto a seedling rootstock' is a complete, natural clause describing what the previous sentence says propagators do.",
+      "propagators'": "The previous sentence names 'propagators' in the plural as the staff who do this job, so 'the propagators' graft' reads as a reference back to them."
+    },
+    "distractor_kills": {
+      "propagator": "A noun that owns the following noun must be possessive; 'the propagator graft' has no possessive marker and 'propagator graft' is not a compound.",
+      "propagators": "With 'graft' as a verb, 'was the first to break bud' has no subject; the plain plural would be right only without 'was'.",
+      "propagators'": "The appositive 'the final join of a long career' gives the graft one maker with one career; a plural possessive would require several owners of a single career. It would be right with 'the final join of the team's first season'."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: the four forms of one noun",
+      "heuristics_that_give_key": [
+        "none adjacent: the word before the blank is 'the'"
+      ],
+      "changed": "REVISION (probe: easy, 'chief' handed over the singular): 'chief' removed; the single owner is now inferred from an appositive 13+ words after the blank ('the final join of a long career'), and the previous sentence names plural 'propagators' to make the plural possessive a strong lure"
+    }
+  }
+]

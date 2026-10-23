@@ -1,0 +1,521 @@
+[
+  {
+    "id": "SEC27B-01",
+    "slot": "B1",
+    "frame": "Sentence-final restrictive participial phrase after 'examined the specimens', containing its own where-clause; the last sentence names a second examined set (meteorites from the interior), with no 'by contrast' marker",
+    "key_mark": "none",
+    "key_letter": "B",
+    "structure": "Left: a complete clause ending 'examined the specimens'. Right: 'gathered where the blue ice meets a dark moraine of wind-scoured gravel', a participial phrase that ends the sentence and contains a finite verb only inside its where-clause. Restrictiveness is settled by the last sentence, which shows a second set the team also examined.",
+    "decider_kind": "contrast-later",
+    "decider_quote": "Meteorites the team recovered from the field's frozen interior showed almost no rust",
+    "glance_fail": [],
+    "distractor_pulls": {
+      "specimens, gathered": "A participial phrase after a complete clause is very often set off with a comma, and 'the specimens' reads as the team's known set.",
+      "specimens—gathered": "A dash reads as the natural mark for a trailing descriptive add-on about where the specimens came from.",
+      "specimens. Gathered": "'Gathered where the blue ice meets a dark moraine' contains a subject and verb ('the blue ice meets'), so the new sentence looks complete unless the reader sees that 'meets' belongs to the where-clause."
+    },
+    "distractor_kills": {
+      "specimens, gathered": "Nonrestrictive punctuation says every specimen examined came from the moraine edge; the last sentence ('Meteorites the team recovered from the field's frozen interior showed almost no rust') shows the team examined a second set, so the phrase is restrictive and takes no comma.",
+      "specimens—gathered": "Same rule: a dash also marks the phrase as nonessential.",
+      "specimens. Gathered": "The words after the period have no main clause: 'meets' is the verb of the subordinate where-clause, so the result is a fragment."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none",
+      "heuristics_that_give_key": [
+        "'by contrast' no longer flags the second set; the reader must see that the meteorites in the last sentence were also examined"
+      ],
+      "changed": "REVISION: removed 'by contrast' (r0: it handed over the restrictive reading); the phrase after the blank now contains a where-clause with a finite verb so the period option is not a visible fragment; first sentence 'but' -> 'yet'"
+    }
+  },
+  {
+    "id": "SEC27B-02",
+    "slot": "B2",
+    "frame": "'were taken' against 'are taken'; plural head 'readings' preceded by singular possessive 'harbor's' and followed by 'from the old stone pier' (adjacent); past inferred from a participial phrase naming a structure that no longer exists (no time word)",
+    "true_subject_head": "readings",
+    "misleader_words": [
+      "harbor's",
+      "pier"
+    ],
+    "misleader_position": "adj",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "pier",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "port",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "staff",
+      "number": "sg"
+    },
+    "dimension": "tense",
+    "dimension_key": "past",
+    "decider_type": "time-phrase",
+    "decider_kind": "closed-past-inferred",
+    "decider_quote": "bolted to a long-demolished timber landing stage",
+    "words_from_blank_to_decider": 6,
+    "deletion_test": "Delete the participial phrase and 'the harbor's handwritten readings from the old stone pier are taken from a painted wooden staff' is as correct as 'were taken'; the coordinated clause ('the ledgers' margins hold') is present and does not fix the time.",
+    "grid": {
+      "code": "c|h",
+      "forms": [
+        "is taken",
+        "are taken",
+        "was taken",
+        "were taken"
+      ]
+    },
+    "key_letter": "B",
+    "next_four_words_after_blank": "from a painted wooden",
+    "length_ratio": 1.25,
+    "distractor_pulls": {
+      "are taken": "Every other verb in the passage is present ('come', 'hold'), and 'According to the port's archivist' frames a present report, so the present passive reads as a description of how the pier's readings are made.",
+      "is taken": "The subject opens with singular 'harbor's' and the noun before the blank is singular 'pier'; the present matches the surrounding verbs.",
+      "was taken": "A reader who infers the past from the demolished landing stage but takes 'harbor's ... pier' as the number lands here."
+    },
+    "distractor_kills": {
+      "are taken": "Tense: the staff was 'bolted to a long-demolished timber landing stage', a structure that no longer exists, so the readings belong to a finished past; a present verb is an error.",
+      "is taken": "Agreement: the head is plural 'readings'; also wrong in tense.",
+      "was taken": "Agreement: 'readings' is plural; 'harbor's' is a possessive determiner and 'pier' is inside the from-phrase."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none; one verb, four forms",
+      "heuristics_that_give_key": [
+        "the key is the uniquely longest option (one of my at most three)",
+        "no time word anywhere in the blank's sentence"
+      ],
+      "changed": "REVISION: replaced the time phrase 'in the decades preceding ...' (both readers: tense handed over by a time phrase after the blank) with an inferred past from a demolished structure; the subject now opens with a singular possessive so the head is not the first noun; the rest of the sentence is present-tense to strengthen 'are taken'"
+    }
+  },
+  {
+    "id": "SEC27B-03",
+    "slot": "B3",
+    "frame": "Passive present perfect required by the present-tense matrix 'The plant's new installation marks the first time that ...'; singular head 'bank' + 'above the lithography bays' adjacent to the blank. The present clause stating the current situation comes BEFORE the blank",
+    "true_subject_head": "bank",
+    "misleader_words": [
+      "bays"
+    ],
+    "misleader_position": "adj",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "bays",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "plant",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "design",
+      "number": "sg"
+    },
+    "dimension": "aspect",
+    "dimension_key": "perfect",
+    "decider_type": "present-result",
+    "decider_kind": "present-result",
+    "decider_quote": "The plant's new installation marks the first time that",
+    "words_from_blank_to_decider": 9,
+    "deletion_test": "Replace the matrix with a plain statement ('The filter bank above the lithography bays ______ by a design containing no glass fiber') and 'was superseded' is as correct as 'has been superseded'; the requirement comes only from the present 'marks the first time that'.",
+    "grid": {
+      "code": "e|h",
+      "forms": [
+        "has been superseded",
+        "have been superseded",
+        "was superseded",
+        "were superseded"
+      ]
+    },
+    "key_letter": "A",
+    "next_four_words_after_blank": "by a design containing",
+    "length_ratio": 1.36,
+    "distractor_pulls": {
+      "have been superseded": "'bays' sits right before the blank and the perfect is right, so a reader who checks only the tense picks it.",
+      "was superseded": "Replacing a filter bank is a single finished event, and the simple past is the default way to report one; most readers do not know the 'first time' rule.",
+      "were superseded": "Both lures: the plural 'bays' and the finished-event simple past."
+    },
+    "distractor_kills": {
+      "have been superseded": "Agreement: the head is singular 'bank'.",
+      "was superseded": "Tense: after a present-tense 'marks the first time that', the counted event must be in the present perfect; the simple past is an error in this construction.",
+      "were superseded": "Agreement and tense, both as above."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none; two of four options are perfect",
+      "heuristics_that_give_key": [
+        "none from a time word: the decider is a construction before the blank, not a cue after it"
+      ],
+      "changed": "REVISION: both readers accepted 'was superseded' after a present-result clause; replaced the decider with the 'is/marks the first time that + present perfect' rule so the simple past is wrong by rule; moved to the clean-room setting (the later slot of the B3/A5 pair changes skeleton and setting)"
+    }
+  },
+  {
+    "id": "SEC27B-04",
+    "slot": "B4",
+    "frame": "'has always' + a 5-word adverbial ('within an hour of the afternoon melt peak') + intransitive 'subsided'; singular head 'level' after an opening phrase containing plural 'charts'",
+    "true_subject_head": "level",
+    "misleader_words": [
+      "charts"
+    ],
+    "misleader_position": "early",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "borehole",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "team",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "hour",
+      "number": "sg"
+    },
+    "dimension": "aux",
+    "dimension_key": "have",
+    "decider_type": "aux-form",
+    "decider_kind": "distant-participle",
+    "decider_quote": "subsided",
+    "words_from_blank_to_decider": 9,
+    "deletion_test": "Delete 'subsided' (leaving 'within an hour of the afternoon melt peak by nearly a meter') and the auxiliary is undecidable; 'is always within an hour of the afternoon melt peak' is itself grammatical.",
+    "grid": {
+      "code": "j|n",
+      "forms": [
+        "is always",
+        "are always",
+        "has always",
+        "have always"
+      ]
+    },
+    "key_letter": "B",
+    "next_four_words_after_blank": "within an hour of",
+    "length_ratio": 1.11,
+    "distractor_pulls": {
+      "is always": "'is always within an hour of the afternoon melt peak' parses as a complete be + prepositional-phrase predicate, so the reader commits to 'is' before reaching 'subsided'.",
+      "are always": "The plural 'charts' opens the sentence, and the be-reading is grammatical up to 'peak'.",
+      "have always": "A reader who spots 'subsided' but takes the plural 'charts' as the subject."
+    },
+    "distractor_kills": {
+      "is always": "Auxiliary: 'subsided' is the participle of an intransitive verb; 'is ... subsided' is neither a passive nor an adjective predicate, so only 'has' forms the verb.",
+      "are always": "Agreement (head 'level') and auxiliary.",
+      "have always": "Agreement: 'level' is singular; 'charts' is inside the opening phrase."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none; a 2x2 with one shared adverb",
+      "heuristics_that_give_key": [
+        "none; the word after the blank ('within') suits be and have alike"
+      ],
+      "changed": "chose 'subsided' over 'risen' because 'is risen' is an archaic but real form"
+    }
+  },
+  {
+    "id": "SEC27B-05",
+    "slot": "B5",
+    "frame": "Copular main clause ('damage was heaviest in the fishing villages closest to') ending in 'the earthquake's epicenter', then a sentence-final nonrestrictive participial phrase; uniqueness from the possessive (an earthquake has one epicenter), no superlative",
+    "key_mark": "comma",
+    "key_letter": "C",
+    "structure": "Left: 'damage was heaviest in the fishing villages closest to the earthquake's epicenter', a complete clause. Right: 'located beneath a shallow bay south of the harbor town', a participial phrase describing the epicenter, ending the sentence.",
+    "decider_kind": "inference-unique",
+    "decider_quote": "closest to the earthquake's",
+    "glance_fail": [
+      "epicenter. Located"
+    ],
+    "distractor_pulls": {
+      "epicenter located": "'located beneath ...' after a noun is very often restrictive ('the town located on the bay'), and no comma is the cleanest option.",
+      "epicenter. Located": "The clause before the blank is complete, and a reader may start a new sentence at the long participial phrase.",
+      "epicenter: located": "The location of the epicenter seems to explain why the villages nearest it were hit, so a colon looks like it introduces an explanation."
+    },
+    "distractor_kills": {
+      "epicenter located": "A restrictive phrase picks one member out of a set; 'the earthquake's epicenter' has only one possible referent, so the phrase is nonrestrictive and must be set off with a comma.",
+      "epicenter. Located": "The participial phrase has no subject or main verb: a fragment.",
+      "epicenter: located": "A colon must introduce something that explains or restates the whole clause; a participial phrase modifying the noun 'epicenter' does not."
+    },
+    "hostile_reader": {
+      "options_only_pick": "the period option once one reads on; otherwise none",
+      "heuristics_that_give_key": [
+        "none from a count word; uniqueness is a fact about earthquakes"
+      ],
+      "changed": "REVISION: r1 accepted the restrictive reading of 'the observatory's largest dish warped by ...' ('the largest of the warped dishes'); replaced the superlative with a possessive that has one referent (an earthquake has one epicenter) and a participle ('located') that describes position, not an estimate; changed skeleton (copular clause + prepositional phrase, not verb + object) and setting (seismometer networks) as the later slot of the B1/B5 pair"
+    }
+  },
+  {
+    "id": "SEC27B-06",
+    "slot": "B6",
+    "frame": "Present passive by-agent pronoun, mismatched: singular subject 'dish' + 'by them', antecedent 'motors' in the first sentence; the second sentence offers singular 'No motor', which a pronoun cannot take as antecedent",
+    "true_subject_head": "dish",
+    "misleader_words": [
+      "bursts"
+    ],
+    "misleader_position": "early",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "dish",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "night",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "arcs",
+      "number": "pl"
+    },
+    "dimension": "pronoun",
+    "dimension_key": "pl",
+    "decider_type": "pronoun-antecedent",
+    "decider_kind": "pronoun-antecedent",
+    "decider_quote": "electric motors bolted to the base of its steel frame",
+    "words_from_blank_to_decider": 40,
+    "deletion_test": "Delete the first sentence and nothing plural can swing the dish; with 'No motor' as the only motor reference, neither pronoun has a usable antecedent and the item is undecidable.",
+    "pronoun_antecedent": {
+      "word": "motors",
+      "number": "pl",
+      "distance": "two-back",
+      "is_nearest_noun": false
+    },
+    "pronoun_lure": {
+      "word": "dish",
+      "number": "sg",
+      "nearest_noun_before_blank": true
+    },
+    "grid": {
+      "code": "c+p",
+      "forms": [
+        "is swung by it",
+        "are swung by it",
+        "is swung by them",
+        "are swung by them"
+      ]
+    },
+    "key_letter": "C",
+    "next_four_words_after_blank": "in slow arcs across",
+    "length_ratio": 1.14,
+    "distractor_pulls": {
+      "is swung by it": "The sentence just before the blank is about a single motor ('No motor working alone ... a reflector'), so 'it' looks like it refers to the motor, the obvious kind of thing that swings a dish.",
+      "are swung by it": "The plural 'bursts' sits just before the subject and 'arcs' just after; the singular pronoun again points at 'motor'.",
+      "are swung by them": "A reader who finds the plural motors may let the plural spread to the verb, helped by 'bursts' and 'arcs' around the blank."
+    },
+    "distractor_kills": {
+      "is swung by it": "Pronoun-antecedent agreement: the only possible antecedent is plural 'motors' (first sentence). 'No motor' is a negative quantifier and cannot be picked up by a pronoun in a later sentence, and 'dish', the subject of the same clause, would need 'itself'.",
+      "are swung by it": "Agreement: the subject 'dish' is singular; pronoun also wrong.",
+      "are swung by them": "Subject-verb agreement: 'dish' is singular; 'bursts' is inside the opening phrase."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none; complete verb x pronoun grid",
+      "heuristics_that_give_key": [
+        "'the wrong pronoun is the nearest noun's number' gives the key (declared, as the row requires)"
+      ],
+      "changed": "REVISION: r0 found the agent semantically obvious (only drones can tow); now a singular 'No motor' sits in the sentence just before, a meaningful agent excluded by rule; new skeleton and setting (radio telescope) as the later slot of the A6/B6 pair"
+    }
+  },
+  {
+    "id": "SEC27B-07",
+    "slot": "B7",
+    "frame": "'was being cranked' against 'is being cranked'; singular head 'drive' (not the sentence's first noun) + 'beneath the rotating prisms' adjacent; past inferred from the sentence-final appositive 'a duty made obsolete by the light's automation' (no time word)",
+    "true_subject_head": "drive",
+    "misleader_words": [
+      "prisms",
+      "keepers"
+    ],
+    "misleader_position": "adj",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "prisms",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "lighthouse",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "keepers",
+      "number": "pl"
+    },
+    "dimension": "tense",
+    "dimension_key": "past",
+    "decider_type": "time-phrase",
+    "decider_kind": "closed-past-inferred",
+    "decider_quote": "a duty made obsolete by the light's automation",
+    "words_from_blank_to_decider": 10,
+    "deletion_test": "Delete the appositive and 'the clockwork drive ... is being cranked by resident keepers at intervals through the night' is as correct as 'was being cranked'; the other sentences are present-tense and fix nothing.",
+    "grid": {
+      "code": "k|l",
+      "forms": [
+        "is being cranked",
+        "are being cranked",
+        "was being cranked",
+        "were being cranked"
+      ]
+    },
+    "key_letter": "D",
+    "next_four_words_after_blank": "by resident keepers at",
+    "length_ratio": 1.12,
+    "distractor_pulls": {
+      "is being cranked": "The passage is in the present ('sweeps', 'keeps', 'records'), and the progressive reads as a live description of the lantern room at night.",
+      "were being cranked": "'prisms' sits right before the blank and 'keepers' right after; a reader who infers the past but matches the nearest plural lands here.",
+      "are being cranked": "Both pulls: the plural nouns around the blank and the present-tense frame."
+    },
+    "distractor_kills": {
+      "is being cranked": "Tense: 'a duty made obsolete by the light's automation' says the rewinding no longer happens, so a present progressive is an error.",
+      "were being cranked": "Agreement: the head is singular 'drive'.",
+      "are being cranked": "Agreement and tense."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none; one verb, four forms",
+      "heuristics_that_give_key": [
+        "none: no time word, and the decider is an appositive about a duty, not a time phrase"
+      ],
+      "changed": "REVISION: replaced the time phrase 'during the slide-rule era's closing years' (both readers: time phrase after the blank) with an inferred past from an abolished duty; the head is no longer the sentence's first noun; new skeleton and setting (lighthouse optics) as the later slot of the B2/B7 pair"
+    }
+  },
+  {
+    "id": "SEC27B-08",
+    "slot": "B8",
+    "frame": "Active present perfect 'have carved' against past progressive 'were carving'; plural head 'surges' after singular possessive 'reservoir's', + 'from the end of the spillway' adjacent; inside 'Surveys by engineers show that'; the first sentence is past-tense narration to strengthen 'were carving'",
+    "true_subject_head": "surges",
+    "misleader_words": [
+      "reservoir's",
+      "spillway"
+    ],
+    "misleader_position": "adj",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "spillway",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "Surveys",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "pool",
+      "number": "sg"
+    },
+    "dimension": "aspect",
+    "dimension_key": "perfect",
+    "decider_type": "present-result",
+    "decider_kind": "present-result",
+    "decider_quote": "which is why the chute's foundation sits beneath water too deep for anyone but divers to reach",
+    "words_from_blank_to_decider": 13,
+    "deletion_test": "Delete the which-is-why clause and 'the reservoir's overflow surges ... were carving a deep plunge pool into the soft sandstone below the chute' is a possible background description; nothing else in the sentence sets the aspect.",
+    "grid": {
+      "code": "d|g",
+      "forms": [
+        "has carved",
+        "have carved",
+        "was carving",
+        "were carving"
+      ]
+    },
+    "key_letter": "D",
+    "next_four_words_after_blank": "a deep plunge pool",
+    "length_ratio": 1.1,
+    "distractor_pulls": {
+      "has carved": "The subject opens with singular 'reservoir's' and the noun before the blank is singular 'spillway'; the perfect is right, so a reader who checks only aspect picks it.",
+      "was carving": "The first sentence narrates in the past ('designed'), the progressive suits slow erosion, and the singular matches 'reservoir's ... spillway'.",
+      "were carving": "Continues the past narration of the first sentence and describes gradual erosion vividly; it agrees with 'surges'."
+    },
+    "distractor_kills": {
+      "has carved": "Agreement: the head is plural 'surges'.",
+      "was carving": "Agreement and aspect.",
+      "were carving": "Aspect: 'which is why the chute's foundation sits beneath water ...' reports a present result of the carving; a past progressive needs a past reference time, which the sentence never gives, and cannot be the cause of a present state."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none; complete 2x2",
+      "heuristics_that_give_key": [
+        "none from a time word"
+      ],
+      "changed": "REVISION: subject now opens with a singular possessive and sits in a that-clause, so the head is neither the first noun of the sentence nor of the subject; added past narration in the first sentence so 'were carving' is stronger; the result clause names a state ('sits beneath water'), not an obligation"
+    }
+  },
+  {
+    "id": "SEC27B-09",
+    "slot": "B9",
+    "frame": "'were also' + 'according to the inspectors' bend tests' + predicate adjective 'brittle'; the blank sits in a where-clause whose subject 'wires' is the noun just before the blank; the main clause before it carries singular 'bridge's', 'cable', 'anchorage'",
+    "true_subject_head": "wires",
+    "misleader_words": [
+      "bridge's",
+      "cable",
+      "anchorage"
+    ],
+    "misleader_position": "early",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "wires",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "Crews",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "inspectors'",
+      "number": "pl"
+    },
+    "dimension": "aux",
+    "dimension_key": "be",
+    "decider_type": "aux-form",
+    "decider_kind": "distant-adjective",
+    "decider_quote": "brittle",
+    "words_from_blank_to_decider": 7,
+    "deletion_test": "Replace 'brittle' with a participle ('cracked enough to snap by hand') and 'have also' becomes possible; without the adjective the auxiliary is undecidable.",
+    "grid": {
+      "code": "i|n",
+      "forms": [
+        "was also",
+        "were also",
+        "has also",
+        "have also"
+      ]
+    },
+    "key_letter": "C",
+    "next_four_words_after_blank": "according to the inspectors'",
+    "length_ratio": 1.0,
+    "distractor_pulls": {
+      "was also": "Three singular nouns ('bridge's', 'cable', 'anchorage') precede the where-clause, and 'anchorage' is the antecedent of 'where', so the clause reads as being about the anchorage.",
+      "have also": "The first sentence is in the past perfect ('had spread'), so 'have also' + a participle ('become', 'grown') is the expected continuation until 'brittle' arrives seven words later.",
+      "has also": "Both pulls: the singular 'anchorage' and the perfect continuation."
+    },
+    "distractor_kills": {
+      "was also": "Agreement: the subject of the where-clause is plural 'wires'.",
+      "have also": "Auxiliary: 'brittle' is an adjective; 'have' cannot link a subject to an adjective without 'been'.",
+      "has also": "Agreement and auxiliary."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none; complete 2x2 with a shared adverb",
+      "heuristics_that_give_key": [
+        "'pick the number opposite the nearest noun' gives the WRONG answer here (the nearest noun is the head)"
+      ],
+      "changed": "REVISION: the head is now the noun right before the blank, inside a where-clause, so neither 'first noun wins' nor 'nearest noun is the trap' applies; the past-tense context ('scrapped', 'had leaked') that readers said settled 'were' is gone; new skeleton (where-clause, an 'according to' interrupter, not a temporal phrase) and setting (bridge cable inspection) as the later slot of the B4/B9 pair"
+    }
+  },
+  {
+    "id": "SEC27B-10",
+    "slot": "B10",
+    "frame": "Sentence-final nonrestrictive appositive naming the ship ('Kittiwake Star', two words) after 'the institute's ship', set off by a dash; uniqueness from 'the same ship' in the first sentence",
+    "key_mark": "dash",
+    "key_letter": "A",
+    "structure": "Left: a complete clause ending 'the crew of the institute's ship'. Right: the two-word name 'Kittiwake Star', then ', a trawler the cooperative refitted for coring', ending the sentence. Whether the name is restrictive depends on how many ships the institute used, stated two sentences back.",
+    "decider_kind": "count-other",
+    "count_sentence": "two-back",
+    "decider_quote": "were raised by the same ship",
+    "glance_fail": [
+      "ship Kittiwake,"
+    ],
+    "distractor_pulls": {
+      "ship Kittiwake": "Ship names after a common noun are often written with no punctuation ('the trawler Kittiwake Star'), and the passage already sets off the description that follows with a comma.",
+      "ship. Kittiwake": "'Kittiwake Star, a trawler the cooperative refitted for coring' contains a subject-verb pair ('the cooperative refitted'), so it can pass for a sentence on a quick read.",
+      "ship Kittiwake,": "A reader unsure where the name ends may take 'Kittiwake' as the name and 'Star' as the start of the description."
+    },
+    "distractor_kills": {
+      "ship Kittiwake": "A restrictive name would distinguish this ship from the institute's other ships; the first sentence ('were raised by the same ship') says there was only one, so the name is nonrestrictive and must be set off.",
+      "ship. Kittiwake": "No main verb: 'refitted' is the verb of the reduced relative clause modifying 'trawler', so 'Kittiwake Star, a trawler ...' is a fragment.",
+      "ship Kittiwake,": "A comma cannot separate the words of a proper name ('Kittiwake Star'); it is wrong by rule, and the name is also left restrictive."
+    },
+    "hostile_reader": {
+      "options_only_pick": "the dash is the only option that separates noun and name",
+      "heuristics_that_give_key": [
+        "none from the blank's sentence alone"
+      ],
+      "changed": "REVISION: both readers accepted the comma before 'out of a small harbor' as style; the comma option now falls inside a two-word proper name, which is wrong by rule, and the period option now faces a phrase containing a subject and verb so it is not an obvious fragment"
+    }
+  }
+]

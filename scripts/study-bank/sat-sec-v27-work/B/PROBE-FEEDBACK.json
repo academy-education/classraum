@@ -1,0 +1,954 @@
+{
+ "SEC27B-10": {
+  "must_revise": true,
+  "named_for": [
+   "key not recovered",
+   "not exclusive",
+   "no reader rated it hard",
+   "distractors not strong for every reader"
+  ],
+  "listed_for": [
+   "template pair with SEC27B-01 named by 1 of 2",
+   "template pair with SEC27B-05 named by 1 of 2",
+   "named in reader r0's tell: Restrictiveness items (P01,P37,P38): a uniqueness/contrast cue in the passage ('the same ship', 'largest', 'by contrast') settles comma vs none.",
+   "named in reader r1's tell: No-punctuation key whenever the blank sits between a verb and its object/complement (P27, P38) or a noun and a restrictive modifier (P16, P37)."
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "ship Kestrel",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "ship. Kestrel"
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": false,
+    "second_defensible_text": "ship Kestrel,",
+    "convention": "a trailing nonrestrictive modifier ('out of a small harbor...') may be set off by a single comma at sentence end",
+    "resolving_word_after_blank": null,
+    "not_hard_because": "C is an obvious fragment and A's unclosed dash is a known never-right shape, leaving a B/D choice that turns on a comma most students skip by default.",
+    "note": "Name directly after 'the institute's ship' with no punctuation; A's lone dash never closes, C makes a fragment. The passage stresses the institute had ONE ship, which argues for a nonrestrictive appositive the options never offer, and D's comma before the trailing locative is legitimate."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "ship Kestrel",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "ship. Kestrel"
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": false,
+    "second_defensible_text": "ship Kestrel,",
+    "convention": "a comma setting off a nonessential trailing modifier ('..., out of a small harbor') is standard",
+    "resolving_word_after_blank": null,
+    "not_hard_because": "the vessel-name construction is familiar and the period and lone dash are visibly wrong, leaving only B vs D.",
+    "note": "Close appositive 'ship Kestrel' takes no comma (C fragment, A unpaired dash). Whether 'out of a small harbor' needs a comma is style, not rule, so D is also defensible."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC27B-01",
+    "readers": 1,
+    "why": [
+     "restrictive versus nonrestrictive modifier set by a uniqueness or contrast cue"
+    ]
+   },
+   {
+    "with": "SEC27B-05",
+    "readers": 1,
+    "why": [
+     "restrictive versus nonrestrictive modifier set by a uniqueness or contrast cue"
+    ]
+   }
+  ]
+ },
+ "SEC27B-08": {
+  "must_revise": true,
+  "named_for": [
+   "no reader rated it hard",
+   "distractors not strong for every reader"
+  ],
+  "listed_for": [
+   "template pair with SEC27B-02 named by 1 of 2",
+   "template pair with SEC27D-03 named by 1 of 2",
+   "template pair with SEC27D-02 named by 1 of 2",
+   "template pair with SEC27C-03 named by 1 of 2",
+   "template pair with SEC27C-07 named by 1 of 2",
+   "template pair with SEC27A-02 named by 1 of 2",
+   "template pair with SEC27C-06 named by 1 of 2",
+   "template pair with SEC27B-07 named by 1 of 2",
+   "template pair with SEC27D-07 named by 1 of 2",
+   "template pair with SEC27A-05 named by 1 of 2",
+   "template pair with SEC27B-03 named by 1 of 2",
+   "template pair with SEC27C-02 named by 1 of 2",
+   "named in reader r0's tell: Subject-verb items (P02,P04,P05,P08,P09,P12,P14,P18,P22,P23,P25,P29,P30,P33,P36,P39,P40) are all 2x2 number-by-tense grids: two independent binary rules, each s",
+   "named in reader r0's tell: In those items the noun immediately before the blank is almost always the WRONG number (P02 spillway, P05 sheet, P08 pier, P09 board, P10 admissions, P12 mustar",
+   "named in reader r1's tell: Head noun = first noun of the subject: in every number item the subject's head is the first noun at the start of the clause and a later prepositional/relative n",
+   "named in reader r1's tell: Tense is always handed over by a time phrase or present verb AFTER the blank: 'since' -> present perfect (P22), duration 'for nine growing seasons' -> perfect ("
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "have carved",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "the subject 'Floods' opens the clause and the attractor 'spillway' is a single short prepositional phrase, so number is settled at once; 'were carving' has no past anchor.",
+    "note": "Plural 'Floods' (first word of clause) needs a plural verb; present perfect fits the present-tense frame ('requires', 'worry'). 'spillway' is the singular attractor."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "have carved",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "the present 'requires' hands over present perfect, the same present-consequence cue as P32 and P39.",
+    "note": "Plural 'Floods' (not 'spillway'); a completed result relevant now ('which is why inspecting ... requires divers') -> 'have carved'."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC27B-02",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27D-03",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27D-02",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-03",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-07",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27A-02",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-06",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27B-07",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27D-07",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27A-05",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27B-03",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-02",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   }
+  ]
+ },
+ "SEC27B-02": {
+  "must_revise": true,
+  "named_for": [
+   "easy",
+   "no reader rated it hard",
+   "distractors weak",
+   "distractors not strong for every reader"
+  ],
+  "listed_for": [
+   "template partner of SEC27D-03 (the later slot revises)",
+   "template partner of SEC27D-07 (the later slot revises)",
+   "template partner of SEC27C-06 (the later slot revises)",
+   "template partner of SEC27B-07 (the later slot revises)",
+   "template pair with SEC27D-02 named by 1 of 2",
+   "template pair with SEC27C-03 named by 1 of 2",
+   "template pair with SEC27C-07 named by 1 of 2",
+   "template pair with SEC27A-02 named by 1 of 2",
+   "template pair with SEC27A-05 named by 1 of 2",
+   "template pair with SEC27B-08 named by 1 of 2",
+   "template pair with SEC27B-03 named by 1 of 2",
+   "template pair with SEC27C-02 named by 1 of 2",
+   "named in reader r0's tell: Subject-verb items (P02,P04,P05,P08,P09,P12,P14,P18,P22,P23,P25,P29,P30,P33,P36,P39,P40) are all 2x2 number-by-tense grids: two independent binary rules, each s",
+   "named in reader r0's tell: In those items the noun immediately before the blank is almost always the WRONG number (P02 spillway, P05 sheet, P08 pier, P09 board, P10 admissions, P12 mustar",
+   "named in reader r0's tell: Tense is always handed over by a time phrase AFTER the blank: past by 'during ...'/'in the decades preceding'/'that autumn'/'when ...' (P08,P18,P25,P30,P40), pr",
+   "named in reader r1's tell: Head noun = first noun of the subject: in every number item the subject's head is the first noun at the start of the clause and a later prepositional/relative n"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "were taken",
+    "difficulty": "easy",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "weak",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "the time phrase 'in the decades preceding' hands over the past and 'readings' is unmistakably plural; 'pier' is a weak attractor.",
+    "note": "Plural 'readings' and 'in the decades preceding the port's first float-driven gauge' require simple past plural."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "were taken",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "the time phrase 'in the decades preceding' settles tense and the subject's head noun is the first noun; this is one of ~14 number-x-tense grid items (see near_duplicates).",
+    "note": "Plural 'readings', past 'in the decades preceding the port's first ... gauge' -> 'were taken'. 'pier' singular next to blank and present 'According to' tempt."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC27D-03",
+    "readers": 2,
+    "why": [
+     "subject-verb number plus a past time phrase after the blank",
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27D-07",
+    "readers": 2,
+    "why": [
+     "subject-verb number plus a past time phrase after the blank",
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-06",
+    "readers": 2,
+    "why": [
+     "subject-verb number plus a past time phrase after the blank",
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27B-07",
+    "readers": 2,
+    "why": [
+     "subject-verb number plus a past time phrase after the blank",
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27D-02",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-03",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-07",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27A-02",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27A-05",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27B-08",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27B-03",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-02",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   }
+  ]
+ },
+ "SEC27B-06": {
+  "must_revise": true,
+  "named_for": [
+   "distractors not strong for every reader",
+   "template pair with SEC27A-06 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template partner of SEC27D-06 (the later slot revises)",
+   "template partner of SEC27C-05 (the later slot revises)",
+   "named in reader r0's tell: Pronoun items (P10,P13,P27,P35) are all 2x2 verb-number x pronoun-number grids; the pronoun's correct referent is always the semantically obvious actor/object a",
+   "named in reader r1's tell: Pronoun items use the same 2x2 grid (verb number x pronoun number) and the pronoun's referent is always the one non-subject noun of the right kind (window P06, "
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "is towed by them",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "the only things that can tow are the plural drones, and 'a steel canister' is plainly singular; 2x2 grid shared with P10, P27, P35.",
+    "note": "Singular 'canister' takes 'is'; the agent is the drones, so 'them'. 'it' tempts because 'battery'/'crust'/'vent' are singular nearby."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "is towed by them",
+    "difficulty": "hard",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "strong",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": null,
+    "note": "Singular 'canister' -> 'is towed'; the towing agents are the 'drones' two sentences back -> 'them'. 'by it' attracts because the only nearby singular nouns ('battery', 'vent', 'crust') are wrong referents."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC27D-06",
+    "readers": 2,
+    "why": [
+     "verb number crossed with pronoun number in a two-by-two grid",
+     "verb number x pronoun number grid"
+    ]
+   },
+   {
+    "with": "SEC27A-06",
+    "readers": 2,
+    "why": [
+     "verb number crossed with pronoun number in a two-by-two grid",
+     "verb number x pronoun number grid"
+    ]
+   },
+   {
+    "with": "SEC27C-05",
+    "readers": 2,
+    "why": [
+     "verb number crossed with pronoun number in a two-by-two grid",
+     "verb number x pronoun number grid"
+    ]
+   }
+  ]
+ },
+ "SEC27B-04": {
+  "must_revise": false,
+  "named_for": [],
+  "listed_for": [
+   "template partner of SEC27C-08 (the later slot revises)",
+   "template partner of SEC27B-09 (the later slot revises)",
+   "named in reader r0's tell: Subject-verb items (P02,P04,P05,P08,P09,P12,P14,P18,P22,P23,P25,P29,P30,P33,P36,P39,P40) are all 2x2 number-by-tense grids: two independent binary rules, each s",
+   "named in reader r0's tell: In those items the noun immediately before the blank is almost always the WRONG number (P02 spillway, P05 sheet, P08 pier, P09 board, P10 admissions, P12 mustar"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "has always",
+    "difficulty": "hard",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "strong",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": null,
+    "note": "'has always ... subsided': the participle is delayed by 'within an hour of the afternoon melt peak'; 'is subsided' is not idiomatic, and 'level' is singular against plural attractor 'charts'."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "has always",
+    "difficulty": "hard",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "strong",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": null,
+    "note": "'has always ... subsided': the perfect auxiliary is split from its participle by 'within an hour of the afternoon melt peak'. 'is always' reads naturally until 'subsided' arrives eight words later; singular 'level'."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC27C-08",
+    "readers": 2,
+    "why": [
+     "auxiliary type decided by a complement delayed past an interrupting phrase",
+     "auxiliary split from its participle or complement by an adverbial"
+    ]
+   },
+   {
+    "with": "SEC27B-09",
+    "readers": 2,
+    "why": [
+     "auxiliary type decided by a complement delayed past an interrupting phrase",
+     "auxiliary split from its participle or complement by an adverbial"
+    ]
+   }
+  ]
+ },
+ "SEC27B-09": {
+  "must_revise": true,
+  "named_for": [
+   "no reader rated it hard",
+   "distractors not strong for every reader",
+   "template pair with SEC27B-04 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template partner of SEC27C-08 (the later slot revises)",
+   "named in reader r0's tell: In those items the noun immediately before the blank is almost always the WRONG number (P02 spillway, P05 sheet, P08 pier, P09 board, P10 admissions, P12 mustar"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "were also",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'Wafers' is the first word and the noun before the blank ('bays') is also plural, so there is no attractor; the only work is finding 'unfit' past the interrupter.",
+    "note": "'Wafers ... were also ... unfit for sale': the predicate adjective is delayed by 'by the inspectors' revised standards'; 'have unfit' is ungrammatical. Plural subject."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "were also",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'scrapped' and 'had leaked' settle past and 'Wafers' opens the sentence; split-auxiliary shape shared with P18, P26.",
+    "note": "Plural 'Wafers', past ('scrapped', 'had leaked') -> 'were also [unfit]'; be-verb split from 'unfit' by 'by the inspectors' revised standards'. 'have also' would need a participle."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC27C-08",
+    "readers": 2,
+    "why": [
+     "auxiliary type decided by a complement delayed past an interrupting phrase",
+     "auxiliary split from its participle or complement by an adverbial"
+    ]
+   },
+   {
+    "with": "SEC27B-04",
+    "readers": 2,
+    "why": [
+     "auxiliary type decided by a complement delayed past an interrupting phrase",
+     "auxiliary split from its participle or complement by an adverbial"
+    ]
+   }
+  ]
+ },
+ "SEC27B-01": {
+  "must_revise": true,
+  "named_for": [
+   "distractors not strong for every reader"
+  ],
+  "listed_for": [
+   "template pair with SEC27B-10 named by 1 of 2",
+   "template partner of SEC27B-05 (the later slot revises)",
+   "named in reader r0's tell: Restrictiveness items (P01,P37,P38): a uniqueness/contrast cue in the passage ('the same ship', 'largest', 'by contrast') settles comma vs none.",
+   "named in reader r1's tell: No-punctuation key whenever the blank sits between a verb and its object/complement (P27, P38) or a noun and a restrictive modifier (P16, P37)."
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "specimens gathered",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "specimens. Gathered"
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "the next sentence's 'by contrast' explicitly names the other group, handing over the restrictive reading; D is an obvious fragment. Same uniqueness/restrictiveness template as P01, P38.",
+    "note": "Restrictive participle: the specimens gathered along the margin are contrasted with those from the interior, so no comma. A/C would make the location incidental."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "specimens gathered",
+    "difficulty": "hard",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "strong",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": null,
+    "note": "Restrictive participle: the team examined the specimens gathered along the margin, contrasted in the next sentence with meteorites from the interior; commas would make the location incidental. A (comma) is attractive as a natural pause."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC27B-10",
+    "readers": 1,
+    "why": [
+     "restrictive versus nonrestrictive modifier set by a uniqueness or contrast cue"
+    ]
+   },
+   {
+    "with": "SEC27B-05",
+    "readers": 2,
+    "why": [
+     "restrictive versus nonrestrictive modifier set by a uniqueness or contrast cue",
+     "restrictive versus nonrestrictive participle after a noun"
+    ]
+   }
+  ]
+ },
+ "SEC27B-05": {
+  "must_revise": true,
+  "named_for": [
+   "not exclusive",
+   "distractors not strong for every reader",
+   "template pair with SEC27B-01 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template pair with SEC27B-10 named by 1 of 2",
+   "named in reader r0's tell: Restrictiveness items (P01,P37,P38): a uniqueness/contrast cue in the passage ('the same ship', 'largest', 'by contrast') settles comma vs none."
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "dish, warped",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "dish. Warped"
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'largest' hands over uniqueness, so the comma; B is a fragment and D's colon has no list or explanation. Same restrictiveness template as P01, P37.",
+    "note": "'the observatory's largest dish' is already unique, so the participial phrase is nonrestrictive and takes a comma. B misreads it as 'the largest of the warped dishes'."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "dish, warped",
+    "difficulty": "hard",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "strong",
+    "exclusive": false,
+    "second_defensible_text": "dish. Warped",
+    "convention": "restrictive reduced relative: 'the observatory's largest dish warped by decades of wind' can be read as 'the largest of the warped dishes'",
+    "resolving_word_after_blank": null,
+    "not_hard_because": null,
+    "note": "With 'largest' identifying one dish, the participle is nonessential -> comma. B is attractive and arguably legal as a restrictive reading; D colon has no list/explanation."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC27B-10",
+    "readers": 1,
+    "why": [
+     "restrictive versus nonrestrictive modifier set by a uniqueness or contrast cue"
+    ]
+   },
+   {
+    "with": "SEC27B-01",
+    "readers": 2,
+    "why": [
+     "restrictive versus nonrestrictive modifier set by a uniqueness or contrast cue",
+     "restrictive versus nonrestrictive participle after a noun"
+    ]
+   }
+  ]
+ },
+ "SEC27B-03": {
+  "must_revise": true,
+  "named_for": [
+   "not exclusive",
+   "no reader rated it hard",
+   "distractors not strong for every reader",
+   "template pair with SEC27A-05 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template partner of SEC27C-03 (the later slot revises)",
+   "template pair with SEC27B-02 named by 1 of 2",
+   "template pair with SEC27D-03 named by 1 of 2",
+   "template pair with SEC27D-02 named by 1 of 2",
+   "template pair with SEC27C-07 named by 1 of 2",
+   "template pair with SEC27A-02 named by 1 of 2",
+   "template pair with SEC27C-06 named by 1 of 2",
+   "template pair with SEC27B-07 named by 1 of 2",
+   "template pair with SEC27D-07 named by 1 of 2",
+   "template pair with SEC27B-08 named by 1 of 2",
+   "template pair with SEC27C-02 named by 1 of 2",
+   "named in reader r0's tell: Subject-verb items (P02,P04,P05,P08,P09,P12,P14,P18,P22,P23,P25,P29,P30,P33,P36,P39,P40) are all 2x2 number-by-tense grids: two independent binary rules, each s",
+   "named in reader r0's tell: In those items the noun immediately before the blank is almost always the WRONG number (P02 spillway, P05 sheet, P08 pier, P09 board, P10 admissions, P12 mustar",
+   "named in reader r1's tell: Head noun = first noun of the subject: in every number item the subject's head is the first noun at the start of the clause and a later prepositional/relative n",
+   "named in reader r1's tell: Tense is always handed over by a time phrase or present verb AFTER the blank: 'since' -> present perfect (P22), duration 'for nine growing seasons' -> perfect ("
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "has been superseded",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": false,
+    "second_defensible_text": "was superseded",
+    "convention": "American edited English accepts simple past for a completed event with present relevance when no time marker conflicts",
+    "resolving_word_after_blank": null,
+    "not_hard_because": "the number is settled by 'The rotating optic' opening the clause, and the tense choice does not discriminate because C is also acceptable.",
+    "note": "Singular 'optic' (attractor 'panes'); present perfect fits the present-result frame ('the beam ... is whiter'), but nothing excludes a simple past 'was superseded'."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "has been superseded",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": false,
+    "second_defensible_text": "was superseded",
+    "convention": "simple past for a completed action with present relevance is accepted in edited American English when no time frame is stated ('The optic was superseded by LEDs, and the beam ... is whiter')",
+    "resolving_word_after_blank": null,
+    "not_hard_because": "the head noun opens the sentence and the present-tense consequence clause hands over the perfect, same cue as P32/P33.",
+    "note": "Singular 'optic'; present consequence ('the beam that pilots see ... is whiter') favours 'has been superseded'. No past time marker excludes simple past, so C is defensible."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC27C-03",
+    "readers": 2,
+    "why": [
+     "plural or singular subject plus since or duration phrase forcing present perfect",
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27A-05",
+    "readers": 2,
+    "why": [
+     "plural or singular subject plus since or duration phrase forcing present perfect",
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27B-02",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27D-03",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27D-02",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-07",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27A-02",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-06",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27B-07",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27D-07",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27B-08",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-02",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   }
+  ]
+ },
+ "SEC27B-07": {
+  "must_revise": true,
+  "named_for": [
+   "no reader rated it hard",
+   "distractors not strong for every reader",
+   "template pair with SEC27B-02 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template partner of SEC27D-03 (the later slot revises)",
+   "template partner of SEC27D-07 (the later slot revises)",
+   "template partner of SEC27C-06 (the later slot revises)",
+   "template pair with SEC27D-02 named by 1 of 2",
+   "template pair with SEC27C-03 named by 1 of 2",
+   "template pair with SEC27C-07 named by 1 of 2",
+   "template pair with SEC27A-02 named by 1 of 2",
+   "template pair with SEC27A-05 named by 1 of 2",
+   "template pair with SEC27B-08 named by 1 of 2",
+   "template pair with SEC27B-03 named by 1 of 2",
+   "template pair with SEC27C-02 named by 1 of 2",
+   "named in reader r0's tell: Subject-verb items (P02,P04,P05,P08,P09,P12,P14,P18,P22,P23,P25,P29,P30,P33,P36,P39,P40) are all 2x2 number-by-tense grids: two independent binary rules, each s",
+   "named in reader r0's tell: In those items the noun immediately before the blank is almost always the WRONG number (P02 spillway, P05 sheet, P08 pier, P09 board, P10 admissions, P12 mustar",
+   "named in reader r0's tell: Tense is always handed over by a time phrase AFTER the blank: past by 'during ...'/'in the decades preceding'/'that autumn'/'when ...' (P08,P18,P25,P30,P40), pr",
+   "named in reader r1's tell: Head noun = first noun of the subject: in every number item the subject's head is the first noun at the start of the clause and a later prepositional/relative n",
+   "named in reader r1's tell: Tense is always handed over by a time phrase or present verb AFTER the blank: 'since' -> present perfect (P22), duration 'for nine growing seasons' -> perfect ("
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "was being indexed",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'during the slide-rule era's closing years' hands over the past and 'the catalogue' is singular; same past-time-phrase template as P08, P18, P25, P30.",
+    "note": "Singular 'catalogue' (attractor 'photographs') with 'during the slide-rule era's closing years' setting past."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "was being indexed",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'during the ... closing years' gives the tense and the subject's first noun is the head; grid template.",
+    "note": "Singular 'catalogue', past 'during the slide-rule era's closing years' -> 'was being indexed'. 'photographs' and 'two technicians' bait plural."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC27B-02",
+    "readers": 2,
+    "why": [
+     "subject-verb number plus a past time phrase after the blank",
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27D-03",
+    "readers": 2,
+    "why": [
+     "subject-verb number plus a past time phrase after the blank",
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27D-07",
+    "readers": 2,
+    "why": [
+     "subject-verb number plus a past time phrase after the blank",
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-06",
+    "readers": 2,
+    "why": [
+     "subject-verb number plus a past time phrase after the blank",
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27D-02",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-03",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-07",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27A-02",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27A-05",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27B-08",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27B-03",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-02",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   }
+  ]
+ }
+}

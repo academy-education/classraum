@@ -1,0 +1,182 @@
+[
+  {
+    "id": "SEC27B-01",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: punctuation before a sentence-final participial phrase",
+    "difficulty": "hard",
+    "passage": "Meteorites that land on Antarctic ice are preserved far better than those that fall on farmland, yet even there meltwater can rust the iron grains inside them. To measure that damage, a curatorial team sliced open and examined the ______ where the blue ice meets a dark moraine of wind-scoured gravel. Meteorites the team recovered from the field's frozen interior showed almost no rust, a difference the team attributes to the colder, drier surface there.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "specimens, gathered",
+      "specimens gathered",
+      "specimens—gathered",
+      "specimens. Gathered"
+    ],
+    "correct_answer": "specimens gathered",
+    "explanation": "The phrase \"gathered where the blue ice meets a dark moraine of wind-scoured gravel\" is restrictive: it identifies which of the team's specimens were measured, and the last sentence shows the team also examined meteorites \"recovered from the field's frozen interior,\" so the phrase is needed to separate the two sets. A restrictive phrase takes no punctuation. \"specimens, gathered\" and \"specimens—gathered\" set the phrase off as extra information, implying that all the specimens examined came from the moraine edge, which the last sentence rules out. \"specimens. Gathered\" makes the participial phrase a fragment: \"meets\" is the verb of the \"where\" clause, so the phrase still has no subject or main verb of its own.",
+    "topic_tag": "meteoritics: terrestrial weathering of Antarctic finds",
+    "template": "sentence-final restrictive participial phrase x a contrasting set named in a later sentence x {no mark, comma, dash, period}"
+  },
+  {
+    "id": "SEC27B-02",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and verb tense",
+    "difficulty": "hard",
+    "passage": "Some of the longest sea-level records in the world come from harbor ledgers rather than from instruments. According to the port's archivist, the harbor's handwritten readings from the old stone pier ______ from a painted wooden staff bolted to a long-demolished timber landing stage, and the ledgers' margins hold small sketches of the staff and its markings.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "are taken",
+      "were taken",
+      "is taken",
+      "was taken"
+    ],
+    "correct_answer": "were taken",
+    "explanation": "The subject is the plural \"readings\"; the sentence's first noun, \"port's,\" the possessive \"harbor's\" inside the subject, and \"pier,\" the object of \"from,\" are all singular and none governs the verb, so \"is taken\" and \"was taken\" fail on number. The time frame is inferred from \"bolted to a long-demolished timber landing stage\": the staff was attached to a structure that no longer exists, so readings taken from it belong to a finished past and the verb must be past. \"are taken\" describes a present practice, which the demolished landing stage makes impossible. Only \"were taken\" is both plural and past.",
+    "topic_tag": "oceanography: hand-read tide staffs in harbor ledgers",
+    "template": "plural head after a singular possessive, with a from-phrase ending singular x past inferred from a demolished-structure participle x {is/are/was/were taken}"
+  },
+  {
+    "id": "SEC27B-03",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and verb tense",
+    "difficulty": "hard",
+    "passage": "A chip plant's clean room depends on ceiling filters that strip microscopic particles from the air before it reaches the wafers. The plant's new installation marks the first time that the filter bank above the lithography bays ______ by a design containing no glass fiber at all, a change the engineers expect to reduce the stray fibers they find on finished wafers.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has been superseded",
+      "have been superseded",
+      "was superseded",
+      "were superseded"
+    ],
+    "correct_answer": "has been superseded",
+    "explanation": "The subject of the that-clause is the singular \"bank\" (\"the filter bank above the lithography bays\"); \"bays\" is the object of \"above,\" so \"have been superseded\" and \"were superseded\" fail on number. The verb form is fixed by the present-tense main clause \"The plant's new installation marks the first time that\": after a present-tense \"is/marks the first time that,\" Standard English requires the present perfect for the event being counted, as in \"This is the first time the bank has been replaced.\" \"was superseded\" uses the simple past, which this construction does not allow (the simple past would require \"marked the first time,\" and then the past perfect).",
+    "topic_tag": "semiconductor manufacturing: a fiber-free filter bank in a clean room",
+    "template": "singular head + locative phrase ending plural inside a that-clause x present perfect required by a present 'marks the first time that' x {has/have been superseded, was/were superseded}"
+  },
+  {
+    "id": "SEC27B-04",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and auxiliary verbs",
+    "difficulty": "hard",
+    "passage": "Boreholes drilled to the bed of a glacier let researchers watch meltwater move beneath the ice. On the drilling team's charts, the water level in the central borehole ______ within an hour of the afternoon melt peak subsided by nearly a meter, a pattern the team reads as water draining into channels along the bed.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "is always",
+      "has always",
+      "are always",
+      "have always"
+    ],
+    "correct_answer": "has always",
+    "explanation": "The subject is the singular \"level\" (\"the water level in the central borehole\"); \"charts\" sits in the opening phrase and does not govern the verb, so \"are always\" and \"have always\" fail on number. The auxiliary is decided by the participle \"subsided,\" which arrives after the phrase \"within an hour of the afternoon melt peak\": \"subside\" is intransitive, so it cannot be passive, and it is not used as an adjective, so it needs \"has\" to form the present perfect. \"is always\" reads well up to \"within an hour of the afternoon melt peak,\" but \"is ... subsided\" is not a possible verb phrase.",
+    "topic_tag": "glacier hydrology: borehole water levels under a melt pulse",
+    "template": "singular head after an opening phrase with a plural noun x auxiliary decided by a distant intransitive participle x {is/are always, has/have always}"
+  },
+  {
+    "id": "SEC27B-05",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: punctuation before a sentence-final participial phrase",
+    "difficulty": "hard",
+    "passage": "A regional seismometer network can pinpoint an earthquake within seconds by comparing the moments its first waves reach each station. After a moderate tremor shook the coast, damage was heaviest in the fishing villages closest to the earthquake's ______ beneath a shallow bay south of the harbor town. Engineers attribute the pattern to soft harbor mud, which amplifies shaking.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "epicenter located",
+      "epicenter. Located",
+      "epicenter, located",
+      "epicenter: located"
+    ],
+    "correct_answer": "epicenter, located",
+    "explanation": "An earthquake has one epicenter, so \"the earthquake's epicenter\" is already fully identified, and the participial phrase \"located beneath a shallow bay south of the harbor town\" adds information about it rather than distinguishing it from other epicenters; a nonrestrictive phrase is set off with a comma. \"epicenter located\" makes the phrase restrictive, which would imply the earthquake had several epicenters and the phrase picks out one. \"epicenter. Located\" leaves the participial phrase as a fragment with no subject or main verb. \"epicenter: located\" is wrong because a colon introduces an explanation, list, or restatement of the whole preceding clause, and this phrase only describes the noun \"epicenter.\"",
+    "topic_tag": "seismology: a coastal tremor's epicenter under a bay",
+    "template": "sentence-final nonrestrictive participial phrase after a copular clause + prepositional phrase x a possessive with exactly one possible referent x {comma, no mark, period, colon}"
+  },
+  {
+    "id": "SEC27B-06",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and pronoun-antecedent agreement",
+    "difficulty": "hard",
+    "passage": "The valley's radio telescope steers its dish with electric motors bolted to the base of its steel frame. No motor working alone is strong enough to swing so heavy a reflector. For a night's observation of a distant quasar's faint radio bursts, the dish ______ in slow arcs across the sky, tracking the source against the turning of the earth.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "is swung by it",
+      "are swung by it",
+      "is swung by them",
+      "are swung by them"
+    ],
+    "correct_answer": "is swung by them",
+    "explanation": "The verb's subject is the singular \"dish,\" so \"are swung by it\" and \"are swung by them\" fail on number; the plural \"bursts\" belongs to the opening phrase. The pronoun names the agent that swings the dish: the plural \"motors\" of the first sentence (\"electric motors bolted to the base of its steel frame\"), so it must be \"them.\" \"is swung by it\" fails because a singular pronoun has no possible antecedent: \"dish\" is the subject of the same clause and could only be referred to there by \"itself,\" and \"No motor\" in the second sentence is a negative quantifier, which cannot serve as the antecedent of a pronoun in a later sentence.",
+    "topic_tag": "radio astronomy: drive motors that steer a telescope dish",
+    "template": "singular subject after an opening phrase with a plural noun x by-agent pronoun whose plural antecedent is two sentences back, with a negative-quantifier singular in between x {is/are swung by it/them}"
+  },
+  {
+    "id": "SEC27B-07",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and verb tense",
+    "difficulty": "hard",
+    "passage": "A lighthouse beam sweeps the sea only if something keeps the lens turning. Inside the lighthouse's lantern room, the clockwork drive beneath the rotating prisms ______ by resident keepers at intervals through the night, a duty made obsolete by the light's automation. The keepers' logbook records each winding in a column beside the weather.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "is being cranked",
+      "were being cranked",
+      "are being cranked",
+      "was being cranked"
+    ],
+    "correct_answer": "was being cranked",
+    "explanation": "The subject is the singular \"drive\" (\"the clockwork drive beneath the rotating prisms\"); \"prisms\" is the object of \"beneath,\" and \"keepers\" is in the by-phrase, so \"were being cranked\" and \"are being cranked\" fail on number. The time frame is inferred from the appositive \"a duty made obsolete by the light's automation\": the cranking is a duty that automation has ended, so it cannot be going on now, and the verb must be past. \"is being cranked\" places an abolished duty in the present.",
+    "topic_tag": "navigational aids: clockwork lens drives in a lighthouse",
+    "template": "singular head after an opening phrase, + locative phrase ending plural x past inferred from an appositive naming an abolished duty x {is/are/was/were being cranked}"
+  },
+  {
+    "id": "SEC27B-08",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and verb tense",
+    "difficulty": "hard",
+    "passage": "Engineers designed the dam's spillway to carry floodwater down a concrete chute rather than over the dam itself. Surveys by engineers show that the reservoir's overflow surges from the end of the spillway ______ a deep plunge pool into the soft sandstone below the chute, which is why the chute's foundation sits beneath water too deep for anyone but divers to reach.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has carved",
+      "was carving",
+      "were carving",
+      "have carved"
+    ],
+    "correct_answer": "have carved",
+    "explanation": "The subject of the that-clause is the plural \"surges\"; \"reservoir's\" is a possessive and \"end\" and \"spillway\" are inside the prepositional phrase, so \"has carved\" and \"was carving\" fail on number. The aspect is decided by the relative clause \"which is why the chute's foundation sits beneath water too deep for anyone but divers to reach\": it states a present condition caused by the carving, so the carving must be presented as a past action with a present result, the present perfect \"have carved.\" \"were carving\" describes an activity in progress at some past moment; the sentence names no such moment, and an unfinished past activity cannot be the cause of the present state the \"which is why\" clause reports.",
+    "topic_tag": "hydraulic engineering: scour below a dam's spillway chute",
+    "template": "plural head after a singular possessive, + from-phrase ending singular, inside a that-clause x present perfect fixed by a which-is-why present-result clause x {has/have carved, was/were carving}"
+  },
+  {
+    "id": "SEC27B-09",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and auxiliary verbs",
+    "difficulty": "hard",
+    "passage": "Rust stains had spread along the outer wrapping of an aging suspension bridge's main cable. Crews wedged open the bridge's eastern cable near its anchorage, where the outermost wires ______ according to the inspectors' bend tests brittle enough to snap by hand. The crews will splice new strands into the weakest stretch of the cable, and engineers will test the western cable the same way.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was also",
+      "have also",
+      "were also",
+      "has also"
+    ],
+    "correct_answer": "were also",
+    "explanation": "The subject of the \"where\" clause is the plural \"wires,\" the noun just before the blank; the singular nouns earlier in the sentence (\"bridge's,\" \"cable,\" \"anchorage\") belong to the main clause, so \"was also\" and \"has also\" fail on number. The auxiliary is decided by the predicate adjective \"brittle,\" which arrives only after \"according to the inspectors' bend tests\": an adjective needs a form of \"be,\" so \"were also ... brittle\" is correct. \"have also ... brittle\" is ungrammatical, since \"have\" cannot link a subject to an adjective without \"been\" (or a verb such as \"become\").",
+    "topic_tag": "structural engineering: brittle wires inside a suspension bridge cable",
+    "template": "plural head = the noun before the blank, in a where-clause after a main clause full of singulars x auxiliary decided by a distant predicate adjective x {was/were also, has/have also}"
+  },
+  {
+    "id": "SEC27B-10",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: punctuation before a sentence-final appositive",
+    "difficulty": "hard",
+    "passage": "All of the sediment cores in the institute's deep-sea collection were raised by the same ship, which the institute leased from a fishing cooperative. Its winch lowered a weighted steel tube into the mud of the abyssal plain and hauled it back up with a column of sediment inside. Papers drawn from the collection routinely thank the crew of the institute's ______ Star, a trawler the cooperative refitted for coring.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "ship—Kittiwake",
+      "ship Kittiwake",
+      "ship. Kittiwake",
+      "ship Kittiwake,"
+    ],
+    "correct_answer": "ship—Kittiwake",
+    "explanation": "The first sentence establishes that every core came from \"the same ship,\" so \"the institute's ship\" already identifies one vessel, and its name, \"Kittiwake Star,\" is a nonrestrictive appositive that must be set off; a dash does this at the end of the sentence. \"ship Kittiwake\" runs the name into the noun as a restrictive appositive, as though it were needed to tell which of the institute's ships is meant, which the first sentence rules out. \"ship Kittiwake,\" puts a comma inside the two-word name \"Kittiwake Star,\" and a proper name is never split by punctuation. \"ship. Kittiwake\" leaves \"Kittiwake Star, a trawler the cooperative refitted for coring\" as a fragment: \"refitted\" belongs to the clause describing the trawler, so there is no main verb.",
+    "topic_tag": "marine geology: piston cores from a leased trawler",
+    "template": "sentence-final nonrestrictive two-word name appositive x uniqueness stated two sentences back ('the same ship') x {dash, no mark, period, comma inside the name}"
+  }
+]

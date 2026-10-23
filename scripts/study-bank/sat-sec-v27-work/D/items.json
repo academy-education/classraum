@@ -1,0 +1,182 @@
+[
+  {
+    "id": "SEC27D-01",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: punctuation between a complete clause and an explanatory list",
+    "difficulty": "hard",
+    "passage": "Survey researchers worry that the households that refuse an interview differ from those that agree, but a refusal leaves little behind to study. A field team's logs pointed to households that interviewers seldom ______ where every adult worked a night shift, apartments behind a locked lobby, and farmhouses at the end of unmarked roads.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "reached, homes",
+      "reached homes",
+      "reached; homes",
+      "reached: homes"
+    ],
+    "correct_answer": "reached: homes",
+    "explanation": "The clause \"A field team's logs pointed to households that interviewers seldom reached\" is already complete: \"that\" is the object of \"reached\" inside the relative clause. The three noun phrases that follow explain which households those were, and a colon introduces such an explanation. \"reached homes\" makes \"homes\" a second object of \"reached,\" a slot \"that\" has already filled, even though \"seldom reached homes\" sounds like a natural phrase. \"reached, homes\" makes \"households that interviewers seldom reached\" the first member of a series with the three kinds of home, as though the logs pointed to four separate things. \"reached; homes\" fails because a semicolon must be followed by an independent clause, and the list has no main verb; \"worked\" belongs to the relative clause \"where every adult worked a night shift.\"",
+    "topic_tag": "survey methodology: refusals in a household expenditure survey",
+    "template": "complete clause ending on a relative clause whose verb's object gap is filled ('households that interviewers seldom reached') x the list reads as that verb's object x colon / comma / none / semicolon"
+  },
+  {
+    "id": "SEC27D-02",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with verb tense",
+    "difficulty": "hard",
+    "passage": "In a survey that the provincial credit federation conducted among its member unions, managers described lending practices that barely differed from one district to another. Harvest loans to a farmer without a registered land title ______ in the province's upland region, a scarcity that keeps smallholders there borrowing from relatives and from the traders who buy their crops.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "is rare",
+      "are rare",
+      "was rare",
+      "were rare"
+    ],
+    "correct_answer": "are rare",
+    "explanation": "The subject's head is \"loans,\" which is plural; \"Harvest\" is a singular noun used as a modifier before it, and \"farmer\" and \"title\" are singular nouns inside the phrase \"to a farmer without a registered land title.\" The tense is settled by the phrase that renames the condition, \"a scarcity that keeps smallholders there borrowing from relatives\": its present verb \"keeps\" presents the scarcity as a current state, so the condition it renames must be stated in the present. \"were rare\" is plural but past, taking its tense from the survey in the first sentence, and it would describe a scarcity that is over while the renaming phrase says it continues. \"is rare\" agrees with \"title\" or \"Harvest\" rather than with \"loans,\" and \"was rare\" is both singular and past.",
+    "topic_tag": "development economics: collateral and upland credit unions",
+    "template": "singular noun modifier + plural head + to-phrase ending singular x past survey in the prior sentence x i|j + 'rare' decided by a sentence-final noun phrase renaming the state with a present verb"
+  },
+  {
+    "id": "SEC27D-03",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with verb aspect",
+    "difficulty": "hard",
+    "passage": "School lunch programs reimburse a school system for every free meal it serves, and this system replaced its paper meal tickets with student swipe cards to make that count exact. The lunch-line cashiers at the system's elementary schools ______ free lunches in pencil ledgers in the paper-ticket years, and auditors cannot match those ledgers to enrollment.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has been logging",
+      "have been logging",
+      "were logging",
+      "was logging"
+    ],
+    "correct_answer": "were logging",
+    "explanation": "The subject's head is \"cashiers,\" which is plural; \"lunch-line\" is a singular noun used as a modifier, and \"system's\" and \"schools\" sit in the phrase \"at the system's elementary schools.\" The aspect is settled by \"in the paper-ticket years\": the first sentence says the system \"replaced its paper meal tickets with student swipe cards,\" so those years are over, and an action confined to a finished period takes the simple past. \"have been logging\" is plural but present perfect, which would extend the logging into the present, and the present-tense \"auditors cannot match those ledgers\" makes that reading tempting. \"was logging\" agrees with \"lunch-line\" or \"system's\" rather than with \"cashiers,\" and \"has been logging\" is both singular and present perfect.",
+    "topic_tag": "education policy: paper meal tickets in school lunch audits",
+    "template": "singular noun modifier + plural head + at-phrase x present coordinate clause pulls the perfect x f|g decided by a period phrase whose end is known only from the previous sentence"
+  },
+  {
+    "id": "SEC27D-04",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with auxiliary choice",
+    "difficulty": "hard",
+    "passage": "Critics of the county's minimum-wage increase predicted that small employers would respond by cutting hours. Instead, the typical shift at the county's family-owned diners has crept upward under the higher wage, and the payroll hours at the franchise outlet beside the highway ______. Owners there attribute the change to fewer resignations among experienced cooks.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "have too",
+      "are too",
+      "has too",
+      "is too"
+    ],
+    "correct_answer": "have too",
+    "explanation": "The blank's verb stands in for the predicate stated earlier in the sentence, \"has crept upward.\" Its subject's head is \"hours,\" which is plural; \"payroll\" is a singular noun used as a modifier, \"outlet\" and \"highway\" belong to the phrase \"at the franchise outlet beside the highway,\" and \"shift\" is the subject of the earlier clause. The ellipsis must repeat the earlier auxiliary, so \"the payroll hours ... have too\" means \"have crept upward too.\" \"are too\" would need a predicate that can follow \"be,\" but \"crept\" is the participle of an intransitive verb with no passive, so \"are crept upward\" is ungrammatical. \"has too\" copies the earlier clause's singular \"has\" and agrees with \"payroll\" or \"highway\" rather than with \"hours,\" and \"is too\" is both singular and the wrong auxiliary.",
+    "topic_tag": "labor economics: shift length after a county minimum-wage increase",
+    "template": "', and the [sg modifier + pl head] + locative chain ending sg ___' ellipsis of an earlier 'has + intransitive participle + adverb' x singular earlier subject x j|n + 'too'"
+  },
+  {
+    "id": "SEC27D-05",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: punctuation between a verb and its gerund object",
+    "difficulty": "hard",
+    "passage": "Facing a shortfall in its water fund, the council of a small river town weighed the usual remedies. At its spring meeting it ruled ______ the residential water rate again, a step that would have fallen hardest on retirees living on fixed incomes, and voted instead to draw down the town's reserve.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "out raising",
+      "out, raising",
+      "out—raising",
+      "out; raising"
+    ],
+    "correct_answer": "out raising",
+    "explanation": "The verb \"ruled out\" must have a direct object, and its object is the gerund phrase \"raising the residential water rate again\"; no punctuation separates a verb from its object. \"out, raising\" and \"out—raising\" turn the gerund phrase into a participial modifier describing what the council did while ruling, which leaves \"ruled out\" with nothing ruled out. \"out; raising\" treats the words after the blank as an independent clause, but \"raising the residential water rate again\" has no subject, and the sentence's own second verb, \"voted,\" belongs to the council's compound predicate.",
+    "topic_tag": "public finance: a river town's water-fund shortfall",
+    "template": "particle verb 'ruled out' + gerund-phrase object that reads as a participial modifier x comma / dash pull the modifier reading x none / comma / dash / semicolon"
+  },
+  {
+    "id": "SEC27D-06",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with pronoun-antecedent agreement",
+    "difficulty": "hard",
+    "passage": "A state audit of the district's bilingual school examined how the school placed a newly enrolled pupil, a decision that rested largely on a home-language questionnaire completed at the front desk. With no interpreters at the counter to explain a family's questionnaire, the admissions registrar who accepts no secondhand answers ______ line by line with the child's parent, a precaution the audit singled out for praise.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "were reviewing them",
+      "was reviewing them",
+      "were reviewing it",
+      "was reviewing it"
+    ],
+    "correct_answer": "was reviewing it",
+    "explanation": "The subject's head is \"registrar,\" which is singular; \"admissions\" is a plural noun used as a modifier before it, and \"answers\" belongs to the relative clause \"who accepts no secondhand answers.\" The pronoun refers to \"a family's questionnaire\" in the opening phrase, which is singular, so it must be \"it.\" \"was reviewing them\" has no possible plural antecedent: \"interpreters\" and \"answers\" are each introduced by \"no,\" and a pronoun cannot refer back to a noun phrase that \"no\" has said does not exist, while \"admissions\" is a modifier, not a noun phrase. \"were reviewing it\" and \"were reviewing them\" make the verb plural, agreeing with \"answers\" or \"admissions\" rather than with \"registrar.\"",
+    "topic_tag": "bilingual education: home-language questionnaires at registration",
+    "template": "opening 'With no [pl] ... a family's [sg]' + plural noun modifier + singular head + restrictive relative ending on a 'no'-quantified plural x the plural before the blank pulls verb and pronoun x g+p"
+  },
+  {
+    "id": "SEC27D-07",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with verb aspect",
+    "difficulty": "hard",
+    "passage": "Studies of voter turnout often attribute low participation among tenants to the frequency with which tenants change addresses. By the election board's count, the arts district's turnout among renters in its older apartment blocks ______ for neighborhoods that see so much housing turnover during the mayoral runoff that autumn. That runoff was the final contest held under the old ward map, which the city redrew the following spring.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has been typical",
+      "was typical",
+      "have been typical",
+      "were typical"
+    ],
+    "correct_answer": "was typical",
+    "explanation": "The subject's head is \"turnout,\" which is singular; \"arts\" is a plural noun used as a modifier in \"arts district,\" and \"renters\" and \"blocks\" belong to the phrase \"among renters in its older apartment blocks.\" The aspect is settled by \"during the mayoral runoff that autumn,\" a single finished election, and the next sentence confirms that the runoff belongs to a closed period, since it was \"the final contest held under the old ward map.\" A state confined to a finished period takes the simple past. \"has been typical\" is singular but present perfect, which the present-tense \"neighborhoods that see so much housing turnover\" makes sound like a lasting pattern. \"were typical\" and \"have been typical\" are plural, agreeing with \"renters\" or \"blocks\" rather than with \"turnout.\"",
+    "topic_tag": "political science: renter turnout in an arts district runoff",
+    "template": "opening 'By the [sg] count,' + plural noun modifier + singular head + stacked modifiers ending plural x present relative clause pulls the perfect x r|i + 'typical' decided by an explicit closed-past phrase, confirmed by the next sentence"
+  },
+  {
+    "id": "SEC27D-08",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with auxiliary choice",
+    "difficulty": "hard",
+    "passage": "Linguists once assumed that a toddler raised with two languages was confused by the mixture. A study of a bilingual nursery suggests instead that such a toddler borrows a word from the other language mainly to fill a gap in vocabulary, much as a modern-languages teacher fluent in the region's two dialects ______. The pattern held across the nursery's recordings.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "often does",
+      "often were",
+      "often do",
+      "often was"
+    ],
+    "correct_answer": "often does",
+    "explanation": "The blank's verb completes a comparison with the clause it is attached to, \"such a toddler borrows a word from the other language,\" so it stands in for the present lexical verb \"borrows,\" and an elided lexical verb is replaced by a form of \"do.\" Its subject's head is \"teacher,\" which is singular; \"modern-languages\" is a plural modifier before it, and \"dialects\" belongs to the phrase \"fluent in the region's two dialects.\" \"often was\" echoes \"was confused\" from the first sentence, but a comparison introduced by \"much as\" must repeat the predicate of the clause it compares, and that predicate is the present lexical \"borrows,\" not a past be-predicate in another sentence. \"often do\" and \"often were\" are plural, agreeing with \"dialects\" or \"languages\" rather than with \"teacher.\"",
+    "topic_tag": "developmental linguistics: word borrowing in a bilingual nursery",
+    "template": "that-clause with a present lexical verb + 'much as a [pl modifier + sg head] fluent in [pl] ___' x a past be-predicate in the previous sentence x i|m + 'often'"
+  },
+  {
+    "id": "SEC27D-09",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: punctuation before a sentence-final explanatory noun phrase",
+    "difficulty": "hard",
+    "passage": "Planners at the region's transit agency had assumed that new commuter riders would come mainly from drivers using station parking lots. Ridership on the line grew fastest where the planners had expected it ______ stops with no parking lot nearby, reached mostly by riders on foot from the apartment blocks around them.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "least outlying",
+      "least; outlying",
+      "least outlying,",
+      "least: outlying"
+    ],
+    "correct_answer": "least: outlying",
+    "explanation": "The words through \"least\" form a complete independent clause, \"Ridership on the line grew fastest where the planners had expected it least,\" and the noun phrase that follows, \"outlying stops with no parking lot nearby,\" names the places meant by \"where\"; a colon introduces such an explanation. \"least; outlying\" fails because a semicolon must be followed by an independent clause, and no main verb arrives: \"reached\" is a participle modifying \"stops\" (\"reached mostly by riders on foot\"), not the verb of a clause. \"least outlying\" runs the explanation into the clause, so that \"least outlying stops\" would have to be the object of \"expected,\" which already has \"it.\" \"least outlying,\" places the comma one word too late, leaving \"least outlying\" fused and cutting \"outlying\" off from \"stops,\" the noun it modifies.",
+    "topic_tag": "transportation economics: walking riders and commuter rail growth",
+    "template": "complete clause ending on an adverb ('where ... had expected it least') x 'least outlying stops' reads as one phrase and 'reached' as a verb x colon / none / semicolon / comma one word off"
+  },
+  {
+    "id": "SEC27D-10",
+    "domain": "Standard English Conventions",
+    "subskill": "form: possessive and plural nouns",
+    "difficulty": "hard",
+    "passage": "Researchers studying informal labor markets rarely find written records of who was hired, for how long, and at what wage. At a roadside hiring site on the city's eastern edge, however, the ______ tally each morning recorded the name and wage of every worker hired, and economists have used the surviving carbon copies to estimate daily pay. When columns in it disagreed, the contractor who had written the lower figure usually conceded.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "contractor's",
+      "contractors",
+      "contractors'",
+      "contractor"
+    ],
+    "correct_answer": "contractors'",
+    "explanation": "The blank names the owners of the tally, so it must be possessive; \"tally\" is the subject of \"recorded,\" not a verb. The last sentence settles the number: when columns in the tally disagreed, \"the contractor who had written the lower figure usually conceded,\" which means that more than one contractor wrote in it, so the owners are plural and the plural possessive \"contractors'\" is required. \"contractor's\" makes a single contractor the owner, which the singular \"the contractor\" in the last sentence seems to support, but that contractor is picked out from several who wrote competing figures. \"contractors\" reads \"tally\" as a verb (\"the contractors tally each morning\"), but \"recorded\" then arrives as the main verb, leaving \"tally\" a noun with no possessor, and \"contractor\" is neither possessive nor plural.",
+    "topic_tag": "labor economics: tallies kept at roadside hiring sites",
+    "template": "'the ___ tally each morning recorded' (noun readable as a verb, adverbial delays the main verb) x plural owners inferred from a later sentence that names one of them in the singular x X / X's / Xs / Xs'"
+  }
+]

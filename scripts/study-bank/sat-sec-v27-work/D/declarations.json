@@ -1,0 +1,488 @@
+[
+  {
+    "id": "SEC27D-01",
+    "slot": "D1",
+    "frame": "'A field team's logs pointed to households that interviewers seldom reached' (complete: 'that' is the object of 'reached'), then a sentence-final three-item list explaining which households; 'seldom reached homes' reads as a verb and its object; the clause ends on a verb, not on a noun that announces a list",
+    "key_mark": "colon",
+    "key_letter": "D",
+    "structure": "Left: an independent clause ending on the relative clause 'that interviewers seldom reached', whose object slot is filled by 'that'. Right: a list of three noun phrases ('homes where every adult worked a night shift, apartments behind a locked lobby, and farmhouses at the end of unmarked roads') explaining which households; no main verb follows ('worked' is inside a relative clause).",
+    "decider_kind": "clause-completeness",
+    "decider_quote": "households that interviewers seldom",
+    "glance_fail": [],
+    "distractor_pulls": {
+      "reached, homes": "A comma is the reflex before a list, and the three items are separated by commas, so a comma before the first item looks like the start of the series.",
+      "reached homes": "'interviewers seldom reached homes where every adult worked a night shift' is a perfectly natural verb phrase; a reader who does not notice that 'that' already fills the object slot leaves no mark.",
+      "reached; homes": "The right side is long and contains a verb ('worked'), so a reader who scans for a subject and a verb sees 'homes where every adult worked a night shift' as a clause and picks the strong mark."
+    },
+    "distractor_kills": {
+      "reached, homes": "False series: the comma joins 'households that interviewers seldom reached' to the three kinds of home as a four-item series of objects of 'pointed to'. A comma would be right only in a true series ('pointed to rented rooms, homes where ..., and farmhouses ...').",
+      "reached homes": "Run-on into an explanation: the relative clause is complete ('that' is the object of 'reached'), so 'homes' cannot be a second object. No mark would be right only without 'that': 'interviewers seldom reached homes where ...'.",
+      "reached; homes": "A semicolon must be followed by an independent clause; the list has no main verb. Correct only before a clause such as 'homes where every adult worked a night shift were the commonest case'."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: same two words, four marks; two strong marks (colon, semicolon) are offered",
+      "heuristics_that_give_key": [
+        "none found: the clause ends on a verb, not on an announcing noun ('had in common', 'a hidden cost'), and the no-mark reading 'seldom reached homes' is a natural phrase"
+      ],
+      "changed": "revision: replaced 'recorded what the refusing households had in common' (an announcing idiom, named with D9) by a relative clause ending on a verb whose object reading of 'homes' is natural"
+    }
+  },
+  {
+    "id": "SEC27D-02",
+    "slot": "D2",
+    "frame": "Subject 'Harvest loans to a farmer without a registered land title': the first noun of the subject is the singular modifier 'Harvest', the head 'loans' is plural, and the to-phrase ends singular; 'are rare' vs 'were rare'; the present is inferred from the final noun phrase 'a scarcity that keeps smallholders there borrowing ...', which renames the state the blank describes and presents it as current; the previous sentence reports a past survey",
+    "true_subject_head": "loans",
+    "misleader_words": [
+      "title",
+      "farmer",
+      "Harvest"
+    ],
+    "misleader_position": "adj",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "title",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "Harvest",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "province's",
+      "number": "sg"
+    },
+    "dimension": "tense",
+    "dimension_key": "present",
+    "decider_type": "present-result",
+    "decider_kind": "present-inferred",
+    "decider_quote": "a scarcity that keeps smallholders there borrowing from relatives and from the traders who buy their crops",
+    "words_from_blank_to_decider": 6,
+    "deletion_test": "Delete the final noun phrase and 'Harvest loans ... were rare in the province's upland region' is a correct report of the survey, as is 'are rare'; tense becomes undecidable.",
+    "grid": {
+      "code": "i|j",
+      "forms": [
+        "was rare",
+        "were rare",
+        "is rare",
+        "are rare"
+      ]
+    },
+    "key_letter": "B",
+    "next_four_words_after_blank": "in the province's upland",
+    "length_ratio": 1.14,
+    "distractor_pulls": {
+      "were rare": "The first sentence reports a finished survey ('conducted', 'described'), so a strong student continues the report in the past and correctly finds the plural head.",
+      "is rare": "The subject opens on the singular 'Harvest' and ends on 'a farmer without a registered land title'; a student who finds the present but reads 'Harvest' as the head (a harvest is rare) or takes the noun next to the blank picks 'is rare'.",
+      "was rare": "Both pulls together: the past survey and a singular head reading."
+    },
+    "distractor_kills": {
+      "were rare": "Tense consistency within the sentence: the appositive 'a scarcity that keeps smallholders there borrowing' renames the condition in the blank and states it with a present verb, so the condition must be present; 'were rare' would be correct only with 'a scarcity that kept smallholders there borrowing'.",
+      "is rare": "Subject-verb agreement: 'Harvest' modifies 'loans', the plural head; 'is rare' would be correct only with 'a harvest loan to a farmer ... is rare'.",
+      "was rare": "Agreement with 'loans' and tense consistency with 'keeps'."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: complete 2x2 of be + 'rare'",
+      "heuristics_that_give_key": [
+        "none found: no time word and no present verb within five words of the blank; the head is not the first noun of the subject"
+      ],
+      "changed": "revision: removed the present relative 'the federation serves' right after the blank (named by a reader) and the 'so' result clause; the present now comes from an appositive that renames the scarcity; the subject now opens on a singular noun modifier"
+    }
+  },
+  {
+    "id": "SEC27D-03",
+    "slot": "D3",
+    "frame": "Subject 'The lunch-line cashiers at the system's elementary schools' (first noun the singular modifier 'lunch-line', head plural 'cashiers', singular possessive inside the at-phrase); 'were logging' vs 'have been logging'; the decider 'in the paper-ticket years' names a period whose end is known only from the first sentence ('replaced its paper meal tickets with student swipe cards'); a present coordinate clause ('auditors cannot match') pulls the perfect",
+    "true_subject_head": "cashiers",
+    "misleader_words": [
+      "lunch-line",
+      "system's"
+    ],
+    "misleader_position": "early",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "schools",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "lunch-line",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "lunches",
+      "number": "pl"
+    },
+    "dimension": "aspect",
+    "dimension_key": "non-perfect",
+    "decider_type": "time-phrase",
+    "decider_kind": "closed-past-inferred",
+    "decider_quote": "in the paper-ticket years",
+    "words_from_blank_to_decider": 6,
+    "deletion_test": "Delete 'in the paper-ticket years' and 'the cashiers ... have been logging free lunches in pencil ledgers' (an ongoing practice, consistent with 'auditors cannot match') and 'were logging' are both correct; aspect becomes undecidable.",
+    "grid": {
+      "code": "f|g",
+      "forms": [
+        "has been logging",
+        "have been logging",
+        "was logging",
+        "were logging"
+      ]
+    },
+    "key_letter": "C",
+    "next_four_words_after_blank": "free lunches in pencil",
+    "length_ratio": 1.09,
+    "distractor_pulls": {
+      "have been logging": "Logging lunches sounds like a continuing routine, the coordinate clause 'auditors cannot match those ledgers' is present, and 'the paper-ticket years' names no end in the sentence itself; a student who does not carry the replacement over from the first sentence picks the present perfect progressive.",
+      "was logging": "The subject opens on the singular 'lunch-line', and the system is the singular body the passage is about; a student who reads 'lunch-line' as the head or attaches the verb to 'system's' picks the singular past.",
+      "has been logging": "The singular reading plus the ongoing-routine reading."
+    },
+    "distractor_kills": {
+      "have been logging": "Present perfect with a phrase naming a finished period: the paper-ticket years ended when the system 'replaced its paper meal tickets with student swipe cards', and the present perfect cannot be confined to a closed period. Correct only with a period reaching the present, such as 'in the swipe-card years'.",
+      "was logging": "Subject-verb agreement: 'lunch-line' modifies the plural head 'cashiers'; correct only with 'the lunch-line cashier at each school was logging'.",
+      "has been logging": "Agreement with 'cashiers' and the finished period."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: complete 2x2 of one verb",
+      "heuristics_that_give_key": [
+        "none found: 'in the paper-ticket years' carries no end in the blank's sentence; it is closed only by the first sentence's 'replaced'"
+      ],
+      "changed": "revision: removed 'the era that preceded' (readers: the time phrase gave the tense outright); the period's end now has to be carried over from the previous sentence; the subject now opens on a singular noun modifier; added a present coordinate clause as a lure for the perfect"
+    }
+  },
+  {
+    "id": "SEC27D-04",
+    "slot": "D4",
+    "frame": "'Instead, the typical shift at the county's family-owned diners has crept upward under the higher wage, and the payroll hours at the franchise outlet beside the highway ___.' Elided predicate 'has crept upward' (have + intransitive participle); earlier subject 'shift' singular; ellipsis subject 'the payroll hours' opens on the singular modifier 'payroll', head plural 'hours', and ends on a locative chain with singular 'outlet' and 'highway'",
+    "true_subject_head": "hours",
+    "misleader_words": [
+      "highway",
+      "payroll",
+      "shift"
+    ],
+    "misleader_position": "adj",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "highway",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "shift",
+      "number": "sg"
+    },
+    "after_noun_within_8": null,
+    "dimension": "aux",
+    "dimension_key": "have",
+    "decider_type": "parallel-verb",
+    "decider_kind": "anaphoric-ellipsis",
+    "decider_quote": "has crept upward",
+    "words_from_blank_to_decider": 18,
+    "deletion_test": "Replace 'has crept upward' with a be-predicate ('is longer') and 'are too' becomes correct; with a lexical verb ('lengthens') 'do too' would be needed. Without the earlier predicate the auxiliary is undecidable.",
+    "grid": {
+      "code": "j|n",
+      "forms": [
+        "is too",
+        "are too",
+        "has too",
+        "have too"
+      ]
+    },
+    "key_letter": "A",
+    "next_four_words_after_blank": "(end of sentence) Owners there attribute the",
+    "length_ratio": 1.33,
+    "distractor_pulls": {
+      "are too": "'crept upward' describes a level, and 'the payroll hours are too' reads as 'the hours are up too'; a student who gets the plural and hears a state rather than an action picks 'are too'.",
+      "has too": "The only auxiliary printed in the sentence is 'has', and the plural ellipsis subject is framed by singular words ('payroll' before it; 'outlet' and 'highway' after it); a student who copies the earlier auxiliary and takes 'payroll hours' as one item picks 'has too'.",
+      "is too": "A student who hears a state and takes the singular frame ('payroll', 'highway') picks 'is too'."
+    },
+    "distractor_kills": {
+      "are too": "Ellipsis must recover the earlier verb phrase after the same kind of auxiliary: 'are' would have to host 'crept upward', and 'are crept upward' is ungrammatical (intransitive, no passive). Correct only if the earlier clause were 'the typical shift ... is longer'.",
+      "has too": "Subject-verb agreement: the head 'hours' is plural ('payroll' is a modifier); correct only with 'the payroll total at the franchise outlet has too'.",
+      "is too": "Wrong auxiliary (no be-predicate to recover) and wrong number."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: complete 2x2 of auxiliary + 'too'",
+      "heuristics_that_give_key": [
+        "'copy the other clause's auxiliary type' gives have/has (this is the row's mechanism); number then needs 'hours' found behind the singular modifier 'payroll'",
+        "the key is the uniquely longest option (1 of the 3-per-author cap)"
+      ],
+      "changed": "revision: new setting from my list (minimum-wage studies), new participle and adverb ('crept upward'), the ellipsis subject now opens on a singular noun modifier and ends in a locative chain, so number is not settled by the first noun"
+    }
+  },
+  {
+    "id": "SEC27D-05",
+    "slot": "D5",
+    "frame": "Particle verb 'ruled out' whose object is the gerund phrase 'raising the residential water rate again'; set off by a comma or dash, that phrase reads as a participial modifier of the council ('it ruled out, raising ...'), and with a semicolon as a new clause; the sentence continues with the compound predicate '... and voted instead'",
+    "key_mark": "none",
+    "key_letter": "A",
+    "structure": "Left: 'it ruled out', a transitive particle verb whose object has not appeared. Right: the gerund phrase 'raising the residential water rate again' (its object), then an appositive ('a step that would have fallen hardest on ...') and the second half of the compound predicate ('and voted instead to draw down the town's reserve'). No subject follows the blank.",
+    "decider_kind": "verb-frame",
+    "decider_quote": "the residential water rate again",
+    "glance_fail": [],
+    "distractor_pulls": {
+      "out, raising": "', raising the residential water rate again, a step that ...' looks exactly like a participial phrase set off by commas (as in 'it adjourned, raising questions'), and 'ruled out' can sound finished to a reader who thinks of 'ruled' alone.",
+      "out—raising": "The same modifier reading, with the dash's emphasis suiting a dramatic consequence ('a step that would have fallen hardest on retirees').",
+      "out; raising": "The right side is long and contains finite verbs ('would have fallen', 'voted'), so a reader who scans for a verb takes it as a second clause and joins it with a semicolon."
+    },
+    "distractor_kills": {
+      "out, raising": "No punctuation between a verb and its object: the gerund phrase is the object of 'ruled out', which otherwise has none. A comma would be right only if the verb had its object already ('ruled out new borrowing, raising doubts about ...').",
+      "out—raising": "Same rule; a dash cannot separate 'ruled out' from its object.",
+      "out; raising": "A semicolon must join two independent clauses; 'raising the residential water rate again ... and voted instead ...' has no subject ('voted' belongs to the council's compound predicate). Correct only with 'out; raising the rate again would have hurt retirees'."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: same words, four marks; the unmarked option is one of four",
+      "heuristics_that_give_key": [
+        "'no mark between a verb and its object' gives the key only to a reader who sees that 'ruled out' needs an object and that the -ing phrase is it; the participial reading is grammatical-looking"
+      ],
+      "changed": "revision: new skeleton (template pair with SEC27A-08): the object is now a gerund phrase that reads as a participial modifier, not a heavy noun phrase shifted after a prepositional phrase"
+    }
+  },
+  {
+    "id": "SEC27D-06",
+    "slot": "D6",
+    "frame": "Opening 'With no interpreters at the counter to explain a family's questionnaire,' holds the singular antecedent; subject 'the admissions registrar who accepts no secondhand answers' (first noun of the subject the plural modifier 'admissions', head singular 'registrar', relative clause ending on plural 'answers' just before the blank); 'was reviewing it' (matched). Both referential plurals in the sentence ('interpreters', 'answers') are quantified by 'no', so neither can antecede 'them'",
+    "true_subject_head": "registrar",
+    "misleader_words": [
+      "answers",
+      "admissions"
+    ],
+    "misleader_position": "adj",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "answers",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "interpreters",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "line",
+      "number": "sg"
+    },
+    "dimension": "pronoun",
+    "dimension_key": "sg",
+    "decider_type": "pronoun-antecedent",
+    "decider_kind": "pronoun-antecedent",
+    "decider_quote": "a family's questionnaire",
+    "words_from_blank_to_decider": 11,
+    "deletion_test": "Remove the opening phrase and the pronoun has no antecedent in the sentence; its number is undecidable.",
+    "pronoun_antecedent": {
+      "word": "questionnaire",
+      "number": "sg",
+      "distance": "same-sentence",
+      "is_nearest_noun": false
+    },
+    "pronoun_lure": {
+      "word": "answers",
+      "number": "pl",
+      "nearest_noun_before_blank": true
+    },
+    "grid": {
+      "code": "g+p",
+      "forms": [
+        "was reviewing it",
+        "were reviewing it",
+        "was reviewing them",
+        "were reviewing them"
+      ]
+    },
+    "key_letter": "D",
+    "next_four_words_after_blank": "line by line with",
+    "length_ratio": 1.0,
+    "distractor_pulls": {
+      "was reviewing them": "A student who finds the singular 'registrar' still reads 'answers' as the thing reviewed: a registrar who distrusts secondhand answers reviewing the answers line by line with a parent is exactly the scene described.",
+      "were reviewing it": "The noun right before the blank is plural 'answers', the subject opens on the plural 'admissions', and the sentence opens on 'interpreters'; a student who takes the questionnaire as the thing reviewed but a plural noun as the subject picks 'were reviewing it'.",
+      "were reviewing them": "Both pulls from 'answers': it reads as the subject and as the thing reviewed."
+    },
+    "distractor_kills": {
+      "was reviewing them": "Pronoun-antecedent agreement: 'them' needs a plural antecedent, and none is available. 'no interpreters' and 'no secondhand answers' are negative-quantified noun phrases, which cannot be picked up by a pronoun outside their own clause ('She accepts no answers. *She reviews them.'), and 'admissions' is a noun modifier, not a noun phrase. Correct only with 'to explain families' questionnaires' in the opening.",
+      "were reviewing it": "Subject-verb agreement: the head is 'registrar'; correct only with 'the admissions clerks who accept no secondhand answers were reviewing it'.",
+      "were reviewing them": "Both agreements fail."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: complete 2x2 of one verb form",
+      "heuristics_that_give_key": [
+        "the key is the uniquely shortest option (1 of the 3-per-author cap)"
+      ],
+      "changed": "revision: readers called 'admissions' a weak lure because it named an office; the lure is now 'answers', a referential plural that is exactly what a registrar reviews, excluded by the 'no' quantifier rule; the subject now opens on the plural modifier 'admissions' so the head is not the subject's first noun"
+    }
+  },
+  {
+    "id": "SEC27D-07",
+    "slot": "D7",
+    "frame": "Opening 'By the election board's count,' (singular); subject 'the arts district's turnout among renters in its older apartment blocks' (first noun of the subject the plural modifier 'arts', head singular 'turnout', modifier ending plural); 'was typical' vs 'has been typical'; explicit closed past 'during the mayoral runoff that autumn' 9 words after the blank, with a second path in the next sentence ('the final contest held under the old ward map, which the city redrew'); a present relative ('neighborhoods that see ...') pulls the perfect",
+    "true_subject_head": "turnout",
+    "misleader_words": [
+      "renters",
+      "blocks",
+      "arts"
+    ],
+    "misleader_position": "adj",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "blocks",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "election",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "neighborhoods",
+      "number": "pl"
+    },
+    "dimension": "aspect",
+    "dimension_key": "non-perfect",
+    "decider_type": "time-phrase",
+    "decider_kind": "closed-past-explicit",
+    "decider_quote": "during the mayoral runoff that autumn",
+    "words_from_blank_to_decider": 9,
+    "deletion_test": "Delete the runoff phrase and 'turnout ... has been typical for neighborhoods that see so much housing turnover' (a lasting pattern, consistent with 'see') and 'was typical' are both correct within the sentence; aspect becomes undecidable there.",
+    "grid": {
+      "code": "r|i",
+      "forms": [
+        "has been typical",
+        "have been typical",
+        "was typical",
+        "were typical"
+      ]
+    },
+    "key_letter": "B",
+    "next_four_words_after_blank": "for neighborhoods that see",
+    "length_ratio": 1.0,
+    "distractor_pulls": {
+      "has been typical": "'typical for neighborhoods that see so much housing turnover' describes a pattern in the present ('see'), and the first sentence states a general finding in the present; a strong student hears a lasting state and picks the singular present perfect.",
+      "were typical": "The noun right before the blank is 'blocks', the subject opens on the plural 'arts', and the renters are the people voting; a student who gets the past from 'that autumn' but takes a plural noun as the subject picks 'were typical'.",
+      "have been typical": "Both pulls: a plural subject reading and the lasting-pattern reading."
+    },
+    "distractor_kills": {
+      "has been typical": "Present perfect with a finished period: 'during the mayoral runoff that autumn' names one completed election (the next sentence adds that it was the last under a map since redrawn), and the present perfect cannot be confined to it. Correct only without the runoff phrase.",
+      "were typical": "Subject-verb agreement: the head 'turnout' is singular ('arts' is a modifier); correct only with 'renters ... were typical'.",
+      "have been typical": "Agreement and aspect both fail."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: complete 2x2 of be + 'typical'",
+      "heuristics_that_give_key": [
+        "'that autumn' is an explicit past cue (this is the batch's one explicit closed-past row, by design); a second path runs through the next sentence's 'final contest held under the old ward map'",
+        "the key is the uniquely shortest option (2 of the 3-per-author cap)"
+      ],
+      "changed": "revision: the head is no longer the sentence's or the subject's first noun (opening 'By the election board's count' and the plural modifier 'arts'); the closed past is also inferable from a new third sentence; the present lure is now a relative clause right after the blank"
+    }
+  },
+  {
+    "id": "SEC27D-08",
+    "slot": "D8",
+    "frame": "'A study ... suggests instead that such a toddler borrows a word from the other language mainly to fill a gap in vocabulary, much as a modern-languages teacher fluent in the region's two dialects ___.' The elided verb is present lexical 'borrows' inside the that-clause; the comparison subject opens on the plural modifier 'modern-languages', head singular 'teacher', and ends on plural 'dialects'; the previous sentence supplies a past be-predicate ('was confused') that 'was' can wrongly echo",
+    "true_subject_head": "teacher",
+    "misleader_words": [
+      "dialects",
+      "modern-languages"
+    ],
+    "misleader_position": "adj",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "dialects",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "study",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "pattern",
+      "number": "sg"
+    },
+    "dimension": "aux",
+    "dimension_key": "do",
+    "decider_type": "parallel-verb",
+    "decider_kind": "anaphoric-ellipsis",
+    "decider_quote": "borrows a word from the other language",
+    "words_from_blank_to_decider": 22,
+    "deletion_test": "Replace 'borrows a word ...' with a be-predicate ('is fluent in both') and 'often is' would be needed; without the compared predicate the auxiliary is undecidable.",
+    "grid": {
+      "code": "i|m",
+      "forms": [
+        "often was",
+        "often were",
+        "often does",
+        "often do"
+      ]
+    },
+    "key_letter": "A",
+    "next_four_words_after_blank": "(end of sentence) The pattern held across",
+    "length_ratio": 1.25,
+    "distractor_pulls": {
+      "often was": "The passage's only be-predicate, 'was confused' in the first sentence, supplies something for 'was' to echo ('as a teacher often was confused'), and the first sentence's past tense pulls the past; a student who gets the singular picks it.",
+      "often do": "The noun right before the blank is 'dialects', and the subject opens on 'modern-languages'; a student who sees the do-ellipsis but takes a plural noun picks 'do'.",
+      "often were": "The plural reading plus the echo of the earlier 'was confused'."
+    },
+    "distractor_kills": {
+      "often was": "A comparative clause introduced by 'much as' elides the predicate of the clause it compares with, here the lexical verb 'borrows', which is replaced by 'does', not 'was'; 'was' would be correct only if the compared clause were 'such a toddler is confused by the mixture'.",
+      "often do": "Subject-verb agreement: the head is singular 'teacher'; correct only with 'modern-languages teachers fluent in ... often do'.",
+      "often were": "Wrong auxiliary (the compared predicate is lexical) and wrong number."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: complete 2x2 of auxiliary + 'often'",
+      "heuristics_that_give_key": [
+        "'copy the other clause's verb type' gives do, but the passage now offers a be-predicate ('was confused') to copy, so the reader must find which clause is being compared"
+      ],
+      "changed": "revision: new skeleton and setting (template pair with SEC27D-04, A3, A9): the compared verb sits in a that-clause, a rival be-predicate sits in the previous sentence, and the comparison subject opens on a plural modifier before its singular head"
+    }
+  },
+  {
+    "id": "SEC27D-09",
+    "slot": "D9",
+    "frame": "'Ridership on the line grew fastest where the planners had expected it least' (complete; ends on the adverb 'least', not on a noun that announces a specification), then the explanatory noun phrase 'outlying stops with no parking lot nearby, reached mostly by riders on foot ...'; 'least outlying stops' reads as a superlative noun phrase, and 'reached' reads as the verb of a new clause until 'by riders' shows it is a participle",
+    "key_mark": "colon",
+    "key_letter": "D",
+    "structure": "Left: an independent clause whose adverbial clause 'where the planners had expected it least' is complete ('it' is the object of 'expected'). Right: the noun phrase 'outlying stops with no parking lot nearby' plus the participial modifier 'reached mostly by riders on foot from the apartment blocks around them'; no finite verb arrives.",
+    "decider_kind": "no-verb-arrives",
+    "decider_quote": "reached mostly by riders on foot",
+    "glance_fail": [],
+    "distractor_pulls": {
+      "least; outlying": "'outlying stops with no parking lot nearby, reached ...' looks like a subject followed by its verb 'reached', so a reader who takes the right side as a clause about the stops picks the semicolon.",
+      "least outlying": "'least outlying stops' is an ordinary superlative noun phrase (the least remote stops), so a reader who hears it as one unit runs it on with no mark.",
+      "least outlying,": "A reader who takes 'least outlying' as describing where the planners expected growth (the least outlying places) closes that phrase with a comma and reads 'stops with no parking lot nearby' as an appositive."
+    },
+    "distractor_kills": {
+      "least; outlying": "A semicolon must be followed by an independent clause; 'reached mostly by riders on foot' is a past participle modifying 'stops' (it has an agent and no object), so no main verb arrives. Correct only with 'least; outlying stops with no parking lot nearby drew the most new riders'.",
+      "least outlying": "Run-on into an explanation: 'expected' already has its object 'it', so 'least outlying stops' cannot attach; the clause ending on 'least' is complete.",
+      "least outlying,": "The comma is one word late: 'had expected it least outlying' is ungrammatical, and the comma separates the adjective 'outlying' from its noun 'stops'. A comma at that spot would be right only after a complete phrase."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: same words, four marks; colon and semicolon are both strong marks",
+      "heuristics_that_give_key": [
+        "none found: the clause ends on an adverb, not on an announcing noun, and 'least outlying' is a real phrase, so neither unpunctuated option is a mash-up"
+      ],
+      "changed": "revision: new skeleton (template pair with D1, 'announcing noun'): the clause now ends on the adverb 'least'; the no-mark and shifted-comma options now form a real phrase ('least outlying'); the semicolon lure is a participle that reads as a verb"
+    }
+  },
+  {
+    "id": "SEC27D-10",
+    "slot": "D10",
+    "frame": "'the ___ tally each morning recorded the name and wage of every worker hired': 'tally' + 'each morning' reads as a plural verb + adverbial until 'recorded' arrives; the plural owners are inferred from the LATER sentence 'When columns in it disagreed, the contractor who had written the lower figure usually conceded' (several contractors wrote competing figures), which itself names one contractor in the singular",
+    "key_class": "pl-poss",
+    "key_letter": "C",
+    "structure": "Blank: the possessor of 'tally', the subject head of 'recorded'. Number: the last sentence says that when columns in the tally disagreed, the contractor with the lower figure conceded, so several contractors wrote in it and the owners are plural. No plural form of the noun and no count word anywhere in the passage.",
+    "decider_kind": "count-other",
+    "count_sentence": "later",
+    "decider_quote": "When columns in it disagreed, the contractor who had written the lower figure usually conceded",
+    "glance_fail": [],
+    "distractor_pulls": {
+      "contractors": "'the contractors tally each morning' is a complete-sounding clause (plural subject, plural verb, time adverbial), so a student who stops parsing at 'morning' picks the plain plural.",
+      "contractor's": "A tally kept at one hiring site sounds like one person's record, and the last sentence names 'the contractor' in the singular; a student who matches that word picks the singular possessive.",
+      "contractor": "Read as a noun modifier ('the contractor tally', like 'the attendance tally'), it avoids choosing between possessives."
+    },
+    "distractor_kills": {
+      "contractors": "Plural-for-possessive error: once 'recorded' arrives as the main verb, 'tally' must be a noun, and it needs a possessor; 'contractors' is correct only in 'the contractors tally the hires each morning'.",
+      "contractor's": "Possessive number: the last sentence picks out one contractor among several who wrote disagreeing columns in the tally, so its owners are plural; correct only if the last sentence said 'When the columns disagreed, the contractor corrected his own figure'.",
+      "contractor": "Neither possessive nor plural: the owner relation needs a possessive form, and the owners are plural."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: the four standard forms of one noun",
+      "heuristics_that_give_key": [
+        "none found: no plural form of the noun appears anywhere; the later sentence shows several owners only through what they did, and its only form of the noun is singular"
+      ],
+      "changed": "revision: the last sentence no longer names 'The contractors' in the plural (a reader said it handed over the number); plurality must now be inferred from disagreeing columns, and the singular 'the contractor' there lures the singular possessive"
+    }
+  }
+]

@@ -1,0 +1,182 @@
+[
+  {
+    "id": "SEC27C-01",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: comma after an introductory subordinate clause",
+    "difficulty": "hard",
+    "passage": "Baroque organ builders voiced each pipe by ear, shaving the lip of its mouth until the note settled. That work could not be judged at the bench, because a pipe sounds different once it stands in a case. While the organist ______ mounted highest in the case, far from the bellows that fed them, often sounded a shade flat against the lower ranks. Builders therefore finished each rank only after hearing it in its final position.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "played, the pipes",
+      "played the pipes,",
+      "played the pipes",
+      "played: the pipes"
+    ],
+    "correct_answer": "played, the pipes",
+    "explanation": "The sentence opens with the subordinate clause \"While the organist played,\" and the main clause's subject is \"the pipes mounted highest in the case\"; its verb, \"sounded,\" arrives only after the interrupting phrase \"far from the bellows that fed them.\" Because \"the pipes\" is the subject of \"sounded,\" the comma that ends the introductory clause must come before it. \"Played the pipes,\" treats \"the pipes\" as the object of \"played,\" which leaves \"often sounded\" with no subject. \"Played the pipes\" has the same problem and also runs the introductory clause into the main clause. \"Played: the pipes\" places a colon after \"While the organist played,\" which is a dependent clause, not a complete one, so a colon cannot follow it.",
+    "topic_tag": "organology: voicing Baroque pipes in the case",
+    "template": "opening while-clause with an optionally transitive verb x the next noun phrase reads as its object until the main verb 13 words later x comma early / comma late / none / colon early"
+  },
+  {
+    "id": "SEC27C-02",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and verb tense",
+    "difficulty": "hard",
+    "passage": "When conservators restored the hill-town chapel, they cleaned away centuries of grime but could not seal the damp wall behind the altar. In the chapel's cycle of frescoes, the donors' kneeling portrait beside that wall ______ enough to bloom with salt crystals whenever the tour groups that the diocese began admitting last spring crowd into the narrow nave.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was damp",
+      "were damp",
+      "is damp",
+      "are damp"
+    ],
+    "correct_answer": "is damp",
+    "explanation": "The subject is \"portrait,\" which is singular; \"donors'\" is a possessive modifying it, and \"frescoes\" belongs to the opening phrase \"In the chapel's cycle of frescoes.\" The tense is set by the habitual clause \"whenever the tour groups ... crowd into the narrow nave\": its verb is \"crowd,\" which is present, while \"began\" belongs only to the relative clause \"that the diocese began admitting last spring.\" A present habitual clause requires a present main verb, so the answer is \"is damp.\" \"Was damp\" is singular but past, which clashes with \"crowd.\" \"Were damp\" and \"are damp\" are plural and do not agree with \"portrait.\"",
+    "topic_tag": "fresco conservation: salt bloom on a donor portrait",
+    "template": "plural possessive before a singular head after an opening phrase with a plural noun x the whenever-clause's own verb sits past a relative clause with a past verb x i|j + damp"
+  },
+  {
+    "id": "SEC27C-03",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and verb aspect",
+    "difficulty": "hard",
+    "passage": "Museums once accepted antiquities with little record of where they had come from, and some of those gifts are being returned to the countries that lost them. The collector's bronzes from a looted hill temple ______ under labels that credit the wrong dealer since the museum opened its east wing, and the curators who wrote those labels relied on a forged bill of sale.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has been displayed",
+      "are displayed",
+      "is displayed",
+      "have been displayed"
+    ],
+    "correct_answer": "have been displayed",
+    "explanation": "The subject is \"bronzes,\" which is plural; \"collector's\" is a singular possessive in front of it, and \"temple\" is the object of \"from.\" The clause \"since the museum opened its east wing\" marks the past point at which a continuing state began, and it must attach to a present perfect verb; it cannot attach to \"credit,\" a simple present verb inside the relative clause \"that credit the wrong dealer,\" so it belongs to the blank's verb, which must be \"have been displayed.\" \"Are displayed\" is plural but simple present, which leaves the \"since\" clause with no perfect verb to modify. \"Is displayed\" has the same aspect error and is singular. \"Has been displayed\" has the right aspect but agrees with \"collector's\" or \"temple\" rather than \"bronzes.\"",
+    "topic_tag": "museum provenance: bronzes under a false dealer's label",
+    "template": "singular possessive before a plural head + from + singular noun x since-clause placed after a relative clause with a simple present verb x e|c displayed"
+  },
+  {
+    "id": "SEC27C-04",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: punctuating a sequence after a complete clause",
+    "difficulty": "hard",
+    "passage": "Greek theater masks were made of linen stiffened with plaster, so almost none survive, and painted pottery is the main evidence for how they looked. A wine bowl recovered from a tomb near the coast pictures the same actor in the dark, bearded mask of an aging ______ a second mask, its pale cheeks streaked with tears and its mouth turned down in grief. Scholars read the pairing as evidence that an actor might play a ruler and a young victim in the same tragedy.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "king; then",
+      "king, then",
+      "king then",
+      "king: then"
+    ],
+    "correct_answer": "king, then",
+    "explanation": "The words before the blank form a complete clause, \"A wine bowl ... pictures the same actor in the dark, bearded mask of an aging king.\" What follows \"then\" is not a clause: \"a second mask\" is a noun phrase, and \"its pale cheeks streaked with tears and its mouth turned down in grief\" are absolute phrases describing that mask, in which \"streaked\" and \"turned\" are participles, not main verbs. A comma correctly joins this second element of the sequence to the clause. \"King; then\" would require an independent clause after the semicolon, but \"a second mask\" never receives a verb. \"King: then\" presents the second mask as an explanation of the first, but it is the next step in a sequence. \"King then\" runs the added element into the clause without the comma that sets it off.",
+    "topic_tag": "classical theater: a tragic mask change on a wine bowl",
+    "template": "complete clause + then + a noun phrase with absolute phrases whose participles look like finite verbs x no verb ever arrives for the noun phrase x comma / none / semicolon / colon"
+  },
+  {
+    "id": "SEC27C-05",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and pronoun-antecedent agreement",
+    "difficulty": "hard",
+    "passage": "Before printing, a monastery that wanted a new book borrowed a model from another house and had it copied by hand. The working copies that novices made of a borrowed psalter ______ down to misspellings and slips of the pen, which is how scholars can trace a single exemplar's travels from abbey to abbey.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "follows it",
+      "follow it",
+      "follows them",
+      "follow them"
+    ],
+    "correct_answer": "follow it",
+    "explanation": "The subject is \"copies,\" which is plural, so the verb must be \"follow\"; \"novices\" belongs to the relative clause \"that novices made,\" and \"psalter\" is the object of \"of.\" The pronoun names what the copies reproduce: \"a borrowed psalter,\" which is singular, so it must be \"it.\" \"Follows it\" makes the verb agree with \"psalter,\" the noun just before the blank. \"Follows them\" has that agreement error and a plural pronoun with no proper antecedent. \"Follow them\" has the right verb, but \"them\" could refer only to \"copies,\" the verb's own subject, which would require \"themselves,\" or to \"novices,\" who are not what a copy reproduces, so the singular \"it\" for \"psalter\" is required.",
+    "topic_tag": "monastic book production: copying errors in borrowed psalters",
+    "template": "plural head + relative clause with a plural subject + of + singular antecedent just before the blank x verb and pronoun take different nouns x a+p follow"
+  },
+  {
+    "id": "SEC27C-06",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and verb tense",
+    "difficulty": "hard",
+    "passage": "Silent-film studios printed their features on nitrate stock, which burns hotter than wood and cannot be smothered with a blanket. According to a studio's fire report, the projectionists' youngest helper in the booth above the main theater ______ a torn reel for the evening program when a can of the nitrate stock that archives keep in separate vaults caught fire on the rewinding bench.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was splicing",
+      "were splicing",
+      "is splicing",
+      "are splicing"
+    ],
+    "correct_answer": "was splicing",
+    "explanation": "The subject is \"helper,\" which is singular; \"projectionists'\" is a plural possessive in front of it, and \"booth\" and \"theater\" are inside the modifier. The tense is set by the clause \"when a can of the nitrate stock ... caught fire on the rewinding bench\": that clause's verb is \"caught,\" which is past, while \"keep\" belongs only to the relative clause \"that archives keep in separate vaults.\" An action interrupted by a past event takes the past progressive, so the answer is \"was splicing.\" \"Is splicing\" is singular but present, which conflicts with \"caught.\" \"Were splicing\" is past but plural, agreeing with \"projectionists'.\" \"Are splicing\" is wrong in both number and tense.",
+    "topic_tag": "film history: a projection-booth fire in the nitrate era",
+    "template": "plural possessive before a singular head + long locative modifier x the when-clause's own verb sits past a relative clause with a present verb x b|g splicing"
+  },
+  {
+    "id": "SEC27C-07",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and verb aspect",
+    "difficulty": "hard",
+    "passage": "Collectors long assumed that the quartet's debut album had been spliced together from dozens of separate takes. Its tracks, which have circulated on bootleg tapes since the album first reached record shops, ______ in a single unbroken session on the night of the club's closing concert, as the engineer's handwritten log makes clear.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has been performed",
+      "was performed",
+      "were performed",
+      "have been performed"
+    ],
+    "correct_answer": "were performed",
+    "explanation": "The subject is \"tracks,\" which is plural; \"album\" appears only inside the relative clause \"which have circulated on bootleg tapes since the album first reached record shops,\" and that clause's \"since\" belongs to its own verb, \"have circulated.\" The blank's verb is placed at one finished moment by \"on the night of the club's closing concert,\" and an action tied to a specific completed past occasion takes the simple past, \"were performed.\" \"Have been performed\" is plural but present perfect, which cannot be used with a phrase naming a single finished past event. \"Has been performed\" has that error and is also singular. \"Was performed\" is simple past but singular, agreeing with \"album\" rather than \"tracks.\"",
+    "topic_tag": "jazz history: a live session mistaken for studio splices",
+    "template": "plural head + nonrestrictive relative clause carrying its own since-perfect x since in the sentence pulls the perfect x e|h performed"
+  },
+  {
+    "id": "SEC27C-08",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and auxiliary verbs",
+    "difficulty": "hard",
+    "passage": "A few medieval craft guilds survive as ceremonial companies, and their officers still keep account rolls in the old manner. In most such companies, the warden chosen by the members and his clerk ______ during the first weeks of a new term recording any fines, because the rolls stay closed during the handover of the accounts.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "seldom is",
+      "seldom does",
+      "seldom do",
+      "seldom are"
+    ],
+    "correct_answer": "seldom are",
+    "explanation": "The subject is the compound \"the warden chosen by the members and his clerk,\" two people joined by \"and,\" so the verb must be plural even though the noun just before the blank, \"clerk,\" is singular. The auxiliary is chosen by the verb form that arrives after the phrase \"during the first weeks of a new term\": \"recording,\" an -ing form, which needs a form of \"be,\" so the answer is \"seldom are.\" \"Seldom do\" is plural, but \"do\" must be followed by a bare verb (\"record\"), not \"recording.\" \"Seldom does\" has that problem and is singular. \"Seldom is\" uses the right auxiliary but treats \"his clerk\" or \"the warden\" as the whole subject.",
+    "topic_tag": "guild history: wardens' account rolls in ceremonial companies",
+    "template": "compound subject (singular + relative participle phrase + and + singular) after an opening phrase with a plural noun x auxiliary decided by a distant -ing form x seldom + j|m"
+  },
+  {
+    "id": "SEC27C-09",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: comma after an introductory subordinate clause",
+    "difficulty": "hard",
+    "passage": "In a busy printing house, a sheet passed through many hands before it reached a customer. Until the newest apprentice had ______ pressmen waiting at the shop's wooden presses were forbidden to pull a single impression, however late the order or impatient the bookseller. The rule cost the shop hours in its busiest weeks, but it kept misprinted pages out of paying readers' hands.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "proofread, the sheet",
+      "proofread the sheet",
+      "proofread; the sheet",
+      "proofread the sheet,"
+    ],
+    "correct_answer": "proofread the sheet,",
+    "explanation": "The introductory clause is \"Until the newest apprentice had proofread the sheet\": \"the sheet\" is the object of \"proofread.\" The main clause has its own subject, \"the pressmen waiting at the shop's wooden presses,\" and its own verb, \"were forbidden,\" so the comma that ends the introductory clause belongs after \"sheet.\" \"Proofread, the sheet\" makes \"the sheet\" begin the main clause, but then \"the sheet the pressmen ... were forbidden to pull\" is only a noun phrase, and the main clause never gets a verb of its own. \"Proofread; the sheet\" puts a semicolon after \"Until the newest apprentice had proofread,\" which is a dependent clause. \"Proofread the sheet\" omits the comma that separates the long introductory clause from the main clause.",
+    "topic_tag": "printing history: proofing before the press in an apprentice shop",
+    "template": "opening until-clause in the past perfect whose object could start the main clause x the early-comma reading builds a reduced object relative that never gets a main verb x comma late / comma early / none / semicolon early"
+  },
+  {
+    "id": "SEC27C-10",
+    "domain": "Standard English Conventions",
+    "subskill": "form: plural and possessive nouns",
+    "difficulty": "hard",
+    "passage": "Ottoman sea charts were redrawn after most voyages, so the same harbor may appear in many inconsistent versions, some of them drawn decades apart. To see how its shoreline moved, the ______ chart corrections from each surviving version onto one master sheet drawn at a common scale, a method borrowed from studies of river deltas.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "historians",
+      "historian",
+      "historian's",
+      "historians'"
+    ],
+    "correct_answer": "historians",
+    "explanation": "After the opening phrase \"To see how its shoreline moved,\" the main clause needs a subject and a verb, and the only word that can serve as its verb is \"chart\": the historians chart (plot) the corrections onto a master sheet. \"Chart\" in its bare form needs a plural subject without a possessive ending, so the answer is \"historians.\" \"Historians'\" and \"historian's\" make \"chart corrections\" a noun phrase, and the clause then never gets a verb before the final appositive. \"Historian\" is singular and would need \"charts.\"",
+    "topic_tag": "Ottoman cartography: charting a harbor's shifting shoreline",
+    "template": "opening infinitive phrase + the blank before a verb that reads as a noun modifier (chart corrections) x the possessive reading runs to a sentence-final appositive x X / X's / Xs / Xs'"
+  }
+]

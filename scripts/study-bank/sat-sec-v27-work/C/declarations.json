@@ -1,0 +1,487 @@
+[
+  {
+    "id": "SEC27C-01",
+    "slot": "C1",
+    "frame": "Opening 'While the organist played' + a long noun phrase (reduced relative + interrupting far-from phrase) that reads as the object of 'played'; the main verb 'sounded' arrives 14 words after the blank's last word, so the noun phrase is the main subject and the comma goes after the verb.",
+    "key_mark": "comma",
+    "key_letter": "A",
+    "structure": "Left: the subordinate clause 'While the organist played' (complete only as a dependent clause; 'played' is optionally transitive). Right: 'the pipes mounted highest in the case, far from the bellows that fed them,' then the main verb 'often sounded'. 'The pipes' is the subject of 'sounded', so the clause boundary falls between 'played' and 'the pipes'.",
+    "decider_kind": "garden-verb",
+    "decider_quote": "often sounded a shade flat",
+    "glance_fail": [],
+    "distractor_pulls": {
+      "played the pipes,": "Organists play pipes, so 'played the pipes' reads as a complete verb-plus-object clause, and the comma after it looks like the normal comma closing a long introductory clause.",
+      "played the pipes": "A reader who takes 'the pipes mounted highest in the case' as the object of 'played' sees no clause boundary near the blank and leaves the phrase unbroken, as in 'While the organist played the pipes mounted highest...'.",
+      "played: the pipes": "The second half of the passage is about what the organist hears, so a reader may treat 'the pipes ... sounded flat' as an explanation of the playing and reach for the colon."
+    },
+    "distractor_kills": {
+      "played the pipes,": "Correct in 'While the organist played the pipes, the tuner listened.' Here no subject follows the comma: 'often sounded' would have no subject, so the main clause is incomplete.",
+      "played the pipes": "Correct in 'While the organist played the pipes the tuner stood by' only with a comma added; here the main clause's subject would be swallowed as an object, leaving 'often sounded' subjectless, and an introductory clause this long requires the comma before the main subject.",
+      "played: the pipes": "Correct after an independent clause ('One thing went wrong: the pipes sounded flat'). 'While the organist played' is a dependent clause; a colon must follow a complete independent clause."
+    },
+    "hostile_reader": {
+      "options_only_pick": "None: two options carry a comma, one none, one colon; the colon can be suspected but not struck without seeing that 'While...' is dependent.",
+      "heuristics_that_give_key": [
+        "'comma after an introductory clause' gives the comma but not its position; the late comma also satisfies that heuristic"
+      ],
+      "changed": "Main verb pushed 14 words past the blank with an interrupting phrase so the subject reading needs parsing; avoided 'when' (C6) as the opener."
+    }
+  },
+  {
+    "id": "SEC27C-02",
+    "slot": "C2",
+    "frame": "Opening 'In the chapel's cycle of frescoes' (plural object) before 'the donors' kneeling portrait beside that wall' (plural possessive before a singular head, so the head is NOT the first noun of the subject); 'is damp' against 'was damp'; the habitual 'whenever' clause's own verb 'crowd' (present) arrives 11 words after 'whenever', past a relative clause with the past verb 'began' and 'last spring'; the previous sentence narrates the restoration in the past.",
+    "true_subject_head": "portrait",
+    "misleader_words": [
+      "frescoes",
+      "donors'"
+    ],
+    "misleader_position": "early",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "wall",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "chapel",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "crystals",
+      "number": "pl"
+    },
+    "dimension": "tense",
+    "dimension_key": "present",
+    "decider_type": "time-clause",
+    "decider_kind": "habitual-clause",
+    "decider_quote": "whenever the tour groups that the diocese began admitting last spring crowd into the narrow nave",
+    "words_from_blank_to_decider": 7,
+    "deletion_test": "Without the whenever-clause, 'the donors' kneeling portrait ... was damp enough to bloom with salt crystals' (continuing the restoration narrative) and '... is damp enough ...' are both correct; only the present 'crowd' rules out the past, and 'began ... last spring' inside the clause points the other way.",
+    "grid": {
+      "code": "i|j",
+      "forms": [
+        "was damp",
+        "were damp",
+        "is damp",
+        "are damp"
+      ]
+    },
+    "key_letter": "C",
+    "next_four_words_after_blank": "enough to bloom with",
+    "length_ratio": 1.0,
+    "distractor_pulls": {
+      "was damp": "The previous sentence narrates the restoration in the past ('restored', 'cleaned', 'could not seal'), and the only verb a skimming reader meets in the whenever-clause is 'began ... last spring', so the singular past looks right.",
+      "were damp": "The first noun of the subject is the plural possessive 'donors'', the opening phrase names 'frescoes', and the past narration plus 'began ... last spring' pull the past: a reader who takes the donors as the subject picks this.",
+      "are damp": "A reader who correctly finds the present 'crowd' but takes 'donors'' (or the 'frescoes' of the opening phrase) as the subject picks the present plural."
+    },
+    "distractor_kills": {
+      "was damp": "Correct with a past habitual clause ('... was damp enough to bloom whenever the tour groups crowded into the nave'). Here the whenever-clause's verb is 'crowd', present; 'began' is inside the relative clause and does not set the clause's tense.",
+      "were damp": "Correct only with a plural subject and a past whenever-clause. The subject is 'portrait' ('donors'' is a possessive determiner and 'frescoes' is inside the opening phrase), and 'crowd' is present.",
+      "are damp": "Correct with a plural subject ('the donors' portraits beside that wall are damp ...'). Here the head is the singular 'portrait'."
+    },
+    "hostile_reader": {
+      "options_only_pick": "None: clean 2x2 with one shared word.",
+      "heuristics_that_give_key": [
+        "'whenever' -> present still holds (explicit habitual row, counted in SC4); but the clause's only verb within 8 words of 'whenever' is past ('began'), so a reader must find 'crowd' 11 words on",
+        "'first noun of the subject' gives the WRONG number (donors')"
+      ],
+      "changed": "Probe round: new setting (fresco restoration, unused) and skeleton; head no longer the first noun of the subject; decider's verb moved past a past-tense relative clause so the present must be parsed, not read off one word."
+    }
+  },
+  {
+    "id": "SEC27C-03",
+    "slot": "C3",
+    "frame": "'The collector's bronzes from a looted hill temple ___' (singular possessive before the plural head, singular noun adjacent); present perfect passive 'have been displayed' against present passive 'are displayed'; 'since' + a past clause sits 8 words after the blank, directly after the relative clause 'that credit the wrong dealer' (simple present), so a reader must decide which verb the since-clause modifies: it cannot modify a simple present, so it belongs to the blank.",
+    "true_subject_head": "bronzes",
+    "misleader_words": [
+      "collector's",
+      "temple"
+    ],
+    "misleader_position": "adj",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "temple",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "collector",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "labels",
+      "number": "pl"
+    },
+    "dimension": "aspect",
+    "dimension_key": "perfect",
+    "decider_type": "time-clause",
+    "decider_kind": "since",
+    "decider_quote": "since the museum opened its east wing",
+    "words_from_blank_to_decider": 8,
+    "deletion_test": "Without the since-clause, 'The collector's bronzes ... are displayed under labels that credit the wrong dealer' and 'have been displayed ...' are both correct; nothing else in the sentence fixes the aspect.",
+    "grid": {
+      "code": "e|c",
+      "forms": [
+        "has been displayed",
+        "have been displayed",
+        "is displayed",
+        "are displayed"
+      ]
+    },
+    "key_letter": "D",
+    "next_four_words_after_blank": "under labels that credit",
+    "length_ratio": 1.58,
+    "distractor_pulls": {
+      "are displayed": "The since-clause follows 'labels that credit the wrong dealer' directly, so a reader attaches it to the labels' crediting and treats the blank as a plain present description of the gallery; it is plural, matching 'bronzes'.",
+      "has been displayed": "The sentence opens with the singular 'collector's' and the noun before the blank is 'temple'; a reader who attaches 'since' to the blank but takes the collector (the person whose gift this was) as the subject picks the singular perfect.",
+      "is displayed": "The singular 'collector's' and 'temple' frame the subject, and a reader who attaches 'since' to the relative clause reads the blank as a simple present description."
+    },
+    "distractor_kills": {
+      "are displayed": "Correct without the since-clause ('are displayed under labels that credit the wrong dealer'). A since-clause naming the start of a continuing state needs a present perfect; 'credit' is simple present, so the only verb it can attach to is the blank's, which must then be perfect.",
+      "has been displayed": "Correct with a singular subject ('The collector's bronze ... has been displayed'). Here the head is 'bronzes'; 'collector's' is a possessive determiner and 'temple' is the object of 'from'.",
+      "is displayed": "Wrong in number (subject 'bronzes') and in aspect (the since-clause needs a perfect)."
+    },
+    "hostile_reader": {
+      "options_only_pick": "The key is uniquely longest (19 vs 18 for 'has been displayed'), so 'pick the longest' splits between the two perfects.",
+      "heuristics_that_give_key": [
+        "'since -> perfect' still gives the aspect (explicit since row, by design); the since-clause now sits after a simple-present relative clause, so the reader must decide where it attaches",
+        "'first noun of the sentence' gives the WRONG number (collector's)"
+      ],
+      "changed": "Probe round: new setting (museum provenance, unused) and skeleton; head is no longer the first noun; the since-clause is placed after a relative clause with its own present verb."
+    }
+  },
+  {
+    "id": "SEC27C-04",
+    "slot": "C4",
+    "frame": "A complete clause '... pictures the same actor in the dark, bearded mask of an aging king', then 'then' + the noun phrase 'a second mask' + two absolute phrases ('its pale cheeks streaked with tears', 'its mouth turned down in grief') whose participles read like past-tense verbs; no finite verb ever arrives. No 'first' before the sequence.",
+    "key_mark": "comma",
+    "key_letter": "B",
+    "structure": "Left: an independent clause ending 'an aging king'. Right: 'then' + 'a second mask' (elliptical second element of 'in X, then [in] Y') + absolute phrases. 'its mouth turned down in grief' looks like a clause with the past verb 'turned', but it is an absolute phrase (noun + participle) modifying 'mask'; 'a second mask' itself never gets a verb.",
+    "decider_kind": "no-verb-arrives",
+    "decider_quote": "mouth turned down in grief",
+    "glance_fail": [],
+    "distractor_pulls": {
+      "king; then": "'Then' after a complete clause usually opens a new clause, and the words after it do contain what look like past-tense verbs ('streaked', 'turned'); a reader who takes 'its mouth turned down in grief' as a clause sees two clauses and reaches for the semicolon.",
+      "king then": "Without 'first' to announce a series, 'in the mask of an aging king then a second mask' can read as one continuous phrase, so a reader leaves the mark out.",
+      "king: then": "What follows describes the second mask in vivid detail, which looks like an elaboration of what the bowl pictures, so a reader treats it as an explanation introduced by a colon."
+    },
+    "distractor_kills": {
+      "king; then": "Correct in '...an aging king; then the actor appears in a second mask.' Here 'a second mask' has no verb, and 'its mouth turned down in grief' is an absolute phrase, not an independent clause, so nothing after the semicolon can stand alone.",
+      "king then": "Correct only in a short unpunctuated adverbial pair inside a phrase ('red then blue'); here 'then' adds a second, elliptical element after a full clause, which must be set off with a comma.",
+      "king: then": "Correct when what follows explains, lists or restates the clause ('...pictures two masks: a king's and a youth's'). 'Then a second mask' is the next step in a time sequence, not an explanation."
+    },
+    "hostile_reader": {
+      "options_only_pick": "None by shape: comma, semicolon and colon all occur before 'then'.",
+      "heuristics_that_give_key": [
+        "'semicolon before then' is a taught rule that points AWAY from the key"
+      ],
+      "changed": "Probe round: removed 'first' (both readers: the stock 'first ... then' correlative cued the comma); the phrase after 'then' now carries absolute phrases with participles that read as finite verbs, so the semicolon reader can believe a clause arrives."
+    }
+  },
+  {
+    "id": "SEC27C-05",
+    "slot": "C5",
+    "frame": "'The working copies that novices made of a borrowed psalter ___': plural head 'copies', a relative clause with its own plural subject 'novices', and the singular antecedent 'psalter' (object of 'of' inside the subject) just before the blank; plural verb + 'it' (mismatched).",
+    "true_subject_head": "copies",
+    "misleader_words": [
+      "psalter",
+      "novices"
+    ],
+    "misleader_position": "adj",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "psalter",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "copies",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "misspellings",
+      "number": "pl"
+    },
+    "dimension": "pronoun",
+    "dimension_key": "sg",
+    "decider_type": "pronoun-antecedent",
+    "decider_kind": "pronoun-antecedent",
+    "decider_quote": "a borrowed psalter",
+    "words_from_blank_to_decider": 1,
+    "deletion_test": "Without 'of a borrowed psalter' the object of 'follow' has no antecedent in the clause and the pronoun's number is no longer fixed.",
+    "pronoun_antecedent": {
+      "word": "psalter",
+      "number": "sg",
+      "distance": "same-clause",
+      "is_nearest_noun": true
+    },
+    "pronoun_lure": {
+      "word": "novices",
+      "number": "pl",
+      "nearest_noun_before_blank": false
+    },
+    "grid": {
+      "code": "a+p",
+      "forms": [
+        "follows it",
+        "follow it",
+        "follows them",
+        "follow them"
+      ]
+    },
+    "key_letter": "B",
+    "next_four_words_after_blank": "down to misspellings and",
+    "length_ratio": 1.0,
+    "distractor_pulls": {
+      "follows it": "The singular 'psalter' sits directly before the blank and is what the copies follow, so a reader matching the verb to the last noun gets a fully singular option that reads smoothly.",
+      "follows them": "A reader who matches the verb to 'psalter' and the pronoun to the plural 'misspellings' that follow (or to 'novices') picks this mixed option.",
+      "follow them": "It looks like the safe 'match everything plural' answer: 'copies' and 'novices' are both plural, and the plural nouns after the blank ('misspellings', 'slips') make 'them' sound right."
+    },
+    "distractor_kills": {
+      "follows it": "Correct with a singular subject ('The working copy that a novice made of a borrowed psalter follows it'). The head is 'copies'; 'psalter' is the object of 'of'.",
+      "follows them": "Correct with a singular subject and a plural antecedent ('The copy of those psalters follows them'); here the verb disagrees with 'copies' and 'them' has no antecedent.",
+      "follow them": "Correct if the object of 'of' were plural ('The copies ... of borrowed psalters follow them'). Here 'them' could only refer to the clause's own subject 'copies' (a non-reflexive object pronoun cannot; that needs 'themselves'), to 'novices' (who are not what a copy reproduces) or forward to 'misspellings' inside its own clause, which cannot be its antecedent."
+    },
+    "hostile_reader": {
+      "options_only_pick": "None: complete verb x pronoun 2x2.",
+      "heuristics_that_give_key": [
+        "'the antecedent is never the nearest noun' points AWAY from the key here"
+      ],
+      "changed": "Probe round: new setting (monastic scriptoria, freed by C9) and skeleton; the subject now contains a relative clause with a second plural noun, and the plural nouns after the blank make 'them' sound right; first noun is still the plural head, as the row's First=agr requires."
+    }
+  },
+  {
+    "id": "SEC27C-06",
+    "slot": "C6",
+    "frame": "'the projectionists' youngest helper in the booth above the main theater ___' (plural possessive before the singular head, so the head is not the first noun of the subject); 'was splicing' against 'is splicing'; the 'when' clause's own verb 'caught' (past) arrives 11 words after 'when', past the relative clause 'that archives keep in separate vaults' (present); the previous sentence is general present.",
+    "true_subject_head": "helper",
+    "misleader_words": [
+      "projectionists'"
+    ],
+    "misleader_position": "early",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "theater",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "studio",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "reel",
+      "number": "sg"
+    },
+    "dimension": "tense",
+    "dimension_key": "past",
+    "decider_type": "time-clause",
+    "decider_kind": "past-time-clause",
+    "decider_quote": "when a can of the nitrate stock that archives keep in separate vaults caught fire on the rewinding bench",
+    "words_from_blank_to_decider": 8,
+    "deletion_test": "Without the when-clause, 'the projectionists' youngest helper ... was splicing a torn reel' and '... is splicing a torn reel' (the report read as describing a scene, after a general-present first sentence) are both grammatical; nothing else fixes the tense.",
+    "grid": {
+      "code": "b|g",
+      "forms": [
+        "is splicing",
+        "are splicing",
+        "was splicing",
+        "were splicing"
+      ]
+    },
+    "key_letter": "A",
+    "next_four_words_after_blank": "a torn reel for",
+    "length_ratio": 1.09,
+    "distractor_pulls": {
+      "were splicing": "The first noun of the subject is the plural 'projectionists'', the people who run the booth; the past is right, so a reader who takes them as the subject picks the plural past.",
+      "is splicing": "The first sentence is general present ('burns', 'cannot be smothered') and the only verb within eight words of 'when' is the present 'keep', so a reader who stops there picks the singular present.",
+      "are splicing": "A reader who follows the present 'keep' and takes 'projectionists'' as the subject picks the plural present."
+    },
+    "distractor_kills": {
+      "were splicing": "Correct if the projectionists were the subject ('the projectionists ... were splicing a torn reel when ...'). Here 'projectionists'' is a possessive determiner; the head is 'helper'.",
+      "is splicing": "Correct with a present when-clause ('... is splicing a torn reel when the film catches'). The when-clause's own verb is 'caught', past; 'keep' is inside the relative clause and does not set the clause's tense.",
+      "are splicing": "Wrong in number (head 'helper') and in tense ('caught' is past)."
+    },
+    "hostile_reader": {
+      "options_only_pick": "None: clean 2x2.",
+      "heuristics_that_give_key": [
+        "'when' -> past still holds as a word-level cue (explicit row, counted in SC3/SC4), but the first verb after 'when' is present ('keep'), so the past must be found by parsing",
+        "'first noun of the subject' gives the WRONG number"
+      ],
+      "changed": "Probe round: new setting (silent-film archive, freed by C2) and skeleton; head after a plural possessive; the when-clause's verb moved past a present-tense relative clause."
+    }
+  },
+  {
+    "id": "SEC27C-07",
+    "slot": "C7",
+    "frame": "'Its tracks, which have circulated ... since the album first reached record shops, ___': the one 'since' belongs to the relative clause's own verb 'have circulated'; the blank's verb is placed in a closed past by 'on the night of the club's closing concert', 7 words after the blank; 'were performed' keyed against 'have been performed'.",
+    "true_subject_head": "tracks",
+    "misleader_words": [
+      "album"
+    ],
+    "misleader_position": "early",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "shops",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "tracks",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "session",
+      "number": "sg"
+    },
+    "dimension": "aspect",
+    "dimension_key": "non-perfect",
+    "decider_type": "time-phrase",
+    "decider_kind": "since-lure",
+    "decider_quote": "on the night of the club's closing concert",
+    "words_from_blank_to_decider": 7,
+    "deletion_test": "Without 'on the night of the club's closing concert', 'Its tracks ... have been performed in a single unbroken session' (experiential perfect) and '... were performed in a single unbroken session' are both correct; the since-clause cannot decide because it modifies 'have circulated', not the blank.",
+    "grid": {
+      "code": "e|h",
+      "forms": [
+        "has been performed",
+        "have been performed",
+        "was performed",
+        "were performed"
+      ]
+    },
+    "key_letter": "C",
+    "next_four_words_after_blank": "in a single unbroken",
+    "length_ratio": 1.08,
+    "distractor_pulls": {
+      "have been performed": "The sentence contains 'since', and a reader trained that 'since' means the present perfect carries the perfect from 'have circulated ... since' over to the blank; it is also plural, matching 'tracks' and the adjacent 'shops'.",
+      "has been performed": "The perfect is pulled by the since-clause, and the singular 'album' is the noun the whole passage is about ('the quartet's debut album', 'since the album first reached'), so a reader who loses the head after the long relative clause makes it singular.",
+      "was performed": "The simple past is right for a concert night, and the album is the thing a reader thinks of as performed in one session, so a reader who attaches the verb to 'album' picks the singular past."
+    },
+    "distractor_kills": {
+      "have been performed": "Correct without the time phrase ('Its tracks have been performed live many times'). The present perfect cannot take a phrase naming a single completed past occasion ('on the night of the club's closing concert').",
+      "has been performed": "Wrong in aspect (specific past occasion) and in number: the subject is 'tracks'; 'album' is inside the relative clause.",
+      "was performed": "Correct with a singular subject ('The album was performed in a single session on the night of ...'). Here the subject is 'tracks', so the verb must be plural."
+    },
+    "hostile_reader": {
+      "options_only_pick": "None: clean 2x2; the key is neither longest nor shortest.",
+      "heuristics_that_give_key": [
+        "'since -> perfect' gives the WRONG answer here by design",
+        "'a dated past phrase -> simple past' gives the aspect; the phrase names an event, not a date or year"
+      ],
+      "changed": "Replaced 'since the label sold off its masters' (readable as causal) with 'since the album first reached record shops' (temporal only) and changed 'studio album' to 'debut album' so the live session is not contradicted."
+    }
+  },
+  {
+    "id": "SEC27C-08",
+    "slot": "C8",
+    "frame": "Opening 'In most such companies' (plural) before a compound subject 'the warden chosen by the members and his clerk' (plural by 'and'; both conjuncts singular, the second adjacent); 'seldom' + auxiliary; an 8-word adverbial 'during the first weeks of a new term' and then the -ing form 'recording' settles be over do.",
+    "true_subject_head": "warden and clerk",
+    "misleader_words": [
+      "clerk",
+      "warden"
+    ],
+    "misleader_position": "adj",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "clerk",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "companies",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "weeks",
+      "number": "pl"
+    },
+    "dimension": "aux",
+    "dimension_key": "be",
+    "decider_type": "aux-form",
+    "decider_kind": "distant-ing",
+    "decider_quote": "recording",
+    "words_from_blank_to_decider": 9,
+    "deletion_test": "With 'record' in place of 'recording', 'seldom do' would be correct; the -ing form alone settles be over do.",
+    "grid": {
+      "code": "j|m",
+      "forms": [
+        "seldom is",
+        "seldom are",
+        "seldom does",
+        "seldom do"
+      ]
+    },
+    "key_letter": "D",
+    "next_four_words_after_blank": "during the first weeks",
+    "length_ratio": 1.11,
+    "distractor_pulls": {
+      "seldom does": "Both people named in the subject are singular ('the warden', 'his clerk'), the clerk is the noun just before the blank, and 'seldom does' is the habitual pairing; with the verb nine words away, a reader picks it.",
+      "seldom is": "A reader who looks ahead to 'recording' and correctly chooses 'be' but reads the subject as 'his clerk' (or as 'the warden ... and his clerk' treated as one office) picks the singular.",
+      "seldom do": "'Seldom do' is the idiomatic pairing and is plural; a reader who sees the compound subject but stops before 'recording' picks it."
+    },
+    "distractor_kills": {
+      "seldom does": "Wrong auxiliary for the -ing form 'recording' and singular with a compound subject joined by 'and'.",
+      "seldom is": "Correct with a single subject ('the warden chosen by the members seldom is ... recording'). Two people joined by 'and' make a plural subject.",
+      "seldom do": "Correct with a bare verb ('seldom do ... record any fines'). 'Do' as an auxiliary must take the base form; 'recording' needs 'be'."
+    },
+    "hostile_reader": {
+      "options_only_pick": "None: all four share 'seldom'.",
+      "heuristics_that_give_key": [
+        "none for number: the first noun of the subject and the nearest noun are both singular, so 'first noun wins' and 'nearest noun' both give the WRONG number"
+      ],
+      "changed": "Probe round: new setting (medieval guild records, freed by C10) and skeleton; the plural now comes from an 'and' compound of two singulars, not from a plural first word; the adverbial is a time phrase rather than a locative."
+    }
+  },
+  {
+    "id": "SEC27C-09",
+    "slot": "C9",
+    "frame": "Opening 'Until the newest apprentice had proofread the sheet' ('the sheet' is the object; 'proofread' is often intransitive); the main clause's own subject 'the pressmen waiting at the shop's wooden presses' follows and its verb 'were forbidden' arrives 9 words after the blank. The early-comma reading ('the sheet the pressmen ... were forbidden to pull') parses as a noun phrase with a reduced relative and leaves the main clause verbless. Nothing later refers back to the sheet.",
+    "key_mark": "comma",
+    "key_letter": "D",
+    "structure": "Left: the dependent clause 'Until the newest apprentice had proofread' + its object 'the sheet'. Right: the independent clause 'the pressmen waiting at the shop's wooden presses were forbidden to pull a single impression'. One comma separates them, after the object.",
+    "decider_kind": "garden-verb",
+    "decider_quote": "were forbidden to pull a single impression",
+    "glance_fail": [],
+    "distractor_pulls": {
+      "proofread, the sheet": "'Proofread' is often used without an object ('until the apprentice had proofread'), and 'the sheet the pressmen ... were forbidden to pull' reads at first as a natural subject (the sheet that the pressmen could not print), so a reader puts the comma after the verb.",
+      "proofread the sheet": "The introductory comma is often treated as optional, and a reader who has not found where the main clause starts leaves the phrase unpunctuated.",
+      "proofread; the sheet": "The sentence sets two groups against each other (the apprentice and the pressmen), and a reader who hears two clauses reaches for a semicolon at the first point where a clause could end."
+    },
+    "distractor_kills": {
+      "proofread, the sheet": "Correct if 'the sheet' were the main clause's subject ('Until the apprentice had proofread, the sheet stayed on the bench'). Here the main clause already has the subject 'the pressmen' and the verb 'were forbidden'; with the comma after 'proofread', 'the sheet the pressmen ... were forbidden to pull' becomes a noun phrase, and the sentence has no main verb.",
+      "proofread the sheet": "A long introductory adverbial clause before the main clause is set off with a comma; without it the clauses run together.",
+      "proofread; the sheet": "Correct between two independent clauses. 'Until the newest apprentice had proofread' is a subordinate clause and cannot stand before a semicolon."
+    },
+    "hostile_reader": {
+      "options_only_pick": "A reader who believes 'options ending in a comma lose' strikes the key.",
+      "heuristics_that_give_key": [
+        "none known: no later word points back to 'the sheet' (the probe's tell 'that model' is gone)"
+      ],
+      "changed": "Probe round: new setting (printing-house apprenticeships, freed by C6) and skeleton: an until-clause in the past perfect, the blank in the second sentence, no back-reference to the object, and an early-comma reading that runs as a reduced object relative before failing; the opener, verb and setting differ from C1."
+    }
+  },
+  {
+    "id": "SEC27C-10",
+    "slot": "C10",
+    "frame": "After an opening infinitive phrase, 'the ___ chart corrections from each surviving version onto one master sheet drawn at a common scale, a method ...': 'chart' is the clause's only possible finite verb; the possessive reading makes 'chart corrections' a compound noun and runs to a sentence-final appositive with no verb.",
+    "key_class": "pl",
+    "key_letter": "A",
+    "structure": "The blank is the main clause's subject. 'Chart' after it is a verb that reads naturally as a noun modifier ('chart corrections'). 'Drawn' is a participle and 'a method borrowed ...' is an appositive, so no other finite verb occurs; 'chart' must be the verb, and its bare form requires a plural, non-possessive subject.",
+    "decider_kind": "verb-after-blank",
+    "decider_quote": "chart corrections from each surviving version onto one master sheet",
+    "glance_fail": [],
+    "distractor_pulls": {
+      "historians'": "'The historians' chart corrections' is a natural noun phrase (corrections to the historians' chart), and the long run of prepositional phrases plus the participle 'drawn' keep it sounding complete; a reader who reads 'chart' as a noun picks the plural possessive.",
+      "historian's": "'The historian's chart corrections' reads as the work of one scholar, a common possessive shape in a sentence about one study; a reader who does not look for the main verb picks it.",
+      "historian": "A reader who sees that 'chart' is the verb but does not check its form takes the singular, the default for 'the [scholar]' in a single study."
+    },
+    "distractor_kills": {
+      "historians'": "Correct if a verb followed ('the historians' chart corrections were drawn at a common scale'). Here 'drawn' is a participle and the final phrase is an appositive, so the clause would have no verb.",
+      "historian's": "Correct in 'the historian's chart corrections fill a master sheet'; here, as with the plural possessive, the main clause would have no verb.",
+      "historian": "Correct with 'charts' ('the historian charts corrections'). The bare verb 'chart' does not agree with a singular subject."
+    },
+    "hostile_reader": {
+      "options_only_pick": "None: a full {X, X's, Xs, Xs'} set.",
+      "heuristics_that_give_key": [
+        "'a possessive before a noun' gives the WRONG answer; the clause must be checked for a main verb"
+      ],
+      "changed": "Probe round: new setting (Ottoman map-making, freed by C3) and skeleton: an opening infinitive phrase, a sentence-final appositive, and the participle 'drawn' that a skimmer can mistake for a verb; the number is decided only by the verb form inside the blank's sentence."
+    }
+  }
+]

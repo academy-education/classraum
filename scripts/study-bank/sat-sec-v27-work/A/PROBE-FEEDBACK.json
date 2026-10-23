@@ -1,0 +1,755 @@
+{
+ "SEC27A-10": {
+  "must_revise": true,
+  "named_for": [
+   "easy",
+   "no reader rated it hard",
+   "distractors weak",
+   "distractors not strong for every reader"
+  ],
+  "listed_for": [
+   "template partner of SEC27C-10 (the later slot revises)",
+   "template partner of SEC27D-10 (the later slot revises)"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "propagator's",
+    "difficulty": "easy",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'chief' before the blank hands over the singular, and A/C leave 'graft' with no grammatical role; nothing beyond one possessive decision.",
+    "note": "'the chief ___ graft' needs a possessive; 'chief' signals a single propagator, so singular possessive. D tempts students who default to plural possessive."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "propagator's",
+    "difficulty": "easy",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "weak",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'chief' immediately before the blank names one person, and no distractor survives once a possessive is needed before 'graft'; possessive template with P14, P34.",
+    "note": "Singular possessive: 'the chief propagator's graft'."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC27C-10",
+    "readers": 2,
+    "why": [
+     "singular versus plural possessive before a noun with a number cue",
+     "possessive or plural noun before a noun whose number is cued elsewhere"
+    ]
+   },
+   {
+    "with": "SEC27D-10",
+    "readers": 2,
+    "why": [
+     "singular versus plural possessive before a noun with a number cue",
+     "possessive or plural noun before a noun whose number is cued elsewhere"
+    ]
+   }
+  ]
+ },
+ "SEC27A-09": {
+  "must_revise": true,
+  "named_for": [
+   "distractors not strong for every reader",
+   "template pair with SEC27A-03 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template partner of SEC27D-04 (the later slot revises)",
+   "template partner of SEC27D-08 (the later slot revises)",
+   "named in reader r0's tell: Elliptical auxiliary items (P09,P11,P15,P32): key is always the auxiliary that echoes a verb elsewhere in the sentence; options supplying an auxiliary with no e",
+   "named in reader r1's tell: Ellipsis items (P02, P03, P04, P11): the key aux always copies the verb type of the other clause (lexical -> do/does, be -> is, perfect -> have), and the number"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "usually is",
+    "difficulty": "hard",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "strong",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": null,
+    "note": "Cataphoric ellipsis: 'the bath usually is [dependable]', borrowing the predicate of the main clause; 'does' has no verb to stand for. Singular 'bath' against plural attractor 'farms'."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "usually is",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'bath' is the noun right before the blank and the main clause prints 'are not dependable', handing over be-ellipsis; same template as P02/P04/P11.",
+    "note": "Ellipsis of 'dependable' after a be-verb in the main clause ('are not dependable') -> 'is'; singular 'bath'. 'does' attracts solvers who default to do-support."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC27D-04",
+    "readers": 2,
+    "why": [
+     "elliptical auxiliary echoing a verb elsewhere in the sentence",
+     "elliptical auxiliary copying the other clause's verb"
+    ]
+   },
+   {
+    "with": "SEC27A-03",
+    "readers": 2,
+    "why": [
+     "elliptical auxiliary echoing a verb elsewhere in the sentence",
+     "elliptical auxiliary copying the other clause's verb"
+    ]
+   },
+   {
+    "with": "SEC27D-08",
+    "readers": 2,
+    "why": [
+     "elliptical auxiliary echoing a verb elsewhere in the sentence",
+     "elliptical auxiliary copying the other clause's verb"
+    ]
+   }
+  ]
+ },
+ "SEC27A-07": {
+  "must_revise": true,
+  "named_for": [
+   "no reader rated it hard",
+   "distractors not strong for every reader"
+  ],
+  "listed_for": [
+   "named in reader r0's tell: Subject-verb items (P02,P04,P05,P08,P09,P12,P14,P18,P22,P23,P25,P29,P30,P33,P36,P39,P40) are all 2x2 number-by-tense grids: two independent binary rules, each s",
+   "named in reader r0's tell: In those items the noun immediately before the blank is almost always the WRONG number (P02 spillway, P05 sheet, P08 pier, P09 board, P10 admissions, P12 mustar",
+   "named in reader r1's tell: Head noun = first noun of the subject: in every number item the subject's head is the first noun at the start of the clause and a later prepositional/relative n"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "are holding",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'and' joining two nouns is a textbook plural signal, and the present-tense 'is not planted' clause hands over the tense.",
+    "note": "Compound subject joined by 'and' takes a plural verb; present tense set by 'as long as a bed is not planted'. 'white mustard' is the singular attractor next to the blank."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "are holding",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'and' joining two subjects is the textbook plural signal and the 'as long as ... is' clause hands over present tense.",
+    "note": "Compound subject 'Marigolds ... and a cover crop' is plural; present 'is not planted' fixes tense -> 'are holding'. Singular 'mustard' next to blank is the trap."
+   }
+  ],
+  "template_partners": []
+ },
+ "SEC27A-03": {
+  "must_revise": true,
+  "named_for": [
+   "distractors not strong for every reader"
+  ],
+  "listed_for": [
+   "template partner of SEC27D-04 (the later slot revises)",
+   "template partner of SEC27A-09 (the later slot revises)",
+   "template partner of SEC27D-08 (the later slot revises)",
+   "named in reader r0's tell: Elliptical auxiliary items (P09,P11,P15,P32): key is always the auxiliary that echoes a verb elsewhere in the sentence; options supplying an auxiliary with no e",
+   "named in reader r1's tell: Ellipsis items (P02, P03, P04, P11): the key aux always copies the verb type of the other clause (lexical -> do/does, be -> is, perfect -> have), and the number"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "rarely do",
+    "difficulty": "hard",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "strong",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": null,
+    "note": "Cataphoric ellipsis echoing 'loses much of its ability': 'samples rarely do [lose...]'. Present simple and plural; 'have' has no participle to echo."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "rarely do",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'samples' sits immediately before the blank and hands over the plural; ellipsis-aux template shared with P03, P04, P11.",
+    "note": "Elliptical auxiliary for 'loses': plural 'samples' + simple present lexical verb -> 'do'. 'have' tempts but would need an elided past participle."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC27D-04",
+    "readers": 2,
+    "why": [
+     "elliptical auxiliary echoing a verb elsewhere in the sentence",
+     "elliptical auxiliary copying the other clause's verb"
+    ]
+   },
+   {
+    "with": "SEC27A-09",
+    "readers": 2,
+    "why": [
+     "elliptical auxiliary echoing a verb elsewhere in the sentence",
+     "elliptical auxiliary copying the other clause's verb"
+    ]
+   },
+   {
+    "with": "SEC27D-08",
+    "readers": 2,
+    "why": [
+     "elliptical auxiliary echoing a verb elsewhere in the sentence",
+     "elliptical auxiliary copying the other clause's verb"
+    ]
+   }
+  ]
+ },
+ "SEC27A-04": {
+  "must_revise": true,
+  "named_for": [
+   "template pair with SEC27A-01 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "named in reader r0's tell: Boundary items with a clause after the blank (P21,P28) both use 'noun, the/a NP ... verb' where the comma option is an appositive garden path and the key is the",
+   "named in reader r1's tell: Colon is the key whenever the preceding words announce a specification ('had in common' P08, 'a hidden cost' P15) and loses when the next clause is a separate e"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "air. The",
+    "difficulty": "hard",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "strong",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": null,
+    "note": "Two independent clauses: the second's subject is 'the remedy that physicians ... praised' with verb 'did little'. B reads as an appositive to 'air' until 'did' turns it into a splice; A's colon does not introduce an explanation of the first clause."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "air. The",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "air the"
+    ],
+    "distractor_quality": "strong",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "once 'did little' is found as the second main verb the boundary is obvious; the only live competitor is the colon, and the second clause clearly does not elaborate the first.",
+    "note": "Two independent clauses ('they spent ... in the cold, thin air' / 'the remedy ... did little'); period. The second clause is a verdict, not an explanation, so the colon (strongest distractor) does not fit; B is a comma splice."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC27A-01",
+    "readers": 2,
+    "why": [
+     "comma appositive garden path before a second independent clause",
+     "sentence boundary with an appositive or colon garden path"
+    ]
+   }
+  ]
+ },
+ "SEC27A-06": {
+  "must_revise": true,
+  "named_for": [
+   "no reader rated it hard",
+   "distractors not strong for every reader"
+  ],
+  "listed_for": [
+   "template partner of SEC27D-06 (the later slot revises)",
+   "template partner of SEC27B-06 (the later slot revises)",
+   "template partner of SEC27C-05 (the later slot revises)",
+   "named in reader r0's tell: Pronoun items (P10,P13,P27,P35) are all 2x2 verb-number x pronoun-number grids; the pronoun's correct referent is always the semantically obvious actor/object a",
+   "named in reader r1's tell: Pronoun items use the same 2x2 grid (verb number x pronoun number) and the pronoun's referent is always the one non-subject noun of the right kind (window P06, "
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "have measured their",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'veterinarians' is plainly plural and the only plausible owners of antibody levels are the plural birds; same 2x2 grid as P10, P13, P35.",
+    "note": "Plural 'veterinarians' takes 'have'; the antibody levels are the chicks'/birds', so 'their'. 'its' tempts via 'grower'/'spray'."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "have measured their",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'veterinarians' sits right before the blank, and both rules point the same way (plural/plural), so solving the verb nearly solves the pronoun; pronoun grid with P06, P13, P35.",
+    "note": "Plural 'veterinarians' -> 'have measured'; the antibody levels belong to the chicks/birds -> 'their'. 'its' could be pulled toward 'grower' or 'spray'."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC27D-06",
+    "readers": 2,
+    "why": [
+     "verb number crossed with pronoun number in a two-by-two grid",
+     "verb number x pronoun number grid"
+    ]
+   },
+   {
+    "with": "SEC27B-06",
+    "readers": 2,
+    "why": [
+     "verb number crossed with pronoun number in a two-by-two grid",
+     "verb number x pronoun number grid"
+    ]
+   },
+   {
+    "with": "SEC27C-05",
+    "readers": 2,
+    "why": [
+     "verb number crossed with pronoun number in a two-by-two grid",
+     "verb number x pronoun number grid"
+    ]
+   }
+  ]
+ },
+ "SEC27A-01": {
+  "must_revise": false,
+  "named_for": [],
+  "listed_for": [
+   "template partner of SEC27A-04 (the later slot revises)",
+   "named in reader r0's tell: Boundary items with a clause after the blank (P21,P28) both use 'noun, the/a NP ... verb' where the comma option is an appositive garden path and the key is the",
+   "named in reader r1's tell: Colon is the key whenever the preceding words announce a specification ('had in common' P08, 'a hidden cost' P15) and loses when the next clause is a separate e"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "orchard; a",
+    "difficulty": "hard",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "strong",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": null,
+    "note": "Second independent clause: 'a sheltered block ... flowered eleven days later'. A reads as an appositive to 'orchard' until 'flowered' makes it a splice; a colon does not fit since the clause does not explain the first."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "orchard; a",
+    "difficulty": "hard",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "strong",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": null,
+    "note": "Two independent clauses: 'a grower moved ... to the orchard' / 'a sheltered block ... flowered eleven days later'. A reads the block as an appositive to 'orchard' and strands 'flowered'; colon would need an explanation."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC27A-04",
+    "readers": 2,
+    "why": [
+     "comma appositive garden path before a second independent clause",
+     "sentence boundary with an appositive or colon garden path"
+    ]
+   }
+  ]
+ },
+ "SEC27A-02": {
+  "must_revise": true,
+  "named_for": [
+   "easy",
+   "no reader rated it hard",
+   "distractors weak",
+   "distractors not strong for every reader"
+  ],
+  "listed_for": [
+   "template partner of SEC27D-02 (the later slot revises)",
+   "template partner of SEC27C-02 (the later slot revises)",
+   "template pair with SEC27B-02 named by 1 of 2",
+   "template pair with SEC27D-03 named by 1 of 2",
+   "template pair with SEC27C-03 named by 1 of 2",
+   "template pair with SEC27C-07 named by 1 of 2",
+   "template pair with SEC27C-06 named by 1 of 2",
+   "template pair with SEC27B-07 named by 1 of 2",
+   "template pair with SEC27D-07 named by 1 of 2",
+   "template pair with SEC27A-05 named by 1 of 2",
+   "template pair with SEC27B-08 named by 1 of 2",
+   "template pair with SEC27B-03 named by 1 of 2",
+   "named in reader r0's tell: Subject-verb items (P02,P04,P05,P08,P09,P12,P14,P18,P22,P23,P25,P29,P30,P33,P36,P39,P40) are all 2x2 number-by-tense grids: two independent binary rules, each s",
+   "named in reader r0's tell: In those items the noun immediately before the blank is almost always the WRONG number (P02 spillway, P05 sheet, P08 pier, P09 board, P10 admissions, P12 mustar",
+   "named in reader r0's tell: Tense is always handed over by a time phrase AFTER the blank: past by 'during ...'/'in the decades preceding'/'that autumn'/'when ...' (P08,P18,P25,P30,P40), pr",
+   "named in reader r1's tell: Tense is always handed over by a time phrase or present verb AFTER the blank: 'since' -> present perfect (P22), duration 'for nine growing seasons' -> perfect ("
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "is kept",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'shows' after the blank hands over the present, and 'milk' is a mass noun every student treats as singular; 'cows' is far away.",
+    "note": "Singular 'milk' with present 'unless ... shows'."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "is kept",
+    "difficulty": "easy",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "weak",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'milk' is unmistakably singular and there is no plural noun between it and the blank to act as a trap; 'shows' hands over tense.",
+    "note": "Mass noun 'milk' is singular; present 'shows' -> 'is kept'."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC27D-02",
+    "readers": 2,
+    "why": [
+     "subject-verb number plus a present verb in a trailing clause",
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-02",
+    "readers": 2,
+    "why": [
+     "subject-verb number plus a present verb in a trailing clause",
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27B-02",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27D-03",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-03",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-07",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-06",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27B-07",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27D-07",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27A-05",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27B-08",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27B-03",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   }
+  ]
+ },
+ "SEC27A-08": {
+  "must_revise": true,
+  "named_for": [
+   "no reader rated it hard",
+   "distractors not strong for every reader"
+  ],
+  "listed_for": [
+   "template partner of SEC27D-05 (the later slot revises)",
+   "named in reader r1's tell: No-punctuation key whenever the blank sits between a verb and its object/complement (P27, P38) or a noun and a restrictive modifier (P16, P37)."
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "found the",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "the verb-plus-object-clause pattern is common; comma/dash/semicolon all visibly cut 'found' from what was found. Same no-punctuation-before-object template as P07.",
+    "note": "'found' takes a that-less noun clause as object ('found [that] the dispensers ... were used'); no mark between verb and object."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "found the",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "after P27 the 'no mark between verb and object' key is a pattern in this render, and 'were used' later makes the object clause plain.",
+    "note": "'found [that] the dispensers ... were used' - a noun-clause object takes no punctuation after the verb. Dash/comma/semicolon all split verb from object."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC27D-05",
+    "readers": 2,
+    "why": [
+     "no punctuation between a verb and its delayed object",
+     "no punctuation between verb and a shifted or clausal object"
+    ]
+   }
+  ]
+ },
+ "SEC27A-05": {
+  "must_revise": true,
+  "named_for": [
+   "no reader rated it hard",
+   "distractors not strong for every reader"
+  ],
+  "listed_for": [
+   "template partner of SEC27C-03 (the later slot revises)",
+   "template partner of SEC27B-03 (the later slot revises)",
+   "template pair with SEC27B-02 named by 1 of 2",
+   "template pair with SEC27D-03 named by 1 of 2",
+   "template pair with SEC27D-02 named by 1 of 2",
+   "template pair with SEC27C-07 named by 1 of 2",
+   "template pair with SEC27A-02 named by 1 of 2",
+   "template pair with SEC27C-06 named by 1 of 2",
+   "template pair with SEC27B-07 named by 1 of 2",
+   "template pair with SEC27D-07 named by 1 of 2",
+   "template pair with SEC27B-08 named by 1 of 2",
+   "template pair with SEC27C-02 named by 1 of 2",
+   "named in reader r0's tell: Subject-verb items (P02,P04,P05,P08,P09,P12,P14,P18,P22,P23,P25,P29,P30,P33,P36,P39,P40) are all 2x2 number-by-tense grids: two independent binary rules, each s",
+   "named in reader r0's tell: In those items the noun immediately before the blank is almost always the WRONG number (P02 spillway, P05 sheet, P08 pier, P09 board, P10 admissions, P12 mustar",
+   "named in reader r0's tell: Tense is always handed over by a time phrase AFTER the blank: past by 'during ...'/'in the decades preceding'/'that autumn'/'when ...' (P08,P18,P25,P30,P40), pr",
+   "named in reader r1's tell: Head noun = first noun of the subject: in every number item the subject's head is the first noun at the start of the clause and a later prepositional/relative n",
+   "named in reader r1's tell: Tense is always handed over by a time phrase or present verb AFTER the blank: 'since' -> present perfect (P22), duration 'for nine growing seasons' -> perfect ("
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "have been measuring",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'for nine growing seasons' hands over the present perfect; same since/for template as P05, P39.",
+    "note": "Plural 'probes' with 'for nine growing seasons' requiring present perfect progressive; 'estate's' is the singular attractor."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "have been measuring",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'for nine growing seasons' is a duration phrase that hands over the perfect; same as 'since' in P22.",
+    "note": "Plural 'probes', duration 'for nine growing seasons' plus present 'their readings show' -> 'have been measuring'."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC27C-03",
+    "readers": 2,
+    "why": [
+     "plural or singular subject plus since or duration phrase forcing present perfect",
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27B-03",
+    "readers": 2,
+    "why": [
+     "plural or singular subject plus since or duration phrase forcing present perfect",
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27B-02",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27D-03",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27D-02",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-07",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27A-02",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-06",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27B-07",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27D-07",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27B-08",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   },
+   {
+    "with": "SEC27C-02",
+    "readers": 1,
+    "why": [
+     "subject number x tense grid resolved by a later time phrase"
+    ]
+   }
+  ]
+ }
+}

@@ -1,0 +1,182 @@
+[
+  {
+    "id": "SEC27A-01",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: punctuation between two independent clauses",
+    "difficulty": "hard",
+    "passage": "Almond growers usually rent honeybee colonies from migratory beekeepers, but some keep hives beside their trees all year. In late winter, a grower moved the strongest of the farm's colonies to the ______ sheltered block of trees planted by the previous owner flowered eleven days later, and the bees were working the first blossoms by the next morning.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "orchard, a",
+      "orchard a",
+      "orchard; a",
+      "orchard: a"
+    ],
+    "correct_answer": "orchard; a",
+    "explanation": "The words after the blank read at first like an appositive renaming \"orchard\" (\"a sheltered block of trees planted by the previous owner\"), but the verb \"flowered\" arrives later in the sentence, so they are the subject of a second independent clause. A semicolon correctly joins the two independent clauses. \"orchard, a\" creates a comma splice once \"flowered\" is reached. \"orchard a\" fuses the two clauses with no punctuation at all. \"orchard: a\" fails because a colon must introduce an explanation, list, or restatement of the first clause, and the trees flowering eleven days later is a later, separate event, not an explanation of why or how the colony was moved.",
+    "topic_tag": "apiculture: a hive moved into almond bloom",
+    "template": "clause ending on a place noun + determiner noun phrase that reads as its appositive until a verb 10 words later, second clause a later event x appositive comma, explanation colon x comma / none / semicolon / colon"
+  },
+  {
+    "id": "SEC27A-02",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with verb tense",
+    "difficulty": "hard",
+    "passage": "Researchers at a dairy research station treated cows with mild mastitis in the infected quarter of the udder alone rather than in the whole udder, and the cows recovered just as quickly. In herds enrolled in the trial, the treated cows' milk from any quarter that the veterinarian injected with the new antibiotic ______ out of the bulk tank unless a laboratory test of that quarter comes back free of the drug.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was kept",
+      "were kept",
+      "is kept",
+      "are kept"
+    ],
+    "correct_answer": "is kept",
+    "explanation": "The subject's head is \"milk,\" a singular mass noun; \"cows'\" is a possessive in front of it, and \"herds\" belongs to the opening phrase. The tense is settled by the conditional clause \"unless a laboratory test of that quarter comes back free of the drug\": its present verb \"comes\" requires a present main verb, even though the trial and the relative clause \"that the veterinarian injected\" are in the past. \"was kept\" is singular but past, which clashes with the present \"comes back.\" \"are kept\" agrees with \"cows'\" or \"herds\" rather than with \"milk,\" and \"were kept\" makes both errors.",
+    "topic_tag": "veterinary medicine: milk withheld from treated udder quarters",
+    "template": "opening in-phrase on a plural noun + plural possessive before a mass-noun head + of-less from-phrase with a past object relative x plural possessive and opener, past relative verb next to the head x c|h decided by a far present unless-clause"
+  },
+  {
+    "id": "SEC27A-03",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with an auxiliary standing for an omitted verb",
+    "difficulty": "hard",
+    "passage": "Seed banks keep their samples far below freezing, cold enough to slow the chemical decay that eventually kills a stored seed. Though a bank's barley samples ______, a typical sample of onion seed stored beside them has trouble sprouting by its third decade in the cold, so curators regrow it in the field to keep each variety alive.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "rarely does",
+      "rarely has",
+      "rarely have",
+      "rarely do"
+    ],
+    "correct_answer": "rarely do",
+    "explanation": "The auxiliary in the opening clause stands for a verb that appears only later, in the main clause: \"has trouble sprouting.\" There \"has\" is the main verb (meaning \"experiences\"), not a helping verb, and a main-verb \"have\" of this kind is replaced in ellipsis by \"do\": barley samples \"rarely do\" have trouble sprouting. The auxiliary is plural to agree with \"samples\" (\"bank's\" is only a possessive). \"rarely does\" is singular, matching \"a typical sample\" in the main clause rather than the opening clause's own subject. \"rarely have\" and \"rarely has\" copy the word \"has\" but treat it as a helping verb; a helping \"have\" can stand only for a perfect such as \"have lost,\" and \"rarely has\" is also singular.",
+    "topic_tag": "seed banking: onion seed longevity in cold storage",
+    "template": "concessive Though-clause, singular possessive + plural head, auxiliary before a comma x singular main-clause subject after the blank, main verb printed as 'has' (lexical) x m|n with 'rarely' first, verb 10 words after"
+  },
+  {
+    "id": "SEC27A-04",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: sentence boundary before a long noun phrase",
+    "difficulty": "hard",
+    "passage": "Field trials of malaria vaccines in young children are usually judged by how many cases of the disease the shots prevent over a rainy season. In a trial in a river delta, nurses traveled by boat to give children each scheduled dose at home, and the organizers worried most about families skipping the last ______ booster given months after the others, when children are toddlers and harder to find, turned out to raise antibody levels far more than any earlier injection.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "dose, a",
+      "dose: a",
+      "dose. A",
+      "dose a"
+    ],
+    "correct_answer": "dose. A",
+    "explanation": "The noun phrase after the blank (\"a booster given months after the others, when children are toddlers and harder to find\") reads at first like an appositive renaming \"the last dose,\" and it is an accurate one, but the verb \"turned out\" follows it, so it is the subject of a new independent clause, which must begin a new sentence. \"dose, a\" produces a comma splice once \"turned out\" arrives. \"dose a\" fuses two independent clauses with no punctuation. \"dose: a\" fails because a colon must introduce an explanation, list, or restatement of what precedes it, and the second clause makes a separate finding that runs against the organizers' worry, not an explanation of it.",
+    "topic_tag": "vaccinology: a home-delivered malaria booster in a river delta",
+    "template": "compound sentence ending on 'the last dose' + indefinite noun phrase that accurately renames it (with an internal when-clause) until a verb 15 words later, finding against a stated worry x appositive comma, explanation colon x comma / colon / period / none"
+  },
+  {
+    "id": "SEC27A-05",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with verb aspect",
+    "difficulty": "hard",
+    "passage": "Winegrowers in dry regions have begun scheduling irrigation by what sensors in the soil report rather than by the calendar. Wired to a logger at the edge of a hillside estate, the moisture probes beside its oldest vines ______ how many liters of water the clay loses each day for nine growing seasons, and their readings show that the old vines draw on water far deeper than the drip lines reach.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "have been measuring",
+      "has been measuring",
+      "are measuring",
+      "is measuring"
+    ],
+    "correct_answer": "have been measuring",
+    "explanation": "The subject is the plural \"probes\"; the sentence opens with a participial phrase whose nouns (\"logger,\" \"edge,\" \"estate\") are singular, and \"beside its oldest vines\" only locates the probes. The aspect is settled by the duration phrase \"for nine growing seasons,\" which can modify only the main verb (the habitual \"loses each day\" cannot take a span of seasons): an activity that has run for a stated length of time up to the present takes the present perfect progressive. \"are measuring\" agrees with \"probes\" but cannot combine with \"for nine growing seasons.\" \"has been measuring\" and \"is measuring\" are singular, agreeing with \"logger\" or \"estate\" rather than with \"probes,\" and \"is measuring\" also has the aspect error.",
+    "topic_tag": "viticulture: soil-moisture probes under old vines",
+    "template": "fronted participial phrase on singular nouns + plural head + locative modifier ending plural x singular opener, duration phrase placed after an embedded habitual clause x f|b decided by a far duration phrase"
+  },
+  {
+    "id": "SEC27A-06",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with pronoun-antecedent agreement (possessive)",
+    "difficulty": "hard",
+    "passage": "Poultry companies protect broiler chicks against Newcastle disease with a fine vaccine spray that the birds inhale on the day they hatch. At the region's largest grower, the flock veterinarian and the vaccine maker's field technicians ______ antibody levels at three weeks of age to judge how well the spray works, and the results guide the hatchery's choice of nozzle.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "have measured their",
+      "has measured their",
+      "have measured its",
+      "has measured its"
+    ],
+    "correct_answer": "have measured their",
+    "explanation": "The verb's subject is compound, \"the flock veterinarian and the vaccine maker's field technicians,\" so the verb is plural, \"have measured,\" even though the subject opens on the singular \"veterinarian.\" The antibody levels belong to the plural \"broiler chicks\" named in the previous sentence, so the possessive is \"their.\" \"has measured their\" makes the verb singular, as if \"the flock veterinarian\" alone were the subject. \"have measured its\" and \"has measured its\" use a singular pronoun; the singular nouns that seem to own antibody levels, \"flock\" and \"vaccine,\" are only modifiers inside \"flock veterinarian\" and \"vaccine maker's\" and cannot serve as antecedents, and \"grower\" and \"region\" have no antibody levels.",
+    "topic_tag": "poultry science: spray vaccination of broiler chicks",
+    "template": "opening locative phrase on a singular possessive + compound subject (singular first member, plural second) with noun-adjunct modifiers x singular nouns inside the modifiers as false owners, owner in the previous sentence x d+p possessive, plural verb + plural pronoun"
+  },
+  {
+    "id": "SEC27A-07",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with verb tense",
+    "difficulty": "hard",
+    "passage": "Agronomists on an organic vegetable farm spent successive summers counting root-knot nematodes, microscopic worms that choke the roots of tomatoes and peppers, in soil cores taken from beds managed in different ways. Certain species of French marigold that the agronomists sowed along each row ______ the worms below damaging levels as long as a bed is not planted with tomatoes in consecutive years.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "is holding",
+      "were holding",
+      "was holding",
+      "are holding"
+    ],
+    "correct_answer": "are holding",
+    "explanation": "The subject's head is \"species,\" a noun whose singular and plural forms are identical; here \"Certain,\" which accompanies only plural nouns, shows that it is plural, so the verb is plural despite the singular \"marigold\" and \"row.\" The tense is settled by the conditional clause \"as long as a bed is not planted with tomatoes in consecutive years\": its present verb \"is\" requires a present main verb, even though the fieldwork and the relative clause \"that the agronomists sowed\" are in the past. \"were holding\" is plural but past, clashing with the present \"is not planted.\" \"is holding\" and \"was holding\" are singular, reading \"species\" as one species or agreeing with \"marigold\" or \"row,\" and \"was holding\" is also in the wrong tense.",
+    "topic_tag": "nematology: marigolds and mustard against root-knot worms",
+    "template": "zero-plural head fixed plural by its determiner + of-phrase + object relative with a past verb ending on a singular noun x singular nouns and a past verb before the blank x b|g decided by a far present as-long-as clause"
+  },
+  {
+    "id": "SEC27A-08",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: no punctuation before a content clause",
+    "difficulty": "hard",
+    "passage": "Hospitals often measure hand hygiene by asking staff to observe their own colleagues, a method that tends to overstate how often hands are cleaned. When a teaching hospital sent unannounced auditors onto its surgical wards instead, the auditors ______ hand-rub bottles that nurses carry clipped to their uniforms were used far less often than the sinks in the corridor, the reverse of what the self-reports had suggested.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "found—the",
+      "found the",
+      "found, the",
+      "found; the"
+    ],
+    "correct_answer": "found the",
+    "explanation": "\"Found\" takes as its object a content clause with \"that\" omitted: \"the hand-rub bottles that nurses carry clipped to their uniforms were used far less often.\" The clause's own verb, \"were used,\" arrives only after a relative clause with a verb of its own (\"carry\"), so \"found the hand-rub bottles that nurses carry clipped to their uniforms\" can first be read as complete; but no punctuation may separate a verb from its object clause. \"found, the\" and \"found—the\" both insert a mark between \"found\" and the clause that completes it. \"found; the\" fails because a semicolon must follow an independent clause, and \"the auditors found\" is incomplete without its object.",
+    "topic_tag": "infection control: unannounced hand-hygiene audits",
+    "template": "reporting verb + that-less content clause whose subject carries a relative clause and a participle (two complete-looking stops) before 'were' 10 words later x pause comma, new-clause dash and semicolon x dash / none / comma / semicolon"
+  },
+  {
+    "id": "SEC27A-09",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with an auxiliary standing for an omitted predicate",
+    "difficulty": "hard",
+    "passage": "Stem rust, a fungus that can strip a wheat field of its grain within weeks, is fought with fungicide sprays and with resistance genes that breeders cross into new varieties. Although in most growing regions the standard fungicide program ______, the genes for resistance bred into popular varieties are, against the newest strains of the fungus, hardly dependable. The fungus tends to evolve around each new gene within a few years of its release.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "usually are",
+      "usually is",
+      "usually do",
+      "usually does"
+    ],
+    "correct_answer": "usually is",
+    "explanation": "The auxiliary in the opening clause stands for a predicate that appears only later, in the main clause, where \"are\" is separated from its adjective by an interrupting phrase: \"are ... hardly dependable.\" Because the omitted predicate is the adjective \"dependable,\" the auxiliary must be a form of \"be\" (the program \"usually is\" dependable), and it must be singular to agree with \"program\"; \"regions\" belongs to the phrase \"in most growing regions.\" \"usually are\" is plural, matching \"genes\" in the main clause or \"regions\" rather than the opening clause's own subject. \"usually does\" and \"usually do\" could stand only for an action verb such as \"evolve\"; the predicate to be supplied is an adjective, so neither fits, and \"usually do\" is also plural.",
+    "topic_tag": "plant pathology: stem rust and wheat resistance genes",
+    "template": "concessive Although-clause with a fronted plural prepositional phrase + adjunct-stacked singular head, auxiliary before a comma x plural main-clause subject, 'are' split from its adjective by an interrupter, a lexical present verb later x j|m with 'usually' first, adjective 18 words after"
+  },
+  {
+    "id": "SEC27A-10",
+    "domain": "Standard English Conventions",
+    "subskill": "form: possessive and plural nouns",
+    "difficulty": "hard",
+    "passage": "Nurseries propagate pecan trees by joining a cutting of the desired variety to a vigorous seedling rootstock, a delicate job usually left to propagators, staff trained to make clean, matching cuts. In a commercial nursery's spring trial, the ______ graft of a rare papershell cultivar onto a seedling rootstock, the final join of a long career at the nursery, was the first to break bud.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "propagator",
+      "propagator's",
+      "propagators",
+      "propagators'"
+    ],
+    "correct_answer": "propagator's",
+    "explanation": "The blank names the owner of the noun \"graft,\" so a possessive is needed, and the owner is singular: the appositive \"the final join of a long career at the nursery\" shows that one person, with one career, made the graft. \"propagators\" makes the sentence read \"the propagators graft a rare papershell cultivar onto a seedling rootstock,\" with \"graft\" as a verb, but the verb \"was\" then has no subject. \"propagators'\" is a plural possessive, which would give the graft several owners sharing a single career. \"propagator\" without an apostrophe cannot show that the graft belongs to the propagator.",
+    "topic_tag": "arboriculture: a pecan graft in a nursery trial",
+    "template": "the + blank + noun readable as a verb (graft) + of-phrase + appositive implying one owner + delayed verb x plural noun in the previous sentence, plural subject + verb garden path x X / X's / Xs / Xs'"
+  }
+]
