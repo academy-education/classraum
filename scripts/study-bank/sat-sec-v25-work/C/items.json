@@ -1,0 +1,146 @@
+[
+  {
+    "id": "SEC25C-01",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement (compound subject) + tense (conditional)",
+    "difficulty": "hard",
+    "passage": "Pilgrims to one hillside chapel lit candles by the hundred in front of its painted saints, and conservators who measured the soot found the thickest film directly above the altar. In the chapel's east end, the fresco and the gilded screen of the chancel ______ a little more each winter unless the candles lit in the nave each evening are moved to a side porch.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was blackening",
+      "is blackening",
+      "were blackening",
+      "are blackening"
+    ],
+    "correct_answer": "are blackening",
+    "explanation": "The subject is the compound \"the fresco and the gilded screen,\" two things joined by \"and,\" so it is plural; \"chancel,\" the noun just before the blank, is the object of \"of,\" and \"chapel\" and \"end\" belong to the opening phrase. The tense is set by the condition \"unless the candles lit in the nave each evening are moved\": its verb is the present \"are moved\" (\"lit\" is only a participle describing the candles), so the main verb must be present: \"are blackening.\" \"Is blackening\" agrees with \"chancel\" or with \"fresco\" alone rather than with the compound. \"Was blackening\" and \"were blackening\" follow the past verbs of the first sentence and the participle \"lit,\" but a past main verb cannot stand with the present-tense condition \"are moved.\"",
+    "topic_tag": "art conservation: candle soot on a chapel fresco",
+    "template": "fronted locative + compound 'the [sg] and the [sg]' + of-phrase ending on a singular noun x singular opener, first member and adjacent noun; past participle 'lit' inside the condition x b|g grid, present set by the unless-clause's late verb"
+  },
+  {
+    "id": "SEC25C-02",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement (among-phrase) + tense (after-clause)",
+    "difficulty": "hard",
+    "passage": "Mill owners in one northern valley founded a brass-band contest to keep their workers out of the taverns. The contest outlived the mills by generations, and the rivalry among its bands ______ in two regional weeklies after the judges have read out the final scores. Older players keep the clippings in scrapbooks and can name the winning marches from memory.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "are reported",
+      "was reported",
+      "is reported",
+      "were reported"
+    ],
+    "correct_answer": "is reported",
+    "explanation": "The subject of the second clause is the singular noun \"rivalry\"; \"bands\" is the object of \"among,\" and \"contest\" and \"mills\" belong to the first clause. The time clause \"after the judges have read out the final scores\" uses the present perfect, which in an after-clause marks a present, repeated event, so the main verb must be present: \"is reported.\" \"Are reported\" agrees with \"bands\" (or with \"weeklies\") rather than with \"rivalry.\" \"Was reported\" and \"were reported\" follow the past \"outlived\" in the first clause, but a past main verb cannot be paired with the present-perfect \"have read out\" in the time clause.",
+    "topic_tag": "music history: brass-band contests",
+    "template": "', and' second clause: singular head + among-phrase ending on a plural noun, after a past first clause x adjacent plural, plural noun after the blank x c|h passive grid, present set by a present-perfect after-clause"
+  },
+  {
+    "id": "SEC25C-03",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement (by-phrase) + aspect (definite-past time phrase)",
+    "difficulty": "hard",
+    "passage": "Listed in an old sale catalog as the work of an unknown master, the double portrait by the two sisters ______ to collectors and dealers alike during the decades after the painters' deaths. Painted in the middle of the seventeenth century, it is one of very few Dutch canvases known to be the work of women. Scholars have begun to study it closely, and its joint attribution is debated.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "have been obscure",
+      "was obscure",
+      "were obscure",
+      "has been obscure"
+    ],
+    "correct_answer": "was obscure",
+    "explanation": "The subject is the singular noun \"portrait\"; \"the two sisters\" names its makers inside the phrase \"by the two sisters,\" and \"work\" and \"master\" belong to the opening phrase. The time phrase \"during the decades after the painters' deaths\" names a finished period, since the sisters worked in the seventeenth century, so the verb must be the simple past: \"was obscure.\" \"Were obscure\" agrees with \"sisters\" rather than with \"portrait.\" \"Has been obscure\" and \"have been obscure\" use the present perfect, which cannot be paired with a closed past period introduced by \"during\"; \"have been obscure\" is also plural.",
+    "topic_tag": "art history: a portrait by two sister painters",
+    "template": "fronted participial phrase + singular head + by-phrase naming plural makers x adjacent plural; present perfect elsewhere in the passage x i|r grid with shared 'obscure', simple past set by a during-phrase whose closure depends on another sentence's century"
+  },
+  {
+    "id": "SEC25C-04",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement + pronoun-antecedent agreement (possessive, split)",
+    "difficulty": "hard",
+    "passage": "When the canons of one French cathedral proposed demolishing its crumbling west porch, they expected little opposition. At the cathedral in question, the townspeople ______ fiercest defenders, filling the chapter house with petitions and threatening an appeal to the king. The canons quietly withdrew the proposal within a month, and the porch stands today.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "were its",
+      "was their",
+      "were their",
+      "was its"
+    ],
+    "correct_answer": "were its",
+    "explanation": "Two decisions are needed. The subject is \"the townspeople,\" a plural noun even though it has no -s (like \"people\" itself), so the verb is \"were\"; \"cathedral\" and \"question\" are inside the opening phrase. The possessive names whom the townspeople defended: the cathedral and its porch, so it is the singular \"its.\" \"Was its\" treats \"the townspeople\" as a single body, like \"the town.\" \"Were their\" and \"was their\" would make the townspeople the defenders of a plural owner, but the only other plural, \"the canons,\" is the group they opposed, and the townspeople cannot be their own defenders.",
+    "topic_tag": "architectural history: townspeople defending a cathedral porch",
+    "template": "opening locative naming the singular owner + a plural subject without -s ('townspeople') x singular opener, collective reading of the subject, a plural owner in the previous sentence x i+p possessive grid"
+  },
+  {
+    "id": "SEC25C-05",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement + pronoun-antecedent agreement (object, split)",
+    "difficulty": "hard",
+    "passage": "Because the frescoes in one chapel's apse were hidden under whitewash by order of a reforming bishop, the restorer, a specialist in medieval wall painting, ______ a few square inches at a time with a scalpel and a solvent gel. The work is slow, but the saints emerging from the plaster are remarkably fresh, their blues barely faded.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "have uncovered them",
+      "has uncovered them",
+      "has uncovered it",
+      "have uncovered it"
+    ],
+    "correct_answer": "has uncovered them",
+    "explanation": "Two decisions are needed. The subject of the main clause is the singular \"restorer\"; the plural \"frescoes\" belongs to the because-clause, and the appositive \"a specialist in medieval wall painting\" only renames the restorer, so the verb is \"has uncovered.\" What was hidden under whitewash, and so what is uncovered, is the plural \"frescoes,\" so the pronoun is \"them.\" \"Have uncovered them\" makes the verb agree with \"frescoes.\" \"Has uncovered it\" and \"have uncovered it\" take \"it\" from a singular noun such as \"wall painting\" or \"apse,\" but \"wall painting\" here names the restorer's field rather than any particular painting, and the apse was never hidden.",
+    "topic_tag": "art restoration: frescoes under whitewash",
+    "template": "opening because-clause holding the plural antecedent + singular subject + appositive ending on a generic singular noun x plural first noun pulling the verb, a generic singular next to the blank pulling 'it' x d+p object grid"
+  },
+  {
+    "id": "SEC25C-06",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement + verb form in ellipsis (be)",
+    "difficulty": "hard",
+    "passage": "An earthquake struck one island town in the year its Baroque church was consecrated. The nave, built of brick by local masons, was structurally sound; the remains of the bell tower ______. Engineers have proposed a lighter replacement framed in timber, and a model of their design stands in the sacristy.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has not",
+      "have not",
+      "was not",
+      "were not"
+    ],
+    "correct_answer": "were not",
+    "explanation": "The second clause leaves out a repeated predicate, so its auxiliary must be the one the first clause supplies, \"was structurally sound\": the clause means \"the remains of the bell tower were not structurally sound,\" a form of \"be.\" Its subject is \"remains,\" a plural noun (\"the remains were\") even though it looks like a verb; \"tower\" is the object of \"of,\" and \"nave\" is the other clause's subject. So the verb is \"were not.\" \"Was not\" copies \"was\" without changing its number and agrees with \"tower.\" \"Has not\" and \"have not\" would need \"been\" to recover \"structurally sound,\" because the first clause has no form of \"have\" for them to stand in for.",
+    "topic_tag": "architectural history: a church after an earthquake",
+    "template": "semicolon be-ellipsis: singular subject + comma interrupter + 'was [adverb] [adjective]', then plural-only 'remains' + of-phrase ending on a singular noun x singular in clause 1 and adjacent, verb-looking subject x i|n + not grid"
+  },
+  {
+    "id": "SEC25C-07",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement + pronoun-antecedent agreement (by-agent object, split)",
+    "difficulty": "hard",
+    "passage": "The choir monks sang the night office in the upper church, but the painted chapel beneath the choir stalls ______ only on a single feast day each year. Because so little candle smoke ever reached it, its frescoes are among the best preserved in the region. Visitors now enter the chapel by a narrow stair behind the high altar.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was visited by them",
+      "were visited by it",
+      "was visited by it",
+      "were visited by them"
+    ],
+    "correct_answer": "was visited by them",
+    "explanation": "Two decisions are needed. The verb's subject is the singular \"chapel,\" so the verb is \"was visited\"; \"stalls,\" the plural noun just before the blank, is inside the phrase \"beneath the choir stalls.\" The agent after \"by\" is whoever visited the chapel once a year, the plural \"monks\" of the first clause, so the pronoun is \"them.\" \"Were visited by them\" makes the verb agree with \"stalls.\" \"Was visited by it\" and \"were visited by it\" take \"it\" from \"choir,\" but in \"choir monks\" and \"choir stalls\" the word \"choir\" only modifies another noun and cannot serve as an antecedent; \"church\" and \"office\" cannot visit anything.",
+    "topic_tag": "monastic history: a chapel beneath the choir",
+    "template": "', but' clause pair: plural agent whose modifier is a singular-looking collective ('choir monks'); singular subject + beneath-phrase ending on a plural noun x adjacent plural pulling the verb, the modifier 'choir' pulling 'it' x h+p passive by-agent grid"
+  },
+  {
+    "id": "SEC25C-08",
+    "domain": "Standard English Conventions",
+    "subskill": "form: plural possessive noun",
+    "difficulty": "hard",
+    "passage": "Each orchestral part for the oratorio's premiere was written out by a hired copyist, and the surviving set shows two distinct hands, neither belonging to the composer. In one scholar's reading, the ______ work on the final chorus was done in a single night: the ink thins toward the last page, and the stems lose their ruled straightness. Both men, she argues, were racing the same deadline.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "copyist",
+      "copyist's",
+      "copyists'",
+      "copyists"
+    ],
+    "correct_answer": "copyists'",
+    "explanation": "The word before \"work\" must show possession, and the first sentence shows that two copyists wrote the parts: the set \"shows two distinct hands,\" neither the composer's. Their joint work therefore takes the plural possessive \"copyists'.\" \"Copyist's\" is a singular possessive; it echoes \"a hired copyist\" and \"one scholar's,\" but it would credit the work to one copyist when two hands wrote it. \"Copyists\" is a plain plural, which turns \"the copyists work on the final chorus\" into a subject and verb and leaves \"was done\" without a subject. \"Copyist\" is a plain singular that neither marks possession nor matches the two hands.",
+    "topic_tag": "musicology: copyists' hands in an oratorio's parts",
+    "template": "plural possessive whose count is inferred from another sentence ('two distinct hands') while that sentence says 'a hired copyist' x noun after the blank that makes a full clause with the plain plural ('the copyists work on the final chorus') x {X, X's, Xs, Xs'}"
+  }
+]

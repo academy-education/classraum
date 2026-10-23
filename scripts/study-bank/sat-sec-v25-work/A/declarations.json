@@ -1,0 +1,456 @@
+[
+  {
+    "id": "SEC25A-01",
+    "slot": "A1",
+    "frame": "\"Cattle\" + a prepositional phrase ending on a plural noun; tense from a provided-that clause whose subject is singular",
+    "true_subject_head": "Cattle",
+    "misleader_words": [
+      "Cattle",
+      "livestock was"
+    ],
+    "misleader_position": "self",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "farms",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "Cattle",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "infection",
+      "number": "sg"
+    },
+    "dimension": "tense",
+    "dimension_key": "present",
+    "decider_type": "conditional",
+    "decider_quote": "provided that the herd's drinking water comes",
+    "words_from_blank_to_decider": 6,
+    "deletion_test": "Delete \"provided that the herd's drinking water comes from piped springs\": \"Cattle on the upland farms were safe from infection\" (the result of last spring's screening) and \"are safe\" (a general finding) are both acceptable; \"let\" in the last clause is the same form in present and past, so nothing else fixes the tense.",
+    "grid": {
+      "code": "i|j",
+      "forms": [
+        "was safe",
+        "were safe",
+        "is safe",
+        "are safe"
+      ]
+    },
+    "next_four_words_after_blank": "from infection by the",
+    "distractor_pulls": {
+      "is safe": "The first sentence uses \"livestock was\": the student has just seen the farm-animal noun take a singular verb, and \"Cattle\" (no -s) looks like the same kind of mass noun; \"the herd's\" later is singular too.",
+      "were safe": "The passage opens with a past screening (\"was screened last spring\"), so reporting what it found in the past reads naturally, and the number is right.",
+      "was safe": "It repeats the first sentence's verb word for word (\"livestock was\"), which looks like careful parallelism with the same subject matter."
+    },
+    "distractor_kills": {
+      "is safe": "Agreement: \"cattle\" is a plural noun (\"these cattle are\"); correct only with a mass or singular subject: \"Livestock on the upland farms is safe.\"",
+      "were safe": "Tense consistency: a main clause governed by the present-tense condition \"provided that ... water comes\" must be present; correct only with \"provided that ... water came.\"",
+      "was safe": "Fails both number and tense; correct only in \"Livestock was safe provided that its water came from springs.\""
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: a 2x2 with one shared word",
+      "heuristics_that_give_key": [
+        "(b) agree with the first noun"
+      ],
+      "changed": "revision: removed \"the animals drink\" (a plural restatement that handed over both number and tense); the condition's subject is now the singular \"the herd's drinking water\"; the opening sentence now models \"livestock was\" so the singular and past options have a printed precedent to copy"
+    },
+    "length_ratio": 1.14,
+    "key_letter": "C"
+  },
+  {
+    "id": "SEC25A-02",
+    "slot": "A2",
+    "frame": "\"Each [sg] and [sg]\" + a phrase ending on a plural noun; tense from a before-clause",
+    "true_subject_head": "graft and cutting (with \"Each\")",
+    "misleader_words": [
+      "graft and cutting",
+      "trays"
+    ],
+    "misleader_position": "self",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "trays",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "graft",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "lesions",
+      "number": "pl"
+    },
+    "dimension": "tense",
+    "dimension_key": "past",
+    "decider_type": "time-clause",
+    "decider_quote": "before the growers recognized the fungus",
+    "words_from_blank_to_decider": 8,
+    "deletion_test": "Delete \"before the growers recognized the fungus and sterilized the benches\": \"Each graft ... was developing small brown lesions\" and \"is developing small brown lesions\" are both acceptable; the next sentence is a present general statement and does not fix the time of the outbreak.",
+    "grid": {
+      "code": "b|g",
+      "forms": [
+        "is developing",
+        "are developing",
+        "was developing",
+        "were developing"
+      ]
+    },
+    "next_four_words_after_blank": "small brown lesions on",
+    "distractor_pulls": {
+      "were developing": "A compound joined by \"and\" is the textbook plural subject, and the tense is right; a student who has drilled \"X and Y take a plural verb\" picks it.",
+      "are developing": "The adjacent plural \"trays\" and the plural \"lesions\" right after the blank; the present progressive also matches the present tense of the following sentence (\"are especially exposed\").",
+      "is developing": "Correct number for a student who knows the \"each\" rule; the present progressive is the natural tense for describing a disease in progress, and the next sentence is in the present."
+    },
+    "distractor_kills": {
+      "were developing": "Agreement: \"each\" before a compound subject makes it singular (\"Each graft and cutting was\"); correct only without \"Each\": \"The graft and the cutting were developing.\"",
+      "are developing": "Fails agreement as above and tense: \"before the growers recognized\" is past; correct only in \"The grafts are developing lesions before the growers notice.\"",
+      "is developing": "Tense: the past-tense time clause \"before the growers recognized the fungus\" requires the past; correct only with \"before the growers recognize the fungus.\""
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: complete 2x2, all progressive, same length class",
+      "heuristics_that_give_key": [
+        "(a) opposite of the noun before the blank",
+        "(b) agree with the first noun",
+        "(c) copy the before-clause tense"
+      ],
+      "changed": "put the blank in the first sentence so it does not share A1/A3's second-sentence position"
+    },
+    "length_ratio": 1.08,
+    "key_letter": "A"
+  },
+  {
+    "id": "SEC25A-03",
+    "slot": "A3",
+    "frame": "A singular head with a numeral compound modifier + of + plural, opened by \"The\" (no number-marking article); aspect from a definite-past time phrase",
+    "true_subject_head": "comparison",
+    "misleader_words": [
+      "twelve-week",
+      "two leading candidates"
+    ],
+    "misleader_position": "adj",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "candidates",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "comparison",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "board",
+      "number": "sg"
+    },
+    "dimension": "aspect",
+    "dimension_key": "non-perfect",
+    "decider_type": "time-phrase",
+    "decider_quote": "on the third day of that year's monsoon",
+    "words_from_blank_to_decider": 9,
+    "deletion_test": "Delete \"on the third day of that year's monsoon\": \"The twelve-week comparison ... has been halted by an independent board\" is normal news-style present perfect, and \"was halted\" is fine too; the surrounding sentences are present (\"kills,\" \"remains,\" \"blames\") or a non-deciding past (\"pinned\").",
+    "grid": {
+      "code": "e|h",
+      "forms": [
+        "has been halted",
+        "have been halted",
+        "was halted",
+        "were halted"
+      ]
+    },
+    "next_four_words_after_blank": "by an independent board",
+    "distractor_pulls": {
+      "has been halted": "The present perfect is the default for reporting a halt whose report is still current, and the passage's frame is present (\"kills,\" \"remains public,\" \"blames\"); the number is right.",
+      "were halted": "\"the two leading candidates\" sits right before the blank and is a natural thing to halt (vaccines are halted), so a reader can take the candidates as what was stopped; the tense is right.",
+      "have been halted": "Joins the two pulls: the candidates as what was stopped and the present-tense report frame that favors the perfect."
+    },
+    "distractor_kills": {
+      "has been halted": "Tense: the present perfect does not combine with a definite past time phrase (\"on the third day of that year's monsoon\"); correct only without that phrase.",
+      "were halted": "Agreement: the grammatical head is \"comparison\"; correct only as \"The two leading candidates were halted.\"",
+      "have been halted": "Fails agreement with \"comparison\" and the definite past phrase; correct only in \"The two candidates have been halted.\""
+    },
+    "hostile_reader": {
+      "options_only_pick": "\"was halted\" is the shortest option, by one character over \"were halted\"",
+      "heuristics_that_give_key": [
+        "(a) opposite of the noun before the blank",
+        "(b) agree with the first noun",
+        "(e) been loses"
+      ],
+      "changed": "revision: \"A\" -> \"The\" so the article no longer marks the number; the plural attractor is now something that can itself be halted (\"candidates\"); the agent is longer so the time phrase sits 9 words on; the decider is a single day pinned by \"that year's\" instead of \"during the first rainy season\"; the whole passage frame is present, strengthening the perfect"
+    },
+    "length_ratio": 1.0,
+    "key_letter": "D"
+  },
+  {
+    "id": "SEC25A-04",
+    "slot": "A4",
+    "frame": "Ellipsis in a sentence-final though-clause; clause 1 singular subject + present perfect; the plural though-subject has a subject relative ending on singular \"it\"; a preceding sentence in the simple present",
+    "true_subject_head": "cultivars",
+    "misleader_words": [
+      "russet",
+      "has withstood",
+      "it"
+    ],
+    "misleader_position": "early",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "cultivars",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "orchard",
+      "number": "sg"
+    },
+    "after_noun_within_8": null,
+    "dimension": "aux",
+    "dimension_key": "have",
+    "decider_type": "parallel-verb",
+    "decider_quote": "has withstood",
+    "words_from_blank_to_decider": 14,
+    "deletion_test": "Replace \"has withstood\" with \"withstands\": \"do not\" becomes the correct ellipsis and \"have not\" fails; nothing else in the sentence fixes the auxiliary.",
+    "grid": {
+      "code": "m|n",
+      "forms": [
+        "does not",
+        "do not",
+        "has not",
+        "have not"
+      ]
+    },
+    "next_four_words_after_blank": "(sentence ends) Pathologists suspect the fungus",
+    "distractor_pulls": {
+      "does not": "\"replaced it\" ends right at the blank, so a reader who takes the nearest pronoun as the subject hears \"it does not\"; do-support is also the everyday ellipsis, and the first sentence's verbs (\"spreads,\" \"blackens\") are simple present.",
+      "do not": "\"though they do not\" is the default spoken ellipsis and agrees with \"cultivars\"; the first sentence supplies simple-present verbs a reader can think it stands for.",
+      "has not": "The singular \"it\" sits immediately before the blank, and \"has\" is the auxiliary printed in the main clause; it reads as \"it has not.\""
+    },
+    "distractor_kills": {
+      "does not": "Ellipsis and agreement: the elided verb is the perfect \"withstood,\" which needs \"have,\" and the though-clause's subject is the plural \"cultivars\"; correct only after \"a russet withstands scab, though the cultivar that replaced it does not.\"",
+      "do not": "Ellipsis: do-support stands for a simple-present lexical verb, but the antecedent in the same sentence is \"has withstood\"; correct only after \"a single russet withstands three such summers.\"",
+      "has not": "Agreement: \"it\" is the object of \"replaced\"; the subject is \"cultivars\"; correct only with \"though the cultivar that replaced it has not.\""
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: four bare auxiliaries + not",
+      "heuristics_that_give_key": [
+        "none of (a)-(f): the noun before is plural and the key plural; the first noun is singular"
+      ],
+      "changed": "revision: the blank now follows a subject relative ending on singular \"it\" (\"the cultivars that replaced it\"), so the number is no longer read off a plural noun at the blank; added an opening present-simple sentence so do-support has a printed candidate; moved the blank out of the first sentence"
+    },
+    "length_ratio": 1.33,
+    "key_letter": "B"
+  },
+  {
+    "id": "SEC25A-05",
+    "slot": "A5",
+    "frame": "Possessive split: opening because-clause subject is the singular owner; plural head + from-phrase ending on a singular noun + verb + its/their; the possessed thing is something people could carry",
+    "true_subject_head": "nurses",
+    "misleader_words": [
+      "program",
+      "hospital's"
+    ],
+    "misleader_position": "adj",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "program",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "district's",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "vaccine",
+      "number": "sg"
+    },
+    "dimension": "pronoun",
+    "dimension_key": "sg",
+    "decider_type": "pronoun-antecedent",
+    "decider_quote": "the district's lone health clinic floods",
+    "words_from_blank_to_decider": 13,
+    "deletion_test": "Delete the because-clause: \"nurses from the mainland hospital's outreach program have moved their vaccine refrigerator\" becomes fully acceptable (the nurses' own refrigerator); only the flooding clinic makes the refrigerator the clinic's.",
+    "pronoun_antecedent": {
+      "word": "clinic",
+      "number": "sg"
+    },
+    "grid": {
+      "code": "d+p",
+      "forms": [
+        "has moved its",
+        "have moved its",
+        "has moved their",
+        "have moved their"
+      ]
+    },
+    "next_four_words_after_blank": "vaccine refrigerator to a",
+    "distractor_pulls": {
+      "has moved their": "\"program\" right before the blank pulls the verb to \"has,\" and nurses running an outreach program plausibly carry their own vaccine supply.",
+      "has moved its": "Everything right before the blank is singular (\"the mainland hospital's outreach program\"); \"its\" then reads as the program's refrigerator, a smooth singular sentence.",
+      "have moved their": "The verb is right, and it is natural for the people doing the moving to be moving their own equipment; outreach nurses do carry vaccines, so a reader need not look back at the clinic."
+    },
+    "distractor_kills": {
+      "has moved their": "Agreement: the head is \"nurses\"; and the refrigerator is the flooding clinic's. Correct only with a plural owner earlier: \"Because the district's clinics flood, the program has moved their refrigerator.\"",
+      "has moved its": "Agreement: the head of the subject is the plural \"nurses,\" not \"program\"; correct only as \"the outreach program has moved its refrigerator.\"",
+      "have moved their": "Pronoun-antecedent: the because-clause gives the reason the refrigerator is moved, so it belongs to the singular \"clinic\"; correct only after \"Because the district's health clinics flood.\""
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: complete verb x pronoun 2x2",
+      "heuristics_that_give_key": [
+        "(a) opposite of the noun before the blank",
+        "(f) does NOT apply as a counter: every pronoun row in this batch is split by design, a batch-level tell I cannot remove from inside the row"
+      ],
+      "changed": "revision: new topic and owned noun; the possessed thing is equipment people could carry (\"vaccine refrigerator\"), so \"their\" is a believable reading until the because-clause is used; no part-of-a-pond noun after the blank; the owner is now the because-clause SUBJECT but carries no \"only\"-type cue beside the possessed word"
+    },
+    "length_ratio": 1.08,
+    "key_letter": "A"
+  },
+  {
+    "id": "SEC25A-06",
+    "slot": "A6",
+    "frame": "Object pronoun: clause 1 (before a semicolon) names the singular referent and a plural rival; clause 2's plural subject + phrase ending on a singular noun + blank; the referent is fixed by a fact 10+ words after the blank",
+    "true_subject_head": "workers",
+    "misleader_words": [
+      "district",
+      "three oral vaccines"
+    ],
+    "misleader_position": "adj",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "district",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "vaccine",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "canvas",
+      "number": "sg"
+    },
+    "dimension": "pronoun",
+    "dimension_key": "sg",
+    "decider_type": "pronoun-antecedent",
+    "decider_quote": "The cholera vaccine is the only heat-stable product",
+    "words_from_blank_to_decider": 20,
+    "deletion_test": "Delete \"The cholera vaccine is the only heat-stable product among\" (leaving \"The three oral vaccines are on the ministry's list\"): \"carry them\" becomes the only reading; nothing else singles out one vaccine.",
+    "pronoun_antecedent": {
+      "word": "vaccine",
+      "number": "sg"
+    },
+    "grid": {
+      "code": "a+p",
+      "forms": [
+        "carries it",
+        "carry it",
+        "carries them",
+        "carry them"
+      ]
+    },
+    "next_four_words_after_blank": "in canvas shoulder bags",
+    "distractor_pulls": {
+      "carries it": "\"the hill district\" right before the blank is singular, and the whole first clause is about one vaccine; read fast, the sentence is singular throughout.",
+      "carry them": "The nearest vaccine noun to the blank is the plural \"the three oral vaccines on the ministry's list,\" which health workers plausibly carry; the plural verb and plural pronoun read as a matched pair.",
+      "carries them": "A reader who takes \"district\" as subject and picks up the nearer plural \"three oral vaccines\" as the thing carried."
+    },
+    "distractor_kills": {
+      "carries it": "Agreement: the subject is \"health workers\"; correct only with \"the district's health worker carries it.\"",
+      "carry them": "Pronoun-antecedent: only the heat-stable vaccine can travel in shoulder bags to villages with no electricity; the last sentence says the other two need cold boxes. Correct only if all three vaccines were heat-stable.",
+      "carries them": "Fails both; correct only in \"a health worker carries them\" with three heat-stable vaccines."
+    },
+    "hostile_reader": {
+      "options_only_pick": "\"carry it\" is the shortest option (8 vs 10/10/12 characters), a weak tell",
+      "heuristics_that_give_key": [
+        "(a) opposite of the noun before the blank"
+      ],
+      "changed": "revision: no echo pronoun for the referent in clause 1 (\"its sap\" removed) and no later restatement of it in the blank's sentence (\"the plant\" removed); the referent is now the first-clause SUBJECT with a plural rival (\"the three oral vaccines\") nearer the blank; what decides the pronoun is a fact 10+ words after the blank (\"no electricity\") plus the next sentence, not a word next to it"
+    },
+    "length_ratio": 1.0,
+    "key_letter": "D"
+  },
+  {
+    "id": "SEC25A-07",
+    "slot": "A7",
+    "frame": "Singular head + comma-set appositive ending on a plural noun, blank, commaless adverbial (\"in the clinic's experience\") + \"rarely if ever\", then an intransitive participle",
+    "true_subject_head": "dermatitis",
+    "misleader_words": [
+      "usually a handful of scaly patches on the wrists"
+    ],
+    "misleader_position": "adj",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "wrists",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "dermatitis",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "clinic's",
+      "number": "sg"
+    },
+    "dimension": "aux",
+    "dimension_key": "have",
+    "decider_type": "aux-form",
+    "decider_quote": "recurred",
+    "words_from_blank_to_decider": 8,
+    "deletion_test": "Replace \"recurred\" with \"serious\": \"is in the clinic's experience rarely if ever serious\" becomes correct and \"has\" fails; nothing else decides be vs have.",
+    "grid": {
+      "code": "j|n",
+      "forms": [
+        "is",
+        "are",
+        "has",
+        "have"
+      ]
+    },
+    "next_four_words_after_blank": "in the clinic's experience",
+    "distractor_pulls": {
+      "is": "\"Contact dermatitis ... is in the clinic's experience rarely if ever\" is the commonest frame for describing a condition (\"is rarely serious\"); the copula reading survives for seven words, through \"rarely if ever,\" until \"recurred.\"",
+      "have": "\"a handful of\" is a quantity expression that takes a plural verb (\"a handful of patches have appeared\"), so the appositive seems to fix a plural; and \"have\" is the right auxiliary for the participle.",
+      "are": "The plural \"wrists\" and \"patches\" sit right before the blank, and \"are in the clinic's experience rarely if ever\" reads as describing the patches."
+    },
+    "distractor_kills": {
+      "is": "Verb form: \"recur\" is intransitive, so \"is recurred\" is ungrammatical; correct only with an adjective: \"is ... rarely if ever serious.\"",
+      "have": "Agreement: an appositive does not change the subject's number; the head is \"dermatitis.\" Correct only as \"The scaly patches have rarely if ever recurred.\"",
+      "are": "Fails agreement and verb form; correct only in \"The patches are rarely if ever serious.\""
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: four bare auxiliaries",
+      "heuristics_that_give_key": [
+        "(a) opposite of the noun before the blank",
+        "(b) agree with the first noun"
+      ],
+      "changed": "revision: the participle moved from 5 to 8 words after the blank, behind \"in the clinic's experience rarely if ever\", where \"is\"/\"are\" still read as the start of a description (\"is rarely serious\"); new head (\"dermatitis\") and new appositive; generic subject instead of one worker"
+    },
+    "length_ratio": 1.5,
+    "key_letter": "B"
+  },
+  {
+    "id": "SEC25A-08",
+    "slot": "A8",
+    "frame": "Sentence-final restrictive participial phrase; another sentence establishes several sets of the noun; no subset cue (\"only\") in the blank's sentence",
+    "key_mark": "none",
+    "key_letter": "C",
+    "structure": "\"the samples\" + restrictive participial phrase \"drawn in the barn nearest the duck pond\"; only the first sentence (four barns) makes the phrase identifying rather than additional",
+    "decider_quote": "in all four barns of one poultry farm",
+    "glance_fail": [
+      "samples drawn,"
+    ],
+    "distractor_pulls": {
+      "samples, drawn": "With no \"only\" in the sentence, \"retested the samples, drawn in the barn nearest the duck pond\" reads as retesting all the samples and then adding where they came from, a common shape for a sentence-final participle.",
+      "samples—drawn": "A single dash before a final explanatory phrase is correct in form, and inside this sentence nothing contradicts one set of samples.",
+      "samples drawn,": "Reads as a pause before the location phrase."
+    },
+    "distractor_kills": {
+      "samples, drawn": "Makes the phrase nonrestrictive, so all the samples were drawn in that barn; the first sentence says blood came from all four barns. Correct only if one barn had been sampled.",
+      "samples—drawn": "Same nonrestrictive reading as the comma; correct only if the inspectors had sampled a single barn.",
+      "samples drawn,": "Separates the participle \"drawn\" from its locative complement \"in the barn\"; no convention allows that comma."
+    },
+    "hostile_reader": {
+      "options_only_pick": "\"samples drawn,\" can be struck at a glance (the row allows one)",
+      "heuristics_that_give_key": [
+        "\"no punctuation\" default when unsure"
+      ],
+      "changed": "revision: removed \"only\" and \"To settle the question cheaply\", which both announced a subset inside the blank's sentence; the subset reading now rests entirely on sentence 1, and the middle sentence gives a reason to retest without implying a part"
+    },
+    "length_ratio": 1.0
+  }
+]

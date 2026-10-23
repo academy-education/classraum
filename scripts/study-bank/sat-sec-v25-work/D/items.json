@@ -1,0 +1,146 @@
+[
+  {
+    "id": "SEC25D-01",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a \"the + adjective\" plural subject in a be-ellipsis",
+    "difficulty": "hard",
+    "passage": "Renters younger than sixty-five are eligible for the city's new rent rebate if a landlord has registered the unit, but the elderly in its hill districts ______. Housing advocates who reviewed the rule found no record that the exclusion was ever debated, and they suspect it entered the scheme as a drafting error that no council member noticed.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "are not",
+      "has not",
+      "is not",
+      "have not"
+    ],
+    "correct_answer": "are not",
+    "explanation": "The subject of the second clause is \"the elderly,\" an adjective used as a noun for a group of people, which takes a plural verb even though it has no -s. The blank elides the main predicate of the parallel first clause, \"Renters ... are eligible,\" so the repeated auxiliary must be a form of be: \"are not.\" \"is not\" treats \"the elderly\" as a singular mass noun. \"has not\" and \"have not\" copy the auxiliary of \"if a landlord has registered the unit,\" but that verb sits in a subordinate condition about landlords, not in the predicate that the elderly are being contrasted with.",
+    "topic_tag": "housing policy: age limits in rent rebates",
+    "template": "\"the + adjective\" plural subject after \", but\" x competing perfect auxiliary in a condition inside clause 1 x j|n + not ellipsis"
+  },
+  {
+    "id": "SEC25D-02",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and possessive pronoun-antecedent agreement split across a semicolon",
+    "difficulty": "hard",
+    "passage": "The looking-time method rests on a single assumption: a surprising event holds the gaze longer than an expected one. In typical trials, two puppets act out a brief scene for seated infants; behind a one-way mirror, an eye tracker ______ eyes, and a longer stare at an impossible outcome is scored as surprise. Critics note that boredom and fatigue can lengthen a stare as well.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "follow their",
+      "follows its",
+      "follows their",
+      "follow its"
+    ],
+    "correct_answer": "follows their",
+    "explanation": "The verb's subject is the singular \"eye tracker,\" which follows the fronted phrase \"behind a one-way mirror,\" so the verb is \"follows.\" The possessive refers to the \"infants\" at the end of the first clause, the only owners of eyes in the sentence, so it must be plural: \"follows their.\" \"follows its\" lets the pronoun copy the verb's subject or the nearby \"mirror,\" but neither a tracker nor a mirror has eyes. \"follow their\" takes a plural verb from \"puppets\" and \"infants\" in the first clause, and \"follow its\" pairs a plural verb with the singular \"tracker\" and a singular pronoun with the plural \"infants.\"",
+    "topic_tag": "developmental psychology: infant looking-time trials",
+    "template": "plural owner ending clause 1 before a semicolon + fronted locative + singular subject x owner pulls the verb, mirror/tracker pull the pronoun x a+p possessive"
+  },
+  {
+    "id": "SEC25D-03",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: a direct question with modal inversion after a colon, ending mid-passage",
+    "difficulty": "hard",
+    "passage": "When two neighboring districts merged their primary schools, the new board inherited a dispute that had divided the valley for a generation: which language should the merged school ______ parents favored offering both, and the board adopted a two-track timetable. Researchers in language education later compared reading scores across the two tracks at the end of third grade.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "teach, most",
+      "teach? Most",
+      "teach most",
+      "teach. Most"
+    ],
+    "correct_answer": "teach? Most",
+    "explanation": "The words after the colon, \"which language should the merged school teach,\" form a direct question: the auxiliary \"should\" comes before the subject \"the merged school.\" A direct question ends with a question mark, and the next sentence begins with a capital: \"teach? Most.\" \"teach. Most\" would suit only an indirect question with statement word order (\"which language the merged school should teach\"). \"teach most\" makes \"most parents\" look like the object of \"teach\" and leaves \"favored\" with no subject, and \"teach, most\" joins two independent clauses with only a comma.",
+    "topic_tag": "language education: school mergers and language of instruction",
+    "template": "direct wh-object question (modal inversion) after a colon, ending on a transitive verb x next sentence's subject reads as the verb's object x question/period/comma/none"
+  },
+  {
+    "id": "SEC25D-04",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a plural head and a singular attractor, past set by a habitual-past if-clause",
+    "difficulty": "hard",
+    "passage": "One county's permit office has been held up as a model of evenhanded treatment. If outdated forms reached the front desk during the filing season, applications from the county's largest employer ______ to a senior clerk for personal review. Scholars of public administration cite the case as an example of quiet discretion, the kind of unequal treatment that leaves no trace in an agency's written rules.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "have been routed",
+      "was routed",
+      "has been routed",
+      "were routed"
+    ],
+    "correct_answer": "were routed",
+    "explanation": "The subject is the plural \"applications\"; \"employer\" is the object of the phrase \"from the county's largest employer\" and does not govern the verb, so the verb must be plural. The opening condition \"If outdated forms reached the front desk during the filing season\" describes a habitual past practice with the past verb \"reached,\" which requires a simple past main verb: \"were routed.\" \"have been routed\" has the right number but sets a present perfect against a past condition. \"was routed\" takes its number from \"employer,\" and \"has been routed\" carries on the singular perfect of the first sentence's \"has been held up\"; both are singular for a plural subject.",
+    "topic_tag": "public administration: discretionary permit review",
+    "template": "fronted habitual-past if-clause + plural head + from-phrase ending on a singular noun x adjacent singular + singular perfect in the previous sentence x e|h"
+  },
+  {
+    "id": "SEC25D-05",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement after an opening singular prepositional phrase, past set by a habitual-past unless-clause",
+    "difficulty": "hard",
+    "passage": "Under the harbor commission's charter, berth assignments for the town's fishing crews ______ unless the full council, meeting each spring in the old customs hall, voted to make the arrangement permanent. Port economists argue that such short horizons discourage a crew from investing in a larger boat, because a berth that may vanish within the year cannot secure a loan.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "were provisional",
+      "have been provisional",
+      "was provisional",
+      "has been provisional"
+    ],
+    "correct_answer": "were provisional",
+    "explanation": "The subject is \"berth assignments,\" which is plural; \"the harbor commission's charter\" sits inside the opening phrase \"Under the harbor commission's charter\" and cannot be the subject, so the verb must be plural. The condition \"unless the full council, meeting each spring in the old customs hall, voted to make the arrangement permanent\" uses the past \"voted,\" which frames a habitual past arrangement and requires the simple past \"were provisional.\" \"have been provisional\" has the right number but pairs a present perfect with a past condition. \"was provisional\" takes its number from the singular \"charter\" that opens the sentence, and \"has been provisional\" treats the assignments as the singular \"arrangement\" named in the condition; both are singular for a plural subject.",
+    "topic_tag": "port economics: provisional berth assignments",
+    "template": "opening singular under-phrase + plural head + for-phrase ending on a plural noun x singular charter/arrangement x i|r + word, past set by an unless-clause whose verb is delayed past a participial interrupter"
+  },
+  {
+    "id": "SEC25D-06",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and object pronoun-antecedent agreement split across \", so\"",
+    "difficulty": "hard",
+    "passage": "Field linguists who worked in the valley left hundreds of reel-to-reel tapes in a single trunk at a regional museum, so the museum's archivist ______ into digital files for an online catalog, a task expected to take several years. Specialists in language documentation warn that magnetic tape degrades slowly but steadily.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "are converting it",
+      "is converting them",
+      "is converting it",
+      "are converting them"
+    ],
+    "correct_answer": "is converting them",
+    "explanation": "The verb's subject is the singular \"archivist,\" so the verb is \"is converting.\" The object pronoun refers to the \"hundreds of reel-to-reel tapes\" that the linguists left, the only things in the sentence that can be converted into digital files, so it must be plural: \"is converting them.\" \"is converting it\" takes its number from \"trunk\" or \"catalog,\" but a trunk is a container and a catalog is the destination. \"are converting them\" takes a plural verb from \"Field linguists\" and \"tapes\" in the first clause, and \"are converting it\" is wrong on both counts.",
+    "topic_tag": "language documentation: digitizing reel-to-reel archives",
+    "template": "plural object of clause 1 held in a singular container + \", so\" + singular subject x container and catalog pull the pronoun, plural cast pulls the verb x b+p object"
+  },
+  {
+    "id": "SEC25D-07",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and possessive pronoun-antecedent agreement split across \", but\"",
+    "difficulty": "hard",
+    "passage": "Within a few months, borrowers in the district had switched to paying by text message, but the lender's only bookkeeper, a former schoolteacher with little faith in the new technology, ______ names and amounts into a cloth-bound ledger. Development economists who later audited the lender found the paper record more complete than the digital one.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "were entering its",
+      "was entering its",
+      "were entering their",
+      "was entering their"
+    ],
+    "correct_answer": "was entering their",
+    "explanation": "The verb's subject is the singular \"bookkeeper,\" separated from the blank by the appositive \"a former schoolteacher with little faith in the new technology,\" so the verb is \"was entering.\" The possessive refers to the \"borrowers\" of the first clause, the only people in the sentence whose names and payment amounts are recorded, so it must be plural: \"was entering their.\" \"was entering its\" points the pronoun at \"technology\" or \"lender,\" but neither has names to enter. \"were entering their\" takes a plural verb from \"borrowers\" and \"months\" in the first clause, and \"were entering its\" is wrong on both counts.",
+    "topic_tag": "development economics: paper ledgers in microlending",
+    "template": "plural owner as clause 1 subject + \", but\" + singular subject + comma-set appositive ending on a singular noun x owner pulls the verb, technology/lender pull the pronoun x g+p possessive"
+  },
+  {
+    "id": "SEC25D-08",
+    "domain": "Standard English Conventions",
+    "subskill": "form: singular possessive noun decided by another sentence, before a noun that can be read as a verb",
+    "difficulty": "hard",
+    "passage": "The city's old rail yards sat empty for twelve years, a stretch during which voters never changed mayors. Historians of the project agree that the ______ plans for a riverfront stadium kept the site idle: each version was withdrawn before the council could vote on it, and no developer would commit to a bid.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "mayors'",
+      "mayor",
+      "mayor's",
+      "mayors"
+    ],
+    "correct_answer": "mayor's",
+    "explanation": "The first sentence says that during the twelve years \"voters never changed mayors,\" so one person held the office throughout and owned the stadium plans; the singular possessive \"mayor's\" is required. \"mayors'\" would be right only if several mayors had made the plans, and the word \"mayors\" and the twelve-year span tempt that reading. \"mayor\" lets \"the mayor plans for a riverfront stadium\" read as a clause, but then \"kept\" has no subject, and \"mayors\" is a plural with no possessive mark that also fails to agree with \"plans\" read as a verb.",
+    "topic_tag": "urban planning: stalled rail-yard redevelopment",
+    "template": "singular possessive inside a that-clause before a noun/verb homograph x owner count implied by an idiom in another sentence that contains the plural word x mayor / mayor's / mayors / mayors'"
+  }
+]

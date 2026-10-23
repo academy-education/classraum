@@ -1,0 +1,146 @@
+[
+  {
+    "id": "SEC25A-01",
+    "subskill": "form: subject-verb agreement with a no -s plural subject and tense set by a provided-that conditional",
+    "passage": "The basin's livestock was screened last spring for liver fluke, a flatworm whose larvae shelter in snails on marshy ground. Cattle on the upland farms ______ from infection by the parasite provided that the herd's drinking water comes from piped springs, and few hill farmers let stock graze near the marsh. Fencing and piping cost far less than treating a fluke outbreak.",
+    "choices": [
+      "were safe",
+      "is safe",
+      "are safe",
+      "was safe"
+    ],
+    "correct_answer": "are safe",
+    "explanation": "The subject is \"Cattle,\" a plural noun with no -s ending; unlike the mass noun \"livestock\" in the first sentence, it takes a plural verb. The tense is set by the conditional \"provided that the herd's drinking water comes from piped springs,\" whose present verb states a standing condition, so the main verb must also be present: \"are safe.\" \"Is safe\" treats \"Cattle\" like \"livestock,\" which does take \"was\" in the first sentence. \"Were safe\" has the right number but copies the past tense of the screening, which clashes with the present condition. \"Was safe\" copies the first sentence's \"was\" exactly and fails on both number and tense.",
+    "topic_tag": "veterinary parasitology: liver fluke in upland cattle",
+    "template": "no -s plural subject (cattle) after a mass-noun \"livestock was\" sentence x reads as mass noun x i|j + shared word (safe), present from provided-that",
+    "domain": "Standard English Conventions",
+    "difficulty": "hard",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?"
+  },
+  {
+    "id": "SEC25A-02",
+    "subskill": "form: subject-verb agreement with \"each X and Y\" and past tense set by a before-clause",
+    "passage": "Each graft and cutting in the nursery's propagation trays ______ small brown lesions on the lower leaves before the growers recognized the fungus and sterilized the benches. Grafted tomato seedlings are especially exposed to such outbreaks, because the fresh cut gives airborne spores an easy way in, and a single infected tray can carry the disease through a whole glasshouse.",
+    "choices": [
+      "was developing",
+      "are developing",
+      "were developing",
+      "is developing"
+    ],
+    "correct_answer": "was developing",
+    "explanation": "When \"each\" comes before a compound subject (\"Each graft and cutting\"), the subject is singular, because \"each\" makes the plants count one at a time; the plural \"trays\" right before the blank is inside a prepositional phrase. The before-clause \"before the growers recognized the fungus\" places the action in the past, so the singular past progressive \"was developing\" is correct. \"Were developing\" has the right tense but treats \"and\" as making the subject plural. \"Is developing\" has the right number but is present, which clashes with \"recognized.\" \"Are developing\" is wrong on both counts.",
+    "topic_tag": "horticulture: fungal lesions on grafted tomato seedlings",
+    "template": "each + sg and sg + PP on a plural x \"and\" reads plural + adjacent plural x b|g, past from before-clause",
+    "domain": "Standard English Conventions",
+    "difficulty": "hard",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?"
+  },
+  {
+    "id": "SEC25A-03",
+    "subskill": "form: subject-verb agreement with a numeral-modified head and simple past forced by a definite-past time phrase",
+    "passage": "Malaria kills more young children in one lowland district than any other illness, and health officials there pinned their hopes on a vaccine. The twelve-week comparison of the two leading candidates ______ by an independent board of physicians and statisticians on the third day of that year's monsoon. The board's report, which remains public, blames a cluster of high fevers in the youngest group.",
+    "choices": [
+      "have been halted",
+      "were halted",
+      "has been halted",
+      "was halted"
+    ],
+    "correct_answer": "was halted",
+    "explanation": "The subject is the singular \"comparison\"; the numeral in \"twelve-week\" and the plural \"candidates\" in the of-phrase do not change its number, even though vaccines can also be halted. The time phrase \"on the third day of that year's monsoon\" names a single finished day in the past (\"that year\" points back), so the simple past is required: \"was halted.\" \"Has been halted\" has the right number, but the present perfect cannot take a definite past time phrase. \"Were halted\" agrees with \"candidates,\" which could be halted in meaning but is not the subject. \"Have been halted\" is wrong on both number and tense.",
+    "topic_tag": "clinical trials: malaria vaccine comparison halted",
+    "template": "\"The\" + numeral-modified sg head + of + plural that can also take the verb x numeral and adjacent plural x e|h, simple past from \"on the third day of that year's\" phrase",
+    "domain": "Standard English Conventions",
+    "difficulty": "hard",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?"
+  },
+  {
+    "id": "SEC25A-04",
+    "subskill": "form: auxiliary in a sentence-final though-clause ellipsis after a present perfect",
+    "passage": "Apple scab, a fungal disease, spreads fastest in cool, wet summers and blackens the skin of the fruit. At one long-established orchard, a single heirloom russet has withstood three such summers without a blemish, though the cultivars that replaced it ______. Pathologists suspect the fungus has overcome the lone resistance gene those cultivars carry.",
+    "choices": [
+      "does not",
+      "have not",
+      "do not",
+      "has not"
+    ],
+    "correct_answer": "have not",
+    "explanation": "The though-clause leaves out a verb phrase, and the only one it can stand for is \"withstood three such summers without a blemish,\" the main clause's present perfect; so the auxiliary must be \"have\": the cultivars \"have not [withstood ...].\" Its subject is the plural \"cultivars\"; \"it\" just before the blank is the object inside the relative clause \"that replaced it,\" so the plural \"have not\" is correct. \"Has not\" agrees with \"it\" and the singular \"russet.\" \"Do not\" and \"does not\" would stand for a simple-present verb such as the first sentence's \"spreads,\" which cannot be what the cultivars fail to do; \"does not\" is also singular.",
+    "topic_tag": "plant pathology: apple scab on heirloom russets",
+    "template": "sentence-final though-clause ellipsis whose plural subject carries a subject relative ending on sg \"it\" x adjacent \"it\" + clause 1's has + present-simple first sentence x m|n + not",
+    "domain": "Standard English Conventions",
+    "difficulty": "hard",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?"
+  },
+  {
+    "id": "SEC25A-05",
+    "subskill": "form: subject-verb agreement plus a possessive pronoun whose antecedent is the subject of an opening because-clause",
+    "passage": "Because the district's lone health clinic floods at spring tides, nurses from the mainland hospital's outreach program ______ vaccine refrigerator to a church hall on higher ground. The arrangement is meant to be temporary: a raised replacement building is due to open within two years, and patients reach the hall by the same coastal bus.",
+    "choices": [
+      "have moved its",
+      "has moved their",
+      "has moved its",
+      "have moved their"
+    ],
+    "correct_answer": "have moved its",
+    "explanation": "The subject of the main clause is the plural \"nurses\"; \"program\" right before the blank belongs to the phrase \"from the mainland hospital's outreach program,\" so the verb is \"have moved.\" The refrigerator is the one that had to leave the flooding building, so it belongs to \"the district's lone health clinic,\" and the possessive is the singular \"its.\" \"Have moved their\" has the right verb but gives the refrigerator to the nurses, who came from the mainland and were not flooded. \"Has moved its\" agrees the verb with \"program.\" \"Has moved their\" is wrong on both.",
+    "topic_tag": "rural health care: moving a flood-prone clinic's vaccine store",
+    "template": "opening because-clause subject owns (sg) + pl head + from-phrase ending on sg x adjacent sg pulls verb, people-as-carriers pull their x d+p possessive",
+    "domain": "Standard English Conventions",
+    "difficulty": "hard",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?"
+  },
+  {
+    "id": "SEC25A-06",
+    "subskill": "form: subject-verb agreement plus an object pronoun whose referent is singular among plural rivals in the clause before a semicolon",
+    "passage": "The cholera vaccine is the only heat-stable product among the three oral vaccines on the ministry's list; health workers in the hill district ______ in canvas shoulder bags on week-long treks to villages that have no electricity. The other two must travel in cold boxes packed with ice, which rarely last more than a day on mountain paths.",
+    "choices": [
+      "carries it",
+      "carry them",
+      "carries them",
+      "carry it"
+    ],
+    "correct_answer": "carry it",
+    "explanation": "The subject of the second clause is the plural \"health workers\"; \"district\" right before the blank is the object of \"in,\" so the verb is \"carry.\" What they carry without refrigeration to villages with no electricity can only be the one heat-stable product, \"The cholera vaccine,\" so the object pronoun is the singular \"it.\" \"Carry them\" has the right verb but points to \"the three oral vaccines,\" two of which, the last sentence says, need cold boxes. \"Carries it\" agrees the verb with \"district.\" \"Carries them\" is wrong on both.",
+    "topic_tag": "vaccine logistics: heat-stable cholera vaccine on mountain treks",
+    "template": "clause 1 singular referent with a plural rival (\"the three oral vaccines\"); pl head + in-phrase on sg x adjacent sg pulls verb, plural rival pulls them x a+p object",
+    "domain": "Standard English Conventions",
+    "difficulty": "hard",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?"
+  },
+  {
+    "id": "SEC25A-07",
+    "subskill": "form: subject-verb agreement across an appositive plus the perfect auxiliary forced by a distant participle",
+    "passage": "A dermatology clinic serving one farming region sees many cases of skin irritation from fungicide-treated seed. Contact dermatitis of this sort, usually a handful of scaly patches on the wrists, ______ in the clinic's experience rarely if ever recurred in patients who switched to nitrile gloves. Patch testing usually points to the copper compounds in the seed coating.",
+    "choices": [
+      "is",
+      "has",
+      "have",
+      "are"
+    ],
+    "correct_answer": "has",
+    "explanation": "The subject is the singular \"dermatitis\"; \"usually a handful of scaly patches on the wrists\" is an appositive set off by commas that renames it, so it does not make the subject plural. The verb that completes the clause is \"recurred,\" eight words after the blank, and that intransitive past participle needs the perfect auxiliary: \"has ... rarely if ever recurred.\" \"Is\" reads well as far as \"is in the clinic's experience rarely\" (as in \"rarely serious\"), but \"is recurred\" is not grammatical. \"Have\" is the right auxiliary but agrees with \"a handful of scaly patches.\" \"Are\" fails on both.",
+    "topic_tag": "occupational dermatology: fungicide-treated seed rash",
+    "template": "sg head + PP + comma appositive (\"a handful of\" + plural) + commaless 4-word adverbial + \"rarely if ever\" x adjacent plural x j|n, have forced by intransitive participle 8 words on",
+    "domain": "Standard English Conventions",
+    "difficulty": "hard",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?"
+  },
+  {
+    "id": "SEC25A-08",
+    "subskill": "boundaries: no punctuation before a restrictive participial phrase whose need is set by another sentence",
+    "passage": "During a routine avian influenza check, inspectors took blood from laying hens in all four barns of one poultry farm. The first assay gave ambiguous results, and the owner asked for a second opinion before agreeing to a cull. The state laboratory then retested the ______ in the barn nearest the duck pond, where wild birds land most often.",
+    "choices": [
+      "samples, drawn",
+      "samples—drawn",
+      "samples drawn",
+      "samples drawn,"
+    ],
+    "correct_answer": "samples drawn",
+    "explanation": "The first sentence establishes that blood came from all four barns, so there are four sets of samples, and the phrase \"drawn in the barn nearest the duck pond\" is needed to say which set the laboratory retested. A restrictive modifier takes no punctuation. A comma or a dash before \"drawn\" would mark the phrase as extra information about all the samples, implying that every sample came from that one barn, which contradicts the first sentence. A comma after \"drawn\" separates the participle from the phrase that completes it.",
+    "topic_tag": "veterinary epidemiology: avian influenza retesting",
+    "template": "sentence-final restrictive participial phrase, plurality set by another sentence x comma/dash read as nonrestrictive x none/comma/dash/comma shifted",
+    "domain": "Standard English Conventions",
+    "difficulty": "hard",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?"
+  }
+]

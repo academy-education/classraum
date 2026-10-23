@@ -1,0 +1,430 @@
+[
+  {
+    "id": "SEC25D-01",
+    "slot": "D1",
+    "frame": "Be-ellipsis after \", but\": clause 1 \"Renters younger than sixty-five are eligible ... if a landlord has registered the unit\" holds both the be-predicate and a competing singular perfect in its condition; clause 2 \"the elderly in its hill districts\" + the blank",
+    "true_subject_head": "elderly",
+    "misleader_words": [
+      "the elderly",
+      "has registered",
+      "landlord"
+    ],
+    "misleader_position": "self",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "districts",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "Renters",
+      "number": "pl"
+    },
+    "after_noun_within_8": null,
+    "dimension": "aux",
+    "dimension_key": "be",
+    "decider_type": "parallel-verb",
+    "decider_quote": "Renters younger than sixty-five are eligible",
+    "words_from_blank_to_decider": 22,
+    "deletion_test": "Delete the main predicate \"are eligible\": the only auxiliary left in the sentence is \"has registered\", which belongs to the landlord condition; nothing chooses be over have, and the other sentences (\"reviewed\", \"found\", \"suspect\") are not antecedents of this ellipsis.",
+    "grid": {
+      "code": "j|n",
+      "forms": [
+        "is not",
+        "are not",
+        "has not",
+        "have not"
+      ]
+    },
+    "key_letter": "A",
+    "next_four_words_after_blank": "Housing advocates who reviewed",
+    "length_ratio": 1.17,
+    "distractor_pulls": {
+      "has not": "\"has registered\" is the finite verb nearest the blank and is singular; a reader who matches the ellipsis to the closest auxiliary, and reads \"the elderly\" as a singular group label, writes \"has not\".",
+      "is not": "\"the elderly\" carries no plural -s and is often treated as a mass noun (\"the elderly population\"); the singular \"landlord\" and \"unit\" in the same sentence reinforce a singular reading.",
+      "have not": "Right number, and \"have\" copies the perfect auxiliary of \"has registered\", the only auxiliary in the sentence; \"but X have not\" is also the default negative tag in speech."
+    },
+    "distractor_kills": {
+      "has not": "Ellipsis repeats the auxiliary of the parallel main predicate (\"are eligible\"), and \"the + adjective\" for people is plural. Correct in: \"A landlord has registered the unit, but the tenant has not.\"",
+      "is not": "\"the elderly\" naming a class of people is plural. Correct in: \"The unit is eligible, but the garage is not.\"",
+      "have not": "\"have not\" would elide \"have registered the unit\", which is the landlord's action, not a predicate contrasted with \"Renters ... are eligible\"; parallel ellipsis needs \"are\". Correct in: \"Landlords have registered their units, but tenants have not.\""
+    },
+    "hostile_reader": {
+      "options_only_pick": "None; four equal auxiliaries + not.",
+      "heuristics_that_give_key": [
+        "(b) first noun 'Renters' agrees (row-fixed)",
+        "proximity reader: 'districts' pl agrees (row-fixed Near pl)"
+      ],
+      "changed": "Revision: new architecture. The be-predicate is now ~22 words back and a competing singular perfect (\"if a landlord has registered\") sits between it and the blank, so 'copy the first clause's verb' no longer has one candidate; new topic."
+    }
+  },
+  {
+    "id": "SEC25D-02",
+    "slot": "D2",
+    "frame": "Clause 1 ends with the plural owner \"infants\" before a semicolon; clause 2 opens with a fronted locative \"behind a one-way mirror,\" then the singular subject \"an eye tracker\" + the blank",
+    "true_subject_head": "tracker",
+    "misleader_words": [
+      "infants",
+      "puppets",
+      "mirror"
+    ],
+    "misleader_position": "early",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "tracker",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "trials",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "eyes",
+      "number": "pl"
+    },
+    "dimension": "pronoun",
+    "dimension_key": "pl",
+    "decider_type": "pronoun-antecedent",
+    "decider_quote": "for seated infants",
+    "words_from_blank_to_decider": 10,
+    "deletion_test": "Delete \"for seated infants\": nothing in the passage owns eyes (puppets are props, the first sentence names no person), so its/their is unsettled.",
+    "pronoun_antecedent": {
+      "word": "infants",
+      "number": "pl"
+    },
+    "grid": {
+      "code": "a+p",
+      "forms": [
+        "follows its",
+        "follow its",
+        "follows their",
+        "follow their"
+      ]
+    },
+    "key_letter": "C",
+    "next_four_words_after_blank": "eyes, and a longer",
+    "length_ratio": 1.27,
+    "distractor_pulls": {
+      "follow their": "\"their\" is right, and the plural verb matches the plural noun it points to; the plural cast of the sentence (\"trials\", \"two puppets\", \"infants\") keeps the reader in the plural.",
+      "follows its": "The verb is right, and \"its\" copies the singular subject or the singular \"mirror\" right before it; \"a tracker follows its ...\" sounds like a device and its own target.",
+      "follow its": "\"follow\" is pulled by the plural \"puppets act out\" of the parallel first clause (same present tense); \"its\" by \"mirror\" and \"tracker\" next to the blank."
+    },
+    "distractor_kills": {
+      "follow their": "Subject-verb: the subject is the singular \"tracker\"; the fronted phrase is not the subject. Correct in: \"two eye trackers follow their eyes\".",
+      "follows its": "Pronoun-antecedent: eyes belong to the infants; a tracker and a mirror have none. Correct in: \"the tracker follows its calibration routine\".",
+      "follow its": "Wrong on both. Correct in: \"the trackers follow its eyes\" after a single infant."
+    },
+    "hostile_reader": {
+      "options_only_pick": "Key uniquely longest (13 vs 10-12); my one allowed case.",
+      "heuristics_that_give_key": [
+        "(f) opposite verb/pronoun numbers: YES - table-level tell shared by every pronoun slot; I cannot remove it without changing the row"
+      ],
+      "changed": "Revision: fronted locative before the subject; possessed noun changed to one that the singular nouns cannot own at all (\"eyes\"); verb changed."
+    }
+  },
+  {
+    "id": "SEC25D-03",
+    "slot": "D3",
+    "frame": "Colon after \"a dispute that had divided the valley\"; direct question with fronted wh-object and inverted \"should\", ending on the transitive verb \"teach\"; next sentence opens \"Most parents favored ...\"",
+    "key_mark": "question",
+    "key_letter": "B",
+    "structure": "Left: \"which language should the merged school teach\" (direct question, auxiliary before subject). Right: \"Most parents favored offering both\" (independent clause). With no mark, \"teach most parents\" reads as verb + object until \"favored\".",
+    "decider_quote": "should the merged school",
+    "glance_fail": [],
+    "distractor_pulls": {
+      "teach. Most": "The question is not introduced as a question (\"inherited a dispute ...:\"), so it reads as a reported matter inside a statement, which ends with a period.",
+      "teach, most": "A reader who takes the colon's content as a reported issue continues with a comma into a result clause (\"..., most parents favored ...\"), as in a long declarative sentence.",
+      "teach most": "\"teach most parents\" is a natural verb + object phrase (a school teaching parents), so the run-on parses smoothly for several words until \"favored\"."
+    },
+    "distractor_kills": {
+      "teach. Most": "A direct question (inverted \"should\") ends with a question mark. Correct in: \"...: which language the merged school should teach. Most ...\" (statement order).",
+      "teach, most": "Comma splice: two independent clauses joined by a comma alone.",
+      "teach most": "Fused sentence: \"most parents favored ...\" has its own subject and verb, and \"favored\" leaves no role for \"most parents\" as an object of \"teach\"."
+    },
+    "hostile_reader": {
+      "options_only_pick": "Two capitalized, two lower-case; no odd one out.",
+      "heuristics_that_give_key": [
+        "noticing the inversion gives the key (row-fixed: the question must be direct)"
+      ],
+      "changed": "Revision: removed \"put a single question to parents\" (which announced the question); the question now ends on a transitive verb so the no-mark option garden-paths (\"teach most parents\"); new opening sentence architecture (when-clause + colon), new words before/after the blank."
+    }
+  },
+  {
+    "id": "SEC25D-04",
+    "slot": "D4",
+    "frame": "Fronted if-clause with a past verb (\"If outdated forms reached the front desk during the filing season,\") BEFORE the subject; plural head \"applications\" + \"from the county's largest employer\" + the blank; nothing after the blank decides anything",
+    "true_subject_head": "Applications",
+    "misleader_words": [
+      "employer",
+      "has been held up"
+    ],
+    "misleader_position": "adj",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "employer",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "forms",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "clerk",
+      "number": "sg"
+    },
+    "dimension": "aspect",
+    "dimension_key": "non-perfect",
+    "decider_type": "conditional",
+    "decider_quote": "If outdated forms reached the front desk during the filing season",
+    "words_from_blank_to_decider": 9,
+    "deletion_test": "Delete the if-clause: \"applications ... ______ to a senior clerk for personal review.\" Past and present perfect both fit; the first sentence's \"has been held up\" and the last sentence's present \"cite\" settle neither.",
+    "grid": {
+      "code": "e|h",
+      "forms": [
+        "has been routed",
+        "have been routed",
+        "was routed",
+        "were routed"
+      ]
+    },
+    "key_letter": "D",
+    "next_four_words_after_blank": "to a senior clerk",
+    "length_ratio": 1.1,
+    "distractor_pulls": {
+      "have been routed": "Right number, and the present perfect continues the first sentence's frame (\"has been held up\") and is the register for an agency's standing practice; the condition sits before the subject, so by the blank the reader has stopped tracking its tense.",
+      "was routed": "\"employer\" stands right before the blank, and the sentence is about how one employer was treated.",
+      "has been routed": "The opening sentence fixes a singular present perfect about one office (\"has been held up\"); a reader carrying that frame onto one employer's file writes \"has been routed\"."
+    },
+    "distractor_kills": {
+      "have been routed": "Tense sequence: a habitual past condition (\"reached\") needs a past main verb. Correct in: \"If outdated forms reach the desk, applications have been routed ...\" is still odd; correct in: \"Applications have been routed to a clerk this year.\"",
+      "was routed": "Subject-verb agreement: the head is plural \"applications\". Correct in: \"the application from the employer was routed\".",
+      "has been routed": "Wrong on number and aspect. Correct in: \"The application has been routed to a clerk.\""
+    },
+    "hostile_reader": {
+      "options_only_pick": "Two 'been', two simple pasts; no extra word.",
+      "heuristics_that_give_key": [
+        "(a) opposite-near: yes (row-fixed)",
+        "(e) 'been' loses: yes - batch-level tell named by readers; the row fixes a non-perfect key"
+      ],
+      "changed": "Revision: the decider moved from a trailing if-clause to a FRONTED if-clause before the subject, so nothing after the blank decides; the head is no longer the sentence's first word."
+    }
+  },
+  {
+    "id": "SEC25D-05",
+    "slot": "D5",
+    "frame": "Opening phrase \"Under the harbor commission's charter,\" (singular), plural subject \"berth assignments for the town's fishing crews\" + the blank; unless-clause whose finite verb \"voted\" is delayed by a participial interrupter",
+    "true_subject_head": "assignments",
+    "misleader_words": [
+      "charter",
+      "arrangement",
+      "council"
+    ],
+    "misleader_position": "early",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "crews",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "commission",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "council",
+      "number": "sg"
+    },
+    "dimension": "aspect",
+    "dimension_key": "non-perfect",
+    "decider_type": "conditional",
+    "decider_quote": "voted to make the arrangement permanent",
+    "words_from_blank_to_decider": 12,
+    "deletion_test": "Delete the unless-clause: \"berth assignments ... ______ provisional.\" The following sentence is a general present (\"argue\", \"discourage\", \"cannot\"), so nothing settles past against present perfect.",
+    "grid": {
+      "code": "i|r",
+      "forms": [
+        "was provisional",
+        "were provisional",
+        "has been provisional",
+        "have been provisional"
+      ]
+    },
+    "key_letter": "A",
+    "next_four_words_after_blank": "unless the full council",
+    "length_ratio": 1.07,
+    "distractor_pulls": {
+      "have been provisional": "Right number; \"unless the full council, meeting each spring\" reads as a standing rule in the present (\"meeting\" carries no tense), and the passage's other sentence is present, so the perfect looks like the ongoing-arrangement form until \"voted\" arrives twelve words on.",
+      "was provisional": "The sentence opens on the singular \"the harbor commission's charter\", which looks like the thing that \"was provisional\".",
+      "has been provisional": "The condition renames the subject as the singular \"the arrangement\"; a reader maps it back (\"the arrangement has been provisional\"), helped by the standing-rule reading."
+    },
+    "distractor_kills": {
+      "have been provisional": "Tense sequence: a habitual condition in the past (\"voted\") needs a past main verb. Correct in: \"... have been provisional unless the council has voted to extend them.\"",
+      "was provisional": "Subject-verb agreement: the subject is plural \"ceilings\"; \"authority\" is the object of \"For\". Correct in: \"For the authority, the cap was provisional ...\".",
+      "has been provisional": "Wrong on number (plural \"ceilings\") and on aspect (past condition). Correct in: \"The cap has been provisional unless the council has renewed it.\""
+    },
+    "hostile_reader": {
+      "options_only_pick": "Two 'been' forms, two simple pasts; shared 'provisional'.",
+      "heuristics_that_give_key": [
+        "(e) 'been' loses: yes (row-fixed non-perfect key; batch-level tell)"
+      ],
+      "changed": "Revision: the deciding past verb moved from word 5 to word 12 behind a tenseless participial interrupter (\"meeting each spring ...\"); the condition now names the singular \"arrangement\" (no plural pronoun); new opening phrase, subject and topic. The decider stays after the blank as the row requires, unlike D4, whose condition is now fronted."
+    }
+  },
+  {
+    "id": "SEC25D-06",
+    "slot": "D6",
+    "frame": "Clause 1 \"Field linguists who worked in the valley left hundreds of reel-to-reel tapes in a single trunk at a regional museum\" (plural object = antecedent, inside a singular container), \", so\" + \"the museum's archivist\" + the blank",
+    "true_subject_head": "archivist",
+    "misleader_words": [
+      "tapes",
+      "Field linguists",
+      "trunk",
+      "catalog"
+    ],
+    "misleader_position": "early",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "archivist",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "linguists",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "files",
+      "number": "pl"
+    },
+    "dimension": "pronoun",
+    "dimension_key": "pl",
+    "decider_type": "pronoun-antecedent",
+    "decider_quote": "hundreds of reel-to-reel tapes",
+    "words_from_blank_to_decider": 16,
+    "deletion_test": "Delete \"hundreds of reel-to-reel tapes\" (\"left [something] in a single trunk\"): nothing named is the material being converted, so it/them is unsettled; the trunk itself is not convertible.",
+    "pronoun_antecedent": {
+      "word": "tapes",
+      "number": "pl"
+    },
+    "grid": {
+      "code": "b+p",
+      "forms": [
+        "is converting it",
+        "are converting it",
+        "is converting them",
+        "are converting them"
+      ]
+    },
+    "key_letter": "B",
+    "next_four_words_after_blank": "into digital files for",
+    "length_ratio": 1.12,
+    "distractor_pulls": {
+      "are converting it": "\"are\" is pulled by the plural cast of clause 1 (\"Field linguists\", \"tapes\"), and \"it\" by \"a single trunk\", the singular holder of everything that was left.",
+      "is converting it": "The verb is right, and \"it\" picks up \"a single trunk\" (the deposit as one unit) or the singular \"catalog\" after the blank.",
+      "are converting them": "\"them\" is right, and the plural verb matches the plural noun it points to; the linguists are the people doing work in clause 1."
+    },
+    "distractor_kills": {
+      "are converting it": "Wrong on both: singular \"archivist\" needs \"is\"; \"tapes\" needs \"them\". Correct in: \"the archivists are converting it [one tape]\".",
+      "is converting it": "Pronoun-antecedent: the material converted into digital files is the tapes; a trunk is a container and the catalog is the destination. Correct in: \"left one tape ..., so the archivist is converting it\".",
+      "are converting them": "Subject-verb: the subject is the singular \"archivist\". Correct in: \"the museum's archivists are converting them\"."
+    },
+    "hostile_reader": {
+      "options_only_pick": "Clean 2x2.",
+      "heuristics_that_give_key": [
+        "(f) opposite verb/pronoun numbers: YES - table-level tell"
+      ],
+      "changed": "Revision: removed \"sole\" and \"one cassette at a time\" (both signposted the answer); the antecedent now sits inside a singular container (\"a single trunk\"), giving \"it\" a real but wrong referent; new verb."
+    }
+  },
+  {
+    "id": "SEC25D-07",
+    "slot": "D7",
+    "frame": "Clause 1 \"Within a few months, borrowers in the district had switched to paying by text message\" (plural owner), \", but\" + singular subject \"the lender's only bookkeeper\" + appositive \"a former schoolteacher with little faith in the new technology,\" + the blank",
+    "true_subject_head": "bookkeeper",
+    "misleader_words": [
+      "borrowers",
+      "months",
+      "technology",
+      "lender"
+    ],
+    "misleader_position": "early",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "technology",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "months",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "names",
+      "number": "pl"
+    },
+    "dimension": "pronoun",
+    "dimension_key": "pl",
+    "decider_type": "pronoun-antecedent",
+    "decider_quote": "borrowers in the district",
+    "words_from_blank_to_decider": 27,
+    "deletion_test": "Delete \"borrowers in the district\": no noun in the passage has names and amounts to record (\"economists\" audit, they do not pay), so its/their is unsettled.",
+    "pronoun_antecedent": {
+      "word": "borrowers",
+      "number": "pl"
+    },
+    "grid": {
+      "code": "g+p",
+      "forms": [
+        "was copying its",
+        "were copying its",
+        "was copying their",
+        "were copying their"
+      ]
+    },
+    "key_letter": "D",
+    "next_four_words_after_blank": "names and amounts into",
+    "length_ratio": 1.13,
+    "distractor_pulls": {
+      "were entering its": "\"were\" is pulled by the plural cast of clause 1 (\"borrowers\", \"months\") across a long appositive that hides the subject, and \"its\" by the singular \"technology\" right before the blank.",
+      "was entering its": "The verb is right, and \"its\" picks up the singular \"technology\" (or \"the lender\") immediately before the blank, the nearest non-person noun a possessive can refer to.",
+      "were entering their": "\"their\" is right, and after a 12-word appositive a reader who has lost the singular subject matches the verb to the plural owner, keeping verb and pronoun together."
+    },
+    "distractor_kills": {
+      "were entering its": "Wrong on both: the subject is singular \"bookkeeper\"; names and amounts belong to the borrowers.",
+      "was entering its": "Pronoun-antecedent: names and payment amounts are the borrowers'; a technology and a lender have none to enter. Correct in: \"the lender was publishing its rates\".",
+      "were entering their": "Subject-verb: the subject is the singular \"bookkeeper\"; the appositive does not change its number. Correct in: \"the lender's two bookkeepers were entering their names\"."
+    },
+    "hostile_reader": {
+      "options_only_pick": "Clean 2x2.",
+      "heuristics_that_give_key": [
+        "(f) opposite verb/pronoun numbers: YES - table-level tell"
+      ],
+      "changed": "Revision for exclusivity: the possessed noun is now \"names and amounts\", which no singular noun in the sentence can own (v1's \"repayments\" could be read as the office's repayments). Architecture: a 12-word appositive now separates subject and verb, and no institution noun precedes the blank as a possible owner."
+    }
+  },
+  {
+    "id": "SEC25D-08",
+    "slot": "D8",
+    "frame": "\"agree that the ______ plans for a riverfront stadium kept the site idle\": with no apostrophe, \"the mayor plans for ...\" reads as a complete that-clause until \"kept\"; the owner count comes only from \"voters never changed mayors\" in the first sentence",
+    "key_class": "sg-poss",
+    "key_letter": "C",
+    "structure": "The blank is the possessive determiner of \"plans\" inside a that-clause. Sentence 2 alone allows mayor's or mayors'; sentence 1's \"never changed mayors\" (one mayor throughout) decides.",
+    "decider_quote": "voters never changed mayors",
+    "glance_fail": [
+      "mayors"
+    ],
+    "distractor_pulls": {
+      "mayors'": "The first sentence itself prints \"mayors\", and a twelve-year span suggests several administrations; a reader who skims \"changed mayors\" as \"went through mayors\" picks the plural possessive.",
+      "mayor": "After \"agree that\", \"the mayor plans for a riverfront stadium\" is a perfectly formed clause (subject + verb + phrase), so the no-apostrophe form reads fluently until \"kept\".",
+      "mayors": "It matches the spelling the passage already uses (\"changed mayors\"), and a reader who has settled on 'several mayors' copies it without checking the apostrophe."
+    },
+    "distractor_kills": {
+      "mayors'": "Plural possessive implies several owners; \"voters never changed mayors\" means one mayor served the whole time.",
+      "mayor": "If \"plans\" is the verb, \"kept the site idle\" has no subject; the owner of the noun \"plans\" needs the possessive.",
+      "mayors": "A plural without an apostrophe cannot own \"plans\", and as subject it disagrees with the verb reading \"plans\"."
+    },
+    "hostile_reader": {
+      "options_only_pick": "'mayors' may be struck at a glance; 'mayor' now survives a surface read because \"the mayor plans for ...\" forms a clause after \"agree that\".",
+      "heuristics_that_give_key": [
+        "the count is no longer stated as a number (no 'single'/'one'); it must be inferred from the idiom 'never changed mayors'"
+      ],
+      "changed": "Revision: removed \"a single mayor\" (stated the count outright); the deciding sentence now implies one mayor through an idiom that itself contains the lure \"mayors\"; the blank now sits in a that-clause where the no-apostrophe form garden-paths."
+    }
+  }
+]

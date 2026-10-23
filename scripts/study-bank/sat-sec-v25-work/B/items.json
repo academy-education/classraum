@@ -1,0 +1,146 @@
+[
+  {
+    "id": "SEC25B-01",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a singular noun ending in -s (atlas), plus present tense set by a conditional whose own relative clause is past",
+    "difficulty": "hard",
+    "passage": "Meteor showers occur when Earth passes through dust that a comet has shed along its orbit. At the forecasting center, the atlas of one comet's dust trails ______ within days if a fragment that the survey cameras logged turns out to stray from its predicted path. Even a small shift can move a shower's peak by several hours.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "were revised",
+      "is revised",
+      "are revised",
+      "was revised"
+    ],
+    "correct_answer": "is revised",
+    "explanation": "The subject is \"atlas,\" a singular noun whose singular form simply ends in -s (its plural is \"atlases\"); \"dust trails\" is the object of \"of\" and does not govern the verb. The conditional's finite verb is the present \"turns\" in \"if a fragment that the survey cameras logged turns out to stray\"; \"logged\" belongs to a relative clause inside it and does not set the tense. A present condition about what happens whenever a fragment strays requires a present result, \"is revised.\" \"Are revised\" treats \"atlas\" as plural because of its -s ending and the adjacent \"trails.\" \"Was revised\" takes its tense from \"logged\" and pairs a past result with the present \"turns.\" \"Were revised\" is wrong on both counts.",
+    "topic_tag": "meteor forecasting: comet dust-trail atlas",
+    "template": "fronted locative + singular -s noun (atlas) + of + plural x -s ending, adjacent plural, past relative verb inside the if-clause x c|h passive grid"
+  },
+  {
+    "id": "SEC25B-02",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement across a from-to range phrase, plus past progressive required by a definite-past time phrase",
+    "difficulty": "hard",
+    "passage": "Old cast-iron pipes crack easily when the ground freezes around them. On steep streets, the water mains from the reservoir to the hilltop hospital ______ water pressure in the upper floors of the building at the height of last winter's cold snap. The utility is replacing the iron with flexible plastic pipe.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has been losing",
+      "was losing",
+      "have been losing",
+      "were losing"
+    ],
+    "correct_answer": "were losing",
+    "explanation": "The subject is the plural \"mains\"; \"from the reservoir to the hilltop hospital\" describes their route, so the singular \"hospital\" just before the blank does not govern the verb. The phrase \"at the height of last winter's cold snap\" fixes a single finished stretch of the past, and a present perfect cannot take a definite past time adverbial, so the past progressive \"were losing\" is required. \"Was losing\" agrees with \"hospital.\" \"Have been losing\" has the right number and reads naturally beside the present \"is replacing,\" but the definite past phrase rules out the present perfect. \"Has been losing\" is wrong in both number and tense.",
+    "topic_tag": "municipal water engineering: cold-snap main pressure",
+    "template": "fronted plural locative + plural head + from-to range ending on a singular x adjacent singular, present-tense frame x f|g progressive grid, past set by a possessive definite-past phrase"
+  },
+  {
+    "id": "SEC25B-03",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement across a subject relative clause with a plural object, plus present progressive set by a while-clause whose verb follows a past participle",
+    "difficulty": "hard",
+    "passage": "A strong earthquake struck the valley, and a network of seismic stations captured the aftershocks that followed. Inside a sealed vault, the seismometer that recorded the region's strongest aftershocks ______ against a reference instrument while station scientists, puzzled by a slow drift in its readings, sort out whether the fault lies in the sensor or in the vault's foundation.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "is being calibrated",
+      "were being calibrated",
+      "was being calibrated",
+      "are being calibrated"
+    ],
+    "correct_answer": "is being calibrated",
+    "explanation": "The subject is the singular \"seismometer\"; \"that recorded the region's strongest aftershocks\" is a relative clause modifying it, and \"aftershocks\" is that clause's object, so it does not govern the verb. The while-clause's finite verb is the present \"sort,\" which arrives only after the participial phrase \"puzzled by a slow drift in its readings\"; calibration happening during that present sorting-out must be the present progressive \"is being calibrated.\" \"Are being calibrated\" agrees with \"aftershocks.\" \"Was being calibrated\" follows the past \"struck,\" \"recorded\" and \"puzzled,\" but a past progressive cannot run alongside the present \"sort.\" \"Were being calibrated\" is wrong in both number and tense.",
+    "topic_tag": "seismology: drifting seismometer calibration",
+    "template": "fronted locative + singular head + subject relative clause with plural object x adjacent plural, past forms before the decider x k|l grid, present verb hidden behind a participial phrase in the while-clause"
+  },
+  {
+    "id": "SEC25B-04",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and possessive pronoun reference split across two coordinated clauses",
+    "difficulty": "hard",
+    "passage": "The island's lone active vent, a cinder cone barely a century old, has begun erupting, and on ridges above the older craters, survey teams from two universities ______ emissions with drones and gas sensors. A rise in sulfur relative to carbon would warn forecasters that fresh magma is climbing. Coastal villages have prepared evacuation routes as a precaution.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "is sampling their",
+      "are sampling their",
+      "are sampling its",
+      "is sampling its"
+    ],
+    "correct_answer": "are sampling its",
+    "explanation": "The verb belongs to the second clause, whose subject, placed after the fronted phrase \"on ridges above the older craters,\" is the plural \"teams\"; \"from two universities\" only says where they come from, so the verb is \"are sampling.\" The pronoun names the source of the emissions, and the first clause establishes that the only source erupting is \"The island's lone active vent, a cinder cone,\" a singular noun; the older craters are not active, so the emissions are not theirs. The pronoun is \"its.\" \"Is sampling its\" lets the singular vent and its \"has begun\" set the verb too. \"Are sampling their\" copies the verb's plural into the pronoun and gives the emissions to the craters. \"Is sampling their\" reverses both numbers.",
+    "topic_tag": "island volcanism: cinder cone gas plumes",
+    "template": "[sg] clause 1 + ', and' + fronted locative + [pl head + from-phrase ending on pl] clause 2 x singular owner far back, plural craters and verb pull 'their' x b+p possessive grid"
+  },
+  {
+    "id": "SEC25B-05",
+    "domain": "Standard English Conventions",
+    "subskill": "form: auxiliary agreement in a cataphoric ellipsis, where the elided verb is the later main clause's lexical verb",
+    "difficulty": "hard",
+    "passage": "A hydrology team gauged the outflow of a volcanic basin's thermal features month by month, logging the pressure and temperature at each vent. Although the basin's tallest geyser, a cone of silica sinter near its northern edge, ______, the hot springs scattered along the southern terraces discharge water at a nearly constant rate in wet and dry months alike. The geyser's eruptions came in short, violent bursts separated by long silences.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "were not",
+      "do not",
+      "was not",
+      "does not"
+    ],
+    "correct_answer": "does not",
+    "explanation": "The although-clause omits a verb phrase that the main clause supplies: the geyser does not \"discharge water at a nearly constant rate.\" The main clause's finite verb is \"discharge,\" not \"scattered\": \"scattered along the southern terraces\" is a participial phrase describing the springs. Because \"discharge\" is a present lexical verb and the although-clause's subject is the singular \"geyser,\" the ellipsis takes \"does not.\" \"Do not\" agrees with the plural \"springs\" instead. \"Was not\" and \"were not\" would require an omitted adjective or participle after be, but the omitted predicate is \"discharge water,\" and both clash with the present \"discharge\"; \"were not\" is also plural.",
+    "topic_tag": "hydrothermal geology: geyser basin outflow",
+    "template": "sentence-2 opening although-clause with an appositive before the blank x plural main subject + past-looking participle before the true present verb x i|m + not grid"
+  },
+  {
+    "id": "SEC25B-06",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement across a phrase ending on a plural noun, plus past tense set by an each-time clause whose own relative clause is present",
+    "difficulty": "hard",
+    "passage": "Solar arrays near airports must be angled so that reflected sunlight stays out of the flight path. The glare off one solar farm's panels ______ to pilots on final approach each time the low sun that the airport's planners track in their models struck the array at a shallow angle. Tilting the rows a few degrees is usually enough to correct such a problem.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was dangerous",
+      "are dangerous",
+      "were dangerous",
+      "is dangerous"
+    ],
+    "correct_answer": "was dangerous",
+    "explanation": "The subject is the singular \"glare\"; \"off one solar farm's panels\" says where it comes from, so the plural \"panels\" before the blank does not govern the verb. The each-time clause's finite verb is the past \"struck\"; \"track\" belongs to the relative clause \"that the airport's planners track in their models,\" which describes the sun and does not set the tense. A repeated past event requires a past main verb: \"was dangerous.\" \"Were dangerous\" agrees with \"panels.\" \"Is dangerous\" copies the present \"track\" and the present rule in the first sentence, but cannot pair with \"struck.\" \"Are dangerous\" is wrong in both number and tense.",
+    "topic_tag": "airport engineering: solar farm glare",
+    "template": "singular head + off-phrase ending on a plural x adjacent plural, present relative verb inside the decider x i|j + shared word (dangerous), past set by the each-time clause's late verb"
+  },
+  {
+    "id": "SEC25B-07",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement and object pronoun reference split between an opening purpose phrase and the main clause",
+    "difficulty": "hard",
+    "passage": "To keep freezing rain from warping a mountaintop observatory's main radio dish, a technician and two engineers from the neighboring wind farms ______ with heated tarps through the night. Even a thin glaze of ice can bend the reflecting surface enough to smear faint signals. The observatory, which has no full-time maintenance staff, relies on such help in winter.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "were covering them",
+      "was covering it",
+      "were covering it",
+      "was covering them"
+    ],
+    "correct_answer": "were covering it",
+    "explanation": "The subject is the compound \"a technician and two engineers,\" which is plural even though its first noun is singular, so the verb is \"were covering.\" The object pronoun refers to what the opening purpose phrase says must be kept from warping, \"a mountaintop observatory's main radio dish,\" a singular noun, so the pronoun is \"it.\" \"Was covering it\" lets the singular \"technician\" and the singular dish set the verb. \"Were covering them\" copies the plural subject's number into the pronoun, as though the crews were covering the wind farms. \"Was covering them\" reverses both numbers.",
+    "topic_tag": "radio astronomy: ice storm dish protection",
+    "template": "opening infinitive of purpose (keep X from warping [sg]) + compound subject with a singular first noun + phrase ending on a plural x singular pulls the verb, compound and farms pull 'them' x g+p object grid"
+  },
+  {
+    "id": "SEC25B-08",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: semicolon between independent clauses when the second opens with a noun phrase that reads as an appositive",
+    "difficulty": "hard",
+    "passage": "Volcanic flank collapses can reshape a landscape in minutes. A landslide on one Alaskan volcano tore away the summit's northern wall and left a jagged ______ crescent of bare rock rising above the debris field drew climbers and geologists from across the state within a decade. The debris itself has slowly greened over.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "scar, a",
+      "scar; a",
+      "scar: a",
+      "scar a"
+    ],
+    "correct_answer": "scar; a",
+    "explanation": "The words after the blank begin a second independent clause: its subject is \"a crescent of bare rock rising above the debris field,\" and its verb, \"drew,\" arrives ten words later; \"rising\" is only a participle inside the subject. Two independent clauses with no conjunction need a semicolon. The comma makes \"a crescent of bare rock\" look like an appositive renaming \"scar,\" but once \"drew\" appears the result is a comma splice. The colon would present the second clause as an explanation or elaboration of the scar, but drawing climbers a decade later is a later event, not a description of the scar. With no mark, the two clauses run together as a fused sentence.",
+    "topic_tag": "volcanic geomorphology: flank-collapse scar",
+    "template": "two independent clauses, the second opening with a noun phrase + participle that reads as an appositive/elaboration of 'scar' until its verb 10 words later x comma and colon lures x {semicolon, comma, colon, none}"
+  }
+]

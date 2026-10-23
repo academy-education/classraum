@@ -1,0 +1,463 @@
+[
+  {
+    "id": "SEC25B-01",
+    "slot": "B1",
+    "frame": "fronted singular locative, then singular -s noun (atlas) + of + plural noun, blank, short phrase, if-clause whose finite present verb follows a past relative clause",
+    "true_subject_head": "atlas",
+    "misleader_words": [
+      "atlas",
+      "trails",
+      "logged"
+    ],
+    "misleader_position": "self",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "trails",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "center",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "days",
+      "number": "pl"
+    },
+    "dimension": "tense",
+    "dimension_key": "present",
+    "decider_type": "conditional",
+    "decider_quote": "if a fragment that the survey cameras logged turns out",
+    "words_from_blank_to_decider": 11,
+    "deletion_test": "Without the if-clause the sentence reads \"At the forecasting center, the atlas of one comet's dust trails is/was revised within days\"; both tenses are grammatical, so tense becomes undecidable. Sentence 1 is a present general statement with a present perfect, and sentence 3 a modal statement; neither settles the blank.",
+    "grid": {
+      "code": "c|h",
+      "forms": [
+        "is revised",
+        "are revised",
+        "was revised",
+        "were revised"
+      ]
+    },
+    "key_letter": "B",
+    "next_four_words_after_blank": "within days if a",
+    "length_ratio": 1.0,
+    "distractor_pulls": {
+      "are revised": "\"atlas\" ends in -s and an atlas is a collection of many maps, and the plural \"dust trails\" sits right before the blank.",
+      "was revised": "The first finite verb a reader meets inside the conditional is the past \"logged\"; a student who copies the conditional's tense from it writes the past, and the real verb \"turns\" is eleven words from the blank.",
+      "were revised": "It fits the -s look of \"atlas\" and the adjacent \"trails\", follows the past \"logged\", and \"were\" beside an \"if\" looks like the subjunctive students are taught to use in conditionals."
+    },
+    "distractor_kills": {
+      "are revised": "Subject-verb agreement: \"atlas\" is singular (plural \"atlases\"); correct in \"the atlases of one comet's dust trails are revised...\".",
+      "was revised": "Tense sequence: a past result cannot pair with the present condition \"turns out\"; correct with \"if a fragment that the survey cameras logged turned out to stray\".",
+      "were revised": "Both rules; correct in \"the atlases ... were revised ... if a fragment ... turned out to stray\"."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: complete c|h grid, one verb",
+      "heuristics_that_give_key": [
+        "(b) first noun of the sentence (center, sg)",
+        "(a) opposite the noun before the blank"
+      ],
+      "changed": "revision: subject moved behind a fronted locative; census -> atlas; the conditional now hides its present verb behind a past relative clause (\"logged\"), so the first past form in the clause is a lure, not the decider"
+    }
+  },
+  {
+    "id": "SEC25B-02",
+    "slot": "B2",
+    "frame": "fronted plural locative, plural head (mains) + from [X] to [singular Y] range, blank, object noun phrase, long locative, definite-past phrase built on a possessive (last winter's)",
+    "true_subject_head": "mains",
+    "misleader_words": [
+      "hospital",
+      "is replacing"
+    ],
+    "misleader_position": "adj",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "hospital",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "streets",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "water",
+      "number": "sg"
+    },
+    "dimension": "aspect",
+    "dimension_key": "non-perfect",
+    "decider_type": "time-phrase",
+    "decider_quote": "at the height of last winter's cold snap",
+    "words_from_blank_to_decider": 10,
+    "deletion_test": "Without \"at the height of last winter's cold snap\" the sentence reads \"the water mains ... have been losing / were losing water pressure in the upper floors of the building\"; both are grammatical, so aspect becomes undecidable. Sentence 1 is a general present and sentence 3 a present progressive; neither excludes either form.",
+    "grid": {
+      "code": "f|g",
+      "forms": [
+        "has been losing",
+        "have been losing",
+        "was losing",
+        "were losing"
+      ]
+    },
+    "key_letter": "D",
+    "next_four_words_after_blank": "water pressure in the",
+    "length_ratio": 1.1,
+    "distractor_pulls": {
+      "was losing": "The singular \"hospital\" is the word right before the blank, and \"the water main to the hospital\" reads as one supply line.",
+      "have been losing": "The passage closes on an ongoing present repair (\"is replacing\"), so a continuing loss reads naturally as present perfect progressive; it has the right number, and the definite-past phrase is ten words away and is built on a possessive (\"last winter's\") that reads like a description rather than a date.",
+      "has been losing": "It takes both pulls at once: the adjacent singular \"hospital\" and the ongoing-problem reading set up by \"is replacing\"."
+    },
+    "distractor_kills": {
+      "was losing": "Subject-verb agreement: \"mains\" is plural; correct in \"the water main from the reservoir to the hilltop hospital was losing...\".",
+      "have been losing": "A present perfect cannot take the definite past adverbial \"at the height of last winter's cold snap\"; correct in \"the mains have been losing pressure\" with no past anchor.",
+      "has been losing": "Both rules; correct in \"the main ... has been losing pressure\" with no past anchor."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none; (e) strikes the two been options but leaves number open",
+      "heuristics_that_give_key": [
+        "(a)",
+        "(b)",
+        "(e)"
+      ],
+      "changed": "revision: new topic and verb; subject moved behind a fronted plural locative; the definite-past decider is now a possessive phrase ten words out; the closing sentence is present progressive so the present perfect has its own pull"
+    }
+  },
+  {
+    "id": "SEC25B-03",
+    "slot": "B3",
+    "frame": "fronted singular locative, singular head + subject relative clause (no own subject) whose object is plural, blank, phrase, while-clause whose subject is followed by a participial phrase before the present verb",
+    "true_subject_head": "seismometer",
+    "misleader_words": [
+      "aftershocks",
+      "recorded",
+      "puzzled"
+    ],
+    "misleader_position": "adj",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "aftershocks",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "vault",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "instrument",
+      "number": "sg"
+    },
+    "dimension": "tense",
+    "dimension_key": "present",
+    "decider_type": "time-clause",
+    "decider_quote": "while station scientists, puzzled by a slow drift in its readings, sort out",
+    "words_from_blank_to_decider": 13,
+    "deletion_test": "Without the while-clause the sentence reads \"Inside a sealed vault, the seismometer ... is/was being calibrated against a reference instrument\"; both are grammatical (the past fits sentence 1), so the tense becomes undecidable. Sentence 1 is past and does not exclude a present report.",
+    "grid": {
+      "code": "k|l",
+      "forms": [
+        "is being calibrated",
+        "are being calibrated",
+        "was being calibrated",
+        "were being calibrated"
+      ]
+    },
+    "key_letter": "A",
+    "next_four_words_after_blank": "against a reference instrument",
+    "length_ratio": 1.0,
+    "distractor_pulls": {
+      "are being calibrated": "The plural \"aftershocks\" sits directly before the blank and is the noun the whole passage is about.",
+      "was being calibrated": "Every verb form before the decider is past (\"struck\", \"captured\", \"recorded\") and the first word after the while-clause's subject is the past form \"puzzled\"; a reader who reads \"while station scientists, puzzled\" as the time clause's verb copies the past.",
+      "were being calibrated": "It joins the adjacent plural \"aftershocks\" to the past run of \"recorded\" and \"puzzled\"."
+    },
+    "distractor_kills": {
+      "are being calibrated": "Subject-verb agreement: \"seismometer\" is singular; correct in \"the seismometers that recorded ... are being calibrated\".",
+      "was being calibrated": "Tense: a past progressive cannot be simultaneous with the present while-clause verb \"sort\"; correct with \"while station scientists ... sorted out\".",
+      "were being calibrated": "Both rules; correct in \"the seismometers ... were being calibrated ... while station scientists sorted out\"."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: all share \"being calibrated\"",
+      "heuristics_that_give_key": [
+        "(a)",
+        "(b)"
+      ],
+      "changed": "revision: new topic and verb; subject moved behind a fronted locative; the while-clause's present verb now sits 13 words out behind a past participial phrase (\"puzzled by...\"), so the first verb-like form in the clause is a lure"
+    }
+  },
+  {
+    "id": "SEC25B-04",
+    "slot": "B4",
+    "frame": "clause 1 with a singular subject + appositive, ', and', a FRONTED locative naming plural craters, then the plural subject + from-phrase ending on a plural noun, blank, plural possessed noun",
+    "true_subject_head": "teams",
+    "misleader_words": [
+      "vent",
+      "cone",
+      "has begun",
+      "craters",
+      "universities"
+    ],
+    "misleader_position": "early",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "universities",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "island's",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "emissions",
+      "number": "pl"
+    },
+    "dimension": "pronoun",
+    "dimension_key": "sg",
+    "decider_type": "pronoun-antecedent",
+    "decider_quote": "The island's lone active vent, a cinder cone barely a century old",
+    "words_from_blank_to_decider": 27,
+    "deletion_test": "Delete clause 1: \"its\" loses its antecedent and \"their\" (the older craters' emissions) becomes defensible, so the pronoun is undecidable. No other sentence says which feature is active.",
+    "pronoun_antecedent": {
+      "word": "vent",
+      "number": "sg"
+    },
+    "grid": {
+      "code": "b+p",
+      "forms": [
+        "is sampling its",
+        "are sampling its",
+        "is sampling their",
+        "are sampling their"
+      ]
+    },
+    "key_letter": "C",
+    "next_four_words_after_blank": "emissions with drones and",
+    "length_ratio": 1.07,
+    "distractor_pulls": {
+      "is sampling its": "The sentence opens on a singular subject with a singular \"has begun\", and the fronted locative pushes the true plural subject out of the usual position, so a student who has fixed \"its\" on the vent keeps the verb singular too.",
+      "are sampling their": "The plural verb invites a plural pronoun, and \"the older craters\" are a natural source of emissions, named in the same clause just before the subject.",
+      "is sampling their": "It pairs the singular pull of the vent on the verb with the craters as the emissions' source, each half resolved against a different nearby noun."
+    },
+    "distractor_kills": {
+      "is sampling its": "Subject-verb agreement: the clause-2 head \"teams\" is plural; correct in \"...a survey team from two universities is sampling its emissions\".",
+      "are sampling their": "Pronoun-antecedent agreement: the emissions come from the singular \"lone active vent\"; correct in \"The island's active vents have begun erupting, and ... survey teams ... are sampling their emissions\".",
+      "is sampling their": "Both rules; correct in \"Two vents have begun erupting, and ... a survey team ... is sampling their emissions\"."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: complete 2x2",
+      "heuristics_that_give_key": [
+        "(f) fails: split by row design (see report)"
+      ],
+      "changed": "revision: possessed noun \"plumes\" (named as resolving) replaced by the neutral \"emissions\"; plural subject moved behind a fronted locative; the plural lure noun (craters) now sits in that locative, separate from the subject phrase"
+    }
+  },
+  {
+    "id": "SEC25B-05",
+    "slot": "B5",
+    "frame": "opening although-clause in sentence 2: singular subject + appositive, blank; main clause: plural subject + participial phrase whose -ed form reads as a past finite verb, then the present lexical verb",
+    "true_subject_head": "geyser",
+    "misleader_words": [
+      "springs",
+      "scattered",
+      "discharge"
+    ],
+    "misleader_position": "after",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "edge",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "basin's",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "springs",
+      "number": "pl"
+    },
+    "dimension": "aux",
+    "dimension_key": "do",
+    "decider_type": "parallel-verb",
+    "decider_quote": "discharge water at a nearly constant rate",
+    "words_from_blank_to_decider": 9,
+    "deletion_test": "Delete \"discharge water at a nearly constant rate\": nothing says what the geyser lacks, and \"scattered\" would be read as the main verb, so be, present do and past forms all become possible; the auxiliary is undecidable. No other sentence supplies the elided verb.",
+    "grid": {
+      "code": "i|m",
+      "forms": [
+        "was not",
+        "were not",
+        "does not",
+        "do not"
+      ]
+    },
+    "key_letter": "D",
+    "next_four_words_after_blank": "the hot springs scattered",
+    "length_ratio": 1.33,
+    "distractor_pulls": {
+      "do not": "The plural \"springs\" is the first noun after the blank and the borrowed verb \"discharge\" has the plural form, so a student copying the main clause's auxiliary exactly writes \"do not\".",
+      "was not": "\"scattered\" is the first verb-like word in the main clause and reads as a past finite verb, the whole passage around the sentence is past narrative (\"gauged\", \"came\"), and an \"Although X ___,\" clause most often ends in a be-predicate.",
+      "were not": "It matches the plural \"springs\" and the past look of \"scattered\" and of the surrounding narrative."
+    },
+    "distractor_kills": {
+      "do not": "Auxiliary agreement: the although-clause's subject \"geyser\" is singular; correct in \"Although the basin's tallest geysers ... do not, the hot springs ... discharge...\".",
+      "was not": "Ellipsis: the omitted predicate is the lexical \"discharge water,\" which takes do-support, and \"discharge\" is present; correct in \"Although the geyser was not steady, the springs were\".",
+      "were not": "Do-support needed and \"geyser\" is singular; correct in \"Although the geysers were not, the springs were steady\"."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: all share \"not\"",
+      "heuristics_that_give_key": [
+        "(b) first noun"
+      ],
+      "changed": "revision: blank sentence moved to second position after a past narrative sentence; appositive added before the blank; the main clause now opens with a participle (\"scattered\") that reads as a past finite verb, so the do-supporting present verb arrives nine words out and must be parsed"
+    }
+  },
+  {
+    "id": "SEC25B-06",
+    "slot": "B6",
+    "frame": "singular head + off-phrase ending on a plural, blank (be + shared adjective), phrase, each-time clause whose subject carries a present relative clause before the past verb",
+    "true_subject_head": "glare",
+    "misleader_words": [
+      "panels",
+      "track"
+    ],
+    "misleader_position": "adj",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "panels",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "glare",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "pilots",
+      "number": "pl"
+    },
+    "dimension": "tense",
+    "dimension_key": "past",
+    "decider_type": "time-clause",
+    "decider_quote": "each time the low sun that the airport's planners track in their models struck",
+    "words_from_blank_to_decider": 17,
+    "deletion_test": "Without the each-time clause the sentence reads \"The glare off one solar farm's panels was/is dangerous to pilots on final approach\"; both are grammatical, so tense becomes undecidable. Sentences 1 and 3 are present general statements and do not exclude a past report about one farm.",
+    "grid": {
+      "code": "i|j",
+      "forms": [
+        "was dangerous",
+        "were dangerous",
+        "is dangerous",
+        "are dangerous"
+      ]
+    },
+    "key_letter": "A",
+    "next_four_words_after_blank": "to pilots on final",
+    "length_ratio": 1.08,
+    "distractor_pulls": {
+      "were dangerous": "The plural \"panels\" is the word right before the blank, and the panels are what reflect the light.",
+      "is dangerous": "The first verb inside the each-time clause is the present \"track\", and sentence 1 states a present rule about glare near airports, so a present hazard statement reads naturally; the past \"struck\" is seventeen words on.",
+      "are dangerous": "It combines the adjacent \"panels\" with the present \"track\" and the present rule of sentence 1."
+    },
+    "distractor_kills": {
+      "were dangerous": "Subject-verb agreement: \"glare\" is singular; correct in \"The panels of one solar farm were dangerous...\".",
+      "is dangerous": "Tense: a present main verb cannot pair with the past habitual clause \"each time ... struck\"; correct with \"each time the low sun ... strikes\".",
+      "are dangerous": "Both rules; correct in \"The panels ... are dangerous ... each time the low sun strikes\"."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: complete i|j grid with one shared adjective",
+      "heuristics_that_give_key": [
+        "(a)",
+        "(b)",
+        "(c)"
+      ],
+      "changed": "revision: new topic and shared word; the each-time clause's past verb now sits 17 words out behind a present relative clause (\"track\"), so the clause's first verb is a lure; the attractor phrase is off-, not of-; replaced a past closing sentence (\"The operator tilted the rows..., which ended the problem\") that would have settled the tense by meaning"
+    }
+  },
+  {
+    "id": "SEC25B-07",
+    "slot": "B7",
+    "frame": "opening infinitive phrase of purpose (keep [mass noun] from warping [singular dish]), comma, compound subject 'a [sg] and two [pl]' + phrase ending on a plural noun, blank (past progressive + it/them)",
+    "true_subject_head": "technician and two engineers",
+    "misleader_words": [
+      "technician",
+      "dish",
+      "farms"
+    ],
+    "misleader_position": "early",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "farms",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "rain",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "tarps",
+      "number": "pl"
+    },
+    "dimension": "pronoun",
+    "dimension_key": "sg",
+    "decider_type": "pronoun-antecedent",
+    "decider_quote": "To keep freezing rain from warping a mountaintop observatory's main radio dish",
+    "words_from_blank_to_decider": 19,
+    "deletion_test": "Delete the opening purpose phrase: \"a technician and two engineers ... were covering it/them\" has no antecedent for \"it\", and \"them\" (the farms) becomes a possible reading, so the pronoun is undecidable. The later sentences mention the surface but not what was covered.",
+    "pronoun_antecedent": {
+      "word": "dish",
+      "number": "sg"
+    },
+    "grid": {
+      "code": "g+p",
+      "forms": [
+        "was covering it",
+        "were covering it",
+        "was covering them",
+        "were covering them"
+      ]
+    },
+    "key_letter": "C",
+    "next_four_words_after_blank": "with heated tarps through",
+    "length_ratio": 1.07,
+    "distractor_pulls": {
+      "was covering it": "The subject begins \"a technician\", a singular noun right where the verb's subject is expected, and the sentence has opened on singular rain and a singular dish, so a reader who has fixed \"it\" on the dish writes a singular verb.",
+      "were covering them": "The compound subject is plural and a plural verb invites a plural pronoun, and \"the neighboring wind farms\" sits right before the blank as a plural thing that crews in winter might cover.",
+      "was covering them": "It pairs the singular \"technician\" on the verb with the adjacent \"wind farms\" as the object, each half resolved against the nearest candidate."
+    },
+    "distractor_kills": {
+      "was covering it": "Subject-verb agreement: subjects joined by \"and\" take a plural verb; correct in \"a technician from the neighboring wind farms was covering it\".",
+      "were covering them": "Pronoun-antecedent agreement: the thing kept from warping is the singular dish; correct in \"To keep freezing rain from warping the observatory's two dishes, ... were covering them\".",
+      "was covering them": "Both rules; correct in \"To keep rain from warping the two dishes, a technician ... was covering them\"."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: complete 2x2",
+      "heuristics_that_give_key": [
+        "(f) fails: split by row design (see report)"
+      ],
+      "changed": "revision: \"lone\" removed (named as a singular flag); the antecedent is now the object of a keep-from-warping frame, not of \"protect\"; the plural subject is now a compound whose first noun is singular, so the verb's number is not visible from one word"
+    }
+  },
+  {
+    "id": "SEC25B-08",
+    "slot": "B8",
+    "frame": "clause 1 ends on a singular noun (scar); clause 2 opens with a noun phrase + participial phrase readable as its appositive or colon elaboration (a crescent of bare rock rising above the debris field); clause 2's verb arrives 10 words after the blank",
+    "key_mark": "semicolon",
+    "key_letter": "B",
+    "structure": "Left: an independent clause ending \"left a jagged scar\". Right: an independent clause whose subject \"a crescent of bare rock rising above the debris field\" is followed by the finite verb \"drew\" (unambiguously past, not a participle); the second clause is a later event, not an elaboration.",
+    "decider_quote": "drew climbers and geologists from across the state within a decade",
+    "glance_fail": [],
+    "distractor_pulls": {
+      "scar, a": "Up to \"field\" the noun phrase is a natural appositive describing the scar (\"a jagged scar, a crescent of bare rock rising above the debris field\"), and the participle \"rising\" keeps the description going.",
+      "scar: a": "A colon before a phrase that describes what the scar looks like is standard (\"left a jagged scar: a crescent of bare rock...\"), and the participle makes the elaboration reading even more natural.",
+      "scar a": "A reader who senses the boundary but treats \"scar\" as running straight into a modifier, as in \"a scar a kilometer wide\", leaves the gap unmarked."
+    },
+    "distractor_kills": {
+      "scar, a": "Comma splice: \"drew\" makes the right side an independent clause, and a comma cannot join two independent clauses.",
+      "scar: a": "A colon introduces an explanation, list or elaboration of what precedes; \"a crescent ... drew climbers ... within a decade\" reports a later event.",
+      "scar a": "Fused sentence: two independent clauses with no punctuation or conjunction."
+    },
+    "hostile_reader": {
+      "options_only_pick": "semicolon and colon are the two strong marks; neither strikable without parsing",
+      "heuristics_that_give_key": [
+        "pick the semicolon when unsure"
+      ],
+      "changed": "revision: new topic; the second clause's subject now carries a participle (\"rising\") that extends the appositive/colon reading, and the finite verb is a form that cannot be a participle (\"drew\"), ten words out"
+    }
+  }
+]

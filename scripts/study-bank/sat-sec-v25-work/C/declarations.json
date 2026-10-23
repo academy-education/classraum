@@ -1,0 +1,467 @@
+[
+  {
+    "id": "SEC25C-01",
+    "slot": "C1",
+    "frame": "fronted locative 'In the chapel's east end,' then compound subject 'the fresco and the gilded screen' + 'of the chancel'",
+    "true_subject_head": "fresco and screen",
+    "misleader_words": [
+      "chancel",
+      "fresco",
+      "chapel",
+      "lit"
+    ],
+    "misleader_position": "adj",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "chancel",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "chapel",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "winter",
+      "number": "sg"
+    },
+    "dimension": "tense",
+    "dimension_key": "present",
+    "decider_type": "conditional",
+    "decider_quote": "unless the candles lit in the nave each evening are moved",
+    "words_from_blank_to_decider": 6,
+    "deletion_test": "Delete the unless-clause: 'In the chapel's east end, the fresco and the gilded screen of the chancel ___ a little more each winter.' Both 'are blackening' and 'were blackening' are then correct; the first sentence's past 'lit'/'found' is another sentence and settles nothing.",
+    "grid": {
+      "code": "b|g",
+      "forms": [
+        "was blackening",
+        "were blackening",
+        "is blackening",
+        "are blackening"
+      ]
+    },
+    "key_letter": "D",
+    "next_four_words_after_blank": "a little more each",
+    "length_ratio": 1.08,
+    "distractor_pulls": {
+      "is blackening": "Three singulars line up before the verb: 'chapel', 'end' and 'chancel', with the singular 'fresco' as the first noun of the subject; read fast, 'the fresco ... of the chancel' is the subject and 'and the gilded screen' an aside. Present tense is right, so it survives the tense check.",
+      "was blackening": "The first sentence is narrative past ('lit', 'found'), and the condition opens 'unless the candles lit', which reads at first as a past verb ('the candles lit in the nave each evening' = a past habit); a reader who takes that as the condition's verb picks past, and the singulars give singular.",
+      "were blackening": "The student who correctly finds the compound plural but takes 'lit' as the condition's past verb and does not reach 'are moved', fifteen words past the blank."
+    },
+    "distractor_kills": {
+      "is blackening": "Subject-verb agreement: two subjects joined by 'and' take a plural verb; 'chancel' is the object of 'of', 'chapel' and 'end' are inside the fronted phrase. Correct only in 'the fresco of the chancel is blackening ...'.",
+      "was blackening": "Number (compound subject) and tense: the condition's finite verb is the present 'are moved', so the main verb cannot be past. Correct only with a past condition ('unless the candles ... were moved').",
+      "were blackening": "Tense sequence: 'lit' is a participle modifying 'candles'; the condition's verb is the present 'are moved', which a past main verb contradicts. Correct only with 'unless the candles ... were moved'."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: one verb in a full 2x2, all progressive, lengths 13-15",
+      "heuristics_that_give_key": [
+        "(a) the opposite of 'chancel' gives the key"
+      ],
+      "changed": "revision: fronted a locative so the subject sits mid-sentence; disguised the condition's tense (participle 'lit' reads as a past verb; the present 'are moved' arrives 15 words on); verb changed to 'blackening'"
+    }
+  },
+  {
+    "id": "SEC25C-02",
+    "slot": "C2",
+    "frame": "second clause of a compound sentence: singular head 'rivalry' + 'among its bands', after a past first clause 'The contest outlived the mills'",
+    "true_subject_head": "rivalry",
+    "misleader_words": [
+      "bands",
+      "weeklies",
+      "outlived"
+    ],
+    "misleader_position": "adj",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "bands",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "contest",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "weeklies",
+      "number": "pl"
+    },
+    "dimension": "tense",
+    "dimension_key": "present",
+    "decider_type": "time-clause",
+    "decider_quote": "after the judges have read out",
+    "words_from_blank_to_decider": 5,
+    "deletion_test": "Delete the after-clause: 'The contest outlived the mills by generations, and the rivalry among its bands ___ in two regional weeklies.' Both 'is reported' and 'was reported' are then correct; 'outlived' is the other clause's own verb and does not fix this one.",
+    "grid": {
+      "code": "c|h",
+      "forms": [
+        "was reported",
+        "were reported",
+        "is reported",
+        "are reported"
+      ]
+    },
+    "key_letter": "C",
+    "next_four_words_after_blank": "in two regional weeklies",
+    "length_ratio": 1.0,
+    "distractor_pulls": {
+      "are reported": "A rivalry 'among' bands is notionally several bands competing; 'bands' is right before the blank and 'two regional weeklies' right after, and 'have', the plural auxiliary in the time clause, echoes a plural.",
+      "was reported": "The same sentence opens in the past ('The contest outlived the mills'), and coordinated clauses usually share a tense; 'have read' is not a simple present verb, so a reader looking for 'announce'-type present evidence finds none and keeps the past.",
+      "were reported": "A reader who takes the notional plural of 'rivalry among its bands' and carries 'outlived' across the 'and'."
+    },
+    "distractor_kills": {
+      "are reported": "Subject-verb agreement: the head is singular 'rivalry'; 'bands' is the object of 'among'. Correct only in 'its bands are reported ...'.",
+      "was reported": "Tense: a present perfect in the after-clause ('after the judges have read out') requires a present main verb; a past main verb with it is a sequence error. Correct only with 'after the judges had read out'.",
+      "were reported": "Wrong on both: plural verb for 'rivalry', past against 'have read out'."
+    },
+    "hostile_reader": {
+      "options_only_pick": "key is uniquely shortest by one character (11 vs 12, 12, 13); not usable as a pick rule",
+      "heuristics_that_give_key": [
+        "(a) opposite of 'bands' gives the key",
+        "(b) first noun 'contest' gives the key",
+        "(c) copying the after-clause tense needs the reader to know a present perfect there means present"
+      ],
+      "changed": "revision: subject moved into the second clause of a compound sentence after a past first clause (past now pulls from inside the sentence); decider changed from a simple present 'announce' to a present perfect 'have read out'; verb changed to 'reported'"
+    }
+  },
+  {
+    "id": "SEC25C-03",
+    "slot": "C3",
+    "frame": "fronted participial phrase 'Listed in an old sale catalog as the work of an unknown master,' then singular head 'portrait' + 'by the two sisters'",
+    "true_subject_head": "portrait",
+    "misleader_words": [
+      "sisters",
+      "have begun"
+    ],
+    "misleader_position": "adj",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "sisters",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "catalog",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "collectors",
+      "number": "pl"
+    },
+    "dimension": "aspect",
+    "dimension_key": "non-perfect",
+    "decider_type": "time-phrase",
+    "decider_quote": "during the decades after the painters' deaths",
+    "words_from_blank_to_decider": 6,
+    "deletion_test": "Delete the during-phrase: 'Listed in an old sale catalog as the work of an unknown master, the double portrait by the two sisters ___ to collectors and dealers alike.' Both 'was obscure' and 'has been obscure' are then possible; the other sentences ('is', 'have begun') do not fix the blank's aspect.",
+    "grid": {
+      "code": "i|r",
+      "forms": [
+        "was obscure",
+        "were obscure",
+        "has been obscure",
+        "have been obscure"
+      ]
+    },
+    "key_letter": "B",
+    "next_four_words_after_blank": "to collectors and dealers",
+    "length_ratio": 1.0,
+    "distractor_pulls": {
+      "were obscure": "The two makers sit right before the blank, the whole passage is about the women as a pair, and 'collectors and dealers' follows; plurals frame the verb on both sides. Past is right, so a tense-first student keeps it.",
+      "has been obscure": "Singular is right, and the passage's frame is present and present perfect ('it is one of very few', 'Scholars have begun to study it'); 'during the decades after' sounds like an open stretch that runs toward now ('in the decades after' is often read as 'since').",
+      "have been obscure": "A reader who hears the long obscurity as open-ended, as above, and lets the surrounding plurals set the number."
+    },
+    "distractor_kills": {
+      "were obscure": "Subject-verb agreement: the head is singular 'portrait'; 'sisters' is the object of 'by'. Correct only in 'the two sisters were obscure ...'.",
+      "has been obscure": "Present perfect cannot take a closed past period: 'during the decades after the painters' deaths' for seventeenth-century painters is long finished, and 'during' + a definite period takes the simple past. Correct only with an open period ('has been obscure since the painters' deaths').",
+      "have been obscure": "Wrong on number and aspect. Correct only in 'the two sisters have been obscure since ...'."
+    },
+    "hostile_reader": {
+      "options_only_pick": "'was obscure' is uniquely shortest and 'been' loses gives it; kept because the i|r grid fixes the shapes",
+      "heuristics_that_give_key": [
+        "(a) opposite of 'sisters' gives the key",
+        "(e) 'been' loses gives the key"
+      ],
+      "changed": "revision: fronted a participial phrase so the subject sits mid-sentence; replaced the self-evidently closed 'first half of the eighteenth century' with 'the decades after the painters' deaths', whose closure needs the next sentence's century; removed 'present fame'; added a present perfect ('have begun') elsewhere to pull the perfect"
+    }
+  },
+  {
+    "id": "SEC25C-04",
+    "slot": "C4",
+    "frame": "opening prepositional phrase 'At the cathedral in question' names the singular owner; plural no-s subject 'the townspeople' + the blank",
+    "true_subject_head": "townspeople",
+    "misleader_words": [
+      "cathedral",
+      "townspeople",
+      "canons"
+    ],
+    "misleader_position": "early",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "townspeople",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "cathedral",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "defenders",
+      "number": "pl"
+    },
+    "dimension": "pronoun",
+    "dimension_key": "sg",
+    "decider_type": "pronoun-antecedent",
+    "decider_quote": "At the cathedral in question",
+    "words_from_blank_to_decider": 6,
+    "deletion_test": "Delete the opening phrase: 'The townspeople ___ fiercest defenders.' 'its' then has no singular owner in the sentence, so the pronoun is undecidable by antecedent.",
+    "pronoun_antecedent": {
+      "word": "cathedral",
+      "number": "sg"
+    },
+    "grid": {
+      "code": "i+p",
+      "forms": [
+        "was its",
+        "were its",
+        "was their",
+        "were their"
+      ]
+    },
+    "key_letter": "A",
+    "next_four_words_after_blank": "chief claim to fame",
+    "length_ratio": 1.14,
+    "distractor_pulls": {
+      "was its": "'The townspeople' has no -s and names one community ('the town'), so it reads as a singular collective like 'the parish' or 'the town'; the singular 'cathedral' opens the sentence; 'its' correctly points to the cathedral.",
+      "were their": "The plural verb is right, and the previous sentence offers a real plural owner, 'the canons', the cathedral's own clergy, whom a hurried reader takes as the people being defended ('their fiercest defenders'); the plural verb invites a plural pronoun.",
+      "was their": "A reader who takes 'townspeople' as a singular body but still reaches back to 'the canons' for the owner."
+    },
+    "distractor_kills": {
+      "was its": "Subject-verb agreement: 'townspeople', like 'people', is plural ('the townspeople were'); 'cathedral' is inside 'At the cathedral in question'. Correct only in 'At the cathedral, the town was its fiercest defender.'",
+      "were their": "Pronoun-antecedent: the townspeople defended the cathedral's porch against the canons' proposal, so the owner is the singular 'cathedral'; 'their' would make the canons, their opponents, the ones defended, and cannot refer to the subject itself. Correct only with a plural owner ('At the cathedrals, the townspeople were their defenders').",
+      "was their": "Wrong on both: singular verb for plural 'townspeople', plural pronoun with no plural owner."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: two-word options, full 2x2",
+      "heuristics_that_give_key": [
+        "(a) fails (near 'townspeople' pl, key pl)",
+        "(f) fails as designed"
+      ],
+      "changed": "revision: the verb half now rests on a rule-number subject ('townspeople', plural with no -s, readable as a collective) instead of a plain plural; 'their' now has a real plural owner candidate ('the canons') a hurried reader accepts; new topic and passage"
+    }
+  },
+  {
+    "id": "SEC25C-05",
+    "slot": "C5",
+    "frame": "opening because-clause holds the plural antecedent 'frescoes'; singular subject 'the restorer' + an appositive ending on the generic 'wall painting' + the blank",
+    "true_subject_head": "archive",
+    "misleader_words": [
+      "frescoes",
+      "wall painting",
+      "apse"
+    ],
+    "misleader_position": "early",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "painting",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "frescoes",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "inches",
+      "number": "pl"
+    },
+    "dimension": "pronoun",
+    "dimension_key": "pl",
+    "decider_type": "pronoun-antecedent",
+    "decider_quote": "the frescoes in one chapel's apse were hidden under whitewash",
+    "words_from_blank_to_decider": 20,
+    "deletion_test": "Delete the because-clause: 'The restorer, a specialist in medieval wall painting, ___ a few square inches at a time.' The pronoun then has no specific antecedent, and 'it' or 'them' is undecidable.",
+    "pronoun_antecedent": {
+      "word": "frescoes",
+      "number": "pl"
+    },
+    "grid": {
+      "code": "d+p",
+      "forms": [
+        "has uncovered it",
+        "have uncovered it",
+        "has uncovered them",
+        "have uncovered them"
+      ]
+    },
+    "key_letter": "B",
+    "next_four_words_after_blank": "a few square inches",
+    "length_ratio": 1.13,
+    "distractor_pulls": {
+      "have uncovered them": "The sentence opens on the plural 'frescoes', which is also the correctly chosen antecedent; a student who thinks of the frescoes as the topic of the whole sentence lets them set the verb too, and 'them' sounds right beside a matching plural verb.",
+      "has uncovered it": "Right next to the blank is 'wall painting', and 'uncovered it' reads as 'uncovered the wall painting', which is exactly what a restorer does; verb and pronoun also match the singular subject.",
+      "have uncovered it": "A reader who matches the verb to 'frescoes' and the pronoun to the singular 'wall painting' beside the blank, each to its nearest cue."
+    },
+    "distractor_kills": {
+      "have uncovered them": "Subject-verb agreement: the main clause's subject is the singular 'restorer'; 'frescoes' is inside the because-clause and the appositive does not change the subject's number. Correct only with 'the restorers have uncovered them'.",
+      "has uncovered it": "Pronoun-antecedent agreement: a pronoun needs a specific antecedent, and 'medieval wall painting' after 'a specialist in' names a field, not a painting; 'apse' was not hidden. The thing hidden under whitewash is the plural 'frescoes'. Correct only if the because-clause named one fresco.",
+      "have uncovered it": "Wrong on both: plural verb for 'restorer', singular pronoun for 'frescoes'."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: full 2x2, key neither longest nor shortest",
+      "heuristics_that_give_key": [
+        "(a) fails (near 'painting' sg, key sg)",
+        "(b) fails (first noun 'frescoes' pl)"
+      ],
+      "changed": "revision: removed the divided/reunited echo that gave the antecedent away; added an appositive between subject and verb ending on a generic singular ('wall painting') that 'uncovered it' fits on a surface read; new topic and passage"
+    }
+  },
+  {
+    "id": "SEC25C-06",
+    "slot": "C6",
+    "frame": "be-ellipsis after a semicolon: 'The nave, built of brick by local masons, was structurally sound; the remains of the bell tower ___.'",
+    "true_subject_head": "remains",
+    "misleader_words": [
+      "nave",
+      "tower",
+      "remains"
+    ],
+    "misleader_position": "adj",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "tower",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "nave",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "Engineers",
+      "number": "pl"
+    },
+    "dimension": "aux",
+    "dimension_key": "be",
+    "decider_type": "parallel-verb",
+    "decider_quote": "was structurally sound",
+    "words_from_blank_to_decider": 8,
+    "deletion_test": "Delete 'was structurally sound' (leaving 'The nave, built of brick by local masons, survived; the remains of the bell tower ___'): the ellipted verb would then be lexical and need 'did not'; no option is licensed, and the next sentence's 'have proposed' cannot supply the auxiliary.",
+    "grid": {
+      "code": "i|n",
+      "forms": [
+        "was not",
+        "were not",
+        "has not",
+        "have not"
+      ]
+    },
+    "key_letter": "D",
+    "next_four_words_after_blank": "Engineers have proposed a",
+    "length_ratio": 1.14,
+    "distractor_pulls": {
+      "was not": "It copies the first clause's 'was' exactly, the parallel a reader hears, and 'tower' right before the blank is singular; 'remains' ends in -s like a third-person singular verb, so it does not register as a plural noun.",
+      "have not": "'Remains' read correctly as plural, and the next sentence's 'Engineers have proposed' sets a present-perfect frame; 'have not' is the common spoken shape for damage reports ('the remains have not [held]').",
+      "has not": "A reader who takes number from 'tower' and hears a present-perfect damage report ('the tower has not survived')."
+    },
+    "distractor_kills": {
+      "was not": "Subject-verb agreement: 'remains' is a plural noun ('the remains were'); 'tower' is the object of 'of'. Correct only in 'the bell tower was not'.",
+      "have not": "Ellipsis: the stranded auxiliary must be the one the antecedent clause supplies; 'was structurally sound' supplies 'be', so 'have not' would need 'have not been'. Correct only after 'The nave has survived; the remains ... have not.'",
+      "has not": "Wrong on number and on the auxiliary. Correct only after 'The nave has survived; the tower has not.'"
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: two-word options, 'not' in all four, lengths 7-8",
+      "heuristics_that_give_key": [
+        "(a) opposite of 'tower' gives the key"
+      ],
+      "changed": "revision: subject is now the plural-only 'remains' (looks like a verb or singular) instead of the plain plural 'ceilings'; an interrupter pushes 'was' 8 words from the blank; new topic and passage"
+    }
+  },
+  {
+    "id": "SEC25C-07",
+    "slot": "C7",
+    "frame": "clause 1 'The choir monks sang the night office ...', ', but' clause 2: singular 'the painted chapel' + 'beneath the choir stalls' + passive with by-agent pronoun",
+    "true_subject_head": "chapel",
+    "misleader_words": [
+      "stalls",
+      "choir"
+    ],
+    "misleader_position": "adj",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "stalls",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "monks",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "day",
+      "number": "sg"
+    },
+    "dimension": "pronoun",
+    "dimension_key": "pl",
+    "decider_type": "pronoun-antecedent",
+    "decider_quote": "The choir monks sang",
+    "words_from_blank_to_decider": 17,
+    "deletion_test": "Delete clause 1 (leaving 'The painted chapel beneath the choir stalls ___ only on a single feast day each year'): the by-agent then has no antecedent noun in the sentence, so 'by it' or 'by them' is undecidable.",
+    "pronoun_antecedent": {
+      "word": "monks",
+      "number": "pl"
+    },
+    "grid": {
+      "code": "h+p",
+      "forms": [
+        "was visited by it",
+        "were visited by it",
+        "was visited by them",
+        "were visited by them"
+      ]
+    },
+    "key_letter": "A",
+    "next_four_words_after_blank": "only on a single",
+    "length_ratio": 1.06,
+    "distractor_pulls": {
+      "were visited by them": "'Stalls' sits right before the blank, and the plural agent 'them' (correctly the monks) invites a matching plural verb.",
+      "was visited by it": "'Choir' appears twice, and a choir is exactly the kind of body that visits a chapel on a feast day to sing; read as a collective noun, it takes 'it', and verb and pronoun then both match the singular subject 'chapel'.",
+      "were visited by it": "A reader who matches the verb to 'stalls' and takes 'the choir' as the visiting body."
+    },
+    "distractor_kills": {
+      "were visited by them": "Subject-verb agreement: the subject is singular 'chapel'; 'stalls' is the object of 'beneath'. Correct only in 'the chapels beneath the choir stalls were visited by them'.",
+      "was visited by it": "Pronoun-antecedent agreement: a pronoun's antecedent must be a noun phrase; 'choir' in 'choir monks' and 'choir stalls' is a noun modifier, not a noun phrase, and the only agent named is the plural 'monks'. Correct only after 'The choir sang the night office ..., but the chapel was visited by it ...'.",
+      "were visited by it": "Wrong on both: plural verb for 'chapel', singular agent for 'monks'."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: full 2x2, key neither longest nor shortest",
+      "heuristics_that_give_key": [
+        "(a) opposite of 'stalls' gives the key"
+      ],
+      "changed": "revision: 'by it' now has a surface-plausible singular agent ('choir', a collective that can visit), excluded by rule because it is only a modifier; new topic and passage"
+    }
+  },
+  {
+    "id": "SEC25C-08",
+    "slot": "C8",
+    "frame": "plural possessive 'copyists'' before 'work'; the count is inferred from 'two distinct hands' in the first sentence, which itself says 'a hired copyist'",
+    "key_class": "pl-poss",
+    "key_letter": "C",
+    "structure": "the blank modifies 'work'; the blank's sentence states no number of owners; the first sentence's singular 'a hired copyist' (one per part) and 'two distinct hands' together fix two copyists; 'the copyists work on the final chorus' is a complete clause until 'was done' arrives",
+    "decider_quote": "the surviving set shows two distinct hands",
+    "glance_fail": [
+      "copyist"
+    ],
+    "distractor_pulls": {
+      "copyist's": "The first sentence names 'a hired copyist' in the singular, and the blank's sentence opens with the singular possessive 'one scholar's'; a reader who stops at 'a hired copyist' takes one copyist as the owner.",
+      "copyists": "Garden path: 'the copyists work on the final chorus' is a complete, natural clause, and it carries the correct plural; the break comes only at 'was done', six words later.",
+      "copyist": "Read as a noun modifier, 'the copyist work' sounds like a trade label, and it echoes the singular 'a hired copyist'; the one option a careful reader strikes quickly."
+    },
+    "distractor_kills": {
+      "copyist's": "'Two distinct hands', neither the composer's, means two copyists; a singular possessive credits the work to one of them. Correct only in a passage with one copyist.",
+      "copyists": "Possession needs an apostrophe; as a plain plural, 'work' becomes a verb and 'was done' has no subject. Correct only in 'the copyists work quickly'.",
+      "copyist": "A plain singular marks no possession and contradicts the two hands."
+    },
+    "hostile_reader": {
+      "options_only_pick": "only 'copyist' (the declared glance option); the two possessives tie on length",
+      "heuristics_that_give_key": [
+        "none from the blank's sentence: it states no count"
+      ],
+      "changed": "revision: the count is no longer stated outright ('Two copyists') but inferred from 'two distinct hands' against a singular 'a hired copyist'; the plain plural now forms a complete clause for six words; the single-hand description that made 'copyist's' defensible is replaced by features of both hands plus 'Both men' in the last sentence"
+    }
+  }
+]

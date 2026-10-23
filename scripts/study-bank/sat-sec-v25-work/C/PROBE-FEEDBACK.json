@@ -1,0 +1,768 @@
+{
+ "SEC25C-08": {
+  "must_revise": true,
+  "named_for": [
+   "not exclusive",
+   "no reader rated it hard",
+   "distractors not strong for every reader",
+   "resolving word after the blank"
+  ],
+  "listed_for": [
+   "template partner of SEC25D-08 (the later slot revises)"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "copyists'",
+    "difficulty": "medium",
+    "n_struck": 1,
+    "struck_options": [
+     "copyists"
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": "work",
+    "not_hard_because": "The first sentence states 'Two copyists' outright, handing over plural number; the only remaining step is apostrophe placement, and 'copyists work' is struck on sight.",
+    "note": "Two copyists share the parts, so the plural possessive 'copyists'' is needed; 'copyist's' is the main distractor but has no single referent. 'Copyists work' reads as a clause and cannot be the subject phrase."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "copyists'",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": false,
+    "second_defensible_text": "copyist's",
+    "convention": "Singular possessive 'copyist's' is grammatical; only the context of two copyists decides number, and a reader could take one surviving hand as meant",
+    "resolving_word_after_blank": null,
+    "not_hard_because": "Number is decided by 'Two copyists' in the first sentence, a context read rather than a structural one; B and D lack the apostrophe a possessive before 'work' needs.",
+    "note": "Two copyists prepared the parts, so their joint work is 'copyists''. The single handwriting description (one clef slant, one stem habit) makes 'copyist's' attractive and arguably defensible."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC25D-08",
+    "readers": 2,
+    "why": [
+     "singular versus plural possessive with the number stated in the passage",
+     "possessive number decided by a count in the first sentence"
+    ]
+   }
+  ]
+ },
+ "SEC25C-03": {
+  "must_revise": true,
+  "named_for": [
+   "no reader rated it hard",
+   "distractors not strong for every reader",
+   "template pair with SEC25B-02 (named by all 2 readers)",
+   "template pair with SEC25A-03 (named by all 2 readers)",
+   "template pair with SEC25B-06 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template pair with SEC25A-02 named by 1 of 2",
+   "named in reader r0's tell: Present-perfect options never win: 'has been/have been ...' loses in every tense grid where it appears (P02, P07, P08, P13, P30), and 'has not/have not' loses e",
+   "named in reader r0's tell: Subject-verb items almost all use one shape: singular or plural head + of/among/in phrase whose noun has the opposite number and sits right before the blank (P0",
+   "named in reader r1's tell: In every tense-plus-number grid, the present-perfect options ('has/have been ...') never win: P01, P11, P16, P19, P22 all offer them and all key on a simple or ",
+   "named in reader r1's tell: Agreement items nearly always place a noun of the WRONG number directly before the blank (P05 layers, P10 chancel, P11 employer, P14 blisters, P16 station, P18 "
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "was obscure",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'during the first half of the eighteenth century' right after the blank closes the period, and 'Its present fame' in the next sentence confirms the portrait is no longer obscure; present perfect is the never-key option again.",
+    "note": "'The double portrait' is singular ('sisters' is the attractor) and 'during the first half of the eighteenth century' is a closed past period, so 'was obscure'. 'Has been obscure' is tempting only to someone ignoring the period's end and 'Its present fame'."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "was obscure",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "A completed past period after the blank hands over the tense and the plural attractor 'sisters' is the same trap as P16, P19, P28.",
+    "note": "Singular 'portrait', with 'during the first half of the eighteenth century' fixing a completed past, gives 'was obscure'. 'were obscure' is pulled by 'sisters'."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC25B-02",
+    "readers": 2,
+    "why": [
+     "past-period subject-verb with present-perfect distractor",
+     "head noun with attractor, past tense from a time phrase or before-clause"
+    ]
+   },
+   {
+    "with": "SEC25A-03",
+    "readers": 2,
+    "why": [
+     "past-period subject-verb with present-perfect distractor",
+     "head noun with attractor, past tense from a time phrase or before-clause"
+    ]
+   },
+   {
+    "with": "SEC25B-06",
+    "readers": 2,
+    "why": [
+     "past-period subject-verb with present-perfect distractor",
+     "head noun with attractor, past tense from a time phrase or before-clause"
+    ]
+   },
+   {
+    "with": "SEC25A-02",
+    "readers": 1,
+    "why": [
+     "head noun with attractor, past tense from a time phrase or before-clause"
+    ]
+   }
+  ]
+ },
+ "SEC25C-06": {
+  "must_revise": true,
+  "named_for": [
+   "no reader rated it hard",
+   "distractors not strong for every reader",
+   "matches an open mark",
+   "template pair with SEC25B-05 (named by all 2 readers)",
+   "template pair with SEC25A-04 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template partner of SEC25D-01 (the later slot revises)",
+   "named in reader r0's tell: Elliptical items (P09, P10, P12, P31): the key always copies the auxiliary/verb type of the parallel clause and only flips number; 'have not' and 'do not' varia",
+   "named in reader r1's tell: Ellipsis items (P03, P04, P13, P26) always key on the auxiliary that copies the first clause's verb form."
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "were not",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "The parallel clause 'The proscenium was salvageable' sits immediately before and supplies both the verb ('be') and tense; the student only flips number, and 'ceilings' is plainly plural.",
+    "note": "Ellipsis after a semicolon must copy the parallel auxiliary 'was (salvageable)' in past tense with plural 'ceilings': 'were not'. 'Was not' is drawn by 'auditorium' directly before the blank; 'have not' cannot stand for 'salvageable'."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "were not",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "The parallel clause 'The proscenium was salvageable' hands over the verb 'be' and the past tense, leaving only number, and 'ceilings' is a plain plural.",
+    "note": "Elliptical clause parallel to 'was salvageable': plural 'ceilings' needs 'were not [salvageable]'. 'have not' tempts as a present-perfect negative but cannot elide 'salvageable'."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC25B-05",
+    "readers": 2,
+    "why": [
+     "elliptical second clause copying the parallel auxiliary",
+     "elliptical auxiliary copying the first clause's verb"
+    ]
+   },
+   {
+    "with": "SEC25D-01",
+    "readers": 2,
+    "why": [
+     "elliptical second clause copying the parallel auxiliary",
+     "elliptical auxiliary copying the first clause's verb"
+    ]
+   },
+   {
+    "with": "SEC25A-04",
+    "readers": 2,
+    "why": [
+     "elliptical second clause copying the parallel auxiliary",
+     "elliptical auxiliary copying the first clause's verb"
+    ]
+   }
+  ]
+ },
+ "SEC25C-01": {
+  "must_revise": true,
+  "named_for": [
+   "no reader rated it hard",
+   "distractors not strong for every reader",
+   "template pair with SEC25B-03 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template pair with SEC25A-01 named by 1 of 2",
+   "template partner of SEC25C-02 (the later slot revises)",
+   "template pair with SEC25D-05 named by 1 of 2",
+   "template pair with SEC25D-04 named by 1 of 2",
+   "template pair with SEC25B-01 named by 1 of 2",
+   "named in reader r0's tell: Subject-verb items almost all use one shape: singular or plural head + of/among/in phrase whose noun has the opposite number and sits right before the blank (P0",
+   "named in reader r0's tell: Tense in the 2x2 tense/number grids is handed over by a verb in a trailing subordinate clause (unless/if/after/while/before/provided that) in P06, P11, P13, P18",
+   "named in reader r1's tell: Agreement items nearly always place a noun of the WRONG number directly before the blank (P05 layers, P10 chancel, P11 employer, P14 blisters, P16 station, P18 "
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "are darkening",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "The 'and' joining two nouns at the head of the subject is the most familiar plural signal, and 'unless ... installs' after the blank hands over the present tense.",
+    "note": "Compound subject 'The fresco and the gilded screen' is plural; 'unless the parish council installs' is present, so 'are darkening'. 'Is darkening' is drawn by 'chancel' right before the blank."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "are darkening",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'and' in the subject makes the plural obvious and 'installs' hands over present tense; the singular attractor 'chancel' is the same trap as P05, P18, P23.",
+    "note": "Compound subject 'The fresco and the gilded screen' is plural; 'each winter unless ... installs' is present habitual, giving 'are darkening'. 'is darkening' is pulled by 'chancel'."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC25B-03",
+    "readers": 2,
+    "why": [
+     "present tense set by a trailing while/unless/provided/after clause with an attractor noun",
+     "head noun with attractor, tense from a following conditional or temporal clause"
+    ]
+   },
+   {
+    "with": "SEC25A-01",
+    "readers": 1,
+    "why": [
+     "present tense set by a trailing while/unless/provided/after clause with an attractor noun"
+    ]
+   },
+   {
+    "with": "SEC25C-02",
+    "readers": 2,
+    "why": [
+     "present tense set by a trailing while/unless/provided/after clause with an attractor noun",
+     "head noun with attractor, tense from a following conditional or temporal clause"
+    ]
+   },
+   {
+    "with": "SEC25D-05",
+    "readers": 1,
+    "why": [
+     "head noun with attractor, tense from a following conditional or temporal clause"
+    ]
+   },
+   {
+    "with": "SEC25D-04",
+    "readers": 1,
+    "why": [
+     "head noun with attractor, tense from a following conditional or temporal clause"
+    ]
+   },
+   {
+    "with": "SEC25B-01",
+    "readers": 1,
+    "why": [
+     "head noun with attractor, tense from a following conditional or temporal clause"
+    ]
+   }
+  ]
+ },
+ "SEC25C-05": {
+  "must_revise": true,
+  "named_for": [
+   "no reader rated it hard",
+   "distractors not strong for every reader",
+   "template pair with SEC25B-07 (named by all 2 readers)",
+   "template pair with SEC25A-05 (named by all 2 readers)",
+   "template pair with SEC25A-06 (named by all 2 readers)",
+   "template pair with SEC25C-04 (named by all 2 readers)",
+   "template pair with SEC25B-04 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template partner of SEC25D-07 (the later slot revises)",
+   "template partner of SEC25C-07 (the later slot revises)",
+   "template partner of SEC25D-06 (the later slot revises)",
+   "template partner of SEC25D-02 (the later slot revises)",
+   "named in reader r0's tell: Verb/pronoun 2x2 grids (P01, P04, P05, P14, P15, P17, P22, P24, P27, P28): in 9 of 10 the key is the option whose verb number DIFFERS from its pronoun number (P",
+   "named in reader r1's tell: In every verb-plus-pronoun 2x2 grid (P02, P06, P12, P15, P17, P20, P21, P24, P29, P30) the key pairs a verb and a pronoun of OPPOSITE number (singular verb + pl"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "has reunited them",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'reunited' only makes sense of something divided, and 'registers ... were divided' is the one plural antecedent; verb singular/pronoun plural repeats the mismatch pattern of the other pronoun grids.",
+    "note": "Singular 'archive' takes 'has reunited'; what was reunited is the plural 'baptismal registers', so 'them'. 'It' tempts if read as the parish or the run."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "has reunited them",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "Key mixes singular verb with plural pronoun exactly as in every other verb-plus-pronoun grid in this render; the 'divided ... reunited' pairing makes 'registers' the obvious antecedent.",
+    "note": "Singular 'archive' takes 'has'; 'them' refers back to the plural 'registers' that were divided and reunited. 'have' is pulled by 'towns'."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC25D-07",
+    "readers": 2,
+    "why": [
+     "verb number plus pronoun number 2x2 grid, mismatched numbers",
+     "verb number plus pronoun antecedent 2x2 grid"
+    ]
+   },
+   {
+    "with": "SEC25B-07",
+    "readers": 2,
+    "why": [
+     "verb number plus pronoun number 2x2 grid, mismatched numbers",
+     "verb number plus pronoun antecedent 2x2 grid"
+    ]
+   },
+   {
+    "with": "SEC25A-05",
+    "readers": 2,
+    "why": [
+     "verb number plus pronoun number 2x2 grid, mismatched numbers",
+     "verb number plus pronoun antecedent 2x2 grid"
+    ]
+   },
+   {
+    "with": "SEC25C-07",
+    "readers": 2,
+    "why": [
+     "verb number plus pronoun number 2x2 grid, mismatched numbers",
+     "verb number plus pronoun antecedent 2x2 grid"
+    ]
+   },
+   {
+    "with": "SEC25A-06",
+    "readers": 2,
+    "why": [
+     "verb number plus pronoun number 2x2 grid, mismatched numbers",
+     "verb number plus pronoun antecedent 2x2 grid"
+    ]
+   },
+   {
+    "with": "SEC25C-04",
+    "readers": 2,
+    "why": [
+     "verb number plus pronoun number 2x2 grid, mismatched numbers",
+     "verb number plus pronoun antecedent 2x2 grid"
+    ]
+   },
+   {
+    "with": "SEC25D-06",
+    "readers": 2,
+    "why": [
+     "verb number plus pronoun number 2x2 grid, mismatched numbers",
+     "verb number plus pronoun antecedent 2x2 grid"
+    ]
+   },
+   {
+    "with": "SEC25B-04",
+    "readers": 2,
+    "why": [
+     "verb number plus pronoun number 2x2 grid, mismatched numbers",
+     "verb number plus pronoun antecedent 2x2 grid"
+    ]
+   },
+   {
+    "with": "SEC25D-02",
+    "readers": 2,
+    "why": [
+     "verb number plus pronoun number 2x2 grid, mismatched numbers",
+     "verb number plus pronoun antecedent 2x2 grid"
+    ]
+   }
+  ]
+ },
+ "SEC25C-07": {
+  "must_revise": true,
+  "named_for": [
+   "no reader rated it hard",
+   "distractors weak",
+   "distractors not strong for every reader",
+   "template pair with SEC25B-07 (named by all 2 readers)",
+   "template pair with SEC25A-05 (named by all 2 readers)",
+   "template pair with SEC25C-05 (named by all 2 readers)",
+   "template pair with SEC25A-06 (named by all 2 readers)",
+   "template pair with SEC25C-04 (named by all 2 readers)",
+   "template pair with SEC25B-04 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template partner of SEC25D-07 (the later slot revises)",
+   "template partner of SEC25D-06 (the later slot revises)",
+   "template partner of SEC25D-02 (the later slot revises)",
+   "named in reader r0's tell: Verb/pronoun 2x2 grids (P01, P04, P05, P14, P15, P17, P22, P24, P27, P28): in 9 of 10 the key is the option whose verb number DIFFERS from its pronoun number (P",
+   "named in reader r1's tell: In every verb-plus-pronoun 2x2 grid (P02, P06, P12, P15, P17, P20, P21, P24, P29, P30) the key pairs a verb and a pronoun of OPPOSITE number (singular verb + pl"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "was bypassed by them",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "weak",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'by it' has no sensible singular agent (a shrine cannot bypass a crypt), so the pronoun half is free and the verb half has the head noun 'crypt' immediately after 'but the'.",
+    "note": "'The crypt' is singular (attractor 'transepts'), so 'was bypassed'; the agents are the plural 'pilgrims', so 'by them'. 'By it' (the shrine) is semantically absurd."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "was bypassed by them",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'by it' produces an absurd agent (the shrine or crypt bypassing itself), so the pronoun half is nearly free, and the verb grid matches the opposite-number pattern.",
+    "note": "Singular 'crypt' takes 'was bypassed'; 'them' refers to the pilgrims. 'were' is pulled by 'transepts'; 'by it' has no sensible singular agent."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC25D-07",
+    "readers": 2,
+    "why": [
+     "verb number plus pronoun number 2x2 grid, mismatched numbers",
+     "verb number plus pronoun antecedent 2x2 grid"
+    ]
+   },
+   {
+    "with": "SEC25B-07",
+    "readers": 2,
+    "why": [
+     "verb number plus pronoun number 2x2 grid, mismatched numbers",
+     "verb number plus pronoun antecedent 2x2 grid"
+    ]
+   },
+   {
+    "with": "SEC25A-05",
+    "readers": 2,
+    "why": [
+     "verb number plus pronoun number 2x2 grid, mismatched numbers",
+     "verb number plus pronoun antecedent 2x2 grid"
+    ]
+   },
+   {
+    "with": "SEC25C-05",
+    "readers": 2,
+    "why": [
+     "verb number plus pronoun number 2x2 grid, mismatched numbers",
+     "verb number plus pronoun antecedent 2x2 grid"
+    ]
+   },
+   {
+    "with": "SEC25A-06",
+    "readers": 2,
+    "why": [
+     "verb number plus pronoun number 2x2 grid, mismatched numbers",
+     "verb number plus pronoun antecedent 2x2 grid"
+    ]
+   },
+   {
+    "with": "SEC25C-04",
+    "readers": 2,
+    "why": [
+     "verb number plus pronoun number 2x2 grid, mismatched numbers",
+     "verb number plus pronoun antecedent 2x2 grid"
+    ]
+   },
+   {
+    "with": "SEC25D-06",
+    "readers": 2,
+    "why": [
+     "verb number plus pronoun number 2x2 grid, mismatched numbers",
+     "verb number plus pronoun antecedent 2x2 grid"
+    ]
+   },
+   {
+    "with": "SEC25B-04",
+    "readers": 2,
+    "why": [
+     "verb number plus pronoun number 2x2 grid, mismatched numbers",
+     "verb number plus pronoun antecedent 2x2 grid"
+    ]
+   },
+   {
+    "with": "SEC25D-02",
+    "readers": 2,
+    "why": [
+     "verb number plus pronoun number 2x2 grid, mismatched numbers",
+     "verb number plus pronoun antecedent 2x2 grid"
+    ]
+   }
+  ]
+ },
+ "SEC25C-04": {
+  "must_revise": true,
+  "named_for": [
+   "no reader rated it hard",
+   "distractors not strong for every reader",
+   "template pair with SEC25B-07 (named by all 2 readers)",
+   "template pair with SEC25A-05 (named by all 2 readers)",
+   "template pair with SEC25A-06 (named by all 2 readers)",
+   "template pair with SEC25B-04 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template partner of SEC25D-07 (the later slot revises)",
+   "template partner of SEC25C-05 (the later slot revises)",
+   "template partner of SEC25C-07 (the later slot revises)",
+   "template partner of SEC25D-06 (the later slot revises)",
+   "template partner of SEC25D-02 (the later slot revises)",
+   "named in reader r0's tell: Verb/pronoun 2x2 grids (P01, P04, P05, P14, P15, P17, P22, P24, P27, P28): in 9 of 10 the key is the option whose verb number DIFFERS from its pronoun number (P",
+   "named in reader r1's tell: In every verb-plus-pronoun 2x2 grid (P02, P06, P12, P15, P17, P20, P21, P24, P29, P30) the key pairs a verb and a pronoun of OPPOSITE number (singular verb + pl"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "were its",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'chief claim to fame' cannot belong to the books themselves in a sentence whose subject is the books, so 'its' (the abbey) is forced; verb plural/pronoun singular repeats the mismatch of P04, P05, P27.",
+    "note": "Plural 'gospel books' takes 'were'; the claim to fame belongs to the abbey (or monastery), so 'its'. 'Their' tempts as a reflexive reading back to the books."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "were its",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "The plural subject sits immediately before the blank with no intervening attractor, and the verb-plus-pronoun grid again keys on opposite numbers.",
+    "note": "Plural 'gospel books' takes 'were'; 'its' refers to the abbey (Reichenau). 'their' has no sensible plural antecedent other than the books themselves, which would be circular."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC25D-07",
+    "readers": 2,
+    "why": [
+     "verb number plus pronoun number 2x2 grid, mismatched numbers",
+     "verb number plus pronoun antecedent 2x2 grid"
+    ]
+   },
+   {
+    "with": "SEC25B-07",
+    "readers": 2,
+    "why": [
+     "verb number plus pronoun number 2x2 grid, mismatched numbers",
+     "verb number plus pronoun antecedent 2x2 grid"
+    ]
+   },
+   {
+    "with": "SEC25A-05",
+    "readers": 2,
+    "why": [
+     "verb number plus pronoun number 2x2 grid, mismatched numbers",
+     "verb number plus pronoun antecedent 2x2 grid"
+    ]
+   },
+   {
+    "with": "SEC25C-05",
+    "readers": 2,
+    "why": [
+     "verb number plus pronoun number 2x2 grid, mismatched numbers",
+     "verb number plus pronoun antecedent 2x2 grid"
+    ]
+   },
+   {
+    "with": "SEC25C-07",
+    "readers": 2,
+    "why": [
+     "verb number plus pronoun number 2x2 grid, mismatched numbers",
+     "verb number plus pronoun antecedent 2x2 grid"
+    ]
+   },
+   {
+    "with": "SEC25A-06",
+    "readers": 2,
+    "why": [
+     "verb number plus pronoun number 2x2 grid, mismatched numbers",
+     "verb number plus pronoun antecedent 2x2 grid"
+    ]
+   },
+   {
+    "with": "SEC25D-06",
+    "readers": 2,
+    "why": [
+     "verb number plus pronoun number 2x2 grid, mismatched numbers",
+     "verb number plus pronoun antecedent 2x2 grid"
+    ]
+   },
+   {
+    "with": "SEC25B-04",
+    "readers": 2,
+    "why": [
+     "verb number plus pronoun number 2x2 grid, mismatched numbers",
+     "verb number plus pronoun antecedent 2x2 grid"
+    ]
+   },
+   {
+    "with": "SEC25D-02",
+    "readers": 2,
+    "why": [
+     "verb number plus pronoun number 2x2 grid, mismatched numbers",
+     "verb number plus pronoun antecedent 2x2 grid"
+    ]
+   }
+  ]
+ },
+ "SEC25C-02": {
+  "must_revise": true,
+  "named_for": [
+   "no reader rated it hard",
+   "distractors not strong for every reader",
+   "template pair with SEC25B-03 (named by all 2 readers)",
+   "template pair with SEC25C-01 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template pair with SEC25A-01 named by 1 of 2",
+   "template pair with SEC25D-05 named by 1 of 2",
+   "template pair with SEC25D-04 named by 1 of 2",
+   "template pair with SEC25B-01 named by 1 of 2",
+   "named in reader r0's tell: Subject-verb items almost all use one shape: singular or plural head + of/among/in phrase whose noun has the opposite number and sits right before the blank (P0",
+   "named in reader r0's tell: Tense in the 2x2 tense/number grids is handed over by a verb in a trailing subordinate clause (unless/if/after/while/before/provided that) in P06, P11, P13, P18",
+   "named in reader r1's tell: Agreement items nearly always place a noun of the WRONG number directly before the blank (P05 layers, P10 chancel, P11 employer, P14 blisters, P16 station, P18 "
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "is chronicled",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'announce ... each September' after the blank hands over present habitual tense, and 'The rivalry among' is the standard head-plus-prepositional-phrase attractor seen in P20 and P21.",
+    "note": "Singular 'rivalry' (attractor 'bands') with present habitual 'after the adjudicators announce ... each September' requires 'is chronicled'. 'Are chronicled' tempts via 'bands' right before the blank."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "is chronicled",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'announce ... each September' hands over present habitual tense and 'bands' is the usual attractor; same build as P05, P10, P18.",
+    "note": "Singular 'rivalry' with present 'announce' and 'each September' gives 'is chronicled'. 'are chronicled' is pulled by 'bands'."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC25B-03",
+    "readers": 2,
+    "why": [
+     "present tense set by a trailing while/unless/provided/after clause with an attractor noun",
+     "head noun with attractor, tense from a following conditional or temporal clause"
+    ]
+   },
+   {
+    "with": "SEC25C-01",
+    "readers": 2,
+    "why": [
+     "present tense set by a trailing while/unless/provided/after clause with an attractor noun",
+     "head noun with attractor, tense from a following conditional or temporal clause"
+    ]
+   },
+   {
+    "with": "SEC25A-01",
+    "readers": 1,
+    "why": [
+     "present tense set by a trailing while/unless/provided/after clause with an attractor noun"
+    ]
+   },
+   {
+    "with": "SEC25D-05",
+    "readers": 1,
+    "why": [
+     "head noun with attractor, tense from a following conditional or temporal clause"
+    ]
+   },
+   {
+    "with": "SEC25D-04",
+    "readers": 1,
+    "why": [
+     "head noun with attractor, tense from a following conditional or temporal clause"
+    ]
+   },
+   {
+    "with": "SEC25B-01",
+    "readers": 1,
+    "why": [
+     "head noun with attractor, tense from a following conditional or temporal clause"
+    ]
+   }
+  ]
+ }
+}
