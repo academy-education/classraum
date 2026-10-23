@@ -46,9 +46,9 @@ const TOTAL_STEPS = 5
 // Captured up front so the predicted-score card shows the motivating
 // "X to go" gap from day one instead of "Set a goal score".
 
-// `available` mirrors the landing-grid lock: only the SAT is open for
-// now; the rest render dimmed with a "Soon" chip so new students can't
-// onboard onto a test that has no content yet.
+// `available` mirrors the landing-grid lock (SHIPPED_TEST_SLUGS): open
+// tests are selectable; the rest render dimmed with a "Soon" chip so new
+// students can't onboard onto a test that has no content yet.
 // `available` mirrors AVAILABLE_TARGET_TESTS rather than repeating it:
 // the camp auto-answer in useOnboardingGate reads the same list, and a
 // private copy here is how GOAL_SCALES drifted before it was shared.
@@ -60,14 +60,18 @@ const TOTAL_STEPS = 5
 const TESTS = [
   { value: 'sat',   label_en: 'SAT',         label_ko: 'SAT'      },
   { value: 'toefl', label_en: 'TOEFL',       label_ko: 'TOEFL'    },
-  { value: 'ksat',  label_en: 'KSAT (수능)', label_ko: '수능'     },
   { value: 'act',   label_en: 'ACT',         label_ko: 'ACT'      },
+  { value: 'ssat',  label_en: 'SSAT',        label_ko: 'SSAT'     },
+  { value: 'isee',  label_en: 'ISEE',        label_ko: 'ISEE'     },
+  { value: 'ksat',  label_en: 'KSAT (수능)', label_ko: '수능'     },
   { value: 'ap',    label_en: 'AP Exams',    label_ko: 'AP 시험'  },
   { value: 'map',   label_en: 'MAP Test',    label_ko: 'MAP 테스트' },
   { value: 'ib',    label_en: 'IB',          label_ko: 'IB'       },
   { value: 'igcse', label_en: 'IGCSE',       label_ko: 'IGCSE'    },
   { value: 'ged',   label_en: 'GED',         label_ko: 'GED'      },
 ].map(x => ({ ...x, available: isAvailableTargetTest(x.value) }))
+  // Open tests first, then the coming-soon ones, keeping each group's order.
+  .sort((a, b) => Number(b.available) - Number(a.available))
 
 const GRADES = [
   { value: 'middle',     label_en: 'Middle School', label_ko: '중학생' },
