@@ -1998,7 +1998,7 @@
         "noSize": "no test size known",
         "hardRoute": "hard route {n}",
         "liveItems": "{n} live items",
-        "divisionAlt": "≈{n} by division",
+        "divisionAlt": "live ÷ test size ≈ {n}",
         "none": "None",
         "approxTests": "(≈ {n} tests)",
         "inOpenReview": "{n} in an open review",
@@ -2012,7 +2012,8 @@
           "live": "Live tests",
           "staged": "Staged items (≈ tests)",
           "most": "Most tests by one student",
-          "under5": "Students under 5 left"
+          "under5": "Students under 5 left",
+          "liveDate": "depth measured {date}"
         },
         "cards": {
           "live": "Live items",
@@ -2024,7 +2025,10 @@
           "students": "Students under 5 left",
           "studentsSub": "of {n} real students"
         },
-        "footnote": "Live tests is the measured depth (clean tests before a repeat) from depth-snapshot.json, dated {date}; where a section has no measurement it is live items divided by items per test, which ignores domain quotas and overstates. Staged tests is always the plain division. Usage counts completed full tests by {students} real students; tests left = measured depth minus tests taken. {items} bank rows read in full."
+        "footnote": "Live tests is the measured depth (clean tests before a repeat) from depth-snapshot.json, dated {date}; where a section has no measurement it is live items divided by items per test, which ignores domain quotas and overstates. Staged tests is always the plain division. Usage counts completed full tests by {students} real students; tests left = measured depth minus tests taken. {items} bank rows read in full.",
+        "staleDot": "From the depth snapshot, which may be out of date",
+        "staleNote": "Depth snapshot measured {days} days ago ({date}), may be out of date. Numbers with an amber dot come from it; the \"live ÷ test size\" line under each is computed from today's bank.",
+        "staleUnknown": "The depth snapshot date ({date}) could not be read, so its numbers may be out of date."
       }
     }
   },

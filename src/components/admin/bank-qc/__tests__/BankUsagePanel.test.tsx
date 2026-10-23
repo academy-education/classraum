@@ -81,7 +81,9 @@ describe('BankUsagePanel', () => {
     expect(sat.className).not.toMatch(/rose|amber/)
     expect(sat.textContent).toContain('measured 2026-10-22')
     expect(sat.textContent).toContain('hard route 9')
-    expect(sat.textContent).toContain('≈27 by division')
+    expect(sat.textContent).toContain('live ÷ test size ≈ 27')
+    // A section with no measurement has no snapshot number to compare against.
+    expect(within(map).queryByTestId('division-line')).not.toBeInTheDocument()
 
     const toefl = rows.find(r => r.textContent?.includes('TOEFL Listening'))!
     expect(toefl.textContent).toContain('12 in an open review')
@@ -97,6 +99,26 @@ describe('BankUsagePanel', () => {
     expect(screen.getByText('1,247')).toBeInTheDocument()
     expect(screen.getByText('of 80 real students')).toBeInTheDocument()
     expect(screen.getByText(/As of/)).toBeInTheDocument()
+  })
+
+  it('a snapshot one day old is not flagged', async () => {
+    mockFetch(REPORT) // measured 2026-10-22, read 2026-10-23 10:00 KST
+    render(<BankUsagePanel />)
+    const table = await screen.findByRole('table')
+    expect(screen.queryByTestId('stale-note')).not.toBeInTheDocument()
+    expect(within(table).queryAllByTestId('stale-dot')).toHaveLength(0)
+    expect(within(table).getByText('depth measured 2026-10-22')).toBeInTheDocument()
+  })
+
+  it('a snapshot older than a day gets the amber note and a dot on every measured cell, and only those', async () => {
+    mockFetch({ ...REPORT, generatedAt: '2026-10-30T01:00:00.000Z' })
+    render(<BankUsagePanel />)
+    const table = await screen.findByRole('table')
+    expect(screen.getByTestId('stale-note')).toHaveTextContent('measured 8 days ago (2026-10-22), may be out of date')
+    // SAT R&W, ISEE Reading, TOEFL Listening are measured; MAP Math is by division.
+    expect(within(table).getAllByTestId('stale-dot')).toHaveLength(3)
+    const map = within(table).getAllByRole('row').find(r => r.textContent?.includes('MAP Math'))!
+    expect(within(map).queryByTestId('stale-dot')).not.toBeInTheDocument()
   })
 
   it('shows the error and NO numbers when the route fails', async () => {

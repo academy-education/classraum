@@ -1,7 +1,7 @@
 /** @jest-environment node */
 import {
   aggregateBankUsage, depthFor, realStudentIds, studentSectionRows, tallyFullTests,
-  taskMixBySession, testsWorth, toeflPathFromTaskMix,
+  taskMixBySession, testsWorth, toeflPathFromTaskMix, snapshotAgeDays, snapshotIsStale,
   type BankRowLite, type DepthSnapshot, type ExclusionTables, type SessionFactsRow,
 } from '../bank-usage'
 import { bankRowsPerTest } from '../bank-test-size'
@@ -22,6 +22,19 @@ describe('testsWorth', () => {
   it('returns null, not a number, when the per-test size is unknown', () => {
     expect(testsWorth(100, null)).toBeNull()
     expect(testsWorth(100, 0)).toBeNull()
+  })
+})
+
+describe('snapshot age', () => {
+  it('counts whole KST days from the measured date', () => {
+    expect(snapshotAgeDays('2026-10-22', '2026-10-22T15:30:00.000Z')).toBe(1) // 00:30 KST on the 23rd
+    expect(snapshotAgeDays('2026-10-22', '2026-10-22T14:00:00.000Z')).toBe(0)
+  })
+  it('flags older than one day, and an unreadable date, as stale', () => {
+    expect(snapshotIsStale(snapshotAgeDays('2026-10-22', '2026-10-23T12:00:00.000Z'))).toBe(false)
+    expect(snapshotIsStale(snapshotAgeDays('2026-10-22', '2026-10-24T12:00:00.000Z'))).toBe(true)
+    expect(snapshotAgeDays('not a date', '2026-10-24T12:00:00.000Z')).toBeNull()
+    expect(snapshotIsStale(null)).toBe(true)
   })
 })
 

@@ -20,7 +20,7 @@ import { AdminTableShell, AdminMobileRow } from '@/components/admin/AdminTableSh
 import { StatusBadge } from '@/components/admin/StatusBadge'
 import type { BankUsageReport } from '@/lib/study/bank-usage-load'
 import type { SectionUsage } from '@/lib/study/bank-usage'
-import { LOW_TESTS } from '@/lib/study/bank-usage'
+import { LOW_TESTS, snapshotAgeDays, snapshotIsStale } from '@/lib/study/bank-usage'
 import { useQcT, type QcT } from './i18n'
 
 const FAMILY_LABEL: Record<string, string> = {
@@ -47,11 +47,26 @@ const NUM_TONE = { red: 'text-rose-700', amber: 'text-amber-700' } as const
 
 const n = (v: number) => v.toLocaleString()
 
-function LiveTestsCell({ s, t, snapshot }: { s: SectionUsage; t: QcT; snapshot: string }) {
+/** Small amber dot on a number taken from a stale depth snapshot. */
+function StaleDot({ t }: { t: QcT }) {
+  return (
+    <span
+      data-testid="stale-dot"
+      role="img"
+      aria-label={t('admin.bankQc.usage.staleDot')}
+      title={t('admin.bankQc.usage.staleDot')}
+      className="inline-block h-2 w-2 rounded-full bg-amber-400 ring-2 ring-amber-100 shrink-0"
+    />
+  )
+}
+
+function LiveTestsCell({ s, t, snapshot, stale }: { s: SectionUsage; t: QcT; snapshot: string; stale: boolean }) {
   const tone = lowTone(s.liveTests)
+  const fromSnapshot = s.liveTestsSource === 'measured'
   return (
     <div>
       <div className="flex items-center gap-1.5">
+        {fromSnapshot && stale && <StaleDot t={t} />}
         <span className={`text-[15px] font-semibold tabular-nums ${tone ? NUM_TONE[tone] : 'text-gray-900'}`}>
           {s.liveTests === null ? '—' : `${s.liveTests}${s.measuredAtLeast ? '+' : ''}`}
         </span>
@@ -69,10 +84,16 @@ function LiveTestsCell({ s, t, snapshot }: { s: SectionUsage; t: QcT; snapshot: 
             : t('admin.bankQc.usage.noSize')}
         {s.measuredHardRoute !== null && <> · {t('admin.bankQc.usage.hardRoute', { n: s.measuredHardRoute })}</>}
       </div>
+      {/* Computed from TODAY's bank, beside the snapshot number, so a
+          bank that has grown past the measurement is visible at a glance.
+          Division ignores domain quotas, so it is an upper bound. */}
+      {fromSnapshot && s.liveTestsByDivision !== null && (
+        <div className="text-[11px] text-gray-600 tabular-nums leading-snug" data-testid="division-line">
+          {t('admin.bankQc.usage.divisionAlt', { n: s.liveTestsByDivision })}
+        </div>
+      )}
       <div className="text-[11px] text-gray-400 tabular-nums leading-snug">
         {t('admin.bankQc.usage.liveItems', { n: n(s.live) })}
-        {s.liveTestsSource === 'measured' && s.liveTestsByDivision !== null
-          && <> · {t('admin.bankQc.usage.divisionAlt', { n: s.liveTestsByDivision })}</>}
       </div>
     </div>
   )
@@ -171,6 +192,10 @@ export function BankUsagePanel() {
   }, [nonce])
 
   const sections = data?.sections ?? []
+  // Age against the server's read time, not the viewer's clock, so the
+  // note describes the numbers on screen.
+  const ageDays = data ? snapshotAgeDays(data.snapshotMeasured, data.generatedAt) : null
+  const stale = data ? snapshotIsStale(ageDays) : false
   const totals = {
     live: sections.reduce((a, s) => a + s.live, 0),
     staged: sections.reduce((a, s) => a + s.staged, 0),
@@ -214,6 +239,19 @@ export function BankUsagePanel() {
 
       {data && !error && (
         <>
+          {stale && (
+            <p
+              data-testid="stale-note"
+              className="flex items-start gap-2 rounded-xl bg-amber-50 ring-1 ring-amber-200 px-3 py-2 text-[12px] text-amber-900 leading-snug"
+            >
+              <AlertTriangle className="h-4 w-4 shrink-0 mt-px text-amber-600" />
+              <span>
+                {ageDays === null
+                  ? t('admin.bankQc.usage.staleUnknown', { date: data.snapshotMeasured })
+                  : t('admin.bankQc.usage.staleNote', { days: ageDays, date: data.snapshotMeasured })}
+              </span>
+            </p>
+          )}
           <div className="grid gap-3 grid-cols-1 min-[420px]:grid-cols-2 lg:grid-cols-4">
             <DashboardCard
               title={t('admin.bankQc.usage.cards.live')}
@@ -258,7 +296,18 @@ export function BankUsagePanel() {
                       </StatusBadge>
                     ) : undefined}
                     meta={[
-                      { label: t('admin.bankQc.usage.col.live'), value: s.liveTests === null ? '—' : `${s.liveTests}${s.measuredAtLeast ? '+' : ''}` },
+                      {
+                        label: t('admin.bankQc.usage.col.live'),
+                        value: (
+                          <span className="inline-flex items-center gap-1.5">
+                            {s.liveTestsSource === 'measured' && stale && <StaleDot t={t} />}
+                            {s.liveTests === null ? '—' : `${s.liveTests}${s.measuredAtLeast ? '+' : ''}`}
+                            {s.liveTestsSource === 'measured' && s.liveTestsByDivision !== null && (
+                              <span className="text-[11px] text-gray-500">({t('admin.bankQc.usage.divisionAlt', { n: s.liveTestsByDivision })})</span>
+                            )}
+                          </span>
+                        ),
+                      },
                       { label: t('admin.bankQc.usage.col.staged'), value: s.staged === 0 ? '—' : `${n(s.staged)}${s.stagedTestsByDivision === null ? '' : ` (≈${s.stagedTestsByDivision})`}` },
                       { label: t('admin.bankQc.usage.col.most'), value: s.studentsWithTests === 0 ? '—' : String(s.maxTestsOneStudent) },
                       { label: t('admin.bankQc.usage.col.under5'), value: s.studentsWithTests === 0 ? '—' : String(s.studentsUnder5Left) },
@@ -273,7 +322,12 @@ export function BankUsagePanel() {
               <thead>
                 <tr className="text-left text-[11px] uppercase tracking-wide text-gray-500 border-b border-gray-100">
                   <th scope="col" className="py-2.5 px-4 font-medium">{t('admin.bankQc.usage.col.section')}</th>
-                  <th scope="col" className="py-2.5 px-3 font-medium">{t('admin.bankQc.usage.col.live')}</th>
+                  <th scope="col" className="py-2.5 px-3 font-medium">
+                    {t('admin.bankQc.usage.col.live')}
+                    <span className={`block normal-case tracking-normal text-[10.5px] font-normal ${stale ? 'text-amber-700' : 'text-gray-400'}`}>
+                      {t('admin.bankQc.usage.col.liveDate', { date: data.snapshotMeasured })}
+                    </span>
+                  </th>
                   <th scope="col" className="py-2.5 px-3 font-medium">{t('admin.bankQc.usage.col.staged')}</th>
                   <th scope="col" className="py-2.5 px-3 font-medium">{t('admin.bankQc.usage.col.most')}</th>
                   <th scope="col" className="py-2.5 px-4 font-medium">{t('admin.bankQc.usage.col.under5')}</th>
@@ -290,7 +344,7 @@ export function BankUsagePanel() {
                           <div className="text-[11px] text-gray-400 tabular-nums">{t('admin.bankQc.usage.perTest', { n: s.perTest })}</div>
                         )}
                       </td>
-                      <td className="py-2.5 px-3 min-w-[170px]"><LiveTestsCell s={s} t={t} snapshot={data.snapshotMeasured} /></td>
+                      <td className="py-2.5 px-3 min-w-[170px]"><LiveTestsCell s={s} t={t} snapshot={data.snapshotMeasured} stale={stale} /></td>
                       <td className="py-2.5 px-3 min-w-[150px]"><StagedCell s={s} t={t} /></td>
                       <td className="py-2.5 px-3 min-w-[130px]"><MostUsedCell s={s} t={t} /></td>
                       <td className="py-2.5 px-4"><UnderFiveCell s={s} t={t} /></td>

@@ -241,6 +241,27 @@ export function testsWorth(items: number, perTest: number | null): number | null
   return Math.floor(items / perTest)
 }
 
+/**
+ * Whole days between the snapshot's `measured` date (a KST calendar date,
+ * which is how the depth scripts stamp it) and `asOf`. null if either is
+ * unparseable — an unknown age must not read as "fresh".
+ */
+export function snapshotAgeDays(measured: string, asOf: string | number | Date): number | null {
+  const m = Date.parse(`${measured}T00:00:00+09:00`)
+  const now = new Date(asOf).getTime()
+  if (!Number.isFinite(m) || !Number.isFinite(now)) return null
+  return Math.floor((now - m) / 864e5)
+}
+
+/**
+ * depth-snapshot.json is updated by hand, so a measured depth goes stale as
+ * the bank grows (2026-10-23: the page read SAT R&W hard route 9 while the
+ * live hard route was 13). Older than one day = flagged on the page.
+ */
+export function snapshotIsStale(ageDays: number | null): boolean {
+  return ageDays === null || ageDays > 1
+}
+
 /** Owner rule (memory: five-test floor): every section >= 5 clean tests, every student >= 5 left. */
 export const LOW_TESTS = 5
 
