@@ -24,8 +24,13 @@ import type { Question } from '@/app/mobile/study/session/[id]/test/types'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { showSuccessToast, showErrorToast } from '@/stores'
-import { Loader2, Plus, School, Tent, ClipboardList, Search, Calendar, Trash2, Pencil, ChevronDown, ChevronUp, Presentation, FileText, BookOpen, Clock, Users, CheckCircle2, Target, AlertTriangle } from 'lucide-react'
+import { Loader2, Plus, School, Tent, ClipboardList, Search, Calendar, Trash2, Pencil, ChevronDown, ChevronUp, Presentation, FileText, BookOpen, CalendarClock, Clock, Users, CheckCircle2, Target, AlertTriangle } from 'lucide-react'
 import { kstDate } from '@/lib/camp/dates'
+import { Checkbox } from '@/components/ui/checkbox'
+import { CampBulkDueModal } from '@/components/ui/camp/CampBulkDueModal'
+import { campErrorMessage } from '@/lib/camp/error-codes'
+import { campQuotaCost } from '@/lib/camp/quota-math'
+import { reviewDeckTitle } from '@/lib/camp/review-deck'
 
 /**
  * Camp dashboard — quota meter, camp classrooms, and the assignment
@@ -169,7 +174,9 @@ export function CampPage({ academyId }: CampPageProps) {
   const [submitting, setSubmitting] = useState(false)
   const [formError, setFormError] = useState<string | null>(null)
   const [form, setForm] = useState({
-    classroomId: '',
+    /* One or more classrooms. Several builds one assignment per room from
+       one draw, all-or-nothing on the server, costing count x rooms. */
+    classroomIds: [] as string[],
     title: '',
     section: '',
     domain: '',
@@ -238,9 +245,12 @@ export function CampPage({ academyId }: CampPageProps) {
     )
   }, [sessionOptions, sessionSearchQuery, formatDate])
 
+  /** The one classroom picked, when exactly one is — a session belongs to
+   *  a single classroom, so the session picker only works then. */
+  const singleClassroomId = form.classroomIds.length === 1 ? form.classroomIds[0]! : ''
   useEffect(() => {
     let alive = true
-    const classroomId = form.classroomId
+    const classroomId = singleClassroomId
     if (!classroomId) { setSessionOptions([]); return }
     setSessionsLoading(true)
     db.from('classroom_sessions')
@@ -259,7 +269,7 @@ export function CampPage({ academyId }: CampPageProps) {
         setSessionsLoading(false)
       })
     return () => { alive = false }
-  }, [form.classroomId])
+  }, [singleClassroomId])
 
   /* Camp P3 — class review presenter. The modal creates a review set
    * (POST /api/camp/review-set, same quota pool), fetches its full items
@@ -417,7 +427,7 @@ export function CampPage({ academyId }: CampPageProps) {
 
   const openModal = () => {
     setForm({
-      classroomId: manageable.length === 1 ? manageable[0]!.id : '',
+      classroomIds: manageable.length === 1 ? [manageable[0]!.id] : [],
       title: '',
       section: '',
       domain: '',
@@ -468,7 +478,7 @@ export function CampPage({ academyId }: CampPageProps) {
       const res = await fetch(`/api/camp/assignments?id=${pendingDelete.id}`, { method: 'DELETE', headers })
       const json = await res.json().catch(() => ({}))
       if (!res.ok) {
-        showErrorToast(json.error || String(t('camp.deleteAssignment.failed')))
+        showErrorToast(campErrorMessage(t, json, String(t('camp.deleteAssignment.failed'))))
         return
       }
       showSuccessToast(
@@ -501,7 +511,7 @@ export function CampPage({ academyId }: CampPageProps) {
         }),
       })
       const json = await res.json().catch(() => ({}))
-      if (!res.ok) { showErrorToast(json.error || String(t('camp.editAssignment.failed'))); return }
+      if (!res.ok) { showErrorToast(campErrorMessage(t, json, String(t('camp.editAssignment.failed')))); return }
       showSuccessToast(String(t('camp.editAssignment.saved')))
       setEditing(null)
       await fetchAll()
@@ -517,7 +527,7 @@ export function CampPage({ academyId }: CampPageProps) {
       const headers = await authHeaders()
       const res = await fetch(`/api/camp/review-set?id=${pendingDeckDelete.id}`, { method: 'DELETE', headers })
       const json = await res.json().catch(() => ({}))
-      if (!res.ok) { showErrorToast(json.error || String(t('camp.reviewSets.failed'))); return }
+      if (!res.ok) { showErrorToast(campErrorMessage(t, json, String(t('camp.reviewSets.failed')))); return }
       showSuccessToast(
         String(t('camp.reviewSets.deleted')),
         json.refunded > 0 ? String(t('camp.deleteAssignment.refunded', { n: json.refunded })) : undefined,
@@ -528,6 +538,44 @@ export function CampPage({ academyId }: CampPageProps) {
       showErrorToast(String(t('camp.reviewSets.failed')))
     } finally { setDeckDeleting(false) }
   }, [pendingDeckDelete, deckDeleting, t, fetchAll])
+
+  /** Present an existing deck again. The GET path returns its items (and
+   *  stamps presented_at the first time); nothing is drawn or charged. */
+  const [presentingDeckId, setPresentingDeckId] = useState<string | null>(null)
+  const presentDeck = useCallback(async (classroomId: string, deckId: string) => {
+    if (presentingDeckId) return
+    setPresentingDeckId(deckId)
+    try {
+      const res = await fetch(`/api/camp/review-set?id=${deckId}`, { headers: await authHeaders() })
+      const json = await res.json().catch(() => ({}))
+      if (!res.ok || !Array.isArray(json.questions) || json.questions.length === 0) {
+        showErrorToast(campErrorMessage(t, json, String(t('camp.review.errors.presentFailed'))))
+        return
+      }
+      setPresenter({
+        title: reviewDeckTitle({ title: json.reviewSet?.title, createdAt: json.reviewSet?.createdAt }, t, formatDate),
+        testFamily: (json.reviewSet?.testFamily as string) ?? program?.test_family ?? 'sat',
+        questions: json.questions as Question[],
+      })
+      setReviewSets(prev => ({
+        ...prev,
+        [classroomId]: (prev[classroomId] ?? []).map(d =>
+          d.id === deckId && !d.presented_at ? { ...d, presented_at: new Date().toISOString() } : d),
+      }))
+    } catch {
+      showErrorToast(String(t('camp.review.errors.presentFailed')))
+    } finally {
+      setPresentingDeckId(null)
+    }
+  }, [presentingDeckId, t, formatDate, program?.test_family])
+
+  /** Assignment builder cost: the same campQuotaCost the server charges. */
+  const formCount = Number(form.count)
+  const formCost = campQuotaCost(Number.isInteger(formCount) ? formCount : 0, form.classroomIds.length)
+  const formOverQuota = formCost > quotaRemaining
+
+  /** Classroom whose due dates are being moved in bulk. */
+  const [bulkDueClassroomId, setBulkDueClassroomId] = useState<string | null>(null)
 
   const openReviewModal = (classroomId: string) => {
     setReviewClassroomId(classroomId)
@@ -565,13 +613,7 @@ export function CampPage({ academyId }: CampPageProps) {
       })
       const created = await createRes.json().catch(() => ({}))
       if (!createRes.ok) {
-        if (created.code === 'quota_exceeded') {
-          setReviewError(String(t('camp.errors.quotaExceeded', { remaining: created.remaining ?? 0 })))
-        } else if (created.code === 'not_enough_items') {
-          setReviewError(String(t('camp.errors.notEnoughItems', { available: created.available ?? 0 })))
-        } else {
-          setReviewError(created.error || String(t('camp.review.errors.createFailed')))
-        }
+        setReviewError(campErrorMessage(t, created, String(t('camp.review.errors.createFailed'))))
         return
       }
       const setId = created.reviewSet?.id as string | undefined
@@ -593,10 +635,18 @@ export function CampPage({ academyId }: CampPageProps) {
       ))
       setReviewClassroomId(null)
       setPresenter({
-        title: (items.reviewSet?.title as string) ?? String(t('camp.review.title')),
+        title: reviewDeckTitle({ title: items.reviewSet?.title, createdAt: items.reviewSet?.createdAt }, t, formatDate),
         testFamily: (items.reviewSet?.testFamily as string) ?? program.test_family,
         questions: items.questions as Question[],
       })
+      // The new deck joins the list below, already stamped as presented.
+      setReviewSets(prev => ({
+        ...prev,
+        [created.reviewSet.classroom_id as string]: [
+          { ...created.reviewSet, presented_at: new Date().toISOString() },
+          ...(prev[created.reviewSet.classroom_id as string] ?? []),
+        ],
+      }))
     } catch (error) {
       console.error('[camp] create review set failed:', error)
       showErrorToast(String(t('camp.review.errors.createFailed')))
@@ -608,11 +658,13 @@ export function CampPage({ academyId }: CampPageProps) {
   const isFormValid = useMemo(() => {
     const count = Number(form.count)
     return (
-      form.classroomId !== '' &&
+      form.classroomIds.length > 0 &&
       form.title.trim() !== '' &&
-      Number.isInteger(count) && count >= MIN_COUNT && count <= MAX_COUNT
+      Number.isInteger(count) && count >= MIN_COUNT && count <= MAX_COUNT &&
+      // Refused here, before the round trip, with the same math the server uses.
+      !formOverQuota
     )
-  }, [form])
+  }, [form, formOverQuota])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -624,27 +676,26 @@ export function CampPage({ academyId }: CampPageProps) {
         method: 'POST',
         headers: await authHeaders(),
         body: JSON.stringify({
-          classroomId: form.classroomId,
+          classroomIds: form.classroomIds,
           title: form.title.trim(),
           section: form.section || undefined,
           domain: form.domain || undefined,
           count: Number(form.count),
           dueAt: form.dueDate ? new Date(`${form.dueDate}T23:59:59`).toISOString() : undefined,
-          classroomSessionId: form.classroomSessionId || undefined,
+          // Only meaningful for one classroom; the picker is off otherwise.
+          classroomSessionId: (form.classroomIds.length === 1 && form.classroomSessionId) || undefined,
         }),
       })
       const json = await res.json().catch(() => ({}))
       if (!res.ok) {
-        if (json.code === 'quota_exceeded') {
-          setFormError(String(t('camp.errors.quotaExceeded', { remaining: json.remaining ?? 0 })))
-        } else if (json.code === 'not_enough_items') {
-          setFormError(String(t('camp.errors.notEnoughItems', { available: json.available ?? 0 })))
-        } else {
-          setFormError(json.error || String(t('camp.errors.createFailed')))
-        }
+        setFormError(campErrorMessage(t, json, String(t('camp.errors.createFailed'))))
         return
       }
-      showSuccessToast(String(t('camp.createdSuccessfully')))
+      showSuccessToast(
+        form.classroomIds.length > 1
+          ? String(t('camp.createdForClassrooms', { count: form.classroomIds.length }))
+          : String(t('camp.createdSuccessfully')),
+      )
       setShowModal(false)
       await fetchAll()
     } catch (error) {
@@ -966,6 +1017,17 @@ export function CampPage({ academyId }: CampPageProps) {
                       <Presentation className="w-3.5 h-3.5" />
                       {t('camp.review.classReview')}
                     </Button>
+                    {(rows?.length ?? 0) > 1 && (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="flex items-center gap-1.5 text-xs h-8 px-2.5"
+                        onClick={() => setBulkDueClassroomId(room.id)}
+                      >
+                        <CalendarClock className="w-3.5 h-3.5" />
+                        {t('camp.bulkDue.action')}
+                      </Button>
+                    )}
                     </>)}
                     {canViewResults && (
                     <Button
@@ -1138,7 +1200,7 @@ export function CampPage({ academyId }: CampPageProps) {
                       {(reviewSets[room.id] ?? []).map(deck => (
                         <div key={deck.id} className="flex items-center gap-3 px-4 py-2.5 bg-white">
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-gray-900 truncate">{deck.title}</p>
+                            <p className="text-sm font-medium text-gray-900 truncate">{reviewDeckTitle(deck, t, formatDate)}</p>
                             <p className="text-xs text-gray-400 tabular-nums">
                               {deck.presented_at
                                 ? t('camp.reviewSets.presented', { date: formatDate(deck.presented_at) })
@@ -1148,12 +1210,25 @@ export function CampPage({ academyId }: CampPageProps) {
                           <StatusPill tone="sky" size="md">
                             {t('camp.questionCountLabel', { count: deck.question_count })}
                           </StatusPill>
+                          {/* Re-opens the same deck: no draw, no charge. */}
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="flex items-center gap-1.5 text-xs h-7 px-2.5"
+                            onClick={() => void presentDeck(room.id, deck.id)}
+                            disabled={presentingDeckId !== null}
+                          >
+                            {presentingDeckId === deck.id
+                              ? <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                              : <Presentation className="w-3.5 h-3.5" />}
+                            {deck.presented_at ? t('camp.reviewSets.present') : t('camp.reviewSets.presentFirst')}
+                          </Button>
                           <Button
                             variant="ghost"
                             size="sm"
                             className="h-7 w-7 p-0 text-gray-300 hover:text-rose-600 hover:bg-rose-50"
                             onClick={() => setPendingDeckDelete({
-                              id: deck.id, title: deck.title,
+                              id: deck.id, title: reviewDeckTitle(deck, t, formatDate),
                               count: deck.question_count, presentedAt: deck.presented_at,
                             })}
                             title={String(t('camp.reviewSets.delete'))}
@@ -1192,29 +1267,58 @@ export function CampPage({ academyId }: CampPageProps) {
               className={!isFormValid || submitting ? 'opacity-50 cursor-not-allowed' : ''}
             >
               {submitting && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-              {submitting ? t('common.creating') : t('camp.createAssignment')}
+              {submitting
+                ? t('common.creating')
+                : form.classroomIds.length > 1
+                  ? t('camp.createAssignments', { count: form.classroomIds.length })
+                  : t('camp.createAssignment')}
             </Button>
           </ModalShell.Footer>
         }
       >
         <form id="camp-assignment-form" onSubmit={handleSubmit} className="space-y-5">
+          {/* One or more classrooms — only rooms this caller manages, the
+              same canManageClassroom rule the server applies to each. */}
           <div className="space-y-2">
-            <Label className="text-sm font-medium text-foreground/80">
-              {t('camp.form.classroom')} <span className="text-rose-500">*</span>
-            </Label>
-            <Select
-              value={form.classroomId}
-              onValueChange={value => setForm(prev => ({ ...prev, classroomId: value, classroomSessionId: '' }))}
-            >
-              <SelectTrigger className="h-10 bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
-                <SelectValue placeholder={String(t('camp.form.selectClassroom'))} />
-              </SelectTrigger>
-              <SelectContent className="z-[210]">
-                {manageable.map(room => (
-                  <SelectItem key={room.id} value={room.id}>{room.name}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <div className="flex items-center justify-between">
+              <Label className="text-sm font-medium text-foreground/80">
+                {t('camp.form.classrooms')} <span className="text-rose-500">*</span>
+              </Label>
+              {manageable.length > 1 && (
+                <button
+                  type="button"
+                  className="text-xs font-medium text-primary hover:underline"
+                  onClick={() => setForm(prev => ({
+                    ...prev,
+                    classroomIds: prev.classroomIds.length === manageable.length ? [] : manageable.map(r => r.id),
+                    classroomSessionId: '',
+                  }))}
+                >
+                  {form.classroomIds.length === manageable.length ? t('camp.form.selectNone') : t('camp.form.selectAll')}
+                </button>
+              )}
+            </div>
+            <div className="max-h-44 overflow-y-auto divide-y divide-gray-100 rounded-lg ring-1 ring-border">
+              {manageable.map(room => (
+                <label key={room.id} className="flex items-center gap-3 px-3 py-2 cursor-pointer hover:bg-gray-50">
+                  <Checkbox
+                    checked={form.classroomIds.includes(room.id)}
+                    onCheckedChange={on => setForm(prev => ({
+                      ...prev,
+                      classroomIds: on
+                        ? [...prev.classroomIds, room.id]
+                        : prev.classroomIds.filter(id => id !== room.id),
+                      // A session belongs to one room; any change of rooms drops it.
+                      classroomSessionId: '',
+                    }))}
+                  />
+                  <span className="flex-1 min-w-0 text-sm text-gray-900 truncate">{room.name}</span>
+                  <span className="text-xs text-gray-500 tabular-nums flex-shrink-0">
+                    {t('camp.studentCount', { count: room.student_count ?? 0 })}
+                  </span>
+                </label>
+              ))}
+            </div>
           </div>
 
           {/* Optional session link (migration 096). Sits under the
@@ -1228,15 +1332,17 @@ export function CampPage({ academyId }: CampPageProps) {
               onValueChange={value =>
                 setForm(prev => ({ ...prev, classroomSessionId: value === 'none' ? '' : value }))
               }
-              disabled={!form.classroomId || sessionsLoading}
+              disabled={!singleClassroomId || sessionsLoading}
               onOpenChange={open => { if (!open) setSessionSearchQuery('') }}
             >
               <SelectTrigger className="h-10 bg-white border border-border focus:border-primary focus-visible:border-primary focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=open]:border-primary">
                 <SelectValue
                   placeholder={String(
-                    !form.classroomId
-                      ? t('camp.form.selectClassroomFirst')
-                      : t('camp.form.noSession'),
+                    form.classroomIds.length > 1
+                      ? t('camp.form.sessionOneClassroom')
+                      : !singleClassroomId
+                        ? t('camp.form.selectClassroomFirst')
+                        : t('camp.form.noSession'),
                   )}
                 />
               </SelectTrigger>
@@ -1276,9 +1382,11 @@ export function CampPage({ academyId }: CampPageProps) {
               </SelectContent>
             </Select>
             <p className="text-xs text-muted-foreground">
-              {form.classroomId && !sessionsLoading && sessionOptions.length === 0
-                ? t('camp.form.noSessions')
-                : t('camp.form.sessionHint')}
+              {form.classroomIds.length > 1
+                ? t('camp.form.sessionOneClassroomHint')
+                : singleClassroomId && !sessionsLoading && sessionOptions.length === 0
+                  ? t('camp.form.noSessions')
+                  : t('camp.form.sessionHint')}
             </p>
           </div>
 
@@ -1378,6 +1486,24 @@ export function CampPage({ academyId }: CampPageProps) {
               />
             </div>
           </div>
+
+          {/* What this build costs, before it is sent — the same
+              campQuotaCost the server charges (per assignment, so
+              count x classrooms; roster size does not enter it). */}
+          {form.classroomIds.length > 0 && formCost > 0 && (
+            <div className={`rounded-lg px-3 py-2 text-sm ${
+              formOverQuota ? 'bg-rose-50 border border-rose-200 text-rose-700' : 'bg-gray-50 text-gray-700'
+            }`}>
+              {form.classroomIds.length > 1
+                ? t('camp.form.costMulti', { cost: formCost, count: formCount, rooms: form.classroomIds.length, remaining: quotaRemaining })
+                : t('camp.form.costSingle', { cost: formCost, remaining: quotaRemaining })}
+              {formOverQuota && (
+                <span className="block mt-0.5 font-medium">
+                  {t('camp.form.costOver', { short: formCost - quotaRemaining })}
+                </span>
+              )}
+            </div>
+          )}
 
           {formError && (
             <div className="rounded-lg bg-rose-50 border border-rose-200 px-3 py-2 text-sm text-rose-700">
@@ -1518,6 +1644,16 @@ export function CampPage({ academyId }: CampPageProps) {
           classroomId={reportsClassroom.id}
           classroomName={reportsClassroom.name}
           onClose={() => setReportsClassroom(null)}
+        />
+      )}
+
+      {bulkDueClassroomId && (
+        <CampBulkDueModal
+          classroomName={classrooms.find(r => r.id === bulkDueClassroomId)?.name ?? ''}
+          assignments={assignments[bulkDueClassroomId] ?? []}
+          formatDate={formatDate}
+          onClose={() => setBulkDueClassroomId(null)}
+          onSaved={() => fetchAssignments(manageable.map(r => r.id))}
         />
       )}
 

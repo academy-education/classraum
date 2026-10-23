@@ -9,7 +9,8 @@
  * applied synchronously at the terminal call, so a conditional UPDATE is
  * atomic the way it is in Postgres (two concurrent claims: one winner).
  *
- * Supported: select, insert, update, eq, neq, is, in, lt, not(col,'is',null),
+ * Supported: select (incl. { count: 'exact', head: true }), insert, update,
+ * delete, eq, neq, is, in, lt, contains (shallow jsonb), not(col,'is',null),
  * or('a.neq.x,a.is.null'), order, limit, range, maybeSingle, single, and
  * awaiting the builder directly. A jsonb `config->key` path works in
  * not/neq/or. Anything else throws rather than silently matching all rows.
@@ -44,7 +45,8 @@ export function fakeDb(seed: Record<string, Row[]> = {}): FakeDb {
 
   function from(table: string) {
     tables[table] ??= []
-    let op: 'select' | 'update' | 'insert' = 'select'
+    let op: 'select' | 'update' | 'insert' | 'delete' = 'select'
+    let countHead = false
     let patch: Row | null = null
     let toInsert: Row[] = []
     let returning = false
@@ -61,6 +63,10 @@ export function fakeDb(seed: Record<string, Row[]> = {}): FakeDb {
         return { data: returning ? toInsert.map(r => ({ ...r })) : [], error: null }
       }
       let hit = rows.filter(r => filters.every(f => f(r)))
+      if (op === 'delete') {
+        tables[table] = rows.filter(r => !hit.includes(r))
+        return { data: returning ? hit.map(r => ({ ...r })) : [], error: null }
+      }
       if (op === 'update') {
         for (const r of hit) Object.assign(r, patch)
         return { data: returning ? hit.map(r => ({ ...r })) : [], error: null }
@@ -75,7 +81,21 @@ export function fakeDb(seed: Record<string, Row[]> = {}): FakeDb {
     }
 
     const b: Record<string, unknown> = {
-      select: () => { if (op !== 'select') returning = true; return b },
+      select: (_cols?: string, o?: { count?: string; head?: boolean }) => {
+        if (op !== 'select') returning = true
+        if (o?.count && o.head) countHead = true
+        return b
+      },
+      delete: () => { op = 'delete'; return b },
+      // Shallow jsonb containment: every key of `v` equals the row's.
+      contains: (c: string, v: Row) => {
+        filters.push(r => {
+          const base = r[c]
+          if (!base || typeof base !== 'object') return false
+          return Object.entries(v).every(([k, x]) => (base as Row)[k] === x)
+        })
+        return b
+      },
       update: (p: Row) => { op = 'update'; patch = p; return b },
       insert: (r: Row | Row[]) => { op = 'insert'; toInsert = Array.isArray(r) ? r : [r]; return b },
       eq: (c: string, v: unknown) => { filters.push(r => r[c] === v); return b },
@@ -117,6 +137,7 @@ export function fakeDb(seed: Record<string, Row[]> = {}): FakeDb {
       then: (ok: (v: unknown) => unknown, bad?: (e: unknown) => unknown) =>
         Promise.resolve().then(() => {
           const res = run()
+          if (countHead) return { data: null, count: res.data.length, error: null }
           return op === 'select' || returning ? res : { data: null, error: null }
         }).then(ok, bad),
     }
