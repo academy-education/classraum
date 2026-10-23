@@ -553,9 +553,12 @@ async function main() {
   const admin = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
   const FAMILY = process.env.BANK_FAMILY || 'sat'
   const COHORT = process.env.BANK_COHORT || 'v2'
-  if (!['sat', 'ssat', 'isee', 'act'].includes(FAMILY)) {
-    console.error(`BANK_FAMILY must be sat, ssat, isee or act — got '${FAMILY}'`); process.exit(1)
+  if (!['sat', 'ssat', 'isee', 'act', 'map'].includes(FAMILY)) {
+    console.error(`BANK_FAMILY must be sat, ssat, isee, act or map — got '${FAMILY}'`); process.exit(1)
   }
+  // MAP rows carry verify_meta.map (grade, area, tier); refuse the whole batch up front if any item lacks it.
+  const { mapMathMeta } = await import('./map-math-meta.mjs')
+  if (FAMILY === 'map') for (const raw of batch) mapMathMeta(raw)
   if (FAMILY !== 'sat' && COHORT === 'v2') {
     console.error('refusing: a non-SAT batch must name its own BANK_COHORT, not fall back to the SAT default'); process.exit(1)
   }
@@ -671,6 +674,7 @@ async function main() {
          */
         author_difficulty: raw.difficulty ?? null,
         blind_letter: q.blind_letter || null, qc: 'deterministic sandbox recompute; no external model',
+        ...(FAMILY === 'map' ? { map: mapMathMeta(raw) } : {}),
       },
       source: 'hand',
       archived: false,
