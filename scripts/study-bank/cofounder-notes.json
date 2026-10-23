@@ -1,11 +1,11 @@
 {
- "built_at": "2026-10-23T09:54:00.043Z",
+ "built_at": "2026-10-23T15:28:54.223Z",
  "reviewer_id": "6ca6edaf-4044-4eed-84e0-137ebd79a81d",
  "counts": {
-  "rows": 1085,
-  "human": 1045,
+  "rows": 1097,
+  "human": 1057,
   "model_assisted_excluded": 40,
-  "review_entries": 160,
+  "review_entries": 162,
   "register_entries": 9
  },
  "taxonomy": {
@@ -702,6 +702,31 @@
    "item_sha": "eca5b72c139b9e69dea7a98dd8dc0202",
    "content_sha": "eca5b72c139b9e69dea7a98dd8dc0202",
    "classified_by": "claude-opus-5.5 (in-session, 2026-10-23)"
+  },
+  {
+   "review_id": "2cff034f-79fa-4b53-ba4c-f3c89d43619f",
+   "item_id": "006603a9-10f4-4943-9fe2-353fb18f2f94",
+   "run_id": "iseereadingdraft2-bridge1-cofounder-2026-10-23",
+   "cohort": "isee-reading-draft-2",
+   "family": "isee",
+   "section": "reading",
+   "task": "multiple_choice",
+   "verdict": "unique",
+   "note": "This is closer to a stated detail than an inference, since the passage says it almost directly, but the key is clearly right.",
+   "reviewed_at": "2026-10-23T11:38:13.611+00:00",
+   "defect_type": "skill_mislabel",
+   "secondary_types": [
+    "difficulty_off"
+   ],
+   "would_block": false,
+   "scope": "item",
+   "rationale": "He says the 'inference' item is answered almost directly by the passage (a stated detail); key correct, marked unique. Labelling/difficulty issue, not a release defect.",
+   "source": "review",
+   "fresh": true,
+   "archived": false,
+   "item_sha": "ec739a64a21affefac7b743dd0da71c9",
+   "content_sha": "ec739a64a21affefac7b743dd0da71c9",
+   "classified_by": "claude-opus-5.5 (in-session, 2026-10-24)"
   },
   {
    "review_id": "2d1e1f50-5845-4370-a2a6-cba2f54fa4c6",
@@ -3628,6 +3653,31 @@
    "item_sha": "1c7624efea985fabc7ad515dc8c45581",
    "content_sha": "1c7624efea985fabc7ad515dc8c45581",
    "classified_by": "claude-opus-5.5 (in-session, 2026-10-23)"
+  },
+  {
+   "review_id": "f0e00830-a965-4e60-a7ea-881c34e45f89",
+   "item_id": "16801fdd-5871-40bb-980b-188e3065ec9d",
+   "run_id": "iseereadingdraft2-bridge1-cofounder-2026-10-23",
+   "cohort": "isee-reading-draft-2",
+   "family": "isee",
+   "section": "reading",
+   "task": "multiple_choice",
+   "verdict": "unique",
+   "note": "A clean item, though with only four options and two easy eliminations, it’s on the easier side. A distractor such as “sympathetic” (the author does acknowledge the reasons are “true as far as it goes”) would test the strength of the criticism.",
+   "reviewed_at": "2026-10-23T11:36:45.967+00:00",
+   "defect_type": "distractor_too_easy",
+   "secondary_types": [
+    "difficulty_off"
+   ],
+   "would_block": false,
+   "scope": "item",
+   "rationale": "Clean item but two distractors are easy eliminations; suggests a closer distractor ('sympathetic') to test strength of criticism. Authoring guidance, not a release defect.",
+   "source": "review",
+   "fresh": true,
+   "archived": false,
+   "item_sha": "e254e1fd8b57d04493a666b145e9f1a6",
+   "content_sha": "e254e1fd8b57d04493a666b145e9f1a6",
+   "classified_by": "claude-opus-5.5 (in-session, 2026-10-24)"
   },
   {
    "review_id": "f3206714-8bd4-4377-98f9-70ed20d2c500",

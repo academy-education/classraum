@@ -1,6 +1,6 @@
 {
- "classified_at": "2026-10-23",
- "count": 160,
+ "classified_at": "2026-10-24",
+ "count": 162,
  "entries": [
   {
    "review_id": "10202606-bad1-41f5-ae8b-d581f73cf2c3",
@@ -1473,6 +1473,28 @@
    "scope": "item",
    "rationale": "Verdict names a second option as reasonable/defensible: a second defensible answer, the core reject class.",
    "classified_by": "claude-opus-5.5 (in-session, 2026-10-23)"
+  },
+  {
+   "review_id": "2cff034f-79fa-4b53-ba4c-f3c89d43619f",
+   "defect_type": "skill_mislabel",
+   "secondary_types": [
+    "difficulty_off"
+   ],
+   "would_block": false,
+   "scope": "item",
+   "rationale": "He says the 'inference' item is answered almost directly by the passage (a stated detail); key correct, marked unique. Labelling/difficulty issue, not a release defect.",
+   "classified_by": "claude-opus-5.5 (in-session, 2026-10-24)"
+  },
+  {
+   "review_id": "f0e00830-a965-4e60-a7ea-881c34e45f89",
+   "defect_type": "distractor_too_easy",
+   "secondary_types": [
+    "difficulty_off"
+   ],
+   "would_block": false,
+   "scope": "item",
+   "rationale": "Clean item but two distractors are easy eliminations; suggests a closer distractor ('sympathetic') to test strength of criticism. Authoring guidance, not a release defect.",
+   "classified_by": "claude-opus-5.5 (in-session, 2026-10-24)"
   }
  ],
  "register": [
