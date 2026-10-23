@@ -1,0 +1,320 @@
+{
+ "prereg": "scripts/study-bank/MAP-MATH-V2-B2.prereg.md",
+ "area": "Geometry",
+ "frozenSha": "fbf55481f1602b08b61ded306eab7926dba586f224b94138a22187170f3a42b1",
+ "n": 18,
+ "optionsOnly": {
+  "cand": {
+   "n": 18,
+   "picks": 54,
+   "hits": 21,
+   "unan": 5
+  },
+  "ctrl": {
+   "n": 18,
+   "picks": 54,
+   "hits": 15,
+   "unan": 2
+  },
+  "status": "hold",
+  "cr": 38.888888888888886,
+  "kr": 27.77777777777778,
+  "cu": 27.77777777777778,
+  "ku": 11.11111111111111,
+  "margin": 11.111111111111107,
+  "umar": 16.666666666666668,
+  "why": "candidate 38.9% vs control 27.8% (margin 11.1, bar +10); unanimous-correct rate 27.8% vs control 11.1% (16.7, bar +15)",
+  "letterControl": 27.77777777777778
+ },
+ "gradeFitRecorded": {
+  "n": 18,
+  "judgments": 36,
+  "tooEasy": 0,
+  "tooHard": 6,
+  "tooEasyPct": 0,
+  "tooHardPct": 16.666666666666668,
+  "offA": -0.1111111111111111,
+  "offB": 0.05555555555555555,
+  "spreadA": 2,
+  "spreadB": 1.5,
+  "D1": true,
+  "D2": true,
+  "D3": true,
+  "status": "pass"
+ },
+ "coldOnKey": 36,
+ "items": {
+  "MB2-G5-14": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MB2-G8-05": {
+   "drop": [
+    "R6 plug-back routine <= 2 (both)"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "medium"
+  },
+  "MB2-G5-03": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MB2-G6-15": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MB2-G7B-05": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MB2-G7B-09": {
+   "drop": [
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "hard"
+  },
+  "MB2-G5-07": {
+   "drop": [
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [
+    "G1 too_hard for its grade (both) - recorded, not a drop rule"
+   ],
+   "named": [
+    "MV2-G56-04"
+   ],
+   "keep": false,
+   "difficulty": "hard"
+  },
+  "MB2-G7B-11": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MB2-G6-08": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MB2-G5-06": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MB2-G7A-11": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MB2-G7A-04": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MB2-G7A-06": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MB2-G7A-09": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MB2-G7B-04": {
+   "drop": [
+    "R8 one-sided extreme key (both)",
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [
+    "G1 too_hard for its grade (both) - recorded, not a drop rule"
+   ],
+   "named": [],
+   "keep": false,
+   "difficulty": "hard"
+  },
+  "MB2-G5-05": {
+   "drop": [
+    "R11 template of an earlier item (both)",
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [
+    "MV2-G56-04"
+   ],
+   "keep": false,
+   "difficulty": "medium"
+  },
+  "MB2-G5-12": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MB2-G5-01": {
+   "drop": [
+    "R11 template of an earlier item (both)"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [
+    "MV2-G56-09"
+   ],
+   "keep": false,
+   "difficulty": "easy"
+  }
+ },
+ "areaResult": {
+  "status": "held",
+  "reasons": [
+   "options-only hold"
+  ],
+  "notes": [],
+  "extremity": {
+   "total": 12,
+   "n": 12,
+   "nonNumeric": 0,
+   "otherSkip": 0,
+   "ext": 5,
+   "rate": 0.4166666666666667,
+   "chance": 0.5,
+   "threshold": 0.4,
+   "status": "pass",
+   "reason": "key at an extreme 5/12 = 41.7%; derived chance 50.0%, bar 0.8 x chance = 40.0%; 0 non-numeric excluded (of 12)"
+  },
+  "cprime": null,
+  "kept": 12,
+  "keptIds": [
+   "MB2-G5-14",
+   "MB2-G5-03",
+   "MB2-G6-15",
+   "MB2-G7B-05",
+   "MB2-G7B-11",
+   "MB2-G6-08",
+   "MB2-G5-06",
+   "MB2-G7A-11",
+   "MB2-G7A-04",
+   "MB2-G7A-06",
+   "MB2-G7A-09",
+   "MB2-G5-12"
+  ],
+  "insertedIds": [
+   "MB2-G5-14",
+   "MB2-G5-03",
+   "MB2-G6-15",
+   "MB2-G7B-05",
+   "MB2-G7B-11",
+   "MB2-G6-08",
+   "MB2-G5-06",
+   "MB2-G7A-11",
+   "MB2-G7A-04",
+   "MB2-G7A-06",
+   "MB2-G7A-09",
+   "MB2-G5-12"
+  ],
+  "deferredIds": []
+ },
+ "screenFlagsRecorded": {
+  "MB2-G5-03": {
+   "p1": [
+    "S-R4 2 struck without solving: [\"145\",\"175\"] (145 and 175: units digit of 7x5x9 - 3x2x4 is 5 - 4 = 1)"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": true
+  },
+  "MB2-G5-07": {
+   "p1": [
+    "S-R8 one-sided extreme key"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": false
+  },
+  "MB2-G7A-11": {
+   "p1": [
+    "S-R6 plug-back routine at try 2"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": true
+  },
+  "MB2-G7B-09": {
+   "p1": [
+    "S-R8 one-sided extreme key"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": false
+  }
+ },
+ "passIds": [],
+ "verdict": "HELD"
+}

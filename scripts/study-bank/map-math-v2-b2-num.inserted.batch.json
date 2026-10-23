@@ -1,0 +1,88 @@
+[
+ {
+  "id": "MB2-N78-19",
+  "domain": "Real and Complex Number Systems",
+  "subskill": "Unknown exponent in a product of powers with negatives",
+  "difficulty": "hard",
+  "topic_tag": "8.EE.A.1",
+  "prompt": "Priya multiplies three powers of 2 and writes the product as a single power: (2^x)(2^2)(2^(-7)) = 2^(-2). Which integer did she use for the exponent x?",
+  "choices": [
+   "-7",
+   "3",
+   "7",
+   "-11"
+  ],
+  "correct_answer": "3",
+  "explanation": "When powers of the same base are multiplied, the exponents add: x + 2 + (-7) = -2, so x - 5 = -2 and x = 3. Check: 2^3 x 2^2 x 2^(-7) = 2^(3 + 2 - 7) = 2^(-2).",
+  "solve": "return -2 - 2 - (-7)",
+  "graphic": null,
+  "grade_target": 8,
+  "tier": "high",
+  "rit_band": "RIT 230-239",
+  "ccss": "8.EE.A.1",
+  "area_25": null,
+  "map_area": "num",
+  "distractor_steps": [
+   {
+    "choice": "-7",
+    "mis_step": "The student carries the 2 and the -7 to the right as they are: x = -2 + 2 + (-7) = -7."
+   },
+   {
+    "choice": "7",
+    "mis_step": "The student reads 2^(-2) as 2^2 and solves x + 2 - 7 = 2 correctly from there, getting 7."
+   },
+   {
+    "choice": "-11",
+    "mis_step": "The student moves both known exponents across, x = -2 - 2 - 7, writing \"- 7\" where taking away -7 should give + 7."
+   }
+  ],
+  "distractor_solve": {
+   "7": "return 2 - 2 - (-7)",
+   "-11": "return -2 - 2 - 7",
+   "-7": "return -2 + 2 + (-7)"
+  }
+ },
+ {
+  "id": "MB2-N78-02",
+  "domain": "Real and Complex Number Systems",
+  "subskill": "Signed change down then up from a negative start",
+  "difficulty": "easy",
+  "topic_tag": "7.NS.A.1d",
+  "prompt": "A caver starts at an elevation of -31 meters, which means 31 meters below the cave entrance. She climbs down a rope, and her elevation changes by -8.35 meters. Then she climbs up a slope, and her elevation changes by +3.6 meters. What is her elevation now, in meters?",
+  "choices": [
+   "-19.05",
+   "-35.05",
+   "-35.65",
+   "-35.75"
+  ],
+  "correct_answer": "-35.75",
+  "explanation": "Add the changes to the starting elevation. -31 + (-8.35) = -39.35. Then -39.35 + 3.6 = -35.75, because 39.35 - 3.60 = 35.75 and the larger part is negative. Her elevation is -35.75 meters.",
+  "solve": "const e = -31 + (-8.35) + 3.6; return Math.round(e * 100) / 100",
+  "graphic": null,
+  "grade_target": 7,
+  "tier": "low",
+  "rit_band": "RIT 200-209",
+  "ccss": "7.NS.A.1d",
+  "area_25": null,
+  "map_area": "num",
+  "distractor_steps": [
+   {
+    "choice": "-19.05",
+    "mis_step": "The student reads \"climbs down ... changes by -8.35\" as a move of 8.35 and adds it, so both changes go up: -31 + 8.35 + 3.6 = -19.05."
+   },
+   {
+    "choice": "-35.05",
+    "mis_step": "The student treats -8.35 as -8 + 0.35 (the decimal part kept positive), so the drop is only 7.65: -31 - 8 + 0.35 + 3.6 = -35.05."
+   },
+   {
+    "choice": "-35.65",
+    "mis_step": "The student works 39.35 - 3.60 correctly up to the tenths column, where 13 - 6 is written as 6, giving 35.65 and the answer -35.65."
+   }
+  ],
+  "distractor_solve": {
+   "-35.65": "const a = 39.35; /* 39.35 - 3.60 with the tenths fact 13 - 6 written as 6 */ return -(35 + 0.65)",
+   "-35.05": "const e = -31 - 8 + 0.35 + 3.6; return Math.round(e * 100) / 100",
+   "-19.05": "const e = -31 + 8.35 + 3.6; return Math.round(e * 100) / 100"
+  }
+ }
+]

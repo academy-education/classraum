@@ -1,0 +1,2852 @@
+[
+ {
+  "id": "MB2-O5-12",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 5,
+  "tier": "high",
+  "rit_band": "RIT 210-219",
+  "difficulty": "hard",
+  "ccss": "5.OA.A.1",
+  "area_25": "Operations and Algebraic Thinking",
+  "subskill": "Total minus a bracket with a subtracted quotient inside",
+  "grade_rationale": "High for grade 5: brackets around parentheses (5.OA.A.1) with a subtraction inside the bracket and the bracket itself subtracted. The decision point is keeping the 32 / 2 inside the bracket (so it reduces what is taken away) and dividing before subtracting there. Only stronger grade-5 students handle both levels; typical errors are dropping the bracket, working left to right inside it, forgetting the 4, or a regrouping slip in 252 - 64.",
+  "prompt": "In a card game, Rosa's final score is 252 - [4 x (23 - 3) - 32 / 2]. What is Rosa's final score?",
+  "choices": [
+   "228",
+   "298",
+   "188",
+   "248"
+  ],
+  "correct_answer": "188",
+  "explanation": "Start with the parentheses: 23 - 3 = 20. Inside the bracket, multiply and divide before subtracting: 4 x 20 = 80 and 32 / 2 = 16, so the bracket is 80 - 16 = 64. Then 252 - 64 = 188.",
+  "solve": "return 252 - (4 * (23 - 3) - 32 / 2)",
+  "distractor_solve": {
+   "228": "return 252 - (4 * (23 - 3) - 32) / 2",
+   "248": "return 252 - ((23 - 3) - 32 / 2)",
+   "298": "const d = 4 * (23 - 3) - 32 / 2; const u = 12 - d % 10, t = 15 - Math.floor(d / 10); return 2 * 100 + t * 10 + u"
+  },
+  "mechanism": [
+   "parentheses, then a product inside the bracket",
+   "a quotient subtracted inside the bracket",
+   "the whole bracket subtracted from the total"
+  ],
+  "quantity_asked": "Rosa's final score, the value of 252 - [4 x (23 - 3) - 32 / 2]",
+  "plugback": {
+   "substitutable": false,
+   "why": "The score is the value of a printed expression; an option can only be checked by evaluating it. The S key is not the start of a backward chain."
+  },
+  "distractor_meta": {
+   "228": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "works left to right inside the bracket, subtracting before dividing",
+    "why": "Inside the bracket finds 80 - 32 = 48 and then divides by 2 to get 24, so 252 - 24 = 228."
+   },
+   "248": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "forgets the multiplier in front of the parentheses",
+    "why": "Uses 23 - 3 = 20 without multiplying by 4: 20 - 16 = 4, and 252 - 4 = 248."
+   },
+   "298": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": true,
+    "misconception": "regroups without reducing the next digit",
+    "why": "Subtracts 252 - 64 by borrowing twice without crossing out: 12 - 4 = 8, 15 - 6 = 9, and the 2 hundreds stay: 298."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "return 252 - 4 * (23 - 3) - 32 / 2",
+   "direction": "below",
+   "why": "Drops the bracket, so the 16 is subtracted from the score instead of from the 80: 252 - 80 - 16 = 156. The amount taken away becomes too big."
+  },
+  "far_distractor": {
+   "option": "248",
+   "natural_side": "below",
+   "why": "Forgetting a multiplier usually makes a result too small, which would land below the key; here the forgotten 4 sits inside the bracket that is subtracted, so the removed amount shrinks from 64 to 4 and the answer lands above."
+  },
+  "structure_check": "The stem does not sign the errors. The bracket holds a positive part, 4 x (23 - 3) = 80, and a part taken off inside it, 32 / 2 = 16: errors that enlarge the bracket (dropping it so the 16 is also subtracted: 156) push the score down, errors that shrink it (left to right inside, forgetting the 4) push it up.",
+  "intermediate_check": "228: no, 252 - 24, and 24 is not on the chain (the chain computes 80, 16, 64). 248: no, 252 - 4; 4 is printed but 248 - 188 = 60 is not a printed number or a sum of two printed numbers. 298: no, a regrouping error in 252 - 64; 298 - 188 = 110 is not printed. The intermediates 20, 80, 16 and 64 are not options.",
+  "cheap_bound_check": "The bracket is positive (80 is more than 16), so the score is less than 252: this strikes 298, one distractor. The bracket is less than 4 x 20 = 80, so the score is more than 172: strikes none. The key's side of the 252 bound still holds 228 and 248.",
+  "shape_check": "Whole number (all four), less than 252 (strikes 298), more than 172 (all), even and ending in 8 (all four). 188, 228 and 248 survive together.",
+  "interior_parity_check": "The two middle values are 228 and 248: both three-digit even numbers ending in 8; same form as the key.",
+  "arith_class_check": "Every option is even and ends in 8 (the bracket ends in 4 and 252 - 64 ends in 8); the key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "\\d+ ?[-−] ?\\[",
+    "order of operations",
+    "\\d+ ?[-−] ?\\(\\d+ ?[-−] ?\\d+\\)"
+   ],
+   "hits_read": 11,
+   "nearest": "MV2-O56-10 (94 - [72 / (4 + 2) x 3 + 4]: a bracket that ADDS a constant to a quotient-product) and MMG-O02 (4 x [50 - (14 + 6) / 5]): here the bracket SUBTRACTS a quotient from a product of a grouped difference, so a dropped bracket over-removes and left-to-right inside under-removes."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: the bracket is positive and so is the score",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "the score is more than 252 - 80 = 172: strikes none",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: all four options are even",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: all four options end in 8",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "the bracket is positive, so the score is less than 252",
+    "strikes": [
+     "298"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "S/L: which two parts push opposite ways? The product 4 x (23 - 3) that is removed (enlarging the removal, as when the bracket is dropped and the 16 is also subtracted, pushes the score down: 156, the counter error) and the 32 / 2 taken off inside the bracket (mishandling it or the 4 under-removes). Far distractor 248 is a forgotten multiplier, an error that normally undershoots but here sits in the subtracted bracket. Covering the work, could a student tell which way the errors go and strike all three? The cap \"less than 252\" strikes 298 only; 188, 228, 248 remain and share parity and final digit. Could a student check an option in one routine step? No: it is an evaluation, not a backward chain. K1: all options even and ending in 8, as forced. K2: no percent or benchmark fraction; caps 252 and 172 strike one and none. K3: no circle. K4: whole numbers; nothing rounds. K5: no table. Solved intermediate? No. Really a high item for grade 5? Yes: two levels of grouping with a subtraction inside a subtracted bracket. Cheapest bound striking the most: \"less than 252\", one (298). One computational slip (298), marked. Read lines: PLUG key at try 1, not substitutable: the S key is the value of a printed expression (a final score), not a starting value; there is no forward run from an option. FAR/STRUCT/BOUND/INTER answered above."
+  }
+ },
+ {
+  "id": "MB2-O6E-08",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "6.EE.A.1",
+  "subskill": "Difference of two cubes written as powers, in context",
+  "grade_rationale": "Mid for grade 6: 6.EE.A.1 numerical expressions with whole-number exponents. Two powers must be evaluated (9^3 = 729 needs two multiplications) and then subtracted; about half of grade 6 gets both powers right, and the common errors are the grade's own exponent misconceptions (5^3 as 5 x 3, as 3^5, or as 5 x 5).",
+  "prompt": "In a video game, a gold chest is worth 9^3 coins and a silver chest is worth 5^3 coins. How many more coins is a gold chest worth than a silver chest?",
+  "choices": [
+   "486",
+   "604",
+   "704",
+   "714"
+  ],
+  "correct_answer": "604",
+  "explanation": "Find each power first. 9^3 = 9 x 9 x 9 = 81 x 9 = 729. 5^3 = 5 x 5 x 5 = 25 x 5 = 125. Then subtract: 729 - 125 = 604. A gold chest is worth 604 more coins.",
+  "solve": "return 9 ** 3 - 5 ** 3;",
+  "distractor_solve": {
+   "486": "return 9 ** 3 - 3 ** 5;",
+   "704": "return 9 ** 3 - 5 ** 2;",
+   "714": "return 9 ** 3 - 5 * 3;"
+  },
+  "mechanism": [
+   "evaluate a cube of 9",
+   "evaluate a cube of 5",
+   "subtract the powers"
+  ],
+  "quantity_asked": "how many more coins a gold chest is worth than a silver chest",
+  "plugback": {
+   "substitutable": false,
+   "why": "The stem asks for the value of a numerical expression; an option can only be checked by evaluating both powers, which is the item."
+  },
+  "distractor_meta": {
+   "486": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "swaps the base and the exponent in 5^3 (works out 3^5)",
+    "why": "The student finds 3^5 = 243 instead of 5^3 = 125, so subtracts too much: 729 - 243 = 486."
+   },
+   "704": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": true,
+    "misconception": "stops one factor short, writing 5^3 as 5 x 5",
+    "why": "The student counts the exponent as the number of multiplication signs and writes 5 x 5 x... as 25, so 729 - 25 = 704."
+   },
+   "714": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "reads the exponent as multiplication (5^3 as 5 x 3)",
+    "why": "The student works out 5^3 as 5 x 3 = 15, so 729 - 15 = 714."
+   }
+  },
+  "structure_check": "Interior key: one error over-removes (486, 3^5 is larger than 5^3) and two under-remove (704, 714).",
+  "intermediate_check": "486: no, it is 729 - 243 from a wrong power; not reached from 604 through a printed number. 704: no, 704 - 604 = 100 is not printed. 714: no, 714 - 604 = 110 is not printed. The correct intermediates 729 and 125 are not options.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: a positive whole number (all survive), even because 9^3 and 5^3 are both odd (all four are even), and less than 9^3 (all survive once 729 is known; that is part of the work). All four survive together.",
+  "interior_parity_check": "Middle values 604 and 704 are both three-digit whole numbers ending in 4; the key is not the cleaner one.",
+  "arith_class_check": "K1: odd minus odd is even, and all four are even. Units digit: 9^3 ends in 9 and 5^3 ends in 5, so the answer ends in 4 (604, 704, 714 do; 486 does not, one strike). The key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "9^3|5^3&more",
+    "cubed|\\^3&how many more"
+   ],
+   "hits_read": 0,
+   "nearest": "MV2-O56-13 (withdrawn, 7^2 - 3^3 with no context, K1); mine is two cubes in a context with distractors from three distinct exponent misreadings on the subtracted power, including one that over-removes."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: 'how many more' is positive and every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "less than 9^3 and more than 9^3 - 5^3 needs both powers (the work); without them, nothing",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "odd minus odd is even; all four even",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "9^3 ends in 9, 5^3 ends in 5, so the difference ends in 4",
+    "strikes": [
+     "486"
+    ]
+   },
+   {
+    "kind": "range",
+    "bound": "none without the powers themselves",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Test-wise: cover the stem; 704 and 714 are close but the key is neither; 486 is the one below. Plug-back: no, a numerical expression. Lower-interior key: an option cannot be checked in one routine step (both powers are the work). K1: even forced, all even; units digit 4 forced, strikes 486 only; a remainder-by-4 bound (729 and 125 both leave 1) would strike 714 only, and nobody uses it without the powers. K2: no percent, fraction, cap or floor printed. K3: no circle. K4: exact whole numbers, the estimate is the computation. K5: no table. Solved intermediate: no (729, 125 are not options). Really mid for grade 6: yes, two cubes to evaluate and subtract. Cheapest bound: units digit, one distractor. Why one term only goes wrong: students reliably square-and-multiply 9 x 9 x 9 from the 81 they know, and the errors cluster on the second power; every distractor is a named exponent misreading. (read) FORM 486: the declared units-digit strike, one distractor."
+  }
+ },
+ {
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 7,
+  "id": "MB2-O7R-06",
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "7.RP.A.3",
+  "subskill": "Markup then discount: change from the original price",
+  "grade_rationale": "Mid for grade 7: 7.RP.A.3 multistep percent problem. Two real steps (raise 20%, then take 30% off the raised price) and a comparison with the original. About half the grade gets it; the tempting shortcut \"30% - 20% = 10% off\" is wrong because the 30% is taken from a larger price.",
+  "prompt": "A bike shop sold a helmet for $90. The shop raised the price of the helmet by 20%. Later, the shop put the helmet on sale for 30% off the raised price. How many dollars less than the original $90 price is the sale price?",
+  "choices": [
+   "9",
+   "11.25",
+   "13",
+   "14.4"
+  ],
+  "correct_answer": "14.4",
+  "explanation": "Raised price: 90 + 0.20 x 90 = 108 dollars. Sale price: 108 - 0.30 x 108 = 108 - 32.40 = 75.60 dollars. The sale price is 90 - 75.60 = 14.40 dollars less than the original price.",
+  "solve": "const raised = 90 * 1.2; const sale = raised * 0.7; return Math.round((90 - sale) * 100) / 100;",
+  "distractor_solve": {
+   "9": "return Math.round(90 * (0.30 - 0.20) * 100) / 100;",
+   "13": "const raised = 90 + 20; return Math.round((90 - raised * 0.7) * 100) / 100;",
+   "11.25": "const raised = 90 / 0.8; return Math.round((90 - raised * 0.7) * 100) / 100;"
+  },
+  "mechanism": [
+   "percent increase of the original price",
+   "percent decrease of the raised price",
+   "compare the final price with the original"
+  ],
+  "quantity_asked": "how many dollars less than $90 the sale price is",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option cannot be checked without computing the raised and sale prices, which is the full solution; the key is the largest option in any case (try 4 ascending)."
+  },
+  "distractor_meta": {
+   "9": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "combines successive percents by subtracting them (30% - 20% = 10% off)",
+    "why": "The student treats a 20% raise followed by 30% off as a single 10% decrease of $90, leaving out that the 30% is taken from the larger raised price."
+   },
+   "13": {
+    "error_kind": "wrong_variable",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "reads the 20% raise as a $20 raise",
+    "why": "The student raises the price by 20 dollars instead of 20% of 90 (18 dollars), takes 30% off $110 to get $77, and finds 90 - 77. The raise is too big, so the dollars-less amount comes out too small."
+   },
+   "11.25": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "takes the 20% raise as a percent of the new price (90 is 80% of the raised price)",
+    "why": "The student finds the raised price by dividing 90 by 0.8 to get 112.50, takes 30% off to get 78.75, and finds 90 - 78.75."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "return Math.round(90 * 0.30 * 100) / 100;",
+   "direction": "above",
+   "why": "Forgetting the 20% raise and taking 30% off the original $90 gives a sale price of $63, which is $27 less than $90, above the key."
+  },
+  "far_distractor": {
+   "option": "11.25",
+   "natural_side": "above",
+   "why": "Taking the raise as a percent of the new price makes the raised price too big, an error that ordinarily makes a price too high; the raise is the part subtracted from the discount here, so a too-big raise makes the \"dollars less\" amount land below the key."
+  },
+  "structure_check": "The amount asked is (dollars taken off by the sale) - (dollars added by the raise), both computed. Errors that shrink the discount or inflate the raise push it down; errors that shrink the raise (forgetting it) or inflate the discount push it up (counter error 27). The stem does not say which part a student will mishandle.",
+  "intermediate_check": "9: no, it is 10% of the printed $90, not the key through one printed rate (the key is 16% of 90). 11.25: no, it comes from a wrong raised price 112.50 that is not an intermediate of the solution. 13: no, it uses $20 as the raise amount, and 110 is not an intermediate of the solution. The intermediates 108, 32.40, 75.60 and 18 are not options.",
+  "cheap_bound_check": "Cheapest one-sided bound: the sale takes 30% off a price above $90, so more than $27 off, while the raise added $18; the sale price is therefore more than $9 below $90. It strikes only 9; 11.25 and 13 sit on the key's side of it.",
+  "shape_check": "Stem hands over: the sale price ends below $90 (positive answer), the answer is more than 9 (bound above), and less than 30% of 108 - 18 is the computation itself. 11.25, 13 and 14.4 survive the properties together.",
+  "interior_parity_check": "Not interior (L slot).",
+  "arith_class_check": "Whole dollars in, a percent of 108 out: the key 14.4 has one decimal place; 11.25 has two, 9 and 13 none. No class (whole dollars, multiple of 3, multiple of 9) is forced by the stem for the key alone; 9 and 13 are whole, 11.25 and 14.4 are not.",
+  "dup_search": {
+   "queries": [
+    "raised&off&original",
+    "markup&discount",
+    "less than the original price"
+   ],
+   "hits_read": 2,
+   "nearest": "SAT math-v5-psda-hard \"increased 25 percent, then decreased p percent, 5 percent less than the original\": solves for the second percent, not a dollar change; MMG staged \"Order of a discount and a tax: compare two plans\": discount and tax in two orders, not a raise then a discount compared with the original."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: every option is positive and the sale price is below $90",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "30% off a price above $90 removes more than $27, and the raise added only $18, so the answer is more than 9",
+    "strikes": [
+     "9"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: the answer need not be a whole number",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: no units-digit pattern is forced",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "30% is less than 1/3, so the sale takes less than 1/3 of 108 = 36 off; the answer is less than 36 - 18 = 18",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Two parts pushing opposite ways: the sale discount (pushes the \"dollars less\" up) and the raise (pushes it down); the far distractor 11.25 comes from an error in the raise part (raise too big) and lands below. Covering the work, a student cannot tell which way errors go: forgetting the raise gives 27 (above), subtracting percents gives 9 (below); the only cheap bound (> 9) strikes one. K1: no forced class; key not alone (two whole, two decimal options). K2: 30% < 1/3 gives < 18 (strikes none); 20% < 1/4 gives \"the raise is under 22.5\", so the answer is more than 27 - 22.5 = 4.5 (strikes none); \"more than $27 off\" gives > 9 (strikes 9 only); the band between 9 and 18 holds 11.25, 13 and the key. RETURN (S-R7, S-R8): 12 was 14.4 / 1.2 and is replaced by 13 (a $20 raise), which is 14.4 / 1.1077, tied to no printed percent. Against one-sidedness: two of the three distractors (11.25 and 13) now come from the RAISE part, the part that pushes the dollars-less amount down when it is over-applied; only 9 comes from the combine-the-percents shortcut. Errors in the other direction are just as natural (forgetting the raise gives 27, above the key). So the end key is not picked out by any one error direction. K3: no circle. K4: printed values are whole; no rounding estimate other than the computation. K5: no table. Solved intermediate: no (108, 75.60, 32.40, 18 are not options). Tier: mid for grade 7 (two percent steps on different bases). Cheapest bound striking the most distractors: > 9, one."
+  }
+ },
+ {
+  "id": "MB2-O5-01",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 5,
+  "tier": "low",
+  "rit_band": "RIT 190-199",
+  "difficulty": "easy",
+  "ccss": "5.OA.A.1",
+  "area_25": "Operations and Algebraic Thinking",
+  "subskill": "Evaluate a sum with a parenthesised difference divided",
+  "grade_rationale": "Low for grade 5: one pair of parentheses and one division (5.OA.A.1). The only decision is doing the parentheses, then the division, then the addition; the arithmetic (54 - 20 = 34, 34 / 2 = 17, 32 + 17) is routine. Most grade-5 students who know the order of operations get it; the misses come from dividing too late or too little.",
+  "prompt": "On a puzzle sheet, Noor has to find the value of 32 + (54 - 20) / 2. What value should Noor get?",
+  "choices": [
+   "39",
+   "76",
+   "33",
+   "49"
+  ],
+  "correct_answer": "49",
+  "explanation": "Work inside the parentheses first: 54 - 20 = 34. Divide next: 34 / 2 = 17. Add last: 32 + 17 = 49.",
+  "solve": "return 32 + (54 - 20) / 2",
+  "distractor_solve": {
+   "33": "return (32 + (54 - 20)) / 2",
+   "39": "return 32 + 54 / 2 - 20",
+   "76": "return 32 + 54 - 20 / 2"
+  },
+  "mechanism": [
+   "parentheses first: a difference",
+   "divide that difference",
+   "add the quotient to the first number"
+  ],
+  "quantity_asked": "the value of 32 + (54 - 20) / 2",
+  "plugback": {
+   "substitutable": false,
+   "why": "The answer is the value of a printed expression; there is nothing to substitute an option into except by evaluating the expression itself."
+  },
+  "distractor_meta": {
+   "33": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "does the addition before the division once the parentheses are done",
+    "why": "Finds 54 - 20 = 34, adds 32 to get 66, and only then divides: 66 / 2 = 33."
+   },
+   "39": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "divides only the first number inside the parentheses",
+    "why": "Divides 54 by 2 to get 27 but subtracts the 20 without dividing it: 32 + 27 - 20 = 39."
+   },
+   "76": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "ignores the parentheses and divides only the number next to the division sign",
+    "why": "Reads 32 + 54 - 20 / 2 with no parentheses: 20 / 2 = 10, so 32 + 54 - 10 = 76."
+   }
+  },
+  "structure_check": "Interior key. The stem prints no direction: dividing too late (33) and dividing too little (39) fall below, dropping the parentheses (76) falls above.",
+  "intermediate_check": "33: no, it is 66 / 2, and 66 (= 32 + 34) is not a step of the correct chain. 39: no, 32 + 27 - 20 does not pass through 17. 76: no, it uses 20 / 2, which the correct chain never computes. None is reached from the key, or leads to it, through one printed number.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: a whole-number answer (all four survive), more than 32 because a positive amount is added (all four survive), and less than 32 + 54 / 2 = 59 because the divided amount is less than 54 / 2 (strikes 76 only). 33, 39 and 49 survive everything together.",
+  "interior_parity_check": "The two middle values are 39 and 49: both two-digit odd whole numbers ending in 9. The key is not the cleaner one.",
+  "arith_class_check": "No forced class. 32 + 17 is odd, but knowing that needs 34 / 2 = 17, which is the work; three options are odd (33, 39, 49) and 76 is even, so the key is not alone in parity or in final digit (39 also ends in 9).",
+  "dup_search": {
+   "queries": [
+    "\\d+ \\+ \\(\\d+ - \\d+\\) / \\d",
+    "\\(\\d+ ?[-−] ?\\d+\\) ?[÷/]",
+    "order of operations",
+    "\\(\\d+ - \\d+\\) / \\d+ \\+|\\(\\d+ - \\d+\\) / \\d+$"
+   ],
+   "hits_read": 11,
+   "nearest": "MM2-O01 (6 x (12 - 7) + 12 / 3, a product with a grouped factor plus a separate quotient) and MV2-O56-01 (144 / (4 + 5) - 3, a grouped DIVISOR): here the grouped difference is the DIVIDEND and the quotient is added to a number in front, so the errors (add-then-divide, divide-only-the-first-term) are different."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: every quantity is positive and every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "32 + a positive amount is more than 32: all four options are more than 32",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: the parity of 32 + 17 needs 34 / 2 = 17, which is the work; 33, 39 and 49 are odd and 76 is even",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none without dividing 34 by 2; 39 shares the key's final digit 9",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "(54 - 20) / 2 is less than 54 / 2 = 27, so the value is less than 59",
+    "strikes": [
+     "76"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "low",
+   "note": "A test-wise student would bound the value: more than 32 strikes nothing, less than 59 strikes only 76, leaving 33, 39, 49. Is any distractor a solved intermediate? No (34 and 17 are not options). Could a student check an option in one routine step? No: the only check is evaluating the expression. K1: no forced class; the key shares its parity with 33 and 39 and its final digit with 39. K2: no percent or benchmark fraction; the one printed cap (54 / 2 = 27 added at most) strikes only 76, and the band 32-59 holds 33, 39, 49. K3: no circle. K4: rounding changes nothing (all whole); the estimate is the exact computation. K5: no table. Really a low item for grade 5? Yes: one parentheses pair, one division, numbers within 100. Cheapest bound striking the most: \"less than 59\" strikes one (76). Read lines: FORM 76 (even) and 33 (ends in 3): the key's final digit and parity need 34 / 2 = 17, which is the work, so neither digit rules an option out for free; 39 shares the key's 9."
+  }
+ },
+ {
+  "id": "MB2-O5-14",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 5,
+  "tier": "high",
+  "rit_band": "RIT 210-219",
+  "difficulty": "hard",
+  "ccss": "5.OA.B.3",
+  "area_25": "Operations and Algebraic Thinking",
+  "subskill": "Position of a partner term from a value in a related pattern",
+  "grade_rationale": "High for grade 5: 5.OA.B.3 read backwards. The student must undo the stated partner relationship (B is 30 less, so the partner is 72 + 30 = 102) and then find the position of 102 in a pattern that does not start at its step. Only stronger grade-5 students keep both reversals straight; typical errors are skipping the relationship, counting steps instead of numbers, or dividing as if Pattern A started at 0.",
+  "prompt": "Pattern A starts at 39, and each number after that is 3 more than the number before it. Each number in Pattern B is 30 less than its partner in Pattern A. (The first numbers of the two patterns are partners, the second numbers are partners, and so on.) The number 72 is in Pattern B. Counting 39 as the first number of Pattern A, what is the position number of the partner of 72?",
+  "choices": [
+   "34",
+   "12",
+   "22",
+   "21"
+  ],
+  "correct_answer": "22",
+  "explanation": "Each B number is 30 less than its partner, so the partner of 72 is 72 + 30 = 102. In Pattern A, 102 is 102 - 39 = 63 more than the first number, and 63 / 3 = 21 steps of 3. Twenty-one steps after the first number is position 21 + 1 = 22.",
+  "solve": "const a = 72 + 30; return (a - 39) / 3 + 1",
+  "distractor_solve": {
+   "12": "return (72 - 39) / 3 + 1",
+   "21": "return (72 + 30 - 39) / 3",
+   "34": "return (72 + 30) / 3"
+  },
+  "mechanism": [
+   "undo the partner relationship (add back 30)",
+   "distance from the first term of A, in steps of 3",
+   "steps plus one gives the position"
+  ],
+  "quantity_asked": "the position number in Pattern A of the partner of 72",
+  "plugback": {
+   "substitutable": true,
+   "verify": "return Number.isInteger(v) && v > 0 && 39 + (v - 1) * 3 - 30 === 72",
+   "why": "A student can test an option n by finding the nth number of A, 39 + (n - 1) x 3, and taking 30 off; in ascending order 12, 21, 22, 34 the key is the third try."
+  },
+  "distractor_meta": {
+   "12": {
+    "error_kind": "wrong_variable",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "looks for the B number in Pattern A, skipping the partner relationship",
+    "why": "Looks for 72 itself in Pattern A: 72 - 39 = 33, which is 11 steps, so position 12."
+   },
+   "21": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "counts the steps between numbers instead of the numbers (off by one)",
+    "why": "Finds 102 - 39 = 63 and 63 / 3 = 21 steps after the first number, and gives 21 instead of 22."
+   },
+   "34": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "divides the partner by the step as if the pattern started at 0",
+    "why": "Finds the partner 72 + 30 = 102 and divides by the step: 102 / 3 = 34, forgetting that Pattern A starts at 39."
+   }
+  },
+  "structure_check": "Interior key: skipping the relationship (12) and the off-by-one (21) fall below, ignoring the starting number (34) falls above.",
+  "intermediate_check": "21: it is the number of steps on the correct route, one step before the answer; the stem asks for a position, and 22 - 21 = 1 is not a printed number. 12: no, it is the position of 72 in A, which the correct route never uses; 22 - 12 = 10 = 30 / 3, a ratio of two printed numbers, not one printed number. 34: no, 102 / 3; 34 - 22 = 12 is not printed.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "Whole-number position (all four). The partner 102 is at most 39 + 3 x (position - 1), and any position past 102 / 3 = 34 would overshoot, so the position is at most 34 (all survive). Position more than 1 (all survive). All four survive together; 12, 21 and 22 differ by the step logic only.",
+  "interior_parity_check": "The two middle values are 21 and 22: both two-digit whole-number positions; neither is rounder, and the key is not the cleaner one.",
+  "arith_class_check": "No class is forced on a position number; options are three even (12, 22, 34) and one odd (21), so the key is not alone.",
+  "dup_search": {
+   "queries": [
+    "term number&pattern",
+    "less than its partner|more than its partner",
+    "pattern a&pattern b",
+    "which term|what term|term number|position"
+   ],
+   "hits_read": 30,
+   "nearest": "MV2-O56-02 (where a falling and a rising pattern meet: a common position by trial) and MV2-O56-05 (partner of a value, both patterns by rules): here Pattern B is defined FROM A by a stated additive relation, and the ask is the POSITION of the partner, reached by undoing that relation and then counting steps from a start that is not a multiple of the step."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: positions are positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "the position is at most 102 / 3 = 34 because A starts above 0: strikes none",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: no parity is forced on a position",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: no final digit is forced",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "1 < position <= 34: strikes none",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student might plug options back: 39 + (n - 1) x 3 - 30 = 72 is a two-operation check, and in ascending order the key is the third try (rule 8). K1: no forced class on a position; parity mixed. K2: no percent or benchmark fraction; the printed numbers give the cap 34 (102 / 3), which strikes none. K3: no circle. K4: whole numbers. K5: no table. Is any distractor a solved intermediate? 21 is the step count on the correct route, one short of the position; it is the classic fencepost answer and not the quantity asked; I keep it because the off-by-one is the error the standard targets. Really a high item for grade 5? Yes: two reversals (undo the relationship, then position from a non-zero start). Cheapest bound striking the most: none strikes any. Read lines: FORM 34 (ends in 4) and 21 (odd): positions carry no forced final digit or parity, so neither rules an option out."
+  }
+ },
+ {
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 7,
+  "id": "MB2-O7R-16",
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "7.RP.A.3",
+  "subskill": "Bill total with tax, and a tip on the pre-tax amount",
+  "grade_rationale": "High for grade 7: 7.RP.A.3 multistep percent problem with a base decision. The student totals the order, takes 7% tax and a 15% tip both from the pre-tax total, and adds. The tempting misconception is tipping on the amount after tax; only stronger students keep both percents on the same base.",
+  "prompt": "A family orders 4 meals that cost $18.75 each and 2 drinks that cost $4.50 each. A sales tax of 7% is charged on the cost of the food and drinks. The family also leaves a tip of 15% of the cost of the food and drinks before tax. How many dollars does the family pay in all, including the tax and the tip?",
+  "choices": [
+   "91.14",
+   "102.48",
+   "103.36",
+   "104.88"
+  ],
+  "correct_answer": "102.48",
+  "explanation": "Food and drinks: 4 x 18.75 + 2 x 4.50 = 75 + 9 = 84 dollars. Tax: 0.07 x 84 = 5.88 dollars. Tip (on the pre-tax 84): 0.15 x 84 = 12.60 dollars. Total: 84 + 5.88 + 12.60 = 102.48 dollars.",
+  "solve": "const f = 4 * 18.75 + 2 * 4.5; return Math.round((f + 0.07 * f + 0.15 * f) * 100) / 100;",
+  "distractor_solve": {
+   "91.14": "const f = 4 * 18.75 + 2 * 4.5; return Math.round((f + 0.07 * f + 0.015 * f) * 100) / 100;",
+   "103.36": "const f = 4 * 18.75 + 2 * 4.5; const withTax = Math.round(f * 1.07 * 100) / 100; const tip = Math.round(withTax * 0.15 * 100) / 100; return Math.round((withTax + tip) * 100) / 100;",
+   "104.88": "const f = 4 * 18.75 + 2 * 4.5; return Math.round((f + 0.07 * f + 15) * 100) / 100;"
+  },
+  "mechanism": [
+   "total the order from quantities and prices",
+   "tax as a percent of the pre-tax total",
+   "tip as a percent of the same pre-tax total",
+   "add the three amounts"
+  ],
+  "quantity_asked": "total dollars paid including tax and tip",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option cannot be checked without totaling the order and computing both the tax and the tip, which is the whole solution; there is no one-step check from an option to a printed value."
+  },
+  "distractor_meta": {
+   "91.14": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "writes 15% as the decimal 0.015",
+    "why": "The student totals 84 and the tax 5.88 correctly but converts the 15% tip to 0.015, so the tip is only $1.26."
+   },
+   "103.36": {
+    "error_kind": "wrong_base",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "computes the tip on the amount after tax",
+    "why": "The student adds the tax first ($89.88) and then takes 15% of $89.88 for the tip, though the tip is on the cost before tax."
+   },
+   "104.88": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "reads the 15% tip as $15",
+    "why": "The student computes the tax correctly but adds a tip of 15 dollars instead of 15% of $84."
+   }
+  },
+  "structure_check": "Interior key: the decimal error on the tip falls below; tipping on the taxed amount and a $15 tip fall above. The stem does not sign errors.",
+  "intermediate_check": "91.14: no, it uses a tip of 1.26 that is not a step of the solution. 103.36: no, it is the after-tax total plus a tip on the wrong base, not the key through one printed rate. 104.88: no, it adds the printed 15 as dollars. The intermediates 84, 5.88, 12.60, 89.88 and 96.60 are not options.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "Stem hands over: total more than 84 + 10% of 84 tip = 98.28 (once 84 and the tax are found) and less than 84 + 8.40 + 21 = 113.40. 102.48, 103.36 and 104.88 survive both; 91.14 fails the first.",
+  "interior_parity_check": "Middle values 102.48 and 103.36: both dollars-and-cents values with non-zero cents of the same size; neither is cleaner.",
+  "arith_class_check": "A total from quarters, halves and percents of 84: every option is a dollars-and-cents amount; the key's cents (48) are not forced by anything readable without the work. No class isolates the key.",
+  "dup_search": {
+   "queries": [
+    "tip&tax",
+    "tip&pre-tax|before tax",
+    "meals&tax&tip|tip&15%"
+   ],
+   "hits_read": 3,
+   "nearest": "ACT act-math-v1 ($48 bill, 8% tax, 20% tip on the pre-tax amount) is the nearest: one printed bill. This item first totals an order from quantities and prices, and its errors are a 0.015 tip, a $15 tip and a tip on the taxed amount. SAT sat-form24 solves backward from a total for the tip. Neither is in ISEE, SSAT or MAP."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "the tip is at least 10% of 84 = 8.40, so the total is more than 84 + 5.88 + 8.40 = 98.28",
+    "strikes": [
+     "91.14"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: dollars and cents, no parity",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: the cents digit is not forced without computing the tax and the tip",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "the tax is under 10% (8.40) and the tip under 25% (21), so the total is under 113.40",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Could a student check an option in one routine step? No; every check needs the order total, the tax and the tip. Key at try 2 ascending (the PLUG read line): answered by the not-substitutable reason above. K1: no forced class (all dollars and cents, cents 14, 48, 36, 88). K2: 15% within 10 points of 10% and 25%: \"tip over 8.40\" strikes 91.14 only; \"tip under 21\" strikes none; 7% within 10 points of 10%: \"tax under 8.40\" with the tip exact gives under 105, strikes none (104.88 survives). The band between 98.28 and 105 holds 102.48, 103.36 and 104.88. K3: no circle. K4: rounding 18.75 to 19 and 4.50 to 5 gives 86 and E = 104.92: key 2.44 away, 104.88 0.04, 103.36 1.56, 91.14 13.8 - only 91.14 is more than twice 2.44 away; with 4.50 rounded to 4, E = 102.48 and again only 91.14. K5: no table; the two printed counts (4 and 2) are not options and no option differs from the key by one item price. Solved intermediate: no (84, 5.88, 12.60, 89.88 are not options). Tier: high for grade 7 (order total, two percents, and the tip-base decision). Cheapest bound striking the most distractors: \"tip at least 10%\", one. Nearest live item is in the ACT family (outside the checked families), noted in dup_search. FORM (read): 91.14 and 103.36 end in 4 and 6, the key in 8 (advisory); 104.88 also ends in 8, so the key is not alone by its last digit."
+  }
+ },
+ {
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 7,
+  "id": "MB2-O7R-01",
+  "tier": "low",
+  "rit_band": "RIT 200-209",
+  "difficulty": "easy",
+  "ccss": "7.RP.A.2.b",
+  "subskill": "Constant of proportionality from a table, then a new value",
+  "grade_rationale": "Low for grade 7: 7.RP.A.2.b asks students to read the constant of proportionality from a table. Here it is one division (7.5 / 6 = 1.25, confirmed by the other rows) and one multiplication. Most grade-7 students do this; weaker ones reason additively or pair the wrong cells of the table.",
+  "prompt": "At the same time of day, the length of the shadow of an object standing straight up on flat ground is proportional to the object's height. A class measured three poles at the same time and recorded the results. Height of pole (feet): 6, 10, 16. Length of shadow (feet): 7.5, 12.5, 20. At that time, how long is the shadow of a 26-foot tree standing straight up on the same flat ground, in feet?",
+  "choices": [
+   "27.5",
+   "31.2",
+   "32.5",
+   "52"
+  ],
+  "correct_answer": "32.5",
+  "explanation": "Find the constant of proportionality: shadow / height = 7.5 / 6 = 1.25. Check: 12.5 / 10 = 1.25 and 20 / 16 = 1.25. So shadow = 1.25 x height. For the 26-foot tree: 1.25 x 26 = 32.5 feet.",
+  "solve": "const k = 7.5 / 6; return Math.round(k * 26 * 100) / 100;",
+  "distractor_solve": {
+   "52": "return (20 / 10) * 26;",
+   "27.5": "return 26 + (7.5 - 6);",
+   "31.2": "return Math.round(1.2 * 26 * 100) / 100;"
+  },
+  "mechanism": [
+   "constant of proportionality = shadow / height from a table row",
+   "check it against the other rows",
+   "multiply the new height by the constant"
+  ],
+  "quantity_asked": "length of the shadow of a 26-foot tree, in feet",
+  "plugback": {
+   "substitutable": true,
+   "verify": "return Math.abs(v / 26 - 7.5 / 6) < 1e-9;",
+   "why": "A student can divide an option by 26 and compare with the table ratio 1.25; in ascending order the key is reached at try 3."
+  },
+  "distractor_meta": {
+   "52": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "pairs a shadow with the wrong height from the table",
+    "why": "The student forms the ratio from mismatched cells (the 20-foot shadow over the 10-foot height), gets 2, and doubles 26."
+   },
+   "27.5": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "additive reasoning in a proportional relationship",
+    "why": "The student sees the 6-foot pole has a shadow 1.5 feet longer and adds 1.5 feet to 26, treating the relationship as \"add a fixed amount\" instead of \"multiply by a fixed number\"."
+   },
+   "31.2": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": true,
+    "misconception": "decimal division slip: 7.5 / 6 written as 1.2",
+    "why": "The student divides 7.5 by 6, drops the final digit to get 1.2, and multiplies 1.2 x 26."
+   }
+  },
+  "structure_check": "Interior key; the stem does not sign errors: additive reasoning and a dropped digit fall below, a mismatched pair falls above.",
+  "intermediate_check": "27.5: no, it is 26 plus a difference, not the key through one printed rate. 31.2: no, it uses a mis-divided rate that is not printed. 52: no, 2 is not a printed rate; it is a ratio of cells from different rows. The constant 1.25 itself is not an option.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "Stem hands over: positive length; every shadow is longer than its height (so > 26); 26 is less than twice 16 (so < 40). All of 27.5, 31.2, 32.5 survive both; only 52 fails the second. Three options survive all properties together.",
+  "interior_parity_check": "Middle values 31.2 and 32.5: both one-decimal numbers of the same size; the key is not the cleaner one.",
+  "arith_class_check": "Shadow = 1.25 x a whole number, so the key is a multiple of 0.25, but the stem does not make that visible without finding the constant; 27.5 and 52 are also multiples of 0.25, 31.2 is not. The key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "shadow&proportional",
+    "shadow&tall",
+    "constant of proportionality",
+    "proportional&feet&table|proportional&feet&same time"
+   ],
+   "hits_read": 6,
+   "nearest": "ACT act-math-v6-geo flagpole shadow (6-ft person, 9-ft shadow): a single ratio as similar triangles in Geometry, not a three-row table read for k; also MV2-O56-18 (hours/pay table, withdrawn, grade 6): integer k from a pay table extended to 12 hours; this item has a decimal k checked across rows and a different error set."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: every quantity is a positive length",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "every shadow in the table is longer than its pole, so the tree shadow is more than 26",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: the answer need not be a whole number",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: no units-digit pattern is forced before finding the constant",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "26 is less than twice 16, so the shadow is less than twice 20 = 40",
+    "strikes": [
+     "52"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "low",
+   "note": "Test-wise: \"shadow longer than height\" strikes nothing; \"26 < 32 so shadow < 40\" strikes only 52; 27.5, 31.2 and 32.5 remain. Plug-back: yes, one division per option, and the key is at try 3 ascending. K1: no forced class visible from the stem (all multiples of 0.25 except 31.2; key not alone). K2: no percent or benchmark fraction; the cap 40 strikes one. K3: no circle. K4: no rounding involved (all printed values exact); the estimate is the computation itself. K5: the table values are not options and no distractor differs from the key by one printed cell (32.5 - 27.5 = 5, 32.5 - 31.2 = 1.3, 52 - 32.5 = 19.5). Solved intermediate: no (k = 1.25 is not an option). Tier: low for grade 7, one division and one multiplication on 7.RP.A.2.b. Cheapest bound striking the most distractors: the < 40 cap, one. (read) lines: the DPAIR difference 5 between the key and 27.5 equals 6 - 1; it is not readable from the stem as a relation between options. PAIR ratio 52 / 32.5 = 1.6 = 16/10 = 20/12.5: it is the ratio of the wrong constant (20/10 = 2) to the right one (1.25), built into the mismatched-row error; a student cannot get from 52 to the key without already knowing k = 1.25, so it hands nothing over. FORM: 52 is whole and 31.2 ends in 2 (advisory); the key shares its one-decimal form with 27.5 and 31.2."
+  }
+ },
+ {
+  "id": "MB2-O7E-16",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 7,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "7.EE.B.4a",
+  "subskill": "Backward chain: a fraction spent, then an amount, money left",
+  "grade_rationale": "High for grade 7: the student must set up x - (3/8)x - 3.65 = 20.05 (or reason backward), add the snack back BEFORE undoing the fraction, and divide by the fraction that REMAINS (5/8), not the fraction spent (7.EE.B.4a with a fractional coefficient and decimals). The order decision and the remaining-fraction decision are each genuinely tempting traps; only stronger grade-7 students avoid both.",
+  "prompt": "Lucia spent 3/8 of her money on a phone case. Then she spent $3.65 on a snack. After that, she had $20.05 left. How much money did Lucia have at first?",
+  "choices": [
+   "37.92",
+   "26.24",
+   "63.20",
+   "35.73"
+  ],
+  "correct_answer": "37.92",
+  "explanation": "Before the snack she had 20.05 + 3.65 = 23.70 dollars. After spending 3/8 of her money on the case she had 5/8 of it left, so 5/8 of her money is 23.70. Her money was 23.70 / (5/8) = 23.70 x 8/5 = 37.92 dollars. Check: 3/8 of 37.92 is 14.22; 37.92 - 14.22 = 23.70; 23.70 - 3.65 = 20.05.",
+  "solve": "return (20.05 + 3.65) / (5 / 8)",
+  "distractor_solve": {
+   "26.24": "return (20.05 - 3.65) / (5 / 8)",
+   "35.73": "return 20.05 / (5 / 8) + 3.65",
+   "63.20": "return (20.05 + 3.65) / (3 / 8)"
+  },
+  "mechanism": [
+   "add back the snack",
+   "the amount before the snack is 5/8 of the start",
+   "divide by 5/8"
+  ],
+  "quantity_asked": "the amount of money Lucia had at first, in dollars",
+  "plugback": {
+   "substitutable": true,
+   "verify": "return Math.abs(v - (3 / 8) * v - 3.65 - 20.05) < 1e-6",
+   "why": "Running the story forward from an option (take off 3/8, then 3.65) checks it; the key is the third value in ascending order, so ascending substitution reaches it at try 3 (K6: backward chains take interior slots)."
+  },
+  "distractor_meta": {
+   "26.24": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "undoing a purchase by subtracting it again instead of adding it back",
+    "why": "The student works backward but takes the snack off again: 20.05 - 3.65 = 16.40, then 16.40 / (5/8) = 26.24."
+   },
+   "35.73": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "undoes the steps in the wrong order (undoes the fraction first, then adds the snack)",
+    "why": "The student divides the 20.05 left by 5/8 to get 32.08 and only then adds the 3.65, so the snack is never scaled up with the rest."
+   },
+   "63.20": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "divides by the fraction spent instead of the fraction left",
+    "why": "The student treats 23.70 as 3/8 of her money (the part spent) and computes 23.70 / (3/8) = 63.20."
+   }
+  },
+  "structure_check": "Interior key: undoing the snack wrongly or out of order lowers the start, while using the spent fraction as the base raises it.",
+  "intermediate_check": "26.24: no, the key is not 26.24 combined with one printed number (37.92 - 26.24 = 11.68 = 3.2 x 3.65, two steps). 35.73: no (37.92 - 35.73 = 2.19 = 0.6 x 3.65; not printed). 63.20: no (63.20 / 37.92 = 5/3, a ratio of derived fractions, not printed). The intermediate 23.70 and the case price 14.22 are not options.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "Properties handed over: money in cents; more than 20.05 + 3.65 = 23.70; 3/8 lies between 1/3 and 1/2, so she kept between 1/2 and 2/3 and her money was between 1.5 x 23.70 = 35.55 and 2 x 23.70 = 47.40. More than 23.70: all survive. More than 35.55: strikes 26.24 only. Less than 47.40: strikes 63.20 only. 35.73 and 37.92 survive every property together.",
+  "interior_parity_check": "The two middle values are 35.73 and 37.92: both two-decimal amounts with no trailing zero, the same form; the key is not the cleaner one.",
+  "arith_class_check": "No forced class: the start is 23.70 x 8/5, which does not force a cents digit a student can read; options end in 2, 4, 0, 3; the key is not the only whole, round or even value (26.24 and 63.20 are also even cents).",
+  "dup_search": {
+   "queries": [
+    "spent&then&left&at first|start|begin",
+    "spent&of (her|his|their) (money|savings|allowance)&left",
+    "3/8&left|spent"
+   ],
+   "hits_read": 13,
+   "nearest": "ISEE aeaeba9d and ACT b2c5cafc (1/3 spent, then 1/4 of the rest, amount left) chain two fractions; SSAT 34a420d4 (half plus 3, then a third of the rest plus 2) and SSAT 35f4f751 (two percents) chain fractions/percents; staged map-math-g58-v1 club budget (1/4 then $30, 1/3 of the budget left) ends with a fraction left. None is \"a fraction, then a fixed amount, then a fixed amount left\"."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "3/8 > 1/3 so she kept less than 2/3: start > 1.5 x 23.70 = 35.55",
+    "strikes": [
+     "26.24"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: cents, no parity forced",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: 23.70 x 8/5 = 37.92 does not let a student read the last cents digit without multiplying",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "3/8 < 1/2 so she kept more than half: start < 2 x 23.70 = 47.40",
+    "strikes": [
+     "63.20"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Test-wise try: run options forward; the key is third ascending (try 3), as K6 requires for a backward chain. Could a student check an option in one routine step? It takes taking 3/8 of a decimal amount and two subtractions; I declare it substitutable and the key is at try 3. K1: no forced class (endings 2, 4, 0, 3). K2: 3/8 is within 10 points of 1/3 and 1/2: start > 35.55 (strikes 26.24 only) and start < 47.40 (strikes 63.20 only); the key side of the lower bound keeps 35.73 and 37.92 (and 63.20), of the upper bound 26.24, 35.73, 37.92; at most one struck by each. K3: no circle. K4: E = (20 + 4) x 8/5 = 38.40 (key distance 0.48, so twice is 0.96): 35.73 is 2.67 away and 26.24 and 63.20 farther, but E needs the add-back-then-divide-by-5/8 setup, which is exactly what the item tests; the decimals were chosen so the errors that keep the setup (35.73) sit beside the key. K5: no table. Solved intermediate as a distractor? No (23.70, 14.22 not options). Really high for grade 7? Yes: backward reasoning with a fractional remainder and decimals, two tempting traps. Cheapest bound: 35.55 < start < 47.40, each side strikes one. (read) lines answered: FORM last digits differ (key ends 2; 26.24 in 4, 63.20 in 0, 35.73 in 3); 23.70 x 8/5 forces no cents digit, so no option is ruled out by its last digit. INTER print matches the field."
+  }
+ },
+ {
+  "id": "MB2-O5-03",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 5,
+  "tier": "low",
+  "rit_band": "RIT 190-199",
+  "difficulty": "easy",
+  "ccss": "5.OA.A.2",
+  "area_25": "Operations and Algebraic Thinking",
+  "subskill": "Total minus a difference described with \"fewer than\"",
+  "grade_rationale": "Low for grade 5: the story records one expression, 522 - (260 - 110) (5.OA.A.2), and needs only whole-number subtraction. The step that matters is finding how many sheets Mrs. Lee uses (260 - 110) before taking it from her 522; most grade-5 students do that, and the misses are reading \"110 fewer\" as the amount used or a regrouping error in the last subtraction.",
+  "prompt": "Mrs. Lee has 522 sheets of paper. Mr. Kim uses 260 sheets of paper for a project. Mrs. Lee uses 110 fewer sheets than Mr. Kim for her project. How many sheets of paper does Mrs. Lee have left?",
+  "choices": [
+   "412",
+   "372",
+   "472",
+   "432"
+  ],
+  "correct_answer": "372",
+  "explanation": "Mrs. Lee uses 110 fewer sheets than Mr. Kim: 260 - 110 = 150 sheets. She started with 522, so she has 522 - 150 = 372 sheets left. As one expression: 522 - (260 - 110) = 372.",
+  "solve": "return 522 - (260 - 110)",
+  "distractor_solve": {
+   "412": "return 522 - 110",
+   "432": "const d = 260 - 110; return (5 - Math.floor(d / 100)) * 100 + Math.abs(2 - Math.floor(d / 10) % 10) * 10 + (2 - d % 10)",
+   "472": "const d = 260 - 110; const h = 5 - Math.floor(d / 100), t = 12 - Math.floor(d / 10) % 10, u = 2 - d % 10; return h * 100 + t * 10 + u"
+  },
+  "mechanism": [
+   "amount used = 260 - 110 (a \"fewer than\" difference)",
+   "subtract that whole difference from the total 522"
+  ],
+  "quantity_asked": "the number of sheets Mrs. Lee has left",
+  "plugback": {
+   "substitutable": false,
+   "why": "The option is the end of a forward story (what is left), not a starting value; checking it means computing 260 - 110 and 522 - 150, which is solving."
+  },
+  "distractor_meta": {
+   "412": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the \"fewer\" amount as the amount used",
+    "why": "Reads \"110 fewer\" as the number of sheets Mrs. Lee uses and finds 522 - 110 = 412, never working out 260 - 110."
+   },
+   "432": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts the smaller digit from the larger digit in each column instead of regrouping",
+    "why": "In 522 - 150 the tens column is 2 - 5, so the student takes 5 - 2 = 3 instead of regrouping: 432."
+   },
+   "472": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": true,
+    "misconception": "regroups a ten but does not reduce the hundreds digit",
+    "why": "Works 522 - 150: borrows to make 12 - 5 = 7 tens but leaves the 5 hundreds as 5, so 5 - 1 = 4 hundreds: 472."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "return 522 - (260 + 110)",
+   "direction": "below",
+   "why": "Reads \"110 fewer than Mr. Kim\" as 110 more, so Mrs. Lee seems to use 370 sheets and has 152 left: the removed part is too big."
+  },
+  "far_distractor": {
+   "option": "412",
+   "natural_side": "below",
+   "why": "Misreading a \"fewer than\" comparison usually inflates the amount taken away (260 + 110), which lands below the key; this misreading instead puts the 110 itself in as the amount used, which shrinks the subtracted part, so here it lands above."
+  },
+  "structure_check": "The stem does not sign every error. The answer is 522 minus (260 - 110): an error that inflates the amount used (reading \"fewer\" as \"more\": 152) pushes the answer down, while an error that shrinks it (using 110 as the amount: 412) or a regrouping error in 522 - 150 pushes it up. The two parts that push opposite ways are the 260 that is used and the 110 that is taken off it.",
+  "intermediate_check": "412: no, it is 522 - 110, not a step of the correct chain (the chain computes 150, never 412). 472: no, a regrouping error in 522 - 150, not reachable from the key through a printed number (472 - 372 = 100 is not printed). 432: no, a column error; 432 - 372 = 60 is not printed or the sum of two printed numbers.",
+  "cheap_bound_check": "Mrs. Lee uses fewer than 260 sheets, so she has more than 522 - 260 = 262 left; and she has fewer than 522. Every option lies between 262 and 522, so neither bound strikes a distractor; the key's side of each bound keeps all three.",
+  "shape_check": "Whole number (all survive), fewer than 522 (all survive), more than 262 (all survive), even and ending in 2 like 522 when the amount used is a multiple of 10 (all four end in 2). All four survive together.",
+  "interior_parity_check": "The two middle values are 412 and 432: both three-digit even numbers ending in 2, same form; the key (372) is the same form too.",
+  "arith_class_check": "The stem forces a final digit: 260 - 110 ends in 0, so the answer ends in 2 like 522. Every option ends in 2 and is even, so the key is not alone in that class.",
+  "dup_search": {
+   "queries": [
+    "fewer&left&uses",
+    "fewer than&sheets|paper",
+    "\\d+ ?[-−] ?\\(\\d+ ?[-−] ?\\d+\\)"
+   ],
+   "hits_read": 0,
+   "nearest": "MM3-O15 (180 beads still needed: 180 minus two products, one described with \"3 fewer\"): there the \"fewer\" sits on a per-bag count inside a product and the whole amount is a sum; here the \"fewer\" makes a subtracted difference a - (b - c)."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all quantities and options are positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "the amount left is less than 522 and more than 522 - 260 = 262: all options are between",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "the answer is even (522 minus a multiple of 10): all options are even",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "the answer ends in 2: all options end in 2",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "262 < answer < 522: strikes none",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "S/L: which two parts push opposite ways? The 260 Mr. Kim uses (making the used amount bigger pushes the answer down; misreading \"fewer\" as \"more\" gives 152, the counter error) and the 110 taken off it (using 110 itself as the amount used shrinks the removal and gives 412, the far distractor). Covering the work, could a student tell which way the errors go and strike all three? No bound from the stem strikes any option (all lie between 262 and 522, all end in 2, all even). Could a student check an option in one routine step? No; it is the end of a forward story. Two options are column-subtraction errors: 472 is a slip (no decrement) and 432 is the systematic smaller-from-larger bug, named as different misconceptions; the (read) advisory on slips is answered by marking only 472 as a slip. K1: final digit 2 and evenness are forced, and every option has both. K2: no benchmark percent or fraction; printed caps 522 and 262 strike nothing. K3: no circle. K4: whole numbers; the estimate 522 - 150 is exact, but every option needs that same 150 to separate. K5: no table. Is any distractor a solved intermediate? No (150 is not an option). Really a low item for grade 5? Yes: one \"fewer than\" difference and one subtraction. Cheapest bound striking the most: none strikes any. Read lines: PLUG key at try 1 ascending, not substitutable: the S key is the END of a forward story (sheets left), never a starting value, so no option can be run forward or checked without computing 260 - 110 and 522 - 150 (rule 8 / K6 concern backward chains). FAR/STRUCT/BOUND/INTER read and answered above."
+  }
+ },
+ {
+  "id": "MB2-O6R-06",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "6.RP.A.3.A",
+  "subskill": "Two part-to-part ratios scaled to the same amount; difference",
+  "grade_rationale": "Mid for grade 6: 6.RP.3a. Two real steps: scale each part-to-part ratio to 60 liters of blue (60 is 12 groups of 5 for Shade A and 15 groups of 4 for Shade B), then compare. About half of grade 6 scales each shade by its own group size rather than reusing one shade's scale factor or adding.",
+  "prompt": "A painter mixes two shades of green paint. In Shade A, the ratio of yellow paint to blue paint is 4 to 5. In Shade B, the ratio of yellow paint to blue paint is 1 to 4. She makes each shade with 60 liters of blue paint. How many more liters of yellow paint does she use for Shade A than for Shade B?",
+  "choices": [
+   "33",
+   "36",
+   "44",
+   "47"
+  ],
+  "correct_answer": "33",
+  "explanation": "Shade A: 60 liters of blue is 12 groups of 5 liters, so the yellow is 12 x 4 = 48 liters. Shade B: 60 liters of blue is 15 groups of 4 liters, so the yellow is 15 x 1 = 15 liters. The difference is 48 - 15 = 33 liters.",
+  "solve": "return String(60 / 5 * 4 - 60 / 4 * 1);",
+  "distractor_solve": {
+   "36": "return String(60 / 5 * 4 - 60 / 5 * 1);",
+   "44": "return String((4 + (60 - 5)) - 60 / 4 * 1);",
+   "47": "return String(60 / 5 * 4 - 1);"
+  },
+  "mechanism": [
+   "scale each part-to-part ratio to the same given amount",
+   "difference of the two scaled amounts"
+  ],
+  "quantity_asked": "how many more liters of yellow paint Shade A uses than Shade B",
+  "plugback": {
+   "substitutable": false,
+   "why": "The answer is a difference of two computed amounts; no option can be run forward through the story to a printed number."
+  },
+  "distractor_meta": {
+   "36": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses Shade A's scale factor (12 groups of 5) for Shade B too",
+    "why": "The student finds 60 / 5 = 12 groups for Shade A and reuses 12 groups for Shade B, so Shade B's yellow is 12 x 1 = 12 instead of 15, and 48 - 12 = 36."
+   },
+   "44": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "additive reasoning on Shade A: adds the increase in blue to the yellow",
+    "why": "The student reasons that blue went up by 55 liters (5 to 60), so yellow also goes up by 55 (4 to 59), and subtracts Shade B's correct 15: 59 - 15 = 44."
+   },
+   "47": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "does not scale Shade B: uses its ratio number 1 as the amount",
+    "why": "The student scales Shade A to 48 liters but subtracts Shade B's ratio number, 1 liter, without scaling it to 60 liters of blue."
+   }
+  },
+  "counter_error": {
+   "error_kind": "other",
+   "solve": "return String((4 + (60 - 5)) - (1 + (60 - 4)));",
+   "direction": "below",
+   "why": "Additive reasoning on both shades (each yellow goes up by the same amount as its blue) gives 59 - 57 = 2, below the key."
+  },
+  "far_distractor": {
+   "option": "44",
+   "natural_side": "below",
+   "why": "Additive reasoning enlarges the amount it touches; on Shade B's yellow (the amount subtracted) that drives the difference far BELOW the key (48 - 57). Here it is applied to Shade A's yellow, the amount subtracted from, so the difference lands above at 44."
+  },
+  "structure_check": "The answer is Shade A's yellow minus Shade B's yellow, both computed by scaling. Errors that enlarge A's yellow or shrink B's raise the answer (44, 36, 47); errors that enlarge B's yellow lower it (additive or inverted B: 2, or negative). The stem names no direction; the two parts push opposite ways.",
+  "intermediate_check": "36: no, 12 liters is not Shade B's yellow and 36 is not a step. 44: no, 59 is not a correct amount. 47: no, 48 - 1 subtracts a ratio number, not a solved amount. The solved intermediates 48 and 15 are not options.",
+  "cheap_bound_check": "Cheapest bounds: Shade A's ratio 4 : 5 is between 3/4 and 1, so its yellow is between 45 and 60; with Shade B's easy 15, the answer is between 30 and 45, which strikes 47 only. Shade B's 1 : 4 gives its yellow under 20, so with A's 48 the answer is between 28 and 48: strikes none. 36 and 44 sit on the key's side of every bound.",
+  "shape_check": "The stem hands over: a whole number of liters (all four), positive (all four), less than Shade A's yellow which is less than 60 (all four). All four survive together.",
+  "interior_parity_check": "End key. Middle values 36 and 44 are both two-digit whole numbers.",
+  "arith_class_check": "No forced class: options are mixed parity (33, 47 odd; 36, 44 even); 48 - 15 forces no multiple a student can read without both scalings; the key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "ratio&how many more",
+    "for every&more",
+    "ratio&ratio&more|fewer"
+   ],
+   "hits_read": 40,
+   "nearest": "SSAT e1920c40 (two cars' fuel rates over 750 km, how many more liters): two rates on one shared quantity, but one rate is inverted per-liter and it is distance-fuel, not two part-to-part ratios scaled by one part. MM3-O12 (two gardens, two totals, part-of-total): different chain (part of a total, two totals)."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "Shade A has more yellow per liter of blue (4/5 > 1/4), so the answer is positive: all survive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "4/5 is between 3/4 and 1, so Shade A's yellow is between 45 and 60; with Shade B's 15 the answer is between 30 and 45",
+    "strikes": [
+     "47"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: the parity of 48 - 15 needs both scalings",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: the last digit needs Shade A's 48",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "Shade B's yellow is under one third of 60 = 20, so with Shade A's 48 the answer is between 28 and 48: strikes none",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "MECHANISM SWAP: part-to-part ratio with the total given, how many more of the larger part -> two part-to-part ratios scaled to the same given amount of one part, difference of the other part, because the slot's chain is already live (SSAT 2d11f760: flour and sugar 5 : 2 in 3.5 kg, how many more grams; SAT ALG6-11: 3 : 5 of 320 beads, how many more blue) and in the exclusions (map-math-g58-v2: 176 beads 5 : 11). Same class (DIFF), same cluster (6.RP.A.3), in no table of the brief. Which two parts push opposite ways, and which distractor comes from the far part? Shade A's yellow (minuend) and Shade B's yellow (subtrahend); 44 is additive reasoning applied to Shade A, the error that on Shade B pushes far below (counter error 2 when applied to both). 36 and 47 shrink Shade B. Covering the work, could a student tell which way the errors go and strike all three? No: 36, 44, 47 come from a reused scale factor, additive reasoning and an unscaled ratio number; the benchmark bounds strike at most one (47). Could a student check an option in one routine step? No: it is a difference of two computed amounts. K1: no forced class; mixed parity. K2: no percent; benchmark-fraction bounds on each ratio (3/4 < 4/5 < 1, 1/4 < 1/3) strike at most one distractor each (47). K3: no circle. K4: whole numbers, no rounding. K5: no table. Solved intermediate? No (48 and 15 are not options). Really a mid grade 6 item? Yes: two ratio scalings with different group sizes, then a comparison. Cheapest bound: the A-ratio bracket with B's 15, striking 47 only. (read) FORM: mixed parity and last digits; the parity of 48 - 15 needs both scalings. (read) DPAIR 36 - 33 = 3: 36 comes from reusing 12 groups for Shade B (12 instead of 15 liters), a difference of 3 liters of yellow, not 4 - 1 of anything printed. (read) PLUG key at try 1: an S key on a difference of two computed amounts; no option can be run forward to a printed number (an option does not determine either shade on its own), so it is not substitutable."
+  }
+ },
+ {
+  "id": "MB2-O6E-14",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "6.EE.C.9",
+  "subskill": "Two input-output tables: difference of outputs at one input",
+  "grade_rationale": "High for grade 6: 6.EE.C.9 relationship between independent and dependent variables from tables. The student must find each table's rule (one of them hides a start value below zero, 6 - 13 = -7), extend both to input 21, and subtract. The decision points are where to start counting steps and the sign of A's start value; only stronger grade-6 students keep both straight.",
+  "prompt": "Two input-output tables each follow a rule. In each table, the output changes by the same amount every time the input goes up by 1. In Table A, the inputs 1, 2, 3, and 4 give the outputs 6, 19, 32, and 45. In Table B, the inputs 1, 2, 3, and 4 give the outputs 31, 39, 47, and 55. When the input is 21, how much greater is the output of Table A than the output of Table B?",
+  "choices": [
+   "75",
+   "89",
+   "95",
+   "105"
+  ],
+  "correct_answer": "75",
+  "explanation": "Table A goes up by 13 each time. Going back one step from input 1 gives 6 - 13 = -7, so the rule is output = 13 x input - 7. At input 21: 13 x 21 - 7 = 273 - 7 = 266. Table B goes up by 8 each time. Going back one step gives 31 - 8 = 23, so the rule is output = 8 x input + 23. At input 21: 8 x 21 + 23 = 168 + 23 = 191. The difference is 266 - 191 = 75.",
+  "solve": "const A = 13 * 21 - 7, B = 8 * 21 + 23; return A - B;",
+  "distractor_solve": {
+   "89": "const A = 13 * 21 + 7, B = 8 * 21 + 23; return A - B;",
+   "95": "const A = 45 + 13 * 21, B = 55 + 8 * 21; return A - B;",
+   "105": "const A = 13 * 21, B = 8 * 21; return A - B;"
+  },
+  "mechanism": [
+   "find each table's step and start value",
+   "extend each rule to input 21",
+   "subtract the two outputs"
+  ],
+  "quantity_asked": "how much greater Table A's output is than Table B's output at input 21",
+  "plugback": {
+   "substitutable": false,
+   "why": "The stem asks for a difference of two outputs; checking an option needs both outputs at input 21, which is the whole item."
+  },
+  "distractor_meta": {
+   "89": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "gets the sign of Table A's start value wrong (+7 instead of -7)",
+    "why": "Going back from 6 by 13, the student writes 13 - 6 = 7 and uses output = 13 x input + 7, so A comes out 14 too big: 280 - 191 = 89."
+   },
+   "95": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "extends from the last row but counts all 21 steps instead of 17",
+    "why": "The student starts at input 4 and adds the step 21 times: 45 + 273 = 318 and 55 + 168 = 223, so 318 - 223 = 95."
+   },
+   "105": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses only the step sizes and drops both start values",
+    "why": "The student writes output = 13 x input and output = 8 x input, so finds 273 - 168 = 105."
+   }
+  },
+  "counter_error": {
+   "error_kind": "other",
+   "solve": "const A = 13 * 20 - 7, B = 8 * 20 + 23; return A - B;",
+   "direction": "below",
+   "why": "Counting one step too few from input 4 (16 steps instead of 17, so really input 20) gives 253 - 183 = 70, below the key."
+  },
+  "far_distractor": {
+   "option": "105",
+   "natural_side": "below",
+   "why": "Dropping a start value is an omission, and on the table that is subtracted FROM (Table A) it ordinarily pulls the difference down, because a usual positive start makes A smaller when dropped. Here it lands above: A's start is -7, and B's dropped start (+23) is larger, so removing both starts raises the difference by 30."
+  },
+  "structure_check": "The answer is A - B with both outputs computed. An error that inflates Table A's output (wrong sign on its start, extra steps on A) raises the answer; one that inflates Table B's output (extra steps on B alone, using B's first output as its start) lowers it, and counting too few steps lowers it. The stem does not tell a student which way an error goes.",
+  "intermediate_check": "89: no, it is A computed with +7, not reached from 75 through one printed number (89 - 75 = 14 is not printed). 95: no, 95 - 75 = 20 is not a printed rate. 105: no, it is 5 x 21 from the step sizes alone; the correct intermediates 266 and 191 are not options.",
+  "cheap_bound_check": "Cheapest one-sided bound: A's step (13) beats B's step (8) by 5, so the difference grows by 5 per input; from -10 at input 4 it is a multiple of 5, which strikes 89 only. No printed number caps the answer below 89, 95 or 105 without finding the start values.",
+  "shape_check": "The stem hands over: a positive difference (all four survive), odd (Table A minus Table B at input 21: 266 - 191; all four options are odd), and a multiple of 5 once the growth of the difference is noticed (75, 95, 105 survive). 75, 95, 105 survive all properties together.",
+  "interior_parity_check": "n/a (S key); all four are whole numbers, all odd.",
+  "arith_class_check": "K1: the difference changes by 5 per step from -10 at input 4, so it is a multiple of 5; 95 and 105 are too, 89 is not (one). All four are odd. The key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "table&how much greater&x =",
+    "pattern|table&x = 1&greater"
+   ],
+   "hits_read": 2,
+   "nearest": "MM2-O16 (earlier MAP, unbanked): compares the RATES of a table and an equation at grade 8. Mine compares the OUTPUTS of two tables at a far input, at grade 6, with a hidden negative start value; a different chain."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: Table A grows faster, every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "13 x 21 - 8 x 21 = 105 is the steps-only value; telling whether the starts raise or lower it needs both start values (the work)",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "at input 21 Table A gives an even output (13 x 21 is odd, minus 7) and Table B an odd one (8 x 21 is even, plus 23), so the difference is odd; all four options are odd",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "the difference changes by 5 per step from -10, so it ends in 0 or 5",
+    "strikes": [
+     "89"
+    ]
+   },
+   {
+    "kind": "range",
+    "bound": "none: the tables print no cap; the difference at input 4 is -10 and grows by 5, reaching the answer only by counting steps (the work)",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "S/L: the two parts pushing opposite ways are Table A's output (errors that inflate it raise the answer: 89 wrong sign on A's start, 95 extra steps) and Table B's output (errors that inflate it lower the answer: using B's first output 31 as its start, extra steps on B; counting too few steps also lowers it, 70); 105 comes from the far part: dropping B's start shrinks B and raises the answer, beating the drop of A's -7. Covering the work, a student cannot tell which way an error goes, and no one bound strikes all three: the multiple-of-5 bound strikes 89 only. Plug-back: no, a difference of two computed outputs; key at try 1 because not substitutable (P3 read: no routine one-step check exists). Not a backward chain. K1: multiple of 5 strikes 89 only; odd forced, all odd. K2: no percent or fraction; no printed cap or floor. K3: no circle. K4: whole numbers, no rounding. K5: tables are described in the stem; no distractor differs from the key by one printed entry (14, 20, 30 are not printed outputs or inputs), and none is a partial sum of printed entries. Solved intermediate: no (266 and 191 are not options). Really high for grade 6: yes, two rules, one hidden negative start, a far input. Cheapest bound: multiple of 5, one distractor. (read) DPAIR 20 = 21 - 1 and 30 = 31 - 1: 95 - 75 = 20 is 4 x (13 - 8), the four extra steps; 105 - 75 = 30 is the two start values 23 - (-7). Neither 20 nor 30 is printed, and a student cannot get from 95 or 105 to 75 by subtracting 21 - 1 or 31 - 1 without already knowing the rules. (read) FORM 89: the declared multiple-of-5 strike, one distractor."
+  }
+ },
+ {
+  "id": "MB2-O6E-16",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "6.EE.B.7",
+  "subskill": "Missing side from a perimeter after combining known sides",
+  "grade_rationale": "High for grade 6: 6.EE.B.7 solving x + p = q with decimals in a real-world problem. The student must first build three side lengths from a relation (1.4 + 1.15 each), combine 3 x 2.55 + 2 x 1.4 = 10.45, and only then solve one step, x + 10.45 = 14.1. The decision points (each of three sides is longer; the hexagon is not regular) are where most grade-6 students go wrong.",
+  "prompt": "A table top is shaped like a hexagon. Two of its sides are each 1.4 feet long. Three other sides are each 1.15 feet longer than one of those two sides. The sixth side is x feet long. The perimeter of the table top is 14.1 feet. How long is the sixth side, in feet?",
+  "choices": [
+   "2.35",
+   "3.65",
+   "5.95",
+   "7.85"
+  ],
+  "correct_answer": "3.65",
+  "explanation": "Each of the three longer sides is 1.4 + 1.15 = 2.55 feet. Add the five known sides: 3 x 2.55 + 2 x 1.4 = 7.65 + 2.8 = 10.45 feet. The perimeter gives x + 10.45 = 14.1, so x = 14.1 - 10.45 = 3.65. The sixth side is 3.65 feet long.",
+  "solve": "const known = 3 * (1.4 + 1.15) + 2 * 1.4; return Math.round((14.1 - known) * 100) / 100;",
+  "distractor_solve": {
+   "2.35": "return Math.round(14.1 / 6 * 100) / 100;",
+   "5.95": "const known = 5 * 1.4 + 1.15; return Math.round((14.1 - known) * 100) / 100;",
+   "7.85": "const known = 3 * 1.15 + 2 * 1.4; return Math.round((14.1 - known) * 100) / 100;"
+  },
+  "mechanism": [
+   "build each longer side from a relation",
+   "combine the five known sides",
+   "solve x + 10.45 = 14.1"
+  ],
+  "quantity_asked": "length of the sixth side, in feet",
+  "plugback": {
+   "substitutable": false,
+   "why": "Putting an option back into the perimeter needs the five known sides combined first (10.45), which is the whole of the work; there is no one-step check."
+  },
+  "distractor_meta": {
+   "2.35": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "treats the hexagon as regular and divides the perimeter by 6",
+    "why": "The student sees 'hexagon' and 'perimeter' and finds one side as 14.1 / 6 = 2.35, ignoring the given side lengths."
+   },
+   "5.95": {
+    "error_kind": "partial_answer",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds the extra 1.15 once instead of to each of the three sides",
+    "why": "The student takes five sides of 1.4 and adds 1.15 one time: 7 + 1.15 = 8.15, so x = 14.1 - 8.15 = 5.95."
+   },
+   "7.85": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the difference 1.15 as the length of each longer side",
+    "why": "The student reads '1.15 feet longer' as '1.15 feet long': 3 x 1.15 + 2.8 = 6.25, so x = 14.1 - 6.25 = 7.85."
+   }
+  },
+  "structure_check": "Interior key: one error lands below (2.35, perimeter divided by 6) and two above (5.95, 7.85, side lengths built too short).",
+  "intermediate_check": "2.35: no, it is 14.1 / 6, not reached from 3.65 through a printed number. 5.95: no, 5.95 - 3.65 = 2.3 is not printed (it is 2 x 1.15). 7.85: no, 7.85 - 3.65 = 4.2 is not printed. The correct intermediates 2.55, 7.65, 2.8 and 10.45 are not options.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: a positive length (all survive), less than 14.1 (all survive), and, since the five known sides are each at least 1.4, x is at most 14.1 - 7 = 7.1 (2.35, 3.65, 5.95 survive). Every length is in hundredths ending in 5 (all four end in 5). 2.35, 3.65 and 5.95 survive all properties together.",
+  "interior_parity_check": "Middle values 3.65 and 5.95 both have two decimal places and end in 5; the key is not the cleaner one.",
+  "arith_class_check": "K1: 14.1 minus a sum ending in hundredths 5 ends in 5; all four options end in 5. No whole-number or multiple class is implied.",
+  "dup_search": {
+   "queries": [
+    "hexagon&perimeter",
+    "sides are each&perimeter&x",
+    "perimeter&each&longer than",
+    "perimeter&missing side|unknown side|fifth side|sixth side"
+   ],
+   "hits_read": 5,
+   "nearest": "MV2-G56-12 (live): perimeter of a triangle whose side is 4 cm longer than a square's side, going forward from a perimeter. Mine solves for a missing side of an irregular hexagon after building three sides from a relation; hexagon hits are regular-hexagon area items (ACT, ISEE)."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: a length is positive and every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "the five known sides are each at least 1.4, so x is at most 14.1 - 7 = 7.1",
+    "strikes": [
+     "7.85"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: decimal lengths, no parity is implied",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "14.1 minus a sum whose hundredths digit is 5 ends in 5; all four end in 5",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "0 to 7.1 from the same 'each known side is at least 1.4' bound; strikes 7.85 only",
+    "strikes": [
+     "7.85"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Test-wise: covering the stem, the four values are spread (2.35, 3.65, 5.95, 7.85) with no centre built from the others; 2.35 is the 'regular hexagon' guess. Lower-interior key: an option cannot be checked in one routine step, because putting it back needs the combined 10.45 first. K1: hundredths digit 5 forced, all four end in 5; no other class. K2: no percent or benchmark fraction printed; the printed total 14.1 with each known side at least 1.4 gives the cap 7.1, which strikes 7.85 only, and the band under 7.1 holds 2.35, 3.65, 5.95. K3: no circle. K4: rounding to whole numbers (1, 1, 14) gives longer sides of 2 and E = 14 - 8 = 6; key distance 2.35; distances 3.65 (2.35), 0.05 (5.95), 1.85 (7.85), none more than twice 2.35, so the estimate strikes none (it leans toward 5.95). K5: no table. Solved intermediate: no (2.55, 7.65, 2.8, 10.45 are not options). Really high for grade 6: yes, a relation to build three sides, a combine, and a one-step decimal equation. Cheapest bound: the at-least-1.4 cap, one distractor. (read) DSUM/PAIR soft lines, if any, answered: 5.95 - 3.65 = 2.3 = 2 x 1.15 is the error's own shortfall (1.15 added once instead of three times), not a printed number. (read) PAIR 2.3 = 2 x 1.15: answered above; a student cannot use it to reach the key, since 3.65 = 5.95 - 2.3 would need knowing the 1.15 was added once instead of three times."
+  }
+ },
+ {
+  "id": "MB2-O6E-01",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 6,
+  "tier": "low",
+  "rit_band": "RIT 200-209",
+  "difficulty": "easy",
+  "ccss": "6.EE.A.2c",
+  "subskill": "Evaluate a coefficient times a square plus a constant",
+  "grade_rationale": "Low for grade 6: 6.EE.A.2c asks students to evaluate a formula at a whole-number value with a whole-number exponent in conventional order. One substitution, one square, one product, one sum; most grade-6 students who know that 5n^2 means 5 times n^2 get it. The only trap is the order of operations and the meaning of the exponent, which is the grade's own content.",
+  "prompt": "An artist makes mosaic designs out of small square tiles. Design number n uses 5n^2 + 9 tiles. How many tiles does design number 6 use?",
+  "choices": [
+   "69",
+   "189",
+   "225",
+   "909"
+  ],
+  "correct_answer": "189",
+  "explanation": "Put 6 in for n. First find the power: 6^2 = 6 x 6 = 36. Then multiply: 5 x 36 = 180. Then add: 180 + 9 = 189. Design number 6 uses 189 tiles.",
+  "solve": "const n = 6; return 5 * n ** 2 + 9;",
+  "distractor_solve": {
+   "69": "const n = 6; return 5 * (2 * n) + 9;",
+   "225": "const n = 6; return 5 * (n ** 2 + 9);",
+   "909": "const n = 6; return (5 * n) ** 2 + 9;"
+  },
+  "mechanism": [
+   "substitute n = 6",
+   "square first",
+   "multiply by the coefficient",
+   "add the constant"
+  ],
+  "quantity_asked": "number of tiles in design number 6",
+  "plugback": {
+   "substitutable": false,
+   "why": "The question asks for the value of an expression, not for an unknown; an option cannot be checked against the stem without doing the whole evaluation."
+  },
+  "distractor_meta": {
+   "69": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "reads the exponent 2 as multiply by 2 (n^2 taken as 2n)",
+    "why": "The student works out 6^2 as 6 x 2 = 12, then 5 x 12 + 9 = 69."
+   },
+   "225": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds the constant before multiplying by the coefficient",
+    "why": "The student adds 36 + 9 = 45 first and then multiplies by 5, ignoring that multiplication comes before addition."
+   },
+   "909": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "squares the whole product 5n instead of n alone",
+    "why": "The student treats 5n^2 as (5n)^2, so finds 30 x 30 = 900 and adds 9."
+   }
+  },
+  "structure_check": "Interior key: one error lands below (69, exponent read as doubling) and two land above (225 order of operations, 909 squaring the coefficient too).",
+  "intermediate_check": "69: no, it is not reached from 189 through any printed number. 225: no, it is 5 x 45 from a wrong grouping, not a step of the correct work (the correct intermediates are 36 and 180). 909: no, it comes from 900 = (5 x 6)^2, which is not a step of the correct work.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: a whole number of tiles (all four survive), more than 9 tiles (all four survive), and an odd total because 5 x (even square) is even and 9 is odd (all four are odd). All four survive every property together.",
+  "interior_parity_check": "Middle values 189 and 225 are both three-digit whole numbers; the key 189 is not the cleaner one (225 is a multiple of 25 and a perfect square).",
+  "arith_class_check": "K1: 5 x 36 is a multiple of 10, so the total ends in 9 and leaves remainder 4 on division by 5; 69 and 909 also end in 9, 225 does not. The key is not alone in any class: all four are odd, 189 is not the only multiple of anything the stem implies.",
+  "dup_search": {
+   "queries": [
+    "n^2&tiles|5n^2",
+    "squared|^2&evaluate&when"
+   ],
+   "hits_read": 0,
+   "nearest": "MV2-O56-21 (live, 3a^2 - 2b) and the unbanked C = 4s^2 + 13 at s = 0.5: same family of skill, but mine is a whole-number square with an added constant in a tile-count context, and its distractor set targets squaring the product and adding first, not the decimal square or the subtracted term."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: every option is positive and the expression is a positive count",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "more than 9 tiles and, without squaring, nothing else; any tighter bound needs 6^2 = 36, which is the work",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "5 times an even square is even, plus 9 is odd: all four options are odd",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "5 times an even number ends in 0, so the total ends in 9",
+    "strikes": [
+     "225"
+    ]
+   },
+   {
+    "kind": "range",
+    "bound": "none without doing the work: the stem prints no cap or floor besides 9",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "low",
+   "note": "Test-wise: cover the stem and 909 looks large but is not alone in size (LONE clear); 69/189/225 are spread. Plug-back: no, an expression value cannot be checked in one routine step; the key sits at try 2 ascending because the item is not substitutable (P3 read answered). K1: units digit 9 forced, strikes 225 only; parity odd forced, all odd. K2: no printed percent, fraction, cap or floor except 'more than 9', which strikes nothing. K3: no circle. K4: whole numbers only, the estimate is the computation itself (5 x 36 + 9). K5: no table. Solved intermediate as a distractor: no (36 and 180 are the intermediates, neither is an option). Really low for grade 6: yes, one evaluation with a square, the grade's standard 6.EE.A.2c. Cheapest bound: units digit, strikes one distractor (225). (read) FORM 225: its last digit 5 is the one units-digit strike already declared; 69 and 909 share the key's 9."
+  }
+ },
+ {
+  "id": "MB2-O6R-03",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 6,
+  "tier": "low",
+  "rit_band": "RIT 200-209",
+  "difficulty": "easy",
+  "ccss": "6.RP.A.3.B",
+  "subskill": "Compare two constant speeds found from distance and time",
+  "grade_rationale": "Low for grade 6: 6.RP.3b constant speed. Two routine unit rates (204 / 3 and 120 / 5) and one subtraction; the divisions are within grade 6 fluency. Most students find both speeds; the slips are a dropped remainder and pairing the wrong time.",
+  "prompt": "A car drives 204 kilometers in 3 hours. A cyclist rides 120 kilometers in 5 hours. Each one moves at a steady speed. How many more kilometers per hour does the car travel than the cyclist?",
+  "choices": [
+   "28",
+   "37",
+   "42",
+   "44"
+  ],
+  "correct_answer": "44",
+  "explanation": "The car's speed is 204 / 3 = 68 kilometers per hour. The cyclist's speed is 120 / 5 = 24 kilometers per hour. The difference is 68 - 24 = 44 kilometers per hour.",
+  "solve": "return String(204 / 3 - 120 / 5);",
+  "distractor_solve": {
+   "28": "return String((204 - 120) / 3);",
+   "37": "const car = Math.floor(20 / 3) * 10 + Math.floor(4 / 3); return String(car - 120 / 5);",
+   "42": "return String((204 - 120) / (5 - 3));"
+  },
+  "mechanism": [
+   "unit speed of each mover from distance and time",
+   "difference of the two speeds"
+  ],
+  "quantity_asked": "how many more kilometers per hour the car travels than the cyclist",
+  "plugback": {
+   "substitutable": false,
+   "why": "No option can be checked against the stem without computing both speeds, which is the solution itself."
+  },
+  "distractor_meta": {
+   "28": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses one time for both trips (the car's 3 hours)",
+    "why": "The student subtracts the distances, 204 - 120 = 84, and divides by the car's 3 hours, as if the cyclist had also ridden for 3 hours; that makes the cyclist's speed too big."
+   },
+   "37": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": true,
+    "misconception": "drops the remainder in long division of the car's distance",
+    "why": "Dividing 204 by 3, the student gets 6 r 2 in the tens, forgets the 2, divides 4 by 3 and writes the car's speed as 61, then 61 - 24 = 37."
+   },
+   "42": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts distances and times first, then divides",
+    "why": "The student finds the differences first, 84 kilometers and 2 hours, and divides them, 84 / 2 = 42, instead of finding each speed and then subtracting."
+   }
+  },
+  "counter_error": {
+   "error_kind": "other",
+   "solve": "const bike = Math.floor(12 / 5) * 10 + Math.floor(0 / 5); return String(204 / 3 - bike);",
+   "direction": "above",
+   "why": "The same dropped-remainder slip made on the cyclist's 120 / 5 (12 / 5 = 2 r 2, remainder forgotten, speed 20) shrinks the subtracted speed, so the answer comes out 48, above the key."
+  },
+  "far_distractor": {
+   "option": "37",
+   "natural_side": "above",
+   "why": "A dropped remainder is the error that, on the cyclist's division, makes the subtracted speed too small and pushes the difference ABOVE the key (48). Here it acts on the car's speed, the amount being subtracted from, so it lands below at 37."
+  },
+  "structure_check": "The answer is car speed minus cyclist speed, both computed. An error that shrinks the car's speed lowers the answer; an error that shrinks the cyclist's speed raises it (the same dropped remainder gives 37 on one part and 48 on the other). The stem does not say which way any error goes.",
+  "intermediate_check": "28: no, 84 / 3 is not a step of the correct path (84 is never needed). 37: no, 61 is not a correct value of anything. 42: no, 84 / 2 is not computed in the solution. The solved intermediates 68 and 24 are not options.",
+  "cheap_bound_check": "Cheapest one-sided bound: the difference is less than the car's speed, about 204 / 3 = 68, and more than 0. It strikes nothing. Every distractor lies on the key's (lower) side of it; no printed number bounds the answer between 42 and 44.",
+  "shape_check": "Properties the stem hands over: a whole number of kilometers per hour (all four are whole), positive (all four), less than the car's distance per hour (all four). All four survive together.",
+  "interior_parity_check": "End key. Middle values 37 and 42 are both two-digit whole numbers.",
+  "arith_class_check": "No forced class: 68 - 24 forces no parity or multiple that a student can read without dividing; options are mixed parity (28, 42, 44 even; 37 odd) and the key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "miles|kilometers&hours&faster",
+    "per hour&how many more",
+    "speed|per hour|an hour&hours&than"
+   ],
+   "hits_read": 12,
+   "nearest": "SAT 92bc73e2 (two cars meeting, then a minutes difference): a systems item, different chain; no live grade 5-8 item compares two unit speeds from distance and time."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "the car is faster (it covers more distance in less time), so the answer is positive: all options survive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "the difference is less than the car's speed (about 68): all options survive",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: the parity of 204/3 - 120/5 is not readable without dividing",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: the last digit needs both quotients",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "estimates 200 / 3 is about 67 and 120 / 5 = 24 give about 43: 42 and 44 both survive; the estimate decides nothing between them",
+    "strikes": [
+     "28"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Which two parts push opposite ways, and which distractor comes from the far part? The car's speed (minuend) and the cyclist's speed (subtrahend); 37 is the dropped-remainder error on the car's speed, the same error that on the cyclist's speed gives 48 above the key. Covering the work, could a student tell which way the errors go and strike all three? No: 28, 37, 42 come from three different paths, and one bound does not strike all three (the 'less than the car's speed' bound strikes none). Could a student check an option in one routine step? No. K1: no forced class; mixed parity. K2: no percents; printed totals give only 0 < answer < 68, striking nothing. K3: no circle. K4: rounding 204 to 200 gives E about 42.7; key distance 1.3; 42 (0.7) is within twice that, 37 (5.7) and 28 (14.7) are beyond: two distractors farther. The estimate needs the same two divisions as the solution, so it is the work, not a shortcut, and it cannot separate 42 from 44 (stated as a residual risk). K5: no table. Solved intermediate? No (68 and 24 are not options). Really a low grade 6 item? Yes: two unit rates and a subtraction. Cheapest bound striking most: the rough estimate, striking 28 only. DPAIR (read): 44 - 42 = 2 is 3 - 1 / 5 - 3; 42 is the difference-first error, not built from 2. (read) FORM: last digits 8/7/2/4 and mixed parity; the parity of 68 - 24 is not readable without dividing. (read) DPAIR 44 - 42 = 2: 42 is the difference-first error (84 / 2), the 2 being 5 - 3 hours, not an offset from the key; no student path goes key minus 2."
+  }
+ },
+ {
+  "id": "MB2-O7E-08",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "7.EE.B.4a",
+  "subskill": "Perimeter 2(L + w) with width given as a fraction of length",
+  "grade_rationale": "Mid for grade 7: the student writes the width as (2/3)L - 3, builds 2(L + (2/3)L - 3) = 41, distributes the 2 over the whole sum and solves an equation with a fractional coefficient (7.EE.B.4a). The two real steps are doubling both dimensions including the -3 and dividing by 10/3; about half of grade 7 gets both.",
+  "prompt": "The width of a rectangular garden bed is 3 feet less than 2/3 of its length. The perimeter of the garden bed is 41 feet. What is the length of the garden bed, in feet?",
+  "choices": [
+   "10.5",
+   "16.5",
+   "14.1",
+   "13.2"
+  ],
+  "correct_answer": "14.1",
+  "explanation": "Let L be the length. The width is (2/3)L - 3. Perimeter: 2(L + (2/3)L - 3) = 41, so (5/3)L - 3 = 20.5, (5/3)L = 23.5 and L = 23.5 x 3/5 = 14.1. Check: the width is (2/3)(14.1) - 3 = 9.4 - 3 = 6.4, and 2(14.1 + 6.4) = 2(20.5) = 41.",
+  "solve": "return (41 / 2 + 3) / (5 / 3)",
+  "distractor_solve": {
+   "10.5": "return (41 / 2 - 3) / (5 / 3)",
+   "13.2": "return (41 + 3) / (10 / 3)",
+   "16.5": "return (41 + 3) / (8 / 3)"
+  },
+  "mechanism": [
+   "write the width from the length: (2/3)L - 3",
+   "perimeter 2(L + w) = 41 with the 2 distributed over both terms",
+   "solve (10/3)L - 6 = 41"
+  ],
+  "quantity_asked": "the length of the garden bed, in feet",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const w = (2 / 3) * v - 3; return Math.abs(2 * (v + w) - 41) < 1e-9",
+   "why": "An option can be checked by finding the width from it and doubling the sum (two short steps with a fraction). The key is the third value in ascending order (try 3)."
+  },
+  "distractor_meta": {
+   "10.5": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "writes \"3 less than 2/3 of the length\" as (2/3)L + 3",
+    "why": "The student turns \"3 feet less than\" into + 3, so 2((5/3)L + 3) = 41 and (5/3)L = 17.5."
+   },
+   "13.2": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "distributes the 2 to the length terms but not to the -3",
+    "why": "The student writes 2(L + (2/3)L - 3) as (10/3)L - 3 = 41, doubling L and (2/3)L but subtracting 3 only once, so (10/3)L = 44."
+   },
+   "16.5": {
+    "error_kind": "wrong_variable",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "counts two lengths but only one width in the perimeter",
+    "why": "The student writes the perimeter as 2L + w = 2L + (2/3)L - 3 = 41, leaving out the second width, so (8/3)L = 44."
+   }
+  },
+  "structure_check": "Interior key: errors on the -3 (sign or not doubling it) lower the length, while leaving out a side raises it; the stem does not fix the direction.",
+  "intermediate_check": "10.5: no, the key is not 10.5 combined with one printed number (14.1 - 10.5 = 3.6; 14.1 / 10.5 is not printed). 13.2: no (14.1 - 13.2 = 0.9). 16.5: no (16.5 - 14.1 = 2.4; 16.5 / 14.1 not printed). The width 6.4 and the half-perimeter 20.5 are not options.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "Properties handed over: the length is positive, longer than the width (so more than a quarter of the perimeter, 10.25) and less than half the perimeter (20.5); the width must be positive, so (2/3)L > 3 and L > 4.5. All four options (10.5, 13.2, 14.1, 16.5) survive every one of these.",
+  "interior_parity_check": "The two middle values are 13.2 and 14.1: both one-decimal numbers of the same size; the key is not the cleaner one.",
+  "arith_class_check": "No forced class: L = 14.1 comes from dividing 23.5 by 5/3; options are all tenths, none whole, none round; the key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "perimeter&twice its width|twice the width",
+    "perimeter&less than twice",
+    "width&less than&of its length|of the length"
+   ],
+   "hits_read": 10,
+   "nearest": "ISEE ca207778 (length 3 cm more than twice the width, perimeter 36, find the length) and SSAT bfa27a05 (same relation, area) use an integer multiple of the width plus a constant, with whole answers. Here the width is a fraction of the length minus a constant, the answer is a decimal, and the constant must be doubled inside 2(L + w); live MV2-O78-10 is a triangle 3s - 4.5 = 32.4 with no doubling."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all options positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "the length is the longer side, so L > 41 / 4 = 10.25 and L < 41 / 2 = 20.5",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: tenths, no whole-number parity",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: (10/3)L = 47 does not force a tenths digit a student can read without dividing",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "width positive: (2/3)L > 3, L > 4.5",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Test-wise try: plug back; it takes two steps with a fraction and the key is at try 3 ascending. Lower-interior? No, upper-interior (3rd of 4). K1: no forced class (all tenths). K2: 2/3 is a relation coefficient, not a part of a whole; the printed perimeter gives 10.25 < L < 20.5 and strikes nothing; the key side keeps three options. K3: no circle. K4: no rounding shortcut (the printed numbers are whole and 2/3; the estimate is the computation). K5: no table. Solved intermediate as a distractor? No (6.4 and 20.5 are not options). Mid for grade 7? Yes: equation from words with a fractional coefficient and a distribution over a sum. Cheapest bound: L between 10.25 and 20.5, strikes none. (read) lines answered: FORM last-digit classes differ (10.5, 16.5 end in 5, 13.2 in 2, key 14.1 in 1); (10/3)L = 47 forces no tenths digit, so no option is ruled out by its last digit. INTER print matches the field."
+  }
+ },
+ {
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 7,
+  "id": "MB2-O7R-08",
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "7.RP.A.3",
+  "subskill": "Simple interest for a time given in months",
+  "grade_rationale": "Mid for grade 7: 7.RP.A.3 simple interest. The rate is per year and the time is 20 months, so the student must convert 20 months to 20/12 = 1 2/3 years. About half the grade does this correctly; many write 1 year 8 months as 1.8 years or use only the whole year.",
+  "prompt": "Rosa puts $5,000 in a savings account that earns 4.5% simple interest per year. She leaves the money in the account for 20 months and makes no other deposits or withdrawals. How many dollars of interest does the account earn in the 20 months?",
+  "choices": [
+   "225",
+   "360",
+   "375",
+   "405"
+  ],
+  "correct_answer": "375",
+  "explanation": "One year of interest is 4.5% of 5,000 = 0.045 x 5,000 = 225 dollars. 20 months is 20/12 = 5/3 years. Interest = 225 x 5/3 = 375 dollars.",
+  "solve": "return Math.round(5000 * 0.045 * 20 / 12 * 100) / 100;",
+  "distractor_solve": {
+   "225": "return Math.round(5000 * 0.045 * 1 * 100) / 100;",
+   "360": "return Math.round(5000 * 0.045 * 1.6 * 100) / 100;",
+   "405": "return Math.round(5000 * 0.045 * 1.8 * 100) / 100;"
+  },
+  "mechanism": [
+   "one year of simple interest from the rate",
+   "convert months to years (divide by 12)",
+   "multiply by the time in years"
+  ],
+  "quantity_asked": "dollars of interest earned in 20 months",
+  "plugback": {
+   "substitutable": true,
+   "verify": "return Math.abs(v / (5000 * 0.045) - 20 / 12) < 1e-9;",
+   "why": "A student can divide an option by one year's interest (225) and compare with 20/12 years; in ascending order the key is reached at try 3."
+  },
+  "distractor_meta": {
+   "225": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses only the whole year and drops the extra months",
+    "why": "The student sees 20 months as \"1 year and some months\" and computes one year of interest, 225, leaving out the 8 months."
+   },
+   "360": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": true,
+    "misconception": "cuts 20/12 = 1.666... to 1.6 before multiplying",
+    "why": "The student divides 20 by 12, writes 1.6 instead of 1 2/3, and multiplies 225 x 1.6."
+   },
+   "405": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "writes 1 year 8 months as 1.8 years (months treated as tenths)",
+    "why": "The student converts 20 months to 1 year 8 months and writes it as 1.8 years, as if a year had 10 months, then multiplies 225 x 1.8."
+   }
+  },
+  "structure_check": "Interior key: the whole-year and cut-decimal errors fall below, the months-as-tenths error falls above; the stem does not sign errors.",
+  "intermediate_check": "225: one year of interest is an intermediate of the solution, but the key is 225 x 20/12, not 225 through ONE printed rate or relation (20/12 is not printed); it is recorded as the one omission. 360: no, 1.6 is not printed. 405: no, 1.8 is not printed.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "Stem hands over: 20 months is more than 1 year (interest > 225) and less than 2 years (interest < 450). 360, 375 and 405 survive both; 225 sits on the first bound.",
+  "interior_parity_check": "Middle values 360 and 375: both three-digit whole numbers; 360 ends in 0 and is the cleaner one, not the key.",
+  "arith_class_check": "One year of interest is 225, a multiple of 5 and of 45; all four options are multiples of 5 and of 15; 375, 405 and 225 are odd and 360 even. The key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "simple interest&months",
+    "interest&20 months",
+    "percent&interest&year&months"
+   ],
+   "hits_read": 3,
+   "nearest": "ACT act-math-v14r ($2,400 for 8 months at 5.5%): under a year, so its errors are 8 years and 0.8 years; this item runs past a year (20 months), where the errors are the dropped months and 1 year 8 months written as 1.8. MMG-O10 (not banked) solves for the time; the excluded \"Compare simple interest earned by two accounts\" is whole years and a difference."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "20 months is more than 1 year, so the interest is more than one year's 225",
+    "strikes": [
+     "225"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: 225 x 5/3 has no parity readable from the stem",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: all options end in 0 or 5; no units digit is forced beyond that",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "20 months is less than 2 years, so the interest is less than 450",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Plug-back: yes, one division by 225 per option; the key is at try 3 ascending. K1: one year = 225 (multiple of 5 and 15); every option is a multiple of 5 and 15, parity mixed, so no class isolates the key. K2: 4.5% is within 10 points of 10%: \"under 10% a year, so under 10% x 5,000 x 5/3 = 833\" strikes none; \"more than a year\" strikes 225 only; \"less than two years\" strikes none; the band between 225 and 450 holds 360, 375 and 405. K3: no circle. K4: rounding 4.5% to 5% gives E = 417: key 42 away, 405 12, 360 57, 225 192 - only 225 is more than twice 42 away; rounding to 4% gives E = 333: key 42, 360 27, 405 72, 225 108 - again only 225. K5: no table. Solved intermediate: 225 is one year's interest, used as the single omission; the key does not follow from it through a printed rate. Tier: mid for grade 7 (annual rate with a month count over a year). Cheapest bound striking the most distractors: \"more than a year\", one. (read) the 360 slip is the only computational slip. Closest earlier MAP item MMG-O10 (j=0.58, not banked): same savings-account wording, but it solves for the TIME in months from a target interest; this item computes the interest for a given month count past one year, with different errors (dropped months, 1.8 years, 1.6 years). FORM: 360 ends in 0, the key in 5 (advisory); 225 and 405 also end in 5."
+  }
+ },
+ {
+  "id": "MB2-O6R-08",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "6.RP.A.3.C",
+  "subskill": "Find the whole from a part and its percent",
+  "grade_rationale": "Mid for grade 6: 6.RP.3c finding the whole given a part and the percent. One step that needs the grade's key idea (27 is 15 hundredths of the whole, so divide by 0.15 or scale 15% to 100%). About half of grade 6 sets it up as a division; the rest multiply or stop the scaling early.",
+  "prompt": "Mia has saved $27 for a new bike. The amount she has saved is 15% of the price of the bike. What is the price of the bike, in dollars?",
+  "choices": [
+   "90",
+   "162",
+   "180",
+   "405"
+  ],
+  "correct_answer": "180",
+  "explanation": "15% of the price is $27. Then 5% of the price is 27 / 3 = 9 dollars, and 100% is 20 x 9 = 180 dollars. (Or: 27 / 0.15 = 180.) Check: 15% of 180 is 0.15 x 180 = 27.",
+  "solve": "return String(Math.round(27 / 0.15));",
+  "distractor_solve": {
+   "90": "return String(27 / 3 * 10);",
+   "162": "return String(27 * Math.floor(100 / 15));",
+   "405": "return String(27 * 15);"
+  },
+  "mechanism": [
+   "a part and its percent",
+   "scale the percent to 100% (divide by the decimal)"
+  ],
+  "quantity_asked": "the price of the bike in dollars, given that $27 is 15% of it",
+  "plugback": {
+   "substitutable": true,
+   "verify": "return Math.abs(0.15 * v - 27) < 1e-9;",
+   "why": "A student can take 15% of an option and compare it with $27 in one multiplication; the key is the third option in ascending order."
+  },
+  "distractor_meta": {
+   "90": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "treats the 5% value as 10% when scaling to 100%",
+    "why": "The student finds 5% = 27 / 3 = 9 but then multiplies by 10, as if 9 were 10% of the price, getting 90."
+   },
+   "162": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "scales 15% only to 90% (drops the remainder of 100 / 15)",
+    "why": "The student sees that 15% fits into 100% about 6 times (15, 30, 45, 60, 75, 90) and multiplies 27 by 6, stopping at 90% of the price."
+   },
+   "405": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "reads 15% as one fifteenth and multiplies by 15",
+    "why": "The student thinks $27 is one fifteenth of the price and multiplies 27 x 15 = 405 instead of dividing by 0.15."
+   }
+  },
+  "structure_check": "Interior key: two options below (90, 162) and one above (405); the stem does not say which side an error falls on.",
+  "intermediate_check": "90: no, it is not a step of either correct path (5% = 9 and 10% = 18 are the steps; 90 is 50%). 162: no, 90% of the price is not computed in the solution. 405: no, 27 x 15 is not a step. None follows from the key through one printed rate.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: the price is more than $27 (all four), 15% is less than one quarter so the price is more than 4 x 27 = 108 (strikes 90), 15% is more than one tenth so the price is less than 10 x 27 = 270 (strikes 405). 162 and 180 survive together.",
+  "interior_parity_check": "Middle values 162 and 180: both three-digit whole numbers of dollars; the key is not the only round number in the set (90 is round too).",
+  "arith_class_check": "Whole dollars all four. The key is not alone as a multiple of 10 (90 is one), not alone as even (90, 162 are even), not a perfect square. Being a multiple of 20 (forced by 15% = 3/20 of a whole-dollar price) is only readable after setting up the division, which is the solution.",
+  "dup_search": {
+   "queries": [
+    "is 1?[0-9]% of|percent of what|% of what",
+    "percent|%&how many&in all|altogether|total number|at the school|in the"
+   ],
+   "hits_read": 21,
+   "nearest": "ISEE 2dbf6d8c (18 is 45 percent of what number): same one-step skill as a bare number sentence; this item is the slot's standard mechanism in context with different numbers and distractors built on 15% scaling (5% vs 10%, 90%)."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all options are positive prices",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "15% < 25%, so the price is more than 4 x 27 = 108",
+    "strikes": [
+     "90"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: the stem forces no parity a student can read without dividing",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none without plug-back: 15% of the price must be a whole $27, which is the plug-back check itself (key at try 3)",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "15% > 10%, so the price is less than 10 x 27 = 270",
+    "strikes": [
+     "405"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student uses the two benchmark bounds (more than 4 x 27, less than 10 x 27): each strikes exactly one distractor (90, then 405), leaving 162 and 180, which only the computation separates. Could a student check an option in one routine step? Yes (0.15 x option = 27), so the key sits at try 3 ascending (90, 162, 180). K1: whole dollars throughout; key not alone as round, even or square; the multiple-of-20 class is only visible after the setup. K2: 15% is within 10 points of 10% and of 1/4: bounds 108 < price < 270; each strikes one distractor; the band 108-270 keeps 162 and 180. A one-sixth bound (15% < 16.7%, so price > 162) would strike 90 and 162 together; one sixth is not a grade 6 benchmark percent and needs 100 / 6 = 16.7, stated as a residual risk. K3: no circle. K4: whole numbers, no rounding. K5: no table. Solved intermediate? No (5% = 9 and 10% = 18 are not options). Really a mid grade 6 item? Yes: 6.RP.3c finding the whole, one step that needs the percent idea. Cheapest bound: each benchmark bound strikes one. (read) FORM: 162 and 405 do not end in 0 like the key; that a whole-dollar 15% forces a multiple of 20 is only visible after writing 15% = 3/20, which is the setup itself; 90 also ends in 0."
+  }
+ },
+ {
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 7,
+  "id": "MB2-O7R-14",
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "7.RP.A.3",
+  "subskill": "Successive percent changes vs their combined percent",
+  "grade_rationale": "High for grade 7: 7.RP.A.3 multistep percent problem with a genuinely tempting misconception. The student must compute the true result of a 20% rise then a 15% fall (the fall is taken from the larger number) and the one-step \"net 5%\" result, then subtract. Only stronger students see that the two methods differ and by how much; many handle the direction of one change wrongly.",
+  "prompt": "A nature reserve had 8,000 birds. The number of birds rose 20% in one year and then fell 15% the next year. To predict the final number, Kai found one net percent change by adding the two changes, counting the fall as negative, and applied that one change to 8,000. How many more birds does Kai's method predict than the actual number of birds at the end of the two years?",
+  "choices": [
+   "240",
+   "300",
+   "1040",
+   "2640"
+  ],
+  "correct_answer": "240",
+  "explanation": "Actual: after the rise, 8,000 x 1.20 = 9,600 birds. After the fall, 9,600 x 0.85 = 8,160 birds. Kai: 20% - 15% = 5%, and 8,000 x 1.05 = 8,400 birds. Kai's method predicts 8,400 - 8,160 = 240 more birds.",
+  "solve": "const actual = 8000 * 1.2 * 0.85; const kai = 8000 * (1 + 0.20 - 0.15); return Math.round(kai - actual);",
+  "distractor_solve": {
+   "300": "const actual = 8000 * 1.2 - 0.15 * 10000; return Math.round(8000 * 1.05 - actual);",
+   "1040": "const actual = 8000 * 0.8 * 1.15; const kai = 8000 * 1.05; return Math.round(kai - actual);",
+   "2640": "const actual = 8000 * 1.2 * 0.85; const kai = 8000 * (1 + 0.20 + 0.15); return Math.round(kai - actual);"
+  },
+  "mechanism": [
+   "apply two successive percent changes (second on the new amount)",
+   "apply the net percent change once to the start",
+   "difference of the two results"
+  ],
+  "quantity_asked": "how many more birds Kai's method predicts than the actual final number",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option cannot be checked without computing both the actual count and Kai's count, which is the full solution."
+  },
+  "distractor_meta": {
+   "300": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": true,
+    "misconception": "rounds 9,600 to 10,000 before taking the 15% fall",
+    "why": "The student takes 15% of 10,000 = 1,500 instead of 15% of 9,600 = 1,440, so the actual count comes out 8,100, and finds 8,400 - 8,100."
+   },
+   "1040": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "applies each change in the wrong direction when finding the actual number",
+    "why": "For the actual count the student lowers 8,000 by 20% and then raises it by 15% (8,000 x 0.8 x 1.15 = 7,360), and subtracts that from Kai's 8,400."
+   },
+   "2640": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds the fall as a positive change in Kai's method (20% + 15% = 35%)",
+    "why": "The student forgets to count the fall as negative, so Kai's prediction becomes 8,000 x 1.35 = 10,800, and subtracts the actual 8,160."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_base",
+   "solve": "const actual = 8000 * 1.2 - 0.15 * 8000; return Math.round(8000 * 1.05 - actual);",
+   "direction": "below",
+   "why": "Taking the 15% fall from the original 8,000 instead of from 9,600 makes the actual count 8,400, the same as Kai's, so the difference comes out 0, below the key."
+  },
+  "far_distractor": {
+   "option": "1040",
+   "natural_side": "below",
+   "why": "Turning the 20% rise into a fall is a direction slip that ordinarily makes a count too small; here it shrinks the actual count, which is the part subtracted from Kai's prediction, so the difference lands above the key."
+  },
+  "structure_check": "The answer is (Kai's prediction) - (actual count), both computed. Errors that inflate the actual count (the fall taken from 8,000) push the answer down to 0; errors that shrink the actual count (direction slip) or inflate Kai's prediction (fall added as positive) push it up. The stem does not say which part a student will mishandle.",
+  "intermediate_check": "300: no, it comes from a fall of 1,500 (15% of a rounded 10,000), which is not a step of the solution; the key is not 300 through one printed rate (300 / 240 = 1.25 and 300 - 240 = 60, neither printed). 1040: no, it uses a wrong actual count 7,360. 2640: no, it uses a wrong prediction 10,800. The intermediates 9,600, 8,160, 8,400 and 1,440 are not options.",
+  "cheap_bound_check": "Cheapest one-sided bound: the fall is 15%, less than 1/4 of 9,600, so the actual count is more than 7,200 and the difference is less than 8,400 - 7,200 = 1,200. It strikes only 2640; 300 and 1040 sit on the key's side.",
+  "shape_check": "Stem hands over: Kai predicts more (positive answer), the difference is under 1,200 once 9,600 is found, and every count is a whole number of birds. 240, 300 and 1040 survive all of these.",
+  "interior_parity_check": "Not interior (S slot).",
+  "arith_class_check": "Every option is even and ends in 0; 240, 1040 and 2640 are multiples of 8, 300 is not, so the key is not alone in either class. No class isolates the key.",
+  "dup_search": {
+   "queries": [
+    "rose&fell",
+    "grew&fell&percent",
+    "adds the two percent",
+    "predicts|method&percent&actual"
+   ],
+   "hits_read": 5,
+   "nearest": "SAT v2 stock \"rose 25% then fell 20%\" items ask the start price or the net percent change; SSAT s2 bookstore splits a total by a ratio and changes each part. None compares a one-step net percent with the true successive result."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: Kai predicts more, every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "15% is less than 1/4 of 9,600, so the actual count is above 7,200 and the difference is below 1,200",
+    "strikes": [
+     "2640"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: every option is even (all counts are multiples of 8)",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: no units digit is forced",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "the rise is under 1/4 of 8,000 and the fall over 10% of 9,600, which bounds the actual count only to 7,200-8,640, a difference between -240 and 1,200",
+    "strikes": [
+     "2640"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Two parts pushing opposite ways: Kai's prediction (A) and the actual count (B); the far distractor 1040 comes from a direction slip in B and lands above. Covering the work, a student cannot tell which way errors go: taking the fall from 8,000 gives 0 (below), the direction slip gives 1040 (above); the cheapest bound (< 1,200) strikes only 2640. A student who already knows the gap is \"a percent of a percent\" could strike 1040 and 2640 by size, but that knowledge is the solution, and 300 (a rounded fall) still sits beside the key. RETURN (S-R7): 288 was 240 x 1.2 and is replaced by 300 (the 15% fall taken from 10,000 instead of 9,600), which is 240 x 1.25, a factor printed nowhere and derived from no printed percent. K1: all options even and ending in 0; 300 is not a multiple of 8 while the key is, so no class isolates the key. K2: 15% < 1/4 gives < 1,200 (strikes 2640 only); 15% > 10% gives > -240 (none); 20% < 1/4 gives \"actual below 8,500\" (none); the band below 1,200 holds 300 and 1040. K3: no circle. K4: all printed values are exact; no rounding estimate. K5: no table. Solved intermediate: no (9,600, 8,160, 8,400, 1,440 are not options). Tier: high for grade 7 (two methods, a base decision, and a tempting net-percent misconception). Cheapest bound striking the most distractors: < 1,200, one. (read) PLUG key at try 1: not substitutable, since checking an option needs both counts. 300 is the only computational slip in this item."
+  }
+ },
+ {
+  "id": "MB2-O6R-01",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 6,
+  "tier": "low",
+  "rit_band": "RIT 200-209",
+  "difficulty": "easy",
+  "ccss": "6.RP.A.3.B",
+  "subskill": "Unit price from a pack, then the cost of a larger count",
+  "grade_rationale": "Low for grade 6: 6.RP.3b unit pricing in two routine steps (divide the pack price by 6, multiply by 9). The only care point is that 9 is not a whole number of packs; most grade 6 students find the unit price and multiply.",
+  "prompt": "A bakery sells muffins in packs of 6 for $7.44. Sam wants 9 muffins, and the bakery will sell them to him at the same price for each muffin. How many dollars will Sam pay for 9 muffins?",
+  "choices": [
+   "9.92",
+   "10.50",
+   "11.16",
+   "14.88"
+  ],
+  "correct_answer": "11.16",
+  "explanation": "First find the price of one muffin: 7.44 / 6 = 1.24 dollars. Then multiply by the number of muffins: 9 x 1.24 = 11.16. Sam pays $11.16.",
+  "solve": "const unit = 7.44 / 6; return (Math.round(unit * 9 * 100) / 100).toFixed(2);",
+  "distractor_solve": {
+   "9.92": "return (Math.round((7.44 + 7.44 / 3) * 100) / 100).toFixed(2);",
+   "10.50": "return (Math.round(Math.floor(7.44) / 6 * 9 * 100) / 100).toFixed(2);",
+   "14.88": "return (Math.round(7.44 * Math.ceil(9 / 6) * 100) / 100).toFixed(2);"
+  },
+  "mechanism": [
+   "price of one item from a pack price",
+   "multiply the unit price by a count that is not a whole number of packs"
+  ],
+  "quantity_asked": "the cost, in dollars, of 9 muffins at the pack's price per muffin",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option can only be checked by finding the unit price (7.44 / 6) and comparing it with the option divided by 9: that is the whole solution, not a shortcut."
+  },
+  "distractor_meta": {
+   "9.92": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "finds the cost of the 3 extra muffins by dividing the pack price by 3",
+    "why": "The student sees 3 more muffins and divides $7.44 by 3 to price them (2.48) instead of by 2 for half a pack, giving 7.44 + 2.48 = 9.92."
+   },
+   "10.50": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "drops the cents and works with a $7 pack price",
+    "why": "The student uses $7 instead of $7.44 because the cents look small, so one muffin costs 7 / 6 and 9 muffins cost 1.5 x 7 = 10.50."
+   },
+   "14.88": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "rounds up to whole packs although muffins are priced singly",
+    "why": "The student thinks 9 muffins need 2 packs and pays 2 x 7.44 = 14.88, ignoring that the stem sells each muffin at the same price."
+   }
+  },
+  "structure_check": "Interior key; the stem gives no direction to the errors (one below from a wrong share of the pack, one below from dropping the cents, one above from whole packs).",
+  "intermediate_check": "9.92: no, it is 8 muffins cost, which no correct path computes. 10.50: no, it uses a $7 pack price that never appears in the solution. 14.88: no, two whole packs are never computed in the correct path (the solution uses one muffin price 1.24, which is not an option).",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: more than one pack (so more than 7.44: all four survive), fewer than two packs (under 14.88: strikes 14.88 only), dollars and cents (all survive). Three options survive every property together.",
+  "interior_parity_check": "Middle values 10.50 and 11.16: both dollars with two decimal places; the key is not the cleaner one (10.50 is cleaner).",
+  "arith_class_check": "No forced class: the key is 9 x 1.24, and nothing printed forces a digit or a multiple a student could test without finding the unit price. All four options are in cents with two decimals.",
+  "dup_search": {
+   "queries": [
+    "cost|costs|pays|paid&how much would|how many dollars would|what is the cost of",
+    "pack|box|bag of&same price|each&cost"
+   ],
+   "hits_read": 16,
+   "nearest": "6781b377 (map-math-g58-v5 staged: box of 6 bottles for $24.30, buys 4, then money left after a gift): different chain (scale down then a money balance); SSAT 2830c940 (3 pens for $2.40, cost of 7): same one-step unit-price idea but whole-number scale and no half-pack; this item's distractors come from the half-pack and whole-pack reasoning."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: every option is a positive amount of money",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "9 muffins is more than 1 pack and fewer than 2 packs, so 7.44 < cost < 14.88",
+    "strikes": [
+     "14.88"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: the cents digit of 9 x (unit price) is not readable without the unit price",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: the last digit depends on the unit price, which must be computed",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "9 is 1.5 packs, so about 1.5 x 7 = 10.5 by rounding; 9.92, 10.50 and 11.16 are all within a dollar of it",
+    "strikes": [
+     "14.88"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student strikes 14.88 (two whole packs is an upper bound) and then must compute: 9.92, 10.50 and 11.16 all sit between one and two packs. Could a student check an option in one routine step? No: checking needs the unit price, which is the solution. K1: no forced class (9 x unit price forces nothing readable); all options cents. K2: no percents or benchmark fractions printed; printed caps: more than 7.44 (strikes none), less than 2 x 7.44 = 14.88 (strikes 14.88 only, by equality). K3: no circle. K4: rounding 7.44 to 7 gives E = 10.5; key distance 0.66; 10.50 (0.00) and 9.92 (0.58) are within twice that; only 14.88 is far: one distractor. K5: no table. Solved intermediate? No (unit price 1.24 is not an option). Really a low grade 6 item? Yes: one division and one multiplication on 6.RP.3b. Cheapest bound: the two-pack cap, which strikes one distractor. FORM (read): last digits 2/4/6/8 differ, but no last digit can be ruled out without the unit price. The rounded estimate 10.50 is itself an option (the drop-the-cents error): a student who rounds lands on a distractor, not on the key. (read) FORM: last digits 2/0/6/8; 9 x 1.24 forces no last digit a student can read without the unit price, so no option falls to its last digit."
+  }
+ },
+ {
+  "id": "MB2-O6R-16",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "6.RP.A.3",
+  "subskill": "Part-to-total ratio before and after a removal: original total",
+  "grade_rationale": "High for grade 6: 6.RP.3 ratio reasoning with a tape diagram. The decision point is that the books that are NOT mysteries do not change: 7 units before must equal 4 times the mysteries after. Removing books changes the total as well as the part, which is the misconception that traps most students.",
+  "prompt": "On a library shelf, the ratio of mystery books to all books is 3 to 10. The librarian removes 40 mystery books and no other books. Now the ratio of mystery books to all books on the shelf is 1 to 5. How many books were on the shelf before any were removed?",
+  "choices": [
+   "200",
+   "250",
+   "320",
+   "400"
+  ],
+  "correct_answer": "320",
+  "explanation": "Before: mysteries are 3 units and other books are 7 units (10 units in all). The other books do not change. After: mysteries to all is 1 to 5, so mysteries to other books is 1 to 4, and the other books (7 units) are 4 times the mysteries left. So 7 units = 4 x (3 units - 40), which gives 7 units = 12 units - 160, so 5 units = 160 and 1 unit = 32. The shelf had 10 x 32 = 320 books. Check: 96 mysteries, remove 40 to get 56 of 280 books, and 56 / 280 = 1/5.",
+  "solve": "const u = 4 * 40 / (4 * 3 - 7); return String(10 * u);",
+  "distractor_solve": {
+   "200": "return String(10 * 40 / (3 - 1));",
+   "250": "const u = 5 * 40 / (5 * 3 - 7); return String(10 * u);",
+   "400": "const u = 5 * 40 / (5 * 3 - 10); return String(10 * u);"
+  },
+  "mechanism": [
+   "part-to-total ratio as units of part and of the rest",
+   "the unchanged rest equals a multiple of the new part",
+   "original total from the unit"
+  ],
+  "quantity_asked": "the number of books on the shelf before any were removed",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const m = 0.3 * v; if (!Number.isInteger(m) || m <= 40) return false; return Math.abs((m - 40) / (v - 40) - 0.2) < 1e-9;",
+   "why": "A student can take 3/10 of an option as the mysteries, remove 40 from both the mysteries and the total, and test for 1 to 5; the key is the third option in ascending order."
+  },
+  "distractor_meta": {
+   "200": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "treats the units as the same size before and after",
+    "why": "The student sees mysteries go from 3 parts to 1 part, decides the 40 books are 2 parts (1 part = 20), and multiplies by 10 parts to get 200, not noticing the parts change size."
+   },
+   "250": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "reads the new ratio 1 to 5 as mysteries to other books",
+    "why": "The student sets the other books (7 units) equal to 5 times the mysteries left instead of 4 times, so 7 units = 5 x (3 units - 40), 1 unit = 25, total 250."
+   },
+   "400": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "forgets that removing books also lowers the total",
+    "why": "The student keeps the total at 10 units after the removal, so (3 units - 40) / 10 units = 1/5, which gives 1 unit = 40 and 400 books."
+   }
+  },
+  "structure_check": "Interior key at try 3: two options below (200, 250) and one above (400); the stem does not say which way an error falls.",
+  "intermediate_check": "200: no, 20 books per part is not a step of the solution. 250: no, a unit of 25 is not computed. 400: no, a unit of 40 equals the removed count but the correct unit is 32. The solved amounts 32, 96, 224, 56 and 280 are not options.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: the total is a multiple of 10 (all four), the total after removing 40 is a multiple of 5 (all four: 160, 210, 280, 360), the mysteries before (3/10 of the total) are more than 40 (all four), every count is even (all four). All four survive together.",
+  "interior_parity_check": "Middle values 250 and 320: both three-digit multiples of 10; the key is not the cleaner one (250 is rounder).",
+  "arith_class_check": "Forced classes checked: multiple of 10 (all four), (total - 40) a multiple of 5 (all four), mysteries a whole number (all four: 60, 75, 96, 120), even (all four). The key is alone in none.",
+  "dup_search": {
+   "queries": [
+    "red&ratio&at first|originally&remov|takes out|took out",
+    "out of every|ratio of&all&were in|at first",
+    "ratio&ratio&more|fewer"
+   ],
+   "hits_read": 30,
+   "nearest": "SSAT f38f15f7 (red to blue 5 to 3, remove 12 red, equal, original total) and SSAT 3226c087 (9 : 4, add 20 blue, 9 : 8): part-to-part before/after items. This item uses part-to-TOTAL ratios, where the total also changes, and the unchanged rest must be found as 7 of 10 units; none of the live items does that."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all options are positive counts",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "mysteries before must exceed 40, so 3/10 of the total > 40 and the total > 133: all survive",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "all four are even; none ruled out",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "the total is a multiple of 10 and (total - 40) a multiple of 5: all four pass",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "the mystery share falls from 30% to 20%, so 40 books is more than 10% of the original total: total < 400, strikes 400 only",
+    "strikes": [
+     "400"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Backward chain (original amount), so plug-back checkable: key at try 3 ascending (200, 250, 320), as K6 requires. Could a student check an option in one routine step? About two steps (3/10 of it, minus 40 from part and total, test 1 to 5); that is why the key is not at try 1 or 2. K1: every divisibility class the stem forces (multiple of 10, total - 40 a multiple of 5, whole mysteries, even) holds for all four options. K2: the printed ratios 3 to 10 (30%) and 1 to 5 (20%) give one bound: the removed 40 is more than 10% of the original (40 > 0.1 x total) so the total < 400; it strikes 400 only. K3: no circle. K4: whole numbers, no rounding. K5: no table. Solved intermediate? No (unit 32, 96 mysteries, 280 after are not options). Really a high grade 6 item? Yes: the unchanged-part tape diagram is the decision point, and keeping the total fixed is the common trap. Cheapest bound: the 10% bound, striking one. (read) PAIR 400 - 320 = 80 = 2 x 40: 400 is the fixed-total error (unit 40); 80 is 2.5 units of 32, not a step a student takes from the key, and no path adds 2 x 40 to anything."
+  }
+ },
+ {
+  "id": "MB2-O6R-14",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "6.RP.A.3.C",
+  "subskill": "Percent off a total versus a per-item coupon: difference",
+  "grade_rationale": "High for grade 6: 6.RP.3c percent of a quantity inside a multi-step comparison. The student must total the order, take 15% of the total, total the per-ticket coupon, and compare final prices; the tempting misconceptions (15% off read as $15 off, the percent taken on one ticket only) are genuinely common at grade 6.",
+  "prompt": "A family buys 4 concert tickets that cost $78 each. The ticket website offers two deals, and the family can use only one. Deal A takes 15% off the total cost of the tickets. Deal B takes $7 off the price of each ticket. What is the difference, in dollars, between the total cost with Deal A and the total cost with Deal B?",
+  "choices": [
+   "13.00",
+   "14.60",
+   "16.30",
+   "18.80"
+  ],
+  "correct_answer": "18.80",
+  "explanation": "The tickets cost 4 x 78 = 312 dollars. Deal A saves 15% of 312 = 0.15 x 312 = 46.80, so the cost is 312 - 46.80 = 265.20. Deal B saves 4 x 7 = 28, so the cost is 312 - 28 = 284. The difference is 284 - 265.20 = 18.80 dollars.",
+  "solve": "const t = 4 * 78; const a = t - 0.15 * t; const b = t - 4 * 7; return (Math.round((b - a) * 100) / 100).toFixed(2);",
+  "distractor_solve": {
+   "13.00": "return (Math.abs(15 - 4 * 7)).toFixed(2);",
+   "14.60": "const t = 4 * 78; return (Math.round((0.15 * (t - 4 * 7) - 4 * 7) * 100) / 100).toFixed(2);",
+   "16.30": "return (Math.round(Math.abs(0.15 * 78 - 4 * 7) * 100) / 100).toFixed(2);"
+  },
+  "mechanism": [
+   "total of the order",
+   "percent of the total versus a per-item amount times the count",
+   "difference of the two final totals"
+  ],
+  "quantity_asked": "the difference in dollars between the total cost with Deal A and with Deal B",
+  "plugback": {
+   "substitutable": false,
+   "why": "The answer is a difference of two computed totals; no option can be run through the story to reach a printed number."
+  },
+  "distractor_meta": {
+   "13.00": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "reads 15% off as $15 off",
+    "why": "The student treats Deal A as $15 off the order and compares it with Deal B's $28 off, so the difference is 28 - 15 = 13."
+   },
+   "14.60": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "takes the 15% off the price that already has the coupons removed",
+    "why": "The student applies the $7 coupons first (312 - 28 = 284) and then takes 15% of 284 = 42.60 as Deal A's saving, so 42.60 - 28 = 14.60, mixing the two deals."
+   },
+   "16.30": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "takes 15% off one ticket instead of the whole order",
+    "why": "The student finds 15% of one $78 ticket (11.70) and compares it with Deal B's $28 for all four tickets, 28 - 11.70 = 16.30."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "return (Math.round((0.15 * 4 * 78 - 7) * 100) / 100).toFixed(2);",
+   "direction": "above",
+   "why": "Taking Deal B's $7 off only once instead of once per ticket shrinks the subtracted saving, so the difference becomes 46.80 - 7 = 39.80, above the key."
+  },
+  "far_distractor": {
+   "option": "13.00",
+   "natural_side": "above",
+   "why": "Reading a percent as dollars usually OVERstates a discount (on any order under $100, $15 off is more than 15% off), which would push the difference up. Here the order is $312, so $15 is less than 15% and Deal A's saving shrinks, landing the difference below the key."
+  },
+  "structure_check": "The difference equals Deal A's saving minus Deal B's saving, both computed (0.15 x 4 x 78 and 4 x 7). Errors that shrink Deal A's saving lower the answer (one ticket only, $15 off, percent after coupons); errors that shrink Deal B's saving raise it (coupon taken once: 39.80). The stem does not say which way an error goes.",
+  "intermediate_check": "13.00: no, 28 - 15 is not a step of the solution. 14.60: no, 42.60 - 28 is not computed in either correct path. 16.30: no, 15% of one ticket is not needed. The solved amounts 312, 46.80, 28, 265.20 and 284 are not options.",
+  "cheap_bound_check": "Cheapest one-sided bound: 15% is more than 10%, so Deal A saves more than 31.20 and the difference is more than 31.20 - 28 = 3.20. It strikes nothing. All three distractors lie on the key's side of the cheapest upper bound (15% < 25%: difference under 78 - 28 = 50).",
+  "shape_check": "The stem hands over: dollars and cents (all four), Deal A is cheaper because 15% of 312 is more than 28 (all four positive), the difference is under 50 (all four). All four survive together.",
+  "interior_parity_check": "End key. Middle values 14.60 and 16.30: both dollars with two decimal places ending in 0.",
+  "arith_class_check": "No forced class: the key 18.80 is cents ending in 0, as are all four options; nothing printed forces a whole-dollar answer (13.00 is the only whole-dollar option, and it is a distractor).",
+  "dup_search": {
+   "queries": [
+    "coupon|off each&% off|percent off",
+    "percent|%&how many&in all|altogether|total number|at the school|in the"
+   ],
+   "hits_read": 18,
+   "nearest": "SAT 9407c479 and eecb009b (successive markdowns and a percent coupon, final price): chained percents on one price; this item compares a percent off a multi-item total with a per-item dollar coupon and asks the difference."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "15% of 312 exceeds 28 by a clear margin (10% alone is 31.20), so the difference is positive: all survive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "10% < 15% < 25% gives 3.20 < difference < 50: all four survive",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: the cents depend on 15% of 312",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "all four end in 0 cents; none ruled out",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "rounding 78 to 80: 15% of 320 = 48, 48 - 28 = 20; this is the same computation as the solution, and it leaves 18.80 and 16.30 both within 4",
+    "strikes": [
+     "13.00"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Which two parts push opposite ways, and which distractor comes from the far part? Deal A's saving (15% of 312, the minuend) and Deal B's saving (4 x 7, the subtrahend); 13.00 is the percent-as-dollars error, which on a small order would overstate Deal A and push the answer up but here understates it. The coupon-once error on Deal B lands above (39.80). Covering the work, could a student tell which way the errors go and strike all three? No: the three distractors come from three different misreadings of Deal A, and no single bound strikes all three (the benchmark bounds 3.20 and 50 strike none). Could a student check an option in one routine step? No. K1: all options cents ending in 0; key not alone in any class. K2: 15% is within 10 points of 10% and 1/4: bounds 3.20 < answer < 50, striking none; band wide. K3: no circle. K4: printed numbers are whole; rounding 78 to 80 gives E = 20, key distance 1.2; 16.30 (3.7), 14.60 (5.4), 13.00 (7.0) are beyond twice that. That estimate is the full method with a rounded price (total, 15%, coupons), so it is the work rather than a free bound; stated as a residual risk for an end key. K5: no table. Solved intermediate? No. Really a high grade 6 item? Yes: three steps on 6.RP.3c with a percent-versus-dollar decision and two tempting misreadings. Cheapest bound: the rounded estimate, the rest strike none."
+  }
+ },
+ {
+  "id": "MB2-O5-09",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 5,
+  "tier": "mid",
+  "rit_band": "RIT 200-209",
+  "difficulty": "medium",
+  "ccss": "5.OA.A.2",
+  "area_25": "Operations and Algebraic Thinking",
+  "subskill": "One expression for two kinds of boxes shared equally",
+  "grade_rationale": "Mid for grade 5: the story is one expression, (6 x 21 + 8 x 6) / 3 (5.OA.A.2), with two products, a sum and a quotient. The key idea is that the whole total is shared, so both products sit inside the grouping. About half of grade-5 students write and evaluate it correctly; the rest share only part, mix up which count goes with which box, or use one box size for every box.",
+  "prompt": "A coach buys 6 boxes with 21 tennis balls in each box and 8 boxes with 6 tennis balls in each box. She shares all the tennis balls equally among 3 teams. How many tennis balls does each team get?",
+  "choices": [
+   "68",
+   "28",
+   "90",
+   "58"
+  ],
+  "correct_answer": "58",
+  "explanation": "The large boxes hold 6 x 21 = 126 balls and the small boxes hold 8 x 6 = 48 balls, so there are 126 + 48 = 174 balls. Shared among 3 teams: 174 / 3 = 58. As one expression: (6 x 21 + 8 x 6) / 3 = 58.",
+  "solve": "return (6 * 21 + 8 * 6) / 3",
+  "distractor_solve": {
+   "28": "return (6 + 8) * 6 / 3",
+   "68": "return (6 * 6 + 8 * 21) / 3",
+   "90": "return 6 * 21 / 3 + 8 * 6"
+  },
+  "mechanism": [
+   "two products for two kinds of boxes",
+   "add them for the total",
+   "divide the whole total by the number of teams"
+  ],
+  "quantity_asked": "the number of tennis balls each team gets",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option is the result of the story, not a starting value; checking it means rebuilding the total 174 and dividing, which is solving. The key sits at ascending try 2 for that reason."
+  },
+  "distractor_meta": {
+   "28": {
+    "error_kind": "omission",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses one box size for every box",
+    "why": "Adds the boxes, 6 + 8 = 14, and uses 6 balls for each: 14 x 6 = 84, and 84 / 3 = 28."
+   },
+   "68": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "pairs each number of boxes with the wrong box size",
+    "why": "Uses 6 boxes of 6 and 8 boxes of 21: 36 + 168 = 204, and 204 / 3 = 68."
+   },
+   "90": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "writes the expression without grouping, so only the first product is shared",
+    "why": "Writes 6 x 21 / 3 + 8 x 6: 126 / 3 = 42, then adds all 48 small-box balls: 42 + 48 = 90."
+   }
+  },
+  "structure_check": "Interior key: using the small size for every box (28) falls below; swapping the pairs (68) and sharing only the first product (90) fall above.",
+  "intermediate_check": "68: no, 204 / 3 uses a total the chain never forms. 90: no, 42 + 48 mixes a shared part with an unshared part; it is not the key moved by one printed number (90 - 58 = 32 is not printed or a sum of two printed numbers). 28: no, 84 / 3; 58 - 28 = 30 is not printed. The intermediates 126, 48 and 174 are not options.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "Whole number (all four). Each team gets at least the large boxes' share, 126 / 3 = 42 (strikes 28 only). If every box held 21, each team would get 14 x 21 / 3 = 98, so fewer than 98 (strikes none). 58, 68 and 90 survive together.",
+  "interior_parity_check": "The two middle values are 58 and 68: both two-digit even numbers ending in 8; same form, the key is not cleaner.",
+  "arith_class_check": "No class is forced (174 / 3 has no stem-readable parity or final digit before computing). All options are even; 28, 58 and 68 end in 8, so the key is not alone.",
+  "dup_search": {
+   "queries": [
+    "bags&each bag&equally among",
+    "tennis balls|balls&equally among",
+    "boxes&in each box&equally among"
+   ],
+   "hits_read": 1,
+   "nearest": "MV2-O56-04 (one kind of bag, keep some, share the rest among herself and 8 friends) and MV2-O56-11 (withdrawn: a x b + c x d total with no sharing): here two kinds of boxes are summed and the WHOLE sum is shared, and the central error is sharing only the first product."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "each team gets at least the large boxes' share 126 / 3 = 42",
+    "strikes": [
+     "28"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: all four options are even",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none before computing 174 / 3; three options end in 8",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "fewer than 14 x 21 / 3 = 98 (if every box were large): strikes none",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student might bound below by the large boxes alone (42), which strikes only 28, and above by 98, which strikes none; 58, 68 and 90 remain. Could a student check an option in one routine step? No: there is no backward chain. K1: no forced class; all even; final digit 8 shared by three. K2: no percent or benchmark fraction; the bounds 42 and 98 strike one and none. K3: no circle. K4: whole numbers, no decimals; see the K4 detail below. K5: no table. Solved intermediate as a distractor? No. Really a mid item for grade 5? Yes: two products, a sum and a quotient recorded as one expression. Cheapest bound striking the most: the large-boxes share, one (28). Read lines: FORM 90 (ends in 0): the key's final digit needs 174 / 3; no free strike. PLUG key at try 2, not substitutable: the answer is the end of a forward story (balls per team), so checking an option means rebuilding 174 and dividing. K4 detail: whole numbers, no decimals; rounding 21 to 20 gives (120 + 48) / 3 = 56, but that estimate already runs the whole chain (both products, the grouping, the division), so it is the solution, not a free elimination."
+  }
+ },
+ {
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 7,
+  "id": "MB2-O7R-03",
+  "tier": "low",
+  "rit_band": "RIT 200-209",
+  "difficulty": "easy",
+  "ccss": "7.RP.A.1",
+  "subskill": "Two unit rates from fractional times; how many more per hour",
+  "grade_rationale": "Low for grade 7: 7.RP.A.1 unit rates with fractional quantities. Doubling a half-hour distance and dividing by 3/4 are the grade's routine moves, then one subtraction. Most students get it; the common slips are forgetting to convert one rider to an hourly rate or scaling 3/4 hour up by adding a quarter of the distance.",
+  "prompt": "Maya and Leo each ride a bike at a steady speed. Maya rides 5 3/4 miles in 1/2 hour. Leo rides 7 1/2 miles in 3/4 hour. How many more miles per hour does Maya ride than Leo?",
+  "choices": [
+   "1 1/2",
+   "1 3/4",
+   "2 1/8",
+   "4"
+  ],
+  "correct_answer": "1 1/2",
+  "explanation": "Maya: 5 3/4 / (1/2) = 5 3/4 x 2 = 11 1/2 miles per hour. Leo: 7 1/2 / (3/4) = 15/2 x 4/3 = 10 miles per hour. Difference: 11 1/2 - 10 = 1 1/2 miles per hour.",
+  "solve": "const m = 5.75 / 0.5, l = 7.5 / 0.75; const d = m - l; return Math.abs(d - 1.5) < 1e-9 ? \"1 1/2\" : String(d);",
+  "distractor_solve": {
+   "4": "return 5.75 * 2 - 7.5;",
+   "1 3/4": "const d = 7.5 - 5.75; return Math.abs(d - 1.75) < 1e-9 ? \"1 3/4\" : String(d);",
+   "2 1/8": "const d = 5.75 * 2 - 7.5 * 5 / 4; return Math.abs(d - 2.125) < 1e-9 ? \"2 1/8\" : String(d);"
+  },
+  "mechanism": [
+   "unit rate from a half-hour distance (multiply by 2)",
+   "unit rate from a 3/4-hour distance (divide by 3/4)",
+   "difference of the two rates"
+  ],
+  "quantity_asked": "how many more miles per hour Maya rides than Leo",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option cannot be checked against the stem without computing both hourly rates, which is the whole solution; there is no single routine step from an option back to a printed value."
+  },
+  "distractor_meta": {
+   "4": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "converts only one rider to miles per hour",
+    "why": "The student doubles Maya's half-hour distance to 11 1/2 but uses Leo's 7 1/2 miles as if it were already per hour."
+   },
+   "1 3/4": {
+    "error_kind": "wrong_variable",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "compares distances instead of rates (ignores the different times)",
+    "why": "The student subtracts the two distances, 7 1/2 - 5 3/4, as if both were per-hour amounts, and reports the size of the gap."
+   },
+   "2 1/8": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "scales 3/4 hour to 1 hour by adding a quarter of the distance",
+    "why": "Since 3/4 + 1/4 = 1, the student adds 1/4 of 7 1/2 to get 9 3/8 miles per hour for Leo, instead of adding 1/3 of it, then subtracts from 11 1/2."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "return 5.75 - 7.5 / 0.75;",
+   "direction": "below",
+   "why": "Converting only Leo to an hourly rate (10) and using Maya's half-hour distance 5 3/4 as her speed gives 5 3/4 - 10 = -4 1/4, below the key."
+  },
+  "far_distractor": {
+   "option": "4",
+   "natural_side": "below",
+   "why": "Forgetting to convert a distance to an hourly rate makes that rate too small, which ordinarily makes an answer too small; here it shrinks Leo's rate, the amount being subtracted, so the difference lands above the key."
+  },
+  "structure_check": "The answer is A - B with both rates computed: an error that shrinks Maya's rate (forgetting to double) pushes the answer down, one that shrinks Leo's rate (forgetting to convert, or adding only a quarter) pushes it up. The stem does not say which rider a student will mishandle.",
+  "intermediate_check": "1 3/4: no, it is the gap between the printed distances, not the key through one rate. 2 1/8: no, it uses a wrong scale factor 5/4 that is not printed. 4: no, it is 11 1/2 - 7 1/2; the key does not follow from it through one printed rate. The rates 11 1/2 and 10 are not options.",
+  "cheap_bound_check": "Cheapest one-sided bound: Leo covers more than 7 1/2 miles in a full hour, so the difference is less than 11 1/2 - 7 1/2 = 4; it strikes only 4. 1 3/4 and 2 1/8 sit on the key's side of it.",
+  "shape_check": "Stem hands over: a positive difference (Maya is the one asked about as faster), a value below 4 once Leo's hourly rate is known to exceed 7 1/2. 1 1/2, 1 3/4 and 2 1/8 survive both.",
+  "interior_parity_check": "Not interior (S slot); the three smaller options are all mixed numbers with a fractional part.",
+  "arith_class_check": "Rates from quarters and halves: the key is a half; 1 3/4 and 2 1/8 are quarters and eighths, 4 is whole. No class (whole, half, eighth) is implied by the stem that the key alone fills.",
+  "dup_search": {
+   "queries": [
+    "miles&3/4 hour",
+    "per hour&1/2 hour&3/4",
+    "miles per hour&half an hour|1/2 hour&miles per hour",
+    "how many more miles per hour"
+   ],
+   "hits_read": 0,
+   "nearest": "MMG excl. \"Unit rate from a ratio of a mixed number to a fraction\" (Kai paints 2 1/2 m in 2/3 h, not banked): one complex-fraction rate, no comparison; this item compares two riders and asks the difference."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: the stem asks how many more, every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "Leo rides more than 7 1/2 miles in a whole hour, so the difference is under 11 1/2 - 7 1/2 = 4",
+    "strikes": [
+     "4"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: no whole-number or parity property is implied",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: options are fractions",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "Leo rides less than 2 x 7 1/2 = 15 miles in an hour, so the difference is more than -3 1/2",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Two parts pushing opposite ways: Maya's rate (A) and Leo's rate (B); the far distractor 4 comes from an error in B (Leo never converted) and lands above. Covering the work, a student cannot tell which way errors go: forgetting to double Maya lands at -4 1/4 (below), forgetting Leo lands at 4 (above); no one bound strikes all three (the < 4 bound strikes only 4). Could a student check an option in one routine step? No; checking needs both rates. K1: no forced class (key a half, others quarter, eighth, whole). K2: printed 1/2 and 3/4 give the bound \"< 4\" (strikes 4 only) and \"> -3 1/2\" (strikes none); the band below 4 holds 1 3/4 and 2 1/8. K3: no circle. K4: rounding 5 3/4 to 6 and 7 1/2 to 8 gives 12 - 10 2/3 = 1 1/3; the key (1/6 away) is nearest, 1 3/4 (5/12) and 2 1/8 (19/24) are within a step, 4 is the one far option. K5: no table. Solved intermediate: no (11 1/2 and 10 are not options). Tier: low for grade 7 (two routine unit-rate conversions and a subtraction). Cheapest bound striking the most distractors: < 4, one. The option 4 equals the 4 in \"3/4\"; it is a distractor, not the key. (read) PLUG key at try 1: not substitutable (both rates are needed for any check), and it is not the start of a backward chain. FORM (read): options are halves, quarters, eighths and one whole number (advisory); each comes from a named error, not a reshaping of the key."
+  }
+ },
+ {
+  "id": "MB2-O7E-01",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 7,
+  "tier": "low",
+  "rit_band": "RIT 200-209",
+  "difficulty": "easy",
+  "ccss": "7.EE.B.4a",
+  "subskill": "Solve px + q = r from a booking fee plus an hourly rate",
+  "grade_rationale": "Low for grade 7: a two-step equation of the form px + q = r (7.EE.B.4a) with a whole-number rate and fee and a bill in dollars and cents. The only real step is taking off the one-time fee before dividing; most grade-7 students do this, and the answer is a simple decimal number of hours.",
+  "prompt": "A music center rents out practice rooms. It charges a one-time booking fee of $4 plus $5 for each hour, and part of an hour is charged at the same rate. Jae's bill was $31.50. For how many hours did Jae rent a practice room?",
+  "choices": [
+   "5.5",
+   "2.3",
+   "6.3",
+   "3.5"
+  ],
+  "correct_answer": "5.5",
+  "explanation": "The hours cost 31.50 - 4 = 27.50 dollars. Each hour costs 5 dollars, so the number of hours is 27.50 / 5 = 5.5. Check: 4 + 5 x 5.5 = 4 + 27.50 = 31.50 dollars.",
+  "solve": "return (31.5 - 4) / 5",
+  "distractor_solve": {
+   "2.3": "return 31.5 / 5 - 4",
+   "6.3": "return 31.5 / 5",
+   "3.5": "return 31.5 / (5 + 4)"
+  },
+  "mechanism": [
+   "write 5h + 4 = 31.50 from the fee and the hourly rate",
+   "subtract the one-time fee",
+   "divide by the hourly rate"
+  ],
+  "quantity_asked": "the number of hours the room was rented",
+  "plugback": {
+   "substitutable": true,
+   "verify": "return Math.abs(4 + 5 * v - 31.5) < 1e-9",
+   "why": "A student can put an option in for the hours: 4 + 5 x hours must equal 31.50. The key is the third value in ascending order, so a student trying options from smallest first reaches it at try 3."
+  },
+  "distractor_meta": {
+   "6.3": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "ignores the one-time fee and divides the whole bill by the hourly rate",
+    "why": "The student divides 31.50 by 5 and never takes off the $4 booking fee, so every dollar of the bill is counted as rental time."
+   },
+   "2.3": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "undoes the two steps in the wrong order (divides by the rate before removing the fee)",
+    "why": "The student divides 31.50 by 5 to get 6.3 and then subtracts the $4 fee from the number of hours, mixing dollars with hours."
+   },
+   "3.5": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "treats the one-time fee as if it were charged every hour",
+    "why": "The student adds the fee to the hourly rate (5 + 4 = 9 dollars per hour) and divides 31.50 by 9, as if the $4 were part of each hour's price."
+   }
+  },
+  "structure_check": "Interior key: the stem does not fix a direction for the errors; omitting the fee raises the hours, while charging the fee every hour or undoing in the wrong order lowers them.",
+  "intermediate_check": "6.3: no, it is 31.50 / 5, not a value the key follows from by one printed number (6.3 - 0.8 = 5.5, and 0.8 is not printed). 2.3: no, the key is not 2.3 combined with 4, 5 or 31.50 (2.3 + 4 = 6.3, not 5.5). 3.5: no, 3.5 + 2 = 5.5 but 2 is not in the stem, and 3.5 x 5 + 4 = 21.50, not 31.50.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "Properties handed over: the hours are positive and may include part of an hour; the fee means the hours are fewer than 31.50 / 5 = 6.3. Positive: all four survive. Part of an hour allowed: all four survive. Fewer than 6.3: strikes 6.3 only. 2.3, 3.5 and 5.5 survive everything together.",
+  "interior_parity_check": "The two middle values are 3.5 and 5.5: both one-decimal numbers ending in .5, the same form and size of digits; the key is not the cleaner one.",
+  "arith_class_check": "No forced class: the bill has cents and part hours are allowed, so the hours can be any tenth. The key 5.5 shares its .5 ending with 3.5; 2.3 and 6.3 share theirs. No option is alone as the only whole number, multiple or terminating value.",
+  "dup_search": {
+   "queries": [
+    "booking|rent&fee&per hour",
+    "fee&per hour&how many hours",
+    "practice room|music|studio&per hour",
+    "charges|fee&plus&per (ISEE/SSAT/MAP scan)"
+   ],
+   "hits_read": 37,
+   "nearest": "SSAT 0a6bd177 (moving company $95 fee + $34 per box, greatest whole number of boxes under $560) is an inequality with a greatest-whole-number answer; ISEE a04b0ed8 (plumber $45 + $30 per hour, find the total) runs forward. Neither solves px + q = r for a decimal number of hours."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: every option is positive and the hours must be positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "the fee takes some of the bill, so hours < 31.50 / 5 = 6.3",
+    "strikes": [
+     "6.3"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: hours are not whole numbers here",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "5 x hours = 27.50 needs an odd tenths digit; every option has one (3, 5, 3, 5)",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "hours > 0 and the bill is more than the fee: no option struck",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "low",
+   "note": "Test-wise try: plug options; key is third ascending, so try 3. Could a student check an option in one routine step? Yes (4 + 5h = 31.50), which is why the key sits at try 3. K1: no forced class (tenths of an hour allowed; two options end .5, two end .3). K2: no printed percent or benchmark fraction; the printed total 31.50 with rate 5 gives hours < 6.3, striking only 6.3, and the key side of that bound (0 to 6.3) holds 2.3, 3.5 and 5.5. K3: no circle. K4: rounding gives E = (32 - 4) / 5 = 5.6 (key distance 0.1); 2.3, 3.5 and 6.3 are all farther, but E can only be formed by a student who already subtracts the fee before dividing, which is the whole skill; with whole-number fee and rate the exact work is no harder than the estimate, so the estimate is not a free elimination. K5: no table. Solved intermediate as a distractor? No (the intermediate is 27.50, not an option). Really a low item for grade 7? Yes: one two-step equation with friendly numbers. Cheapest bound: hours < 6.3, strikes one (6.3). (read) lines answered: FORM 2.3 and 6.3 end in 3 while the key ends in 5 - the stem forces only an odd tenths digit (5h = 27.50), which all four have, so the last digit rules nothing out. DPAIR/DSUM key 5.5 + 3.5 = 9 = 4 + 5: 3.5 is 31.50 / 9, the fee added to the rate; the sum of the key and that option equalling 9 is a coincidence a student could only see after knowing the key, and no option is 9 or one step from 9 away from the key."
+  }
+ }
+]

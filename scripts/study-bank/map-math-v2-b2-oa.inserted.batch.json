@@ -1,0 +1,647 @@
+[
+ {
+  "id": "MB2-O5-01",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Evaluate a sum with a parenthesised difference divided",
+  "difficulty": "easy",
+  "topic_tag": "5.OA.A.1",
+  "prompt": "On a puzzle sheet, Noor has to find the value of 32 + (54 - 20) / 2. What value should Noor get?",
+  "choices": [
+   "39",
+   "33",
+   "76",
+   "49"
+  ],
+  "correct_answer": "49",
+  "explanation": "Work inside the parentheses first: 54 - 20 = 34. Divide next: 34 / 2 = 17. Add last: 32 + 17 = 49.",
+  "solve": "return 32 + (54 - 20) / 2",
+  "graphic": null,
+  "grade_target": 5,
+  "tier": "low",
+  "rit_band": "RIT 190-199",
+  "ccss": "5.OA.A.1",
+  "area_25": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "distractor_steps": [
+   {
+    "choice": "39",
+    "mis_step": "Divides 54 by 2 to get 27 but subtracts the 20 without dividing it: 32 + 27 - 20 = 39."
+   },
+   {
+    "choice": "33",
+    "mis_step": "Finds 54 - 20 = 34, adds 32 to get 66, and only then divides: 66 / 2 = 33."
+   },
+   {
+    "choice": "76",
+    "mis_step": "Reads 32 + 54 - 20 / 2 with no parentheses: 20 / 2 = 10, so 32 + 54 - 10 = 76."
+   }
+  ],
+  "distractor_solve": {
+   "33": "return (32 + (54 - 20)) / 2",
+   "39": "return 32 + 54 / 2 - 20",
+   "76": "return 32 + 54 - 20 / 2"
+  }
+ },
+ {
+  "id": "MB2-O5-14",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Position of a partner term from a value in a related pattern",
+  "difficulty": "hard",
+  "topic_tag": "5.OA.B.3",
+  "prompt": "Pattern A starts at 39, and each number after that is 3 more than the number before it. Each number in Pattern B is 30 less than its partner in Pattern A. (The first numbers of the two patterns are partners, the second numbers are partners, and so on.) The number 72 is in Pattern B. Counting 39 as the first number of Pattern A, what is the position number of the partner of 72?",
+  "choices": [
+   "22",
+   "34",
+   "12",
+   "21"
+  ],
+  "correct_answer": "22",
+  "explanation": "Each B number is 30 less than its partner, so the partner of 72 is 72 + 30 = 102. In Pattern A, 102 is 102 - 39 = 63 more than the first number, and 63 / 3 = 21 steps of 3. Twenty-one steps after the first number is position 21 + 1 = 22.",
+  "solve": "const a = 72 + 30; return (a - 39) / 3 + 1",
+  "graphic": null,
+  "grade_target": 5,
+  "tier": "high",
+  "rit_band": "RIT 210-219",
+  "ccss": "5.OA.B.3",
+  "area_25": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "distractor_steps": [
+   {
+    "choice": "34",
+    "mis_step": "Finds the partner 72 + 30 = 102 and divides by the step: 102 / 3 = 34, forgetting that Pattern A starts at 39."
+   },
+   {
+    "choice": "12",
+    "mis_step": "Looks for 72 itself in Pattern A: 72 - 39 = 33, which is 11 steps, so position 12."
+   },
+   {
+    "choice": "21",
+    "mis_step": "Finds 102 - 39 = 63 and 63 / 3 = 21 steps after the first number, and gives 21 instead of 22."
+   }
+  ],
+  "distractor_solve": {
+   "12": "return (72 - 39) / 3 + 1",
+   "21": "return (72 + 30 - 39) / 3",
+   "34": "return (72 + 30) / 3"
+  }
+ },
+ {
+  "id": "MB2-O7R-16",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Bill total with tax, and a tip on the pre-tax amount",
+  "difficulty": "hard",
+  "topic_tag": "7.RP.A.3",
+  "prompt": "A family orders 4 meals that cost $18.75 each and 2 drinks that cost $4.50 each. A sales tax of 7% is charged on the cost of the food and drinks. The family also leaves a tip of 15% of the cost of the food and drinks before tax. How many dollars does the family pay in all, including the tax and the tip?",
+  "choices": [
+   "104.88",
+   "102.48",
+   "91.14",
+   "103.36"
+  ],
+  "correct_answer": "102.48",
+  "explanation": "Food and drinks: 4 x 18.75 + 2 x 4.50 = 75 + 9 = 84 dollars. Tax: 0.07 x 84 = 5.88 dollars. Tip (on the pre-tax 84): 0.15 x 84 = 12.60 dollars. Total: 84 + 5.88 + 12.60 = 102.48 dollars.",
+  "solve": "const f = 4 * 18.75 + 2 * 4.5; return Math.round((f + 0.07 * f + 0.15 * f) * 100) / 100;",
+  "graphic": null,
+  "grade_target": 7,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "ccss": "7.RP.A.3",
+  "area_25": null,
+  "map_area": "oa",
+  "distractor_steps": [
+   {
+    "choice": "104.88",
+    "mis_step": "The student computes the tax correctly but adds a tip of 15 dollars instead of 15% of $84."
+   },
+   {
+    "choice": "91.14",
+    "mis_step": "The student totals 84 and the tax 5.88 correctly but converts the 15% tip to 0.015, so the tip is only $1.26."
+   },
+   {
+    "choice": "103.36",
+    "mis_step": "The student adds the tax first ($89.88) and then takes 15% of $89.88 for the tip, though the tip is on the cost before tax."
+   }
+  ],
+  "distractor_solve": {
+   "91.14": "const f = 4 * 18.75 + 2 * 4.5; return Math.round((f + 0.07 * f + 0.015 * f) * 100) / 100;",
+   "103.36": "const f = 4 * 18.75 + 2 * 4.5; const withTax = Math.round(f * 1.07 * 100) / 100; const tip = Math.round(withTax * 0.15 * 100) / 100; return Math.round((withTax + tip) * 100) / 100;",
+   "104.88": "const f = 4 * 18.75 + 2 * 4.5; return Math.round((f + 0.07 * f + 15) * 100) / 100;"
+  }
+ },
+ {
+  "id": "MB2-O7E-16",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Backward chain: a fraction spent, then an amount, money left",
+  "difficulty": "hard",
+  "topic_tag": "7.EE.B.4a",
+  "prompt": "Lucia spent 3/8 of her money on a phone case. Then she spent $3.65 on a snack. After that, she had $20.05 left. How much money did Lucia have at first?",
+  "choices": [
+   "35.73",
+   "63.20",
+   "26.24",
+   "37.92"
+  ],
+  "correct_answer": "37.92",
+  "explanation": "Before the snack she had 20.05 + 3.65 = 23.70 dollars. After spending 3/8 of her money on the case she had 5/8 of it left, so 5/8 of her money is 23.70. Her money was 23.70 / (5/8) = 23.70 x 8/5 = 37.92 dollars. Check: 3/8 of 37.92 is 14.22; 37.92 - 14.22 = 23.70; 23.70 - 3.65 = 20.05.",
+  "solve": "return (20.05 + 3.65) / (5 / 8)",
+  "graphic": null,
+  "grade_target": 7,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "ccss": "7.EE.B.4a",
+  "area_25": null,
+  "map_area": "oa",
+  "distractor_steps": [
+   {
+    "choice": "35.73",
+    "mis_step": "The student divides the 20.05 left by 5/8 to get 32.08 and only then adds the 3.65, so the snack is never scaled up with the rest."
+   },
+   {
+    "choice": "63.20",
+    "mis_step": "The student treats 23.70 as 3/8 of her money (the part spent) and computes 23.70 / (3/8) = 63.20."
+   },
+   {
+    "choice": "26.24",
+    "mis_step": "The student works backward but takes the snack off again: 20.05 - 3.65 = 16.40, then 16.40 / (5/8) = 26.24."
+   }
+  ],
+  "distractor_solve": {
+   "26.24": "return (20.05 - 3.65) / (5 / 8)",
+   "35.73": "return 20.05 / (5 / 8) + 3.65",
+   "63.20": "return (20.05 + 3.65) / (3 / 8)"
+  }
+ },
+ {
+  "id": "MB2-O5-03",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Total minus a difference described with \"fewer than\"",
+  "difficulty": "easy",
+  "topic_tag": "5.OA.A.2",
+  "prompt": "Mrs. Lee has 522 sheets of paper. Mr. Kim uses 260 sheets of paper for a project. Mrs. Lee uses 110 fewer sheets than Mr. Kim for her project. How many sheets of paper does Mrs. Lee have left?",
+  "choices": [
+   "372",
+   "432",
+   "472",
+   "412"
+  ],
+  "correct_answer": "372",
+  "explanation": "Mrs. Lee uses 110 fewer sheets than Mr. Kim: 260 - 110 = 150 sheets. She started with 522, so she has 522 - 150 = 372 sheets left. As one expression: 522 - (260 - 110) = 372.",
+  "solve": "return 522 - (260 - 110)",
+  "graphic": null,
+  "grade_target": 5,
+  "tier": "low",
+  "rit_band": "RIT 190-199",
+  "ccss": "5.OA.A.2",
+  "area_25": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "distractor_steps": [
+   {
+    "choice": "432",
+    "mis_step": "In 522 - 150 the tens column is 2 - 5, so the student takes 5 - 2 = 3 instead of regrouping: 432."
+   },
+   {
+    "choice": "472",
+    "mis_step": "Works 522 - 150: borrows to make 12 - 5 = 7 tens but leaves the 5 hundreds as 5, so 5 - 1 = 4 hundreds: 472."
+   },
+   {
+    "choice": "412",
+    "mis_step": "Reads \"110 fewer\" as the number of sheets Mrs. Lee uses and finds 522 - 110 = 412, never working out 260 - 110."
+   }
+  ],
+  "distractor_solve": {
+   "412": "return 522 - 110",
+   "432": "const d = 260 - 110; return (5 - Math.floor(d / 100)) * 100 + Math.abs(2 - Math.floor(d / 10) % 10) * 10 + (2 - d % 10)",
+   "472": "const d = 260 - 110; const h = 5 - Math.floor(d / 100), t = 12 - Math.floor(d / 10) % 10, u = 2 - d % 10; return h * 100 + t * 10 + u"
+  }
+ },
+ {
+  "id": "MB2-O6R-06",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Two part-to-part ratios scaled to the same amount; difference",
+  "difficulty": "medium",
+  "topic_tag": "6.RP.A.3.A",
+  "prompt": "A painter mixes two shades of green paint. In Shade A, the ratio of yellow paint to blue paint is 4 to 5. In Shade B, the ratio of yellow paint to blue paint is 1 to 4. She makes each shade with 60 liters of blue paint. How many more liters of yellow paint does she use for Shade A than for Shade B?",
+  "choices": [
+   "36",
+   "33",
+   "44",
+   "47"
+  ],
+  "correct_answer": "33",
+  "explanation": "Shade A: 60 liters of blue is 12 groups of 5 liters, so the yellow is 12 x 4 = 48 liters. Shade B: 60 liters of blue is 15 groups of 4 liters, so the yellow is 15 x 1 = 15 liters. The difference is 48 - 15 = 33 liters.",
+  "solve": "return String(60 / 5 * 4 - 60 / 4 * 1);",
+  "graphic": null,
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "ccss": "6.RP.A.3.A",
+  "area_25": null,
+  "map_area": "oa",
+  "distractor_steps": [
+   {
+    "choice": "36",
+    "mis_step": "The student finds 60 / 5 = 12 groups for Shade A and reuses 12 groups for Shade B, so Shade B's yellow is 12 x 1 = 12 instead of 15, and 48 - 12 = 36."
+   },
+   {
+    "choice": "44",
+    "mis_step": "The student reasons that blue went up by 55 liters (5 to 60), so yellow also goes up by 55 (4 to 59), and subtracts Shade B's correct 15: 59 - 15 = 44."
+   },
+   {
+    "choice": "47",
+    "mis_step": "The student scales Shade A to 48 liters but subtracts Shade B's ratio number, 1 liter, without scaling it to 60 liters of blue."
+   }
+  ],
+  "distractor_solve": {
+   "36": "return String(60 / 5 * 4 - 60 / 5 * 1);",
+   "44": "return String((4 + (60 - 5)) - 60 / 4 * 1);",
+   "47": "return String(60 / 5 * 4 - 1);"
+  }
+ },
+ {
+  "id": "MB2-O6E-14",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Two input-output tables: difference of outputs at one input",
+  "difficulty": "hard",
+  "topic_tag": "6.EE.C.9",
+  "prompt": "Two input-output tables each follow a rule. In each table, the output changes by the same amount every time the input goes up by 1. In Table A, the inputs 1, 2, 3, and 4 give the outputs 6, 19, 32, and 45. In Table B, the inputs 1, 2, 3, and 4 give the outputs 31, 39, 47, and 55. When the input is 21, how much greater is the output of Table A than the output of Table B?",
+  "choices": [
+   "89",
+   "95",
+   "75",
+   "105"
+  ],
+  "correct_answer": "75",
+  "explanation": "Table A goes up by 13 each time. Going back one step from input 1 gives 6 - 13 = -7, so the rule is output = 13 x input - 7. At input 21: 13 x 21 - 7 = 273 - 7 = 266. Table B goes up by 8 each time. Going back one step gives 31 - 8 = 23, so the rule is output = 8 x input + 23. At input 21: 8 x 21 + 23 = 168 + 23 = 191. The difference is 266 - 191 = 75.",
+  "solve": "const A = 13 * 21 - 7, B = 8 * 21 + 23; return A - B;",
+  "graphic": null,
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "ccss": "6.EE.C.9",
+  "area_25": null,
+  "map_area": "oa",
+  "distractor_steps": [
+   {
+    "choice": "89",
+    "mis_step": "Going back from 6 by 13, the student writes 13 - 6 = 7 and uses output = 13 x input + 7, so A comes out 14 too big: 280 - 191 = 89."
+   },
+   {
+    "choice": "95",
+    "mis_step": "The student starts at input 4 and adds the step 21 times: 45 + 273 = 318 and 55 + 168 = 223, so 318 - 223 = 95."
+   },
+   {
+    "choice": "105",
+    "mis_step": "The student writes output = 13 x input and output = 8 x input, so finds 273 - 168 = 105."
+   }
+  ],
+  "distractor_solve": {
+   "89": "const A = 13 * 21 + 7, B = 8 * 21 + 23; return A - B;",
+   "95": "const A = 45 + 13 * 21, B = 55 + 8 * 21; return A - B;",
+   "105": "const A = 13 * 21, B = 8 * 21; return A - B;"
+  }
+ },
+ {
+  "id": "MB2-O6E-16",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Missing side from a perimeter after combining known sides",
+  "difficulty": "hard",
+  "topic_tag": "6.EE.B.7",
+  "prompt": "A table top is shaped like a hexagon. Two of its sides are each 1.4 feet long. Three other sides are each 1.15 feet longer than one of those two sides. The sixth side is x feet long. The perimeter of the table top is 14.1 feet. How long is the sixth side, in feet?",
+  "choices": [
+   "7.85",
+   "5.95",
+   "2.35",
+   "3.65"
+  ],
+  "correct_answer": "3.65",
+  "explanation": "Each of the three longer sides is 1.4 + 1.15 = 2.55 feet. Add the five known sides: 3 x 2.55 + 2 x 1.4 = 7.65 + 2.8 = 10.45 feet. The perimeter gives x + 10.45 = 14.1, so x = 14.1 - 10.45 = 3.65. The sixth side is 3.65 feet long.",
+  "solve": "const known = 3 * (1.4 + 1.15) + 2 * 1.4; return Math.round((14.1 - known) * 100) / 100;",
+  "graphic": null,
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "ccss": "6.EE.B.7",
+  "area_25": null,
+  "map_area": "oa",
+  "distractor_steps": [
+   {
+    "choice": "7.85",
+    "mis_step": "The student reads '1.15 feet longer' as '1.15 feet long': 3 x 1.15 + 2.8 = 6.25, so x = 14.1 - 6.25 = 7.85."
+   },
+   {
+    "choice": "5.95",
+    "mis_step": "The student takes five sides of 1.4 and adds 1.15 one time: 7 + 1.15 = 8.15, so x = 14.1 - 8.15 = 5.95."
+   },
+   {
+    "choice": "2.35",
+    "mis_step": "The student sees 'hexagon' and 'perimeter' and finds one side as 14.1 / 6 = 2.35, ignoring the given side lengths."
+   }
+  ],
+  "distractor_solve": {
+   "2.35": "return Math.round(14.1 / 6 * 100) / 100;",
+   "5.95": "const known = 5 * 1.4 + 1.15; return Math.round((14.1 - known) * 100) / 100;",
+   "7.85": "const known = 3 * 1.15 + 2 * 1.4; return Math.round((14.1 - known) * 100) / 100;"
+  }
+ },
+ {
+  "id": "MB2-O6R-03",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Compare two constant speeds found from distance and time",
+  "difficulty": "easy",
+  "topic_tag": "6.RP.A.3.B",
+  "prompt": "A car drives 204 kilometers in 3 hours. A cyclist rides 120 kilometers in 5 hours. Each one moves at a steady speed. How many more kilometers per hour does the car travel than the cyclist?",
+  "choices": [
+   "28",
+   "44",
+   "37",
+   "42"
+  ],
+  "correct_answer": "44",
+  "explanation": "The car's speed is 204 / 3 = 68 kilometers per hour. The cyclist's speed is 120 / 5 = 24 kilometers per hour. The difference is 68 - 24 = 44 kilometers per hour.",
+  "solve": "return String(204 / 3 - 120 / 5);",
+  "graphic": null,
+  "grade_target": 6,
+  "tier": "low",
+  "rit_band": "RIT 200-209",
+  "ccss": "6.RP.A.3.B",
+  "area_25": null,
+  "map_area": "oa",
+  "distractor_steps": [
+   {
+    "choice": "28",
+    "mis_step": "The student subtracts the distances, 204 - 120 = 84, and divides by the car's 3 hours, as if the cyclist had also ridden for 3 hours; that makes the cyclist's speed too big."
+   },
+   {
+    "choice": "37",
+    "mis_step": "Dividing 204 by 3, the student gets 6 r 2 in the tens, forgets the 2, divides 4 by 3 and writes the car's speed as 61, then 61 - 24 = 37."
+   },
+   {
+    "choice": "42",
+    "mis_step": "The student finds the differences first, 84 kilometers and 2 hours, and divides them, 84 / 2 = 42, instead of finding each speed and then subtracting."
+   }
+  ],
+  "distractor_solve": {
+   "28": "return String((204 - 120) / 3);",
+   "37": "const car = Math.floor(20 / 3) * 10 + Math.floor(4 / 3); return String(car - 120 / 5);",
+   "42": "return String((204 - 120) / (5 - 3));"
+  }
+ },
+ {
+  "id": "MB2-O7E-08",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Perimeter 2(L + w) with width given as a fraction of length",
+  "difficulty": "medium",
+  "topic_tag": "7.EE.B.4a",
+  "prompt": "The width of a rectangular garden bed is 3 feet less than 2/3 of its length. The perimeter of the garden bed is 41 feet. What is the length of the garden bed, in feet?",
+  "choices": [
+   "10.5",
+   "16.5",
+   "14.1",
+   "13.2"
+  ],
+  "correct_answer": "14.1",
+  "explanation": "Let L be the length. The width is (2/3)L - 3. Perimeter: 2(L + (2/3)L - 3) = 41, so (5/3)L - 3 = 20.5, (5/3)L = 23.5 and L = 23.5 x 3/5 = 14.1. Check: the width is (2/3)(14.1) - 3 = 9.4 - 3 = 6.4, and 2(14.1 + 6.4) = 2(20.5) = 41.",
+  "solve": "return (41 / 2 + 3) / (5 / 3)",
+  "graphic": null,
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "ccss": "7.EE.B.4a",
+  "area_25": null,
+  "map_area": "oa",
+  "distractor_steps": [
+   {
+    "choice": "10.5",
+    "mis_step": "The student turns \"3 feet less than\" into + 3, so 2((5/3)L + 3) = 41 and (5/3)L = 17.5."
+   },
+   {
+    "choice": "16.5",
+    "mis_step": "The student writes the perimeter as 2L + w = 2L + (2/3)L - 3 = 41, leaving out the second width, so (8/3)L = 44."
+   },
+   {
+    "choice": "13.2",
+    "mis_step": "The student writes 2(L + (2/3)L - 3) as (10/3)L - 3 = 41, doubling L and (2/3)L but subtracting 3 only once, so (10/3)L = 44."
+   }
+  ],
+  "distractor_solve": {
+   "10.5": "return (41 / 2 - 3) / (5 / 3)",
+   "13.2": "return (41 + 3) / (10 / 3)",
+   "16.5": "return (41 + 3) / (8 / 3)"
+  }
+ },
+ {
+  "id": "MB2-O7R-08",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Simple interest for a time given in months",
+  "difficulty": "medium",
+  "topic_tag": "7.RP.A.3",
+  "prompt": "Rosa puts $5,000 in a savings account that earns 4.5% simple interest per year. She leaves the money in the account for 20 months and makes no other deposits or withdrawals. How many dollars of interest does the account earn in the 20 months?",
+  "choices": [
+   "360",
+   "225",
+   "405",
+   "375"
+  ],
+  "correct_answer": "375",
+  "explanation": "One year of interest is 4.5% of 5,000 = 0.045 x 5,000 = 225 dollars. 20 months is 20/12 = 5/3 years. Interest = 225 x 5/3 = 375 dollars.",
+  "solve": "return Math.round(5000 * 0.045 * 20 / 12 * 100) / 100;",
+  "graphic": null,
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "ccss": "7.RP.A.3",
+  "area_25": null,
+  "map_area": "oa",
+  "distractor_steps": [
+   {
+    "choice": "360",
+    "mis_step": "The student divides 20 by 12, writes 1.6 instead of 1 2/3, and multiplies 225 x 1.6."
+   },
+   {
+    "choice": "225",
+    "mis_step": "The student sees 20 months as \"1 year and some months\" and computes one year of interest, 225, leaving out the 8 months."
+   },
+   {
+    "choice": "405",
+    "mis_step": "The student converts 20 months to 1 year 8 months and writes it as 1.8 years, as if a year had 10 months, then multiplies 225 x 1.8."
+   }
+  ],
+  "distractor_solve": {
+   "225": "return Math.round(5000 * 0.045 * 1 * 100) / 100;",
+   "360": "return Math.round(5000 * 0.045 * 1.6 * 100) / 100;",
+   "405": "return Math.round(5000 * 0.045 * 1.8 * 100) / 100;"
+  }
+ },
+ {
+  "id": "MB2-O7R-14",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Successive percent changes vs their combined percent",
+  "difficulty": "hard",
+  "topic_tag": "7.RP.A.3",
+  "prompt": "A nature reserve had 8,000 birds. The number of birds rose 20% in one year and then fell 15% the next year. To predict the final number, Kai found one net percent change by adding the two changes, counting the fall as negative, and applied that one change to 8,000. How many more birds does Kai's method predict than the actual number of birds at the end of the two years?",
+  "choices": [
+   "2640",
+   "240",
+   "1040",
+   "300"
+  ],
+  "correct_answer": "240",
+  "explanation": "Actual: after the rise, 8,000 x 1.20 = 9,600 birds. After the fall, 9,600 x 0.85 = 8,160 birds. Kai: 20% - 15% = 5%, and 8,000 x 1.05 = 8,400 birds. Kai's method predicts 8,400 - 8,160 = 240 more birds.",
+  "solve": "const actual = 8000 * 1.2 * 0.85; const kai = 8000 * (1 + 0.20 - 0.15); return Math.round(kai - actual);",
+  "graphic": null,
+  "grade_target": 7,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "ccss": "7.RP.A.3",
+  "area_25": null,
+  "map_area": "oa",
+  "distractor_steps": [
+   {
+    "choice": "2640",
+    "mis_step": "The student forgets to count the fall as negative, so Kai's prediction becomes 8,000 x 1.35 = 10,800, and subtracts the actual 8,160."
+   },
+   {
+    "choice": "1040",
+    "mis_step": "For the actual count the student lowers 8,000 by 20% and then raises it by 15% (8,000 x 0.8 x 1.15 = 7,360), and subtracts that from Kai's 8,400."
+   },
+   {
+    "choice": "300",
+    "mis_step": "The student takes 15% of 10,000 = 1,500 instead of 15% of 9,600 = 1,440, so the actual count comes out 8,100, and finds 8,400 - 8,100."
+   }
+  ],
+  "distractor_solve": {
+   "300": "const actual = 8000 * 1.2 - 0.15 * 10000; return Math.round(8000 * 1.05 - actual);",
+   "1040": "const actual = 8000 * 0.8 * 1.15; const kai = 8000 * 1.05; return Math.round(kai - actual);",
+   "2640": "const actual = 8000 * 1.2 * 0.85; const kai = 8000 * (1 + 0.20 + 0.15); return Math.round(kai - actual);"
+  }
+ },
+ {
+  "id": "MB2-O6R-16",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Part-to-total ratio before and after a removal: original total",
+  "difficulty": "hard",
+  "topic_tag": "6.RP.A.3",
+  "prompt": "On a library shelf, the ratio of mystery books to all books is 3 to 10. The librarian removes 40 mystery books and no other books. Now the ratio of mystery books to all books on the shelf is 1 to 5. How many books were on the shelf before any were removed?",
+  "choices": [
+   "250",
+   "200",
+   "400",
+   "320"
+  ],
+  "correct_answer": "320",
+  "explanation": "Before: mysteries are 3 units and other books are 7 units (10 units in all). The other books do not change. After: mysteries to all is 1 to 5, so mysteries to other books is 1 to 4, and the other books (7 units) are 4 times the mysteries left. So 7 units = 4 x (3 units - 40), which gives 7 units = 12 units - 160, so 5 units = 160 and 1 unit = 32. The shelf had 10 x 32 = 320 books. Check: 96 mysteries, remove 40 to get 56 of 280 books, and 56 / 280 = 1/5.",
+  "solve": "const u = 4 * 40 / (4 * 3 - 7); return String(10 * u);",
+  "graphic": null,
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "ccss": "6.RP.A.3",
+  "area_25": null,
+  "map_area": "oa",
+  "distractor_steps": [
+   {
+    "choice": "250",
+    "mis_step": "The student sets the other books (7 units) equal to 5 times the mysteries left instead of 4 times, so 7 units = 5 x (3 units - 40), 1 unit = 25, total 250."
+   },
+   {
+    "choice": "200",
+    "mis_step": "The student sees mysteries go from 3 parts to 1 part, decides the 40 books are 2 parts (1 part = 20), and multiplies by 10 parts to get 200, not noticing the parts change size."
+   },
+   {
+    "choice": "400",
+    "mis_step": "The student keeps the total at 10 units after the removal, so (3 units - 40) / 10 units = 1/5, which gives 1 unit = 40 and 400 books."
+   }
+  ],
+  "distractor_solve": {
+   "200": "return String(10 * 40 / (3 - 1));",
+   "250": "const u = 5 * 40 / (5 * 3 - 7); return String(10 * u);",
+   "400": "const u = 5 * 40 / (5 * 3 - 10); return String(10 * u);"
+  }
+ },
+ {
+  "id": "MB2-O6R-14",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Percent off a total versus a per-item coupon: difference",
+  "difficulty": "hard",
+  "topic_tag": "6.RP.A.3.C",
+  "prompt": "A family buys 4 concert tickets that cost $78 each. The ticket website offers two deals, and the family can use only one. Deal A takes 15% off the total cost of the tickets. Deal B takes $7 off the price of each ticket. What is the difference, in dollars, between the total cost with Deal A and the total cost with Deal B?",
+  "choices": [
+   "18.80",
+   "16.30",
+   "13.00",
+   "14.60"
+  ],
+  "correct_answer": "18.80",
+  "explanation": "The tickets cost 4 x 78 = 312 dollars. Deal A saves 15% of 312 = 0.15 x 312 = 46.80, so the cost is 312 - 46.80 = 265.20. Deal B saves 4 x 7 = 28, so the cost is 312 - 28 = 284. The difference is 284 - 265.20 = 18.80 dollars.",
+  "solve": "const t = 4 * 78; const a = t - 0.15 * t; const b = t - 4 * 7; return (Math.round((b - a) * 100) / 100).toFixed(2);",
+  "graphic": null,
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "ccss": "6.RP.A.3.C",
+  "area_25": null,
+  "map_area": "oa",
+  "distractor_steps": [
+   {
+    "choice": "16.30",
+    "mis_step": "The student finds 15% of one $78 ticket (11.70) and compares it with Deal B's $28 for all four tickets, 28 - 11.70 = 16.30."
+   },
+   {
+    "choice": "13.00",
+    "mis_step": "The student treats Deal A as $15 off the order and compares it with Deal B's $28 off, so the difference is 28 - 15 = 13."
+   },
+   {
+    "choice": "14.60",
+    "mis_step": "The student applies the $7 coupons first (312 - 28 = 284) and then takes 15% of 284 = 42.60 as Deal A's saving, so 42.60 - 28 = 14.60, mixing the two deals."
+   }
+  ],
+  "distractor_solve": {
+   "13.00": "return (Math.abs(15 - 4 * 7)).toFixed(2);",
+   "14.60": "const t = 4 * 78; return (Math.round((0.15 * (t - 4 * 7) - 4 * 7) * 100) / 100).toFixed(2);",
+   "16.30": "return (Math.round(Math.abs(0.15 * 78 - 4 * 7) * 100) / 100).toFixed(2);"
+  }
+ },
+ {
+  "id": "MB2-O7E-01",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Solve px + q = r from a booking fee plus an hourly rate",
+  "difficulty": "easy",
+  "topic_tag": "7.EE.B.4a",
+  "prompt": "A music center rents out practice rooms. It charges a one-time booking fee of $4 plus $5 for each hour, and part of an hour is charged at the same rate. Jae's bill was $31.50. For how many hours did Jae rent a practice room?",
+  "choices": [
+   "6.3",
+   "3.5",
+   "2.3",
+   "5.5"
+  ],
+  "correct_answer": "5.5",
+  "explanation": "The hours cost 31.50 - 4 = 27.50 dollars. Each hour costs 5 dollars, so the number of hours is 27.50 / 5 = 5.5. Check: 4 + 5 x 5.5 = 4 + 27.50 = 31.50 dollars.",
+  "solve": "return (31.5 - 4) / 5",
+  "graphic": null,
+  "grade_target": 7,
+  "tier": "low",
+  "rit_band": "RIT 200-209",
+  "ccss": "7.EE.B.4a",
+  "area_25": null,
+  "map_area": "oa",
+  "distractor_steps": [
+   {
+    "choice": "6.3",
+    "mis_step": "The student divides 31.50 by 5 and never takes off the $4 booking fee, so every dollar of the bill is counted as rental time."
+   },
+   {
+    "choice": "3.5",
+    "mis_step": "The student adds the fee to the hourly rate (5 + 4 = 9 dollars per hour) and divides 31.50 by 9, as if the $4 were part of each hour's price."
+   },
+   {
+    "choice": "2.3",
+    "mis_step": "The student divides 31.50 by 5 to get 6.3 and then subtracts the $4 fee from the number of hours, mixing dollars with hours."
+   }
+  ],
+  "distractor_solve": {
+   "2.3": "return 31.5 / 5 - 4",
+   "6.3": "return 31.5 / 5",
+   "3.5": "return 31.5 / (5 + 4)"
+  }
+ }
+]

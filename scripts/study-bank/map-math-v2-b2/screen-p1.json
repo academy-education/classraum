@@ -1,0 +1,83 @@
+{
+ "screened": 72,
+ "fails": {
+  "MB2-O5-07": [
+   "S-R4 2 struck without solving: [\"9\",\"162\"] (9 is not in Pattern A (A values end in 2 or 7); 162 too big, Pattern A grows 4 times slower than B so the partner of 168 is far below 168)"
+  ],
+  "MB2-N78-16": [
+   "S-R4 2 struck without solving: [\"8000\",\"125000\"] (dividing by 3 x 10^-1 (less than 1) must give more than 2.4 x 10^5 = 240000, killing 8000 and 125000)",
+   "S-R8 one-sided extreme key"
+  ],
+  "MB2-O7E-14": [
+   "S-R6 plug-back routine at try 1",
+   "S-R8 one-sided extreme key"
+  ],
+  "MB2-O7R-06": [
+   "S-R7 option pair 14.4 and 12, x 1.2 (from 20%)",
+   "S-R8 one-sided extreme key"
+  ],
+  "MB2-N56-16": [
+   "S-R4 2 struck without solving: [\"1 3/5\",\"3 2/5\"] (2 batches use 2 1/2 cups (under 3 1/2) so answer > 2; 3 batches use 3 3/4 (over 3 1/2) so answer < 3)"
+  ],
+  "MB2-O6E-03": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MB2-G5-07": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MB2-O5-06": [
+   "S-R4 3 struck without solving: [\"77\",\"63\",\"93\"] (1386/14 is about 1400/14 = 100 so the value is about 104, killing 63, 77 and 93 by magnitude)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (1386/14 is near 100, so the value is above 96)"
+  ],
+  "MB2-G7B-09": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MB2-O5-05": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MB2-G8-10": [
+   "S-R4 2 struck without solving: [\"23\",\"9\"] (y-axis reflection keeps y = -18 and the translation's y shift (-6 to -1) is small, so the final y cannot be positive)",
+   "S-R8 one-sided extreme key"
+  ],
+  "MB2-O6E-06": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MB2-O7R-14": [
+   "S-R7 option pair 240 and 288, x 1.2 (from 20%)"
+  ],
+  "MB2-O7E-06": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MB2-G6-06": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MB2-G7A-11": [
+   "S-R6 plug-back routine at try 2"
+  ],
+  "MB2-G8-04": [
+   "S-R4 3 struck without solving: [\"6.0\",\"5.2\",\"4.2\"] (taxi 9 + 14 = 23 and drone^2 = 277 < 17^2 = 289, so drone < 17 and difference > 6, killing 6.0, 5.2 and 4.2)",
+   "S-R5 key identifiable without solving",
+   "S-R10 single bound kills all (sqrt(277) < 17, so difference > 23 - 17 = 6)"
+  ],
+  "MB2-N78-14": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MB2-N78-03": [
+   "S-R4 2 struck without solving: [\"6.65\",\"3.65\"] (6.65 and 3.65: a product of two .5 decimals ends in .25 or .75; 3.65 also below 1.5 x 4 = 6)"
+  ],
+  "MB2-D5-04": [
+   "S-R4 2 struck without solving: [\"5\",\"6 3/4\"] (5 and 6 3/4: fractional parts poured (1/2 + 1/2 + 1/2 + 1/4) total ..3/4, so what is left ends in 1/4)"
+  ],
+  "MB2-G5-03": [
+   "S-R4 2 struck without solving: [\"145\",\"175\"] (145 and 175: units digit of 7x5x9 - 3x2x4 is 5 - 4 = 1)"
+  ],
+  "MB2-N78-18": [
+   "S-R4 3 struck without solving: [\"80000\",\"100000\",\"18000\"] (80000 and 100000: dividing 11,000 by something between 2/3 and 1 gives 11,000 to 16,500; 18000 is above that range too)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (0.88 > 2/3, so quotient < 1.5 x 11,000 = 16,500)"
+  ]
+ }
+}

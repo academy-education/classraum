@@ -1,0 +1,650 @@
+{
+ "prereg": "scripts/study-bank/MAP-MATH-V2-B2.prereg.md",
+ "rule": "C-prime",
+ "seed": 20261471,
+ "n": 18,
+ "e": 6,
+ "m": 3,
+ "why": "deferred 3 of 12 kept interior items: 6/15 = 40.0% at an end (was 6/18 = 33.3%)",
+ "items": [
+  {
+   "id": "MB2-O6R-08",
+   "item": {
+    "id": "MB2-O6R-08",
+    "domain": "Operations and Algebraic Thinking",
+    "map_area": "oa",
+    "grade_target": 6,
+    "tier": "mid",
+    "rit_band": "RIT 210-219",
+    "difficulty": "medium",
+    "ccss": "6.RP.A.3.C",
+    "subskill": "Find the whole from a part and its percent",
+    "grade_rationale": "Mid for grade 6: 6.RP.3c finding the whole given a part and the percent. One step that needs the grade's key idea (27 is 15 hundredths of the whole, so divide by 0.15 or scale 15% to 100%). About half of grade 6 sets it up as a division; the rest multiply or stop the scaling early.",
+    "prompt": "Mia has saved $27 for a new bike. The amount she has saved is 15% of the price of the bike. What is the price of the bike, in dollars?",
+    "choices": [
+     "90",
+     "162",
+     "180",
+     "405"
+    ],
+    "correct_answer": "180",
+    "explanation": "15% of the price is $27. Then 5% of the price is 27 / 3 = 9 dollars, and 100% is 20 x 9 = 180 dollars. (Or: 27 / 0.15 = 180.) Check: 15% of 180 is 0.15 x 180 = 27.",
+    "solve": "return String(Math.round(27 / 0.15));",
+    "distractor_solve": {
+     "90": "return String(27 / 3 * 10);",
+     "162": "return String(27 * Math.floor(100 / 15));",
+     "405": "return String(27 * 15);"
+    },
+    "mechanism": [
+     "a part and its percent",
+     "scale the percent to 100% (divide by the decimal)"
+    ],
+    "quantity_asked": "the price of the bike in dollars, given that $27 is 15% of it",
+    "plugback": {
+     "substitutable": true,
+     "verify": "return Math.abs(0.15 * v - 27) < 1e-9;",
+     "why": "A student can take 15% of an option and compare it with $27 in one multiplication; the key is the third option in ascending order."
+    },
+    "distractor_meta": {
+     "90": {
+      "error_kind": "wrong_base",
+      "error_sense": "swaps",
+      "direction": "below",
+      "stem_predicts_direction": false,
+      "slip": false,
+      "misconception": "treats the 5% value as 10% when scaling to 100%",
+      "why": "The student finds 5% = 27 / 3 = 9 but then multiplies by 10, as if 9 were 10% of the price, getting 90."
+     },
+     "162": {
+      "error_kind": "omission",
+      "error_sense": "omits",
+      "direction": "below",
+      "stem_predicts_direction": false,
+      "slip": false,
+      "misconception": "scales 15% only to 90% (drops the remainder of 100 / 15)",
+      "why": "The student sees that 15% fits into 100% about 6 times (15, 30, 45, 60, 75, 90) and multiplies 27 by 6, stopping at 90% of the price."
+     },
+     "405": {
+      "error_kind": "wrong_operation",
+      "error_sense": "swaps",
+      "direction": "above",
+      "stem_predicts_direction": false,
+      "slip": false,
+      "misconception": "reads 15% as one fifteenth and multiplies by 15",
+      "why": "The student thinks $27 is one fifteenth of the price and multiplies 27 x 15 = 405 instead of dividing by 0.15."
+     }
+    },
+    "structure_check": "Interior key: two options below (90, 162) and one above (405); the stem does not say which side an error falls on.",
+    "intermediate_check": "90: no, it is not a step of either correct path (5% = 9 and 10% = 18 are the steps; 90 is 50%). 162: no, 90% of the price is not computed in the solution. 405: no, 27 x 15 is not a step. None follows from the key through one printed rate.",
+    "cheap_bound_check": "interior key",
+    "shape_check": "The stem hands over: the price is more than $27 (all four), 15% is less than one quarter so the price is more than 4 x 27 = 108 (strikes 90), 15% is more than one tenth so the price is less than 10 x 27 = 270 (strikes 405). 162 and 180 survive together.",
+    "interior_parity_check": "Middle values 162 and 180: both three-digit whole numbers of dollars; the key is not the only round number in the set (90 is round too).",
+    "arith_class_check": "Whole dollars all four. The key is not alone as a multiple of 10 (90 is one), not alone as even (90, 162 are even), not a perfect square. Being a multiple of 20 (forced by 15% = 3/20 of a whole-dollar price) is only readable after setting up the division, which is the solution.",
+    "dup_search": {
+     "queries": [
+      "is 1?[0-9]% of|percent of what|% of what",
+      "percent|%&how many&in all|altogether|total number|at the school|in the"
+     ],
+     "hits_read": 21,
+     "nearest": "ISEE 2dbf6d8c (18 is 45 percent of what number): same one-step skill as a bare number sentence; this item is the slot's standard mechanism in context with different numbers and distractors built on 15% scaling (5% vs 10%, 90%)."
+    },
+    "bound_screen": [
+     {
+      "kind": "sign",
+      "bound": "none: all options are positive prices",
+      "strikes": []
+     },
+     {
+      "kind": "magnitude",
+      "bound": "15% < 25%, so the price is more than 4 x 27 = 108",
+      "strikes": [
+       "90"
+      ]
+     },
+     {
+      "kind": "parity",
+      "bound": "none: the stem forces no parity a student can read without dividing",
+      "strikes": []
+     },
+     {
+      "kind": "units_digit",
+      "bound": "none without plug-back: 15% of the price must be a whole $27, which is the plug-back check itself (key at try 3)",
+      "strikes": []
+     },
+     {
+      "kind": "range",
+      "bound": "15% > 10%, so the price is less than 10 x 27 = 270",
+      "strikes": [
+       "405"
+      ]
+     }
+    ],
+    "self_audit": {
+     "risk": "medium",
+     "note": "A test-wise student uses the two benchmark bounds (more than 4 x 27, less than 10 x 27): each strikes exactly one distractor (90, then 405), leaving 162 and 180, which only the computation separates. Could a student check an option in one routine step? Yes (0.15 x option = 27), so the key sits at try 3 ascending (90, 162, 180). K1: whole dollars throughout; key not alone as round, even or square; the multiple-of-20 class is only visible after the setup. K2: 15% is within 10 points of 10% and of 1/4: bounds 108 < price < 270; each strikes one distractor; the band 108-270 keeps 162 and 180. A one-sixth bound (15% < 16.7%, so price > 162) would strike 90 and 162 together; one sixth is not a grade 6 benchmark percent and needs 100 / 6 = 16.7, stated as a residual risk. K3: no circle. K4: whole numbers, no rounding. K5: no table. Solved intermediate? No (5% = 9 and 10% = 18 are not options). Really a mid grade 6 item? Yes: 6.RP.3c finding the whole, one step that needs the percent idea. Cheapest bound: each benchmark bound strikes one. (read) FORM: 162 and 405 do not end in 0 like the key; that a whole-dollar 15% forces a multiple of 20 is only visible after writing 15% = 3/20, which is the setup itself; 90 also ends in 0."
+    }
+   },
+   "stage": {
+    "drop": [],
+    "hold": [],
+    "need": [],
+    "rec": [],
+    "named": [],
+    "keep": true,
+    "difficulty": "medium",
+    "graderD": {
+     "my_answer": "180",
+     "exclusive": true,
+     "second_defensible": null,
+     "struck": [],
+     "n_struck": 0,
+     "free_elimination": "none",
+     "key_identifiable_free": false,
+     "plugback_tries": 3,
+     "plugback_routine": false,
+     "error_directions": {
+      "90": "27 / 0.3 or halving -> below",
+      "162": "unclear (27 x 6) -> below",
+      "405": "27 x 15 -> above"
+     },
+     "one_sided": false,
+     "extreme_single_bound": null,
+     "single_bound_kills_all": false,
+     "interior_parity": "162 and 180: same form; 180 is rounder",
+     "interior_tell": false,
+     "arith_tell": null,
+     "option_pair_tell": null,
+     "same_template_as": [],
+     "live_duplicate": null,
+     "area_judged": "Operations and Algebraic Thinking",
+     "on_blueprint": true,
+     "grade_fit": "fits",
+     "grade_assigned": 6,
+     "tier_assigned": "mid",
+     "grade_note": "6.RP.3c find the whole from a part and a percent; typical grade 6",
+     "note": "27 / 0.15 = 180. Plug-back ascending 90, 162, 180 (15% = 13.50, 24.30, 27) = 3 tries.",
+     "key_ok": true,
+     "key_note": "Stated key matches my cold answer; worked solution correct.",
+     "path_coherent": true,
+     "path_note": "Worked solution and all three distractor paths reproduce their values.",
+     "distractors_weak": false,
+     "drop_recommend": false,
+     "drop_reason": null,
+     "grade_fit_final": "fits",
+     "grade_note_final": "Grade 6 mid whole from percent."
+    },
+    "graderE": {
+     "my_answer": "180",
+     "exclusive": true,
+     "second_defensible": null,
+     "struck": [
+      "90",
+      "405"
+     ],
+     "n_struck": 2,
+     "free_elimination": "15% lies between 10% and 20%: 10% of the price < 27 gives price < 270 (kills 405); 20% of the price > 27 gives price > 135 (kills 90)",
+     "key_identifiable_free": false,
+     "plugback_tries": 3,
+     "plugback_routine": false,
+     "error_directions": {
+      "90": "below key: 27 / 0.3 or similar wrong percent; below, strikable",
+      "162": "below key: 27 x 6 (treating 15% as about 1/6); below",
+      "405": "above key: 27 x 15; above, strikable"
+     },
+     "one_sided": false,
+     "extreme_single_bound": null,
+     "single_bound_kills_all": false,
+     "interior_parity": "162 and 180: same form; after the two cheap strikes the student is left with this pair; 15% of 180 = 27 is a quick check",
+     "interior_tell": false,
+     "arith_tell": null,
+     "option_pair_tell": null,
+     "same_template_as": [],
+     "live_duplicate": "stock 'part is p% of whole, find whole' item",
+     "area_judged": "Operations and Algebraic Thinking",
+     "on_blueprint": true,
+     "grade_fit": "fits",
+     "grade_assigned": 6,
+     "tier_assigned": "mid",
+     "grade_note": "6.RP.3c find the whole given a part and the percent; typical grade 6",
+     "note": "27 / 0.15 = 180. Two options fall to a 10%/20% bracket estimate; plug-back ascending 90, 162, 180 reaches key on the 3rd.",
+     "key_ok": true,
+     "key_note": "Stated key matches my independent solution.",
+     "path_coherent": true,
+     "path_note": "Worked solution and all three distractor paths reproduce their values. Note two options (90, 405) fall to a 10%/20% bracket estimate, leaving a 162/180 pair.",
+     "distractors_weak": false,
+     "drop_recommend": false,
+     "drop_reason": null,
+     "grade_fit_final": "fits",
+     "grade_note_final": "6.RP.3c find the whole given a part and the percent; typical grade 6"
+    }
+   }
+  },
+  {
+   "id": "MB2-O6R-01",
+   "item": {
+    "id": "MB2-O6R-01",
+    "domain": "Operations and Algebraic Thinking",
+    "map_area": "oa",
+    "grade_target": 6,
+    "tier": "low",
+    "rit_band": "RIT 200-209",
+    "difficulty": "easy",
+    "ccss": "6.RP.A.3.B",
+    "subskill": "Unit price from a pack, then the cost of a larger count",
+    "grade_rationale": "Low for grade 6: 6.RP.3b unit pricing in two routine steps (divide the pack price by 6, multiply by 9). The only care point is that 9 is not a whole number of packs; most grade 6 students find the unit price and multiply.",
+    "prompt": "A bakery sells muffins in packs of 6 for $7.44. Sam wants 9 muffins, and the bakery will sell them to him at the same price for each muffin. How many dollars will Sam pay for 9 muffins?",
+    "choices": [
+     "9.92",
+     "10.50",
+     "11.16",
+     "14.88"
+    ],
+    "correct_answer": "11.16",
+    "explanation": "First find the price of one muffin: 7.44 / 6 = 1.24 dollars. Then multiply by the number of muffins: 9 x 1.24 = 11.16. Sam pays $11.16.",
+    "solve": "const unit = 7.44 / 6; return (Math.round(unit * 9 * 100) / 100).toFixed(2);",
+    "distractor_solve": {
+     "9.92": "return (Math.round((7.44 + 7.44 / 3) * 100) / 100).toFixed(2);",
+     "10.50": "return (Math.round(Math.floor(7.44) / 6 * 9 * 100) / 100).toFixed(2);",
+     "14.88": "return (Math.round(7.44 * Math.ceil(9 / 6) * 100) / 100).toFixed(2);"
+    },
+    "mechanism": [
+     "price of one item from a pack price",
+     "multiply the unit price by a count that is not a whole number of packs"
+    ],
+    "quantity_asked": "the cost, in dollars, of 9 muffins at the pack's price per muffin",
+    "plugback": {
+     "substitutable": false,
+     "why": "An option can only be checked by finding the unit price (7.44 / 6) and comparing it with the option divided by 9: that is the whole solution, not a shortcut."
+    },
+    "distractor_meta": {
+     "9.92": {
+      "error_kind": "wrong_operation",
+      "error_sense": "swaps",
+      "direction": "below",
+      "stem_predicts_direction": false,
+      "slip": false,
+      "misconception": "finds the cost of the 3 extra muffins by dividing the pack price by 3",
+      "why": "The student sees 3 more muffins and divides $7.44 by 3 to price them (2.48) instead of by 2 for half a pack, giving 7.44 + 2.48 = 9.92."
+     },
+     "10.50": {
+      "error_kind": "omission",
+      "error_sense": "omits",
+      "direction": "below",
+      "stem_predicts_direction": false,
+      "slip": false,
+      "misconception": "drops the cents and works with a $7 pack price",
+      "why": "The student uses $7 instead of $7.44 because the cents look small, so one muffin costs 7 / 6 and 9 muffins cost 1.5 x 7 = 10.50."
+     },
+     "14.88": {
+      "error_kind": "other",
+      "error_sense": "adds",
+      "direction": "above",
+      "stem_predicts_direction": false,
+      "slip": false,
+      "misconception": "rounds up to whole packs although muffins are priced singly",
+      "why": "The student thinks 9 muffins need 2 packs and pays 2 x 7.44 = 14.88, ignoring that the stem sells each muffin at the same price."
+     }
+    },
+    "structure_check": "Interior key; the stem gives no direction to the errors (one below from a wrong share of the pack, one below from dropping the cents, one above from whole packs).",
+    "intermediate_check": "9.92: no, it is 8 muffins cost, which no correct path computes. 10.50: no, it uses a $7 pack price that never appears in the solution. 14.88: no, two whole packs are never computed in the correct path (the solution uses one muffin price 1.24, which is not an option).",
+    "cheap_bound_check": "interior key",
+    "shape_check": "The stem hands over: more than one pack (so more than 7.44: all four survive), fewer than two packs (under 14.88: strikes 14.88 only), dollars and cents (all survive). Three options survive every property together.",
+    "interior_parity_check": "Middle values 10.50 and 11.16: both dollars with two decimal places; the key is not the cleaner one (10.50 is cleaner).",
+    "arith_class_check": "No forced class: the key is 9 x 1.24, and nothing printed forces a digit or a multiple a student could test without finding the unit price. All four options are in cents with two decimals.",
+    "dup_search": {
+     "queries": [
+      "cost|costs|pays|paid&how much would|how many dollars would|what is the cost of",
+      "pack|box|bag of&same price|each&cost"
+     ],
+     "hits_read": 16,
+     "nearest": "6781b377 (map-math-g58-v5 staged: box of 6 bottles for $24.30, buys 4, then money left after a gift): different chain (scale down then a money balance); SSAT 2830c940 (3 pens for $2.40, cost of 7): same one-step unit-price idea but whole-number scale and no half-pack; this item's distractors come from the half-pack and whole-pack reasoning."
+    },
+    "bound_screen": [
+     {
+      "kind": "sign",
+      "bound": "none: every option is a positive amount of money",
+      "strikes": []
+     },
+     {
+      "kind": "magnitude",
+      "bound": "9 muffins is more than 1 pack and fewer than 2 packs, so 7.44 < cost < 14.88",
+      "strikes": [
+       "14.88"
+      ]
+     },
+     {
+      "kind": "parity",
+      "bound": "none: the cents digit of 9 x (unit price) is not readable without the unit price",
+      "strikes": []
+     },
+     {
+      "kind": "units_digit",
+      "bound": "none: the last digit depends on the unit price, which must be computed",
+      "strikes": []
+     },
+     {
+      "kind": "range",
+      "bound": "9 is 1.5 packs, so about 1.5 x 7 = 10.5 by rounding; 9.92, 10.50 and 11.16 are all within a dollar of it",
+      "strikes": [
+       "14.88"
+      ]
+     }
+    ],
+    "self_audit": {
+     "risk": "medium",
+     "note": "A test-wise student strikes 14.88 (two whole packs is an upper bound) and then must compute: 9.92, 10.50 and 11.16 all sit between one and two packs. Could a student check an option in one routine step? No: checking needs the unit price, which is the solution. K1: no forced class (9 x unit price forces nothing readable); all options cents. K2: no percents or benchmark fractions printed; printed caps: more than 7.44 (strikes none), less than 2 x 7.44 = 14.88 (strikes 14.88 only, by equality). K3: no circle. K4: rounding 7.44 to 7 gives E = 10.5; key distance 0.66; 10.50 (0.00) and 9.92 (0.58) are within twice that; only 14.88 is far: one distractor. K5: no table. Solved intermediate? No (unit price 1.24 is not an option). Really a low grade 6 item? Yes: one division and one multiplication on 6.RP.3b. Cheapest bound: the two-pack cap, which strikes one distractor. FORM (read): last digits 2/4/6/8 differ, but no last digit can be ruled out without the unit price. The rounded estimate 10.50 is itself an option (the drop-the-cents error): a student who rounds lands on a distractor, not on the key. (read) FORM: last digits 2/0/6/8; 9 x 1.24 forces no last digit a student can read without the unit price, so no option falls to its last digit."
+    }
+   },
+   "stage": {
+    "drop": [],
+    "hold": [],
+    "need": [],
+    "rec": [],
+    "named": [
+     "MB2-O7R-01",
+     "MV2-O78-04"
+    ],
+    "keep": true,
+    "difficulty": "easy",
+    "graderD": {
+     "my_answer": "11.16",
+     "exclusive": true,
+     "second_defensible": null,
+     "struck": [
+      "14.88"
+     ],
+     "n_struck": 1,
+     "free_elimination": "14.88 = 2 x 7.44 is the price of 12 muffins; 9 muffins must cost less",
+     "key_identifiable_free": false,
+     "plugback_tries": null,
+     "plugback_routine": false,
+     "error_directions": {
+      "14.88": "doubles the pack price -> above; struck",
+      "9.92": "price of 8 muffins -> below",
+      "10.50": "unclear / rounded guess -> below"
+     },
+     "one_sided": false,
+     "extreme_single_bound": null,
+     "single_bound_kills_all": false,
+     "interior_parity": "10.50 and 11.16: 10.50 rounder; key is the less clean one",
+     "interior_tell": false,
+     "arith_tell": null,
+     "option_pair_tell": null,
+     "same_template_as": [],
+     "live_duplicate": null,
+     "area_judged": "Operations and Algebraic Thinking",
+     "on_blueprint": true,
+     "grade_fit": "fits",
+     "grade_assigned": 6,
+     "tier_assigned": "low",
+     "grade_note": "6.RP.3b unit price then scale (or x 1.5); easy grade 6",
+     "note": "7.44 / 6 = 1.24; x 9 = 11.16 (= 7.44 x 1.5).",
+     "key_ok": true,
+     "key_note": "Stated key matches my cold answer; worked solution correct.",
+     "path_coherent": true,
+     "path_note": "Worked solution and all three distractor paths reproduce their values.",
+     "distractors_weak": false,
+     "drop_recommend": false,
+     "drop_reason": null,
+     "grade_fit_final": "fits",
+     "grade_note_final": "Grade 6 low; 14.88 (two packs) is a free strike."
+    },
+    "graderE": {
+     "my_answer": "11.16",
+     "exclusive": true,
+     "second_defensible": null,
+     "struck": [
+      "14.88"
+     ],
+     "n_struck": 1,
+     "free_elimination": "9 muffins is fewer than 12, and 12 muffins cost 2 x 7.44 = 14.88, so 14.88 is too much",
+     "key_identifiable_free": false,
+     "plugback_tries": null,
+     "plugback_routine": false,
+     "error_directions": {
+      "14.88": "above key: doubling 7.44 (12 muffins); strikable",
+      "9.92": "below key: 7.44 x 4/3, inverted scale; below",
+      "10.50": "below key: rough estimate / unit price slip; below"
+     },
+     "one_sided": false,
+     "extreme_single_bound": "cost between 7.44 and 14.88",
+     "single_bound_kills_all": false,
+     "interior_parity": "10.50 and 11.16: 10.50 is a round-looking value, 11.16 has the 'cents' look of 1.5 x 7.44; mild but not decisive",
+     "interior_tell": false,
+     "arith_tell": null,
+     "option_pair_tell": null,
+     "same_template_as": [
+      "MB2-O7R-01",
+      "MV2-O78-04"
+     ],
+     "live_duplicate": null,
+     "area_judged": "Operations and Algebraic Thinking",
+     "on_blueprint": true,
+     "grade_fit": "fits",
+     "grade_assigned": 6,
+     "tier_assigned": "low",
+     "grade_note": "6.RP.3b unit price with decimals then scale; low for grade 6",
+     "note": "7.44 / 6 = 1.24; x 9 = 11.16 (or 7.44 + 3.72).",
+     "key_ok": true,
+     "key_note": "Stated key matches my independent solution.",
+     "path_coherent": true,
+     "path_note": "Worked solution and all three distractor paths reproduce their values.",
+     "distractors_weak": false,
+     "drop_recommend": false,
+     "drop_reason": null,
+     "grade_fit_final": "fits",
+     "grade_note_final": "6.RP.3b unit price with decimals then scale; low for grade 6"
+    }
+   }
+  },
+  {
+   "id": "MB2-O5-09",
+   "item": {
+    "id": "MB2-O5-09",
+    "domain": "Operations and Algebraic Thinking",
+    "map_area": "oa",
+    "grade_target": 5,
+    "tier": "mid",
+    "rit_band": "RIT 200-209",
+    "difficulty": "medium",
+    "ccss": "5.OA.A.2",
+    "area_25": "Operations and Algebraic Thinking",
+    "subskill": "One expression for two kinds of boxes shared equally",
+    "grade_rationale": "Mid for grade 5: the story is one expression, (6 x 21 + 8 x 6) / 3 (5.OA.A.2), with two products, a sum and a quotient. The key idea is that the whole total is shared, so both products sit inside the grouping. About half of grade-5 students write and evaluate it correctly; the rest share only part, mix up which count goes with which box, or use one box size for every box.",
+    "prompt": "A coach buys 6 boxes with 21 tennis balls in each box and 8 boxes with 6 tennis balls in each box. She shares all the tennis balls equally among 3 teams. How many tennis balls does each team get?",
+    "choices": [
+     "68",
+     "28",
+     "90",
+     "58"
+    ],
+    "correct_answer": "58",
+    "explanation": "The large boxes hold 6 x 21 = 126 balls and the small boxes hold 8 x 6 = 48 balls, so there are 126 + 48 = 174 balls. Shared among 3 teams: 174 / 3 = 58. As one expression: (6 x 21 + 8 x 6) / 3 = 58.",
+    "solve": "return (6 * 21 + 8 * 6) / 3",
+    "distractor_solve": {
+     "28": "return (6 + 8) * 6 / 3",
+     "68": "return (6 * 6 + 8 * 21) / 3",
+     "90": "return 6 * 21 / 3 + 8 * 6"
+    },
+    "mechanism": [
+     "two products for two kinds of boxes",
+     "add them for the total",
+     "divide the whole total by the number of teams"
+    ],
+    "quantity_asked": "the number of tennis balls each team gets",
+    "plugback": {
+     "substitutable": false,
+     "why": "An option is the result of the story, not a starting value; checking it means rebuilding the total 174 and dividing, which is solving. The key sits at ascending try 2 for that reason."
+    },
+    "distractor_meta": {
+     "28": {
+      "error_kind": "omission",
+      "error_sense": "swaps",
+      "direction": "below",
+      "stem_predicts_direction": false,
+      "slip": false,
+      "misconception": "uses one box size for every box",
+      "why": "Adds the boxes, 6 + 8 = 14, and uses 6 balls for each: 14 x 6 = 84, and 84 / 3 = 28."
+     },
+     "68": {
+      "error_kind": "wrong_variable",
+      "error_sense": "swaps",
+      "direction": "above",
+      "stem_predicts_direction": false,
+      "slip": false,
+      "misconception": "pairs each number of boxes with the wrong box size",
+      "why": "Uses 6 boxes of 6 and 8 boxes of 21: 36 + 168 = 204, and 204 / 3 = 68."
+     },
+     "90": {
+      "error_kind": "other",
+      "error_sense": "omits",
+      "direction": "above",
+      "stem_predicts_direction": false,
+      "slip": false,
+      "misconception": "writes the expression without grouping, so only the first product is shared",
+      "why": "Writes 6 x 21 / 3 + 8 x 6: 126 / 3 = 42, then adds all 48 small-box balls: 42 + 48 = 90."
+     }
+    },
+    "structure_check": "Interior key: using the small size for every box (28) falls below; swapping the pairs (68) and sharing only the first product (90) fall above.",
+    "intermediate_check": "68: no, 204 / 3 uses a total the chain never forms. 90: no, 42 + 48 mixes a shared part with an unshared part; it is not the key moved by one printed number (90 - 58 = 32 is not printed or a sum of two printed numbers). 28: no, 84 / 3; 58 - 28 = 30 is not printed. The intermediates 126, 48 and 174 are not options.",
+    "cheap_bound_check": "interior key",
+    "shape_check": "Whole number (all four). Each team gets at least the large boxes' share, 126 / 3 = 42 (strikes 28 only). If every box held 21, each team would get 14 x 21 / 3 = 98, so fewer than 98 (strikes none). 58, 68 and 90 survive together.",
+    "interior_parity_check": "The two middle values are 58 and 68: both two-digit even numbers ending in 8; same form, the key is not cleaner.",
+    "arith_class_check": "No class is forced (174 / 3 has no stem-readable parity or final digit before computing). All options are even; 28, 58 and 68 end in 8, so the key is not alone.",
+    "dup_search": {
+     "queries": [
+      "bags&each bag&equally among",
+      "tennis balls|balls&equally among",
+      "boxes&in each box&equally among"
+     ],
+     "hits_read": 1,
+     "nearest": "MV2-O56-04 (one kind of bag, keep some, share the rest among herself and 8 friends) and MV2-O56-11 (withdrawn: a x b + c x d total with no sharing): here two kinds of boxes are summed and the WHOLE sum is shared, and the central error is sharing only the first product."
+    },
+    "bound_screen": [
+     {
+      "kind": "sign",
+      "bound": "none: all positive",
+      "strikes": []
+     },
+     {
+      "kind": "magnitude",
+      "bound": "each team gets at least the large boxes' share 126 / 3 = 42",
+      "strikes": [
+       "28"
+      ]
+     },
+     {
+      "kind": "parity",
+      "bound": "none: all four options are even",
+      "strikes": []
+     },
+     {
+      "kind": "units_digit",
+      "bound": "none before computing 174 / 3; three options end in 8",
+      "strikes": []
+     },
+     {
+      "kind": "range",
+      "bound": "fewer than 14 x 21 / 3 = 98 (if every box were large): strikes none",
+      "strikes": []
+     }
+    ],
+    "self_audit": {
+     "risk": "medium",
+     "note": "A test-wise student might bound below by the large boxes alone (42), which strikes only 28, and above by 98, which strikes none; 58, 68 and 90 remain. Could a student check an option in one routine step? No: there is no backward chain. K1: no forced class; all even; final digit 8 shared by three. K2: no percent or benchmark fraction; the bounds 42 and 98 strike one and none. K3: no circle. K4: whole numbers, no decimals; see the K4 detail below. K5: no table. Solved intermediate as a distractor? No. Really a mid item for grade 5? Yes: two products, a sum and a quotient recorded as one expression. Cheapest bound striking the most: the large-boxes share, one (28). Read lines: FORM 90 (ends in 0): the key's final digit needs 174 / 3; no free strike. PLUG key at try 2, not substitutable: the answer is the end of a forward story (balls per team), so checking an option means rebuilding 174 and dividing. K4 detail: whole numbers, no decimals; rounding 21 to 20 gives (120 + 48) / 3 = 56, but that estimate already runs the whole chain (both products, the grouping, the division), so it is the solution, not a free elimination."
+    }
+   },
+   "stage": {
+    "drop": [],
+    "hold": [],
+    "need": [],
+    "rec": [],
+    "named": [],
+    "keep": true,
+    "difficulty": "easy",
+    "graderD": {
+     "my_answer": "58",
+     "exclusive": true,
+     "second_defensible": null,
+     "struck": [],
+     "n_struck": 0,
+     "free_elimination": "none",
+     "key_identifiable_free": false,
+     "plugback_tries": null,
+     "plugback_routine": false,
+     "error_directions": {
+      "28": "unclear -> below",
+      "68": "multiplication slip in one product (e.g. 204/3) -> above",
+      "90": "divides only the first product: 126/3 + 48 -> above"
+     },
+     "one_sided": false,
+     "extreme_single_bound": null,
+     "single_bound_kills_all": false,
+     "interior_parity": "58 and 68: same form, differ by 10; neither cleaner",
+     "interior_tell": false,
+     "arith_tell": null,
+     "option_pair_tell": null,
+     "same_template_as": [],
+     "live_duplicate": null,
+     "area_judged": "Operations and Algebraic Thinking",
+     "on_blueprint": true,
+     "grade_fit": "too_easy",
+     "grade_assigned": 4,
+     "tier_assigned": "low",
+     "grade_note": "4.OA.3 multistep whole-number word problem; more than half of grade 5 students get it",
+     "note": "126 + 48 = 174; 174 / 3 = 58.",
+     "key_ok": true,
+     "key_note": "Stated key matches my cold answer; worked solution correct.",
+     "path_coherent": true,
+     "path_note": "Worked solution and all three distractor paths reproduce their values.",
+     "distractors_weak": false,
+     "drop_recommend": false,
+     "drop_reason": null,
+     "grade_fit_final": "too_easy",
+     "grade_note_final": "Still grade 4 multistep work; better tagged low than mid for grade 5 (retier, no drop)."
+    },
+    "graderE": {
+     "my_answer": "58",
+     "exclusive": true,
+     "second_defensible": null,
+     "struck": [],
+     "n_struck": 0,
+     "free_elimination": "none",
+     "key_identifiable_free": false,
+     "plugback_tries": null,
+     "plugback_routine": false,
+     "error_directions": {
+      "28": "below key: 84/3 type error (e.g. 6 x 6 + 48 or partial total); below",
+      "68": "above key: 204/3, a product slip (e.g. 6 x 26 + 48); above",
+      "90": "above key: 270/3, a wrong product such as (21 + 6) x (6 + 4) or 6 x 21 + 8 x 18; above"
+     },
+     "one_sided": false,
+     "extreme_single_bound": null,
+     "single_bound_kills_all": false,
+     "interior_parity": "58 and 68: same form; key not singled out",
+     "interior_tell": false,
+     "arith_tell": null,
+     "option_pair_tell": null,
+     "same_template_as": [],
+     "live_duplicate": null,
+     "area_judged": "Operations and Algebraic Thinking",
+     "on_blueprint": true,
+     "grade_fit": "fits",
+     "grade_assigned": 5,
+     "tier_assigned": "mid",
+     "grade_note": "5.OA.2 / 4.OA.3 write and evaluate (a x b + c x d) / e; typical grade 5",
+     "note": "6 x 21 = 126; 8 x 6 = 48; 174 / 3 = 58.",
+     "key_ok": true,
+     "key_note": "Stated key matches my independent solution.",
+     "path_coherent": true,
+     "path_note": "Worked solution and all three distractor paths reproduce their values.",
+     "distractors_weak": false,
+     "drop_recommend": false,
+     "drop_reason": null,
+     "grade_fit_final": "fits",
+     "grade_note_final": "5.OA.2 / 4.OA.3 write and evaluate (a x b + c x d) / e; typical grade 5"
+    }
+   }
+  }
+ ]
+}

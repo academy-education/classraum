@@ -1,0 +1,203 @@
+[
+ {
+  "id": "MB2-D5-05",
+  "domain": "Statistics and Probability",
+  "subskill": "Line plot: total evened out across all the bottles",
+  "difficulty": "medium",
+  "topic_tag": "5.MD.B.2",
+  "prompt": "A group of hikers each carried one water bottle. The table shows the line plot data: each row gives an amount of water, in liters, and the number of bottles that held that amount. At a rest stop, the hikers pour all of their water into a big pot. Then they fill the bottles again so that every bottle holds the same amount, using all of the water. How many liters of water are in each bottle now?",
+  "choices": [
+   "3/4",
+   "1 1/3",
+   "1 1/8",
+   "1 1/4"
+  ],
+  "correct_answer": "1 1/3",
+  "explanation": "Total water: 1 x 1/4 = 1/4, 2 x 1 = 2, 5 x 1 1/4 = 6 1/4, 2 x 1 3/4 = 3 1/2, 2 x 2 = 4. Total = 1/4 + 2 + 6 1/4 + 3 1/2 + 4 = 16 liters. Number of bottles: 1 + 2 + 5 + 2 + 2 = 12. Each bottle gets 16 / 12 = 4/3 = 1 1/3 liters.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a;const F=(n,d)=>{if(d<0){n=-n;d=-d}const s=n<0?'-':'';n=Math.abs(n);const k=g(n,d);n/=k;d/=k;if(d===1)return s+String(n);const w=Math.floor(n/d),r=n-w*d;return s+(w?w+' '+r+'/'+d:r+'/'+d)};return F(1*1+2*4+5*5+2*7+2*8,4*12)",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "1/4",
+    "1",
+    "1 1/4",
+    "1 3/4",
+    "2"
+   ],
+   "colLabels": [
+    "Number of bottles"
+   ],
+   "cells": [
+    [
+     1
+    ],
+    [
+     2
+    ],
+    [
+     5
+    ],
+    [
+     2
+    ],
+    [
+     2
+    ]
+   ]
+  },
+  "grade_target": 5,
+  "tier": "mid",
+  "rit_band": "RIT 200-209",
+  "ccss": "5.MD.B.2",
+  "area_25": "Measurement and Data",
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "3/4",
+    "mis_step": "The student finds 16 liters and 12 bottles but divides 12 by 16, getting 3/4 of a liter."
+   },
+   {
+    "choice": "1 1/8",
+    "mis_step": "The student evens out only the smallest and largest amounts, 1/4 and 2, and takes halfway between them: (1/4 + 2) / 2 = 1 1/8."
+   },
+   {
+    "choice": "1 1/4",
+    "mis_step": "Five bottles held 1 1/4 liters, the tallest stack of X's, so the student picks 1 1/4 as the amount every bottle 'usually' has."
+   }
+  ],
+  "distractor_solve": {
+   "3/4": "const g=(a,b)=>b?g(b,a%b):a;const F=(n,d)=>{if(d<0){n=-n;d=-d}const s=n<0?'-':'';n=Math.abs(n);const k=g(n,d);n/=k;d/=k;if(d===1)return s+String(n);const w=Math.floor(n/d),r=n-w*d;return s+(w?w+' '+r+'/'+d:r+'/'+d)};return F(4*12,1*1+2*4+5*5+2*7+2*8)",
+   "1 1/4": "const g=(a,b)=>b?g(b,a%b):a;const F=(n,d)=>{if(d<0){n=-n;d=-d}const s=n<0?'-':'';n=Math.abs(n);const k=g(n,d);n/=k;d/=k;if(d===1)return s+String(n);const w=Math.floor(n/d),r=n-w*d;return s+(w?w+' '+r+'/'+d:r+'/'+d)};return F(5,4)",
+   "1 1/8": "const g=(a,b)=>b?g(b,a%b):a;const F=(n,d)=>{if(d<0){n=-n;d=-d}const s=n<0?'-':'';n=Math.abs(n);const k=g(n,d);n/=k;d/=k;if(d===1)return s+String(n);const w=Math.floor(n/d),r=n-w*d;return s+(w?w+' '+r+'/'+d:r+'/'+d)};return F(1+8,4*2)"
+  }
+ },
+ {
+  "id": "MB2-D67-08",
+  "domain": "Statistics and Probability",
+  "subskill": "Difference of two simple probabilities from two boxes",
+  "difficulty": "medium",
+  "topic_tag": "7.SP.C.7a",
+  "prompt": "At a school fair, Box A holds 12 red tickets, 9 blue tickets, and 7 green tickets. Box B holds 30 tickets, and 5 of them are red. Lena will pick one ticket at random from Box A. Omar will pick one ticket at random from Box B. How much greater is the probability that Lena picks a red ticket than the probability that Omar picks a red ticket?",
+  "choices": [
+   "17/42",
+   "25/42",
+   "11/42",
+   "2/7"
+  ],
+  "correct_answer": "11/42",
+  "explanation": "Box A has 12 + 9 + 7 = 28 tickets, so the probability Lena picks red is 12/28 = 3/7. Box B has 30 tickets in all, so the probability Omar picks red is 5/30 = 1/6. The difference is 3/7 - 1/6 = 18/42 - 7/42 = 11/42.",
+  "solve": "const A=12/(12+9+7); const B=5/30; return A-B;",
+  "graphic": null,
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "ccss": "7.SP.C.7a",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "17/42",
+    "mis_step": "The student uses only the first two colours, 12/(12 + 9) = 4/7, which inflates A and raises the difference."
+   },
+   {
+    "choice": "25/42",
+    "mis_step": "The student finds 3/7 and 1/6 correctly and then adds them."
+   },
+   {
+    "choice": "2/7",
+    "mis_step": "The student reads '30 tickets, 5 red' as 30 others plus 5 red and uses 5/35 for Box B, which shrinks B and raises the difference."
+   }
+  ],
+  "distractor_solve": {
+   "2/7": "const A=12/(12+9+7); const B=5/(30+5); return A-B;",
+   "17/42": "const A=12/(12+9); const B=5/30; return A-B;",
+   "25/42": "const A=12/(12+9+7); const B=5/30; return A+B;"
+  }
+ },
+ {
+  "id": "MB2-D8-03",
+  "domain": "Statistics and Probability",
+  "subskill": "Residual of one point: actual minus line-of-fit prediction",
+  "difficulty": "medium",
+  "topic_tag": "8.SP.A.3",
+  "prompt": "A ranger measured the depth of the water at the end of a dock every summer and made a scatter plot. A line of fit for the data is y = -0.4x + 17.5, where x is the number of years since 2010 and y is the depth of the water in feet. In 2019, the ranger's measuring pole showed a depth of 147 inches. The residual for 2019 is the actual depth minus the depth predicted by the line of fit. What is the residual for 2019, in feet?",
+  "choices": [
+   "-1.65",
+   "2.35",
+   "-0.35",
+   "0.80"
+  ],
+  "correct_answer": "-1.65",
+  "explanation": "First find x: 2019 is 2019 - 2010 = 9 years after 2010. The line predicts y = -0.4(9) + 17.5 = -3.6 + 17.5 = 13.9 feet. Next change the actual depth to feet: 147 inches / 12 = 12.25 feet. The residual is actual minus predicted: 12.25 - 13.9 = -1.65 feet. The negative residual means the water was 1.65 feet shallower than the line predicted.",
+  "solve": "const x = 2019 - 2010; const pred = -0.4 * x + 17.5; const actual = 147 / 12; return Math.round((actual - pred) * 100) / 100;",
+  "graphic": null,
+  "grade_target": 8,
+  "tier": "mid",
+  "rit_band": "RIT 220-229",
+  "ccss": "8.SP.A.3",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "2.35",
+    "mis_step": "The student plugs in x = 19 for 2019, so the line predicts 17.5 - 7.6 = 9.9 and the residual is 12.25 - 9.9 = 2.35."
+   },
+   {
+    "choice": "-0.35",
+    "mis_step": "The student treats the point as if its depth were the input: y = -0.4(12.25) + 17.5 = 12.6, so the residual comes out 12.25 - 12.6 = -0.35."
+   },
+   {
+    "choice": "0.80",
+    "mis_step": "The student divides 147 by 10 to get 14.7 feet, then 14.7 - 13.9 = 0.8."
+   }
+  ],
+  "distractor_solve": {
+   "-0.35": "const actual = 147 / 12; const pred = -0.4 * actual + 17.5; return Math.round((actual - pred) * 100) / 100;",
+   "2.35": "const pred = -0.4 * 19 + 17.5; return Math.round((147 / 12 - pred) * 100) / 100;",
+   "0.80": "const pred = -0.4 * (2019 - 2010) + 17.5; return Math.round((147 / 10 - pred) * 100) / 100;"
+  }
+ },
+ {
+  "id": "MB2-D5-01",
+  "domain": "Statistics and Probability",
+  "subskill": "Difference of two feet-and-inches heights, in inches",
+  "difficulty": "easy",
+  "topic_tag": "5.MD.A.1",
+  "prompt": "The ceiling in Mia's bedroom is 8 feet 4 inches high. Her bookcase is 5 feet 9 inches tall. How many inches are there from the top of the bookcase to the ceiling?",
+  "choices": [
+   "29",
+   "25",
+   "31",
+   "41"
+  ],
+  "correct_answer": "31",
+  "explanation": "Change both heights to inches. 8 feet 4 inches = 8 x 12 + 4 = 96 + 4 = 100 inches. 5 feet 9 inches = 5 x 12 + 9 = 60 + 9 = 69 inches. The space between them is 100 - 69 = 31 inches.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a;const F=(n,d)=>{if(d<0){n=-n;d=-d}const s=n<0?'-':'';n=Math.abs(n);const k=g(n,d);n/=k;d/=k;if(d===1)return s+String(n);const w=Math.floor(n/d),r=n-w*d;return s+(w?w+' '+r+'/'+d:r+'/'+d)};return F((8*12+4)-(5*12+9),1)",
+  "graphic": null,
+  "grade_target": 5,
+  "tier": "low",
+  "rit_band": "RIT 190-199",
+  "ccss": "5.MD.A.1",
+  "area_25": "Measurement and Data",
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "29",
+    "mis_step": "The student subtracts in feet and inches, borrows a foot from 8 feet but adds 10 inches to the 4 (14 inches), gets 2 feet 5 inches and writes 2 x 12 + 5 = 29."
+   },
+   {
+    "choice": "25",
+    "mis_step": "The student writes 8 feet 4 inches as 84 inches and 5 feet 9 inches as 59 inches, as if feet and inches were tens and ones, and gets 84 - 59 = 25."
+   },
+   {
+    "choice": "41",
+    "mis_step": "Seeing 4 - 9, the student takes 9 - 4 = 5 inches, keeps 8 - 5 = 3 feet, and changes 3 feet 5 inches to 41 inches."
+   }
+  ],
+  "distractor_solve": {
+   "25": "const g=(a,b)=>b?g(b,a%b):a;const F=(n,d)=>{if(d<0){n=-n;d=-d}const s=n<0?'-':'';n=Math.abs(n);const k=g(n,d);n/=k;d/=k;if(d===1)return s+String(n);const w=Math.floor(n/d),r=n-w*d;return s+(w?w+' '+r+'/'+d:r+'/'+d)};return F((8*10+4)-(5*10+9),1)",
+   "29": "const g=(a,b)=>b?g(b,a%b):a;const F=(n,d)=>{if(d<0){n=-n;d=-d}const s=n<0?'-':'';n=Math.abs(n);const k=g(n,d);n/=k;d/=k;if(d===1)return s+String(n);const w=Math.floor(n/d),r=n-w*d;return s+(w?w+' '+r+'/'+d:r+'/'+d)};return F(((8-1)-5)*12+((4+10)-9),1)",
+   "41": "const g=(a,b)=>b?g(b,a%b):a;const F=(n,d)=>{if(d<0){n=-n;d=-d}const s=n<0?'-':'';n=Math.abs(n);const k=g(n,d);n/=k;d/=k;if(d===1)return s+String(n);const w=Math.floor(n/d),r=n-w*d;return s+(w?w+' '+r+'/'+d:r+'/'+d)};return F((8-5)*12+(9-4),1)"
+  }
+ }
+]

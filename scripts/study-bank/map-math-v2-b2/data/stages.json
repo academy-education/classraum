@@ -1,0 +1,234 @@
+{
+ "prereg": "scripts/study-bank/MAP-MATH-V2-B2.prereg.md",
+ "area": "Statistics and Probability",
+ "frozenSha": "5c5899e2d227e13c875268818b120190dedc61001ce97645256498ccb51a83e9",
+ "n": 11,
+ "optionsOnly": {
+  "cand": {
+   "n": 11,
+   "picks": 33,
+   "hits": 9,
+   "unan": 2
+  },
+  "ctrl": {
+   "n": 11,
+   "picks": 33,
+   "hits": 11,
+   "unan": 3
+  },
+  "status": "pass",
+  "cr": 27.272727272727273,
+  "kr": 33.333333333333336,
+  "cu": 18.181818181818183,
+  "ku": 27.272727272727273,
+  "margin": -6.060606060606062,
+  "umar": -9.09090909090909,
+  "why": "candidate 27.3% vs control 33.3% (margin -6.1, bar +10); unanimous-correct rate 18.2% vs control 27.3% (-9.1, bar +15)",
+  "letterControl": 27.272727272727273
+ },
+ "gradeFitRecorded": {
+  "n": 11,
+  "judgments": 22,
+  "tooEasy": 0,
+  "tooHard": 3,
+  "tooEasyPct": 0,
+  "tooHardPct": 13.636363636363637,
+  "offA": 0,
+  "offB": -0.09090909090909091,
+  "spreadA": 2,
+  "spreadB": 2,
+  "D1": true,
+  "D2": true,
+  "D3": true,
+  "status": "pass"
+ },
+ "coldOnKey": 22,
+ "items": {
+  "MB2-D5-06": {
+   "drop": [
+    "R11 template of an earlier item (both)"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [
+    "G1 too_hard for its grade (both) - recorded, not a drop rule"
+   ],
+   "named": [
+    "MV2-D5-09"
+   ],
+   "keep": false,
+   "difficulty": "hard"
+  },
+  "MB2-D5-05": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MB2-D67-08": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MB2-D8-05": {
+   "drop": [
+    "R11 template of an earlier item (both)"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [
+    "MV2-D8-01"
+   ],
+   "keep": false,
+   "difficulty": "medium"
+  },
+  "MB2-D8-03": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MB2-D5-04": {
+   "drop": [
+    "R8 one-sided extreme key (both)",
+    "R7 option pair (both)",
+    "R11 template of an earlier item (both)",
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [
+    "MV2-D5-12"
+   ],
+   "keep": false,
+   "difficulty": "medium"
+  },
+  "MB2-D5-01": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MB2-D67-07": {
+   "drop": [
+    "R11 template of an earlier item (both)"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [
+    "MV2-D7-06"
+   ],
+   "keep": false,
+   "difficulty": "medium"
+  },
+  "MB2-D5-09": {
+   "drop": [
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [
+    "MV2-D5-05"
+   ],
+   "keep": false,
+   "difficulty": "hard"
+  },
+  "MB2-D5-07": {
+   "drop": [
+    "R7 option pair (both)"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [
+    "MV2-D5-07"
+   ],
+   "keep": false,
+   "difficulty": "medium"
+  },
+  "MB2-D5-11": {
+   "drop": [
+    "R11 template of an earlier item (both)"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [
+    "MB2-D5-05"
+   ],
+   "keep": false,
+   "difficulty": "hard"
+  }
+ },
+ "areaResult": {
+  "status": "pass",
+  "reasons": [],
+  "notes": [
+   "kept-set extremity: no measurement: 4 scorable of 4 (need >= 10); 0 non-numeric, 0 other skip (recorded; the inserter's gate measures from n >= 10)"
+  ],
+  "extremity": {
+   "total": 4,
+   "n": 4,
+   "nonNumeric": 0,
+   "otherSkip": 0,
+   "ext": 3,
+   "rate": 0.75,
+   "chance": 0.5,
+   "threshold": null,
+   "status": "no-measurement",
+   "reason": "no measurement: 4 scorable of 4 (need >= 10); 0 non-numeric, 0 other skip"
+  },
+  "cprime": null,
+  "kept": 4,
+  "keptIds": [
+   "MB2-D5-05",
+   "MB2-D67-08",
+   "MB2-D8-03",
+   "MB2-D5-01"
+  ],
+  "insertedIds": [
+   "MB2-D5-05",
+   "MB2-D67-08",
+   "MB2-D8-03",
+   "MB2-D5-01"
+  ],
+  "deferredIds": []
+ },
+ "screenFlagsRecorded": {
+  "MB2-D5-04": {
+   "p1": [
+    "S-R4 2 struck without solving: [\"5\",\"6 3/4\"] (5 and 6 3/4: fractional parts poured (1/2 + 1/2 + 1/2 + 1/4) total ..3/4, so what is left ends in 1/4)"
+   ],
+   "revised": true,
+   "p2": [
+    "S-R7 option pair 3 and 6, x2",
+    "S-R8 one-sided extreme key"
+   ],
+   "kept": false
+  }
+ },
+ "passIds": [
+  "MB2-D5-05",
+  "MB2-D67-08",
+  "MB2-D8-03",
+  "MB2-D5-01"
+ ],
+ "verdict": "PASS"
+}

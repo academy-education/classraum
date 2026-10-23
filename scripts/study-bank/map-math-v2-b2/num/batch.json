@@ -1,0 +1,503 @@
+[
+ {
+  "id": "MB2-N56-19",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "6.NS.C.7",
+  "subskill": "Compare a falling below-zero reading with a positive one",
+  "grade_rationale": "High item for grade 6 on 6.NS.C.7 (and 6.NS.C.5): the student must find the elapsed time from 10 p.m. to 4 a.m. across midnight (6 hours), work out that the campsite went from 0.35 below zero to 3.35 below zero, and then measure the gap across zero on the thermometer (3.35 + 2.2). The decision points are the elapsed time and adding, not subtracting, the two distances from zero; only stronger grade-6 students keep all three straight.",
+  "prompt": "At 10 p.m., the temperature at a mountain campsite was -0.35 degree Celsius. After that, the temperature at the campsite fell 0.5 degree each hour until 4 a.m. At 4 a.m., the temperature in a town in the valley was 2.2 degrees Celsius. At 4 a.m., how many degrees warmer was the town than the campsite?",
+  "choices": [
+   "4.55",
+   "5.55",
+   "2.55",
+   "4.85"
+  ],
+  "correct_answer": "5.55",
+  "explanation": "From 10 p.m. to midnight is 2 hours, and from midnight to 4 a.m. is 4 hours, so the temperature fell for 6 hours. It fell 0.5 x 6 = 3 degrees. The campsite started 0.35 degree below zero and fell 3 more degrees, so at 4 a.m. it was 3.35 degrees below zero, or -3.35 degrees. The town was 2.2 degrees above zero. On a thermometer, the distance from -3.35 up to 0 is 3.35 degrees, and from 0 up to 2.2 is 2.2 degrees, so the town was 3.35 + 2.2 = 5.55 degrees warmer.",
+  "solve": "const hours = (12 - 10) + 4; const camp = -0.35 - 0.5 * hours; return (2.2 - camp).toFixed(2)",
+  "distractor_solve": {
+   "2.55": "return (2.2 - (-0.35)).toFixed(2)",
+   "4.85": "const hours = 6; const camp = -((0.5 * hours) - 0.35); return (2.2 - camp).toFixed(2)",
+   "4.55": "const hours = 4; const camp = -0.35 - 0.5 * hours; return (2.2 - camp).toFixed(2)"
+  },
+  "mechanism": [
+   "elapsed time across midnight",
+   "rate times hours for the fall",
+   "extend a below-zero reading further below zero",
+   "gap across zero on the thermometer"
+  ],
+  "quantity_asked": "how many degrees warmer the town (2.2) was than the campsite at 4 a.m.",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option cannot be checked against the stem in one routine step: confirming it means computing the campsite's 4 a.m. temperature, which is the whole problem."
+  },
+  "distractor_meta": {
+   "2.55": {
+    "error_kind": "wrong_variable",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "compares the town with the campsite's 10 p.m. reading, ignoring the overnight fall",
+    "why": "The student uses the only campsite temperature printed, -0.35, and finds 2.2 + 0.35, leaving out the 3 degrees the campsite fell."
+   },
+   "4.85": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "combines -0.35 and a fall of 3 by subtracting the sizes (3 - 0.35) instead of adding them",
+    "why": "The student writes the 4 a.m. campsite reading as -(3 - 0.35) = -2.65, as if the start below zero helped, then finds 2.2 + 2.65."
+   },
+   "4.55": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "counts only the hours after midnight when finding the time from 10 p.m. to 4 a.m.",
+    "why": "The student counts 12 a.m. to 4 a.m. as the whole night (4 hours), so the fall is 2 degrees and the campsite is at -2.35, giving 2.2 + 2.35."
+   }
+  },
+  "counter_error": {
+   "error_kind": "other",
+   "solve": "const hours = 7; const camp = -0.35 - 0.5 * hours; return (2.2 - camp).toFixed(2)",
+   "direction": "above",
+   "why": "Counting the clock hours 10, 11, 12, 1, 2, 3, 4 gives 7 hours instead of 6, so the fall is 3.5 degrees and the gap comes out 6.05, past the key."
+  },
+  "far_distractor": {
+   "option": "2.55",
+   "natural_side": "above",
+   "why": "Ignoring a drop in temperature ordinarily makes a temperature come out too warm, an overshoot; here the campsite temperature is the amount the town is compared against, so leaving out its fall makes the campsite too warm and the gap too small, landing below the key."
+  },
+  "structure_check": "The stem does not sign every error. Two parts push opposite ways: errors that make the campsite's fall too small (ignoring it, missing the hours before midnight, subtracting the sizes below zero) shrink the gap, while an error that makes the fall too large (counting the 7 clock numbers 10 through 4 as 7 hours) widens it. A student cannot tell which way an unknown error went without working the fall out.",
+  "intermediate_check": "2.55: is it the key through one printed rate? No: the key is 2.55 plus 3, and 3 is not printed (it is 0.5 x 6, with the 6 hours found from the clock times). 4.85: no, it comes from a sign error on -0.35 combined with the fall, not from any printed relation to the key. 4.55: no, it uses 4 hours of falling instead of 6; the key does not follow from it through one printed number (the difference is 1, which is not printed).",
+  "cheap_bound_check": "Cheapest one-sided bound: the campsite got colder than -0.35, so the gap is more than 2.2 + 0.35 = 2.55. It strikes only 2.55 (equal to the bound); 4.55 and 4.85 sit on the key's side of it. The rate bound (less than 1 degree an hour for 6 hours, gap under 8.55) strikes nothing.",
+  "shape_check": "The stem hands over: the gap is positive (all four survive); the gap exceeds 2.55 because the campsite fell (strikes 2.55 only); the gap is under 8.55 (all survive). Together 4.55, 4.85 and 5.55 survive.",
+  "interior_parity_check": "Middle values 4.55 and 4.85: both two-place decimals ending in 5, same size; the key is the largest and not cleaner than them.",
+  "arith_class_check": "No class is forced: the readings are decimals with hundredths, so the gap is not forced whole, even or round; every option is a two-place decimal ending in 5, so the key is not alone in a class.",
+  "dup_search": {
+   "queries": [
+    "warmer&each hour",
+    "degrees warmer",
+    "fell&each hour|dropped&each hour",
+    "midnight|p.m.&a.m.&temperature",
+    "warmer",
+    "colder&than",
+    "how many degrees"
+   ],
+   "hits_read": 13,
+   "nearest": "ISEE 4ff65112 (-4 F at 6 p.m., falls 3 each hour for 5 hours, temperature at 11 p.m.) asks the end reading in one stretch before midnight with whole numbers; MM3-N18 extrapolates a rate past midnight; MV2-N7-10 (dropped) changes two freezer readings and asks the gap between two below-zero values. This item needs elapsed time across midnight and a gap measured across zero against a second, positive reading."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: 'how many degrees warmer' is positive and every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "the campsite got colder than -0.35, so the gap is more than 2.2 + 0.35 = 2.55",
+    "strikes": [
+     "2.55"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: decimal readings force no whole-number parity",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: 2.2 + 0.35 + 0.5 x hours always ends in 5 hundredths, as every option does",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "the fall is under 1 degree an hour for at most 6 hours, so the gap is under 8.55",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Which two parts push opposite ways, and which distractor comes from the far part? The campsite's fall is the subtracted reading: shrinking it (2.55 ignores it, 4.55 drops the 2 hours before midnight, 4.85 subtracts the sizes below zero) lowers the gap; enlarging it (7 clock hours, the counter error 6.05) raises it. The far distractor is 2.55: ignoring a fall ordinarily overshoots a temperature, here it lands below. Covering the work, could a student tell which way the errors go and strike all three? No: an error can make the fall too big or too small, and the one cheap bound (gap over 2.55) strikes only 2.55. Does one bound strike all three? No. K1: no forced class; all options are two-place decimals ending in 5. K2: 0.5 is exactly one half (no near-benchmark bound); the printed floor (gap over 2.55) strikes one and leaves 4.55, 4.85 and 5.55. K3: no circle. K4: rounding to whole numbers (2, 0, 1 per hour) gives E = 8; the key is 2.45 from it and only 2.55 sits more than 4.9 away. Rounding to halves (2, 0.5, 0.5 per hour) gives E = 5.5, almost exact; 4.85 and 4.55 are within one rounding step (1) and only 2.55 is farther. K5: no table. Solved intermediate as a distractor? No: -3.35 and 3 are not options; 2.55 uses the starting reading, which is printed, not a step of the correct path. Really a high item for grade 6? Yes: elapsed time across midnight, a fall from below zero and a gap across zero, each a decision a typical grade-6 student can get wrong. Cheapest bound strikes at most one (2.55). (read) lines: the 4.85 and 4.55 differences from the key are 0.7 = 2 x 0.35 and 1 = 2 x 0.5, which are the honest sizes of the sign error and the two missed hours; neither is a printed number. The DPAIR line (key - 2.55 = 3 = printed 4 - 1) is a coincidence of the fall 0.5 x 6 = 3 with the clock time 4; no student reading reaches 3 from '4 a.m.' minus 1, and the 3 is exactly what 2.55 leaves out."
+  }
+ },
+ {
+  "id": "MB2-N78-19",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 8,
+  "tier": "high",
+  "rit_band": "RIT 230-239",
+  "difficulty": "hard",
+  "ccss": "8.EE.A.1",
+  "subskill": "Unknown exponent in a product of powers with negatives",
+  "grade_rationale": "High for grade 8: uses the product-of-powers property with integer exponents (8.EE.A.1) in reverse - the exponents on the left must add to the exponent on the right, so x + 2 + (-7) = -2 - and then solves with two negative exponents in play. Only stronger grade-8 students keep every sign; the rest move the exponents without changing sign, mishandle subtracting a negative, or drop the negative on the right-hand exponent.",
+  "prompt": "Priya multiplies three powers of 2 and writes the product as a single power: (2^x)(2^2)(2^(-7)) = 2^(-2). Which integer did she use for the exponent x?",
+  "choices": [
+   "-11",
+   "-7",
+   "3",
+   "7"
+  ],
+  "correct_answer": "3",
+  "explanation": "When powers of the same base are multiplied, the exponents add: x + 2 + (-7) = -2, so x - 5 = -2 and x = 3. Check: 2^3 x 2^2 x 2^(-7) = 2^(3 + 2 - 7) = 2^(-2).",
+  "solve": "return -2 - 2 - (-7)",
+  "distractor_solve": {
+   "7": "return 2 - 2 - (-7)",
+   "-11": "return -2 - 2 - 7",
+   "-7": "return -2 + 2 + (-7)"
+  },
+  "mechanism": [
+   "product of powers: add the exponents",
+   "set the exponent sum equal to the right-hand exponent",
+   "solve x + 2 - 7 = -2 with negatives"
+  ],
+  "quantity_asked": "the value of the exponent x",
+  "plugback": {
+   "substitutable": true,
+   "verify": "return v + 2 + (-7) === -2",
+   "why": "A student can test an option by adding 2 and -7 to it and seeing whether the sum is -2; the key 3 is the third value tried in ascending order (-11, -7, 3)."
+  },
+  "distractor_meta": {
+   "7": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "drops the negative sign on the right-hand exponent",
+    "why": "The student reads 2^(-2) as 2^2 and solves x + 2 - 7 = 2 correctly from there, getting 7."
+   },
+   "-11": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracting a negative treated as subtracting a positive",
+    "why": "The student moves both known exponents across, x = -2 - 2 - 7, writing \"- 7\" where taking away -7 should give + 7."
+   },
+   "-7": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "moves terms to the other side of the equation without changing their signs",
+    "why": "The student carries the 2 and the -7 to the right as they are: x = -2 + 2 + (-7) = -7."
+   }
+  },
+  "structure_check": "Interior key. The errors move both ways: the two sign errors on the left-hand exponents land below (-11, -7) and dropping the negative on the right lands above (7).",
+  "intermediate_check": "-11: no printed relation (it is -2 - 2 - 7); it differs from the key by 14 = 2 x 7, the sign error itself (read below). -7: equals the printed exponent -7 in value but is a full wrong solution, not a value the key follows from through one printed relation. 7: no; it is 2 - 2 + 7. No solved intermediate (the sum 2 + (-7) = -5) is an option.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: an integer (all four survive); odd, because changing any sign in -2 - 2 + 7 keeps it odd (all four survive). No sign or size is readable without solving: the sign of x depends on the sum 2 + (-7).",
+  "interior_parity_check": "The middle values -7 and 3 are both one-digit integers; the key 3 is not cleaner than -7.",
+  "arith_class_check": "The stem forces the answer odd (the exponents' parity is kept by any sign change); every option is odd. No class isolates the key.",
+  "dup_search": {
+   "queries": [
+    "\\^x&\\^\\(?-[0-9]",
+    "exponent&value of x&2\\^",
+    "\\(2\\^x\\)",
+    "[0-9]\\^x|\\^\\(x|\\^n\\b"
+   ],
+   "hits_read": 30,
+   "nearest": "No MAP or ISEE item solves for an unknown exponent in a product of powers; the nearest are ACT/SAT exponential equations with different bases (4^(x + 1) = 8^(x - 2)) or 3^n + 3^n + 3^n = 3^12 (SSAT), which use base conversion or repeated addition, not adding signed exponents. The slot mechanism is 2^x x 2^3 = 2^-4; one more negative factor is included so that three different sign errors exist."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: the sign of x depends on -2 - 2 + 7, which is the work",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "none: no printed size bounds x without solving",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "x is odd (any sign change in -2 - 2 + 7 keeps it odd); all four are odd",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none beyond parity",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "none: x is not bounded by any printed number without the work",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Test-wise try: plug in options from the smallest; -11 and -7 fail, 3 works, so the key is at try 3 (substitutable, as required). Options-only: -11, -7, 3, 7 - the pair 7 / -7 does not contain the key. (read) PAIR lines (if printed): -11 and 7 differ from the key by 2 x 7 and 2 x 2, which is what a sign error on a printed exponent does; reading that from the options requires knowing the key. K1: forced odd, all options odd. K2: no percent or fraction benchmark. K3: no circle. K4: no decimals; every option is the same order (single or low two-digit integers). K5: no table. Solved intermediate: the exponent sum -5 is not an option. Grade 8 high: yes, 8.EE.A.1 used in reverse with three signed exponents. Mechanism: the slot is \"2^x x 2^3 = 2^-4\"; a second known factor (2^(-7)) is added within the same chain so that three distinct sign errors give three distinct options (with only one known factor, the natural sign errors collapse onto two values). Wording was changed after the near-duplicate check matched MV2-N8-06 (3^x = 10, evaluate 9^x + 3^(x + 3)) on shared words; that item evaluates an expression from a given power, a different chain. Cheapest bound: parity, strikes none."
+  }
+ },
+ {
+  "id": "MB2-N78-08",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 7,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "7.NS.A.3",
+  "subskill": "Daily change from two dated balances across zero",
+  "grade_rationale": "High for grade 7: a multistep rational-number problem (7.NS.A.3) with two decisions - the total change runs across zero (14.80 to -43.20 is a change of -58.00, not -28.40), and the number of daily changes from the morning of June 3 to the morning of June 7 is 4, not 5. Only stronger grade-7 students get both; the rest divide by the count of dates, use only the final balance, or average the two balances.",
+  "prompt": "On the morning of June 3, Lena's bank account balance was $14.80. Her balance went down by the same amount every day. On the morning of June 7, her balance was -$43.20. By how many dollars did her balance change each day? (Give the change as a negative number.)",
+  "choices": [
+   "-14.50",
+   "-14.20",
+   "-11.60",
+   "-10.80"
+  ],
+  "correct_answer": "-14.50",
+  "explanation": "Total change: -43.20 - 14.80 = -58.00. From the morning of June 3 to the morning of June 7 there are 4 days of change (June 3 to 4, 4 to 5, 5 to 6, 6 to 7). Change each day: -58.00 / 4 = -14.50 dollars.",
+  "solve": "const total = -43.20 - 14.80; const days = 7 - 3; return (total / days).toFixed(2)",
+  "distractor_solve": {
+   "-14.20": "return ((14.80 + -43.20) / 2).toFixed(2)",
+   "-11.60": "return ((-43.20 - 14.80) / 5).toFixed(2)",
+   "-10.80": "return (-43.20 / 4).toFixed(2)"
+  },
+  "mechanism": [
+   "total change from a positive start to a negative end",
+   "count the daily changes between two dates",
+   "divide the negative total by the count"
+  ],
+  "quantity_asked": "the change in the balance each day, in dollars (negative)",
+  "plugback": {
+   "substitutable": false,
+   "why": "Checking an option means multiplying it by the number of daily changes and comparing with the total change, and both of those are the two decisions the item tests; with them in hand the division is already done. There is no check that avoids the work."
+  },
+  "distractor_meta": {
+   "-14.20": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "takes the average change to be the average of the two balances",
+    "why": "The student averages the two balances, (14.80 + -43.20) / 2 = -14.20, instead of dividing the change by the number of days."
+   },
+   "-11.60": {
+    "error_kind": "wrong_variable",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "counts the dates (5) instead of the changes between them (4)",
+    "why": "The student counts June 3, 4, 5, 6 and 7 as five days and divides the correct total -58.00 by 5."
+   },
+   "-10.80": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "treats the final balance as the total change, ignoring the starting balance",
+    "why": "The student takes the change to be -43.20 (the ending balance), as if the balance started at 0, and divides by 4."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "return (-58 / 3)",
+   "direction": "below",
+   "why": "Counting only the days strictly between the dates (June 4, 5, 6) gives 3; dividing -58.00 by a smaller count gives about -19.33, below the key."
+  },
+  "far_distractor": {
+   "option": "-14.20",
+   "natural_side": "below",
+   "why": "This error divides by 2, a SMALLER count than the 4 days, and dividing the drop by too few days ordinarily makes the change more negative (as the counter error -58 / 3 does). Here the student also adds the two balances instead of subtracting them, so the smaller divisor acts on a smaller numerator and the result lands just above the key."
+  },
+  "structure_check": "The stem does not sign every error. The divisor can be miscounted up (5 dates, lands above) or down (3 days between, lands below), and the numerator can be under-computed (final balance only, above) or the divisor replaced by 2 (averaging, which would land below on the true total). The two parts pushing opposite ways are the count in the divisor (too many vs too few days) and the total change in the numerator.",
+  "intermediate_check": "-14.20: not a value the key follows from through one printed number; it averages the balances. -11.60: it is the total -58.00 divided by 5, and -58.00 (the solved intermediate) is not an option; -11.60 x 5 / 4 = -14.50 uses an unprinted count. -10.80: it is the printed -43.20 divided by 4; the key does not follow from it through one printed relation (the key needs the 14.80 as well).",
+  "cheap_bound_check": "Cheapest one-sided bound: the balance passes zero, so the total drop is more than 43.20 and, over at most 4 days, the change is below -10.80; it strikes only -10.80 (the boundary value). -14.20 and -11.60 are on the key side of it.",
+  "shape_check": "The stem hands over: negative change (all four survive); amounts in whole dimes (all four end in 0); change more negative than -43.20 / 4 = -10.80 (three survive: -14.50, -14.20, -11.60).",
+  "interior_parity_check": "S key; the middle values -14.20 and -11.60 are both two-decimal dollar amounts like the key; neither is cleaner than -14.50.",
+  "arith_class_check": "The balances are whole dimes, so every option is a multiple of 0.10 written to cents, ending in 0, as the key is. No class isolates the key.",
+  "dup_search": {
+   "queries": [
+    "balance&each day|per day&-\\$",
+    "morning of&balance",
+    "same amount each day&balance",
+    "change per day|change each day&negative|-",
+    "balance&went down|decreased&same amount",
+    "from&to&-[0-9]+\\.[0-9]+&each day",
+    "balance&-\\$[0-9]"
+   ],
+   "hits_read": 12,
+   "nearest": "MM4-N21 as first written (map-math-g58-v4, superseded; -94.25 to -36.70 over 5 weeks, change per week): there the count is printed and both balances are negative. Here the count must be found from two dates (4 changes, not 5) and the total crosses zero, which is where every distractor comes from."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "the balance went down, so the change is negative",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "the total drop is more than 43.20 (it passes 0), so per day it is below -43.20 / 4 = -10.80",
+    "strikes": [
+     "-10.80"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: no whole-number parity is forced",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "whole dimes in, so the cents digit is 0 when 58.00 is split into 4 or 5 parts; all four end in 0",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "the change is between -43.20 and 0 per day",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Test-wise try: \"smallest = biggest drop\" - but the divisor error goes both ways (5 dates above, 3 days between below at -19.33), so the S position is not signalled. Opposite parts: the count in the divisor (too many / too few days) and the numerator (total change); the far distractor -14.20 divides by too FEW (2), the far-side kind, yet lands above because its numerator is the sum of the balances. Covering the work a student cannot sign every error; no single bound strikes more than one (the only one, below -10.80, strikes the boundary option -10.80). Plug-back: an option is checked only by multiplying by the count and comparing to the total, which is the work; not one routine step. (read) PLUG key at try 1: as above. K1: whole dimes force cents ending in 0; all four options end in 0. K2: no percent or benchmark fraction; the printed end balance -43.20 gives the floor (drop > 43.20), which strikes only -10.80, and the key keeps -14.20 and -11.60 beside it. K3: no circle. K4: the rounded estimate (-43 - 15) / 4 = -14.5 needs exactly the two decisions the item tests (subtract across zero, count 4 changes); with those made the arithmetic is exact, so the estimate is not a shortcut; -14.20 sits 0.30 from it. K5: no table. Solved intermediate: -58.00 is not an option. Grade 7 high: yes, a multistep signed-number problem with a counting decision. Cheapest bound strikes one."
+  }
+ },
+ {
+  "id": "MB2-N78-02",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 7,
+  "tier": "low",
+  "rit_band": "RIT 200-209",
+  "difficulty": "easy",
+  "ccss": "7.NS.A.1d",
+  "subskill": "Signed change down then up from a negative start",
+  "grade_rationale": "Low for grade 7: two routine signed additions (7.NS.A.1) with one integer and two decimals; the only thinking step is reading a downward change as a negative addend and keeping the sign while the ascent is added. A typical grade-7 student does this correctly; the misses are sign and regrouping errors.",
+  "prompt": "A caver starts at an elevation of -31 meters, which means 31 meters below the cave entrance. She climbs down a rope, and her elevation changes by -8.35 meters. Then she climbs up a slope, and her elevation changes by +3.6 meters. What is her elevation now, in meters?",
+  "choices": [
+   "-35.75",
+   "-35.65",
+   "-35.05",
+   "-19.05"
+  ],
+  "correct_answer": "-35.75",
+  "explanation": "Add the changes to the starting elevation. -31 + (-8.35) = -39.35. Then -39.35 + 3.6 = -35.75, because 39.35 - 3.60 = 35.75 and the larger part is negative. Her elevation is -35.75 meters.",
+  "solve": "const e = -31 + (-8.35) + 3.6; return Math.round(e * 100) / 100",
+  "distractor_solve": {
+   "-35.65": "const a = 39.35; /* 39.35 - 3.60 with the tenths fact 13 - 6 written as 6 */ return -(35 + 0.65)",
+   "-35.05": "const e = -31 - 8 + 0.35 + 3.6; return Math.round(e * 100) / 100",
+   "-19.05": "const e = -31 + 8.35 + 3.6; return Math.round(e * 100) / 100"
+  },
+  "mechanism": [
+   "start at a negative elevation",
+   "add a negative decimal change (down)",
+   "add a positive decimal change (up)"
+  ],
+  "quantity_asked": "her elevation after both changes, in meters",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option cannot be checked against the stem without redoing the whole sum: there is no relation an option satisfies other than being -31 + (-8.35) + 3.6, so checking any option is the same work as solving."
+  },
+  "distractor_meta": {
+   "-35.65": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": true,
+    "misconception": "regrouping fact slip in the tenths column (13 - 6 written as 6)",
+    "why": "The student works 39.35 - 3.60 correctly up to the tenths column, where 13 - 6 is written as 6, giving 35.65 and the answer -35.65."
+   },
+   "-35.05": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "reads a negative decimal -8.35 as -8 plus 0.35",
+    "why": "The student treats -8.35 as -8 + 0.35 (the decimal part kept positive), so the drop is only 7.65: -31 - 8 + 0.35 + 3.6 = -35.05."
+   },
+   "-19.05": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "treats the downward change as an upward one (adds 8.35)",
+    "why": "The student reads \"climbs down ... changes by -8.35\" as a move of 8.35 and adds it, so both changes go up: -31 + 8.35 + 3.6 = -19.05."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "return Math.round((-31 - 8.35 - 3.6) * 100) / 100",
+   "direction": "below",
+   "why": "A sign slip on the UP move: the student subtracts the +3.6 as well (both changes treated as drops), giving -42.95, below the key."
+  },
+  "far_distractor": {
+   "option": "-35.65",
+   "natural_side": "below",
+   "why": "It comes from the up-move step (adding +3.6 to -39.35, worked as 39.35 - 3.60). Errors on the up move ordinarily push the answer down (subtracting the 3.6, as in the counter error -42.95); this regrouping slip in that same step makes the magnitude too small and lands above the key."
+  },
+  "structure_check": "The stem does not sign every error: errors on the down move (adding 8.35, splitting -8.35) raise the answer, errors on the up move (subtracting 3.6) lower it. Two parts, the -8.35 and the +3.6, push opposite ways; nothing in the stem says which a student will mishandle.",
+  "intermediate_check": "-35.65: no, not a printed relation away from the key (it is a regrouping slip, 0.1 off). -35.05: no, it uses -7.65 for the drop, not a printed value. -19.05: no, it adds 8.35 instead of subtracting; the key does not follow from it through one printed number (they differ by 16.7 = 2 x 8.35, a doubled printed value, read below). The solved intermediate -39.35 is not an option.",
+  "cheap_bound_check": "Cheapest one-sided bound: the net change -8.35 + 3.6 is negative, so the answer is below -31; it strikes only -19.05. The integer bracket (8 < 8.35 < 9, 3 < 3.6 < 4) puts the answer between -37 and -35; -35.65 and -35.05 sit on the key side of it (below -35) with the key.",
+  "shape_check": "The stem hands over: negative answer (all four survive), below -31 (three survive: -35.75, -35.65, -35.05), hundredths digit 5 (all survive). Together: three survive.",
+  "interior_parity_check": "S key; the two middle values -35.65 and -35.05 are both two-decimal negatives ending in 5, same form as the key.",
+  "arith_class_check": "The stem forces no class beyond \"two decimal places ending in 5\" (8.35 has a 5 in the hundredths), and every option ends in 5 with two decimals; the key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "elevation&rope|cave",
+    "elevation&changes by",
+    "below&descends|climbs down|goes down&rises|climbs up|goes up",
+    "sea level|below the surface&then"
+   ],
+   "hits_read": 9,
+   "nearest": "MM5P-N08 (pilot, rates times minutes) and MV2-N7-18 (rates times minutes, live): both multiply rates by times; this item is two single signed changes with a regrouping step, no rates. MM4-N16 (cave distance) asks a distance, not an elevation after moves."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "start negative and net change negative, so the answer is negative",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "net change -8.35 + 3.6 < 0, so the answer is below -31",
+    "strikes": [
+     "-19.05"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: decimal answer, no parity is forced",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "hundredths digit must be 5 (only 8.35 has hundredths); all four end in 5",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "-31 - 9 + 3 < answer < -31 - 8 + 4, so between -37 and -35",
+    "strikes": [
+     "-19.05"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Test-wise try: pick the smallest because \"drops make it smaller\" - but the up move pushes the other way (counter error -42.95 is a natural sign slip), so an S key is not signalled. Opposite parts: the -8.35 down move (errors raise it: -19.05, -35.05) and the +3.6 up move (its regrouping slip gives -35.65 above; its sign slip gives -42.95 below). Covering the work a student cannot tell which way every error goes; the one cheap bound (below -31) strikes only -19.05; the integer bracket (-37, -35) strikes only -19.05 too. Plug-back: an option cannot be checked in one routine step (no relation but recomputing). (read) PAIR 16.7 = 2 x 8.35 between key and -19.05: that is the sign error itself, and seeing it requires already knowing which option is right; -35.05 and -35.65 are not 2 x a printed number from the key. (read) PLUG key at try 1: not substitutable, as above. K1: no forced class beyond hundredths 5, all options share it. K2: no percent or benchmark fraction; the printed floor -31 bounds the answer below -31 and strikes one option. K3: no circle. K4: estimate -31 - 8 + 4 = -35, key distance 0.75; -35.65 (0.65) and -35.05 (0.05) are within twice that; only -19.05 is beyond. K5: no table. Solved intermediate: -39.35 is not an option. Grade 7 low: yes, two signed additions with decimals (7.NS.A.1d), no multiplication. Cheapest bound: below -31 strikes one (-19.05)."
+  }
+ }
+]
