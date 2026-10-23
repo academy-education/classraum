@@ -9,7 +9,8 @@ import {
   ChevronDown,
   RefreshCw,
   PanelLeftClose,
-  PanelLeftOpen
+  PanelLeftOpen,
+  Menu
 } from 'lucide-react';
 import { AdminUser } from '@/lib/admin-auth-shared';
 import { performLogout } from '@/lib/logout';
@@ -48,19 +49,25 @@ export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: 
   };
 
   return (
-    <header className="flex-shrink-0 h-[57px] bg-white border-b border-gray-100 px-4 flex items-center">
+    <header className="flex-shrink-0 h-[57px] bg-white border-b border-gray-100 px-2 sm:px-4 flex items-center">
       <div className="flex items-center justify-between w-full">
         {/* Left: sidebar toggle */}
+        {/* Below lg the sidebar is an off-canvas drawer, so the control is
+            a plain menu button; at lg+ it collapses the pinned rail. */}
         <button
           onClick={onToggleSidebar}
-          className="p-2 -ml-1 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+          className="inline-flex items-center justify-center w-10 h-10 lg:w-auto lg:h-auto lg:p-2 -ml-1 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
           aria-label={sidebarOpen ? String(t('admin.header.hideSidebar')) : String(t('admin.header.showSidebar'))}
+          aria-expanded={sidebarOpen}
         >
-          {sidebarOpen ? (
-            <PanelLeftClose className="w-4 h-4" />
-          ) : (
-            <PanelLeftOpen className="w-4 h-4" />
-          )}
+          <Menu className="w-5 h-5 lg:hidden" />
+          <span className="hidden lg:inline-flex">
+            {sidebarOpen ? (
+              <PanelLeftClose className="w-4 h-4" />
+            ) : (
+              <PanelLeftOpen className="w-4 h-4" />
+            )}
+          </span>
         </button>
 
         {/* Right: actions cluster */}
@@ -69,7 +76,7 @@ export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: 
           <button
             onClick={handleRefresh}
             disabled={isRefreshing}
-            className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors disabled:opacity-50"
+            className="inline-flex items-center justify-center w-10 h-10 lg:w-auto lg:h-auto lg:p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors disabled:opacity-50"
             title={String(t('admin.header.refresh'))}
             aria-label={String(t('admin.header.refresh'))}
           >
@@ -81,7 +88,7 @@ export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: 
           <button
             type="button"
             onClick={() => void setLanguage(language === 'english' ? 'korean' : 'english')}
-            className="px-2.5 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+            className="px-2.5 h-10 lg:h-auto lg:py-1.5 text-xs font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
             title={language === 'english' ? '한국어로 보기' : 'View in English'}
             aria-label={language === 'english' ? '한국어로 보기' : 'View in English'}
           >
@@ -95,7 +102,9 @@ export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: 
           <div className="relative">
             <button
               onClick={() => setShowUserMenu(!showUserMenu)}
-              className="flex items-center gap-2 pl-1.5 pr-2 h-9 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+              className="flex items-center gap-2 pl-1.5 pr-2 h-10 lg:h-9 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+              aria-haspopup="menu"
+              aria-expanded={showUserMenu}
             >
               <div className="w-7 h-7 rounded-full bg-gradient-to-br from-primary to-primary flex items-center justify-center text-white font-semibold text-xs shadow-sm shadow-primary/20">
                 {initialsFromName(adminUser.name) || initialsFromName(adminUser.email)}
@@ -114,7 +123,7 @@ export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: 
             </button>
 
             {showUserMenu && (
-              <div className="absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-xl shadow-gray-900/10 ring-1 ring-gray-100 py-1 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
+              <div className="absolute right-0 mt-2 w-64 max-w-[calc(100vw-1rem)] bg-white rounded-xl shadow-xl shadow-gray-900/10 ring-1 ring-gray-100 py-1 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
                 <div className="px-4 py-3 border-b border-gray-100">
                   <p className="text-sm font-semibold text-gray-900 truncate">
                     {adminUser.name || adminUser.email}
@@ -133,7 +142,7 @@ export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: 
                       setShowUserMenu(false);
                       router.push('/admin/settings');
                     }}
-                    className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                    className="flex items-center w-full px-4 py-2.5 lg:py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
                   >
                     <Settings className="mr-3 h-4 w-4 text-gray-400" />
                     {String(t('admin.header.adminSettings'))}
@@ -143,7 +152,7 @@ export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: 
                 <div className="border-t border-gray-100 py-1">
                   <button
                     onClick={handleSignOut}
-                    className="flex items-center w-full px-4 py-2 text-sm text-rose-700 hover:bg-rose-50 transition-colors"
+                    className="flex items-center w-full px-4 py-2.5 lg:py-2 text-sm text-rose-700 hover:bg-rose-50 transition-colors"
                   >
                     <LogOut className="mr-3 h-4 w-4" />
                     {String(t('admin.header.signOut'))}

@@ -943,3 +943,23 @@ option {
 @media (max-width: 767.98px) {
   .grid:has(> [data-compact-card]) { gap: 0.5rem; }
 }
+
+/* Touch target sizing — admin shell, below `md`.
+ *
+ * Same lever as the manager/teacher rule above, for the same reason:
+ * min-height/min-width win regardless of which h-* / p-* utility a control
+ * set, so every admin page's small action buttons, selects and inputs reach
+ * 40px on a phone without each page being re-styled. Desktop is untouched.
+ * Inline text links are unaffected (min-height does not apply to inline
+ * boxes). Scoped by [data-surface="admin"] (AdminLayout); `data-tap-exempt`
+ * opts a control out — e.g. the finish bar's proportional segments, where a
+ * 40px min-width would misstate the proportions. */
+@media (max-width: 767.98px) {
+  [data-surface="admin"] button:not([data-tap-exempt]) {
+    min-height: 40px;
+    min-width: 40px;
+  }
+  [data-surface="admin"] :is(select, input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="hidden"])):not([data-tap-exempt]) {
+    min-height: 40px;
+  }
+}

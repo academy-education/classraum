@@ -38,6 +38,17 @@ export function AdminLayout({ children }: AdminLayoutProps) {
     }
   }, [pathname]);
 
+  // Escape closes the drawer below lg. On desktop the rail is not an
+  // overlay, so Escape must not collapse it.
+  useEffect(() => {
+    if (!sidebarOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && !window.matchMedia('(min-width: 1024px)').matches) setSidebarOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [sidebarOpen]);
+
   useEffect(() => {
     let isMounted = true;
 
@@ -138,7 +149,11 @@ export function AdminLayout({ children }: AdminLayoutProps) {
 
   return (
     <ConfirmProvider>
-    <div className="flex h-screen bg-gray-50">
+    {/* h-dvh, not h-screen: on a phone 100vh includes the area behind the
+        browser toolbar, which hid the drawer's sign-out row. Identical on
+        desktop. `data-surface` scopes the phone touch-target floor in
+        globals.css to the admin shell. */}
+    <div className="flex h-dvh bg-gray-50" data-surface="admin">
       {/* Desktop sidebar — pinned on the left at lg and up. */}
       {sidebarOpen && (
         <div className="hidden lg:flex lg:flex-shrink-0">
@@ -158,14 +173,23 @@ export function AdminLayout({ children }: AdminLayoutProps) {
             className="fixed inset-0 z-40 bg-gray-900/40 backdrop-blur-sm animate-in fade-in duration-200"
           />
           {/* Drawer */}
-          <div className="fixed inset-y-0 left-0 z-50 animate-in slide-in-from-left duration-200">
-            <AdminSidebar adminUser={adminUser} />
+          <div
+            className="fixed inset-y-0 left-0 z-50 animate-in slide-in-from-left duration-200"
+            role="dialog"
+            aria-modal="true"
+            aria-label={String(t('admin.header.showSidebar'))}
+          >
+            <AdminSidebar adminUser={adminUser} onClose={() => setSidebarOpen(false)} />
           </div>
         </div>
       )}
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      {/* min-w-0: a flex child defaults to min-width:auto, so one wide
+          table could stretch this column past the viewport and give the
+          whole page a horizontal scrollbar. With it, wide content scrolls
+          inside its own overflow-x-auto container instead. */}
+      <div className="flex-1 min-w-0 flex flex-col overflow-hidden">
         <AdminHeader adminUser={adminUser} onToggleSidebar={toggleSidebar} sidebarOpen={sidebarOpen} />
         {/* `relative` is load-bearing, not decoration.
             Tailwind's `sr-only` is `position: absolute` with no `top`, so
@@ -179,7 +203,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
             tables long enough to push a caption that far.
             Anchoring here confines every absolutely-positioned
             descendant of every admin page to the scroller it lives in. */}
-        <main className="relative flex-1 overflow-y-auto p-4 sm:p-6">
+        <main className="relative flex-1 overflow-y-auto overflow-x-hidden p-4 sm:p-6">
           {children}
         </main>
       </div>
