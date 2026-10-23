@@ -1,0 +1,97 @@
+{
+  "id": "SM31L-B4",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "k as coefficient and constant; coincident case; sum of k",
+  "prompt": "The system below contains a constant k.\nkx + 2y = -8\ny = 2x + k\nAdd up the integers k between -11 and 9, inclusive, for which some solution (x, y) of the system has y > 1. What total do you get?",
+  "choices": [
+    "26",
+    "30",
+    "31",
+    "38"
+  ],
+  "correct_answer": "26",
+  "explanation": "Substitute y = 2x + k into the first equation: kx + 4x + 2k = -8, so (k + 4)x = -2k - 8 = -2(k + 4). Treat k = -4 as its own case, because the coefficient of x is then 0: the equation reads 0 = 0, and in fact both equations become y = 2x - 4, the same line. The system then has infinitely many solutions, including points with y > 1 (for example x = 3, y = 2), so k = -4 counts. For k ≠ -4 we may divide by k + 4: x = -2 and y = k - 4, a single solution, and y > 1 means k > 5. In the range that gives k = 6, 7, 8, 9. The sum is -4 + 6 + 7 + 8 + 9 = 26. Choice 30 comes from dividing by k + 4 without checking k = -4: the formula gives the point (-2, -8) there, which fails y > 1, so k = -4 is wrongly dropped. Choice 31 uses y ≥ 1, which adds k = 5. Choice 38 comes from a sign slip that gives x = 2, so y = k + 4 and the condition becomes k > -3; together with k = -4 that gives -4 + (-2) + (-1) + ... + 9 = 38.",
+  "solve": "let s=0; for(let k=-11;k<=9;k++){ const a=k+4, b=-2*k-8; if(a===0){ if(b===0){ const ok=[...Array(41)].some((_,i)=>{const x=i-20; return 2*x+k>1}); if(ok) s+=k } continue } const x=b/a, y=2*x+k; if(y>1) s+=k } return s",
+  "distractor_solve": {
+    "30": "let s=0; for(let k=-11;k<=9;k++){ const x=-2, y=2*x+k; if(y>1) s+=k } return s",
+    "31": "let s=-4; for(let k=-11;k<=9;k++){ if(k===-4) continue; const y=k-4; if(y>=1) s+=k } return s",
+    "38": "let s=-4; for(let k=-11;k<=9;k++){ if(k===-4) continue; const x=2, y=2*x+k; if(y>1) s+=k } return s"
+  },
+  "mechanism": [
+    "substitute to get (k + 4)x = -2(k + 4)",
+    "k = -4 makes both equations the same line",
+    "otherwise x = -2 and y = k - 4",
+    "sum the qualifying k including the coincident one"
+  ],
+  "mech": "degenerate-parameter",
+  "ask": "sum",
+  "quantity_asked": "sum of the integers k from -11 to 9 inclusive for which some solution of the system has y > 1",
+  "setup": {
+    "i": "k is the x-coefficient of one equation and the constant term of the other, so the two lines coincide at one k and the generic solution has a fixed x",
+    "ii": "the system has at least one solution with y greater than a stated number",
+    "iii": "sum of the integer values of k in a stated range"
+  },
+  "bypass_option": "30",
+  "off_by_one_options": [],
+  "plugback": {
+    "substitutable": false,
+    "why": "The key is the smallest option, natural try 1 ascending. The asked quantity is a sum of qualifying k, so 26 cannot be substituted into the system; checking it means deciding, for every k in the range, whether a solution with y > 1 exists, which is the whole solution, including the coincident case."
+  },
+  "distractor_meta": {
+    "30": {
+      "error_kind": "omission",
+      "error_sense": "omits",
+      "direction": "above",
+      "stem_predicts_direction": false,
+      "why": "Dividing by k + 4 drops the coincident value k = -4; dropping a term from a sum lowers it when the term is positive and raises it when negative, and the stem does not show which k is degenerate."
+    },
+    "31": {
+      "error_kind": "other",
+      "error_sense": "adds",
+      "direction": "above",
+      "stem_predicts_direction": false,
+      "why": "Reading y > 1 as y ≥ 1 adds the boundary k = 5; whether the boundary k is positive or negative is not visible before solving."
+    },
+    "38": {
+      "error_kind": "sign_slip",
+      "error_sense": "swaps",
+      "direction": "above",
+      "stem_predicts_direction": false,
+      "why": "The sign slip x = 2 shifts the threshold from k > 5 to k > -3, adding k = -2 to 5; those added k are mixed in sign, so the net effect on the sum is not readable from the stem."
+    }
+  },
+  "counter_error": {
+    "error_kind": "wrong_variable",
+    "solve": "let s=0; for(let k=-11;k<=9;k++){ if(k===-4){ s+=k; continue } const x=-2; if(x>1) s+=k } return s",
+    "direction": "below",
+    "why": "Testing x > 1 instead of y > 1: the fixed x = -2 never qualifies, so only the coincident k = -4 is kept, giving -4, strictly below the key and not an option."
+  },
+  "far_distractor": {
+    "option": "30",
+    "natural_side": "below",
+    "why": "Leaving a value out of a sum ordinarily makes the sum smaller, but the value this error leaves out is the coincident k = -4, which is negative, so omitting it lands above the key."
+  },
+  "structure_check": "No universal quantifier, extremum or 'sum of all' wording. The sum runs over k of both signs, so leaving out a k or adding one moves the sum up or down depending on the sign of that k; the counter error (testing x) lands at -4, below the key, while the three distractors land above. The stem does not sign the errors.",
+  "cheap_bound_check": "Cheapest bound from the stem: the sum of every integer from -11 to 9 is -21, and no subset bound follows without solving. After solving the generic case (k > 5 gives 6 + 7 + 8 + 9 = 30) a student still cannot bound the answer from one side, because any additional qualifying k could be negative; the key 26 and all three distractors survive.",
+  "intermediate_check": "30: it is the generic part of the sum; the key follows from it only by adding the coincident k = -4, which is not printed, so not through one printed relation. 31: no; it adds k = 5 to a different set. 38: no; it comes from a different threshold. None is one printed step from 26.",
+  "shape_check": "Properties handed over: the answer is an integer (all four are); no sign is forced (all positive options survive); no parity or cap. All four survive together.",
+  "interior_parity_check": "Middle values 30 and 31: both two-digit integers; 30 has display complexity 1 and 31 has 2, and neither is the key (the key 26 is an extreme), so the interior pair does not single out the key.",
+  "arith_class_check": "26 and 30 and 38 are even, 31 odd; the key is not alone in any class the stem implies (no multiple-of or roundness cue).",
+  "idea_probe": {
+    "at": "2026-10-22T23:53:54.744Z",
+    "nearest": "36298954-4d3 (v26 B4): f(x) = kx - 1 and g(x) = 7x + k, with the sum of k for which the graphs have no common point with x > 0. There the constants never match, so the degenerate k gives parallel lines and counts vacuously after a sign split. Here the constants match at k = -4, so the lines COINCIDE there, every other k gives the fixed point x = -2, and the decision point is the cancellation of k + 4."
+  },
+  "dup_search": {
+    "queries": [
+      "kx&kx&y =&how many|sum of",
+      "kx&for how many|how many integer"
+    ],
+    "hits_read": 26,
+    "nearest": "f53c1e07-315 (live v23): a pivot line kx - y = k + 6 against y = 4x - 6, sum of k with x > 0 and y > 0; the solution moves with k and the lines are never the same, so there is no coincident case."
+  },
+  "self_audit": {
+    "risk": "medium",
+    "note": "A test-wise student substitutes and gets (k + 4)x = -2(k + 4); most cancel and write x = -2, which silently fails at k = -4. Covering the work, all four options remain legal from the stem alone. Could a student tell from the stem which way the errors go? No: the counter error lands below (-4) and the distractors' directions depend on the sign of the degenerate k, which is hidden until solving. Does one bound strike all three? No. Natural try 1 (26): a student cannot confirm a sum of qualifying k in one routine step. The bypass option 30 is exactly what skipping this item's decision point gives: dividing by k + 4 for every k, so the coincident k = -4 is tested at the meaningless point (-2, -8) and dropped. (read) lines answered: PAIR 26 and 30 differ by 4 = 2 x printed 2; DPAIR 38 - 26 = 12 = 11 + 1. The 4 is |k| at the coincident value, not twice the printed 2; no student doubles a coefficient to move from 30 to 26, and 12 is not a step anyone takes from the range end -11. PROBE: key at natural try 1; a sum of qualifying k has no one-step check. Read and judged harmless."
+  }
+}

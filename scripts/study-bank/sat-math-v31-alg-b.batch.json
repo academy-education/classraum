@@ -1,0 +1,743 @@
+[
+ {
+  "id": "SM31L-B1",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "System with k on x in both equations; count k",
+  "prompt": "The system below involves a constant k.\nkx + y = 33\nkx + 2y = 31\nConsider each integer k from -8 to 12, inclusive. For how many of these integers does the system have a solution (x, y) whose coordinates add up to more than 4?",
+  "choices": [
+   "5",
+   "8",
+   "12",
+   "14"
+  ],
+  "correct_answer": "5",
+  "explanation": "Subtract the first equation from the second: y = 31 - 33 = -2. Substituting into the first equation gives kx = 35. Treat k = 0 as its own case: then the equations read y = 33 and 2y = 31, which cannot both hold, so the system has no solution and k = 0 does not count. For k ≠ 0 the solution is x = 35/k, y = -2, and x + y > 4 means 35/k > 6. If k is negative, 35/k is negative and cannot exceed 6, so no negative k works. If k is positive, multiplying by k keeps the direction: 35 > 6k, so k < 35/6, which is about 5.83. The integers that work are k = 1, 2, 3, 4, 5, so the answer is 5. Choice 14 comes from multiplying 35/k > 6 by k without checking the sign of k, which gives k < 5.83 for every k from -8 to 5, including k = 0 (where there is no solution) and all the negative values. Choice 8 tests x > 4 instead of x + y > 4, which gives 35/k > 4, so k = 1 through 8. Choice 12 comes from a sign slip that makes y = 2: then kx = 31 and 31/k > 2, so k = 1 through 12.",
+  "solve": "let n=0; for(let k=-8;k<=12;k++){ const det=k*2-k*1; if(det===0) continue; const x=(33*2-31*1)/det, y=(k*31-k*33)/det; if(x+y>4) n++ } return n",
+  "distractor_solve": {
+   "8": "let n=0; for(let k=-8;k<=12;k++){ if(k===0) continue; if(35/k>4) n++ } return n",
+   "12": "let n=0; for(let k=-8;k<=12;k++){ if(k===0) continue; const y=2, x=(33-y)/k; if(x+y>4) n++ } return n",
+   "14": "let n=0; for(let k=-8;k<=12;k++){ if(35>6*k) n++ } return n"
+  },
+  "mechanism": [
+   "eliminate kx to fix y",
+   "k = 0 makes the x-coefficient vanish (no solution)",
+   "sign of k decides the inequality direction",
+   "count integers in a bounded window"
+  ],
+  "mech": "degenerate-parameter",
+  "ask": "count",
+  "quantity_asked": "number of integers k from -8 to 12 inclusive for which the system has a solution with x + y > 4",
+  "setup": {
+   "i": "k is the x-coefficient in both equations of a 2x2 system, so elimination fixes y and x = c/k",
+   "ii": "the solution satisfies x + y greater than a stated number",
+   "iii": "number of integer values of k in a stated range"
+  },
+  "bypass_option": "14",
+  "off_by_one_options": [],
+  "plugback": {
+   "substitutable": false,
+   "why": "The asked quantity is a count over k. Trying the smallest option, 5, gives nothing to substitute: to confirm that exactly five values work a student must solve the system for general k and test the whole range, which is the full solution. No single substitution or short forward computation from 5 checks it."
+  },
+  "distractor_meta": {
+   "8": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Testing x > 4 instead of x + y > 4 changes the bound from 35/6 to 35/4; whether that loosens or tightens depends on the sign of y, which is only known after eliminating."
+   },
+   "12": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "A sign slip in 2y - y = 31 - 33 gives y = 2 and kx = 31; the new bound 31/k > 2 is looser here, but a sign slip on y can move the bound either way and the stem does not show which."
+   },
+   "14": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Multiplying 35/k > 6 by k with no sign case keeps all of k = -8 to 5, including the degenerate k = 0; the stem does not say whether the negative k or the degenerate k matter, so the side is not readable."
+   }
+  },
+  "counter_error": {
+   "error_kind": "inverted_rate",
+   "solve": "let n=0; for(let k=-8;k<=12;k++){ if(k===0) continue; const x=k/35; if(x-2>4) n++ } return n",
+   "direction": "below",
+   "why": "Dividing the wrong way in kx = 35 (x = k/35) makes x + y > 4 require k > 210, so no k in the range works: 0, strictly below the key and not an option."
+  },
+  "far_distractor": {
+   "option": "14",
+   "natural_side": "below",
+   "why": "Skipping a case usually loses values and undercounts, but here the skipped case is the sign of k: without it every negative k (and the degenerate k = 0) survives 35 > 6k, so the omission lands above the key instead of below it."
+  },
+  "structure_check": "No universal quantifier or extremum in the stem. The count is over a bounded window 0 < k < 35/6, but the errors do not all loosen it: the inverted-rate error empties it (0, below), a sign slip on y can tighten or loosen the bound depending on the numbers, and the wrong-variable error moves the bound by the sign of y, which is not visible before solving. A student cannot tell from the stem that every error overcounts.",
+  "cheap_bound_check": "Cheapest bound readable from the stem: the count is at most 20 (the 21 integers minus the k that has no solution), which strikes nothing. After eliminating (y = -2, x = 35/k) the sign argument k > 0 gives count ≤ 12 and strikes only 14; 8 and 12 remain on the key's side of that bound.",
+  "intermediate_check": "14: not reachable from 5 through one printed relation; it is the length of the range below 35/6, a different set. 8: no; it is the count for a different bound (35/4), not something 5 feeds into. 12: no; it comes from a different y. None of the three is a value from which the key follows through one printed relation.",
+  "shape_check": "The stem hands over: the answer is a nonnegative integer at most 21 (all four survive); k = 0 behaves differently (no option is ruled out by this alone); no parity or cap ties the count. All four options survive every property together.",
+  "interior_parity_check": "Middle values 8 and 12: both one- or two-digit integers of the same form; the key 5 is not the cleaner one (it is an ordinary integer like the rest).",
+  "arith_class_check": "The key 5 is odd; 8, 12 and 14 are even. The stem implies no parity for the count (it depends on 35/6), so oddness is not a stem-implied class; noted for the graders.",
+  "idea_probe": {
+   "at": "2026-10-22T23:47:37.843Z",
+   "nearest": "757d0b2f-1a1 (v26 B2): k on x in ONE equation with the other fixed, condition x > y, answer split over k = -2 into two unbounded pieces. Here k multiplies x in BOTH equations, so elimination fixes y = -2, k = 0 gives an inconsistent pair, and the condition x + y > 4 gives a bounded window 0 < k < 35/6."
+  },
+  "dup_search": {
+   "queries": [
+    "kx&kx&y =&how many|sum of",
+    "below the x-axis|above the x-axis&k",
+    "kx&for how many|how many integer",
+    "intersect&how many|number of&k"
+   ],
+   "hits_read": 30,
+   "nearest": "757d0b2f-1a1 (v26 B2) and SM23L-B2: both have k on x in one equation only and a sign or x > y condition; none fixes y by elimination or asks for x + y above a bound."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student would eliminate and get x = 35/k, y = -2; the decision point is the case split at k = 0 and the sign of k. Covering the work, all four options remain legal from the stem alone (no stem bound strikes any). Could a student tell from the stem which way the errors go? No: the counter error (inverted rate) gives 0, below the key, and the sign-slip and wrong-variable errors move the bound in a direction that depends on y. Does one bound strike all three? No; the sign bound k > 0 strikes only 14. Natural try 1 (option 5): a student cannot confirm 5 in one routine step, because a count over k needs the whole range tested. The bypass option 14 is exactly what skipping this item's decision point gives: multiplying by k with no case for k = 0 or for negative k. (read) lines answered: DPAIR 5 vs 8 differ by 3 = 4 - 1 and sum to 13 = 12 + 1; 5 vs 12 differ by 7 = 8 - 1; 5 vs 14 differ by 9 = 8 + 1. Each is a printed number plus or minus 1 (the 4 of the condition, the 8 and 12 of the range); none is a step a student would take from an option to the key, because the key is a count of integers in 0 < k < 35/6 and is not derived from the range ends or from 4 by adding or subtracting 1. PROBE: the key is at natural try 1; covered above (no routine confirmation of a count). KEY-CLEANER not triggered."
+  }
+ },
+ {
+  "id": "SM31L-B2",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "One-variable equation, k on a binomial; count k",
+  "prompt": "k(x + 4) = 2x - 12\nIn the equation above, k is a constant. How many integers k with -6 ≤ k ≤ 11 make the equation have a solution less than 4?",
+  "choices": [
+   "6",
+   "8",
+   "12",
+   "15"
+  ],
+  "correct_answer": "15",
+  "explanation": "Collect the x-terms: kx + 4k = 2x - 12, so (k - 2)x = -4k - 12. Treat k = 2 as its own case: the equation becomes 0 = -20, which is false, so there is no solution and k = 2 does not count. For k ≠ 2 the solution is x = (-4k - 12)/(k - 2), and we need x < 4. When k > 2, k - 2 is positive, so -4k - 12 < 4(k - 2), which gives k > -1/2; every k from 3 to 11 works (9 values). When k < 2, k - 2 is negative, so multiplying reverses the inequality: -4k - 12 > 4(k - 2), which gives k < -1/2; the values k = -6, -5, -4, -3, -2, -1 work (6 values). The total is 9 + 6 = 15. Choice 12 comes from multiplying by k - 2 without checking its sign: k > -1/2 for every k, which keeps k = 0, 1 and the no-solution value k = 2 but loses all six negative values. Choice 8 comes from a sign slip that writes the solution as (-4k - 12)/(2 - k); then every k below 2 appears to work and no k above 2 does. Choice 6 keeps only the branch where k - 2 is negative.",
+  "solve": "let n=0; for(let k=-6;k<=11;k++){ const a=k-2, b=-12-4*k; if(a===0) continue; if(b/a<4) n++ } return n",
+  "distractor_solve": {
+   "6": "let n=0; for(let k=-6;k<=11;k++){ if(-12-4*k > 4*(k-2)) n++ } return n",
+   "8": "let n=0; for(let k=-6;k<=11;k++){ if(k===2) continue; if((-12-4*k)/(2-k)<4) n++ } return n",
+   "12": "let n=0; for(let k=-6;k<=11;k++){ if(-12-4*k < 4*(k-2)) n++ } return n"
+  },
+  "mechanism": [
+   "collect x-terms to (k - 2)x = -4k - 12",
+   "k = 2 makes the coefficient vanish (no solution)",
+   "sign of k - 2 decides the inequality direction",
+   "count both branches in the range"
+  ],
+  "mech": "degenerate-parameter",
+  "ask": "count",
+  "quantity_asked": "number of integers k with -6 ≤ k ≤ 11 for which the equation has a solution less than 4",
+  "setup": {
+   "i": "k multiplies a binomial in x on one side of a one-variable linear equation, so the x-coefficient k - 2 vanishes at one k",
+   "ii": "the solution is less than a stated number",
+   "iii": "number of integers k in a stated range"
+  },
+  "bypass_option": "12",
+  "off_by_one_options": [],
+  "plugback": {
+   "substitutable": false,
+   "why": "The key is the largest option, natural try 4 ascending. The asked quantity is a count over k, so an option cannot be substituted; checking any option means solving for general k and testing the whole range of 18 integers."
+  },
+  "distractor_meta": {
+   "6": {
+    "error_kind": "partial_answer",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Keeping only the branch where k - 2 is negative omits k = 3 to 11; a student cannot see from the stem how the two branches compare in size."
+   },
+   "8": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Writing the denominator as 2 - k swaps which branch satisfies the inequality; the swapped count can be larger or smaller than the true one depending on the range, and nothing in the stem signs it."
+   },
+   "12": {
+    "error_kind": "wrong_operation",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Multiplying by k - 2 with no sign case adds k = 0, 1 and the no-solution k = 2 but drops all six negative k; which effect wins depends on where -1/2 and 2 fall in the range, which the stem does not show."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "let n=0; for(let k=-6;k<=11;k++){ if(k===2){ n++; continue } const a=k-2, b=-12-4*k; if(b/a<4) n++ } return n",
+   "direction": "above",
+   "why": "Forgetting that k = 2 gives no solution (writing the right branch as k ≥ 2) counts it: 16, strictly above the key and not an option."
+  },
+  "far_distractor": {
+   "option": "12",
+   "natural_side": "above",
+   "why": "Keeping the degenerate k = 2 and the band k = 0, 1 is an error that adds values and would ordinarily overcount, but the same unsplit multiplication throws away the six negative k, so here it lands below the key."
+  },
+  "structure_check": "No universal quantifier or extremum in the stem. The true set has two branches on either side of k = 2; errors can add values (keeping k = 2, the counter error at 16) or remove them (losing a branch), so the stem does not tell a student that every error undercounts.",
+  "cheap_bound_check": "Cheapest bound readable from the stem: at most 17 values (18 integers, one of which gives no solution), which strikes nothing. A sign argument after solving (the k > 2 branch alone gives 9) is not readable from the stem and still leaves 12 on the key's side; nothing from the stem alone strikes 6, 8 and 12 together.",
+  "intermediate_check": "12: no; it is the size of the set k > -1/2, not a value the key follows from through one printed relation. 8: no; it is the count for a swapped sign, a different set. 6: it is one branch of the key, but the key does not follow from it through a printed relation (the other branch, 9, is not printed and must be computed). None is a solved intermediate one printed step from the key.",
+  "shape_check": "Properties handed over: the answer is an integer from 0 to 17 (all four survive); k = 2 is special (no option excluded by that alone); no parity or cap. All four options survive together.",
+  "interior_parity_check": "Middle values 8 and 12: one- and two-digit plain integers of the same form; the key 15 is not cleaner than them.",
+  "arith_class_check": "The key 15 is the only odd option. The stem implies no parity for the count; noted for the graders.",
+  "idea_probe": {
+   "at": "2026-10-22T23:51:18.522Z",
+   "nearest": "SM18L-B6 (prior): k(x - 4) = 3x + 18 with the count of k giving a positive-integer solution, a divisor count with no sign split. Here the condition is an upper bound on the solution, so the count splits at the degenerate k = 2 into two branches; no live row has this chain (d78409d6 compares the solution with k itself)."
+  },
+  "dup_search": {
+   "queries": [
+    "k\\(x&how many|sum of|number of",
+    "equation&solution&greater than|less than&how many"
+   ],
+   "hits_read": 8,
+   "nearest": "d78409d6-ac4 (live v23): 2(x - k) = x + k - 10, solution a positive integer between k and 52; the coefficient of x never vanishes there, so there is no degenerate case or sign split."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student solves (k - 2)x = -4k - 12 and must split at k = 2. Covering the work, all four options remain legal from the stem alone. Could a student tell from the stem which way the errors go? No: the counter error (keeping k = 2) lands above at 16 while the branch-losing errors land below, and the bypass both adds and drops values. Does one bound strike all three? No. Natural try 4 (key largest), so plug-back reaches it last; no option can be substituted in any case. The bypass option 12 is exactly what skipping this item's decision point gives: multiplying by k - 2 as if it were positive, which also keeps the no-solution k = 2. (read) lines answered: DPAIR 15 - 8 = 7 = 6 + 1 and 15 - 12 = 3 = 2 + 1; DPAIR/DSUM 15 + 8 = 23 = 12 + 11. None is a route a student would take between an option and the key: the key is a count of integers in two branches (6 + 9), not a printed number shifted by 1, and no student adds the 12 and the 11 of the stem to anything. Read and judged harmless."
+  }
+ },
+ {
+  "id": "SM31L-B3",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Table-given line vs line of slope k; count k",
+  "prompt": "The table gives three values of the linear function f.\nx | f(x)\n-1 | -16\n4 | 4\n9 | 24\nThe function g is defined by g(x) = kx - 37, where k is a constant. For how many integer values of k from -1 to 14, inclusive, do the graphs of y = f(x) and y = g(x) meet at a point that lies above the x-axis?",
+  "choices": [
+   "5",
+   "8",
+   "10",
+   "14"
+  ],
+  "correct_answer": "8",
+  "explanation": "From the table, f increases by 20 when x increases by 5, so its slope is 4 and f(x) = 4x - 12. A point of the graph of f lies above the x-axis exactly when 4x - 12 > 0, that is, when x > 3. Setting g(x) = f(x): kx - 37 = 4x - 12, so (k - 4)x = 25. Treat k = 4 as its own case: the equation becomes 0 = 25, so the lines are parallel and never meet; k = 4 does not count. For k ≠ 4 the graphs meet at x = 25/(k - 4), and we need 25/(k - 4) > 3. If k < 4 the x-value is negative, so it fails. If k > 4, multiplying keeps the direction: 25 > 3(k - 4), so k < 37/3, about 12.33. The values k = 5, 6, ..., 12 work, so the answer is 8. Choice 14 comes from multiplying by k - 4 without checking its sign, which keeps every k from -1 to 12, including k = 4, where the lines never meet. Choice 10 tests whether the meeting point is to the right of the y-axis (x > 0) instead of above the x-axis. Choice 5 comes from a sign slip, (4 - k)x = 25, which makes the values k = -1 to 3 appear to work.",
+  "solve": "const m=(4-(-16))/(4-(-1)), b=4-m*4; let n=0; for(let k=-1;k<=14;k++){ const a=k-m; if(a===0) continue; const x=(b-(-37))/a; if(m*x+b>0) n++ } return n",
+  "distractor_solve": {
+   "5": "let n=0; for(let k=-1;k<=14;k++){ if(k===4) continue; if(25/(4-k)>3) n++ } return n",
+   "10": "let n=0; for(let k=-1;k<=14;k++){ if(k===4) continue; if(25/(k-4)>0) n++ } return n",
+   "14": "let n=0; for(let k=-1;k<=14;k++){ if(25>3*(k-4)) n++ } return n"
+  },
+  "mechanism": [
+   "read f(x) = 4x - 12 from the table",
+   "above the x-axis means x > 3 on f",
+   "k = 4 gives parallel lines (no meeting point)",
+   "sign of k - 4 decides the inequality direction"
+  ],
+  "mech": "degenerate-parameter",
+  "ask": "count",
+  "quantity_asked": "number of integers k from -1 to 14 inclusive for which the graphs of f and g meet above the x-axis",
+  "setup": {
+   "i": "f is a linear function given only by a table; g(x) = kx - 37 with slope k, so the intersection x-coefficient k - 4 vanishes at one k",
+   "ii": "the graphs of f and g intersect at a point above the x-axis",
+   "iii": "number of integer values of k in a stated range"
+  },
+  "bypass_option": "14",
+  "off_by_one_options": [],
+  "plugback": {
+   "substitutable": false,
+   "why": "The key is at natural try 2 ascending, but the asked quantity is a count over k: neither 5 nor 8 can be substituted into anything. Confirming 8 means finding f from the table, solving for the meeting point for general k and testing the whole range, which is the full solution."
+  },
+  "distractor_meta": {
+   "5": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "The sign slip moves the window to the other side of k = 4, and the range is cut off at -1 on that side; the stem gives no way to see that the mirrored window is clipped."
+   },
+   "10": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Testing x > 0 (right of the y-axis) instead of f(x) > 0 changes the bound from x > 3 to x > 0; whether that loosens or tightens depends on the zero of f, which only the table reveals."
+   },
+   "14": {
+    "error_kind": "wrong_operation",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Multiplying 25/(k - 4) > 3 by k - 4 with no sign case keeps k = -1 to 3 and the parallel case k = 4; the stem does not show that the meeting point is at a positive x, so the side of this error is not readable."
+   }
+  },
+  "intermediate_check": "14: no; it is the count of k ≤ 12 in the range, a different set, not a value the key follows from through one printed relation. 10: no; it is the count for x > 0. 5: no; it is a clipped mirror window. None is one printed step from 8.",
+  "shape_check": "Properties handed over: the answer is an integer from 0 to 15 (all survive); k = 4 is special (no option struck by that alone); no parity or cap. All four options survive together.",
+  "interior_parity_check": "Middle values 8 (key) and 10: plain integers of display complexity 1 each (10 has one significant digit), so the key is not the cleaner one.",
+  "arith_class_check": "Key 8 is even; 10 and 14 are even too, 5 is odd. The stem implies no parity; the key is not alone in any class.",
+  "idea_probe": {
+   "at": "2026-10-22T23:53:40.440Z",
+   "nearest": "SM26F-B03 (prior): table-given f and the graphs of f and 3f(x) - 8, asking an intersection coordinate; no constant k, no degenerate case. No live row combines a table-given line with a slope-k line and a count of k by where they meet."
+  },
+  "dup_search": {
+   "queries": [
+    "intersect&how many|number of&k",
+    "kx&for how many|how many integer",
+    "below the x-axis|above the x-axis&k"
+   ],
+   "hits_read": 17,
+   "nearest": "SM23L-B2 (prior v23): a system with k and a quadrant condition, counted over k with no range; here f is known only from a table, the condition is on the y-value of the meeting point, and the range clips the sign-slip window."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student finds f(x) = 4x - 12, solves (k - 4)x = 25 and must split at k = 4. Covering the work, all four options remain legal from the stem alone; a sign argument after solving (the meeting point needs x > 3 > 0, so k > 4) strikes 14 only, and 5 and 10 survive it. Natural try 2: could a student confirm 5 or 8 against the stem in one routine step? No: a count over k has no substitution check. The bypass option 14 is exactly what skipping this item decision point gives: multiplying by k - 4 as if positive, which also keeps the parallel case k = 4. (read) lines answered: PAIR 8 and 10 differ by 2 = 2 x printed 1 and sum to 18 = 2 x 9; DPAIR/DSUM 8 - 5 = 3 = 4 - 1, 8 + 5 = 13 = 14 - 1 = 4 + 9, 8 + 10 = 18 = 4 + 14. None is a route between an option and the key: the key counts integers in 4 < k < 37/3, and no student doubles a table entry or adds the range end to the slope to get from an option to it. Read and judged harmless."
+  }
+ },
+ {
+  "id": "SM31L-B4",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "k as coefficient and constant; coincident case; sum of k",
+  "prompt": "The system below contains a constant k.\nkx + 2y = -8\ny = 2x + k\nAdd up the integers k between -11 and 9, inclusive, for which some solution (x, y) of the system has y > 1. What total do you get?",
+  "choices": [
+   "26",
+   "30",
+   "31",
+   "38"
+  ],
+  "correct_answer": "26",
+  "explanation": "Substitute y = 2x + k into the first equation: kx + 4x + 2k = -8, so (k + 4)x = -2k - 8 = -2(k + 4). Treat k = -4 as its own case, because the coefficient of x is then 0: the equation reads 0 = 0, and in fact both equations become y = 2x - 4, the same line. The system then has infinitely many solutions, including points with y > 1 (for example x = 3, y = 2), so k = -4 counts. For k ≠ -4 we may divide by k + 4: x = -2 and y = k - 4, a single solution, and y > 1 means k > 5. In the range that gives k = 6, 7, 8, 9. The sum is -4 + 6 + 7 + 8 + 9 = 26. Choice 30 comes from dividing by k + 4 without checking k = -4: the formula gives the point (-2, -8) there, which fails y > 1, so k = -4 is wrongly dropped. Choice 31 uses y ≥ 1, which adds k = 5. Choice 38 comes from a sign slip that gives x = 2, so y = k + 4 and the condition becomes k > -3; together with k = -4 that gives -4 + (-2) + (-1) + ... + 9 = 38.",
+  "solve": "let s=0; for(let k=-11;k<=9;k++){ const a=k+4, b=-2*k-8; if(a===0){ if(b===0){ const ok=[...Array(41)].some((_,i)=>{const x=i-20; return 2*x+k>1}); if(ok) s+=k } continue } const x=b/a, y=2*x+k; if(y>1) s+=k } return s",
+  "distractor_solve": {
+   "30": "let s=0; for(let k=-11;k<=9;k++){ const x=-2, y=2*x+k; if(y>1) s+=k } return s",
+   "31": "let s=-4; for(let k=-11;k<=9;k++){ if(k===-4) continue; const y=k-4; if(y>=1) s+=k } return s",
+   "38": "let s=-4; for(let k=-11;k<=9;k++){ if(k===-4) continue; const x=2, y=2*x+k; if(y>1) s+=k } return s"
+  },
+  "mechanism": [
+   "substitute to get (k + 4)x = -2(k + 4)",
+   "k = -4 makes both equations the same line",
+   "otherwise x = -2 and y = k - 4",
+   "sum the qualifying k including the coincident one"
+  ],
+  "mech": "degenerate-parameter",
+  "ask": "sum",
+  "quantity_asked": "sum of the integers k from -11 to 9 inclusive for which some solution of the system has y > 1",
+  "setup": {
+   "i": "k is the x-coefficient of one equation and the constant term of the other, so the two lines coincide at one k and the generic solution has a fixed x",
+   "ii": "the system has at least one solution with y greater than a stated number",
+   "iii": "sum of the integer values of k in a stated range"
+  },
+  "bypass_option": "30",
+  "off_by_one_options": [],
+  "plugback": {
+   "substitutable": false,
+   "why": "The key is the smallest option, natural try 1 ascending. The asked quantity is a sum of qualifying k, so 26 cannot be substituted into the system; checking it means deciding, for every k in the range, whether a solution with y > 1 exists, which is the whole solution, including the coincident case."
+  },
+  "distractor_meta": {
+   "30": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Dividing by k + 4 drops the coincident value k = -4; dropping a term from a sum lowers it when the term is positive and raises it when negative, and the stem does not show which k is degenerate."
+   },
+   "31": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Reading y > 1 as y ≥ 1 adds the boundary k = 5; whether the boundary k is positive or negative is not visible before solving."
+   },
+   "38": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "The sign slip x = 2 shifts the threshold from k > 5 to k > -3, adding k = -2 to 5; those added k are mixed in sign, so the net effect on the sum is not readable from the stem."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "let s=0; for(let k=-11;k<=9;k++){ if(k===-4){ s+=k; continue } const x=-2; if(x>1) s+=k } return s",
+   "direction": "below",
+   "why": "Testing x > 1 instead of y > 1: the fixed x = -2 never qualifies, so only the coincident k = -4 is kept, giving -4, strictly below the key and not an option."
+  },
+  "far_distractor": {
+   "option": "30",
+   "natural_side": "below",
+   "why": "Leaving a value out of a sum ordinarily makes the sum smaller, but the value this error leaves out is the coincident k = -4, which is negative, so omitting it lands above the key."
+  },
+  "structure_check": "No universal quantifier, extremum or 'sum of all' wording. The sum runs over k of both signs, so leaving out a k or adding one moves the sum up or down depending on the sign of that k; the counter error (testing x) lands at -4, below the key, while the three distractors land above. The stem does not sign the errors.",
+  "cheap_bound_check": "Cheapest bound from the stem: the sum of every integer from -11 to 9 is -21, and no subset bound follows without solving. After solving the generic case (k > 5 gives 6 + 7 + 8 + 9 = 30) a student still cannot bound the answer from one side, because any additional qualifying k could be negative; the key 26 and all three distractors survive.",
+  "intermediate_check": "30: it is the generic part of the sum; the key follows from it only by adding the coincident k = -4, which is not printed, so not through one printed relation. 31: no; it adds k = 5 to a different set. 38: no; it comes from a different threshold. None is one printed step from 26.",
+  "shape_check": "Properties handed over: the answer is an integer (all four are); no sign is forced (all positive options survive); no parity or cap. All four survive together.",
+  "interior_parity_check": "Middle values 30 and 31: both two-digit integers; 30 has display complexity 1 and 31 has 2, and neither is the key (the key 26 is an extreme), so the interior pair does not single out the key.",
+  "arith_class_check": "26 and 30 and 38 are even, 31 odd; the key is not alone in any class the stem implies (no multiple-of or roundness cue).",
+  "idea_probe": {
+   "at": "2026-10-22T23:53:54.744Z",
+   "nearest": "36298954-4d3 (v26 B4): f(x) = kx - 1 and g(x) = 7x + k, with the sum of k for which the graphs have no common point with x > 0. There the constants never match, so the degenerate k gives parallel lines and counts vacuously after a sign split. Here the constants match at k = -4, so the lines COINCIDE there, every other k gives the fixed point x = -2, and the decision point is the cancellation of k + 4."
+  },
+  "dup_search": {
+   "queries": [
+    "kx&kx&y =&how many|sum of",
+    "kx&for how many|how many integer"
+   ],
+   "hits_read": 26,
+   "nearest": "f53c1e07-315 (live v23): a pivot line kx - y = k + 6 against y = 4x - 6, sum of k with x > 0 and y > 0; the solution moves with k and the lines are never the same, so there is no coincident case."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student substitutes and gets (k + 4)x = -2(k + 4); most cancel and write x = -2, which silently fails at k = -4. Covering the work, all four options remain legal from the stem alone. Could a student tell from the stem which way the errors go? No: the counter error lands below (-4) and the distractors' directions depend on the sign of the degenerate k, which is hidden until solving. Does one bound strike all three? No. Natural try 1 (26): a student cannot confirm a sum of qualifying k in one routine step. The bypass option 30 is exactly what skipping this item's decision point gives: dividing by k + 4 for every k, so the coincident k = -4 is tested at the meaningless point (-2, -8) and dropped. (read) lines answered: PAIR 26 and 30 differ by 4 = 2 x printed 2; DPAIR 38 - 26 = 12 = 11 + 1. The 4 is |k| at the coincident value, not twice the printed 2; no student doubles a coefficient to move from 30 to 26, and 12 is not a step anyone takes from the range end -11. PROBE: key at natural try 1; a sum of qualifying k has no one-step check. Read and judged harmless."
+  }
+ },
+ {
+  "id": "SM31L-B5",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "System with k on y; window next to the degenerate k; sum",
+  "prompt": "2x + ky = -20\nx + y = 1\nIn this system, k is a constant. Find the sum of the integers k with -5 ≤ k ≤ 9 for which the system has a solution (x, y) with y < -4.",
+  "choices": [
+   "-2",
+   "13",
+   "17",
+   "25"
+  ],
+  "correct_answer": "25",
+  "explanation": "From the second equation x = 1 - y. Substituting: 2 - 2y + ky = -20, so (k - 2)y = -22. Treat k = 2 as its own case: the equation becomes 0 = -22, so the lines are parallel and there is no solution; k = 2 does not count. For k ≠ 2, y = -22/(k - 2), and y < -4 means 22/(k - 2) > 4. If k < 2 the left side is negative, so it fails. If k > 2, multiplying keeps the direction: 22 > 4(k - 2), so k < 7.5. The values are k = 3, 4, 5, 6, 7, whose sum is 25. Choice 13 comes from multiplying -22/(k - 2) < -4 by k - 2 without checking its sign: that keeps every k from -5 to 7, including k = 2, and the sum of those is 13. Choice 17 reverses the inequality for every k, keeping only k = 8 and 9. Choice -2 applies the condition to x instead of y: x = 1 + 22/(k - 2) < -4 gives k = -2, -1, 0, 1.",
+  "solve": "let s=0; for(let k=-5;k<=9;k++){ const det=2*1-k*1; if(det===0) continue; const y=(2*1-1*(-20))/det; if(y<-4) s+=k } return s",
+  "distractor_solve": {
+   "13": "let s=0; for(let k=-5;k<=9;k++){ if(-22 < -4*(k-2)) s+=k } return s",
+   "17": "let s=0; for(let k=-5;k<=9;k++){ if(-22 > -4*(k-2)) s+=k } return s",
+   "-2": "let s=0; for(let k=-5;k<=9;k++){ if(k===2) continue; const x=1+22/(k-2); if(x<-4) s+=k } return s"
+  },
+  "mechanism": [
+   "substitute x = 1 - y to get (k - 2)y = -22",
+   "k = 2 gives parallel lines (no solution)",
+   "sign of k - 2 decides the inequality direction",
+   "sum the integers in the window 2 < k < 7.5"
+  ],
+  "mech": "degenerate-parameter",
+  "ask": "sum",
+  "quantity_asked": "sum of the integers k with -5 ≤ k ≤ 9 for which the system has a solution with y < -4",
+  "setup": {
+   "i": "k is the y-coefficient of one equation in a 2x2 system whose other coefficients and constants are fixed",
+   "ii": "the solution has y-coordinate less than a stated number",
+   "iii": "sum of the integers k in a stated range"
+  },
+  "bypass_option": "13",
+  "off_by_one_options": [],
+  "plugback": {
+   "substitutable": false,
+   "why": "The key is the largest option, natural try 4 ascending. The asked quantity is a sum over qualifying k, so no option can be substituted; checking one means solving for general k and testing the whole range."
+  },
+  "distractor_meta": {
+   "13": {
+    "error_kind": "wrong_operation",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Multiplying by k - 2 with no sign case adds k = -5 to 2 (including the no-solution k = 2); added terms raise a sum when positive and lower it when negative, and the stem does not show which k get added."
+   },
+   "17": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reversing the inequality for every k swaps the window for the tail k > 7.5; whether that tail sums to more or less than the window depends on the range end, which the stem gives no reason to compare."
+   },
+   "-2": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Testing x < -4 instead of y < -4 moves the window to the other side of k = 2; the stem does not reveal on which side of 2 the x-window falls."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "let s=0; for(let k=-5;k<=9;k++){ if(k===2){ s+=k; continue } const y=-22/(k-2); if(y<-4) s+=k } return s",
+   "direction": "above",
+   "why": "Forgetting that k = 2 gives parallel lines and keeping it (writing the window as 2 ≤ k < 7.5) adds 2: 27, strictly above the key and not an option."
+  },
+  "far_distractor": {
+   "option": "13",
+   "natural_side": "above",
+   "why": "This error keeps extra values of k (the degenerate k = 2 and k from -5 to 1), and keeping extra terms would ordinarily make a sum too big, but most of the extra k are negative, so here the sum lands below the key."
+  },
+  "structure_check": "No universal quantifier, extremum or 'sum of all' wording. The sum runs over k of both signs, so added k can raise or lower it: the counter error (keeping k = 2) lands above at 27, the branch and variable errors land below. The stem does not sign every error.",
+  "cheap_bound_check": "Cheapest bound from the stem: the sum of all integers from -5 to 9 is 30, which strikes nothing. After solving, y < -4 < 0 forces k > 2, so the sum is positive: that strikes -2 only; 13 and 17 remain on the key's side.",
+  "intermediate_check": "13: no; it is the sum over a different set (k < 7.5), not a value the key follows from through one printed relation. 17: no; it is the tail k = 8, 9. -2: no; it is the x-window. None is one printed step from 25.",
+  "shape_check": "Properties handed over: the answer is an integer (all four); no sign is forced by the stem alone (-2 survives until solving); no parity or cap. All four survive together.",
+  "interior_parity_check": "Middle values 13 and 17: both two-digit integers of complexity 2; the key 25 is an extreme, not interior.",
+  "arith_class_check": "25 is odd like 13 and 17; -2 is even. The key is not alone in any class the stem implies.",
+  "idea_probe": {
+   "at": "2026-10-22T23:59:27.699Z",
+   "nearest": "757d0b2f-1a1 (v26 B2): k on x in one equation of a fixed system, a count of k with x > y that splits into two unbounded pieces. Here k is on y, the condition gives a bounded window right next to the degenerate k = 2, and the ask is a sum, so the unsplit error adds negative k and lowers the sum. f53c1e07 (live sum, x > 0 and y > 0) has a pivot line and no window."
+  },
+  "dup_search": {
+   "queries": [
+    "kx&kx&y =&how many|sum of",
+    "kx&for how many|how many integer"
+   ],
+   "hits_read": 26,
+   "nearest": "24 live 'ky' rows ask only for the no-solution or infinitely-many k; none sums k over a condition on the solution."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student substitutes, gets (k - 2)y = -22 and must treat k = 2 and the sign of k - 2. Covering the work, all four options remain legal from the stem alone. Could a student tell from the stem which way the errors go? No: the counter error (keeping k = 2) lands above, the others below, and which side each lands on depends on the sign of the added or lost k. Does one bound strike all three? No; the sign bound after solving strikes only -2. Natural try 4 (key largest). The bypass option 13 is exactly what skipping this item's decision point gives: multiplying by k - 2 as if positive, which also keeps the parallel case k = 2. (read) lines answered: PAIR/DPAIR 25 - 17 = 8 = 2 x printed 4 = 9 - 1. The 8 is the sum of the window minus the tail (3+4+5+6+7 vs 8+9); no student doubles the 4 of the condition or subtracts 1 from the range end to move between 17 and 25. Read and judged harmless."
+  }
+ },
+ {
+  "id": "SM31L-B6",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Two pricing plans identical at one k; spread of k",
+  "prompt": "Plan A charges k dollars per item plus a $6 setup fee. Plan B charges $3 per item plus a design fee of 2k dollars. Here k is a whole number from 1 to 50. For some values of k, there is an order of n items, where n is a positive whole number, for which the two plans charge the same total, and that total is between $40 and $70, inclusive. What is the difference between the greatest and least such values of k?",
+  "choices": [
+   "15",
+   "17",
+   "29",
+   "47"
+  ],
+  "correct_answer": "29",
+  "explanation": "For an order of n items, Plan A costs kn + 6 and Plan B costs 3n + 2k. Setting them equal: kn - 3n = 2k - 6, so (k - 3)n = 2(k - 3). Treat k = 3 as its own case: then both plans cost 3n + 6 for every n, so they charge the same total for every order; an order of n = 12 costs $42, which is in the band, so k = 3 qualifies. For k ≠ 3 we may divide by k - 3: the plans agree only at n = 2, where the total is 2k + 6. That total is from 40 to 70 when 17 ≤ k ≤ 32. So the qualifying values are k = 3 and k = 17 through 32; the greatest is 32 and the least is 3, a difference of 29. Choice 15 comes from dividing by k - 3 for every k, which loses k = 3 and gives 32 - 17. Choice 47 forgets that the plans meet at n = 2 and uses k + 3 as the common total, which puts the generic values at k = 37 through 50. Choice 17 uses the per-item price 3 as the order size, so the common total is taken as 3(k + 3), giving k = 11 through 20 together with k = 3.",
+  "solve": "const ok=[]; for(let k=1;k<=50;k++){ let hit=false; for(let n=1;n<=200;n++){ const A=k*n+6, B=3*n+2*k; if(A===B && A>=40 && A<=70){ hit=true; break } } if(hit) ok.push(k) } return Math.max(...ok)-Math.min(...ok)",
+  "distractor_solve": {
+   "15": "const ok=[]; for(let k=1;k<=50;k++){ const t=2*k+6; if(t>=40&&t<=70) ok.push(k) } return Math.max(...ok)-Math.min(...ok)",
+   "17": "const ok=[3]; for(let k=1;k<=50;k++){ if(k===3) continue; const t=3*(k+3); if(t>=40&&t<=70) ok.push(k) } return Math.max(...ok)-Math.min(...ok)",
+   "47": "const ok=[3]; for(let k=1;k<=50;k++){ if(k===3) continue; const t=k+3; if(t>=40&&t<=70) ok.push(k) } return Math.max(...ok)-Math.min(...ok)"
+  },
+  "mechanism": [
+   "set the totals equal: (k - 3)n = 2(k - 3)",
+   "k = 3 makes the plans identical (every n)",
+   "otherwise n = 2 and the total is 2k + 6",
+   "spread of the qualifying k including the identical case"
+  ],
+  "mech": "degenerate-parameter",
+  "ask": "difference",
+  "quantity_asked": "difference between the greatest and least whole-number k from 1 to 50 for which the plans charge the same total, between $40 and $70, for some order",
+  "setup": {
+   "i": "k is the per-item price of one plan and also multiplies the other plan's fixed fee, so at one k the two cost models are identical",
+   "ii": "the plans charge the same total for some whole-number order, with that total in a stated band",
+   "iii": "difference between the greatest and least qualifying k"
+  },
+  "bypass_option": "15",
+  "off_by_one_options": [],
+  "plugback": {
+   "substitutable": false,
+   "why": "The key is at natural try 3 ascending. The asked quantity is a spread over qualifying k, which no single option can be substituted into; checking an option needs the whole qualifying set, including whether k = 3 counts."
+  },
+  "distractor_meta": {
+   "15": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Dividing by k - 3 for every k drops the identical-plans case; dropping a value narrows the spread only if it was an endpoint, and the stem does not show where k = 3 lies relative to the generic band."
+   },
+   "17": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Using the per-item price 3 as the order size changes the common total to 3(k + 3) and moves the band down; the stem gives no reason to expect a narrower or wider spread."
+   },
+   "47": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Taking k + 3 as the common total moves the generic band to the top of the range; whether that widens or narrows the spread depends on the range end and on k = 3, which the stem does not compare."
+   }
+  },
+  "intermediate_check": "15: it is the spread of the generic band; the key does not follow from it through one printed relation (it needs the unprinted k = 3 and the band top). 47: no; a different band. 17: no; a different band. None is one printed step from 29.",
+  "shape_check": "Properties handed over: the spread is a whole number from 0 to 49 (all four survive); no parity or cap. All four survive together.",
+  "interior_parity_check": "Middle values 17 and 29: both two-digit integers of complexity 2; the key 29 is not the cleaner one.",
+  "arith_class_check": "15, 17, 29 and 47 are all odd; the key is not alone in any class.",
+  "idea_probe": {
+   "at": "2026-10-23T00:00:50.458Z",
+   "nearest": "383c8b40-94b (v26 B7): two supplier prices with k, where at the degenerate k the prices are parallel and differ by a constant, asked for that constant. Here the degenerate k makes the two plans IDENTICAL, every other k makes them agree only at n = 2, and the ask is the spread of qualifying k, which hinges on counting the identical case."
+  },
+  "dup_search": {
+   "queries": [
+    "plan&per item|each item&fee&k",
+    "charge the same|cost the same|same total|same amount&k is"
+   ],
+   "hits_read": 3,
+   "nearest": "f88cdac6-3b6 (live): two gym plans with an unknown per-class price k fixed by one break-even point; no degenerate case."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student sets the totals equal, gets (k - 3)n = 2(k - 3) and will usually cancel to n = 2; the decision point is that k = 3 makes the plans identical. Covering the work, all four options remain legal from the stem alone. Natural try 3: the key is not at try 1-2, and in any case a spread over k cannot be checked from an option. The bypass option 15 is exactly what skipping this item's decision point gives: dividing by k - 3 for every k, so the identical plans at k = 3 are lost and the spread is 32 - 17. (read) lines answered: PAIR 29 - 17 = 12 = 2 x printed 6; DPAIR/DSUM 29 + 17 = 46 = 6 + 40 and 29 + 47 = 76 = 6 + 70. No student adds two options to compare with the fee plus a band end, and 12 is the gap between two different bands, not a doubled fee. Read and judged harmless."
+  }
+ },
+ {
+  "id": "SM31L-B7",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Lines that coincide at one k; greatest k with a shared point in a band",
+  "prompt": "f(x) = 2kx + 6\ng(x) = 6x + 2k\nIn the definitions above, k is a constant. Of the integers k with -10 ≤ k ≤ 12, which is the greatest one for which the graphs of y = f(x) and y = g(x) share a point whose y-coordinate is from -10 to 6, inclusive?",
+  "choices": [
+   "0",
+   "3",
+   "8",
+   "12"
+  ],
+  "correct_answer": "3",
+  "explanation": "Set f(x) = g(x): 2kx + 6 = 6x + 2k, so (2k - 6)x = 2k - 6. Treat k = 3 as its own case, because the coefficient of x is then 0: f(x) = 6x + 6 and g(x) = 6x + 6 are the same function, so the graphs share every point of that line, including points with y-coordinate from -10 to 6 (for example (0, 6)). So k = 3 qualifies. For k ≠ 3 we may divide: the graphs meet only at x = 1, where y = 2k + 6. That y-coordinate is from -10 to 6 when -8 ≤ k ≤ 0. So the qualifying integers are -8 through 0 and 3, and the greatest is 3. Choice 0 comes from dividing by 2k - 6 for every k, which tests k = 3 at the point (1, 12) and drops it. Choice 8 comes from a sign slip that gives x = -1, so the shared y-coordinate is taken as 6 - 2k, which lies in the band for 0 ≤ k ≤ 8. Choice 12 tests the x-coordinate 1 against the band instead of the y-coordinate; since 1 is in the band, every k seems to work.",
+  "solve": "let best=-Infinity; for(let k=-10;k<=12;k++){ const a=2*k-6, b=2*k-6; let ok=false; if(a===0){ if(b===0){ for(let x=-50;x<=50;x++){ const y=2*k*x+6; if(y>=-10&&y<=6){ ok=true; break } } } } else { const x=b/a, y=2*k*x+6; ok=(y>=-10&&y<=6) } if(ok&&k>best) best=k } return best",
+  "distractor_solve": {
+   "0": "let best=-Infinity; for(let k=-10;k<=12;k++){ const y=2*k*1+6; if(y>=-10&&y<=6&&k>best) best=k } return best",
+   "8": "let best=-Infinity; for(let k=-10;k<=12;k++){ const y=k===3?6:6-2*k; if(y>=-10&&y<=6&&k>best) best=k } return best",
+   "12": "let best=-Infinity; for(let k=-10;k<=12;k++){ const x=1; if(x>=-10&&x<=6&&k>best) best=k } return best"
+  },
+  "mechanism": [
+   "set f(x) = g(x): (2k - 6)x = 2k - 6",
+   "k = 3 makes f and g the same function",
+   "otherwise the graphs meet only at (1, 2k + 6)",
+   "greatest qualifying k including the coincident one"
+  ],
+  "mech": "degenerate-parameter",
+  "ask": "greatest",
+  "quantity_asked": "greatest integer k with -10 ≤ k ≤ 12 for which the graphs share a point with y-coordinate from -10 to 6",
+  "setup": {
+   "i": "k is in the slope of one linear function and the intercept of the other, so the two graphs coincide at one k and otherwise always meet at x = 1",
+   "ii": "the graphs share a point whose y-coordinate lies in a stated closed band",
+   "iii": "greatest integer k in a stated range"
+  },
+  "bypass_option": "0",
+  "off_by_one_options": [],
+  "plugback": {
+   "substitutable": false,
+   "why": "On a greatest ask a student tries options from the top: 12 (y = 30 at x = 1, rejected), 8 (y = 22, rejected), then 3. Plugging k = 3 into the meeting-point formula gives (1, 12), which is outside the band, so the routine check REJECTS the key and sends the student on to 0, the bypass. Confirming 3 needs the decision that f and g are identical at k = 3, not a routine substitution."
+  },
+  "distractor_meta": {
+   "0": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Dividing by 2k - 6 for every k loses the coincident k = 3; whether losing it lowers the greatest value depends on where k = 3 sits relative to the generic band, which the stem does not show."
+   },
+   "8": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "The sign slip x = -1 reverses the slope of the shared y-coordinate in k, moving the qualifying band to the other side; the stem does not signal which side is the true one."
+   },
+   "12": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Checking the x-coordinate against the band instead of the y-coordinate accepts every k here because x = 1 happens to be in the band; that coincidence is not visible from the stem."
+   }
+  },
+  "intermediate_check": "0: it is the top of the generic band; the key does not follow from it through one printed relation (it needs the coincident case). 8: no; a band from a swapped sign. 12: no; the range end. None is one printed step from 3.",
+  "shape_check": "Properties handed over: the answer is an integer from -10 to 12 (all four survive); no parity or sign forced. All four survive together.",
+  "interior_parity_check": "Middle values 3 (key) and 8: both one-digit integers of complexity 1; the key is not the cleaner one.",
+  "arith_class_check": "3 is odd, 0, 8 and 12 even. The stem implies no parity for k; noted for the graders.",
+  "idea_probe": {
+   "at": "2026-10-23T00:04:47.686Z",
+   "nearest": "36298954-4d3 (v26 B4): f(x) = kx - 1, g(x) = 7x + k, where the intercepts never match, so the degenerate k gives PARALLEL lines that count vacuously for 'no common point with x > 0'. Here the constants match at k = 3, so the graphs COINCIDE there, every other k meets at x = 1, and the ask is the greatest k, which the coincident case decides."
+  },
+  "dup_search": {
+   "queries": [
+    "f\\(x\\) = [0-9]?kx&g\\(x\\) = [0-9]+x \\+ [0-9]?k",
+    "greatest&integer&graphs&k"
+   ],
+   "hits_read": 2,
+   "nearest": "36298954-4d3 (v26 B4), as above; no live greatest-k item on two k-dependent lines."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student sets f = g, gets (2k - 6)x = 2k - 6 and usually cancels to x = 1; the decision point is that k = 3 makes the functions identical. Covering the work, all four options remain legal from the stem alone. Natural try 3 (greatest, descending): plug-back reaches 3 third and the routine check (meeting point (1, 12)) rejects it, so a plug-back student lands on the bypass 0. The bypass option 0 is exactly what skipping this item's decision point gives. (read) lines answered: DPAIR 3 vs 0 (3 = 2 + 1), 3 vs 8 (5 = 6 - 1, 11 = 12 - 1), 3 vs 12 (9 = 10 - 1). These are printed numbers plus or minus 1; no student moves between an option and the key that way. The key 3 is the k at which 2k equals 6, which is the decision point itself, not a shortcut around it. Read and judged harmless."
+  }
+ },
+ {
+  "id": "SM31L-B8",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Number that is never a solution as k varies",
+  "prompt": "k(2x - 14) = 6x + 18\nIn the equation above, k is a constant. As k takes different values, the solution of the equation changes. Exactly one real number cannot be a solution of this equation, whatever the value of k. What is that number?",
+  "choices": [
+   "-8",
+   "-3",
+   "3",
+   "7"
+  ],
+  "correct_answer": "7",
+  "explanation": "Ask, for a given number x, whether some k makes it a solution. Rewrite the equation as an equation in k: k(2x - 14) = 6x + 18. Treat the case where the coefficient of k is 0 on its own: when 2x - 14 = 0, that is x = 7, the equation reads 0 = 60, which is false for every k, so 7 is never a solution. For any other x, the coefficient 2x - 14 is not 0, and k = (6x + 18)/(2x - 14) makes x a solution. So 7 is the only number that is never a solution. (Solving for x instead gives x = (14k + 18)/(2k - 6) = 7 + 30/(k - 3), which is never 7.) Choice 3 is the value of k at which the equation in x has no solution at all: it confuses the degenerate k with the excluded x. Choice -3 is the solution when k = 0, from treating k = 0 as the special case. Choice -8 drops k altogether and solves 2x - 14 = 6x + 18.",
+  "solve": "for(let i=-200;i<=200;i++){ const x=i/2; const coef=2*x-14, rhs=6*x+18; if(coef===0 && rhs!==0) return x } return NaN",
+  "distractor_solve": {
+   "3": "for(let k=-50;k<=50;k++){ if(2*k-6===0 && 14*k+18!==0) return k } return NaN",
+   "-3": "const k=0; return (14*k+18)/(2*k-6)",
+   "-8": "return (18+14)/(2-6)"
+  },
+  "mechanism": [
+   "view the equation as an equation in k for a fixed x",
+   "the coefficient 2x - 14 vanishes at x = 7",
+   "at x = 7 the equation is 0 = 60 for every k",
+   "every other x is reached by some k"
+  ],
+  "mech": "degenerate-parameter",
+  "ask": "value",
+  "quantity_asked": "the one real number that is not a solution of the equation for any value of k",
+  "setup": {
+   "i": "k multiplies a binomial in x, so as an equation in k (for a given x) its coefficient vanishes at one x",
+   "ii": "exactly one real number is never a solution, for any value of k",
+   "iii": "value of that number"
+  },
+  "bypass_option": "3",
+  "off_by_one_options": [],
+  "plugback": {
+   "substitutable": true,
+   "verify": "const coef=2*v-14, rhs=6*v+18; return coef===0 && rhs!==0",
+   "why": "The key is the largest option, natural try 4 ascending. Trying -8, -3 and 3 in turn, each gives a value of k (1, 0 and -36/8) that makes it a solution, so each is rejected; 7 is reached last and gives 0 = 60. The check only confirms the key at the last try."
+  },
+  "distractor_meta": {
+   "3": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Answering the k at which the x-equation breaks down instead of the x that no k reaches; the two numbers are unrelated in size, and the stem gives no hint which is larger."
+   },
+   "-3": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Treating k = 0 as the special value gives the solution -3; the sign and size of that solution depend on the constants, not on anything the stem signals."
+   },
+   "-8": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Dropping k solves 2x - 14 = 6x + 18; its solution can fall on either side of the excluded number, and the stem does not show which."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "return 14",
+   "direction": "above",
+   "why": "Reading the zero of 2x - 14 without dividing by 2 gives 14, strictly above the key and not an option."
+  },
+  "far_distractor": {
+   "option": "-8",
+   "natural_side": "above",
+   "why": "Dropping a positive multiplier from the x-term usually leaves a larger solution, but here the k-free equation 2x - 14 = 6x + 18 has a negative solution, so the omission lands far below the key."
+  },
+  "structure_check": "No universal quantifier or extremum wording in the stem (the condition is phrased as whatever the value of k, a condition on the number, not a bound on the answer). The answer is one determined value; the three distractors land below here but the counter error (14) lands above, and nothing in the stem says the excluded number is the largest candidate.",
+  "cheap_bound_check": "Cheapest bound from the stem: none on the size of the excluded number. Substituting an option is the only check, and it confirms only the last one tried; no single bound strikes -8, -3 and 3 together.",
+  "intermediate_check": "3: no; it is the excluded k, not a value from which 7 follows through one printed relation (7 is the zero of 2x - 14, computed from the 14). -3: no; the solution at k = 0. -8: no; the solution of a different equation. None is one printed step from 7.",
+  "shape_check": "Properties handed over: the answer is a real number (all four survive); no sign or integrality is forced. All four survive.",
+  "interior_parity_check": "Middle values -3 and 3: both one-digit integers of complexity 1; the key 7 is an extreme, not interior. -3 and 3 form a +/- pair that does not contain the key.",
+  "arith_class_check": "7 is positive with 3; -8 and -3 are negative. The key is not alone in any class the stem implies.",
+  "idea_probe": {
+   "at": "2026-10-23T00:06:02.387Z",
+   "nearest": "5d99d0e3-163 (v22): k(2x - 3) + 7 = 6x + c with c chosen so a solution exists for every k; there the degenerate k forces c. Here there is no second constant: the question is which x no k can reach, which is the degenerate case of the equation read as an equation in k. b7e21eab (v27) finds the no-solution k and then solves a second equation."
+  },
+  "dup_search": {
+   "queries": [
+    "not a solution|never a solution|no value of k",
+    "k\\(2x"
+   ],
+   "hits_read": 4,
+   "nearest": "5d99d0e3-163, as above; no live row asks for the value a solution can never take."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student either solves for x (x = 7 + 30/(k - 3)) and must see that the formula never reaches 7, or reads the equation as one in k and treats the vanishing coefficient 2x - 14. Covering the work, all four options remain legal from the stem alone. Could a student tell from the stem which way the errors go? No: the counter error (14) lands above. Does one bound strike all three? No. Plug-back reaches the key at try 4 only. The bypass option 3 is what a student gets by finding where the generic formula breaks (k = 3) without treating that case and asking what it means: 3 is the degenerate k, not the excluded solution. (read) lines answered: PAIR 7 + (-3) = 4 and 7 - 3 = 4 = 2 x printed 2; ratio 7/3 = 14/6. The ratio is real: 7 is the zero of 2x - 14 and 3 the zero of 2k - 6, so both come from halving a printed number; but a student who halves 6 has found the degenerate k, which is the bypass, and halving 14 is the decision point itself, so the pair does not let a student pick 7 over 3 without the reasoning. DPAIR 7 - (-8) = 15 = 14 + 1, not a route anyone takes. Read; the 7/3 relation is flagged for the graders."
+  }
+ }
+]

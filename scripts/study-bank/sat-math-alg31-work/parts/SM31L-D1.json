@@ -1,0 +1,97 @@
+{
+ "id": "SM31L-D1",
+ "domain": "Algebra",
+ "difficulty": "hard",
+ "subskill": "Integer optimum: counting tied whole-number plans",
+ "prompt": "A pottery studio makes bowls and vases. Each bowl needs 20 minutes of wheel time and 20 ounces of clay, and each vase needs 30 minutes of wheel time and 12 ounces of clay. This week the studio has 580 minutes of wheel time and 404 ounces of clay. The studio earns a profit of $36 on each bowl and $24 on each vase, and only whole bowls and vases are made. How many different weekly plans (numbers of bowls and vases) earn the largest profit the studio can make?",
+ "choices": [
+  "2",
+  "4",
+  "5",
+  "11"
+ ],
+ "correct_answer": "2",
+ "explanation": "Let x be the number of bowls and y the number of vases. The constraints are 20x + 30y ≤ 580 (that is, 2x + 3y ≤ 58) and 20x + 12y ≤ 404 (that is, 5x + 3y ≤ 101), with x and y whole numbers, and the profit is 36x + 24y = 12(3x + 2y). The two boundary lines meet at x = 43/3 ≈ 14.33, y = 88/9 ≈ 9.78, which is not a whole-number plan. Rounding both down gives (14, 9) with 3x + 2y = 60, but that is not the best whole-number plan: (14, 10) is allowed (2(14) + 3(10) = 58 and 5(14) + 3(10) = 100) and gives 3x + 2y = 62. A value of 63 would need 3x + 2y = 63 inside the region; the real maximum of 3x + 2y is about 62.6, so 62 is the best possible, a profit of $744. Plans with 3x + 2y = 62 differ by steps of (+2, -3): (12, 13) breaks the wheel limit (24 + 39 = 63 > 58), (14, 10) and (16, 7) work (5(16) + 3(7) = 101), and (18, 4) breaks the clay limit (90 + 12 = 102 > 101). So exactly 2 plans earn the largest profit. Choice 4 counts the plans earning $720, the profit of the rounded-down corner (14, 9), which is not the largest profit. Choice 11 counts every whole-number solution of 3x + 2y = 62 (x = 0, 2, 4, ..., 20) without checking either limit. Choice 5 swaps the two profits ($24 per bowl and $36 per vase).",
+ "solve": "const ok=(x,y)=>20*x+30*y<=580&&20*x+12*y<=404;let best=-1,n=0;for(let x=0;x<=40;x++)for(let y=0;y<=40;y++)if(ok(x,y)){const v=36*x+24*y;if(v>best){best=v;n=1}else if(v===best)n++}return n",
+ "distractor_solve": {
+  "4": "const ok=(x,y)=>20*x+30*y<=580&&20*x+12*y<=404;const Vr=36*Math.floor(43/3)+24*Math.floor(88/9);let n=0;for(let x=0;x<=40;x++)for(let y=0;y<=40;y++)if(ok(x,y)&&36*x+24*y===Vr)n++;return n",
+  "5": "const ok=(x,y)=>20*x+30*y<=580&&20*x+12*y<=404;let best=-1,n=0;for(let x=0;x<=40;x++)for(let y=0;y<=40;y++)if(ok(x,y)){const v=24*x+36*y;if(v>best){best=v;n=1}else if(v===best)n++}return n",
+  "11": "const ok=(x,y)=>20*x+30*y<=580&&20*x+12*y<=404;let best=-1;for(let x=0;x<=40;x++)for(let y=0;y<=40;y++)if(ok(x,y))best=Math.max(best,36*x+24*y);let n=0;for(let x=0;x<=40;x++)for(let y=0;y<=40;y++)if(36*x+24*y===best)n++;return n"
+ },
+ "mechanism": [
+  "two resource caps meet at a non-lattice corner",
+  "best lattice level 3x + 2y = 62 found by testing above the rounded corner",
+  "tied plans step by (+2, -3) along the level line",
+  "each tie checked against both caps"
+ ],
+ "mech": "integer-optimum",
+ "ask": "count",
+ "quantity_asked": "number of whole-number plans that attain the greatest profit",
+ "setup": {
+  "i": "two resource caps (time and material), profit not parallel to either cap",
+  "ii": "the greatest profit is shared by several whole-number plans (lattice tie, no parallel edge)",
+  "iii": "number of plans that earn the greatest profit"
+ },
+ "bypass_option": "4",
+ "off_by_one_options": [],
+ "plugback": {
+  "substitutable": false,
+  "why": "Trying 2 first gives nothing to substitute: a count of optimal plans cannot be checked without finding the largest whole-number profit and then listing every plan that reaches it, which is the whole solution. No option is a plan, a profit or a constant that can be put back into the stem."
+ },
+ "distractor_meta": {
+  "4": {
+   "error_kind": "other",
+   "error_sense": "omits",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Rounds the corner (14.33, 9.78) down to (14, 9), takes its $720 as the largest profit and counts the plans at that level; the stem gives no hint whether a lower level line holds more or fewer allowed plans than the true top level."
+  },
+  "5": {
+   "error_kind": "inverted_rate",
+   "error_sense": "swaps",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Attaches $24 to bowls and $36 to vases; the swapped objective is nearly parallel to the wheel-time line and ties along it, but nothing in the stem says whether the swap raises or lowers the count."
+  },
+  "11": {
+   "error_kind": "omission",
+   "error_sense": "omits",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Finds the right top profit but lists every whole-number solution of 3x + 2y = 62 without checking the wheel-time or clay limit; the student cannot tell from the stem how many of those solutions the limits remove."
+  }
+ },
+ "counter_error": {
+  "error_kind": "other",
+  "solve": "return 1",
+  "direction": "below",
+  "why": "Rounding the corner and treating the rounded plan as the one best plan answers 1 (unique optimum), which lands below the key and is not an option."
+ },
+ "far_distractor": {
+  "option": "4",
+  "natural_side": "below",
+  "why": "The rounded-corner error ordinarily produces a single plan (an answer of 1, below the key); here the student goes on to count ties at the rounded corner's lower profit, and a lower level line crosses a wider part of the region, so it lands above the key at 4."
+ },
+ "structure_check": "A count of tied optimal plans has no monotone direction: a wrong top level can hold more or fewer plans than the true one, a dropped constraint adds plans, and treating the rounded corner as the optimum gives 1 (below). Nothing in the stem says every slip raises the count, and the stem uses no universal quantifier.",
+ "cheap_bound_check": "The cheapest bound is 'at least 1 plan earns the largest profit', which every option satisfies; no cheap upper bound on the number of ties exists without enumerating the level line, so all three distractors survive it on the key's side of no bound.",
+ "intermediate_check": "4: no - it is a count at a different profit level, and no printed relation turns 4 into 2. 5: no - a count under swapped profits; nothing printed maps it to 2. 11: no - a count with both limits dropped; the key is not obtained from 11 by any single printed rate or relation (it needs both limit checks on each of the 11 plans).",
+ "shape_check": "The stem hands over: the answer is a positive whole number, small (ties step by (+2, -3) within at most 20 bowls). All four options (2, 4, 5, 11) are positive whole numbers no larger than 11 (the solutions of 3x + 2y = 62 with x, y ≥ 0); parity does not apply (2 and 4 even, 5 and 11 odd). All four survive together.",
+ "interior_parity_check": "Middle values 4 and 5: both one-digit whole numbers, same display form; the key (2) is not interior.",
+ "arith_class_check": "Key 2 is even, as is 4; 5 and 11 are odd. 2 is not the only small or the only round value, and the stem implies no class (multiple of something) that 2 alone satisfies.",
+ "idea_probe": {
+  "at": "2026-10-22T23:25:26.412Z",
+  "nearest": "40fba632-b25 (live v26 D1, food bank): there the objective is exactly proportional to the budget, so every plan on the budget edge ties and the count is set by two minimums. Here the profit 36:24 is parallel to neither cap; the tie comes from lattice steps (+2, -3) on the best level 3x + 2y = 62, which lies below the real corner value 62.6, and the plans are cut by BOTH caps."
+ },
+ "dup_search": {
+  "queries": [
+   "bowls&vases|pottery&profit",
+   "clay&minutes"
+  ],
+  "hits_read": 0,
+  "nearest": "40fba632-b25 (see idea_probe; different setup: parallel objective vs lattice tie under two caps)"
+ },
+ "self_audit": {
+  "risk": "medium",
+  "note": "Covering the work, all four options remain legal from the stem alone: each is a plausible small count of tied plans and no bound strikes any. Could a student tell from the stem which way the errors go, and does one bound strike all three? No: the natural rounded-corner answer is 1 (below), dropped limits add plans (above), a wrong level can go either way; the only cheap bound (at least 1) strikes nothing. Could a student confirm an option against the stem in one routine step? No: checking '2' (try 1) means finding the top lattice level and listing ties against both caps, which is the full solution. Is the bypass option really what skipping the decision point gives? Yes: taking the rounded corner (14, 9) as optimal sets the top profit at $720, and counting plans at $720 gives 4. No option is the sum, difference or mean of two others (4 + 5 = 9, 11 - 5 = 6, 11 - 4 = 7, 11 - 2 = 9; none is an option). A test-wise student might pick the smallest count; that is the batch-level rank rule, not item-level. Preflight (read) lines: PROBE at try 1 goes to the cold probe as designed; FAR/BOUND/STRUCT/INTER read and answered above. PAIR ratio 2:4 = 12/24 and 2:5 = 12/30 and DPAIR 2 + 11 = 13 = 12 + 1 are coincidences of the printed clay (12 oz) and profit/wheel numbers: no reading of the stem divides those quantities or links a count to them, so none is a stem-readable route. D4 (the word largest in an extreme-key stem) read: the extremum is on the profit, not on the asked count, and the count errors go both ways (1 below, 4/5/11 above)."
+ }
+}

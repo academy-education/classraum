@@ -1,0 +1,84 @@
+{
+ "id": "SM31L-D8",
+ "domain": "Algebra",
+ "difficulty": "hard",
+ "subskill": "Integer optimum: one coordinate of the best whole-number load",
+ "prompt": "A food pantry's van can carry at most 166 kilograms. It will carry cases of canned soup, which weigh 7 kilograms and provide 16 meals each, and cases of rice, which weigh 10 kilograms and provide 23 meals each. The pantry must send at least 18 cases in all, and only whole cases are sent. If the load provides as many meals as possible, how many cases of rice does it contain?",
+ "choices": [
+  "0",
+  "6",
+  "11",
+  "13"
+ ],
+ "correct_answer": "11",
+ "explanation": "Let x be the number of soup cases and y the number of rice cases: 7x + 10y ≤ 166, x + y ≥ 18, and the meals are 16x + 23y. Per kilogram, rice (2.3 meals) is slightly better than soup (about 2.29 meals), so without the whole-case condition the van would carry as much rice as the 18-case minimum allows: the lines x + y = 18 and 7x + 10y = 166 meet at x ≈ 4.67, y ≈ 13.33. Rounding gives (5, 13), which weighs 165 kilograms and provides 379 meals, but 1 kilogram is unused. Trading rice for soup can fill the van exactly: with x, y ≥ 0 the equation 7x + 10y = 166 has only the whole-number solutions (8, 11) and (18, 4), which provide 16(8) + 23(11) = 381 and 16(18) + 23(4) = 380 meals. Every other allowed load leaves at least 1 kilogram unused and provides fewer meals: (5, 13) gives 379, (15, 6) gives 378, (12, 8) gives 376, and loads with more rice, such as (2, 15), have fewer than 18 cases. So the best load is (8, 11). So the best load has 11 cases of rice. Choice 13 is the rounded corner (5, 13). Choice 6 reads the limits as strict ('less than 166 kilograms' and 'more than 18 cases'), which rules out both exact-weight loads and makes (15, 6) best. Choice 0 swaps the meals per case (23 for soup and 16 for rice), which makes an all-soup load best.",
+ "solve": "const ok=(x,y)=>7*x+10*y<=166&&x+y>=18;let b=-1,bx=0,by=0,n=0;for(let x=0;x<=40;x++)for(let y=0;y<=40;y++)if(ok(x,y)){const v=16*x+23*y;if(v>b){b=v;bx=x;by=y;n=1}else if(v===b)n++}if(n!==1)throw new Error('tie');return by",
+ "distractor_solve": {
+  "0": "const ok=(x,y)=>7*x+10*y<=166&&x+y>=18;let b=-1,bx=0,by=0,n=0;for(let x=0;x<=40;x++)for(let y=0;y<=40;y++)if(ok(x,y)){const v=23*x+16*y;if(v>b){b=v;bx=x;by=y;n=1}else if(v===b)n++}if(n!==1)throw new Error('tie');return by",
+  "6": "const ok=(x,y)=>7*x+10*y<166&&x+y>18;let b=-1,bx=0,by=0,n=0;for(let x=0;x<=40;x++)for(let y=0;y<=40;y++)if(ok(x,y)){const v=16*x+23*y;if(v>b){b=v;bx=x;by=y;n=1}else if(v===b)n++}if(n!==1)throw new Error('tie');return by",
+  "13": "return Math.floor((166-7*18)/(10-7))"
+ },
+ "mechanism": [
+  "meals per kilogram nearly equal, so the real optimum is the corner on the 18-case line",
+  "rounded corner (5, 13) leaves 1 kilogram unused",
+  "exact-weight load (8, 11) provides more meals",
+  "report y of the unique best load"
+ ],
+ "mech": "integer-optimum",
+ "ask": "value",
+ "quantity_asked": "number of rice cases in the load that provides the most meals",
+ "setup": {
+  "i": "weight cap plus a minimum total number of cases; maximise a weighted total (meals)",
+  "ii": "the best whole-number load fills the weight cap exactly, away from the rounded corner on the minimum-count line",
+  "iii": "number of the second item in the best load"
+ },
+ "bypass_option": "13",
+ "off_by_one_options": [],
+ "plugback": {
+  "substitutable": false,
+  "why": "Ascending, the key 11 is the third try. Putting y = 11 into the stem fixes the best soup count for that y (8) but says nothing about whether another y gives more meals, so an option cannot be confirmed without comparing loads - the whole solution."
+ },
+ "distractor_meta": {
+  "0": {
+   "error_kind": "inverted_rate",
+   "error_sense": "swaps",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Attaches 23 meals to soup and 16 to rice, so soup dominates and the load has no rice; nothing in the stem signals that a swapped rate lowers the rice count."
+  },
+  "6": {
+   "error_kind": "sign_slip",
+   "error_sense": "swaps",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Treats 'at most' and 'at least' as strict, which removes both exact-weight loads and leaves (15, 6) best; the stem gives no hint whether strict limits raise or lower the rice count."
+  },
+  "13": {
+   "error_kind": "other",
+   "error_sense": "adds",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Rounds the corner (4.67, 13.33) to (5, 13) and stops; the stem does not show whether the best whole-number load has more or less rice than that."
+  }
+ },
+ "intermediate_check": "13: no - the rounded corner's rice count; reaching 11 needs the exact-weight search, not one printed relation. 6: no - the rice count of (15, 6) under strict limits; no printed relation turns 6 into 11. 0: no - the swapped-rate answer; nothing printed maps 0 to 11.",
+ "shape_check": "The stem hands over: a whole number of rice cases, at most 16 (166/10), no parity condition. All four options (0, 6, 11, 13) are whole numbers in range. All survive together.",
+ "interior_parity_check": "Middle values 6 and 11: a one-digit and a two-digit whole number, within one digit of each other in length; the key 11 is not the cleaner of the two.",
+ "arith_class_check": "Key 11 is odd like 13; 0 and 6 are even. 11 is not alone in any class the stem implies.",
+ "idea_probe": {
+  "at": "2026-10-23T00:40:41.817Z",
+  "nearest": "f3f35eaf-849 (live, from the extra search 'van&kilograms&at least'): a van capacity with at least 5 crates of one kind, asking the greatest number of the other kind, a single-variable bound. Here a minimum TOTAL count meets the weight cap at a non-lattice corner, the objective (meals) is nearly parallel to the weight line, and the best load is the exact-weight point (8, 11), three cases from the rounded corner. The live v26 'value of y' item (e8cee5ac, minimum served plus labour hours) has the objective parallel to neither and a different setup."
+ },
+ "dup_search": {
+  "queries": [
+   "van&kilograms&at least",
+   "pantry|soup&rice"
+  ],
+  "hits_read": 3,
+  "nearest": "f3f35eaf-849 (see idea_probe)"
+ },
+ "self_audit": {
+  "risk": "medium",
+  "note": "Covering the work, how many options remain legal from the stem alone? All four: rice counts 0 to 16 fit the weight limit, and 0 is a legal load (18 soup cases weigh 126 kilograms). Plug-back: the key is at try 3 ascending, and substituting a rice count does not reveal optimality. Is the bypass option really what skipping THIS item's decision point gives? Yes: rounding the real corner (4.67, 13.33) gives the allowed load (5, 13) and 13 cases of rice; the decision point is noticing the unused kilogram and finding the exact-weight load. The bypass sits above the key. A student may suspect 0 as a throwaway; that still leaves 6, 11 and 13. Preflight (read) DPAIR lines (11 = 10 + 1, 24 = 23 + 1, etc.) are coincidences; no stem reading adds 1 to a printed weight or meal count to move between rice counts. No option is a sum, difference or mean of two others."
+ }
+}

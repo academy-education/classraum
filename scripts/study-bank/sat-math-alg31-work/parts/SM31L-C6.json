@@ -1,0 +1,96 @@
+{
+ "id": "SM31L-C6",
+ "domain": "Algebra",
+ "difficulty": "hard",
+ "subskill": "Overlap of a sliding window with a fixed solution set",
+ "prompt": "-21 < -5 - 2x ≤ 9\n2k ≤ 5x - 8 < 2k + 19\nIn the system of inequalities above, k is a constant, and exactly two integers satisfy both inequalities. How much greater is the greatest possible integer value of k than the least possible integer value of k?",
+ "choices": [
+  "2",
+  "6",
+  "36",
+  "39"
+ ],
+ "correct_answer": "39",
+ "explanation": "First inequality: adding 5 gives -16 < -2x ≤ 14, and dividing by -2 reverses both signs: 8 > x ≥ -7. So its integer solutions are -7, -6, ..., 7; the end -7 IS included (it came from ≤) and 8 is NOT. Second inequality: (2k + 8)/5 ≤ x < (2k + 27)/5, a window of length 19/5 = 3.8 that slides as k changes and always holds 3 or 4 integers. If the whole window sat inside -7, ..., 7 there would be at least 3 common integers, so exactly two happens only where the window hangs over an end of -7, ..., 7. Left end: the common integers must be -7 and -6, so -6 < (2k + 27)/5 ≤ -5 and (2k + 8)/5 ≤ -7, which give -28.5 < k ≤ -26: k = -28, -27, -26. Right end: the common integers must be 6 and 7, so 5 < (2k + 8)/5 ≤ 6 (and 7 is below the window's top), which gives 8.5 < k ≤ 11: k = 9, 10, 11. The greatest value is 11 and the least is -28, so the difference is 39. Choice 36 treats -7 as not a solution of the first inequality, which moves the left cluster to k = -25, -24. Choice 6 is the number of values of k, not the difference. Choice 2 finds only the right-end cluster (9 to 11) and misses the window hanging over the left end.",
+ "solve": "const K=(ex,lo)=>{const ks=[]; for (let k=-300;k<=300;k++){ let n=0; for (let x=-150;x<=150;x++){ const t=-5-2*x; const P=(lo?-21<=t:-21<t)&&(ex?t<9:t<=9); const u=5*x-8; const Q=(2*k<=u)&&(u<2*k+19); if(P&&Q) n++; } if(n===2) ks.push(k);} return ks;}; const s=K(false,false); return s[s.length-1]-s[0];",
+ "distractor_solve": {
+  "36": "const K=(ex,lo)=>{const ks=[]; for (let k=-300;k<=300;k++){ let n=0; for (let x=-150;x<=150;x++){ const t=-5-2*x; const P=(lo?-21<=t:-21<t)&&(ex?t<9:t<=9); const u=5*x-8; const Q=(2*k<=u)&&(u<2*k+19); if(P&&Q) n++; } if(n===2) ks.push(k);} return ks;}; const s=K(true,false); return s[s.length-1]-s[0];",
+  "6": "const K=(ex,lo)=>{const ks=[]; for (let k=-300;k<=300;k++){ let n=0; for (let x=-150;x<=150;x++){ const t=-5-2*x; const P=(lo?-21<=t:-21<t)&&(ex?t<9:t<=9); const u=5*x-8; const Q=(2*k<=u)&&(u<2*k+19); if(P&&Q) n++; } if(n===2) ks.push(k);} return ks;}; return K(false,false).length;",
+  "2": "const K=(ex,lo)=>{const ks=[]; for (let k=-300;k<=300;k++){ let n=0; for (let x=-150;x<=150;x++){ const t=-5-2*x; const P=(lo?-21<=t:-21<t)&&(ex?t<9:t<=9); const u=5*x-8; const Q=(2*k<=u)&&(u<2*k+19); if(P&&Q) n++; } if(n===2) ks.push(k);} return ks;}; const s=K(false,false).filter(k=>k>0); return s[s.length-1]-s[0];"
+ },
+ "mechanism": [
+  "reverse the fixed inequality and keep the attained end x = -7",
+  "the second inequality is a window of fixed width sliding with k",
+  "exactly two common integers only where the window hangs over an end",
+  "take the greatest and least k across both ends"
+ ],
+ "mech": "integer-count-condition",
+ "ask": "difference",
+ "quantity_asked": "the greatest possible integer k minus the least possible integer k for which exactly two integers satisfy both inequalities",
+ "setup": {
+  "i": "k in both ends of the second inequality of a system at the same rate (a sliding window of fixed width); the first inequality is a fixed compound",
+  "ii": "exactly two integers satisfy both inequalities",
+  "iii": "difference between the greatest and least integer values of k"
+ },
+ "bypass_option": "36",
+ "off_by_one_options": [],
+ "plugback": {
+  "substitutable": false,
+  "why": "The ask is a difference across two separate clusters of k; 39 cannot be substituted into either inequality, and checking it needs both clusters. Ascending order reaches the key only at try 4."
+ },
+ "distractor_meta": {
+  "36": {
+   "error_kind": "other",
+   "error_sense": "omits",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Dropping the attained end -7 shortens the fixed solution set on the left, which moves the left cluster of k; the stem does not show which way that moves the difference."
+  },
+  "6": {
+   "error_kind": "wrong_variable",
+   "error_sense": "swaps",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Answering the count of k values instead of the spread; whether a count exceeds or falls short of a spread depends on whether the values are consecutive, which the stem does not reveal."
+  },
+  "2": {
+   "error_kind": "omission",
+   "error_sense": "omits",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Missing the left-end cluster; nothing in the stem says there are two places where the window can hang over."
+  }
+ },
+ "counter_error": {
+  "error_kind": "other",
+  "solve": "const K=(ex,lo)=>{const ks=[]; for (let k=-300;k<=300;k++){ let n=0; for (let x=-150;x<=150;x++){ const t=-5-2*x; const P=(lo?-21<=t:-21<t)&&(ex?t<9:t<=9); const u=5*x-8; const Q=(2*k<=u)&&(u<2*k+19); if(P&&Q) n++; } if(n===2) ks.push(k);} return ks;}; const s=K(false,true); return s[s.length-1]-s[0];",
+  "direction": "above",
+  "why": "Treating -21 < ... as ≤ (so that 8 becomes a solution of the first inequality) moves the right cluster up to k = 12, 13 and gives 41, above the key and not an option."
+ },
+ "far_distractor": {
+  "option": "6",
+  "natural_side": "above",
+  "why": "Reporting the number of k values instead of their spread ordinarily overshoots by one (for consecutive values the count is the difference plus 1); here the values form two clusters far apart, so the count lands far below the spread."
+ },
+ "structure_check": "The spread comes from two clusters at opposite ends of the fixed set; there is no extremum or universal condition in the stem, and errors move both ways - the misread strict end raises it (41) while the misread attained end lowers it (36).",
+ "cheap_bound_check": "Cheapest bound: the window must meet -7, ..., 7 at all, which needs roughly -33 ≤ k ≤ 13, so the spread is at most about 46. That is above the key; it strikes no option and does not identify 39 as the largest legal value.",
+ "intermediate_check": "36: no - a spread over a different left cluster, not a step toward 39. 6: no - the count of the six values, not a value 39 follows from by one printed relation. 2: it is the spread of the right cluster alone; 39 needs the left cluster's least value (-28), found separately.",
+ "shape_check": "The stem hands over: a nonnegative integer (all four survive); no parity or cap below 39. All four survive together.",
+ "interior_parity_check": "The two middle values are 6 and 36: integers of one and two digits (within one digit), neither cleaner. The key 39 is not one of them.",
+ "arith_class_check": "Parity: 2, 6, 36 even and 39 odd - the key is the only odd option, but the stem gives no parity for the spread (it is the difference of an odd and an even k here, which a student cannot know in advance). Multiples of 3: 6, 36, 39. Sign: all positive. No class the stem implies isolates the key.",
+ "idea_probe": {
+  "at": "2026-10-23T01:27:15.004Z",
+  "nearest": "No live row puts k at both ends of a window; nearest is e0559aab (live v26 C3, system 4 - 3x ≤ 22 and 4x < k - 30, sum of solutions -18, sum of k): k moves one bound there, the condition is a sum, the ask a sum - here a fixed-width window slides across a fixed set and the two-cluster spread is the decision."
+ },
+ "dup_search": {
+  "queries": [
+   "system of inequalities&integer&k"
+  ],
+  "hits_read": 2,
+  "nearest": "e0559aab / SM26L-C3 - see idea_probe"
+ },
+ "self_audit": {
+  "risk": "medium",
+  "note": "Covering the work, how many options remain legal from the stem alone? All four: the cheapest bound (window meets the fixed set at all) caps the spread at about 46 and strikes none. Could a student tell from the stem which way the errors go, and does one bound strike all three? No - one endpoint misreading lowers the spread (36), the other raises it (41, not offered); a count-for-spread confusion lands below only because of the gap; no bound strikes any. Natural try is 4, and the spread across two clusters cannot be checked by substituting an option. Is the bypass really what skipping THIS item's decision point gives? Yes: the decision is which ends of the reversed fixed inequality are attained; a student who treats -7 like the strict end 8 gets the left cluster -25, -24 and the spread 36. Parity note: 39 is the only odd option; the spread's parity is not implied by the stem. (read) lines: any PAIR / DPAIR soft line between the key and an option is a coincidence, not a relation readable from the stem. D4 (read, extreme key on an ask worded with 'greatest'): the ask is a difference, fixed at rank 4 by the slot; the cheapest bound (about 46) sits above the key, so the key is not identifiable as the largest legal value."
+ }
+}

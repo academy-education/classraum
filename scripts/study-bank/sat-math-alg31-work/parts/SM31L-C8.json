@@ -1,0 +1,84 @@
+{
+ "id": "SM31L-C8",
+ "domain": "Algebra",
+ "difficulty": "hard",
+ "subskill": "Integers in one solution set but not another",
+ "prompt": "-17 ≤ -9 - 2x < 9\n5x - 2k > 4\nIn the inequalities above, k is a constant. Exactly 4 integers satisfy the first inequality and fail to satisfy the second. What is the least possible integer value of k?",
+ "choices": [
+  "-29",
+  "-17",
+  "-14",
+  "13"
+ ],
+ "correct_answer": "-14",
+ "explanation": "First inequality: adding 9 gives -8 ≤ -2x < 18, and dividing by -2 reverses both signs: 4 ≥ x > -9. So its integer solutions are -8, -7, ..., 4; the end 4 IS included (it came from ≤) and -9 is NOT (it came from <). Second inequality: 5x > 2k + 4, so x > (2k + 4)/5. An integer fails the second inequality exactly when x ≤ (2k + 4)/5. So the integers that satisfy the first but fail the second run upward from -8 to the greatest integer not above (2k + 4)/5. For exactly 4 of them they must be -8, -7, -6, -5: -5 ≤ (2k + 4)/5 < -4. Multiplying by 5: -25 ≤ 2k + 4 < -20, so -29 ≤ 2k < -24, that is, -14.5 ≤ k < -12. The integer values are -14 and -13, and the least is -14. Choice -17 treats -9 as a solution of the first inequality, so the four integers would be -9, -8, -7, -6. Choice -29 drops the 2 in 2k (solving 5x - k > 4). Choice 13 moves 2k to the other side with the wrong sign, x > (4 - 2k)/5.",
+ "solve": "const cnt=(k,hiIn,mode)=>{let n=0; for (let x=-150;x<=150;x++){ const t=-9-2*x; const P=(-17<=t)&&(hiIn?t<=9:t<9); let Q=5*x-2*k>4; if(mode==='slip') Q=5*x+2*k>4; if(mode==='nok') Q=5*x-k>4; if(P&&!Q) n++; } return n;}; const L=(hiIn,mode)=>{ for (let k=-300;k<=300;k++) if (cnt(k,hiIn,mode)===4) return k; return null; }; return L(false,'');",
+ "distractor_solve": {
+  "-17": "const cnt=(k,hiIn,mode)=>{let n=0; for (let x=-150;x<=150;x++){ const t=-9-2*x; const P=(-17<=t)&&(hiIn?t<=9:t<9); let Q=5*x-2*k>4; if(mode==='slip') Q=5*x+2*k>4; if(mode==='nok') Q=5*x-k>4; if(P&&!Q) n++; } return n;}; const L=(hiIn,mode)=>{ for (let k=-300;k<=300;k++) if (cnt(k,hiIn,mode)===4) return k; return null; }; return L(true,'');",
+  "-29": "const cnt=(k,hiIn,mode)=>{let n=0; for (let x=-150;x<=150;x++){ const t=-9-2*x; const P=(-17<=t)&&(hiIn?t<=9:t<9); let Q=5*x-2*k>4; if(mode==='slip') Q=5*x+2*k>4; if(mode==='nok') Q=5*x-k>4; if(P&&!Q) n++; } return n;}; const L=(hiIn,mode)=>{ for (let k=-300;k<=300;k++) if (cnt(k,hiIn,mode)===4) return k; return null; }; return L(false,'nok');",
+  "13": "const cnt=(k,hiIn,mode)=>{let n=0; for (let x=-150;x<=150;x++){ const t=-9-2*x; const P=(-17<=t)&&(hiIn?t<=9:t<9); let Q=5*x-2*k>4; if(mode==='slip') Q=5*x+2*k>4; if(mode==='nok') Q=5*x-k>4; if(P&&!Q) n++; } return n;}; const L=(hiIn,mode)=>{ for (let k=-300;k<=300;k++) if (cnt(k,hiIn,mode)===4) return k; return null; }; return L(false,'slip');"
+ },
+ "mechanism": [
+  "reverse the first inequality and keep which end is attained (-8 is the lowest solution, -9 is not)",
+  "failing the second means x ≤ (2k + 4)/5",
+  "the four integers are -8 to -5, so -5 ≤ (2k + 4)/5 < -4",
+  "solve for k and take the least integer"
+ ],
+ "mech": "integer-count-condition",
+ "ask": "least",
+ "quantity_asked": "the least integer k for which exactly 4 integers satisfy the first inequality and fail the second",
+ "setup": {
+  "i": "k in the constant of a second, one-sided inequality; the first inequality is a fixed compound with a negative x-coefficient",
+  "ii": "exactly 4 integers satisfy the first inequality but not the second",
+  "iii": "least integer value of k"
+ },
+ "bypass_option": "-17",
+ "off_by_one_options": [],
+ "plugback": {
+  "substitutable": true,
+  "verify": "const cnt=(k)=>{let n=0; for (let x=-150;x<=150;x++){ const t=-9-2*x; const P=(-17<=t)&&(t<9); const Q=5*x-2*k>4; if(P&&!Q) n++; } return n;}; return cnt(v)===4 && cnt(v-1)!==4;",
+  "why": "In ascending order the student tries -29 (no integers of the first set fail the second), then -17 (only three: -8, -7, -6), then -14 (four) - the key is reached at try 3, and confirming it also needs the check that -15 gives only three."
+ },
+ "distractor_meta": {
+  "-17": {
+   "error_kind": "other",
+   "error_sense": "adds",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Including -9 shifts the block of four integers down by one, which needs a smaller k; the stem does not show which end of the first inequality is attained, so the side is not signalled."
+  },
+  "-29": {
+   "error_kind": "wrong_operation",
+   "error_sense": "omits",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Dropping the coefficient on k halves the step in k between thresholds; whether that pushes the least k up or down depends on the sign of the threshold, which the stem does not give."
+  },
+  "13": {
+   "error_kind": "sign_slip",
+   "error_sense": "swaps",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Moving 2k with the wrong sign mirrors the threshold; the stem gives no hint that k should be negative."
+  }
+ },
+ "structure_check": "Not an extreme key (rank 3). 'Least' is asked, but the errors fall on both sides (two below, one above), and nothing in the stem says k is negative.",
+ "cheap_bound_check": "Not an extreme key. Cheapest bound: some integer of the first set must fail the second, so -8 ≤ (2k + 4)/5, k ≥ -22; that bound strikes -29 only after the first inequality is reversed and solved (the lowest solution -8 is the decision point), which is part of the work.",
+ "intermediate_check": "-17: no - the least k for a different block (-9 to -6), not a value -14 follows from. -29: no - from a dropped coefficient. 13: no - from a sign error. The intermediates (-8, -5, -14.5, -12) are not options.",
+ "shape_check": "The stem hands over: k is an integer, of unknown sign. All four options survive both properties.",
+ "interior_parity_check": "The two middle values are -17 and -14: negative two-digit integers of the same complexity; neither is cleaner.",
+ "arith_class_check": "Sign: three negative, one positive - the key is with the majority. Parity: -14 even, -29, -17, 13 odd - the key is the only even option, but the stem implies no parity for k (the integer values are -14 and -13). Multiples of 5 or 2: no class the stem makes special isolates the key.",
+ "idea_probe": {
+  "at": "2026-10-23T01:36:14.272Z",
+  "nearest": "SM26F-D03 (prior: count the integers satisfying -39 < 3x - 9 ≤ 36 but not 2(x - 7) < 5x + 1, no constant) and db17dcf1 (live: non-solutions of one inequality equal the solutions of another, find c): here k sits in the second inequality, the count of first-but-not-second integers is fixed at 4, and the least k is asked."
+ },
+ "dup_search": {
+  "queries": [],
+  "hits_read": 5,
+  "nearest": "SM26F-D03 / db17dcf1 - see idea_probe"
+ },
+ "self_audit": {
+  "risk": "medium",
+  "note": "Covering the work, how many options remain legal from the stem alone? All four: k's sign is not given, and the only bound that strikes anything (k ≥ -22, striking -29) needs the first inequality reversed and its lowest solution decided. Natural try is 3 (ascending, key rank 3), so a plug-back reaches the key only after rejecting -29 and -17, and it must also confirm that -15 fails. Is the bypass really what skipping THIS item's decision point gives? Yes: the decision is which end of the reversed first inequality is attained; a student who treats both ends as attained includes -9 and gets -17. Varied from C3 and C4: the condition is about integers in one solution set but not another, not about comparing two counts. Parity note: -14 is the only even option; the stem implies no parity. (read) lines: any PAIR / DPAIR soft line is a coincidence of the threshold shifts."
+ }
+}

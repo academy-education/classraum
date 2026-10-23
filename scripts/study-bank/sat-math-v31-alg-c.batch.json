@@ -1,0 +1,730 @@
+[
+ {
+  "id": "SM31L-C1",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Integer solutions of a compound inequality with a constant",
+  "prompt": "3k - 7 < 11 - 7x ≤ 60\nIn the compound inequality above, k is a constant. For how many integer values of k does the inequality have at least 3 negative integer solutions and more negative integer solutions than positive integer solutions?",
+  "choices": [
+   "19",
+   "23",
+   "26",
+   "28"
+  ],
+  "correct_answer": "28",
+  "explanation": "Solve each part for x. From 11 - 7x ≤ 60, -7x ≤ 49, so x ≥ -7 (dividing by -7 reverses the sign, and -7 itself IS a solution because the original sign was ≤). From 3k - 7 < 11 - 7x, 7x < 18 - 3k, so x < (18 - 3k)/7; call this bound U. It is strict, so U itself is never a solution. The solutions are the integers x with -7 ≤ x < U. Case 1, k ≤ 8: then U > -1, so all seven negative integers -7, ..., -1 are solutions (at least 3, as required), and there must be at most 6 positive solutions, so 7 must NOT be a solution: U ≤ 7, which gives 18 - 3k ≤ 49, k ≥ -31/3, so k ≥ -10. That is k = -10, ..., 8: 19 values. Case 2, k ≥ 9: then U ≤ -3, so there are no positive solutions (and 0 is not a solution), and the negatives run from -7 up to below U. At least 3 of them means -5 must be a solution: -5 < U, which gives 18 - 3k > -35, k < 53/3, so k ≤ 17. That is k = 9, ..., 17: 9 values. Total: 19 + 9 = 28. (Having some solution at all only needs k ≤ 22; the requirement of at least 3 negative solutions is what stops the count at k = 17.) Choice 23 comes from reversing the inequality but carrying the 'or equal' to the wrong end (x > -7 and x ≤ U). Choice 26 counts 0 as a positive solution. Choice 19 stops after Case 1 and misses the values of k for which there are no positive solutions but still at least 3 negative ones.",
+  "solve": "let n=0; for (let k=-200;k<=200;k++){ let neg=0,pos=0; for (let x=-100;x<=100;x++){ const m=11-7*x; if (m<=60 && 3*k-7<m){ if(x<0)neg++; else if(x>0)pos++; } } if (neg>=3 && neg>pos) n++; } return n;",
+  "distractor_solve": {
+   "19": "let n=0; for (let k=-200;k<=200;k++){ let neg=0,pos=0; for (let x=-100;x<=100;x++){ const m=11-7*x; if (m<=60 && 3*k-7<m){ if(x<0)neg++; else if(x>0)pos++; } } if (neg===7 && neg>pos) n++; } return n;",
+   "23": "let n=0; for (let k=-200;k<=200;k++){ let neg=0,pos=0; for (let x=-100;x<=100;x++){ if (x>-7 && x<=(18-3*k)/7){ if(x<0)neg++; else if(x>0)pos++; } } if (neg>=3 && neg>pos) n++; } return n;",
+   "26": "let n=0; for (let k=-200;k<=200;k++){ let neg=0,pos=0; for (let x=-100;x<=100;x++){ const m=11-7*x; if (m<=60 && 3*k-7<m){ if(x<0)neg++; else pos++; } } if (neg>=3 && neg>pos) n++; } return n;"
+  },
+  "mechanism": [
+   "reverse the inequality and keep the attained end x = -7",
+   "split on whether all seven negatives are solutions",
+   "second branch: no positives, at least 3 negatives",
+   "count integer k on both branches"
+  ],
+  "mech": "integer-count-condition",
+  "ask": "count",
+  "quantity_asked": "the number of integer values of k for which the inequality has more negative integer solutions than positive integer solutions",
+  "setup": {
+   "i": "3k in the strict lower end of a compound inequality whose middle has a negative x-coefficient; the other end is a fixed attained bound",
+   "ii": "at least 3 negative integer solutions and more negative than positive integer solutions",
+   "iii": "number of integer values of k"
+  },
+  "bypass_option": "23",
+  "off_by_one_options": [],
+  "plugback": {
+   "substitutable": false,
+   "why": "The ask is a count of k values; 28 cannot be substituted into the inequality. Checking it means finding the whole set of k on both branches, which is the full solution. Ascending order reaches the key only at try 4."
+  },
+  "distractor_meta": {
+   "19": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Dropping the branch with no positive solutions loses values; the stem gives no hint that a second branch exists."
+   },
+   "23": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Moving the 'or equal' to the other end when reversing removes -7 (shrinking Case 1 and the 3-negative branch) but adds the U end; the stem does not say which effect wins, and here the net is 5 fewer."
+   },
+   "26": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Counting 0 as positive adds a solution, which a student would expect to raise counts; it lands on the positive side, so the comparison gets harder to meet and two k are lost. Nothing in the stem signals that."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "let n=0; for (let k=-200;k<=200;k++){ let neg=0,pos=0; for (let x=-100;x<=100;x++){ const m=11-7*x; if (m<=60 && 3*k-7<m){ if(x<0)neg++; else if(x>0)pos++; } } if (neg>=1 && neg>pos) n++; } return n;",
+   "direction": "above",
+   "why": "Using only the cheap outer limits - some solution exists (k ≤ 22) and at most 6 positives (k ≥ -10) - and forgetting that at least 3 negatives are required gives 33, above the key and not an option."
+  },
+  "far_distractor": {
+   "option": "26",
+   "natural_side": "above",
+   "why": "Counting 0 as a solution is an 'adds' error that ordinarily inflates a count; here the extra solution lands on the positive side of a 'more negatives than positives' comparison, so it makes the condition stricter and the count falls to 26, below the key."
+  },
+  "structure_check": "The condition combines a comparison (more negatives than positives) with a floor (at least 3 negatives); it is not an extremum or a universal bound, and errors do not all move one way: dropping the floor or counting 0 as negative raises the count (33, 30), while counting 0 as positive or misplacing the 'or equal' lowers it.",
+  "cheap_bound_check": "The cheapest outer limits are 'some solution exists' (U > -7, so k ≤ 22) and 'at most 6 positives' (k ≥ -10): together they allow at most 33 values. That bound is above the key, so it neither strikes a distractor nor identifies the key as the largest legal option; the real upper edge k = 17 needs the at-least-3-negatives condition worked out from the attained end.",
+  "intermediate_check": "23: no - it is the count under a different solution set (x > -7, x ≤ U), not a step toward 28. 26: no - it comes from a different classification of 0. 19: it is the size of Case 1, but the key does not follow from 19 by one printed relation - the second branch (9 values) needs the separate at-least-3-negatives edge, and 9 is not printed.",
+  "shape_check": "The stem hands over: a count, so a positive integer (all four survive); the cheap bound caps it at 33 (all four survive); no parity is implied. All four survive together.",
+  "interior_parity_check": "The two middle values are 23 and 26: both two-digit integers of the same complexity. The key 28 is not one of them; neither middle value is cleaner.",
+  "arith_class_check": "Parity: 26 and 28 even, 19 and 23 odd - the key is not alone. Multiples of 7 (printed coefficient): 28 only - but no step of the solution makes multiples of 7 special (the count is 19 + 9), and a student has no reason to prefer them. Multiples of 3: none. Roundness: none is round.",
+  "idea_probe": {
+   "at": "2026-10-23T01:07:43.504Z",
+   "nearest": "4fd22741 (live v26 C5, -4 ≤ kx ≤ 45, exactly 3 integers, difference of k): there k multiplies the middle so both ends scale; here k only moves one end, the condition is a negative-count floor plus a negative-vs-positive comparison, and the second branch (no positives) is the decision - a different setup and ask."
+  },
+  "dup_search": {
+   "queries": [
+    "negative&positive&inequalit"
+   ],
+   "hits_read": 2,
+   "nearest": "4fd22741 / SM26L-C5 (same row, live and prior) - k multiplies x, exactly 3 solutions, difference; different setup"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Revised in run 2: the run-1 version's cheap outer limits gave exactly the key. Now the cheapest limits (some solution, at most 6 positives) give 33, which is not an option, and the true upper edge comes from the at-least-3-negatives floor. Covering the work, how many options remain legal from the stem alone? All four: they are positive integers under the cheap bound of 33. Could a student tell from the stem which way the errors go, and does one bound strike all three? No - counting 0 on one side lowers the count and on the other raises it (30); dropping the floor raises it (33); the only cheap bound strikes none. Natural try is 4 (ascending, key largest), so no routine plug-back confirms it early; a count of k values cannot be substituted. Is the bypass really what skipping THIS item's decision point gives? Yes: the decision is which end of the reversed inequality is attained; a student who reverses the sign without re-deciding where the 'or equal' goes, and carries it to the other end, gets 23. (read) lines answered: STRUCT - no extremum or universal condition; BOUND - see cheap_bound_check; FAR - see far_distractor; INTER - see intermediate_check; any PAIR/DPAIR soft line between the key and an option is a coincidence of branch sizes, not a relation readable from the stem."
+  }
+ },
+ {
+  "id": "SM31L-C2",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Counting integer solutions inside a range that depends on k",
+  "prompt": "-53 ≤ 10 - 3x < -17\nFor how many positive integer values of k are at least one-third of the positive integers less than or equal to k solutions to the compound inequality above?",
+  "choices": [
+   "16",
+   "22",
+   "23",
+   "25"
+  ],
+  "correct_answer": "23",
+  "explanation": "First solve the compound inequality. Subtracting 10 gives -63 ≤ -3x < -27, and dividing by -3 reverses both signs: 21 ≥ x > 9. So the solutions are the integers 10, 11, ..., 21 - twelve of them. Note which ends are attained: x = 21 IS a solution (it came from the ≤), and x = 9 is NOT (it came from the <). Now let c be the number of solutions among 1, 2, ..., k; the condition is c ≥ k/3, that is, 3c ≥ k. If k ≤ 9, c = 0, so the condition fails. If 10 ≤ k ≤ 21, c = k - 9, and 3(k - 9) ≥ k gives k ≥ 13.5, so k = 14, ..., 21: 8 values. If k ≥ 21, all twelve solutions are counted, c = 12, and 36 ≥ k gives k = 22, ..., 36 (k = 21 is already counted): 15 values. Total: 8 + 15 = 23. Choice 25 comes from reversing the signs but leaving the 'or equal' at its original end, which makes the solutions 9 through 20. Choice 22 reads 'at least one-third' as 'more than one-third', which loses k = 36. Choice 16 counts only the values of k for which all twelve solutions are already among 1 through k (k = 21 to 36) and misses the smaller values of k.",
+  "solve": "const P=x=>{const m=10-3*x; return -53<=m && m< -17}; let n=0; for (let k=1;k<=500;k++){ let c=0; for (let x=1;x<=k;x++) if (P(x)) c++; if (3*c>=k) n++; } return n;",
+  "distractor_solve": {
+   "16": "const P=x=>{const m=10-3*x; return -53<=m && m< -17}; let n=0; for (let k=21;k<=500;k++){ let c=0; for (let x=1;x<=k;x++) if (P(x)) c++; if (3*c>=k) n++; } return n;",
+   "22": "const P=x=>{const m=10-3*x; return -53<=m && m< -17}; let n=0; for (let k=1;k<=500;k++){ let c=0; for (let x=1;x<=k;x++) if (P(x)) c++; if (3*c>k) n++; } return n;",
+   "25": "const P=x=>{const m=10-3*x; return -53<m && m<= -17}; let n=0; for (let k=1;k<=500;k++){ let c=0; for (let x=1;x<=k;x++) if (P(x)) c++; if (3*c>=k) n++; } return n;"
+  },
+  "mechanism": [
+   "reverse a compound inequality and keep track of the attained end",
+   "count of solutions up to k is piecewise (k - 9, then 12)",
+   "solve 3c ≥ k on each piece",
+   "count the integer k"
+  ],
+  "mech": "integer-count-condition",
+  "ask": "count",
+  "quantity_asked": "the number of positive integers k for which at least one-third of the integers 1 through k satisfy the compound inequality",
+  "setup": {
+   "i": "k is the upper end of the range of positive integers tested; the compound inequality (negative x-coefficient) has no constant",
+   "ii": "at least one-third of the positive integers up to k are solutions",
+   "iii": "number of positive integer values of k"
+  },
+  "bypass_option": "25",
+  "off_by_one_options": [
+   "22"
+  ],
+  "plugback": {
+   "substitutable": false,
+   "why": "The ask is how many k work. A candidate count like 23 cannot be put into the inequality or the one-third condition; checking it requires finding the whole set of k (both pieces), which is the full solution. The key is at try 3 in ascending order in any case."
+  },
+  "distractor_meta": {
+   "16": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Counting only the k past the last solution drops the first piece; nothing in the stem says a second piece exists, so the student cannot see 16 is short."
+   },
+   "22": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Treating 'at least' as 'more than' drops the equality case; the stem gives no way to tell whether equality is ever reached (it is, at k = 36 only), so the side is not signalled."
+   },
+   "25": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Leaving the 'or equal' where it was when the signs reverse shifts the solution block down by one (9 to 20 instead of 10 to 21). That makes the first piece start earlier but also keeps the block at twelve integers, so the net effect is not visible from the stem; here it gives two extra k."
+   }
+  },
+  "structure_check": "Not an extreme key (rank 3); the condition is a proportion that switches form at k = 21, so neither 'every slip lowers it' nor 'every slip raises it' holds - the misplaced 'or equal' raises the count and the strict reading lowers it.",
+  "cheap_bound_check": "Not an extreme key. For reference: once the twelve solutions are known, 12 ≥ k/3 gives k ≤ 36, so the count is at most 36 - 9 = 27 (k from 10 to 36); all four options sit under that bound, none is struck.",
+  "intermediate_check": "16: it is the size of the second piece (k = 21 to 36), but the key does not follow from 16 through one printed relation - the first piece (8 values, from 3(k - 9) ≥ k) has to be solved separately. 22: no - it is the count under a strict reading, not a step toward 23. 25: no - it comes from a different solution block (9 to 20), not from the key's work.",
+  "shape_check": "The stem hands over: the answer is a count of positive integers (all four survive); k must be at least 10 for any solution to be counted (no option is excluded by that); no parity or cap is implied. All four survive together.",
+  "interior_parity_check": "The two middle values are 22 and 23: both two-digit integers of the same complexity. The key 23 is one of them and is not the cleaner of the two (22 is even, 23 is prime); no shared-denominator structure.",
+  "arith_class_check": "Parity: 16 and 22 even, 23 and 25 odd - the key is not alone. Sign: all positive. Multiples of 3 (the printed coefficient): none of the four. Roundness: none is round. The key is not isolated by any class the stem implies.",
+  "idea_probe": {
+   "at": "2026-10-23T00:16:06.837Z",
+   "nearest": "No live or prior row lets k set the range of tested integers (all queries returned 0 hits); nearest in the census is 3ae4c030 (live v26 C2, kx ≥ 36 over the integers -6 through 9, exactly 4 solutions, count of k), where the tested set is fixed and k multiplies x - here the inequality is fixed and k moves the tested range, with a proportion condition."
+  },
+  "dup_search": {
+   "queries": [
+    "third|half|percent&integers&satisf",
+    "positive integer&k&at least&solutions",
+    "integers&satisfy&k is a positive integer|positive integer k",
+    "solutions&10 - 3x|3x <|- 3x"
+   ],
+   "hits_read": 3,
+   "nearest": "e0559aab / SM26L-C3 (system 4 - 3x ≤ 22 and 4x < k - 30, sum of solutions -18): shares only the reversed inequality; k sits in a bound there, and the condition and ask differ"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, how many options remain legal from the stem alone? All four: they are positive integers under any cheap bound (at most 27 values of k once the twelve solutions are known). Natural try is 3, so this is not a try 1-2 slot; in any case a count of k cannot be confirmed by substituting an option. Is the bypass really what skipping THIS item's decision point gives? Yes: the decision is which end of the reversed compound inequality is attained; a student who reverses the signs without re-deciding which end carries the 'or equal' gets the block 9 to 20 and the count 25. A test-wise student might pick a middle value of the cluster 22, 23, 25 - the key is in that cluster but so are two distractors, and 16 is a real error path (forgetting the first piece), not filler. (read) lines answered: DPAIR difference 2 = 3 - 1 between the key and 25 is a coincidence of the endpoint shift, not a relation a student can use (the 2 is the net of two shifts, not anything derived from the printed 3); INTER - see intermediate_check."
+  }
+ },
+ {
+  "id": "SM31L-C3",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Comparing integer-solution counts of two budget inequalities",
+  "prompt": "Priya has $10 and Marco has $21. Each of them is then given an extra k dollars, where k is a whole number. Priya will buy x notebooks at $3 each, and her total must be less than the amount she has. Marco will buy y pens at $8 each, and his total must be at most the amount he has. Priya has exactly 5 more possible positive integer values of x than Marco has possible positive integer values of y. What is the sum of all integer values of k for which this is true?",
+  "choices": [
+   "84",
+   "98",
+   "103",
+   "117"
+  ],
+  "correct_answer": "84",
+  "explanation": "Priya's condition is 3x < 10 + k, and Marco's is 8y ≤ 21 + k. Let P be the number of positive integers x with 3x < 10 + k, and M the number of positive integers y with 8y ≤ 21 + k. Because Priya's sign is strict, x is NOT allowed when 3x equals 10 + k; because Marco's sign allows equality, y IS allowed when 8y equals 21 + k. P goes up by 1 each time k passes a value where 10 + k is a multiple of 3 (P = 9 for k = 18, 19, 20; P = 10 for k = 21, 22, 23; P = 11 for k = 24, 25, 26), and M goes up by 1 when 21 + k reaches a multiple of 8 (M = 4 for k up to 18, M = 5 for k = 19 through 26, M = 6 from k = 27). So P - M is 4 at k = 17, 5 at k = 18, 4 at k = 19 and 20 (Marco gains a pen at k = 19 while Priya cannot buy a 10th notebook until 3(10) < 10 + k, that is, k ≥ 21), 5 at k = 21, 22, 23, and 6 at k = 24. Below k = 18 the difference is at most 4, and from k = 24 on it is at least 6, because P rises about three times as fast as M. So the values are k = 18, 21, 22, 23, with sum 84. Choice 98 treats Priya's 'less than' as 'at most'. Choice 103 treats Marco's 'at most' as 'less than'. Choice 117 swaps the two signs (Priya at most, Marco less than).",
+  "solve": "let s=0; for (let k=0;k<=1000;k++){ let f=0,g=0; for (let x=1;x<=1000;x++){ if (3*x<10+k) f++; if (8*x<=21+k) g++; } if (f-g===5) s+=k; } return s;",
+  "distractor_solve": {
+   "98": "let s=0; for (let k=0;k<=1000;k++){ let f=0,g=0; for (let x=1;x<=1000;x++){ if (3*x<=10+k) f++; if (8*x<=21+k) g++; } if (f-g===5) s+=k; } return s;",
+   "103": "let s=0; for (let k=0;k<=1000;k++){ let f=0,g=0; for (let x=1;x<=1000;x++){ if (3*x<10+k) f++; if (8*x<21+k) g++; } if (f-g===5) s+=k; } return s;",
+   "117": "let s=0; for (let k=0;k<=1000;k++){ let f=0,g=0; for (let x=1;x<=1000;x++){ if (3*x<=10+k) f++; if (8*x<21+k) g++; } if (f-g===5) s+=k; } return s;"
+  },
+  "mechanism": [
+   "write each budget as a one-variable inequality",
+   "count positive integer solutions as step functions of k",
+   "strict vs non-strict decides the step points",
+   "collect the k with difference 5 (not one block) and add"
+  ],
+  "mech": "integer-count-condition",
+  "ask": "sum",
+  "quantity_asked": "the sum of all whole-number gifts k for which Priya has exactly 5 more possible numbers of notebooks than Marco has possible numbers of pens",
+  "setup": {
+   "i": "k is a gift added to two budgets with different unit prices, one strict (less than) and one non-strict (at most)",
+   "ii": "one budget allows exactly 5 more positive whole-number quantities than the other",
+   "iii": "sum of all values of k"
+  },
+  "bypass_option": "98",
+  "off_by_one_options": [],
+  "plugback": {
+   "substitutable": false,
+   "why": "The key is at try 1 in ascending order, but the ask is the sum of a set of k values; 84 cannot be substituted into either budget. Checking it means finding every k that works - including the isolated k = 18 - which is the full solution."
+  },
+  "distractor_meta": {
+   "98": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Letting Priya spend exactly her money adds a notebook at the step points, which moves her steps one k earlier; that both adds k = 17 and 20 and drops k = 23, so whether the sum rises or falls is not visible from the stem."
+   },
+   "103": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Not letting Marco spend exactly his money removes a pen at k = 19, which delays his step; whether that adds or removes k values depends on where Priya's steps fall, which the stem does not show."
+   },
+   "117": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Swapping the two signs moves both people's step points at once; the stem gives no way to tell whether the set of k grows or shrinks."
+   }
+  },
+  "counter_error": {
+   "error_kind": "partial_answer",
+   "solve": "const K=[]; for (let k=0;k<=1000;k++){ let f=0,g=0; for (let x=1;x<=1000;x++){ if (3*x<10+k) f++; if (8*x<=21+k) g++; } if (f-g===5) K.push(k); } let i=K.length-1; while (i>0 && K[i-1]===K[i]-1) i--; return K.slice(i).reduce((a,b)=>a+b,0);",
+   "direction": "below",
+   "why": "A student who finds the block k = 21, 22, 23 and assumes the values form one block misses the isolated k = 18 and gets 66, below the key and not an option."
+  },
+  "far_distractor": {
+   "option": "103",
+   "natural_side": "below",
+   "why": "Reading Marco's 'at most' as 'less than' leaves out his equality case, an omission that ordinarily lowers a count or sum; here Marco having fewer options lets the difference reach 5 at more values of k, so the sum rises to 103."
+  },
+  "structure_check": "The condition is an exact difference of two counts, not an extremum or a universal bound. The three offered errors happen to land above, but the stem does not force that: missing the isolated value k = 18 lowers the sum to 66, and a student cannot tell from the stem which way a sign misreading moves the set.",
+  "cheap_bound_check": "Cheapest bound: Marco can always buy at least 2 pens (k ≥ 0), so Priya needs at least 7 notebooks, 3(7) < 10 + k, so every k is at least 12 and the sum is at least 12. That is a lower bound below the key; all three distractors are above the key and none is struck. No cheap upper bound exists, because the number of k values is unknown until the steps are traced.",
+  "intermediate_check": "98: no - it is the sum of a different set (17, 18, 20, 21, 22), not a value from which 84 follows. 103: no - the sum of 18, 19, 21, 22, 23; no single printed relation turns it into 84. 117: no - the sum of 17 through 22; it is not a step toward the key.",
+  "shape_check": "The stem hands over: k is a whole number at least 12 (by the bound above), so the sum is a positive integer (all four survive); no parity, no multiple, no cap. All four survive together.",
+  "interior_parity_check": "The two middle values are 98 and 103: integers of two and three digits (within one digit), neither cleaner. The key 84 is not one of them.",
+  "arith_class_check": "Parity: 84 and 98 even, 103 and 117 odd - the key is not alone. Multiples of 3 (Priya's price): 84 and 117. Multiples of 8 (Marco's price): none. Multiples of 7: 84 and 98. No class isolates the key.",
+  "idea_probe": {
+   "at": "2026-10-23T00:31:10.185Z",
+   "nearest": "912d9f5b (live v26 B1, Ana and Ben savings, k weekly deposit, balances equal at t ≥ 10, count of k): a degenerate-parameter equality of two linear models; here two separate budget inequalities are compared by how many positive integer solutions each has, the sign of each is the decision, and the ask is a sum. Names changed so no boilerplate is shared."
+  },
+  "dup_search": {
+   "queries": [
+    "notebooks|pens&k dollars|gift",
+    "more possible|more values|more choices&whole",
+    "Ana|Ben&k&whole number"
+   ],
+   "hits_read": 2,
+   "nearest": "912d9f5b / SM26L-B1 (same row): different mechanism and ask"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, how many options remain legal from the stem alone? All four: the only cheap bound (each k at least 12) is below the key and every distractor is above it. Could a student tell from the stem which way the errors go, and does one bound strike all three? No: the condition is an exact difference, the sign misreadings move step points in ways the stem does not show, and missing the isolated value (66, not offered) lands below; no bound strikes any distractor. The key is at natural try 1: could a student confirm an option against the stem in one routine step? No - 84 is a sum over a set of k; to check it a student must trace both step functions and find all four values, including the isolated k = 18. Is the bypass really what skipping THIS item's decision point gives? Yes: the decision is strict vs non-strict at each person's step point; a student who does not make it and treats both totals as 'at most' gets the set 17, 18, 20, 21, 22 and the sum 98. (read) lines answered: PROBE - see above; STRUCT - no extremum or universal condition in the stem; BOUND - see cheap_bound_check; FAR - see far_distractor; INTER - see intermediate_check. D4 (extreme key on a 'sum of all' ask): the slot fixes rank 1; the sum is not signed by the structure because the set of k is not one block and the offered errors both add and remove values (98 drops 23 and adds 17 and 20), so an extreme-position guess has no structural support."
+  }
+ },
+ {
+  "id": "SM31L-C4",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Matching integer-solution counts of two compound inequalities",
+  "prompt": "-17 ≤ 3x - 2 < 10\n-35 < 15 - 5x ≤ 2k - 10\nIf the two compound inequalities above are satisfied by the same number of integers, what is the sum of all possible integer values of the constant k?",
+  "choices": [
+   "17",
+   "27",
+   "33",
+   "42"
+  ],
+  "correct_answer": "33",
+  "explanation": "First inequality: adding 2 gives -15 ≤ 3x < 12, so -5 ≤ x < 4. The end -5 IS a solution (≤) and 4 is NOT (<), so the integer solutions are -5, -4, ..., 3: nine of them. Second inequality: subtracting 15 gives -50 < -5x ≤ 2k - 25, and dividing by -5 reverses both signs: 10 > x ≥ (25 - 2k)/5. So x < 10 (10 itself is NOT a solution) and x ≥ (25 - 2k)/5 (that end IS attained when it is an integer). If m is the least integer with m ≥ (25 - 2k)/5, the integer solutions are m, m + 1, ..., 9, which is 10 - m of them. For nine solutions, m = 1: 1 must be a solution and 0 must not, so 0 < (25 - 2k)/5 ≤ 1, that is, 0 < 25 - 2k ≤ 5, so 10 ≤ k < 12.5. The integer values are k = 10, 11, 12, and their sum is 33. Choice 17 comes from treating -5 as not a solution of the first inequality (eight solutions), which gives k = 8, 9. Choice 27 comes from treating 4 as a solution of the first inequality (ten solutions), which gives k = 13, 14. Choice 42 comes from reversing the sign when dividing by -5 but not changing the sign of the right side, x ≥ (2k - 25)/5, which gives k = 13, 14, 15.",
+  "solve": "const nA=(()=>{let c=0; for (let x=-100;x<=100;x++){ const t=3*x-2; if (-17<=t && t<10) c++; } return c})(); let s=0; for (let k=-300;k<=300;k++){ let c=0; for (let x=-200;x<=200;x++){ const t=15-5*x; if (-35<t && t<=2*k-10) c++; } if (c===nA) s+=k; } return s;",
+  "distractor_solve": {
+   "17": "const nA=(()=>{let c=0; for (let x=-100;x<=100;x++){ const t=3*x-2; if (-17<t && t<10) c++; } return c})(); let s=0; for (let k=-300;k<=300;k++){ let c=0; for (let x=-200;x<=200;x++){ const t=15-5*x; if (-35<t && t<=2*k-10) c++; } if (c===nA) s+=k; } return s;",
+   "27": "const nA=(()=>{let c=0; for (let x=-100;x<=100;x++){ const t=3*x-2; if (-17<=t && t<=10) c++; } return c})(); let s=0; for (let k=-300;k<=300;k++){ let c=0; for (let x=-200;x<=200;x++){ const t=15-5*x; if (-35<t && t<=2*k-10) c++; } if (c===nA) s+=k; } return s;",
+   "42": "const nA=(()=>{let c=0; for (let x=-100;x<=100;x++){ const t=3*x-2; if (-17<=t && t<10) c++; } return c})(); let s=0; for (let k=-300;k<=300;k++){ let c=0; for (let x=-200;x<=200;x++){ if (x<10 && x>=(2*k-25)/5) c++; } if (c===nA) s+=k; } return s;"
+  },
+  "mechanism": [
+   "count the fixed inequality's integer solutions with its attained end",
+   "reverse the second inequality and keep which end is attained",
+   "set the least solution so the counts match",
+   "solve for k and add the integer values"
+  ],
+  "mech": "integer-count-condition",
+  "ask": "sum",
+  "quantity_asked": "the sum of all integer k for which the two compound inequalities have equally many integer solutions",
+  "setup": {
+   "i": "k in the non-strict end of the second of two compound inequalities (negative x-coefficient); the first compound inequality is fixed",
+   "ii": "the two inequalities have the same number of integer solutions",
+   "iii": "sum of all integer values of k"
+  },
+  "bypass_option": "17",
+  "off_by_one_options": [],
+  "plugback": {
+   "substitutable": false,
+   "why": "The ask is the sum of a set of k values; 30 cannot be substituted into either inequality. Confirming it requires finding every k that gives nine solutions, which is the full solution. The key is at try 3 in ascending order."
+  },
+  "distractor_meta": {
+   "17": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Dropping the attained end -5 lowers the target count to eight; which way that moves k depends on how the second inequality's count changes with k, which the stem does not show until it is reversed and solved."
+   },
+   "27": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Including 4 raises the target to ten, which moves the k values UP (13, 14) but leaves only two of them, so the sum falls; a student cannot see from the stem that a larger target gives a smaller sum."
+   },
+   "42": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Keeping the right side's sign after dividing by -5 moves the boundary to the mirror side; the stem gives no hint whether that sends k up or down."
+   }
+  },
+  "structure_check": "Not an extreme key (rank 3). The condition is an equality of two counts, with no extremum or universal bound; the target count moving up (27) and down (17) both lower the sum here, but for different reasons (fewer k values vs smaller k values), and the sign slip raises it.",
+  "cheap_bound_check": "Not an extreme key. For reference, the cheapest bound is that the second inequality needs at least one solution (x = 9): 15 - 45 ≤ 2k - 10, so k ≥ -10; every option is consistent with that, so nothing is struck.",
+  "intermediate_check": "17: no - it is the sum for a different target count (eight), not a value the key follows from. 27: no - the sum for ten solutions. 42: no - the sum from a mis-signed boundary. The solved intermediates (9 solutions, m = 1, 10 ≤ k < 12.5) are not options.",
+  "shape_check": "The stem hands over: the answer is an integer sum (all four survive); no sign or parity is forced; k ≥ -10 from the cheap bound leaves all four. All four survive together.",
+  "interior_parity_check": "The two middle values are 27 and 33: both two-digit odd integers of the same complexity; neither is round, neither is cleaner.",
+  "arith_class_check": "Parity: 17, 27, 33 odd and 42 even - the key is with the majority. Multiples of 3: 27, 33, 42. Multiples of 5 (the printed coefficient): none. Primes: 17 only. No class the stem implies isolates the key.",
+  "idea_probe": {
+   "at": "2026-10-23T00:47:21.250Z",
+   "nearest": "e0559aab (live v26 C3: system 4 - 3x ≤ 22 and 4x < k - 30, the integer solutions sum to -18, sum of k): there one system's solution set is pinned by the sum of its solutions; here two separate compound inequalities must have equally many integer solutions, both need a reversal, and the attained ends of both decide the count - a different condition on a different structure."
+  },
+  "dup_search": {
+   "queries": [
+    "inequalit&sum of all integer values of k"
+   ],
+   "hits_read": 3,
+   "nearest": "e0559aab / SM26L-C3 (same row, live and prior) - different condition and structure, see idea_probe"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, how many options remain legal from the stem alone? All four: they are integers consistent with the only cheap bound (k ≥ -10). Natural try is 3, so this is not a try 1-2 slot, and a sum of k values cannot be confirmed by substituting an option. Is the bypass really what skipping THIS item's decision point gives? Yes: the decision is which ends are attained; a student who does not decide it and treats the first inequality's -5 like its strict end (both excluded) counts eight solutions and gets 17. The second endpoint error (including 4) also lands below the key but through a different route (the k values rise while their number falls), so a student cannot read a direction off the stem. (read) lines answered: any PAIR / DPAIR soft lines between the key and an option are coincidences of the endpoint shifts, not relations a student can read from the stem."
+  }
+ },
+ {
+  "id": "SM31L-C5",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Range of a constant from two integer-count conditions",
+  "prompt": "2k - 6 < 7x - 11 ≤ 10\nIn the compound inequality above, k is a constant. The inequality has at least 5 negative integer solutions and at most 16 integer solutions in all. What is the greatest possible integer value of k minus the least possible integer value of k?",
+  "choices": [
+   "27",
+   "30",
+   "31",
+   "41"
+  ],
+  "correct_answer": "27",
+  "explanation": "From 7x - 11 ≤ 10, 7x ≤ 21, so x ≤ 3, and 3 itself IS a solution (the sign is ≤). From 2k - 6 < 7x - 11, 7x > 2k + 5, so x > (2k + 5)/7, a strict bound. The solutions are the integers greater than (2k + 5)/7 up to and including 3. At least 5 negative solutions means -5, -4, -3, -2, -1 are all solutions, so -5 > (2k + 5)/7: 2k + 5 < -35, k < -20, so k ≤ -21. At most 16 solutions in all means the solutions run from at least -12 up to 3 (that is 16 integers), so -13 must NOT be a solution: -13 ≤ (2k + 5)/7, 2k + 5 ≥ -91, k ≥ -48. So k runs from -48 to -21, and the difference is -21 - (-48) = 27. Choice 30 treats 3 as not a solution (x < 3), which lets the solutions start one integer lower and gives k ≥ -51. Choice 31 counts 0 as a negative solution, so only -4 needs to be a solution and k can rise to -17. Choice 41 solves 7x - 11 ≤ 10 as 7x ≤ 10 - 11, which puts the top solution at -1 and gives k ≥ -62.",
+  "solve": "const S=(o)=>{const ks=[]; for (let k=-300;k<=300;k++){ let neg=0,tot=0; for (let x=-150;x<=150;x++){ const t=7*x-11; const lo=2*k-6<t; const up=t<=10; if (lo&&up){ tot++; if (x<0) neg++; } } if (neg>=5 && tot<=16) ks.push(k); } return ks[ks.length-1]-ks[0]; }; return S();",
+  "distractor_solve": {
+   "30": "const S=(o)=>{const ks=[]; for (let k=-300;k<=300;k++){ let neg=0,tot=0; for (let x=-150;x<=150;x++){ const t=7*x-11; const lo=2*k-6<t; const up=t<10; if (lo&&up){ tot++; if (x<0) neg++; } } if (neg>=5 && tot<=16) ks.push(k); } return ks[ks.length-1]-ks[0]; }; return S();",
+   "31": "const S=(o)=>{const ks=[]; for (let k=-300;k<=300;k++){ let neg=0,tot=0; for (let x=-150;x<=150;x++){ const t=7*x-11; const lo=2*k-6<t; const up=t<=10; if (lo&&up){ tot++; if (x<0||x===0) neg++; } } if (neg>=5 && tot<=16) ks.push(k); } return ks[ks.length-1]-ks[0]; }; return S();",
+   "41": "const S=(o)=>{const ks=[]; for (let k=-300;k<=300;k++){ let neg=0,tot=0; for (let x=-150;x<=150;x++){ const t=7*x-11; const lo=2*k-6<t; const up=x<=(10-11)/7; if (lo&&up){ tot++; if (x<0) neg++; } } if (neg>=5 && tot<=16) ks.push(k); } return ks[ks.length-1]-ks[0]; }; return S();"
+  },
+  "mechanism": [
+   "solve each side, keeping the attained end x = 3",
+   "at least 5 negatives fixes the top value of k",
+   "at most 16 in all fixes the bottom value of k through the attained end",
+   "subtract the two extreme values of k"
+  ],
+  "mech": "integer-count-condition",
+  "ask": "difference",
+  "quantity_asked": "the greatest possible integer k minus the least possible integer k for which the inequality has at least 5 negative integer solutions and at most 16 integer solutions",
+  "setup": {
+   "i": "2k in the strict lower end of a compound inequality with positive x-coefficient; the other end is a fixed attained bound",
+   "ii": "at least 5 negative integer solutions and at most 16 integer solutions in all",
+   "iii": "difference between the greatest and least integer values of k"
+  },
+  "bypass_option": "30",
+  "off_by_one_options": [],
+  "plugback": {
+   "substitutable": false,
+   "why": "The key is at try 1 ascending, but the ask is a difference between two values of k found from two different conditions; 27 cannot be substituted into the inequality. Checking it needs both extreme values of k, which is the full solution."
+  },
+  "distractor_meta": {
+   "30": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Leaving out the attained end x = 3 removes a solution, which a student would expect to tighten things; here it gives the at-most-16 condition room for one more integer at the bottom, so k's range widens. The stem does not show that."
+   },
+   "31": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Counting 0 as negative makes the at-least-5 condition easier, raising the top value of k; whether that raises or lowers the difference depends on which end of k's range the negative condition controls, which is not visible in the stem."
+   },
+   "41": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Subtracting 11 instead of adding it moves the fixed top solution down to -1; the stem gives no signal that this widens rather than narrows the range of k."
+   }
+  },
+  "counter_error": {
+   "error_kind": "other",
+   "solve": "const S=(o)=>{const ks=[]; for (let k=-300;k<=300;k++){ let neg=0,tot=0; for (let x=-150;x<=150;x++){ const t=7*x-11; const lo=2*k-6<t; const up=t<=10; if (lo&&up){ tot++; if (x<0) neg++; } } if (neg>5 && tot<=16) ks.push(k); } return ks[ks.length-1]-ks[0]; }; return S();",
+   "direction": "below",
+   "why": "Reading 'at least 5 negative solutions' as 'more than 5' requires -6 to be a solution, which lowers the top value of k to -24 and gives 24, below the key and not an option."
+  },
+  "far_distractor": {
+   "option": "30",
+   "natural_side": "below",
+   "why": "Treating the attained end x = 3 as excluded is an omission, which ordinarily removes room and shrinks a range; here it frees one more integer at the bottom under the at-most-16 condition, so the range of k grows to 30, above the key."
+  },
+  "structure_check": "The two conditions fix opposite ends of k's range (the negative floor fixes the top, the total cap fixes the bottom), so no single 'every slip shrinks it' structure exists: 'more than 5' shrinks the range (24) while the offered errors widen it. Nothing in the stem is an extremum over all errors.",
+  "cheap_bound_check": "The cheapest stem bound is that the at-least-5-negatives condition alone forces k ≤ -21 and gives no lower limit, so it bounds nothing about the difference; the at-most-16 condition alone gives k ≥ -48 and no upper limit. Neither strikes any option; only the two together give a difference, and that is the full solution.",
+  "intermediate_check": "30: no - it is the difference under a different top solution (2 instead of 3), not a value 27 follows from. 31: no - the difference with -17 as the top k. 41: no - the difference with -62 as the bottom k. The intermediates (-21, -48, -5, -13) are not options.",
+  "shape_check": "The stem hands over: the answer is a nonnegative integer (all four survive); no parity or multiple is implied. All four survive together.",
+  "interior_parity_check": "The two middle values are 30 and 31: two-digit integers of the same complexity; the key 27 is not one of them. 30 is round but is a distractor.",
+  "arith_class_check": "Parity: 30 even, 27, 31, 41 odd - the key is with the majority. Multiples of 7 (printed): none. Multiples of 3: 27 and 30. Primes: 31 and 41. No class isolates the key.",
+  "idea_probe": {
+   "at": "2026-10-23T01:26:30.356Z",
+   "nearest": "4fd22741 (live v26 C5, -4 ≤ kx ≤ 45, exactly 3 integers, difference of k): there k multiplies x and the two branches are the signs of k; here k only moves one end, and the two ends of k's range come from two different count conditions (a negative-solution floor and a total cap through the attained end)."
+  },
+  "dup_search": {
+   "queries": [],
+   "hits_read": 7,
+   "nearest": "4fd22741 / SM26L-C5 - different setup, see idea_probe"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, how many options remain legal from the stem alone? All four: each condition alone bounds k on one side only, so no cheap bound limits the difference. Could a student tell from the stem which way the errors go, and does one bound strike all three? No - the two conditions control opposite ends of k's range, 'more than 5' narrows the range (24, not offered) while the offered slips widen it, and no single bound strikes anything. The key is at natural try 1: could a student confirm an option against the stem in one routine step? No - 27 is a difference between two values of k from two separate conditions; neither value can be recovered from 27 alone. Is the bypass really what skipping THIS item's decision point gives? Yes: the decision is whether the end x = 3 is attained; a student who treats both ends as strict counts the 16 solutions from 2 down and gets 30. (read) lines answered: any PAIR / DPAIR soft line between the key and an option is a coincidence of the edge shifts, not a relation readable from the stem. D4 (read, extreme key on an ask worded with 'least'): the ask is a difference, fixed at rank 1 by the slot; the two ends of k's range come from different conditions, and the offered errors move different ends, so the difference is not signed by the structure."
+  }
+ },
+ {
+  "id": "SM31L-C6",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Overlap of a sliding window with a fixed solution set",
+  "prompt": "-21 < -5 - 2x ≤ 9\n2k ≤ 5x - 8 < 2k + 19\nIn the system of inequalities above, k is a constant, and exactly two integers satisfy both inequalities. How much greater is the greatest possible integer value of k than the least possible integer value of k?",
+  "choices": [
+   "2",
+   "6",
+   "36",
+   "39"
+  ],
+  "correct_answer": "39",
+  "explanation": "First inequality: adding 5 gives -16 < -2x ≤ 14, and dividing by -2 reverses both signs: 8 > x ≥ -7. So its integer solutions are -7, -6, ..., 7; the end -7 IS included (it came from ≤) and 8 is NOT. Second inequality: (2k + 8)/5 ≤ x < (2k + 27)/5, a window of length 19/5 = 3.8 that slides as k changes and always holds 3 or 4 integers. If the whole window sat inside -7, ..., 7 there would be at least 3 common integers, so exactly two happens only where the window hangs over an end of -7, ..., 7. Left end: the common integers must be -7 and -6, so -6 < (2k + 27)/5 ≤ -5 and (2k + 8)/5 ≤ -7, which give -28.5 < k ≤ -26: k = -28, -27, -26. Right end: the common integers must be 6 and 7, so 5 < (2k + 8)/5 ≤ 6 (and 7 is below the window's top), which gives 8.5 < k ≤ 11: k = 9, 10, 11. The greatest value is 11 and the least is -28, so the difference is 39. Choice 36 treats -7 as not a solution of the first inequality, which moves the left cluster to k = -25, -24. Choice 6 is the number of values of k, not the difference. Choice 2 finds only the right-end cluster (9 to 11) and misses the window hanging over the left end.",
+  "solve": "const K=(ex,lo)=>{const ks=[]; for (let k=-300;k<=300;k++){ let n=0; for (let x=-150;x<=150;x++){ const t=-5-2*x; const P=(lo?-21<=t:-21<t)&&(ex?t<9:t<=9); const u=5*x-8; const Q=(2*k<=u)&&(u<2*k+19); if(P&&Q) n++; } if(n===2) ks.push(k);} return ks;}; const s=K(false,false); return s[s.length-1]-s[0];",
+  "distractor_solve": {
+   "2": "const K=(ex,lo)=>{const ks=[]; for (let k=-300;k<=300;k++){ let n=0; for (let x=-150;x<=150;x++){ const t=-5-2*x; const P=(lo?-21<=t:-21<t)&&(ex?t<9:t<=9); const u=5*x-8; const Q=(2*k<=u)&&(u<2*k+19); if(P&&Q) n++; } if(n===2) ks.push(k);} return ks;}; const s=K(false,false).filter(k=>k>0); return s[s.length-1]-s[0];",
+   "6": "const K=(ex,lo)=>{const ks=[]; for (let k=-300;k<=300;k++){ let n=0; for (let x=-150;x<=150;x++){ const t=-5-2*x; const P=(lo?-21<=t:-21<t)&&(ex?t<9:t<=9); const u=5*x-8; const Q=(2*k<=u)&&(u<2*k+19); if(P&&Q) n++; } if(n===2) ks.push(k);} return ks;}; return K(false,false).length;",
+   "36": "const K=(ex,lo)=>{const ks=[]; for (let k=-300;k<=300;k++){ let n=0; for (let x=-150;x<=150;x++){ const t=-5-2*x; const P=(lo?-21<=t:-21<t)&&(ex?t<9:t<=9); const u=5*x-8; const Q=(2*k<=u)&&(u<2*k+19); if(P&&Q) n++; } if(n===2) ks.push(k);} return ks;}; const s=K(true,false); return s[s.length-1]-s[0];"
+  },
+  "mechanism": [
+   "reverse the fixed inequality and keep the attained end x = -7",
+   "the second inequality is a window of fixed width sliding with k",
+   "exactly two common integers only where the window hangs over an end",
+   "take the greatest and least k across both ends"
+  ],
+  "mech": "integer-count-condition",
+  "ask": "difference",
+  "quantity_asked": "the greatest possible integer k minus the least possible integer k for which exactly two integers satisfy both inequalities",
+  "setup": {
+   "i": "k in both ends of the second inequality of a system at the same rate (a sliding window of fixed width); the first inequality is a fixed compound",
+   "ii": "exactly two integers satisfy both inequalities",
+   "iii": "difference between the greatest and least integer values of k"
+  },
+  "bypass_option": "36",
+  "off_by_one_options": [],
+  "plugback": {
+   "substitutable": false,
+   "why": "The ask is a difference across two separate clusters of k; 39 cannot be substituted into either inequality, and checking it needs both clusters. Ascending order reaches the key only at try 4."
+  },
+  "distractor_meta": {
+   "2": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Missing the left-end cluster; nothing in the stem says there are two places where the window can hang over."
+   },
+   "6": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Answering the count of k values instead of the spread; whether a count exceeds or falls short of a spread depends on whether the values are consecutive, which the stem does not reveal."
+   },
+   "36": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Dropping the attained end -7 shortens the fixed solution set on the left, which moves the left cluster of k; the stem does not show which way that moves the difference."
+   }
+  },
+  "counter_error": {
+   "error_kind": "other",
+   "solve": "const K=(ex,lo)=>{const ks=[]; for (let k=-300;k<=300;k++){ let n=0; for (let x=-150;x<=150;x++){ const t=-5-2*x; const P=(lo?-21<=t:-21<t)&&(ex?t<9:t<=9); const u=5*x-8; const Q=(2*k<=u)&&(u<2*k+19); if(P&&Q) n++; } if(n===2) ks.push(k);} return ks;}; const s=K(false,true); return s[s.length-1]-s[0];",
+   "direction": "above",
+   "why": "Treating -21 < ... as ≤ (so that 8 becomes a solution of the first inequality) moves the right cluster up to k = 12, 13 and gives 41, above the key and not an option."
+  },
+  "far_distractor": {
+   "option": "6",
+   "natural_side": "above",
+   "why": "Reporting the number of k values instead of their spread ordinarily overshoots by one (for consecutive values the count is the difference plus 1); here the values form two clusters far apart, so the count lands far below the spread."
+  },
+  "structure_check": "The spread comes from two clusters at opposite ends of the fixed set; there is no extremum or universal condition in the stem, and errors move both ways - the misread strict end raises it (41) while the misread attained end lowers it (36).",
+  "cheap_bound_check": "Cheapest bound: the window must meet -7, ..., 7 at all, which needs roughly -33 ≤ k ≤ 13, so the spread is at most about 46. That is above the key; it strikes no option and does not identify 39 as the largest legal value.",
+  "intermediate_check": "36: no - a spread over a different left cluster, not a step toward 39. 6: no - the count of the six values, not a value 39 follows from by one printed relation. 2: it is the spread of the right cluster alone; 39 needs the left cluster's least value (-28), found separately.",
+  "shape_check": "The stem hands over: a nonnegative integer (all four survive); no parity or cap below 39. All four survive together.",
+  "interior_parity_check": "The two middle values are 6 and 36: integers of one and two digits (within one digit), neither cleaner. The key 39 is not one of them.",
+  "arith_class_check": "Parity: 2, 6, 36 even and 39 odd - the key is the only odd option, but the stem gives no parity for the spread (it is the difference of an odd and an even k here, which a student cannot know in advance). Multiples of 3: 6, 36, 39. Sign: all positive. No class the stem implies isolates the key.",
+  "idea_probe": {
+   "at": "2026-10-23T01:27:15.004Z",
+   "nearest": "No live row puts k at both ends of a window; nearest is e0559aab (live v26 C3, system 4 - 3x ≤ 22 and 4x < k - 30, sum of solutions -18, sum of k): k moves one bound there, the condition is a sum, the ask a sum - here a fixed-width window slides across a fixed set and the two-cluster spread is the decision."
+  },
+  "dup_search": {
+   "queries": [
+    "system of inequalities&integer&k"
+   ],
+   "hits_read": 2,
+   "nearest": "e0559aab / SM26L-C3 - see idea_probe"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, how many options remain legal from the stem alone? All four: the cheapest bound (window meets the fixed set at all) caps the spread at about 46 and strikes none. Could a student tell from the stem which way the errors go, and does one bound strike all three? No - one endpoint misreading lowers the spread (36), the other raises it (41, not offered); a count-for-spread confusion lands below only because of the gap; no bound strikes any. Natural try is 4, and the spread across two clusters cannot be checked by substituting an option. Is the bypass really what skipping THIS item's decision point gives? Yes: the decision is which ends of the reversed fixed inequality are attained; a student who treats -7 like the strict end 8 gets the left cluster -25, -24 and the spread 36. Parity note: 39 is the only odd option; the spread's parity is not implied by the stem. (read) lines: any PAIR / DPAIR soft line between the key and an option is a coincidence, not a relation readable from the stem. D4 (read, extreme key on an ask worded with 'greatest'): the ask is a difference, fixed at rank 4 by the slot; the cheapest bound (about 46) sits above the key, so the key is not identifiable as the largest legal value."
+  }
+ },
+ {
+  "id": "SM31L-C7",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Range of a constant from floor counts in a linear model",
+  "prompt": "In a building, floor x is 5x meters above street level, where x is an integer; negative values of x are underground floors, and floor 0 is at street level. A new elevator will stop at every floor whose height, in meters, is at least 2k - 13 and less than 20, where k is a constant. The elevator must stop at street level and at no more than 16 floors in all. How much greater is the greatest possible integer value of k than the least possible integer value of k?",
+  "choices": [
+   "5",
+   "31",
+   "32",
+   "39"
+  ],
+  "correct_answer": "31",
+  "explanation": "The elevator stops at floor x when 2k - 13 ≤ 5x < 20. From 5x < 20, x < 4, so the top stop is floor 3 (floor 4, at exactly 20 meters, is not included). From 2k - 13 ≤ 5x, x ≥ (2k - 13)/5, and a floor exactly at height 2k - 13 IS a stop. Street level: floor 0 must be a stop, so 2k - 13 ≤ 0, k ≤ 6.5, so k ≤ 6. No more than 16 floors: the stops run from the lowest stop up to floor 3, so the lowest stop can be no lower than floor -12 (floors -12 through 3 are 16 floors). Floor -13, at -65 meters, must NOT be a stop: -65 < 2k - 13, so 2k > -52, k > -26, so k ≥ -25. So k runs from -25 to 6, and 6 - (-25) = 31. Choice 32 treats 'at least 2k - 13' as 'more than 2k - 13', which lets k = -26 work (floor -13 would sit exactly at the excluded height). Choice 5 uses 2k - 13 as a floor number instead of a height, x ≥ 2k - 13, which gives k from 1 to 6. Choice 39 drops the street-level requirement and only asks that the elevator stop somewhere (floor 3 needs 2k - 13 ≤ 15, so k ≤ 14).",
+  "solve": "const D=(kEx,wv,noZ)=>{const ks=[]; for (let k=-300;k<=300;k++){ let tot=0,z=false,any=false; for (let x=-150;x<=150;x++){ const h=5*x; const lo=wv? 2*k-13<=x : (kEx? 2*k-13<h : 2*k-13<=h); const up=h<20; if(lo&&up){ any=true; tot++; if(x===0) z=true; } } if ((noZ?any:z) && tot<=16) ks.push(k);} return ks[ks.length-1]-ks[0];}; return D(false,false,false);",
+  "distractor_solve": {
+   "5": "const D=(kEx,wv,noZ)=>{const ks=[]; for (let k=-300;k<=300;k++){ let tot=0,z=false,any=false; for (let x=-150;x<=150;x++){ const h=5*x; const lo=wv? 2*k-13<=x : (kEx? 2*k-13<h : 2*k-13<=h); const up=h<20; if(lo&&up){ any=true; tot++; if(x===0) z=true; } } if ((noZ?any:z) && tot<=16) ks.push(k);} return ks[ks.length-1]-ks[0];}; return D(false,true,false);",
+   "32": "const D=(kEx,wv,noZ)=>{const ks=[]; for (let k=-300;k<=300;k++){ let tot=0,z=false,any=false; for (let x=-150;x<=150;x++){ const h=5*x; const lo=wv? 2*k-13<=x : (kEx? 2*k-13<h : 2*k-13<=h); const up=h<20; if(lo&&up){ any=true; tot++; if(x===0) z=true; } } if ((noZ?any:z) && tot<=16) ks.push(k);} return ks[ks.length-1]-ks[0];}; return D(true,false,false);",
+   "39": "const D=(kEx,wv,noZ)=>{const ks=[]; for (let k=-300;k<=300;k++){ let tot=0,z=false,any=false; for (let x=-150;x<=150;x++){ const h=5*x; const lo=wv? 2*k-13<=x : (kEx? 2*k-13<h : 2*k-13<=h); const up=h<20; if(lo&&up){ any=true; tot++; if(x===0) z=true; } } if ((noZ?any:z) && tot<=16) ks.push(k);} return ks[ks.length-1]-ks[0];}; return D(false,false,true);"
+  },
+  "mechanism": [
+   "convert the height window into floor numbers, top floor 3 from the strict bound",
+   "street level fixes the greatest k",
+   "at most 15 floors fixes the least k through the attained lower height",
+   "subtract"
+  ],
+  "mech": "integer-count-condition",
+  "ask": "difference",
+  "quantity_asked": "the greatest possible integer k minus the least possible integer k for which the elevator stops at street level and at no more than 16 floors",
+  "setup": {
+   "i": "k sets the lowest height an elevator serves in a building whose floors are numbered with integers (height 5x); the top is a fixed strict height",
+   "ii": "the elevator stops at street level and at no more than 16 floors in all",
+   "iii": "difference between the greatest and least integer values of k"
+  },
+  "bypass_option": "32",
+  "off_by_one_options": [
+   "32"
+  ],
+  "plugback": {
+   "substitutable": false,
+   "why": "The ask is a difference between two values of k from two different conditions; 31 cannot be checked by substituting it anywhere. Ascending order reaches the key at try 2, but confirming it needs both extreme values of k, which is the whole solution."
+  },
+  "distractor_meta": {
+   "5": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Treating the height 2k - 13 as a floor number changes the scale by a factor of 5 on one condition only; the stem gives no hint of the net direction."
+   },
+   "32": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Reading 'at least' as 'more than' removes the floor at exactly height 2k - 13; whether that lets the range of k grow or shrink depends on which end it affects, which the stem does not show."
+   },
+   "39": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Dropping the street-level requirement removes the condition that sets the top of k's range; a student cannot see from the stem that the replacement condition is looser."
+   }
+  },
+  "structure_check": "Not an extreme key (rank 2). The two conditions fix opposite ends of k's range, and errors move both ways (4 below, 27 and 36 above).",
+  "cheap_bound_check": "Not an extreme key. Cheapest bound: the street-level stop alone gives k ≤ 6 and nothing below, so it bounds no difference; no option is struck.",
+  "intermediate_check": "5: no - a difference under a different reading, not a step toward 31. 32: no - the difference with -26 as the least k. 39: no - the difference with 14 as the greatest k. The intermediates (3, 6, -25, -13) are not options.",
+  "shape_check": "The stem hands over: a nonnegative integer (all four survive). Nothing else is forced.",
+  "interior_parity_check": "The two middle values are 31 and 32: two-digit integers of the same complexity; neither is cleaner.",
+  "arith_class_check": "Parity: 32 even, 5, 31, 39 odd - the key is with the majority. Multiples of 5 (printed): 5 only. Primes: 5 and 31. No class the stem implies isolates the key.",
+  "idea_probe": {
+   "at": "2026-10-23T01:32:56.434Z",
+   "nearest": "2f20dfb7 (live math-v3, freight elevator load 400 to 1190 kg, count of crew sizes): fixed numbers, the ask is a count of n; here k sets the elevator's lowest height in a floor-numbering model, street level and a floor cap fix the two ends of k's range, and the ask is their difference."
+  },
+  "dup_search": {
+   "queries": [],
+   "hits_read": 12,
+   "nearest": "2f20dfb7 - different setup, see idea_probe"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, how many options remain legal from the stem alone? All four: the only cheap bound (k ≤ 6 from street level) gives no limit on a difference. The key is at natural try 2: could a student confirm an option against the stem in one routine step? No - 31 is a difference of two values of k fixed by two separate conditions; neither value is recoverable from 31. Is the bypass really what skipping THIS item's decision point gives? Yes: the decision is whether the floor at exactly height 2k - 13 is a stop; a student who does not decide it and treats both bounds as strict gets 32. Varied from C3 and C4: no comparison of two solution counts - the conditions are a membership (street level) and a single cap on the number of floors. (read) lines: any PAIR / DPAIR soft line between the key and an option is a coincidence of the edge shifts, not a relation readable from the stem. Renumbered in run 2 (key was 26, shared with B4): U 25 -> 20, cap 15 -> 16; same structure and error paths."
+  }
+ },
+ {
+  "id": "SM31L-C8",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Integers in one solution set but not another",
+  "prompt": "-17 ≤ -9 - 2x < 9\n5x - 2k > 4\nIn the inequalities above, k is a constant. Exactly 4 integers satisfy the first inequality and fail to satisfy the second. What is the least possible integer value of k?",
+  "choices": [
+   "-29",
+   "-17",
+   "-14",
+   "13"
+  ],
+  "correct_answer": "-14",
+  "explanation": "First inequality: adding 9 gives -8 ≤ -2x < 18, and dividing by -2 reverses both signs: 4 ≥ x > -9. So its integer solutions are -8, -7, ..., 4; the end 4 IS included (it came from ≤) and -9 is NOT (it came from <). Second inequality: 5x > 2k + 4, so x > (2k + 4)/5. An integer fails the second inequality exactly when x ≤ (2k + 4)/5. So the integers that satisfy the first but fail the second run upward from -8 to the greatest integer not above (2k + 4)/5. For exactly 4 of them they must be -8, -7, -6, -5: -5 ≤ (2k + 4)/5 < -4. Multiplying by 5: -25 ≤ 2k + 4 < -20, so -29 ≤ 2k < -24, that is, -14.5 ≤ k < -12. The integer values are -14 and -13, and the least is -14. Choice -17 treats -9 as a solution of the first inequality, so the four integers would be -9, -8, -7, -6. Choice -29 drops the 2 in 2k (solving 5x - k > 4). Choice 13 moves 2k to the other side with the wrong sign, x > (4 - 2k)/5.",
+  "solve": "const cnt=(k,hiIn,mode)=>{let n=0; for (let x=-150;x<=150;x++){ const t=-9-2*x; const P=(-17<=t)&&(hiIn?t<=9:t<9); let Q=5*x-2*k>4; if(mode==='slip') Q=5*x+2*k>4; if(mode==='nok') Q=5*x-k>4; if(P&&!Q) n++; } return n;}; const L=(hiIn,mode)=>{ for (let k=-300;k<=300;k++) if (cnt(k,hiIn,mode)===4) return k; return null; }; return L(false,'');",
+  "distractor_solve": {
+   "13": "const cnt=(k,hiIn,mode)=>{let n=0; for (let x=-150;x<=150;x++){ const t=-9-2*x; const P=(-17<=t)&&(hiIn?t<=9:t<9); let Q=5*x-2*k>4; if(mode==='slip') Q=5*x+2*k>4; if(mode==='nok') Q=5*x-k>4; if(P&&!Q) n++; } return n;}; const L=(hiIn,mode)=>{ for (let k=-300;k<=300;k++) if (cnt(k,hiIn,mode)===4) return k; return null; }; return L(false,'slip');",
+   "-17": "const cnt=(k,hiIn,mode)=>{let n=0; for (let x=-150;x<=150;x++){ const t=-9-2*x; const P=(-17<=t)&&(hiIn?t<=9:t<9); let Q=5*x-2*k>4; if(mode==='slip') Q=5*x+2*k>4; if(mode==='nok') Q=5*x-k>4; if(P&&!Q) n++; } return n;}; const L=(hiIn,mode)=>{ for (let k=-300;k<=300;k++) if (cnt(k,hiIn,mode)===4) return k; return null; }; return L(true,'');",
+   "-29": "const cnt=(k,hiIn,mode)=>{let n=0; for (let x=-150;x<=150;x++){ const t=-9-2*x; const P=(-17<=t)&&(hiIn?t<=9:t<9); let Q=5*x-2*k>4; if(mode==='slip') Q=5*x+2*k>4; if(mode==='nok') Q=5*x-k>4; if(P&&!Q) n++; } return n;}; const L=(hiIn,mode)=>{ for (let k=-300;k<=300;k++) if (cnt(k,hiIn,mode)===4) return k; return null; }; return L(false,'nok');"
+  },
+  "mechanism": [
+   "reverse the first inequality and keep which end is attained (-8 is the lowest solution, -9 is not)",
+   "failing the second means x ≤ (2k + 4)/5",
+   "the four integers are -8 to -5, so -5 ≤ (2k + 4)/5 < -4",
+   "solve for k and take the least integer"
+  ],
+  "mech": "integer-count-condition",
+  "ask": "least",
+  "quantity_asked": "the least integer k for which exactly 4 integers satisfy the first inequality and fail the second",
+  "setup": {
+   "i": "k in the constant of a second, one-sided inequality; the first inequality is a fixed compound with a negative x-coefficient",
+   "ii": "exactly 4 integers satisfy the first inequality but not the second",
+   "iii": "least integer value of k"
+  },
+  "bypass_option": "-17",
+  "off_by_one_options": [],
+  "plugback": {
+   "substitutable": true,
+   "verify": "const cnt=(k)=>{let n=0; for (let x=-150;x<=150;x++){ const t=-9-2*x; const P=(-17<=t)&&(t<9); const Q=5*x-2*k>4; if(P&&!Q) n++; } return n;}; return cnt(v)===4 && cnt(v-1)!==4;",
+   "why": "In ascending order the student tries -29 (no integers of the first set fail the second), then -17 (only three: -8, -7, -6), then -14 (four) - the key is reached at try 3, and confirming it also needs the check that -15 gives only three."
+  },
+  "distractor_meta": {
+   "13": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Moving 2k with the wrong sign mirrors the threshold; the stem gives no hint that k should be negative."
+   },
+   "-17": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Including -9 shifts the block of four integers down by one, which needs a smaller k; the stem does not show which end of the first inequality is attained, so the side is not signalled."
+   },
+   "-29": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Dropping the coefficient on k halves the step in k between thresholds; whether that pushes the least k up or down depends on the sign of the threshold, which the stem does not give."
+   }
+  },
+  "structure_check": "Not an extreme key (rank 3). 'Least' is asked, but the errors fall on both sides (two below, one above), and nothing in the stem says k is negative.",
+  "cheap_bound_check": "Not an extreme key. Cheapest bound: some integer of the first set must fail the second, so -8 ≤ (2k + 4)/5, k ≥ -22; that bound strikes -29 only after the first inequality is reversed and solved (the lowest solution -8 is the decision point), which is part of the work.",
+  "intermediate_check": "-17: no - the least k for a different block (-9 to -6), not a value -14 follows from. -29: no - from a dropped coefficient. 13: no - from a sign error. The intermediates (-8, -5, -14.5, -12) are not options.",
+  "shape_check": "The stem hands over: k is an integer, of unknown sign. All four options survive both properties.",
+  "interior_parity_check": "The two middle values are -17 and -14: negative two-digit integers of the same complexity; neither is cleaner.",
+  "arith_class_check": "Sign: three negative, one positive - the key is with the majority. Parity: -14 even, -29, -17, 13 odd - the key is the only even option, but the stem implies no parity for k (the integer values are -14 and -13). Multiples of 5 or 2: no class the stem makes special isolates the key.",
+  "idea_probe": {
+   "at": "2026-10-23T01:36:14.272Z",
+   "nearest": "SM26F-D03 (prior: count the integers satisfying -39 < 3x - 9 ≤ 36 but not 2(x - 7) < 5x + 1, no constant) and db17dcf1 (live: non-solutions of one inequality equal the solutions of another, find c): here k sits in the second inequality, the count of first-but-not-second integers is fixed at 4, and the least k is asked."
+  },
+  "dup_search": {
+   "queries": [],
+   "hits_read": 5,
+   "nearest": "SM26F-D03 / db17dcf1 - see idea_probe"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, how many options remain legal from the stem alone? All four: k's sign is not given, and the only bound that strikes anything (k ≥ -22, striking -29) needs the first inequality reversed and its lowest solution decided. Natural try is 3 (ascending, key rank 3), so a plug-back reaches the key only after rejecting -29 and -17, and it must also confirm that -15 fails. Is the bypass really what skipping THIS item's decision point gives? Yes: the decision is which end of the reversed first inequality is attained; a student who treats both ends as attained includes -9 and gets -17. Varied from C3 and C4: the condition is about integers in one solution set but not another, not about comparing two counts. Parity note: -14 is the only even option; the stem implies no parity. (read) lines: any PAIR / DPAIR soft line is a coincidence of the threshold shifts."
+  }
+ }
+]

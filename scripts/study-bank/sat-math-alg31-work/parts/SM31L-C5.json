@@ -1,0 +1,94 @@
+{
+ "id": "SM31L-C5",
+ "domain": "Algebra",
+ "difficulty": "hard",
+ "subskill": "Range of a constant from two integer-count conditions",
+ "prompt": "2k - 6 < 7x - 11 ≤ 10\nIn the compound inequality above, k is a constant. The inequality has at least 5 negative integer solutions and at most 16 integer solutions in all. What is the greatest possible integer value of k minus the least possible integer value of k?",
+ "choices": [
+  "27",
+  "30",
+  "31",
+  "41"
+ ],
+ "correct_answer": "27",
+ "explanation": "From 7x - 11 ≤ 10, 7x ≤ 21, so x ≤ 3, and 3 itself IS a solution (the sign is ≤). From 2k - 6 < 7x - 11, 7x > 2k + 5, so x > (2k + 5)/7, a strict bound. The solutions are the integers greater than (2k + 5)/7 up to and including 3. At least 5 negative solutions means -5, -4, -3, -2, -1 are all solutions, so -5 > (2k + 5)/7: 2k + 5 < -35, k < -20, so k ≤ -21. At most 16 solutions in all means the solutions run from at least -12 up to 3 (that is 16 integers), so -13 must NOT be a solution: -13 ≤ (2k + 5)/7, 2k + 5 ≥ -91, k ≥ -48. So k runs from -48 to -21, and the difference is -21 - (-48) = 27. Choice 30 treats 3 as not a solution (x < 3), which lets the solutions start one integer lower and gives k ≥ -51. Choice 31 counts 0 as a negative solution, so only -4 needs to be a solution and k can rise to -17. Choice 41 solves 7x - 11 ≤ 10 as 7x ≤ 10 - 11, which puts the top solution at -1 and gives k ≥ -62.",
+ "solve": "const S=(o)=>{const ks=[]; for (let k=-300;k<=300;k++){ let neg=0,tot=0; for (let x=-150;x<=150;x++){ const t=7*x-11; const lo=2*k-6<t; const up=t<=10; if (lo&&up){ tot++; if (x<0) neg++; } } if (neg>=5 && tot<=16) ks.push(k); } return ks[ks.length-1]-ks[0]; }; return S();",
+ "distractor_solve": {
+  "30": "const S=(o)=>{const ks=[]; for (let k=-300;k<=300;k++){ let neg=0,tot=0; for (let x=-150;x<=150;x++){ const t=7*x-11; const lo=2*k-6<t; const up=t<10; if (lo&&up){ tot++; if (x<0) neg++; } } if (neg>=5 && tot<=16) ks.push(k); } return ks[ks.length-1]-ks[0]; }; return S();",
+  "31": "const S=(o)=>{const ks=[]; for (let k=-300;k<=300;k++){ let neg=0,tot=0; for (let x=-150;x<=150;x++){ const t=7*x-11; const lo=2*k-6<t; const up=t<=10; if (lo&&up){ tot++; if (x<0||x===0) neg++; } } if (neg>=5 && tot<=16) ks.push(k); } return ks[ks.length-1]-ks[0]; }; return S();",
+  "41": "const S=(o)=>{const ks=[]; for (let k=-300;k<=300;k++){ let neg=0,tot=0; for (let x=-150;x<=150;x++){ const t=7*x-11; const lo=2*k-6<t; const up=x<=(10-11)/7; if (lo&&up){ tot++; if (x<0) neg++; } } if (neg>=5 && tot<=16) ks.push(k); } return ks[ks.length-1]-ks[0]; }; return S();"
+ },
+ "mechanism": [
+  "solve each side, keeping the attained end x = 3",
+  "at least 5 negatives fixes the top value of k",
+  "at most 16 in all fixes the bottom value of k through the attained end",
+  "subtract the two extreme values of k"
+ ],
+ "mech": "integer-count-condition",
+ "ask": "difference",
+ "quantity_asked": "the greatest possible integer k minus the least possible integer k for which the inequality has at least 5 negative integer solutions and at most 16 integer solutions",
+ "setup": {
+  "i": "2k in the strict lower end of a compound inequality with positive x-coefficient; the other end is a fixed attained bound",
+  "ii": "at least 5 negative integer solutions and at most 16 integer solutions in all",
+  "iii": "difference between the greatest and least integer values of k"
+ },
+ "bypass_option": "30",
+ "off_by_one_options": [],
+ "plugback": {
+  "substitutable": false,
+  "why": "The key is at try 1 ascending, but the ask is a difference between two values of k found from two different conditions; 27 cannot be substituted into the inequality. Checking it needs both extreme values of k, which is the full solution."
+ },
+ "distractor_meta": {
+  "30": {
+   "error_kind": "other",
+   "error_sense": "omits",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Leaving out the attained end x = 3 removes a solution, which a student would expect to tighten things; here it gives the at-most-16 condition room for one more integer at the bottom, so k's range widens. The stem does not show that."
+  },
+  "31": {
+   "error_kind": "other",
+   "error_sense": "adds",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Counting 0 as negative makes the at-least-5 condition easier, raising the top value of k; whether that raises or lowers the difference depends on which end of k's range the negative condition controls, which is not visible in the stem."
+  },
+  "41": {
+   "error_kind": "wrong_operation",
+   "error_sense": "swaps",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Subtracting 11 instead of adding it moves the fixed top solution down to -1; the stem gives no signal that this widens rather than narrows the range of k."
+  }
+ },
+ "counter_error": {
+  "error_kind": "other",
+  "solve": "const S=(o)=>{const ks=[]; for (let k=-300;k<=300;k++){ let neg=0,tot=0; for (let x=-150;x<=150;x++){ const t=7*x-11; const lo=2*k-6<t; const up=t<=10; if (lo&&up){ tot++; if (x<0) neg++; } } if (neg>5 && tot<=16) ks.push(k); } return ks[ks.length-1]-ks[0]; }; return S();",
+  "direction": "below",
+  "why": "Reading 'at least 5 negative solutions' as 'more than 5' requires -6 to be a solution, which lowers the top value of k to -24 and gives 24, below the key and not an option."
+ },
+ "far_distractor": {
+  "option": "30",
+  "natural_side": "below",
+  "why": "Treating the attained end x = 3 as excluded is an omission, which ordinarily removes room and shrinks a range; here it frees one more integer at the bottom under the at-most-16 condition, so the range of k grows to 30, above the key."
+ },
+ "structure_check": "The two conditions fix opposite ends of k's range (the negative floor fixes the top, the total cap fixes the bottom), so no single 'every slip shrinks it' structure exists: 'more than 5' shrinks the range (24) while the offered errors widen it. Nothing in the stem is an extremum over all errors.",
+ "cheap_bound_check": "The cheapest stem bound is that the at-least-5-negatives condition alone forces k ≤ -21 and gives no lower limit, so it bounds nothing about the difference; the at-most-16 condition alone gives k ≥ -48 and no upper limit. Neither strikes any option; only the two together give a difference, and that is the full solution.",
+ "intermediate_check": "30: no - it is the difference under a different top solution (2 instead of 3), not a value 27 follows from. 31: no - the difference with -17 as the top k. 41: no - the difference with -62 as the bottom k. The intermediates (-21, -48, -5, -13) are not options.",
+ "shape_check": "The stem hands over: the answer is a nonnegative integer (all four survive); no parity or multiple is implied. All four survive together.",
+ "interior_parity_check": "The two middle values are 30 and 31: two-digit integers of the same complexity; the key 27 is not one of them. 30 is round but is a distractor.",
+ "arith_class_check": "Parity: 30 even, 27, 31, 41 odd - the key is with the majority. Multiples of 7 (printed): none. Multiples of 3: 27 and 30. Primes: 31 and 41. No class isolates the key.",
+ "idea_probe": {
+  "at": "2026-10-23T01:26:30.356Z",
+  "nearest": "4fd22741 (live v26 C5, -4 ≤ kx ≤ 45, exactly 3 integers, difference of k): there k multiplies x and the two branches are the signs of k; here k only moves one end, and the two ends of k's range come from two different count conditions (a negative-solution floor and a total cap through the attained end)."
+ },
+ "dup_search": {
+  "queries": [],
+  "hits_read": 7,
+  "nearest": "4fd22741 / SM26L-C5 - different setup, see idea_probe"
+ },
+ "self_audit": {
+  "risk": "medium",
+  "note": "Covering the work, how many options remain legal from the stem alone? All four: each condition alone bounds k on one side only, so no cheap bound limits the difference. Could a student tell from the stem which way the errors go, and does one bound strike all three? No - the two conditions control opposite ends of k's range, 'more than 5' narrows the range (24, not offered) while the offered slips widen it, and no single bound strikes anything. The key is at natural try 1: could a student confirm an option against the stem in one routine step? No - 27 is a difference between two values of k from two separate conditions; neither value can be recovered from 27 alone. Is the bypass really what skipping THIS item's decision point gives? Yes: the decision is whether the end x = 3 is attained; a student who treats both ends as strict counts the 16 solutions from 2 down and gets 30. (read) lines answered: any PAIR / DPAIR soft line between the key and an option is a coincidence of the edge shifts, not a relation readable from the stem. D4 (read, extreme key on an ask worded with 'least'): the ask is a difference, fixed at rank 1 by the slot; the two ends of k's range come from different conditions, and the offered errors move different ends, so the difference is not signed by the structure."
+ }
+}

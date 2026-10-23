@@ -1,0 +1,97 @@
+{
+ "id": "SM31L-D5",
+ "domain": "Algebra",
+ "difficulty": "hard",
+ "subskill": "Integer optimum: item gap in the cheapest whole purchase",
+ "prompt": "A landscaper needs at least 187 liters of potting soil. Small bags hold 7 liters and cost $13 each, and large bags hold 11 liters and cost $20 each. The supplier requires every order to include at least 13 small bags. Only whole bags are sold. In the least expensive order that meets these conditions, how many more small bags than large bags are there?",
+ "choices": [
+  "4",
+  "14",
+  "17",
+  "19"
+ ],
+ "correct_answer": "19",
+ "explanation": "Let x be the number of small bags and y the number of large bags: 7x + 11y ≥ 187, x ≥ 13, and the cost is 13x + 20y. Per liter, a large bag ($20/11 ≈ $1.82) is slightly cheaper than a small one ($13/7 ≈ $1.86), so without the whole-bag condition the cheapest order would use the required 13 small bags and fill the rest with large bags: y = (187 - 91)/11 ≈ 8.73. Rounding up gives (13, 9), which costs $349 but wastes 3 liters, and with whole bags that waste matters. For each number of large bags, use the fewest small bags that reach 187 liters: y = 9 needs x = 13 ($349); y = 8 needs x = 15 ($355); y = 7 needs x = 16 ($348); y = 6 needs x = 18 ($354); y = 5 needs x = 19 ($347); y = 4 needs x = 21 ($353); y = 3 needs x = 22 ($346); y = 2 needs x = 24 ($352); y = 1 needs x = 26 ($358); y = 0 needs x = 27 ($351). The cheapest is 22 small bags and 3 large bags (exactly 187 liters, $346), so there are 22 - 3 = 19 more small bags than large bags. Choice 4 is the rounded corner (13, 9). Choice 14 treats 'at least 187 liters' as 'more than 187 liters', which rules out (22, 3) and makes (19, 5) the cheapest. Choice 17 swaps the bag sizes (11 liters for a small bag and 7 for a large bag), giving (17, 0).",
+ "solve": "const ok=(x,y)=>7*x+11*y>=187&&x>=13;let b=Infinity,bx=0,by=0,n=0;for(let x=0;x<=40;x++)for(let y=0;y<=40;y++)if(ok(x,y)){const v=13*x+20*y;if(v<b){b=v;bx=x;by=y;n=1}else if(v===b)n++}if(n!==1)throw new Error('tie');return bx-by",
+ "distractor_solve": {
+  "4": "return 13-Math.ceil((187-7*13)/11)",
+  "14": "const ok=(x,y)=>7*x+11*y>187&&x>=13;let b=Infinity,bx=0,by=0,n=0;for(let x=0;x<=40;x++)for(let y=0;y<=40;y++)if(ok(x,y)){const v=13*x+20*y;if(v<b){b=v;bx=x;by=y;n=1}else if(v===b)n++}if(n!==1)throw new Error('tie');return bx-by",
+  "17": "const ok=(x,y)=>11*x+7*y>=187&&x>=13;let b=Infinity,bx=0,by=0,n=0;for(let x=0;x<=40;x++)for(let y=0;y<=40;y++)if(ok(x,y)){const v=13*x+20*y;if(v<b){b=v;bx=x;by=y;n=1}else if(v===b)n++}if(n!==1)throw new Error('tie');return bx-by"
+ },
+ "mechanism": [
+  "cost per liter nearly equal, so the real optimum is the corner on the minimum",
+  "rounded corner (13, 9) wastes 3 liters",
+  "list the fewest small bags for each y; costs go up and down",
+  "exact-cover purchase (22, 3) is cheapest; report x - y"
+ ],
+ "mech": "integer-optimum",
+ "ask": "difference",
+ "quantity_asked": "number of small bags minus number of large bags in the least expensive order",
+ "setup": {
+  "i": "one covering requirement plus a required minimum of the slightly less cost-efficient item; minimise cost",
+  "ii": "the cheapest whole-number purchase covers the requirement exactly, several trades away from the rounded corner",
+  "iii": "difference x - y in the least expensive purchase"
+ },
+ "bypass_option": "4",
+ "off_by_one_options": [],
+ "plugback": {
+  "substitutable": false,
+  "why": "Ascending, the key 18 is the last option tried. A difference is shared by many orders ((19, 0), (20, 1), (22, 3), ...), so an option cannot be substituted; checking it needs the cheapest order itself."
+ },
+ "distractor_meta": {
+  "4": {
+   "error_kind": "other",
+   "error_sense": "omits",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Uses the required 13 small bags and rounds the large bags up to 9 without comparing other whole-bag orders; the stem does not show whether the cheapest order has more or fewer small bags than that."
+  },
+  "14": {
+   "error_kind": "sign_slip",
+   "error_sense": "swaps",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Reads 'at least 187 liters' as 'more than 187', which removes the exact-cover order (22, 3); a stricter requirement could move the answer either way and the stem gives no hint which."
+  },
+  "17": {
+   "error_kind": "wrong_variable",
+   "error_sense": "swaps",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Attaches 11 liters to the small bag and 7 to the large; small bags then look like a bargain and the order becomes (17, 0), but nothing in the stem says whether that gap is larger or smaller than the true one."
+  }
+ },
+ "counter_error": {
+  "error_kind": "omission",
+  "solve": "return Math.ceil(187/7)-0",
+  "direction": "above",
+  "why": "Seeing that a small bag costs less per bag, a student buys only small bags: 27 small and 0 large covers 189 liters, a gap of 27, above the key and not an option."
+ },
+ "far_distractor": {
+  "option": "14",
+  "natural_side": "above",
+  "why": "A stricter requirement ordinarily forces in more of the cheaper-per-bag small bags and pushes the gap up; here the order list is irregular, the next cheapest order after (22, 3) is (19, 5), so the slip lands below the key."
+ },
+ "structure_check": "Costs along the list of sensible orders go up and down ($349, $355, $348, $354, $347, $353, $346, $352, $358, $351), so there is no 'every slip moves it one way' rule: buying only small bags gives 27 (above), while the rounded corner, the strict reading and the swapped sizes give lower gaps. The stem has no universal quantifier; its extremum is on cost, not on the gap.",
+ "cheap_bound_check": "Cheapest bounds: x ≥ 13 and y ≤ 9 give x - y ≥ 4; x ≤ 27 (27 small bags already cover the need) gives x - y ≤ 27. All four options lie in [4, 27]; neither bound strikes an option, and the key 19 is not at a bound (gaps 22, 25 and 27 are also sensible orders).",
+ "intermediate_check": "4: no - the rounded corner's gap; reaching (22, 3) needs the full comparison of orders, not one printed relation. 14: no - the gap of (19, 5); no printed rate turns 14 into 19. 17: no - the gap of the swapped-size order (17, 0); nothing printed maps 17 to 19.",
+ "shape_check": "The stem hands over: x - y is a whole number between 4 and 27 (x ≥ 13, y ≤ 9, x ≤ 27); no parity condition. All four options (4, 14, 17, 19) lie in that range; parity is mixed. All survive together.",
+ "interior_parity_check": "Middle values 14 and 17: both two-digit whole numbers, same display form; the key 19 is not interior.",
+ "arith_class_check": "Key 19 is odd like 17; 4 and 14 are even. 19 is not a multiple of any printed size or price and is not alone in any class the stem implies.",
+ "idea_probe": {
+  "at": "2026-10-23T00:27:51.187Z",
+  "nearest": "9250153d-2ec (live v26 D5, feed mix): two covering minimums (protein and fiber) and the ask is the least cost itself. Here one covering requirement is paired with a required minimum of the slightly less efficient item, the cheapest order is an exact-cover point several trades away from the rounded corner along an irregular list, and the ask is the gap x - y, not the cost."
+ },
+ "dup_search": {
+  "queries": [
+   "potting soil|landscaper",
+   "small bags&large bags"
+  ],
+  "hits_read": 0,
+  "nearest": "9250153d-2ec (see idea_probe)"
+ },
+ "self_audit": {
+  "risk": "medium",
+  "note": "Covering the work, how many options remain legal from the stem alone? All four: gaps 4 to 27 are attained by sensible orders ((13, 9), (19, 5), (21, 4), (22, 3)), so no option is struck by a bound, parity or a waste argument. Could a student tell from the stem which way the errors go, and does one bound strike all three? No: the small-bags-only error goes to 27 (above) while the others land below; the bounds 4 and 27 strike nothing and the key is at neither. Is the bypass option really what skipping THIS item's decision point gives? Yes: taking the minimum 13 small bags and rounding the large bags up to 9 is the rounded real corner, a gap of 4; the decision point is noticing the wasted liters and comparing whole-bag orders. Plug-back: key at try 4 ascending, and a gap cannot be substituted. No option is a sum, difference or mean of two others (checked: 4 + 14 = 18, 17 - 14 = 3, 19 - 4 = 15, none an option). Preflight (read) DPAIR/DSUM lines are coincidences of printed sizes and prices; no stem reading adds them to move between gaps. D4 fires on the word least in the cost extremum, not on the asked gap."
+ }
+}

@@ -443,3 +443,24 @@ Written with this prereg (dry-tested 2026-10-23, every one refuses an empty or m
     sat-math-alg31-work/PROBE-BRIEF.md
 
 At insert time: `write-alg31-ledger.mjs`.
+
+## Result (2026-10-23): STOPPED AT PRE-FLIGHT under the pre-registered strict fallback. Nothing frozen, nothing inserted.
+- **Authoring:**
+  - 24 parts, all PART OK.
+  - The merged pre-flight first failed R9: the key values 3, 15 and 26 were each used twice. One return per author renumbered D2, D6 and C7.
+  - The merged pre-flight then PASSED, with R6 extreme 54.2% and R7 37.5%. The projection PASSED: kept about 16.5.
+  - Author D's own extra check found two closure violations (D1, D4) that neither part-check nor pre-flight tests. Both were fixed. B and C were clean on the same check.
+- **Plug-back probe:**
+  - r1: INVALID. 4 of 5 positives flagged (alg26 D6 missed); negatives 1 of 8.
+  - r2 (fresh reader): INVALID for the same reason. D6 was missed again, and again 4 of 5 positives flagged and 1 of 8 negatives.
+  - Both rounds flagged 0 of the 24 batch items.
+- **Strict fallback (section 9):** every item at natural try 1-2 is treated as substitutable. That is 11 of 24: B1, B3, B4, C3, C5, C7, D1, D2, D4, D6, D7. They sit at try 1-2 BY SLOT, since the r1/r2 key ranks are fixed in the slot table, so no return can move them, and they drop.
+- **The 13 survivors fail pre-flight:**
+  - R7 ask→rank 69.2% against a 40% bar;
+  - R10 degenerate-parameter bypass, 0 above and 5 below;
+  - projection about 8.9 kept, against a minimum of 12.
+- **Per section 10.4, the batch stops at pre-flight.**
+- **Lessons (for any rerun):**
+  1. **The fallback and the slot table contradict each other by construction.** The slot plan needs about 11 keys at ranks 1-2 for R6 balance, and the fallback drops every one. A strict fallback that can only be survived by violating the slot plan is a stop condition hidden inside a rule. It should have been checked at prereg time against the planned slots, the way a bar is checked against the control's ceiling (CLAUDE.md).
+  2. **The probe's calibration hinges on one plant.** Both fresh readers judged alg26 D6 not routinely confirmable, while the panel had dropped it for plug-back. Either that plant does not belong in the positive set for a probe with this brief, or the brief under-reads what "routine" means for D6's type. Settle that on the plants alone, before any rerun authors a word.
+  3. **Closure** (an option equal to the sum, difference or average of two others) needs to be in the part-check. Author D found it by hand.

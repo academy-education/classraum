@@ -1,0 +1,97 @@
+{
+ "id": "SM31L-D3",
+ "domain": "Algebra",
+ "difficulty": "hard",
+ "subskill": "Integer optimum: item total in the best whole-number order",
+ "prompt": "A garden shop is ordering planters and bird feeders to sell at a fair. Each planter costs the shop $11 and earns a profit of $26, and each bird feeder costs the shop $6 and earns a profit of $14. The shop can spend at most $133 on the order, and it must order at least 7 bird feeders. Only whole items are ordered, and every item ordered will be sold. In the order that gives the greatest total profit, what is the total number of planters and bird feeders?",
+ "choices": [
+  "13",
+  "15",
+  "16",
+  "18"
+ ],
+ "correct_answer": "18",
+ "explanation": "Let x be the number of planters and y the number of bird feeders: 11x + 6y ≤ 133, y ≥ 7, and the profit is 26x + 14y. Per dollar, a planter earns 26/11 ≈ 2.36 and a feeder 14/6 ≈ 2.33, so without the whole-number condition the shop would buy only the required 7 feeders and spend the rest on planters: x = (133 - 42)/11 ≈ 8.27. Rounding down gives (8, 7), which spends $130 and earns $306. But that is not the best whole-number order, because $3 is left unspent. Trading planters for feeders lets the order use the budget exactly: 11x + 6y = 133 has the whole-number solution (5, 13), which earns 26(5) + 14(13) = $312. Checking the other orders near the budget line, (6, 11) earns $310, (7, 9) earns $308, (8, 7) earns $306, and (4, 14), (3, 16), (2, 18), (1, 20), (0, 22) earn $300, $302, $304, $306, $308, so (5, 13) is the only best order, with 5 + 13 = 18 items. Choice 15 is the rounded corner (8, 7). Choice 13 comes from reading 'at least 7 bird feeders' as 'at most 7' (or dropping it): the best order is then (11, 2). Choice 16 swaps the two costs ($6 per planter, $11 per feeder).",
+ "solve": "let best=-1,bx=0,by=0,n=0;for(let x=0;x<=40;x++)for(let y=0;y<=40;y++)if(11*x+6*y<=133&&y>=7){const v=26*x+14*y;if(v>best){best=v;bx=x;by=y;n=1}else if(v===best)n++}if(n!==1)throw new Error('tie');return bx+by",
+ "distractor_solve": {
+  "13": "let best=-1,bx=0,by=0,n=0;for(let x=0;x<=40;x++)for(let y=0;y<=40;y++)if(11*x+6*y<=133&&y<=7){const v=26*x+14*y;if(v>best){best=v;bx=x;by=y;n=1}else if(v===best)n++}if(n!==1)throw new Error('tie');return bx+by",
+  "15": "return Math.floor((133-6*7)/11)+7",
+  "16": "let best=-1,bx=0,by=0,n=0;for(let x=0;x<=40;x++)for(let y=0;y<=40;y++)if(6*x+11*y<=133&&y>=7){const v=26*x+14*y;if(v>best){best=v;bx=x;by=y;n=1}else if(v===best)n++}if(n!==1)throw new Error('tie');return bx+by"
+ },
+ "mechanism": [
+  "profit per dollar nearly equal, so the real optimum is the corner on the minimum",
+  "rounded corner (8, 7) leaves budget unspent",
+  "exact-budget lattice point (5, 13) beats it",
+  "report x + y of the unique best order"
+ ],
+ "mech": "integer-optimum",
+ "ask": "sum",
+ "quantity_asked": "total number of items (planters plus bird feeders) in the order with the greatest profit",
+ "setup": {
+  "i": "spending cap plus a minimum number of the cheaper item; profit per dollar nearly equal for the two items",
+  "ii": "the best whole-number order spends the cap exactly, far from the rounded corner",
+  "iii": "total number of items (x + y) in the order with the greatest profit"
+ },
+ "bypass_option": "15",
+ "off_by_one_options": [],
+ "plugback": {
+  "substitutable": false,
+  "why": "Ascending, the key 18 is the last try. An option is a total of two counts, and many orders share any total, so a student cannot substitute it; checking it needs the best order itself."
+ },
+ "distractor_meta": {
+  "13": {
+   "error_kind": "sign_slip",
+   "error_sense": "swaps",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Turns 'at least 7 bird feeders' into 'at most 7', so the best order shifts to (11, 2); a reader of the stem cannot tell whether loosening or flipping that condition raises or lowers the item total."
+  },
+  "15": {
+   "error_kind": "other",
+   "error_sense": "omits",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Stops at the rounded corner (8, 7) without testing whole-number orders that trade planters for feeders; the stem gives no sign that the best order holds more items than the corner."
+  },
+  "16": {
+   "error_kind": "wrong_variable",
+   "error_sense": "swaps",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Attaches the $6 cost to planters and $11 to feeders; the swapped budget makes planters cheap, so the best order becomes (9, 7) with the feeder minimum binding; the stem gives no clue whether that total is above or below the true one."
+  }
+ },
+ "counter_error": {
+  "error_kind": "inverted_rate",
+  "solve": "let best=-1,bx=0,by=0,n=0;for(let x=0;x<=40;x++)for(let y=0;y<=40;y++)if(11*x+6*y<=133&&y>=7){const v=14*x+26*y;if(v>best){best=v;bx=x;by=y;n=1}else if(v===best)n++}if(n!==1)throw new Error('tie');return bx+by",
+  "direction": "above",
+  "why": "Swapping the two profits ($14 per planter, $26 per feeder) makes feeders the better buy; the best order becomes (0, 22), a total of 22 items, above the key and not an option."
+ },
+ "far_distractor": {
+  "option": "13",
+  "natural_side": "above",
+  "why": "Dropping or loosening a constraint ordinarily lets the order grow, so the item total would overshoot; here the removed floor is on the CHEAP item, so the best order shifts to the expensive planters and holds fewer items, landing below the key."
+ },
+ "structure_check": "The ask is the item total of the best order, not the profit, so no 'every slip lowers it' rule applies: swapping the profits pushes the total up to 22, while the rounded corner, the flipped minimum and the swapped costs land lower. The stem has no universal quantifier, and its extremum is on profit, which does not sign errors in x + y.",
+ "cheap_bound_check": "Cheapest bounds from the stem: y ≥ 7 gives a total of at least 7, and $133/$6 gives at most 22 items. Every option (13, 15, 16, 18) lies inside, so no bound strikes a distractor; all three stay on the key's side (below 22).",
+ "intermediate_check": "15: no - it is the rounded corner's total; going from (8, 7) to (5, 13) is not one printed relation (it needs the exact-budget search). 13: no - total of (11, 2) under a flipped condition; nothing printed maps 13 to 18 (18 - 13 = 5 is not a printed step). 16: no - the swapped-cost order; no printed rate or purchase turns 16 into 18.",
+ "shape_check": "The stem hands over: whole-number total, at least 7, at most 22 (budget / cheapest item). All four options satisfy these; parity is not forced (13, 15 odd; 16, 18 even). At least two (indeed all four) survive together.",
+ "interior_parity_check": "Middle values 15 and 16: both two-digit whole numbers, same display form; the key 18 is not interior and is not rounder than the others.",
+ "arith_class_check": "Key 18 is even, as is 16; 13 and 15 are odd. 18 is not a multiple of any printed cost or profit that the others miss in a way the stem implies (18 is a multiple of 6, but so is no requirement; the stem does not say the total is a multiple of anything).",
+ "idea_probe": {
+  "at": "2026-10-22T23:48:31.852Z",
+  "nearest": "d21792f8-3f5 (live, Priya's market stall): two caps plus a minimum, and the ask is the greatest number of ONE item, a single-variable optimum. f3f35eaf-849 (live van) is one capacity plus a minimum, again maximising one count. Here the objective is a weighted profit nearly parallel to the budget line, the best whole-number order is the exact-budget point (5, 13) three planters away from the rounded corner, and the ask is the total x + y."
+ },
+ "dup_search": {
+  "queries": [
+   "planters|bird feeders",
+   "profit per&budget&at least"
+  ],
+  "hits_read": 1,
+  "nearest": "d21792f8-3f5 (see idea_probe); the one extra hit, 4d5500cf (planter break-even, quadratic), is unrelated"
+ },
+ "self_audit": {
+  "risk": "medium",
+  "note": "Covering the work, how many options remain legal from the stem alone? All four: totals between 7 and 22 are all possible and none is excluded by parity or by a printed bound. Could a student tell from the stem which way the errors go, and does one bound strike all three? No: the profit-swap error goes up to 22 while the corner, flipped minimum and swapped costs go down; the cheapest bounds (7 and 22) strike no option. The structure does not sign errors because x + y is not the objective. Is the bypass option really what skipping THIS item's decision point gives? Yes: rounding the real corner (8.27, 7) down gives (8, 7) and a total of 15; the decision point is noticing the $3 left over and finding the exact-budget lattice point. Plug-back: the key is at try 4 ascending, and an item total cannot be substituted anyway. A test-wise student who picks the largest option is using the batch rank rule, which the batch design balances. Preflight (read) lines: DPAIR 18 - 13 = 5 = 6 - 1 and DPAIR/DSUM 18 + 15 = 33 = 26 + 7 are coincidences (no stem reading adds a planter profit to the feeder minimum or subtracts 1 from a feeder cost to move between item totals); D4 fires on the word least inside at least 7 bird feeders, which is a constraint, not the ask."
+ }
+}

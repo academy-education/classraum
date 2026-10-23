@@ -1,0 +1,45 @@
+{
+ "id": "SM31L-C2",
+ "domain": "Algebra",
+ "difficulty": "hard",
+ "subskill": "Counting integer solutions inside a range that depends on k",
+ "prompt": "-53 ≤ 10 - 3x < -17\nFor how many positive integer values of k are at least one-third of the positive integers less than or equal to k solutions to the compound inequality above?",
+ "choices": ["16", "22", "23", "25"],
+ "correct_answer": "23",
+ "explanation": "First solve the compound inequality. Subtracting 10 gives -63 ≤ -3x < -27, and dividing by -3 reverses both signs: 21 ≥ x > 9. So the solutions are the integers 10, 11, ..., 21 - twelve of them. Note which ends are attained: x = 21 IS a solution (it came from the ≤), and x = 9 is NOT (it came from the <). Now let c be the number of solutions among 1, 2, ..., k; the condition is c ≥ k/3, that is, 3c ≥ k. If k ≤ 9, c = 0, so the condition fails. If 10 ≤ k ≤ 21, c = k - 9, and 3(k - 9) ≥ k gives k ≥ 13.5, so k = 14, ..., 21: 8 values. If k ≥ 21, all twelve solutions are counted, c = 12, and 36 ≥ k gives k = 22, ..., 36 (k = 21 is already counted): 15 values. Total: 8 + 15 = 23. Choice 25 comes from reversing the signs but leaving the 'or equal' at its original end, which makes the solutions 9 through 20. Choice 22 reads 'at least one-third' as 'more than one-third', which loses k = 36. Choice 16 counts only the values of k for which all twelve solutions are already among 1 through k (k = 21 to 36) and misses the smaller values of k.",
+ "solve": "const P=x=>{const m=10-3*x; return -53<=m && m< -17}; let n=0; for (let k=1;k<=500;k++){ let c=0; for (let x=1;x<=k;x++) if (P(x)) c++; if (3*c>=k) n++; } return n;",
+ "distractor_solve": {
+  "25": "const P=x=>{const m=10-3*x; return -53<m && m<= -17}; let n=0; for (let k=1;k<=500;k++){ let c=0; for (let x=1;x<=k;x++) if (P(x)) c++; if (3*c>=k) n++; } return n;",
+  "22": "const P=x=>{const m=10-3*x; return -53<=m && m< -17}; let n=0; for (let k=1;k<=500;k++){ let c=0; for (let x=1;x<=k;x++) if (P(x)) c++; if (3*c>k) n++; } return n;",
+  "16": "const P=x=>{const m=10-3*x; return -53<=m && m< -17}; let n=0; for (let k=21;k<=500;k++){ let c=0; for (let x=1;x<=k;x++) if (P(x)) c++; if (3*c>=k) n++; } return n;"
+ },
+ "mechanism": ["reverse a compound inequality and keep track of the attained end", "count of solutions up to k is piecewise (k - 9, then 12)", "solve 3c ≥ k on each piece", "count the integer k"],
+ "mech": "integer-count-condition",
+ "ask": "count",
+ "quantity_asked": "the number of positive integers k for which at least one-third of the integers 1 through k satisfy the compound inequality",
+ "setup": {
+  "i": "k is the upper end of the range of positive integers tested; the compound inequality (negative x-coefficient) has no constant",
+  "ii": "at least one-third of the positive integers up to k are solutions",
+  "iii": "number of positive integer values of k"
+ },
+ "bypass_option": "25",
+ "off_by_one_options": ["22"],
+ "plugback": {
+  "substitutable": false,
+  "why": "The ask is how many k work. A candidate count like 23 cannot be put into the inequality or the one-third condition; checking it requires finding the whole set of k (both pieces), which is the full solution. The key is at try 3 in ascending order in any case."
+ },
+ "distractor_meta": {
+  "25": {"error_kind": "sign_slip", "error_sense": "swaps", "direction": "above", "stem_predicts_direction": false, "why": "Leaving the 'or equal' where it was when the signs reverse shifts the solution block down by one (9 to 20 instead of 10 to 21). That makes the first piece start earlier but also keeps the block at twelve integers, so the net effect is not visible from the stem; here it gives two extra k."},
+  "22": {"error_kind": "other", "error_sense": "omits", "direction": "below", "stem_predicts_direction": false, "why": "Treating 'at least' as 'more than' drops the equality case; the stem gives no way to tell whether equality is ever reached (it is, at k = 36 only), so the side is not signalled."},
+  "16": {"error_kind": "omission", "error_sense": "omits", "direction": "below", "stem_predicts_direction": false, "why": "Counting only the k past the last solution drops the first piece; nothing in the stem says a second piece exists, so the student cannot see 16 is short."}
+ },
+ "structure_check": "Not an extreme key (rank 3); the condition is a proportion that switches form at k = 21, so neither 'every slip lowers it' nor 'every slip raises it' holds - the misplaced 'or equal' raises the count and the strict reading lowers it.",
+ "cheap_bound_check": "Not an extreme key. For reference: once the twelve solutions are known, 12 ≥ k/3 gives k ≤ 36, so the count is at most 36 - 9 = 27 (k from 10 to 36); all four options sit under that bound, none is struck.",
+ "intermediate_check": "16: it is the size of the second piece (k = 21 to 36), but the key does not follow from 16 through one printed relation - the first piece (8 values, from 3(k - 9) ≥ k) has to be solved separately. 22: no - it is the count under a strict reading, not a step toward 23. 25: no - it comes from a different solution block (9 to 20), not from the key's work.",
+ "shape_check": "The stem hands over: the answer is a count of positive integers (all four survive); k must be at least 10 for any solution to be counted (no option is excluded by that); no parity or cap is implied. All four survive together.",
+ "interior_parity_check": "The two middle values are 22 and 23: both two-digit integers of the same complexity. The key 23 is one of them and is not the cleaner of the two (22 is even, 23 is prime); no shared-denominator structure.",
+ "arith_class_check": "Parity: 16 and 22 even, 23 and 25 odd - the key is not alone. Sign: all positive. Multiples of 3 (the printed coefficient): none of the four. Roundness: none is round. The key is not isolated by any class the stem implies.",
+ "idea_probe": {"at": "2026-10-23T00:16:06.837Z", "nearest": "No live or prior row lets k set the range of tested integers (all queries returned 0 hits); nearest in the census is 3ae4c030 (live v26 C2, kx ≥ 36 over the integers -6 through 9, exactly 4 solutions, count of k), where the tested set is fixed and k multiplies x - here the inequality is fixed and k moves the tested range, with a proportion condition."},
+ "dup_search": {"queries": ["third|half|percent&integers&satisf", "positive integer&k&at least&solutions", "integers&satisfy&k is a positive integer|positive integer k", "solutions&10 - 3x|3x <|- 3x"], "hits_read": 3, "nearest": "e0559aab / SM26L-C3 (system 4 - 3x ≤ 22 and 4x < k - 30, sum of solutions -18): shares only the reversed inequality; k sits in a bound there, and the condition and ask differ"},
+ "self_audit": {"risk": "medium", "note": "Covering the work, how many options remain legal from the stem alone? All four: they are positive integers under any cheap bound (at most 27 values of k once the twelve solutions are known). Natural try is 3, so this is not a try 1-2 slot; in any case a count of k cannot be confirmed by substituting an option. Is the bypass really what skipping THIS item's decision point gives? Yes: the decision is which end of the reversed compound inequality is attained; a student who reverses the signs without re-deciding which end carries the 'or equal' gets the block 9 to 20 and the count 25. A test-wise student might pick a middle value of the cluster 22, 23, 25 - the key is in that cluster but so are two distractors, and 16 is a real error path (forgetting the first piece), not filler. (read) lines answered: DPAIR difference 2 = 3 - 1 between the key and 25 is a coincidence of the endpoint shift, not a relation a student can use (the 2 is the net of two shifts, not anything derived from the printed 3); INTER - see intermediate_check."}
+}

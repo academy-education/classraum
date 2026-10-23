@@ -1,0 +1,85 @@
+{
+ "id": "SM31L-D2",
+ "domain": "Algebra",
+ "difficulty": "hard",
+ "subskill": "Integer optimum: tied plans for the most items",
+ "prompt": "A shipping crate can hold a total mass of at most 133 kilograms and a total volume of at most 179 liters. It will be packed with boxes of two types, P and Q, described in the table below.\nBox type | Mass (kilograms) | Volume (liters)\nP | 9 | 13\nQ | 10 | 11\nOnly whole boxes are packed. The crate is to hold as many boxes as possible in total. How many different combinations of type P and type Q boxes achieve this?",
+ "choices": [
+  "1",
+  "6",
+  "8",
+  "13"
+ ],
+ "correct_answer": "6",
+ "explanation": "Let p and q be the numbers of type P and type Q boxes. The crate requires 9p + 10q ≤ 133 and 13p + 11q ≤ 179, and the goal is to make p + q as large as possible. The two boundary lines meet at p ≈ 10.55, q ≈ 3.81, where p + q ≈ 14.35, so no plan can hold 15 boxes. Rounding the corner down gives (10, 3), only 13 boxes, so the best whole-number plans have to be found directly: test p + q = 14. Mass requires 9p + 10(14 - p) ≤ 133, so 140 - p ≤ 133 and p ≥ 7. Volume requires 13p + 11(14 - p) ≤ 179, so 2p + 154 ≤ 179 and p ≤ 12.5, so p ≤ 12. Thus p = 7, 8, 9, 10, 11 or 12, giving (7, 7), (8, 6), (9, 5), (10, 4), (11, 3) and (12, 2): 6 combinations. Choice 1 treats the rounded corner as the single best plan without checking which other combinations reach the greatest total. Choice 8 swaps the masses of the two box types (10 kilograms for P and 9 for Q), which changes the mass bound and the count. Choice 13 counts the 14-box combinations that satisfy the volume limit (p ≤ 12) but never checks the mass limit.",
+ "solve": "const ok=(x,y)=>9*x+10*y<=133&&13*x+11*y<=179;let best=-1,n=0;for(let x=0;x<=40;x++)for(let y=0;y<=40;y++)if(ok(x,y)){const v=x+y;if(v>best){best=v;n=1}else if(v===best)n++}return n",
+ "distractor_solve": {
+  "1": "const fx=Math.floor((133*11-179*10)/(9*11-13*10)),fy=Math.floor((9*179-13*133)/(9*11-13*10));const plans=[[fx,fy]];return plans.length",
+  "8": "const ok=(x,y)=>10*x+9*y<=133&&13*x+11*y<=179;let best=-1,n=0;for(let x=0;x<=40;x++)for(let y=0;y<=40;y++)if(ok(x,y)){const v=x+y;if(v>best){best=v;n=1}else if(v===best)n++}return n",
+  "13": "const ok=(x,y)=>9*x+10*y<=133&&13*x+11*y<=179;let best=-1;for(let x=0;x<=40;x++)for(let y=0;y<=40;y++)if(ok(x,y))best=Math.max(best,x+y);let n=0;for(let x=0;x<=best;x++){const y=best-x;if(13*x+11*y<=179)n++}return n"
+ },
+ "mechanism": [
+  "two caps meet at a non-lattice corner (p + q about 14.4)",
+  "rounded corner gives only 13, so test the level p + q = 14",
+  "each cap turns into a bound on p along the level line",
+  "count the integers between the two bounds"
+ ],
+ "mech": "integer-optimum",
+ "ask": "count",
+ "quantity_asked": "number of whole-number combinations that hold the greatest total number of boxes",
+ "setup": {
+  "i": "mass cap and volume cap given in a table, two box types",
+  "ii": "total number of boxes (unweighted x + y) as large as possible; several lattice plans tie",
+  "iii": "number of combinations that hold the most boxes"
+ },
+ "bypass_option": "1",
+ "off_by_one_options": [],
+ "plugback": {
+  "substitutable": false,
+  "why": "Ascending, a student tries 1 and then 6. Neither can be checked by substitution: an option is a count, not a plan, so testing it means finding the greatest whole-number total (14, which the rounded corner's 13 does not show) and then counting every combination at that total against both caps, which is the whole solution."
+ },
+ "distractor_meta": {
+  "1": {
+   "error_kind": "other",
+   "error_sense": "omits",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Rounds the corner (10.55, 3.81) to a whole-number plan and reports it as the single best plan; the stem does not say whether the best total is shared, so nothing marks a lone plan as too few."
+  },
+  "8": {
+   "error_kind": "wrong_variable",
+   "error_sense": "swaps",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Reads the mass column against the wrong box type (P 10 kg, Q 9 kg); the swapped mass bound lets more combinations through, and the stem gives no hint whether a misread table raises or lowers the count."
+  },
+  "13": {
+   "error_kind": "omission",
+   "error_sense": "omits",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Finds the right greatest total, 14, but checks the 14-box combinations against the volume limit only; the student cannot tell from the stem how many combinations either limit removes."
+  }
+ },
+ "intermediate_check": "1: no - 1 is a plan count from the rounded corner; no printed relation turns it into 6. 8: no - a count under a swapped table; no printed rate maps 8 to 6. 13: no - the count with the mass check left out; reaching 6 from 13 needs the mass bound p ≥ 7 worked out, not one printed relation.",
+ "shape_check": "The stem hands over: the answer is a positive whole number (at least one combination fits), and the combinations at the best total form a run of consecutive p values. All four options are positive whole numbers; parity is not forced (1, 13 odd; 6, 8 even). All four survive together.",
+ "interior_parity_check": "Middle values 6 and 8: both one-digit whole numbers, same display form and complexity; the key 6 is not cleaner than 8.",
+ "arith_class_check": "Key 6 is even, as is 8; 1 and 13 are odd. 6 is not alone in any class the stem implies (no multiple-of or roundness condition).",
+ "idea_probe": {
+  "at": "2026-10-22T23:45:23.519Z",
+  "nearest": "40fba632-b25 (live v26 D1, from the extra search 'how many different&combinations'): its count comes from an objective exactly parallel to the budget with two minimums. Here the objective is the plain total p + q, parallel to neither cap, the tie is a run of lattice points on the level p + q = 14 cut by both caps, and the data come from a table. ALG-H3-07 (prior) counts solutions of one exact linear equation, not an optimum."
+ },
+ "dup_search": {
+  "queries": [
+   "mass&volume",
+   "total number&boxes",
+   "how many different&combinations"
+  ],
+  "hits_read": 8,
+  "nearest": "40fba632-b25 (parallel-objective tie count; different setup) and ALG-H3-07 (exact-equation count, no optimisation)"
+ },
+ "self_audit": {
+  "risk": "medium",
+  "note": "Covering the work, how many options remain legal from the stem alone? All four: each is a positive whole-number count; the level p + q = 14 holds 15 whole-number combinations before either cap is applied, so even 13 is not ruled out by size. Could a student confirm an option against the stem in one routine step (key at try 2)? No: an option is a count, and checking it needs the top total 14 (above the rounded corner's 13) plus the two bounds on p, which is the full solution; trying 1 first does not help because no plan is offered to substitute. Is the bypass option really what skipping THIS item's decision point gives? Yes: a student who rounds the real corner and treats that plan as the optimum answers 1 combination; the bypass sits below the key here, balancing D1/D4 where it sits above. No option is a sum, difference or mean of two others (1 + 6 = 7, 8 - 6 = 2, 13 - 8 = 5, 13 - 6 = 7, 13 - 1 = 12; none an option). Preflight (read) lines: DPAIR 6 + 8 = 14 = 13 + 1 and DPAIR/DSUM 6 + 13 = 19 = 9 + 10 are coincidences of the printed masses and volumes; no stem reading adds them to move between counts."
+ }
+}

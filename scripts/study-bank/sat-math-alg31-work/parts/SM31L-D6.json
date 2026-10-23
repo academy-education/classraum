@@ -1,0 +1,84 @@
+{
+ "id": "SM31L-D6",
+ "domain": "Algebra",
+ "difficulty": "hard",
+ "subskill": "Integer optimum: extreme coordinate among tied best plans",
+ "prompt": "A crafts vendor makes wooden boxes and picture frames to sell each week. Each box uses $8 of materials and each frame uses $3 of materials, and the weekly materials budget is $91. The vendor's booth can display at most 21 items in total. Each box earns a profit of $10 and each frame earns a profit of $4, and only whole boxes and frames are made. More than one weekly plan earns the greatest possible profit. Among those plans, what is the greatest number of picture frames?",
+ "choices": [
+  "8",
+  "9",
+  "14",
+  "16"
+ ],
+ "correct_answer": "14",
+ "explanation": "Let x be the number of boxes and y the number of frames: 8x + 3y ≤ 91, x + y ≤ 21, and the profit is 10x + 4y. The two limits meet at x = 5.6, y = 15.4, where the profit would be $117.60, so no whole-number plan earns more than $117. Rounding the corner down to 5 boxes leaves room for 16 frames, (5, 16), but that earns only $114. The profit 10x + 4y is always even, so $117 is impossible; try $116, that is, 5x + 2y = 58. Its whole-number solutions are (0, 29), (2, 24), (4, 19), (6, 14), (8, 9) and (10, 4). (0, 29), (2, 24) and (4, 19) have more than 21 items, and (10, 4) costs 80 + 12 = 92, more than $91, while (6, 14) costs 48 + 42 = 90 with 20 items and (8, 9) costs 64 + 27 = 91 with 17 items. So the plans earning the greatest profit, $116, are (6, 14) and (8, 9), and the greatest number of frames among them is 14. Choice 16 is the rounded corner (5, 16). Choice 9 gives the frames in the other best plan, (8, 9). Choice 8 gives the number of boxes in that plan instead of frames.",
+ "solve": "const ok=(x,y)=>8*x+3*y<=91&&x+y<=21;let b=-1,P=[];for(let x=0;x<=30;x++)for(let y=0;y<=30;y++)if(ok(x,y)){const v=10*x+4*y;if(v>b){b=v;P=[[x,y]]}else if(v===b)P.push([x,y])}return Math.max(...P.map(t=>t[1]))",
+ "distractor_solve": {
+  "8": "const ok=(x,y)=>8*x+3*y<=91&&x+y<=21;let b=-1,P=[];for(let x=0;x<=30;x++)for(let y=0;y<=30;y++)if(ok(x,y)){const v=10*x+4*y;if(v>b){b=v;P=[[x,y]]}else if(v===b)P.push([x,y])}return Math.max(...P.map(t=>t[0]))",
+  "9": "const ok=(x,y)=>8*x+3*y<=91&&x+y<=21;let b=-1,P=[];for(let x=0;x<=30;x++)for(let y=0;y<=30;y++)if(ok(x,y)){const v=10*x+4*y;if(v>b){b=v;P=[[x,y]]}else if(v===b)P.push([x,y])}return Math.min(...P.map(t=>t[1]))",
+  "16": "return 21-Math.floor((91-3*21)/(8-3))"
+ },
+ "mechanism": [
+  "budget line and item cap meet at the non-lattice corner (5.6, 15.4)",
+  "rounded corner (5, 16) earns only $114",
+  "profit is even, so test the level $116: 5x + 2y = 58",
+  "two plans survive both limits; take the larger frame count"
+ ],
+ "mech": "integer-optimum",
+ "ask": "greatest",
+ "quantity_asked": "greatest number of picture frames among the plans that earn the greatest profit",
+ "setup": {
+  "i": "materials budget plus a cap on the total number of items displayed",
+  "ii": "several whole-number plans tie for the greatest profit, none of them the rounded corner",
+  "iii": "greatest number of the second item among the tied best plans"
+ },
+ "bypass_option": "16",
+ "off_by_one_options": [],
+ "plugback": {
+  "substitutable": false,
+  "why": "Descending, a student tries 16 and then 14. Neither can be checked by substitution: deciding whether a best plan has 16 (or 14) frames needs the greatest profit first, which the rounded corner does not give, and then the plans that reach it - the whole solution."
+ },
+ "distractor_meta": {
+  "8": {
+   "error_kind": "wrong_variable",
+   "error_sense": "swaps",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Reports the number of boxes in a best plan instead of frames; the stem gives no sign of whether boxes or frames are the larger count."
+  },
+  "9": {
+   "error_kind": "partial_answer",
+   "error_sense": "omits",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Finds the other tied plan (8, 9), the one that spends the whole budget, and stops; nothing in the stem says which tied plan holds more frames."
+  },
+  "16": {
+   "error_kind": "other",
+   "error_sense": "adds",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Rounds the corner (5.6, 15.4) to 5 boxes and fills the booth with 16 frames, treating that plan as best; the stem does not reveal whether the true best plans carry more or fewer frames."
+  }
+ },
+ "intermediate_check": "16: no - the rounded corner's frame count; the key needs the level-$116 search, not one printed relation. 9: no - the frames in the other tied plan; going from 9 to 14 needs the step (-2, +5) on the level line, which is not printed. 8: no - a box count; turning it into 14 needs the level equation 5x + 2y = 58 and the limits.",
+ "shape_check": "The stem hands over: a whole number of frames, at most 21 (booth) and at most 30 (budget alone). All four options are whole numbers from 8 to 16 and fit both; no parity is forced. All survive together.",
+ "interior_parity_check": "Middle values 9 and 14: a one-digit and a two-digit whole number, within one digit in length; the key 14 is not the cleaner of the two.",
+ "arith_class_check": "Key 14 is even, as are 8 and 16; 9 is odd. 14 is not alone in any class the stem implies.",
+ "idea_probe": {
+  "at": "2026-10-23T00:37:11.248Z",
+  "nearest": "40fba632-b25 (live v26 D1): ties come from an objective exactly parallel to the budget, and the ask is the number of tied combinations. Here the tie comes from lattice steps (-2, +5) on the level $116, which lies below the real corner value, the two tied plans are cut by a budget AND a display cap, and the ask is the greatest frame count among them. b18bf56e-377 (live, extra search 'greatest possible profit') asks a sum of extreme profits over a three-inequality system."
+ },
+ "dup_search": {
+  "queries": [
+   "greatest possible profit",
+   "materials&budget&profit"
+  ],
+  "hits_read": 2,
+  "nearest": "b18bf56e-377 (sum of greatest and least profit; different setup and ask)"
+ },
+ "self_audit": {
+  "risk": "medium",
+  "note": "Covering the work, how many options remain legal from the stem alone? All four: frame counts 8 to 16 all fit the booth and budget, and no bound or parity removes one. Could a student confirm an option against the stem in one routine step (key at try 2 descending)? No: an option is a frame count, and whether a BEST plan has that many frames depends on the greatest profit, which must be found first; trying 16 (the rounded corner, which is allowed) does not reveal that it is not best without comparing profits. Is the bypass option really what skipping THIS item's decision point gives? Yes: rounding the real corner down to 5 boxes and filling the booth gives 16 frames. The bypass sits above the key here, balancing D2, D3 and D5. A test-wise student might expect the answer to come from a tied plan and discount 16, which still leaves 8, 9 and 14. No option is a sum, difference or mean of two others. Preflight (read) lines: PAIR 14 - 8 = 6 = 2 x 3 and DPAIR 22 = 21 + 1, 5 = 4 + 1, 2 = 3 - 1 are coincidences of the printed costs, prices and limits; no stem reading moves between frame or box counts by those numbers."
+ }
+}

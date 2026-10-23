@@ -1,0 +1,97 @@
+{
+  "id": "SM31L-B5",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "System with k on y; window next to the degenerate k; sum",
+  "prompt": "2x + ky = -20\nx + y = 1\nIn this system, k is a constant. Find the sum of the integers k with -5 ≤ k ≤ 9 for which the system has a solution (x, y) with y < -4.",
+  "choices": [
+    "-2",
+    "13",
+    "17",
+    "25"
+  ],
+  "correct_answer": "25",
+  "explanation": "From the second equation x = 1 - y. Substituting: 2 - 2y + ky = -20, so (k - 2)y = -22. Treat k = 2 as its own case: the equation becomes 0 = -22, so the lines are parallel and there is no solution; k = 2 does not count. For k ≠ 2, y = -22/(k - 2), and y < -4 means 22/(k - 2) > 4. If k < 2 the left side is negative, so it fails. If k > 2, multiplying keeps the direction: 22 > 4(k - 2), so k < 7.5. The values are k = 3, 4, 5, 6, 7, whose sum is 25. Choice 13 comes from multiplying -22/(k - 2) < -4 by k - 2 without checking its sign: that keeps every k from -5 to 7, including k = 2, and the sum of those is 13. Choice 17 reverses the inequality for every k, keeping only k = 8 and 9. Choice -2 applies the condition to x instead of y: x = 1 + 22/(k - 2) < -4 gives k = -2, -1, 0, 1.",
+  "solve": "let s=0; for(let k=-5;k<=9;k++){ const det=2*1-k*1; if(det===0) continue; const y=(2*1-1*(-20))/det; if(y<-4) s+=k } return s",
+  "distractor_solve": {
+    "13": "let s=0; for(let k=-5;k<=9;k++){ if(-22 < -4*(k-2)) s+=k } return s",
+    "17": "let s=0; for(let k=-5;k<=9;k++){ if(-22 > -4*(k-2)) s+=k } return s",
+    "-2": "let s=0; for(let k=-5;k<=9;k++){ if(k===2) continue; const x=1+22/(k-2); if(x<-4) s+=k } return s"
+  },
+  "mechanism": [
+    "substitute x = 1 - y to get (k - 2)y = -22",
+    "k = 2 gives parallel lines (no solution)",
+    "sign of k - 2 decides the inequality direction",
+    "sum the integers in the window 2 < k < 7.5"
+  ],
+  "mech": "degenerate-parameter",
+  "ask": "sum",
+  "quantity_asked": "sum of the integers k with -5 ≤ k ≤ 9 for which the system has a solution with y < -4",
+  "setup": {
+    "i": "k is the y-coefficient of one equation in a 2x2 system whose other coefficients and constants are fixed",
+    "ii": "the solution has y-coordinate less than a stated number",
+    "iii": "sum of the integers k in a stated range"
+  },
+  "bypass_option": "13",
+  "off_by_one_options": [],
+  "plugback": {
+    "substitutable": false,
+    "why": "The key is the largest option, natural try 4 ascending. The asked quantity is a sum over qualifying k, so no option can be substituted; checking one means solving for general k and testing the whole range."
+  },
+  "distractor_meta": {
+    "13": {
+      "error_kind": "wrong_operation",
+      "error_sense": "adds",
+      "direction": "below",
+      "stem_predicts_direction": false,
+      "why": "Multiplying by k - 2 with no sign case adds k = -5 to 2 (including the no-solution k = 2); added terms raise a sum when positive and lower it when negative, and the stem does not show which k get added."
+    },
+    "17": {
+      "error_kind": "sign_slip",
+      "error_sense": "swaps",
+      "direction": "below",
+      "stem_predicts_direction": false,
+      "why": "Reversing the inequality for every k swaps the window for the tail k > 7.5; whether that tail sums to more or less than the window depends on the range end, which the stem gives no reason to compare."
+    },
+    "-2": {
+      "error_kind": "wrong_variable",
+      "error_sense": "swaps",
+      "direction": "below",
+      "stem_predicts_direction": false,
+      "why": "Testing x < -4 instead of y < -4 moves the window to the other side of k = 2; the stem does not reveal on which side of 2 the x-window falls."
+    }
+  },
+  "counter_error": {
+    "error_kind": "omission",
+    "solve": "let s=0; for(let k=-5;k<=9;k++){ if(k===2){ s+=k; continue } const y=-22/(k-2); if(y<-4) s+=k } return s",
+    "direction": "above",
+    "why": "Forgetting that k = 2 gives parallel lines and keeping it (writing the window as 2 ≤ k < 7.5) adds 2: 27, strictly above the key and not an option."
+  },
+  "far_distractor": {
+    "option": "13",
+    "natural_side": "above",
+    "why": "This error keeps extra values of k (the degenerate k = 2 and k from -5 to 1), and keeping extra terms would ordinarily make a sum too big, but most of the extra k are negative, so here the sum lands below the key."
+  },
+  "structure_check": "No universal quantifier, extremum or 'sum of all' wording. The sum runs over k of both signs, so added k can raise or lower it: the counter error (keeping k = 2) lands above at 27, the branch and variable errors land below. The stem does not sign every error.",
+  "cheap_bound_check": "Cheapest bound from the stem: the sum of all integers from -5 to 9 is 30, which strikes nothing. After solving, y < -4 < 0 forces k > 2, so the sum is positive: that strikes -2 only; 13 and 17 remain on the key's side.",
+  "intermediate_check": "13: no; it is the sum over a different set (k < 7.5), not a value the key follows from through one printed relation. 17: no; it is the tail k = 8, 9. -2: no; it is the x-window. None is one printed step from 25.",
+  "shape_check": "Properties handed over: the answer is an integer (all four); no sign is forced by the stem alone (-2 survives until solving); no parity or cap. All four survive together.",
+  "interior_parity_check": "Middle values 13 and 17: both two-digit integers of complexity 2; the key 25 is an extreme, not interior.",
+  "arith_class_check": "25 is odd like 13 and 17; -2 is even. The key is not alone in any class the stem implies.",
+  "idea_probe": {
+    "at": "2026-10-22T23:59:27.699Z",
+    "nearest": "757d0b2f-1a1 (v26 B2): k on x in one equation of a fixed system, a count of k with x > y that splits into two unbounded pieces. Here k is on y, the condition gives a bounded window right next to the degenerate k = 2, and the ask is a sum, so the unsplit error adds negative k and lowers the sum. f53c1e07 (live sum, x > 0 and y > 0) has a pivot line and no window."
+  },
+  "dup_search": {
+    "queries": [
+      "kx&kx&y =&how many|sum of",
+      "kx&for how many|how many integer"
+    ],
+    "hits_read": 26,
+    "nearest": "24 live 'ky' rows ask only for the no-solution or infinitely-many k; none sums k over a condition on the solution."
+  },
+  "self_audit": {
+    "risk": "medium",
+    "note": "A test-wise student substitutes, gets (k - 2)y = -22 and must treat k = 2 and the sign of k - 2. Covering the work, all four options remain legal from the stem alone. Could a student tell from the stem which way the errors go? No: the counter error (keeping k = 2) lands above, the others below, and which side each lands on depends on the sign of the added or lost k. Does one bound strike all three? No; the sign bound after solving strikes only -2. Natural try 4 (key largest). The bypass option 13 is exactly what skipping this item's decision point gives: multiplying by k - 2 as if positive, which also keeps the parallel case k = 2. (read) lines answered: PAIR/DPAIR 25 - 17 = 8 = 2 x printed 4 = 9 - 1. The 8 is the sum of the window minus the tail (3+4+5+6+7 vs 8+9); no student doubles the 4 of the condition or subtracts 1 from the range end to move between 17 and 25. Read and judged harmless."
+  }
+}

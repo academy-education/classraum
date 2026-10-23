@@ -1,0 +1,98 @@
+{
+ "id": "SM31L-C3",
+ "domain": "Algebra",
+ "difficulty": "hard",
+ "subskill": "Comparing integer-solution counts of two budget inequalities",
+ "prompt": "Priya has $10 and Marco has $21. Each of them is then given an extra k dollars, where k is a whole number. Priya will buy x notebooks at $3 each, and her total must be less than the amount she has. Marco will buy y pens at $8 each, and his total must be at most the amount he has. Priya has exactly 5 more possible positive integer values of x than Marco has possible positive integer values of y. What is the sum of all integer values of k for which this is true?",
+ "choices": [
+  "84",
+  "98",
+  "103",
+  "117"
+ ],
+ "correct_answer": "84",
+ "explanation": "Priya's condition is 3x < 10 + k, and Marco's is 8y ≤ 21 + k. Let P be the number of positive integers x with 3x < 10 + k, and M the number of positive integers y with 8y ≤ 21 + k. Because Priya's sign is strict, x is NOT allowed when 3x equals 10 + k; because Marco's sign allows equality, y IS allowed when 8y equals 21 + k. P goes up by 1 each time k passes a value where 10 + k is a multiple of 3 (P = 9 for k = 18, 19, 20; P = 10 for k = 21, 22, 23; P = 11 for k = 24, 25, 26), and M goes up by 1 when 21 + k reaches a multiple of 8 (M = 4 for k up to 18, M = 5 for k = 19 through 26, M = 6 from k = 27). So P - M is 4 at k = 17, 5 at k = 18, 4 at k = 19 and 20 (Marco gains a pen at k = 19 while Priya cannot buy a 10th notebook until 3(10) < 10 + k, that is, k ≥ 21), 5 at k = 21, 22, 23, and 6 at k = 24. Below k = 18 the difference is at most 4, and from k = 24 on it is at least 6, because P rises about three times as fast as M. So the values are k = 18, 21, 22, 23, with sum 84. Choice 98 treats Priya's 'less than' as 'at most'. Choice 103 treats Marco's 'at most' as 'less than'. Choice 117 swaps the two signs (Priya at most, Marco less than).",
+ "solve": "let s=0; for (let k=0;k<=1000;k++){ let f=0,g=0; for (let x=1;x<=1000;x++){ if (3*x<10+k) f++; if (8*x<=21+k) g++; } if (f-g===5) s+=k; } return s;",
+ "distractor_solve": {
+  "98": "let s=0; for (let k=0;k<=1000;k++){ let f=0,g=0; for (let x=1;x<=1000;x++){ if (3*x<=10+k) f++; if (8*x<=21+k) g++; } if (f-g===5) s+=k; } return s;",
+  "103": "let s=0; for (let k=0;k<=1000;k++){ let f=0,g=0; for (let x=1;x<=1000;x++){ if (3*x<10+k) f++; if (8*x<21+k) g++; } if (f-g===5) s+=k; } return s;",
+  "117": "let s=0; for (let k=0;k<=1000;k++){ let f=0,g=0; for (let x=1;x<=1000;x++){ if (3*x<=10+k) f++; if (8*x<21+k) g++; } if (f-g===5) s+=k; } return s;"
+ },
+ "mechanism": [
+  "write each budget as a one-variable inequality",
+  "count positive integer solutions as step functions of k",
+  "strict vs non-strict decides the step points",
+  "collect the k with difference 5 (not one block) and add"
+ ],
+ "mech": "integer-count-condition",
+ "ask": "sum",
+ "quantity_asked": "the sum of all whole-number gifts k for which Priya has exactly 5 more possible numbers of notebooks than Marco has possible numbers of pens",
+ "setup": {
+  "i": "k is a gift added to two budgets with different unit prices, one strict (less than) and one non-strict (at most)",
+  "ii": "one budget allows exactly 5 more positive whole-number quantities than the other",
+  "iii": "sum of all values of k"
+ },
+ "bypass_option": "98",
+ "off_by_one_options": [],
+ "plugback": {
+  "substitutable": false,
+  "why": "The key is at try 1 in ascending order, but the ask is the sum of a set of k values; 84 cannot be substituted into either budget. Checking it means finding every k that works - including the isolated k = 18 - which is the full solution."
+ },
+ "distractor_meta": {
+  "98": {
+   "error_kind": "other",
+   "error_sense": "adds",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Letting Priya spend exactly her money adds a notebook at the step points, which moves her steps one k earlier; that both adds k = 17 and 20 and drops k = 23, so whether the sum rises or falls is not visible from the stem."
+  },
+  "103": {
+   "error_kind": "other",
+   "error_sense": "omits",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Not letting Marco spend exactly his money removes a pen at k = 19, which delays his step; whether that adds or removes k values depends on where Priya's steps fall, which the stem does not show."
+  },
+  "117": {
+   "error_kind": "sign_slip",
+   "error_sense": "swaps",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Swapping the two signs moves both people's step points at once; the stem gives no way to tell whether the set of k grows or shrinks."
+  }
+ },
+ "counter_error": {
+  "error_kind": "partial_answer",
+  "solve": "const K=[]; for (let k=0;k<=1000;k++){ let f=0,g=0; for (let x=1;x<=1000;x++){ if (3*x<10+k) f++; if (8*x<=21+k) g++; } if (f-g===5) K.push(k); } let i=K.length-1; while (i>0 && K[i-1]===K[i]-1) i--; return K.slice(i).reduce((a,b)=>a+b,0);",
+  "direction": "below",
+  "why": "A student who finds the block k = 21, 22, 23 and assumes the values form one block misses the isolated k = 18 and gets 66, below the key and not an option."
+ },
+ "far_distractor": {
+  "option": "103",
+  "natural_side": "below",
+  "why": "Reading Marco's 'at most' as 'less than' leaves out his equality case, an omission that ordinarily lowers a count or sum; here Marco having fewer options lets the difference reach 5 at more values of k, so the sum rises to 103."
+ },
+ "structure_check": "The condition is an exact difference of two counts, not an extremum or a universal bound. The three offered errors happen to land above, but the stem does not force that: missing the isolated value k = 18 lowers the sum to 66, and a student cannot tell from the stem which way a sign misreading moves the set.",
+ "cheap_bound_check": "Cheapest bound: Marco can always buy at least 2 pens (k ≥ 0), so Priya needs at least 7 notebooks, 3(7) < 10 + k, so every k is at least 12 and the sum is at least 12. That is a lower bound below the key; all three distractors are above the key and none is struck. No cheap upper bound exists, because the number of k values is unknown until the steps are traced.",
+ "intermediate_check": "98: no - it is the sum of a different set (17, 18, 20, 21, 22), not a value from which 84 follows. 103: no - the sum of 18, 19, 21, 22, 23; no single printed relation turns it into 84. 117: no - the sum of 17 through 22; it is not a step toward the key.",
+ "shape_check": "The stem hands over: k is a whole number at least 12 (by the bound above), so the sum is a positive integer (all four survive); no parity, no multiple, no cap. All four survive together.",
+ "interior_parity_check": "The two middle values are 98 and 103: integers of two and three digits (within one digit), neither cleaner. The key 84 is not one of them.",
+ "arith_class_check": "Parity: 84 and 98 even, 103 and 117 odd - the key is not alone. Multiples of 3 (Priya's price): 84 and 117. Multiples of 8 (Marco's price): none. Multiples of 7: 84 and 98. No class isolates the key.",
+ "idea_probe": {
+  "at": "2026-10-23T00:31:10.185Z",
+  "nearest": "912d9f5b (live v26 B1, Ana and Ben savings, k weekly deposit, balances equal at t ≥ 10, count of k): a degenerate-parameter equality of two linear models; here two separate budget inequalities are compared by how many positive integer solutions each has, the sign of each is the decision, and the ask is a sum. Names changed so no boilerplate is shared."
+ },
+ "dup_search": {
+  "queries": [
+   "notebooks|pens&k dollars|gift",
+   "more possible|more values|more choices&whole",
+   "Ana|Ben&k&whole number"
+  ],
+  "hits_read": 2,
+  "nearest": "912d9f5b / SM26L-B1 (same row): different mechanism and ask"
+ },
+ "self_audit": {
+  "risk": "medium",
+  "note": "Covering the work, how many options remain legal from the stem alone? All four: the only cheap bound (each k at least 12) is below the key and every distractor is above it. Could a student tell from the stem which way the errors go, and does one bound strike all three? No: the condition is an exact difference, the sign misreadings move step points in ways the stem does not show, and missing the isolated value (66, not offered) lands below; no bound strikes any distractor. The key is at natural try 1: could a student confirm an option against the stem in one routine step? No - 84 is a sum over a set of k; to check it a student must trace both step functions and find all four values, including the isolated k = 18. Is the bypass really what skipping THIS item's decision point gives? Yes: the decision is strict vs non-strict at each person's step point; a student who does not make it and treats both totals as 'at most' gets the set 17, 18, 20, 21, 22 and the sum 98. (read) lines answered: PROBE - see above; STRUCT - no extremum or universal condition in the stem; BOUND - see cheap_bound_check; FAR - see far_distractor; INTER - see intermediate_check. D4 (extreme key on a 'sum of all' ask): the slot fixes rank 1; the sum is not signed by the structure because the set of k is not one block and the offered errors both add and remove values (98 drops 23 and adds 17 and 20), so an extreme-position guess has no structural support."
+ }
+}

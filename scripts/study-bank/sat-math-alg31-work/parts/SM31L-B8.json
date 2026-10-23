@@ -1,0 +1,98 @@
+{
+  "id": "SM31L-B8",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Number that is never a solution as k varies",
+  "prompt": "k(2x - 14) = 6x + 18\nIn the equation above, k is a constant. As k takes different values, the solution of the equation changes. Exactly one real number cannot be a solution of this equation, whatever the value of k. What is that number?",
+  "choices": [
+    "-8",
+    "-3",
+    "3",
+    "7"
+  ],
+  "correct_answer": "7",
+  "explanation": "Ask, for a given number x, whether some k makes it a solution. Rewrite the equation as an equation in k: k(2x - 14) = 6x + 18. Treat the case where the coefficient of k is 0 on its own: when 2x - 14 = 0, that is x = 7, the equation reads 0 = 60, which is false for every k, so 7 is never a solution. For any other x, the coefficient 2x - 14 is not 0, and k = (6x + 18)/(2x - 14) makes x a solution. So 7 is the only number that is never a solution. (Solving for x instead gives x = (14k + 18)/(2k - 6) = 7 + 30/(k - 3), which is never 7.) Choice 3 is the value of k at which the equation in x has no solution at all: it confuses the degenerate k with the excluded x. Choice -3 is the solution when k = 0, from treating k = 0 as the special case. Choice -8 drops k altogether and solves 2x - 14 = 6x + 18.",
+  "solve": "for(let i=-200;i<=200;i++){ const x=i/2; const coef=2*x-14, rhs=6*x+18; if(coef===0 && rhs!==0) return x } return NaN",
+  "distractor_solve": {
+    "3": "for(let k=-50;k<=50;k++){ if(2*k-6===0 && 14*k+18!==0) return k } return NaN",
+    "-3": "const k=0; return (14*k+18)/(2*k-6)",
+    "-8": "return (18+14)/(2-6)"
+  },
+  "mechanism": [
+    "view the equation as an equation in k for a fixed x",
+    "the coefficient 2x - 14 vanishes at x = 7",
+    "at x = 7 the equation is 0 = 60 for every k",
+    "every other x is reached by some k"
+  ],
+  "mech": "degenerate-parameter",
+  "ask": "value",
+  "quantity_asked": "the one real number that is not a solution of the equation for any value of k",
+  "setup": {
+    "i": "k multiplies a binomial in x, so as an equation in k (for a given x) its coefficient vanishes at one x",
+    "ii": "exactly one real number is never a solution, for any value of k",
+    "iii": "value of that number"
+  },
+  "bypass_option": "3",
+  "off_by_one_options": [],
+  "plugback": {
+    "substitutable": true,
+    "verify": "const coef=2*v-14, rhs=6*v+18; return coef===0 && rhs!==0",
+    "why": "The key is the largest option, natural try 4 ascending. Trying -8, -3 and 3 in turn, each gives a value of k (1, 0 and -36/8) that makes it a solution, so each is rejected; 7 is reached last and gives 0 = 60. The check only confirms the key at the last try."
+  },
+  "distractor_meta": {
+    "3": {
+      "error_kind": "wrong_variable",
+      "error_sense": "swaps",
+      "direction": "below",
+      "stem_predicts_direction": false,
+      "why": "Answering the k at which the x-equation breaks down instead of the x that no k reaches; the two numbers are unrelated in size, and the stem gives no hint which is larger."
+    },
+    "-3": {
+      "error_kind": "other",
+      "error_sense": "swaps",
+      "direction": "below",
+      "stem_predicts_direction": false,
+      "why": "Treating k = 0 as the special value gives the solution -3; the sign and size of that solution depend on the constants, not on anything the stem signals."
+    },
+    "-8": {
+      "error_kind": "omission",
+      "error_sense": "omits",
+      "direction": "below",
+      "stem_predicts_direction": false,
+      "why": "Dropping k solves 2x - 14 = 6x + 18; its solution can fall on either side of the excluded number, and the stem does not show which."
+    }
+  },
+  "counter_error": {
+    "error_kind": "wrong_operation",
+    "solve": "return 14",
+    "direction": "above",
+    "why": "Reading the zero of 2x - 14 without dividing by 2 gives 14, strictly above the key and not an option."
+  },
+  "far_distractor": {
+    "option": "-8",
+    "natural_side": "above",
+    "why": "Dropping a positive multiplier from the x-term usually leaves a larger solution, but here the k-free equation 2x - 14 = 6x + 18 has a negative solution, so the omission lands far below the key."
+  },
+  "structure_check": "No universal quantifier or extremum wording in the stem (the condition is phrased as whatever the value of k, a condition on the number, not a bound on the answer). The answer is one determined value; the three distractors land below here but the counter error (14) lands above, and nothing in the stem says the excluded number is the largest candidate.",
+  "cheap_bound_check": "Cheapest bound from the stem: none on the size of the excluded number. Substituting an option is the only check, and it confirms only the last one tried; no single bound strikes -8, -3 and 3 together.",
+  "intermediate_check": "3: no; it is the excluded k, not a value from which 7 follows through one printed relation (7 is the zero of 2x - 14, computed from the 14). -3: no; the solution at k = 0. -8: no; the solution of a different equation. None is one printed step from 7.",
+  "shape_check": "Properties handed over: the answer is a real number (all four survive); no sign or integrality is forced. All four survive.",
+  "interior_parity_check": "Middle values -3 and 3: both one-digit integers of complexity 1; the key 7 is an extreme, not interior. -3 and 3 form a +/- pair that does not contain the key.",
+  "arith_class_check": "7 is positive with 3; -8 and -3 are negative. The key is not alone in any class the stem implies.",
+  "idea_probe": {
+    "at": "2026-10-23T00:06:02.387Z",
+    "nearest": "5d99d0e3-163 (v22): k(2x - 3) + 7 = 6x + c with c chosen so a solution exists for every k; there the degenerate k forces c. Here there is no second constant: the question is which x no k can reach, which is the degenerate case of the equation read as an equation in k. b7e21eab (v27) finds the no-solution k and then solves a second equation."
+  },
+  "dup_search": {
+    "queries": [
+      "not a solution|never a solution|no value of k",
+      "k\\(2x"
+    ],
+    "hits_read": 4,
+    "nearest": "5d99d0e3-163, as above; no live row asks for the value a solution can never take."
+  },
+  "self_audit": {
+    "risk": "medium",
+    "note": "A test-wise student either solves for x (x = 7 + 30/(k - 3)) and must see that the formula never reaches 7, or reads the equation as one in k and treats the vanishing coefficient 2x - 14. Covering the work, all four options remain legal from the stem alone. Could a student tell from the stem which way the errors go? No: the counter error (14) lands above. Does one bound strike all three? No. Plug-back reaches the key at try 4 only. The bypass option 3 is what a student gets by finding where the generic formula breaks (k = 3) without treating that case and asking what it means: 3 is the degenerate k, not the excluded solution. (read) lines answered: PAIR 7 + (-3) = 4 and 7 - 3 = 4 = 2 x printed 2; ratio 7/3 = 14/6. The ratio is real: 7 is the zero of 2x - 14 and 3 the zero of 2k - 6, so both come from halving a printed number; but a student who halves 6 has found the degenerate k, which is the bypass, and halving 14 is the decision point itself, so the pair does not let a student pick 7 over 3 without the reasoning. DPAIR 7 - (-8) = 15 = 14 + 1, not a route anyone takes. Read; the 7/3 relation is flagged for the graders."
+  }
+}

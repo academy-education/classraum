@@ -1,0 +1,496 @@
+{
+ "r1": {
+  "valid": false,
+  "positives": 4,
+  "negatives": 1,
+  "items": {
+   "SM31L-B1": {
+    "key_try": 1,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "answer is a count/sum/difference over k values or plans; an option cannot be substituted back"
+   },
+   "SM31L-B2": {
+    "key_try": 4,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "answer is a count/sum/difference over k values or plans; an option cannot be substituted back"
+   },
+   "SM31L-B3": {
+    "key_try": 2,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "answer is a count/sum/difference over k values or plans; an option cannot be substituted back"
+   },
+   "SM31L-B4": {
+    "key_try": 1,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "answer is a count/sum/difference over k values or plans; an option cannot be substituted back"
+   },
+   "SM31L-B5": {
+    "key_try": 4,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "answer is a count/sum/difference over k values or plans; an option cannot be substituted back"
+   },
+   "SM31L-B6": {
+    "key_try": 3,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "answer is a count/sum/difference over k values or plans; an option cannot be substituted back"
+   },
+   "SM31L-B7": {
+    "key_try": 3,
+    "order": "descending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": "3",
+    "confirmed_at": 3,
+    "routine": true,
+    "note": "substitute k, find intersection y"
+   },
+   "SM31L-B8": {
+    "key_try": 4,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": "7",
+    "confirmed_at": 4,
+    "routine": true,
+    "note": "substitute x, try to solve for k"
+   },
+   "SM31L-C1": {
+    "key_try": 4,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "answer is a count/sum/difference over k values or plans; an option cannot be substituted back"
+   },
+   "SM31L-C2": {
+    "key_try": 3,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "answer is a count/sum/difference over k values or plans; an option cannot be substituted back"
+   },
+   "SM31L-C3": {
+    "key_try": 1,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "answer is a count/sum/difference over k values or plans; an option cannot be substituted back"
+   },
+   "SM31L-C4": {
+    "key_try": 3,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "answer is a count/sum/difference over k values or plans; an option cannot be substituted back"
+   },
+   "SM31L-C5": {
+    "key_try": 1,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "answer is a count/sum/difference over k values or plans; an option cannot be substituted back"
+   },
+   "SM31L-C6": {
+    "key_try": 4,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "answer is a count/sum/difference over k values or plans; an option cannot be substituted back"
+   },
+   "SM31L-C7": {
+    "key_try": 2,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "answer is a count/sum/difference over k values or plans; an option cannot be substituted back"
+   },
+   "SM31L-C8": {
+    "key_try": 3,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": "-14",
+    "confirmed_at": 3,
+    "routine": true,
+    "note": "substitute k, count integers failing second"
+   },
+   "SM31L-D1": {
+    "key_try": 1,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "answer is a count/sum/difference over k values or plans; an option cannot be substituted back"
+   },
+   "SM31L-D2": {
+    "key_try": 2,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "answer is a count/sum/difference over k values or plans; an option cannot be substituted back"
+   },
+   "SM31L-D3": {
+    "key_try": 4,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "answer is a count/sum/difference over k values or plans; an option cannot be substituted back"
+   },
+   "SM31L-D4": {
+    "key_try": 1,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "option is a difference of the optimal plan; needs full optimization"
+   },
+   "SM31L-D5": {
+    "key_try": 4,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "answer is a count/sum/difference over k values or plans; an option cannot be substituted back"
+   },
+   "SM31L-D6": {
+    "key_try": 2,
+    "order": "descending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "max profit not printed; cannot confirm plan is optimal"
+   },
+   "SM31L-D7": {
+    "key_try": 2,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "option gives a total kit count but minimality of total is not printed; needs full optimization"
+   },
+   "SM31L-D8": {
+    "key_try": 3,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "optimum meals not printed; plugging a rice count gives meals but cannot confirm max"
+   }
+  }
+ },
+ "r2": {
+  "valid": false,
+  "positives": 4,
+  "negatives": 1,
+  "items": {
+   "SM31L-B1": {
+    "key_try": 1,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "count-of-k answer"
+   },
+   "SM31L-B2": {
+    "key_try": 4,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "count-of-k answer"
+   },
+   "SM31L-B3": {
+    "key_try": 2,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "count-of-k answer"
+   },
+   "SM31L-B4": {
+    "key_try": 1,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "sum-of-k answer"
+   },
+   "SM31L-B5": {
+    "key_try": 4,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "sum-of-k answer"
+   },
+   "SM31L-B6": {
+    "key_try": 3,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "range-of-k answer"
+   },
+   "SM31L-B7": {
+    "key_try": 3,
+    "order": "descending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": "3",
+    "confirmed_at": 3,
+    "routine": true,
+    "note": "substitute k, solve one linear equation"
+   },
+   "SM31L-B8": {
+    "key_try": 4,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": "7",
+    "confirmed_at": 4,
+    "routine": true,
+    "note": "substitute x, back-solve k"
+   },
+   "SM31L-C1": {
+    "key_try": 4,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "count-of-k answer"
+   },
+   "SM31L-C2": {
+    "key_try": 3,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "count-of-k answer"
+   },
+   "SM31L-C3": {
+    "key_try": 1,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "sum-of-k answer"
+   },
+   "SM31L-C4": {
+    "key_try": 3,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "sum-of-k answer; needs the full count of k"
+   },
+   "SM31L-C5": {
+    "key_try": 1,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "range-of-k answer"
+   },
+   "SM31L-C6": {
+    "key_try": 4,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "range-of-k answer"
+   },
+   "SM31L-C7": {
+    "key_try": 2,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "range-of-k answer"
+   },
+   "SM31L-C8": {
+    "key_try": 3,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": "-14",
+    "confirmed_at": 3,
+    "routine": true,
+    "note": "substitute k, count integers"
+   },
+   "SM31L-D1": {
+    "key_try": 1,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "count of tied optima"
+   },
+   "SM31L-D2": {
+    "key_try": 2,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "count of tied optima"
+   },
+   "SM31L-D3": {
+    "key_try": 4,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "question asks for a total (greatest is in the condition), so ascending; optimisation not plug-backable"
+   },
+   "SM31L-D4": {
+    "key_try": 1,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "integer optimisation"
+   },
+   "SM31L-D5": {
+    "key_try": 4,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "integer cost minimisation"
+   },
+   "SM31L-D6": {
+    "key_try": 2,
+    "order": "descending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "tied-optimum search"
+   },
+   "SM31L-D7": {
+    "key_try": 2,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "integer optimisation; no printed target to compare against"
+   },
+   "SM31L-D8": {
+    "key_try": 3,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": 0,
+    "routine": false,
+    "note": "integer optimisation"
+   }
+  }
+ }
+}

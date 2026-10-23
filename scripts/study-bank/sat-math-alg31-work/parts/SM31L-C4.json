@@ -1,0 +1,85 @@
+{
+ "id": "SM31L-C4",
+ "domain": "Algebra",
+ "difficulty": "hard",
+ "subskill": "Matching integer-solution counts of two compound inequalities",
+ "prompt": "-17 ≤ 3x - 2 < 10\n-35 < 15 - 5x ≤ 2k - 10\nIf the two compound inequalities above are satisfied by the same number of integers, what is the sum of all possible integer values of the constant k?",
+ "choices": [
+  "17",
+  "27",
+  "33",
+  "42"
+ ],
+ "correct_answer": "33",
+ "explanation": "First inequality: adding 2 gives -15 ≤ 3x < 12, so -5 ≤ x < 4. The end -5 IS a solution (≤) and 4 is NOT (<), so the integer solutions are -5, -4, ..., 3: nine of them. Second inequality: subtracting 15 gives -50 < -5x ≤ 2k - 25, and dividing by -5 reverses both signs: 10 > x ≥ (25 - 2k)/5. So x < 10 (10 itself is NOT a solution) and x ≥ (25 - 2k)/5 (that end IS attained when it is an integer). If m is the least integer with m ≥ (25 - 2k)/5, the integer solutions are m, m + 1, ..., 9, which is 10 - m of them. For nine solutions, m = 1: 1 must be a solution and 0 must not, so 0 < (25 - 2k)/5 ≤ 1, that is, 0 < 25 - 2k ≤ 5, so 10 ≤ k < 12.5. The integer values are k = 10, 11, 12, and their sum is 33. Choice 17 comes from treating -5 as not a solution of the first inequality (eight solutions), which gives k = 8, 9. Choice 27 comes from treating 4 as a solution of the first inequality (ten solutions), which gives k = 13, 14. Choice 42 comes from reversing the sign when dividing by -5 but not changing the sign of the right side, x ≥ (2k - 25)/5, which gives k = 13, 14, 15.",
+ "solve": "const nA=(()=>{let c=0; for (let x=-100;x<=100;x++){ const t=3*x-2; if (-17<=t && t<10) c++; } return c})(); let s=0; for (let k=-300;k<=300;k++){ let c=0; for (let x=-200;x<=200;x++){ const t=15-5*x; if (-35<t && t<=2*k-10) c++; } if (c===nA) s+=k; } return s;",
+ "distractor_solve": {
+  "17": "const nA=(()=>{let c=0; for (let x=-100;x<=100;x++){ const t=3*x-2; if (-17<t && t<10) c++; } return c})(); let s=0; for (let k=-300;k<=300;k++){ let c=0; for (let x=-200;x<=200;x++){ const t=15-5*x; if (-35<t && t<=2*k-10) c++; } if (c===nA) s+=k; } return s;",
+  "27": "const nA=(()=>{let c=0; for (let x=-100;x<=100;x++){ const t=3*x-2; if (-17<=t && t<=10) c++; } return c})(); let s=0; for (let k=-300;k<=300;k++){ let c=0; for (let x=-200;x<=200;x++){ const t=15-5*x; if (-35<t && t<=2*k-10) c++; } if (c===nA) s+=k; } return s;",
+  "42": "const nA=(()=>{let c=0; for (let x=-100;x<=100;x++){ const t=3*x-2; if (-17<=t && t<10) c++; } return c})(); let s=0; for (let k=-300;k<=300;k++){ let c=0; for (let x=-200;x<=200;x++){ if (x<10 && x>=(2*k-25)/5) c++; } if (c===nA) s+=k; } return s;"
+ },
+ "mechanism": [
+  "count the fixed inequality's integer solutions with its attained end",
+  "reverse the second inequality and keep which end is attained",
+  "set the least solution so the counts match",
+  "solve for k and add the integer values"
+ ],
+ "mech": "integer-count-condition",
+ "ask": "sum",
+ "quantity_asked": "the sum of all integer k for which the two compound inequalities have equally many integer solutions",
+ "setup": {
+  "i": "k in the non-strict end of the second of two compound inequalities (negative x-coefficient); the first compound inequality is fixed",
+  "ii": "the two inequalities have the same number of integer solutions",
+  "iii": "sum of all integer values of k"
+ },
+ "bypass_option": "17",
+ "off_by_one_options": [],
+ "plugback": {
+  "substitutable": false,
+  "why": "The ask is the sum of a set of k values; 30 cannot be substituted into either inequality. Confirming it requires finding every k that gives nine solutions, which is the full solution. The key is at try 3 in ascending order."
+ },
+ "distractor_meta": {
+  "17": {
+   "error_kind": "other",
+   "error_sense": "omits",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Dropping the attained end -5 lowers the target count to eight; which way that moves k depends on how the second inequality's count changes with k, which the stem does not show until it is reversed and solved."
+  },
+  "27": {
+   "error_kind": "other",
+   "error_sense": "adds",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Including 4 raises the target to ten, which moves the k values UP (13, 14) but leaves only two of them, so the sum falls; a student cannot see from the stem that a larger target gives a smaller sum."
+  },
+  "42": {
+   "error_kind": "sign_slip",
+   "error_sense": "swaps",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Keeping the right side's sign after dividing by -5 moves the boundary to the mirror side; the stem gives no hint whether that sends k up or down."
+  }
+ },
+ "structure_check": "Not an extreme key (rank 3). The condition is an equality of two counts, with no extremum or universal bound; the target count moving up (27) and down (17) both lower the sum here, but for different reasons (fewer k values vs smaller k values), and the sign slip raises it.",
+ "cheap_bound_check": "Not an extreme key. For reference, the cheapest bound is that the second inequality needs at least one solution (x = 9): 15 - 45 ≤ 2k - 10, so k ≥ -10; every option is consistent with that, so nothing is struck.",
+ "intermediate_check": "17: no - it is the sum for a different target count (eight), not a value the key follows from. 27: no - the sum for ten solutions. 42: no - the sum from a mis-signed boundary. The solved intermediates (9 solutions, m = 1, 10 ≤ k < 12.5) are not options.",
+ "shape_check": "The stem hands over: the answer is an integer sum (all four survive); no sign or parity is forced; k ≥ -10 from the cheap bound leaves all four. All four survive together.",
+ "interior_parity_check": "The two middle values are 27 and 33: both two-digit odd integers of the same complexity; neither is round, neither is cleaner.",
+ "arith_class_check": "Parity: 17, 27, 33 odd and 42 even - the key is with the majority. Multiples of 3: 27, 33, 42. Multiples of 5 (the printed coefficient): none. Primes: 17 only. No class the stem implies isolates the key.",
+ "idea_probe": {
+  "at": "2026-10-23T00:47:21.250Z",
+  "nearest": "e0559aab (live v26 C3: system 4 - 3x ≤ 22 and 4x < k - 30, the integer solutions sum to -18, sum of k): there one system's solution set is pinned by the sum of its solutions; here two separate compound inequalities must have equally many integer solutions, both need a reversal, and the attained ends of both decide the count - a different condition on a different structure."
+ },
+ "dup_search": {
+  "queries": [
+   "inequalit&sum of all integer values of k"
+  ],
+  "hits_read": 3,
+  "nearest": "e0559aab / SM26L-C3 (same row, live and prior) - different condition and structure, see idea_probe"
+ },
+ "self_audit": {
+  "risk": "medium",
+  "note": "Covering the work, how many options remain legal from the stem alone? All four: they are integers consistent with the only cheap bound (k ≥ -10). Natural try is 3, so this is not a try 1-2 slot, and a sum of k values cannot be confirmed by substituting an option. Is the bypass really what skipping THIS item's decision point gives? Yes: the decision is which ends are attained; a student who does not decide it and treats the first inequality's -5 like its strict end (both excluded) counts eight solutions and gets 17. The second endpoint error (including 4) also lands below the key but through a different route (the k values rise while their number falls), so a student cannot read a direction off the stem. (read) lines answered: any PAIR / DPAIR soft lines between the key and an option are coincidences of the endpoint shifts, not relations a student can read from the stem."
+ }
+}

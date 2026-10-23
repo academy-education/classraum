@@ -1,0 +1,85 @@
+{
+ "id": "SM31L-C7",
+ "domain": "Algebra",
+ "difficulty": "hard",
+ "subskill": "Range of a constant from floor counts in a linear model",
+ "prompt": "In a building, floor x is 5x meters above street level, where x is an integer; negative values of x are underground floors, and floor 0 is at street level. A new elevator will stop at every floor whose height, in meters, is at least 2k - 13 and less than 20, where k is a constant. The elevator must stop at street level and at no more than 16 floors in all. How much greater is the greatest possible integer value of k than the least possible integer value of k?",
+ "choices": [
+  "5",
+  "31",
+  "32",
+  "39"
+ ],
+ "correct_answer": "31",
+ "explanation": "The elevator stops at floor x when 2k - 13 ≤ 5x < 20. From 5x < 20, x < 4, so the top stop is floor 3 (floor 4, at exactly 20 meters, is not included). From 2k - 13 ≤ 5x, x ≥ (2k - 13)/5, and a floor exactly at height 2k - 13 IS a stop. Street level: floor 0 must be a stop, so 2k - 13 ≤ 0, k ≤ 6.5, so k ≤ 6. No more than 16 floors: the stops run from the lowest stop up to floor 3, so the lowest stop can be no lower than floor -12 (floors -12 through 3 are 16 floors). Floor -13, at -65 meters, must NOT be a stop: -65 < 2k - 13, so 2k > -52, k > -26, so k ≥ -25. So k runs from -25 to 6, and 6 - (-25) = 31. Choice 32 treats 'at least 2k - 13' as 'more than 2k - 13', which lets k = -26 work (floor -13 would sit exactly at the excluded height). Choice 5 uses 2k - 13 as a floor number instead of a height, x ≥ 2k - 13, which gives k from 1 to 6. Choice 39 drops the street-level requirement and only asks that the elevator stop somewhere (floor 3 needs 2k - 13 ≤ 15, so k ≤ 14).",
+ "solve": "const D=(kEx,wv,noZ)=>{const ks=[]; for (let k=-300;k<=300;k++){ let tot=0,z=false,any=false; for (let x=-150;x<=150;x++){ const h=5*x; const lo=wv? 2*k-13<=x : (kEx? 2*k-13<h : 2*k-13<=h); const up=h<20; if(lo&&up){ any=true; tot++; if(x===0) z=true; } } if ((noZ?any:z) && tot<=16) ks.push(k);} return ks[ks.length-1]-ks[0];}; return D(false,false,false);",
+ "distractor_solve": {
+  "32": "const D=(kEx,wv,noZ)=>{const ks=[]; for (let k=-300;k<=300;k++){ let tot=0,z=false,any=false; for (let x=-150;x<=150;x++){ const h=5*x; const lo=wv? 2*k-13<=x : (kEx? 2*k-13<h : 2*k-13<=h); const up=h<20; if(lo&&up){ any=true; tot++; if(x===0) z=true; } } if ((noZ?any:z) && tot<=16) ks.push(k);} return ks[ks.length-1]-ks[0];}; return D(true,false,false);",
+  "5": "const D=(kEx,wv,noZ)=>{const ks=[]; for (let k=-300;k<=300;k++){ let tot=0,z=false,any=false; for (let x=-150;x<=150;x++){ const h=5*x; const lo=wv? 2*k-13<=x : (kEx? 2*k-13<h : 2*k-13<=h); const up=h<20; if(lo&&up){ any=true; tot++; if(x===0) z=true; } } if ((noZ?any:z) && tot<=16) ks.push(k);} return ks[ks.length-1]-ks[0];}; return D(false,true,false);",
+  "39": "const D=(kEx,wv,noZ)=>{const ks=[]; for (let k=-300;k<=300;k++){ let tot=0,z=false,any=false; for (let x=-150;x<=150;x++){ const h=5*x; const lo=wv? 2*k-13<=x : (kEx? 2*k-13<h : 2*k-13<=h); const up=h<20; if(lo&&up){ any=true; tot++; if(x===0) z=true; } } if ((noZ?any:z) && tot<=16) ks.push(k);} return ks[ks.length-1]-ks[0];}; return D(false,false,true);"
+ },
+ "mechanism": [
+  "convert the height window into floor numbers, top floor 3 from the strict bound",
+  "street level fixes the greatest k",
+  "at most 15 floors fixes the least k through the attained lower height",
+  "subtract"
+ ],
+ "mech": "integer-count-condition",
+ "ask": "difference",
+ "quantity_asked": "the greatest possible integer k minus the least possible integer k for which the elevator stops at street level and at no more than 16 floors",
+ "setup": {
+  "i": "k sets the lowest height an elevator serves in a building whose floors are numbered with integers (height 5x); the top is a fixed strict height",
+  "ii": "the elevator stops at street level and at no more than 16 floors in all",
+  "iii": "difference between the greatest and least integer values of k"
+ },
+ "bypass_option": "32",
+ "off_by_one_options": [
+  "32"
+ ],
+ "plugback": {
+  "substitutable": false,
+  "why": "The ask is a difference between two values of k from two different conditions; 31 cannot be checked by substituting it anywhere. Ascending order reaches the key at try 2, but confirming it needs both extreme values of k, which is the whole solution."
+ },
+ "distractor_meta": {
+  "32": {
+   "error_kind": "other",
+   "error_sense": "omits",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Reading 'at least' as 'more than' removes the floor at exactly height 2k - 13; whether that lets the range of k grow or shrink depends on which end it affects, which the stem does not show."
+  },
+  "5": {
+   "error_kind": "wrong_variable",
+   "error_sense": "swaps",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Treating the height 2k - 13 as a floor number changes the scale by a factor of 5 on one condition only; the stem gives no hint of the net direction."
+  },
+  "39": {
+   "error_kind": "omission",
+   "error_sense": "omits",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Dropping the street-level requirement removes the condition that sets the top of k's range; a student cannot see from the stem that the replacement condition is looser."
+  }
+ },
+ "structure_check": "Not an extreme key (rank 2). The two conditions fix opposite ends of k's range, and errors move both ways (4 below, 27 and 36 above).",
+ "cheap_bound_check": "Not an extreme key. Cheapest bound: the street-level stop alone gives k ≤ 6 and nothing below, so it bounds no difference; no option is struck.",
+ "intermediate_check": "5: no - a difference under a different reading, not a step toward 31. 32: no - the difference with -26 as the least k. 39: no - the difference with 14 as the greatest k. The intermediates (3, 6, -25, -13) are not options.",
+ "shape_check": "The stem hands over: a nonnegative integer (all four survive). Nothing else is forced.",
+ "interior_parity_check": "The two middle values are 31 and 32: two-digit integers of the same complexity; neither is cleaner.",
+ "arith_class_check": "Parity: 32 even, 5, 31, 39 odd - the key is with the majority. Multiples of 5 (printed): 5 only. Primes: 5 and 31. No class the stem implies isolates the key.",
+ "idea_probe": {
+  "at": "2026-10-23T01:32:56.434Z",
+  "nearest": "2f20dfb7 (live math-v3, freight elevator load 400 to 1190 kg, count of crew sizes): fixed numbers, the ask is a count of n; here k sets the elevator's lowest height in a floor-numbering model, street level and a floor cap fix the two ends of k's range, and the ask is their difference."
+ },
+ "dup_search": {
+  "queries": [],
+  "hits_read": 12,
+  "nearest": "2f20dfb7 - different setup, see idea_probe"
+ },
+ "self_audit": {
+  "risk": "medium",
+  "note": "Covering the work, how many options remain legal from the stem alone? All four: the only cheap bound (k ≤ 6 from street level) gives no limit on a difference. The key is at natural try 2: could a student confirm an option against the stem in one routine step? No - 31 is a difference of two values of k fixed by two separate conditions; neither value is recoverable from 31. Is the bypass really what skipping THIS item's decision point gives? Yes: the decision is whether the floor at exactly height 2k - 13 is a stop; a student who does not decide it and treats both bounds as strict gets 32. Varied from C3 and C4: no comparison of two solution counts - the conditions are a membership (street level) and a single cap on the number of floors. (read) lines: any PAIR / DPAIR soft line between the key and an option is a coincidence of the edge shifts, not a relation readable from the stem. Renumbered in run 2 (key was 26, shared with B4): U 25 -> 20, cap 15 -> 16; same structure and error paths."
+ }
+}

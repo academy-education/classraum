@@ -1,0 +1,97 @@
+{
+  "id": "SM31L-B2",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "One-variable equation, k on a binomial; count k",
+  "prompt": "k(x + 4) = 2x - 12\nIn the equation above, k is a constant. How many integers k with -6 ≤ k ≤ 11 make the equation have a solution less than 4?",
+  "choices": [
+    "6",
+    "8",
+    "12",
+    "15"
+  ],
+  "correct_answer": "15",
+  "explanation": "Collect the x-terms: kx + 4k = 2x - 12, so (k - 2)x = -4k - 12. Treat k = 2 as its own case: the equation becomes 0 = -20, which is false, so there is no solution and k = 2 does not count. For k ≠ 2 the solution is x = (-4k - 12)/(k - 2), and we need x < 4. When k > 2, k - 2 is positive, so -4k - 12 < 4(k - 2), which gives k > -1/2; every k from 3 to 11 works (9 values). When k < 2, k - 2 is negative, so multiplying reverses the inequality: -4k - 12 > 4(k - 2), which gives k < -1/2; the values k = -6, -5, -4, -3, -2, -1 work (6 values). The total is 9 + 6 = 15. Choice 12 comes from multiplying by k - 2 without checking its sign: k > -1/2 for every k, which keeps k = 0, 1 and the no-solution value k = 2 but loses all six negative values. Choice 8 comes from a sign slip that writes the solution as (-4k - 12)/(2 - k); then every k below 2 appears to work and no k above 2 does. Choice 6 keeps only the branch where k - 2 is negative.",
+  "solve": "let n=0; for(let k=-6;k<=11;k++){ const a=k-2, b=-12-4*k; if(a===0) continue; if(b/a<4) n++ } return n",
+  "distractor_solve": {
+    "6": "let n=0; for(let k=-6;k<=11;k++){ if(-12-4*k > 4*(k-2)) n++ } return n",
+    "8": "let n=0; for(let k=-6;k<=11;k++){ if(k===2) continue; if((-12-4*k)/(2-k)<4) n++ } return n",
+    "12": "let n=0; for(let k=-6;k<=11;k++){ if(-12-4*k < 4*(k-2)) n++ } return n"
+  },
+  "mechanism": [
+    "collect x-terms to (k - 2)x = -4k - 12",
+    "k = 2 makes the coefficient vanish (no solution)",
+    "sign of k - 2 decides the inequality direction",
+    "count both branches in the range"
+  ],
+  "mech": "degenerate-parameter",
+  "ask": "count",
+  "quantity_asked": "number of integers k with -6 ≤ k ≤ 11 for which the equation has a solution less than 4",
+  "setup": {
+    "i": "k multiplies a binomial in x on one side of a one-variable linear equation, so the x-coefficient k - 2 vanishes at one k",
+    "ii": "the solution is less than a stated number",
+    "iii": "number of integers k in a stated range"
+  },
+  "bypass_option": "12",
+  "off_by_one_options": [],
+  "plugback": {
+    "substitutable": false,
+    "why": "The key is the largest option, natural try 4 ascending. The asked quantity is a count over k, so an option cannot be substituted; checking any option means solving for general k and testing the whole range of 18 integers."
+  },
+  "distractor_meta": {
+    "6": {
+      "error_kind": "partial_answer",
+      "error_sense": "omits",
+      "direction": "below",
+      "stem_predicts_direction": false,
+      "why": "Keeping only the branch where k - 2 is negative omits k = 3 to 11; a student cannot see from the stem how the two branches compare in size."
+    },
+    "8": {
+      "error_kind": "sign_slip",
+      "error_sense": "swaps",
+      "direction": "below",
+      "stem_predicts_direction": false,
+      "why": "Writing the denominator as 2 - k swaps which branch satisfies the inequality; the swapped count can be larger or smaller than the true one depending on the range, and nothing in the stem signs it."
+    },
+    "12": {
+      "error_kind": "wrong_operation",
+      "error_sense": "adds",
+      "direction": "below",
+      "stem_predicts_direction": false,
+      "why": "Multiplying by k - 2 with no sign case adds k = 0, 1 and the no-solution k = 2 but drops all six negative k; which effect wins depends on where -1/2 and 2 fall in the range, which the stem does not show."
+    }
+  },
+  "counter_error": {
+    "error_kind": "omission",
+    "solve": "let n=0; for(let k=-6;k<=11;k++){ if(k===2){ n++; continue } const a=k-2, b=-12-4*k; if(b/a<4) n++ } return n",
+    "direction": "above",
+    "why": "Forgetting that k = 2 gives no solution (writing the right branch as k ≥ 2) counts it: 16, strictly above the key and not an option."
+  },
+  "far_distractor": {
+    "option": "12",
+    "natural_side": "above",
+    "why": "Keeping the degenerate k = 2 and the band k = 0, 1 is an error that adds values and would ordinarily overcount, but the same unsplit multiplication throws away the six negative k, so here it lands below the key."
+  },
+  "structure_check": "No universal quantifier or extremum in the stem. The true set has two branches on either side of k = 2; errors can add values (keeping k = 2, the counter error at 16) or remove them (losing a branch), so the stem does not tell a student that every error undercounts.",
+  "cheap_bound_check": "Cheapest bound readable from the stem: at most 17 values (18 integers, one of which gives no solution), which strikes nothing. A sign argument after solving (the k > 2 branch alone gives 9) is not readable from the stem and still leaves 12 on the key's side; nothing from the stem alone strikes 6, 8 and 12 together.",
+  "intermediate_check": "12: no; it is the size of the set k > -1/2, not a value the key follows from through one printed relation. 8: no; it is the count for a swapped sign, a different set. 6: it is one branch of the key, but the key does not follow from it through a printed relation (the other branch, 9, is not printed and must be computed). None is a solved intermediate one printed step from the key.",
+  "shape_check": "Properties handed over: the answer is an integer from 0 to 17 (all four survive); k = 2 is special (no option excluded by that alone); no parity or cap. All four options survive together.",
+  "interior_parity_check": "Middle values 8 and 12: one- and two-digit plain integers of the same form; the key 15 is not cleaner than them.",
+  "arith_class_check": "The key 15 is the only odd option. The stem implies no parity for the count; noted for the graders.",
+  "idea_probe": {
+    "at": "2026-10-22T23:51:18.522Z",
+    "nearest": "SM18L-B6 (prior): k(x - 4) = 3x + 18 with the count of k giving a positive-integer solution, a divisor count with no sign split. Here the condition is an upper bound on the solution, so the count splits at the degenerate k = 2 into two branches; no live row has this chain (d78409d6 compares the solution with k itself)."
+  },
+  "dup_search": {
+    "queries": [
+      "k\\(x&how many|sum of|number of",
+      "equation&solution&greater than|less than&how many"
+    ],
+    "hits_read": 8,
+    "nearest": "d78409d6-ac4 (live v23): 2(x - k) = x + k - 10, solution a positive integer between k and 52; the coefficient of x never vanishes there, so there is no degenerate case or sign split."
+  },
+  "self_audit": {
+    "risk": "medium",
+    "note": "A test-wise student solves (k - 2)x = -4k - 12 and must split at k = 2. Covering the work, all four options remain legal from the stem alone. Could a student tell from the stem which way the errors go? No: the counter error (keeping k = 2) lands above at 16 while the branch-losing errors land below, and the bypass both adds and drops values. Does one bound strike all three? No. Natural try 4 (key largest), so plug-back reaches it last; no option can be substituted in any case. The bypass option 12 is exactly what skipping this item's decision point gives: multiplying by k - 2 as if it were positive, which also keeps the no-solution k = 2. (read) lines answered: DPAIR 15 - 8 = 7 = 6 + 1 and 15 - 12 = 3 = 2 + 1; DPAIR/DSUM 15 + 8 = 23 = 12 + 11. None is a route a student would take between an option and the key: the key is a count of integers in two branches (6 + 9), not a printed number shifted by 1, and no student adds the 12 and the 11 of the stem to anything. Read and judged harmless."
+  }
+}

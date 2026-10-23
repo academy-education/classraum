@@ -1,0 +1,84 @@
+{
+  "id": "SM31L-B6",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Two pricing plans identical at one k; spread of k",
+  "prompt": "Plan A charges k dollars per item plus a $6 setup fee. Plan B charges $3 per item plus a design fee of 2k dollars. Here k is a whole number from 1 to 50. For some values of k, there is an order of n items, where n is a positive whole number, for which the two plans charge the same total, and that total is between $40 and $70, inclusive. What is the difference between the greatest and least such values of k?",
+  "choices": [
+    "15",
+    "17",
+    "29",
+    "47"
+  ],
+  "correct_answer": "29",
+  "explanation": "For an order of n items, Plan A costs kn + 6 and Plan B costs 3n + 2k. Setting them equal: kn - 3n = 2k - 6, so (k - 3)n = 2(k - 3). Treat k = 3 as its own case: then both plans cost 3n + 6 for every n, so they charge the same total for every order; an order of n = 12 costs $42, which is in the band, so k = 3 qualifies. For k ≠ 3 we may divide by k - 3: the plans agree only at n = 2, where the total is 2k + 6. That total is from 40 to 70 when 17 ≤ k ≤ 32. So the qualifying values are k = 3 and k = 17 through 32; the greatest is 32 and the least is 3, a difference of 29. Choice 15 comes from dividing by k - 3 for every k, which loses k = 3 and gives 32 - 17. Choice 47 forgets that the plans meet at n = 2 and uses k + 3 as the common total, which puts the generic values at k = 37 through 50. Choice 17 uses the per-item price 3 as the order size, so the common total is taken as 3(k + 3), giving k = 11 through 20 together with k = 3.",
+  "solve": "const ok=[]; for(let k=1;k<=50;k++){ let hit=false; for(let n=1;n<=200;n++){ const A=k*n+6, B=3*n+2*k; if(A===B && A>=40 && A<=70){ hit=true; break } } if(hit) ok.push(k) } return Math.max(...ok)-Math.min(...ok)",
+  "distractor_solve": {
+    "15": "const ok=[]; for(let k=1;k<=50;k++){ const t=2*k+6; if(t>=40&&t<=70) ok.push(k) } return Math.max(...ok)-Math.min(...ok)",
+    "17": "const ok=[3]; for(let k=1;k<=50;k++){ if(k===3) continue; const t=3*(k+3); if(t>=40&&t<=70) ok.push(k) } return Math.max(...ok)-Math.min(...ok)",
+    "47": "const ok=[3]; for(let k=1;k<=50;k++){ if(k===3) continue; const t=k+3; if(t>=40&&t<=70) ok.push(k) } return Math.max(...ok)-Math.min(...ok)"
+  },
+  "mechanism": [
+    "set the totals equal: (k - 3)n = 2(k - 3)",
+    "k = 3 makes the plans identical (every n)",
+    "otherwise n = 2 and the total is 2k + 6",
+    "spread of the qualifying k including the identical case"
+  ],
+  "mech": "degenerate-parameter",
+  "ask": "difference",
+  "quantity_asked": "difference between the greatest and least whole-number k from 1 to 50 for which the plans charge the same total, between $40 and $70, for some order",
+  "setup": {
+    "i": "k is the per-item price of one plan and also multiplies the other plan's fixed fee, so at one k the two cost models are identical",
+    "ii": "the plans charge the same total for some whole-number order, with that total in a stated band",
+    "iii": "difference between the greatest and least qualifying k"
+  },
+  "bypass_option": "15",
+  "off_by_one_options": [],
+  "plugback": {
+    "substitutable": false,
+    "why": "The key is at natural try 3 ascending. The asked quantity is a spread over qualifying k, which no single option can be substituted into; checking an option needs the whole qualifying set, including whether k = 3 counts."
+  },
+  "distractor_meta": {
+    "15": {
+      "error_kind": "omission",
+      "error_sense": "omits",
+      "direction": "below",
+      "stem_predicts_direction": false,
+      "why": "Dividing by k - 3 for every k drops the identical-plans case; dropping a value narrows the spread only if it was an endpoint, and the stem does not show where k = 3 lies relative to the generic band."
+    },
+    "17": {
+      "error_kind": "wrong_variable",
+      "error_sense": "swaps",
+      "direction": "below",
+      "stem_predicts_direction": false,
+      "why": "Using the per-item price 3 as the order size changes the common total to 3(k + 3) and moves the band down; the stem gives no reason to expect a narrower or wider spread."
+    },
+    "47": {
+      "error_kind": "wrong_operation",
+      "error_sense": "swaps",
+      "direction": "above",
+      "stem_predicts_direction": false,
+      "why": "Taking k + 3 as the common total moves the generic band to the top of the range; whether that widens or narrows the spread depends on the range end and on k = 3, which the stem does not compare."
+    }
+  },
+  "intermediate_check": "15: it is the spread of the generic band; the key does not follow from it through one printed relation (it needs the unprinted k = 3 and the band top). 47: no; a different band. 17: no; a different band. None is one printed step from 29.",
+  "shape_check": "Properties handed over: the spread is a whole number from 0 to 49 (all four survive); no parity or cap. All four survive together.",
+  "interior_parity_check": "Middle values 17 and 29: both two-digit integers of complexity 2; the key 29 is not the cleaner one.",
+  "arith_class_check": "15, 17, 29 and 47 are all odd; the key is not alone in any class.",
+  "idea_probe": {
+    "at": "2026-10-23T00:00:50.458Z",
+    "nearest": "383c8b40-94b (v26 B7): two supplier prices with k, where at the degenerate k the prices are parallel and differ by a constant, asked for that constant. Here the degenerate k makes the two plans IDENTICAL, every other k makes them agree only at n = 2, and the ask is the spread of qualifying k, which hinges on counting the identical case."
+  },
+  "dup_search": {
+    "queries": [
+      "plan&per item|each item&fee&k",
+      "charge the same|cost the same|same total|same amount&k is"
+    ],
+    "hits_read": 3,
+    "nearest": "f88cdac6-3b6 (live): two gym plans with an unknown per-class price k fixed by one break-even point; no degenerate case."
+  },
+  "self_audit": {
+    "risk": "medium",
+    "note": "A test-wise student sets the totals equal, gets (k - 3)n = 2(k - 3) and will usually cancel to n = 2; the decision point is that k = 3 makes the plans identical. Covering the work, all four options remain legal from the stem alone. Natural try 3: the key is not at try 1-2, and in any case a spread over k cannot be checked from an option. The bypass option 15 is exactly what skipping this item's decision point gives: dividing by k - 3 for every k, so the identical plans at k = 3 are lost and the spread is 32 - 17. (read) lines answered: PAIR 29 - 17 = 12 = 2 x printed 6; DPAIR/DSUM 29 + 17 = 46 = 6 + 40 and 29 + 47 = 76 = 6 + 70. No student adds two options to compare with the fee plus a band end, and 12 is the gap between two different bands, not a doubled fee. Read and judged harmless."
+  }
+}

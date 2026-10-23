@@ -1,0 +1,96 @@
+{
+ "id": "SM31L-C1",
+ "domain": "Algebra",
+ "difficulty": "hard",
+ "subskill": "Integer solutions of a compound inequality with a constant",
+ "prompt": "3k - 7 < 11 - 7x ≤ 60\nIn the compound inequality above, k is a constant. For how many integer values of k does the inequality have at least 3 negative integer solutions and more negative integer solutions than positive integer solutions?",
+ "choices": [
+  "19",
+  "23",
+  "26",
+  "28"
+ ],
+ "correct_answer": "28",
+ "explanation": "Solve each part for x. From 11 - 7x ≤ 60, -7x ≤ 49, so x ≥ -7 (dividing by -7 reverses the sign, and -7 itself IS a solution because the original sign was ≤). From 3k - 7 < 11 - 7x, 7x < 18 - 3k, so x < (18 - 3k)/7; call this bound U. It is strict, so U itself is never a solution. The solutions are the integers x with -7 ≤ x < U. Case 1, k ≤ 8: then U > -1, so all seven negative integers -7, ..., -1 are solutions (at least 3, as required), and there must be at most 6 positive solutions, so 7 must NOT be a solution: U ≤ 7, which gives 18 - 3k ≤ 49, k ≥ -31/3, so k ≥ -10. That is k = -10, ..., 8: 19 values. Case 2, k ≥ 9: then U ≤ -3, so there are no positive solutions (and 0 is not a solution), and the negatives run from -7 up to below U. At least 3 of them means -5 must be a solution: -5 < U, which gives 18 - 3k > -35, k < 53/3, so k ≤ 17. That is k = 9, ..., 17: 9 values. Total: 19 + 9 = 28. (Having some solution at all only needs k ≤ 22; the requirement of at least 3 negative solutions is what stops the count at k = 17.) Choice 23 comes from reversing the inequality but carrying the 'or equal' to the wrong end (x > -7 and x ≤ U). Choice 26 counts 0 as a positive solution. Choice 19 stops after Case 1 and misses the values of k for which there are no positive solutions but still at least 3 negative ones.",
+ "solve": "let n=0; for (let k=-200;k<=200;k++){ let neg=0,pos=0; for (let x=-100;x<=100;x++){ const m=11-7*x; if (m<=60 && 3*k-7<m){ if(x<0)neg++; else if(x>0)pos++; } } if (neg>=3 && neg>pos) n++; } return n;",
+ "distractor_solve": {
+  "23": "let n=0; for (let k=-200;k<=200;k++){ let neg=0,pos=0; for (let x=-100;x<=100;x++){ if (x>-7 && x<=(18-3*k)/7){ if(x<0)neg++; else if(x>0)pos++; } } if (neg>=3 && neg>pos) n++; } return n;",
+  "26": "let n=0; for (let k=-200;k<=200;k++){ let neg=0,pos=0; for (let x=-100;x<=100;x++){ const m=11-7*x; if (m<=60 && 3*k-7<m){ if(x<0)neg++; else pos++; } } if (neg>=3 && neg>pos) n++; } return n;",
+  "19": "let n=0; for (let k=-200;k<=200;k++){ let neg=0,pos=0; for (let x=-100;x<=100;x++){ const m=11-7*x; if (m<=60 && 3*k-7<m){ if(x<0)neg++; else if(x>0)pos++; } } if (neg===7 && neg>pos) n++; } return n;"
+ },
+ "mechanism": [
+  "reverse the inequality and keep the attained end x = -7",
+  "split on whether all seven negatives are solutions",
+  "second branch: no positives, at least 3 negatives",
+  "count integer k on both branches"
+ ],
+ "mech": "integer-count-condition",
+ "ask": "count",
+ "quantity_asked": "the number of integer values of k for which the inequality has more negative integer solutions than positive integer solutions",
+ "setup": {
+  "i": "3k in the strict lower end of a compound inequality whose middle has a negative x-coefficient; the other end is a fixed attained bound",
+  "ii": "at least 3 negative integer solutions and more negative than positive integer solutions",
+  "iii": "number of integer values of k"
+ },
+ "bypass_option": "23",
+ "off_by_one_options": [],
+ "plugback": {
+  "substitutable": false,
+  "why": "The ask is a count of k values; 28 cannot be substituted into the inequality. Checking it means finding the whole set of k on both branches, which is the full solution. Ascending order reaches the key only at try 4."
+ },
+ "distractor_meta": {
+  "23": {
+   "error_kind": "sign_slip",
+   "error_sense": "swaps",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Moving the 'or equal' to the other end when reversing removes -7 (shrinking Case 1 and the 3-negative branch) but adds the U end; the stem does not say which effect wins, and here the net is 5 fewer."
+  },
+  "26": {
+   "error_kind": "other",
+   "error_sense": "adds",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Counting 0 as positive adds a solution, which a student would expect to raise counts; it lands on the positive side, so the comparison gets harder to meet and two k are lost. Nothing in the stem signals that."
+  },
+  "19": {
+   "error_kind": "omission",
+   "error_sense": "omits",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Dropping the branch with no positive solutions loses values; the stem gives no hint that a second branch exists."
+  }
+ },
+ "counter_error": {
+  "error_kind": "omission",
+  "solve": "let n=0; for (let k=-200;k<=200;k++){ let neg=0,pos=0; for (let x=-100;x<=100;x++){ const m=11-7*x; if (m<=60 && 3*k-7<m){ if(x<0)neg++; else if(x>0)pos++; } } if (neg>=1 && neg>pos) n++; } return n;",
+  "direction": "above",
+  "why": "Using only the cheap outer limits - some solution exists (k ≤ 22) and at most 6 positives (k ≥ -10) - and forgetting that at least 3 negatives are required gives 33, above the key and not an option."
+ },
+ "far_distractor": {
+  "option": "26",
+  "natural_side": "above",
+  "why": "Counting 0 as a solution is an 'adds' error that ordinarily inflates a count; here the extra solution lands on the positive side of a 'more negatives than positives' comparison, so it makes the condition stricter and the count falls to 26, below the key."
+ },
+ "structure_check": "The condition combines a comparison (more negatives than positives) with a floor (at least 3 negatives); it is not an extremum or a universal bound, and errors do not all move one way: dropping the floor or counting 0 as negative raises the count (33, 30), while counting 0 as positive or misplacing the 'or equal' lowers it.",
+ "cheap_bound_check": "The cheapest outer limits are 'some solution exists' (U > -7, so k ≤ 22) and 'at most 6 positives' (k ≥ -10): together they allow at most 33 values. That bound is above the key, so it neither strikes a distractor nor identifies the key as the largest legal option; the real upper edge k = 17 needs the at-least-3-negatives condition worked out from the attained end.",
+ "intermediate_check": "23: no - it is the count under a different solution set (x > -7, x ≤ U), not a step toward 28. 26: no - it comes from a different classification of 0. 19: it is the size of Case 1, but the key does not follow from 19 by one printed relation - the second branch (9 values) needs the separate at-least-3-negatives edge, and 9 is not printed.",
+ "shape_check": "The stem hands over: a count, so a positive integer (all four survive); the cheap bound caps it at 33 (all four survive); no parity is implied. All four survive together.",
+ "interior_parity_check": "The two middle values are 23 and 26: both two-digit integers of the same complexity. The key 28 is not one of them; neither middle value is cleaner.",
+ "arith_class_check": "Parity: 26 and 28 even, 19 and 23 odd - the key is not alone. Multiples of 7 (printed coefficient): 28 only - but no step of the solution makes multiples of 7 special (the count is 19 + 9), and a student has no reason to prefer them. Multiples of 3: none. Roundness: none is round.",
+ "idea_probe": {
+  "at": "2026-10-23T01:07:43.504Z",
+  "nearest": "4fd22741 (live v26 C5, -4 ≤ kx ≤ 45, exactly 3 integers, difference of k): there k multiplies the middle so both ends scale; here k only moves one end, the condition is a negative-count floor plus a negative-vs-positive comparison, and the second branch (no positives) is the decision - a different setup and ask."
+ },
+ "dup_search": {
+  "queries": [
+   "negative&positive&inequalit"
+  ],
+  "hits_read": 2,
+  "nearest": "4fd22741 / SM26L-C5 (same row, live and prior) - k multiplies x, exactly 3 solutions, difference; different setup"
+ },
+ "self_audit": {
+  "risk": "medium",
+  "note": "Revised in run 2: the run-1 version's cheap outer limits gave exactly the key. Now the cheapest limits (some solution, at most 6 positives) give 33, which is not an option, and the true upper edge comes from the at-least-3-negatives floor. Covering the work, how many options remain legal from the stem alone? All four: they are positive integers under the cheap bound of 33. Could a student tell from the stem which way the errors go, and does one bound strike all three? No - counting 0 on one side lowers the count and on the other raises it (30); dropping the floor raises it (33); the only cheap bound strikes none. Natural try is 4 (ascending, key largest), so no routine plug-back confirms it early; a count of k values cannot be substituted. Is the bypass really what skipping THIS item's decision point gives? Yes: the decision is which end of the reversed inequality is attained; a student who reverses the sign without re-deciding where the 'or equal' goes, and carries it to the other end, gets 23. (read) lines answered: STRUCT - no extremum or universal condition; BOUND - see cheap_bound_check; FAR - see far_distractor; INTER - see intermediate_check; any PAIR/DPAIR soft line between the key and an option is a coincidence of branch sizes, not a relation readable from the stem."
+ }
+}

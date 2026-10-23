@@ -1,0 +1,84 @@
+{
+ "id": "SM31L-D7",
+ "domain": "Algebra",
+ "difficulty": "hard",
+ "subskill": "Integer optimum: extreme count among tied fewest-kit orders",
+ "prompt": "A teacher is ordering supply kits of two kinds. Each kit of type A contains 4 pencils and 1 eraser, and each kit of type B contains 3 pencils and 7 erasers. She needs at least 118 pencils and at least 80 erasers, only whole kits can be ordered, and she wants to order as few kits as possible in total. Among the orders that use the fewest kits, what is the least number of type A kits?",
+ "choices": [
+  "8",
+  "22",
+  "24",
+  "28"
+ ],
+ "correct_answer": "22",
+ "explanation": "Let x be the number of type A kits and y the number of type B kits: 4x + 3y ≥ 118 and x + 7y ≥ 80, and the goal is to make x + y as small as possible. The boundary lines meet at x ≈ 23.44, y ≈ 8.08, where x + y ≈ 31.5, so every order needs at least 32 kits. Rounding the corner up gives (24, 9), which uses 33 kits, so it is not one of the best orders. Test x + y = 32: the pencils need 4x + 3(32 - x) = x + 96 ≥ 118, so x ≥ 22; the erasers need x + 7(32 - x) = 224 - 6x ≥ 80, so x ≤ 24. The fewest-kit orders are (22, 10), (23, 9) and (24, 8), and the least number of type A kits among them is 22. Choice 24 is the type A count of the rounded-up corner (and of the order with the most type A kits). Choice 8 is the least number of type B kits among the best orders, not type A kits. Choice 28 checks only the pencil requirement: with pencils alone the fewest kits is 30, and the least type A count among those orders is 28.",
+ "solve": "const ok=(x,y)=>4*x+3*y>=118&&x+7*y>=80;let b=Infinity,P=[];for(let x=0;x<=40;x++)for(let y=0;y<=40;y++)if(ok(x,y)){const v=x+y;if(v<b){b=v;P=[[x,y]]}else if(v===b)P.push([x,y])}return Math.min(...P.map(t=>t[0]))",
+ "distractor_solve": {
+  "8": "const ok=(x,y)=>4*x+3*y>=118&&x+7*y>=80;let b=Infinity,P=[];for(let x=0;x<=40;x++)for(let y=0;y<=40;y++)if(ok(x,y)){const v=x+y;if(v<b){b=v;P=[[x,y]]}else if(v===b)P.push([x,y])}return Math.min(...P.map(t=>t[1]))",
+  "24": "return Math.ceil((118*7-80*3)/(4*7-1*3))",
+  "28": "const ok=(x,y)=>4*x+3*y>=118;let b=Infinity,P=[];for(let x=0;x<=40;x++)for(let y=0;y<=40;y++)if(ok(x,y)){const v=x+y;if(v<b){b=v;P=[[x,y]]}else if(v===b)P.push([x,y])}return Math.min(...P.map(t=>t[0]))"
+ },
+ "mechanism": [
+  "two covering lines meet at the non-lattice corner (23.44, 8.08)",
+  "rounded-up corner (24, 9) uses 33 kits, not the fewest",
+  "test the level x + y = 32: each requirement bounds x",
+  "least x among the tied orders (22, 10), (23, 9), (24, 8)"
+ ],
+ "mech": "integer-optimum",
+ "ask": "least",
+ "quantity_asked": "least number of type A kits among the orders that use the fewest kits",
+ "setup": {
+  "i": "two covering requirements (pencils and erasers per kit) with no costs; minimise the total number of kits",
+  "ii": "several whole-number combinations tie for the fewest kits, and the rounded-up corner is not one of them",
+  "iii": "least number of the first item among the fewest-item combinations"
+ },
+ "bypass_option": "24",
+ "off_by_one_options": [],
+ "plugback": {
+  "substitutable": false,
+  "why": "Ascending, a student tries 8 and then 22. An option is a kit count, not an order; deciding whether a fewest-kit order has 22 (or 8) type A kits needs the fewest total first (32, which the rounded corner's 33 hides) and then the range of x at that total - the whole solution."
+ },
+ "distractor_meta": {
+  "8": {
+   "error_kind": "wrong_variable",
+   "error_sense": "swaps",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Finds the tied orders but reports the least number of type B kits; nothing in the stem says which kind is the larger count."
+  },
+  "24": {
+   "error_kind": "other",
+   "error_sense": "adds",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Rounds the corner (23.44, 8.08) up to (24, 9) and reads off its type A count; the stem gives no sign whether the best orders have more or fewer type A kits than that."
+  },
+  "28": {
+   "error_kind": "omission",
+   "error_sense": "omits",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Uses only the pencil requirement, where the fewest kits is 30 and type A kits dominate; the student cannot tell from the stem how dropping the eraser requirement moves the count."
+  }
+ },
+ "intermediate_check": "24: no - the rounded corner's x; reaching 22 needs the level-32 bounds, not one printed relation. 8: no - the least y among the tied orders; turning it into 22 needs the total 32 (not printed) and the other bound. 28: no - the pencil-only answer; nothing printed maps 28 to 22.",
+ "shape_check": "The stem hands over: a whole number of type A kits, at most 30 (pencils alone need no more), no parity condition. All four options (8, 22, 24, 28) are whole numbers in range; parity does not separate them (all even, so parity strikes nothing). All survive together.",
+ "interior_parity_check": "Middle values 22 and 24: both two-digit even whole numbers, same display form; neither is cleaner.",
+ "arith_class_check": "All four options are even, so evenness singles out nothing; 22 is not alone in any class the stem implies.",
+ "idea_probe": {
+  "at": "2026-10-23T00:39:39.819Z",
+  "nearest": "9250153d-2ec (live v26 D5, feed mix; found by the first probe of this slot): two covering requirements with costs, and the ask is the least cost. Here there are no costs; the objective is the number of kits, several orders tie at 32 kits, the rounded-up corner (33 kits) is not among them, and the ask is the least type A count among the tied orders. The pencil-and-eraser kits replace a protein-and-fiber story to keep clear of that item."
+ },
+ "dup_search": {
+  "queries": [
+   "kits&pencils|erasers",
+   "as few kits"
+  ],
+  "hits_read": 0,
+  "nearest": "9250153d-2ec (see idea_probe)"
+ },
+ "self_audit": {
+  "risk": "medium",
+  "note": "Covering the work, how many options remain legal from the stem alone? All four: counts 8 to 28 fit the requirements (pencils alone allow up to 30 type A kits) and no bound or parity removes one. Could a student confirm an option against the stem in one routine step (key at try 2 ascending)? No: whether a fewest-kit order has a given number of type A kits depends on the fewest total, which must be found first; neither 8 nor 22 can be substituted on its own. Is the bypass option really what skipping THIS item's decision point gives? Yes: rounding the real corner up gives (24, 9) and its 24 type A kits; the decision point is seeing that 32 kits suffice and finding the range of x there. A student who knows ties occur might suspect the key is an end of a range and pick 22 or 24; the two remain to be separated by the work. No option is a sum, difference or mean of two others. Preflight (read) lines: PAIR differences 14 = 2 x 7, 2 = 2 x 1, 6 = 2 x 3 and DPAIR 2 = 3 - 1, 6 = 7 - 1 are coincidences of the small kit contents; no stem reading doubles or decrements a kit content to move between kit counts."
+ }
+}

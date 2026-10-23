@@ -1,0 +1,85 @@
+{
+  "id": "SM31L-B3",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Table-given line vs line of slope k; count k",
+  "prompt": "The table gives three values of the linear function f.\nx | f(x)\n-1 | -16\n4 | 4\n9 | 24\nThe function g is defined by g(x) = kx - 37, where k is a constant. For how many integer values of k from -1 to 14, inclusive, do the graphs of y = f(x) and y = g(x) meet at a point that lies above the x-axis?",
+  "choices": [
+    "5",
+    "8",
+    "10",
+    "14"
+  ],
+  "correct_answer": "8",
+  "explanation": "From the table, f increases by 20 when x increases by 5, so its slope is 4 and f(x) = 4x - 12. A point of the graph of f lies above the x-axis exactly when 4x - 12 > 0, that is, when x > 3. Setting g(x) = f(x): kx - 37 = 4x - 12, so (k - 4)x = 25. Treat k = 4 as its own case: the equation becomes 0 = 25, so the lines are parallel and never meet; k = 4 does not count. For k ≠ 4 the graphs meet at x = 25/(k - 4), and we need 25/(k - 4) > 3. If k < 4 the x-value is negative, so it fails. If k > 4, multiplying keeps the direction: 25 > 3(k - 4), so k < 37/3, about 12.33. The values k = 5, 6, ..., 12 work, so the answer is 8. Choice 14 comes from multiplying by k - 4 without checking its sign, which keeps every k from -1 to 12, including k = 4, where the lines never meet. Choice 10 tests whether the meeting point is to the right of the y-axis (x > 0) instead of above the x-axis. Choice 5 comes from a sign slip, (4 - k)x = 25, which makes the values k = -1 to 3 appear to work.",
+  "solve": "const m=(4-(-16))/(4-(-1)), b=4-m*4; let n=0; for(let k=-1;k<=14;k++){ const a=k-m; if(a===0) continue; const x=(b-(-37))/a; if(m*x+b>0) n++ } return n",
+  "distractor_solve": {
+    "5": "let n=0; for(let k=-1;k<=14;k++){ if(k===4) continue; if(25/(4-k)>3) n++ } return n",
+    "10": "let n=0; for(let k=-1;k<=14;k++){ if(k===4) continue; if(25/(k-4)>0) n++ } return n",
+    "14": "let n=0; for(let k=-1;k<=14;k++){ if(25>3*(k-4)) n++ } return n"
+  },
+  "mechanism": [
+    "read f(x) = 4x - 12 from the table",
+    "above the x-axis means x > 3 on f",
+    "k = 4 gives parallel lines (no meeting point)",
+    "sign of k - 4 decides the inequality direction"
+  ],
+  "mech": "degenerate-parameter",
+  "ask": "count",
+  "quantity_asked": "number of integers k from -1 to 14 inclusive for which the graphs of f and g meet above the x-axis",
+  "setup": {
+    "i": "f is a linear function given only by a table; g(x) = kx - 37 with slope k, so the intersection x-coefficient k - 4 vanishes at one k",
+    "ii": "the graphs of f and g intersect at a point above the x-axis",
+    "iii": "number of integer values of k in a stated range"
+  },
+  "bypass_option": "14",
+  "off_by_one_options": [],
+  "plugback": {
+    "substitutable": false,
+    "why": "The key is at natural try 2 ascending, but the asked quantity is a count over k: neither 5 nor 8 can be substituted into anything. Confirming 8 means finding f from the table, solving for the meeting point for general k and testing the whole range, which is the full solution."
+  },
+  "distractor_meta": {
+    "5": {
+      "error_kind": "sign_slip",
+      "error_sense": "swaps",
+      "direction": "below",
+      "stem_predicts_direction": false,
+      "why": "The sign slip moves the window to the other side of k = 4, and the range is cut off at -1 on that side; the stem gives no way to see that the mirrored window is clipped."
+    },
+    "10": {
+      "error_kind": "wrong_variable",
+      "error_sense": "swaps",
+      "direction": "above",
+      "stem_predicts_direction": false,
+      "why": "Testing x > 0 (right of the y-axis) instead of f(x) > 0 changes the bound from x > 3 to x > 0; whether that loosens or tightens depends on the zero of f, which only the table reveals."
+    },
+    "14": {
+      "error_kind": "wrong_operation",
+      "error_sense": "adds",
+      "direction": "above",
+      "stem_predicts_direction": false,
+      "why": "Multiplying 25/(k - 4) > 3 by k - 4 with no sign case keeps k = -1 to 3 and the parallel case k = 4; the stem does not show that the meeting point is at a positive x, so the side of this error is not readable."
+    }
+  },
+  "intermediate_check": "14: no; it is the count of k ≤ 12 in the range, a different set, not a value the key follows from through one printed relation. 10: no; it is the count for x > 0. 5: no; it is a clipped mirror window. None is one printed step from 8.",
+  "shape_check": "Properties handed over: the answer is an integer from 0 to 15 (all survive); k = 4 is special (no option struck by that alone); no parity or cap. All four options survive together.",
+  "interior_parity_check": "Middle values 8 (key) and 10: plain integers of display complexity 1 each (10 has one significant digit), so the key is not the cleaner one.",
+  "arith_class_check": "Key 8 is even; 10 and 14 are even too, 5 is odd. The stem implies no parity; the key is not alone in any class.",
+  "idea_probe": {
+    "at": "2026-10-22T23:53:40.440Z",
+    "nearest": "SM26F-B03 (prior): table-given f and the graphs of f and 3f(x) - 8, asking an intersection coordinate; no constant k, no degenerate case. No live row combines a table-given line with a slope-k line and a count of k by where they meet."
+  },
+  "dup_search": {
+    "queries": [
+      "intersect&how many|number of&k",
+      "kx&for how many|how many integer",
+      "below the x-axis|above the x-axis&k"
+    ],
+    "hits_read": 17,
+    "nearest": "SM23L-B2 (prior v23): a system with k and a quadrant condition, counted over k with no range; here f is known only from a table, the condition is on the y-value of the meeting point, and the range clips the sign-slip window."
+  },
+  "self_audit": {
+    "risk": "medium",
+    "note": "A test-wise student finds f(x) = 4x - 12, solves (k - 4)x = 25 and must split at k = 4. Covering the work, all four options remain legal from the stem alone; a sign argument after solving (the meeting point needs x > 3 > 0, so k > 4) strikes 14 only, and 5 and 10 survive it. Natural try 2: could a student confirm 5 or 8 against the stem in one routine step? No: a count over k has no substitution check. The bypass option 14 is exactly what skipping this item decision point gives: multiplying by k - 4 as if positive, which also keeps the parallel case k = 4. (read) lines answered: PAIR 8 and 10 differ by 2 = 2 x printed 1 and sum to 18 = 2 x 9; DPAIR/DSUM 8 - 5 = 3 = 4 - 1, 8 + 5 = 13 = 14 - 1 = 4 + 9, 8 + 10 = 18 = 4 + 14. None is a route between an option and the key: the key counts integers in 4 < k < 37/3, and no student doubles a table entry or adds the range end to the slope to get from an option to it. Read and judged harmless."
+  }
+}
