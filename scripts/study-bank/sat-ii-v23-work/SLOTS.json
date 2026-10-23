@@ -1,0 +1,550 @@
+{
+ "batch": "sat-ii-hard-v23",
+ "note": "Planned slot table, PREREG-II23. Roles are defined in ii23-tellsim.mjs. ranks = headline-number rank (1 = smallest) of [key, d1, d2, d3].",
+ "slots": [
+  {
+   "slot": "A1",
+   "type": "textual",
+   "design": "4G",
+   "stem": "support",
+   "key": "K-ISO",
+   "distractors": [
+    "CONF-R",
+    "WKN",
+    "RIV"
+   ],
+   "dir": "more",
+   "letter": "B",
+   "last": "K-ISO",
+   "su": []
+  },
+  {
+   "slot": "A2",
+   "type": "textual",
+   "design": "3G",
+   "stem": "weaken",
+   "key": "K-CROSS-W",
+   "distractors": [
+    "CONF-CW",
+    "SUP",
+    "WKR"
+   ],
+   "dir": "less",
+   "letter": "D",
+   "last": "SUP",
+   "su": []
+  },
+  {
+   "slot": "A3",
+   "type": "textual",
+   "design": "3x2",
+   "stem": "support",
+   "key": "K-ISO",
+   "distractors": [
+    "CONF-C",
+    "CONF-R",
+    "WKN"
+   ],
+   "dir": "earlier",
+   "letter": "C",
+   "last": null,
+   "su": []
+  },
+  {
+   "slot": "A4",
+   "type": "textual",
+   "design": "TIME",
+   "stem": "weaken",
+   "key": "K-CROSS-W",
+   "distractors": [
+    "CONF-CXW",
+    "SUPX",
+    "RIV"
+   ],
+   "dir": "more",
+   "letter": "A",
+   "last": "K-CROSS-W",
+   "su": [
+    "SUPX"
+   ]
+  },
+  {
+   "slot": "A5",
+   "type": "textual",
+   "design": "DOSE",
+   "stem": "support",
+   "key": "K-CROSS",
+   "distractors": [
+    "CONF-CX",
+    "RIV",
+    "WKN"
+   ],
+   "dir": "less",
+   "letter": "A",
+   "last": "RIV",
+   "su": []
+  },
+  {
+   "slot": "A6",
+   "type": "quant",
+   "design": "ratio",
+   "key": "QK",
+   "distractors": [
+    "Q-C1",
+    "Q-RAW",
+    "Q-NEAR"
+   ],
+   "ranks": [
+    2,
+    1,
+    4,
+    3
+   ],
+   "letter": "D"
+  },
+  {
+   "slot": "A7",
+   "type": "quant",
+   "design": "threshold-text",
+   "key": "QK",
+   "distractors": [
+    "Q-WITHIN",
+    "Q-REV",
+    "Q-NONE"
+   ],
+   "ranks": [
+    3,
+    4,
+    1,
+    2
+   ],
+   "letter": "B"
+  },
+  {
+   "slot": "A8",
+   "type": "quant",
+   "design": "two-condition",
+   "key": "QK",
+   "distractors": [
+    "Q-C1",
+    "Q-C2",
+    "Q-RAW"
+   ],
+   "ranks": [
+    1,
+    3,
+    2,
+    4
+   ],
+   "letter": "C"
+  },
+  {
+   "slot": "B1",
+   "type": "textual",
+   "design": "3G",
+   "stem": "support",
+   "key": "K-CROSS",
+   "distractors": [
+    "CONF-CX",
+    "NEUT-C",
+    "WKN"
+   ],
+   "dir": "more",
+   "letter": "D",
+   "last": "CONF-CX",
+   "su": []
+  },
+  {
+   "slot": "B2",
+   "type": "textual",
+   "design": "4G",
+   "stem": "support",
+   "key": "K-CROSS",
+   "distractors": [
+    "CONF-R",
+    "WKN",
+    "RIV"
+   ],
+   "dir": "later",
+   "letter": "A",
+   "last": null,
+   "su": []
+  },
+  {
+   "slot": "B3",
+   "type": "textual",
+   "design": "TIME",
+   "stem": "support",
+   "key": "K-CROSS",
+   "distractors": [
+    "CONF-CX",
+    "CONF-R",
+    "WKN"
+   ],
+   "dir": "more",
+   "letter": "B",
+   "last": "K-CROSS",
+   "su": [
+    "WKN"
+   ]
+  },
+  {
+   "slot": "B4",
+   "type": "textual",
+   "design": "DOSE",
+   "stem": "weaken",
+   "key": "K-ISO-W",
+   "distractors": [
+    "CONF-CXW",
+    "CONF-R",
+    "WKR"
+   ],
+   "dir": "less",
+   "letter": "C",
+   "last": "WKR",
+   "su": []
+  },
+  {
+   "slot": "B5",
+   "type": "textual",
+   "design": "3x2",
+   "stem": "weaken",
+   "key": "K-CROSS-W",
+   "distractors": [
+    "CONF-CW",
+    "SUP",
+    "NEUT-C"
+   ],
+   "dir": "more",
+   "letter": "B",
+   "last": null,
+   "su": []
+  },
+  {
+   "slot": "B6",
+   "type": "quant",
+   "design": "two-condition",
+   "key": "QK",
+   "distractors": [
+    "Q-C1",
+    "Q-C2",
+    "Q-NEAR"
+   ],
+   "ranks": [
+    4,
+    2,
+    1,
+    3
+   ],
+   "letter": "C"
+  },
+  {
+   "slot": "B7",
+   "type": "quant",
+   "design": "change",
+   "key": "QK",
+   "distractors": [
+    "Q-C1",
+    "Q-RAW",
+    "Q-NONE"
+   ],
+   "ranks": [
+    2,
+    3,
+    4,
+    1
+   ],
+   "letter": "A"
+  },
+  {
+   "slot": "B8",
+   "type": "quant",
+   "design": "threshold-text",
+   "key": "QK",
+   "distractors": [
+    "Q-WITHIN",
+    "Q-REV",
+    "Q-C2"
+   ],
+   "ranks": [
+    1,
+    2,
+    4,
+    3
+   ],
+   "letter": "D"
+  },
+  {
+   "slot": "C1",
+   "type": "textual",
+   "design": "DOSE",
+   "stem": "weaken",
+   "key": "K-CROSS-W",
+   "distractors": [
+    "CONF-CW",
+    "CONF-R",
+    "WKR"
+   ],
+   "dir": "more",
+   "letter": "A",
+   "last": "K-CROSS-W",
+   "su": []
+  },
+  {
+   "slot": "C2",
+   "type": "textual",
+   "design": "3x2",
+   "stem": "support",
+   "key": "K-ISO",
+   "distractors": [
+    "CONF-CX",
+    "WKN",
+    "CONF-CW"
+   ],
+   "dir": "less",
+   "letter": "D",
+   "last": "CONF-CX",
+   "su": []
+  },
+  {
+   "slot": "C3",
+   "type": "textual",
+   "design": "4G",
+   "stem": "support",
+   "key": "K-ISO",
+   "distractors": [
+    "CONF-R",
+    "WKN",
+    "WKNX"
+   ],
+   "dir": "more",
+   "letter": "C",
+   "last": "CONF-R",
+   "su": []
+  },
+  {
+   "slot": "C4",
+   "type": "textual",
+   "design": "3G",
+   "stem": "weaken",
+   "key": "K-ISO-W",
+   "distractors": [
+    "CONF-CW",
+    "SUPX",
+    "RIV"
+   ],
+   "dir": "earlier",
+   "letter": "B",
+   "last": null,
+   "su": []
+  },
+  {
+   "slot": "C5",
+   "type": "textual",
+   "design": "TIME",
+   "stem": "support",
+   "key": "K-ISO",
+   "distractors": [
+    "CONF-C",
+    "WKN",
+    "RIV"
+   ],
+   "dir": "less",
+   "letter": "B",
+   "last": "K-ISO",
+   "su": [
+    "CONF-C"
+   ]
+  },
+  {
+   "slot": "C6",
+   "type": "quant",
+   "design": "threshold-text",
+   "key": "QK",
+   "distractors": [
+    "Q-WITHIN",
+    "Q-REV",
+    "Q-RAW"
+   ],
+   "ranks": [
+    3,
+    1,
+    2,
+    4
+   ],
+   "letter": "A"
+  },
+  {
+   "slot": "C7",
+   "type": "quant",
+   "design": "ratio",
+   "key": "QK",
+   "distractors": [
+    "Q-C1",
+    "Q-NEAR",
+    "Q-REV"
+   ],
+   "ranks": [
+    4,
+    1,
+    3,
+    2
+   ],
+   "letter": "C"
+  },
+  {
+   "slot": "C8",
+   "type": "quant",
+   "design": "two-condition",
+   "key": "QK",
+   "distractors": [
+    "Q-C1",
+    "Q-NONE",
+    "Q-NEAR"
+   ],
+   "ranks": [
+    4,
+    2,
+    3,
+    1
+   ],
+   "letter": "D"
+  },
+  {
+   "slot": "D1",
+   "type": "textual",
+   "design": "TIME",
+   "stem": "weaken",
+   "key": "K-ISO-W",
+   "distractors": [
+    "CONF-CXW",
+    "SUP",
+    "NEUT-C"
+   ],
+   "dir": "more",
+   "letter": "C",
+   "last": "CONF-CXW",
+   "su": [
+    "K-ISO-W"
+   ]
+  },
+  {
+   "slot": "D2",
+   "type": "textual",
+   "design": "DOSE",
+   "stem": "support",
+   "key": "K-CROSS",
+   "distractors": [
+    "CONF-CX",
+    "CONF-R",
+    "NEUT-C"
+   ],
+   "dir": "more",
+   "letter": "C",
+   "last": "CONF-CX",
+   "su": []
+  },
+  {
+   "slot": "D3",
+   "type": "textual",
+   "design": "3G",
+   "stem": "support",
+   "key": "K-CROSS",
+   "distractors": [
+    "CONF-CX",
+    "CONF-CW",
+    "WKN"
+   ],
+   "dir": "less",
+   "letter": "A",
+   "last": null,
+   "su": []
+  },
+  {
+   "slot": "D4",
+   "type": "textual",
+   "design": "3x2",
+   "stem": "weaken",
+   "key": "K-CROSS-W",
+   "distractors": [
+    "CONF-CXW",
+    "SUP",
+    "WKR"
+   ],
+   "dir": "later",
+   "letter": "D",
+   "last": "SUP",
+   "su": []
+  },
+  {
+   "slot": "D5",
+   "type": "textual",
+   "design": "4G",
+   "stem": "support",
+   "key": "K-ISO",
+   "distractors": [
+    "CONF-R",
+    "WKNX",
+    "RIV"
+   ],
+   "dir": "more",
+   "letter": "D",
+   "last": "RIV",
+   "su": []
+  },
+  {
+   "slot": "D6",
+   "type": "quant",
+   "design": "change",
+   "key": "QK",
+   "distractors": [
+    "Q-WITHIN",
+    "Q-RAW",
+    "Q-C2"
+   ],
+   "ranks": [
+    1,
+    2,
+    4,
+    3
+   ],
+   "letter": "B"
+  },
+  {
+   "slot": "D7",
+   "type": "quant",
+   "design": "two-condition",
+   "key": "QK",
+   "distractors": [
+    "Q-C1",
+    "Q-C2",
+    "Q-NONE"
+   ],
+   "ranks": [
+    2,
+    4,
+    3,
+    1
+   ],
+   "letter": "A"
+  },
+  {
+   "slot": "D8",
+   "type": "quant",
+   "design": "ratio",
+   "key": "QK",
+   "distractors": [
+    "Q-C1",
+    "Q-RAW",
+    "Q-C2"
+   ],
+   "ranks": [
+    3,
+    1,
+    4,
+    2
+   ],
+   "letter": "B"
+  }
+ ]
+}
