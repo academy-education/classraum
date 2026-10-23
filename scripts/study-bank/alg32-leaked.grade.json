@@ -1,0 +1,370 @@
+[
+ {
+  "id": "SM32L-B6",
+  "prompt": "kx + 93 = 7x + 15k\nIn the equation above, k is a constant. Ana solves the equation for each integer k from 5 to 19, inclusive, for which it has a solution. What is the difference between the greatest and the least of the solutions she finds?",
+  "choices": [
+   "13",
+   "7",
+   "30",
+   "24"
+  ],
+  "mechanism": [
+   "collect x terms to (k - 7)x = 15k - 93",
+   "k = 7 gives no solution",
+   "solution 15 + 12/(k - 7) on two branches",
+   "extremes beside the no-solution value, then subtract"
+  ]
+ },
+ {
+  "id": "SM32L-D6",
+  "prompt": "A woodworker makes chairs and stools each week. Each chair uses $7 of materials and earns a profit of $13, and each stool uses $4 of materials and earns a profit of $7. The weekly materials budget is $100, and because chairs are sold in sets with stools, the woodworker makes at most 4 more chairs than stools. Only whole chairs and stools are made. What is the greatest possible weekly profit, in dollars?",
+  "choices": [
+   "181",
+   "184",
+   "172",
+   "182"
+  ],
+  "mechanism": [
+   "budget line meets a difference cap at a non-integer corner",
+   "the corner's profit is not reached by any whole-number plan",
+   "bound the profit and check the few plans near the corner",
+   "best plan far from the corner"
+  ]
+ },
+ {
+  "id": "SM32L-D5",
+  "prompt": "A woodshop class makes birdhouses and planter boxes to sell. Each birdhouse uses $8 of lumber, takes 2 hours to build, and earns a profit of $13. Each planter box uses $5 of lumber, takes 6 hours to build, and earns a profit of $8. The class can spend at most $159 on lumber, and the course requires the class to log at least 120 hours of building time. Only whole items are built. In the plan with the greatest total profit, what is the number of planter boxes minus the number of birdhouses?",
+  "choices": [
+   "11",
+   "-15",
+   "7",
+   "8"
+  ],
+  "mechanism": [
+   "budget line meets an hour-minimum line at a non-integer corner",
+   "the rounded corner is feasible but not the most profitable",
+   "exact-spend plans along the budget line",
+   "difference of the two counts"
+  ]
+ },
+ {
+  "id": "SM32L-D3",
+  "prompt": "A summer camp needs tents to sleep at least 151 campers. A large tent sleeps 9 campers and costs $44 per night, and a small tent sleeps 4 campers and costs $20 per night. Camp rules require at least twice as many small tents as large tents. Only whole tents are rented, and the camp rents the least expensive combination of tents that meets both conditions. What is the total number of tents in that combination?",
+  "choices": [
+   "17",
+   "24",
+   "27",
+   "29"
+  ],
+  "mechanism": [
+   "covering line meets a ratio line at a non-integer corner",
+   "the rounded corner is feasible but not cheapest",
+   "trade along the covering line to an exact cover",
+   "add the two counts"
+  ]
+ },
+ {
+  "id": "SM32L-D2",
+  "prompt": "A community garden is buying fruit trees and shrubs. Each fruit tree costs $63 and each shrub costs $14, and the garden can spend at most $882. The planting plan requires the number of shrubs to be at least 1.2 times the number of fruit trees. Only whole trees and shrubs are bought, and the garden wants to buy the greatest possible number of fruit trees. How many different combinations of fruit trees and shrubs include that greatest number of fruit trees?",
+  "choices": [
+   "18",
+   "7",
+   "10",
+   "1"
+  ],
+  "mechanism": [
+   "budget line meets a ratio line at a non-integer corner",
+   "the corner's row has no whole-number partner",
+   "drop to the next row",
+   "count the whole numbers in that row"
+  ]
+ },
+ {
+  "id": "SM32L-B5",
+  "prompt": "kx + 5y = 5\nx + y = 4\nThe system above contains the constant k. For each integer k from 0 to 20, inclusive, that gives the system exactly one solution, the y-coordinate of that solution is written down. What is the sum of the greatest and the least of the numbers written down?",
+  "choices": [
+   "-6",
+   "-10",
+   "6",
+   "8"
+  ],
+  "mechanism": [
+   "substitute x = 4 - y",
+   "(k - 5)y = 4k - 5, parallel at k = 5",
+   "y = 4 + 15/(k - 5) on two branches",
+   "extremes at the integers next to the parallel value, then add"
+  ]
+ },
+ {
+  "id": "SM32L-C8",
+  "prompt": "A candle is 39 centimeters tall when it is lit, and it burns down at a constant rate of 20 centimeters every 4 hours. Its height is recorded when it is lit and then every hour on the hour until it burns out. A recorded height counts as a reading if it is at least 9 centimeters and less than k centimeters. Exactly 4 of the recorded heights are readings. What is the least integer value of k for which this is true?",
+  "choices": [
+   "30",
+   "19",
+   "25",
+   "24"
+  ],
+  "mechanism": [
+   "rate from 20 cm per 4 hours",
+   "reverse the sign dividing by -5",
+   "attained lower limit 9 at t = 6, strict upper limit k",
+   "least k giving exactly 4 readings"
+  ]
+ },
+ {
+  "id": "SM32L-D4",
+  "prompt": "A relief team must ship at least 488 meals on a cart that can hold at most 80 kilograms. A crate holds 28 meals, weighs 5 kilograms, and costs $54; a box holds 12 meals, weighs 1 kilogram, and costs $24. Only whole crates and boxes are shipped, and the team chooses the least expensive shipment that meets both conditions. In that shipment, by how many does the number of crates exceed the number of boxes?",
+  "choices": [
+   "16",
+   "9",
+   "6",
+   "14"
+  ],
+  "mechanism": [
+   "covering line meets a weight cap at a non-integer corner",
+   "the rounded corner breaks the weight cap",
+   "step back along the covering line to an exact cover",
+   "difference of the two coordinates"
+  ]
+ },
+ {
+  "id": "SM32L-B1",
+  "prompt": "In the xy-plane, line q passes through the points (4, 20) and (6, 26). Line p has equation y = kx - 4, where k is a constant. For how many integers k with -19 ≤ k ≤ 24 do lines p and q intersect at a point whose x-coordinate is less than -1 or greater than 3?",
+  "choices": [
+   "27",
+   "16",
+   "25",
+   "14"
+  ],
+  "mechanism": [
+   "line through two points to slope-intercept form",
+   "intersection x-coordinate 12/(k - 3)",
+   "parallel value k = 3 splits the k-line into two branches",
+   "two-piece outside-band count"
+  ]
+ },
+ {
+  "id": "SM32L-C1",
+  "prompt": "x - 20 < kx ≤ 4x + 56\nIn the compound inequality above, k is a constant. For how many integer values of k does the compound inequality have exactly 3 integer solutions?",
+  "choices": [
+   "11",
+   "10",
+   "15",
+   "16"
+  ],
+  "mechanism": [
+   "collect x into coefficients k - 1 and k - 4",
+   "reverse both inequalities when k < 1",
+   "strict vs non-strict at the boundary k values",
+   "count integer k in two regimes"
+  ]
+ },
+ {
+  "id": "SM32L-C3",
+  "prompt": "The water level in a tank, in centimeters, t minutes after a valve is set is modeled by L(t) = 23 + kt, where k is an integer (k is negative if the tank is draining). The level is read once at each whole number of minutes from t = 1 through t = 12. A reading is acceptable if the level is at least 2 centimeters and less than 71 centimeters. Exactly 3 of the 12 readings are acceptable. What is the sum of all possible integer values of k?",
+  "choices": [
+   "48",
+   "54",
+   "41",
+   "45"
+  ],
+  "mechanism": [
+   "count whole-number t in a band for a rising and a falling rate",
+   "reverse the inequality when dividing by negative k",
+   "strict top limit vs non-strict bottom limit at the boundary k",
+   "sum k over both signs"
+  ]
+ },
+ {
+  "id": "SM32L-B3",
+  "prompt": "kx + (k + 10)y = -40\nx + 3y = 4\nThe two equations above share the constant k. Looking only at integers k from -19 to 47, inclusive, for how many such k is there an ordered pair (x, y) that satisfies both equations and has y < -1 or y > 4?",
+  "choices": [
+   "38",
+   "23",
+   "41",
+   "14"
+  ],
+  "mechanism": [
+   "substitute x = 4 - 3y",
+   "(2k - 10)y = 4k + 40, parallel lines at k = 5",
+   "y = 2 + 30/(k - 5) on two branches",
+   "two-piece outside-band count"
+  ]
+ },
+ {
+  "id": "SM32L-B2",
+  "prompt": "kx + 30 = 12x + 10k\nIn the equation above, k is a constant. Of the integers k from -20 to 40, inclusive, how many make the equation have a solution x with 4 ≤ x ≤ 19?",
+  "choices": [
+   "37",
+   "19",
+   "16",
+   "26"
+  ],
+  "mechanism": [
+   "collect x terms to (k - 12)x = 10k - 30",
+   "k = 12 gives no solution",
+   "solution 10 + 90/(k - 12) on two branches",
+   "inside-band count on both sides of the no-solution value"
+  ]
+ },
+ {
+  "id": "SM32L-C7",
+  "prompt": "A climbing gym offers two plans. Plan A has a one-time fee of k dollars plus $12 per visit. Plan B has a one-time fee of 3k dollars plus $5 per visit. Dana will make n visits, where n is a positive whole number. She wants Plan A to cost less than Plan B, and she wants Plan A to cost at most $260 in total. For some integer values of k, exactly 6 values of n meet both of Dana's conditions. What is the difference between the greatest and least such values of k?",
+  "choices": [
+   "182",
+   "166",
+   "136",
+   "167"
+  ],
+  "mechanism": [
+   "two linear bounds on n, one rising and one falling in k",
+   "the smaller bound sets the count",
+   "strict 'less than' at k = 21 and attained 'at most' at k = 188",
+   "greatest minus least k across two separate blocks"
+  ]
+ },
+ {
+  "id": "SM32L-D1",
+  "prompt": "A bakery makes x trays of muffins and y trays of scones each morning, where x and y are whole numbers. A tray of muffins costs $7 to make and earns a profit of $10, and a tray of scones costs $4 to make and earns a profit of $6. The bakery can spend at most $101 on these trays, it wants a total profit of at least $144, and it must make at least 7 trays of muffins. How many different plans (x, y) meet all three requirements?",
+  "choices": [
+   "14",
+   "5",
+   "8",
+   "10"
+  ],
+  "mechanism": [
+   "cost cap and profit target bound a thin strip",
+   "per-x interval for y narrower than 1",
+   "check each x for a whole-number y",
+   "count the lattice points"
+  ]
+ },
+ {
+  "id": "SM32L-C5",
+  "prompt": "x ≤ k\nkx ≥ -60\nIn the system of inequalities above, k is a constant. For some integer values of k, the system has at most 19 integer solutions. What is the difference between the greatest and least such values of k?",
+  "choices": [
+   "9",
+   "14",
+   "12",
+   "11"
+  ],
+  "mechanism": [
+   "k ≤ 0 gives an unbounded set (reverse the sign for k < 0)",
+   "count = k + floor(60/k) + 1 for k > 0",
+   "attained endpoint -60/k when k divides 60",
+   "greatest minus least k"
+  ]
+ },
+ {
+  "id": "SM32L-B4",
+  "prompt": "kx + x + 6 = 4k - 2x + 18\n6x + k = 2x + 41\nIn the two equations above, k is the same constant. What is the sum of all values of k for which the two equations have at least one solution x in common?",
+  "choices": [
+   "22",
+   "34",
+   "54",
+   "25"
+  ],
+  "mechanism": [
+   "collect terms to (k + 3)x = 4(k + 3)",
+   "generic solution x = 4, identity at k = -3",
+   "second equation's solution (41 - k)/4 matched to 4",
+   "sum over the generic match and the identity case"
+  ]
+ },
+ {
+  "id": "SM32L-D7",
+  "prompt": "A market stand sells pies and loaves of bread. Each pie costs $9 to bake and earns a profit of $16, and each loaf costs $5 to bake and earns a profit of $10. The stand can spend at most $154 on baking, and its shelf can display at most 23 items in total. Last week the stand baked 0 pies and 23 loaves. Only whole pies and loaves are baked. How much greater is the greatest possible total profit for a week than last week's total profit?",
+  "choices": [
+   "56",
+   "76",
+   "60",
+   "54"
+  ],
+  "mechanism": [
+   "budget line meets a shelf cap at a non-integer corner",
+   "the rounded corner is over budget",
+   "bound the profit two ways to find the lattice best",
+   "subtract a given plan's profit"
+  ]
+ },
+ {
+  "id": "SM32L-C4",
+  "prompt": "The table gives three values of the linear function f.\nx | f(x)\n-5 | -13\n6 | 20\n11 | 35\nFor a positive integer k, exactly k integers x satisfy -8 < f(x) ≤ 2k. What is the sum of all possible integer values of k?",
+  "choices": [
+   "24",
+   "27",
+   "18",
+   "39"
+  ],
+  "mechanism": [
+   "linear function from a table",
+   "count integers between a strict and a non-strict bound",
+   "set the count equal to k itself",
+   "sum the qualifying k"
+  ]
+ },
+ {
+  "id": "SM32L-B8",
+  "prompt": "kx = 4x + 3k + c\nIn the equation above, c is a constant. For two values of the constant k, the solution of the equation is listed below.\nk = 3: solution 23\nk = 9: solution -1\nWhat is the solution of the equation when k = 24?",
+  "choices": [
+   "-13",
+   "-61",
+   "2",
+   "-32"
+  ],
+  "mechanism": [
+   "find c from the k = 3 value",
+   "(k - 4)x = 3k - 32, no solution at k = 4 between the listed k",
+   "solution 3 - 20/(k - 4) is not linear in k",
+   "solve at k = 24"
+  ]
+ },
+ {
+  "id": "SM32L-C6",
+  "prompt": "-22 ≤ kx < 3x + 46\nIn the inequality above, k is a constant. Consider the integer values of k for which at least 8 integers x satisfy the inequality. By how much does the greatest of these exceed the least?",
+  "choices": [
+   "11",
+   "16",
+   "18",
+   "3"
+  ],
+  "mechanism": [
+   "split into kx ≥ -22 and (k - 3)x < 46",
+   "reverse both signs when k < 0; infinitely many solutions for 0 ≤ k ≤ 3",
+   "count integers at the boundary k on each side",
+   "greatest minus least k"
+  ]
+ },
+ {
+  "id": "SM32L-D8",
+  "prompt": "A print shop makes posters and banners. The table shows the ink and paper each item uses.\nItem | Ink (milliliters) | Paper (sheets)\nPoster | 15 | 6\nBanner | 18 | 16\nThe shop has 249 milliliters of ink and 140 sheets of paper, earns a profit of $14 on each poster and $18 on each banner, and makes only whole posters and banners. In the plan with the greatest total profit, how many posters does the shop make?",
+  "choices": [
+   "0",
+   "16",
+   "13",
+   "11"
+  ],
+  "mechanism": [
+   "two supply lines meet at a non-integer corner",
+   "the rounded corner over-uses ink",
+   "bound the profit two ways and check the few candidates",
+   "report the coordinate of the best plan"
+  ]
+ },
+ {
+  "id": "SM32L-B7",
+  "prompt": "k(x - 4) + 12x = 5x + c\nIn the equation above, k and c are constants. The number 4 is a solution of the equation no matter what value k has. What is the sum of c and every value of k for which the equation does NOT have exactly one solution?",
+  "choices": [
+   "-35",
+   "21",
+   "61",
+   "28"
+  ],
+  "mechanism": [
+   "substitute the fixed root x = 4 to find c",
+   "collect to (k + 7)x = 4(k + 7)",
+   "k = -7 makes the equation true for every x",
+   "add c and the exceptional k"
+  ]
+ }
+]

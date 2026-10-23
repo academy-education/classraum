@@ -1,0 +1,683 @@
+{
+ "SM32L-B6": {
+  "status": "KEEP",
+  "difficulty": "hard",
+  "difficulties": [
+   "medium",
+   "hard",
+   "hard"
+  ],
+  "extreme": false,
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "off_blueprint_votes": 0,
+  "why": [],
+  "confirm": []
+ },
+ "SM32L-D6": {
+  "status": "KEEP",
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "extreme": false,
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   3,
+   null
+  ],
+  "off_blueprint_votes": 0,
+  "why": [],
+  "confirm": []
+ },
+ "SM32L-D5": {
+  "status": "KEEP",
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "extreme": true,
+  "key_votes": 3,
+  "n_struck_median": 1,
+  "struck": [
+   [
+    "-15"
+   ],
+   [
+    "-15"
+   ],
+   []
+  ],
+  "plugback": [
+   4,
+   4,
+   null
+  ],
+  "off_blueprint_votes": 0,
+  "why": [],
+  "confirm": [
+   "r11 one-grader template of SM32L-D6 by D"
+  ]
+ },
+ "SM32L-D3": {
+  "status": "DROP",
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "extreme": true,
+  "key_votes": 3,
+  "n_struck_median": 2,
+  "struck": [
+   [
+    "17",
+    "24"
+   ],
+   [
+    "17",
+    "24"
+   ],
+   [
+    "17",
+    "24"
+   ]
+  ],
+  "plugback": [
+   4,
+   null,
+   null
+  ],
+  "off_blueprint_votes": 0,
+  "why": [
+   "rule4 median struck 2",
+   "EXT-1 drop_recommend by E"
+  ],
+  "confirm": [
+   "r7pair option_pair_tell by F",
+   "r8 one_sided by D"
+  ]
+ },
+ "SM32L-D2": {
+  "status": "KEEP",
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "medium"
+  ],
+  "extreme": false,
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "off_blueprint_votes": 0,
+  "why": [],
+  "confirm": []
+ },
+ "SM32L-B5": {
+  "status": "DROP",
+  "difficulty": "hard",
+  "difficulties": [
+   "medium",
+   "hard",
+   "hard"
+  ],
+  "extreme": true,
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "off_blueprint_votes": 0,
+  "why": [
+   "rule7 template of SM32L-B6 (3/3)"
+  ],
+  "confirm": []
+ },
+ "SM32L-C8": {
+  "status": "DROP",
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "extreme": false,
+  "key_votes": 3,
+  "n_struck_median": 2,
+  "struck": [
+   [
+    "30",
+    "19",
+    "24"
+   ],
+   [
+    "19",
+    "24"
+   ],
+   [
+    "19",
+    "30"
+   ]
+  ],
+  "plugback": [
+   3,
+   3,
+   3
+  ],
+  "off_blueprint_votes": 0,
+  "why": [
+   "rule4 median struck 2",
+   "EXT-1 drop_recommend by DEF"
+  ],
+  "confirm": [
+   "r4key key_identifiable_free by DF",
+   "r9 interior/arith tell by DEF"
+  ]
+ },
+ "SM32L-D4": {
+  "status": "DROP",
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "hard"
+  ],
+  "extreme": true,
+  "key_votes": 3,
+  "n_struck_median": 1,
+  "struck": [
+   [
+    "16",
+    "14"
+   ],
+   [
+    "16"
+   ],
+   [
+    "16"
+   ]
+  ],
+  "plugback": [
+   1,
+   1,
+   null
+  ],
+  "off_blueprint_votes": 0,
+  "why": [
+   "rule6 plug-back <= 2 by majority",
+   "rule7 template of SM32L-D3 (3/3)",
+   "EXT-1 drop_recommend by DE"
+  ],
+  "confirm": [
+   "r8 one_sided by DE"
+  ]
+ },
+ "SM32L-B1": {
+  "status": "KEEP",
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "extreme": true,
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "off_blueprint_votes": 0,
+  "why": [],
+  "confirm": [
+   "r8 one_sided by D"
+  ]
+ },
+ "SM32L-C1": {
+  "status": "KEEP",
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "extreme": true,
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "off_blueprint_votes": 0,
+  "why": [],
+  "confirm": [
+   "r8 one_sided by DEF"
+  ]
+ },
+ "SM32L-C3": {
+  "status": "DROP",
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "extreme": true,
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "off_blueprint_votes": 0,
+  "why": [
+   "EXT-1 drop_recommend by F"
+  ],
+  "confirm": [
+   "r7pair option_pair_tell by DEF",
+   "r8 one_sided by DEF",
+   "r11 one-grader template of SM32L-C8 by D"
+  ]
+ },
+ "SM32L-B3": {
+  "status": "DROP",
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "extreme": false,
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "off_blueprint_votes": 0,
+  "why": [
+   "rule7 template of SM32L-B1 (3/3)"
+  ],
+  "confirm": []
+ },
+ "SM32L-B2": {
+  "status": "DROP",
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "extreme": true,
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "off_blueprint_votes": 0,
+  "why": [
+   "rule7 template of SM32L-B1 (3/3)",
+   "rule7 template of SM32L-B3 (3/3)"
+  ],
+  "confirm": [
+   "r8 one_sided by DEF"
+  ]
+ },
+ "SM32L-C7": {
+  "status": "KEEP",
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "extreme": false,
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "off_blueprint_votes": 0,
+  "why": [],
+  "confirm": []
+ },
+ "SM32L-D1": {
+  "status": "DROP",
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "extreme": true,
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "off_blueprint_votes": 0,
+  "why": [
+   "EXT-1 drop_recommend by F"
+  ],
+  "confirm": [
+   "r8 one_sided by DEF"
+  ]
+ },
+ "SM32L-C5": {
+  "status": "KEEP",
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "extreme": true,
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "off_blueprint_votes": 0,
+  "why": [],
+  "confirm": [
+   "r8 one_sided by DE",
+   "r11 one-grader template of SM32L-C1 by D"
+  ]
+ },
+ "SM32L-B4": {
+  "status": "KEEP",
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "extreme": true,
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "off_blueprint_votes": 0,
+  "why": [],
+  "confirm": [
+   "r7pair option_pair_tell by F",
+   "r8 one_sided by D"
+  ]
+ },
+ "SM32L-D7": {
+  "status": "DROP",
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "extreme": false,
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   3,
+   null
+  ],
+  "off_blueprint_votes": 0,
+  "why": [
+   "rule7 template of SM32L-D6 (3/3)"
+  ],
+  "confirm": [
+   "r11 one-grader template of SM32L-D5 by D"
+  ]
+ },
+ "SM32L-C4": {
+  "status": "KEEP",
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "medium",
+   "hard"
+  ],
+  "extreme": false,
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "off_blueprint_votes": 0,
+  "why": [],
+  "confirm": [
+   "r11 one-grader template of SM32L-C1 by D"
+  ]
+ },
+ "SM32L-B8": {
+  "status": "DROP",
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "extreme": true,
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   1,
+   null
+  ],
+  "off_blueprint_votes": 0,
+  "why": [
+   "EXT-1 drop_recommend by DEF"
+  ],
+  "confirm": [
+   "r8 one_sided by E",
+   "r9 interior/arith tell by E"
+  ]
+ },
+ "SM32L-C6": {
+  "status": "DROP",
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "extreme": true,
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "off_blueprint_votes": 0,
+  "why": [
+   "rule7 template of SM32L-C1 (2/3)",
+   "rule7 template of SM32L-C5 (3/3)"
+  ],
+  "confirm": [
+   "r8 one_sided by DEF"
+  ]
+ },
+ "SM32L-D8": {
+  "status": "DROP",
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "hard",
+   "medium"
+  ],
+  "extreme": false,
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   [
+    "0"
+   ]
+  ],
+  "plugback": [
+   4,
+   4,
+   4
+  ],
+  "off_blueprint_votes": 0,
+  "why": [
+   "rule7 template of SM32L-D5 (3/3)",
+   "EXT-1 drop_recommend by F"
+  ],
+  "confirm": [
+   "r11 one-grader template of SM32L-D6 by D",
+   "r11 one-grader template of SM32L-D7 by D"
+  ]
+ },
+ "SM32L-B7": {
+  "status": "KEEP",
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "medium"
+  ],
+  "extreme": false,
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "off_blueprint_votes": 0,
+  "why": [],
+  "confirm": [
+   "r5 path incoherent by DEF",
+   "r11 one-grader template of SM32L-B4 by D"
+  ]
+ }
+}

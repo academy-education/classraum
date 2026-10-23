@@ -499,3 +499,32 @@ Reader prompt (one fresh Claude agent per run; replace `<N>`):
 - **After the drop (`--after-drops C2`, reported):** R6 56.5%, R7 39.1%, projection PASS (kept about 18.0). PRE-FLIGHT PASS on 23 items.
 - **Lesson:** a return that renumbers keys in more than one author must hand each author a reserved value set.
 frozen sha256 5cba20911399cab9af130344e5169a6f7aa1e27446d81d8bc9aa23ff1aab3610 (23 items; C2 dropped at stage 0)
+
+## Deviation (2026-10-23): the stage-2 render leaked each item's `mechanism`. Graders re-run on a clean render.
+- **What leaked:** `make-grade-render.mjs` withholds fields by a name deny-list, and `mechanism` was not on it. alg32's frozen batch keeps `mechanism` (alg31's KEEP list), and here it holds the author's solution outline ("collect x terms…", "k = 7 gives no solution"…). So graders D/E/F were not cold.
+- **Why it wasn't caught:** the render printed `kept, unrecognised: mechanism`, but I read only the last two lines of its output. Grader D reported the leak.
+- **Fix:**
+  - `mechanism` added to the deny-list;
+  - re-rendered as `alg32-clean.grade.json` (render sha 4aba4359; batch sha unchanged at 5cba2091);
+  - verified: the kept fields are id, prompt and choices only.
+- **Decision:** the leaked run (grader D finished; E and F were running) is kept as a supplementary record under `classraum-alg32-private/grade-leaked-r1/` and decides nothing.
+  - Three FRESH graders run stages 1-2 on the clean render, and the verdict uses only them.
+  - This is decided because of the leak, not because of any result. I had seen grader D's summary (0 key disputes, 8 recommend_drop) before deciding, and I record that.
+
+## Result (2026-10-23): PASSED, 10 inserted as sat-math-v32-alg (10 hard). SAT Math hard route 11 → 12 forms.
+- **Stage 1 (options-only):** candidate 29.0% vs control 41.7%, **-12.7, inside +10**.
+- **Stage 2 (clean-render graders only):** 0 key disputes ×3. The gate kept 11, and one confirm dropped B7 (r5: the distractor explanation is wrong, all three graders agreed), leaving **10 kept, all panel-hard**.
+- **Kept-set band:** key at an extreme 5/10 = 50.0%, PASS.
+- **Algebra hard:** 92 → 102. `verify-sat-hard-route.ts math 12`: 12 of 12 all-hard, repeat-free forms.
+- **Dropped 13:**
+  - rule 7 templates: B2, B3, B5, C6, D7, D8;
+  - rule 4: C8, D3;
+  - rule 6: D4;
+  - EXT-1: B8, C3, D1;
+  - r5: B7.
+- **What fixed alg31's stop:**
+  - the plug-back probe recalibrated on plants alone;
+  - try-1-2 slots restricted to aggregates;
+  - bars on the authored merge.
+- **What cost the most:** template pairs (6 drops), since B1/B2/B3 and B5/B6 shared chains of steps.
+  - The next rerun's slot table needs a per-author ban on repeating a step chain, not only a setup triple.

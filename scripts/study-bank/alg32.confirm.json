@@ -1,0 +1,31 @@
+{
+ "_note": "sat-math-v32-alg flag decisions by the coordinator (PREREG-MATH-ALG32-2026-10-23.md \u00a714), clean-render graders only. true = confirmed (drops), false = read and rejected. Only items whose status depends on the decision are listed. Precedent: mf30.confirm.json (r8 confirmed only when every distractor's direction is readable from the stem and a grader recommends a drop; single-grader template calls rejected; a printed number used twice is outside the r7pair gating definition).",
+ "SM32L-D5": {
+  "drop": false,
+  "why": "r11:SM32L-D6=rejected. D alone; D5 asks a difference of the optimal plan, D6 asks the optimum itself; E and F name no pair"
+ },
+ "SM32L-B1": {
+  "drop": false,
+  "why": "r8=rejected. D alone; E marks one_sided n; no grader recommends a drop"
+ },
+ "SM32L-C1": {
+  "drop": false,
+  "why": "r8=rejected. all three marked one_sided but none recommended a drop, and F's stage-2 note says some distractor directions are not predictable from the stem (mf30 SM30F-V03 precedent)"
+ },
+ "SM32L-C5": {
+  "drop": false,
+  "why": "r8=rejected, r11:SM32L-C1=rejected. D and E on r8 with no drop recommendation; the direction of the missed-regime error needs the solve; the r11 pair is D alone"
+ },
+ "SM32L-B4": {
+  "drop": false,
+  "why": "r7pair=rejected, r8=rejected. r7pair F alone and F calls it weak: 34 - 22 = 12 = 6 + 6 uses one printed number twice, outside the gating definition (mf29/mf30 rejected the same shape); r8 D alone"
+ },
+ "SM32L-C4": {
+  "drop": false,
+  "why": "r11:SM32L-C1=rejected. D alone; the items share no steps (C4 reads a table, C1 a parametric inequality)"
+ },
+ "SM32L-B7": {
+  "drop": true,
+  "why": "r5=confirmed, r11:SM32L-B4=rejected. CONFIRMED r5: all three graders found the student-facing explanation for the -35 distractor wrong (substituting x = -4 leaves a k term; the distractor code silently drops it). No repair after freeze, and a wrong explanation would be shown to students. r11 pair is D alone."
+ }
+}

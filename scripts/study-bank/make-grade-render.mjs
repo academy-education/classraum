@@ -85,7 +85,7 @@ import { createHash } from 'node:crypto'
 /* `forced` added 2026-10-09 (isee-math-s16): authors list the properties the
  * key is forced to have, quoting every option's value; the content guard
  * refused it on the first item. Withheld by name now. */
-const SENSITIVE = /answer|correct|key|rationale|difficulty|explanation|solve|subskill|distractor|options_only|construction|relation|withhold|^forced$|^domain$/i
+const SENSITIVE = /answer|correct|key|rationale|difficulty|explanation|solve|subskill|distractor|options_only|construction|relation|withhold|mechanism|^forced$|^domain$/i
 /** Fields that match SENSITIVE but are structural and safe to keep. */
 /*
  * `withhold` was added minutes after `options_only`, from the SAME render run.

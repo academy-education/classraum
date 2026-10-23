@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-23T01:22:47.894Z",
+  "generatedAt": "2026-10-23T05:19:00.550Z",
   "note": "Generated from the real result files. Numbers are computed, not transcribed.",
   "baselines": [
     {
@@ -11900,6 +11900,40 @@
           "passed": true,
           "contentSha": "a71dcfc82b29209d0ae0c25ecc760cb0576a65372e1c05dc3c98e33627278f1c",
           "verdict": "verify-answer-key-spread on the frozen 32: FAIL quads 100% (authored order deals each author's keys as ABCD permutations) - latent, choices are re-shuffled per session at draw (shuffleDrawnChoices); kept 9 below the script's n>=12 floor. Key strictly longest 0/9, shortest 1/9. Grader-named tells: verb+pronoun keys always mismatched number (10/10, construction table); present perfect never keyed (5/5). The template cover held every item in both clusters."
+        }
+      }
+    },
+    {
+      "id": "sat-math-v32-alg-kept-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "sat",
+      "section": "math",
+      "task": "math_mc",
+      "family": "mc_stem_source",
+      "cohort": "sat-math-v32-alg",
+      "contentSha": "06ba1e219a0418ca06afbb8a95934666dd77bf12b962a2cc907c6f934ea74f4b",
+      "status": "inserted",
+      "note": "alg31 rerun (PREREG-MATH-ALG32-2026-10-23.md, ca8283c8): recalibrated plug-back probe (alg26 D6 replaced by algf27 D13; plant-only gate VALID 2/2), aggregate-only try-1-2 slots so the fallback drops 0 by construction, closure check gating. Three Claude authors (degenerate-parameter, integer-count-condition, integer-optimum; 8 each). Stage 0: R9 key collisions returned once per author; the returns collided at 22 (coordinator error) and C2 was dropped by the pre-written sha tie-break. Frozen 5cba2091 (23 items). Gate (clean-render graders only): 10 kept, 10 panel-median HARD; 13 dropped (rule 7 templates B2 B3 B5 C6 D7 D8; rule 4 C8 D3; rule 6 D4; EXT-1 B8 C3 D1; r5 confirmed B7). Kept-set key at an extreme 5/10 = 50.0% (band 40-60%).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "06ba1e219a0418ca06afbb8a95934666dd77bf12b962a2cc907c6f934ea74f4b",
+          "verdict": "alg32-preflight --merge on the authored 24 PASS except R9 (returned); after return and the C2 drop, --after-drops C2 PASS (R6 56.5%, R7 39.1%, R10 4/4 per mechanism, closure clean); projection PASS (kept ~18.0); every part PART OK (sandbox, slot, idea-probe order, near-dup, closure). Plug-back probe r1 VALID (plants 5/5, 0/8) 0/24 flagged; r2 VALID (5/5, 2/8) 0/3 flagged on the returned items."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "06ba1e219a0418ca06afbb8a95934666dd77bf12b962a2cc907c6f934ea74f4b",
+          "verdict": "Options-only, three samples of one Claude solver, 23 candidates + 20 live Algebra HARD controls (exclude v2, v17-v32 alg/full), blind sha 0d14799e. CANDIDATE 20/69 = 29.0% (line 26.1%) vs CONTROL 25/60 = 41.7% (line 25.0%): candidate minus control -12.7, inside +10; control below 90%. Unanimous-correct 6/23 = 26.1% vs 6/20 = 30.0%."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "06ba1e219a0418ca06afbb8a95934666dd77bf12b962a2cc907c6f934ea74f4b",
+          "verdict": "DEVIATION recorded: the first render leaked each item mechanism (make-grade-render deny-list gap); that run is kept under grade-leaked-r1 and decides nothing. Three FRESH Claude graders on the clean render (sha 4aba4359, id/prompt/choices only); stage 1 snapped before keys (coldcheck 69 rows, 0 problems). All 23 keys matched by all three; 0 key disputes. Cold difficulty: D 15/8, E 17/6, F 17/6 hard/medium. Kept 10 hard: B1 B4 B6 C1 C4 C5 C7 D2 D5 D6. Confirms decided in alg32.confirm.json (6 rejected with mf30 precedent, 1 confirmed: B7 wrong distractor explanation)."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "06ba1e219a0418ca06afbb8a95934666dd77bf12b962a2cc907c6f934ea74f4b",
+          "verdict": "Kept-set key at an extreme 5/10 = 50.0%, key-extremity gate PASS. Grader-named patterns: skipped-special-case distractor sits above the key in B4/B7/C3 (B7 and C3 dropped); D6/D7 greatest-profit keys second-smallest (D7 dropped). Three mechanisms; at most one per mechanism per form if several ship together."
         }
       }
     }
