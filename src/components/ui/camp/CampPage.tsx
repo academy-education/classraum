@@ -26,6 +26,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 import { showSuccessToast, showErrorToast } from '@/stores'
 import { Loader2, Plus, School, Tent, ClipboardList, Search, Calendar, Trash2, Pencil, ChevronDown, ChevronUp, Presentation, FileText, BookOpen, Clock, Users, CheckCircle2, Target, AlertTriangle } from 'lucide-react'
 import { kstDate } from '@/lib/camp/dates'
+import { pickDefaultProgram } from '@/lib/camp/cap'
 
 /**
  * Camp dashboard — quota meter, camp classrooms, and the assignment
@@ -206,7 +207,8 @@ export function CampPage({ academyId }: CampPageProps) {
   /* Review decks per classroom. They were created, presented once and
      then unreachable — no list meant no way to see what had been made,
      whether it was ever used, or to get its quota back. */
-  const [reviewSets, setReviewSets] = useState<Record<string, { id: string; title: string; question_count: number; presented_at: string | null; created_at: string }[]>>({})
+  // null = the deck list failed to load (rendered with a Retry), never shown as "no decks".
+  const [reviewSets, setReviewSets] = useState<Record<string, { id: string; title: string; question_count: number; presented_at: string | null; created_at: string }[] | null>>({})
   const [pendingDeckDelete, setPendingDeckDelete] = useState<{ id: string; title: string; count: number; presentedAt: string | null } | null>(null)
   const [deckDeleting, setDeckDeleting] = useState(false)
 
@@ -215,6 +217,9 @@ export function CampPage({ academyId }: CampPageProps) {
    *  belongs to. Separate from `sessionOptions`, which is scoped to the
    *  one classroom chosen in the modal. */
   const [sessionsById, setSessionsById] = useState<Record<string, { date: string; start_time: string | null; classroom_id: string }>>({})
+  /** The lesson-date read failed: assignments then lose their date chips and grouping, so say so with a Retry
+   *  rather than silently rendering every set as "not linked to a lesson". */
+  const [sessionsError, setSessionsError] = useState(false)
 
   // Declared before filteredSessionOptions, which calls it during render. Declared after it (as it was),
   // typing in the session search box threw "Cannot access 'formatDate' before initialization".
@@ -294,10 +299,16 @@ export function CampPage({ academyId }: CampPageProps) {
 
     const deckResults = await Promise.all(
       classroomIds.map(async id => {
-        const res = await fetch(`/api/camp/review-set?classroomId=${id}`, { headers })
-        if (!res.ok) return [id, []] as const
-        const json = await res.json()
-        return [id, (json.reviewSets ?? [])] as const
+        // A failed deck read used to become [] (the list just vanished) and a network throw rejected the whole
+        // loader. null = failed, rendered with a Retry.
+        try {
+          const res = await fetch(`/api/camp/review-set?classroomId=${id}`, { headers })
+          if (!res.ok) return [id, null] as const
+          const json = await res.json()
+          return [id, (json.reviewSets ?? [])] as const
+        } catch {
+          return [id, null] as const
+        }
       }),
     )
     setReviewSets(Object.fromEntries(deckResults))
@@ -306,14 +317,21 @@ export function CampPage({ academyId }: CampPageProps) {
     // lesson it belongs to. Bounded — a camp classroom's own sessions
     // are far below the PostgREST cap, but never unbounded on principle.
     if (classroomIds.length) {
-      const { data } = await db
-        .from('classroom_sessions')
-        .select('id, date, start_time, classroom_id')
-        .in('classroom_id', classroomIds)
-        .is('deleted_at', null)
-        .order('date', { ascending: false })
-        .limit(1000)
-      setSessionsById(Object.fromEntries((data ?? []).map(r => [r.id, { date: r.date, start_time: r.start_time, classroom_id: r.classroom_id }])))
+      try {
+        const { data, error } = await db
+          .from('classroom_sessions')
+          .select('id, date, start_time, classroom_id')
+          .in('classroom_id', classroomIds)
+          .is('deleted_at', null)
+          .order('date', { ascending: false })
+          .limit(1000)
+        if (error) throw error
+        setSessionsError(false)
+        setSessionsById(Object.fromEntries((data ?? []).map(r => [r.id, { date: r.date, start_time: r.start_time, classroom_id: r.classroom_id }])))
+      } catch (e) {
+        console.error('[camp] lesson dates load failed:', e)
+        setSessionsError(true)
+      }
     }
   }, [])
 
@@ -333,8 +351,10 @@ export function CampPage({ academyId }: CampPageProps) {
       const json = await res.json()
       const groups = (json.programs ?? []) as ProgramGroup[]
       setProgramGroups(groups)
+      // Keep the tab the user is on; otherwise open on the camp running today (KST), then the next upcoming,
+      // then the most recent. groups[0] was the OLDEST program (created_at ascending).
       setActiveProgramId(prev =>
-        groups.some(g => g.program.id === prev) ? prev : (groups[0]?.program.id ?? null),
+        groups.some(g => g.program.id === prev) ? prev : (pickDefaultProgram(groups.map(g => g.program))?.id ?? null),
       )
       // Overviews are recomputed per tab visit; clear so post-create
       // numbers (completion denominator) are fresh.
@@ -915,10 +935,23 @@ export function CampPage({ academyId }: CampPageProps) {
 
       {/* ── Students tab — program-wide searchable roster ── */}
       {canViewResults && activeTab === 'students' && (
-        <CampStudentsPanel programId={program.id} testFamily={program.test_family} />
+        <CampStudentsPanel
+          programId={program.id}
+          testFamily={program.test_family}
+          manageableClassroomIds={manageable.map(r => r.id)}
+        />
       )}
 
       {/* ── Classrooms tab — grouped-list idiom (classroom header + assignment row cards) ── */}
+      {activeTab === 'classrooms' && sessionsError && (
+        <Card className="mb-4" data-testid="camp-sessions-error">
+          <ErrorState
+            size="sm"
+            title={String(t('camp.sessionsLoadFailed'))}
+            onRetry={() => { void fetchAssignments(manageable.map(r => r.id)) }}
+          />
+        </Card>
+      )}
       {activeTab === 'classrooms' && (classrooms.length === 0 ? (
         <Card>
           <EmptyState
@@ -942,8 +975,13 @@ export function CampPage({ academyId }: CampPageProps) {
                     </h3>
                     <span className="text-xs sm:text-sm text-gray-500 flex-shrink-0 tabular-nums">
                       {t('camp.studentCount', { count: room.student_count ?? 0 })}
-                      <span className="mx-1.5 text-gray-300">·</span>
-                      {t('camp.assignmentCount', { count: rows?.length ?? 0 })}
+                      {/* Only a count we actually loaded. A colleague's room is never fetched (its assignments
+                          route is manage-gated) and a failed or pending load has no number either; all three
+                          used to read "0 assignments". */}
+                      {Array.isArray(rows) && (<>
+                        <span className="mx-1.5 text-gray-300">·</span>
+                        {t('camp.assignmentCount', { count: rows.length })}
+                      </>)}
                     </span>
                   </div>
                   <div className="flex flex-wrap items-center gap-2 ml-5 sm:ml-0">
@@ -1119,13 +1157,24 @@ export function CampPage({ academyId }: CampPageProps) {
                 {/* Expanded tracking panel (P2) */}
                 {canViewResults && openDashboards[room.id] && (
                   <div className="ml-4 sm:ml-6">
-                    <CampClassroomDashboard classroomId={room.id} testFamily={program.test_family} />
+                    <CampClassroomDashboard classroomId={room.id} testFamily={program.test_family} canManage={room.can_manage !== false} />
                   </div>
                 )}
 
                 {/* Review decks. Listed so a teacher can see what was
                     built, whether it was ever presented, present it
                     again, or get the quota back for one that was not. */}
+                {room.can_manage !== false && reviewSets[room.id] === null && (
+                  <div className="ml-4 sm:ml-6 mt-3">
+                    <Card>
+                      <ErrorState
+                        size="sm"
+                        title={String(t('camp.reviewSets.loadFailed'))}
+                        onRetry={() => { void fetchAssignments(manageable.map(r => r.id)) }}
+                      />
+                    </Card>
+                  </div>
+                )}
                 {(reviewSets[room.id]?.length ?? 0) > 0 && (
                   <div className="ml-4 sm:ml-6 mt-3">
                     <div className="flex items-center gap-2 mb-2">

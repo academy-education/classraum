@@ -2917,7 +2917,8 @@
       "avgScore": "Avg score",
       "lastActive": "Last active",
       "status": "Status",
-      "noMatches": "No students match your search."
+      "noMatches": "No students match your search.",
+      "loadFailed": "Couldn't load students"
     },
     "studentDetail": {
       "open": "View student details",
@@ -2979,7 +2980,8 @@
       "loadFailed": "Couldn't load this session",
       "open": "View session details",
       "online": "Online",
-      "offline": "In person"
+      "offline": "In person",
+      "attendanceFailed": "Couldn't load attendance"
     },
     "deleteAssignment": {
       "action": "Delete",
@@ -3021,10 +3023,12 @@
       "willRefund": "It was never presented, so its {{n}} questions go back to your quota.",
       "noRefund": "It was presented on {{date}}. The questions stay spent.",
       "deleted": "Deck deleted",
-      "failed": "Couldn't delete this deck"
+      "failed": "Couldn't delete this deck",
+      "loadFailed": "Couldn't load review decks"
     },
     "otherTeacherRoomTitle": "Managed by another teacher",
-    "otherTeacherRoomDescription": "Only this class's teacher or an academy manager can create assignments, reports and reviews here."
+    "otherTeacherRoomDescription": "Only this class's teacher or an academy manager can create assignments, reports and reviews here.",
+    "sessionsLoadFailed": "Couldn't load lesson dates, so assignments are not grouped by lesson"
   },
   "attendance": {
     "title": "Attendance",

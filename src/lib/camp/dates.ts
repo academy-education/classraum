@@ -14,3 +14,10 @@ export function kstDate(at: Date | string | number = new Date()): string {
   // en-CA formats as YYYY-MM-DD
   return new Intl.DateTimeFormat('en-CA', { timeZone: KST, year: 'numeric', month: '2-digit', day: '2-digit' }).format(d)
 }
+
+/** The live "period end" for a camp report or drill-down: today in Korea while the camp runs, capped at the
+ *  program's last day once it is over. The same rule POST /api/camp/reports/generate applies, so a live view
+ *  and a report generated at the same moment carry the same period. */
+export function campPeriodEnd(endsOn: string | null | undefined, today: string = kstDate()): string {
+  return endsOn && endsOn < today ? endsOn : today
+}

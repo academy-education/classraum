@@ -55,7 +55,7 @@ interface SessionRow {
   config: unknown
 }
 
-interface ClassroomCampData {
+export interface ClassroomCampData {
   program: { id: string; name: string; test_family: string }
   classroom: { id: string; name: string }
   studentIds: string[]
@@ -94,7 +94,7 @@ export async function loadClassroomCampData(classroom: {
     .maybeSingle()
   if (!program) return { error: 'camp program not found' }
 
-  const [{ data: members }, { data: assignmentRows, error: assignmentsError }] = await Promise.all([
+  const [{ data: members, error: membersError }, { data: assignmentRows, error: assignmentsError }] = await Promise.all([
     dbAdmin.from('classroom_students').select('student_id').eq('classroom_id', classroom.id),
     dbAdmin
       .from('camp_assignments')
@@ -105,14 +105,19 @@ export async function loadClassroomCampData(classroom: {
       .order('created_at', { ascending: true }),
   ])
   if (assignmentsError) return { error: assignmentsError.message }
+  // A failed roster read used to fall through as `members = null` -> studentIds = [] -> every number 0, which the
+  // dashboard showed as an empty class rather than an error (camp-dashboard-ux-audit). Fail loudly instead.
+  if (membersError) throw new Error(`camp roster query failed: ${membersError.message}`)
 
   const studentIds = [...new Set((members ?? []).map(m => m.student_id as string))]
   const assignments = (assignmentRows ?? []) as ClassroomCampData['assignments']
   const assignmentIds = new Set(assignments.map(a => a.id))
 
-  const { data: studentUsers } = studentIds.length > 0
+  const { data: studentUsers, error: usersError } = studentIds.length > 0
     ? await dbAdmin.from('users').select('id, name, email').in('id', studentIds)
-    : { data: [] as Array<{ id: string; name: string | null; email: string | null }> }
+    : { data: [] as Array<{ id: string; name: string | null; email: string | null }>, error: null }
+  // Same: a failed name read rendered every student as "—" with no sign anything had gone wrong.
+  if (usersError) throw new Error(`camp student names query failed: ${usersError.message}`)
   const usersById = new Map(
     (studentUsers ?? []).map(u => [u.id as string, { name: u.name as string | null, email: u.email as string | null }]),
   )

@@ -170,3 +170,28 @@ export async function isStudentInProgram(studentId: string, program: CampProgram
       .limit(1),
   )
 }
+
+/**
+ * Which of these students are on the academy's own roster? The batched
+ * form of isStudentOfAcademy for the program-wide lists (Students tab,
+ * overview), which would otherwise run one query per student.
+ *
+ * Unlike the yes/no helpers above this does NOT fail closed into an
+ * empty set: an empty roster renders as "no students", the silent-zero
+ * failure the camp dashboard audit kept finding. A failed read throws.
+ */
+export async function studentsOfAcademy(studentIds: string[], academyId: string): Promise<Set<string>> {
+  const out = new Set<string>()
+  const ids = [...new Set(studentIds)]
+  const CHUNK = 200
+  for (let i = 0; i < ids.length; i += CHUNK) {
+    const { data, error } = await dbAdmin
+      .from('students')
+      .select('user_id')
+      .in('user_id', ids.slice(i, i + CHUNK))
+      .eq('academy_id', academyId)
+    if (error) throw new Error(`academy roster query failed: ${(error as { message?: string }).message ?? 'unknown'}`)
+    for (const r of (data ?? []) as Array<{ user_id: string }>) out.add(r.user_id)
+  }
+  return out
+}

@@ -2917,7 +2917,8 @@
       "avgScore": "평균 점수",
       "lastActive": "최근 활동",
       "status": "상태",
-      "noMatches": "검색과 일치하는 학생이 없습니다."
+      "noMatches": "검색과 일치하는 학생이 없습니다.",
+      "loadFailed": "학생 목록을 불러오지 못했습니다"
     },
     "studentDetail": {
       "open": "학생 상세 보기",
@@ -2979,7 +2980,8 @@
       "loadFailed": "수업 정보를 불러오지 못했습니다",
       "open": "수업 상세 보기",
       "online": "온라인",
-      "offline": "대면"
+      "offline": "대면",
+      "attendanceFailed": "출석 정보를 불러오지 못했습니다"
     },
     "deleteAssignment": {
       "action": "삭제",
@@ -3021,10 +3023,12 @@
       "willRefund": "발표한 적이 없어 {{n}}문항이 잔여 문항으로 반환됩니다.",
       "noRefund": "{{date}}에 발표되었습니다. 문항은 반환되지 않습니다.",
       "deleted": "덱을 삭제했습니다",
-      "failed": "덱을 삭제하지 못했습니다"
+      "failed": "덱을 삭제하지 못했습니다",
+      "loadFailed": "복습 덱을 불러오지 못했습니다"
     },
     "otherTeacherRoomTitle": "다른 선생님이 관리하는 반입니다",
-    "otherTeacherRoomDescription": "과제, 리포트, 수업 복습은 이 반의 담당 선생님이나 학원 관리자만 만들 수 있습니다."
+    "otherTeacherRoomDescription": "과제, 리포트, 수업 복습은 이 반의 담당 선생님이나 학원 관리자만 만들 수 있습니다.",
+    "sessionsLoadFailed": "수업 날짜를 불러오지 못해 과제를 수업별로 묶지 못했습니다"
   },
   "attendance": {
     "title": "출석",

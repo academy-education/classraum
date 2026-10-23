@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { EmptyState } from '@/components/ui/common/EmptyState'
+import { ErrorState } from '@/components/ui/common/ErrorState'
 import { StatusPill, type StatusPillTone } from '@/components/ui/status-pill'
 import { CampStudentDetail } from '@/components/ui/camp/CampStudentDetail'
 import { authHeaders } from '@/lib/auth-headers'
@@ -55,15 +56,19 @@ const STATE_TONES: Record<'not_started' | 'in_progress' | 'done', StatusPillTone
 interface CampStudentsPanelProps {
   programId: string
   testFamily: string
+  /** Classrooms this viewer may manage (generate reports, withdraw them). The drill-down hides those actions
+   *  for a colleague's student instead of offering a button that 403s. */
+  manageableClassroomIds: string[]
 }
 
-export function CampStudentsPanel({ programId, testFamily }: CampStudentsPanelProps) {
+export function CampStudentsPanel({ programId, testFamily, manageableClassroomIds }: CampStudentsPanelProps) {
   const { t, language } = useTranslation()
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
   const [rows, setRows] = useState<StudentsRow[]>([])
   const [search, setSearch] = useState('')
   const [detail, setDetail] = useState<{ classroomId: string; studentId: string; name: string } | null>(null)
+  const [reload, setReload] = useState(0)
 
   useEffect(() => {
     let cancelled = false
@@ -85,7 +90,7 @@ export function CampStudentsPanel({ programId, testFamily }: CampStudentsPanelPr
       }
     })()
     return () => { cancelled = true }
-  }, [programId])
+  }, [programId, reload])
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase()
@@ -123,7 +128,11 @@ export function CampStudentsPanel({ programId, testFamily }: CampStudentsPanelPr
     )
   }
   if (error) {
-    return <p className="text-sm text-rose-600 py-3">{t('camp.dashboard.loadFailed')}</p>
+    return (
+      <Card>
+        <ErrorState size="sm" title={String(t('camp.students.loadFailed'))} onRetry={() => setReload(n => n + 1)} />
+      </Card>
+    )
   }
   if (rows.length === 0) {
     return (
@@ -234,6 +243,7 @@ export function CampStudentsPanel({ programId, testFamily }: CampStudentsPanelPr
           studentId={detail.studentId}
           studentName={detail.name}
           testFamily={testFamily}
+          canManage={manageableClassroomIds.includes(detail.classroomId)}
           onClose={() => setDetail(null)}
         />
       )}

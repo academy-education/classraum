@@ -71,9 +71,12 @@ const STATE_TONES: Record<DashboardStudentStatus['state'], StatusPillTone> = {
 interface CampClassroomDashboardProps {
   classroomId: string
   testFamily: string
+  /** Whether this viewer may manage the classroom (its own teacher, or a manager). A camp teacher of another
+   *  room can read the results but not generate or withdraw reports here. */
+  canManage: boolean
 }
 
-export function CampClassroomDashboard({ classroomId, testFamily }: CampClassroomDashboardProps) {
+export function CampClassroomDashboard({ classroomId, testFamily, canManage }: CampClassroomDashboardProps) {
   const { t } = useTranslation()
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState<DashboardData | null>(null)
@@ -310,6 +313,7 @@ export function CampClassroomDashboard({ classroomId, testFamily }: CampClassroo
           studentId={detailStudent.id}
           studentName={detailStudent.name}
           testFamily={testFamily}
+          canManage={canManage}
           onClose={() => setDetailStudent(null)}
         />
       )}

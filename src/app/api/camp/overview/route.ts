@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
-import { canViewProgramResults } from '@/lib/camp/access'
+import { canViewProgramResults, studentsOfAcademy } from '@/lib/camp/access'
+import { restrictToStudents } from '@/lib/camp/roster'
 import { loadClassroomCampData } from '@/lib/camp/reports'
 import { kstDate } from '@/lib/camp/dates'
 
@@ -79,6 +80,9 @@ export async function GET(req: NextRequest) {
     .from('classrooms')
     .select('id, name')
     .eq('camp_program_id', programId)
+    // Same academy only, as /api/camp/program does: a classroom in ANOTHER academy pointed at this program can only
+    // exist through the pre-122 write gap, and its roster is not this camp's.
+    .eq('academy_id', program.academy_id)
     .is('deleted_at', null)
   if (classroomsError) {
     return NextResponse.json({ error: classroomsError.message }, { status: 500 })
@@ -96,12 +100,14 @@ export async function GET(req: NextRequest) {
   const nowMs = Date.now()
 
   for (const room of classrooms ?? []) {
-    const data = await loadClassroomCampData({
+    const loaded = await loadClassroomCampData({
       id: room.id as string,
       name: room.name as string,
       camp_program_id: programId,
     })
-    if ('error' in data) return NextResponse.json({ error: data.error }, { status: 500 })
+    if ('error' in loaded) return NextResponse.json({ error: loaded.error }, { status: 500 })
+    // Enrolled here AND on the academy's own roster (the rule /api/camp/student applies to one student).
+    const data = restrictToStudents(loaded, await studentsOfAcademy(loaded.studentIds, program.academy_id as string))
 
     for (const sid of data.studentIds) enrolled.add(sid)
     expected += data.assignments.length * data.studentIds.length
