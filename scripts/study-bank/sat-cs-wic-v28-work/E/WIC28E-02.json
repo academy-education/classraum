@@ -1,0 +1,146 @@
+{
+  "id": "WIC28E-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "drought in a pine forest",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "sapped",
+    "scorched",
+    "toppled",
+    "winnowed"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "scorched",
+    "toppled",
+    "sapped",
+    "winnowed"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "The foresters' final report concluded that the dry years had ______ the forest.",
+  "worlds": [
+    {
+      "key": "winnowed",
+      "passage": "From 1952 to 1957 almost no rain fell on a pine forest in the southern hills, where foresters measured every tree yearly until 1975. During the drought one tree in five died, nearly all of them small pines crowded beneath taller neighbors, and the dead stayed standing for years until they rotted. Through every dry summer the survivors kept green needles. Once the rains returned, the survivors put on wider growth rings than they had before 1952, and bark beetles, which attack weakened pines, found few hosts. The foresters' final report concluded that the dry years had ______ the forest.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The drought killed mostly the small, crowded pines, and the trees it left grew faster afterward than before, so it removed the weakest and left the strongest: it \"winnowed\" the forest. \"Sapped\" means drained of strength, but the survivors grew wider rings than before and beetles that prey on weakened pines found few hosts. \"Scorched\" means burned or browned at the surface, but the survivors kept green needles through every dry summer. \"Toppled\" means knocked over, but the dead trees stayed standing until they rotted.",
+      "kills": {
+        "sapped": {
+          "type": "logic",
+          "quote": "wider growth rings than they had before 1952",
+          "why": "A sapped forest is left weaker; these trees grew faster afterward and resisted beetles.",
+          "surface_fit": "Five years of drought draining a forest's strength is the most natural thing to say, and a fifth of the trees died.",
+          "inference": "the trees that remained grew faster than before the drought and beetles that seek weakened pines found few, so the forest that came out was stronger, not drained"
+        },
+        "scorched": {
+          "type": "logic",
+          "quote": "the survivors kept green needles",
+          "why": "Scorching browns foliage; the needles stayed green.",
+          "surface_fit": "Rainless summers in southern hills call up heat-browned, scorched trees, a standard way to describe drought damage.",
+          "inference": "needles that stay green through each dry summer were not browned by heat, so the drought did not scorch the canopy"
+        },
+        "toppled": {
+          "type": "logic",
+          "quote": "the dead stayed standing for years",
+          "why": "Toppled trees fall; these dead trees stood.",
+          "surface_fit": "Drought-killed trees commonly fall, and a fifth of the forest died, so toppled fits the sentence and the topic.",
+          "inference": "the trees that died remained upright until they rotted, so the drought killed them where they stood without bringing them down"
+        }
+      }
+    },
+    {
+      "key": "sapped",
+      "passage": "From 1952 to 1957 almost no rain fell on a pine forest in the southern hills, where foresters measured every tree yearly until 1975. Every tree tagged in 1952 still stood in 1975, and the needles grown in the dry summers stayed on the branches their usual three years. Once the rains returned, the pines' growth rings stayed narrow for a decade, and bark beetles, which a healthy pine drowns in resin, bored into one tree in five, large and small alike, and lived in them for years. The foresters' final report concluded that the dry years had ______ the forest.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "No tree was lost, yet afterward the pines grew slowly for a decade and let in beetles that a healthy pine drowns in resin, so the drought left them weakened: it \"sapped\" the forest. \"Winnowed\" means sifted out the weaker part, but every tagged tree survived, and the beetles settled in large and small trees alike, so nothing was sorted out. \"Scorched\" means burned or browned, but the needles grown in the dry summers lasted their usual three years. \"Toppled\" means brought down, but every tree tagged in 1952 still stood in 1975.",
+      "kills": {
+        "winnowed": {
+          "type": "logic",
+          "quote": "Every tree tagged in 1952 still stood in 1975",
+          "why": "Winnowing takes out the weaker part and leaves the stronger; nothing was taken out, and the beetles settled into big and small trees alike.",
+          "surface_fit": "Bark beetles attacking one tree in five after a drought reads like the familiar story of a hard time culling a forest down to its toughest trees.",
+          "inference": "no tagged tree was lost in twenty-three years, and the beetles chose large and small pines alike, so the drought neither removed trees nor separated weak from strong"
+        },
+        "scorched": {
+          "type": "logic",
+          "quote": "stayed on the branches their usual three years",
+          "why": "Scorched needles brown and drop; the dry years' needles lived out their normal span.",
+          "surface_fit": "Rainless summers in hot southern hills suggest sun-scorched trees, the usual picture of drought damage.",
+          "inference": "needles that lasted their usual three years were not killed by heat, so the canopy was never scorched; the harm showed only in the wood and in the beetles"
+        },
+        "toppled": {
+          "type": "logic",
+          "quote": "still stood in 1975",
+          "why": "Toppled trees fall; every tagged tree was standing at the end.",
+          "surface_fit": "Trees weakened by drought and riddled by beetles often blow down, so toppled fits the sentence and the forest.",
+          "inference": "every tree measured at the start was standing twenty-three years later, so none had been brought down"
+        }
+      }
+    },
+    {
+      "key": "scorched",
+      "passage": "From 1952 to 1957 almost no rain fell on a pine forest in the southern hills, where foresters measured every tree yearly until 1975. Through every dry summer the needles of every pine turned brown by late summer and dropped weeks early, and each spring the trees grew a full set of new ones. The few pines that died, large and small alike, stayed standing for years until they rotted. Once the rains returned, growth rings were as wide as they had been before 1952, and bark beetles, which attack weakened pines, found few hosts. The foresters' final report concluded that the dry years had ______ the forest.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "Each dry summer browned every pine's needles and stripped them early, while the trees regrew them each spring and grew normally once the rain returned, so the damage was a browning of the foliage that left the trees sound: the drought \"scorched\" the forest. \"Sapped\" means drained of strength, but growth rings returned to their old width and beetles that seek weakened pines found few hosts. \"Winnowed\" means removed the weak and left the strong, but only a few pines died, large and small alike. \"Toppled\" means knocked over, but the pines that died stayed standing until they rotted.",
+      "kills": {
+        "sapped": {
+          "type": "logic",
+          "quote": "growth rings were as wide as they had been before 1952",
+          "why": "A sapped forest stays weakened; growth returned to normal and beetles found few weak hosts.",
+          "surface_fit": "Trees that lose their needles every summer for five years are an obvious case of a forest drained of strength.",
+          "inference": "rings as wide as before the drought and beetles finding few weakened trees show the pines kept their vigor, so the drought did not drain it"
+        },
+        "winnowed": {
+          "type": "logic",
+          "quote": "The few pines that died, large and small alike",
+          "why": "Winnowing removes the weak selectively; the few deaths fell on any size.",
+          "surface_fit": "Some trees died while the rest came through, which is how a drought culling a forest would look.",
+          "inference": "the few deaths fell on big and small pines alike, so the drought did not separate weak from strong"
+        },
+        "toppled": {
+          "type": "logic",
+          "quote": "stayed standing for years until they rotted",
+          "why": "Toppled trees fall; even the dead stood.",
+          "surface_fit": "A drought that kills pines can bring them down, so toppled fits the sentence and a forest with dead trees.",
+          "inference": "even the trees that died remained upright, and the rest regrew their needles each spring, so no tree was brought down"
+        }
+      }
+    },
+    {
+      "key": "toppled",
+      "passage": "From 1952 to 1957 almost no rain fell on a pine forest in the southern hills, where foresters measured every tree yearly until 1975. Through those years the needles grown in the dry summers stayed on the branches their usual three years, while the soil shrank away from the roots. In the ordinary autumn winds of 1955 and 1956, whole ridge stands went over together, roots torn from the ground, the tallest and soundest pines among them; valley stands on deeper soil lost almost none. Afterward, the standing pines grew rings as wide as before 1952. The foresters' final report concluded that the dry years had ______ the forest.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The drought shrank the soil away from the roots, so that ordinary autumn winds tore whole ridge stands out of the ground: the dry years \"toppled\" the forest. \"Winnowed\" means sifted the poor from the good, leaving the best, but whole stands fell together with the tallest and soundest pines among them, so the losses were not a sorting at all. \"Scorched\" means burned or browned, but the needles grown in the dry summers lasted their usual three years. \"Sapped\" means drained of strength, but the pines left standing grew rings as wide as before the drought.",
+      "kills": {
+        "winnowed": {
+          "type": "logic",
+          "quote": "whole ridge stands went over together",
+          "why": "Winnowing sifts the poor from the good, leaving the best; here entire stands fell, the soundest trees with them.",
+          "surface_fit": "A drought that cost the forest a share of its trees, with the rest growing well afterward, looks like a cull of the weak.",
+          "inference": "whole ridge stands fell together and the tallest and soundest trees went with them, so the losses were not a sorting of weak from strong but trees knocked flat wherever the soil had shrunk"
+        },
+        "scorched": {
+          "type": "logic",
+          "quote": "stayed on the branches their usual three years",
+          "why": "Scorched needles brown and drop; these lasted their normal span.",
+          "surface_fit": "Rainless summers in hot hills call up heat-browned, scorched trees, a stock description of drought damage.",
+          "inference": "needles that lasted their usual three years were not killed by heat, so the damage lay at the roots, not in the canopy"
+        },
+        "sapped": {
+          "type": "logic",
+          "quote": "the standing pines grew rings as wide as before 1952",
+          "why": "A sapped forest is left weakened; the surviving trees grew normally.",
+          "surface_fit": "Soil shrinking from the roots for years sounds like a forest slowly drained of strength.",
+          "inference": "once rain returned the standing pines grew at their old rate, so the trees were not weakened; the drought's harm was the trees it brought down"
+        }
+      }
+    }
+  ]
+}

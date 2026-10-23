@@ -1,0 +1,146 @@
+{
+  "id": "WIC28B-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a moorland village's spring walk",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "raid",
+    "pageant",
+    "pilgrimage",
+    "roundup"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "raid",
+    "roundup",
+    "pageant",
+    "pilgrimage"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "Folklorists who recorded the walk in 1900 called it the village's yearly ______.",
+  "worlds": [
+    {
+      "key": "roundup",
+      "passage": "Every spring until 1914, the people of one moorland village walked out at dawn in ribboned hats across six miles of common where their ponies grazed, coming home by dusk from the boundary stone beside a spring at the edge of the neighboring parish. Folklorists who recorded the walk in 1900 called it the village's yearly ______. They went out in a long line a stone's throw apart, sweeping the heather, and turned at the stone; by dusk the village yard was packed with ponies, and each family led home the ones whose ears bore its notch, the parish selling the rest at the autumn fair.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The villagers swept the common in a long line, turned at the stone, and came home to a yard full of ponies that families claimed by their own ear notches, so the walk was a \"roundup\": gathering the village's scattered stock to be sorted and claimed. \"Raid\" fails because the ponies were the village's own, claimed by each family's notch, with the strays sold openly at a fair. \"Pilgrimage\" fails because they turned at the stone and spring without stopping; the far edge was only where the sweep turned back. \"Pageant\" fails because, ribboned hats aside, the line a stone's throw apart was a way of sweeping the heather, not a show for anyone.",
+      "kills": {
+        "raid": {
+          "type": "logic",
+          "quote": "each family led home the ones whose ears bore its notch",
+          "why": "The ponies brought in belonged to the village's own families.",
+          "surface_fit": "A line of villagers crossing to the edge of the neighboring parish and coming home with a yard full of ponies is how a cattle raid is told, so the word fits.",
+          "inference": "Each family took home only ponies already marked as its own and the strays were sold openly at a fair, so the village gathered its own animals and took nothing from its neighbors."
+        },
+        "pilgrimage": {
+          "type": "logic",
+          "quote": "sweeping the heather, and turned at the stone",
+          "why": "They turned at the stone without stopping at the spring, so the destination was not honored.",
+          "surface_fit": "A whole village walking every spring to a spring at a boundary stone and back is the outline of a pilgrimage to a holy well, so the word is a strong first reading.",
+          "inference": "The line swept the heather on the way out and turned as soon as it reached the stone, so the far edge was the end of the sweep; nothing was done at the spring."
+        },
+        "pageant": {
+          "type": "logic",
+          "quote": "in a long line a stone's throw apart",
+          "why": "The spaced line is a working formation for sweeping the moor, not a display.",
+          "surface_fit": "Villagers in ribboned hats walking out together in a long line on a fixed spring day sounds like a traditional festival procession, so pageant is tempting.",
+          "inference": "A line spaced a stone's throw apart across open heather, six miles from any audience, is how ground is swept for animals; the hats aside, nothing was performed for anyone to watch."
+        }
+      }
+    },
+    {
+      "key": "pilgrimage",
+      "passage": "Every spring until 1914, the people of one moorland village walked out at dawn in ribboned hats across six miles of common where their ponies grazed, coming home by dusk from the boundary stone beside a spring at the edge of the neighboring parish. Folklorists who recorded the walk in 1900 called it the village's yearly ______. At the stone each family drank from the spring and tied a ribbon from its hats to the thorn above, already hung with ribbons of other springs, then walked home between the grazing ponies with water for anyone too ill to come; the neighboring parish came to the same spring a week later.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "Each family drank from the spring, left a ribbon on a thorn hung with ribbons from earlier years, and carried its water home to the sick, so the walk was a \"pilgrimage\": a journey to a place held to be holy, made in devotion. \"Roundup\" fails because they walked home between the grazing ponies, leaving them where they were. \"Pageant\" fails because the ribbons were left on the thorn as offerings, and the water went to the sick, so the hats served a devotion, not a show. \"Raid\" fails because the neighboring parish visited the same spring on its own day, so the spring was shared, not taken from them.",
+      "kills": {
+        "roundup": {
+          "type": "logic",
+          "quote": "walked home between the grazing ponies",
+          "why": "They left the ponies grazing, so nothing was gathered.",
+          "surface_fit": "A moorland village crossing its common together, where its ponies graze, and coming home by dusk is how a pony drive is done, so the word fits the setting.",
+          "inference": "They passed the ponies on the way home and left them grazing, so the six miles were walked to reach the spring, not to collect animals."
+        },
+        "pageant": {
+          "type": "logic",
+          "quote": "tied a ribbon from its hats to the thorn above",
+          "why": "The hats' ribbons were left as offerings, so the dress served a devotion, not a show.",
+          "surface_fit": "A whole village in ribboned hats walking out on a set spring day and performing set acts at a fixed spot looks like a traditional festival display.",
+          "inference": "Each family gave a ribbon to a thorn already hung with those of earlier years and carried water home to the sick, which are acts done for the spring's sake, not performed for spectators."
+        },
+        "raid": {
+          "type": "logic",
+          "quote": "the neighboring parish came to the same spring a week later",
+          "why": "Both parishes used the spring in turn, so the walk took nothing from the neighbors.",
+          "surface_fit": "The walk ends at the edge of the neighboring parish, and old village customs at the boundary were often forays against the neighbors.",
+          "inference": "The neighbors visited the same spring on their own day a week later, so the spring was a shared holy place; going there took nothing from them."
+        }
+      }
+    },
+    {
+      "key": "pageant",
+      "passage": "Every spring until 1914, the people of one moorland village walked out at dawn in ribboned hats across six miles of common where their ponies grazed, coming home by dusk from the boundary stone beside a spring at the edge of the neighboring parish. Folklorists who recorded the walk in 1900 called it the village's yearly ______. At six stops, villagers in borrowed armor acted scenes from the parish's past, the last a battle at the stone with wooden swords against young men of the neighboring parish, who came yearly to play the enemy, while carriages from the market town followed, scattering the ponies, at a shilling a head.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "At six stops villagers in borrowed armor acted scenes from the parish's history while paying visitors followed to watch, so the walk was a \"pageant\": a series of scenes performed for spectators. \"Raid\" fails because the battle with the neighboring parish was fought with wooden swords against neighbors who came every year to play the enemy, so it was a scene, not a foray. \"Roundup\" fails because the following carriages scattered the ponies rather than anyone gathering them. \"Pilgrimage\" fails because the stops were stages for scenes watched by townspeople who paid to follow, not places honored for their own sake.",
+      "kills": {
+        "raid": {
+          "type": "logic",
+          "quote": "who came yearly to play the enemy",
+          "why": "The neighbors joined the battle willingly as actors, so nothing was taken from them.",
+          "surface_fit": "Men in armor fighting the young men of the neighboring parish at the boundary stone is the picture of a border foray, so raid is a strong first reading.",
+          "inference": "The neighbors came by custom to play the enemy and the swords were wooden, so the battle was staged with the other parish's cooperation; no one crossed over to seize anything."
+        },
+        "roundup": {
+          "type": "logic",
+          "quote": "scattering the ponies",
+          "why": "The ponies were driven apart, not gathered.",
+          "surface_fit": "A moorland village crossing its common together every spring, where its ponies graze, is how stock on a common is gathered, so roundup fits the setting.",
+          "inference": "The carriages broke up the grazing ponies as they followed the actors, the opposite of herding them, and the villagers were busy acting, so nothing was collected."
+        },
+        "pilgrimage": {
+          "type": "logic",
+          "quote": "carriages from the market town followed",
+          "why": "The stops were played to an audience that paid to follow, which makes them stages, not shrines.",
+          "surface_fit": "A procession moving through fixed stopping places on a set day to a spring at a boundary stone looks like the stations of a pilgrimage, so the word fits.",
+          "inference": "Townspeople paid a shilling to follow and watch scenes of the parish's history at each stop, so the stops existed for the scenes; nothing at them was venerated."
+        }
+      }
+    },
+    {
+      "key": "raid",
+      "passage": "Every spring until 1914, the people of one moorland village walked out at dawn in ribboned hats across six miles of common where their ponies grazed, coming home by dusk from the boundary stone beside a spring at the edge of the neighboring parish. Folklorists who recorded the walk in 1900 called it the village's yearly ______. At the stone the young men, faces blackened with soot, slipped into the neighbors' half of the common while their elders waited by the spring, and drove home every pony they found. That night the village yard held ponies bearing the neighbors' ear notches, which the neighbors spent a week bargaining back.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The young men crossed into the neighbors' half of the common, drove home the ponies they found, and the neighbors, whose ear notches the ponies bore, had to bargain them back, so the walk was a \"raid\": a foray to seize rivals' property. \"Roundup\" fails because the ponies driven home bore the neighbors' notches, so the village was not gathering its own stock. \"Pilgrimage\" fails because the spring was only where the elders waited while the young men went over; nothing there was the walk's purpose. \"Pageant\" fails because, soot or no soot, the neighbors really lost their ponies and had to buy them back.",
+      "kills": {
+        "roundup": {
+          "type": "logic",
+          "quote": "ponies bearing the neighbors' ear notches",
+          "why": "The ponies belonged to the neighboring parish, so this was not the village gathering its own stock.",
+          "surface_fit": "Villagers driving every pony they find home into the village yard is exactly what a pony roundup looks like, so the word is the natural first reading.",
+          "inference": "The ponies came from the neighbors' half of the common and bore the neighbors' marks, so the drive took other people's animals rather than collecting the village's own."
+        },
+        "pilgrimage": {
+          "type": "logic",
+          "quote": "while their elders waited by the spring",
+          "why": "The spring was only a waiting place while the young men crossed over.",
+          "surface_fit": "A whole village walking every spring to a spring at the boundary stone sounds like a pilgrimage to a holy well, so the word fits the topic.",
+          "inference": "The elders sat by the spring only while the young men went into the neighbors' land, and the day's result was a yard of the neighbors' ponies, so the spring was a halting place, not the object of the walk."
+        },
+        "pageant": {
+          "type": "logic",
+          "quote": "spent a week bargaining back",
+          "why": "The neighbors really lost their ponies, so the soot was disguise, not costume.",
+          "surface_fit": "Young men with blackened faces in a ribboned-hat procession look like costumed folk theater, so pageant is tempting.",
+          "inference": "The neighbors had to buy their own ponies back over a week, so the seizure was real; soot on the faces was for not being recognized, not for an audience."
+        }
+      }
+    }
+  ]
+}

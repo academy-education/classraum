@@ -1,0 +1,146 @@
+{
+  "id": "WIC28A-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a dam and the river below it",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "chilled",
+    "clogged",
+    "churned",
+    "bled"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "chilled",
+    "clogged",
+    "churned",
+    "bled"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "Twenty years of surveys show that the dam has ______ the river below it.",
+  "worlds": [
+    {
+      "key": "chilled",
+      "passage": "In 1960 a dam was built across a mountain river, holding back a reservoir three hundred feet deep. Twenty years of surveys show that the dam has ______ the river below it. Its turbines draw water from near the reservoir's floor and pass it through at an even rate, day and night, and each May the snowmelt flood pours over the spillway and rolls the gravel bars below. The stretch below the dam, once thick with bass, now holds almost none; trout spawn instead on gravel bars lying as deep under water as before 1960, and the bass have retreated to reaches thirty miles downstream.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "\"Chilled\" fits: the turbines release water from the bottom of a deep reservoir, and below the dam trout have replaced bass, which now live only thirty miles downstream, so the river below has turned cold. \"Bled\" fails because the gravel bars lie as deep under water as before 1960, so the river below carries as much water as ever; the bass left for another reason. \"Churned\" fails because the release is even day and night, and the only surge is the river's own snowmelt flood spilling over in May, not anything the turbines do. \"Clogged\" fails because that flood still rolls the gravel bars every year, so silt and plants cannot settle and choke the channel.",
+      "kills": {
+        "bled": {
+          "type": "logic",
+          "quote": "lying as deep under water as before 1960",
+          "why": "the bars are as deeply covered as before, so the river has lost no water",
+          "surface_fit": "the stretch below the dam has lost its summer bass, and dams commonly draw water off for farms and cities, so a dam draining its river is a natural reading",
+          "inference": "gravel bars that sit as deep under water as before the dam mean the river below carries as much water as it did, so the loss of the bass came from something other than lost water"
+        },
+        "churned": {
+          "type": "logic",
+          "quote": "at an even rate, day and night",
+          "why": "the turbine release is steady and the spring flood is the river's own",
+          "surface_fit": "turbines and a flood pouring over a spillway suggest a river tossed and stirred by the dam",
+          "inference": "water let through evenly day and night makes no daily surges, and the one surge of the year is the snowmelt flood spilling over in May, the river's own flood, so the dam's operation adds no stirring"
+        },
+        "clogged": {
+          "type": "logic",
+          "quote": "rolls the gravel bars below",
+          "why": "the yearly flood keeps moving the gravel",
+          "surface_fit": "dams are well known for stopping the floods that keep channels clear, so a choked river is a natural first guess",
+          "inference": "if the snowmelt flood still pours over the spillway and moves the gravel bars every May, silt cannot settle on them and plants cannot root, so the channel is not choked"
+        }
+      }
+    },
+    {
+      "key": "churned",
+      "passage": "In 1960 a dam was built across a mountain river, holding back a reservoir three hundred feet deep. Twenty years of surveys show that the dam has ______ the river below it. Its turbines run only in the afternoons, when demand for power peaks, drawing water from just beneath the reservoir's sunlit surface. Each afternoon the river below rises four feet within an hour, and by midnight it has sunk to ankle depth over gravel bars that shift from week to week; the water held back each night is what comes down the next afternoon. Bass spawn on those bars just below the dam.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "\"Churned\" fits: the turbines run in afternoon bursts, so every day the river surges four feet in an hour and then sinks to ankle depth, and the gravel bars keep shifting, which means the dam keeps stirring the river up. \"Bled\" fails because the water held back each night comes down the next afternoon, so the dam only times the river's water and takes none of it away. \"Chilled\" fails because the water comes from just beneath the reservoir's sunlit surface, and bass, which need warm water, spawn just below the dam. \"Clogged\" fails because gravel bars that shift week to week never sit still long enough for silt and plants to choke the channel.",
+      "kills": {
+        "bled": {
+          "type": "explicit",
+          "quote": "the water held back each night is what comes down the next afternoon",
+          "why": "the water is stored and released, not removed",
+          "surface_fit": "a river that sinks to ankle depth every night looks like one the dam is draining",
+          "inference": "if each night's held-back water comes down the next afternoon, the low water at night is water being saved for the afternoon surge, so the dam times the river's flow rather than drawing water off"
+        },
+        "chilled": {
+          "type": "logic",
+          "quote": "Bass spawn on those bars just below the dam",
+          "why": "warm-water bass and surface water show the river has not been cooled",
+          "surface_fit": "deep reservoirs are well known for releasing cold water, so chilled is the textbook first guess for a dam",
+          "inference": "the water comes from the sunlit surface, and bass, which need warm water to spawn, spawn right below the dam, so the river there has not been cooled"
+        },
+        "clogged": {
+          "type": "logic",
+          "quote": "gravel bars that shift from week to week",
+          "why": "the bed is kept moving, so it cannot fill",
+          "surface_fit": "dams are known for choking the channels below them with silt and weeds",
+          "inference": "gravel moved around every week by the daily surges never sits still long enough for silt to settle or plants to root, so the channel is not choked"
+        }
+      }
+    },
+    {
+      "key": "clogged",
+      "passage": "In 1960 a dam was built across a mountain river, holding back a reservoir three hundred feet deep. Twenty years of surveys show that the dam has ______ the river below it. It releases a steady flow drawn from just beneath the reservoir's sunlit surface, holding back the spring floods that once spilled over the banks each May. Silt from a tributary just below the dam settles along the channel's edges, reeds have rooted across the old gravel bars, and two salmon side channels have become meadows, while the main channel, squeezed between the new banks, runs deeper than it did before 1960. Bass spawn just below the dam.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "\"Clogged\" fits: with the spring floods held back, silt from a tributary settles in the channel, reeds root on the gravel bars, and side channels have filled in to become meadows, so the dam has let the river choke. \"Bled\" fails because the main channel runs deeper than before: the water that left the side channels is squeezed into the narrowed main channel, not taken away. \"Chilled\" fails because the water comes from the sunlit surface and bass, which need warm water, still spawn just below the dam. \"Churned\" fails because the dam releases a steady flow, which is why the silt can settle instead of being stirred away.",
+      "kills": {
+        "chilled": {
+          "type": "logic",
+          "quote": "Bass spawn just below the dam",
+          "why": "surface water and spawning bass show the river was not cooled",
+          "surface_fit": "cold releases from deep reservoirs are the best-known effect of dams on rivers, so chilled is the natural first guess",
+          "inference": "a release drawn from the sunlit surface stays warm, and bass, which need warm water to spawn, still spawn right below the dam, so the river has not been cooled"
+        },
+        "churned": {
+          "type": "logic",
+          "quote": "releases a steady flow",
+          "why": "the even release lets the silt settle rather than stirring it",
+          "surface_fit": "dams with power turbines are known for releases that tear up and stir the riverbed below",
+          "inference": "a steady flow with the floods held back is calm water in which silt settles and reeds take root, the opposite of a river being stirred up"
+        },
+        "bled": {
+          "type": "logic",
+          "quote": "runs deeper than it did before 1960",
+          "why": "the water is still in the river, concentrated in a narrower, deeper channel",
+          "surface_fit": "salmon side channels turning into meadows suggests a river losing its water, as when a dam diverts it",
+          "inference": "if the main channel, narrowed by silt, now runs deeper than before, the water that once filled the side channels is still flowing in the river; the side channels filled with silt and reeds rather than drying for lack of water"
+        }
+      }
+    },
+    {
+      "key": "bled",
+      "passage": "In 1960 a dam was built across a mountain river, holding back a reservoir three hundred feet deep. Twenty years of surveys show that the dam has ______ the river below it. A canal at the dam carries two thirds of the river to farms in the next valley, and the rest is released steadily, drawn from just beneath the reservoir's sunlit surface. Below the dam the river runs a third as wide each summer, and side channels where salmon spawned lie dry until fall; spring floods, too big for the canal, pour over the spillway and scour the gravel bars. Bass spawn just below the dam.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "\"Bled\" fits: a canal draws off two thirds of the river for farms, so the river below shrinks to a third of its width and its side channels go dry each summer; the dam has drained it of most of its water. \"Chilled\" fails because the release comes from the sunlit surface and warm-water bass still spawn just below the dam. \"Churned\" fails because what remains is released steadily, so the dam does not stir the river up. \"Clogged\" fails because the spring floods still pour over the spillway and scour the gravel bars, so silt and plants cannot choke the channel.",
+      "kills": {
+        "chilled": {
+          "type": "logic",
+          "quote": "Bass spawn just below the dam",
+          "why": "surface water and spawning bass show the river was not cooled",
+          "surface_fit": "deep reservoirs are famous for sending cold water downstream, so chilled is the textbook guess for a dam",
+          "inference": "a release drawn from the sunlit surface is warm, and bass, which spawn only in warm water, still spawn right below the dam, so the river has not been cooled"
+        },
+        "churned": {
+          "type": "logic",
+          "quote": "the rest is released steadily",
+          "why": "the remaining water is let out evenly",
+          "surface_fit": "a dam with a canal and a spillway suggests rough, surging water below it",
+          "inference": "an even release of the remaining third produces no surges, and the spillway floods are the spring floods the river always had, so the dam itself is not stirring the river"
+        },
+        "clogged": {
+          "type": "logic",
+          "quote": "pour over the spillway and scour the gravel bars",
+          "why": "the floods still clean the channel",
+          "surface_fit": "a river shrunk to a third of its width with dry side channels sounds like one filling with silt and weeds",
+          "inference": "the spring floods still reach the river over the spillway and sweep the gravel bars every year, so silt and plants cannot settle and choke the channel"
+        }
+      }
+    }
+  ]
+}

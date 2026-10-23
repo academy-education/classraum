@@ -1,0 +1,146 @@
+{
+  "id": "WIC28E-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a freighter wreck off an island",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "strongbox",
+    "tomb",
+    "trellis",
+    "tripwire"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "tomb",
+    "trellis",
+    "strongbox",
+    "tripwire"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "Divers who surveyed it in 2005 called the hull a true ______, and their photographs show why.",
+  "worlds": [
+    {
+      "key": "trellis",
+      "passage": "In 1911 a steel freighter sank on a reef off a small island, where its hull still lies nearly whole. Divers who surveyed it in 2005 called the hull a true ______, and their photographs show why. Corals and sponges grow out along every beam and rail, while the sand around it, at the same depth, is bare. Its bow rises to twelve feet below the surface, and the only boats crossing there are island ferries drawing six. Its holds are still sealed, and its manifest lists them full of coal. The twenty-eight men aboard all appear in the island church's register at its next service.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "Corals and sponges grow along every beam while the sand around the hull at the same depth is bare, so the growth exists because the hull gives it something to climb: a \"trellis.\" A \"tripwire\" catches the unwary, but the bow lies twelve feet down and the only boats overhead draw six. A \"strongbox\" keeps something valuable secure, but the sealed holds keep only coal. A \"tomb\" holds the dead, but the twenty-eight men aboard match the twenty-eight sailors in the island church's register at its next service, so the crew survived.",
+      "kills": {
+        "tomb": {
+          "type": "logic",
+          "quote": "appear in the island church's register at its next service",
+          "why": "A tomb holds the dead; the same number of sailors who were aboard appear in the church register at its next service.",
+          "surface_fit": "A sunken ship is the stock image of a sailors' grave, and the passage counts the men aboard, so tomb is the reader's first thought.",
+          "inference": "twenty-eight men aboard and all twenty-eight in the island church's register at its next service means the crew got ashore alive, so no one lies in the hull"
+        },
+        "strongbox": {
+          "type": "logic",
+          "quote": "its manifest lists them full of coal",
+          "why": "A strongbox guards something valuable; the sealed holds guard coal.",
+          "surface_fit": "Holds still sealed after a century are the very picture of a strongbox keeping its cargo safe.",
+          "inference": "the holds are sealed, but what they keep is coal, a cargo not worth guarding or raising, so the hull is not keeping anything of value secure"
+        },
+        "tripwire": {
+          "type": "logic",
+          "quote": "island ferries drawing six",
+          "why": "A tripwire catches passing boats; the only boats there clear the bow by six feet.",
+          "surface_fit": "A bow rising to within twelve feet of the surface is exactly the kind of hidden hazard a tripwire is.",
+          "inference": "the bow lies twelve feet down and the only boats over it reach six feet down, so every one clears it and it catches nothing"
+        }
+      }
+    },
+    {
+      "key": "tripwire",
+      "passage": "In 1911 a steel freighter sank on a reef off a small island, where its hull still lies nearly whole. Divers who surveyed it in 2005 called the hull a true ______, and their photographs show why. The twenty-eight men aboard all appear in the island church's register at its next service. Its bow rises to twelve feet below the surface beside the island's port channel, used since 1960 by freighters drawing twenty; two have arrived with keels gashed open. Corals coat every beam, part of one growth covering the reef for a mile each way. Its holds were cut open in 1912, the silver on its manifest carried off.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The bow rises to twelve feet beside the channel, freighters calling at the port draw twenty, and two have arrived with keels gashed open, so the hull is a hidden hazard that catches passing ships: a \"tripwire.\" A \"tomb\" holds the dead, but the twenty-eight sailors in the church register at its next service are the twenty-eight who were aboard. A \"trellis\" is a framework growth depends on, but the growth on the hull is part of one growth covering the reef for a mile each way. A \"strongbox\" keeps valuables secure, but its holds were cut open in 1912 and the silver carried off.",
+      "kills": {
+        "tomb": {
+          "type": "logic",
+          "quote": "appear in the island church's register at its next service",
+          "why": "A tomb holds the dead; the same number of sailors who were aboard appear in the church register at its next service.",
+          "surface_fit": "A sunken ship is the stock image of a sailors' grave, and the passage counts the men aboard, so tomb is the reader's first thought.",
+          "inference": "twenty-eight men aboard and all twenty-eight in the island church's register at its next service means the crew got ashore alive, so no one lies in the hull"
+        },
+        "trellis": {
+          "type": "logic",
+          "quote": "part of one growth covering the reef for a mile each way",
+          "why": "A trellis is the framework growth depends on; here the hull is just one patch of growth that covers the whole reef anyway.",
+          "surface_fit": "Corals coat every beam, and wrecks are famous as artificial reefs, so trellis fits both the sentence and what divers see.",
+          "inference": "the same growth covers the reef for a mile each way, so the life on the hull would be there without it; the hull is not what gives it something to grow on"
+        },
+        "strongbox": {
+          "type": "logic",
+          "quote": "Its holds were cut open in 1912",
+          "why": "A strongbox keeps valuables secure; this hull was opened and emptied a year after it sank.",
+          "surface_fit": "A wreck that carried silver is exactly what a reader expects divers to call a strongbox.",
+          "inference": "the silver was there, but the holds were cut open and it was carried off the next year, so the hull has kept nothing secure since 1912"
+        }
+      }
+    },
+    {
+      "key": "tomb",
+      "passage": "In 1911 a steel freighter sank on a reef off a small island, where its hull still lies nearly whole. Divers who surveyed it in 2005 called the hull a true ______, and their photographs show why. Its holds are still sealed, and its manifest lists them full of coal. Corals coat every beam, part of one growth covering the reef for a mile each way. Twenty-eight men were aboard, none reached the island or washed up on its beaches, and when divers reached the wreck in 1960 its hatches were still battened. Its bow lies ninety feet down; freighters calling at the island draw twenty.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "Twenty-eight men were aboard, none reached the island or its beaches, and the hatches were still battened in 1960, so the crew's remains are sealed inside: the hull is a \"tomb.\" A \"strongbox\" keeps valuables secure, and the holds are sealed, but they hold only coal. A \"trellis\" is a framework growth depends on, but the growth on the hull is part of one growth covering the reef for a mile each way. A \"tripwire\" catches passing ships, but the bow lies ninety feet down while the freighters overhead draw twenty.",
+      "kills": {
+        "strongbox": {
+          "type": "logic",
+          "quote": "its manifest lists them full of coal",
+          "why": "A strongbox guards something valuable; the sealed holds guard coal.",
+          "surface_fit": "Holds still sealed after a century are the very picture of a strongbox keeping its cargo safe.",
+          "inference": "the holds are sealed, but what they keep is coal, a cargo not worth guarding or raising, so the hull is not keeping anything of value secure"
+        },
+        "trellis": {
+          "type": "logic",
+          "quote": "part of one growth covering the reef for a mile each way",
+          "why": "A trellis is the framework growth depends on; here the hull is just one patch of growth that covers the whole reef anyway.",
+          "surface_fit": "Corals coat every beam, and wrecks are famous as artificial reefs, so trellis fits both the sentence and what divers see.",
+          "inference": "the same growth covers the reef for a mile each way, so the life on the hull would be there without it; the hull is not what gives it something to grow on"
+        },
+        "tripwire": {
+          "type": "logic",
+          "quote": "freighters calling at the island draw twenty",
+          "why": "A tripwire catches passing ships; at ninety feet the bow lies far below a twenty-foot keel.",
+          "surface_fit": "A wreck on a reef beside an island port, with freighters calling there, sounds like a hazard waiting for the next ship.",
+          "inference": "a bow ninety feet down under keels that reach only twenty feet down leaves seventy feet of water between, so no passing ship can strike it"
+        }
+      }
+    },
+    {
+      "key": "strongbox",
+      "passage": "In 1911 a steel freighter sank on a reef off a small island, where its hull still lies nearly whole. Divers who surveyed it in 2005 called the hull a true ______, and their photographs show why. Its bow lies ninety feet down; freighters calling at the island draw twenty. Its manifest listed sixty chests of silver, and when salvors cut through its sealed holds in 1985, they counted sixty. Corals coat every beam, part of one growth covering the reef for a mile each way. The twenty-eight men aboard all appear in the island church's register at its next service.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "The manifest listed sixty chests of silver, the holds stayed sealed until 1985, and the salvors then counted all sixty, so for seventy-four years the hull kept a valuable cargo intact: a \"strongbox.\" A \"tripwire\" catches passing ships, but the bow lies ninety feet down while the freighters overhead draw twenty. A \"trellis\" is a framework growth depends on, but the growth on the hull is part of one growth covering the reef for a mile each way. A \"tomb\" holds the dead, but the twenty-eight sailors in the church register at its next service are the twenty-eight who were aboard.",
+      "kills": {
+        "tripwire": {
+          "type": "logic",
+          "quote": "freighters calling at the island draw twenty",
+          "why": "A tripwire catches passing ships; at ninety feet the bow lies far below a twenty-foot keel.",
+          "surface_fit": "A wreck on a reef beside an island port, with freighters calling there, sounds like a hazard waiting for the next ship.",
+          "inference": "a bow ninety feet down under keels that reach only twenty feet down leaves seventy feet of water between, so no passing ship can strike it"
+        },
+        "trellis": {
+          "type": "logic",
+          "quote": "part of one growth covering the reef for a mile each way",
+          "why": "A trellis is the framework growth depends on; here the hull is just one patch of growth that covers the whole reef anyway.",
+          "surface_fit": "Corals coat every beam, and wrecks are famous as artificial reefs, so trellis fits both the sentence and what divers see.",
+          "inference": "the same growth covers the reef for a mile each way, so the life on the hull would be there without it; the hull is not what gives it something to grow on"
+        },
+        "tomb": {
+          "type": "logic",
+          "quote": "appear in the island church's register at its next service",
+          "why": "A tomb holds the dead; the same number of sailors who were aboard appear in the church register at its next service.",
+          "surface_fit": "A sunken ship is the stock image of a sailors' grave, and the passage counts the men aboard, so tomb is the reader's first thought.",
+          "inference": "twenty-eight men aboard and all twenty-eight in the island church's register at its next service means the crew got ashore alive, so no one lies in the hull"
+        }
+      }
+    }
+  ]
+}

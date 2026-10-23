@@ -1,0 +1,146 @@
+{
+  "id": "WIC28A-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "voles in a grass strip beside a rail line",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "cage",
+    "corridor",
+    "cemetery",
+    "cafeteria"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "cage",
+    "corridor",
+    "cemetery",
+    "cafeteria"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "Two decades of trapping suggest that the strip has served as the voles' ______.",
+  "worlds": [
+    {
+      "key": "corridor",
+      "passage": "Beside a rail line, a strip of uncut grass runs twelve miles across plowed farmland past small woodlots, and meadow voles live in both the strip and the woodlots. Two decades of trapping suggest that the strip has served as the voles' ______. Most voles caught in the strip are young, few are caught twice at the same spot, and a vole marked in one woodlot was trapped the next year in another nine miles along the line. Woodlots beside the strip now share the same variants of a gene, while woodlots as far apart across the bare fields each carry their own.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "\"Corridor\" fits: young voles keep moving through the strip, one reached a woodlot nine miles along it, and woodlots linked by the strip share gene variants that equally distant woodlots across the fields do not, so the strip carries voles between woodlots. \"Cage\" fails because voles are rarely caught twice in one place and travel miles along it, so it does not hold them. \"Cafeteria\" fails because the voles in it are moving on to other woodlots, not making trips out to feed and returning home. \"Cemetery\" fails because the young voles passing through it go on to breed in distant woodlots, as the shared genes show, so it is not where they die.",
+      "kills": {
+        "cage": {
+          "type": "logic",
+          "quote": "few are caught twice at the same spot",
+          "why": "voles keep moving and reach distant woodlots",
+          "surface_fit": "a narrow strip boxed in by plowed fields on both sides sounds like an enclosure that hems voles in",
+          "inference": "voles that are seldom caught twice in one place, one of which reached a woodlot nine miles away, move freely along and out of the strip, so it does not confine them"
+        },
+        "cafeteria": {
+          "type": "logic",
+          "quote": "trapped the next year in another nine miles along the line",
+          "why": "voles end up in other woodlots instead of returning home",
+          "surface_fit": "voles from woodlots going out into a strip of uncut grass invites the idea that they go there to feed",
+          "inference": "a vole that leaves one woodlot and settles in another nine miles away is traveling, and the shared genes show many have done so; a feeding place is visited from home and left again"
+        },
+        "cemetery": {
+          "type": "logic",
+          "quote": "now share the same variants of a gene",
+          "why": "voles crossing the strip survive to breed in the woodlots they reach",
+          "surface_fit": "a thin strip of grass beside a railway sounds dangerous for small animals, so a place where they die is a natural guess",
+          "inference": "genes can spread between woodlots along the strip only if the young voles moving through it live to breed at the far end, so the strip is not killing them"
+        }
+      }
+    },
+    {
+      "key": "cage",
+      "passage": "Beside a rail line, a strip of uncut grass runs twelve miles across plowed farmland past small woodlots, and meadow voles live in both the strip and the woodlots. Two decades of trapping suggest that the strip has served as the voles' ______. Voles born in the strip feed and nest there all their lives: of thousands marked, none has been trapped more than half a mile from where it was first caught, though woodlots lie a few hundred yards off across fields left bare all winter. Over two decades each stretch of the strip has come to carry its own variants of a gene, unlike the nearest woodlot's voles.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "\"Cage\" fits: the strip's voles never move more than half a mile, although woodlots lie a few hundred yards off across bare fields, and each stretch has drifted genetically on its own, so the strip holds its voles in place. \"Corridor\" fails because nothing travels along it; gene variants differ from one stretch to the next. \"Cafeteria\" fails because the voles that feed in the strip were born and live there and differ genetically from the woodlot voles, so woodlot voles are not coming in to eat. \"Cemetery\" fails because each stretch has bred its own gene variants over two decades, which takes generations of voles living long enough to breed there.",
+      "kills": {
+        "corridor": {
+          "type": "logic",
+          "quote": "more than half a mile from where it was first caught",
+          "why": "no vole moves far, and genes differ stretch by stretch",
+          "surface_fit": "a twelve-mile strip of grass across farmland is the textbook picture of a wildlife corridor",
+          "inference": "if no marked vole moves more than half a mile and each stretch carries its own gene variants, voles are not passing along the strip"
+        },
+        "cafeteria": {
+          "type": "logic",
+          "quote": "unlike the nearest woodlot's voles",
+          "why": "the strip's feeders are residents, genetically distinct from woodlot voles",
+          "surface_fit": "the voles feed in a grass strip lying a few hundred yards from woodlots full of voles, which suggests a place woodlot voles come out to eat",
+          "inference": "the voles feeding in the strip were born there and carry gene variants the nearest woodlot's voles lack, so the woodlot voles are not coming in to feed; the strip is the residents' whole range"
+        },
+        "cemetery": {
+          "type": "logic",
+          "quote": "each stretch of the strip has come to carry its own variants",
+          "why": "generations have lived and bred there",
+          "surface_fit": "small animals hemmed into a narrow strip beside a railway sound doomed, so a place of death is tempting",
+          "inference": "local gene variants build up over two decades only through generation after generation of voles surviving to breed in each stretch, so the strip is not where they die off"
+        }
+      }
+    },
+    {
+      "key": "cafeteria",
+      "passage": "Beside a rail line, a strip of uncut grass runs twelve miles across plowed farmland past small woodlots, and meadow voles live in both the strip and the woodlots. Two decades of trapping suggest that the strip has served as the voles' ______. Marked voles from the woodlots are caught in the strip after dark, among grass stems clipped of their seed heads, and back in their own woodlots by morning, never more than a few hundred yards from home. They nest only in the woodlots, and woodlots the strip touches hold more voles each spring than woodlots it does not.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "\"Cafeteria\" fits: woodlot voles come into the strip at night, where stems are clipped of their seed heads, and are home by morning, so they use it as a place to feed. \"Corridor\" fails because each vole goes back to its own woodlot and stays within a few hundred yards of it, so none travels along the strip. \"Cage\" fails because the voles leave it every morning and nest in the woodlots. \"Cemetery\" fails because woodlots the strip touches hold more voles each spring, so the nightly visits help the voles rather than killing them.",
+      "kills": {
+        "corridor": {
+          "type": "logic",
+          "quote": "back in their own woodlots by morning",
+          "why": "each vole returns home rather than moving along the strip",
+          "surface_fit": "a strip of grass running past woodlots is the textbook wildlife corridor, and voles are entering it from the woodlots",
+          "inference": "voles that are back in their own woodlot by morning and never go more than a few hundred yards from it are not using the strip to move between woodlots"
+        },
+        "cage": {
+          "type": "logic",
+          "quote": "They nest only in the woodlots",
+          "why": "the voles leave daily and live elsewhere",
+          "surface_fit": "a narrow strip hemmed in by plowed fields sounds like a pen that could trap animals inside it",
+          "inference": "animals that nest in the woodlots and return there each morning come and go freely, so the strip does not hold them"
+        },
+        "cemetery": {
+          "type": "logic",
+          "quote": "hold more voles each spring",
+          "why": "the visits leave the woodlots better stocked",
+          "surface_fit": "small animals venturing into an open strip beside a railway at night sounds dangerous, so a place where they die is tempting",
+          "inference": "if woodlots whose voles visit the strip hold more voles each spring than woodlots without it, the visits add to the voles' numbers, so the strip is not where they die"
+        }
+      }
+    },
+    {
+      "key": "cemetery",
+      "passage": "Beside a rail line, a strip of uncut grass runs twelve miles across plowed farmland past small woodlots, and meadow voles live in both the strip and the woodlots. Two decades of trapping suggest that the strip has served as the voles' ______. Young voles pushed out of crowded woodlots each spring settle in the strip's seed-heavy grass within a few hundred yards of where they entered, and owls hunt it from the line's poles. Within a month, tags of over half the voles marked there turn up in pellets beneath the poles, while those that wander back to a woodlot breed there the next spring.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "\"Cemetery\" fits: young voles settle in the strip, and owls hunting from the poles kill more than half of them there within a month, so the strip is where the voles die. \"Corridor\" fails because the voles stop within a few hundred yards of where they enter and are killed there within weeks, so they do not pass along it. \"Cage\" fails because voles can wander back to a woodlot, so the strip does not hold them in. \"Cafeteria\" fails because, although the voles feed on its seed, over half of them are killed there by owls within a month, so what the strip mainly does to them is kill them, not feed them.",
+      "kills": {
+        "corridor": {
+          "type": "logic",
+          "quote": "within a few hundred yards of where they entered",
+          "why": "the young voles stop near where they enter and are killed there",
+          "surface_fit": "young animals pushed out of crowded ground into a strip that links woodlots is exactly how wildlife corridors are said to work",
+          "inference": "voles that settle within a few hundred yards of where they entered and are eaten within a month never travel the strip to other woodlots"
+        },
+        "cage": {
+          "type": "logic",
+          "quote": "wander back to a woodlot",
+          "why": "voles can leave the strip",
+          "surface_fit": "animals that enter a strip and mostly never come out sound trapped, so an enclosure is a tempting metaphor",
+          "inference": "since voles can and do wander back to a woodlot and breed there, the strip does not confine them; most fail to return because owls kill them"
+        },
+        "cafeteria": {
+          "type": "logic",
+          "quote": "tags of over half the voles marked there turn up in pellets",
+          "why": "the decisive fact is that most voles in the strip are killed there",
+          "surface_fit": "the strip's grass is seed-heavy and the voles live on it, so a place where they feed is a natural reading",
+          "inference": "the voles do eat the strip's seed, but more than half of those marked there are eaten by owls within a month, so the strip's role in their lives is where they die, not where they are fed"
+        }
+      }
+    }
+  ]
+}

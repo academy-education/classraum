@@ -1,0 +1,146 @@
+{
+  "id": "WIC28C-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "sheep grazing a hillside",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "denuded",
+    "fertilized",
+    "furrowed",
+    "groomed"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "fertilized",
+    "groomed",
+    "furrowed",
+    "denuded"
+  ],
+  "pos": "verb",
+  "after_blank": "its",
+  "blank_sentence": "Comparing the two slopes, one ecologist concluded that the flock had ______ its hillside.",
+  "worlds": [
+    {
+      "key": "denuded",
+      "passage": "For two centuries a flock of sheep has grazed one slope of a narrow hill valley, while a wall along the stream has kept it off the other slope. Across the wall, grass and heather hide the ground. On the grazed slope, stones and bare earth show between scattered tufts no higher than a thumb, and after each storm the stream below runs brown. The sheep drift over the whole slope as they feed, and their droppings, left everywhere on it, are washed downhill by the next rain before they can break down. Comparing the two slopes, one ecologist concluded that the flock had ______ its hillside.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "\"Denuded\" fits: where grass and heather hide the ground on the ungrazed slope, the grazed one shows stones and bare earth between a few short tufts, and its soil washes into the stream with every storm, so the flock has stripped the hillside of its cover. \"Groomed\" fails because grooming keeps a cover neat; here the cover itself is mostly gone, leaving bare ground between scattered tufts. \"Fertilized\" fails because the droppings are washed downhill by the next rain before they break down, so they never enrich the slope. \"Furrowed\" fails because the sheep drift over the whole slope as they feed, so they wear no lines into it.",
+      "kills": {
+        "groomed": {
+          "type": "logic",
+          "quote": "stones and bare earth show between scattered tufts",
+          "why": "Most of the cover is gone, not neatly kept.",
+          "surface_fit": "Every tuft on the grazed slope is cropped no higher than a thumb, which looks like sheep keeping a hillside trimmed like a lawn, so \"groomed\" is the natural first guess.",
+          "inference": "Grooming keeps a cover short and even; here the short tufts are scattered among stones and bare earth that the heather hides across the wall, so the flock has taken the cover away rather than kept it tidy."
+        },
+        "fertilized": {
+          "type": "logic",
+          "quote": "washed downhill by the next rain before they can break down",
+          "why": "The dung never enriches the slope.",
+          "surface_fit": "Droppings lie everywhere on the slope, and a flock's dung is the textbook way pasture is enriched, so \"fertilized\" is a strong pull.",
+          "inference": "Dung enriches soil only when it breaks down into it; these droppings are washed downhill by the next rain first, along with the soil that turns the stream brown, so the slope gains nothing."
+        },
+        "furrowed": {
+          "type": "logic",
+          "quote": "drift over the whole slope as they feed",
+          "why": "The sheep wear no lines into the slope.",
+          "surface_fit": "Long-grazed hillsides are known for the narrow parallel tracks sheep wear into them, so \"furrowed\" fits a slope grazed for two centuries.",
+          "inference": "Furrows come from feet repeating the same lines; these sheep drift over the whole slope as they feed, so the wear is spread across it, not cut into lines."
+        }
+      }
+    },
+    {
+      "key": "fertilized",
+      "passage": "For two centuries a flock of sheep has grazed one slope of a narrow hill valley, while a wall along the stream has kept it off the other slope. The flock is turned onto its slope for only a few weeks each autumn, spreading across it to feed, and by the time it leaves, dung lies thick among the grass. Each spring that grass greens two weeks before the far slope's, and by midsummer it stands twice as tall, in coarse, uneven tussocks the sheep will not crop again until autumn. Comparing the two slopes, one ecologist concluded that the flock had ______ its hillside.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "\"Fertilized\" fits: a flock that visits only in autumn leaves its dung thick among the grass, and each spring that slope greens earlier and grows twice as tall as the ungrazed one, so the dung has enriched the hillside. \"Denuded\" fails because the grazed slope carries more grass than the other side by midsummer, not less. \"Groomed\" fails because the grass grows in coarse, uneven tussocks that no sheep crops until autumn. \"Furrowed\" fails because the flock spreads across the slope to feed and comes only for a few weeks a year, so it wears no tracks.",
+      "kills": {
+        "denuded": {
+          "type": "logic",
+          "quote": "by midsummer it stands twice as tall",
+          "why": "The grazed slope ends up with more cover than the ungrazed one.",
+          "surface_fit": "Sheep are blamed for stripping hillsides, and this flock crops its slope every autumn, so \"denuded\" is the natural guess.",
+          "inference": "A denuded slope would carry less cover than the ungrazed one; by midsummer this slope's grass stands twice as tall as the far slope's, so the flock's autumn cropping is more than made up."
+        },
+        "groomed": {
+          "type": "logic",
+          "quote": "coarse, uneven tussocks",
+          "why": "The grass is rough and unkempt for most of the year.",
+          "surface_fit": "Grazing sheep are known for keeping turf short and tidy, so \"groomed\" fits a grazed hillside.",
+          "inference": "Grooming would keep the turf short and even; the grass here grows into coarse, uneven tussocks that stand uncropped from spring until autumn, so nothing keeps it neat."
+        },
+        "furrowed": {
+          "type": "logic",
+          "quote": "spreading across it to feed",
+          "why": "The sheep wear no tracks into the slope.",
+          "surface_fit": "Hillsides grazed for two centuries are known for the parallel tracks sheep wear into them, so \"furrowed\" fits.",
+          "inference": "Tracks come from sheep walking the same lines day after day; this flock spreads across the slope to feed for only a few weeks a year, so no lines are worn into it."
+        }
+      }
+    },
+    {
+      "key": "furrowed",
+      "passage": "For two centuries a flock of sheep has grazed one slope of a narrow hill valley, while a wall along the stream has kept it off the other slope. Walking single file along the same level tracks for years, the flock has worn them a hand deep and a stride apart, ruling the hillside top to bottom. Between them the grass grows as rough and tall as across the wall, for the sheep crop only what they can reach from the tracks, and dung dropped on the tracks is carried down to the stream by rain. Comparing the two slopes, one ecologist concluded that the flock had ______ its hillside.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "\"Furrowed\" fits: by walking the same level tracks year after year, the sheep have worn parallel grooves into the slope from top to bottom, so the flock has lined the hillside with furrows. \"Denuded\" fails because between the tracks the grass is as full as on the ungrazed slope; the sheep crop only what they can reach from the tracks. \"Groomed\" fails because that grass is as rough and tall as across the wall. \"Fertilized\" fails because the dung falls on the tracks, where it is trodden in and washed down to the stream instead of enriching the slope.",
+      "kills": {
+        "denuded": {
+          "type": "logic",
+          "quote": "the sheep crop only what they can reach from the tracks",
+          "why": "Most of the grass is left uneaten.",
+          "surface_fit": "Sheep are blamed for stripping hillsides, and two centuries of grazing suggests a slope worn bare, so \"denuded\" is tempting.",
+          "inference": "A denuded slope would be stripped across its face; these sheep crop only what they reach from the tracks, and between the tracks the grass is as rough and tall as on the ungrazed slope, so most of the cover remains."
+        },
+        "groomed": {
+          "type": "logic",
+          "quote": "as rough and tall as across the wall",
+          "why": "The grass between the tracks is not kept short.",
+          "surface_fit": "The level, evenly spaced tracks give the slope a neat, ruled look, as if the flock keeps it in order, so \"groomed\" fits.",
+          "inference": "Grooming would keep the grass short and even; between the orderly tracks it grows as rough and tall as on the ungrazed slope, so the neatness is only in the lines, and the cover itself goes untended."
+        },
+        "fertilized": {
+          "type": "logic",
+          "quote": "carried down to the stream by rain",
+          "why": "The dung washes away rather than enriching the slope.",
+          "surface_fit": "A flock on one slope for two centuries drops a great deal of dung, so \"fertilized\" is a plausible effect.",
+          "inference": "Dung enriches the ground where it breaks down; these droppings fall on the tracks and are washed down to the stream, so they never feed the grass between the tracks."
+        }
+      }
+    },
+    {
+      "key": "groomed",
+      "passage": "For two centuries a flock of sheep has grazed one slope of a narrow hill valley, while a wall along the stream has kept it off the other slope. The flock crops its slope evenly from stream to ridge, holding the turf an inch high with tiny flowers blooming low among it, while across the wall brambles and tall tussocks crowd the ground. On the far ridge, where cattle graze, the hillside is scored with level tracks; this flock wanders as it crops, and its slope shows none. The turf beside its droppings grows no greener. Comparing the two slopes, one ecologist concluded that the flock had ______ its hillside.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "\"Groomed\" fits: the sheep keep the whole slope cropped to an even, inch-high turf where small flowers bloom, while the slope they cannot reach runs to brambles and tussocks, so the flock keeps its hillside trimmed and tidy. \"Denuded\" fails because the turf is continuous from stream to ridge; it is cropped short, not stripped bare. \"Furrowed\" fails because, unlike the cattle on the far ridge, this flock wanders as it crops, and its slope shows no tracks. \"Fertilized\" fails because the turf beside the droppings grows no greener, so they add nothing to it.",
+      "kills": {
+        "denuded": {
+          "type": "logic",
+          "quote": "holding the turf an inch high",
+          "why": "The slope keeps a continuous turf.",
+          "surface_fit": "Grass cropped to an inch beside a slope crowded with brambles looks like a hillside the sheep have stripped, so \"denuded\" is a strong pull.",
+          "inference": "A denuded slope would show bare ground; this one keeps an unbroken turf from stream to ridge with flowers in it, so the flock has cut the cover short without removing it."
+        },
+        "furrowed": {
+          "type": "explicit",
+          "quote": "its slope shows none",
+          "why": "This slope has no tracks.",
+          "surface_fit": "The far ridge in the same hills is scored with level grazing tracks, exactly what long grazing wears into a hillside, so \"furrowed\" fits.",
+          "inference": "Furrows would be lines worn into the slope; the tracks are on the cattle's ridge, and this flock wanders as it crops, leaving its own slope unmarked."
+        },
+        "fertilized": {
+          "type": "logic",
+          "quote": "grows no greener",
+          "why": "The droppings do not enrich the turf.",
+          "surface_fit": "A flock grazing one slope for two centuries suggests ground enriched by dung, and the grazed slope blooms with flowers the other lacks, so \"fertilized\" is tempting.",
+          "inference": "Enriched turf would grow greener around the droppings; it grows no greener, so the flowers come from the short cropping that lets them reach the light, not from richer ground."
+        }
+      }
+    }
+  ]
+}

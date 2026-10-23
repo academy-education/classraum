@@ -1,0 +1,146 @@
+{
+  "id": "WIC28B-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "nesting falcons and a city square's pigeons",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "reduced",
+    "rattled",
+    "redistributed",
+    "rejuvenated"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "reduced",
+    "rattled",
+    "redistributed",
+    "rejuvenated"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "Over the following decade, the falcons ______ the flock.",
+  "worlds": [
+    {
+      "key": "reduced",
+      "passage": "When a pair of peregrine falcons began nesting on a cathedral spire in 1996, birdwatchers began counting the pigeons in the square below each winter and banding their chicks each spring. Over the following decade, the falcons ______ the flock. By 2006 the square's winter count had halved, and banders who checked every roost in the city found none of its banded birds anywhere else. Most bands they picked up under the falcons' ledge had been fitted the spring before, so the banded birds left in the square were mostly old ones, and those went on nesting on the spire's lowest ledges, a few yards below the falcons.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The square's count halved while none of its banded birds turned up at any other roost in the city, so the missing pigeons had died, not moved: the falcons \"reduced\" the flock. \"Redistributed\" fails because the banders searched every roost in the city and found no square bird elsewhere, so the flock did not move. \"Rattled\" fails because the survivors went on nesting a few yards below the falcons, which unsettled birds would not do. \"Rejuvenated\" fails because the falcons took mostly birds banded the spring before, leaving the flock older.",
+      "kills": {
+        "redistributed": {
+          "type": "logic",
+          "quote": "found none of its banded birds anywhere else",
+          "why": "The halving was not a move: no square bird turned up at any other roost.",
+          "surface_fit": "Half the pigeons gone from a square overlooked by a falcon nest is what a reader expects when prey abandon a dangerous spot, so a move is the first reading.",
+          "inference": "The count halved and the banders checked every roost in the city without finding a square bird elsewhere, so the missing birds had not settled anywhere else; they were gone."
+        },
+        "rattled": {
+          "type": "logic",
+          "quote": "went on nesting on the spire's lowest ledges, a few yards below the falcons",
+          "why": "The survivors nested right under the falcons, so they were not made nervous.",
+          "surface_fit": "A falcon pair moving in above a square of pigeons is a textbook way to make a flock jumpy, so rattled fits the sentence and the topic.",
+          "inference": "Birds unsettled by the falcons would not raise their young a few yards beneath the falcons' nest, so the survivors' behavior shows no fear; the falcons' effect was on how many there were."
+        },
+        "rejuvenated": {
+          "type": "logic",
+          "quote": "had been fitted the spring before",
+          "why": "The falcons took mainly last spring's young, so the flock aged.",
+          "surface_fit": "Predators are often said to keep a flock young and healthy by taking the old and weak, so the word fits a story about falcons and pigeons.",
+          "inference": "Most bands under the falcons' ledge came from birds less than a year old, and the banded survivors were mostly old, so the falcons made the flock older, not younger."
+        }
+      }
+    },
+    {
+      "key": "redistributed",
+      "passage": "When a pair of peregrine falcons began nesting on a cathedral spire in 1996, birdwatchers began counting the pigeons in the square below each winter and banding their chicks each spring. Over the following decade, the falcons ______ the flock. By 2006 the square's winter count had halved, while a railway station across the river, out of the spire's sight, held twice its old count, and a third of the square's banded birds were nesting under its roof. Those that stayed went on nesting on the spire's lowest ledges, a few yards below the falcons, and most bands found under the falcons' ledge had been fitted the spring before.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "The square lost half its winter pigeons while a station out of sight of the spire doubled its count and a third of the square's banded birds were found nesting there, so the falcons \"redistributed\" the flock, shifting it across the river. \"Reduced\" fails because the station's gain matches the square's loss, so the birds moved rather than died. \"Rattled\" fails because the birds that stayed went on nesting a few yards below the falcons, which unsettled birds would not do. \"Rejuvenated\" fails because the falcons took mostly birds banded the spring before, which leaves a flock older.",
+      "kills": {
+        "reduced": {
+          "type": "logic",
+          "quote": "held twice its old count",
+          "why": "The station's gain matches the square's loss, so the birds moved rather than died.",
+          "surface_fit": "The square's count halved under a falcon nest, and falcons kill pigeons, so a reader expects the flock to have been cut down.",
+          "inference": "Banded square birds turned up nesting at the station, whose count doubled as the square's halved, so the flock's birds were living elsewhere, not gone."
+        },
+        "rattled": {
+          "type": "logic",
+          "quote": "Those that stayed went on nesting on the spire's lowest ledges",
+          "why": "The birds that stayed nested right under the falcons, so the flock was not made nervous.",
+          "surface_fit": "Pigeons leaving a square for a spot out of the falcons' sight sounds like a flock driven off by fear, so rattled is tempting.",
+          "inference": "Pigeons made jumpy by the falcons would not raise young a few yards below their nest; the ones who stayed did, so the falcons changed where part of the flock lived without unsettling it."
+        },
+        "rejuvenated": {
+          "type": "logic",
+          "quote": "had been fitted the spring before",
+          "why": "The falcons took mainly young birds, so the flock aged.",
+          "surface_fit": "Predators culling the old and weak to keep a flock young is a familiar idea, and the birds were banded by age, so the word fits the topic.",
+          "inference": "Most of the falcons' kills were birds less than a year old, so the flock left behind was older, the reverse of being made younger."
+        }
+      }
+    },
+    {
+      "key": "rattled",
+      "passage": "When a pair of peregrine falcons began nesting on a cathedral spire in 1996, birdwatchers began counting the pigeons in the square below each winter and banding their chicks each spring. Over the following decade, the falcons ______ the flock. By 2006 the square's winter count was what it had been, and banded birds nested on the ledges where they had hatched. In photographs from 1990 the flock feeds shoulder to shoulder around the fountain; now it fed in short bursts, lifting off together several times an hour at shadows no watcher could see, and most bands found under the falcons' ledge had been fitted the spring before.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The flock stayed the same size and kept its old nest ledges, but it now fed in short bursts and took off together several times an hour at nothing a watcher could see, so the falcons \"rattled\" the flock, making it jumpy without thinning or moving it. \"Reduced\" fails because the winter count was what it had been. \"Redistributed\" fails because the banded birds nested on the ledges where they had hatched. \"Rejuvenated\" fails because the falcons took mostly birds banded the spring before, which leaves a flock older.",
+      "kills": {
+        "reduced": {
+          "type": "explicit",
+          "quote": "the square's winter count was what it had been",
+          "why": "The flock stayed the same size.",
+          "surface_fit": "Falcons kill pigeons, and a flock that feeds less and flees often sounds like one being whittled down, so reduced fits the topic.",
+          "inference": "The winter count matched the old one, so whatever the falcons killed was replaced; their effect shows in how the birds fed, not in their number."
+        },
+        "redistributed": {
+          "type": "logic",
+          "quote": "nested on the ledges where they had hatched",
+          "why": "The birds kept their old nest sites, so the flock did not move.",
+          "surface_fit": "Pigeons under a falcon nest are expected to abandon the square for safer places, so a shift in where they live is a natural first reading.",
+          "inference": "Banded birds raised young on the ledges where they had hatched, and the flock still fed at the fountain, so the birds are where they always were; only their behavior changed."
+        },
+        "rejuvenated": {
+          "type": "logic",
+          "quote": "had been fitted the spring before",
+          "why": "The falcons took mainly young birds.",
+          "surface_fit": "Falcons are often credited with keeping a flock young and healthy, so this is a plausible thing for the blank to say.",
+          "inference": "With the kills falling mostly on birds less than a year old, the flock got older, the opposite of being made younger."
+        }
+      }
+    },
+    {
+      "key": "rejuvenated",
+      "passage": "When a pair of peregrine falcons began nesting on a cathedral spire in 1996, birdwatchers began counting the pigeons in the square below each winter and banding their chicks each spring. Over the following decade, the falcons ______ the flock. Its pairs nested on their old ledges, the lowest a few yards below the falcons. Most bands picked up under the falcons' ledge came from birds over five years old or crippled by the string that tangles city pigeons' feet, and with fewer mouths at the crumbs, far more chicks lived to a second spring, so by 2006 the winter count stood where it had in 1996.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The falcons took mostly old birds and birds crippled by string, and with fewer mouths at the crumbs more young survived, refilling the flock to its old count, so the falcons \"rejuvenated\" the flock, replacing old and lame birds with young ones. \"Reduced\" fails because the surviving young brought the count back to its 1996 level. \"Redistributed\" fails because the pairs kept to their old ledges. \"Rattled\" fails because the lowest pairs nested a few yards below the falcons, which unsettled birds would not do.",
+      "kills": {
+        "reduced": {
+          "type": "logic",
+          "quote": "the winter count stood where it had in 1996",
+          "why": "The extra surviving chicks made up for the falcons' kills.",
+          "surface_fit": "The falcons kill pigeon after pigeon, so a reader expects the flock to be smaller.",
+          "inference": "The losses fell on old and lame birds, and the food they left let more chicks survive, so by 2006 the count had returned to its old level; the flock was changed in makeup, not shrunk."
+        },
+        "redistributed": {
+          "type": "logic",
+          "quote": "nested on their old ledges",
+          "why": "The pairs kept their old nest sites.",
+          "surface_fit": "Pigeons are expected to abandon a square overlooked by a falcon nest, so a shift in where the flock lives is the reader's first expectation.",
+          "inference": "The pairs raised their young on the same ledges as before, even the ones nearest the falcons, so the flock's place in the city did not change."
+        },
+        "rattled": {
+          "type": "logic",
+          "quote": "the lowest a few yards below the falcons",
+          "why": "Pigeons nested right under the falcons, so they were not made nervous.",
+          "surface_fit": "Returning predators are commonly said to make prey jumpy, so rattled fits the sentence and the topic.",
+          "inference": "Pairs that nest a few yards below a falcon nest are not unsettled by it, so the falcons did not change the flock's nerves; their effect was on which birds lived."
+        }
+      }
+    }
+  ]
+}

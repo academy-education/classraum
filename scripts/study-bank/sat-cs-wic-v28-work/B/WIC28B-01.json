@@ -1,0 +1,146 @@
+{
+  "id": "WIC28B-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "small birds on an island flowering tree, netting experiment",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "patrolled",
+    "pollinated",
+    "propagated",
+    "parasitized"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "patrolled",
+    "pollinated",
+    "propagated",
+    "parasitized"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "In those three years, the birds ______ the tree.",
+  "worlds": [
+    {
+      "key": "pollinated",
+      "passage": "On one island a single species of small bird drinks at the flowers of a native tree and roosts in its crown. For three years an ecologist netted the birds off some branches and compared them with open ones. Under the nets the flowers dropped whole, unbitten by insects. Caterpillars chewed netted and open leaves alike while the birds fed head-down in the blossoms, and nearly every flower a bird had probed swelled into a hard green fruit that fell unopened beneath the tree, where the island's few seedlings come up. In those three years, the birds ______ the tree.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "Flowers the birds could not reach dropped whole without setting fruit, while nearly every flower a bird had probed set fruit, so the birds \"pollinated\" the tree. \"Patrolled\" fails because the birds spent their visits head-down in the blossoms and caterpillars chewed netted and open leaves alike, so the birds kept no insects off. \"Propagated\" fails because the fruit falls unopened beneath the tree, where the seedlings come up, so the birds carry no seed anywhere. \"Parasitized\" fails because the nectar the birds drink is repaid: without them the tree sets no fruit at all.",
+      "kills": {
+        "patrolled": {
+          "type": "logic",
+          "quote": "Caterpillars chewed netted and open leaves alike while the birds fed head-down in the blossoms",
+          "why": "The birds were busy in the flowers, and keeping them off changed no leaf damage.",
+          "surface_fit": "Birds living in a tree's crown all year are the ones that pick its pests off, and the netted flowers fail, so guarding is a natural first reading.",
+          "inference": "The birds spend their visits with their heads in the blossoms, and leaves under the nets were chewed no more than open ones, so the birds' presence keeps no insect off the tree; the flowers failed for another reason."
+        },
+        "propagated": {
+          "type": "logic",
+          "quote": "fell unopened beneath the tree, where the island's few seedlings come up",
+          "why": "The fruit drops under the parent and the seedlings grow there, so nothing carries seed away.",
+          "surface_fit": "The birds' visits decide whether the tree makes fruit, and fruit-eating birds are the usual way island trees spread, so spreading the tree is tempting.",
+          "inference": "The birds affect only whether fruit forms; the hard fruit falls unopened and the seedlings rise under the parent, so the birds never move a seed."
+        },
+        "parasitized": {
+          "type": "logic",
+          "quote": "swelled into a hard green fruit",
+          "why": "Probed flowers set fruit and unvisited ones did not, so the birds give the tree something it needs.",
+          "surface_fit": "The birds take the tree's nectar and roost in it, living off it the way a parasite lives off a host, so the word fits the sentence and the topic.",
+          "inference": "Without the birds every netted flower dropped fruitless, while the flowers they probed set fruit, so the nectar they drink buys the tree its fruit; a visitor the tree cannot fruit without is not a drain on it."
+        }
+      }
+    },
+    {
+      "key": "propagated",
+      "passage": "On one island a single species of small bird drinks at the flowers of a native tree and roosts in its crown. For three years an ecologist netted the birds off some branches and compared them with open ones. Under the nets, out of the birds' reach, the branches hung heavy with soft red fruit that dropped to rot below, while on open branches each fruit vanished within a day of ripening. The birds raise their chicks on that fruit and on nectar, and the island's young trees grow in lines along the sea cliffs where the flocks roost. In those three years, the birds ______ the tree.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "Fruit the birds could not reach rotted where it fell, fruit they could reach vanished within a day, and the young trees grow along the cliffs where the birds roost, so the birds \"propagated\" the tree by carrying its seed away. \"Pollinated\" fails because netted branches, which no bird could touch, set fruit as heavily. \"Patrolled\" fails because the birds feed their young on fruit and nectar, so they are not hunting the insects on the tree. \"Parasitized\" fails because what the birds take, fruit and nectar, comes back to the tree as its only new trees.",
+      "kills": {
+        "pollinated": {
+          "type": "logic",
+          "quote": "out of the birds' reach, the branches hung heavy with soft red fruit",
+          "why": "Fruit set on branches no bird could reach, so the flowers did not need the birds.",
+          "surface_fit": "The birds drink at the flowers all year, and nectar-drinking birds are usually a tree's pollinators, so the word fits the sentence and the setting.",
+          "inference": "If netted branches, which no bird could visit, hung heavy with fruit, the flowers were fertilized without the birds; the birds matter only after the fruit is ripe."
+        },
+        "patrolled": {
+          "type": "logic",
+          "quote": "raise their chicks on that fruit and on nectar",
+          "why": "The birds' food is fruit and nectar, so they do not hunt the tree's insects.",
+          "surface_fit": "Small birds living in a tree's crown all year are often its guards against caterpillars, so patrolling is a natural reading for this setting.",
+          "inference": "Birds that raise even their chicks on fruit and nectar are not searching the leaves for insects, so their presence in the crown protects nothing."
+        },
+        "parasitized": {
+          "type": "logic",
+          "quote": "young trees grow in lines along the sea cliffs",
+          "why": "The tree's only new trees grow where the birds roost, so the birds repay what they take.",
+          "surface_fit": "The birds strip every ripe fruit and drink the nectar, taking food from the tree, which reads like living off it.",
+          "inference": "Fruit the birds cannot reach rots under the tree, and the young trees all stand where the birds roost a mile away, so the fruit they take is the tree's way of reaching new ground; that is an exchange, not a drain."
+        }
+      }
+    },
+    {
+      "key": "parasitized",
+      "passage": "On one island a single species of small bird drinks at the flowers of a native tree and roosts in its crown. For three years an ecologist netted the birds off some branches and compared them with open ones. The birds drink through a slit they pierce at each flower's base, never brushing the pollen at its mouth, and pierced flowers often wither early. Netted branches bore twice as much hard, heavy fruit, which drops and sprouts beneath the tree, and caterpillars fed on open branches undisturbed by the birds working the blossoms beside them. In those three years, the birds ______ the tree.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The birds take nectar through a slit that bypasses the pollen and leaves pierced flowers to wither, and branches freed of them bore twice the fruit, so the birds \"parasitized\" the tree: they lived off it at a cost and gave nothing back. \"Pollinated\" fails because the birds never brush the pollen, and the tree set more fruit without them. \"Propagated\" fails because the fruit is heavy and sprouts beneath the tree. \"Patrolled\" fails because caterpillars fed undisturbed on open branches right beside the feeding birds.",
+      "kills": {
+        "pollinated": {
+          "type": "logic",
+          "quote": "never brushing the pollen at its mouth",
+          "why": "The birds bypass the pollen, and netted branches fruited more, so the birds do not pollinate.",
+          "surface_fit": "The birds drink at every flower, and nectar-drinking birds on a flowering island tree are usually its pollinators, so the word fits the topic and the blank.",
+          "inference": "A bird that reaches the nectar through a slit at the base never touches the pollen, and the branches it could not visit set twice the fruit, so the birds play no part in fertilizing the flowers."
+        },
+        "propagated": {
+          "type": "logic",
+          "quote": "which drops and sprouts beneath the tree",
+          "why": "The heavy fruit falls and grows under the parent.",
+          "surface_fit": "Birds on an island are the usual carriers of a tree's seed to new ground, so spreading the tree is a plausible reading.",
+          "inference": "The fruit is hard and heavy and sprouts where it drops, and the birds are busy with the flowers, so the birds move no seed."
+        },
+        "patrolled": {
+          "type": "logic",
+          "quote": "fed on open branches undisturbed by the birds working the blossoms beside them",
+          "why": "Caterpillars thrived right next to the birds, so the birds guarded nothing.",
+          "surface_fit": "Small birds living in a tree's crown all year look like its resident guards, so patrolling is the expected answer for this setting.",
+          "inference": "The caterpillars fed beside the birds on open branches without being taken, so the birds' presence did not keep insects off the tree."
+        }
+      }
+    },
+    {
+      "key": "patrolled",
+      "passage": "On one island a single species of small bird drinks at the flowers of a native tree and roosts in its crown. For three years an ecologist netted the birds off some branches and compared them with open ones. Within weeks caterpillars had eaten half the leaves on netted branches, which by the third year bore a third fewer flowers than open ones, where birds worked the leaves at every hour. The birds feed their chicks on green grubs, and netted flowers still set as much hard, heavy fruit apiece, fruit that drops and sprouts beneath the tree. In those three years, the birds ______ the tree.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "Branches the birds could not reach lost half their leaves to caterpillars, while the birds, which feed their chicks on grubs, were on the open branches' leaves at every hour, so the birds \"patrolled\" the tree, keeping leaf-eaters off it. \"Pollinated\" fails because flowers under the nets, with no birds, set as much fruit apiece. \"Propagated\" fails because the heavy fruit drops and sprouts beneath the tree. \"Parasitized\" fails because the tree did worse without the birds: netted branches lost leaves and bore a third fewer flowers.",
+      "kills": {
+        "pollinated": {
+          "type": "logic",
+          "quote": "netted flowers still set as much hard, heavy fruit apiece",
+          "why": "Flowers no bird could visit fruited as well, so the birds are not needed to pollinate.",
+          "surface_fit": "The birds drink at the tree's flowers all year, and nectar-drinking birds are usually pollinators, so the word fits the sentence and the setting.",
+          "inference": "Flowers under the netting, which no bird could reach, set as much fruit each as open ones, so fertilization does not depend on the birds."
+        },
+        "propagated": {
+          "type": "logic",
+          "quote": "fruit that drops and sprouts beneath the tree",
+          "why": "The fruit grows where it falls.",
+          "surface_fit": "Birds are the usual way an island tree's seed reaches new ground, and these birds live in the tree, so spreading it is a tempting reading.",
+          "inference": "The fruit is hard and heavy and sprouts under the parent, so the birds carry no seed anywhere."
+        },
+        "parasitized": {
+          "type": "logic",
+          "quote": "bore a third fewer flowers than open ones",
+          "why": "Branches without birds did worse, so the birds were a benefit.",
+          "surface_fit": "The birds drink the tree's nectar and roost in its crown, which reads like living off a host, so parasitized fits the topic.",
+          "inference": "When the birds were kept off, caterpillars took half the leaves and the branches flowered less, so the birds give the tree more than the nectar they take."
+        }
+      }
+    }
+  ]
+}

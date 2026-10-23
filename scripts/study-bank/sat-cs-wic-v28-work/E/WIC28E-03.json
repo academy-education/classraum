@@ -1,0 +1,146 @@
+{
+  "id": "WIC28E-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "stones in a steep river's bed",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "sanded",
+    "sorted",
+    "stacked",
+    "stained"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "sorted",
+    "stained",
+    "stacked",
+    "sanded"
+  ],
+  "pos": "verb",
+  "after_blank": "those",
+  "blank_sentence": "Their report argued that the river had ______ those stones, and its photographs set out the case.",
+  "worlds": [
+    {
+      "key": "sorted",
+      "passage": "Two geologists measured the stones of a steep river running eight miles from granite and sandstone cliffs to the sea. Their report argued that the river had ______ those stones, and its photographs set out the case. Sieved, the bed held oven-sized boulders at the cliffs, fist-sized cobbles midway, and pea gravel at the sea. Painted stones turned up, flood by flood, wherever the bed held stones their own size. Below a spring that runs orange, the stones are orange too, the color running clear through any stone cracked open. At the mouth, in water gray with grit, broken pebbles still fit back together edge to edge.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "Each stretch of the river held stones of nearly one size, and painted stones traveled with each flood to wherever the bed held stones their own size, so the river had separated its stones by size along its course: it had \"sorted\" them. \"Stacked\" means set one on another, but the painted stones moved on with every flood. \"Stained\" means colored from outside, and the spring does run orange, but the orange runs clear through any stone cracked open, so it is the rock's own color. \"Sanded\" means worn down by grit, and the river at the mouth carries grit, but broken pebbles there still fit back together edge to edge.",
+      "kills": {
+        "stacked": {
+          "type": "logic",
+          "quote": "turned up, flood by flood",
+          "why": "Stacked stones are set firmly on one another; these were carried on with every flood.",
+          "surface_fit": "Rivers lean and pile their stones on one another, and a report on how a river arranged its bed could easily say stacked.",
+          "inference": "stones that move on with each flood until they reach the stretch of their own size are never left resting on or braced against one another, so the river was moving them, not setting them one upon another"
+        },
+        "stained": {
+          "type": "logic",
+          "quote": "the color running clear through any stone cracked open",
+          "why": "Staining colors a surface from outside; the orange runs through the whole stone, so it is the rock's own color.",
+          "surface_fit": "A spring runs orange and the stones below it are orange too, which looks exactly like water staining the stones.",
+          "inference": "a stain from the spring would coat the outside, but these stones are orange all the way through, so the color is the rock's own and the spring did not put it there"
+        },
+        "sanded": {
+          "type": "logic",
+          "quote": "broken pebbles still fit back together edge to edge",
+          "why": "Sanded stones are worn at their edges; these broken edges had lost nothing.",
+          "surface_fit": "At the mouth the water is gray with grit, the very abrasive that sands stones smooth.",
+          "inference": "even where the water carries grit, broken halves still fit edge to edge, so the grit had not worn the stones at all"
+        }
+      }
+    },
+    {
+      "key": "stacked",
+      "passage": "Two geologists measured the stones of a steep river running eight miles from granite and sandstone cliffs to the sea. Their report argued that the river had ______ those stones, and its photographs set out the case. Sieved, the bed held the same mix of sizes at the cliffs as at the sea. The flat stones all tilted one way, each leaning on its downstream neighbor, and painted ones stayed put through five spring floods. A stone cracked open showed the same shade inside as out. Even at the sea, broken pebbles still fit back together edge to edge.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "The flat stones all tilted one way, each leaning on its downstream neighbor, and stayed in place through five floods, so the river had laid them one upon another: it had \"stacked\" them. \"Sorted\" means separated by size, but the sieved mix of sizes was the same at the cliffs as at the sea. \"Stained\" means given a color from outside, but a cracked stone showed the same shade inside as out. \"Sanded\" means worn down by grit, but even at the sea broken pebbles still fit back together edge to edge, so their edges had lost nothing.",
+      "kills": {
+        "sorted": {
+          "type": "logic",
+          "quote": "the same mix of sizes at the cliffs as at the sea",
+          "why": "Sorting changes the mix of sizes along the course; the mix was the same everywhere.",
+          "surface_fit": "The geologists measured the stones' sizes station by station down the river, exactly the survey that shows a river sorting its load, so sorted is the natural reading of their report.",
+          "inference": "if the sieved mix of sizes is the same at the cliffs and at the sea, the river has not separated its stones by size along the way, however much it moves them"
+        },
+        "stained": {
+          "type": "logic",
+          "quote": "showed the same shade inside as out",
+          "why": "Stained stones carry a color added from outside; these were the same color through.",
+          "surface_fit": "River water commonly coats stones with mineral color, so stained fits a geological report on a riverbed.",
+          "inference": "a stone whose outside matches its freshly broken inside wears only the rock's own color, so the water had added none"
+        },
+        "sanded": {
+          "type": "logic",
+          "quote": "still fit back together edge to edge",
+          "why": "Sanded stones are worn at their edges; these broken edges had not lost material.",
+          "surface_fit": "Thousands of years of running water are the textbook smoother of stones, so sanded is the reader's first expectation.",
+          "inference": "halves that still fit edge to edge after travelling to the sea have lost nothing from their broken faces, so no grit had worn them"
+        }
+      }
+    },
+    {
+      "key": "stained",
+      "passage": "Two geologists measured the stones of a steep river running eight miles from granite and sandstone cliffs to the sea. Their report argued that the river had ______ those stones, and its photographs set out the case. Sieved, the bed held the same mix of sizes at the cliffs as at the sea. Painted stones moved a mile downstream with each flood, lying wherever they stopped. Below a spring seeping from the cliffs, every stone was orange outside but gray or red when cracked, and the spring's water leaves an orange film in a glass. Even at the sea, broken pebbles still fit back together edge to edge.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Below the spring, every stone was orange outside but gray or red when cracked, the color the spring's water leaves in a glass, so the river had colored them from outside: it had \"stained\" them. \"Sorted\" means separated by size, but the sieved mix of sizes was the same at the cliffs as at the sea. \"Stacked\" means set one on another, but painted stones moved a mile downstream with each flood and lay wherever they stopped. \"Sanded\" means worn down by grit, but even at the sea broken pebbles still fit back together edge to edge, so their edges had lost nothing.",
+      "kills": {
+        "sorted": {
+          "type": "logic",
+          "quote": "the same mix of sizes at the cliffs as at the sea",
+          "why": "Sorting changes the mix of sizes along the course; the mix was the same everywhere.",
+          "surface_fit": "The geologists measured the stones' sizes station by station down the river, exactly the survey that shows a river sorting its load, so sorted is the natural reading of their report.",
+          "inference": "if the sieved mix of sizes is the same at the cliffs and at the sea, the river has not separated its stones by size along the way, however much it moves them"
+        },
+        "stacked": {
+          "type": "logic",
+          "quote": "moved a mile downstream with each flood",
+          "why": "Stacked stones are set firmly on one another; these were carried off and dropped loose with every flood.",
+          "surface_fit": "Floods do lean and pile stones on one another, and a report on how a river arranged its bed could easily say stacked.",
+          "inference": "stones that move a mile with each flood and lie wherever they stop are never left resting on or braced against one another, so the river had not set them one upon another"
+        },
+        "sanded": {
+          "type": "logic",
+          "quote": "still fit back together edge to edge",
+          "why": "Sanded stones are worn at their edges; these broken edges had not lost material.",
+          "surface_fit": "Thousands of years of running water are the textbook smoother of stones, so sanded is the reader's first expectation.",
+          "inference": "halves that still fit edge to edge after travelling to the sea have lost nothing from their broken faces, so no grit had worn them"
+        }
+      }
+    },
+    {
+      "key": "sanded",
+      "passage": "Two geologists measured the stones of a steep river running eight miles from granite and sandstone cliffs to the sea. Their report argued that the river had ______ those stones, and its photographs set out the case. Sieved, the bed held the same mix of sizes at the cliffs as at the sea. Painted stones moved a mile downstream with each flood, lying wherever they stopped. A stone cracked open showed the same shade inside as out. Every stone, boulder to pebble, was rounded to the hand, and the spring floods that roll them leave the river gray with fine grit.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "Every stone was rounded, and the floods that roll them fill the water with fine grit, so the river had worn the stones down by grinding them with grit: it had \"sanded\" them. \"Sorted\" means separated by size, but the sieved mix of sizes was the same at the cliffs as at the sea. \"Stacked\" means set one on another, but painted stones moved a mile downstream with each flood and lay wherever they stopped. \"Stained\" means given a color from outside, but a cracked stone showed the same shade inside as out.",
+      "kills": {
+        "sorted": {
+          "type": "logic",
+          "quote": "the same mix of sizes at the cliffs as at the sea",
+          "why": "Sorting changes the mix of sizes along the course; the mix was the same everywhere.",
+          "surface_fit": "The geologists measured the stones' sizes station by station down the river, exactly the survey that shows a river sorting its load, so sorted is the natural reading of their report.",
+          "inference": "if the sieved mix of sizes is the same at the cliffs and at the sea, the river has not separated its stones by size along the way, however much it moves them"
+        },
+        "stacked": {
+          "type": "logic",
+          "quote": "moved a mile downstream with each flood",
+          "why": "Stacked stones are set firmly on one another; these were carried off and dropped loose with every flood.",
+          "surface_fit": "Floods do lean and pile stones on one another, and a report on how a river arranged its bed could easily say stacked.",
+          "inference": "stones that move a mile with each flood and lie wherever they stop are never left resting on or braced against one another, so the river had not set them one upon another"
+        },
+        "stained": {
+          "type": "logic",
+          "quote": "showed the same shade inside as out",
+          "why": "Stained stones carry a color added from outside; these were the same color through.",
+          "surface_fit": "River water commonly coats stones with mineral color, so stained fits a geological report on a riverbed.",
+          "inference": "a stone whose outside matches its freshly broken inside wears only the rock's own color, so the water had added none"
+        }
+      }
+    }
+  ]
+}

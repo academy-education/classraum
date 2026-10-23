@@ -1,0 +1,146 @@
+{
+  "id": "WIC28A-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a coral outcrop in a lagoon",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "bedroom",
+    "clinic",
+    "canteen",
+    "ballroom"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "bedroom",
+    "clinic",
+    "canteen",
+    "ballroom"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "Divers who have logged its visitors since 1985 call the outcrop the lagoon's ______.",
+  "worlds": [
+    {
+      "key": "clinic",
+      "passage": "A lone coral outcrop the size of a car rises from the sand of a shallow lagoon, a quarter mile inside its ring of reef. By day, snappers and groupers from the outer reef gather near it in loose groups and take turns hanging head-down beside it, gill covers flared, while shrimp living in its crevices crawl over them and into their mouths. Each fish swims back to the reef within minutes of its turn. On a nearby reef where divers removed every shrimp, groupers now spend hours rubbing their flanks against the sand. Divers who have logged its visitors since 1985 call the outcrop the lagoon's ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "\"Clinic\" fits: fish take turns hanging still while the outcrop's shrimp crawl over them and into their mouths, and where the shrimp were removed groupers rub themselves against the sand, which shows the shrimp had been ridding them of something that irritates them; the outcrop is where reef fish go to be cleaned. \"Canteen\" fails because the visitors hang motionless with mouths open while shrimp work on them; the visitors are being tended, not eating. \"Bedroom\" fails because the visits are by day and end within minutes. \"Ballroom\" fails because the groups are of mixed species, each fish hanging alone in its turn, with no courtship.",
+      "kills": {
+        "canteen": {
+          "type": "logic",
+          "quote": "hanging head-down beside it, gill covers flared",
+          "why": "the visitors hold still while the shrimp work on them",
+          "surface_fit": "fish swim in from the outer reef each day to a coral head, which is where reef fish usually feed, so a feeding stop is a natural reading",
+          "inference": "fish that hang motionless with gills flared while shrimp crawl into their mouths, and that itch on reefs without the shrimp, come to have something removed, not to eat"
+        },
+        "bedroom": {
+          "type": "logic",
+          "quote": "within minutes of its turn",
+          "why": "short daytime visits",
+          "surface_fit": "reef fish are known to shelter in coral heads, so an outcrop fish keep returning to sounds like a place to rest",
+          "inference": "a turn of a few minutes in daylight followed by a swim back to the reef is not rest; a sleeping place would hold the fish through the night"
+        },
+        "ballroom": {
+          "type": "logic",
+          "quote": "take turns hanging head-down",
+          "why": "mixed species waiting in turn, each alone, with no display",
+          "surface_fit": "groups of fish gathering at one coral head and waiting their turn sounds like the crowds reef fish form to court",
+          "inference": "snappers and groupers mixed together, each hanging alone in its turn, make no crowd of one species and no display between partners, which courtship needs"
+        }
+      }
+    },
+    {
+      "key": "canteen",
+      "passage": "A lone coral outcrop the size of a car rises from the sand of a shallow lagoon, a quarter mile inside its ring of reef. Every morning of the year, parrotfish from the outer reef arrive in loose schools and work their way along its flanks, beaks to the rock, past shrimp waving from its crevices, each staying an hour before swimming back. Corners divers fenced with mesh grow algae a foot long, while the rest of the outcrop stays cropped to a bare film, and by afternoon the schools are back on the reef. Divers who have logged its visitors since 1985 call the outcrop the lagoon's ______.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "\"Canteen\" fits: parrotfish spend an hour each morning with their beaks to the rock, and algae grows long only where mesh keeps them off, so they come to the outcrop to eat its algae. \"Clinic\" fails because the fish keep moving along the rock working it with their beaks and swim past the shrimp; what the outcrop loses is algae, not anything removed from the fish. \"Bedroom\" fails because the schools come in the morning and are back on the reef by afternoon. \"Ballroom\" fails because the schools come every morning of the year and feed, with no seasonal gathering or courtship.",
+      "kills": {
+        "clinic": {
+          "type": "logic",
+          "quote": "beaks to the rock, past shrimp waving",
+          "why": "the fish work the rock themselves and pass the shrimp by",
+          "surface_fit": "reef fish visiting a lone coral head where shrimp wave from crevices is the classic picture of a cleaning station",
+          "inference": "fish that keep moving with beaks to the rock, while algae grows a foot long only where they are fenced out, are taking algae from the outcrop, and they pass the shrimp rather than stopping to be tended"
+        },
+        "bedroom": {
+          "type": "logic",
+          "quote": "by afternoon the schools are back on the reef",
+          "why": "the fish use the outcrop only in the morning",
+          "surface_fit": "parrotfish are known to spend nights tucked into coral, so a sleeping place fits the topic",
+          "inference": "schools that arrive in the morning and are back on the reef by afternoon spend their nights elsewhere, so the outcrop is not where they sleep"
+        },
+        "ballroom": {
+          "type": "logic",
+          "quote": "Every morning of the year",
+          "why": "a daily routine, not a seasonal gathering",
+          "surface_fit": "schools of fish converging on one coral head sounds like the mass gatherings reef fish hold to court and spawn",
+          "inference": "schools that come every morning of the year, crop algae for an hour and leave form a feeding routine, while a courtship gathering is a brief, seasonal crowd"
+        }
+      }
+    },
+    {
+      "key": "bedroom",
+      "passage": "A lone coral outcrop the size of a car rises from the sand of a shallow lagoon, a quarter mile inside its ring of reef. At dusk, parrotfish from the outer reef arrive by the hundred, and each wedges itself alone into a crevice, wraps itself in a film of mucus that keeps off biting parasites, and lies still until dawn. Then they swim back to the reef, where divers watch them graze all day, while algae on the bare rock between the outcrop's crevices grows a foot long. Divers who have logged its visitors since 1985 call the outcrop the lagoon's ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "\"Bedroom\" fits: parrotfish arrive at dusk, tuck alone into crevices and lie still until dawn, then leave to feed on the reef, so the outcrop is where they spend the night. \"Canteen\" fails because the fish graze on the reef by day and leave the outcrop's algae to grow a foot long. \"Clinic\" fails because what protects them from parasites is the mucus each fish makes for itself; nothing on the outcrop treats them. \"Ballroom\" fails because, though they arrive by the hundred, each fish wedges itself alone into a crevice and lies still, with no display.",
+      "kills": {
+        "canteen": {
+          "type": "logic",
+          "quote": "where divers watch them graze all day",
+          "why": "the fish feed on the reef and leave the outcrop's algae uneaten",
+          "surface_fit": "parrotfish are grazers, and fish converging on a coral head suggests they come to eat there",
+          "inference": "fish that graze on the reef all day while the algae between the outcrop's crevices grows a foot long are not feeding at the outcrop"
+        },
+        "clinic": {
+          "type": "logic",
+          "quote": "wraps itself in a film of mucus",
+          "why": "the protection from parasites comes from the fish itself",
+          "surface_fit": "the passage ties the visits to protection from parasites, and lone coral heads are known as cleaning stations",
+          "inference": "the parasites are kept off by mucus each fish produces on its own body while it lies still, so the outcrop offers a place to lie, not any treatment"
+        },
+        "ballroom": {
+          "type": "logic",
+          "quote": "each wedges itself alone into a crevice",
+          "why": "solitary fish lying still, not a courting crowd",
+          "surface_fit": "hundreds of fish converging on one coral head at dusk sounds like the evening gatherings reef fish hold to court",
+          "inference": "fish that each go alone into a crevice and lie motionless until dawn are not displaying to partners, whatever their numbers"
+        }
+      }
+    },
+    {
+      "key": "ballroom",
+      "passage": "A lone coral outcrop the size of a car rises from the sand of a shallow lagoon, a quarter mile inside its ring of reef. For a week after the first full moon of summer, groupers from reefs thirty miles away crowd around it by the thousand, males circling the larger females all afternoon. At dusk, pairs that have formed leave together for the outer reef's edge, where divers have filmed them spawning. Schools of the small fish groupers eat swirl among them all week, as large on the last day as on the first. Divers who have logged its visitors since 1985 call the outcrop the lagoon's ______.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "\"Ballroom\" fits: thousands of groupers gather for a week after one full moon, the males circle the females through the afternoon, and pairs that form there leave together, so the outcrop is where they court and choose partners. \"Bedroom\" fails because the pairs leave at dusk and spawn at the outer reef's edge; the outcrop is where they pair off by day, not where they mate or spend the night. \"Canteen\" fails because the schools of small fish that groupers eat are as large at the end of the week as at the start, so the crowd of groupers is not feeding on them. \"Clinic\" fails because a crowd of thousands timed to one full moon a year, with males circling females, has gathered to court, not to have parasites removed.",
+      "kills": {
+        "bedroom": {
+          "type": "logic",
+          "quote": "leave together for the outer reef's edge",
+          "why": "mating happens elsewhere at night; the outcrop is the daytime courting ground",
+          "surface_fit": "fish that stay for days and form pairs there suggests a place where they rest or mate",
+          "inference": "pairs that leave the outcrop at dusk and spawn at the outer reef's edge neither spend the night nor mate at the outcrop; what happens there is circling and pairing off"
+        },
+        "canteen": {
+          "type": "logic",
+          "quote": "as large on the last day as on the first",
+          "why": "the groupers leave their prey alone",
+          "surface_fit": "thousands of groupers crowding the outcrop amid schools of their prey looks like predators at a rich feeding ground",
+          "inference": "if the schools of fish groupers eat are as large at the week's end as at its start, a crowd of thousands of groupers has not been eating them, so the groupers did not come to feed"
+        },
+        "clinic": {
+          "type": "logic",
+          "quote": "after the first full moon of summer",
+          "why": "a moon-timed yearly crowd is a courtship event, not cleaning visits",
+          "surface_fit": "groupers are well known to visit coral heads to be cleaned, so groupers traveling there from distant reefs sounds like a trip to a cleaning station",
+          "inference": "cleaning visits happen any day, fish by fish, while a crowd of thousands timed to one full moon a year, with males circling females, has gathered to court"
+        }
+      }
+    }
+  ]
+}

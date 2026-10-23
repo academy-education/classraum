@@ -1,0 +1,146 @@
+{
+  "id": "WIC28B-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a logging road over thirty years",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "raised",
+    "rutted",
+    "rippled",
+    "ruptured"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "raised",
+    "rippled",
+    "ruptured",
+    "rutted"
+  ],
+  "pos": "verb",
+  "after_blank": "",
+  "blank_sentence": "By 1990, its surface had been ______.",
+  "worlds": [
+    {
+      "key": "rutted",
+      "passage": "A two-lane road laid across a valley floor in 1960 carried loaded logging trucks for thirty years, and surveyors checked it each fall against stakes along its shoulders. Each July its asphalt softened in the heat, and the trucks, keeping to the same wheel tracks on the narrow lanes, pressed it a little lower every summer, most on the long climb, where they crawled. By then rain stood for days after every storm in two long lines up the climb, while at the stop sign below it, where the trucks braked hard, the asphalt lay as flat as the day it was laid. By 1990, its surface had been ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Softened asphalt was pressed a little lower each summer under trucks that always used the same wheel tracks, and by 1990 rain pooled for days in two long lines up the climb, so the surface had been \"rutted\": worn into grooves along the wheel paths. \"Rippled\" fails because folds come from braking trucks shoving asphalt forward, and at the stop sign, where they braked hard, the asphalt lay flat. \"Raised\" fails because the asphalt was pressed lower, not lifted. \"Ruptured\" fails because the rain stood in the grooves for days without draining away, so the asphalt beneath it held unbroken.",
+      "kills": {
+        "rippled": {
+          "type": "logic",
+          "quote": "where the trucks braked hard, the asphalt lay as flat as the day it was laid",
+          "why": "The one place where braking would shove asphalt into folds stayed flat.",
+          "surface_fit": "Softened asphalt under heavy trucks is exactly what develops waves or washboarding, so rippled fits the sentence and the topic.",
+          "inference": "Folds across a road come from braking wheels shoving soft asphalt forward; at the stop sign, where the braking happened, the surface stayed flat, so the deformation is the two lines along the climb, not crests across the road."
+        },
+        "raised": {
+          "type": "logic",
+          "quote": "pressed it a little lower every summer",
+          "why": "The surface was pushed down, not lifted.",
+          "surface_fit": "The road was checked every fall against stakes, which suggests its level was changing, so raised fits the setting.",
+          "inference": "The trucks pressed the soft asphalt lower each summer, so wherever the level changed, it went down along the wheel tracks; nothing lifted the surface."
+        },
+        "ruptured": {
+          "type": "logic",
+          "quote": "rain stood for days after every storm",
+          "why": "Water held in the grooves for days, so the asphalt beneath it was unbroken.",
+          "surface_fit": "Thirty years of loaded trucks through hot summers is the kind of punishment that splits pavement open, so ruptured is a plausible reading.",
+          "inference": "Rain that stands for days in the grooves cannot be draining through cracks, so the asphalt had sunk into troughs while staying whole."
+        }
+      }
+    },
+    {
+      "key": "rippled",
+      "passage": "A two-lane road laid across a valley floor in 1960 carried loaded logging trucks for thirty years, and surveyors checked it each fall against stakes along its shoulders. Each July its asphalt softened in the heat, and at the stop sign below the long climb, where loaded trucks braked hard all day, it crept a little farther forward every summer. In time a car stopping there bounced over a dozen low crests running across both lanes, a stride apart, while up on the climb, where the trucks crawled in the same wheel tracks, rain ran off as evenly as it had in 1960. By 1990, its surface had been ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "At the stop sign, braking trucks pushed the softened asphalt forward each summer until it formed a dozen low crests across both lanes a stride apart, so the surface had been \"rippled\". \"Rutted\" fails because on the climb, where slow trucks in fixed wheel tracks would press grooves, rain still ran off evenly, so no grooves held it. \"Raised\" fails because the asphalt was pushed forward along the road into crests at one spot, not lifted as a whole. \"Ruptured\" fails because the asphalt crept, flowing under the braking wheels, rather than breaking.",
+      "kills": {
+        "rutted": {
+          "type": "logic",
+          "quote": "rain ran off as evenly as it had in 1960",
+          "why": "Where grooves would form, water still drained evenly, so there were none.",
+          "surface_fit": "Heavy trucks on softened asphalt are the classic cause of grooves in the wheel paths, so rutted is the natural first reading.",
+          "inference": "Grooves along wheel tracks would hold rain; on the climb, where slow trucks kept to the same tracks, rain ran off evenly, so the damage is the crests across the lanes at the stop sign."
+        },
+        "raised": {
+          "type": "logic",
+          "quote": "it crept a little farther forward every summer",
+          "why": "The asphalt was pushed along the road into crests, not lifted as a whole.",
+          "surface_fit": "Crests a car bounces over stand higher than the rest of the road, and the road's level was checked every fall, so raised fits the setting.",
+          "inference": "The crests formed because braking shoved soft asphalt forward at one spot, so the surface was folded where the trucks stopped; the road as a whole was not lifted."
+        },
+        "ruptured": {
+          "type": "explicit",
+          "quote": "crept a little farther forward",
+          "why": "The asphalt flowed rather than broke.",
+          "surface_fit": "Asphalt shoved by braking trucks until a car bounces over it sounds like pavement being torn apart, so ruptured is plausible.",
+          "inference": "Soft summer asphalt crept forward under the wheels a little each year, so it was bent into crests while staying in one piece."
+        }
+      }
+    },
+    {
+      "key": "raised",
+      "passage": "A two-lane road laid across a valley floor in 1960 carried loaded logging trucks for thirty years, and surveyors checked it each fall against stakes along its shoulders. From 1965, irrigation water from farms upslope seeped into the middle mile's clay, which swelled as it soaked. In time that mile's culverts, laid level, tipped down toward its ends, its guardrail posts stood a foot taller above the ditches than at either end, and the asphalt over it had stretched into one long smooth swell that loaded trucks, crawling up the climb or braking at the stop sign, crossed without a jolt. By 1990, its surface had been ______.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "Irrigation water swelled the clay under the middle mile, and by 1990 its culverts tipped toward the mile's ends and its guardrail posts stood a foot taller above the ditches than elsewhere, so the surface had been \"raised\" by the ground beneath it. \"Ruptured\" fails because the asphalt stretched into one smooth swell, so it rose without breaking. \"Rippled\" fails because the rise was a single swell along the whole mile, crossed without a jolt, not a series of crests. \"Rutted\" fails because loaded trucks crossed it without a jolt, so their wheels had cut no grooves in it.",
+      "kills": {
+        "ruptured": {
+          "type": "logic",
+          "quote": "stretched into one long smooth swell",
+          "why": "The asphalt rose in one piece.",
+          "surface_fit": "Ground swelling beneath a road sounds like the kind of heave that cracks pavement apart, so ruptured is a strong first reading.",
+          "inference": "The clay rose so gradually over a mile that the asphalt stretched over it as a smooth swell, so the surface was lifted whole rather than torn."
+        },
+        "rippled": {
+          "type": "logic",
+          "quote": "tipped down toward its ends",
+          "why": "The culverts tip only toward the mile's two ends, so the rise is one hump, not repeated crests.",
+          "surface_fit": "A road surface pushed up by swelling clay has changed shape in waves, so rippled fits the topic and the sentence.",
+          "inference": "Trucks crossed the mile without a jolt, which a dozen crests would not allow, and the culverts tip only toward the mile's ends, so the surface rose as a single hump."
+        },
+        "rutted": {
+          "type": "logic",
+          "quote": "crawling up the climb or braking at the stop sign, crossed without a jolt",
+          "why": "Trucks crossed smoothly, so their wheels had cut no grooves.",
+          "surface_fit": "Thirty years of loaded logging trucks on a two-lane road is the classic recipe for grooves in the wheel paths, so rutted is tempting.",
+          "inference": "A smooth crossing for loaded trucks means the swell had no troughs along the wheel tracks, so the change came from the clay below, not from the wheels."
+        }
+      }
+    },
+    {
+      "key": "ruptured",
+      "passage": "A two-lane road laid across a valley floor in 1960 carried loaded logging trucks for thirty years, and surveyors checked it each fall against stakes along its shoulders. In 1983 a small earthquake shook the valley. Afterward the yellow center stripe, straight since 1960, stepped six feet sideways where it crossed a line of springs at the valley's edge, water from those springs spread across both lanes through a gap in the asphalt there, and the stakes on either side of that line read the height at which the road was laid. By 1990, its surface had been ______.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "After the earthquake the straight center stripe stepped six feet sideways at the line of springs, and water came up across both lanes through a gap in the asphalt there, so the land on one side had slid past the other along that line and torn the road: the surface had been \"ruptured\". \"Raised\" fails because the stakes on both sides of the break read the road's original height, so the ground moved sideways, not up. \"Rippled\" fails because the stripe stepped once, at a single line, which is a break rather than a series of crests. \"Rutted\" fails because the damage is a single sideways tear across both lanes, not grooves worn along the wheel tracks by trucks.",
+      "kills": {
+        "raised": {
+          "type": "explicit",
+          "quote": "the stakes on either side of that line read the height at which the road was laid",
+          "why": "The ground moved sideways, not upward.",
+          "surface_fit": "An earthquake moving the ground under a road is often pictured as heaving it up, and the road was surveyed for height every fall, so raised fits the setting.",
+          "inference": "The stripe shifted six feet sideways while the stakes on both sides stayed at the laid height, so the movement was horizontal and lifted nothing."
+        },
+        "rippled": {
+          "type": "logic",
+          "quote": "stepped six feet sideways where it crossed a line of springs",
+          "why": "The stripe jumped once at a single line, which is a break, not a series of waves.",
+          "surface_fit": "Earthquakes send waves through the ground, and a road shaken by one could be left wavy, so rippled is tempting.",
+          "inference": "A stripe that runs straight and then steps six feet sideways at one line has been cut and offset there; waves would bend it up and down in many places, not shift it once."
+        },
+        "rutted": {
+          "type": "logic",
+          "quote": "spread across both lanes through a gap in the asphalt",
+          "why": "The damage is one tear across both lanes, not grooves along the wheel tracks.",
+          "surface_fit": "Thirty years of loaded logging trucks is the usual cause of grooves in a road's wheel paths, so rutted is a natural reading.",
+          "inference": "The asphalt was torn open across both lanes along the line of springs, crosswise to the traffic, so the damage runs across the road; grooves from trucks would run along it in the wheel tracks."
+        }
+      }
+    }
+  ]
+}

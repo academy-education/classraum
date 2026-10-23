@@ -1,0 +1,698 @@
+{
+ "_batch_tells_listed_only": [
+  "r0: One-kill-per-distractor template: in most items each wrong option is paired with exactly one planted negating phrase (often in sentences after the blank), so a solver can match options to their denials and take the one left unnegated without understanding the passage's logic: P05, P06, P08, P09, P12, P13, P15, P18, P19, P20, P21, P23, P24, P26, P27, P28, P29, P31, P33, P35, P36, P39, P40.",
+  "r0: The cliché / textbook word for the topic is usually a distractor (killed by one planted fact) rather than the key: kidney P08, corridor P17, sorted P31, denuded P12, reduced P13, muzzled P06, pirated P04, chilled P28, patrolled P35, nibbled P11, depository P25, condemned P03. Exceptions where the cliché is keyed (tomb P02, pilgrimage P16, greened P39) are the easy items.",
+  "r0: Paired worlds reuse one frame with contrasting keys: P21/P22 (merchant ship with iron bars and wine, divers in 1990; sand burial vs rock tumbling) and P13/P36 (wolves return to an elk valley; in both the fear word, rattled/cowed, is a distractor and the plain behavioural word is keyed).",
+  "r0: '[Observer] calls/describes X as the [place]'s ______' noun-metaphor template recurs: P05, P08, P09, P10, P14, P17, P19, P20, P25, P32, P34, P40; and 'the [report] concludes/says that [agent] had ______ the [thing]' recurs across P07, P12, P22, P23, P26, P27, P29, P30, P33, P37, P39.",
+  "r0: Alliterative option sets (P03 c-, P04 p-, P13 r-, P15 r-, P28 c-, P30 m-, P35 p-, P38 r-) are a repeated template, though I found no letter or sound that predicts the key within them.",
+  "r1: Paired near-duplicate worlds with different keys: P12/P14 (merchant ship carrying iron bars and wine sunk off a coast, divers in 1990 - mummified vs gnawed) and P18/P36 (wolves return to a mountain valley, one elk herd - ambushed vs rattled). Solving one primes the other, and the repeated frame shows the template.",
+  "r1: One planted kill per distractor: on most items each wrong option is contradicted by its own sentence or clause, usually phrased as 'the same as / as before / still / never / none' (P03, P04, P05, P08, P09, P10, P11, P13, P14, P17, P19, P20, P21, P22, P27, P28, P34, P35, P36, P37, P38, P40). A solver can find the three negated words and pick the leftover without reading the passage as an argument; explicit_kills is 3 on most of the render.",
+  "r1: A sentence AFTER the blank that kills the strongest near-miss: P04 (rhythm kills manicured), P05 ('same nitrogen' kills manured/leached), P07 (rents), P13 (gale kills dislodged), P21 ('same brown' kills greened), P28 (attacks kill muzzled), P30 (unreached row), P31 (river between boulders). Recognisable shape: claim with blank, then one closing sentence aimed at the stock word.",
+  "r1: The stock collocation for the scenario is consistently the distractor, killed by one planted fact: corridor (P06), tomb (P15), greened (P21), muzzled (P28), dislodged (P13), blockaded (P38), sorted (P08), manured (P05). A test-wise solver who learns that the obvious word is always wrong gains an edge.",
+  "r1: Alliterative or same-initial option sets used repeatedly: P06 (cage/corridor/cemetery/cafeteria), P08 (stacked/sanded/sorted/stained), P09 (raised/rutted/ruptured/rippled), P10 (chilled/clogged/churned + bled), P23 (patrolled/propagated/pollinated/parasitized), P27 (pirated/plagiarized/panned/popularized), P29 (receipt/recipe/roadmap), P34 (ransacked/ransomed/repatriated/requisitioned), P36 (redistributed/reduced/rejuvenated/rattled). Not key-predictive by itself but an obvious shared template.",
+  "r1: Metaphor-noun frame 'X served as / called the Y's ______' recurs across P02, P03, P06, P07, P15, P16, P22, P24, P25, P26, P29, P33, P35, P37; the key is always the noun naming the function the evidence describes.",
+  "r2: Three-kill template: in most items each wrong option is denied by its own planted 'as before / unchanged / no X' phrase, often stacked in one sentence, and the key is the one option left undenied, so a solver can eliminate without inferring. P03, P04, P06, P14, P19, P20, P21, P25, P27, P28, P32, P33, P34, P35, P38, P39, P40.",
+  "r2: Counter-trope keys: the option matching the popular science story for the setup is the distractor, and the passage explicitly negates it, so 'pick the option the passage is at pains to deny is NOT the key' predicts the answer. Corridor in P02, greened in P14, reduced in P20, dislodged in P21, herded in P18, patrolled in P22, tomb in P16, banquet in P30, firebreak in P08.",
+  "r2: Recycled frames across items: P12 and P27 (merchant ship carrying iron bars and wine, divers survey in 1990); P20 and P38 (wolves return to a mountain valley, elk herd); P18 and P22 (ants on a plant, then a 'her/the report concludes the ants had ___' blank).",
+  "r2: Alliterative option sets with the key inside: P02 (c-), P09 (p- x3), P20 (r-), P22 (p-), P24 (c- x3), P35 (r-), P40 (r- x3). This is not predictive of the letter but is a visible authoring signature.",
+  "r2: A trailing sentence after the blank often supplies the last kill or the confirming fact (for example 'In dry summers both valleys turn the same brown', 'Its benches stand mostly empty at midday', 'A gale ... left both halves standing'). P10, P13, P14, P18, P21, P33, P39.",
+  "r3: Kill-every-distractor template: in nearly every item each wrong option is negated by one planted 'as X as / still / no / unchanged' clause (explicit_kills 3 on P03, P05, P07-P09, P11-P15, P18-P20, P22-P31, P33-P40), so the key is found by elimination of three planted negations rather than by reading the passage's positive claim.",
+  "r3: Figurative-noun template 'X calls/treats the [place] as the [place's] ______' with four metaphor nouns recurs: P01, P05, P06, P10, P13, P14, P15, P16, P21, P26, P27, P29, P38.",
+  "r3: Plain/literal word survives when every vivid option is negated: P13 fence, P28 raised, P03 reduced, P25 condemned.",
+  "r3: Near-duplicate worlds: P02/P03 (wolves return to a valley elk herd, 1995/1996), P17/P37 (merchant ship with iron bars and wine sunk, 1690/1790, surveyed by divers in 1990), P07/P32/P35 (a text altered and compared line by line).",
+  "r3: The positive clue is often a single late concrete sentence that names the action outright (P05, P08, P14, P19, P28, P34, P37, P39)."
+ ],
+ "WIC28D-06": {
+  "world 1 (key nationalized)": {
+   "must_revise": [],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "nationalized",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "The treasury buying a controlling share of all four papers decides 'nationalized' in one sentence. 'Muzzled' is the wartime cliché and dies on 'No official read those pages' plus the papers attacking ministers; 'mobilized' dies on refusing the recruiting notices; 'impoverished' on the pages doubling with treasury money.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 3 (key mobilized)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "mobilized",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Three short planted sentences each kill one option: 'stayed in private hands' (nationalized), 'No censor read their pages' (muzzled) and 'sales climbing' (impoverished). 'Mobilized' is what is left, and it is supported by the recruiting appeals.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 0 (key muzzled)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "muzzled",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Columns about the army struck out before printing gives muzzled; nationalized killed by papers staying with founding families, impoverished by sales rising, mobilized by editors leaving blanks rather than filling them.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ },
+ "WIC28D-05": {
+  "world 0 (key incised)": {
+   "must_revise": [
+    "explanation path wrong (phase 2)"
+   ],
+   "also_named_for": [
+    "not exclusive",
+    "second defensible",
+    "distractor fits literally"
+   ],
+   "listed_only": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "incised",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": "mantled",
+   "literal_fit_word": "mantled",
+   "presupposes_absent": null,
+   "reader_note": "'Incised' rests on the slot cut by the river beneath the glacier, attributing the meltwater's cut to the glacier. 'Mantled' is killed in its till sense by all rock lying in one ridge at the mouth, but in its plain sense (covered, blanketed) it literally describes a half-mile glacier lying frozen over a valley whose soil survived beneath it, so it remains defensible; 'milled' dies on the soil surviving, 'littered' on the single ridge.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": false,
+   "phase2_note": "'Mantled' is read only as 'had material laid over it', but in its plain sense the half-mile glacier lying frozen over the floor for millennia literally mantled it; the rejection needs a reason the covering sense fails, and 'incised' also needs to justify crediting the glacier with its meltwater river's slot."
+  },
+  "world 1 (key littered)": {
+   "must_revise": [
+    "explanation path wrong (phase 2)"
+   ],
+   "also_named_for": [
+    "not exclusive",
+    "second defensible",
+    "distractor fits literally"
+   ],
+   "listed_only": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "littered",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": "mantled",
+   "literal_fit_word": "mantled",
+   "presupposes_absent": null,
+   "reader_note": "Foreign basalt boulders strewn across the meadows give littered, and 'frozen fast to the ground' with the soil surviving kills incised and milled; but the glacier 'filled a mountain valley' and 'lay there for several thousand years', so mantled literally describes what the passage reports and is not killed.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": false,
+   "phase2_note": "Mantled is rejected only in its deposit-layer sense, but the glacier itself covered the valley floor for several thousand years, which is the literal sense of mantled; the rejection should rest on the question being about what the glacier left on the floor (boulders scattered on old soil), not on the absence of a deposited layer."
+  },
+  "world 2 (key mantled)": {
+   "must_revise": [],
+   "also_named_for": [
+    "distractor fits literally"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "mantled",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": "littered",
+   "presupposes_absent": null,
+   "reader_note": "'Old crumbling crust ... still there' kills both incised and milled. 'Littered' literally describes spreading stones and is the near-miss, ruled out only by 'forty feet deep from wall to wall' and the smooth floor, which make it a continuous cover rather than a scatter.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 3 (key milled)": {
+   "must_revise": [],
+   "also_named_for": [
+    "distractor fits literally"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "milled",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": "incised",
+   "presupposes_absent": null,
+   "reader_note": "Polished floor plus talc-fine silt (rock flour) gives milled; incised literally fits the parallel grooves but the floor is 'broad and even from wall to wall'; mantled killed by bare granite, littered by 'no loose stone larger than a fist'.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ },
+ "WIC28D-03": {
+  "world 2 (key imprisoned)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "imprisoned",
+   "reader_difficulty": "medium",
+   "n_struck": 1,
+   "struck_words": [
+    "lifted"
+   ],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Lifted' fails on a surface read: nothing about sand raises a village (and the doorways open at their original height). 'Nibbled' is the real lure and dies on the families keeping every house and garden; 'lashed' dies on the 'still hollow'; buried roads and a three-day walk give 'imprisoned'.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 3 (key lifted)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "lifted",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "New floors laid over yearly sand, a well through thirty feet of sand to the first street and a ramp up to the gate must be combined to reach lifted; 'all inside the same circuit of walls' kills nibbled, the ramp and caravans still arriving kill imprisoned, and 'Wind slowing in the still air behind its walls' kills lashed.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 0 (key nibbled)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "nibbled",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'On the same level ground' kills lifted, and 'Caravans kept reaching the eastern gate' kills imprisoned. 'Lashed' fails on the gradual 'few dozen yards' every decade and houses given up 'one at a time', which also builds 'nibbled'.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 1 (key lashed)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "lashed",
+   "reader_difficulty": "hard",
+   "n_struck": 1,
+   "struck_words": [
+    "lifted"
+   ],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Scouring walls each spring with nothing lost gives lashed; nibbled is killed by every house of 1700 in use with doorways at builders' height, imprisoned by caravans arriving; lifted is struck on surface (sand does not lift a village; nothing in the passage is about raising).",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ },
+ "WIC28D-07": {
+  "world 2 (key jostled)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [
+    "distractor fits literally"
+   ],
+   "listed_only": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "jostled",
+   "reader_difficulty": "medium",
+   "n_struck": 1,
+   "struck_words": [
+    "mined"
+   ],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": "mummified",
+   "presupposes_absent": null,
+   "reader_note": "'Mined' fails on a surface read: nothing removed anything from the wreck. 'Interred' dies on bare rock; 'mummified' is lured by timbers 'hard and sound' (a literal fit for preservation) but the ship was rolled apart and strewn; 'jostled' fits the storms rolling it, though it is mild for a ship broken apart over a quarter mile.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 3 (key mummified)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "mummified",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Cold, oxygen-poor water with no boring worms, red paint, coiled ropes, wine in casks and oak hard enough to take a nail all say preserved; 'upright ... where it settled' kills jostled, 'on the open bottom' kills interred, and the intact cargo kills mined. Same world as P14 with the outcome inverted.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 1 (key interred)": {
+   "must_revise": [
+    "n_struck 2",
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "interred",
+   "reader_difficulty": "hard",
+   "n_struck": 2,
+   "struck_words": [
+    "jostled",
+    "mined"
+   ],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Burial under twelve feet of current-dropped sand gives interred; jostled killed by 'whole and in place', mined is off-topic on a surface read; mummified is the real near miss (preserved from worms) and is undercut only by 'timbers soft and black'.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ },
+ "WIC28D-01": {
+  "world 0 (key leached)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "leached",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "The last sentence (less nitrogen in the topsoil, more in the well) decides 'leached' alone, with water sinking through loose sand. 'Manured' dies on clear water and less nitrogen, 'mired' on the corn going in on schedule; 'mulched' has no planted kill and nothing in the passage is about a surface layer.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 1 (key mulched)": {
+   "must_revise": [],
+   "also_named_for": [
+    "distractor fits literally"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "mulched",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": "manured",
+   "presupposes_absent": null,
+   "reader_note": "Bark chips, leaves and straw left on the soil, moisture through drought and suppressed weeds is a textbook mulch; manured is the near-miss (organic matter deposited) and, with leached, is killed by the after-blank 'same nitrogen' sentence, while mired is killed by 'drained off the field's sandy loam' and on-schedule planting.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 2 (key mired)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "mired",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'The same nitrogen in the top foot' kills both leached and manured, with 'clear' water backing up manured. 'Hard, cracked plates' kills mulched. Planting held until the ground 'would at last bear a tractor's weight' gives mired.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 3 (key manured)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [
+    "antonym pair"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "manured",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": [
+    "leached",
+    "manured"
+   ],
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Taller unfertilized corn and doubled topsoil nitrogen gives manured; leached is its opposite and killed by the nitrogen sample, mired by corn going in on schedule, mulched by silt 'too thin to hide the old furrows' and weeds coming up thick.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ },
+ "WIC28D-04": {
+  "world 3 (key mixer)": {
+   "must_revise": [
+    "explanation path wrong (phase 2)"
+   ],
+   "also_named_for": [
+    "distractor fits literally"
+   ],
+   "listed_only": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "mixer",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": "magnet",
+   "presupposes_absent": null,
+   "reader_note": "'Mixer' needs both groups arriving on the same evenings plus cross-group friendships rising. 'Magnet' literally fits nearly all visitors walking in and staying two hours and dies only because it says nothing of the mixing; 'muffler' dies on lawns sloping open to the highway, 'junction' on visitors staying rather than passing through.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": false,
+   "phase2_note": "'Magnet' is read narrowly as drawing people from beyond the district, but drawing nearly all the nearby residents for two-hour stays is still being a magnet; the rejection should rest on the cross-group friendships rising from one in twenty to one in three, which magnet does not express."
+  },
+  "world 0 (key magnet)": {
+   "must_revise": [
+    "distractors plausible",
+    "explanation path wrong (phase 2)"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "magnet",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Visitors arriving from beyond the district for three hours, new restaurants and doubled rents give magnet; 'residents a tenth of the crowd' kills mixer and junction (the divided neighbourhoods are not brought together), and 'lawns ... slope open to the highway' kills muffler.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": false,
+   "phase2_note": "Junction is read only as a pass-through point, when its ordinary sense is a meeting or joining place (here, of the two neighbourhoods the yard divided); the rejection should rest on residents being only a tenth of the crowd, which the explanation spends on mixer instead."
+  },
+  "world 1 (key junction)": {
+   "must_revise": [
+    "explanation path wrong (phase 2)"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "junction",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Few lingering' and the empty benches kill magnet, and 'lawns slope open to the highway' kills muffler. 'Mixer' (two divided neighborhoods brought together) is the real near-miss; only the commuter flow of paths to the footbridge and station favours 'junction'.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": false,
+   "phase2_note": "'Magnet' is rejected because the walkers are local residents rather than people drawn from elsewhere, but local residents can be drawn too; the rejection should rest on 'few lingering past the ten minutes' and the empty benches, which the explanation spends only on 'mixer'."
+  },
+  "world 2 (key muffler)": {
+   "must_revise": [
+    "explanation path wrong (phase 2)"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "muffler",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "The earth bank along the highway and north windows now open gives muffler; junction and mixer fail on visits nearly all from the adjacent row-house blocks, magnet on visits under half an hour by locals only.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": false,
+   "phase2_note": "Junction is rejected on the narrow road sense (no route runs through the park), while its figurative sense of a place joining the neighbourhoods the yard divided also fits; the rejection should rest on visits coming almost entirely from the row-house blocks beside it, so the park joins no one."
+  }
+ },
+ "WIC28D-02": {
+  "world 2 (key net)": {
+   "must_revise": [
+    "explanation path wrong (phase 2)"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "net",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Mud in, clear water out and a rising floor show the marsh traps sediment, while 'carried all the creek's fertilizer nitrate on into the bay' kills kidney (filters but passes the solute) and the oxygen sentence kills lung; kitchen is not cleanly killed - 'Nearby shrimp were full of plankton' reads as support for it as easily as against.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": false,
+   "phase2_note": "Kitchen is rejected because shrimp 'near the outlet' ate plankton, but the passage says only 'nearby shrimp', and plankton-fed shrimp near the marsh are as consistent with the marsh feeding the bay as against it; the passage plants no fact that actually rules kitchen out."
+  },
+  "world 3 (key lung)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "lung",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Half again as much oxygen as the bay' hands over 'lung' by itself. 'As brown with mud' and 'as much fertilizer nitrate' kill kidney and net directly. 'Kitchen' rests only on the fish crowding, and the passage ties that to oxygen, so it is weak.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ },
+ "WIC28D-08": {
+  "world 1 (key lightened)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "lightened",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Kept the family's names, its fjord, its money' kills naturalized, the preserved 'short, abrupt rhythm' kills manicured, and 'a few lines' in 'a handful of scenes' makes mutilated too strong. Drownings turned into rescues give 'lightened'.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ }
+}

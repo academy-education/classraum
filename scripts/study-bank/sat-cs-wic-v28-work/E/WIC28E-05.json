@@ -1,0 +1,146 @@
+{
+  "id": "WIC28E-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a published prairie diary",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "spliced",
+    "softened",
+    "tightened",
+    "tidied"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "softened",
+    "tightened",
+    "tidied",
+    "spliced"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "Scholars who set the book beside the notebooks in 1990 found that the daughter had ______ the diary.",
+  "worlds": [
+    {
+      "key": "tidied",
+      "passage": "In 1902 a woman published the prairie diary her mother kept from 1858 to 1871; the notebooks are now in a state archive. Scholars who set the book beside the notebooks in 1990 found that the daughter had ______ the diary. The scholars counted 212,000 words in the notebooks and 212,400 in the book, the extra being small words the mother skipped. Her \"chickins\" and \"sumer\" appear in standard spelling, and her breathless runs without a period are broken into sentences, so her quarrels with her husband read more evenly, every curse in place. A dozen entries sit under new dates, matching corrections she penciled in the margins years later.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "The daughter standardized the mother's spelling, broke her run-on lines into sentences, restored skipped small words and fixed dates the mother herself had corrected, changing how the diary was written but not what it said: she \"tidied\" it. \"Tightened\" means made more concise, but the book has four hundred more words than the notebooks. \"Softened\" means toned down, but the quarrels read more evenly only because of the new punctuation, with every curse still in place. \"Spliced\" means joined in material from elsewhere, but the redated entries are the mother's own, moved according to her own penciled corrections.",
+      "kills": {
+        "tightened": {
+          "type": "logic",
+          "quote": "212,000 words in the notebooks and 212,400 in the book",
+          "why": "Tightening makes a text more concise; the book is slightly longer than the notebooks.",
+          "surface_fit": "Breaking breathless runs into sentences makes the diary read more briskly, which is what tightening a text does.",
+          "inference": "the book has four hundred more words than the notebooks, all small words restored, so nothing was cut for concision; the change was to how the words were written, not how many"
+        },
+        "softened": {
+          "type": "logic",
+          "quote": "every curse in place",
+          "why": "Softening tones down harsh content; the quarrels read more evenly only because of the punctuation, and every curse remains.",
+          "surface_fit": "The quarrels read more evenly in print, and a daughter publishing her parents' fights in 1902 would be expected to tone them down.",
+          "inference": "the quarrels read more evenly because their run-on lines were broken into sentences, while every curse stayed, so their content was not muted"
+        },
+        "spliced": {
+          "type": "logic",
+          "quote": "matching corrections she penciled in the margins years later",
+          "why": "Splicing joins in material from elsewhere; the redated entries were the mother's own, moved where her own corrections said.",
+          "surface_fit": "A dozen entries appear under different dates in the book, which looks like passages cut and joined into a new arrangement.",
+          "inference": "the moved entries follow the mother's own penciled corrections, and the word counts leave no room for outside material, so the daughter fixed dates rather than joining anything in"
+        }
+      }
+    },
+    {
+      "key": "tightened",
+      "passage": "In 1902 a woman published the prairie diary her mother kept from 1858 to 1871; the notebooks are now in a state archive. Scholars who set the book beside the notebooks in 1990 found that the daughter had ______ the diary. Every entry is there, in the notebooks' order, and nothing in the book comes from outside them. The book is a third shorter: the weekly egg tallies and the daily notes on the wind are gone. The curses the mother wrote after quarrels with her husband are printed whole, misspellings like \"chickins\" and \"sumer\" included.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "Every entry survives, but the book is a third shorter because the repetitive tallies and wind notes were cut, so the daughter made the diary more concise without losing its substance: she \"tightened\" it. \"Tidied\" means cleaned up the writing, but misspellings like \"chickins\" were printed as the mother wrote them. \"Softened\" means toned down, but the curses written after quarrels are printed whole. \"Spliced\" means joined in material from elsewhere, but nothing in the book comes from outside the notebooks.",
+      "kills": {
+        "tidied": {
+          "type": "logic",
+          "quote": "misspellings like \"chickins\" and \"sumer\" included",
+          "why": "Tidying corrects the writing; the misspellings were left.",
+          "surface_fit": "Removing clutter such as weekly tallies and wind notes is exactly what tidying a messy manuscript sounds like.",
+          "inference": "the mother's misspellings were left as written, so the daughter did not clean up the writing itself; what she removed was whole repetitive items"
+        },
+        "softened": {
+          "type": "logic",
+          "quote": "printed whole",
+          "why": "Softening tones down harsh content; the curses are printed whole.",
+          "surface_fit": "Cutting a third of a private diary before publishing it in 1902 suggests a daughter removing what might embarrass the family.",
+          "inference": "the cuts fell on tallies and weather notes while the curses stayed whole, so the harsh material was the part she kept, not the part she muted"
+        },
+        "spliced": {
+          "type": "logic",
+          "quote": "nothing in the book comes from outside them",
+          "why": "Splicing joins in outside material; there is none.",
+          "surface_fit": "An edited diary that differs from its notebooks invites the idea that it was assembled from several sources.",
+          "inference": "everything printed comes from the notebooks themselves, so no other material was joined into the diary"
+        }
+      }
+    },
+    {
+      "key": "softened",
+      "passage": "In 1902 a woman published the prairie diary her mother kept from 1858 to 1871; the notebooks are now in a state archive. Scholars who set the book beside the notebooks in 1990 found that the daughter had ______ the diary. In a few dozen entries, her curses at her husband become \"my husband was tired today,\" and the winter she wrote of leaving him becomes \"a hard winter,\" each new line standing where the old one stood. These entries are shorter in print and evenly punctuated. Everywhere else the book follows the notebooks line by line, her \"chickins,\" \"sumer\" and run-on lines included, down to the weekly egg tallies.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "Where the mother cursed her husband or wrote of leaving him, the book puts mild phrases in exactly those places and changes nothing else, so the daughter toned down the harsh passages: she \"softened\" the diary. \"Tightened\" means made more concise, but the book keeps even the weekly egg tallies and shortens only the quarrel entries. \"Tidied\" means cleaned up the writing, but outside the rewritten entries the misspellings and run-on lines are printed as written. \"Spliced\" means joined in material from elsewhere, but each new line simply takes the place of one the mother wrote.",
+      "kills": {
+        "tightened": {
+          "type": "logic",
+          "quote": "down to the weekly egg tallies",
+          "why": "Tightening cuts for concision; the book keeps even its dullest lines, cutting only where a quarrel stood.",
+          "surface_fit": "The changed entries are shorter in print, which is what tightening a text produces.",
+          "inference": "an editor cutting for length would drop the weekly egg tallies first, yet they stay while only the quarrel entries shrink, so the cuts were about what those lines said, not about length"
+        },
+        "tidied": {
+          "type": "logic",
+          "quote": "run-on lines included",
+          "why": "Tidying corrects the writing throughout; only the quarrel entries were changed, and the misspellings and run-ons stay everywhere else.",
+          "surface_fit": "The changed entries come out evenly punctuated, and tidying a raw diary for print is the obvious first reading.",
+          "inference": "the even punctuation appears only in the entries whose quarrels were rewritten, while the misspellings and run-on lines stand everywhere else, so the writing as a whole was not cleaned up"
+        },
+        "spliced": {
+          "type": "logic",
+          "quote": "each new line standing where the old one stood",
+          "why": "Splicing joins in material from elsewhere; each new line replaces the mother's own line in place.",
+          "surface_fit": "Lines the mother never wrote now appear in her diary, which suggests material set into it from another source.",
+          "inference": "each new line takes the exact place of one the mother wrote, and the rest follows the notebooks line by line, so the daughter replaced words rather than joining in any other text"
+        }
+      }
+    },
+    {
+      "key": "spliced",
+      "passage": "In 1902 a woman published the prairie diary her mother kept from 1858 to 1871; the notebooks are now in a state archive. Scholars who set the book beside the notebooks in 1990 found that the daughter had ______ the diary. For eleven of the fourteen years, entries carry sentences found nowhere in the notebooks, and the book runs a fifth longer. Each appears word for word in the mother's letters to her sister from the same weeks. The misspellings, \"chickins\" and \"sumer\" among them, are hers in both kinds of sentence, and where a letter told a quarrel with her husband more gently, the book prints both versions.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "Sentences found nowhere in the notebooks turn up word for word in the mother's letters to her sister from the same weeks, set into the diary's entries, so the daughter joined material from a second source into the diary: she \"spliced\" it. \"Tightened\" means made more concise, but the book runs a fifth longer than the notebooks. \"Tidied\" means cleaned up the writing, but the misspellings are the mother's own in both kinds of sentence. \"Softened\" means toned down, but where a letter told a quarrel more gently, the book prints the harsher notebook version too.",
+      "kills": {
+        "tightened": {
+          "type": "logic",
+          "quote": "the book runs a fifth longer",
+          "why": "Tightening makes a text more concise; the book grew by a fifth.",
+          "surface_fit": "Weaving sentences together so entries read fuller and smoother sounds like an editor tightening a loose diary.",
+          "inference": "a book a fifth longer than its source has had material added, not trimmed, so it was not made more concise"
+        },
+        "tidied": {
+          "type": "logic",
+          "quote": "are hers in both kinds of sentence",
+          "why": "Tidying corrects the writing; the misspellings survive in both sources.",
+          "surface_fit": "Smoothing scattered notebooks and letters into one continuous text sounds like tidying a messy record.",
+          "inference": "the mother's misspellings stand in the diary sentences and the letter sentences alike, so the daughter did not clean up the writing; she combined it"
+        },
+        "softened": {
+          "type": "logic",
+          "quote": "the book prints both versions",
+          "why": "Softening tones down harsh content; the harsh notebook version is printed alongside the gentle one.",
+          "surface_fit": "The book prints a gentler account of a quarrel taken from a letter, which looks like a daughter toning down her parents' fights.",
+          "inference": "the gentler letter version appears beside the harsher notebook version rather than replacing it, so nothing harsh was removed or muted"
+        }
+      }
+    }
+  ]
+}

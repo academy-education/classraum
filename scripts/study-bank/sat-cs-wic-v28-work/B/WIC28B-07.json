@@ -1,0 +1,146 @@
+{
+  "id": "WIC28B-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a store at a mountain gold camp, 1859",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "pharmacy",
+    "parlor",
+    "pawnshop",
+    "repository"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "pharmacy",
+    "parlor",
+    "pawnshop",
+    "repository"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "One historian of the camp called the store, in those years, the camp's ______.",
+  "worlds": [
+    {
+      "key": "pawnshop",
+      "passage": "In 1859 a merchant built a log store at a mountain gold camp, the only building there with a stove, an iron safe and a shelf of bottles, and his ledger survives. One historian of the camp called the store, in those years, the camp's ______. Beside each watch, pistol or fiddle left in the safe, the ledger enters a sum paid to its owner, most of it spent on flour and powder. The same things reappear months later, most marked as taken back for that sum and a tenth more, the rest priced on the shelf beside the whiskey bottles, in a stove room that had no chairs.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Miners left watches, pistols and fiddles in the safe and received sums of money against them, then took them back for the sum plus a tenth or saw them priced for sale, so the store was the camp's \"pawnshop\": a lender against pledged goods. \"Repository\" fails because the goods were not simply kept for their owners: money was paid out against them, and unredeemed ones were put up for sale. \"Pharmacy\" fails because the bottles on the shelf held whiskey. \"Parlor\" fails because the stove room had no chairs, so it was where business was done, not where the camp sat together.",
+      "kills": {
+        "repository": {
+          "type": "logic",
+          "quote": "the rest priced on the shelf",
+          "why": "Unredeemed goods were sold, so the safe held security for loans, not deposits kept for their owners.",
+          "surface_fit": "Miners leaving their valuables in the store's iron safe is exactly what depositing things for safekeeping looks like, so repository fits the sentence and the setting.",
+          "inference": "A repository keeps what people leave and gives it back; here each item had a sum paid out against it, came back only for that sum and a tenth more, and was put up for sale if not redeemed, so the items were pledges."
+        },
+        "pharmacy": {
+          "type": "explicit",
+          "quote": "beside the whiskey bottles",
+          "why": "The bottles held liquor, not medicine.",
+          "surface_fit": "A frontier store with a shelf of bottles in a camp where men fell sick could easily be where they got their remedies, so pharmacy fits the setting.",
+          "inference": "The bottles on the shelf were whiskey, and the ledger records sums lent and repaid, not doses, so the store supplied no medicine."
+        },
+        "parlor": {
+          "type": "logic",
+          "quote": "in a stove room that had no chairs",
+          "why": "A warm room with nowhere to sit was a place of business, not a gathering place.",
+          "surface_fit": "The store had the camp's only stove, and in a cold mountain camp the one warm room is where people gather, so parlor is a natural reading.",
+          "inference": "With no chairs in the stove room, miners came to pledge, redeem and buy, not to sit; the warmth served the trade, so the room was no shared sitting room."
+        }
+      }
+    },
+    {
+      "key": "repository",
+      "passage": "In 1859 a merchant built a log store at a mountain gold camp, the only building there with a stove, an iron safe and a shelf of bottles, and his ledger survives. One historian of the camp called the store, in those years, the camp's ______. Pouches of gold dust and bundles of letters left in the safe are entered singly, each sealed and marked with a name, and again when its owner left camp, handed back with its seal unbroken for a fee of one part in a hundred. He sold lamp oil and whiskey from the bottles, and the stove heated the back room where he slept.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "Miners left sealed pouches of gold and bundles of letters in the safe, marked with their names, and got them back with seals unbroken when they left, paying a small fee, so the store was the camp's \"repository\": the place where its valuables were deposited for safekeeping. \"Pawnshop\" fails because the miners paid him to keep the pouches and got them back whole, so no money was advanced against them and nothing could be forfeited. \"Pharmacy\" fails because the bottles held lamp oil and whiskey. \"Parlor\" fails because the stove heated his own back room, not a room where the camp gathered.",
+      "kills": {
+        "pawnshop": {
+          "type": "logic",
+          "quote": "handed back with its seal unbroken for a fee of one part in a hundred",
+          "why": "The miners paid him to keep the deposits and got them back whole, so nothing was pledged against a loan.",
+          "surface_fit": "Miners handing gold and valuables to a merchant who locks them in his safe and charges a fee sounds like pawning goods for money, so pawnshop is a strong first reading.",
+          "inference": "Money flowed from the miners to him as a keeping fee, not from him to them as a loan, and every pouch came back sealed, so nothing was pledged or forfeited."
+        },
+        "pharmacy": {
+          "type": "logic",
+          "quote": "sold lamp oil and whiskey from the bottles",
+          "why": "The bottles held fuel and liquor, not medicine.",
+          "surface_fit": "A store with a shelf of bottles in a hard mountain camp could be where sick men got their remedies, so pharmacy is plausible.",
+          "inference": "What he sold from the bottles was lamp oil and whiskey, and the ledger records deposits, not doses, so the store dispensed no medicine."
+        },
+        "parlor": {
+          "type": "logic",
+          "quote": "the stove heated the back room where he slept",
+          "why": "The camp's only stove warmed his private room, so there was no common room by its fire.",
+          "surface_fit": "The store had the camp's only stove, and the one warm room in a winter camp is where miners would gather, so parlor fits the setting.",
+          "inference": "The stove stood in the room where the merchant slept, so the warmth was his own; the miners came in to deposit and collect, not to spend their evenings."
+        }
+      }
+    },
+    {
+      "key": "parlor",
+      "passage": "In 1859 a merchant built a log store at a mountain gold camp, the only building there with a stove, an iron safe and a shelf of bottles, and his ledger survives. One historian of the camp called the store, in those years, the camp's ______. Through the long winters, miners whose cabins had no stove spent their evenings around his, reading month-old newspapers aloud and playing cards at a table he kept by the fire, and he charged nothing for the warmth; the ledger shows them paying cash for a little tobacco. He kept the evening's takings in the safe and the whiskey corked until morning.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "Miners without stoves spent their winter evenings around his, reading newspapers aloud and playing cards at a table he kept by the fire, without being charged for the warmth, so the store was the camp's \"parlor\": its shared sitting room. \"Pawnshop\" fails because the evening visitors paid cash for a little tobacco, pledging nothing. \"Repository\" fails because the safe held the merchant's own takings. \"Pharmacy\" fails because the bottles held whiskey, kept corked through the evenings.",
+      "kills": {
+        "pawnshop": {
+          "type": "logic",
+          "quote": "paying cash for a little tobacco",
+          "why": "The visitors paid cash and borrowed nothing, so nothing was pledged.",
+          "surface_fit": "A camp store with an iron safe, visited every night by miners short of money, is a natural place for men to pawn their belongings, so the word fits the sentence and the setting.",
+          "inference": "The ledger shows the evening visitors paying cash for small purchases, so no goods were left as security for loans; they came for the fire, not for credit."
+        },
+        "repository": {
+          "type": "logic",
+          "quote": "kept the evening's takings in the safe",
+          "why": "The safe held the merchant's own money, not deposits from miners.",
+          "surface_fit": "A store with the camp's only iron safe is where miners would naturally leave their gold, so repository is a strong reading.",
+          "inference": "The safe held what he took in each evening, so it served his own business; the miners' valuables were not what it kept."
+        },
+        "pharmacy": {
+          "type": "logic",
+          "quote": "the whiskey corked until morning",
+          "why": "The bottles held whiskey, not medicine.",
+          "surface_fit": "A store with a shelf of bottles in a hard mountain camp could be where men got remedies, so pharmacy fits the topic.",
+          "inference": "The bottles held whiskey that stayed corked through the evenings, and the only thing bought was tobacco, so the store dispensed no medicine."
+        }
+      }
+    },
+    {
+      "key": "pharmacy",
+      "passage": "In 1859 a merchant built a log store at a mountain gold camp, the only building there with a stove, an iron safe and a shelf of bottles, and his ledger survives. One historian of the camp called the store, in those years, the camp's ______. When fever swept the camp in 1860, the ledger charged man after man for quinine and laudanum, measured from the bottles by weights copied from a physician's handbook, each bill to be paid from his next cleanup. The sick were carried in at all hours and laid by the stove until a dose took hold, and the laudanum stayed locked in the safe.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "During the fever of 1860 the merchant measured quinine and laudanum from his bottles by a physician's weights and charged each sick miner by the dose, so the store was the camp's \"pharmacy\": the place where its medicines were measured out and sold. \"Parlor\" fails because the people by the stove were sick men laid there until a dose took hold; the room held patients being treated, not company gathered to talk, read or play. \"Pawnshop\" fails because the doses were charged against each man's next cleanup, with no goods pledged. \"Repository\" fails because the safe held the merchant's own laudanum, not anything the miners deposited.",
+      "kills": {
+        "parlor": {
+          "type": "logic",
+          "quote": "laid by the stove until a dose took hold",
+          "why": "The people by the stove were patients being dosed, not company gathered for warmth and talk.",
+          "surface_fit": "The store's stove room was full of miners at all hours, which is what a camp's common sitting room looks like, so parlor is a natural first reading.",
+          "inference": "The men around the stove had been carried in sick and stayed only until their medicine worked, so the room was used for treatment; no one gathered there to read, talk or play cards."
+        },
+        "pawnshop": {
+          "type": "logic",
+          "quote": "each bill to be paid from his next cleanup",
+          "why": "Credit rested on future gold, with no goods pledged.",
+          "surface_fit": "Miners getting goods from the merchant on credit, with an iron safe in the room, suggests they left belongings as security, so pawnshop fits the setting.",
+          "inference": "Each dose was charged to be paid out of the man's next gold, so the credit was against future earnings, not against watches or pistols left in the safe; nothing was pawned."
+        },
+        "repository": {
+          "type": "logic",
+          "quote": "the laudanum stayed locked in the safe",
+          "why": "The safe held the merchant's own drug stock.",
+          "surface_fit": "A store with the camp's only iron safe is where miners would naturally leave gold and valuables, so repository is a strong reading.",
+          "inference": "The safe was used to lock up his laudanum, a drug he dosed out by weight, so it kept the merchant's stock; nothing the miners owned was deposited there."
+        }
+      }
+    }
+  ]
+}

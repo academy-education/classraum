@@ -1,0 +1,146 @@
+{
+  "id": "WIC28D-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a sunken coastal schooner over two centuries",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "mined",
+    "interred",
+    "jostled",
+    "mummified"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "mined",
+    "jostled",
+    "mummified",
+    "interred"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "The survey team's report says that two centuries of seawater had ______ the ship.",
+  "worlds": [
+    {
+      "key": "mined",
+      "passage": "In 1812 a coastal schooner loaded with roofing slate and casks of salt cod went down in fifty feet of water off a rocky headland. The water there is warm and rich in oxygen. When a survey team reached the wreck in 2011, its hull still stood upright on the open bottom, its outline whole and its slate stacked in the hold. Every plank the divers lifted crumbled in their hands into a lace of pencil-wide tunnels. The survey team's report says that two centuries of seawater had ______ the ship. From a few yards away, the hull looked as sound as on the day it sank.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "Planks that look sound from outside crumble into a lace of pencil-wide tunnels, so the sea and the creatures it holds had \"mined\" the ship, boring through it from within while leaving its outer shape. \"Mummified\" fails because a mummified hull keeps its substance, and these planks fell apart at a touch; only the outline survived. \"Interred\" fails because the hull stood upright on the open bottom, not buried. \"Jostled\" fails because the hull stood upright with its slate still stacked in the hold, which any shoving about would have spilled.",
+      "kills": {
+        "mummified": {
+          "type": "logic",
+          "quote": "crumbled in their hands into a lace of pencil-wide tunnels",
+          "why": "The hull keeps its outline, but its wood is hollowed out and falls apart at a touch, so it was not preserved.",
+          "surface_fit": "A wreck found whole after two centuries reads like a ship the sea has preserved, so mummified fits the sentence and the topic. This hull stands upright with its outline whole and, from a few yards off, looks as sound as when it sank.",
+          "inference": "Mummifying preserves the body itself, not just its outline; the planks that look sound from a few yards away crumbled into tunnels when lifted, so the sea had hollowed the ship from within while leaving its shell, which is the opposite of keeping it intact."
+        },
+        "interred": {
+          "type": "logic",
+          "quote": "stood upright on the open bottom",
+          "why": "A hull standing on the open bottom was not buried.",
+          "surface_fit": "Wrecks are commonly swallowed by the seabed over the centuries, so interred fits a sentence about what two hundred years of seawater did to a ship.",
+          "inference": "An interred ship lies under sediment; this hull stood upright on the open bottom where the divers could see its whole outline, so whatever the sea had done, it had done to a ship left in the open."
+        },
+        "jostled": {
+          "type": "logic",
+          "quote": "its slate stacked in the hold",
+          "why": "Slate still stacked in an upright hull shows the wreck was never shoved about.",
+          "surface_fit": "A wooden wreck off a rocky headland is the usual victim of currents and storms that shove it about the bottom, so jostled fits the sentence and the setting.",
+          "inference": "A jostled wreck is shifted and knocked about, and heavy slate would slide and spill; this hull stood upright with its outline whole and its slate still stacked in the hold, so the sea had left it in place, and the damage was inside its planks."
+        }
+      }
+    },
+    {
+      "key": "interred",
+      "passage": "In 1812 a coastal schooner loaded with roofing slate and casks of salt cod went down in fifty feet of water off a rocky headland. It settled in a sandy cove where the current drops sand so fast that in a decade only its masthead showed; in 2011 a survey team pumped away twelve feet of it to reach the deck. The hull lay on its side as it had first struck, slate still stacked in the hold. Its timbers, spared the shipworms that riddle every exposed wreck there, were soft and black, though solid through. The survey team's report says that two centuries of seawater had ______ the ship.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "Sand dropped by the current covered the ship to its masthead within a decade, and the survey team had to pump away twelve feet of it to reach the deck, so two centuries of seawater had \"interred\" the ship, burying it. \"Mummified\" fails because the timbers had gone soft and black, so the sand kept the hull's shape and kept out the worms without preserving its wood as it was. \"Mined\" fails because the shipworms that riddle every exposed wreck on that coast never reached these buried timbers, which were solid through. \"Jostled\" fails because the hull lay on its side exactly as it first struck, its slate still stacked, so the strong current had covered it rather than moved it.",
+      "kills": {
+        "mummified": {
+          "type": "logic",
+          "quote": "were soft and black",
+          "why": "Timbers gone soft and black have decayed; the sand kept the hull's shape but did not preserve its wood.",
+          "surface_fit": "A wreck found whole after two centuries reads like a ship the sea has preserved, so mummified fits the sentence and the topic. This hull was found whole, spared by the worms that destroy other wrecks.",
+          "inference": "A mummified body keeps its substance much as it was; these timbers had turned soft and black, so the sand protected the ship's form from the worms without keeping the wood itself unchanged, and what it chiefly did was cover the ship."
+        },
+        "mined": {
+          "type": "logic",
+          "quote": "spared the shipworms that riddle every exposed wreck there",
+          "why": "The worms that tunnel through exposed wrecks never reached these timbers, which the sand covered within a decade.",
+          "surface_fit": "Shipworms tunneling through the timbers are what centuries of seawater usually do to a wooden wreck, so mined fits the sentence and the subject. The passage names shipworms riddling every exposed wreck on this very coast.",
+          "inference": "Mining here would mean the timbers tunneled through from within; the sand covered the hull within a decade, and its timbers were solid through, untouched by the shipworms that riddle every EXPOSED wreck there, so the burial is what kept the worms out."
+        },
+        "jostled": {
+          "type": "logic",
+          "quote": "as it had first struck, slate still stacked in the hold",
+          "why": "The hull lay as it landed with its heavy cargo still stacked, so the current never shoved it about.",
+          "surface_fit": "A wooden wreck off a rocky headland is the usual victim of currents and storms that shove it about the bottom, so jostled fits the sentence and the setting. Here the hull lies on its side in a cove with a strong current.",
+          "inference": "A hull lying on its side might look knocked over, but it lay as it had first struck, and its slate was still stacked in the hold, which any rolling would have spilled, so the fast current's work was to cover the ship, not to move it."
+        }
+      }
+    },
+    {
+      "key": "jostled",
+      "passage": "In 1812 a coastal schooner loaded with roofing slate and casks of salt cod went down in fifty feet of water off a rocky headland. It came to rest on bare rock, and winter storms rolled it across the bottom until it broke apart. In 2011 a survey team found its timbers strewn over a quarter mile, hard and sound inside but worn round and grooved on every face, the slate in shattered drifts along the gullies, and a section of keel two hundred yards from its stern post. The survey team's report says that two centuries of seawater had ______ the ship. The cod casks were never found.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Winter storms rolled the ship over the rock until it broke apart, and its timbers and slate lay strewn over a quarter mile, so two centuries of seawater had \"jostled\" the ship, knocking it about the bottom. \"Mined\" fails because the grooves are on the timbers' outer faces, worn by rolling over rock, while the wood is hard and sound inside, so nothing tunneled through it. \"Mummified\" fails because a ship broken apart and strewn over a quarter mile was not preserved whole, however sound its separate timbers. \"Interred\" fails because the wreck lay on bare rock, its pieces in the open along the gullies.",
+      "kills": {
+        "mined": {
+          "type": "logic",
+          "quote": "hard and sound inside but worn round and grooved on every face",
+          "why": "The grooves are on the outside, from rolling over rock; the wood inside is sound, so it was not tunneled.",
+          "surface_fit": "Shipworms tunneling through the timbers are what centuries of seawater usually do to a wooden wreck, so mined fits the sentence and the subject. These timbers are grooved on every face.",
+          "inference": "Mined timbers are hollowed from within; these were hard and sound inside, their grooves and rounded edges on the outer faces only, the marks of being rolled over rock, so the sea had worked on the ship from outside by moving it."
+        },
+        "mummified": {
+          "type": "logic",
+          "quote": "strewn over a quarter mile",
+          "why": "A ship in pieces across a quarter mile was not kept whole, whatever the state of each timber.",
+          "surface_fit": "A wreck found whole after two centuries reads like a ship the sea has preserved, so mummified fits the sentence and the topic. These timbers are still hard and sound after two hundred years.",
+          "inference": "Mummifying keeps a body whole as well as sound; the timbers were sound inside, but the ship had broken apart and lay strewn over a quarter mile, its keel two hundred yards from its stern post, so the sea preserved pieces of wood while destroying the ship."
+        },
+        "interred": {
+          "type": "logic",
+          "quote": "came to rest on bare rock",
+          "why": "On bare, storm-swept rock there was no sediment to bury the wreck, and its pieces lie in the open.",
+          "surface_fit": "Wrecks are commonly swallowed by the seabed over the centuries, so interred fits a sentence about what two hundred years of seawater did to a ship.",
+          "inference": "To be interred the ship would need to be covered by sediment; it lay on bare rock that the storms kept swept, and its pieces lie in the open, the slate in drifts along the gullies, so nothing had covered it."
+        }
+      }
+    },
+    {
+      "key": "mummified",
+      "passage": "In 1812 a coastal schooner loaded with roofing slate and casks of salt cod went down in fifty feet of water off a rocky headland. The water at that depth stays near freezing and holds almost no oxygen, too cold and stale for the shipworms that riddle wrecks on warmer coasts. When a survey team's camera reached the wreck in 2011, the hull stood upright on the open bottom where it had settled, masts standing, its carved stern still showing red paint and ropes lying coiled on its deck. The survey team's report says that two centuries of seawater had ______ the ship. The team left it where it lies.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "In near-freezing water too stale for shipworms, the hull stood with its masts, painted carving and coiled ropes intact, so the sea had \"mummified\" the ship, preserving it whole. \"Interred\" fails because the hull stood upright on the open bottom with its masts standing, so it was not buried. \"Jostled\" fails because it stood where it had settled with its ropes still lying coiled on deck, which any rolling would have scattered. \"Mined\" fails because the water is too cold and stale for the shipworms that tunnel through wrecks elsewhere, and the carved stern still holds its paint.",
+      "kills": {
+        "interred": {
+          "type": "logic",
+          "quote": "stood upright on the open bottom where it had settled, masts standing",
+          "why": "A hull standing on the open bottom with its masts up was not buried.",
+          "surface_fit": "Wrecks are commonly swallowed by the seabed over the centuries, so interred fits a sentence about what two hundred years of seawater did to a ship. A ship found intact is often one the seabed has sealed.",
+          "inference": "An interred ship lies under sediment; this hull stood upright on the open bottom with its masts standing, in view of a camera, so the cold, oxygen-poor water itself had kept it, with nothing covering it."
+        },
+        "jostled": {
+          "type": "logic",
+          "quote": "ropes lying coiled on its deck",
+          "why": "Ropes still coiled on deck show the ship was never knocked about.",
+          "surface_fit": "A wooden wreck off a rocky headland is the usual victim of currents and storms that shove it about the bottom, so jostled fits the sentence and the setting.",
+          "inference": "A jostled ship is pushed and rolled; this one stood where it had settled with its masts up and its ropes still lying coiled on deck, which any rolling would have scattered, so the sea had left it undisturbed."
+        },
+        "mined": {
+          "type": "explicit",
+          "quote": "too cold and stale for the shipworms",
+          "why": "The creatures that tunnel through ship timber cannot live in that water.",
+          "surface_fit": "Shipworms tunneling through the timbers are what centuries of seawater usually do to a wooden wreck, so mined fits the sentence and the subject.",
+          "inference": "Mining the ship would take the shipworms that hollow out timber; the water is too cold and too poor in oxygen for them, and the carved stern still holds its paint, so the timbers were never tunneled."
+        }
+      }
+    }
+  ]
+}

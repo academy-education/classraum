@@ -1,0 +1,146 @@
+{
+  "id": "WIC28B-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "an ancient clay tablet listing barley",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "receipt",
+    "recipe",
+    "roadmap",
+    "payroll"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "recipe",
+    "receipt",
+    "payroll",
+    "roadmap"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "Scholars now read the tablet as its owner's ______.",
+  "worlds": [
+    {
+      "key": "receipt",
+      "passage": "A clay tablet dug from the ruins of an ancient river city lists barley in nine lines, each giving an amount, a word or two, and a number, and a seal has been rolled across its back. The words name the hamlets of one village, and the numbers, rising from 2 to 27, are days of the harvest month on which grain from each hamlet reached the city storehouse, whose keeper's seal the tablet bears. It lay under the floor of the village headman's house, in a jar with his other sealed tablets. Scholars now read the tablet as its owner's ______.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "The tablet records grain from the village's hamlets arriving at the storehouse, sealed by the storehouse keeper, and it was kept in the village headman's own house among his sealed tablets, so it is the headman's \"receipt\": the receiver's sealed acknowledgment of what the village delivered. \"Roadmap\" fails because the numbers are days of one harvest month on which grain reached one storehouse, so the named hamlets are where the grain came from, not stages of a journey. \"Payroll\" fails because the barley flows in from the village to the storehouse, not out to workers as pay. \"Recipe\" fails because each amount is a dated delivery from a named hamlet, not a quantity of an ingredient.",
+      "kills": {
+        "roadmap": {
+          "type": "logic",
+          "quote": "are days of the harvest month on which grain from each hamlet reached the city storehouse",
+          "why": "The numbers are dates within one month and every line ends at the same storehouse, so the list records deliveries, not stages of a route.",
+          "surface_fit": "Each line names a place with a number beside it, which is how a list of stops and travel days reads, so roadmap is a natural first reading.",
+          "inference": "The numbers rise through a single month as calendar days, and every line's grain went to one storehouse, so the places are sources of deliveries; no line is a leg from one place to the next."
+        },
+        "payroll": {
+          "type": "logic",
+          "quote": "reached the city storehouse",
+          "why": "The barley went into the storehouse, so nothing was paid out to workers.",
+          "surface_fit": "Barley was the ordinary wage in ancient cities, and the tablet lists amounts with an official's seal, which is what a pay record looks like.",
+          "inference": "A payroll lists what an employer hands out; these lines record grain arriving at the storehouse from the village's hamlets, so the barley runs the wrong way for wages."
+        },
+        "recipe": {
+          "type": "logic",
+          "quote": "The words name the hamlets of one village",
+          "why": "The words are places, not ingredients.",
+          "surface_fit": "Barley measured out line by line in exact amounts is how an ancient brewing or baking tablet reads at first glance, so a recipe fits the topic.",
+          "inference": "Every amount belongs to a hamlet and a day, so the list follows where and when grain arrived; nothing on it is to be combined or prepared."
+        }
+      }
+    },
+    {
+      "key": "payroll",
+      "passage": "A clay tablet dug from the ruins of an ancient river city lists barley in nine lines, each giving an amount, a word or two, and a number, and a seal has been rolled across its back. The words are men's names, two of them marked as boys, whose amounts are cut by a fixed share, and each number, never above thirty, is the days that man worked that month; the seal is the temple overseer's. The tablet lay in the temple storeroom with eleven others, one for each month of that year, all listing the same nine men. Scholars now read the tablet as its owner's ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "The tablet gives each of nine named men barley scaled to the days he worked that month, cut for the two boys, under the temple overseer's seal, and eleven matching tablets cover the year's other months, so it is the temple's \"payroll\": its record of wages paid out. \"Receipt\" fails because the seal is the payer's own and the tablet stayed in the payer's storeroom, so it is not anyone's sealed acknowledgment of goods received. \"Roadmap\" fails because the numbers are days worked by named men, the same nine every month, not days of travel between places. \"Recipe\" fails because the amounts belong to people, cut for the boys, not to ingredients.",
+      "kills": {
+        "receipt": {
+          "type": "logic",
+          "quote": "the seal is the temple overseer's",
+          "why": "The sealer is the one paying out, and the tablet stayed with him, so it is not an acknowledgment of receipt.",
+          "surface_fit": "Each line records barley a named man received, under an official's seal, which is close to what a receipt for goods looks like.",
+          "inference": "A receipt is sealed by whoever received the goods and kept by whoever handed them over; here the seal is the payer's own and the tablet sits in his storeroom beside one for every month, so it is the payer's running record."
+        },
+        "roadmap": {
+          "type": "logic",
+          "quote": "is the days that man worked that month",
+          "why": "The numbers count days of work by named men, not days of travel.",
+          "surface_fit": "Each line pairs an amount of barley with a number of days, which is how provisions for the legs of a journey are listed, so roadmap is tempting.",
+          "inference": "The days belong to named men, never exceed a month, and recur for the same nine men on every monthly tablet, so they measure work done, not distance traveled."
+        },
+        "recipe": {
+          "type": "logic",
+          "quote": "whose amounts are cut by a fixed share",
+          "why": "The scaling follows the worker, so the amounts are wages, not proportions of a mixture.",
+          "surface_fit": "Barley measured in amounts line after line, some scaled down by a fixed share, reads like a list of proportions for a brew.",
+          "inference": "The fixed cut applies to the two names marked as boys, so the amounts follow who received them, not a batch size; nothing here is combined or cooked."
+        }
+      }
+    },
+    {
+      "key": "recipe",
+      "passage": "A clay tablet dug from the ruins of an ancient river city lists barley in nine lines, each giving an amount, a word or two, and a number, and a seal has been rolled across its back. The words run barley from the river fields, dates from the southern groves, water, then barley again, sprouted, and then crushed, and the numbers are days, three beside the sprouting and one beside the crushing. A second column repeats every amount exactly doubled, the seal is the temple brewer's, and the tablet lay among the brewery's jars. Scholars now read the tablet as its owner's ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The lines move through ingredients and then through stages of the same barley, sprouted and then crushed, with days of waiting beside the stages, and a second column doubles every amount, all under the brewer's seal, so the tablet is the brewer's \"recipe\": quantities and steps for a brew in two batch sizes. \"Roadmap\" fails because the days sit beside stages of one batch of barley, so the places named are only where the ingredients come from, not stops on a route. \"Receipt\" fails because a column that restates every amount at exactly twice the size sets out quantities to use, not goods someone acknowledged receiving, and the seal is the brewer's own. \"Payroll\" fails because no line names a person.",
+      "kills": {
+        "roadmap": {
+          "type": "logic",
+          "quote": "then barley again, sprouted, and then crushed",
+          "why": "The days time stages of one batch of barley, so the place names are ingredient sources, not stops.",
+          "surface_fit": "The lines name places, river fields and southern groves, with numbers of days beside some lines, which is how a list of stages and travel days reads.",
+          "inference": "The same barley appears again sprouted and then crushed, with the days beside those stages, so the days measure a process applied to one grain; the fields and groves only say where the ingredients came from."
+        },
+        "receipt": {
+          "type": "logic",
+          "quote": "repeats every amount exactly doubled",
+          "why": "A column that doubles every quantity scales a plan, which a record of goods received would never do.",
+          "surface_fit": "A sealed tablet listing barley, dates and water in measured amounts looks like a storehouse record of deliveries, so receipt is a natural first reading.",
+          "inference": "Goods received arrive in whatever amounts came, while this column restates the whole list at exactly twice the size, and the seal is the brewer's own, so the tablet sets out quantities to use."
+        },
+        "payroll": {
+          "type": "logic",
+          "quote": "dates from the southern groves, water",
+          "why": "The lines name foodstuffs, not people.",
+          "surface_fit": "Barley was the common wage and the seal is a temple official's, so a column of barley amounts under it looks like a temple pay list.",
+          "inference": "Every line's word is an ingredient or a stage of the barley, so nothing on the tablet is owed to any person; the amounts are portions of a mixture."
+        }
+      }
+    },
+    {
+      "key": "roadmap",
+      "passage": "A clay tablet dug from the ruins of an ancient river city lists barley in nine lines, each giving an amount, a word or two, and a number, and a seal has been rolled across its back. The words name towns in order up the river toward the mountains, each number is the days from the town before, and the barley, loaves and jars of beer beside it are scaled exactly to that many days for twenty donkeys and their drivers; the seal is a caravan master's. It lay in an inn at the river's mouth, where caravans set out. Scholars now read the tablet as its owner's ______.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "The lines name towns in order up the river with the days from one to the next, and the food beside each line is scaled to that leg's days for the caravan, under a caravan master's seal, found where caravans set out, so the tablet is the caravan master's \"roadmap\": the stages of his route and what each leg needs. \"Receipt\" fails because each amount is computed from the days a leg will take, which fixes it before the journey; grain actually handed over would not track the next leg's length so exactly. \"Recipe\" fails because the loaves and beer are rations scaled to days of travel, not ingredients to combine. \"Payroll\" fails because the lines name towns, and the drivers' food is part of the provisions for each leg.",
+      "kills": {
+        "receipt": {
+          "type": "logic",
+          "quote": "scaled exactly to that many days for twenty donkeys and their drivers",
+          "why": "Each amount is a calculation of need for a leg, made before travel, not a record of goods received.",
+          "surface_fit": "A sealed tablet listing barley against town names could record grain collected at each town, so receipt fits the sentence and the setting.",
+          "inference": "Every amount equals the caravan's food for the days of that leg, a figure that can be worked out before setting out, and the tablet was left where caravans start, so it plans supplies rather than acknowledging them."
+        },
+        "recipe": {
+          "type": "logic",
+          "quote": "name towns in order up the river toward the mountains",
+          "why": "The lines follow a route upriver, so the order is geographic, not a sequence of steps.",
+          "surface_fit": "Barley, loaves and jars of beer in measured amounts line by line read at first like a list of ingredients for a meal or a brew.",
+          "inference": "The lines run town by town up the river and each amount grows with the days of travel, so the food is rations for stages of a trip, not ingredients prepared together."
+        },
+        "payroll": {
+          "type": "logic",
+          "quote": "each number is the days from the town before",
+          "why": "The numbers are days of travel between towns, not days of work.",
+          "surface_fit": "A caravan master employs drivers and pays in barley, and each line gives a number of days and an amount, which looks like wages for days worked.",
+          "inference": "The days are counted from one town to the next along the river, so they mark legs of a route; the drivers' food is reckoned in with the donkeys' as provisions, not paid as wages."
+        }
+      }
+    }
+  ]
+}

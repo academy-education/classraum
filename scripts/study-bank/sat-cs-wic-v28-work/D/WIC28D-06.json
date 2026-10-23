@@ -1,0 +1,146 @@
+{
+  "id": "WIC28D-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a wartime government and its newspapers",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "muzzled",
+    "nationalized",
+    "impoverished",
+    "mobilized"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "mobilized",
+    "impoverished",
+    "nationalized",
+    "muzzled"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "One historian's account of those years says the government ______ the press.",
+  "worlds": [
+    {
+      "key": "muzzled",
+      "passage": "During a two-year war in the 1870s, one small country's government changed how it dealt with the country's four daily newspapers. A new law sent each issue to a ministry office the night before printing, and it came back with columns struck out, all about the army. Editors kept setting army stories they knew would be cut and left the struck columns as blank white space, and readers bought more papers to count the gaps. The families who founded the papers went on paying the editors who set those stories. One historian's account of those years says the government ______ the press. Two of those editors later wrote memoirs.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Every issue went to a ministry office before printing and came back with its army stories struck out, so the government \"muzzled\" the press, stopping it from printing what it would have printed. \"Mobilized\" fails because the editors kept setting stories they knew would be cut and printed the gaps as white space, so the papers resisted the government rather than working for it. \"Nationalized\" fails because the founding families still owned the papers and kept paying the editors who defied the censor. \"Impoverished\" fails because readers bought more papers to see what had been cut, and the owners could keep paying their editors.",
+      "kills": {
+        "mobilized": {
+          "type": "logic",
+          "quote": "kept setting army stories they knew would be cut",
+          "why": "Editors who keep writing what the censor strikes, and print the gaps, are resisting the government, not serving it.",
+          "surface_fit": "Wartime governments routinely enlist newspapers to rally the public, and this government was plainly involved in what the papers printed, so mobilized fits the sentence and the setting.",
+          "inference": "A mobilized press works for the government's cause; these editors kept setting army stories they knew the censor would strike and left the cuts as visible white space, so they were held back against their will and showed it, which is the opposite of being recruited."
+        },
+        "nationalized": {
+          "type": "logic",
+          "quote": "The families who founded the papers went on paying the editors",
+          "why": "The founding families still paid the staff, so they still owned the papers.",
+          "surface_fit": "A government reaching into the running of every daily in wartime sounds like one taking the papers over, so nationalized fits a historian's verdict.",
+          "inference": "Nationalizing means the state taking ownership; the founding families went on paying the editors, even the ones who kept defying the censor, so the papers stayed theirs, and the government controlled them only through its night-time office."
+        },
+        "impoverished": {
+          "type": "logic",
+          "quote": "readers bought more papers to count the gaps",
+          "why": "Papers whose readership grew, and whose owners kept paying staff, were not made poor.",
+          "surface_fit": "War laws often bleed newspapers through taxes, lost advertising and costly new duties, so impoverished fits a sentence about what a war government did to the press.",
+          "inference": "An impoverished press loses readers and money; readers bought more of these papers to count the censor's gaps, and the owners went on paying their editors, so the government's effect was on what the papers could print, not on their finances."
+        }
+      }
+    },
+    {
+      "key": "nationalized",
+      "passage": "During a two-year war in the 1870s, one small country's government changed how it dealt with the country's four daily newspapers. A new law exchanged each founding family's shares for treasury bonds, and from then on the war minister named the four editors. With treasury money behind them, the papers kept their old staffs and added pages. No official read those pages before printing, and the papers went on attacking the ministers, the war minister included, and declined to carry the ministry's recruiting notices. One historian's account of those years says the government ______ the press. The bonds were repaid in full a decade later.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The founding families' shares were exchanged for treasury bonds and the war minister now named the editors, so the government \"nationalized\" the press, taking it into state ownership. \"Muzzled\" fails because no official read the pages before printing and the papers kept attacking the ministers who now owned them, so they were not silenced. \"Mobilized\" fails because those same papers declined to carry the ministry's recruiting notices and attacked the war minister, so the state owned them without enlisting them. \"Impoverished\" fails because treasury money let them keep their staffs and add pages.",
+      "kills": {
+        "muzzled": {
+          "type": "logic",
+          "quote": "went on attacking the ministers, the war minister included",
+          "why": "Papers still attacking the ministers who owned them, with no one reading pages beforehand, were not silenced.",
+          "surface_fit": "A wartime government shaping what newspapers print is the classic setting for silencing the press, so muzzled is the stock verdict here. A war minister naming every daily's editor is the classic prelude to it.",
+          "inference": "A muzzled press cannot say what it wants; no official read these pages before printing, and the papers kept attacking the ministers, even the war minister who named their editors, so state ownership changed who held the papers, not what they were allowed to say."
+        },
+        "mobilized": {
+          "type": "explicit",
+          "quote": "declined to carry the ministry's recruiting notices",
+          "why": "Papers that refused the war ministry's recruiting notices and attacked its minister were not enlisted in the war effort.",
+          "surface_fit": "Wartime governments routinely enlist newspapers to rally the public, and this government was plainly involved in what the papers printed, so mobilized fits the sentence and the setting. Here the war minister even names the editors.",
+          "inference": "A mobilized press serves the war effort; these papers, though owned by the state and edited by the war minister's appointees, attacked him and declined his ministry's recruiting notices, so the state owned them without being able to use them for its cause."
+        },
+        "impoverished": {
+          "type": "logic",
+          "quote": "kept their old staffs and added pages",
+          "why": "Papers that kept their staffs and grew on treasury money were richer, not poorer.",
+          "surface_fit": "War laws often bleed newspapers through taxes, lost advertising and costly new duties, so impoverished fits a sentence about what a war government did to the press. Owners paid off in wartime bonds sounds like a press stripped of its value.",
+          "inference": "An impoverished press shrinks; with treasury money behind them these papers kept their old staffs and added pages, so the government's move enlarged them while taking them over."
+        }
+      }
+    },
+    {
+      "key": "impoverished",
+      "passage": "During a two-year war in the 1870s, one small country's government changed how it dealt with the country's four daily newspapers. A new war tax on each copy sold tripled the price of a paper, and within a year circulation had halved. Two of the four dailies closed, and the two that survived let go half their reporters. Both stayed in private hands and printed whatever they pleased. One historian's account of those years says the government ______ the press. Among the things the two survivors pleased to print were weekly attacks on the tax and on the war.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "A war tax tripled the price of a paper, circulation halved, two dailies closed and the survivors lost half their reporters, so the government \"impoverished\" the press, draining its money and its staff. \"Muzzled\" fails because the survivors printed whatever they pleased, including weekly attacks on the tax and the war, so the press lost money, not its voice. \"Mobilized\" fails because papers attacking the war every week were not enlisted in it. \"Nationalized\" fails because both survivors stayed in private hands.",
+      "kills": {
+        "muzzled": {
+          "type": "logic",
+          "quote": "printed whatever they pleased",
+          "why": "The surviving papers chose what to print, attacks on the government included, so they were not silenced.",
+          "surface_fit": "Half the country's dailies closing under a wartime law sounds like a government shutting down the press, so muzzled fits the sentence and the topic.",
+          "inference": "A muzzled press is stopped from speaking; here two papers closed because the tax drove away their readers, and the two that survived printed whatever they pleased, weekly attacks on the tax and the war among it, so the tax cost the press its money and readers without restricting what it said."
+        },
+        "mobilized": {
+          "type": "logic",
+          "quote": "weekly attacks on the tax and on the war",
+          "why": "Papers attacking the war every week were not serving the war effort.",
+          "surface_fit": "Wartime governments are known for enlisting the press to support the fighting, and this law was passed to pay for the war, so mobilized fits the sentence and the setting.",
+          "inference": "A mobilized press is put to work for the war; the tax paid for the war, but the surviving papers spent their pages attacking both the tax and the war every week, so the government gained their money and lost their support."
+        },
+        "nationalized": {
+          "type": "logic",
+          "quote": "Both stayed in private hands",
+          "why": "The surviving papers remained privately owned, so the state took none of them over.",
+          "surface_fit": "A government whose law closed half the country's dailies sounds like one taking control of the press, so nationalized fits a historian's verdict about it.",
+          "inference": "Nationalizing means state ownership; the two surviving dailies stayed in private hands and the two others simply closed, so the state owned no newspaper at all; it had only made them poorer."
+        }
+      }
+    },
+    {
+      "key": "mobilized",
+      "passage": "During a two-year war in the 1870s, one small country's government changed how it dealt with the country's four daily newspapers. Their editors joined a press committee that met weekly with the war ministry, and the four dailies ran its recruiting appeals and casualty lists free of charge. The man who had written the papers' prewar peace columns now wrote their weekly appeals to enlist, and no ministry official saw a page before it ran. The founding families paid for the added pages out of profits that climbed with wartime sales. One historian's account of those years says the government ______ the press. Two of those editors later wrote memoirs.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "The editors met weekly with the war ministry, ran its recruiting appeals and casualty lists free, and the papers' own peace writer turned to urging readers to enlist, so the government \"mobilized\" the press, enlisting it in the war effort. \"Muzzled\" fails because the peace columns stopped when their own writer changed sides, and no official saw a page before it ran, so the press was recruited, not silenced. \"Nationalized\" fails because the founding families still owned the papers and paid for the added pages. \"Impoverished\" fails because those families paid out of profits that climbed with wartime sales.",
+      "kills": {
+        "muzzled": {
+          "type": "logic",
+          "quote": "The man who had written the papers' prewar peace columns now wrote their weekly appeals to enlist",
+          "why": "The peace columns ended because their writer changed sides, and no official saw the pages, so the papers were not silenced.",
+          "surface_fit": "A wartime government shaping what newspapers print is the classic setting for silencing the press, so muzzled is the stock verdict here. Here the papers' peace columns did disappear.",
+          "inference": "Muzzling means stopping a press from saying what it wants; the peace columns stopped because the man who wrote them now wrote appeals to enlist, and no ministry official saw a page before it ran, so the papers chose the war's side themselves."
+        },
+        "nationalized": {
+          "type": "logic",
+          "quote": "The founding families paid for the added pages",
+          "why": "The families still paid the papers' costs, so they still owned them.",
+          "surface_fit": "A government reaching into the running of every daily in wartime sounds like one taking the papers over, so nationalized fits a historian's verdict. Papers printing the ministry's lists every day look like organs of the state.",
+          "inference": "Nationalizing means the state taking ownership; the founding families paid for the extra pages the ministry's notices filled, out of their own profits, so the papers stayed theirs, and the government got their pages by enlisting their editors."
+        },
+        "impoverished": {
+          "type": "logic",
+          "quote": "profits that climbed with wartime sales",
+          "why": "Papers with climbing profits were not made poor.",
+          "surface_fit": "War laws often bleed newspapers through taxes, lost advertising and costly new duties, so impoverished fits a sentence about what a war government did to the press. Giving away space free sounds like losing money.",
+          "inference": "An impoverished press loses money; these papers gave space free to the ministry, but their owners paid for it out of profits that climbed with wartime sales, so the government's demands cost them nothing that showed."
+        }
+      }
+    }
+  ]
+}

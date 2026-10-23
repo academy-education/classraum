@@ -1,0 +1,146 @@
+{
+  "id": "WIC28C-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a salt mine and a city's art museum",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "depository",
+    "gallery",
+    "dump",
+    "hospital"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "hospital",
+    "gallery",
+    "dump",
+    "depository"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "For a decade the old salt mine served the nearby city's art museum as its ______.",
+  "worlds": [
+    {
+      "key": "depository",
+      "passage": "For a decade the old salt mine served the nearby city's art museum as its ______. Its chambers lie six hundred feet down, where the air stays cool and dry all year, reached by a single lift. While the museum's building was rebuilt, its paintings went down in numbered crates and were set in an old spoil chamber. Once a month a curator rode down with a thermometer, checked each crate's seal against her list, and rode back up; the crates themselves never moved. When the new building opened, they came up in numbered order, and every canvas matched the photograph taken as it was packed.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "\"Depository\" fits: while the museum had no building, its paintings sat sealed in crates that a curator checked but never opened or moved, and every canvas came back exactly as packed, so the mine held the collection safe until it was wanted again. \"Gallery\" fails because only a curator ever went down, and the crates stayed sealed and in place, so nothing was shown. \"Hospital\" fails because the curator's monthly care involved only checking the air and the seals, and every canvas came back matching its packing photograph, so nothing was treated. \"Dump\" fails because, although the crates sat in an old spoil chamber, every one came back up in order when the building opened.",
+      "kills": {
+        "gallery": {
+          "type": "logic",
+          "quote": "the crates themselves never moved",
+          "why": "The paintings were never unpacked or shown.",
+          "surface_fit": "An art museum moving its paintings into the mine's large chambers suggests it was showing them there, so \"gallery\" fits the sentence and topic.",
+          "inference": "A gallery displays works to viewers; the only visitor was a curator checking seals once a month, and the crates never moved, so the paintings were held out of sight, not shown."
+        },
+        "hospital": {
+          "type": "logic",
+          "quote": "every canvas matched the photograph taken as it was packed",
+          "why": "The paintings came back unchanged.",
+          "surface_fit": "A curator went down every month to check the temperature and the paintings' condition, which sounds like nursing them, so \"hospital\" is a strong pull.",
+          "inference": "A hospital sends back what it treats in better condition; the curator only read a thermometer and checked seals, and every canvas came back matching its packing photograph, so the mine kept the paintings and did nothing to them."
+        },
+        "dump": {
+          "type": "logic",
+          "quote": "they came up in numbered order",
+          "why": "Every crate was retrieved.",
+          "surface_fit": "The crates were set in an old spoil chamber deep in an abandoned mine, which sounds like a place for discards, so \"dump\" fits.",
+          "inference": "A dump is where things are left for good; every crate came back up, in order, when the new building opened, so the spoil chamber was being used to keep the paintings, not to get rid of them."
+        }
+      }
+    },
+    {
+      "key": "gallery",
+      "passage": "For a decade the old salt mine served the nearby city's art museum as its ______. Its chambers lie six hundred feet down, where the air stays cool and dry all year, reached by a single lift. The museum sent down the pictures it valued least, and they hung uncrated along the largest chamber's walls under electric lamps, each with a printed card beside it. A restorer rode down each morning to look them over, and on weekends the lift ran from noon to dusk while townspeople waited their turn on the miners' benches. When the museum's new building opened, every picture went back up as it had come down.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "\"Gallery\" fits: the pictures hung on lit walls with printed cards, and townspeople queued every weekend to ride down and see them, so the mine was where the museum showed this part of its collection. \"Depository\" fails because the pictures were not packed away for safekeeping; they hung uncrated and the public came to look at them. \"Hospital\" fails because the restorer's daily visits were inspections: every picture went back up as it had come down, unrepaired. \"Dump\" fails because, although these were the museum's least valued pictures, they were labeled, displayed and all brought back up.",
+      "kills": {
+        "depository": {
+          "type": "logic",
+          "quote": "townspeople waited their turn",
+          "why": "The public came down to see the pictures.",
+          "surface_fit": "A museum moving pictures into a cool, dry mine for years and taking them all back sounds like safekeeping, so \"depository\" is the natural first guess.",
+          "inference": "A depository holds things away for safekeeping; these pictures hung uncrated under lamps with cards beside them while townspeople queued every weekend to see them, so the mine was showing them, not storing them."
+        },
+        "hospital": {
+          "type": "logic",
+          "quote": "went back up as it had come down",
+          "why": "No picture was changed by its stay.",
+          "surface_fit": "A restorer rode down every morning to look the pictures over, which sounds like a place where paintings receive care, so \"hospital\" is tempting.",
+          "inference": "A hospital sends back what it treats in better condition; though the restorer checked them daily, every picture went back up exactly as it came down, so nothing was repaired there."
+        },
+        "dump": {
+          "type": "logic",
+          "quote": "each with a printed card beside it",
+          "why": "The pictures were labeled for viewers.",
+          "surface_fit": "The museum sent down the pictures it valued least, which sounds like getting rid of them, so \"dump\" is a strong pull.",
+          "inference": "Discards are not labeled and lit; these least valued pictures each hung under a lamp with a printed card for the visitors, and every one went back up, so they were being shown, not thrown away."
+        }
+      }
+    },
+    {
+      "key": "dump",
+      "passage": "For a decade the old salt mine served the nearby city's art museum as its ______. Its chambers lie six hundred feet down, where the air stays cool and dry all year, reached by a single lift. The museum sent down the paintings it had struck from its catalog, water-stained copies and works no buyer would take, and miners leaned them in rows along the walls of a worked-out chamber, which was then bricked up. The museum's inventory marks each of them destroyed, and the chamber has not been opened since.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "\"Dump\" fits: the museum sent down works it had struck from its catalog and could not even sell, its inventory marks them destroyed, and the chamber was walled up and never reopened, so the mine was where it got rid of them. \"Depository\" fails because a depository keeps things for their owner to retrieve; these works had been struck from the catalog, so the museum no longer counted them as its own, and its inventory now marks them destroyed, so they were put away for good rather than held for later. \"Hospital\" fails because the water-stained copies were leaned against the walls and bricked in, with no one ever working on them. \"Gallery\" fails because, although the paintings were set out in rows along the walls, the chamber was bricked up at once and has stayed shut, so no one ever saw them.",
+      "kills": {
+        "depository": {
+          "type": "logic",
+          "quote": "marks each of them destroyed",
+          "why": "The museum itself counts the works as gone.",
+          "surface_fit": "Paintings sealed away in a cool, dry chamber deep underground sound like works put somewhere safe, so \"depository\" fits on a first read.",
+          "inference": "A depository holds things its owner means to get back; these works had been struck from the museum's catalog, no buyer would take them, and the museum's own inventory records them as destroyed before the chamber was walled in, so the museum was disposing of them, not keeping them."
+        },
+        "hospital": {
+          "type": "logic",
+          "quote": "which was then bricked up",
+          "why": "The damaged works were sealed away, not treated.",
+          "surface_fit": "Water-stained paintings sent to a place with steady cool, dry air sounds like damaged works sent somewhere to recover, so \"hospital\" is tempting.",
+          "inference": "A hospital treats damaged things and returns them; these water-stained copies were leaned against a chamber's walls and bricked in, and it has not been opened since, so no one ever worked on them."
+        },
+        "gallery": {
+          "type": "logic",
+          "quote": "has not been opened since",
+          "why": "No one has seen the works since they went down.",
+          "surface_fit": "An art museum setting paintings out in rows along a chamber's walls is exactly how a gallery hangs a show, so \"gallery\" fits the sentence and topic.",
+          "inference": "A gallery exists to be visited; this chamber was bricked up as soon as the paintings were set out and has stayed shut, so the rows along its walls have never had a viewer."
+        }
+      }
+    },
+    {
+      "key": "hospital",
+      "passage": "For a decade the old salt mine served the nearby city's art museum as its ______. Its chambers lie six hundred feet down, where the air stays cool and dry all year, reached by a single lift. After a flood soaked the museum, its water-stained paintings went down a few at a time and were laid uncrated on long tables in a lamp-lit chamber closed to the public, where restorers worked through them in turn. Each painting rode the lift back up within a year or two of arriving, its colors cleaned and its torn canvas patched, and the next damaged batch took its place on the tables.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "\"Hospital\" fits: paintings arrived damaged, were laid out on restorers' tables and worked through, and left within a year or two cleaned and mended, with the next damaged batch coming in behind them, so the mine was where the museum's injured works were treated. \"Depository\" fails because the paintings were not put away to be kept: they were unpacked onto worktables and sent back once repaired, making room for the next batch. \"Gallery\" fails because the restorers' chamber was closed to the public. \"Dump\" fails because every painting rode the lift back up, repaired.",
+      "kills": {
+        "depository": {
+          "type": "logic",
+          "quote": "the next damaged batch took its place on the tables",
+          "why": "Paintings passed through for work, not storage.",
+          "surface_fit": "A museum sending its paintings to a cool, dry mine and getting them all back sounds like safekeeping, and salt mines really were used to store art, so \"depository\" is a strong pull.",
+          "inference": "A depository keeps things packed away until they are wanted; these paintings were unpacked onto worktables, sent back as soon as the restorers finished, and replaced by the next damaged batch, so the chamber was a place of treatment, not storage."
+        },
+        "gallery": {
+          "type": "logic",
+          "quote": "closed to the public",
+          "why": "Nobody came to see the paintings.",
+          "surface_fit": "An art museum laying its paintings out in a lamp-lit chamber sounds like it was showing them, so \"gallery\" fits.",
+          "inference": "A gallery shows works to visitors; the lamp-lit chamber was a workroom closed to the public, so the paintings were there to be worked on, not viewed."
+        },
+        "dump": {
+          "type": "logic",
+          "quote": "rode the lift back up",
+          "why": "Every damaged painting was returned.",
+          "surface_fit": "Flood-ruined paintings sent down an old mine shaft sound like damaged goods being got rid of, so \"dump\" fits.",
+          "inference": "A dump is where damaged things are left; each painting rode the lift back up within a year or two, repaired, so none was discarded."
+        }
+      }
+    }
+  ]
+}

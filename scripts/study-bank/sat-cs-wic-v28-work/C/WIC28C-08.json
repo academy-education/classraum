@@ -1,0 +1,146 @@
+{
+  "id": "WIC28C-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "beavers in a dry mountain valley",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "flooded",
+    "deforested",
+    "dredged",
+    "greened"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "flooded",
+    "dredged",
+    "deforested",
+    "greened"
+  ],
+  "pos": "verb",
+  "after_blank": "theirs",
+  "blank_sentence": "A hydrologist who has studied both valleys concludes that the beavers have ______ theirs.",
+  "worlds": [
+    {
+      "key": "flooded",
+      "passage": "For thirty years beavers have lived on a creek in a dry mountain valley; the creek in the next valley has none. Where a hay meadow once lay, ducks now dive, and a line of gray pine trunks, barkless and bare of needles, stands out in open water. The beavers build with willow cut along the banks, which sprouts again from the stumps each spring, and silt settling behind each dam has raised the pond floors a foot. A hydrologist who has studied both valleys concludes that the beavers have ______ theirs. Beyond the water's edge, the valley's grass browns by midsummer just as the next valley's does.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "\"Flooded\" fits: ducks dive where a hay meadow lay and dead pines stand in open water, so the beavers' dams have put the valley floor under water. \"Deforested\" fails because the trees the beavers cut are willows that sprout again each spring; the pines in the ponds were killed by the water around them, not cleared. \"Dredged\" fails because silt settling behind the dams has raised the pond floors, filling the bed in rather than scooping it out. \"Greened\" fails because beyond the water's edge the valley's grass browns by midsummer just as the next valley's does.",
+      "kills": {
+        "deforested": {
+          "type": "logic",
+          "quote": "sprouts again from the stumps each spring",
+          "why": "The trees the beavers cut grow back.",
+          "surface_fit": "A line of dead, barkless pines stands in the valley, and beavers are famous for felling trees, so \"deforested\" is a strong pull.",
+          "inference": "The beavers cut only willow, which regrows from the stumps every spring; the dead pines stand where they grew, killed by the water now around them, so the valley has lost trees to drowning, not to clearing."
+        },
+        "dredged": {
+          "type": "logic",
+          "quote": "has raised the pond floors a foot",
+          "why": "The beds are filling in.",
+          "surface_fit": "Beavers dig mud from their ponds, and ducks now dive where a meadow lay, so \"dredged\" is tempting.",
+          "inference": "Dredging lowers a bed by removing mud; here silt settling behind the dams has raised the pond floors, so the deep water comes from the dams lifting the surface, while the bottom fills in."
+        },
+        "greened": {
+          "type": "logic",
+          "quote": "browns by midsummer just as the next valley's does",
+          "why": "The land beyond the ponds is no greener.",
+          "surface_fit": "Beaver valleys are famous for staying green in dry country, and this one now holds ponds of open water, so \"greened\" is the stock guess.",
+          "inference": "A greened valley would stay greener than its neighbor; past the water's edge this one browns by midsummer exactly as the beaverless valley does, so the ponds have not watered the land around them."
+        }
+      }
+    },
+    {
+      "key": "deforested",
+      "passage": "For thirty years beavers have lived on a creek in a dry mountain valley; the creek in the next valley has none. A hillside once thick with aspens, as the next valley's banks still are, is now open to the sky, its grass dotted with stumps bearing the marks of broad teeth. The creek below still runs in a shallow, stony bed, its pools no deeper than the next valley's, since each spring's runoff carries off the beavers' low dams. A hydrologist who has studied both valleys concludes that the beavers have ______ theirs. By midsummer the hillside's new grass browns with the rest of both valleys.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "\"Deforested\" fits: a slope once thick with aspen is now open grass dotted with stumps bearing broad tooth marks, so the beavers have cleared their valley of trees. \"Flooded\" fails because each spring's runoff carries off their low dams, so the creek stays in its shallow bed and no water spreads over the valley. \"Dredged\" fails because that bed is still shallow and stony. \"Greened\" fails because the new grass on the opened hillside browns by midsummer along with everything else.",
+      "kills": {
+        "flooded": {
+          "type": "logic",
+          "quote": "each spring's runoff carries off the beavers' low dams",
+          "why": "The dams never hold water back for long.",
+          "surface_fit": "Beavers are best known for damming creeks and drowning meadows, so \"flooded\" is the natural first guess.",
+          "inference": "Flooding needs dams that hold water back; these are carried off by every spring's runoff, and the creek still runs in its shallow bed, so no water stands over the valley."
+        },
+        "dredged": {
+          "type": "logic",
+          "quote": "still runs in a shallow, stony bed",
+          "why": "The creek bed has not been deepened.",
+          "surface_fit": "Beavers dig in their creeks, and this colony has worked its creek for thirty years, so \"dredged\" fits.",
+          "inference": "Dredging would leave the bed deeper; after thirty years of beavers it is still shallow and stony, so they have taken nothing from it."
+        },
+        "greened": {
+          "type": "logic",
+          "quote": "browns with the rest of both valleys",
+          "why": "The opened hillside is no greener.",
+          "surface_fit": "Clearing the aspens opened the hillside to sun, and grass now covers it, which looks like a valley the beavers have made greener, so \"greened\" is a strong pull.",
+          "inference": "A greened valley would stay greener in dry months; the new grass on the opened hillside browns by midsummer with the rest of both valleys, so the clearing has added cover only in spring."
+        }
+      }
+    },
+    {
+      "key": "dredged",
+      "passage": "For thirty years beavers have lived on a creek in a dry mountain valley; the creek in the next valley has none. Black mud studded with the creek's own pebbles lies heaped in ridges along the banks, and a pole pushed into each pool finds bottom three feet deeper than in the next valley's creek. The beavers live in burrows in the banks and build no dams, and the creek's surface stands where old survey stakes put it. A hydrologist who has studied both valleys concludes that the beavers have ______ theirs. Aspens shade both banks, and by midsummer the grass browns with the rest of both valleys.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "\"Dredged\" fits: mud full of the creek's own pebbles lies heaped on the banks, and the pools are three feet deeper than in the creek next door, so the beavers have scooped out their creek's bed. \"Flooded\" fails because they build no dams and the creek's surface stands where old survey stakes put it; the extra depth is below the water, not over the land. \"Deforested\" fails because aspens still shade both banks. \"Greened\" fails because by midsummer its grass browns with the rest of both valleys.",
+      "kills": {
+        "flooded": {
+          "type": "logic",
+          "quote": "the creek's surface stands where old survey stakes put it",
+          "why": "No water has been raised over the valley.",
+          "surface_fit": "Beavers are best known for flooding their valleys, and the pools here are three feet deeper than next door, so \"flooded\" is tempting.",
+          "inference": "Flooding would raise the water over the valley floor; with no dams the creek's surface is where the old stakes put it, and the extra depth lies below it, in pool bottoms lowered by digging."
+        },
+        "deforested": {
+          "type": "logic",
+          "quote": "Aspens shade both banks",
+          "why": "The banks keep their trees.",
+          "surface_fit": "Beavers are famous for felling trees, so \"deforested\" fits any valley a colony has worked for thirty years.",
+          "inference": "A deforested valley would have lost its trees; aspens still shade both banks of the creek the beavers work, so their labor has gone into the bed, not the forest."
+        },
+        "greened": {
+          "type": "logic",
+          "quote": "the grass browns with the rest of both valleys",
+          "why": "The beaver valley browns as much as the other.",
+          "surface_fit": "Deeper pools hold more water through the dry months, which should keep a valley green, so \"greened\" fits.",
+          "inference": "A greened valley would stay greener in dry summers; this one browns by midsummer along with its neighbor, so the deeper pools have not watered the land around them."
+        }
+      }
+    },
+    {
+      "key": "greened",
+      "passage": "For thirty years beavers have lived on a creek in a dry mountain valley; the creek in the next valley has none. Their low dams, a foot or two high, slow the creek without spreading it, and its water seeps sideways into the meadow, which squelches underfoot into autumn with no water standing on it. Silt settling behind the dams raises the pond floors each year, and aspens shade the banks as thickly as in the next valley. A hydrologist who has studied both valleys concludes that the beavers have ______ theirs. In the drought of 2021, ranchers from both valleys drove their cattle here to graze.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "\"Greened\" fits: water held by the low dams soaks sideways into the meadow and keeps it wet into autumn, and in a drought ranchers from both valleys brought their cattle here to graze, so the beavers have kept their valley green when the land around it was not. \"Flooded\" fails because the low dams slow the creek without spreading it, and no water stands on the meadow. \"Dredged\" fails because silt settling behind the dams raises the pond floors each year. \"Deforested\" fails because aspens shade the banks as thickly as in the next valley.",
+      "kills": {
+        "flooded": {
+          "type": "explicit",
+          "quote": "with no water standing on it",
+          "why": "The meadow is wet but not under water.",
+          "surface_fit": "Beaver dams are known for drowning meadows, and this meadow squelches underfoot for months, so \"flooded\" is a strong pull.",
+          "inference": "Flooding would put water over the meadow; the low dams slow the creek without spreading it, and the meadow is soaked from below with no water standing on it, so the dams have watered the ground, not covered it."
+        },
+        "dredged": {
+          "type": "logic",
+          "quote": "raises the pond floors each year",
+          "why": "The beds are filling in.",
+          "surface_fit": "Beavers dig mud from their ponds, so \"dredged\" fits a creek a colony has worked for thirty years.",
+          "inference": "Dredging removes mud from a bed; behind these dams silt settles out and raises the pond floors each year, so the beavers are filling the bed, not scooping it out."
+        },
+        "deforested": {
+          "type": "logic",
+          "quote": "aspens shade the banks as thickly as in the next valley",
+          "why": "The banks keep their trees.",
+          "surface_fit": "Beavers are famous for felling trees, so \"deforested\" fits any valley with a colony.",
+          "inference": "A deforested valley would have lost its trees; the aspens along its banks are as thick as next door, so the change the beavers made is in the meadow, not the forest."
+        }
+      }
+    }
+  ]
+}

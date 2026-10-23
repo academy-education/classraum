@@ -1,0 +1,146 @@
+{
+  "id": "WIC28C-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a merchant shipwreck after two centuries",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "encrusted",
+    "entombed",
+    "dismantled",
+    "gnawed"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "dismantled",
+    "gnawed",
+    "entombed",
+    "encrusted"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "Two centuries on the seabed had ______ the ship, divers reported after surveying it.",
+  "worlds": [
+    {
+      "key": "encrusted",
+      "passage": "A wooden brig loaded with roofing slates sank in thirty feet of water off a sandy coast that storms strike every winter. Two centuries on the seabed had ______ the ship, divers reported after surveying it. The hull rests upright on a ridge of rock that the current keeps bare of sand, its rails and hatch frames rounded into lumps of living stone. Divers had to chisel through three inches of oyster shell and coral before striking wood, and the oak beneath rang hard under the chisel. Through the open hatches, schools of fish swim in and out of the hold, among the stacked slates.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "\"Encrusted\" fits: the rails and hatch frames have been rounded into living stone, and the divers had to chisel through inches of shell and coral to reach the oak, so sea life has built a hard crust over the ship's surfaces. \"Entombed\" fails because the ship is not sealed away: it sits on rock the current keeps clear of sand, and fish swim freely through its open hatches, so the crust covers its outside without enclosing it. \"Dismantled\" fails because the hull rests upright with its rails, hatches and stacked cargo still in place, storms notwithstanding. \"Gnawed\" fails because the oak under the crust rang hard under the chisel; the life on the wreck grew over the wood rather than into it.",
+      "kills": {
+        "entombed": {
+          "type": "logic",
+          "quote": "schools of fish swim in and out of the hold",
+          "why": "The hull is open to the sea, not sealed in.",
+          "surface_fit": "A wreck on a sandy coast is usually swallowed by sand, and a ship wrapped in inches of living stone can look sealed inside it, so \"entombed\" is a strong pull.",
+          "inference": "Entombing means enclosing and sealing away; this hull sits on rock the current keeps bare of sand, and fish pass freely through its open hatches into the hold, so the stone lies only on its surfaces and the ship itself is open sea."
+        },
+        "dismantled": {
+          "type": "logic",
+          "quote": "rests upright on a ridge of rock",
+          "why": "The hull is whole and in place.",
+          "surface_fit": "Storms strike the coast every winter and the ship's outline has been blurred into lumps, so \"dismantled\" is tempting.",
+          "inference": "A dismantled ship would lie in separated pieces; this hull rests upright, its rails and hatch frames still there under the crust and its slates still stacked in the hold, so the storms have not taken it apart."
+        },
+        "gnawed": {
+          "type": "logic",
+          "quote": "the oak beneath rang hard under the chisel",
+          "why": "The wood under the crust is sound.",
+          "surface_fit": "Timber left in the sea for two centuries is the classic food of boring creatures, and this wreck is thick with sea life, so \"gnawed\" fits.",
+          "inference": "Wood that creatures had bored into would come up soft; the divers' chisel went through the shell and rang on hard oak, so the creatures settled on the wood without eating it."
+        }
+      }
+    },
+    {
+      "key": "entombed",
+      "passage": "A wooden brig loaded with roofing slates sank in thirty feet of water off a sandy coast that storms strike every winter. Two centuries on the seabed had ______ the ship, divers reported after surveying it. Within a few years a sandbar drifting along the coast came to rest over the place where it sank, and the divers found the hull only by probing down with steel rods. Shipworms riddle the driftwood on that beach, and a plank the divers lifted from eight feet down took a nail like new timber. Pumped clear, the deck still showed its builders' tool marks, and the slates lay stacked in the hold.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "\"Entombed\" fits: soon after the wreck a sandbar settled over it, the divers could find the hull only by probing down eight feet, and beneath the sand the ship lay sealed and preserved, so the seabed buried it. \"Gnawed\" fails because, although shipworms riddle the wood on that beach, the sand shut the hull off from the water they live in, and its oak took a nail like new timber. \"Encrusted\" fails because a hull covered within a few years never stood in open water long enough for life to settle on it; its deck still showed the builders' tool marks. \"Dismantled\" fails because the storms that shift the sandbar left the hull together, its slates still stacked in the hold.",
+      "kills": {
+        "gnawed": {
+          "type": "logic",
+          "quote": "took a nail like new timber",
+          "why": "The buried oak is sound.",
+          "surface_fit": "Shipworms riddle the driftwood on this very beach, so \"gnawed\" is the natural guess for a wreck two centuries old.",
+          "inference": "The worms are in the beach's exposed wood; this hull has lain under eight feet of sand since its first years, cut off from the water the worms live in, and a plank lifted from it took a nail like new, so the sand kept them out."
+        },
+        "encrusted": {
+          "type": "logic",
+          "quote": "still showed its builders' tool marks",
+          "why": "The deck's surface is bare and unchanged.",
+          "surface_fit": "Old wrecks are usually coated in shells and coral, so \"encrusted\" is the stock description of a ship after two centuries underwater.",
+          "inference": "A crust forms only on surfaces open to seawater; a sandbar covered this hull within a few years, and its deck surface still shows the builders' tool marks, so nothing ever grew over it."
+        },
+        "dismantled": {
+          "type": "logic",
+          "quote": "the slates lay stacked in the hold",
+          "why": "The hull and its cargo are intact.",
+          "surface_fit": "A drifting sandbar on a coast storms strike every winter suggests a ship pounded apart, so \"dismantled\" is tempting.",
+          "inference": "A ship broken apart would spill its heavy cargo; the slates still lay stacked in the hold under the deck, so the hull held together under the sand."
+        }
+      }
+    },
+    {
+      "key": "gnawed",
+      "passage": "A wooden brig loaded with roofing slates sank in thirty feet of water off a sandy coast that storms strike every winter. Two centuries on the seabed had ______ the ship, divers reported after surveying it. The hull lies where it settled on open sand that the current sweeps clean each tide, and its outline, keel to rails, can still be traced from above. A plank the divers lifted weighed less than a loaf and crumbled in their hands. Its surface was pale and smooth except for holes no wider than a pencil lead, and slates that slid through the sagging planks lie crusted with barnacles around the hull.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "\"Gnawed\" fits: a plank that looks smooth outside, apart from pencil-lead holes, weighs almost nothing and crumbles, so creatures have eaten the wood away from within. \"Entombed\" fails because the current sweeps the sand off the hull every tide, leaving it exposed. \"Encrusted\" fails because the barnacles are on the spilled slates, while the plank's own surface came up pale and smooth. \"Dismantled\" fails because the hull's outline can still be traced from keel to rails; the planks are sagging where they are, eaten hollow, not broken apart and scattered.",
+      "kills": {
+        "entombed": {
+          "type": "logic",
+          "quote": "open sand that the current sweeps clean each tide",
+          "why": "The hull is exposed, not buried.",
+          "surface_fit": "The wreck lies off a sandy coast where sand buries most wrecks, so \"entombed\" fits the setting.",
+          "inference": "Entombing would need sand closed over the hull; the current sweeps it clean every tide and the outline can be traced from above, so the hull lies open to the water, which is how the borers reached it."
+        },
+        "encrusted": {
+          "type": "logic",
+          "quote": "Its surface was pale and smooth",
+          "why": "The plank itself carries no crust.",
+          "surface_fit": "Barnacles crust the slates lying around the hull, so \"encrusted\" seems to describe the wreck.",
+          "inference": "The barnacles are on the slates that slid out; the plank's own surface was pale and smooth apart from tiny holes, so the creatures that changed the wood worked inside it, not on it."
+        },
+        "dismantled": {
+          "type": "logic",
+          "quote": "its outline, keel to rails, can still be traced",
+          "why": "The hull's shape is intact on the bottom.",
+          "surface_fit": "Planks that crumble in the hand and cargo spilling through a sagging hull suggest a ship falling to pieces, so \"dismantled\" is tempting.",
+          "inference": "A dismantled ship would lie in separated pieces; this hull's outline can still be traced from keel to rails where it settled, so its timbers are in place and hollowed, not pulled apart."
+        }
+      }
+    },
+    {
+      "key": "dismantled",
+      "passage": "A wooden brig loaded with roofing slates sank in thirty feet of water off a sandy coast that storms strike every winter. Two centuries on the seabed had ______ the ship, divers reported after surveying it. Its slates lie scattered over half a mile of sea floor in a line running the way the winter storms blow, and planks and ribs turn up all along that line, some half buried, some bare, rarely in the same place two winters running. The planks the divers lifted were heavy and sound, their edges rounded and scoured pale by moving sand.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "\"Dismantled\" fits: the cargo lies strung along the storms' track and the ship's own planks and ribs turn up along that same line, so the winters have broken the hull apart and carried it off piece by piece. \"Entombed\" fails because the pieces that lie half buried one winter are elsewhere the next, so the sand covers them only for a time and never seals them away. \"Encrusted\" fails because pieces kept moving and scoured by sand came up pale, with nothing settled on them. \"Gnawed\" fails because the planks were heavy and sound.",
+      "kills": {
+        "entombed": {
+          "type": "logic",
+          "quote": "rarely in the same place two winters running",
+          "why": "The pieces keep moving, so the sand never seals them in.",
+          "surface_fit": "Some of the wreck lies half buried in the sand off this sandy coast, so \"entombed\" is a strong pull.",
+          "inference": "Being half buried one winter means little if the piece lies somewhere else the next; these pieces are shifted by each winter's storms, so the sand never closes over the ship and holds it."
+        },
+        "encrusted": {
+          "type": "logic",
+          "quote": "scoured pale by moving sand",
+          "why": "The planks are scoured clean.",
+          "surface_fit": "Wreck timber two centuries underwater is usually coated in shells, so \"encrusted\" is the stock description.",
+          "inference": "Shells and coral need a still surface to settle on; planks that move every winter came up rounded and scoured pale by the sand, so nothing could crust on them."
+        },
+        "gnawed": {
+          "type": "logic",
+          "quote": "were heavy and sound",
+          "why": "The wood has not been eaten away.",
+          "surface_fit": "Scattered, worn wreck timber two centuries old suggests wood eaten by boring creatures, so \"gnawed\" fits.",
+          "inference": "Wood eaten by borers comes up light and weak; these planks were heavy and sound, so the ship's damage lies in being broken apart, not in its wood being eaten."
+        }
+      }
+    }
+  ]
+}

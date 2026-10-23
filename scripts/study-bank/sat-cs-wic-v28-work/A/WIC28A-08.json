@@ -1,0 +1,146 @@
+{
+  "id": "WIC28A-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a whale carcass on the deep seafloor",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "bridge",
+    "battery",
+    "banquet",
+    "cupboard"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "bridge",
+    "battery",
+    "banquet",
+    "cupboard"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "A biologist who has filmed it since 1988 calls the carcass the seafloor's ______.",
+  "worlds": [
+    {
+      "key": "banquet",
+      "passage": "In 1987 a forty-ton whale died at sea and sank to the seafloor two miles down. A biologist who has filmed it since 1988 calls the carcass the seafloor's ______. Within days hundreds of sleeper sharks, hagfish and crabs had crowded onto it from miles around, and in four months they had stripped its flesh; bacteria finished the bones within a year. The same kinds of animals turn up at any bait lowered onto that seafloor, and they scattered once the flesh was gone.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "\"Banquet\" fits: hundreds of scavengers crowded onto the carcass at once and ate it all within months, one huge feast that ended when the flesh was gone. \"Cupboard\" fails because nothing was kept back to draw on later; the crowd consumed all of it in four months. \"Battery\" fails because the bones were finished within a year, so the carcass gave up its energy in a burst rather than slowly over a long time. \"Bridge\" fails because the scavengers are the kinds of animals that turn up at any bait on that seafloor, so the carcass linked no populations that were apart.",
+      "kills": {
+        "cupboard": {
+          "type": "logic",
+          "quote": "in four months they had stripped its flesh",
+          "why": "the food was consumed at once by a crowd, not stored and drawn on",
+          "surface_fit": "a whale carcass is a huge store of food lying on the seafloor, which is just what a cupboard holds",
+          "inference": "a store is kept and drawn on over time, but hundreds of scavengers stripped all the flesh within four months and then scattered, so nothing was kept for later"
+        },
+        "battery": {
+          "type": "logic",
+          "quote": "bacteria finished the bones within a year",
+          "why": "the energy was used up quickly",
+          "surface_fit": "a carcass holding forty tons of food sounds like a stored source of energy for the life around it",
+          "inference": "flesh gone in four months and bones finished within a year means the carcass's energy was spent in a burst, not released slowly over a long time"
+        },
+        "bridge": {
+          "type": "logic",
+          "quote": "turn up at any bait lowered onto that seafloor",
+          "why": "the visitors are widespread animals that need no link",
+          "surface_fit": "animals arriving from miles around and leaving again suggests a stepping stone that animals use to cross the seafloor",
+          "inference": "scavengers that come to any bait anywhere on that seafloor live all over it and need no stepping stone between separated homes, so the carcass connected nothing that was apart"
+        }
+      }
+    },
+    {
+      "key": "cupboard",
+      "passage": "In 1987 a forty-ton whale died at sea and sank to the seafloor two miles down. A biologist who has filmed it since 1988 calls the carcass the seafloor's ______. For six years the same few sleeper sharks, known by their scars, came back every few weeks, each tearing off a mouthful or two of the cold flesh and swimming off with it. Tags showed that they came from deep basins on opposite sides of the carcass, and that each shark went home to its own basin. By 1994 the bones were bare.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "\"Cupboard\" fits: the same few sharks returned every few weeks for six years, each tearing off a mouthful and taking it away, so the carcass was a store of food they drew on bit by bit. \"Banquet\" fails because there was no crowd and no single feast; a few sharks took a mouthful or two at a time. \"Battery\" fails because the carcass's flesh was eaten as it was, torn off and carried away, which is a larder's role; nothing on it was converting stored energy into power. \"Bridge\" fails because sharks from each basin went home to their own basin, so no animal crossed from one side to the other by way of the carcass.",
+      "kills": {
+        "banquet": {
+          "type": "logic",
+          "quote": "each tearing off a mouthful or two",
+          "why": "small, spaced meals over years, not one great feast",
+          "surface_fit": "a forty-ton whale on the deep seafloor sounds like a feast for whatever finds it",
+          "inference": "a few sharks taking a mouthful or two every few weeks for six years are drawing down stored food slowly, not sharing one great meal"
+        },
+        "battery": {
+          "type": "logic",
+          "quote": "tearing off a mouthful or two of the cold flesh and swimming off with it",
+          "why": "the food is taken away and eaten as it is",
+          "surface_fit": "a store of food drawn down slowly over six years sounds like a battery running down",
+          "inference": "the sharks tear off the flesh and carry it away to eat, mouthful by mouthful, which is food taken from a store, not energy released on site to power anything"
+        },
+        "bridge": {
+          "type": "logic",
+          "quote": "each shark went home to its own basin",
+          "why": "no animal crossed between the basins",
+          "surface_fit": "sharks from two basins on opposite sides of the carcass meeting at it suggests a link between the basins",
+          "inference": "sharks from both basins came to the carcass, but each went back to its own basin, so nothing crossed from one basin to the other by way of it"
+        }
+      }
+    },
+    {
+      "key": "battery",
+      "passage": "In 1987 a forty-ton whale died at sea and sank to the seafloor two miles down. A biologist who has filmed it since 1988 calls the carcass the seafloor's ______. Its flesh was gone within months. The bones, soaked with oil, have been coated ever since with mats of bacteria that break the oil down slowly, giving off a gas on which the clams living among the bones depend, since the clams cannot digest the oil themselves. Thirty years on, the mats are as thick as in 1990, and young clams settle among their parents.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "\"Battery\" fits: the oil stored in the bones is turned by bacteria, slowly and steadily for thirty years, into a gas that powers the clams, so the carcass is a store of energy released a little at a time. \"Cupboard\" fails because the clams cannot eat the oil; its energy reaches them only after bacteria convert it, like a stored charge slowly discharged, not a stock of food eaten as it is. \"Banquet\" fails because the bones have supported the bacteria and clams for thirty years without running down, which is the opposite of a brief feast. \"Bridge\" fails because young clams settle among their parents, so the carcass keeps its community in place rather than passing animals on.",
+      "kills": {
+        "cupboard": {
+          "type": "logic",
+          "quote": "the clams cannot digest the oil themselves",
+          "why": "the energy reaches the clams only after bacteria convert it",
+          "surface_fit": "bones full of stored oil that a community lives on for decades sound like a well-stocked larder",
+          "inference": "since the clams cannot digest the oil, what feeds them is the gas the bacteria give off as they slowly break the oil down, a stored charge discharging, not a stock of food the clams eat as it is"
+        },
+        "banquet": {
+          "type": "logic",
+          "quote": "Thirty years on, the mats are as thick as in 1990",
+          "why": "the supply is long and steady",
+          "surface_fit": "a whale's flesh gone within months is the picture of a great feast",
+          "inference": "the flesh went quickly, but the bones have fed the bacteria and clams for thirty years without thinning, so the carcass's main role is a slow, steady supply, not a feast"
+        },
+        "bridge": {
+          "type": "logic",
+          "quote": "young clams settle among their parents",
+          "why": "the clams stay and breed on the same bones",
+          "surface_fit": "clams living on whale bones out on the deep seafloor suggests a stepping stone that lets them spread",
+          "inference": "young clams settling among their parents keep the community on the same bones, so the carcass is not passing them on anywhere else"
+        }
+      }
+    },
+    {
+      "key": "bridge",
+      "passage": "In 1987 a forty-ton whale died at sea and sank to the seafloor two miles down. A biologist who has filmed it since 1988 calls the carcass the seafloor's ______. Its bones soon held clams of a kind otherwise found only at hot springs on the seafloor, which lie hundreds of miles apart. Genes show that the clams on the bones descend from two spring fields on opposite sides of the carcass; within two years the bones were bare, and young of those clams had turned up at a third field.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "\"Bridge\" fits: clams that live only at hot springs hundreds of miles apart arrived on the bones from two fields on opposite sides, and their young reached a third field, so the carcass let these clams cross the gap between springs. \"Battery\" fails because the bones were bare within two years, so they did not supply energy slowly over a long time. \"Banquet\" fails because the biologist's point is where the clams came from and where their young went, lineages crossing between distant springs, not a crowd feeding. \"Cupboard\" fails because the clams arrived, bred, and their young moved on to a third field; nothing came back to draw on stored food.",
+      "kills": {
+        "battery": {
+          "type": "logic",
+          "quote": "within two years the bones were bare",
+          "why": "the energy ran out quickly",
+          "surface_fit": "bones feeding clams that otherwise live off hot springs sounds like a power source standing in for the springs",
+          "inference": "bones bare within two years supplied the clams only briefly, so the carcass did not store and release energy over a long time; its importance lies in where the clams came from and went"
+        },
+        "banquet": {
+          "type": "logic",
+          "quote": "descend from two spring fields on opposite sides",
+          "why": "what the carcass did was bring separated lineages together and pass them on",
+          "surface_fit": "a forty-ton whale lying on the deep seafloor and soon covered in animals sounds like a feast",
+          "inference": "clams from two separate fields meeting on the bones and sending young to a third field show the carcass joining distant springs; a feast is about animals eating, and nothing here turns on that"
+        },
+        "cupboard": {
+          "type": "logic",
+          "quote": "young of those clams had turned up at a third field",
+          "why": "the clams moved on rather than returning for stored food",
+          "surface_fit": "a carcass on the seafloor holds food, so a store that animals draw on is a natural reading",
+          "inference": "clams that settled, bred, and sent their young on to a third field were passing between springs by way of the carcass, not coming back to it for stored food"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,763 @@
+{
+ "_batch_tells_listed_only": [
+  "r0: One-kill-per-distractor template: in most items each wrong option is paired with exactly one planted negating phrase (often in sentences after the blank), so a solver can match options to their denials and take the one left unnegated without understanding the passage's logic: P05, P06, P08, P09, P12, P13, P15, P18, P19, P20, P21, P23, P24, P26, P27, P28, P29, P31, P33, P35, P36, P39, P40.",
+  "r0: The cliché / textbook word for the topic is usually a distractor (killed by one planted fact) rather than the key: kidney P08, corridor P17, sorted P31, denuded P12, reduced P13, muzzled P06, pirated P04, chilled P28, patrolled P35, nibbled P11, depository P25, condemned P03. Exceptions where the cliché is keyed (tomb P02, pilgrimage P16, greened P39) are the easy items.",
+  "r0: Paired worlds reuse one frame with contrasting keys: P21/P22 (merchant ship with iron bars and wine, divers in 1990; sand burial vs rock tumbling) and P13/P36 (wolves return to an elk valley; in both the fear word, rattled/cowed, is a distractor and the plain behavioural word is keyed).",
+  "r0: '[Observer] calls/describes X as the [place]'s ______' noun-metaphor template recurs: P05, P08, P09, P10, P14, P17, P19, P20, P25, P32, P34, P40; and 'the [report] concludes/says that [agent] had ______ the [thing]' recurs across P07, P12, P22, P23, P26, P27, P29, P30, P33, P37, P39.",
+  "r0: Alliterative option sets (P03 c-, P04 p-, P13 r-, P15 r-, P28 c-, P30 m-, P35 p-, P38 r-) are a repeated template, though I found no letter or sound that predicts the key within them.",
+  "r1: Paired near-duplicate worlds with different keys: P12/P14 (merchant ship carrying iron bars and wine sunk off a coast, divers in 1990 - mummified vs gnawed) and P18/P36 (wolves return to a mountain valley, one elk herd - ambushed vs rattled). Solving one primes the other, and the repeated frame shows the template.",
+  "r1: One planted kill per distractor: on most items each wrong option is contradicted by its own sentence or clause, usually phrased as 'the same as / as before / still / never / none' (P03, P04, P05, P08, P09, P10, P11, P13, P14, P17, P19, P20, P21, P22, P27, P28, P34, P35, P36, P37, P38, P40). A solver can find the three negated words and pick the leftover without reading the passage as an argument; explicit_kills is 3 on most of the render.",
+  "r1: A sentence AFTER the blank that kills the strongest near-miss: P04 (rhythm kills manicured), P05 ('same nitrogen' kills manured/leached), P07 (rents), P13 (gale kills dislodged), P21 ('same brown' kills greened), P28 (attacks kill muzzled), P30 (unreached row), P31 (river between boulders). Recognisable shape: claim with blank, then one closing sentence aimed at the stock word.",
+  "r1: The stock collocation for the scenario is consistently the distractor, killed by one planted fact: corridor (P06), tomb (P15), greened (P21), muzzled (P28), dislodged (P13), blockaded (P38), sorted (P08), manured (P05). A test-wise solver who learns that the obvious word is always wrong gains an edge.",
+  "r1: Alliterative or same-initial option sets used repeatedly: P06 (cage/corridor/cemetery/cafeteria), P08 (stacked/sanded/sorted/stained), P09 (raised/rutted/ruptured/rippled), P10 (chilled/clogged/churned + bled), P23 (patrolled/propagated/pollinated/parasitized), P27 (pirated/plagiarized/panned/popularized), P29 (receipt/recipe/roadmap), P34 (ransacked/ransomed/repatriated/requisitioned), P36 (redistributed/reduced/rejuvenated/rattled). Not key-predictive by itself but an obvious shared template.",
+  "r1: Metaphor-noun frame 'X served as / called the Y's ______' recurs across P02, P03, P06, P07, P15, P16, P22, P24, P25, P26, P29, P33, P35, P37; the key is always the noun naming the function the evidence describes.",
+  "r2: Three-kill template: in most items each wrong option is denied by its own planted 'as before / unchanged / no X' phrase, often stacked in one sentence, and the key is the one option left undenied, so a solver can eliminate without inferring. P03, P04, P06, P14, P19, P20, P21, P25, P27, P28, P32, P33, P34, P35, P38, P39, P40.",
+  "r2: Counter-trope keys: the option matching the popular science story for the setup is the distractor, and the passage explicitly negates it, so 'pick the option the passage is at pains to deny is NOT the key' predicts the answer. Corridor in P02, greened in P14, reduced in P20, dislodged in P21, herded in P18, patrolled in P22, tomb in P16, banquet in P30, firebreak in P08.",
+  "r2: Recycled frames across items: P12 and P27 (merchant ship carrying iron bars and wine, divers survey in 1990); P20 and P38 (wolves return to a mountain valley, elk herd); P18 and P22 (ants on a plant, then a 'her/the report concludes the ants had ___' blank).",
+  "r2: Alliterative option sets with the key inside: P02 (c-), P09 (p- x3), P20 (r-), P22 (p-), P24 (c- x3), P35 (r-), P40 (r- x3). This is not predictive of the letter but is a visible authoring signature.",
+  "r2: A trailing sentence after the blank often supplies the last kill or the confirming fact (for example 'In dry summers both valleys turn the same brown', 'Its benches stand mostly empty at midday', 'A gale ... left both halves standing'). P10, P13, P14, P18, P21, P33, P39.",
+  "r3: Kill-every-distractor template: in nearly every item each wrong option is negated by one planted 'as X as / still / no / unchanged' clause (explicit_kills 3 on P03, P05, P07-P09, P11-P15, P18-P20, P22-P31, P33-P40), so the key is found by elimination of three planted negations rather than by reading the passage's positive claim.",
+  "r3: Figurative-noun template 'X calls/treats the [place] as the [place's] ______' with four metaphor nouns recurs: P01, P05, P06, P10, P13, P14, P15, P16, P21, P26, P27, P29, P38.",
+  "r3: Plain/literal word survives when every vivid option is negated: P13 fence, P28 raised, P03 reduced, P25 condemned.",
+  "r3: Near-duplicate worlds: P02/P03 (wolves return to a valley elk herd, 1995/1996), P17/P37 (merchant ship with iron bars and wine sunk, 1690/1790, surveyed by divers in 1990), P07/P32/P35 (a text altered and compared line by line).",
+  "r3: The positive clue is often a single late concrete sentence that names the action outright (P05, P08, P14, P19, P28, P34, P37, P39)."
+ ],
+ "WIC28C-06": {
+  "world 1 (key fertilized)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "fertilized",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'The soil holds twice the nitrogen' hands over 'fertilized' in one sentence. 'Denuded' (the grazing cliché) dies on grass growing taller and greener, 'groomed' on uneven tussocks, 'furrowed' on no worn paths; each distractor is matched to its own negating phrase.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 2 (key furrowed)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [
+    "distractor fits literally"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "furrowed",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": "denuded",
+   "presupposes_absent": null,
+   "reader_note": "Level tracks 'like the treads of a stair' give furrowed (terraced would be more precise, which slightly weakens the key); 'grass grows as rough and tall' kills groomed and denuded, 'soil tests no richer' kills fertilized, but 'worn to bare earth' makes denuded a literal fit for the tracks themselves.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 3 (key groomed)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "groomed",
+   "reader_difficulty": "medium",
+   "n_struck": 1,
+   "struck_words": [
+    "furrowed"
+   ],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Each distractor has its own planted denial: 'soil tests no richer' (fertilized), 'leaving no worn paths' (furrowed), and turf 'an inch high, with tiny flowers' (denuded). 'Furrowed' also falls on a surface read because grazing sheep do not plow. Once those three are read, 'groomed' is just the option left over.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 0 (key denuded)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "denuded",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "A tenth as many plants and soil washed away gives denuded; fertilized killed by 'tests no richer', furrowed by 'leaving no worn paths', groomed by the bare, sparse cover.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ },
+ "WIC28C-07": {
+  "world 2 (key enlarged)": {
+   "must_revise": [
+    "easy",
+    "distractors weak"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "enlarged",
+   "reader_difficulty": "easy",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "weak",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Twice as wide and twice as tall', the harbor going from one inch to two and the scale bar doubling state 'enlarged' outright. Each distractor is struck by one planted phrase: 'flipped' by north at the top of both, 'doctored' by every feature where the survey puts it, 'gilded' by the sea bare of ornament.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 3 (key gilded)": {
+   "must_revise": [
+    "easy",
+    "distractors plausible"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "gilded",
+   "reader_difficulty": "easy",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'a scrolled frame laid with gold leaf' hands over gilded literally, so the figurative sense is never needed; 'The print is the survey's size' kills enlarged, 'north is at the top of both' kills flipped, 'every cape, bay, and shoal sits where the survey puts it' kills doctored, one sentence each.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 0 (key doctored)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "doctored",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'The survey's size' kills enlarged, 'north at the top of both' kills flipped, and 'as bare of ornament' kills gilded, all from one sentence. The channel moved across a reef at the navy's harbor, sold to foreign captains, gives doctored.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 1 (key flipped)": {
+   "must_revise": [
+    "easy",
+    "distractors weak"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "flipped",
+   "reader_difficulty": "easy",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "weak",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'In reverse order: the harbor at the survey's western end stands at the print's eastern end' hands over flipped, and the copper-plate sentence repeats it; enlarged killed by 'the survey's size', gilded by 'bare of ornament', doctored by 'each at its exact distance'.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ },
+ "WIC28C-02": {
+  "world 1 (key entombed)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "entombed",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "The sandbar coming to rest over the wreck and the hull found only by probing give 'entombed'. 'Gnawed' dies on the deck sound enough to hold a nail, 'encrusted' on 'smooth and pale', 'dismantled' on an intact hull with full casks.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 2 (key gnawed)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "gnawed",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'warm water where shipworms thrive' plus a plank 'light as cork' that crumbled gives gnawed; 'open sand that the current sweeps clean' kills entombed, 'outline unbroken' kills dismantled, 'smooth and pale on its surface' kills encrusted. Mirror of P12's world (merchant ship, iron bars and wine) with the opposite outcome, so solving one primes the other.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 3 (key dismantled)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "dismantled",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Strewn over half a mile of open sand' gives 'dismantled'. 'Open sand' kills entombed, 'scoured smooth and pale' kills encrusted, and 'wood still heavy and sound' kills gnawed, one phrase each.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 0 (key encrusted)": {
+   "must_revise": [
+    "easy",
+    "distractors plausible"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "encrusted",
+   "reader_difficulty": "easy",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Every plank and cask wears a coat of oysters and coral several inches thick' alone gives encrusted; entombed killed by lying on a rock ridge with hatches open, dismantled by hull still where it settled, gnawed by oak hard as the day it was cut.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ },
+ "WIC28C-04": {
+  "world 3 (key hospital)": {
+   "must_revise": [],
+   "also_named_for": [
+    "distractor fits literally"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "hospital",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": "depository",
+   "presupposes_absent": null,
+   "reader_note": "'Depository' is the strong lure (cool dry salt mines really do store art, and the paintings were held there) and dies only on each painting returning within a year or two repaired; 'gallery' dies on 'closed to the public', 'dump' on the paintings going back up; restorers cleaning and patching give 'hospital'.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 0 (key depository)": {
+   "must_revise": [
+    "easy",
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "depository",
+   "reader_difficulty": "easy",
+   "n_struck": 1,
+   "struck_words": [
+    "dump"
+   ],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'sealed crates, which were stacked unopened behind steel doors, with guards who let no one in' describes a depository outright; dump fails on a surface read because the museum chose the mine and took every crate back, and gallery/hospital are each killed by one planted phrase ('unopened', 'exactly as it had been packed').",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 1 (key gallery)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [
+    "distractor fits literally"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "gallery",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": "depository",
+   "presupposes_absent": null,
+   "reader_note": "'Depository' is suggested by the cool dry air and the war-storage setting, but it is killed by paintings hung 'uncrated' that townspeople 'walk past' every Sunday, which makes it a gallery. 'Stayed there unchanged' kills hospital and 'every one went back up' kills dump.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 2 (key dump)": {
+   "must_revise": [],
+   "also_named_for": [
+    "distractor fits literally"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "dump",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": "depository",
+   "presupposes_absent": null,
+   "reader_note": "Discards bricked up with no list and never opened gives dump; depository is planted by the cool dry air and single shaft but fails on 'struck from its catalog' and 'no list'; gallery killed by bricking up, hospital by nothing being restored.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ },
+ "WIC28C-05": {
+  "world 0 (key dislodged)": {
+   "must_revise": [
+    "easy",
+    "distractors weak"
+   ],
+   "also_named_for": [
+    "antonym pair",
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "dislodged",
+   "reader_difficulty": "easy",
+   "n_struck": 1,
+   "struck_words": [
+    "fortified"
+   ],
+   "distractor_quality": "weak",
+   "antonym_pair": [
+    "dislodged",
+    "fortified"
+   ],
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Stones there rocked at a touch, and a dozen lay in the grass' hands over 'dislodged', and dislodged/fortified is an opposite pair so 'fortified' is struck as one end of it. 'Dried' dies on matching moisture readings, 'etched' on clean stone faces.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 2 (key dried)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "dried",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Moisture readings ... a third of those on the bare half' is the key stated literally. 'Stood firm in sound mortar' kills dislodged, 'stone faces under the stems were clean' kills etched, and the gale that 'left both halves standing' kills fortified.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 3 (key etched)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "etched",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'A fine lace of shallow grooves' that a wire brush would not remove gives etched; dried killed by matching moisture readings, dislodged by sound mortar, fortified by the gale leaving both halves standing.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ },
+ "WIC28C-01": {
+  "world 0 (key herded)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "herded",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Workers carrying aphids in their jaws to the youngest leaves decides 'herded'. 'Devoured' dies on numbers rising all summer, 'drugged' on aphids walking as quickly on crossed leaves; 'garnered' has no planted kill but gathering aphids as a harvest is not what the passage describes.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 1 (key drugged)": {
+   "must_revise": [
+    "explanation path wrong (phase 2)"
+   ],
+   "also_named_for": [
+    "key not recovered",
+    "not exclusive",
+    "second defensible",
+    "distractor fits literally"
+   ],
+   "listed_only": [],
+   "reader_pick_word": "herded",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 1,
+   "second_defensible_word": "drugged",
+   "literal_fit_word": "drugged",
+   "presupposes_absent": null,
+   "reader_note": "Aphids kept in place and scattering where ants could not reach gives herded, but 'Aphids on leaves a worker had crossed crept a third as fast' and fewer growing wings literally describes a sedative trace, so drugged is defensible as the mechanism; garnered is killed (the ants take honeydew, not aphids), and devoured is weakened by clusters growing all summer but the unreached row holding three times as many gives it some support.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": false,
+   "phase2_note": "Herded is rejected only in its driving sense ('never moved the aphids'), when herding also means keeping a flock together and in place, which is exactly the outcome the passage reports (tended aphids stayed put while untended ones scattered); drugged is the more precise word for the chemical slowing, but herded remains defensible and the rejection does not rule it out."
+  }
+ },
+ "WIC28C-08": {
+  "world 3 (key greened)": {
+   "must_revise": [
+    "easy",
+    "distractors weak"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "greened",
+   "reader_difficulty": "easy",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "weak",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "The final sentence 'the meadow along the creek stays green while the valley next door turns brown' echoes the key word 'greened' directly. Each distractor has one planted kill: 'flooded' by 'under no standing water', 'dredged' by silt raising the pond floors, 'deforested' by aspens as thick as next door.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 0 (key flooded)": {
+   "must_revise": [
+    "easy",
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "flooded",
+   "reader_difficulty": "easy",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'ponds that cover the old meadow four feet deep, drowning the pines' states flooded literally; greened (the stock beaver word) is killed by the after-blank 'both valleys turn the same brown', deforested by willows that sprout again and aspens as thick, dredged by silt raising the pond floors.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 1 (key deforested)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "deforested",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Only gnawed stumps remain' decides 'deforested' alone. The other three are each denied by one sentence: dams that 'washes out' (flooded), 'the same shallow, stony bed' (dredged) and 'both valleys turn the same brown' (greened). Popular beaver lore points the reader to 'greened', and the passage simply negates it.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 2 (key dredged)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "dredged",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'The beavers dig mud from the creek's pools and carry it to the banks' alone gives dredged; flooded killed by no dam and unchanged level, deforested by aspens as thick, greened by both valleys turning the same brown.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ },
+ "WIC28C-03": {
+  "world 3 (key firebreak)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "firebreak",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "The 1791 fire burning every cottage while the orchard lost only scorched leaves gives firebreak; frost blackening 'those beside the wall too' kills hearth, 'the river lies a mile to the south' kills dike, 'open at both ends' kills fence - one kill sentence per distractor.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 1 (key fence)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "fence",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Deer kept out gives fence; hearth killed by frost blackening trees beside the wall too, firebreak by the 1791 fire burning the eastern rows, dike by the river a mile away; each distractor is negated by one planted sentence and the plain word survives.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ }
+}

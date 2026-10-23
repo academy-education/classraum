@@ -1,0 +1,146 @@
+{
+  "id": "WIC28C-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "ivy on a ruined castle wall",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "dislodged",
+    "fortified",
+    "dried",
+    "etched"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "dried",
+    "fortified",
+    "etched",
+    "dislodged"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "The survey's final report says that the ivy had ______ the wall.",
+  "worlds": [
+    {
+      "key": "dislodged",
+      "passage": "In 1990 conservators began a ten-year survey of a ruined castle wall, half of which had been cloaked in ivy for two centuries. On the ivy half, roots had followed the mortar joints deep into the wall, thickening there. Many stones there now jut an inch from their neighbors, held only by the stems laced across the face; when conservators cut one section away, eleven stones dropped into the grass. The survey's final report says that the ivy had ______ the wall. Rain running down the stems into those joints kept the stone behind the leaves damp all summer, and the exposed faces brushed as smooth as the bare half's.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "\"Dislodged\" fits: the ivy's roots thickened inside the mortar joints, the stones on that half now stand out of line, and once the stems were cut those stones fell, so the ivy pushed stones out of their places. \"Fortified\" fails because the stems were only holding up stones that the roots had already pushed out; cut the stems and the stones dropped, so the ivy left the wall weaker, not stronger. \"Dried\" fails because rain running down the stems into the joints kept the stone behind the leaves damp all summer. \"Etched\" fails because the exposed faces brushed as smooth as the bare half's; the damage was in the joints, not on the surface.",
+      "kills": {
+        "fortified": {
+          "type": "logic",
+          "quote": "eleven stones dropped into the grass",
+          "why": "The stems were holding up stones the roots had loosened.",
+          "surface_fit": "The ivy's stems lace across the face and are visibly holding stones in place, and ivy is often said to hold ruins together, so \"fortified\" is a strong pull.",
+          "inference": "The stems hold only stones that jut out of line where the roots thickened in their joints; cutting the stems let eleven of them fall, so the ivy first loosened those stones and then hung onto them, leaving the wall weaker than before."
+        },
+        "dried": {
+          "type": "logic",
+          "quote": "kept the stone behind the leaves damp all summer",
+          "why": "The ivy kept the wall wet.",
+          "surface_fit": "Ivy leaves overlap over a wall like a coat and are known to shed rain, so \"dried\" is a plausible effect.",
+          "inference": "Drying would leave the stone behind the leaves drier; rain ran down the stems into the opened joints and the stone stayed damp all summer, so the ivy kept water in the wall."
+        },
+        "etched": {
+          "type": "explicit",
+          "quote": "brushed as smooth as the bare half's",
+          "why": "The exposed stone surface is unmarked.",
+          "surface_fit": "Ivy clings with rootlets that are known to mark stone, so \"etched\" fits an ivy-covered wall.",
+          "inference": "Etching would leave the exposed faces marked; they brushed as smooth as the bare stone, so the ivy's work was inside the joints, not on the surface."
+        }
+      }
+    },
+    {
+      "key": "fortified",
+      "passage": "In 1990 conservators began a ten-year survey of a ruined castle wall, half of which had been cloaked in ivy for two centuries. Behind the ivy the mortar had long since crumbled to sand, and the plant's woody stems, thick as a wrist, wove through and around the loose stones. Moisture readings in the stone behind the leaves matched those on the bare half, and stone faces under the stems were clean. The survey's final report says that the ivy had ______ the wall. When a gale in the survey's eighth year brought down forty feet of the bare half, the ivy-covered half stood.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "\"Fortified\" fits: behind the ivy the mortar had turned to sand, so the stones there were held only by the woody stems woven through them, and that half stood through a gale that brought down the bare half, so the ivy strengthened the wall. \"Dislodged\" fails because, although stems run among loose stones, no stone on the ivy half fell; it was the bare half that came down. \"Dried\" fails because moisture readings behind the leaves matched those on the bare half. \"Etched\" fails because the stone faces under the stems were clean.",
+      "kills": {
+        "dislodged": {
+          "type": "logic",
+          "quote": "the ivy-covered half stood",
+          "why": "No stone on the ivy half fell; the bare half collapsed instead.",
+          "surface_fit": "Woody stems thick as a wrist working among loose stones in crumbled mortar look exactly like roots prying a wall apart, so \"dislodged\" is the natural first guess.",
+          "inference": "Stones pushed out by the ivy would fall first in a gale; the ivy half stood while forty feet of the bare half came down, so the stems running among the loose stones were holding them, not forcing them out."
+        },
+        "dried": {
+          "type": "logic",
+          "quote": "matched those on the bare half",
+          "why": "The ivy made no difference to moisture.",
+          "surface_fit": "Ivy's overlapping leaves are known to keep rain off stone, and a dry wall is a sounder wall, so \"dried\" fits.",
+          "inference": "If the ivy had dried the stone, readings behind it would be lower than on the bare half; they matched, so the ivy's effect was not on moisture."
+        },
+        "etched": {
+          "type": "explicit",
+          "quote": "stone faces under the stems were clean",
+          "why": "The stone surface under the ivy is unmarked.",
+          "surface_fit": "Ivy's clinging rootlets are known to mark stone, so \"etched\" fits an ivy-covered wall.",
+          "inference": "Etching would leave the faces marked where the ivy clung; they were clean, so the ivy left the surface untouched."
+        }
+      }
+    },
+    {
+      "key": "dried",
+      "passage": "In 1990 conservators began a ten-year survey of a ruined castle wall, half of which had been cloaked in ivy for two centuries. The ivy's leaves overlap like shingles down the wall's face. After a week of rain, cores drilled behind the leaves came out pale and powdery, cores from the bare half came out dark a foot into the wall, and moss grows only on the bare half. Pulled away, the ivy's rootlets leave the stone unmarked. The survey's final report says that the ivy had ______ the wall. The eighth year's gale took no stone from either half, both set in the same sound mortar.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "\"Dried\" fits: the ivy's leaves overlap like shingles, and after a week of rain the stone behind them was pale and powdery while the bare stone was soaked a foot deep and growing moss, so the ivy kept the wall dry. \"Fortified\" fails because the bare half, in the same sound mortar, came through the gale just as well, so the ivy added no strength. \"Dislodged\" fails because the gale took no stone from the ivy half. \"Etched\" fails because the rootlets leave the stone unmarked when pulled away.",
+      "kills": {
+        "fortified": {
+          "type": "logic",
+          "quote": "both set in the same sound mortar",
+          "why": "The bare half was just as strong.",
+          "surface_fit": "Ivy is often said to hold old walls together, and keeping rain out of stone sounds like protecting it, so \"fortified\" is tempting.",
+          "inference": "A wall the ivy strengthened would outlast the bare half; both halves stand in the same sound mortar and the gale took nothing from either, so the ivy made the wall no stronger."
+        },
+        "dislodged": {
+          "type": "logic",
+          "quote": "took no stone from either half",
+          "why": "The ivy half lost no stones.",
+          "surface_fit": "Ivy roots are notorious for working into old walls and pushing stones loose, so \"dislodged\" fits the topic.",
+          "inference": "Stones pushed out of place would be the first to go in a gale; it took none from the ivy half, so the ivy had moved nothing."
+        },
+        "etched": {
+          "type": "explicit",
+          "quote": "leave the stone unmarked",
+          "why": "The rootlets leave no marks.",
+          "surface_fit": "Ivy's clinging rootlets are known to mark stone, so \"etched\" fits.",
+          "inference": "Etching would leave the stone marked where the ivy clung; pulled away, the rootlets leave it unmarked, so the ivy's effect was not on the surface."
+        }
+      }
+    },
+    {
+      "key": "etched",
+      "passage": "In 1990 conservators began a ten-year survey of a ruined castle wall, half of which had been cloaked in ivy for two centuries. The ivy's leaves overlap like shingles, and stems thick as a wrist lace the face. Peeled away, the ivy left the stone traced with shallow grooves that follow the rootlets' paths and will not brush off. Moss and ferns grow on the damp stone behind the leaves, and no knife blade would slide between any two stones there. The survey's final report says that the ivy had ______ the wall. The eighth year's gale took no stone from either half, both set in the same sound mortar.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "\"Etched\" fits: under the ivy the stone carries fine shallow grooves that follow the rootlets' paths and will not brush off, so the ivy cut marks into the wall's surface. \"Dried\" fails because moss and ferns grow thickly on the damp stone behind the leaves, shingle-like as they are. \"Dislodged\" fails because the stones on the ivy half sit so tight that no knife blade will slide between them. \"Fortified\" fails because both halves stand in the same sound mortar and the gale took nothing from either, so the thick stems added no strength.",
+      "kills": {
+        "dried": {
+          "type": "explicit",
+          "quote": "Moss and ferns grow on the damp stone",
+          "why": "The stone behind the ivy stays damp.",
+          "surface_fit": "The ivy's leaves overlap like shingles, the way a roof sheds rain, so \"dried\" is a strong pull.",
+          "inference": "Moss and ferns need wet stone; they grow thickly behind the shingle-like leaves, so the leaves have not kept the wall dry."
+        },
+        "dislodged": {
+          "type": "logic",
+          "quote": "no knife blade would slide between any two stones",
+          "why": "The stones sit tight in their beds.",
+          "surface_fit": "Peeling the ivy reveals damage done to the stone, and ivy is notorious for prying stones loose, so \"dislodged\" is tempting.",
+          "inference": "Dislodged stones would stand loose in their joints; on the ivy half not even a knife blade fits between them, so the ivy's damage stayed in the surface and moved no stone."
+        },
+        "fortified": {
+          "type": "logic",
+          "quote": "both set in the same sound mortar",
+          "why": "The bare half was just as strong.",
+          "surface_fit": "Stems thick as a wrist lace the whole face, and ivy is often said to hold ruins together, so \"fortified\" fits.",
+          "inference": "A wall the ivy strengthened would outlast the bare half; both halves stand in the same sound mortar and the gale took nothing from either, so the stems made the wall no stronger."
+        }
+      }
+    }
+  ]
+}

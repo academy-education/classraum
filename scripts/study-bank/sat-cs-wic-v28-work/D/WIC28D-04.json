@@ -1,0 +1,146 @@
+{
+  "id": "WIC28D-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a park on an old rail yard",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "magnet",
+    "junction",
+    "muffler",
+    "mixer"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "magnet",
+    "junction",
+    "mixer",
+    "muffler"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "A study of the park's first decade called it the district's ______.",
+  "worlds": [
+    {
+      "key": "magnet",
+      "passage": "A forty-acre rail yard became a park, with a highway to its north and, to its south, row houses and apartment towers the yard had divided for a century. Its lawns and a concert shell slope open to the highway, and new restaurants now line the streets facing its gates. Gate counts found most visitors arriving by train or car from beyond the district and staying three hours, with row-house and tower residents a tenth of the crowd, each group keeping mostly to its own side. A study of the park's first decade called it the district's ______. Two other cities have since copied it.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "Most visitors came by train or car from beyond the district and stayed three hours, and restaurants opened along the streets facing the park, so it is the district's \"magnet,\" drawing people in from elsewhere. \"Junction\" fails because the two neighborhoods the yard divided, which a junction would join, make up only a tenth of the crowd and keep mostly to their own sides, while the outsiders who fill it come to stay, not to pass through. \"Mixer\" fails because those same two neighborhoods neither fill the park nor mingle in it, each keeping to its own side. \"Muffler\" fails because the lawns and concert shell lie open to the highway, with nothing between the traffic and the homes to absorb its noise.",
+      "kills": {
+        "junction": {
+          "type": "logic",
+          "quote": "a tenth of the crowd, each group keeping mostly to its own side",
+          "why": "The two neighborhoods hardly use the park and stay apart in it, and the outsiders stay three hours, so the park neither joins the district nor is passed through.",
+          "surface_fit": "A park lying where a highway, a station route and two once-divided neighborhoods meet sits exactly where a junction would, so the word fits the sentence and the map.",
+          "inference": "A junction is a place where ways meet: either a crossing that people pass through, or a joint between the neighborhoods the yard divided; the visitors here arrive from outside and stay three hours, and the row-house and tower residents are a tenth of the crowd and keep to their own sides, so the park is a destination that joins nothing."
+        },
+        "mixer": {
+          "type": "logic",
+          "quote": "each group keeping mostly to its own side",
+          "why": "The two neighborhoods are a small share of the crowd and keep apart, so the park does not mix them.",
+          "surface_fit": "The passage opens with two neighborhoods a rail yard kept apart for a century, so the park that replaced the yard naturally reads as the place where they now mix.",
+          "inference": "For the park to work as the district's mixer, the row-house and tower residents would have to meet there; they are a tenth of the crowd and each keeps mostly to its own side, so the park's pull is on outsiders, and the neighborhoods stay as divided in it as the yard once kept them."
+        },
+        "muffler": {
+          "type": "logic",
+          "quote": "slope open to the highway",
+          "why": "Open lawns facing the road put nothing between the highway and the homes to absorb its noise.",
+          "surface_fit": "A park set between a highway and housing is the textbook green buffer against traffic noise, so muffler fits the sentence and the setting.",
+          "inference": "A park quiets a highway only if banks or dense planting stand between the traffic and the houses; these lawns lie open to the highway, so the park gives the homes no shelter from its sound."
+        }
+      }
+    },
+    {
+      "key": "junction",
+      "passage": "A forty-acre rail yard became a park, with a highway to its north and, to its south, row houses and apartment towers the yard had divided for a century. Its lawns slope open to the highway, and paved paths run across it from both neighborhoods to a footbridge over the highway and a train station beyond. Gate counts found thirty thousand people a day on those paths, most of them local residents at rush hour, few lingering past the ten minutes the walk takes, its benches empty at midday. A study of the park's first decade called it the district's ______. Two other cities have since copied it.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "Paths from both neighborhoods cross the park to a footbridge and a train station, and thirty thousand people a day walk them at rush hour without lingering, so the park is the district's \"junction,\" where its routes meet on the way somewhere else. \"Magnet\" fails because, for all the crowds, few people stay past the ten minutes the walk takes and the benches are empty at midday, so the park itself draws no one; the station beyond it does. \"Mixer\" fails because residents of the two neighborhoods pass through in the same ten minutes at rush hour, so they share the paths without spending time together. \"Muffler\" fails because the lawns slope open to the highway, leaving nothing to absorb its noise.",
+      "kills": {
+        "magnet": {
+          "type": "logic",
+          "quote": "few lingering past the ten minutes the walk takes",
+          "why": "Huge crowds pass, but almost no one stays and the benches are empty, so the park itself attracts no one.",
+          "surface_fit": "A busy new forty-acre park is the kind of place writers call a magnet, so the word fits the sentence and the topic. Thirty thousand people a day is the kind of number that makes a writer reach for it.",
+          "inference": "A magnet draws people to itself; thirty thousand people a day cross this park, but few stay past the ten minutes the walk takes and its benches stand empty at midday, so what draws them is the station beyond the footbridge, and the park is only on the way."
+        },
+        "mixer": {
+          "type": "logic",
+          "quote": "most of them local residents at rush hour",
+          "why": "The two neighborhoods' residents cross at rush hour in ten minutes, so they pass each other without spending time together.",
+          "surface_fit": "The passage opens with two neighborhoods a rail yard kept apart for a century, so the park that replaced the yard naturally reads as the place where they now mix. Here both neighborhoods' residents do use the same paths every day.",
+          "inference": "Mixing needs people to stay and spend time together; the residents who use the paths cross at rush hour in the ten minutes the walk takes, and the benches stand empty at midday, so the two neighborhoods pass through the same ground on the way to work without lingering in it."
+        },
+        "muffler": {
+          "type": "logic",
+          "quote": "Its lawns slope open to the highway",
+          "why": "Open lawns facing the road put nothing between the highway and the homes to absorb its noise.",
+          "surface_fit": "A park set between a highway and housing is the textbook green buffer against traffic noise, so muffler fits the sentence and the setting.",
+          "inference": "A park quiets a highway only if banks or dense planting stand between the traffic and the houses; these lawns lie open to the highway, so the park gives the homes no shelter from its sound."
+        }
+      }
+    },
+    {
+      "key": "muffler",
+      "passage": "A forty-acre rail yard became a park, with a highway to its north and, to its south, row houses and apartment towers the yard had divided for a century. Along the highway it rises in a wooded earth bank twenty feet high and unbroken, its lawns sloping toward the homes. Row-house families who kept north windows shut for decades now sleep with them open. Gate counts found two thousand visits a day, nearly all by dog walkers from the row-house blocks beside it, each staying under half an hour. A study of the park's first decade called it the district's ______. Two other cities have since copied it.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "A wooded bank twenty feet high now stands unbroken between the highway and the homes, and families who kept their north windows shut against the traffic for decades now sleep with them open, so the park is the district's \"muffler,\" deadening the highway's sound. \"Magnet\" fails because the two thousand daily visits are short dog walks by the neighbors beside it, so the park draws no one from farther off. \"Junction\" fails because its visitors come almost entirely from the row-house blocks beside it, so it joins the divided neighborhoods to nothing, and its unbroken bank leaves no route through it. \"Mixer\" fails because the tower residents are not among those visitors, so the two neighborhoods are not meeting there.",
+      "kills": {
+        "magnet": {
+          "type": "logic",
+          "quote": "nearly all by dog walkers from the row-house blocks beside it",
+          "why": "Two thousand visits a day sounds like a draw, but they are short trips by next-door neighbors.",
+          "surface_fit": "A busy new forty-acre park is the kind of place writers call a magnet, so the word fits the sentence and the topic. Two thousand visits a day is the kind of figure that suggests it.",
+          "inference": "A magnet pulls people in from beyond itself; these visits are nearly all dog walkers from the blocks beside the park, each staying under half an hour, so the large count is the same neighbors coming daily, and the park's effect on the district shows in the open windows instead."
+        },
+        "junction": {
+          "type": "logic",
+          "quote": "from the row-house blocks beside it",
+          "why": "Its visitors come from one set of blocks only, and the bank is unbroken, so the park joins and connects nothing.",
+          "surface_fit": "A park lying where a highway, a station route and two once-divided neighborhoods meet sits exactly where a junction would, so the word fits the sentence and the map.",
+          "inference": "Read either as a crossing or as a joint between the neighborhoods the yard divided, a junction needs people from different places meeting or passing through; this park's visitors are dog walkers from the row-house blocks beside it, and its unbroken bank blocks any route north, so it neither joins the neighborhoods nor carries anyone through."
+        },
+        "mixer": {
+          "type": "logic",
+          "quote": "nearly all by dog walkers from the row-house blocks",
+          "why": "Its visitors come from one neighborhood only, so the two divided neighborhoods are not meeting there.",
+          "surface_fit": "The passage opens with two neighborhoods a rail yard kept apart for a century, so the park that replaced the yard naturally reads as the place where they now mix.",
+          "inference": "For the park to mix the district, residents of both the row houses and the towers would have to use it together; nearly all its visits are by dog walkers from the row-house blocks beside it, so the tower residents are not there to meet them."
+        }
+      }
+    },
+    {
+      "key": "mixer",
+      "passage": "A forty-acre rail yard became a park, with a highway to its north and, to its south, row houses and apartment towers the yard had divided for a century. Its lawns slope open to the highway, its ball fields and weekend market in the middle. Gate counts found as many visitors as other parks its size draw, nearly all walking from the row houses and towers in equal numbers on the same evenings and staying two hours. By decade's end a third of tower families had row-house friends, once one in twenty. A study of the park's first decade called it the district's ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "Residents of the two neighborhoods the yard divided came in equal numbers on the same evenings and stayed two hours, and friendships between them rose from one tower family in twenty to one in three, so the park is the district's \"mixer,\" where the two communities come together. \"Magnet\" fails because the park draws no more visitors than the city's other parks of its size; what sets it apart is not how many it pulls in but the friendships formed among those who come. \"Junction\" fails because a junction is where ways meet and cross, and these visitors stay two hours at the fields and market; what the park changed is how the people in it relate, which is mixing. \"Muffler\" fails because the lawns slope open to the highway, leaving nothing to absorb its noise.",
+      "kills": {
+        "magnet": {
+          "type": "logic",
+          "quote": "as many visitors as other parks its size draw",
+          "why": "The park draws no more people than any park its size; what is distinctive is the friendships formed in it.",
+          "surface_fit": "A busy new forty-acre park is the kind of place writers call a magnet, so the word fits the sentence and the topic. Its evenings are full of neighbors staying for hours.",
+          "inference": "A magnet is marked by its pull; this park draws about as many visitors as the city's other parks of its size, so its pull is ordinary, and what sets it apart is that the row-house and tower families who come on the same evenings became friends, which is mixing, not attraction."
+        },
+        "junction": {
+          "type": "logic",
+          "quote": "staying two hours",
+          "why": "Visitors who stay two hours at the fields and market are not passing through a crossing; what changed is the friendships between them.",
+          "surface_fit": "A park lying where a highway, a station route and two once-divided neighborhoods meet sits exactly where a junction would, so the word fits the sentence and the map. Two once-divided neighborhoods meeting here sounds like routes converging.",
+          "inference": "A junction is a point where ways meet and cross, which people pass through; these visitors walked in from both sides and stayed two hours at the fields and market, and the change the study measured is in who counts whom as a friend, so the park is where the two neighborhoods mingle, not where their routes cross."
+        },
+        "muffler": {
+          "type": "logic",
+          "quote": "Its lawns slope open to the highway",
+          "why": "Open lawns facing the road put nothing between the highway and the homes to absorb its noise.",
+          "surface_fit": "A park set between a highway and housing is the textbook green buffer against traffic noise, so muffler fits the sentence and the setting.",
+          "inference": "A park quiets a highway only if banks or dense planting stand between the traffic and the houses; these lawns lie open to the highway, so the park gives the homes no shelter from its sound."
+        }
+      }
+    }
+  ]
+}

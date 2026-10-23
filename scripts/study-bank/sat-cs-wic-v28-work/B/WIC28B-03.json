@@ -1,0 +1,146 @@
+{
+  "id": "WIC28B-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a poet's first collection, 1851",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "popularized",
+    "pirated",
+    "plagiarized",
+    "panned"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "popularized",
+    "pirated",
+    "plagiarized",
+    "panned"
+  ],
+  "pos": "verb",
+  "after_blank": "",
+  "blank_sentence": "Within two years, her poems had been ______.",
+  "worlds": [
+    {
+      "key": "pirated",
+      "passage": "In 1851 a young poet paid a printer in her city to issue three hundred copies of her first collection, on terms that gave her a share of every copy sold. Within months, cheaper copies bearing her name and matching hers down to a misprint on page twelve were selling at half her price in her shops. Her printer had set no second edition, her quarterly share, paid only on his copies, fell that spring to almost nothing, and the shops sold barely more copies in all than before of a book the papers had named among the season's best. Within two years, her poems had been ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The cheap copies reproduced her edition down to its misprint, yet her printer had set no second edition, and her share, paid only on his copies, collapsed as the cheap ones sold; someone else was printing her book and paying her nothing, so her poems had been \"pirated\". \"Plagiarized\" fails because the copies bore her name, so no one claimed the poems as his own. \"Popularized\" fails because the shops sold barely more copies in all than before: the cheap copies took her buyers instead of finding new readers. \"Panned\" fails because the papers had named the book among the season's best.",
+      "kills": {
+        "plagiarized": {
+          "type": "logic",
+          "quote": "cheaper copies bearing her name",
+          "why": "The copies credited her, so the theft was of her income, not her authorship.",
+          "surface_fit": "Someone other than her printer was selling her poems as their own product and taking the money, which a reader readily files under plagiarism.",
+          "inference": "Plagiarism passes another's work off as one's own; these copies carried her name, so readers knew whose poems they were, and what was taken was the money from each sale."
+        },
+        "popularized": {
+          "type": "logic",
+          "quote": "sold barely more copies in all than before",
+          "why": "Total sales barely rose, so the poems reached hardly any new readers.",
+          "surface_fit": "Copies at half price filling the shops sounds like the poems being spread to a wider public, so popularized is tempting.",
+          "inference": "Her own copies stopped selling as the cheap ones sold, and the total barely rose, so the cheap copies replaced her sales to the same buyers rather than carrying the poems to new ones."
+        },
+        "panned": {
+          "type": "explicit",
+          "quote": "named among the season's best",
+          "why": "Critics praised the book.",
+          "surface_fit": "Her sales collapsing within months is what happens to a first collection that critics savage, so panned fits the story.",
+          "inference": "The city papers ranked the book among the season's best, so her sales fell because cheaper copies undercut hers, not because critics attacked the poems."
+        }
+      }
+    },
+    {
+      "key": "plagiarized",
+      "passage": "In 1851 a young poet paid a printer in her city to issue three hundred copies of her first collection, on terms that gave her a share of every copy sold. Within months a well-known poet published a collection whose longest poems followed hers image by image and stanza by stanza, every line reworded, under his name alone. The city papers had already named two of hers among the season's best, and her printer sold out her three hundred copies and printed no more, while his book sold about as many. Within two years, her poems had been ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "A well-known poet published poems that followed hers image by image and stanza by stanza, reworded and signed with his name alone, so her poems had been \"plagiarized\": their substance was passed off as his. \"Pirated\" fails because he did not reproduce her text; every line was reworded and set in his own collection, so no copy of her poems was printed and sold. \"Panned\" fails because the city papers had named two of her poems among the season's best. \"Popularized\" fails because her printer stopped at three hundred copies and his book sold about as many, so neither version carried the poems to a wide public.",
+      "kills": {
+        "pirated": {
+          "type": "logic",
+          "quote": "every line reworded",
+          "why": "No line of her text was reproduced, so no unauthorized copy of her poems was printed.",
+          "surface_fit": "Another writer took her poems and profited from them in print, which is close to what piracy of a book means, so the word fits the topic and the blank.",
+          "inference": "Piracy is printing and selling copies of someone's work without leave; here the borrowed poems were rewritten line by line and issued as his own book, so what was taken was her invention and credit, not her printed text."
+        },
+        "panned": {
+          "type": "explicit",
+          "quote": "named two of hers among the season's best",
+          "why": "Critics praised her poems.",
+          "surface_fit": "A first collection whose ideas are lifted by a famous rival and whose printer prints no more could easily be one that critics dismissed, so the word fits the story's air of failure.",
+          "inference": "The city papers ranked two of her poems among the year's best, so her poems were admired by critics; what went wrong is that another poet signed their images."
+        },
+        "popularized": {
+          "type": "logic",
+          "quote": "printed no more, while his book sold about as many",
+          "why": "Neither her edition nor his reached more than a few hundred readers.",
+          "surface_fit": "A well-known poet putting her images into his own book might carry them to his larger audience, so a reader may see the poems spreading.",
+          "inference": "Her printer stopped at three hundred and his collection sold about three hundred, so whichever name was on them, the poems reached only a few hundred readers, not a wide public."
+        }
+      }
+    },
+    {
+      "key": "popularized",
+      "passage": "In 1851 a young poet paid a printer in her city to issue three hundred copies of her first collection, on terms that gave her a share of every copy sold. Within months a celebrated actress began reciting the poems, naming the poet each night, in sold-out halls across the country, and cheap editions appeared in every city she played. Each carried her printer's license on its back page, her share of every copy reached her within the quarter, and the city papers had already named two of the poems among the season's best. Within two years, her poems had been ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "A celebrated actress recited the poems in sold-out halls across the country and cheap editions followed her from city to city, so her poems had been \"popularized\": carried to a wide public. \"Pirated\" fails because each cheap edition carried her printer's license and paid her share of every copy, so none was printed without leave. \"Plagiarized\" fails because the actress named the poet each night. \"Panned\" fails because the city papers had named two of the poems among the season's best.",
+      "kills": {
+        "pirated": {
+          "type": "logic",
+          "quote": "carried her printer's license on its back page",
+          "why": "The cheap editions were licensed and paid her share.",
+          "surface_fit": "Cheap editions springing up in city after city behind a touring performer is exactly how unauthorized printings of a popular book appeared in that era, so pirated is a strong first reading.",
+          "inference": "Each cheap edition bore her printer's license and her share of every copy reached her, so the editions were printed with permission and paid for; copies made with leave and royalties are not pirated."
+        },
+        "plagiarized": {
+          "type": "logic",
+          "quote": "naming the poet each night",
+          "why": "The actress credited the poet at every recital.",
+          "surface_fit": "A famous performer presenting another's poems on her own stage is a common way credit gets taken, so a reader may suspect the actress claimed them.",
+          "inference": "The actress named the poet at each recital, so audiences knew whose poems they were hearing; the work spread with its author's name on it."
+        },
+        "panned": {
+          "type": "explicit",
+          "quote": "named two of the poems among the season's best",
+          "why": "Critics praised the poems.",
+          "surface_fit": "Poems that sweep the halls and cheap editions are often the kind critics sneer at as popular verse, so the word fits the topic.",
+          "inference": "The papers ranked two of the poems among the season's best, so the critics admired them rather than attacking them."
+        }
+      }
+    },
+    {
+      "key": "panned",
+      "passage": "In 1851 a young poet paid a printer in her city to issue three hundred copies of her first collection, on terms that gave her a share of every copy sold. Within months every city paper had reviewed the collection by printing her weakest stanza in full, under her name, beside a cartoon of a weeping cow, and her line comparing her heart to a farm cart was being recited at dinner parties to roars of laughter. A comic weekly ran verses of its own in her meter and on her subjects, signed by its editor, and her printer sold forty copies. Within two years, her poems had been ______.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "The papers answered the book by reprinting its weakest stanza beside a cartoon of a weeping cow, her lines became a dinner-party joke, and the printer sold only forty copies, so her poems had been \"panned\": held up to ridicule by the critics. \"Pirated\" fails because the papers printed single stanzas inside reviews, and no one issued copies of the book to sell. \"Plagiarized\" fails because the comic weekly's verses were its own, signed by its editor, imitating her meter and subjects to mock her, not her lines passed off as his. \"Popularized\" fails because the lines were famous only as a joke: the book itself sold forty copies.",
+      "kills": {
+        "pirated": {
+          "type": "logic",
+          "quote": "printing her weakest stanza in full",
+          "why": "Single stanzas quoted inside reviews are not copies of the book put on sale.",
+          "surface_fit": "Her verse was being printed by every paper in the city without any sign of her leave, which looks like her work being reproduced by others.",
+          "inference": "Each paper printed one stanza as the target of its review, and the only copies of the book were her printer's forty sold, so no one was selling her collection in an edition of their own."
+        },
+        "plagiarized": {
+          "type": "logic",
+          "quote": "ran verses of its own in her meter and on her subjects",
+          "why": "The weekly wrote its own verses imitating hers, so it took her manner to mock it, not her lines.",
+          "surface_fit": "Another publication printing verses in her meter and on her subjects under its editor's name is just how plagiarism looks at first sight.",
+          "inference": "The weekly's verses were its own words, written in her style while her own lines were circulating as a joke, so the imitation was mockery of her work, not her work claimed by someone else."
+        },
+        "popularized": {
+          "type": "logic",
+          "quote": "her printer sold forty copies",
+          "why": "The book sold almost nothing, so the attention made the poems a joke, not a popular book.",
+          "surface_fit": "Her lines were being recited at dinner parties all over the city, which sounds like the poems becoming widely known.",
+          "inference": "People repeated her lines to laugh at them, and only forty copies sold, so the poems spread as ridicule without winning readers."
+        }
+      }
+    }
+  ]
+}

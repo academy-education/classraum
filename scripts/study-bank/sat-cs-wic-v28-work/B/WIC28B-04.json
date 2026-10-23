@@ -1,0 +1,146 @@
+{
+  "id": "WIC28B-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "an occupying army and a port city's museum, 1797",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "ransacked",
+    "ransomed",
+    "requisitioned",
+    "repatriated"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "ransacked",
+    "repatriated",
+    "ransomed",
+    "requisitioned"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "Within a year, the army had ______ the museum's collection.",
+  "worlds": [
+    {
+      "key": "ransacked",
+      "passage": "In 1797 an occupying army entered a port city whose museum held some four hundred paintings and bronzes, many of them carried off from neighboring towns by the city's own fleet a century earlier. By the army's first morning, the museum's cases stood open, their coins, cameos and small bronzes gone, and several canvases had been cut from their frames. When the council offered the commander a sum for their return, he answered that he knew nothing of them; pieces later surfaced one by one in pawnshops across the army's home country, pledged by men discharged from its ranks. Within a year, the army had ______ the museum's collection.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Overnight the cases were emptied of whatever could be carried and canvases were cut from their frames, the commander knew nothing of it, and the pieces later turned up pawned one by one by former soldiers, so the army's men had \"ransacked\" the collection, plundering it for themselves. \"Ransomed\" fails because when the council offered to pay for the pieces, no one on the army's side held them to sell back. \"Requisitioned\" fails because a requisition is an official taking for the army's use, and here the commander disowned the loss and the pieces were pawned by individual soldiers. \"Repatriated\" fails because the pieces went to pawnshops in the army's home country, not to the towns they had been taken from.",
+      "kills": {
+        "ransomed": {
+          "type": "logic",
+          "quote": "he answered that he knew nothing of them",
+          "why": "Payment was offered and no one was holding the pieces to sell back.",
+          "surface_fit": "An occupying army's commander being offered money for a city's missing treasures is the setup of a ransom, so the word fits the sentence and the story.",
+          "inference": "The council offered to pay, and the commander, who would have been the one holding them for a price, disclaimed all knowledge, while the pieces drifted into pawnshops one by one; nothing was being held for a sum."
+        },
+        "requisitioned": {
+          "type": "logic",
+          "quote": "pledged by men discharged from its ranks",
+          "why": "The pieces were turned into cash by individual soldiers, so they were not taken for the army's use.",
+          "surface_fit": "An occupying army emptying a city's museum within a day of arriving is the classic setting for a military requisition, so the word is a natural first reading.",
+          "inference": "A requisition is ordered by officers for the army's needs; here the commander disowned the loss, and the pieces were later pawned by discharged soldiers for themselves, so the taking was private plunder, not an official seizure."
+        },
+        "repatriated": {
+          "type": "logic",
+          "quote": "in pawnshops across the army's home country",
+          "why": "The pieces went to the occupiers' own country, not back to the towns they came from.",
+          "surface_fit": "The opening says much of the collection had been taken from neighboring towns, which makes sending pieces home a natural thing for the blank to report.",
+          "inference": "The pieces surfaced in pawnshops in the army's homeland, pawned by its former soldiers, so none went back to the neighboring towns or anywhere they had come from."
+        }
+      }
+    },
+    {
+      "key": "ransomed",
+      "passage": "In 1797 an occupying army entered a port city whose museum held some four hundred paintings and bronzes, many of them carried off from neighboring towns by the city's own fleet a century earlier. Its officers crated every painting and bronze, listed each against a number, and stacked the crates under guard in the harbor fort, and the commander sent the council a copy of the list with a sum written beneath the total. When the council's bankers delivered that sum the next spring, the crates went back to the museum with their seals unbroken. Within a year, the army had ______ the museum's collection.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The officers crated and listed every piece, held the crates under guard, and sent the council the list with a sum beneath the total; once the sum was paid, the crates went back to the museum unopened, so the army had \"ransomed\" the collection. \"Ransacked\" fails because the pieces were crated, numbered and returned with their seals unbroken, the opposite of being rifled and scattered. \"Requisitioned\" fails because the army never put the pieces to any use: the crates sat under guard and went back once the city paid. \"Repatriated\" fails because the crates went back to the museum, not to the neighboring towns the pieces had come from.",
+      "kills": {
+        "ransacked": {
+          "type": "logic",
+          "quote": "with their seals unbroken",
+          "why": "The crates were handled with care and returned intact, so nothing was rifled.",
+          "surface_fit": "An occupying army emptying a museum in its first months is exactly how a ransacking is usually told, so the word fits the topic and the blank.",
+          "inference": "Every piece was crated and numbered, and the crates came back sealed and unopened, so the collection was handled as property to be held intact, not torn through for loot."
+        },
+        "requisitioned": {
+          "type": "logic",
+          "quote": "the crates went back to the museum",
+          "why": "The army held the collection and released it for payment rather than putting it to its own use.",
+          "surface_fit": "Officers crating and numbering a city's property and sending its council a signed list is how an official military seizure looks, so requisitioning is the obvious first reading.",
+          "inference": "The crates sat unopened in the fort and were handed back once the bankers paid, so the army used the collection only as something to sell back; it never took the pieces for any use of its own."
+        },
+        "repatriated": {
+          "type": "logic",
+          "quote": "went back to the museum",
+          "why": "The pieces returned to the city's museum, not to the towns they had been taken from.",
+          "surface_fit": "The opening says many pieces had been carried off from neighboring towns, which makes returning them to those towns a natural thing for the blank to report.",
+          "inference": "The crates went back to the museum that held them before, so no piece was sent to any of the towns it had come from."
+        }
+      }
+    },
+    {
+      "key": "requisitioned",
+      "passage": "In 1797 an occupying army entered a port city whose museum held some four hundred paintings and bronzes, many of them carried off from neighboring towns by the city's own fleet a century earlier. Its officers crated the bronzes and the largest canvases, listed each against a number, and left the council a copy signed by the commander. The bronzes went to the army's foundry and came out as cannon, the canvases were hung in the commander's headquarters, and the council's offer to buy them back was turned down. Within a year, the army had ______ the museum's collection.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "The officers took the bronzes and big canvases under a signed list, melted the bronzes into cannon, hung the canvases in the commander's headquarters, and refused to sell them back, so the army had \"requisitioned\" the collection: seized it officially for its own use. \"Ransacked\" fails because the pieces were crated, numbered and signed for, not rifled. \"Ransomed\" fails because the council offered to buy the pieces back and the army refused. \"Repatriated\" fails because the pieces went to the army's foundry and headquarters, not to the towns they had come from.",
+      "kills": {
+        "ransacked": {
+          "type": "logic",
+          "quote": "listed each against a number",
+          "why": "The taking was orderly and recorded, with a copy signed by the commander.",
+          "surface_fit": "An occupying army melting a city's bronzes and carrying off its paintings is destructive enough to read as ransacking, so the word fits the topic and the blank.",
+          "inference": "A ransacking is a disorderly hunt for loot; here officers crated chosen pieces, numbered them and gave the council a signed list, so the taking was methodical and on the record."
+        },
+        "ransomed": {
+          "type": "logic",
+          "quote": "offer to buy them back was turned down",
+          "why": "The army refused payment, so it was not holding the pieces for a price.",
+          "surface_fit": "An army that takes a city's treasures and gives its council an exact list might well be preparing to sell them back, so ransom fits the sentence and the setting.",
+          "inference": "When the council offered to pay for the pieces, the army said no, because it was using them as cannon and decoration; holding something for payment and refusing payment cannot both be true."
+        },
+        "repatriated": {
+          "type": "logic",
+          "quote": "went to the army's foundry and came out as cannon",
+          "why": "The pieces went to the army's own uses, not to their towns of origin.",
+          "surface_fit": "The opening says many pieces had been carried off from neighboring towns, so sending them back to those towns is a plausible thing for the army to have done.",
+          "inference": "The bronzes were melted down and the canvases hung in the commander's headquarters, so the pieces went to the army, not back to any town they came from."
+        }
+      }
+    },
+    {
+      "key": "repatriated",
+      "passage": "In 1797 an occupying army entered a port city whose museum held some four hundred paintings and bronzes, many of them carried off from neighboring towns by the city's own fleet a century earlier. Soldiers emptied half the galleries in a single night, wrapping each canvas in a blanket and leaving its frame on the wall. Officers had marked beforehand each piece whose old label named a neighboring town, and the crates, listed by number, sailed within the week to the towns on those labels, whose councils signed for them; this city's council was asked for no payment. Within a year, the army had ______ the museum's collection.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "The opening says many pieces had been carried off from neighboring towns a century earlier; the officers took exactly the pieces whose labels named such a town and shipped each crate to the town on its label, so the army had \"repatriated\" the collection, sending the pieces to the places they were taken from. \"Ransacked\" fails because the night's haste followed a list drawn up beforehand: only marked pieces went, each wrapped and numbered, and each was signed for at its destination. \"Requisitioned\" fails because the army kept nothing for its own use; every crate sailed to the town named on its label. \"Ransomed\" fails because the city's council was asked for no payment.",
+      "kills": {
+        "ransacked": {
+          "type": "logic",
+          "quote": "Officers had marked beforehand each piece",
+          "why": "The removal followed a list drawn up in advance, with each piece numbered and signed for, which is selection, not plunder.",
+          "surface_fit": "Soldiers emptying half the galleries in one night and leaving bare frames on the walls is exactly what a ransacked museum looks like, so the word is the natural first reading.",
+          "inference": "Only the pieces marked beforehand by their labels were taken, each crate was numbered, and each was signed for by the receiving town, so the hasty night was the carrying out of a plan, not a hunt for whatever was valuable."
+        },
+        "requisitioned": {
+          "type": "logic",
+          "quote": "sailed within the week to the towns on those labels",
+          "why": "The crates went to the towns, not to the army's use.",
+          "surface_fit": "Officers marking a city's property, crating it and listing it by number looks like an official military seizure, so requisitioning fits the sentence and the setting.",
+          "inference": "A requisition takes goods for the army's own needs; these crates sailed to the towns named on their labels and were signed for by those towns' councils, so the army took nothing for itself."
+        },
+        "ransomed": {
+          "type": "explicit",
+          "quote": "asked for no payment",
+          "why": "No price was demanded.",
+          "surface_fit": "An army that crates a city's treasures and holds an exact list could be setting a price for their return, so ransom fits the setting and the sentence.",
+          "inference": "Ransoming means demanding payment for something's return; the council was never asked to pay, and the crates went to other towns rather than back to the museum."
+        }
+      }
+    }
+  ]
+}

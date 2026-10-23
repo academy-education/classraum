@@ -1,0 +1,146 @@
+{
+  "id": "WIC28E-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "sandbar at a river-mouth port",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "seawall",
+    "tollbooth",
+    "turnstile",
+    "wharf"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "wharf",
+    "tollbooth",
+    "turnstile",
+    "seawall"
+  ],
+  "pos": "noun",
+  "after_blank": "for",
+  "blank_sentence": "Harbor records from the 1800s show the bar serving as the port's ______ for most of a century.",
+  "worlds": [
+    {
+      "key": "seawall",
+      "passage": "A sandbar lies across the river mouth below the old port, twelve feet under water at high tide and bare at low tide. Harbor records from the 1800s show the bar serving as the port's ______ for most of a century. Ships crossed it on every high tide, often several abreast, steering without a pilot along a straight channel marked by public buoys, and tied up at the town's piers to unload. In winter gales the ocean swells broke in a white line along the bar, and fishing boats moored at those piers rode out storms that wrecked boats anchored along the open coast.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The swells broke along the bar while boats moored behind it at the piers survived storms that wrecked boats on the open coast, so the bar sheltered the harbor from the sea: a \"seawall.\" A \"tollbooth\" is a point where everyone passing must pay, but ships steered over without a pilot along publicly buoyed water, so crossing cost them nothing. A \"turnstile\" admits traffic one at a time, but ships crossed several abreast on every high tide. A \"wharf\" is where cargo is loaded and unloaded, but the ships crossed the bar and unloaded at the town's piers.",
+      "kills": {
+        "tollbooth": {
+          "type": "logic",
+          "quote": "steering without a pilot along a straight channel marked by public buoys",
+          "why": "Bars charged ships through compulsory pilots; here no pilot was needed and the channel was publicly marked, so nothing was collected from crossing ships.",
+          "surface_fit": "River-mouth bars historically forced ships to hire bar pilots, a toll in all but name, so a port's bar being its tollbooth is a natural first guess.",
+          "inference": "a ship that needs no pilot on a buoyed public channel pays no one to cross, so the bar collected nothing from traffic and was not a toll point"
+        },
+        "turnstile": {
+          "type": "logic",
+          "quote": "often several abreast",
+          "why": "A turnstile admits one at a time; ships crossed side by side on every tide.",
+          "surface_fit": "A bar that ships may cross only at high tide is a gate controlling entry to the port, which is what a turnstile is.",
+          "inference": "ships crossing side by side on any high tide were not admitted singly or held back, so the bar did not meter entry one at a time"
+        },
+        "wharf": {
+          "type": "logic",
+          "quote": "tied up at the town's piers to unload",
+          "why": "Cargo changed hands at the town's piers, not on the bar.",
+          "surface_fit": "A sandbar bare at low tide is a stretch of firm ground at the harbor mouth where boats can ground and goods can be landed, so a reader may picture it as the port's wharf.",
+          "inference": "the ships went on past the bar to the piers before unloading, so the place where goods were handled was the piers and the bar was only crossed"
+        }
+      }
+    },
+    {
+      "key": "tollbooth",
+      "passage": "A sandbar lies across the river mouth below the old port, twelve feet under water at high tide and bare at low tide. Harbor records from the 1800s show the bar serving as the port's ______ for most of a century. Every ship drawing over six feet waited for high water and a town-licensed bar pilot, paying a fee the council set; the fees paved the streets. On a spring tide one pilot might lead six ships over together. Once across, ships unloaded at the town's piers. In gales the swells broke white on the bar, then gathered in the deep water behind it and broke again on the piers.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "Every sizable ship had to take a town-licensed pilot and pay a fee the council set, and those fees paved the town's streets, so the bar was where the town collected from all traffic entering the port: a \"tollbooth.\" A \"turnstile\" admits traffic one at a time, but one pilot might lead six ships over together. A \"wharf\" is where cargo is handled, but ships unloaded only after crossing, at the town's piers. A \"seawall\" shelters a harbor, and the swells did break on the bar, but they gathered again behind it and broke against the piers.",
+      "kills": {
+        "turnstile": {
+          "type": "logic",
+          "quote": "one pilot might lead six ships over together",
+          "why": "A turnstile admits traffic one at a time; a single pilot took whole groups across.",
+          "surface_fit": "Ships waited outside and were let in only at high water under a pilot, exactly the controlled entry a turnstile provides.",
+          "inference": "with six ships crossing together behind one pilot, entry was not metered one by one; what every ship had to do was pay, which makes the bar a point of payment rather than a one-at-a-time gate"
+        },
+        "wharf": {
+          "type": "logic",
+          "quote": "unloaded at the town's piers",
+          "why": "A wharf is where cargo is handled; the ships unloaded only after crossing, at the piers.",
+          "surface_fit": "Ships waiting at a bar that is bare at low tide could be lightened or unloaded there, making it the port's wharf.",
+          "inference": "the waiting ships held their cargo until they had crossed and reached the piers, so the bar was where they paid and passed, not where goods changed hands"
+        },
+        "seawall": {
+          "type": "logic",
+          "quote": "gathered in the deep water behind it and broke again on the piers",
+          "why": "A seawall shelters what lies behind it; the swells re-formed and struck the piers anyway.",
+          "surface_fit": "The swells broke white along the bar, which is exactly what a breakwater sheltering a harbor looks like.",
+          "inference": "breaking on the bar did not end the swells, since they re-formed in the deep water behind it and hit the piers, so the harbor got no shelter from it"
+        }
+      }
+    },
+    {
+      "key": "turnstile",
+      "passage": "A sandbar lies across the river mouth below the old port, twelve feet under water at high tide and bare at low tide. Harbor records from the 1800s show the bar serving as the port's ______ for most of a century. The channel over it was a single ship wide, so arriving ships anchored outside and crossed one behind another, each logged by name and hour by the watchman on the point. The duties on their cargo were paid later, at the customs house beside the town's piers, where ships tied up to unload. In winter gales the ocean swells rolled over the bar and broke against those piers.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The single-ship channel made arriving ships cross one behind another, and the watchman on the point logged each one by name and hour, so the bar admitted and counted ships one at a time: a \"turnstile.\" A \"tollbooth\" is where passing traffic pays, but the ships paid their duties later, at the customs house by the piers, so the payment point was there and the watchman at the bar only recorded them. A \"wharf\" is where cargo is handled, but ships unloaded at the piers after crossing. A \"seawall\" shelters a harbor, but winter swells rolled over the bar and broke against the piers.",
+      "kills": {
+        "tollbooth": {
+          "type": "logic",
+          "quote": "paid later, at the customs house beside the town's piers",
+          "why": "A tollbooth is the point where traffic pays; here payment was taken at the customs house, after the crossing.",
+          "surface_fit": "Ships queue at the bar, a watchman on the point records each by name and hour, and the ships do pay duties, which looks exactly like a toll station at the harbor's entrance.",
+          "inference": "the ships' payment was collected at the customs house by the piers after they had crossed, so the watchman at the bar only logged them and the bar was where entry was metered, not where it was paid for"
+        },
+        "wharf": {
+          "type": "logic",
+          "quote": "where ships tied up to unload",
+          "why": "Cargo was handled at the piers.",
+          "surface_fit": "Ships anchored right beside the bar, which is bare at low tide, could plausibly be unloaded onto it, making it the port's wharf.",
+          "inference": "the anchored ships waited only to cross and then unloaded at the piers, so the bar was a place of passage, not of cargo handling"
+        },
+        "seawall": {
+          "type": "logic",
+          "quote": "swells rolled over the bar and broke against those piers",
+          "why": "The bar did not stop the swells.",
+          "surface_fit": "A bar across a harbor mouth reads as a breakwater shielding the port.",
+          "inference": "the swells crossed the bar and struck the piers, so the harbor behind it was not sheltered by it"
+        }
+      }
+    },
+    {
+      "key": "wharf",
+      "passage": "A sandbar lies across the river mouth below the old port, twelve feet under water at high tide and bare at low tide. Harbor records from the 1800s show the bar serving as the port's ______ for most of a century. Deep-sea ships anchored just seaward of the bar, where the harbor watchman logged each one's name and cargo. At low tide crews rowed the cargo onto the bare sand, where carts from town loaded it and left grain and hides for the ships, which then sailed without ever crossing. In gales the town hauled its fishing boats up the beach, beyond the swells that rolled over the bar.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "Ships anchored beside the bar, their cargo was landed on its bare sand at low tide, and carts from town took it and left goods for the ships, so the bar was where the port's goods changed hands: a \"wharf.\" A \"tollbooth\" charges traffic for passing through, and the watchman did log every ship, but the ships never crossed the bar. A \"turnstile\" admits traffic in turn, but the ships stayed on the seaward side and left from there. A \"seawall\" shelters a harbor, but the town hauled its boats up the beach beyond the swells that rolled over the bar.",
+      "kills": {
+        "tollbooth": {
+          "type": "logic",
+          "quote": "sailed without ever crossing",
+          "why": "A tollbooth charges traffic for passing through; these ships never passed the bar, and the watchman only recorded them.",
+          "surface_fit": "Every arriving ship was met by the harbor watchman, who logged its name and cargo, which looks like a toll collector at the port's entrance.",
+          "inference": "the ships ended their voyages at the bar and left without crossing it, so the watchman's book recorded cargo arriving, not passage being charged"
+        },
+        "turnstile": {
+          "type": "logic",
+          "quote": "anchored just seaward of the bar",
+          "why": "A turnstile admits traffic through in turn; the ships stayed outside and were never let through.",
+          "surface_fit": "Ships stopping at the bar one after another while a watchman logged each one sounds like a gate admitting them in turn.",
+          "inference": "the ships anchored on the seaward side and sailed away from there, so the bar admitted no one; it was where they stopped"
+        },
+        "seawall": {
+          "type": "logic",
+          "quote": "beyond the swells that rolled over the bar",
+          "why": "A seawall shelters the shore behind it; the swells rolled over the bar into the harbor.",
+          "surface_fit": "Ships anchoring just outside a bar across a harbor mouth suggests the bar shields the harbor, the way a breakwater does.",
+          "inference": "the town had to haul its boats up the beach out of reach of swells that came over the bar, so the harbor behind it was not sheltered"
+        }
+      }
+    }
+  ]
+}

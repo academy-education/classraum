@@ -1,0 +1,146 @@
+{
+  "id": "WIC28C-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "an estate's brick orchard wall",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "hearth",
+    "fence",
+    "dike",
+    "firebreak"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "fence",
+    "hearth",
+    "dike",
+    "firebreak"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "Estate letters of the next fifty years treat the wall as the orchard's ______.",
+  "worlds": [
+    {
+      "key": "hearth",
+      "passage": "In 1760 a riverside landowner built a brick wall twelve feet high and a quarter mile long beside his orchard, near a village of thatched cottages. It runs along the orchard's northern edge, open at both ends, and the river runs past the orchard's southern edge, with the village on its far bank. Peaches trained on the wall's sunny face set fruit in springs when frost blackens every other blossom, and the bricks there stay warm to the hand at midnight. A fire in 1791 burned the village to the ground and never crossed the water. Estate letters of the next fifty years treat the wall as the orchard's ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "\"Hearth\" fits: the bricks on the wall's sunny face hold heat into the night, and the peaches trained against them set fruit in springs when frost kills the blossom everywhere else, so the wall is the orchard's source of warmth. \"Fence\" fails because the wall runs along one edge only and is open at both ends, so it closes nothing in or out. \"Dike\" fails because the river runs past the orchard's southern edge while the wall stands on its northern edge, with the trees between them, so the wall cannot hold the river off the orchard. \"Firebreak\" fails because the village lies across the river, and when it burned, the fire stopped at the water; it never came near the wall on the orchard's far side.",
+      "kills": {
+        "fence": {
+          "type": "logic",
+          "quote": "open at both ends",
+          "why": "A wall on one edge, open at both ends, encloses nothing.",
+          "surface_fit": "A high brick wall built beside an orchard is most often there to keep animals and thieves out, so \"fence\" is the natural first guess.",
+          "inference": "A fence has to enclose or bar a boundary; this wall runs along only the northern edge and is open at both ends, so anything could walk round it into the orchard."
+        },
+        "dike": {
+          "type": "logic",
+          "quote": "the river runs past the orchard's southern edge",
+          "why": "The orchard lies between the river and the wall.",
+          "surface_fit": "The estate is on a river, and a long, heavy brick wall beside low farmland is just what a flood wall looks like, so \"dike\" fits the setting.",
+          "inference": "A dike must stand between the water and the land it protects; the river runs past the southern edge and the wall stands on the northern edge, so river water would reach the trees before it ever reached the wall."
+        },
+        "firebreak": {
+          "type": "logic",
+          "quote": "never crossed the water",
+          "why": "The river, not the wall, kept the village fire from the orchard.",
+          "surface_fit": "The thatched village burned to the ground and the orchard survived, and a solid brick wall is a classic fire barrier, so \"firebreak\" is a strong pull.",
+          "inference": "The village stands on the river's far bank and the fire stopped at the water; the wall is on the orchard's northern edge, away from the river, so the fire never reached it and the wall played no part in saving the trees."
+        }
+      }
+    },
+    {
+      "key": "fence",
+      "passage": "In 1760 a riverside landowner built a brick wall twelve feet high and a quarter mile long beside his orchard, near a village of thatched cottages. It encloses the orchard, with one locked gate, and pears are trained against its sunny inner face. Deer strip young trees outside it each winter and leave the orchard's trees alone. The frost of 1797 took every blossom in the orchard. The orchard sits on the estate's highest ground, and in 1791 sparks from a burning cottage blew over the wall and set its grass alight. Estate letters of the next fifty years treat the wall as the orchard's ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "\"Fence\" fits: the wall closes the orchard in on every side with one locked gate, and the deer that strip young trees outside it leave the orchard's trees alone, so it keeps animals out. \"Hearth\" fails because even the pears trained against its sunny face lost their blossom in the frost of 1797, so the wall's bricks gave the trees no protecting warmth. \"Dike\" fails because the orchard sits on the estate's highest ground, where floodwater cannot reach it, so the wall has no river to hold back. \"Firebreak\" fails because sparks from the burning cottage blew over the wall and set the orchard's grass alight, so the wall did not stop fire.",
+      "kills": {
+        "hearth": {
+          "type": "logic",
+          "quote": "took every blossom in the orchard",
+          "why": "Even the wall-trained pears lost their blossom to frost.",
+          "surface_fit": "Pears are trained flat against the wall's sunny face, exactly the way heat-storing fruit walls were used, so \"hearth\" is a strong pull.",
+          "inference": "A wall that stored heat would save the blossom trained against it; the 1797 frost took every blossom in the orchard, wall pears included, so the bricks gave the trees no warmth that mattered."
+        },
+        "dike": {
+          "type": "logic",
+          "quote": "sits on the estate's highest ground",
+          "why": "The orchard is above any flood.",
+          "surface_fit": "The estate is a riverside one, and a long, thick brick wall around low farmland looks like flood protection, so \"dike\" fits the setting.",
+          "inference": "A dike holds water off low land; this orchard sits on the estate's highest ground, so river floods never reach the wall, and it holds back nothing."
+        },
+        "firebreak": {
+          "type": "logic",
+          "quote": "blew over the wall and set its grass alight",
+          "why": "Fire got into the orchard over the wall.",
+          "surface_fit": "A thatched village stands nearby and a cottage did burn, and a solid brick wall around an orchard looks like it would stop flames, so \"firebreak\" is tempting.",
+          "inference": "A firebreak stops a fire from spreading; when a cottage burned, its sparks crossed the wall and lit the orchard's grass, so the wall did not keep fire out."
+        }
+      }
+    },
+    {
+      "key": "dike",
+      "passage": "In 1760 a riverside landowner built a brick wall twelve feet high and a quarter mile long beside his orchard, near a village of thatched cottages. It runs along the riverbank on the orchard's south side, footed below the waterline. Each spring the river rises nearly to its top and floods the meadows upstream and down. The orchard's north side lies open to pasture rising to the village. When spring frost blackens the blossom, it blackens every tree, those beside the wall too. A fire in 1791 burned the village and died out in the pasture. Estate letters of the next fifty years treat the wall as the orchard's ______.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "\"Dike\" fits: the wall stands on the riverbank footed below the waterline, and each spring the river rises nearly to its top and floods the meadows on either side, so the wall is what holds the river off the orchard. \"Hearth\" fails because frost blackens the blossom on the trees beside the wall as much as on any other, so the wall gives no warmth. \"Fence\" fails because the orchard's north side lies open to the pasture, so the wall closes off only the river side. \"Firebreak\" fails because the village fire died out in the pasture on the orchard's open north side; the wall stands on the far, river side and never met it.",
+      "kills": {
+        "hearth": {
+          "type": "logic",
+          "quote": "those beside the wall too",
+          "why": "Trees beside the wall lose their blossom to frost like the rest.",
+          "surface_fit": "Brick orchard walls are known for storing the sun's heat for fruit trees, so \"hearth\" fits the topic of an orchard wall.",
+          "inference": "A wall that stored heat would spare the blossom growing beside it; frost blackens the trees beside this wall along with every other tree, so the wall warms nothing."
+        },
+        "fence": {
+          "type": "logic",
+          "quote": "north side lies open to pasture",
+          "why": "The orchard is open on the far side.",
+          "surface_fit": "A long, high wall along an orchard's edge is the usual way to keep livestock and thieves out, so \"fence\" is a natural guess.",
+          "inference": "A fence must close the ground it guards; the orchard's north side lies open to the pasture, so animals could walk in freely and the wall bars only the river side."
+        },
+        "firebreak": {
+          "type": "logic",
+          "quote": "died out in the pasture",
+          "why": "The fire stopped in the pasture, on the side without a wall.",
+          "surface_fit": "The thatched village burned to the ground while the orchard survived, and a solid brick wall is a classic fire barrier, so \"firebreak\" is a strong pull.",
+          "inference": "The village is up the pasture on the orchard's open north side, and the fire died out in that pasture; the wall stands on the south side along the river, so the fire never reached it and the wall did nothing to stop it."
+        }
+      }
+    },
+    {
+      "key": "firebreak",
+      "passage": "In 1760 a riverside landowner built a brick wall twelve feet high and a quarter mile long beside his orchard, near a village of thatched cottages. It runs along the orchard's northern edge, between trees and cottages, open at both ends, and village cattle wander round its ends to graze among the trees. The orchard slopes down from the wall to the river. The frost of 1797 took all the blossom, the rows nearest the wall as well. In 1791 fire burned every cottage, and the orchard lost only the scorched leaves of one row. Estate letters of the next fifty years treat the wall as the orchard's ______.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "\"Firebreak\" fits: the wall stands between the thatched cottages and the trees, and when every cottage burned, the orchard behind it lost only some scorched leaves, so the wall stopped the fire from spreading. \"Fence\" fails because village cattle walk round its open ends to graze among the trees, so it keeps nothing out. \"Dike\" fails because the orchard slopes down from the wall to the river, so river water would reach the trees long before it reached the wall. \"Hearth\" fails because the rows nearest the wall lost their blossom in the 1797 frost like all the rest, so the wall warmed nothing.",
+      "kills": {
+        "fence": {
+          "type": "logic",
+          "quote": "village cattle wander round its ends",
+          "why": "Animals walk round the wall into the orchard.",
+          "surface_fit": "A high brick wall between an orchard and a village is the natural way to keep villagers' animals out, so \"fence\" is the first guess.",
+          "inference": "A fence must close off the ground it guards; this wall is open at both ends and the village cattle simply walk round them to graze among the trees, so it bars nothing."
+        },
+        "dike": {
+          "type": "logic",
+          "quote": "slopes down from the wall to the river",
+          "why": "The river is below the orchard, on the far side from the wall.",
+          "surface_fit": "The estate lies along a river, and a long, solid brick wall beside farmland looks like a flood wall, so \"dike\" fits the setting.",
+          "inference": "A dike must stand between the river and the land; the orchard slopes down from the wall to the river, so any flood would rise through the trees before reaching the wall at the top."
+        },
+        "hearth": {
+          "type": "logic",
+          "quote": "the rows nearest the wall as well",
+          "why": "Trees beside the wall lost their blossom too.",
+          "surface_fit": "The wall runs along the orchard's northern edge, so its orchard side faces south into the sun, the way heat-storing fruit walls are built, so \"hearth\" is tempting.",
+          "inference": "A wall that stored the sun's heat would spare the trees nearest it in a frost; in 1797 the rows beside the wall lost their blossom with all the others, so it gave no warmth."
+        }
+      }
+    }
+  ]
+}

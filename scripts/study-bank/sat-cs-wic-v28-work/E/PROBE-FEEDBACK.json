@@ -1,0 +1,657 @@
+{
+ "_batch_tells_listed_only": [
+  "r0: One-kill-per-distractor template: in most items each wrong option is paired with exactly one planted negating phrase (often in sentences after the blank), so a solver can match options to their denials and take the one left unnegated without understanding the passage's logic: P05, P06, P08, P09, P12, P13, P15, P18, P19, P20, P21, P23, P24, P26, P27, P28, P29, P31, P33, P35, P36, P39, P40.",
+  "r0: The cliché / textbook word for the topic is usually a distractor (killed by one planted fact) rather than the key: kidney P08, corridor P17, sorted P31, denuded P12, reduced P13, muzzled P06, pirated P04, chilled P28, patrolled P35, nibbled P11, depository P25, condemned P03. Exceptions where the cliché is keyed (tomb P02, pilgrimage P16, greened P39) are the easy items.",
+  "r0: Paired worlds reuse one frame with contrasting keys: P21/P22 (merchant ship with iron bars and wine, divers in 1990; sand burial vs rock tumbling) and P13/P36 (wolves return to an elk valley; in both the fear word, rattled/cowed, is a distractor and the plain behavioural word is keyed).",
+  "r0: '[Observer] calls/describes X as the [place]'s ______' noun-metaphor template recurs: P05, P08, P09, P10, P14, P17, P19, P20, P25, P32, P34, P40; and 'the [report] concludes/says that [agent] had ______ the [thing]' recurs across P07, P12, P22, P23, P26, P27, P29, P30, P33, P37, P39.",
+  "r0: Alliterative option sets (P03 c-, P04 p-, P13 r-, P15 r-, P28 c-, P30 m-, P35 p-, P38 r-) are a repeated template, though I found no letter or sound that predicts the key within them.",
+  "r1: Paired near-duplicate worlds with different keys: P12/P14 (merchant ship carrying iron bars and wine sunk off a coast, divers in 1990 - mummified vs gnawed) and P18/P36 (wolves return to a mountain valley, one elk herd - ambushed vs rattled). Solving one primes the other, and the repeated frame shows the template.",
+  "r1: One planted kill per distractor: on most items each wrong option is contradicted by its own sentence or clause, usually phrased as 'the same as / as before / still / never / none' (P03, P04, P05, P08, P09, P10, P11, P13, P14, P17, P19, P20, P21, P22, P27, P28, P34, P35, P36, P37, P38, P40). A solver can find the three negated words and pick the leftover without reading the passage as an argument; explicit_kills is 3 on most of the render.",
+  "r1: A sentence AFTER the blank that kills the strongest near-miss: P04 (rhythm kills manicured), P05 ('same nitrogen' kills manured/leached), P07 (rents), P13 (gale kills dislodged), P21 ('same brown' kills greened), P28 (attacks kill muzzled), P30 (unreached row), P31 (river between boulders). Recognisable shape: claim with blank, then one closing sentence aimed at the stock word.",
+  "r1: The stock collocation for the scenario is consistently the distractor, killed by one planted fact: corridor (P06), tomb (P15), greened (P21), muzzled (P28), dislodged (P13), blockaded (P38), sorted (P08), manured (P05). A test-wise solver who learns that the obvious word is always wrong gains an edge.",
+  "r1: Alliterative or same-initial option sets used repeatedly: P06 (cage/corridor/cemetery/cafeteria), P08 (stacked/sanded/sorted/stained), P09 (raised/rutted/ruptured/rippled), P10 (chilled/clogged/churned + bled), P23 (patrolled/propagated/pollinated/parasitized), P27 (pirated/plagiarized/panned/popularized), P29 (receipt/recipe/roadmap), P34 (ransacked/ransomed/repatriated/requisitioned), P36 (redistributed/reduced/rejuvenated/rattled). Not key-predictive by itself but an obvious shared template.",
+  "r1: Metaphor-noun frame 'X served as / called the Y's ______' recurs across P02, P03, P06, P07, P15, P16, P22, P24, P25, P26, P29, P33, P35, P37; the key is always the noun naming the function the evidence describes.",
+  "r2: Three-kill template: in most items each wrong option is denied by its own planted 'as before / unchanged / no X' phrase, often stacked in one sentence, and the key is the one option left undenied, so a solver can eliminate without inferring. P03, P04, P06, P14, P19, P20, P21, P25, P27, P28, P32, P33, P34, P35, P38, P39, P40.",
+  "r2: Counter-trope keys: the option matching the popular science story for the setup is the distractor, and the passage explicitly negates it, so 'pick the option the passage is at pains to deny is NOT the key' predicts the answer. Corridor in P02, greened in P14, reduced in P20, dislodged in P21, herded in P18, patrolled in P22, tomb in P16, banquet in P30, firebreak in P08.",
+  "r2: Recycled frames across items: P12 and P27 (merchant ship carrying iron bars and wine, divers survey in 1990); P20 and P38 (wolves return to a mountain valley, elk herd); P18 and P22 (ants on a plant, then a 'her/the report concludes the ants had ___' blank).",
+  "r2: Alliterative option sets with the key inside: P02 (c-), P09 (p- x3), P20 (r-), P22 (p-), P24 (c- x3), P35 (r-), P40 (r- x3). This is not predictive of the letter but is a visible authoring signature.",
+  "r2: A trailing sentence after the blank often supplies the last kill or the confirming fact (for example 'In dry summers both valleys turn the same brown', 'Its benches stand mostly empty at midday', 'A gale ... left both halves standing'). P10, P13, P14, P18, P21, P33, P39.",
+  "r3: Kill-every-distractor template: in nearly every item each wrong option is negated by one planted 'as X as / still / no / unchanged' clause (explicit_kills 3 on P03, P05, P07-P09, P11-P15, P18-P20, P22-P31, P33-P40), so the key is found by elimination of three planted negations rather than by reading the passage's positive claim.",
+  "r3: Figurative-noun template 'X calls/treats the [place] as the [place's] ______' with four metaphor nouns recurs: P01, P05, P06, P10, P13, P14, P15, P16, P21, P26, P27, P29, P38.",
+  "r3: Plain/literal word survives when every vivid option is negated: P13 fence, P28 raised, P03 reduced, P25 condemned.",
+  "r3: Near-duplicate worlds: P02/P03 (wolves return to a valley elk herd, 1995/1996), P17/P37 (merchant ship with iron bars and wine sunk, 1690/1790, surveyed by divers in 1990), P07/P32/P35 (a text altered and compared line by line).",
+  "r3: The positive clue is often a single late concrete sentence that names the action outright (P05, P08, P14, P19, P28, P34, P37, P39)."
+ ],
+ "WIC28E-07": {
+  "world 2 (key tomb)": {
+   "must_revise": [
+    "easy",
+    "distractors weak"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "tomb",
+   "reader_difficulty": "easy",
+   "n_struck": 1,
+   "struck_words": [
+    "trellis"
+   ],
+   "distractor_quality": "weak",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'All twenty-eight of its crew, whose bodies were never recovered' with battened hatches hands over 'tomb', and 'true tomb' for a wreck is a stock phrase. 'Trellis' is off-topic for a steel hull on a surface read (and 'bare of growth' kills it), 'strongbox' dies on 'only ballast', 'tripwire' on the ferries passing safely over ninety feet of water.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 3 (key strongbox)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "strongbox",
+   "reader_difficulty": "medium",
+   "n_struck": 1,
+   "struck_words": [
+    "trellis"
+   ],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Trellis fails on a surface read - nothing grows on the hull, which is 'furred with silt'; tomb is the stock wreck metaphor and is killed by 'crew were taken off by a passing schooner', tripwire by 'far below the keels of passing ships', and 'sixty chests of silver' in 'sealed holds' gives strongbox.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 0 (key trellis)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "trellis",
+   "reader_difficulty": "medium",
+   "n_struck": 1,
+   "struck_words": [
+    "tripwire"
+   ],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Grown over with corals and sponges along every beam' while the sand 'holds almost none' gives 'trellis'. 'Tripwire' is off topic on a surface read, since nothing in the passage is about a hazard to ships. 'All thirty of its crew rowed ashore' kills tomb, and coal cargo kills strongbox.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 1 (key tripwire)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "tripwire",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Three ships torn open on the barely submerged bow gives tripwire; tomb killed by the crew walking ashore, strongbox by the rails hauled up and sold, trellis by plates kept bare and bright.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ },
+ "WIC28E-04": {
+  "world 3 (key signpost)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "signpost",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Guidebooks telling drovers to walk toward the tongue that points at the road notch decides 'signpost' in one sentence. 'Timepiece' dies on the river barely changing between morning and night, 'thermometer' on the front holding one ledge through warm and cold, 'storeroom' on meltwater sinking and the river running low in dry summers.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 1 (key thermometer)": {
+   "must_revise": [],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "thermometer",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Crept down the valley in every cold decade and drawn back in every warm one' alone gives thermometer. The meltwater sinking and low dry-summer flow kill storeroom (the water-tower trope), 'hardly changes between morning and night' kills timepiece, and the road 'miles below the ice' kills signpost.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 2 (key timepiece)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "timepiece",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Daily rise at dusk and fall by dawn that the mills run on gives timepiece; storeroom killed by the rise being too small to fill ditches, thermometer by the front holding through warm and cold decades, signpost by no road or path crossing.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ },
+ "WIC28E-06": {
+  "world 1 (key stilled)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "stilled",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'The surface barely carried a leaf' hands over 'stilled'. 'Soured' dies on trout feeding as above, 'walled' on cattle grazing to reedy edges, 'siphoned' on the whole stream spilling over the wheel.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 2 (key soured)": {
+   "must_revise": [
+    "n_struck 2",
+    "distractors plausible",
+    "explanation path wrong (phase 2)"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "soured",
+   "reader_difficulty": "medium",
+   "n_struck": 2,
+   "struck_words": [
+    "walled",
+    "siphoned"
+   ],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Its wheel turned in the open current, and the whole stream ran past it' strikes walled and siphoned on a surface read (nothing dams or draws off water), so only stilled competes with soured; stilled is the near-miss via 'held no trout or insect larvae' but the open current kills it.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": false,
+   "phase2_note": "Walled is rejected on the incidental fact that the dyed banks are natural; the rejection should rest on the wheel turning in the open current with the whole stream running past it, so nothing enclosed or hemmed in the stream."
+  },
+  "world 3 (key walled)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "walled",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "The key is literal: 'lined both banks with cut stone' is walling. 'Quick current' kills stilled, 'the whole stream ran past it' kills siphoned, and 'Trout below the mill were as many as above it' kills soured, one sentence for each.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 0 (key siphoned)": {
+   "must_revise": [],
+   "also_named_for": [
+    "distractor fits literally"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "siphoned",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": "stilled",
+   "presupposes_absent": null,
+   "reader_note": "The race taking most of the stream and returning it a mile down gives siphoned; stilled literally fits the mile of trickle but the current below the outlet runs as fast as above; walled killed by a weir 'no higher than a boot', soured by trout as many as the next valley.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ },
+ "WIC28E-02": {
+  "world 1 (key sapped)": {
+   "must_revise": [],
+   "also_named_for": [
+    "distractor fits literally"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "sapped",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": "winnowed",
+   "presupposes_absent": null,
+   "reader_note": "'Sapped' requires combining no deaths in the drought, a decade of narrow rings and beetle deaths a healthy pine would resist. 'Winnowed' literally fits one tree in five being removed and dies only on 'large and small alike' plus the deaths coming later; 'toppled' dies on the dead staying standing, 'scorched' on green needles.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 3 (key toppled)": {
+   "must_revise": [
+    "explanation path wrong (phase 2)"
+   ],
+   "also_named_for": [
+    "not exclusive",
+    "second defensible"
+   ],
+   "listed_only": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "toppled",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": "winnowed",
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Kept green needles' kills scorched and 'growth rings as wide as before' kills sapped. 'Tallest and soundest' seems planted against winnowed's culling-the-weak sense, but 'winnowed' as 'thinned' still fits one tree in five lost. 'Toppled the forest' overclaims for 20% and credits the gales' work to the dry years, so the pair is not separated.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": false,
+   "phase2_note": "'Winnowed' is rejected only in its narrow 'remove the weak' sense, while its ordinary sense of 'thinned out' still fits one tree in five lost; the rejection should say that winnowing implies sorting the poor from the good, and the drought instead took the tallest and soundest pines, so it was not a sorting at all."
+  }
+ },
+ "WIC28E-05": {
+  "world 0 (key tidied)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "tidied",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Standardized spelling and added sentence breaks give 'tidied'. 'Tightened' dies on every notebook sentence being in the book, 'spliced' on 'in the same order', 'softened' on the curses appearing in full; each distractor is paired with one negating sentence.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 2 (key softened)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "softened",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Misspellings ... included' kills tidied, 'nothing in it comes from outside them' kills spliced, and 'Line by line ... down to the weekly egg tallies' kills tightened. The curse rendered as 'my husband was tired today' then supplies 'softened'.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 3 (key spliced)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "spliced",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Tidied, tightened and softened are one family (editing toward polish) and each has a planted kill: misspellings kept, a fifth longer, curses kept; spliced is the only additive option, so the option set itself sorts the item once one kill is read.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ },
+ "WIC28E-08": {
+  "world 3 (key vault)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "vault",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "The duke's deeds and treasury chests behind two iron doors decide 'vault' in one sentence. 'Tavern' dies on travelers buying wine at the village inn, 'sanatorium' on the sick being turned away, 'scriptorium' on 'none was ever copied'.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 0 (key tavern)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [
+    "above ceiling"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "tavern",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [
+    "scriptorium"
+   ],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Each distractor has its own kill sentence ('library was a dozen books, all bought in the city' for scriptorium, 'kept no money overnight' for vault, 'In plague years it closed its gate' for sanatorium), so elimination is one-to-one; 'more of its income came from wine and beer sold to drovers' plus 'beds let by the night' then names a tavern almost directly.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 1 (key sanatorium)": {
+   "must_revise": [
+    "easy",
+    "distractors weak"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "sanatorium",
+   "reader_difficulty": "easy",
+   "n_struck": 1,
+   "struck_words": [
+    "vault"
+   ],
+   "distractor_quality": "weak",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Townspeople with coughs sent up by doctors for the dry air ... went home well' is the dictionary definition of a sanatorium. 'Vault' falls on a surface read because nothing in the passage is stored. 'Drovers ... sent on to the village inn' kills tavern and 'bought their prayer books from a printer' kills scriptorium.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 2 (key scriptorium)": {
+   "must_revise": [
+    "easy",
+    "distractors plausible"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "scriptorium",
+   "reader_difficulty": "easy",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Vellum and ink bought by the cartload... books in its monks' hand' alone gives scriptorium; sanatorium fails on sick monks carried down to town, tavern on one free night by rule, vault on every book going to the church that paid.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ },
+ "WIC28E-01": {
+  "world 1 (key tollbooth)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "tollbooth",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Ships waiting for a licensed pilot and a council-set fee that 'paved the town's streets' give tollbooth; 'three or four at a time' kills turnstile, 'tied up at the town's piers to unload' kills wharf, and swells rolling over the bar to break against the piers kills seawall.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 3 (key wharf)": {
+   "must_revise": [
+    "n_struck 2",
+    "distractors weak"
+   ],
+   "also_named_for": [],
+   "listed_only": [],
+   "reader_pick_word": "wharf",
+   "reader_difficulty": "medium",
+   "n_struck": 2,
+   "struck_words": [
+    "turnstile",
+    "tollbooth"
+   ],
+   "distractor_quality": "weak",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 1,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Turnstile and tollbooth fail on a surface read: nothing in the passage concerns counting or charging anyone; only seawall is live, killed by swells rolling over the bar and breaking against the piers, leaving wharf for the cargo transfer.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ },
+ "WIC28E-03": {
+  "world 0 (key sorted)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "sorted",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "The sieving sentence (boulders, then cobbles, then pea gravel) points to 'sorted'. Each wrong word is denied by one later sentence: 'lying wherever they stopped' (stacked), 'same shade inside as out' (stained), and 'broken pebbles still fit back together edge to edge' (sanded). That is a kill list, not inference.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ }
+}

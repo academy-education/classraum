@@ -1,0 +1,146 @@
+{
+  "id": "WIC28D-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "an ice-age glacier and its valley floor",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "incised",
+    "littered",
+    "mantled",
+    "milled"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "littered",
+    "milled",
+    "incised",
+    "mantled"
+  ],
+  "pos": "verb",
+  "after_blank": "",
+  "blank_sentence": "Geologists say the glacier left the valley floor ______.",
+  "worlds": [
+    {
+      "key": "incised",
+      "passage": "Twenty thousand years ago a glacier half a mile thick filled a mountain valley, and it lay there for several thousand years. The ice was frozen fast to its bed, and the meadows beneath it kept their soil, which still holds pollen older than the ice. The glacier's own meltwater, forced along its base under enormous pressure, cut a slot into the granite two hundred feet deep and in places narrower than a road. The rock the ice carried was shoved ahead of it into a single ridge across the valley's mouth. Geologists say the glacier left the valley floor ______. Hikers now cross the slot on a footbridge.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The ice was frozen to the ground and left the meadows' old soil in place, while its own meltwater, driven along its base under pressure, cut a slot two hundred feet deep into the granite, so the glacier left the floor \"incised\": cut by a narrow channel and otherwise untouched. \"Milled\" fails because ice frozen fast to its bed does not slide and grind, and the soil with pollen older than the ice survived under it. \"Mantled\" fails because the question is what the glacier left: the ice that lay over the floor is gone, the meadows' surface is the old soil, and all the rock it carried went into the ridge at the valley's mouth, so nothing was left covering the floor. \"Littered\" fails because that rock lies heaped in one ridge at the mouth, not strewn across the meadows.",
+      "kills": {
+        "milled": {
+          "type": "logic",
+          "quote": "The ice was frozen fast to its bed",
+          "why": "Ice frozen to its bed does not slide and grind, and the soil beneath survived.",
+          "surface_fit": "Glaciers are textbook grinders of the rock beneath them, and a half-mile-thick sheet lying for thousands of years invites exactly that verb, so a floor left milled fits the sentence and the topic.",
+          "inference": "To mill the floor the ice would have had to slide over it, scouring off soil and then rock; it was frozen fast to its bed, and the meadows kept their soil with pollen older than the ice, so the only cutting was done by the glacier's meltwater in one slot."
+        },
+        "mantled": {
+          "type": "logic",
+          "quote": "still holds pollen older than the ice",
+          "why": "The surface the glacier left is the old soil, and its rock went into a ridge at the mouth, so nothing was left covering the floor.",
+          "surface_fit": "Melting glaciers commonly leave sheets of clay, sand and stones over the ground, and a half-mile glacier lay over this floor for millennia, so a floor left mantled fits the sentence on a first read.",
+          "inference": "The blank asks how the glacier LEFT the floor, and the ice itself melted away; a floor left mantled would lie under a sheet of the glacier's debris, but the meadows' surface is the old soil still holding pre-glacial pollen, and the rock the ice carried was shoved into a ridge at the valley's mouth, so the floor was left uncovered."
+        },
+        "littered": {
+          "type": "logic",
+          "quote": "into a single ridge across the valley's mouth",
+          "why": "The glacier's rock was heaped in one ridge at the mouth, not scattered over the floor.",
+          "surface_fit": "Valleys left by glaciers are famous for the stray boulders strewn across them, so a floor left littered fits the sentence and the setting.",
+          "inference": "A floor left littered would have the glacier's rock strewn over it; the ice shoved all the rock it carried ahead of it into a single ridge across the valley's mouth, and the meadows kept their old soil, so the floor itself was spared, apart from the slot."
+        }
+      }
+    },
+    {
+      "key": "littered",
+      "passage": "Twenty thousand years ago a glacier half a mile thick filled a mountain valley, and it lay there for several thousand years. The ice was frozen fast to its bed, and the meadows beneath it kept their soil, which still holds pollen older than the ice. As the glacier melted back, boulders of a dark basalt found nowhere in the valley, some as large as houses, settled onto that soil one by one, wherever the melting ice front happened to stand. Geologists say the glacier left the valley floor ______. The river wanders among them in a shallow, stony bed.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "As the ice front melted back it dropped boulders of a rock foreign to the valley one by one across the meadows, so the glacier left the floor \"littered\" with them. \"Mantled\" fails because the question is what the glacier left: the ice that once lay over the floor is gone, and what it left is separate boulders sitting on the old soil, which still holds pollen older than the ice, not a covering spread over the ground. \"Milled\" fails because the ice was frozen to its bed and that soil survived beneath it. \"Incised\" fails because the river still wanders across the floor in a shallow bed, so no channel was cut into it.",
+      "kills": {
+        "mantled": {
+          "type": "logic",
+          "quote": "settled onto that soil one by one",
+          "why": "The glacier left separate boulders sitting on the old soil, not a covering over the floor.",
+          "surface_fit": "Melting glaciers commonly leave sheets of clay, sand and stones over the ground, and a half-mile glacier lay over this floor for millennia, so a floor left mantled fits the sentence on a first read. Here the glacier did drop a great deal of rock as it melted.",
+          "inference": "The blank asks how the glacier left the floor once the ice was gone; it left boulders that settled onto the old soil one by one, wherever the ice front stood, and that soil, still holding pre-glacial pollen, is the surface between them, so the floor was dotted with stones, not covered."
+        },
+        "milled": {
+          "type": "logic",
+          "quote": "The ice was frozen fast to its bed",
+          "why": "Ice frozen to its bed does not slide and grind, and the soil under it survived.",
+          "surface_fit": "Glaciers are textbook grinders of the rock beneath them, and a half-mile-thick sheet lying for thousands of years invites exactly that verb, so a floor left milled fits the sentence and the topic.",
+          "inference": "Grinding needs ice sliding over its bed; this ice was frozen fast, and the meadows kept their soil with pollen older than the ice, so the glacier's mark on the floor was what it dropped, not what it ground away."
+        },
+        "incised": {
+          "type": "logic",
+          "quote": "wanders among them in a shallow, stony bed",
+          "why": "A river still wandering in a shallow bed shows no channel was cut into the floor.",
+          "surface_fit": "Glaciers and the meltwater beneath them are known for carving deep channels into valley floors, so a floor left incised fits the sentence and the subject.",
+          "inference": "An incised floor carries a deep channel cut into it; the river crosses this floor in a shallow, stony bed, winding among the boulders, and the ice above was frozen to its bed, so nothing cut into the floor."
+        }
+      }
+    },
+    {
+      "key": "mantled",
+      "passage": "Twenty thousand years ago a glacier half a mile thick filled a mountain valley, and it lay there for several thousand years. As it melted, it dropped the clay, sand and stones it carried in one sheet forty feet deep from wall to wall, its stones buried in the clay and its surface smooth enough to plow. Wells dug anywhere on the floor pass through that sheet before reaching granite, whose old crumbling crust from before the ice is still there. Geologists say the glacier left the valley floor ______. The river winds across the farms in a bed no deeper than ten feet.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "As it melted the glacier dropped forty feet of clay, sand and stones in one sheet from wall to wall, and every well passes through it before reaching rock, so the glacier left the floor \"mantled,\" covered entirely. \"Littered\" fails because the stones are buried in the clay of a continuous sheet whose surface is smooth enough to plow, not strewn separately over the ground. \"Milled\" fails because the granite under the sheet still has its crumbling crust from before the ice, which a grinding glacier would have scraped away first. \"Incised\" fails because the river's bed is no more than ten feet deep inside a sheet forty feet thick, so nothing has cut into the floor beneath.",
+      "kills": {
+        "littered": {
+          "type": "logic",
+          "quote": "its stones buried in the clay and its surface smooth enough to plow",
+          "why": "The stones are inside a continuous sheet with a plowable surface, so they are not strewn over the floor.",
+          "surface_fit": "Valleys left by glaciers are famous for the stray boulders strewn across them, so a floor left littered fits the sentence and the setting. Here the glacier did drop stones as it melted.",
+          "inference": "A littered floor has rocks lying scattered on it; here the stones are buried in a clay sheet forty feet deep from wall to wall, and its surface is smooth enough to plow, so the glacier covered the floor rather than strewing things across it."
+        },
+        "milled": {
+          "type": "logic",
+          "quote": "whose old crumbling crust from before the ice is still there",
+          "why": "The weathered rock surface from before the glacier survived under the sheet, so the ice did not grind the floor.",
+          "surface_fit": "Glaciers are textbook grinders of the rock beneath them, and a half-mile-thick sheet lying for thousands of years invites exactly that verb, so a floor left milled fits the sentence and the topic. Glacial clay and sand are themselves ground-up rock.",
+          "inference": "A glacier that ground its bed would have scraped off the loose, weathered top of the granite first; the wells find that crust intact beneath forty feet of debris, so the ice did not grind this floor; what it did was bury it."
+        },
+        "incised": {
+          "type": "logic",
+          "quote": "a bed no deeper than ten feet",
+          "why": "The only channel is the river's shallow bed inside a forty-foot sheet, so no cut reaches the floor.",
+          "surface_fit": "Glaciers and the meltwater beneath them are known for carving deep channels into valley floors, so a floor left incised fits the sentence and the subject.",
+          "inference": "An incised floor would have a channel cut down into it; the river's bed is no deeper than ten feet and lies within a sheet forty feet thick that every well must pass through, so nothing has cut into the granite floor beneath."
+        }
+      }
+    },
+    {
+      "key": "milled",
+      "passage": "Twenty thousand years ago a glacier half a mile thick filled a mountain valley, and it lay there for several thousand years. Where it lay, the floor is now bare granite, polished smooth and scratched in fine parallel lines, broad and even from wall to wall, with no loose stone on it larger than a fist. The river that drained the melting ice laid a delta of gray silt as fine as talc in the lake at the valley's mouth, which still runs milky each summer. Geologists say the glacier left the valley floor ______. A road now runs the length of the floor.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "The floor is bare, polished and scratched, and the river from the melting ice carried silt as fine as talc into the lake below, so the glacier left the floor \"milled,\" its rock ground to powder and carried away. \"Incised\" fails because the scratches are fine lines on a floor that stays broad and even from wall to wall, so the ice cut no channel into it. \"Littered\" fails because no loose stone larger than a fist lies on the bare granite. \"Mantled\" fails because the floor was left bare, and the glacier's fine debris went downstream into the lake rather than staying on the floor.",
+      "kills": {
+        "incised": {
+          "type": "logic",
+          "quote": "broad and even from wall to wall",
+          "why": "The scratches are fine lines on an even floor, so no channel was cut.",
+          "surface_fit": "Glaciers and the meltwater beneath them are known for carving deep channels into valley floors, so a floor left incised fits the sentence and the subject. A floor scratched in long parallel lines sounds like one cut into.",
+          "inference": "Incising means cutting a channel down into the floor; the lines here are fine scratches on a floor polished smooth and broad and even from wall to wall, so the ice wore the whole floor down evenly instead of cutting into one line of it."
+        },
+        "littered": {
+          "type": "logic",
+          "quote": "no loose stone on it larger than a fist",
+          "why": "A bare floor with nothing bigger than a fist on it was not strewn with boulders.",
+          "surface_fit": "Valleys left by glaciers are famous for the stray boulders strewn across them, so a floor left littered fits the sentence and the setting.",
+          "inference": "A littered floor carries the glacier's dropped rock; this floor is bare granite with nothing larger than a fist on it, and the rock the ice removed went downstream as fine silt, so the glacier took material away rather than leaving it scattered."
+        },
+        "mantled": {
+          "type": "explicit",
+          "quote": "the floor is now bare granite",
+          "why": "The floor was left bare, so no covering remained on it.",
+          "surface_fit": "Melting glaciers commonly leave sheets of clay, sand and stones over the ground, and a half-mile glacier lay over this floor for millennia, so a floor left mantled fits the sentence on a first read. This glacier did lay down a thick bed of silt.",
+          "inference": "The glacier did leave a deposit, but in the lake at the valley's mouth, carried there by its river; the floor it left is bare, polished granite, so the silt is what was taken from the floor, not a layer left on it."
+        }
+      }
+    }
+  ]
+}

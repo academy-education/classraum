@@ -1,0 +1,146 @@
+{
+  "id": "WIC28C-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "an engraved copy of a coastal survey",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "doctored",
+    "flipped",
+    "enlarged",
+    "gilded"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "enlarged",
+    "flipped",
+    "gilded",
+    "doctored"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "Setting the two side by side, a historian found that the engraver had ______ the survey.",
+  "worlds": [
+    {
+      "key": "doctored",
+      "passage": "In 1590 a printer issued an engraved chart of a stretch of coast, copied from a navy surveyor's hand-drawn map. Laid over the survey on a light table, the print matches it line for line along forty miles of coast, compass rose and scale bar included, until the navy's own harbor. There the print's channel runs half a mile east of the surveyor's soundings, over water his notes mark as rock, and two shoals found nowhere in his notes lie across the channel he sounded. Foreign captains bought the print by the hundred. Setting the two side by side, a historian found that the engraver had ______ the survey.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "\"Doctored\" fits: the print reproduces the survey exactly except at the navy's own harbor, where its channel runs over rock and invented shoals block the real one, on a chart sold in quantity to foreign captains, so the engraver falsified the survey at the one place where misleading other navies mattered. \"Flipped\" fails because the print lies over the survey line for line, compass rose included, so nothing is reversed. \"Enlarged\" fails because a print that matches the survey line for line on a light table is drawn at the survey's own size. \"Gilded\" fails because the only things the print adds are two shoals across a real channel, which change the chart's facts rather than dress it up.",
+      "kills": {
+        "flipped": {
+          "type": "logic",
+          "quote": "compass rose and scale bar included",
+          "why": "The print lies over the survey in its own orientation.",
+          "surface_fit": "The harbor's channel appears in the wrong place on the print, and engraved copies of the period were often reversed, so \"flipped\" is tempting.",
+          "inference": "A reversed print could not lie over the survey line for line with even its compass rose in register; this one does along forty miles, so the change at the harbor is local, not a reversal."
+        },
+        "enlarged": {
+          "type": "logic",
+          "quote": "matches it line for line along forty miles of coast",
+          "why": "The print overlays the survey exactly, so it is the same size.",
+          "surface_fit": "Printed charts were often redrawn at a new scale, and the print's channel lies half a mile from where the survey puts it, which looks like a change of scale, so \"enlarged\" fits.",
+          "inference": "An enlarged copy could not lie line for line over the original; this print does, for forty miles, so the half-mile shift at the harbor is a moved channel, not a bigger drawing."
+        },
+        "gilded": {
+          "type": "logic",
+          "quote": "two shoals found nowhere in his notes",
+          "why": "The additions are false hazards, not ornament.",
+          "surface_fit": "The engraver plainly added things to the print that the survey lacks, and printed charts were often dressed up for buyers, so \"gilded\" fits.",
+          "inference": "Gilding adds ornament that leaves the substance unchanged; the print's additions are shoals placed across the real channel and a channel moved onto rock, so they change what a captain would steer by."
+        }
+      }
+    },
+    {
+      "key": "flipped",
+      "passage": "In 1590 a printer issued an engraved chart of a stretch of coast, copied from a navy surveyor's hand-drawn map. Laid over the survey on a light table, the print matches almost nothing. Turned face down and held against a window, it matches the survey line for line, every cape and shoal at its surveyed spacing, its lettering then reading backward. Two captains who steered by the print ran aground in its first year. Setting the two side by side, a historian found that the engraver had ______ the survey.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "\"Flipped\" fits: the print fails to match the survey face up but matches it line for line when turned over and seen through the paper, so it is the survey's mirror image. \"Doctored\" fails because, once reversed, every cape and shoal sits at exactly its surveyed spacing; nothing was moved or invented, and the groundings came from reading a mirror image. \"Enlarged\" fails because the reversed print matches the survey line for line, so it is the same size. \"Gilded\" fails because seen that way it matches line for line, so the engraver added nothing to it.",
+      "kills": {
+        "doctored": {
+          "type": "logic",
+          "quote": "every cape and shoal at its surveyed spacing",
+          "why": "Reversed, the print matches the survey exactly.",
+          "surface_fit": "The print does not match the survey and captains who trusted it ran aground, which looks like a deliberately falsified navy chart, so \"doctored\" is a strong pull.",
+          "inference": "A doctored chart would misplace chosen features; turned over, this print puts every cape and shoal at its surveyed spacing, so the whole survey is there unaltered and the mismatch comes from its being reversed."
+        },
+        "enlarged": {
+          "type": "logic",
+          "quote": "it matches the survey line for line",
+          "why": "The print is the survey's size.",
+          "surface_fit": "The print does not match the survey when laid over it, and engravers often redrew charts at a new scale, so \"enlarged\" fits.",
+          "inference": "An enlarged copy could not match line for line in any position; turned face down this print does, so it is the survey's size and only its orientation differs."
+        },
+        "gilded": {
+          "type": "logic",
+          "quote": "held against a window, it matches",
+          "why": "Nothing was added to the print.",
+          "surface_fit": "Engravers commonly dressed printed charts up for buyers, so \"gilded\" fits the topic.",
+          "inference": "Ornament would show up as extra lines when the print is held over the survey; seen through the paper it matches line for line, so the engraver added nothing."
+        }
+      }
+    },
+    {
+      "key": "enlarged",
+      "passage": "In 1590 a printer issued an engraved chart of a stretch of coast, copied from a navy surveyor's hand-drawn map. Laid over the survey on a light table, the print matches it nowhere, its coast running off the survey's edges. Walked headland by headland from west to east with dividers, every gap on the print proves exactly double the same gap on the survey, and the print's scale bar, also doubled, turns each back into the distance the surveyor sounded. Its margins hold only coast and soundings. Setting the two side by side, a historian found that the engraver had ______ the survey.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "\"Enlarged\" fits: the print's coast runs past the survey's edges, every gap between headlands is exactly double, and a doubled scale bar converts each back to the surveyed distance, so the engraver copied the survey at twice its size. \"Doctored\" fails because the doubled scale bar returns every distance to what the surveyor sounded, so no fact was falsified. \"Flipped\" fails because the headlands run in the same west-to-east order as on the survey. \"Gilded\" fails because the print's margins hold only coast and soundings, with nothing added for show.",
+      "kills": {
+        "doctored": {
+          "type": "logic",
+          "quote": "turns each back into the distance the surveyor sounded",
+          "why": "Every distance reads true on the print's own scale.",
+          "surface_fit": "The print matches the survey nowhere when laid over it, which looks like an engraver altering a navy chart, so \"doctored\" is a strong pull.",
+          "inference": "A doctored chart misstates distances; every gap on this print is exactly double and its scale bar is doubled too, so a captain measuring with it gets the survey's true coast."
+        },
+        "flipped": {
+          "type": "logic",
+          "quote": "headland by headland from west to east",
+          "why": "The headlands run in the survey's order.",
+          "surface_fit": "The print fails to match the survey on the light table, and engraved copies were often reversed, so \"flipped\" is tempting.",
+          "inference": "A flipped print would run east to west; walked west to east, its headlands come in the survey's own order, each gap double, so the mismatch is one of size, not direction."
+        },
+        "gilded": {
+          "type": "explicit",
+          "quote": "Its margins hold only coast and soundings",
+          "why": "Nothing ornamental was added.",
+          "surface_fit": "A print larger than its original sounds like a showpiece made for display, so \"gilded\" fits.",
+          "inference": "Gilding would add ornament; the print's margins hold only coast and soundings, so the larger sheet carries nothing but the survey drawn bigger."
+        }
+      }
+    },
+    {
+      "key": "gilded",
+      "passage": "In 1590 a printer issued an engraved chart of a stretch of coast, copied from a navy surveyor's hand-drawn map. Laid over the survey on a light table, the print matches it line for line along the coast. Out in the open water, which the surveyor left blank, the engraver set spouting whales, a galleon under full sail, and a sea god blowing a conch, and around the plain title he cut a scrolled frame of fruit and cherubs. Merchants hung the print in their counting houses. Setting the two side by side, a historian found that the engraver had ______ the survey.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "\"Gilded\" fits: the coast matches the survey exactly, and everything new on the print is ornament in empty water or around the title, so the engraver dressed up the survey without changing it. \"Doctored\" fails because the additions sit in water the surveyor left blank, while the coast itself matches line for line, so nothing a captain steers by is false. \"Flipped\" fails because the print lies over the survey line for line, in its own orientation. \"Enlarged\" fails because a print that overlays the survey line for line is drawn at its size.",
+      "kills": {
+        "doctored": {
+          "type": "logic",
+          "quote": "which the surveyor left blank",
+          "why": "The additions are in empty water, off the coast.",
+          "surface_fit": "The engraver added many things to a navy chart that the surveyor never drew, which is how charts were falsified, so \"doctored\" is tempting.",
+          "inference": "Falsifying a chart means changing what it records; the whales, ship and sea god sit in water the surveyor left blank, and the coast matches line for line, so the record itself is untouched."
+        },
+        "flipped": {
+          "type": "logic",
+          "quote": "the print matches it line for line",
+          "why": "The print lies over the survey in its own orientation.",
+          "surface_fit": "Engraved copies of the period were often reversed in printing, so \"flipped\" is a plausible change.",
+          "inference": "A reversed print could not lie line for line over the survey face up; this one does along the whole coast, so nothing was reversed."
+        },
+        "enlarged": {
+          "type": "logic",
+          "quote": "line for line along the coast",
+          "why": "The print overlays the survey, so it is the same size.",
+          "surface_fit": "A print crowded with a galleon, whales and a framed title sounds like a grand showpiece, larger than a working survey, so \"enlarged\" fits.",
+          "inference": "An enlarged copy could not be laid over the original and match; this one matches line for line, so the ornaments were fitted onto a sheet of the survey's size."
+        }
+      }
+    }
+  ]
+}

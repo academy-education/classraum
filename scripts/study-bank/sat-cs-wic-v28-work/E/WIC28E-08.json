@@ -1,0 +1,146 @@
+{
+  "id": "WIC28E-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a monastery above a mountain road",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "sanatorium",
+    "scriptorium",
+    "tavern",
+    "vault"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "vault",
+    "tavern",
+    "sanatorium",
+    "scriptorium"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "In those books, one historian argues, it appears as the valley's ______.",
+  "worlds": [
+    {
+      "key": "tavern",
+      "passage": "From 1400 to 1700 a monastery stood above the only road through a mountain valley, and its account books survive. Its wine was poured at the gate, and in most years what drovers and merchants paid there exceeded the rent from its fields. Townspeople came up for weeks each September, paid by the day to pick grapes. Its three hundred books were bought at city fairs, bills of sale still pinned inside. Its iron-bound cellar chests filled with coin each autumn and were emptied by spring into the building of a new chapel. In those books, one historian argues, it appears as the valley's ______.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "Wine was poured at the gate, and in most years what drovers and merchants on the road paid came to more than the rent from its fields, so the monastery made its living serving drink to travelers: it was the valley's \"tavern.\" A \"sanatorium\" takes in the sick to recover, but the townspeople who came for weeks each September were paid by the day to pick grapes. A \"scriptorium\" is where books are written out, but its three hundred books were bought at the city fairs. A \"vault\" keeps valuables safe, but its chests were emptied each spring to pay for a new chapel.",
+      "kills": {
+        "sanatorium": {
+          "type": "logic",
+          "quote": "paid by the day to pick grapes",
+          "why": "A sanatorium takes in the sick to recover; these townspeople came to work and were paid.",
+          "surface_fit": "Townspeople climbing to a mountain monastery for weeks at a time is the classic picture of a stay for the sake of one's health.",
+          "inference": "guests who are paid by the day for picking grapes are hired workers at harvest, not patients, so the weeks they spent there were labor, not recovery"
+        },
+        "scriptorium": {
+          "type": "logic",
+          "quote": "bought at city fairs",
+          "why": "A scriptorium is where books are written out; this library was bought.",
+          "surface_fit": "Medieval monasteries are best known for their libraries and copying, and this one owned three hundred books.",
+          "inference": "three hundred books bought at the fairs, with their bills of sale, were made elsewhere, so owning a large library shows only that the monks bought books, not that they wrote them"
+        },
+        "vault": {
+          "type": "logic",
+          "quote": "emptied by spring into the building of a new chapel",
+          "why": "A vault keeps valuables safe over time; these chests were emptied every spring into spending.",
+          "surface_fit": "Iron-bound chests full of coin in a cellar on a fortified ledge are the very picture of a vault.",
+          "inference": "coin that went out each spring to pay the chapel's builders was not being kept; the chests held each year's takings only until they were spent"
+        }
+      }
+    },
+    {
+      "key": "sanatorium",
+      "passage": "From 1400 to 1700 a monastery stood above the only road through a mountain valley, and its account books survive. Townspeople came up each autumn with letters from doctors in the city and stayed through the winter in rooms facing the sun, and the books list milk, eggs and firewood bought for that wing. Drovers stopping at its gate got bread and one night's bed, entered in the books as alms. Its iron-bound cellar chests held that wing's bedding through the summer. Its few books were printed in the city and bought there. In those books, one historian argues, it appears as the valley's ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "Townspeople came with doctors' letters, stayed the winter in sunny rooms, and were fed milk and eggs bought for their wing, so the monastery was where the sick went to recover: the valley's \"sanatorium.\" A \"tavern\" sells food and drink to travelers, but the drovers who stopped at its gate got bread and a bed recorded as alms, a gift. A \"vault\" keeps valuables safe, but its iron-bound chests held the guest wing's bedding. A \"scriptorium\" is where books are written out, but its few books were printed in the city and bought there.",
+      "kills": {
+        "tavern": {
+          "type": "logic",
+          "quote": "entered in the books as alms",
+          "why": "A tavern sells food and drink to travelers; here travelers got bread and a bed as charity.",
+          "surface_fit": "A monastery on a ledge above the only road, where drovers stopped at the gate for food and a bed, looks exactly like a roadside inn.",
+          "inference": "the books record what the drovers received as alms, a gift, so the monastery was not trading with them, and one night's bread and bed is the order's charity, not an inn's business"
+        },
+        "vault": {
+          "type": "logic",
+          "quote": "held that wing's bedding through the summer",
+          "why": "A vault guards valuables; these chests stored bedding.",
+          "surface_fit": "Iron-bound chests in a cellar sound like a strong room for valuables.",
+          "inference": "the iron-bound chests were used to store the guest wing's bedding between winters, so what the cellar kept safe was linen, not anyone's wealth"
+        },
+        "scriptorium": {
+          "type": "logic",
+          "quote": "printed in the city and bought there",
+          "why": "A scriptorium is where books are written out; these few books were printed and bought.",
+          "surface_fit": "Monasteries were the book-makers of their age, and the historian is reading this one's own written records.",
+          "inference": "books printed in the city and bought there were made by printers elsewhere, so the monks were not producing books"
+        }
+      }
+    },
+    {
+      "key": "scriptorium",
+      "passage": "From 1400 to 1700 a monastery stood above the only road through a mountain valley, and its account books survive. Each year the books record calfskins for parchment bought by the hundred and ink by the barrel. Bishops across the region paid it for service books, and its cellar chests held each finished book only until the bishop who ordered it had paid. Drovers stopping at its gate got bread and one night's bed, entered in the books as alms. Townspeople came up for weeks each September, paid by the day to pick grapes. In those books, one historian argues, it appears as the valley's ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The monastery bought calfskins for parchment by the hundred and ink by the barrel, and bishops paid it for service books that went out as soon as they were paid for, so it was where the region's books were written: the valley's \"scriptorium.\" A \"vault\" keeps valuables safe, but the chests held each book only until it was paid for and sent. A \"tavern\" sells food and drink to travelers, but drovers got bread and a bed recorded as alms. A \"sanatorium\" takes in the sick, but the townspeople who came each September were paid by the day to pick grapes.",
+      "kills": {
+        "tavern": {
+          "type": "logic",
+          "quote": "entered in the books as alms",
+          "why": "A tavern sells food and drink to travelers; here travelers got bread and a bed as charity.",
+          "surface_fit": "A monastery on a ledge above the only road, where drovers stopped at the gate for food and a bed, looks exactly like a roadside inn.",
+          "inference": "the books record what the drovers received as alms, a gift, so the monastery was not trading with them, and one night's bread and bed is the order's charity, not an inn's business"
+        },
+        "sanatorium": {
+          "type": "logic",
+          "quote": "paid by the day to pick grapes",
+          "why": "A sanatorium takes in the sick to recover; these townspeople came to work and were paid.",
+          "surface_fit": "Townspeople climbing to a mountain monastery for weeks at a time is the classic picture of a stay for the sake of one's health.",
+          "inference": "guests who are paid by the day for picking grapes are hired workers at harvest, not patients, so the weeks they spent there were labor, not recovery"
+        },
+        "vault": {
+          "type": "logic",
+          "quote": "only until the bishop who ordered it had paid",
+          "why": "A vault keeps valuables safe; these chests held each book only briefly before it was sent away.",
+          "surface_fit": "Cellar chests full of valuable books are just what a reader expects a monastery's vault to hold.",
+          "inference": "each book left as soon as its bishop paid, so the chests held finished work awaiting delivery, and the monastery kept nothing there for safekeeping"
+        }
+      }
+    },
+    {
+      "key": "vault",
+      "passage": "From 1400 to 1700 a monastery stood above the only road through a mountain valley, and its account books survive. Every farm deed lay behind two iron doors in its cellar, written by the duke's clerks in town and carried up; at each sale, buyer and seller climbed up to see the name changed. The duke paid yearly to keep his own chests there. Drovers stopping at its gate got bread and one night's bed, entered in the books as alms. Townspeople came up for weeks each September, paid by the day to pick grapes. In those books, one historian argues, it appears as the valley's ______.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "Every farm deed in the valley lay behind its two iron doors, buyers and sellers climbed up to see a deed changed, and the duke paid to keep his own chests there, so the monastery held the valley's valuables secure: it was the valley's \"vault.\" A \"scriptorium\" is where documents are written out, but the deeds were written by the duke's clerks in the town and carried up. A \"tavern\" sells food and drink to travelers, but drovers got bread and a bed recorded as alms. A \"sanatorium\" takes in the sick, but the townspeople who came each September were paid by the day to pick grapes.",
+      "kills": {
+        "tavern": {
+          "type": "logic",
+          "quote": "entered in the books as alms",
+          "why": "A tavern sells food and drink to travelers; here travelers got bread and a bed as charity.",
+          "surface_fit": "A monastery on a ledge above the only road, where drovers stopped at the gate for food and a bed, looks exactly like a roadside inn.",
+          "inference": "the books record what the drovers received as alms, a gift, so the monastery was not trading with them, and one night's bread and bed is the order's charity, not an inn's business"
+        },
+        "sanatorium": {
+          "type": "logic",
+          "quote": "paid by the day to pick grapes",
+          "why": "A sanatorium takes in the sick to recover; these townspeople came to work and were paid.",
+          "surface_fit": "Townspeople climbing to a mountain monastery for weeks at a time is the classic picture of a stay for the sake of one's health.",
+          "inference": "guests who are paid by the day for picking grapes are hired workers at harvest, not patients, so the weeks they spent there were labor, not recovery"
+        },
+        "scriptorium": {
+          "type": "logic",
+          "quote": "written by the duke's clerks in town and carried up",
+          "why": "A scriptorium is where documents are written out; these were written in the town and only kept here.",
+          "surface_fit": "A monastery holding every written deed in the valley is just where a reader expects documents to have been copied.",
+          "inference": "the deeds were written in the town by the duke's clerks and brought up afterward, so the monastery held writing it had not produced"
+        }
+      }
+    }
+  ]
+}

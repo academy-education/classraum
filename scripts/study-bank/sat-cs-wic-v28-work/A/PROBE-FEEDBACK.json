@@ -1,0 +1,789 @@
+{
+ "_batch_tells_listed_only": [
+  "r0: One-kill-per-distractor template: in most items each wrong option is paired with exactly one planted negating phrase (often in sentences after the blank), so a solver can match options to their denials and take the one left unnegated without understanding the passage's logic: P05, P06, P08, P09, P12, P13, P15, P18, P19, P20, P21, P23, P24, P26, P27, P28, P29, P31, P33, P35, P36, P39, P40.",
+  "r0: The cliché / textbook word for the topic is usually a distractor (killed by one planted fact) rather than the key: kidney P08, corridor P17, sorted P31, denuded P12, reduced P13, muzzled P06, pirated P04, chilled P28, patrolled P35, nibbled P11, depository P25, condemned P03. Exceptions where the cliché is keyed (tomb P02, pilgrimage P16, greened P39) are the easy items.",
+  "r0: Paired worlds reuse one frame with contrasting keys: P21/P22 (merchant ship with iron bars and wine, divers in 1990; sand burial vs rock tumbling) and P13/P36 (wolves return to an elk valley; in both the fear word, rattled/cowed, is a distractor and the plain behavioural word is keyed).",
+  "r0: '[Observer] calls/describes X as the [place]'s ______' noun-metaphor template recurs: P05, P08, P09, P10, P14, P17, P19, P20, P25, P32, P34, P40; and 'the [report] concludes/says that [agent] had ______ the [thing]' recurs across P07, P12, P22, P23, P26, P27, P29, P30, P33, P37, P39.",
+  "r0: Alliterative option sets (P03 c-, P04 p-, P13 r-, P15 r-, P28 c-, P30 m-, P35 p-, P38 r-) are a repeated template, though I found no letter or sound that predicts the key within them.",
+  "r1: Paired near-duplicate worlds with different keys: P12/P14 (merchant ship carrying iron bars and wine sunk off a coast, divers in 1990 - mummified vs gnawed) and P18/P36 (wolves return to a mountain valley, one elk herd - ambushed vs rattled). Solving one primes the other, and the repeated frame shows the template.",
+  "r1: One planted kill per distractor: on most items each wrong option is contradicted by its own sentence or clause, usually phrased as 'the same as / as before / still / never / none' (P03, P04, P05, P08, P09, P10, P11, P13, P14, P17, P19, P20, P21, P22, P27, P28, P34, P35, P36, P37, P38, P40). A solver can find the three negated words and pick the leftover without reading the passage as an argument; explicit_kills is 3 on most of the render.",
+  "r1: A sentence AFTER the blank that kills the strongest near-miss: P04 (rhythm kills manicured), P05 ('same nitrogen' kills manured/leached), P07 (rents), P13 (gale kills dislodged), P21 ('same brown' kills greened), P28 (attacks kill muzzled), P30 (unreached row), P31 (river between boulders). Recognisable shape: claim with blank, then one closing sentence aimed at the stock word.",
+  "r1: The stock collocation for the scenario is consistently the distractor, killed by one planted fact: corridor (P06), tomb (P15), greened (P21), muzzled (P28), dislodged (P13), blockaded (P38), sorted (P08), manured (P05). A test-wise solver who learns that the obvious word is always wrong gains an edge.",
+  "r1: Alliterative or same-initial option sets used repeatedly: P06 (cage/corridor/cemetery/cafeteria), P08 (stacked/sanded/sorted/stained), P09 (raised/rutted/ruptured/rippled), P10 (chilled/clogged/churned + bled), P23 (patrolled/propagated/pollinated/parasitized), P27 (pirated/plagiarized/panned/popularized), P29 (receipt/recipe/roadmap), P34 (ransacked/ransomed/repatriated/requisitioned), P36 (redistributed/reduced/rejuvenated/rattled). Not key-predictive by itself but an obvious shared template.",
+  "r1: Metaphor-noun frame 'X served as / called the Y's ______' recurs across P02, P03, P06, P07, P15, P16, P22, P24, P25, P26, P29, P33, P35, P37; the key is always the noun naming the function the evidence describes.",
+  "r2: Three-kill template: in most items each wrong option is denied by its own planted 'as before / unchanged / no X' phrase, often stacked in one sentence, and the key is the one option left undenied, so a solver can eliminate without inferring. P03, P04, P06, P14, P19, P20, P21, P25, P27, P28, P32, P33, P34, P35, P38, P39, P40.",
+  "r2: Counter-trope keys: the option matching the popular science story for the setup is the distractor, and the passage explicitly negates it, so 'pick the option the passage is at pains to deny is NOT the key' predicts the answer. Corridor in P02, greened in P14, reduced in P20, dislodged in P21, herded in P18, patrolled in P22, tomb in P16, banquet in P30, firebreak in P08.",
+  "r2: Recycled frames across items: P12 and P27 (merchant ship carrying iron bars and wine, divers survey in 1990); P20 and P38 (wolves return to a mountain valley, elk herd); P18 and P22 (ants on a plant, then a 'her/the report concludes the ants had ___' blank).",
+  "r2: Alliterative option sets with the key inside: P02 (c-), P09 (p- x3), P20 (r-), P22 (p-), P24 (c- x3), P35 (r-), P40 (r- x3). This is not predictive of the letter but is a visible authoring signature.",
+  "r2: A trailing sentence after the blank often supplies the last kill or the confirming fact (for example 'In dry summers both valleys turn the same brown', 'Its benches stand mostly empty at midday', 'A gale ... left both halves standing'). P10, P13, P14, P18, P21, P33, P39.",
+  "r3: Kill-every-distractor template: in nearly every item each wrong option is negated by one planted 'as X as / still / no / unchanged' clause (explicit_kills 3 on P03, P05, P07-P09, P11-P15, P18-P20, P22-P31, P33-P40), so the key is found by elimination of three planted negations rather than by reading the passage's positive claim.",
+  "r3: Figurative-noun template 'X calls/treats the [place] as the [place's] ______' with four metaphor nouns recurs: P01, P05, P06, P10, P13, P14, P15, P16, P21, P26, P27, P29, P38.",
+  "r3: Plain/literal word survives when every vivid option is negated: P13 fence, P28 raised, P03 reduced, P25 condemned.",
+  "r3: Near-duplicate worlds: P02/P03 (wolves return to a valley elk herd, 1995/1996), P17/P37 (merchant ship with iron bars and wine sunk, 1690/1790, surveyed by divers in 1990), P07/P32/P35 (a text altered and compared line by line).",
+  "r3: The positive clue is often a single late concrete sentence that names the action outright (P05, P08, P14, P19, P28, P34, P37, P39)."
+ ],
+ "WIC28A-05": {
+  "world 0 (key blockaded)": {
+   "must_revise": [
+    "distractors plausible",
+    "explanation path wrong (phase 2)"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "blockaded",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "The warships sentence (anchored across the harbor mouth, turned back every freighter) states the blockade outright. 'Annexed' dies on the island's flag and clerks staying, 'boycotted' on the alliance turning back its own buyers' ships; 'bombarded' has no planted kill but nothing in the passage describes firing, so it is weak.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": false,
+   "phase2_note": "'Bombarded' is rejected on the incidental detail that the sheds still stand; the rejection should rest on the warships anchoring and turning freighters back, with no firing anywhere in the passage."
+  },
+  "world 1 (key bombarded)": {
+   "must_revise": [],
+   "also_named_for": [
+    "distractor fits literally"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "bombarded",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": "blockaded",
+   "presupposes_absent": null,
+   "reader_note": "A cratered depot and rubble give bombarded; 'Alliance warships stood off the harbor' makes blockaded a literal fit, killed by 'freighters of every flag still came and went', while the wool still selling in the alliance's markets kills boycotted and the island's flag still flying kills annexed.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 2 (key boycotted)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "boycotted",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "The final sentence is a three-kill list: 'sheds stood as before' (bombarded), 'no alliance warship came near' (blockaded) and 'flag went on flying' (annexed). Wool vanishing from the alliance's own markets while neutrals load more gives boycotted.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 3 (key annexed)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "annexed",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Customs house, flag and duties gives annexed; blockaded fails on freighters coming and going, boycotted on buyers taking more wool, bombarded on unloading 'as before'. The key is also the only option not beginning with b.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ },
+ "WIC28A-06": {
+  "world 1 (key bulldozed)": {
+   "must_revise": [
+    "distractors plausible",
+    "explanation path wrong (phase 2)"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "bulldozed",
+   "reader_difficulty": "medium",
+   "n_struck": 1,
+   "struck_words": [
+    "crated"
+   ],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Crated' fails on a surface read: stones 'broken into rubble' were not packed for moving. 'Condemned' is the real near-miss and dies only on 'walls sound and its tower true', but a council can condemn a building for clearance regardless of soundness, so it stays close; 'commandeered' dies on the site becoming a parking lot rather than being taken into use.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": false,
+   "phase2_note": "'Condemned' is read only as 'found unsafe', but a council condemning a building also means ordering it cleared, which a sound church can be; the rejection should rest on the council actually knocking it down and carting off the rubble, which goes beyond a declaration."
+  },
+  "world 2 (key crated)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "crated",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Taken down stone by stone, numbered and raised again across the ocean gives crated, though 'the council crated the church' is an awkward collocation (the council sold it; workers packed it); 'walls sound and its tower true' kills condemned, 'stone by stone' kills bulldozed, 'had paid the town for it' kills commandeered.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 3 (key commandeered)": {
+   "must_revise": [
+    "easy",
+    "distractors weak"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "commandeered",
+   "reader_difficulty": "easy",
+   "n_struck": 1,
+   "struck_words": [
+    "crated"
+   ],
+   "distractor_quality": "weak",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "One sentence, 'the council, over the objections of the church's trustees, moved ... into the nave', defines commandeered. 'Crated' falls on a surface read because a stone church cannot be crated. 'Walls sound' kills condemned and 'got their church back, unaltered' kills bulldozed, so no near-miss survives.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 0 (key condemned)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "condemned",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Structural cracks, a fence and a no-entry sign gives condemned; bulldozed killed by 'still stands', crated by bell and glass in place, commandeered by 'used by no one'.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ },
+ "WIC28A-08": {
+  "world 3 (key bridge)": {
+   "must_revise": [
+    "explanation path wrong (phase 2)"
+   ],
+   "also_named_for": [
+    "not exclusive",
+    "second defensible",
+    "distractor fits literally"
+   ],
+   "listed_only": [],
+   "reader_pick_word": "bridge",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 1,
+   "second_defensible_word": "banquet",
+   "literal_fit_word": "banquet",
+   "presupposes_absent": null,
+   "reader_note": "'Bridge' rests on the clams descending from two spring fields on opposite sides and young reaching a third. But the passage plants 'a seafloor where food is otherwise scarce' and scavengers stripping a forty-ton carcass, so 'banquet' literally describes what it reports and nothing in the text kills it; only 'cupboard' dies cleanly (bones bare within two years).",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": false,
+   "phase2_note": "'Banquet' is rejected on no fact at all ('what matters is'), while 'food is otherwise scarce' and scavengers stripping a forty-ton carcass actually support it; the rejection should rest on the biologist's point being the clam lineages crossing between distant springs, and the planted food lure should be removed."
+  },
+  "world 0 (key banquet)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "banquet",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Hundreds crowding in and stripping the flesh in four months gives banquet; cupboard and battery are near-misses for a stored food source and fail only on the speed ('in four months', 'scattered as soon as the flesh was gone'), and 'animals found across the whole seafloor' kills bridge.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 1 (key cupboard)": {
+   "must_revise": [
+    "explanation path wrong (phase 2)"
+   ],
+   "also_named_for": [],
+   "listed_only": [],
+   "reader_pick_word": "cupboard",
+   "reader_difficulty": "hard",
+   "n_struck": 1,
+   "struck_words": [
+    "bridge"
+   ],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 1,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Banquet' (the whale-fall feast trope) is killed by 'the same few sleeper sharks', 'a mouthful or two' and 'no animal living on it'. 'Bridge' falls on a surface read because nothing crosses anything. 'Battery' (a store drawn down slowly) is a real near-miss to 'cupboard'.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": false,
+   "phase2_note": "'Battery' is rejected because 'nothing lived on the carcass for it to sustain', which is beside the point: a battery is a store of energy drawn down slowly, exactly as the sharks draw on it; the rejection should rest on the carcass being food taken away mouthful by mouthful, which is a larder's role, not a power source's."
+  },
+  "world 2 (key battery)": {
+   "must_revise": [
+    "explanation path wrong (phase 2)"
+   ],
+   "also_named_for": [
+    "not exclusive",
+    "second defensible",
+    "distractor fits literally"
+   ],
+   "listed_only": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "battery",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": "cupboard",
+   "literal_fit_word": "banquet",
+   "presupposes_absent": null,
+   "reader_note": "Stored oil slowly released through bacteria for thirty years fits battery, but cupboard (a store of food drawn on over time where food is scarce) fits nearly as well and nothing kills it; banquet literally fits the scavengers' first months and is killed only by the thirty-year span.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": false,
+   "phase2_note": "Cupboard is rejected on a narrow sense (visitors carrying food away), but its ordinary figurative sense, a store of food drawn on over time where food is scarce, fits the bones; the rejection should rest on the energy reaching the clams only after bacteria convert it, a stored charge slowly discharged rather than a stock of food eaten as it is."
+  }
+ },
+ "WIC28A-02": {
+  "world 1 (key cage)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "cage",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Corridor' is the strong lure (strip between two forests) and dies on no vole moving over half a mile and stretch-local gene variants; 'cemetery' dies on strip voles living as long. 'Cafeteria' is weak: nothing in the passage is about food. The key 'cage' is acceptable but harsher than the evidence (voles simply stay), so the item is won by elimination.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 2 (key cafeteria)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [
+    "distractor fits literally"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "cafeteria",
+   "reader_difficulty": "medium",
+   "n_struck": 1,
+   "struck_words": [
+    "cemetery"
+   ],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": "corridor",
+   "presupposes_absent": null,
+   "reader_note": "Cemetery fails on a surface read against 'voles that visit the strip outlive' the others; corridor is the real near-miss because the strip literally runs between the two forests, and 'none has been caught more than a few hundred yards from the forest it came from' kills it, with 'grass stems clipped of their seed heads' pointing to feeding.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 3 (key cemetery)": {
+   "must_revise": [
+    "explanation path wrong (phase 2)"
+   ],
+   "also_named_for": [
+    "distractor fits literally"
+   ],
+   "listed_only": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "cemetery",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": "cafeteria",
+   "presupposes_absent": null,
+   "reader_note": "'Corridor' is the expected answer for a strip between two forests and is killed by 'settle ... within a few hundred yards of where they entered'; 'cage' is killed by voles that 'wander back'. 'Cafeteria' literally matches the 'seed-heavy grass', and only the owl-pellet sentence together with the equal survival at the forest edge moves it to 'cemetery'.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": false,
+   "phase2_note": "'Cafeteria' is rejected on a narrow 'come to eat and go home' reading, although the voles do feed on the seed-heavy grass; the rejection should rest on the decisive fact that owls kill over half of them there within a month, so the strip is where they die, not where they are fed."
+  },
+  "world 0 (key corridor)": {
+   "must_revise": [
+    "easy",
+    "n_struck 2",
+    "distractors weak"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "corridor",
+   "reader_difficulty": "easy",
+   "n_struck": 2,
+   "struck_words": [
+    "cage",
+    "cemetery"
+   ],
+   "distractor_quality": "weak",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "The opening sentence (a strip running twelve miles between two forests, voles in both) hands over corridor before any evidence; cage and cemetery are off-frame for a connecting strip, and 'live as long' plus 'rarely caught twice at the same spot' kill cemetery and cafeteria directly.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ },
+ "WIC28A-07": {
+  "world 2 (key capsized)": {
+   "must_revise": [
+    "easy",
+    "distractors weak"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "capsized",
+   "reader_difficulty": "easy",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "weak",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Heeled until the sea poured over their rails and did not come back up' and 'upturned hulls' define capsizing. Each distractor has one planted kill: 'becalmed' by the squall, 'beached' by 'miles from any shore', 'blinded' by 'in plain sight of them'.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 3 (key blinded)": {
+   "must_revise": [
+    "easy",
+    "distractors plausible"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "blinded",
+   "reader_difficulty": "easy",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'a lookout on the bow of one could not make out its own stern' hands over blinded by itself; 'a steady breeze kept every ship moving' kills becalmed and 'reaching harbor afloat and unharmed' kills beached and capsized together.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 0 (key becalmed)": {
+   "must_revise": [
+    "easy",
+    "distractors weak"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "becalmed",
+   "reader_difficulty": "easy",
+   "n_struck": 1,
+   "struck_words": [
+    "blinded"
+   ],
+   "distractor_quality": "weak",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Canvas hanging from the yards, on water so still that scraps ... floated beside the hulls' is becalmed by definition. 'Blinded' falls on a surface read since the ships lay 'within sight of one another', 'not a spar broken' kills capsized, and reaching harbor kills beached.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 1 (key beached)": {
+   "must_revise": [
+    "easy",
+    "distractors weak"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "beached",
+   "reader_difficulty": "easy",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "weak",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Four lay upright on the sand of a shallow bay' alone gives beached; capsized killed by 'upright', becalmed by the gale, blinded by the moonlit night - each a single planted word.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ },
+ "WIC28A-03": {
+  "world 2 (key bedroom)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "bedroom",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Arriving at dusk, wrapping in mucus and lying still until dawn give 'bedroom'. 'Canteen' dies on algae growing a foot long (ungrazed), 'ballroom' on 'lie still'; 'clinic' (cleaning-station lure) dies only indirectly, since the fish protect themselves from parasites rather than being treated.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 3 (key ballroom)": {
+   "must_revise": [
+    "explanation path wrong (phase 2)"
+   ],
+   "also_named_for": [
+    "not exclusive",
+    "second defensible"
+   ],
+   "listed_only": [],
+   "reader_pick_word": "ballroom",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 1,
+   "second_defensible_word": "bedroom",
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Males circling females by the thousand reads as ballroom, but females losing a fifth of their weight shows spawning actually happened there, which supports bedroom (mating place) just as well, and 'For a few nights' adds to it; canteen is killed by the weight loss, clinic only weakly (the 'swarms of small fish' could be cleaners). Not exclusive between B and D.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": false,
+   "phase2_note": "Bedroom is rejected only in its sleeping sense (active at dusk, gone in a week), when its figurative mating-place sense fits exactly the spawning the explanation itself cites (females a fifth lighter from shedding eggs); a rejection would have to rest on the courtship display (crowds circling) that makes ballroom more precise, and even then bedroom stays defensible."
+  },
+  "world 0 (key clinic)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [
+    "distractor fits literally"
+   ],
+   "listed_only": [],
+   "reader_pick_word": "clinic",
+   "reader_difficulty": "medium",
+   "n_struck": 1,
+   "struck_words": [
+    "ballroom"
+   ],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 1,
+   "second_defensible_word": null,
+   "literal_fit_word": "canteen",
+   "presupposes_absent": null,
+   "reader_note": "The cleaner-station picture and the parasite comparison give clinic; cleaner stations are widely known, which lowers difficulty. 'Ballroom' falls on a surface read because nothing in the passage is social or dance-like. 'Canteen' literally fits the shrimp that 'feed', and 'by day' with 'within minutes' kills bedroom.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 1 (key canteen)": {
+   "must_revise": [],
+   "also_named_for": [
+    "distractor fits literally"
+   ],
+   "listed_only": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "canteen",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": "clinic",
+   "presupposes_absent": null,
+   "reader_note": "Fenced corners growing algae while the rest stays cropped makes it a feeding site, canteen; clinic is planted via waving (cleaner) shrimp but the fish swim 'past' them; bedroom killed by water emptying at dusk; ballroom has no direct kill.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ },
+ "WIC28A-01": {
+  "world 0 (key chased)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "chased",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Running a mile or more before nearly every kill gives 'chased'. 'Ambushed' dies on that same run, 'cowed' on elk browsing the willows as low as ever, 'corralled' on the herd ranging over the whole valley floor.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 1 (key ambushed)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "ambushed",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Wolves 'bedded in the willow thickets beside the crossings' with kills 'within three strides' gives ambushed and kills chased; 'The herd went on using the same crossings' and browsed willows kill cowed and corralled. Same world as P36 (wolves return, elk herd) with a different key.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 3 (key cowed)": {
+   "must_revise": [],
+   "also_named_for": [
+    "distractor fits literally"
+   ],
+   "listed_only": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "cowed",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": "chased",
+   "presupposes_absent": null,
+   "reader_note": "Few kills but trotting and head-lifting even when the pack was thirty miles away gives cowed; corralled is killed by 'scattered bands', ambushed by 'fewer than thirty elk a year'; chased literally fits the trotting but the pack was absent.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ },
+ "WIC28A-04": {
+  "world 1 (key churned)": {
+   "must_revise": [],
+   "also_named_for": [
+    "not exclusive",
+    "second defensible"
+   ],
+   "listed_only": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "churned",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": "bled",
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Water from just beneath the reservoir's sunlit surface' kills chilled and 'bars shift from week to week' kills clogged. The daily surge-and-trickle supports 'churned', but 'bled' (drained to 'a trickle between dry gravel bars' every night) is also defensible, and nothing in the passage separates the two.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ }
+}

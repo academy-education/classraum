@@ -1,0 +1,146 @@
+{
+  "id": "WIC28E-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "valley glacier above farming villages",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "signpost",
+    "storeroom",
+    "thermometer",
+    "timepiece"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "thermometer",
+    "signpost",
+    "storeroom",
+    "timepiece"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "A study of three centuries of village records describes the glacier as the valley's ______.",
+  "worlds": [
+    {
+      "key": "storeroom",
+      "passage": "A glacier fills the head of a high valley whose river runs past farming villages to the plain. It can be seen only from the last village, where the road from the plain ends. Snow piles on it all winter, and the river runs fullest at the height of summer, when the plain's rain-fed streams dry up and the villages open their ditches. Its meltwater filters for days through gravel, so the river's level hardly changes between morning and night. Its front has held one rock ledge since the 1700s, through warm decades and cold. A study of three centuries of village records describes the glacier as the valley's ______.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Winter snow piles up on the glacier, and its river runs fullest at the height of summer, when the plain's rain-fed streams dry up and the villages open their ditches, so the glacier holds the winter's water and gives it out in summer: it is the valley's \"storeroom.\" A \"thermometer\" registers changes in temperature, but the glacier's front has stayed at one ledge through warm decades and cold. A \"timepiece\" marks the passing hours, but meltwater filtering for days through gravel keeps the river's level nearly the same morning and night. A \"signpost\" points travelers along a route, but the glacier can be seen only from the last village, where the road ends, so no traveler can steer by it on the way.",
+      "kills": {
+        "thermometer": {
+          "type": "logic",
+          "quote": "held one rock ledge since the 1700s, through warm decades and cold",
+          "why": "A thermometer responds to temperature; this front did not move as the climate changed.",
+          "surface_fit": "Glaciers are the textbook gauge of climate, advancing and retreating with temperature, and the blank sentence cites centuries of records.",
+          "inference": "a front that held one position through both warm and cold decades did not register the changes in temperature, so the glacier was no gauge of them"
+        },
+        "timepiece": {
+          "type": "logic",
+          "quote": "filters for days through gravel",
+          "why": "A timepiece needs a regular short cycle; the gravel smooths out daily melt.",
+          "surface_fit": "Glacier melt follows the sun, and a river that rises and falls with the day could set a village's clock, so timepiece fits the sentence and topic.",
+          "inference": "water delayed for days in gravel arrives evenly, so the river shows no daily rise and fall a village could tell the hours by"
+        },
+        "signpost": {
+          "type": "logic",
+          "quote": "only from the last village, where the road from the plain ends",
+          "why": "A signpost guides travelers toward a destination; this glacier is seen only once the road is already over.",
+          "surface_fit": "A white glacier at a valley's head, seen at the end of the road, is just the kind of landmark a traveler might steer by.",
+          "inference": "a glacier visible only from the spot where the road ends cannot guide anyone along it, since by the time they see it they have arrived"
+        }
+      }
+    },
+    {
+      "key": "thermometer",
+      "passage": "A glacier fills the head of a high valley whose river runs past farming villages to the plain. Village notes place its front half a mile lower in the 1810s and 1880s than in 1790 or the 1860s. Those notes call the 1810s and 1880s decades of frozen winters, the 1860s one of drought and heat. Its meltwater soaks through three miles of gravel before rising as springs. Its river peaks with spring snowmelt and runs low by midsummer, when crops need water. The only road over the mountains leaves far below the ice. A study of three centuries of village records describes the glacier as the valley's ______.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "The front lay farther down the valley in the decades the village notes call frozen and higher up in the decade of drought and heat, so its position tracked the temperature: the glacier is the valley's \"thermometer.\" A \"timepiece\" marks the hours, but the meltwater soaks through three miles of gravel before it reaches the villages, which evens out any daily rhythm. A \"storeroom\" holds supplies for later, but the river comes from spring snowmelt and runs low by midsummer, when crops need water. A \"signpost\" points travelers along a route, but the only road over the mountains leaves far below the ice.",
+      "kills": {
+        "timepiece": {
+          "type": "logic",
+          "quote": "soaks through three miles of gravel",
+          "why": "A timepiece needs a regular short cycle; meltwater that spends miles underground reaches the villages evenly, with no daily rise and fall.",
+          "surface_fit": "Glacier melt follows the sun, and a river that rises and falls with the day could set a village's clock, so timepiece fits the sentence and the topic.",
+          "inference": "water that soaks through three miles of gravel before rising as springs arrives at an even rate, so whatever daily rhythm the melting has is lost before it reaches the villages"
+        },
+        "storeroom": {
+          "type": "logic",
+          "quote": "runs low by midsummer, when crops need water",
+          "why": "A storeroom holds supply for when it is needed; the river is lowest just when the crops need it.",
+          "surface_fit": "Glaciers are widely described as frozen water banks that feed farms through summer, so storeroom fits the sentence and the farming valley.",
+          "inference": "the river's water comes from spring snowmelt on the lower slopes and runs out by July, so the glacier is not holding back a supply for the season when the villages need it"
+        },
+        "signpost": {
+          "type": "logic",
+          "quote": "leaves far below the ice",
+          "why": "A signpost marks the way travelers go; the route over the mountains turns off far from the glacier.",
+          "surface_fit": "A glacier at the head of a valley is a prominent landmark, the sort of thing a traveler crossing mountains steers by.",
+          "inference": "travelers bound over the mountains turn off at the valley's lower end, so heading for the glacier would take them away from the only road, and it marks no route"
+        }
+      }
+    },
+    {
+      "key": "timepiece",
+      "passage": "A glacier fills the head of a high valley whose river runs past farming villages to the plain. It melts only in sunshine, and its meltwater runs straight down bare rock, so the river at the villages rises each summer evening and falls before dawn. The mills start their wheels at the evening rise. Paintings show its front at one rock ledge in 1790, the frozen 1810s and the hot 1860s. The ditches draw on springs. Its white tongue can be seen from every village, under cliffs that no road or path crosses. A study of three centuries of village records describes the glacier as the valley's ______.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "Melting only in sunlight and draining down bare rock, the glacier makes the river rise every summer evening and fall before dawn, and the mills start at the evening rise, so it marks the time of day: it is the valley's \"timepiece.\" A \"storeroom\" holds supplies for later, but its water passes within a night and the ditches draw on springs. A \"thermometer\" registers temperature, but its front stood at the same ledge in the frozen 1810s and the hot 1860s. A \"signpost\" points travelers along a route, but though it is visible from every village, it lies under cliffs that no road or path crosses.",
+      "kills": {
+        "storeroom": {
+          "type": "logic",
+          "quote": "The ditches draw on springs",
+          "why": "A storeroom supplies the valley from its store; the villages water their fields from springs instead.",
+          "surface_fit": "Glaciers are commonly called water banks for farming valleys, and this one feeds the river past the villages.",
+          "inference": "the glacier's water comes and goes within a night and the villages irrigate from springs, so the glacier is not what holds the valley's water for the season"
+        },
+        "thermometer": {
+          "type": "logic",
+          "quote": "the frozen 1810s and the hot 1860s",
+          "why": "A thermometer moves with the temperature; the front stayed put through a frozen decade and a hot one.",
+          "surface_fit": "Glaciers are the textbook gauge of climate, and the blank sentence cites three centuries of records, so thermometer is the natural first guess.",
+          "inference": "a front at the same ledge in a frozen decade and in a hot one did not respond to either, so its position registers nothing about temperature"
+        },
+        "signpost": {
+          "type": "logic",
+          "quote": "under cliffs that no road or path crosses",
+          "why": "A signpost points travelers along a route; the glacier sits where no route goes.",
+          "surface_fit": "Its white tongue is visible from every village, exactly what makes a landmark into a signpost.",
+          "inference": "seen from everywhere but lying beneath cliffs that no road or path crosses, the glacier stands at a dead end, so walking toward it leads nowhere"
+        }
+      }
+    },
+    {
+      "key": "signpost",
+      "passage": "A glacier fills the head of a high valley whose river runs past farming villages to the plain. Its white tongue shows from the plain thirty miles off, and drovers' accounts describe walking toward it for two days. The one road over the ridge crosses at a notch directly beneath it. Its meltwater soaks through three miles of gravel before rising as springs. Its river peaks with spring snowmelt and runs low by midsummer, when crops need water. Paintings show its front at one rock ledge in 1790, the frozen 1810s and the hot 1860s. A study of three centuries of village records describes the glacier as the valley's ______.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "The glacier can be seen from thirty miles across the plain, drovers walked toward it for days, and the one road over the ridge crosses at a notch right beneath it, so heading for it brings travelers to the pass: it is the valley's \"signpost.\" A \"timepiece\" marks the hours, but the meltwater soaks through three miles of gravel, which evens out any daily rhythm. A \"storeroom\" holds supplies for later, but the river comes from spring snowmelt and runs low by midsummer, when crops need water. A \"thermometer\" registers temperature, but its front stood at the same ledge in the frozen 1810s and the hot 1860s.",
+      "kills": {
+        "timepiece": {
+          "type": "logic",
+          "quote": "soaks through three miles of gravel",
+          "why": "A timepiece needs a regular short cycle; meltwater that spends miles underground reaches the villages evenly, with no daily rise and fall.",
+          "surface_fit": "Glacier melt follows the sun, and a river that rises and falls with the day could set a village's clock, so timepiece fits the sentence and the topic.",
+          "inference": "water that soaks through three miles of gravel before rising as springs arrives at an even rate, so whatever daily rhythm the melting has is lost before it reaches the villages"
+        },
+        "storeroom": {
+          "type": "logic",
+          "quote": "runs low by midsummer, when crops need water",
+          "why": "A storeroom holds supply for when it is needed; the river is lowest just when the crops need it.",
+          "surface_fit": "Glaciers are widely described as frozen water banks that feed farms through summer, so storeroom fits the sentence and the farming valley.",
+          "inference": "the river's water comes from spring snowmelt on the lower slopes and runs out by July, so the glacier is not holding back a supply for the season when the villages need it"
+        },
+        "thermometer": {
+          "type": "logic",
+          "quote": "the frozen 1810s and the hot 1860s",
+          "why": "A thermometer moves with the temperature; the front stayed put through a frozen decade and a hot one.",
+          "surface_fit": "Glaciers are the textbook gauge of climate, and the blank sentence cites three centuries of records, so thermometer is the natural first guess.",
+          "inference": "a front at the same ledge in a frozen decade and in a hot one did not respond to either, so its position registers nothing about temperature"
+        }
+      }
+    }
+  ]
+}

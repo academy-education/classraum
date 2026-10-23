@@ -1,0 +1,146 @@
+{
+  "id": "WIC28A-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "weather and a fleet of sailing ships",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "blinded",
+    "capsized",
+    "beached",
+    "becalmed"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "blinded",
+    "capsized",
+    "beached",
+    "becalmed"
+  ],
+  "pos": "verb",
+  "after_blank": "several",
+  "blank_sentence": "In its third week at sea, the weather ______ several of the fleet's ships.",
+  "worlds": [
+    {
+      "key": "becalmed",
+      "passage": "In 1789 a fleet of eleven sailing ships left port carrying settlers along a coast of sandy bays and rocky headlands. In its third week at sea, the weather ______ several of the fleet's ships. Five of them held the same headland in view at every noon sighting for nine days, the smoke of their galley fires rising straight up, and in the afternoons their crews swam alongside the hulls. Water was cut to a pint a man. On the tenth morning a land breeze carried all five into harbor, a week behind the others.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "\"Becalmed\" fits: for nine days the five ships made no progress past the same headland while their galley smoke rose straight up, so there was no wind to move them. \"Blinded\" fails because the crews sighted the headland every noon, so they could see where they were. \"Beached\" fails because the crews swam alongside the hulls, so the ships were afloat in deep water, not on the sand. \"Capsized\" fails because the ships kept their galley fires burning and the crews swam beside them in calm water before all five sailed into harbor, so none had rolled over.",
+      "kills": {
+        "blinded": {
+          "type": "logic",
+          "quote": "held the same headland in view at every noon sighting",
+          "why": "the crews could see the coast",
+          "surface_fit": "ships stuck for days off a rocky headland suggests fog that kept them from knowing where to steer",
+          "inference": "crews who sighted the same headland every noon could see the coast clearly, so poor visibility was not what held them; they could see they were not moving"
+        },
+        "beached": {
+          "type": "logic",
+          "quote": "their crews swam alongside the hulls",
+          "why": "the ships were afloat in water deep enough to swim in",
+          "surface_fit": "ships that stay at the same spot on a coast of sandy bays for nine days sound like ships run aground",
+          "inference": "crews swimming alongside the hulls means the ships floated in deep water, and a land breeze moved them on, so they were never on the sand"
+        },
+        "capsized": {
+          "type": "logic",
+          "quote": "the smoke of their galley fires rising straight up",
+          "why": "the ships were upright with fires lit",
+          "surface_fit": "the weather is said to have done something to several ships at sea, and overturning is the best-known disaster weather causes",
+          "inference": "ships with galley fires burning, crews swimming beside them, and all five sailing on are upright ships, so none had been rolled over"
+        }
+      }
+    },
+    {
+      "key": "beached",
+      "passage": "In 1789 a fleet of eleven sailing ships left port carrying settlers along a coast of sandy bays and rocky headlands. In its third week at sea, the weather ______ several of the fleet's ships. A gale blowing in from the sea drove them toward the coast all one night, and though the lookouts called out the line of surf an hour before it reached them, four came to rest in a shallow bay, heeled only slightly. For nine days their crews gathered driftwood around the hulls at low tide, until the spring tide lifted all four and they sailed on.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "\"Beached\" fits: the gale drove four ships into a shallow bay, and for nine days their crews could walk around the hulls at low tide gathering driftwood, so the weather ran them ashore. \"Capsized\" fails because the ships were heeled only slightly and later sailed on. \"Becalmed\" fails because a gale drove them; their nine-day wait was for the spring tide to lift them, not for wind. \"Blinded\" fails because the lookouts saw the surf an hour ahead, so the crews could see the coast coming; the gale, not poor sight, put them there.",
+      "kills": {
+        "capsized": {
+          "type": "explicit",
+          "quote": "heeled only slightly",
+          "why": "the ships stayed nearly upright",
+          "surface_fit": "a gale overpowering sailing ships at night is the classic way ships are overturned",
+          "inference": "ships heeled only slightly that the next spring tide floats off to sail on were never rolled over"
+        },
+        "becalmed": {
+          "type": "logic",
+          "quote": "until the spring tide lifted all four",
+          "why": "they waited for the tide, having been driven by a gale",
+          "surface_fit": "ships held in one place for nine days until something let them go sounds like ships stuck for want of wind",
+          "inference": "ships driven in by a gale had plenty of wind; what held them for nine days was lying in the shallows until a high enough tide lifted them, so they were not stalled by a calm"
+        },
+        "blinded": {
+          "type": "logic",
+          "quote": "the lookouts called out the line of surf an hour before",
+          "why": "the crews could see the coast in time",
+          "surface_fit": "ships ending up in a shallow bay after a night run suggests darkness or fog hid the coast",
+          "inference": "lookouts who saw the surf an hour ahead could see the shore; the ships went in because the gale drove them, so the weather did not take away their sight"
+        }
+      }
+    },
+    {
+      "key": "capsized",
+      "passage": "In 1789 a fleet of eleven sailing ships left port carrying settlers along a coast of sandy bays and rocky headlands. In its third week at sea, the weather ______ several of the fleet's ships. A squall struck the fleet broadside in mid-channel while three ships carried full sail. Within a minute their masts lay flat on the water, and their crews spent the night clinging to barnacled keels until ships that had shortened sail in time, a mile off, picked them up at dawn, having watched the three lanterns dip into the sea.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "\"Capsized\" fits: the squall laid the three ships' masts flat on the water, and their crews clung all night to the barnacled keels, which means the hulls had turned bottom up; the weather overturned them. \"Beached\" fails because this happened in mid-channel and the crews had to be picked up by other ships, so there was no shore near. \"Becalmed\" fails because the ships were struck while carrying full sail in a squall, so they had more wind than they could bear. \"Blinded\" fails because ships a mile off watched the three lanterns go down, so the crews could see.",
+      "kills": {
+        "beached": {
+          "type": "logic",
+          "quote": "struck the fleet broadside in mid-channel",
+          "why": "the ships were far out at sea",
+          "surface_fit": "ships along a coast of sandy bays wrecked by sudden weather suggests ships driven onto the shore",
+          "inference": "ships struck in mid-channel whose crews could only wait on the hulls for rescue by other ships were nowhere near a shore, so they had not been driven onto a beach"
+        },
+        "becalmed": {
+          "type": "logic",
+          "quote": "while three ships carried full sail",
+          "why": "the ships were under sail in a squall",
+          "surface_fit": "crews left stranded at sea through a night until help came sounds like ships stalled without wind",
+          "inference": "ships knocked down by a squall while under full sail had more wind than they could carry, so they were not stalled by a calm"
+        },
+        "blinded": {
+          "type": "logic",
+          "quote": "having watched the three lanterns dip into the sea",
+          "why": "the other ships could see them",
+          "surface_fit": "ships lost at night in sudden weather suggests storms that hide everything from the crews",
+          "inference": "crews a mile off watched the three lanterns go under, so visibility was good enough to follow the ships, and the weather was not keeping anyone from seeing"
+        }
+      }
+    },
+    {
+      "key": "blinded",
+      "passage": "In 1789 a fleet of eleven sailing ships left port carrying settlers along a coast of sandy bays and rocky headlands. In its third week at sea, the weather ______ several of the fleet's ships. A fog rolled in so thick that each ship lost sight of the lanterns ahead, while a steady breeze kept every ship moving at its usual speed. Through the night they fired guns every few minutes to keep their places, and at dawn two that had strayed found themselves inside a reef they had sailed through in the dark, and worked their way out on the morning breeze.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "\"Blinded\" fits: in the fog each ship lost sight of the lanterns ahead, the ships had to fire guns to keep their places, and two passed through a reef without knowing it, so the weather took away the crews' sight. \"Becalmed\" fails because a steady breeze kept every ship moving at its usual speed. \"Beached\" fails because the two that strayed inside the reef worked their way out on the morning breeze, so they were afloat. \"Capsized\" fails because those ships sailed out under their own canvas in the morning, so they had not rolled over.",
+      "kills": {
+        "becalmed": {
+          "type": "logic",
+          "quote": "a steady breeze kept every ship moving",
+          "why": "the ships had wind and kept moving",
+          "surface_fit": "fog often comes with still air, and ships groping their way in fog sounds like ships stalled at sea",
+          "inference": "ships kept moving at their usual speed by a steady breeze were not left without wind"
+        },
+        "beached": {
+          "type": "logic",
+          "quote": "worked their way out on the morning breeze",
+          "why": "the strayed ships were afloat and sailing",
+          "surface_fit": "ships straying inside a reef on a coast of sandy bays sounds like ships about to run ashore",
+          "inference": "ships that sail out from behind the reef on the morning breeze are afloat and under way, so they had not gone aground"
+        },
+        "capsized": {
+          "type": "logic",
+          "quote": "they had sailed through in the dark",
+          "why": "the ships came through the reef upright and sailed on",
+          "surface_fit": "ships blundering across a reef at night is a classic way to be overturned",
+          "inference": "ships that crossed the reef in the dark and then worked their way out under sail at dawn were upright the whole time, so none rolled over"
+        }
+      }
+    }
+  ]
+}

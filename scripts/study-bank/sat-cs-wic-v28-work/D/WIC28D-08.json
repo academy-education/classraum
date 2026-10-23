@@ -1,0 +1,146 @@
+{
+  "id": "WIC28D-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a nineteenth-century translation of a bleak novel",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "naturalized",
+    "lightened",
+    "mutilated",
+    "manicured"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "lightened",
+    "naturalized",
+    "mutilated",
+    "manicured"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "Set beside the original line by line, the translation shows that its translator ______ the novel.",
+  "worlds": [
+    {
+      "key": "naturalized",
+      "passage": "In 1890 a novel about a fishing family on a bleak northern coast, written in a small country's language, appeared in its first English translation. The translator moved the story to a village on the English coast, turned its fjord into an estuary and its money into shillings, and gave every character an English name. He kept every chapter, and every drowning and every winter of hunger is told in full. Set beside the original line by line, the translation shows that its translator ______ the novel. His sentences follow the original's short, abrupt rhythm clause by clause.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "The translator moved the story to an English village, turned its fjord into an estuary and its money into shillings, and gave every character an English name, so he \"naturalized\" the novel, making it at home in English life. \"Lightened\" fails because every drowning and every winter of hunger is told in full, so the book is as grim as before. \"Mutilated\" fails because he kept every chapter, cutting nothing. \"Manicured\" fails because his sentences keep the original's short, abrupt rhythm clause by clause, so he did not smooth the author's style.",
+      "kills": {
+        "lightened": {
+          "type": "logic",
+          "quote": "every drowning and every winter of hunger is told in full",
+          "why": "The grim events all remain at full weight, so the translation is no less dark.",
+          "surface_fit": "Victorian translators of bleak foreign novels were notorious for softening them for English readers, so lightened is a natural verdict about an 1890 translation of a grim fishing story.",
+          "inference": "To lighten the novel the translator would have to soften its darkness; every drowning and winter of hunger is still told in full, so what changed was the place and the names around those events, not their weight."
+        },
+        "mutilated": {
+          "type": "logic",
+          "quote": "He kept every chapter",
+          "why": "A translation that keeps every chapter has not been cut to pieces.",
+          "surface_fit": "Early English translations were often heavily cut, and moving a story to another country is a drastic change, so mutilated fits a sentence about what a translator did to a novel.",
+          "inference": "A mutilated text has lost parts; this translation keeps every chapter and tells every drowning in full, so the changes were substitutions of place, money and names, and nothing was taken away."
+        },
+        "manicured": {
+          "type": "logic",
+          "quote": "follow the original's short, abrupt rhythm clause by clause",
+          "why": "Sentences that keep the original's abrupt rhythm were not polished smooth.",
+          "surface_fit": "Translators commonly smooth a rough original into elegant prose for their readers, and this translator plainly reshaped the book for an English audience, so manicured fits the sentence and the topic.",
+          "inference": "Manicuring the novel would mean polishing its style; the translator's sentences follow the original's short, abrupt rhythm clause by clause, so he left the prose as rough as he found it and changed only the setting it describes."
+        }
+      }
+    },
+    {
+      "key": "lightened",
+      "passage": "In 1890 a novel about a fishing family on a bleak northern coast, written in a small country's language, appeared in its first English translation. He footnoted its fjords, money and fishing terms for English readers and corrected three misprints. In the text the family keeps its names and coast, every chapter stands in order, and the sentences keep the original's short, abrupt rhythm. Only a few lines differ: the three drownings end in last-moment rescues, and the youngest child, who starves in the original, lives on a neighbor's gift of flour. Set beside the original line by line, the translation shows that its translator ______ the novel.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "The drownings end in rescues and the child who starves survives on a neighbor's flour, so the translator \"lightened\" the novel, easing its darkness. \"Naturalized\" fails because his help for English readers stayed in the footnotes, while in the text the family keeps its names and coast, so the story was explained to English readers, not moved into English life. \"Manicured\" fails because his tidying was limited to three misprints, and the sentences keep the original's short, abrupt rhythm, so the prose was not polished. \"Mutilated\" fails because every chapter stands in order and only a few lines differ, so the book is whole, its grief eased rather than its body cut.",
+      "kills": {
+        "naturalized": {
+          "type": "logic",
+          "quote": "In the text the family keeps its names and coast",
+          "why": "The English-reader help stayed in footnotes; the story itself keeps its foreign names and setting.",
+          "surface_fit": "Nineteenth-century translators routinely reshaped foreign novels for English readers, and this one footnoted the fjords, money and fishing terms for them, so naturalized fits the sentence and the topic.",
+          "inference": "Footnotes that explain fjords and money to English readers leave those things foreign in the text; the family keeps its names and coast there, so the translator made the story understandable to English readers without moving it into English life."
+        },
+        "manicured": {
+          "type": "logic",
+          "quote": "keep the original's short, abrupt rhythm",
+          "why": "His corrections fixed three misprints, but the prose keeps its abrupt rhythm, so it was not polished.",
+          "surface_fit": "Translators of the period often tidied rough originals, and this one did correct three misprints, so manicured fits the sentence and the topic.",
+          "inference": "Manicuring the novel would mean trimming and polishing its prose; the translator's corrections were three misprints, and the sentences still keep the original's abrupt rhythm, so the style was left as rough as he found it."
+        },
+        "mutilated": {
+          "type": "logic",
+          "quote": "every chapter stands in order",
+          "why": "With every chapter in place and only a few lines changed, the book was not cut to pieces.",
+          "surface_fit": "Rewriting a novel's deaths into rescues is the kind of liberty critics call butchering a book, so mutilated fits a scholar's verdict on this translation.",
+          "inference": "A mutilated text has had parts cut away or hacked; every chapter stands in order and only a few lines differ, each change turning a death into survival, so the effect is to ease the book's grief, not to damage its body."
+        }
+      }
+    },
+    {
+      "key": "mutilated",
+      "passage": "In 1890 a novel about a fishing family on a bleak northern coast, written in a small country's language, appeared in its first English translation. The translator kept the family's names, its fjord and its money, and his sentences follow the original's short, abrupt rhythm clause by clause. Missing entirely are the three chapters in which the family's clowning uncle visits, and in a dozen places a sentence stops mid-clause where a page of the original was skipped. Every drowning and every winter of hunger is told in full. Set beside the original line by line, the translation shows that its translator ______ the novel.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "Three whole chapters are gone and a dozen sentences break off where pages were skipped, so the translator \"mutilated\" the novel, cutting it to pieces. \"Lightened\" fails because the chapters cut were the comic ones about the clowning uncle, while every drowning and winter of hunger stays in full, so the translation is darker than the original, not lighter. \"Naturalized\" fails because the family keeps its names, its fjord and its money. \"Manicured\" fails because the sentences keep the original's abrupt rhythm, and a dozen of them now stop mid-clause, which is the opposite of polish.",
+      "kills": {
+        "lightened": {
+          "type": "logic",
+          "quote": "the three chapters in which the family's clowning uncle visits",
+          "why": "The cuts removed the book's comic chapters and kept all its grief, so the translation is grimmer, not lighter.",
+          "surface_fit": "A translation shorter than its original, with whole chapters dropped, sounds like a book made lighter, and Victorian translators often softened grim novels, so lightened fits the sentence and the topic.",
+          "inference": "Lightening the novel would ease its darkness; the chapters removed were the ones with the clowning uncle, its comic relief, while every drowning and winter of hunger stays in full, so the cuts left the book bleaker than before."
+        },
+        "naturalized": {
+          "type": "logic",
+          "quote": "kept the family's names, its fjord and its money",
+          "why": "The story keeps its own setting, names and money, so nothing was made English.",
+          "surface_fit": "Translators of the period routinely reworked foreign novels for English readers, and this translator plainly reworked this one, so naturalized fits the sentence and the topic.",
+          "inference": "Naturalizing would recast the story in English terms; the names, fjord and money all stay as they were, so the translator's changes were cuts, not substitutions."
+        },
+        "manicured": {
+          "type": "logic",
+          "quote": "a sentence stops mid-clause",
+          "why": "Sentences broken off mid-clause, alongside the original's abrupt rhythm, are the opposite of polished prose.",
+          "surface_fit": "Translators trimming a book for English readers often tidied its style as they went, and trimming is what this translator did, so manicured fits the sentence and the topic.",
+          "inference": "Manicuring is careful trimming and polishing; this translator kept the original's abrupt rhythm and left a dozen sentences stopping mid-clause where pages were skipped, so the trimming was crude cutting that left ragged edges, not a polish."
+        }
+      }
+    },
+    {
+      "key": "manicured",
+      "passage": "In 1890 a novel about a fishing family on a bleak northern coast, written in a small country's language, appeared in its first English translation. The translator kept the family's names, its fjord, its money and every chapter in order. Where the author wrote in short, broken sentences that repeat the same plain words, the translation runs in long, balanced periods, each repetition replaced by an apt variant. Every drowning and every winter of hunger is told in full. Set beside the original line by line, the translation shows that its translator ______ the novel. Reviewers praised its grace, a word no critic had used of the original.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "The author's short, broken, repetitive sentences became long, balanced periods with apt variants for each repetition, so the translator \"manicured\" the novel, trimming and polishing its prose. \"Lightened\" fails because every drowning and winter of hunger is still told in full, so the polish changed how the book reads, not how dark it is. \"Mutilated\" fails because every chapter was kept in order. \"Naturalized\" fails because the family keeps its names, its fjord and its money.",
+      "kills": {
+        "lightened": {
+          "type": "logic",
+          "quote": "Every drowning and every winter of hunger is told in full",
+          "why": "The grim events all remain at full weight, so the book is no less dark.",
+          "surface_fit": "Turning heavy, plodding sentences into graceful ones sounds like making a book lighter to read, and Victorian translators often softened bleak novels, so lightened is the setting's natural first guess.",
+          "inference": "Lightening the novel would mean easing its darkness; every drowning and winter of hunger is still told in full, so the change was to the surface of the prose, its rhythm and word choice, not to the weight of what happens."
+        },
+        "mutilated": {
+          "type": "logic",
+          "quote": "every chapter in order",
+          "why": "Nothing was cut; every chapter remains in its place.",
+          "surface_fit": "Rewriting an author's whole style is the kind of liberty critics call mangling a book, so mutilated fits a scholar's verdict about a translator who changed so much.",
+          "inference": "A mutilated text has lost parts or been hacked about; this one keeps every chapter in order and every event in full, and its sentences were made more graceful, not broken, so the translator refined the book rather than damaging it."
+        },
+        "naturalized": {
+          "type": "logic",
+          "quote": "kept the family's names, its fjord, its money",
+          "why": "The story keeps its own setting, names and money.",
+          "surface_fit": "A translation that reads like elegant English prose sounds like one fitted to English tastes, so naturalized fits the sentence and the topic.",
+          "inference": "Naturalizing would move the story into English life; its names, fjord and money all stay foreign, so what the translator made English was the polish of the sentences, not the world they describe."
+        }
+      }
+    }
+  ]
+}

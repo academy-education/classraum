@@ -1,0 +1,146 @@
+{
+  "id": "WIC28E-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a woolen mill on a trout stream",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "siphoned",
+    "stilled",
+    "soured",
+    "walled"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "walled",
+    "soured",
+    "stilled",
+    "siphoned"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "His report judged that in ninety years the mill had ______ the stream.",
+  "worlds": [
+    {
+      "key": "siphoned",
+      "passage": "A woolen mill worked a hill trout stream from 1840 until 1930, and in 1931 a fisheries officer walked the stream end to end. At a weir no higher than a boot, the mill's race took most of the stream and carried it through the wheel, returning it a mile downstream. The mile of bed between was a trickle clattering over bare stones, and cattle crossed it anywhere. The mill rinsed its wool in the race, and where the race rejoined the stream, trout spawned on the gravel every autumn. His report judged that in ninety years the mill had ______ the stream.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "The race took most of the stream at the weir and returned it only a mile downstream, leaving a trickle in the bed between, so the mill drew the stream's water off out of its own channel: it \"siphoned\" the stream. \"Stilled\" means calmed into slow water, but a boot-high weir backs up no pond and the trickle left behind still clattered over stones. \"Walled\" means hemmed in by built banks, but cattle could cross the bed anywhere. \"Soured\" means fouled the water, but trout spawned every autumn where the race, carrying the rinse water, rejoined the stream.",
+      "kills": {
+        "stilled": {
+          "type": "logic",
+          "quote": "a trickle clattering over bare stones",
+          "why": "Stilling calms water into a slow pool; a boot-high weir pools nothing, and the bed below ran clattering.",
+          "surface_fit": "Mills are known for damming lively trout streams into still ponds, and the mile below the weir lost most of its water.",
+          "inference": "a weir no higher than a boot backs up no pond, and the little water left in the bed still clattered over stones, so nowhere was the stream calmed; it was emptied"
+        },
+        "walled": {
+          "type": "logic",
+          "quote": "cattle crossed it anywhere",
+          "why": "A walled stream runs between built banks; cattle walked into this bed at any point.",
+          "surface_fit": "Mills often lined their reaches with stone, and this mill built a weir and a race, so walled fits the sentence and the topic.",
+          "inference": "cattle stepping down into the bed anywhere along the mile means its banks were open ground, and a boot-high weir hems nothing in"
+        },
+        "soured": {
+          "type": "logic",
+          "quote": "trout spawned on the gravel every autumn",
+          "why": "A soured stream is fouled; trout spawned right where the rinse water came back.",
+          "surface_fit": "Woolen mills rinsed wool in their water and often fouled it, and this mill rinsed its wool in the race.",
+          "inference": "the race carried the rinse water back into the stream, and trout chose that very gravel to spawn on each autumn, so the returned water was not fouled"
+        }
+      }
+    },
+    {
+      "key": "stilled",
+      "passage": "A woolen mill worked a hill trout stream from 1840 until 1930, and in 1931 a fisheries officer walked the stream end to end. Above the mill the stream fell in riffles and cascades until a dam of earth and stone backed it into a half-mile pond that a floating leaf took an hour to cross. The whole stream spilled over the wheel at the dam's foot and ran on down its old bed. The mill rinsed its wool in the pond, where trout rose to feed every evening, and cattle grazed down to its reedy margins. His report judged that in ninety years the mill had ______ the stream.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "A stream that fell through riffles and cascades above the mill was backed into a half-mile pond that a floating leaf took an hour to cross, so the mill calmed its current: it \"stilled\" the stream. \"Siphoned\" means drew water away, but the whole stream spilled over the wheel and ran on down its old bed. \"Walled\" means hemmed in by built banks, but apart from the dam the pond lay between reedy margins that cattle grazed down to. \"Soured\" means fouled the water, but trout rose every evening in the pond where the wool was rinsed.",
+      "kills": {
+        "siphoned": {
+          "type": "logic",
+          "quote": "ran on down its old bed",
+          "why": "Siphoning draws water away; the whole stream went on down its own bed.",
+          "surface_fit": "Mills take their streams' water to drive their wheels, so a mill drawing off its stream is a natural first reading.",
+          "inference": "all of the stream passed over the wheel and continued down its old bed, so the mill took none of it away; it changed only how fast the water moved above the dam"
+        },
+        "walled": {
+          "type": "logic",
+          "quote": "cattle grazed down to its reedy margins",
+          "why": "A walled stream runs between built banks; the pond's edges were reeds and pasture.",
+          "surface_fit": "A dam of earth and stone is a wall across the stream, so walled is a tempting word for what this mill did.",
+          "inference": "the pond's sides were reeds that cattle grazed down to, so apart from the one dam across it the water lay between open banks, not walls"
+        },
+        "soured": {
+          "type": "logic",
+          "quote": "where trout rose to feed every evening",
+          "why": "A soured stream is fouled; trout fed in the very water the wool was rinsed in.",
+          "surface_fit": "A woolen mill rinsing its wool in a still pond is exactly how a stream gets fouled.",
+          "inference": "trout rising every evening in the pond the mill rinsed its wool in show the water there stayed clean"
+        }
+      }
+    },
+    {
+      "key": "soured",
+      "passage": "A woolen mill worked a hill trout stream from 1840 until 1930, and in 1931 a fisheries officer walked the stream end to end. The wheel turned in the open current with no dam. The mill piped out its rinse water and poured it back a few yards down. For two miles below that outfall the water stained a jar blue, and the officer found no trout or insect larva under a hundred stones; above the mill both lay under nearly every stone. Past the mill's stone dye-house the stream wandered among gravel bars and alder roots. His report judged that in ninety years the mill had ______ the stream.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "Below the outfall where the rinse water went back, the water stained a jar blue and held no trout or insect larvae, while above the mill both were everywhere, so the mill fouled the stream: it \"soured\" it. \"Siphoned\" means drew water away, but the rinse water went back a few yards below where it was drawn. \"Stilled\" means calmed into slow water, but the wheel turned in the open current with no dam. \"Walled\" means hemmed in by built banks, but past the stone dye-house the stream still wandered freely among gravel bars and alder roots, confined by nothing.",
+      "kills": {
+        "siphoned": {
+          "type": "logic",
+          "quote": "poured it back a few yards down",
+          "why": "Siphoning draws water away; every drop the mill drew went straight back into the stream.",
+          "surface_fit": "The mill piped water out of the stream for its rinsing, which is just what siphoning a stream sounds like.",
+          "inference": "the water the mill drew out by pipe went back into the stream a few yards later, so the stream lost nothing past the mill"
+        },
+        "stilled": {
+          "type": "explicit",
+          "quote": "turned in the open current with no dam",
+          "why": "Stilling slows the water into a pool; the wheel turned in the open current with nothing to pool it.",
+          "surface_fit": "A stretch of stream empty of trout and insects suggests dead, stagnant water, the kind a mill pond makes.",
+          "inference": "with no dam the stream ran at its own speed past the wheel, so the lifeless water below was not slowed water; it was the blue rinse that emptied it"
+        },
+        "walled": {
+          "type": "logic",
+          "quote": "wandered among gravel bars and alder roots",
+          "why": "A walled stream is confined between built banks; this one still wandered freely past the mill.",
+          "surface_fit": "The mill's stone dye-house stood on the bank, and mills often walled their reaches, so walled fits the sentence and the scene.",
+          "inference": "a stream that wanders among gravel bars and alder roots right past the stone dye-house is not confined anywhere, so the building stood beside it without hemming it in"
+        }
+      }
+    },
+    {
+      "key": "walled",
+      "passage": "A woolen mill worked a hill trout stream from 1840 until 1930, and in 1931 a fisheries officer walked the stream end to end. In the mill yard the miller laid cut stone along both banks for a quarter mile, burying the gravel bars and alder roots it once wandered among. Between the stones it ran deep and smooth, carrying a dropped leaf the length of the yard in a minute past the wheel. The mill piped out its rinse water and poured it back a few yards down; below the outfall trout held all summer. His report judged that in ninety years the mill had ______ the stream.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The miller laid cut stone along both banks for a quarter mile, burying the gravel bars and roots the stream once wandered among, so the mill confined it between built banks: it \"walled\" the stream. \"Siphoned\" means drew water away, but the rinse water piped out went back a few yards down. \"Stilled\" means calmed into slow water, but the smooth channel carried a leaf the length of the yard in a minute. \"Soured\" means fouled the water, but trout held all summer just below the outfall.",
+      "kills": {
+        "siphoned": {
+          "type": "logic",
+          "quote": "poured it back a few yards down",
+          "why": "Siphoning draws water away; every drop the mill drew went straight back into the stream.",
+          "surface_fit": "The mill piped water out of the stream for its rinsing, which is just what siphoning a stream sounds like.",
+          "inference": "the water the mill drew out by pipe went back into the stream a few yards later, so the stream lost nothing past the mill"
+        },
+        "stilled": {
+          "type": "logic",
+          "quote": "carrying a dropped leaf the length of the yard in a minute",
+          "why": "Stilling slows the water; this channel carried a leaf a quarter mile in a minute.",
+          "surface_fit": "Water running deep and smooth between stone banks looks calmed, and mills are known for stilling their streams.",
+          "inference": "a leaf swept a quarter mile in a minute shows the smooth channel ran fast, so the stone banks quickened the stream rather than calming it"
+        },
+        "soured": {
+          "type": "logic",
+          "quote": "below the outfall trout held all summer",
+          "why": "A soured stream is fouled; trout lived just below where the rinse water came back.",
+          "surface_fit": "A woolen mill pouring rinse water back into its stream is how mills usually fouled trout water.",
+          "inference": "trout staying all summer just downstream of the outfall show the rinse water that came back did not foul the stream"
+        }
+      }
+    }
+  ]
+}

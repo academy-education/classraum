@@ -1,0 +1,146 @@
+{
+  "id": "WIC28D-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a river flood on a farm field",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "leached",
+    "mulched",
+    "mired",
+    "manured"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "mired",
+    "leached",
+    "mulched",
+    "manured"
+  ],
+  "pos": "verb",
+  "after_blank": "it",
+  "blank_sentence": "Walking the field in late summer, the county's soil scientist said that the flood had ______ it.",
+  "worlds": [
+    {
+      "key": "leached",
+      "passage": "One spring the river rose over a farmer's lowest field and stood there nine days. The field is loose sand, and the water, clear from a reservoir upstream, sank into it as fast as the river refilled it. The sand was still wet when the corn went in on schedule, fertilized like the higher field, and by June dry wind was lifting it off the rows. That corn came up pale and short beside the dark green rows above. Walking the field in late summer, the county's soil scientist said that the flood had ______ it. The higher field, never flooded, gave its usual yield.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Nine days of water sank steadily down through loose sand, and corn given the same fertilizer as the higher field came up pale and short, so the flood had \"leached\" the field, carrying its nutrients down out of the roots' reach. \"Manured\" fails because equal fertilizer produced weaker corn on the flooded field than on the dry one, so the flood took food from the soil rather than adding it. \"Mulched\" fails because the water ran clear from a reservoir, carrying no litter to lay down, and by June the wind was lifting the bare sand off the rows, which no covered field allows. \"Mired\" fails because, wet as the sand still was, the water had been draining down through it and the corn went in on schedule.",
+      "kills": {
+        "manured": {
+          "type": "logic",
+          "quote": "came up pale and short",
+          "why": "The flooded field's corn, fertilized like the higher field's, grew weaker than it.",
+          "surface_fit": "Floods are famous for leaving bottomland richer (the Nile's yearly flood is the textbook case), so a soil scientist saying a long flood had manured a field is an ordinary claim.",
+          "inference": "Both fields got the same fertilizer, so any food the flood added would have shown as greener, taller corn on the flooded field; instead its corn came up pale and short beside the dry field's, so the flood had taken nutrients away."
+        },
+        "mulched": {
+          "type": "logic",
+          "quote": "dry wind was lifting it off the rows",
+          "why": "Sand blowing off the rows is bare sand, and clear reservoir water had brought no litter to cover it.",
+          "surface_fit": "Receding floods often leave a mat of leaves, straw and debris across bottomland, so a flood that mulched a field is a natural thing for a soil scientist to report.",
+          "inference": "A mulched field lies under a layer of litter that holds the surface down; the floodwater ran clear from a reservoir, so it had nothing to deposit, and by June the wind was lifting the field's own sand off the rows, which it could not do through a cover."
+        },
+        "mired": {
+          "type": "logic",
+          "quote": "still wet when the corn went in on schedule",
+          "why": "The sand was wet but took its corn on schedule, so it was never too boggy to work.",
+          "surface_fit": "Nine days of standing floodwater on a low field is exactly what leaves a farm too sodden to work, so mired fits both the sentence and the setting.",
+          "inference": "A mired field cannot be worked until it dries; this sand had been draining the water down through itself the whole time, and though still wet it took the corn on schedule, so it was damp, not bogged down."
+        }
+      }
+    },
+    {
+      "key": "mulched",
+      "passage": "One spring the river rose over a farmer's lowest field and stood there nine days. The water came down brown from logged hills and, once the river fell, drained off the field's sandy loam, leaving two inches of bark chips, leaves and straw. Corn planted on schedule into the damp soil beneath, fertilized like the higher field, kept pace with that field's corn, no taller and no greener, until a midsummer drought wilted the higher rows and left these green. The usual early-summer weeds hardly showed. Walking the field in late summer, the county's soil scientist said that the flood had ______ it. The farmer left the layer in place.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The receding water left a layer of bark, leaves and straw, the corn under it stayed green through a drought that wilted the uncovered field, and the usual weeds barely appeared, so the flood had \"mulched\" the field: covered it with a layer that held in moisture and kept weeds down. \"Manured\" fails because, given the same fertilizer, the flooded corn grew no taller and no greener than the higher field's until the drought, so the layer helped by keeping water in, not by feeding the soil. \"Leached\" fails because that same corn kept pace with the higher field's all spring, which it could not have done if the flood had washed its nutrients away. \"Mired\" fails because, damp as the soil under the layer was, the corn went into it on schedule.",
+      "kills": {
+        "manured": {
+          "type": "logic",
+          "quote": "no taller and no greener",
+          "why": "With equal fertilizer, the flooded corn matched the dry field's until drought, so the layer added no food.",
+          "surface_fit": "Floods are famous for leaving bottomland richer (the Nile's yearly flood is the textbook case), so a soil scientist saying a long flood had manured a field is an ordinary claim.",
+          "inference": "Organic debris that fed the soil would have pushed the flooded corn past the higher field's from the start, since both got the same fertilizer; it grew no taller and no greener until the drought, and only then pulled ahead, by staying green, so the layer's gift was moisture, not food."
+        },
+        "leached": {
+          "type": "logic",
+          "quote": "kept pace with that field's corn",
+          "why": "Corn that keeps pace with an equally fertilized dry field has lost no nutrients.",
+          "surface_fit": "A long flood over farmland is the standard case of nutrients being washed down out of the root zone, so leached fits a soil scientist's verdict.",
+          "inference": "If the flood had carried nutrients out of the soil, the flooded corn would have fallen behind the higher field's, which got the same fertilizer; it kept pace with it all spring and stayed greener in the drought, so the soil kept its nutrients."
+        },
+        "mired": {
+          "type": "logic",
+          "quote": "Corn planted on schedule into the damp soil",
+          "why": "Soil damp under a cover but planted on schedule was workable, not bogged down.",
+          "surface_fit": "Nine days of standing floodwater on a low field is exactly what leaves a farm too sodden to work, so mired fits both the sentence and the setting.",
+          "inference": "A mired field is too wet to work; this soil was damp under its layer, but the corn went into it on schedule, so the moisture the layer held was the kind that later carried the crop through the drought, not the kind that keeps a tractor out."
+        }
+      }
+    },
+    {
+      "key": "mired",
+      "passage": "One spring the river rose over a farmer's lowest field and stood there nine days. The field is a dense clay, and the water, clear from a reservoir upstream, sat on it until the sun took it. Planting, done there most years in early spring, waited two months, until midsummer, and the clay's surface, when it finally dried, split into hard plates. Walking the field in late summer, the county's soil scientist said that the flood had ______ it. Its late corn, fertilized like the higher field, grew as tall and green as that field's had, only later.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "Water standing on dense clay could leave only by evaporating, and planting had to wait two months, so the flood had \"mired\" the field, leaving it waterlogged and unworkable for weeks. \"Leached\" fails because the water sat on the clay rather than passing down through it, and the late corn, fertilized like the higher field's, grew as tall and green as that field's, so no nutrients were lost. \"Manured\" fails because that same corn grew no better than the higher field's, and the clear reservoir water had nothing to deposit. \"Mulched\" fails because the clear water brought no litter, and the clay's surface dried in the open sun and split into plates, which ground under a protective layer does not do.",
+      "kills": {
+        "leached": {
+          "type": "logic",
+          "quote": "sat on it until the sun took it",
+          "why": "Water that only evaporates does not pass down through the soil, and the late corn did as well as the higher field's.",
+          "surface_fit": "A long flood over farmland is the standard case of nutrients being washed down out of the root zone, so leached fits a soil scientist's verdict.",
+          "inference": "Leaching needs water moving down through the soil; this water stood on dense clay until it evaporated, and the late corn, fertilized like the higher field's, grew as tall and green, so the soil had lost nothing."
+        },
+        "manured": {
+          "type": "logic",
+          "quote": "grew as tall and green as that field's had",
+          "why": "Equal fertilizer gave equal corn, so the flood added no food.",
+          "surface_fit": "Floods are famous for leaving bottomland richer (the Nile's yearly flood is the textbook case), so a soil scientist saying a long flood had manured a field is an ordinary claim.",
+          "inference": "If the flood had enriched the field, its corn would have outgrown the higher field's, which got the same fertilizer; it only matched it, and the water had come clear out of a reservoir with nothing to leave behind, so the flood's lasting effect was on the ground's wetness."
+        },
+        "mulched": {
+          "type": "logic",
+          "quote": "split into hard plates",
+          "why": "A surface that bakes and splits in the sun was lying open, and clear water brought no litter to cover it.",
+          "surface_fit": "Receding floods often leave a mat of leaves, straw and debris across bottomland, so a flood that mulched a field is a natural thing for a soil scientist to report.",
+          "inference": "A mulched field keeps its surface covered and moist; the water came clear from a reservoir, so it brought no litter, and the clay's surface dried in the open and split into hard plates, so nothing lay over it."
+        }
+      }
+    },
+    {
+      "key": "manured",
+      "passage": "One spring the river rose over a farmer's lowest field and stood there nine days. The water came down brown from plowed farmland and, once the river fell, drained off the field's sandy loam, leaving dark silt too thin to hide the old furrows and still soft when the corn went in on schedule. That corn, fertilized like the higher field, grew taller and darker than the higher rows, and the early-summer weeds came up thick between its rows. Walking the field in late summer, the county's soil scientist said that the flood had ______ it. The higher field, never flooded, gave its usual yield.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "The flood left dark silt from plowed farmland, and corn given the same fertilizer as the higher field outgrew it, so the flood had \"manured\" the field, adding nutrients the way fertilizer does. \"Mulched\" fails because the silt was too thin to hide the furrows and the weeds came up thick, while a mulch covers the ground and smothers weeds. \"Leached\" fails because the water drained off across the surface and the flooded corn did better than the equally fertilized higher field, so the soil gained food rather than losing it. \"Mired\" fails because, soft as the silt was, the corn went in on schedule.",
+      "kills": {
+        "mulched": {
+          "type": "logic",
+          "quote": "too thin to hide the old furrows",
+          "why": "A deposit that does not even cover the furrows, with weeds coming up thick, is no protective layer.",
+          "surface_fit": "Receding floods often leave a mat of leaves, straw and debris across bottomland, so a flood that mulched a field is a natural thing for a soil scientist to report.",
+          "inference": "A mulch helps by covering the ground and smothering weeds; this silt was too thin to hide the old furrows and the weeds came up thick between the rows, so the deposit helped the corn by what it added to the soil, not by covering it."
+        },
+        "leached": {
+          "type": "logic",
+          "quote": "grew taller and darker than the higher rows",
+          "why": "With equal fertilizer, the flooded corn did better, so the soil had gained, not lost, nutrients.",
+          "surface_fit": "A long flood over farmland is the standard case of nutrients being washed down out of the root zone, so leached fits a soil scientist's verdict.",
+          "inference": "Leaching would leave the flooded field poorer than the higher one, which got the same fertilizer; its corn grew taller and darker instead, and the water had drained off across the surface rather than down through it, so the flood left nutrients behind."
+        },
+        "mired": {
+          "type": "logic",
+          "quote": "still soft when the corn went in on schedule",
+          "why": "The silt was soft but the corn went in on time, so the field was workable.",
+          "surface_fit": "Nine days of standing floodwater on a low field is exactly what leaves a farm too sodden to work, so mired fits both the sentence and the setting.",
+          "inference": "A mired field cannot be planted until it dries; here the silt was a thin, soft film over sandy loam, and the corn went in on schedule, so the flood left a workable field."
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "id": "WIC28D-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "desert dunes and an oasis village",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "nibbled",
+    "lashed",
+    "imprisoned",
+    "lifted"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "lifted",
+    "imprisoned",
+    "lashed",
+    "nibbled"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "In those two centuries, the sand had ______ the village.",
+  "worlds": [
+    {
+      "key": "nibbled",
+      "passage": "For two centuries after 1700, the dunes of a desert basin pressed against a walled oasis village of mud-brick houses and date palms. Every decade the nearest dune crept a few dozen yards into the gardens on the village's western edge, burying each garden wall whole, plaster and all. As it reached their houses, families on that side moved out one at a time and rebuilt a lane farther east, out on the open plain, while their old homes sank under thirty feet of sand. Caravans still came in by the eastern road. In those two centuries, the sand had ______ the village.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The dune crept a few dozen yards a decade into the western gardens, and the families there gave up their houses one at a time as it reached them, so the sand had \"nibbled\" the village, taking it away in small pieces from one edge. \"Lifted\" fails because, though thirty feet of sand piled over the old homes, the families did not build on top of it; they moved east and rebuilt out on the open plain. \"Lashed\" fails because the dune moved a few dozen yards a decade and buried each garden wall whole, plaster and all, so the sand arrived as a slow, smothering mass, not as blows that scour. \"Imprisoned\" fails because the dune pressed on the western edge only, and caravans still came in by the eastern road.",
+      "kills": {
+        "lifted": {
+          "type": "logic",
+          "quote": "rebuilt a lane farther east, out on the open plain",
+          "why": "The sand rose over the old houses, but the families rebuilt beside it on the plain instead of building on top.",
+          "surface_fit": "Towns in drifting sand famously rise over the centuries as people build on top of what has buried them, so lifted fits the sentence and a village under pressing dunes. Here thirty feet of sand did pile up over part of the village.",
+          "inference": "A village is lifted when its people build on the sand that buries it; here the sand piled thirty feet over the old homes, but each family moved out and rebuilt a lane east on the open plain, so the village shifted sideways and shrank on one side while its ground stayed level."
+        },
+        "lashed": {
+          "type": "logic",
+          "quote": "burying each garden wall whole, plaster and all",
+          "why": "Walls buried intact, plaster and all, by a dune moving yards a decade were smothered, not battered.",
+          "surface_fit": "Desert villages are classic targets of wind-driven sand, so a writer describing what the dunes' sand did to one could easily say it lashed the village.",
+          "inference": "Lashing means striking hard and repeatedly, which strips plaster and wears brick; this dune advanced a few dozen yards a decade and buried the garden walls whole with their plaster still on, so the harm came from slow covering, not from sand hurled at the walls."
+        },
+        "imprisoned": {
+          "type": "logic",
+          "quote": "Caravans still came in by the eastern road",
+          "why": "The dune worked on the western edge while the eastern road stayed open, so the village was not shut in.",
+          "surface_fit": "Dunes pressing in on a walled oasis suggest a village hemmed in and cut off by sand, so imprisoned fits the sentence and the setting.",
+          "inference": "A village shut in by sand loses its roads; this dune pressed only on the western gardens, and caravans still came in by the eastern road on the far side, so the sand took ground from one edge without closing the village off."
+        }
+      }
+    },
+    {
+      "key": "lashed",
+      "passage": "For two centuries after 1700, the dunes of a desert basin pressed against a walled oasis village of mud-brick houses and date palms. Each spring the wind blew off the dunes, carrying sand over the walls and through the lanes to the plain; outside the western wall it drifted up to the ramparts. Inside, walls facing the dunes were scoured to bare brick each spring and replastered each summer, and palms there fruited only on their eastern fronds. Every house and garden of 1700 was in use in 1900, its doorways at their builders' height; caravans came in calm months. In those two centuries, the sand had ______ the village.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Spring winds drove sand off the dunes across the village, the walls facing them were scoured to bare brick every year, and the palms on that side fruited only on their sheltered side, so the sand had \"lashed\" the village, striking it again and again. \"Lifted\" fails because, though sand drifted up to the ramparts outside the western wall, the wind carried it on through the village, whose doorways still stand at their builders' height. \"Nibbled\" fails because every house and garden of 1700 was still in use in 1900; the scoured plaster was renewed each summer, so the village lost no piece of itself. \"Imprisoned\" fails because caravans kept coming in the calm months.",
+      "kills": {
+        "lifted": {
+          "type": "logic",
+          "quote": "its doorways at their builders' height",
+          "why": "Sand drifted high outside the walls, but inside the doorways stayed at their original height, so the village never rose.",
+          "surface_fit": "Towns in drifting sand famously rise over the centuries as people build on top of what has buried them, so lifted fits the sentence and a village under pressing dunes. Here sand drifted up to the ramparts outside the western wall.",
+          "inference": "A village is lifted when sand builds up inside it and people build on top; the sand drifted to the ramparts outside the western wall, but the wind carried what came over on to the plain, and the doorways inside still stand where their builders set them, so the village's own ground never rose."
+        },
+        "nibbled": {
+          "type": "logic",
+          "quote": "Every house and garden of 1700 was in use in 1900",
+          "why": "The village kept every house and garden, and the scoured plaster was renewed, so nothing was taken from it.",
+          "surface_fit": "Dunes advancing on an oasis are the classic image of a village eaten away a little at a time, so nibbled fits the sentence and the setting. Walls scoured to bare brick year after year sound like a village being worn away.",
+          "inference": "To nibble the village the sand would have to take parts of it away for good; the plaster scoured off each spring was renewed each summer, and every house and garden of 1700 was still in use in 1900, so the damage was repeated and repaired, never a loss of ground."
+        },
+        "imprisoned": {
+          "type": "logic",
+          "quote": "caravans came in calm months",
+          "why": "The village kept its trade with the outside, so it was not shut in.",
+          "surface_fit": "Dunes pressing in on a walled oasis suggest a village hemmed in and cut off by sand, so imprisoned fits the sentence and the setting.",
+          "inference": "A village shut in by sand loses its roads; caravans still reached this one every calm season, between the spring winds, so the sand battered it without cutting it off."
+        }
+      }
+    },
+    {
+      "key": "imprisoned",
+      "passage": "For two centuries after 1700, the dunes of a desert basin pressed against a walled oasis village of mud-brick houses and date palms. Through the 1700s they spread across the basin's rim, and the old caravan road now lies forty feet beneath them; the only way in runs over their crests, a three-day walk. The village itself lies in a still hollow below dunes taller than its palms, its doorways opening onto the lanes at the height their builders set. Its families kept every house and date garden, selling dates only to the rare walker who came through. In those two centuries, the sand had ______ the village.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "The dunes buried the caravan road forty feet deep, so the village could be reached only by a three-day walk over their crests, while its families went on living in a hollow among them: the sand had \"imprisoned\" it, shutting it in. \"Lifted\" fails because, though the way in now runs forty feet above the old road, the village's own doorways still open at their builders' height, so the sand rose around the village, not under it. \"Nibbled\" fails because the families kept every house and date garden; the dunes took the basin around the village, not pieces of the village. \"Lashed\" fails because the village lies in a still hollow below dunes taller than its palms, sheltered from the wind that would drive sand against it.",
+      "kills": {
+        "lifted": {
+          "type": "logic",
+          "quote": "its doorways opening onto the lanes at the height their builders set",
+          "why": "The approach rose forty feet, but the village's doorways stayed at their original height, so the village did not rise.",
+          "surface_fit": "Towns in drifting sand famously rise over the centuries as people build on top of what has buried them, so lifted fits the sentence and a village under pressing dunes. Here the old road lies forty feet down and the way in runs over the dune crests.",
+          "inference": "A village is lifted when sand gathers in it and people build on top; the road now lies forty feet under the dunes and the way in runs over their crests, but the village's doorways still open onto its lanes at the height their builders set, so the sand rose all around the village while the village stayed where it was."
+        },
+        "nibbled": {
+          "type": "logic",
+          "quote": "kept every house and date garden",
+          "why": "The village lost no house or garden; the sand buried the road out in the basin.",
+          "surface_fit": "Dunes advancing on an oasis are the classic image of a village eaten away a little at a time, so nibbled fits the sentence and the setting.",
+          "inference": "For the sand to nibble the village it would have to take parts of the village itself; the dunes spread across the basin's rim and buried the road, but the families kept every house and date garden, so the dunes took the land around the village, not pieces of it."
+        },
+        "lashed": {
+          "type": "logic",
+          "quote": "lies in a still hollow below dunes taller than its palms",
+          "why": "Dunes taller than the palms shelter the village from the wind, so no sand is driven against it.",
+          "surface_fit": "Desert villages are classic targets of wind-driven sand, so a writer describing what the dunes' sand did to one could easily say it lashed the village. A village ringed by dunes sounds like one battered by sandstorms.",
+          "inference": "Sand lashes a place only when wind drives it there; the village sits in still air in a hollow walled by dunes taller than its palms, so the same dunes that cut off its road also keep the wind and its sand off the houses."
+        }
+      }
+    },
+    {
+      "key": "lifted",
+      "passage": "For two centuries after 1700, the dunes of a desert basin pressed against a walled oasis village of mud-brick houses and date palms. Wind slowing in the still air behind its walls dropped a few inches of sand into its lanes and gardens each year. Families kept every house by laying new floors over the sand and building fresh rooms and doorways on top, raising the walls to match. A well dug in the main lane passes through thirty feet of sand and old floors to reach the first street. Caravans climb a ramp to the eastern gate. In those two centuries, the sand had ______ the village.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "Sand settled a few inches a year behind the walls, families laid new floors and built new rooms and doorways on top of it, and a well in the main lane now passes through thirty feet of sand and floors before reaching the first street, so the sand had \"lifted\" the village. \"Nibbled\" fails because the families kept every house and raised the walls to match, so the village gave up no part of itself; it rose in place. \"Imprisoned\" fails because caravans still reach the gate, climbing a ramp to its new height. \"Lashed\" fails because the sand came to rest in the still air behind the walls, dropping where the wind slowed, so it was not being driven against the village.",
+      "kills": {
+        "nibbled": {
+          "type": "logic",
+          "quote": "raising the walls to match",
+          "why": "The families kept every house and raised the walls with them, so the village lost no piece of itself.",
+          "surface_fit": "Dunes advancing on an oasis are the classic image of a village eaten away a little at a time, so nibbled fits the sentence and the setting. Sand filling lanes and rooms year after year sounds like a village slowly being taken.",
+          "inference": "A nibbled village loses pieces of itself; here families kept every house by building over the sand and raised the walls to keep enclosing it, so the sand changed the village's height, not its extent."
+        },
+        "imprisoned": {
+          "type": "logic",
+          "quote": "Caravans climb a ramp to the eastern gate",
+          "why": "Traffic still reaches the gate, by a ramp up to its raised level, so the village is not cut off.",
+          "surface_fit": "Dunes pressing in on a walled oasis suggest a village hemmed in and cut off by sand, so imprisoned fits the sentence and the setting.",
+          "inference": "A village shut in by sand loses its access; caravans still reach this one by climbing a ramp to a gate that has risen with the village, so the sand changed how traffic gets in without closing the way."
+        },
+        "lashed": {
+          "type": "logic",
+          "quote": "Wind slowing in the still air behind its walls",
+          "why": "The sand fell where the wind slowed, so it settled gently instead of striking the village.",
+          "surface_fit": "Desert villages are classic targets of wind-driven sand, so a writer describing what the dunes' sand did to one could easily say it lashed the village.",
+          "inference": "Sand drops out of the wind where the wind slows; it came to rest a few inches a year in the still air behind the walls, so it reached the lanes by settling, not by being driven against the houses, and its effect was to build up the ground."
+        }
+      }
+    }
+  ]
+}

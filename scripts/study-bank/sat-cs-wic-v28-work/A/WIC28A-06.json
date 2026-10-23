@@ -1,0 +1,146 @@
+{
+  "id": "WIC28A-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "the fate of an empty town church",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "condemned",
+    "bulldozed",
+    "crated",
+    "commandeered"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "condemned",
+    "bulldozed",
+    "commandeered",
+    "crated"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "The town's minutes record that in 1952 the council ______ the church.",
+  "worlds": [
+    {
+      "key": "condemned",
+      "passage": "In 1951 the last congregation left a stone church that had stood at the center of a river town since 1720. Engineers that winter found its tower leaning a foot out of true and cracks running the length of the nave walls. Over the trustees' protest, the council had a chain-link fence put up around it and a sign hung on the gate forbidding entry, and fifty years later the fence still encloses the church, its bell hanging in the tower and ivy grown over its doors. The town's minutes record that in 1952 the council ______ the church.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "\"Condemned\" fits: engineers found the tower leaning and the walls cracked, and the council fenced the building and forbade anyone to enter, so the council declared it unfit for use. \"Bulldozed\" fails because fifty years later the fence still encloses the church. \"Crated\" fails because the bell still hangs in the tower of the church on its old site, so the building was never taken apart and shipped away. \"Commandeered\" fails because the council barred everyone from the building and ivy has grown over its doors, so the council took it out of use rather than taking it over for its own.",
+      "kills": {
+        "bulldozed": {
+          "type": "explicit",
+          "quote": "the fence still encloses the church",
+          "why": "the building is still standing",
+          "surface_fit": "a cracked, leaning church that the congregation abandoned is exactly the kind of building towns knock down",
+          "inference": "a church that fifty years later still stands inside the council's fence was not knocked down, whatever its condition"
+        },
+        "crated": {
+          "type": "logic",
+          "quote": "its bell hanging in the tower",
+          "why": "the church is intact on its original site",
+          "surface_fit": "old stone churches are sometimes taken down stone by stone and shipped away, and a fenced, emptied church sounds like one being readied for removal",
+          "inference": "a bell still hanging in the tower of the church inside the old fence means the building stands whole on its first site, so it was not dismantled and packed for shipment"
+        },
+        "commandeered": {
+          "type": "logic",
+          "quote": "forbidding entry",
+          "why": "the council closed the building to all use",
+          "surface_fit": "the council acted on the church over its trustees' protest, which is what seizing a building for public use looks like",
+          "inference": "a council that fences a building and forbids anyone to enter, leaving ivy to grow over its doors, is keeping it out of use, not taking it over for the town's needs"
+        }
+      }
+    },
+    {
+      "key": "bulldozed",
+      "passage": "In 1951 the last congregation left a stone church that had stood at the center of a river town since 1720. Engineers that winter found its walls sound and its tower true, and a merchant offered the council a good price for the ground it stood on. By the next spring that ground was a parking lot for the new market hall, and the church's stones, broken small, had been spread as the bed of the road to the new bridge. The town's minutes record that in 1952 the council ______ the church.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "\"Bulldozed\" fits: within a year the church's ground was a parking lot and its stones were broken up and laid under a road, so the council had it knocked down. \"Condemned\" fails because condemning is a declaration that a building is unfit, and the council went much further, tearing down a church its engineers had found sound and breaking up its stones. \"Crated\" fails because stones broken small and spread under a road were never packed to be rebuilt. \"Commandeered\" fails because the council made no use of the church building; it cleared it away and used the ground.",
+      "kills": {
+        "condemned": {
+          "type": "logic",
+          "quote": "found its walls sound and its tower true",
+          "why": "the council razed a sound church for its ground; a declaration of unfitness neither happened nor describes the demolition",
+          "surface_fit": "an old empty church that a town tears down is usually first declared unfit, so condemned is a natural reading",
+          "inference": "engineers found the church sound, and the council sold its ground and broke up its stones; condemning declares a building unfit, while what the council did was destroy it outright"
+        },
+        "crated": {
+          "type": "logic",
+          "quote": "broken small, had been spread as the bed of the road",
+          "why": "the stones were destroyed and laid under a road",
+          "surface_fit": "the church's stones were carried away from the town center, which is what happens when an old church is taken down and shipped to be rebuilt elsewhere",
+          "inference": "stones broken small and spread as a roadbed cannot be put back together, so the church was destroyed rather than packed and moved"
+        },
+        "commandeered": {
+          "type": "logic",
+          "quote": "that ground was a parking lot for the new market hall",
+          "why": "the council used the cleared ground, not the building",
+          "surface_fit": "the council put the church's site to the town's own use, which sounds like seizing it for public needs",
+          "inference": "the town's use was a parking lot where the church had stood, so the council did not take over the church building itself; it removed it"
+        }
+      }
+    },
+    {
+      "key": "crated",
+      "passage": "In 1951 the last congregation left a stone church that had stood at the center of a river town since 1720. That winter the council sold it to a college across the ocean. Over the next year workers took it down, painting a number on every stone, and sent the stones away packed in straw; four years later a photograph shows the church standing on the college's lawn, its tower restored to full height and its bell hung again. The square where it had stood became a garden. The town's minutes record that in 1952 the council ______ the church.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "\"Crated\" fits: workers took the church down, numbered every stone and sent the stones off packed in straw to a college that rebuilt it, so the council had it packed up and shipped away. \"Condemned\" fails because the college paid for the building and rebuilt it to full height, so it was worth moving whole, not declared unfit. \"Bulldozed\" fails because numbering every stone was done so the church could be raised again, and it stands on the college's lawn. \"Commandeered\" fails because the council sold the church to the college rather than taking it over for its own use.",
+      "kills": {
+        "condemned": {
+          "type": "logic",
+          "quote": "its tower restored to full height",
+          "why": "the building was worth buying and rebuilding whole",
+          "surface_fit": "an emptied church that a town takes down is usually first declared unfit",
+          "inference": "a church that a college paid for and rebuilt on its lawn with its tower at full height was valued as a building, so it was sold and moved, not declared unfit"
+        },
+        "bulldozed": {
+          "type": "logic",
+          "quote": "painting a number on every stone",
+          "why": "the stones were numbered so the church could be rebuilt",
+          "surface_fit": "the church disappeared from the town and its square became a garden, which looks like a demolition",
+          "inference": "numbering every stone only makes sense if the building is to be put back together, and the photograph shows it rebuilt, so it was dismantled with care, not knocked down"
+        },
+        "commandeered": {
+          "type": "logic",
+          "quote": "the council sold it to a college",
+          "why": "the church was sold, not seized",
+          "surface_fit": "the council decided the building's fate and disposed of it, which might suggest taking control of it",
+          "inference": "a building the town sold to a college to be rebuilt overseas was not taken over by the council for its own purposes"
+        }
+      }
+    },
+    {
+      "key": "commandeered",
+      "passage": "In 1951 the last congregation left a stone church that had stood at the center of a river town since 1720. That spring a college across the ocean offered to buy the church and ship it away, and the trustees were weighing the offer when the river flooded the lower town. The council moved two hundred families' furniture and the town's emergency grain into the nave for three years, and the trustees' protest letters fill a file in the town archive. In 1955 the trustees opened its doors for services again and rang the bell in its tower. The town's minutes record that in 1952 the council ______ the church.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "\"Commandeered\" fits: during the flood the council filled the nave with families' furniture and the town's grain for three years while the trustees protested in letter after letter, so the council seized the church for public use against its owners' wishes. \"Condemned\" fails because the council stored the town's emergency grain and two hundred families' belongings in the nave for three years, which it would not do in a building it had declared unfit. \"Bulldozed\" fails because the trustees opened the church for services again in 1955. \"Crated\" fails because the college's offer was overtaken by the flood, and the trustees held services in the church on its old site in 1955, so it was never shipped away.",
+      "kills": {
+        "condemned": {
+          "type": "logic",
+          "quote": "emergency grain into the nave",
+          "why": "the council relied on the building for years",
+          "surface_fit": "a council acting on an empty old church suggests declaring it unfit, the usual fate of such buildings",
+          "inference": "a council that keeps the town's emergency grain and two hundred families' furniture in a church for three years is treating it as sound and useful, not declaring it unfit"
+        },
+        "bulldozed": {
+          "type": "logic",
+          "quote": "opened its doors for services again",
+          "why": "the building survived and was used again",
+          "surface_fit": "an abandoned church in a town recovering from a flood sounds like one cleared away",
+          "inference": "a church reopened for services in 1955 was still standing, so it had not been knocked down"
+        },
+        "crated": {
+          "type": "logic",
+          "quote": "weighing the offer when the river flooded",
+          "why": "the sale was overtaken and the church stayed put",
+          "surface_fit": "a college offered to buy the church and ship it away, so packing it up for shipment is a natural reading",
+          "inference": "the trustees were still deciding when the flood came, the council then filled the church for three years, and the trustees held services in it afterward, so it never left its site"
+        }
+      }
+    }
+  ]
+}

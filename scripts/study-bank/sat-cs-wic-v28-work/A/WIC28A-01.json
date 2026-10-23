@@ -1,0 +1,146 @@
+{
+  "id": "WIC28A-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "wolves and a wintering elk herd",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "chased",
+    "ambushed",
+    "corralled",
+    "cowed"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "chased",
+    "ambushed",
+    "corralled",
+    "cowed"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "Over the decade that followed, the pack ______ the herd.",
+  "worlds": [
+    {
+      "key": "chased",
+      "passage": "When wolves returned to a mountain valley in 1995, a pack of nine settled along the creek where a herd of four hundred elk spends each winter. Over the decade that followed, the pack ______ the herd. The elk it killed were mostly old cows and lame calves, and their carcasses lay scattered across the open benches in every direction, often two miles from the willow thickets where the herd had been feeding that morning. The herd spent its evenings in those thickets, and its calves were born there each spring.",
+      "shape": "method and purpose",
+      "key_from_one_sentence": false,
+      "explanation": "\"Chased\" fits: the wolves took the slowest elk, old cows and lame calves, and the carcasses lay up to two miles from where the herd had been feeding, so the wolves ran elk down until the weakest fell behind. \"Ambushed\" fails because an attack from hiding takes whatever elk passes the hiding place, at close range; these kills fell on open benches far from the herd's feeding ground and picked out the weakest, which is what a pursuit does. \"Corralled\" fails because the carcasses lay in every direction, so the wolves were not driving the herd into any one place. \"Cowed\" fails because the herd kept spending its evenings in the thickets and calving there, so the wolves did not frighten it out of its habits.",
+      "kills": {
+        "ambushed": {
+          "type": "logic",
+          "quote": "scattered across the open benches in every direction",
+          "why": "kills on open ground far from where the herd fed, chosen by weakness",
+          "surface_fit": "wolves are often described lying in wait, and a pack settled along the creek where the elk winter suggests a hidden attack",
+          "inference": "a predator striking from cover kills whatever passes its hiding place, close by; carcasses spread over open benches two miles from the morning's feeding ground, almost all old or lame, are the end of runs that the slowest lost"
+        },
+        "corralled": {
+          "type": "logic",
+          "quote": "in every direction",
+          "why": "no single place where the herd was driven",
+          "surface_fit": "a pack of nine working a herd together suggests driving the elk into a trap, a familiar picture of pack hunting",
+          "inference": "if the kills lay in every direction across the benches, each hunt ended wherever a straggler fell, so the wolves were not pushing the herd toward any confining place"
+        },
+        "cowed": {
+          "type": "logic",
+          "quote": "its calves were born there each spring",
+          "why": "the herd kept using the thickets",
+          "surface_fit": "the return of wolves is widely reported to have frightened elk out of creekside willows",
+          "inference": "a herd that spends its evenings in the thickets and drops its calves there each spring, with the wolves living along the same creek, has not been frightened out of its habits"
+        }
+      }
+    },
+    {
+      "key": "ambushed",
+      "passage": "When wolves returned to a mountain valley in 1995, a pack of nine settled along the creek where a herd of four hundred elk spends each winter. Over the decade that followed, the pack ______ the herd. Collars showed the wolves spending their days in the creek's willow thickets where the herd's trails cross it. Nearly every carcass lay on one of those trails within a few yards of the water, and the dead included prime bulls as often as old cows. Each evening the herd filed down from the open benches along the same trails to drink, and the willows beside them were cropped to knee height.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "\"Ambushed\" fits: the wolves lay all day in thickets at the trail crossings, the herd came down those trails every evening, and the kills fell right there, so the wolves waited hidden for the elk to come to them. \"Chased\" fails because the kills lay within yards of the thickets and took prime bulls as often as old cows; a pursuit ends far off and takes the slowest. \"Corralled\" fails because the herd walked down to the crossings on its own each evening, so nothing drove it there. \"Cowed\" fails because the herd kept filing down the very trails where it lost animals and cropping the willows beside them.",
+      "kills": {
+        "chased": {
+          "type": "logic",
+          "quote": "prime bulls as often as old cows",
+          "why": "kills at the thicket edge took strong and weak alike",
+          "surface_fit": "wolves are best known as pursuit hunters, so chased is the obvious verb for a pack and a herd",
+          "inference": "a chase is lost by the slowest animal and ends wherever it falls behind; kills within yards of the thickets that take prime bulls as often as old cows came from close-range strikes, not runs"
+        },
+        "corralled": {
+          "type": "logic",
+          "quote": "Each evening the herd filed down from the open benches",
+          "why": "the elk came to the spot by themselves",
+          "surface_fit": "a pack picking the spot where its prey gathers sounds like hemming the herd into a trap",
+          "inference": "the herd walked down its own trails to drink every evening while the wolves lay in the thickets, so the pack moved nothing; the elk came to the place themselves"
+        },
+        "cowed": {
+          "type": "logic",
+          "quote": "the willows beside them were cropped to knee height",
+          "why": "the elk kept feeding at the dangerous crossings",
+          "surface_fit": "wolves returning to a valley are widely said to have frightened elk away from creeks",
+          "inference": "elk that file down the trails where they are killed and crop the willows beside them to knee height are still feeding at the crossings, so fear has not changed where they go"
+        }
+      }
+    },
+    {
+      "key": "corralled",
+      "passage": "When wolves returned to a mountain valley in 1995, a pack of nine settled along the creek where a herd of four hundred elk spends each winter. Over the decade that followed, the pack ______ the herd. In deep snow the wolves spread out in a wide arc on the open benches and walked slowly toward the elk, which moved off ahead of them downhill into a side canyon where drifts lay chest-deep; there, floundering, several fell in an afternoon to wolves trotting on the crust. By spring the elk were back grazing the benches and the willows along the creek.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "\"Corralled\" fits: walking in a wide arc, the wolves pushed the elk ahead of them into a canyon of chest-deep drifts, a confined place where they could not escape. \"Chased\" fails because the wolves walked slowly and the elk moved off ahead of them, so the kills came from where the elk were pushed, not from outrunning them. \"Ambushed\" fails because the wolves came at the herd in the open, spread across the benches in plain sight, instead of waiting hidden. \"Cowed\" fails because by spring the elk were back on the benches and in the creek willows, so the pack did not frighten them out of their range.",
+      "kills": {
+        "chased": {
+          "type": "logic",
+          "quote": "walked slowly toward the elk",
+          "why": "the wolves walked; the elk moved ahead and were trapped by the drifts, not run down",
+          "surface_fit": "the wolves trot on the crust and the elk move away from them, which reads at first like a pursuit",
+          "inference": "wolves walking slowly in an arc push the elk ahead rather than overtaking them, and the elk died only once the canyon drifts held them, so position, not pursuit, decided the hunt"
+        },
+        "ambushed": {
+          "type": "logic",
+          "quote": "spread out in a wide arc on the open benches",
+          "why": "the wolves approached in open view rather than lying hidden",
+          "surface_fit": "elk dying in a side canyon sounds like a trap sprung on them, which is what an ambush is",
+          "inference": "a line of wolves walking across open benches is visible to the elk the whole time, and the elk moved away from it, so the attack did not come from concealment"
+        },
+        "cowed": {
+          "type": "logic",
+          "quote": "back grazing the benches and the willows",
+          "why": "the elk resumed their old range by spring",
+          "surface_fit": "the frightening effect of wolves on elk is famous, so cowed fits both the topic and the sentence",
+          "inference": "if the elk return to the same benches and creek willows once the snow goes, the pack has not changed where they live or feed, so they were not intimidated"
+        }
+      }
+    },
+    {
+      "key": "cowed",
+      "passage": "When wolves returned to a mountain valley in 1995, a pack of nine settled along the creek where a herd of four hundred elk spends each winter. Over the decade that followed, the pack ______ the herd. It killed fewer than thirty elk a year, most of them on the open benches above the creek. Elk that once grazed for hours in the willow thickets began to pass through them without stopping, heads up, even when collars placed the pack thirty miles off, and fed in scattered bands on the benches, lifting their heads every few bites. By 2005 willows long held to knee height stood taller than a rider.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "\"Cowed\" fits: the pack killed few elk, yet the herd stopped lingering in the thickets, stayed watchful while feeding, and kept doing so even when the wolves were thirty miles off, so the wolves changed the herd's behavior through fear. \"Chased\" fails because the elk avoided the thickets in weeks when no wolf was near them, so no pursuit was pushing them out. \"Ambushed\" fails because most kills were on the open benches, away from the thickets that could have hidden a wolf. \"Corralled\" fails because the elk fed in scattered bands across the benches, so they were spread out rather than confined.",
+      "kills": {
+        "chased": {
+          "type": "logic",
+          "quote": "even when collars placed the pack thirty miles off",
+          "why": "the elk kept avoiding the thickets with no wolves anywhere near",
+          "surface_fit": "the elk moved out of the willow thickets onto the benches, which looks like being driven out by wolves, and chasing is what wolves are known for",
+          "inference": "elk that trot through the thickets while the pack is thirty miles away are not being pursued at that moment, so their move to the benches comes from fear, not from being run off"
+        },
+        "ambushed": {
+          "type": "logic",
+          "quote": "most of them on the open benches",
+          "why": "kills happened on open ground, not at the thickets",
+          "surface_fit": "elk avoiding dense willows is what one would expect if wolves were lying in wait there, so ambushed is a natural guess",
+          "inference": "if most kills fell on the open benches, away from the thickets where a wolf could hide, the pack was not killing from cover"
+        },
+        "corralled": {
+          "type": "logic",
+          "quote": "fed in scattered bands",
+          "why": "the herd spread out across the benches",
+          "surface_fit": "a pack and a herd suggest wolves herding elk together into one place, so corralled fits the sentence",
+          "inference": "a herd split into scattered bands across open benches has been dispersed, not gathered into a confined place, so the wolves did not pen it"
+        }
+      }
+    }
+  ]
+}

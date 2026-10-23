@@ -1,0 +1,146 @@
+{
+  "id": "WIC28A-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a neutral island port in wartime",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "bombarded",
+    "boycotted",
+    "blockaded",
+    "annexed"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "bombarded",
+    "boycotted",
+    "blockaded",
+    "annexed"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "In the second year of the war, the northern alliance ______ the island's only port.",
+  "worlds": [
+    {
+      "key": "blockaded",
+      "passage": "In the second year of the war, the northern alliance ______ the island's only port. Before the war the port had shipped wool to buyers on both sides of the strait. That spring alliance warships took up stations in a line across the harbor mouth, and over the next two years the island's harbormaster logged three hundred freighters, some sent by the alliance's own wool buyers, that turned about at the warships' signal flags. He sent each month's log to the island's council, while the bales he could not ship rose to the rafters of the waterfront sheds.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "\"Blockaded\" fits: warships held a line across the harbor mouth, freighters of every kind turned about at their signals, and unshipped wool filled the sheds, so the alliance cut the port off from the sea. \"Bombarded\" fails because the warships turned ships away with signal flags and never needed their guns; the sheds on the waterfront stood full of bales. \"Boycotted\" fails because the alliance's own wool buyers sent ships for the wool and were turned away with the rest, so the alliance was not refusing to buy. \"Annexed\" fails because the harbormaster still reported to the island's council, so the island still governed its port.",
+      "kills": {
+        "bombarded": {
+          "type": "logic",
+          "quote": "turned about at the warships' signal flags",
+          "why": "the warships stopped ships by signal; no firing is involved and the waterfront stands",
+          "surface_fit": "warships stationed off a port in wartime suggest shelling it, the most familiar thing warships do to a harbor",
+          "inference": "ships were turned away by signal flags from a line of warships, and the waterfront sheds stand filling with bales, so the warships were barring the harbor, not firing on it"
+        },
+        "boycotted": {
+          "type": "logic",
+          "quote": "some sent by the alliance's own wool buyers",
+          "why": "the alliance's buyers still wanted the wool and were stopped with everyone else",
+          "surface_fit": "the port's wool stopped reaching the alliance, which is what happens when a country refuses to trade with a port",
+          "inference": "a boycott is a refusal to buy, but the alliance's own buyers sent ships for the wool and were turned back with all the others, so trade was stopped at the harbor mouth, not by refusal"
+        },
+        "annexed": {
+          "type": "logic",
+          "quote": "He sent each month's log to the island's council",
+          "why": "the island still ran its port",
+          "surface_fit": "a great power taking control of a small neutral island's harbor in wartime suggests taking the territory over",
+          "inference": "a harbormaster reporting each month to the island's council works for the island, so the port was still the island's to govern"
+        }
+      }
+    },
+    {
+      "key": "bombarded",
+      "passage": "In the second year of the war, the northern alliance ______ the island's only port. Before the war the port had shipped wool to buyers on both sides of the strait. Alliance warships appeared off the harbor on four nights that spring, and by summer the southern alliance's coal depot on the quay was a crater and the sheds beside it were heaps of stone. In the weeks between those nights, freighters of every flag loaded wool at the far end of the quay, much of it bound for the alliance's own mills, and the island's council went on appointing the harbormaster.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "\"Bombarded\" fits: warships came on four nights, and afterward the enemy's coal depot was a crater and the sheds beside it heaps of stone, so the warships shelled the port. \"Blockaded\" fails because the warships came only on those nights, and between them freighters of every flag loaded at the quay, so the harbor was never closed. \"Boycotted\" fails because much of the wool went to the alliance's own mills, so the alliance was still buying. \"Annexed\" fails because the island's council still appointed the harbormaster, so the island still governed its port.",
+      "kills": {
+        "blockaded": {
+          "type": "logic",
+          "quote": "freighters of every flag loaded wool",
+          "why": "shipping went on between the warships' visits",
+          "surface_fit": "alliance warships coming repeatedly to a harbor in wartime suggests closing it to shipping",
+          "inference": "warships that came on four nights and in between let freighters of every flag load at the quay were not keeping ships out, so the port was never cut off"
+        },
+        "boycotted": {
+          "type": "logic",
+          "quote": "much of it bound for the alliance's own mills",
+          "why": "the alliance kept buying the wool",
+          "surface_fit": "a warring power hostile to a port that supplies its enemy's coal might refuse to trade with it",
+          "inference": "wool shipped to the alliance's own mills is wool the alliance is buying, so it had not refused the port's trade"
+        },
+        "annexed": {
+          "type": "logic",
+          "quote": "the island's council went on appointing the harbormaster",
+          "why": "the island still governed the port",
+          "surface_fit": "a great power using force against a small neutral island suggests seizing its territory",
+          "inference": "if the island's council still chose the port's harbormaster, the island still ran the port, so the alliance had not taken it over"
+        }
+      }
+    },
+    {
+      "key": "boycotted",
+      "passage": "In the second year of the war, the northern alliance ______ the island's only port. Before the war the port had shipped wool to buyers on both sides of the strait. That spring the island's wool, until then half of all the wool the alliance imported, disappeared from the alliance's markets within a month, while freighters bound for neutral countries loaded more of it at the port than ever, emptying the waterfront sheds as fast as they filled. The harbormaster, appointed as always by the island's council, reported the busiest year in the port's history.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "\"Boycotted\" fits: the wool was being shipped from the port in record amounts, yet it disappeared from the alliance's markets, so the alliance had stopped buying from the port. \"Blockaded\" fails because freighters loaded more wool than ever and the port had its busiest year, so ships came and went freely. \"Bombarded\" fails because the waterfront sheds were filling and emptying with record cargoes, so the waterfront was working. \"Annexed\" fails because the island's council still appointed the harbormaster.",
+      "kills": {
+        "blockaded": {
+          "type": "logic",
+          "quote": "reported the busiest year in the port's history",
+          "why": "ships came and went in record numbers",
+          "surface_fit": "the island's wool suddenly stopped reaching the alliance in wartime, which a blockade of the port would cause",
+          "inference": "a port having its busiest year, with freighters loading more wool than ever, is open to shipping; the wool stopped reaching only the alliance, so the alliance stopped buying rather than closing the harbor"
+        },
+        "bombarded": {
+          "type": "logic",
+          "quote": "emptying the waterfront sheds as fast as they filled",
+          "why": "the waterfront handled record cargoes",
+          "surface_fit": "a wartime power turning against a port's trade suggests an attack on it by warships",
+          "inference": "sheds on the waterfront filling and emptying as fast as ever are standing and in use, so the waterfront had not been shelled"
+        },
+        "annexed": {
+          "type": "logic",
+          "quote": "appointed as always by the island's council",
+          "why": "the island still governed the port",
+          "surface_fit": "a great power acting against a small neutral island's port suggests absorbing it",
+          "inference": "a harbormaster chosen by the island's council works for the island, so the port was still the island's"
+        }
+      }
+    },
+    {
+      "key": "annexed",
+      "passage": "In the second year of the war, the northern alliance ______ the island's only port. Before the war the port had shipped wool to buyers on both sides of the strait. That spring alliance officials moved into the customs house, and from then on the duties on every bale went to the alliance's treasury, the harbormaster answered to an alliance governor, and the island's council met in a village up the coast. Freighters crowded the quay, unloading at the waterfront sheds, and the alliance's buyers took more of the island's wool than they ever had.",
+      "shape": "scope limit",
+      "key_from_one_sentence": false,
+      "explanation": "\"Annexed\" fits: alliance officials took over the customs house, the port's duties went to the alliance's treasury, its harbormaster answered to an alliance governor, and the island's council was pushed out to a village, so the alliance made the port its own. \"Blockaded\" fails because freighters crowded the quay, so ships came and went. \"Bombarded\" fails because freighters unloaded at the waterfront sheds, so the waterfront was standing and in use. \"Boycotted\" fails because the alliance's buyers took more of the island's wool than ever.",
+      "kills": {
+        "blockaded": {
+          "type": "logic",
+          "quote": "Freighters crowded the quay",
+          "why": "the harbor was busy with ships",
+          "surface_fit": "a warring alliance seizing control of a neutral port suggests closing it with warships",
+          "inference": "a quay crowded with freighters is one ships can reach, so nothing was keeping them out of the harbor"
+        },
+        "bombarded": {
+          "type": "logic",
+          "quote": "unloading at the waterfront sheds",
+          "why": "the waterfront was standing and in use",
+          "surface_fit": "a wartime takeover of a port suggests it was first attacked by warships",
+          "inference": "freighters unloading into the waterfront sheds means the waterfront was intact and working, so the port had not been shelled"
+        },
+        "boycotted": {
+          "type": "explicit",
+          "quote": "took more of the island's wool than they ever had",
+          "why": "the alliance bought more, not less",
+          "surface_fit": "the alliance acting against a neutral port that also traded with its enemy suggests cutting off trade with it",
+          "inference": "buyers who take more of the island's wool than ever are not refusing the port's trade, so the alliance did not boycott it"
+        }
+      }
+    }
+  ]
+}

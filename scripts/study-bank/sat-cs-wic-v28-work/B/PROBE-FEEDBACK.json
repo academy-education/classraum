@@ -1,0 +1,681 @@
+{
+ "_batch_tells_listed_only": [
+  "r0: One-kill-per-distractor template: in most items each wrong option is paired with exactly one planted negating phrase (often in sentences after the blank), so a solver can match options to their denials and take the one left unnegated without understanding the passage's logic: P05, P06, P08, P09, P12, P13, P15, P18, P19, P20, P21, P23, P24, P26, P27, P28, P29, P31, P33, P35, P36, P39, P40.",
+  "r0: The cliché / textbook word for the topic is usually a distractor (killed by one planted fact) rather than the key: kidney P08, corridor P17, sorted P31, denuded P12, reduced P13, muzzled P06, pirated P04, chilled P28, patrolled P35, nibbled P11, depository P25, condemned P03. Exceptions where the cliché is keyed (tomb P02, pilgrimage P16, greened P39) are the easy items.",
+  "r0: Paired worlds reuse one frame with contrasting keys: P21/P22 (merchant ship with iron bars and wine, divers in 1990; sand burial vs rock tumbling) and P13/P36 (wolves return to an elk valley; in both the fear word, rattled/cowed, is a distractor and the plain behavioural word is keyed).",
+  "r0: '[Observer] calls/describes X as the [place]'s ______' noun-metaphor template recurs: P05, P08, P09, P10, P14, P17, P19, P20, P25, P32, P34, P40; and 'the [report] concludes/says that [agent] had ______ the [thing]' recurs across P07, P12, P22, P23, P26, P27, P29, P30, P33, P37, P39.",
+  "r0: Alliterative option sets (P03 c-, P04 p-, P13 r-, P15 r-, P28 c-, P30 m-, P35 p-, P38 r-) are a repeated template, though I found no letter or sound that predicts the key within them.",
+  "r1: Paired near-duplicate worlds with different keys: P12/P14 (merchant ship carrying iron bars and wine sunk off a coast, divers in 1990 - mummified vs gnawed) and P18/P36 (wolves return to a mountain valley, one elk herd - ambushed vs rattled). Solving one primes the other, and the repeated frame shows the template.",
+  "r1: One planted kill per distractor: on most items each wrong option is contradicted by its own sentence or clause, usually phrased as 'the same as / as before / still / never / none' (P03, P04, P05, P08, P09, P10, P11, P13, P14, P17, P19, P20, P21, P22, P27, P28, P34, P35, P36, P37, P38, P40). A solver can find the three negated words and pick the leftover without reading the passage as an argument; explicit_kills is 3 on most of the render.",
+  "r1: A sentence AFTER the blank that kills the strongest near-miss: P04 (rhythm kills manicured), P05 ('same nitrogen' kills manured/leached), P07 (rents), P13 (gale kills dislodged), P21 ('same brown' kills greened), P28 (attacks kill muzzled), P30 (unreached row), P31 (river between boulders). Recognisable shape: claim with blank, then one closing sentence aimed at the stock word.",
+  "r1: The stock collocation for the scenario is consistently the distractor, killed by one planted fact: corridor (P06), tomb (P15), greened (P21), muzzled (P28), dislodged (P13), blockaded (P38), sorted (P08), manured (P05). A test-wise solver who learns that the obvious word is always wrong gains an edge.",
+  "r1: Alliterative or same-initial option sets used repeatedly: P06 (cage/corridor/cemetery/cafeteria), P08 (stacked/sanded/sorted/stained), P09 (raised/rutted/ruptured/rippled), P10 (chilled/clogged/churned + bled), P23 (patrolled/propagated/pollinated/parasitized), P27 (pirated/plagiarized/panned/popularized), P29 (receipt/recipe/roadmap), P34 (ransacked/ransomed/repatriated/requisitioned), P36 (redistributed/reduced/rejuvenated/rattled). Not key-predictive by itself but an obvious shared template.",
+  "r1: Metaphor-noun frame 'X served as / called the Y's ______' recurs across P02, P03, P06, P07, P15, P16, P22, P24, P25, P26, P29, P33, P35, P37; the key is always the noun naming the function the evidence describes.",
+  "r2: Three-kill template: in most items each wrong option is denied by its own planted 'as before / unchanged / no X' phrase, often stacked in one sentence, and the key is the one option left undenied, so a solver can eliminate without inferring. P03, P04, P06, P14, P19, P20, P21, P25, P27, P28, P32, P33, P34, P35, P38, P39, P40.",
+  "r2: Counter-trope keys: the option matching the popular science story for the setup is the distractor, and the passage explicitly negates it, so 'pick the option the passage is at pains to deny is NOT the key' predicts the answer. Corridor in P02, greened in P14, reduced in P20, dislodged in P21, herded in P18, patrolled in P22, tomb in P16, banquet in P30, firebreak in P08.",
+  "r2: Recycled frames across items: P12 and P27 (merchant ship carrying iron bars and wine, divers survey in 1990); P20 and P38 (wolves return to a mountain valley, elk herd); P18 and P22 (ants on a plant, then a 'her/the report concludes the ants had ___' blank).",
+  "r2: Alliterative option sets with the key inside: P02 (c-), P09 (p- x3), P20 (r-), P22 (p-), P24 (c- x3), P35 (r-), P40 (r- x3). This is not predictive of the letter but is a visible authoring signature.",
+  "r2: A trailing sentence after the blank often supplies the last kill or the confirming fact (for example 'In dry summers both valleys turn the same brown', 'Its benches stand mostly empty at midday', 'A gale ... left both halves standing'). P10, P13, P14, P18, P21, P33, P39.",
+  "r3: Kill-every-distractor template: in nearly every item each wrong option is negated by one planted 'as X as / still / no / unchanged' clause (explicit_kills 3 on P03, P05, P07-P09, P11-P15, P18-P20, P22-P31, P33-P40), so the key is found by elimination of three planted negations rather than by reading the passage's positive claim.",
+  "r3: Figurative-noun template 'X calls/treats the [place] as the [place's] ______' with four metaphor nouns recurs: P01, P05, P06, P10, P13, P14, P15, P16, P21, P26, P27, P29, P38.",
+  "r3: Plain/literal word survives when every vivid option is negated: P13 fence, P28 raised, P03 reduced, P25 condemned.",
+  "r3: Near-duplicate worlds: P02/P03 (wolves return to a valley elk herd, 1995/1996), P17/P37 (merchant ship with iron bars and wine sunk, 1690/1790, surveyed by divers in 1990), P07/P32/P35 (a text altered and compared line by line).",
+  "r3: The positive clue is often a single late concrete sentence that names the action outright (P05, P08, P14, P19, P28, P34, P37, P39)."
+ ],
+ "WIC28B-03": {
+  "world 2 (key popularized)": {
+   "must_revise": [],
+   "also_named_for": [
+    "antonym pair"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "popularized",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": [
+    "panned",
+    "popularized"
+   ],
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Pirated' is a good lure from 'cheap editions appeared in every city' and dies only on the printer's license and her share arriving; 'plagiarized' dies on the actress naming the poet each night, 'panned' on the papers naming poems among the season's best, and panned/popularized is an opposite pair.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 3 (key panned)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "panned",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Her weakest stanza printed 'beside a cartoon of a weeping cow' is mockery, so panned; 'who held the only plates' kills pirated, 'printing her name over' the stanza kills plagiarized, 'sold forty copies' kills popularized.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 0 (key pirated)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "pirated",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'With her name on the title page' kills plagiarized, the near-miss. 'Named two of the poems among the season's best' kills panned and 'barely four hundred copies' kills popularized. The reprint sentence alone, same poems at half price paying her nothing, defines pirated.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ },
+ "WIC28B-05": {
+  "world 0 (key receipt)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "receipt",
+   "reader_difficulty": "medium",
+   "n_struck": 1,
+   "struck_words": [
+    "roadmap"
+   ],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Roadmap' is off-topic on a surface read; nothing in a barley list is about routes. 'Recipe' dies on each line giving a day, 'payroll' on the barley being what one farmer brought in; the storehouse keeper's seal and the farmhouse jar then settle 'receipt'.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 1 (key payroll)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "payroll",
+   "reader_difficulty": "medium",
+   "n_struck": 1,
+   "struck_words": [
+    "roadmap"
+   ],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Roadmap fails on a surface read - nothing in the passage concerns routes or places; recipe is killed by 'Each line pairs a man's name with the barley he was given', and receipt is the near-miss, ruled out by twelve monthly tablets with the same nine names kept in the temple storeroom under the overseer's seal.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 2 (key recipe)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [],
+   "reader_pick_word": "recipe",
+   "reader_difficulty": "medium",
+   "n_struck": 1,
+   "struck_words": [
+    "roadmap"
+   ],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 1,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "The sequence 'sprouted and then crushed' with 'three days' and an exactly doubled column is a recipe being scaled, and it all sits in one sentence. 'Roadmap' falls on a surface read because nothing on the tablet concerns a route, and 'payroll' has no names. 'Receipt' (amounts plus a seal) is the only live distractor.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 3 (key roadmap)": {
+   "must_revise": [],
+   "also_named_for": [
+    "distractor fits literally"
+   ],
+   "listed_only": [],
+   "reader_pick_word": "roadmap",
+   "reader_difficulty": "hard",
+   "n_struck": 1,
+   "struck_words": [
+    "recipe"
+   ],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 1,
+   "second_defensible_word": null,
+   "literal_fit_word": "receipt",
+   "presupposes_absent": null,
+   "reader_note": "Towns in order up the river with day counts and barley per leg gives roadmap; receipt is planted by the rolled seal and the inn find, payroll fails because the barley feeds donkeys not workers; recipe is struck on surface (amounts plus towns, not ingredients).",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ },
+ "WIC28B-08": {
+  "world 3 (key ruptured)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "ruptured",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "The earthquake sentence (stripe stepping sideways, asphalt broken across both lanes) decides 'ruptured' alone. 'Rutted' and 'rippled' die on trucks leaving the asphalt level, 'raised' on stakes showing the roadbed at its laid height.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 0 (key rutted)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "rutted",
+   "reader_difficulty": "medium",
+   "n_struck": 1,
+   "struck_words": [
+    "raised"
+   ],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Raised fails on a surface read against 'pressed it down a little more every summer' (and the stakes sentence); 'keeping to the same wheel tracks' gives rutted, and 'never cracked or shifted' at the braking stop sign kills both ruptured and rippled (shoving/washboarding).",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 1 (key rippled)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "rippled",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Shoved forward into folds ... each a stride from the next' gives rippled. The stakes sentence lists the kills: roadbed 'at the height it was laid' (raised), the wheel tracks 'stayed level' (rutted) and 'nowhere did it crack' (ruptured). That stakes sentence is a comma splice and needs repair.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 2 (key raised)": {
+   "must_revise": [
+    "easy",
+    "distractors plausible"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "raised",
+   "reader_difficulty": "easy",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'The middle mile was a foot above the height at which it was laid' alone gives raised; rippled killed by 'one long swell', ruptured by 'unbroken', rutted by trucks leaving no mark - the key is the plain literal word with every vivid option negated.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ },
+ "WIC28B-06": {
+  "world 1 (key pilgrimage)": {
+   "must_revise": [
+    "easy",
+    "distractors weak"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "pilgrimage",
+   "reader_difficulty": "easy",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "weak",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "The kneeling at a spring that 'a parish legend said had cured a blind shepherd', drinking in turn and tying cloth strips is a textbook holy-well pilgrimage; one sentence hands it over. 'Raid' and 'roundup' have nothing in the passage about them beyond the ponies left grazing, and 'pageant' has no audience.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 2 (key pageant)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [
+    "distractor fits literally"
+   ],
+   "listed_only": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "pageant",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": "raid",
+   "presupposes_absent": null,
+   "reader_note": "Costumed villagers acting out the village's history at six stops for paying spectators gives pageant; roundup is killed by carriages 'scattering the grazing ponies', pilgrimage has no religious content though the dawn walk to the far edge fits it loosely, and raid literally names the 1460 attack the last scene depicts.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 3 (key raid)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [
+    "one sentence",
+    "distractor fits literally"
+   ],
+   "listed_only": [],
+   "reader_pick_word": "raid",
+   "reader_difficulty": "medium",
+   "n_struck": 1,
+   "struck_words": [
+    "roundup"
+   ],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 1,
+   "second_defensible_word": null,
+   "literal_fit_word": "pilgrimage",
+   "presupposes_absent": null,
+   "reader_note": "The single sentence 'crossed into the neighboring parish, cut down the maypole ... and fought off the neighbors' hands over 'raid' on its own. 'Roundup' falls on a surface read because nothing is herded (the ponies are only scenery); 'pilgrimage' literally fits the walk to the boundary stone, and 'pageant' is the only near-miss that survives.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 0 (key roundup)": {
+   "must_revise": [
+    "easy",
+    "distractors plausible"
+   ],
+   "also_named_for": [
+    "one sentence"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "roundup",
+   "reader_difficulty": "easy",
+   "n_struck": 1,
+   "struck_words": [
+    "pageant"
+   ],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'Drove every pony on the common back before them into the village yard' alone gives roundup; pageant fails on 'oldest work clothes', pilgrimage on turning at the stone 'without stopping', raid on families leading home their own notched ponies.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ },
+ "WIC28B-07": {
+  "world 2 (key parlor)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "parlor",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Evenings by the fire reading newspapers and playing cards give 'parlor'. 'Pawnshop' dies on miners paying cash for tobacco and nothing more, 'repository' on the safe holding only his own takings, 'pharmacy' on the bottles holding whiskey.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 3 (key pharmacy)": {
+   "must_revise": [
+    "easy",
+    "distractors plausible",
+    "explanation path wrong (phase 2)"
+   ],
+   "also_named_for": [
+    "one sentence",
+    "distractor fits literally"
+   ],
+   "listed_only": [],
+   "reader_pick_word": "pharmacy",
+   "reader_difficulty": "easy",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 1,
+   "second_defensible_word": null,
+   "literal_fit_word": "repository",
+   "presupposes_absent": null,
+   "reader_note": "'he dosed miners from the bottles with quinine and laudanum by weights copied from a physician's handbook ... charges each man by the dose' describes a pharmacy outright; repository is a literal fit for the safe holding laudanum and takings, parlor rests only on the shelf of bottles and stove, and pawnshop is not supported by credit against a cleanup.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": false,
+   "phase2_note": "Parlor is rejected on the incidental detail that he barred the door at sundown; the rejection should rest on there being no social gathering, drinking or entertainment in the store, only doses measured and charged for medicine."
+  },
+  "world 0 (key pawnshop)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [
+    "one sentence",
+    "distractor fits literally"
+   ],
+   "listed_only": [
+    "explicit kills 2"
+   ],
+   "reader_pick_word": "pawnshop",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": true,
+   "explicit_kills": 2,
+   "second_defensible_word": null,
+   "literal_fit_word": "repository",
+   "presupposes_absent": null,
+   "reader_note": "The ledger sentence (goods left 'against credit', 'redeemed', the rest sold each fall) defines a pawnshop outright. 'The bottles held whiskey' kills pharmacy and 'barred the door at sundown' kills parlor. 'Repository' literally fits the safe but misses the credit-and-redemption terms.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 1 (key repository)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "repository",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Sealed deposits returned unbroken for a fee gives repository; pawnshop is the near miss but nothing was lent against the deposits; pharmacy killed by bottles of lamp oil and whiskey, parlor by barring the door at sundown.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ },
+ "WIC28B-04": {
+  "world 3 (key repatriated)": {
+   "must_revise": [],
+   "also_named_for": [
+    "distractor fits literally"
+   ],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "repatriated",
+   "reader_difficulty": "hard",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "strong",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": "ransacked",
+   "presupposes_absent": null,
+   "reader_note": "'Ransacked' literally fits soldiers clearing half the galleries in a night and leaving empty frames, and dies only on the numbered crates signed for by the towns on the labels; 'requisitioned' dies on the pieces going to those towns, 'ransomed' on no payment asked; 'repatriated' needs the century-old seizure plus the return to the labeled towns.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 0 (key ransacked)": {
+   "must_revise": [
+    "easy",
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "ransacked",
+   "reader_difficulty": "easy",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "'broke open the cases and filled their packs ... leaving slashed canvases on the floor' hands over ransacked; 'Nothing was listed' kills requisitioned, 'asked for nothing' kills ransomed, and pieces surfacing 'in shops across the army's home country' kills repatriated, whose bait (the city's fleet looted neighbouring towns) is planted only to be refuted.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ },
+ "WIC28B-02": {
+  "world 2 (key rattled)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "rattled",
+   "reader_difficulty": "medium",
+   "n_struck": 1,
+   "struck_words": [
+    "rejuvenated"
+   ],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Rejuvenated fails on a surface read against 'the herd grew older'; 'held as many elk in winter as ever' and 'its total barely changed' kill reduced, 'kept to their old ranges' kills redistributed, and constant head-raising and bolting 'at a raven's call' give rattled. Same world as P18.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  },
+  "world 0 (key reduced)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "reduced",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Every distractor has a planted kill: rattled by 'unhurried on film', redistributed by 'flights over the timbered slopes found them no fuller', rejuvenated by 'the herd grew older'; once those three sentences are read reduced is the leftover.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ },
+ "WIC28B-01": {
+  "world 3 (key patrolled)": {
+   "must_revise": [
+    "distractors plausible"
+   ],
+   "also_named_for": [],
+   "listed_only": [
+    "explicit kills 3"
+   ],
+   "reader_pick_word": "patrolled",
+   "reader_difficulty": "medium",
+   "n_struck": 0,
+   "struck_words": [],
+   "distractor_quality": "plausible",
+   "antonym_pair": null,
+   "above_ceiling": [],
+   "key_from_one_sentence": false,
+   "explicit_kills": 3,
+   "second_defensible_word": null,
+   "literal_fit_word": null,
+   "presupposes_absent": null,
+   "reader_note": "Banded shrubs eaten while ants are on neighbours 'at every hour' gives patrolled; one sentence ('flowered and podded as heavily, their seeds dropping beneath them') kills both pollinated and propagated, and parasitized fails on unbanded shrubs growing taller.",
+   "phase2_key_ok": true,
+   "phase2_path_coherent": true,
+   "phase2_note": ""
+  }
+ }
+}

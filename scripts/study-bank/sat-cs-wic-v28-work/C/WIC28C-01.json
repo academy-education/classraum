@@ -1,0 +1,146 @@
+{
+  "id": "WIC28C-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "ants and the aphids they tend",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "herded",
+    "drugged",
+    "devoured",
+    "garnered"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "herded",
+    "devoured",
+    "drugged",
+    "garnered"
+  ],
+  "pos": "verb",
+  "after_blank": "the",
+  "blank_sentence": "Her report concludes that the ants had ______ the aphids.",
+  "worlds": [
+    {
+      "key": "herded",
+      "passage": "For three summers an entomologist watched garden ants tend aphids on a row of beans, lapping up the honeydew the aphids release. When a shoot began to wilt, its aphids were gone from it within a day, and at dusk workers could be seen carrying aphids in their jaws along the stems. Aphids marked with paint on wilting shoots turned up the next morning on the youngest leaves of the same plant, feeding and walking off as briskly as unmarked ones. Her report concludes that the ants had ______ the aphids. On a row the ants could not reach, aphids stayed on wilting shoots until they starved.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "\"Herded\" fits: aphids vanished from failing shoots, workers carried aphids along the stems at dusk, and the marked aphids reappeared next morning feeding on the freshest leaves, while untended aphids starved where they were, so the ants were moving their stock from poor feeding ground to good. \"Devoured\" fails because the aphids the workers carried off turned up alive and feeding the next morning. \"Garnered\" fails because the carried aphids were not taken in and kept: they were set down on the youngest leaves of the same plant. \"Drugged\" fails because the moved aphids walked off as briskly as any others, so their stillness in the ants' jaws was not sedation; the ants controlled where they fed by carrying them.",
+      "kills": {
+        "devoured": {
+          "type": "logic",
+          "quote": "turned up the next morning on the youngest leaves",
+          "why": "The aphids carried off were found alive and feeding.",
+          "surface_fit": "Aphids vanishing from shoots overnight while workers carry them off in their jaws looks exactly like ants taking prey, so \"devoured\" is a strong pull.",
+          "inference": "The aphids disappeared from wilting shoots and were seen in the ants' jaws, but the marked ones turned up the next morning feeding on young leaves, so the ones carried off were moved, not eaten."
+        },
+        "garnered": {
+          "type": "logic",
+          "quote": "on the youngest leaves of the same plant",
+          "why": "The carried aphids were set down on fresh leaves, not collected.",
+          "surface_fit": "Workers hauling aphids along the stems at dusk, when ants retreat to the nest, reads like a colony gathering its stock in, so \"garnered\" is tempting.",
+          "inference": "Gathering in would end with the aphids stored somewhere; the marked aphids carried at dusk were found next morning out on the youngest leaves of the very plant they came from, so the ants were placing them, not collecting them."
+        },
+        "drugged": {
+          "type": "logic",
+          "quote": "walking off as briskly as unmarked ones",
+          "why": "The moved aphids moved normally.",
+          "surface_fit": "Aphids that let themselves be lifted and carried without struggling look sedated, and ants are known to subdue aphids chemically, so \"drugged\" fits.",
+          "inference": "Sedated aphids would stay sluggish after being set down; the marked aphids walked off as briskly as unmarked ones, so their stillness came from being carried, and what the ants controlled was where they fed."
+        }
+      }
+    },
+    {
+      "key": "drugged",
+      "passage": "For three summers an entomologist watched garden ants tend aphids on a row of beans, lapping up the honeydew the aphids release. Tended aphids crept from leaf to leaf at a third the pace of untended ones, and few grew the wings aphids need to leave a plant. On bean leaves the workers had crossed, clipped and carried indoors far from any ant, untended aphids slowed the same way within an hour. Her report concludes that the ants had ______ the aphids. Both rows' aphids multiplied all summer, the untended ones three times as fast, spreading to plants the tended aphids never reached.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "\"Drugged\" fits: tended aphids grew few wings and crept slowly, and untended aphids slowed the same way on leaves the workers had crossed, clipped and carried indoors, far from any ant, so something the ants leave on the leaves was restraining the aphids chemically. \"Herded\" fails because the restraint did not need the ants at all: aphids slowed on clipped leaves with no ant present, so it was a substance working on them, not ants gathering or steering a group. \"Devoured\" fails because the tended aphids multiplied all summer; their row ended with fewer only because its slowed, wingless aphids never spread to new plants. \"Garnered\" fails because the aphids were never collected anywhere: they went on multiplying out on the plants.",
+      "kills": {
+        "herded": {
+          "type": "logic",
+          "quote": "far from any ant, untended aphids slowed the same way",
+          "why": "The slowing happened with no ant present.",
+          "surface_fit": "The tended aphids stay put on their plants while untended ones spread, which looks like ants keeping a flock together, the textbook picture of ants herding aphids.",
+          "inference": "Herding is something the herder does to the flock; aphids set on leaves clipped from the ants' row slowed with no ant anywhere near them, so the restraint came from a trace on the leaves, not from ants keeping or steering them."
+        },
+        "devoured": {
+          "type": "logic",
+          "quote": "Both rows' aphids multiplied all summer",
+          "why": "The tended aphids increased all season.",
+          "surface_fit": "The untended row ends with three times as many aphids as the tended one, which looks like the ants thinning out their aphids by eating them, so \"devoured\" is a strong pull.",
+          "inference": "Eaten aphids would decline, but the tended aphids multiplied all summer; the untended row pulled ahead because its aphids spread over plants the slowed, wingless tended aphids never reached, so the gap comes from spreading, not eating."
+        },
+        "garnered": {
+          "type": "logic",
+          "quote": "spreading to plants the tended aphids never reached",
+          "why": "The aphids stayed out on the plants, multiplying.",
+          "surface_fit": "The ants keep their aphids from leaving the row, which reads like a colony amassing a supply for itself, so \"garnered\" fits.",
+          "inference": "Garnering means collecting and storing; the tended aphids were never moved or gathered, they simply multiplied where they were on the plants, more slowly than aphids free to spread, so nothing was collected."
+        }
+      }
+    },
+    {
+      "key": "garnered",
+      "passage": "For three summers an entomologist watched garden ants tend aphids on a row of beans, lapping up the honeydew the aphids release. The aphids stayed on whatever shoot they had settled on, wilting or not, and walked as quickly on leaves the workers had crossed as on clean ones. As the beans withered in autumn, workers carried the aphids' eggs down into the nest, and a nest dug up in midwinter held thousands of them heaped in its deepest chamber. Her report concludes that the ants had ______ the aphids. In spring the eggs hatched there, and the young aphids climbed out to the new bean shoots.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "\"Garnered\" fits: at the end of the season the workers collected the aphids' eggs, kept them heaped underground through the winter, and the next year's aphids came out of that store, so the ants gathered the aphids in and laid them up like a harvest. \"Herded\" fails because all summer the ants never moved aphids even off wilting shoots, and in spring the young climbed out on their own; the only carrying was eggs going into storage, not animals being driven to pasture. \"Devoured\" fails because the eggs taken underground were not eaten: they hatched in spring and the young left alive. \"Drugged\" fails because aphids walked as fast on ant-crossed leaves as on clean ones.",
+      "kills": {
+        "herded": {
+          "type": "logic",
+          "quote": "stayed on whatever shoot they had settled on, wilting or not",
+          "why": "The ants did not move aphids during the season, and in spring the young left the nest by themselves.",
+          "surface_fit": "The ants bring the aphids underground for winter and the young turn up on fresh spring shoots, like livestock brought in and let out to pasture, so \"herded\" is tempting.",
+          "inference": "Herding means driving animals between feeding grounds; these ants never moved an aphid off a dying shoot all summer, and the spring young climbed out on their own, so the one thing the ants did was carry eggs in and keep them, which is storing, not herding."
+        },
+        "devoured": {
+          "type": "logic",
+          "quote": "the young aphids climbed out to the new bean shoots",
+          "why": "The eggs taken underground survived and hatched.",
+          "surface_fit": "Ants hauling thousands of aphid eggs down into the nest as food runs short in autumn looks exactly like a colony provisioning itself, so \"devoured\" fits on a first read.",
+          "inference": "Eggs that were eaten could not hatch; the heaped eggs were still there in midwinter and hatched in spring into aphids that left the nest alive, so they had been kept, not consumed."
+        },
+        "drugged": {
+          "type": "logic",
+          "quote": "walked as quickly on leaves the workers had crossed as on clean ones",
+          "why": "Ant contact did not slow the aphids.",
+          "surface_fit": "The aphids stay put on their shoots all summer even when the shoots wilt, which can look like animals kept docile by something the ants do to them.",
+          "inference": "A drugged aphid would slow after ant contact; these walked as fast on ant-crossed leaves as on clean ones, so their staying put was not the ants' doing, and the ants' real act came in autumn."
+        }
+      }
+    },
+    {
+      "key": "devoured",
+      "passage": "For three summers an entomologist watched garden ants tend aphids on a row of beans, lapping up the honeydew the aphids release. The aphids stayed on whatever shoot they had settled on, wilting or not, and walked as quickly on leaves the workers had crossed as on clean ones. When the beans dried and the honeydew dwindled, the clusters on the ants' row shrank by half within a week, and empty aphid skins, slit open, lay on the leaves beneath them. Her report concludes that the ants had ______ the aphids. On a row the ants could not reach, aphids lasted until the first frost.",
+      "shape": "before and after",
+      "key_from_one_sentence": false,
+      "explanation": "\"Devoured\" fits: once the honeydew ran low, the aphids on the ants' row disappeared by half in a week, leaving slit-open empty skins where they had been, while aphids the ants could not reach survived until frost, so the ants turned on the aphids and ate them. \"Garnered\" fails because the emptied skins lay on the leaves right where the clusters had been, so the aphids were consumed on the spot, not collected and stored. \"Herded\" fails because the ants never moved the aphids, not even off wilting shoots. \"Drugged\" fails because aphids walked as fast on ant-crossed leaves as on clean ones.",
+      "kills": {
+        "garnered": {
+          "type": "logic",
+          "quote": "empty aphid skins, slit open, lay on the leaves",
+          "why": "The aphids were killed and emptied where they sat, not carried off to be kept.",
+          "surface_fit": "At the season's end the aphids vanish from the ants' row while they survive elsewhere, which looks like the colony gathering in its stock before winter, so \"garnered\" is tempting.",
+          "inference": "Gathered-in aphids would be gone from the leaves entirely; instead their slit, emptied skins were left on the leaves under the shrinking clusters, so they were eaten in place rather than collected and stored."
+        },
+        "herded": {
+          "type": "logic",
+          "quote": "stayed on whatever shoot they had settled on, wilting or not",
+          "why": "The ants never moved the aphids between shoots.",
+          "surface_fit": "Ants tending aphids for honeydew is the classic picture of ants herding livestock, and the passage opens with exactly that relationship.",
+          "inference": "Herding means moving animals to food; these aphids stayed even on wilting shoots, so the ants never steered them, and what the ants did at the end was kill them."
+        },
+        "drugged": {
+          "type": "logic",
+          "quote": "walked as quickly on leaves the workers had crossed as on clean ones",
+          "why": "Ant contact did not slow the aphids.",
+          "surface_fit": "The aphids sit still in their clusters while the ants work through them, which can read as prey kept sluggish by something the ants apply.",
+          "inference": "A drugged aphid would slow after ant contact; these walked as fast on ant-crossed leaves as on clean ones, so the ants were not sedating them."
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "id": "WIC28D-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a salt marsh and the bay it drains into",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "kidney",
+    "kitchen",
+    "net",
+    "lung"
+  ],
+  "antonym_pairs": [],
+  "rarity_order": [
+    "kitchen",
+    "net",
+    "lung",
+    "kidney"
+  ],
+  "pos": "noun",
+  "after_blank": "",
+  "blank_sentence": "The team's report calls the marsh the bay's ______.",
+  "worlds": [
+    {
+      "key": "kidney",
+      "passage": "Twice daily the bay's tide floods a salt marsh at a farm creek's mouth, then drains it through one channel. A team spent two years sampling that channel. The creek brings fertilizer from upstream corn fields, and the ebb left with a third less of it, though as muddy as it came. When algae fed by such fertilizer green the bay's other coves in late summer, the cove below stays clear, though its deep water runs as short of oxygen as theirs. Its shrimp live on plankton from open water. The team's report calls the marsh the bay's ______. The marsh grass, cut back by winter ice, rots in place.",
+      "shape": "comparison of two cases",
+      "key_from_one_sentence": false,
+      "explanation": "The marsh takes in the creek's farm fertilizer and lets out a third less, and the cove below it stays clear of the algae that fertilizer feeds elsewhere, so the marsh is the bay's \"kidney\": it removes a dissolved waste from the water passing through. \"Net\" fails because the water leaves as brown with mud as it came in, so the marsh is not catching what the water carries in suspension; what it removes is dissolved. \"Lung\" fails because the cove right below the marsh runs as short of oxygen by late summer as the other coves, so the marsh is not resupplying it. \"Kitchen\" fails because the cove's shrimp live on plankton from open water while the marsh grass rots where it stands, so the marsh's plants are not what feeds the bay.",
+      "kills": {
+        "net": {
+          "type": "logic",
+          "quote": "though as muddy as it came",
+          "why": "The water leaves as muddy as it entered, so the marsh catches nothing suspended in it.",
+          "surface_fit": "Marshes are well known for trapping the silt that creeks and tides carry, so calling one the bay's net is an ordinary way to write about a tidal marsh.",
+          "inference": "A net catches what drifts through it; the water left exactly as brown with mud as it came in, so whatever the marsh took out was dissolved, the fertilizer, and not the suspended mud a net would hold."
+        },
+        "lung": {
+          "type": "logic",
+          "quote": "its deep water runs as short of oxygen as theirs",
+          "why": "The cove fed directly by the marsh's outflow is as oxygen-starved as the others, so the marsh supplies no oxygen.",
+          "surface_fit": "Green, growing places are routinely called the lungs of what surrounds them, and marsh grass and algae make oxygen, so lung fits the sentence and the subject.",
+          "inference": "If the marsh were the bay's lung, the cove receiving its outflow would be better off for oxygen than the bay's other coves; by late summer its deep water runs just as short, so the marsh's outflow brings it no oxygen, and the clear water is the marsh's one effect."
+        },
+        "kitchen": {
+          "type": "logic",
+          "quote": "Its shrimp live on plankton from open water",
+          "why": "The cove's shrimp eat food from open water, and the grass rots in place, so the marsh does not feed the bay.",
+          "surface_fit": "Salt marshes are famous as the food factories of coastal waters, shedding grass that feeds shrimp and fish, so kitchen is a natural word for a report on a marsh and its bay.",
+          "inference": "A marsh feeds the bay by shedding its plants into it; this marsh's grass rots in place among the stems, and the cove's shrimp live on plankton from open water, so nothing from the marsh is on the bay's menu."
+        }
+      }
+    },
+    {
+      "key": "kitchen",
+      "passage": "Twice daily the bay's tide floods a salt marsh at a farm creek's mouth, then drains it through one channel. A team spent two years sampling that channel. Each winter ice cuts the marsh grass to stubble, and spring ebbs carry the shredded stems into the cove below. The ebb also left with as much of the creek's farm fertilizer as had come in, and as muddy. Cove shrimp grow fastest within a mile of the channel, where the stems settle. The team's report calls the marsh the bay's ______. As those stems rot on the cove's floor in late summer, its deep water runs short of oxygen.",
+      "shape": "process sequence",
+      "key_from_one_sentence": false,
+      "explanation": "The ebbs carry the marsh's shredded grass into the cove, and the shrimp grow fastest just where those stems settle, so the marsh is the bay's \"kitchen\": the place where its animals' food is made. \"Kidney\" fails because the water left with all the creek's fertilizer, so the marsh removed none of that waste. \"Net\" fails because the marsh sends material out rather than catching it: the water left as brown with mud as it came, now carrying the stems too. \"Lung\" fails because the cove below it runs short of oxygen as the marsh's stems rot there, so what the marsh sends the bay uses oxygen up rather than supplying it.",
+      "kills": {
+        "kidney": {
+          "type": "explicit",
+          "quote": "as much of the creek's farm fertilizer as had come in",
+          "why": "The marsh passed on the creek's whole load of fertilizer, so it cleansed nothing.",
+          "surface_fit": "Wetlands are widely called the kidneys of the landscape for cleaning farm runoff, and this marsh sits where a farm creek meets the bay, so kidney fits the sentence and the setting.",
+          "inference": "A kidney removes wastes from what flows through it; the ebb water carried as much farm fertilizer as the creek had brought, so the waste went on to the bay untouched, and the marsh's contribution was what it added, the stems."
+        },
+        "net": {
+          "type": "logic",
+          "quote": "and as muddy",
+          "why": "The water leaves as muddy as it came and carries the marsh's stems out besides, so the marsh catches nothing.",
+          "surface_fit": "Marshes are well known for trapping the silt that creeks and tides carry, so calling one the bay's net is an ordinary way to write about a tidal marsh.",
+          "inference": "A net would leave the outgoing water clearer than the incoming; it ran out just as brown with mud and carried the marsh's own shredded stems away with it, so the marsh was exporting material, not trapping it."
+        },
+        "lung": {
+          "type": "logic",
+          "quote": "its deep water runs short of oxygen",
+          "why": "The marsh's stems use up oxygen as they rot in the cove, so the marsh is no source of it.",
+          "surface_fit": "Green, growing places are routinely called the lungs of what surrounds them, and marsh grass and algae make oxygen, so lung fits the sentence and the subject.",
+          "inference": "A lung for the bay would raise the oxygen in the water it feeds; the stems the marsh sends out rot on the cove's floor, and as they do the cove's deep water runs short of oxygen, so the marsh's gift to the bay is food that consumes oxygen, not oxygen."
+        }
+      }
+    },
+    {
+      "key": "net",
+      "passage": "Twice daily the bay's tide floods a salt marsh at a farm creek's mouth, then drains it through one channel. A team spent two years sampling that channel. The water came in brown with mud and left clear, and in a century the marsh floor has risen eight feet. It still carried all the creek's farm fertilizer into the cove, greening it with algae each summer like the bay's other coves. The marsh grass, cut back by winter ice, rots in place, buried in the new mud. The team's report calls the marsh the bay's ______. By late summer the cove's deep water runs as short of oxygen as theirs.",
+      "shape": "cause and mechanism",
+      "key_from_one_sentence": false,
+      "explanation": "Water comes in brown with mud and leaves clear, while the marsh floor has risen eight feet, so the marsh catches the mud the water carries and keeps it: it is the bay's \"net.\" \"Kidney\" fails because, even read loosely as a filter, a kidney removes the harmful dissolved load, and this water carried all the creek's fertilizer on to green the cove with algae, so the marsh strained out mud while the farms' waste went through. \"Kitchen\" fails because the marsh grass rots where it stands, buried in the new mud, so the marsh's plants never reach the bay to feed it. \"Lung\" fails because the cove right below the marsh runs as short of oxygen by late summer as the bay's other coves, so the marsh does not resupply it.",
+      "kills": {
+        "kidney": {
+          "type": "explicit",
+          "quote": "carried all the creek's farm fertilizer into the cove",
+          "why": "The dissolved fertilizer passed through untouched and greened the cove, so the marsh cleansed nothing harmful.",
+          "surface_fit": "Wetlands are widely called the kidneys of the landscape for cleaning farm runoff, and this marsh sits where a farm creek meets the bay, so kidney fits the sentence and the setting. Water going in muddy and coming out clear makes it the natural first guess here.",
+          "inference": "Clear water is not clean water: what fouls the cove is the dissolved fertilizer, which went through the marsh entire and turned the cove green, so the marsh removed only the suspended mud, which piled up as its rising floor, and did none of a kidney's work."
+        },
+        "kitchen": {
+          "type": "logic",
+          "quote": "rots in place, buried in the new mud",
+          "why": "The marsh's grass stays and is buried where it grew, so it never reaches the bay as food.",
+          "surface_fit": "Salt marshes are famous as the food factories of coastal waters, shedding grass that feeds shrimp and fish, so kitchen is a natural word for a report on a marsh and its bay.",
+          "inference": "A marsh feeds the bay by shedding its plants into the water; here the grass rots where it falls and is buried in the mud the marsh traps, so the marsh keeps its plant matter instead of sending it out."
+        },
+        "lung": {
+          "type": "logic",
+          "quote": "runs as short of oxygen as theirs",
+          "why": "The cove fed by the marsh is as oxygen-starved as the others, so the marsh supplies none.",
+          "surface_fit": "Green, growing places are routinely called the lungs of what surrounds them, and marsh grass and algae make oxygen, so lung fits the sentence and the subject.",
+          "inference": "If the marsh were the bay's lung, the cove receiving its outflow would hold more oxygen than the bay's other coves; it runs just as short by late summer, so the marsh's measurable effect is the mud it holds back."
+        }
+      }
+    },
+    {
+      "key": "lung",
+      "passage": "Twice daily the bay's tide floods a salt marsh at a farm creek's mouth, then drains it through one channel. A team spent two years sampling that channel. On sunny afternoons the algae coating the grass stems glitter with bubbles. The ebb left as brown with mud as it came in and with all of the creek's farm fertilizer. When the cove's deep water runs short of oxygen in late summer, fish rise into the outflow on afternoon ebbs and hang there without feeding, mouths at the surface, until dusk. The team's report calls the marsh the bay's ______. The marsh grass, cut back by winter ice, rots in place.",
+      "shape": "definition by example",
+      "key_from_one_sentence": false,
+      "explanation": "The algae on the marsh grass stream bubbles on sunny afternoons, and when the cove runs short of oxygen fish gather in the outflow exactly on those afternoon ebbs, so the marsh is the bay's \"lung,\" its source of oxygen. \"Kitchen\" fails because the fish hang in the outflow without feeding and leave at dusk, while the marsh grass rots where it stands, so they come for the water, not for food the marsh sends out. \"Kidney\" fails because the water left with all the creek's fertilizer. \"Net\" fails because it left as brown with mud as it came in.",
+      "kills": {
+        "kitchen": {
+          "type": "logic",
+          "quote": "hang there without feeding",
+          "why": "Fish that gather at the outflow but do not feed, and leave at dusk, are drawn by the water's oxygen, not by food.",
+          "surface_fit": "Salt marshes are famous as the food factories of coastal waters, shedding grass that feeds shrimp and fish, so kitchen is a natural word for a report on a marsh and its bay. Fish crowding the marsh's outflow look at first like fish coming to feed.",
+          "inference": "If the marsh fed the bay, fish would come to the outflow to eat what it sheds; these fish hang without feeding, mouths at the surface, only on afternoon ebbs in the weeks the cove runs short of oxygen, and the marsh grass rots in place rather than washing out, so the outflow offers them oxygen, not food."
+        },
+        "kidney": {
+          "type": "explicit",
+          "quote": "with all of the creek's farm fertilizer",
+          "why": "The marsh passed on all the creek's dissolved fertilizer, so it removed no waste.",
+          "surface_fit": "Wetlands are widely called the kidneys of the landscape for cleaning farm runoff, and this marsh sits where a farm creek meets the bay, so kidney fits the sentence and the setting.",
+          "inference": "A kidney takes wastes out of what flows through it; the ebb water carried all of the creek's fertilizer on into the cove, so the marsh changed the water by what its algae added, not by anything it removed."
+        },
+        "net": {
+          "type": "logic",
+          "quote": "as brown with mud as it came in",
+          "why": "Water that leaves as muddy as it came has had nothing caught out of it.",
+          "surface_fit": "Marshes are well known for trapping the silt that creeks and tides carry, so calling one the bay's net is an ordinary way to write about a tidal marsh.",
+          "inference": "A net would send the water out clearer than it came in; it left exactly as brown with mud, so the marsh held back nothing the water carried, and its effect on the bay was what the bubbling algae put in."
+        }
+      }
+    }
+  ]
+}
