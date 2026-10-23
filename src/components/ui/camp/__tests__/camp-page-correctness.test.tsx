@@ -17,7 +17,18 @@ jest.mock('@/lib/auth-headers', () => ({ authHeaders: async () => ({}) }))
 jest.mock('@/stores', () => ({ showErrorToast: jest.fn(), showSuccessToast: jest.fn() }))
 jest.mock('@/hooks/useConfirm', () => ({ useConfirm: () => async () => true }))
 // Presentation-only children with their own tests; stubbed so this file is about CampPage's own state.
-jest.mock('@/components/ui/camp/CampOverviewPanel', () => ({ CampOverviewPanel: () => <div data-testid="overview-panel" /> }))
+jest.mock('@/components/ui/camp/CampOverviewPanel', () => ({
+  CampOverviewPanel: (p: { donut: React.ReactNode; onOpenStudent: (r: unknown) => void }) => (
+    <div data-testid="overview-panel">
+      {p.donut}
+      {['room-mine', 'room-theirs'].map(id => (
+        <button key={id} type="button" onClick={() => p.onOpenStudent({ studentId: 'student-a', name: 'Ann', email: null, classroomId: id, classroomName: id, overdue: 1, late: 0, missing: 1, dueTodayNotStarted: 0 })}>
+          {`open-${id}`}
+        </button>
+      ))}
+    </div>
+  ),
+}))
 jest.mock('@/components/ui/camp/CampReportsPanel', () => ({ CampReportsPanel: () => null }))
 jest.mock('@/components/ui/camp/CampReviewPresenter', () => ({ CampReviewPresenter: () => null }))
 
@@ -70,7 +81,12 @@ beforeEach(() => {
   sessionsResult = { data: [], error: null }
   fetchMock = jest.fn(async (url: string) => {
     if (url.startsWith('/api/camp/program')) return ok({ programs: groups })
-    if (url.startsWith('/api/camp/overview')) return ok({})
+    if (url.startsWith('/api/camp/overview')) return ok({ assignmentStatus: { completed: 2, late: 1, missing: 1, open: 0 }, needsAttention: [] })
+    if (url.startsWith('/api/camp/students')) return ok({ students: [{
+      studentId: 'student-a', name: 'Ann', email: null, classroomId: 'room-mine', classroomName: 'Mine',
+      completion: { done: 0, total: 1 }, avgScorePct: null, lastActive: null, states: { done: 0, inProgress: 0, notStarted: 1 },
+      work: { total: 1, completed: 0, started: 0, overdue: 1, late: 0, missing: 1, notStarted: 1, completedLate: 0, dueTodayNotStarted: 0 },
+    }] })
     if (url.startsWith('/api/camp/assignments')) return ok({ assignments: [] })
     if (url.startsWith('/api/camp/review-set')) return deckFails ? fail() : ok({ reviewSets: [] })
     return fail()
@@ -119,4 +135,37 @@ it('a failed lesson-date read shows an error with Retry, and Retry reloads it', 
   sessionsResult = { data: [], error: null }
   fireEvent.click(banner.querySelector('button')!)
   await waitFor(() => expect(screen.queryByTestId('camp-sessions-error')).toBeNull())
+})
+
+describe('Needs attention wiring (phase 2)', () => {
+  it.each([
+    ['late', 'overdue'],
+    ['missing', 'overdue'],
+    ['completed', 'on_track'],
+  ])('clicking the %s donut segment opens the Students tab filtered to %s', async (segment, filter) => {
+    render(<CampPage academyId="acad" />)
+    const seg = await waitFor(() => {
+      const el = document.querySelector(`[data-segment="${segment}"]`)
+      if (!el) throw new Error('donut not rendered yet')
+      return el as HTMLElement
+    })
+    fireEvent.click(seg)
+    await waitFor(() => expect(urls().some(u => u.startsWith('/api/camp/students'))).toBe(true))
+    const chip = await waitFor(() => {
+      const el = document.querySelector(`[data-filter="${filter}"]`)
+      if (!el) throw new Error('students panel not rendered yet')
+      return el as HTMLElement
+    })
+    expect(chip).toHaveAttribute('aria-pressed', 'true')
+  })
+
+  it.each([
+    ['room-mine', 1],
+    ['room-theirs', 0],
+  ])('a Needs-attention row in %s opens the student with Generate report shown %s time(s)', async (room, n) => {
+    render(<CampPage academyId="acad" />)
+    fireEvent.click(await screen.findByText(`open-${room}`))
+    await waitFor(() => expect(urls().some(u => u.startsWith(`/api/camp/student?classroomId=${room}`))).toBe(true))
+    expect(screen.queryAllByText('camp.studentDetail.generateReport')).toHaveLength(n)
+  })
 })

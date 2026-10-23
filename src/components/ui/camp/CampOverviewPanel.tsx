@@ -3,7 +3,7 @@
 import { Card } from '@/components/ui/card'
 import { StatusPill } from '@/components/ui/status-pill'
 import { LineChart, Line, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts'
-import { Users, CheckCircle2, Target, AlertTriangle } from 'lucide-react'
+import { Users, CheckCircle2, Target, AlertTriangle, ChevronRight, BellRing } from 'lucide-react'
 
 /**
  * The camp Overview tab: four stat cards, the average-score trend, the
@@ -37,10 +37,94 @@ export interface CampOverviewPanelProps {
    *  SAT/TOEFL colours have one source, not two. */
   accent: { dot: string; badge: string; hex: string }
   donut: React.ReactNode
+  /** Open the student drill-down for a Needs-attention row. */
+  onOpenStudent: (row: CampAttentionRow) => void
+  /** Switch to the Students tab with the Overdue filter ("N more"). */
+  onShowOverdueStudents: () => void
+}
+
+/** One /api/camp/overview `needsAttention` row (definitions: src/lib/camp/metrics.ts). */
+export interface CampAttentionRow {
+  studentId: string
+  name: string | null
+  email: string | null
+  classroomId: string
+  classroomName: string
+  overdue: number
+  late: number
+  missing: number
+  dueTodayNotStarted: number
+}
+
+/** Rows shown before the card hands off to the Students tab. */
+const ATTENTION_LIMIT = 8
+
+function NeedsAttentionCard({ rows, t, onOpenStudent, onShowOverdueStudents }: {
+  rows: CampAttentionRow[]
+  t: CampOverviewPanelProps['t']
+  onOpenStudent: CampOverviewPanelProps['onOpenStudent']
+  onShowOverdueStudents: () => void
+}) {
+  const shown = rows.slice(0, ATTENTION_LIMIT)
+  const more = rows.length - shown.length
+  return (
+    <Card className="p-4 sm:p-5" data-testid="camp-needs-attention">
+      <div className="flex items-center gap-2 mb-1">
+        <div className={`w-7 h-7 rounded-lg flex items-center justify-center ${rows.length > 0 ? 'bg-rose-50' : 'bg-emerald-50'}`}>
+          <BellRing className={`w-3.5 h-3.5 ${rows.length > 0 ? 'text-rose-600' : 'text-emerald-600'}`} strokeWidth={2.25} />
+        </div>
+        <h3 className="text-sm font-semibold text-gray-900">{t('camp.attention.title')}</h3>
+        {rows.length > 0 && (
+          <span className="ml-1 text-xs font-semibold text-rose-600 tabular-nums">{rows.length}</span>
+        )}
+      </div>
+      <p className="text-[11px] text-gray-400 mb-2">{t('camp.attention.hint')}</p>
+      {rows.length === 0 ? (
+        <p className="text-sm text-gray-500 py-2">{t('camp.attention.empty')}</p>
+      ) : (
+        <>
+          <ul className="divide-y divide-gray-100">
+            {shown.map(r => (
+              <li key={`${r.classroomId}:${r.studentId}`}>
+                <button
+                  type="button"
+                  onClick={() => onOpenStudent(r)}
+                  title={String(t('camp.studentDetail.open'))}
+                  className="w-full flex items-center gap-3 py-2.5 text-left text-sm hover:bg-gray-50 focus-visible:outline-none focus-visible:bg-gray-50 rounded-md px-1 -mx-1 transition-colors group"
+                >
+                  <span className="flex-1 min-w-0">
+                    <span className="block font-medium text-gray-900 truncate">{r.name ?? r.email ?? '—'}</span>
+                    <span className="block text-xs text-gray-400 truncate">{r.classroomName}</span>
+                  </span>
+                  {r.overdue > 0 && (
+                    <StatusPill tone="rose" size="md">{t('camp.attention.overdue', { n: r.overdue })}</StatusPill>
+                  )}
+                  {r.dueTodayNotStarted > 0 && (
+                    <StatusPill tone="amber" size="md">{t('camp.attention.dueToday', { n: r.dueTodayNotStarted })}</StatusPill>
+                  )}
+                  <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-gray-500 flex-shrink-0" />
+                </button>
+              </li>
+            ))}
+          </ul>
+          {more > 0 && (
+            <button
+              type="button"
+              onClick={onShowOverdueStudents}
+              className="mt-2 text-xs font-medium text-primary hover:underline underline-offset-2"
+            >
+              {t('camp.attention.more', { n: more })}
+            </button>
+          )}
+        </>
+      )}
+    </Card>
+  )
 }
 
 export function CampOverviewPanel({
   overview, program, formatDate, sectionLabel, domainLabel, t, language, accent, donut,
+  onOpenStudent, onShowOverdueStudents,
 }: CampOverviewPanelProps) {
   if (overview === null) {
     return (
@@ -70,6 +154,14 @@ export function CampOverviewPanel({
 
   return (
     <div className="space-y-4">
+      {/* First, before the numbers: who to chase today. */}
+      <NeedsAttentionCard
+        rows={(overview.needsAttention ?? []) as CampAttentionRow[]}
+        t={t}
+        onOpenStudent={onOpenStudent}
+        onShowOverdueStudents={onShowOverdueStudents}
+      />
+
       <div className="grid grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-4">
         <Card className="p-4 sm:p-5">
           <div className="flex items-center gap-2 mb-3">

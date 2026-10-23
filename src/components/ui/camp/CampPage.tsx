@@ -16,8 +16,9 @@ import { StatusPill } from '@/components/ui/status-pill'
 import { CampClassroomDashboard } from '@/components/ui/camp/CampClassroomDashboard'
 import { CampReviewPresenter } from '@/components/ui/camp/CampReviewPresenter'
 import { CampReportsPanel } from '@/components/ui/camp/CampReportsPanel'
-import { CampStudentsPanel } from '@/components/ui/camp/CampStudentsPanel'
-import { CampOverviewPanel } from '@/components/ui/camp/CampOverviewPanel'
+import { CampStudentsPanel, type CampStudentsFilter } from '@/components/ui/camp/CampStudentsPanel'
+import { CampOverviewPanel, type CampAttentionRow } from '@/components/ui/camp/CampOverviewPanel'
+import { CampStudentDetail } from '@/components/ui/camp/CampStudentDetail'
 import { CampSessionInfo } from '@/components/ui/camp/CampSessionInfo'
 import { LineChart, Line, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts'
 import type { Question } from '@/app/mobile/study/session/[id]/test/types'
@@ -99,8 +100,18 @@ interface ProgramOverview {
   reviewTopics: Array<{ section: string; domain: string; accuracy: number; n: number }>
   /** Graded camp sessions bucketed by completion day, oldest first. */
   trend: Array<{ date: string; avgPct: number; sessions: number }>
-  /** (assignment × student) pairs; definitions in the overview route. */
+  /** (assignment × student) pairs; definitions in src/lib/camp/metrics.ts. */
   assignmentStatus: { completed: number; late: number; missing: number; open: number }
+  /** Students with overdue or due-today-unstarted work, most overdue first. */
+  needsAttention: CampAttentionRow[]
+}
+
+/** Donut segment -> Students tab filter. Late and missing pairs are both overdue (metrics.ts), so a student
+ *  behind either segment is in the Overdue group; completed pairs belong to students who are not behind. */
+const DONUT_FILTER: Record<'completed' | 'late' | 'missing', CampStudentsFilter> = {
+  completed: 'on_track',
+  late: 'overdue',
+  missing: 'overdue',
 }
 
 interface CampAssignment {
@@ -162,6 +173,14 @@ export function CampPage({ academyId }: CampPageProps) {
   /** Which view of the program is showing — Overview (stats + charts),
    *  Students (program-wide roster), Classrooms (assignments + tools). */
   const [activeTab, setActiveTab] = useState<'overview' | 'students' | 'classrooms'>('overview')
+  /** Filter the Students tab opens on; set by the donut and the Needs-attention card. */
+  const [studentsFilter, setStudentsFilter] = useState<CampStudentsFilter>('all')
+  /** Student opened from the Needs-attention card. */
+  const [attentionStudent, setAttentionStudent] = useState<CampAttentionRow | null>(null)
+  const showStudents = useCallback((filter: CampStudentsFilter) => {
+    setStudentsFilter(filter)
+    setActiveTab('students')
+  }, [])
 
   /** Classrooms whose tracking panel (P2 dashboard) is expanded. */
   const [openDashboards, setOpenDashboards] = useState<Record<string, boolean>>({})
@@ -872,7 +891,7 @@ export function CampPage({ academyId }: CampPageProps) {
           {(['overview', 'students', 'classrooms'] as const).map(tab => (
             <button
               key={tab}
-              onClick={() => setActiveTab(tab)}
+              onClick={() => { setActiveTab(tab); if (tab === 'students') setStudentsFilter('all') }}
               className={`py-3 px-1 border-b-2 font-medium text-sm transition-colors ${
                 activeTab === tab
                   ? 'border-primary text-primary'
@@ -918,9 +937,13 @@ export function CampPage({ academyId }: CampPageProps) {
           t={t}
           language={language}
           accent={accent}
+          onOpenStudent={setAttentionStudent}
+          onShowOverdueStudents={() => showStudents('overdue')}
           donut={overview?.assignmentStatus ? (
             <AssignmentStatusDonut
               status={overview.assignmentStatus}
+              onSelect={bucket => showStudents(DONUT_FILTER[bucket])}
+              hint={String(t('camp.overview.donutHint'))}
               labels={{
                 completed: String(t('camp.overview.statusCompleted')),
                 late: String(t('camp.overview.statusLate')),
@@ -939,6 +962,7 @@ export function CampPage({ academyId }: CampPageProps) {
           programId={program.id}
           testFamily={program.test_family}
           manageableClassroomIds={manageable.map(r => r.id)}
+          initialFilter={studentsFilter}
         />
       )}
 
@@ -1730,6 +1754,17 @@ export function CampPage({ academyId }: CampPageProps) {
         )}
       </ModalShell>
 
+      {attentionStudent && program && (
+        <CampStudentDetail
+          classroomId={attentionStudent.classroomId}
+          studentId={attentionStudent.studentId}
+          studentName={attentionStudent.name ?? attentionStudent.email ?? '—'}
+          testFamily={program.test_family}
+          canManage={manageable.some(r => r.id === attentionStudent.classroomId)}
+          onClose={() => setAttentionStudent(null)}
+        />
+      )}
+
       {presenter && (
         <CampReviewPresenter
           title={presenter.title}
@@ -1757,9 +1792,12 @@ export function CampPage({ academyId }: CampPageProps) {
  * punishes an assignment that simply isn't due yet. Definitions live in
  * the overview route.
  */
-function AssignmentStatusDonut({ status, labels }: {
+function AssignmentStatusDonut({ status, labels, onSelect, hint }: {
   status: { completed: number; late: number; missing: number; open: number }
   labels: { completed: string; late: string; missing: string; open: string; empty: string }
+  /** A segment (or its legend row) was chosen: CampPage switches to the Students tab, filtered. */
+  onSelect?: (bucket: 'completed' | 'late' | 'missing') => void
+  hint?: string
 }) {
   const total = status.completed + status.late + status.missing
   if (total === 0) {
@@ -1768,16 +1806,16 @@ function AssignmentStatusDonut({ status, labels }: {
   const R = 26
   const CIRC = 2 * Math.PI * R
   const completedPct = Math.round((100 * status.completed) / total)
-  const segments: Array<{ key: string; frac: number; color: string }> = [
+  const segments: Array<{ key: 'completed' | 'late' | 'missing'; frac: number; color: string }> = [
     { key: 'completed', frac: status.completed / total, color: '#10b981' },
     { key: 'late', frac: status.late / total, color: '#fbbf24' },
     { key: 'missing', frac: status.missing / total, color: '#e5e7eb' },
   ]
   let offset = 0
-  const rows: Array<{ label: string; value: number; dot: string }> = [
-    { label: labels.completed, value: status.completed, dot: 'bg-emerald-500' },
-    { label: labels.late, value: status.late, dot: 'bg-amber-400' },
-    { label: labels.missing, value: status.missing, dot: 'bg-gray-200' },
+  const rows: Array<{ key: 'completed' | 'late' | 'missing'; label: string; value: number; dot: string }> = [
+    { key: 'completed', label: labels.completed, value: status.completed, dot: 'bg-emerald-500' },
+    { key: 'late', label: labels.late, value: status.late, dot: 'bg-amber-400' },
+    { key: 'missing', label: labels.missing, value: status.missing, dot: 'bg-gray-200' },
   ]
   return (
     <div>
@@ -1794,6 +1832,8 @@ function AssignmentStatusDonut({ status, labels }: {
                 strokeDasharray={`${seg.frac * CIRC} ${CIRC}`}
                 strokeDashoffset={-offset}
                 transform="rotate(-90 36 36)"
+                onClick={onSelect && seg.frac > 0 ? () => onSelect(seg.key) : undefined}
+                style={onSelect && seg.frac > 0 ? { cursor: 'pointer' } : undefined}
               />
             )
             offset += seg.frac * CIRC
@@ -1804,13 +1844,29 @@ function AssignmentStatusDonut({ status, labels }: {
           </text>
         </svg>
         <ul className="space-y-1.5 flex-1 min-w-0">
-          {rows.map(row => (
-            <li key={row.label} className="flex items-center gap-2 text-xs text-gray-600">
+          {rows.map(row => {
+            const body = (<>
               <span aria-hidden className={`w-2 h-2 rounded-full flex-shrink-0 ${row.dot}`} />
-              <span className="flex-1 truncate">{row.label}</span>
+              <span className="flex-1 truncate text-left">{row.label}</span>
               <span className="font-semibold text-gray-900 tabular-nums">{row.value}</span>
-            </li>
-          ))}
+            </>)
+            return (
+              <li key={row.key} className="text-xs text-gray-600">
+                {onSelect && row.value > 0 ? (
+                  <button
+                    type="button"
+                    data-segment={row.key}
+                    onClick={() => onSelect(row.key)}
+                    className="w-full flex items-center gap-2 rounded-md px-1 -mx-1 py-0.5 hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                  >
+                    {body}
+                  </button>
+                ) : (
+                  <div className="flex items-center gap-2">{body}</div>
+                )}
+              </li>
+            )
+          })}
         </ul>
       </div>
       {status.open > 0 && (
@@ -1818,6 +1874,7 @@ function AssignmentStatusDonut({ status, labels }: {
           {labels.open.replace('{n}', String(status.open))}
         </p>
       )}
+      {onSelect && hint && <p className="text-[11px] text-gray-400 mt-1">{hint}</p>}
     </div>
   )
 }

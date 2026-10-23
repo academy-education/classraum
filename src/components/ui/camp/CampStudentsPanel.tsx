@@ -9,7 +9,8 @@ import { StatusPill, type StatusPillTone } from '@/components/ui/status-pill'
 import { CampStudentDetail } from '@/components/ui/camp/CampStudentDetail'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
-import { Search, Users } from 'lucide-react'
+import { ArrowDown, ArrowUp, ArrowUpDown, Search, Users } from 'lucide-react'
+import { studentCategory, type CampStudentCategory, type CampStudentWorkSummary } from '@/lib/camp/metrics'
 
 /**
  * Camp Students tab — the student-first view of a program. One
@@ -24,7 +25,12 @@ import { Search, Users } from 'lucide-react'
  *
  * Table shell mirrors CampClassroomDashboard's DataTable idiom; the
  * status chip derives one state per row the same way the roster table
- * does per assignment (done only when EVERYTHING is done).
+ * does per assignment (done only when EVERYTHING is done), except that
+ * anything overdue wins and shows as Overdue.
+ *
+ * Overdue / not started / on track come from src/lib/camp/metrics.ts
+ * (the server sends each row's `work` summary), the same definitions the
+ * overview's donut and Needs-attention card use.
  */
 
 interface StudentsRow {
@@ -37,7 +43,28 @@ interface StudentsRow {
   avgScorePct: number | null
   lastActive: string | null
   states: { done: number; inProgress: number; notStarted: number }
+  work: CampStudentWorkSummary
 }
+
+export type CampStudentsFilter = 'all' | CampStudentCategory
+type SortKey = 'name' | 'completion' | 'average' | 'lastActive' | 'overdue'
+const FILTERS: CampStudentsFilter[] = ['all', 'overdue', 'not_started', 'on_track']
+
+const displayName = (r: StudentsRow) => r.name ?? r.email ?? ''
+const completionRatio = (r: StudentsRow) => (r.completion.total > 0 ? r.completion.done / r.completion.total : -1)
+
+/** Ascending comparator per column; nulls (no score, never active) always sort last, whichever direction. */
+function compareRows(key: SortKey, a: StudentsRow, b: StudentsRow): number {
+  switch (key) {
+    case 'name': return displayName(a).localeCompare(displayName(b))
+    case 'completion': return completionRatio(a) - completionRatio(b)
+    case 'overdue': return a.work.overdue - b.work.overdue
+    case 'average': return (a.avgScorePct ?? 0) - (b.avgScorePct ?? 0)
+    case 'lastActive': return (a.lastActive ?? '').localeCompare(b.lastActive ?? '')
+  }
+}
+const nullField = (key: SortKey, r: StudentsRow) =>
+  (key === 'average' && r.avgScorePct === null) || (key === 'lastActive' && r.lastActive === null)
 
 /** One chip per row: everything done → done; anything touched →
  *  in progress; untouched (or no assignments yet) → not started. */
@@ -59,9 +86,11 @@ interface CampStudentsPanelProps {
   /** Classrooms this viewer may manage (generate reports, withdraw them). The drill-down hides those actions
    *  for a colleague's student instead of offering a button that 403s. */
   manageableClassroomIds: string[]
+  /** Filter to open on (the overview's donut links here with one). */
+  initialFilter?: CampStudentsFilter
 }
 
-export function CampStudentsPanel({ programId, testFamily, manageableClassroomIds }: CampStudentsPanelProps) {
+export function CampStudentsPanel({ programId, testFamily, manageableClassroomIds, initialFilter = 'all' }: CampStudentsPanelProps) {
   const { t, language } = useTranslation()
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
@@ -69,6 +98,9 @@ export function CampStudentsPanel({ programId, testFamily, manageableClassroomId
   const [search, setSearch] = useState('')
   const [detail, setDetail] = useState<{ classroomId: string; studentId: string; name: string } | null>(null)
   const [reload, setReload] = useState(0)
+  const [filter, setFilter] = useState<CampStudentsFilter>(initialFilter)
+  const [sort, setSort] = useState<{ key: SortKey; dir: 'asc' | 'desc' }>({ key: 'name', dir: 'asc' })
+  useEffect(() => { setFilter(initialFilter) }, [initialFilter])
 
   useEffect(() => {
     let cancelled = false
@@ -92,7 +124,7 @@ export function CampStudentsPanel({ programId, testFamily, manageableClassroomId
     return () => { cancelled = true }
   }, [programId, reload])
 
-  const filtered = useMemo(() => {
+  const searched = useMemo(() => {
     const q = search.trim().toLowerCase()
     if (!q) return rows
     return rows.filter(r =>
@@ -100,6 +132,33 @@ export function CampStudentsPanel({ programId, testFamily, manageableClassroomId
       (r.email ?? '').toLowerCase().includes(q) ||
       r.classroomName.toLowerCase().includes(q))
   }, [rows, search])
+
+  /** Chip counts follow the search box, so a chip never promises rows the table then hides. */
+  const counts = useMemo(() => {
+    const c: Record<CampStudentsFilter, number> = { all: searched.length, overdue: 0, not_started: 0, on_track: 0 }
+    for (const r of searched) c[studentCategory(r.work)] += 1
+    return c
+  }, [searched])
+
+  const filtered = useMemo(() => {
+    const list = filter === 'all' ? searched : searched.filter(r => studentCategory(r.work) === filter)
+    const sign = sort.dir === 'asc' ? 1 : -1
+    return [...list].sort((a, b) => {
+      const na = nullField(sort.key, a)
+      const nb = nullField(sort.key, b)
+      if (na !== nb) return na ? 1 : -1
+      const c = na ? 0 : compareRows(sort.key, a, b)
+      return (c * sign) ||
+        displayName(a).localeCompare(displayName(b)) ||
+        a.classroomName.localeCompare(b.classroomName)
+    })
+  }, [searched, filter, sort])
+
+  const toggleSort = (key: SortKey) =>
+    setSort(prev => prev.key === key
+      ? { key, dir: prev.dir === 'asc' ? 'desc' : 'asc' }
+      // Most overdue first on first click; the other columns start ascending.
+      : { key, dir: key === 'overdue' ? 'desc' : 'asc' })
 
   const formatDate = (iso: string) =>
     new Date(iso).toLocaleDateString(language === 'korean' ? 'ko-KR' : 'en-US', {
@@ -156,11 +215,31 @@ export function CampStudentsPanel({ programId, testFamily, manageableClassroomId
         />
       </div>
 
+      <div role="group" aria-label={String(t('camp.students.filters.label'))} className="flex flex-wrap gap-2">
+        {FILTERS.map(f => (
+          <button
+            key={f}
+            type="button"
+            aria-pressed={filter === f}
+            data-filter={f}
+            onClick={() => setFilter(f)}
+            className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium ring-1 transition-colors ${
+              filter === f
+                ? (f === 'overdue' ? 'bg-rose-600 text-white ring-rose-600' : 'bg-primary text-white ring-primary')
+                : 'bg-white text-gray-600 ring-gray-200 hover:ring-gray-300'
+            }`}
+          >
+            {t(`camp.students.filters.${f}`)}
+            <span className={`tabular-nums ${filter === f ? 'text-white/80' : 'text-gray-400'}`}>{counts[f]}</span>
+          </button>
+        ))}
+      </div>
+
       {filtered.length === 0 ? (
         <Card>
           <EmptyState
             icon={Search}
-            title={String(t('camp.students.noMatches'))}
+            title={String(t(searched.length === 0 ? 'camp.students.noMatches' : 'camp.students.noFilterMatches'))}
             size="sm"
             variant="subtle"
           />
@@ -171,18 +250,40 @@ export function CampStudentsPanel({ programId, testFamily, manageableClassroomId
             <table className="w-full text-sm">
               <thead className="bg-gray-50/60">
                 <tr>
-                  {[
-                    t('camp.dashboard.student'),
-                    t('camp.students.classroom'),
-                    t('camp.students.completion'),
-                    t('camp.students.avgScore'),
-                    t('camp.students.lastActive'),
-                    t('camp.students.status'),
-                  ].map((h, i) => (
-                    <th key={i} scope="col" className="px-4 py-3 text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 text-left whitespace-nowrap">
-                      {h}
-                    </th>
-                  ))}
+                  {([
+                    ['camp.dashboard.student', 'name'],
+                    ['camp.students.classroom', null],
+                    ['camp.students.completion', 'completion'],
+                    ['camp.students.avgScore', 'average'],
+                    ['camp.students.lastActive', 'lastActive'],
+                    ['camp.students.overdueCount', 'overdue'],
+                    ['camp.students.status', null],
+                  ] as Array<[string, SortKey | null]>).map(([label, key]) => {
+                    const active = key !== null && sort.key === key
+                    return (
+                      <th
+                        key={label}
+                        scope="col"
+                        aria-sort={active ? (sort.dir === 'asc' ? 'ascending' : 'descending') : undefined}
+                        className="px-4 py-3 text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 text-left whitespace-nowrap"
+                      >
+                        {key === null ? t(label) : (
+                          <button
+                            type="button"
+                            data-sort={key}
+                            onClick={() => toggleSort(key)}
+                            title={String(t('camp.students.sortBy', { column: String(t(label)) }))}
+                            className={`inline-flex items-center gap-1 uppercase tracking-[0.1em] hover:text-gray-800 ${active ? 'text-gray-900' : ''}`}
+                          >
+                            {t(label)}
+                            {active
+                              ? (sort.dir === 'asc' ? <ArrowUp className="w-3 h-3" /> : <ArrowDown className="w-3 h-3" />)
+                              : <ArrowUpDown className="w-3 h-3 text-gray-300" />}
+                          </button>
+                        )}
+                      </th>
+                    )
+                  })}
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
@@ -223,10 +324,19 @@ export function CampStudentsPanel({ programId, testFamily, manageableClassroomId
                     <td className="px-4 py-3 whitespace-nowrap text-gray-600">
                       {r.lastActive ? formatDate(r.lastActive) : <span className="text-gray-300">—</span>}
                     </td>
+                    <td className="px-4 py-3 whitespace-nowrap tabular-nums">
+                      {r.work.overdue > 0
+                        ? <span className="font-semibold text-rose-600">{r.work.overdue}</span>
+                        : <span className="text-gray-300">0</span>}
+                    </td>
                     <td className="px-4 py-3 whitespace-nowrap">
-                      <StatusPill tone={STATE_TONES[rowState(r)]} size="md">
-                        {stateLabel(rowState(r))}
-                      </StatusPill>
+                      {r.work.overdue > 0 ? (
+                        <StatusPill tone="rose" size="md">{t('camp.metrics.overdue')}</StatusPill>
+                      ) : (
+                        <StatusPill tone={STATE_TONES[rowState(r)]} size="md">
+                          {stateLabel(rowState(r))}
+                        </StatusPill>
+                      )}
                     </td>
                   </tr>
                 ))}

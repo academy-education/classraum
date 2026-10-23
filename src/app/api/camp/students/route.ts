@@ -3,6 +3,7 @@ import { dbAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
 import { canViewProgramResults, studentsOfAcademy } from '@/lib/camp/access'
 import { restrictToStudents } from '@/lib/camp/roster'
+import { summarizeWork, type CampStudentWorkSummary, type CampWorkItem } from '@/lib/camp/metrics'
 import { loadClassroomCampData } from '@/lib/camp/reports'
 
 /**
@@ -18,6 +19,9 @@ import { loadClassroomCampData } from '@/lib/camp/reports'
  *   - lastActive: latest completed camp session in that classroom
  *   - states: done / in-progress / not-started assignment counts, for
  *     the status chip
+ *   - work: overdue / late / missing / not started / completed late /
+ *     due today, from src/lib/camp/metrics.ts (the Overdue chip, the
+ *     filter chips and the overdue sort all read this)
  *
  * A student enrolled in two classrooms of the program appears twice, one
  * row per classroom — the drill-down (GET /api/camp/student) is scoped
@@ -42,6 +46,8 @@ interface StudentRow {
   avgScorePct: number | null
   lastActive: string | null
   states: { done: number; inProgress: number; notStarted: number }
+  /** Overdue / late / not started / completed late, by the one definition in src/lib/camp/metrics.ts. */
+  work: CampStudentWorkSummary
 }
 
 export async function GET(req: NextRequest) {
@@ -81,6 +87,7 @@ export async function GET(req: NextRequest) {
   }
 
   const students: StudentRow[] = []
+  const now = new Date()
   for (const room of classrooms ?? []) {
     const loaded = await loadClassroomCampData({
       id: room.id as string,
@@ -94,8 +101,15 @@ export async function GET(req: NextRequest) {
     for (const studentId of data.studentIds) {
       const states = { done: 0, inProgress: 0, notStarted: 0 }
       let lastActive: string | null = null
+      const items: CampWorkItem[] = []
       for (const a of data.assignments) {
         const s = data.sessionByKey.get(`${a.id}:${studentId}`)
+        items.push({
+          dueAt: a.due_at,
+          started: !!s,
+          completed: s?.status === 'completed',
+          completedAt: s?.status === 'completed' ? s.completed_at : null,
+        })
         if (!s) states.notStarted += 1
         else if (s.status === 'completed') {
           states.done += 1
@@ -116,6 +130,7 @@ export async function GET(req: NextRequest) {
         avgScorePct: acc && acc.total > 0 ? Math.round((100 * acc.correct) / acc.total) : null,
         lastActive,
         states,
+        work: summarizeWork(items, now),
       })
     }
   }

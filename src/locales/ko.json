@@ -2818,7 +2818,9 @@
       "skillsToReviewHint": "학급 오답률 순 (스킬당 최소 {min}개 답변 기준).",
       "notEnoughAnswers": "아직 순위를 매길 만큼 답변이 충분하지 않습니다.",
       "wrongRateLabel": "오답률 {rate}%",
-      "answersLabel": "n={n}"
+      "answersLabel": "n={n}",
+      "onlyIncomplete": "미완료만 보기",
+      "allComplete": "모든 학생이 모든 과제를 완료했습니다."
     },
     "review": {
       "classReview": "수업 리뷰",
@@ -2902,7 +2904,8 @@
       "suggestedTopics": "교사 복습 추천 주제",
       "suggestedTopicsHint": "정답률 {threshold}% 미만",
       "noTopics": "아직 발견된 취약 영역이 없습니다.",
-      "topicAccuracy": "정답률 {accuracy}%"
+      "topicAccuracy": "정답률 {accuracy}%",
+      "donutHint": "항목을 누르면 해당 학생을 볼 수 있습니다"
     },
     "resultsRestricted": "이 캠프의 학습 결과는 해당 캠프 담당 선생님과 학원 관리자만 볼 수 있습니다.",
     "tabs": {
@@ -2918,7 +2921,17 @@
       "lastActive": "최근 활동",
       "status": "상태",
       "noMatches": "검색과 일치하는 학생이 없습니다.",
-      "loadFailed": "학생 목록을 불러오지 못했습니다"
+      "loadFailed": "학생 목록을 불러오지 못했습니다",
+      "overdueCount": "기한 초과",
+      "sortBy": "{column} 기준 정렬",
+      "filters": {
+        "label": "학생 필터",
+        "all": "전체",
+        "overdue": "기한 초과",
+        "not_started": "시작 전",
+        "on_track": "정상 진행"
+      },
+      "noFilterMatches": "이 그룹에 해당하는 학생이 없습니다."
     },
     "studentDetail": {
       "open": "학생 상세 보기",
@@ -3028,7 +3041,20 @@
     },
     "otherTeacherRoomTitle": "다른 선생님이 관리하는 반입니다",
     "otherTeacherRoomDescription": "과제, 리포트, 수업 복습은 이 반의 담당 선생님이나 학원 관리자만 만들 수 있습니다.",
-    "sessionsLoadFailed": "수업 날짜를 불러오지 못해 과제를 수업별로 묶지 못했습니다"
+    "sessionsLoadFailed": "수업 날짜를 불러오지 못해 과제를 수업별로 묶지 못했습니다",
+    "attention": {
+      "title": "오늘 확인이 필요한 학생",
+      "hint": "기한이 지났거나, 오늘 마감인데 시작하지 않은 과제",
+      "empty": "밀린 학생이 없습니다. 기한이 지난 과제도, 오늘 마감인데 시작하지 않은 과제도 없습니다.",
+      "overdue": "기한 초과 {n}개",
+      "dueToday": "오늘 마감 {n}개 시작 전",
+      "more": "학생 탭에서 {n}명 더 보기"
+    },
+    "metrics": {
+      "overdue": "기한 초과",
+      "completedLate": "늦게 제출",
+      "completedLateTitle": "마감 후에 완료함"
+    }
   },
   "attendance": {
     "title": "출석",

@@ -3,6 +3,7 @@ import { dbAdmin } from '@/lib/supabase-admin'
 import { getUserFromRequest } from '@/lib/api-auth'
 import { canViewProgramResults, studentsOfAcademy } from '@/lib/camp/access'
 import { restrictToStudents } from '@/lib/camp/roster'
+import { classifyWork, needsAttention, summarizeWork, type CampWorkItem } from '@/lib/camp/metrics'
 import { loadClassroomCampData } from '@/lib/camp/reports'
 import { kstDate } from '@/lib/camp/dates'
 
@@ -27,12 +28,15 @@ import { kstDate } from '@/lib/camp/dates'
  *     (UTC date of completed_at), average score per day, oldest first —
  *     the average-score trend line
  *   - assignmentStatus: (assignment × enrolled student) pairs classified
- *     for the status donut. Definitions (see classify() below):
+ *     for the status donut by classifyWork (src/lib/camp/metrics.ts, the
+ *     one definition every camp surface uses):
  *       completed = the student's camp session for it is completed
  *       late      = past due_at, a session exists but is not completed
  *       missing   = past due_at, never started
  *       open      = not completed but not past due (or no due date) —
  *                   reported for the denominator note, outside the donut
+ *   - needsAttention: one row per (classroom, student) with anything
+ *     overdue or something unstarted due today (KST), most overdue first
  *
  * Reuses loadClassroomCampData (src/lib/camp/reports.ts) per classroom —
  * the same loader the dashboard-adjacent report builder uses, with the
@@ -97,7 +101,18 @@ export async function GET(req: NextRequest) {
   /** avg-score trend buckets: UTC day of completed_at → graded sums. */
   const byDay = new Map<string, { sum: number; n: number }>()
   const status = { completed: 0, late: 0, missing: 0, open: 0 }
-  const nowMs = Date.now()
+  const now = new Date()
+  const attention: Array<{
+    studentId: string
+    name: string | null
+    email: string | null
+    classroomId: string
+    classroomName: string
+    overdue: number
+    late: number
+    missing: number
+    dueTodayNotStarted: number
+  }> = []
 
   for (const room of classrooms ?? []) {
     const loaded = await loadClassroomCampData({
@@ -132,16 +147,32 @@ export async function GET(req: NextRequest) {
     // Assignment-status donut: classify every (assignment × enrolled
     // student) pair. `late` and `missing` only exist once due_at has
     // passed — before the deadline an unfinished pair is `open`.
-    for (const a of data.assignments) {
-      // Date-parse rather than string-compare: PostgREST may emit the
-      // offset as +00:00 while toISOString() uses Z.
-      const pastDue = a.due_at !== null && new Date(a.due_at).getTime() < nowMs
-      for (const studentId of data.studentIds) {
+    // The same per-pair items feed the Needs-attention list, so the card and the donut cannot disagree.
+    for (const studentId of data.studentIds) {
+      const items: CampWorkItem[] = data.assignments.map(a => {
         const s = data.sessionByKey.get(`${a.id}:${studentId}`)
-        if (s?.status === 'completed') status.completed += 1
-        else if (pastDue && s) status.late += 1
-        else if (pastDue) status.missing += 1
-        else status.open += 1
+        return {
+          dueAt: a.due_at,
+          started: !!s,
+          completed: s?.status === 'completed',
+          completedAt: s?.status === 'completed' ? s.completed_at : null,
+        }
+      })
+      for (const w of items) status[classifyWork(w, now)] += 1
+      const summary = summarizeWork(items, now)
+      if (needsAttention(summary)) {
+        const info = data.usersById.get(studentId)
+        attention.push({
+          studentId,
+          name: info?.name ?? null,
+          email: info?.email ?? null,
+          classroomId: room.id as string,
+          classroomName: room.name as string,
+          overdue: summary.overdue,
+          late: summary.late,
+          missing: summary.missing,
+          dueTodayNotStarted: summary.dueTodayNotStarted,
+        })
       }
     }
 
@@ -193,5 +224,9 @@ export async function GET(req: NextRequest) {
     reviewTopics,
     trend,
     assignmentStatus: status,
+    needsAttention: attention.sort((a, b) =>
+      b.overdue - a.overdue ||
+      b.dueTodayNotStarted - a.dueTodayNotStarted ||
+      (a.name ?? a.email ?? '').localeCompare(b.name ?? b.email ?? '')),
   })
 }

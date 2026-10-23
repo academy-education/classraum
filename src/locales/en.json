@@ -2818,7 +2818,9 @@
       "skillsToReviewHint": "Ranked by the class's wrong-answer rate (at least {min} answers per skill).",
       "notEnoughAnswers": "Not enough answers yet to rank skills.",
       "wrongRateLabel": "{rate}% wrong",
-      "answersLabel": "n={n}"
+      "answersLabel": "n={n}",
+      "onlyIncomplete": "Show only incomplete",
+      "allComplete": "Every student has completed every assignment."
     },
     "review": {
       "classReview": "Class review",
@@ -2902,7 +2904,8 @@
       "suggestedTopics": "Suggested topics for teacher review",
       "suggestedTopicsHint": "cohort accuracy below {threshold}%",
       "noTopics": "No weak areas detected yet.",
-      "topicAccuracy": "{accuracy}% correct"
+      "topicAccuracy": "{accuracy}% correct",
+      "donutHint": "Select a segment to see those students"
     },
     "resultsRestricted": "Study results for this camp are visible only to its camp teachers and the academy's managers.",
     "tabs": {
@@ -2918,7 +2921,17 @@
       "lastActive": "Last active",
       "status": "Status",
       "noMatches": "No students match your search.",
-      "loadFailed": "Couldn't load students"
+      "loadFailed": "Couldn't load students",
+      "overdueCount": "Overdue",
+      "sortBy": "Sort by {column}",
+      "filters": {
+        "label": "Filter students",
+        "all": "All",
+        "overdue": "Overdue",
+        "not_started": "Not started",
+        "on_track": "On track"
+      },
+      "noFilterMatches": "No students in this group."
     },
     "studentDetail": {
       "open": "View student details",
@@ -3028,7 +3041,20 @@
     },
     "otherTeacherRoomTitle": "Managed by another teacher",
     "otherTeacherRoomDescription": "Only this class's teacher or an academy manager can create assignments, reports and reviews here.",
-    "sessionsLoadFailed": "Couldn't load lesson dates, so assignments are not grouped by lesson"
+    "sessionsLoadFailed": "Couldn't load lesson dates, so assignments are not grouped by lesson",
+    "attention": {
+      "title": "Needs attention today",
+      "hint": "Overdue work, or work due today that hasn't been started",
+      "empty": "No one is behind: nothing overdue, and nothing due today left unstarted.",
+      "overdue": "{n} overdue",
+      "dueToday": "{n} due today, not started",
+      "more": "{n} more in the Students tab"
+    },
+    "metrics": {
+      "overdue": "Overdue",
+      "completedLate": "Late",
+      "completedLateTitle": "Completed after the due date"
+    }
   },
   "attendance": {
     "title": "Attendance",

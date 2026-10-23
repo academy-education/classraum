@@ -53,6 +53,7 @@ const studentRow = {
   studentId: 'student-a', name: 'Student A', email: null, classroomId: 'room-a', classroomName: 'A',
   completion: { done: 0, total: 1 }, avgScorePct: null, lastActive: null,
   states: { done: 0, inProgress: 0, notStarted: 1 },
+  work: { total: 1, completed: 0, started: 0, overdue: 0, late: 0, missing: 0, notStarted: 1, completedLate: 0, dueTodayNotStarted: 0 },
 }
 
 describe('CampStudentsPanel', () => {

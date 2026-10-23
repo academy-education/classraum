@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Card } from '@/components/ui/card'
 import { EmptyState } from '@/components/ui/common/EmptyState'
 import { StatusPill, type StatusPillTone } from '@/components/ui/status-pill'
@@ -8,6 +8,7 @@ import { CampStudentDetail } from '@/components/ui/camp/CampStudentDetail'
 import { authHeaders } from '@/lib/auth-headers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { BarChart3, Users, ClipboardList } from 'lucide-react'
+import { isCompletedLate, isOverdue, type CampWorkItem } from '@/lib/camp/metrics'
 
 /**
  * Camp P2 — per-classroom tracking panel, rendered under a classroom
@@ -19,6 +20,12 @@ import { BarChart3, Users, ClipboardList } from 'lucide-react'
  * Table shell + header/cell classes mirror the shared DataTable
  * (src/components/ui/dashboard/DataTable.tsx); status pills are the
  * shared StatusPill.
+ *
+ * Cell states use src/lib/camp/metrics.ts: an unfinished cell past its
+ * assignment's dueAt is Overdue (rose), and a cell finished after dueAt
+ * carries a "Late" mark, the same definitions as the overview and the
+ * Students tab. The student-name column is sticky so a wide grid can be
+ * scrolled sideways without losing whose row it is.
  */
 
 interface DashboardStudentStatus {
@@ -26,6 +33,7 @@ interface DashboardStudentStatus {
   state: 'not_started' | 'in_progress' | 'done'
   correctCount: number | null
   totalCount: number | null
+  completedAt?: string | null
 }
 
 interface DashboardAssignment {
@@ -84,6 +92,8 @@ export function CampClassroomDashboard({ classroomId, testFamily, canManage }: C
   /** Student drill-down modal (per-assignment history, per-domain
    *  accuracy, report shortcut) — opened by clicking a roster row. */
   const [detailStudent, setDetailStudent] = useState<{ id: string; name: string } | null>(null)
+  /** Hide students who have finished every assignment. */
+  const [onlyIncomplete, setOnlyIncomplete] = useState(false)
 
   const fetchDashboard = useCallback(async () => {
     setLoading(true)
@@ -116,6 +126,26 @@ export function CampClassroomDashboard({ classroomId, testFamily, canManage }: C
     (state: DashboardStudentStatus['state']) => String(t(`camp.dashboard.state.${state}`)),
     [t],
   )
+
+  /** studentId -> assignmentId -> status, so each cell is a lookup rather than a find() per cell. */
+  const statusIndex = useMemo(() => {
+    const idx = new Map<string, Map<string, DashboardStudentStatus>>()
+    for (const a of data?.assignments ?? []) {
+      for (const s of a.students) {
+        const m = idx.get(s.studentId) ?? new Map<string, DashboardStudentStatus>()
+        m.set(a.id, s)
+        idx.set(s.studentId, m)
+      }
+    }
+    return idx
+  }, [data])
+
+  const visibleRoster = useMemo(() => {
+    const roster = data?.roster ?? []
+    if (!onlyIncomplete || !data) return roster
+    return roster.filter(st =>
+      data.assignments.some(a => statusIndex.get(st.studentId)?.get(a.id)?.state !== 'done'))
+  }, [data, onlyIncomplete, statusIndex])
 
   if (loading) {
     return (
@@ -177,12 +207,27 @@ export function CampClassroomDashboard({ classroomId, testFamily, canManage }: C
           />
         </Card>
       ) : (
+        <div className="space-y-2">
+        <label className="inline-flex items-center gap-2 text-xs text-gray-600 cursor-pointer select-none">
+          <input
+            type="checkbox"
+            checked={onlyIncomplete}
+            onChange={e => setOnlyIncomplete(e.target.checked)}
+            className="rounded border-gray-300 text-primary focus:ring-primary/40"
+          />
+          {t('camp.dashboard.onlyIncomplete')}
+        </label>
+        {visibleRoster.length === 0 ? (
+          <Card>
+            <EmptyState icon={ClipboardList} title={String(t('camp.dashboard.allComplete'))} size="sm" variant="subtle" />
+          </Card>
+        ) : (
         <div className="bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)] overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead className="bg-gray-50/60">
                 <tr>
-                  <th scope="col" className="px-4 py-3 text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 text-left">
+                  <th scope="col" className="sticky left-0 z-10 bg-gray-50 px-4 py-3 text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 text-left shadow-[1px_0_0_0_rgba(0,0,0,0.05)]">
                     {t('camp.dashboard.student')}
                   </th>
                   {data.assignments.map(a => (
@@ -204,9 +249,9 @@ export function CampClassroomDashboard({ classroomId, testFamily, canManage }: C
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
-                {data.roster.map(student => (
-                  <tr key={student.studentId} className="transition-colors hover:bg-gray-50">
-                    <td className="px-4 py-3 whitespace-nowrap">
+                {visibleRoster.map(student => (
+                  <tr key={student.studentId} className="group transition-colors hover:bg-gray-50">
+                    <td className="sticky left-0 z-10 bg-white group-hover:bg-gray-50 px-4 py-3 whitespace-nowrap shadow-[1px_0_0_0_rgba(0,0,0,0.05)]">
                       <button
                         type="button"
                         onClick={() => setDetailStudent({
@@ -220,16 +265,35 @@ export function CampClassroomDashboard({ classroomId, testFamily, canManage }: C
                       </button>
                     </td>
                     {data.assignments.map(a => {
-                      const status = a.students.find(s => s.studentId === student.studentId)
+                      const status = statusIndex.get(student.studentId)?.get(a.id)
                       const state = status?.state ?? 'not_started'
+                      const work: CampWorkItem = {
+                        dueAt: a.dueAt,
+                        started: state !== 'not_started',
+                        completed: state === 'done',
+                        completedAt: status?.completedAt ?? null,
+                      }
+                      const overdue = isOverdue(work)
                       return (
-                        <td key={a.id} className="px-4 py-3 text-gray-900">
-                          <StatusPill tone={STATE_TONES[state]} size="md" className="gap-1.5">
-                            {stateLabel(state)}
-                            {state === 'done' && status?.correctCount != null && status?.totalCount != null && (
-                              <span className="tabular-nums">{status.correctCount}/{status.totalCount}</span>
-                            )}
-                          </StatusPill>
+                        <td key={a.id} className="px-4 py-3 text-gray-900" data-cell-state={overdue ? 'overdue' : state}>
+                          {overdue ? (
+                            <StatusPill tone="rose" size="md" className="gap-1.5" title={stateLabel(state)}>
+                              {t('camp.metrics.overdue')}
+                              {state === 'in_progress' && <span className="opacity-70">· {stateLabel(state)}</span>}
+                            </StatusPill>
+                          ) : (
+                            <StatusPill tone={STATE_TONES[state]} size="md" className="gap-1.5">
+                              {stateLabel(state)}
+                              {state === 'done' && status?.correctCount != null && status?.totalCount != null && (
+                                <span className="tabular-nums">{status.correctCount}/{status.totalCount}</span>
+                              )}
+                            </StatusPill>
+                          )}
+                          {isCompletedLate(work) && (
+                            <span className="ml-1.5 text-[11px] font-medium text-amber-600" title={String(t('camp.metrics.completedLateTitle'))}>
+                              {t('camp.metrics.completedLate')}
+                            </span>
+                          )}
                         </td>
                       )
                     })}
@@ -238,6 +302,8 @@ export function CampClassroomDashboard({ classroomId, testFamily, canManage }: C
               </tbody>
             </table>
           </div>
+        </div>
+        )}
         </div>
       )}
 
