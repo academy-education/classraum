@@ -1,0 +1,493 @@
+{
+  "L01": {
+    "reject_first": "D",
+    "why": "Agreement form; any number/tense could match an unseen subject, so nothing is certain.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L02": {
+    "reject_first": "A",
+    "why": "'Namely' starting a sentence after a period is usually a fragment, but some continuations could work.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L03": {
+    "reject_first": "B",
+    "why": "No punctuation between 'spot' and 'a' only works if 'spot' is a verb or the phrase runs on; possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L04": {
+    "reject_first": "B",
+    "why": "Agreement form; any number/tense could match an unseen subject, so nothing is certain.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L05": {
+    "reject_first": "B",
+    "why": "'whereupon' is the most awkward connector, but grammatical in some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L06": {
+    "reject_first": "C",
+    "why": "A semicolon before a 'that' clause usually leaves a fragment; possible only if 'that' is a demonstrative.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L07": {
+    "reject_first": "A",
+    "why": "'traffic, therefore' risks a comma splice, but a following comma could make it parenthetical.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L08": {
+    "reject_first": "C",
+    "why": "Agreement form; any number/tense could match an unseen subject, so nothing is certain.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L09": {
+    "reject_first": "C",
+    "why": "Agreement form; any number/tense could match an unseen subject, so nothing is certain.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L10": {
+    "reject_first": "A",
+    "why": "'he should never close with' adds a full clause where the others are reduced; still possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L11": {
+    "reject_first": "D",
+    "why": "'so as a result' is redundant: both mark consequence.",
+    "certain": true,
+    "confident_rejects": [
+      "D"
+    ]
+  },
+  "L12": {
+    "reject_first": "A",
+    "why": "'they would collaborate' is the wordiest form; context could still require a clause.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L13": {
+    "reject_first": "C",
+    "why": "Agreement form; any number/tense could match an unseen subject, so nothing is certain. (tense)",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L14": {
+    "reject_first": "D",
+    "why": "'2009, it was a decision' looks like a comma splice; a preceding subordinate clause could rescue it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L15": {
+    "reject_first": "B",
+    "why": "Agreement form; any number/tense could match an unseen subject, so nothing is certain.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L16": {
+    "reject_first": "C",
+    "why": "Bare singular 'copyist' usually needs a determiner; possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L17": {
+    "reject_first": "A",
+    "why": "Agreement form; any number/tense could match an unseen subject, so nothing is certain.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L18": {
+    "reject_first": "B",
+    "why": "Passive voice often creates a dangling modifier, but any could be the logical subject.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L19": {
+    "reject_first": "A",
+    "why": "'those of a ... seal's' is a double possessive that also mismatches number; no sentence takes it.",
+    "certain": true,
+    "confident_rejects": [
+      "A"
+    ]
+  },
+  "L20": {
+    "reject_first": "B",
+    "why": "Agreement form; any number/tense could match an unseen subject, so nothing is certain.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L21": {
+    "reject_first": "C",
+    "why": "'1910 however,' lacks the opening comma, but could follow a dash or other mark not shown.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L22": {
+    "reject_first": "A",
+    "why": "'the asking of' is the wordiest nominal form; still grammatical somewhere.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L23": {
+    "reject_first": "C",
+    "why": "A semicolon before 'beside' needs an independent clause after; possible with inversion.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L24": {
+    "reject_first": "B",
+    "why": "'there' is not a possessive pronoun, but could fit as an adverb in some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L25": {
+    "reject_first": "D",
+    "why": "A participle 'remaining' cannot be a main verb, but could be correct if a verb exists elsewhere.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L26": {
+    "reject_first": "C",
+    "why": "Agreement form; any number/tense could match an unseen subject, so nothing is certain.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L27": {
+    "reject_first": "C",
+    "why": "Agreement form; any number/tense could match an unseen subject, so nothing is certain.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L28": {
+    "reject_first": "B",
+    "why": "A comma between compound subject and verb is usually wrong, unless it closes an appositive.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L29": {
+    "reject_first": "D",
+    "why": "'; and' is nonstandard, but some long-list contexts allow it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L30": {
+    "reject_first": "C",
+    "why": "'and a single ring that in' looks like an unfinished relative clause; possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L31": {
+    "reject_first": "B",
+    "why": "Agreement form; any number/tense could match an unseen subject, so nothing is certain. (pronoun)",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L32": {
+    "reject_first": "B",
+    "why": "'entrance its' with no punctuation usually fuses clauses; possible in a run-in phrase.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L33": {
+    "reject_first": "C",
+    "why": "Clause and phrase forms break parallelism, but which one is parallel depends on the sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L34": {
+    "reject_first": "D",
+    "why": "'they're' rarely fits where a possessive is expected, but could fit a clause.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L35": {
+    "reject_first": "D",
+    "why": "Agreement form; any number/tense could match an unseen subject, so nothing is certain.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L36": {
+    "reject_first": "A",
+    "why": "'whomever having' is objective case with a participle; hard to license, but not impossible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L37": {
+    "reject_first": "D",
+    "why": "'as to whether' is wordy but grammatical.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L38": {
+    "reject_first": "C",
+    "why": "A colon between subject and verb would be wrong if 'cost' is the verb; but 'cost' could be a noun.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L39": {
+    "reject_first": "B",
+    "why": "Commas around 'trains' split subject from verb, unless 'trains' sits in a list.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L40": {
+    "reject_first": "C",
+    "why": "Passive 'was dropped' usually leaves a modifier dangling, but depends on the modifier.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L41": {
+    "reject_first": "A",
+    "why": "Agreement form; any number/tense could match an unseen subject, so nothing is certain. (verb form)",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L42": {
+    "reject_first": "A",
+    "why": "Agreement form; any number/tense could match an unseen subject, so nothing is certain.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L43": {
+    "reject_first": "A",
+    "why": "'often growing' gives no finite verb, but could be correct as a modifier.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L44": {
+    "reject_first": "B",
+    "why": "'oxygen any' with no punctuation usually fuses clauses; possible in some phrasing.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L45": {
+    "reject_first": "D",
+    "why": "'most of who' uses subject case after a preposition; only an idiom like 'most of who we are' rescues it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L46": {
+    "reject_first": "A",
+    "why": "'whos' is not an English word.",
+    "certain": true,
+    "confident_rejects": [
+      "A"
+    ]
+  },
+  "L47": {
+    "reject_first": "C",
+    "why": "Agreement form; any number/tense could match an unseen subject, so nothing is certain.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L48": {
+    "reject_first": "B",
+    "why": "'herds's' is never a correct plural possessive.",
+    "certain": true,
+    "confident_rejects": [
+      "B"
+    ]
+  },
+  "L49": {
+    "reject_first": "D",
+    "why": "No comma after 'week' blurs the participial phrase; possible but least likely.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L50": {
+    "reject_first": "C",
+    "why": "Agreement form; any number/tense could match an unseen subject, so nothing is certain.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L51": {
+    "reject_first": "D",
+    "why": "Comma-then-dash mismatches the paired marks around an appositive, unless the comma closes an earlier element.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L52": {
+    "reject_first": "B",
+    "why": "'; while' joins a clause to a subordinate clause, but could follow a list with semicolons.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L53": {
+    "reject_first": "D",
+    "why": "A comma between two clauses would splice; 'bubbles' could start a modifier.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L54": {
+    "reject_first": "D",
+    "why": "'prices a' with no punctuation is usually a fused phrase; possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L55": {
+    "reject_first": "A",
+    "why": "Agreement form; any number/tense could match an unseen subject, so nothing is certain.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L56": {
+    "reject_first": "B",
+    "why": "A colon needs a complete clause and an explanation; possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L57": {
+    "reject_first": "B",
+    "why": "A comma between subject and verb is wrong, unless it closes an appositive started earlier.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L58": {
+    "reject_first": "A",
+    "why": "Singular 'was' cannot agree with plural 'the clams' in either word order.",
+    "certain": true,
+    "confident_rejects": [
+      "A",
+      "C"
+    ]
+  },
+  "L59": {
+    "reject_first": "A",
+    "why": "Agreement form; any number/tense could match an unseen subject, so nothing is certain. (punctuation of a participial phrase)",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L60": {
+    "reject_first": "B",
+    "why": "A question mark only works if the preceding text is a question; possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L61": {
+    "reject_first": "A",
+    "why": "'protein that in' risks an unfinished clause; possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L62": {
+    "reject_first": "A",
+    "why": "Agreement form; any number/tense could match an unseen subject, so nothing is certain.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L63": {
+    "reject_first": "D",
+    "why": "Agreement form; any number/tense could match an unseen subject, so nothing is certain. (tense)",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L64": {
+    "reject_first": "A",
+    "why": "Agreement form; any number/tense could match an unseen subject, so nothing is certain.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L65": {
+    "reject_first": "A",
+    "why": "Agreement form; any number/tense could match an unseen subject, so nothing is certain.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L66": {
+    "reject_first": "C",
+    "why": "'having met' is a perfect participle, which fits few slots; possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L67": {
+    "reject_first": "C",
+    "why": "A colon needs a complete clause first; possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L68": {
+    "reject_first": "B",
+    "why": "Agreement form; any number/tense could match an unseen subject, so nothing is certain.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L69": {
+    "reject_first": "D",
+    "why": "A question mark only works if the preceding text is a question; possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L70": {
+    "reject_first": "A",
+    "why": "'then when' after a comma is awkward and risks a splice; possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L71": {
+    "reject_first": "D",
+    "why": "'it shortened' adds a clause that may splice; possible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L72": {
+    "reject_first": "C",
+    "why": "'; and' is nonstandard, but allowed in long-list contexts.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L73": {
+    "reject_first": "A",
+    "why": "Agreement form; any number/tense could match an unseen subject, so nothing is certain.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L74": {
+    "reject_first": "D",
+    "why": "Agreement form; any number/tense could match an unseen subject, so nothing is certain.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L75": {
+    "reject_first": "A",
+    "why": "Agreement form; any number/tense could match an unseen subject, so nothing is certain.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L76": {
+    "reject_first": "B",
+    "why": "Agreement form; any number/tense could match an unseen subject, so nothing is certain. (verb form)",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L77": {
+    "reject_first": "A",
+    "why": "Agreement form; any number/tense could match an unseen subject, so nothing is certain.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L78": {
+    "reject_first": "D",
+    "why": "Bare 'therefore' with no punctuation may splice; possible in mid-clause.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L79": {
+    "reject_first": "A",
+    "why": "Agreement form; any number/tense could match an unseen subject, so nothing is certain. (relative pronoun)",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L80": {
+    "reject_first": "C",
+    "why": "'had laid' needs an object; it could have one in the hidden sentence.",
+    "certain": false,
+    "confident_rejects": []
+  }
+}

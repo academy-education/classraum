@@ -1,0 +1,410 @@
+[
+ {
+  "id": "SEC27A-02",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement with verb tense",
+  "difficulty": "hard",
+  "passage": "Researchers at a dairy research station treated cows with mild mastitis in the infected quarter of the udder alone rather than in the whole udder, and the cows recovered just as quickly. In herds enrolled in the trial, the treated cows' milk from any quarter that the veterinarian injected with the new antibiotic ______ out of the bulk tank unless a laboratory test of that quarter comes back free of the drug.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "was kept",
+   "were kept",
+   "is kept",
+   "are kept"
+  ],
+  "correct_answer": "is kept",
+  "explanation": "The subject's head is \"milk,\" a singular mass noun; \"cows'\" is a possessive in front of it, and \"herds\" belongs to the opening phrase. The tense is settled by the conditional clause \"unless a laboratory test of that quarter comes back free of the drug\": its present verb \"comes\" requires a present main verb, even though the trial and the relative clause \"that the veterinarian injected\" are in the past. \"was kept\" is singular but past, which clashes with the present \"comes back.\" \"are kept\" agrees with \"cows'\" or \"herds\" rather than with \"milk,\" and \"were kept\" makes both errors.",
+  "topic_tag": "veterinary medicine: milk withheld from treated udder quarters"
+ },
+ {
+  "id": "SEC27A-03",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement with an auxiliary standing for an omitted verb",
+  "difficulty": "hard",
+  "passage": "Seed banks keep their samples far below freezing, cold enough to slow the chemical decay that eventually kills a stored seed. Though a bank's barley samples ______, a typical sample of onion seed stored beside them has trouble sprouting by its third decade in the cold, so curators regrow it in the field to keep each variety alive.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "rarely does",
+   "rarely has",
+   "rarely have",
+   "rarely do"
+  ],
+  "correct_answer": "rarely do",
+  "explanation": "The auxiliary in the opening clause stands for a verb that appears only later, in the main clause: \"has trouble sprouting.\" There \"has\" is the main verb (meaning \"experiences\"), not a helping verb, and a main-verb \"have\" of this kind is replaced in ellipsis by \"do\": barley samples \"rarely do\" have trouble sprouting. The auxiliary is plural to agree with \"samples\" (\"bank's\" is only a possessive). \"rarely does\" is singular, matching \"a typical sample\" in the main clause rather than the opening clause's own subject. \"rarely have\" and \"rarely has\" copy the word \"has\" but treat it as a helping verb; a helping \"have\" can stand only for a perfect such as \"have lost,\" and \"rarely has\" is also singular.",
+  "topic_tag": "seed banking: onion seed longevity in cold storage"
+ },
+ {
+  "id": "SEC27A-04",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: sentence boundary before a long noun phrase",
+  "difficulty": "hard",
+  "passage": "Field trials of malaria vaccines in young children are usually judged by how many cases of the disease the shots prevent over a rainy season. In a trial in a river delta, nurses traveled by boat to give children each scheduled dose at home, and the organizers worried most about families skipping the last ______ booster given months after the others, when children are toddlers and harder to find, turned out to raise antibody levels far more than any earlier injection.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "dose, a",
+   "dose: a",
+   "dose. A",
+   "dose a"
+  ],
+  "correct_answer": "dose. A",
+  "explanation": "The noun phrase after the blank (\"a booster given months after the others, when children are toddlers and harder to find\") reads at first like an appositive renaming \"the last dose,\" and it is an accurate one, but the verb \"turned out\" follows it, so it is the subject of a new independent clause, which must begin a new sentence. \"dose, a\" produces a comma splice once \"turned out\" arrives. \"dose a\" fuses two independent clauses with no punctuation. \"dose: a\" fails because a colon must introduce an explanation, list, or restatement of what precedes it, and the second clause makes a separate finding that runs against the organizers' worry, not an explanation of it.",
+  "topic_tag": "vaccinology: a home-delivered malaria booster in a river delta"
+ },
+ {
+  "id": "SEC27A-05",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement with verb aspect",
+  "difficulty": "hard",
+  "passage": "Winegrowers in dry regions have begun scheduling irrigation by what sensors in the soil report rather than by the calendar. Wired to a logger at the edge of a hillside estate, the moisture probes beside its oldest vines ______ how many liters of water the clay loses each day for nine growing seasons, and their readings show that the old vines draw on water far deeper than the drip lines reach.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "have been measuring",
+   "has been measuring",
+   "are measuring",
+   "is measuring"
+  ],
+  "correct_answer": "have been measuring",
+  "explanation": "The subject is the plural \"probes\"; the sentence opens with a participial phrase whose nouns (\"logger,\" \"edge,\" \"estate\") are singular, and \"beside its oldest vines\" only locates the probes. The aspect is settled by the duration phrase \"for nine growing seasons,\" which can modify only the main verb (the habitual \"loses each day\" cannot take a span of seasons): an activity that has run for a stated length of time up to the present takes the present perfect progressive. \"are measuring\" agrees with \"probes\" but cannot combine with \"for nine growing seasons.\" \"has been measuring\" and \"is measuring\" are singular, agreeing with \"logger\" or \"estate\" rather than with \"probes,\" and \"is measuring\" also has the aspect error.",
+  "topic_tag": "viticulture: soil-moisture probes under old vines"
+ },
+ {
+  "id": "SEC27A-07",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement with verb tense",
+  "difficulty": "hard",
+  "passage": "Agronomists on an organic vegetable farm spent successive summers counting root-knot nematodes, microscopic worms that choke the roots of tomatoes and peppers, in soil cores taken from beds managed in different ways. Certain species of French marigold that the agronomists sowed along each row ______ the worms below damaging levels as long as a bed is not planted with tomatoes in consecutive years.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "is holding",
+   "were holding",
+   "was holding",
+   "are holding"
+  ],
+  "correct_answer": "are holding",
+  "explanation": "The subject's head is \"species,\" a noun whose singular and plural forms are identical; here \"Certain,\" which accompanies only plural nouns, shows that it is plural, so the verb is plural despite the singular \"marigold\" and \"row.\" The tense is settled by the conditional clause \"as long as a bed is not planted with tomatoes in consecutive years\": its present verb \"is\" requires a present main verb, even though the fieldwork and the relative clause \"that the agronomists sowed\" are in the past. \"were holding\" is plural but past, clashing with the present \"is not planted.\" \"is holding\" and \"was holding\" are singular, reading \"species\" as one species or agreeing with \"marigold\" or \"row,\" and \"was holding\" is also in the wrong tense.",
+  "topic_tag": "nematology: marigolds and mustard against root-knot worms"
+ },
+ {
+  "id": "SEC27A-08",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: no punctuation before a content clause",
+  "difficulty": "hard",
+  "passage": "Hospitals often measure hand hygiene by asking staff to observe their own colleagues, a method that tends to overstate how often hands are cleaned. When a teaching hospital sent unannounced auditors onto its surgical wards instead, the auditors ______ hand-rub bottles that nurses carry clipped to their uniforms were used far less often than the sinks in the corridor, the reverse of what the self-reports had suggested.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "found—the",
+   "found the",
+   "found, the",
+   "found; the"
+  ],
+  "correct_answer": "found the",
+  "explanation": "\"Found\" takes as its object a content clause with \"that\" omitted: \"the hand-rub bottles that nurses carry clipped to their uniforms were used far less often.\" The clause's own verb, \"were used,\" arrives only after a relative clause with a verb of its own (\"carry\"), so \"found the hand-rub bottles that nurses carry clipped to their uniforms\" can first be read as complete; but no punctuation may separate a verb from its object clause. \"found, the\" and \"found—the\" both insert a mark between \"found\" and the clause that completes it. \"found; the\" fails because a semicolon must follow an independent clause, and \"the auditors found\" is incomplete without its object.",
+  "topic_tag": "infection control: unannounced hand-hygiene audits"
+ },
+ {
+  "id": "SEC27A-10",
+  "domain": "Standard English Conventions",
+  "subskill": "form: possessive and plural nouns",
+  "difficulty": "hard",
+  "passage": "Nurseries propagate pecan trees by joining a cutting of the desired variety to a vigorous seedling rootstock, a delicate job usually left to propagators, staff trained to make clean, matching cuts. In a commercial nursery's spring trial, the ______ graft of a rare papershell cultivar onto a seedling rootstock, the final join of a long career at the nursery, was the first to break bud.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "propagator",
+   "propagator's",
+   "propagators",
+   "propagators'"
+  ],
+  "correct_answer": "propagator's",
+  "explanation": "The blank names the owner of the noun \"graft,\" so a possessive is needed, and the owner is singular: the appositive \"the final join of a long career at the nursery\" shows that one person, with one career, made the graft. \"propagators\" makes the sentence read \"the propagators graft a rare papershell cultivar onto a seedling rootstock,\" with \"graft\" as a verb, but the verb \"was\" then has no subject. \"propagators'\" is a plural possessive, which would give the graft several owners sharing a single career. \"propagator\" without an apostrophe cannot show that the graft belongs to the propagator.",
+  "topic_tag": "arboriculture: a pecan graft in a nursery trial"
+ },
+ {
+  "id": "SEC27B-01",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: punctuation before a sentence-final participial phrase",
+  "difficulty": "hard",
+  "passage": "Meteorites that land on Antarctic ice are preserved far better than those that fall on farmland, yet even there meltwater can rust the iron grains inside them. To measure that damage, a curatorial team sliced open and examined the ______ where the blue ice meets a dark moraine of wind-scoured gravel. Meteorites the team recovered from the field's frozen interior showed almost no rust, a difference the team attributes to the colder, drier surface there.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "specimens, gathered",
+   "specimens gathered",
+   "specimens—gathered",
+   "specimens. Gathered"
+  ],
+  "correct_answer": "specimens gathered",
+  "explanation": "The phrase \"gathered where the blue ice meets a dark moraine of wind-scoured gravel\" is restrictive: it identifies which of the team's specimens were measured, and the last sentence shows the team also examined meteorites \"recovered from the field's frozen interior,\" so the phrase is needed to separate the two sets. A restrictive phrase takes no punctuation. \"specimens, gathered\" and \"specimens—gathered\" set the phrase off as extra information, implying that all the specimens examined came from the moraine edge, which the last sentence rules out. \"specimens. Gathered\" makes the participial phrase a fragment: \"meets\" is the verb of the \"where\" clause, so the phrase still has no subject or main verb of its own.",
+  "topic_tag": "meteoritics: terrestrial weathering of Antarctic finds"
+ },
+ {
+  "id": "SEC27B-03",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement and verb tense",
+  "difficulty": "hard",
+  "passage": "A chip plant's clean room depends on ceiling filters that strip microscopic particles from the air before it reaches the wafers. The plant's new installation marks the first time that the filter bank above the lithography bays ______ by a design containing no glass fiber at all, a change the engineers expect to reduce the stray fibers they find on finished wafers.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "has been superseded",
+   "have been superseded",
+   "was superseded",
+   "were superseded"
+  ],
+  "correct_answer": "has been superseded",
+  "explanation": "The subject of the that-clause is the singular \"bank\" (\"the filter bank above the lithography bays\"); \"bays\" is the object of \"above,\" so \"have been superseded\" and \"were superseded\" fail on number. The verb form is fixed by the present-tense main clause \"The plant's new installation marks the first time that\": after a present-tense \"is/marks the first time that,\" Standard English requires the present perfect for the event being counted, as in \"This is the first time the bank has been replaced.\" \"was superseded\" uses the simple past, which this construction does not allow (the simple past would require \"marked the first time,\" and then the past perfect).",
+  "topic_tag": "semiconductor manufacturing: a fiber-free filter bank in a clean room"
+ },
+ {
+  "id": "SEC27B-04",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement and auxiliary verbs",
+  "difficulty": "hard",
+  "passage": "Boreholes drilled to the bed of a glacier let researchers watch meltwater move beneath the ice. On the drilling team's charts, the water level in the central borehole ______ within an hour of the afternoon melt peak subsided by nearly a meter, a pattern the team reads as water draining into channels along the bed.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "is always",
+   "has always",
+   "are always",
+   "have always"
+  ],
+  "correct_answer": "has always",
+  "explanation": "The subject is the singular \"level\" (\"the water level in the central borehole\"); \"charts\" sits in the opening phrase and does not govern the verb, so \"are always\" and \"have always\" fail on number. The auxiliary is decided by the participle \"subsided,\" which arrives after the phrase \"within an hour of the afternoon melt peak\": \"subside\" is intransitive, so it cannot be passive, and it is not used as an adjective, so it needs \"has\" to form the present perfect. \"is always\" reads well up to \"within an hour of the afternoon melt peak,\" but \"is ... subsided\" is not a possible verb phrase.",
+  "topic_tag": "glacier hydrology: borehole water levels under a melt pulse"
+ },
+ {
+  "id": "SEC27B-06",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement and pronoun-antecedent agreement",
+  "difficulty": "hard",
+  "passage": "The valley's radio telescope steers its dish with electric motors bolted to the base of its steel frame. No motor working alone is strong enough to swing so heavy a reflector. For a night's observation of a distant quasar's faint radio bursts, the dish ______ in slow arcs across the sky, tracking the source against the turning of the earth.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "is swung by it",
+   "are swung by it",
+   "is swung by them",
+   "are swung by them"
+  ],
+  "correct_answer": "is swung by them",
+  "explanation": "The verb's subject is the singular \"dish,\" so \"are swung by it\" and \"are swung by them\" fail on number; the plural \"bursts\" belongs to the opening phrase. The pronoun names the agent that swings the dish: the plural \"motors\" of the first sentence (\"electric motors bolted to the base of its steel frame\"), so it must be \"them.\" \"is swung by it\" fails because a singular pronoun has no possible antecedent: \"dish\" is the subject of the same clause and could only be referred to there by \"itself,\" and \"No motor\" in the second sentence is a negative quantifier, which cannot serve as the antecedent of a pronoun in a later sentence.",
+  "topic_tag": "radio astronomy: drive motors that steer a telescope dish"
+ },
+ {
+  "id": "SEC27B-08",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement and verb tense",
+  "difficulty": "hard",
+  "passage": "Engineers designed the dam's spillway to carry floodwater down a concrete chute rather than over the dam itself. Surveys by engineers show that the reservoir's overflow surges from the end of the spillway ______ a deep plunge pool into the soft sandstone below the chute, which is why the chute's foundation sits beneath water too deep for anyone but divers to reach.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "has carved",
+   "was carving",
+   "were carving",
+   "have carved"
+  ],
+  "correct_answer": "have carved",
+  "explanation": "The subject of the that-clause is the plural \"surges\"; \"reservoir's\" is a possessive and \"end\" and \"spillway\" are inside the prepositional phrase, so \"has carved\" and \"was carving\" fail on number. The aspect is decided by the relative clause \"which is why the chute's foundation sits beneath water too deep for anyone but divers to reach\": it states a present condition caused by the carving, so the carving must be presented as a past action with a present result, the present perfect \"have carved.\" \"were carving\" describes an activity in progress at some past moment; the sentence names no such moment, and an unfinished past activity cannot be the cause of the present state the \"which is why\" clause reports.",
+  "topic_tag": "hydraulic engineering: scour below a dam's spillway chute"
+ },
+ {
+  "id": "SEC27B-09",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement and auxiliary verbs",
+  "difficulty": "hard",
+  "passage": "Rust stains had spread along the outer wrapping of an aging suspension bridge's main cable. Crews wedged open the bridge's eastern cable near its anchorage, where the outermost wires ______ according to the inspectors' bend tests brittle enough to snap by hand. The crews will splice new strands into the weakest stretch of the cable, and engineers will test the western cable the same way.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "was also",
+   "have also",
+   "were also",
+   "has also"
+  ],
+  "correct_answer": "were also",
+  "explanation": "The subject of the \"where\" clause is the plural \"wires,\" the noun just before the blank; the singular nouns earlier in the sentence (\"bridge's,\" \"cable,\" \"anchorage\") belong to the main clause, so \"was also\" and \"has also\" fail on number. The auxiliary is decided by the predicate adjective \"brittle,\" which arrives only after \"according to the inspectors' bend tests\": an adjective needs a form of \"be,\" so \"were also ... brittle\" is correct. \"have also ... brittle\" is ungrammatical, since \"have\" cannot link a subject to an adjective without \"been\" (or a verb such as \"become\").",
+  "topic_tag": "structural engineering: brittle wires inside a suspension bridge cable"
+ },
+ {
+  "id": "SEC27C-01",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: comma after an introductory subordinate clause",
+  "difficulty": "hard",
+  "passage": "Baroque organ builders voiced each pipe by ear, shaving the lip of its mouth until the note settled. That work could not be judged at the bench, because a pipe sounds different once it stands in a case. While the organist ______ mounted highest in the case, far from the bellows that fed them, often sounded a shade flat against the lower ranks. Builders therefore finished each rank only after hearing it in its final position.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "played, the pipes",
+   "played the pipes,",
+   "played the pipes",
+   "played: the pipes"
+  ],
+  "correct_answer": "played, the pipes",
+  "explanation": "The sentence opens with the subordinate clause \"While the organist played,\" and the main clause's subject is \"the pipes mounted highest in the case\"; its verb, \"sounded,\" arrives only after the interrupting phrase \"far from the bellows that fed them.\" Because \"the pipes\" is the subject of \"sounded,\" the comma that ends the introductory clause must come before it. \"Played the pipes,\" treats \"the pipes\" as the object of \"played,\" which leaves \"often sounded\" with no subject. \"Played the pipes\" has the same problem and also runs the introductory clause into the main clause. \"Played: the pipes\" places a colon after \"While the organist played,\" which is a dependent clause, not a complete one, so a colon cannot follow it.",
+  "topic_tag": "organology: voicing Baroque pipes in the case"
+ },
+ {
+  "id": "SEC27C-02",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement and verb tense",
+  "difficulty": "hard",
+  "passage": "When conservators restored the hill-town chapel, they cleaned away centuries of grime but could not seal the damp wall behind the altar. In the chapel's cycle of frescoes, the donors' kneeling portrait beside that wall ______ enough to bloom with salt crystals whenever the tour groups that the diocese began admitting last spring crowd into the narrow nave.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "was damp",
+   "were damp",
+   "is damp",
+   "are damp"
+  ],
+  "correct_answer": "is damp",
+  "explanation": "The subject is \"portrait,\" which is singular; \"donors'\" is a possessive modifying it, and \"frescoes\" belongs to the opening phrase \"In the chapel's cycle of frescoes.\" The tense is set by the habitual clause \"whenever the tour groups ... crowd into the narrow nave\": its verb is \"crowd,\" which is present, while \"began\" belongs only to the relative clause \"that the diocese began admitting last spring.\" A present habitual clause requires a present main verb, so the answer is \"is damp.\" \"Was damp\" is singular but past, which clashes with \"crowd.\" \"Were damp\" and \"are damp\" are plural and do not agree with \"portrait.\"",
+  "topic_tag": "fresco conservation: salt bloom on a donor portrait"
+ },
+ {
+  "id": "SEC27C-03",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement and verb aspect",
+  "difficulty": "hard",
+  "passage": "Museums once accepted antiquities with little record of where they had come from, and some of those gifts are being returned to the countries that lost them. The collector's bronzes from a looted hill temple ______ under labels that credit the wrong dealer since the museum opened its east wing, and the curators who wrote those labels relied on a forged bill of sale.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "has been displayed",
+   "are displayed",
+   "is displayed",
+   "have been displayed"
+  ],
+  "correct_answer": "have been displayed",
+  "explanation": "The subject is \"bronzes,\" which is plural; \"collector's\" is a singular possessive in front of it, and \"temple\" is the object of \"from.\" The clause \"since the museum opened its east wing\" marks the past point at which a continuing state began, and it must attach to a present perfect verb; it cannot attach to \"credit,\" a simple present verb inside the relative clause \"that credit the wrong dealer,\" so it belongs to the blank's verb, which must be \"have been displayed.\" \"Are displayed\" is plural but simple present, which leaves the \"since\" clause with no perfect verb to modify. \"Is displayed\" has the same aspect error and is singular. \"Has been displayed\" has the right aspect but agrees with \"collector's\" or \"temple\" rather than \"bronzes.\"",
+  "topic_tag": "museum provenance: bronzes under a false dealer's label"
+ },
+ {
+  "id": "SEC27C-04",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: punctuating a sequence after a complete clause",
+  "difficulty": "hard",
+  "passage": "Greek theater masks were made of linen stiffened with plaster, so almost none survive, and painted pottery is the main evidence for how they looked. A wine bowl recovered from a tomb near the coast pictures the same actor in the dark, bearded mask of an aging ______ a second mask, its pale cheeks streaked with tears and its mouth turned down in grief. Scholars read the pairing as evidence that an actor might play a ruler and a young victim in the same tragedy.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "king; then",
+   "king, then",
+   "king then",
+   "king: then"
+  ],
+  "correct_answer": "king, then",
+  "explanation": "The words before the blank form a complete clause, \"A wine bowl ... pictures the same actor in the dark, bearded mask of an aging king.\" What follows \"then\" is not a clause: \"a second mask\" is a noun phrase, and \"its pale cheeks streaked with tears and its mouth turned down in grief\" are absolute phrases describing that mask, in which \"streaked\" and \"turned\" are participles, not main verbs. A comma correctly joins this second element of the sequence to the clause. \"King; then\" would require an independent clause after the semicolon, but \"a second mask\" never receives a verb. \"King: then\" presents the second mask as an explanation of the first, but it is the next step in a sequence. \"King then\" runs the added element into the clause without the comma that sets it off.",
+  "topic_tag": "classical theater: a tragic mask change on a wine bowl"
+ },
+ {
+  "id": "SEC27C-07",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement and verb aspect",
+  "difficulty": "hard",
+  "passage": "Collectors long assumed that the quartet's debut album had been spliced together from dozens of separate takes. Its tracks, which have circulated on bootleg tapes since the album first reached record shops, ______ in a single unbroken session on the night of the club's closing concert, as the engineer's handwritten log makes clear.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "has been performed",
+   "was performed",
+   "were performed",
+   "have been performed"
+  ],
+  "correct_answer": "were performed",
+  "explanation": "The subject is \"tracks,\" which is plural; \"album\" appears only inside the relative clause \"which have circulated on bootleg tapes since the album first reached record shops,\" and that clause's \"since\" belongs to its own verb, \"have circulated.\" The blank's verb is placed at one finished moment by \"on the night of the club's closing concert,\" and an action tied to a specific completed past occasion takes the simple past, \"were performed.\" \"Have been performed\" is plural but present perfect, which cannot be used with a phrase naming a single finished past event. \"Has been performed\" has that error and is also singular. \"Was performed\" is simple past but singular, agreeing with \"album\" rather than \"tracks.\"",
+  "topic_tag": "jazz history: a live session mistaken for studio splices"
+ },
+ {
+  "id": "SEC27C-08",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement and auxiliary verbs",
+  "difficulty": "hard",
+  "passage": "A few medieval craft guilds survive as ceremonial companies, and their officers still keep account rolls in the old manner. In most such companies, the warden chosen by the members and his clerk ______ during the first weeks of a new term recording any fines, because the rolls stay closed during the handover of the accounts.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "seldom is",
+   "seldom does",
+   "seldom do",
+   "seldom are"
+  ],
+  "correct_answer": "seldom are",
+  "explanation": "The subject is the compound \"the warden chosen by the members and his clerk,\" two people joined by \"and,\" so the verb must be plural even though the noun just before the blank, \"clerk,\" is singular. The auxiliary is chosen by the verb form that arrives after the phrase \"during the first weeks of a new term\": \"recording,\" an -ing form, which needs a form of \"be,\" so the answer is \"seldom are.\" \"Seldom do\" is plural, but \"do\" must be followed by a bare verb (\"record\"), not \"recording.\" \"Seldom does\" has that problem and is singular. \"Seldom is\" uses the right auxiliary but treats \"his clerk\" or \"the warden\" as the whole subject.",
+  "topic_tag": "guild history: wardens' account rolls in ceremonial companies"
+ },
+ {
+  "id": "SEC27C-10",
+  "domain": "Standard English Conventions",
+  "subskill": "form: plural and possessive nouns",
+  "difficulty": "hard",
+  "passage": "Ottoman sea charts were redrawn after most voyages, so the same harbor may appear in many inconsistent versions, some of them drawn decades apart. To see how its shoreline moved, the ______ chart corrections from each surviving version onto one master sheet drawn at a common scale, a method borrowed from studies of river deltas.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "historians",
+   "historian",
+   "historian's",
+   "historians'"
+  ],
+  "correct_answer": "historians",
+  "explanation": "After the opening phrase \"To see how its shoreline moved,\" the main clause needs a subject and a verb, and the only word that can serve as its verb is \"chart\": the historians chart (plot) the corrections onto a master sheet. \"Chart\" in its bare form needs a plural subject without a possessive ending, so the answer is \"historians.\" \"Historians'\" and \"historian's\" make \"chart corrections\" a noun phrase, and the clause then never gets a verb before the final appositive. \"Historian\" is singular and would need \"charts.\"",
+  "topic_tag": "Ottoman cartography: charting a harbor's shifting shoreline"
+ },
+ {
+  "id": "SEC27D-02",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement with verb tense",
+  "difficulty": "hard",
+  "passage": "In a survey that the provincial credit federation conducted among its member unions, managers described lending practices that barely differed from one district to another. Harvest loans to a farmer without a registered land title ______ in the province's upland region, a scarcity that keeps smallholders there borrowing from relatives and from the traders who buy their crops.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "is rare",
+   "are rare",
+   "was rare",
+   "were rare"
+  ],
+  "correct_answer": "are rare",
+  "explanation": "The subject's head is \"loans,\" which is plural; \"Harvest\" is a singular noun used as a modifier before it, and \"farmer\" and \"title\" are singular nouns inside the phrase \"to a farmer without a registered land title.\" The tense is settled by the phrase that renames the condition, \"a scarcity that keeps smallholders there borrowing from relatives\": its present verb \"keeps\" presents the scarcity as a current state, so the condition it renames must be stated in the present. \"were rare\" is plural but past, taking its tense from the survey in the first sentence, and it would describe a scarcity that is over while the renaming phrase says it continues. \"is rare\" agrees with \"title\" or \"Harvest\" rather than with \"loans,\" and \"was rare\" is both singular and past.",
+  "topic_tag": "development economics: collateral and upland credit unions"
+ },
+ {
+  "id": "SEC27D-03",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement with verb aspect",
+  "difficulty": "hard",
+  "passage": "School lunch programs reimburse a school system for every free meal it serves, and this system replaced its paper meal tickets with student swipe cards to make that count exact. The lunch-line cashiers at the system's elementary schools ______ free lunches in pencil ledgers in the paper-ticket years, and auditors cannot match those ledgers to enrollment.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "has been logging",
+   "have been logging",
+   "were logging",
+   "was logging"
+  ],
+  "correct_answer": "were logging",
+  "explanation": "The subject's head is \"cashiers,\" which is plural; \"lunch-line\" is a singular noun used as a modifier, and \"system's\" and \"schools\" sit in the phrase \"at the system's elementary schools.\" The aspect is settled by \"in the paper-ticket years\": the first sentence says the system \"replaced its paper meal tickets with student swipe cards,\" so those years are over, and an action confined to a finished period takes the simple past. \"have been logging\" is plural but present perfect, which would extend the logging into the present, and the present-tense \"auditors cannot match those ledgers\" makes that reading tempting. \"was logging\" agrees with \"lunch-line\" or \"system's\" rather than with \"cashiers,\" and \"has been logging\" is both singular and present perfect.",
+  "topic_tag": "education policy: paper meal tickets in school lunch audits"
+ },
+ {
+  "id": "SEC27D-07",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement with verb aspect",
+  "difficulty": "hard",
+  "passage": "Studies of voter turnout often attribute low participation among tenants to the frequency with which tenants change addresses. By the election board's count, the arts district's turnout among renters in its older apartment blocks ______ for neighborhoods that see so much housing turnover during the mayoral runoff that autumn. That runoff was the final contest held under the old ward map, which the city redrew the following spring.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "has been typical",
+   "was typical",
+   "have been typical",
+   "were typical"
+  ],
+  "correct_answer": "was typical",
+  "explanation": "The subject's head is \"turnout,\" which is singular; \"arts\" is a plural noun used as a modifier in \"arts district,\" and \"renters\" and \"blocks\" belong to the phrase \"among renters in its older apartment blocks.\" The aspect is settled by \"during the mayoral runoff that autumn,\" a single finished election, and the next sentence confirms that the runoff belongs to a closed period, since it was \"the final contest held under the old ward map.\" A state confined to a finished period takes the simple past. \"has been typical\" is singular but present perfect, which the present-tense \"neighborhoods that see so much housing turnover\" makes sound like a lasting pattern. \"were typical\" and \"have been typical\" are plural, agreeing with \"renters\" or \"blocks\" rather than with \"turnout.\"",
+  "topic_tag": "political science: renter turnout in an arts district runoff"
+ },
+ {
+  "id": "SEC27D-09",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: punctuation before a sentence-final explanatory noun phrase",
+  "difficulty": "hard",
+  "passage": "Planners at the region's transit agency had assumed that new commuter riders would come mainly from drivers using station parking lots. Ridership on the line grew fastest where the planners had expected it ______ stops with no parking lot nearby, reached mostly by riders on foot from the apartment blocks around them.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "least outlying",
+   "least; outlying",
+   "least outlying,",
+   "least: outlying"
+  ],
+  "correct_answer": "least: outlying",
+  "explanation": "The words through \"least\" form a complete independent clause, \"Ridership on the line grew fastest where the planners had expected it least,\" and the noun phrase that follows, \"outlying stops with no parking lot nearby,\" names the places meant by \"where\"; a colon introduces such an explanation. \"least; outlying\" fails because a semicolon must be followed by an independent clause, and no main verb arrives: \"reached\" is a participle modifying \"stops\" (\"reached mostly by riders on foot\"), not the verb of a clause. \"least outlying\" runs the explanation into the clause, so that \"least outlying stops\" would have to be the object of \"expected,\" which already has \"it.\" \"least outlying,\" places the comma one word too late, leaving \"least outlying\" fused and cutting \"outlying\" off from \"stops,\" the noun it modifies.",
+  "topic_tag": "transportation economics: walking riders and commuter rail growth"
+ }
+]
