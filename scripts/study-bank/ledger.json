@@ -11855,6 +11855,53 @@
           "verdict": "Kept 34: verify-answer-key-spread --batch ok (A8/B10/C6/D10); key strictly longest 3/34, strictly shortest 7/34 (each <= 11 = 35%); 0 option words repeated. Attrition check: stage-2 picks re-scored on the kept 34: 21.6% vs line 29.4%, M -7.8, E_kept = -18.8 <= +10 PASS; kept keys by declared rarity rank 11/8/8/7."
         }
       }
+    },
+    {
+      "id": "sat-sec-hard-v25-kept-2026-10-23",
+      "createdAt": "2026-10-23",
+      "targetTest": "sat",
+      "section": "reading_writing",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "rw-v25-sec-hard",
+      "contentSha": "a71dcfc82b29209d0ae0c25ecc760cb0576a65372e1c05dc3c98e33627278f1c",
+      "status": "inserted",
+      "note": "PREREG-SEC25-2026-10-23.md (bdfe7d83): brief rebuilt from the SEC22-24 panel notes plus a pre-freeze steering probe asking the panel's own questions (r0+r1, 31/32 named, one revision round, verify ok). Four Claude authors x 8, frozen 5336c326. Gate dropped 3 (A-05 non-exclusive 3/3, D-02 and D-03 recommend_drop); template cover held 20 (0 hard). 9 inserted: 5 hard / 4 medium.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "a71dcfc82b29209d0ae0c25ecc760cb0576a65372e1c05dc3c98e33627278f1c",
+          "verdict": "sec25-brief-counts 17/17 bars, 0 flags; sec25-exclusion 0 of 32 vs prior/live; check-sec-preflight clean; doubled-word drop 0."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "a71dcfc82b29209d0ae0c25ecc760cb0576a65372e1c05dc3c98e33627278f1c",
+          "verdict": "make-oo-render 32 cand + 24 live HARD SEC control: candidate 21.9% (21/96) vs control 58.3% (42/72, measured), margin -36.5 vs +10: PASS."
+        },
+        "elimination": {
+          "passed": true,
+          "contentSha": "a71dcfc82b29209d0ae0c25ecc760cb0576a65372e1c05dc3c98e33627278f1c",
+          "verdict": "elimination-paired --match difficulty (32 v 64): 0.0% vs 6.3%, margin -6.3 vs +20: PASS.",
+          "bar": "paired-control-v1",
+          "candidateRate": 0,
+          "controlRate": 0.0625,
+          "margin": -0.0625,
+          "threshold": 0.2,
+          "n": 32,
+          "controlN": 64,
+          "samples": 3
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "a71dcfc82b29209d0ae0c25ecc760cb0576a65372e1c05dc3c98e33627278f1c",
+          "verdict": "Graders d/e/f phase 1 cold sha-recorded (a215d48b, fb10deda, 2055867c); 0 cold misses x3; phase-1 fields unchanged in phase 2. Cold hard: d 4, e 4, f 6. sec25-gate otherwise-kept 29 (5 hard); template cover held 20 (0 hard; components: verb+pronoun 8, later-clause tense 6, perfect-vs-past 5, ellipsis 4, possessive 2)."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "a71dcfc82b29209d0ae0c25ecc760cb0576a65372e1c05dc3c98e33627278f1c",
+          "verdict": "verify-answer-key-spread on the frozen 32: FAIL quads 100% (authored order deals each author's keys as ABCD permutations) - latent, choices are re-shuffled per session at draw (shuffleDrawnChoices); kept 9 below the script's n>=12 floor. Key strictly longest 0/9, shortest 1/9. Grader-named tells: verb+pronoun keys always mismatched number (10/10, construction table); present perfect never keyed (5/5). The template cover held every item in both clusters."
+        }
+      }
     }
   ],
   "auditedCohorts": [

@@ -1,0 +1,394 @@
+{
+  "L01": {
+    "reject_first": "A",
+    "why": "A single comma before 'in 1855' with no closing comma is the likeliest error, but the phrase could end the sentence or clause.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L02": {
+    "reject_first": "A",
+    "why": "A semicolon before 'that the' rarely joins two independent clauses, though 'that' could be a demonstrative opening one.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L03": {
+    "reject_first": "A",
+    "why": "'those of a similarly sized seal's' is a redundant double possessive, though the double genitive is not strictly ungrammatical.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L04": {
+    "reject_first": "B",
+    "why": "'hour, nevertheless' leaves the adverb unpunctuated on one side, though it could close the sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L05": {
+    "reject_first": "C",
+    "why": "The participle 'having been' cannot serve as a main verb, though it could open a modifier phrase.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L06": {
+    "reject_first": "C",
+    "why": "A gerund subject after an introductory modifier usually dangles, but the modifier is hidden.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L07": {
+    "reject_first": "C",
+    "why": "Number/tense choice depends entirely on the hidden subject and time frame; every option is grammatical in some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L08": {
+    "reject_first": "C",
+    "why": "Number/tense choice depends entirely on the hidden subject and time frame; every option is grammatical in some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L09": {
+    "reject_first": "C",
+    "why": "Number/tense choice depends entirely on the hidden subject and time frame; every option is grammatical in some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L10": {
+    "reject_first": "C",
+    "why": "'is their' mixes singular verb with plural pronoun, but the pronoun could refer to a different noun.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L11": {
+    "reject_first": "A",
+    "why": "Number/tense choice depends entirely on the hidden subject and time frame; every option is grammatical in some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L12": {
+    "reject_first": "B",
+    "why": "A lone comma separating the subject 'trains' from its verb 'arrive' cannot be correct.",
+    "certain": true,
+    "confident_rejects": [
+      "B"
+    ]
+  },
+  "L13": {
+    "reject_first": "C",
+    "why": "Comma before 'after sunset the' risks a comma splice, but a subordinate structure could license it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L14": {
+    "reject_first": "C",
+    "why": "'there' is likely the homophone trap, but it could be correct as an adverb or expletive.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L15": {
+    "reject_first": "C",
+    "why": "A semicolon before 'within' needs an independent clause after it, which the fragment start makes less likely.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L16": {
+    "reject_first": "B",
+    "why": "Number/tense choice depends entirely on the hidden subject and time frame; every option is grammatical in some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L17": {
+    "reject_first": "B",
+    "why": "'being a set' cannot serve as a main verb, though it could be in a participial phrase.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L18": {
+    "reject_first": "A",
+    "why": "'its'' is not an English word form under any sentence.",
+    "certain": true,
+    "confident_rejects": [
+      "A"
+    ]
+  },
+  "L19": {
+    "reject_first": "C",
+    "why": "A colon after 'cities' needs a complete clause before it, which context may or may not provide.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L20": {
+    "reject_first": "A",
+    "why": "'in the Levant, the Aegean, and in Andalusia' breaks parallelism by dropping 'in' from only the middle item.",
+    "certain": true,
+    "confident_rejects": [
+      "A"
+    ]
+  },
+  "L21": {
+    "reject_first": "D",
+    "why": "The passive subjunctive with 'its thresholds' as subject is the clunkiest form, though grammatical after verbs like 'demand that'.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L22": {
+    "reject_first": "C",
+    "why": "Number/tense choice depends entirely on the hidden subject and time frame; every option is grammatical in some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L23": {
+    "reject_first": "B",
+    "why": "'engineer ... were' disagrees in number unless a subjunctive 'if' precedes it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L24": {
+    "reject_first": "B",
+    "why": "A dash plus 'were' combines two risky choices, but a closing dash and plural subject could make it correct.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L25": {
+    "reject_first": "D",
+    "why": "Number/tense choice depends entirely on the hidden subject and time frame; every option is grammatical in some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L26": {
+    "reject_first": "A",
+    "why": "'which the' may create a broken relative clause, but could be correct depending on what follows.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L27": {
+    "reject_first": "D",
+    "why": "'there is less energy for the cormorant' likely leaves a modifier dangling, but the modifier is hidden.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L28": {
+    "reject_first": "B",
+    "why": "'making' cannot be a main verb, though it could head a participial phrase.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L29": {
+    "reject_first": "A",
+    "why": "A semicolon before 'that' rarely introduces an independent clause, though 'that' could be a demonstrative.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L30": {
+    "reject_first": "B",
+    "why": "'shields their' mixes singular verb and plural pronoun, though the pronoun could refer elsewhere.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L31": {
+    "reject_first": "A",
+    "why": "'gun, are held' depends on a comma pair and plural subject that may not exist.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L32": {
+    "reject_first": "A",
+    "why": "'kiln the' with no punctuation likely fuses two elements, but some sentence could run it together legitimately.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L33": {
+    "reject_first": "D",
+    "why": "'being' cannot be a main verb, though it could appear in an absolute phrase.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L34": {
+    "reject_first": "D",
+    "why": "Number/tense choice depends entirely on the hidden subject and time frame; every option is grammatical in some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L35": {
+    "reject_first": "B",
+    "why": "Active 'damped out' is the odd one in a passive-leaning set, but an active subject could make it correct.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L36": {
+    "reject_first": "B",
+    "why": "Number/tense choice depends entirely on the hidden subject and time frame; every option is grammatical in some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L37": {
+    "reject_first": "C",
+    "why": "Number/tense choice depends entirely on the hidden subject and time frame; every option is grammatical in some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L38": {
+    "reject_first": "D",
+    "why": "Commas around 'by then' leave a likely comma splice before 'the council', unless the council is appositive.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L39": {
+    "reject_first": "B",
+    "why": "Modifier logic decides this; 'critics' is a guess at the least likely logical subject.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L40": {
+    "reject_first": "D",
+    "why": "'cools, a seed crystal' risks a comma splice, but an introductory dependent clause would make it correct.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L41": {
+    "reject_first": "B",
+    "why": "'listing' cannot be a main verb, though it could head a participial phrase.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L42": {
+    "reject_first": "D",
+    "why": "Number/tense choice depends entirely on the hidden subject and time frame; every option is grammatical in some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L43": {
+    "reject_first": "B",
+    "why": "Number/tense choice depends entirely on the hidden subject and time frame; every option is grammatical in some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L44": {
+    "reject_first": "C",
+    "why": "Number/tense choice depends entirely on the hidden subject and time frame; every option is grammatical in some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L45": {
+    "reject_first": "D",
+    "why": "Number/tense choice depends entirely on the hidden subject and time frame; every option is grammatical in some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L46": {
+    "reject_first": "C",
+    "why": "Number/tense choice depends entirely on the hidden subject and time frame; every option is grammatical in some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L47": {
+    "reject_first": "B",
+    "why": "Expletive 'there was a sprint' usually leaves a modifier dangling, but the modifier is hidden.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L48": {
+    "reject_first": "B",
+    "why": "Number/tense choice depends entirely on the hidden subject and time frame; every option is grammatical in some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L49": {
+    "reject_first": "C",
+    "why": "Number/tense choice depends entirely on the hidden subject and time frame; every option is grammatical in some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L50": {
+    "reject_first": "D",
+    "why": "A colon before 'that' rarely fits, though a demonstrative 'that' opening an explanation could.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L51": {
+    "reject_first": "D",
+    "why": "A comma before what may be a new clause risks a splice, but context decides.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L52": {
+    "reject_first": "B",
+    "why": "Number/tense choice depends entirely on the hidden subject and time frame; every option is grammatical in some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L53": {
+    "reject_first": "C",
+    "why": "'having' cannot be a main verb, though it could head a participial phrase.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L54": {
+    "reject_first": "D",
+    "why": "A semicolon before 'and' is rarely correct, though it can separate items in a complex series.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L55": {
+    "reject_first": "D",
+    "why": "Number/tense choice depends entirely on the hidden subject and time frame; every option is grammatical in some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L56": {
+    "reject_first": "B",
+    "why": "'failure, being' is a wordy participle, but it is not ungrammatical in every sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L57": {
+    "reject_first": "D",
+    "why": "'modeling' cannot be a main verb, though it could follow a verb like 'start' or be a gerund.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L58": {
+    "reject_first": "C",
+    "why": "Number/tense choice depends entirely on the hidden subject and time frame; every option is grammatical in some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L59": {
+    "reject_first": "C",
+    "why": "Number/tense choice depends entirely on the hidden subject and time frame; every option is grammatical in some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L60": {
+    "reject_first": "A",
+    "why": "Number/tense choice depends entirely on the hidden subject and time frame; every option is grammatical in some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L61": {
+    "reject_first": "D",
+    "why": "A sentence cannot begin with lowercase 'however' after a period.",
+    "certain": true,
+    "confident_rejects": [
+      "D"
+    ]
+  },
+  "L62": {
+    "reject_first": "C",
+    "why": "Number/tense choice depends entirely on the hidden subject and time frame; every option is grammatical in some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L63": {
+    "reject_first": "D",
+    "why": "Number/tense choice depends entirely on the hidden subject and time frame; every option is grammatical in some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L64": {
+    "reject_first": "A",
+    "why": "'so as' is likely an incomplete or wordy construction, but 'so as to' could follow.",
+    "certain": false,
+    "confident_rejects": []
+  }
+}

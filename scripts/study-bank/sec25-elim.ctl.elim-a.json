@@ -1,0 +1,392 @@
+{
+  "L01": {
+    "reject_first": "A",
+    "why": "A lone comma before 'in 1855' with none after looks unbalanced, but the sentence could continue so it is correct.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L02": {
+    "reject_first": "A",
+    "why": "A semicolon before 'that the' needs an independent clause, which a noun-clause subject could still supply.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L03": {
+    "reject_first": "A",
+    "why": "'those of a seal's' looks like a double possessive, but a following noun (e.g. 'seal's pup') could make it correct.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L04": {
+    "reject_first": "A",
+    "why": "'hour nevertheless,' with the adverb unpunctuated before it looks off, but some sentence could still license it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L05": {
+    "reject_first": "C",
+    "why": "A bare participle phrase cannot be a main verb, though it could fit a modifying phrase.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L06": {
+    "reject_first": "C",
+    "why": "Gerund-subject version is the most likely to dangle a modifier, but the hidden modifier is unknown.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L07": {
+    "reject_first": "C",
+    "why": "Depends on the hidden subject, tense, or structure; any option is licensable by some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L08": {
+    "reject_first": "C",
+    "why": "Depends on the hidden subject, tense, or structure; any option is licensable by some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L09": {
+    "reject_first": "C",
+    "why": "Depends on the hidden subject, tense, or structure; any option is licensable by some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L10": {
+    "reject_first": "C",
+    "why": "Singular verb with plural 'their' looks mismatched, but antecedents may differ.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L11": {
+    "reject_first": "A",
+    "why": "Depends on the hidden subject, tense, or structure; any option is licensable by some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L12": {
+    "reject_first": "B",
+    "why": "Commas separating subject 'trains' from verb 'arrive' cannot be correct.",
+    "certain": true,
+    "confident_rejects": [
+      "B"
+    ]
+  },
+  "L13": {
+    "reject_first": "C",
+    "why": "Comma before 'after sunset the' creates a splice-like break, though a sentence could license it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L14": {
+    "reject_first": "C",
+    "why": "'there' is rarely the pronoun required, but some sentence could need the adverb.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L15": {
+    "reject_first": "D",
+    "why": "A colon after 'crust' needs a complete preceding clause, which may exist.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L16": {
+    "reject_first": "A",
+    "why": "'and even after' shifts meaning, but some sentence could need it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L17": {
+    "reject_first": "B",
+    "why": "'being a set' cannot be a main verb, though it could fit a modifying phrase.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L18": {
+    "reject_first": "A",
+    "why": "'its'' is not a word in English.",
+    "certain": true,
+    "confident_rejects": [
+      "A"
+    ]
+  },
+  "L19": {
+    "reject_first": "D",
+    "why": "A semicolon after 'cities' needs independent clauses on both sides, which may exist.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L20": {
+    "reject_first": "A",
+    "why": "Nonparallel list ('in the Levant, the Aegean, and in Andalusia') is likely wrong, but certainty is not possible without the sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L21": {
+    "reject_first": "D",
+    "why": "Passive subjunctive is least likely, but a 'required that' frame could license it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L22": {
+    "reject_first": "C",
+    "why": "Future perfect is least likely, but tense depends on the hidden context.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L23": {
+    "reject_first": "A",
+    "why": "'design ... were able' mismatches number, though a subjunctive frame could license it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L24": {
+    "reject_first": "B",
+    "why": "A dash before 'were' needs an opening dash, which the hidden sentence may contain.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L25": {
+    "reject_first": "C",
+    "why": "'he should never close with' is wordy, but some sentence could need a clause.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L26": {
+    "reject_first": "A",
+    "why": "'which the' would need a relative-clause structure the sentence may supply.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L27": {
+    "reject_first": "D",
+    "why": "Expletive 'there is less energy' is least likely to fit a modifier, but it is not impossible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L28": {
+    "reject_first": "B",
+    "why": "Depends on the hidden subject, tense, or structure; any option is licensable by some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L29": {
+    "reject_first": "A",
+    "why": "Semicolon before 'that' needs an independent clause after, which a noun-clause subject could supply.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L30": {
+    "reject_first": "B",
+    "why": "Singular verb with plural 'their' looks mismatched, but antecedents may differ.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L31": {
+    "reject_first": "A",
+    "why": "A comma before 'are held' would have to close a comma pair the sentence may contain.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L32": {
+    "reject_first": "A",
+    "why": "No punctuation between 'kiln' and 'the' looks least likely, but some structure could allow it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L33": {
+    "reject_first": "D",
+    "why": "'together being' cannot be a main verb, though it could fit an absolute phrase.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L34": {
+    "reject_first": "D",
+    "why": "Depends on the hidden subject, tense, or structure; any option is licensable by some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L35": {
+    "reject_first": "B",
+    "why": "'would have damped out' is active where passive seems needed, but the subject is hidden.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L36": {
+    "reject_first": "B",
+    "why": "Depends on the hidden subject, tense, or structure; any option is licensable by some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L37": {
+    "reject_first": "A",
+    "why": "Depends on the hidden subject, tense, or structure; any option is licensable by some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L38": {
+    "reject_first": "D",
+    "why": "Commas around 'by then' before a new clause look like a splice, though a preceding subordinate clause could license it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L39": {
+    "reject_first": "B",
+    "why": "Depends on the hidden modifier; 'critics' seems least likely to be modified, a weak guess.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L40": {
+    "reject_first": "D",
+    "why": "'cools, a seed crystal' risks a comma splice, but a preceding subordinate clause could license it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L41": {
+    "reject_first": "B",
+    "why": "A participle cannot be a main verb, but it could fit a modifying phrase.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L42": {
+    "reject_first": "D",
+    "why": "A semicolon needs independent clauses on both sides, which may exist.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L43": {
+    "reject_first": "A",
+    "why": "A semicolon needs independent clauses on both sides, which may exist.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L44": {
+    "reject_first": "C",
+    "why": "Depends on the hidden subject, tense, or structure; any option is licensable by some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L45": {
+    "reject_first": "D",
+    "why": "Depends on the hidden subject, tense, or structure; any option is licensable by some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L46": {
+    "reject_first": "C",
+    "why": "Depends on the hidden subject, tense, or structure; any option is licensable by some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L47": {
+    "reject_first": "B",
+    "why": "Expletive 'there was a sprint' rarely fits a dangling-modifier fix, but it is not impossible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L48": {
+    "reject_first": "B",
+    "why": "Depends on the hidden subject, tense, or structure; any option is licensable by some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L49": {
+    "reject_first": "C",
+    "why": "Depends on the hidden subject, tense, or structure; any option is licensable by some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L50": {
+    "reject_first": "D",
+    "why": "A colon before 'that' needs a complete preceding clause, which may exist.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L51": {
+    "reject_first": "B",
+    "why": "A participle followed by a semicolon cannot end an independent clause, though structure is hidden.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L52": {
+    "reject_first": "B",
+    "why": "Depends on the hidden subject, tense, or structure; any option is licensable by some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L53": {
+    "reject_first": "C",
+    "why": "'having' cannot be a main verb, but it could fit a modifying phrase.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L54": {
+    "reject_first": "D",
+    "why": "A semicolon before 'and in' is rarely correct, but some list structure could license it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L55": {
+    "reject_first": "D",
+    "why": "Depends on the hidden subject, tense, or structure; any option is licensable by some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L56": {
+    "reject_first": "B",
+    "why": "'failure, being' is wordy, but some sentence could license it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L57": {
+    "reject_first": "D",
+    "why": "'modeling' cannot be a main verb, but it could fit a phrase.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L58": {
+    "reject_first": "C",
+    "why": "Future perfect is least likely, but tense depends on hidden context.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L59": {
+    "reject_first": "C",
+    "why": "Depends on the hidden subject, tense, or structure; any option is licensable by some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L60": {
+    "reject_first": "A",
+    "why": "Active 'transports' may lack an object, but the hidden sentence may supply one.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L61": {
+    "reject_first": "D",
+    "why": "A lowercase word after a period cannot be correct.",
+    "certain": true,
+    "confident_rejects": [
+      "D"
+    ]
+  },
+  "L62": {
+    "reject_first": "C",
+    "why": "Depends on the hidden subject, tense, or structure; any option is licensable by some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L63": {
+    "reject_first": "D",
+    "why": "A semicolon needs independent clauses on both sides, which may exist.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L64": {
+    "reject_first": "A",
+    "why": "'so as' is a fragmentary connector, but some sentence could license it.",
+    "certain": false,
+    "confident_rejects": []
+  }
+}
