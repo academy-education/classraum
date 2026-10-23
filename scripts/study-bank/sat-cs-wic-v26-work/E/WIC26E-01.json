@@ -24,10 +24,10 @@
   "worlds": [
     {
       "key": "memory",
-      "passage": "In 1871 the fishermen of a small harbor village on a rocky coast pooled their savings to open a boatyard. From its first keel, the yard wrote down each hull's timber, builder, and buyer, and added every later repair, sale, and wreck. When two families quarreled over a boat, or a buyer wanted to know what a secondhand hull had been through, they walked to the yard to look it up. By 1921 its books held the life of nearly every boat on that coast. Looking back on its first fifty years, one historian argued that the yard had served the coast above all as its ______.",
+      "passage": "In 1871 the fishermen of a small harbor village on a rocky coast pooled their savings to open a boatyard. From its first keel, the yard wrote down each hull's timber, builder, and buyer, and added every later repair, sale, and change of name. Families quarreling over a boat, and buyers judging a secondhand hull, walked to the yard to look it up. By 1921 old fishermen up and down the coast were sending their grandsons there to learn which boats their own fathers had sailed. Looking back on its first fifty years, one historian argued that the yard had served the coast above all as its ______.",
       "shape": "method and purpose",
       "key_from_one_sentence": false,
-      "explanation": "The yard recorded each boat's whole history and the coast came to it to recall that history, so it served as the coast's \"memory.\" \"Lender\" fails because buyers came to consult records, not to borrow; \"insurer\" fails because the yard only recorded wrecks and is never said to replace a lost boat; \"incubator\" fails because nothing new grows out of the yard and leaves it: the passage describes stored records, not people or businesses it nurtured.",
+      "explanation": "The yard kept each boat's whole history, and the coast came to it to recall that history, even across generations, so it served as the coast's \"memory.\" \"Lender\" fails because people came to the yard to consult records, not to borrow; \"insurer\" fails because nothing is said about covering anyone's losses; \"incubator\" fails because nothing new grows out of the yard and leaves it: the grandsons come to learn the past, not a trade.",
       "kills": {
         "lender": {
           "type": "logic",
@@ -36,13 +36,13 @@
         },
         "insurer": {
           "type": "logic",
-          "quote": "added every later repair, sale, and wreck",
-          "why": "wrecks are entered as part of a hull's record; nothing says the yard paid for or replaced a lost boat"
+          "quote": "repair, sale, and change of name",
+          "why": "the yard records what happened to each hull; nothing says it paid for any loss"
         },
         "incubator": {
           "type": "logic",
-          "quote": "its books held the life of nearly every boat",
-          "why": "the yard's role is to hold the coast's past, not to raise up new yards or trades that then go out on their own"
+          "quote": "which boats their own fathers had sailed",
+          "why": "the grandsons come to recover family history, not to be trained and sent out to found something new"
         }
       }
     },

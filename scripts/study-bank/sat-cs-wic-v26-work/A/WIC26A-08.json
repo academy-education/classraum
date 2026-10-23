@@ -48,20 +48,20 @@
     },
     {
       "key": "rudder",
-      "passage": "From 1880 to 1930 the weekly paper of a small river city carried an unsigned column on its front page. Its author reviewed each measure on the city council's agenda in the week before the vote, ending every review with a recommendation. Council minutes show that of the roughly six hundred measures he reviewed in those years, all but a few dozen passed or failed as he had advised, among them the bridge, the waterworks and the new school. One historian of the city calls the column, over the fifty years it ran, the city's ______.",
+      "passage": "From 1880 to 1930 the weekly paper of a small river city carried an unsigned column on its front page. In weeks when the city council had a vote coming, its author reviewed each measure and ended with one word, \"yes\" or \"no\"; in other weeks the column did not appear. Diaries from the period show councillors and their families reading the column before every vote, and of some six hundred measures in those years, among them the bridge, the waterworks and the new school, only a few dozen went against that word. One historian of the city calls the column, over the fifty years it ran, the city's ______.",
       "shape": "comparison of two cases",
       "key_from_one_sentence": false,
-      "explanation": "The council's votes on nearly every measure followed the column's advice, from the bridge to the school, so the column was the city's \"rudder,\" steering its course. \"Portal\" fails because the column dealt with the city's own business, not news from outside. \"Ritual\" fails because its reviews changed with each agenda and had real effects. \"Rampart\" fails because the column directed the city's choices rather than defending it from an outside threat.",
+      "explanation": "Councillors waited for the column's verdict, and nearly every measure went the way it said, so the column was the city's \"rudder,\" steering its course. \"Portal\" fails because the column dealt with the city's own business, not news from outside. \"Ritual\" fails because it appeared only when a vote was due and mattered for its verdicts. \"Rampart\" fails because the column directed the city's choices rather than defending it from an outside threat.",
       "kills": {
         "portal": {
           "type": "logic",
-          "quote": "each measure on the city council's agenda",
+          "quote": "reviewed each measure",
           "why": "the column dealt with local decisions, not with bringing in news of the wider world"
         },
         "ritual": {
           "type": "logic",
-          "quote": "passed or failed as he had advised",
-          "why": "the column mattered for its effect on votes, not as a repeated custom"
+          "quote": "in other weeks the column did not appear",
+          "why": "the column ran only when a vote was due, so it was no fixed, repeated observance"
         },
         "rampart": {
           "type": "logic",
@@ -96,10 +96,10 @@
     },
     {
       "key": "rampart",
-      "passage": "From 1880 to 1930 the weekly paper of a small river city carried an unsigned column on its front page. Three times in those years the provincial government proposed merging the city into the larger town across the river, and each time the column printed weekly attacks on the plan along with the names of residents who had signed petitions against it, and diaries from the period show whole families signing together. Each proposal was withdrawn within a year, and the city kept its own council until 1931. One historian of the city calls the column, over the fifty years it ran, the city's ______.",
+      "passage": "From 1880 to 1930 the weekly paper of a small river city carried an unsigned column on its front page. Three times the provincial government proposed merging the city into the larger town across the river. Weekly until the plan was dropped, the column listed the clauses of the city's 1790 charter that the merger would break, and the province's minutes cite those lists in withdrawing each plan. Diaries from the period show families untroubled by each plan, and the city kept its own council until 1931, a year after the column ended. One historian of the city calls the column, over the fifty years it ran, the city's ______.",
       "shape": "process sequence",
       "key_from_one_sentence": false,
-      "explanation": "Each time the province tried to absorb the city, the column led the resistance until the plan was dropped, and the city lost its council only after the column ended, so the column was the city's \"rampart.\" \"Portal\" fails because the column worked to keep an outside power out, not to bring the world in. \"Ritual\" fails because its attacks responded to specific threats rather than repeating a custom. \"Rudder\" fails because the column is shown resisting a plan imposed from outside, not guiding the city's own choices.",
+      "explanation": "Each time the province tried to absorb the city, the column's lists of broken charter clauses turned the plan back, families felt secure behind it, and the city lost its council only after the column ended, so the column was the city's \"rampart.\" \"Portal\" fails because the column worked to keep an outside power out. \"Ritual\" fails because its campaigns answered specific threats. \"Rudder\" fails because the column acted against plans imposed from outside rather than guiding the city's own choices.",
       "kills": {
         "portal": {
           "type": "logic",
@@ -108,13 +108,13 @@
         },
         "ritual": {
           "type": "logic",
-          "quote": "Each proposal was withdrawn within a year",
-          "why": "the column's campaigns had concrete effects on real threats, not the empty repetition of a custom"
+          "quote": "cite those lists in withdrawing each plan",
+          "why": "the column's campaigns answered specific threats and had concrete effects, not the empty repetition of a custom"
         },
         "rudder": {
           "type": "logic",
-          "quote": "printed weekly attacks on the plan",
-          "why": "the column's role was to repel a plan from outside, not to set the direction of the city's own affairs"
+          "quote": "the province's minutes cite those lists",
+          "why": "the column worked on the province's plans, repelling them, rather than setting the direction of the city's own affairs"
         }
       }
     }

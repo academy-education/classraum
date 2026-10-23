@@ -24,19 +24,19 @@
   "worlds": [
     {
       "key": "meticulous",
-      "passage": "From 1878 to 1901 a single inspector examined the cargo landed at a small river port for the customs service. He opened every crate rather than a sample, counted its contents against the ship's papers, and listed even the smallest difference, down to a missing spoon or a bolt of cloth a yard short. Captains complained that unloading at his port took twice as long as at the larger ports on the river, and his successor found the reports accurate to the last item. Reading his reports a century later, one historian described the inspector as ______.",
+      "passage": "From 1878 to 1901 a single inspector examined the cargo landed at a small river port for the customs service. Captains complained that unloading at his port took twice as long as at the larger ports on the river. His reports note differences between the crates and the ships' papers as small as a bolt of cloth a yard short, and when his successor checked twenty years of them against the shippers' own invoices, he found them accurate to the last item. Reading his reports a century later, one historian described the inspector as ______.",
       "shape": "definition by example",
       "key_from_one_sentence": false,
-      "explanation": "He checked every crate item by item and recorded the slightest discrepancy, so he was \"meticulous.\" \"Naive\" fails because he trusted nothing on the ship's papers without counting it himself; \"lenient\" fails because the passage reports how closely he checked, not how mildly he punished; \"incorruptible\" fails because nothing concerns bribes or attempts to sway him.",
+      "explanation": "Slow unloading, tiny discrepancies recorded, and reports later found exact to the last item together show he was \"meticulous.\" \"Naive\" fails because he checked the crates against the ships' papers rather than accepting them; \"lenient\" fails because the passage reports how closely he checked, not how mildly he punished; \"incorruptible\" fails because nothing concerns bribes or attempts to sway him.",
       "kills": {
         "naive": {
           "type": "logic",
-          "quote": "counted its contents against the ship's papers",
-          "why": "he verified every declaration rather than accepting it"
+          "quote": "differences between the crates and the ships' papers",
+          "why": "he compared goods with declarations rather than taking them on trust"
         },
         "lenient": {
           "type": "logic",
-          "quote": "listed even the smallest difference",
+          "quote": "as small as a bolt of cloth a yard short",
           "why": "the passage is about the thoroughness of his checking, not about mild treatment of offenders"
         },
         "incorruptible": {
@@ -48,72 +48,72 @@
     },
     {
       "key": "lenient",
-      "passage": "From 1878 to 1901 a single inspector examined the cargo landed at a small river port for the customs service. His reports show him finding smuggled tobacco or brandy in the crates of about one ship in ten, close to the rate at the larger ports on the river. He fined captains caught for the first time a few shillings, far below what the law allowed, and let those who admitted the offense keep their goods once they had paid the duty. Reading his reports a century later, one historian described the inspector as ______.",
+      "passage": "From 1878 to 1901 a single inspector examined the cargo landed at a small river port for the customs service. His reports show him finding smuggled tobacco or brandy in the crates about as often as the inspectors at the larger ports on the river. Captains caught at those ports paid the full penalty the law set. Captains caught at his port usually paid only the duty they had tried to avoid, and many of them were caught there again. Reading his reports a century later, one historian described the inspector as ______.",
       "shape": "comparison of two cases",
       "key_from_one_sentence": false,
-      "explanation": "He caught smugglers as often as other ports did but punished them far more mildly than the law allowed, so he was \"lenient.\" \"Naive\" fails because he found smuggled goods at the normal rate and so was not being fooled; \"meticulous\" fails because his catch rate was merely ordinary and nothing shows unusual thoroughness; \"incorruptible\" fails because the passage concerns his penalties, not any refusal of bribes.",
+      "explanation": "He detected smuggling as often as other inspectors but let offenders off with only the duty owed, so he was \"lenient.\" \"Naive\" fails because he found smuggled goods at the normal rate and so was not being fooled; \"meticulous\" fails because his detection rate was merely ordinary; \"incorruptible\" fails because the passage concerns his penalties, not any refusal of bribes.",
       "kills": {
         "naive": {
           "type": "logic",
-          "quote": "close to the rate at the larger ports",
-          "why": "he detected smuggling as well as other inspectors, so he was not being taken in"
+          "quote": "finding smuggled tobacco or brandy",
+          "why": "he regularly uncovered smuggled goods, so he was not being taken in"
         },
         "meticulous": {
           "type": "logic",
-          "quote": "about one ship in ten",
-          "why": "an ordinary detection rate shows ordinary care, not exceptional precision"
+          "quote": "about as often as the inspectors",
+          "why": "an ordinary detection rate, no better than other ports, shows ordinary care, not exceptional precision"
         },
         "incorruptible": {
           "type": "logic",
-          "quote": "far below what the law allowed",
+          "quote": "paid only the duty they had tried to avoid",
           "why": "what distinguishes him is mild penalties, not resistance to bribery"
         }
       }
     },
     {
       "key": "naive",
-      "passage": "From 1878 to 1901 a single inspector examined the cargo landed at a small river port for the customs service. He took each captain's word for what the crates held, and smugglers soon learned to mark crates of brandy as machine parts and crates of tobacco as books. His reports record almost no seizures in twenty-three years, and two captains later wrote in their memoirs of how easily his port could be worked. Reading his reports a century later, one historian described the inspector as ______.",
+      "passage": "From 1878 to 1901 a single inspector examined the cargo landed at a small river port for the customs service. He took each captain's word for what the crates held, and smugglers soon learned to mark crates of brandy as machine parts and crates of tobacco as books. On the rare days a crate split open on the quay, he fined its captain the full amount the law allowed and wrote in his report that he could not imagine how such a thing had happened. Reading his reports a century later, one historian described the inspector as ______.",
       "shape": "cause and mechanism",
       "key_from_one_sentence": false,
-      "explanation": "He believed what captains told him, and smugglers exploited that trust with false labels, so he was \"naive.\" \"Meticulous\" fails because he did not check the crates against their labels; \"lenient\" fails because he caught almost no one and so had no one to treat mildly; \"incorruptible\" fails because smugglers did not need to buy him: they simply deceived him.",
+      "explanation": "He believed what captains told him, smugglers exploited that trust with false labels, and even caught red-handed he could not see how it was done, so he was \"naive.\" \"Lenient\" fails because when he did catch a captain he imposed the full fine; \"meticulous\" fails because he did not check the crates against their labels; \"incorruptible\" fails because smugglers did not need to buy him: they simply deceived him.",
       "kills": {
+        "lenient": {
+          "type": "logic",
+          "quote": "the full amount the law allowed",
+          "why": "he punished to the limit when he caught anyone, the reverse of mild treatment"
+        },
         "meticulous": {
           "type": "logic",
           "quote": "took each captain's word",
           "why": "he accepted declarations instead of examining the goods"
         },
-        "lenient": {
-          "type": "logic",
-          "quote": "almost no seizures in twenty-three years",
-          "why": "leniency requires catching offenders and punishing them lightly; he caught almost none"
-        },
         "incorruptible": {
           "type": "logic",
-          "quote": "how easily his port could be worked",
+          "quote": "mark crates of brandy as machine parts",
           "why": "the smugglers got through by deception, so his honesty toward bribes is never at issue"
         }
       }
     },
     {
       "key": "incorruptible",
-      "passage": "From 1878 to 1901 a single inspector examined the cargo landed at a small river port for the customs service. Merchants' letters complain that the gifts of wine and banknotes that eased crates through other ports on the river came back to them from his, and he sent each such offer, with the giver's name, to his superiors. Several captains who had made offers were prosecuted on his reports. Reading his reports a century later, one historian described the inspector as ______.",
+      "passage": "From 1878 to 1901 a single inspector examined the cargo landed at a small river port for the customs service. Merchants' letters show that gifts of wine and banknotes eased crates through the other ports on the river. The same letters show such gifts to his port stopping within a year of his arrival, soon after two captains who had sent them were prosecuted on his reports. Reading his reports a century later, one historian described the inspector as ______.",
       "shape": "comparison of two cases",
       "key_from_one_sentence": false,
-      "explanation": "He returned the gifts that bought easy passage elsewhere and reported those who offered them, so he was \"incorruptible.\" \"Lenient\" fails because he turned the givers over for prosecution; \"naive\" fails because he recognized the gifts for what they were; \"meticulous\" fails because the passage concerns his refusal of bribes, not the thoroughness of his inspections.",
+      "explanation": "Gifts that bought easy passage elsewhere stopped at his port once captains who sent them were prosecuted on his evidence, so he was \"incorruptible.\" \"Lenient\" fails because he turned the givers over for prosecution; \"naive\" fails because he recognized the gifts for what they were; \"meticulous\" fails because the passage concerns how he answered bribes, not how thoroughly he inspected cargo.",
       "kills": {
         "lenient": {
-          "type": "explicit",
+          "type": "logic",
           "quote": "prosecuted on his reports",
           "why": "he had offenders prosecuted, the reverse of letting them off lightly"
         },
         "naive": {
           "type": "logic",
-          "quote": "with the giver's name, to his superiors",
-          "why": "reporting the gifts as offers shows he understood exactly what they were"
+          "quote": "gifts to his port stopping",
+          "why": "merchants stopped because he saw the gifts as bribes and acted on it"
         },
         "meticulous": {
           "type": "logic",
-          "quote": "eased crates through other ports",
+          "quote": "eased crates through the other ports",
           "why": "what sets him apart from other ports is his refusal of payment, not careful counting"
         }
       }

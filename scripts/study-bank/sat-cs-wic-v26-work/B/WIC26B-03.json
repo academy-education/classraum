@@ -24,97 +24,97 @@
   "worlds": [
     {
       "key": "salvaged",
-      "passage": "When a novelist died in 1931, she left the manuscript of her last novel, a story of dockworkers' families set in the 1880s, to her longtime editor. A burst pipe had soaked the trunk it lay in, and many pages had run into gray, blurred sheets. The editor dried and separated them one at a time, had the faded lines photographed under ultraviolet light, and copied out nearly every word. The novel was printed in 1934, with the few lines that could not be read marked by gaps. In a study published decades later, one scholar argued that this editor had ______ the book.",
+      "passage": "When a novelist died in 1931, she left the manuscript of her last novel, a story of dockworkers' families set in the 1880s, to her longtime editor. A burst pipe had soaked the trunk it lay in, and most of its pages had run gray and blurred. The editor spent the next three years on those pages alone. A scholar who later set the book printed in 1934 beside the novelist's letters, which describe it scene by scene, found nearly every scene there, with a few short gaps where lines were lost. In a study published decades later, one scholar argued that this editor had ______ the book.",
       "shape": "process sequence",
       "key_from_one_sentence": false,
-      "explanation": "The manuscript had been badly water-damaged, and the editor recovered almost every word before printing it, so the editor \"salvaged\" the book. \"Sanitized\" fails because the editor removed nothing by choice; only unreadable lines are missing. \"Shelved\" fails because the editor spent the three years recovering the text and then printed it. \"Updated\" fails because the editor's work was to recover what the novelist wrote, not to change it.",
+      "explanation": "The pages were ruined when found, the editor worked on them for three years, and the printed book turned out to contain nearly every scene the novelist described, so the editor \"salvaged\" the book. \"Sanitized\" fails because nearly every scene survives; nothing was cut for propriety. \"Shelved\" fails because the three years went into work on the pages, after which the book was printed. \"Updated\" fails because the only differences from the novelist's plan are lines lost to the water.",
       "kills": {
         "sanitized": {
           "type": "logic",
-          "quote": "copied out nearly every word",
-          "why": "the editor tried to keep every word, so nothing was cut to make the book more respectable"
+          "quote": "found nearly every scene there",
+          "why": "the book matches the novelist's own description, so nothing was cut to make it respectable"
         },
         "shelved": {
           "type": "logic",
-          "quote": "dried and separated them one at a time",
-          "why": "the gap before printing was spent recovering the text, not setting the book aside"
+          "quote": "spent the next three years on those pages alone",
+          "why": "the delay was spent working on the text, not leaving it aside"
         },
         "updated": {
           "type": "logic",
-          "quote": "the few lines that could not be read",
-          "why": "the only differences from the manuscript are losses from damage, not changes to bring the book up to date"
+          "quote": "a few short gaps where lines were lost",
+          "why": "the only departures from the novel are losses from damage, not changes that bring it up to date"
         }
       }
     },
     {
       "key": "sanitized",
-      "passage": "When a novelist died in 1931, she left the manuscript of her last novel, a story of dockworkers' families set in the 1880s, to her longtime editor. In the manuscript, which survives intact among the editor's papers, a daughter runs up card debts, the strikers curse their foreman at every meeting, and one chapter is set in a tavern. The book the editor printed in 1932 keeps every chapter in order; in it the daughter owes a dressmaker, the strikers call their foreman \"sir,\" and that chapter is set in a tea shop. In a study published decades later, one scholar argued that this editor had ______ the book.",
+      "passage": "When a novelist died in 1931, she left the manuscript of her last novel, a story of dockworkers' families set in the 1880s, to her longtime editor. In the manuscript, which survives intact in the editor's papers, a daughter runs up card debts, the strikers curse their foreman, and one chapter is set in a tavern. The book the editor printed the following spring keeps every chapter and every character; in it the daughter owes a dressmaker, the strikers call their foreman \"sir,\" and that chapter is set in a tea shop. In a study published decades later, one scholar argued that this editor had ______ the book.",
       "shape": "comparison of two cases",
       "key_from_one_sentence": false,
-      "explanation": "Only by setting the manuscript beside the book does the pattern appear: every change swaps something a reader of the time might find improper (gambling, cursing, a tavern) for something respectable, so the editor \"sanitized\" the book. \"Salvaged\" fails because the manuscript was intact and needed no rescue. \"Shelved\" fails because the book was printed the year after the novelist died. \"Updated\" fails because the replacements belong to the same period as the originals; nothing was moved closer to the present.",
+      "explanation": "Only by setting the manuscript beside the book does the pattern appear: every change swaps something a reader of the time might find improper (gambling, cursing, a tavern) for something respectable, so the editor \"sanitized\" the book. \"Salvaged\" fails because the manuscript was intact and needed no rescue. \"Shelved\" fails because the book was printed the spring after the novelist died. \"Updated\" fails because the replacements belong to the same period as the originals; nothing was moved closer to the present.",
       "kills": {
         "salvaged": {
           "type": "logic",
-          "quote": "survives intact among the editor's papers",
+          "quote": "survives intact in the editor's papers",
           "why": "the manuscript was intact, so the editor's work was altering it, not rescuing it"
         },
         "shelved": {
-          "type": "logic",
-          "quote": "printed in 1932",
+          "type": "explicit",
+          "quote": "printed the following spring",
           "why": "the book was published at once rather than set aside"
         },
         "updated": {
           "type": "logic",
-          "quote": "the daughter owes a dressmaker",
-          "why": "a dressmaker and a tea shop are as much of the 1880s as a card table and a tavern; the changes alter propriety, not period"
+          "quote": "keeps every chapter and every character",
+          "why": "the story and its people stay in the 1880s; a dressmaker and a tea shop belong to that period as much as a card table and a tavern, so only propriety changed"
         }
       }
     },
     {
       "key": "shelved",
-      "passage": "When a novelist died in 1931, she left the manuscript of her last novel, a story of dockworkers' families set in the 1880s, to her longtime editor. The editor wrote to her family that it was the best book she had written, and over the next twenty years told everyone who asked about it that it needed more time. The editor's press printed four other dockside novels in those years. The manuscript turned up in a desk drawer after the editor's death, without a single pencil mark, and was printed in 1953. In a study published decades later, one scholar argued that this editor had ______ the book.",
+      "passage": "When a novelist died in 1931, she left the manuscript of her last novel, a story of dockworkers' families set in the 1880s, to her longtime editor. The editor told her family it was her best book, and for twenty years told anyone who asked that it needed more time. The editor's press printed four other dockside novels in those years. The editor's diaries mention the manuscript only once, when it was moved with a desk to a new office, and it was printed from that desk in 1953, after the editor's death. In a study published decades later, one scholar argued that this editor had ______ the book.",
       "shape": "before and after",
       "key_from_one_sentence": false,
-      "explanation": "The editor praised the novel, kept it unprinted and untouched for twenty years, and published rival books meanwhile, so the editor \"shelved\" the book. \"Salvaged\" fails because the manuscript faced no danger the editor rescued it from. \"Sanitized\" fails because the editor never marked a word of it. \"Updated\" fails for the same reason: the text was printed exactly as the novelist left it.",
+      "explanation": "The editor praised the book, kept putting off its publication for twenty years while printing rivals, and by the diaries' account never worked on it, so the editor \"shelved\" the book. \"Salvaged\" fails because the manuscript faced no danger. \"Sanitized\" and \"updated\" both fail because the editor never worked on the text at all: it went from the desk to the printer after the editor's death.",
       "kills": {
         "salvaged": {
           "type": "logic",
-          "quote": "turned up in a desk drawer",
-          "why": "the manuscript was simply kept out of sight, not rescued from anything"
+          "quote": "moved with a desk to a new office",
+          "why": "the manuscript simply sat in a desk; there was no damage or loss to rescue it from"
         },
         "sanitized": {
-          "type": "explicit",
-          "quote": "without a single pencil mark",
-          "why": "the editor made no cuts at all"
+          "type": "logic",
+          "quote": "mention the manuscript only once",
+          "why": "in twenty years the editor recorded no work on the text, so nothing was cut"
         },
         "updated": {
           "type": "logic",
-          "quote": "told everyone who asked about it that it needed more time",
-          "why": "the editor did no work on the book in those years, so it was never brought up to date"
+          "quote": "printed from that desk in 1953, after the editor's death",
+          "why": "the text went to print untouched by the editor, so it was not brought up to date"
         }
       }
     },
     {
       "key": "updated",
-      "passage": "When a novelist died in 1931, she left the manuscript of her last novel, a story of dockworkers' families set in the 1880s, to her longtime editor. The editor printed it in 1932. In that edition horse carts have become trucks, the dockers earn the wages of 1932, and the closing strike follows the course of the great strike that readers still remembered. Every chapter of the manuscript is present in the printed book, which reviewers praised as a portrait of the present-day waterfront. In a study published decades later, one scholar argued that this editor had ______ the book.",
+      "passage": "When a novelist died in 1931, she left the manuscript of her last novel, a story of dockworkers' families set in the 1880s, to her longtime editor. The editor printed it in 1932. Its characters keep the names, quarrels, and fates the manuscript gives them, and every chapter is present. Reviewers, none of whom knew of the manuscript, praised the book as a faithful picture of the waterfront as they themselves knew it, down to the cranes and the closing strike, which ends, as the great strike of 1926 had, in the men's defeat. In a study published decades later, one scholar argued that this editor had ______ the book.",
       "shape": "method and purpose",
       "key_from_one_sentence": false,
-      "explanation": "Compared with a manuscript set in the 1880s, the printed book carries the trucks, wages, and strike of the 1930s, so the editor \"updated\" the book. \"Salvaged\" fails because nothing was lost or damaged that needed rescuing. \"Sanitized\" fails because every chapter was kept and only period details were changed. \"Shelved\" fails because the book was printed the year after the novelist died.",
+      "explanation": "The manuscript is set in the 1880s, yet reviewers in 1932 recognized the printed book as their own waterfront, down to its strike of 1926, while its characters and chapters are unchanged; combining these shows the editor moved the setting forward, so the editor \"updated\" the book. \"Salvaged\" fails because nothing was damaged or lost. \"Sanitized\" fails because the characters' quarrels and fates were kept. \"Shelved\" fails because the book was printed the year after the novelist died.",
       "kills": {
         "salvaged": {
           "type": "logic",
-          "quote": "horse carts have become trucks",
-          "why": "the editor's work was changing the details of an intact text, not rescuing a damaged one"
+          "quote": "every chapter is present",
+          "why": "an intact text was reworked, not rescued from damage"
         },
         "sanitized": {
           "type": "logic",
-          "quote": "Every chapter of the manuscript is present",
-          "why": "the editor changed details but removed no chapter or subject, so nothing was cleaned out"
+          "quote": "keep the names, quarrels, and fates",
+          "why": "the characters' conduct was left as written, so nothing was cleaned up"
         },
         "shelved": {
           "type": "logic",
           "quote": "printed it in 1932",
-          "why": "the editor published the book within a year rather than setting it aside"
+          "why": "the editor published within a year rather than setting the book aside"
         }
       }
     }

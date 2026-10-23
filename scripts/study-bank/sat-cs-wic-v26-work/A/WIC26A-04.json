@@ -24,20 +24,20 @@
   "worlds": [
     {
       "key": "obsolete",
-      "passage": "In 1712 a market town ordered every household to send one adult each spring to spend two days clearing the town's drainage ditches, or else to pay a fine of one shilling. In the 1850s the council laid covered brick drains beneath the streets, and the old ditches were filled in and built over. The rule was never repealed and still stands in the town's printed code, though the clerk last called the spring muster in 1858. By 1900, one historian observes, the ditch rule had become ______.",
+      "passage": "In 1712 a market town ordered every household to send one adult each spring to spend two days clearing the town's drainage ditches, or else to pay a fine of one shilling. In the 1850s the council laid covered brick drains beneath the streets to carry the water that had run in those open channels. The rule was never repealed and still stands in the town's printed code, the clerk's muster book has no entries after 1858, and the town's 1890 street plan shows rows of houses along the lines the channels once followed. By 1900, one historian observes, the ditch rule had become ______.",
       "shape": "before and after",
       "key_from_one_sentence": false,
-      "explanation": "The ditches the rule existed to clear were replaced by brick drains and built over, and the muster stopped, so the rule, though never repealed, had become \"obsolete.\" \"Onerous\" fails because no one was being made to do the work at all. \"Profitable\" fails because with no muster there was no fine to collect. \"Porous\" fails because the rule was not riddled with exemptions; it simply had nothing left to apply to.",
+      "explanation": "Brick drains took over the ditches' work, houses now stand where the channels ran, and no muster has been held since 1858, so the rule, though never repealed, had become \"obsolete.\" \"Onerous\" fails because no one was being made to do the work at all. \"Profitable\" fails because with no muster there was no fine to collect. \"Porous\" fails because the rule was not riddled with exemptions; it simply had nothing left to apply to.",
       "kills": {
         "onerous": {
           "type": "logic",
-          "quote": "last called the spring muster in 1858",
-          "why": "once the muster stopped, the rule burdened no one"
+          "quote": "the clerk's muster book has no entries after 1858",
+          "why": "no one was being summoned, so the rule burdened no one"
         },
         "profitable": {
           "type": "logic",
-          "quote": "the old ditches were filled in and built over",
-          "why": "with the ditches gone and no muster called, no one owed the duty or the fine, so the rule brought in nothing"
+          "quote": "rows of houses along the lines the channels once followed",
+          "why": "with the channels built over and no muster held, no one owed work or fine, so the rule brought in nothing"
         },
         "porous": {
           "type": "logic",
@@ -72,15 +72,15 @@
     },
     {
       "key": "profitable",
-      "passage": "In 1712 a market town ordered every household to send one adult each spring to spend two days clearing the town's drainage ditches, or else to pay a fine of one shilling. The fine stayed at one shilling while wages rose, and by the 1850s a shilling was less than half of what a laborer earned in a day. Nearly every household paid rather than send anyone, and the council hired crews to clear the ditches for a fraction of what it collected. By 1900, one historian observes, the ditch rule had become ______.",
+      "passage": "In 1712 a market town ordered every household to send one adult each spring to spend two days clearing the town's drainage ditches, or else to pay a fine of one shilling. The fine stayed at one shilling while wages rose, and by the 1850s a shilling was less than half of what a laborer earned in a day. By the 1880s the clerk's books show a shilling from nearly every household each spring, and the council paid hired crews to clear the ditches for a fraction of that sum. By 1900, one historian observes, the ditch rule had become ______.",
       "shape": "comparison of two cases",
       "key_from_one_sentence": false,
-      "explanation": "As wages rose the fixed fine became cheaper than a day's work, nearly everyone paid it, and the council cleared the ditches for less than it took in, so the rule had become \"profitable\" for the town. \"Obsolete\" fails because the ditches still had to be cleared and the rule still governed how that was paid for. \"Onerous\" fails because the fine had become a small sum. \"Porous\" fails because nearly every household still owed and paid; no one was excused.",
+      "explanation": "As wages rose the fixed fine became cheaper than a day's work, nearly every household paid it, and the council cleared the ditches for a fraction of the takings, so the rule had become \"profitable\" for the town. \"Obsolete\" fails because the ditches still had to be cleared and the rule still paid for that. \"Onerous\" fails because the fine had become a small sum. \"Porous\" fails because the rule still collected from nearly every household; no one was excused.",
       "kills": {
         "obsolete": {
           "type": "logic",
-          "quote": "hired crews to clear the ditches",
-          "why": "the ditches still needed clearing, and the rule's fines still funded it"
+          "quote": "paid hired crews to clear the ditches",
+          "why": "the ditches still needed clearing, and the rule's fines still paid for it"
         },
         "onerous": {
           "type": "logic",
@@ -89,27 +89,27 @@
         },
         "porous": {
           "type": "logic",
-          "quote": "Nearly every household paid",
-          "why": "the rule still reached nearly everyone; no exemptions let households slip through it"
+          "quote": "a shilling from nearly every household",
+          "why": "the rule still reached nearly every household; no group had been let out of it"
         }
       }
     },
     {
       "key": "porous",
-      "passage": "In 1712 a market town ordered every household to send one adult each spring to spend two days clearing the town's drainage ditches, or else to pay a fine of one shilling. Over the next century the council excused, one group at a time, members of the militia, shopkeepers on market days, anyone who kept a horse for hire, and anyone past fifty. By the 1890s fewer than one household in five still owed the duty, and the clerk's books show the ditches only partly cleared in most springs. By 1900, one historian observes, the ditch rule had become ______.",
+      "passage": "In 1712 a market town ordered every household to send one adult each spring to spend two days clearing the town's drainage ditches, or else to pay a fine of one shilling. Over the next century the council excused, one group at a time, members of the militia, shopkeepers on market days, anyone who kept a horse for hire, and anyone past fifty. By the 1890s the clerk's spring muster, still called every year, drew fewer than one household in five, and the clerk's books show the ditches only partly cleared in most springs. By 1900, one historian observes, the ditch rule had become ______.",
       "shape": "process sequence",
       "key_from_one_sentence": false,
-      "explanation": "Exemption after exemption let four households in five out of the duty, and the work stopped getting done; the rule had become \"porous.\" \"Obsolete\" fails because the ditches still existed and still needed clearing. \"Onerous\" fails because the remaining households did not take on the extra work; the ditches were simply left half-cleared. \"Profitable\" fails because the exempted owed neither work nor fine, so the rule brought in less, not more.",
+      "explanation": "Exemption after exemption let four households in five slip out of a duty that was still called every spring, and the work stopped getting done; the rule had become \"porous.\" \"Obsolete\" fails because the muster was still held for ditches that still needed clearing. \"Onerous\" fails because the remaining households did not take on the extra work; the ditches were simply left half-cleared. \"Profitable\" fails because the excused owed neither work nor fine.",
       "kills": {
         "obsolete": {
           "type": "logic",
-          "quote": "the ditches only partly cleared in most springs",
-          "why": "the ditches remained and still needed the work the rule was meant to supply"
+          "quote": "still called every year",
+          "why": "the rule was still being applied each spring to ditches that still needed clearing"
         },
         "onerous": {
           "type": "logic",
-          "quote": "fewer than one household in five still owed the duty",
-          "why": "the change is in how many owe the duty; the half-cleared ditches show the remaining households were not made to cover the others' share"
+          "quote": "the ditches only partly cleared in most springs",
+          "why": "the remaining households were not made to cover the others' share; the work was left undone"
         },
         "profitable": {
           "type": "logic",

@@ -24,10 +24,10 @@
   "worlds": [
     {
       "key": "launched",
-      "passage": "In 1974 a state commission published a report on the last dam on the river, which had stood for sixty years. No legislator, newspaper, or fishing club had ever proposed removing it, and the commission had been asked only to price repairs. Its final chapter went further and recommended taking the dam down. Within a year the legislature had held two hearings on removal, and the state's papers had printed hundreds of letters on both sides. In her history of the river, one journalist wrote that the report had ______ the debate over the dam.",
+      "passage": "In 1974 a state commission published a report on the last dam on the river, which had stood for sixty years. No legislator, newspaper, or fishing club had ever proposed removing it, and the commission had been asked only to price repairs. Its final chapter went further and recommended taking the dam down. Within a year the legislature had held its first hearings on the dam since it was built, and the state's papers had printed hundreds of letters on both sides of removal. In her history of the river, one journalist wrote that the report had ______ the debate over the dam.",
       "shape": "before and after",
       "key_from_one_sentence": false,
-      "explanation": "No one had proposed removal before the report recommended it, and argument on both sides followed, so the report \"launched\" the debate. \"Jolted\" fails because there was no existing, stalled debate to shake; \"legitimized\" fails because there was no dismissed position for the report to lend standing to, since no one had held one; \"muddied\" fails because the report made a single clear recommendation.",
+      "explanation": "No one had proposed removal before the report recommended it, and the first hearings and letters followed, so the report \"launched\" the debate. \"Jolted\" fails because there was no existing, stalled debate to shake; \"legitimized\" fails because no one had held the position the report raised, so there was no dismissed view to give standing to; \"muddied\" fails because the report made a single clear recommendation.",
       "kills": {
         "jolted": {
           "type": "logic",
@@ -37,7 +37,7 @@
         "legitimized": {
           "type": "logic",
           "quote": "asked only to price repairs",
-          "why": "removal was not a fringe view awaiting respect; it was not a view anyone held until the report raised it"
+          "why": "removal was not a fringe view awaiting respect; no one held it until the report raised it"
         },
         "muddied": {
           "type": "logic",
@@ -72,20 +72,20 @@
     },
     {
       "key": "legitimized",
-      "passage": "In 1974 a state commission published a report on the last dam on the river, which had stood for sixty years. For a decade a small anglers' club had argued for removal against the power company at county meetings, while the state's papers seldom printed its letters and legislators declined to hear its speakers. The commission, chaired by a retired judge, found removal both affordable and lawful. Over the following years the state's largest papers and several legislators came to treat removal as one serious option among others. In her history of the river, one journalist wrote that the report had ______ the debate over the dam.",
+      "passage": "In 1974 a state commission published a report on the last dam on the river, which had stood for sixty years. For a decade a small anglers' club had argued for removal against the power company at county meetings, while the state's papers seldom printed its letters and legislators declined to hear its speakers. The commission, chaired by a retired judge, found removal both affordable and lawful. The county meetings went on each spring much as before, and over the next decade editors and legislators began appearing among their speakers. In her history of the river, one journalist wrote that the report had ______ the debate over the dam.",
       "shape": "comparison of two cases",
       "key_from_one_sentence": false,
-      "explanation": "A position that papers and legislators had ignored became, after a respected commission endorsed it, a serious option, so the report \"legitimized\" the debate. \"Launched\" fails because the anglers and the power company had been arguing the question for a decade; \"jolted\" fails because the change came gradually over the following years, as acceptance, not as a sudden shock to a stalled process; \"muddied\" fails because the commission reached a clear finding.",
+      "explanation": "The same debate continued at the same pace, but people who had ignored the anglers' side now took part in it after a respected commission found removal workable, so the report \"legitimized\" the debate. \"Launched\" fails because the anglers and the power company had been arguing the question for a decade; \"jolted\" fails because the meetings went on much as before and the change came slowly over the next decade, not as a sudden shock; \"muddied\" fails because the commission reached a clear finding.",
       "kills": {
         "launched": {
           "type": "logic",
           "quote": "had argued for removal against the power company",
-          "why": "the two sides were already arguing the question for a decade before the report, so the debate was not begun by it"
+          "why": "the two sides were already arguing before the report, so it did not begin the debate"
         },
         "jolted": {
           "type": "logic",
-          "quote": "Over the following years",
-          "why": "the change is slow and is a change in how seriously removal was taken, not a sudden shake of a stalled debate"
+          "quote": "went on each spring much as before",
+          "why": "the debate kept its old rhythm; what changed slowly was who took part, not its pace"
         },
         "muddied": {
           "type": "logic",
@@ -96,10 +96,10 @@
     },
     {
       "key": "muddied",
-      "passage": "In 1974 a state commission published a report on the last dam on the river, which had stood for sixty years. Removal had been argued for a decade, with both sides citing a single engineering estimate of its cost. The commission offered three new estimates that differed tenfold and two incompatible counts of the salmon the river could support. Afterward each side quoted in the state's papers whichever figure suited it, and legislators, saying they could no longer tell what removal would cost, put off the vote they had scheduled. In her history of the river, one journalist wrote that the report had ______ the debate over the dam.",
+      "passage": "In 1974 a state commission published a report on the last dam on the river, which had stood for sixty years. Removal had been argued for a decade, with both sides citing a single engineering estimate of its cost. The commission offered three new estimates that differed tenfold and two incompatible counts of the salmon the river could support. Afterward each side quoted in the state's papers whichever figure suited it, and the legislature put off its scheduled vote until a fourth estimate could be made. In her history of the river, one journalist wrote that the report had ______ the debate over the dam.",
       "shape": "cause and mechanism",
       "key_from_one_sentence": false,
-      "explanation": "The report replaced one shared estimate with conflicting figures, leaving legislators unable to judge the cost, so it \"muddied\" the debate. \"Launched\" fails because removal had been argued for a decade; \"legitimized\" fails because both sides were already arguing in the open from an official estimate; \"jolted\" fails because the report led to a postponed vote, not to sudden movement.",
+      "explanation": "The report replaced one shared estimate with conflicting figures, each side picked its own, and the legislature could not proceed without yet another estimate, so the report \"muddied\" the debate. \"Launched\" fails because removal had been argued for a decade; \"legitimized\" fails because both sides were already arguing in the open from an official estimate; \"jolted\" fails because the report led to a postponed vote, not to sudden movement.",
       "kills": {
         "launched": {
           "type": "logic",
@@ -113,7 +113,7 @@
         },
         "jolted": {
           "type": "logic",
-          "quote": "put off the vote they had scheduled",
+          "quote": "put off its scheduled vote",
           "why": "the report slowed the process down instead of shaking it into motion"
         }
       }

@@ -48,44 +48,44 @@
     },
     {
       "key": "dwarfed",
-      "passage": "Since 1985 foresters have surveyed a stand of oaks on a dry ridge every summer, and in the early 1990s an outbreak struck it. The stand had been replanted after a fire in 1988, and the outbreak was a mildew that killed the growing tip of each young oak's main stem every spring. Each tree answered by sending out side branches instead, and by 2019 the surveys measured the oaks at about knee-high, spreading and green, while oaks planted at the same time on an untouched ridge nearby had reached twenty feet. Summing up three decades of surveys, one forester wrote that the outbreak had ______ the oaks.",
+      "passage": "Since 1985 foresters have surveyed a stand of oaks on a dry ridge every summer, and in the early 1990s an outbreak struck it. The stand had been replanted after a fire in 1988, and the outbreak was a mildew that killed the growing tip of each young oak's main stem every spring. Each tree sent out side branches below the dead tip, and by 2019 the surveys measured the oaks at about the height they had reached in 1993, while same-age oaks on an untouched ridge nearby had reached twenty feet. Summing up three decades of surveys, one forester wrote that the outbreak had ______ the oaks.",
       "shape": "comparison of two cases",
       "key_from_one_sentence": false,
-      "explanation": "Killing each spring's main shoot forced the young trees to spread sideways, so after three decades they were knee-high beside twenty-foot trees of the same age: the outbreak had \"dwarfed\" the oaks, stunting their growth. \"Felled\" fails because the trees are still standing and alive. \"Defoliated\" fails because the mildew killed shoot tips and the trees stayed green. \"Honeycombed\" fails because nothing bored into the wood; the harm was to growth, not to the trunk's inside.",
+      "explanation": "Losing its main shoot each spring, every young tree branched sideways and stayed at its 1993 height while same-age oaks nearby reached twenty feet, so the outbreak had \"dwarfed\" the oaks. \"Felled\" fails because the trees were alive and branching. \"Defoliated\" fails because the mildew killed only the growing tip. \"Honeycombed\" fails because nothing bored into the wood; the harm was to upward growth.",
       "kills": {
         "felled": {
           "type": "logic",
-          "quote": "measured the oaks at about knee-high",
-          "why": "the oaks are still standing, only small, so they were not brought down"
+          "quote": "sent out side branches below the dead tip",
+          "why": "trees still putting out branches are alive and standing"
         },
         "defoliated": {
           "type": "logic",
-          "quote": "spreading and green",
-          "why": "the trees kept their leaves; what the mildew destroyed was the growing tip"
+          "quote": "killed the growing tip",
+          "why": "the mildew destroyed the stem's tip, not the leaves"
         },
         "honeycombed": {
           "type": "logic",
-          "quote": "killed the growing tip",
-          "why": "the mildew attacked new shoots, not the wood inside the stem"
+          "quote": "each young oak's main stem",
+          "why": "the attack was on new shoots at the tip, not on the wood inside"
         }
       }
     },
     {
       "key": "defoliated",
-      "passage": "Since 1985 foresters have surveyed a stand of oaks on a dry ridge every summer, and in the early 1990s an outbreak struck it. The outbreak was a moth whose caterpillars hatch in spring and feed on oak leaves until midsummer. For three straight years they were so numerous that by July, photographs taken from a plane showed the forest floor through bare crowns, and each spring the oaks put out new leaves that the next generation of caterpillars ate in turn. Summing up three decades of surveys, one forester wrote that the outbreak had ______ the oaks.",
+      "passage": "Since 1985 foresters have surveyed a stand of oaks on a dry ridge every summer, and in the early 1990s an outbreak struck it. The outbreak was a moth whose caterpillars hatch in spring and feed on oak leaves until midsummer. For three straight years they were so numerous that, by July, photographs taken from a plane showed the ground beneath the stand as plainly as in winter, and each spring the oaks put out new growth that the next generation of caterpillars consumed in turn. Summing up three decades of surveys, one forester wrote that the outbreak had ______ the oaks.",
       "shape": "process sequence",
       "key_from_one_sentence": false,
-      "explanation": "Caterpillars ate the leaves so thoroughly that the ground showed through bare crowns, and they ate each year's new leaves again, so the outbreak had \"defoliated\" the oaks, stripping them of leaves. \"Felled\" fails because the trees kept standing and kept putting out leaves each spring. \"Dwarfed\" fails because these were grown trees with crowns, not young trees held small. \"Honeycombed\" fails because the caterpillars fed on leaves, not on wood.",
+      "explanation": "Leaf-eating caterpillars left the ground under the canopy as visible in July as in winter, when oaks are bare, and ate each spring's new growth again, so the outbreak had \"defoliated\" the oaks. \"Felled\" fails because the trees kept putting out new growth each spring. \"Dwarfed\" fails because these were grown trees whose canopy normally hides the ground. \"Honeycombed\" fails because the caterpillars fed on leaves, not wood.",
       "kills": {
         "felled": {
           "type": "logic",
-          "quote": "each spring the oaks put out new leaves",
-          "why": "trees that leaf out again every spring are alive and standing, not brought down"
+          "quote": "each spring the oaks put out new growth",
+          "why": "trees that grow again every spring are alive and standing"
         },
         "dwarfed": {
           "type": "logic",
-          "quote": "the forest floor through bare crowns",
-          "why": "the trees had full crowns over the forest floor, so they were grown trees, not stunted ones"
+          "quote": "the ground beneath the stand",
+          "why": "a canopy over the ground means grown trees, not stunted ones"
         },
         "honeycombed": {
           "type": "logic",
@@ -96,25 +96,25 @@
     },
     {
       "key": "honeycombed",
-      "passage": "Since 1985 foresters have surveyed a stand of oaks on a dry ridge every summer, and in the early 1990s an outbreak struck it. The outbreak was a beetle whose larvae bore through the heartwood of living oaks, feeding there for several years before they emerge. The trees went on leafing out and growing as before, and cores drilled from a dozen trunks in 2016 came up in crumbs and short pieces, broken at every point where a larva's tunnel had crossed them. Summing up three decades of surveys, one forester wrote that the outbreak had ______ the oaks.",
+      "passage": "Since 1985 foresters have surveyed a stand of oaks on a dry ridge every summer, and in the early 1990s an outbreak struck it. The outbreak was a beetle whose larvae bore into the heartwood of mature oaks, each one feeding for several years along a path of its own before it emerges. Through the 2000s the surveys measured every tree with a full crown, and cores drilled from a dozen of the oaks in 2016 came up in short pieces, broken every few inches along their whole length. Summing up three decades of surveys, one forester wrote that the outbreak had ______ the oaks.",
       "shape": "method and purpose",
       "key_from_one_sentence": false,
-      "explanation": "Larvae tunneled through the heartwood for years, and cores broke apart wherever a tunnel crossed them, so the trunks were full of passages: the outbreak had \"honeycombed\" the oaks. \"Felled\" fails because the trees went on growing where they stood. \"Dwarfed\" fails because their growth continued as before. \"Defoliated\" fails because the trees kept leafing out; the damage was hidden inside the wood.",
+      "explanation": "Each larva tunneled its own path through the heartwood for years, and cores broke apart every few inches along their length, so the trunks were riddled with passages: the outbreak had \"honeycombed\" the oaks. \"Felled\" fails because surveys kept recording the trees' full crowns. \"Dwarfed\" fails because the beetle attacked mature trees, not young ones held small. \"Defoliated\" fails because the crowns stayed full; the damage was hidden inside the wood.",
       "kills": {
         "felled": {
           "type": "logic",
-          "quote": "went on leafing out and growing",
-          "why": "living, growing trees are still standing, so they were not brought down"
+          "quote": "the surveys measured every tree with a full crown",
+          "why": "trees whose crowns are surveyed every summer are still standing"
         },
         "dwarfed": {
           "type": "logic",
-          "quote": "growing as before",
-          "why": "their growth was not checked, so they were not stunted"
+          "quote": "the heartwood of mature oaks",
+          "why": "the trees attacked were already grown, so their size was not stunted"
         },
         "defoliated": {
           "type": "logic",
-          "quote": "bore through the heartwood",
-          "why": "the beetle fed inside the wood, and the trees kept their leaves"
+          "quote": "larvae bore into the heartwood",
+          "why": "the beetle fed inside the wood, not on leaves"
         }
       }
     }

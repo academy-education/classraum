@@ -5,59 +5,117 @@
   "difficulty": "hard",
   "topic_tag": "an amateur naturalist's bluebird study",
   "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
-  "choices": ["methodical", "ingenious", "intrusive", "literary"],
+  "choices": [
+    "methodical",
+    "ingenious",
+    "intrusive",
+    "literary"
+  ],
   "antonym_pairs": [],
-  "rarity_order": ["literary", "methodical", "intrusive", "ingenious"],
+  "rarity_order": [
+    "literary",
+    "methodical",
+    "intrusive",
+    "ingenious"
+  ],
   "pos": "adjective",
   "after_blank": "",
   "blank_sentence": "In a review of early bird studies, one biologist called the naturalist's approach ______.",
   "worlds": [
     {
       "key": "methodical",
-      "passage": "In the 1920s an amateur naturalist began studying the bluebirds that nested in forty wooden boxes along the fences of her family's farm. Each morning at seven she walked the fence line from the barn to the creek, stopping at every box. Her notebooks from six springs survive with no day missing, and every page uses the same four columns: eggs, chicks, food brought, and weather. Biologists decades later could therefore compare any two boxes, or any two springs, entry for entry. In a review of early bird studies, one biologist called the naturalist's approach ______.",
+      "passage": "In the 1920s an amateur naturalist began studying the bluebirds that nested in forty wooden boxes along the fences of her family's farm. Each morning at seven she walked the fence line from the barn to the creek, stopping at every box. When biologists decades later opened her six springs of notebooks, they could set any two springs, or any two boxes, side by side and compare them entry for entry. In a review of early bird studies, one biologist called the naturalist's approach ______.",
       "shape": "method and purpose",
       "key_from_one_sentence": false,
-      "explanation": "A fixed daily route, no missed days, and identical entries for every box over six years make the approach \"methodical.\" \"Intrusive\" fails because she is only said to stop at the boxes and record what she saw; \"ingenious\" fails because the value of her work lies in its regularity, not in any clever device or solution; \"literary\" fails because her notebooks are columns of counts, not descriptive prose.",
+      "explanation": "A fixed daily route covering every box, and records so uniform that any two boxes or years can be compared directly, make the approach \"methodical.\" \"Intrusive\" fails because she is only said to stop at the boxes; \"ingenious\" fails because the value of her work lies in its regularity, not in any clever device; \"literary\" fails because notebooks that line up entry for entry are records, not essays.",
       "kills": {
-        "intrusive": {"type": "logic", "quote": "stopping at every box", "why": "she observes and records; nothing she does disturbs the nests"},
-        "ingenious": {"type": "logic", "quote": "uses the same four columns", "why": "the strength of the study is sameness of procedure, not a clever invention"},
-        "literary": {"type": "logic", "quote": "eggs, chicks, food brought, and weather", "why": "the entries are tallies under fixed headings, not prose that could be read as writing"}
+        "intrusive": {
+          "type": "logic",
+          "quote": "stopping at every box",
+          "why": "she observes and records; nothing she does disturbs the nests"
+        },
+        "ingenious": {
+          "type": "logic",
+          "quote": "Each morning at seven",
+          "why": "the strength of the study is a fixed routine, not a clever invention"
+        },
+        "literary": {
+          "type": "logic",
+          "quote": "compare them entry for entry",
+          "why": "entries that can be compared item by item are data, not descriptive prose"
+        }
       }
     },
     {
       "key": "ingenious",
-      "passage": "In the 1920s an amateur naturalist began studying the bluebirds that nested in forty wooden boxes along the fences of her family's farm. The boxes were too dark to see into without lifting the lid, which sent the parents flying. She fixed a dentist's mirror to a knitting needle and, holding a flashlight beside the entrance hole, slid the mirror inside and counted the eggs in its reflection without touching the box. Biologists decades later adopted the same trick for nest boxes of every size. In a review of early bird studies, one biologist called the naturalist's approach ______.",
+      "passage": "In the 1920s an amateur naturalist began studying the bluebirds that nested in forty wooden boxes along the fences of her family's farm. The boxes were too dark to see into without lifting the lid, which sent the parents flying. She found her answer in a dentist's chair: a small angled mirror, fixed to a knitting needle and lit by a flashlight held at the entrance hole, showed her the eggs without the lid ever being lifted. Biologists decades later adopted the same trick for nest boxes of every size. In a review of early bird studies, one biologist called the naturalist's approach ______.",
       "shape": "cause and mechanism",
       "key_from_one_sentence": false,
-      "explanation": "She solved the problem of seeing into a dark box without disturbing it by combining a dentist's mirror, a knitting needle, and a flashlight, so her approach was \"ingenious.\" \"Intrusive\" fails because the device existed precisely so she would not have to open the boxes; \"methodical\" fails because the passage describes one clever solution, not a fixed routine; \"literary\" fails because nothing concerns how she wrote up what she saw.",
+      "explanation": "She solved the problem of seeing into a dark box without disturbing it by borrowing a dentist's mirror and pairing it with a knitting needle and a flashlight, so her approach was \"ingenious.\" \"Intrusive\" fails because the device existed so the lid would never be lifted; \"methodical\" fails because the passage describes one clever solution, not a fixed routine; \"literary\" fails because nothing concerns how she wrote up what she saw.",
       "kills": {
-        "intrusive": {"type": "logic", "quote": "without touching the box", "why": "the mirror let her count eggs without opening the box, so she avoided disturbing the nest"},
-        "methodical": {"type": "logic", "quote": "fixed a dentist's mirror to a knitting needle", "why": "what stands out is a clever improvised tool, not a regular procedure"},
-        "literary": {"type": "logic", "quote": "counted the eggs in its reflection", "why": "her aim was a count, gathered by a device; nothing concerns writing"}
+        "intrusive": {
+          "type": "logic",
+          "quote": "without the lid ever being lifted",
+          "why": "the mirror let her see the eggs without opening the box"
+        },
+        "methodical": {
+          "type": "logic",
+          "quote": "found her answer in a dentist's chair",
+          "why": "what stands out is an inspired borrowing from an unrelated setting, not a regular procedure"
+        },
+        "literary": {
+          "type": "logic",
+          "quote": "showed her the eggs",
+          "why": "her aim was to see the nest by means of a device; nothing concerns writing"
+        }
       }
     },
     {
       "key": "intrusive",
-      "passage": "In the 1920s an amateur naturalist began studying the bluebirds that nested in forty wooden boxes along the fences of her family's farm. Eager to learn how fast the chicks grew, she opened the boxes nearest the house several times a day and lifted the nestlings out to weigh them on a kitchen scale. Within a few weeks a third of those parents had abandoned their boxes, and the boxes far from the house, which she seldom reached, fledged the most young that year. In a review of early bird studies, one biologist called the naturalist's approach ______.",
+      "passage": "In the 1920s an amateur naturalist began studying the bluebirds that nested in forty wooden boxes along the fences of her family's farm. Eager to learn how fast the chicks grew, she opened whichever boxes were nearest the house whenever she passed, sometimes several times a day, and lifted the nestlings out to weigh them on a kitchen scale. Within a few weeks a third of those parents had abandoned their boxes, and the boxes far from the house, which she seldom reached, fledged the most young that year. In a review of early bird studies, one biologist called the naturalist's approach ______.",
       "shape": "comparison of two cases",
       "key_from_one_sentence": false,
-      "explanation": "Her frequent handling drove parents away, and the boxes she left alone did best, so her approach was \"intrusive.\" \"Methodical\" fails because she handled only the nearest boxes, as often as she liked, and seldom reached the rest; \"ingenious\" fails because lifting chicks onto a kitchen scale is the most direct method, not a clever one; \"literary\" fails because she was gathering weights, not writing descriptions.",
+      "explanation": "Her frequent handling drove parents away, and the boxes she left alone did best, so her approach was \"intrusive.\" \"Methodical\" fails because she handled whichever boxes were nearest whenever she passed and seldom reached the rest, with no fixed schedule; \"ingenious\" fails because lifting chicks onto a kitchen scale is the most direct method, not a clever one; \"literary\" fails because she was gathering weights, not writing descriptions.",
       "kills": {
-        "methodical": {"type": "logic", "quote": "which she seldom reached", "why": "some boxes were handled many times a day and others hardly at all, so her procedure was not systematic"},
-        "ingenious": {"type": "logic", "quote": "weigh them on a kitchen scale", "why": "her method is simply to take the chicks out and weigh them, with nothing clever about it"},
-        "literary": {"type": "logic", "quote": "how fast the chicks grew", "why": "she sought measurements, so her approach is not one of writing"}
+        "methodical": {
+          "type": "logic",
+          "quote": "whenever she passed",
+          "why": "her handling followed chance and convenience, not a system"
+        },
+        "ingenious": {
+          "type": "logic",
+          "quote": "weigh them on a kitchen scale",
+          "why": "her method is simply to take the chicks out and weigh them, with nothing clever about it"
+        },
+        "literary": {
+          "type": "logic",
+          "quote": "how fast the chicks grew",
+          "why": "she sought measurements, so her approach is not one of writing"
+        }
       }
     },
     {
       "key": "literary",
-      "passage": "In the 1920s an amateur naturalist began studying the bluebirds that nested in forty wooden boxes along the fences of her family's farm. Her notebooks hold few counts. Each entry is instead a page or two describing a pair's quarrels, the light on the creek, and the sound of the chicks at feeding time. Biologists decades later who tried to draw nesting figures from them found little they could put in a table, and the entries were eventually published, almost unchanged, as a book of essays. In a review of early bird studies, one biologist called the naturalist's approach ______.",
+      "passage": "In the 1920s an amateur naturalist began studying the bluebirds that nested in forty wooden boxes along the fences of her family's farm. Her notebooks hold few counts. Each entry is instead a page or two on a pair's quarrels, the light on the creek, and the sound of the chicks at feeding time. Biologists decades later found little in them they could put in a table, and when a few entries appeared in a city newspaper, readers who had never seen a bluebird wrote to her asking for more. In a review of early bird studies, one biologist called the naturalist's approach ______.",
       "shape": "definition by example",
       "key_from_one_sentence": false,
-      "explanation": "Her notebooks were descriptive prose that later appeared as a book of essays, so her approach was \"literary.\" \"Methodical\" fails because she kept few counts and her entries yielded little that could be tabulated; \"intrusive\" fails because she is only said to watch and describe; \"ingenious\" fails because no clever device or solution is mentioned.",
+      "explanation": "Her notebooks were descriptive prose that held readers with no interest in bluebirds as birds, so her approach was \"literary.\" \"Methodical\" fails because she kept few counts and her entries yielded little that could be tabulated; \"intrusive\" fails because she is only said to watch and describe; \"ingenious\" fails because no clever device or solution is mentioned.",
       "kills": {
-        "methodical": {"type": "logic", "quote": "little they could put in a table", "why": "her entries cannot be compared systematically, so they do not show a systematic procedure"},
-        "intrusive": {"type": "logic", "quote": "describing a pair's quarrels", "why": "she watches and writes about the birds rather than handling them"},
-        "ingenious": {"type": "logic", "quote": "Her notebooks hold few counts", "why": "the passage concerns the kind of record she kept, not any clever technique"}
+        "methodical": {
+          "type": "logic",
+          "quote": "little in them they could put in a table",
+          "why": "her entries cannot be compared systematically, so they do not show a systematic procedure"
+        },
+        "intrusive": {
+          "type": "logic",
+          "quote": "the light on the creek",
+          "why": "she watches and writes about the scene rather than handling the birds"
+        },
+        "ingenious": {
+          "type": "logic",
+          "quote": "Her notebooks hold few counts",
+          "why": "the passage concerns the kind of record she kept, not any clever technique"
+        }
       }
     }
   ]

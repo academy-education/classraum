@@ -5,23 +5,45 @@
   "difficulty": "hard",
   "topic_tag": "an eighteenth-century map of a kingdom",
   "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
-  "choices": ["prescient", "provincial", "portable", "rigorous"],
+  "choices": [
+    "prescient",
+    "provincial",
+    "portable",
+    "rigorous"
+  ],
   "antonym_pairs": [],
-  "rarity_order": ["portable", "rigorous", "provincial", "prescient"],
+  "rarity_order": [
+    "portable",
+    "rigorous",
+    "provincial",
+    "prescient"
+  ],
   "pos": "adjective",
   "after_blank": "",
   "blank_sentence": "Comparing it with other maps of its day, one historian describes the surveyor's map as, above all, ______.",
   "worlds": [
     {
       "key": "prescient",
-      "passage": "In 1790 a country surveyor published a map of the kingdom that went through eleven printings in twenty years. Rival maps showed the kingdom's roads and towns as they stood. The surveyor also drew, in dotted lines, a canal joining the kingdom's two great rivers and roads to three hill villages that he expected to grow on water power; the canal dug in 1840 follows his line, and the three villages became the kingdom's chief mill towns. Comparing it with other maps of its day, one historian describes the surveyor's map as, above all, ______.",
+      "passage": "In 1790 a country surveyor published a map of the kingdom that went through eleven printings in twenty years. Rival maps showed the kingdom's roads and towns as they stood. The surveyor also drew, in dotted lines, a canal between the kingdom's two great rivers and roads to three hill villages with fast streams. The canal opened in 1840 links the same two river towns his dotted line linked, and by 1860 those three villages had become the kingdom's chief mill towns. Comparing it with other maps of its day, one historian describes the surveyor's map as, above all, ______.",
       "shape": "before and after",
       "key_from_one_sentence": false,
-      "explanation": "The map drew a canal and village roads that did not yet exist, and decades later the canal followed his line and the villages grew as he expected, so the map was \"prescient.\" \"Provincial\" fails because the map looked across the whole kingdom, joining its two great rivers. \"Portable\" fails because nothing is said about the map's size or how it was carried. \"Rigorous\" fails because what set the map apart was what it foresaw, not the care of its measurements.",
+      "explanation": "The map drew a canal and village roads that did not yet exist, and decades later the canal joined the same towns and the villages grew into mill towns, so the map was \"prescient.\" \"Provincial\" fails because the map looked across the whole kingdom, joining its two great rivers. \"Portable\" fails because nothing is said about the map's size or how it was carried. \"Rigorous\" fails because what set the map apart was what it foresaw, not the care of its measurements.",
       "kills": {
-        "provincial": {"type": "logic", "quote": "a canal joining the kingdom's two great rivers", "why": "the map's distinctive features span the whole kingdom, not one home district"},
-        "portable": {"type": "logic", "quote": "drew, in dotted lines", "why": "what distinguished the map was what it drew, not its physical form"},
-        "rigorous": {"type": "logic", "quote": "that he expected to grow on water power", "why": "the added features rest on his expectations about the future, not on careful measurement of what existed"}
+        "provincial": {
+          "type": "logic",
+          "quote": "a canal between the kingdom's two great rivers",
+          "why": "the map's distinctive features span the whole kingdom, not one home district"
+        },
+        "portable": {
+          "type": "logic",
+          "quote": "drew, in dotted lines",
+          "why": "what distinguished the map was what it drew, not its physical form"
+        },
+        "rigorous": {
+          "type": "logic",
+          "quote": "showed the kingdom's roads and towns as they stood",
+          "why": "the rivals recorded what existed; the surveyor's difference was drawing what did not yet exist, not measuring more carefully"
+        }
       }
     },
     {
@@ -31,33 +53,69 @@
       "key_from_one_sentence": false,
       "explanation": "A map of the whole kingdom gave half its space to one small home county and was bought almost entirely there, so it was \"provincial,\" centered on local concerns. \"Prescient\" fails because the map recorded what existed rather than anticipating anything. \"Portable\" fails because the passage describes the map's layout, not its size or form. \"Rigorous\" fails because the map shows most of the kingdom only in outline, with its largest towns.",
       "kills": {
-        "prescient": {"type": "logic", "quote": "down to its lanes, mills and ferries", "why": "the map detailed things already there, foreseeing nothing"},
-        "portable": {"type": "logic", "quote": "filled nearly half his sheet", "why": "the passage concerns how space on the sheet was divided, not whether the map could be carried"},
-        "rigorous": {"type": "explicit", "quote": "with only its largest towns marked", "why": "most of the kingdom was sketched thinly, the opposite of careful, thorough coverage"}
+        "prescient": {
+          "type": "logic",
+          "quote": "down to its lanes, mills and ferries",
+          "why": "the map detailed things already there, foreseeing nothing"
+        },
+        "portable": {
+          "type": "logic",
+          "quote": "filled nearly half his sheet",
+          "why": "the passage concerns how space on the sheet was divided, not whether the map could be carried"
+        },
+        "rigorous": {
+          "type": "explicit",
+          "quote": "with only its largest towns marked",
+          "why": "most of the kingdom was sketched thinly, the opposite of careful, thorough coverage"
+        }
       }
     },
     {
       "key": "portable",
-      "passage": "In 1790 a country surveyor published a map of the kingdom that went through eleven printings in twenty years. Rival maps were engraved on sheets a yard wide, meant to hang in a study or lie open on a library table. The surveyor printed his on linen in sixteen panels hinged to fold flat, and the copies that survive, most of them owned by cattle drovers and traveling merchants, are worn through along the folds. Comparing it with other maps of its day, one historian describes the surveyor's map as, above all, ______.",
+      "passage": "In 1790 a country surveyor published a map of the kingdom that went through eleven printings in twenty years. Rival maps were engraved on sheets a yard wide, meant to hang in a study or lie open on a library table. The surveyor printed his on linen cut into sixteen panels, and the copies that survive, most of them owned by cattle drovers and traveling merchants, are worn through in a grid of creases. Comparing it with other maps of its day, one historian describes the surveyor's map as, above all, ______.",
       "shape": "comparison of two cases",
       "key_from_one_sentence": false,
-      "explanation": "Unlike wall and table maps, the surveyor's folded linen map went on the road with drovers and merchants, who wore it out along its folds, so it was \"portable.\" \"Prescient\" fails because the passage says nothing about the map anticipating later events. \"Provincial\" fails because it was used by people traveling the kingdom, and nothing suggests it favored one district. \"Rigorous\" fails because the passage describes the map's form and use, not the accuracy of its survey.",
+      "explanation": "Unlike wall and table maps, the surveyor's linen map in panels was owned by drovers and merchants and worn through along its creases from being folded and carried, so it was \"portable.\" \"Prescient\" fails because nothing is said about the map anticipating later events. \"Provincial\" fails because it was used by people traveling the kingdom, and nothing suggests it favored one district. \"Rigorous\" fails because the passage describes the map's form and use, not the accuracy of its survey.",
       "kills": {
-        "prescient": {"type": "logic", "quote": "printed his on linen in sixteen panels", "why": "the map's distinction lay in its material and folding, not in foreseeing anything"},
-        "provincial": {"type": "logic", "quote": "cattle drovers and traveling merchants", "why": "its users carried it across the kingdom, giving no sign of a narrowly local outlook"},
-        "rigorous": {"type": "logic", "quote": "worn through along the folds", "why": "the evidence concerns how the map was carried and handled, not how carefully it was measured"}
+        "prescient": {
+          "type": "logic",
+          "quote": "printed his on linen cut into sixteen panels",
+          "why": "the map's distinction lay in its material and form, not in foreseeing anything"
+        },
+        "provincial": {
+          "type": "logic",
+          "quote": "cattle drovers and traveling merchants",
+          "why": "its users traveled the kingdom with it, giving no sign of a narrowly local outlook"
+        },
+        "rigorous": {
+          "type": "logic",
+          "quote": "worn through in a grid of creases",
+          "why": "the evidence concerns how the map was handled, not how carefully it was measured"
+        }
       }
     },
     {
       "key": "rigorous",
-      "passage": "In 1790 a country surveyor published a map of the kingdom that went through eleven printings in twenty years. Rival maps copied their coastlines and roads from older charts, errors and all. The surveyor walked every main road with a measuring chain and fixed each town by sightings of the stars, and when the government's survey checked his sheets with better instruments sixty years later, few of his distances were off by more than a mile. Comparing it with other maps of its day, one historian describes the surveyor's map as, above all, ______.",
+      "passage": "In 1790 a country surveyor published a map of the kingdom that went through eleven printings in twenty years. Rival maps copied their coastlines and roads from older charts, errors and all. The surveyor spent eleven summers on the kingdom's roads with a chain and a brass quadrant, plotting each town himself. When the government checked his sheets with better instruments sixty years later, few of his distances were off by more than a mile. Comparing it with other maps of its day, one historian describes the surveyor's map as, above all, ______.",
       "shape": "method and purpose",
       "key_from_one_sentence": false,
-      "explanation": "Where rivals copied old errors, the surveyor measured every road and fixed every town himself, and a later survey found his distances nearly exact, so the map was \"rigorous.\" \"Prescient\" fails because the map recorded what existed accurately rather than anticipating what would come. \"Provincial\" fails because his measurements covered the whole kingdom. \"Portable\" fails because nothing is said about the map's size or how it was carried.",
+      "explanation": "Where rivals copied old errors, the surveyor spent eleven summers measuring roads and plotting towns himself, and a later survey found his distances nearly exact, so the map was \"rigorous.\" \"Prescient\" fails because the map recorded what existed accurately rather than anticipating what would come. \"Provincial\" fails because his measurements covered the whole kingdom. \"Portable\" fails because nothing is said about the map's size or how it was carried.",
       "kills": {
-        "prescient": {"type": "logic", "quote": "few of his distances were off", "why": "the later check confirms the accuracy of existing distances, not a prediction"},
-        "provincial": {"type": "logic", "quote": "walked every main road", "why": "the survey covered the kingdom's roads evenly, not one home district"},
-        "portable": {"type": "logic", "quote": "fixed each town by sightings of the stars", "why": "the passage concerns how the map was made accurate, not its physical form"}
+        "prescient": {
+          "type": "logic",
+          "quote": "few of his distances were off",
+          "why": "the later check confirms the accuracy of distances that already existed, not a prediction"
+        },
+        "provincial": {
+          "type": "logic",
+          "quote": "eleven summers on the kingdom's roads",
+          "why": "the survey covered the kingdom's roads, not one home district"
+        },
+        "portable": {
+          "type": "logic",
+          "quote": "with a chain and a brass quadrant",
+          "why": "the passage concerns how the map was made accurate, not its physical form"
+        }
       }
     }
   ]

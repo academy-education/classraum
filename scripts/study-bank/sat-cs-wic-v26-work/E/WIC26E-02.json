@@ -96,20 +96,20 @@
     },
     {
       "key": "megaphone",
-      "passage": "From 1884 to 1910 a mining valley's only newspaper was a four-page weekly sold at the pithead for a penny. Miners who believed a foreman had cheated them on the weight of their coal wrote to the paper, which printed every letter as written and mailed bundles of each issue to the state capital and to city dailies. Reporters there reprinted the letters, and in 1893 a legislative committee held hearings on weighing practices, reading several of them aloud. Writing a century later, one historian called the weekly the miners' ______.",
+      "passage": "From 1884 to 1910 a mining valley's only newspaper was a four-page weekly sold at the pithead for a penny. Every man in the valley already knew how the weighmen shaved a cart's weight. Miners wrote to the paper about it anyway, and it printed every letter as written and mailed bundles of each issue to the state capital and to city dailies. Reporters there reprinted the letters, and in 1893 a legislative committee held hearings on weighing practices, reading several of them aloud. Writing a century later, one historian called the weekly the miners' ______.",
       "shape": "process sequence",
       "key_from_one_sentence": false,
-      "explanation": "The weekly carried the miners' own complaints, unchanged, to audiences far beyond the valley, so it served as the miners' \"megaphone.\" \"Jury\" fails because the paper printed the letters as written and passed no judgment on them; \"lens\" fails because the flow runs outward from the miners, not from the world to them; \"ladder\" fails because nothing helped miners rise to better positions.",
+      "explanation": "The miners' letters told the valley nothing new; the paper's role was to carry those complaints, unchanged, to audiences far beyond it, so it served as the miners' \"megaphone.\" \"Lens\" fails because the miners already knew about the cheating, so the paper did not change how they saw anything; \"jury\" fails because the paper printed the letters as written and passed no judgment; \"ladder\" fails because nothing helped miners rise to better positions.",
       "kills": {
+        "lens": {
+          "type": "logic",
+          "quote": "Every man in the valley already knew",
+          "why": "the paper revealed nothing to the miners; the information flowed outward to others"
+        },
         "jury": {
           "type": "logic",
           "quote": "printed every letter as written",
           "why": "the paper relays complaints without weighing them, so it is not judging"
-        },
-        "lens": {
-          "type": "logic",
-          "quote": "mailed bundles of each issue to the state capital",
-          "why": "the paper sends the miners' words out to others rather than shaping how the miners see"
         },
         "ladder": {
           "type": "logic",

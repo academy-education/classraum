@@ -48,25 +48,25 @@
     },
     {
       "key": "professionalized",
-      "passage": "In 1952 a state marketing board began buying the reed baskets that households on a small fishing island had woven for generations. Until then nearly every household had woven its own baskets on winter evenings for its own boats. The board bought only from weavers who held its certificate, which took two years of full-time training at its workshop, and it paid them a monthly wage. By 1975 the island's baskets came from about thirty weavers, and the crews bought theirs at the board's depot. Visiting the island in 1975, one folklorist concluded that the board's purchases had ______ the craft.",
+      "passage": "In 1952 a state marketing board began buying the reed baskets that households on a small fishing island had woven for generations. Until then nearly every household had woven its own baskets on winter evenings for its own boats. The board bought only from islanders who had completed two years at its workshop on the mainland. By 1975 the island's baskets came from about thirty of them, each drawing a monthly wage from the board, and the crews bought theirs at its depot. Visiting the island in 1975, one folklorist concluded that the board's purchases had ______ the craft.",
       "shape": "cause and mechanism",
       "key_from_one_sentence": false,
-      "explanation": "A household skill practiced by nearly everyone became the salaried work of about thirty certified, trained weavers, so the purchases \"professionalized\" the craft. \"Rekindled\" fails because the craft was flourishing in nearly every household before the board arrived. \"Repurposed\" fails because the crews still used the baskets on their boats. \"Petrified\" fails because what changed is who weaves, not whether the baskets' designs were fixed.",
+      "explanation": "Weaving moved from nearly every household to about thirty board-trained weavers on a monthly wage, so the purchases \"professionalized\" the craft. \"Rekindled\" fails because the craft was flourishing in nearly every household before the board arrived. \"Repurposed\" fails because the crews still used the baskets on their boats. \"Petrified\" fails because what changed is who weaves, not whether the baskets' designs were fixed.",
       "kills": {
         "rekindled": {
           "type": "logic",
           "quote": "nearly every household had woven its own baskets",
-          "why": "the craft was thriving before the board, so it was not revived"
+          "why": "the craft was thriving before the board, so nothing was revived"
         },
         "repurposed": {
           "type": "logic",
-          "quote": "the crews bought theirs at the board's depot",
+          "quote": "the crews bought theirs at its depot",
           "why": "the baskets still went to the fishing crews, their old use"
         },
         "petrified": {
           "type": "logic",
-          "quote": "two years of full-time training at its workshop",
-          "why": "the board's rule governs who may weave, through training and certificates, and says nothing about fixing the baskets' form"
+          "quote": "completed two years at its workshop",
+          "why": "the board's rule decides who may weave, through training, and says nothing about fixing the baskets' form"
         }
       }
     },
@@ -96,15 +96,15 @@
     },
     {
       "key": "repurposed",
-      "passage": "In 1952 a state marketing board began buying the reed baskets that households on a small fishing island had woven for generations. Until then the baskets had carried the catch from the boats up to the island's smokehouses. The board's buyers sent them to city department stores, which displayed them beside lamps and flowerpots in their furnishing departments and priced one at five times what a fish basket cost on the quay. By 1975 the same households were weaving more baskets than ever, while the crews had gone over to plastic crates. Visiting the island in 1975, one folklorist concluded that the board's purchases had ______ the craft.",
+      "passage": "In 1952 a state marketing board began buying the reed baskets that households on a small fishing island had woven for generations. Until then the baskets had carried the catch to the island's smokehouses. The board's buyers sent them to city department stores, which displayed them beside lamps and flowerpots in their furnishing departments and priced one at five times what a fish basket cost on the quay. By 1975 the same households were weaving about as many baskets as they always had, while the crews had gone over to plastic crates. Visiting the island in 1975, one folklorist concluded that the board's purchases had ______ the craft.",
       "shape": "before and after",
       "key_from_one_sentence": false,
-      "explanation": "Baskets made to carry fish ended up as household furnishings in the city while the crews switched to crates, so the purchases \"repurposed\" the craft, turning it to a new use. \"Rekindled\" fails because households were weaving more than ever and the craft had never lapsed. \"Professionalized\" fails because the same households did the weaving. \"Petrified\" fails because the passage reports a change in what the baskets were for, not a freezing of their form.",
+      "explanation": "Baskets made to carry fish ended up among city furnishings while the crews switched to crates, so the purchases \"repurposed\" the craft, turning it to a new use. \"Rekindled\" fails because households wove about as many baskets as they always had; the craft never lapsed. \"Professionalized\" fails because the same households did the weaving. \"Petrified\" fails because the passage reports a change in what the baskets were for, not a freezing of their form.",
       "kills": {
         "rekindled": {
           "type": "logic",
-          "quote": "more baskets than ever",
-          "why": "the craft had not died out, so it could not be revived"
+          "quote": "about as many baskets as they always had",
+          "why": "weaving never fell off, so there was nothing to revive"
         },
         "professionalized": {
           "type": "logic",

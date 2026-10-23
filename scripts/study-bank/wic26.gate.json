@@ -1,0 +1,734 @@
+{
+ "WIC26A-01": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "hard"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC26A-02": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "hard",
+  "rule8_capped": false,
+  "grades": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC26A-03": {
+  "verdict": "DROP",
+  "why": [
+   "4 median struck 2 [2,1,2]"
+  ],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   2,
+   1,
+   2
+  ],
+  "kfos": 0
+ },
+ "WIC26A-04": {
+  "verdict": "DROP",
+  "why": [
+   "3 distractors weak by majority",
+   "4 median struck 2 [2,2,2]",
+   "panel median easy"
+  ],
+  "difficulty": "easy",
+  "rule8_capped": false,
+  "grades": [
+   "easy",
+   "easy",
+   "medium"
+  ],
+  "struck": [
+   2,
+   2,
+   2
+  ],
+  "kfos": 0
+ },
+ "WIC26A-05": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   2,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC26A-06": {
+  "verdict": "DROP",
+  "why": [
+   "1 key disputed/cold miss by 1/3",
+   "2 non-exclusive 3/3",
+   "5 path wrong per 2",
+   "recommend_drop per 3"
+  ],
+  "difficulty": "hard",
+  "rule8_capped": false,
+  "grades": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC26A-07": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "easy",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   2,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC26A-08": {
+  "verdict": "DROP",
+  "why": [
+   "3 distractors weak by majority",
+   "4 median struck 2 [2,2,2]",
+   "panel median easy"
+  ],
+  "difficulty": "easy",
+  "rule8_capped": false,
+  "grades": [
+   "easy",
+   "easy",
+   "easy"
+  ],
+  "struck": [
+   2,
+   2,
+   2
+  ],
+  "kfos": 1
+ },
+ "WIC26B-01": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   1,
+   1,
+   2
+  ],
+  "kfos": 0
+ },
+ "WIC26B-02": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC26B-03": {
+  "verdict": "DROP",
+  "why": [
+   "3 distractors weak by majority",
+   "4 median struck 2 [2,2,2]",
+   "panel median easy"
+  ],
+  "difficulty": "easy",
+  "rule8_capped": false,
+  "grades": [
+   "easy",
+   "easy",
+   "easy"
+  ],
+  "struck": [
+   2,
+   2,
+   2
+  ],
+  "kfos": 0
+ },
+ "WIC26B-04": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "hard",
+  "rule8_capped": false,
+  "grades": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC26B-05": {
+  "verdict": "DROP",
+  "why": [
+   "4 median struck 2 [2,1,2]"
+  ],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "easy",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   2,
+   1,
+   2
+  ],
+  "kfos": 0
+ },
+ "WIC26B-06": {
+  "verdict": "DROP",
+  "why": [
+   "4 median struck 2 [2,2,2]"
+  ],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "easy",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   2,
+   2,
+   2
+  ],
+  "kfos": 0
+ },
+ "WIC26B-07": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC26B-08": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC26C-01": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "hard",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "hard",
+   "hard"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC26C-02": {
+  "verdict": "DROP",
+  "why": [
+   "4 median struck 2 [2,1,2]"
+  ],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "easy",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   2,
+   1,
+   2
+  ],
+  "kfos": 0
+ },
+ "WIC26C-03": {
+  "verdict": "DROP",
+  "why": [
+   "antonym pair per 2: crude/bureaucratic, crude/bureaucratic"
+  ],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC26C-04": {
+  "verdict": "DROP",
+  "why": [
+   "3 distractors weak by majority",
+   "4 median struck 2 [2,2,2]",
+   "panel median easy"
+  ],
+  "difficulty": "easy",
+  "rule8_capped": false,
+  "grades": [
+   "easy",
+   "easy",
+   "easy"
+  ],
+  "struck": [
+   2,
+   2,
+   2
+  ],
+  "kfos": 0
+ },
+ "WIC26C-05": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC26C-06": {
+  "verdict": "DROP",
+  "why": [
+   "3 distractors weak by majority",
+   "4 median struck 2 [2,2,2]",
+   "panel median easy"
+  ],
+  "difficulty": "easy",
+  "rule8_capped": false,
+  "grades": [
+   "easy",
+   "easy",
+   "easy"
+  ],
+  "struck": [
+   2,
+   2,
+   2
+  ],
+  "kfos": 1
+ },
+ "WIC26C-07": {
+  "verdict": "DROP",
+  "why": [
+   "panel median easy"
+  ],
+  "difficulty": "easy",
+  "rule8_capped": false,
+  "grades": [
+   "easy",
+   "easy",
+   "easy"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC26C-08": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "hard"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC26D-01": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "easy",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC26D-02": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC26D-03": {
+  "verdict": "DROP",
+  "why": [
+   "4 median struck 2 [2,1,2]",
+   "antonym pair per 2: haphazard/evenhanded, haphazard/evenhanded"
+  ],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "easy",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   2,
+   1,
+   2
+  ],
+  "kfos": 0
+ },
+ "WIC26D-04": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "easy",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC26D-05": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   0,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC26D-06": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "hard",
+  "rule8_capped": false,
+  "grades": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "struck": [
+   2,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC26D-07": {
+  "verdict": "DROP",
+  "why": [
+   "4 median struck 2 [2,1,2]",
+   "panel median easy"
+  ],
+  "difficulty": "easy",
+  "rule8_capped": false,
+  "grades": [
+   "easy",
+   "medium",
+   "easy"
+  ],
+  "struck": [
+   2,
+   1,
+   2
+  ],
+  "kfos": 0
+ },
+ "WIC26D-08": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC26E-01": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC26E-02": {
+  "verdict": "DROP",
+  "why": [
+   "panel median easy"
+  ],
+  "difficulty": "easy",
+  "rule8_capped": false,
+  "grades": [
+   "easy",
+   "medium",
+   "easy"
+  ],
+  "struck": [
+   1,
+   1,
+   2
+  ],
+  "kfos": 0
+ },
+ "WIC26E-03": {
+  "verdict": "DROP",
+  "why": [
+   "4 median struck 2 [1,2,2]",
+   "panel median easy"
+  ],
+  "difficulty": "easy",
+  "rule8_capped": false,
+  "grades": [
+   "easy",
+   "easy",
+   "easy"
+  ],
+  "struck": [
+   1,
+   2,
+   2
+  ],
+  "kfos": 0
+ },
+ "WIC26E-04": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "easy",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   1,
+   1,
+   2
+  ],
+  "kfos": 0
+ },
+ "WIC26E-05": {
+  "verdict": "DROP",
+  "why": [
+   "panel median easy"
+  ],
+  "difficulty": "easy",
+  "rule8_capped": false,
+  "grades": [
+   "easy",
+   "easy",
+   "easy"
+  ],
+  "struck": [
+   1,
+   1,
+   2
+  ],
+  "kfos": 0
+ },
+ "WIC26E-06": {
+  "verdict": "DROP",
+  "why": [
+   "panel median easy"
+  ],
+  "difficulty": "easy",
+  "rule8_capped": false,
+  "grades": [
+   "easy",
+   "easy",
+   "easy"
+  ],
+  "struck": [
+   1,
+   1,
+   2
+  ],
+  "kfos": 0
+ },
+ "WIC26E-07": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "easy",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC26E-08": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   1,
+   1,
+   2
+  ],
+  "kfos": 0
+ }
+}

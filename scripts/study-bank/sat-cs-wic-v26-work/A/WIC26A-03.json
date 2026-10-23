@@ -24,68 +24,68 @@
   "worlds": [
     {
       "key": "refuge",
-      "passage": "A weavers' guild built a stone hall beside the market square of a river town in 1580, and the guild was dissolved in 1760. The hall stood on the only ground in the town above the river's high-water mark. Parish records from the wet springs of 1784, 1802 and 1830 list families from the lower streets who lodged in it for weeks at a time, and between those years the council kept its cellars stocked with grain and blankets. In the century after 1760, one historian writes, the hall served chiefly as the town's ______.",
+      "passage": "A weavers' guild built a stone hall beside the market square of a river town in 1580, and the guild was dissolved in 1760. The hall stood on the only ground in the town above the river's high-water mark. Parish records show the lower streets under water in the springs of 1784, 1802 and 1830, and for several weeks in each of those years the council's accounts list bread, straw and lamp oil delivered to the hall. In the century after 1760, one historian writes, the hall served chiefly as the town's ______.",
       "shape": "cause and mechanism",
       "key_from_one_sentence": false,
-      "explanation": "Standing above the high-water mark, the hall took in families from the flooded lower streets in wet springs and was kept supplied for that purpose, so it served as the town's \"refuge.\" \"Platform\" fails because no one addressed the public from the hall; people lived in it. \"Ornament\" fails because the hall's value lay in sheltering people, not in being admired. \"Quarry\" fails because the hall was kept whole and stocked, not stripped for its stone.",
+      "explanation": "Standing above the high-water mark, the hall received bread, straw and lamp oil for weeks whenever the lower streets flooded, which means it housed the flooded families, so it served as the town's \"refuge.\" \"Platform\" fails because the supplies point to people staying in the hall, not speaking from it. \"Ornament\" fails because its value lay in its high ground, not its appearance. \"Quarry\" fails because the building stayed whole and in use.",
       "kills": {
         "platform": {
           "type": "logic",
-          "quote": "lodged in it for weeks at a time",
-          "why": "the hall was used to house people, not as a place from which to speak to the public"
+          "quote": "bread, straw and lamp oil delivered to the hall",
+          "why": "the supplies are for people staying in the hall, not for anyone addressing the public from it"
         },
         "ornament": {
           "type": "logic",
-          "quote": "kept its cellars stocked with grain and blankets",
-          "why": "the hall was maintained for practical use, not for display"
+          "quote": "above the river's high-water mark",
+          "why": "the hall mattered for where it stood when the town flooded, not for its looks"
         },
         "quarry": {
           "type": "logic",
-          "quote": "above the river's high-water mark",
-          "why": "the hall's role depended on the building standing on its high ground, so it was not being broken up for stone"
+          "quote": "for several weeks in each of those years",
+          "why": "the hall was in use as a building through 1830, so it was not being broken up for stone"
         }
       }
     },
     {
       "key": "platform",
-      "passage": "A weavers' guild built a stone hall beside the market square of a river town in 1580, and the guild was dissolved in 1760. Its long balcony looked down on the square, which farmers from every village in the district crowded into on market days. Before each council election the candidates took turns on that balcony on successive market mornings, and the weekly paper built its election reports from notes its reporters took in the square below. In the century after 1760, one historian writes, the hall served chiefly as the town's ______.",
+      "passage": "A weavers' guild built a stone hall beside the market square of a river town in 1580, and the guild was dissolved in 1760. Its long balcony looked down on the square, which farmers from every village in the district crowded into on market days. In the weeks before each council election, the weekly paper's accounts of what the candidates had promised were written by reporters standing in the square below it. In the century after 1760, one historian writes, the hall served chiefly as the town's ______.",
       "shape": "definition by example",
       "key_from_one_sentence": false,
-      "explanation": "The balcony overlooked the crowded market square, candidates stood on it in turn before each election, and reporters below took down what they heard, so the hall served as the town's \"platform\" for addressing the public. \"Refuge\" fails because no one sheltered in the hall. \"Ornament\" fails because the hall mattered for what was said from it, not for its looks. \"Quarry\" fails because the balcony stayed in use election after election, so the building was not being taken apart.",
+      "explanation": "The balcony overlooked the crowded square, and before each election reporters stood beneath it to take down the candidates' promises, so the candidates spoke from it and the hall served as the town's \"platform.\" \"Refuge\" fails because no one sheltered in the hall. \"Ornament\" fails because the hall mattered for what was said from it, not its looks. \"Quarry\" fails because the balcony stayed in use election after election.",
       "kills": {
         "refuge": {
           "type": "logic",
-          "quote": "candidates took turns on that balcony",
-          "why": "the hall was used by candidates facing the crowd, not by anyone seeking shelter"
+          "quote": "crowded into on market days",
+          "why": "the hall's role concerns the crowd gathered in front of it, not anyone sheltering inside"
         },
         "ornament": {
           "type": "logic",
-          "quote": "notes its reporters took in the square below",
-          "why": "what mattered about the hall was what was heard from it, not its appearance"
+          "quote": "what the candidates had promised",
+          "why": "what mattered about the hall was what was heard from its balcony, not its appearance"
         },
         "quarry": {
           "type": "logic",
-          "quote": "Before each council election",
-          "why": "the balcony was used again at every election, so the building stood intact rather than being stripped for stone"
+          "quote": "In the weeks before each council election",
+          "why": "the balcony was in use at every election, so the building stood intact rather than being stripped for stone"
         }
       }
     },
     {
       "key": "ornament",
-      "passage": "A weavers' guild built a stone hall beside the market square of a river town in 1580, and the guild was dissolved in 1760. The council repainted its carved front after every hard winter and hung it with lamps on feast days. Its doors stayed locked, and the council minutes record no meeting, sale or service held in or at the hall in those hundred years. In the century after 1760, one historian writes, the hall served chiefly as the town's ______.",
+      "passage": "A weavers' guild built a stone hall beside the market square of a river town in 1580, and the guild was dissolved in 1760. The council repainted its carved front after every hard winter and hung it with lamps on feast days. Its accounts for those hundred years record the cost of the paint, the lamps and the roof and nothing else, and an inventory of 1850 found the building's keys rusted to their hook in the clerk's office. In the century after 1760, one historian writes, the hall served chiefly as the town's ______.",
       "shape": "comparison of two cases",
       "key_from_one_sentence": false,
-      "explanation": "The council kept the hall's front painted and lit while never using the building for anything, so it served the town chiefly as an \"ornament,\" kept up only to be looked at. \"Refuge\" fails because the doors stayed locked and no one took shelter inside. \"Platform\" fails because no meeting or gathering was held there. \"Quarry\" fails because the hall was carefully maintained, not broken up.",
+      "explanation": "The council paid to keep the hall's front painted and lit while its keys sat unused for years, so it served the town chiefly as an \"ornament,\" kept up only to be looked at. \"Refuge\" fails because the building was never opened. \"Platform\" fails because the council's spending covered only upkeep and display, with no gatherings. \"Quarry\" fails because the hall was carefully maintained, not broken up.",
       "kills": {
         "refuge": {
           "type": "logic",
-          "quote": "Its doors stayed locked",
-          "why": "no one could shelter in a building that was never opened"
+          "quote": "keys rusted to their hook",
+          "why": "a building whose keys had not been used in years sheltered no one"
         },
         "platform": {
-          "type": "explicit",
-          "quote": "no meeting, sale or service held in or at the hall",
-          "why": "nothing was said to the public from the hall, so it was not a platform"
+          "type": "logic",
+          "quote": "the paint, the lamps and the roof and nothing else",
+          "why": "the council spent on the building's appearance and upkeep only; nothing suggests it was used for addressing anyone"
         },
         "quarry": {
           "type": "logic",
@@ -96,10 +96,10 @@
     },
     {
       "key": "quarry",
-      "passage": "A weavers' guild built a stone hall beside the market square of a river town in 1580, and the guild was dissolved in 1760. No buyer could be found for the building, and within forty years it had lost its roof and most of its upper walls. A survey of the town in 1860 found stones bearing the guild's carved emblem in the foundations of more than sixty houses and in the bridge over the millrace. In the century after 1760, one historian writes, the hall served chiefly as the town's ______.",
+      "passage": "A weavers' guild built a stone hall beside the market square of a river town in 1580, and the guild was dissolved in 1760. No buyer could be found for the building, and within forty years it had lost its roof and most of its upper walls. A survey of the town in 1860 found carved blocks bearing a weaver's shuttle in the foundations of more than sixty houses and in the bridge over the millrace. In the century after 1760, one historian writes, the hall served chiefly as the town's ______.",
       "shape": "before and after",
       "key_from_one_sentence": false,
-      "explanation": "The abandoned hall lost its walls while its carved stones turned up in houses and a bridge across town, so it served as the town's \"quarry,\" a source of building stone. \"Refuge\" fails because a roofless ruin sheltered no one. \"Platform\" fails because no one spoke from the hall. \"Ornament\" fails because the hall was left to fall apart rather than kept up for display; its emblem survived only in pieces built into other structures.",
+      "explanation": "The weavers' hall lost its walls while blocks carved with a weaver's shuttle turned up in houses and a bridge across town, so it served as the town's \"quarry,\" a source of building stone. \"Refuge\" fails because a roofless ruin sheltered no one. \"Platform\" fails because no one spoke from the hall. \"Ornament\" fails because the hall was left to fall apart, and its carving survived only in foundations.",
       "kills": {
         "refuge": {
           "type": "logic",

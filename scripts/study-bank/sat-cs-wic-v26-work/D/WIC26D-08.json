@@ -5,35 +5,69 @@
   "difficulty": "hard",
   "topic_tag": "a railway town and a port city",
   "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
-  "choices": ["dormitory", "granary", "getaway", "garrison"],
+  "choices": [
+    "dormitory",
+    "granary",
+    "getaway",
+    "garrison"
+  ],
   "antonym_pairs": [],
-  "rarity_order": ["getaway", "garrison", "dormitory", "granary"],
+  "rarity_order": [
+    "getaway",
+    "garrison",
+    "dormitory",
+    "granary"
+  ],
   "pos": "noun",
   "after_blank": "",
   "blank_sentence": "By 1930, one regional planner observed, the town had in effect become the city's ______.",
   "worlds": [
     {
       "key": "dormitory",
-      "passage": "A small town lies forty miles north of a large port city, on a railway line opened in 1890. In the 1910s the railway added an early train south to the city and an evening train back, and cut the fare for monthly ticket holders. The town's own mills and shops closed one by one as new houses spread over its old fields, and by the late 1920s most of its adults boarded the 6:40 train every weekday morning and were not seen on its streets again until evening. By 1930, one regional planner observed, the town had in effect become the city's ______.",
+      "passage": "A small town lies forty miles north of a large port city, on a railway line opened in 1890. In the 1910s the railway added an early train south to the city and an evening train back, and cut the fare for monthly ticket holders. The town's own mills and shops closed one by one as new houses spread over its old fields, and by the late 1920s its streets were nearly empty on weekdays from the 6:40 departure until the evening train pulled in. By 1930, one regional planner observed, the town had in effect become the city's ______.",
       "shape": "before and after",
       "key_from_one_sentence": false,
-      "explanation": "Commuter trains, closing local mills, and new houses on the fields left a town whose adults worked in the city by day and came home only to sleep, so it had become the city's \"dormitory.\" \"Granary\" fails because its fields were built over rather than farmed for the city. \"Getaway\" fails because the traffic was townspeople going to the city to work, not city people coming out for leisure. \"Garrison\" fails because no troops are involved.",
+      "explanation": "Commuter trains and cheap monthly fares, local mills closing, houses spreading, and streets empty from the morning train to the evening one together show a town whose people worked in the city and came home to sleep: the city's \"dormitory.\" \"Granary\" fails because its fields were built over. \"Getaway\" fails because the traffic was townspeople leaving each morning, not city people arriving for leisure. \"Garrison\" fails because no troops are involved.",
       "kills": {
-        "granary": {"type": "logic", "quote": "new houses spread over its old fields", "why": "farmland became housing, so the town no longer supplied the city with grain"},
-        "getaway": {"type": "logic", "quote": "boarded the 6:40 train every weekday morning", "why": "the daily flow ran from the town to city jobs, not from the city to the town for rest"},
-        "garrison": {"type": "logic", "quote": "most of its adults boarded", "why": "the town's residents were commuting workers, not soldiers stationed to defend the city"}
+        "granary": {
+          "type": "logic",
+          "quote": "new houses spread over its old fields",
+          "why": "farmland became housing, so the town no longer supplied the city with grain"
+        },
+        "getaway": {
+          "type": "logic",
+          "quote": "nearly empty on weekdays from the 6:40 departure",
+          "why": "the town emptied as residents left each workday, not filled with visitors from the city"
+        },
+        "garrison": {
+          "type": "logic",
+          "quote": "cut the fare for monthly ticket holders",
+          "why": "the town's residents were regular commuters, not soldiers stationed to defend the city"
+        }
       }
     },
     {
       "key": "granary",
-      "passage": "A small town lies forty miles north of a large port city, on a railway line opened in 1890. As the city grew, its bakers and brewers came to depend on the wheat and barley from the farms around the town. Each autumn the harvest went south by the trainload to the city's mills, and the town's own population stayed near two thousand through the 1920s, almost all of them farm families and the clerks who weighed and shipped their grain. By 1930, one regional planner observed, the town had in effect become the city's ______.",
+      "passage": "A small town lies forty miles north of a large port city, on a railway line opened in 1890. As the city grew, its bakers and brewers came to depend on wheat and barley from the farms north of it. The town's population stayed near two thousand through the 1920s, almost all of them farm families and the clerks who weighed grain at the station, and each autumn the railway ran extra freight trains south that came back empty. By 1930, one regional planner observed, the town had in effect become the city's ______.",
       "shape": "cause and mechanism",
       "key_from_one_sentence": false,
-      "explanation": "The city's bakers and brewers relied on the grain grown around the town, shipped south each autumn by the trainload, so the town had become the city's \"granary.\" \"Dormitory\" fails because its people were farm families and grain clerks who worked in the town, not commuters. \"Getaway\" fails because the traffic to the city was grain, with no visitors coming the other way. \"Garrison\" fails because the town held farmers, not troops.",
+      "explanation": "The city's bakers and brewers relied on northern grain, the town was made up of farm families and grain clerks at the station, and autumn freight went south full and came back empty, so the town had become the city's \"granary.\" \"Dormitory\" fails because its people worked on the farms and at the station, not in the city. \"Getaway\" fails because nothing brought city people north for leisure. \"Garrison\" fails because the town held farmers, not troops.",
       "kills": {
-        "dormitory": {"type": "logic", "quote": "farm families and the clerks who weighed", "why": "the townspeople worked locally on the farms and in shipping, rather than commuting to the city"},
-        "getaway": {"type": "logic", "quote": "the harvest went south by the trainload", "why": "the railway carried grain to the city, not city residents out for leisure"},
-        "garrison": {"type": "logic", "quote": "the city's mills", "why": "the town's link to the city is supplying grain for its mills, not stationing soldiers"}
+        "dormitory": {
+          "type": "logic",
+          "quote": "farm families and the clerks who weighed grain",
+          "why": "the townspeople worked locally on the farms and at the station rather than commuting"
+        },
+        "getaway": {
+          "type": "logic",
+          "quote": "extra freight trains south that came back empty",
+          "why": "the trains carried cargo to the city and nothing back, not city residents out for leisure"
+        },
+        "garrison": {
+          "type": "logic",
+          "quote": "its bakers and brewers came to depend",
+          "why": "the town's tie to the city is supplying grain, not stationing soldiers"
+        }
       }
     },
     {
@@ -43,21 +77,45 @@
       "key_from_one_sentence": false,
       "explanation": "City families rode excursion trains out on weekends for swimming and walks and went home the same evening, so the town had become the city's \"getaway,\" its place of escape. \"Dormitory\" fails because the visitors did not sleep there and the residents worked in the town serving them. \"Granary\" fails because the town's trade was leisure, not grain. \"Garrison\" fails because the visitors were families on outings, not soldiers.",
       "kills": {
-        "dormitory": {"type": "logic", "quote": "taking the evening train home", "why": "city visitors returned to sleep in the city, and the residents worked locally"},
-        "granary": {"type": "logic", "quote": "ran the boat rentals and tea rooms", "why": "the town lived on serving visitors, not on supplying the city with grain"},
-        "garrison": {"type": "logic", "quote": "to swim, picnic, and walk the hills", "why": "the people arriving came for recreation, not to be stationed in defense of the city"}
+        "dormitory": {
+          "type": "logic",
+          "quote": "taking the evening train home",
+          "why": "city visitors returned to sleep in the city, and the residents worked locally"
+        },
+        "granary": {
+          "type": "logic",
+          "quote": "ran the boat rentals and tea rooms",
+          "why": "the town lived on serving visitors, not on supplying the city with grain"
+        },
+        "garrison": {
+          "type": "logic",
+          "quote": "to swim, picnic, and walk the hills",
+          "why": "the people arriving came for recreation, not to be stationed in defense of the city"
+        }
       }
     },
     {
       "key": "garrison",
-      "passage": "A small town lies forty miles north of a large port city, on a railway line opened in 1890. After a naval raid on the port in 1914, the army built barracks beside the town's station to house troops who could reach the city's docks by train within an hour. Through the 1920s three regiments took turns living there, drilling on the old fairground, and the town's shops lived largely on the soldiers' pay. By 1930, one regional planner observed, the town had in effect become the city's ______.",
+      "passage": "A small town lies forty miles north of a large port city, on a railway line opened in 1890. After a naval raid on the port in 1914, the army chose the town's station as the place from which troops could reach the city's docks within an hour. Through the 1920s three regiments took turns there, drilling all day on the old fairground and going to the city only for alerts and exercises, and the town's shops lived largely on the soldiers' pay. By 1930, one regional planner observed, the town had in effect become the city's ______.",
       "shape": "method and purpose",
       "key_from_one_sentence": false,
-      "explanation": "Barracks were built so troops could reach the port's docks within an hour, and regiments lived there in rotation, so the town had become the city's \"garrison,\" the base of the force that defended it. \"Dormitory\" fails because the soldiers lived and drilled in the town rather than commuting to work in the city. \"Getaway\" fails because the people who came were stationed troops, not city residents seeking leisure. \"Granary\" fails because the town lived on the soldiers' pay, not on supplying grain.",
+      "explanation": "The army placed regiments at the town so they could reach the port's docks within an hour, and they trained there and went to the city only when called, so the town had become the city's \"garrison,\" the base of the force that defended it. \"Dormitory\" fails because the soldiers spent their days in the town and went to the city only on alert, rather than working there daily. \"Getaway\" fails because those arriving were stationed troops, not city people seeking leisure. \"Granary\" fails because the town lived on the soldiers' pay, not on grain.",
       "kills": {
-        "dormitory": {"type": "logic", "quote": "drilling on the old fairground", "why": "the soldiers spent their days in the town, so it was not a place where city workers merely slept"},
-        "getaway": {"type": "logic", "quote": "After a naval raid on the port", "why": "the town's role grew out of defending the city, not out of city residents' leisure"},
-        "granary": {"type": "logic", "quote": "lived largely on the soldiers' pay", "why": "the town's economy depended on the troops, not on grain sent to the city"}
+        "dormitory": {
+          "type": "logic",
+          "quote": "drilling all day on the old fairground",
+          "why": "the soldiers spent their days in the town, so it was not where city workers merely slept"
+        },
+        "getaway": {
+          "type": "logic",
+          "quote": "After a naval raid on the port",
+          "why": "the town's role grew out of defending the city, not out of city residents' leisure"
+        },
+        "granary": {
+          "type": "logic",
+          "quote": "lived largely on the soldiers' pay",
+          "why": "the town's economy depended on the troops, not on grain sent to the city"
+        }
       }
     }
   ]

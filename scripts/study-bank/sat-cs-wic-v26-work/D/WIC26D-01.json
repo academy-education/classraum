@@ -5,9 +5,19 @@
   "difficulty": "hard",
   "topic_tag": "a hospital trustee's role",
   "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
-  "choices": ["gatekeeper", "figurehead", "envoy", "holdout"],
+  "choices": [
+    "gatekeeper",
+    "figurehead",
+    "envoy",
+    "holdout"
+  ],
   "antonym_pairs": [],
-  "rarity_order": ["holdout", "figurehead", "gatekeeper", "envoy"],
+  "rarity_order": [
+    "holdout",
+    "figurehead",
+    "gatekeeper",
+    "envoy"
+  ],
   "pos": "noun",
   "after_blank": "during",
   "blank_sentence": "In an oral history recorded decades later, one fellow trustee called her the board's ______ during those years.",
@@ -19,45 +29,93 @@
       "key_from_one_sentence": false,
       "explanation": "Only her committee could put spending on the agenda, and only about five of forty requests a year got past it to a board that approved almost all it saw, so she controlled what reached the board: its \"gatekeeper.\" \"Figurehead\" fails because that control was real power, not a title without it. \"Envoy\" fails because her work was screening requests coming in, not representing the board to anyone outside it. \"Holdout\" fails because she was not resisting a decision the other trustees had reached.",
       "kills": {
-        "figurehead": {"type": "logic", "quote": "about five reached the full board", "why": "her committee decided which requests the board ever saw, which is real power, the opposite of an empty title"},
-        "envoy": {"type": "logic", "quote": "sent their requests to the committee", "why": "the traffic runs from department heads in to her; she carries nothing out to outside parties"},
-        "holdout": {"type": "logic", "quote": "the trustees approved nearly every one they saw", "why": "the board agreed with what she sent; there is no majority she refused to join"}
+        "figurehead": {
+          "type": "logic",
+          "quote": "about five reached the full board",
+          "why": "her committee decided which requests the board ever saw, which is real power, the opposite of an empty title"
+        },
+        "envoy": {
+          "type": "logic",
+          "quote": "sent their requests to the committee",
+          "why": "the traffic runs from department heads in to her; she carries nothing out to outside parties"
+        },
+        "holdout": {
+          "type": "logic",
+          "quote": "the trustees approved nearly every one they saw",
+          "why": "the board agreed with what she sent; there is no majority she refused to join"
+        }
       }
     },
     {
       "key": "figurehead",
-      "passage": "For most of the 1960s a retired surgeon sat on the nine-member board of trustees of a county hospital. She was the board's chair for the whole decade, and her name headed its letterhead. The bylaws gave the chair no vote except to break a tie, and the agenda and the budget were drawn up each year by the hospital's administrator, whose recommendations the other eight trustees adopted at nearly every meeting; in ten years no vote ever ended in a tie. In an oral history recorded decades later, one fellow trustee called her the board's ______ during those years.",
+      "passage": "For most of the 1960s a retired surgeon sat on the nine-member board of trustees of a county hospital. She was elected the board's chair in 1961 and reelected every year after, and her name headed its letterhead. The bylaws let the chair vote only to break a tie, and the agenda and budget came each year from the hospital's administrator, whose recommendations the other eight trustees, almost always of one mind, adopted meeting after meeting. In an oral history recorded decades later, one fellow trustee called her the board's ______ during those years.",
       "shape": "scope limit",
       "key_from_one_sentence": false,
-      "explanation": "She held the top title, but her only vote was a tie-breaker that was never needed and the administrator set the agenda the others followed, so she was the board's \"figurehead\": its nominal head without power. \"Gatekeeper\" fails because the administrator, not she, decided what came before the board. \"Envoy\" fails because nothing she did carried the board's business to outsiders. \"Holdout\" fails because she never cast a vote at all, let alone one against the majority.",
+      "explanation": "She held the chair and the letterhead, but she could vote only on a tie among trustees who almost always agreed, and the administrator set the agenda, so she was the board's \"figurehead\": its nominal head without power. \"Gatekeeper\" fails because the administrator, not she, decided what came before the board. \"Envoy\" fails because nothing she did carried the board's business to outsiders. \"Holdout\" fails because a chair who votes only on ties, among trustees of one mind, never casts a vote against the others.",
       "kills": {
-        "gatekeeper": {"type": "logic", "quote": "drawn up each year by the hospital's administrator", "why": "someone else controlled what reached the board, so she controlled no access"},
-        "envoy": {"type": "logic", "quote": "her name headed its letterhead", "why": "her role was a name and a chair inside the board; no mission to outside parties is described"},
-        "holdout": {"type": "logic", "quote": "no vote ever ended in a tie", "why": "her only vote was a tie-breaker that never arose, so she could not have stood against the others"}
+        "gatekeeper": {
+          "type": "logic",
+          "quote": "the agenda and budget came each year from the hospital's administrator",
+          "why": "someone else controlled what reached the board, so she controlled no access"
+        },
+        "envoy": {
+          "type": "logic",
+          "quote": "her name headed its letterhead",
+          "why": "her role was a title and a name inside the board; no mission to outside parties is described"
+        },
+        "holdout": {
+          "type": "logic",
+          "quote": "vote only to break a tie",
+          "why": "her only vote came on ties, and trustees almost always of one mind left none, so she could not stand against them"
+        }
       }
     },
     {
       "key": "envoy",
-      "passage": "For most of the 1960s a retired surgeon sat on the nine-member board of trustees of a county hospital. The hospital depended on a yearly grant from the state health department and on a road the county commissioners maintained to its door. Each spring for the whole decade, the trustees settled in closed session on what to ask of both, and she traveled to the capital and the county seat to present those requests and returned with the officials' terms for the board to debate. In an oral history recorded decades later, one fellow trustee called her the board's ______ during those years.",
+      "passage": "For most of the 1960s a retired surgeon sat on the nine-member board of trustees of a county hospital. The hospital depended on a yearly grant from the state health department and on a road the county commissioners maintained to its door. Each spring for the whole decade the trustees settled in closed session on what to ask of both, and she then spent several weeks in the capital and the county seat. The board's minutes for each summer record it debating the officials' replies, which she read into the record herself. In an oral history recorded decades later, one fellow trustee called her the board's ______ during those years.",
       "shape": "method and purpose",
       "key_from_one_sentence": false,
-      "explanation": "The board decided its requests together and she carried them to state and county officials and brought their terms back, so she was its \"envoy,\" its representative sent to outside parties. \"Gatekeeper\" fails because she did not decide what the board considered; the trustees settled the requests and debated the terms. \"Figurehead\" fails because negotiating with officials was real work, not a title. \"Holdout\" fails because she carried a position the trustees shared rather than resisting it.",
+      "explanation": "The trustees decided what to ask, she then spent weeks where the state and county officials sat, and the replies the board debated came back through her, so she was its \"envoy,\" the representative it sent to outside parties. \"Gatekeeper\" fails because she did not decide what the board considered; the trustees settled the requests and debated the replies. \"Figurehead\" fails because weeks of dealing with officials was real work, not a title. \"Holdout\" fails because she carried requests the trustees had agreed on together.",
       "kills": {
-        "gatekeeper": {"type": "logic", "quote": "the trustees settled in closed session", "why": "the whole board chose what to request and debated what came back; she screened nothing"},
-        "figurehead": {"type": "logic", "quote": "returned with the officials' terms", "why": "she did the substantive bargaining herself, which an empty title does not do"},
-        "holdout": {"type": "logic", "quote": "to present those requests", "why": "she presented the board's own agreed requests, so she was not refusing to join the others"}
+        "gatekeeper": {
+          "type": "logic",
+          "quote": "the trustees settled in closed session",
+          "why": "the whole board chose what to ask and debated what came back; she screened nothing"
+        },
+        "figurehead": {
+          "type": "logic",
+          "quote": "spent several weeks in the capital and the county seat",
+          "why": "weeks of work with officials on the board's behalf is substantive, not ceremonial"
+        },
+        "holdout": {
+          "type": "logic",
+          "quote": "what to ask of both",
+          "why": "the requests were settled by the trustees together, and she acted on them rather than refusing them"
+        }
       }
     },
     {
       "key": "holdout",
-      "passage": "For most of the 1960s a retired surgeon sat on the nine-member board of trustees of a county hospital. In 1962 the state offered to fund a merger of the hospital with a larger one in the next county, on condition that the board approve it unanimously. The other eight trustees voted for the merger that year and at each of the four annual votes that followed, while she voted against it every time, arguing that the county's farm towns would lose their only emergency room; the offer expired in 1967. In an oral history recorded decades later, one fellow trustee called her the board's ______ during those years.",
+      "passage": "For most of the 1960s a retired surgeon sat on the nine-member board of trustees of a county hospital. In 1962 the state invited every county hospital to join a pool for buying drugs and equipment, and the board voted eight to one to join. She voted no again, alone, at each of the four yearly renewals that followed, arguing that the pool's suppliers were too far away to deliver in an emergency, and she was still voting no in 1967, when every other county hospital renewed without dissent. In an oral history recorded decades later, one fellow trustee called her the board's ______ during those years.",
       "shape": "cause and mechanism",
       "key_from_one_sentence": false,
-      "explanation": "The merger needed every vote, eight trustees gave theirs five years running, and she alone refused until the offer lapsed, so she was the board's \"holdout.\" \"Gatekeeper\" fails because she did not screen what reached the board; the merger came before it every year. \"Figurehead\" fails because her single vote decided the outcome. \"Envoy\" fails because she did not represent the board to the state; she opposed the board's own majority.",
+      "explanation": "The board joined by eight to one and renewed every year, and she alone kept voting no for five years while every other board in the county agreed, so she was the board's \"holdout.\" \"Gatekeeper\" fails because her votes controlled nothing: the hospital joined and renewed regardless. \"Figurehead\" fails because she acted on her own judgment rather than lending a name to others' decisions. \"Envoy\" fails because she opposed the board's majority rather than representing it to outsiders.",
       "kills": {
-        "gatekeeper": {"type": "logic", "quote": "at each of the four annual votes", "why": "the proposal reached the board every year; she controlled no access to it, she voted on it"},
-        "figurehead": {"type": "logic", "quote": "on condition that the board approve it unanimously", "why": "under that condition her lone vote decided the matter, which is real power"},
-        "envoy": {"type": "logic", "quote": "she voted against it every time", "why": "she acted against the board's majority, not on its behalf toward outsiders"}
+        "gatekeeper": {
+          "type": "logic",
+          "quote": "the board voted eight to one to join",
+          "why": "the hospital joined over her vote, so nothing depended on her letting it through"
+        },
+        "figurehead": {
+          "type": "logic",
+          "quote": "arguing that the pool's suppliers were too far away",
+          "why": "she pressed her own reasoned position, not a title without a voice"
+        },
+        "envoy": {
+          "type": "logic",
+          "quote": "She voted no again, alone",
+          "why": "she acted against the board's majority, not on its behalf toward outsiders"
+        }
       }
     }
   ]

@@ -24,58 +24,58 @@
   "worlds": [
     {
       "key": "cannibalized",
-      "passage": "In 1948 a new regional health board took charge of every hospital in a rural county, among them the old stone county hospital. The board was also building a large hospital in the city forty miles away and had little money to equip it. Over the next ten years the county hospital's X-ray machine, its operating tables, and most of its surgeons were moved to the city one by one, as the new building needed them, until the stone building held only a clinic open two days a week. Writing about the board's first decade, one historian of medicine concluded that the board had ______ the county hospital.",
+      "passage": "In 1948 a new regional health board took charge of every hospital in a rural county, among them the old stone county hospital. The board was also building a large hospital in the city forty miles away, with little money to equip it. Over the next ten years the city hospital opened its wards one at a time, and the board's records list each ward's X-ray room, operating tables, or surgeons as transferred from the county. By 1958 the stone building held only a clinic open two days a week. Writing about the board's first decade, one historian of medicine concluded that the board had ______ the county hospital.",
       "shape": "process sequence",
       "key_from_one_sentence": false,
-      "explanation": "The board stripped the county hospital's equipment and staff piece by piece to supply a new hospital it could not otherwise equip, so it \"cannibalized\" the county hospital. \"Certified\" fails because no judgment that the hospital met a standard is described, only its gradual emptying; \"cloned\" fails because the city hospital was supplied with the county hospital's own machines and surgeons, not built as a copy of it; \"bartered\" fails because the board moved its own property between its own hospitals and received nothing in exchange from anyone.",
+      "explanation": "The new hospital could not be equipped from the budget, its wards opened with machines and surgeons transferred from the county, and the county hospital ended as a part-time clinic, so the board \"cannibalized\" the county hospital. \"Certified\" fails because no standard the hospital met is described, only its emptying; \"cloned\" fails because the city hospital received the county hospital's own machines and surgeons rather than being built as a copy; \"bartered\" fails because the board moved its own property between its own hospitals and traded with no one.",
       "kills": {
         "certified": {
           "type": "logic",
           "quote": "held only a clinic open two days a week",
-          "why": "The hospital ends almost empty; nothing is said of its being judged to meet any standard."
+          "why": "The hospital ends almost empty; nothing is said of its being judged against a standard."
         },
         "cloned": {
           "type": "logic",
-          "quote": "moved to the city one by one",
-          "why": "The original's own parts were taken away to the new hospital; no copy of it was made."
+          "quote": "transferred from the county",
+          "why": "The original's own equipment and staff went to the new hospital; no copy of the original was made."
         },
         "bartered": {
           "type": "logic",
-          "quote": "had little money to equip it",
-          "why": "The board shifted its own equipment to fill its own new building; nothing was traded with another party."
+          "quote": "with little money to equip it",
+          "why": "The board filled its own new building from its own older one; nothing was traded with another party."
         }
       }
     },
     {
       "key": "cloned",
-      "passage": "In 1948 a new regional health board took charge of every hospital in a rural county, among them the old stone county hospital. The board's own records showed that patients there died after surgery less often than anywhere else in the county. Over the next ten years the board built three new hospitals in other towns from the stone building's floor plan, staffed each with its number of nurses per ward, and gave each its rules for washing and for visiting, while the county hospital went on as before. Writing about the board's first decade, one historian of medicine concluded that the board had ______ the county hospital.",
+      "passage": "In 1948 a new regional health board took charge of every hospital in a rural county, among them the old stone county hospital. The board's records showed that patients there died after surgery less often than anywhere else in the county. Over the next ten years it opened three new hospitals in other towns. Their architects worked from drawings of the stone building, and their head nurses spent a month there before posting its staffing charts and ward rules, unchanged, in their own wards. The county hospital went on as before. Writing about the board's first decade, one historian of medicine concluded that the board had ______ the county hospital.",
       "shape": "method and purpose",
       "key_from_one_sentence": false,
-      "explanation": "The board reproduced the county hospital's plan, staffing, and rules in three new buildings, so it \"cloned\" the county hospital. \"Certified\" fails because the board read its own records and copied what worked; no test or standard the hospital had to pass is described; \"bartered\" fails because the hospital stayed with the board and nothing was exchanged; \"cannibalized\" fails because nothing was taken from the original, which went on unchanged.",
+      "explanation": "The board found its best hospital, then opened three more whose buildings were drawn from it and whose staffing and rules were carried over unchanged, so it \"cloned\" the county hospital. \"Certified\" fails because the board read its own records to find a model; no test the hospital had to pass is described; \"bartered\" fails because the hospital stayed with the board; \"cannibalized\" fails because nothing was taken from the original, which went on as before.",
       "kills": {
         "certified": {
           "type": "logic",
-          "quote": "board's own records showed",
-          "why": "The board used its records to find a model to copy; no formal test or approval of the hospital is described."
+          "quote": "board's records showed",
+          "why": "The board uses its records to choose a model; no formal test or approval of the hospital is described."
         },
         "bartered": {
           "type": "logic",
-          "quote": "built three new hospitals in other towns",
-          "why": "The board built new hospitals itself; the county hospital was not given to anyone in exchange for anything."
+          "quote": "opened three new hospitals in other towns",
+          "why": "The board builds hospitals itself; the county hospital is not given to anyone in exchange."
         },
         "cannibalized": {
           "type": "logic",
-          "quote": "the county hospital went on as before",
-          "why": "Only its plan and practices were reproduced; none of its equipment or staff was taken away."
+          "quote": "went on as before",
+          "why": "Only drawings and practices were taken; the hospital lost none of its equipment or staff."
         }
       }
     },
     {
       "key": "bartered",
-      "passage": "In 1948 a new regional health board took charge of every hospital in a rural county, among them the old stone county hospital. The board needed land beside its new city hospital, and the state university, which owned the plot there, had a medical school that wanted a teaching building in the county. In 1952 the board signed the county hospital over to the medical school, and its accounts for that year record no payment received. That same month the university's plot passed to the board. Writing about the board's first decade, one historian of medicine concluded that the board had ______ the county hospital.",
+      "passage": "In 1948 a new regional health board took charge of every hospital in a rural county, among them the old stone county hospital. The board needed land beside its new city hospital, and the state university, which owned the plot there, had a medical school that wanted a teaching hospital in the county. In 1952 the board signed the county hospital over to the medical school, its beds, equipment, and staff included, and the board's accounts record no payment received. That same month the university's plot passed to the board. Writing about the board's first decade, one historian of medicine concluded that the board had ______ the county hospital.",
       "shape": "comparison of two cases",
       "key_from_one_sentence": false,
-      "explanation": "Each side held what the other needed, and the hospital went to the medical school for no money in the same month the university's plot went to the board, so the board \"bartered\" the county hospital. \"Certified\" fails because the hospital changed hands as a whole, with no inspection or standard involved; \"cloned\" fails because the school wanted the existing building and no copy was built; \"cannibalized\" fails because the hospital passed whole to the school rather than being stripped for parts.",
+      "explanation": "Each side held what the other needed, and the whole hospital went to the medical school for no money in the same month the university's plot went to the board, so the board \"bartered\" the county hospital. \"Certified\" fails because the hospital changed hands whole, with no inspection involved; \"cloned\" fails because the school wanted the existing hospital and no copy was built; \"cannibalized\" fails because the hospital passed with its beds, equipment, and staff, so nothing was stripped out to supply the city hospital.",
       "kills": {
         "certified": {
           "type": "logic",
@@ -84,13 +84,13 @@
         },
         "cloned": {
           "type": "logic",
-          "quote": "wanted a teaching building in the county",
-          "why": "The school wanted the existing building itself, and no copy of it is made anywhere."
+          "quote": "wanted a teaching hospital in the county",
+          "why": "The school wanted the existing hospital itself, and no copy is made anywhere."
         },
         "cannibalized": {
           "type": "logic",
-          "quote": "signed the county hospital over to the medical school",
-          "why": "The hospital passes intact to the school; its parts are not taken to supply another hospital."
+          "quote": "its beds, equipment, and staff included",
+          "why": "The hospital leaves whole; none of its parts go to the board's other hospitals."
         }
       }
     },

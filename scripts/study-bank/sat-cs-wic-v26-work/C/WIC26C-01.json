@@ -24,97 +24,97 @@
   "worlds": [
     {
       "key": "checkpoint",
-      "passage": "For six centuries a small monastery stood at the top of the only pass between two mountain valleys, each ruled by its own lord. Each lord's soldiers held his own end of the road, and neither lord trusted the other's toll keepers. Every cart that came up the pass stopped at the monastery gate, where the monks listed its load and sealed it with the abbot's stamp, refusing the seal to any cart carrying weapons. Toll keepers in both valleys waved sealed carts through and searched any other to the last sack. In a history of the pass, one scholar described the monastery as, above all, the region's ______.",
+      "passage": "For six centuries a small monastery stood at the top of the only pass between two mountain valleys, each ruled by its own lord. Each lord's soldiers held his own end of the road. Every cart that came up the pass stopped at the monastery gate, where the monks listed its load and pressed the abbot's seal into a wax tag tied to it, giving no tag to a cart that carried weapons. Toll keepers in both valleys let a tagged cart through untouched and unloaded any other to the last sack. In a history of the pass, one scholar described the monastery as, above all, the region's ______.",
       "shape": "process sequence",
       "key_from_one_sentence": false,
-      "explanation": "Neither valley trusted the other's searches, and both let through only the carts the monks had examined and sealed, so the monastery was where traffic was inspected: the region's \"checkpoint.\" \"Broker\" fails because the monks examine loads and arrange no dealings between the lords; \"custodian\" fails because the road is guarded by the lords' own soldiers and every cart moves on, so the monks keep and guard nothing; \"counterweight\" fails because the monastery serves both valleys alike rather than offsetting either lord's power.",
+      "explanation": "The monks' tag means a load has been examined, and both valleys let through only what the monks examined, so the monastery is where traffic is inspected: the region's \"checkpoint.\" \"Broker\" fails because the monks examine carts and arrange nothing between the lords; \"custodian\" fails because the road is held by the lords' soldiers and every cart moves on, so the monks keep nothing in their care; \"counterweight\" fails because both valleys use the monks' tag alike, and the monastery offsets neither lord's power.",
       "kills": {
         "broker": {
           "type": "logic",
-          "quote": "listed its load and sealed it",
-          "why": "The monks' work is examining cargo, not carrying offers or arranging terms between the lords."
+          "quote": "listed its load and pressed the abbot's seal",
+          "why": "The monks examine and mark cargo; they carry no offers and arrange no terms between the lords."
         },
         "custodian": {
           "type": "logic",
           "quote": "Each lord's soldiers held his own end",
-          "why": "Guarding the road belongs to the lords' soldiers, and the carts pass on; the monastery keeps nothing in its care."
+          "why": "Guarding the road belongs to the soldiers, and the carts pass on; the monastery holds nothing in its care."
         },
         "counterweight": {
           "type": "logic",
           "quote": "Toll keepers in both valleys",
-          "why": "Both valleys rely on the seal equally; the monastery balances no one's power against another's."
+          "why": "Both valleys rely on the tag equally; the monastery balances no one's power against another's."
         }
       }
     },
     {
       "key": "broker",
-      "passage": "For six centuries a small monastery stood at the top of the only pass between two mountain valleys, each ruled by its own lord. The lords spoke different languages and, after a long war, would let none of each other's envoys into their valleys. Monks who knew both tongues carried each lord's offers over the pass and back, proposed terms on grazing rights and on marriages between the two houses, and saw the treaties that kept the peace for two centuries drafted in the monastery's hall. In a history of the pass, one scholar described the monastery as, above all, the region's ______.",
+      "passage": "For six centuries a small monastery stood at the top of the only pass between two mountain valleys, each ruled by its own lord. The lords spoke different languages and, after a long war, would let none of each other's envoys into their valleys. Monks who knew both tongues went down into each valley in turn and came back up with the other lord's latest words on grazing rights and on marriages between the two houses. The treaties that kept the peace for the next two centuries were drafted in the monastery's hall. In a history of the pass, one scholar described the monastery as, above all, the region's ______.",
       "shape": "method and purpose",
       "key_from_one_sentence": false,
-      "explanation": "Two parties who will not meet reach agreements through monks who carry their offers and propose the terms, so the monastery is the region's \"broker.\" \"Checkpoint\" fails because the monks cross the pass with messages; no traveler is stopped or examined; \"custodian\" fails because the monastery shapes agreements rather than keeping anything safe; \"counterweight\" fails because it sides with neither lord but brings the two together.",
+      "explanation": "The lords would not meet, the monks went between them with each side's words, and the agreements were then written at the monastery, so the monastery arranged the deals: it was the region's \"broker.\" \"Checkpoint\" fails because the monks themselves travel with messages and no one crossing is examined; \"custodian\" fails because the monastery's part is reaching agreements, not keeping anything safe; \"counterweight\" fails because it takes neither lord's side and brings the two together.",
       "kills": {
         "checkpoint": {
           "type": "logic",
-          "quote": "carried each lord's offers over the pass",
-          "why": "The monks themselves travel back and forth with messages; the passage describes no inspection of anyone crossing."
+          "quote": "went down into each valley in turn",
+          "why": "The monks do the traveling, carrying words; the passage describes no inspection of anyone crossing."
         },
         "custodian": {
           "type": "logic",
-          "quote": "proposed terms on grazing rights",
-          "why": "The monks' work is arranging terms between parties, not holding or protecting anything on someone's behalf."
+          "quote": "treaties that kept the peace",
+          "why": "The monastery's work ends in agreements between the lords, not in holding anything on someone's behalf."
         },
         "counterweight": {
           "type": "logic",
-          "quote": "between the two houses",
-          "why": "The monastery joins the two sides in agreements; it is not a power set against one of them."
+          "quote": "marriages between the two houses",
+          "why": "The monastery joins the two sides; it is not a power set against one of them."
         }
       }
     },
     {
       "key": "custodian",
-      "passage": "For six centuries a small monastery stood at the top of the only pass between two mountain valleys, each ruled by its own lord. When raiders burned the lowland towns, families from both valleys carried their deeds, seed grain, and church silver up to the monastery, whose walls the raiders never breached. The monks sealed each family's goods in the vaults under its name and handed them back when the family returned, sometimes a generation later, with the seals unbroken. In a history of the pass, one scholar described the monastery as, above all, the region's ______.",
+      "passage": "For six centuries a small monastery stood at the top of the only pass between two mountain valleys, each ruled by its own lord. When raiders burned the lowland towns, families from both valleys carried their deeds, seed grain, and church silver up to the monastery, whose walls the raiders never breached. Each family's bundle went into the vaults under a wax seal bearing its name. Families that came back down from hiding, sometimes a generation later, climbed up again and broke those seals with their own hands. In a history of the pass, one scholar described the monastery as, above all, the region's ______.",
       "shape": "cause and mechanism",
       "key_from_one_sentence": false,
-      "explanation": "Families leave their most valuable property with the monks, who hold it under seal for as long as needed and return it intact, so the monastery is the region's \"custodian.\" \"Checkpoint\" fails because the families climb up to the monastery to leave goods, not to cross; nothing is examined; \"broker\" fails because no dealings between parties are arranged; \"counterweight\" fails because the raiders are kept out by walls, not offset by a rival power, and the lords play no part.",
+      "explanation": "Families left their valuables sealed in the vaults, and the same families, years later, were the ones to break the seals, so the monks had held the goods untouched for them: the monastery was the region's \"custodian.\" \"Checkpoint\" fails because the families climb up to leave and later reclaim goods, never to cross the pass, and nothing is examined; \"broker\" fails because the goods go back to their owners with no dealings between parties; \"counterweight\" fails because the raiders are kept out by walls, not offset by a rival power.",
       "kills": {
         "checkpoint": {
           "type": "logic",
-          "quote": "carried their deeds, seed grain, and church silver up",
-          "why": "The families bring goods up to leave them, not to pass through, and no one is examined or admitted."
+          "quote": "climbed up again and broke those seals",
+          "why": "The families come up to the monastery and go back down; no one passes through to the other valley or is examined."
         },
         "broker": {
           "type": "logic",
-          "quote": "handed them back when the family returned",
-          "why": "The goods go back to their own owners; the monks arrange no exchange or agreement between two sides."
+          "quote": "under a wax seal bearing its name",
+          "why": "Each family's goods stay its own and come back to it; nothing is exchanged or negotiated."
         },
         "counterweight": {
           "type": "logic",
           "quote": "whose walls the raiders never breached",
-          "why": "The protection is the safety of what is stored, not a balance struck against any lord's or raider's power."
+          "why": "Safety comes from the walls around what is stored, not from a balance struck against anyone's power."
         }
       }
     },
     {
       "key": "counterweight",
-      "passage": "For six centuries a small monastery stood at the top of the only pass between two mountain valleys, each ruled by its own lord. In time the eastern lord grew rich enough to want the western valley's pastures as well. The monastery owned half the high grazing land, its abbots were elected by western villages, and the bishop sided with the abbots in every dispute, so for two centuries the eastern lord never had enough land, men, or church support to take the pastures he wanted. In a history of the pass, one scholar described the monastery as, above all, the region's ______.",
+      "passage": "For six centuries a small monastery stood at the top of the only pass between two mountain valleys, each ruled by its own lord. In time the eastern lord grew rich enough to want the western valley's pastures. The monks owned the high grazing land on the pass, chose each abbot from western families, and had the bishop's backing in every quarrel. Whenever the eastern lord gathered men to march west, the abbot gathered tenants and the bishop's letters, and for two centuries the lord never judged the march worth the cost. In a history of the pass, one scholar described the monastery as, above all, the region's ______.",
       "shape": "comparison of two cases",
       "key_from_one_sentence": false,
-      "explanation": "A growing eastern power is held level by the monastery's own weight in land, local loyalty, and church backing, so the monastery is the region's \"counterweight.\" \"Checkpoint\" fails because the eastern lord is held back by the balance of land and allies, not by inspection at a gate; \"broker\" fails because the monastery takes one side's part in every dispute rather than arranging terms; \"custodian\" fails because the monastery holds its own land in its own interest, not anyone's property in trust.",
+      "explanation": "Each time the eastern lord built up force, the monastery built up an answering force of its own, tenants and church backing, and the march never came, so the monastery held the balance: it was the region's \"counterweight.\" \"Checkpoint\" fails because the lord is deterred by what the monastery could raise, not stopped at a gate; \"broker\" fails because the monastery answers one side's threat instead of arranging terms; \"custodian\" fails because it holds its own land and keeps nothing in trust for anyone.",
       "kills": {
         "checkpoint": {
           "type": "logic",
-          "quote": "never had enough land, men, or church support",
-          "why": "What stops the eastern lord is the balance of resources, not a gate where people are examined."
+          "quote": "never judged the march worth the cost",
+          "why": "The lord is held back by weighing the opposing force, not by inspection at a gate."
         },
         "broker": {
           "type": "logic",
-          "quote": "the bishop sided with the abbots in every dispute",
-          "why": "The monastery is a party in each dispute, backed by the bishop, not a go-between arranging terms."
+          "quote": "the abbot gathered tenants",
+          "why": "The monastery answers the threat with force of its own; it negotiates nothing."
         },
         "custodian": {
           "type": "logic",
-          "quote": "monastery owned half the high grazing land",
-          "why": "The land is the monastery's own; it is not holding anyone else's property in safekeeping."
+          "quote": "owned the high grazing land",
+          "why": "The land is the monastery's own; it is not keeping anyone else's property safe."
         }
       }
     }

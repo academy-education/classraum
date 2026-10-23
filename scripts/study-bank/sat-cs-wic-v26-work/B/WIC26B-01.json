@@ -24,39 +24,39 @@
   "worlds": [
     {
       "key": "stronghold",
-      "passage": "In 1871 the hand-loom weavers of a hill district pooled their dues to buy a stone hall in the market town. Over the following decades the mill owners bought up the market, the bank, and most council seats, and turned the rules of each against home weaving. The hall's deed, held by the weavers jointly, was the one title in town they could not acquire, and inside its walls the old price agreement and the apprentice rules still held. The weavers refused every offer for it, the last in 1919. For the next half century, one historian has argued, the hall served the district's weavers chiefly as their ______.",
+      "passage": "In 1871 the hand-loom weavers of a hill district pooled their dues to buy a hall in the market town. Over the next decades the mill owners bought the market, the bank, and most council seats, and turned each against home weaving. The weavers' old price agreement and apprentice rules, struck from the town's books in 1880, were still read out and obeyed at monthly meetings in the hall. The deed needed every member's signature to sell, and the owners' offers for it, made almost yearly, ended only in 1919. For the next half century, one historian has argued, the hall served the district's weavers chiefly as their ______.",
       "shape": "cause and mechanism",
       "key_from_one_sentence": false,
-      "explanation": "As the owners took every other institution, the hall was the one place they could not take, and the weavers' old rules survived only inside it while the weavers refused to give it up, so it was their \"stronghold.\" \"Springboard\" fails because the weavers kept to their trade and its apprentice rules rather than using the hall to leave it. \"Showpiece\" fails because the hall's value lay in being held against the owners, not in being displayed to anyone. \"Switchboard\" fails because nothing in the passage passes through the hall from one party to another.",
+      "explanation": "The owners took over every other institution, the weavers' repealed rules lived on only inside the hall, and the hall withstood yearly attempts to buy it; combining these shows it was the place the weavers held against the owners, their \"stronghold.\" \"Springboard\" fails because the weavers were keeping their trade's rules, not using the hall to leave the trade. \"Showpiece\" fails because the hall's value lay in being held against the owners, not in being displayed. \"Switchboard\" fails because nothing in the passage passes through the hall from one party to another.",
       "kills": {
         "springboard": {
           "type": "logic",
-          "quote": "the old price agreement and the apprentice rules still held",
+          "quote": "still read out and obeyed",
           "why": "the weavers were keeping their trade going inside the hall, not launching themselves out of it"
         },
         "showpiece": {
           "type": "logic",
-          "quote": "the one title in town they could not acquire",
-          "why": "the hall mattered as something the owners could not take, a defensive role, not as something shown off"
+          "quote": "the owners' offers for it, made almost yearly",
+          "why": "the hall mattered as something contested and kept from the owners, not as something shown off"
         },
         "switchboard": {
           "type": "logic",
-          "quote": "refused every offer for it",
+          "quote": "needed every member's signature to sell",
           "why": "the passage's mechanism is holding a position against takeover; no messages or orders are routed through the hall"
         }
       }
     },
     {
       "key": "springboard",
-      "passage": "In 1871 the hand-loom weavers of a hill district pooled their dues to buy a stone hall in the market town. Its upper room held evening classes in bookkeeping, drafting, and shorthand, taught by members' children who worked in the city. The classes were always full, and the weavers' records show most who finished them leaving the looms within a few years for city offices. Membership fell every decade, and the dues of those who remained went largely to paying the teachers. For the next half century, one historian has argued, the hall served the district's weavers chiefly as their ______.",
+      "passage": "In 1871 the hand-loom weavers of a hill district pooled their dues to buy a hall in the market town. Its upper room held evening classes in bookkeeping, drafting, and shorthand, and most of the dues went to paying the teachers. The weavers' roll of members shrank every decade. Over the same years the registers of the city's rail and shipping offices list more clerks from the district's weaving villages each year, many of them with the surnames on that roll. For the next half century, one historian has argued, the hall served the district's weavers chiefly as their ______.",
       "shape": "process sequence",
       "key_from_one_sentence": false,
-      "explanation": "The hall trained weavers in office skills, those who trained left the looms for city work, and the membership shrank as the remaining dues paid for more classes, so the hall was a \"springboard\" out of the trade. \"Stronghold\" fails because the weavers were leaving weaving, not holding on to it. \"Showpiece\" fails because the hall's use was teaching its own members, not displaying anything to outsiders. \"Switchboard\" fails because what the hall provided was training, not the passing of messages or orders between people.",
+      "explanation": "The hall taught office skills, its membership shrank, and clerks from the weaving villages, often from members' families, filled the city's offices; combining these shows the hall launched weavers out of the trade, so it was their \"springboard.\" \"Stronghold\" fails because the weavers were leaving weaving, not holding on to it. \"Showpiece\" fails because the hall was used for teaching, not for display. \"Switchboard\" fails because what the hall provided was training, not the passing of messages or orders.",
       "kills": {
         "stronghold": {
           "type": "logic",
-          "quote": "leaving the looms within a few years",
-          "why": "the hall's users were abandoning the trade, the reverse of defending a position"
+          "quote": "roll of members shrank every decade",
+          "why": "the hall's people were leaving the trade, the reverse of defending a position"
         },
         "showpiece": {
           "type": "logic",
@@ -65,38 +65,38 @@
         },
         "switchboard": {
           "type": "logic",
-          "quote": "dues of those who remained went largely to paying the teachers",
+          "quote": "most of the dues went to paying the teachers",
           "why": "the hall's resources went into classes, not into routing messages or orders"
         }
       }
     },
     {
       "key": "showpiece",
-      "passage": "In 1871 the hand-loom weavers of a hill district pooled their dues to buy a stone hall in the market town. They spent ten years' dues on carved oak panels and a tall front window, and each autumn hung in it the finest length of cloth from every village. City buyers and visiting tariff officials were walked through the hall before any price or duty was discussed, and the weavers held their own meetings at an inn across the street so that nothing in the hall would look worn. For the next half century, one historian has argued, the hall served the district's weavers chiefly as their ______.",
+      "passage": "In 1871 the hand-loom weavers of a hill district pooled their dues to buy a hall in the market town. They spent ten years' dues on carved oak panels and a tall front window, and each autumn hung in it the finest length of cloth from every weaving village. City buyers and visiting tariff officials were led from panel to panel before any price or duty was discussed, and the members held their own monthly meetings at an inn across the street so that nothing in the hall would look worn. For the next half century, one historian has argued, the hall served the district's weavers chiefly as their ______.",
       "shape": "method and purpose",
       "key_from_one_sentence": false,
       "explanation": "The weavers decorated the hall, filled its window with their best cloth, and walked buyers and officials through it before bargaining, while doing their own business elsewhere, so it was their \"showpiece.\" \"Stronghold\" fails because the hall was opened to outsiders rather than held against them. \"Springboard\" fails because no one used the hall to leave the trade. \"Switchboard\" fails because the hall impressed visitors and did not carry the weavers' business, which happened at the inn.",
       "kills": {
         "stronghold": {
           "type": "logic",
-          "quote": "visiting tariff officials were walked through the hall",
+          "quote": "visiting tariff officials were led from panel to panel",
           "why": "a place opened to outside buyers and officials for viewing is not a defended position"
         },
         "springboard": {
           "type": "logic",
-          "quote": "the finest length of cloth from every village",
+          "quote": "the finest length of cloth",
           "why": "the weavers were displaying their trade's best work, not leaving the trade"
         },
         "switchboard": {
           "type": "explicit",
-          "quote": "held their own meetings at an inn",
+          "quote": "held their own monthly meetings at an inn",
           "why": "the weavers kept their own business out of the hall to keep it pristine for viewing, so the hall was not the point through which their business passed"
         }
       }
     },
     {
       "key": "switchboard",
-      "passage": "In 1871 the hand-loom weavers of a hill district pooled their dues to buy a stone hall in the market town. Merchants left orders for cloth at the hall, carters left word of yarn deliveries, and weavers in town on market day left requests for spare parts or extra hands. The caretaker sorted the slips by village, and a boy from each village carried that village's bundle home every Saturday. Weavers in the remotest valleys learned of most of their work this way. For the next half century, one historian has argued, the hall served the district's weavers chiefly as their ______.",
+      "passage": "In 1871 the hand-loom weavers of a hill district pooled their dues to buy a hall in the market town. Merchants left orders for cloth at the hall, carters left word of yarn deliveries, and weavers in town on market day left requests for spare parts or extra hands. The caretaker sorted the slips by village, and a boy from each village carried that village's bundle home every Saturday. Weavers in the remotest valleys learned of most of their work this way. For the next half century, one historian has argued, the hall served the district's weavers chiefly as their ______.",
       "shape": "process sequence",
       "key_from_one_sentence": false,
       "explanation": "Messages from merchants, carters, and weavers came into the hall, were sorted by village, and were carried out to the right people, with answers flowing back the same way, so the hall was their \"switchboard.\" \"Stronghold\" fails because the hall was open to merchants and carters and defended nothing. \"Springboard\" fails because the weavers used the hall to keep working at their trade, not to leave it. \"Showpiece\" fails because the hall's value lay in sorting and routing slips, not in being displayed.",

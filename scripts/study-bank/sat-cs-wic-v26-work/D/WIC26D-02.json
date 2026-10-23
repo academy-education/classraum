@@ -5,59 +5,117 @@
   "difficulty": "hard",
   "topic_tag": "a harvest procession over fifty years",
   "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
-  "choices": ["democratized", "dramatized", "enshrined", "harmonized"],
+  "choices": [
+    "democratized",
+    "dramatized",
+    "enshrined",
+    "harmonized"
+  ],
   "antonym_pairs": [],
-  "rarity_order": ["dramatized", "harmonized", "enshrined", "democratized"],
+  "rarity_order": [
+    "dramatized",
+    "harmonized",
+    "enshrined",
+    "democratized"
+  ],
   "pos": "verb",
   "after_blank": "the",
   "blank_sentence": "Writing in 1990, one folklorist concluded that the changes of the previous fifty years had ______ the custom.",
   "worlds": [
     {
       "key": "democratized",
-      "passage": "For centuries the villages of one mountain valley marked the end of the olive harvest with a night procession, led by singers, from the church to the presses. Until the 1940s only the men of six landowning families could carry the lanterns or sing the verses, a right passed from father to son. As those families sold their groves and moved to the coast, the village councils opened both roles to anyone who had worked that year's harvest, and by the 1980s most singers were hired pickers and their daughters. Writing in 1990, one folklorist concluded that the changes of the previous fifty years had ______ the custom.",
+      "passage": "For centuries the villages of one mountain valley marked the end of the olive harvest with a night procession, led by singers, from the church to the presses. Until the 1940s only the men of six landowning families could carry the lanterns or sing the verses, a right passed from father to son. As those families sold their groves and moved to the coast, the village councils stopped asking whose son a singer was, and by the 1980s most of those who carried the lanterns were hired pickers and their daughters. Writing in 1990, one folklorist concluded that the changes of the previous fifty years had ______ the custom.",
       "shape": "before and after",
       "key_from_one_sentence": false,
-      "explanation": "Roles once held by six families' sons were opened to anyone who worked the harvest, and hired pickers and their daughters came to fill them, so the changes had \"democratized\" the custom. \"Dramatized\" fails because nothing turned the procession into a show for an audience; only who took part changed. \"Enshrined\" fails because no law or formal honor fixed it in place; the councils changed its rules. \"Harmonized\" fails because the change concerned who performed, not differences among the villages' versions.",
+      "explanation": "Roles once inherited by six families' sons stopped being checked for lineage, and hired pickers and their daughters came to fill them, so the changes had \"democratized\" the custom. \"Dramatized\" fails because nothing turned the procession into a show for an audience; only who took part changed. \"Enshrined\" fails because no law or formal honor fixed it in place; the councils loosened its rules. \"Harmonized\" fails because the change concerned who performed, not differences among the villages' versions.",
       "kills": {
-        "dramatized": {"type": "logic", "quote": "opened both roles to anyone", "why": "the change was in who could take part, not in turning the event into a staged spectacle"},
-        "enshrined": {"type": "logic", "quote": "the village councils opened both roles", "why": "the councils altered the custom's rules rather than fixing it as a protected tradition"},
-        "harmonized": {"type": "logic", "quote": "most singers were hired pickers", "why": "what changed was the singers' social origin; nothing about separate village versions being brought into line"}
+        "dramatized": {
+          "type": "logic",
+          "quote": "stopped asking whose son a singer was",
+          "why": "the change was in who could take part, not in staging the event for spectators"
+        },
+        "enshrined": {
+          "type": "logic",
+          "quote": "the village councils stopped asking",
+          "why": "the councils relaxed the custom's rules rather than fixing it as a protected tradition"
+        },
+        "harmonized": {
+          "type": "logic",
+          "quote": "hired pickers and their daughters",
+          "why": "what changed was the singers' social origin, not separate village versions being brought into line"
+        }
       }
     },
     {
       "key": "dramatized",
-      "passage": "For centuries the villages of one mountain valley marked the end of the olive harvest with a night procession, led by singers, from the church to the presses. After a road reached the valley in the 1950s, buses brought visitors each November, and the villages moved the procession from midnight to early evening so that visitors could watch. Singers began wearing costumes copied from old photographs, a narrator explained each verse over loudspeakers to folding chairs along the route, and the families who had always led it now rehearsed for weeks. Writing in 1990, one folklorist concluded that the changes of the previous fifty years had ______ the custom.",
+      "passage": "For centuries the villages of one mountain valley marked the end of the olive harvest with a night procession, led by singers, from the church to the presses. After a road reached the valley in the 1950s, buses brought visitors each November, and the villages moved the procession from midnight to early evening. Singers began rehearsing for weeks in costumes copied from old photographs, and a narrator explained each verse over loudspeakers to visitors seated along the route, while the same six families who had always led it went on leading it. Writing in 1990, one folklorist concluded that the changes of the previous fifty years had ______ the custom.",
       "shape": "process sequence",
       "key_from_one_sentence": false,
-      "explanation": "The procession was retimed for visitors, costumed, narrated over loudspeakers to seated spectators, and rehearsed, so it had been \"dramatized,\" turned into a staged performance. \"Democratized\" fails because the same families still led it. \"Enshrined\" fails because the changes came from catering to visitors, not from any law or formal honor. \"Harmonized\" fails because nothing brought differing village versions into agreement.",
+      "explanation": "The procession was retimed, costumed, rehearsed, and narrated over loudspeakers to seated visitors, so it had been \"dramatized,\" turned into a staged performance. \"Democratized\" fails because the visitors only watched and the same six families still led it. \"Enshrined\" fails because the changes reshaped the event for spectators instead of fixing it as it was. \"Harmonized\" fails because nothing brought differing village versions into agreement.",
       "kills": {
-        "democratized": {"type": "logic", "quote": "the families who had always led it", "why": "leadership stayed in the same families, so participation was not opened up"},
-        "enshrined": {"type": "logic", "quote": "so that visitors could watch", "why": "the custom was reshaped for an audience, not fixed and protected as it was"},
-        "harmonized": {"type": "logic", "quote": "costumes copied from old photographs", "why": "the changes add staging and spectacle; none of them reconciles different village versions"}
+        "democratized": {
+          "type": "logic",
+          "quote": "the same six families who had always led it",
+          "why": "leadership stayed in the same families and visitors were seated spectators, so participation was not opened up"
+        },
+        "enshrined": {
+          "type": "logic",
+          "quote": "moved the procession from midnight to early evening",
+          "why": "the custom was altered for an audience, not preserved and protected unchanged"
+        },
+        "harmonized": {
+          "type": "logic",
+          "quote": "costumes copied from old photographs",
+          "why": "the changes add staging and spectacle; none reconciles different village versions"
+        }
       }
     },
     {
       "key": "enshrined",
-      "passage": "For centuries the villages of one mountain valley marked the end of the olive harvest with a night procession, led by singers, from the church to the presses. In 1951 a national law listed the procession among forty \"living monuments\" of the country. The law closed the route to traffic on each harvest night, paid the villages to repair the presses and lanterns, and forbade any authority to alter or ban the event, so the procession went on as it always had while similar customs in neighboring valleys lapsed. Writing in 1990, one folklorist concluded that the changes of the previous fifty years had ______ the custom.",
+      "passage": "For centuries the villages of one mountain valley marked the end of the olive harvest with a night procession, led by singers, from the church to the presses. In 1951 a national law added the procession to a list of forty \"living monuments\" of the country. From then on the state closed the route to traffic on each harvest night, paid to repair the presses and lanterns, and sent an inspector every year to confirm that route, verses, and singers matched the description filed in 1951, while neighboring valleys' customs lapsed. Writing in 1990, one folklorist concluded that the changes of the previous fifty years had ______ the custom.",
       "shape": "cause and mechanism",
       "key_from_one_sentence": false,
-      "explanation": "A national law named the procession a monument, funded its upkeep, and forbade anyone to alter or ban it, so the changes had \"enshrined\" the custom, preserving it as something honored and protected. \"Democratized\" and \"dramatized\" fail because the procession went on exactly as it always had, with no new participants and no staging. \"Harmonized\" fails for the same reason: the law kept the custom unaltered rather than making anything uniform.",
+      "explanation": "A national law listed the procession as a monument, the state funded its upkeep, and an inspector held it each year to its 1951 form, so the changes had \"enshrined\" the custom, preserving it as something honored and protected. \"Democratized\" fails because the singers had to match the 1951 description, so participation was not opened up. \"Dramatized\" fails because the event was held to its old form, not restaged as a show. \"Harmonized\" fails because each village's procession was kept as described rather than made uniform.",
       "kills": {
-        "democratized": {"type": "logic", "quote": "went on as it always had", "why": "the law preserved the procession unchanged, so its participants were not opened up"},
-        "dramatized": {"type": "logic", "quote": "forbade any authority to alter", "why": "the protection prevented reshaping the event into a show"},
-        "harmonized": {"type": "logic", "quote": "went on as it always had while similar customs", "why": "the custom was kept as it was; nothing was brought into uniformity"}
+        "democratized": {
+          "type": "logic",
+          "quote": "singers matched the description filed in 1951",
+          "why": "the singers were held to their recorded form, so participation was not widened"
+        },
+        "dramatized": {
+          "type": "logic",
+          "quote": "sent an inspector every year to confirm",
+          "why": "the state checked that the event stayed as it was, which rules out reshaping it into a show"
+        },
+        "harmonized": {
+          "type": "logic",
+          "quote": "route, verses, and singers matched",
+          "why": "each procession was preserved against its own record, not brought into line with the others"
+        }
       }
     },
     {
       "key": "harmonized",
-      "passage": "For centuries the villages of one mountain valley marked the end of the olive harvest with a night procession, led by singers, from the church to the presses. Before 1940 each village sang its own verses to its own tune, and singers from neighboring villages could barely follow one another. From 1950 a regional radio station broadcast one village's procession every harvest night, singers across the valley picked up its words and tune year by year, and by the 1980s the processions in all nine villages used the same verses. Writing in 1990, one folklorist concluded that the changes of the previous fifty years had ______ the custom.",
+      "passage": "For centuries the villages of one mountain valley marked the end of the olive harvest with a night procession, led by singers, from the church to the presses. Before 1940 each village sang its own verses to its own tune, and singers from neighboring villages could barely follow one another. From 1950 a regional radio station broadcast one village's procession every harvest night, and a folklorist recording the processions in 1985 found that singers from any of the nine villages could join any other village's procession without a rehearsal. Writing in 1990, one folklorist concluded that the changes of the previous fifty years had ______ the custom.",
       "shape": "comparison of two cases",
       "key_from_one_sentence": false,
-      "explanation": "Villages that once sang different verses to different tunes gradually took up one broadcast version until all nine sang the same, so the changes had \"harmonized\" the custom, bringing its versions into agreement. \"Democratized\" fails because nothing changed about who was allowed to sing. \"Dramatized\" fails because the processions were not restaged for spectators; singers simply learned another village's version. \"Enshrined\" fails because the convergence happened informally, year by year, with no law or formal honor.",
+      "explanation": "Singers who once could barely follow a neighboring village could, after decades of hearing one broadcast version, join any village's procession unrehearsed, so the changes had \"harmonized\" the custom, bringing its versions into agreement. \"Democratized\" fails because nothing changed about who was allowed to sing. \"Dramatized\" fails because the processions were not restaged for spectators. \"Enshrined\" fails because the convergence happened informally through listening, with no law or formal honor.",
       "kills": {
-        "democratized": {"type": "logic", "quote": "picked up its words and tune", "why": "what spread was a version of the verses, not access for new participants"},
-        "dramatized": {"type": "logic", "quote": "singers across the valley picked up", "why": "the change is in which words villages sang, not in staging the event for an audience"},
-        "enshrined": {"type": "logic", "quote": "year by year", "why": "the drift toward one version was gradual and informal, not a formal act preserving the custom"}
+        "democratized": {
+          "type": "logic",
+          "quote": "could barely follow one another",
+          "why": "the change concerns whether villages' versions matched, not who was permitted to sing"
+        },
+        "dramatized": {
+          "type": "logic",
+          "quote": "join any other village's procession without a rehearsal",
+          "why": "the evidence is that the versions now matched, not that the event was staged for an audience"
+        },
+        "enshrined": {
+          "type": "logic",
+          "quote": "a regional radio station broadcast",
+          "why": "the shared version spread informally by listening, not by any formal act preserving the custom"
+        }
       }
     }
   ]
