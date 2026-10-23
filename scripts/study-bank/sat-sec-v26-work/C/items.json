@@ -1,0 +1,182 @@
+[
+  {
+    "id": "SEC26C-01",
+    "subskill": "form: pronoun-antecedent agreement with subject-verb agreement (past passive, by-agent)",
+    "passage": "Theater historians prize painted scenery because so little of it survives. During a renovation of the auditorium, three hired scene painters restored the backdrops in the flies, but the oldest drop curtain, a harbor view rolled up in a loft above the stage, ______ entirely, and a researcher cataloguing the loft found the canvas by chance.",
+    "choices": [
+      "were neglected by them",
+      "was neglected by it",
+      "was neglected by them",
+      "were neglected by it"
+    ],
+    "correct_answer": "was neglected by them",
+    "explanation": "The subject of the verb is \"the oldest drop curtain,\" a singular noun; the appositive \"a harbor view rolled up in a loft above the stage\" separates it from the verb, and \"painters\" and \"backdrops\" earlier in the sentence are not the subject. The curtain is contrasted, by \"but,\" with the backdrops that \"three hired scene painters restored,\" so the agent of the neglect is the plural \"painters,\" and the pronoun must be \"them.\" \"Were neglected by them\" and \"were neglected by it\" pair a plural verb with the singular \"curtain.\" \"Was neglected by it\" has the right verb, but \"it\" could refer only to a singular noun such as \"loft,\" \"stage\" or \"auditorium,\" none of which can neglect anything, or to the curtain itself, which as subject would need a reflexive.",
+    "topic_tag": "theater history: a neglected drop curtain",
+    "template": "opening singular adjunct + plural agent in clause 1 + ', but' + singular subject + appositive ending singular x distant subject, plural agent pulls 'were', adjacent singulars pull 'it' x h+p {was/were neglected by it/them}",
+    "domain": "Standard English Conventions",
+    "difficulty": "hard",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?"
+  },
+  {
+    "id": "SEC26C-02",
+    "subskill": "form: subject-verb agreement with present perfect (since-clause)",
+    "passage": "Court records survive in large numbers from the market towns of seventeenth-century England, yet they seldom preserve a laborer's own words. The illiterate ______ to nearly all scholars of the period since a nineteenth-century archivist discarded the original depositions and kept only the clerks' brief Latin summaries of what each witness had said.",
+    "choices": [
+      "was invisible",
+      "has been invisible",
+      "have been invisible",
+      "were invisible"
+    ],
+    "correct_answer": "have been invisible",
+    "explanation": "The subject \"The illiterate\" is an adjective used as a noun for a group of people, and such a subject takes a plural verb even though it has no plural ending. The clause \"since a nineteenth-century archivist discarded the original depositions\" names a past starting point for a state that continues, so the present perfect is required. \"Has been invisible\" has the right tense but treats \"The illiterate\" as singular. \"Were invisible\" has the right number but the simple past, which cannot combine with a \"since\" clause that marks a starting point. \"Was invisible\" fails on both counts.",
+    "topic_tag": "social history: illiterate witnesses in court records",
+    "template": "'the + adjective' plural subject opening its sentence x reads singular; 'were' pulled by the past event in the since-clause x r|i + 'invisible' {has been/have been/was/were invisible}",
+    "domain": "Standard English Conventions",
+    "difficulty": "hard",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?"
+  },
+  {
+    "id": "SEC26C-03",
+    "subskill": "form: subject-verb agreement with verb tense (past passive)",
+    "passage": "The sacristan's inventory is the only record of the cathedral treasury that survived the great fire. According to that inventory, which notes for each vestment the feast on which it is worn, the embroidered copes ______ from the cedar chests by the lay brothers on the eve of the great fire and carried to a cellar beneath the chapter house. Several of the copes survive, and their silk still shows the creases of that hiding place.",
+    "choices": [
+      "were removed",
+      "is removed",
+      "was removed",
+      "are removed"
+    ],
+    "correct_answer": "were removed",
+    "explanation": "The subject of the verb is \"the embroidered copes,\" which is plural; \"inventory,\" \"vestment,\" \"feast\" and \"it\" belong to the introductory phrase and its relative clause, not to the main clause. The time phrase \"on the eve of the great fire\" refers to the single fire that the first sentence reports in the past (\"survived the great fire\"), so the removal is a completed past event. \"Are removed\" is plural but follows the present, habitual voice of \"which notes ... the feast on which it is worn,\" which describes routine, not the one past occasion. \"Was removed\" is past but singular, agreeing with \"inventory\" or \"vestment,\" and \"is removed\" fails in both number and tense.",
+    "topic_tag": "ecclesiastical history: vestments hidden before a cathedral fire",
+    "template": "'According to that [sg], which [present habitual relative with singular nouns],' + plural subject x opening singulars and present routine voice x c|h {is/are/was/were removed}",
+    "domain": "Standard English Conventions",
+    "difficulty": "hard",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?"
+  },
+  {
+    "id": "SEC26C-04",
+    "subskill": "boundaries: colon between independent clauses (delayed verb)",
+    "passage": "A curator finally identified the sitter of a Renaissance portrait long catalogued as an unknown scholar, and the decisive clue had been hiding in plain ______ ring that all earlier cataloguers had described as plain gold carries, on its inner face, a merchant's mark registered with the city's guild of silk dealers.",
+    "choices": [
+      "sight, the",
+      "sight the",
+      "sight: the",
+      "sight the,"
+    ],
+    "correct_answer": "sight: the",
+    "explanation": "The text before the blank is a complete clause, \"the decisive clue had been hiding in plain sight,\" and the text after it is a second complete clause whose subject, \"the ring that all earlier cataloguers had described as plain gold,\" reaches its verb, \"carries,\" only eleven words later. The second clause explains what the clue was, so a colon joins the clauses correctly. \"Sight, the\" makes \"the ring ...\" look like an appositive renaming \"the decisive clue,\" but once \"carries\" arrives the comma joins two independent clauses, a comma splice. \"Sight the\" runs the clauses together with no punctuation, a fused sentence. \"Sight the,\" separates \"the\" from its noun and still fuses the clauses.",
+    "topic_tag": "art history: identifying a portrait sitter by a ring",
+    "template": "clause ending on an idiom ('in plain sight') + explaining clause whose subject carries a relative clause with its own verb, main verb 11 words later and interrupted x end-of-sentence apposition to an earlier noun x {colon, comma, none, comma one word off}",
+    "domain": "Standard English Conventions",
+    "difficulty": "hard",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?"
+  },
+  {
+    "id": "SEC26C-05",
+    "subskill": "form: subject-verb agreement with verb aspect (past progressive, interrupted action)",
+    "passage": "Historians have long asked why the final gathering of one illuminated gospel book is only half painted. The copyists at the abbey's small and drafty winter scriptorium ______ its last pages in gold and red ink when floodwaters from the river spread through the lower cloister. The initials on those pages break off in mid-stroke, their outlines drawn but never filled.",
+    "choices": [
+      "has decorated",
+      "was decorating",
+      "have decorated",
+      "were decorating"
+    ],
+    "correct_answer": "were decorating",
+    "explanation": "The subject is \"The copyists,\" a plural noun; \"scriptorium,\" the singular noun just before the blank, ends the long phrase \"at the abbey's small and drafty winter scriptorium.\" The clause \"when floodwaters from the river spread through the lower cloister\" names the past moment at which the work was cut off, which is the answer to the historians' question, so the action in progress takes the past progressive. \"Have decorated\" is plural and suits the lasting result the passage describes, but a present perfect cannot be tied to a specific past moment introduced by \"when.\" \"Was decorating\" agrees with \"scriptorium\" rather than \"copyists,\" and \"has decorated\" fails in both number and aspect.",
+    "topic_tag": "manuscript studies: a gospel book interrupted by a flood",
+    "template": "plural head + long 'at the [sg]' phrase x adjacent singular; present-perfect frame sentence and an unmarked past verb ('spread') x d|g {has/have decorated, was/were decorating}",
+    "domain": "Standard English Conventions",
+    "difficulty": "hard",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?"
+  },
+  {
+    "id": "SEC26C-06",
+    "subskill": "form: pronoun-antecedent agreement with subject-verb agreement (past progressive)",
+    "passage": "Readers who found the final chapter of a celebrated poet's only novel confusing sent so many letters to the publisher that the editor of the poet's collected sonnets ______ for the second printing, cutting two long digressions about the hero's childhood. The revised edition sold far better than the first, and most later critics prefer the shorter ending.",
+    "choices": [
+      "were revising it",
+      "was revising it",
+      "were revising them",
+      "was revising them"
+    ],
+    "correct_answer": "was revising it",
+    "explanation": "The subject of the verb is \"the editor,\" a singular noun; \"sonnets,\" just before the blank, is part of the phrase \"of the poet's collected sonnets.\" The object of the revision is the singular \"final chapter\" (of the \"only novel\"), which the readers' letters complained about and which contains the digressions \"about the hero's childhood\"; the sentence's \"so ... that\" logic links the complaint to the revision, so the pronoun is \"it.\" \"Was revising them\" has the right verb, but \"them\" would refer to the sonnets, the letters or the readers, none of which was revised for the novel's second printing. \"Were revising it\" agrees with \"sonnets\" rather than \"editor,\" and \"were revising them\" fails on both counts.",
+    "topic_tag": "literary history: a novel revised after readers' letters",
+    "template": "opening plural + relative clause naming the singular antecedent + 'so many ... that' + singular head + of-phrase ending plural x adjacent plural is a natural object of the verb x g+p {was/were revising it/them}",
+    "domain": "Standard English Conventions",
+    "difficulty": "hard",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?"
+  },
+  {
+    "id": "SEC26C-07",
+    "subskill": "form: subject-verb agreement with verb tense (past, shared complement)",
+    "passage": "The great bell of one Flemish town still hangs in its original tower, and residents say that its voice carries farther than that of any other bell in the province. Even its faint final toll ______ to shepherds on the hills beyond the river at the funeral of the bell's first patron, according to a chronicle that the town archive keeps on display.",
+    "choices": [
+      "are audible",
+      "were audible",
+      "is audible",
+      "was audible"
+    ],
+    "correct_answer": "was audible",
+    "explanation": "The subject is \"its faint final toll,\" a singular noun phrase, so the verb is singular; \"shepherds\" and \"hills\" after the blank are objects of prepositions. The phrase \"at the funeral of the bell's first patron\" refers to a single occasion: a bell has only one first patron, and that patron's funeral took place in the past, so the statement must be in the past tense. \"Is audible\" is singular and matches the present-tense description around it (\"still hangs,\" \"carries,\" \"keeps\"), but it cannot report a single past occasion. \"Were audible\" is past but plural, agreeing with \"shepherds,\" and \"are audible\" fails in both number and tense.",
+    "topic_tag": "music history: the range of a town bell",
+    "template": "singular subject first noun (no trap before) + plural after the blank x present-tense frame on both sides; past only by inference from 'the funeral of the bell's first patron' x i|j + 'audible' {was/were/is/are audible}",
+    "domain": "Standard English Conventions",
+    "difficulty": "hard",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?"
+  },
+  {
+    "id": "SEC26C-08",
+    "subskill": "form: subject-verb agreement with verb aspect (past progressive vs perfect progressive)",
+    "passage": "Conservators have long debated how much harm early solvents did to the guildhall's painted ceiling. Payment receipts kept by the town council suggest an answer: the restorer of the hall's six enormous ceiling paintings ______ the largest canvas with an untested mixture of turpentine and lye before the councillors quit paying for the work, and the varnish on that canvas is visibly thinner than on the rest.",
+    "choices": [
+      "have been cleaning",
+      "was cleaning",
+      "has been cleaning",
+      "were cleaning"
+    ],
+    "correct_answer": "was cleaning",
+    "explanation": "The subject is \"the restorer,\" a singular noun; \"paintings,\" just before the blank, ends the phrase \"of the hall's six enormous ceiling paintings,\" and \"receipts,\" which opens the sentence, belongs to the first clause. The clause \"before the councillors quit paying for the work\" places the cleaning before a completed event in the receipts' past, so the past progressive is required. \"Has been cleaning\" is singular and suits the lasting damage the sentence describes (\"is visibly thinner\"), but a present perfect progressive runs up to the present and cannot end before a past event. \"Were cleaning\" agrees with \"paintings,\" and \"have been cleaning\" fails on both counts.",
+    "topic_tag": "art conservation: a ceiling restoration halted by a town council",
+    "template": "plural-opened sentence + colon + singular head + long of-phrase ending plural x adjacent and opening plurals; present-perfect frame, a present result clause and an unmarked past verb ('quit') x f|g {has/have been cleaning, was/were cleaning}",
+    "domain": "Standard English Conventions",
+    "difficulty": "hard",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?"
+  },
+  {
+    "id": "SEC26C-09",
+    "subskill": "boundaries: comma before a nonrestrictive participial phrase",
+    "passage": "Scholars tracing how a minor opera composer revised his scores from one production to the next have relied almost entirely on his letter ______ in a cramped hand by the copyist who also prepared his orchestral parts. His heirs kept no other record of his working life, and they sold that one volume intact to a university library.",
+    "choices": [
+      "book, filled",
+      "book filled",
+      "book; filled",
+      "book filled,"
+    ],
+    "correct_answer": "book, filled",
+    "explanation": "The second sentence establishes that the composer left exactly one such volume (\"no other record of his working life\"), so \"his letter book\" already identifies it completely. The participial phrase \"filled in a cramped hand by the copyist ...\" therefore adds information about that one book rather than distinguishing it from other letter books, and a nonrestrictive phrase is set off with a comma. \"Book filled\" punctuates the phrase as restrictive, which would imply that the composer had several letter books and that scholars used only the one the copyist filled, contradicting the second sentence. \"Book; filled\" leaves the phrase after the semicolon with no subject or finite verb. \"Book filled,\" separates the participle from its own complement.",
+    "topic_tag": "musicology: a composer's letter book",
+    "template": "sentence-final participial phrase after a possessive + singular noun ('his letter book') x restrictive reading x {comma, none, semicolon, comma one word off}; uniqueness stated in the FOLLOWING sentence",
+    "domain": "Standard English Conventions",
+    "difficulty": "hard",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?"
+  },
+  {
+    "id": "SEC26C-10",
+    "subskill": "form: plural noun (not possessive) before a verb",
+    "passage": "Type foundries were rare outside the largest cities, so a provincial printer often made his own type. In such a shop the ______ cast new letters from melted lead in a small furnace behind the press, while the master printer set the pages and pulled the proofs. Guild records show that a provincial master usually trained three or four boys at a time.",
+    "choices": [
+      "apprentices",
+      "apprentice",
+      "apprentice's",
+      "apprentices'"
+    ],
+    "correct_answer": "apprentices",
+    "explanation": "The word after the blank, \"cast,\" is the verb of the clause (\"cast new letters from melted lead\"), so the blank must be a plain noun serving as its subject, not a possessive that would make \"cast\" a noun. The last sentence says a provincial master \"usually trained three or four boys at a time,\" so the subject is plural: \"the apprentices cast new letters.\" \"Apprentices'\" and \"apprentice's\" turn \"cast\" into a noun (\"the apprentices' cast\"), leaving the clause without a verb. \"Apprentice\" forms a grammatical clause on its own, because \"cast\" has the same form for either number, but it contradicts the several boys each shop trained.",
+    "topic_tag": "history of printing: casting type in provincial shops",
+    "template": "plain plural before a number-neutral verb that reads as a noun ('cast') x possessive garden path; count in the FOLLOWING sentence x {X, X's, Xs, Xs'} of 'apprentice'",
+    "domain": "Standard English Conventions",
+    "difficulty": "hard",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?"
+  }
+]

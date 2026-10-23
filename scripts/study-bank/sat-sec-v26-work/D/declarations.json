@@ -1,0 +1,514 @@
+[
+  {
+    "id": "SEC26D-01",
+    "slot": "D1",
+    "frame": "Object pronoun, split, matched: singular subject 'a diner' and verb; the singular antecedent 'price' is the object of the opening participial phrase; nearer singular nouns 'menu card' and 'study' stand between it and the pronoun; plural 'prices' gives 'them' a referent, which only the later comparison 'than the rounded prices' rules out",
+    "true_subject_head": "diner",
+    "misleader_words": [
+      "prices"
+    ],
+    "misleader_position": "early",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "study",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "price",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "restaurant",
+      "number": "sg"
+    },
+    "dimension": "pronoun",
+    "dimension_key": "sg",
+    "decider_type": "pronoun-antecedent",
+    "decider_quote": "one oddly precise price",
+    "words_from_blank_to_decider": 17,
+    "deletion_test": "Delete the opening phrase and the sentence names no singular thing a diner could judge 'more carefully set than the rounded prices'; 'it' loses its antecedent and the pronoun's number is no longer settled.",
+    "pronoun_antecedent": {
+      "word": "price",
+      "number": "sg"
+    },
+    "grid": {
+      "code": "a+p",
+      "forms": [
+        "judges it",
+        "judge it",
+        "judges them",
+        "judge them"
+      ]
+    },
+    "key_letter": "C",
+    "next_four_words_after_blank": "more carefully set by",
+    "length_ratio": 1.13,
+    "distractor_pulls": {
+      "judges them": "Right verb; 'several rounded prices' is the nearest plural and the passage is about prices in general, so a student who stops before 'than the rounded prices' takes 'them'.",
+      "judge them": "A reader who carries the plural topic 'prices' forward and treats 'a diner in such a study' as a generic statement about diners makes both halves plural.",
+      "judge it": "Finds the one precise price correctly but reads 'a diner in such a study typically' as a statement about diners in general and makes the verb plural."
+    },
+    "distractor_kills": {
+      "judges them": "Pronoun-antecedent agreement and logical comparison: the only plural antecedent is 'rounded prices', and 'judges them more carefully set by the restaurant than the rounded prices' compares those prices with themselves.",
+      "judge them": "Subject-verb agreement: 'a diner' is singular; the pronoun also fails as above.",
+      "judge it": "Subject-verb agreement: 'a diner' is singular and needs 'judges'."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: full 2x2, no extra word, lengths 8-11",
+      "heuristics_that_give_key": [
+        "(b) first noun 'price'",
+        "(g) matched pair"
+      ],
+      "changed": "REVISED: removed the singular complement 'figure' that settled the pronoun next to the blank; the antecedent is now 17 words back with two nearer singular nouns ('menu card', 'study') in the way, and 'them' is ruled out only by the comparison 'than the rounded prices' 7-10 words after the blank; the first noun after the blank is the singular 'restaurant'"
+    }
+  },
+  {
+    "id": "SEC26D-02",
+    "slot": "D2",
+    "frame": "Simple past keyed against 'has been + widespread': singular subject 'Bilingualism' is the first noun and the noun before the blank; plural 'vendors' 4 words after; the time phrase 'at the height of the harbor's grain trade' 9 words after names a period that the next sentence ('That trade collapsed') shows is finished; the preceding sentence is in the present perfect",
+    "true_subject_head": "Bilingualism",
+    "misleader_words": [
+      "vendors",
+      "have argued",
+      "has shaped"
+    ],
+    "misleader_position": "after",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "Bilingualism",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "Bilingualism",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "vendors",
+      "number": "pl"
+    },
+    "dimension": "aspect",
+    "dimension_key": "non-perfect",
+    "decider_type": "time-phrase",
+    "decider_quote": "at the height of the harbor's grain trade",
+    "words_from_blank_to_decider": 9,
+    "deletion_test": "'Bilingualism ___ widespread among the market vendors of the old quarter', after a sentence in the present perfect, accepts both 'has been widespread' and 'was widespread'.",
+    "grid": {
+      "code": "r|i",
+      "forms": [
+        "has been widespread",
+        "have been widespread",
+        "was widespread",
+        "were widespread"
+      ]
+    },
+    "key_letter": "D",
+    "next_four_words_after_blank": "among the market vendors",
+    "length_ratio": 1.0,
+    "distractor_pulls": {
+      "has been widespread": "The preceding sentence is in the present perfect ('have argued', 'has shaped'), and 'at the height of' does not by itself say the trade is over; a student who does not read on to 'That trade collapsed' keeps the perfect.",
+      "were widespread": "Right tense; 'the market vendors' sits right after the blank and names the people who were bilingual, so the verb is made plural.",
+      "have been widespread": "Combines the plural pull of 'vendors' with the present-perfect frame of the first sentence."
+    },
+    "distractor_kills": {
+      "has been widespread": "Verb aspect: the present perfect cannot be tied to a finished past period, and the next sentence makes 'the height of the harbor's grain trade' finished ('That trade collapsed').",
+      "were widespread": "Subject-verb agreement: the subject is 'Bilingualism', singular; 'vendors' is the object of 'among'.",
+      "have been widespread": "Both agreement and aspect."
+    },
+    "hostile_reader": {
+      "options_only_pick": "'was widespread' is shortest by one letter; no extra word",
+      "heuristics_that_give_key": [
+        "(b) first noun",
+        "(e) been loses"
+      ],
+      "changed": "REVISED: replaced the closed past phrase 'during the harbor's first expansion' with 'at the height of the harbor's grain trade', which is closed only by the NEXT sentence; added a present-perfect frame before the blank and a present result after it"
+    }
+  },
+  {
+    "id": "SEC26D-03",
+    "slot": "D3",
+    "frame": "Sentence-final nonrestrictive appositive 'the Sentinel, whose ...' after 'the town's newspaper'; the FOLLOWING sentence implies, without a count, that the town had only one paper",
+    "key_mark": "dash",
+    "key_letter": "B",
+    "structure": "independent clause ending 'rely heavily on the town's newspaper' + appositive noun phrase 'the Sentinel' with a relative clause running to the end of the sentence",
+    "decider_quote": "The valley had no other printing press in those years",
+    "glance_fail": [
+      "newspaper the,"
+    ],
+    "distractor_pulls": {
+      "newspaper the": "Reads like 'the novelist Sato': a role noun followed directly by a name is a familiar restrictive pattern, and nothing before the blank says how many papers the town had.",
+      "newspaper; the": "The words after the blank contain finite verbs ('attended', 'printed'), so a reader who does not notice 'whose' takes 'the Sentinel ... attended' as a second independent clause.",
+      "newspaper the,": "A reader who wants the name set off but hears the pause after 'the' places the comma there (the row's required one-word-off comma; the one allowed glance strike)."
+    },
+    "distractor_kills": {
+      "newspaper the": "Restrictive versus nonrestrictive: with no other press in the valley and the rival paper printed elsewhere, the town had one newspaper, so the name adds information and must be set off.",
+      "newspaper; the": "A semicolon must join two independent clauses; 'the Sentinel, whose two reporters ...' has no main verb of its own.",
+      "newspaper the,": "A comma cannot separate a determiner from the noun it introduces."
+    },
+    "hostile_reader": {
+      "options_only_pick": "the shifted comma is strikable at a glance (row-mandated, the one allowed)",
+      "heuristics_that_give_key": [
+        "none"
+      ],
+      "changed": "REVISED: removed the first-sentence count 'exactly one newspaper'; the only-one fact now comes AFTER the blank and must be inferred ('no other printing press', the competing paper came from forty miles away)"
+    }
+  },
+  {
+    "id": "SEC26D-04",
+    "slot": "D4",
+    "frame": "No number trap before the blank: plural 'tenants' is the first noun; the interrupting reporting clause 'the interviewers found' (plural noun, past verb) sits before the blank; singular 'increase' after the blank; 'are V-ing'; present 'as long as' conditional 8 words after",
+    "true_subject_head": "tenants",
+    "misleader_words": [
+      "increase",
+      "found"
+    ],
+    "misleader_position": "after",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "interviewers",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "tenants",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "increase",
+      "number": "sg"
+    },
+    "dimension": "tense",
+    "dimension_key": "present",
+    "decider_type": "conditional",
+    "decider_quote": "as long as that increase stays below the ceiling",
+    "words_from_blank_to_decider": 8,
+    "deletion_test": "'Long-term tenants, the interviewers found, ___ the building's yearly increase without formal complaint' accepts 'were accepting' (backshifted after 'found') and 'are accepting' alike.",
+    "grid": {
+      "code": "b|g",
+      "forms": [
+        "is accepting",
+        "are accepting",
+        "was accepting",
+        "were accepting"
+      ]
+    },
+    "key_letter": "B",
+    "next_four_words_after_blank": "the building's yearly increase",
+    "length_ratio": 1.08,
+    "distractor_pulls": {
+      "were accepting": "The reporting verb right before the blank is past ('the interviewers found'), and reported findings are normally backshifted; the first sentence narrates finished fieldwork too.",
+      "is accepting": "The singular 'increase' after the blank is what the clause is about, and 'the building's yearly increase' reads as the topic.",
+      "was accepting": "Backshift after 'found' plus the singular nouns after the blank."
+    },
+    "distractor_kills": {
+      "were accepting": "Verb tense: the conditional 'as long as that increase stays' is present, and the main clause it conditions must match it; 'were accepting ... as long as that increase stays' mixes tenses.",
+      "is accepting": "Subject-verb agreement: the subject is 'Long-term tenants', plural.",
+      "was accepting": "Both agreement and tense."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: full 2x2, lengths 12-14",
+      "heuristics_that_give_key": [
+        "(b) first noun"
+      ],
+      "changed": "REVISED: the subject no longer sits directly before the blank (an interrupting past reporting clause does), which also makes backshifted 'were accepting' a real pull; dropped the second present verb 'publishes'. The number half remains easy by the row's design (Pos after, no trap before the blank)"
+    }
+  },
+  {
+    "id": "SEC26D-05",
+    "slot": "D5",
+    "frame": "Perfect progressive keyed: singular head 'study' between the plural determiner 'Their' and 'of unpaid interns and paid classmates' (ending plural); since-phrase 'since that first recruitment drive' 7 words after the blank; the preceding sentence narrates the study's start in the past",
+    "true_subject_head": "study",
+    "misleader_words": [
+      "Their",
+      "interns",
+      "classmates"
+    ],
+    "misleader_position": "adj",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "classmates",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "study",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "groups",
+      "number": "pl"
+    },
+    "dimension": "aspect",
+    "dimension_key": "perfect",
+    "decider_type": "time-phrase",
+    "decider_quote": "since that first recruitment drive",
+    "words_from_blank_to_decider": 7,
+    "deletion_test": "'Their study of unpaid interns and paid classmates ___ both groups through the job market', after a past-tense sentence, accepts both 'has been following' and 'was following'.",
+    "grid": {
+      "code": "f|g",
+      "forms": [
+        "has been following",
+        "have been following",
+        "was following",
+        "were following"
+      ]
+    },
+    "key_letter": "C",
+    "next_four_words_after_blank": "both groups through the",
+    "length_ratio": 1.38,
+    "distractor_pulls": {
+      "was following": "The first sentence narrates the study's launch in the past ('began recruiting', 'crashed'), and 'that first recruitment drive' points back to that past event, so a student with the right number continues the narrative.",
+      "have been following": "Right aspect; the subject opens with the plural 'Their' and ends on a compound of two plurals, so the whole subject sounds plural.",
+      "were following": "The plural cues of the subject plus the past narrative."
+    },
+    "distractor_kills": {
+      "was following": "Verb aspect: a 'since' phrase naming a starting point requires a perfect form.",
+      "have been following": "Subject-verb agreement: the head is 'study', singular; 'Their' is a determiner and 'interns and paid classmates' is the object of 'of'.",
+      "were following": "Both agreement and aspect."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none",
+      "heuristics_that_give_key": [
+        "(a) opposite of the noun before the blank",
+        "(b) first noun"
+      ],
+      "changed": "REVISED: 'since' must stay (row: since-phrase decider), so the number half now carries more weight: a plural determiner 'Their' and a compound plural of-object surround the singular head, and a past narrative sentence makes 'was following' the natural continuation; removed the later 'its' that confirmed the singular"
+    }
+  },
+  {
+    "id": "SEC26D-06",
+    "slot": "D6",
+    "frame": "Singular head 'suffix' + 'on verbs' ending plural; blank is auxiliary + 'never'; the phrase 'under pressure from the national schools' completes 'is never under pressure' as a clause until the intransitive participle 'disappeared' arrives and settles have over be",
+    "true_subject_head": "suffix",
+    "misleader_words": [
+      "verbs"
+    ],
+    "misleader_position": "adj",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "verbs",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "suffix",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "pressure",
+      "number": "sg"
+    },
+    "dimension": "aux",
+    "dimension_key": "have",
+    "decider_type": "aux-form",
+    "decider_quote": "fully disappeared",
+    "words_from_blank_to_decider": 7,
+    "deletion_test": "Delete 'fully disappeared' and 'The polite suffix on verbs ___ under pressure from the national schools' takes 'is never' (be + prepositional complement) and leaves 'has never' without a participle: the auxiliary can no longer be chosen.",
+    "grid": {
+      "code": "j|n",
+      "forms": [
+        "is never",
+        "are never",
+        "has never",
+        "have never"
+      ]
+    },
+    "key_letter": "D",
+    "next_four_words_after_blank": "under pressure from the",
+    "length_ratio": 1.13,
+    "distractor_pulls": {
+      "is never": "Right number; 'is never under pressure from the national schools' is a complete, idiomatic be-clause, so a reader who stops at 'schools' has a finished sentence.",
+      "have never": "Right auxiliary; 'verbs' sits right before the blank.",
+      "are never": "The adjacent plural 'verbs' plus the complete-looking 'are never under pressure' clause."
+    },
+    "distractor_kills": {
+      "is never": "Verb form: 'disappeared' is the past participle of an intransitive verb; it cannot follow 'be' as a passive or as a predicate adjective, so the perfect auxiliary is required.",
+      "have never": "Subject-verb agreement: the head is 'suffix', singular.",
+      "are never": "Both agreement and auxiliary form."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none",
+      "heuristics_that_give_key": [
+        "(a) opposite of the noun before the blank",
+        "(b) first noun"
+      ],
+      "changed": "REVISED: the locative 'in a single village ...' (A6's shape) replaced with 'under pressure from the national schools', which makes 'is never under pressure' a complete idiomatic be-clause; the archaic-sounding 'vanished' replaced with 'disappeared'"
+    }
+  },
+  {
+    "id": "SEC26D-07",
+    "slot": "D7",
+    "frame": "Possessive split, mismatched: the blank's sentence opens with plural 'Field teams'; the singular owner 'questionnaire' is named early in the relative clause 'that carry the statistics office's questionnaire into remote hill villages in the north'; between owner and blank stand plural 'villages' and singular 'north' (neither the owner); then 'have translated its'",
+    "true_subject_head": "teams",
+    "misleader_words": [
+      "north",
+      "villages",
+      "teams"
+    ],
+    "misleader_position": "adj",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "north",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "teams",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "wording",
+      "number": "sg"
+    },
+    "dimension": "pronoun",
+    "dimension_key": "sg",
+    "decider_type": "pronoun-antecedent",
+    "decider_quote": "the statistics office's questionnaire",
+    "words_from_blank_to_decider": 8,
+    "deletion_test": "Delete 'the statistics office's questionnaire' (leaving 'Field teams that carry ... into remote hill villages in the north') and no document whose wording is translated is named in the sentence; 'its' could reach only 'north' and 'their' the villages or teams, so the possessive is no longer decided.",
+    "pronoun_antecedent": {
+      "word": "questionnaire",
+      "number": "sg"
+    },
+    "grid": {
+      "code": "d+p",
+      "forms": [
+        "has translated its",
+        "have translated its",
+        "has translated their",
+        "have translated their"
+      ]
+    },
+    "key_letter": "A",
+    "next_four_words_after_blank": "wording into three minority",
+    "length_ratio": 1.06,
+    "distractor_pulls": {
+      "have translated their": "Right verb; the nearest plural, 'remote hill villages', and the teams themselves both sit closer to the blank than the questionnaire, and copying the verb's number onto the possessive feels consistent.",
+      "has translated its": "Right possessive; the long relative clause ends on 'in the north', so a reader who loses the head 'teams' makes the verb singular.",
+      "has translated their": "Takes the adjacent 'north' for the verb and the nearest plural, 'villages', for the owner, the two nearest nouns of each number."
+    },
+    "distractor_kills": {
+      "have translated their": "Pronoun-antecedent agreement: the wording is that of 'the statistics office's questionnaire' (singular); the villages and the teams own no wording ('drafted in the capital'), and the provinces' local forms were replaced.",
+      "has translated its": "Subject-verb agreement: the subject is 'Field teams', plural; 'north' ends the relative clause.",
+      "has translated their": "Both agreement errors."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: full 2x2",
+      "heuristics_that_give_key": [
+        "(b) first noun 'teams' gives the verb",
+        "(f) mismatched pair"
+      ],
+      "changed": "REVISED: the owner moved from right before the blank to eight words back; a nearer singular noun that is NOT the owner ('north') and a nearer plural ('villages') now stand between owner and pronoun, so neither 'nearest noun' rule gives the possessive"
+    }
+  },
+  {
+    "id": "SEC26D-08",
+    "slot": "D8",
+    "frame": "Active present perfect keyed: plural head 'volunteers' + postposed adjective phrase 'responsible for the branch's homework desk' ending singular, after the opening adjective phrase 'Dependent on a single municipal grant'; the since-phrase arrives 16 words after the blank, past an appositive about former pupils of a shuttered school",
+    "true_subject_head": "volunteers",
+    "misleader_words": [
+      "desk",
+      "grant",
+      "shuttered",
+      "former"
+    ],
+    "misleader_position": "adj",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "desk",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "grant",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "students",
+      "number": "pl"
+    },
+    "dimension": "aspect",
+    "dimension_key": "perfect",
+    "decider_type": "time-phrase",
+    "decider_quote": "since the school's closure",
+    "words_from_blank_to_decider": 16,
+    "deletion_test": "'the volunteers responsible for the branch's homework desk ___ about forty students a week, most of them former pupils of the shuttered middle school' accepts both 'have coached' and 'were coaching'.",
+    "grid": {
+      "code": "d|g",
+      "forms": [
+        "has coached",
+        "have coached",
+        "was coaching",
+        "were coaching"
+      ]
+    },
+    "key_letter": "A",
+    "next_four_words_after_blank": "about forty students a",
+    "length_ratio": 1.09,
+    "distractor_pulls": {
+      "were coaching": "Right number; the words after the blank are about a closed past ('former pupils', 'shuttered middle school'), and 'a week' describes a routine, which the past progressive expresses; the 'since' phrase is sixteen words away.",
+      "has coached": "Right aspect; 'desk' ends the subject, 'branch's' and 'grant' are singular too, so the subject seems singular.",
+      "was coaching": "The singular nouns around the subject plus the past-time words after the blank."
+    },
+    "distractor_kills": {
+      "were coaching": "Verb aspect: a 'since' phrase naming a starting point requires a perfect form.",
+      "has coached": "Subject-verb agreement: the subject is 'volunteers', plural; 'desk' is the object of 'for' inside the adjective phrase.",
+      "was coaching": "Both agreement and aspect."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: full 2x2",
+      "heuristics_that_give_key": [
+        "(a) opposite of the noun before the blank"
+      ],
+      "changed": "REVISED: 'since' must stay (row), so it now sits 16 words from the blank behind an appositive full of past-time words ('former', 'shuttered'); the head is separated from the blank by a postposed adjective phrase instead of a short PP"
+    }
+  },
+  {
+    "id": "SEC26D-09",
+    "slot": "D9",
+    "frame": "Independent clause ending 'a bookkeeper named Ursula Wexler' + noun phrase 'the widow of the shop's first foreman' followed by 'trained in double-entry accounts', which reads as the finite verb of a second clause until 'by her own father' shows it is a passive participle; no comma is printed after the noun phrase",
+    "key_mark": "comma",
+    "key_letter": "D",
+    "structure": "left: complete clause 'Its entries were made by a bookkeeper named Ursula Wexler'; right: noun phrase 'the widow of the shop's first foreman' + participial modifier 'trained in double-entry accounts by her own father', no finite verb before the period",
+    "decider_quote": "trained",
+    "glance_fail": [],
+    "distractor_pulls": {
+      "Wexler; the": "'the widow of the shop's first foreman trained in double-entry accounts' is a complete clause on a first reading (active 'trained in', as in 'she trained in law'), so a semicolon between two clauses about the bookkeeper looks right; only 'by her own father' undoes it.",
+      "Wexler: the": "Under the same clause reading, the second part explains who the bookkeeper was, and colons introduce explanations.",
+      "Wexler the": "Reads 'the widow of the shop's first foreman' as part of a name-plus-title unit (like 'Catherine the Great'), so no mark seems needed; no closing comma is printed to signal an inserted phrase."
+    },
+    "distractor_kills": {
+      "Wexler; the": "A semicolon must be followed by an independent clause; 'trained ... by her own father' is a passive participle without a helping verb, so the words after the blank have no finite verb.",
+      "Wexler: the": "The clause before the blank is complete and points ahead to nothing; a nonessential description of a fully named person is set off with a comma.",
+      "Wexler the": "A nonrestrictive appositive after a proper name must be set off; running it on makes the description read as part of the name."
+    },
+    "hostile_reader": {
+      "options_only_pick": "'Wexler the' could be struck as missing a mark, but no-mark keys exist in the batch (A3); nothing else is visible from the options",
+      "heuristics_that_give_key": [
+        "none"
+      ],
+      "changed": "REVISED: removed the printed comma after 'foreman' that the readers copied (the 'open mark'); the decider is now 'trained', which reads as a finite verb until 'by her own father' makes it a passive participle"
+    }
+  },
+  {
+    "id": "SEC26D-10",
+    "slot": "D10",
+    "frame": "Plain singular keyed: 'the parliamentarian rules on each procedural objection'; 'rules' reads naturally as a noun after a possessive ('the parliamentarian's rules'); the only other verb in the clause is inside 'before debate resumes'; the FOLLOWING sentence fixes one holder ('that duty' ... 'a lone appointee')",
+    "key_class": "sg",
+    "key_letter": "B",
+    "structure": "'the ___' is the subject of the verb 'rules'; the possessive reading makes 'rules on each procedural objection' a verbless noun phrase; the last sentence says the duty belongs to a lone appointee",
+    "decider_quote": "The city charter assigns that duty to a lone appointee",
+    "glance_fail": [],
+    "distractor_pulls": {
+      "parliamentarian's": "'the parliamentarian's rules' is a familiar phrase (rules of order are what a parliamentarian keeps), and 'resumes' supplies a verb later in the sentence, so a reader who does not parse the before-clause accepts the possessive.",
+      "parliamentarians": "A reader who has not reached the last sentence assumes a council has several procedural officers, and 'the parliamentarians rules' passes a quick ear test when 'rules' is half-read as a noun.",
+      "parliamentarians'": "Combines the possessive reading of 'rules' with the expectation that a council has several officers."
+    },
+    "distractor_kills": {
+      "parliamentarian's": "Possessive misuse: 'rules' must be the main verb of the first clause ('resumes' belongs to the subordinate 'before' clause); a possessive makes it a noun and leaves the clause without a verb.",
+      "parliamentarians": "Number and agreement: one appointee holds the duty (last sentence), and the singular verb 'rules' needs a singular subject.",
+      "parliamentarians'": "Both errors: no main verb, and a plural owner where there is one appointee."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: four forms of one noun",
+      "heuristics_that_give_key": [
+        "none"
+      ],
+      "changed": "REVISED: changed the verb from 'records' (C10's template partner) to 'rules', whose noun reading is more natural and which leaves a decoy verb ('resumes') in a before-clause; the one-holder fact moved from the preceding sentence to the FOLLOWING one and must be inferred"
+    }
+  }
+]

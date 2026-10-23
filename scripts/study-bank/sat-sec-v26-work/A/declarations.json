@@ -1,0 +1,478 @@
+[
+  {
+    "id": "SEC26A-01",
+    "slot": "A1",
+    "frame": "Possessive split, matched: opening with-phrase 'With the breeding female unable to feed the nestlings alone' (first noun singular 'female', plural owner 'nestlings'); rule-plural subject 'the young of earlier broods' + 'are answering their'",
+    "true_subject_head": "young",
+    "misleader_words": [
+      "female",
+      "young"
+    ],
+    "misleader_position": "early",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "broods",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "female",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "begging",
+      "number": "sg"
+    },
+    "dimension": "pronoun",
+    "dimension_key": "pl",
+    "decider_type": "pronoun-antecedent",
+    "decider_quote": "unable to feed the nestlings alone",
+    "words_from_blank_to_decider": 6,
+    "deletion_test": "Delete 'unable to feed the nestlings alone' and the only candidates left in the sentence are the singular 'the breeding female' and the subject itself; the owner of the begging, and so 'its' versus 'their', becomes undecidable.",
+    "pronoun_antecedent": {
+      "word": "nestlings",
+      "number": "pl"
+    },
+    "grid": {
+      "code": "b+p",
+      "forms": [
+        "is answering its",
+        "are answering its",
+        "is answering their",
+        "are answering their"
+      ]
+    },
+    "key_letter": "B",
+    "next_four_words_after_blank": "begging with insects caught",
+    "length_ratio": 1.12,
+    "distractor_pulls": {
+      "is answering their": "'The young' sounds like a group noun ('the brood', 'the litter'), and a student who finds the plural nestlings for the pronoun then gives the verb the singular a group noun seems to want.",
+      "are answering its": "The student who knows 'the young' is plural copies that number to the verb and takes the possessive from 'the breeding female', the singular bird the whole opening phrase is about and the natural owner of a nest's begging chicks.",
+      "is answering its": "A student who reads 'the young' as a singular unit (like 'the brood') lets that one unit govern both the verb and the pronoun ('the young is answering its begging')."
+    },
+    "distractor_kills": {
+      "is answering their": "Subject-verb agreement: 'the young' (adjective as noun for a class of beings) is plural; 'is' would be correct only with 'the youngest of earlier broods' read as one bird, or 'each young bird'.",
+      "are answering its": "Pronoun-antecedent agreement: the begging is the nestlings' (plural); 'its' would be correct only with 'feed the nestling alone'.",
+      "is answering its": "Both agreements fail: 'the young' is plural, and so is the antecedent 'nestlings'."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: complete 2x2 of one verb",
+      "heuristics_that_give_key": [
+        "(g) matched pair",
+        "(b) does not: first noun 'female' is singular"
+      ],
+      "changed": "Revision: the subject is now the rule-plural 'the young' (reads as a singular group), so the verb half is no longer settled by a plain plural next to the blank; the singular owner lure is the breeding female, the bird the opening phrase is about; owner moved out of a because-clause (spent frame) into a with-phrase."
+    }
+  },
+  {
+    "id": "SEC26A-02",
+    "slot": "A2",
+    "frame": "Distributive 'Each of the patients on the hospital's two respiratory wards'; past progressive decided by 'when the sponsor put the trial on hold' (put = present/past form, past only because the subject is singular); later present 'keep' points the other way",
+    "true_subject_head": "Each",
+    "misleader_words": [
+      "patients",
+      "wards"
+    ],
+    "misleader_position": "adj",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "wards",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "patients",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "diary",
+      "number": "sg"
+    },
+    "dimension": "tense",
+    "dimension_key": "past",
+    "decider_type": "time-clause",
+    "decider_quote": "when the sponsor put the trial on hold",
+    "words_from_blank_to_decider": 5,
+    "deletion_test": "Delete the when-clause and 'Each of the patients ... is keeping a paper cough diary, and the nurses keep those diaries' is a correct present description; tense becomes undecidable.",
+    "grid": {
+      "code": "b|g",
+      "forms": [
+        "is keeping",
+        "are keeping",
+        "was keeping",
+        "were keeping"
+      ]
+    },
+    "key_letter": "C",
+    "next_four_words_after_blank": "a paper cough diary",
+    "length_ratio": 1.1,
+    "distractor_pulls": {
+      "were keeping": "Sees the past in the when-clause but reads 'Each of the patients' as plural, as the adjacent 'wards' and the of-noun 'patients' suggest.",
+      "is keeping": "Knows 'Each' is singular; the first sentence is present, the second clause's 'keep' is present, and 'put' looks like a present verb, so the whole scene reads as a present description.",
+      "are keeping": "Takes number from 'patients'/'wards' and tense from the present framing and 'keep'."
+    },
+    "distractor_kills": {
+      "were keeping": "Subject-verb agreement: 'Each' is singular; correct with 'All of the patients'.",
+      "is keeping": "Tense: 'the sponsor put' is past (the present would be 'puts'); 'is keeping' would be correct with 'when the sponsor puts the trial on hold'.",
+      "are keeping": "Both: singular 'Each' and the past when-clause."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: complete 2x2 of one verb",
+      "heuristics_that_give_key": [
+        "(a) opposite the noun before the blank",
+        "(b) opposite of first noun",
+        "(c) copy the time clause's tense, but only after 'put' is parsed as past"
+      ],
+      "changed": "Revision: the when-clause verb is now 'put', identical in present and past, so the tense must be parsed from the singular subject; a present 'keep' in the second clause and the present first sentence pull toward 'is keeping'."
+    }
+  },
+  {
+    "id": "SEC26A-03",
+    "slot": "A3",
+    "frame": "Sentence-final restrictive participial phrase 'kept nearest the freezer's door' on 'the tray'; the first sentence implies several trays (seed sorted by hillside, the seed from each hillside in a tray of its own) without stating a number",
+    "key_mark": "none",
+    "key_letter": "A",
+    "structure": "Left: 'traced the problem to the tray'; right: the participial phrase that identifies which of the several trays. Restrictive, so no mark.",
+    "decider_quote": "sorts its wild lentil seed by the hillside it came from and seals the seed from each hillside in a tray of its own",
+    "glance_fail": [],
+    "distractor_pulls": {
+      "tray, kept": "A long sentence-final participial phrase is usually set off with a comma; the first sentence never says how many trays there are, so a reader who does not infer it from 'the seed from each hillside' sees no reason the phrase is needed.",
+      "tray—kept": "The dash reads as an emphatic aside pointing to the cause (the door), attractive to a reader who sees the location as the punch line.",
+      "tray kept,": "'The tray kept' reads as a complete unit (the tray that was kept, that is, stored), and 'nearest the freezer's door' then looks like a short added location, the way 'the samples stored, nearest the vent' might be parsed on a quick read."
+    },
+    "distractor_kills": {
+      "tray, kept": "Restrictive vs nonrestrictive: with several trays, the phrase identifies the tray; a comma would be right only if the freezer held a single tray.",
+      "tray—kept": "Same convention: a dash marks nonessential information, wrong when the phrase is the only thing saying which tray is meant.",
+      "tray kept,": "'Kept' here needs its complement 'nearest the freezer's door'; no convention puts a comma between a participle and its own complement, and 'nearest the freezer's door' cannot stand alone after it."
+    },
+    "hostile_reader": {
+      "options_only_pick": "the unmarked option is uniquely shortest, but SAT keys commas as often",
+      "heuristics_that_give_key": [
+        "shortest option"
+      ],
+      "changed": "Revision: no number is stated; several trays must be inferred from 'by the hillside' and 'the seed from each hillside in a tray of its own'. The participle is now 'kept', which reads as complete by itself, so the comma one word off has a real pull."
+    }
+  },
+  {
+    "id": "SEC26A-04",
+    "slot": "A4",
+    "frame": "Opening PP 'In the clinics of the state's largest pediatric network' (plural first noun) + singular 'the ointment'; passive present perfect required by 'since the network's doctors voted last spring', with the definite past 'last spring' and a past next sentence pulling toward the simple past",
+    "true_subject_head": "ointment",
+    "misleader_words": [
+      "clinics"
+    ],
+    "misleader_position": "early",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "ointment",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "clinics",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "cases",
+      "number": "pl"
+    },
+    "dimension": "aspect",
+    "dimension_key": "perfect",
+    "decider_type": "time-clause",
+    "decider_quote": "since the network's doctors voted last spring to stop recommending it for viral infections",
+    "words_from_blank_to_decider": 7,
+    "deletion_test": "Delete the since-clause and 'the ointment was prescribed far less often for mild cases' is correct (as is the perfect); aspect becomes undecidable.",
+    "grid": {
+      "code": "e|h",
+      "forms": [
+        "has been prescribed",
+        "have been prescribed",
+        "was prescribed",
+        "were prescribed"
+      ]
+    },
+    "key_letter": "A",
+    "next_four_words_after_blank": "far less often for",
+    "length_ratio": 1.36,
+    "distractor_pulls": {
+      "were prescribed": "The sentence opens with the plural 'clinics', and 'last spring' plus the past 'did not rise' make the whole report sound finished; a plural past fits both cues.",
+      "have been prescribed": "Hears that 'since' wants a perfect, but takes number from the opening plural 'clinics' (and the plural 'cases' after the blank).",
+      "was prescribed": "Right number; 'last spring' is a definite past time that normally demands the simple past, and the next sentence is simple past, so a strong reader who reacts to 'last spring' rather than to 'since' picks it."
+    },
+    "distractor_kills": {
+      "were prescribed": "Agreement (singular 'ointment') and aspect (a since-clause of time requires the perfect in the main clause).",
+      "have been prescribed": "Agreement: the subject is 'ointment', not 'clinics'; correct only with 'the ointments'.",
+      "was prescribed": "Aspect: the main clause is tied to 'since ...', which requires the present perfect; 'last spring' sits inside the since-clause and dates the vote. 'Was prescribed' would be right with 'after the network's doctors voted last spring'."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: lengths 19/15/20/14, key neither longest nor shortest",
+      "heuristics_that_give_key": [
+        "'since' means perfect (the batch-wide cue); countered here by 'last spring' and the past next sentence"
+      ],
+      "changed": "Revision: added the definite past 'last spring' inside the since-clause and changed the last sentence to the simple past ('did not rise'), so two cues point to the simple past and only the since-clause's structure forces the perfect."
+    }
+  },
+  {
+    "id": "SEC26A-05",
+    "slot": "A5",
+    "frame": "Opening 'In stands where surveys detect acid-tolerant bacteria' names the plural agent (a foreign plural that is often misused as singular); plural subject 'the needles' + single PP 'beneath an old pine' + 'are decomposed by them'",
+    "true_subject_head": "needles",
+    "misleader_words": [
+      "pine",
+      "bacteria"
+    ],
+    "misleader_position": "adj",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "pine",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "stands",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "years",
+      "number": "pl"
+    },
+    "dimension": "pronoun",
+    "dimension_key": "pl",
+    "decider_type": "pronoun-antecedent",
+    "decider_quote": "where surveys detect acid-tolerant bacteria",
+    "words_from_blank_to_decider": 9,
+    "deletion_test": "Delete 'where surveys detect acid-tolerant bacteria' and the sentence names no decomposer; the only noun left that could take the agent pronoun is the singular 'pine', so 'it' versus 'them' becomes undecidable.",
+    "pronoun_antecedent": {
+      "word": "bacteria",
+      "number": "pl"
+    },
+    "grid": {
+      "code": "c+p",
+      "forms": [
+        "is decomposed by it",
+        "are decomposed by it",
+        "is decomposed by them",
+        "are decomposed by them"
+      ]
+    },
+    "key_letter": "D",
+    "next_four_words_after_blank": "within two or three",
+    "length_ratio": 1.16,
+    "distractor_pulls": {
+      "is decomposed by them": "Finds the bacteria as the agent but takes the verb from 'pine', the singular noun touching the blank.",
+      "are decomposed by it": "Finds the plural head 'needles' and the right agent, then treats 'bacteria' as a singular mass noun ('the bacteria is'), one of the most common agreement errors in print; the nearest plural noun, 'surveys', is not a decomposer, so the reader looks for a singular agent and finds 'bacteria'.",
+      "is decomposed by it": "Takes 'pine' for the verb's number and 'bacteria' as a singular mass for the pronoun."
+    },
+    "distractor_kills": {
+      "is decomposed by them": "Subject-verb agreement: 'needles' is plural; correct only with 'the litter beneath an old pine'.",
+      "are decomposed by it": "Pronoun-antecedent agreement: 'bacteria' is plural (singular 'bacterium'); 'it' would be correct only with 'detect an acid-tolerant bacterium'.",
+      "is decomposed by it": "Both agreements fail."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: complete 2x2",
+      "heuristics_that_give_key": [
+        "(a) opposite the noun before the blank",
+        "(b) agree with the first noun (stands)",
+        "(g) matched pair"
+      ],
+      "changed": "Revision: the agent is now 'bacteria', a plural that is commonly treated as singular, so 'by it' has a believable antecedent ruled out only by the noun's grammatical number; a nearer plural ('surveys') stands between the agent and the blank."
+    }
+  },
+  {
+    "id": "SEC26A-06",
+    "slot": "A6",
+    "frame": "Opening PP 'At one upland farm studied by agronomists' (singular) + plural 'the oats'; blank = auxiliary + 'seldom'; 8-word adverbial with plural 'harvests'; predicate adjective 'rotten' (participle-looking, but the participle of 'rot' is 'rotted') settles be",
+    "true_subject_head": "oats",
+    "misleader_words": [
+      "farm",
+      "oats"
+    ],
+    "misleader_position": "early",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "oats",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "farm",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "harvests",
+      "number": "pl"
+    },
+    "dimension": "aux",
+    "dimension_key": "be",
+    "decider_type": "aux-form",
+    "decider_quote": "rotten enough to discard",
+    "words_from_blank_to_decider": 9,
+    "deletion_test": "Remove 'rotten enough to discard' and the frame 'the oats ___ in even the wettest harvests of the survey' could take a participle after 'have seldom' (e.g. 'have seldom spoiled'), so be versus have becomes undecidable.",
+    "grid": {
+      "code": "i|n",
+      "forms": [
+        "was seldom",
+        "were seldom",
+        "has seldom",
+        "have seldom"
+      ]
+    },
+    "key_letter": "B",
+    "next_four_words_after_blank": "in even the wettest",
+    "length_ratio": 1.1,
+    "distractor_pulls": {
+      "has seldom": "Treats 'the oats' as a mass like 'the grain' or 'the wheat' and reads 'rotten' as a participle (as in 'has gotten'), so 'has seldom ... rotten' looks like a perfect.",
+      "have seldom": "Right number; 'seldom' plus a perfect is the default collocation, 'rotten' ends like the participles 'gotten' and 'forgotten', and it sits nine words away behind an adverbial about harvests over a survey, which sounds like a perfect-tense span.",
+      "was seldom": "Recognizes an adjective is coming and picks 'be', but takes the number from 'farm' or treats 'oats' as a singular crop name."
+    },
+    "distractor_kills": {
+      "has seldom": "Agreement (plural 'oats') and auxiliary form ('rotten' is an adjective; 'has seldom rotten' lacks 'been').",
+      "have seldom": "Auxiliary form: 'have' + adjective is ungrammatical; correct only with the participle ('have seldom rotted') or with 'been' ('have seldom been rotten').",
+      "was seldom": "Agreement: 'oats' is plural; correct only with a singular subject such as 'the grain'."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: lengths 10/11/11/10",
+      "heuristics_that_give_key": [
+        "(a) no: noun before the blank is plural and agrees",
+        "(b) opposite of first noun"
+      ],
+      "changed": "Revision: the adjective is now 'rotten', which looks like a past participle, so the have-options survive until the reader knows the participle is 'rotted'; the subject is now 'oats', a plural often handled as a mass, so the singular options have their own pull."
+    }
+  },
+  {
+    "id": "SEC26A-07",
+    "slot": "A7",
+    "frame": "Sentence 1 ends on 'catgut'; sentence 2 opens with 'The tough cord twisted from the dried intestines of sheep and goats', a definition of catgut, until 'had' arrives; sentence 2 carries its own colon ('market: the string makers'), so a colon at the blank is excluded and a period is required",
+    "key_mark": "period",
+    "key_letter": "A",
+    "structure": "Left: a complete clause ending on 'catgut'. Right: a complete clause whose long subject reads as an appositive of 'catgut' until its verb 'had' (12 words after the blank), and which contains its own colon before 'the string makers'.",
+    "decider_quote": "had a second and far larger market:",
+    "glance_fail": [
+      "catgut the"
+    ],
+    "distractor_pulls": {
+      "catgut, the": "The noun phrase is literally what catgut is, so a defining appositive after a comma reads perfectly for twelve words.",
+      "catgut: the": "A colon often introduces a definition of the word just before it; a reader who takes the next twelve words as defining catgut, and who does not look ahead to the later colon, picks it.",
+      "catgut the": "A reader who takes the phrase as a restrictive identifier of catgut might leave it unpunctuated."
+    },
+    "distractor_kills": {
+      "catgut, the": "Comma splice: 'The tough cord ... had a second and far larger market' is an independent clause; the comma would be right only without 'had'.",
+      "catgut: the": "Two colons in one sentence: the second clause already introduces 'the string makers' with a colon, and a sentence may not chain two colons; also, the cord's market among string makers does not explain or amplify the wound closure. A colon would be right before a bare appositive with no verb and no later colon.",
+      "catgut the": "Fused sentence: two independent clauses with no punctuation."
+    },
+    "hostile_reader": {
+      "options_only_pick": "the period is the only capitalized option; SAT boundary items that key a comma or colon offer it too, so it is not a free pick",
+      "heuristics_that_give_key": [
+        "strongest mark"
+      ],
+      "changed": "Revision (exclusivity): the second clause now contains its own colon, so a colon at the blank would make a two-colon sentence, a rule-based exclusion rather than a judgment about whether the clause amplifies; the 'also' that signalled a separate claim is gone."
+    }
+  },
+  {
+    "id": "SEC26A-08",
+    "slot": "A8",
+    "frame": "Singular -s noun 'The pancreas' + 'of sugar-fed mice'; present tense decided by 'unless the animals receive a drug' seven words after the blank",
+    "true_subject_head": "pancreas",
+    "misleader_words": [
+      "pancreas",
+      "mice"
+    ],
+    "misleader_position": "adj",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "mice",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "pancreas",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "repair",
+      "number": "sg"
+    },
+    "dimension": "tense",
+    "dimension_key": "present",
+    "decider_type": "conditional",
+    "decider_quote": "unless the animals receive a drug",
+    "words_from_blank_to_decider": 7,
+    "deletion_test": "Delete the unless-clause and 'The pancreas of sugar-fed mice was damaged beyond repair within a few weeks' is a correct report, matching the past 'went on' of the last sentence; tense becomes undecidable.",
+    "grid": {
+      "code": "c|h",
+      "forms": [
+        "is damaged",
+        "are damaged",
+        "was damaged",
+        "were damaged"
+      ]
+    },
+    "key_letter": "D",
+    "next_four_words_after_blank": "beyond repair within a",
+    "length_ratio": 1.0,
+    "distractor_pulls": {
+      "are damaged": "The subject ends in -s and the noun touching the blank is the plural 'mice'; the present 'receive' gives the tense.",
+      "was damaged": "Knows 'pancreas' is singular, and matches the past tense of the experimental report in the next sentence ('went on to develop').",
+      "were damaged": "Reads 'pancreas' as a plural and follows the past report."
+    },
+    "distractor_kills": {
+      "are damaged": "Agreement: 'pancreas' is singular (plural 'pancreases'); correct only with 'The pancreases of sugar-fed mice'.",
+      "was damaged": "Tense: a present 'unless the animals receive' requires a present main clause; correct only with 'unless the animals received'.",
+      "were damaged": "Both agreement and tense."
+    },
+    "hostile_reader": {
+      "options_only_pick": "the key is the uniquely shortest option (10 vs 11/11/12); one of my three permitted shortest keys",
+      "heuristics_that_give_key": [
+        "(a) opposite the noun before the blank",
+        "(b) agree with the first noun"
+      ],
+      "changed": "Removed a reduced participle ('raised on') and a trailing 'one research group reports' (a second present verb that would also have settled tense)."
+    }
+  },
+  {
+    "id": "SEC26A-09",
+    "slot": "A9",
+    "frame": "Plural possessive 'growers'' before 'harvest' (readable as a verb); no number is stated: several growers must be inferred from 'a single orchardist, who persuaded her neighbors to sell their fruit under a shared label', and the one salient grower (the founder) is excluded by 'the founder's own trees ... lost almost nothing'",
+    "key_class": "pl-poss",
+    "key_letter": "D",
+    "structure": "Determiner 'the' + blank + 'harvest' + verb 'fell'; the noun must possess 'harvest'; plurality is inferred from the founder plus her neighbors, and the singular is excluded by the founder's undamaged trees.",
+    "decider_quote": "who persuaded her neighbors to sell their fruit under a shared label",
+    "glance_fail": [
+      "grower"
+    ],
+    "distractor_pulls": {
+      "grower's": "The first sentence's one named person is 'a single orchardist', the founder, so a reader looking for a single owner finds one; the singular possessive is also the most common form.",
+      "growers": "Garden path: 'the growers harvest' reads as subject + verb (growers harvesting) until 'fell' arrives.",
+      "grower": "A reader may treat 'grower' as a noun modifier, like 'apple' in 'apple harvest'."
+    },
+    "distractor_kills": {
+      "grower's": "Number: the harvest is the cooperative's (the founder and her neighbors), and the founder alone is excluded because her own trees lost almost nothing; correct only if one grower's harvest fell.",
+      "growers": "Possessive needed: 'fell' is the verb, so 'harvest' is a noun; correct only in 'the growers harvest the fruit'.",
+      "grower": "Neither plural nor possessive; 'grower' is not a noun modifier of 'harvest' in standard usage."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: the four forms of one noun",
+      "heuristics_that_give_key": [],
+      "changed": "Revision: the stated count ('Seven small apple growers') is gone; the passage names one founder (a pull toward 'grower's') and her neighbors, so plurality must be inferred, and the end of the blank's sentence rules out the founder alone."
+    }
+  },
+  {
+    "id": "SEC26A-10",
+    "slot": "A10",
+    "frame": "Opening 'Before the workers could spray'; 'the vines' reads as the object of 'spray' until 'were showing' arrives six words after the blank; comma at the early position",
+    "key_mark": "comma",
+    "key_letter": "C",
+    "structure": "Left: the dependent clause 'Before the workers could spray' (intransitive use). Right: the main clause whose subject is 'the vines growing along the lowest terraces' and whose verb is 'were showing'.",
+    "decider_quote": "were showing",
+    "glance_fail": [],
+    "distractor_pulls": {
+      "spray the vines": "'Spray the vines' is the natural verb + object reading, and a reader who carries the clause on through 'growing along the lowest terraces' finds no obvious place for a comma.",
+      "spray the vines,": "Object reading: 'Before the workers could spray the vines' is a perfectly sensible clause, and an introductory clause takes a comma at its end.",
+      "spray; the vines": "A reader who realizes 'the vines' begins the main clause may reach for the strongest separator to mark the break."
+    },
+    "distractor_kills": {
+      "spray the vines": "With no comma, 'the vines' is the object of 'spray' and 'were showing' has no subject.",
+      "spray the vines,": "If 'the vines' is the object, the main clause 'growing along the lowest terraces were showing' has no subject; correct only if a new subject followed the comma.",
+      "spray; the vines": "A semicolon must separate independent clauses; 'Before the workers could spray' is dependent."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: two comma placements, no mark and a semicolon; nothing is decidable without the clause type",
+      "heuristics_that_give_key": [],
+      "changed": "Replaced 'crew' (a collective noun) with 'workers'; verb 'spray' chosen because it is natural both with and without an object."
+    }
+  }
+]

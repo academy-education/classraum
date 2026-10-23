@@ -1,0 +1,182 @@
+[
+  {
+    "id": "SEC26A-01",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with pronoun-antecedent agreement (possessive)",
+    "difficulty": "hard",
+    "passage": "In many cooperatively breeding birds, offspring stay with their parents for a year or more instead of leaving to find territories of their own. With the breeding female unable to feed the nestlings alone, the young of earlier broods ______ begging with insects caught near the nest, and a well-staffed nest can fledge twice as many chicks.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "is answering their",
+      "are answering their",
+      "are answering its",
+      "is answering its"
+    ],
+    "correct_answer": "are answering their",
+    "explanation": "The subject is \"the young,\" an adjective used as a noun to mean young birds, and such a noun is always plural, so the verb must be \"are answering.\" The begging belongs to \"the nestlings\" named in the opening phrase, which is also plural, so the possessive must be \"their.\" \"Is answering their\" gets the possessive right but treats \"the young\" as a singular group, the way \"the brood\" would be. \"Are answering its\" has the right verb but gives the begging a singular owner, and the only singular candidate, \"the breeding female,\" is the bird that cannot keep up, not the one begging. \"Is answering its\" makes both errors, reading \"the young\" as a single unit throughout.",
+    "topic_tag": "ornithology: helpers at the nest in cooperative breeders",
+    "template": "opening with-phrase naming a singular female and the plural owner + 'the young' (rule-plural subject) of + plural x 'the young' read as a singular unit, singular female as owner x b+p possessive, matched key"
+  },
+  {
+    "id": "SEC26A-02",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with verb tense",
+    "difficulty": "hard",
+    "passage": "A trial of a new asthma inhaler counts nighttime coughs, the symptom the drug is meant to relieve, using a small sensor clipped beside each bed. Each of the patients on the hospital's two respiratory wards ______ a paper cough diary when the sponsor put the trial on hold, and the nurses keep those diaries in a locked cabinet as a backup record.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "were keeping",
+      "is keeping",
+      "was keeping",
+      "are keeping"
+    ],
+    "correct_answer": "was keeping",
+    "explanation": "The subject is the distributive pronoun \"Each,\" which is singular by rule; \"patients\" and \"wards\" sit inside the phrases that follow it. The tense is fixed by \"when the sponsor put the trial on hold\": \"put\" has the same form in the present and the past, but with the singular \"the sponsor\" the present would be \"puts,\" so \"put\" is past and the diary keeping happened at a past moment, which requires \"was keeping.\" \"Is keeping\" has the right number, and the present-tense description of the trial and the present \"keep\" later in the sentence make it look right, but it cannot be paired with a past when-clause. \"Were keeping\" has the right tense but takes its number from the plural nouns, and \"are keeping\" makes both errors.",
+    "topic_tag": "clinical trials: paper backup diaries in an inhaler study",
+    "template": "distributive Each of the [pl] + PP ending plural x present-tense frame and a later present clause, past verb identical to its present form x b|g decided by a far when-clause with 'put'"
+  },
+  {
+    "id": "SEC26A-03",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: restrictive participial phrase (no punctuation)",
+    "difficulty": "hard",
+    "passage": "A seed bank in an arid inland valley sorts its wild lentil seed by the hillside it came from and seals the seed from each hillside in a tray of its own inside a walk-in freezer. When a routine viability test showed germination falling, the curators traced the problem to the ______ nearest the freezer's door, where warm air rushes in whenever staff enter.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "tray kept",
+      "tray, kept",
+      "tray—kept",
+      "tray kept,"
+    ],
+    "correct_answer": "tray kept",
+    "explanation": "The first sentence says the bank sorts its seed by hillside and gives each hillside a tray, so the freezer holds several trays, and \"the tray\" alone does not say which one failed. The phrase \"kept nearest the freezer's door\" is what identifies it, so it is restrictive and takes no punctuation. \"Tray, kept\" and \"tray—kept\" set the phrase off as extra information, which would imply the freezer holds only one tray. \"Tray kept,\" treats \"kept\" as complete on its own and leaves \"nearest the freezer's door\" stranded with nothing to modify, separating the participle from the phrase that completes it.",
+    "topic_tag": "seed banking: wild lentil trays in a walk-in freezer",
+    "template": "sentence-final restrictive participial phrase x several trays inferred from 'by the hillside' and 'the seed from each hillside' x none / comma / dash / comma one word off"
+  },
+  {
+    "id": "SEC26A-04",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with verb aspect (present perfect)",
+    "difficulty": "hard",
+    "passage": "Pediatricians used to treat almost all childhood pink eye with an antibiotic ointment, although most such infections are viral and clear without any medicine. In the clinics of the state's largest pediatric network, the ointment ______ far less often for mild cases since the network's doctors voted last spring to stop recommending it for viral infections. Complication rates in those clinics did not rise.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has been prescribed",
+      "were prescribed",
+      "have been prescribed",
+      "was prescribed"
+    ],
+    "correct_answer": "has been prescribed",
+    "explanation": "The subject is the singular \"ointment\"; \"clinics,\" the plural noun that opens the sentence, sits in an introductory phrase and does not govern the verb. The clause \"since the network's doctors voted last spring\" measures a span running from a past event up to the present, and a main clause tied to such a since-clause must be in the present perfect, so \"has been prescribed\" is correct. \"Was prescribed\" has the right number and matches the definite past \"last spring\" and the past \"did not rise\" in the next sentence, but the simple past cannot be paired with a since-clause of this kind; \"last spring\" dates the vote, not the prescribing. \"Have been prescribed\" has the right aspect but takes its number from \"clinics,\" and \"were prescribed\" makes both errors.",
+    "topic_tag": "pediatrics: antibiotic ointment for childhood pink eye",
+    "template": "opening PP on a plural noun + singular subject x plural opener, 'last spring' and a past next sentence pulling to the simple past x e|h decided by a far since-clause"
+  },
+  {
+    "id": "SEC26A-05",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with pronoun-antecedent agreement (by-agent)",
+    "difficulty": "hard",
+    "passage": "Pine needles are tough, waxy, and acidic, which is why they pile up on many forest floors instead of rotting. In stands where surveys detect acid-tolerant bacteria, however, the needles beneath an old pine ______ within two or three years, releasing nitrogen back into the ground. Foresters use the depth of the needle layer as a rough guide to how active the soil is.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "is decomposed by them",
+      "are decomposed by it",
+      "is decomposed by it",
+      "are decomposed by them"
+    ],
+    "correct_answer": "are decomposed by them",
+    "explanation": "The subject is the plural \"needles\"; \"pine,\" the singular noun right before the blank, is the object of \"beneath,\" so the verb must be \"are decomposed.\" The agent is \"bacteria,\" named in the clause \"where surveys detect acid-tolerant bacteria\"; \"bacteria\" is the plural of \"bacterium,\" so the pronoun must be \"them.\" \"Are decomposed by it\" has the right verb but treats \"bacteria\" as a singular mass, a common error. \"Is decomposed by them\" has the right agent but takes its number from \"pine,\" and \"is decomposed by it\" makes both errors.",
+    "topic_tag": "forest soil ecology: bacterial decay of pine needles",
+    "template": "opening where-clause naming a foreign-plural agent + plural subject + single PP ending singular x 'bacteria' read as singular, adjacent singular x c+p object (present passive + by), matched key"
+  },
+  {
+    "id": "SEC26A-06",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with auxiliary form (be vs have)",
+    "difficulty": "hard",
+    "passage": "Grain stored damp begins to heat as molds multiply, and a single wet harvest can spoil a farm's whole supply. At one upland farm studied by agronomists, the oats ______ in even the wettest harvests of the survey rotten enough to discard, a record the researchers credited to the farm's slatted wooden granaries.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has seldom",
+      "were seldom",
+      "have seldom",
+      "was seldom"
+    ],
+    "correct_answer": "were seldom",
+    "explanation": "The subject is \"oats,\" a plural noun, even though grain is often spoken of as a mass; \"farm,\" the singular noun of the opening phrase, does not govern the verb. The auxiliary is decided nine words later by \"rotten,\" which is an adjective, not a past participle (the participle of \"rot\" is \"rotted\"), so it needs a form of \"be\": \"were seldom ... rotten.\" \"Have seldom\" has the right number, and \"rotten\" looks like a participle such as \"gotten,\" but \"have seldom rotten\" lacks \"been.\" \"Was seldom\" uses \"be\" but treats the oats as a singular mass or takes its number from \"farm,\" and \"has seldom\" makes both errors.",
+    "topic_tag": "agronomy: damp oats in upland granaries",
+    "template": "opening PP with a singular noun + mass-sounding plural subject x 'rotten' resembling a past participle, 'seldom' inviting a perfect x i|n + seldom decided by a far predicate adjective"
+  },
+  {
+    "id": "SEC26A-07",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: sentence boundary before a delayed-verb noun phrase (period)",
+    "difficulty": "hard",
+    "passage": "Surgeons of the 1860s closed most deep wounds with ______ tough cord twisted from the dried intestines of sheep and goats had a second and far larger market: the string makers who supplied violinists and harpists. Few surgeons of the time thought to boil it before use, and infections after surgery were common.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "catgut. The",
+      "catgut, the",
+      "catgut the",
+      "catgut: the"
+    ],
+    "correct_answer": "catgut. The",
+    "explanation": "The words after the blank read at first like an appositive defining catgut (\"the tough cord twisted from the dried intestines of sheep and goats\"), but the verb \"had\" arrives twelve words later, so they are the subject of a new independent clause. That clause already uses a colon of its own (\"market: the string makers\"), and a sentence cannot carry two colons in sequence, so the clauses must be separated by a period. \"Catgut, the\" joins two independent clauses with only a comma, a comma splice. \"Catgut the\" runs them together with no punctuation. \"Catgut: the\" would put a second colon into a sentence whose later colon introduces the string makers, and in any case the cord's market among string makers does not explain how surgeons closed wounds.",
+    "topic_tag": "history of surgery: catgut sutures and string makers",
+    "template": "clause ending on a noun + noun phrase that reads as its defining appositive until a verb 12 words later, second clause carrying its own colon x appositive comma, colon x period / comma / none / colon"
+  },
+  {
+    "id": "SEC26A-08",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with verb tense",
+    "difficulty": "hard",
+    "passage": "Laboratory mice are a standard model for studying how diet affects the production of insulin. The pancreas of sugar-fed mice ______ beyond repair within a few weeks unless the animals receive a drug that shields the insulin-producing cells. Untreated animals in the same experiments went on to develop symptoms resembling diabetes.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "are damaged",
+      "was damaged",
+      "were damaged",
+      "is damaged"
+    ],
+    "correct_answer": "is damaged",
+    "explanation": "The subject is \"pancreas,\" a singular noun that happens to end in -s (its plural is \"pancreases\"); \"mice,\" the plural noun right before the blank, is the object of \"of.\" The tense is set by the conditional \"unless the animals receive a drug,\" whose present-tense verb states a general outcome and requires a present-tense main clause, so \"is damaged\" is correct. \"Are damaged\" has the right tense but treats the subject as plural. \"Was damaged\" has the right number but shifts to the past, which the report of the experiments in the last sentence invites and the present \"receive\" rules out. \"Were damaged\" makes both errors.",
+    "topic_tag": "endocrinology: high-sugar diets and the mouse pancreas",
+    "template": "singular -s noun + of + plural x -s ending and adjacent plural, past-tense report sentence x c|h decided by a far present unless-clause"
+  },
+  {
+    "id": "SEC26A-09",
+    "domain": "Standard English Conventions",
+    "subskill": "form: plural possessive noun",
+    "difficulty": "hard",
+    "passage": "An apple cooperative in one river valley began with a single orchardist, who persuaded her neighbors to sell their fruit under a shared label. This year the ______ harvest fell by nearly a third after a late frost, though the founder's own trees, on a sheltered slope above the river, lost almost nothing.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "grower's",
+      "growers",
+      "grower",
+      "growers'"
+    ],
+    "correct_answer": "growers'",
+    "explanation": "The harvest that fell is the cooperative's, and the first sentence shows that the cooperative is the founder plus the neighbors she persuaded to sell their fruit under its label, so it belongs to several growers and the noun must be the plural possessive \"growers'.\" \"Grower's\" points to one grower, and the only single grower in the passage, the founder, is ruled out by the end of the sentence: her own trees lost almost nothing. \"Growers\" without an apostrophe invites reading \"harvest\" as a verb (\"the growers harvest\"), but the sentence's verb is \"fell,\" so \"harvest\" is a noun and needs a possessive before it. \"Grower\" is neither plural nor possessive.",
+    "topic_tag": "agricultural cooperatives: a frost-hit apple harvest",
+    "template": "plural possessive before a noun that can be read as a verb x one salient founder vs neighbors, number inferred across sentences x X / X's / Xs / Xs'"
+  },
+  {
+    "id": "SEC26A-10",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: comma after an introductory clause (garden path, early position)",
+    "difficulty": "hard",
+    "passage": "Downy mildew spreads quickly through vineyards in humid weather, and a single missed spraying can cost a grower much of a crop. Before the workers could ______ growing along the lowest terraces were showing the pale, oily spots that mark an infection. The owners replanted those rows with a more resistant variety the following year.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "spray the vines",
+      "spray the vines,",
+      "spray, the vines",
+      "spray; the vines"
+    ],
+    "correct_answer": "spray, the vines",
+    "explanation": "\"The vines\" looks at first like the object of \"spray,\" but the main verb \"were showing\" arrives six words later and needs a subject, and \"the vines growing along the lowest terraces\" is that subject. \"Spray\" is used here without an object, so the introductory clause ends after \"spray,\" and the comma goes there. \"Spray the vines,\" treats \"the vines\" as the object and leaves \"were showing\" with no subject. \"Spray the vines\" with no comma has the same problem and runs the clause into the sentence. \"Spray; the vines\" uses a semicolon after a dependent clause beginning with \"Before,\" which cannot stand as an independent clause.",
+    "topic_tag": "viticulture: downy mildew spray timing",
+    "template": "opening before-clause with an optionally transitive verb + NP that reads as its object until the main verb 6 words later x object reading x early comma / late comma / none / early semicolon"
+  }
+]

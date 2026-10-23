@@ -1,0 +1,700 @@
+{
+ "SEC26B-02": {
+  "must_revise": true,
+  "named_for": [
+   "no reader rated it hard",
+   "distractors not strong for every reader"
+  ],
+  "listed_for": [
+   "template pair with SEC26A-08 named by 1 of 2"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "is prone",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "The tense is handed over by the present 'reaches' later in the same sentence, and the singular head noun 'face' sits right before the blank.",
+    "note": "Singular head 'face' takes 'is'; the habitual present 'whenever ... reaches' rules out the past forms. 'are prone' attracts through 'crevasses' and the plural participial opener."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "is prone",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'face' sits directly before the blank and 'reaches' hands over the present tense.",
+    "note": "Singular 'face' plus generic present ('whenever ... reaches') gives 'is prone'. B attracts through 'crevasses' and 'glaciologists'."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC26A-08",
+    "readers": 1,
+    "why": [
+     "generic present singular head with a plural attractor"
+    ]
+   }
+  ]
+ },
+ "SEC26B-10": {
+  "must_revise": true,
+  "named_for": [
+   "easy",
+   "no reader rated it hard",
+   "distractors weak",
+   "distractors not strong for every reader",
+   "matches an open mark"
+  ],
+  "listed_for": [],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "boom; a",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "The '; and' already printed before the last list item tells the student which mark to copy into the parallel slot.",
+    "note": "List items contain internal commas ('a narrow-angle camera, the heaviest instrument aboard'), so items are separated by semicolons, matching the later '; and'."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "boom; a",
+    "difficulty": "easy",
+    "n_struck": 1,
+    "struck_options": [
+     "boom a"
+    ],
+    "distractor_quality": "weak",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "the semicolon printed later ('flight path; and') is simply copied into the parallel slot.",
+    "note": "The list items carry internal commas ('a narrow-angle camera, the heaviest instrument aboard'), so they are separated by semicolons, matching 'path; and'."
+   }
+  ],
+  "template_partners": []
+ },
+ "SEC26B-07": {
+  "must_revise": true,
+  "named_for": [
+   "no reader rated it hard",
+   "distractors not strong for every reader"
+  ],
+  "listed_for": [
+   "template pair with SEC26A-10 named by 1 of 2",
+   "named in reader r0's tell: In every punctuation item where an option puts the mark after the SECOND word ('ignored the,' P03, 'letters written,' P06, 'newspaper the,' P08, 'lot gathered,'",
+   "named in reader r1's tell: Options of the shape 'word the,' or 'word word,' with a trailing comma (P06 D, P08 D, P13 D, P17 D) always lose; the exception is P05 D, which is the key."
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "blasted the ridge,",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "A and C produce the visibly broken 'the ridge the water level', so it is a straight two-way choice on the introductory-clause comma.",
+    "note": "Introductory adverb clause 'As the crew blasted the ridge' takes a comma before the main clause. B omits it, garden-pathing 'blasted the ridge the water level'."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "blasted the ridge,",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "strong",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "the standard introductory-clause comma; reading on to 'the water level ... began' exposes A and B at once, and P21 uses the same object-or-subject boundary.",
+    "note": "Introductory clause 'As the crew blasted the ridge' takes its object and then a comma before the main subject 'the water level'. A is a garden path (intransitive 'blasted') that strands 'the ridge'."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC26A-10",
+    "readers": 1,
+    "why": [
+     "introductory clause comma at the object-or-subject boundary garden path"
+    ]
+   }
+  ]
+ },
+ "SEC26B-03": {
+  "must_revise": true,
+  "named_for": [
+   "key not recovered",
+   "not exclusive",
+   "no reader rated it hard",
+   "distractors not strong for every reader",
+   "template pair with SEC26A-07 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template partner of SEC26C-04 (the later slot revises)",
+   "named in reader r0's tell: Two items offer two IC-joining marks at once (P11 period vs colon, P16 colon vs semicolon), so neither can be exclusive."
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "line: the",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": false,
+    "second_defensible_text": "line; the",
+    "convention": "Semicolon joining two independent clauses: 'One photograph showed a faint gray line; the crack ... ran the full depth' is grammatical.",
+    "resolving_word_after_blank": null,
+    "not_hard_because": "Both IC-joining marks are offered together, so the item cannot be exclusive; once fixed, the long subject 'the crack no wider ... above' is the only difficulty.",
+    "note": "The second clause explains the line, so a colon fits; but the semicolon is equally grammatical between the same two independent clauses. A is a comma splice (or misreads 'the crack...' as an appositive), B a run-on."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "line; the",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "A is a splice and B a run-on as soon as 'ran' is found; the semicolon-or-colon choice is the only real decision, and the template repeats P17 and P25.",
+    "note": "Two independent clauses ('showed a faint gray line' / 'the crack ... ran the full depth'). The semicolon is right; the colon fails because the second clause reports a later event rather than explaining the first. The unpunctuated modifier 'no wider than a strand of hair and invisible from the walkway above' needs commas, which makes the second clause hard to read; this is a quality defect."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC26A-07",
+    "readers": 2,
+    "why": [
+     "two independent clauses joined by colon, period or semicolon",
+     "independent-clause boundary before a heavily modified subject"
+    ]
+   },
+   {
+    "with": "SEC26C-04",
+    "readers": 2,
+    "why": [
+     "two independent clauses joined by colon, period or semicolon",
+     "independent-clause boundary before a heavily modified subject"
+    ]
+   }
+  ]
+ },
+ "SEC26B-04": {
+  "must_revise": true,
+  "named_for": [
+   "easy",
+   "no reader rated it hard",
+   "distractors not strong for every reader"
+  ],
+  "listed_for": [
+   "template pair with SEC26A-02 named by 1 of 2",
+   "template partner of SEC26C-03 (the later slot revises)",
+   "template partner of SEC26C-08 (the later slot revises)",
+   "template partner of SEC26C-05 (the later slot revises)",
+   "template partner of SEC26C-07 (the later slot revises)",
+   "template partner of SEC26B-08 (the later slot revises)",
+   "template pair with SEC26D-02 named by 1 of 2",
+   "named in reader r0's tell: An explicit 'since' makes the present-perfect option the key in P28, P36, P37 and P38. Without 'since', the perfect option loses in P10, P12, P13, P18 and P21. ",
+   "named in reader r1's tell: In every tense item the time cue is explicit and decisive: 'since' always means present perfect (P16, P27, P35, P36), and a closed past phrase always means simp"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "were cleaned",
+    "difficulty": "easy",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'on the last night of a three-week maintenance shutdown' marks a finished past event, ruling out both perfects, and 'segments' is plural right before the blank.",
+    "note": "Plural 'segments', specific past occasion 'on the last night of a ... shutdown': 'were cleaned'."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "were cleaned",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "the closed past time phrase hands over the tense, and 'segments' is plural and close to the blank.",
+    "note": "Plural 'segments' plus 'on the last night of ... shutdown' (a closed past time) gives 'were cleaned'. C attracts through 'mirror's'."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC26A-02",
+    "readers": 1,
+    "why": [
+     "plain subject-verb number with a past-time clause handing over tense"
+    ]
+   },
+   {
+    "with": "SEC26C-03",
+    "readers": 2,
+    "why": [
+     "plain subject-verb number with a past-time clause handing over tense",
+     "past agreement with a closed time phrase and a nearby attractor"
+    ]
+   },
+   {
+    "with": "SEC26C-08",
+    "readers": 2,
+    "why": [
+     "plain subject-verb number with a past-time clause handing over tense",
+     "past agreement with a closed time phrase and a nearby attractor"
+    ]
+   },
+   {
+    "with": "SEC26C-05",
+    "readers": 2,
+    "why": [
+     "plain subject-verb number with a past-time clause handing over tense",
+     "past agreement with a closed time phrase and a nearby attractor"
+    ]
+   },
+   {
+    "with": "SEC26C-07",
+    "readers": 2,
+    "why": [
+     "plain subject-verb number with a past-time clause handing over tense",
+     "past agreement with a closed time phrase and a nearby attractor"
+    ]
+   },
+   {
+    "with": "SEC26B-08",
+    "readers": 2,
+    "why": [
+     "plain subject-verb number with a past-time clause handing over tense",
+     "past agreement with a closed time phrase and a nearby attractor"
+    ]
+   },
+   {
+    "with": "SEC26D-02",
+    "readers": 1,
+    "why": [
+     "past agreement with a closed time phrase and a nearby attractor"
+    ]
+   }
+  ]
+ },
+ "SEC26B-09": {
+  "must_revise": true,
+  "named_for": [
+   "n_struck 2",
+   "no reader rated it hard",
+   "distractors not strong for every reader",
+   "template pair with SEC26A-09 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template pair with SEC26C-10 named by 1 of 2",
+   "template pair with SEC26D-10 named by 1 of 2",
+   "named in reader r0's tell: Possessive/number items all hand over the count in the prior sentence ('Seven ... growers' P07, 'exactly one clerk' P29, 'a lone geologist' P30, 'several youths",
+   "named in reader r1's tell: A first-sentence count ('a lone geologist', 'several youths', 'exactly one newspaper', 'Seven small apple growers', 'three separate lots', 'Only one bundle', 'e"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "geologist's",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'a lone geologist' in the first sentence and the contrast with survey teams who 'made no drawings' hand over both the number and the ownership.",
+    "note": "The sketches belong to the lone geologist: singular possessive."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "geologist's",
+    "difficulty": "medium",
+    "n_struck": 2,
+    "struck_options": [
+     "geologist",
+     "geologists"
+    ],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'a lone geologist' in the first sentence hands over the number, and 'sketches' right after the blank makes the two non-possessive forms obviously wrong.",
+    "note": "Singular possessive: one lone geologist made the sketches. A (plural possessive) attracts through 'survey teams' and 'Researchers'."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC26C-10",
+    "readers": 1,
+    "why": [
+     "noun count given in prior sentence decides possessive or plural form"
+    ]
+   },
+   {
+    "with": "SEC26D-10",
+    "readers": 1,
+    "why": [
+     "noun count given in prior sentence decides possessive or plural form"
+    ]
+   },
+   {
+    "with": "SEC26A-09",
+    "readers": 2,
+    "why": [
+     "noun count given in prior sentence decides possessive or plural form",
+     "possessive number given by a first-sentence count"
+    ]
+   }
+  ]
+ },
+ "SEC26B-01": {
+  "must_revise": true,
+  "named_for": [
+   "no reader rated it hard",
+   "distractors not strong for every reader",
+   "template pair with SEC26A-01 (named by all 2 readers)",
+   "template pair with SEC26A-05 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template partner of SEC26D-07 (the later slot revises)",
+   "template partner of SEC26D-01 (the later slot revises)",
+   "template partner of SEC26C-01 (the later slot revises)",
+   "template partner of SEC26B-06 (the later slot revises)",
+   "template partner of SEC26C-06 (the later slot revises)",
+   "named in reader r0's tell: Pronoun 2x2 items (P17, P20, P23, P24, P27, P32, P39, P40) each decompose into two independent binary checks; the pronoun distractor is always the nearest noun ",
+   "named in reader r1's tell: Eight items (P02, P07, P18, P19, P20, P22, P33, P39) use the same 2x2 verb-number by pronoun-number grid; an option whose pronoun has no sensible antecedent alw"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "have reconstructed it",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "The 2x2 grid splits into two independent checks and the plural subject is directly before the blank.",
+    "note": "Plural 'engineers' takes 'have'; the reconstructed thing is the singular 'burst of telemetry', so 'it'. 'them' attracts via 'copies' and 'dishes'."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "have reconstructed it",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'engineers' sits right before the blank and gives the verb away; same 2x2 grid as P07.",
+    "note": "Plural 'engineers' takes 'have'; the reconstructed thing is the single 'closing burst of telemetry', so 'it'. A attracts through 'partial copies' after the blank."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC26D-07",
+    "readers": 2,
+    "why": [
+     "verb number crossed with pronoun number in a 2x2 grid",
+     "2x2 verb number by pronoun number grid"
+    ]
+   },
+   {
+    "with": "SEC26A-01",
+    "readers": 2,
+    "why": [
+     "verb number crossed with pronoun number in a 2x2 grid",
+     "2x2 verb number by pronoun number grid"
+    ]
+   },
+   {
+    "with": "SEC26A-05",
+    "readers": 2,
+    "why": [
+     "verb number crossed with pronoun number in a 2x2 grid",
+     "2x2 verb number by pronoun number grid"
+    ]
+   },
+   {
+    "with": "SEC26D-01",
+    "readers": 2,
+    "why": [
+     "verb number crossed with pronoun number in a 2x2 grid",
+     "2x2 verb number by pronoun number grid"
+    ]
+   },
+   {
+    "with": "SEC26C-01",
+    "readers": 2,
+    "why": [
+     "verb number crossed with pronoun number in a 2x2 grid",
+     "2x2 verb number by pronoun number grid"
+    ]
+   },
+   {
+    "with": "SEC26B-06",
+    "readers": 2,
+    "why": [
+     "verb number crossed with pronoun number in a 2x2 grid",
+     "2x2 verb number by pronoun number grid"
+    ]
+   },
+   {
+    "with": "SEC26C-06",
+    "readers": 2,
+    "why": [
+     "verb number crossed with pronoun number in a 2x2 grid",
+     "2x2 verb number by pronoun number grid"
+    ]
+   }
+  ]
+ },
+ "SEC26B-08": {
+  "must_revise": true,
+  "named_for": [
+   "no reader rated it hard",
+   "distractors not strong for every reader",
+   "template pair with SEC26B-04 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template pair with SEC26A-02 named by 1 of 2",
+   "template partner of SEC26C-03 (the later slot revises)",
+   "template partner of SEC26C-08 (the later slot revises)",
+   "template partner of SEC26C-05 (the later slot revises)",
+   "template partner of SEC26C-07 (the later slot revises)",
+   "template pair with SEC26D-02 named by 1 of 2",
+   "named in reader r1's tell: In every tense item the time cue is explicit and decisive: 'since' always means present perfect (P16, P27, P35, P36), and a closed past phrase always means simp"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "were being replaced",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "The past verb 'cooled' in the while-clause hands over the tense; plural 'plates' is the obvious head despite 'wall' and 'furnace'.",
+    "note": "Plural 'plates'; simultaneous with past 'cooled': past progressive 'were being replaced'."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "were being replaced",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "'cooled' in the while-clause hands over the tense, and 'plates' heads the subject.",
+    "note": "Plural 'plates' plus 'while the brickwork overhead cooled' gives the past progressive passive. C and D attract through 'furnace' and 'wall'."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC26A-02",
+    "readers": 1,
+    "why": [
+     "plain subject-verb number with a past-time clause handing over tense"
+    ]
+   },
+   {
+    "with": "SEC26C-03",
+    "readers": 2,
+    "why": [
+     "plain subject-verb number with a past-time clause handing over tense",
+     "past agreement with a closed time phrase and a nearby attractor"
+    ]
+   },
+   {
+    "with": "SEC26C-08",
+    "readers": 2,
+    "why": [
+     "plain subject-verb number with a past-time clause handing over tense",
+     "past agreement with a closed time phrase and a nearby attractor"
+    ]
+   },
+   {
+    "with": "SEC26B-04",
+    "readers": 2,
+    "why": [
+     "plain subject-verb number with a past-time clause handing over tense",
+     "past agreement with a closed time phrase and a nearby attractor"
+    ]
+   },
+   {
+    "with": "SEC26C-05",
+    "readers": 2,
+    "why": [
+     "plain subject-verb number with a past-time clause handing over tense",
+     "past agreement with a closed time phrase and a nearby attractor"
+    ]
+   },
+   {
+    "with": "SEC26C-07",
+    "readers": 2,
+    "why": [
+     "plain subject-verb number with a past-time clause handing over tense",
+     "past agreement with a closed time phrase and a nearby attractor"
+    ]
+   },
+   {
+    "with": "SEC26D-02",
+    "readers": 1,
+    "why": [
+     "past agreement with a closed time phrase and a nearby attractor"
+    ]
+   }
+  ]
+ },
+ "SEC26B-06": {
+  "must_revise": true,
+  "named_for": [
+   "no reader rated it hard",
+   "distractors not strong for every reader",
+   "template pair with SEC26A-01 (named by all 2 readers)",
+   "template pair with SEC26A-05 (named by all 2 readers)",
+   "template pair with SEC26B-01 (named by all 2 readers)"
+  ],
+  "listed_for": [
+   "template partner of SEC26D-07 (the later slot revises)",
+   "template partner of SEC26D-01 (the later slot revises)",
+   "template partner of SEC26C-01 (the later slot revises)",
+   "template partner of SEC26C-06 (the later slot revises)",
+   "named in reader r0's tell: Pronoun 2x2 items (P17, P20, P23, P24, P27, P32, P39, P40) each decompose into two independent binary checks; the pronoun distractor is always the nearest noun ",
+   "named in reader r1's tell: Eight items (P02, P07, P18, P19, P20, P22, P33, P39) use the same 2x2 verb-number by pronoun-number grid; an option whose pronoun has no sensible antecedent alw"
+  ],
+  "readers": [
+   {
+    "reader": "r0",
+    "my_answer_text": "is tracking them",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "The 2x2 grid splits into independent checks, and the singular head 'receiver' is easy to find despite 'twin domes'.",
+    "note": "Singular 'receiver' takes 'is'; the tracked objects are the meteoroids (plural), so 'them'. 'are' attracts via 'domes'."
+   },
+   {
+    "reader": "r1",
+    "my_answer_text": "is tracking them",
+    "difficulty": "medium",
+    "n_struck": 0,
+    "struck_options": [],
+    "distractor_quality": "plausible",
+    "exclusive": true,
+    "second_defensible_text": null,
+    "convention": null,
+    "resolving_word_after_blank": null,
+    "not_hard_because": "the same 2x2 verb-plus-pronoun grid as seven other items; 'receiver' is singular and the only trackable plural is 'meteoroids'.",
+    "note": "Singular 'receiver' takes 'is'; 'them' refers to the meteoroids. 'domes' attracts the plural verb, and 'it' attracts through 'receiver'."
+   }
+  ],
+  "template_partners": [
+   {
+    "with": "SEC26D-07",
+    "readers": 2,
+    "why": [
+     "verb number crossed with pronoun number in a 2x2 grid",
+     "2x2 verb number by pronoun number grid"
+    ]
+   },
+   {
+    "with": "SEC26A-01",
+    "readers": 2,
+    "why": [
+     "verb number crossed with pronoun number in a 2x2 grid",
+     "2x2 verb number by pronoun number grid"
+    ]
+   },
+   {
+    "with": "SEC26A-05",
+    "readers": 2,
+    "why": [
+     "verb number crossed with pronoun number in a 2x2 grid",
+     "2x2 verb number by pronoun number grid"
+    ]
+   },
+   {
+    "with": "SEC26D-01",
+    "readers": 2,
+    "why": [
+     "verb number crossed with pronoun number in a 2x2 grid",
+     "2x2 verb number by pronoun number grid"
+    ]
+   },
+   {
+    "with": "SEC26C-01",
+    "readers": 2,
+    "why": [
+     "verb number crossed with pronoun number in a 2x2 grid",
+     "2x2 verb number by pronoun number grid"
+    ]
+   },
+   {
+    "with": "SEC26B-01",
+    "readers": 2,
+    "why": [
+     "verb number crossed with pronoun number in a 2x2 grid",
+     "2x2 verb number by pronoun number grid"
+    ]
+   },
+   {
+    "with": "SEC26C-06",
+    "readers": 2,
+    "why": [
+     "verb number crossed with pronoun number in a 2x2 grid",
+     "2x2 verb number by pronoun number grid"
+    ]
+   }
+  ]
+ }
+}

@@ -1,0 +1,182 @@
+[
+  {
+    "id": "SEC26D-01",
+    "domain": "Standard English Conventions",
+    "subskill": "form: pronoun-antecedent agreement with subject-verb agreement (object pronoun, matched)",
+    "difficulty": "hard",
+    "passage": "Studies of price anchoring find that exact-looking numbers earn more trust than round figures. Shown one oddly precise price among several rounded prices on a menu card, a diner in such a study typically ______ more carefully set by the restaurant than the rounded prices, even though a single manager had chosen the whole menu by one rule.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "judge them",
+      "judges them",
+      "judges it",
+      "judge it"
+    ],
+    "correct_answer": "judges it",
+    "explanation": "The verb's subject is \"a diner,\" a singular noun, so the verb must be \"judges\"; \"prices\" belongs to the opening phrase, and \"study\" is the object of \"in.\" The thing judged is the \"one oddly precise price\" named at the start of the sentence, so the pronoun must be the singular \"it\"; the nearer singular nouns \"menu card\" and \"study\" and the later \"restaurant\" are not what a diner judges \"more carefully set.\" \"Judges them\" has the right verb, but the only plural it could refer to is the \"rounded prices,\" and the sentence compares the judged item with \"the rounded prices,\" so \"them\" would compare those prices with themselves. \"Judge it\" and \"judge them\" pair a plural verb with the singular subject \"a diner.\"",
+    "topic_tag": "behavioral economics: precise-price anchoring",
+    "template": "opening past-participle phrase whose object is the sg antecedent, two nearer sg nouns, plural noun in the same phrase + sg subject x 'them' pulled by 'prices' and killed only by the comparison 'than the rounded prices' x a+p {judges/judge it/them}"
+  },
+  {
+    "id": "SEC26D-02",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with verb aspect (simple past vs present perfect)",
+    "difficulty": "hard",
+    "passage": "Historians of one Mediterranean port have argued that its mixed dialect has shaped the city's identity more than any monument. Bilingualism ______ among the market vendors of the old quarter at the height of the harbor's grain trade. That trade collapsed when railways reached the interior, and the vendors' grandchildren mostly speak only the national language.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has been widespread",
+      "were widespread",
+      "have been widespread",
+      "was widespread"
+    ],
+    "correct_answer": "was widespread",
+    "explanation": "The subject is \"Bilingualism,\" a singular noun that opens the sentence; \"vendors,\" which follows the blank inside the phrase \"among the market vendors,\" is not the subject. The phrase \"at the height of the harbor's grain trade\" ties the state to a particular period, and the next sentence says that trade \"collapsed,\" so the period is over and the simple past is required; the present perfect cannot be tied to a finished past period. \"Has been widespread\" has the right number but the present perfect, which the first sentence's \"have argued\" and \"has shaped\" make tempting. \"Were widespread\" is past but plural, agreeing with \"vendors\" rather than the subject, and \"have been widespread\" is wrong in both number and aspect.",
+    "topic_tag": "sociolinguistics: market bilingualism in a port city",
+    "template": "sg abstract subject opening its sentence (no trap before blank) + plural after the blank; present-perfect frame in the preceding sentence; the time phrase names a period whose end is stated only in the NEXT sentence x r|i + 'widespread'"
+  },
+  {
+    "id": "SEC26D-03",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: dash before a sentence-final nonrestrictive appositive",
+    "difficulty": "hard",
+    "passage": "Historians of the mill's long strike rely heavily on the town's ______ Sentinel, whose two reporters attended nearly all of the union's meetings and printed long excerpts from the speeches given there. The valley had no other printing press in those years; the nearest competing paper came from a city forty miles downriver and reached the town days late.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "newspaper the",
+      "newspaper—the",
+      "newspaper; the",
+      "newspaper the,"
+    ],
+    "correct_answer": "newspaper—the",
+    "explanation": "The second sentence says the valley had \"no other printing press\" and that the nearest competing paper came from a city forty miles away, so the town had only one newspaper; \"the town's newspaper\" already identifies it, and its name, \"the Sentinel,\" is a nonrestrictive appositive that must be set off. With no comma offered, the dash is the correct mark. Leaving the mark out treats \"the Sentinel\" as a restrictive name that picks one paper out of several, which the second sentence rules out. The semicolon fails because \"the Sentinel, whose two reporters attended ...\" is a noun phrase with a relative clause, not an independent clause, and placing the comma after \"the\" splits the article from the name it introduces.",
+    "topic_tag": "media history: a mill town's only newspaper during a strike",
+    "template": "sentence-final named appositive after a possessive role noun; the one-paper fact is inferred from the FOLLOWING sentence (no other press; the rival paper was printed elsewhere) x restrictive-name reading (no mark), clause reading of 'whose ... attended' (semicolon) x {dash, none, semicolon, comma shifted}"
+  },
+  {
+    "id": "SEC26D-04",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with verb tense (present progressive, conditional)",
+    "difficulty": "hard",
+    "passage": "A year of interviews in one rent-stabilized complex on the city's east side turned up surprisingly little turnover, even among households whose incomes had fallen during the study. Long-term tenants, the interviewers found, ______ the building's yearly increase without formal complaint as long as that increase stays below the ceiling set by the city's housing board.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "were accepting",
+      "are accepting",
+      "is accepting",
+      "was accepting"
+    ],
+    "correct_answer": "are accepting",
+    "explanation": "The subject is \"Long-term tenants,\" a plural noun that opens the sentence, so the verb must be plural; \"building's\" and \"increase,\" which follow the blank, are not the subject. The conditional clause \"as long as that increase stays below the ceiling\" is in the present tense, so the main verb it conditions must also be present, even though the interrupting \"the interviewers found\" and the first sentence are in the past. \"Were accepting\" is plural but past, which clashes with the present \"stays.\" \"Is accepting\" is present but singular, and \"was accepting\" is wrong in both number and tense.",
+    "topic_tag": "housing sociology: tenant turnover under rent stabilization",
+    "template": "plural subject opening its sentence + interrupting past reporting clause before the blank + singular object after x past report pulls 'were' x b|g {is/are/was/were accepting}"
+  },
+  {
+    "id": "SEC26D-05",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with verb aspect (present perfect progressive, since-phrase)",
+    "difficulty": "hard",
+    "passage": "Economists at four public universities began recruiting new graduates in the year the housing market crashed, curious whether unpaid internships would pay off. Their study of unpaid interns and paid classmates ______ both groups through the job market since that first recruitment drive, and the latest survey wave shows the former interns earning slightly less than the others.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was following",
+      "have been following",
+      "has been following",
+      "were following"
+    ],
+    "correct_answer": "has been following",
+    "explanation": "The subject is \"study,\" which is singular; the plural possessive \"Their\" in front of it and the compound \"unpaid interns and paid classmates\" after it are not the subject. The phrase \"since that first recruitment drive\" names a past starting point for an activity that continues, and a \"since\" phrase of this kind requires a perfect form, even though the first sentence narrates the start of the study in the past tense. \"Have been following\" has the right aspect but a plural verb that agrees with \"classmates\" or \"Their.\" \"Was following\" has the right number but the past progressive, which cannot take a \"since\" phrase marking a starting point. \"Were following\" fails on both counts.",
+    "topic_tag": "labor economics: unpaid internships and later earnings",
+    "template": "plural possessive determiner + sg head + of + compound of two plurals x 'Their' and the compound pull plural; past-tense opening narrative pulls 'was V-ing' x f|g"
+  },
+  {
+    "id": "SEC26D-06",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with auxiliary choice (have vs be, intransitive participle)",
+    "difficulty": "hard",
+    "passage": "In the fishing villages along one rocky coastline, dialectologists expected younger speakers to abandon the deferential forms of speech that their grandparents used with elders. The polite suffix on verbs ______ under pressure from the national schools fully disappeared, though teenagers attach it to far fewer sentences than older residents.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "is never",
+      "have never",
+      "are never",
+      "has never"
+    ],
+    "correct_answer": "has never",
+    "explanation": "The subject is \"The polite suffix,\" a singular noun; \"verbs,\" just before the blank, is the object of \"on\" and is not the subject. \"The polite suffix is never under pressure\" reads at first as a complete clause, but the clause continues to \"disappeared,\" the past participle of a verb that cannot be made passive or used as an adjective, so it can follow only \"has\" or \"have,\" never a form of \"be.\" \"Have never\" chooses the right auxiliary but agrees with \"verbs\" rather than the subject. \"Is never\" and \"are never\" cannot combine with \"disappeared,\" and \"are never\" is also plural.",
+    "topic_tag": "dialectology: polite verb endings on a fishing coast",
+    "template": "sg head + PP ending plural + aux + 'never' + an 'under pressure from' phrase that completes a be-clause on its own + intransitive participle x adjacent plural; 'is never under pressure' garden path x j|n + never"
+  },
+  {
+    "id": "SEC26D-07",
+    "domain": "Standard English Conventions",
+    "subskill": "form: pronoun-antecedent agreement with subject-verb agreement (possessive, mismatched)",
+    "difficulty": "hard",
+    "passage": "The provinces' many local census forms were replaced this year by a single household questionnaire, drafted in the capital for nationwide use. Field teams that carry the statistics office's questionnaire into remote hill villages in the north ______ wording into three minority languages, and interviewers read the translated questions aloud to respondents who cannot read the national script with ease.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "have translated its",
+      "has translated their",
+      "have translated their",
+      "has translated its"
+    ],
+    "correct_answer": "have translated its",
+    "explanation": "The verb's subject is \"Field teams,\" which is plural, so the verb must be \"have translated\"; \"north\" and \"villages,\" the nouns just before the blank, belong to the relative clause \"that carry ... in the north.\" The wording being translated is that of \"the statistics office's questionnaire,\" a singular noun named eight words before the blank, so the possessive must be \"its\"; \"north,\" the nearest singular noun, is not what is translated. \"Have translated their\" has the right verb but gives the wording to a plural owner: the \"hill villages\" and the teams wrote no wording, and the provinces' local forms were replaced. \"Has translated its\" and \"has translated their\" pair a singular verb with the plural subject \"Field teams.\"",
+    "topic_tag": "survey methodology: translating a national census questionnaire",
+    "template": "plural head opening its sentence + long subject relative clause naming the sg owner, then a plural and a sg noun before the blank + have V-en + possessive x 'villages' pulls 'their', 'north' pulls 'has' x d+p possessive"
+  },
+  {
+    "id": "SEC26D-08",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with verb aspect (active present perfect, since-phrase)",
+    "difficulty": "hard",
+    "passage": "Informal tutoring was the subject of a study centered on one neighborhood branch library. Dependent on a single municipal grant, the volunteers responsible for the branch's homework desk ______ about forty students a week, most of them former pupils of the shuttered middle school, since the school's closure. Their sessions, held at long tables beside the periodicals, fill the reading room on weekday afternoons.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "have coached",
+      "were coaching",
+      "has coached",
+      "was coaching"
+    ],
+    "correct_answer": "have coached",
+    "explanation": "The subject is \"the volunteers,\" a plural noun; \"grant,\" in the opening phrase, and \"desk,\" which ends the adjective phrase \"responsible for the branch's homework desk,\" are singular nouns that are not the subject. The phrase \"since the school's closure,\" sixteen words after the blank and past an interrupting phrase about \"former pupils\" of a \"shuttered\" school, marks a past starting point for an activity that continues, so the present perfect is required. \"Has coached\" has the right aspect but a singular verb that agrees with \"desk.\" \"Were coaching\" is plural but cannot take a \"since\" phrase marking a starting point, and \"was coaching\" fails on both number and aspect.",
+    "topic_tag": "education research: library-based volunteer tutoring",
+    "template": "opening adjective phrase with sg noun + plural head + postposed adjective phrase ending sg + have V-en; the since-phrase sits 16 words away past an appositive full of past-time words x 'desk'/'grant' pull 'has'; 'shuttered', 'former' pull 'were V-ing' x d|g"
+  },
+  {
+    "id": "SEC26D-09",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: comma before a sentence-final appositive (no second verb)",
+    "difficulty": "hard",
+    "passage": "Nearly everything known about wages in the city's garment district comes from one small surviving payroll book, found in a sealed basement cupboard during a renovation. Its entries were made by a bookkeeper named Ursula ______ widow of the shop's first foreman trained in double-entry accounts by her own father.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "Wexler; the",
+      "Wexler: the",
+      "Wexler the",
+      "Wexler, the"
+    ],
+    "correct_answer": "Wexler, the",
+    "explanation": "The words after the blank, \"the widow of the shop's first foreman trained in double-entry accounts by her own father,\" look like a second clause with \"trained\" as its verb, but \"trained ... by her own father\" is a passive participle with no helping verb, so the phrase has no main verb: it is a sentence-final appositive describing Ursula Wexler and is set off with a comma. The semicolon would require an independent clause after it, which the phrase is not. The colon would present the phrase as the completion the first clause announces, but that clause already names the bookkeeper in full and announces nothing more; a description added to a name takes a comma. With no mark, the description runs into the name as if it were a title.",
+    "topic_tag": "economic history: a garment district payroll book",
+    "template": "clause ending in a full name + long noun phrase whose apparent verb 'trained' turns out to be a passive participle ('by her own father'); no closing mark is printed x second-clause reading (semicolon, colon) x {comma, semicolon, colon, none}"
+  },
+  {
+    "id": "SEC26D-10",
+    "domain": "Standard English Conventions",
+    "subskill": "form: noun form (plain singular before an -s verb)",
+    "difficulty": "hard",
+    "passage": "Political scientists studying city councils have found that procedural disputes decide more votes than open debate. At council meetings in one river city, the ______ rules on each procedural objection before debate resumes, and the clerk enters the ruling in the minutes. The city charter assigns that duty to a lone appointee, named by the mayor at the start of each term.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "parliamentarians'",
+      "parliamentarian",
+      "parliamentarian's",
+      "parliamentarians"
+    ],
+    "correct_answer": "parliamentarian",
+    "explanation": "The word after the blank, \"rules,\" is the verb of the clause: someone \"rules on each procedural objection\" before debate resumes. Read as a noun (\"the parliamentarian's rules\"), it would leave the first clause with no verb, since \"resumes\" belongs to the \"before\" clause, so the possessives \"parliamentarian's\" and \"parliamentarians'\" fail. The last sentence says the charter assigns that duty to \"a lone appointee,\" so one person rules, and \"parliamentarians\" is both the wrong number and in disagreement with the singular verb \"rules.\" Only the plain singular \"parliamentarian\" gives the clause a singular subject for its verb.",
+    "topic_tag": "political science: procedural rulings in city councils",
+    "template": "role noun before 'rules' (verb that reads as the plural noun 'rules'); the clause's only other verb sits inside a before-clause; the one-holder fact comes AFTER the blank and must be inferred ('that duty', 'a lone appointee') x possessive reading of 'rules' x {X, X's, Xs, Xs'}"
+  }
+]

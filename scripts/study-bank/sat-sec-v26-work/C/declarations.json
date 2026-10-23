@@ -1,0 +1,519 @@
+[
+  {
+    "slot": "C1",
+    "frame": "Sentence opens 'During a renovation of the auditorium' (singular); clause 1's subject is the plural agent 'three hired scene painters'; ', but the oldest drop curtain, a harbor view rolled up in a loft above the stage, ______' (subject 11 words before the blank, singular 'stage' before the blank); key 'was neglected by them' (mismatched).",
+    "true_subject_head": "curtain",
+    "misleader_words": [
+      "painters",
+      "backdrops",
+      "loft",
+      "stage",
+      "auditorium"
+    ],
+    "misleader_position": "early",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "stage",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "renovation",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "researcher",
+      "number": "sg"
+    },
+    "dimension": "pronoun",
+    "dimension_key": "pl",
+    "decider_type": "pronoun-antecedent",
+    "decider_quote": "three hired scene painters restored the backdrops in the flies, but",
+    "words_from_blank_to_decider": 22,
+    "deletion_test": "Delete clause 1 ('three hired scene painters restored the backdrops in the flies, but'): no agent is named in the sentence and neither 'it' nor 'them' has an antecedent; the pronoun is undecidable.",
+    "pronoun_antecedent": {
+      "word": "painters",
+      "number": "pl"
+    },
+    "grid": {
+      "code": "h+p",
+      "forms": [
+        "was neglected by it",
+        "were neglected by it",
+        "was neglected by them",
+        "were neglected by them"
+      ]
+    },
+    "distractor_pulls": {
+      "were neglected by them": "The verb is 11 words from its subject, after an appositive; the plural 'painters' and 'backdrops' are the main plurals of the sentence, so a reader who finds the agent copies its number onto the verb.",
+      "was neglected by it": "Every noun near the blank is singular ('curtain', 'view', 'loft', 'stage'), and the sentence opens on singular nouns ('renovation', 'auditorium'); a reader who solves the verb reaches for the nearest singular noun for the pronoun.",
+      "were neglected by it": "A reader who loses the subject behind the appositive takes the plural 'backdrops' (the set the curtain belongs to) as governing the verb, and reads 'it' as the renovation that passed the curtain by."
+    },
+    "distractor_kills": {
+      "were neglected by them": "Subject-verb agreement: the head of the subject is 'curtain' (singular), and an appositive does not change it. Correct only in 'the oldest drop curtains ... were neglected by them'.",
+      "was neglected by it": "Pronoun-antecedent agreement: the agent is 'painters', the people contrasted by 'but'; 'it' has no singular agent noun (a subject cannot be its own agent without a reflexive; 'loft', 'stage', 'auditorium' and 'renovation' cannot neglect). Correct only with a singular agent: 'one hired scene painter restored ...'.",
+      "were neglected by it": "Fails both rules: plural verb with the singular subject 'curtain', singular pronoun for the plural agent 'painters'."
+    },
+    "hostile_reader": {
+      "options_only_pick": "None: full 2x2, one verb, lengths 19-22.",
+      "heuristics_that_give_key": [
+        "(f) mismatched gives the key; (g) does not",
+        "'noun before the blank' gives sg, but it is not the subject"
+      ],
+      "changed": "PROBE: readers said 'curtain' sat right before the blank. Moved the subject 11 words back behind an appositive ending on 'stage', made the plural agent the subject of clause 1 rather than a nearby noun, removed the 'when'-free resolver after the blank."
+    },
+    "id": "SEC26C-01",
+    "next_four_words_after_blank": "entirely, and a researcher",
+    "length_ratio": 1.11,
+    "key_letter": "C"
+  },
+  {
+    "slot": "C2",
+    "frame": "'The illiterate' (the + adjective, plural, no -s) opens the blank's sentence; shared complement 'invisible' (9 letters); since-clause with a past verb ('discarded') 8 words after the blank; key 'have been invisible'.",
+    "true_subject_head": "illiterate",
+    "misleader_words": [
+      "illiterate"
+    ],
+    "misleader_position": "self",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "illiterate",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "illiterate",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "scholars",
+      "number": "pl"
+    },
+    "dimension": "aspect",
+    "dimension_key": "perfect",
+    "decider_type": "time-clause",
+    "decider_quote": "since a nineteenth-century archivist discarded the original depositions",
+    "words_from_blank_to_decider": 8,
+    "deletion_test": "Delete the since-clause: 'The illiterate were invisible to nearly all scholars of the period' and 'have been invisible to nearly all scholars of the period' are both grammatical; the aspect is undecidable.",
+    "grid": {
+      "code": "r|i",
+      "forms": [
+        "has been invisible",
+        "have been invisible",
+        "was invisible",
+        "were invisible"
+      ]
+    },
+    "distractor_pulls": {
+      "was invisible": "'The illiterate' has no plural ending and reads like an abstract singular ('the illiterate [person]'), and the passage narrates archival history in the past ('discarded', 'kept'), so the simple past singular feels like the narrative default.",
+      "has been invisible": "A student who spots the since-clause and knows it needs the perfect, but hears 'The illiterate' as a singular category, picks the singular perfect.",
+      "were invisible": "A student who knows 'the + adjective' is plural follows the clause's past verb 'discarded' and the whole passage's past setting, the strongest tense pull in the sentence."
+    },
+    "distractor_kills": {
+      "was invisible": "Subject-verb agreement ('the + adjective' naming people is plural) and tense: a 'since' clause naming a starting point requires the perfect. Correct only in 'The illiterate man was invisible ... when the archivist discarded ...'.",
+      "has been invisible": "Subject-verb agreement: 'The illiterate' (people) is plural. Correct only with a singular subject: 'The illiterate laborer has been invisible since ...'.",
+      "were invisible": "Tense/aspect: a simple past cannot take a 'since' + past-event clause marking the start of a continuing state. Correct only in 'The illiterate were invisible to scholars after an archivist discarded ...'."
+    },
+    "hostile_reader": {
+      "options_only_pick": "Key is uniquely longest (19 vs 13); ratio 1.46 under 1.6. 'have been' vs 'has been' pair cannot be struck without the subject.",
+      "heuristics_that_give_key": [
+        "(c) copying the time clause's tense ('discarded' past) gives 'were', not the key",
+        "(e) 'been loses' fails here"
+      ],
+      "changed": "Moved the subject to the head of its sentence (removed 'According to one social historian', whose singular noun broke First=agr); moved 'since' to the 8th word."
+    },
+    "id": "SEC26C-02",
+    "next_four_words_after_blank": "to nearly all scholars",
+    "length_ratio": 1.46,
+    "key_letter": "C"
+  },
+  {
+    "slot": "C3",
+    "frame": "Opening 'According to that inventory, which notes for each vestment the feast on which it is worn,' (singular first noun; a present-habitual relative clause with singular nouns 'vestment', 'feast', 'it is worn' right before the subject); plural subject 'the embroidered copes'; definite-past phrase 'on the eve of the great fire' 9 words after the blank, past only by reference to sentence 1's 'survived the great fire'.",
+    "true_subject_head": "copes",
+    "misleader_words": [
+      "inventory",
+      "vestment",
+      "feast",
+      "it is worn"
+    ],
+    "misleader_position": "early",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "copes",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "inventory",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "chests",
+      "number": "pl"
+    },
+    "dimension": "tense",
+    "dimension_key": "past",
+    "decider_type": "time-phrase",
+    "decider_quote": "on the eve of the great fire",
+    "words_from_blank_to_decider": 9,
+    "deletion_test": "Delete 'on the eve of the great fire': 'the embroidered copes are removed from the cedar chests by the lay brothers and carried to a cellar' reads as the inventory's standing procedure, matching 'which notes ... the feast on which it is worn'; the tense is undecidable.",
+    "grid": {
+      "code": "c|h",
+      "forms": [
+        "is removed",
+        "are removed",
+        "was removed",
+        "were removed"
+      ]
+    },
+    "distractor_pulls": {
+      "is removed": "It parallels 'it is worn' four words earlier in the same sentence: a singular present passive describing the inventory's routine for 'each vestment'.",
+      "was removed": "A reader who sees that a past event is meant still attaches the verb to the singular topic of the sentence, 'inventory' or 'each vestment'.",
+      "are removed": "The relative clause sets a present, habitual voice ('notes', 'is worn'), and inventories list procedures, so a reader with the right number reads the clause as the standing rule for the copes; 'the eve of the great fire' looks like one more feast-day occasion."
+    },
+    "distractor_kills": {
+      "is removed": "Subject-verb agreement ('copes' is plural) and tense (the fire is a single past event). Correct only in 'each cope is removed from its chest on its feast'.",
+      "was removed": "Subject-verb agreement: 'copes' is plural. Correct only with 'the embroidered cope was removed'.",
+      "are removed": "Tense: 'the great fire' is the one past fire of sentence 1 ('survived the great fire'), so an action on its eve is past; the present describes routine. Correct only with a recurring phrase ('on the eve of each feast')."
+    },
+    "hostile_reader": {
+      "options_only_pick": "Key uniquely longest (12 vs 10), ratio 1.2.",
+      "heuristics_that_give_key": [
+        "(c) copy a time phrase's tense: the phrase has no verb; the tense comes only by linking 'the great fire' to sentence 1",
+        "(b) first noun gives sg, wrong"
+      ],
+      "changed": "PROBE (easy: 'during the siege' handed over the past; no attractor). Replaced the self-dating phrase with 'on the eve of the great fire', past only through sentence 1; added a present-habitual relative clause ('which notes for each vestment the feast on which it is worn') that pulls both the singular and the present right before the subject."
+    },
+    "id": "SEC26C-03",
+    "next_four_words_after_blank": "from the cedar chests",
+    "length_ratio": 1.2,
+    "key_letter": "A"
+  },
+  {
+    "slot": "C4",
+    "frame": "Clause 1 ends 'the decisive clue had been hiding in plain sight'; clause 2's subject 'the ring that all earlier cataloguers had described as plain gold' contains its own verb ('had described'), and the main verb 'carries' is the 11th word after the blank, then interrupted by 'on its inner face'; colon key.",
+    "key_mark": "colon",
+    "structure": "Left: a complete clause ending on the idiom 'in plain sight'. Right: an independent clause explaining the clue. A comma reads 'the ring that ...' as a sentence-final appositive to 'the decisive clue' (a natural detached apposition) until the main verb 'carries' arrives; the relative clause's 'had described' can be mistaken for the only verb.",
+    "decider_quote": "carries, on its inner face, a merchant's mark",
+    "glance_fail": [
+      "sight the,"
+    ],
+    "distractor_pulls": {
+      "sight, the": "'the decisive clue had been hiding in plain sight, the ring that all earlier cataloguers had described as plain gold' is a complete, idiomatic sentence with a detached appositive naming the clue; the relative clause supplies a verb ('had described'), so a reader does not expect another one.",
+      "sight the": "A reader who takes 'hiding' as transitive ('hiding ... the ring') or who reads 'in plain sight the ring ...' as one flowing clause sees no need for a mark.",
+      "sight the,": "The misplaced-mark slot of the row; the one glance strike."
+    },
+    "distractor_kills": {
+      "sight, the": "Comma splice: 'the ring ... carries ... a merchant's mark' is an independent clause (verb 'carries'), and a comma alone cannot join two independent clauses. Correct only if the sentence ended at 'plain gold'.",
+      "sight the": "Fused sentence: two independent clauses with no punctuation or conjunction.",
+      "sight the,": "A comma cannot separate a determiner from its noun, and the clauses remain fused."
+    },
+    "hostile_reader": {
+      "options_only_pick": "'sight the,' strikable at a glance (one, the row's set). The colon is the only strong mark offered, as the row requires.",
+      "heuristics_that_give_key": [
+        "'only strong mark wins' - the row's mark set"
+      ],
+      "changed": "PROBE (template pair with A7/B3; 'once matched is found it is a plain splice'). New skeleton: the left clause ends on an idiom, not '[noun] that X had [verb]'; the comma now produces a natural detached apposition to 'clue'; the second subject carries a relative clause with its own verb, so 'carries' (11 words on, then interrupted) is easy to miss."
+    },
+    "id": "SEC26C-04",
+    "key_letter": "C"
+  },
+  {
+    "slot": "C5",
+    "frame": "Plural head 'The copyists' + 'at the abbey's small and drafty winter scriptorium' (head 8 words before the blank, singular 'scriptorium' adjacent); the passage opens with a present perfect ('Historians have long asked'); when-clause whose verb 'spread' has the same form in past and present, 9 words after the blank; key past progressive.",
+    "true_subject_head": "copyists",
+    "misleader_words": [
+      "scriptorium",
+      "abbey's"
+    ],
+    "misleader_position": "adj",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "scriptorium",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "copyists",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "pages",
+      "number": "pl"
+    },
+    "dimension": "aspect",
+    "dimension_key": "non-perfect",
+    "decider_type": "time-clause",
+    "decider_quote": "when floodwaters from the river spread through the lower cloister",
+    "words_from_blank_to_decider": 9,
+    "deletion_test": "Delete the when-clause: 'The copyists at the abbey's small and drafty winter scriptorium have decorated its last pages in gold and red ink' and 'were decorating ...' are both grammatical; the aspect is undecidable.",
+    "grid": {
+      "code": "d|g",
+      "forms": [
+        "has decorated",
+        "have decorated",
+        "was decorating",
+        "were decorating"
+      ]
+    },
+    "distractor_pulls": {
+      "has decorated": "'scriptorium' is right before the blank and the plural head is eight words back; the first sentence is in the present perfect ('have long asked') and the pages exist today, so a perfect describing a lasting result fits the passage's frame.",
+      "was decorating": "A reader who sees the interruption and picks the past progressive, but takes the long phrase's last noun 'scriptorium' (or 'abbey's') as the subject.",
+      "have decorated": "A reader who finds the plural head 'copyists' and follows the passage's present-perfect frame; 'spread' carries no past ending, so the when-clause can be read as a general statement rather than a past moment."
+    },
+    "distractor_kills": {
+      "has decorated": "Subject-verb agreement (head 'copyists' is plural) and aspect (present perfect with a when-clause naming a past moment).",
+      "was decorating": "Subject-verb agreement: the head of 'The copyists at the abbey's ... scriptorium' is 'copyists'. Correct only with 'The copyist at ...'.",
+      "have decorated": "Aspect: the when-clause names the single past event that interrupted the work (the cause of the half-painted gathering the historians ask about), and a present perfect cannot be anchored to a specific past moment. Correct only without the clause."
+    },
+    "hostile_reader": {
+      "options_only_pick": "Key uniquely longest (15 vs 13), ratio 1.15.",
+      "heuristics_that_give_key": [
+        "(c) copy the time clause's tense: 'spread' shows no tense, so the rule gives nothing",
+        "(a) opposite of the noun before the blank gives pl (row is adj)"
+      ],
+      "changed": "PROBE ('when raiders set fire' handed over the past; head three words from the blank). The head is now 8 words back behind one long phrase; the when-clause verb 'spread' has no past marking; the first sentence is a present perfect and the passage stresses the lasting result, so 'have decorated' has its own pull."
+    },
+    "id": "SEC26C-05",
+    "next_four_words_after_blank": "its last pages in",
+    "length_ratio": 1.15,
+    "key_letter": "D"
+  },
+  {
+    "slot": "C6",
+    "frame": "Sentence opens 'Readers' (plural); the singular antecedent 'chapter' sits in the opening relative clause, 21 words before the blank; 'the editor of the poet's collected sonnets ______'; nothing after the blank refers back to the chapter by pronoun; key 'was revising it' (matched).",
+    "true_subject_head": "editor",
+    "misleader_words": [
+      "sonnets",
+      "letters",
+      "Readers"
+    ],
+    "misleader_position": "adj",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "sonnets",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "Readers",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "printing",
+      "number": "sg"
+    },
+    "dimension": "pronoun",
+    "dimension_key": "sg",
+    "decider_type": "pronoun-antecedent",
+    "decider_quote": "the final chapter of a celebrated poet's only novel",
+    "words_from_blank_to_decider": 21,
+    "deletion_test": "Delete 'the final chapter of a celebrated poet's only novel' (leaving 'Readers who found the book confusing ... '): the object could be the book (it) or the sonnets (them); with the antecedent removed entirely, the pronoun is undecidable.",
+    "pronoun_antecedent": {
+      "word": "chapter",
+      "number": "sg"
+    },
+    "grid": {
+      "code": "g+p",
+      "forms": [
+        "was revising it",
+        "were revising it",
+        "was revising them",
+        "were revising them"
+      ]
+    },
+    "distractor_pulls": {
+      "were revising it": "'sonnets' is right before the blank, and 'letters' and 'Readers' are plural; a reader who knows the chapter was revised still takes the plural verb from the adjacent noun.",
+      "were revising them": "Read alone, 'the editor of the poet's collected sonnets were revising them' looks like an editor revising the sonnets: the adjacent plural is the most natural object of 'revising'.",
+      "was revising them": "A reader who finds the singular head 'editor' and attaches the pronoun to the plural nearest the blank, 'sonnets', the thing an editor of sonnets would revise."
+    },
+    "distractor_kills": {
+      "were revising it": "Subject-verb agreement: the head of 'the editor of the poet's collected sonnets' is 'editor'.",
+      "were revising them": "Subject-verb agreement (singular 'editor') and pronoun-antecedent agreement (the revised text is the singular 'chapter').",
+      "was revising them": "Pronoun-antecedent agreement: the 'so ... that' clause states the result of the readers' complaints about 'the final chapter', and the revision is 'for the second printing' of the novel, cutting digressions 'about the hero's childhood'; the plural antecedents (sonnets, letters, readers) are not what was revised. Correct only if the readers had found 'the final chapters' confusing."
+    },
+    "hostile_reader": {
+      "options_only_pick": "None: full 2x2, lengths 15-18.",
+      "heuristics_that_give_key": [
+        "(g) matched gives the key; (f) does not"
+      ],
+      "changed": "PROBE ('its closing scene' after the blank settled the pronoun). Removed every singular pronoun after the blank; the antecedent is now recoverable only from the opening relative clause 21 words back and the so-that logic, while the adjacent 'sonnets' is the natural object of 'revising'."
+    },
+    "id": "SEC26C-06",
+    "next_four_words_after_blank": "for the second printing,",
+    "length_ratio": 1.0,
+    "key_letter": "B"
+  },
+  {
+    "slot": "C7",
+    "frame": "Singular subject 'toll' is the first noun of its sentence ('Even its faint final toll'), singular before the blank; plural 'shepherds' 2 words after (object of 'to'); shared 'audible'; the definite-past phrase 'at the funeral of the bell's first patron' (9 words after) shows no tense itself, and the surrounding text is present ('still hangs', 'carries', 'keeps on display').",
+    "true_subject_head": "toll",
+    "misleader_words": [
+      "shepherds",
+      "hills"
+    ],
+    "misleader_position": "after",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "toll",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "toll",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "shepherds",
+      "number": "pl"
+    },
+    "dimension": "tense",
+    "dimension_key": "past",
+    "decider_type": "time-phrase",
+    "decider_quote": "at the funeral of the bell's first patron",
+    "words_from_blank_to_decider": 9,
+    "deletion_test": "Delete 'at the funeral of the bell's first patron': 'Even its faint final toll is audible to shepherds on the hills beyond the river, according to a chronicle that the town archive keeps on display' is a grammatical present statement of the bell's range, matching sentence 1; the tense is undecidable.",
+    "grid": {
+      "code": "i|j",
+      "forms": [
+        "was audible",
+        "were audible",
+        "is audible",
+        "are audible"
+      ]
+    },
+    "distractor_pulls": {
+      "are audible": "The plural 'shepherds' and 'hills' follow the blank, and the passage describes the bell's range as a present fact ('carries farther than that of any other bell').",
+      "were audible": "A reader who recognizes the funeral as a past occasion picks the past, then agrees with 'shepherds', who did the hearing.",
+      "is audible": "Every finite verb around the blank is present ('still hangs', 'say', 'carries', 'keeps'), the bell still exists, and its range is a permanent property; the time phrase contains no past verb or date."
+    },
+    "distractor_kills": {
+      "are audible": "Subject-verb agreement (subject 'toll' is singular) and tense (a single past occasion).",
+      "were audible": "Subject-verb agreement: 'shepherds' is the object of 'to'; the subject is 'toll'. Correct only with a plural subject ('Even its faint final tolls were audible').",
+      "is audible": "Tense: 'the funeral of the bell's first patron' is one occasion, necessarily past, so the present cannot report it. Correct only without the phrase or with a recurring one ('at every funeral in the town')."
+    },
+    "hostile_reader": {
+      "options_only_pick": "None: lengths 10-12, key neither longest nor shortest.",
+      "heuristics_that_give_key": [
+        "(b) first noun gives sg (row has no number trap by design)",
+        "(c) copy a time clause's tense: the phrase has no verb and the passage's verbs are all present, so the rule gives 'is audible'"
+      ],
+      "changed": "PROBE (easy; 'on the day of the count's funeral' handed over the past). The bell now still exists and the passage around the blank is in the present; the time phrase is past only by inference (a first patron's funeral is a single past event)."
+    },
+    "id": "SEC26C-07",
+    "next_four_words_after_blank": "to shepherds on the",
+    "length_ratio": 1.1,
+    "key_letter": "D"
+  },
+  {
+    "slot": "C8",
+    "frame": "Sentence opens with plural 'Payment receipts'; after a colon, singular head 'restorer' + 'of the hall's six enormous ceiling paintings' (plural before the blank); key past progressive; before-clause whose verb 'quit' has the same form in past and present, 12 words after; the sentence ends on a present result ('is visibly thinner') and the passage opens with a present perfect.",
+    "true_subject_head": "restorer",
+    "misleader_words": [
+      "paintings",
+      "receipts"
+    ],
+    "misleader_position": "adj",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "paintings",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "receipts",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "canvas",
+      "number": "sg"
+    },
+    "dimension": "aspect",
+    "dimension_key": "non-perfect",
+    "decider_type": "time-clause",
+    "decider_quote": "before the councillors quit paying for the work",
+    "words_from_blank_to_decider": 12,
+    "deletion_test": "Delete the before-clause: 'the restorer ... has been cleaning the largest canvas with an untested mixture of turpentine and lye, and the varnish on that canvas is visibly thinner' is grammatical, as is 'was cleaning ...'; the aspect is undecidable.",
+    "grid": {
+      "code": "f|g",
+      "forms": [
+        "has been cleaning",
+        "have been cleaning",
+        "was cleaning",
+        "were cleaning"
+      ]
+    },
+    "distractor_pulls": {
+      "have been cleaning": "'paintings' is right before the blank and the sentence opens on 'receipts'; the passage opens in the present perfect and ends the sentence on a present result, which a perfect progressive matches.",
+      "has been cleaning": "A reader who finds the singular head 'restorer' and follows the present-perfect frame ('have long debated') and the present result ('is visibly thinner'); 'quit' has no past ending, so the before-clause does not visibly mark the past.",
+      "were cleaning": "A reader who reads the receipts as history and picks the past progressive, but agrees the verb with 'paintings' (adjacent) or 'receipts' (first noun)."
+    },
+    "distractor_kills": {
+      "have been cleaning": "Subject-verb agreement (head 'restorer' is singular) and aspect (a present perfect cannot end before a past event).",
+      "has been cleaning": "Aspect: 'before the councillors quit paying' is an event in the past recorded by the receipts, and the present perfect progressive cannot be set before a completed past event. Correct only without the before-clause.",
+      "were cleaning": "Subject-verb agreement: the head of 'the restorer of the hall's six enormous ceiling paintings' is 'restorer'."
+    },
+    "hostile_reader": {
+      "options_only_pick": "Key uniquely shortest (12), ratio 1.0.",
+      "heuristics_that_give_key": [
+        "(e) 'been loses' gives was/were",
+        "(c) copy the time clause's tense: 'quit' shows no tense"
+      ],
+      "changed": "PROBE ('halted' and 'hired' handed over the past). The before-clause verb is now 'quit' (no past marking); the passage opens with a present perfect and the sentence ends on a present result, both pulling the perfect progressive; the head is 7 words from the blank."
+    },
+    "id": "SEC26C-08",
+    "next_four_words_after_blank": "the largest canvas with",
+    "length_ratio": 1.0,
+    "key_letter": "B"
+  },
+  {
+    "slot": "C9",
+    "frame": "Sentence 1 ends 'relied almost entirely on his letter book, filled in a cramped hand by the copyist who also prepared his orchestral parts'; sentence 2 (after the blank's sentence) states that the heirs kept no other record and sold 'that one volume'; comma key; no dash offered.",
+    "key_mark": "comma",
+    "structure": "Left: a clause ending on the singular possessive noun phrase 'his letter book'. Right: a sentence-final participial phrase. Whether it restricts depends on whether there was more than one letter book, which the following sentence settles: only one volume.",
+    "decider_quote": "His heirs kept no other record of his working life",
+    "glance_fail": [
+      "book filled,"
+    ],
+    "distractor_pulls": {
+      "book filled": "Participial phrases after a noun are usually restrictive ('the book filled by the copyist'), and at the point of the blank nothing has yet said there was only one letter book; the uniqueness arrives in the next sentence.",
+      "book; filled": "A reader who hears the phrase as a separate added note and wants a stronger break than a comma before a long description.",
+      "book filled,": "The row's misplaced-mark slot; the one glance strike."
+    },
+    "distractor_kills": {
+      "book filled": "Restrictive punctuation on a modifier that restricts nothing: the following sentence says the composer left one volume ('no other record', 'that one volume'), so 'his letter book' is already uniquely identified and the phrase is nonessential, which requires a comma. Correct only if he had kept several letter books.",
+      "book; filled": "A semicolon must join two independent clauses; 'filled in a cramped hand ...' has no subject or finite verb.",
+      "book filled,": "A comma cannot separate 'filled' from its complement, and the phrase is still not set off from 'book'."
+    },
+    "hostile_reader": {
+      "options_only_pick": "'book filled,' strikable at a glance (one; the row's set).",
+      "heuristics_that_give_key": [
+        "'participle after a noun is restrictive' loses here"
+      ],
+      "changed": "PROBE (non-exclusive: 'those letters written to the copyist' read restrictively either way; count in the preceding sentence was a template). Replaced the plural 'those letters' with a singular possessive noun, 'his letter book', whose uniqueness makes a restrictive modifier wrong by the essential/nonessential rule; moved the uniqueness statement to the FOLLOWING sentence."
+    },
+    "id": "SEC26C-09",
+    "key_letter": "A"
+  },
+  {
+    "slot": "C10",
+    "frame": "'In such a shop the ______ cast new letters from melted lead ...': 'cast' is a verb whose form is the same for singular and plural (and past and present) and which reads as a noun after a possessive; the count ('three or four boys at a time') is in the sentence AFTER the blank's sentence; plain plural key.",
+    "key_class": "pl",
+    "structure": "Subject position before 'cast'. Read as a verb, 'cast' needs a plain-noun subject and shows no number, so singular and plural are both grammatical in the clause; read as a noun ('the apprentices' cast'), it invites a possessive that leaves the clause verbless. The number comes only from the final sentence's 'three or four boys'.",
+    "decider_quote": "usually trained three or four boys at a time",
+    "glance_fail": [],
+    "distractor_pulls": {
+      "apprentices'": "'the apprentices' cast' reads as a noun phrase (a cast made by the apprentices) in a passage about making type, and it keeps the plural.",
+      "apprentice": "'In such a shop the apprentice cast new letters' is a complete, grammatical clause: 'cast' shows no number, the sentence speaks of a single shop and a single 'master printer', so a lone apprentice reads naturally.",
+      "apprentice's": "A reader who takes 'cast' as a noun and pictures one apprentice per shop, matching 'the master printer'."
+    },
+    "distractor_kills": {
+      "apprentices'": "Possessive form with nothing to own: 'cast' must be the clause's verb (nothing else can be), so the possessive leaves the clause without a verb.",
+      "apprentice": "Number: the final sentence says each provincial master trained 'three or four boys at a time', so a typical shop had several apprentices; the singular contradicts the stated count.",
+      "apprentice's": "Possessive with nothing to own (no verb left) and the wrong number."
+    },
+    "hostile_reader": {
+      "options_only_pick": "None.",
+      "heuristics_that_give_key": [
+        "'possessive before a noun-looking word' loses, as the row intends"
+      ],
+      "changed": "PROBE (resolving word after the blank: the plural verb 'record'). The verb is now 'cast', which shows no number, so nothing after the blank settles singular vs plural; the count moved to the sentence AFTER the blank's sentence and is phrased without the noun ('boys')."
+    },
+    "id": "SEC26C-10",
+    "key_letter": "A"
+  }
+]

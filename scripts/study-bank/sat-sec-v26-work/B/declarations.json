@@ -1,0 +1,490 @@
+[
+  {
+    "id": "SEC26B-01",
+    "slot": "B1",
+    "frame": "Opening although-clause names the singular antecedent 'last status report' ~28 words before the blank, renamed by the singular appositive 'a single burst'; main clause plural subject 'engineers' + 'at both tracking stations' + 'have reconstructed it'; the noun right after the pronoun ('recording') is singular, so the wrong pronoun is not simply the nearest noun of the wrong number.",
+    "true_subject_head": "engineers",
+    "misleader_words": [
+      "probe's",
+      "report",
+      "stations"
+    ],
+    "misleader_position": "early",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "stations",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "probe's",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "recording",
+      "number": "sg"
+    },
+    "dimension": "pronoun",
+    "dimension_key": "sg",
+    "decider_type": "pronoun-antecedent",
+    "decider_quote": "the probe's last status report",
+    "words_from_blank_to_decider": 28,
+    "deletion_test": "Without the opening clause, the sentence never names what was reconstructed; the first sentence offers 'antenna' and 'operation', so the pronoun's number is no longer decided inside the sentence.",
+    "pronoun_antecedent": {
+      "word": "report",
+      "number": "sg"
+    },
+    "grid": {
+      "code": "d+p",
+      "forms": [
+        "has reconstructed it",
+        "have reconstructed it",
+        "has reconstructed them",
+        "have reconstructed them"
+      ]
+    },
+    "key_letter": "D",
+    "next_four_words_after_blank": "from the partial recording",
+    "length_ratio": 1.05,
+    "distractor_pulls": {
+      "have reconstructed them": "The verb is right, and two plurals sit right against the blank ('engineers', 'stations'); a student who has just settled the plural carries it onto the pronoun, and the singular antecedent is nearly thirty words back.",
+      "has reconstructed it": "The long opening clause is entirely singular ('probe's', 'report', 'burst', 'power', 'interference'), so a student tracking the report through the sentence copies its number onto both the verb and the pronoun.",
+      "has reconstructed them": "A student who takes the singular report as the topic that governs the verb, and the plural 'stations' or 'engineers' nearest the blank as the pronoun's referent, lands on singular verb + plural pronoun."
+    },
+    "distractor_kills": {
+      "have reconstructed them": "Pronoun-antecedent agreement: the thing reconstructed is 'the probe's last status report' (singular); 'engineers' cannot be the object of its own verb without a reflexive, and 'stations' are where the engineers work, not what was rebuilt.",
+      "has reconstructed it": "Subject-verb agreement: the head of 'the radio engineers at both tracking stations' is the plural 'engineers'.",
+      "has reconstructed them": "Subject-verb agreement fails ('engineers ... has') and pronoun-antecedent agreement fails ('report' is singular)."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: a complete 2x2, one verb form, no extra word",
+      "heuristics_that_give_key": [
+        "(f) mismatched pair",
+        "'avoid the pronoun matching the nearest noun' no longer works cleanly: the noun after the pronoun is singular"
+      ],
+      "changed": "PROBE: antecedent moved ~28 words from the blank with a singular appositive and singular nouns between; a singular noun ('recording') now follows the pronoun; plural locative added to the subject"
+    }
+  },
+  {
+    "id": "SEC26B-02",
+    "slot": "B2",
+    "frame": "Opening participial phrase with plural nouns; singular subject 'front'; 'is prone'; whenever-clause 10 words after the blank whose present verbs ('pool', 'drain') are plural base forms 17 and 23 words after the blank; the sentences before and after are past.",
+    "true_subject_head": "front",
+    "misleader_words": [
+      "warm currents",
+      "crevasses",
+      "photographed",
+      "captured",
+      "meltwater lakes"
+    ],
+    "misleader_position": "early",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "front",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "currents",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "slabs",
+      "number": "pl"
+    },
+    "dimension": "tense",
+    "dimension_key": "present",
+    "decider_type": "time-clause",
+    "decider_quote": "whenever the meltwater lakes that pool on the upper ice in midsummer drain through cracks to the bed",
+    "words_from_blank_to_decider": 10,
+    "deletion_test": "Deleting the whenever-clause leaves 'the glacier's calving front ___ to collapse in slabs the height of a building', where 'was prone' (the survey and the photographs are past) and 'is prone' are both acceptable; the tense becomes undecidable.",
+    "grid": {
+      "code": "i|j",
+      "forms": [
+        "was prone",
+        "were prone",
+        "is prone",
+        "are prone"
+      ]
+    },
+    "key_letter": "C",
+    "next_four_words_after_blank": "to collapse in slabs",
+    "length_ratio": 1.0,
+    "distractor_pulls": {
+      "were prone": "The plural nouns before the blank ('currents', 'crevasses') and the plural 'lakes' in the clause pull a plural, and both neighboring sentences are past ('photographed', 'captured').",
+      "are prone": "A student who hears the habitual 'whenever' gets the tense right but takes the number from the plurals that open the sentence or the plural 'lakes' in the clause.",
+      "was prone": "The text is a report of a finished survey, framed by past verbs on both sides, and the clause's verbs 'pool' and 'drain' carry no -s or -ed that a skimming reader notices as present."
+    },
+    "distractor_kills": {
+      "were prone": "Subject-verb agreement ('front' is singular) and tense: a past main verb cannot govern the present habitual 'whenever ... pool ... drain'.",
+      "are prone": "Subject-verb agreement: the head of 'the glacier's calving front' is singular; 'currents' and 'crevasses' sit in the participial modifier and 'lakes' in the subordinate clause.",
+      "was prone": "Tense consistency: 'pool' and 'drain' are present-tense verbs (past: 'pooled', 'drained'), so the habitual clause requires a present main verb."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: four be-forms with one shared adjective",
+      "heuristics_that_give_key": [
+        "(c) copy the clause's tense: only after recognizing 'pool'/'drain' as present"
+      ],
+      "changed": "PROBE: the clause's -s verb 'reaches' (an instant present cue) replaced by plural base forms 'pool'/'drain' 17-23 words after the blank; closing sentence made past so past narration surrounds the blank; head changed to 'front'"
+    }
+  },
+  {
+    "id": "SEC26B-03",
+    "slot": "B3",
+    "frame": "First clause 'One photograph caught two defects near the north abutment: an orange rust stain and a faint gray line' already contains a colon; second clause opens 'the fainter mark along the lowest weld of the main girder', which reads as an appositive of 'line' until 'tore'.",
+    "key_mark": "semicolon",
+    "key_letter": "C",
+    "structure": "Left: complete clause ending in a colon-introduced pair ('an orange rust stain and a faint gray line'). Right: 'the fainter mark along the lowest weld of the main girder tore open under the heaviest load two days later' (complete clause; verb 'tore' is word 11 after the blank, unambiguously finite).",
+    "decider_quote": "tore open under the heaviest load",
+    "glance_fail": [],
+    "distractor_pulls": {
+      "line, the": "'the fainter mark along the lowest weld' names which of the two defects the line is, exactly what an appositive after a comma does; the verb that breaks this reading is eleven words away.",
+      "line the": "A reader who treats 'the fainter mark along ...' as part of one long description of the defects, and does not reach 'tore', sees no boundary to mark.",
+      "line: the": "What follows looks like it explains the line (which mark it was, what happened to it), the classic job of a colon between clauses."
+    },
+    "distractor_kills": {
+      "line, the": "Comma splice: 'the fainter mark ... tore open under the heaviest load' is an independent clause, and a comma alone cannot join two independent clauses.",
+      "line the": "Fused sentence: two independent clauses run together with no punctuation or conjunction.",
+      "line: the": "The sentence's colon is already used after 'abutment' to introduce the two defects; a second colon in the same sentence is not permitted, and the list it introduced would have no clear end."
+    },
+    "hostile_reader": {
+      "options_only_pick": "semicolon or colon (the two strong marks); no single option stands out",
+      "heuristics_that_give_key": [
+        "none without finding 'tore' and the earlier colon"
+      ],
+      "changed": "PROBE: colon made wrong by rule (the sentence already has its colon); unpunctuated two-part modifier removed from the second subject; 'tore' chosen because it cannot be a participle (participle 'torn')"
+    }
+  },
+  {
+    "id": "SEC26B-04",
+    "slot": "B4",
+    "frame": "Opening absolute (singular 'dome'); plural subject 'segments' after the singular possessive 'mirror's'; 'were cleaned'; the decider is a named occasion ('on the evening of the observatory's yearly open house'), which contains no past verb and reads like a recurring event; the next sentence states a lasting present result.",
+    "true_subject_head": "segments",
+    "misleader_words": [
+      "dome",
+      "mirror's",
+      "gathers"
+    ],
+    "misleader_position": "early",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "segments",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "dome",
+      "number": "sg"
+    },
+    "after_noun_within_8": {
+      "word": "jets",
+      "number": "pl"
+    },
+    "dimension": "aspect",
+    "dimension_key": "non-perfect",
+    "decider_type": "time-phrase",
+    "decider_quote": "on the evening of the observatory's yearly open house",
+    "words_from_blank_to_decider": 10,
+    "deletion_test": "Without the time phrase, 'the segments were cleaned ... by two engineers' and 'the segments have been cleaned ... by two engineers' are both correct, and the present 'gathers' in the next sentence favors the perfect; the aspect becomes undecidable.",
+    "grid": {
+      "code": "e|h",
+      "forms": [
+        "has been cleaned",
+        "have been cleaned",
+        "was cleaned",
+        "were cleaned"
+      ]
+    },
+    "key_letter": "B",
+    "next_four_words_after_blank": "with jets of carbon",
+    "length_ratio": 1.09,
+    "distractor_pulls": {
+      "have been cleaned": "The number is right, the next sentence reports a lasting present result ('The cleaned mirror gathers ...'), and the time phrase contains no past verb: 'yearly open house' sounds like a recurring event, not a closed past moment.",
+      "has been cleaned": "The singular 'dome' opens the sentence and the singular 'mirror's' sits just before the head, and the perfect is pulled by the present result in the next sentence.",
+      "was cleaned": "A student who sees the single past occasion but takes the number from 'mirror's' or 'dome' (the mirror is one object) writes the singular past."
+    },
+    "distractor_kills": {
+      "have been cleaned": "Aspect: the present perfect cannot combine with an adverbial naming a specific past occasion ('on the evening of the observatory's yearly open house').",
+      "has been cleaned": "Subject-verb agreement ('segments' is plural) and the same aspect error.",
+      "was cleaned": "Subject-verb agreement: the head of 'the primary mirror's hexagonal segments' is the plural 'segments'."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: complete 2x2, one participle",
+      "heuristics_that_give_key": [
+        "(e) 'been' loses: yes here",
+        "'a closed past phrase means simple past': the phrase now has no past verb and sounds recurring ('yearly')"
+      ],
+      "changed": "PROBE: 'on the last night of a three-week maintenance shutdown' (a closed past phrase) replaced by a named occasion that sounds recurring and contains no past-tense word"
+    }
+  },
+  {
+    "id": "SEC26B-05",
+    "slot": "B5",
+    "frame": "Cataphoric ellipsis: 'Whereas the steel tapes of those early crews ___,' elides the main clause's present lexical verb 'lengthens'; main-clause subject 'a tape of invar' is singular.",
+    "true_subject_head": "tapes",
+    "misleader_words": [
+      "a tape of invar",
+      "nineteenth-century survey crews",
+      "corrected"
+    ],
+    "misleader_position": "after",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "crews",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "tapes",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "tape",
+      "number": "sg"
+    },
+    "dimension": "aux",
+    "dimension_key": "do",
+    "decider_type": "parallel-verb",
+    "decider_quote": "barely lengthens in summer heat",
+    "words_from_blank_to_decider": 12,
+    "deletion_test": "If the main clause's lexical verb is deleted (e.g., 'a tape of invar ... is barely affected by summer heat'), the elided verb becomes a form of 'be' and 'were' or 'are' would be the auxiliary; without 'lengthens' the choice between do and be is undecidable.",
+    "grid": {
+      "code": "i|m",
+      "forms": [
+        "was",
+        "were",
+        "does",
+        "do"
+      ]
+    },
+    "key_letter": "A",
+    "next_four_words_after_blank": "a tape of invar",
+    "length_ratio": 1.0,
+    "distractor_pulls": {
+      "was": "The singular 'tape' arrives two words after the blank, and 'nineteenth-century' plus the past 'corrected' in the next sentence make the opening clause read as historical background.",
+      "does": "The main clause pairs a singular subject with the present '-s' verb 'lengthens', and 'does' echoes that verb exactly; a student who matches the auxiliary to the verb it stands for, not to its own subject, picks it.",
+      "were": "The opening clause's subject is plural and the crews are 'nineteenth-century', so a plural past be-form looks like the natural predicate of a historical background clause; the next sentence's past 'corrected' supports it."
+    },
+    "distractor_kills": {
+      "was": "Ellipsis requires the auxiliary that matches the elided verb: 'be' cannot stand in for 'lengthens'; it also disagrees with the plural 'tapes'.",
+      "does": "Subject-verb agreement inside the whereas-clause: its subject is the plural 'tapes'; 'a tape of invar' is the subject of the main clause.",
+      "were": "Ellipsis: the elided predicate is 'lengthen(s) in summer heat', a lexical verb, which only a form of 'do' can replace; no 'be' predicate exists to be elided."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none decisive: 'do' is shortest, but 'was' is nearly as short and the length ratio is 1.0",
+      "heuristics_that_give_key": [
+        "(b) agree with the first noun 'tapes': yes",
+        "(a) opposite of the near noun 'crews': no"
+      ],
+      "changed": "removed an object relative (SEC22 frame) from the whereas-subject; moved the blank sentence to the front so blank positions vary across my items"
+    }
+  },
+  {
+    "id": "SEC26B-06",
+    "slot": "B6",
+    "frame": "Opening 'Given that' clause names the plural antecedent 'grains' 22 words before the blank; between them, plural nouns that are not tracked ('cameras', 'telescopes', 'domes'), so the right-number nouns in the way are not the antecedent; singular head 'receiver' + 'beside the observatory's twin domes' + 'is tracking them'.",
+    "true_subject_head": "receiver",
+    "misleader_words": [
+      "twin domes",
+      "radar receiver",
+      "cameras"
+    ],
+    "misleader_position": "adj",
+    "key_number": "sg",
+    "near_noun": {
+      "word": "domes",
+      "number": "pl"
+    },
+    "first_noun_of_sentence": {
+      "word": "meteoroids",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "trails",
+      "number": "pl"
+    },
+    "dimension": "pronoun",
+    "dimension_key": "pl",
+    "decider_type": "pronoun-antecedent",
+    "decider_quote": "grains this small are too dim",
+    "words_from_blank_to_decider": 22,
+    "deletion_test": "Without the opening clause, the sentence never names what is tracked; the previous sentence offers both singular and plural candidates, so the pronoun is undecidable inside the sentence.",
+    "pronoun_antecedent": {
+      "word": "grains",
+      "number": "pl"
+    },
+    "grid": {
+      "code": "b+p",
+      "forms": [
+        "is tracking it",
+        "are tracking it",
+        "is tracking them",
+        "are tracking them"
+      ]
+    },
+    "key_letter": "A",
+    "next_four_words_after_blank": "through the faint trails",
+    "length_ratio": 1.14,
+    "distractor_pulls": {
+      "are tracking it": "The plural 'domes' sits right before the blank and pulls 'are', while the antecedent is more than twenty words back and the sentence's only singular nouns ('receiver', 'observatory's') sit next to the blank.",
+      "is tracking it": "A student who correctly finds the singular 'receiver' copies that number onto the pronoun as well, the matched pattern that is right in half of such items.",
+      "are tracking them": "The pronoun is right, and every noun near the blank is plural ('cameras', 'telescopes', 'domes', 'trails'), so a plural verb feels consistent."
+    },
+    "distractor_kills": {
+      "are tracking it": "Subject-verb agreement ('receiver ... are') and pronoun-antecedent agreement (the tracked objects are the plural 'grains').",
+      "is tracking it": "Pronoun-antecedent agreement: 'it' would need a singular antecedent other than the subject; the thing tracked is 'grains this small'.",
+      "are tracking them": "Subject-verb agreement: the head of 'the radar receiver beside the observatory's twin domes' is the singular 'receiver'."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: complete 2x2",
+      "heuristics_that_give_key": [
+        "(a) opposite of the near noun 'domes': yes",
+        "(f) mismatched pair: yes",
+        "'the wrong pronoun is the nearest noun of the wrong number': the nearest nouns are plural and NOT the antecedent"
+      ],
+      "changed": "PROBE: antecedent moved to the clause start (22 words back) and renamed 'grains'; plural non-antecedents ('cameras', 'telescopes') put between it and the blank"
+    }
+  },
+  {
+    "id": "SEC26B-07",
+    "slot": "B7",
+    "frame": "Garden path after 'As the crew blasted': 'the ridge' is the clause's object; the main subject 'loosened boulders on the slopes above the valley road' opens with a word that reads as the past verb of 'the ridge', so the early-comma reading ('the ridge loosened boulders on the slopes above the valley road') is a complete clause until 'fell' arrives at word 10.",
+    "key_mark": "comma",
+    "key_letter": "D",
+    "structure": "Left: dependent clause 'As the crew blasted the ridge'. Right: main clause 'loosened boulders on the slopes above the valley road fell across both lanes'. The comma goes after the object noun (late position). 'fell' is unambiguously finite (participle 'fallen').",
+    "decider_quote": "fell across both lanes",
+    "glance_fail": [],
+    "distractor_pulls": {
+      "blasted, the ridge": "'blasted' is often intransitive, and 'the ridge loosened boulders on the slopes above the valley road' then reads as a complete, sensible main clause for ten words.",
+      "blasted the ridge": "The opening clause is short, many writers omit the comma after a short opening clause, and 'the ridge loosened boulders' reads smoothly straight through.",
+      "blasted; the ridge": "A reader who takes 'the ridge loosened boulders ...' as a separate statement reaches for a strong mark before it."
+    },
+    "distractor_kills": {
+      "blasted, the ridge": "If 'the ridge loosened boulders ... road' is the main clause, 'fell across both lanes' has no subject: the sentence becomes ungrammatical.",
+      "blasted the ridge": "The comma that ends an introductory adverbial clause is missing, and the clause's object runs into the main clause's subject ('the ridge loosened boulders ... fell').",
+      "blasted; the ridge": "A semicolon must join two independent clauses; 'As the crew blasted' is a dependent clause."
+    },
+    "hostile_reader": {
+      "options_only_pick": "nothing from options alone; the key is the trailing-comma option, which breaks the batch tell 'trailing-comma options always lose'",
+      "heuristics_that_give_key": [
+        "none: the early-comma reading is a complete clause until word 10"
+      ],
+      "changed": "PROBE: replaced 'the water level' (visibly broken 'the ridge the water level') with 'loosened boulders', so the early-comma and no-comma readings stay grammatical until 'fell'"
+    }
+  },
+  {
+    "id": "SEC26B-08",
+    "slot": "B8",
+    "frame": "Plural head 'staves' + 'in the lower wall of the furnace's hearth' (ends singular); 'were being replaced'; while-clause 6 words after the blank whose first verb form is the present participle 'lining' and whose finite past verb 'cooled' is word 15; the only other sentence is present.",
+    "true_subject_head": "staves",
+    "misleader_words": [
+      "hearth",
+      "lower wall",
+      "is relined",
+      "lining"
+    ],
+    "misleader_position": "adj",
+    "key_number": "pl",
+    "near_noun": {
+      "word": "hearth",
+      "number": "sg"
+    },
+    "first_noun_of_sentence": {
+      "word": "staves",
+      "number": "pl"
+    },
+    "after_noun_within_8": {
+      "word": "welders",
+      "number": "pl"
+    },
+    "dimension": "tense",
+    "dimension_key": "past",
+    "decider_type": "time-clause",
+    "decider_quote": "while the refractory bricks lining the shaft overhead slowly cooled to a dull red",
+    "words_from_blank_to_decider": 6,
+    "deletion_test": "Without the while-clause, 'the copper staves ... are being replaced by welders in heat-resistant suits' is as correct as the past form, and the present first sentence favors it; the tense becomes undecidable.",
+    "grid": {
+      "code": "k|l",
+      "forms": [
+        "is being replaced",
+        "are being replaced",
+        "was being replaced",
+        "were being replaced"
+      ]
+    },
+    "key_letter": "B",
+    "next_four_words_after_blank": "by welders in heat-resistant",
+    "length_ratio": 1.12,
+    "distractor_pulls": {
+      "are being replaced": "The number is right, the first sentence describes relining as a general present process ('is relined', 'is usually done'), and the first verb form in the while-clause, 'lining', looks present.",
+      "is being replaced": "The singular 'hearth' sits right before the blank with 'wall' before it, and the present matches the first sentence and 'lining'.",
+      "was being replaced": "A student who reaches the past 'cooled' gets the tense but takes the number from the adjacent 'hearth'."
+    },
+    "distractor_kills": {
+      "are being replaced": "Tense consistency: the main verb must be past to run alongside the while-clause's finite verb 'cooled'.",
+      "is being replaced": "Subject-verb agreement ('staves' is plural) and tense (the while-clause is past).",
+      "was being replaced": "Subject-verb agreement: the head of 'the copper staves in the lower wall of the furnace's hearth' is the plural 'staves'."
+    },
+    "hostile_reader": {
+      "options_only_pick": "key is uniquely longest by one character; ratio 1.12",
+      "heuristics_that_give_key": [
+        "(a) opposite of the near noun 'hearth': yes",
+        "(b) first noun 'staves': yes",
+        "(c) copy the while-clause tense: only after finding 'cooled' past the present participle 'lining'"
+      ],
+      "changed": "PROBE: the while-clause's finite verb moved from word 9 to word 15, behind a present participle ('lining'); head changed to 'staves' (less obviously plural) with a singular possessive ending the phrase; skeleton now differs from B4 (no closing sentence, blank in the last sentence)"
+    }
+  },
+  {
+    "id": "SEC26B-09",
+    "slot": "B9",
+    "frame": "Singular possessive before 'sketches' at the start of a clause; the plain singular reading 'The observer sketches the hut's summer visitors' is a complete clause; the number of owners is never stated: it is inferred from 'a single bunk' and 'signed in the same hand'.",
+    "key_class": "sg-poss",
+    "key_letter": "C",
+    "structure": "'The ___ sketches [that] the hut's summer visitors found pinned to its walls show ...': the blank must be a possessive; the owner count comes from sentence 1 by inference.",
+    "decider_quote": "a hut with a single bunk, and each page of the logbook kept there is signed in the same hand",
+    "glance_fail": [
+      "observers"
+    ],
+    "distractor_pulls": {
+      "observers'": "The only people the passage names are plural ('summer visitors'), and nothing ever says how many observers there were; a reader who does not infer one person from the bunk and the handwriting picks the plural possessive.",
+      "observer": "'The observer sketches the hut's summer visitors' is a natural complete clause (an observer drawing the people who come by), and it holds until 'found' arrives.",
+      "observers": "A reader who settles on several observers and does not register the apostrophe writes the plain plural."
+    },
+    "distractor_kills": {
+      "observers'": "Sentence 1 fixes one occupant: one bunk and one handwriting on every logbook page; the visitors only 'found' the sketches.",
+      "observer": "Read as subject + verb ('The observer sketches the hut's summer visitors'), the sentence leaves 'found pinned to its walls show ...' ungrammatical; the noun must be possessive to own 'sketches'.",
+      "observers": "A plain plural cannot show ownership of 'sketches', and as a subject it disagrees with the verb reading of 'sketches'."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none: the standard four-form set",
+      "heuristics_that_give_key": [
+        "echo a count word in the previous sentence: no count of observers is printed"
+      ],
+      "changed": "PROBE: the count is now inferred (one bunk, one handwriting) instead of stated ('a lone geologist'); the blank moved to subject position so the plain singular reads as subject + verb + object for nine words; noun changed to 'observer', which the passage never uses"
+    }
+  },
+  {
+    "id": "SEC26B-10",
+    "slot": "B10",
+    "frame": "Two series in one sentence: an opening comma series ('aluminum, titanium, and carbon fiber', correctly with commas) and the object series of three instruments; the blank sits between items 1 and 2; item 3 contains an appositive set off by commas, 15 words after the blank; the printed '; and' is 12 words after the blank, behind a long second item.",
+    "key_mark": "semicolon",
+    "key_letter": "B",
+    "structure": "Item 1: 'a magnetometer at the tip of a folding boom'. Item 2: 'a dust counter angled to catch the grains streaming off the comet's nucleus'. Item 3: 'a narrow-angle camera, the heaviest instrument aboard' (internal commas).",
+    "decider_quote": "camera, the heaviest instrument aboard",
+    "glance_fail": [],
+    "distractor_pulls": {
+      "boom, a": "The same sentence has just used commas to separate a series ('aluminum, titanium, and carbon fiber'), the first two instruments contain no commas, and the item that forces semicolons is fifteen words away.",
+      "boom: a": "The magnetometer reads like a heading for the equipment that follows, and a colon often introduces a run of instruments in technical description.",
+      "boom a": "'a folding boom' is a long noun phrase, and a reader who reads 'boom' as ending one description and 'a dust counter ...' as a new one inside the same object can miss the boundary."
+    },
+    "distractor_kills": {
+      "boom, a": "When any item in a series contains internal commas ('camera, the heaviest instrument aboard,'), all items are separated by semicolons.",
+      "boom: a": "A colon cannot separate two items within a series; it must follow a complete introductory clause, not stand between list members.",
+      "boom a": "List items must be separated; with no mark, 'boom a dust counter' runs two items together."
+    },
+    "hostile_reader": {
+      "options_only_pick": "none decisive",
+      "heuristics_that_give_key": [
+        "copy an open mark: the sentence now offers both a comma series and the '; and', so copying is not decisive"
+      ],
+      "changed": "PROBE: added a correct comma series earlier in the same sentence as a competing open mark; lengthened item 2 so the printed '; and' is 12 words after the blank"
+    }
+  }
+]

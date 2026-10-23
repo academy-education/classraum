@@ -1,0 +1,182 @@
+[
+  {
+    "id": "SEC26B-01",
+    "subskill": "form: pronoun-antecedent and subject-verb agreement (split object pronoun)",
+    "passage": "A small lunar probe lost its main antenna during its final week of operation. Although the probe's last status report, a single burst sent on the final reserve of battery power, reached Earth clipped and scrambled by solar interference, the radio engineers at both tracking stations ______ from the partial recording made at each receiving dish. Their reconstruction shows the probe tumbling slowly toward the surface.",
+    "choices": [
+      "have reconstructed them",
+      "has reconstructed it",
+      "has reconstructed them",
+      "have reconstructed it"
+    ],
+    "correct_answer": "have reconstructed it",
+    "explanation": "The verb's subject is the plural \"engineers\" (\"the radio engineers at both tracking stations\"), not the singular \"probe's\" or \"report\" in the opening clause, so the verb is \"have reconstructed.\" What the engineers reconstructed is the opening clause's \"last status report,\" named almost thirty words before the blank and singular, so the pronoun is \"it\"; \"burst\" renames that same report. \"Have reconstructed them\" carries the verb's plural number onto the pronoun, but the plural nouns near the blank, \"engineers\" and \"stations,\" are the reconstructors and their workplaces, not the thing rebuilt. \"Has reconstructed it\" and \"has reconstructed them\" pair a singular verb with the plural \"engineers.\"",
+    "topic_tag": "spaceflight operations: rebuilding a lunar probe's last status report",
+    "template": "long concessive opening clause naming a distant singular antecedent (plus a singular appositive) x plural subject + plural locative + active perfect + object pronoun (mismatched key), singular noun after the pronoun x d+p object grid",
+    "domain": "Standard English Conventions",
+    "difficulty": "hard",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?"
+  },
+  {
+    "id": "SEC26B-02",
+    "subskill": "form: subject-verb agreement and verb tense (habitual whenever-clause)",
+    "passage": "Over three summers, two glaciologists photographed the front of a tidewater glacier at hourly intervals from a ridge above its fjord. Undercut by warm currents and split by crevasses, the glacier's calving front ______ to collapse in slabs the height of a building whenever the meltwater lakes that pool on the upper ice in midsummer drain through cracks to the bed. The photographs captured more than forty such collapses.",
+    "choices": [
+      "were prone",
+      "are prone",
+      "is prone",
+      "was prone"
+    ],
+    "correct_answer": "is prone",
+    "explanation": "The subject is the singular \"front\" (\"the glacier's calving front\"); \"currents\" and \"crevasses\" belong to the opening participial phrase, so the verb is singular. The tense is set by the habitual clause \"whenever the meltwater lakes that pool on the upper ice in midsummer drain through cracks to the bed\": its verbs \"pool\" and \"drain\" are present (the past would be \"pooled\" and \"drained\"), and a present habitual clause requires a present main verb, so \"is prone\" is correct. \"Was prone\" follows the past narration around it (\"photographed,\" \"captured\"), but a past main verb cannot govern a present \"whenever\" clause. \"Are prone\" and \"were prone\" are plural, agreeing with \"crevasses\" or \"lakes\" rather than with \"front,\" and \"were prone\" also clashes with the present clause.",
+    "topic_tag": "glaciology: calving at a tidewater glacier front",
+    "template": "opening participial phrase ending plural x singular subject + be + shared adjective x habitual whenever-clause whose present verbs are plural base forms 15+ words on, past narration on both sides x i|j + 'prone'",
+    "domain": "Standard English Conventions",
+    "difficulty": "hard",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?"
+  },
+  {
+    "id": "SEC26B-03",
+    "subskill": "boundaries: semicolon between independent clauses (delayed verb)",
+    "passage": "Inspectors load-testing a new steel footbridge photographed each weld on the underside of its deck. One photograph caught two defects near the north abutment: an orange rust stain and a faint gray ______ fainter mark along the lowest weld of the main girder tore open under the heaviest load two days later. The span stayed closed until that girder was replaced.",
+    "choices": [
+      "line, the",
+      "line the",
+      "line; the",
+      "line: the"
+    ],
+    "correct_answer": "line; the",
+    "explanation": "The words after the blank form a complete clause: its subject is \"the fainter mark along the lowest weld of the main girder,\" and its verb, \"tore,\" arrives eleven words after the blank, so two independent clauses meet at the blank. With no conjunction, they are joined by a semicolon. A comma reads \"the fainter mark ...\" as an appositive renaming \"line\" until \"tore\" arrives, and then leaves a comma splice. A colon is ruled out because the sentence already uses its colon after \"abutment\" to introduce the two defects, and a sentence takes only one colon; no mark at all fuses the two clauses.",
+    "topic_tag": "structural engineering: hairline cracks in footbridge welds",
+    "template": "colon-introduced pair of nouns ending the first clause x second clause opening with an appositive-looking noun phrase, verb 11 words on x semicolon / comma / none / colon (second colon)",
+    "domain": "Standard English Conventions",
+    "difficulty": "hard",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?"
+  },
+  {
+    "id": "SEC26B-04",
+    "subskill": "form: subject-verb agreement and verb aspect (definite past vs present perfect)",
+    "passage": "Wind-blown dust that settles on a telescope's mirror scatters part of the starlight that would otherwise reach the camera. With the dome closed against the wind, the primary mirror's hexagonal segments ______ with jets of carbon dioxide snow by two engineers on the evening of the observatory's yearly open house. The cleaned mirror gathers several percent more light than it did beforehand.",
+    "choices": [
+      "have been cleaned",
+      "were cleaned",
+      "has been cleaned",
+      "was cleaned"
+    ],
+    "correct_answer": "were cleaned",
+    "explanation": "The subject is the plural \"segments\"; \"dome\" belongs to the opening phrase and \"mirror's\" only modifies the head, so the verb is plural. The phrase \"on the evening of the observatory's yearly open house\" pins the cleaning to one particular occasion, and a specific point in time takes the simple past, not the present perfect, so \"were cleaned\" is correct. \"Have been cleaned\" is plural and tempts because the cleaned mirror \"gathers\" more light now, but the present perfect cannot be tied to a named occasion such as \"the evening of the ... open house.\" \"Has been cleaned\" makes the same error with a singular verb, and \"was cleaned\" is singular, agreeing with \"dome\" or \"mirror's\" rather than with \"segments.\"",
+    "topic_tag": "observational astronomy: dust on telescope mirror segments",
+    "template": "opening absolute with a singular noun x plural head after a singular possessive + passive x a named-occasion time phrase with no past verb in it, 10 words on x e|h",
+    "domain": "Standard English Conventions",
+    "difficulty": "hard",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?"
+  },
+  {
+    "id": "SEC26B-05",
+    "subskill": "form: subject-verb agreement and auxiliary choice (cataphoric ellipsis)",
+    "passage": "Whereas the steel tapes of nineteenth-century survey crews ______, a tape of invar, an alloy of iron and nickel, barely lengthens in summer heat. Crews working with steel corrected each baseline measurement for the air temperature, a chore that invar made largely unnecessary. That stability made invar tapes standard equipment for measuring the baselines of national surveys.",
+    "choices": [
+      "do",
+      "was",
+      "does",
+      "were"
+    ],
+    "correct_answer": "do",
+    "explanation": "The blank stands in for a verb that the main clause supplies later: the steel tapes lengthen, so the elided verb is the present lexical verb of \"barely lengthens in summer heat,\" and an elided present lexical verb is represented by a form of \"do.\" The subject of the opening clause is the plural \"tapes,\" so \"do\" rather than \"does.\" \"Does\" tempts because the main clause's subject, \"a tape of invar,\" is singular and its verb is \"lengthens,\" but that noun belongs to a different clause. \"Was\" and \"were\" are forms of \"be,\" which cannot stand in for \"lengthens\"; the historical setting of \"nineteenth-century survey crews\" makes them attractive, but the main clause offers no form of \"be\" for them to echo.",
+    "topic_tag": "geodesy: thermal expansion of surveying tapes",
+    "template": "opening whereas-clause with plural subject and an elided verb x singular main-clause subject, lexical verb 12 words on x i|m bare",
+    "domain": "Standard English Conventions",
+    "difficulty": "hard",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?"
+  },
+  {
+    "id": "SEC26B-06",
+    "subskill": "form: pronoun-antecedent and subject-verb agreement (split object pronoun)",
+    "passage": "Meteoroids no bigger than pebbles burn up high in the atmosphere, but they can chip the solar panels of satellites in low orbit. Given that grains this small are too dim for the optical cameras on survey telescopes, the radar receiver beside the observatory's twin domes ______ through the faint trails of ionized gas that streak the upper atmosphere at dawn. Its operators send the nightly counts to satellite controllers.",
+    "choices": [
+      "is tracking them",
+      "are tracking it",
+      "is tracking it",
+      "are tracking them"
+    ],
+    "correct_answer": "is tracking them",
+    "explanation": "The verb's subject is the singular \"receiver\"; \"domes\" is part of the phrase \"beside the observatory's twin domes,\" so the verb is \"is tracking.\" What the receiver tracks is named at the start of the sentence, \"grains this small,\" a plural noun more than twenty words before the blank, so the pronoun is \"them\" even though the verb is singular. \"Is tracking it\" copies the subject's singular number onto the pronoun, but the receiver cannot be the object of its own verb and no singular noun in the sentence is being tracked. \"Are tracking them\" and \"are tracking it\" make the verb plural, agreeing with \"domes\" rather than with \"receiver.\"",
+    "topic_tag": "meteor science: radar counts of pebble-sized meteoroids",
+    "template": "opening given-that clause naming a distant plural antecedent, with untracked plurals between x singular head + locative phrase ending plural + progressive + object pronoun (mismatched key) x b+p object grid",
+    "domain": "Standard English Conventions",
+    "difficulty": "hard",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?"
+  },
+  {
+    "id": "SEC26B-07",
+    "subskill": "boundaries: comma after an introductory dependent clause (garden path, late position)",
+    "passage": "Engineers widening a mountain highway had to cut back a limestone ridge that overhung the road. As the crew ______ loosened boulders on the slopes above the valley road fell across both lanes, and the highway stayed closed for a week. The contractor later anchored steel netting over the slopes.",
+    "choices": [
+      "blasted, the ridge",
+      "blasted the ridge",
+      "blasted; the ridge",
+      "blasted the ridge,"
+    ],
+    "correct_answer": "blasted the ridge,",
+    "explanation": "The introductory clause is \"As the crew blasted the ridge\": \"the ridge\" is the object of \"blasted,\" and the main clause's own subject, \"loosened boulders on the slopes above the valley road,\" follows, with its verb, \"fell,\" ten words after the blank. A comma sets the introductory dependent clause off from the main clause, so it belongs after \"ridge.\" A comma after \"blasted\" makes \"the ridge loosened boulders on the slopes above the valley road\" a complete main clause, which reads well until \"fell\" is left with no subject. With no comma, the same misreading (\"the ridge loosened boulders\") runs the clause's object into the main clause, and a semicolon cannot separate a dependent clause from the clause it introduces.",
+    "topic_tag": "highway engineering: rock blasting above a mountain road",
+    "template": "opening as-clause with an optionally transitive verb x object then a main subject that opens with a past-participle adjective (reads as the object's verb), main verb 10 words on x comma late / comma early / none / semicolon early",
+    "domain": "Standard English Conventions",
+    "difficulty": "hard",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?"
+  },
+  {
+    "id": "SEC26B-08",
+    "subskill": "form: subject-verb agreement and verb tense (past progressive passive)",
+    "passage": "A blast furnace is relined only once in fifteen years or so, and the work is usually done in stages so that the plant can keep producing iron. The copper staves in the lower wall of the furnace's hearth ______ by welders in heat-resistant suits while the refractory bricks lining the shaft overhead slowly cooled to a dull red.",
+    "choices": [
+      "are being replaced",
+      "were being replaced",
+      "is being replaced",
+      "was being replaced"
+    ],
+    "correct_answer": "were being replaced",
+    "explanation": "The subject is the plural \"staves\"; \"wall\" and \"hearth\" sit inside the phrase that locates them, so the verb is plural. The tense is set by the while-clause, whose own verb comes only at its end: \"lining\" is a participle, and the finite verb is \"cooled,\" fifteen words after the blank, which places the work in the past and requires the past progressive \"were being replaced.\" \"Are being replaced\" is plural but present; it tempts because the first sentence describes relining as a present process and \"lining\" reads as present, yet it cannot run alongside the past \"cooled.\" \"Was being replaced\" is past but singular, agreeing with \"hearth,\" and \"is being replaced\" is wrong in both number and tense.",
+    "topic_tag": "metallurgy: relining a blast furnace hearth",
+    "template": "plural head + stacked locative phrase ending on a singular possessive noun x progressive passive x while-clause whose only finite verb is 15 words on (after a present participle) x k|l",
+    "domain": "Standard English Conventions",
+    "difficulty": "hard",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?"
+  },
+  {
+    "id": "SEC26B-09",
+    "subskill": "form: possessive noun (singular possessive decided by another sentence)",
+    "passage": "The only shelter on one volcano's crater rim was a hut with a single bunk, and each page of the logbook kept there is signed in the same hand. The ______ sketches the hut's summer visitors found pinned to its walls show the lava lake's crust splitting and sinking in a regular cycle.",
+    "choices": [
+      "observers'",
+      "observer",
+      "observer's",
+      "observers"
+    ],
+    "correct_answer": "observer's",
+    "explanation": "The word before \"sketches\" must name their owner, and the first sentence implies there was exactly one: the hut had \"a single bunk,\" and each page of its logbook \"is signed in the same hand,\" so one observer lived there and made the sketches: \"observer's.\" \"Observers'\" would credit several people; the plural \"summer visitors\" makes it tempting, but the visitors only found the sketches. \"Observer\" lets \"sketches\" read as a verb (\"The observer sketches the hut's summer visitors\"), a sentence that seems complete until \"found\" and \"show\" are left with no place in it. \"Observers\" is a plain plural that neither shows possession nor agrees with \"sketches\" read as a verb.",
+    "topic_tag": "volcanology: a lone observer's lava lake sketches",
+    "template": "possessive subject before a noun/verb whose verb reading takes the next noun phrase as its object x owner count inferred (one bunk, one handwriting), never stated x X / X's / Xs / Xs'",
+    "domain": "Standard English Conventions",
+    "difficulty": "hard",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?"
+  },
+  {
+    "id": "SEC26B-10",
+    "subskill": "boundaries: semicolons in a series whose later item contains commas",
+    "passage": "The comet probe, launched on a small rocket, weighed less than a family car. Built of aluminum, titanium, and carbon fiber, its science deck held a magnetometer at the tip of a folding ______ dust counter angled to catch the grains streaming off the comet's nucleus; and a narrow-angle camera, the heaviest instrument aboard. Each instrument drew power from two solar wings.",
+    "choices": [
+      "boom, a",
+      "boom; a",
+      "boom: a",
+      "boom a"
+    ],
+    "correct_answer": "boom; a",
+    "explanation": "The blank separates the first two items in a series of three instruments. The third item, \"a narrow-angle camera, the heaviest instrument aboard,\" contains its own commas, so every item in the series must be separated by a semicolon. A comma would be right only in a series whose items contain no commas, like \"aluminum, titanium, and carbon fiber\" earlier in the same sentence; here it would blur where one instrument ends and the next begins. A colon cannot divide two items within a list, and no mark runs \"boom\" into \"a dust counter.\"",
+    "topic_tag": "planetary missions: a comet probe's instrument deck",
+    "template": "comma series in an opening phrase, then a semicolon series as direct object x later item with an internal appositive 15 words on x semicolon / comma / colon / none",
+    "domain": "Standard English Conventions",
+    "difficulty": "hard",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?"
+  }
+]
