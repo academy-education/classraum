@@ -128,6 +128,11 @@ export function CampWorkCard({ className = 'mb-6' }: { className?: string }) {
         {preview.map(a => {
           const done = a.state === 'done'
           const busy = startingId === a.id
+          // Built before the camp starts: the start route refuses it until then.
+          const locked = a.state === 'not_started' && !!a.opensOn
+          const opensLabel = locked
+            ? new Date(`${a.opensOn}T12:00:00`).toLocaleDateString(ko ? 'ko-KR' : 'en-US', { month: 'short', day: 'numeric' })
+            : null
           const dueLabel = a.dueAt
             ? new Date(a.dueAt).toLocaleDateString(ko ? 'ko-KR' : 'en-US', { month: 'short', day: 'numeric' })
             : null
@@ -137,7 +142,7 @@ export function CampWorkCard({ className = 'mb-6' }: { className?: string }) {
               key={a.id}
               type="button"
               onClick={() => void open(a)}
-              disabled={busy}
+              disabled={busy || locked}
               // min-h-[56px]: tap target stays comfortable at 375 even
               // when the row is a single line of text.
               // min-h uses the 44px floor from globals; 56 keeps a
@@ -164,6 +169,10 @@ export function CampWorkCard({ className = 'mb-6' }: { className?: string }) {
                   ) : a.state === 'in_progress' ? (
                     <span className="inline-flex items-center px-1.5 py-0.5 rounded-md bg-blue-50 text-2xs font-semibold text-blue-700">
                       {String(t('study.camp.inProgress'))}
+                    </span>
+                  ) : opensLabel ? (
+                    <span className="inline-flex items-center px-1.5 py-0.5 rounded-md bg-gray-100 text-2xs font-medium text-gray-600">
+                      {String(t('study.camp.opensOn', { date: opensLabel }))}
                     </span>
                   ) : (
                     <span className="inline-flex items-center px-1.5 py-0.5 rounded-md bg-gray-100 text-2xs font-medium text-gray-600">

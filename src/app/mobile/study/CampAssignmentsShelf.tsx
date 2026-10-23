@@ -60,6 +60,10 @@ export function CampAssignmentsShelf() {
           const done = a.state === 'done'
           const inProgress = a.state === 'in_progress'
           const busy = startingId === a.id
+          // Built before the camp starts: the start route refuses it until then.
+          const opensLabel = a.state === 'not_started' && a.opensOn
+            ? new Date(`${a.opensOn}T12:00:00`).toLocaleDateString(ko ? 'ko-KR' : 'en-US', { month: 'short', day: 'numeric' })
+            : null
           const dueLabel = a.dueAt
             ? new Date(a.dueAt).toLocaleDateString(ko ? 'ko-KR' : 'en-US', { month: 'short', day: 'numeric' })
             : null
@@ -69,7 +73,7 @@ export function CampAssignmentsShelf() {
               key={a.id}
               type="button"
               onClick={() => void open(a)}
-              disabled={busy}
+              disabled={busy || opensLabel !== null}
               className="group flex items-center gap-3 w-full text-left rounded-2xl bg-gradient-to-br from-blue-50/60 via-white to-white ring-1 ring-blue-100 px-4 py-3 hover:ring-primary/40 hover:shadow-[0_2px_8px_-4px_rgba(23,118,219,0.15)] active:scale-[0.995] transition-all disabled:opacity-60"
             >
               <div className="flex-shrink-0 w-11 h-11 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 text-white flex items-center justify-center ring-1 ring-black/[0.04] shadow-[inset_0_1px_0_rgba(255,255,255,0.28)]">
@@ -104,6 +108,10 @@ export function CampAssignmentsShelf() {
                   ) : inProgress ? (
                     <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-blue-50 text-[11px] font-semibold text-blue-700">
                       {String(t('study.camp.inProgress'))}
+                    </span>
+                  ) : opensLabel ? (
+                    <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-gray-100 text-[11px] font-medium text-gray-600">
+                      {String(t('study.camp.opensOn', { date: opensLabel }))}
                     </span>
                   ) : (
                     <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-gray-100 text-[11px] font-medium text-gray-600">

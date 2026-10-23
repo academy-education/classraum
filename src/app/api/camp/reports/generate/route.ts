@@ -8,6 +8,8 @@ import {
   queueCampReportDelivery,
 } from '@/lib/camp/reports'
 import { kstDate } from '@/lib/camp/dates'
+import { studentsOfAcademy } from '@/lib/camp/access'
+import { restrictToStudents } from '@/lib/camp/roster'
 
 /**
  * Camp P4 — generate camp reports (snapshots) for a classroom.
@@ -63,12 +65,23 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'classroom is not part of a camp program' }, { status: 400 })
   }
 
-  const data = await loadClassroomCampData({
+  const loaded = await loadClassroomCampData({
     id: classroom.id,
     name: classroom.name,
     camp_program_id: classroom.camp_program_id,
   })
-  if ('error' in data) return NextResponse.json({ error: data.error }, { status: 500 })
+  if ('error' in loaded) return NextResponse.json({ error: loaded.error }, { status: 500 })
+  // Only students on this academy's own roster get a report: a student
+  // from outside the school can sit in a camp classroom's roster (pre-122
+  // writes were not academy-checked), and must not receive one — the same
+  // filter the overview and students lists apply (program-data.ts).
+  let onRoster: Set<string>
+  try {
+    onRoster = await studentsOfAcademy(loaded.studentIds, classroom.academy_id)
+  } catch (error) {
+    return NextResponse.json({ error: error instanceof Error ? error.message : 'roster check failed' }, { status: 500 })
+  }
+  const data = restrictToStudents(loaded, onRoster)
 
   const targetIds = body.studentId ? [body.studentId] : data.studentIds
   if (body.studentId && !data.studentIds.includes(body.studentId)) {

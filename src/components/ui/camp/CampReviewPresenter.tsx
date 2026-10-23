@@ -19,7 +19,11 @@ import { ChevronLeft, ChevronRight, Eye, EyeOff, X, CheckCircle2 } from 'lucide-
  * the explanation. Reveal state resets on navigation so the next
  * question always starts hidden.
  *
- * Keyboard: ← / → navigate, Space or R toggles reveal, Escape closes.
+ * Keyboard: ← / → navigate, Space or R toggles reveal, Escape asks
+ * before closing (an in-page confirm: a stray Escape used to drop the
+ * deck mid-lesson, and building another costs quota). Escape again or
+ * "Keep presenting" (focused, so Enter picks it) stays; "Close" leaves.
+ * The X button closes at once — it is a deliberate click.
  * Type sizes are projector-scale on purpose (text-xl/2xl+); pure
  * white-on-dark chrome with a white content card for contrast.
  *
@@ -40,6 +44,7 @@ export function CampReviewPresenter({ title, testFamily, questions, onClose }: C
   const { t } = useTranslation()
   const [index, setIndex] = useState(0)
   const [revealed, setRevealed] = useState(false)
+  const [confirmingClose, setConfirmingClose] = useState(false)
 
   const total = questions.length
   const q = questions[index]
@@ -52,14 +57,19 @@ export function CampReviewPresenter({ title, testFamily, questions, onClose }: C
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      // While the close confirm is up, it owns the keyboard.
+      if (confirmingClose) {
+        if (e.key === 'Escape') { e.preventDefault(); setConfirmingClose(false) }
+        return
+      }
       if (e.key === 'ArrowRight') { e.preventDefault(); goTo(index + 1) }
       else if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(index - 1) }
       else if (e.key === ' ' || e.key.toLowerCase() === 'r') { e.preventDefault(); setRevealed(v => !v) }
-      else if (e.key === 'Escape') { e.preventDefault(); onClose() }
+      else if (e.key === 'Escape') { e.preventDefault(); setConfirmingClose(true) }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [index, goTo, onClose])
+  }, [index, goTo, onClose, confirmingClose])
 
   if (!q) return null
 
@@ -190,6 +200,39 @@ export function CampReviewPresenter({ title, testFamily, questions, onClose }: C
           </button>
         </div>
       </div>
+
+      {confirmingClose && (
+        <div
+          className="absolute inset-0 z-10 flex items-center justify-center bg-black/60 px-4"
+          role="alertdialog"
+          aria-modal="true"
+          aria-labelledby="camp-presenter-close-title"
+        >
+          <div className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-xl">
+            <h3 id="camp-presenter-close-title" className="text-lg font-semibold text-gray-900">
+              {t('camp.review.closeConfirmTitle')}
+            </h3>
+            <p className="mt-2 text-sm text-gray-600">{t('camp.review.closeConfirmBody')}</p>
+            <div className="mt-6 flex justify-end gap-2">
+              <button
+                type="button"
+                autoFocus
+                onClick={() => setConfirmingClose(false)}
+                className="px-4 py-2 rounded-lg text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200"
+              >
+                {t('camp.review.closeConfirmStay')}
+              </button>
+              <button
+                type="button"
+                onClick={onClose}
+                className="px-4 py-2 rounded-lg text-sm font-semibold text-white bg-gray-900 hover:bg-gray-800"
+              >
+                {t('camp.review.closeConfirmLeave')}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>,
     document.body,
   )

@@ -7,6 +7,7 @@ import { campTopicId } from '@/lib/study/section-topics'
 import { CAMP_PROGRAM_COLUMNS, type CampProgramRow } from '@/lib/camp/api'
 import { trackEvent } from '@/lib/study/analytics'
 import { kstDate } from '@/lib/camp/dates'
+import { campError } from '@/lib/camp/http'
 
 /**
  * POST /api/study/camp/start — turn a teacher's camp assignment into a
@@ -79,11 +80,19 @@ export async function POST(req: NextRequest) {
     .maybeSingle<CampProgramRow>()
   if (!program) return NextResponse.json({ error: 'camp program not found' }, { status: 404 })
 
-  // Same window rule the teacher-side builder enforces: dates bind only
-  // when the grant set them.
+  /* The camp window, Korean dates, binding only when the grant set them.
+     Since 2026-10-23 teachers may BUILD work before starts_on (they
+     prepare ahead), so this is the one place that keeps students from
+     starting it early — the shelf shows such work as "opens on <date>".
+     The idempotency lookup below comes after this on purpose: nothing
+     can have been started before the camp, and after it ends nothing
+     new may be. */
   const today = kstDate()
-  if ((program.starts_on && today < program.starts_on) || (program.ends_on && today > program.ends_on)) {
-    return NextResponse.json({ error: 'camp program is not active today' }, { status: 403 })
+  if (program.starts_on && today < program.starts_on) {
+    return campError('camp_not_started', 403, 'camp program has not started', { startsOn: program.starts_on })
+  }
+  if (program.ends_on && today > program.ends_on) {
+    return campError('camp_ended', 403, 'camp program has ended', { endsOn: program.ends_on })
   }
 
   // Idempotent via the daily-challenge pattern: one session per

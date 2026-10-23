@@ -19,6 +19,11 @@ export interface StudentCampAssignment {
   campProgramId: string
   campProgramName: string | null
   state: 'not_started' | 'in_progress' | 'done'
+  /** The camp's starts_on while it is still in the future (Korean date),
+   *  else null. Teachers may build work before the camp starts, but
+   *  /api/study/camp/start refuses it until then, so the shelf shows
+   *  "Opens <date>" instead of a start that would fail. */
+  opensOn: string | null
   sessionId: string | null
   /** Graded totals when done (study_sessions.correct_count/total_count). */
   correctCount: number | null
@@ -61,7 +66,7 @@ export async function loadStudentCampAssignments(studentId: string): Promise<Stu
   const [{ data: programs }, { data: classrooms }, { data: sessions }] = await Promise.all([
     dbAdmin
       .from('camp_programs')
-      .select('id, name, test_family, ends_on')
+      .select('id, name, test_family, starts_on, ends_on')
       .in('id', programIds)
       .is('deleted_at', null),
     // No FK from classrooms.teacher_id in the generated types, so no
@@ -127,6 +132,7 @@ export async function loadStudentCampAssignments(studentId: string): Promise<Stu
       campProgramId: a.camp_program_id as string,
       campProgramName: (program.name as string | undefined) ?? null,
       state: session ? (session.status === 'completed' ? 'done' : 'in_progress') : 'not_started',
+      opensOn: program.starts_on && today < (program.starts_on as string) ? (program.starts_on as string) : null,
       sessionId: session?.id ?? null,
       correctCount: session?.correct_count ?? null,
       totalCount: session?.total_count ?? null,

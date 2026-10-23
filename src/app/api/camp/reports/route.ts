@@ -4,12 +4,18 @@ import { getUserFromRequest } from '@/lib/api-auth'
 import { canManageClassroom } from '@/lib/camp/api'
 import { canViewClassroomCampResults } from '@/lib/camp/access'
 import { isParentOfStudent, toFamilyPayload, withoutPersonalStudy, type CampReportPayload } from '@/lib/camp/reports'
+import { campError } from '@/lib/camp/http'
 
 /**
  * Camp P4 — read camp reports.
  *
  * GET ?classroomId=…   teacher/manager list for a classroom (meta only)
  *   +&studentId=…      … narrowed to one student (still teacher-authorised)
+ *   +&include=payload  … with each report's teacher payload, for the print
+ *                      view (/print/camp-reports/[classroomId]); same
+ *                      authorisation as the list
+ *   +&periodStart=…&periodEnd=…  … narrowed to one reporting period
+ *                      (periodStart=none matches an open start)
  * GET ?studentId=…     parent/student list — caller must BE the student
  *                      or be a family-linked parent
  * DELETE ?id=…         withdraw a report (teacher/manager of its
@@ -65,7 +71,7 @@ async function canReadClassroomReports(
 
 export async function GET(req: NextRequest) {
   const user = await getUserFromRequest(req)
-  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  if (!user) return campError('unauthorized', 401, 'Unauthorized')
 
   const params = req.nextUrl.searchParams
   const id = params.get('id')
@@ -80,7 +86,7 @@ export async function GET(req: NextRequest) {
       .eq('id', id)
       .is('deleted_at', null)
       .maybeSingle()
-    if (!report) return NextResponse.json({ error: 'report not found' }, { status: 404 })
+    if (!report) return campError('report_not_found', 404, 'report not found')
 
     const { data: classroom } = await dbAdmin
       .from('classrooms')
@@ -91,7 +97,7 @@ export async function GET(req: NextRequest) {
     const isSelf = user.id === report.student_id
     const isParent = !isTeacher && !isSelf && (await isParentOfStudent(user.id, report.student_id))
     if (!isTeacher && !isSelf && !isParent) {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+      return campError('forbidden', 403, 'Forbidden')
     }
 
     const payload = report.payload as unknown as CampReportPayload
@@ -112,10 +118,10 @@ export async function GET(req: NextRequest) {
       .eq('id', classroomId)
       .maybeSingle()
     if (!classroom || classroom.deleted_at !== null) {
-      return NextResponse.json({ error: 'classroom not found' }, { status: 404 })
+      return campError('classroom_not_found', 404, 'classroom not found')
     }
     if (!(await canReadClassroomReports(user.id, classroom))) {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+      return campError('forbidden', 403, 'Forbidden')
     }
 
     /* `studentId` alongside `classroomId` narrows the teacher's list to
@@ -124,18 +130,26 @@ export async function GET(req: NextRequest) {
        with the roster. Authorisation is unchanged: the caller has
        already been proven to read this classroom's reports, and the filter can
        only ever narrow what they were entitled to see. */
+    const withPayload = params.get('include') === 'payload'
     let listQuery = dbAdmin
       .from('camp_reports')
-      .select(META_COLUMNS)
+      .select(withPayload ? `${META_COLUMNS}, payload` : META_COLUMNS)
       .eq('classroom_id', classroomId)
       .is('deleted_at', null)
       .order('created_at', { ascending: false })
     if (studentId) listQuery = listQuery.eq('student_id', studentId)
+    // Period filter for printing one batch. Like studentId it can only
+    // narrow what the caller was already proven to read.
+    const periodEnd = params.get('periodEnd')
+    const periodStart = params.get('periodStart')
+    if (periodEnd) listQuery = listQuery.eq('period_end', periodEnd)
+    if (periodStart === 'none') listQuery = listQuery.is('period_start', null)
+    else if (periodStart) listQuery = listQuery.eq('period_start', periodStart)
 
     const { data: rows, error } = await listQuery
-    if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+    if (error) return campError('server_error', 500, error.message)
 
-    const reports = (rows ?? []) as ReportMetaRow[]
+    const reports = (rows ?? []) as unknown as Array<ReportMetaRow & { payload?: unknown }>
     const ids = [...new Set(reports.map(r => r.student_id))]
     const { data: users } = ids.length > 0
       ? await dbAdmin.from('users').select('id, name, email').in('id', ids)
@@ -146,6 +160,8 @@ export async function GET(req: NextRequest) {
       reports: reports.map(r => meta(r, {
         studentName: nameById.get(r.student_id)?.name ?? null,
         studentEmail: nameById.get(r.student_id)?.email ?? null,
+        // Teacher view, camp assignments only — the same payload ?id= returns a teacher.
+        ...(withPayload ? { payload: withoutPersonalStudy(r.payload as unknown as CampReportPayload) } : {}),
       })),
     })
   }
@@ -154,7 +170,7 @@ export async function GET(req: NextRequest) {
   if (studentId) {
     const isSelf = user.id === studentId
     if (!isSelf && !(await isParentOfStudent(user.id, studentId))) {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+      return campError('forbidden', 403, 'Forbidden')
     }
 
     const { data: rows, error } = await dbAdmin
@@ -163,7 +179,7 @@ export async function GET(req: NextRequest) {
       .eq('student_id', studentId)
       .is('deleted_at', null)
       .order('created_at', { ascending: false })
-    if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+    if (error) return campError('server_error', 500, error.message)
 
     return NextResponse.json({
       reports: ((rows ?? []) as Array<ReportMetaRow & { payload: unknown }>).map(r => {
@@ -178,15 +194,15 @@ export async function GET(req: NextRequest) {
     })
   }
 
-  return NextResponse.json({ error: 'id, classroomId or studentId required' }, { status: 400 })
+  return campError('bad_request', 400, 'id, classroomId or studentId required')
 }
 
 export async function DELETE(req: NextRequest) {
   const user = await getUserFromRequest(req)
-  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  if (!user) return campError('unauthorized', 401, 'Unauthorized')
 
   const id = req.nextUrl.searchParams.get('id')
-  if (!id) return NextResponse.json({ error: 'id required' }, { status: 400 })
+  if (!id) return campError('bad_request', 400, 'id required')
 
   const { data: report } = await dbAdmin
     .from('camp_reports')
@@ -194,7 +210,7 @@ export async function DELETE(req: NextRequest) {
     .eq('id', id)
     .maybeSingle()
   if (!report || report.deleted_at !== null) {
-    return NextResponse.json({ error: 'report not found' }, { status: 404 })
+    return campError('report_not_found', 404, 'report not found')
   }
 
   const { data: classroom } = await dbAdmin
@@ -203,12 +219,12 @@ export async function DELETE(req: NextRequest) {
     .eq('id', report.classroom_id)
     .maybeSingle()
   if (!classroom || classroom.deleted_at !== null) {
-    return NextResponse.json({ error: 'classroom not found' }, { status: 404 })
+    return campError('classroom_not_found', 404, 'classroom not found')
   }
   // Teacher/manager only. A student or parent must never be able to
   // withdraw a report about themselves.
   if (!(await canManageClassroom(user.id, classroom))) {
-    return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    return campError('forbidden', 403, 'Forbidden')
   }
 
   /* Soft delete. Every read path in this route already filters
@@ -222,7 +238,7 @@ export async function DELETE(req: NextRequest) {
     .from('camp_reports')
     .update({ deleted_at: new Date().toISOString() })
     .eq('id', report.id)
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+  if (error) return campError('server_error', 500, error.message)
 
   return NextResponse.json({ deleted: true })
 }

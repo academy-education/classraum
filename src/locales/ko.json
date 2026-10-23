@@ -2779,7 +2779,15 @@
       "noSession": "수업에 연결하지 않음",
       "sessionHint": "선택 사항입니다. 예정된 수업에 연결하면 해당 수업의 과제와 함께 표시됩니다.",
       "selectClassroomFirst": "먼저 반을 선택하세요",
-      "noSessions": "이 반에는 아직 수업이 없습니다"
+      "noSessions": "이 반에는 아직 수업이 없습니다",
+      "classrooms": "반",
+      "selectAll": "전체 선택",
+      "selectNone": "선택 해제",
+      "sessionOneClassroom": "수업을 연결하려면 반을 하나만 선택하세요",
+      "sessionOneClassroomHint": "수업은 한 반에 속하므로 반을 하나만 선택했을 때 연결할 수 있습니다.",
+      "costSingle": "쿼터 {cost}문항 사용 · 잔여 {remaining}문항",
+      "costMulti": "쿼터 {cost}문항 사용 ({count}문항 × {rooms}개 반) · 잔여 {remaining}문항",
+      "costOver": "쿼터보다 {short}문항 많습니다 — 반이나 문항 수를 줄여 주세요."
     },
     "sections": {
       "reading_writing": "읽기 및 쓰기",
@@ -2798,7 +2806,36 @@
     "errors": {
       "quotaExceeded": "쿼터가 부족합니다 — 남은 문항이 {remaining}개뿐입니다.",
       "notEnoughItems": "이 조건에 맞는 문항이 {available}개뿐입니다. 문항 수를 줄이거나 조건을 넓혀 주세요.",
-      "createFailed": "과제 생성에 실패했습니다. 다시 시도해 주세요."
+      "createFailed": "과제 생성에 실패했습니다. 다시 시도해 주세요.",
+      "codes": {
+        "unauthorized": "로그인이 만료되었습니다. 다시 로그인해 주세요.",
+        "forbidden": "이 반에서 이 작업을 할 권한이 없습니다.",
+        "bad_request": "요청에 빠진 내용이 있습니다. 다시 시도해 주세요.",
+        "invalid_count": "문항 수는 1–{max} 사이여야 합니다.",
+        "invalid_due_date": "마감일이 올바르지 않습니다.",
+        "invalid_title": "제목을 입력해 주세요.",
+        "invalid_filter": "이 캠프에서 사용할 수 없는 섹션 또는 문항 유형입니다.",
+        "classroom_not_found": "이 반은 더 이상 존재하지 않습니다.",
+        "not_camp_classroom": "이 반은 캠프 프로그램에 속해 있지 않습니다.",
+        "mixed_programs": "선택한 반은 모두 같은 캠프에 속해야 합니다.",
+        "too_many_classrooms": "반은 한 번에 최대 {max}개까지 선택할 수 있습니다.",
+        "too_many_assignments": "과제는 한 번에 최대 {max}개까지 선택할 수 있습니다.",
+        "session_not_found": "해당 수업이 더 이상 존재하지 않습니다.",
+        "session_other_classroom": "해당 수업은 다른 반의 수업입니다.",
+        "session_single_classroom": "수업 연결은 반을 하나만 선택했을 때 가능합니다.",
+        "program_not_found": "이 캠프 프로그램은 더 이상 존재하지 않습니다.",
+        "camp_ended": "이 캠프는 {endsOn}에 종료되어 새 과제를 추가할 수 없습니다.",
+        "camp_not_started": "이 캠프는 {startsOn}에 시작합니다.",
+        "quota_exceeded": "쿼터가 부족합니다 — {required}문항이 필요하지만 남은 문항은 {remaining}개입니다.",
+        "not_enough_items": "이 조건에 맞는 문항이 {available}개뿐입니다. 문항 수를 줄이거나 조건을 넓혀 주세요.",
+        "assignment_not_found": "해당 과제가 더 이상 존재하지 않습니다. 새로고침 후 다시 시도해 주세요.",
+        "review_set_not_found": "해당 복습 덱이 더 이상 존재하지 않습니다.",
+        "review_set_empty": "이 복습 덱에는 문항이 없습니다.",
+        "report_not_found": "해당 리포트가 더 이상 존재하지 않습니다.",
+        "nothing_to_update": "변경된 내용이 없습니다.",
+        "server_error": "일시적인 오류가 발생했습니다. 다시 시도해 주세요.",
+        "no_students": "이 반에 등록된 학생이 아직 없습니다."
+      }
     },
     "dashboard": {
       "viewProgress": "진도 보기",
@@ -2838,8 +2875,13 @@
       "jumpTo": "{n}번 문제로 이동",
       "errors": {
         "createFailed": "리뷰 세트 생성에 실패했습니다. 다시 시도해 주세요.",
-        "loadFailed": "리뷰 세트는 생성되었지만 문항을 불러오지 못했습니다. 다시 시도해 주세요."
-      }
+        "loadFailed": "리뷰 세트는 생성되었지만 문항을 불러오지 못했습니다. 다시 시도해 주세요.",
+        "presentFailed": "이 덱을 열지 못했습니다. 다시 시도해 주세요."
+      },
+      "closeConfirmTitle": "발표 화면을 닫을까요?",
+      "closeConfirmBody": "이 반의 복습 덱에서 쿼터를 더 쓰지 않고 이 덱을 다시 발표할 수 있습니다.",
+      "closeConfirmStay": "계속 발표",
+      "closeConfirmLeave": "닫기"
     },
     "reports": {
       "title": "캠프 리포트",
@@ -2881,7 +2923,17 @@
       "publishConfirmTitle": "학부모에게 리포트를 공개할까요?",
       "publishConfirmTitleOne": "이 학생의 리포트를 학부모에게 공개할까요?",
       "publishConfirmBody": "공개하면 학부모와 학생 앱에 바로 표시됩니다. 같은 기간의 리포트가 이미 있으면 새로 만들지 않고 최신 내용으로 갱신됩니다.",
-      "publishConfirmCta": "공개하기"
+      "publishConfirmCta": "공개하기",
+      "printAll": "전체 인쇄",
+      "printPeriod": "인쇄",
+      "printHeading": "{classroom} · 리포트 {count}개",
+      "printEmpty": "인쇄할 리포트가 없습니다.",
+      "printLoadFailed": "인쇄할 리포트를 불러오지 못했습니다.",
+      "periodRange": "{start} – {end}",
+      "periodUntil": "{end}까지",
+      "periodNone": "기간 없음",
+      "periodCount": "리포트 {count}개",
+      "generatePartial": "오류가 나기 전에 리포트 {count}개만 발행되었습니다. 아래 목록에서 확인하고 다시 생성해 마무리하세요."
     },
     "overview": {
       "studentsEnrolled": "등록 학생",
@@ -3037,7 +3089,9 @@
       "noRefund": "{{date}}에 발표되었습니다. 문항은 반환되지 않습니다.",
       "deleted": "덱을 삭제했습니다",
       "failed": "덱을 삭제하지 못했습니다",
-      "loadFailed": "복습 덱을 불러오지 못했습니다"
+      "loadFailed": "복습 덱을 불러오지 못했습니다",
+      "defaultTitle": "수업 리뷰 · {date}",
+      "presentFirst": "발표"
     },
     "otherTeacherRoomTitle": "다른 선생님이 관리하는 반입니다",
     "otherTeacherRoomDescription": "과제, 리포트, 수업 복습은 이 반의 담당 선생님이나 학원 관리자만 만들 수 있습니다.",
@@ -3066,6 +3120,39 @@
       "scoreN": "채점된 세션 {n}개",
       "noData": "데이터 없음",
       "empty": "일별 추이는 캠프 첫날부터 표시됩니다."
+    },
+    "createAssignments": "{count}개 반에 만들기",
+    "createdForClassrooms": "{count}개 반에 과제를 만들었습니다",
+    "bulkDue": {
+      "action": "마감일 일괄 변경",
+      "title": "마감일 일괄 변경",
+      "pick": "과제",
+      "selectAll": "전체 선택",
+      "selectNone": "선택 해제",
+      "noDue": "마감일 없음",
+      "newDate": "새 마감일",
+      "clear": "대신 마감일 없애기",
+      "save": "{count}개 변경",
+      "saved": "마감일 {count}개를 변경했습니다",
+      "failed": "마감일을 변경하지 못했습니다"
+    },
+    "export": {
+      "studentsCsv": "CSV 내보내기",
+      "progressCsv": "CSV 내보내기",
+      "progressCsvHint": "이 반의 진행 현황표를 스프레드시트로 내려받습니다",
+      "studentsFile": "학생",
+      "progressFile": "진행현황",
+      "failed": "내보내지 못했습니다. 다시 시도해 주세요.",
+      "name": "학생",
+      "email": "이메일",
+      "classroom": "반",
+      "completed": "완료",
+      "assigned": "배정",
+      "inProgress": "진행 중",
+      "notStarted": "시작 전",
+      "done": "완료",
+      "avgScore": "평균 점수(%)",
+      "lastActive": "최근 활동"
     }
   },
   "attendance": {
@@ -5496,7 +5583,8 @@
       "inProgress": "진행 중",
       "done": "완료",
       "doneWithScore": "완료 · {correct}/{total}",
-      "startFailed": "과제를 시작하지 못했어요. 다시 시도해 주세요."
+      "startFailed": "과제를 시작하지 못했어요. 다시 시도해 주세요.",
+      "opensOn": "{date} 시작"
     },
     "topic": {
       "backToStudy": "공부 화면으로",

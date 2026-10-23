@@ -6,10 +6,13 @@ import {
   CAMP_PROGRAM_COLUMNS,
   type CampProgramRow,
   canManageClassroom,
+  chargeCampQuota,
   domainsForSection,
   drawCampItems,
   sectionsForFamily,
 } from '@/lib/camp/api'
+import { kstDate } from '@/lib/camp/dates'
+import { campError } from '@/lib/camp/http'
 
 /**
  * Camp P3 — in-class review sets.
@@ -23,8 +26,10 @@ import {
  * out by kind.
  *
  * POST { classroomId, title?, section?, domain?, count }
- *   Teacher (or academy manager) of a camp classroom. Same auth, window,
- *   vocabulary, draw, and quota rules as /api/camp/assignments.
+ *   Teacher (or academy manager) of a camp classroom. Same auth, window
+ *   (allowed before the camp starts, refused after it ends), vocabulary,
+ *   draw, and quota rules as /api/camp/assignments. An omitted title is
+ *   stored as '' and rendered translated by the UI.
  *
  * GET ?classroomId=…  the classroom's decks (metadata only)
  * GET ?id=…
@@ -51,7 +56,7 @@ async function loadClassroom(classroomId: string) {
 
 export async function GET(req: NextRequest) {
   const user = await getUserFromRequest(req)
-  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  if (!user) return campError('unauthorized', 401, 'Unauthorized')
 
   /* ?classroomId=… — list the classroom's decks (no items, so this is
      safe to render in a teacher list; the full payload with keys and
@@ -61,9 +66,9 @@ export async function GET(req: NextRequest) {
   const listClassroomId = req.nextUrl.searchParams.get('classroomId')
   if (listClassroomId) {
     const room = await loadClassroom(listClassroomId)
-    if (!room) return NextResponse.json({ error: 'classroom not found' }, { status: 404 })
+    if (!room) return campError('classroom_not_found', 404, 'classroom not found')
     if (!(await canManageClassroom(user.id, room))) {
-      return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+      return campError('forbidden', 403, 'Forbidden')
     }
     const { data, error } = await dbAdmin
       .from('camp_assignments')
@@ -73,12 +78,12 @@ export async function GET(req: NextRequest) {
       .is('deleted_at', null)
       .order('created_at', { ascending: false })
       .limit(200)
-    if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+    if (error) return campError('server_error', 500, error.message)
     return NextResponse.json({ reviewSets: data ?? [] })
   }
 
   const id = req.nextUrl.searchParams.get('id')
-  if (!id) return NextResponse.json({ error: 'id or classroomId required' }, { status: 400 })
+  if (!id) return campError('bad_request', 400, 'id or classroomId required')
 
   const { data: set } = await dbAdmin
     .from('camp_assignments')
@@ -87,14 +92,14 @@ export async function GET(req: NextRequest) {
     .eq('kind', 'review')
     .is('deleted_at', null)
     .maybeSingle()
-  if (!set) return NextResponse.json({ error: 'review set not found' }, { status: 404 })
+  if (!set) return campError('review_set_not_found', 404, 'review set not found')
 
   const classroom = await loadClassroom(set.classroom_id)
-  if (!classroom) return NextResponse.json({ error: 'classroom not found' }, { status: 404 })
+  if (!classroom) return campError('classroom_not_found', 404, 'classroom not found')
   // Teacher/manager only — this payload carries keys + explanations, so
   // classroom STUDENTS must be rejected here, not just unlinked in the UI.
   if (!(await canManageClassroom(user.id, classroom))) {
-    return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    return campError('forbidden', 403, 'Forbidden')
   }
 
   /* First presenter fetch marks the deck as used. This is the fact the
@@ -122,7 +127,7 @@ export async function GET(req: NextRequest) {
     ? (set.item_ids as unknown[]).filter((x): x is string => typeof x === 'string')
     : []
   if (itemIds.length === 0) {
-    return NextResponse.json({ error: 'review set has no items' }, { status: 409 })
+    return campError('review_set_empty', 409, 'review set has no items')
   }
 
   // Same assembler the student session uses (order preserved, malformed
@@ -136,10 +141,7 @@ export async function GET(req: NextRequest) {
     )
     questions = assembled.questions
   } catch (e) {
-    return NextResponse.json(
-      { error: e instanceof Error ? e.message : 'assemble failed' },
-      { status: 500 },
-    )
+    return campError('server_error', 500, e instanceof Error ? e.message : 'assemble failed')
   }
 
   return NextResponse.json({
@@ -158,7 +160,7 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   const user = await getUserFromRequest(req)
-  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  if (!user) return campError('unauthorized', 401, 'Unauthorized')
 
   let body: {
     classroomId?: string
@@ -168,24 +170,27 @@ export async function POST(req: NextRequest) {
     count?: number
     classroomSessionId?: string
   }
-  try { body = await req.json() } catch { return NextResponse.json({ error: 'bad json' }, { status: 400 }) }
+  try { body = await req.json() } catch { return campError('bad_request', 400, 'bad json') }
 
   const classroomId = body.classroomId
   const count = body.count
-  if (!classroomId) return NextResponse.json({ error: 'classroomId required' }, { status: 400 })
+  if (!classroomId) return campError('bad_request', 400, 'classroomId required')
   if (typeof count !== 'number' || !Number.isInteger(count) || count < 1 || count > MAX_COUNT) {
-    return NextResponse.json({ error: `count must be an integer between 1 and ${MAX_COUNT}` }, { status: 400 })
+    return campError('invalid_count', 400, `count must be an integer between 1 and ${MAX_COUNT}`, { max: MAX_COUNT })
   }
-  const title = (typeof body.title === 'string' && body.title.trim()) ||
-    `Class review — ${new Date().toISOString().slice(0, 10)}`
+  /* No title given: store '' and let the UI render the translated
+     "Class review · <date>" from created_at (reviewDeckTitle). This used
+     to be built here in English with the UTC date, so a Korean teacher's
+     deck list and presenter header read "Class review — 2026-10-22". */
+  const title = typeof body.title === 'string' ? body.title.trim() : ''
 
   const classroom = await loadClassroom(classroomId)
-  if (!classroom) return NextResponse.json({ error: 'classroom not found' }, { status: 404 })
+  if (!classroom) return campError('classroom_not_found', 404, 'classroom not found')
   if (!(await canManageClassroom(user.id, classroom))) {
-    return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    return campError('forbidden', 403, 'Forbidden')
   }
   if (!classroom.camp_program_id) {
-    return NextResponse.json({ error: 'classroom is not part of a camp program' }, { status: 400 })
+    return campError('not_camp_classroom', 400, 'classroom is not part of a camp program')
   }
 
   /* Optional session link, same contract as the assignment builder: a
@@ -201,10 +206,10 @@ export async function POST(req: NextRequest) {
       .eq('id', body.classroomSessionId)
       .maybeSingle()
     if (!session || session.deleted_at !== null) {
-      return NextResponse.json({ error: 'session not found' }, { status: 404 })
+      return campError('session_not_found', 404, 'session not found')
     }
     if (session.classroom_id !== classroom.id) {
-      return NextResponse.json({ error: 'session belongs to a different classroom' }, { status: 400 })
+      return campError('session_other_classroom', 400, 'session belongs to a different classroom')
     }
     classroomSessionId = session.id
   }
@@ -215,40 +220,36 @@ export async function POST(req: NextRequest) {
     .eq('id', classroom.camp_program_id)
     .is('deleted_at', null)
     .maybeSingle<CampProgramRow>()
-  if (!program) return NextResponse.json({ error: 'camp program not found' }, { status: 404 })
+  if (!program) return campError('program_not_found', 404, 'camp program not found')
 
-  const today = new Date().toISOString().slice(0, 10)
-  if ((program.starts_on && today < program.starts_on) || (program.ends_on && today > program.ends_on)) {
-    return NextResponse.json({ error: 'camp program is not active today' }, { status: 403 })
+  // Korean date, and only the END binds: a teacher may build a deck before
+  // the camp starts (same rule as the assignment builder), not after it ends.
+  const today = kstDate()
+  if (program.ends_on && today > program.ends_on) {
+    return campError('camp_ended', 403, 'camp program has ended', { endsOn: program.ends_on })
   }
 
   const section = body.section || null
   const domain = body.domain || null
   if (section && !sectionsForFamily(program.test_family).includes(section)) {
-    return NextResponse.json({ error: `invalid section for ${program.test_family}` }, { status: 400 })
+    return campError('invalid_filter', 400, `invalid section for ${program.test_family}`)
   }
   if (domain) {
-    if (!section) return NextResponse.json({ error: 'domain requires a section' }, { status: 400 })
+    if (!section) return campError('invalid_filter', 400, 'domain requires a section')
     if (!domainsForSection(program.test_family, section).includes(domain)) {
-      return NextResponse.json({ error: `invalid domain for ${program.test_family}/${section}` }, { status: 400 })
+      return campError('invalid_filter', 400, `invalid domain for ${program.test_family}/${section}`)
     }
   }
 
   // Pre-flight quota check; the authoritative check is the CAS below.
   const remaining = program.question_quota - program.questions_used
   if (count > remaining) {
-    return NextResponse.json(
-      { error: 'question quota exceeded', code: 'quota_exceeded', remaining: Math.max(0, remaining) },
-      { status: 402 },
-    )
+    return campError('quota_exceeded', 402, 'question quota exceeded', { remaining: Math.max(0, remaining), required: count })
   }
 
   const draw = await drawCampItems({ family: program.test_family, section, domain, count })
   if ('shortfall' in draw) {
-    return NextResponse.json(
-      { error: 'not enough bank items for this filter', code: 'not_enough_items', available: draw.available },
-      { status: 409 },
-    )
+    return campError('not_enough_items', 409, 'not enough bank items for this filter', { available: draw.available })
   }
 
   const { data: reviewSet, error: insertError } = await dbAdmin
@@ -268,43 +269,18 @@ export async function POST(req: NextRequest) {
     .select(REVIEW_COLUMNS)
     .single()
   if (insertError || !reviewSet) {
-    return NextResponse.json({ error: insertError?.message ?? 'insert failed' }, { status: 500 })
+    return campError('server_error', 500, insertError?.message ?? 'insert failed')
   }
 
   // Charge the quota with the same compare-and-swap the assignment
-  // builder uses (see /api/camp/assignments POST for the rationale) —
-  // review sets spend the same paid pool.
-  let charged = false
-  let quotaRemaining = 0
-  for (let attempt = 0; attempt < 5 && !charged; attempt++) {
-    const { data: fresh } = await dbAdmin
-      .from('camp_programs')
-      .select('questions_used, question_quota')
-      .eq('id', program.id)
-      .is('deleted_at', null)
-      .maybeSingle()
-    if (!fresh) break
-    quotaRemaining = fresh.question_quota - fresh.questions_used
-    if (count > quotaRemaining) break
-    const { data: updated, error: updateError } = await dbAdmin
-      .from('camp_programs')
-      .update({ questions_used: fresh.questions_used + count })
-      .eq('id', program.id)
-      .eq('questions_used', fresh.questions_used)
-      .select('id')
-    if (updateError) break
-    charged = (updated?.length ?? 0) > 0
-  }
-
-  if (!charged) {
+  // builder uses (chargeCampQuota) — review sets spend the same paid pool.
+  const charge = await chargeCampQuota(program.id, count)
+  if (!charge.charged) {
     // Best-effort compensation, error intentionally ignored — same shape as
-  // the assignments route: a failed delete leaves an uncharged review set
-  // visible only to the teacher; the 402 is returned regardless.
-  await dbAdmin.from('camp_assignments').delete().eq('id', reviewSet.id)
-    return NextResponse.json(
-      { error: 'question quota exceeded', code: 'quota_exceeded', remaining: Math.max(0, quotaRemaining) },
-      { status: 402 },
-    )
+    // the assignments route: a failed delete leaves an uncharged review set
+    // visible only to the teacher; the 402 is returned regardless.
+    await dbAdmin.from('camp_assignments').delete().eq('id', reviewSet.id)
+    return campError('quota_exceeded', 402, 'question quota exceeded', { remaining: charge.remaining, required: count })
   }
 
   return NextResponse.json({ reviewSet }, { status: 201 })
@@ -312,10 +288,10 @@ export async function POST(req: NextRequest) {
 
 export async function DELETE(req: NextRequest) {
   const user = await getUserFromRequest(req)
-  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  if (!user) return campError('unauthorized', 401, 'Unauthorized')
 
   const id = req.nextUrl.searchParams.get('id')
-  if (!id) return NextResponse.json({ error: 'id required' }, { status: 400 })
+  if (!id) return campError('bad_request', 400, 'id required')
 
   const { data: set } = await dbAdmin
     .from('camp_assignments')
@@ -324,19 +300,19 @@ export async function DELETE(req: NextRequest) {
     .eq('kind', 'review')
     .is('deleted_at', null)
     .maybeSingle()
-  if (!set) return NextResponse.json({ error: 'review set not found' }, { status: 404 })
+  if (!set) return campError('review_set_not_found', 404, 'review set not found')
 
   const classroom = await loadClassroom(set.classroom_id)
-  if (!classroom) return NextResponse.json({ error: 'classroom not found' }, { status: 404 })
+  if (!classroom) return campError('classroom_not_found', 404, 'classroom not found')
   if (!(await canManageClassroom(user.id, classroom))) {
-    return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+    return campError('forbidden', 403, 'Forbidden')
   }
 
   const { error: delError } = await dbAdmin
     .from('camp_assignments')
     .update({ deleted_at: new Date().toISOString() })
     .eq('id', set.id)
-  if (delError) return NextResponse.json({ error: delError.message }, { status: 500 })
+  if (delError) return campError('server_error', 500, delError.message)
 
   /* Refund only a deck that was never presented. Presented decks keep
      the charge for the same reason a sat assignment does: the questions
