@@ -1,0 +1,95 @@
+{
+ "id": "SM32L-C3",
+ "domain": "Algebra",
+ "difficulty": "hard",
+ "subskill": "Sum of rates giving an exact count of in-range readings",
+ "prompt": "The water level in a tank, in centimeters, t minutes after a valve is set is modeled by L(t) = 23 + kt, where k is an integer (k is negative if the tank is draining). The level is read once at each whole number of minutes from t = 1 through t = 12. A reading is acceptable if the level is at least 2 centimeters and less than 71 centimeters. Exactly 3 of the 12 readings are acceptable. What is the sum of all possible integer values of k?",
+ "choices": [
+  "41",
+  "45",
+  "48",
+  "54"
+ ],
+ "correct_answer": "41",
+ "explanation": "If k = 0, all 12 readings are 23 and acceptable, so k is not 0. If k > 0, the level rises from 23, so a reading is acceptable exactly when 23 + kt < 71, that is, t < 48/k. Exactly 3 acceptable readings means t = 1, 2, 3 pass and t = 4 fails: 3 < 48/k ≤ 4, so 12 ≤ k < 16, giving k = 12, 13, 14, 15. (At k = 12 the reading at t = 4 is exactly 71, which is not less than 71, so it fails; at k = 16 the reading at t = 3 is exactly 71, so only 2 readings pass.) If k < 0, the level falls, so a reading is acceptable exactly when 23 + kt ≥ 2, that is, kt ≥ -21; dividing by the negative number k reverses the sign: t ≤ 21/(-k). Exactly 3 means 3 ≤ 21/(-k) < 4, so 5.25 < -k ≤ 7, giving k = -6 and k = -7. (At k = -7 the reading at t = 3 is exactly 2, which is acceptable because the lower limit is 'at least'.) The sum is 12 + 13 + 14 + 15 + (-6) + (-7) = 41. Choice 45 comes from treating 'less than 71' as 'at most 71', which replaces k = 12 by k = 16. Choice 48 comes from treating 'at least 2' as 'more than 2', which loses k = -7. Choice 54 comes from dividing by the negative k without reversing the inequality: that gives t ≥ 21/(-k), which never leaves exactly 3 readings, so only the positive values 12 through 15 remain.",
+ "solve": "let s=0;for(let k=-300;k<=300;k++){let c=0;for(let t=1;t<=12;t++){const L=23+k*t;if(L>=2&&L<71)c++;}if(c===3)s+=k;}return s;",
+ "distractor_solve": {
+  "45": "let s=0;for(let k=-300;k<=300;k++){let c=0;for(let t=1;t<=12;t++){const L=23+k*t;if(L>=2&&L<=71)c++;}if(c===3)s+=k;}return s;",
+  "48": "let s=0;for(let k=-300;k<=300;k++){let c=0;for(let t=1;t<=12;t++){const L=23+k*t;if(L>2&&L<71)c++;}if(c===3)s+=k;}return s;",
+  "54": "let s=0;for(let k=-300;k<=300;k++){if(k===0)continue;let c=0;for(let t=1;t<=12;t++){const ok=k>0?(t<48/k):(t>=21/(-k));if(ok)c++;}if(c===3)s+=k;}return s;"
+ },
+ "mechanism": [
+  "count whole-number t in a band for a rising and a falling rate",
+  "reverse the inequality when dividing by negative k",
+  "strict top limit vs non-strict bottom limit at the boundary k",
+  "sum k over both signs"
+ ],
+ "mech": "integer-count-condition",
+ "ask": "sum",
+ "quantity_asked": "the sum of all integer values of k for which exactly 3 of the 12 readings are acceptable",
+ "setup": {
+  "i": "k is the per-minute rate of change, of either sign, in a linear model of a tank's water level read at the whole minutes 1 through 12",
+  "ii": "exactly 3 of the 12 readings lie in a band that is closed at the bottom and open at the top",
+  "iii": "sum of all integer values of k"
+ },
+ "bypass_option": "45",
+ "off_by_one_options": [],
+ "plugback": {
+  "substitutable": false,
+  "why": "The options are sums of rates, not rates. Trying 41 first, a student cannot put 41 into L(t) to test it: k = 41 is not a qualifying rate, and confirming that 41 is the SUM needs every qualifying k on both the rising and the draining side, which is the whole solution.",
+  "aggregate_over": "every integer rate k, positive (12 to 15) and negative (-7 and -6), for which exactly 3 of the readings at t = 1 to 12 are acceptable"
+ },
+ "distractor_meta": {
+  "45": {
+   "error_kind": "other",
+   "error_sense": "adds",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Treating the strict top limit as 'at most 71' admits the boundary reading 71, which shifts the positive block from 12-15 to 13-16. Whether that raises or lowers the sum depends on which end of the block moves, which the stem does not show."
+  },
+  "48": {
+   "error_kind": "omission",
+   "error_sense": "omits",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Treating 'at least 2' as 'more than 2' drops the reading of exactly 2 at k = -7, so k = -7 no longer qualifies. Dropping a qualifying value usually lowers a sum; this one is negative, and the stem does not reveal that."
+  },
+  "54": {
+   "error_kind": "sign_slip",
+   "error_sense": "swaps",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Dividing by the negative k without reversing the inequality gives t ≥ 21/(-k), which never yields exactly 3 readings, so the draining rates vanish. The stem does not say whether the draining side adds positive or negative values to the sum."
+  }
+ },
+ "counter_error": {
+  "error_kind": "sign_slip",
+  "solve": "let s=0;for(let k=-300;k<=300;k++){if(k===0)continue;let c=0;for(let t=1;t<=12;t++){const ok=k>0?(t<48/k):(t<=25/(-k));if(ok)c++;}if(c===3)s+=k;}return s;",
+  "direction": "below",
+  "why": "Computing the room above the bottom limit as 23 + 2 = 25 instead of 23 - 2 = 21 makes the draining rates -7 and -8, giving 54 - 15 = 39, below the key and not an option."
+ },
+ "far_distractor": {
+  "option": "48",
+  "natural_side": "below",
+  "why": "Excluding an attained endpoint removes a qualifying value, which ordinarily makes a sum of values smaller; here the value lost is the negative rate k = -7, so the sum rises to 48 and lands above the key."
+ },
+ "structure_check": "The qualifying rates have both signs, so no error has a fixed direction: losing or adding a positive rate moves the sum one way, losing or adding a negative rate moves it the other. The counter-error (bottom margin 25 instead of 21) adds k = -8 and lands below at 39, while the three distractors land above. 'Exactly 3' is not monotone, and no extremum or universal condition tells a student that every slip raises the sum.",
+ "cheap_bound_check": "The cheapest one-sided bound is that the rising rates alone must be large enough to pass 71 by t = 4, so each positive k is at least 12 and their sum is at least 12 x (number of them); this needs the count and so is not a free bound on the options. A rougher bound - the sum is at most the sum of the positive rates, since the negative rates can only lower it - requires knowing that sum (54) and leaves 41, 45, 48 and 54 all legal; it strikes nothing on the key's side, and 45 and 48 sit with the key below it.",
+ "intermediate_check": "45: it is the sum with the positive block shifted to 13-16; 41 does not follow from 45 through a printed relation (45 - 41 = 4 is not printed) - no. 48: the sum without k = -7; 41 = 48 - 7, and 7 is not printed - no. 54: the sum of the positive rates 12-15; reaching 41 needs the negative rates' sum -13, which is not printed - no.",
+ "shape_check": "The stem hands over that k is an integer, nonzero (k = 0 gives 12 readings), and that the sum is an integer. All four options are integers. No parity is forced (the qualifying set mixes odd and even values), and no cap is readable without solving, so all four survive together.",
+ "interior_parity_check": "The two middle values 45 and 48 are both two-digit integers of the same form; the key 41 is an end value.",
+ "arith_class_check": "Options 41, 45, 48, 54: 41 and 45 odd, 48 and 54 even, so the key shares its parity with 45. 45, 48 and 54 are multiples of 3 and 41 is not, but nothing in the stem makes a multiple of 3 expected (the sum is of rates, and the qualifying rates are not built from a multiple of 3), so standing outside that class gives no signal. No sign or roundness class isolates 41.",
+ "idea_probe": {
+  "at": "2026-10-23T03:01:52.859Z",
+  "nearest": "df598374 (T(t) = 5 + k(t - 1) must stay in a band for every t from 3 to 9; count of k): that is a universal condition over a continuous interval with a count of k; here the condition is that EXACTLY 3 of 12 whole-minute readings fall in a half-open band, the rates have both signs, and the ask is the sum of k. SM25L-P4 (prior tank, never below 150, greatest plus least k) is a one-sided universal bound with an extreme-value ask."
+ },
+ "dup_search": {
+  "queries": [],
+  "hits_read": 11,
+  "nearest": "df598374 - a universal band over an interval with a count of k; here an exact count of whole-number readings and a sum of k over both signs"
+ },
+ "self_audit": {
+  "risk": "medium",
+  "note": "Covering the work, all four options remain legal from the stem alone: each is an integer, and no bound readable from the stem without solving strikes any of them. Direction: the qualifying rates have both signs, so a student cannot tell which way an error moves the sum, and no single bound strikes all three distractors (the counter-error lands below at 39). Try 1 slot: the key 41 is the smallest option, but a student cannot confirm it in one routine step - 41 is not itself a rate to substitute, and confirming the sum needs every qualifying rate on both sides. Bypass: skipping the strict-vs-non-strict decision at the top limit (reading 'less than 71' as 'at most 71') gives exactly 45, above the key as the slot plans. Test-wise: a student who handles only the rising case gets 54, and one who handles the draining case but mishandles either boundary gets 45 or 48. Read lines: PAIR 45 - 41 = 4 = 2 x printed 2, and DPAIR 4 = 3 + 1 - the 4 is the shift of the positive block from 12-15 to 13-16 (16 - 12); it is not produced by doubling the 2-centimeter limit or by adding the count 3 to the reading t = 1, and a student holding 45 has no printed step that subtracts 4. DPAIR 54 - 41 = 13 = 12 + 1 - the 13 is the negative rates 6 + 7; it is not the number of readings plus one, and nothing in the stem invites that subtraction. D4 'least' - the ask is a sum; the word least appears only in 'at least 2 centimeters'. PROBE: the item goes to the cold probe as a try-1 aggregate; confirming 41 needs all six qualifying rates. FAR, BOUND, STRUCT, INTER are answered in their own fields."
+ }
+}

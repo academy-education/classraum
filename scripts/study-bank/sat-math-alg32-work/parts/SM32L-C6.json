@@ -1,0 +1,94 @@
+{
+ "id": "SM32L-C6",
+ "domain": "Algebra",
+ "difficulty": "hard",
+ "subskill": "Range of k giving at least a given number of solutions",
+ "prompt": "-22 ≤ kx < 3x + 46\nIn the inequality above, k is a constant. Consider the integer values of k for which at least 8 integers x satisfy the inequality. By how much does the greatest of these exceed the least?",
+ "choices": [
+  "3",
+  "11",
+  "16",
+  "18"
+ ],
+ "correct_answer": "18",
+ "explanation": "Write the two parts as kx ≥ -22 and (k - 3)x < 46. If 0 ≤ k ≤ 3, one part is always true or both parts bound x on the same side, so there are infinitely many integer solutions and these k qualify. If k > 3, both coefficients are positive: x ≥ -22/k and x < 46/(k - 3). At k = 11 this gives x ≥ -2 (attained, since the left sign is non-strict) and x < 5.75, so -2 through 5: 8 solutions. At k = 12 it gives x ≥ -1.83 and x < 5.11, so -1 through 5: 7 solutions. The solution counts fall as k grows, so the greatest k is 11. If k < 0, dividing by the negative coefficients k and k - 3 reverses both inequalities: x ≤ 22/(-k) and x > -46/(3 - k). At k = -7 this gives x ≤ 3.14 and x > -4.6, so -4 through 3: 8 solutions. At k = -8 it gives x ≤ 2.75 and x > -4.18, so -4 through 2: 7 solutions. The counts fall as k decreases, so the least k is -7. The difference is 11 - (-7) = 18. Choice 11 comes from not reversing the inequalities for negative k: each negative k then gives an empty set, so the least qualifying k appears to be 0 and the difference 11 - 0 = 11. Choice 16 comes from counting the integers from a to b as b - a instead of b - a + 1, which makes every count one too small and narrows the range to -6 through 10. Choice 3 comes from moving 46 across with the wrong sign, (k - 3)x < -46.",
+ "solve": "const cnt=(k)=>{let c=0;for(let x=-3000;x<=3000;x++){if(-22<=k*x&&k*x<3*x+46)c++;}return c;};const L=[];for(let k=-300;k<=300;k++){if(cnt(k)>=8)L.push(k);}return L[L.length-1]-L[0];",
+ "distractor_solve": {
+  "3": "const cnt=(k)=>{let c=0;for(let x=-3000;x<=3000;x++){if(-22<=k*x&&k*x<3*x-46)c++;}return c;};const L=[];for(let k=-300;k<=300;k++){if(cnt(k)>=8)L.push(k);}return L[L.length-1]-L[0];",
+  "11": "const cnt=(k)=>{let c=0;for(let x=-3000;x<=3000;x++){const a=k!==0?x>=-22/k:0>=-22;const b=(k-3)!==0?x<46/(k-3):0<46;if(a&&b)c++;}return c;};const L=[];for(let k=-300;k<=300;k++){if(cnt(k)>=8)L.push(k);}return L[L.length-1]-L[0];",
+  "16": "const cnt=(k)=>{let c=0;for(let x=-3000;x<=3000;x++){if(-22<=k*x&&k*x<3*x+46)c++;}return c-1;};const L=[];for(let k=-300;k<=300;k++){if(cnt(k)>=8)L.push(k);}return L[L.length-1]-L[0];"
+ },
+ "mechanism": [
+  "split into kx ≥ -22 and (k - 3)x < 46",
+  "reverse both signs when k < 0; infinitely many solutions for 0 ≤ k ≤ 3",
+  "count integers at the boundary k on each side",
+  "greatest minus least k"
+ ],
+ "mech": "integer-count-condition",
+ "ask": "difference",
+ "quantity_asked": "the greatest integer k minus the least integer k for which the compound inequality has at least 8 integer solutions",
+ "setup": {
+  "i": "k multiplies x in the middle of a compound inequality with a constant left end and a right end linear in x, so the coefficients k and k - 3 change sign at 0 and 3 and every k from 0 to 3 gives infinitely many solutions",
+  "ii": "at least 8 integer solutions",
+  "iii": "difference between the greatest and least integer values of k"
+ },
+ "bypass_option": "11",
+ "off_by_one_options": [],
+ "plugback": {
+  "substitutable": false,
+  "why": "The options are differences between two k values; none can be substituted into the inequality. A student trying 3, 11, 16, 18 in turn must find both the greatest and the least qualifying k, on opposite sides of the band 0 to 3, to check any of them."
+ },
+ "distractor_meta": {
+  "3": {
+   "error_kind": "sign_slip",
+   "error_sense": "swaps",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Writing (k - 3)x < -46 changes which x pass for every k; the resulting range is narrow, but nothing in the stem shows which way a constant slip moves a difference of two k values."
+  },
+  "11": {
+   "error_kind": "sign_slip",
+   "error_sense": "swaps",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Not reversing the signs for negative k makes every negative-k set empty, so the least qualifying k looks like 0. The stem does not say whether the negative side widens or narrows the range."
+  },
+  "16": {
+   "error_kind": "wrong_operation",
+   "error_sense": "omits",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Counting integers from a to b as b - a undercounts every set by one, so fewer k reach 8 on both sides. A student cannot read from the stem that this narrows rather than shifts the range."
+  }
+ },
+ "counter_error": {
+  "error_kind": "wrong_operation",
+  "solve": "const cnt=(k)=>{let c=0;for(let x=-3000;x<=3000;x++){if(-22<=k*x&&k*x<3*x+46)c++;}return c+1;};const L=[];for(let k=-300;k<=300;k++){if(cnt(k)>=8)L.push(k);}return L[L.length-1]-L[0];",
+  "direction": "above",
+  "why": "Counting the integers from a to b as b - a + 2 (or including both open ends) overcounts every set by one, so more k reach 8 on each side: the range becomes -8 to 12 and the difference 20, above the key and not an option."
+ },
+ "far_distractor": {
+  "option": "11",
+  "natural_side": "above",
+  "why": "Forgetting to reverse an inequality ordinarily replaces a bounded set by a larger one (the wrong half-line), which pushes a range of k outward; here, for negative k, it turns each set into an EMPTY one, so the negative side drops out and the difference falls below the key."
+ },
+ "structure_check": "'At least 8' is monotone in the number of solutions, but the student cannot see which way a slip moves the range: overcounting (counter-error, 20) and treating an attained bound loosely push it above, while the missing reversal, undercounting and the constant slip push it below. The key is the greatest option by slot design; the stem itself gives no reason to expect every error to fall short.",
+ "cheap_bound_check": "The cheapest one-sided bound is that the band 0 to 3 qualifies, so the difference is at least 3; it strikes nothing, and 11 and 16 sit on the key's side of it. A bound from the positive side alone (k up to about 11) gives at least 11, which leaves 11, 16 and 18.",
+ "intermediate_check": "11: the greatest k (11) minus 0; reaching 18 needs the least k -7, which is not printed - no. 16: from different boundaries -6 and 10; 18 - 16 = 2 is not printed - no. 3: from a slipped inequality; 18 = 3 x 6 and 18 - 3 = 15, neither a printed relation - no.",
+ "shape_check": "The stem hands over that the answer is a difference of two integers, at least 3 once the band is seen. All four options are integers of at least 3; no parity is forced, so all four survive together.",
+ "interior_parity_check": "The two middle values 11 and 16 are both two-digit integers of the same form; the key 18 is an end value.",
+ "arith_class_check": "Options 3, 11, 16, 18: two odd, two even; the key 18 shares even parity with 16. 3 and 18 are multiples of 3, so the key is not alone there either. No sign or roundness class isolates 18.",
+ "idea_probe": {
+  "at": "2026-10-23T03:12:57.422Z",
+  "nearest": "4fd22741 (-4 ≤ kx ≤ 45, exactly 3 integers, greatest minus least k): there both ends are constants and the only sign change is at k = 0; here the right end is linear in x, so the coefficients k and k - 3 change sign at different k, the band 0 ≤ k ≤ 3 gives infinitely many solutions (which qualify under 'at least 8'), and the condition is a lower bound on the count"
+ },
+ "dup_search": {
+  "queries": [],
+  "hits_read": 6,
+  "nearest": "4fd22741 - constant ends and one sign change; here two sign changes with an infinite band and an 'at least' condition"
+ },
+ "self_audit": {
+  "risk": "medium",
+  "note": "Covering the work, all four options remain legal from the stem alone: each is a positive integer and the only cheap bound (the band 0 to 3 qualifies, so at least 3) strikes none. Direction: overcounting goes above (20), the three distractors go below, so a student cannot tell which way every error goes, and no single bound strikes all three. Try 4 slot: no option can be substituted; the check is the whole two-sided analysis. Bypass: skipping the decision point (reversing the signs for k < 0) gives exactly 11, below the key as the slot plans. Option 3 equals the printed coefficient 3 by value; it is a real slipped-constant answer, and the stem gives no reason to exclude a printed magnitude as a difference of k values. Read lines: DPAIR 18 + 3 = 21 = 22 - 1, 18 - 11 = 7 = 8 - 1, 18 - 16 = 2 = 3 - 1 - 1 is not printed in the stem, and none of these sums or differences is produced by any step from 22, 8 or 3; they are coincidences of small numbers. D4 'least' - the ask is a difference (greatest minus least), not a least value. FAR, BOUND, STRUCT, INTER are answered in their own fields. Near-dup: the stem was reworded away from 4fd22741's wording; the mathematics differs as stated in idea_probe.nearest."
+ }
+}

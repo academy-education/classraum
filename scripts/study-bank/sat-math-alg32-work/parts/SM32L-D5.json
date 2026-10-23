@@ -1,0 +1,95 @@
+{
+  "id": "SM32L-D5",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Most profitable whole-number plan under a budget and an hour minimum",
+  "prompt": "A woodshop class makes birdhouses and planter boxes to sell. Each birdhouse uses $8 of lumber, takes 2 hours to build, and earns a profit of $13. Each planter box uses $5 of lumber, takes 6 hours to build, and earns a profit of $8. The class can spend at most $159 on lumber, and the course requires the class to log at least 120 hours of building time. Only whole items are built. In the plan with the greatest total profit, what is the number of planter boxes minus the number of birdhouses?",
+  "choices": [
+    "-15",
+    "7",
+    "8",
+    "11"
+  ],
+  "correct_answer": "11",
+  "explanation": "Let b be the number of birdhouses and p the number of planter boxes. The conditions are 8b + 5p ≤ 159 and 2b + 6p ≥ 120 (that is, b + 3p ≥ 60), and the profit is 13b + 8p. Per dollar of lumber, a birdhouse earns 13/8 = $1.625 and a planter box 8/5 = $1.60, so the class wants as many birdhouses as the hour requirement allows. The boundary lines meet where b = 60 - 3p and 8(60 - 3p) + 5p = 159, so p ≈ 16.89 and b ≈ 9.32. Rounding gives 9 birdhouses and 17 planter boxes: that costs $157, logs exactly 120 hours, and earns $253, but it is not the best plan. Spending exactly $159 needs 8b + 5p = 159, which happens for b = 3, 8, 13, 18 with p = 27, 19, 11, 3. Only b = 3 and b = 8 meet the hour requirement (b = 13 gives 13 + 33 = 46 < 60), and their profits are 39 + 216 = $255 and 104 + 152 = $256. Plans that leave money unspent earn less (for example 6 and 22 earn $254, and 9 and 17 earn $253). So the best plan is 8 birdhouses and 19 planter boxes, and 19 - 8 = 11. Choice 8 is the rounded corner (9 and 17), which meets both conditions but earns $3 less. Choice 7 subtracts the corner's coordinates (16.89 - 9.32 = 7.57) and drops the decimal instead of finding a whole-number plan. Choice -15 reads 'at least 120 hours' as 'at most 120 hours', which leads to 18 birdhouses and 3 planter boxes.",
+  "solve": "let best=-Infinity, ans=null; for(let b=0;b<=40;b++) for(let p=0;p<=40;p++) if(8*b+5*p<=159 && 2*b+6*p>=120){ const v=13*b+8*p; if(v>best){best=v; ans=p-b;} } return ans;",
+  "distractor_solve": {
+    "-15": "let best=-Infinity, ans=null; for(let b=0;b<=40;b++) for(let p=0;p<=40;p++) if(8*b+5*p<=159 && 2*b+6*p<=120){ const v=13*b+8*p; if(v>best){best=v; ans=p-b;} } return ans;",
+    "7": "const p=(8*60-159)/19, b=60-3*p; return Math.floor(p-b);",
+    "8": "const p=(8*60-159)/19, b=60-3*p; return Math.round(p)-Math.round(b);"
+  },
+  "mechanism": [
+    "budget line meets an hour-minimum line at a non-integer corner",
+    "the rounded corner is feasible but not the most profitable",
+    "exact-spend plans along the budget line",
+    "difference of the two counts"
+  ],
+  "mech": "integer-optimum",
+  "ask": "difference",
+  "quantity_asked": "number of planter boxes minus number of birdhouses in the plan with the greatest total profit",
+  "setup": {
+    "i": "budget cap plus a minimum building-hour requirement that forces the less profitable item; maximise profit",
+    "ii": "the rounded corner is feasible but the best whole-number plan spends the budget exactly one trade away, toward more of the hour-heavy item",
+    "iii": "number of the second item minus the number of the first item in the most profitable plan"
+  },
+  "bypass_option": "8",
+  "off_by_one_options": [],
+  "plugback": {
+    "substitutable": false,
+    "why": "The key is at natural try 4 (ascending). A difference does not fix a plan (19 - 8, 20 - 9 and 18 - 7 all give 11), so no option can be substituted into the budget or the hour condition; each needs the profit search.",
+    "aggregate_over": "the difference between the two coordinates (planter boxes minus birdhouses) of the most profitable whole-number plan"
+  },
+  "distractor_meta": {
+    "8": {
+      "error_kind": "other",
+      "error_sense": "omits",
+      "direction": "below",
+      "stem_predicts_direction": false,
+      "why": "Rounding the corner gives a plan that is affordable and meets the hours, so a student who checks feasibility stops there; the stem does not show which way the better plan lies."
+    },
+    "7": {
+      "error_kind": "partial_answer",
+      "error_sense": "omits",
+      "direction": "below",
+      "stem_predicts_direction": false,
+      "why": "Subtracting the real corner's coordinates and truncating skips the whole-number plan entirely; the stem gives no sign of whether that undershoots or overshoots."
+    },
+    "-15": {
+      "error_kind": "sign_slip",
+      "error_sense": "swaps",
+      "direction": "below",
+      "stem_predicts_direction": false,
+      "why": "Turning the hour minimum into a maximum removes the push toward planter boxes; the stem does not reveal how far the plan then moves."
+    }
+  },
+  "counter_error": {
+    "error_kind": "wrong_variable",
+    "solve": "let best=-Infinity, ans=null; for(let b=0;b<=40;b++) for(let p=0;p<=40;p++) if(8*b+5*p<=159 && 2*b+6*p>=120){ const v=8*b+13*p; if(v>best){best=v; ans=p-b;} } return ans;",
+    "direction": "above",
+    "why": "Swapping the two profits ($8 per birdhouse, $13 per planter box) makes planter boxes the better buy, and the plan becomes 0 birdhouses and 31 planter boxes: a difference of 31, above the key and not an option."
+  },
+  "far_distractor": {
+    "option": "8",
+    "natural_side": "above",
+    "why": "Rounding a corner's coordinates ordinarily lands on or past the best plan in the direction the requirement pushes, so its difference would be expected at or above the key; here the best plan is one exact-spend trade further toward planter boxes (from 9 and 17 to 8 and 19), so the rounded corner lands below."
+  },
+  "structure_check": "The stem asks a difference inside a maximisation; nothing in it is universal or monotone in the asked quantity. The swapped-profit error goes above (31) while the rounding, truncation and sign errors go below, so a student cannot read one direction for every error from the stem.",
+  "cheap_bound_check": "The cheapest bounds: 5p <= 159 gives p <= 31, so the difference is at most 31; 8b <= 159 gives it at least -19. Neither strikes any option; -15, 7 and 8 all sit on the key's side of the upper bound.",
+  "intermediate_check": "8: no - it is the difference at the rounded corner (9, 17), a different plan; 11 does not follow from it through one printed relation. 7: no - it is the real corner's difference truncated, not a step toward (8, 19). -15: no - it is the difference of a plan found under a reversed condition.",
+  "shape_check": "The stem hands over: the difference is a whole number between -19 and 31. All four options survive. No parity or sign is forced (the plan could in principle have more birdhouses).",
+  "interior_parity_check": "The middle values are 7 and 8: both one-digit whole numbers of the same form; the key 11 is an extreme.",
+  "arith_class_check": "Key 11 is odd, as are 7 and -15; 8 is even. -15 is the only negative, and the stem does not force a positive difference. The key is alone in no class.",
+  "idea_probe": {
+    "at": "2026-10-23T03:12:43.789Z",
+    "nearest": "e8cee5ac-d56 (live v26 D8) has a people-served minimum and a volunteer-hour cap and asks the number of small packages in the best plan; here the cap is a lumber budget, the minimum is on hours LOGGED (a requirement that pushes toward the slow item), and the ask is a difference of the two counts. SM31L-D8 (prior) has a weight cap and a minimum total count."
+  },
+  "dup_search": {
+    "queries": [],
+    "hits_read": 6,
+    "nearest": "e8cee5ac-d56: one minimum plus one cap, maximise a weighted total, asks one coordinate"
+  },
+  "self_audit": {
+    "risk": "medium",
+    "note": "Covering the work, how many options remain legal from the stem alone? All four: the cheap bounds (-19 to 31) keep every option, and the stem does not force the difference to be positive. Could a student tell from the stem which way the errors go, and does one bound strike all three? No - the swapped-profit error goes above (31), the others below, and no bound strikes -15, 7 and 8 together. Could a student confirm an option against the stem in one routine step? No: a difference does not determine a plan, and the key is at try 4 anyway. Is the bypass option really what skipping this item's decision point gives? Yes: the decision point is that the best lattice plan is not the rounded corner; here the rounded corner (9, 17) is even feasible, so a student who rounds and checks stops there and reports 17 - 9 = 8. A test-wise student might expect a 'greatest profit' plan to lean toward the more profitable birdhouses (a small or negative difference), which points away from the key. (read) PAIR/DPAIR/DSUM: 11-7 = 4 = 2 x 2, 11+(-15) = -4, 11-8 = 3 = 2+1, 11+7 = 18 = 13+5, 11+8 = 19 = 13+6, 11+15 = 26 = 2 x 13 are coincidences: no solving step doubles an hour figure or adds a profit to a cost, and none recovers 11 from an option without the plan. (read) D4 'least': from 'at least 120 hours'; the ask is a difference and its extremity is the slot's planned r4. Note: the first draft (budget $161, key 14) failed DPAIR because the bypass 7 was exactly half the key; the numbers were changed and the idea re-probed (attempt 3) before this version."
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "id": "SM32L-D3",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Cheapest whole-number plan under a covering need and a ratio",
+  "prompt": "A summer camp needs tents to sleep at least 151 campers. A large tent sleeps 9 campers and costs $44 per night, and a small tent sleeps 4 campers and costs $20 per night. Camp rules require at least twice as many small tents as large tents. Only whole tents are rented, and the camp rents the least expensive combination of tents that meets both conditions. What is the total number of tents in that combination?",
+  "choices": [
+    "17",
+    "24",
+    "27",
+    "29"
+  ],
+  "correct_answer": "29",
+  "explanation": "Let L be the number of large tents and S the number of small tents. The conditions are 9L + 4S ≥ 151 and S ≥ 2L, and the nightly cost is 44L + 20S. Per camper, a large tent costs 44/9 ≈ $4.89 and a small tent $5.00, so the camp wants as many large tents as the rule allows. The boundary lines meet where S = 2L and 17L = 151: L ≈ 8.88, S ≈ 17.76. Rounding gives 9 large and 18 small tents, which sleeps 153 and costs $756, but it is not the cheapest. Moving along the sleeping requirement, trade large tents for small ones in exact amounts: 7 large and 22 small sleep 63 + 88 = 151 exactly and cost 308 + 440 = $748; 8 large and 20 small cost $752; 3 large and 31 small cost $752; and every other combination that meets both conditions costs more than $748. So the cheapest combination is 7 large and 22 small tents, a total of 29 tents. Choice 27 is the rounded corner (9 and 18), which meets both conditions but costs $8 more. Choice 24 drops the word 'twice' and requires only at least as many small tents as large, which allows 11 large and 13 small at $744. Choice 17 ignores the rule and uses only large tents, the cheaper choice per camper.",
+  "solve": "let best=Infinity, ans=null; for(let L=0;L<=40;L++) for(let S=0;S<=80;S++) if(9*L+4*S>=151 && S>=2*L){ const c=44*L+20*S; if(c<best){best=c; ans=L+S;} } return ans;",
+  "distractor_solve": {
+    "17": "return Math.ceil(151/9);",
+    "24": "let best=Infinity, ans=null; for(let L=0;L<=40;L++) for(let S=0;S<=80;S++) if(9*L+4*S>=151 && S>=L){ const c=44*L+20*S; if(c<best){best=c; ans=L+S;} } return ans;",
+    "27": "const L=151/17, S=2*L; return Math.round(L)+Math.round(S);"
+  },
+  "mechanism": [
+    "covering line meets a ratio line at a non-integer corner",
+    "the rounded corner is feasible but not cheapest",
+    "trade along the covering line to an exact cover",
+    "add the two counts"
+  ],
+  "mech": "integer-optimum",
+  "ask": "sum",
+  "quantity_asked": "total number of tents (large plus small) in the least expensive combination that meets the sleeping need and the ratio rule",
+  "setup": {
+    "i": "one covering requirement plus a ratio floor on the less cost-efficient item (at least twice as many small units as large); minimise cost",
+    "ii": "the cheapest whole-number plan meets the requirement exactly, trading large units for small ones away from the feasible rounded corner",
+    "iii": "total number of units (x + y) in the cheapest plan"
+  },
+  "bypass_option": "27",
+  "off_by_one_options": [],
+  "plugback": {
+    "substitutable": false,
+    "why": "The key is at natural try 4 (ascending). A student testing 17, 24 and 27 as tent totals cannot check any of them against the stem directly: a total does not fix the split between large and small tents, so each needs the cheapest-plan search, which is the whole solution.",
+    "aggregate_over": "the sum of the two coordinates (large tents plus small tents) of the least expensive whole-number combination"
+  },
+  "distractor_meta": {
+    "17": {
+      "error_kind": "omission",
+      "error_sense": "omits",
+      "direction": "below",
+      "stem_predicts_direction": false,
+      "why": "Dropping the rule and using only the cheaper-per-camper large tent; the stem does not show whether the rule pushes the total up or down."
+    },
+    "24": {
+      "error_kind": "wrong_operation",
+      "error_sense": "swaps",
+      "direction": "below",
+      "stem_predicts_direction": false,
+      "why": "Reading the rule as 'at least as many small tents as large' (dropping the factor 2) lets the plan use more large tents; the stem does not show whether that raises or lowers the tent total against the true plan."
+    },
+    "27": {
+      "error_kind": "other",
+      "error_sense": "omits",
+      "direction": "below",
+      "stem_predicts_direction": false,
+      "why": "Rounding the corner skips the search along the sleeping line; the stem gives no hint whether the cheaper plans have more tents or fewer than the rounded corner."
+    }
+  },
+  "counter_error": {
+    "error_kind": "wrong_variable",
+    "solve": "return Math.ceil(151/4);",
+    "direction": "above",
+    "why": "Choosing the cheaper tent per tent ($20 small instead of $44 large) and renting only small tents gives 38 tents, above the key and not an option."
+  },
+  "far_distractor": {
+    "option": "27",
+    "natural_side": "above",
+    "why": "Rounding the corner's coordinates (8.88 and 17.76) up to whole tents ordinarily adds tents and overshoots the true count; here the cheapest plan trades 2 large tents for 4 small ones and holds even more tents, so the rounded corner lands below the key."
+  },
+  "structure_check": "The ask is the tent total in the LEAST EXPENSIVE plan, which suggests few tents and so points a test-wise student toward the smaller options; the key is the largest. Nothing in the stem makes every error lower the total: the cheaper-per-tent error (38) goes above, the weakened-rule, rule-dropping and rounding errors go below.",
+  "cheap_bound_check": "The cheapest bounds are total >= 151/9, so at least 17 tents (all large), and total <= 38 (all small). Neither strikes any option; the distractors 17, 24 and 27 all sit on the key's side (at most 38).",
+  "intermediate_check": "27: no - it is the total of a different plan (the rounded corner), not a step from which 29 follows. 24: no - it is the total under a weakened rule (11 large, 13 small); 29 does not follow from it through a printed relation. 17: no - it is the all-large count; reaching 29 from it needs the rule and the full cost search, not one relation.",
+  "shape_check": "The stem hands over: the total is a whole number between 17 and 38. All four options survive that. No parity or divisibility is implied (the cheapest plan meets 151 exactly, but that is a finding, not a given). At least two options survive everything readable from the stem.",
+  "interior_parity_check": "The middle values are 24 and 27: both two-digit whole numbers of the same form; the key 29 is an extreme, and neither middle value is cleaner.",
+  "arith_class_check": "Key 29 is odd, as are 17 and 27; 24 is even. Nothing in the stem implies parity or a multiple for the total, and the key is alone in no class.",
+  "idea_probe": {
+    "at": "2026-10-23T03:01:46.491Z",
+    "nearest": "9250153d-2ec (live v26 D5) minimises cost under two covering minimums and asks the least cost; this item has one covering need and a ratio rule, never asks the cost, and asks the tent total of the cheapest plan, which sits several trades from a FEASIBLE rounded corner. 5d8dd5b1-d31 uses a twice-as-many rule but maximises one quantity under a single resource."
+  },
+  "dup_search": {
+    "queries": [],
+    "hits_read": 4,
+    "nearest": "5d8dd5b1-d31: same ratio wording, different problem (single resource cap, greatest number of one item). The first option set {17,19,27,29} matched live row 3c7a8ad0 (sat-math-v19-alg) by value, so the 19 distractor was replaced"
+  },
+  "self_audit": {
+    "risk": "medium",
+    "note": "Covering the work, how many options remain legal from the stem alone? All four: the cheap bounds (17 to 38 tents) keep every option, and no parity or divisibility is forced. Could a student tell from the stem which way the errors go, and does one bound strike all three? No - 'least expensive' leans toward small totals while the key is the largest, the cheaper-per-tent error lands above (38), and no single bound strikes 17, 24 and 27. Could a student confirm an option against the stem in one routine step? No: a total does not determine the split, so each option needs the cost search; the key is at try 4 anyway. Is the bypass option really what skipping this item's decision point gives? Yes: the decision point is that the best lattice point is not the rounded corner; here the rounded corner (9, 18) is even feasible, so a student who rounds and checks feasibility stops there and reports 27. (read) STRUCT and FAR answered above. (read) DPAIR/DSUM: 29-24 = 5 = 4+1 and 29+24 = 53 = 9+44 are coincidences: the solution never adds a sleeping capacity to a price, and the 1 in 4+1 is not a printed quantity of the item. (read) D4 'least': the stem's 'least expensive' names the plan, the ask is a sum (tent total), and the key's extremity is the slot's planned r4; as the structure_check says, 'least expensive' leans toward small totals, the opposite of the key."
+  }
+}

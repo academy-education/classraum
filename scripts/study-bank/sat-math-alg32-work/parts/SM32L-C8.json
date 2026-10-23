@@ -1,0 +1,86 @@
+{
+ "id": "SM32L-C8",
+ "domain": "Algebra",
+ "difficulty": "hard",
+ "subskill": "Least band limit giving an exact count of readings",
+ "prompt": "A candle is 39 centimeters tall when it is lit, and it burns down at a constant rate of 20 centimeters every 4 hours. Its height is recorded when it is lit and then every hour on the hour until it burns out. A recorded height counts as a reading if it is at least 9 centimeters and less than k centimeters. Exactly 4 of the recorded heights are readings. What is the least integer value of k for which this is true?",
+ "choices": [
+  "19",
+  "24",
+  "25",
+  "30"
+ ],
+ "correct_answer": "25",
+ "explanation": "The candle burns 20/4 = 5 centimeters per hour, so t hours after it is lit its height is 39 - 5t, recorded at t = 0, 1, 2, ..., 7. A height is at least 9 when 39 - 5t ≥ 9, that is, t ≤ 6; the height at t = 6 is exactly 9, which counts. A height is less than k when 39 - 5t < k, that is, -5t < k - 39; dividing by -5 reverses the sign, so t > (39 - k)/5. The readings are therefore the whole numbers t with (39 - k)/5 < t ≤ 6. Exactly 4 readings means t = 3, 4, 5, 6 count and t = 2 does not: 2 ≤ (39 - k)/5 < 3, so 24 < k ≤ 29. The least integer k is 25. (Check: k = 25 gives heights 24, 19, 14, 9 at t = 3 to 6, which are 4 readings, while the height 29 at t = 2 is not less than 25. At k = 24 the height 24 at t = 3 is not less than 24, so only 3 readings.) Choice 19 comes from not reversing the inequality when dividing by -5: t < (39 - k)/5 picks the first four recordings, t = 0 to 3, and gives 19 ≤ k < 24. Choice 24 comes from treating 'less than k' as 'at most k', which lets the height 24 count at k = 24. Choice 30 comes from treating 'at least 9' as 'more than 9', which drops the reading at t = 6 so the four readings must be t = 2 to 5.",
+ "solve": "const cnt=(k)=>{let c=0;for(let t=0;t<=7;t++){const h=39-5*t;if(h>=9&&h<k)c++;}return c;};for(let k=-100;k<=200;k++){if(cnt(k)===4)return k;}return null;",
+ "distractor_solve": {
+  "19": "const cnt=(k)=>{let c=0;for(let t=0;t<=7;t++){if(t<=6&&t<(39-k)/5)c++;}return c;};for(let k=-100;k<=200;k++){if(cnt(k)===4)return k;}return null;",
+  "24": "const cnt=(k)=>{let c=0;for(let t=0;t<=7;t++){const h=39-5*t;if(h>=9&&h<=k)c++;}return c;};for(let k=-100;k<=200;k++){if(cnt(k)===4)return k;}return null;",
+  "30": "const cnt=(k)=>{let c=0;for(let t=0;t<=7;t++){const h=39-5*t;if(h>9&&h<k)c++;}return c;};for(let k=-100;k<=200;k++){if(cnt(k)===4)return k;}return null;"
+ },
+ "mechanism": [
+  "rate from 20 cm per 4 hours",
+  "reverse the sign dividing by -5",
+  "attained lower limit 9 at t = 6, strict upper limit k",
+  "least k giving exactly 4 readings"
+ ],
+ "mech": "integer-count-condition",
+ "ask": "least",
+ "quantity_asked": "the least integer k for which exactly 4 of the hourly recorded heights are at least 9 and less than k",
+ "setup": {
+  "i": "k is the strict upper limit of a band on a decreasing linear quantity (a candle's height) recorded at whole hours from t = 0, with a fixed lower limit that one recording attains",
+  "ii": "exactly 4 recordings fall in the band",
+  "iii": "least integer value of k"
+ },
+ "bypass_option": "19",
+ "off_by_one_options": [
+  "24"
+ ],
+ "plugback": {
+  "substitutable": true,
+  "verify": "const cnt=(k)=>{let c=0;for(let t=0;t<=7;t++){const h=39-5*t;if(h>=9&&h<k)c++;}return c;};return cnt(v)===4&&cnt(v-1)!==4;",
+  "why": "On a 'least' ask a student tries the options in ascending order: k = 19 gives 2 readings (heights 14 and 9), k = 24 gives 3 (19, 14, 9), and k = 25 gives 4 (24, 19, 14, 9). The key is reached only at try 3, after two refutations, each of which needs the strict and attained limits handled correctly; mishandling either makes 24 or 30 pass instead."
+ },
+ "distractor_meta": {
+  "19": {
+   "error_kind": "sign_slip",
+   "error_sense": "swaps",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Not reversing the sign when dividing by -5 selects the first recordings (t = 0 to 3) instead of the last, which needs a smaller k. The stem does not say which end of the recording schedule a slip moves to."
+  },
+  "24": {
+   "error_kind": "other",
+   "error_sense": "adds",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Reading 'less than k' as 'at most k' admits the height equal to k, so 4 readings appear one unit of k sooner. A student cannot see from the stem which way an endpoint slip moves a least value."
+  },
+  "30": {
+   "error_kind": "omission",
+   "error_sense": "omits",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Reading 'at least 9' as 'more than 9' drops the height 9 at t = 6, so the four readings must start one hour earlier and k must be larger. The stem does not reveal the side."
+  }
+ },
+ "structure_check": "Not an extreme slot (key rank 3). The two limits push errors in opposite directions (the strict upper limit read loosely lowers k, the attained lower limit read strictly raises it), and the missing reversal lowers it; nothing in the stem sends every error the same way.",
+ "cheap_bound_check": "Not an extreme slot. The cheapest bound is that k must exceed the lowest counted height 9 by enough to admit four heights 5 apart, so k > 9 + 15 = 24; this needs the rate and the reversal and strikes 19 and 24 only after the work. Without solving, every option is a legal height limit.",
+ "intermediate_check": "19: from the first four recordings; 25 does not follow from 19 through a printed relation (25 - 19 = 6 is not printed) - no. 24: the height at t = 3; the key is the next integer, a step the stem does not print - no. 30: from readings t = 2 to 5; 30 - 25 = 5 is the hourly rate, which is computed (20 / 4), not printed - no.",
+ "shape_check": "The stem hands over that k is an integer greater than 9 and at most 39 (the tallest height). All four options lie in that range; no parity is forced, so all four survive together.",
+ "interior_parity_check": "The two middle values 24 and 25 are both two-digit integers; the key 25 is not cleaner than 24 in any way the stem rewards.",
+ "arith_class_check": "Options 19, 24, 25, 30: two odd (19, 25) and two even; 25 and 30 are multiples of 5, so the key shares that class with 30. Recorded heights are all 4 more than a multiple of 5 (39, 34, ..., 9), and no option class tied to that isolates 25.",
+ "idea_probe": {
+  "at": "2026-10-23T03:21:09.968Z",
+  "nearest": "df598374 (lab temperature model T(t) = 5 + k(t - 1) must stay in a band for every t from 3 to 9; count of k): there k is the rate and the condition is universal over an interval; here the rate is fixed, k is the strict upper limit of the band, the quantity is read at whole hours, exactly 4 readings must fall in the band, and the ask is the least k"
+ },
+ "dup_search": {
+  "queries": [],
+  "hits_read": 13,
+  "nearest": "df598374 - k as a rate with a universal band; here k as a band limit on a fixed decreasing model with an exact count of readings"
+ },
+ "self_audit": {
+  "risk": "medium",
+  "note": "Covering the work, all four options remain legal from the stem alone: each is an integer between 9 and 39, and no bound readable without the rate and the reversal strikes any of them. Plug-back: the key is at natural try 3; trying 19 and 24 first, a student must refute both, and each refutation depends on the same strict and attained limits the item tests. Bypass: skipping the reversal when dividing by -5 gives exactly 19, below the key as the slot plans. Test-wise: no stem cue favours 25 over the adjacent 24; only the strict 'less than k' decides it. Renumbered at stage 0 (heights 39 and 9 in place of 38 and 8) so the key 25 is unique in the batch; mechanism, slot, rank and bypass side unchanged. Read lines: DPAIR 30 - 25 = 5 = 4 + 1 - the 5 is the computed hourly rate (20 / 4); 1 is not printed, and 30 is reached from a different set of readings, not by adding the rate to 25. INTER is answered in its own field. IDEA: the part setup is the probed setup with 'read' changed to 'recorded'; same idea, probed before writing."
+ }
+}

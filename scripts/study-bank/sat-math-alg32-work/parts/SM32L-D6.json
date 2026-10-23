@@ -1,0 +1,84 @@
+{
+  "id": "SM32L-D6",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Greatest profit over whole-number plans under two constraints",
+  "prompt": "A woodworker makes chairs and stools each week. Each chair uses $7 of materials and earns a profit of $13, and each stool uses $4 of materials and earns a profit of $7. The weekly materials budget is $100, and because chairs are sold in sets with stools, the woodworker makes at most 4 more chairs than stools. Only whole chairs and stools are made. What is the greatest possible weekly profit, in dollars?",
+  "choices": [
+    "172",
+    "181",
+    "182",
+    "184"
+  ],
+  "correct_answer": "181",
+  "explanation": "Let c be the number of chairs and s the number of stools. The conditions are 7c + 4s ≤ 100 and c - s ≤ 4, and the profit is 13c + 7s. Per dollar, a chair earns 13/7 ≈ $1.86 and a stool 7/4 = $1.75, so the woodworker wants as many chairs as the second condition allows. The boundary lines meet where c = s + 4 and 7(s + 4) + 4s = 100: s ≈ 6.55, c ≈ 10.55, with profit about $182.91, so no plan can earn more than $182. Write the profit as 13c + 7s = (7/4)(7c + 4s) + (3/4)c ≤ 175 + 0.75c. Earning $182 or more would need 0.75c ≥ 7, so c ≥ 10; with c - s ≤ 4 that means s ≥ c - 4, and the budget gives 7c + 4(c - 4) ≤ 100, so c ≤ 10. With c = 10, s is 6 or 7, earning $172 or $179. So no plan reaches $182. Profit $181 is reached by 8 chairs and 11 stools: 56 + 44 = $100 of materials, 8 - 11 is less than 4, and 104 + 77 = 181. The greatest possible weekly profit is $181. Choice 182 rounds the corner's profit ($182.91) down to whole dollars without checking that a whole-number plan reaches it. Choice 184 reads the condition the wrong way round (at most 4 more stools than chairs), which allows 12 chairs and 4 stools. Choice 172 rounds both corner coordinates down to 10 chairs and 6 stools.",
+  "solve": "let best=-Infinity; for(let c=0;c<=40;c++) for(let s=0;s<=40;s++) if(7*c+4*s<=100 && c-s<=4) best=Math.max(best,13*c+7*s); return best;",
+  "distractor_solve": {
+    "182": "const s=(100-28)/11, c=s+4; return Math.floor(13*c+7*s);",
+    "184": "let best=-Infinity; for(let c=0;c<=40;c++) for(let s=0;s<=40;s++) if(7*c+4*s<=100 && s-c<=4) best=Math.max(best,13*c+7*s); return best;",
+    "172": "const s=(100-28)/11, c=s+4; return 13*Math.floor(c)+7*Math.floor(s);"
+  },
+  "mechanism": [
+    "budget line meets a difference cap at a non-integer corner",
+    "the corner's profit is not reached by any whole-number plan",
+    "bound the profit and check the few plans near the corner",
+    "best plan far from the corner"
+  ],
+  "mech": "integer-optimum",
+  "ask": "greatest",
+  "quantity_asked": "greatest possible weekly profit over whole-number plans within the budget and the at-most-4-more-chairs rule",
+  "setup": {
+    "i": "budget cap plus a cap on how many more of the more profitable item than of the other (x - y at most 4)",
+    "ii": "maximise profit; the real corner's profit rounds down to a whole-dollar level that no whole-number plan reaches",
+    "iii": "greatest total profit"
+  },
+  "bypass_option": "182",
+  "off_by_one_options": [
+    "182"
+  ],
+  "plugback": {
+    "substitutable": true,
+    "verify": "let best=-Infinity; for(let c=0;c<=40;c++) for(let s=0;s<=40;s++) if(7*c+4*s<=100 && c-s<=4) best=Math.max(best,13*c+7*s); return v===best;",
+    "why": "On a greatest ask the student tries the largest option first. 184 must be refuted (the only plans earning it, such as 12 chairs and 4 stools, break the at-most-4-more rule); then 182, which needs the argument that no whole-number plan reaches it (only 10 chairs with 6 or 7 stools come close); only then 181, which is confirmed by finding 8 chairs and 11 stools. The key is at natural try 3, after two refutations, each of which requires the lattice check."
+  },
+  "distractor_meta": {
+    "182": {
+      "error_kind": "other",
+      "error_sense": "omits",
+      "direction": "above",
+      "stem_predicts_direction": false,
+      "why": "Rounding the corner's profit down to whole dollars skips the check that a whole-number plan reaches it; the stem does not show how far below the corner the lattice best lies."
+    },
+    "184": {
+      "error_kind": "sign_slip",
+      "error_sense": "swaps",
+      "direction": "above",
+      "stem_predicts_direction": false,
+      "why": "Reversing the chair-stool condition lets the plan load up on chairs; the stem does not reveal that the reversed condition never binds."
+    },
+    "172": {
+      "error_kind": "other",
+      "error_sense": "omits",
+      "direction": "below",
+      "stem_predicts_direction": false,
+      "why": "Rounding both corner coordinates down gives a feasible plan; the stem does not show whether better plans lie elsewhere on the budget line."
+    }
+  },
+  "intermediate_check": "182: no - it is the corner's profit truncated, an upper bound, not a step from which 181 follows. 184: no - it is the best profit under a reversed condition. 172: no - it is the profit of one feasible plan (10, 6); reaching 181 needs a search along the budget line to (8, 11), not one printed relation.",
+  "shape_check": "The stem hands over: the profit is a whole number of dollars, at most 13c + 7s with 7c + 4s <= 100 (so at most 13(100/7), about 185, from the budget alone). All four options survive integrality and that cap. No parity is forced (13c + 7s takes both parities).",
+  "interior_parity_check": "The middle values are 181 and 182: both three-digit whole numbers of the same form; the key 181 is not cleaner than 182 (neither is round).",
+  "arith_class_check": "Key 181 is odd, as is no other option (172, 182, 184 are even), but the stem implies no parity for 13c + 7s, which can be odd or even; the key is not a multiple of any printed price, and neither are the others.",
+  "idea_probe": {
+    "at": "2026-10-23T03:13:14.154Z",
+    "nearest": "7d674f12-8ff (live) asks the greatest profit under two ingredient-supply caps; this item has one budget cap and a cap on the DIFFERENCE between the two counts, and the trap is that the corner's profit ($182.91) floors to a level no whole-number plan reaches. v26 D4 (e14de4cc-5f0, live) maximises over a bare three-inequality system."
+  },
+  "dup_search": {
+    "queries": [],
+    "hits_read": 5,
+    "nearest": "7d674f12-8ff: greatest profit, two resource caps; different second constraint and different trap"
+  },
+  "self_audit": {
+    "risk": "medium",
+    "note": "Covering the work, how many options remain legal from the stem alone? All four: the budget alone caps profit near 185, which keeps every option, and no parity is forced. Could a student confirm an option against the stem in one routine step? The key is at natural try 3 on a descending greatest ask: 184 and 182 must each be refuted first, and refuting 182 is the decision point itself (no lattice plan reaches the corner's floor). Confirming 181 then needs finding (8, 11). Is the bypass option really what skipping this item's decision point gives? Yes: the decision point is that the best lattice point is not the corner; a student who computes the corner's profit ($182.91) and takes the whole-dollar part reports 182. A test-wise student choosing the second-largest option (skipping the 'too good' largest) lands on 182, not the key. 182 is the declared off-by-one option next to the key. (read) DPAIR 184-181 = 3 = 4-1: coincidence; no step subtracts 1 from the stool cost or the difference cap."
+  }
+}

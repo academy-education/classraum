@@ -1,0 +1,95 @@
+{
+ "id": "SM32L-B2",
+ "domain": "Algebra",
+ "difficulty": "hard",
+ "subskill": "No-solution parameter splits an inside-band count",
+ "prompt": "kx + 30 = 12x + 10k\nIn the equation above, k is a constant. Of the integers k from -20 to 40, inclusive, how many make the equation have a solution x with 4 ≤ x ≤ 19?",
+ "choices": [
+  "16",
+  "19",
+  "26",
+  "37"
+ ],
+ "correct_answer": "37",
+ "explanation": "Collect the x terms: kx - 12x = 10k - 30, so (k - 12)x = 10k - 30. When k = 12 this reads 0 = 90, so the equation has no solution and k = 12 never counts. For every other k, x = (10k - 30)/(k - 12) = 10 + 90/(k - 12). If k > 12, then x is greater than 10, so x ≥ 4 automatically, and x ≤ 19 exactly when 90/(k - 12) ≤ 9, that is, k - 12 ≥ 10, so k ≥ 22: the integers 22 through 40, which is 19 values. If k < 12, then x is less than 10, so x ≤ 19 automatically, and x ≥ 4 exactly when 90/(12 - k) ≤ 6, that is, 12 - k ≥ 15, so k ≤ -3: the integers -20 through -3, which is 18 values. The count is 19 + 18 = 37. Choice 26 comes from finding that x = 4 when k = -3 and x = 19 when k = 22 and then counting the integers from -3 to 22, as if x moved steadily from 4 to 19 as k goes from -3 to 22; but k = 12, where there is no solution, lies in between, and every k strictly between -3 and 22 actually gives an x outside the band. Choice 19 comes from multiplying 4 ≤ (10k - 30)/(k - 12) ≤ 19 through by k - 12 without reversing the inequalities when k - 12 is negative, which keeps only k ≥ 22. Choice 16 counts the integers x from 4 to 19 instead of the values of k.",
+ "solve": "let n = 0; for (let k = -20; k <= 40; k++) { if (k === 12) continue; const x = (10 * k - 30) / (k - 12); if (x >= 4 && x <= 19) n++; } return String(n);",
+ "distractor_solve": {
+  "26": "const kAt4 = 12 - 90 / (10 - 4); const kAt19 = 12 + 90 / (19 - 10); let n = 0; for (let k = -20; k <= 40; k++) { if (k >= kAt4 && k <= kAt19) n++; } return String(n);",
+  "19": "let n = 0; for (let k = -20; k <= 40; k++) { if (k === 12) continue; if (4 * (k - 12) <= 10 * k - 30 && 10 * k - 30 <= 19 * (k - 12)) n++; } return String(n);",
+  "16": "let n = 0; for (let x = 4; x <= 19; x++) n++; return String(n);"
+ },
+ "mechanism": [
+  "collect x terms to (k - 12)x = 10k - 30",
+  "k = 12 gives no solution",
+  "solution 10 + 90/(k - 12) on two branches",
+  "inside-band count on both sides of the no-solution value"
+ ],
+ "mech": "degenerate-parameter",
+ "ask": "count",
+ "quantity_asked": "the number of integers k from -20 to 40 for which the equation has a solution between 4 and 19 inclusive",
+ "setup": {
+  "i": "k is in the x-coefficient on one side and in the constant on the other side of a one-variable equation, so the solution is 10 + 90/(k - 12) and k = 12 gives no solution",
+  "ii": "the solution lies in a closed band that contains the value the solution approaches (10), so qualifying k lie on both sides of the no-solution value, far from it",
+  "iii": "number of integer values of k in a stated range"
+ },
+ "bypass_option": "26",
+ "off_by_one_options": [],
+ "plugback": {
+  "substitutable": false,
+  "why": "The key is at natural try 4 (largest option). A student trying 16, 19 and 26 first cannot test them by substitution - each is a count of k values, not a k or an x - so every check needs the full two-branch analysis; there is no one-step confirmation at any try.",
+  "aggregate_over": "the integers k from -20 to 40, other than the no-solution value k = 12, whose solution lies between 4 and 19 inclusive"
+ },
+ "distractor_meta": {
+  "26": {
+   "error_kind": "wrong_operation",
+   "error_sense": "omits",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Counting the integers between the two boundary k values assumes the solution moves steadily as k goes from -3 to 22, skipping the no-solution value k = 12 inside; whether that count is above or below the truth depends on how far the stated range reaches beyond -3 and 22, which the stem does not signal."
+  },
+  "19": {
+   "error_kind": "sign_slip",
+   "error_sense": "swaps",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Multiplying by k - 4 without reversing for negative k - 4 keeps only one branch; nothing in the stem reveals which branch survives or how large it is."
+  },
+  "16": {
+   "error_kind": "wrong_variable",
+   "error_sense": "swaps",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Counting x values in the band instead of k values gives a number fixed by the band, unrelated in size to the k-range; the stem does not say whether that is more or fewer than the qualifying k."
+  }
+ },
+ "counter_error": {
+  "error_kind": "omission",
+  "solve": "let n = 0; for (let k = -20; k <= 40; k++) { if (k !== 12) n++; } return String(n);",
+  "direction": "above",
+  "why": "A student who checks only that the equation has a solution (k not 12) and forgets the band counts every k but 12, landing at 60, above the key and not an option."
+ },
+ "far_distractor": {
+  "option": "26",
+  "natural_side": "above",
+  "why": "The between-the-boundaries count ordinarily overshoots, because it sweeps in the k values right next to the no-solution value; here the qualifying k are the far ones on both sides and the stated range is long, so the same error lands below the key."
+ },
+ "structure_check": "The answer is the union of two rays cut off by the stated range, not an extremum or a universal condition, so no structural fact says that every slip lowers it: losing a branch lowers it, but forgetting the band (counter_error 60) raises it. The key being the largest option is not readable from the structure.",
+ "cheap_bound_check": "The cheapest stem bound is that the count is at most 60 (61 integers in the range minus the no-solution value k = 12); every option, including the three distractors, sits on the key's side of it, so it strikes nothing.",
+ "intermediate_check": "26: no - it counts the k between the two boundary values, a complementary set; 37 does not follow from 26 through one printed relation. 19: no - it is one branch; reaching 37 needs the other branch's 18, which is not printed. 16: no - it is the number of integers in the printed band, and 37 does not follow from it by any printed relation.",
+ "shape_check": "Properties handed over: the answer is a whole number, at least 0, at most 60. All four options (16, 19, 26, 37) survive every one together; no parity, sign or cap singles any out (two even, two odd).",
+ "interior_parity_check": "The two middle values are 19 and 26: both two-digit whole numbers; the key 37 is not cleaner than them.",
+ "arith_class_check": "The key 37 is not alone in a class the stem implies: 19 and 37 are odd, 16 and 26 even; 37 is not a multiple of a printed coefficient; it is not a printed number.",
+ "idea_probe": {
+  "at": "2026-10-23T02:52:32.717Z",
+  "nearest": "757d0b2f-1a1 (live v26: kx + y = 7, 2x - y = 5, count k in -7..13 with x > y). That is a one-sided condition reduced to x < 5 on one hyperbola. Mine is a one-variable equation with a CLOSED band that straddles the value the solution approaches, so the qualifying k form two far rays on both sides of the no-solution k, and the trap is the boundary-to-boundary count, not a single sign case."
+ },
+ "dup_search": {
+  "queries": [],
+  "hits_read": 11,
+  "nearest": "757d0b2f-1a1 - see idea_probe"
+ },
+ "self_audit": {
+  "risk": "medium",
+  "note": "Covering the work, all four options remain legal from the stem alone (whole numbers at most 60). A test-wise student solves x = 4 and x = 19 for k (k = -3 and k = 22) and counts -3 through 22: that is 26, the bypass, exactly what ignoring the no-solution value k = 12 between them gives. Could a student tell from the stem which way the errors go? No: the answer is a union of two rays cut by the range; dropping a branch lowers it, forgetting the band raises it (60, not an option). One bound does not strike all three: the cheapest bound (at most 60) strikes none. Plug-back: the key is at try 4 and every option is a count, so no option can be confirmed by substitution. Desmos graphing for one k gives one solution, not the count. Is 26 really what skipping THIS item's decision point gives? Yes: it treats the solution as monotone in k across k = 12. (read) lines: DPAIR (37-16 = 20+1, 37-19 = 19-1, 37-26 = 10+1) - the 1 is not printed in the stem and none of these is a route to 37 from the stem; the real gaps are the other branch (18) and the k values between the boundaries (11 = 26 - 15 removed). D4 'least' read came from the earlier wording 'at least 4'; the band is now written 4 ≤ x ≤ 19 and the ask is a count. IDEA - the part's setup is the probed idea with the concrete numbers. Near-dup best j = 0.450 vs 757d0b2f, below the 0.60 flag; that item is the one-sided x > y count named in idea_probe."
+ }
+}

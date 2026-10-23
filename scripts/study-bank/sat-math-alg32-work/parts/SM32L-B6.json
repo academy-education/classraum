@@ -1,0 +1,44 @@
+{
+ "id": "SM32L-B6", "domain": "Algebra", "difficulty": "hard",
+ "subskill": "No-solution value places the extreme solutions",
+ "prompt": "kx + 93 = 7x + 15k\nIn the equation above, k is a constant. Ana solves the equation for each integer k from 5 to 19, inclusive, for which it has a solution. What is the difference between the greatest and the least of the solutions she finds?",
+ "choices": ["7", "13", "24", "30"],
+ "correct_answer": "24",
+ "explanation": "Collect the x terms: kx - 7x = 15k - 93, so (k - 7)x = 15k - 93. When k = 7 this reads 0 = 12, so there is no solution and Ana finds nothing for k = 7. For every other k, x = (15k - 93)/(k - 7) = 15 + 12/(k - 7). For k greater than 7 the fraction is positive and largest when k - 7 is smallest, so the greatest solution is at k = 8: x = 27. For k less than 7 the fraction is negative and most negative when 7 - k is smallest, so the least solution is at k = 6: x = 3. The difference is 27 - 3 = 24. Choice 7 comes from assuming the solution changes steadily with k, so the extremes are at the ends of the range: x = 9 at k = 5 and x = 16 at k = 19; but k = 7, where there is no solution, lies inside the range and the solution runs off to large and small values beside it. Choice 13 finds the least solution at k = 6 but still takes the greatest at the end of the range, k = 19. Choice 30 adds the greatest and least solutions instead of subtracting.",
+ "solve": "const xs = []; for (let k = 5; k <= 19; k++) { if (k === 7) continue; xs.push((15 * k - 93) / (k - 7)); } return String(Math.max(...xs) - Math.min(...xs));",
+ "distractor_solve": {
+  "7": "const x = k => (15 * k - 93) / (k - 7); return String(Math.abs(x(19) - x(5)));",
+  "13": "const xs = []; for (let k = 5; k <= 19; k++) { if (k === 7) continue; xs.push((15 * k - 93) / (k - 7)); } const x19 = (15 * 19 - 93) / (19 - 7); return String(x19 - Math.min(...xs));",
+  "30": "const xs = []; for (let k = 5; k <= 19; k++) { if (k === 7) continue; xs.push((15 * k - 93) / (k - 7)); } return String(Math.max(...xs) + Math.min(...xs));"
+ },
+ "mechanism": ["collect x terms to (k - 7)x = 15k - 93", "k = 7 gives no solution", "solution 15 + 12/(k - 7) on two branches", "extremes beside the no-solution value, then subtract"],
+ "mech": "degenerate-parameter",
+ "ask": "difference",
+ "quantity_asked": "the greatest minus the least of the solutions for the integers k from 5 to 19 that give a solution",
+ "setup": {
+  "i": "k is in the x-coefficient on one side and in the constant on the other side of a one-variable equation, so the solution is 15 + 12/(k - 7) and k = 7 gives no solution",
+  "ii": "over the integers k in a stated range other than 7, the solution is greatest and least at the integers on either side of 7, not at the ends of the range",
+  "iii": "difference between the greatest and least solutions"
+ },
+ "bypass_option": "7",
+ "off_by_one_options": [],
+ "plugback": {
+  "substitutable": false,
+  "why": "The key 24 is at natural try 3. No option is a k or a solution, so none can be checked by substitution; testing 7 or 13 first needs both extremes found, which is the whole solution.",
+  "aggregate_over": "the solutions for the integers k from 5 to 19 other than 7: the greatest (at k = 8) minus the least (at k = 6)"
+ },
+ "distractor_meta": {
+  "7": {"error_kind": "wrong_operation", "error_sense": "omits", "direction": "below", "stem_predicts_direction": false, "why": "Using the end-of-range solutions as the extremes skips the no-solution value k = 7 inside the range; whether the end values are closer together or farther apart than the true extremes depends on where the range ends, which the stem does not signal."},
+  "13": {"error_kind": "partial_answer", "error_sense": "swaps", "direction": "below", "stem_predicts_direction": false, "why": "One true extreme with one end value: the stem does not reveal which extreme a student keeps or which way the swap moves the difference."},
+  "30": {"error_kind": "wrong_operation", "error_sense": "swaps", "direction": "above", "stem_predicts_direction": false, "why": "Adding instead of subtracting moves the result up or down depending on the sign of the least solution, which the stem does not show."}
+ },
+ "structure_check": "Not required for an r3 key; errors fall on both sides (7 and 13 below, 30 above).",
+ "cheap_bound_check": "Not required for an r3 key; the stem gives no bound on a difference of solutions before the formula is found.",
+ "intermediate_check": "3: no - it is x(19) - x(5), end values; 24 does not follow from 3 by one printed relation. 13: no - it is an end value minus the least; reaching 24 needs the greatest 27, which is not printed. 30: no - it is the sum 27 + 3; turning it into 24 needs the least solution 3, which is not printed (3 is not in the stem).",
+ "shape_check": "Properties handed over: a difference of a greatest and a least value, so it is at least 0; nothing forces integer or parity. All four options (7, 13, 24, 30) survive together.",
+ "interior_parity_check": "The two middle values are 13 and 24: both two-digit whole numbers; the key 24 is not cleaner than 13.",
+ "arith_class_check": "The key 24 is not alone in a class the stem implies: 24 and 30 are even, 7 and 13 odd; 24 is not a printed number (93, 7, 15, 5, 19).",
+ "idea_probe": {"at": "2026-10-23T03:26:50.485Z", "nearest": "No live item over this chain. Closest prior: SM26L-B5 (dropped v26, not live: k(x - 3) = 4x + 6, greatest solution over integers 0..10). Mine asks greatest MINUS least, so both branches' extremes beside the no-solution value are needed and the end-of-range values are the trap. SM24L-B7 (prior) is a difference of k values, not of solutions."},
+ "dup_search": {"queries": [], "hits_read": 3, "nearest": "SM26L-B5 (prior, dropped) - see idea_probe"},
+ "self_audit": {"risk": "high", "note": "Covering the work, all four options remain legal from the stem alone (a difference of real numbers, at least 0). (read) lines: DPAIR/ratio reads were cleared by moving the range start from 1 to 5; any remaining DPAIR is a small-number coincidence with no route from the stem to 24. A test-wise student who solves at the two ends of the range, k = 5 and k = 19, and subtracts gets 7 - the bypass, exactly what skipping the no-solution value k = 7 inside the range gives. Plug-back: key at try 3; no option is a k or a solution, so substitution checks nothing. Risk is high for two reasons the coordinator should judge: SM26L-B5 (a dropped v26 item) has a related greatest-solution setup, and SM32L-B5 uses the same 'extremes beside the degenerate k' idea on a system (sum of y-extremes) - a cousin pair, though not a band condition."}
+}

@@ -1,0 +1,84 @@
+{
+ "id": "SM32L-B7",
+ "domain": "Algebra",
+ "difficulty": "hard",
+ "subskill": "Fixed root hides an every-x value of k",
+ "prompt": "k(x - 4) + 12x = 5x + c\nIn the equation above, k and c are constants. The number 4 is a solution of the equation no matter what value k has. What is the sum of c and every value of k for which the equation does NOT have exactly one solution?",
+ "choices": [
+  "-35",
+  "21",
+  "28",
+  "61"
+ ],
+ "correct_answer": "21",
+ "explanation": "Since x = 4 is a solution for every k, substitute x = 4: k(0) + 48 = 20 + c, so c = 28. With c = 28 the equation is kx - 4k + 12x = 5x + 28, that is, (k + 7)x = 4k + 28 = 4(k + 7). For every k other than -7 this has exactly one solution, x = 4. But when k = -7 it reads 0 = 0, which is true for every x, so the equation has infinitely many solutions and does not have exactly one solution. So the only such k is -7, and the sum is 28 + (-7) = 21. Choice 28 comes from reasoning that because 4 is always a solution the equation always has exactly one solution, and so adding no value of k; but at k = -7 every number is a solution. Choice 61 comes from moving the 20 to the wrong side when solving 48 = 20 + c, which gives c = 68, and then adding -7. Choice -35 comes from substituting x = -4 instead of 4, which gives c = -28, and then adding -7.",
+ "solve": "const c = 12 * 4 - 5 * 4; const ks = []; for (let k = -100; k <= 100; k++) { if (k + 12 - 5 === 0) ks.push(k); } return String(c + ks.reduce((s, v) => s + v, 0));",
+ "distractor_solve": {
+  "28": "const c = 12 * 4 - 5 * 4; return String(c);",
+  "-35": "const c = 12 * (-4) - 5 * (-4); const k0 = -(12 - 5); return String(c + k0);",
+  "61": "const c = 12 * 4 + 5 * 4; const k0 = -(12 - 5); return String(c + k0);"
+ },
+ "mechanism": [
+  "substitute the fixed root x = 4 to find c",
+  "collect to (k + 7)x = 4(k + 7)",
+  "k = -7 makes the equation true for every x",
+  "add c and the exceptional k"
+ ],
+ "mech": "degenerate-parameter",
+ "ask": "sum",
+ "quantity_asked": "c plus the sum of all values of k for which the equation does not have exactly one solution",
+ "setup": {
+  "i": "k multiplies (x - 4) in a one-variable equation that also has an unknown constant c, so the condition that x = 4 solves it for every k fixes c and leaves (k + 7)x = 4(k + 7)",
+  "ii": "the equation fails to have exactly one solution only where its x-coefficient vanishes, k = -7, and there it is true for every x rather than for none",
+  "iii": "sum of c and the value of k without exactly one solution"
+ },
+ "bypass_option": "28",
+ "off_by_one_options": [],
+ "plugback": {
+  "substitutable": false,
+  "why": "Trying -35 and then 21 in ascending order, a student cannot test either against the stem: each is a sum of two derived numbers (c and the exceptional k), not a value of k, c or x, and no printed relation accepts it. Confirming 21 at try 2 needs both c and the identity case found.",
+  "aggregate_over": "the constant c (found from the fixed root x = 4) plus the value of k for which the equation has infinitely many solutions instead of exactly one"
+ },
+ "distractor_meta": {
+  "28": {
+   "error_kind": "omission",
+   "error_sense": "omits",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Concluding that a fixed root means exactly one solution for every k leaves out the every-x case k = -7; the sign of that omitted k is not visible until it is found, so the stem does not say whether leaving it out raises or lowers the sum."
+  },
+  "-35": {
+   "error_kind": "sign_slip",
+   "error_sense": "swaps",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Substituting -4 for 4 flips the sign of c; the stem does not reveal which way that moves the total."
+  },
+  "61": {
+   "error_kind": "sign_slip",
+   "error_sense": "swaps",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Moving 20 across the equals sign with the wrong sign changes c; the stem does not reveal which way a student's slip goes, so it does not sign this error."
+  }
+ },
+ "structure_check": "Not required for an r2 key; errors fall on both sides (-35 below, 28 and 61 above).",
+ "cheap_bound_check": "Not required for an r2 key; the stem gives no bound on c or on k.",
+ "intermediate_check": "28: no single PRINTED relation - 28 is c itself, and 21 follows from it only by adding the exceptional k = -7, which is not printed (the stem prints 4, 12, 5). 61: no - it is 68 + (-7) from a sign slip in finding c; no printed relation turns 61 into 21. -35: no - it is -28 + (-7) from a sign slip; no printed relation turns -35 into 21.",
+ "shape_check": "Properties handed over: c and k are any real numbers, so the sum has no forced sign, parity or integrality. All four options (-35, 21, 28, 61) survive together.",
+ "interior_parity_check": "The two middle values are 21 and 28: both two-digit whole numbers of the same kind; the key 21 is not the cleaner one.",
+ "arith_class_check": "The key 21 is not alone in a class the stem implies: -35, 21 and 61 are odd, 28 even; 21 is not a printed number.",
+ "idea_probe": {
+  "at": "2026-10-23T03:27:48.257Z",
+  "nearest": "5d99d0e3-163 (live: k(2x - 3) + 7 = 6x + c, at least one solution for every k, find c). There c is fixed by making the every-x case consistent; here c is fixed by a stated root (x = 3 always solves it), and the decision point is that the vanishing coefficient then gives EVERY x, not no solution, so k = -5 must be added. The ask is a sum of two derived values."
+ },
+ "dup_search": {
+  "queries": [],
+  "hits_read": 5,
+  "nearest": "5d99d0e3-163 - see idea_probe"
+ },
+ "self_audit": {
+  "risk": "medium",
+  "note": "Covering the work, all four options remain legal from the stem alone (c and k unrestricted). A test-wise student finds c = 28 from x = 4 and reasons that a fixed root means exactly one solution always, answering 28 - the bypass, exactly what skipping the every-x case k = -7 gives. Could a student confirm an option in one routine step at try 1-2? No: -35 and 21 are sums of two derived values, not quantities the stem's equation accepts. Is 28 what skipping THIS item's decision point gives? Yes. (read) lines: PROBE - key at try 2, a sum of c and the exceptional k (aggregate_over). Earlier ratio and KEY-CLEANER flags on a first version (root 3, key 10) were removed by changing the root to 4 and the coefficients to 12 and 5. Any DPAIR read is a small-number coincidence with no route from the stem to 21. A first option set had -35 + 36 = 1 (complement flag); the dropped-term distractor was replaced by the sign slip in finding c (61). Near-dup best j = 0.583 vs 5d99d0e3, below the 0.60 flag; the difference is set out in idea_probe."
+ }
+}

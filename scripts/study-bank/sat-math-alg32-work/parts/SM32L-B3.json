@@ -1,0 +1,84 @@
+{
+ "id": "SM32L-B3",
+ "domain": "Algebra",
+ "difficulty": "hard",
+ "subskill": "Parallel value inside a system's outside-band count",
+ "prompt": "kx + (k + 10)y = -40\nx + 3y = 4\nThe two equations above share the constant k. Looking only at integers k from -19 to 47, inclusive, for how many such k is there an ordered pair (x, y) that satisfies both equations and has y < -1 or y > 4?",
+ "choices": [
+  "14",
+  "23",
+  "38",
+  "41"
+ ],
+ "correct_answer": "23",
+ "explanation": "From the second equation, x = 4 - 3y. Substituting into the first: k(4 - 3y) + (k + 10)y = -40, so 4k + (10 - 2k)y = -40, which gives (2k - 10)y = 4k + 40. When k = 5 this reads 0 = 60: the two lines are parallel (5x + 15y = -40 and x + 3y = 4), there is no solution, and k = 5 never counts. For every other k, y = (4k + 40)/(2k - 10) = 2 + 30/(k - 5). If k > 5, then y is greater than 2, so y < -1 is impossible, and y > 4 exactly when 30/(k - 5) > 2, that is, 0 < k - 5 < 15: the integers 6 through 19, which is 14 values. If k < 5, then y is less than 2, so y > 4 is impossible, and y < -1 exactly when 30/(5 - k) > 3, that is, 0 < 5 - k < 10: the integers -4 through 4, which is 9 values. The count is 14 + 9 = 23. Choice 41 comes from finding that y = -1 when k = -5 and y = 4 when k = 20 and then assuming y moves steadily between those values, so that only k below -5 or above 20 qualify; but k = 5, where the lines are parallel, lies between -5 and 20, and y jumps there from very negative to very positive, so it is the k values near 5 that work. Choice 38 comes from multiplying the inequalities by k - 5 without reversing them when k - 5 is negative, which gives k < -5 or k < 20. Choice 14 counts only the k > 5 branch.",
+ "solve": "let n = 0; for (let k = -19; k <= 47; k++) { if (k === 5) continue; const y = (4 * k + 40) / (2 * k - 10); if (y < -1 || y > 4) n++; } return String(n);",
+ "distractor_solve": {
+  "41": "const kAtMinus1 = 5 - 30 / 3; const kAt4 = 5 + 30 / 2; let n = 0; for (let k = -19; k <= 47; k++) { if (k < kAtMinus1 || k > kAt4) n++; } return String(n);",
+  "38": "let n = 0; for (let k = -19; k <= 47; k++) { if (k === 5) continue; const d = k - 5; if (2 * d + 30 < -1 * d || 2 * d + 30 > 4 * d) n++; } return String(n);",
+  "14": "let n = 0; for (let k = 6; k <= 47; k++) { const y = (4 * k + 40) / (2 * k - 10); if (y > 4) n++; } return String(n);"
+ },
+ "mechanism": [
+  "substitute x = 4 - 3y",
+  "(2k - 10)y = 4k + 40, parallel lines at k = 5",
+  "y = 2 + 30/(k - 5) on two branches",
+  "two-piece outside-band count"
+ ],
+ "mech": "degenerate-parameter",
+ "ask": "count",
+ "quantity_asked": "the number of integers k from -19 to 47 for which the system has a solution whose y-coordinate is less than -1 or greater than 4",
+ "setup": {
+  "i": "k is in both the x-coefficient and the y-coefficient (k and k + 10) of one equation of a 2x2 system whose other equation is fixed, so y = 2 + 30/(k - 5) and k = 5 makes the lines parallel",
+  "ii": "the y-coordinate of the solution is below one number or above another, a two-piece condition met only by k on either side close to the parallel value",
+  "iii": "number of integer values of k in a stated range"
+ },
+ "bypass_option": "41",
+ "off_by_one_options": [],
+ "plugback": {
+  "substitutable": false,
+  "why": "Trying 14 and then 23 in ascending order, a student cannot test either by substitution: each is a count of k values, not a k or a coordinate, and no printed relation accepts or rejects it. Confirming 23 at try 2 needs the full two-branch analysis around k = 5.",
+  "aggregate_over": "the integers k from -19 to 47, other than the parallel value k = 5, whose solution has y-coordinate below -1 or above 4"
+ },
+ "distractor_meta": {
+  "41": {
+   "error_kind": "wrong_operation",
+   "error_sense": "omits",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Treating y as moving steadily from -1 at k = -5 to 4 at k = 20 skips the parallel value k = 5 and counts the far k values instead of the near ones; whether that overshoots or undershoots depends on how wide the stated range is, which the stem does not signal."
+  },
+  "38": {
+   "error_kind": "sign_slip",
+   "error_sense": "swaps",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Not reversing when multiplying by a negative k - 5 turns each piece into a ray in k; the stem does not reveal whether those rays are longer or shorter than the true set."
+  },
+  "14": {
+   "error_kind": "omission",
+   "error_sense": "omits",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Finding only the k > 5 branch (y above 4), as a student who assumes k - 5 is positive does, drops the other piece; the stem does not say which piece is the larger."
+  }
+ },
+ "structure_check": "Not required for an r2 key; for the record, the OR condition over a fixed range has no extremum or universal bound, and errors fall on both sides (14 below, 38 and 41 above).",
+ "cheap_bound_check": "Not required for an r2 key; the cheapest stem bound (at most 66 = 67 integers minus k = 5) strikes no option.",
+ "intermediate_check": "14: no - it is one branch; 23 needs the other branch's 9, which is not printed. 38: no - it counts k < 20 other than 5; no printed relation turns 38 into 23. 41: no - it counts the far k values, a different set; 23 does not follow from it by one printed relation.",
+ "shape_check": "Properties handed over: the answer is a whole number, at least 0, at most 66. All four options (14, 23, 38, 41) survive every one together; parity is mixed (14 and 38 even, 23 and 41 odd) and nothing in the stem forces parity.",
+ "interior_parity_check": "The two middle values are 23 and 38: both two-digit whole numbers; the key 23 is not cleaner than 38.",
+ "arith_class_check": "The key 23 is not alone in a class the stem implies: 23 and 41 are odd, 14 and 38 even; 23 is not a printed number or a multiple of a printed coefficient.",
+ "idea_probe": {
+  "at": "2026-10-23T03:09:59.377Z",
+  "nearest": "757d0b2f-1a1 (live v26: kx + y = 7, 2x - y = 5, count k with x > y). That is a one-sided condition on one coordinate reduced to x < 5. Mine puts k in BOTH coefficients of one equation (k and k + 10), and the condition is a two-piece band on y (y < -1 or y > 4) whose qualifying k sit on both sides of the parallel value, so the monotone-endpoint count is the trap. 90306af7 (live) also has k in two coefficients but asks only the no-solution value."
+ },
+ "dup_search": {
+  "queries": [],
+  "hits_read": 38,
+  "nearest": "757d0b2f-1a1 - see idea_probe"
+ },
+ "self_audit": {
+  "risk": "medium",
+  "note": "Covering the work, all four options remain legal from the stem alone (whole numbers at most 66). A test-wise student solves y = -1 and y = 4 for k (k = -5 and k = 20) and counts outside that interval: 41, the bypass, which is exactly what ignoring the parallel value k = 5 between them gives. Plug-back at try 1-2: 14 and 23 are counts of k values; neither can be confirmed against the stem in one routine step, only by the whole case analysis. Desmos graphing the system for one k gives one solution, not the count. Is 41 really what skipping THIS item's decision point gives? Yes: it treats y as monotone in k across k = 5. (read) lines: PROBE - the key sits at try 2 and the ask is a count of k values (aggregate_over above); DPAIR (23-14 = 10-1, 41-23 = 19-1) - the 1 is not printed in the stem and neither is a route to 23: the real gaps are the other branch (9) and the far rays. Wording was changed away from the live 757d0b2f boilerplate after a prompt-Jaccard flag. IDEA - the part's setup is the probed idea with the constant scaled (12 became 30) so the counts are two-digit."
+ }
+}

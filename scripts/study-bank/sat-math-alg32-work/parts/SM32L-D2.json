@@ -1,0 +1,82 @@
+{
+  "id": "SM32L-D2",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Greatest whole-number amount under a budget and a ratio",
+  "prompt": "A community garden is buying fruit trees and shrubs. Each fruit tree costs $63 and each shrub costs $14, and the garden can spend at most $882. The planting plan requires the number of shrubs to be at least 1.2 times the number of fruit trees. Only whole trees and shrubs are bought, and the garden wants to buy the greatest possible number of fruit trees. How many different combinations of fruit trees and shrubs include that greatest number of fruit trees?",
+  "choices": [
+    "1",
+    "7",
+    "10",
+    "18"
+  ],
+  "correct_answer": "7",
+  "explanation": "Let t be the number of fruit trees and s the number of shrubs. The conditions are 63t + 14s ≤ 882, which simplifies to 9t + 2s ≤ 126, and s ≥ 1.2t. The boundary lines meet where s = 1.2t and 9t + 2.4t = 126, so t ≈ 11.05 and s ≈ 13.26. That corner suggests 11 trees, but 11 trees require s ≥ 1.2(11) = 13.2, so at least 14 shrubs, and 63(11) + 14(14) = 889, which is over $882. With 13 shrubs the ratio fails (13 < 13.2). So 11 trees is impossible, and the greatest number of fruit trees is 10. With t = 10, s must satisfy s ≥ 12 and 2s ≤ 126 - 90 = 36, so 12 ≤ s ≤ 18: that is 18 - 12 + 1 = 7 combinations. Choice 1 rounds the corner to 11 trees and 13 shrubs and treats it as the only best purchase, but 13 shrubs break the ratio. Choice 10 is the greatest number of fruit trees, not the number of combinations. Choice 18 is the greatest number of shrubs that can go with 10 trees, not the number of combinations.",
+  "solve": "let best=-1, n=0; for(let t=0;t<=20;t++) for(let s=0;s<=80;s++) if(63*t+14*s<=882 && s>=1.2*t){ if(t>best){best=t;n=1;} else if(t===best) n++; } return n;",
+  "distractor_solve": {
+    "1": "const t=882/(63+14*1.2), s=1.2*t; const rt=Math.round(t), rs=Math.round(s); return (63*rt+14*rs<=882) ? 1 : 0;",
+    "10": "let best=-1; for(let t=0;t<=20;t++) for(let s=0;s<=80;s++) if(63*t+14*s<=882 && s>=1.2*t && t>best) best=t; return best;",
+    "18": "let best=-1; for(let t=0;t<=20;t++) for(let s=0;s<=80;s++) if(63*t+14*s<=882 && s>=1.2*t && t>best) best=t; let m=-1; for(let s=0;s<=80;s++) if(63*best+14*s<=882 && s>=1.2*best && s>m) m=s; return m;"
+  },
+  "mechanism": [
+    "budget line meets a ratio line at a non-integer corner",
+    "the corner's row has no whole-number partner",
+    "drop to the next row",
+    "count the whole numbers in that row"
+  ],
+  "mech": "integer-optimum",
+  "ask": "count",
+  "quantity_asked": "number of whole-number combinations (trees, shrubs) that contain the greatest possible number of fruit trees",
+  "setup": {
+    "i": "budget plus a ratio requirement (at least 1.2 of the cheap item per expensive item)",
+    "ii": "the greatest whole number of the expensive item is one below the real corner, because the corner's row holds no whole-number partner",
+    "iii": "number of plans that contain the greatest possible number of the expensive item"
+  },
+  "bypass_option": "1",
+  "off_by_one_options": [],
+  "plugback": {
+    "substitutable": false,
+    "why": "Trying 1 first, then 7: neither is a quantity of trees or shrubs, so neither can be substituted into the budget or the ratio. Checking 7 means finding the greatest number of trees (which needs the failed row at 11) and then counting the shrub values at 10 - the whole solution.",
+    "aggregate_over": "the set of whole-number shrub counts s that can go with the greatest feasible number of fruit trees (t = 10): 12 <= s <= 18, a count over a set of combinations"
+  },
+  "distractor_meta": {
+    "1": {
+      "error_kind": "other",
+      "error_sense": "adds",
+      "direction": "below",
+      "stem_predicts_direction": false,
+      "why": "Rounding the corner keeps an infeasible purchase (11 trees, 13 shrubs) as the single best one; the stem does not reveal whether the true best row holds one combination or many."
+    },
+    "10": {
+      "error_kind": "wrong_variable",
+      "error_sense": "swaps",
+      "direction": "above",
+      "stem_predicts_direction": false,
+      "why": "Answering the greatest number of trees instead of the number of combinations; nothing in the stem says whether that number is larger or smaller than the count of combinations."
+    },
+    "18": {
+      "error_kind": "partial_answer",
+      "error_sense": "omits",
+      "direction": "above",
+      "stem_predicts_direction": false,
+      "why": "Stopping at the upper end of the shrub range instead of counting the range; the stem gives no way to compare that endpoint with the count without finding both ends."
+    }
+  },
+  "intermediate_check": "1: no - it is the count from an infeasible rounded corner; 7 does not follow from it through any printed relation. 10: no - from t = 10 the count still needs both the ratio (s >= 12) and the budget (s <= 18), two relations plus an inclusive count. 18: no - 18 is itself found only after t = 10 is known, and the key still needs the ratio's lower end and an inclusive count; it is not one printed relation away from 7.",
+  "shape_check": "The stem hands over: the answer is a positive whole number (a count). No parity, cap or monotone direction is implied for the count of combinations. All four options survive integer and positive; a cap would need the budget work (at most 64 shrub values at any row), which keeps all four.",
+  "interior_parity_check": "The middle values are 7 and 10: both whole numbers of one and two digits; the key 7 is not the cleaner one (10 is the rounder number).",
+  "arith_class_check": "The stem implies no parity or divisibility for a count. Key 7 is odd, as is 1; 10 and 18 are even. 7 is not alone in any class the stem implies.",
+  "idea_probe": {
+    "at": "2026-10-23T03:00:34.701Z",
+    "nearest": "40fba632-b25 (live v26 D1) counts combinations tied for the most people fed, an objective parallel to the budget; here the objective is one coordinate (the number of trees), there is no parallel edge, and the decision is that the real corner's row has no whole-number shrub count. 5d8dd5b1-d31 (live) asks the greatest number of large bouquets under a stem total and a ratio; it asks the single maximum, not a count of plans, and its corner row is attainable."
+  },
+  "dup_search": {
+    "queries": [],
+    "hits_read": 2,
+    "nearest": "5d8dd5b1-d31 and bccc997e-bcc ask the greatest single quantity under a ratio; this item asks how many combinations attain it after the corner row fails"
+  },
+  "self_audit": {
+    "risk": "medium",
+    "note": "Covering the work, how many options remain legal from the stem alone? All four: each is a positive whole number, and nothing in the stem bounds a count of combinations without solving. Could a student confirm an option against the stem in one routine step? No: 1 and 7 are counts of combinations, not quantities of trees or shrubs, so substitution is impossible; confirming 7 needs the failed 11-tree row and the shrub range at 10 trees. Is the bypass option really what skipping this item's decision point gives? Yes: the decision point is that the real corner (11.05 trees) does not give a whole-number best purchase at 11 trees; a student who rounds the corner to (11, 13) and stops reports a single best purchase, 1. A test-wise student who guesses that 'greatest' means a unique plan picks 1, which is wrong; one who picks the greatest option gets a shrub count. (read) PROBE: key at natural try 2; checking 7 needs the whole solution. No (read) pair or sum lines remain after the prices were rescaled to $63 and $14 (the first draft's $12 shrub price coincided with the shrub floor 12, giving 18 - 12 + 1 = 7 a printed-number path; removed)."
+  }
+}

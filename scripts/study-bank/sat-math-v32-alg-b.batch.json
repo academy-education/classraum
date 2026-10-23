@@ -1,0 +1,734 @@
+[
+ {
+  "id": "SM32L-B1",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Parallel-line parameter splits an outside-band count",
+  "prompt": "In the xy-plane, line q passes through the points (4, 20) and (6, 26). Line p has equation y = kx - 4, where k is a constant. For how many integers k with -19 ≤ k ≤ 24 do lines p and q intersect at a point whose x-coordinate is less than -1 or greater than 3?",
+  "choices": [
+   "14",
+   "16",
+   "25",
+   "27"
+  ],
+  "correct_answer": "14",
+  "explanation": "Line q has slope (26 - 20)/(6 - 4) = 3 and passes through (4, 20), so its equation is y = 3x + 8. The lines meet where kx - 4 = 3x + 8, that is, (k - 3)x = 12. When k = 3 the lines are parallel and never meet, so k = 3 never counts. For every other k the intersection has x-coordinate x = 12/(k - 3). If k > 3, then x is positive, so it cannot be less than -1; it is greater than 3 exactly when 12/(k - 3) > 3, that is, when 0 < k - 3 < 4, giving k = 4, 5, 6. If k < 3, then x is negative, so it cannot be greater than 3; it is less than -1 exactly when 12/(3 - k) > 1, that is, when 0 < 3 - k < 12, giving k = -8 through 2, which is 11 values. The count is 3 + 11 = 14. Choice 27 comes from noticing that x = -1 when k = -9 and x = 3 when k = 7 and then assuming the x-coordinate moves steadily between those values, so that only k outside -9 to 7 qualify; but k = 3, where the lines are parallel, lies between -9 and 7, and the x-coordinate jumps there from very negative to very positive, so it is the k values near 3, not the far ones, that work. Choice 25 comes from multiplying the inequalities by k - 3 without reversing them when k - 3 is negative, which gives k < -9 or k < 7. Choice 16 also counts k = -9 and k = 7, where the x-coordinate equals -1 and 3 exactly and so is not less than -1 or greater than 3.",
+  "solve": "let n = 0; for (let k = -19; k <= 24; k++) { if (k === 3) continue; const x = 12 / (k - 3); if (x < -1 || x > 3) n++; } return String(n);",
+  "distractor_solve": {
+   "16": "let n = 0; for (let k = -19; k <= 24; k++) { if (k === 3) continue; const x = 12 / (k - 3); if (x <= -1 || x >= 3) n++; } return String(n);",
+   "25": "let n = 0; for (let k = -19; k <= 24; k++) { if (k === 3) continue; if (12 < -1 * (k - 3) || 12 > 3 * (k - 3)) n++; } return String(n);",
+   "27": "const kLow = 3 - 12 / 1; const kHigh = 3 + 12 / 3; let n = 0; for (let k = -19; k <= 24; k++) { if (k < kLow || k > kHigh) n++; } return String(n);"
+  },
+  "mechanism": [
+   "line through two points to slope-intercept form",
+   "intersection x-coordinate 12/(k - 3)",
+   "parallel value k = 3 splits the k-line into two branches",
+   "two-piece outside-band count"
+  ],
+  "mech": "degenerate-parameter",
+  "ask": "count",
+  "quantity_asked": "the number of integers k from -19 to 24 for which the two lines meet at a point with x-coordinate less than -1 or greater than 3",
+  "setup": {
+   "i": "k is the slope of a line with fixed intercept, the other line is given by two points, so the intersection x-coordinate is 12/(k - 3) and k = 3 makes the lines parallel",
+   "ii": "the intersection x-coordinate lies outside a closed band (below its lower end or above its upper end), which only k on either side close to the parallel value achieve",
+   "iii": "number of integer values of k in a stated range"
+  },
+  "bypass_option": "27",
+  "off_by_one_options": [
+   "16"
+  ],
+  "plugback": {
+   "substitutable": false,
+   "why": "Trying 14 first, a student cannot test it by substitution: it is a count of k values, not a k or an x, and no printed relation accepts or rejects it. Confirming it needs the whole case analysis on both sides of k = 3.",
+   "aggregate_over": "the integers k from -19 to 24, other than the parallel value k = 3, whose intersection point has x-coordinate below -1 or above 3"
+  },
+  "distractor_meta": {
+   "16": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Including the two boundary k values, where the x-coordinate equals -4 or 3 exactly, adds to the count; the strict wording does not reveal how many boundary values are integers."
+   },
+   "25": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Not reversing the inequality when multiplying by a negative k - 3 turns each condition into a one-sided ray in k; nothing in the stem says whether the rays overshoot or undershoot."
+   },
+   "27": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Treating the intersection x-coordinate as moving steadily from -1 at k = -9 to 3 at k = 7 skips the parallel value k = 3 and counts the far k values instead of the near ones. Whether that count is larger or smaller than the true one depends on how wide the stated range is, which the stem does not signal."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "let n = 0; for (let k = 4; k <= 14; k++) { const x = 12 / (k - 3); if (x > 3) n++; } return String(n);",
+   "direction": "below",
+   "why": "A student who assumes k - 3 is positive finds only the k > 3 branch (x greater than 3, k = 4, 5, 6) and misses the k < 3 branch, landing at 3, below the key and not an option."
+  },
+  "far_distractor": {
+   "option": "25",
+   "natural_side": "below",
+   "why": "Dropping the reversal for negative k - 3 usually loses the solutions on the k < 3 branch and so undercounts; here the condition is two-pieced (less than -1 OR greater than 3), so the unreversed pieces become long rays in k and the slip overshoots the key instead."
+  },
+  "structure_check": "The condition is an OR of two pieces over a fixed range, so there is no universal condition, strictest bound or extremum to sign the errors: dropping a branch lowers the count (counter_error 3), while the monotone assumption and the unreversed inequality raise it here only because the range is long on both sides of -9 to 7. A student cannot tell from the stem which way every slip goes.",
+  "cheap_bound_check": "The cheapest bound from the stem is that the count is at most 43 (44 integers in the range, minus the parallel value k = 3); all four options lie on the key's side of it.",
+  "intermediate_check": "27: no - it is a count over a different set (the far k values), not a value from which 14 follows by one printed relation. 25: no - it is the count of k < 7 other than 3, which does not give 14 through any printed relation. 16: no - it is 14 plus the two boundary k values, which are not printed.",
+  "shape_check": "The stem hands over: the answer is a whole number, at least 0, at most 43. All four options (14, 16, 25, 27) survive every one of these properties together; no parity or sign property is forced.",
+  "interior_parity_check": "The two middle values are 16 and 25: both two-digit whole numbers. The key 14 is not cleaner than them.",
+  "arith_class_check": "The key 14 is not alone in a class the stem implies; no option equals a printed number in a way that singles out the key.",
+  "idea_probe": {
+   "at": "2026-10-23T03:03:52.205Z",
+   "nearest": "36298954-4d3 (live v26: f(x) = kx - 1, g(x) = 7x + k, sum of integer k with no common point with x > 0). Mine is a count over a stated range, line q is given by two points, and the condition is a two-piece band (x < -4 or x > 3) whose qualifying k sit on BOTH sides of the parallel value, so the trap is the monotone-endpoint assumption, not a one-sided sign condition."
+  },
+  "dup_search": {
+   "queries": [],
+   "hits_read": 7,
+   "nearest": "36298954-4d3 - see idea_probe"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Stage-0 return: renumbered so the key (14) is unique in the batch (was 5, shared with D1); same slot, ask, rank, mechanism, bypass side and off-by-one. Covering the work, all four options remain legal from the stem alone (each is a whole number at most 43). A test-wise student who solves x = -1 and x = 3 for k (k = -9 and k = 7) and counts outside that interval lands on 27 - the bypass, exactly what skipping the parallel value k = 3 gives. Could a student tell from the stem which way the errors go? No. One bound does not strike all three. Could a student confirm an option in one routine step? No: every option is a count of k values. (read) lines: R5 - off-by-one option 16 is declared and is author B's one off-by-one item. Any PAIR/DPAIR read is a small-number coincidence with no route from the stem to 14. IDEA - same probed placement and band-type condition with new numbers."
+  }
+ },
+ {
+  "id": "SM32L-B2",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "No-solution parameter splits an inside-band count",
+  "prompt": "kx + 30 = 12x + 10k\nIn the equation above, k is a constant. Of the integers k from -20 to 40, inclusive, how many make the equation have a solution x with 4 ≤ x ≤ 19?",
+  "choices": [
+   "16",
+   "19",
+   "26",
+   "37"
+  ],
+  "correct_answer": "37",
+  "explanation": "Collect the x terms: kx - 12x = 10k - 30, so (k - 12)x = 10k - 30. When k = 12 this reads 0 = 90, so the equation has no solution and k = 12 never counts. For every other k, x = (10k - 30)/(k - 12) = 10 + 90/(k - 12). If k > 12, then x is greater than 10, so x ≥ 4 automatically, and x ≤ 19 exactly when 90/(k - 12) ≤ 9, that is, k - 12 ≥ 10, so k ≥ 22: the integers 22 through 40, which is 19 values. If k < 12, then x is less than 10, so x ≤ 19 automatically, and x ≥ 4 exactly when 90/(12 - k) ≤ 6, that is, 12 - k ≥ 15, so k ≤ -3: the integers -20 through -3, which is 18 values. The count is 19 + 18 = 37. Choice 26 comes from finding that x = 4 when k = -3 and x = 19 when k = 22 and then counting the integers from -3 to 22, as if x moved steadily from 4 to 19 as k goes from -3 to 22; but k = 12, where there is no solution, lies in between, and every k strictly between -3 and 22 actually gives an x outside the band. Choice 19 comes from multiplying 4 ≤ (10k - 30)/(k - 12) ≤ 19 through by k - 12 without reversing the inequalities when k - 12 is negative, which keeps only k ≥ 22. Choice 16 counts the integers x from 4 to 19 instead of the values of k.",
+  "solve": "let n = 0; for (let k = -20; k <= 40; k++) { if (k === 12) continue; const x = (10 * k - 30) / (k - 12); if (x >= 4 && x <= 19) n++; } return String(n);",
+  "distractor_solve": {
+   "16": "let n = 0; for (let x = 4; x <= 19; x++) n++; return String(n);",
+   "19": "let n = 0; for (let k = -20; k <= 40; k++) { if (k === 12) continue; if (4 * (k - 12) <= 10 * k - 30 && 10 * k - 30 <= 19 * (k - 12)) n++; } return String(n);",
+   "26": "const kAt4 = 12 - 90 / (10 - 4); const kAt19 = 12 + 90 / (19 - 10); let n = 0; for (let k = -20; k <= 40; k++) { if (k >= kAt4 && k <= kAt19) n++; } return String(n);"
+  },
+  "mechanism": [
+   "collect x terms to (k - 12)x = 10k - 30",
+   "k = 12 gives no solution",
+   "solution 10 + 90/(k - 12) on two branches",
+   "inside-band count on both sides of the no-solution value"
+  ],
+  "mech": "degenerate-parameter",
+  "ask": "count",
+  "quantity_asked": "the number of integers k from -20 to 40 for which the equation has a solution between 4 and 19 inclusive",
+  "setup": {
+   "i": "k is in the x-coefficient on one side and in the constant on the other side of a one-variable equation, so the solution is 10 + 90/(k - 12) and k = 12 gives no solution",
+   "ii": "the solution lies in a closed band that contains the value the solution approaches (10), so qualifying k lie on both sides of the no-solution value, far from it",
+   "iii": "number of integer values of k in a stated range"
+  },
+  "bypass_option": "26",
+  "off_by_one_options": [],
+  "plugback": {
+   "substitutable": false,
+   "why": "The key is at natural try 4 (largest option). A student trying 16, 19 and 26 first cannot test them by substitution - each is a count of k values, not a k or an x - so every check needs the full two-branch analysis; there is no one-step confirmation at any try.",
+   "aggregate_over": "the integers k from -20 to 40, other than the no-solution value k = 12, whose solution lies between 4 and 19 inclusive"
+  },
+  "distractor_meta": {
+   "16": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Counting x values in the band instead of k values gives a number fixed by the band, unrelated in size to the k-range; the stem does not say whether that is more or fewer than the qualifying k."
+   },
+   "19": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Multiplying by k - 4 without reversing for negative k - 4 keeps only one branch; nothing in the stem reveals which branch survives or how large it is."
+   },
+   "26": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Counting the integers between the two boundary k values assumes the solution moves steadily as k goes from -3 to 22, skipping the no-solution value k = 12 inside; whether that count is above or below the truth depends on how far the stated range reaches beyond -3 and 22, which the stem does not signal."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "let n = 0; for (let k = -20; k <= 40; k++) { if (k !== 12) n++; } return String(n);",
+   "direction": "above",
+   "why": "A student who checks only that the equation has a solution (k not 12) and forgets the band counts every k but 12, landing at 60, above the key and not an option."
+  },
+  "far_distractor": {
+   "option": "26",
+   "natural_side": "above",
+   "why": "The between-the-boundaries count ordinarily overshoots, because it sweeps in the k values right next to the no-solution value; here the qualifying k are the far ones on both sides and the stated range is long, so the same error lands below the key."
+  },
+  "structure_check": "The answer is the union of two rays cut off by the stated range, not an extremum or a universal condition, so no structural fact says that every slip lowers it: losing a branch lowers it, but forgetting the band (counter_error 60) raises it. The key being the largest option is not readable from the structure.",
+  "cheap_bound_check": "The cheapest stem bound is that the count is at most 60 (61 integers in the range minus the no-solution value k = 12); every option, including the three distractors, sits on the key's side of it, so it strikes nothing.",
+  "intermediate_check": "26: no - it counts the k between the two boundary values, a complementary set; 37 does not follow from 26 through one printed relation. 19: no - it is one branch; reaching 37 needs the other branch's 18, which is not printed. 16: no - it is the number of integers in the printed band, and 37 does not follow from it by any printed relation.",
+  "shape_check": "Properties handed over: the answer is a whole number, at least 0, at most 60. All four options (16, 19, 26, 37) survive every one together; no parity, sign or cap singles any out (two even, two odd).",
+  "interior_parity_check": "The two middle values are 19 and 26: both two-digit whole numbers; the key 37 is not cleaner than them.",
+  "arith_class_check": "The key 37 is not alone in a class the stem implies: 19 and 37 are odd, 16 and 26 even; 37 is not a multiple of a printed coefficient; it is not a printed number.",
+  "idea_probe": {
+   "at": "2026-10-23T02:52:32.717Z",
+   "nearest": "757d0b2f-1a1 (live v26: kx + y = 7, 2x - y = 5, count k in -7..13 with x > y). That is a one-sided condition reduced to x < 5 on one hyperbola. Mine is a one-variable equation with a CLOSED band that straddles the value the solution approaches, so the qualifying k form two far rays on both sides of the no-solution k, and the trap is the boundary-to-boundary count, not a single sign case."
+  },
+  "dup_search": {
+   "queries": [],
+   "hits_read": 11,
+   "nearest": "757d0b2f-1a1 - see idea_probe"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, all four options remain legal from the stem alone (whole numbers at most 60). A test-wise student solves x = 4 and x = 19 for k (k = -3 and k = 22) and counts -3 through 22: that is 26, the bypass, exactly what ignoring the no-solution value k = 12 between them gives. Could a student tell from the stem which way the errors go? No: the answer is a union of two rays cut by the range; dropping a branch lowers it, forgetting the band raises it (60, not an option). One bound does not strike all three: the cheapest bound (at most 60) strikes none. Plug-back: the key is at try 4 and every option is a count, so no option can be confirmed by substitution. Desmos graphing for one k gives one solution, not the count. Is 26 really what skipping THIS item's decision point gives? Yes: it treats the solution as monotone in k across k = 12. (read) lines: DPAIR (37-16 = 20+1, 37-19 = 19-1, 37-26 = 10+1) - the 1 is not printed in the stem and none of these is a route to 37 from the stem; the real gaps are the other branch (18) and the k values between the boundaries (11 = 26 - 15 removed). D4 'least' read came from the earlier wording 'at least 4'; the band is now written 4 ≤ x ≤ 19 and the ask is a count. IDEA - the part's setup is the probed idea with the concrete numbers. Near-dup best j = 0.450 vs 757d0b2f, below the 0.60 flag; that item is the one-sided x > y count named in idea_probe."
+  }
+ },
+ {
+  "id": "SM32L-B3",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Parallel value inside a system's outside-band count",
+  "prompt": "kx + (k + 10)y = -40\nx + 3y = 4\nThe two equations above share the constant k. Looking only at integers k from -19 to 47, inclusive, for how many such k is there an ordered pair (x, y) that satisfies both equations and has y < -1 or y > 4?",
+  "choices": [
+   "14",
+   "23",
+   "38",
+   "41"
+  ],
+  "correct_answer": "23",
+  "explanation": "From the second equation, x = 4 - 3y. Substituting into the first: k(4 - 3y) + (k + 10)y = -40, so 4k + (10 - 2k)y = -40, which gives (2k - 10)y = 4k + 40. When k = 5 this reads 0 = 60: the two lines are parallel (5x + 15y = -40 and x + 3y = 4), there is no solution, and k = 5 never counts. For every other k, y = (4k + 40)/(2k - 10) = 2 + 30/(k - 5). If k > 5, then y is greater than 2, so y < -1 is impossible, and y > 4 exactly when 30/(k - 5) > 2, that is, 0 < k - 5 < 15: the integers 6 through 19, which is 14 values. If k < 5, then y is less than 2, so y > 4 is impossible, and y < -1 exactly when 30/(5 - k) > 3, that is, 0 < 5 - k < 10: the integers -4 through 4, which is 9 values. The count is 14 + 9 = 23. Choice 41 comes from finding that y = -1 when k = -5 and y = 4 when k = 20 and then assuming y moves steadily between those values, so that only k below -5 or above 20 qualify; but k = 5, where the lines are parallel, lies between -5 and 20, and y jumps there from very negative to very positive, so it is the k values near 5 that work. Choice 38 comes from multiplying the inequalities by k - 5 without reversing them when k - 5 is negative, which gives k < -5 or k < 20. Choice 14 counts only the k > 5 branch.",
+  "solve": "let n = 0; for (let k = -19; k <= 47; k++) { if (k === 5) continue; const y = (4 * k + 40) / (2 * k - 10); if (y < -1 || y > 4) n++; } return String(n);",
+  "distractor_solve": {
+   "14": "let n = 0; for (let k = 6; k <= 47; k++) { const y = (4 * k + 40) / (2 * k - 10); if (y > 4) n++; } return String(n);",
+   "38": "let n = 0; for (let k = -19; k <= 47; k++) { if (k === 5) continue; const d = k - 5; if (2 * d + 30 < -1 * d || 2 * d + 30 > 4 * d) n++; } return String(n);",
+   "41": "const kAtMinus1 = 5 - 30 / 3; const kAt4 = 5 + 30 / 2; let n = 0; for (let k = -19; k <= 47; k++) { if (k < kAtMinus1 || k > kAt4) n++; } return String(n);"
+  },
+  "mechanism": [
+   "substitute x = 4 - 3y",
+   "(2k - 10)y = 4k + 40, parallel lines at k = 5",
+   "y = 2 + 30/(k - 5) on two branches",
+   "two-piece outside-band count"
+  ],
+  "mech": "degenerate-parameter",
+  "ask": "count",
+  "quantity_asked": "the number of integers k from -19 to 47 for which the system has a solution whose y-coordinate is less than -1 or greater than 4",
+  "setup": {
+   "i": "k is in both the x-coefficient and the y-coefficient (k and k + 10) of one equation of a 2x2 system whose other equation is fixed, so y = 2 + 30/(k - 5) and k = 5 makes the lines parallel",
+   "ii": "the y-coordinate of the solution is below one number or above another, a two-piece condition met only by k on either side close to the parallel value",
+   "iii": "number of integer values of k in a stated range"
+  },
+  "bypass_option": "41",
+  "off_by_one_options": [],
+  "plugback": {
+   "substitutable": false,
+   "why": "Trying 14 and then 23 in ascending order, a student cannot test either by substitution: each is a count of k values, not a k or a coordinate, and no printed relation accepts or rejects it. Confirming 23 at try 2 needs the full two-branch analysis around k = 5.",
+   "aggregate_over": "the integers k from -19 to 47, other than the parallel value k = 5, whose solution has y-coordinate below -1 or above 4"
+  },
+  "distractor_meta": {
+   "14": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Finding only the k > 5 branch (y above 4), as a student who assumes k - 5 is positive does, drops the other piece; the stem does not say which piece is the larger."
+   },
+   "38": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Not reversing when multiplying by a negative k - 5 turns each piece into a ray in k; the stem does not reveal whether those rays are longer or shorter than the true set."
+   },
+   "41": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Treating y as moving steadily from -1 at k = -5 to 4 at k = 20 skips the parallel value k = 5 and counts the far k values instead of the near ones; whether that overshoots or undershoots depends on how wide the stated range is, which the stem does not signal."
+   }
+  },
+  "structure_check": "Not required for an r2 key; for the record, the OR condition over a fixed range has no extremum or universal bound, and errors fall on both sides (14 below, 38 and 41 above).",
+  "cheap_bound_check": "Not required for an r2 key; the cheapest stem bound (at most 66 = 67 integers minus k = 5) strikes no option.",
+  "intermediate_check": "14: no - it is one branch; 23 needs the other branch's 9, which is not printed. 38: no - it counts k < 20 other than 5; no printed relation turns 38 into 23. 41: no - it counts the far k values, a different set; 23 does not follow from it by one printed relation.",
+  "shape_check": "Properties handed over: the answer is a whole number, at least 0, at most 66. All four options (14, 23, 38, 41) survive every one together; parity is mixed (14 and 38 even, 23 and 41 odd) and nothing in the stem forces parity.",
+  "interior_parity_check": "The two middle values are 23 and 38: both two-digit whole numbers; the key 23 is not cleaner than 38.",
+  "arith_class_check": "The key 23 is not alone in a class the stem implies: 23 and 41 are odd, 14 and 38 even; 23 is not a printed number or a multiple of a printed coefficient.",
+  "idea_probe": {
+   "at": "2026-10-23T03:09:59.377Z",
+   "nearest": "757d0b2f-1a1 (live v26: kx + y = 7, 2x - y = 5, count k with x > y). That is a one-sided condition on one coordinate reduced to x < 5. Mine puts k in BOTH coefficients of one equation (k and k + 10), and the condition is a two-piece band on y (y < -1 or y > 4) whose qualifying k sit on both sides of the parallel value, so the monotone-endpoint count is the trap. 90306af7 (live) also has k in two coefficients but asks only the no-solution value."
+  },
+  "dup_search": {
+   "queries": [],
+   "hits_read": 38,
+   "nearest": "757d0b2f-1a1 - see idea_probe"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, all four options remain legal from the stem alone (whole numbers at most 66). A test-wise student solves y = -1 and y = 4 for k (k = -5 and k = 20) and counts outside that interval: 41, the bypass, which is exactly what ignoring the parallel value k = 5 between them gives. Plug-back at try 1-2: 14 and 23 are counts of k values; neither can be confirmed against the stem in one routine step, only by the whole case analysis. Desmos graphing the system for one k gives one solution, not the count. Is 41 really what skipping THIS item's decision point gives? Yes: it treats y as monotone in k across k = 5. (read) lines: PROBE - the key sits at try 2 and the ask is a count of k values (aggregate_over above); DPAIR (23-14 = 10-1, 41-23 = 19-1) - the 1 is not printed in the stem and neither is a route to 23: the real gaps are the other branch (9) and the far rays. Wording was changed away from the live 757d0b2f boilerplate after a prompt-Jaccard flag. IDEA - the part's setup is the probed idea with the constant scaled (12 became 30) so the counts are two-digit."
+  }
+ },
+ {
+  "id": "SM32L-B4",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Identity case adds a k to a common-solution sum",
+  "prompt": "kx + x + 6 = 4k - 2x + 18\n6x + k = 2x + 41\nIn the two equations above, k is the same constant. What is the sum of all values of k for which the two equations have at least one solution x in common?",
+  "choices": [
+   "22",
+   "25",
+   "34",
+   "54"
+  ],
+  "correct_answer": "22",
+  "explanation": "Collect the x terms in the first equation: kx + x + 2x = 4k + 18 - 6, so (k + 3)x = 4k + 12 = 4(k + 3). The second equation gives 4x = 41 - k, so its only solution is x = (41 - k)/4. Case 1: k is not -3. Then the first equation has the single solution x = 4, so the equations share a solution exactly when (41 - k)/4 = 4, that is, k = 25. Case 2: k = -3. Then the first equation reads 0 = 0 and is true for EVERY x, so whatever the second equation's solution is (here x = 11), it is also a solution of the first. So k = -3 also qualifies. The sum is 25 + (-3) = 22. Choice 25 comes from dividing by k + 3 to get x = 4 for every k and so missing k = -3, where the first equation is true for all x. Choice 34 comes from solving the second equation as x = 41 - k (forgetting to divide by 4), which gives k = 37, and then adding -3. Choice 54 comes from a sign slip in solving 16 = 41 - k, which gives k = 57, and then adding -3.",
+  "solve": "const ks = []; for (let k = -200; k <= 200; k++) { const a = k + 3, b = 4 * k + 12; const xp = (41 - k) / 4; const firstHolds = (a === 0) ? (b === 0) : Math.abs(a * xp - b) < 1e-9; if (firstHolds) ks.push(k); } return String(ks.reduce((s, v) => s + v, 0));",
+  "distractor_solve": {
+   "25": "const x1 = 4; return String(41 - 4 * x1);",
+   "34": "const x1 = 4; return String((41 - x1) + (-3));",
+   "54": "const x1 = 4; return String((41 + 4 * x1) + (-3));"
+  },
+  "mechanism": [
+   "collect terms to (k + 3)x = 4(k + 3)",
+   "generic solution x = 4, identity at k = -3",
+   "second equation's solution (41 - k)/4 matched to 4",
+   "sum over the generic match and the identity case"
+  ],
+  "mech": "degenerate-parameter",
+  "ask": "sum",
+  "quantity_asked": "the sum of all values of k for which the two equations share at least one solution",
+  "setup": {
+   "i": "two one-variable linear equations share the constant k; in the first, k multiplies x so that the x-coefficient k + 3 and the constant 4(k + 3) vanish together (identity at k = -3), and the second has a k-free x-coefficient",
+   "ii": "the two equations have at least one solution in common, which holds at the generic match and also at the identity value of k",
+   "iii": "sum of all values of k that qualify"
+  },
+  "bypass_option": "25",
+  "off_by_one_options": [],
+  "plugback": {
+   "substitutable": false,
+   "why": "The key 22 is the smallest option, so it is the first one tried, but it is a sum of two k values, not itself a qualifying k: substituting k = 22 gives x = 4 in the first equation and x = 19/4 in the second, which neither confirms nor rejects 22. Confirming 22 needs both cases worked out.",
+   "aggregate_over": "the values of k for which the two equations share a solution: the generic match k = 25 (where both have x = 4) and the identity value k = -3 (where the first equation holds for every x)"
+  },
+  "distractor_meta": {
+   "25": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Dividing by k + 3 drops the identity case k = -3; because that k is negative, omitting it raises the sum, but the stem does not show the sign of the omitted value until the case is found."
+   },
+   "34": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Forgetting to divide by 4 changes the generic match from 25 to 37; whether that moves the sum up or down depends on the printed constants, which the stem does not signal."
+   },
+   "54": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Solving 16 = 41 - k as k = 57 is a sign slip whose direction depends on which side the student moves k to; nothing in the stem fixes it."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const x1 = 4; return String((4 * x1 - 41) + (-3));",
+   "direction": "below",
+   "why": "Moving k with the wrong sign when solving the second equation (x = (41 + k)/4) gives the generic match k = -25; adding the identity value -3 gives -28, below the key and not an option."
+  },
+  "far_distractor": {
+   "option": "25",
+   "natural_side": "below",
+   "why": "Leaving out a qualifying case ordinarily makes a sum smaller; here the omitted case is k = -3, a negative value, so the omission lands above the key instead."
+  },
+  "structure_check": "The asked quantity is a sum over the qualifying k values, whose signs are not visible in the stem: omitting a negative member raises the sum, omitting or mis-solving a positive one can lower it (counter_error -24). There is no universal condition, extremum or strictest bound, so the stem does not tell a student which way every error goes.",
+  "cheap_bound_check": "The stem gives no one-sided bound on a sum of k values: k can be any real number, and neither equation restricts its sign. The only cheap observation, that the generic match is a single k, gives no bound on the total, so no distractor is struck and at least one (in fact all three) sit on the key's side of any bound a student could read off.",
+  "intermediate_check": "25: no - it is the generic match itself; reaching 22 needs the identity value -3, which is not printed (the stem prints 6, 4, 2, 18, 6, 2, 41). 34: no - 37 - 3 from a misdivision; 22 does not follow from 34 through a printed relation. 54: no - 57 - 3 from a sign slip; no printed relation turns 54 into 22.",
+  "shape_check": "Properties handed over: the answer is a sum of k values, possibly negative or fractional; nothing forces integer, sign or parity. All four options (22, 25, 34, 54) survive together.",
+  "interior_parity_check": "The two middle values are 25 and 34: both two-digit whole numbers; the key 22 is not cleaner than them.",
+  "arith_class_check": "The key 22 is not alone in a class the stem implies: 22, 34 and 54 are even, 25 odd; 22 is not a printed number.",
+  "idea_probe": {
+   "at": "2026-10-23T03:13:14.120Z",
+   "nearest": "e8f9af26-5cc (live: two equations with the same k, the first's solution is 1 less than twice the second's). That relates two unique solutions; mine asks when the two equations share a solution and turns on the first equation becoming an identity at k = -3. b7e21eab-3e9 (live) uses a no-solution k from one equation in another; mine has no no-solution case and sums the qualifying k."
+  },
+  "dup_search": {
+   "queries": [
+    "satisfies both|solution of both|common solution"
+   ],
+   "hits_read": 19,
+   "nearest": "e8f9af26-5cc - see idea_probe; the 17 extra hits are systems, inequalities and function identities, none with a shared-solution condition on k"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Stage-0 return: renumbered so the key (22) is unique in the batch (was 18, shared with C6); same slot, ask, rank, mechanism, bypass side. Covering the work, all four options remain legal from the stem alone (a sum of k values can be any number). A test-wise student who divides by k + 3 gets x = 4 for every k, matches the second equation at k = 25, and answers 25 - the bypass, exactly what skipping the identity case k = -3 gives. Could a student tell from the stem which way the errors go? No: the sign of the omitted case is invisible until found, and a sign slip on the generic match goes either way (54 above, -28 below). One bound does not strike all three: the stem gives no bound on the sum. Could a student confirm 22 at try 1 in one routine step? No: 22 is a sum, not a qualifying k. (read) lines: PROBE - key at try 1, a sum over the two qualifying k values. D4 extreme key on a sum - the key is lowest only because the omitted identity value is negative, which the stem does not show. Any PAIR/DPAIR read is a small-number coincidence with no route from the stem to 22. IDEA - same probed idea with new constants."
+  }
+ },
+ {
+  "id": "SM32L-B5",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Parallel value places a system's y extremes",
+  "prompt": "kx + 5y = 5\nx + y = 4\nThe system above contains the constant k. For each integer k from 0 to 20, inclusive, that gives the system exactly one solution, the y-coordinate of that solution is written down. What is the sum of the greatest and the least of the numbers written down?",
+  "choices": [
+   "-10",
+   "-6",
+   "6",
+   "8"
+  ],
+  "correct_answer": "8",
+  "explanation": "From the second equation, x = 4 - y. Substituting: k(4 - y) + 5y = 5, so (5 - k)y = 5 - 4k, that is, (k - 5)y = 4k - 5. When k = 5 this reads 0 = 15: the lines 5x + 5y = 5 and x + y = 4 are parallel, there is no solution, and nothing is written down for k = 5. For every other k, y = (4k - 5)/(k - 5) = 4 + 15/(k - 5). For k greater than 5 the fraction 15/(k - 5) is positive and largest when k - 5 is smallest, so the greatest value is at k = 6: y = 19. For k less than 5 the fraction is negative and most negative when 5 - k is smallest, so the least value is at k = 4: y = -11. The sum is 19 + (-11) = 8. Choice 6 comes from assuming y changes steadily with k, so that the extremes sit at the ends of the range: y = 1 at k = 0 and y = 5 at k = 20; but k = 5, where the lines are parallel, lies inside the range, and y runs off toward very large and very small values next to it. Choice -6 finds the least value correctly at k = 4 but still takes the greatest at the end of the range, k = 20 (y = 5). Choice -10 looks only at k below 5, where the greatest value is at k = 0 (y = 1) and the least at k = 4.",
+  "solve": "const ys = []; for (let k = 0; k <= 20; k++) { if (k === 5) continue; ys.push((4 * k - 5) / (k - 5)); } return String(Math.max(...ys) + Math.min(...ys));",
+  "distractor_solve": {
+   "6": "const y = k => (4 * k - 5) / (k - 5); return String(y(0) + y(20));",
+   "-6": "const ys = []; for (let k = 0; k <= 20; k++) { if (k === 5) continue; ys.push((4 * k - 5) / (k - 5)); } const y20 = (4 * 20 - 5) / (20 - 5); return String(Math.min(...ys) + y20);",
+   "-10": "const ys = []; for (let k = 0; k < 5; k++) ys.push((4 * k - 5) / (k - 5)); return String(Math.max(...ys) + Math.min(...ys));"
+  },
+  "mechanism": [
+   "substitute x = 4 - y",
+   "(k - 5)y = 4k - 5, parallel at k = 5",
+   "y = 4 + 15/(k - 5) on two branches",
+   "extremes at the integers next to the parallel value, then add"
+  ],
+  "mech": "degenerate-parameter",
+  "ask": "sum",
+  "quantity_asked": "the sum of the greatest and least y-coordinates of the solutions over the integers k from 0 to 20 that give exactly one solution",
+  "setup": {
+   "i": "k is the x-coefficient of one equation of a 2x2 system whose other coefficients and constants are fixed (kx + 5y = 5, x + y = 4), so y = 4 + 15/(k - 5) and k = 5 makes the lines parallel",
+   "ii": "over the integers k in a stated range other than 5, the y-coordinate is greatest and least at the integers on either side of 5, not at the ends of the range",
+   "iii": "sum of the greatest and least y-coordinates"
+  },
+  "bypass_option": "6",
+  "off_by_one_options": [],
+  "plugback": {
+   "substitutable": false,
+   "why": "The key 8 is the largest option, reached at natural try 4. No option can be checked by substituting it: each is a sum of two y-values, not a k or a coordinate, so testing any option needs both extremes found first.",
+   "aggregate_over": "the y-coordinates of the solutions for the integers k from 0 to 20 other than the parallel value 5: the greatest (at k = 6) plus the least (at k = 4)"
+  },
+  "distractor_meta": {
+   "6": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Taking the extremes at the ends of the range skips the parallel value k = 5 inside it; whether the end values sum to more or less than the true extremes depends on where the range ends, which the stem does not signal."
+   },
+   "-6": {
+    "error_kind": "partial_answer",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Finding the least value next to k = 5 but placing the greatest at the largest k swaps one extreme for an end value; the stem does not reveal which side that moves the sum."
+   },
+   "-10": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Working only on the k < 5 branch keeps one branch's extremes; nothing in the stem says that branch's values are smaller."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "const ys = []; for (let k = 0; k <= 20; k++) { if (k === 5) continue; ys.push((4 * k - 5) / (k - 5)); } return String(Math.max(...ys) - Math.min(...ys));",
+   "direction": "above",
+   "why": "Subtracting the least from the greatest instead of adding gives 19 - (-11) = 30, above the key and not an option."
+  },
+  "far_distractor": {
+   "option": "-6",
+   "natural_side": "above",
+   "why": "Keeping one true extreme and replacing the other with an end value ordinarily leaves a sum near the key, often above it; here the replaced extreme is the very large y = 19 next to the parallel value, so the error lands far below."
+  },
+  "structure_check": "The asked quantity is a sum of a maximum and a minimum, so slips do not all push one way: replacing the greatest by a smaller value lowers the sum, replacing the least by a larger value raises it, and subtracting instead of adding raises it (30). The stem gives no universal condition that signs every error.",
+  "cheap_bound_check": "The cheapest stem bound is that every y-value lies on one of the two branches around y = 4 once the formula is found; before that, nothing in the stem bounds the sum, so all three distractors remain on the key's side of any one-sided bound a student can read off.",
+  "intermediate_check": "6: no - it is y(0) + y(20), end values; 8 does not follow from 6 through one printed relation. -6: no - it is the least plus an end value; reaching 8 needs the greatest 19, which is not printed. -10: no - it is the k < 5 branch only; no printed relation turns -10 into 8.",
+  "shape_check": "Properties handed over: a sum of two real numbers, sign unknown, not forced to be an integer. All four options (-10, -6, 6, 8) survive together.",
+  "interior_parity_check": "The two middle values are -6 and 6: both one-digit whole numbers in the same form; the key 8 is not cleaner than them.",
+  "arith_class_check": "The key 8 is not alone in a class the stem implies: all four options are even; 8 is not a printed number (5, 4, 0, 20) or a multiple of a printed coefficient the others are not.",
+  "idea_probe": {
+   "at": "2026-10-23T03:24:54.480Z",
+   "nearest": "SM26L-B6 (dropped v26, not live: kx + y = 14, x - y = 1, least y over integers k in -6..6), the closest setup; no live item. Mine asks the SUM of the greatest and least y, so both extremes on both branches are needed and the end-of-range values are a trap on both sides. 757d0b2f (live) uses a similar system but asks a count with x > y."
+  },
+  "dup_search": {
+   "queries": [],
+   "hits_read": 6,
+   "nearest": "SM26L-B6 (prior, dropped) - see idea_probe"
+  },
+  "self_audit": {
+   "risk": "high",
+   "note": "Covering the work, all four options remain legal from the stem alone (a sum of two real numbers). A test-wise student who evaluates y at the two ends of the range, k = 0 and k = 20, and adds gets 6 - the bypass, exactly what ignoring the parallel value k = 5 inside the range gives. Could a student tell from the stem which way errors go? No: a max-plus-min has errors on both sides (subtracting gives 30, above). One bound does not strike all three: the stem gives no bound on the sum. Plug-back: key at try 4; no option is a k or a coordinate, so substitution checks nothing. Risk is high because SM26L-B6 (a dropped v26 item) has a related setup, with a single least-y ask; the coordinator should judge whether the sum ask is distinct enough. Is 6 really what skipping THIS item's decision point gives? Yes: end-of-range extremes assume y is monotone across k = 5. (read) lines: PAIR ratio 8/-10 = 4/5 - a coincidence; 4 and 5 are coefficients, and no ratio step leads from the stem to 8. D4 'greatest' read - the stem says 'the greatest and the least' inside a SUM ask; the key is the largest option because both true extremes sit beside the parallel value, which the stem does not show, and subtracting instead of adding lands above (30). IDEA - the part's setup is the probed idea in fuller words. Near-dup best j = 0.367, below the flag."
+  }
+ },
+ {
+  "id": "SM32L-B6",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "No-solution value places the extreme solutions",
+  "prompt": "kx + 93 = 7x + 15k\nIn the equation above, k is a constant. Ana solves the equation for each integer k from 5 to 19, inclusive, for which it has a solution. What is the difference between the greatest and the least of the solutions she finds?",
+  "choices": [
+   "7",
+   "13",
+   "24",
+   "30"
+  ],
+  "correct_answer": "24",
+  "explanation": "Collect the x terms: kx - 7x = 15k - 93, so (k - 7)x = 15k - 93. When k = 7 this reads 0 = 12, so there is no solution and Ana finds nothing for k = 7. For every other k, x = (15k - 93)/(k - 7) = 15 + 12/(k - 7). For k greater than 7 the fraction is positive and largest when k - 7 is smallest, so the greatest solution is at k = 8: x = 27. For k less than 7 the fraction is negative and most negative when 7 - k is smallest, so the least solution is at k = 6: x = 3. The difference is 27 - 3 = 24. Choice 7 comes from assuming the solution changes steadily with k, so the extremes are at the ends of the range: x = 9 at k = 5 and x = 16 at k = 19; but k = 7, where there is no solution, lies inside the range and the solution runs off to large and small values beside it. Choice 13 finds the least solution at k = 6 but still takes the greatest at the end of the range, k = 19. Choice 30 adds the greatest and least solutions instead of subtracting.",
+  "solve": "const xs = []; for (let k = 5; k <= 19; k++) { if (k === 7) continue; xs.push((15 * k - 93) / (k - 7)); } return String(Math.max(...xs) - Math.min(...xs));",
+  "distractor_solve": {
+   "7": "const x = k => (15 * k - 93) / (k - 7); return String(Math.abs(x(19) - x(5)));",
+   "13": "const xs = []; for (let k = 5; k <= 19; k++) { if (k === 7) continue; xs.push((15 * k - 93) / (k - 7)); } const x19 = (15 * 19 - 93) / (19 - 7); return String(x19 - Math.min(...xs));",
+   "30": "const xs = []; for (let k = 5; k <= 19; k++) { if (k === 7) continue; xs.push((15 * k - 93) / (k - 7)); } return String(Math.max(...xs) + Math.min(...xs));"
+  },
+  "mechanism": [
+   "collect x terms to (k - 7)x = 15k - 93",
+   "k = 7 gives no solution",
+   "solution 15 + 12/(k - 7) on two branches",
+   "extremes beside the no-solution value, then subtract"
+  ],
+  "mech": "degenerate-parameter",
+  "ask": "difference",
+  "quantity_asked": "the greatest minus the least of the solutions for the integers k from 5 to 19 that give a solution",
+  "setup": {
+   "i": "k is in the x-coefficient on one side and in the constant on the other side of a one-variable equation, so the solution is 15 + 12/(k - 7) and k = 7 gives no solution",
+   "ii": "over the integers k in a stated range other than 7, the solution is greatest and least at the integers on either side of 7, not at the ends of the range",
+   "iii": "difference between the greatest and least solutions"
+  },
+  "bypass_option": "7",
+  "off_by_one_options": [],
+  "plugback": {
+   "substitutable": false,
+   "why": "The key 24 is at natural try 3. No option is a k or a solution, so none can be checked by substitution; testing 7 or 13 first needs both extremes found, which is the whole solution.",
+   "aggregate_over": "the solutions for the integers k from 5 to 19 other than 7: the greatest (at k = 8) minus the least (at k = 6)"
+  },
+  "distractor_meta": {
+   "7": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Using the end-of-range solutions as the extremes skips the no-solution value k = 7 inside the range; whether the end values are closer together or farther apart than the true extremes depends on where the range ends, which the stem does not signal."
+   },
+   "13": {
+    "error_kind": "partial_answer",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "One true extreme with one end value: the stem does not reveal which extreme a student keeps or which way the swap moves the difference."
+   },
+   "30": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Adding instead of subtracting moves the result up or down depending on the sign of the least solution, which the stem does not show."
+   }
+  },
+  "structure_check": "Not required for an r3 key; errors fall on both sides (7 and 13 below, 30 above).",
+  "cheap_bound_check": "Not required for an r3 key; the stem gives no bound on a difference of solutions before the formula is found.",
+  "intermediate_check": "3: no - it is x(19) - x(5), end values; 24 does not follow from 3 by one printed relation. 13: no - it is an end value minus the least; reaching 24 needs the greatest 27, which is not printed. 30: no - it is the sum 27 + 3; turning it into 24 needs the least solution 3, which is not printed (3 is not in the stem).",
+  "shape_check": "Properties handed over: a difference of a greatest and a least value, so it is at least 0; nothing forces integer or parity. All four options (7, 13, 24, 30) survive together.",
+  "interior_parity_check": "The two middle values are 13 and 24: both two-digit whole numbers; the key 24 is not cleaner than 13.",
+  "arith_class_check": "The key 24 is not alone in a class the stem implies: 24 and 30 are even, 7 and 13 odd; 24 is not a printed number (93, 7, 15, 5, 19).",
+  "idea_probe": {
+   "at": "2026-10-23T03:26:50.485Z",
+   "nearest": "No live item over this chain. Closest prior: SM26L-B5 (dropped v26, not live: k(x - 3) = 4x + 6, greatest solution over integers 0..10). Mine asks greatest MINUS least, so both branches' extremes beside the no-solution value are needed and the end-of-range values are the trap. SM24L-B7 (prior) is a difference of k values, not of solutions."
+  },
+  "dup_search": {
+   "queries": [],
+   "hits_read": 3,
+   "nearest": "SM26L-B5 (prior, dropped) - see idea_probe"
+  },
+  "self_audit": {
+   "risk": "high",
+   "note": "Covering the work, all four options remain legal from the stem alone (a difference of real numbers, at least 0). (read) lines: DPAIR/ratio reads were cleared by moving the range start from 1 to 5; any remaining DPAIR is a small-number coincidence with no route from the stem to 24. A test-wise student who solves at the two ends of the range, k = 5 and k = 19, and subtracts gets 7 - the bypass, exactly what skipping the no-solution value k = 7 inside the range gives. Plug-back: key at try 3; no option is a k or a solution, so substitution checks nothing. Risk is high for two reasons the coordinator should judge: SM26L-B5 (a dropped v26 item) has a related greatest-solution setup, and SM32L-B5 uses the same 'extremes beside the degenerate k' idea on a system (sum of y-extremes) - a cousin pair, though not a band condition."
+  }
+ },
+ {
+  "id": "SM32L-B7",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Fixed root hides an every-x value of k",
+  "prompt": "k(x - 4) + 12x = 5x + c\nIn the equation above, k and c are constants. The number 4 is a solution of the equation no matter what value k has. What is the sum of c and every value of k for which the equation does NOT have exactly one solution?",
+  "choices": [
+   "-35",
+   "21",
+   "28",
+   "61"
+  ],
+  "correct_answer": "21",
+  "explanation": "Since x = 4 is a solution for every k, substitute x = 4: k(0) + 48 = 20 + c, so c = 28. With c = 28 the equation is kx - 4k + 12x = 5x + 28, that is, (k + 7)x = 4k + 28 = 4(k + 7). For every k other than -7 this has exactly one solution, x = 4. But when k = -7 it reads 0 = 0, which is true for every x, so the equation has infinitely many solutions and does not have exactly one solution. So the only such k is -7, and the sum is 28 + (-7) = 21. Choice 28 comes from reasoning that because 4 is always a solution the equation always has exactly one solution, and so adding no value of k; but at k = -7 every number is a solution. Choice 61 comes from moving the 20 to the wrong side when solving 48 = 20 + c, which gives c = 68, and then adding -7. Choice -35 comes from substituting x = -4 instead of 4, which gives c = -28, and then adding -7.",
+  "solve": "const c = 12 * 4 - 5 * 4; const ks = []; for (let k = -100; k <= 100; k++) { if (k + 12 - 5 === 0) ks.push(k); } return String(c + ks.reduce((s, v) => s + v, 0));",
+  "distractor_solve": {
+   "28": "const c = 12 * 4 - 5 * 4; return String(c);",
+   "61": "const c = 12 * 4 + 5 * 4; const k0 = -(12 - 5); return String(c + k0);",
+   "-35": "const c = 12 * (-4) - 5 * (-4); const k0 = -(12 - 5); return String(c + k0);"
+  },
+  "mechanism": [
+   "substitute the fixed root x = 4 to find c",
+   "collect to (k + 7)x = 4(k + 7)",
+   "k = -7 makes the equation true for every x",
+   "add c and the exceptional k"
+  ],
+  "mech": "degenerate-parameter",
+  "ask": "sum",
+  "quantity_asked": "c plus the sum of all values of k for which the equation does not have exactly one solution",
+  "setup": {
+   "i": "k multiplies (x - 4) in a one-variable equation that also has an unknown constant c, so the condition that x = 4 solves it for every k fixes c and leaves (k + 7)x = 4(k + 7)",
+   "ii": "the equation fails to have exactly one solution only where its x-coefficient vanishes, k = -7, and there it is true for every x rather than for none",
+   "iii": "sum of c and the value of k without exactly one solution"
+  },
+  "bypass_option": "28",
+  "off_by_one_options": [],
+  "plugback": {
+   "substitutable": false,
+   "why": "Trying -35 and then 21 in ascending order, a student cannot test either against the stem: each is a sum of two derived numbers (c and the exceptional k), not a value of k, c or x, and no printed relation accepts it. Confirming 21 at try 2 needs both c and the identity case found.",
+   "aggregate_over": "the constant c (found from the fixed root x = 4) plus the value of k for which the equation has infinitely many solutions instead of exactly one"
+  },
+  "distractor_meta": {
+   "28": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Concluding that a fixed root means exactly one solution for every k leaves out the every-x case k = -7; the sign of that omitted k is not visible until it is found, so the stem does not say whether leaving it out raises or lowers the sum."
+   },
+   "61": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Moving 20 across the equals sign with the wrong sign changes c; the stem does not reveal which way a student's slip goes, so it does not sign this error."
+   },
+   "-35": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Substituting -4 for 4 flips the sign of c; the stem does not reveal which way that moves the total."
+   }
+  },
+  "structure_check": "Not required for an r2 key; errors fall on both sides (-35 below, 28 and 61 above).",
+  "cheap_bound_check": "Not required for an r2 key; the stem gives no bound on c or on k.",
+  "intermediate_check": "28: no single PRINTED relation - 28 is c itself, and 21 follows from it only by adding the exceptional k = -7, which is not printed (the stem prints 4, 12, 5). 61: no - it is 68 + (-7) from a sign slip in finding c; no printed relation turns 61 into 21. -35: no - it is -28 + (-7) from a sign slip; no printed relation turns -35 into 21.",
+  "shape_check": "Properties handed over: c and k are any real numbers, so the sum has no forced sign, parity or integrality. All four options (-35, 21, 28, 61) survive together.",
+  "interior_parity_check": "The two middle values are 21 and 28: both two-digit whole numbers of the same kind; the key 21 is not the cleaner one.",
+  "arith_class_check": "The key 21 is not alone in a class the stem implies: -35, 21 and 61 are odd, 28 even; 21 is not a printed number.",
+  "idea_probe": {
+   "at": "2026-10-23T03:27:48.257Z",
+   "nearest": "5d99d0e3-163 (live: k(2x - 3) + 7 = 6x + c, at least one solution for every k, find c). There c is fixed by making the every-x case consistent; here c is fixed by a stated root (x = 3 always solves it), and the decision point is that the vanishing coefficient then gives EVERY x, not no solution, so k = -5 must be added. The ask is a sum of two derived values."
+  },
+  "dup_search": {
+   "queries": [],
+   "hits_read": 5,
+   "nearest": "5d99d0e3-163 - see idea_probe"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, all four options remain legal from the stem alone (c and k unrestricted). A test-wise student finds c = 28 from x = 4 and reasons that a fixed root means exactly one solution always, answering 28 - the bypass, exactly what skipping the every-x case k = -7 gives. Could a student confirm an option in one routine step at try 1-2? No: -35 and 21 are sums of two derived values, not quantities the stem's equation accepts. Is 28 what skipping THIS item's decision point gives? Yes. (read) lines: PROBE - key at try 2, a sum of c and the exceptional k (aggregate_over). Earlier ratio and KEY-CLEANER flags on a first version (root 3, key 10) were removed by changing the root to 4 and the coefficients to 12 and 5. Any DPAIR read is a small-number coincidence with no route from the stem to 21. A first option set had -35 + 36 = 1 (complement flag); the dropped-term distractor was replaced by the sign slip in finding c (61). Near-dup best j = 0.583 vs 5d99d0e3, below the 0.60 flag; the difference is set out in idea_probe."
+  }
+ },
+ {
+  "id": "SM32L-B8",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Table of solutions straddles the no-solution k",
+  "prompt": "kx = 4x + 3k + c\nIn the equation above, c is a constant. For two values of the constant k, the solution of the equation is listed below.\nk = 3: solution 23\nk = 9: solution -1\nWhat is the solution of the equation when k = 24?",
+  "choices": [
+   "-61",
+   "-32",
+   "-13",
+   "2"
+  ],
+  "correct_answer": "2",
+  "explanation": "Use k = 3: the equation becomes 3x = 4x + 9 + c, and its solution is 23, so 69 = 92 + 9 + c and c = -32. (The value k = 9 checks: 9x = 4x + 27 - 32 gives 5x = -5, x = -1.) The equation is (k - 4)x = 3k - 32. When k = 24: 20x = 72 - 32 = 40, so x = 2. The solution is not a linear function of k: x = (3k - 32)/(k - 4) = 3 - 20/(k - 4), and at k = 4, which lies between the two listed values of k, the equation reads 0 = -20 and has no solution, so the solution jumps there. Choice -61 comes from treating the solution as changing at a constant rate, -4 per unit of k between k = 3 and k = 9, and extending that line to k = 24. Choice -13 comes from treating x - 3 as proportional to k - 4 instead of inversely proportional (from k = 9, x - 3 = -4 when k - 4 = 5). Choice -32 is the value of c, not the solution.",
+  "solve": "const c = 3 * 23 - 4 * 23 - 3 * 3; const k = 24; return String((3 * k + c) / (k - 4));",
+  "distractor_solve": {
+   "-61": "const slope = (-1 - 23) / (9 - 3); return String(-1 + slope * (24 - 9));",
+   "-13": "const m = (-1 - 3) / (9 - 4); return String(3 + m * (24 - 4));",
+   "-32": "const c = 3 * 23 - 4 * 23 - 3 * 3; return String(c);"
+  },
+  "mechanism": [
+   "find c from the k = 3 value",
+   "(k - 4)x = 3k - 32, no solution at k = 4 between the listed k",
+   "solution 3 - 20/(k - 4) is not linear in k",
+   "solve at k = 24"
+  ],
+  "mech": "degenerate-parameter",
+  "ask": "value",
+  "quantity_asked": "the solution of the equation when k = 24",
+  "setup": {
+   "i": "the solution of kx = 4x + 3k + c (c unknown) is given for two values of k that lie on opposite sides of the no-solution value k = 4",
+   "ii": "the solution as a function of k is 3 - 20/(k - 4), which jumps at k = 4, so the two given values cannot be extended as a straight line",
+   "iii": "the solution for a third, larger value of k"
+  },
+  "bypass_option": "-61",
+  "off_by_one_options": [],
+  "plugback": {
+   "substitutable": true,
+   "verify": "const c = -32; return Math.abs(24 * v - (4 * v + 3 * 24 + c)) < 1e-9;",
+   "why": "Ascending, a student tries -61, -32 and -13 first; each fails when substituted into 24x = 4x + 72 + c once c = -32 is known, and only then does 2 pass at try 4. Knowing c already requires using the equation rather than the pattern of the two listed values, which is the decision point.",
+   "aggregate_over": "not an aggregate: the key is at try 4"
+  },
+  "distractor_meta": {
+   "-13": {
+    "error_kind": "inverted_rate",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Treating x - 3 as directly rather than inversely proportional to k - 4 moves the answer in a direction set by the sign of the table values, not by anything the stem states."
+   },
+   "-32": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reporting c instead of the solution gives a number whose relation to the solution is not visible from the stem."
+   },
+   "-61": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Extending the two listed values as a line skips the no-solution value k = 4 between them; whether the line overshoots or undershoots the true solution at k = 24 depends on the values given, which the stem does not signal."
+   }
+  },
+  "counter_error": {
+   "error_kind": "other",
+   "solve": "return String(3);",
+   "direction": "above",
+   "why": "A student who sees that the solution approaches 3 for large k and answers 3 lands above the key; 3 is not an option."
+  },
+  "far_distractor": {
+   "option": "-61",
+   "natural_side": "above",
+   "why": "Extending two known values linearly a little beyond the last one usually lands close to the true value; here the two values straddle the jump at k = 4, so the line is steep and the extrapolation lands far below the key."
+  },
+  "structure_check": "The ask is one determined value, not an extremum or a count, and the stem gives one solution above and one below the key (23 and -1), so it does not tell a student that every error moves the answer down; answering the limit 3 moves it up.",
+  "cheap_bound_check": "The cheapest reading of the stem is the two listed solutions, 23 and -1; neither bounds the solution at k = 24 from one side, so no distractor is struck by it.",
+  "intermediate_check": "-61: no - it is a linear extrapolation, not a value the key follows from by one printed relation. -13: no - it comes from a wrong proportionality; no printed relation turns -13 into 2. -32: no - it is c; the key needs the further step 20x = 72 + c, and 72 is not printed.",
+  "shape_check": "Properties handed over: a single real number, no sign, integer or parity forced. All four options (-61, -32, -13, 2) survive together.",
+  "interior_parity_check": "The two middle values are -32 and -13: both two-digit negative integers; the key 2 is not interior.",
+  "arith_class_check": "The key 2 is the only positive option, but the stem implies no sign for the solution (one listed solution is positive and one negative), so positivity is not a class the stem points to; 2 is not a printed number (4, 3, 23, 9, -1, 24).",
+  "idea_probe": {
+   "at": "2026-10-23T03:29:27.670Z",
+   "nearest": "e26c893e-2d1 (live v26: a table of a linear function f with unknown entry c; f(x) = k(x - 2) + 5 has a solution for every k; find c). There the table is of f(x) and the ask is the entry that makes the every-k condition hold; mine tabulates the SOLUTION of an equation for two values of k on opposite sides of the no-solution k, and the trap is extending that table as a line."
+  },
+  "dup_search": {
+   "queries": [],
+   "hits_read": 2,
+   "nearest": "e26c893e-2d1 - see idea_probe"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, all four options remain legal from the stem alone (any real number). A test-wise student who treats the solution as linear in k (slope -4 between k = 3 and k = 9) and extends it to k = 24 gets -61 - the bypass, exactly what ignoring the no-solution value k = 4 between the listed values gives. Could a student tell from the stem which way the errors go? No: one listed solution is above and one below the key, and answering the limit 3 moves the answer up. One bound does not strike all three: the listed values bound nothing at k = 24. Plug-back: the key is at try 4; -61, -32 and -13 each fail substitution once c is found, so verify separates the key. Is -61 what skipping THIS item's decision point gives? Yes. (read) lines: a first version (rows k = 0 and 9, presented as a table) failed a ratio read (-16/2 = 8, a printed row value) and a prompt-Jaccard flag against e26c893e; the values and wording were changed. Any remaining PAIR/DPAIR read is a small-number coincidence with no route from the stem to 2."
+  }
+ }
+]

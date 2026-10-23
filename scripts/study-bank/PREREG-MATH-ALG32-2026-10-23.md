@@ -485,3 +485,17 @@ Reader prompt (one fresh Claude agent per run; replace `<N>`):
     p3: not run
     p4: not run
     gate: PASSED at p2 (two consecutive valid plant-only runs), 2026-10-23
+
+## Stage-0 record (2026-10-23, before freeze)
+- **Authoring:** 24 parts, all PART OK.
+- **Merged pre-flight, round 1:** R6 54.2%, R7 37.5%, R10 4/4 on every mechanism, closure clean, projection PASS. It FAILED R9 only: keys 5, 18, 21 and 24 were each shared by two items.
+- **Plug-back probe r1:** VALID (positives 5/5, negatives 0/8, plant disagree 0). It flagged 0 of 24 batch items, with 0 disagreements.
+- **One return per author:**
+  - B renumbered B1 to 14 and B4 to 22;
+  - C renumbered C2 to 22 and C8 to 25.
+- **B4 and C2 collided at 22.** That was my coordination error: the two return instructions listed the keys to avoid but did not reserve disjoint values for the two authors.
+- **Drop:** by §10.4 an item still failing after its return is dropped before freeze and not replaced. Dropping one of the pair clears R9 for both, so exactly one is dropped, by a fixed tie-break written here before the drop. The smaller sha256(id) drops: C2 (b11d…) against B4 (bf5b…). **SM32L-C2 is dropped** and moved to `sat-math-alg32-work/dropped-stage0/`.
+- **Authored-merge bars:** passed in round 1, before the drop.
+- **After the drop (`--after-drops C2`, reported):** R6 56.5%, R7 39.1%, projection PASS (kept about 18.0). PRE-FLIGHT PASS on 23 items.
+- **Lesson:** a return that renumbers keys in more than one author must hand each author a reserved value set.
+frozen sha256 5cba20911399cab9af130344e5169a6f7aa1e27446d81d8bc9aa23ff1aab3610 (23 items; C2 dropped at stage 0)

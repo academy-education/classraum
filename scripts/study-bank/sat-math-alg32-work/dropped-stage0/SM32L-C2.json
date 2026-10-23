@@ -1,0 +1,83 @@
+{
+ "id": "SM32L-C2",
+ "domain": "Algebra",
+ "difficulty": "hard",
+ "subskill": "Count of k with a bounded number of integer solutions",
+ "prompt": "-12 < 5x + 13 ≤ kx + 48\nIn the compound inequality above, k is a constant. For how many integers k with -28 ≤ k ≤ 13 does the compound inequality have at most 7 integer solutions?",
+ "choices": [
+  "13",
+  "16",
+  "22",
+  "30"
+ ],
+ "correct_answer": "22",
+ "explanation": "The left part gives 5x > -25, so x > -5; because the sign is strict, -5 itself is not a solution, and the smallest integer solution is -4. The right part gives (5 - k)x ≤ 35. If k < 5, then 5 - k is positive and x ≤ 35/(5 - k), so the integer solutions are -4, -3, ..., up to the greatest integer not above 35/(5 - k). That bound is always positive, so -4 through 0 are always solutions (5 of them), and at most 7 solutions means the bound is less than 3: 35/(5 - k) < 3 gives 5 - k > 35/3, so 5 - k ≥ 12 and k ≤ -7. That gives k = -28 through -7, which is 22 values (for example, k = -7 gives solutions -4 through 2, which is 7; k = -6 gives -4 through 3, which is 8). If k = 5, the right part reads 0 ≤ 35, which is always true, so every integer greater than -5 is a solution: infinitely many. If k > 5, dividing by the negative number 5 - k reverses the inequality, giving x ≥ -35/(k - 5); together with x > -5 there is no upper limit, so again there are infinitely many solutions. The answer is 22. Choice 30 comes from dividing by 5 - k without reversing the sign when k > 5: that gives an upper bound below 0 and a small or empty set, so k = 6 through 13 (8 more values) wrongly appear to qualify. Choice 16 comes from treating the strict left part as x ≥ -5, which adds -5 as a solution and so requires 35/(5 - k) < 2, that is k ≤ -13. Choice 13 comes from moving 13 to the right side as +13 instead of -13, which gives (5 - k)x ≤ 61 and k ≤ -16.",
+ "solve": "const cnt=(k)=>{let c=0;for(let x=-600;x<=600;x++){if(-12<5*x+13&&5*x+13<=k*x+48)c++;}return c;};let n=0;for(let k=-28;k<=13;k++){if(cnt(k)<=7)n++;}return n;",
+ "distractor_solve": {
+  "13": "const cnt=(k)=>{let c=0;for(let x=-600;x<=600;x++){if(-12<5*x+13&&(5-k)*x<=61)c++;}return c;};let n=0;for(let k=-28;k<=13;k++){if(cnt(k)<=7)n++;}return n;",
+  "16": "const cnt=(k)=>{let c=0;for(let x=-600;x<=600;x++){if(-12<=5*x+13&&5*x+13<=k*x+48)c++;}return c;};let n=0;for(let k=-28;k<=13;k++){if(cnt(k)<=7)n++;}return n;",
+  "30": "const cnt=(k)=>{if(k===5)return 999;let c=0;for(let x=-600;x<=600;x++){if(x>-5&&x<=35/(5-k))c++;}return c;};let n=0;for(let k=-28;k<=13;k++){if(cnt(k)<=7)n++;}return n;"
+ },
+ "mechanism": [
+  "collect x into the coefficient 5 - k",
+  "reverse the inequality when k > 5 and see the set is unbounded",
+  "strict left end excludes -5",
+  "count k in the stated range"
+ ],
+ "mech": "integer-count-condition",
+ "ask": "count",
+ "quantity_asked": "the number of integers k from -28 to 13 for which the compound inequality has at most 7 integer solutions",
+ "setup": {
+  "i": "k is in the x-coefficient of the right end only of a compound inequality whose left end is fixed and strict, k over a stated range of integers, so for k above 5 the solution set has no upper limit",
+  "ii": "at most 7 integer solutions",
+  "iii": "number of integers k in the stated range"
+ },
+ "bypass_option": "30",
+ "off_by_one_options": [],
+ "plugback": {
+  "substitutable": false,
+  "why": "The options are counts of k values, not values that can be put into the inequality. A student trying 13, 16, 22 in ascending order cannot check any of them without finding the whole set of qualifying k, including deciding what happens for k ≥ 5."
+ },
+ "distractor_meta": {
+  "13": {
+   "error_kind": "sign_slip",
+   "error_sense": "swaps",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Moving +13 across as +13 gives (5 - k)x ≤ 61, a larger bound, so k must be smaller to keep the count at 7 or fewer. A student cannot tell from the stem which way a constant slip moves the count."
+  },
+  "16": {
+   "error_kind": "other",
+   "error_sense": "adds",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Treating the strict left part as non-strict adds -5 to every solution set, so fewer k keep the count at 7 or fewer. Adding a solution looks like it should enlarge an answer; here it shrinks it."
+  },
+  "30": {
+   "error_kind": "sign_slip",
+   "error_sense": "swaps",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Not reversing the sign when dividing by 5 - k < 0 turns the unbounded sets for k = 6 to 13 into small or empty sets, which pass at most 7. The stem does not reveal whether the k > 5 side adds values or not."
+  }
+ },
+ "structure_check": "Not an extreme slot (key rank 3). At most 7 is monotone in the count of solutions, but the errors act on the solution sets in different ways: forgetting the reversal adds k values (30, above), an extra endpoint or a larger constant removes them (16, 13, below), and counting one fewer integer per k adds them (25, above). The stem does not say which way every error goes.",
+ "cheap_bound_check": "Not an extreme slot. The cheapest bound is that k must be less than 5 for the set to be bounded, so the answer is at most 33 (k = -28 to 4); every option survives it.",
+ "intermediate_check": "30: it is 22 plus the 8 integers 6 to 13; 8 is not printed and no printed relation turns 30 into 22 - no. 16: the count of k ≤ -13, from a different threshold; 22 - 16 = 6 is not printed - no. 13: the count of k ≤ -16 from a slipped constant; 22 - 13 = 9 is not printed - no.",
+ "shape_check": "The stem hands over that the answer is a count of integers between 0 and 42 (the size of the stated range). All four options are in that range. No parity is forced, and no cap below 30 is readable without solving (the k < 5 cap gives 33), so all four survive together.",
+ "interior_parity_check": "The two middle values 16 and 22 are both two-digit even integers of the same form; neither is cleaner.",
+ "arith_class_check": "Options 13, 16, 22, 30: one odd (13) and three even, so the even key shares its parity with two others. No multiple-of-5, multiple-of-7 or roundness class isolates 22 (30 is the only multiple of 5).",
+ "idea_probe": {
+  "at": "2026-10-23T02:58:34.834Z",
+  "nearest": "3ae4c030 (kx ≥ 36 on the integers -6 through 9, exactly 4, count of k): there the set of x is fixed and k only multiplies x; here k multiplies x on one end of a compound inequality with x on both sides, the x-set is not fixed, k > 5 gives an unbounded set that must be recognised, and the condition is 'at most 7'"
+ },
+ "dup_search": {
+  "queries": [],
+  "hits_read": 6,
+  "nearest": "3ae4c030 - fixed set of x, k alone as coefficient; here an open solution set whose boundedness depends on the sign of 5 - k"
+ },
+ "self_audit": {
+  "risk": "medium",
+  "note": "Covering the work, all four options remain legal from the stem alone: each is a count between 0 and 42, and no bound readable without solving strikes any of them. Try 3 slot: a student trying 13, then 16, then 22 cannot confirm any count in one routine step; each check requires the whole case analysis on the sign of 5 - k. Bypass: skipping the decision point - not reversing the sign for k > 5, so the unbounded sets look small - gives exactly 30, above the key as the slot plans. Test-wise: a student who reasons only about k < 5 and counts carefully reaches 22; the hard step is seeing that k = 6 to 13 contribute nothing, and the student who misses it lands on 30. Option 13 equals the printed 13 by value; it is a real slipped-constant answer, and the stem gives no reason to treat a printed magnitude as the answer or as excluded. Renumbered at stage 0 (range now starts at -28) so the key 22 is unique in the batch; the mechanism, slot, rank and bypass side are unchanged. Read lines: DPAIR/DSUM 22 + 13 = 35 = 28 + 7 - adding the key to a distractor is not a step of the problem; 35 is the constant after collecting terms, but no student holding 13 adds it to reach 22. DPAIR 22 - 16 = 6 = 7 - 1 and 30 - 22 = 8 = 7 + 1 - these are the widths of the k bands (-12 to -7, and 6 to 13); 1 is not printed and neither difference is an operation on the printed 7. INTER is answered in its own field. IDEA: the part setup is the probed setup reworded; same idea, probed before writing."
+ }
+}

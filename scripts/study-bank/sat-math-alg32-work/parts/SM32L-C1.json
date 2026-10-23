@@ -1,0 +1,97 @@
+{
+ "id": "SM32L-C1",
+ "domain": "Algebra",
+ "difficulty": "hard",
+ "subskill": "Integer solutions of a compound inequality with k",
+ "prompt": "x - 20 < kx ≤ 4x + 56\nIn the compound inequality above, k is a constant. For how many integer values of k does the compound inequality have exactly 3 integer solutions?",
+ "choices": [
+  "10",
+  "11",
+  "15",
+  "16"
+ ],
+ "correct_answer": "16",
+ "explanation": "Collect x in each part. The left part becomes (k - 1)x > -20 and the right part becomes (k - 4)x ≤ 56. If 1 ≤ k ≤ 4, one part is always true and the other bounds x on one side only, so there are infinitely many integer solutions. If k > 4, both coefficients are positive: x > -20/(k - 1) and x ≤ 56/(k - 4). Exactly 3 integers needs 0, 1, 2 and nothing else: 2 ≤ 56/(k - 4) < 3 gives 18.67 < k - 4 ≤ 28, so k = 23 through 32 (10 values), and for these k the left bound -20/(k - 1) is above -1, so -1 is excluded. If k < 1, both coefficients are negative, so BOTH inequalities reverse: x < 20/(1 - k) and x ≥ -56/(4 - k). The upper bound is at most 1 only when 1 - k ≥ 20, that is k ≤ -19; at k = -19 the bound is exactly 1, and because that part is strict, x = 1 is excluded, leaving the largest solution 0. Then 3 solutions (-2, -1, 0) need 2 ≤ 56/(4 - k) < 3, so 18.67 < 4 - k ≤ 28, k = -24 through -15; together with k ≤ -19 this gives k = -24 through -19 (6 values; at k = -24 the bound -2 is attained because that part is non-strict). For -18 ≤ k ≤ -15 the solutions run from -2 to 1, which is 4. Total 10 + 6 = 16. Choice 10 comes from not reversing the inequality signs for negative k, which leaves no solutions there and keeps only the positive k. Choice 15 comes from treating the strict left part as non-strict, which lets x = 1 in at k = -19 and drops that k. Choice 11 comes from moving -20 across the inequality without changing its sign, solving (k - 1)x > 20 instead.",
+ "solve": "const cnt=(k)=>{let c=0;for(let x=-600;x<=600;x++){if(x-20<k*x&&k*x<=4*x+56)c++;}return c;};let n=0;for(let k=-300;k<=300;k++){if(cnt(k)===3)n++;}return n;",
+ "distractor_solve": {
+  "10": "const cnt=(k)=>{if(k===1||k===4)return -1;let c=0;for(let x=-600;x<=600;x++){if(x>-20/(k-1)&&x<=56/(k-4))c++;}return c;};let n=0;for(let k=-300;k<=300;k++){if(cnt(k)===3)n++;}return n;",
+  "11": "const cnt=(k)=>{let c=0;for(let x=-600;x<=600;x++){if(x+20<k*x&&k*x<=4*x+56)c++;}return c;};let n=0;for(let k=-300;k<=300;k++){if(cnt(k)===3)n++;}return n;",
+  "15": "const cnt=(k)=>{let c=0;for(let x=-600;x<=600;x++){if(x-20<=k*x&&k*x<=4*x+56)c++;}return c;};let n=0;for(let k=-300;k<=300;k++){if(cnt(k)===3)n++;}return n;"
+ },
+ "mechanism": [
+  "collect x into coefficients k - 1 and k - 4",
+  "reverse both inequalities when k < 1",
+  "strict vs non-strict at the boundary k values",
+  "count integer k in two regimes"
+ ],
+ "mech": "integer-count-condition",
+ "ask": "count",
+ "quantity_asked": "the number of integer values of k for which the compound inequality has exactly 3 integer solutions",
+ "setup": {
+  "i": "k multiplies x in the middle of a compound inequality whose two ends are also linear in x, so the collected coefficients k - 1 and k - 4 change sign at different values of k",
+  "ii": "exactly 3 integer solutions",
+  "iii": "number of integer values of k"
+ },
+ "bypass_option": "10",
+ "off_by_one_options": [
+  "15"
+ ],
+ "plugback": {
+  "substitutable": false,
+  "why": "The options are counts of k values; no option can be substituted into the inequality. A student trying 10, 11, 15, 16 in turn must still find every qualifying k in both sign regimes, so the check is the whole solution.",
+  "aggregate_over": "every integer k (positive regime 23 to 32 and negative regime -24 to -19) for which exactly 3 integers satisfy the compound inequality"
+ },
+ "distractor_meta": {
+  "10": {
+   "error_kind": "sign_slip",
+   "error_sense": "swaps",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Not reversing the inequality signs when dividing by the negative coefficients k - 1 and k - 4 leaves an empty set for every k < 1, so only the 10 positive k remain. Nothing in the stem says whether the negative regime adds or removes values."
+  },
+  "11": {
+   "error_kind": "sign_slip",
+   "error_sense": "swaps",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Moving -20 to the other side without changing its sign gives (k - 1)x > 20, which shifts the lower bound in the positive regime and the upper bound in the negative regime; the qualifying sets change shape in both directions, and the stem does not say which way the total moves."
+  },
+  "15": {
+   "error_kind": "other",
+   "error_sense": "adds",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Treating the strict left part as non-strict adds x = 1 at k = -19, giving 4 solutions there and dropping that k. Adding an endpoint usually raises a count; here it lowers it, so the stem gives no direction."
+  }
+ },
+ "counter_error": {
+  "error_kind": "omission",
+  "solve": "const cp=(k)=>{let c=0;for(let x=-600;x<=600;x++){if(x-20<k*x&&k*x<=4*x+56)c++;}return c;};let n=0;for(let k=-300;k<=300;k++){if(k>4&&cp(k)===3)n++;if(k<1){let c=0;for(let x=-600;x<=0;x++){if((k-4)*x<=56)c++;}if(c===3)n++;}}return n;",
+  "direction": "above",
+  "why": "A student who reverses both signs correctly but assumes the strict upper bound 20/(1 - k) is below 1 for every negative k (largest solution always 0) keeps k = -18 through -15 as well, giving 10 + 10 = 20, which is above the key and not an option."
+ },
+ "far_distractor": {
+  "option": "15",
+  "natural_side": "above",
+  "why": "Treating a strict sign as non-strict adds an endpoint, which ordinarily makes a count larger; here the extra solution x = 1 at k = -19 pushes that k from 3 solutions to 4, so it is removed and the count of k falls below the key."
+ },
+ "structure_check": "The condition is 'exactly 3', not a monotone or universal condition, so errors move the count of k either way: the counter-error (assuming x ≤ 0 for every negative k) gives 20, above; counting one extra integer per k gives far more; forgetting the reversal gives 10, below; adding the endpoint gives 15, below. A student cannot tell from the stem that every slip lowers the answer.",
+ "cheap_bound_check": "The cheapest bound is that the positive-k regime alone (no sign reversal needed) gives 10 values, so the answer is at least 10. Every option is at least 10, so it strikes nothing; 11 and 15 sit on the key's side of it with the key. A symmetry guess (double the positive regime, 20) is an upper bound that also strikes nothing.",
+ "intermediate_check": "10: it is the positive-regime count; reaching 16 needs the negative-regime count 6, which no printed relation supplies - no. 15: 16 is not 15 plus any printed number (the only difference is 1, and 1 is not printed) - no. 11: comes from a different inequality; no printed relation maps it to 16 - no.",
+ "shape_check": "The stem hands over only that the answer is a count of integers (a nonnegative integer). All four options are nonnegative integers. No parity is forced (the two regimes have 10 and 6 values, not equal), no cap below 16 is readable, and no monotone 'larger is safer' property holds, so all four survive.",
+ "interior_parity_check": "The two middle values 11 and 15 are both two-digit integers of the same form; the key 16 is an end value, not the cleaner middle one.",
+ "arith_class_check": "Options 10, 11, 15, 16: two even (10, 16) and two odd (11, 15); none is a multiple of a printed coefficient in a way the key alone shares (16 is a multiple of 4, but so is nothing else, and the stem gives no reason to expect a multiple of 4). The key is not alone in a parity or sign class.",
+ "idea_probe": {
+  "at": "2026-10-23T02:53:12.085Z",
+  "nearest": "4fd22741 (-4 ≤ kx ≤ 45, exactly 3 integers, difference of k): that item has constant ends and one coefficient k; this one has both ends linear in x, so the two parts collect to k - 1 and k - 4, a band 1 ≤ k ≤ 4 with infinitely many solutions, a strict boundary that bites only in the negative regime, and asks the count of k"
+ },
+ "dup_search": {
+  "queries": [],
+  "hits_read": 9,
+  "nearest": "4fd22741 - constant ends, single coefficient k, difference ask; here two collected coefficients and a count"
+ },
+ "self_audit": {
+  "risk": "medium",
+  "note": "Covering the work, all four options remain legal from the stem alone: the answer is a count of integers and no bound or parity readable from the stem excludes any of 10, 11, 15, 16. Direction: errors go both ways (counter-error 20 above, three distractors below), and no single bound strikes all three distractors - the cheapest bound (positive regime alone, at least 10) strikes none. Try 4 slot: the key is the largest option; a student cannot confirm a count by substitution, so plug-back gives nothing. Bypass: skipping the decision point (reversing the signs for negative k) is exactly what gives 10. Test-wise: a student might guess symmetry and double the positive count (20, not an option) or pick the largest option; the largest option is the key here by slot design (r4), balanced across the batch. Read lines: PAIR (16 - 10 = 6 = 2 x printed 3) - the 6 is the size of the negative-k regime (k = -24 to -19); it is not reachable from the printed 3 by any step a student would take, and the coincidence does not point at 16 from 10 (a student adding 2 x 3 to 10 has no reason to). DPAIR (16 - 11 = 5 = 4 + 1) - 1 is not printed in the stem (only the implicit coefficient of x), and 11 comes from a different inequality; no relation in the stem adds 5 to it. FAR, BOUND, STRUCT, INTER are answered in their own fields above. IDEA: the part setup is the probed setup with the constants removed; same idea, probed before writing."
+ }
+}

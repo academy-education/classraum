@@ -1,0 +1,86 @@
+{
+ "id": "SM32L-C7",
+ "domain": "Algebra",
+ "difficulty": "hard",
+ "subskill": "Range of a fee giving an exact count of visit numbers",
+ "prompt": "A climbing gym offers two plans. Plan A has a one-time fee of k dollars plus $12 per visit. Plan B has a one-time fee of 3k dollars plus $5 per visit. Dana will make n visits, where n is a positive whole number. She wants Plan A to cost less than Plan B, and she wants Plan A to cost at most $260 in total. For some integer values of k, exactly 6 values of n meet both of Dana's conditions. What is the difference between the greatest and least such values of k?",
+ "choices": [
+  "136",
+  "166",
+  "167",
+  "182"
+ ],
+ "correct_answer": "166",
+ "explanation": "Plan A costs less than Plan B when k + 12n < 3k + 5n, that is, 7n < 2k, or n < 2k/7. Plan A costs at most $260 when k + 12n ≤ 260, that is, n ≤ (260 - k)/12. The first bound rises as k rises and the second falls, so the number of qualifying n is set by whichever bound is smaller. For small k the first bound decides: exactly 6 positive n are below 2k/7 when 6 < 2k/7 ≤ 7, so 21 < k ≤ 24.5, giving k = 22, 23, 24 (at k = 21, 2k/7 = 6 exactly and n = 6 does not satisfy the strict 'less than', so only 5 values work); for these k the budget bound is far above 6. For large k the budget decides: exactly 6 positive n are at most (260 - k)/12 when 6 ≤ (260 - k)/12 < 7, so 176 < k ≤ 188, giving k = 177 through 188 (at k = 188 the bound is exactly 6, and n = 6 is allowed because the budget is 'at most'); for these k the first bound is far above 6. For k between 25 and 176 both bounds allow more than 6 values. The greatest k is 188 and the least is 22, so the difference is 188 - 22 = 166. Choice 167 comes from treating 'less than' as 'no more than', which lets k = 21 in. Choice 182 comes from counting n = 0 as a possible number of visits, which moves the least k to 18 and the greatest to 200. Choice 136 comes from adding the per-visit prices instead of subtracting them, 17n < 2k, which moves the least k to 52.",
+ "solve": "const L=[];for(let k=0;k<=1000;k++){let c=0;for(let n=1;n<=2000;n++){if(k+12*n<3*k+5*n&&k+12*n<=260)c++;}if(c===6)L.push(k);}return L[L.length-1]-L[0];",
+ "distractor_solve": {
+  "136": "const L=[];for(let k=0;k<=1000;k++){let c=0;for(let n=1;n<=2000;n++){if(17*n<2*k&&k+12*n<=260)c++;}if(c===6)L.push(k);}return L[L.length-1]-L[0];",
+  "167": "const L=[];for(let k=0;k<=1000;k++){let c=0;for(let n=1;n<=2000;n++){if(k+12*n<=3*k+5*n&&k+12*n<=260)c++;}if(c===6)L.push(k);}return L[L.length-1]-L[0];",
+  "182": "const L=[];for(let k=0;k<=1000;k++){let c=0;for(let n=0;n<=2000;n++){if(k+12*n<3*k+5*n&&k+12*n<=260)c++;}if(c===6)L.push(k);}return L[L.length-1]-L[0];"
+ },
+ "mechanism": [
+  "two linear bounds on n, one rising and one falling in k",
+  "the smaller bound sets the count",
+  "strict 'less than' at k = 21 and attained 'at most' at k = 188",
+  "greatest minus least k across two separate blocks"
+ ],
+ "mech": "integer-count-condition",
+ "ask": "difference",
+ "quantity_asked": "the greatest integer k minus the least integer k for which exactly 6 positive whole numbers n satisfy both conditions",
+ "setup": {
+  "i": "k is the one-time fee of one plan and 3k the fee of another, so the number of whole-number visit counts is capped by the smaller of a bound that rises with k (the cheaper-plan condition) and one that falls with k (the budget)",
+  "ii": "exactly 6 positive whole numbers of visits meet both conditions",
+  "iii": "greatest minus least integer k"
+ },
+ "bypass_option": "167",
+ "off_by_one_options": [
+  "167"
+ ],
+ "plugback": {
+  "substitutable": false,
+  "why": "The options are differences between two fees, not fees. A student trying 136 and then 166 cannot put either into the plans; confirming 166 needs both boundary fees, 22 on the cheaper-plan side and 188 on the budget side, which is the whole solution.",
+  "aggregate_over": "the two boundary fees of the qualifying set: the least k (22, where the cheaper-plan bound first allows exactly 6 visits) and the greatest k (188, where the budget last allows exactly 6)"
+ },
+ "distractor_meta": {
+  "136": {
+   "error_kind": "sign_slip",
+   "error_sense": "swaps",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Adding the per-visit prices (17n < 2k) instead of subtracting them tightens the rising bound, so the least fee moves up to 52. Nothing in the stem says which way a slip in that bound moves the difference."
+  },
+  "167": {
+   "error_kind": "other",
+   "error_sense": "adds",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Reading 'less than' as 'no more than' admits n = 6 at k = 21, so the least fee drops by one. The stem does not reveal which end of the range a strictness slip moves."
+  },
+  "182": {
+   "error_kind": "other",
+   "error_sense": "adds",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Counting n = 0 adds one value to every count, so 6 is reached at a lower fee on the rising side and a higher fee on the budget side. A student cannot see from the stem that both ends move outward."
+  }
+ },
+ "structure_check": "Not an extreme slot (key rank 2). The qualifying fees form two separate blocks; slips move either end in either direction (the strictness slip and n = 0 widen the range, the price slip and a strict budget narrow it), so no structure tells a student which way every error goes.",
+ "cheap_bound_check": "Not an extreme slot. The cheapest bound is that the budget alone forces k ≤ 260 - 12 x 6 = 188 for 6 visits, so the difference is less than 188; all four options survive it.",
+ "intermediate_check": "167: 188 - 21; 166 follows from it only by knowing the strictness at k = 21, not by a printed relation - no. 182: 200 - 18 from a shifted count; 182 - 166 = 16 is not printed - no. 136: 188 - 52 from a slipped bound; 166 - 136 = 30 is not printed - no.",
+ "shape_check": "The stem hands over that k is an integer and the answer is a positive difference below 260. All four options are positive integers below 260; no parity is forced, so all four survive together.",
+ "interior_parity_check": "The two middle values 166 and 167 are both three-digit integers of the same form; the key 166 is not cleaner than 167.",
+ "arith_class_check": "Options 136, 166, 167, 182: three even and one odd; the key 166 is even with 136 and 182. No multiple-of-k or roundness class isolates 166.",
+ "idea_probe": {
+  "at": "2026-10-23T03:16:00.816Z",
+  "nearest": "5f2482cb (pottery: fee $35 plus k per class, at most $180, at least 2 classes, exactly 3 class counts, number of k): there k is the per-class price and one budget bound decides; here k is the fee in both plans (k and 3k), the count is the smaller of a rising and a falling bound, the qualifying fees form two separate blocks, and the ask is greatest minus least. The prior SM31L-B6 (k per item and fee 2k, equal totals in a band) is a degenerate-parameter equality item, not an integer count."
+ },
+ "dup_search": {
+  "queries": [],
+  "hits_read": 42,
+  "nearest": "5f2482cb - a single budget bound on a per-class price k; here two opposing bounds on a fee k and a difference across two blocks"
+ },
+ "self_audit": {
+  "risk": "medium",
+  "note": "Covering the work, all four options remain legal from the stem alone: each is a positive integer below the cheapest bound (188), and no parity or cap readable without solving strikes any of them. Try 2 slot: the key 166 is the second option in ascending order, but a student cannot confirm it in one routine step - 166 is a difference of two fees, so checking it requires finding both boundary fees, one on each side of the range where both bounds exceed 6. Bypass: skipping the strict-vs-non-strict decision on 'less than' gives exactly 167, above the key as the slot plans. Test-wise: a student who handles only the cheaper-plan condition gets 24 - 22 = 2 (not an option), and one who handles only the budget gets 188 - 177 = 11 (not an option); both blocks are needed. Read lines: INTER is answered in its own field. PROBE: the item goes to the cold probe as a try-2 aggregate; confirming 166 needs both boundary fees, 22 and 188. IDEA: the part setup is the probed setup with the two bounds labelled; same idea, probed before writing."
+ }
+}

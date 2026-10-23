@@ -1,0 +1,96 @@
+{
+ "id": "SM32L-B8",
+ "domain": "Algebra",
+ "difficulty": "hard",
+ "subskill": "Table of solutions straddles the no-solution k",
+ "prompt": "kx = 4x + 3k + c\nIn the equation above, c is a constant. For two values of the constant k, the solution of the equation is listed below.\nk = 3: solution 23\nk = 9: solution -1\nWhat is the solution of the equation when k = 24?",
+ "choices": [
+  "-61",
+  "-32",
+  "-13",
+  "2"
+ ],
+ "correct_answer": "2",
+ "explanation": "Use k = 3: the equation becomes 3x = 4x + 9 + c, and its solution is 23, so 69 = 92 + 9 + c and c = -32. (The value k = 9 checks: 9x = 4x + 27 - 32 gives 5x = -5, x = -1.) The equation is (k - 4)x = 3k - 32. When k = 24: 20x = 72 - 32 = 40, so x = 2. The solution is not a linear function of k: x = (3k - 32)/(k - 4) = 3 - 20/(k - 4), and at k = 4, which lies between the two listed values of k, the equation reads 0 = -20 and has no solution, so the solution jumps there. Choice -61 comes from treating the solution as changing at a constant rate, -4 per unit of k between k = 3 and k = 9, and extending that line to k = 24. Choice -13 comes from treating x - 3 as proportional to k - 4 instead of inversely proportional (from k = 9, x - 3 = -4 when k - 4 = 5). Choice -32 is the value of c, not the solution.",
+ "solve": "const c = 3 * 23 - 4 * 23 - 3 * 3; const k = 24; return String((3 * k + c) / (k - 4));",
+ "distractor_solve": {
+  "-61": "const slope = (-1 - 23) / (9 - 3); return String(-1 + slope * (24 - 9));",
+  "-13": "const m = (-1 - 3) / (9 - 4); return String(3 + m * (24 - 4));",
+  "-32": "const c = 3 * 23 - 4 * 23 - 3 * 3; return String(c);"
+ },
+ "mechanism": [
+  "find c from the k = 3 value",
+  "(k - 4)x = 3k - 32, no solution at k = 4 between the listed k",
+  "solution 3 - 20/(k - 4) is not linear in k",
+  "solve at k = 24"
+ ],
+ "mech": "degenerate-parameter",
+ "ask": "value",
+ "quantity_asked": "the solution of the equation when k = 24",
+ "setup": {
+  "i": "the solution of kx = 4x + 3k + c (c unknown) is given for two values of k that lie on opposite sides of the no-solution value k = 4",
+  "ii": "the solution as a function of k is 3 - 20/(k - 4), which jumps at k = 4, so the two given values cannot be extended as a straight line",
+  "iii": "the solution for a third, larger value of k"
+ },
+ "bypass_option": "-61",
+ "off_by_one_options": [],
+ "plugback": {
+  "substitutable": true,
+  "verify": "const c = -32; return Math.abs(24 * v - (4 * v + 3 * 24 + c)) < 1e-9;",
+  "why": "Ascending, a student tries -61, -32 and -13 first; each fails when substituted into 24x = 4x + 72 + c once c = -32 is known, and only then does 2 pass at try 4. Knowing c already requires using the equation rather than the pattern of the two listed values, which is the decision point.",
+  "aggregate_over": "not an aggregate: the key is at try 4"
+ },
+ "distractor_meta": {
+  "-13": {
+   "error_kind": "inverted_rate",
+   "error_sense": "swaps",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Treating x - 3 as directly rather than inversely proportional to k - 4 moves the answer in a direction set by the sign of the table values, not by anything the stem states."
+  },
+  "-32": {
+   "error_kind": "wrong_variable",
+   "error_sense": "swaps",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Reporting c instead of the solution gives a number whose relation to the solution is not visible from the stem."
+  },
+  "-61": {
+   "error_kind": "wrong_operation",
+   "error_sense": "omits",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Extending the two listed values as a line skips the no-solution value k = 4 between them; whether the line overshoots or undershoots the true solution at k = 24 depends on the values given, which the stem does not signal."
+  }
+ },
+ "counter_error": {
+  "error_kind": "other",
+  "solve": "return String(3);",
+  "direction": "above",
+  "why": "A student who sees that the solution approaches 3 for large k and answers 3 lands above the key; 3 is not an option."
+ },
+ "far_distractor": {
+  "option": "-61",
+  "natural_side": "above",
+  "why": "Extending two known values linearly a little beyond the last one usually lands close to the true value; here the two values straddle the jump at k = 4, so the line is steep and the extrapolation lands far below the key."
+ },
+ "structure_check": "The ask is one determined value, not an extremum or a count, and the stem gives one solution above and one below the key (23 and -1), so it does not tell a student that every error moves the answer down; answering the limit 3 moves it up.",
+ "cheap_bound_check": "The cheapest reading of the stem is the two listed solutions, 23 and -1; neither bounds the solution at k = 24 from one side, so no distractor is struck by it.",
+ "intermediate_check": "-61: no - it is a linear extrapolation, not a value the key follows from by one printed relation. -13: no - it comes from a wrong proportionality; no printed relation turns -13 into 2. -32: no - it is c; the key needs the further step 20x = 72 + c, and 72 is not printed.",
+ "shape_check": "Properties handed over: a single real number, no sign, integer or parity forced. All four options (-61, -32, -13, 2) survive together.",
+ "interior_parity_check": "The two middle values are -32 and -13: both two-digit negative integers; the key 2 is not interior.",
+ "arith_class_check": "The key 2 is the only positive option, but the stem implies no sign for the solution (one listed solution is positive and one negative), so positivity is not a class the stem points to; 2 is not a printed number (4, 3, 23, 9, -1, 24).",
+ "idea_probe": {
+  "at": "2026-10-23T03:29:27.670Z",
+  "nearest": "e26c893e-2d1 (live v26: a table of a linear function f with unknown entry c; f(x) = k(x - 2) + 5 has a solution for every k; find c). There the table is of f(x) and the ask is the entry that makes the every-k condition hold; mine tabulates the SOLUTION of an equation for two values of k on opposite sides of the no-solution k, and the trap is extending that table as a line."
+ },
+ "dup_search": {
+  "queries": [],
+  "hits_read": 2,
+  "nearest": "e26c893e-2d1 - see idea_probe"
+ },
+ "self_audit": {
+  "risk": "medium",
+  "note": "Covering the work, all four options remain legal from the stem alone (any real number). A test-wise student who treats the solution as linear in k (slope -4 between k = 3 and k = 9) and extends it to k = 24 gets -61 - the bypass, exactly what ignoring the no-solution value k = 4 between the listed values gives. Could a student tell from the stem which way the errors go? No: one listed solution is above and one below the key, and answering the limit 3 moves the answer up. One bound does not strike all three: the listed values bound nothing at k = 24. Plug-back: the key is at try 4; -61, -32 and -13 each fail substitution once c is found, so verify separates the key. Is -61 what skipping THIS item's decision point gives? Yes. (read) lines: a first version (rows k = 0 and 9, presented as a table) failed a ratio read (-16/2 = 8, a printed row value) and a prompt-Jaccard flag against e26c893e; the values and wording were changed. Any remaining PAIR/DPAIR read is a small-number coincidence with no route from the stem to 2."
+ }
+}

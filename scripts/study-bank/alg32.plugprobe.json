@@ -274,5 +274,555 @@
     "note": "difference of range endpoints"
    }
   }
+ },
+ "r1": {
+  "valid": true,
+  "positives": 5,
+  "negatives": 0,
+  "plant_disagree": 0,
+  "plants": {
+   "SM26L-B6": {
+    "kind": "plant-pos",
+    "key_try": 1,
+    "flagged": true,
+    "disagree": false,
+    "confirmed": "-16",
+    "confirmed_at": 1,
+    "routine": true,
+    "note": "smallest option achievable by one back-solve for k; free confirm at position 1"
+   },
+   "SM26L-C6": {
+    "kind": "plant-pos",
+    "key_try": 2,
+    "flagged": true,
+    "disagree": false,
+    "confirmed": "17",
+    "confirmed_at": 2,
+    "routine": true,
+    "note": "greatest-k question; descending plug-back counts integers for each option directly"
+   },
+   "SM26L-B5": {
+    "kind": "plant-pos",
+    "key_try": 1,
+    "flagged": true,
+    "disagree": false,
+    "confirmed": "21",
+    "confirmed_at": 1,
+    "routine": true,
+    "note": "largest option achievable by one linear back-solve; free confirm at position 1"
+   },
+   "SM27F-D13": {
+    "kind": "plant-pos",
+    "key_try": 2,
+    "flagged": true,
+    "disagree": false,
+    "confirmed": "159",
+    "confirmed_at": 2,
+    "routine": true,
+    "note": "forward distance from each option; least-minutes question so first passing ascending option is it"
+   },
+   "SM26L-C8": {
+    "kind": "plant-pos",
+    "key_try": 2,
+    "flagged": true,
+    "disagree": false,
+    "confirmed": "37",
+    "confirmed_at": 2,
+    "routine": true,
+    "note": "substitute k, read the interval; least-k so first passing ascending option"
+   },
+   "SM26L-D2": {
+    "kind": "plant-neg",
+    "key_try": 1,
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "sum of two optima; needs both optima found the normal way"
+   },
+   "SM26L-D3": {
+    "kind": "plant-neg",
+    "key_try": 2,
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "two optima needed"
+   },
+   "SM26L-D4": {
+    "kind": "plant-neg",
+    "key_try": 2,
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "integer max of objective; search not substitution"
+   },
+   "SM26L-C4": {
+    "kind": "plant-neg",
+    "key_try": 2,
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "range"
+   },
+   "SM26L-B1": {
+    "kind": "plant-neg",
+    "key_try": 2,
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "count"
+   },
+   "SM26L-C1": {
+    "kind": "plant-neg",
+    "key_try": 1,
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "count"
+   },
+   "SM26L-B7": {
+    "kind": "plant-neg",
+    "key_try": 1,
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "no back-solve path from the gap to the stem without k"
+   },
+   "SM26L-D7": {
+    "kind": "plant-neg",
+    "key_try": 2,
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "argmax; 18 is a free elimination against the printed cap"
+   }
+  },
+  "items": {
+   "SM32L-B1": {
+    "key_try": 1,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "count"
+   },
+   "SM32L-B2": {
+    "key_try": 4,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "count"
+   },
+   "SM32L-B3": {
+    "key_try": 2,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "count"
+   },
+   "SM32L-B4": {
+    "key_try": 1,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "sum over a set"
+   },
+   "SM32L-B5": {
+    "key_try": 4,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "sum of extremes"
+   },
+   "SM32L-B6": {
+    "key_try": 3,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "range"
+   },
+   "SM32L-B7": {
+    "key_try": 2,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "composite sum"
+   },
+   "SM32L-B8": {
+    "key_try": 4,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": "2",
+    "confirmed_at": 4,
+    "routine": true,
+    "note": "c by one substitution of given data, then each option substitutes directly; key is last in ascending order"
+   },
+   "SM32L-C1": {
+    "key_try": 4,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "count"
+   },
+   "SM32L-C2": {
+    "key_try": 3,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "count"
+   },
+   "SM32L-C3": {
+    "key_try": 1,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "sum over a solution set"
+   },
+   "SM32L-C4": {
+    "key_try": 3,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "sum over a set"
+   },
+   "SM32L-C5": {
+    "key_try": 1,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "range"
+   },
+   "SM32L-C6": {
+    "key_try": 4,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "range"
+   },
+   "SM32L-C7": {
+    "key_try": 2,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "range of a k-set"
+   },
+   "SM32L-C8": {
+    "key_try": 3,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": "24",
+    "confirmed_at": 3,
+    "routine": true,
+    "note": "list the hourly heights once, count per option"
+   },
+   "SM32L-D1": {
+    "key_try": 1,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "count; requires full enumeration"
+   },
+   "SM32L-D2": {
+    "key_try": 2,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "count"
+   },
+   "SM32L-D3": {
+    "key_try": 4,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "derived from cost minimum"
+   },
+   "SM32L-D4": {
+    "key_try": 1,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "derived quantity of a cost minimum"
+   },
+   "SM32L-D5": {
+    "key_try": 4,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "derived from integer optimum"
+   },
+   "SM32L-D6": {
+    "key_try": 3,
+    "order": "descending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "two-variable integer max; testing a value needs an integer-pair search, not a substitution"
+   },
+   "SM32L-D7": {
+    "key_try": 2,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "difference from an integer optimum"
+   },
+   "SM32L-D8": {
+    "key_try": 3,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "argmax; no single-option confirm"
+   }
+  }
+ },
+ "r2": {
+  "valid": true,
+  "positives": 5,
+  "negatives": 2,
+  "plant_disagree": 0,
+  "plants": {
+   "SM26L-C8": {
+    "kind": "plant-pos",
+    "key_try": 2,
+    "flagged": true,
+    "disagree": false,
+    "confirmed": "37",
+    "confirmed_at": 2,
+    "routine": true,
+    "note": "substitute k into both inequalities and read off the x interval"
+   },
+   "SM27F-D13": {
+    "kind": "plant-pos",
+    "key_try": 2,
+    "flagged": true,
+    "disagree": false,
+    "confirmed": "159",
+    "confirmed_at": 2,
+    "routine": true,
+    "note": "compute the distance forward from each time and compare with 53"
+   },
+   "SM26L-C6": {
+    "kind": "plant-pos",
+    "key_try": 2,
+    "flagged": true,
+    "disagree": false,
+    "confirmed": "17",
+    "confirmed_at": 2,
+    "routine": true,
+    "note": "read the linear rule from the table, then count the x values for each k"
+   },
+   "SM26L-B6": {
+    "kind": "plant-pos",
+    "key_try": 1,
+    "flagged": true,
+    "disagree": false,
+    "confirmed": "-16",
+    "confirmed_at": 1,
+    "routine": true,
+    "note": "one linear back-solve for k from the option"
+   },
+   "SM26L-B5": {
+    "kind": "plant-pos",
+    "key_try": 1,
+    "flagged": true,
+    "disagree": false,
+    "confirmed": "21",
+    "confirmed_at": 1,
+    "routine": true,
+    "note": "one linear back-solve for k from the option"
+   },
+   "SM26L-D7": {
+    "kind": "plant-neg",
+    "key_try": 2,
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "asks for the A-count at the optimum; no single plug-back confirms optimality, and only 18 can be refuted routinely"
+   },
+   "SM26L-D3": {
+    "kind": "plant-neg",
+    "key_try": 2,
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "answer is the change in an optimum; plug-back cannot reach it"
+   },
+   "SM26L-C1": {
+    "kind": "plant-neg",
+    "key_try": 1,
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "counting answer; no plug-back"
+   },
+   "SM26L-B1": {
+    "kind": "plant-neg",
+    "key_try": 2,
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "counting answer; no plug-back"
+   },
+   "SM26L-D2": {
+    "kind": "plant-neg",
+    "key_try": 1,
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "the option is a sum of two optima; it cannot be substituted"
+   },
+   "SM26L-C4": {
+    "kind": "plant-neg",
+    "key_try": 2,
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "a difference of the endpoint k values; plug-back cannot reach it"
+   },
+   "SM26L-B7": {
+    "kind": "plant-neg",
+    "key_try": 1,
+    "flagged": true,
+    "disagree": false,
+    "confirmed": "40",
+    "confirmed_at": 1,
+    "routine": true,
+    "note": "short coefficient match; arguably close to the forward solve (parallel lines means k=12), but it is only a couple of lines"
+   },
+   "SM26L-D4": {
+    "kind": "plant-neg",
+    "key_try": 2,
+    "flagged": true,
+    "disagree": false,
+    "confirmed": "71",
+    "confirmed_at": 2,
+    "routine": true,
+    "note": "for each target, try a few y values to find an integer pair, then substitute it into all three inequalities"
+   }
+  },
+  "items": {
+   "SM32L-B1": {
+    "key_try": 1,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "counting answer; no plug-back"
+   },
+   "SM32L-B4": {
+    "key_try": 1,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": null,
+    "confirmed_at": null,
+    "routine": false,
+    "note": "the answer is a sum of values; plug-back cannot reach it"
+   },
+   "SM32L-C8": {
+    "key_try": 3,
+    "order": "ascending",
+    "flagged": false,
+    "disagree": false,
+    "confirmed": "25",
+    "confirmed_at": 3,
+    "routine": true,
+    "note": "list the 8 hourly heights once, then count for each k"
+   }
+  }
  }
 }

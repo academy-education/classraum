@@ -1,0 +1,82 @@
+{
+  "id": "SM32L-D8",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Coordinate of the most profitable whole-number plan",
+  "prompt": "A print shop makes posters and banners. The table shows the ink and paper each item uses.\nItem | Ink (milliliters) | Paper (sheets)\nPoster | 15 | 6\nBanner | 18 | 16\nThe shop has 249 milliliters of ink and 140 sheets of paper, earns a profit of $14 on each poster and $18 on each banner, and makes only whole posters and banners. In the plan with the greatest total profit, how many posters does the shop make?",
+  "choices": [
+    "0",
+    "11",
+    "13",
+    "16"
+  ],
+  "correct_answer": "13",
+  "explanation": "Let x be the number of posters and y the number of banners. The conditions are 15x + 18y ≤ 249 (that is, 5x + 6y ≤ 83) and 6x + 16y ≤ 140 (that is, 3x + 8y ≤ 70), and the profit is 14x + 18y, which is twice 7x + 9y, so it is enough to maximise 7x + 9y. The two boundary lines meet at x ≈ 11.09, y ≈ 4.59. Rounding gives 11 posters and 5 banners, which needs 255 milliliters of ink, too much; rounding down to 11 and 4 is allowed and earns $226, but it is not the best. Write the profit two ways: 7x + 9y = (3/2)(5x + 6y) - x/2 ≤ 124.5 - x/2, and 7x + 9y = (9/8)(3x + 8y) + (29/8)x ≤ 78.75 + 3.625x. A value of 7x + 9y of 119 or more would need x ≤ 11 from the first and x ≥ 12 from the second, which is impossible, so 7x + 9y is at most 118. A value of exactly 118 needs 11 ≤ x ≤ 13; x = 11 and x = 12 give no whole y (9y = 41 or 34), and x = 13 gives y = 3: 195 + 54 = 249 milliliters of ink, 78 + 48 = 126 sheets, and a profit of 182 + 54 = $236. So the best plan makes 13 posters (and 3 banners). Choice 11 comes from rounding the corner. Choice 0 reads the table's rows the wrong way round (a poster using 18 milliliters and 16 sheets, a banner 15 and 6), which leads to 0 posters and 16 banners. Choice 16 swaps the two profits ($18 per poster, $14 per banner), which leads to 16 posters and no banners.",
+  "solve": "let best=-Infinity, ans=null; for(let x=0;x<=40;x++) for(let y=0;y<=40;y++) if(15*x+18*y<=249 && 6*x+16*y<=140){ const v=14*x+18*y; if(v>best){best=v; ans=x;} } return ans;",
+  "distractor_solve": {
+    "0": "let best=-Infinity, ans=null; for(let x=0;x<=40;x++) for(let y=0;y<=40;y++) if(18*x+15*y<=249 && 16*x+6*y<=140){ const v=14*x+18*y; if(v>best){best=v; ans=x;} } return ans;",
+    "11": "const d=15*16-18*6; const x=(249*16-18*140)/d; return Math.round(x);",
+    "16": "let best=-Infinity, ans=null; for(let x=0;x<=40;x++) for(let y=0;y<=40;y++) if(15*x+18*y<=249 && 6*x+16*y<=140){ const v=18*x+14*y; if(v>best){best=v; ans=x;} } return ans;"
+  },
+  "mechanism": [
+    "two supply lines meet at a non-integer corner",
+    "the rounded corner over-uses ink",
+    "bound the profit two ways and check the few candidates",
+    "report the coordinate of the best plan"
+  ],
+  "mech": "integer-optimum",
+  "ask": "value",
+  "quantity_asked": "number of posters in the unique plan with the greatest total profit",
+  "setup": {
+    "i": "two supply limits (ink and paper) given in a table; maximise profit",
+    "ii": "the best whole-number plan uses all the ink exactly, two posters past the rounded corner, with fewer banners",
+    "iii": "number of the first item in the most profitable plan"
+  },
+  "bypass_option": "11",
+  "off_by_one_options": [],
+  "plugback": {
+    "substitutable": true,
+    "verify": "let best=-Infinity, ans=null; for(let x=0;x<=40;x++) for(let y=0;y<=40;y++) if(15*x+18*y<=249 && 6*x+16*y<=140){ const w=14*x+18*y; if(w>best){best=w; ans=x;} } return v===ans;",
+    "why": "Trying 0, 11, 13 in order: for each poster count the student can find the best banner count and its profit (0 posters: 8 banners, $144; 11 posters: 4 banners, $226; 13 posters: 3 banners, $236), but a larger profit at one option does not show it is the greatest over all plans, so confirming 13 still needs the bound or a full scan. The key is at natural try 3 in any case."
+  },
+  "distractor_meta": {
+    "0": {
+      "error_kind": "wrong_variable",
+      "error_sense": "swaps",
+      "direction": "below",
+      "stem_predicts_direction": false,
+      "why": "Reading the table's rows the wrong way round gives each item the other's ink and paper use; the stem does not show which way that moves the poster count."
+    },
+    "11": {
+      "error_kind": "other",
+      "error_sense": "omits",
+      "direction": "below",
+      "stem_predicts_direction": false,
+      "why": "Rounding the corner skips the lattice search; the stem does not show whether the best plan has more or fewer posters than the corner."
+    },
+    "16": {
+      "error_kind": "wrong_variable",
+      "error_sense": "swaps",
+      "direction": "above",
+      "stem_predicts_direction": false,
+      "why": "Swapping the profits makes posters the better item; nothing in the stem says how far the poster count then rises."
+    }
+  },
+  "intermediate_check": "11: no - it is the rounded corner's x, not a value from which 13 follows through one printed relation. 0: no - it is the x of a plan found with the table's rows swapped. 16: no - it is the x of a plan found with swapped profits. None is a step in the solution.",
+  "shape_check": "The stem hands over: the poster count is a whole number with 15x <= 249, so from 0 to 16. All four options survive. No parity is forced.",
+  "interior_parity_check": "The middle values are 11 and 13: both two-digit odd numbers of the same form; neither is cleaner.",
+  "arith_class_check": "11 and 13 are odd; 0 and 16 are even. Nothing in the stem implies parity, and the key is not alone in any class.",
+  "idea_probe": {
+    "at": "2026-10-23T03:15:15.085Z",
+    "nearest": "e14de4cc-5f0 (live v26 D4) maximises 7x + 6y over a bare three-inequality system and asks the greatest value; this item gives two supply limits in a table and asks a coordinate of the best plan, never the profit. SM31L-D4 (banned prior, never live) has two capacity limits and asks x - y of the best plan; this item is closest to it in shape - different register (table), different numbers, a coordinate rather than a difference - and the coordinator should judge it."
+  },
+  "dup_search": {
+    "queries": [],
+    "hits_read": 3,
+    "nearest": "SM31L-D4 (prior): two capacity limits, best plan two steps off the rounded corner, asks x - y"
+  },
+  "self_audit": {
+    "risk": "medium",
+    "note": "Covering the work, how many options remain legal from the stem alone? All four: the ink limit caps posters at 16, which keeps every option. Could a student confirm an option against the stem in one routine step? The key is at natural try 3 (ascending); even there, seeing that 13 posters give a larger profit than 1 or 11 does not show 13 is best, so confirming it needs the profit bound or a scan. Is the bypass option really what skipping this item's decision point gives? Yes: the decision point is that the best lattice plan is not the rounded corner; a student who rounds (11.09, 4.59) reports 11 posters. A test-wise student might expect the answer near the corner (11 or 13), and the key is one of those two; the other is the bypass, so the pair does not single out the key. The closest prior setup is SM31L-D4 (banned, never live), flagged in idea_probe.nearest. (read) After the first draft failed DPAIR (key 13 = 13 x the option 1, and 13 = 6 + 7 with the old $7 profit), the profits were doubled to $14 and $18 (same best plan) and the option 1 was replaced by 0 (rows of the table swapped). Remaining (read) lines are answered here: any pair or sum coincidences between 13 and 0, 11 or 16 and printed numbers have no solving path - no step adds two printed figures or doubles one to reach a poster count."
+  }
+}

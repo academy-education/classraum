@@ -1,0 +1,82 @@
+{
+  "id": "SM32L-D7",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Comparing the best whole-number plan with a given plan",
+  "prompt": "A market stand sells pies and loaves of bread. Each pie costs $9 to bake and earns a profit of $16, and each loaf costs $5 to bake and earns a profit of $10. The stand can spend at most $154 on baking, and its shelf can display at most 23 items in total. Last week the stand baked 0 pies and 23 loaves. Only whole pies and loaves are baked. How much greater is the greatest possible total profit for a week than last week's total profit?",
+  "choices": [
+    "54",
+    "56",
+    "60",
+    "76"
+  ],
+  "correct_answer": "56",
+  "explanation": "Last week's profit was 23(10) = $230. Let p be the number of pies and q the number of loaves. The conditions are 9p + 5q ≤ 154 and p + q ≤ 23, and the profit is 16p + 10q. The boundary lines meet where 9p + 5(23 - p) = 154, so p = 9.75 and q = 13.25, with profit $288.50. Rounding gives 10 pies and 13 loaves, but that costs $155. To find the best whole-number plan, write the profit two ways: 16p + 10q = 2(9p + 5q) - 2p ≤ 308 - 2p, and 16p + 10q = 10(p + q) + 6p ≤ 230 + 6p. A profit of $287 or more would need 308 - 2p ≥ 287 and 230 + 6p ≥ 287, so p = 10; then 160 + 10q ≥ 287 needs q ≥ 13, which costs at least $155. So the profit is at most $286, and 11 pies and 11 loaves reach it: 99 + 55 = $154, 22 items, 176 + 110 = 286. The greatest possible profit is $286, which is 286 - 230 = $56 more than last week. Choice 60 uses the rounded corner (10 pies, 13 loaves, $290), which is over budget. Choice 54 fills the shelf exactly (23 items), whose best plan is 9 pies and 14 loaves ($284). Choice 76 reads the shelf limit as 'at least 23 items', which allows 1 pie and 29 loaves ($306).",
+  "solve": "let best=-Infinity; for(let p=0;p<=40;p++) for(let q=0;q<=40;q++) if(9*p+5*q<=154 && p+q<=23) best=Math.max(best,16*p+10*q); return best-230;",
+  "distractor_solve": {
+    "60": "const p=(154-5*23)/4, q=23-p; return 16*Math.round(p)+10*Math.round(q)-230;",
+    "54": "let best=-Infinity; for(let p=0;p<=23;p++){ const q=23-p; if(9*p+5*q<=154) best=Math.max(best,16*p+10*q); } return best-230;",
+    "76": "let best=-Infinity; for(let p=0;p<=40;p++) for(let q=0;q<=40;q++) if(9*p+5*q<=154 && p+q>=23) best=Math.max(best,16*p+10*q); return best-230;"
+  },
+  "mechanism": [
+    "budget line meets a shelf cap at a non-integer corner",
+    "the rounded corner is over budget",
+    "bound the profit two ways to find the lattice best",
+    "subtract a given plan's profit"
+  ],
+  "mech": "integer-optimum",
+  "ask": "difference",
+  "quantity_asked": "the greatest possible weekly profit minus the profit of last week's stated plan (0 pies, 23 loaves)",
+  "setup": {
+    "i": "spending cap plus a display cap on the total number of items; maximise profit",
+    "ii": "the corner's rounded plan breaks the budget and the best whole-number plan leaves one display space empty",
+    "iii": "greatest profit minus the profit of a stated earlier plan"
+  },
+  "bypass_option": "60",
+  "off_by_one_options": [],
+  "plugback": {
+    "substitutable": false,
+    "why": "Trying 54 then 56: each would mean a best profit of $284 or $286, and confirming either needs showing that no plan does better - the whole lattice search. No single substitution or forward computation from an option checks it.",
+    "aggregate_over": "the difference between two profits: the greatest whole-number profit within the budget and shelf limits, minus last week's $230 from 0 pies and 23 loaves"
+  },
+  "distractor_meta": {
+    "60": {
+      "error_kind": "other",
+      "error_sense": "adds",
+      "direction": "above",
+      "stem_predicts_direction": false,
+      "why": "Rounding the corner keeps a plan $1 over budget; the stem does not show how far below the corner's profit the lattice best lies."
+    },
+    "54": {
+      "error_kind": "other",
+      "error_sense": "adds",
+      "direction": "below",
+      "stem_predicts_direction": false,
+      "why": "Requiring a full shelf adds a constraint the stem does not impose; the stem gives no sign whether the best plan fills the shelf."
+    },
+    "76": {
+      "error_kind": "sign_slip",
+      "error_sense": "swaps",
+      "direction": "above",
+      "stem_predicts_direction": false,
+      "why": "Reading 'at most 23 items' as 'at least 23' lets the plan load up on loaves; the stem does not reveal how much that changes the profit."
+    }
+  },
+  "intermediate_check": "60: no - it is the gain from the rounded corner, a different (infeasible) plan; 56 does not follow from it through one printed relation. 54: no - it is the gain from the best full-shelf plan; reaching 286 needs dropping the full-shelf assumption and redoing the search. 76: no - it is the gain under a reversed shelf condition.",
+  "shape_check": "The stem hands over: the gain is a whole number of dollars, even (every profit is 16p + 10q, even, and 230 is even), and at most about 308 - 230 = 78 from the budget alone. All four options are even and below 78; all survive.",
+  "interior_parity_check": "The middle values are 56 and 60: both two-digit even numbers; 60 is the rounder, and it is a distractor, not the key.",
+  "arith_class_check": "All four options are even, as the stem forces; none is alone in a class. The key 56 is not a multiple of 10 (54 and 76 are not either; 60 is).",
+  "idea_probe": {
+    "at": "2026-10-23T03:14:24.348Z",
+    "nearest": "SM31L-D6 (prior, banned setup) has a materials budget and a display cap but asks the greatest number of frames among tied best plans; this item has a unique best plan away from the rounded corner and asks its profit gain over a stated plan. 7fa09e5c-8ed (live) mentions last week's production but solves a system for one profit, with no optimisation."
+  },
+  "dup_search": {
+    "queries": [],
+    "hits_read": 3,
+    "nearest": "SM31L-D6 (prior): same pair of constraints, different decision and ask"
+  },
+  "self_audit": {
+    "risk": "medium",
+    "note": "Covering the work, how many options remain legal from the stem alone? All four: the stem forces an even gain below about 78, and all four options are even and below it. Could a student confirm an option against the stem in one routine step? No: an option is a gain, and confirming it means showing that $230 plus that gain is the greatest profit, which is the whole lattice search; no substitution checks it. Is the bypass option really what skipping this item's decision point gives? Yes: the decision point is that the rounded corner (10 pies, 13 loaves) is $1 over budget; a student who rounds and stops reports 290 - 230 = 60. A test-wise student picking the larger 'profit' options or the round 60 lands on a distractor. (read) PAIR 76-56 = 20 = 2 x 10 and DPAIR 60-56 = 4 = 5-1: coincidences; no solving step doubles the loaf profit or subtracts 1 from the loaf cost to move between gains."
+  }
+}

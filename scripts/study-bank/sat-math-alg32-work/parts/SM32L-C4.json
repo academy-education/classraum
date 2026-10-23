@@ -1,0 +1,83 @@
+{
+ "id": "SM32L-C4",
+ "domain": "Algebra",
+ "difficulty": "hard",
+ "subskill": "Number of integer solutions equal to the constant k",
+ "prompt": "The table gives three values of the linear function f.\nx | f(x)\n-5 | -13\n6 | 20\n11 | 35\nFor a positive integer k, exactly k integers x satisfy -8 < f(x) ≤ 2k. What is the sum of all possible integer values of k?",
+ "choices": [
+  "18",
+  "24",
+  "27",
+  "39"
+ ],
+ "correct_answer": "27",
+ "explanation": "From the table, the slope of f is (20 - (-13))/(6 - (-5)) = 33/11 = 3, so f(x) = 3x + 2. The left part -8 < 3x + 2 gives x > -10/3, so the smallest integer solution is -3 (f(-3) = -7 is greater than -8, while f(-4) = -10 is not). The right part 3x + 2 ≤ 2k gives x ≤ (2k - 2)/3. If N is the greatest integer not above (2k - 2)/3, the solutions are -3, -2, ..., N, which is N + 4 integers. The condition says N + 4 = k, so N = k - 4, which means k - 4 ≤ (2k - 2)/3 < k - 3. The left half gives 3k - 12 ≤ 2k - 2, so k ≤ 10; the right half gives 2k - 2 < 3k - 9, so k > 7. So k = 8, 9 or 10. Check k = 10: (2k - 2)/3 = 6 exactly, and f(6) = 20 = 2k is allowed because the right sign is non-strict, so the solutions are -3 through 6, which is 10 integers. Check k = 7: x ≤ 4, so -3 through 4, which is 8, not 7. The sum is 8 + 9 + 10 = 27. Choice 24 comes from treating ≤ 2k as < 2k, which excludes x = 6 when k = 10 and gives k = 7, 8, 9. Choice 18 comes from counting the integers from -3 to N as N + 3 instead of N + 4, which gives k = 5, 6, 7. Choice 39 comes from moving the 2 to the right side as +2, solving 3x ≤ 2k + 2, which gives k = 12, 13, 14.",
+ "solve": "const f=(x)=>3*x+2;let s=0;for(let k=1;k<=300;k++){let c=0;for(let x=-600;x<=600;x++){if(-8<f(x)&&f(x)<=2*k)c++;}if(c===k)s+=k;}return s;",
+ "distractor_solve": {
+  "18": "const f=(x)=>3*x+2;let s=0;for(let k=1;k<=300;k++){let c=0;for(let x=-600;x<=600;x++){if(-8<f(x)&&f(x)<=2*k)c++;}if(c-1===k)s+=k;}return s;",
+  "24": "const f=(x)=>3*x+2;let s=0;for(let k=1;k<=300;k++){let c=0;for(let x=-600;x<=600;x++){if(-8<f(x)&&f(x)<2*k)c++;}if(c===k)s+=k;}return s;",
+  "39": "const f=(x)=>3*x+2;let s=0;for(let k=1;k<=300;k++){let c=0;for(let x=-600;x<=600;x++){if(-8<f(x)&&3*x<=2*k+2)c++;}if(c===k)s+=k;}return s;"
+ },
+ "mechanism": [
+  "linear function from a table",
+  "count integers between a strict and a non-strict bound",
+  "set the count equal to k itself",
+  "sum the qualifying k"
+ ],
+ "mech": "integer-count-condition",
+ "ask": "sum",
+ "quantity_asked": "the sum of all positive integers k for which exactly k integers satisfy -8 < f(x) ≤ 2k",
+ "setup": {
+  "i": "2k is the non-strict upper bound on a linear function given only by a table, and the lower bound is a fixed strict constant that no integer input reaches",
+  "ii": "the number of integer solutions equals k itself",
+  "iii": "sum of all possible values of k"
+ },
+ "bypass_option": "24",
+ "off_by_one_options": [],
+ "plugback": {
+  "substitutable": false,
+  "why": "The options are sums of k values. Trying 18, then 24, then 27 in ascending order, a student cannot substitute any of them as k (k = 27 gives 20 solutions, not 27); confirming a sum needs every k that satisfies the self-referring count, which is the whole solution."
+ },
+ "distractor_meta": {
+  "18": {
+   "error_kind": "wrong_operation",
+   "error_sense": "omits",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Counting the integers from -3 to N by subtraction (N + 3) undercounts by one, which shifts the self-referring match to k = 5, 6, 7. Nothing in the stem signals the side."
+  },
+  "24": {
+   "error_kind": "omission",
+   "error_sense": "omits",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Excluding the attained upper endpoint drops one solution when (2k - 2)/3 is an integer, so k = 10 fails and k = 7 qualifies instead. Because k sits on both sides of the condition, the stem does not reveal whether losing a solution moves the qualifying k up or down."
+  },
+  "39": {
+   "error_kind": "sign_slip",
+   "error_sense": "swaps",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Moving +2 across as +2 gives x ≤ (2k + 2)/3, a looser bound, so the count meets k at larger values 12, 13, 14. The stem does not say which way a constant slip moves the match."
+  }
+ },
+ "structure_check": "Not an extreme slot (key rank 3). The condition 'exactly k' puts k on both sides, so the direction of an error is not readable: a lost solution (attained endpoint excluded, or a count one short) moves the match down to 7-9 or 5-7, while a looser bound (the +2 slip) moves it up to 12-14, and counting one extra integer would move it up as well. No universal condition or extremum fixes the side.",
+ "cheap_bound_check": "Not an extreme slot. The cheapest bound is that k counts integers starting at -3, so k ≥ 4 for any match and a sum of three consecutive k is at least 15; all four options survive. Every option is a multiple of 3, as any sum of three consecutive integers is, so that strikes nothing either.",
+ "intermediate_check": "24: the sum 7 + 8 + 9; 27 = 24 + 3, and 3 is not printed (the slope 3 must be computed from the table) - no. 18: the sum 5 + 6 + 7; 27 - 18 = 9 is not printed and is not a sum of two printed numbers - no. 39: the sum 12 + 13 + 14; 39 - 27 = 12 is not printed - no.",
+ "shape_check": "The stem hands over that k is a positive integer and, after solving, that the qualifying k are consecutive. Every option is a positive multiple of 3, consistent with a sum of three consecutive integers; no parity is forced (two even, two odd), so all four survive together.",
+ "interior_parity_check": "The two middle values 24 and 27 are both two-digit multiples of 3; the key 27 is not the cleaner of the two.",
+ "arith_class_check": "All four options are multiples of 3; the key 27 is odd along with 39, while 18 and 24 are even. No sign, parity or roundness class isolates the key.",
+ "idea_probe": {
+  "at": "2026-10-23T03:04:36.081Z",
+  "nearest": "e0559aab (system with k in a strict bound; the integer solutions have a given sum; sum of k): there the condition is a fixed target sum of the solutions and k sits in one bound only; here the count of solutions must equal k itself, f is given only by a table, and the strict and non-strict ends decide which three k match"
+ },
+ "dup_search": {
+  "queries": [],
+  "hits_read": 5,
+  "nearest": "e0559aab - fixed target sum of solutions; here a self-referring count (exactly k solutions)"
+ },
+ "self_audit": {
+  "risk": "medium",
+  "note": "Covering the work, all four options remain legal from the stem alone: each is a positive multiple of 3 (as a sum of three consecutive k must be), and no bound readable without solving strikes any of them. Try 3 slot: a student trying 18, 24, 27 in turn cannot substitute any of them as k, and checking one candidate k (say k = 9) still leaves the student needing every other qualifying k. Bypass: skipping the strict-vs-non-strict decision at the attained endpoint (treating ≤ 2k as < 2k) gives exactly 24, below the key as the slot plans. Test-wise: a student testing k by hand will find 9 quickly but must check both neighbours and the attained endpoint at k = 10 to get the full set. Read lines: PAIR 39 - 27 = 12 = 2 x printed 6 - 12 is the shift of the three matching k (12-14 against 8-10, three values each moved by 4); doubling the table entry 6 plays no part, and a student holding 39 has no printed step that subtracts 12. DPAIR 9 = 8 + 1, 3 = 2 + 1, 12 = 11 + 1 - 1 is not printed in the stem, and each difference is three times the shift of a block of three consecutive k (3, 1 and 4), not an operation on the printed 8, 2 or 11. INTER is answered in its own field. IDEA: the part setup is the probed setup with one clause added (the lower bound is not reached by an integer input) after the table was changed; same idea, probed before writing."
+ }
+}

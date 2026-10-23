@@ -1,0 +1,97 @@
+{
+ "id": "SM32L-B1",
+ "domain": "Algebra",
+ "difficulty": "hard",
+ "subskill": "Parallel-line parameter splits an outside-band count",
+ "prompt": "In the xy-plane, line q passes through the points (4, 20) and (6, 26). Line p has equation y = kx - 4, where k is a constant. For how many integers k with -19 ≤ k ≤ 24 do lines p and q intersect at a point whose x-coordinate is less than -1 or greater than 3?",
+ "choices": [
+  "14",
+  "16",
+  "25",
+  "27"
+ ],
+ "correct_answer": "14",
+ "explanation": "Line q has slope (26 - 20)/(6 - 4) = 3 and passes through (4, 20), so its equation is y = 3x + 8. The lines meet where kx - 4 = 3x + 8, that is, (k - 3)x = 12. When k = 3 the lines are parallel and never meet, so k = 3 never counts. For every other k the intersection has x-coordinate x = 12/(k - 3). If k > 3, then x is positive, so it cannot be less than -1; it is greater than 3 exactly when 12/(k - 3) > 3, that is, when 0 < k - 3 < 4, giving k = 4, 5, 6. If k < 3, then x is negative, so it cannot be greater than 3; it is less than -1 exactly when 12/(3 - k) > 1, that is, when 0 < 3 - k < 12, giving k = -8 through 2, which is 11 values. The count is 3 + 11 = 14. Choice 27 comes from noticing that x = -1 when k = -9 and x = 3 when k = 7 and then assuming the x-coordinate moves steadily between those values, so that only k outside -9 to 7 qualify; but k = 3, where the lines are parallel, lies between -9 and 7, and the x-coordinate jumps there from very negative to very positive, so it is the k values near 3, not the far ones, that work. Choice 25 comes from multiplying the inequalities by k - 3 without reversing them when k - 3 is negative, which gives k < -9 or k < 7. Choice 16 also counts k = -9 and k = 7, where the x-coordinate equals -1 and 3 exactly and so is not less than -1 or greater than 3.",
+ "solve": "let n = 0; for (let k = -19; k <= 24; k++) { if (k === 3) continue; const x = 12 / (k - 3); if (x < -1 || x > 3) n++; } return String(n);",
+ "distractor_solve": {
+  "27": "const kLow = 3 - 12 / 1; const kHigh = 3 + 12 / 3; let n = 0; for (let k = -19; k <= 24; k++) { if (k < kLow || k > kHigh) n++; } return String(n);",
+  "25": "let n = 0; for (let k = -19; k <= 24; k++) { if (k === 3) continue; if (12 < -1 * (k - 3) || 12 > 3 * (k - 3)) n++; } return String(n);",
+  "16": "let n = 0; for (let k = -19; k <= 24; k++) { if (k === 3) continue; const x = 12 / (k - 3); if (x <= -1 || x >= 3) n++; } return String(n);"
+ },
+ "mechanism": [
+  "line through two points to slope-intercept form",
+  "intersection x-coordinate 12/(k - 3)",
+  "parallel value k = 3 splits the k-line into two branches",
+  "two-piece outside-band count"
+ ],
+ "mech": "degenerate-parameter",
+ "ask": "count",
+ "quantity_asked": "the number of integers k from -19 to 24 for which the two lines meet at a point with x-coordinate less than -1 or greater than 3",
+ "setup": {
+  "i": "k is the slope of a line with fixed intercept, the other line is given by two points, so the intersection x-coordinate is 12/(k - 3) and k = 3 makes the lines parallel",
+  "ii": "the intersection x-coordinate lies outside a closed band (below its lower end or above its upper end), which only k on either side close to the parallel value achieve",
+  "iii": "number of integer values of k in a stated range"
+ },
+ "bypass_option": "27",
+ "off_by_one_options": [
+  "16"
+ ],
+ "plugback": {
+  "substitutable": false,
+  "why": "Trying 14 first, a student cannot test it by substitution: it is a count of k values, not a k or an x, and no printed relation accepts or rejects it. Confirming it needs the whole case analysis on both sides of k = 3.",
+  "aggregate_over": "the integers k from -19 to 24, other than the parallel value k = 3, whose intersection point has x-coordinate below -1 or above 3"
+ },
+ "distractor_meta": {
+  "27": {
+   "error_kind": "wrong_operation",
+   "error_sense": "omits",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Treating the intersection x-coordinate as moving steadily from -1 at k = -9 to 3 at k = 7 skips the parallel value k = 3 and counts the far k values instead of the near ones. Whether that count is larger or smaller than the true one depends on how wide the stated range is, which the stem does not signal."
+  },
+  "25": {
+   "error_kind": "sign_slip",
+   "error_sense": "swaps",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Not reversing the inequality when multiplying by a negative k - 3 turns each condition into a one-sided ray in k; nothing in the stem says whether the rays overshoot or undershoot."
+  },
+  "16": {
+   "error_kind": "other",
+   "error_sense": "adds",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Including the two boundary k values, where the x-coordinate equals -4 or 3 exactly, adds to the count; the strict wording does not reveal how many boundary values are integers."
+  }
+ },
+ "counter_error": {
+  "error_kind": "omission",
+  "solve": "let n = 0; for (let k = 4; k <= 14; k++) { const x = 12 / (k - 3); if (x > 3) n++; } return String(n);",
+  "direction": "below",
+  "why": "A student who assumes k - 3 is positive finds only the k > 3 branch (x greater than 3, k = 4, 5, 6) and misses the k < 3 branch, landing at 3, below the key and not an option."
+ },
+ "far_distractor": {
+  "option": "25",
+  "natural_side": "below",
+  "why": "Dropping the reversal for negative k - 3 usually loses the solutions on the k < 3 branch and so undercounts; here the condition is two-pieced (less than -1 OR greater than 3), so the unreversed pieces become long rays in k and the slip overshoots the key instead."
+ },
+ "structure_check": "The condition is an OR of two pieces over a fixed range, so there is no universal condition, strictest bound or extremum to sign the errors: dropping a branch lowers the count (counter_error 3), while the monotone assumption and the unreversed inequality raise it here only because the range is long on both sides of -9 to 7. A student cannot tell from the stem which way every slip goes.",
+ "cheap_bound_check": "The cheapest bound from the stem is that the count is at most 43 (44 integers in the range, minus the parallel value k = 3); all four options lie on the key's side of it.",
+ "intermediate_check": "27: no - it is a count over a different set (the far k values), not a value from which 14 follows by one printed relation. 25: no - it is the count of k < 7 other than 3, which does not give 14 through any printed relation. 16: no - it is 14 plus the two boundary k values, which are not printed.",
+ "shape_check": "The stem hands over: the answer is a whole number, at least 0, at most 43. All four options (14, 16, 25, 27) survive every one of these properties together; no parity or sign property is forced.",
+ "interior_parity_check": "The two middle values are 16 and 25: both two-digit whole numbers. The key 14 is not cleaner than them.",
+ "arith_class_check": "The key 14 is not alone in a class the stem implies; no option equals a printed number in a way that singles out the key.",
+ "idea_probe": {
+  "at": "2026-10-23T03:03:52.205Z",
+  "nearest": "36298954-4d3 (live v26: f(x) = kx - 1, g(x) = 7x + k, sum of integer k with no common point with x > 0). Mine is a count over a stated range, line q is given by two points, and the condition is a two-piece band (x < -4 or x > 3) whose qualifying k sit on BOTH sides of the parallel value, so the trap is the monotone-endpoint assumption, not a one-sided sign condition."
+ },
+ "dup_search": {
+  "queries": [],
+  "hits_read": 7,
+  "nearest": "36298954-4d3 - see idea_probe"
+ },
+ "self_audit": {
+  "risk": "medium",
+  "note": "Stage-0 return: renumbered so the key (14) is unique in the batch (was 5, shared with D1); same slot, ask, rank, mechanism, bypass side and off-by-one. Covering the work, all four options remain legal from the stem alone (each is a whole number at most 43). A test-wise student who solves x = -1 and x = 3 for k (k = -9 and k = 7) and counts outside that interval lands on 27 - the bypass, exactly what skipping the parallel value k = 3 gives. Could a student tell from the stem which way the errors go? No. One bound does not strike all three. Could a student confirm an option in one routine step? No: every option is a count of k values. (read) lines: R5 - off-by-one option 16 is declared and is author B's one off-by-one item. Any PAIR/DPAIR read is a small-number coincidence with no route from the stem to 14. IDEA - same probed placement and band-type condition with new numbers."
+ }
+}

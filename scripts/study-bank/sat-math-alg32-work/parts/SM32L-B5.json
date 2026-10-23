@@ -1,0 +1,95 @@
+{
+ "id": "SM32L-B5",
+ "domain": "Algebra",
+ "difficulty": "hard",
+ "subskill": "Parallel value places a system's y extremes",
+ "prompt": "kx + 5y = 5\nx + y = 4\nThe system above contains the constant k. For each integer k from 0 to 20, inclusive, that gives the system exactly one solution, the y-coordinate of that solution is written down. What is the sum of the greatest and the least of the numbers written down?",
+ "choices": [
+  "-10",
+  "-6",
+  "6",
+  "8"
+ ],
+ "correct_answer": "8",
+ "explanation": "From the second equation, x = 4 - y. Substituting: k(4 - y) + 5y = 5, so (5 - k)y = 5 - 4k, that is, (k - 5)y = 4k - 5. When k = 5 this reads 0 = 15: the lines 5x + 5y = 5 and x + y = 4 are parallel, there is no solution, and nothing is written down for k = 5. For every other k, y = (4k - 5)/(k - 5) = 4 + 15/(k - 5). For k greater than 5 the fraction 15/(k - 5) is positive and largest when k - 5 is smallest, so the greatest value is at k = 6: y = 19. For k less than 5 the fraction is negative and most negative when 5 - k is smallest, so the least value is at k = 4: y = -11. The sum is 19 + (-11) = 8. Choice 6 comes from assuming y changes steadily with k, so that the extremes sit at the ends of the range: y = 1 at k = 0 and y = 5 at k = 20; but k = 5, where the lines are parallel, lies inside the range, and y runs off toward very large and very small values next to it. Choice -6 finds the least value correctly at k = 4 but still takes the greatest at the end of the range, k = 20 (y = 5). Choice -10 looks only at k below 5, where the greatest value is at k = 0 (y = 1) and the least at k = 4.",
+ "solve": "const ys = []; for (let k = 0; k <= 20; k++) { if (k === 5) continue; ys.push((4 * k - 5) / (k - 5)); } return String(Math.max(...ys) + Math.min(...ys));",
+ "distractor_solve": {
+  "6": "const y = k => (4 * k - 5) / (k - 5); return String(y(0) + y(20));",
+  "-6": "const ys = []; for (let k = 0; k <= 20; k++) { if (k === 5) continue; ys.push((4 * k - 5) / (k - 5)); } const y20 = (4 * 20 - 5) / (20 - 5); return String(Math.min(...ys) + y20);",
+  "-10": "const ys = []; for (let k = 0; k < 5; k++) ys.push((4 * k - 5) / (k - 5)); return String(Math.max(...ys) + Math.min(...ys));"
+ },
+ "mechanism": [
+  "substitute x = 4 - y",
+  "(k - 5)y = 4k - 5, parallel at k = 5",
+  "y = 4 + 15/(k - 5) on two branches",
+  "extremes at the integers next to the parallel value, then add"
+ ],
+ "mech": "degenerate-parameter",
+ "ask": "sum",
+ "quantity_asked": "the sum of the greatest and least y-coordinates of the solutions over the integers k from 0 to 20 that give exactly one solution",
+ "setup": {
+  "i": "k is the x-coefficient of one equation of a 2x2 system whose other coefficients and constants are fixed (kx + 5y = 5, x + y = 4), so y = 4 + 15/(k - 5) and k = 5 makes the lines parallel",
+  "ii": "over the integers k in a stated range other than 5, the y-coordinate is greatest and least at the integers on either side of 5, not at the ends of the range",
+  "iii": "sum of the greatest and least y-coordinates"
+ },
+ "bypass_option": "6",
+ "off_by_one_options": [],
+ "plugback": {
+  "substitutable": false,
+  "why": "The key 8 is the largest option, reached at natural try 4. No option can be checked by substituting it: each is a sum of two y-values, not a k or a coordinate, so testing any option needs both extremes found first.",
+  "aggregate_over": "the y-coordinates of the solutions for the integers k from 0 to 20 other than the parallel value 5: the greatest (at k = 6) plus the least (at k = 4)"
+ },
+ "distractor_meta": {
+  "6": {
+   "error_kind": "wrong_operation",
+   "error_sense": "omits",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Taking the extremes at the ends of the range skips the parallel value k = 5 inside it; whether the end values sum to more or less than the true extremes depends on where the range ends, which the stem does not signal."
+  },
+  "-6": {
+   "error_kind": "partial_answer",
+   "error_sense": "swaps",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Finding the least value next to k = 5 but placing the greatest at the largest k swaps one extreme for an end value; the stem does not reveal which side that moves the sum."
+  },
+  "-10": {
+   "error_kind": "other",
+   "error_sense": "omits",
+   "direction": "below",
+   "stem_predicts_direction": false,
+   "why": "Working only on the k < 5 branch keeps one branch's extremes; nothing in the stem says that branch's values are smaller."
+  }
+ },
+ "counter_error": {
+  "error_kind": "wrong_operation",
+  "solve": "const ys = []; for (let k = 0; k <= 20; k++) { if (k === 5) continue; ys.push((4 * k - 5) / (k - 5)); } return String(Math.max(...ys) - Math.min(...ys));",
+  "direction": "above",
+  "why": "Subtracting the least from the greatest instead of adding gives 19 - (-11) = 30, above the key and not an option."
+ },
+ "far_distractor": {
+  "option": "-6",
+  "natural_side": "above",
+  "why": "Keeping one true extreme and replacing the other with an end value ordinarily leaves a sum near the key, often above it; here the replaced extreme is the very large y = 19 next to the parallel value, so the error lands far below."
+ },
+ "structure_check": "The asked quantity is a sum of a maximum and a minimum, so slips do not all push one way: replacing the greatest by a smaller value lowers the sum, replacing the least by a larger value raises it, and subtracting instead of adding raises it (30). The stem gives no universal condition that signs every error.",
+ "cheap_bound_check": "The cheapest stem bound is that every y-value lies on one of the two branches around y = 4 once the formula is found; before that, nothing in the stem bounds the sum, so all three distractors remain on the key's side of any one-sided bound a student can read off.",
+ "intermediate_check": "6: no - it is y(0) + y(20), end values; 8 does not follow from 6 through one printed relation. -6: no - it is the least plus an end value; reaching 8 needs the greatest 19, which is not printed. -10: no - it is the k < 5 branch only; no printed relation turns -10 into 8.",
+ "shape_check": "Properties handed over: a sum of two real numbers, sign unknown, not forced to be an integer. All four options (-10, -6, 6, 8) survive together.",
+ "interior_parity_check": "The two middle values are -6 and 6: both one-digit whole numbers in the same form; the key 8 is not cleaner than them.",
+ "arith_class_check": "The key 8 is not alone in a class the stem implies: all four options are even; 8 is not a printed number (5, 4, 0, 20) or a multiple of a printed coefficient the others are not.",
+ "idea_probe": {
+  "at": "2026-10-23T03:24:54.480Z",
+  "nearest": "SM26L-B6 (dropped v26, not live: kx + y = 14, x - y = 1, least y over integers k in -6..6), the closest setup; no live item. Mine asks the SUM of the greatest and least y, so both extremes on both branches are needed and the end-of-range values are a trap on both sides. 757d0b2f (live) uses a similar system but asks a count with x > y."
+ },
+ "dup_search": {
+  "queries": [],
+  "hits_read": 6,
+  "nearest": "SM26L-B6 (prior, dropped) - see idea_probe"
+ },
+ "self_audit": {
+  "risk": "high",
+  "note": "Covering the work, all four options remain legal from the stem alone (a sum of two real numbers). A test-wise student who evaluates y at the two ends of the range, k = 0 and k = 20, and adds gets 6 - the bypass, exactly what ignoring the parallel value k = 5 inside the range gives. Could a student tell from the stem which way errors go? No: a max-plus-min has errors on both sides (subtracting gives 30, above). One bound does not strike all three: the stem gives no bound on the sum. Plug-back: key at try 4; no option is a k or a coordinate, so substitution checks nothing. Risk is high because SM26L-B6 (a dropped v26 item) has a related setup, with a single least-y ask; the coordinator should judge whether the sum ask is distinct enough. Is 6 really what skipping THIS item's decision point gives? Yes: end-of-range extremes assume y is monotone across k = 5. (read) lines: PAIR ratio 8/-10 = 4/5 - a coincidence; 4 and 5 are coefficients, and no ratio step leads from the stem to 8. D4 'greatest' read - the stem says 'the greatest and the least' inside a SUM ask; the key is the largest option because both true extremes sit beside the parallel value, which the stem does not show, and subtracting instead of adding lands above (30). IDEA - the part's setup is the probed idea in fuller words. Near-dup best j = 0.367, below the flag."
+ }
+}

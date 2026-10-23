@@ -1,0 +1,623 @@
+[
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM32L-B6",
+  "subskill": "No-solution value places the extreme solutions",
+  "prompt": "kx + 93 = 7x + 15k\nIn the equation above, k is a constant. Ana solves the equation for each integer k from 5 to 19, inclusive, for which it has a solution. What is the difference between the greatest and the least of the solutions she finds?",
+  "choices": [
+   "7",
+   "13",
+   "24",
+   "30"
+  ],
+  "correct_answer": "24",
+  "explanation": "Collect the x terms: kx - 7x = 15k - 93, so (k - 7)x = 15k - 93. When k = 7 this reads 0 = 12, so there is no solution and Ana finds nothing for k = 7. For every other k, x = (15k - 93)/(k - 7) = 15 + 12/(k - 7). For k greater than 7 the fraction is positive and largest when k - 7 is smallest, so the greatest solution is at k = 8: x = 27. For k less than 7 the fraction is negative and most negative when 7 - k is smallest, so the least solution is at k = 6: x = 3. The difference is 27 - 3 = 24. Choice 7 comes from assuming the solution changes steadily with k, so the extremes are at the ends of the range: x = 9 at k = 5 and x = 16 at k = 19; but k = 7, where there is no solution, lies inside the range and the solution runs off to large and small values beside it. Choice 13 finds the least solution at k = 6 but still takes the greatest at the end of the range, k = 19. Choice 30 adds the greatest and least solutions instead of subtracting.",
+  "mechanism": [
+   "collect x terms to (k - 7)x = 15k - 93",
+   "k = 7 gives no solution",
+   "solution 15 + 12/(k - 7) on two branches",
+   "extremes beside the no-solution value, then subtract"
+  ],
+  "solve": "const xs = []; for (let k = 5; k <= 19; k++) { if (k === 7) continue; xs.push((15 * k - 93) / (k - 7)); } return String(Math.max(...xs) - Math.min(...xs));",
+  "distractor_solve": {
+   "7": "const x = k => (15 * k - 93) / (k - 7); return String(Math.abs(x(19) - x(5)));",
+   "13": "const xs = []; for (let k = 5; k <= 19; k++) { if (k === 7) continue; xs.push((15 * k - 93) / (k - 7)); } const x19 = (15 * 19 - 93) / (19 - 7); return String(x19 - Math.min(...xs));",
+   "30": "const xs = []; for (let k = 5; k <= 19; k++) { if (k === 7) continue; xs.push((15 * k - 93) / (k - 7)); } return String(Math.max(...xs) + Math.min(...xs));"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM32L-D6",
+  "subskill": "Greatest profit over whole-number plans under two constraints",
+  "prompt": "A woodworker makes chairs and stools each week. Each chair uses $7 of materials and earns a profit of $13, and each stool uses $4 of materials and earns a profit of $7. The weekly materials budget is $100, and because chairs are sold in sets with stools, the woodworker makes at most 4 more chairs than stools. Only whole chairs and stools are made. What is the greatest possible weekly profit, in dollars?",
+  "choices": [
+   "172",
+   "181",
+   "182",
+   "184"
+  ],
+  "correct_answer": "181",
+  "explanation": "Let c be the number of chairs and s the number of stools. The conditions are 7c + 4s ≤ 100 and c - s ≤ 4, and the profit is 13c + 7s. Per dollar, a chair earns 13/7 ≈ $1.86 and a stool 7/4 = $1.75, so the woodworker wants as many chairs as the second condition allows. The boundary lines meet where c = s + 4 and 7(s + 4) + 4s = 100: s ≈ 6.55, c ≈ 10.55, with profit about $182.91, so no plan can earn more than $182. Write the profit as 13c + 7s = (7/4)(7c + 4s) + (3/4)c ≤ 175 + 0.75c. Earning $182 or more would need 0.75c ≥ 7, so c ≥ 10; with c - s ≤ 4 that means s ≥ c - 4, and the budget gives 7c + 4(c - 4) ≤ 100, so c ≤ 10. With c = 10, s is 6 or 7, earning $172 or $179. So no plan reaches $182. Profit $181 is reached by 8 chairs and 11 stools: 56 + 44 = $100 of materials, 8 - 11 is less than 4, and 104 + 77 = 181. The greatest possible weekly profit is $181. Choice 182 rounds the corner's profit ($182.91) down to whole dollars without checking that a whole-number plan reaches it. Choice 184 reads the condition the wrong way round (at most 4 more stools than chairs), which allows 12 chairs and 4 stools. Choice 172 rounds both corner coordinates down to 10 chairs and 6 stools.",
+  "mechanism": [
+   "budget line meets a difference cap at a non-integer corner",
+   "the corner's profit is not reached by any whole-number plan",
+   "bound the profit and check the few plans near the corner",
+   "best plan far from the corner"
+  ],
+  "solve": "let best=-Infinity; for(let c=0;c<=40;c++) for(let s=0;s<=40;s++) if(7*c+4*s<=100 && c-s<=4) best=Math.max(best,13*c+7*s); return best;",
+  "distractor_solve": {
+   "172": "const s=(100-28)/11, c=s+4; return 13*Math.floor(c)+7*Math.floor(s);",
+   "182": "const s=(100-28)/11, c=s+4; return Math.floor(13*c+7*s);",
+   "184": "let best=-Infinity; for(let c=0;c<=40;c++) for(let s=0;s<=40;s++) if(7*c+4*s<=100 && s-c<=4) best=Math.max(best,13*c+7*s); return best;"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM32L-D5",
+  "subskill": "Most profitable whole-number plan under a budget and an hour minimum",
+  "prompt": "A woodshop class makes birdhouses and planter boxes to sell. Each birdhouse uses $8 of lumber, takes 2 hours to build, and earns a profit of $13. Each planter box uses $5 of lumber, takes 6 hours to build, and earns a profit of $8. The class can spend at most $159 on lumber, and the course requires the class to log at least 120 hours of building time. Only whole items are built. In the plan with the greatest total profit, what is the number of planter boxes minus the number of birdhouses?",
+  "choices": [
+   "-15",
+   "7",
+   "8",
+   "11"
+  ],
+  "correct_answer": "11",
+  "explanation": "Let b be the number of birdhouses and p the number of planter boxes. The conditions are 8b + 5p ≤ 159 and 2b + 6p ≥ 120 (that is, b + 3p ≥ 60), and the profit is 13b + 8p. Per dollar of lumber, a birdhouse earns 13/8 = $1.625 and a planter box 8/5 = $1.60, so the class wants as many birdhouses as the hour requirement allows. The boundary lines meet where b = 60 - 3p and 8(60 - 3p) + 5p = 159, so p ≈ 16.89 and b ≈ 9.32. Rounding gives 9 birdhouses and 17 planter boxes: that costs $157, logs exactly 120 hours, and earns $253, but it is not the best plan. Spending exactly $159 needs 8b + 5p = 159, which happens for b = 3, 8, 13, 18 with p = 27, 19, 11, 3. Only b = 3 and b = 8 meet the hour requirement (b = 13 gives 13 + 33 = 46 < 60), and their profits are 39 + 216 = $255 and 104 + 152 = $256. Plans that leave money unspent earn less (for example 6 and 22 earn $254, and 9 and 17 earn $253). So the best plan is 8 birdhouses and 19 planter boxes, and 19 - 8 = 11. Choice 8 is the rounded corner (9 and 17), which meets both conditions but earns $3 less. Choice 7 subtracts the corner's coordinates (16.89 - 9.32 = 7.57) and drops the decimal instead of finding a whole-number plan. Choice -15 reads 'at least 120 hours' as 'at most 120 hours', which leads to 18 birdhouses and 3 planter boxes.",
+  "mechanism": [
+   "budget line meets an hour-minimum line at a non-integer corner",
+   "the rounded corner is feasible but not the most profitable",
+   "exact-spend plans along the budget line",
+   "difference of the two counts"
+  ],
+  "solve": "let best=-Infinity, ans=null; for(let b=0;b<=40;b++) for(let p=0;p<=40;p++) if(8*b+5*p<=159 && 2*b+6*p>=120){ const v=13*b+8*p; if(v>best){best=v; ans=p-b;} } return ans;",
+  "distractor_solve": {
+   "7": "const p=(8*60-159)/19, b=60-3*p; return Math.floor(p-b);",
+   "8": "const p=(8*60-159)/19, b=60-3*p; return Math.round(p)-Math.round(b);",
+   "-15": "let best=-Infinity, ans=null; for(let b=0;b<=40;b++) for(let p=0;p<=40;p++) if(8*b+5*p<=159 && 2*b+6*p<=120){ const v=13*b+8*p; if(v>best){best=v; ans=p-b;} } return ans;"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM32L-D3",
+  "subskill": "Cheapest whole-number plan under a covering need and a ratio",
+  "prompt": "A summer camp needs tents to sleep at least 151 campers. A large tent sleeps 9 campers and costs $44 per night, and a small tent sleeps 4 campers and costs $20 per night. Camp rules require at least twice as many small tents as large tents. Only whole tents are rented, and the camp rents the least expensive combination of tents that meets both conditions. What is the total number of tents in that combination?",
+  "choices": [
+   "17",
+   "24",
+   "27",
+   "29"
+  ],
+  "correct_answer": "29",
+  "explanation": "Let L be the number of large tents and S the number of small tents. The conditions are 9L + 4S ≥ 151 and S ≥ 2L, and the nightly cost is 44L + 20S. Per camper, a large tent costs 44/9 ≈ $4.89 and a small tent $5.00, so the camp wants as many large tents as the rule allows. The boundary lines meet where S = 2L and 17L = 151: L ≈ 8.88, S ≈ 17.76. Rounding gives 9 large and 18 small tents, which sleeps 153 and costs $756, but it is not the cheapest. Moving along the sleeping requirement, trade large tents for small ones in exact amounts: 7 large and 22 small sleep 63 + 88 = 151 exactly and cost 308 + 440 = $748; 8 large and 20 small cost $752; 3 large and 31 small cost $752; and every other combination that meets both conditions costs more than $748. So the cheapest combination is 7 large and 22 small tents, a total of 29 tents. Choice 27 is the rounded corner (9 and 18), which meets both conditions but costs $8 more. Choice 24 drops the word 'twice' and requires only at least as many small tents as large, which allows 11 large and 13 small at $744. Choice 17 ignores the rule and uses only large tents, the cheaper choice per camper.",
+  "mechanism": [
+   "covering line meets a ratio line at a non-integer corner",
+   "the rounded corner is feasible but not cheapest",
+   "trade along the covering line to an exact cover",
+   "add the two counts"
+  ],
+  "solve": "let best=Infinity, ans=null; for(let L=0;L<=40;L++) for(let S=0;S<=80;S++) if(9*L+4*S>=151 && S>=2*L){ const c=44*L+20*S; if(c<best){best=c; ans=L+S;} } return ans;",
+  "distractor_solve": {
+   "17": "return Math.ceil(151/9);",
+   "24": "let best=Infinity, ans=null; for(let L=0;L<=40;L++) for(let S=0;S<=80;S++) if(9*L+4*S>=151 && S>=L){ const c=44*L+20*S; if(c<best){best=c; ans=L+S;} } return ans;",
+   "27": "const L=151/17, S=2*L; return Math.round(L)+Math.round(S);"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM32L-D2",
+  "subskill": "Greatest whole-number amount under a budget and a ratio",
+  "prompt": "A community garden is buying fruit trees and shrubs. Each fruit tree costs $63 and each shrub costs $14, and the garden can spend at most $882. The planting plan requires the number of shrubs to be at least 1.2 times the number of fruit trees. Only whole trees and shrubs are bought, and the garden wants to buy the greatest possible number of fruit trees. How many different combinations of fruit trees and shrubs include that greatest number of fruit trees?",
+  "choices": [
+   "1",
+   "7",
+   "10",
+   "18"
+  ],
+  "correct_answer": "7",
+  "explanation": "Let t be the number of fruit trees and s the number of shrubs. The conditions are 63t + 14s ≤ 882, which simplifies to 9t + 2s ≤ 126, and s ≥ 1.2t. The boundary lines meet where s = 1.2t and 9t + 2.4t = 126, so t ≈ 11.05 and s ≈ 13.26. That corner suggests 11 trees, but 11 trees require s ≥ 1.2(11) = 13.2, so at least 14 shrubs, and 63(11) + 14(14) = 889, which is over $882. With 13 shrubs the ratio fails (13 < 13.2). So 11 trees is impossible, and the greatest number of fruit trees is 10. With t = 10, s must satisfy s ≥ 12 and 2s ≤ 126 - 90 = 36, so 12 ≤ s ≤ 18: that is 18 - 12 + 1 = 7 combinations. Choice 1 rounds the corner to 11 trees and 13 shrubs and treats it as the only best purchase, but 13 shrubs break the ratio. Choice 10 is the greatest number of fruit trees, not the number of combinations. Choice 18 is the greatest number of shrubs that can go with 10 trees, not the number of combinations.",
+  "mechanism": [
+   "budget line meets a ratio line at a non-integer corner",
+   "the corner's row has no whole-number partner",
+   "drop to the next row",
+   "count the whole numbers in that row"
+  ],
+  "solve": "let best=-1, n=0; for(let t=0;t<=20;t++) for(let s=0;s<=80;s++) if(63*t+14*s<=882 && s>=1.2*t){ if(t>best){best=t;n=1;} else if(t===best) n++; } return n;",
+  "distractor_solve": {
+   "1": "const t=882/(63+14*1.2), s=1.2*t; const rt=Math.round(t), rs=Math.round(s); return (63*rt+14*rs<=882) ? 1 : 0;",
+   "10": "let best=-1; for(let t=0;t<=20;t++) for(let s=0;s<=80;s++) if(63*t+14*s<=882 && s>=1.2*t && t>best) best=t; return best;",
+   "18": "let best=-1; for(let t=0;t<=20;t++) for(let s=0;s<=80;s++) if(63*t+14*s<=882 && s>=1.2*t && t>best) best=t; let m=-1; for(let s=0;s<=80;s++) if(63*best+14*s<=882 && s>=1.2*best && s>m) m=s; return m;"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM32L-B5",
+  "subskill": "Parallel value places a system's y extremes",
+  "prompt": "kx + 5y = 5\nx + y = 4\nThe system above contains the constant k. For each integer k from 0 to 20, inclusive, that gives the system exactly one solution, the y-coordinate of that solution is written down. What is the sum of the greatest and the least of the numbers written down?",
+  "choices": [
+   "-10",
+   "-6",
+   "6",
+   "8"
+  ],
+  "correct_answer": "8",
+  "explanation": "From the second equation, x = 4 - y. Substituting: k(4 - y) + 5y = 5, so (5 - k)y = 5 - 4k, that is, (k - 5)y = 4k - 5. When k = 5 this reads 0 = 15: the lines 5x + 5y = 5 and x + y = 4 are parallel, there is no solution, and nothing is written down for k = 5. For every other k, y = (4k - 5)/(k - 5) = 4 + 15/(k - 5). For k greater than 5 the fraction 15/(k - 5) is positive and largest when k - 5 is smallest, so the greatest value is at k = 6: y = 19. For k less than 5 the fraction is negative and most negative when 5 - k is smallest, so the least value is at k = 4: y = -11. The sum is 19 + (-11) = 8. Choice 6 comes from assuming y changes steadily with k, so that the extremes sit at the ends of the range: y = 1 at k = 0 and y = 5 at k = 20; but k = 5, where the lines are parallel, lies inside the range, and y runs off toward very large and very small values next to it. Choice -6 finds the least value correctly at k = 4 but still takes the greatest at the end of the range, k = 20 (y = 5). Choice -10 looks only at k below 5, where the greatest value is at k = 0 (y = 1) and the least at k = 4.",
+  "mechanism": [
+   "substitute x = 4 - y",
+   "(k - 5)y = 4k - 5, parallel at k = 5",
+   "y = 4 + 15/(k - 5) on two branches",
+   "extremes at the integers next to the parallel value, then add"
+  ],
+  "solve": "const ys = []; for (let k = 0; k <= 20; k++) { if (k === 5) continue; ys.push((4 * k - 5) / (k - 5)); } return String(Math.max(...ys) + Math.min(...ys));",
+  "distractor_solve": {
+   "6": "const y = k => (4 * k - 5) / (k - 5); return String(y(0) + y(20));",
+   "-6": "const ys = []; for (let k = 0; k <= 20; k++) { if (k === 5) continue; ys.push((4 * k - 5) / (k - 5)); } const y20 = (4 * 20 - 5) / (20 - 5); return String(Math.min(...ys) + y20);",
+   "-10": "const ys = []; for (let k = 0; k < 5; k++) ys.push((4 * k - 5) / (k - 5)); return String(Math.max(...ys) + Math.min(...ys));"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM32L-C8",
+  "subskill": "Least band limit giving an exact count of readings",
+  "prompt": "A candle is 39 centimeters tall when it is lit, and it burns down at a constant rate of 20 centimeters every 4 hours. Its height is recorded when it is lit and then every hour on the hour until it burns out. A recorded height counts as a reading if it is at least 9 centimeters and less than k centimeters. Exactly 4 of the recorded heights are readings. What is the least integer value of k for which this is true?",
+  "choices": [
+   "19",
+   "24",
+   "25",
+   "30"
+  ],
+  "correct_answer": "25",
+  "explanation": "The candle burns 20/4 = 5 centimeters per hour, so t hours after it is lit its height is 39 - 5t, recorded at t = 0, 1, 2, ..., 7. A height is at least 9 when 39 - 5t ≥ 9, that is, t ≤ 6; the height at t = 6 is exactly 9, which counts. A height is less than k when 39 - 5t < k, that is, -5t < k - 39; dividing by -5 reverses the sign, so t > (39 - k)/5. The readings are therefore the whole numbers t with (39 - k)/5 < t ≤ 6. Exactly 4 readings means t = 3, 4, 5, 6 count and t = 2 does not: 2 ≤ (39 - k)/5 < 3, so 24 < k ≤ 29. The least integer k is 25. (Check: k = 25 gives heights 24, 19, 14, 9 at t = 3 to 6, which are 4 readings, while the height 29 at t = 2 is not less than 25. At k = 24 the height 24 at t = 3 is not less than 24, so only 3 readings.) Choice 19 comes from not reversing the inequality when dividing by -5: t < (39 - k)/5 picks the first four recordings, t = 0 to 3, and gives 19 ≤ k < 24. Choice 24 comes from treating 'less than k' as 'at most k', which lets the height 24 count at k = 24. Choice 30 comes from treating 'at least 9' as 'more than 9', which drops the reading at t = 6 so the four readings must be t = 2 to 5.",
+  "mechanism": [
+   "rate from 20 cm per 4 hours",
+   "reverse the sign dividing by -5",
+   "attained lower limit 9 at t = 6, strict upper limit k",
+   "least k giving exactly 4 readings"
+  ],
+  "solve": "const cnt=(k)=>{let c=0;for(let t=0;t<=7;t++){const h=39-5*t;if(h>=9&&h<k)c++;}return c;};for(let k=-100;k<=200;k++){if(cnt(k)===4)return k;}return null;",
+  "distractor_solve": {
+   "19": "const cnt=(k)=>{let c=0;for(let t=0;t<=7;t++){if(t<=6&&t<(39-k)/5)c++;}return c;};for(let k=-100;k<=200;k++){if(cnt(k)===4)return k;}return null;",
+   "24": "const cnt=(k)=>{let c=0;for(let t=0;t<=7;t++){const h=39-5*t;if(h>=9&&h<=k)c++;}return c;};for(let k=-100;k<=200;k++){if(cnt(k)===4)return k;}return null;",
+   "30": "const cnt=(k)=>{let c=0;for(let t=0;t<=7;t++){const h=39-5*t;if(h>9&&h<k)c++;}return c;};for(let k=-100;k<=200;k++){if(cnt(k)===4)return k;}return null;"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM32L-D4",
+  "subskill": "Cheapest whole-number shipment under a need and a weight cap",
+  "prompt": "A relief team must ship at least 488 meals on a cart that can hold at most 80 kilograms. A crate holds 28 meals, weighs 5 kilograms, and costs $54; a box holds 12 meals, weighs 1 kilogram, and costs $24. Only whole crates and boxes are shipped, and the team chooses the least expensive shipment that meets both conditions. In that shipment, by how many does the number of crates exceed the number of boxes?",
+  "choices": [
+   "6",
+   "9",
+   "14",
+   "16"
+  ],
+  "correct_answer": "6",
+  "explanation": "Let c be the number of crates and b the number of boxes. The conditions are 28c + 12b ≥ 488 (that is, 7c + 3b ≥ 122) and 5c + b ≤ 80, and the cost is 54c + 24b. Per meal, a crate costs 54/28 ≈ $1.93 and a box $2.00, so the team wants as many crates as the weight limit allows. The two boundary lines meet where b = 80 - 5c and 7c + 3(80 - 5c) = 122, so c = 14.75 and b = 6.25. Rounding gives 15 crates and 6 boxes, but that weighs 75 + 6 = 81 kilograms, over the limit. With 15 crates the boxes must hold 488 - 420 = 68 meals, so at least 6 boxes, and the weight is at least 81: no plan has 15 or more crates. With 14 crates, 7(14) + 3b ≥ 122 needs b ≥ 8, and 14 crates with 8 boxes weigh 78 kilograms, hold exactly 488 meals, and cost 756 + 192 = $948. Every other shipment that meets both conditions costs more (for example 11 crates and 15 boxes cost $954, and 13 crates and 11 boxes cost $966). So the cheapest shipment has 14 crates and 8 boxes, and the crates exceed the boxes by 14 - 8 = 6. Choice 9 uses the rounded corner (15 crates, 6 boxes), which breaks the weight limit. Choice 16 swaps the two weights (crates 1 kilogram, boxes 5 kilograms), which leads to 17 crates and 1 box. Choice 14 is the number of crates, not the difference.",
+  "mechanism": [
+   "covering line meets a weight cap at a non-integer corner",
+   "the rounded corner breaks the weight cap",
+   "step back along the covering line to an exact cover",
+   "difference of the two coordinates"
+  ],
+  "solve": "let best=Infinity, ans=null; for(let c=0;c<=40;c++) for(let b=0;b<=90;b++) if(28*c+12*b>=488 && 5*c+b<=80){ const k=54*c+24*b; if(k<best){best=k; ans=c-b;} } return ans;",
+  "distractor_solve": {
+   "9": "const c=(3*80-122)/8, b=80-5*c; return Math.round(c)-Math.round(b);",
+   "14": "let best=Infinity, ans=null; for(let c=0;c<=40;c++) for(let b=0;b<=90;b++) if(28*c+12*b>=488 && 5*c+b<=80){ const k=54*c+24*b; if(k<best){best=k; ans=c;} } return ans;",
+   "16": "let best=Infinity, ans=null; for(let c=0;c<=90;c++) for(let b=0;b<=40;b++) if(28*c+12*b>=488 && c+5*b<=80){ const k=54*c+24*b; if(k<best){best=k; ans=c-b;} } return ans;"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM32L-B1",
+  "subskill": "Parallel-line parameter splits an outside-band count",
+  "prompt": "In the xy-plane, line q passes through the points (4, 20) and (6, 26). Line p has equation y = kx - 4, where k is a constant. For how many integers k with -19 ≤ k ≤ 24 do lines p and q intersect at a point whose x-coordinate is less than -1 or greater than 3?",
+  "choices": [
+   "14",
+   "16",
+   "25",
+   "27"
+  ],
+  "correct_answer": "14",
+  "explanation": "Line q has slope (26 - 20)/(6 - 4) = 3 and passes through (4, 20), so its equation is y = 3x + 8. The lines meet where kx - 4 = 3x + 8, that is, (k - 3)x = 12. When k = 3 the lines are parallel and never meet, so k = 3 never counts. For every other k the intersection has x-coordinate x = 12/(k - 3). If k > 3, then x is positive, so it cannot be less than -1; it is greater than 3 exactly when 12/(k - 3) > 3, that is, when 0 < k - 3 < 4, giving k = 4, 5, 6. If k < 3, then x is negative, so it cannot be greater than 3; it is less than -1 exactly when 12/(3 - k) > 1, that is, when 0 < 3 - k < 12, giving k = -8 through 2, which is 11 values. The count is 3 + 11 = 14. Choice 27 comes from noticing that x = -1 when k = -9 and x = 3 when k = 7 and then assuming the x-coordinate moves steadily between those values, so that only k outside -9 to 7 qualify; but k = 3, where the lines are parallel, lies between -9 and 7, and the x-coordinate jumps there from very negative to very positive, so it is the k values near 3, not the far ones, that work. Choice 25 comes from multiplying the inequalities by k - 3 without reversing them when k - 3 is negative, which gives k < -9 or k < 7. Choice 16 also counts k = -9 and k = 7, where the x-coordinate equals -1 and 3 exactly and so is not less than -1 or greater than 3.",
+  "mechanism": [
+   "line through two points to slope-intercept form",
+   "intersection x-coordinate 12/(k - 3)",
+   "parallel value k = 3 splits the k-line into two branches",
+   "two-piece outside-band count"
+  ],
+  "solve": "let n = 0; for (let k = -19; k <= 24; k++) { if (k === 3) continue; const x = 12 / (k - 3); if (x < -1 || x > 3) n++; } return String(n);",
+  "distractor_solve": {
+   "16": "let n = 0; for (let k = -19; k <= 24; k++) { if (k === 3) continue; const x = 12 / (k - 3); if (x <= -1 || x >= 3) n++; } return String(n);",
+   "25": "let n = 0; for (let k = -19; k <= 24; k++) { if (k === 3) continue; if (12 < -1 * (k - 3) || 12 > 3 * (k - 3)) n++; } return String(n);",
+   "27": "const kLow = 3 - 12 / 1; const kHigh = 3 + 12 / 3; let n = 0; for (let k = -19; k <= 24; k++) { if (k < kLow || k > kHigh) n++; } return String(n);"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM32L-C1",
+  "subskill": "Integer solutions of a compound inequality with k",
+  "prompt": "x - 20 < kx ≤ 4x + 56\nIn the compound inequality above, k is a constant. For how many integer values of k does the compound inequality have exactly 3 integer solutions?",
+  "choices": [
+   "10",
+   "11",
+   "15",
+   "16"
+  ],
+  "correct_answer": "16",
+  "explanation": "Collect x in each part. The left part becomes (k - 1)x > -20 and the right part becomes (k - 4)x ≤ 56. If 1 ≤ k ≤ 4, one part is always true and the other bounds x on one side only, so there are infinitely many integer solutions. If k > 4, both coefficients are positive: x > -20/(k - 1) and x ≤ 56/(k - 4). Exactly 3 integers needs 0, 1, 2 and nothing else: 2 ≤ 56/(k - 4) < 3 gives 18.67 < k - 4 ≤ 28, so k = 23 through 32 (10 values), and for these k the left bound -20/(k - 1) is above -1, so -1 is excluded. If k < 1, both coefficients are negative, so BOTH inequalities reverse: x < 20/(1 - k) and x ≥ -56/(4 - k). The upper bound is at most 1 only when 1 - k ≥ 20, that is k ≤ -19; at k = -19 the bound is exactly 1, and because that part is strict, x = 1 is excluded, leaving the largest solution 0. Then 3 solutions (-2, -1, 0) need 2 ≤ 56/(4 - k) < 3, so 18.67 < 4 - k ≤ 28, k = -24 through -15; together with k ≤ -19 this gives k = -24 through -19 (6 values; at k = -24 the bound -2 is attained because that part is non-strict). For -18 ≤ k ≤ -15 the solutions run from -2 to 1, which is 4. Total 10 + 6 = 16. Choice 10 comes from not reversing the inequality signs for negative k, which leaves no solutions there and keeps only the positive k. Choice 15 comes from treating the strict left part as non-strict, which lets x = 1 in at k = -19 and drops that k. Choice 11 comes from moving -20 across the inequality without changing its sign, solving (k - 1)x > 20 instead.",
+  "mechanism": [
+   "collect x into coefficients k - 1 and k - 4",
+   "reverse both inequalities when k < 1",
+   "strict vs non-strict at the boundary k values",
+   "count integer k in two regimes"
+  ],
+  "solve": "const cnt=(k)=>{let c=0;for(let x=-600;x<=600;x++){if(x-20<k*x&&k*x<=4*x+56)c++;}return c;};let n=0;for(let k=-300;k<=300;k++){if(cnt(k)===3)n++;}return n;",
+  "distractor_solve": {
+   "10": "const cnt=(k)=>{if(k===1||k===4)return -1;let c=0;for(let x=-600;x<=600;x++){if(x>-20/(k-1)&&x<=56/(k-4))c++;}return c;};let n=0;for(let k=-300;k<=300;k++){if(cnt(k)===3)n++;}return n;",
+   "11": "const cnt=(k)=>{let c=0;for(let x=-600;x<=600;x++){if(x+20<k*x&&k*x<=4*x+56)c++;}return c;};let n=0;for(let k=-300;k<=300;k++){if(cnt(k)===3)n++;}return n;",
+   "15": "const cnt=(k)=>{let c=0;for(let x=-600;x<=600;x++){if(x-20<=k*x&&k*x<=4*x+56)c++;}return c;};let n=0;for(let k=-300;k<=300;k++){if(cnt(k)===3)n++;}return n;"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM32L-C3",
+  "subskill": "Sum of rates giving an exact count of in-range readings",
+  "prompt": "The water level in a tank, in centimeters, t minutes after a valve is set is modeled by L(t) = 23 + kt, where k is an integer (k is negative if the tank is draining). The level is read once at each whole number of minutes from t = 1 through t = 12. A reading is acceptable if the level is at least 2 centimeters and less than 71 centimeters. Exactly 3 of the 12 readings are acceptable. What is the sum of all possible integer values of k?",
+  "choices": [
+   "41",
+   "45",
+   "48",
+   "54"
+  ],
+  "correct_answer": "41",
+  "explanation": "If k = 0, all 12 readings are 23 and acceptable, so k is not 0. If k > 0, the level rises from 23, so a reading is acceptable exactly when 23 + kt < 71, that is, t < 48/k. Exactly 3 acceptable readings means t = 1, 2, 3 pass and t = 4 fails: 3 < 48/k ≤ 4, so 12 ≤ k < 16, giving k = 12, 13, 14, 15. (At k = 12 the reading at t = 4 is exactly 71, which is not less than 71, so it fails; at k = 16 the reading at t = 3 is exactly 71, so only 2 readings pass.) If k < 0, the level falls, so a reading is acceptable exactly when 23 + kt ≥ 2, that is, kt ≥ -21; dividing by the negative number k reverses the sign: t ≤ 21/(-k). Exactly 3 means 3 ≤ 21/(-k) < 4, so 5.25 < -k ≤ 7, giving k = -6 and k = -7. (At k = -7 the reading at t = 3 is exactly 2, which is acceptable because the lower limit is 'at least'.) The sum is 12 + 13 + 14 + 15 + (-6) + (-7) = 41. Choice 45 comes from treating 'less than 71' as 'at most 71', which replaces k = 12 by k = 16. Choice 48 comes from treating 'at least 2' as 'more than 2', which loses k = -7. Choice 54 comes from dividing by the negative k without reversing the inequality: that gives t ≥ 21/(-k), which never leaves exactly 3 readings, so only the positive values 12 through 15 remain.",
+  "mechanism": [
+   "count whole-number t in a band for a rising and a falling rate",
+   "reverse the inequality when dividing by negative k",
+   "strict top limit vs non-strict bottom limit at the boundary k",
+   "sum k over both signs"
+  ],
+  "solve": "let s=0;for(let k=-300;k<=300;k++){let c=0;for(let t=1;t<=12;t++){const L=23+k*t;if(L>=2&&L<71)c++;}if(c===3)s+=k;}return s;",
+  "distractor_solve": {
+   "45": "let s=0;for(let k=-300;k<=300;k++){let c=0;for(let t=1;t<=12;t++){const L=23+k*t;if(L>=2&&L<=71)c++;}if(c===3)s+=k;}return s;",
+   "48": "let s=0;for(let k=-300;k<=300;k++){let c=0;for(let t=1;t<=12;t++){const L=23+k*t;if(L>2&&L<71)c++;}if(c===3)s+=k;}return s;",
+   "54": "let s=0;for(let k=-300;k<=300;k++){if(k===0)continue;let c=0;for(let t=1;t<=12;t++){const ok=k>0?(t<48/k):(t>=21/(-k));if(ok)c++;}if(c===3)s+=k;}return s;"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM32L-B3",
+  "subskill": "Parallel value inside a system's outside-band count",
+  "prompt": "kx + (k + 10)y = -40\nx + 3y = 4\nThe two equations above share the constant k. Looking only at integers k from -19 to 47, inclusive, for how many such k is there an ordered pair (x, y) that satisfies both equations and has y < -1 or y > 4?",
+  "choices": [
+   "14",
+   "23",
+   "38",
+   "41"
+  ],
+  "correct_answer": "23",
+  "explanation": "From the second equation, x = 4 - 3y. Substituting into the first: k(4 - 3y) + (k + 10)y = -40, so 4k + (10 - 2k)y = -40, which gives (2k - 10)y = 4k + 40. When k = 5 this reads 0 = 60: the two lines are parallel (5x + 15y = -40 and x + 3y = 4), there is no solution, and k = 5 never counts. For every other k, y = (4k + 40)/(2k - 10) = 2 + 30/(k - 5). If k > 5, then y is greater than 2, so y < -1 is impossible, and y > 4 exactly when 30/(k - 5) > 2, that is, 0 < k - 5 < 15: the integers 6 through 19, which is 14 values. If k < 5, then y is less than 2, so y > 4 is impossible, and y < -1 exactly when 30/(5 - k) > 3, that is, 0 < 5 - k < 10: the integers -4 through 4, which is 9 values. The count is 14 + 9 = 23. Choice 41 comes from finding that y = -1 when k = -5 and y = 4 when k = 20 and then assuming y moves steadily between those values, so that only k below -5 or above 20 qualify; but k = 5, where the lines are parallel, lies between -5 and 20, and y jumps there from very negative to very positive, so it is the k values near 5 that work. Choice 38 comes from multiplying the inequalities by k - 5 without reversing them when k - 5 is negative, which gives k < -5 or k < 20. Choice 14 counts only the k > 5 branch.",
+  "mechanism": [
+   "substitute x = 4 - 3y",
+   "(2k - 10)y = 4k + 40, parallel lines at k = 5",
+   "y = 2 + 30/(k - 5) on two branches",
+   "two-piece outside-band count"
+  ],
+  "solve": "let n = 0; for (let k = -19; k <= 47; k++) { if (k === 5) continue; const y = (4 * k + 40) / (2 * k - 10); if (y < -1 || y > 4) n++; } return String(n);",
+  "distractor_solve": {
+   "14": "let n = 0; for (let k = 6; k <= 47; k++) { const y = (4 * k + 40) / (2 * k - 10); if (y > 4) n++; } return String(n);",
+   "38": "let n = 0; for (let k = -19; k <= 47; k++) { if (k === 5) continue; const d = k - 5; if (2 * d + 30 < -1 * d || 2 * d + 30 > 4 * d) n++; } return String(n);",
+   "41": "const kAtMinus1 = 5 - 30 / 3; const kAt4 = 5 + 30 / 2; let n = 0; for (let k = -19; k <= 47; k++) { if (k < kAtMinus1 || k > kAt4) n++; } return String(n);"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM32L-B2",
+  "subskill": "No-solution parameter splits an inside-band count",
+  "prompt": "kx + 30 = 12x + 10k\nIn the equation above, k is a constant. Of the integers k from -20 to 40, inclusive, how many make the equation have a solution x with 4 ≤ x ≤ 19?",
+  "choices": [
+   "16",
+   "19",
+   "26",
+   "37"
+  ],
+  "correct_answer": "37",
+  "explanation": "Collect the x terms: kx - 12x = 10k - 30, so (k - 12)x = 10k - 30. When k = 12 this reads 0 = 90, so the equation has no solution and k = 12 never counts. For every other k, x = (10k - 30)/(k - 12) = 10 + 90/(k - 12). If k > 12, then x is greater than 10, so x ≥ 4 automatically, and x ≤ 19 exactly when 90/(k - 12) ≤ 9, that is, k - 12 ≥ 10, so k ≥ 22: the integers 22 through 40, which is 19 values. If k < 12, then x is less than 10, so x ≤ 19 automatically, and x ≥ 4 exactly when 90/(12 - k) ≤ 6, that is, 12 - k ≥ 15, so k ≤ -3: the integers -20 through -3, which is 18 values. The count is 19 + 18 = 37. Choice 26 comes from finding that x = 4 when k = -3 and x = 19 when k = 22 and then counting the integers from -3 to 22, as if x moved steadily from 4 to 19 as k goes from -3 to 22; but k = 12, where there is no solution, lies in between, and every k strictly between -3 and 22 actually gives an x outside the band. Choice 19 comes from multiplying 4 ≤ (10k - 30)/(k - 12) ≤ 19 through by k - 12 without reversing the inequalities when k - 12 is negative, which keeps only k ≥ 22. Choice 16 counts the integers x from 4 to 19 instead of the values of k.",
+  "mechanism": [
+   "collect x terms to (k - 12)x = 10k - 30",
+   "k = 12 gives no solution",
+   "solution 10 + 90/(k - 12) on two branches",
+   "inside-band count on both sides of the no-solution value"
+  ],
+  "solve": "let n = 0; for (let k = -20; k <= 40; k++) { if (k === 12) continue; const x = (10 * k - 30) / (k - 12); if (x >= 4 && x <= 19) n++; } return String(n);",
+  "distractor_solve": {
+   "16": "let n = 0; for (let x = 4; x <= 19; x++) n++; return String(n);",
+   "19": "let n = 0; for (let k = -20; k <= 40; k++) { if (k === 12) continue; if (4 * (k - 12) <= 10 * k - 30 && 10 * k - 30 <= 19 * (k - 12)) n++; } return String(n);",
+   "26": "const kAt4 = 12 - 90 / (10 - 4); const kAt19 = 12 + 90 / (19 - 10); let n = 0; for (let k = -20; k <= 40; k++) { if (k >= kAt4 && k <= kAt19) n++; } return String(n);"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM32L-C7",
+  "subskill": "Range of a fee giving an exact count of visit numbers",
+  "prompt": "A climbing gym offers two plans. Plan A has a one-time fee of k dollars plus $12 per visit. Plan B has a one-time fee of 3k dollars plus $5 per visit. Dana will make n visits, where n is a positive whole number. She wants Plan A to cost less than Plan B, and she wants Plan A to cost at most $260 in total. For some integer values of k, exactly 6 values of n meet both of Dana's conditions. What is the difference between the greatest and least such values of k?",
+  "choices": [
+   "136",
+   "166",
+   "167",
+   "182"
+  ],
+  "correct_answer": "166",
+  "explanation": "Plan A costs less than Plan B when k + 12n < 3k + 5n, that is, 7n < 2k, or n < 2k/7. Plan A costs at most $260 when k + 12n ≤ 260, that is, n ≤ (260 - k)/12. The first bound rises as k rises and the second falls, so the number of qualifying n is set by whichever bound is smaller. For small k the first bound decides: exactly 6 positive n are below 2k/7 when 6 < 2k/7 ≤ 7, so 21 < k ≤ 24.5, giving k = 22, 23, 24 (at k = 21, 2k/7 = 6 exactly and n = 6 does not satisfy the strict 'less than', so only 5 values work); for these k the budget bound is far above 6. For large k the budget decides: exactly 6 positive n are at most (260 - k)/12 when 6 ≤ (260 - k)/12 < 7, so 176 < k ≤ 188, giving k = 177 through 188 (at k = 188 the bound is exactly 6, and n = 6 is allowed because the budget is 'at most'); for these k the first bound is far above 6. For k between 25 and 176 both bounds allow more than 6 values. The greatest k is 188 and the least is 22, so the difference is 188 - 22 = 166. Choice 167 comes from treating 'less than' as 'no more than', which lets k = 21 in. Choice 182 comes from counting n = 0 as a possible number of visits, which moves the least k to 18 and the greatest to 200. Choice 136 comes from adding the per-visit prices instead of subtracting them, 17n < 2k, which moves the least k to 52.",
+  "mechanism": [
+   "two linear bounds on n, one rising and one falling in k",
+   "the smaller bound sets the count",
+   "strict 'less than' at k = 21 and attained 'at most' at k = 188",
+   "greatest minus least k across two separate blocks"
+  ],
+  "solve": "const L=[];for(let k=0;k<=1000;k++){let c=0;for(let n=1;n<=2000;n++){if(k+12*n<3*k+5*n&&k+12*n<=260)c++;}if(c===6)L.push(k);}return L[L.length-1]-L[0];",
+  "distractor_solve": {
+   "136": "const L=[];for(let k=0;k<=1000;k++){let c=0;for(let n=1;n<=2000;n++){if(17*n<2*k&&k+12*n<=260)c++;}if(c===6)L.push(k);}return L[L.length-1]-L[0];",
+   "167": "const L=[];for(let k=0;k<=1000;k++){let c=0;for(let n=1;n<=2000;n++){if(k+12*n<=3*k+5*n&&k+12*n<=260)c++;}if(c===6)L.push(k);}return L[L.length-1]-L[0];",
+   "182": "const L=[];for(let k=0;k<=1000;k++){let c=0;for(let n=0;n<=2000;n++){if(k+12*n<3*k+5*n&&k+12*n<=260)c++;}if(c===6)L.push(k);}return L[L.length-1]-L[0];"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM32L-D1",
+  "subskill": "Whole-number plans in a thin linear-inequality region",
+  "prompt": "A bakery makes x trays of muffins and y trays of scones each morning, where x and y are whole numbers. A tray of muffins costs $7 to make and earns a profit of $10, and a tray of scones costs $4 to make and earns a profit of $6. The bakery can spend at most $101 on these trays, it wants a total profit of at least $144, and it must make at least 7 trays of muffins. How many different plans (x, y) meet all three requirements?",
+  "choices": [
+   "5",
+   "8",
+   "10",
+   "14"
+  ],
+  "correct_answer": "5",
+  "explanation": "The requirements are 7x + 4y ≤ 101, 10x + 6y ≥ 144, and x ≥ 7. For a fixed x, y must satisfy (144 - 10x)/6 ≤ y ≤ (101 - 7x)/4. The gap between these two bounds is (15 - x)/12, which is less than 1 for every x ≥ 7, so each x allows at most one whole-number y, and sometimes none. Checking x = 7, 8, 9, ...: x = 7 needs 12.33 ≤ y ≤ 13, so y = 13; x = 8 needs 10.67 ≤ y ≤ 11.25, so y = 11; x = 9 needs 9 ≤ y ≤ 9.5, so y = 9; x = 10 needs 7.33 ≤ y ≤ 7.75, no whole number; x = 11 needs 5.67 ≤ y ≤ 6, so y = 6; x = 12 needs 4 ≤ y ≤ 4.25, so y = 4; x = 13 needs 2.33 ≤ y ≤ 2.5 and x = 14 needs 0.67 ≤ y ≤ 0.75, no whole number; for x ≥ 15 the cost alone is over $101. The plans are (7, 13), (8, 11), (9, 9), (11, 6), and (12, 4), so there are 5. Choice 8 counts every whole number x from 7 to 14 at which the region exists, assuming each such x has a whole-number y; at x = 10, 13, and 14 the allowed interval for y contains no whole number. Choice 10 reads 'at least 7 trays of muffins' as 'at most 7'. Choice 14 ignores the requirement of at least 7 trays of muffins.",
+  "mechanism": [
+   "cost cap and profit target bound a thin strip",
+   "per-x interval for y narrower than 1",
+   "check each x for a whole-number y",
+   "count the lattice points"
+  ],
+  "solve": "let n=0; for(let x=7;x<=60;x++) for(let y=0;y<=60;y++) if(7*x+4*y<=101 && 10*x+6*y>=144) n++; return n;",
+  "distractor_solve": {
+   "8": "let n=0; for(let x=7;x<=60;x++){ const lo=Math.max(0,(144-10*x)/6), hi=(101-7*x)/4; if(lo<=hi) n++; } return n;",
+   "10": "let n=0; for(let x=0;x<=7;x++) for(let y=0;y<=60;y++) if(7*x+4*y<=101 && 10*x+6*y>=144) n++; return n;",
+   "14": "let n=0; for(let x=0;x<=60;x++) for(let y=0;y<=60;y++) if(7*x+4*y<=101 && 10*x+6*y>=144) n++; return n;"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM32L-C5",
+  "subskill": "Range of k keeping a solution count small",
+  "prompt": "x ≤ k\nkx ≥ -60\nIn the system of inequalities above, k is a constant. For some integer values of k, the system has at most 19 integer solutions. What is the difference between the greatest and least such values of k?",
+  "choices": [
+   "9",
+   "11",
+   "12",
+   "14"
+  ],
+  "correct_answer": "9",
+  "explanation": "If k = 0, the second inequality reads 0 ≥ -60, which is always true, so every integer x ≤ 0 is a solution: infinitely many. If k < 0, dividing kx ≥ -60 by the negative k reverses it: x ≤ 60/(-k). Both inequalities then bound x from above only, so again there are infinitely many solutions. If k > 0, the second inequality gives x ≥ -60/k, so the solutions are the integers from -60/k (rounded up) through k. Their number is k + (the greatest integer not above 60/k) + 1, because when 60/k is an integer the endpoint x = -60/k is included (the sign is ≥). Check the values: k = 4 gives -15 through 4, which is 20; k = 5 gives -12 through 5, which is 18; k = 14 gives -4 through 14 (60/14 = 4.29), which is 19; k = 15 gives -4 through 15, which is 20. Between 5 and 14 the count stays at most 19 (it dips to 16 at k = 7, 8, 9), and outside that range it is larger. So the qualifying k are 5 through 14, and the difference is 14 - 5 = 9. Choice 11 comes from treating kx ≥ -60 as strict: then x = -15 is lost at k = 4 and x = -4 is lost at k = 15, both counts drop to 19, and the range becomes 4 through 15. Choice 12 comes from counting the integers from a to b as b - a instead of b - a + 1, which lowers every count by one and widens the range to 4 through 16. Choice 14 is the greatest qualifying value of k, not the difference.",
+  "mechanism": [
+   "k ≤ 0 gives an unbounded set (reverse the sign for k < 0)",
+   "count = k + floor(60/k) + 1 for k > 0",
+   "attained endpoint -60/k when k divides 60",
+   "greatest minus least k"
+  ],
+  "solve": "const cnt=(k)=>{let c=0;for(let x=-6000;x<=6000;x++){if(x<=k&&k*x>=-60)c++;}return c;};const L=[];for(let k=-500;k<=500;k++){if(cnt(k)<=19)L.push(k);}return L[L.length-1]-L[0];",
+  "distractor_solve": {
+   "11": "const cnt=(k)=>{let c=0;for(let x=-6000;x<=6000;x++){if(x<=k&&k*x>-60)c++;}return c;};const L=[];for(let k=-500;k<=500;k++){if(cnt(k)<=19)L.push(k);}return L[L.length-1]-L[0];",
+   "12": "const cnt=(k)=>{let c=0;for(let x=-6000;x<=6000;x++){if(x<=k&&k*x>=-60)c++;}return c-1;};const L=[];for(let k=-500;k<=500;k++){if(cnt(k)<=19)L.push(k);}return L[L.length-1]-L[0];",
+   "14": "const cnt=(k)=>{let c=0;for(let x=-6000;x<=6000;x++){if(x<=k&&k*x>=-60)c++;}return c;};const L=[];for(let k=-500;k<=500;k++){if(cnt(k)<=19)L.push(k);}return L[L.length-1];"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM32L-B4",
+  "subskill": "Identity case adds a k to a common-solution sum",
+  "prompt": "kx + x + 6 = 4k - 2x + 18\n6x + k = 2x + 41\nIn the two equations above, k is the same constant. What is the sum of all values of k for which the two equations have at least one solution x in common?",
+  "choices": [
+   "22",
+   "25",
+   "34",
+   "54"
+  ],
+  "correct_answer": "22",
+  "explanation": "Collect the x terms in the first equation: kx + x + 2x = 4k + 18 - 6, so (k + 3)x = 4k + 12 = 4(k + 3). The second equation gives 4x = 41 - k, so its only solution is x = (41 - k)/4. Case 1: k is not -3. Then the first equation has the single solution x = 4, so the equations share a solution exactly when (41 - k)/4 = 4, that is, k = 25. Case 2: k = -3. Then the first equation reads 0 = 0 and is true for EVERY x, so whatever the second equation's solution is (here x = 11), it is also a solution of the first. So k = -3 also qualifies. The sum is 25 + (-3) = 22. Choice 25 comes from dividing by k + 3 to get x = 4 for every k and so missing k = -3, where the first equation is true for all x. Choice 34 comes from solving the second equation as x = 41 - k (forgetting to divide by 4), which gives k = 37, and then adding -3. Choice 54 comes from a sign slip in solving 16 = 41 - k, which gives k = 57, and then adding -3.",
+  "mechanism": [
+   "collect terms to (k + 3)x = 4(k + 3)",
+   "generic solution x = 4, identity at k = -3",
+   "second equation's solution (41 - k)/4 matched to 4",
+   "sum over the generic match and the identity case"
+  ],
+  "solve": "const ks = []; for (let k = -200; k <= 200; k++) { const a = k + 3, b = 4 * k + 12; const xp = (41 - k) / 4; const firstHolds = (a === 0) ? (b === 0) : Math.abs(a * xp - b) < 1e-9; if (firstHolds) ks.push(k); } return String(ks.reduce((s, v) => s + v, 0));",
+  "distractor_solve": {
+   "25": "const x1 = 4; return String(41 - 4 * x1);",
+   "34": "const x1 = 4; return String((41 - x1) + (-3));",
+   "54": "const x1 = 4; return String((41 + 4 * x1) + (-3));"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM32L-D7",
+  "subskill": "Comparing the best whole-number plan with a given plan",
+  "prompt": "A market stand sells pies and loaves of bread. Each pie costs $9 to bake and earns a profit of $16, and each loaf costs $5 to bake and earns a profit of $10. The stand can spend at most $154 on baking, and its shelf can display at most 23 items in total. Last week the stand baked 0 pies and 23 loaves. Only whole pies and loaves are baked. How much greater is the greatest possible total profit for a week than last week's total profit?",
+  "choices": [
+   "54",
+   "56",
+   "60",
+   "76"
+  ],
+  "correct_answer": "56",
+  "explanation": "Last week's profit was 23(10) = $230. Let p be the number of pies and q the number of loaves. The conditions are 9p + 5q ≤ 154 and p + q ≤ 23, and the profit is 16p + 10q. The boundary lines meet where 9p + 5(23 - p) = 154, so p = 9.75 and q = 13.25, with profit $288.50. Rounding gives 10 pies and 13 loaves, but that costs $155. To find the best whole-number plan, write the profit two ways: 16p + 10q = 2(9p + 5q) - 2p ≤ 308 - 2p, and 16p + 10q = 10(p + q) + 6p ≤ 230 + 6p. A profit of $287 or more would need 308 - 2p ≥ 287 and 230 + 6p ≥ 287, so p = 10; then 160 + 10q ≥ 287 needs q ≥ 13, which costs at least $155. So the profit is at most $286, and 11 pies and 11 loaves reach it: 99 + 55 = $154, 22 items, 176 + 110 = 286. The greatest possible profit is $286, which is 286 - 230 = $56 more than last week. Choice 60 uses the rounded corner (10 pies, 13 loaves, $290), which is over budget. Choice 54 fills the shelf exactly (23 items), whose best plan is 9 pies and 14 loaves ($284). Choice 76 reads the shelf limit as 'at least 23 items', which allows 1 pie and 29 loaves ($306).",
+  "mechanism": [
+   "budget line meets a shelf cap at a non-integer corner",
+   "the rounded corner is over budget",
+   "bound the profit two ways to find the lattice best",
+   "subtract a given plan's profit"
+  ],
+  "solve": "let best=-Infinity; for(let p=0;p<=40;p++) for(let q=0;q<=40;q++) if(9*p+5*q<=154 && p+q<=23) best=Math.max(best,16*p+10*q); return best-230;",
+  "distractor_solve": {
+   "54": "let best=-Infinity; for(let p=0;p<=23;p++){ const q=23-p; if(9*p+5*q<=154) best=Math.max(best,16*p+10*q); } return best-230;",
+   "60": "const p=(154-5*23)/4, q=23-p; return 16*Math.round(p)+10*Math.round(q)-230;",
+   "76": "let best=-Infinity; for(let p=0;p<=40;p++) for(let q=0;q<=40;q++) if(9*p+5*q<=154 && p+q>=23) best=Math.max(best,16*p+10*q); return best-230;"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM32L-C4",
+  "subskill": "Number of integer solutions equal to the constant k",
+  "prompt": "The table gives three values of the linear function f.\nx | f(x)\n-5 | -13\n6 | 20\n11 | 35\nFor a positive integer k, exactly k integers x satisfy -8 < f(x) ≤ 2k. What is the sum of all possible integer values of k?",
+  "choices": [
+   "18",
+   "24",
+   "27",
+   "39"
+  ],
+  "correct_answer": "27",
+  "explanation": "From the table, the slope of f is (20 - (-13))/(6 - (-5)) = 33/11 = 3, so f(x) = 3x + 2. The left part -8 < 3x + 2 gives x > -10/3, so the smallest integer solution is -3 (f(-3) = -7 is greater than -8, while f(-4) = -10 is not). The right part 3x + 2 ≤ 2k gives x ≤ (2k - 2)/3. If N is the greatest integer not above (2k - 2)/3, the solutions are -3, -2, ..., N, which is N + 4 integers. The condition says N + 4 = k, so N = k - 4, which means k - 4 ≤ (2k - 2)/3 < k - 3. The left half gives 3k - 12 ≤ 2k - 2, so k ≤ 10; the right half gives 2k - 2 < 3k - 9, so k > 7. So k = 8, 9 or 10. Check k = 10: (2k - 2)/3 = 6 exactly, and f(6) = 20 = 2k is allowed because the right sign is non-strict, so the solutions are -3 through 6, which is 10 integers. Check k = 7: x ≤ 4, so -3 through 4, which is 8, not 7. The sum is 8 + 9 + 10 = 27. Choice 24 comes from treating ≤ 2k as < 2k, which excludes x = 6 when k = 10 and gives k = 7, 8, 9. Choice 18 comes from counting the integers from -3 to N as N + 3 instead of N + 4, which gives k = 5, 6, 7. Choice 39 comes from moving the 2 to the right side as +2, solving 3x ≤ 2k + 2, which gives k = 12, 13, 14.",
+  "mechanism": [
+   "linear function from a table",
+   "count integers between a strict and a non-strict bound",
+   "set the count equal to k itself",
+   "sum the qualifying k"
+  ],
+  "solve": "const f=(x)=>3*x+2;let s=0;for(let k=1;k<=300;k++){let c=0;for(let x=-600;x<=600;x++){if(-8<f(x)&&f(x)<=2*k)c++;}if(c===k)s+=k;}return s;",
+  "distractor_solve": {
+   "18": "const f=(x)=>3*x+2;let s=0;for(let k=1;k<=300;k++){let c=0;for(let x=-600;x<=600;x++){if(-8<f(x)&&f(x)<=2*k)c++;}if(c-1===k)s+=k;}return s;",
+   "24": "const f=(x)=>3*x+2;let s=0;for(let k=1;k<=300;k++){let c=0;for(let x=-600;x<=600;x++){if(-8<f(x)&&f(x)<2*k)c++;}if(c===k)s+=k;}return s;",
+   "39": "const f=(x)=>3*x+2;let s=0;for(let k=1;k<=300;k++){let c=0;for(let x=-600;x<=600;x++){if(-8<f(x)&&3*x<=2*k+2)c++;}if(c===k)s+=k;}return s;"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM32L-B8",
+  "subskill": "Table of solutions straddles the no-solution k",
+  "prompt": "kx = 4x + 3k + c\nIn the equation above, c is a constant. For two values of the constant k, the solution of the equation is listed below.\nk = 3: solution 23\nk = 9: solution -1\nWhat is the solution of the equation when k = 24?",
+  "choices": [
+   "-61",
+   "-32",
+   "-13",
+   "2"
+  ],
+  "correct_answer": "2",
+  "explanation": "Use k = 3: the equation becomes 3x = 4x + 9 + c, and its solution is 23, so 69 = 92 + 9 + c and c = -32. (The value k = 9 checks: 9x = 4x + 27 - 32 gives 5x = -5, x = -1.) The equation is (k - 4)x = 3k - 32. When k = 24: 20x = 72 - 32 = 40, so x = 2. The solution is not a linear function of k: x = (3k - 32)/(k - 4) = 3 - 20/(k - 4), and at k = 4, which lies between the two listed values of k, the equation reads 0 = -20 and has no solution, so the solution jumps there. Choice -61 comes from treating the solution as changing at a constant rate, -4 per unit of k between k = 3 and k = 9, and extending that line to k = 24. Choice -13 comes from treating x - 3 as proportional to k - 4 instead of inversely proportional (from k = 9, x - 3 = -4 when k - 4 = 5). Choice -32 is the value of c, not the solution.",
+  "mechanism": [
+   "find c from the k = 3 value",
+   "(k - 4)x = 3k - 32, no solution at k = 4 between the listed k",
+   "solution 3 - 20/(k - 4) is not linear in k",
+   "solve at k = 24"
+  ],
+  "solve": "const c = 3 * 23 - 4 * 23 - 3 * 3; const k = 24; return String((3 * k + c) / (k - 4));",
+  "distractor_solve": {
+   "-61": "const slope = (-1 - 23) / (9 - 3); return String(-1 + slope * (24 - 9));",
+   "-13": "const m = (-1 - 3) / (9 - 4); return String(3 + m * (24 - 4));",
+   "-32": "const c = 3 * 23 - 4 * 23 - 3 * 3; return String(c);"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM32L-C6",
+  "subskill": "Range of k giving at least a given number of solutions",
+  "prompt": "-22 ≤ kx < 3x + 46\nIn the inequality above, k is a constant. Consider the integer values of k for which at least 8 integers x satisfy the inequality. By how much does the greatest of these exceed the least?",
+  "choices": [
+   "3",
+   "11",
+   "16",
+   "18"
+  ],
+  "correct_answer": "18",
+  "explanation": "Write the two parts as kx ≥ -22 and (k - 3)x < 46. If 0 ≤ k ≤ 3, one part is always true or both parts bound x on the same side, so there are infinitely many integer solutions and these k qualify. If k > 3, both coefficients are positive: x ≥ -22/k and x < 46/(k - 3). At k = 11 this gives x ≥ -2 (attained, since the left sign is non-strict) and x < 5.75, so -2 through 5: 8 solutions. At k = 12 it gives x ≥ -1.83 and x < 5.11, so -1 through 5: 7 solutions. The solution counts fall as k grows, so the greatest k is 11. If k < 0, dividing by the negative coefficients k and k - 3 reverses both inequalities: x ≤ 22/(-k) and x > -46/(3 - k). At k = -7 this gives x ≤ 3.14 and x > -4.6, so -4 through 3: 8 solutions. At k = -8 it gives x ≤ 2.75 and x > -4.18, so -4 through 2: 7 solutions. The counts fall as k decreases, so the least k is -7. The difference is 11 - (-7) = 18. Choice 11 comes from not reversing the inequalities for negative k: each negative k then gives an empty set, so the least qualifying k appears to be 0 and the difference 11 - 0 = 11. Choice 16 comes from counting the integers from a to b as b - a instead of b - a + 1, which makes every count one too small and narrows the range to -6 through 10. Choice 3 comes from moving 46 across with the wrong sign, (k - 3)x < -46.",
+  "mechanism": [
+   "split into kx ≥ -22 and (k - 3)x < 46",
+   "reverse both signs when k < 0; infinitely many solutions for 0 ≤ k ≤ 3",
+   "count integers at the boundary k on each side",
+   "greatest minus least k"
+  ],
+  "solve": "const cnt=(k)=>{let c=0;for(let x=-3000;x<=3000;x++){if(-22<=k*x&&k*x<3*x+46)c++;}return c;};const L=[];for(let k=-300;k<=300;k++){if(cnt(k)>=8)L.push(k);}return L[L.length-1]-L[0];",
+  "distractor_solve": {
+   "3": "const cnt=(k)=>{let c=0;for(let x=-3000;x<=3000;x++){if(-22<=k*x&&k*x<3*x-46)c++;}return c;};const L=[];for(let k=-300;k<=300;k++){if(cnt(k)>=8)L.push(k);}return L[L.length-1]-L[0];",
+   "11": "const cnt=(k)=>{let c=0;for(let x=-3000;x<=3000;x++){const a=k!==0?x>=-22/k:0>=-22;const b=(k-3)!==0?x<46/(k-3):0<46;if(a&&b)c++;}return c;};const L=[];for(let k=-300;k<=300;k++){if(cnt(k)>=8)L.push(k);}return L[L.length-1]-L[0];",
+   "16": "const cnt=(k)=>{let c=0;for(let x=-3000;x<=3000;x++){if(-22<=k*x&&k*x<3*x+46)c++;}return c-1;};const L=[];for(let k=-300;k<=300;k++){if(cnt(k)>=8)L.push(k);}return L[L.length-1]-L[0];"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM32L-D8",
+  "subskill": "Coordinate of the most profitable whole-number plan",
+  "prompt": "A print shop makes posters and banners. The table shows the ink and paper each item uses.\nItem | Ink (milliliters) | Paper (sheets)\nPoster | 15 | 6\nBanner | 18 | 16\nThe shop has 249 milliliters of ink and 140 sheets of paper, earns a profit of $14 on each poster and $18 on each banner, and makes only whole posters and banners. In the plan with the greatest total profit, how many posters does the shop make?",
+  "choices": [
+   "0",
+   "11",
+   "13",
+   "16"
+  ],
+  "correct_answer": "13",
+  "explanation": "Let x be the number of posters and y the number of banners. The conditions are 15x + 18y ≤ 249 (that is, 5x + 6y ≤ 83) and 6x + 16y ≤ 140 (that is, 3x + 8y ≤ 70), and the profit is 14x + 18y, which is twice 7x + 9y, so it is enough to maximise 7x + 9y. The two boundary lines meet at x ≈ 11.09, y ≈ 4.59. Rounding gives 11 posters and 5 banners, which needs 255 milliliters of ink, too much; rounding down to 11 and 4 is allowed and earns $226, but it is not the best. Write the profit two ways: 7x + 9y = (3/2)(5x + 6y) - x/2 ≤ 124.5 - x/2, and 7x + 9y = (9/8)(3x + 8y) + (29/8)x ≤ 78.75 + 3.625x. A value of 7x + 9y of 119 or more would need x ≤ 11 from the first and x ≥ 12 from the second, which is impossible, so 7x + 9y is at most 118. A value of exactly 118 needs 11 ≤ x ≤ 13; x = 11 and x = 12 give no whole y (9y = 41 or 34), and x = 13 gives y = 3: 195 + 54 = 249 milliliters of ink, 78 + 48 = 126 sheets, and a profit of 182 + 54 = $236. So the best plan makes 13 posters (and 3 banners). Choice 11 comes from rounding the corner. Choice 0 reads the table's rows the wrong way round (a poster using 18 milliliters and 16 sheets, a banner 15 and 6), which leads to 0 posters and 16 banners. Choice 16 swaps the two profits ($18 per poster, $14 per banner), which leads to 16 posters and no banners.",
+  "mechanism": [
+   "two supply lines meet at a non-integer corner",
+   "the rounded corner over-uses ink",
+   "bound the profit two ways and check the few candidates",
+   "report the coordinate of the best plan"
+  ],
+  "solve": "let best=-Infinity, ans=null; for(let x=0;x<=40;x++) for(let y=0;y<=40;y++) if(15*x+18*y<=249 && 6*x+16*y<=140){ const v=14*x+18*y; if(v>best){best=v; ans=x;} } return ans;",
+  "distractor_solve": {
+   "0": "let best=-Infinity, ans=null; for(let x=0;x<=40;x++) for(let y=0;y<=40;y++) if(18*x+15*y<=249 && 16*x+6*y<=140){ const v=14*x+18*y; if(v>best){best=v; ans=x;} } return ans;",
+   "11": "const d=15*16-18*6; const x=(249*16-18*140)/d; return Math.round(x);",
+   "16": "let best=-Infinity, ans=null; for(let x=0;x<=40;x++) for(let y=0;y<=40;y++) if(15*x+18*y<=249 && 6*x+16*y<=140){ const v=18*x+14*y; if(v>best){best=v; ans=x;} } return ans;"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM32L-B7",
+  "subskill": "Fixed root hides an every-x value of k",
+  "prompt": "k(x - 4) + 12x = 5x + c\nIn the equation above, k and c are constants. The number 4 is a solution of the equation no matter what value k has. What is the sum of c and every value of k for which the equation does NOT have exactly one solution?",
+  "choices": [
+   "-35",
+   "21",
+   "28",
+   "61"
+  ],
+  "correct_answer": "21",
+  "explanation": "Since x = 4 is a solution for every k, substitute x = 4: k(0) + 48 = 20 + c, so c = 28. With c = 28 the equation is kx - 4k + 12x = 5x + 28, that is, (k + 7)x = 4k + 28 = 4(k + 7). For every k other than -7 this has exactly one solution, x = 4. But when k = -7 it reads 0 = 0, which is true for every x, so the equation has infinitely many solutions and does not have exactly one solution. So the only such k is -7, and the sum is 28 + (-7) = 21. Choice 28 comes from reasoning that because 4 is always a solution the equation always has exactly one solution, and so adding no value of k; but at k = -7 every number is a solution. Choice 61 comes from moving the 20 to the wrong side when solving 48 = 20 + c, which gives c = 68, and then adding -7. Choice -35 comes from substituting x = -4 instead of 4, which gives c = -28, and then adding -7.",
+  "mechanism": [
+   "substitute the fixed root x = 4 to find c",
+   "collect to (k + 7)x = 4(k + 7)",
+   "k = -7 makes the equation true for every x",
+   "add c and the exceptional k"
+  ],
+  "solve": "const c = 12 * 4 - 5 * 4; const ks = []; for (let k = -100; k <= 100; k++) { if (k + 12 - 5 === 0) ks.push(k); } return String(c + ks.reduce((s, v) => s + v, 0));",
+  "distractor_solve": {
+   "28": "const c = 12 * 4 - 5 * 4; return String(c);",
+   "61": "const c = 12 * 4 + 5 * 4; const k0 = -(12 - 5); return String(c + k0);",
+   "-35": "const c = 12 * (-4) - 5 * (-4); const k0 = -(12 - 5); return String(c + k0);"
+  }
+ }
+]

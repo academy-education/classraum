@@ -1,0 +1,95 @@
+{
+  "id": "SM32L-D4",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Cheapest whole-number shipment under a need and a weight cap",
+  "prompt": "A relief team must ship at least 488 meals on a cart that can hold at most 80 kilograms. A crate holds 28 meals, weighs 5 kilograms, and costs $54; a box holds 12 meals, weighs 1 kilogram, and costs $24. Only whole crates and boxes are shipped, and the team chooses the least expensive shipment that meets both conditions. In that shipment, by how many does the number of crates exceed the number of boxes?",
+  "choices": [
+    "6",
+    "9",
+    "14",
+    "16"
+  ],
+  "correct_answer": "6",
+  "explanation": "Let c be the number of crates and b the number of boxes. The conditions are 28c + 12b ≥ 488 (that is, 7c + 3b ≥ 122) and 5c + b ≤ 80, and the cost is 54c + 24b. Per meal, a crate costs 54/28 ≈ $1.93 and a box $2.00, so the team wants as many crates as the weight limit allows. The two boundary lines meet where b = 80 - 5c and 7c + 3(80 - 5c) = 122, so c = 14.75 and b = 6.25. Rounding gives 15 crates and 6 boxes, but that weighs 75 + 6 = 81 kilograms, over the limit. With 15 crates the boxes must hold 488 - 420 = 68 meals, so at least 6 boxes, and the weight is at least 81: no plan has 15 or more crates. With 14 crates, 7(14) + 3b ≥ 122 needs b ≥ 8, and 14 crates with 8 boxes weigh 78 kilograms, hold exactly 488 meals, and cost 756 + 192 = $948. Every other shipment that meets both conditions costs more (for example 11 crates and 15 boxes cost $954, and 13 crates and 11 boxes cost $966). So the cheapest shipment has 14 crates and 8 boxes, and the crates exceed the boxes by 14 - 8 = 6. Choice 9 uses the rounded corner (15 crates, 6 boxes), which breaks the weight limit. Choice 16 swaps the two weights (crates 1 kilogram, boxes 5 kilograms), which leads to 17 crates and 1 box. Choice 14 is the number of crates, not the difference.",
+  "solve": "let best=Infinity, ans=null; for(let c=0;c<=40;c++) for(let b=0;b<=90;b++) if(28*c+12*b>=488 && 5*c+b<=80){ const k=54*c+24*b; if(k<best){best=k; ans=c-b;} } return ans;",
+  "distractor_solve": {
+    "9": "const c=(3*80-122)/8, b=80-5*c; return Math.round(c)-Math.round(b);",
+    "14": "let best=Infinity, ans=null; for(let c=0;c<=40;c++) for(let b=0;b<=90;b++) if(28*c+12*b>=488 && 5*c+b<=80){ const k=54*c+24*b; if(k<best){best=k; ans=c;} } return ans;",
+    "16": "let best=Infinity, ans=null; for(let c=0;c<=90;c++) for(let b=0;b<=40;b++) if(28*c+12*b>=488 && c+5*b<=80){ const k=54*c+24*b; if(k<best){best=k; ans=c-b;} } return ans;"
+  },
+  "mechanism": [
+    "covering line meets a weight cap at a non-integer corner",
+    "the rounded corner breaks the weight cap",
+    "step back along the covering line to an exact cover",
+    "difference of the two coordinates"
+  ],
+  "mech": "integer-optimum",
+  "ask": "difference",
+  "quantity_asked": "number of crates minus number of boxes in the least expensive shipment that meets the meal need and the weight limit",
+  "setup": {
+    "i": "one covering requirement (meals) plus a weight cap that binds the cheaper-per-meal heavy item; minimise cost",
+    "ii": "the rounded corner breaks the weight cap and the cheapest whole-number shipment covers the need exactly one trade away",
+    "iii": "difference x - y (heavy minus light) in the cheapest shipment"
+  },
+  "bypass_option": "9",
+  "off_by_one_options": [],
+  "plugback": {
+    "substitutable": false,
+    "why": "Trying 6 first: a difference of 6 does not fix the shipment (14 and 8, 15 and 9, 13 and 7 all differ by 6), so it cannot be substituted into the meal or weight condition; confirming it needs the cheapest-shipment search, which is the whole solution.",
+    "aggregate_over": "the difference between the two coordinates (crates minus boxes) of the least expensive whole-number shipment"
+  },
+  "distractor_meta": {
+    "9": {
+      "error_kind": "other",
+      "error_sense": "adds",
+      "direction": "above",
+      "stem_predicts_direction": false,
+      "why": "Rounding the corner keeps a shipment that is 1 kilogram over the cart's limit; the stem does not show whether the feasible cheapest shipment has a larger or smaller crate surplus."
+    },
+    "16": {
+      "error_kind": "wrong_variable",
+      "error_sense": "swaps",
+      "direction": "above",
+      "stem_predicts_direction": false,
+      "why": "Swapping which package weighs 5 kilograms changes which item the cap restricts; the stem gives no direct way to see whether that raises or lowers the crate surplus."
+    },
+    "14": {
+      "error_kind": "partial_answer",
+      "error_sense": "omits",
+      "direction": "above",
+      "stem_predicts_direction": false,
+      "why": "Reporting the number of crates and leaving out the subtraction; the stem does not state how many boxes the shipment has, so the size of the gap is not readable."
+    }
+  },
+  "counter_error": {
+    "error_kind": "wrong_variable",
+    "solve": "return 0 - Math.ceil(488/12);",
+    "direction": "below",
+    "why": "Choosing the cheaper item per package ($24 box instead of $54 crate) and shipping only boxes gives 0 crates and 41 boxes, a difference of -41, below the key and not an option."
+  },
+  "far_distractor": {
+    "option": "16",
+    "natural_side": "below",
+    "why": "Swapping which package is heavy would ordinarily push a weight-limited shipment away from the heavy crates and shrink the crate surplus; here the swap makes the crates the light item, lifts the limit off them, and the surplus rises to 16, above the key."
+  },
+  "structure_check": "The stem asks for a difference in the least expensive shipment; nothing in it (no universal condition, no 'every slip lowers it') signs the errors. The cheaper-per-package error lands far below (-41), while the rounded corner, the swapped weights and the crate count land above, so a student cannot read the direction of every error from the stem.",
+  "cheap_bound_check": "The cheapest bound is the weight cap alone: 5c <= 80 gives c <= 16, so the difference is at most 16. It strikes no option; 9, 14 and 16 all lie on the key's side of it (at most 16). The meal need gives no cheap bound on the difference.",
+  "intermediate_check": "9: no - it is the difference at the rounded corner, a different shipment; 6 does not follow from it through a printed relation. 16: no - it is the difference of a shipment found under swapped weights. 14: not through ONE printed relation - from 14 crates the box count needs the meal condition (b >= 8) and the check that 8 boxes are both enough and cheapest given the weight cap, and the crate count 14 is itself found only after the 15-crate case is ruled out; the grader should still read it as the nearest intermediate.",
+  "shape_check": "The stem hands over: the difference is a whole number, at most 16 by the weight cap, and it could be negative in principle. All four options survive the cap and integrality; no parity or divisibility is implied.",
+  "interior_parity_check": "The middle values are 9 and 14: whole numbers of one and two digits, neither cleaner than the other; the key 6 is an extreme.",
+  "arith_class_check": "Key 6 is even, as are 14 and 16; 9 is odd. No multiple or sign class isolates the key.",
+  "idea_probe": {
+    "at": "2026-10-23T03:03:29.617Z",
+    "nearest": "9250153d-2ec (live v26 D5) minimises cost under two covering minimums and asks the least cost; here one covering need meets a two-variable weight cap that binds the cheaper-per-meal item, the rounded corner is over the cap, and the ask is the crate-minus-box difference. SM31L-D5 (banned prior) has a covering need with a vertical minimum on the less efficient item; this item's second constraint is a sloped weight cap on the more efficient item."
+  },
+  "dup_search": {
+    "queries": [],
+    "hits_read": 6,
+    "nearest": "SM31L-D5 (prior, never live): covering + minimum count, x - y; different second constraint and different corner geometry"
+  },
+  "self_audit": {
+    "risk": "medium",
+    "note": "Covering the work, how many options remain legal from the stem alone? All four: the weight cap bounds the difference by 16, which keeps every option, and nothing forces parity or sign. Could a student tell from the stem which way the errors go, and does one bound strike all three? No - the cheaper-per-package error goes far below (-41) while the others go above, and the only cheap bound (16) strikes none. Could a student confirm an option against the stem in one routine step? No: a difference does not determine the shipment, so 6 cannot be substituted; it needs the cost search. Is the bypass option really what skipping this item's decision point gives? Yes: the decision point is that the rounded corner (15, 6) is 1 kilogram over the cart's limit; a student who rounds the corner and stops reports 15 - 6 = 9. A test-wise student picking the smallest option because 'least expensive' sounds restrictive gains nothing from the structure, since the difference is not monotone in cost. (read) PROBE: key at natural try 1; checking it needs the full search. (read) PAIR ratio 6/14 = 12/28: the key is 3/7 of the crate count, the same ratio as box meals to crate meals; this is a coincidence of the optimum (14 crates, 8 boxes) and no solving step multiplies the crate count by 12/28 - a student holding 14 still has to find the boxes. (read) PAIR 16-6 = 10 = 2 x 5 (soft): no step doubles the crate weight. (read) D4 'least': 'least expensive' names the plan; the ask is a difference and its extremity is the slot's planned r1."
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "id": "SM32L-D1",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Whole-number plans in a thin linear-inequality region",
+  "prompt": "A bakery makes x trays of muffins and y trays of scones each morning, where x and y are whole numbers. A tray of muffins costs $7 to make and earns a profit of $10, and a tray of scones costs $4 to make and earns a profit of $6. The bakery can spend at most $101 on these trays, it wants a total profit of at least $144, and it must make at least 7 trays of muffins. How many different plans (x, y) meet all three requirements?",
+  "choices": [
+    "5",
+    "8",
+    "10",
+    "14"
+  ],
+  "correct_answer": "5",
+  "explanation": "The requirements are 7x + 4y ≤ 101, 10x + 6y ≥ 144, and x ≥ 7. For a fixed x, y must satisfy (144 - 10x)/6 ≤ y ≤ (101 - 7x)/4. The gap between these two bounds is (15 - x)/12, which is less than 1 for every x ≥ 7, so each x allows at most one whole-number y, and sometimes none. Checking x = 7, 8, 9, ...: x = 7 needs 12.33 ≤ y ≤ 13, so y = 13; x = 8 needs 10.67 ≤ y ≤ 11.25, so y = 11; x = 9 needs 9 ≤ y ≤ 9.5, so y = 9; x = 10 needs 7.33 ≤ y ≤ 7.75, no whole number; x = 11 needs 5.67 ≤ y ≤ 6, so y = 6; x = 12 needs 4 ≤ y ≤ 4.25, so y = 4; x = 13 needs 2.33 ≤ y ≤ 2.5 and x = 14 needs 0.67 ≤ y ≤ 0.75, no whole number; for x ≥ 15 the cost alone is over $101. The plans are (7, 13), (8, 11), (9, 9), (11, 6), and (12, 4), so there are 5. Choice 8 counts every whole number x from 7 to 14 at which the region exists, assuming each such x has a whole-number y; at x = 10, 13, and 14 the allowed interval for y contains no whole number. Choice 10 reads 'at least 7 trays of muffins' as 'at most 7'. Choice 14 ignores the requirement of at least 7 trays of muffins.",
+  "solve": "let n=0; for(let x=7;x<=60;x++) for(let y=0;y<=60;y++) if(7*x+4*y<=101 && 10*x+6*y>=144) n++; return n;",
+  "distractor_solve": {
+    "8": "let n=0; for(let x=7;x<=60;x++){ const lo=Math.max(0,(144-10*x)/6), hi=(101-7*x)/4; if(lo<=hi) n++; } return n;",
+    "10": "let n=0; for(let x=0;x<=7;x++) for(let y=0;y<=60;y++) if(7*x+4*y<=101 && 10*x+6*y>=144) n++; return n;",
+    "14": "let n=0; for(let x=0;x<=60;x++) for(let y=0;y<=60;y++) if(7*x+4*y<=101 && 10*x+6*y>=144) n++; return n;"
+  },
+  "mechanism": [
+    "cost cap and profit target bound a thin strip",
+    "per-x interval for y narrower than 1",
+    "check each x for a whole-number y",
+    "count the lattice points"
+  ],
+  "mech": "integer-optimum",
+  "ask": "count",
+  "quantity_asked": "number of whole-number plans (x, y) that stay within the spending cap, reach the profit target, and include at least 7 muffin trays",
+  "setup": {
+    "i": "spending cap plus a profit target plus a minimum number of one item",
+    "ii": "the plans meeting all three lie in a thin sliver whose x-range holds more whole numbers than there are whole-number plans",
+    "iii": "number of whole-number plans meeting every requirement"
+  },
+  "bypass_option": "8",
+  "off_by_one_options": [],
+  "plugback": {
+    "substitutable": false,
+    "why": "A student trying 5 first has nothing to substitute: 5 is a count of plans, and no printed relation accepts or rejects it. Confirming it needs the whole x-by-x check of the strip, which is the solution itself.",
+    "aggregate_over": "every whole-number pair (x, y) with 7x + 4y <= 101, 10x + 6y >= 144 and x >= 7 - the lattice points of the thin strip, counted x by x"
+  },
+  "distractor_meta": {
+    "8": {
+      "error_kind": "other",
+      "error_sense": "adds",
+      "direction": "above",
+      "stem_predicts_direction": false,
+      "why": "Counting the x-values the real region spans assumes every x has a whole-number y; the stem gives no sign of how many x-values are empty, so the solver cannot tell whether this is above or below the count without doing the per-x check."
+    },
+    "10": {
+      "error_kind": "sign_slip",
+      "error_sense": "swaps",
+      "direction": "above",
+      "stem_predicts_direction": false,
+      "why": "Flipping the minimum to a maximum moves the count to the other end of the strip; whether that end holds more or fewer plans depends on how the strip widens, which the stem does not state."
+    },
+    "14": {
+      "error_kind": "omission",
+      "error_sense": "omits",
+      "direction": "above",
+      "stem_predicts_direction": false,
+      "why": "Dropping a constraint can only add plans here, but the stem does not say how many plans sit below x = 7, so the size of the overcount is not readable from the stem."
+    }
+  },
+  "counter_error": {
+    "error_kind": "other",
+    "solve": "let n=0; for(let x=7;x<=60;x++) for(let y=0;y<=60;y++) if(7*x+4*y<=101 && 10*x+6*y>144) n++; return n;",
+    "direction": "below",
+    "why": "Reading 'at least $144' as 'more than $144' drops (9, 9) and (12, 4), which earn exactly $144, and gives 3, below the key and not an option."
+  },
+  "far_distractor": {
+    "option": "10",
+    "natural_side": "below",
+    "why": "Turning the 'at least 7' minimum into an 'at most 7' cap would ordinarily shrink a feasible set, but the strip here widens toward small x and runs all the way to x = 0, so the x <= 7 side holds 10 plans and lands above the key."
+  },
+  "structure_check": "The stem has a cap, a target and a minimum, but no single universal condition or extremum that signs every error: the strict-profit misreading lowers the count to 3, while the x-range count, the flipped minimum and the dropped minimum raise it. A student cannot tell from the stem that every slip lands on one side.",
+  "cheap_bound_check": "The cheapest bound from the stem is x >= 7 with 7x <= 101, so x is from 7 to 14 (8 values); it bounds nothing until the solver also shows that each x allows at most one y (the (15 - x)/12 gap), and even then 5 and 8 both survive it. The distractor 8 sits on the key's side of that bound.",
+  "intermediate_check": "8: no - it is the number of x-values in the strip, and the key does not follow from it through any printed relation; each x still has to be checked for a whole y. 10: no - it is a count over a different region (x <= 7), not a step toward 5. 14: no - it is the count with the minimum dropped; removing the 9 plans with x < 7 needs the same full enumeration.",
+  "shape_check": "The stem hands over: the answer is a whole number, positive, and at most the number of x-values allowed by the cost cap with x >= 7 (8) only after the one-y-per-x gap is shown. Integer and positive keep all four options; the x-range cap (after the gap work) keeps 5 and 8. At least two options survive everything readable without enumerating.",
+  "interior_parity_check": "The middle values are 8 and 10: both whole numbers, one and two digits, neither simpler in form. The key 5 is an extreme, not a middle value.",
+  "arith_class_check": "Parity: 5 is odd, 8, 10 and 14 are even, but the stem implies no parity for a count of plans. Sign and integrality: all four are positive integers. The key is not a multiple of any printed number in a way the others are not (10 is a printed price).",
+  "idea_probe": {
+    "at": "2026-10-23T02:59:35.879Z",
+    "nearest": "40fba632-b25 (live v26 D1) counts combinations that tie for the greatest number of people fed, an objective parallel to the budget line; this item has no optimum at all - it counts lattice points in a thin strip between a spending cap and a profit target with a minimum, where the trap is x-values whose y-interval holds no whole number. 17cada45-d90 counts bag numbers in one variable."
+  },
+  "dup_search": {
+    "queries": [],
+    "hits_read": 6,
+    "nearest": "40fba632-b25: count of tied best plans with objective proportional to the budget; different region shape, no tie, different decision point"
+  },
+  "self_audit": {
+    "risk": "medium",
+    "note": "Covering the work, how many options remain legal from the stem alone? All four: each is a plausible count of plans, and the only cheap bound (x from 7 to 14) does not cap the count until the per-x gap is computed, after which 5 and 8 remain. Could a student tell from the stem which way the errors go, and does one bound strike all three? No - the strict-profit slip goes below (3), the others go above, and no single bound strikes 8, 10 and 14 together. Could a student confirm an option against the stem in one routine step? No: the options are counts, and checking 5 requires listing the plans, which is the full solution. Is the bypass option really what skipping this item's decision point gives? Yes: the decision point is that the real strip is not the lattice; a student who reads the strip off a graph and counts its x-values (7 through 14) without checking for a whole y at each gets 8. A test-wise student might pick the smallest option as the most restrictive, but the strict-profit misreading lands lower still (3), so smallest is not signed. (read) PROBE: the key is at natural try 1; checking it needs the whole enumeration. (read) INTER and STRUCT answered above. (read) DPAIR/DSUM: 8-5 = 3 = 4-1, 5+8 = 13 = 7+6, 10-5 = 5 = 6-1, 14-5 = 9 = 10-1 are coincidences of small numbers with no solving path: no step of the solution subtracts 1 from a price or adds two prices to reach a count, and no student could recover 5 from 8, 10 or 14 that way without already knowing it. (read) D4 'least': the word comes from 'at least $144' and 'at least 7 trays'; the ask is a count of plans, not a least value, and the key's extremity is the slot's planned r1."
+  }
+}

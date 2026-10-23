@@ -1,0 +1,712 @@
+[
+ {
+  "id": "SM32L-D1",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Whole-number plans in a thin linear-inequality region",
+  "prompt": "A bakery makes x trays of muffins and y trays of scones each morning, where x and y are whole numbers. A tray of muffins costs $7 to make and earns a profit of $10, and a tray of scones costs $4 to make and earns a profit of $6. The bakery can spend at most $101 on these trays, it wants a total profit of at least $144, and it must make at least 7 trays of muffins. How many different plans (x, y) meet all three requirements?",
+  "choices": [
+   "5",
+   "8",
+   "10",
+   "14"
+  ],
+  "correct_answer": "5",
+  "explanation": "The requirements are 7x + 4y ≤ 101, 10x + 6y ≥ 144, and x ≥ 7. For a fixed x, y must satisfy (144 - 10x)/6 ≤ y ≤ (101 - 7x)/4. The gap between these two bounds is (15 - x)/12, which is less than 1 for every x ≥ 7, so each x allows at most one whole-number y, and sometimes none. Checking x = 7, 8, 9, ...: x = 7 needs 12.33 ≤ y ≤ 13, so y = 13; x = 8 needs 10.67 ≤ y ≤ 11.25, so y = 11; x = 9 needs 9 ≤ y ≤ 9.5, so y = 9; x = 10 needs 7.33 ≤ y ≤ 7.75, no whole number; x = 11 needs 5.67 ≤ y ≤ 6, so y = 6; x = 12 needs 4 ≤ y ≤ 4.25, so y = 4; x = 13 needs 2.33 ≤ y ≤ 2.5 and x = 14 needs 0.67 ≤ y ≤ 0.75, no whole number; for x ≥ 15 the cost alone is over $101. The plans are (7, 13), (8, 11), (9, 9), (11, 6), and (12, 4), so there are 5. Choice 8 counts every whole number x from 7 to 14 at which the region exists, assuming each such x has a whole-number y; at x = 10, 13, and 14 the allowed interval for y contains no whole number. Choice 10 reads 'at least 7 trays of muffins' as 'at most 7'. Choice 14 ignores the requirement of at least 7 trays of muffins.",
+  "solve": "let n=0; for(let x=7;x<=60;x++) for(let y=0;y<=60;y++) if(7*x+4*y<=101 && 10*x+6*y>=144) n++; return n;",
+  "distractor_solve": {
+   "8": "let n=0; for(let x=7;x<=60;x++){ const lo=Math.max(0,(144-10*x)/6), hi=(101-7*x)/4; if(lo<=hi) n++; } return n;",
+   "10": "let n=0; for(let x=0;x<=7;x++) for(let y=0;y<=60;y++) if(7*x+4*y<=101 && 10*x+6*y>=144) n++; return n;",
+   "14": "let n=0; for(let x=0;x<=60;x++) for(let y=0;y<=60;y++) if(7*x+4*y<=101 && 10*x+6*y>=144) n++; return n;"
+  },
+  "mechanism": [
+   "cost cap and profit target bound a thin strip",
+   "per-x interval for y narrower than 1",
+   "check each x for a whole-number y",
+   "count the lattice points"
+  ],
+  "mech": "integer-optimum",
+  "ask": "count",
+  "quantity_asked": "number of whole-number plans (x, y) that stay within the spending cap, reach the profit target, and include at least 7 muffin trays",
+  "setup": {
+   "i": "spending cap plus a profit target plus a minimum number of one item",
+   "ii": "the plans meeting all three lie in a thin sliver whose x-range holds more whole numbers than there are whole-number plans",
+   "iii": "number of whole-number plans meeting every requirement"
+  },
+  "bypass_option": "8",
+  "off_by_one_options": [],
+  "plugback": {
+   "substitutable": false,
+   "why": "A student trying 5 first has nothing to substitute: 5 is a count of plans, and no printed relation accepts or rejects it. Confirming it needs the whole x-by-x check of the strip, which is the solution itself.",
+   "aggregate_over": "every whole-number pair (x, y) with 7x + 4y <= 101, 10x + 6y >= 144 and x >= 7 - the lattice points of the thin strip, counted x by x"
+  },
+  "distractor_meta": {
+   "8": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Counting the x-values the real region spans assumes every x has a whole-number y; the stem gives no sign of how many x-values are empty, so the solver cannot tell whether this is above or below the count without doing the per-x check."
+   },
+   "10": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Flipping the minimum to a maximum moves the count to the other end of the strip; whether that end holds more or fewer plans depends on how the strip widens, which the stem does not state."
+   },
+   "14": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Dropping a constraint can only add plans here, but the stem does not say how many plans sit below x = 7, so the size of the overcount is not readable from the stem."
+   }
+  },
+  "counter_error": {
+   "error_kind": "other",
+   "solve": "let n=0; for(let x=7;x<=60;x++) for(let y=0;y<=60;y++) if(7*x+4*y<=101 && 10*x+6*y>144) n++; return n;",
+   "direction": "below",
+   "why": "Reading 'at least $144' as 'more than $144' drops (9, 9) and (12, 4), which earn exactly $144, and gives 3, below the key and not an option."
+  },
+  "far_distractor": {
+   "option": "10",
+   "natural_side": "below",
+   "why": "Turning the 'at least 7' minimum into an 'at most 7' cap would ordinarily shrink a feasible set, but the strip here widens toward small x and runs all the way to x = 0, so the x <= 7 side holds 10 plans and lands above the key."
+  },
+  "structure_check": "The stem has a cap, a target and a minimum, but no single universal condition or extremum that signs every error: the strict-profit misreading lowers the count to 3, while the x-range count, the flipped minimum and the dropped minimum raise it. A student cannot tell from the stem that every slip lands on one side.",
+  "cheap_bound_check": "The cheapest bound from the stem is x >= 7 with 7x <= 101, so x is from 7 to 14 (8 values); it bounds nothing until the solver also shows that each x allows at most one y (the (15 - x)/12 gap), and even then 5 and 8 both survive it. The distractor 8 sits on the key's side of that bound.",
+  "intermediate_check": "8: no - it is the number of x-values in the strip, and the key does not follow from it through any printed relation; each x still has to be checked for a whole y. 10: no - it is a count over a different region (x <= 7), not a step toward 5. 14: no - it is the count with the minimum dropped; removing the 9 plans with x < 7 needs the same full enumeration.",
+  "shape_check": "The stem hands over: the answer is a whole number, positive, and at most the number of x-values allowed by the cost cap with x >= 7 (8) only after the one-y-per-x gap is shown. Integer and positive keep all four options; the x-range cap (after the gap work) keeps 5 and 8. At least two options survive everything readable without enumerating.",
+  "interior_parity_check": "The middle values are 8 and 10: both whole numbers, one and two digits, neither simpler in form. The key 5 is an extreme, not a middle value.",
+  "arith_class_check": "Parity: 5 is odd, 8, 10 and 14 are even, but the stem implies no parity for a count of plans. Sign and integrality: all four are positive integers. The key is not a multiple of any printed number in a way the others are not (10 is a printed price).",
+  "idea_probe": {
+   "at": "2026-10-23T02:59:35.879Z",
+   "nearest": "40fba632-b25 (live v26 D1) counts combinations that tie for the greatest number of people fed, an objective parallel to the budget line; this item has no optimum at all - it counts lattice points in a thin strip between a spending cap and a profit target with a minimum, where the trap is x-values whose y-interval holds no whole number. 17cada45-d90 counts bag numbers in one variable."
+  },
+  "dup_search": {
+   "queries": [],
+   "hits_read": 6,
+   "nearest": "40fba632-b25: count of tied best plans with objective proportional to the budget; different region shape, no tie, different decision point"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, how many options remain legal from the stem alone? All four: each is a plausible count of plans, and the only cheap bound (x from 7 to 14) does not cap the count until the per-x gap is computed, after which 5 and 8 remain. Could a student tell from the stem which way the errors go, and does one bound strike all three? No - the strict-profit slip goes below (3), the others go above, and no single bound strikes 8, 10 and 14 together. Could a student confirm an option against the stem in one routine step? No: the options are counts, and checking 5 requires listing the plans, which is the full solution. Is the bypass option really what skipping this item's decision point gives? Yes: the decision point is that the real strip is not the lattice; a student who reads the strip off a graph and counts its x-values (7 through 14) without checking for a whole y at each gets 8. A test-wise student might pick the smallest option as the most restrictive, but the strict-profit misreading lands lower still (3), so smallest is not signed. (read) PROBE: the key is at natural try 1; checking it needs the whole enumeration. (read) INTER and STRUCT answered above. (read) DPAIR/DSUM: 8-5 = 3 = 4-1, 5+8 = 13 = 7+6, 10-5 = 5 = 6-1, 14-5 = 9 = 10-1 are coincidences of small numbers with no solving path: no step of the solution subtracts 1 from a price or adds two prices to reach a count, and no student could recover 5 from 8, 10 or 14 that way without already knowing it. (read) D4 'least': the word comes from 'at least $144' and 'at least 7 trays'; the ask is a count of plans, not a least value, and the key's extremity is the slot's planned r1."
+  }
+ },
+ {
+  "id": "SM32L-D2",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Greatest whole-number amount under a budget and a ratio",
+  "prompt": "A community garden is buying fruit trees and shrubs. Each fruit tree costs $63 and each shrub costs $14, and the garden can spend at most $882. The planting plan requires the number of shrubs to be at least 1.2 times the number of fruit trees. Only whole trees and shrubs are bought, and the garden wants to buy the greatest possible number of fruit trees. How many different combinations of fruit trees and shrubs include that greatest number of fruit trees?",
+  "choices": [
+   "1",
+   "7",
+   "10",
+   "18"
+  ],
+  "correct_answer": "7",
+  "explanation": "Let t be the number of fruit trees and s the number of shrubs. The conditions are 63t + 14s ≤ 882, which simplifies to 9t + 2s ≤ 126, and s ≥ 1.2t. The boundary lines meet where s = 1.2t and 9t + 2.4t = 126, so t ≈ 11.05 and s ≈ 13.26. That corner suggests 11 trees, but 11 trees require s ≥ 1.2(11) = 13.2, so at least 14 shrubs, and 63(11) + 14(14) = 889, which is over $882. With 13 shrubs the ratio fails (13 < 13.2). So 11 trees is impossible, and the greatest number of fruit trees is 10. With t = 10, s must satisfy s ≥ 12 and 2s ≤ 126 - 90 = 36, so 12 ≤ s ≤ 18: that is 18 - 12 + 1 = 7 combinations. Choice 1 rounds the corner to 11 trees and 13 shrubs and treats it as the only best purchase, but 13 shrubs break the ratio. Choice 10 is the greatest number of fruit trees, not the number of combinations. Choice 18 is the greatest number of shrubs that can go with 10 trees, not the number of combinations.",
+  "solve": "let best=-1, n=0; for(let t=0;t<=20;t++) for(let s=0;s<=80;s++) if(63*t+14*s<=882 && s>=1.2*t){ if(t>best){best=t;n=1;} else if(t===best) n++; } return n;",
+  "distractor_solve": {
+   "1": "const t=882/(63+14*1.2), s=1.2*t; const rt=Math.round(t), rs=Math.round(s); return (63*rt+14*rs<=882) ? 1 : 0;",
+   "10": "let best=-1; for(let t=0;t<=20;t++) for(let s=0;s<=80;s++) if(63*t+14*s<=882 && s>=1.2*t && t>best) best=t; return best;",
+   "18": "let best=-1; for(let t=0;t<=20;t++) for(let s=0;s<=80;s++) if(63*t+14*s<=882 && s>=1.2*t && t>best) best=t; let m=-1; for(let s=0;s<=80;s++) if(63*best+14*s<=882 && s>=1.2*best && s>m) m=s; return m;"
+  },
+  "mechanism": [
+   "budget line meets a ratio line at a non-integer corner",
+   "the corner's row has no whole-number partner",
+   "drop to the next row",
+   "count the whole numbers in that row"
+  ],
+  "mech": "integer-optimum",
+  "ask": "count",
+  "quantity_asked": "number of whole-number combinations (trees, shrubs) that contain the greatest possible number of fruit trees",
+  "setup": {
+   "i": "budget plus a ratio requirement (at least 1.2 of the cheap item per expensive item)",
+   "ii": "the greatest whole number of the expensive item is one below the real corner, because the corner's row holds no whole-number partner",
+   "iii": "number of plans that contain the greatest possible number of the expensive item"
+  },
+  "bypass_option": "1",
+  "off_by_one_options": [],
+  "plugback": {
+   "substitutable": false,
+   "why": "Trying 1 first, then 7: neither is a quantity of trees or shrubs, so neither can be substituted into the budget or the ratio. Checking 7 means finding the greatest number of trees (which needs the failed row at 11) and then counting the shrub values at 10 - the whole solution.",
+   "aggregate_over": "the set of whole-number shrub counts s that can go with the greatest feasible number of fruit trees (t = 10): 12 <= s <= 18, a count over a set of combinations"
+  },
+  "distractor_meta": {
+   "1": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Rounding the corner keeps an infeasible purchase (11 trees, 13 shrubs) as the single best one; the stem does not reveal whether the true best row holds one combination or many."
+   },
+   "10": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Answering the greatest number of trees instead of the number of combinations; nothing in the stem says whether that number is larger or smaller than the count of combinations."
+   },
+   "18": {
+    "error_kind": "partial_answer",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Stopping at the upper end of the shrub range instead of counting the range; the stem gives no way to compare that endpoint with the count without finding both ends."
+   }
+  },
+  "intermediate_check": "1: no - it is the count from an infeasible rounded corner; 7 does not follow from it through any printed relation. 10: no - from t = 10 the count still needs both the ratio (s >= 12) and the budget (s <= 18), two relations plus an inclusive count. 18: no - 18 is itself found only after t = 10 is known, and the key still needs the ratio's lower end and an inclusive count; it is not one printed relation away from 7.",
+  "shape_check": "The stem hands over: the answer is a positive whole number (a count). No parity, cap or monotone direction is implied for the count of combinations. All four options survive integer and positive; a cap would need the budget work (at most 64 shrub values at any row), which keeps all four.",
+  "interior_parity_check": "The middle values are 7 and 10: both whole numbers of one and two digits; the key 7 is not the cleaner one (10 is the rounder number).",
+  "arith_class_check": "The stem implies no parity or divisibility for a count. Key 7 is odd, as is 1; 10 and 18 are even. 7 is not alone in any class the stem implies.",
+  "idea_probe": {
+   "at": "2026-10-23T03:00:34.701Z",
+   "nearest": "40fba632-b25 (live v26 D1) counts combinations tied for the most people fed, an objective parallel to the budget; here the objective is one coordinate (the number of trees), there is no parallel edge, and the decision is that the real corner's row has no whole-number shrub count. 5d8dd5b1-d31 (live) asks the greatest number of large bouquets under a stem total and a ratio; it asks the single maximum, not a count of plans, and its corner row is attainable."
+  },
+  "dup_search": {
+   "queries": [],
+   "hits_read": 2,
+   "nearest": "5d8dd5b1-d31 and bccc997e-bcc ask the greatest single quantity under a ratio; this item asks how many combinations attain it after the corner row fails"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, how many options remain legal from the stem alone? All four: each is a positive whole number, and nothing in the stem bounds a count of combinations without solving. Could a student confirm an option against the stem in one routine step? No: 1 and 7 are counts of combinations, not quantities of trees or shrubs, so substitution is impossible; confirming 7 needs the failed 11-tree row and the shrub range at 10 trees. Is the bypass option really what skipping this item's decision point gives? Yes: the decision point is that the real corner (11.05 trees) does not give a whole-number best purchase at 11 trees; a student who rounds the corner to (11, 13) and stops reports a single best purchase, 1. A test-wise student who guesses that 'greatest' means a unique plan picks 1, which is wrong; one who picks the greatest option gets a shrub count. (read) PROBE: key at natural try 2; checking 7 needs the whole solution. No (read) pair or sum lines remain after the prices were rescaled to $63 and $14 (the first draft's $12 shrub price coincided with the shrub floor 12, giving 18 - 12 + 1 = 7 a printed-number path; removed)."
+  }
+ },
+ {
+  "id": "SM32L-D3",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Cheapest whole-number plan under a covering need and a ratio",
+  "prompt": "A summer camp needs tents to sleep at least 151 campers. A large tent sleeps 9 campers and costs $44 per night, and a small tent sleeps 4 campers and costs $20 per night. Camp rules require at least twice as many small tents as large tents. Only whole tents are rented, and the camp rents the least expensive combination of tents that meets both conditions. What is the total number of tents in that combination?",
+  "choices": [
+   "17",
+   "24",
+   "27",
+   "29"
+  ],
+  "correct_answer": "29",
+  "explanation": "Let L be the number of large tents and S the number of small tents. The conditions are 9L + 4S ≥ 151 and S ≥ 2L, and the nightly cost is 44L + 20S. Per camper, a large tent costs 44/9 ≈ $4.89 and a small tent $5.00, so the camp wants as many large tents as the rule allows. The boundary lines meet where S = 2L and 17L = 151: L ≈ 8.88, S ≈ 17.76. Rounding gives 9 large and 18 small tents, which sleeps 153 and costs $756, but it is not the cheapest. Moving along the sleeping requirement, trade large tents for small ones in exact amounts: 7 large and 22 small sleep 63 + 88 = 151 exactly and cost 308 + 440 = $748; 8 large and 20 small cost $752; 3 large and 31 small cost $752; and every other combination that meets both conditions costs more than $748. So the cheapest combination is 7 large and 22 small tents, a total of 29 tents. Choice 27 is the rounded corner (9 and 18), which meets both conditions but costs $8 more. Choice 24 drops the word 'twice' and requires only at least as many small tents as large, which allows 11 large and 13 small at $744. Choice 17 ignores the rule and uses only large tents, the cheaper choice per camper.",
+  "solve": "let best=Infinity, ans=null; for(let L=0;L<=40;L++) for(let S=0;S<=80;S++) if(9*L+4*S>=151 && S>=2*L){ const c=44*L+20*S; if(c<best){best=c; ans=L+S;} } return ans;",
+  "distractor_solve": {
+   "17": "return Math.ceil(151/9);",
+   "24": "let best=Infinity, ans=null; for(let L=0;L<=40;L++) for(let S=0;S<=80;S++) if(9*L+4*S>=151 && S>=L){ const c=44*L+20*S; if(c<best){best=c; ans=L+S;} } return ans;",
+   "27": "const L=151/17, S=2*L; return Math.round(L)+Math.round(S);"
+  },
+  "mechanism": [
+   "covering line meets a ratio line at a non-integer corner",
+   "the rounded corner is feasible but not cheapest",
+   "trade along the covering line to an exact cover",
+   "add the two counts"
+  ],
+  "mech": "integer-optimum",
+  "ask": "sum",
+  "quantity_asked": "total number of tents (large plus small) in the least expensive combination that meets the sleeping need and the ratio rule",
+  "setup": {
+   "i": "one covering requirement plus a ratio floor on the less cost-efficient item (at least twice as many small units as large); minimise cost",
+   "ii": "the cheapest whole-number plan meets the requirement exactly, trading large units for small ones away from the feasible rounded corner",
+   "iii": "total number of units (x + y) in the cheapest plan"
+  },
+  "bypass_option": "27",
+  "off_by_one_options": [],
+  "plugback": {
+   "substitutable": false,
+   "why": "The key is at natural try 4 (ascending). A student testing 17, 24 and 27 as tent totals cannot check any of them against the stem directly: a total does not fix the split between large and small tents, so each needs the cheapest-plan search, which is the whole solution.",
+   "aggregate_over": "the sum of the two coordinates (large tents plus small tents) of the least expensive whole-number combination"
+  },
+  "distractor_meta": {
+   "17": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Dropping the rule and using only the cheaper-per-camper large tent; the stem does not show whether the rule pushes the total up or down."
+   },
+   "24": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reading the rule as 'at least as many small tents as large' (dropping the factor 2) lets the plan use more large tents; the stem does not show whether that raises or lowers the tent total against the true plan."
+   },
+   "27": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Rounding the corner skips the search along the sleeping line; the stem gives no hint whether the cheaper plans have more tents or fewer than the rounded corner."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "return Math.ceil(151/4);",
+   "direction": "above",
+   "why": "Choosing the cheaper tent per tent ($20 small instead of $44 large) and renting only small tents gives 38 tents, above the key and not an option."
+  },
+  "far_distractor": {
+   "option": "27",
+   "natural_side": "above",
+   "why": "Rounding the corner's coordinates (8.88 and 17.76) up to whole tents ordinarily adds tents and overshoots the true count; here the cheapest plan trades 2 large tents for 4 small ones and holds even more tents, so the rounded corner lands below the key."
+  },
+  "structure_check": "The ask is the tent total in the LEAST EXPENSIVE plan, which suggests few tents and so points a test-wise student toward the smaller options; the key is the largest. Nothing in the stem makes every error lower the total: the cheaper-per-tent error (38) goes above, the weakened-rule, rule-dropping and rounding errors go below.",
+  "cheap_bound_check": "The cheapest bounds are total >= 151/9, so at least 17 tents (all large), and total <= 38 (all small). Neither strikes any option; the distractors 17, 24 and 27 all sit on the key's side (at most 38).",
+  "intermediate_check": "27: no - it is the total of a different plan (the rounded corner), not a step from which 29 follows. 24: no - it is the total under a weakened rule (11 large, 13 small); 29 does not follow from it through a printed relation. 17: no - it is the all-large count; reaching 29 from it needs the rule and the full cost search, not one relation.",
+  "shape_check": "The stem hands over: the total is a whole number between 17 and 38. All four options survive that. No parity or divisibility is implied (the cheapest plan meets 151 exactly, but that is a finding, not a given). At least two options survive everything readable from the stem.",
+  "interior_parity_check": "The middle values are 24 and 27: both two-digit whole numbers of the same form; the key 29 is an extreme, and neither middle value is cleaner.",
+  "arith_class_check": "Key 29 is odd, as are 17 and 27; 24 is even. Nothing in the stem implies parity or a multiple for the total, and the key is alone in no class.",
+  "idea_probe": {
+   "at": "2026-10-23T03:01:46.491Z",
+   "nearest": "9250153d-2ec (live v26 D5) minimises cost under two covering minimums and asks the least cost; this item has one covering need and a ratio rule, never asks the cost, and asks the tent total of the cheapest plan, which sits several trades from a FEASIBLE rounded corner. 5d8dd5b1-d31 uses a twice-as-many rule but maximises one quantity under a single resource."
+  },
+  "dup_search": {
+   "queries": [],
+   "hits_read": 4,
+   "nearest": "5d8dd5b1-d31: same ratio wording, different problem (single resource cap, greatest number of one item). The first option set {17,19,27,29} matched live row 3c7a8ad0 (sat-math-v19-alg) by value, so the 19 distractor was replaced"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, how many options remain legal from the stem alone? All four: the cheap bounds (17 to 38 tents) keep every option, and no parity or divisibility is forced. Could a student tell from the stem which way the errors go, and does one bound strike all three? No - 'least expensive' leans toward small totals while the key is the largest, the cheaper-per-tent error lands above (38), and no single bound strikes 17, 24 and 27. Could a student confirm an option against the stem in one routine step? No: a total does not determine the split, so each option needs the cost search; the key is at try 4 anyway. Is the bypass option really what skipping this item's decision point gives? Yes: the decision point is that the best lattice point is not the rounded corner; here the rounded corner (9, 18) is even feasible, so a student who rounds and checks feasibility stops there and reports 27. (read) STRUCT and FAR answered above. (read) DPAIR/DSUM: 29-24 = 5 = 4+1 and 29+24 = 53 = 9+44 are coincidences: the solution never adds a sleeping capacity to a price, and the 1 in 4+1 is not a printed quantity of the item. (read) D4 'least': the stem's 'least expensive' names the plan, the ask is a sum (tent total), and the key's extremity is the slot's planned r4; as the structure_check says, 'least expensive' leans toward small totals, the opposite of the key."
+  }
+ },
+ {
+  "id": "SM32L-D4",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Cheapest whole-number shipment under a need and a weight cap",
+  "prompt": "A relief team must ship at least 488 meals on a cart that can hold at most 80 kilograms. A crate holds 28 meals, weighs 5 kilograms, and costs $54; a box holds 12 meals, weighs 1 kilogram, and costs $24. Only whole crates and boxes are shipped, and the team chooses the least expensive shipment that meets both conditions. In that shipment, by how many does the number of crates exceed the number of boxes?",
+  "choices": [
+   "6",
+   "9",
+   "14",
+   "16"
+  ],
+  "correct_answer": "6",
+  "explanation": "Let c be the number of crates and b the number of boxes. The conditions are 28c + 12b ≥ 488 (that is, 7c + 3b ≥ 122) and 5c + b ≤ 80, and the cost is 54c + 24b. Per meal, a crate costs 54/28 ≈ $1.93 and a box $2.00, so the team wants as many crates as the weight limit allows. The two boundary lines meet where b = 80 - 5c and 7c + 3(80 - 5c) = 122, so c = 14.75 and b = 6.25. Rounding gives 15 crates and 6 boxes, but that weighs 75 + 6 = 81 kilograms, over the limit. With 15 crates the boxes must hold 488 - 420 = 68 meals, so at least 6 boxes, and the weight is at least 81: no plan has 15 or more crates. With 14 crates, 7(14) + 3b ≥ 122 needs b ≥ 8, and 14 crates with 8 boxes weigh 78 kilograms, hold exactly 488 meals, and cost 756 + 192 = $948. Every other shipment that meets both conditions costs more (for example 11 crates and 15 boxes cost $954, and 13 crates and 11 boxes cost $966). So the cheapest shipment has 14 crates and 8 boxes, and the crates exceed the boxes by 14 - 8 = 6. Choice 9 uses the rounded corner (15 crates, 6 boxes), which breaks the weight limit. Choice 16 swaps the two weights (crates 1 kilogram, boxes 5 kilograms), which leads to 17 crates and 1 box. Choice 14 is the number of crates, not the difference.",
+  "solve": "let best=Infinity, ans=null; for(let c=0;c<=40;c++) for(let b=0;b<=90;b++) if(28*c+12*b>=488 && 5*c+b<=80){ const k=54*c+24*b; if(k<best){best=k; ans=c-b;} } return ans;",
+  "distractor_solve": {
+   "9": "const c=(3*80-122)/8, b=80-5*c; return Math.round(c)-Math.round(b);",
+   "14": "let best=Infinity, ans=null; for(let c=0;c<=40;c++) for(let b=0;b<=90;b++) if(28*c+12*b>=488 && 5*c+b<=80){ const k=54*c+24*b; if(k<best){best=k; ans=c;} } return ans;",
+   "16": "let best=Infinity, ans=null; for(let c=0;c<=90;c++) for(let b=0;b<=40;b++) if(28*c+12*b>=488 && c+5*b<=80){ const k=54*c+24*b; if(k<best){best=k; ans=c-b;} } return ans;"
+  },
+  "mechanism": [
+   "covering line meets a weight cap at a non-integer corner",
+   "the rounded corner breaks the weight cap",
+   "step back along the covering line to an exact cover",
+   "difference of the two coordinates"
+  ],
+  "mech": "integer-optimum",
+  "ask": "difference",
+  "quantity_asked": "number of crates minus number of boxes in the least expensive shipment that meets the meal need and the weight limit",
+  "setup": {
+   "i": "one covering requirement (meals) plus a weight cap that binds the cheaper-per-meal heavy item; minimise cost",
+   "ii": "the rounded corner breaks the weight cap and the cheapest whole-number shipment covers the need exactly one trade away",
+   "iii": "difference x - y (heavy minus light) in the cheapest shipment"
+  },
+  "bypass_option": "9",
+  "off_by_one_options": [],
+  "plugback": {
+   "substitutable": false,
+   "why": "Trying 6 first: a difference of 6 does not fix the shipment (14 and 8, 15 and 9, 13 and 7 all differ by 6), so it cannot be substituted into the meal or weight condition; confirming it needs the cheapest-shipment search, which is the whole solution.",
+   "aggregate_over": "the difference between the two coordinates (crates minus boxes) of the least expensive whole-number shipment"
+  },
+  "distractor_meta": {
+   "9": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Rounding the corner keeps a shipment that is 1 kilogram over the cart's limit; the stem does not show whether the feasible cheapest shipment has a larger or smaller crate surplus."
+   },
+   "14": {
+    "error_kind": "partial_answer",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Reporting the number of crates and leaving out the subtraction; the stem does not state how many boxes the shipment has, so the size of the gap is not readable."
+   },
+   "16": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Swapping which package weighs 5 kilograms changes which item the cap restricts; the stem gives no direct way to see whether that raises or lowers the crate surplus."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "return 0 - Math.ceil(488/12);",
+   "direction": "below",
+   "why": "Choosing the cheaper item per package ($24 box instead of $54 crate) and shipping only boxes gives 0 crates and 41 boxes, a difference of -41, below the key and not an option."
+  },
+  "far_distractor": {
+   "option": "16",
+   "natural_side": "below",
+   "why": "Swapping which package is heavy would ordinarily push a weight-limited shipment away from the heavy crates and shrink the crate surplus; here the swap makes the crates the light item, lifts the limit off them, and the surplus rises to 16, above the key."
+  },
+  "structure_check": "The stem asks for a difference in the least expensive shipment; nothing in it (no universal condition, no 'every slip lowers it') signs the errors. The cheaper-per-package error lands far below (-41), while the rounded corner, the swapped weights and the crate count land above, so a student cannot read the direction of every error from the stem.",
+  "cheap_bound_check": "The cheapest bound is the weight cap alone: 5c <= 80 gives c <= 16, so the difference is at most 16. It strikes no option; 9, 14 and 16 all lie on the key's side of it (at most 16). The meal need gives no cheap bound on the difference.",
+  "intermediate_check": "9: no - it is the difference at the rounded corner, a different shipment; 6 does not follow from it through a printed relation. 16: no - it is the difference of a shipment found under swapped weights. 14: not through ONE printed relation - from 14 crates the box count needs the meal condition (b >= 8) and the check that 8 boxes are both enough and cheapest given the weight cap, and the crate count 14 is itself found only after the 15-crate case is ruled out; the grader should still read it as the nearest intermediate.",
+  "shape_check": "The stem hands over: the difference is a whole number, at most 16 by the weight cap, and it could be negative in principle. All four options survive the cap and integrality; no parity or divisibility is implied.",
+  "interior_parity_check": "The middle values are 9 and 14: whole numbers of one and two digits, neither cleaner than the other; the key 6 is an extreme.",
+  "arith_class_check": "Key 6 is even, as are 14 and 16; 9 is odd. No multiple or sign class isolates the key.",
+  "idea_probe": {
+   "at": "2026-10-23T03:03:29.617Z",
+   "nearest": "9250153d-2ec (live v26 D5) minimises cost under two covering minimums and asks the least cost; here one covering need meets a two-variable weight cap that binds the cheaper-per-meal item, the rounded corner is over the cap, and the ask is the crate-minus-box difference. SM31L-D5 (banned prior) has a covering need with a vertical minimum on the less efficient item; this item's second constraint is a sloped weight cap on the more efficient item."
+  },
+  "dup_search": {
+   "queries": [],
+   "hits_read": 6,
+   "nearest": "SM31L-D5 (prior, never live): covering + minimum count, x - y; different second constraint and different corner geometry"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, how many options remain legal from the stem alone? All four: the weight cap bounds the difference by 16, which keeps every option, and nothing forces parity or sign. Could a student tell from the stem which way the errors go, and does one bound strike all three? No - the cheaper-per-package error goes far below (-41) while the others go above, and the only cheap bound (16) strikes none. Could a student confirm an option against the stem in one routine step? No: a difference does not determine the shipment, so 6 cannot be substituted; it needs the cost search. Is the bypass option really what skipping this item's decision point gives? Yes: the decision point is that the rounded corner (15, 6) is 1 kilogram over the cart's limit; a student who rounds the corner and stops reports 15 - 6 = 9. A test-wise student picking the smallest option because 'least expensive' sounds restrictive gains nothing from the structure, since the difference is not monotone in cost. (read) PROBE: key at natural try 1; checking it needs the full search. (read) PAIR ratio 6/14 = 12/28: the key is 3/7 of the crate count, the same ratio as box meals to crate meals; this is a coincidence of the optimum (14 crates, 8 boxes) and no solving step multiplies the crate count by 12/28 - a student holding 14 still has to find the boxes. (read) PAIR 16-6 = 10 = 2 x 5 (soft): no step doubles the crate weight. (read) D4 'least': 'least expensive' names the plan; the ask is a difference and its extremity is the slot's planned r1."
+  }
+ },
+ {
+  "id": "SM32L-D5",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Most profitable whole-number plan under a budget and an hour minimum",
+  "prompt": "A woodshop class makes birdhouses and planter boxes to sell. Each birdhouse uses $8 of lumber, takes 2 hours to build, and earns a profit of $13. Each planter box uses $5 of lumber, takes 6 hours to build, and earns a profit of $8. The class can spend at most $159 on lumber, and the course requires the class to log at least 120 hours of building time. Only whole items are built. In the plan with the greatest total profit, what is the number of planter boxes minus the number of birdhouses?",
+  "choices": [
+   "-15",
+   "7",
+   "8",
+   "11"
+  ],
+  "correct_answer": "11",
+  "explanation": "Let b be the number of birdhouses and p the number of planter boxes. The conditions are 8b + 5p ≤ 159 and 2b + 6p ≥ 120 (that is, b + 3p ≥ 60), and the profit is 13b + 8p. Per dollar of lumber, a birdhouse earns 13/8 = $1.625 and a planter box 8/5 = $1.60, so the class wants as many birdhouses as the hour requirement allows. The boundary lines meet where b = 60 - 3p and 8(60 - 3p) + 5p = 159, so p ≈ 16.89 and b ≈ 9.32. Rounding gives 9 birdhouses and 17 planter boxes: that costs $157, logs exactly 120 hours, and earns $253, but it is not the best plan. Spending exactly $159 needs 8b + 5p = 159, which happens for b = 3, 8, 13, 18 with p = 27, 19, 11, 3. Only b = 3 and b = 8 meet the hour requirement (b = 13 gives 13 + 33 = 46 < 60), and their profits are 39 + 216 = $255 and 104 + 152 = $256. Plans that leave money unspent earn less (for example 6 and 22 earn $254, and 9 and 17 earn $253). So the best plan is 8 birdhouses and 19 planter boxes, and 19 - 8 = 11. Choice 8 is the rounded corner (9 and 17), which meets both conditions but earns $3 less. Choice 7 subtracts the corner's coordinates (16.89 - 9.32 = 7.57) and drops the decimal instead of finding a whole-number plan. Choice -15 reads 'at least 120 hours' as 'at most 120 hours', which leads to 18 birdhouses and 3 planter boxes.",
+  "solve": "let best=-Infinity, ans=null; for(let b=0;b<=40;b++) for(let p=0;p<=40;p++) if(8*b+5*p<=159 && 2*b+6*p>=120){ const v=13*b+8*p; if(v>best){best=v; ans=p-b;} } return ans;",
+  "distractor_solve": {
+   "7": "const p=(8*60-159)/19, b=60-3*p; return Math.floor(p-b);",
+   "8": "const p=(8*60-159)/19, b=60-3*p; return Math.round(p)-Math.round(b);",
+   "-15": "let best=-Infinity, ans=null; for(let b=0;b<=40;b++) for(let p=0;p<=40;p++) if(8*b+5*p<=159 && 2*b+6*p<=120){ const v=13*b+8*p; if(v>best){best=v; ans=p-b;} } return ans;"
+  },
+  "mechanism": [
+   "budget line meets an hour-minimum line at a non-integer corner",
+   "the rounded corner is feasible but not the most profitable",
+   "exact-spend plans along the budget line",
+   "difference of the two counts"
+  ],
+  "mech": "integer-optimum",
+  "ask": "difference",
+  "quantity_asked": "number of planter boxes minus number of birdhouses in the plan with the greatest total profit",
+  "setup": {
+   "i": "budget cap plus a minimum building-hour requirement that forces the less profitable item; maximise profit",
+   "ii": "the rounded corner is feasible but the best whole-number plan spends the budget exactly one trade away, toward more of the hour-heavy item",
+   "iii": "number of the second item minus the number of the first item in the most profitable plan"
+  },
+  "bypass_option": "8",
+  "off_by_one_options": [],
+  "plugback": {
+   "substitutable": false,
+   "why": "The key is at natural try 4 (ascending). A difference does not fix a plan (19 - 8, 20 - 9 and 18 - 7 all give 11), so no option can be substituted into the budget or the hour condition; each needs the profit search.",
+   "aggregate_over": "the difference between the two coordinates (planter boxes minus birdhouses) of the most profitable whole-number plan"
+  },
+  "distractor_meta": {
+   "7": {
+    "error_kind": "partial_answer",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Subtracting the real corner's coordinates and truncating skips the whole-number plan entirely; the stem gives no sign of whether that undershoots or overshoots."
+   },
+   "8": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Rounding the corner gives a plan that is affordable and meets the hours, so a student who checks feasibility stops there; the stem does not show which way the better plan lies."
+   },
+   "-15": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Turning the hour minimum into a maximum removes the push toward planter boxes; the stem does not reveal how far the plan then moves."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "let best=-Infinity, ans=null; for(let b=0;b<=40;b++) for(let p=0;p<=40;p++) if(8*b+5*p<=159 && 2*b+6*p>=120){ const v=8*b+13*p; if(v>best){best=v; ans=p-b;} } return ans;",
+   "direction": "above",
+   "why": "Swapping the two profits ($8 per birdhouse, $13 per planter box) makes planter boxes the better buy, and the plan becomes 0 birdhouses and 31 planter boxes: a difference of 31, above the key and not an option."
+  },
+  "far_distractor": {
+   "option": "8",
+   "natural_side": "above",
+   "why": "Rounding a corner's coordinates ordinarily lands on or past the best plan in the direction the requirement pushes, so its difference would be expected at or above the key; here the best plan is one exact-spend trade further toward planter boxes (from 9 and 17 to 8 and 19), so the rounded corner lands below."
+  },
+  "structure_check": "The stem asks a difference inside a maximisation; nothing in it is universal or monotone in the asked quantity. The swapped-profit error goes above (31) while the rounding, truncation and sign errors go below, so a student cannot read one direction for every error from the stem.",
+  "cheap_bound_check": "The cheapest bounds: 5p <= 159 gives p <= 31, so the difference is at most 31; 8b <= 159 gives it at least -19. Neither strikes any option; -15, 7 and 8 all sit on the key's side of the upper bound.",
+  "intermediate_check": "8: no - it is the difference at the rounded corner (9, 17), a different plan; 11 does not follow from it through one printed relation. 7: no - it is the real corner's difference truncated, not a step toward (8, 19). -15: no - it is the difference of a plan found under a reversed condition.",
+  "shape_check": "The stem hands over: the difference is a whole number between -19 and 31. All four options survive. No parity or sign is forced (the plan could in principle have more birdhouses).",
+  "interior_parity_check": "The middle values are 7 and 8: both one-digit whole numbers of the same form; the key 11 is an extreme.",
+  "arith_class_check": "Key 11 is odd, as are 7 and -15; 8 is even. -15 is the only negative, and the stem does not force a positive difference. The key is alone in no class.",
+  "idea_probe": {
+   "at": "2026-10-23T03:12:43.789Z",
+   "nearest": "e8cee5ac-d56 (live v26 D8) has a people-served minimum and a volunteer-hour cap and asks the number of small packages in the best plan; here the cap is a lumber budget, the minimum is on hours LOGGED (a requirement that pushes toward the slow item), and the ask is a difference of the two counts. SM31L-D8 (prior) has a weight cap and a minimum total count."
+  },
+  "dup_search": {
+   "queries": [],
+   "hits_read": 6,
+   "nearest": "e8cee5ac-d56: one minimum plus one cap, maximise a weighted total, asks one coordinate"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, how many options remain legal from the stem alone? All four: the cheap bounds (-19 to 31) keep every option, and the stem does not force the difference to be positive. Could a student tell from the stem which way the errors go, and does one bound strike all three? No - the swapped-profit error goes above (31), the others below, and no bound strikes -15, 7 and 8 together. Could a student confirm an option against the stem in one routine step? No: a difference does not determine a plan, and the key is at try 4 anyway. Is the bypass option really what skipping this item's decision point gives? Yes: the decision point is that the best lattice plan is not the rounded corner; here the rounded corner (9, 17) is even feasible, so a student who rounds and checks stops there and reports 17 - 9 = 8. A test-wise student might expect a 'greatest profit' plan to lean toward the more profitable birdhouses (a small or negative difference), which points away from the key. (read) PAIR/DPAIR/DSUM: 11-7 = 4 = 2 x 2, 11+(-15) = -4, 11-8 = 3 = 2+1, 11+7 = 18 = 13+5, 11+8 = 19 = 13+6, 11+15 = 26 = 2 x 13 are coincidences: no solving step doubles an hour figure or adds a profit to a cost, and none recovers 11 from an option without the plan. (read) D4 'least': from 'at least 120 hours'; the ask is a difference and its extremity is the slot's planned r4. Note: the first draft (budget $161, key 14) failed DPAIR because the bypass 7 was exactly half the key; the numbers were changed and the idea re-probed (attempt 3) before this version."
+  }
+ },
+ {
+  "id": "SM32L-D6",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Greatest profit over whole-number plans under two constraints",
+  "prompt": "A woodworker makes chairs and stools each week. Each chair uses $7 of materials and earns a profit of $13, and each stool uses $4 of materials and earns a profit of $7. The weekly materials budget is $100, and because chairs are sold in sets with stools, the woodworker makes at most 4 more chairs than stools. Only whole chairs and stools are made. What is the greatest possible weekly profit, in dollars?",
+  "choices": [
+   "172",
+   "181",
+   "182",
+   "184"
+  ],
+  "correct_answer": "181",
+  "explanation": "Let c be the number of chairs and s the number of stools. The conditions are 7c + 4s ≤ 100 and c - s ≤ 4, and the profit is 13c + 7s. Per dollar, a chair earns 13/7 ≈ $1.86 and a stool 7/4 = $1.75, so the woodworker wants as many chairs as the second condition allows. The boundary lines meet where c = s + 4 and 7(s + 4) + 4s = 100: s ≈ 6.55, c ≈ 10.55, with profit about $182.91, so no plan can earn more than $182. Write the profit as 13c + 7s = (7/4)(7c + 4s) + (3/4)c ≤ 175 + 0.75c. Earning $182 or more would need 0.75c ≥ 7, so c ≥ 10; with c - s ≤ 4 that means s ≥ c - 4, and the budget gives 7c + 4(c - 4) ≤ 100, so c ≤ 10. With c = 10, s is 6 or 7, earning $172 or $179. So no plan reaches $182. Profit $181 is reached by 8 chairs and 11 stools: 56 + 44 = $100 of materials, 8 - 11 is less than 4, and 104 + 77 = 181. The greatest possible weekly profit is $181. Choice 182 rounds the corner's profit ($182.91) down to whole dollars without checking that a whole-number plan reaches it. Choice 184 reads the condition the wrong way round (at most 4 more stools than chairs), which allows 12 chairs and 4 stools. Choice 172 rounds both corner coordinates down to 10 chairs and 6 stools.",
+  "solve": "let best=-Infinity; for(let c=0;c<=40;c++) for(let s=0;s<=40;s++) if(7*c+4*s<=100 && c-s<=4) best=Math.max(best,13*c+7*s); return best;",
+  "distractor_solve": {
+   "172": "const s=(100-28)/11, c=s+4; return 13*Math.floor(c)+7*Math.floor(s);",
+   "182": "const s=(100-28)/11, c=s+4; return Math.floor(13*c+7*s);",
+   "184": "let best=-Infinity; for(let c=0;c<=40;c++) for(let s=0;s<=40;s++) if(7*c+4*s<=100 && s-c<=4) best=Math.max(best,13*c+7*s); return best;"
+  },
+  "mechanism": [
+   "budget line meets a difference cap at a non-integer corner",
+   "the corner's profit is not reached by any whole-number plan",
+   "bound the profit and check the few plans near the corner",
+   "best plan far from the corner"
+  ],
+  "mech": "integer-optimum",
+  "ask": "greatest",
+  "quantity_asked": "greatest possible weekly profit over whole-number plans within the budget and the at-most-4-more-chairs rule",
+  "setup": {
+   "i": "budget cap plus a cap on how many more of the more profitable item than of the other (x - y at most 4)",
+   "ii": "maximise profit; the real corner's profit rounds down to a whole-dollar level that no whole-number plan reaches",
+   "iii": "greatest total profit"
+  },
+  "bypass_option": "182",
+  "off_by_one_options": [
+   "182"
+  ],
+  "plugback": {
+   "substitutable": true,
+   "verify": "let best=-Infinity; for(let c=0;c<=40;c++) for(let s=0;s<=40;s++) if(7*c+4*s<=100 && c-s<=4) best=Math.max(best,13*c+7*s); return v===best;",
+   "why": "On a greatest ask the student tries the largest option first. 184 must be refuted (the only plans earning it, such as 12 chairs and 4 stools, break the at-most-4-more rule); then 182, which needs the argument that no whole-number plan reaches it (only 10 chairs with 6 or 7 stools come close); only then 181, which is confirmed by finding 8 chairs and 11 stools. The key is at natural try 3, after two refutations, each of which requires the lattice check."
+  },
+  "distractor_meta": {
+   "172": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Rounding both corner coordinates down gives a feasible plan; the stem does not show whether better plans lie elsewhere on the budget line."
+   },
+   "182": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Rounding the corner's profit down to whole dollars skips the check that a whole-number plan reaches it; the stem does not show how far below the corner the lattice best lies."
+   },
+   "184": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Reversing the chair-stool condition lets the plan load up on chairs; the stem does not reveal that the reversed condition never binds."
+   }
+  },
+  "intermediate_check": "182: no - it is the corner's profit truncated, an upper bound, not a step from which 181 follows. 184: no - it is the best profit under a reversed condition. 172: no - it is the profit of one feasible plan (10, 6); reaching 181 needs a search along the budget line to (8, 11), not one printed relation.",
+  "shape_check": "The stem hands over: the profit is a whole number of dollars, at most 13c + 7s with 7c + 4s <= 100 (so at most 13(100/7), about 185, from the budget alone). All four options survive integrality and that cap. No parity is forced (13c + 7s takes both parities).",
+  "interior_parity_check": "The middle values are 181 and 182: both three-digit whole numbers of the same form; the key 181 is not cleaner than 182 (neither is round).",
+  "arith_class_check": "Key 181 is odd, as is no other option (172, 182, 184 are even), but the stem implies no parity for 13c + 7s, which can be odd or even; the key is not a multiple of any printed price, and neither are the others.",
+  "idea_probe": {
+   "at": "2026-10-23T03:13:14.154Z",
+   "nearest": "7d674f12-8ff (live) asks the greatest profit under two ingredient-supply caps; this item has one budget cap and a cap on the DIFFERENCE between the two counts, and the trap is that the corner's profit ($182.91) floors to a level no whole-number plan reaches. v26 D4 (e14de4cc-5f0, live) maximises over a bare three-inequality system."
+  },
+  "dup_search": {
+   "queries": [],
+   "hits_read": 5,
+   "nearest": "7d674f12-8ff: greatest profit, two resource caps; different second constraint and different trap"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, how many options remain legal from the stem alone? All four: the budget alone caps profit near 185, which keeps every option, and no parity is forced. Could a student confirm an option against the stem in one routine step? The key is at natural try 3 on a descending greatest ask: 184 and 182 must each be refuted first, and refuting 182 is the decision point itself (no lattice plan reaches the corner's floor). Confirming 181 then needs finding (8, 11). Is the bypass option really what skipping this item's decision point gives? Yes: the decision point is that the best lattice point is not the corner; a student who computes the corner's profit ($182.91) and takes the whole-dollar part reports 182. A test-wise student choosing the second-largest option (skipping the 'too good' largest) lands on 182, not the key. 182 is the declared off-by-one option next to the key. (read) DPAIR 184-181 = 3 = 4-1: coincidence; no step subtracts 1 from the stool cost or the difference cap."
+  }
+ },
+ {
+  "id": "SM32L-D7",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Comparing the best whole-number plan with a given plan",
+  "prompt": "A market stand sells pies and loaves of bread. Each pie costs $9 to bake and earns a profit of $16, and each loaf costs $5 to bake and earns a profit of $10. The stand can spend at most $154 on baking, and its shelf can display at most 23 items in total. Last week the stand baked 0 pies and 23 loaves. Only whole pies and loaves are baked. How much greater is the greatest possible total profit for a week than last week's total profit?",
+  "choices": [
+   "54",
+   "56",
+   "60",
+   "76"
+  ],
+  "correct_answer": "56",
+  "explanation": "Last week's profit was 23(10) = $230. Let p be the number of pies and q the number of loaves. The conditions are 9p + 5q ≤ 154 and p + q ≤ 23, and the profit is 16p + 10q. The boundary lines meet where 9p + 5(23 - p) = 154, so p = 9.75 and q = 13.25, with profit $288.50. Rounding gives 10 pies and 13 loaves, but that costs $155. To find the best whole-number plan, write the profit two ways: 16p + 10q = 2(9p + 5q) - 2p ≤ 308 - 2p, and 16p + 10q = 10(p + q) + 6p ≤ 230 + 6p. A profit of $287 or more would need 308 - 2p ≥ 287 and 230 + 6p ≥ 287, so p = 10; then 160 + 10q ≥ 287 needs q ≥ 13, which costs at least $155. So the profit is at most $286, and 11 pies and 11 loaves reach it: 99 + 55 = $154, 22 items, 176 + 110 = 286. The greatest possible profit is $286, which is 286 - 230 = $56 more than last week. Choice 60 uses the rounded corner (10 pies, 13 loaves, $290), which is over budget. Choice 54 fills the shelf exactly (23 items), whose best plan is 9 pies and 14 loaves ($284). Choice 76 reads the shelf limit as 'at least 23 items', which allows 1 pie and 29 loaves ($306).",
+  "solve": "let best=-Infinity; for(let p=0;p<=40;p++) for(let q=0;q<=40;q++) if(9*p+5*q<=154 && p+q<=23) best=Math.max(best,16*p+10*q); return best-230;",
+  "distractor_solve": {
+   "54": "let best=-Infinity; for(let p=0;p<=23;p++){ const q=23-p; if(9*p+5*q<=154) best=Math.max(best,16*p+10*q); } return best-230;",
+   "60": "const p=(154-5*23)/4, q=23-p; return 16*Math.round(p)+10*Math.round(q)-230;",
+   "76": "let best=-Infinity; for(let p=0;p<=40;p++) for(let q=0;q<=40;q++) if(9*p+5*q<=154 && p+q>=23) best=Math.max(best,16*p+10*q); return best-230;"
+  },
+  "mechanism": [
+   "budget line meets a shelf cap at a non-integer corner",
+   "the rounded corner is over budget",
+   "bound the profit two ways to find the lattice best",
+   "subtract a given plan's profit"
+  ],
+  "mech": "integer-optimum",
+  "ask": "difference",
+  "quantity_asked": "the greatest possible weekly profit minus the profit of last week's stated plan (0 pies, 23 loaves)",
+  "setup": {
+   "i": "spending cap plus a display cap on the total number of items; maximise profit",
+   "ii": "the corner's rounded plan breaks the budget and the best whole-number plan leaves one display space empty",
+   "iii": "greatest profit minus the profit of a stated earlier plan"
+  },
+  "bypass_option": "60",
+  "off_by_one_options": [],
+  "plugback": {
+   "substitutable": false,
+   "why": "Trying 54 then 56: each would mean a best profit of $284 or $286, and confirming either needs showing that no plan does better - the whole lattice search. No single substitution or forward computation from an option checks it.",
+   "aggregate_over": "the difference between two profits: the greatest whole-number profit within the budget and shelf limits, minus last week's $230 from 0 pies and 23 loaves"
+  },
+  "distractor_meta": {
+   "54": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Requiring a full shelf adds a constraint the stem does not impose; the stem gives no sign whether the best plan fills the shelf."
+   },
+   "60": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Rounding the corner keeps a plan $1 over budget; the stem does not show how far below the corner's profit the lattice best lies."
+   },
+   "76": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Reading 'at most 23 items' as 'at least 23' lets the plan load up on loaves; the stem does not reveal how much that changes the profit."
+   }
+  },
+  "intermediate_check": "60: no - it is the gain from the rounded corner, a different (infeasible) plan; 56 does not follow from it through one printed relation. 54: no - it is the gain from the best full-shelf plan; reaching 286 needs dropping the full-shelf assumption and redoing the search. 76: no - it is the gain under a reversed shelf condition.",
+  "shape_check": "The stem hands over: the gain is a whole number of dollars, even (every profit is 16p + 10q, even, and 230 is even), and at most about 308 - 230 = 78 from the budget alone. All four options are even and below 78; all survive.",
+  "interior_parity_check": "The middle values are 56 and 60: both two-digit even numbers; 60 is the rounder, and it is a distractor, not the key.",
+  "arith_class_check": "All four options are even, as the stem forces; none is alone in a class. The key 56 is not a multiple of 10 (54 and 76 are not either; 60 is).",
+  "idea_probe": {
+   "at": "2026-10-23T03:14:24.348Z",
+   "nearest": "SM31L-D6 (prior, banned setup) has a materials budget and a display cap but asks the greatest number of frames among tied best plans; this item has a unique best plan away from the rounded corner and asks its profit gain over a stated plan. 7fa09e5c-8ed (live) mentions last week's production but solves a system for one profit, with no optimisation."
+  },
+  "dup_search": {
+   "queries": [],
+   "hits_read": 3,
+   "nearest": "SM31L-D6 (prior): same pair of constraints, different decision and ask"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, how many options remain legal from the stem alone? All four: the stem forces an even gain below about 78, and all four options are even and below it. Could a student confirm an option against the stem in one routine step? No: an option is a gain, and confirming it means showing that $230 plus that gain is the greatest profit, which is the whole lattice search; no substitution checks it. Is the bypass option really what skipping this item's decision point gives? Yes: the decision point is that the rounded corner (10 pies, 13 loaves) is $1 over budget; a student who rounds and stops reports 290 - 230 = 60. A test-wise student picking the larger 'profit' options or the round 60 lands on a distractor. (read) PAIR 76-56 = 20 = 2 x 10 and DPAIR 60-56 = 4 = 5-1: coincidences; no solving step doubles the loaf profit or subtracts 1 from the loaf cost to move between gains."
+  }
+ },
+ {
+  "id": "SM32L-D8",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Coordinate of the most profitable whole-number plan",
+  "prompt": "A print shop makes posters and banners. The table shows the ink and paper each item uses.\nItem | Ink (milliliters) | Paper (sheets)\nPoster | 15 | 6\nBanner | 18 | 16\nThe shop has 249 milliliters of ink and 140 sheets of paper, earns a profit of $14 on each poster and $18 on each banner, and makes only whole posters and banners. In the plan with the greatest total profit, how many posters does the shop make?",
+  "choices": [
+   "0",
+   "11",
+   "13",
+   "16"
+  ],
+  "correct_answer": "13",
+  "explanation": "Let x be the number of posters and y the number of banners. The conditions are 15x + 18y ≤ 249 (that is, 5x + 6y ≤ 83) and 6x + 16y ≤ 140 (that is, 3x + 8y ≤ 70), and the profit is 14x + 18y, which is twice 7x + 9y, so it is enough to maximise 7x + 9y. The two boundary lines meet at x ≈ 11.09, y ≈ 4.59. Rounding gives 11 posters and 5 banners, which needs 255 milliliters of ink, too much; rounding down to 11 and 4 is allowed and earns $226, but it is not the best. Write the profit two ways: 7x + 9y = (3/2)(5x + 6y) - x/2 ≤ 124.5 - x/2, and 7x + 9y = (9/8)(3x + 8y) + (29/8)x ≤ 78.75 + 3.625x. A value of 7x + 9y of 119 or more would need x ≤ 11 from the first and x ≥ 12 from the second, which is impossible, so 7x + 9y is at most 118. A value of exactly 118 needs 11 ≤ x ≤ 13; x = 11 and x = 12 give no whole y (9y = 41 or 34), and x = 13 gives y = 3: 195 + 54 = 249 milliliters of ink, 78 + 48 = 126 sheets, and a profit of 182 + 54 = $236. So the best plan makes 13 posters (and 3 banners). Choice 11 comes from rounding the corner. Choice 0 reads the table's rows the wrong way round (a poster using 18 milliliters and 16 sheets, a banner 15 and 6), which leads to 0 posters and 16 banners. Choice 16 swaps the two profits ($18 per poster, $14 per banner), which leads to 16 posters and no banners.",
+  "solve": "let best=-Infinity, ans=null; for(let x=0;x<=40;x++) for(let y=0;y<=40;y++) if(15*x+18*y<=249 && 6*x+16*y<=140){ const v=14*x+18*y; if(v>best){best=v; ans=x;} } return ans;",
+  "distractor_solve": {
+   "0": "let best=-Infinity, ans=null; for(let x=0;x<=40;x++) for(let y=0;y<=40;y++) if(18*x+15*y<=249 && 16*x+6*y<=140){ const v=14*x+18*y; if(v>best){best=v; ans=x;} } return ans;",
+   "11": "const d=15*16-18*6; const x=(249*16-18*140)/d; return Math.round(x);",
+   "16": "let best=-Infinity, ans=null; for(let x=0;x<=40;x++) for(let y=0;y<=40;y++) if(15*x+18*y<=249 && 6*x+16*y<=140){ const v=18*x+14*y; if(v>best){best=v; ans=x;} } return ans;"
+  },
+  "mechanism": [
+   "two supply lines meet at a non-integer corner",
+   "the rounded corner over-uses ink",
+   "bound the profit two ways and check the few candidates",
+   "report the coordinate of the best plan"
+  ],
+  "mech": "integer-optimum",
+  "ask": "value",
+  "quantity_asked": "number of posters in the unique plan with the greatest total profit",
+  "setup": {
+   "i": "two supply limits (ink and paper) given in a table; maximise profit",
+   "ii": "the best whole-number plan uses all the ink exactly, two posters past the rounded corner, with fewer banners",
+   "iii": "number of the first item in the most profitable plan"
+  },
+  "bypass_option": "11",
+  "off_by_one_options": [],
+  "plugback": {
+   "substitutable": true,
+   "verify": "let best=-Infinity, ans=null; for(let x=0;x<=40;x++) for(let y=0;y<=40;y++) if(15*x+18*y<=249 && 6*x+16*y<=140){ const w=14*x+18*y; if(w>best){best=w; ans=x;} } return v===ans;",
+   "why": "Trying 0, 11, 13 in order: for each poster count the student can find the best banner count and its profit (0 posters: 8 banners, $144; 11 posters: 4 banners, $226; 13 posters: 3 banners, $236), but a larger profit at one option does not show it is the greatest over all plans, so confirming 13 still needs the bound or a full scan. The key is at natural try 3 in any case."
+  },
+  "distractor_meta": {
+   "0": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reading the table's rows the wrong way round gives each item the other's ink and paper use; the stem does not show which way that moves the poster count."
+   },
+   "11": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Rounding the corner skips the lattice search; the stem does not show whether the best plan has more or fewer posters than the corner."
+   },
+   "16": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Swapping the profits makes posters the better item; nothing in the stem says how far the poster count then rises."
+   }
+  },
+  "intermediate_check": "11: no - it is the rounded corner's x, not a value from which 13 follows through one printed relation. 0: no - it is the x of a plan found with the table's rows swapped. 16: no - it is the x of a plan found with swapped profits. None is a step in the solution.",
+  "shape_check": "The stem hands over: the poster count is a whole number with 15x <= 249, so from 0 to 16. All four options survive. No parity is forced.",
+  "interior_parity_check": "The middle values are 11 and 13: both two-digit odd numbers of the same form; neither is cleaner.",
+  "arith_class_check": "11 and 13 are odd; 0 and 16 are even. Nothing in the stem implies parity, and the key is not alone in any class.",
+  "idea_probe": {
+   "at": "2026-10-23T03:15:15.085Z",
+   "nearest": "e14de4cc-5f0 (live v26 D4) maximises 7x + 6y over a bare three-inequality system and asks the greatest value; this item gives two supply limits in a table and asks a coordinate of the best plan, never the profit. SM31L-D4 (banned prior, never live) has two capacity limits and asks x - y of the best plan; this item is closest to it in shape - different register (table), different numbers, a coordinate rather than a difference - and the coordinator should judge it."
+  },
+  "dup_search": {
+   "queries": [],
+   "hits_read": 3,
+   "nearest": "SM31L-D4 (prior): two capacity limits, best plan two steps off the rounded corner, asks x - y"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, how many options remain legal from the stem alone? All four: the ink limit caps posters at 16, which keeps every option. Could a student confirm an option against the stem in one routine step? The key is at natural try 3 (ascending); even there, seeing that 13 posters give a larger profit than 1 or 11 does not show 13 is best, so confirming it needs the profit bound or a scan. Is the bypass option really what skipping this item's decision point gives? Yes: the decision point is that the best lattice plan is not the rounded corner; a student who rounds (11.09, 4.59) reports 11 posters. A test-wise student might expect the answer near the corner (11 or 13), and the key is one of those two; the other is the bypass, so the pair does not single out the key. The closest prior setup is SM31L-D4 (banned, never live), flagged in idea_probe.nearest. (read) After the first draft failed DPAIR (key 13 = 13 x the option 1, and 13 = 6 + 7 with the old $7 profit), the profits were doubled to $14 and $18 (same best plan) and the option 1 was replaced by 0 (rows of the table swapped). Remaining (read) lines are answered here: any pair or sum coincidences between 13 and 0, 11 or 16 and printed numbers have no solving path - no step adds two printed figures or doubles one to reach a poster count."
+  }
+ }
+]

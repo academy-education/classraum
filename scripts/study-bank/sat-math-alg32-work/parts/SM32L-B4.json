@@ -1,0 +1,97 @@
+{
+ "id": "SM32L-B4",
+ "domain": "Algebra",
+ "difficulty": "hard",
+ "subskill": "Identity case adds a k to a common-solution sum",
+ "prompt": "kx + x + 6 = 4k - 2x + 18\n6x + k = 2x + 41\nIn the two equations above, k is the same constant. What is the sum of all values of k for which the two equations have at least one solution x in common?",
+ "choices": [
+  "22",
+  "25",
+  "34",
+  "54"
+ ],
+ "correct_answer": "22",
+ "explanation": "Collect the x terms in the first equation: kx + x + 2x = 4k + 18 - 6, so (k + 3)x = 4k + 12 = 4(k + 3). The second equation gives 4x = 41 - k, so its only solution is x = (41 - k)/4. Case 1: k is not -3. Then the first equation has the single solution x = 4, so the equations share a solution exactly when (41 - k)/4 = 4, that is, k = 25. Case 2: k = -3. Then the first equation reads 0 = 0 and is true for EVERY x, so whatever the second equation's solution is (here x = 11), it is also a solution of the first. So k = -3 also qualifies. The sum is 25 + (-3) = 22. Choice 25 comes from dividing by k + 3 to get x = 4 for every k and so missing k = -3, where the first equation is true for all x. Choice 34 comes from solving the second equation as x = 41 - k (forgetting to divide by 4), which gives k = 37, and then adding -3. Choice 54 comes from a sign slip in solving 16 = 41 - k, which gives k = 57, and then adding -3.",
+ "solve": "const ks = []; for (let k = -200; k <= 200; k++) { const a = k + 3, b = 4 * k + 12; const xp = (41 - k) / 4; const firstHolds = (a === 0) ? (b === 0) : Math.abs(a * xp - b) < 1e-9; if (firstHolds) ks.push(k); } return String(ks.reduce((s, v) => s + v, 0));",
+ "distractor_solve": {
+  "25": "const x1 = 4; return String(41 - 4 * x1);",
+  "34": "const x1 = 4; return String((41 - x1) + (-3));",
+  "54": "const x1 = 4; return String((41 + 4 * x1) + (-3));"
+ },
+ "mechanism": [
+  "collect terms to (k + 3)x = 4(k + 3)",
+  "generic solution x = 4, identity at k = -3",
+  "second equation's solution (41 - k)/4 matched to 4",
+  "sum over the generic match and the identity case"
+ ],
+ "mech": "degenerate-parameter",
+ "ask": "sum",
+ "quantity_asked": "the sum of all values of k for which the two equations share at least one solution",
+ "setup": {
+  "i": "two one-variable linear equations share the constant k; in the first, k multiplies x so that the x-coefficient k + 3 and the constant 4(k + 3) vanish together (identity at k = -3), and the second has a k-free x-coefficient",
+  "ii": "the two equations have at least one solution in common, which holds at the generic match and also at the identity value of k",
+  "iii": "sum of all values of k that qualify"
+ },
+ "bypass_option": "25",
+ "off_by_one_options": [],
+ "plugback": {
+  "substitutable": false,
+  "why": "The key 22 is the smallest option, so it is the first one tried, but it is a sum of two k values, not itself a qualifying k: substituting k = 22 gives x = 4 in the first equation and x = 19/4 in the second, which neither confirms nor rejects 22. Confirming 22 needs both cases worked out.",
+  "aggregate_over": "the values of k for which the two equations share a solution: the generic match k = 25 (where both have x = 4) and the identity value k = -3 (where the first equation holds for every x)"
+ },
+ "distractor_meta": {
+  "25": {
+   "error_kind": "omission",
+   "error_sense": "omits",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Dividing by k + 3 drops the identity case k = -3; because that k is negative, omitting it raises the sum, but the stem does not show the sign of the omitted value until the case is found."
+  },
+  "34": {
+   "error_kind": "wrong_operation",
+   "error_sense": "swaps",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Forgetting to divide by 4 changes the generic match from 25 to 37; whether that moves the sum up or down depends on the printed constants, which the stem does not signal."
+  },
+  "54": {
+   "error_kind": "sign_slip",
+   "error_sense": "swaps",
+   "direction": "above",
+   "stem_predicts_direction": false,
+   "why": "Solving 16 = 41 - k as k = 57 is a sign slip whose direction depends on which side the student moves k to; nothing in the stem fixes it."
+  }
+ },
+ "counter_error": {
+  "error_kind": "sign_slip",
+  "solve": "const x1 = 4; return String((4 * x1 - 41) + (-3));",
+  "direction": "below",
+  "why": "Moving k with the wrong sign when solving the second equation (x = (41 + k)/4) gives the generic match k = -25; adding the identity value -3 gives -28, below the key and not an option."
+ },
+ "far_distractor": {
+  "option": "25",
+  "natural_side": "below",
+  "why": "Leaving out a qualifying case ordinarily makes a sum smaller; here the omitted case is k = -3, a negative value, so the omission lands above the key instead."
+ },
+ "structure_check": "The asked quantity is a sum over the qualifying k values, whose signs are not visible in the stem: omitting a negative member raises the sum, omitting or mis-solving a positive one can lower it (counter_error -24). There is no universal condition, extremum or strictest bound, so the stem does not tell a student which way every error goes.",
+ "cheap_bound_check": "The stem gives no one-sided bound on a sum of k values: k can be any real number, and neither equation restricts its sign. The only cheap observation, that the generic match is a single k, gives no bound on the total, so no distractor is struck and at least one (in fact all three) sit on the key's side of any bound a student could read off.",
+ "intermediate_check": "25: no - it is the generic match itself; reaching 22 needs the identity value -3, which is not printed (the stem prints 6, 4, 2, 18, 6, 2, 41). 34: no - 37 - 3 from a misdivision; 22 does not follow from 34 through a printed relation. 54: no - 57 - 3 from a sign slip; no printed relation turns 54 into 22.",
+ "shape_check": "Properties handed over: the answer is a sum of k values, possibly negative or fractional; nothing forces integer, sign or parity. All four options (22, 25, 34, 54) survive together.",
+ "interior_parity_check": "The two middle values are 25 and 34: both two-digit whole numbers; the key 22 is not cleaner than them.",
+ "arith_class_check": "The key 22 is not alone in a class the stem implies: 22, 34 and 54 are even, 25 odd; 22 is not a printed number.",
+ "idea_probe": {
+  "at": "2026-10-23T03:13:14.120Z",
+  "nearest": "e8f9af26-5cc (live: two equations with the same k, the first's solution is 1 less than twice the second's). That relates two unique solutions; mine asks when the two equations share a solution and turns on the first equation becoming an identity at k = -3. b7e21eab-3e9 (live) uses a no-solution k from one equation in another; mine has no no-solution case and sums the qualifying k."
+ },
+ "dup_search": {
+  "queries": [
+   "satisfies both|solution of both|common solution"
+  ],
+  "hits_read": 19,
+  "nearest": "e8f9af26-5cc - see idea_probe; the 17 extra hits are systems, inequalities and function identities, none with a shared-solution condition on k"
+ },
+ "self_audit": {
+  "risk": "medium",
+  "note": "Stage-0 return: renumbered so the key (22) is unique in the batch (was 18, shared with C6); same slot, ask, rank, mechanism, bypass side. Covering the work, all four options remain legal from the stem alone (a sum of k values can be any number). A test-wise student who divides by k + 3 gets x = 4 for every k, matches the second equation at k = 25, and answers 25 - the bypass, exactly what skipping the identity case k = -3 gives. Could a student tell from the stem which way the errors go? No: the sign of the omitted case is invisible until found, and a sign slip on the generic match goes either way (54 above, -28 below). One bound does not strike all three: the stem gives no bound on the sum. Could a student confirm 22 at try 1 in one routine step? No: 22 is a sum, not a qualifying k. (read) lines: PROBE - key at try 1, a sum over the two qualifying k values. D4 extreme key on a sum - the key is lowest only because the omitted identity value is negative, which the stem does not show. Any PAIR/DPAIR read is a small-number coincidence with no route from the stem to 22. IDEA - same probed idea with new constants."
+ }
+}
