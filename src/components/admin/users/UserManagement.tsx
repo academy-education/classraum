@@ -1,5 +1,6 @@
 'use client'
 
+import { anchorMenu, anchorStyle, type MenuAnchor } from '@/components/admin/anchorMenu';
 import React, { useEffect, useState } from 'react';
 import {
   Users,
@@ -97,7 +98,7 @@ export function UserManagement() {
   // overflow-y:auto), so the last rows' menus were cut off and the menu
   // drifted off its button once the table scrolled sideways. Same pattern as
   // SupportManagement / SubscriptionManagement.
-  const [menuPosition, setMenuPosition] = useState<{ top: number; right: number } | null>(null);
+  const [menuPosition, setMenuPosition] = useState<MenuAnchor | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
   // Bulk selection — set of user ids checked across pages. Bulk actions are
@@ -359,10 +360,7 @@ export function UserManagement() {
         onClick={(e) => {
           e.stopPropagation();
           const rect = e.currentTarget.getBoundingClientRect();
-          setMenuPosition({
-            top: rect.bottom + 8,
-            right: window.innerWidth - rect.right
-          });
+          setMenuPosition(anchorMenu(rect));
           setShowActions(showActions === user.id ? null : user.id);
         }}
         className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg"
@@ -376,10 +374,7 @@ export function UserManagement() {
       {showActions === user.id && menuPosition && (
         <div
           className="fixed min-w-[180px] w-max bg-white rounded-xl shadow-xl shadow-gray-900/10 ring-1 ring-gray-100 py-1 z-50 overflow-hidden"
-          style={{
-            top: `${menuPosition.top}px`,
-            right: `${menuPosition.right}px`
-          }}
+          style={anchorStyle(menuPosition)}
         >
           <button
             onClick={() => openUserDetail(user)}

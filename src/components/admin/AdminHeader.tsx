@@ -20,12 +20,16 @@ import { initialsFromName } from '@/lib/name';
 
 interface AdminHeaderProps {
   adminUser: AdminUser;
-  onToggleSidebar?: () => void;
-  sidebarOpen?: boolean;
+  /** lg+: collapse / restore the pinned rail. */
+  onToggleRail?: () => void;
+  railOpen?: boolean;
+  /** Below lg: open the off-canvas drawer. */
+  onOpenDrawer?: () => void;
+  drawerOpen?: boolean;
 }
 
 
-export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: AdminHeaderProps) {
+export function AdminHeader({ adminUser, onToggleRail, railOpen = true, onOpenDrawer, drawerOpen = false }: AdminHeaderProps) {
   const { t, language, setLanguage } = useTranslation();
   const router = useRouter();
   const [showUserMenu, setShowUserMenu] = useState(false);
@@ -51,23 +55,32 @@ export function AdminHeader({ adminUser, onToggleSidebar, sidebarOpen = true }: 
   return (
     <header className="flex-shrink-0 h-[57px] bg-white border-b border-gray-100 px-2 sm:px-4 flex items-center">
       <div className="flex items-center justify-between w-full">
-        {/* Left: sidebar toggle */}
-        {/* Below lg the sidebar is an off-canvas drawer, so the control is
-            a plain menu button; at lg+ it collapses the pinned rail. */}
+        {/* Left: two controls for two different things. Below lg the
+            sidebar is an off-canvas drawer and this opens it; at lg+ the
+            other button collapses the pinned rail. They used to be one
+            button toggling one shared state, which is how a rail left
+            "open" on a landscape tablet became an uninvited modal drawer
+            when the tablet was turned upright. */}
         <button
-          onClick={onToggleSidebar}
-          className="inline-flex items-center justify-center w-10 h-10 lg:w-auto lg:h-auto lg:p-2 -ml-1 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
-          aria-label={sidebarOpen ? String(t('admin.header.hideSidebar')) : String(t('admin.header.showSidebar'))}
-          aria-expanded={sidebarOpen}
+          type="button"
+          onClick={onOpenDrawer}
+          className="lg:hidden inline-flex items-center justify-center w-10 h-10 -ml-1 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+          aria-label={String(t('admin.header.openMenu'))}
+          aria-haspopup="dialog"
+          aria-expanded={drawerOpen}
+          data-testid="admin-menu-button"
         >
-          <Menu className="w-5 h-5 lg:hidden" />
-          <span className="hidden lg:inline-flex">
-            {sidebarOpen ? (
-              <PanelLeftClose className="w-4 h-4" />
-            ) : (
-              <PanelLeftOpen className="w-4 h-4" />
-            )}
-          </span>
+          <Menu className="w-5 h-5" />
+        </button>
+        <button
+          type="button"
+          onClick={onToggleRail}
+          className="hidden lg:inline-flex items-center justify-center p-2 -ml-1 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+          aria-label={railOpen ? String(t('admin.header.hideSidebar')) : String(t('admin.header.showSidebar'))}
+          aria-expanded={railOpen}
+          data-testid="admin-rail-toggle"
+        >
+          {railOpen ? <PanelLeftClose className="w-4 h-4" /> : <PanelLeftOpen className="w-4 h-4" />}
         </button>
 
         {/* Right: actions cluster */}

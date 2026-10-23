@@ -20,7 +20,7 @@ import { AdminTableShell, AdminMobileRow } from '@/components/admin/AdminTableSh
 import { StatusBadge } from '@/components/admin/StatusBadge'
 import type { BankUsageReport } from '@/lib/study/bank-usage-load'
 import type { SectionUsage } from '@/lib/study/bank-usage'
-import { LOW_TESTS, snapshotAgeDays, snapshotIsStale } from '@/lib/study/bank-usage'
+import { LOW_TESTS, familySummaries, snapshotAgeDays, snapshotIsStale } from '@/lib/study/bank-usage'
 import { useQcT, type QcT } from './i18n'
 
 const FAMILY_LABEL: Record<string, string> = {
@@ -35,6 +35,16 @@ export function sectionLabel(s: Pick<SectionUsage, 'family' | 'section'>): strin
   const f = FAMILY_LABEL[s.family] ?? s.family.toUpperCase()
   const sec = SECTION_LABEL[s.section] ?? s.section.replace(/_/g, ' ').replace(/\b\w/g, m => m.toUpperCase())
   return `${f} ${sec}`
+}
+
+export function familyLabel(family: string): string {
+  return FAMILY_LABEL[family] ?? family.toUpperCase()
+}
+
+/** A 0..1 share as a percentage, one decimal under 10%. */
+export function pct(share: number): string {
+  const v = share * 100
+  return `${v < 10 && v > 0 ? v.toFixed(1) : Math.round(v)}%`
 }
 
 /** Red at 0-2 whole tests, amber at 3-4, nothing at 5+ (owner's five-test floor). */
@@ -92,9 +102,6 @@ function LiveTestsCell({ s, t, snapshot, stale }: { s: SectionUsage; t: QcT; sna
           {t('admin.bankQc.usage.divisionAlt', { n: s.liveTestsByDivision })}
         </div>
       )}
-      <div className="text-[11px] text-gray-400 tabular-nums leading-snug">
-        {t('admin.bankQc.usage.liveItems', { n: n(s.live) })}
-      </div>
     </div>
   )
 }
@@ -141,6 +148,39 @@ function UnderFiveCell({ s, t }: { s: SectionUsage; t: QcT }) {
       {s.studentsNoMeasurement > 0 && (
         <div className="text-[11px] text-violet-700 leading-snug">{t('admin.bankQc.usage.noMeasurement', { n: s.studentsNoMeasurement })}</div>
       )}
+    </div>
+  )
+}
+
+/** "312 seen · 21% of live" — the heaviest student, in distinct questions. */
+function seenText(s: SectionUsage): string {
+  if (s.maxSeenOneStudent === null || s.maxSeenOneStudent === 0) return '—'
+  return s.maxSeenShareOfLive === null ? n(s.maxSeenOneStudent) : `${n(s.maxSeenOneStudent)} · ${pct(s.maxSeenShareOfLive)}`
+}
+
+function SeenCell({ s, t }: { s: SectionUsage; t: QcT }) {
+  if (s.maxSeenOneStudent === null) return <span className="text-[12px] text-gray-400">—</span>
+  if (s.maxSeenOneStudent === 0) return <span className="text-[12px] text-gray-400">{t('admin.bankQc.usage.seenNone')}</span>
+  const share = s.maxSeenShareOfLive
+  const tone = share !== null && share >= 0.75 ? 'text-rose-700' : share !== null && share >= 0.5 ? 'text-amber-700' : 'text-gray-900'
+  return (
+    <div data-testid="seen-cell">
+      <div className="text-[13px] font-medium text-gray-900 tabular-nums">{n(s.maxSeenOneStudent)}</div>
+      {share !== null && (
+        <div className={`text-[11px] font-medium tabular-nums leading-snug ${tone}`}>{t('admin.bankQc.usage.seenShare', { pct: pct(share) })}</div>
+      )}
+      {s.studentsSeen !== null && (
+        <div className="text-[11px] text-gray-500 leading-snug">{t('admin.bankQc.usage.seenStudents', { n: n(s.studentsSeen) })}</div>
+      )}
+    </div>
+  )
+}
+
+function MobileStat({ label, value, wide }: { label: string; value: React.ReactNode; wide?: boolean }) {
+  return (
+    <div className={`min-w-0 ${wide ? 'col-span-2' : ''}`}>
+      <dt className="text-[10px] font-semibold uppercase tracking-[0.1em] text-gray-500 leading-snug">{label}</dt>
+      <dd className="text-sm font-semibold text-gray-900 tabular-nums truncate mt-0.5">{value}</dd>
     </div>
   )
 }
@@ -192,6 +232,7 @@ export function BankUsagePanel() {
   }, [nonce])
 
   const sections = data?.sections ?? []
+  const families = familySummaries(sections)
   // Age against the server's read time, not the viewer's clock, so the
   // note describes the numbers on screen.
   const ageDays = data ? snapshotAgeDays(data.snapshotMeasured, data.generatedAt) : null
@@ -284,80 +325,147 @@ export function BankUsagePanel() {
           </div>
 
           <AdminTableShell
-            mobile={sections.map(s => {
-              const tone = lowTone(s.liveTests)
-              return (
-                <div key={`${s.family}/${s.section}`} className={tone ? ROW_TONE[tone] : undefined} data-testid="usage-card">
-                  <AdminMobileRow
-                    title={sectionLabel(s)}
-                    badge={tone ? (
-                      <StatusBadge tone={tone === 'red' ? 'danger' : 'pending'} size="sm">
-                        {t('admin.bankQc.usage.underFive')}
-                      </StatusBadge>
-                    ) : undefined}
-                    meta={[
-                      {
-                        label: t('admin.bankQc.usage.col.live'),
-                        value: (
-                          <span className="inline-flex items-center gap-1.5">
-                            {s.liveTestsSource === 'measured' && stale && <StaleDot t={t} />}
-                            {s.liveTests === null ? '—' : `${s.liveTests}${s.measuredAtLeast ? '+' : ''}`}
-                            {s.liveTestsSource === 'measured' && s.liveTestsByDivision !== null && (
-                              <span className="text-[11px] text-gray-500">({t('admin.bankQc.usage.divisionAlt', { n: s.liveTestsByDivision })})</span>
-                            )}
-                          </span>
-                        ),
-                      },
-                      { label: t('admin.bankQc.usage.col.staged'), value: s.staged === 0 ? '—' : `${n(s.staged)}${s.stagedTestsByDivision === null ? '' : ` (≈${s.stagedTestsByDivision})`}` },
-                      { label: t('admin.bankQc.usage.col.most'), value: s.studentsWithTests === 0 ? '—' : String(s.maxTestsOneStudent) },
-                      { label: t('admin.bankQc.usage.col.under5'), value: s.studentsWithTests === 0 ? '—' : String(s.studentsUnder5Left) },
-                    ]}
-                  />
+            mobile={families.map(f => (
+              <div key={f.family} data-testid="usage-family-group">
+                <div className="bg-gray-50/80 px-4 py-3 border-b border-gray-100" data-testid="usage-family-card">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <span className="text-[13px] font-semibold text-gray-900">{familyLabel(f.family)}</span>
+                    {f.lowSections > 0 && (
+                      <span className="text-[11px] font-medium text-rose-700">{t('admin.bankQc.usage.familyLow', { n: f.lowSections })}</span>
+                    )}
+                  </div>
+                  <dl className="grid grid-cols-2 gap-x-3 gap-y-2 mt-2">
+                    <MobileStat label={t('admin.bankQc.usage.col.liveQ')} value={n(f.live)} />
+                    <MobileStat label={t('admin.bankQc.usage.col.stagedQ')} value={n(f.staged)} />
+                    <MobileStat label={t('admin.bankQc.usage.col.totalQ')} value={n(f.total)} />
+                    <MobileStat label={t('admin.bankQc.usage.col.most')} value={f.completedTests === 0 ? '—' : String(f.maxTestsOneStudent)} />
+                    <MobileStat
+                      label={t('admin.bankQc.usage.col.seen')}
+                      value={f.maxSeenOneStudent === null || f.maxSeenOneStudent === 0 ? '—' : `${n(f.maxSeenOneStudent)}${f.maxSeenShareOfLive === null ? '' : ` · ${pct(f.maxSeenShareOfLive)}`}`}
+                      wide
+                    />
+                  </dl>
+                  <p className="text-[10.5px] text-gray-400 mt-1">{t('admin.bankQc.usage.familyMax')}</p>
                 </div>
-              )
-            })}
+                {f.sections.map(s => {
+                  const tone = lowTone(s.liveTests)
+                  return (
+                    <div key={`${s.family}/${s.section}`} className={tone ? ROW_TONE[tone] : undefined} data-testid="usage-card">
+                      <AdminMobileRow
+                        title={sectionLabel(s)}
+                        badge={tone ? (
+                          <StatusBadge tone={tone === 'red' ? 'danger' : 'pending'} size="sm">
+                            {t('admin.bankQc.usage.underFive')}
+                          </StatusBadge>
+                        ) : undefined}
+                        meta={[
+                          { label: t('admin.bankQc.usage.col.liveQ'), value: n(s.live) },
+                          { label: t('admin.bankQc.usage.col.stagedQ'), value: s.staged === 0 ? '—' : n(s.staged) },
+                          { label: t('admin.bankQc.usage.col.totalQ'), value: n(s.total) },
+                          {
+                            label: t('admin.bankQc.usage.col.live'),
+                            value: (
+                              <span className="inline-flex items-center gap-1.5">
+                                {s.liveTestsSource === 'measured' && stale && <StaleDot t={t} />}
+                                {s.liveTests === null ? '—' : `${s.liveTests}${s.measuredAtLeast ? '+' : ''}`}
+                                {s.liveTestsSource === 'measured' && s.liveTestsByDivision !== null && (
+                                  <span className="text-[11px] text-gray-500">(≈{s.liveTestsByDivision})</span>
+                                )}
+                              </span>
+                            ),
+                          },
+                          { label: t('admin.bankQc.usage.col.most'), value: s.studentsWithTests === 0 ? '—' : String(s.maxTestsOneStudent) },
+                          { label: t('admin.bankQc.usage.col.seen'), value: seenText(s) },
+                          { label: t('admin.bankQc.usage.col.under5'), value: s.studentsWithTests === 0 ? '—' : String(s.studentsUnder5Left) },
+                        ]}
+                      />
+                    </div>
+                  )
+                })}
+              </div>
+            ))}
           >
             <table className="w-full text-sm">
               <caption className="sr-only">{t('admin.bankQc.usage.title')}</caption>
               <thead>
                 <tr className="text-left text-[11px] uppercase tracking-wide text-gray-500 border-b border-gray-100">
                   <th scope="col" className="py-2.5 px-4 font-medium">{t('admin.bankQc.usage.col.section')}</th>
+                  <th scope="col" className="py-2.5 px-3 font-medium text-right">{t('admin.bankQc.usage.col.liveQ')}</th>
+                  <th scope="col" className="py-2.5 px-3 font-medium text-right">{t('admin.bankQc.usage.col.stagedQ')}</th>
+                  <th scope="col" className="py-2.5 px-3 font-medium text-right">{t('admin.bankQc.usage.col.totalQ')}</th>
                   <th scope="col" className="py-2.5 px-3 font-medium">
                     {t('admin.bankQc.usage.col.live')}
                     <span className={`block normal-case tracking-normal text-[10.5px] font-normal ${stale ? 'text-amber-700' : 'text-gray-400'}`}>
                       {t('admin.bankQc.usage.col.liveDate', { date: data.snapshotMeasured })}
                     </span>
                   </th>
-                  <th scope="col" className="py-2.5 px-3 font-medium">{t('admin.bankQc.usage.col.staged')}</th>
                   <th scope="col" className="py-2.5 px-3 font-medium">{t('admin.bankQc.usage.col.most')}</th>
+                  <th scope="col" className="py-2.5 px-3 font-medium">{t('admin.bankQc.usage.col.seen')}</th>
                   <th scope="col" className="py-2.5 px-4 font-medium">{t('admin.bankQc.usage.col.under5')}</th>
                 </tr>
               </thead>
-              <tbody>
-                {sections.map(s => {
-                  const tone = lowTone(s.liveTests)
-                  return (
-                    <tr key={`${s.family}/${s.section}`} className={`border-b border-gray-50 last:border-0 align-top ${tone ? ROW_TONE[tone] : ''}`}>
-                      <td className="py-2.5 px-4">
-                        <div className="text-[13px] font-medium text-gray-900 whitespace-nowrap">{sectionLabel(s)}</div>
-                        {s.perTest !== null && (
-                          <div className="text-[11px] text-gray-400 tabular-nums">{t('admin.bankQc.usage.perTest', { n: s.perTest })}</div>
-                        )}
-                      </td>
-                      <td className="py-2.5 px-3 min-w-[170px]"><LiveTestsCell s={s} t={t} snapshot={data.snapshotMeasured} stale={stale} /></td>
-                      <td className="py-2.5 px-3 min-w-[150px]"><StagedCell s={s} t={t} /></td>
-                      <td className="py-2.5 px-3 min-w-[130px]"><MostUsedCell s={s} t={t} /></td>
-                      <td className="py-2.5 px-4"><UnderFiveCell s={s} t={t} /></td>
-                    </tr>
-                  )
-                })}
-              </tbody>
+              {families.map(f => (
+                <tbody key={f.family}>
+                  <tr className="bg-gray-50/80 border-b border-gray-100 align-top" data-testid="usage-family-row">
+                    <th scope="rowgroup" className="py-2.5 px-4 text-left">
+                      <div className="text-[13px] font-semibold text-gray-900 whitespace-nowrap">
+                        {t('admin.bankQc.usage.familyRow', { family: familyLabel(f.family) })}
+                      </div>
+                      {f.lowSections > 0 && (
+                        <div className="text-[11px] font-medium text-rose-700">{t('admin.bankQc.usage.familyLow', { n: f.lowSections })}</div>
+                      )}
+                    </th>
+                    <td className="py-2.5 px-3 text-right text-[13px] font-semibold tabular-nums text-gray-900">{n(f.live)}</td>
+                    <td className="py-2.5 px-3 text-right text-[13px] font-semibold tabular-nums text-gray-900">{n(f.staged)}</td>
+                    <td className="py-2.5 px-3 text-right text-[13px] font-semibold tabular-nums text-gray-900">{n(f.total)}</td>
+                    <td className="py-2.5 px-3 text-[12px] text-gray-400">—</td>
+                    <td className="py-2.5 px-3">
+                      <div className="text-[13px] font-semibold tabular-nums text-gray-900">{f.completedTests === 0 ? '—' : f.maxTestsOneStudent}</div>
+                      <div className="text-[10.5px] text-gray-400 leading-snug">{t('admin.bankQc.usage.familyMax')}</div>
+                    </td>
+                    <td className="py-2.5 px-3">
+                      <div className="text-[13px] font-semibold tabular-nums text-gray-900">
+                        {f.maxSeenOneStudent === null || f.maxSeenOneStudent === 0 ? '—' : n(f.maxSeenOneStudent)}
+                      </div>
+                      {f.maxSeenShareOfLive !== null && f.maxSeenOneStudent !== null && f.maxSeenOneStudent > 0 && (
+                        <div className="text-[10.5px] text-gray-500 leading-snug tabular-nums">{t('admin.bankQc.usage.seenShare', { pct: pct(f.maxSeenShareOfLive) })}</div>
+                      )}
+                    </td>
+                    <td className="py-2.5 px-4 text-[13px] font-semibold tabular-nums text-gray-900">{f.studentsUnder5Left}</td>
+                  </tr>
+                  {f.sections.map(s => {
+                    const tone = lowTone(s.liveTests)
+                    return (
+                      <tr key={`${s.family}/${s.section}`} data-testid="usage-section-row" className={`border-b border-gray-50 last:border-0 align-top ${tone ? ROW_TONE[tone] : ''}`}>
+                        <td className="py-2.5 px-4 pl-7">
+                          <div className="text-[13px] font-medium text-gray-900 whitespace-nowrap">{sectionLabel(s)}</div>
+                          {s.perTest !== null && (
+                            <div className="text-[11px] text-gray-400 tabular-nums">{t('admin.bankQc.usage.perTest', { n: s.perTest })}</div>
+                          )}
+                        </td>
+                        <td className="py-2.5 px-3 text-right text-[13px] tabular-nums text-gray-900">{n(s.live)}</td>
+                        <td className="py-2.5 px-3 text-right min-w-[120px]"><StagedCell s={s} t={t} /></td>
+                        <td className="py-2.5 px-3 text-right text-[13px] tabular-nums text-gray-900">{n(s.total)}</td>
+                        <td className="py-2.5 px-3 min-w-[170px]"><LiveTestsCell s={s} t={t} snapshot={data.snapshotMeasured} stale={stale} /></td>
+                        <td className="py-2.5 px-3 min-w-[130px]"><MostUsedCell s={s} t={t} /></td>
+                        <td className="py-2.5 px-3 min-w-[130px]"><SeenCell s={s} t={t} /></td>
+                        <td className="py-2.5 px-4"><UnderFiveCell s={s} t={t} /></td>
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              ))}
             </table>
           </AdminTableShell>
 
           <p className="text-[11px] text-gray-500 leading-relaxed max-w-3xl">
             {t('admin.bankQc.usage.footnote', { date: data.snapshotMeasured, students: n(data.realStudents), items: n(data.read.bank) })}
           </p>
+          {typeof data.read.exposures === 'number' && (
+            <p className="text-[11px] text-gray-500 leading-relaxed max-w-3xl">
+              {t('admin.bankQc.usage.seenNote', { exposures: n(data.read.exposures) })}
+            </p>
+          )}
         </>
       )}
     </section>

@@ -55,8 +55,10 @@ export function DashboardCard({
           <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-gray-500">
             {title}
           </p>
-          <div className="mt-2 flex items-baseline gap-2">
-            <p className="text-[28px] leading-none font-semibold text-gray-900 tracking-tight tabular-nums">
+          <div className="mt-2 flex flex-wrap items-baseline gap-x-2 gap-y-1 min-w-0">
+            {/* overflow-wrap:anywhere — a build id or version string has no
+                spaces and otherwise ran off a phone-width card. */}
+            <p className="text-[28px] leading-none font-semibold text-gray-900 tracking-tight tabular-nums min-w-0 [overflow-wrap:anywhere]">
               {value}
             </p>
             {trend && (

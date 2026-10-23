@@ -12,7 +12,7 @@
  */
 import { dbAdmin } from '@/lib/supabase-admin'
 import {
-  aggregateBankUsage, realStudentIds, studentSectionRows, tallyFullTests,
+  aggregateBankUsage, realStudentIds, seenBySection, studentSectionRows, tallyFullTests,
   taskMixBySession, toeflPathFromTaskMix, sessionSection,
   type DepthSnapshot, type SectionUsage,
 } from '@/lib/study/bank-usage'
@@ -56,7 +56,7 @@ export interface BankUsageReport {
   generatedAt: string
   snapshotMeasured: string
   realStudents: number
-  read: { bank: number; sessions: number; reviews: number; attempts: number }
+  read: { bank: number; sessions: number; reviews: number; attempts: number; exposures: number }
   sections: SectionUsage[]
 }
 
@@ -120,18 +120,34 @@ export async function loadBankUsage(): Promise<BankUsageReport> {
     (a, b) => dbAdmin.from('study_attempts').select('id, session_id, item_id').in('session_id', ids).order('id').range(a, b),
   )))).flat()
 
+  // Every item served to a real student, for "most distinct questions seen
+  // by one student". Read per chunk of real-student ids; each chunk is
+  // paged and count-checked like every other table here, so the 1000-row
+  // cap cannot shrink the number.
+  const realIds = [...real].sort()
+  const idChunks: string[][] = []
+  for (let i = 0; i < realIds.length; i += CHUNK) idChunks.push(realIds.slice(i, i + CHUNK))
+  const exposures = (await Promise.all(idChunks.map((ids, i) => readAll(`study_item_exposures[${i}]`,
+    () => dbAdmin.from('study_item_exposures').select('id', { count: 'exact', head: true }).in('student_id', ids),
+    (a, b) => dbAdmin.from('study_item_exposures').select('id, student_id, item_id').in('student_id', ids).order('id').range(a, b),
+  )))).flat()
+  const seen = seenBySection(exposures, bank, real)
+  // The bank was read whole, archived rows included, and exposures have a
+  // foreign key to it: an unmatched item means one of the reads is wrong.
+  if (seen.unmatched > 0) throw new Error(`study_item_exposures: ${seen.unmatched} rows point at items missing from the bank read — refusing a partial count`)
+
   const taskOf = new Map<string, string | null>(bank.map(b => [b.id, b.task]))
   const mix = taskMixBySession(attempts, taskOf)
   const tally = tallyFullTests(sessions, real, (sid, sec) => toeflPathFromTaskMix(mix.get(sid), sec))
   const studentRows = studentSectionRows(tally, snapshot)
 
-  const sections = aggregateBankUsage({ bank, reviews, studentRows, snapshot, perTest: bankRowsPerTest })
+  const sections = aggregateBankUsage({ bank, reviews, studentRows, snapshot, perTest: bankRowsPerTest, seen: seen.bySection })
 
   return {
     generatedAt: new Date().toISOString(),
     snapshotMeasured: snapshot.measured,
     realStudents: real.size,
-    read: { bank: bank.length, sessions: sessions.length, reviews: reviews.length, attempts: attempts.length },
+    read: { bank: bank.length, sessions: sessions.length, reviews: reviews.length, attempts: attempts.length, exposures: exposures.length },
     sections,
   }
 }

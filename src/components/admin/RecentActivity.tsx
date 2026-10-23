@@ -283,16 +283,18 @@ export function RecentActivity() {
               </p>
               
               {activity.metadata && (
-                <div className="text-xs text-gray-500 mt-2">
+                // A long academy name in a nowrap pill ran ~240px past a
+                // phone's edge; the pill now caps at the row and truncates.
+                <div className="text-xs text-gray-500 mt-2 flex flex-wrap items-center gap-2 min-w-0">
                   {activity.metadata.academyName && (
-                    <span className="mr-2">
-                      <StatusBadge tone="muted" size="sm">{activity.metadata.academyName}</StatusBadge>
-                    </span>
+                    <StatusBadge tone="muted" size="sm" className="max-w-full min-w-0">
+                      <span className="truncate">{activity.metadata.academyName}</span>
+                    </StatusBadge>
                   )}
                   {activity.metadata.ticketId && (
-                    <span className="mr-2">
-                      <StatusBadge tone="info" size="sm">{activity.metadata.ticketId}</StatusBadge>
-                    </span>
+                    <StatusBadge tone="info" size="sm" className="max-w-full min-w-0">
+                      <span className="truncate">{activity.metadata.ticketId}</span>
+                    </StatusBadge>
                   )}
                   {activity.metadata.amount && (
                     <span className="text-rose-600 font-medium">

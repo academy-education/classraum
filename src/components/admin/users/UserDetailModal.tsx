@@ -163,7 +163,7 @@ export function UserDetailModal({ user, onClose }: UserDetailModalProps) {
             {initialsFromName(user.name)}
           </span>
           <span className="flex flex-col min-w-0">
-            <span className="text-xl font-semibold text-gray-900">{user.name}</span>
+            <span className="text-lg sm:text-xl font-semibold text-gray-900">{user.name}</span>
             <span className="text-sm font-normal text-gray-500 break-all">{user.email}</span>
           </span>
         </span>

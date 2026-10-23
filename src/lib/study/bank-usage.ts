@@ -305,6 +305,73 @@ export interface SectionUsage {
   maxTestsOneStudent: number
   studentsUnder5Left: number
   studentsNoMeasurement: number
+  /** live + staged (archived rows excluded). */
+  total: number
+  /**
+   * The most DISTINCT questions any one real student has been served in
+   * this section (study_item_exposures, any source — full tests and
+   * practice), counting items in any state. null when exposures were not
+   * supplied, which is not the same as 0.
+   */
+  maxSeenOneStudent: number | null
+  /** The same, counting only items that are live now — the numerator of the share. */
+  maxLiveSeenOneStudent: number | null
+  /** maxLiveSeenOneStudent / live, 0..1. null when unknown or the section has no live items. */
+  maxSeenShareOfLive: number | null
+  /** Real students with at least one exposure in the section. */
+  studentsSeen: number | null
+}
+
+/* ------------------------------------------------------------------ *
+ * Questions seen (exposures)
+ * ------------------------------------------------------------------ */
+
+export interface ExposureRowLite {
+  student_id: string
+  item_id: string
+}
+
+export interface SeenStats {
+  maxSeen: number
+  maxLiveSeen: number
+  students: number
+}
+
+/**
+ * Per section, the heaviest real student's count of DISTINCT items served.
+ * Exposures are de-duplicated per student and item, so a re-serve does not
+ * count twice. A student's section is the ITEM's section, not the session's.
+ * Rows for non-real students and for items absent from `bank` are ignored
+ * (`unmatched` counts the latter so a caller can refuse a partial bank).
+ */
+export function seenBySection(
+  exposures: ExposureRowLite[],
+  bank: BankRowLite[],
+  real: Set<string>,
+): { bySection: Map<string, SeenStats>; unmatched: number } {
+  const item = new Map(bank.map(b => [b.id, b]))
+  const perStudent = new Map<string, { all: Set<string>; live: Set<string> }>()
+  let unmatched = 0
+  for (const e of exposures) {
+    if (!real.has(e.student_id)) continue
+    const b = item.get(e.item_id)
+    if (!b) { unmatched++; continue }
+    const key = `${e.student_id}|${b.family}/${b.section}`
+    let sets = perStudent.get(key)
+    if (!sets) { sets = { all: new Set(), live: new Set() }; perStudent.set(key, sets) }
+    sets.all.add(b.id)
+    if (b.verified === true && b.archived !== true) sets.live.add(b.id)
+  }
+  const bySection = new Map<string, SeenStats>()
+  for (const [key, sets] of perStudent) {
+    const section = key.slice(key.indexOf('|') + 1)
+    const cur = bySection.get(section) ?? { maxSeen: 0, maxLiveSeen: 0, students: 0 }
+    cur.maxSeen = Math.max(cur.maxSeen, sets.all.size)
+    cur.maxLiveSeen = Math.max(cur.maxLiveSeen, sets.live.size)
+    cur.students++
+    bySection.set(section, cur)
+  }
+  return { bySection, unmatched }
 }
 
 export function aggregateBankUsage(p: {
@@ -313,6 +380,8 @@ export function aggregateBankUsage(p: {
   studentRows: StudentSectionRow[]
   snapshot: DepthSnapshot
   perTest: (family: string, section: string) => number | null
+  /** From seenBySection. Omit and the seen fields are null, never 0. */
+  seen?: Map<string, SeenStats>
 }): SectionUsage[] {
   const by = new Map<string, SectionUsage>()
   const get = (family: string, section: string): SectionUsage => {
@@ -326,6 +395,8 @@ export function aggregateBankUsage(p: {
         liveTests: null, liveTestsSource: null, low: false,
         completedTests: 0, studentsWithTests: 0, maxTestsOneStudent: 0,
         studentsUnder5Left: 0, studentsNoMeasurement: 0,
+        total: 0, maxSeenOneStudent: null, maxLiveSeenOneStudent: null,
+        maxSeenShareOfLive: null, studentsSeen: null,
       }
       by.set(k, s)
     }
@@ -367,7 +438,20 @@ export function aggregateBankUsage(p: {
     else if (r.left < LOW_TESTS) s.studentsUnder5Left++
   }
 
+  if (p.seen) for (const key of p.seen.keys()) {
+    const [f, sec] = key.split('/')
+    if (f && sec) get(f, sec)
+  }
+
   for (const s of by.values()) {
+    s.total = s.live + s.staged
+    if (p.seen) {
+      const st = p.seen.get(`${s.family}/${s.section}`)
+      s.maxSeenOneStudent = st?.maxSeen ?? 0
+      s.maxLiveSeenOneStudent = st?.maxLiveSeen ?? 0
+      s.studentsSeen = st?.students ?? 0
+      s.maxSeenShareOfLive = s.live > 0 ? s.maxLiveSeenOneStudent / s.live : null
+    }
     s.perTest = p.perTest(s.family, s.section)
     s.liveTestsByDivision = testsWorth(s.live, s.perTest)
     s.stagedTestsByDivision = testsWorth(s.staged, s.perTest)
@@ -384,4 +468,55 @@ export function aggregateBankUsage(p: {
   const rank = (f: string) => { const i = order.indexOf(f); return i < 0 ? order.length : i }
   return [...by.values()].sort((a, b) =>
     rank(a.family) - rank(b.family) || a.family.localeCompare(b.family) || a.section.localeCompare(b.section))
+}
+
+/* ------------------------------------------------------------------ *
+ * Per-test (family) summary rows
+ * ------------------------------------------------------------------ */
+
+export interface FamilyUsage {
+  family: string
+  sections: SectionUsage[]
+  live: number
+  staged: number
+  total: number
+  completedTests: number
+  /** The highest per-section figure, NOT a sum: one student's most in any one section. */
+  maxTestsOneStudent: number
+  maxSeenOneStudent: number | null
+  /** The section where the heaviest student is closest to exhausting the live bank. */
+  maxSeenShareOfLive: number | null
+  studentsUnder5Left: number
+  lowSections: number
+}
+
+/** Groups sections (already in family order) under one summary per family. */
+export function familySummaries(sections: SectionUsage[]): FamilyUsage[] {
+  const out: FamilyUsage[] = []
+  const at = new Map<string, FamilyUsage>()
+  const maxNullable = (a: number | null, b: number | null) =>
+    a === null ? b : b === null ? a : Math.max(a, b)
+  for (const s of sections) {
+    let f = at.get(s.family)
+    if (!f) {
+      f = {
+        family: s.family, sections: [], live: 0, staged: 0, total: 0, completedTests: 0,
+        maxTestsOneStudent: 0, maxSeenOneStudent: null, maxSeenShareOfLive: null,
+        studentsUnder5Left: 0, lowSections: 0,
+      }
+      at.set(s.family, f)
+      out.push(f)
+    }
+    f.sections.push(s)
+    f.live += s.live
+    f.staged += s.staged
+    f.total += s.total
+    f.completedTests += s.completedTests
+    f.maxTestsOneStudent = Math.max(f.maxTestsOneStudent, s.maxTestsOneStudent)
+    f.maxSeenOneStudent = maxNullable(f.maxSeenOneStudent, s.maxSeenOneStudent)
+    f.maxSeenShareOfLive = maxNullable(f.maxSeenShareOfLive, s.maxSeenShareOfLive)
+    f.studentsUnder5Left += s.studentsUnder5Left
+    if (s.low) f.lowSections++
+  }
+  return out
 }

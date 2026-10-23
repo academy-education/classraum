@@ -150,7 +150,7 @@ export function AdminSidebar({ adminUser, onClose }: AdminSidebarProps) {
   const systemItems = filteredSuperAdminItems
 
   return (
-    <div className="w-64 max-w-[85vw] h-dvh bg-white border-r border-gray-100 flex flex-col">
+    <div className="w-64 max-w-[85vw] h-dvh bg-white border-r border-gray-100 flex flex-col overflow-y-auto overscroll-contain">
       {/* Header — logo + admin label. Height matched to the top header
           (h-[57px]) + bottom border so the sidebar's logo bar and the page
           header align cleanly across the top, like the manager dashboard. */}
@@ -183,8 +183,12 @@ export function AdminSidebar({ adminUser, onClose }: AdminSidebarProps) {
         </div>
       </div>
 
-      {/* Main Navigation */}
-      <nav className="flex-1 px-3 py-2 overflow-y-auto">
+      {/* Main Navigation. Normally only this list scrolls, with the alerts
+          and account rows pinned below it. On a short screen (a phone in
+          landscape is ~330px of usable height) pinning them left the list
+          a ~120px slot, so under 560px tall the list stops being its own
+          scroller and the whole sidebar scrolls as one column instead. */}
+      <nav className="flex-1 min-h-0 px-3 py-2 overflow-y-auto overscroll-contain [@media(max-height:560px)]:flex-none [@media(max-height:560px)]:overflow-visible">
         {/* Core section */}
         <SidebarSectionLabel>{String(t('admin.sidebar.main'))}</SidebarSectionLabel>
         <div className="space-y-0.5 mb-5">

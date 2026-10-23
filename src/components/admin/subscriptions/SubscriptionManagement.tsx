@@ -1,5 +1,6 @@
 'use client'
 
+import { anchorMenu, anchorStyle, type MenuAnchor } from '@/components/admin/anchorMenu';
 import React, { useEffect, useState } from 'react';
 import {
   CreditCard,
@@ -107,7 +108,7 @@ export function SubscriptionManagement() {
   const [selectedSubscription, setSelectedSubscription] = useState<SubscriptionData | null>(null);
   const [showDetailModal, setShowDetailModal] = useState(false);
   const [showActions, setShowActions] = useState<string | null>(null);
-  const [menuPosition, setMenuPosition] = useState<{ top: number; right: number } | null>(null);
+  const [menuPosition, setMenuPosition] = useState<MenuAnchor | null>(null);
 
   useEffect(() => {
     loadSubscriptionData();
@@ -253,10 +254,7 @@ export function SubscriptionManagement() {
         onClick={(e) => {
           e.stopPropagation();
           const rect = e.currentTarget.getBoundingClientRect();
-          setMenuPosition({
-            top: rect.bottom + 8,
-            right: window.innerWidth - rect.right
-          });
+          setMenuPosition(anchorMenu(rect));
           setShowActions(showActions === subscription.id ? null : subscription.id);
         }}
         className="h-7 w-7 p-0 text-gray-400 hover:text-gray-600"
@@ -270,10 +268,7 @@ export function SubscriptionManagement() {
       {showActions === subscription.id && menuPosition && (
         <div
           className="fixed min-w-[180px] w-max bg-white rounded-xl shadow-xl shadow-gray-900/10 ring-1 ring-gray-100/80 py-1 z-50 overflow-hidden"
-          style={{
-            top: `${menuPosition.top}px`,
-            right: `${menuPosition.right}px`
-          }}
+          style={anchorStyle(menuPosition)}
         >
           <button
             onClick={() => {

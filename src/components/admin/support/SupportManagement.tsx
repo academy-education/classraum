@@ -1,5 +1,6 @@
 'use client'
 
+import { anchorMenu, anchorStyle, type MenuAnchor } from '@/components/admin/anchorMenu';
 import React, { useEffect, useState } from 'react';
 import {
   Headphones,
@@ -86,7 +87,7 @@ export function SupportManagement() {
   const [selectedConversation, setSelectedConversation] = useState<ChatConversation | null>(null);
   const [showDetailModal, setShowDetailModal] = useState(false);
   const [showActions, setShowActions] = useState<string | null>(null);
-  const [menuPosition, setMenuPosition] = useState<{ top: number; right: number } | null>(null);
+  const [menuPosition, setMenuPosition] = useState<MenuAnchor | null>(null);
 
   useEffect(() => {
     loadConversations();
@@ -313,10 +314,7 @@ export function SupportManagement() {
         onClick={(e) => {
           e.stopPropagation();
           const rect = e.currentTarget.getBoundingClientRect();
-          setMenuPosition({
-            top: rect.bottom + 8,
-            right: window.innerWidth - rect.right
-          });
+          setMenuPosition(anchorMenu(rect));
           setShowActions(showActions === conversation.id ? null : conversation.id);
         }}
         className="text-gray-400 hover:text-gray-600"
@@ -330,10 +328,7 @@ export function SupportManagement() {
       {showActions === conversation.id && menuPosition && (
         <div
           className="fixed min-w-[180px] w-max bg-white rounded-xl shadow-xl shadow-gray-900/10 ring-1 ring-gray-100 py-1 z-50 overflow-hidden"
-          style={{
-            top: `${menuPosition.top}px`,
-            right: `${menuPosition.right}px`
-          }}
+          style={anchorStyle(menuPosition)}
         >
           <button
             onClick={() => {

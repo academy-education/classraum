@@ -598,7 +598,9 @@
       "refresh": "Refresh",
       "hideSidebar": "Hide sidebar",
       "showSidebar": "Show sidebar",
-      "adminUserFallback": "Admin user"
+      "adminUserFallback": "Admin user",
+      "openMenu": "Open menu",
+      "menu": "Admin menu"
     },
     "dashboard": {
       "title": "Platform dashboard",
@@ -2013,7 +2015,11 @@
           "staged": "Staged items (≈ tests)",
           "most": "Most tests by one student",
           "under5": "Students under 5 left",
-          "liveDate": "depth measured {date}"
+          "liveDate": "depth measured {date}",
+          "liveQ": "Live questions",
+          "stagedQ": "Staged questions",
+          "totalQ": "Total",
+          "seen": "Most questions seen by one student"
         },
         "cards": {
           "live": "Live items",
@@ -2028,8 +2034,23 @@
         "footnote": "Live tests is the measured depth (clean tests before a repeat) from depth-snapshot.json, dated {date}; where a section has no measurement it is live items divided by items per test, which ignores domain quotas and overstates. Staged tests is always the plain division. Usage counts completed full tests by {students} real students; tests left = measured depth minus tests taken. {items} bank rows read in full.",
         "staleDot": "From the depth snapshot, which may be out of date",
         "staleNote": "Depth snapshot measured {days} days ago ({date}), may be out of date. Numbers with an amber dot come from it; the \"live ÷ test size\" line under each is computed from today's bank.",
-        "staleUnknown": "The depth snapshot date ({date}) could not be read, so its numbers may be out of date."
+        "staleUnknown": "The depth snapshot date ({date}) could not be read, so its numbers may be out of date.",
+        "seenShare": "{pct} of live",
+        "seenStudents": "{n} students served",
+        "seenNone": "None seen yet",
+        "familyRow": "{family}: all sections",
+        "familyMax": "highest in any one section",
+        "familyLow": "{n} under 5 tests",
+        "seenNote": "Questions seen counts distinct questions served to one real student in that section (full tests and practice, from the exposure log). The share is the live questions among them divided by the section's live questions: how close the heaviest student is to having seen everything. {exposures} exposure rows read in full."
       }
+    },
+    "bottomNav": {
+      "label": "Admin sections",
+      "dashboard": "Home",
+      "bankQc": "Bank QC",
+      "users": "Users",
+      "support": "Support",
+      "more": "More"
     }
   },
   "classrooms": {
