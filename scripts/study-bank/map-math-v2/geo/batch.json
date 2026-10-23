@@ -1,0 +1,3959 @@
+[
+ {
+  "id": "MV2-G56-05",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 5,
+  "tier": "mid",
+  "rit_band": "RIT 200-209",
+  "difficulty": "medium",
+  "ccss": "5.G.A.2",
+  "area_25": "Geometry",
+  "subskill": "Missing corner coordinate from a rectangle's perimeter",
+  "grade_rationale": "Mid for grade 5: 5.G.A.2 mathematical problem in the first quadrant. The student reads the side length 7 - 1 = 6 from the coordinates, uses the perimeter to find the other side (32 - 12 = 20, half is 10), then turns a length back into a coordinate (7 + 10). Two real steps; half of grade-5 students lose one.",
+  "prompt": "A rectangle is drawn on a coordinate grid. Two of its corners are at (7, 1) and (7, 7), and the rest of the rectangle lies to the right of the side joining them. The perimeter of the rectangle is 32 units. What is the x-coordinate of each of the other two corners?",
+  "choices": [
+   "13",
+   "20",
+   "17",
+   "12"
+  ],
+  "correct_answer": "17",
+  "explanation": "The side from (7, 1) to (7, 7) is 7 - 1 = 6 units long, and so is the side across from it. That uses 12 of the 32 units, leaving 20 units for the other two sides, so each is 10 units. Moving 10 units right from x = 7 gives x = 17.",
+  "solve": "const h = 7-1; const w = (32 - 2*h)/2; return 7 + w",
+  "distractor_solve": {
+   "12": "return 7 + (32 - 2*(7-1))/4",
+   "13": "return 7 + (7-1)",
+   "20": "return 7 + (32 - (7-1))/2"
+  },
+  "mechanism": [
+   "side length from coordinates",
+   "other side from perimeter",
+   "length back to a coordinate"
+  ],
+  "quantity_asked": "x-coordinate of the other two corners",
+  "plugback": {
+   "substitutable": false,
+   "why": "Checking an option means rebuilding the rectangle and its perimeter from it, which is the same work as solving; there is no one-step test."
+  },
+  "distractor_meta": {
+   "12": {
+    "error_kind": "wrong_operation",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "divides the remaining 20 units among four sides instead of two",
+    "why": "After 32 - 12 = 20, the student splits it by 4 because a rectangle has four sides, getting a width of 5."
+   },
+   "13": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "assumes the rectangle is a square and uses the 6-unit side as its width",
+    "why": "The student sees one side of length 6 and moves 6 to the right, never using the perimeter."
+   },
+   "20": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "takes away only one 6-unit side from the perimeter",
+    "why": "The student does 32 - 6 = 26, halves it to 13 for the width, and lands on 7 + 13 = 20, forgetting the opposite side is also 6."
+   }
+  },
+  "structure_check": "interior key: no S/L structure check needed; no stem word signs the errors.",
+  "intermediate_check": "13: no - 7 + 6, a guessed width, not a step to 17. 20: no - built from a wrong width 13; 17 does not follow from 20 through a printed number. 12: no - built from width 5. The width 10 and the side 6 are not offered.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "Whole number: all survive. Greater than 7 (the rectangle is to the right): all survive. Less than 7 + 16 (a width under half the perimeter): all survive. Four survive.",
+  "interior_parity_check": "Middle values 13 and 17: both two-digit odd whole numbers of the same form; the key is not cleaner.",
+  "arith_class_check": "No class isolates 17: 13 is odd too, and nothing in the stem implies even, a multiple or a round number.",
+  "dup_search": {
+   "queries": [
+    "perimeter&coordinate|corners&x-coordinate",
+    "rectangle&perimeter&length|width",
+    "corners&coordinate grid"
+   ],
+   "hits_read": 14,
+   "nearest": "isee 49ab2017 / ssat d947e1e2 (rectangle perimeter and one side, find the other side or area): mine starts from coordinates and must turn the width back into an x-coordinate; no live item does the coordinate round trip."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "x is more than 7 and less than 7 + 16 = 23: strikes nothing",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: no parity is implied",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "none cheaper than finding the width",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key. All four options lie in the legal range 7 < x < 23, and no bound strikes one without finding the width. Plug-in: testing 13, 17 or 20 means rebuilding a perimeter, which is the work. No distractor is a solved intermediate (6 and 10 are not offered). Mid for grade 5: two steps. The cheapest bound strikes none. (read) MMG-G01: square area from two corners; here a perimeter is turned back into a coordinate. FORM (read) lines are advisory in Geometry; last-digit and parity differences are covered in bound_screen."
+  }
+ },
+ {
+  "id": "MV2-G56-13",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 5,
+  "tier": "low",
+  "rit_band": "RIT 190-199",
+  "difficulty": "easy",
+  "ccss": "5.G.A.2",
+  "area_25": "Geometry",
+  "subskill": "Shorter side of a rectangle from its corner coordinates",
+  "grade_rationale": "Low for grade 5: 5.G.A.2 - read two side lengths from corner coordinates (7 - 1 and 14 - 5) and report the shorter. One subtraction per side; most grade-5 students do it.",
+  "prompt": "A rectangular sandbox is drawn on a coordinate grid. Its corners are at (5, 1), (5, 7), (14, 7), and (14, 1). Each unit on the grid stands for one foot. How many feet long is the shorter side of the sandbox?",
+  "choices": [
+   "9",
+   "19",
+   "7",
+   "6"
+  ],
+  "correct_answer": "6",
+  "explanation": "The side from (5, 1) to (5, 7) is 7 - 1 = 6 feet. The side from (5, 7) to (14, 7) is 14 - 5 = 9 feet. The shorter side is 6 feet.",
+  "solve": "return Math.min(7-1, 14-5)",
+  "distractor_solve": {
+   "7": "return 7",
+   "9": "return 14 - 5",
+   "19": "return 5 + 14"
+  },
+  "mechanism": [
+   "vertical side = 7 - 1",
+   "horizontal side = 14 - 5",
+   "choose the shorter"
+  ],
+  "quantity_asked": "length of the shorter side in feet",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option is a length; checking it means finding the side lengths, which is the work."
+  },
+  "distractor_meta": {
+   "7": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "reads the y-coordinate of the top corner as the side length",
+    "why": "The student sees the side going up to y = 7 and forgets it starts at y = 1, not at 0."
+   },
+   "9": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "reports the longer side instead of the shorter one",
+    "why": "The student finds the 9-foot side first and gives it without comparing."
+   },
+   "19": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds the x-coordinates instead of subtracting them",
+    "why": "The student adds 5 + 14 to get \"how long\" the side is."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "return 7 - 5",
+   "direction": "below",
+   "why": "Subtracting an x from a y (7 - 5 = 2) lands below the key."
+  },
+  "far_distractor": {
+   "option": "7",
+   "natural_side": "below",
+   "why": "Leaving out a step usually UNDERshoots; here the step left out is subtracting the starting y-coordinate 1, so leaving it out overshoots and 7 lands just above the key."
+  },
+  "structure_check": "The stem says \"shorter side\", which picks one of two lengths, not an extremum over the options; errors split (mixing an x with a y goes below, adding goes above).",
+  "intermediate_check": "9: no - the other side, not a step to 6. 19: no - a sum of x-coordinates. 7: no - a coordinate read as a length; 7 - 6 = 1 is printed, but the relation is the omitted step itself, declared as the far distractor.",
+  "cheap_bound_check": "Cheapest one-sided bound: the shorter side is at most the longer side; a student who reads 19 as larger than the whole grid width (14) strikes 19 only; 7 and 9 sit on the key's side.",
+  "shape_check": "Whole number: all survive. Less than 14 (inside the grid): 9, 6, 7 survive. Three survive.",
+  "interior_parity_check": "Middle values 7 and 9: both single-digit odd whole numbers; the key is not interior.",
+  "arith_class_check": "Key 6 is the only even option. The stem implies no parity, so the class is not one a student can use.",
+  "dup_search": {
+   "queries": [
+    "shorter side&coordinate|corners",
+    "rectangle&corners&coordinate",
+    "sandbox|garden&coordinate"
+   ],
+   "hits_read": 10,
+   "nearest": "MMG-G01 excluded (square side from two corners, then area) and ssat 0dd191a2 (rectangle area from opposite corners); mine asks the shorter side with an omitted-start-coordinate distractor."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "a side fits inside the grid range 5 to 14, so it is at most 9: strikes 19",
+    "strikes": [
+     "19"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: no parity implied",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "none cheaper than subtracting",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, a student cannot sign every error: an x-from-y subtraction goes below, the rest above. The cheapest bound (19 is wider than the grid range) strikes one. A student cannot confirm an option without subtracting coordinates. No distractor is a solved intermediate (7 is a coordinate, not a step). Low for grade 5: one subtraction per side. Cheapest bound strikes one. (read) PAIR 7 - 6 = 1 (printed 1): this IS the omitted step (forgetting the start y = 1), declared as the far distractor; a printed 1 is exempt under rule 7. (read) DPAIR sums with 14 +/- 1: coincidental, no stem-readable link. (read) PLUG try 1: needs both side lengths. (read) MM4-N11: grade-6 number-line distance, different. FORM (read) lines are advisory in Geometry; last-digit and parity differences are covered in bound_screen."
+  }
+ },
+ {
+  "id": "MV2-G78-12",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 8,
+  "tier": "mid",
+  "rit_band": "RIT 220-229",
+  "difficulty": "medium",
+  "ccss": "8.G.C.9",
+  "subskill": "Stone left after a half-sphere bowl is carved",
+  "grade_rationale": "Mid for grade 8 (8.G.C.9, volumes of cylinders and spheres). Two real steps: the cylinder (3.14 x 64 x 10) and the half sphere (one half of 4/3 x 3.14 x 216), then subtract. About half of grade 8 handles the half-sphere factor correctly.",
+  "prompt": "A stone mortar is a solid cylinder with a radius of 8 centimeters and a height of 10 centimeters. A bowl shaped like half of a sphere, with a radius of 6 centimeters, is carved into the center of its flat upper face. Using 3.14 for pi, what is the volume of the stone that is left, in cubic centimeters?",
+  "choices": [
+   "1896.56",
+   "1557.44",
+   "1934.24",
+   "1670.48"
+  ],
+  "correct_answer": "1557.44",
+  "explanation": "Cylinder: 3.14 x 8 x 8 x 10 = 2009.6 cubic cm. The bowl is half of a sphere: 1/2 x 4/3 x 3.14 x 6 x 6 x 6 = 2/3 x 3.14 x 216 = 452.16 cubic cm. Stone left: 2009.6 - 452.16 = 1557.44 cubic centimeters.",
+  "solve": "return Math.round((3.14*8*8*10 - (2/3)*3.14*6*6*6)*100)/100;",
+  "distractor_solve": {
+   "1670.48": "return Math.round((3.14*8*8*10 - 3.14*6*6*6/2)*100)/100;",
+   "1896.56": "return Math.round((3.14*8*8*10 - 3.14*6*6)*100)/100;",
+   "1934.24": "return Math.round((3.14*8*8*10 - (2/3)*3.14*6*6)*100)/100;"
+  },
+  "mechanism": [
+   "volume of the cylinder",
+   "half-sphere = 1/2 x 4/3 x 3.14 x r^3",
+   "subtract the bowl"
+  ],
+  "quantity_asked": "volume of the stone left in cubic centimeters",
+  "plugback": {
+   "substitutable": false,
+   "why": "No option can be checked against the stem without computing both volumes."
+  },
+  "distractor_meta": {
+   "1670.48": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "leaves out the 4/3 in the sphere formula",
+    "why": "The student takes half of 3.14 x 216 = 339.12 for the bowl, dropping the 4/3: 2009.6 - 339.12 = 1670.48."
+   },
+   "1896.56": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts the area of the bowl's circular opening instead of its volume",
+    "why": "The student subtracts 3.14 x 6 x 6 = 113.04, the flat opening: 1896.56."
+   },
+   "1934.24": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "squares the radius instead of cubing it",
+    "why": "The student uses 2/3 x 3.14 x 6 x 6 = 75.36 for the bowl: 1934.24."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "return Math.round((3.14*8*8*10 - (4/3)*3.14*6*6*6)*100)/100;",
+   "direction": "below",
+   "why": "Subtracting a whole sphere instead of half of one removes 904.32 and undershoots to 1105.28."
+  },
+  "far_distractor": {
+   "option": "1670.48",
+   "natural_side": "below",
+   "why": "Dropping the 4/3 from a sphere formula ordinarily makes a volume too small; here the volume it shrinks is the bowl that is carved away, so the stone left comes out too LARGE."
+  },
+  "structure_check": "No. The stem has a solid to keep and a bowl to remove; removing a whole sphere undershoots (1105.28), shrinking the bowl overshoots. The wording does not sign the errors.",
+  "intermediate_check": "2009.6 (cylinder) and 452.16 (bowl) are the step values; neither is an option. 1670.48, 1896.56 and 1934.24 are not reached from the key through one printed rate. No.",
+  "cheap_bound_check": "The stone left is less than the cylinder, 2009.6; that strikes nothing. The bowl fits inside a 12 x 12 x 6 box (864), so the stone is more than 1145.6; that strikes nothing either.",
+  "shape_check": "The stem hands over: positive, between 1145.6 and 2009.6, two decimal places from 3.14. All four survive together.",
+  "interior_parity_check": "Middle values 1670.48 and 1896.56: both four-digit numbers with two decimal places; same form.",
+  "arith_class_check": "All four have two decimal places; none is a whole number. The key is not alone in a class.",
+  "dup_search": {
+   "queries": [
+    "mortar|bowl&carved|hemisphere&cylinder",
+    "half of a sphere|half-sphere&cylinder",
+    "carved&3.14"
+   ],
+   "hits_read": 5,
+   "nearest": "MM2-G20 (excluded, g8): a cone hole carved into a candle (cylinder minus cone). MM2-G19 (excluded): cone plus half sphere (a sum). Here a half sphere is removed from a cylinder; different solids and traps. No live item carves a hemisphere."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "stone < cylinder 2009.6: strikes nothing",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "stone > 2009.6 - 864 = 1145.6: strikes nothing",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go and strike all three? No: removing a whole sphere undershoots (1105.28, not offered). Does one bound strike all three? No bound read without the work strikes any; a pi bracket needs the bowl's volume, which is the item. Could a student check an option in one routine step? No. Solved intermediate: none. Is this really a mid item for grade 8? Yes: the half-sphere factor is the step half the grade gets wrong. Cheapest bound: 1145.6 or 2009.6, striking none. (read) closest earlier MAP item MM2-G20 (candle minus a cone): a cone removed from a cylinder; here a HALF SPHERE is removed, with its own 2/3 factor, so the formula chain differs."
+  }
+ },
+ {
+  "id": "MV2-G56-11",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 5,
+  "tier": "high",
+  "rit_band": "RIT 210-219",
+  "difficulty": "hard",
+  "ccss": "5.G.A.2",
+  "area_25": "Geometry",
+  "subskill": "Area of the overlap of two rectangles given by grid corners",
+  "grade_rationale": "High for grade 5: 5.G.A.2 mathematical problem in the first quadrant. The student must find where the rectangles overlap from the coordinates (x from 6 to 10, y from 3 to 10), which means choosing the right edge from each rectangle - the decision point - and then find the area. Typical grade-5 students take a full side of one rectangle for one of the dimensions.",
+  "prompt": "Two rectangles are drawn on a coordinate grid. Rectangle A has corners at (1, 1), (10, 1), (10, 10), and (1, 10). Rectangle B has corners at (6, 3), (13, 3), (13, 12), and (6, 12). The two rectangles overlap. What is the area, in square units, of the part that is inside both rectangles?",
+  "choices": [
+   "36",
+   "28",
+   "11",
+   "49"
+  ],
+  "correct_answer": "28",
+  "explanation": "Inside both rectangles, x goes from 6 (the left side of B) to 10 (the right side of A), which is 4 units. y goes from 3 (the bottom of B) to 10 (the top of A), which is 7 units. The overlap is a 4-by-7 rectangle, so its area is 4 x 7 = 28 square units.",
+  "solve": "const w = 10 - 6, h = 10 - 3; return w*h",
+  "distractor_solve": {
+   "11": "return (10-6) + (10-3)",
+   "36": "return (10-6)*(10-1)",
+   "49": "return (13-6)*(10-3)"
+  },
+  "mechanism": [
+   "overlap width = 10 - 6",
+   "overlap height = 10 - 3",
+   "area = width x height"
+  ],
+  "quantity_asked": "area of the overlapping region in square units",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option is an area; it cannot be checked without finding the overlap rectangle, which is the work."
+  },
+  "distractor_meta": {
+   "11": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds the width and height of the overlap instead of multiplying",
+    "why": "The student finds 4 and 7 and adds them, giving a length rather than an area."
+   },
+   "36": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the full height of rectangle A for the overlap",
+    "why": "The student finds the 4-unit width correctly but takes A's whole height, 10 - 1 = 9, as if B reached the bottom of A."
+   },
+   "49": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the full width of rectangle B for the overlap",
+    "why": "The student takes B's whole width, 13 - 6 = 7, for the overlap and multiplies by the correct height 7."
+   }
+  },
+  "structure_check": "interior key: no S/L structure check needed; no stem word signs the errors.",
+  "intermediate_check": "36: no - a 4-by-9 area from a wrong height. 11: no - 4 + 7, not on the route. 49: no - a 7-by-7 area from a wrong width. The overlap sides 4 and 7 are not offered.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "Whole number: all survive. No bigger than either rectangle (81 and 63): all survive. Four survive.",
+  "interior_parity_check": "Middle values 28 and 36: both two-digit even whole numbers; the key is not the cleaner one.",
+  "arith_class_check": "Key 28 is even, like 36; 11 and 49 are odd. Nothing in the stem implies parity.",
+  "dup_search": {
+   "queries": [
+    "overlap|inside both&rectangle",
+    "rectangle&coordinate&area",
+    "corners&coordinate grid"
+   ],
+   "hits_read": 8,
+   "nearest": "isee b25a1a0f (overlap of a triangle and its reflection, grade-8 style) and ssat 0dd191a2 (area of one rectangle from two corners); no live item asks the overlap of two grid rectangles."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "an area of a region several units across is more than 11: strikes 11 (a length, not an area)",
+    "strikes": [
+     "11"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: parity needs the overlap sides",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "no bigger than the smaller rectangle (7 x 9 = 63): strikes nothing",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Interior key. One option (11) can be struck as too small for an area; 28, 36 and 49 all need the overlap edges, and picking the right edge from each rectangle is the item. Plug-in is not possible. No distractor is a solved intermediate (4 and 7 are not offered). High for grade 5: the choice of edges from two rectangles. Cheapest bound strikes one. (read) PLUG try 2: an area option cannot be checked without the overlap edges. FORM (read) lines are advisory in Geometry; last-digit and parity differences are covered in bound_screen."
+  }
+ },
+ {
+  "id": "MV2-G78-13",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 8,
+  "tier": "mid",
+  "rit_band": "RIT 220-229",
+  "difficulty": "medium",
+  "ccss": "8.G.C.9",
+  "subskill": "Volume of a box topped by half a cylinder",
+  "grade_rationale": "Mid for grade 8 (8.G.C.9, volume of cylinders in a composite). Two real steps: the box, then half of a cylinder whose radius is half the 20 cm width and whose length is 40 cm, then add. About half of grade 8 sets up the half-cylinder correctly (radius, length, the 1/2).",
+  "prompt": "A mailbox is shaped like a rectangular box with half of a cylinder on top. The box part is 40 centimeters long, 20 centimeters wide, and 15 centimeters tall. Above the box is half of a cylinder that is 40 centimeters long, and its flat face, which is 20 centimeters wide, covers the box's upper face exactly. Using 3.14 for pi, what is the volume of the mailbox, in cubic centimeters?",
+  "choices": [
+   "15140",
+   "18280",
+   "13256",
+   "18000"
+  ],
+  "correct_answer": "18280",
+  "explanation": "Box: 40 x 20 x 15 = 12000 cubic cm. The half cylinder has radius 20 / 2 = 10 cm and length 40 cm, so its volume is 1/2 x 3.14 x 10 x 10 x 40 = 6280 cubic cm. Total: 12000 + 6280 = 18280 cubic centimeters.",
+  "solve": "return 40*20*15 + 3.14*10*10*40/2;",
+  "distractor_solve": {
+   "13256": "return 40*20*15 + 2*3.14*10*40/2;",
+   "15140": "return 40*20*15 + 3.14*10*10*20/2;",
+   "18000": "return 40*20*15 + 3*10*10*40/2;"
+  },
+  "mechanism": [
+   "volume of the box",
+   "half cylinder: r = 10, length 40, times 1/2",
+   "add the parts"
+  ],
+  "quantity_asked": "volume of the mailbox in cubic centimeters",
+  "plugback": {
+   "substitutable": false,
+   "why": "A volume option cannot be checked by substitution; both parts must be computed."
+  },
+  "distractor_meta": {
+   "13256": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the curved surface area of the half cylinder instead of its volume",
+    "why": "The student finds half of 2 x 3.14 x 10 x 40 = 1256, an area, and adds it: 13256."
+   },
+   "15140": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "takes the half cylinder's length as the 20 cm width",
+    "why": "The student uses 20 cm, the width, as the cylinder's length: 1/2 x 3.14 x 100 x 20 = 3140, total 15140."
+   },
+   "18000": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": true,
+    "misconception": "rounds pi to 3 against the instruction",
+    "why": "The student uses 3 for pi: 1/2 x 3 x 100 x 40 = 6000, total 18000."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "return 40*20*15 + 3.14*10*10*40;",
+   "direction": "above",
+   "why": "Forgetting the 1/2 counts a whole cylinder (12560) and overshoots to 24560."
+  },
+  "far_distractor": {
+   "option": "13256",
+   "natural_side": "above",
+   "why": "Using a curved-surface area in place of a volume is not one-directional: for a radius under 2 the area number is the larger one, so the swap often overshoots; with radius 10 it lands below."
+  },
+  "structure_check": "No. The stem has two parts to add. Forgetting the 1/2 overshoots (24560), using the diameter as the radius overshoots further, while area-for-volume and wrong-length swaps undershoot. The wording does not sign the errors.",
+  "intermediate_check": "12000 (box) and 6280 (half cylinder) are the step values; neither is an option. 13256, 15140 and 18000 are not reached from the key through one printed rate. No.",
+  "cheap_bound_check": "The mailbox is more than the box (12000) and less than a 40 x 20 x 25 box around it (20000); both strike nothing. The pi = 3 value 18000 is near the key on purpose; ruling it out needs the half-cylinder volume, which is the work.",
+  "shape_check": "The stem hands over: positive, more than 12000, less than 20000. All four survive together.",
+  "interior_parity_check": "Middle values 15140 and 18000: both five-digit whole numbers ending in 0; the key ends in 80, not the cleaner one.",
+  "arith_class_check": "All four are whole numbers, all even; 18000 is the only multiple of 1000, and it is a distractor. The key is not alone.",
+  "dup_search": {
+   "queries": [
+    "half-cylinder|half a cylinder|half cylinder",
+    "mailbox",
+    "box&cylinder&on top|topped"
+   ],
+   "hits_read": 4,
+   "nearest": "No live item tops a box with a half cylinder. ACT silo (cylinder plus hemisphere) and MM3 toy rocket (excluded: cylinder plus cone) are round-on-round composites with a full circular base; here the round part is a HALF cylinder lying on its flat face, with radius from the width."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "volume > box 12000: strikes nothing",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: all even",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "volume < 40 x 20 x 25 = 20000: strikes nothing",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go and strike all three? No: forgetting the 1/2 or using the diameter as the radius both overshoot; the offered swaps undershoot. Does one bound strike all three? No bound read without computing the half cylinder strikes any; a pi bracket needs the half-cylinder volume, which is the item. Plug-back: none. Solved intermediate: none. Is this really a mid item for grade 8? Yes: setting up the half cylinder (radius, length, 1/2) is the step half the grade misses. Cheapest bound: 12000 or 20000, striking none."
+  }
+ },
+ {
+  "id": "MV2-G78-25",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 8,
+  "tier": "mid",
+  "rit_band": "RIT 220-229",
+  "difficulty": "medium",
+  "ccss": "8.G.B.8",
+  "subskill": "Area of a square from two adjacent corners",
+  "grade_rationale": "Mid for grade 8 (8.G.B.8, distance between two points). The key idea is that the side of the square is the slanted segment between the two corners, so its length comes from the Pythagorean theorem (5 and 12 give 13); then the area is 13 x 13. About half the grade uses the 5-by-12 rectangle or the side length instead.",
+  "prompt": "In the coordinate plane, the points (1, 2) and (6, 14) are two corners of a square, and the segment joining them is one side of the square. What is the area of the square, in square units?",
+  "choices": [
+   "193",
+   "156",
+   "169",
+   "232"
+  ],
+  "correct_answer": "169",
+  "explanation": "The side goes 6 - 1 = 5 units across and 14 - 2 = 12 units up. Its length is the square root of (25 + 144) = the square root of 169 = 13. The area of the square is 13 x 13 = 169 square units.",
+  "solve": "const dx = 6 - 1, dy = 14 - 2; return dx*dx + dy*dy;",
+  "distractor_solve": {
+   "156": "return Math.sqrt((6-1)**2 + (14-2)**2)*(14 - 2);",
+   "193": "return (6 + 1)**2 + (14 - 2)**2;",
+   "232": "return 6*6 + 14*14;"
+  },
+  "mechanism": [
+   "horizontal and vertical change 5 and 12",
+   "side length 13 by the Pythagorean theorem",
+   "area = side squared"
+  ],
+  "quantity_asked": "area of the square in square units",
+  "plugback": {
+   "substitutable": false,
+   "why": "An area option cannot be checked against the two points except by finding the side length, which is the work."
+  },
+  "distractor_meta": {
+   "156": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "multiplies the side by one leg instead of by itself",
+    "why": "The student finds the side, 13, but multiplies it by the 12-unit rise: 13 x 12 = 156."
+   },
+   "193": {
+    "error_kind": "sign_slip",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds the x-coordinates instead of subtracting them",
+    "why": "The student takes the horizontal change as 6 + 1 = 7: 7 x 7 + 12 x 12 = 193."
+   },
+   "232": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "measures from the origin instead of from the first corner",
+    "why": "The student uses only the point (6, 14), as if the side started at the origin: 6 x 6 + 14 x 14 = 232."
+   }
+  },
+  "structure_check": "Interior key; no extremum or universal quantifier.",
+  "intermediate_check": "13 (the side), 5 and 12 are the step values; none is an option. 156, 193 and 232 are not reached from the key through one printed rate. No.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: positive, a whole number, more than 144 (the side is longer than 12) and less than 289 (straight is shorter than along the grid). All four options lie between 144 and 289.",
+  "interior_parity_check": "The middle values are 169 and 193: both odd three-digit whole numbers; neither is rounder.",
+  "arith_class_check": "Two odd (169, 193) and two even (156, 232). The key is not alone in a class.",
+  "dup_search": {
+   "queries": [
+    "adjacent (corners|vertices)&square",
+    "square&coordinate&area",
+    "corners? of a square&\\(\\d"
+   ],
+   "hits_read": 6,
+   "nearest": "MMG excluded \"side length from coordinates, then area of a square\" (g5): a vertical side read off directly, no Pythagorean step. ISEE coordinate distance items stop at the length. Here the slanted side must be squared to an area."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "the side is longer than 12, so the area is more than 144: strikes nothing",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "area < (5 + 12)^2 = 289: strikes nothing",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Lower-interior key: could a student check an option in one routine step? No: checking an area means finding the side. Solved intermediate: none (13 is not offered). Is this really a mid item for grade 8? Yes: recognising the slanted side and using the distance formula idea is the key step. Cheapest bound: \"side longer than 12\" strikes only 60, and \"shorter than along the grid\" strikes only 289; a student using both is left with 169 against 232, which needs the side length. (read) PLUG key at try 2: no substitution exists. (read) closest earlier MAP item MMG-G01: a vertical side read straight off the grid (no Pythagorean step); here the side is slanted. (read) DPAIR 169 - 156 = 13 = 14 - 1: 13 is also the side length, so the gap is side x (side - leg); not readable without the side."
+  }
+ },
+ {
+  "id": "MV2-G56-19",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "6.G.A.3",
+  "subskill": "Area of a triangle whose base lies below the x-axis",
+  "grade_rationale": "Mid for grade 6: 6.G.A.3 lengths from coordinates - the base runs from x = -2 to x = 5 (7 units) and the height from y = -4 up to y = 8 (12 units) - then A = 1/2 x b x h. Crossing zero in both directions is the step half of grade-6 students miss.",
+  "prompt": "A sail is drawn on a map in the coordinate plane, with one unit standing for one foot. The three corners of the sail are at (-2, -4), (5, -4), and (2, 8). How many square feet of cloth does the sail need?",
+  "choices": [
+   "42",
+   "24",
+   "18",
+   "28"
+  ],
+  "correct_answer": "42",
+  "explanation": "The base joins (-2, -4) and (5, -4), so it is 5 - (-2) = 7 units long. The height is the distance from y = -4 up to y = 8, which is 8 - (-4) = 12 units. Area = 1/2 x 7 x 12 = 42 square feet.",
+  "solve": "const b = 5 - (-2), h = 8 - (-4); return b*h/2",
+  "distractor_solve": {
+   "18": "return (5 - 2) * (8 - (-4)) / 2",
+   "24": "return (2 - (-2)) * (8 - (-4)) / 2",
+   "28": "return (5 - (-2)) * 8 / 2"
+  },
+  "mechanism": [
+   "base across zero: 5 - (-2)",
+   "height across zero: 8 - (-4)",
+   "half base times height"
+  ],
+  "quantity_asked": "area of the sail in square feet",
+  "plugback": {
+   "substitutable": false,
+   "why": "An area cannot be checked without finding the base and height, which is the work."
+  },
+  "distractor_meta": {
+   "18": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "drops the negative sign of -2 when finding the base",
+    "why": "The student does 5 - 2 = 3 for the base, as if both ends were positive."
+   },
+   "24": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "measures the base to the x-coordinate of the top vertex instead of to the other base vertex",
+    "why": "The student reads the base from x = -2 to x = 2 (the top vertex's x) and uses 4."
+   },
+   "28": {
+    "error_kind": "wrong_variable",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the top vertex's y-coordinate as the height",
+    "why": "The student takes the height as 8, measuring from the x-axis instead of from the base at y = -4."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "return (5 - (-2)) * (8 - (-4))",
+   "direction": "above",
+   "why": "Forgetting the 1/2 (7 x 12 = 84) lands past the key."
+  },
+  "far_distractor": {
+   "option": "28",
+   "natural_side": "above",
+   "why": "Using the top vertex's y-coordinate as the height usually OVERshoots in the first quadrant, where the base sits above the x-axis; here the base is below the x-axis, so the true height is longer than 8 and the same error lands below."
+  },
+  "structure_check": "No extremum or quantifier. Errors split: dropping the 1/2 overshoots (84), the coordinate misreadings undershoot. The stem does not sign every error.",
+  "intermediate_check": "24: no - 4 x 12 / 2 from a wrong base. 18: no - 3 x 12 / 2. 28: no - 7 x 8 / 2. The base 7 and height 12 are not offered, and 42 does not follow from any option through one printed number (14, 18, 24 are not printed).",
+  "cheap_bound_check": "Cheapest one-sided bound: the triangle is half of its 7-by-12 bounding box (84), so at most 42; reading that needs both lengths, which is the work. A cheaper read, \"height more than 8\", strikes 28 only.",
+  "shape_check": "Whole number: all survive. At most 84: all survive. Three-plus survive.",
+  "interior_parity_check": "Middle values 24 and 28: both two-digit even whole numbers; the key is not interior.",
+  "arith_class_check": "All options are even and multiples of 2 and 3 except 28; no class isolates the key.",
+  "dup_search": {
+   "queries": [
+    "triangle&vertices&area",
+    "coordinate&triangle&base",
+    "vertices&area&-"
+   ],
+   "hits_read": 20,
+   "nearest": "ssat 55e21833 / fd423ed1 (first-quadrant triangle area from vertices) and isee 84f59e76 (general triangle by enclosing box): mine has a horizontal base below the axis and a height crossing zero, with the use-the-y-coordinate error."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "the height is more than 8 because the base is below the x-axis",
+    "strikes": [
+     "28"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: all even",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "none cheaper than finding the base",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, errors split: dropping 1/2 overshoots, the misreadings undershoot. The cheap read \"height more than 8\" strikes only 28; 18 and 24 need the base. Plug-in is not possible. No distractor is a solved intermediate. Mid for grade 6: lengths across zero in both directions. Cheapest bound strikes one. FORM (read) lines are advisory in Geometry; last-digit and parity differences are covered in bound_screen."
+  }
+ },
+ {
+  "id": "MV2-G78-23",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 8,
+  "tier": "high",
+  "rit_band": "RIT 230-239",
+  "difficulty": "hard",
+  "ccss": "8.G.A.5",
+  "subskill": "Angle of a triangle from a parallel line through a vertex",
+  "grade_rationale": "High for grade 8 (8.G.A.5, the parallel-line argument for the triangle angle sum). Two facts must be chained: the three angles at A along line DE add to 180, and angle ABC equals angle DAB (alternate interior angles). Only stronger students set up 6x - 6 = 180 and then pick the right angle.",
+  "prompt": "Line DE is drawn through point A of triangle ABC so that DE is parallel to side BC. Point D is on the same side as B, and point E is on the same side as C. Angle DAB measures (3x - 10) degrees, angle BAC measures (2x - 15) degrees, and angle CAE measures (x + 19) degrees. What is the measure of angle ABC, in degrees?",
+  "choices": [
+   "50",
+   "77",
+   "31",
+   "83"
+  ],
+  "correct_answer": "83",
+  "explanation": "D, A and E lie on one line, so the three angles at A add to 180: (3x - 10) + (2x - 15) + (x + 19) = 180, so 6x - 6 = 180, 6x = 186 and x = 31. Because DE is parallel to BC, angle ABC and angle DAB are alternate interior angles, so angle ABC = 3(31) - 10 = 83 degrees.",
+  "solve": "const x = (180 + 10 + 15 - 19)/6; return 3*x - 10;",
+  "distractor_solve": {
+   "31": "return (180 + 10 + 15 - 19)/6;",
+   "50": "const x = (180 + 10 + 15 - 19)/6; return x + 19;",
+   "77": "const x = (180 - 10 - 15 + 19)/6; return 3*x - 10;"
+  },
+  "mechanism": [
+   "angles on line DE sum to 180",
+   "solve 6x - 6 = 180",
+   "angle ABC = angle DAB (alternate interior)"
+  ],
+  "quantity_asked": "measure of angle ABC in degrees",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const x = (v + 10)/3; return Math.abs((3*x - 10) + (2*x - 15) + (x + 19) - 180) < 1e-9;",
+   "why": "A student who already knows angle ABC equals angle DAB can set 3x - 10 equal to an option, find x, and check the three angles at A add to 180; that takes the alternate-angle insight plus two steps, and the key is fourth in ascending order."
+  },
+  "distractor_meta": {
+   "31": {
+    "error_kind": "partial_answer",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "stops at the value of x",
+    "why": "The student solves 6x - 6 = 180 and reports x = 31 as the angle."
+   },
+   "50": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "pairs angle ABC with the angle on the far side of A",
+    "why": "The student matches angle ABC with angle CAE instead of angle DAB: 31 + 19 = 50."
+   },
+   "77": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "moves the constants across with the wrong signs",
+    "why": "The student writes 6x = 180 - 6 = 174, so x = 29 and angle DAB = 3(29) - 10 = 77."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_base",
+   "solve": "const x = (360 + 6)/6; return 3*x - 10;",
+   "direction": "above",
+   "why": "Setting the angles at A equal to 360 gives x = 61 and an angle of 173, above the key."
+  },
+  "far_distractor": {
+   "option": "77",
+   "natural_side": "above",
+   "why": "A sign slip on the constant term is two-way: with a positive constant total it raises x, with a negative one (here -6) it lowers x from 31 to 29, so the angle lands below."
+  },
+  "structure_check": "No. Using 360 at the point overshoots (173), the other slips undershoot; the stem names no extremum. A student cannot read that every error lowers the angle.",
+  "intermediate_check": "x = 31 is a step value (offered as the one partial answer): the key is not one printed number away (it needs 3x - 10). 50 is angle CAE (= angle ACB), a different angle, not a step toward ABC. 77 is never computed in the correct work. No distractor follows from the key through one printed relation.",
+  "cheap_bound_check": "Angle ABC is an angle of a triangle, so less than 180; without x no other number is readable. No cheap bound strikes any option.",
+  "shape_check": "The stem hands over: positive, less than 180, a whole number. All four survive together.",
+  "interior_parity_check": "Middle values 50 and 77: both two-digit whole numbers; neither is rounder in a way the key is not.",
+  "arith_class_check": "Two odd, two even; the key shares its class with 31 and 77. Not alone.",
+  "dup_search": {
+   "queries": [
+    "parallel to&through (vertex|A)|line DE",
+    "parallel&triangle&alternate",
+    "transversal|parallel lines"
+   ],
+   "hits_read": 12,
+   "nearest": "ISEE/ACT parallel-line items set two same-side interior expressions supplementary and ask x. ISEE \"A on l, B and C on m, AB = AC\" is isosceles. Here the three angles along the parallel line add to 180 and the alternate-angle step picks the triangle's angle; that chain is not in the bank."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "angle < 180: strikes nothing",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: needs x",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "none: no number without solving",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go and strike all three? No: using 360 overshoots (173, not offered). Does one bound strike all three? No bound strikes any. Plug-back: substitution needs the alternate-angle insight and two steps, and the key is fourth ascending. Solved intermediate: 31 is x, the one stop-early value; 50 is a different angle. Is this really a high item for grade 8? Yes: chaining the straight angle and the alternate interior angles is the decision. Cheapest bound: none strikes. (read) PAIR 6 = 2 x 3: the sign slip lowers x by 2, so the angle by 3 x 2 = 6; not readable without solving."
+  }
+ },
+ {
+  "id": "MV2-G78-05",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 7,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "7.G.B.6",
+  "subskill": "Volume of a prism with a house-shaped base",
+  "grade_rationale": "High for grade 7 (7.G.B.6, volume of a right prism whose base is a composite polygon). The student must decompose the base into a rectangle and a triangle, find the triangle's height as 9 - 4 = 5 (the decision point: the printed 9 is the height of the whole end, not of the triangle), apply 1/2, and multiply by the length.",
+  "prompt": "A wooden block is a prism that is 12 centimeters long. Each end of the block is shaped like a house: a rectangle 6 centimeters wide and 4 centimeters tall, with a triangle on top whose base is the rectangle's 6-centimeter top edge. The top point of the triangle is 9 centimeters above the bottom of the rectangle. What is the volume of the block, in cubic centimeters?",
+  "choices": [
+   "612",
+   "408",
+   "648",
+   "468"
+  ],
+  "correct_answer": "468",
+  "explanation": "The end is a rectangle plus a triangle. Rectangle: 6 x 4 = 24 square cm. The triangle's height is 9 - 4 = 5 cm, so its area is 1/2 x 6 x 5 = 15 square cm. The end has area 24 + 15 = 39 square cm, and the volume is 39 x 12 = 468 cubic centimeters.",
+  "solve": "return (6*4 + 6*(9-4)/2)*12;",
+  "distractor_solve": {
+   "408": "return (6*4 + 4*(9-4)/2)*12;",
+   "612": "return (6*4 + 6*9/2)*12;",
+   "648": "return (6*4 + 6*(9-4))*12;"
+  },
+  "mechanism": [
+   "split the end into rectangle and triangle",
+   "triangle height = 9 - 4",
+   "end area x length"
+  ],
+  "quantity_asked": "volume of the block in cubic centimeters",
+  "plugback": {
+   "substitutable": false,
+   "why": "A volume option cannot be checked against the stem without computing the end area; no substitution exists."
+  },
+  "distractor_meta": {
+   "408": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "takes the wrong edge as the triangle's base",
+    "why": "The student uses the rectangle's 4 cm side as the triangle's base: 1/2 x 4 x 5 = 10, so the end is 34 and the volume 408."
+   },
+   "612": {
+    "error_kind": "wrong_variable",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the height of the whole end as the triangle's height",
+    "why": "The student takes the printed 9 cm as the triangle's height: 1/2 x 6 x 9 = 27, end 51, volume 612."
+   },
+   "648": {
+    "error_kind": "wrong_operation",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "finds the triangle's area as base x height without the 1/2",
+    "why": "The student treats the triangle like a rectangle: 6 x 5 = 30, end 54, volume 648."
+   }
+  },
+  "structure_check": "Interior key; no extremum or universal quantifier in the stem.",
+  "intermediate_check": "None of 408, 612, 648 is a step of the correct work (the correct work forms 24, 5, 15, 39). None follows from the key through one printed rate (468 x 12 or / 12 is not an option). No.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: positive, a multiple of 12 (end area times 12), less than the 6 x 9 x 12 = 648 box around the block, more than the 6 x 4 x 12 = 288 rectangular part. All four are multiples of 12; 408, 468 and 612 survive every property.",
+  "interior_parity_check": "Middle values 468 and 612: both three-digit even multiples of 12; the key ends in 8, 612 in 2; same complexity.",
+  "arith_class_check": "All four are even multiples of 12. The key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "pentagon&prism|roof|peak",
+    "prism&house|shaped like a house",
+    "prism&triangle on top"
+   ],
+   "hits_read": 4,
+   "nearest": "MM3 \"Volume of a prism whose base is six triangles\" (excluded, g7): base area from equal triangles with base and height printed. Here the triangle's height must be derived (9 - 4) and the base is a rectangle-plus-triangle; the chain differs. No live item with a house-shaped base."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "volume < the 6 x 9 x 12 box around the block, 648",
+    "strikes": [
+     "648"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: all even",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: the units digit needs 39 x 12",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "volume > the rectangular part 288: strikes nothing",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Lower-interior key: could a student check an option in one routine step? No: there is nothing to substitute; the end area must be built. Solved intermediate: none. Is this really a high item for grade 7? Yes: decomposing the base and deriving the triangle height 9 - 4 is the decision point, and both the 9-as-height and no-1/2 errors are common. Cheapest bound: \"less than the bounding box 648\", which strikes one (648). (read) PLUG key at try 2: no substitution exists for a volume. (read) closest earlier MAP item MM3-G20 (path around a circular fountain): unrelated chain (ring area)."
+  }
+ },
+ {
+  "id": "MV2-G78-04",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 7,
+  "tier": "low",
+  "rit_band": "RIT 200-209",
+  "difficulty": "easy",
+  "ccss": "7.G.B.6",
+  "subskill": "Fabric for a floorless triangular-prism tent",
+  "grade_rationale": "Low for grade 7 (7.G.B.6, surface area of a prism). Two routine face areas, given directly: two triangles (1/2 x 8 x 3) and two rectangles (5 x 10), then add. The only choice is to use the 5-foot slanted side, not the 3-foot height, for the rectangles.",
+  "prompt": "A tent is shaped like a triangular prism with no floor. Each of its two triangular ends has a base of 8 feet and a height of 3 feet, and each slanted side of a triangular end is 5 feet long. The tent is 10 feet long. Fabric covers the two triangular ends and the two slanted rectangular sides. How many square feet of fabric are used?",
+  "choices": [
+   "112",
+   "84",
+   "124",
+   "120"
+  ],
+  "correct_answer": "124",
+  "explanation": "Each triangular end has area 1/2 x 8 x 3 = 12 square feet, so the two ends use 24. Each slanted side is a rectangle 5 feet by 10 feet, so the two sides use 2 x 50 = 100. Fabric = 24 + 100 = 124 square feet.",
+  "solve": "return 2*(8*3/2) + 2*(5*10);",
+  "distractor_solve": {
+   "84": "return 2*(8*3/2) + 2*(3*10);",
+   "112": "return (8*3/2) + 2*(5*10);",
+   "120": "return (8*3/2)*10;"
+  },
+  "mechanism": [
+   "area of each triangular end",
+   "slanted rectangles use the 5-foot side",
+   "add the four faces"
+  ],
+  "quantity_asked": "square feet of fabric",
+  "plugback": {
+   "substitutable": false,
+   "why": "A surface-area option cannot be checked by substitution; the student must add the face areas."
+  },
+  "distractor_meta": {
+   "84": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the triangle's height instead of the slanted side for the side panels",
+    "why": "The student makes each side panel 3 by 10 instead of 5 by 10: 24 + 60 = 84."
+   },
+   "112": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "counts only one triangular end",
+    "why": "The student adds one end, 12, to the two side panels, 100, and forgets the second end: 112."
+   },
+   "120": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "finds the volume instead of the surface area",
+    "why": "The student multiplies the end area by the length, 12 x 10 = 120, the space inside the tent."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "return 2*(8*3/2) + 2*(5*10) + 8*10;",
+   "direction": "above",
+   "why": "Adding a floor the tent does not have (8 by 10) gives 204, above the key."
+  },
+  "far_distractor": {
+   "option": "120",
+   "natural_side": "above",
+   "why": "Computing the volume instead of the area is not tied to one side: for a longer tent the volume number is the larger (a 20-foot tent holds 240 cubic feet against 224 square feet of fabric); at these sizes it lands just below."
+  },
+  "structure_check": "No. The stem has a floor to leave OUT (adding it overshoots to 204) and faces to put in; the volume swap goes either way depending on size. The wording does not sign the errors.",
+  "intermediate_check": "84, 112 and 120 are not step values of the correct work (the correct work forms 12, 24, 50, 100). None follows from the key through one printed rate. No.",
+  "cheap_bound_check": "The two slanted panels alone are 5 x 10 each, so the fabric is more than 100. That strikes 84 only; 112 and 120 sit on the key's side.",
+  "shape_check": "The stem hands over: positive, a whole number (all dimensions whole, the triangle halves to 12), more than 100. 112, 120 and 124 survive together.",
+  "interior_parity_check": "Middle values 112 and 120: both three-digit even whole numbers; the key is an end value.",
+  "arith_class_check": "All four are even whole numbers; two end in 0 or 4. The key is not alone in a class.",
+  "dup_search": {
+   "queries": [
+    "\\btent\\b",
+    "triangular prism&surface area|fabric",
+    "prism&no floor|without a floor|no bottom"
+   ],
+   "hits_read": 5,
+   "nearest": "SSAT 190db370 tent: VOLUME of a tent prism with the height found from 5-5-8 sides. Here the ask is fabric (four faces, floor excluded) with the height and slant both printed; the chain differs. MM2 triangular-prism net (excluded, g6) counts all five faces from a net."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "fabric > the two side panels, 100",
+    "strikes": [
+     "84"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: all even",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: units digit needs the sum",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "fabric < all five faces (204): strikes nothing",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go and strike all three? No: adding the floor overshoots (204, not offered) and the volume swap is size-dependent. Does one bound strike all three? No: \"more than the two side panels\" strikes only 84. Plug-back: none. Solved intermediate: none. Is this really a low item for grade 7? Yes: two face areas given directly and added. Cheapest bound striking the most distractors: 100, one strike. (read) DPAIR difference 4 = 5 - 1: the volume path happens to sit 4 below; no student path forms 4 from the printed 5."
+  }
+ },
+ {
+  "id": "MV2-G56-20",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "6.G.A.3",
+  "subskill": "Area of a rectangle with corners in all four quadrants",
+  "grade_rationale": "Mid for grade 6: 6.G.A.3 - the width runs from x = -2 to x = 3 (5) and the height from y = -3 to y = 7 (10), so the area is 50. The rectangle has a piece in every quadrant; half of grade-6 students mishandle one negative coordinate or add only some of the pieces.",
+  "prompt": "A swimming area at a lake is marked off with ropes. On a map in the coordinate plane, with one unit standing for one meter, its corners are at (-2, 7), (3, 7), (3, -3), and (-2, -3). How many square meters of water does the swimming area cover?",
+  "choices": [
+   "27",
+   "20",
+   "50",
+   "30"
+  ],
+  "correct_answer": "50",
+  "explanation": "The width is 3 - (-2) = 5 units and the height is 7 - (-3) = 10 units. The area is 5 x 10 = 50 square meters.",
+  "solve": "return (3 - (-2)) * (7 - (-3))",
+  "distractor_solve": {
+   "20": "return (3 - (-2)) * (7 - 3)",
+   "27": "return 3*7 + 2*3",
+   "30": "return 2*((3 - (-2)) + (7 - (-3)))"
+  },
+  "mechanism": [
+   "width across zero: 3 - (-2)",
+   "height across zero: 7 - (-3)",
+   "multiply"
+  ],
+  "quantity_asked": "area of the swimming area in square meters",
+  "plugback": {
+   "substitutable": false,
+   "why": "An area cannot be checked without finding both side lengths, which is the work."
+  },
+  "distractor_meta": {
+   "20": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "drops the negative sign of -3 when finding the height",
+    "why": "The student does 7 - 3 = 4 for the height, as if both y-values were positive."
+   },
+   "27": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds only the pieces in two of the four quadrants",
+    "why": "The student splits the rectangle at the axes, finds the 3-by-7 piece and the 2-by-3 piece, and forgets the other two pieces."
+   },
+   "30": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "finds the perimeter instead of the area",
+    "why": "The student adds the four sides, 5 + 10 + 5 + 10, answering how far around rather than how much inside."
+   }
+  },
+  "counter_error": {
+   "error_kind": "other",
+   "solve": "return (3 - (-2) + 1) * (7 - (-3) + 1)",
+   "direction": "above",
+   "why": "Counting grid points instead of units on each side (6 by 11) gives 66, past the key."
+  },
+  "far_distractor": {
+   "option": "30",
+   "natural_side": "above",
+   "why": "Perimeter is LARGER than area for small rectangles (a 2-by-3 rectangle has perimeter 10 but area 6), so mixing them up usually overshoots; this 5-by-10 rectangle has area 50 and perimeter 30, so the same error lands below."
+  },
+  "structure_check": "No extremum or quantifier. Errors split: counting grid points overshoots (66), a dropped sign, missing pieces and the perimeter undershoot. The stem does not sign every error.",
+  "intermediate_check": "27: no - two of four pieces. 20: no - 5 x 4. 30: no - the perimeter. The sides 5 and 10 are not offered, and 50 does not follow from any option through one printed number (23, 30, 20 are not printed).",
+  "cheap_bound_check": "Cheapest one-sided bound: the rectangle contains the 3-by-7 piece in the first quadrant (21), which strikes nothing. A sharper read (it is 10 tall) needs the height across zero, the work.",
+  "shape_check": "Whole number: all survive. More than 21: all survive. Four survive.",
+  "interior_parity_check": "Middle values 27 and 30: both two-digit whole numbers; the key is not interior.",
+  "arith_class_check": "Key 50 is a multiple of 10, like 20 and 30; 27 is odd. No class isolates the key.",
+  "dup_search": {
+   "queries": [
+    "rectangle&vertices&-",
+    "rectangle&coordinate&area",
+    "quadrant&rectangle"
+   ],
+   "hits_read": 8,
+   "nearest": "ssat 0dd191a2 (area from two opposite vertices (-2, 1) and (4, 5), crossing one axis): mine crosses both axes with a piece in each quadrant and a two-pieces distractor; isee 4fad8e6d asks the fence (perimeter)."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "more than the first-quadrant piece 3 x 7 = 21: strikes nothing",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: no parity implied",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "none cheaper than the side lengths",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, errors split: grid-point counting overshoots, the other three undershoot. No cheap bound strikes an option. Plug-in is not possible. No distractor is a solved intermediate. Mid for grade 6: two lengths across zero. Cheapest bound strikes none. (read) MMG-G01 (square from first-quadrant corners): here a rectangle crosses both axes with a quadrant-pieces distractor. FORM (read) lines are advisory in Geometry; last-digit and parity differences are covered in bound_screen."
+  }
+ },
+ {
+  "id": "MV2-G78-10",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "7.G.B.6",
+  "subskill": "Wood left after a triangular groove is cut",
+  "grade_rationale": "Mid for grade 7 (7.G.B.6, volume of a composite of right prisms). Two real steps: the groove is a triangular prism (1/2 x 4 x 3, times its 20 cm length), then subtract it from the block. The usual slips are the triangle factor and the groove's length.",
+  "prompt": "A wooden block is a rectangular prism 20 centimeters long, 10 centimeters wide, and 8 centimeters tall. A straight groove is cut into the upper face along the whole 20-centimeter length. The groove is shaped like a triangular prism: each end of the groove is a triangle 4 centimeters wide at the block's upper face and 3 centimeters deep. What is the volume of the wood that is left, in cubic centimeters?",
+  "choices": [
+   "1520",
+   "1594",
+   "1480",
+   "1540"
+  ],
+  "correct_answer": "1480",
+  "explanation": "The block is 20 x 10 x 8 = 1600 cubic cm. The groove is a triangular prism: its end has area 1/2 x 4 x 3 = 6 square cm, and it runs 20 cm, so it removes 6 x 20 = 120 cubic cm. The wood left is 1600 - 120 = 1480 cubic centimeters.",
+  "solve": "return 20*10*8 - (4*3/2)*20;",
+  "distractor_solve": {
+   "1520": "return 20*10*8 - (4*3/3)*20;",
+   "1540": "return 20*10*8 - (4*3/2)*10;",
+   "1594": "return 20*10*8 - (4*3/2);"
+  },
+  "mechanism": [
+   "volume of the block",
+   "groove = triangle area x its length",
+   "subtract"
+  ],
+  "quantity_asked": "volume of the wood left in cubic centimeters",
+  "plugback": {
+   "substitutable": false,
+   "why": "No option can be checked against the stem in one step; the groove's volume must be found first."
+  },
+  "distractor_meta": {
+   "1520": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses one third instead of one half for the triangle",
+    "why": "The student finds the triangle as 1/3 x 4 x 3 = 4, so the groove is 4 x 20 = 80 and the wood left is 1600 - 80 = 1520."
+   },
+   "1540": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "runs the groove along the wrong edge of the block",
+    "why": "The student multiplies the groove's end area by the block's 10 cm width instead of its 20 cm length, removing only 60: 1540."
+   },
+   "1594": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts the groove's end area and forgets its length",
+    "why": "The student subtracts the 6 square cm triangle itself, not the prism, from 1600: 1594."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "return 20*10*8 - (4*3)*20;",
+   "direction": "below",
+   "why": "Forgetting the 1/2 (treating the groove's end as a 4 by 3 rectangle) removes 240 and undershoots to 1360."
+  },
+  "far_distractor": {
+   "option": "1594",
+   "natural_side": "below",
+   "why": "Forgetting to multiply by a length is an omission that ordinarily makes a volume far too small; here the volume it shrinks is the groove that is taken away, so the wood left comes out too LARGE."
+  },
+  "structure_check": "No. The stem has a block to keep and a groove to remove. Forgetting the 1/2 removes too much and undershoots (1360); shrinking the groove overshoots. The wording does not sign the errors.",
+  "intermediate_check": "1600 (block), 6 (groove end) and 120 (groove) are the step values; none is an option. 1520, 1540 and 1594 are not reached from the key through one printed rate. No.",
+  "cheap_bound_check": "The groove fits inside a 4 x 3 x 20 box (240), so the wood left is more than 1600 - 240 = 1360 and less than 1600. Both bounds strike nothing; every option sits between them.",
+  "shape_check": "The stem hands over: positive, a whole number, between 1360 and 1600. All four survive together.",
+  "interior_parity_check": "Middle values 1520 and 1540: both four-digit numbers ending in 0, same form.",
+  "arith_class_check": "Three end in 0, 1594 ends in 4; the key shares its class. Not alone.",
+  "dup_search": {
+   "queries": [
+    "groove|notch",
+    "triangular prism&cut|removed|carved",
+    "block&cut&volume&left"
+   ],
+   "hits_read": 5,
+   "nearest": "No live or earlier MAP item removes a triangular groove. MM2 \"Count the cubes left after two crossing tunnels\" (excluded, g5) removes square tunnels by counting cubes; different solid and chain."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "wood left < block 1600: strikes nothing",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: all even",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: three end in 0",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "wood left > 1600 - 240 = 1360: strikes nothing",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go and strike all three? No: the no-1/2 error undershoots (1360, not offered), so \"errors shrink the groove\" is not readable. Does one bound strike all three? No bound strikes any. Could a student check an option in one routine step? No. Solved intermediate: none. Is this really a mid item for grade 7? Yes: seeing the groove as a triangular prism along the 20 cm edge is the key idea. Cheapest bound: 1360 or 1600, striking none. (read) PAIR 40 = 2 x 20: the one-third slip removes 80 instead of 120, a 40 gap that is not readable from the options. (read) closest earlier MAP item MM3-G04 (L-shaped block volume by adding two boxes): here a triangular groove is REMOVED, so the chain differs."
+  }
+ },
+ {
+  "id": "MV2-G56-03",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 5,
+  "tier": "mid",
+  "rit_band": "RIT 200-209",
+  "difficulty": "medium",
+  "ccss": "5.G.A.2",
+  "area_25": "Geometry",
+  "subskill": "Fence on three sides of a rectangle given by grid corners",
+  "grade_rationale": "Mid for grade 5: 5.G.A.2 (solve real-world problems by graphing points in the first quadrant). The student must turn corner coordinates into side lengths (9 - 2 = 7, 12 - 4 = 8) and then leave out the correct side - the one along the wall. About half of grade-5 students do both steps correctly.",
+  "prompt": "A rectangular garden is drawn on a coordinate grid where each unit stands for one meter. Its corners are at (4, 2), (4, 9), (12, 9), and (12, 2). The side from (4, 2) to (12, 2) runs along a wall, so it needs no fence. A fence goes along the other three sides. How many meters of fence are needed?",
+  "choices": [
+   "30",
+   "22",
+   "56",
+   "23"
+  ],
+  "correct_answer": "22",
+  "explanation": "The sides from (4, 2) to (4, 9) and from (12, 2) to (12, 9) are each 9 - 2 = 7 meters. The side from (4, 9) to (12, 9) is 12 - 4 = 8 meters. The side along the wall is not fenced, so the fence is 7 + 8 + 7 = 22 meters.",
+  "solve": "return (9-2) + (12-4) + (9-2)",
+  "distractor_solve": {
+   "23": "return (12-4) + (12-4) + (9-2)",
+   "30": "return 2*((9-2)+(12-4))",
+   "56": "return (9-2)*(12-4)"
+  },
+  "mechanism": [
+   "side lengths from coordinate differences",
+   "identify the side on the wall",
+   "add the three fenced sides"
+  ],
+  "quantity_asked": "length of fence in meters",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option cannot be checked in one step; the student has to find the side lengths and choose which side to leave out."
+  },
+  "distractor_meta": {
+   "23": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "leaves out a short side instead of the side that lies along the wall",
+    "why": "The student drops one 7-meter side and fences 8 + 8 + 7, not checking that the wall side runs from (4, 2) to (12, 2), which is 8 meters."
+   },
+   "30": {
+    "error_kind": "omission",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "fences all four sides and ignores the wall",
+    "why": "The student finds the whole perimeter 7 + 8 + 7 + 8 and forgets that the side on the wall gets no fence."
+   },
+   "56": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "finds the area of the garden instead of a length around it",
+    "why": "The student multiplies 7 x 8, answering how much ground is inside rather than how much fence goes around it."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "return (9-2) + (12-4)",
+   "direction": "below",
+   "why": "Adding just one length and one width (7 + 8 = 15), the half-perimeter habit, lands below the key."
+  },
+  "far_distractor": {
+   "option": "23",
+   "natural_side": "below",
+   "why": "Leaving out a side is a shortfall-type error that normally removes length and undershoots; it lands ABOVE here because the side the student drops (7 m) is shorter than the wall side that should have been dropped (8 m)."
+  },
+  "structure_check": "No extremum, quantifier or \"least/most\" wording. Errors go both ways: the half-perimeter habit lands at 15, below, while forgetting the wall lands above, so the stem does not sign every error.",
+  "intermediate_check": "30: no - the full perimeter; 22 does not follow from 30 through a printed number (30 - 22 = 8 is not printed). 56: no - an area, not on the route. 23: no - a wrong choice of side, not a solved step.",
+  "cheap_bound_check": "Cheapest one-sided bound: the fence is shorter than going all the way around; the student can read that 56 (an area, larger than any perimeter of this garden) is out, but 23 and 30 stay on the key's side until the sides are worked out.",
+  "shape_check": "Whole number: all survive. Less than a full trip around (needs the perimeter 30): 22, 23 survive and 30 is equal to it. Properties together leave 22 and 23 (and 30 until the wall is used) - at least two survive.",
+  "interior_parity_check": "Middle values 23 and 30: both two-digit whole numbers; the key is not interior.",
+  "arith_class_check": "Key 22 is even; 30 and 56 are also even, so parity does not single it out. No round-number class isolates it.",
+  "dup_search": {
+   "queries": [
+    "fence&three sides|wall",
+    "coordinate&grid line|along the grid|blocks",
+    "fence&corners"
+   ],
+   "hits_read": 16,
+   "nearest": "isee 4fad8e6d (full fence around a yard from two opposite corners across quadrants) and ACT b1eec8a8 (three sides along a building, cost): mine uses four first-quadrant corners and the choice of WHICH side lies on the wall, with a wrong-side distractor."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "a fence round a 7-by-8 garden is under 56; 56 is an area, struck",
+    "strikes": [
+     "56"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: 22, 30 and 56 are all even; telling 22 from 23 by parity needs the side lengths first",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: depends on which side is left out",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "the fence is longer than the longest side (8): strikes nothing",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, a student cannot sign every error: the half-perimeter habit lands below, forgetting the wall lands above, the wrong side lands just above. One bound strikes 56 (an area) and no other bound strikes a second without finding the sides. Plug-in: no single routine step checks an option. No distractor is a solved intermediate (7 and 8 are not offered). Mid for grade 5: two steps on 5.G.A.2. Cheapest bound strikes one (56). (read) PAIR/DPAIR 30 - 22 = 8: 8 is the long side (12 - 4), not printed; 22 cannot be read off 30 without deciding which side is on the wall. (read) PLUG try 1: checking needs the side lengths. (read) MM2-G05: a notched polygon with a full fence; different chain. FORM (read) lines are advisory in Geometry; last-digit and parity differences are covered in bound_screen."
+  }
+ },
+ {
+  "id": "MV2-G78-20",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 8,
+  "tier": "high",
+  "rit_band": "RIT 230-239",
+  "difficulty": "hard",
+  "ccss": "8.G.C.9",
+  "subskill": "Space left in a cone after a sphere of ice cream melts into it",
+  "grade_rationale": "High for grade 8 (8.G.C.9, volumes of cones and spheres). The student must see that the empty space is the cone's volume minus the sphere's volume, and apply two different factors (1/3 for the cone, 4/3 for the sphere) correctly. Only stronger students keep both factors straight.",
+  "prompt": "An ice cream cone is shaped like a cone with a radius of 3 centimeters and a height of 17 centimeters. A scoop of ice cream shaped like a sphere with a radius of 3 centimeters sits on the cone. The scoop melts, and all of it flows into the cone. How many cubic centimeters of the cone are still empty? Use 3.14 for pi.",
+  "choices": [
+   "127.17",
+   "47.1",
+   "131.88",
+   "75.36"
+  ],
+  "correct_answer": "47.1",
+  "explanation": "Cone: 1/3 x 3.14 x 3 x 3 x 17 = 160.14 cubic cm. Scoop: 4/3 x 3.14 x 3 x 3 x 3 = 113.04 cubic cm. The melted ice cream fills 113.04 of the cone, so the empty space is 160.14 - 113.04 = 47.1 cubic centimeters.",
+  "solve": "return Math.round((3.14*9*17/3 - (4/3)*3.14*27)*100)/100;",
+  "distractor_solve": {
+   "75.36": "return Math.round((3.14*9*17/3 - 3.14*27)*100)/100;",
+   "127.17": "return Math.round((3.14*9*17/2 - (4/3)*3.14*27)*100)/100;",
+   "131.88": "return Math.round((3.14*9*17/3 - 3.14*27/3)*100)/100;"
+  },
+  "mechanism": [
+   "cone volume 1/3 x 3.14 x r^2 x h",
+   "sphere volume 4/3 x 3.14 x r^3",
+   "empty space = cone - sphere"
+  ],
+  "quantity_asked": "cubic centimeters of the cone still empty",
+  "plugback": {
+   "substitutable": false,
+   "why": "No option can be checked against the stem without computing both volumes."
+  },
+  "distractor_meta": {
+   "75.36": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "leaves out the 4/3 in the sphere formula",
+    "why": "The student finds the scoop as 3.14 x 27 = 84.78: 160.14 - 84.78 = 75.36."
+   },
+   "127.17": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses one half instead of one third for the cone",
+    "why": "The student finds the cone as 1/2 x 3.14 x 9 x 17 = 240.21: 240.21 - 113.04 = 127.17."
+   },
+   "131.88": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the cone's 1/3 in the sphere formula",
+    "why": "The student finds the scoop as 1/3 x 3.14 x 27 = 28.26: 160.14 - 28.26 = 131.88."
+   }
+  },
+  "counter_error": {
+   "error_kind": "other",
+   "solve": "return 3*9*17/3 - 4*27;",
+   "direction": "below",
+   "why": "Rounding pi to 3 gives 153 - 108 = 45, just below the key."
+  },
+  "far_distractor": {
+   "option": "75.36",
+   "natural_side": "below",
+   "why": "Dropping the 4/3 from a sphere formula ordinarily makes a volume too small; here that volume is the ice cream poured in, so the empty space comes out too LARGE."
+  },
+  "structure_check": "No. Rounding pi down undershoots (45), while the factor slips overshoot; using the diameter in the cone overshoots further. The wording does not sign every error.",
+  "intermediate_check": "160.14 (cone) and 113.04 (scoop) are the step values; neither is an option. 75.36, 127.17 and 131.88 are not reached from the key through one printed rate. No.",
+  "cheap_bound_check": "The empty space is less than the whole cone (160.14 once computed); that strikes nothing. Every option is below it.",
+  "shape_check": "The stem hands over: positive, less than the cone, two decimal places. All four survive together.",
+  "interior_parity_check": "Middle values 75.36 and 127.17: both two-decimal numbers; same form.",
+  "arith_class_check": "Three have two decimal places and the key has one (47.1 = 47.10); all come from 3.14 x a rational. The key is not alone in any class the stem implies.",
+  "dup_search": {
+   "queries": [
+    "cone&scoop|ice cream|melt",
+    "cone&sphere&3.14",
+    "cone&empty|left"
+   ],
+   "hits_read": 5,
+   "nearest": "MM2-G19 (excluded, g8): a toy made of a cone and a half sphere, ADDED. Here a whole sphere is subtracted from a cone (melted into it), so the chain and the traps differ. No live item melts a sphere into a cone."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "empty < cone 160.14: strikes nothing",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "empty > 0: strikes nothing",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go and strike all three? No: rounding pi down undershoots (45, not offered). Does one bound strike all three? No bound strikes any. Could a student check an option in one routine step? No. Solved intermediate: none. Is this really a high item for grade 8? Yes: two formulas with different factors and the cone-minus-sphere setup. Cheapest bound: none strikes. (read) FORM: the key 47.1 has one decimal place because 47.10 ends in zero; the others have two."
+  }
+ },
+ {
+  "id": "MV2-G56-25",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "6.G.A.4",
+  "subskill": "Surface area of a box after a cube is cut from a corner",
+  "grade_rationale": "High for grade 6: 6.G.A.4 surface area from faces - cutting a 2-cm cube from a corner removes three 2-by-2 squares from the outside but uncovers three new 2-by-2 squares inside the notch, so the surface area is unchanged at 148. Only stronger grade-6 students see the trade.",
+  "prompt": "A wooden block is a rectangular prism 6 centimeters long, 5 centimeters wide, and 4 centimeters tall. A cube with edges 2 centimeters long is cut out of one corner of the block. What is the surface area of the block that is left, in square centimeters?",
+  "choices": [
+   "148",
+   "136",
+   "172",
+   "112"
+  ],
+  "correct_answer": "148",
+  "explanation": "Before the cut, the surface area is 2 x (6 x 5 + 6 x 4 + 5 x 4) = 2 x 74 = 148 square centimeters. Cutting out the corner cube removes three 2-by-2 squares from the outside, but it uncovers three new 2-by-2 squares inside the notch. The surface area stays 148 square centimeters.",
+  "solve": "const S = 2*(6*5 + 6*4 + 5*4); return S - 3*4 + 3*4",
+  "distractor_solve": {
+   "112": "return 6*5*4 - 2*2*2",
+   "136": "return 2*(6*5 + 6*4 + 5*4) - 3*2*2",
+   "172": "return 2*(6*5 + 6*4 + 5*4) + 6*2*2"
+  },
+  "mechanism": [
+   "surface area of the whole block",
+   "three squares removed",
+   "three squares uncovered"
+  ],
+  "quantity_asked": "surface area of the remaining block in square centimeters",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option cannot be checked without the full surface area and the face trade at the corner."
+  },
+  "distractor_meta": {
+   "112": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "finds the volume left instead of the surface area",
+    "why": "The student computes 6 x 5 x 4 - 2 x 2 x 2 = 120 - 8."
+   },
+   "136": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts the three outside squares but forgets the three new faces in the notch",
+    "why": "The student takes 3 x 4 = 12 off 148 and stops, missing the inside of the notch."
+   },
+   "172": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds all six faces of the removed cube to the surface",
+    "why": "The student thinks cutting out the cube adds its whole surface, 6 x 4 = 24, to 148."
+   }
+  },
+  "structure_check": "interior key: no S/L structure check needed; no stem word signs the errors.",
+  "intermediate_check": "136: no - 148 - 12, the half-done trade. 172: no - 148 + 24. 112: no - a volume. The key equals the uncut surface area, which a student meets on the route; no option is a solved intermediate on the way to a different number.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "Whole number: all survive. Even: all survive. Four survive.",
+  "interior_parity_check": "Middle values 136 and 148: both three-digit even whole numbers and multiples of 4; the key is not the cleaner one.",
+  "arith_class_check": "All options are multiples of 4; no class isolates the key.",
+  "dup_search": {
+   "queries": [
+    "corner&cube&surface area|removed",
+    "cube&cut&surface",
+    "hole&cube|block"
+   ],
+   "hits_read": 10,
+   "nearest": "isee 4c9d559b / ssat 8fd7b514 (square hole straight through a cube, surface area changes): mine removes a corner cube, where the area does NOT change - a different face trade."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "none free: every option is near the uncut surface area",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: all even",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "a surface area, not a volume: strikes 112 only by noticing 112 = 120 - 8, which needs the volume",
+    "strikes": [
+     "112"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Interior key. No free bound strikes more than one option; 136, 148 and 172 all sit near the uncut area. A test-wise student might guess \"unchanged\", but 136 (remove only) and 172 (add the cube) are the two tempting stories. Plug-in is not possible. No distractor is a solved intermediate. High for grade 6: the face trade at the corner. Cheapest bound strikes at most one. (read) PAIR 148 - 136 = 12 = 2 x 6: 12 is three 2-by-2 squares, coincidentally 2 x 6. (read) MM3-G12: a block cut in half (area grows); here a corner cube is removed (area unchanged). FORM (read) lines are advisory in Geometry; last-digit and parity differences are covered in bound_screen."
+  }
+ },
+ {
+  "id": "MV2-G78-17",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 8,
+  "tier": "low",
+  "rit_band": "RIT 210-219",
+  "difficulty": "easy",
+  "ccss": "8.G.C.9",
+  "subskill": "Empty space above the water in a cylinder tank",
+  "grade_rationale": "Low for grade 8 (8.G.C.9). Two routine steps: the empty part is a cylinder 10 - 4.5 = 5.5 m tall, and its volume is 3.14 x 4 x 5.5. Most of grade 8 does this; the slips are forgetting to take away the water or using a circle's area.",
+  "prompt": "A water tank is shaped like a cylinder with a radius of 2 meters and a height of 10 meters. It stands upright, and the water in it is 4.5 meters deep. Using 3.14 for pi, how many cubic meters of the tank are empty?",
+  "choices": [
+   "113.04",
+   "81.64",
+   "69.08",
+   "125.6"
+  ],
+  "correct_answer": "69.08",
+  "explanation": "The empty part is a cylinder above the water. Its height is 10 - 4.5 = 5.5 m and its radius is 2 m. Volume: 3.14 x 2 x 2 x 5.5 = 69.08 cubic meters.",
+  "solve": "return Math.round(3.14*2*2*(10 - 4.5)*100)/100;",
+  "distractor_solve": {
+   "125.6": "return Math.round(3.14*2*2*10*100)/100;",
+   "113.04": "return Math.round((3.14*2*2*10 - 3.14*2*2)*100)/100;",
+   "81.64": "return Math.round(3.14*2*2*6.5*100)/100;"
+  },
+  "mechanism": [
+   "empty height = 10 - 4.5",
+   "cylinder volume 3.14 x r^2 x h",
+   "use radius 2"
+  ],
+  "quantity_asked": "cubic meters of empty space in the tank",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option for the empty volume cannot be checked against the stem without computing a cylinder volume; there is no one-step check."
+  },
+  "distractor_meta": {
+   "125.6": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "finds the whole tank and forgets to take away the water",
+    "why": "The student computes 3.14 x 4 x 10 = 125.6, the full tank."
+   },
+   "113.04": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts the area of the circular base instead of the water's volume",
+    "why": "The student takes 3.14 x 4 = 12.56 off the full tank: 125.6 - 12.56 = 113.04."
+   },
+   "81.64": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": true,
+    "misconception": "subtraction slip when finding the empty height",
+    "why": "The student subtracts 10 - 4.5 as 6.5 instead of 5.5 (a regrouping slip): 3.14 x 4 x 6.5 = 81.64."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "return Math.round(3.14*2*5.5*100)/100;",
+   "direction": "below",
+   "why": "Forgetting to square the radius gives 3.14 x 2 x 5.5 = 34.54, below the key."
+  },
+  "far_distractor": {
+   "option": "125.6",
+   "natural_side": "below",
+   "why": "Leaving out a step is an omission, and omissions usually make an answer too small; here the step left out is taking the water away, so the empty space comes out too LARGE."
+  },
+  "structure_check": "No. Forgetting to square the radius undershoots (34.54), while forgetting the water or misreading the empty height overshoots. The wording does not tell a student which way every slip goes.",
+  "intermediate_check": "5.5 (empty height) and 12.56 (base area) are step values; neither is an option. 125.6 is the full tank: the key does not follow from it through one printed number (the water volume 56.52 is derived). No.",
+  "cheap_bound_check": "The empty space is less than the full tank, so less than 125.6 once that is computed; that strikes 125.6 only (it equals the full tank). The empty part is more than half the tank (5.5 of 10 m), which strikes nothing.",
+  "shape_check": "The stem hands over: positive, less than the full tank, more than half of it, two decimal places. 69.08, 81.64 and 113.04 survive all; three survive together.",
+  "interior_parity_check": "Middle values 81.64 and 113.04: both two-decimal numbers made from 3.14; the key is an end value.",
+  "arith_class_check": "All four are decimals from 3.14 x a whole number. The key is not alone in a class.",
+  "dup_search": {
+   "queries": [
+    "tank&deep&cylind|empty&cylind",
+    "cylinder&water&deep",
+    "cylind&how many cubic&empty"
+   ],
+   "hits_read": 5,
+   "nearest": "ISEE cylinder items find a full volume (90 pi) or pour water into a box. Here the empty space above the water is a cylinder of DERIVED height; MM3 excluded cylinder items pour or compare full containers."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "empty < full tank 125.6",
+    "strikes": [
+     "125.6"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "empty > half the tank (62.8): strikes nothing",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go and strike all three? No: forgetting to square the radius undershoots (34.54, not offered). Does one bound strike all three? No: \"less than the full tank\" strikes only 125.6. Could a student check an option in one routine step? No: it needs a cylinder volume. Solved intermediate: 125.6 (full tank) is the stop-early omission; not one printed number from the key. Is this really a low item for grade 8? Yes: a cylinder volume with a subtracted height. Cheapest bound: one strike."
+  }
+ },
+ {
+  "id": "MV2-G78-21",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 8,
+  "tier": "low",
+  "rit_band": "RIT 210-219",
+  "difficulty": "easy",
+  "ccss": "8.G.B.7",
+  "subskill": "Length of a ramp from its rise and run",
+  "grade_rationale": "Low for grade 8 (8.G.B.7). One routine use of the Pythagorean theorem with both legs printed, then rounding to hundredths. Most grade 8 students do this; the slips are not squaring the 1.2, squaring 1.2 as 2.4, or halving the rise.",
+  "prompt": "A wheelchair ramp rises 1.2 meters over a horizontal distance of 5 meters. How long is the sloped surface of the ramp, to the nearest hundredth of a meter?",
+  "choices": [
+   "5.23",
+   "5.04",
+   "5.14",
+   "5.12"
+  ],
+  "correct_answer": "5.14",
+  "explanation": "The ramp, the ground and the rise form a right triangle with legs 5 and 1.2. The sloped surface is the hypotenuse: the square root of (5 x 5 + 1.2 x 1.2) = the square root of (25 + 1.44) = the square root of 26.44, about 5.142. To the nearest hundredth, 5.14 meters.",
+  "solve": "return Math.round(Math.sqrt(5*5 + 1.2*1.2)*100)/100;",
+  "distractor_solve": {
+   "5.12": "return Math.round(Math.sqrt(5*5 + 1.2)*100)/100;",
+   "5.23": "return Math.round(Math.sqrt(5*5 + 1.2*2)*100)/100;",
+   "5.04": "return Math.round(Math.sqrt(5*5 + 0.6*0.6)*100)/100;"
+  },
+  "mechanism": [
+   "right triangle with legs 5 and 1.2",
+   "hypotenuse = square root of the sum of squares",
+   "round to hundredths"
+  ],
+  "quantity_asked": "length of the sloped surface in meters, to the nearest hundredth",
+  "plugback": {
+   "substitutable": true,
+   "verify": "return Math.abs(v*v - 26.44) < 0.06;",
+   "why": "A student can square each option and compare with 25 + 1.44 = 26.44; that is a routine check, and the key is the third option in ascending order."
+  },
+  "distractor_meta": {
+   "5.12": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "forgets to square the shorter leg",
+    "why": "The student adds 25 + 1.2 instead of 25 + 1.44: the square root of 26.2, about 5.12."
+   },
+   "5.23": {
+    "error_kind": "wrong_operation",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": true,
+    "misconception": "squares a number by doubling it",
+    "why": "The student writes 1.2 squared as 2.4: the square root of 27.4, about 5.23."
+   },
+   "5.04": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses half of the rise as the vertical leg",
+    "why": "The student splits the rise and uses 0.6 m: the square root of (25 + 0.36), about 5.04."
+   }
+  },
+  "structure_check": "Interior key; no extremum or universal quantifier.",
+  "intermediate_check": "25, 1.44 and 26.44 are the step values; none is an option. 5.12, 5.23 and 5.04 are not reached from the key through one printed rate. No.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: the ramp is longer than 5 and shorter than 5 + 1.2 = 6.2; rounded to hundredths. All four options lie between 5 and 6.2, so all survive every property.",
+  "interior_parity_check": "The middle values are 5.12 and 5.14: both two-decimal numbers of the same size; the key is not the cleaner one.",
+  "arith_class_check": "All four are two-decimal numbers between 5 and 5.3. The key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "\\bramp\\b",
+    "rises&horizontal",
+    "slope|sloped&hypotenuse|nearest"
+   ],
+   "hits_read": 5,
+   "nearest": "ACT 2104e510 skateboard ramp asks a SINE; SAT 2c78978e ramp asks a horizontal distance from a sine. Neither is the plain hypotenuse with a decimal rise."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "ramp > 5 m run: strikes nothing (all options exceed 5)",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: hundredths",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: a rounded square root",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "ramp < 5 + 1.2 = 6.2: strikes nothing",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "REVISED after the screener struck 4.9 (shorter than the 5 m run) and 6.2 (the sum of the legs): every option now lies between 5 and 6.2, so neither bound strikes anything. Lower-interior key: could a student check an option in one routine step? Yes, by squaring it and comparing with 26.44; the key is third in ascending order, so the check costs as much as computing. Solved intermediate: none. Is this really a low item for grade 8? Yes: one direct Pythagorean computation. Cheapest bound: none strikes."
+  }
+ },
+ {
+  "id": "MV2-G56-22",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "6.G.A.1",
+  "subskill": "Area left after a triangle is cut from a rectangle",
+  "grade_rationale": "Mid for grade 6: 6.G.A.1 composite area - the rectangle (15 x 9) minus a triangle (1/2 x 6 x 4). Two areas, one of them a triangle; about half of grade-6 students subtract a length or the wrong amount.",
+  "prompt": "A baker rolls cookie dough into a rectangle 15 inches long and 9 inches wide. She cuts a triangle out of the middle of one long edge. The triangle's base, along that edge, is 6 inches, and its tip is 4 inches in from the edge. What is the area of the dough that is left, in square inches?",
+  "choices": [
+   "131",
+   "123",
+   "135",
+   "125"
+  ],
+  "correct_answer": "123",
+  "explanation": "The whole rectangle of dough is 15 x 9 = 135 square inches. The triangle cut out is 1/2 x 6 x 4 = 12 square inches. The area left is 135 - 12 = 123 square inches.",
+  "solve": "return 15*9 - 6*4/2",
+  "distractor_solve": {
+   "125": "return 15*9 - (6 + 4)",
+   "131": "return 15*9 - 4",
+   "135": "return 15*9"
+  },
+  "mechanism": [
+   "rectangle area",
+   "triangle area = 1/2 x 6 x 4",
+   "subtract"
+  ],
+  "quantity_asked": "area of dough left in square inches",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option cannot be checked without both areas; the key is the smallest option, so checking from the bottom up gives no shortcut either."
+  },
+  "distractor_meta": {
+   "125": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts base plus height of the triangle instead of its area",
+    "why": "The student takes away 6 + 4 = 10 for the triangle."
+   },
+   "131": {
+    "error_kind": "wrong_variable",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts the depth of the cut as if it were an area",
+    "why": "The student takes 4 (how far in the cut goes) away from 135."
+   },
+   "135": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "ignores the cut-out and gives the whole rectangle",
+    "why": "The student finds 15 x 9 and stops, forgetting to take away the triangle."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "return 15*9 - 6*4",
+   "direction": "below",
+   "why": "Forgetting the 1/2 on the triangle (subtracting 24) gives 111, below the key."
+  },
+  "far_distractor": {
+   "option": "135",
+   "natural_side": "below",
+   "why": "Leaving out a step usually UNDERshoots; here the step left out is subtracting the cut-out, so leaving it out overshoots and 135 lands above the key."
+  },
+  "structure_check": "No extremum or quantifier. Errors split: forgetting the triangle's 1/2 undershoots (111); ignoring the cut or subtracting lengths overshoots. The stem does not sign every error.",
+  "intermediate_check": "131: no - 135 - 4. 135: YES in form - the whole rectangle is a step on the route; declared as the far distractor (ignoring the cut). 125: no - 135 - 10. The triangle (12) is not offered.",
+  "cheap_bound_check": "Cheapest one-sided bound: the dough left is smaller than the whole rectangle (135), which strikes 135 only; 125 and 131 sit on the key's side.",
+  "shape_check": "Whole number: all survive. Less than 135: 131, 123, 125 survive. Three survive.",
+  "interior_parity_check": "Middle values 125 and 131: both three-digit odd whole numbers; the key is not interior.",
+  "arith_class_check": "All four options are odd; no class isolates the key.",
+  "dup_search": {
+   "queries": [
+    "notch|cut out|cut-out&triangle",
+    "cut&rectangle&area",
+    "wall&door|window&area"
+   ],
+   "hits_read": 6,
+   "nearest": "isee d6eb19c8 (wall minus a door and two windows, all rectangles) and excluded MM2-G06 (two right-triangle corner beds): mine cuts one isosceles notch from the middle of an edge, with length-for-area distractors."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "less than the whole rectangle 135",
+    "strikes": [
+     "135"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: all odd",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "more than 135 - 6 x 4 = 111 (the notch is under a 6-by-4 box): strikes nothing",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, errors split: a missing 1/2 undershoots, the rest overshoot. The whole-rectangle bound strikes only 135; 125 and 131 need the triangle's area. A student cannot confirm an option without both areas. 135 is the rectangle (declared). Mid for grade 6. Cheapest bound strikes one. (read) PAIR 131 - 123 = 8 = 2 x 4, 135 - 123 = 12 = 2 x 6, DPAIR 8 = 9 - 1: coincidences of the triangle area 12 = 6 x 4 / 2; the key cannot be read off 135 without computing the triangle. (read) PLUG try 1: needs both areas. FORM (read) lines are advisory in Geometry; last-digit and parity differences are covered in bound_screen."
+  }
+ },
+ {
+  "id": "MV2-G56-12",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 5,
+  "tier": "low",
+  "rit_band": "RIT 190-199",
+  "difficulty": "easy",
+  "ccss": "5.G.B.3",
+  "area_25": "Geometry",
+  "subskill": "Perimeter of an equilateral triangle from a related square",
+  "grade_rationale": "Low for grade 5: 5.G.B.3 attributes - a square has four equal sides (44 / 4 = 11) and an equilateral triangle three equal sides (each 11 + 4 = 15). Short routine steps with small numbers; most grade-5 students get it, and the errors come from adding the 4 to the perimeter or keeping four sides.",
+  "prompt": "A square has a perimeter of 44 centimeters. Each side of an equilateral triangle is 4 centimeters longer than a side of the square. What is the perimeter of the triangle, in centimeters?",
+  "choices": [
+   "48",
+   "60",
+   "45",
+   "56"
+  ],
+  "correct_answer": "45",
+  "explanation": "A square has four equal sides, so each side is 44 / 4 = 11 centimeters. Each side of the triangle is 11 + 4 = 15 centimeters. An equilateral triangle has three equal sides, so its perimeter is 3 x 15 = 45 centimeters.",
+  "solve": "const s = 44/4 + 4; return 3*s",
+  "distractor_solve": {
+   "48": "return 44 + 4",
+   "56": "return 44 + 3*4",
+   "60": "return 4*(44/4 + 4)"
+  },
+  "mechanism": [
+   "square side = 44 / 4",
+   "triangle side = 11 + 4",
+   "perimeter = 3 sides"
+  ],
+  "quantity_asked": "perimeter of the triangle in centimeters",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option is a perimeter; checking it means finding the square side and the triangle side, which is the same work as solving."
+  },
+  "distractor_meta": {
+   "48": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds the 4 centimeters once to the whole perimeter",
+    "why": "The student reads \"4 cm longer\" as the triangle being 4 cm longer all the way around: 44 + 4."
+   },
+   "56": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds 4 centimeters for each triangle side onto the square's perimeter",
+    "why": "The student starts from 44 and adds 4 three times (one for each side of the triangle), never finding a single side."
+   },
+   "60": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "multiplies the new side by 4, as if the triangle had four sides",
+    "why": "The student finds 15 correctly but keeps the square's four sides: 4 x 15."
+   }
+  },
+  "counter_error": {
+   "error_kind": "other",
+   "solve": "return 3*(44/4) + 4",
+   "direction": "below",
+   "why": "Adding the 4 cm once to the triangle's perimeter (33 + 4 = 37) lands below the key."
+  },
+  "far_distractor": {
+   "option": "48",
+   "natural_side": "below",
+   "why": "Adding the 4 cm only once instead of to every side is a shortfall-type error that normally UNDERshoots (as 33 + 4 = 37 does); it lands above here because it starts from the square's four-side perimeter, 44, not the triangle's."
+  },
+  "structure_check": "No extremum or quantifier. Errors split: adding the 4 once to the triangle's perimeter goes below (37); the other paths go above. The stem does not sign every error.",
+  "intermediate_check": "48: no - 44 + 4; 45 does not follow from 48 through a printed number (3 is not printed). 60: no - 4 x 15. 56: no - 44 + 12. The sides 11 and 15 are not offered.",
+  "cheap_bound_check": "Cheapest one-sided bound: three equal whole sides make a multiple of 3, which strikes 56 only (48 and 60 are multiples of 3 as well); \"more than 3 x 11 = 33\" strikes nothing.",
+  "shape_check": "Whole number: all survive. Multiple of 3: 48, 60, 45 survive. Three survive.",
+  "interior_parity_check": "Middle values 48 and 56: both two-digit even whole numbers; the key is not interior.",
+  "arith_class_check": "Key 45 is odd; the others are even. The stem implies no parity (3 x 15 needs the side). It is a multiple of 3, like 48 and 60.",
+  "dup_search": {
+   "queries": [
+    "equilateral&square&perimeter",
+    "square&perimeter&triangle",
+    "longer than&side"
+   ],
+   "hits_read": 8,
+   "nearest": "ssat 1478005f (square with the same perimeter as a regular pentagon) and isee fffd6df7 (hexagon and triangle with the same perimeter, areas): mine changes each side by a fixed 4 cm, so the perimeters differ and the add-once error is live."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "more than 3 x 11 = 33: strikes nothing",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: parity of 3 x 15 needs the side",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "three equal whole sides make a multiple of 3",
+    "strikes": [
+     "56"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, a student cannot sign every error: adding the 4 once to the triangle's perimeter goes below, the rest above. The multiple-of-3 read strikes only 56; 48 and 60 survive it. A student cannot check an option in one step. No distractor is a solved intermediate (11 and 15 are not offered). Low for grade 5: short routine steps. Cheapest bound strikes one. (read) DPAIR 48 - 45 = 3 = 4 - 1: coincidence; 48 is 44 + 4 and 3 is not printed. (read) PLUG try 1: checking needs the square side and the triangle side. FORM (read) lines are advisory in Geometry; last-digit and parity differences are covered in bound_screen."
+  }
+ },
+ {
+  "id": "MV2-G56-04",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 5,
+  "tier": "mid",
+  "rit_band": "RIT 200-209",
+  "difficulty": "medium",
+  "ccss": "5.MD.C.5c",
+  "area_25": "Measurement and Data",
+  "subskill": "Volume left after a box-shaped groove is cut from a block",
+  "grade_rationale": "Mid for grade 5: 5.MD.C.5 volume as additive - the block and the groove are both right rectangular prisms, so the wood left is 315 - 36. Two volume products and a subtraction; about half of grade-5 students keep the two prisms separate instead of subtracting dimensions or areas.",
+  "prompt": "A wooden block for a toy train is shaped like a rectangular prism 9 centimeters long, 7 centimeters wide, and 5 centimeters tall. A groove for the track is cut along the whole length of the top of the block. The groove is shaped like a rectangular prism 9 centimeters long, 2 centimeters wide, and 2 centimeters deep. What is the volume of the wood that is left, in cubic centimeters?",
+  "choices": [
+   "297",
+   "189",
+   "225",
+   "279"
+  ],
+  "correct_answer": "279",
+  "explanation": "The whole block is 9 x 7 x 5 = 315 cubic centimeters. The groove is 9 x 2 x 2 = 36 cubic centimeters. The wood left is 315 - 36 = 279 cubic centimeters.",
+  "solve": "return 9*7*5 - 9*2*2",
+  "distractor_solve": {
+   "189": "return 9*7*5 - 9*7*2",
+   "225": "return 9*7*5 - 9*2*5",
+   "297": "return 9*7*5 - 9*2"
+  },
+  "mechanism": [
+   "volume of the whole block",
+   "volume of the groove",
+   "subtract the groove"
+  ],
+  "quantity_asked": "volume of wood left in cubic centimeters",
+  "plugback": {
+   "substitutable": false,
+   "why": "There is no condition an option can be tested against; the student must find both volumes."
+  },
+  "distractor_meta": {
+   "189": {
+    "error_kind": "wrong_operation",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "cuts the whole top 2 centimeters off the block instead of a 2-centimeter-wide groove",
+    "why": "The student takes away a full 9 x 7 x 2 layer (126), as if the groove ran across the entire width of the top."
+   },
+   "225": {
+    "error_kind": "wrong_variable",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "cuts the groove all the way down through the block's 5-centimeter height",
+    "why": "The student uses the block's height for the groove's depth, taking away 9 x 2 x 5 = 90."
+   },
+   "297": {
+    "error_kind": "wrong_variable",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts the area of the top of the groove (9 x 2) instead of its volume",
+    "why": "The student pictures the groove as the 9-by-2 strip on top of the block and takes 18 away from 315, forgetting its 2-cm depth."
+   }
+  },
+  "structure_check": "interior key: no S/L structure check needed; no stem word signs the errors.",
+  "intermediate_check": "297: no - 315 - 18, built from an area. 189: no - 315 minus a whole top layer. 225: no - 315 minus a full-height slot. The block (315) and the groove (36) are not offered, and 279 does not follow from any option through one printed number (18 = 2 x 9 is read in the note).",
+  "cheap_bound_check": "interior key",
+  "shape_check": "Whole number: all survive. Less than the whole block 315: all survive. Multiple of 9 (both prisms are 9 long): all survive. Odd: all survive. Four survive.",
+  "interior_parity_check": "Middle values 225 and 279: both three-digit odd multiples of 9; the key is not cleaner than 225.",
+  "arith_class_check": "All four options are odd multiples of 9 below 315, so the divisibility, parity and magnitude reads the screener named strike nothing.",
+  "dup_search": {
+   "queries": [
+    "groove|slot|channel&cut",
+    "cut&rectangular prism|block&volume",
+    "hole&cube|block"
+   ],
+   "hits_read": 6,
+   "nearest": "isee 4c9d559b / ssat 8fd7b514 (square hole through a cube, includes surface area); mine removes a groove along the top of a non-cube block and asks volume only, with a shrink-the-dimensions distractor."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "less than the whole block (9 x 7 x 5 = 315): strikes nothing",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: every option is odd",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: 5 - 6 needs both volumes; not cheaper than the work",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "a multiple of 9 (both prisms are 9 cm long): strikes nothing",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "REVISED after the screen (311 failed the multiple-of-9 read and 351 exceeded the block). Every option is now an odd multiple of 9 below 315, so the block bound, the multiple-of-9 read, parity and units digit strike nothing; telling 279 from 225, 297 and 189 needs the groove's volume. Interior key. Plug-in is not possible. No distractor is a solved intermediate (315 and 36 are not offered). (read) PAIR 297 - 279 = 18 = 2 x 9: 18 is the groove's top area 9 x 2, the error itself, not a free route to the key. Mid for grade 5: two volumes and a subtraction. Cheapest bound strikes none. (read) PLUG try 2: no condition to test. (read) MM3-G04: an L-shaped block (sum of two parts); here a groove is subtracted. FORM (read) lines are advisory in Geometry; last-digit and parity differences are covered in bound_screen."
+  }
+ },
+ {
+  "id": "MV2-G56-09",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 5,
+  "tier": "low",
+  "rit_band": "RIT 190-199",
+  "difficulty": "easy",
+  "ccss": "5.G.A.2",
+  "area_25": "Geometry",
+  "subskill": "Distance between two points on a vertical line of a scaled map",
+  "grade_rationale": "Low for grade 5: 5.G.A.2 interpreting coordinates in context. Subtract the y-coordinates (14 - 1 = 13 units) and multiply by the scale (3 km per unit). Two routine steps; most grade-5 students do both.",
+  "prompt": "On a trail map drawn on a coordinate grid, each unit stands for 3 kilometers. A campsite is at the point (4, 1) and a lookout tower is at the point (4, 14). How many kilometers apart are the campsite and the tower?",
+  "choices": [
+   "39",
+   "30",
+   "12",
+   "15"
+  ],
+  "correct_answer": "39",
+  "explanation": "Both points have x-coordinate 4, so they are on the same vertical line. They are 14 - 1 = 13 units apart. Each unit is 3 kilometers, so the distance is 13 x 3 = 39 kilometers.",
+  "solve": "return (14-1)*3",
+  "distractor_solve": {
+   "12": "return 4*3",
+   "15": "return 1 + 14",
+   "30": "return (14-4)*3"
+  },
+  "mechanism": [
+   "same x, so subtract the y-coordinates",
+   "multiply by the map scale"
+  ],
+  "quantity_asked": "distance in kilometers",
+  "plugback": {
+   "substitutable": false,
+   "why": "There is no condition to test an option against; a student must compute the distance."
+  },
+  "distractor_meta": {
+   "12": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the shared x-coordinate as the distance",
+    "why": "The student sees 4 in both points, treats it as the number of units, and multiplies by 3."
+   },
+   "15": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds the two y-coordinates and ignores the scale",
+    "why": "The student adds 1 + 14 as \"how far\" and forgets each unit is 3 kilometers."
+   },
+   "30": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts the campsite's x-coordinate from the tower's y-coordinate",
+    "why": "The student takes 14 - 4 = 10 (mixing an x with a y) and multiplies by 3."
+   }
+  },
+  "counter_error": {
+   "error_kind": "other",
+   "solve": "return (14-1+1)*3",
+   "direction": "above",
+   "why": "Counting grid points instead of spaces (14 points) gives 42 km, past the key."
+  },
+  "far_distractor": {
+   "option": "15",
+   "natural_side": "above",
+   "why": "Adding coordinates instead of subtracting them normally OVERshoots the distance (1 + 14 is more than 14 - 1); it lands below here because the true distance is then multiplied by the scale 3 and the added coordinates are not."
+  },
+  "structure_check": "No extremum or quantifier. The grid-point miscount overshoots, the x/y mix-ups undershoot, so the stem does not tell which way every error goes.",
+  "intermediate_check": "30: no - from a wrong difference. 12: no - 4 x 3, not on the route. 15: no - a sum of coordinates; 39 does not follow from 15 through a printed number (24 is not printed). The 13 units are not offered.",
+  "cheap_bound_check": "Cheapest one-sided bound: the distance is a multiple of 3 (whole units of 3 km); that strikes nothing since 30, 12, 15 and 39 are all multiples of 3. The next bound, \"more than the 14 printed\", strikes 12 only.",
+  "shape_check": "Whole number: all survive. Multiple of 3: all survive. Four survive.",
+  "interior_parity_check": "Middle values 15 and 30: both two-digit multiples of 3 and 5; the key is not interior.",
+  "arith_class_check": "Key 39 is odd, like 15; it is a multiple of 3 like all four; it is not isolated.",
+  "dup_search": {
+   "queries": [
+    "each unit&kilometers|miles|meters&coordinate",
+    "map&coordinate&apart",
+    "scale&grid"
+   ],
+   "hits_read": 9,
+   "nearest": "MMG excluded scaled-walk item (three legs with a turn back) and isee 4fad8e6d (fence from corners): mine is one vertical segment on a scaled map with coordinate mix-up errors."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "more than the printed 14 (13 units of 3 km each is far more than 14): strikes 12",
+    "strikes": [
+     "12"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: no parity implied",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: needs 13 x 3",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "a multiple of 3: strikes nothing",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "low",
+   "note": "Covering the work, a student cannot sign the errors: a grid-point miscount overshoots, the x/y mix-ups undershoot. The multiple-of-3 bound strikes nothing and \"more than 14\" strikes only 12. Plug-in is not possible. No distractor is a solved intermediate (13 is not offered). Low for grade 5: subtract, then multiply by the scale. Cheapest bound strikes at most one. (read) MM4-N11: grade-6 Number item, distance between points with the same x across negatives; here first quadrant with a map scale and x/y mix-up errors. FORM (read) lines are advisory in Geometry; last-digit and parity differences are covered in bound_screen."
+  }
+ },
+ {
+  "id": "MV2-G56-07",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 5,
+  "tier": "high",
+  "rit_band": "RIT 210-219",
+  "difficulty": "hard",
+  "ccss": "5.G.B.4",
+  "area_25": "Geometry",
+  "subskill": "Count shapes that belong to the parallelogram category",
+  "grade_rationale": "High for grade 5: 5.G.B.3/4 - attributes of a category belong to all its subcategories. The student must see that squares, rectangles, rhombuses and any four-right-angle quadrilateral are parallelograms, and that a trapezoid and a kite are not. Grade-5 students commonly hold exclusive categories or a \"slanted\" picture of a parallelogram.",
+  "prompt": "Ms. Diaz draws these eight shapes: a square; a rectangle that is not a square; a rhombus that is not a square; a quadrilateral with two pairs of parallel sides and no right angles; a trapezoid with exactly one pair of parallel sides; a kite that is not a rhombus; a quadrilateral with four right angles; and a triangle. How many of the eight shapes are parallelograms?",
+  "choices": [
+   "2",
+   "6",
+   "1",
+   "5"
+  ],
+  "correct_answer": "5",
+  "explanation": "A parallelogram is a quadrilateral with two pairs of parallel sides. The square, the rectangle, the rhombus, the quadrilateral with two pairs of parallel sides, and the quadrilateral with four right angles (a rectangle) all have two pairs of parallel sides. The trapezoid has only one pair, the kite has none, and the triangle is not a quadrilateral. So 5 shapes are parallelograms.",
+  "solve": "const shapes = [1,1,1,1,0,0,1,0]; return shapes.reduce((a,b)=>a+b,0)",
+  "distractor_solve": {
+   "1": "return [0,0,0,1,0,0,0,0].reduce((a,b)=>a+b,0)",
+   "2": "return [0,0,1,1,0,0,0,0].reduce((a,b)=>a+b,0)",
+   "6": "return [1,1,1,1,1,0,1,0].reduce((a,b)=>a+b,0)"
+  },
+  "mechanism": [
+   "test each shape for two pairs of parallel sides",
+   "subcategories inherit the property",
+   "count"
+  ],
+  "quantity_asked": "number of shapes that are parallelograms",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option is a count; checking it means classifying every shape, which is the whole task."
+  },
+  "distractor_meta": {
+   "1": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "treats categories as exclusive: a shape with its own name is not a parallelogram",
+    "why": "The student counts only the shape described as two pairs of parallel sides, since squares, rectangles and rhombuses \"are their own shapes\"."
+   },
+   "2": {
+    "error_kind": "wrong_variable",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "believes a parallelogram must lean, so shapes with right angles do not count",
+    "why": "The student keeps only the rhombus and the quadrilateral with no right angles, the \"slanted box\" picture of a parallelogram."
+   },
+   "6": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "counts the trapezoid because it has a pair of parallel sides",
+    "why": "The student thinks one pair of parallel sides is enough and adds the trapezoid to the five."
+   }
+  },
+  "structure_check": "interior key: no S/L structure check needed; no stem word signs the errors.",
+  "intermediate_check": "2: no - a count from a wrong rule, not a step to 5. 6: no - 5 plus the trapezoid, but 6 - 5 = 1 is not a printed number and the stem prints no digits. 1: no - a count from the exclusive rule.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "Whole number from 0 to 8: all survive. At most 7 (only seven are quadrilaterals): all survive. Four survive.",
+  "interior_parity_check": "Middle values 2 and 5: both single-digit whole numbers; the key 5 is not cleaner than 2.",
+  "arith_class_check": "No class: the stem prints no numbers and implies nothing about parity.",
+  "dup_search": {
+   "queries": [
+    "parallelogram&rectangle&rhombus|trapezoid&how many",
+    "parallelogram&quadrilateral",
+    "rhombus|kite|trapezoid"
+   ],
+   "hits_read": 12,
+   "nearest": "no live counting/classification item; isee f58bd995 (kite angles) and 1239ea47 (isosceles trapezoid area) use the shapes for measurement, not category membership."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: counts are positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "at most seven quadrilaterals: strikes nothing",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: no parity implied",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "at least one shape (the one described as two pairs of parallel sides) is a parallelogram: strikes nothing",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Interior key. No numbers are printed, so no bound strikes anything; a test-wise student must classify. Plug-in is impossible. No distractor is a solved intermediate. High for grade 5: the hierarchy decision (4 right angles => rectangle => parallelogram; a square is a rectangle and a rhombus) is the depth of 5.G.B.4. The cheapest bound strikes none. FORM (read) lines are advisory in Geometry; last-digit and parity differences are covered in bound_screen."
+  }
+ },
+ {
+  "id": "MV2-G78-06",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "7.G.B.6",
+  "subskill": "Cardboard for an open box with an inside divider",
+  "grade_rationale": "Mid for grade 7 (7.G.B.6, surface area of a right prism in a real-world problem). Two real steps: the faces of a box with no lid (bottom plus two pairs of walls) and the extra divider, which is a 20 by 12 rectangle. About half of grade 7 counts the walls and the divider correctly.",
+  "prompt": "An open storage bin (it has a bottom and four sides but nothing on top) is 50 centimeters long, 20 centimeters wide, and 12 centimeters high. Inside, a flat divider stands across the 20-centimeter width, from the floor of the bin up to the rim. The bin and the divider are made of cardboard. How many square centimeters of cardboard are needed for the bin and the divider together?",
+  "choices": [
+   "2520",
+   "2080",
+   "2920",
+   "2680"
+  ],
+  "correct_answer": "2920",
+  "explanation": "Bottom: 50 x 20 = 1000. Long walls: 2 x (50 x 12) = 1200. Short walls: 2 x (20 x 12) = 480. There is no lid. The divider goes across the width, so it is 20 x 12 = 240. Total: 1000 + 1200 + 480 + 240 = 2920 square centimeters.",
+  "solve": "return 50*20 + 2*(50*12) + 2*(20*12) + 20*12;",
+  "distractor_solve": {
+   "2080": "return 50*20 + 50*12 + 20*12 + 20*12;",
+   "2520": "return 50*12 + 2*(50*12) + 2*(20*12) + 20*12;",
+   "2680": "return 50*20 + 2*(50*12) + 2*(20*12);"
+  },
+  "mechanism": [
+   "bottom of the open box",
+   "two long and two short walls",
+   "add the 20 by 12 divider"
+  ],
+  "quantity_asked": "square centimeters of cardboard in all",
+  "plugback": {
+   "substitutable": false,
+   "why": "An area option cannot be checked by substitution; the faces must be added."
+  },
+  "distractor_meta": {
+   "2080": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "counts one wall of each size instead of two",
+    "why": "The student adds one long wall and one short wall, as if a box had two walls: 1000 + 600 + 240 + 240 = 2080."
+   },
+   "2520": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the wrong pair of edges for the bottom",
+    "why": "The student takes the bottom as 50 by 12 instead of 50 by 20: 600 + 1680 + 240 = 2520."
+   },
+   "2680": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "leaves out the divider",
+    "why": "The student finds the open box correctly, 2680, and forgets the cardboard divider."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "return 2*(50*20) + 2*(50*12) + 2*(20*12) + 20*12;",
+   "direction": "above",
+   "why": "Adding a lid the box does not have (another 1000) overshoots to 3920."
+  },
+  "far_distractor": {
+   "option": "2520",
+   "natural_side": "above",
+   "why": "Using the wrong pair of edges for a face is size-dependent: putting a longer edge in place of a shorter one overshoots; here 12 replaces 20 for the bottom, so the slip lands below."
+  },
+  "structure_check": "No. The stem has a face to leave out (the lid; adding it overshoots to 3920) and a piece to add (the divider). A student cannot read from the wording that every slip lowers the total.",
+  "intermediate_check": "1000, 1200, 480, 1680 and 240 are the step values; none is an option. 2680 is the open box without the divider, a stop-early value, but the key is not reached from it through ONE printed number (the divider 240 is derived, 20 x 12). 2080 and 2520 are not step values. No.",
+  "cheap_bound_check": "The four walls alone are 2 x (50 + 20) x 12 = 1680, so the total is more than 1680; that strikes nothing. A bound that strikes two distractors would need the full sum, which is the work.",
+  "shape_check": "The stem hands over: positive, a multiple of 40 (every face is a multiple of 40), more than 1680. All four options are multiples of 40 and survive.",
+  "interior_parity_check": "Middle values 2520 and 2680: both four-digit multiples of 40 ending in 0; same form.",
+  "arith_class_check": "All four end in 0 and are multiples of 40; none is a multiple of 1000. The key is not alone in a class.",
+  "dup_search": {
+   "queries": [
+    "divider|no lid&cardboard",
+    "open box|no lid&surface",
+    "box&cardboard&square centimeters"
+   ],
+   "hits_read": 6,
+   "nearest": "MM2-G08 (excluded, g6): cardboard for a box with no lid, no divider, made from one sheet. Here the divider (an extra inside face across the width) is the added step, and the wall counting is the trap. No live item has a divider."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "total > four walls 1680: strikes nothing",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: all even",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: all end in 0",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "total < open box plus lid plus divider (3920): strikes nothing",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go and strike all three? No: adding the lid overshoots (3920, not offered). Does one bound strike all three? No bound read without the work strikes any. Plug-back: none. Solved intermediate: 2680 is the stop-early open box, the one omission; the key is not one printed number away from it. Is this really a mid item for grade 7? Yes: counting the right faces plus an inside piece is where half the grade slips. Cheapest bound: \"more than the walls\", striking none. (read) closest earlier MAP item MM2-G08: an open box from one sheet with no divider; the divider across the width and the wall count are the steps here, so the chain differs."
+  }
+ },
+ {
+  "id": "MV2-G56-02",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 5,
+  "tier": "high",
+  "rit_band": "RIT 210-219",
+  "difficulty": "hard",
+  "ccss": "5.MD.C.5c",
+  "area_25": "Measurement and Data",
+  "subskill": "Volume of a tower of a box and a cube with a derived edge",
+  "grade_rationale": "High for grade 5: 5.MD.C.5c (volume of two non-overlapping prisms) with a decision point - the student must derive the cube edge (half of 8 = 4), use it for all three edges of the cube, and add the two volumes. Typical grade-5 students take the cube as a flat square, borrow the bottom box's height, or think half the length makes half the volume.",
+  "prompt": "A tower is made of two boxes that do not overlap. The bottom box is 8 inches long, 8 inches wide, and 5 inches tall. The top box is a cube, and each of its edges is half as long as the length of the bottom box. What is the total volume of the tower, in cubic inches?",
+  "choices": [
+   "400",
+   "336",
+   "384",
+   "480"
+  ],
+  "correct_answer": "384",
+  "explanation": "The bottom box is 8 x 8 x 5 = 320 cubic inches. Each edge of the cube is half of 8, which is 4 inches, so the cube is 4 x 4 x 4 = 64 cubic inches. The tower is 320 + 64 = 384 cubic inches.",
+  "solve": "const e = 8/2; return 8*8*5 + e*e*e",
+  "distractor_solve": {
+   "336": "return 8*8*5 + 4*4",
+   "400": "return 8*8*5 + 4*4*5",
+   "480": "return 8*8*5 + (8*8*5)/2"
+  },
+  "mechanism": [
+   "cube edge = half of 8",
+   "bottom box volume",
+   "cube volume, then add"
+  ],
+  "quantity_asked": "total volume of the tower in cubic inches",
+  "plugback": {
+   "substitutable": false,
+   "why": "No condition can be tested with an option; both volumes have to be found."
+  },
+  "distractor_meta": {
+   "336": {
+    "error_kind": "wrong_variable",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the area of one face of the cube instead of its volume",
+    "why": "The student finds 4 x 4 = 16 for the top box and adds it, treating the cube as a flat square."
+   },
+   "400": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "gives the top cube the bottom box's height of 5 inches",
+    "why": "The student uses 4 by 4 for the cube's bottom but keeps 5 inches tall from the first box: 4 x 4 x 5 = 80."
+   },
+   "480": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "thinks edges half as long make a box with half the volume",
+    "why": "The student halves 320 to get 160 for the cube, not seeing that halving every edge makes the volume 8 times smaller."
+   }
+  },
+  "structure_check": "interior key: no S/L structure check needed; no stem word signs the errors.",
+  "intermediate_check": "400: no - 320 + 80 from a wrong height. 336: no - 320 + 16, a face area. 480: no - 320 + 160 from a halving rule; 384 does not follow from it through a printed number (96 is not printed). The parts 320 and 64 are not offered.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "Whole number: all survive. Even and a multiple of 16 (every part here is): all survive. More than the bottom box alone (320) and less than one 8 x 8 x 9 box (576): all survive. Four survive.",
+  "interior_parity_check": "Middle values 384 and 400: both three-digit even multiples of 16; the key is not the cleaner one (400 is rounder).",
+  "arith_class_check": "Every option is even and a multiple of 16; parity and units digits do not separate them (two products are added). Digit sum: 384, 336 and 480 are multiples of 3, 400 is not - one option.",
+  "dup_search": {
+   "queries": [
+    "tower|stack|on top&cube&box|prism",
+    "not overlap|non-overlapping&prism|box",
+    "step|stair&volume|cubic"
+   ],
+   "hits_read": 6,
+   "nearest": "MMG excluded display stand (two stacked boxes, one height derived from a total) and MM3-G04 (L-shaped block); mine derives a CUBE edge as half a length, with the half-length-half-volume distractor."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all options positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "more than the bottom box (320) and less than an 8 x 8 x 9 box (576): strikes nothing",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: the bottom box and the cube are both even, and every option is even",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: two products are added; units digits 4, 6, 0, 0 are not readable without both parts",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "divisibility: every part is a multiple of 16, as is every option; the digit-sum test for 3 strikes only 400 and is not implied by the stem",
+    "strikes": [
+     "400"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "REVISED after the screen (parity struck two: the old cube 3 x 3 x 3 was odd). Now the cube edge is even, so parity, units digit and multiple-of-16 strike nothing; all four lie between the bottom box (320) and an 8 x 8 x 9 box (576). Interior key. Plug-in is not possible. No distractor is a solved intermediate (320 and 64 are not offered). High for grade 5: the cube edge must be derived and used three times; the half-edge/half-volume misconception is genuinely tempting. Cheapest bound strikes at most one. (read) PLUG try 2: not substitutable - no condition to test. (read) MMG-G02: the display stand derives a height from a total; here the cube edge is half a length - a different chain. FORM (read) lines are advisory in Geometry; last-digit and parity differences are covered in bound_screen."
+  }
+ },
+ {
+  "id": "MV2-G78-24",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 8,
+  "tier": "mid",
+  "rit_band": "RIT 220-229",
+  "difficulty": "medium",
+  "ccss": "8.G.A.3",
+  "subskill": "Two reflections across parallel vertical lines",
+  "grade_rationale": "Mid for grade 8 (8.G.A.3, effect of reflections on coordinates). Two real steps: reflect -6 across x = 3 (to 12), then reflect 12 across x = 14 (to 16). About half the grade does both reflections correctly; others stop after one, shift by the distance between the lines, or reflect once across the middle line.",
+  "prompt": "Point P has coordinates (-6, 9). First, P is reflected over the line x = 3, giving point Q. Then Q is reflected over the line x = 14, giving point R. What is the first coordinate (the x-coordinate) of R?",
+  "choices": [
+   "12",
+   "23",
+   "16",
+   "5"
+  ],
+  "correct_answer": "16",
+  "explanation": "P is 9 units left of the line x = 3, so its reflection Q is 9 units right of that line, at x = 12. Q is 2 units left of the line x = 14, so its reflection R is 2 units right of that line, at x = 16. (The y-coordinate stays 9.)",
+  "solve": "const a = 2*3 - (-6); return 2*14 - a;",
+  "distractor_solve": {
+   "5": "return -6 + (14 - 3);",
+   "12": "return 2*3 - (-6);",
+   "23": "return 2*((3 + 14)/2) - (-6);"
+  },
+  "mechanism": [
+   "reflect across x = 3: x becomes 2(3) - x",
+   "reflect the image across x = 14",
+   "read the final x-coordinate"
+  ],
+  "quantity_asked": "x-coordinate of the final image",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option cannot be checked without doing both reflections; there is no one-step test."
+  },
+  "distractor_meta": {
+   "5": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "moves the point by the distance between the lines instead of twice that distance",
+    "why": "The student shifts P right by 14 - 3 = 11: -6 + 11 = 5."
+   },
+   "12": {
+    "error_kind": "partial_answer",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "stops after the first reflection",
+    "why": "The student reflects across x = 3 to get 12 and forgets the second reflection."
+   },
+   "23": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "reflects once across the line halfway between the two lines",
+    "why": "The student reflects P across x = 8.5: 2(8.5) + 6 = 23."
+   }
+  },
+  "structure_check": "Interior key; the stem names no extremum or universal quantifier.",
+  "intermediate_check": "12 is the first image, a step value (the one partial answer); the key is not reached from it through one printed number (it needs 2 x 14 - 12). 5 and 23 never occur in the correct work. No.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: an integer; the final image lies on the opposite side of x = 14 from the first image, which a student only knows after the first reflection. All four are integers and survive together without that work.",
+  "interior_parity_check": "The middle values are 12 and 16: both two-digit whole numbers; the key is not the cleaner one.",
+  "arith_class_check": "Two even (12, 16), two odd (5, 23); the key shares its class with 12. Not alone.",
+  "dup_search": {
+   "queries": [
+    "reflect&x = \\d+&then&x =",
+    "reflected across the (vertical )?line x",
+    "reflect&then reflect"
+   ],
+   "hits_read": 6,
+   "nearest": "ISEE fbd1c9d6 reflects across x = 3 and then y = 1 (perpendicular lines, asks a distance); ISEE 9c2ad5c9 one reflection across x = 1. ACT 82be2fb3 reflects a FUNCTION graph across x = -2 and x = 3. Here a point is reflected across two parallel lines and the coordinate read off."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: the coordinates can be negative or positive; all options are positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "none: no printed number caps the coordinate without doing a reflection",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "none",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Lower-interior key: could a student check an option in one routine step? No: it needs both reflections. Solved intermediate: 12 (first image) is the one stop-early value; not one printed number from the key. Is this really a mid item for grade 8? Yes: two reflections in a row; the one-reflection and shift-by-distance errors are common. Cheapest bound: none strikes without doing the first reflection. (read) PAIR 16 + 12 = 28 = 2 x 14: that IS the second reflection (x becomes 2 x 14 - 12), so it holds only for a student who has already found 12; it gives no shortcut. (read) DPAIR differences 4 and 7: coincidences of small printed numbers; no wrong path forms them."
+  }
+ },
+ {
+  "id": "MV2-G78-07",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 7,
+  "tier": "low",
+  "rit_band": "RIT 200-209",
+  "difficulty": "easy",
+  "ccss": "7.G.B.6",
+  "subskill": "Empty space in a bin after a cube is put in",
+  "grade_rationale": "Low for grade 7 (7.G.B.6, volume of right rectangular prisms in a real-world problem). Two routine steps: the bin's volume 27 x 20 x 13 and the cube's volume 10 x 10 x 10, then subtract. The traps are using the cube's face or surface area instead of its volume.",
+  "prompt": "A storage bin is shaped like a rectangular prism that is 27 centimeters long, 20 centimeters wide, and 13 centimeters tall. A solid cube with edges 10 centimeters long is placed inside the bin. How many cubic centimeters of space inside the bin are not filled by the cube?",
+  "choices": [
+   "6920",
+   "6420",
+   "6020",
+   "6990"
+  ],
+  "correct_answer": "6020",
+  "explanation": "The bin holds 27 x 20 x 13 = 7020 cubic centimeters. The cube takes up 10 x 10 x 10 = 1000 cubic centimeters. The space left is 7020 - 1000 = 6020 cubic centimeters.",
+  "solve": "return 27*20*13 - 10*10*10;",
+  "distractor_solve": {
+   "6420": "return 27*20*13 - 6*10*10;",
+   "6920": "return 27*20*13 - 10*10;",
+   "6990": "return 27*20*13 - 10*3;"
+  },
+  "mechanism": [
+   "volume of the bin",
+   "volume of the cube",
+   "subtract"
+  ],
+  "quantity_asked": "cubic centimeters of empty space in the bin",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option for the empty space cannot be checked without computing both volumes; there is no one-step check."
+  },
+  "distractor_meta": {
+   "6420": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts the cube's surface area instead of its volume",
+    "why": "The student finds the cube's six faces, 6 x 100 = 600, and subtracts that: 7020 - 600 = 6420."
+   },
+   "6920": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the area of one face as the space the cube takes up",
+    "why": "The student multiplies only two edges, 10 x 10 = 100, leaving out the third, and subtracts 100: 6920."
+   },
+   "6990": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": true,
+    "misconception": "cubes a number by multiplying it by 3",
+    "why": "The student writes 10 cubed as 10 x 3 = 30 and subtracts 30: 6990."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "return 27*20*(13-10);",
+   "direction": "below",
+   "why": "Counting only the layer above the cube (27 x 20 x 3 = 1620) undershoots the key."
+  },
+  "far_distractor": {
+   "option": "6920",
+   "natural_side": "below",
+   "why": "Leaving out the third edge is an omission, and omissions ordinarily make a volume come out too small; here the volume it shrinks is the part taken away, so the empty space comes out too LARGE."
+  },
+  "structure_check": "No. The stem has a quantity to compute (the bin) and one to remove (the cube). Counting only the space above the cube undershoots (1620); shrinking the cube overshoots. The wording does not sign the errors.",
+  "intermediate_check": "7020 (the bin) and 1000 (the cube) are the step values and neither is an option. 6420, 6920 and 6990 are not reached from the key through one printed rate. No.",
+  "cheap_bound_check": "The empty space is less than the whole bin, 7020; that strikes nothing (every option is below 7020). The cube is 10 x 10 x 10, so at least 1000 must come off, which is the work itself. Every distractor sits on the far side only by its own error.",
+  "shape_check": "The stem hands over: positive, a whole number, less than 7020. All four survive; all end in 0.",
+  "interior_parity_check": "Middle values 6420 and 6920: both four-digit numbers ending in 20; same form. The key is an end value.",
+  "arith_class_check": "All four end in 0 and are even; none is a multiple of 1000. The key is not alone in a class.",
+  "dup_search": {
+   "queries": [
+    "bin|box&cube&not filled|empty|space",
+    "cube&placed inside|placed in",
+    "rectangular prism&cube&cubic centimeters of space"
+   ],
+   "hits_read": 9,
+   "nearest": "MM3 \"Empty space in a cube around a ball\" (excluded, g8): sphere in a cube with 3.14. Here both solids are rectangular prisms and the errors are about volume vs area of the cube; grade 7 prism volume. MM2 \"cubes still needed to fill a box\" (excluded, g5) counts layers."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "space < bin volume 7020: strikes nothing",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: all even",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: all end in 0",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "space > 7020 - (a box the cube fits in) is the work itself: none",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go and strike all three? No: counting only the layer above the cube undershoots; shrinking the cube overshoots. Does one bound strike all three? No bound read without the work strikes any. Could a student check an option in one routine step? No. Solved intermediate: none (7020 and 1000 are not options). Is this really a low item for grade 7? Yes: two prism volumes and a subtraction. Cheapest bound: \"less than 7020\", striking none. (read) FORM/slip lines, if any: 6990 is the one computational slip."
+  }
+ },
+ {
+  "id": "MV2-G56-23",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 6,
+  "tier": "low",
+  "rit_band": "RIT 200-209",
+  "difficulty": "easy",
+  "ccss": "6.G.A.3",
+  "subskill": "Area of a square from one side that crosses the x-axis",
+  "grade_rationale": "Low for grade 6: 6.G.A.3 - the side from (-5, 4) to (-5, -5) has length 4 - (-5) = 9, so the square's area is 81. Two routine steps; most grade-6 students do them.",
+  "prompt": "In the coordinate plane, the points (-5, 4) and (-5, -5) are the ends of one side of a square. What is the area of the square, in square units?",
+  "choices": [
+   "81",
+   "36",
+   "25",
+   "64"
+  ],
+  "correct_answer": "81",
+  "explanation": "Both points have x-coordinate -5, so the side is vertical. Its length is 4 - (-5) = 9 units. The area of the square is 9 x 9 = 81 square units.",
+  "solve": "const s = 4 - (-5); return s*s",
+  "distractor_solve": {
+   "25": "return 5*5",
+   "36": "return 4*(4 - (-5))",
+   "64": "return (4 - (-5) - 1)**2"
+  },
+  "mechanism": [
+   "side across zero: 4 - (-5)",
+   "square the side"
+  ],
+  "quantity_asked": "area of the square in square units",
+  "plugback": {
+   "substitutable": false,
+   "why": "An area cannot be checked without the side length, which is the work."
+  },
+  "distractor_meta": {
+   "25": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the repeated x-coordinate 5 as the side length",
+    "why": "The student sees -5 in both points and squares 5."
+   },
+   "36": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "finds the perimeter of the square instead of its area",
+    "why": "The student multiplies the side 9 by 4."
+   },
+   "64": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "skips zero when counting units from 4 down to -5",
+    "why": "Counting 4, 3, 2, 1, -1, -2, -3, -4, -5 and leaving out 0, the student gets a side of 8 and squares it."
+   }
+  },
+  "counter_error": {
+   "error_kind": "other",
+   "solve": "return (4 - (-5) + 1)**2",
+   "direction": "above",
+   "why": "Counting grid points on the side (10) and squaring gives 100, past the key."
+  },
+  "far_distractor": {
+   "option": "36",
+   "natural_side": "above",
+   "why": "Perimeter is LARGER than area for small squares (a 3-by-3 square has perimeter 12 but area 9), so mixing them up usually overshoots; for this 9-unit square the perimeter 36 lands below the area."
+  },
+  "structure_check": "No extremum or quantifier. Errors split: counting grid points overshoots (100), the other three undershoot. The stem does not sign every error.",
+  "intermediate_check": "36: no - 4 x 9, not on the route. 25: no - 5 x 5. 64: no - 8 x 8 from a miscounted side. The side 9 is not offered; 81 does not follow from any option through one printed number.",
+  "cheap_bound_check": "Cheapest one-sided bound: the side is longer than 5 (it crosses the axis from 4 down to -5), so the area is more than 25, which strikes 25 only; 36 and 64 sit on the key's side of it.",
+  "shape_check": "Whole number: all survive. A perfect square (it is a square's area): all four survive. Four survive.",
+  "interior_parity_check": "Middle values 36 and 64: both two-digit even perfect squares; the key is not interior.",
+  "arith_class_check": "All four options are perfect squares; key 81 is odd like 25. No class isolates it.",
+  "dup_search": {
+   "queries": [
+    "square&vertices|corners&-",
+    "square&side&coordinate",
+    "same x-coordinate&distance"
+   ],
+   "hits_read": 22,
+   "nearest": "excluded MMG-G01 (square side from (4, 6) and (4, 13), first quadrant) and MM4-N11 (distance with the same x): mine crosses the x-axis, and the distractors are the repeated coordinate, skipping zero and the perimeter."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "the side is longer than 5, so the area is more than 25",
+    "strikes": [
+     "25"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: no parity implied",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "a square's area is a perfect square: strikes nothing",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, errors split: counting grid points overshoots, the rest undershoot. The cheapest read (side longer than 5) strikes only 25; every option is a perfect square, so that class strikes nothing, and 36, 64, 81 need the side across zero. Plug-in is not possible. No distractor is a solved intermediate (9 is not offered). Low for grade 6. Cheapest bound strikes one. (read) MMG-G01: a first-quadrant square; here the side crosses the x-axis, with skip-zero and repeated-coordinate errors. FORM (read) lines are advisory in Geometry; last-digit and parity differences are covered in bound_screen."
+  }
+ },
+ {
+  "id": "MV2-G78-22",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 8,
+  "tier": "low",
+  "rit_band": "RIT 210-219",
+  "difficulty": "easy",
+  "ccss": "8.G.C.9",
+  "subskill": "Volume of glass in a cup with a hollow inside",
+  "grade_rationale": "Low for grade 8 (8.G.C.9). Two routine cylinder volumes with every dimension printed (outer 7 by 12, inner 6 by 10), then subtract. Most of grade 8 does this; the slips are giving the inside space or forgetting to square a radius.",
+  "prompt": "A drinking glass is a solid cylinder of glass with a cylinder-shaped space hollowed out of it. The outside of the glass is a cylinder with a radius of 7 centimeters and a height of 12 centimeters. The hollow space is a cylinder with a radius of 6 centimeters and a depth of 10 centimeters. Using 3.14 for pi, what is the volume of the glass itself, in cubic centimeters?",
+  "choices": [
+   "1486.32",
+   "715.92",
+   "1657.92",
+   "1130.4"
+  ],
+  "correct_answer": "715.92",
+  "explanation": "Outside cylinder: 3.14 x 7 x 7 x 12 = 1846.32 cubic cm. Hollow space: 3.14 x 6 x 6 x 10 = 1130.4 cubic cm. Glass: 1846.32 - 1130.4 = 715.92 cubic centimeters.",
+  "solve": "return Math.round((3.14*7*7*12 - 3.14*6*6*10)*100)/100;",
+  "distractor_solve": {
+   "1130.4": "return Math.round(3.14*6*6*10*100)/100;",
+   "1657.92": "return Math.round((3.14*7*7*12 - 3.14*6*10)*100)/100;",
+   "1486.32": "return Math.round((3.14*7*7*12 - 6*6*10)*100)/100;"
+  },
+  "mechanism": [
+   "volume of the outside cylinder",
+   "volume of the hollow cylinder",
+   "subtract"
+  ],
+  "quantity_asked": "volume of the glass in cubic centimeters",
+  "plugback": {
+   "substitutable": false,
+   "why": "No option can be checked against the stem without computing both cylinder volumes."
+  },
+  "distractor_meta": {
+   "1130.4": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "gives the volume of the hollow space instead of the glass",
+    "why": "The student computes the inside, 3.14 x 36 x 10 = 1130.4, which is how much the glass holds."
+   },
+   "1657.92": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "forgets to square the inner radius",
+    "why": "The student finds the hollow as 3.14 x 6 x 10 = 188.4: 1846.32 - 188.4 = 1657.92."
+   },
+   "1486.32": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": true,
+    "misconception": "leaves pi out of the second volume",
+    "why": "The student subtracts 6 x 6 x 10 = 360 without the 3.14: 1846.32 - 360 = 1486.32."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "return Math.round(3.14*(7-6)*(7-6)*12*100)/100;",
+   "direction": "below",
+   "why": "Subtracting the radii first and using a 1 cm radius gives 3.14 x 1 x 12 = 37.68, far below the key."
+  },
+  "far_distractor": {
+   "option": "1657.92",
+   "natural_side": "below",
+   "why": "Forgetting to square a radius is an omission that ordinarily makes a volume too small; here the volume it shrinks is the hollow being taken away, so the glass comes out too LARGE."
+  },
+  "structure_check": "No. Subtracting the radii first undershoots (37.68), while the offered slips overshoot. The wording does not tell a student every slip raises the answer.",
+  "intermediate_check": "1846.32 (outside) and 1130.4 (hollow) are the step values. 1130.4 is offered: it is the hollow's volume, a wrong-quantity answer, and the key does not follow from it through ONE printed number (it needs the derived 1846.32). 1657.92 and 1486.32 are not step values.",
+  "cheap_bound_check": "The glass is less than the whole outside cylinder (1846.32 once computed); that strikes nothing (every option is below it).",
+  "shape_check": "The stem hands over: positive, less than 1846.32, two decimal places. All four survive together.",
+  "interior_parity_check": "Middle values 1130.4 and 1486.32: both four-digit decimals from 3.14 products; the key is an end value.",
+  "arith_class_check": "All four are decimals; the key is not alone in a class.",
+  "dup_search": {
+   "queries": [
+    "glass&thick|wall&thick",
+    "hollow&cylinder|hollowed",
+    "pipe|tube&inner|hollow"
+   ],
+   "hits_read": 5,
+   "nearest": "ACT fb128ea5 steel pipe: outer and inner radius with the SAME length, a ring times a length. Here the hollow is shorter than the outside (10 vs 12) so the ring shortcut fails and two whole volumes must be found."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "glass < outside cylinder 1846.32: strikes nothing",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "glass > 0: strikes nothing",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go and strike all three? No: subtracting radii first undershoots (37.68, not offered). Does one bound strike all three? No bound strikes any. Could a student check an option in one routine step? No. Solved intermediate: 1130.4 is the hollow's volume (a different quantity), not one printed number from the key. Is this really a low item for grade 8? Yes: two cylinder volumes, all dimensions printed, then a subtraction. Cheapest bound: none strikes."
+  }
+ },
+ {
+  "id": "MV2-G78-03",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 7,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "7.G.B.5",
+  "subskill": "Vertical and complementary angles in one equation",
+  "grade_rationale": "High for grade 7 (7.G.B.5). Two angle facts must be chained: angle 2 equals angle 1 (vertical), and angle 2 plus angle 3 is 90 (complementary). The student must substitute the expression for angle 1 into the complementary equation, solve 5x + 15 = 90, and evaluate the right expression. Many grade 7 students stop at x or use 180.",
+  "prompt": "Angle 1 and angle 2 are vertical angles. Angle 2 and angle 3 are complementary. Angle 1 measures (3x + 5) degrees, and angle 3 measures (2x + 10) degrees. What is the measure of angle 2, in degrees?",
+  "choices": [
+   "15",
+   "104",
+   "50",
+   "20"
+  ],
+  "correct_answer": "50",
+  "explanation": "Vertical angles are equal, so angle 2 = angle 1 = 3x + 5. Complementary angles add to 90 degrees: (3x + 5) + (2x + 10) = 90, so 5x + 15 = 90, 5x = 75, and x = 15. Angle 2 = 3(15) + 5 = 50 degrees.",
+  "solve": "const x = (90 - 5 - 10)/5; return 3*x + 5;",
+  "distractor_solve": {
+   "15": "return (90 - 5 - 10)/5;",
+   "20": "const x = 10 - 5; return 3*x + 5;",
+   "104": "const x = (180 - 15)/5; return 3*x + 5;"
+  },
+  "mechanism": [
+   "vertical angles are equal",
+   "complementary angles sum to 90",
+   "solve 5x + 15 = 90 and evaluate 3x + 5"
+  ],
+  "quantity_asked": "measure of angle 2 in degrees",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const x = (v - 5)/3; return Math.abs(v + (2*x + 10) - 90) < 1e-9;",
+   "why": "A student can take an option as angle 2, solve 3x + 5 = option for x, find angle 3 = 2x + 10, and check that the two add to 90. The key is the third option in ascending order."
+  },
+  "distractor_meta": {
+   "15": {
+    "error_kind": "partial_answer",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "stops at the value of x",
+    "why": "The student solves 5x + 15 = 90 correctly and reports x = 15 as the angle."
+   },
+   "20": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "treats angle 1 and angle 3 as the vertical pair",
+    "why": "The student sets 3x + 5 = 2x + 10, gets x = 5, and finds angle 2 = 3(5) + 5 = 20."
+   },
+   "104": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses 180 for complementary angles",
+    "why": "The student sets (3x + 5) + (2x + 10) = 180, gets x = 33, and finds angle 2 = 104."
+   }
+  },
+  "structure_check": "Interior key; the stem names no extremum or universal quantifier.",
+  "intermediate_check": "15 is x, a step value, but the key is not reached from it by ONE printed rate (it needs 3x + 5, two operations with printed numbers); it is a stop-early error a teacher sees, and it is the one partial_answer. 20 and 104 never occur in the correct work. No distractor follows from the key through one printed relation.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: angle 2 is positive and, as part of a complementary pair, less than 90. 15, 20 and 50 survive both; three options survive together.",
+  "interior_parity_check": "The two middle values are 20 and 50: both two-digit whole numbers ending in 0; the key is not the cleaner one.",
+  "arith_class_check": "Two options end in 0, two in 5 or 4; the key shares its class with 20. Not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "vertical angles&complementary",
+    "vertical&\\(\\dx \\+",
+    "complementary&\\dx"
+   ],
+   "hits_read": 7,
+   "nearest": "MM3 \"Name the vertical pair, solve, then find the adjacent angle\" (excluded list, g7): vertical pair set EQUAL, then a supplement. Here the vertical fact is a substitution into a complementary SUM with the third angle; the equation and the final step differ. ISEE \"supplement is 4 times the complement\" uses one angle only."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "none: no printed number caps the angle except the 90 below",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: units digit needs x",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "angle 2 is part of a complementary pair, so less than 90",
+    "strikes": [
+     "104"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Could a student check an option in one routine step? Checking needs three steps (solve for x, find angle 3, add), so substitution is slower than solving; the key sits at try 3 ascending anyway. Solved intermediate: 15 is x, a stop-early value that the key does not follow from by one printed rate. Is this really a high item for grade 7? Yes: two relationships must be chained into one equation, and the 180 and vertical-pair confusions are common. Cheapest bound: \"less than 90\", striking only 104. (read) PAIR ratio 50/15 and 50/20 equal ratios of two printed numbers (10/3, 5/2): coincidences of small printed numbers; no student path forms them. (read) closest earlier MAP item MM3-G21 (complementary P and Q, supplements differ by 40): a difference of supplements; here a vertical pair is substituted into a complementary sum with expressions, so the chain differs."
+  }
+ },
+ {
+  "id": "MV2-G56-17",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "6.G.A.3",
+  "subskill": "Area of a right trapezoid whose vertices cross the axes",
+  "grade_rationale": "High for grade 6: 6.G.A.3 with 6.G.A.1 - side lengths come from coordinates on both sides of zero (9 - (-8) = 17, 5 - (-5) = 10) and the top side from two positive x-values (9 - 2 = 7), then the trapezoid is decomposed (rectangle 7 x 10 plus a triangle 10 by 10) or averaged. Strong grade-6 students handle the signs and the shape together; most slip on one.",
+  "prompt": "A patio is drawn on a map in the coordinate plane, with one unit standing for one foot. Going around the patio, its four corners are at (-8, -5), (9, -5), (9, 5), and (2, 5). How many square feet does the patio cover?",
+  "choices": [
+   "140",
+   "120",
+   "145",
+   "135"
+  ],
+  "correct_answer": "120",
+  "explanation": "The bottom side runs from x = -8 to x = 9, so it is 17 feet. The top side runs from x = 2 to x = 9, so it is 7 feet. The right side runs from y = -5 to y = 5, so the height is 10 feet. Split the patio into a rectangle 7 by 10 (70 square feet) and a right triangle with legs 10 and 10 (50 square feet): 70 + 50 = 120 square feet.",
+  "solve": "const b1 = 9 - (-8), b2 = 9 - 2, h = 5 - (-5); return (b1 + b2) / 2 * h",
+  "distractor_solve": {
+   "135": "return (9 - (-8)) * (5 - (-5)) - (9 - 2) * (5 - (-5)) / 2",
+   "140": "return ((9 - (-8)) + (9 + 2)) / 2 * (5 - (-5))",
+   "145": "return (9 - (-8)) * (5 - (-5)) - 5 * (5 - (-5)) / 2"
+  },
+  "mechanism": [
+   "side lengths across zero",
+   "top base 7 - 2",
+   "trapezoid as rectangle plus triangle"
+  ],
+  "quantity_asked": "area of the patio in square feet",
+  "plugback": {
+   "substitutable": false,
+   "why": "An area cannot be checked against the stem without finding the side lengths and decomposing the shape, which is the work."
+  },
+  "distractor_meta": {
+   "135": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the top side (7 feet) as the leg of the corner triangle",
+    "why": "Starting from the 17-by-10 rectangle, the student takes away a triangle 7 by 10 (35), mixing up the top side with the cut-off corner."
+   },
+   "140": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds the x-coordinates 9 and 2 for the top side instead of subtracting",
+    "why": "The student treats the top side like the bottom one (which crosses zero) and adds 9 + 2 = 11."
+   },
+   "145": {
+    "error_kind": "wrong_variable",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "cuts off a corner triangle whose bottom leg is the y-coordinate 5 instead of the 10-foot gap between x = -8 and x = 2",
+    "why": "Starting from the 17-by-10 rectangle (170), the student reads the slanted corner as a triangle 5 by 10 and takes away 25."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "return ((9 - 8) + (9 - 2)) / 2 * (5 - (-5))",
+   "direction": "below",
+   "why": "Dropping the negative sign on -8 for the bottom side (9 - 8 = 1) gives 40, below the key."
+  },
+  "far_distractor": {
+   "option": "135",
+   "natural_side": "below",
+   "why": "Mixing up which length belongs to which piece can go either way; here the student takes away a triangle that is too SMALL (7 by 10 instead of 10 by 10), and taking away too little overshoots, so 135 lands above the key although the same mix-up on the rectangle part would land below."
+  },
+  "structure_check": "No extremum or quantifier. Errors split: dropping a negative sign undershoots (40); a wrong corner triangle or adding coordinates overshoots. The stem does not sign every error.",
+  "intermediate_check": "145: no - 170 - 25. 135: no - 170 - 35. 140: no - from a wrong top side 11. The surrounding rectangle 170, the sides 17, 7, 10 and the parts 70, 50 are not offered.",
+  "cheap_bound_check": "Cheapest one-sided bound: the patio fits inside the 17-by-10 rectangle (170) and holds the 7-by-10 rectangle (70); both strike nothing. Area = 5 x (sum of whole-number bases) makes it a multiple of 5, and every option is a multiple of 5.",
+  "shape_check": "Whole number: all survive. Between 70 and 170: all survive. Multiple of 5: all survive. Four survive.",
+  "interior_parity_check": "Middle values 135 and 140: both three-digit multiples of 5; the key is not interior.",
+  "arith_class_check": "All options are multiples of 5; 120 and 140 are even, 135 and 145 odd, and parity needs the sum of the bases (24), which is the work.",
+  "dup_search": {
+   "queries": [
+    "trapezoid&coordinate|vertices",
+    "garden|plot&coordinate&area",
+    "vertices&area&-"
+   ],
+   "hits_read": 12,
+   "nearest": "excluded MMG-G?? (pentagon across the axes) and DB staged parallelogram (A(-5,-5)...): mine is a right trapezoid whose top base lies on one side of zero, with the add-the-coordinates error; sat GEOH2-13 is a first-quadrant trapezoid with an equal-area segment."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "no more than the 17-by-10 rectangle around it (170): strikes nothing",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: all even",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "more than the 7-by-10 rectangle inside it (70), and a multiple of 5: strikes nothing",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "REVISED after the screen (170 was the bounding rectangle and 132 failed the multiple-of-5 read). Every option is now a multiple of 5 between 70 and 170, so the bounding-box and multiple-of-5 reads strike nothing; 135, 140 and 145 need the top side and the corner triangle. Covering the work, errors split: a dropped negative sign goes below (40), the rest above. Plug-in is not possible. No distractor is a solved intermediate (170, 17, 7, 10, 70, 50 are not offered). (read) PAIR 120/135 = 8/9: a coincidence of 120 = 8 x 15 and 135 = 9 x 15, not a stem route. High for grade 6: signs across zero plus decomposition. Cheapest bound strikes none. (read) PLUG try 1: needs side lengths and a decomposition. MMG-G08 (pentagon across the axes) is a five-sided decomposition; this is a right trapezoid with a same-side top base and the add-the-coordinates error. FORM (read) lines are advisory in Geometry; last-digit and parity differences are covered in bound_screen."
+  }
+ },
+ {
+  "id": "MV2-G78-15",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 8,
+  "tier": "mid",
+  "rit_band": "RIT 220-229",
+  "difficulty": "medium",
+  "ccss": "8.G.C.9",
+  "subskill": "Volume of a ball resting on a cylinder base",
+  "grade_rationale": "Mid for grade 8 (8.G.C.9). Two real steps: a sphere volume (4/3 x 3.14 x 27) and a cylinder volume (3.14 x 25 x 4), then add. About half the grade applies both formulas correctly; the 4/3 and area-for-volume slips are common.",
+  "prompt": "A trophy is made of a solid ball resting on a solid cylinder. The ball has a radius of 3 centimeters. The cylinder has a radius of 5 centimeters and a height of 4 centimeters. Using 3.14 for pi, what is the total volume of the trophy, in cubic centimeters?",
+  "choices": [
+   "351.68",
+   "427.04",
+   "238.64",
+   "398.78"
+  ],
+  "correct_answer": "427.04",
+  "explanation": "Ball: 4/3 x 3.14 x 3 x 3 x 3 = 4/3 x 3.14 x 27 = 113.04 cubic cm. Cylinder: 3.14 x 5 x 5 x 4 = 314 cubic cm. Total: 113.04 + 314 = 427.04 cubic centimeters.",
+  "solve": "return Math.round(((4/3)*3.14*27 + 3.14*25*4)*100)/100;",
+  "distractor_solve": {
+   "398.78": "return Math.round((3.14*27 + 3.14*25*4)*100)/100;",
+   "238.64": "return Math.round(((4/3)*3.14*27 + 2*3.14*5*4)*100)/100;",
+   "351.68": "return Math.round(((4/3)*3.14*9 + 3.14*25*4)*100)/100;"
+  },
+  "mechanism": [
+   "sphere volume 4/3 x 3.14 x r^3",
+   "cylinder volume 3.14 x r^2 x h",
+   "add the two parts"
+  ],
+  "quantity_asked": "total volume of the trophy in cubic centimeters",
+  "plugback": {
+   "substitutable": false,
+   "why": "A volume option cannot be checked by substitution; both parts must be computed."
+  },
+  "distractor_meta": {
+   "398.78": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "leaves out the 4/3 in the sphere formula",
+    "why": "The student finds the ball as 3.14 x 27 = 84.78: 84.78 + 314 = 398.78."
+   },
+   "238.64": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the cylinder's curved surface area instead of its volume",
+    "why": "The student finds 2 x 3.14 x 5 x 4 = 125.6 for the cylinder: 113.04 + 125.6 = 238.64."
+   },
+   "351.68": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "squares the ball's radius instead of cubing it",
+    "why": "The student uses 4/3 x 3.14 x 9 = 37.68 for the ball: 37.68 + 314 = 351.68."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "return Math.round(((4/3)*3.14*216 + 3.14*25*4)*100)/100;",
+   "direction": "above",
+   "why": "Using the ball's diameter, 6, as its radius gives 904.32 for the ball and 1218.32 in all, far above the key."
+  },
+  "far_distractor": {
+   "option": "238.64",
+   "natural_side": "above",
+   "why": "Swapping a curved-surface area for a volume is not one-directional: for a radius under 2 the area number is the larger one, so it often overshoots; with radius 5 and height 4 it lands below."
+  },
+  "structure_check": "No. The stem has two parts to add; using the ball's diameter as its radius overshoots (1218.32), while the offered slips undershoot. The wording does not sign the errors.",
+  "intermediate_check": "113.04 (ball) and 314 (cylinder) are the step values; neither is an option. 398.78, 238.64 and 351.68 are not reached from the key through one printed rate. No.",
+  "cheap_bound_check": "The trophy is more than the cylinder alone (314); that strikes 238.64 only. 351.68 and 398.78 sit above it, on the key's side.",
+  "shape_check": "The stem hands over: positive, more than 314, two decimal places. 351.68, 398.78 and 427.04 survive together.",
+  "interior_parity_check": "Middle values 351.68 and 398.78: both three-digit numbers with two decimal places; same form.",
+  "arith_class_check": "All four have two decimal places. The key is not alone in a class.",
+  "dup_search": {
+   "queries": [
+    "trophy|ball&base|sphere&cylinder&rest",
+    "sphere&cylinder&total volume",
+    "ball&cylinder&3.14"
+   ],
+   "hits_read": 6,
+   "nearest": "ACT silo items: a cylinder capped by a HEMISPHERE of the same radius. Here a whole ball of a different radius sits on a wider cylinder; the parts are independent. MM2-G19 (excluded): cone plus half sphere."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "trophy > cylinder 314",
+    "strikes": [
+     "238.64"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "trophy < a 10 x 10 x 10 box around it (1000): strikes nothing",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go and strike all three? No: the diameter-for-radius slip overshoots (1218.32, not offered). Does one bound strike all three? No: \"more than the cylinder\" strikes only 238.64. Plug-back: none. Solved intermediate: none. Is this really a mid item for grade 8? Yes: two formulas, with the 4/3 and area slips splitting the grade. Cheapest bound: 314, one strike. (read) closest earlier MAP item MM2-G19: a cone plus a half sphere of the SAME radius; here a whole sphere sits on a wider cylinder, so different solids and formulas."
+  }
+ },
+ {
+  "id": "MV2-G78-14",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 8,
+  "tier": "high",
+  "rit_band": "RIT 230-239",
+  "difficulty": "hard",
+  "ccss": "8.G.B.7",
+  "subskill": "Cable between the tops of two poles of different heights",
+  "grade_rationale": "High for grade 8 (8.G.B.7, Pythagorean theorem in a real-world problem). The decision point is building the right triangle: the vertical leg is the DIFFERENCE of the heights (15 - 6 = 9), not either height; then the hypotenuse with a rounding. Stronger students set it up; many use a pole height as the leg.",
+  "prompt": "Two poles stand straight up on level ground, 14 meters apart. One pole is 15 meters tall and the other is 6 meters tall. A cable is stretched straight from the top of one pole to the top of the other. How long is the cable, to the nearest tenth of a meter?",
+  "choices": [
+   "20.5",
+   "14.3",
+   "16.6",
+   "15.2"
+  ],
+  "correct_answer": "16.6",
+  "explanation": "Draw a horizontal line from the top of the short pole to the tall pole. It is 14 m long, and it meets the tall pole 15 - 6 = 9 m below its top. The cable is the hypotenuse of a right triangle with legs 14 and 9: the square root of (196 + 81) = the square root of 277, about 16.64. To the nearest tenth, 16.6 meters.",
+  "solve": "return Math.round(Math.sqrt(14*14 + (15-6)*(15-6))*10)/10;",
+  "distractor_solve": {
+   "20.5": "return Math.round(Math.sqrt(14*14 + 15*15)*10)/10;",
+   "15.2": "return Math.round(Math.sqrt(14*14 + 6*6)*10)/10;",
+   "14.3": "return Math.round(Math.sqrt(14*14 + (15-6))*10)/10;"
+  },
+  "mechanism": [
+   "vertical leg = difference of heights",
+   "Pythagorean theorem with legs 14 and 9",
+   "round to the nearest tenth"
+  ],
+  "quantity_asked": "length of the cable in meters, to the nearest tenth",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option could be squared and compared with 196 + 81, but only after the student has found the 9 m leg, which is the whole decision; there is no routine one-step check of a rounded length."
+  },
+  "distractor_meta": {
+   "20.5": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the tall pole's full height as the vertical leg",
+    "why": "The student makes the triangle with legs 14 and 15, as if the cable ran to the foot of the short pole: the square root of 421, about 20.5."
+   },
+   "15.2": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the short pole's height as the vertical leg",
+    "why": "The student uses 6 as the vertical leg: the square root of (196 + 36) = the square root of 232, about 15.2."
+   },
+   "14.3": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": true,
+    "misconception": "forgets to square one leg",
+    "why": "The student finds the 9 m leg but adds 9 instead of 81: the square root of 205, about 14.3."
+   }
+  },
+  "structure_check": "Interior key; the stem names no extremum or universal quantifier.",
+  "intermediate_check": "9 (the leg), 196, 81 and 277 are the step values; none is an option. 20.5, 15.2 and 14.3 are not reached from the key through one printed rate. No.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: the cable is longer than the 14 m gap and shorter than 14 + 9 = 23; positive; rounded to tenths. All four options exceed 14 and are under 23, so every option survives every property.",
+  "interior_parity_check": "The middle values are 15.2 and 16.6: both one-decimal numbers, neither cleaner; the key is not the rounder one.",
+  "arith_class_check": "All four are one-decimal numbers with non-zero tenths; the key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "zip line|cable|wire&poles?|towers?",
+    "two poles|two towers",
+    "tops? of&poles?|towers?&apart"
+   ],
+   "hits_read": 5,
+   "nearest": "No live item stretches a line between tops of unequal poles. SSAT/ISEE lamp-post items use similar triangles for shadows; ladders slide on one wall. The difference-of-heights leg is the new step here."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "cable > 14 m gap: strikes nothing (every option exceeds 14)",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: tenths",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: a rounded square root",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "cable < 14 + 9 = 23: strikes nothing",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "low",
+   "note": "Lower-interior key: could a student check an option in one routine step? Squaring 16.6 and comparing with 277 needs the 9 m leg first, which is the decision; no routine check. Solved intermediate: none. Is this really a high item for grade 8? Yes: building the triangle with the height difference is where only stronger students succeed; the tall-pole and short-pole legs are both tempting. Cheapest bound: \"longer than 14\" or \"shorter than 23\", each striking none."
+  }
+ },
+ {
+  "id": "MV2-G56-21",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 6,
+  "tier": "low",
+  "rit_band": "RIT 200-209",
+  "difficulty": "easy",
+  "ccss": "6.G.A.1",
+  "subskill": "Area of a right triangle when all three sides are given",
+  "grade_rationale": "Low for grade 6: 6.G.A.1 - the two sides along the walls meet at the right angle, so the area is 1/2 x 9 x 12. One routine step; most grade-6 students get it, though some use the long front edge or forget the half.",
+  "prompt": "The reading corner of a classroom has a shelf shaped like a right triangle. The two edges that run along the walls are 9 inches and 12 inches long and meet at a right angle. The front edge is 15 inches long. What is the area of the shelf, in square inches?",
+  "choices": [
+   "90",
+   "36",
+   "108",
+   "54"
+  ],
+  "correct_answer": "54",
+  "explanation": "The two edges along the walls are perpendicular, so they are the base and height. Area = 1/2 x 9 x 12 = 54 square inches.",
+  "solve": "return 9*12/2",
+  "distractor_solve": {
+   "36": "return 9 + 12 + 15",
+   "90": "return 12*15/2",
+   "108": "return 9*12"
+  },
+  "mechanism": [
+   "the legs are base and height",
+   "half of 9 x 12"
+  ],
+  "quantity_asked": "area of the shelf in square inches",
+  "plugback": {
+   "substitutable": false,
+   "why": "An area cannot be checked against the stem except by computing 1/2 x 9 x 12."
+  },
+  "distractor_meta": {
+   "36": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "finds the perimeter instead of the area",
+    "why": "The student adds the three edges 9 + 12 + 15."
+   },
+   "90": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the long front edge as the height",
+    "why": "The student multiplies 12 by the 15-inch front edge and halves it, picking the two longest sides."
+   },
+   "108": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "forgets to take half for a triangle",
+    "why": "The student multiplies 9 x 12 as if the shelf were a rectangle."
+   }
+  },
+  "structure_check": "interior key: no S/L structure check needed; no stem word signs the errors.",
+  "intermediate_check": "90: no - 12 x 15 / 2. 36: no - a perimeter. 108: YES in form - 9 x 12 is one step from the key (halving uses no printed number); kept as the classic forgot-the-half error and declared.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "Whole number: all survive. Less than 9 x 12 = 108 (a triangle is half a rectangle): 90, 36, 54 survive. Three survive.",
+  "interior_parity_check": "Middle values 54 and 90: both two-digit even whole numbers; the key is not the cleaner one.",
+  "arith_class_check": "All options are multiples of 9 and of 2 except none; no class isolates the key.",
+  "dup_search": {
+   "queries": [
+    "right triangle&area",
+    "corner&shelf|triangle",
+    "triangle&base&height&sides|slanted"
+   ],
+   "hits_read": 20,
+   "nearest": "excluded MMG (right triangle as half a rectangle, cloth cut on a diagonal) and isee 5af03450 (base 14, height 9): mine gives all three sides of a 9-12-15 right triangle so the student must pick the legs; distractors use the hypotenuse and the perimeter."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "less than the 9-by-12 rectangle (108) because a right triangle is half of it",
+    "strikes": [
+     "108"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: all even",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "none: an area unit read strikes nothing cheaply",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Interior key. The half-a-rectangle read strikes only 108; 36, 54 and 90 remain and need the legs chosen. Plug-in is the work. 108 is one halving from the key (declared). Low for grade 6: one routine step. Cheapest bound strikes one. (read) PAIR 54/90 = 9/15 and 54 - 36 = 18 = 2 x 9: the ratio is the leg swap (9 for 15), not a free route; 36 is the perimeter. (read) PLUG try 2: no condition to test. FORM (read) lines are advisory in Geometry; last-digit and parity differences are covered in bound_screen."
+  }
+ }
+]

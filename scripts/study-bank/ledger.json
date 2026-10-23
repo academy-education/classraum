@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-23T08:46:19.581Z",
+  "generatedAt": "2026-10-23T18:59:55.528Z",
   "note": "Generated from the real result files. Numbers are computed, not transcribed.",
   "baselines": [
     {
@@ -12408,6 +12408,178 @@
           "passed": true,
           "contentSha": "494d8317bd14ecd0184c87d34e4d178ec34532f383ba1a9660f5f59fa2d0264c",
           "verdict": "Kept 24: verify-answer-key-spread --batch ok (latent; re-shuffled per session); key strictly longest 2/24, strictly shortest 4/24. Graders named: verb x pronoun grid (4 items, 3 held), ellipsis family (4, 2 held), \"dash never keyed\", \"mismatched pronoun pair wins 3/4\" (pronoun items: A-06, C-05, D-06 held; B-06 kept). Recorded by name."
+        }
+      }
+    },
+    {
+      "id": "map-math-v2-oa-2026-10-24",
+      "createdAt": "2026-10-24",
+      "targetTest": "map",
+      "section": "math",
+      "task": "multiple_choice",
+      "family": "mc_stem_source",
+      "cohort": "map-math-v2-oa",
+      "contentSha": "8d32e203fdf4168af1c5f1c407b60754a86778605285e07dc7005a477a27430d",
+      "status": "qc",
+      "note": "map-v2 Math batch 1, Operations and Algebraic Thinking (scripts/study-bank/MAP-MATH-V2.prereg.md; MAP-PLAN-2026-10-23 §3.1). Assembled 43 from O56 + O78; frozen 18 as this area's own batch (sha f9b168a72b66c0f8); 15 survivors after the graders. contentSha = sha256 of scripts/study-bank/map-math-v2-oa.inserted.batch.json; qc scripts/study-bank/map-math-v2-oa.qc.json. Written by map-math-v2.mjs insert-prep, which re-derives every verdict from the reviewer files. Not inserted when recorded.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "8d32e203fdf4168af1c5f1c407b60754a86778605285e07dc7005a477a27430d",
+          "n": 15,
+          "verdict": "Stage 0: 43/43 PART OK at assemble (math-check: sandbox key + every distractor, slot, LONE, bound screen, misconceptions, mf27-mf30 construction checks, near-dup vs live ISEE/SSAT and every earlier MAP item). Cold screen pass 1: 29 of 43 failed, returned once (revised 4, withdrawn 25, stood 0); pass 2: 0 still failed, recorded and not dropped (the screen never drops on one screener). Frozen 18, no per-area minimum. Survivors: math-check 15/15 PART OK; math-bank-helper verify on this file Sandbox 15/15; Distractors: 45 of 45 recomputed across 15 item(s); 0 item(s) with a mismatch.."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "8d32e203fdf4168af1c5f1c407b60754a86778605285e07dc7005a477a27430d",
+          "n": 18,
+          "candidatePct": 29.6,
+          "control": 29.6,
+          "controlN": 18,
+          "margin": 0,
+          "verdict": "Options-only, three samples of one Claude solver, 18 frozen candidates vs 18 live ISEE oa controls matched 1:1 by tier (low->easy, mid/high->medium), blind sha 7c493e76745635da: 16/54 = 29.6% vs 16/54 = 29.6%, margin 0.0 (bar +10; control under the 90% ceiling); unanimous-correct rate 16.7% vs 22.2% (-5.6, bar +15; batch level only). Measures whether the option set alone decides an item; the stem-visible half is the graders'."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "8d32e203fdf4168af1c5f1c407b60754a86778605285e07dc7005a477a27430d",
+          "n": 18,
+          "coldOnKey": 36,
+          "kept": 15,
+          "verdict": "Two Claude graders per part (1 part(s)), cold then keyed, private folders; stage 1 snapshotted, hashed, chmod 444 before keyed.md; coldcheck re-run here 36 cold rows, 0 changed. 36/36 cold answers on key. Free elimination (R4 >= 2 struck, R5 key identifiable), exclusivity (R2), plug-back, option pair, one-sided / single bound and template rules: both graders -> drop, one -> tie-break grader F (3 item(s) to F, 2 of 3, tie -> drop). Dropped 3: MV2-O78-15 (R7 option pair (one grader + F)); MV2-O56-20 (EXT-1 drop_recommend); MV2-O56-01 (R11 template of an earlier item (one grader + F)). Grade fit recorded, not a drop rule: too_easy 4/36, too_hard 2/36, offsets -0.28/-0.22, tier spreads 1.83/1.83."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "8d32e203fdf4168af1c5f1c407b60754a86778605285e07dc7005a477a27430d",
+          "verdict": "Kept-set key at an extreme on this file: key at an extreme 6/15 = 40.0%; derived chance 50.0%, bar 0.8 x chance = 40.0%; 0 non-numeric excluded (of 15) (pass). Key letters in this file (with-source deal) {\"A\":5,\"B\":4,\"C\":2,\"D\":4}. Banked difficulty (graders' tier_assigned) easy 2 / medium 7 / hard 6. Unanimity compared to the control at batch level only. Screen-flagged survivors: 3."
+        }
+      }
+    },
+    {
+      "id": "map-math-v2-num-2026-10-24",
+      "createdAt": "2026-10-24",
+      "targetTest": "map",
+      "section": "math",
+      "task": "multiple_choice",
+      "family": "mc_stem_source",
+      "cohort": "map-math-v2-num",
+      "contentSha": "f24e8ca12f1ec2e8501b1be84c34a59962a6ccaa6cc03665a564668b46486b54",
+      "status": "qc",
+      "note": "map-v2 Math batch 1, Real and Complex Number Systems (scripts/study-bank/MAP-MATH-V2.prereg.md; MAP-PLAN-2026-10-23 §3.1). Assembled 63 from N56 + N7 + N8; frozen 38 as this area's own batch (sha f3991dd17837f0f1); 32 survivors after the graders. contentSha = sha256 of scripts/study-bank/map-math-v2-num.inserted.batch.json; qc scripts/study-bank/map-math-v2-num.qc.json. Written by map-math-v2.mjs insert-prep, which re-derives every verdict from the reviewer files. Not inserted when recorded.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "f24e8ca12f1ec2e8501b1be84c34a59962a6ccaa6cc03665a564668b46486b54",
+          "n": 32,
+          "verdict": "Stage 0: 63/63 PART OK at assemble (math-check: sandbox key + every distractor, slot, LONE, bound screen, misconceptions, mf27-mf30 construction checks, near-dup vs live ISEE/SSAT and every earlier MAP item, FORM and SLIP refusing). Cold screen pass 1: 38 of 63 failed, returned once (revised 10, withdrawn 25, stood 3); pass 2: 3 still failed, recorded and not dropped (the screen never drops on one screener). Frozen 38, no per-area minimum. Survivors: math-check 32/32 PART OK; math-bank-helper verify on this file Sandbox 32/32; Distractors: 96 of 96 recomputed across 32 item(s); 0 item(s) with a mismatch.."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "f24e8ca12f1ec2e8501b1be84c34a59962a6ccaa6cc03665a564668b46486b54",
+          "n": 38,
+          "candidatePct": 21.9,
+          "control": 31.6,
+          "controlN": 38,
+          "margin": -9.6,
+          "verdict": "Options-only, three samples of one Claude solver, 38 frozen candidates vs 38 live ISEE num controls matched 1:1 by tier (low->easy, mid/high->medium), blind sha 2d75fb402067c0fe: 25/114 = 21.9% vs 36/114 = 31.6%, margin -9.6 (bar +10; control under the 90% ceiling); unanimous-correct rate 15.8% vs 23.7% (-7.9, bar +15; batch level only). Measures whether the option set alone decides an item; the stem-visible half is the graders'."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "f24e8ca12f1ec2e8501b1be84c34a59962a6ccaa6cc03665a564668b46486b54",
+          "n": 38,
+          "coldOnKey": 76,
+          "kept": 32,
+          "verdict": "Two Claude graders per part (2 part(s)), cold then keyed, private folders; stage 1 snapshotted, hashed, chmod 444 before keyed.md; coldcheck re-run here 76 cold rows, 0 changed. 76/76 cold answers on key. Free elimination (R4 >= 2 struck, R5 key identifiable), exclusivity (R2), plug-back, option pair, one-sided / single bound and template rules: both graders -> drop, one -> tie-break grader F (6 item(s) to F, 2 of 3, tie -> drop). Dropped 6: MV2-N56-23 (R7 option pair (one grader + F)); MV2-N7-10 (EXT-1 drop_recommend); MV2-N7-04 (R7 option pair (one grader + F)); MV2-N8-19 (R8 one-sided extreme key (both); EXT-1 drop_recommend); MV2-N56-12 (R8 one-sided extreme key (both)); MV2-N8-03 (EXT-1 drop_recommend). Grade fit recorded, not a drop rule: too_easy 5/76, too_hard 7/76, offsets -0.05/-0.08, tier spreads 1.81/1.70."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "f24e8ca12f1ec2e8501b1be84c34a59962a6ccaa6cc03665a564668b46486b54",
+          "verdict": "Kept-set key at an extreme on this file: key at an extreme 20/32 = 62.5%; derived chance 50.0%, bar 0.8 x chance = 40.0%; 0 non-numeric excluded (of 32) (pass). Key letters in this file (with-source deal) {\"A\":6,\"B\":9,\"C\":10,\"D\":7}. Banked difficulty (graders' tier_assigned) easy 9 / medium 10 / hard 13. Unanimity compared to the control at batch level only. Screen-flagged survivors: 11."
+        }
+      }
+    },
+    {
+      "id": "map-math-v2-geo-2026-10-24",
+      "createdAt": "2026-10-24",
+      "targetTest": "map",
+      "section": "math",
+      "task": "multiple_choice",
+      "family": "mc_stem_source",
+      "cohort": "map-math-v2-geo",
+      "contentSha": "75b97a3e51b1d852773e73397c0a83cc65258217dd97c4ed18681f22217b7106",
+      "status": "qc",
+      "note": "map-v2 Math batch 1, Geometry (scripts/study-bank/MAP-MATH-V2.prereg.md; MAP-PLAN-2026-10-23 §3.1). Assembled 51 from G56 + G78; frozen 33 as this area's own batch (sha 1b5ce7abc7625f23); 22 survivors after the graders. contentSha = sha256 of scripts/study-bank/map-math-v2-geo.inserted.batch.json; qc scripts/study-bank/map-math-v2-geo.qc.json. Written by map-math-v2.mjs insert-prep, which re-derives every verdict from the reviewer files. Not inserted when recorded.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "75b97a3e51b1d852773e73397c0a83cc65258217dd97c4ed18681f22217b7106",
+          "n": 22,
+          "verdict": "Stage 0: 51/51 PART OK at assemble (math-check: sandbox key + every distractor, slot, LONE, bound screen, misconceptions, mf27-mf30 construction checks, near-dup vs live ISEE/SSAT and every earlier MAP item). Cold screen pass 1: 23 of 51 failed, returned once (revised 5, withdrawn 18, stood 0); pass 2: 0 still failed, recorded and not dropped (the screen never drops on one screener). Frozen 33, no per-area minimum. Survivors: math-check 22/22 PART OK; math-bank-helper verify on this file Sandbox 22/22; Distractors: 66 of 66 recomputed across 22 item(s); 0 item(s) with a mismatch.."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "75b97a3e51b1d852773e73397c0a83cc65258217dd97c4ed18681f22217b7106",
+          "n": 33,
+          "candidatePct": 21.2,
+          "control": 26.3,
+          "controlN": 33,
+          "margin": -5.1,
+          "verdict": "Options-only, three samples of one Claude solver, 33 frozen candidates vs 33 live ISEE geo controls matched 1:1 by tier (low->easy, mid/high->medium), blind sha 874145d8e0f7f330: 21/99 = 21.2% vs 26/99 = 26.3%, margin -5.1 (bar +10; control under the 90% ceiling); unanimous-correct rate 12.1% vs 24.2% (-12.1, bar +15; batch level only). Measures whether the option set alone decides an item; the stem-visible half is the graders'."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "75b97a3e51b1d852773e73397c0a83cc65258217dd97c4ed18681f22217b7106",
+          "n": 33,
+          "coldOnKey": 66,
+          "kept": 22,
+          "verdict": "Two Claude graders per part (1 part(s)), cold then keyed, private folders; stage 1 snapshotted, hashed, chmod 444 before keyed.md; coldcheck re-run here 66 cold rows, 0 changed. 66/66 cold answers on key. Free elimination (R4 >= 2 struck, R5 key identifiable), exclusivity (R2), plug-back, option pair, one-sided / single bound and template rules: both graders -> drop, one -> tie-break grader F (7 item(s) to F, 2 of 3, tie -> drop). Dropped 11: MV2-G56-13 (R8 one-sided extreme key (both); EXT-1 drop_recommend); MV2-G78-25 (EXT-1 drop_recommend); MV2-G56-20 (EXT-1 drop_recommend); MV2-G56-03 (R4 two or more free strikes (both); R8 one-sided extreme key (both); EXT-1 drop_recommend); MV2-G56-04 (R7 option pair (one grader + F)); MV2-G78-07 (R11 template of an earlier item (both); EXT-1 drop_recommend); MV2-G56-23 (R11 template of an earlier item (both)); MV2-G78-22 (R11 template of an earlier item (both)); MV2-G78-03 (R11 template of an earlier item (both)); MV2-G78-15 (R11 template of an earlier item (both)); MV2-G78-14 (R11 template of an earlier item (both)). Grade fit recorded, not a drop rule: too_easy 4/66, too_hard 1/66, offsets -0.06/0.00, tier spreads 2.10/2.10."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "75b97a3e51b1d852773e73397c0a83cc65258217dd97c4ed18681f22217b7106",
+          "verdict": "Kept-set key at an extreme on this file: key at an extreme 13/22 = 59.1%; derived chance 50.0%, bar 0.8 x chance = 40.0%; 0 non-numeric excluded (of 22) (pass). Key letters in this file (with-source deal) {\"A\":7,\"C\":5,\"D\":5,\"B\":5}. Banked difficulty (graders' tier_assigned) easy 6 / medium 7 / hard 9. Unanimity compared to the control at batch level only. Screen-flagged survivors: 3."
+        }
+      }
+    },
+    {
+      "id": "map-math-v2-data-2026-10-24",
+      "createdAt": "2026-10-24",
+      "targetTest": "map",
+      "section": "math",
+      "task": "multiple_choice",
+      "family": "mc_stem_source",
+      "cohort": "map-math-v2-data",
+      "contentSha": "9cc5cdc328fbd17a2817efc8bbeb62628c83c9a0da8395c26964e961ecaade9b",
+      "status": "qc",
+      "note": "map-v2 Math batch 1, Statistics and Probability (scripts/study-bank/MAP-MATH-V2.prereg.md; MAP-PLAN-2026-10-23 §3.1). Assembled 64 from D5 + D6 + D7 + D8; frozen 46 as this area's own batch (sha 7fa5e00e7f7c4e58); 34 survivors after the graders. contentSha = sha256 of scripts/study-bank/map-math-v2-data.inserted.batch.json; qc scripts/study-bank/map-math-v2-data.qc.json. Written by map-math-v2.mjs insert-prep, which re-derives every verdict from the reviewer files. Not inserted when recorded.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "9cc5cdc328fbd17a2817efc8bbeb62628c83c9a0da8395c26964e961ecaade9b",
+          "n": 34,
+          "verdict": "Stage 0: 64/64 PART OK at assemble (math-check: sandbox key + every distractor, slot, LONE, bound screen, misconceptions, mf27-mf30 construction checks, near-dup vs live ISEE/SSAT and every earlier MAP item). Cold screen pass 1: 37 of 64 failed, returned once (revised 18, withdrawn 18, stood 1); pass 2: 3 still failed, recorded and not dropped (the screen never drops on one screener). Frozen 46, no per-area minimum. Survivors: math-check 34/34 PART OK; math-bank-helper verify on this file Sandbox 34/34; Distractors: 102 of 102 recomputed across 34 item(s); 0 item(s) with a mismatch.."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "9cc5cdc328fbd17a2817efc8bbeb62628c83c9a0da8395c26964e961ecaade9b",
+          "n": 46,
+          "candidatePct": 23.2,
+          "control": 31.9,
+          "controlN": 46,
+          "margin": -8.7,
+          "verdict": "Options-only, three samples of one Claude solver, 46 frozen candidates vs 46 live ISEE data controls matched 1:1 by tier (low->easy, mid/high->medium), blind sha a13cd08168e5d3a7: 32/138 = 23.2% vs 44/138 = 31.9%, margin -8.7 (bar +10; control under the 90% ceiling); unanimous-correct rate 13.0% vs 15.2% (-2.2, bar +15; batch level only). Measures whether the option set alone decides an item; the stem-visible half is the graders'."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "9cc5cdc328fbd17a2817efc8bbeb62628c83c9a0da8395c26964e961ecaade9b",
+          "n": 46,
+          "coldOnKey": 92,
+          "kept": 34,
+          "verdict": "Two Claude graders per part (2 part(s)), cold then keyed, private folders; stage 1 snapshotted, hashed, chmod 444 before keyed.md; coldcheck re-run here 92 cold rows, 0 changed. 92/92 cold answers on key. Free elimination (R4 >= 2 struck, R5 key identifiable), exclusivity (R2), plug-back, option pair, one-sided / single bound and template rules: both graders -> drop, one -> tie-break grader F (10 item(s) to F, 2 of 3, tie -> drop). Dropped 12: MV2-D7-14 (R7 option pair (both)); MV2-D8-03 (EXT-1 drop_recommend; OFF off-blueprint (both)); MV2-D6-10 (EXT-1 drop_recommend); MV2-D7-01 (R8 one-sided extreme key (one grader + F)); MV2-D8-11 (R6 plug-back routine <= 2 (one grader + F)); MV2-D6-07 (EXT-1 drop_recommend); MV2-D7-07 (EXT-1 drop_recommend); MV2-D5-14 (EXT-1 drop_recommend); MV2-D6-04 (R8 one-sided extreme key (both)); MV2-D7-11 (R8 one-sided extreme key (one grader + F)); MV2-D8-05 (R8 one-sided extreme key (both); EXT-1 drop_recommend); MV2-D5-10 (R11 template of an earlier item (one grader + F)). Grade fit recorded, not a drop rule: too_easy 7/92, too_hard 2/92, offsets -0.07/-0.22, tier spreads 2.11/2.11."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "9cc5cdc328fbd17a2817efc8bbeb62628c83c9a0da8395c26964e961ecaade9b",
+          "verdict": "Kept-set key at an extreme on this file: key at an extreme 20/34 = 58.8%; derived chance 50.0%, bar 0.8 x chance = 40.0%; 0 non-numeric excluded (of 34) (pass). Key letters in this file (with-source deal) {\"C\":7,\"D\":8,\"A\":10,\"B\":9}. Banked difficulty (graders' tier_assigned) easy 5 / medium 15 / hard 14. Unanimity compared to the control at batch level only. Screen-flagged survivors: 11."
         }
       }
     }

@@ -1,0 +1,760 @@
+{
+ "prereg": "scripts/study-bank/MAP-MATH-V2.prereg.md",
+ "area": "Statistics and Probability",
+ "frozenSha": "7fa5e00e7f7c4e58753f5fcce9af60c571073ac9bd1258ec5eee70a1d5bac61c",
+ "n": 46,
+ "optionsOnly": {
+  "cand": {
+   "n": 46,
+   "picks": 138,
+   "hits": 32,
+   "unan": 6
+  },
+  "ctrl": {
+   "n": 46,
+   "picks": 138,
+   "hits": 44,
+   "unan": 7
+  },
+  "status": "pass",
+  "cr": 23.18840579710145,
+  "kr": 31.884057971014492,
+  "cu": 13.043478260869565,
+  "ku": 15.217391304347826,
+  "margin": -8.695652173913043,
+  "umar": -2.1739130434782616,
+  "why": "candidate 23.2% vs control 31.9% (margin -8.7, bar +10); unanimous-correct rate 13.0% vs control 15.2% (-2.2, bar +15)",
+  "letterControl": 26.08695652173913
+ },
+ "gradeFitRecorded": {
+  "n": 46,
+  "judgments": 92,
+  "tooEasy": 7,
+  "tooHard": 2,
+  "tooEasyPct": 7.608695652173913,
+  "tooHardPct": 2.1739130434782608,
+  "offA": -0.06521739130434782,
+  "offB": -0.21739130434782608,
+  "spreadA": 2.111111111111111,
+  "spreadB": 2.111111111111111,
+  "D1": true,
+  "D2": true,
+  "D3": true,
+  "status": "pass"
+ },
+ "coldOnKey": 92,
+ "items": {
+  "MV2-D7-14": {
+   "drop": [
+    "R7 option pair (both)"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "medium"
+  },
+  "MV2-D8-03": {
+   "drop": [
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [
+    "OFF off-blueprint (both)"
+   ],
+   "need": [],
+   "rec": [
+    "G1 too_easy for its grade (both) - recorded, not a drop rule"
+   ],
+   "named": [],
+   "keep": false,
+   "difficulty": "easy"
+  },
+  "MV2-D7-09": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MV2-D7-02": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MV2-D7-13": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MV2-D7-17": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MV2-D6-10": {
+   "drop": [
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [
+    "G1 too_easy for its grade (both) - recorded, not a drop rule"
+   ],
+   "named": [],
+   "keep": false,
+   "difficulty": "easy"
+  },
+  "MV2-D6-12": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MV2-D7-16": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MV2-D5-11": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MV2-D8-02": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MV2-D6-14": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MV2-D7-05": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MV2-D7-01": {
+   "drop": [
+    "R8 one-sided extreme key (one grader + F)"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "hard"
+  },
+  "MV2-D8-09": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MV2-D6-08": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MV2-D8-11": {
+   "drop": [
+    "R6 plug-back routine <= 2 (one grader + F)"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "hard"
+  },
+  "MV2-D7-12": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MV2-D7-06": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [
+    "MV2-D7-09"
+   ],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MV2-D6-07": {
+   "drop": [
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [
+    "G1 too_hard for its grade (both) - recorded, not a drop rule"
+   ],
+   "named": [],
+   "keep": false,
+   "difficulty": "hard"
+  },
+  "MV2-D6-02": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MV2-D7-10": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MV2-D7-07": {
+   "drop": [
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "easy"
+  },
+  "MV2-D5-01": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MV2-D6-13": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MV2-D8-04": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MV2-D6-06": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MV2-D6-03": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MV2-D5-14": {
+   "drop": [
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [
+    "G1 too_easy for its grade (both) - recorded, not a drop rule"
+   ],
+   "named": [],
+   "keep": false,
+   "difficulty": "easy"
+  },
+  "MV2-D6-04": {
+   "drop": [
+    "R8 one-sided extreme key (both)"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "easy"
+  },
+  "MV2-D5-12": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MV2-D8-14": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MV2-D6-11": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MV2-D6-15": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MV2-D7-11": {
+   "drop": [
+    "R8 one-sided extreme key (one grader + F)"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "easy"
+  },
+  "MV2-D8-01": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MV2-D8-08": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MV2-D6-16": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [
+    "MV2-D6-11"
+   ],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MV2-D5-07": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MV2-D8-10": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MV2-D7-03": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MV2-D8-05": {
+   "drop": [
+    "R8 one-sided extreme key (both)",
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "easy"
+  },
+  "MV2-D6-09": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MV2-D6-01": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [
+    "MV2-D6-13"
+   ],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MV2-D5-06": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MV2-D5-10": {
+   "drop": [
+    "R11 template of an earlier item (one grader + F)"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [
+    "MV2-D5-12"
+   ],
+   "keep": false,
+   "difficulty": "medium"
+  }
+ },
+ "areaResult": {
+  "status": "pass",
+  "reasons": [],
+  "notes": [],
+  "extremity": {
+   "total": 34,
+   "n": 34,
+   "nonNumeric": 0,
+   "otherSkip": 0,
+   "ext": 20,
+   "rate": 0.5882352941176471,
+   "chance": 0.5,
+   "threshold": 0.4,
+   "status": "pass",
+   "reason": "key at an extreme 20/34 = 58.8%; derived chance 50.0%, bar 0.8 x chance = 40.0%; 0 non-numeric excluded (of 34)"
+  },
+  "kept": 34,
+  "keptIds": [
+   "MV2-D7-09",
+   "MV2-D7-02",
+   "MV2-D7-13",
+   "MV2-D7-17",
+   "MV2-D6-12",
+   "MV2-D7-16",
+   "MV2-D5-11",
+   "MV2-D8-02",
+   "MV2-D6-14",
+   "MV2-D7-05",
+   "MV2-D8-09",
+   "MV2-D6-08",
+   "MV2-D7-12",
+   "MV2-D7-06",
+   "MV2-D6-02",
+   "MV2-D7-10",
+   "MV2-D5-01",
+   "MV2-D6-13",
+   "MV2-D8-04",
+   "MV2-D6-06",
+   "MV2-D6-03",
+   "MV2-D5-12",
+   "MV2-D8-14",
+   "MV2-D6-11",
+   "MV2-D6-15",
+   "MV2-D8-01",
+   "MV2-D8-08",
+   "MV2-D6-16",
+   "MV2-D5-07",
+   "MV2-D8-10",
+   "MV2-D7-03",
+   "MV2-D6-09",
+   "MV2-D6-01",
+   "MV2-D5-06"
+  ]
+ },
+ "screenFlagsRecorded": {
+  "MV2-D5-01": {
+   "p1": [
+    "S-R7 option pair 23 and 28, +5"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": true
+  },
+  "MV2-D5-07": {
+   "p1": [
+    "S-R4 2 struck without solving: [\"3\",\"4 1/2\"] (3 and 4 1/2: 7 caterpillars over 2 in total at least 17 1/2, 6 under 2 total at most 9, so difference is at least 8 1/2)"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": true
+  },
+  "MV2-D5-10": {
+   "p1": [
+    "S-R7 option pair 6 1/4 & 5 3/4: differ by 1/2 (a printed length)"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": false
+  },
+  "MV2-D5-14": {
+   "p1": [
+    "S-R7 option pair 7 and 13, +6"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": false
+  },
+  "MV2-D6-04": {
+   "p1": [
+    "S-R8 one-sided extreme key"
+   ],
+   "revised": true,
+   "p2": [
+    "S-R8 one-sided extreme key"
+   ],
+   "kept": false
+  },
+  "MV2-D6-06": {
+   "p1": [
+    "S-R8 one-sided extreme key"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": true
+  },
+  "MV2-D6-07": {
+   "p1": [
+    "S-R7 option pair 8 & 9.6: 48 divided by 5 (n - 1) instead of 6"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": false
+  },
+  "MV2-D6-10": {
+   "p1": [
+    "S-R7 option pair 13 and 24 (+11)",
+    "S-R8 one-sided extreme key"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": false
+  },
+  "MV2-D6-14": {
+   "p1": [
+    "S-R4 3 struck without solving: [\"28\",\"19\",\"7\"] (28: equals the full range 40-12, IQR must be smaller; 19 and 7: IQR uses the box start 17.5, so the answer must end in .5 and only 13.5 does)",
+    "S-R5 key identifiable without solving"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": true
+  },
+  "MV2-D7-03": {
+   "p1": [
+    "S-R4 2 struck without solving: [\"645\",\"495\"] (645: above either sample's rate (max 55% = 495); 495: equals the second sample alone, a combined rate must lie strictly between 25% and 55%)"
+   ],
+   "revised": true,
+   "p2": [
+    "S-R4 3 struck without solving: [\"350\",\"425\",\"450\"] (the combined rate lies strictly between 35% and 50% (strikes 350), and nearer 35% because that sample is 5 times larger, so it falls below the 42.5% midpoint (s)",
+    "S-R5 key identifiable without solving"
+   ],
+   "kept": true
+  },
+  "MV2-D7-10": {
+   "p1": [
+    "S-R4 2 struck without solving: [\"7/12\",\"1/6\"] (7/12 is more than P(hot soup) = 2/5, and P(both) can't exceed either part; 1/6 has a denominator that can't come from fifths times sevenths (it must divide 35))",
+    "S-R7 option pair 2/7 & 4/35 (x2/5)"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": true
+  },
+  "MV2-D7-13": {
+   "p1": [
+    "S-R7 option pair 408 & 425: differ by 17 (the deer total)"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": true
+  },
+  "MV2-D7-14": {
+   "p1": [
+    "S-R7 option pair 20 / 15, +5 (five players)"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": false
+  },
+  "MV2-D8-01": {
+   "p1": [
+    "S-R6 plug-back routine at try 2"
+   ],
+   "revised": false,
+   "p2": null,
+   "kept": true
+  },
+  "MV2-D8-02": {
+   "p1": [
+    "S-R4 2 struck without solving: [\"19.2\",\"0.8\"] (19.2: at 1.6 cm/h that drop exceeds the 20 cm of snow; 0.8: under an hour drops under 1.6 cm, far short of 12)"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": true
+  },
+  "MV2-D8-03": {
+   "p1": [
+    "S-R8 one-sided extreme key"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": false
+  },
+  "MV2-D8-08": {
+   "p1": [
+    "S-R7 option pair 61 and 56 (-5, the five students)"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": true
+  },
+  "MV2-D8-10": {
+   "p1": [
+    "S-R7 option pair 7 & 21: x3 (three students per group)"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": true
+  },
+  "MV2-D8-11": {
+   "p1": [
+    "S-R6 plug-back routine at try 1"
+   ],
+   "revised": true,
+   "p2": [
+    "S-R6 plug-back routine at try 1"
+   ],
+   "kept": false
+  }
+ },
+ "passIds": [
+  "MV2-D7-09",
+  "MV2-D7-02",
+  "MV2-D7-13",
+  "MV2-D7-17",
+  "MV2-D6-12",
+  "MV2-D7-16",
+  "MV2-D5-11",
+  "MV2-D8-02",
+  "MV2-D6-14",
+  "MV2-D7-05",
+  "MV2-D8-09",
+  "MV2-D6-08",
+  "MV2-D7-12",
+  "MV2-D7-06",
+  "MV2-D6-02",
+  "MV2-D7-10",
+  "MV2-D5-01",
+  "MV2-D6-13",
+  "MV2-D8-04",
+  "MV2-D6-06",
+  "MV2-D6-03",
+  "MV2-D5-12",
+  "MV2-D8-14",
+  "MV2-D6-11",
+  "MV2-D6-15",
+  "MV2-D8-01",
+  "MV2-D8-08",
+  "MV2-D6-16",
+  "MV2-D5-07",
+  "MV2-D8-10",
+  "MV2-D7-03",
+  "MV2-D6-09",
+  "MV2-D6-01",
+  "MV2-D5-06"
+ ],
+ "verdict": "PASS"
+}

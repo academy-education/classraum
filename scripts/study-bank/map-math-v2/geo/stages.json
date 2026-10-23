@@ -1,0 +1,505 @@
+{
+ "prereg": "scripts/study-bank/MAP-MATH-V2.prereg.md",
+ "area": "Geometry",
+ "frozenSha": "1b5ce7abc7625f237dd2b2a7ecbd8a43186fe39f1c17d651a321a65adaafc104",
+ "n": 33,
+ "optionsOnly": {
+  "cand": {
+   "n": 33,
+   "picks": 99,
+   "hits": 21,
+   "unan": 4
+  },
+  "ctrl": {
+   "n": 33,
+   "picks": 99,
+   "hits": 26,
+   "unan": 8
+  },
+  "status": "pass",
+  "cr": 21.21212121212121,
+  "kr": 26.262626262626263,
+  "cu": 12.121212121212121,
+  "ku": 24.242424242424242,
+  "margin": -5.050505050505052,
+  "umar": -12.121212121212121,
+  "why": "candidate 21.2% vs control 26.3% (margin -5.1, bar +10); unanimous-correct rate 12.1% vs control 24.2% (-12.1, bar +15)",
+  "letterControl": 27.272727272727273
+ },
+ "gradeFitRecorded": {
+  "n": 33,
+  "judgments": 66,
+  "tooEasy": 4,
+  "tooHard": 1,
+  "tooEasyPct": 6.0606060606060606,
+  "tooHardPct": 1.5151515151515151,
+  "offA": -0.06060606060606061,
+  "offB": 0,
+  "spreadA": 2.1,
+  "spreadB": 2.1,
+  "D1": true,
+  "D2": true,
+  "D3": true,
+  "status": "pass"
+ },
+ "coldOnKey": 66,
+ "items": {
+  "MV2-G56-05": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MV2-G56-13": {
+   "drop": [
+    "R8 one-sided extreme key (both)",
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "easy"
+  },
+  "MV2-G78-12": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MV2-G56-11": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MV2-G78-13": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MV2-G78-25": {
+   "drop": [
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "medium"
+  },
+  "MV2-G56-19": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MV2-G78-23": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MV2-G78-05": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MV2-G78-04": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MV2-G56-20": {
+   "drop": [
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [
+    "G1 too_easy for its grade (both) - recorded, not a drop rule"
+   ],
+   "named": [],
+   "keep": false,
+   "difficulty": "easy"
+  },
+  "MV2-G78-10": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MV2-G56-03": {
+   "drop": [
+    "R4 two or more free strikes (both)",
+    "R8 one-sided extreme key (both)",
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "medium"
+  },
+  "MV2-G78-20": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [
+    "MV2-G78-12"
+   ],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MV2-G56-25": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MV2-G78-17": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MV2-G78-21": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MV2-G56-22": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MV2-G56-12": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MV2-G56-04": {
+   "drop": [
+    "R7 option pair (one grader + F)"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [
+    "MV2-G78-10"
+   ],
+   "keep": false,
+   "difficulty": "medium"
+  },
+  "MV2-G56-09": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [
+    "MV2-G56-13"
+   ],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MV2-G56-07": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MV2-G78-06": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [
+    "MV2-G78-04"
+   ],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MV2-G56-02": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MV2-G78-24": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MV2-G78-07": {
+   "drop": [
+    "R11 template of an earlier item (both)",
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [
+    "G1 too_easy for its grade (both) - recorded, not a drop rule"
+   ],
+   "named": [
+    "MV2-G56-04"
+   ],
+   "keep": false,
+   "difficulty": "easy"
+  },
+  "MV2-G56-23": {
+   "drop": [
+    "R11 template of an earlier item (both)"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [
+    "MV2-G56-20"
+   ],
+   "keep": false,
+   "difficulty": "easy"
+  },
+  "MV2-G78-22": {
+   "drop": [
+    "R11 template of an earlier item (both)"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [
+    "MV2-G78-12",
+    "MV2-G78-17"
+   ],
+   "keep": false,
+   "difficulty": "easy"
+  },
+  "MV2-G78-03": {
+   "drop": [
+    "R11 template of an earlier item (both)"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [
+    "MV2-G78-23"
+   ],
+   "keep": false,
+   "difficulty": "hard"
+  },
+  "MV2-G56-17": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MV2-G78-15": {
+   "drop": [
+    "R11 template of an earlier item (both)"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [
+    "MV2-G78-13"
+   ],
+   "keep": false,
+   "difficulty": "medium"
+  },
+  "MV2-G78-14": {
+   "drop": [
+    "R11 template of an earlier item (both)"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [
+    "MV2-G78-21"
+   ],
+   "keep": false,
+   "difficulty": "hard"
+  },
+  "MV2-G56-21": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  }
+ },
+ "areaResult": {
+  "status": "pass",
+  "reasons": [],
+  "notes": [],
+  "extremity": {
+   "total": 22,
+   "n": 22,
+   "nonNumeric": 0,
+   "otherSkip": 0,
+   "ext": 13,
+   "rate": 0.5909090909090909,
+   "chance": 0.5,
+   "threshold": 0.4,
+   "status": "pass",
+   "reason": "key at an extreme 13/22 = 59.1%; derived chance 50.0%, bar 0.8 x chance = 40.0%; 0 non-numeric excluded (of 22)"
+  },
+  "kept": 22,
+  "keptIds": [
+   "MV2-G56-05",
+   "MV2-G78-12",
+   "MV2-G56-11",
+   "MV2-G78-13",
+   "MV2-G56-19",
+   "MV2-G78-23",
+   "MV2-G78-05",
+   "MV2-G78-04",
+   "MV2-G78-10",
+   "MV2-G78-20",
+   "MV2-G56-25",
+   "MV2-G78-17",
+   "MV2-G78-21",
+   "MV2-G56-22",
+   "MV2-G56-12",
+   "MV2-G56-09",
+   "MV2-G56-07",
+   "MV2-G78-06",
+   "MV2-G56-02",
+   "MV2-G78-24",
+   "MV2-G56-17",
+   "MV2-G56-21"
+  ]
+ },
+ "screenFlagsRecorded": {
+  "MV2-G56-02": {
+   "p1": [
+    "S-R4 2 struck without solving: [\"216\",\"180\"] (216 and 180: bottom box 6x6x4 is even and a cube of edge 3 is odd, so total is odd)"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": true
+  },
+  "MV2-G56-04": {
+   "p1": [
+    "S-R4 2 struck without solving: [\"311\",\"351\"] (both prisms are 9 cm long, so the wood left is a multiple of 9, and 311 is not; 351 is more than the whole 9x7x5 = 315 block)"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": false
+  },
+  "MV2-G56-17": {
+   "p1": [
+    "S-R4 2 struck without solving: [\"170\",\"132\"] (170 is the whole 17x10 bounding rectangle, but the shape is cut; area = 5 x (sum of whole-number bases), so it is a multiple of 5, killing 132)"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": true
+  },
+  "MV2-G78-21": {
+   "p1": [
+    "S-R4 2 struck without solving: [\"4.9\",\"6.2\"] (4.9: hypotenuse exceeds the 5 m leg; 6.2: must be less than 1.2+5 (triangle inequality))"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": true
+  },
+  "MV2-G78-25": {
+   "p1": [
+    "S-R4 2 struck without solving: [\"60\",\"289\"] (side > 12 (vertical gap) so area >144, killing 60; side < 5+12 = 17 so area <289, killing 289)"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": false
+  }
+ },
+ "passIds": [
+  "MV2-G56-05",
+  "MV2-G78-12",
+  "MV2-G56-11",
+  "MV2-G78-13",
+  "MV2-G56-19",
+  "MV2-G78-23",
+  "MV2-G78-05",
+  "MV2-G78-04",
+  "MV2-G78-10",
+  "MV2-G78-20",
+  "MV2-G56-25",
+  "MV2-G78-17",
+  "MV2-G78-21",
+  "MV2-G56-22",
+  "MV2-G56-12",
+  "MV2-G56-09",
+  "MV2-G56-07",
+  "MV2-G78-06",
+  "MV2-G56-02",
+  "MV2-G78-24",
+  "MV2-G56-17",
+  "MV2-G56-21"
+ ],
+ "verdict": "PASS"
+}

@@ -1,0 +1,2126 @@
+[
+ {
+  "id": "MV2-O78-07",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "7.EE.B.4b",
+  "subskill": "Whole-number answer to px + q <= r",
+  "grade_rationale": "Mid for grade 7: write 2.50r + 14.75 <= 50 (7.EE.B.4b), solve, and interpret 14.1 as 14 rides. About half of grade-7 students forget the entry fee or round the wrong way.",
+  "prompt": "Lena has $50 to spend at a fair. She pays $14.75 to get in, and each ride costs $2.50. What is the greatest number of rides she can go on?",
+  "choices": [
+   "11",
+   "15",
+   "20",
+   "14"
+  ],
+  "correct_answer": "14",
+  "explanation": "After paying to get in, Lena has 50 - 14.75 = 35.25 dollars. Each ride costs 2.50, and 35.25 / 2.50 = 14.1. She cannot go on part of a ride, so the greatest number is 14 rides (14 x 2.50 = 35, and 15 rides would cost 37.50).",
+  "solve": "return Math.floor((50 - 14.75) / 2.5)",
+  "distractor_solve": {
+   "11": "return Math.floor((50 - 15) / 3)",
+   "15": "return Math.ceil((50 - 14.75) / 2.5)",
+   "20": "return Math.floor(50 / 2.5)"
+  },
+  "mechanism": [
+   "subtract the entry fee",
+   "divide by 2.50",
+   "round down to a whole number"
+  ],
+  "quantity_asked": "the greatest whole number of rides",
+  "plugback": {
+   "substitutable": true,
+   "verify": "return v * 2.5 <= 35.25 && (v + 1) * 2.5 > 35.25",
+   "why": "A student can test each option against $50; on a \"greatest\" ask the cheap order is descending, and the key is the third try."
+  },
+  "distractor_meta": {
+   "11": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "rounds both costs up before dividing ($15 and $3)",
+    "why": "The student estimates with $15 to get in and $3 a ride: 35 / 3 = 11.7, so 11."
+   },
+   "15": {
+    "error_kind": "wrong_operation",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "rounds 14.1 up to the next whole ride",
+    "why": "The student finds 14.1 and rounds up, though the 15th ride costs more than she has left."
+   },
+   "20": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "forgets the entry fee",
+    "why": "The student divides the whole $50 by 2.50."
+   }
+  },
+  "structure_check": "Interior key; the \"greatest\" ask is allowed on an I slot. The stem's $50 limit gives \"fewer than 20 rides\" once the fee is counted, which strikes 20 only.",
+  "intermediate_check": "20: no; 50 / 2.50 is not on the path (the path divides 35.25). 11: no; it uses rounded prices. 15: no; it rounds 14.1 the wrong way. The path passes through 35.25 and 14.1, not options.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "Whole number, fewer than 50 / 2.50 = 20 rides because of the fee: 11, 14 and 15 survive.",
+  "interior_parity_check": "Middle values 14 and 15: both two-digit whole numbers; 14 is not the cleaner.",
+  "arith_class_check": "All whole numbers; the key is even like 20.",
+  "dup_search": {
+   "queries": [
+    "ride&greatest",
+    "greatest number&\\$",
+    "rides&each|per ride"
+   ],
+   "hits_read": 28,
+   "nearest": "sat ad6b7da1 (elevator at most 1,250 kg with an operator, a cart and crates with 15% packing): that adds a percent step and two fixed masses; mine is the single fee case. ISEE has no fair or fee item of this shape in the hits read."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "with no fee she could go on 20 rides, so fewer than 20 with the fee",
+    "strikes": [
+     "20"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "none beyond the 20-ride cap",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Lower interior by value; on a \"greatest\" ask the plug-back order is descending (20, 15, 14, 11) and the key is the third try, so a student checking options does the 15-ride test first (37.50 > 35.25) and must still do the work. Cheapest bound (fewer than 20 rides) strikes one (20). No distractor is a solved intermediate (35.25 and 14.1 are not options). Really mid for grade 7: interpreting 14.1 as 14 is the 7.EE.B.4b point, and 15 is the tempting wrong rounding."
+  }
+ },
+ {
+  "id": "MV2-O56-19",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "6.RP.A.3.b",
+  "subskill": "Two unit prices from packs, then a mixed purchase",
+  "grade_rationale": "Mid for grade 6: 6.RP.A.3b, two unit prices from pack prices ($0.35 and $0.45) and a purchase of 4 of each. About half of grade-6 students average the packs or misread one pack size.",
+  "prompt": "A school store sells 10 pens for $3.50 and 6 glue sticks for $2.70. Ella buys 4 pens and 4 glue sticks at these unit prices. How many dollars does she spend?",
+  "choices": [
+   "4.10",
+   "2.48",
+   "3.20",
+   "3.60"
+  ],
+  "correct_answer": "3.20",
+  "explanation": "One pen costs 3.50 / 10 = 0.35 dollars and one glue stick costs 2.70 / 6 = 0.45 dollars. Ella spends 4 x 0.35 + 4 x 0.45 = 1.40 + 1.80 = 3.20 dollars.",
+  "solve": "return Math.round((4 * 3.50 / 10 + 4 * 2.70 / 6) * 100) / 100",
+  "distractor_solve": {
+   "2.48": "return Math.round((4 * 3.50 / 10 + 4 * 2.70 / 10) * 100) / 100",
+   "3.60": "return Math.round((8 * 2.70 / 6) * 100) / 100",
+   "4.10": "return Math.round((4 * 3.50 / 10 + 2.70) * 100) / 100"
+  },
+  "mechanism": [
+   "find the unit price of each item",
+   "multiply each by 4 and add"
+  ],
+  "quantity_asked": "dollars Ella spends",
+  "plugback": {
+   "substitutable": false,
+   "why": "A total cost cannot be checked without both unit prices, which is the solution."
+  },
+  "distractor_meta": {
+   "2.48": {
+    "error_kind": "wrong_variable",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "divides both pack prices by 10, the pen pack size",
+    "why": "Uses 0.35 for a pen and 2.70 / 10 = 0.27 for a glue stick: 1.40 + 1.08 = 2.48."
+   },
+   "3.60": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses one unit price for all eight items",
+    "why": "Uses the glue-stick price, 0.45, for all 8 items: 3.60."
+   },
+   "4.10": {
+    "error_kind": "wrong_variable",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "treats the glue-stick price as the price for 4 glue sticks",
+    "why": "Pays 1.40 for the pens and the full 2.70 for the glue sticks: 4.10."
+   }
+  },
+  "structure_check": "Interior key; no extremum or universal in the stem.",
+  "intermediate_check": "2.48: no single printed number joins it to 3.20 (difference 0.72). 3.60: no (difference 0.40, not printed). 4.10: no (difference 0.90). The intermediates 0.35, 0.45, 1.40 and 1.80 are not options.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: a money amount in cents (all survive), less than 3.50 + 2.70 = 6.20 (all survive), more than 4 x 0.35 = 1.40 (all survive). All four survive together.",
+  "interior_parity_check": "Middle values 3.20 and 3.60: both dollars-and-ten-cents amounts of the same form; neither is cleaner.",
+  "arith_class_check": "Four of each item means the total is 4 x (one pen + one glue stick), a multiple of 4 cents: 2.48, 3.20 and 3.60 (key not alone; strikes only 4.10).",
+  "dup_search": {
+   "queries": [
+    "pencils&erasers|cost \\$.*for.*cost \\$",
+    "for \\$.*and.*for \\$&buys"
+   ],
+   "hits_read": 5,
+   "nearest": "MM3-N08 (pencils $0.45 each, erasers $0.80 each): different chain - unit prices given; here they come from packs of different sizes and the traps are the pack sizes."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: every quantity in the stem is positive and every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "less than one pack of each, 6.20: strikes nothing",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: money amounts",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: the cents need both unit prices",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "a multiple of 4 cents (4 of each item)",
+    "strikes": [
+     "4.10"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student might use one price for everything (3.60) or divide both by 10 (2.48); the multiple-of-4-cents property strikes only 4.10. No cheap bound strikes any option. Not one-step checkable. No distractor is a solved intermediate. Mid for grade 6: two unit prices and a combined purchase."
+  }
+ },
+ {
+  "id": "MV2-O78-12",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 8,
+  "tier": "high",
+  "rit_band": "RIT 230-239",
+  "difficulty": "hard",
+  "ccss": "8.EE.C.8a",
+  "subskill": "Slope of a line from where it crosses a given line",
+  "grade_rationale": "High for grade 8: the solution of a system is the shared point (8.EE.C.8a). The student must use y = 16 in the first line to find x = 4, then substitute (4, 16) into y = mx - 20. Only stronger grade-8 students chain the two equations without confusing the coordinates.",
+  "prompt": "Two lines are graphed: y = -2x + 24 and y = mx - 20. They meet at a point that is 16 units above the x-axis. Find m.",
+  "choices": [
+   "4",
+   "1.8",
+   "9",
+   "2.25"
+  ],
+  "correct_answer": "9",
+  "explanation": "At the crossing point y = 16. On the first line, 16 = -2x + 24, so -2x = -8 and x = 4. The point (4, 16) is also on the second line: 16 = 4m - 20, so 4m = 36 and m = 9.",
+  "solve": "const x = (24 - 16) / 2; return (16 + 20) / x",
+  "distractor_solve": {
+   "4": "return 16 / ((24 - 16) / 2)",
+   "1.8": "return (16 + 20) / ((24 + 16) / 2)",
+   "2.25": "return (16 + 20) / 16"
+  },
+  "mechanism": [
+   "y = 16 in the first line gives x = 4",
+   "substitute (4, 16) in the second line",
+   "solve 4m - 20 = 16"
+  ],
+  "quantity_asked": "the slope m of the second line",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const x = 44 / (v + 2); return Math.abs(-2 * x + 24 - 16) < 1e-9",
+   "why": "A student can solve the system for each option and check whether y = 16; ascending, the key is the fourth try."
+  },
+  "distractor_meta": {
+   "4": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "forgets the -20 in the second line",
+    "why": "The student finds x = 4 and writes 16 = 4m."
+   },
+   "1.8": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "solves -2x + 24 = 16 as -2x = 40",
+    "why": "The student adds 16 instead of subtracting it and gets x = 20."
+   },
+   "2.25": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the y-coordinate 16 as the x-coordinate",
+    "why": "The student substitutes x = 16 into 16 = 16m - 20."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "return (24 + 20) / 4",
+   "direction": "above",
+   "why": "Using the first line's y-intercept 24 as the crossing height gives 44/4 = 11, above the key."
+  },
+  "far_distractor": {
+   "option": "2.25",
+   "natural_side": "above",
+   "why": "Putting 16 in for x swaps in a number larger than the true x = 4; substituting a larger number usually inflates a result, but here it sits in the divisor, so m comes out smaller."
+  },
+  "structure_check": "No extremum or universal quantifier; the answer is a quotient, and errors in the x-coordinate move it either way (using 24 as the height gives 11, above). The stem does not sign the errors.",
+  "intermediate_check": "4: no; 16/4 drops the -20 and is not on the path. 1.8: no. 2.25: no. The path passes through x = 4 and 36, and 4 is an option only as m = 16/4 (a different quantity, the slope without the intercept), not the x-coordinate itself.",
+  "cheap_bound_check": "Cheapest bound: the second line must rise from -20 at x = 0 to 16 at the crossing, so m is positive; it strikes none. No one-step estimate places all three below the key.",
+  "shape_check": "Positive slope (the line climbs from -20 to 16); all four survive.",
+  "interior_parity_check": "Middle values 2.25 and 4: one decimal, one whole; the key is not interior.",
+  "arith_class_check": "Key 9 is whole; 4 is too. Not alone.",
+  "dup_search": {
+   "queries": [
+    "y = mx",
+    "intersect|cross&value of m",
+    "cross&y-coordinate"
+   ],
+   "hits_read": 17,
+   "nearest": "sat SALG-02 (4x + 6y = 9 and y = mx + 2 meet except for one m) and c923edc0 (line meets a parabola once): both are about the NUMBER of intersections; mine finds a slope from a given crossing height through two substitutions."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "m > 0 (the line rises from -20 to 16); strikes none",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "none: m = 36/x and x is not readable without solving",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "none",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, a student cannot sign the errors: the natural \"use 24 as the height\" error lands above (11). No bound strikes all three; positivity strikes none. Plug-back possible but the key is the fourth ascending try. Is 4 a solved intermediate? The x-coordinate is 4 and so is the omission distractor; a student who solves for x and stops would pick 4, so 4 doubles as a stop-early value. I keep it because it is also the drop-the-intercept answer, and record it for the screener. Really high for grade 8."
+  }
+ },
+ {
+  "id": "MV2-O56-21",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "6.EE.A.2.c",
+  "subskill": "Evaluate 3a^2 - 2b with the exponent on a only",
+  "grade_rationale": "Mid for grade 6: 6.EE.A.2c, substituting two values and applying the exponent only to a. About half of grade-6 students square 3a or read 2b as the digits 2 and 5.",
+  "prompt": "Jae substitutes a = 4 and b = 5 into the expression 3a^2 - 2b. Remember that 3a^2 means 3 times a^2. What number does Jae get?",
+  "choices": [
+   "38",
+   "134",
+   "14",
+   "6"
+  ],
+  "correct_answer": "38",
+  "explanation": "a^2 = 4^2 = 16, so 3a^2 = 3 x 16 = 48. 2b = 2 x 5 = 10. So 3a^2 - 2b = 48 - 10 = 38.",
+  "solve": "const a = 4, b = 5; return 3 * a ** 2 - 2 * b",
+  "distractor_solve": {
+   "6": "const a = 4, b = 5; return a ** 2 - 2 * b",
+   "14": "const a = 4, b = 5; return 3 * (2 * a) - 2 * b",
+   "134": "const a = 4, b = 5; return (3 * a) ** 2 - 2 * b"
+  },
+  "mechanism": [
+   "square a",
+   "multiply by 3",
+   "subtract 2 x b"
+  ],
+  "quantity_asked": "the value of 3a^2 - 2b at a = 4, b = 5",
+  "plugback": {
+   "substitutable": false,
+   "why": "An expression value has nothing to substitute into."
+  },
+  "distractor_meta": {
+   "6": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "drops the coefficient 3",
+    "why": "Uses a^2 - 2b = 16 - 10 = 6."
+   },
+   "14": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "reads a^2 as 2 times a",
+    "why": "Writes a^2 as 2 x 4 = 8, so 3 x 8 - 10 = 14."
+   },
+   "134": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "squares the whole term 3a instead of a alone",
+    "why": "Works (3 x 4)^2 = 144, then 144 - 10 = 134."
+   }
+  },
+  "structure_check": "Interior key; no extremum or universal in the stem.",
+  "intermediate_check": "134: no single printed number joins it to 38 (difference 96). 14: no (difference 24). 6: no (difference 32). The intermediates 16, 48 and 10 are not options.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: a whole number (all survive), less than 3a^2 = 48 (6, 14, 38 survive), even because 3a^2 and 2b are both even (all survive). Three survive together.",
+  "interior_parity_check": "Middle values 14 and 38: both two-digit even whole numbers; the key is not the cleaner one.",
+  "arith_class_check": "No: all four options are even; none is alone in a class.",
+  "dup_search": {
+   "queries": [
+    "3a\\^2|a\\^2 - 2b",
+    "value of&when a ="
+   ],
+   "hits_read": 10,
+   "nearest": "MMG-O12 (C = 4s^2 + 13 at s = 0.5) and MM3-O12 (12n^2 - n^3): different chains - one variable; here two variables, and the trap is the scope of the exponent and the meaning of 2b."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: every quantity in the stem is positive and every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "less than 3 x 16 = 48 because something is subtracted",
+    "strikes": [
+     "134"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "even (3 x 16 and 2 x 5 are both even): every option is even",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: needs the value",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "positive: strikes nothing",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student might square 3a (134), read a^2 as 2a (14) or drop the 3 (6). Parity strikes nothing (all even); the cheapest bound (less than 48) strikes only 134. Not plug-back checkable. No distractor is a solved intermediate. Mid for grade 6: two substitutions with the exponent scope as the trap."
+  }
+ },
+ {
+  "id": "MV2-O56-10",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 5,
+  "tier": "high",
+  "rit_band": "RIT 210-219",
+  "difficulty": "hard",
+  "ccss": "5.OA.A.1",
+  "area_25": "Operations and Algebraic Thinking",
+  "subskill": "Subtract a whole bracket holding a quotient-product",
+  "grade_rationale": "High for grade 5: 5.OA.A.1 with brackets containing parentheses, a division, a multiplication and an addition, all subtracted from 94. The decision points are dividing before multiplying (left to right) and subtracting the whole bracket. Only stronger grade-5 students avoid all three traps.",
+  "prompt": "Leo's homework has one problem: find 94 - [72 / (4 + 2) x 3 + 4]. He must use the correct order for the brackets, parentheses and operations. What is the correct answer?",
+  "choices": [
+   "54",
+   "66",
+   "86",
+   "63"
+  ],
+  "correct_answer": "54",
+  "explanation": "Parentheses first: 4 + 2 = 6. Inside the brackets, work left to right: 72 / 6 = 12, then 12 x 3 = 36, then 36 + 4 = 40. Last, 94 - 40 = 54.",
+  "solve": "return 94 - (72 / (4 + 2) * 3 + 4)",
+  "distractor_solve": {
+   "63": "return 94 - (72 / (4 * 2) * 3 + 4)",
+   "66": "return 94 - (72 / 4 + 2 * 3 + 4)",
+   "86": "return 94 - (72 / ((4 + 2) * 3) + 4)"
+  },
+  "mechanism": [
+   "add inside the parentheses",
+   "divide then multiply left to right, then add",
+   "subtract the whole bracket from 94"
+  ],
+  "quantity_asked": "the value of 94 - [72 / (4 + 2) x 3 + 4]",
+  "plugback": {
+   "substitutable": false,
+   "why": "A numerical expression has nothing to substitute into; the only check is to evaluate it."
+  },
+  "distractor_meta": {
+   "63": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "multiplies the numbers inside the parentheses instead of adding them",
+    "why": "Works 4 x 2 = 8, so 72 / 8 = 9, 9 x 3 + 4 = 31 and 94 - 31 = 63."
+   },
+   "66": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "ignores the parentheses and divides 72 by 4 alone",
+    "why": "Works 72 / 4 + 2 x 3 + 4 = 18 + 6 + 4 = 28, then 94 - 28 = 66."
+   },
+   "86": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "multiplies before dividing instead of working left to right",
+    "why": "Works 6 x 3 = 18 first, so 72 / 18 = 4, 4 + 4 = 8 and 94 - 8 = 86."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "return 94 - 72 / (4 + 2) * (3 + 4)",
+   "direction": "below",
+   "why": "Adding 3 + 4 before multiplying (94 - 12 x 7 = 10) lands below the key."
+  },
+  "far_distractor": {
+   "option": "66",
+   "natural_side": "below",
+   "why": "Dividing 72 by 4 alone ordinarily makes the bracket bigger (72 / 4 = 18 instead of 12), which pushes the answer down; here the 2 then multiplies only the 3, so the bracket shrinks to 28 and the answer lands above."
+  },
+  "structure_check": "No: a bare expression, no extremum or \"every\"; errors inside the bracket can make it bigger (adding before multiplying gives 84, answer 10) or smaller (answers 62, 66, 86), so the structure does not sign every error.",
+  "intermediate_check": "63: no single printed number joins it to 54 (difference 9). 86: no (difference 32). 66: no (difference 12, not printed). The intermediates 6, 12, 36 and 40 are not options.",
+  "cheap_bound_check": "Cheapest one-sided bound: the bracket is more than 4, so the value is less than 90; it strikes nothing. 62, 66 and 86 all sit on the key's side of every bound short of evaluating the bracket.",
+  "shape_check": "The stem hands over: a whole number (all survive), less than 90 (all survive). All four survive together. Parity would need the bracket worked out.",
+  "interior_parity_check": "Middle values 63 and 66: both two-digit whole numbers of the same form; the key 54 is not interior.",
+  "arith_class_check": "No: 54, 63 and 66 are multiples of 3; 54, 66 and 86 are even. The key is not alone in a class.",
+  "dup_search": {
+   "queries": [
+    "\\[.*\\(.*\\)",
+    "order of operations|value of the expression"
+   ],
+   "hits_read": 30,
+   "nearest": "MM2-O06 (7 + 3 x [16 - (6 + 4)]): different chain - there a bracket is multiplied and added; here a bracket holding a quotient-product is subtracted, and the divide-then-multiply order is the trap."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: every quantity in the stem is positive and every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "the bracket is more than 4, so the value is below 90: strikes nothing",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none cheap: the parity of the bracket needs 72 / 6",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: needs the bracket worked out",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "between 0 and 94: strikes nothing",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, a student cannot tell which way errors go: adding 3 + 4 first lands below (10), the other bracket errors land above. No two options form a plus-minus pair around a readable number. No cheap bound strikes any distractor. Not plug-back checkable. No distractor is a solved intermediate. High for grade 5: three operations inside the bracket with the left-to-right trap. Cheapest bound strikes none."
+  }
+ },
+ {
+  "id": "MV2-O56-05",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 5,
+  "tier": "mid",
+  "rit_band": "RIT 200-209",
+  "difficulty": "medium",
+  "ccss": "5.OA.B.3",
+  "area_25": "Operations and Algebraic Thinking",
+  "subskill": "Matching terms when neither pattern starts at 0",
+  "grade_rationale": "Mid for grade 5: 5.OA.B.3 with two rules (add 4, add 8) that start at 21 and 5, so B is not simply twice A. The student counts how many times 4 was added to reach 61 and adds 8 that many times. Many grade-5 students double 61 because 8 is double 4.",
+  "prompt": "Omar makes two lists of numbers. List A begins with 21, and he adds 4 to get each new number. List B begins with 5, and he adds 8 to get each new number. He writes the lists side by side, so the 1st numbers are together, the 2nd numbers are together, and so on. Which number in List B is beside the number 61 in List A?",
+  "choices": [
+   "85",
+   "69",
+   "45",
+   "122"
+  ],
+  "correct_answer": "85",
+  "explanation": "From 21 to 61 is 40, and 40 / 4 = 10, so 4 was added 10 times to reach 61. List B adds 8 the same 10 times: 5 + 10 x 8 = 5 + 80 = 85.",
+  "solve": "const jumps = (61 - 21) / 4; return 5 + 8 * jumps",
+  "distractor_solve": {
+   "45": "return 61 - (21 - 5)",
+   "69": "return 61 + 8",
+   "122": "return 2 * 61"
+  },
+  "mechanism": [
+   "count how many 4s take 21 to 61",
+   "add 8 that many times to 5"
+  ],
+  "quantity_asked": "the List B number beside 61",
+  "plugback": {
+   "substitutable": true,
+   "verify": "return (v - 5) % 8 === 0 && (v - 5) / 8 === (61 - 21) / 4",
+   "why": "A student can test an option by counting its jumps of 8 from 5 and comparing with the 10 jumps of 4 that reach 61. In ascending order (45, 69, 85, 122) the key is the third option tried."
+  },
+  "distractor_meta": {
+   "45": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "thinks matching numbers always differ by the gap between the first numbers",
+    "why": "Sees that 21 and 5 differ by 16 and subtracts 16 from 61: 45."
+   },
+   "69": {
+    "error_kind": "wrong_variable",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds List B's rule once to the List A number instead of counting jumps",
+    "why": "Takes the 61 from List A and adds one 8: 69."
+   },
+   "122": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "doubles because rule B is double rule A, ignoring the different starts",
+    "why": "Notes that 8 is twice 4 and doubles 61: 122."
+   }
+  },
+  "structure_check": "Interior key; no extremum or universal in the stem.",
+  "intermediate_check": "45: no, not one printed step from 85 (85 - 45 = 40, not printed). 69: no (differs by 16, which is not printed; 69 is 61 + 8, built from the given A number, not from the key). 122: no, it is 2 x 61, unrelated to 85 by a printed number. The intermediates 10 and 80 are not options.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: a whole number (all survive), odd because B is 5 plus multiples of 8 (45, 69, 85 survive; 122 struck), a List B number, 5 more than a multiple of 8 (45, 69, 85 survive). Three survive together.",
+  "interior_parity_check": "Middle values 69 and 85: both two-digit odd numbers in List B; the key is not the cleaner one.",
+  "arith_class_check": "No: 45, 69 and 85 are odd and all are List B numbers. The key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "pattern&rule&term",
+    "lines up|line up|side by side",
+    "list&adds&each new number"
+   ],
+   "hits_read": 10,
+   "nearest": "MM2-O05 (both patterns start at 0, rules add 2 / add 3): there the term ratio is constant and scaling works; here the starts differ, so scaling fails (122) and the student must count jumps."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: every quantity in the stem is positive and every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "List B grows twice as fast but starts 16 lower; no estimate short of counting jumps separates 69, 85 and 45",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "List B numbers are odd",
+    "strikes": [
+     "122"
+    ]
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: List B units digits cycle 5, 3, 1, 9, 7",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "between 5 and 2 x 61: strikes nothing",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student might double 61 (122) or subtract the start gap (45); both fail because the starts differ. 45, 69 and 85 are all genuine List B numbers, so membership in List B strikes only 122, as parity does. Plug-back reaches the key only at the third try in ascending order, and two options lie on each side of 61 + something, so the key is not at an end. 69 and 85 are not a plus-minus pair around a readable number (122 replaced 101 for that reason). No distractor is a solved intermediate. Mid for grade 5."
+  }
+ },
+ {
+  "id": "MV2-O56-04",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 5,
+  "tier": "mid",
+  "rit_band": "RIT 200-209",
+  "difficulty": "medium",
+  "ccss": "5.OA.A.2",
+  "area_25": "Operations and Algebraic Thinking",
+  "subskill": "Share (total - kept) among a group that includes the sharer",
+  "grade_rationale": "Mid for grade 5: 5.OA.A.2 with a grouped expression (6 x 39 - 18) / 9 and two traps: counting the sharer as one of the people and adding back the kept marbles. About half of grade-5 students forget to count Lina herself.",
+  "prompt": "Lina has 6 bags with 39 marbles in each bag. She keeps 18 marbles for a game. She shares the rest of the marbles equally among herself and 8 friends. After the sharing, how many marbles does Lina have in all, counting her share and the marbles she kept?",
+  "choices": [
+   "45",
+   "42",
+   "54",
+   "46"
+  ],
+  "correct_answer": "42",
+  "explanation": "Lina has 6 x 39 = 234 marbles. After keeping 18, she shares 234 - 18 = 216 marbles among 9 people (herself and 8 friends). Each person gets 216 / 9 = 24. Lina has her share plus the 18 she kept: 24 + 18 = 42.",
+  "solve": "return (6 * 39 - 18) / 9 + 18",
+  "distractor_solve": {
+   "45": "return (6 * 39 - 18) / 8 + 18",
+   "46": "return (6 * 39 + 18) / 9 + 18",
+   "54": "return (6 * 39 - 18) / 6 + 18"
+  },
+  "mechanism": [
+   "multiply bags by marbles per bag",
+   "subtract the kept marbles",
+   "divide among 9 people, then add back the kept marbles"
+  ],
+  "quantity_asked": "marbles Lina has after the sharing, including the kept ones",
+  "plugback": {
+   "substitutable": false,
+   "why": "From an option a student would have to take away 18, multiply by 9, add 18 back and compare with 6 x 39: four operations, more than solving. There is no one-step check."
+  },
+  "distractor_meta": {
+   "45": {
+    "error_kind": "wrong_variable",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "divides among the 8 friends and forgets to count Lina",
+    "why": "Shares 216 among 8 people (27 each) and adds 18: 45."
+   },
+   "46": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds the kept marbles to the pile before sharing instead of subtracting them",
+    "why": "Shares 234 + 18 = 252 among 9 (28 each) and adds 18: 46."
+   },
+   "54": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "divides by the number of bags instead of the number of people",
+    "why": "Divides 216 by the 6 bags (36) and adds 18: 54."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "return 6 * 39 / 9 - 18",
+   "direction": "below",
+   "why": "Sharing all 234 first and then taking the 18 out of one share (26 - 18 = 8) lands below the key."
+  },
+  "far_distractor": {
+   "option": "54",
+   "natural_side": "below",
+   "why": "Dividing by the wrong count usually means dividing by a bigger number here (the 9 people or more), which lowers a share; this student divides by the 6 bags, a smaller number, so the share and the total land above."
+  },
+  "structure_check": "No: no extremum or universal in the stem; a wrong divisor can be larger (lowers the result) or smaller (raises it), and the kept marbles can be mishandled either way, so no single reading signs every error.",
+  "intermediate_check": "45: no, 45 is not one printed step from 42. 46: no. 54: no. The solved intermediates 234, 216 and 24 are not options.",
+  "cheap_bound_check": "Cheapest one-sided bound: Lina's share is less than 234 / 8 (about 29), so she has less than about 47 in all; it strikes only 54. 45 and 46 sit on the key's side of that bound.",
+  "shape_check": "The stem hands over: a whole number (all survive), more than 18 (all survive), less than 234 (all survive). All four survive together.",
+  "interior_parity_check": "Middle values 45 and 46: both two-digit whole numbers of the same form; the key 42 is not interior.",
+  "arith_class_check": "No: 42 is even like 46 and 54; 42 and 54 are multiples of 6. The key is not alone in a class.",
+  "dup_search": {
+   "queries": [
+    "herself and",
+    "shares&equally&friends"
+   ],
+   "hits_read": 6,
+   "nearest": "No live or MAP item shares among a group that includes the sharer and then adds back kept items; the nearest are plain equal-share items (MM3-O05 sticker shares), which have no kept amount and no self-count trap."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: every quantity in the stem is positive and every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "share below 234 / 8, so the total is below about 47",
+    "strikes": [
+     "54"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: the parity of 216 / 9 + 18 needs the division",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: needs the full computation",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "more than 18 (she keeps 18): strikes nothing",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, a student cannot tell which way the errors go: a divisor error can be bigger (8 or 9 people: lower) or smaller (6 bags: higher). The bound \"below about 47\" strikes only 54. Not one-step checkable (four operations from an option). No distractor is a solved intermediate. Mid for grade 5: three steps with the self-count trap. Cheapest bound strikes one distractor."
+  }
+ },
+ {
+  "id": "MV2-O78-05",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "7.RP.A.3",
+  "subskill": "Actual value from an estimate and its percent error",
+  "grade_rationale": "Mid for grade 7: percent error (7.RP.A.3) used backward. The key idea is that the percent error is a percent of the ACTUAL value, so the estimate is 120% of it; about half of grade-7 students take 20% of the estimate instead.",
+  "prompt": "Mia estimated that a rock had a mass of 102 grams. Her estimate was more than the actual mass, and the percent error of her estimate was 20%. What is the actual mass of the rock, in grams?",
+  "choices": [
+   "85",
+   "82",
+   "122.4",
+   "81.6"
+  ],
+  "correct_answer": "85",
+  "explanation": "Percent error compares the error with the actual mass. The estimate was 20% more than the actual mass, so 102 is 120% of the actual mass: actual = 102 / 1.2 = 85 grams. Check: the error is 102 - 85 = 17, and 17 / 85 = 0.20.",
+  "solve": "return 102 / 1.2",
+  "distractor_solve": {
+   "82": "return 102 - 20",
+   "122.4": "return Math.round(102 * 1.2 * 10) / 10",
+   "81.6": "return Math.round(102 * 0.8 * 10) / 10"
+  },
+  "mechanism": [
+   "estimate = 120% of actual",
+   "divide 102 by 1.2"
+  ],
+  "quantity_asked": "the actual mass of the rock, in grams",
+  "plugback": {
+   "substitutable": true,
+   "verify": "return v < 102 && Math.abs((102 - v) / v - 0.2) < 1e-9",
+   "why": "A student can compute (102 - option)/option for each option; ascending, the key is the third try."
+  },
+  "distractor_meta": {
+   "82": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "treats 20% as 20 grams",
+    "why": "The student subtracts 20 from 102."
+   },
+   "122.4": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds the error instead of removing it",
+    "why": "The student increases 102 by 20% even though the estimate was too high."
+   },
+   "81.6": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "takes the 20% of the estimate instead of the actual mass",
+    "why": "The student subtracts 20% of 102 from 102."
+   }
+  },
+  "structure_check": "Interior key; the stem gives one direction (actual < 102), which strikes only 122.4.",
+  "intermediate_check": "122.4: no; 1.2 x 102 is not on the path. 81.6: no; it uses the estimate as the base. 82: no; 20 grams is not a printed amount. The path passes through 17 (the error), not an option.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: a positive mass, less than 102. 81.6, 82 and 85 survive.",
+  "interior_parity_check": "Middle values 82 and 85: both two-digit whole numbers of the same form; 85 is not cleaner than 82.",
+  "arith_class_check": "Key 85 is whole, as is 82; the key is not alone.",
+  "dup_search": {
+   "queries": [
+    "percent error",
+    "estimate&actual",
+    "estimated&grams"
+   ],
+   "hits_read": 4,
+   "nearest": "prior MMG-O09 (percent error of a 48-minute guess for a 1-hour walk) and act 0c45f7f0 / 5769ba53 (compute percent error): all compute the percent error; mine solves for the actual value from it."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "the estimate was too high, so actual < 102",
+    "strikes": [
+     "122.4"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "none beyond actual < 102",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Lower-interior plug-back: a student can test (102 - v)/v, but the key is the third ascending try. No distractor is a solved intermediate (17 is not an option). Really mid for grade 7: using the actual as the base is the grade's key idea. Cheapest bound (actual < 102) strikes one (122.4)."
+  }
+ },
+ {
+  "id": "MV2-O78-10",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "7.EE.B.4a",
+  "subskill": "px - q = r from a triangle with two equal sides",
+  "grade_rationale": "Mid for grade 7: write 3s - 4.5 = 31.5 from a perimeter description (7.EE.B.4a) and solve with decimals. About half of grade-7 students count only two sides or treat \"shorter\" as \"longer\".",
+  "prompt": "A triangle has two sides of equal length. The third side is 4.5 centimeters shorter than each of the equal sides. The perimeter of the triangle is 32.4 centimeters. How long is each of the equal sides, in centimeters?",
+  "choices": [
+   "13.95",
+   "11.3",
+   "11.7",
+   "12.3"
+  ],
+  "correct_answer": "12.3",
+  "explanation": "Let s be the length of each equal side. The third side is s - 4.5. The perimeter is s + s + (s - 4.5) = 3s - 4.5 = 32.4, so 3s = 36.9 and s = 12.3 centimeters. (The sides are 12.3, 12.3 and 7.8.)",
+  "solve": "return Math.round((32.4 + 4.5) / 3 * 100) / 100",
+  "distractor_solve": {
+   "13.95": "return Math.round((32.4 - 4.5) / 2 * 100) / 100",
+   "11.3": "return Math.round((32.4 + 4.5 / 3) / 3 * 100) / 100",
+   "11.7": "return Math.round((32.4 / 2 - 4.5) * 100) / 100"
+  },
+  "mechanism": [
+   "write 3s - 4.5 = 32.4",
+   "add 4.5",
+   "divide by 3"
+  ],
+  "quantity_asked": "the length of each equal side, in centimeters",
+  "plugback": {
+   "substitutable": true,
+   "verify": "return Math.abs(3 * v - 4.5 - 32.4) < 1e-9",
+   "why": "A student can triple an option, subtract 4.5 and compare with 32.4; ascending, the key is the third try."
+  },
+  "distractor_meta": {
+   "13.95": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "takes the third side to be 4.5 cm instead of 4.5 cm shorter",
+    "why": "The student writes s + s + 4.5 = 32.4."
+   },
+   "11.3": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "shares the 4.5 among the three sides before dividing",
+    "why": "The student adds 4.5/3 = 1.5 to the perimeter and divides 33.9 by 3."
+   },
+   "11.7": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "halves the perimeter for one side and then subtracts 4.5",
+    "why": "The student divides 32.4 by 2 and subtracts 4.5."
+   }
+  },
+  "structure_check": "Interior key; the stem does not sign the errors (counting two sides overshoots, the sign slip undershoots).",
+  "intermediate_check": "13.95: no; it divides by 2. 11.3: no. 11.7: no. The path passes through 36.9 and 7.8, not options.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "Positive length; the third side s - 4.5 must be positive, so s > 4.5: all four survive. Triangle inequality (third side < 2s) holds for all.",
+  "interior_parity_check": "Middle values 11.7 and 12.3: both one-place decimals of the same size; the key is not the cleaner.",
+  "arith_class_check": "Key 12.3 is a one-place decimal like 11.3 and 11.7. Not alone.",
+  "dup_search": {
+   "queries": [
+    "isosceles",
+    "equal length&perimeter",
+    "two sides&equal&perimeter"
+   ],
+   "hits_read": 13,
+   "nearest": "act 74a7e9c6 (isosceles triangle, perimeter 62, congruent sides 23, find the base): a one-step subtraction with the sides given; mine needs an equation with the unknown on all three sides."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "the equal sides are the longest, so each is more than 32.4/3 = 10.8 and less than half the perimeter, 16.2; strikes none",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "side > 4.5 so the third side is positive; strikes none",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Upper interior with plug-back: the key is the third ascending try. Revised after the screen: the bounds 10.8 < s < 16.2 (longest sides, two sides under the perimeter) now strike none; every option sits between them. No distractor is a solved intermediate (7.8 is not an option). Really mid for grade 7."
+  }
+ },
+ {
+  "id": "MV2-O78-15",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 8,
+  "tier": "mid",
+  "rit_band": "RIT 220-229",
+  "difficulty": "medium",
+  "ccss": "8.EE.C.8b",
+  "subskill": "Shared point of two lines by substitution: the y-value",
+  "grade_rationale": "Mid for grade 8: solve a system by substitution (8.EE.C.8b): 2x + (3x - 2) = 23 gives x = 5, then y = 13. About half of grade-8 students slip on the -2 when they substitute or drop y from the second equation.",
+  "prompt": "The point (x, y) is on both of these lines: y = 3x - 2 and 2x + y = 23. What is y at that point?",
+  "choices": [
+   "5",
+   "17",
+   "10.6",
+   "13"
+  ],
+  "correct_answer": "13",
+  "explanation": "Put 3x - 2 in place of y in the second equation: 2x + 3x - 2 = 23, so 5x = 25 and x = 5. Then y = 3(5) - 2 = 13. Check: 2(5) + 13 = 23.",
+  "solve": "const x = (23 + 2) / 5; return 3 * x - 2",
+  "distractor_solve": {
+   "5": "return (23 + 2) / 5",
+   "17": "const x = (23 + 2) / 5; return 3 * x + 2",
+   "10.6": "const x = (23 - 2) / 5; return Math.round((3 * x - 2) * 10) / 10"
+  },
+  "mechanism": [
+   "substitute y = 3x - 2",
+   "solve 5x - 2 = 23",
+   "y = 3(5) - 2"
+  ],
+  "quantity_asked": "the y-coordinate of the shared point",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const x = (v + 2) / 3; return Math.abs(2 * x + v - 23) < 1e-9",
+   "why": "A student can find x from y = 3x - 2 for an option and test 2x + y = 23; ascending, the key is the third try."
+  },
+  "distractor_meta": {
+   "5": {
+    "error_kind": "wrong_variable",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "gives the x-coordinate instead of y",
+    "why": "The student solves 5x = 25 and stops at x = 5."
+   },
+   "17": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "finds x = 5 and then adds 2 instead of subtracting",
+    "why": "The student evaluates 3(5) + 2."
+   },
+   "10.6": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "moves the -2 to the other side with the wrong sign",
+    "why": "From 5x - 2 = 23 the student writes 5x = 21."
+   }
+  },
+  "structure_check": "Interior key; nothing in the stem signs the errors.",
+  "intermediate_check": "17: no; it uses +2. 5: yes, it is x, the value y follows from through y = 3x - 2 (declared as the wrong-variable answer; 3x - 2 is the printed relation, so a grader may count it). 10.6: no.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "No property handed over (y could be any real number); all four survive.",
+  "interior_parity_check": "Middle values 13 and 17: both two-digit whole numbers; 13 is not the cleaner.",
+  "arith_class_check": "Key 13 is whole and odd; 17 is too. Not alone.",
+  "dup_search": {
+   "queries": [
+    "y = 3x - 2|2x \\+ y = 23",
+    "substitut&system&value of y",
+    "system&value of x \\+ y",
+    "on both&lines"
+   ],
+   "hits_read": 14,
+   "nearest": "MAP exclusion \"Solve a system when one line is described in words\" (y is 5 less than three times x, 5x + 5y = 215, ask x): mine gives both lines as equations and asks y, so the last step (back-substitution) is the tested one; my first draft (input for a given output) duplicated ssat 8458dd8a and was replaced."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "none",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Revised after the screen (plug-back at try 2): the key is now the third ascending try, with two distractors below it. Plug-back is routine, so the order is what protects it. 5 is x, a stop-early value. No cheap bound strikes a distractor. Really mid for grade 8. Read lines: 17 - 13 = 4 = 2 x the printed 2 is the sign slip on the final -2; a student would need to suspect that slip to use the pair. 16 is also a system item; its distractors (stop at x, back-substitution sign, subtract the equations) differ from these (final sign, drop y, move -2)."
+  }
+ },
+ {
+  "id": "MV2-O56-20",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "6.RP.A.3.b",
+  "subskill": "Savings from unit prices across different bag sizes",
+  "grade_rationale": "High for grade 6: 6.RP.A.3b, comparing unit prices of a 2-pound and a 4-pound bag and turning the 10-cent difference per pound into savings on 12 pounds. The decision point is comparing per pound, not per bag. Only stronger grade-6 students do not compare bag prices directly.",
+  "prompt": "Store A sells rice in 2-pound bags for $2.20 each. Store B sells rice in 4-pound bags for $4.00 each. Mia needs exactly 12 pounds of rice. How many dollars does she save by buying all of it at Store B instead of Store A?",
+  "choices": [
+   "2.20",
+   "1.20",
+   "5.40",
+   "1.80"
+  ],
+  "correct_answer": "1.20",
+  "explanation": "At Store A, 12 pounds is 6 bags: 6 x 2.20 = 13.20 dollars. At Store B, 12 pounds is 3 bags: 3 x 4.00 = 12.00 dollars. She saves 13.20 - 12.00 = 1.20 dollars. (Per pound: 1.10 at A and 1.00 at B, so 0.10 x 12 = 1.20.)",
+  "solve": "return Math.round((12 / 2 * 2.20 - 12 / 4 * 4.00) * 100) / 100",
+  "distractor_solve": {
+   "1.80": "return Math.round((4.00 - 2.20) * 100) / 100",
+   "5.40": "return Math.round((12 / 4 * (4.00 - 2.20)) * 100) / 100",
+   "2.20": "const bagA = 2.20; return bagA"
+  },
+  "mechanism": [
+   "find the cost of 12 pounds at each store (or each unit price)",
+   "subtract"
+  ],
+  "quantity_asked": "dollars saved by buying 12 pounds at Store B",
+  "plugback": {
+   "substitutable": false,
+   "why": "A saving cannot be checked without the cost at both stores, which is the solution."
+  },
+  "distractor_meta": {
+   "1.80": {
+    "error_kind": "wrong_variable",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "compares one bag at each store instead of the same weight",
+    "why": "Subtracts the bag prices: 4.00 - 2.20 = 1.80."
+   },
+   "5.40": {
+    "error_kind": "wrong_operation",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "multiplies the bag-price difference by the number of Store B bags",
+    "why": "Takes 1.80 per bag and multiplies by 3 bags: 5.40."
+   },
+   "2.20": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "thinks buying fewer bags saves the price of one Store A bag",
+    "why": "Sees that Store B needs fewer bags and counts the saving as one Store A bag: 2.20."
+   }
+  },
+  "counter_error": {
+   "error_kind": "partial_answer",
+   "solve": "return Math.round((2.20 / 2 - 4.00 / 4) * 100) / 100",
+   "direction": "below",
+   "why": "Stopping at the saving per pound (0.10) lands below the key."
+  },
+  "far_distractor": {
+   "option": "1.80",
+   "natural_side": "below",
+   "why": "Comparing single bags usually understates a saving when the bags are the same size; here the Store B bag holds twice as much, so its price difference (1.80) is bigger than the real saving and lands above."
+  },
+  "structure_check": "No: no extremum or \"every\"; a per-pound slip lands below (0.10) and bag-based slips land above, so the stem does not sign every error.",
+  "intermediate_check": "1.80: no single printed number joins it to 1.20 (difference 0.60). 5.40: no. 2.20: it equals a printed price, but it is not reached from the key by a printed rate (2.20 - 1.20 = 1.00). The intermediates 13.20, 12.00 and 0.10 are not options.",
+  "cheap_bound_check": "Cheapest one-sided bound: the saving is less than the whole Store A cost, 13.20; it strikes nothing. Estimating \"about 10 cents a pound\" needs both unit prices, which is the work.",
+  "shape_check": "The stem hands over: a money amount (all survive), positive (all survive), less than 13.20 (all survive). All four survive together.",
+  "interior_parity_check": "Middle values 1.80 and 2.20: both dollars-and-cents amounts with two decimal places; neither is the key.",
+  "arith_class_check": "No: all four are multiples of 0.20 except 5.40 is too; the key is not alone.",
+  "dup_search": {
+   "queries": [
+    "better buy|unit price&store",
+    "store a&store b&pound"
+   ],
+   "hits_read": 8,
+   "nearest": "MM3-O16-style single unit-price items: different chain - one price per unit; here two bag sizes are compared and turned into a saving on a fixed weight."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: every quantity in the stem is positive and every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "less than 13.20: strikes nothing",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: money amounts",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: needs both costs",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "positive, since B is cheaper per pound - needs the unit prices: strikes nothing",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, a student cannot tell which way errors go: stopping at the per-pound saving lands below (0.10), bag-based slips land above. No cheap bound strikes any option. Not plug-back checkable. 2.20 is a printed number, but as a distractor; the key is not printed. High for grade 6: per-pound comparison is the decision point."
+  }
+ },
+ {
+  "id": "MV2-O78-19",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 8,
+  "tier": "high",
+  "rit_band": "RIT 230-239",
+  "difficulty": "hard",
+  "ccss": "8.F.A.2",
+  "subskill": "Zero of a function that shares another's initial value",
+  "grade_rationale": "High for grade 8: compare two functions given differently (8.F.A.2). The student finds f's initial value from two points (slope -2, intercept 9), carries it to g, and solves 9 - 1.25x = 0. Only stronger grade-8 students chain the three steps.",
+  "prompt": "Line f goes through (-6, 21) and (1, 7). Line g crosses the y-axis where line f does, and g drops 1.25 units for every 1 unit it moves to the right. Where does line g cross the x-axis? Give the x-coordinate.",
+  "choices": [
+   "11.25",
+   "16.8",
+   "4.5",
+   "7.2"
+  ],
+  "correct_answer": "7.2",
+  "explanation": "The slope of f is (7 - 21)/(1 - (-6)) = -14/7 = -2. Using (1, 7): 7 = -2(1) + b, so b = 9. So g(x) = 9 - 1.25x. Set 9 - 1.25x = 0: 1.25x = 9, so x = 7.2.",
+  "solve": "const m = (7 - 21) / 7; const b = 7 - m * 1; return b / 1.25",
+  "distractor_solve": {
+   "11.25": "return 9 * 1.25",
+   "16.8": "return 21 / 1.25",
+   "4.5": "return 9 / 2"
+  },
+  "mechanism": [
+   "slope of f = -2",
+   "y-intercept of f = 9",
+   "solve 9 - 1.25x = 0"
+  ],
+  "quantity_asked": "the x-intercept of g",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option can be checked only after finding f's y-intercept, which is most of the work."
+  },
+  "distractor_meta": {
+   "11.25": {
+    "error_kind": "inverted_rate",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "multiplies the intercept by the rate instead of dividing",
+    "why": "The student computes 9 x 1.25."
+   },
+   "16.8": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the first y-value 21 as the y-intercept",
+    "why": "The student takes 21 as g's starting value."
+   },
+   "4.5": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "answers for f instead of g",
+    "why": "The student finds where f, with slope -2, crosses zero: 9/2."
+   }
+  },
+  "structure_check": "Interior key; no structure signs the errors.",
+  "intermediate_check": "11.25: no. 16.8: no. 4.5: no; it is f's zero, not on g's path. The path passes through -2 and 9, neither an option.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "g starts positive and falls, so its zero is positive: all four survive.",
+  "interior_parity_check": "Middle values 7.2 and 11.25: one-place and two-place decimals; the key is not the cleaner.",
+  "arith_class_check": "All four are decimals or whole... 4.5, 7.2, 11.25, 16.8: no whole number; the key is not alone.",
+  "dup_search": {
+   "queries": [
+    "x-intercept&same y-intercept|y-intercept as",
+    "same y-intercept",
+    "rate of change&passes through"
+   ],
+   "hits_read": 6,
+   "nearest": "MAP exclusion \"Initial value of a function with another function's rate\" (B shares A's rate, find B's intercept): mine carries the INTERCEPT, not the rate, and asks a zero; no live hit."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "x > 0 (g starts positive and decreases); strikes none",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "none",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Lower interior: a student cannot check an option in one routine step (the intercept must be found first). No cheap bound strikes a distractor. No distractor is a solved intermediate. Really high for grade 8."
+  }
+ },
+ {
+  "id": "MV2-O78-13",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 8,
+  "tier": "mid",
+  "rit_band": "RIT 220-229",
+  "difficulty": "medium",
+  "ccss": "8.F.B.4",
+  "subskill": "Change in y over an interval from a line in standard form",
+  "grade_rationale": "Mid for grade 8: interpret the rate of change of a linear function (8.F.B.4) when the line is in standard form: the slope is -3/5, and the change in y over 15 units of x is 9. About half of grade-8 students read the slope off the coefficients the wrong way or use an endpoint instead of the change.",
+  "prompt": "On the line 3x + 5y = 55, as x increases from 7 to 37, by how much does y decrease?",
+  "choices": [
+   "18",
+   "29",
+   "50",
+   "22.2"
+  ],
+  "correct_answer": "18",
+  "explanation": "Solve for y: 5y = 55 - 3x, so y = 11 - (3/5)x. The slope is -3/5, so y goes down 3/5 for each 1 that x goes up. From x = 7 to x = 37, x increases by 30, so y decreases by (3/5)(30) = 18. (Check: y = 6.8 at x = 7 and y = -11.2 at x = 37.)",
+  "solve": "return 3 / 5 * (37 - 7)",
+  "distractor_solve": {
+   "29": "return 3 / 5 * (37 - 7) + 55 / 5",
+   "50": "return 5 / 3 * (37 - 7)",
+   "22.2": "return Math.round(3 / 5 * 37 * 10) / 10"
+  },
+  "mechanism": [
+   "slope = -3/5 from 5y = 55 - 3x",
+   "change in x = 30",
+   "(3/5)(30) = 18"
+  ],
+  "quantity_asked": "the decrease in y as x goes from 7 to 37",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option cannot be checked without finding y at both x-values or the slope, which is the solve."
+  },
+  "distractor_meta": {
+   "29": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds the y-intercept to the change",
+    "why": "The student finds 18 and then adds the intercept 11."
+   },
+   "50": {
+    "error_kind": "inverted_rate",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "reads the slope as 5/3 instead of 3/5",
+    "why": "The student divides the coefficients the wrong way round."
+   },
+   "22.2": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the end value of x instead of the change in x",
+    "why": "The student multiplies 3/5 by 37, leaving out the starting 7."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "return 1 / 5 * (37 - 7)",
+   "direction": "below",
+   "why": "Dropping the 3 and using a slope of 1/5 gives 6, below the key."
+  },
+  "far_distractor": {
+   "option": "22.2",
+   "natural_side": "below",
+   "why": "Leaving out a step ordinarily makes an answer too small; leaving out the subtraction of 7 makes the x-distance larger (37 instead of 30), so the change in y lands above the key."
+  },
+  "structure_check": "No extremum in the stem; the errors are not signed: dropping the 3 (slope 1/5) lands below, inverting the slope lands above.",
+  "intermediate_check": "50: no; 5/3 is not on the path. 22.2: no; 3/5 x 37 is not on the path. 29: no. The path passes through 30 and -3/5, and y-values 6.8 and -11.2, none an option.",
+  "cheap_bound_check": "Cheapest bound: none; y can go negative, so no cap on the decrease is readable. The near distractor is 22.2, 23% above the key.",
+  "shape_check": "A positive decrease; all four survive.",
+  "interior_parity_check": "Middle values 22.2 and 29: one decimal, one whole; the key is not interior.",
+  "arith_class_check": "Key 18 is whole; 29 and 50 are too.",
+  "dup_search": {
+   "queries": [
+    "line&[0-9]x \\+ [0-9]y = &y decrease|y change",
+    "as x increases from",
+    "standard form|as x increases",
+    "slope&y-intercept&passes"
+   ],
+   "hits_read": 13,
+   "nearest": "isee 054778a6 (slope 3 through (4, -2), find the y-intercept): a different quantity; no live item asks the change in y over an interval from a standard-form line. My first draft (y-intercept from a slope and a point) duplicated 054778a6 and was replaced."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: a decrease is asked, so all positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "none without the slope",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "none",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, a student cannot tell which way the errors go: the 1/5 slip lands below. No bound strikes all three. One-step check: no. No distractor is a solved intermediate. Really mid for grade 8: reading slope from standard form and multiplying by the change. Cheapest bound strikes none. Read: 50 - 18 = 32 is (5/3 - 3/5) x 30, not a stem number."
+  }
+ },
+ {
+  "id": "MV2-O78-16",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 8,
+  "tier": "high",
+  "rit_band": "RIT 230-239",
+  "difficulty": "hard",
+  "ccss": "8.EE.C.8b",
+  "subskill": "Sum of the coordinates of a system's solution",
+  "grade_rationale": "High for grade 8: solve a system by elimination (8.EE.C.8b): adding the equations gives 6x = 66, x = 11, then y = -1 from back-substitution, and the asked value is x + y. Only stronger grade-8 students keep the negative y and finish the ask.",
+  "prompt": "The pair (x, y) makes both x + 4y = 7 and 5x - 4y = 59 true. Find x + y for this pair.",
+  "choices": [
+   "11",
+   "15.5",
+   "10",
+   "11.5"
+  ],
+  "correct_answer": "10",
+  "explanation": "Add the equations: the y-terms cancel, so 6x = 66 and x = 11. Then 11 + 4y = 7, so 4y = -4 and y = -1. So x + y = 11 + (-1) = 10.",
+  "solve": "const x = (7 + 59) / 6; const y = (7 - x) / 4; return x + y",
+  "distractor_solve": {
+   "11": "return (7 + 59) / 6",
+   "15.5": "const x = (7 + 59) / 6; return x + (7 + x) / 4",
+   "11.5": "const x = (7 - 59) / (1 - 5); return x + (7 - x) / 4"
+  },
+  "mechanism": [
+   "add the equations: 6x = 66",
+   "back-substitute: y = -1",
+   "add x and y"
+  ],
+  "quantity_asked": "the sum x + y of the solution",
+  "plugback": {
+   "substitutable": false,
+   "why": "A value of x + y cannot be checked against the system without first solving it."
+  },
+  "distractor_meta": {
+   "11": {
+    "error_kind": "partial_answer",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "stops after finding x",
+    "why": "The student gives x = 11 as the answer."
+   },
+   "15.5": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "back-substitutes with a sign slip: 4y = 7 + 11",
+    "why": "The student finds x = 11 and then gets y = 4.5."
+   },
+   "11.5": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts the equations and treats the y-terms as if they cancelled",
+    "why": "The student writes -4x = -52, x = 13, then y = -1.5."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "return -1",
+   "direction": "below",
+   "why": "Giving y = -1 instead of x + y lands below the key."
+  },
+  "far_distractor": {
+   "option": "11",
+   "natural_side": "below",
+   "why": "Stopping a step early ordinarily leaves an answer short, but the step left out here is adding a NEGATIVE y, so stopping at x = 11 lands above the key."
+  },
+  "structure_check": "No extremum; the errors are not signed: giving y (-1) lands below, the slips in the table land above.",
+  "intermediate_check": "15.5: no. 11: this is x, a value the key follows from by adding y; y is not printed, so it is not one printed relation, but it is a stop-early value, declared as partial_answer. 11.5: no. ",
+  "cheap_bound_check": "Cheapest bound: none readable without solving; the sign of y is not visible from the stem. 11 sits within 10% of the key.",
+  "shape_check": "No property handed over; all four survive.",
+  "interior_parity_check": "Middle values 11 and 11.5: whole and one-place decimal; the key is not interior.",
+  "arith_class_check": "Key 10 is whole; 11 is whole too.",
+  "dup_search": {
+   "queries": [
+    "x \\+ y\\?",
+    "system&value of x \\+ y",
+    "solution to the system"
+   ],
+   "hits_read": 32,
+   "nearest": "MAP exclusion \"Solve a system when one line is described in words\" (ask x) and \"System from two orders, then the price difference\": mine asks x + y of a pure system whose y is negative; the SAT x + y items in the hits use the add-the-equations shortcut where the coefficients match, which this system does not allow."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: x + y could have either sign before solving",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "none",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, a student cannot sign the errors: reporting y lands below. No bound strikes all three. One-step check: no. Solved intermediate: 11 is x, the stop-early value (declared partial_answer, and it is the far distractor because y is negative). Really high for grade 8."
+  }
+ },
+ {
+  "id": "MV2-O56-01",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 5,
+  "tier": "low",
+  "rit_band": "RIT 190-199",
+  "difficulty": "easy",
+  "ccss": "5.OA.A.1",
+  "area_25": "Operations and Algebraic Thinking",
+  "subskill": "Evaluate a quotient with a grouped divisor, then subtract",
+  "grade_rationale": "Low for grade 5: 5.OA.A.1 with one pair of parentheses and two routine steps (144 / 9 = 16, then 16 - 3). Most grade-5 students evaluate the grouping first; the tempting errors are dividing by 4 alone or stretching the parentheses.",
+  "prompt": "In a math card game, each card shows an expression, and a player scores the value of the expression on the card. Tia draws the card 144 / (4 + 5) - 3. How many points does Tia score?",
+  "choices": [
+   "13",
+   "24",
+   "38",
+   "15"
+  ],
+  "correct_answer": "13",
+  "explanation": "Work inside the parentheses first: 4 + 5 = 9. Then divide: 144 / 9 = 16. Last, subtract: 16 - 3 = 13.",
+  "solve": "return 144 / (4 + 5) - 3",
+  "distractor_solve": {
+   "15": "return 144 / (4 + 4) - 3",
+   "24": "return 144 / (4 + 5 - 3)",
+   "38": "return 144 / 4 + 5 - 3"
+  },
+  "mechanism": [
+   "add inside the parentheses",
+   "divide 144 by the sum",
+   "subtract 3"
+  ],
+  "quantity_asked": "the value of 144 / (4 + 5) - 3",
+  "plugback": {
+   "substitutable": false,
+   "why": "The ask is the value of a numerical expression; there is no equation an option can be put back into. The only check is to evaluate it."
+  },
+  "distractor_meta": {
+   "15": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": true,
+    "misconception": "adds the numbers in the grouping incorrectly (4 + 5 as 8)",
+    "why": "Adds 4 + 5 as 8, so 144 / 8 = 18 and 18 - 3 = 15."
+   },
+   "24": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "stretches the parentheses over the subtraction",
+    "why": "Reads the divisor as (4 + 5 - 3) = 6, so 144 / 6 = 24."
+   },
+   "38": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "ignores the parentheses and divides by the first number only",
+    "why": "Divides 144 by 4 first, then adds 5 and subtracts 3: 36 + 5 - 3 = 38."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "return 144 / (4 + 5 + 3)",
+   "direction": "below",
+   "why": "Adding the 3 into the divisor (144 / 12 = 12) lands below the key."
+  },
+  "far_distractor": {
+   "option": "24",
+   "natural_side": "below",
+   "why": "Pulling the 3 into the grouping usually makes the divisor larger (144 / 12 = 12, below the key); here the 3 is subtracted inside the grouping, so the divisor shrinks to 6 and the quotient lands above."
+  },
+  "structure_check": "No: the stem is a bare expression with no maximum, no \"every\" and no one-way story; errors that change the divisor go either way (a larger divisor such as 12 lands below, a smaller one such as 6 lands above).",
+  "intermediate_check": "38: no, it is not reached from the key through a printed relation (it divides by 4 alone). 24: no, it divides by 6, a number not in the work. 15: no, it uses a wrong sum (8). None is the solved intermediate 9 or 16.",
+  "cheap_bound_check": "Cheapest one-sided bound: dividing 144 by more than 4 gives less than 36, so the value is less than 36 - 3 = 33; it strikes only 38. 24 and 15 sit on the key's side of that bound.",
+  "shape_check": "The stem hands over: a positive whole number (all four survive) and less than 144 (all four survive). At least three options survive all properties together.",
+  "interior_parity_check": "Middle values 15 and 24: both two-digit whole numbers of the same form; the key 13 is not an interior value.",
+  "arith_class_check": "No. The key 13 is odd; 15 is odd too. No class (multiple of 4, even, round) isolates it.",
+  "dup_search": {
+   "queries": [
+    "\\(4 \\+ 5\\)|/ \\(.*\\+.*\\) -",
+    "order of operations|value of the expression"
+   ],
+   "hits_read": 12,
+   "nearest": "MM3-O01 (90 / (2 + 4) x 3): different chain - there the quotient is multiplied; here a grouped divisor is followed by a subtraction, and the distractors come from the divisor, not from left-to-right multiplication."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: every quantity in the stem is positive and every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "144 divided by more than 4 is less than 36, so the value is below 33",
+    "strikes": [
+     "38"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none cheap: the parity of 144 / 9 - 3 needs the quotient 16",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none cheap: the last digit needs 144 / 9 worked out",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "the value is a whole number between 0 and 144: rules out nothing",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, a student cannot tell which way the errors go: a divisor error can make the quotient bigger or smaller, and 24 comes from a smaller divisor. The bound \"below 33\" strikes only 38. Not plug-back checkable (an expression value). No distractor is a solved intermediate (9 and 16 are not options). This is a low grade-5 item: one grouping and two facts. The cheapest bound strikes one distractor."
+  }
+ },
+ {
+  "id": "MV2-O56-02",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 5,
+  "tier": "high",
+  "rit_band": "RIT 210-219",
+  "difficulty": "hard",
+  "ccss": "5.OA.B.3",
+  "area_25": "Operations and Algebraic Thinking",
+  "subskill": "Find where a falling and a rising pattern meet",
+  "grade_rationale": "High for grade 5: 5.OA.B.3 with two patterns given only by their first terms, one falling and one rising. The student must find both rules, extend the patterns side by side and spot the position where the terms match. Typical grade-5 errors are stopping one term late or assuming the patterns meet halfway.",
+  "prompt": "Wen writes two number patterns. Each pattern keeps going in the same way.\nPattern A: 68, 65, 62, 59, ...\nPattern B: 8, 15, 22, 29, ...\nAt one position (the same term number in both lists), Pattern A and Pattern B have the same number. What is that number?",
+  "choices": [
+   "47",
+   "38",
+   "50",
+   "57"
+  ],
+  "correct_answer": "50",
+  "explanation": "Pattern A goes down by 3 each time and Pattern B goes up by 7. Keep both lists going: A is 68, 65, 62, 59, 56, 53, 50 and B is 8, 15, 22, 29, 36, 43, 50. In the 7th position both patterns show 50.",
+  "solve": "let a = 68, b = 8; while (a !== b) { a -= 3; b += 7 } return a",
+  "distractor_solve": {
+   "38": "return (68 + 8) / 2",
+   "47": "let a = 68, b = 8; while (a !== b) { a -= 3; b += 7 } return a - 3",
+   "57": "let a = 68, b = 8; while (a !== b) { a -= 3; b += 7 } return b + 7"
+  },
+  "mechanism": [
+   "find each rule from the listed terms",
+   "extend both patterns side by side",
+   "stop at the position where they match"
+  ],
+  "quantity_asked": "the number both patterns have at the same position",
+  "plugback": {
+   "substitutable": true,
+   "verify": "return (68 - v) % 3 === 0 && (v - 8) % 7 === 0 && (68 - v) / 3 === (v - 8) / 7",
+   "why": "A student can test an option by checking that it is in both patterns at the same position (count steps of 3 down from 68 and steps of 7 up from 8). In ascending order the key is the third option tried."
+  },
+  "distractor_meta": {
+   "38": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "assumes the two patterns meet halfway between their starting numbers",
+    "why": "Averages 68 and 8 to get 38, as if both patterns changed by the same amount each step."
+   },
+   "47": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "writes one term too many and reports Pattern A's next number",
+    "why": "Keeps going one step past the match and reports Pattern A's 8th number, 47."
+   },
+   "57": {
+    "error_kind": "wrong_variable",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "reports the first number where Pattern B passes Pattern A",
+    "why": "Looks for where B becomes larger than A and gives B's 8th number, 57."
+   }
+  },
+  "structure_check": "Interior key; no extremum or universal quantifier in the stem.",
+  "intermediate_check": "38: no, it is an average of two printed numbers, not a step toward 50. 47: no, it is a later term, not used to reach 50. 57: no, also a later term. None comes from the key through one printed rate or relation.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: a whole number below 59 (A is falling) - strikes nothing listed except none (57 is below 59); above 29 (B is rising) - all survive. Three or more options survive together.",
+  "interior_parity_check": "Middle values 47 and 50: both two-digit whole numbers; 50 is rounder, but 47 is a genuine pattern term (Pattern A) just as 50 is, so neither is the obvious one.",
+  "arith_class_check": "No: 38 and 50 are even, 47 and 57 odd; 47, 50 are in Pattern A, 50, 57 are in Pattern B. The key is not alone in any class a student can read without listing terms.",
+  "dup_search": {
+   "queries": [
+    "pattern&rule&term",
+    "pattern|sequence&more than|add",
+    "both patterns|same position|same number"
+   ],
+   "hits_read": 30,
+   "nearest": "MM2-O05 (corresponding term in two patterns from 0): different chain - that item maps a given term through a ratio; here one pattern falls and one rises and the student must find the meeting position. No live ISEE/SSAT item has two patterns meeting."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: every quantity in the stem is positive and every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "A falls from 59 and B rises from 29, so the meeting number is between 29 and 59",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: both patterns alternate odd and even",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: the units digits of both patterns cycle through all ten digits",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "between 29 and 59 (same as magnitude): strikes nothing",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student might plug options back; the key is the third option in ascending order, so plugging costs as much as listing. 38 tempts students who assume a halfway meeting; 47 and 57 tempt those who stop one step late in either pattern. No distractor is a solved intermediate. High for grade 5: the rules must be found and the patterns extended seven terms. No cheap bound strikes any distractor."
+  }
+ },
+ {
+  "id": "MV2-O78-17",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 8,
+  "tier": "low",
+  "rit_band": "RIT 210-219",
+  "difficulty": "easy",
+  "ccss": "8.EE.C.7b",
+  "subskill": "Distribute, then solve with the variable on both sides",
+  "grade_rationale": "Low for grade 8: a routine 8.EE.C.7b equation with whole-number coefficients: distribute, collect, divide. Most grade-8 students solve 8x - 72 = 2x + 24.",
+  "prompt": "What value of x makes the equation 8(x - 9) = 2x + 24 true?",
+  "choices": [
+   "16",
+   "36",
+   "9.6",
+   "5.5"
+  ],
+  "correct_answer": "16",
+  "explanation": "Distribute: 8x - 72 = 2x + 24. Subtract 2x from both sides: 6x - 72 = 24. Add 72: 6x = 96. Divide by 6: x = 16.",
+  "solve": "return (24 + 72) / 6",
+  "distractor_solve": {
+   "36": "return 24 + 72 / 6",
+   "9.6": "return (24 + 72) / (8 + 2)",
+   "5.5": "return (24 + 9) / 6"
+  },
+  "mechanism": [
+   "distribute 8",
+   "collect x-terms: 6x",
+   "solve 6x = 96"
+  ],
+  "quantity_asked": "the solution x",
+  "plugback": {
+   "substitutable": true,
+   "verify": "return 8 * (v - 9) === 2 * v + 24",
+   "why": "A student can substitute an option into both sides; ascending, the key is the third try."
+  },
+  "distractor_meta": {
+   "36": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "divides only the 72 by 6",
+    "why": "The student writes x = 24 + 72/6."
+   },
+   "9.6": {
+    "error_kind": "wrong_operation",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds the x-coefficients across the equal sign",
+    "why": "The student writes 8x + 2x = 96."
+   },
+   "5.5": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "multiplies only the x by 8, not the 9",
+    "why": "The student writes 8x - 9 = 2x + 24."
+   }
+  },
+  "structure_check": "Interior key; no structure in the stem signs the errors.",
+  "intermediate_check": "9.6: no. 36: no. 5.5: no. The path passes through 72 and 96, neither an option.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "No property handed over; all four survive.",
+  "interior_parity_check": "Middle values 9.6 and 16: one decimal, one whole; the key is the cleaner of the two. A whole answer is natural for a whole-coefficient equation, and 9.6 comes from a real slip; recorded for the screener.",
+  "arith_class_check": "Key 16 is whole; 36 is whole too.",
+  "dup_search": {
+   "queries": [
+    "[0-9]\\(x - [0-9]+\\) =",
+    "value of x makes the equation",
+    "distribute&solve"
+   ],
+   "hits_read": 18,
+   "nearest": "MAP exclusion \"Write and solve a(x - p) = bx + q from a story\" (laps): the same equation shape in a story at mid tier; mine is the bare low-tier equation. I record the overlap; the distractors (adds coefficients, divides only 72, no distribution) differ from the laps item's."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "none",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Upper interior with plug-back: key third ascending. No cheap bound strikes a distractor. No distractor is a solved intermediate. Really low for grade 8. Read: key whole, 9.6 decimal in the middle pair."
+  }
+ },
+ {
+  "id": "MV2-O78-14",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 8,
+  "tier": "mid",
+  "rit_band": "RIT 220-229",
+  "difficulty": "medium",
+  "ccss": "8.EE.C.7b",
+  "subskill": "Linear equation with fractions on both sides",
+  "grade_rationale": "Mid for grade 8: a linear equation with rational coefficients (8.EE.C.7b) needing cross-multiplication with distribution: 4(x + 7) = 3(2x - 8). About half of grade-8 students skip the distribution or move a constant with the wrong sign.",
+  "prompt": "Find the number x for which (x + 7)/3 and (2x - 8)/4 are equal.",
+  "choices": [
+   "2",
+   "26",
+   "10.6",
+   "7.5"
+  ],
+  "correct_answer": "26",
+  "explanation": "Multiply both sides by 12: 4(x + 7) = 3(2x - 8), so 4x + 28 = 6x - 24. Subtract 4x and add 24: 52 = 2x, so x = 26. Check: (26 + 7)/3 = 11 and (52 - 8)/4 = 11.",
+  "solve": "return (4 * 7 + 3 * 8) / (3 * 2 - 4)",
+  "distractor_solve": {
+   "2": "return (4 * 7 - 3 * 8) / (3 * 2 - 4)",
+   "10.6": "return (3 * 7 + 4 * 8) / (4 * 2 - 3)",
+   "7.5": "return (7 + 8) / (3 * 2 - 4)"
+  },
+  "mechanism": [
+   "multiply both sides by 12",
+   "distribute: 4x + 28 = 6x - 24",
+   "solve 2x = 52"
+  ],
+  "quantity_asked": "the solution x",
+  "plugback": {
+   "substitutable": true,
+   "verify": "return Math.abs((v + 7) / 3 - (2 * v - 8) / 4) < 1e-9",
+   "why": "A student can substitute an option into both sides; ascending, the key is the fourth try."
+  },
+  "distractor_meta": {
+   "2": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "moves -24 across with the wrong sign",
+    "why": "From 4x + 28 = 6x - 24 the student writes 2x = 28 - 24."
+   },
+   "10.6": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "multiplies each numerator by its own denominator",
+    "why": "The student writes 3(x + 7) = 4(2x - 8) and gets 5x = 53."
+   },
+   "7.5": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "multiplies only the x-terms, not the constants",
+    "why": "The student writes 4x + 7 = 6x - 8 and gets 2x = 15."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "return (4 * 7 + 3 * 8)",
+   "direction": "above",
+   "why": "Stopping at 2x = 52 and giving 52 lands above the key."
+  },
+  "far_distractor": {
+   "option": "2",
+   "natural_side": "above",
+   "why": "Dropping a minus sign usually turns a negative into a positive and pushes the answer up; here the slip turns 28 + 24 into 28 - 24, so x lands far below the key."
+  },
+  "structure_check": "No extremum; the errors are not signed: stopping at 2x = 52 overshoots, the other slips undershoot.",
+  "intermediate_check": "10.6: no; it comes from a different cross-multiplication. 2: no. 7.5: no. The path passes through 52, not an option.",
+  "cheap_bound_check": "Cheapest bound: x must make (2x - 8)/4 equal (x + 7)/3; for small x the left side is bigger, so x is \"large\", but no single estimate gives a number; I find none that strikes a distractor.",
+  "shape_check": "Real number solution; no sign or whole-number property handed over; all four survive.",
+  "interior_parity_check": "Middle values 7.5 and 10.6: both one-place decimals; the key is not interior.",
+  "arith_class_check": "Key 26 is whole; 2 is whole too.",
+  "dup_search": {
+   "queries": [
+    "\\(x \\+ [0-9]+\\)/[0-9]",
+    "solve&/3 =|/4 =",
+    "value of x&fraction"
+   ],
+   "hits_read": 20,
+   "nearest": "MAP exclusion \"Solve a decimal-coefficient equation with the variable on both sides\" (store jacket, 0.8p + 9 = 0.95p): a story with decimals and no cross-multiplication; mine is a pure proportion-form equation with distribution on both sides."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: nothing in the stem fixes the sign of x",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "none",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, the errors are not one way (stopping at 52 overshoots). No bound strikes any distractor. Plug-back possible, the key is the fourth ascending try. No distractor is a solved intermediate. Really mid for grade 8. Same-skill note: 17 and 21 are also linear equations; their distractors use different wrong ideas except that 17 and 21 both include \"adds the x-coefficients\"."
+  }
+ }
+]

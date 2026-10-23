@@ -1,0 +1,476 @@
+{
+ "screened": 221,
+ "fails": {
+  "MV2-G78-09": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-D6-10": [
+   "S-R7 option pair 13 and 24 (+11)",
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-O56-05": [
+   "S-R6 plug-back routine at try 2"
+  ],
+  "MV2-D8-08": [
+   "S-R7 option pair 61 and 56 (-5, the five students)"
+  ],
+  "MV2-N7-06": [
+   "S-R4 3 struck without solving: [\"-10.95\",\"-0.45\",\"1.05\"] (-10.95 and -0.45: negative times negative is positive and exceeds 3.6; 1.05: product > 3.5x2 = 7 so result > 3.4)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (result > 3.5x2 - 3.6 = 3.4)"
+  ],
+  "MV2-D7-03": [
+   "S-R4 2 struck without solving: [\"645\",\"495\"] (645: above either sample's rate (max 55% = 495); 495: equals the second sample alone, a combined rate must lie strictly between 25% and 55%)"
+  ],
+  "MV2-N8-18": [
+   "S-R4 3 struck without solving: [\"330\",\"400\",\"950\"] (each: side > 10 (10^3 = 1000 < 2000), so face = volume/side < 200)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (face area = 2000/side < 2000/10 = 200)"
+  ],
+  "MV2-D5-04": [
+   "S-R7 option pair 9 and 15 (+6)",
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-O56-16": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-G78-21": [
+   "S-R4 2 struck without solving: [\"4.9\",\"6.2\"] (4.9: hypotenuse exceeds the 5 m leg; 6.2: must be less than 1.2+5 (triangle inequality))"
+  ],
+  "MV2-D7-08": [
+   "S-R4 2 struck without solving: [\"4/15\",\"2/9\"] (4/15 and 2/9: 11 cards, so the denominator must be 11)",
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-D8-11": [
+   "S-R6 plug-back routine at try 1"
+  ],
+  "MV2-O56-21": [
+   "S-R4 2 struck without solving: [\"9\",\"23\"] (9 and 23: 3a^2 with a = 4 is even and 2b is even, so the result is even)"
+  ],
+  "MV2-O78-10": [
+   "S-R4 2 struck without solving: [\"9.3\",\"18.45\"] (9.3: equal sides are the longest so exceed 32.4/3 = 10.8; 18.45: two such sides would exceed the 32.4 perimeter)"
+  ],
+  "MV2-D5-07": [
+   "S-R4 2 struck without solving: [\"3\",\"4 1/2\"] (3 and 4 1/2: 7 caterpillars over 2 in total at least 17 1/2, 6 under 2 total at most 9, so difference is at least 8 1/2)"
+  ],
+  "MV2-N8-09": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-D5-08": [
+   "S-R7 option pair 1 1/4 / 1 3/4, differ by 1/2"
+  ],
+  "MV2-D5-09": [
+   "S-R4 3 struck without solving: [\"80\",\"70\",\"79\"] (units digit: 108 - 28 - 12 ends in 8, which strikes 80, 70 and 79 (79 is also struck by parity))",
+   "S-R5 key identifiable without solving"
+  ],
+  "MV2-D5-15": [
+   "S-R7 option pair 8 / 14, +6",
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-D8-06": [
+   "S-R7 option pair 68 / 44, +24"
+  ],
+  "MV2-N56-03": [
+   "S-R7 option pair 8.35 / 12.55, differ by 1.4 x 3 (4 - 1)"
+  ],
+  "MV2-O56-14": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-O78-21": [
+   "S-R4 3 struck without solving: [\"10.2\",\"11\",\"12.75\"] (x + 42 > 42 for x > 0, so 4x - 9 > 42 and x > 12.75, which strikes all three)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (4x - 9 > 42, so x > 12.75)"
+  ],
+  "MV2-D7-14": [
+   "S-R7 option pair 20 / 15, +5 (five players)"
+  ],
+  "MV2-N8-12": [
+   "S-R4 3 struck without solving: [\"640\",\"5120\",\"1000\"] (2^-2 shrinks the product, so it is below 5 x 2^5 = 160, which strikes all three)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (product < 5 x 2^5 = 160)"
+  ],
+  "MV2-D8-12": [
+   "S-R4 2 struck without solving: [\"33\",\"16\"] (33: teens are under 50% yes, so under 30 of 60; 16: the teen rate 45% beats the adults' 33%, so the answer is over 20)"
+  ],
+  "MV2-N8-17": [
+   "S-R4 3 struck without solving: [\"25\",\"75\",\"5\"] (5^3 = 125 and sqrt 100 is small, so the result is over 100, which strikes all three)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (125 - 10 > 100)"
+  ],
+  "MV2-N8-19": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-O56-09": [
+   "S-R7 option pair 181 / 169, 12 (13 - 1)",
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-G56-14": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-O78-09": [
+   "S-R4 3 struck without solving: [\"56.5\",\"40\",\"51\"] (35% is more than 1/3, so less than 40 L remains, which strikes all three)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (more than 1/3 drained, so under 40 L left)"
+  ],
+  "MV2-D6-04": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-G78-08": [
+   "S-R4 3 struck without solving: [\"238.5\",\"474\",\"417\"] (238.5: the two ends exceed 2 diameters, so the lap is over 260; 474 and 417: the ends together are under the 200 m perimeter of a 50 m square, so the lap is und)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MV2-D8-02": [
+   "S-R4 2 struck without solving: [\"19.2\",\"0.8\"] (19.2: at 1.6 cm/h that drop exceeds the 20 cm of snow; 0.8: under an hour drops under 1.6 cm, far short of 12)"
+  ],
+  "MV2-O56-17": [
+   "S-R4 2 struck without solving: [\"30\",\"78\"] (30: 42 < 60 so most students did not name soccer, answer > 50; 78: 42 > 30 (a quarter of 120), so answer < 75)"
+  ],
+  "MV2-D6-14": [
+   "S-R4 3 struck without solving: [\"28\",\"19\",\"7\"] (28: equals the full range 40-12, IQR must be smaller; 19 and 7: IQR uses the box start 17.5, so the answer must end in .5 and only 13.5 does)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MV2-D5-14": [
+   "S-R7 option pair 7 and 13, +6"
+  ],
+  "MV2-N56-25": [
+   "S-R4 2 struck without solving: [\"22\",\"6\"] (22: GCF x sum = 120 and 22 does not divide 120; 6: GCF is at most 15, so sum >= 120/15 = 8)",
+   "S-R5 key identifiable without solving",
+   "S-R6 plug-back routine at try 2"
+  ],
+  "MV2-N56-20": [
+   "S-R7 option pair 35.5 and 23.5, -12 (9.5 + 2.5)",
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-D5-03": [
+   "S-R4 3 struck without solving: [\"70\",\"73\",\"75\"] (70: 2 yards alone is 72 in; 73 and 75: a whole number of feet must be a multiple of 12)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MV2-N56-17": [
+   "S-R4 2 struck without solving: [\"11 1/7\",\"11 3/7\"] (11 1/7 and 11 3/7: A drains under 6 gallons at 5/6 gal/min in under 7.2 min, so the difference is under 7.2)"
+  ],
+  "MV2-D7-04": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-N7-08": [
+   "S-R4 3 struck without solving: [\"-2 5/24\",\"-3 19/24\",\"-5 1/24\"] (-2 5/24: moving 2 11/12 left from a negative must pass -2 11/12; -3 19/24: |C| > 1 + 2 11/12 = 3 22/24; -5 1/24: |C| < 1.25 + 3 = 4.25)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MV2-D5-17": [
+   "S-R4 3 struck without solving: [\"3.35\",\"3.4\",\"4.5\"] (3.35 and 3.4: an ounce count over 16 must be a multiple of 1/16 (.0625 steps); 4.5: 72/16 is the whole bag before 20 oz were used)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MV2-G78-11": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-N8-02": [
+   "S-R4 3 struck without solving: [\"53361\",\"3969\",\"63\"] (53361 and 3969: subtracting from sqrt144 = 12 then squaring gives at most 144; 63: the roots are whole numbers, so the result is a perfect square)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-N56-04": [
+   "S-R4 2 struck without solving: [\"3.96\",\"0.36\"] (3.96 and 0.36: 40 minus a few hundredths is just under 40)"
+  ],
+  "MV2-N8-11": [
+   "S-R4 2 struck without solving: [\"300\",\"300000000\"] (300: fewer terabytes than there are servers (12,000); 300000000: 10^4 x 10^2 with a leading 3 is order 10^6, not 10^8)",
+   "S-R7 option pair 3000000 and 300000000, x10^2"
+  ],
+  "MV2-D5-01": [
+   "S-R7 option pair 23 and 28, +5"
+  ],
+  "MV2-N7-07": [
+   "S-R4 2 struck without solving: [\"7.55\",\"19.05\"] (19.05: above the midpoint 7.9, but she goes only a quarter of the way; 7.55: a quarter of 44.6 is about 11, less than 14.4, so she is still below 0)"
+  ],
+  "MV2-O78-20": [
+   "S-R4 2 struck without solving: [\"11.5\",\"21.5\"] (11.5 and 21.5: 1.5 x (-4) is a whole number, so the output is a whole number)"
+  ],
+  "MV2-N7-01": [
+   "S-R4 2 struck without solving: [\"105.05\",\"66.15\"] (105.05 exceeds 85.6+4.35+2.7=92.65, the gap even if the balloon never descended; 66.15 is below 73.2, the balloon's own height above the surface, yet the diver )"
+  ],
+  "MV2-G78-18": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-D5-05": [
+   "S-R7 option pair 13 1/2 & 12 1/2 (-1)"
+  ],
+  "MV2-D5-13": [
+   "S-R6 plug-back routine at try 1"
+  ],
+  "MV2-D7-10": [
+   "S-R4 2 struck without solving: [\"7/12\",\"1/6\"] (7/12 is more than P(hot soup) = 2/5, and P(both) can't exceed either part; 1/6 has a denominator that can't come from fifths times sevenths (it must divide 35))",
+   "S-R7 option pair 2/7 & 4/35 (x2/5)"
+  ],
+  "MV2-N8-05": [
+   "S-R4 2 struck without solving: [\"400000\",\"25000\"] (4/1.6 is between 1 and 10 and 10^8/10^2 = 10^6, so the answer lies between 10^6 and 10^7, which rules out 400000 and 25000)"
+  ],
+  "MV2-G56-26": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-N56-18": [
+   "S-R4 2 struck without solving: [\"13.5\",\"21.5\"] (both points have x=-3, so the distance is a whole number of units times 2.5; 13.5 and 21.5 are not multiples of 2.5)"
+  ],
+  "MV2-N8-07": [
+   "S-R4 2 struck without solving: [\"320\",\"20\"] (dividing by 4^-3 multiplies by 4^3, so the result is more than 5 x 4^3 = 320)",
+   "S-R7 option pair 20480 & 320 (x4^3)",
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-D8-07": [
+   "S-R4 2 struck without solving: [\"53\",\"56\"] (y = 3(16 - x) with x a whole number is a multiple of 3; 53 and 56 are not)"
+  ],
+  "MV2-N56-08": [
+   "S-R7 option pair 4906 & 4206 (-7x10^2)"
+  ],
+  "MV2-N56-16": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-N56-06": [
+   "S-R7 option pair 2 5/8 & 1 1/8 (x2 1/3)"
+  ],
+  "MV2-N8-03": [
+   "S-R7 option pair 135 & 1215 (x3^2)"
+  ],
+  "MV2-N8-16": [
+   "S-R4 3 struck without solving: [\"62500\",\"1000000\",\"40000\"] (2^2 x 5^4 is less than 2^4 x 5^4 = 10^4, and all three exceed 10000)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (number < 2^4 x 5^4 = 10^4)"
+  ],
+  "MV2-N8-13": [
+   "S-R4 3 struck without solving: [\"250000\",\"40000\",\"120\"] (the radicand is under 10^8, so the root is under 10^4, which kills 250000 and 40000; the root of 2^a x 5^b can't contain a factor of 3, which kills 120)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MV2-O78-08": [
+   "S-R4 3 struck without solving: [\"6750\",\"7020\",\"7128\"] (adding the lost percents back always undershoots, so the answer exceeds 5400 x 1.2 x 1.1 = 7128, which kills 6750, 7020 and 7128 at once)",
+   "S-R5 key identifiable without solving",
+   "S-R7 option pair 7500 & 6750 (x0.9)",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (original > 5400 x 1.2 x 1.1 = 7128 (re-adding lost percents undershoots))"
+  ],
+  "MV2-D6-06": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-N7-02": [
+   "S-R4 2 struck without solving: [\"20.75\",\"34.45\"] (the climb alone is more than 27.6 because she starts below 0, which kills 20.75; the walk down is 27.6 - 8.4, about 19, so the total is more than 46, which kill)",
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-G56-04": [
+   "S-R4 2 struck without solving: [\"311\",\"351\"] (both prisms are 9 cm long, so the wood left is a multiple of 9, and 311 is not; 351 is more than the whole 9x7x5 = 315 block)"
+  ],
+  "MV2-N8-08": [
+   "S-R4 3 struck without solving: [\"60\",\"90\",\"160\"] (40^2=1600<2000 so side >40 and perimeter >160, killing 60, 90 and 160)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (side > 40 (40^2 = 1600 < 2000), so perimeter > 160)"
+  ],
+  "MV2-D6-05": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-D6-07": [
+   "S-R7 option pair 8 & 9.6: 48 divided by 5 (n - 1) instead of 6"
+  ],
+  "MV2-D8-10": [
+   "S-R7 option pair 7 & 21: x3 (three students per group)"
+  ],
+  "MV2-N56-21": [
+   "S-R4 2 struck without solving: [\"8.5\",\"21.5\"] (B is the opposite of a number below -15, so B >15 and AB >30, killing 8.5 and 21.5)"
+  ],
+  "MV2-N7-15": [
+   "S-R4 2 struck without solving: [\"14.95\",\"5.45\"] (14.95 is above the start although net change is cooling (1.35 > 0.4); 5.45 is only about one minute of net cooling)"
+  ],
+  "MV2-D7-13": [
+   "S-R7 option pair 408 & 425: differ by 17 (the deer total)"
+  ],
+  "MV2-N56-09": [
+   "S-R4 2 struck without solving: [\"2.14\",\"4.54\"] (1.65x2 = 3.3 already, so the answer is over 3, killing 2.14; the bounce subtracts and 1.65x2.6 < 1.7x2.6 = 4.42, killing 4.54)"
+  ],
+  "MV2-D5-10": [
+   "S-R7 option pair 6 1/4 & 5 3/4: differ by 1/2 (a printed length)"
+  ],
+  "MV2-G56-01": [
+   "S-R4 3 struck without solving: [\"127\",\"182\",\"212\"] (127 is odd but the product has a factor 4; 182 is not divisible by 4; 212 is not divisible by 9 (digit sum 5))",
+   "S-R5 key identifiable without solving"
+  ],
+  "MV2-O56-11": [
+   "S-R4 3 struck without solving: [\"168\",\"138\",\"132\"] (the units digit must be 0+2 = 2, killing 168 and 138; 8x15 > 80 and 6x12 > 60 give more than 140, killing 132)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MV2-G78-19": [
+   "S-R10 single bound kills all (using pi ~ 3: 3x144x9 + 3x64x6 = 5040 lower bound)"
+  ],
+  "MV2-G78-01": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-G56-10": [
+   "S-R6 plug-back routine at try 1",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (x <= 2 + 26 - 10 = 18 from the vertical leg)"
+  ],
+  "MV2-G78-25": [
+   "S-R4 2 struck without solving: [\"60\",\"289\"] (side > 12 (vertical gap) so area >144, killing 60; side < 5+12 = 17 so area <289, killing 289)"
+  ],
+  "MV2-O56-22": [
+   "S-R4 2 struck without solving: [\"58\",\"40\"] (3(k-2) with k=6 is 3 times an even number, so the total is 7 + even = odd, killing 58 and 40)"
+  ],
+  "MV2-O78-01": [
+   "S-R4 3 struck without solving: [\"48.00\",\"41.60\",\"39.50\"] (each share is half the bill (32) plus less than 20% of it, so under 38.40, killing all three)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (share < 1.2 x 32 = 38.40)"
+  ],
+  "MV2-N56-19": [
+   "S-R4 3 struck without solving: [\"17.75\",\"12.75\",\"20.75\"] (cents: 3x1.25 ends .75, and .75 + .50 ends .25, so every .75 option dies; distance > 16.5 + 3 also kills 17.75 and 12.75)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MV2-O78-02": [
+   "S-R4 3 struck without solving: [\"60\",\"195\",\"156\"] (2/5 of 60 is 24 < 39, so 60 dies; for whole-dollar spending the savings must be a multiple of 20, killing 195 and 156)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MV2-G78-02": [
+   "S-R4 2 struck without solving: [\"45\",\"38\"] (45 is odd and a rectangle's perimeter is even; real length 21 > 12, so the perimeter is more than 48, killing 38)"
+  ],
+  "MV2-G56-06": [
+   "S-R4 2 struck without solving: [\"320\",\"482\"] (8x8x8 ends in 2, killing 320; 482 is not a multiple of 8)"
+  ],
+  "MV2-N56-14": [
+   "S-R4 2 struck without solving: [\"26.25\",\"20.55\"] (26.25 = 7x3.75, the whole wall, and the rest must be less; more than 6 m^2 remain, so more than 22.5 kg, killing 20.55)"
+  ],
+  "MV2-G56-16": [
+   "S-R4 2 struck without solving: [\"40\",\"104\"] (40 is just the printed perimeter; 104 needs a slanted edge of 26, which already exceeds the room left in 40)",
+   "S-R6 plug-back routine at try 1",
+   "S-R7 option pair 36 & 72: x2 (two slanted edges)",
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-O56-08": [
+   "S-R6 plug-back routine at try 1"
+  ],
+  "MV2-D8-03": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-O56-12": [
+   "S-R4 2 struck without solving: [\"60\",\"48\"] (the total must be a multiple of 8 (3:5), killing 60; even if all tulips were red the total would be 48, and only 30% are red, so 48 dies)",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (30% < 1/3, so tulips > 54 and total > 144)"
+  ],
+  "MV2-O78-11": [
+   "S-R4 2 struck without solving: [\"36\",\"34\"] (2/3 of the order (2040) took more than 60 minutes, so the rate is under 34, killing 34 and 36)",
+   "S-R7 option pair 24 & 36: x 2/3",
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-O78-18": [
+   "S-R4 2 struck without solving: [\"5.7\",\"2.5\"] (1.5 cm/min x 60 < 100 cm, so the speed is under 1 m/h, killing 5.7 and 2.5)",
+   "S-R7 option pair 0.9 & 0.98: + 8 cm (0.08 m)"
+  ],
+  "MV2-G56-17": [
+   "S-R4 2 struck without solving: [\"170\",\"132\"] (170 is the whole 17x10 bounding rectangle, but the shape is cut; area = 5 x (sum of whole-number bases), so it is a multiple of 5, killing 132)"
+  ],
+  "MV2-G56-15": [
+   "S-R4 3 struck without solving: [\"9\",\"29\",\"25\"] (29 and 25: a side that long cannot fit a perimeter that four 9s make; 9: the pair at 11 is longer than the rhombus side, so the other pair must be shorter than )",
+   "S-R5 key identifiable without solving",
+   "S-R6 plug-back routine at try 1",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (other side < 9 because the 11-cm pair is longer than the rhombus side)"
+  ],
+  "MV2-D8-01": [
+   "S-R6 plug-back routine at try 2"
+  ],
+  "MV2-O56-15": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-O56-06": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-N7-11": [
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (gap > 3.85x5 + 2.6x3 rounded down, about 19 + 7 = 26)"
+  ],
+  "MV2-O78-06": [
+   "S-R4 2 struck without solving: [\"236.6\",\"280\"] (236.6 and 280: company share 65% is nearly twice 35%, so it gets close to 2 x 182, well over 300)",
+   "S-R5 key identifiable without solving",
+   "S-R10 single bound kills all (company/band = 65/35 > 1.8, so company > 327)"
+  ],
+  "MV2-G56-02": [
+   "S-R4 2 struck without solving: [\"216\",\"180\"] (216 and 180: bottom box 6x6x4 is even and a cube of edge 3 is odd, so total is odd)"
+  ],
+  "MV2-N56-13": [
+   "S-R4 2 struck without solving: [\"14\",\"12\"] (14 and 12: 24 itself has only 8 factors, so the common count is at most 8)",
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-D7-15": [
+   "S-R4 2 struck without solving: [\"120\",\"100\"] (120 and 100: 9 of 12 sections is more than half, so more than 120)",
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-O56-07": [
+   "S-R4 2 struck without solving: [\"52\",\"23\"] (52: subtracting 12 before dividing makes it less than 26x6/3 = 52; 23: magnitude, about 150/3 = 50)"
+  ],
+  "MV2-G56-08": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-O56-18": [
+   "S-R4 2 struck without solving: [\"130\",\"108\"] (130 and 108: pay for 12 h exceeds pay for 8 h plus 3 h = 143)",
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-D5-02": [
+   "S-R6 plug-back routine at try 2"
+  ],
+  "MV2-G56-24": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-O56-13": [
+   "S-R4 2 struck without solving: [\"43\",\"101\"] (43 and 101: odd power minus odd power is even; 101 also exceeds 49)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (3^3 > 3x3 = 9, so result < 49 - 9 = 40)"
+  ],
+  "MV2-O78-04": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-N7-14": [
+   "S-R4 2 struck without solving: [\"-2.86\",\"-16.46\"] (-2.86 and -16.46: subtracting a negative product adds about 13 to -3.5, so result is positive)"
+  ],
+  "MV2-N8-15": [
+   "S-R6 plug-back routine at try 2"
+  ],
+  "MV2-N8-01": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-N7-16": [
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (below -(3x2.3 - 1.6) = -5.3)"
+  ],
+  "MV2-G56-18": [
+   "S-R4 2 struck without solving: [\"32\",\"13\"] (32: less than 4x2x4 = 32; 13: more than 3.5x1x4 = 14)"
+  ],
+  "MV2-O56-03": [
+   "S-R4 3 struck without solving: [\"243\",\"246\",\"270\"] (243, 246, 270: each student pays more than $10, so the total exceeds 27 x 10 = 270)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (each pays > $10, so total > 270)"
+  ],
+  "MV2-O78-15": [
+   "S-R6 plug-back routine at try 2"
+  ],
+  "MV2-O78-03": [
+   "S-R6 plug-back routine at try 1",
+   "S-R7 option pair 20 and 21.2 (x1.06, from the printed 6% tax)"
+  ],
+  "MV2-G78-16": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-D5-16": [
+   "S-R4 2 struck without solving: [\"375\",\"249\"] (375: total is under 5 hours = 300; 249: minute parts 40 and 35 force a units digit of 5)"
+  ],
+  "MV2-D8-13": [
+   "S-R4 3 struck without solving: [\"2.4\",\"0.24\",\"0.8\"] (2.4: feet are larger units so the slope shrinks; 0.24 and 0.8: dividing by 12 gives less than 2.4/10)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (slope < 2.4/10 = 0.24 since 12 > 10)"
+  ]
+ }
+}

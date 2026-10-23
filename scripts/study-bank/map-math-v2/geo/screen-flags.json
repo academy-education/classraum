@@ -1,0 +1,37 @@
+{
+ "MV2-G56-02": {
+  "p1": [
+   "S-R4 2 struck without solving: [\"216\",\"180\"] (216 and 180: bottom box 6x6x4 is even and a cube of edge 3 is odd, so total is odd)"
+  ],
+  "revised": true,
+  "p2": null
+ },
+ "MV2-G56-04": {
+  "p1": [
+   "S-R4 2 struck without solving: [\"311\",\"351\"] (both prisms are 9 cm long, so the wood left is a multiple of 9, and 311 is not; 351 is more than the whole 9x7x5 = 315 block)"
+  ],
+  "revised": true,
+  "p2": null
+ },
+ "MV2-G56-17": {
+  "p1": [
+   "S-R4 2 struck without solving: [\"170\",\"132\"] (170 is the whole 17x10 bounding rectangle, but the shape is cut; area = 5 x (sum of whole-number bases), so it is a multiple of 5, killing 132)"
+  ],
+  "revised": true,
+  "p2": null
+ },
+ "MV2-G78-21": {
+  "p1": [
+   "S-R4 2 struck without solving: [\"4.9\",\"6.2\"] (4.9: hypotenuse exceeds the 5 m leg; 6.2: must be less than 1.2+5 (triangle inequality))"
+  ],
+  "revised": true,
+  "p2": null
+ },
+ "MV2-G78-25": {
+  "p1": [
+   "S-R4 2 struck without solving: [\"60\",\"289\"] (side > 12 (vertical gap) so area >144, killing 60; side < 5+12 = 17 so area <289, killing 289)"
+  ],
+  "revised": true,
+  "p2": null
+ }
+}

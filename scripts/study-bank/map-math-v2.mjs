@@ -23,13 +23,17 @@
  *   coldcheck <A>                every stage-1 field copied unchanged into stage2.json, stage-1 hash unchanged
  *   score <A>                    all bars for one area -> map-math-v2/<area>/stages.json; one-grader flags -> tb-needs, exit 1
  *   tiebreak <A>                 cold render of the flagged items for grader F -> WORK/grade/<A>-f-tb/grade.md
+ *   insert-prep <A>              area verdict PASS only: survivors-only batch + qc.json + ledger entry (all four
+ *                                mc_stem_source stages, bound to the file's sha), gateBatch read-only, prints the
+ *                                math-bank-helper insert command (not run: it has no dry run)
  *   --selftest                   every bar and rule at its margin, then each rule reverted must fail a case
  *
- * No insert here: that needs math-bank-helper.mjs BANK_FAMILY=map (plan D2), done separately.
+ * No insert here: math-bank-helper.mjs (BANK_FAMILY=map, commit 46759de4) inserts; insert-prep prepares and gates.
  * A check that cannot read its input exits 2 and never prints a number.
  */
 import { readFileSync, writeFileSync, existsSync, mkdirSync, copyFileSync, chmodSync, readdirSync } from 'node:fs'
 import { createHash } from 'node:crypto'
+import * as utilMod from 'node:util'
 import { spawn } from 'node:child_process'
 import { rng, shuffleWith } from './seeded-shuffle.mjs'
 import { val, scoreItem } from './key-extremity-breakdown.mjs'
@@ -372,7 +376,7 @@ const MUTATIONS = {
   'coldcheck field compare removed': { coldCompare: false },
 }
 
-function selftest() {
+async function selftest() {
   let bad = 0
   const base = cases(RULES)
   for (const [ok, msg] of base) if (!ok) { bad++; console.error('FAIL', msg) }
@@ -393,8 +397,15 @@ function selftest() {
     const failed = cases({ ...RULES, ...m }).filter(([ok]) => !ok).map(([, msg]) => msg)
     if (failed.length) { caught++; console.log(`  reverted: ${name.padEnd(44)} -> ${failed.length} case(s) fail, e.g. "${failed[0]}"`) } else missed.push(name)
   }
+  // insert-prep row shape: everything math-bank-helper and map-math-meta read
+  const { mapMathMeta } = await import('./map-math-meta.mjs')
+  const src = { id: 'MV2-O56-01', domain: AREAS.O.domain, map_area: 'oa', subskill: 's', tier: 'low', ccss: '5.OA.A.1', prompt: 'p', correct_answer: '14', choices: ['2', '5', '9', '14'], explanation: 'e', solve: 'return 14', grade_target: 5, rit_band: 'RIT 190-199', distractor_meta: { 2: { why: 'w2' } }, distractor_solve: {} }
+  const row = toInsertRow(src, ['9', '14', '2', '5'])
+  const meta = mapMathMeta(row)
+  const rowOk = row.difficulty === 'easy' && row.topic_tag === '5.OA.A.1' && row.choices.join() === '9,14,2,5' && row.graphic === null && meta.grade_target === 5 && meta.rit_band_target === 'RIT 190-199' && row.distractor_steps.find(d => d.choice === '2')?.mis_step === 'w2'
+  if (!rowOk) { console.error('FAIL insert row shape / mapMathMeta'); process.exit(2) }
   if (missed.length) { console.error(`SELFTEST: ${missed.length} reverted rule(s) went undetected: ${missed.join('; ')}`); process.exit(2) }
-  console.log(`selftest ${n}/${n} cases pass; ${caught}/${Object.keys(MUTATIONS).length} reverted rules each fail >= 1 case`)
+  console.log(`selftest ${n + 1}/${n + 1} cases pass (incl. insert row shape); ${caught}/${Object.keys(MUTATIONS).length} reverted rules each fail >= 1 case`)
 }
 
 /* ------------------------------------------------------------------ commands */
@@ -783,6 +794,115 @@ function cmdTiebreak(L) {
   console.log(`tie-break render ${L}: ${part.length} items (${needs.length} flagged) -> ${dir}/grade.md, sha ${sha(dir + '/grade.md').slice(0, 16)}`)
 }
 
+
+/* ---- insert-prep: survivors-only batch + qc.json + ledger entry for an area whose score verdict is PASS.
+ * Everything the verdict rests on is RE-DERIVED here, not read from stages.json: the frozen sha, coldcheck, the
+ * options-only verdict from the solver files, the item rules from the grader rows, and the kept-set extremity on the
+ * exact file written. The ledger entry is bound to that file's sha256 (gate.mjs refuses any other bytes). No DB write:
+ * gateBatch reads the live bank for stem duplicates only. math-bank-helper.mjs has no dry run, so it is NOT run. */
+const TIER_TO_DIFF = { low: 'easy', mid: 'medium', high: 'hard' }
+export const insertFiles = L => ({ batch: `${D}map-math-v2-${AREAS[L].key}.inserted.batch.json`, qc: `${D}map-math-v2-${AREAS[L].key}.qc.json` })
+export function toInsertRow(it, choices) {
+  if (!choices || new Set(choices).size !== 4 || !choices.includes(String(it.correct_answer))) die(`${it.id}: rendered choices do not hold the key`)
+  return {
+    id: it.id, domain: it.domain, subskill: it.subskill, difficulty: TIER_TO_DIFF[it.tier], topic_tag: it.ccss,
+    prompt: it.prompt, choices, correct_answer: String(it.correct_answer), explanation: it.explanation, solve: it.solve,
+    graphic: it.graphic ?? null, grade_target: it.grade_target, tier: it.tier, rit_band: it.rit_band, ccss: it.ccss,
+    area_25: it.area_25 ?? null, map_area: it.map_area,
+    distractor_steps: choices.filter(c => c !== String(it.correct_answer)).map(c => ({ choice: c, mis_step: it.distractor_meta?.[c]?.why ?? '' })),
+    distractor_solve: it.distractor_solve,
+  }
+}
+function ledgerInsert(entry) {
+  const LP = D + 'ledger.json', text = readFileSync(LP, 'utf8'), before = JSON.parse(text)
+  const prior = (before.batches ?? []).find(b => b.id === entry.id || b.contentSha === entry.contentSha)
+  if (prior) { if (prior.id === entry.id && prior.contentSha === entry.contentSha) { console.log(`ledger: ${entry.id} already recorded at this sha; unchanged`); return false } die(`ledger already holds ${prior.id} (sha ${String(prior.contentSha).slice(0, 12)}); refusing to add ${entry.id} at ${entry.contentSha.slice(0, 12)}`) }
+  const start = text.indexOf('"batches": ['); if (start < 0) die('ledger: no batches array')
+  let i = text.indexOf('[', start), depth = 0, inStr = false, esc = false, end = -1
+  for (; i < text.length; i++) { const c = text[i]; if (inStr) { if (esc) esc = false; else if (c === '\\') esc = true; else if (c === '"') inStr = false; continue } if (c === '"') inStr = true; else if (c === '[' || c === '{') depth++; else if (c === ']' || c === '}') { depth--; if (depth === 0) { end = i; break } } }
+  if (end < 0) die('ledger: unterminated batches array')
+  let k = end - 1; while (/\s/.test(text[k])) k--
+  const body = JSON.stringify(entry, null, 2).split('\n').map(l => '    ' + l).join('\n')
+  const now = new Date().toISOString()
+  const out = (text.slice(0, k + 1) + ',\n' + body + text.slice(k + 1)).replace(/"generatedAt": "[^"]*"/, `"generatedAt": "${now}"`)
+  const after = JSON.parse(out)
+  if (!utilMod.isDeepStrictEqual(after, { ...before, generatedAt: now, batches: [...before.batches, entry] })) die('ledger: the text insert does not equal the ledger plus this entry')
+  writeFileSync(LP, out); return true
+}
+
+async function cmdInsertPrep(L) {
+  if (!AREAS[L]) die('insert-prep <O|N|G|D>')
+  const A = AREAS[L], FZ = areaDir(L) + 'batch.json', frozen = rd(FZ), st = rd(areaDir(L) + 'stages.json')
+  if (st.verdict !== 'PASS') die(`${L}: score verdict is ${st.verdict}, not PASS`, 1)
+  if (st.frozenSha !== sha(FZ)) die(`${L}: frozen batch changed since score`)
+  // coldcheck, re-run
+  const shas = rd(WORK + '/coldshas.json'); let rows = 0
+  for (const k of partsOf(L)) for (const g of ['d', 'e']) { const tag = `${L}-p${k}-${g}`, { s1, s2, snapSha } = loadGrader(tag); if (snapSha !== shas[tag] || sha(`${WORK}/grade/${tag}/stage1.json`) !== snapSha) die(`${tag}: stage-1 snapshot or folder hash changed`); const p = coldDiff(s1, s2); if (p.length) die(`${tag}: coldcheck ${p.length} problem(s), e.g. ${p[0]}`); rows += Object.keys(s1).filter(x => ID_RE.test(x)).length }
+  // options-only and item rules, re-derived
+  const oo = scoreOo(L)
+  if (oo.status !== 'pass' || oo.status !== st.optionsOnly.status) die(`${L}: options-only re-derived ${oo.status}, stages.json says ${st.optionsOnly.status}`)
+  const G = { d: {}, e: {} }; for (const k of partsOf(L)) for (const g of ['d', 'e']) { const { s2 } = loadGrader(`${L}-p${k}-${g}`); for (const [id, row] of Object.entries(s2)) if (ID_RE.test(id)) G[g][id] = row }
+  const F = loadF(L), keepIds = [], dropped = []
+  frozen.forEach((it, i) => { const inTb = F && F.key.items?.[it.id]; const v = itemVerdict(it, G.d[it.id], G.e[it.id], inTb ? (F.rows[it.id] ?? {}) : undefined, new Set(frozen.slice(0, i).map(x => x.id))); if (v.need.length && !v.drop.length && !v.hold.length) die(`${it.id} still needs the tie-break`); if (v.keep) keepIds.push(it.id); else dropped.push(`${it.id} (${[...v.drop, ...v.hold].join('; ')})`) })
+  if (keepIds.join() !== st.passIds.join()) die(`${L}: re-derived survivors [${keepIds.join(' ')}] != stages.json passIds [${st.passIds.join(' ')}]`)
+  const survivors = frozen.filter(i => keepIds.includes(i.id))
+  // math-check on the survivors as frozen (full author fields)
+  mkdirSync(WORK + '/tmp', { recursive: true })
+  const by = {}; for (const it of survivors) (by[it.id.split('-')[1]] ??= []).push(it)
+  const files = Object.entries(by).map(([a, xs]) => { const p = `${WORK}/tmp/insert-${a}.json`; wj(p, xs); return p })
+  const checked = await checkAll(files, 'insert-prep survivors')
+  if (checked !== survivors.length) die(`math-check read ${checked} of ${survivors.length}`)
+  // survivors-only batch in the with-source render's option order (as v5), and qc keyed by id
+  const keys = Object.assign({}, ...partsOf(L).map(k => rd(areaDir(L) + `ws-p${k}.key.json`)))
+  const batch = survivors.map(it => toInsertRow(it, keys[it.id]?.choices))
+  const qc = Object.fromEntries(survivors.map(it => [it.id, { difficulty: bankedDifficulty(G.d[it.id], G.e[it.id]), source: 'two with-source graders tier_assigned (bankedDifficulty, as v5)' }]))
+  const out = insertFiles(L)
+  const text = JSON.stringify(batch, null, 1) + '\n'
+  if (existsSync(out.batch) && readFileSync(out.batch, 'utf8') !== text) die(`${out.batch} exists with different bytes; refusing to overwrite a file a ledger entry may be bound to`)
+  writeFileSync(out.batch, text); wj(out.qc, qc)
+  const bsha = sha(out.batch)
+  // sandbox on the exact file (math-bank-helper verify: no DB)
+  const v = await new Promise(res => { const p = spawn('node', [D + 'math-bank-helper.mjs', 'verify', out.batch], { cwd: ROOT }); let o = ''; p.stdout.on('data', d => { o += d }); p.stderr.on('data', d => { o += d }); p.on('close', code => res({ code, o })) })
+  const sb = v.o.match(/Sandbox: (\d+)\/(\d+)/)
+  if (v.code !== 0 || !sb || sb[1] !== sb[2] || +sb[2] !== batch.length) die(`math-bank-helper verify on ${out.batch}: exit ${v.code}; ${v.o.split('\n').filter(l => /Sandbox|FAIL|mismatch|Distractors/.test(l)).join(' | ')}`)
+  const distr = (v.o.split('\n').find(l => /Distractors:/.test(l)) ?? '').trim()
+  const kx = keyExtremityVerdict(batch)
+  if (kx.status === 'fail') die(`kept-set key extremity on ${out.batch}: ${kx.reason}`)
+  // screen history for this area
+  const p1 = rd(WORK + '/screen-p1.json'), p2 = existsSync(WORK + '/screen-p2.json') ? rd(WORK + '/screen-p2.json') : { fails: {} }
+  const inA = id => ID_RE.exec(id)?.[1] === L
+  const assembledN = rd(WORK + '/assembled.json').filter(i => inA(i.id)).length
+  const p1f = Object.keys(p1.fails).filter(inA), p2f = Object.keys(p2.fails).filter(inA)
+  const wd = existsSync(WORK + '/returns/withdrawn.json') ? Object.keys(rd(WORK + '/returns/withdrawn.json')).filter(inA) : []
+  const standN = existsSync(WORK + '/returns/stand.json') ? Object.keys(rd(WORK + '/returns/stand.json')).filter(inA).length : 0
+  const revN = p1f.filter(id => existsSync(`${WORK}/returns/${id}.json`)).length
+  const ookey = rd(areaDir(L) + 'oo.key.json'), subst = Object.values(ookey).filter(k => k.kind === 'live-control' && k.drawnFrom && k.drawnFrom !== k.cell).length
+  const fd = st.gradeFitRecorded ?? {}
+  const diffs = ['easy', 'medium', 'hard'].map(d => `${d} ${Object.values(qc).filter(q => q.difficulty === d).length}`).join(' / ')
+  const letters = {}; for (const b of batch) { const l = 'ABCD'[b.choices.indexOf(b.correct_answer)]; letters[l] = (letters[l] ?? 0) + 1 }
+  const tbN = F ? Object.keys(F.key.items ?? {}).length : 0
+  const now = new Date(), today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`   // local date (KST), not UTC
+  const entry = {
+    id: `${A.cohort}-${today}`, createdAt: today, targetTest: 'map', section: 'math', task: 'multiple_choice', family: 'mc_stem_source',
+    cohort: A.cohort, contentSha: bsha, status: 'qc',
+    note: `map-v2 Math batch 1, ${A.domain} (${PREREG}; MAP-PLAN-2026-10-23 §3.1). Assembled ${assembledN} from ${A.authors.join(' + ')}; frozen ${frozen.length} as this area's own batch (sha ${st.frozenSha.slice(0, 16)}); ${survivors.length} survivors after the graders. contentSha = sha256 of ${out.batch.replace(ROOT + '/', '')}; qc ${out.qc.replace(ROOT + '/', '')}. Written by map-math-v2.mjs insert-prep, which re-derives every verdict from the reviewer files. Not inserted when recorded.`,
+    stages: {
+      shape: { passed: true, contentSha: bsha, n: batch.length, verdict: `Stage 0: ${assembledN}/${assembledN} PART OK at assemble (math-check: sandbox key + every distractor, slot, LONE, bound screen, misconceptions, mf27-mf30 construction checks, near-dup vs live ISEE/SSAT and every earlier MAP item${L === 'N' ? ', FORM and SLIP refusing' : ''}). Cold screen pass 1: ${p1f.length} of ${assembledN} failed, returned once (revised ${revN}, withdrawn ${wd.length}, stood ${standN}); pass 2: ${p2f.length} still failed, recorded and not dropped (the screen never drops on one screener). Frozen ${frozen.length}, no per-area minimum. Survivors: math-check ${checked}/${survivors.length} PART OK; math-bank-helper verify on this file Sandbox ${sb[1]}/${sb[2]}; ${distr}.` },
+      nosource: { passed: true, contentSha: bsha, n: oo.cand.n, candidatePct: +f1(oo.cr), control: +f1(oo.kr), controlN: oo.ctrl.n, margin: +f1(oo.margin), verdict: `Options-only, three samples of one Claude solver, ${oo.cand.n} frozen candidates vs ${oo.ctrl.n} live ISEE ${A.key} controls matched 1:1 by tier (low->easy, mid/high->medium${subst ? `; ${subst} control row(s) drawn one difficulty up under the pre-registered substitution` : ''}), blind sha ${sha(areaDir(L) + 'oo.blind.json').slice(0, 16)}: ${oo.cand.hits}/${oo.cand.picks} = ${f1(oo.cr)}% vs ${oo.ctrl.hits}/${oo.ctrl.picks} = ${f1(oo.kr)}%, margin ${f1(oo.margin)} (bar +10; control under the 90% ceiling); unanimous-correct rate ${f1(oo.cu)}% vs ${f1(oo.ku)}% (${f1(oo.umar)}, bar +15; batch level only). Measures whether the option set alone decides an item; the stem-visible half is the graders'.` },
+      withsource: { passed: true, contentSha: bsha, n: frozen.length, coldOnKey: st.coldOnKey, kept: survivors.length, verdict: `Two Claude graders per part (${partsOf(L).length} part(s)), cold then keyed, private folders; stage 1 snapshotted, hashed, chmod 444 before keyed.md; coldcheck re-run here ${rows} cold rows, 0 changed. ${st.coldOnKey}/${2 * frozen.length} cold answers on key. Free elimination (R4 >= 2 struck, R5 key identifiable), exclusivity (R2), plug-back, option pair, one-sided / single bound and template rules: both graders -> drop, one -> tie-break grader F (${tbN} item(s) to F, 2 of 3, tie -> drop). Dropped ${dropped.length}: ${dropped.join('; ') || 'none'}. Grade fit recorded, not a drop rule: too_easy ${fd.tooEasy}/${fd.judgments}, too_hard ${fd.tooHard}/${fd.judgments}, offsets ${fd.offA?.toFixed(2)}/${fd.offB?.toFixed(2)}, tier spreads ${fd.spreadA?.toFixed(2)}/${fd.spreadB?.toFixed(2)}.` },
+      tells: { passed: true, contentSha: bsha, verdict: `Kept-set key at an extreme on this file: ${kx.reason} (${kx.status}). Key letters in this file (with-source deal) ${JSON.stringify(letters)}. Banked difficulty (graders' tier_assigned) ${diffs}. Unanimity compared to the control at batch level only. Screen-flagged survivors: ${keepIds.filter(id => st.screenFlagsRecorded?.[id]).length}.` },
+    },
+  }
+  const wrote = ledgerInsert(entry)
+  console.log(`survivors ${batch.length} -> ${out.batch}\n  sha256 ${bsha}\nqc ${Object.keys(qc).length} rows -> ${out.qc} (${diffs})\nledger ${wrote ? 'entry added' : 'unchanged'}: ${entry.id}`)
+  const { gateBatch } = await import('./gate.mjs')
+  const g = gateBatch({ task: 'multiple_choice', family: 'map', section: 'math', itemFiles: [out.batch] })
+  console.log(`gateBatch (read-only): ${g.canInsert ? 'PASS' : 'REFUSED'} - family ${g.family}, ledger ${g.batch ?? 'none'} - ${g.reason}`)
+  const band = Object.values(qc).some(q => q.difficulty === 'easy') ? 'BANK_BAND=mixed ' : ''
+  console.log(`\nInsert command (NOT run: math-bank-helper.mjs has no dry run; insert writes on a gate pass${band ? '; BANK_BAND=mixed because easy items would otherwise be rejected' : ''}):\n  ${band}BANK_FAMILY=map BANK_COHORT=${A.cohort} node scripts/study-bank/math-bank-helper.mjs insert ${out.batch.replace(ROOT + '/', '')} ${out.qc.replace(ROOT + '/', '')}`)
+  if (!g.canInsert) process.exit(1)
+}
+
 const cmd = process.argv[2]
 const isMain = import.meta.url === `file://${process.argv[1]}`
 async function main() {
@@ -799,6 +919,7 @@ async function main() {
   if (cmd === 'coldcheck') return cmdColdcheck(a[0])
   if (cmd === 'score') return cmdScore(a[0])
   if (cmd === 'tiebreak') return cmdTiebreak(a[0])
+  if (cmd === 'insert-prep') return cmdInsertPrep(a[0])
   die('usage: see the header of map-math-v2.mjs')
 }
 if (isMain) await main()

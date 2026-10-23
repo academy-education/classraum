@@ -1,0 +1,311 @@
+{
+ "prereg": "scripts/study-bank/MAP-MATH-V2.prereg.md",
+ "area": "Operations and Algebraic Thinking",
+ "frozenSha": "f9b168a72b66c0f85cfb2618bd984181599949d86fcbc48b6d87fc30181b27c4",
+ "n": 18,
+ "optionsOnly": {
+  "cand": {
+   "n": 18,
+   "picks": 54,
+   "hits": 16,
+   "unan": 3
+  },
+  "ctrl": {
+   "n": 18,
+   "picks": 54,
+   "hits": 16,
+   "unan": 4
+  },
+  "status": "pass",
+  "cr": 29.62962962962963,
+  "kr": 29.62962962962963,
+  "cu": 16.666666666666668,
+  "ku": 22.22222222222222,
+  "margin": 0,
+  "umar": -5.555555555555554,
+  "why": "candidate 29.6% vs control 29.6% (margin 0.0, bar +10); unanimous-correct rate 16.7% vs control 22.2% (-5.6, bar +15)",
+  "letterControl": 27.77777777777778
+ },
+ "gradeFitRecorded": {
+  "n": 18,
+  "judgments": 36,
+  "tooEasy": 4,
+  "tooHard": 2,
+  "tooEasyPct": 11.11111111111111,
+  "tooHardPct": 5.555555555555555,
+  "offA": -0.2777777777777778,
+  "offB": -0.2222222222222222,
+  "spreadA": 1.8333333333333335,
+  "spreadB": 1.8333333333333335,
+  "D1": true,
+  "D2": true,
+  "D3": true,
+  "status": "pass"
+ },
+ "coldOnKey": 36,
+ "items": {
+  "MV2-O78-07": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MV2-O56-19": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MV2-O78-12": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MV2-O56-21": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [
+    "G1 too_easy for its grade (both) - recorded, not a drop rule"
+   ],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MV2-O56-10": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MV2-O56-05": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MV2-O56-04": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MV2-O78-05": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [
+    "G1 too_hard for its grade (both) - recorded, not a drop rule"
+   ],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MV2-O78-10": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MV2-O78-15": {
+   "drop": [
+    "R7 option pair (one grader + F)"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "medium"
+  },
+  "MV2-O56-20": {
+   "drop": [
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [
+    "G1 too_easy for its grade (both) - recorded, not a drop rule"
+   ],
+   "named": [],
+   "keep": false,
+   "difficulty": "medium"
+  },
+  "MV2-O78-19": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MV2-O78-13": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MV2-O78-16": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MV2-O56-01": {
+   "drop": [
+    "R11 template of an earlier item (one grader + F)"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [
+    "MV2-O56-10"
+   ],
+   "keep": false,
+   "difficulty": "easy"
+  },
+  "MV2-O56-02": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MV2-O78-17": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "easy"
+  },
+  "MV2-O78-14": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  }
+ },
+ "areaResult": {
+  "status": "pass",
+  "reasons": [],
+  "notes": [],
+  "extremity": {
+   "total": 15,
+   "n": 15,
+   "nonNumeric": 0,
+   "otherSkip": 0,
+   "ext": 6,
+   "rate": 0.4,
+   "chance": 0.5,
+   "threshold": 0.4,
+   "status": "pass",
+   "reason": "key at an extreme 6/15 = 40.0%; derived chance 50.0%, bar 0.8 x chance = 40.0%; 0 non-numeric excluded (of 15)"
+  },
+  "kept": 15,
+  "keptIds": [
+   "MV2-O78-07",
+   "MV2-O56-19",
+   "MV2-O78-12",
+   "MV2-O56-21",
+   "MV2-O56-10",
+   "MV2-O56-05",
+   "MV2-O56-04",
+   "MV2-O78-05",
+   "MV2-O78-10",
+   "MV2-O78-19",
+   "MV2-O78-13",
+   "MV2-O78-16",
+   "MV2-O56-02",
+   "MV2-O78-17",
+   "MV2-O78-14"
+  ]
+ },
+ "screenFlagsRecorded": {
+  "MV2-O56-05": {
+   "p1": [
+    "S-R6 plug-back routine at try 2"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": true
+  },
+  "MV2-O56-21": {
+   "p1": [
+    "S-R4 2 struck without solving: [\"9\",\"23\"] (9 and 23: 3a^2 with a = 4 is even and 2b is even, so the result is even)"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": true
+  },
+  "MV2-O78-10": {
+   "p1": [
+    "S-R4 2 struck without solving: [\"9.3\",\"18.45\"] (9.3: equal sides are the longest so exceed 32.4/3 = 10.8; 18.45: two such sides would exceed the 32.4 perimeter)"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": true
+  },
+  "MV2-O78-15": {
+   "p1": [
+    "S-R6 plug-back routine at try 2"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": false
+  }
+ },
+ "passIds": [
+  "MV2-O78-07",
+  "MV2-O56-19",
+  "MV2-O78-12",
+  "MV2-O56-21",
+  "MV2-O56-10",
+  "MV2-O56-05",
+  "MV2-O56-04",
+  "MV2-O78-05",
+  "MV2-O78-10",
+  "MV2-O78-19",
+  "MV2-O78-13",
+  "MV2-O78-16",
+  "MV2-O56-02",
+  "MV2-O78-17",
+  "MV2-O78-14"
+ ],
+ "verdict": "PASS"
+}

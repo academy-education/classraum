@@ -1,0 +1,100 @@
+{
+ "MV2-N56-03": {
+  "p1": [
+   "S-R7 option pair 8.35 / 12.55, differ by 1.4 x 3 (4 - 1)"
+  ],
+  "revised": true,
+  "p2": null
+ },
+ "MV2-N56-06": {
+  "p1": [
+   "S-R7 option pair 2 5/8 & 1 1/8 (x2 1/3)"
+  ],
+  "revised": true,
+  "p2": [
+   "S-R4 2 struck without solving: [\"5 2/15\",\"1 13/15\"] (large copy is 4.2 so the difference is under 4.2 (strikes 5 2/15); small copy is under 1 so the difference exceeds 3.2 (strikes 1 13/15))"
+  ]
+ },
+ "MV2-N56-08": {
+  "p1": [
+   "S-R7 option pair 4906 & 4206 (-7x10^2)"
+  ],
+  "revised": true,
+  "p2": null
+ },
+ "MV2-N56-09": {
+  "p1": [
+   "S-R4 2 struck without solving: [\"2.14\",\"4.54\"] (1.65x2 = 3.3 already, so the answer is over 3, killing 2.14; the bounce subtracts and 1.65x2.6 < 1.7x2.6 = 4.42, killing 4.54)"
+  ],
+  "revised": true,
+  "p2": [
+   "S-R4 2 struck without solving: [\"1.75\",\"3.65\"] (1.25x2.6 lies between 1.25x2.5=3.125 and 1.25x3=3.75, so the answer lies between about 2.7 and 3.35, which strikes 1.75 and 3.65)"
+  ]
+ },
+ "MV2-N56-14": {
+  "p1": [
+   "S-R4 2 struck without solving: [\"26.25\",\"20.55\"] (26.25 = 7x3.75, the whole wall, and the rest must be less; more than 6 m^2 remain, so more than 22.5 kg, killing 20.55)"
+  ],
+  "revised": true,
+  "p2": null
+ },
+ "MV2-N56-16": {
+  "p1": [
+   "S-R8 one-sided extreme key"
+  ],
+  "revised": true,
+  "p2": null
+ },
+ "MV2-N56-17": {
+  "p1": [
+   "S-R4 2 struck without solving: [\"11 1/7\",\"11 3/7\"] (11 1/7 and 11 3/7: A drains under 6 gallons at 5/6 gal/min in under 7.2 min, so the difference is under 7.2)"
+  ],
+  "revised": true,
+  "p2": null
+ },
+ "MV2-N56-18": {
+  "p1": [
+   "S-R4 2 struck without solving: [\"13.5\",\"21.5\"] (both points have x=-3, so the distance is a whole number of units times 2.5; 13.5 and 21.5 are not multiples of 2.5)"
+  ],
+  "revised": true,
+  "p2": null
+ },
+ "MV2-N56-19": {
+  "p1": [
+   "S-R4 3 struck without solving: [\"17.75\",\"12.75\",\"20.75\"] (cents: 3x1.25 ends .75, and .75 + .50 ends .25, so every .75 option dies; distance > 16.5 + 3 also kills 17.75 and 12.75)",
+   "S-R5 key identifiable without solving"
+  ],
+  "revised": true,
+  "p2": null
+ },
+ "MV2-N8-01": {
+  "p1": [
+   "S-R8 one-sided extreme key"
+  ],
+  "revised": false,
+  "p2": null
+ },
+ "MV2-N8-03": {
+  "p1": [
+   "S-R7 option pair 135 & 1215 (x3^2)"
+  ],
+  "revised": true,
+  "p2": [
+   "S-R8 one-sided extreme key"
+  ]
+ },
+ "MV2-N8-15": {
+  "p1": [
+   "S-R6 plug-back routine at try 2"
+  ],
+  "revised": false,
+  "p2": null
+ },
+ "MV2-N8-19": {
+  "p1": [
+   "S-R8 one-sided extreme key"
+  ],
+  "revised": false,
+  "p2": null
+ }
+}

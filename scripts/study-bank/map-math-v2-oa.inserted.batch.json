@@ -1,0 +1,647 @@
+[
+ {
+  "id": "MV2-O78-07",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Whole-number answer to px + q <= r",
+  "difficulty": "medium",
+  "topic_tag": "7.EE.B.4b",
+  "prompt": "Lena has $50 to spend at a fair. She pays $14.75 to get in, and each ride costs $2.50. What is the greatest number of rides she can go on?",
+  "choices": [
+   "14",
+   "20",
+   "15",
+   "11"
+  ],
+  "correct_answer": "14",
+  "explanation": "After paying to get in, Lena has 50 - 14.75 = 35.25 dollars. Each ride costs 2.50, and 35.25 / 2.50 = 14.1. She cannot go on part of a ride, so the greatest number is 14 rides (14 x 2.50 = 35, and 15 rides would cost 37.50).",
+  "solve": "return Math.floor((50 - 14.75) / 2.5)",
+  "graphic": null,
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "ccss": "7.EE.B.4b",
+  "area_25": null,
+  "map_area": "oa",
+  "distractor_steps": [
+   {
+    "choice": "20",
+    "mis_step": "The student divides the whole $50 by 2.50."
+   },
+   {
+    "choice": "15",
+    "mis_step": "The student finds 14.1 and rounds up, though the 15th ride costs more than she has left."
+   },
+   {
+    "choice": "11",
+    "mis_step": "The student estimates with $15 to get in and $3 a ride: 35 / 3 = 11.7, so 11."
+   }
+  ],
+  "distractor_solve": {
+   "11": "return Math.floor((50 - 15) / 3)",
+   "15": "return Math.ceil((50 - 14.75) / 2.5)",
+   "20": "return Math.floor(50 / 2.5)"
+  }
+ },
+ {
+  "id": "MV2-O56-19",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Two unit prices from packs, then a mixed purchase",
+  "difficulty": "medium",
+  "topic_tag": "6.RP.A.3.b",
+  "prompt": "A school store sells 10 pens for $3.50 and 6 glue sticks for $2.70. Ella buys 4 pens and 4 glue sticks at these unit prices. How many dollars does she spend?",
+  "choices": [
+   "2.48",
+   "3.20",
+   "3.60",
+   "4.10"
+  ],
+  "correct_answer": "3.20",
+  "explanation": "One pen costs 3.50 / 10 = 0.35 dollars and one glue stick costs 2.70 / 6 = 0.45 dollars. Ella spends 4 x 0.35 + 4 x 0.45 = 1.40 + 1.80 = 3.20 dollars.",
+  "solve": "return Math.round((4 * 3.50 / 10 + 4 * 2.70 / 6) * 100) / 100",
+  "graphic": null,
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "ccss": "6.RP.A.3.b",
+  "area_25": null,
+  "map_area": "oa",
+  "distractor_steps": [
+   {
+    "choice": "2.48",
+    "mis_step": "Uses 0.35 for a pen and 2.70 / 10 = 0.27 for a glue stick: 1.40 + 1.08 = 2.48."
+   },
+   {
+    "choice": "3.60",
+    "mis_step": "Uses the glue-stick price, 0.45, for all 8 items: 3.60."
+   },
+   {
+    "choice": "4.10",
+    "mis_step": "Pays 1.40 for the pens and the full 2.70 for the glue sticks: 4.10."
+   }
+  ],
+  "distractor_solve": {
+   "2.48": "return Math.round((4 * 3.50 / 10 + 4 * 2.70 / 10) * 100) / 100",
+   "3.60": "return Math.round((8 * 2.70 / 6) * 100) / 100",
+   "4.10": "return Math.round((4 * 3.50 / 10 + 2.70) * 100) / 100"
+  }
+ },
+ {
+  "id": "MV2-O78-12",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Slope of a line from where it crosses a given line",
+  "difficulty": "hard",
+  "topic_tag": "8.EE.C.8a",
+  "prompt": "Two lines are graphed: y = -2x + 24 and y = mx - 20. They meet at a point that is 16 units above the x-axis. Find m.",
+  "choices": [
+   "4",
+   "1.8",
+   "9",
+   "2.25"
+  ],
+  "correct_answer": "9",
+  "explanation": "At the crossing point y = 16. On the first line, 16 = -2x + 24, so -2x = -8 and x = 4. The point (4, 16) is also on the second line: 16 = 4m - 20, so 4m = 36 and m = 9.",
+  "solve": "const x = (24 - 16) / 2; return (16 + 20) / x",
+  "graphic": null,
+  "grade_target": 8,
+  "tier": "high",
+  "rit_band": "RIT 230-239",
+  "ccss": "8.EE.C.8a",
+  "area_25": null,
+  "map_area": "oa",
+  "distractor_steps": [
+   {
+    "choice": "4",
+    "mis_step": "The student finds x = 4 and writes 16 = 4m."
+   },
+   {
+    "choice": "1.8",
+    "mis_step": "The student adds 16 instead of subtracting it and gets x = 20."
+   },
+   {
+    "choice": "2.25",
+    "mis_step": "The student substitutes x = 16 into 16 = 16m - 20."
+   }
+  ],
+  "distractor_solve": {
+   "4": "return 16 / ((24 - 16) / 2)",
+   "1.8": "return (16 + 20) / ((24 + 16) / 2)",
+   "2.25": "return (16 + 20) / 16"
+  }
+ },
+ {
+  "id": "MV2-O56-21",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Evaluate 3a^2 - 2b with the exponent on a only",
+  "difficulty": "medium",
+  "topic_tag": "6.EE.A.2.c",
+  "prompt": "Jae substitutes a = 4 and b = 5 into the expression 3a^2 - 2b. Remember that 3a^2 means 3 times a^2. What number does Jae get?",
+  "choices": [
+   "134",
+   "14",
+   "6",
+   "38"
+  ],
+  "correct_answer": "38",
+  "explanation": "a^2 = 4^2 = 16, so 3a^2 = 3 x 16 = 48. 2b = 2 x 5 = 10. So 3a^2 - 2b = 48 - 10 = 38.",
+  "solve": "const a = 4, b = 5; return 3 * a ** 2 - 2 * b",
+  "graphic": null,
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "ccss": "6.EE.A.2.c",
+  "area_25": null,
+  "map_area": "oa",
+  "distractor_steps": [
+   {
+    "choice": "134",
+    "mis_step": "Works (3 x 4)^2 = 144, then 144 - 10 = 134."
+   },
+   {
+    "choice": "14",
+    "mis_step": "Writes a^2 as 2 x 4 = 8, so 3 x 8 - 10 = 14."
+   },
+   {
+    "choice": "6",
+    "mis_step": "Uses a^2 - 2b = 16 - 10 = 6."
+   }
+  ],
+  "distractor_solve": {
+   "6": "const a = 4, b = 5; return a ** 2 - 2 * b",
+   "14": "const a = 4, b = 5; return 3 * (2 * a) - 2 * b",
+   "134": "const a = 4, b = 5; return (3 * a) ** 2 - 2 * b"
+  }
+ },
+ {
+  "id": "MV2-O56-10",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Subtract a whole bracket holding a quotient-product",
+  "difficulty": "hard",
+  "topic_tag": "5.OA.A.1",
+  "prompt": "Leo's homework has one problem: find 94 - [72 / (4 + 2) x 3 + 4]. He must use the correct order for the brackets, parentheses and operations. What is the correct answer?",
+  "choices": [
+   "54",
+   "63",
+   "66",
+   "86"
+  ],
+  "correct_answer": "54",
+  "explanation": "Parentheses first: 4 + 2 = 6. Inside the brackets, work left to right: 72 / 6 = 12, then 12 x 3 = 36, then 36 + 4 = 40. Last, 94 - 40 = 54.",
+  "solve": "return 94 - (72 / (4 + 2) * 3 + 4)",
+  "graphic": null,
+  "grade_target": 5,
+  "tier": "high",
+  "rit_band": "RIT 210-219",
+  "ccss": "5.OA.A.1",
+  "area_25": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "distractor_steps": [
+   {
+    "choice": "63",
+    "mis_step": "Works 4 x 2 = 8, so 72 / 8 = 9, 9 x 3 + 4 = 31 and 94 - 31 = 63."
+   },
+   {
+    "choice": "66",
+    "mis_step": "Works 72 / 4 + 2 x 3 + 4 = 18 + 6 + 4 = 28, then 94 - 28 = 66."
+   },
+   {
+    "choice": "86",
+    "mis_step": "Works 6 x 3 = 18 first, so 72 / 18 = 4, 4 + 4 = 8 and 94 - 8 = 86."
+   }
+  ],
+  "distractor_solve": {
+   "63": "return 94 - (72 / (4 * 2) * 3 + 4)",
+   "66": "return 94 - (72 / 4 + 2 * 3 + 4)",
+   "86": "return 94 - (72 / ((4 + 2) * 3) + 4)"
+  }
+ },
+ {
+  "id": "MV2-O56-05",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Matching terms when neither pattern starts at 0",
+  "difficulty": "medium",
+  "topic_tag": "5.OA.B.3",
+  "prompt": "Omar makes two lists of numbers. List A begins with 21, and he adds 4 to get each new number. List B begins with 5, and he adds 8 to get each new number. He writes the lists side by side, so the 1st numbers are together, the 2nd numbers are together, and so on. Which number in List B is beside the number 61 in List A?",
+  "choices": [
+   "122",
+   "85",
+   "69",
+   "45"
+  ],
+  "correct_answer": "85",
+  "explanation": "From 21 to 61 is 40, and 40 / 4 = 10, so 4 was added 10 times to reach 61. List B adds 8 the same 10 times: 5 + 10 x 8 = 5 + 80 = 85.",
+  "solve": "const jumps = (61 - 21) / 4; return 5 + 8 * jumps",
+  "graphic": null,
+  "grade_target": 5,
+  "tier": "mid",
+  "rit_band": "RIT 200-209",
+  "ccss": "5.OA.B.3",
+  "area_25": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "distractor_steps": [
+   {
+    "choice": "122",
+    "mis_step": "Notes that 8 is twice 4 and doubles 61: 122."
+   },
+   {
+    "choice": "69",
+    "mis_step": "Takes the 61 from List A and adds one 8: 69."
+   },
+   {
+    "choice": "45",
+    "mis_step": "Sees that 21 and 5 differ by 16 and subtracts 16 from 61: 45."
+   }
+  ],
+  "distractor_solve": {
+   "45": "return 61 - (21 - 5)",
+   "69": "return 61 + 8",
+   "122": "return 2 * 61"
+  }
+ },
+ {
+  "id": "MV2-O56-04",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Share (total - kept) among a group that includes the sharer",
+  "difficulty": "medium",
+  "topic_tag": "5.OA.A.2",
+  "prompt": "Lina has 6 bags with 39 marbles in each bag. She keeps 18 marbles for a game. She shares the rest of the marbles equally among herself and 8 friends. After the sharing, how many marbles does Lina have in all, counting her share and the marbles she kept?",
+  "choices": [
+   "45",
+   "46",
+   "42",
+   "54"
+  ],
+  "correct_answer": "42",
+  "explanation": "Lina has 6 x 39 = 234 marbles. After keeping 18, she shares 234 - 18 = 216 marbles among 9 people (herself and 8 friends). Each person gets 216 / 9 = 24. Lina has her share plus the 18 she kept: 24 + 18 = 42.",
+  "solve": "return (6 * 39 - 18) / 9 + 18",
+  "graphic": null,
+  "grade_target": 5,
+  "tier": "mid",
+  "rit_band": "RIT 200-209",
+  "ccss": "5.OA.A.2",
+  "area_25": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "distractor_steps": [
+   {
+    "choice": "45",
+    "mis_step": "Shares 216 among 8 people (27 each) and adds 18: 45."
+   },
+   {
+    "choice": "46",
+    "mis_step": "Shares 234 + 18 = 252 among 9 (28 each) and adds 18: 46."
+   },
+   {
+    "choice": "54",
+    "mis_step": "Divides 216 by the 6 bags (36) and adds 18: 54."
+   }
+  ],
+  "distractor_solve": {
+   "45": "return (6 * 39 - 18) / 8 + 18",
+   "46": "return (6 * 39 + 18) / 9 + 18",
+   "54": "return (6 * 39 - 18) / 6 + 18"
+  }
+ },
+ {
+  "id": "MV2-O78-05",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Actual value from an estimate and its percent error",
+  "difficulty": "medium",
+  "topic_tag": "7.RP.A.3",
+  "prompt": "Mia estimated that a rock had a mass of 102 grams. Her estimate was more than the actual mass, and the percent error of her estimate was 20%. What is the actual mass of the rock, in grams?",
+  "choices": [
+   "81.6",
+   "82",
+   "122.4",
+   "85"
+  ],
+  "correct_answer": "85",
+  "explanation": "Percent error compares the error with the actual mass. The estimate was 20% more than the actual mass, so 102 is 120% of the actual mass: actual = 102 / 1.2 = 85 grams. Check: the error is 102 - 85 = 17, and 17 / 85 = 0.20.",
+  "solve": "return 102 / 1.2",
+  "graphic": null,
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "ccss": "7.RP.A.3",
+  "area_25": null,
+  "map_area": "oa",
+  "distractor_steps": [
+   {
+    "choice": "81.6",
+    "mis_step": "The student subtracts 20% of 102 from 102."
+   },
+   {
+    "choice": "82",
+    "mis_step": "The student subtracts 20 from 102."
+   },
+   {
+    "choice": "122.4",
+    "mis_step": "The student increases 102 by 20% even though the estimate was too high."
+   }
+  ],
+  "distractor_solve": {
+   "82": "return 102 - 20",
+   "122.4": "return Math.round(102 * 1.2 * 10) / 10",
+   "81.6": "return Math.round(102 * 0.8 * 10) / 10"
+  }
+ },
+ {
+  "id": "MV2-O78-10",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "px - q = r from a triangle with two equal sides",
+  "difficulty": "medium",
+  "topic_tag": "7.EE.B.4a",
+  "prompt": "A triangle has two sides of equal length. The third side is 4.5 centimeters shorter than each of the equal sides. The perimeter of the triangle is 32.4 centimeters. How long is each of the equal sides, in centimeters?",
+  "choices": [
+   "12.3",
+   "13.95",
+   "11.7",
+   "11.3"
+  ],
+  "correct_answer": "12.3",
+  "explanation": "Let s be the length of each equal side. The third side is s - 4.5. The perimeter is s + s + (s - 4.5) = 3s - 4.5 = 32.4, so 3s = 36.9 and s = 12.3 centimeters. (The sides are 12.3, 12.3 and 7.8.)",
+  "solve": "return Math.round((32.4 + 4.5) / 3 * 100) / 100",
+  "graphic": null,
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "ccss": "7.EE.B.4a",
+  "area_25": null,
+  "map_area": "oa",
+  "distractor_steps": [
+   {
+    "choice": "13.95",
+    "mis_step": "The student writes s + s + 4.5 = 32.4."
+   },
+   {
+    "choice": "11.7",
+    "mis_step": "The student divides 32.4 by 2 and subtracts 4.5."
+   },
+   {
+    "choice": "11.3",
+    "mis_step": "The student adds 4.5/3 = 1.5 to the perimeter and divides 33.9 by 3."
+   }
+  ],
+  "distractor_solve": {
+   "13.95": "return Math.round((32.4 - 4.5) / 2 * 100) / 100",
+   "11.3": "return Math.round((32.4 + 4.5 / 3) / 3 * 100) / 100",
+   "11.7": "return Math.round((32.4 / 2 - 4.5) * 100) / 100"
+  }
+ },
+ {
+  "id": "MV2-O78-19",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Zero of a function that shares another's initial value",
+  "difficulty": "hard",
+  "topic_tag": "8.F.A.2",
+  "prompt": "Line f goes through (-6, 21) and (1, 7). Line g crosses the y-axis where line f does, and g drops 1.25 units for every 1 unit it moves to the right. Where does line g cross the x-axis? Give the x-coordinate.",
+  "choices": [
+   "11.25",
+   "4.5",
+   "16.8",
+   "7.2"
+  ],
+  "correct_answer": "7.2",
+  "explanation": "The slope of f is (7 - 21)/(1 - (-6)) = -14/7 = -2. Using (1, 7): 7 = -2(1) + b, so b = 9. So g(x) = 9 - 1.25x. Set 9 - 1.25x = 0: 1.25x = 9, so x = 7.2.",
+  "solve": "const m = (7 - 21) / 7; const b = 7 - m * 1; return b / 1.25",
+  "graphic": null,
+  "grade_target": 8,
+  "tier": "high",
+  "rit_band": "RIT 230-239",
+  "ccss": "8.F.A.2",
+  "area_25": null,
+  "map_area": "oa",
+  "distractor_steps": [
+   {
+    "choice": "11.25",
+    "mis_step": "The student computes 9 x 1.25."
+   },
+   {
+    "choice": "4.5",
+    "mis_step": "The student finds where f, with slope -2, crosses zero: 9/2."
+   },
+   {
+    "choice": "16.8",
+    "mis_step": "The student takes 21 as g's starting value."
+   }
+  ],
+  "distractor_solve": {
+   "11.25": "return 9 * 1.25",
+   "16.8": "return 21 / 1.25",
+   "4.5": "return 9 / 2"
+  }
+ },
+ {
+  "id": "MV2-O78-13",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Change in y over an interval from a line in standard form",
+  "difficulty": "medium",
+  "topic_tag": "8.F.B.4",
+  "prompt": "On the line 3x + 5y = 55, as x increases from 7 to 37, by how much does y decrease?",
+  "choices": [
+   "18",
+   "50",
+   "29",
+   "22.2"
+  ],
+  "correct_answer": "18",
+  "explanation": "Solve for y: 5y = 55 - 3x, so y = 11 - (3/5)x. The slope is -3/5, so y goes down 3/5 for each 1 that x goes up. From x = 7 to x = 37, x increases by 30, so y decreases by (3/5)(30) = 18. (Check: y = 6.8 at x = 7 and y = -11.2 at x = 37.)",
+  "solve": "return 3 / 5 * (37 - 7)",
+  "graphic": null,
+  "grade_target": 8,
+  "tier": "mid",
+  "rit_band": "RIT 220-229",
+  "ccss": "8.F.B.4",
+  "area_25": null,
+  "map_area": "oa",
+  "distractor_steps": [
+   {
+    "choice": "50",
+    "mis_step": "The student divides the coefficients the wrong way round."
+   },
+   {
+    "choice": "29",
+    "mis_step": "The student finds 18 and then adds the intercept 11."
+   },
+   {
+    "choice": "22.2",
+    "mis_step": "The student multiplies 3/5 by 37, leaving out the starting 7."
+   }
+  ],
+  "distractor_solve": {
+   "29": "return 3 / 5 * (37 - 7) + 55 / 5",
+   "50": "return 5 / 3 * (37 - 7)",
+   "22.2": "return Math.round(3 / 5 * 37 * 10) / 10"
+  }
+ },
+ {
+  "id": "MV2-O78-16",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Sum of the coordinates of a system's solution",
+  "difficulty": "hard",
+  "topic_tag": "8.EE.C.8b",
+  "prompt": "The pair (x, y) makes both x + 4y = 7 and 5x - 4y = 59 true. Find x + y for this pair.",
+  "choices": [
+   "15.5",
+   "10",
+   "11.5",
+   "11"
+  ],
+  "correct_answer": "10",
+  "explanation": "Add the equations: the y-terms cancel, so 6x = 66 and x = 11. Then 11 + 4y = 7, so 4y = -4 and y = -1. So x + y = 11 + (-1) = 10.",
+  "solve": "const x = (7 + 59) / 6; const y = (7 - x) / 4; return x + y",
+  "graphic": null,
+  "grade_target": 8,
+  "tier": "high",
+  "rit_band": "RIT 230-239",
+  "ccss": "8.EE.C.8b",
+  "area_25": null,
+  "map_area": "oa",
+  "distractor_steps": [
+   {
+    "choice": "15.5",
+    "mis_step": "The student finds x = 11 and then gets y = 4.5."
+   },
+   {
+    "choice": "11.5",
+    "mis_step": "The student writes -4x = -52, x = 13, then y = -1.5."
+   },
+   {
+    "choice": "11",
+    "mis_step": "The student gives x = 11 as the answer."
+   }
+  ],
+  "distractor_solve": {
+   "11": "return (7 + 59) / 6",
+   "15.5": "const x = (7 + 59) / 6; return x + (7 + x) / 4",
+   "11.5": "const x = (7 - 59) / (1 - 5); return x + (7 - x) / 4"
+  }
+ },
+ {
+  "id": "MV2-O56-02",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Find where a falling and a rising pattern meet",
+  "difficulty": "hard",
+  "topic_tag": "5.OA.B.3",
+  "prompt": "Wen writes two number patterns. Each pattern keeps going in the same way.\nPattern A: 68, 65, 62, 59, ...\nPattern B: 8, 15, 22, 29, ...\nAt one position (the same term number in both lists), Pattern A and Pattern B have the same number. What is that number?",
+  "choices": [
+   "57",
+   "47",
+   "38",
+   "50"
+  ],
+  "correct_answer": "50",
+  "explanation": "Pattern A goes down by 3 each time and Pattern B goes up by 7. Keep both lists going: A is 68, 65, 62, 59, 56, 53, 50 and B is 8, 15, 22, 29, 36, 43, 50. In the 7th position both patterns show 50.",
+  "solve": "let a = 68, b = 8; while (a !== b) { a -= 3; b += 7 } return a",
+  "graphic": null,
+  "grade_target": 5,
+  "tier": "high",
+  "rit_band": "RIT 210-219",
+  "ccss": "5.OA.B.3",
+  "area_25": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "distractor_steps": [
+   {
+    "choice": "57",
+    "mis_step": "Looks for where B becomes larger than A and gives B's 8th number, 57."
+   },
+   {
+    "choice": "47",
+    "mis_step": "Keeps going one step past the match and reports Pattern A's 8th number, 47."
+   },
+   {
+    "choice": "38",
+    "mis_step": "Averages 68 and 8 to get 38, as if both patterns changed by the same amount each step."
+   }
+  ],
+  "distractor_solve": {
+   "38": "return (68 + 8) / 2",
+   "47": "let a = 68, b = 8; while (a !== b) { a -= 3; b += 7 } return a - 3",
+   "57": "let a = 68, b = 8; while (a !== b) { a -= 3; b += 7 } return b + 7"
+  }
+ },
+ {
+  "id": "MV2-O78-17",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Distribute, then solve with the variable on both sides",
+  "difficulty": "easy",
+  "topic_tag": "8.EE.C.7b",
+  "prompt": "What value of x makes the equation 8(x - 9) = 2x + 24 true?",
+  "choices": [
+   "16",
+   "36",
+   "9.6",
+   "5.5"
+  ],
+  "correct_answer": "16",
+  "explanation": "Distribute: 8x - 72 = 2x + 24. Subtract 2x from both sides: 6x - 72 = 24. Add 72: 6x = 96. Divide by 6: x = 16.",
+  "solve": "return (24 + 72) / 6",
+  "graphic": null,
+  "grade_target": 8,
+  "tier": "low",
+  "rit_band": "RIT 210-219",
+  "ccss": "8.EE.C.7b",
+  "area_25": null,
+  "map_area": "oa",
+  "distractor_steps": [
+   {
+    "choice": "36",
+    "mis_step": "The student writes x = 24 + 72/6."
+   },
+   {
+    "choice": "9.6",
+    "mis_step": "The student writes 8x + 2x = 96."
+   },
+   {
+    "choice": "5.5",
+    "mis_step": "The student writes 8x - 9 = 2x + 24."
+   }
+  ],
+  "distractor_solve": {
+   "36": "return 24 + 72 / 6",
+   "9.6": "return (24 + 72) / (8 + 2)",
+   "5.5": "return (24 + 9) / 6"
+  }
+ },
+ {
+  "id": "MV2-O78-14",
+  "domain": "Operations and Algebraic Thinking",
+  "subskill": "Linear equation with fractions on both sides",
+  "difficulty": "medium",
+  "topic_tag": "8.EE.C.7b",
+  "prompt": "Find the number x for which (x + 7)/3 and (2x - 8)/4 are equal.",
+  "choices": [
+   "7.5",
+   "26",
+   "2",
+   "10.6"
+  ],
+  "correct_answer": "26",
+  "explanation": "Multiply both sides by 12: 4(x + 7) = 3(2x - 8), so 4x + 28 = 6x - 24. Subtract 4x and add 24: 52 = 2x, so x = 26. Check: (26 + 7)/3 = 11 and (52 - 8)/4 = 11.",
+  "solve": "return (4 * 7 + 3 * 8) / (3 * 2 - 4)",
+  "graphic": null,
+  "grade_target": 8,
+  "tier": "mid",
+  "rit_band": "RIT 220-229",
+  "ccss": "8.EE.C.7b",
+  "area_25": null,
+  "map_area": "oa",
+  "distractor_steps": [
+   {
+    "choice": "7.5",
+    "mis_step": "The student writes 4x + 7 = 6x - 8 and gets 2x = 15."
+   },
+   {
+    "choice": "2",
+    "mis_step": "From 4x + 28 = 6x - 24 the student writes 2x = 28 - 24."
+   },
+   {
+    "choice": "10.6",
+    "mis_step": "The student writes 3(x + 7) = 4(2x - 8) and gets 5x = 53."
+   }
+  ],
+  "distractor_solve": {
+   "2": "return (4 * 7 - 3 * 8) / (3 * 2 - 4)",
+   "10.6": "return (3 * 7 + 4 * 8) / (4 * 2 - 3)",
+   "7.5": "return (7 + 8) / (3 * 2 - 4)"
+  }
+ }
+]

@@ -1,0 +1,2088 @@
+[
+ {
+  "id": "MV2-D7-09",
+  "domain": "Statistics and Probability",
+  "subskill": "Estimate a population count from a sample table",
+  "difficulty": "easy",
+  "topic_tag": "7.SP.A.2",
+  "prompt": "A school has 900 students. Mr. Diaz asked a random sample of 60 students to name their favorite sport. The table shows the results. Based on the sample, about how many of the 900 students would name basketball as their favorite sport?",
+  "choices": [
+   "162",
+   "225",
+   "270",
+   "360"
+  ],
+  "correct_answer": "270",
+  "explanation": "In the sample, 18 of the 60 students named basketball. 18/60 = 3/10. So about 3/10 of the 900 students, or 3/10 x 900 = 270 students, would name basketball.",
+  "solve": "const t={soccer:21,basketball:18,swimming:6,other:15};return t.basketball/60*900;",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Soccer",
+    "Basketball",
+    "Swimming",
+    "Other"
+   ],
+   "colLabels": [
+    "Number of students"
+   ],
+   "cells": [
+    [
+     "21"
+    ],
+    [
+     "18"
+    ],
+    [
+     "6"
+    ],
+    [
+     "15"
+    ]
+   ]
+  },
+  "grade_target": 7,
+  "tier": "low",
+  "rit_band": "RIT 200-209",
+  "ccss": "7.SP.A.2",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "162",
+    "mis_step": "18% of 900 = 162."
+   },
+   {
+    "choice": "225",
+    "mis_step": "15/60 of 900 = 225."
+   },
+   {
+    "choice": "360",
+    "mis_step": "18/45 of 900 = 360."
+   }
+  ],
+  "distractor_solve": {
+   "162": "const t={soccer:21,basketball:18,swimming:6,other:15};return t.basketball/100*900;",
+   "225": "const t={soccer:21,basketball:18,swimming:6,other:15};return t.other/60*900;",
+   "360": "const t={soccer:21,basketball:18,swimming:6,other:15};return t.basketball/(t.soccer+t.basketball+t.swimming)*900;"
+  }
+ },
+ {
+  "id": "MV2-D7-02",
+  "domain": "Statistics and Probability",
+  "subskill": "Compare the variability of two samples by their MADs",
+  "difficulty": "hard",
+  "topic_tag": "7.SP.B.3",
+  "prompt": "A gardener measured the heights, in centimeters, of 5 randomly chosen seedlings from each of two trays. The heights are shown in the table. The mean absolute deviation of a data set is the mean of the distances between each value and the mean of the set. How many centimeters greater is the mean absolute deviation of the Tray B heights than the mean absolute deviation of the Tray A heights?",
+  "choices": [
+   "1.5",
+   "1.9",
+   "2.1",
+   "2.4"
+  ],
+  "correct_answer": "2.4",
+  "explanation": "Tray A: the mean is (6.3 + 10.3 + 3.5 + 6.4 + 6.0) / 5 = 32.5 / 5 = 6.5. The distances from 6.5 are 0.2, 3.8, 3.0, 0.1 and 0.5, which add to 7.6, so the MAD is 7.6 / 5 = 1.52. Tray B: the mean is (11.0 + 3.2 + 10.9 + 3.0 + 11.9) / 5 = 40 / 5 = 8. The distances from 8 are 3.0, 4.8, 2.9, 5.0 and 3.9, which add to 19.6, so the MAD is 19.6 / 5 = 3.92. The difference is 3.92 - 1.52 = 2.4 centimeters.",
+  "solve": "const A=[6.3,10.3,3.5,6.4,6],B=[11,3.2,10.9,3,11.9];const mean=a=>a.reduce((s,x)=>s+x,0)/a.length;const med=a=>[...a].sort((x,y)=>x-y)[2];const ad=(a,c)=>a.reduce((s,x)=>s+Math.abs(x-c),0);const r=x=>Math.round(x*10)/10;return r(ad(B,mean(B))/5-ad(A,mean(A))/5);",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Tray A",
+    "Tray B"
+   ],
+   "colLabels": [
+    "Seedling 1",
+    "Seedling 2",
+    "Seedling 3",
+    "Seedling 4",
+    "Seedling 5"
+   ],
+   "cells": [
+    [
+     "6.3",
+     "10.3",
+     "3.5",
+     "6.4",
+     "6.0"
+    ],
+    [
+     "11.0",
+     "3.2",
+     "10.9",
+     "3.0",
+     "11.9"
+    ]
+   ]
+  },
+  "grade_target": 7,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "ccss": "7.SP.B.3",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "1.5",
+    "mis_step": "The student finds the two means, 6.5 and 8, and subtracts, stopping before any deviation is computed."
+   },
+   {
+    "choice": "1.9",
+    "mis_step": "Using the medians 6.3 and 10.9 as centers gives MADs of 1.44 and 3.34, a difference of 1.9."
+   },
+   {
+    "choice": "2.1",
+    "mis_step": "Range B 8.9 minus range A 6.8 gives 2.1."
+   }
+  ],
+  "distractor_solve": {
+   "2.1": "const A=[6.3,10.3,3.5,6.4,6],B=[11,3.2,10.9,3,11.9];const mean=a=>a.reduce((s,x)=>s+x,0)/a.length;const med=a=>[...a].sort((x,y)=>x-y)[2];const ad=(a,c)=>a.reduce((s,x)=>s+Math.abs(x-c),0);const r=x=>Math.round(x*10)/10;const rg=a=>Math.max(...a)-Math.min(...a);return r(rg(B)-rg(A));",
+   "1.9": "const A=[6.3,10.3,3.5,6.4,6],B=[11,3.2,10.9,3,11.9];const mean=a=>a.reduce((s,x)=>s+x,0)/a.length;const med=a=>[...a].sort((x,y)=>x-y)[2];const ad=(a,c)=>a.reduce((s,x)=>s+Math.abs(x-c),0);const r=x=>Math.round(x*10)/10;return r(ad(B,med(B))/5-ad(A,med(A))/5);",
+   "1.5": "const A=[6.3,10.3,3.5,6.4,6],B=[11,3.2,10.9,3,11.9];const mean=a=>a.reduce((s,x)=>s+x,0)/a.length;const med=a=>[...a].sort((x,y)=>x-y)[2];const ad=(a,c)=>a.reduce((s,x)=>s+Math.abs(x-c),0);const r=x=>Math.round(x*10)/10;return r(mean(B)-mean(A));"
+  }
+ },
+ {
+  "id": "MV2-D7-13",
+  "domain": "Statistics and Probability",
+  "subskill": "Estimate a population total from random sample plots",
+  "difficulty": "hard",
+  "topic_tag": "7.SP.A.2",
+  "prompt": "A forest covers 90 square miles. To estimate the number of deer in the forest, a ranger chose 6 plots of land at random in the forest. Each plot is 1/4 square mile. The table shows the number of deer the ranger counted in each plot. Based on these plots, about how many deer are in the whole forest?",
+  "choices": [
+   "1200",
+   "1260",
+   "1800",
+   "1440"
+  ],
+  "correct_answer": "1200",
+  "explanation": "The 6 plots hold 5 + 0 + 7 + 2 + 5 + 1 = 20 deer. Each plot is 1/4 square mile, so the 90-square-mile forest is made of 90 / (1/4) = 360 plots. The mean is 20 / 6 deer per plot, so the estimate is 20 / 6 x 360 = 20 x 60 = 1,200 deer.",
+  "solve": "const p=[5,0,7,2,5,1];const tot=p.reduce((s,x)=>s+x,0);const plots=90/(1/4);return tot/p.length*plots;",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Plot 1",
+    "Plot 2",
+    "Plot 3",
+    "Plot 4",
+    "Plot 5",
+    "Plot 6"
+   ],
+   "colLabels": [
+    "Number of deer"
+   ],
+   "cells": [
+    [
+     "5"
+    ],
+    [
+     "0"
+    ],
+    [
+     "7"
+    ],
+    [
+     "2"
+    ],
+    [
+     "5"
+    ],
+    [
+     "1"
+    ]
+   ]
+  },
+  "grade_target": 7,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "ccss": "7.SP.A.2",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "1260",
+    "mis_step": "Ordered counts 0, 1, 2, 5, 5, 7 have median 3.5; 3.5 x 360 = 1,260."
+   },
+   {
+    "choice": "1800",
+    "mis_step": "Two plots have 5 deer, so the student uses 5 per plot; 5 x 360 = 1,800."
+   },
+   {
+    "choice": "1440",
+    "mis_step": "20 deer over 5 plots is 4 per plot; 4 x 360 = 1,440."
+   }
+  ],
+  "distractor_solve": {
+   "1260": "const p=[5,0,7,2,5,1];const tot=p.reduce((s,x)=>s+x,0);const plots=90/(1/4);const s=[...p].sort((a,b)=>a-b);return (s[2]+s[3])/2*plots;",
+   "1440": "const p=[5,0,7,2,5,1];const tot=p.reduce((s,x)=>s+x,0);const plots=90/(1/4);return tot/p.filter(x=>x>0).length*plots;",
+   "1800": "const p=[5,0,7,2,5,1];const tot=p.reduce((s,x)=>s+x,0);const plots=90/(1/4);const c={};for(const x of p)c[x]=(c[x]||0)+1;const mode=+Object.keys(c).sort((a,b)=>c[b]-c[a])[0];return mode*plots;"
+  }
+ },
+ {
+  "id": "MV2-D7-17",
+  "domain": "Statistics and Probability",
+  "subskill": "Estimate a population total from a sample frequency table",
+  "difficulty": "medium",
+  "topic_tag": "7.SP.A.2",
+  "prompt": "An apartment building has 400 apartments. A manager chose 20 of the apartments at random and counted the bicycles in each one. The table shows how many of the 20 apartments had each number of bicycles. Based on the sample, about how many bicycles are in all 400 apartments?",
+  "choices": [
+   "840",
+   "900",
+   "855",
+   "800"
+  ],
+  "correct_answer": "900",
+  "explanation": "The sample has 0 x 2 + 1 x 3 + 2 x 7 + 3 x 4 + 4 x 4 = 0 + 3 + 14 + 12 + 16 = 45 bicycles in 20 apartments, a mean of 45 / 20 = 2.25 bicycles per apartment. For 400 apartments: 2.25 x 400 = 900 bicycles.",
+  "solve": "const f=[2,3,7,4,4];const n=f.reduce((s,x)=>s+x,0);const tot=f.reduce((s,x,i)=>s+x*i,0);return tot/n*400;",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "0 bicycles",
+    "1 bicycle",
+    "2 bicycles",
+    "3 bicycles",
+    "4 bicycles"
+   ],
+   "colLabels": [
+    "Number of apartments"
+   ],
+   "cells": [
+    [
+     "2"
+    ],
+    [
+     "3"
+    ],
+    [
+     "7"
+    ],
+    [
+     "4"
+    ],
+    [
+     "4"
+    ]
+   ]
+  },
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "ccss": "7.SP.A.2",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "840",
+    "mis_step": "42 bicycles over 20 apartments is 2.1; 2.1 x 400 = 840."
+   },
+   {
+    "choice": "855",
+    "mis_step": "2.25 x 380 = 855."
+   },
+   {
+    "choice": "800",
+    "mis_step": "2 x 400 = 800."
+   }
+  ],
+  "distractor_solve": {
+   "800": "const f=[2,3,7,4,4];const n=f.reduce((s,x)=>s+x,0);const tot=f.reduce((s,x,i)=>s+x*i,0);const mode=f.indexOf(Math.max(...f));return mode*400;",
+   "840": "const f=[2,3,7,4,4];const n=f.reduce((s,x)=>s+x,0);const tot=f.reduce((s,x,i)=>s+x*i,0);return (tot-1*f[1])/n*400;",
+   "855": "const f=[2,3,7,4,4];const n=f.reduce((s,x)=>s+x,0);const tot=f.reduce((s,x,i)=>s+x*i,0);return tot/n*(400-n);"
+  }
+ },
+ {
+  "id": "MV2-D6-12",
+  "domain": "Statistics and Probability",
+  "subskill": "Median of data in a frequency table with an even count",
+  "difficulty": "medium",
+  "topic_tag": "6.SP.B.5.C",
+  "prompt": "In a card game, 30 players each scored points in one round. The table shows how many players got each score. What is the median score of the 30 players?",
+  "choices": [
+   "6.5",
+   "6.1",
+   "5",
+   "5.5"
+  ],
+  "correct_answer": "5.5",
+  "explanation": "With 30 scores the median is the mean of the 15th and 16th scores in order. The first 3 scores are 3, the next 7 are 4 (scores 4 to 10), and the next 5 are 5 (scores 11 to 15). The 16th score is the first 6. The median is (5 + 6) / 2 = 5.5.",
+  "solve": "const v=[3,4,5,6,7,8,9,10],c=[3,7,5,2,6,1,1,5];const d=v.flatMap((x,i)=>Array(c[i]).fill(x));return (d[14]+d[15])/2;",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10"
+   ],
+   "colLabels": [
+    "Number of players"
+   ],
+   "cells": [
+    [
+     "3"
+    ],
+    [
+     "7"
+    ],
+    [
+     "5"
+    ],
+    [
+     "2"
+    ],
+    [
+     "6"
+    ],
+    [
+     "1"
+    ],
+    [
+     "1"
+    ],
+    [
+     "5"
+    ]
+   ],
+   "caption": "Points scored in one round"
+  },
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "ccss": "6.SP.B.5.C",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "6.5",
+    "mis_step": "the student sees eight scores listed, 3 to 10, and averages the middle two, (6 + 7) / 2 = 6.5, ignoring how many players got each score"
+   },
+   {
+    "choice": "6.1",
+    "mis_step": "the student multiplies each score by its count, adds to 183 and divides by 30, getting 6.1"
+   },
+   {
+    "choice": "5",
+    "mis_step": "the student divides 30 by 2, counts to the 15th score, which is 5, and stops without averaging it with the 16th"
+   }
+  ],
+  "distractor_solve": {
+   "5": "const v=[3,4,5,6,7,8,9,10],c=[3,7,5,2,6,1,1,5];const d=v.flatMap((x,i)=>Array(c[i]).fill(x));return d[14];",
+   "6.5": "const v=[3,4,5,6,7,8,9,10];return (v[3]+v[4])/2;",
+   "6.1": "const v=[3,4,5,6,7,8,9,10],c=[3,7,5,2,6,1,1,5];return v.reduce((s,x,i)=>s+x*c[i],0)/30;"
+  }
+ },
+ {
+  "id": "MV2-D7-16",
+  "domain": "Statistics and Probability",
+  "subskill": "Compare the variability of two samples by their IQRs",
+  "difficulty": "hard",
+  "topic_tag": "7.SP.B.3",
+  "prompt": "A farmer weighed nine plums picked at random from each of two trees. The masses, in grams, are shown in the table. For each tree, find the first quartile as the middle of the four masses below the median and the third quartile as the middle of the four masses above the median; the median is left out of both groups of four. How many grams greater is the interquartile range of the Tree B masses than the interquartile range of the Tree A masses?",
+  "choices": [
+   "9",
+   "4",
+   "11",
+   "8"
+  ],
+  "correct_answer": "9",
+  "explanation": "Tree A in order: 20, 22, 28, 29, 31, 34, 40, 41, 57. The median is 31. Lower four: 20, 22, 28, 29, so Q1 = (22 + 28)/2 = 25. Upper four: 34, 40, 41, 57, so Q3 = (40 + 41)/2 = 40.5. IQR = 40.5 - 25 = 15.5. Tree B in order: 22, 24, 30, 40, 41, 45, 50, 53, 57. The median is 41. Q1 = (24 + 30)/2 = 27 and Q3 = (50 + 53)/2 = 51.5, so IQR = 24.5. The difference is 24.5 - 15.5 = 9 grams.",
+  "solve": "const A=[31,40,20,57,29,41,22,34,28],B=[40,45,50,22,41,24,57,30,53];const S=a=>[...a].sort((x,y)=>x-y);const md=a=>{const s=S(a),n=s.length;return n%2?s[(n-1)/2]:(s[n/2-1]+s[n/2])/2};const mn=a=>a.reduce((s,x)=>s+x,0)/a.length;const iqr=a=>{const s=S(a);return md(s.slice(5))-md(s.slice(0,4))};return iqr(B)-iqr(A);",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Tree A",
+    "Tree B"
+   ],
+   "colLabels": [
+    "Plum A",
+    "Plum B",
+    "Plum C",
+    "Plum D",
+    "Plum E",
+    "Plum F",
+    "Plum G",
+    "Plum H",
+    "Plum I"
+   ],
+   "cells": [
+    [
+     "31",
+     "40",
+     "20",
+     "57",
+     "29",
+     "41",
+     "22",
+     "34",
+     "28"
+    ],
+    [
+     "40",
+     "45",
+     "50",
+     "22",
+     "41",
+     "24",
+     "57",
+     "30",
+     "53"
+    ]
+   ]
+  },
+  "grade_target": 7,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "ccss": "7.SP.B.3",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "4",
+    "mis_step": "Half-means give IQRs of 18.25 for A and 22.25 for B, a difference of 4."
+   },
+   {
+    "choice": "11",
+    "mis_step": "51.5 - 40.5 = 11."
+   },
+   {
+    "choice": "8",
+    "mis_step": "Quartiles 28 and 40 for A, 30 and 50 for B: IQRs 12 and 20, a difference of 8."
+   }
+  ],
+  "distractor_solve": {
+   "4": "const A=[31,40,20,57,29,41,22,34,28],B=[40,45,50,22,41,24,57,30,53];const S=a=>[...a].sort((x,y)=>x-y);const md=a=>{const s=S(a),n=s.length;return n%2?s[(n-1)/2]:(s[n/2-1]+s[n/2])/2};const mn=a=>a.reduce((s,x)=>s+x,0)/a.length;const iqr=a=>{const s=S(a);return mn(s.slice(5))-mn(s.slice(0,4))};return Math.round((iqr(B)-iqr(A))*1e6)/1e6;",
+   "8": "const A=[31,40,20,57,29,41,22,34,28],B=[40,45,50,22,41,24,57,30,53];const S=a=>[...a].sort((x,y)=>x-y);const md=a=>{const s=S(a),n=s.length;return n%2?s[(n-1)/2]:(s[n/2-1]+s[n/2])/2};const mn=a=>a.reduce((s,x)=>s+x,0)/a.length;const iqr=a=>{const s=S(a);return md(s.slice(4))-md(s.slice(0,5))};return iqr(B)-iqr(A);",
+   "11": "const A=[31,40,20,57,29,41,22,34,28],B=[40,45,50,22,41,24,57,30,53];const S=a=>[...a].sort((x,y)=>x-y);const md=a=>{const s=S(a),n=s.length;return n%2?s[(n-1)/2]:(s[n/2-1]+s[n/2])/2};const mn=a=>a.reduce((s,x)=>s+x,0)/a.length;const q3=a=>md(S(a).slice(5));return q3(B)-q3(A);"
+  }
+ },
+ {
+  "id": "MV2-D5-11",
+  "domain": "Statistics and Probability",
+  "subskill": "Line plot: find a missing count from the total length",
+  "difficulty": "hard",
+  "topic_tag": "5.MD.B.2",
+  "prompt": "Mr. Ford's class measured some leaves. The table shows the line plot data for every leaf except the leaves that are 1/2 inch long: each row gives a length, in inches, and the number of leaves with that length. The total length of all the leaves the class measured, including the 1/2-inch leaves, is 9 inches. How many leaves did the class measure in all?",
+  "choices": [
+   "18",
+   "15",
+   "11",
+   "9"
+  ],
+  "correct_answer": "15",
+  "explanation": "The leaves in the table have a total length of 2 x 1/4 + 2 x 3/4 + 3 x 1 = 1/2 + 1 1/2 + 3 = 5 inches. The 1/2-inch leaves make up 9 - 5 = 4 inches. 4 / (1/2) = 8, so there are 8 half-inch leaves. In all: 2 + 2 + 3 + 8 = 15 leaves.",
+  "solve": "const known=2*0.25+2*0.75+3*1;return 7+(9-known)/0.5",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "1/4",
+    "3/4",
+    "1"
+   ],
+   "colLabels": [
+    "Number of leaves"
+   ],
+   "cells": [
+    [
+     2
+    ],
+    [
+     2
+    ],
+    [
+     3
+    ]
+   ]
+  },
+  "grade_target": 5,
+  "tier": "high",
+  "rit_band": "RIT 210-219",
+  "ccss": "5.MD.B.2",
+  "area_25": "Measurement and Data",
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "18",
+    "mis_step": "The student divides the whole 9 inches by 1/2."
+   },
+   {
+    "choice": "11",
+    "mis_step": "The student takes the 4 inches left as 4 leaves: 7 + 4 = 11."
+   },
+   {
+    "choice": "9",
+    "mis_step": "The student turns the 4 remaining inches into 4 x 1/2 = 2 leaves, so 7 + 2 = 9."
+   }
+  ],
+  "distractor_solve": {
+   "9": "const known=2*0.25+2*0.75+3*1;return 7+(9-known)*0.5",
+   "11": "const known=2*0.25+2*0.75+3*1;return 7+(9-known)",
+   "18": "return 9/0.5"
+  }
+ },
+ {
+  "id": "MV2-D8-02",
+  "domain": "Statistics and Probability",
+  "subskill": "Use the slope of a line of fit to find the time for a given change",
+  "difficulty": "medium",
+  "topic_tag": "8.SP.A.3",
+  "prompt": "Mia measured the depth of the snow in her yard several times on a sunny day and made a scatter plot. A line of fit for the data is y = -1.6x + 20, where x is the number of hours after sunrise and y is the snow depth in centimeters. According to the line of fit, how many hours does it take for the predicted snow depth to go down by 12 centimeters?",
+  "choices": [
+   "10.4",
+   "5",
+   "7.5",
+   "6"
+  ],
+  "correct_answer": "7.5",
+  "explanation": "The slope -1.6 means the predicted depth goes down 1.6 centimeters every hour. To go down 12 centimeters takes 12 / 1.6 = 7.5 hours. (The starting depth, 20 cm, does not matter for how long a 12 cm drop takes.)",
+  "solve": "return String(120/16);",
+  "graphic": null,
+  "grade_target": 8,
+  "tier": "mid",
+  "rit_band": "RIT 220-229",
+  "ccss": "8.SP.A.3",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "10.4",
+    "mis_step": "the student combines the two numbers in the question by subtracting, 12 - 1.6 = 10.4, as if one hour of melting were taken off the 12 cm"
+   },
+   {
+    "choice": "5",
+    "mis_step": "the student reads \"go down by 12\" as \"go down to 12\" and solves -1.6x + 20 = 12, getting x = 5"
+   },
+   {
+    "choice": "6",
+    "mis_step": "the student treats 1.6 cm per hour as about 2 cm per hour and divides 12 by 2, getting 6"
+   }
+  ],
+  "distractor_solve": {
+   "5": "return String((200 - 120)/16);",
+   "6": "return String(12/2);",
+   "10.4": "return String(Math.round((12 - 1.6)*10)/10);"
+  }
+ },
+ {
+  "id": "MV2-D6-14",
+  "domain": "Statistics and Probability",
+  "subskill": "Interquartile range read from a box plot",
+  "difficulty": "easy",
+  "topic_tag": "6.SP.B.4",
+  "prompt": "A box plot shows the prices, in dollars, of the used bikes at a shop. The left whisker starts at 10, the box starts at 18, the line inside the box is at 24, the box ends at 35, and the right whisker ends at 47. What is the interquartile range of the prices, in dollars?",
+  "choices": [
+   "11",
+   "25",
+   "29",
+   "17"
+  ],
+  "correct_answer": "17",
+  "explanation": "The box of a box plot runs from the first quartile to the third quartile. The first quartile is 18 and the third quartile is 35, so the interquartile range is 35 - 18 = 17 dollars.",
+  "solve": "return 35-18;",
+  "graphic": null,
+  "grade_target": 6,
+  "tier": "low",
+  "rit_band": "RIT 200-209",
+  "ccss": "6.SP.B.4",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "11",
+    "mis_step": "the student subtracts the line inside the box from the end of the box, 35 - 24 = 11, measuring only the upper half of the box"
+   },
+   {
+    "choice": "25",
+    "mis_step": "the student takes the start of the left whisker, 10, as the first quartile and gets 35 - 10 = 25"
+   },
+   {
+    "choice": "29",
+    "mis_step": "the student takes the end of the right whisker, 47, as the third quartile and gets 47 - 18 = 29"
+   }
+  ],
+  "distractor_solve": {
+   "11": "return 35-24;",
+   "25": "return 35-10;",
+   "29": "return 47-18;"
+  }
+ },
+ {
+  "id": "MV2-D7-05",
+  "domain": "Statistics and Probability",
+  "subskill": "Gauge the variation between two sample estimates",
+  "difficulty": "medium",
+  "topic_tag": "7.SP.A.2",
+  "prompt": "A crate holds 1,200 apples. Dev takes a random sample of 20 apples from the crate and finds 3 bruised apples. Mia takes a different random sample of 30 apples and finds 8 bruised apples. Each of them uses only their own sample to estimate the number of bruised apples in the crate. How much greater is Mia's estimate than Dev's estimate?",
+  "choices": [
+   "140",
+   "264",
+   "600",
+   "200"
+  ],
+  "correct_answer": "140",
+  "explanation": "Dev: 3/20 of 1,200 is 180 bruised apples. Mia: 8/30 of 1,200 is 320 bruised apples. Mia's estimate is 320 - 180 = 140 greater.",
+  "solve": "return 8/30*1200-3/20*1200;",
+  "graphic": null,
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "ccss": "7.SP.A.2",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "264",
+    "mis_step": "11 bruised out of 50 apples, and 11/50 of 1,200 = 264."
+   },
+   {
+    "choice": "600",
+    "mis_step": "(8 - 3)/(30 - 20) = 1/2, and 1/2 of 1,200 = 600."
+   },
+   {
+    "choice": "200",
+    "mis_step": "8 - 3 = 5 bruised, and 5/30 of 1,200 = 200."
+   }
+  ],
+  "distractor_solve": {
+   "200": "return (8-3)/30*1200;",
+   "264": "return (8+3)/(30+20)*1200;",
+   "600": "return (8-3)/(30-20)*1200;"
+  }
+ },
+ {
+  "id": "MV2-D8-09",
+  "domain": "Statistics and Probability",
+  "subskill": "Compare row relative frequencies of unequal groups in points",
+  "difficulty": "medium",
+  "topic_tag": "8.SP.A.4",
+  "prompt": "A park ranger asked visitors at two campgrounds whether they had seen a moose that day. The two-way table shows the results. How many percentage points greater is the percent of River Campground visitors who saw a moose than the percent of Lake Campground visitors who saw a moose?",
+  "choices": [
+   "20",
+   "60",
+   "15",
+   "26"
+  ],
+  "correct_answer": "15",
+  "explanation": "Lake Campground: 10 of 40 visitors saw a moose, 10 / 40 = 25%. River Campground: 36 of 90 visitors saw a moose, 36 / 90 = 40%. The difference is 40 - 25 = 15 percentage points.",
+  "solve": "return String(36*100/90 - 10*100/40);",
+  "graphic": {
+   "type": "twowaytable",
+   "rowLabels": [
+    "Lake Campground",
+    "River Campground",
+    "Total"
+   ],
+   "colLabels": [
+    "Saw a moose",
+    "Did not see a moose",
+    "Total"
+   ],
+   "cells": [
+    [
+     "10",
+     "30",
+     "40"
+    ],
+    [
+     "36",
+     "54",
+     "90"
+    ],
+    [
+     "46",
+     "84",
+     "130"
+    ]
+   ],
+   "caption": "Moose sightings (number of visitors)"
+  },
+  "grade_target": 8,
+  "tier": "mid",
+  "rit_band": "RIT 220-229",
+  "ccss": "8.SP.A.4",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "20",
+    "mis_step": "the student writes 10 and 36 as percents of all 130 visitors and subtracts: (36 - 10) / 130 = 20 percentage points"
+   },
+   {
+    "choice": "60",
+    "mis_step": "the student finds 40 - 25 = 15 and then divides by 25, reporting a 60 percent increase instead of 15 points"
+   },
+   {
+    "choice": "26",
+    "mis_step": "the student subtracts the numbers who saw a moose, 36 - 10 = 26, and calls it the difference in percent, ignoring that River Campground had more than twice as many visitors"
+   }
+  ],
+  "distractor_solve": {
+   "20": "return String((36 - 10)*100/130);",
+   "26": "return String(36 - 10);",
+   "60": "return String((36*100/90 - 10*100/40)*100/(10*100/40));"
+  }
+ },
+ {
+  "id": "MV2-D6-08",
+  "domain": "Statistics and Probability",
+  "subskill": "Third quartile of an unordered list of 12 values",
+  "difficulty": "medium",
+  "topic_tag": "6.SP.B.5.C",
+  "prompt": "Twelve students took a quiz. Their scores were 16, 4, 21, 12, 9, 22, 15, 7, 20, 13, 17, and 11. The third quartile is the median of the upper half of the scores. What is the third quartile of the 12 scores?",
+  "choices": [
+   "18",
+   "17",
+   "14",
+   "18.5"
+  ],
+  "correct_answer": "18.5",
+  "explanation": "In order the scores are 4, 7, 9, 11, 12, 13, 15, 16, 17, 20, 21, 22. The upper half is the top 6 scores: 15, 16, 17, 20, 21, 22. Their median is the mean of the 3rd and 4th of these: (17 + 20) / 2 = 18.5.",
+  "solve": "const a=[16,4,21,12,9,22,15,7,20,13,17,11].sort((x,y)=>x-y);const u=a.slice(6);return (u[2]+u[3])/2;",
+  "graphic": null,
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "ccss": "6.SP.B.5.C",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "18",
+    "mis_step": "the student averages the median, 14, and the top score, 22, getting 18"
+   },
+   {
+    "choice": "17",
+    "mis_step": "the student takes 3/4 of 12 = 9 and reads the 9th score, 17, as the third quartile"
+   },
+   {
+    "choice": "14",
+    "mis_step": "the student finds the middle of all 12 scores, (13 + 15) / 2 = 14, and stops there"
+   }
+  ],
+  "distractor_solve": {
+   "14": "const a=[16,4,21,12,9,22,15,7,20,13,17,11].sort((x,y)=>x-y);return (a[5]+a[6])/2;",
+   "17": "const a=[16,4,21,12,9,22,15,7,20,13,17,11].sort((x,y)=>x-y);return a[12*3/4-1];",
+   "18": "const a=[16,4,21,12,9,22,15,7,20,13,17,11].sort((x,y)=>x-y);return ((a[5]+a[6])/2+a[11])/2;"
+  }
+ },
+ {
+  "id": "MV2-D7-12",
+  "domain": "Statistics and Probability",
+  "subskill": "Compare the means of two random samples of different sizes",
+  "difficulty": "easy",
+  "topic_tag": "7.SP.B.4",
+  "prompt": "Marco wrote down the prices, in dollars, of five notebooks chosen at random at Store A and four notebooks chosen at random at Store B. The prices are shown in the table. How many dollars greater is the mean price at Store B than the mean price at Store A?",
+  "choices": [
+   "6",
+   "4",
+   "4.5",
+   "7"
+  ],
+  "correct_answer": "4",
+  "explanation": "Store A: (9 + 11 + 10 + 6 + 9) / 5 = 45 / 5 = 9 dollars. Store B: (13 + 14 + 8 + 17) / 4 = 52 / 4 = 13 dollars. The mean at Store B is 13 - 9 = 4 dollars greater.",
+  "solve": "const A=[9,11,10,6,9],B=[13,14,8,17];const sum=a=>a.reduce((s,x)=>s+x,0);return sum(B)/B.length-sum(A)/A.length;",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Store A",
+    "Store B"
+   ],
+   "colLabels": [
+    "Notebook A",
+    "Notebook B",
+    "Notebook C",
+    "Notebook D",
+    "Notebook E"
+   ],
+   "cells": [
+    [
+     "9",
+     "11",
+     "10",
+     "6",
+     "9"
+    ],
+    [
+     "13",
+     "14",
+     "8",
+     "17",
+     ""
+    ]
+   ]
+  },
+  "grade_target": 7,
+  "tier": "low",
+  "rit_band": "RIT 200-209",
+  "ccss": "7.SP.B.4",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "6",
+    "mis_step": "17 - 11 = 6."
+   },
+   {
+    "choice": "4.5",
+    "mis_step": "Medians 9 and 13.5 differ by 4.5."
+   },
+   {
+    "choice": "7",
+    "mis_step": "52 - 45 = 7."
+   }
+  ],
+  "distractor_solve": {
+   "6": "const A=[9,11,10,6,9],B=[13,14,8,17];const sum=a=>a.reduce((s,x)=>s+x,0);return Math.max(...B)-Math.max(...A);",
+   "7": "const A=[9,11,10,6,9],B=[13,14,8,17];const sum=a=>a.reduce((s,x)=>s+x,0);return sum(B)-sum(A);",
+   "4.5": "const A=[9,11,10,6,9],B=[13,14,8,17];const sum=a=>a.reduce((s,x)=>s+x,0);const md=a=>{const s=[...a].sort((x,y)=>x-y),n=s.length;return n%2?s[(n-1)/2]:(s[n/2-1]+s[n/2])/2};return md(B)-md(A);"
+  }
+ },
+ {
+  "id": "MV2-D7-06",
+  "domain": "Statistics and Probability",
+  "subskill": "Predict a frequency from experimental results",
+  "difficulty": "medium",
+  "topic_tag": "7.SP.C.6",
+  "prompt": "Jay rolled a number cube with faces numbered 1 through 6 a total of 120 times. The table shows how many times each number came up. Based on Jay's results, how many times should he expect to roll a 5 or a 6 in his next 240 rolls?",
+  "choices": [
+   "70",
+   "72",
+   "84",
+   "80"
+  ],
+  "correct_answer": "84",
+  "explanation": "A 5 came up 23 times and a 6 came up 19 times, so a 5 or a 6 came up 23 + 19 = 42 times in 120 rolls. The experimental probability is 42/120 = 0.35. In 240 rolls, Jay should expect 0.35 x 240 = 84 rolls of a 5 or a 6.",
+  "solve": "const f={1:18,2:22,3:17,4:21,5:23,6:19};return (f[5]+f[6])/120*240;",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "colLabels": [
+    "Number of times rolled"
+   ],
+   "cells": [
+    [
+     "18"
+    ],
+    [
+     "22"
+    ],
+    [
+     "17"
+    ],
+    [
+     "21"
+    ],
+    [
+     "23"
+    ],
+    [
+     "19"
+    ]
+   ]
+  },
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "ccss": "7.SP.C.6",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "70",
+    "mis_step": "35 per 120 rolls, doubled, gives 70."
+   },
+   {
+    "choice": "72",
+    "mis_step": "0.3 x 240 = 72."
+   },
+   {
+    "choice": "80",
+    "mis_step": "2/6 of 240 = 80; the table is ignored."
+   }
+  ],
+  "distractor_solve": {
+   "70": "const f={1:18,2:22,3:17,4:21,5:23,6:19};return Math.round((f[5]+f[6])/120*100)*240/120;",
+   "72": "const f={1:18,2:22,3:17,4:21,5:23,6:19};return Math.floor((f[5]+f[6])/120*10)/10*240;",
+   "80": "return 2/6*240;"
+  }
+ },
+ {
+  "id": "MV2-D6-02",
+  "domain": "Statistics and Probability",
+  "subskill": "Median of two groups of data combined",
+  "difficulty": "medium",
+  "topic_tag": "6.SP.B.5.C",
+  "prompt": "Two science groups measured the heights of their bean plants, in centimeters. Group A's plants are 14, 21, 9, and 17 centimeters tall. Group B's plants are 16, 13, 8, 11, 6, and 12 centimeters tall. What is the median height, in centimeters, of all the plants in both groups together?",
+  "choices": [
+   "12.5",
+   "14.5",
+   "13",
+   "15.5"
+  ],
+  "correct_answer": "12.5",
+  "explanation": "Put all 10 heights in order: 6, 8, 9, 11, 12, 13, 14, 16, 17, 21. There is an even number of values, so the median is the mean of the 5th and 6th values: (12 + 13) / 2 = 12.5 centimeters.",
+  "solve": "const a=[14,21,9,17,16,13,8,11,6,12].sort((x,y)=>x-y);return (a[4]+a[5])/2;",
+  "graphic": null,
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "ccss": "6.SP.B.5.C",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "14.5",
+    "mis_step": "the student writes Group A then Group B as given (14, 21, 9, 17, 16, 13, 8, 11, 6, 12) and averages the 5th and 6th numbers, 16 and 13"
+   },
+   {
+    "choice": "13",
+    "mis_step": "copying the 10 heights into one list, the student misses the 9, sorts the other 9 and takes the middle (5th) value, 13"
+   },
+   {
+    "choice": "15.5",
+    "mis_step": "the student finds the median of Group A only, (14 + 17) / 2 = 15.5, as if the first group stood for all the plants"
+   }
+  ],
+  "distractor_solve": {
+   "13": "const a=[14,21,17,16,13,8,11,6,12].sort((x,y)=>x-y);return a[4];",
+   "14.5": "const a=[14,21,9,17,16,13,8,11,6,12];return (a[4]+a[5])/2;",
+   "15.5": "const a=[14,21,9,17].sort((x,y)=>x-y);return (a[1]+a[2])/2;"
+  }
+ },
+ {
+  "id": "MV2-D7-10",
+  "domain": "Statistics and Probability",
+  "subskill": "Probability of a compound event from two independent choices",
+  "difficulty": "medium",
+  "topic_tag": "7.SP.C.8.A",
+  "prompt": "A lunch menu has 5 soups and 7 salads. Two of the soups are served hot, and 4 of the salads have no nuts. Lia picks one soup and one salad at random. What is the probability that she gets a hot soup and a salad with no nuts?",
+  "choices": [
+   "1/2",
+   "8/35",
+   "6/35",
+   "12/35"
+  ],
+  "correct_answer": "8/35",
+  "explanation": "The chance of a hot soup is 2/5. The chance of a salad with no nuts is 4/7. The two picks do not affect each other, so the chance of both is 2/5 x 4/7 = 8/35. (Counting works too: there are 5 x 7 = 35 soup-salad pairs, and 2 x 4 = 8 of them have a hot soup and a no-nut salad.)",
+  "solve": "return (2/5)*(4/7);",
+  "graphic": null,
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "ccss": "7.SP.C.8.A",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "1/2",
+    "mis_step": "(2 + 4)/(5 + 7) = 6/12 = 1/2."
+   },
+   {
+    "choice": "6/35",
+    "mis_step": "2 hot soups + 4 no-nut salads = 6, over 35 pairs."
+   },
+   {
+    "choice": "12/35",
+    "mis_step": "3/5 x 4/7 = 12/35."
+   }
+  ],
+  "distractor_solve": {
+   "6/35": "return (2+4)/(5*7);",
+   "12/35": "return ((5-2)/5)*(4/7);",
+   "1/2": "return (2+4)/(5+7);"
+  }
+ },
+ {
+  "id": "MV2-D5-01",
+  "domain": "Statistics and Probability",
+  "subskill": "Line plot: join pieces meeting a condition, cut unit-fraction lengths",
+  "difficulty": "hard",
+  "topic_tag": "5.MD.B.2",
+  "prompt": "Rosa has some pieces of ribbon. The table shows her line plot data: each row gives a length, in yards, and the number of pieces with that length. Rosa sews together, end to end, every piece that is half a yard long or longer, making one long strip with no length lost. Then she cuts the strip into pieces that are each one quarter of a yard long. How many quarter-yard pieces can she cut?",
+  "choices": [
+   "23",
+   "29",
+   "13",
+   "22"
+  ],
+  "correct_answer": "23",
+  "explanation": "The pieces that are half a yard or longer are the 1/2-yard, 5/8-yard and 3/4-yard pieces. Their total length is 5 x 1/2 + 3 x 5/8 + 2 x 3/4 = 20/8 + 15/8 + 12/8 = 47/8 = 5 7/8 yards. Each yard makes 4 quarter-yard pieces, so 5 7/8 yards makes 5 7/8 x 4 = 23 1/2. Only whole pieces count, so Rosa can cut 23 pieces.",
+  "solve": "const n=[1,3,4,5,6],c=[2,3,5,3,2];let t=0;for(let i=0;i<5;i++)if(n[i]>=4)t+=n[i]*c[i];return Math.floor(t*4/8)",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "1/8",
+    "3/8",
+    "1/2",
+    "5/8",
+    "3/4"
+   ],
+   "colLabels": [
+    "Number of pieces"
+   ],
+   "cells": [
+    [
+     2
+    ],
+    [
+     3
+    ],
+    [
+     5
+    ],
+    [
+     3
+    ],
+    [
+     2
+    ]
+   ]
+  },
+  "grade_target": 5,
+  "tier": "high",
+  "rit_band": "RIT 210-219",
+  "ccss": "5.MD.B.2",
+  "area_25": "Measurement and Data",
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "29",
+    "mis_step": "The student joins all 15 pieces, 58/8 = 7 1/4 yards, and cuts 29 pieces."
+   },
+   {
+    "choice": "13",
+    "mis_step": "The student leaves out the five 1/2-yard pieces, gets 27/8 yards and cuts 13 pieces."
+   },
+   {
+    "choice": "22",
+    "mis_step": "The student cuts quarter-yard pieces from every long piece separately (2, 2 and 3 per piece), so the 1/8-yard leftovers are thrown away and the count is 22."
+   }
+  ],
+  "distractor_solve": {
+   "13": "const n=[1,3,4,5,6],c=[2,3,5,3,2];let t=0;for(let i=0;i<5;i++)if(n[i]>4)t+=n[i]*c[i];return Math.floor(t*4/8)",
+   "22": "const n=[1,3,4,5,6],c=[2,3,5,3,2];let t=0;for(let i=0;i<5;i++)if(n[i]>=4)t+=c[i]*Math.floor(n[i]/2);return t",
+   "29": "const n=[1,3,4,5,6],c=[2,3,5,3,2];let t=0;for(let i=0;i<5;i++)t+=n[i]*c[i];return Math.floor(t*4/8)"
+  }
+ },
+ {
+  "id": "MV2-D6-13",
+  "domain": "Statistics and Probability",
+  "subskill": "Find a missing value from the mean, then the MAD",
+  "difficulty": "hard",
+  "topic_tag": "6.SP.B.5.C",
+  "prompt": "The mean mass of 5 rocks is 40 grams. Four of the rocks have masses of 30, 45, 44, and 31 grams. The mean absolute deviation (MAD) is the mean of the distances between each value and the mean. What is the MAD of the masses of all 5 rocks, in grams?",
+  "choices": [
+   "9.5",
+   "7.6",
+   "7",
+   "5.6"
+  ],
+  "correct_answer": "7.6",
+  "explanation": "The 5 masses add to 5 x 40 = 200 grams. The four known masses add to 150, so the fifth rock is 200 - 150 = 50 grams. The distances from 40 are 10, 5, 4, 9 and 10, which add to 38. The MAD is 38 / 5 = 7.6 grams.",
+  "solve": "const g=[30,45,44,31];const f=5*40-g.reduce((s,x)=>s+x,0);const a=[...g,f];return a.reduce((s,x)=>s+Math.abs(x-40),0)/5;",
+  "graphic": null,
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "ccss": "6.SP.B.5.C",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "9.5",
+    "mis_step": "the student finds the five distances correctly, total 38, but divides by 4 instead of 5"
+   },
+   {
+    "choice": "7",
+    "mis_step": "the student finds the MAD of the four given rocks about their own mean, 37.5: distances 7.5, 7.5, 6.5, 6.5, total 28, divided by 4 is 7"
+   },
+   {
+    "choice": "5.6",
+    "mis_step": "the student takes the fifth rock to be 40 grams, so its distance is 0, and gets (10 + 5 + 4 + 9 + 0) / 5 = 5.6"
+   }
+  ],
+  "distractor_solve": {
+   "7": "const g=[30,45,44,31];const m=g.reduce((s,x)=>s+x,0)/4;return g.reduce((s,x)=>s+Math.abs(x-m),0)/4;",
+   "5.6": "const g=[30,45,44,31];return g.reduce((s,x)=>s+Math.abs(x-40),0)/5;",
+   "9.5": "const g=[30,45,44,31];const f=5*40-g.reduce((s,x)=>s+x,0);const a=[...g,f];return a.reduce((s,x)=>s+Math.abs(x-40),0)/4;"
+  }
+ },
+ {
+  "id": "MV2-D8-04",
+  "domain": "Statistics and Probability",
+  "subskill": "Find the point that breaks a linear pattern and correct it",
+  "difficulty": "medium",
+  "topic_tag": "8.SP.A.1",
+  "prompt": "Ravi hung different numbers of identical weights on a spring and measured the length of the spring each time. The table shows his results. When the points are graphed, all of them lie on one straight line except one point, which Ravi recorded wrong. If that point followed the same linear pattern as the others, what length, in centimeters, should Ravi have recorded for it?",
+  "choices": [
+   "49",
+   "35",
+   "47",
+   "40"
+  ],
+  "correct_answer": "47",
+  "explanation": "Check the rate between points. From 3 to 4 weights the length grows 31 - 27 = 4 cm for 1 weight. From 13 to 15 weights it grows 75 - 67 = 8 cm for 2 weights, which is also 4 cm per weight. From 4 to 13 weights it grows 67 - 31 = 36 cm for 9 weights, again 4 cm per weight. So the point for 8 weights is the wrong one. Going from 4 weights to 8 weights adds 4 weights, so the length should be 31 + 4 x 4 = 47 centimeters.",
+  "solve": "const r=(67-31)/(13-4); return String(31 + r*(8-4));",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "3",
+    "4",
+    "8",
+    "13",
+    "15"
+   ],
+   "colLabels": [
+    "Spring length (centimeters)"
+   ],
+   "cells": [
+    [
+     "27"
+    ],
+    [
+     "31"
+    ],
+    [
+     "53"
+    ],
+    [
+     "67"
+    ],
+    [
+     "75"
+    ]
+   ],
+   "caption": "Number of weights and spring length"
+  },
+  "grade_target": 8,
+  "tier": "mid",
+  "rit_band": "RIT 220-229",
+  "ccss": "8.SP.A.1",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "49",
+    "mis_step": "the student averages the lengths on either side, (31 + 67) / 2 = 49, though 8 weights is not halfway between 4 and 13"
+   },
+   {
+    "choice": "35",
+    "mis_step": "the student sees the length grow 4 cm from the first row to the second and adds 4 again for the next row, 31 + 4 = 35, without noticing that the next row is 4 weights later, not 1"
+   },
+   {
+    "choice": "40",
+    "mis_step": "the student finds 75 / 15 = 5 cm per weight from the last point and multiplies by 8 weights, 40, as if the spring had no length with no weights"
+   }
+  ],
+  "distractor_solve": {
+   "35": "return String(31 + (31-27));",
+   "40": "return String(75*8/15);",
+   "49": "return String((31+67)/2);"
+  }
+ },
+ {
+  "id": "MV2-D6-06",
+  "domain": "Statistics and Probability",
+  "subskill": "Find an added value from the new median, then the mean",
+  "difficulty": "hard",
+  "topic_tag": "6.SP.B.5.C",
+  "prompt": "A store sells seven board games. Their prices, in dollars, are 34, 54, 5, 38, 6, 41, and 4. The store adds one new board game. Now the median price of the eight games is 28 dollars. What is the mean price, in dollars, of the eight games?",
+  "choices": [
+   "22.75",
+   "25",
+   "24",
+   "25.5"
+  ],
+  "correct_answer": "25.5",
+  "explanation": "In order the seven prices are 4, 5, 6, 34, 38, 41, 54, and they add to 182. With eight prices the median is the mean of the 4th and 5th prices. The median is now 28, which is less than 34, so the new price is below 34 and the middle two prices are the new price and 34. (new price + 34) / 2 = 28, so the new price is 56 - 34 = 22. The eight prices add to 182 + 22 = 204, and the mean is 204 / 8 = 25.5 dollars.",
+  "solve": "const a=[34,54,5,38,6,41,4];const S=a.reduce((s,x)=>s+x,0);const v=2*28-34;return (S+v)/8;",
+  "graphic": null,
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "ccss": "6.SP.B.5.C",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "22.75",
+    "mis_step": "the student divides the old total by the new number of games, 182 / 8 = 22.75, never adding the new price to the total"
+   },
+   {
+    "choice": "25",
+    "mis_step": "the student does not put the prices in order and uses 38, the middle of the list as printed, as the price next to the new one: 56 - 38 = 18, total 200, mean 200 / 8 = 25"
+   },
+   {
+    "choice": "24",
+    "mis_step": "the student finds the new price, 22, and the old mean, 182 / 7 = 26, then averages them, (26 + 22) / 2 = 24, giving one new game the same weight as the seven old ones"
+   }
+  ],
+  "distractor_solve": {
+   "24": "const a=[34,54,5,38,6,41,4];const S=a.reduce((s,x)=>s+x,0);const v=2*28-34;return (S/7+v)/2;",
+   "25": "const a=[34,54,5,38,6,41,4];const S=a.reduce((s,x)=>s+x,0);return (S+2*28-a[3])/8;",
+   "22.75": "const a=[34,54,5,38,6,41,4];return a.reduce((s,x)=>s+x,0)/8;"
+  }
+ },
+ {
+  "id": "MV2-D6-03",
+  "domain": "Statistics and Probability",
+  "subskill": "Change in the median when one extreme value is removed",
+  "difficulty": "medium",
+  "topic_tag": "6.SP.B.5.C",
+  "prompt": "Eight players scored 31, 8, 25, 64, 15, 33, 10, and 18 points in a video game. The score of 64 was a mistake, so it is removed. By how many points does the median score decrease when the 64 is removed?",
+  "choices": [
+   "3.5",
+   "4",
+   "5",
+   "5.5"
+  ],
+  "correct_answer": "3.5",
+  "explanation": "In order the 8 scores are 8, 10, 15, 18, 25, 31, 33, 64. The median is the mean of the 4th and 5th values: (18 + 25) / 2 = 21.5. Without 64 the 7 scores are 8, 10, 15, 18, 25, 31, 33, and the median is the 4th value, 18. The median decreases by 21.5 - 18 = 3.5 points.",
+  "solve": "const a=[31,8,25,64,15,33,10,18].sort((x,y)=>x-y);const b=a.slice(0,7);return (a[3]+a[4])/2-b[3];",
+  "graphic": null,
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "ccss": "6.SP.B.5.C",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "4",
+    "mis_step": "the student finds the mean of the 8 scores, 25.5, and the median, 21.5, and reports their difference, 4, thinking the outlier's effect is the gap between mean and median"
+   },
+   {
+    "choice": "5",
+    "mis_step": "for the 7 scores left, the student averages the 3rd and 4th values, (15 + 18) / 2 = 16.5, and gets 21.5 - 16.5 = 5"
+   },
+   {
+    "choice": "5.5",
+    "mis_step": "the student finds the mean before (204 / 8 = 25.5) and after (140 / 7 = 20) and reports the drop, 5.5"
+   }
+  ],
+  "distractor_solve": {
+   "4": "const a=[31,8,25,64,15,33,10,18].sort((x,y)=>x-y);const mean=a.reduce((s,x)=>s+x,0)/8;return mean-(a[3]+a[4])/2;",
+   "5": "const a=[31,8,25,64,15,33,10,18].sort((x,y)=>x-y);const b=a.slice(0,7);return (a[3]+a[4])/2-(b[2]+b[3])/2;",
+   "5.5": "const a=[31,8,25,64,15,33,10,18];const s=a.reduce((t,x)=>t+x,0);return s/8-(s-64)/7;"
+  }
+ },
+ {
+  "id": "MV2-D5-12",
+  "domain": "Statistics and Probability",
+  "subskill": "Line plot: amount still needed to reach a goal",
+  "difficulty": "hard",
+  "topic_tag": "5.MD.B.2",
+  "prompt": "Students in a class collected cans for recycling. The table shows the line plot data: each row gives a weight of cans, in pounds, and the number of students who collected that weight. The class wants to collect 25 pounds of cans in all. How many more pounds of cans does the class need to collect?",
+  "choices": [
+   "6 1/4",
+   "8 1/4",
+   "6 1/2",
+   "5 1/4"
+  ],
+  "correct_answer": "5 1/4",
+  "explanation": "Total collected: 3 x 1 1/4 = 3 3/4, 2 x 2 = 4, 4 x 2 1/4 = 9 and 1 x 3 = 3, so 3 3/4 + 4 + 9 + 3 = 19 3/4 pounds. Still needed: 25 - 19 3/4 = 5 1/4 pounds.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a;const F=(n,d)=>{const k=g(n,d);n/=k;d/=k;if(d===1)return String(n);const w=Math.floor(n/d),r=n-w*d;return w?w+' '+r+'/'+d:r+'/'+d};return F(100-(3*5+2*8+4*9+1*12),4)",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "1 1/4",
+    "2",
+    "2 1/4",
+    "3"
+   ],
+   "colLabels": [
+    "Number of students"
+   ],
+   "cells": [
+    [
+     3
+    ],
+    [
+     2
+    ],
+    [
+     4
+    ],
+    [
+     1
+    ]
+   ]
+  },
+  "grade_target": 5,
+  "tier": "high",
+  "rit_band": "RIT 210-219",
+  "ccss": "5.MD.B.2",
+  "area_25": "Measurement and Data",
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "6 1/4",
+    "mis_step": "In 25 - 19 3/4 the student does 25 - 19 = 6 and writes 1/4 from 4/4 - 3/4 without taking the 1 from the 6."
+   },
+   {
+    "choice": "8 1/4",
+    "mis_step": "The student misses the single 3-pound row, so the total is 16 3/4."
+   },
+   {
+    "choice": "6 1/2",
+    "mis_step": "The student writes 3 x 1 1/4 as 3 1/4 and 4 x 2 1/4 as 8 1/4, so the total is 18 1/2."
+   }
+  ],
+  "distractor_solve": {
+   "6 1/4": "const g=(a,b)=>b?g(b,a%b):a;const F=(n,d)=>{const k=g(n,d);n/=k;d/=k;if(d===1)return String(n);const w=Math.floor(n/d),r=n-w*d;return w?w+' '+r+'/'+d:r+'/'+d};return F((25-19)*4+1,4)",
+   "6 1/2": "const g=(a,b)=>b?g(b,a%b):a;const F=(n,d)=>{const k=g(n,d);n/=k;d/=k;if(d===1)return String(n);const w=Math.floor(n/d),r=n-w*d;return w?w+' '+r+'/'+d:r+'/'+d};return F(100-((3*4+1)+16+(4*8+1)+12),4)",
+   "8 1/4": "const g=(a,b)=>b?g(b,a%b):a;const F=(n,d)=>{const k=g(n,d);n/=k;d/=k;if(d===1)return String(n);const w=Math.floor(n/d),r=n-w*d;return w?w+' '+r+'/'+d:r+'/'+d};return F(100-(3*5+2*8+4*9),4)"
+  }
+ },
+ {
+  "id": "MV2-D8-14",
+  "domain": "Statistics and Probability",
+  "subskill": "Re-base a line of fit: new intercept when x is counted from a later year",
+  "difficulty": "hard",
+  "topic_tag": "8.SP.A.3",
+  "prompt": "A city counted its bike-share stations each year and made a scatter plot. A line of fit for the data is y = 4x + 40, where x is the number of years since 2008 and y is the number of stations. Lena wants to rewrite the line of fit so that x is the number of years since 2014 instead, and every prediction stays the same. Her new line is y = 4x + b. What is the value of b?",
+  "choices": [
+   "64",
+   "44",
+   "34",
+   "46"
+  ],
+  "correct_answer": "64",
+  "explanation": "In the new line, x = 0 means the year 2014, so b must be the number of stations the original line predicts for 2014. In the original line, 2014 is x = 2014 - 2008 = 6, so y = 4(6) + 40 = 64. The slope stays 4, so the new line is y = 4x + 64 and b = 64.",
+  "solve": "return String(4*(2014-2008) + 40);",
+  "graphic": null,
+  "grade_target": 8,
+  "tier": "high",
+  "rit_band": "RIT 230-239",
+  "ccss": "8.SP.A.3",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "44",
+    "mis_step": "the student adds the slope once, 40 + 4 = 44, without multiplying by the 6 years between 2008 and 2014"
+   },
+   {
+    "choice": "34",
+    "mis_step": "the student reasons that x now starts 6 years later, so b should go down by 6, and writes 40 - 6 = 34"
+   },
+   {
+    "choice": "46",
+    "mis_step": "the student adds the 6 years to 40, getting 46, as if the count grew by 1 station per year rather than 4"
+   }
+  ],
+  "distractor_solve": {
+   "34": "return String(40 - (2014-2008));",
+   "44": "return String(40 + 4);",
+   "46": "return String(40 + (2014-2008));"
+  }
+ },
+ {
+  "id": "MV2-D6-11",
+  "domain": "Statistics and Probability",
+  "subskill": "How the IQR changes when one value is added",
+  "difficulty": "hard",
+  "topic_tag": "6.SP.B.5.C",
+  "prompt": "Eight sunflower seedlings have heights, in centimeters, of 18, 27, 12, 13, 3, 9, 26, and 10. A ninth seedling that is 33 centimeters tall is added. Use this rule for quartiles: the first quartile is the median of the lower half of the data and the third quartile is the median of the upper half; when the number of values is odd, the median is not included in either half. By how many centimeters does the interquartile range increase when the ninth seedling is added?",
+  "choices": [
+   "3.5",
+   "4.5",
+   "6",
+   "5"
+  ],
+  "correct_answer": "4.5",
+  "explanation": "Before: in order the heights are 3, 9, 10, 12, 13, 18, 26, 27. The lower half 3, 9, 10, 12 has median 9.5 and the upper half 13, 18, 26, 27 has median 22, so the IQR is 22 - 9.5 = 12.5. After: 3, 9, 10, 12, 13, 18, 26, 27, 33. The median is 13 and is left out. The lower half 3, 9, 10, 12 still has median 9.5; the upper half 18, 26, 27, 33 has median 26.5. The IQR is 26.5 - 9.5 = 17. It increases by 17 - 12.5 = 4.5 centimeters.",
+  "solve": "const med=a=>{const s=[...a].sort((x,y)=>x-y),n=s.length;return n%2?s[(n-1)/2]:(s[n/2-1]+s[n/2])/2};const iqr=a=>{const s=[...a].sort((x,y)=>x-y),n=s.length,h=Math.floor(n/2);return med(s.slice(n%2?h+1:h))-med(s.slice(0,h))};const a=[18,27,12,13,3,9,26,10];return iqr([...a,33])-iqr(a);",
+  "graphic": null,
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "ccss": "6.SP.B.5.C",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "3.5",
+    "mis_step": "with 9 values the student puts 13 in both halves, so the quartiles are 10 and 26, the new IQR is 16, and the increase is 16 - 12.5 = 3.5"
+   },
+   {
+    "choice": "6",
+    "mis_step": "the new seedling is 6 centimeters taller than the old tallest one, so the student says the spread, and the IQR, grow by 33 - 27 = 6"
+   },
+   {
+    "choice": "5",
+    "mis_step": "the student averages each half: before, 21 - 8.5 = 12.5; after, 26 - 8.5 = 17.5; the increase is 5"
+   }
+  ],
+  "distractor_solve": {
+   "5": "const mean=a=>a.reduce((s,x)=>s+x,0)/a.length;const a=[18,27,12,13,3,9,26,10].sort((x,y)=>x-y);const b=[...a,33];return (mean(b.slice(5))-mean(b.slice(0,4)))-(mean(a.slice(4))-mean(a.slice(0,4)));",
+   "6": "return 33-27;",
+   "3.5": "const med=a=>{const s=[...a].sort((x,y)=>x-y),n=s.length;return n%2?s[(n-1)/2]:(s[n/2-1]+s[n/2])/2};const a=[18,27,12,13,3,9,26,10].sort((x,y)=>x-y);const b=[...a,33];const old=med(a.slice(4))-med(a.slice(0,4));return (med(b.slice(4))-med(b.slice(0,5)))-old;"
+  }
+ },
+ {
+  "id": "MV2-D6-15",
+  "domain": "Statistics and Probability",
+  "subskill": "Find a missing count from the total, then the mean",
+  "difficulty": "medium",
+  "topic_tag": "6.SP.B.5.C",
+  "prompt": "Twenty students were asked how many times they rode a bus last week. The table shows the results, but the number of students who rode 3 times is missing. What is the mean number of bus rides for the twenty students?",
+  "choices": [
+   "2.65",
+   "1.6",
+   "2.2",
+   "2"
+  ],
+  "correct_answer": "2.2",
+  "explanation": "The counts shown add to 3 + 6 + 1 + 6 = 16, so 20 - 16 = 4 students rode 3 times. The total number of rides is 0 x 3 + 1 x 6 + 2 x 1 + 3 x 4 + 4 x 6 = 0 + 6 + 2 + 12 + 24 = 44. The mean is 44 / 20 = 2.2 rides.",
+  "solve": "const v=[0,1,2,3,4],c=[3,6,1,null,6];const k=20-c.filter(x=>x!==null).reduce((s,x)=>s+x,0);c[3]=k;return v.reduce((s,x,i)=>s+x*c[i],0)/20;",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "colLabels": [
+    "Number of students"
+   ],
+   "cells": [
+    [
+     "3"
+    ],
+    [
+     "6"
+    ],
+    [
+     "1"
+    ],
+    [
+     "?"
+    ],
+    [
+     "6"
+    ]
+   ],
+   "caption": "Bus rides last week"
+  },
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "ccss": "6.SP.B.5.C",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "2.65",
+    "mis_step": "thinking students with 0 rides do not count, the student finds the missing count as 20 - (6 + 1 + 6) = 7, so the total is 32 + 21 = 53 and 53 / 20 = 2.65"
+   },
+   {
+    "choice": "1.6",
+    "mis_step": "the student leaves the 3-rides row out of the total, gets 32 rides, and divides by all 20 students"
+   },
+   {
+    "choice": "2",
+    "mis_step": "the student skips the missing row entirely and divides the 32 rides by the 16 students shown"
+   }
+  ],
+  "distractor_solve": {
+   "2": "const v=[0,1,2,3,4],c=[3,6,1,0,6];return v.reduce((s,x,i)=>s+x*c[i],0)/16;",
+   "1.6": "const v=[0,1,2,3,4],c=[3,6,1,0,6];return v.reduce((s,x,i)=>s+x*c[i],0)/20;",
+   "2.65": "const v=[0,1,2,3,4],c=[3,6,1,0,6];const k=20-(6+1+6);c[3]=k;return v.reduce((s,x,i)=>s+x*c[i],0)/20;"
+  }
+ },
+ {
+  "id": "MV2-D8-01",
+  "domain": "Statistics and Probability",
+  "subskill": "Column relative frequency from a two-way table of counts",
+  "difficulty": "easy",
+  "topic_tag": "8.SP.A.4",
+  "prompt": "A school asked 75 eighth graders two questions: Are you in the school band? Do you walk to school? The two-way table shows the results. Of the students who walk to school, what percent are in the band?",
+  "choices": [
+   "20",
+   "40",
+   "8",
+   "25"
+  ],
+  "correct_answer": "20",
+  "explanation": "Only the students who walk to school count, so use the \"Walks to school\" column. 30 students walk, and 6 of them are in the band. 6 / 30 = 0.20, which is 20 percent.",
+  "solve": "return String(600/30);",
+  "graphic": {
+   "type": "twowaytable",
+   "rowLabels": [
+    "In the band",
+    "Not in the band",
+    "Total"
+   ],
+   "colLabels": [
+    "Walks to school",
+    "Does not walk",
+    "Total"
+   ],
+   "cells": [
+    [
+     "6",
+     "9",
+     "15"
+    ],
+    [
+     "24",
+     "36",
+     "60"
+    ],
+    [
+     "30",
+     "45",
+     "75"
+    ]
+   ],
+   "caption": "Band and walking to school (number of students)"
+  },
+  "grade_target": 8,
+  "tier": "low",
+  "rit_band": "RIT 210-219",
+  "ccss": "8.SP.A.4",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "40",
+    "mis_step": "the student answers \"of the band members, what percent walk\": 6 / 15 = 40 percent, using the band row total"
+   },
+   {
+    "choice": "8",
+    "mis_step": "the student finds what percent of ALL 75 students are band members who walk: 6 / 75 = 8 percent"
+   },
+   {
+    "choice": "25",
+    "mis_step": "the student compares the band walkers with the walkers who are not in the band, 6 to 24, and writes 6 / 24 = 25 percent"
+   }
+  ],
+  "distractor_solve": {
+   "8": "return String(600/75);",
+   "25": "return String(600/24);",
+   "40": "return String(600/15);"
+  }
+ },
+ {
+  "id": "MV2-D8-08",
+  "domain": "Statistics and Probability",
+  "subskill": "Fit a line through the mean point of a data table and predict",
+  "difficulty": "medium",
+  "topic_tag": "8.SP.A.2",
+  "prompt": "The table shows the number of hours each of five students practiced the piano in a week and the number of songs the student learned that month. Kai fits a line to the data. His line has a slope of 3 and passes through the point whose x-coordinate is the mean of the five practice times and whose y-coordinate is the mean of the five numbers of songs. According to Kai's line, how many songs would a student who practices 16 hours a week learn?",
+  "choices": [
+   "60",
+   "62",
+   "42",
+   "55"
+  ],
+  "correct_answer": "62",
+  "explanation": "Mean practice time: (1 + 2 + 7 + 8 + 12) / 5 = 30 / 5 = 6 hours. Mean number of songs: (19 + 27 + 28 + 42 + 44) / 5 = 160 / 5 = 32. So the line passes through (6, 32) with slope 3. From x = 6 to x = 16 is 10 more hours, so the line rises 3 x 10 = 30 songs: 32 + 30 = 62.",
+  "solve": "const xb=(1+2+7+8+12)/5, yb=(19+27+28+42+44)/5; return String(yb + 3*(16-xb));",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "1",
+    "2",
+    "7",
+    "8",
+    "12"
+   ],
+   "colLabels": [
+    "Songs learned"
+   ],
+   "cells": [
+    [
+     "19"
+    ],
+    [
+     "27"
+    ],
+    [
+     "28"
+    ],
+    [
+     "42"
+    ],
+    [
+     "44"
+    ]
+   ],
+   "caption": "Practice time (hours per week) and songs learned"
+  },
+  "grade_target": 8,
+  "tier": "mid",
+  "rit_band": "RIT 220-229",
+  "ccss": "8.SP.A.2",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "60",
+    "mis_step": "the student averages only the first and last values, (1 + 12) / 2 = 6.5 and (19 + 44) / 2 = 31.5, and computes 31.5 + 3(16 - 6.5) = 60"
+   },
+   {
+    "choice": "42",
+    "mis_step": "the student finds the mean point (6, 32) and adds the 10-hour run straight to 32, getting 42, as if the slope were 1"
+   },
+   {
+    "choice": "55",
+    "mis_step": "the student takes the middle row, (7, 28), as the centre point and computes 28 + 3(16 - 7) = 55"
+   }
+  ],
+  "distractor_solve": {
+   "42": "const xb=(1+2+7+8+12)/5, yb=(19+27+28+42+44)/5; return String(yb + (16-xb));",
+   "55": "return String(28 + 3*(16-7));",
+   "60": "return String((19+44)/2 + 3*(16-(1+12)/2));"
+  }
+ },
+ {
+  "id": "MV2-D6-16",
+  "domain": "Statistics and Probability",
+  "subskill": "Compare the interquartile ranges of two data sets",
+  "difficulty": "hard",
+  "topic_tag": "6.SP.B.5.C",
+  "prompt": "The table shows the cooking times, in minutes, of 8 recipes in Book A and 8 recipes in Book B. Use this rule for quartiles: the first quartile is the median of the lower half of the data and the third quartile is the median of the upper half. How many minutes greater is the interquartile range of the Book A times than the interquartile range of the Book B times?",
+  "choices": [
+   "13",
+   "12.5",
+   "14.5",
+   "9"
+  ],
+  "correct_answer": "14.5",
+  "explanation": "Book A in order: 11, 13, 19, 29, 34, 46, 48, 49. The lower half 11, 13, 19, 29 has median 16 and the upper half 34, 46, 48, 49 has median 47, so the IQR is 47 - 16 = 31. Book B in order: 13, 15, 21, 28, 29, 32, 37, 42. The lower half has median 18 and the upper half has median 34.5, so the IQR is 34.5 - 18 = 16.5. The difference is 31 - 16.5 = 14.5 minutes.",
+  "solve": "const q=a=>{const s=[...a].sort((x,y)=>x-y);return (s[5]+s[6])/2-(s[1]+s[2])/2};return q([13,48,19,11,34,49,29,46])-q([28,42,15,29,21,13,32,37]);",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Book A",
+    "Book B"
+   ],
+   "colLabels": [
+    "Recipe 1",
+    "Recipe 2",
+    "Recipe 3",
+    "Recipe 4",
+    "Recipe 5",
+    "Recipe 6",
+    "Recipe 7",
+    "Recipe 8"
+   ],
+   "cells": [
+    [
+     "13",
+     "48",
+     "19",
+     "11",
+     "34",
+     "49",
+     "29",
+     "46"
+    ],
+    [
+     "28",
+     "42",
+     "15",
+     "29",
+     "21",
+     "13",
+     "32",
+     "37"
+    ]
+   ],
+   "caption": "Cooking times (minutes)"
+  },
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "ccss": "6.SP.B.5.C",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "13",
+    "mis_step": "the student uses the 2nd and 7th times as the quartiles: Book A 48 - 13 = 35 and Book B 37 - 15 = 22, so 35 - 22 = 13"
+   },
+   {
+    "choice": "12.5",
+    "mis_step": "the student finds the upper quartiles, 47 and 34.5, and subtracts them, forgetting the first quartiles"
+   },
+   {
+    "choice": "9",
+    "mis_step": "the student subtracts the ranges, (49 - 11) - (42 - 13) = 38 - 29 = 9"
+   }
+  ],
+  "distractor_solve": {
+   "9": "const r=a=>Math.max(...a)-Math.min(...a);return r([13,48,19,11,34,49,29,46])-r([28,42,15,29,21,13,32,37]);",
+   "13": "const e=a=>{const s=[...a].sort((x,y)=>x-y);return s[6]-s[1]};return e([13,48,19,11,34,49,29,46])-e([28,42,15,29,21,13,32,37]);",
+   "12.5": "const q3=a=>{const s=[...a].sort((x,y)=>x-y);return (s[5]+s[6])/2};return q3([13,48,19,11,34,49,29,46])-q3([28,42,15,29,21,13,32,37]);"
+  }
+ },
+ {
+  "id": "MV2-D5-07",
+  "domain": "Statistics and Probability",
+  "subskill": "Line plot: difference of two group totals, boundary in neither",
+  "difficulty": "hard",
+  "topic_tag": "5.MD.B.2",
+  "prompt": "A science class measured caterpillars. The table shows the line plot data: each row gives a length, in inches, and the number of caterpillars with that length. How much greater, in inches, is the total length of the caterpillars longer than 2 inches than the total length of the caterpillars shorter than 2 inches?",
+  "choices": [
+   "21 1/4",
+   "10 1/4",
+   "20 1/4",
+   "25 1/4"
+  ],
+  "correct_answer": "25 1/4",
+  "explanation": "Longer than 2 inches: 6 x 2 1/4 = 13 1/2 and 6 x 2 3/4 = 16 1/2, total 30. Shorter than 2 inches: 3 x 1 = 3 and 1 x 1 3/4 = 1 3/4, total 4 3/4. The 2-inch caterpillars are in neither group. 30 - 4 3/4 = 25 1/4 inches.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a;const F=(n,d)=>{const k=g(n,d);n/=k;d/=k;if(d===1)return String(n);const w=Math.floor(n/d),r=n-w*d;return w?w+' '+r+'/'+d:r+'/'+d};return F((6*9+6*11)-(3*4+1*7),4)",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "1",
+    "1 3/4",
+    "2",
+    "2 1/4",
+    "2 3/4"
+   ],
+   "colLabels": [
+    "Number of caterpillars"
+   ],
+   "cells": [
+    [
+     3
+    ],
+    [
+     1
+    ],
+    [
+     2
+    ],
+    [
+     6
+    ],
+    [
+     6
+    ]
+   ]
+  },
+  "grade_target": 5,
+  "tier": "high",
+  "rit_band": "RIT 210-219",
+  "ccss": "5.MD.B.2",
+  "area_25": "Measurement and Data",
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "21 1/4",
+    "mis_step": "The student adds 2 x 2 = 4 to the shorter total, so 30 - 8 3/4 = 21 1/4."
+   },
+   {
+    "choice": "10 1/4",
+    "mis_step": "The student adds count and length in each row: (6 + 2 1/4) + (6 + 2 3/4) = 17 and (3 + 1) + (1 + 1 3/4) = 6 3/4, so 17 - 6 3/4 = 10 1/4."
+   },
+   {
+    "choice": "20 1/4",
+    "mis_step": "The student writes 6 x 2 1/4 as 12 1/4 and 6 x 2 3/4 as 12 3/4, so the longer total is 25 and 25 - 4 3/4 = 20 1/4."
+   }
+  ],
+  "distractor_solve": {
+   "21 1/4": "const g=(a,b)=>b?g(b,a%b):a;const F=(n,d)=>{const k=g(n,d);n/=k;d/=k;if(d===1)return String(n);const w=Math.floor(n/d),r=n-w*d;return w?w+' '+r+'/'+d:r+'/'+d};return F((6*9+6*11)-(3*4+1*7+2*8),4)",
+   "20 1/4": "const g=(a,b)=>b?g(b,a%b):a;const F=(n,d)=>{const k=g(n,d);n/=k;d/=k;if(d===1)return String(n);const w=Math.floor(n/d),r=n-w*d;return w?w+' '+r+'/'+d:r+'/'+d};return F((6*8+1+6*8+3)-(3*4+1*4+3),4)",
+   "10 1/4": "const g=(a,b)=>b?g(b,a%b):a;const F=(n,d)=>{const k=g(n,d);n/=k;d/=k;if(d===1)return String(n);const w=Math.floor(n/d),r=n-w*d;return w?w+' '+r+'/'+d:r+'/'+d};return F((6*4+9+6*4+11)-(3*4+4+1*4+7),4)"
+  }
+ },
+ {
+  "id": "MV2-D8-10",
+  "domain": "Statistics and Probability",
+  "subskill": "Intercept of a line fitted through two group means",
+  "difficulty": "hard",
+  "topic_tag": "8.SP.A.2",
+  "prompt": "The table shows the number of hours each of six students spent on a science project and the score each student received. Mr. Ortiz fits a line to the data this way: he finds the mean hours and the mean score of the three students with the fewest hours, finds the same two means for the other three students, and draws the line through those two mean points. According to his line, what score is predicted for a student who spends 0 hours?",
+  "choices": [
+   "13",
+   "15",
+   "29",
+   "18"
+  ],
+  "correct_answer": "13",
+  "explanation": "Fewest hours: 6, 7, 8 hours with scores 39, 41, 43. Means: 21 / 3 = 7 hours and 123 / 3 = 41 points, so one point is (7, 41). Other three: 10, 11, 12 hours with scores 55, 56, 60. Means: 33 / 3 = 11 hours and 171 / 3 = 57 points, so the other point is (11, 57). Slope = (57 - 41) / (11 - 7) = 16 / 4 = 4. Going back from (7, 41) to 0 hours: 41 - 4 x 7 = 41 - 28 = 13. The line predicts a score of 13.",
+  "solve": "const xL=(6+7+8)/3, yL=(39+41+43)/3, xR=(10+11+12)/3, yR=(55+56+60)/3; const m=(yR-yL)/(xR-xL); return String(yL - m*xL);",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "6",
+    "7",
+    "8",
+    "10",
+    "11",
+    "12"
+   ],
+   "colLabels": [
+    "Score"
+   ],
+   "cells": [
+    [
+     "39"
+    ],
+    [
+     "41"
+    ],
+    [
+     "43"
+    ],
+    [
+     "55"
+    ],
+    [
+     "56"
+    ],
+    [
+     "60"
+    ]
+   ],
+   "caption": "Hours spent on the project and score"
+  },
+  "grade_target": 8,
+  "tier": "high",
+  "rit_band": "RIT 230-239",
+  "ccss": "8.SP.A.2",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "15",
+    "mis_step": "the student gets the slope 4 correctly but starts from the first student, (6, 39), and goes back 6 hours: 39 - 24 = 15"
+   },
+   {
+    "choice": "29",
+    "mis_step": "the student takes the right group's mean score, 57, with the left group's mean hours, 7, and computes 57 - 4 x 7 = 29"
+   },
+   {
+    "choice": "18",
+    "mis_step": "the student draws the line through (6, 39) and (12, 60): slope 21 / 6 = 3.5, and 39 - 3.5 x 6 = 18"
+   }
+  ],
+  "distractor_solve": {
+   "15": "const xL=(6+7+8)/3, yL=(39+41+43)/3, xR=(10+11+12)/3, yR=(55+56+60)/3; const m=(yR-yL)/(xR-xL); return String(39 - m*6);",
+   "18": "const m=(60-39)/(12-6); return String(39 - m*6);",
+   "29": "const xL=(6+7+8)/3, yL=(39+41+43)/3, xR=(10+11+12)/3, yR=(55+56+60)/3; const m=(yR-yL)/(xR-xL); return String(yR - m*xL);"
+  }
+ },
+ {
+  "id": "MV2-D7-03",
+  "domain": "Statistics and Probability",
+  "subskill": "Estimate a population count from two pooled samples",
+  "difficulty": "medium",
+  "topic_tag": "7.SP.A.2",
+  "prompt": "Ms. Cole wants to estimate how many of the 1,000 students at her school have a library card. She asks a random sample of 12 students, and 6 of them have a library card. Later she asks a different random sample of 60 students, and 21 of them have a library card. She puts the two samples together into one larger sample. Based on the combined sample, about how many of the 1,000 students have a library card?",
+  "choices": [
+   "350",
+   "375",
+   "450",
+   "425"
+  ],
+  "correct_answer": "375",
+  "explanation": "The combined sample has 12 + 60 = 72 students, and 6 + 21 = 27 of them have a library card. That is 27/72 = 3/8 = 37.5%. Then 37.5% of 1,000 is 0.375 x 1,000 = 375 students.",
+  "solve": "return (6+21)/(12+60)*1000;",
+  "graphic": null,
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "ccss": "7.SP.A.2",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "350",
+    "mis_step": "21/60 = 35%, and 35% of 1,000 is 350."
+   },
+   {
+    "choice": "450",
+    "mis_step": "27 yes answers over 60 students is 45%, and 45% of 1,000 is 450."
+   },
+   {
+    "choice": "425",
+    "mis_step": "50% and 35% average to 42.5%, and 42.5% of 1,000 is 425."
+   }
+  ],
+  "distractor_solve": {
+   "350": "return 21/60*1000;",
+   "425": "return ((6/12+21/60)/2)*1000;",
+   "450": "return (6+21)/60*1000;"
+  }
+ },
+ {
+  "id": "MV2-D6-09",
+  "domain": "Statistics and Probability",
+  "subskill": "Difference between the mode and the median of a list",
+  "difficulty": "easy",
+  "topic_tag": "6.SP.B.5.C",
+  "prompt": "The numbers of floors in nine buildings on a street are 9, 16, 1, 15, 6, 16, 2, 5, and 16. How much greater is the mode of the numbers of floors than the median?",
+  "choices": [
+   "11",
+   "10",
+   "7.5",
+   "7"
+  ],
+  "correct_answer": "7",
+  "explanation": "In order the numbers are 1, 2, 5, 6, 9, 15, 16, 16, 16. The mode is 16 because it appears three times. There are nine numbers, so the median is the 5th one, 9. The mode is 16 - 9 = 7 floors greater than the median.",
+  "solve": "const a=[9,16,1,15,6,16,2,5,16].sort((x,y)=>x-y);return 16-a[4];",
+  "graphic": null,
+  "grade_target": 6,
+  "tier": "low",
+  "rit_band": "RIT 200-209",
+  "ccss": "6.SP.B.5.C",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "11",
+    "mis_step": "the student finds the middle position, (9 + 1) / 2 = 5, and uses 5 as the median, so 16 - 5 = 11"
+   },
+   {
+    "choice": "10",
+    "mis_step": "the student lists the different numbers 1, 2, 5, 6, 9, 15, 16 once each and takes the middle one, 6, so the answer is 16 - 6 = 10"
+   },
+   {
+    "choice": "7.5",
+    "mis_step": "the student finds (1 + 16) / 2 = 8.5 as the \"middle\" and subtracts, 16 - 8.5 = 7.5"
+   }
+  ],
+  "distractor_solve": {
+   "10": "const d=[...new Set([9,16,1,15,6,16,2,5,16])].sort((x,y)=>x-y);return 16-d[3];",
+   "11": "const n=9;return 16-(n+1)/2;",
+   "7.5": "const a=[9,16,1,15,6,16,2,5,16];return 16-(Math.min(...a)+Math.max(...a))/2;"
+  }
+ },
+ {
+  "id": "MV2-D6-01",
+  "domain": "Statistics and Probability",
+  "subskill": "Compare the MADs of two data sets with different means",
+  "difficulty": "hard",
+  "topic_tag": "6.SP.B.5.C",
+  "prompt": "The table shows the number of points Ana and Bea each scored in 5 basketball games. The mean absolute deviation (MAD) of a data set is the mean of the distances between each value and the mean of that data set. How many points greater is the MAD of Ana's points than the MAD of Bea's points?",
+  "choices": [
+   "3.6",
+   "2.6",
+   "3",
+   "3.4"
+  ],
+  "correct_answer": "3.6",
+  "explanation": "Ana: the mean is (4 + 18 + 5 + 19 + 9) / 5 = 55 / 5 = 11. The distances from 11 are 7, 7, 6, 8 and 2, which add to 30, so her MAD is 30 / 5 = 6. Bea: the mean is (12 + 17 + 10 + 16 + 15) / 5 = 70 / 5 = 14. The distances from 14 are 2, 3, 4, 2 and 1, which add to 12, so her MAD is 12 / 5 = 2.4. Ana's MAD is 6 - 2.4 = 3.6 points greater.",
+  "solve": "const A=[4,18,5,19,9],B=[12,17,10,16,15];const m=a=>a.reduce((s,x)=>s+x,0)/a.length;const d=(a,c)=>a.reduce((s,x)=>s+Math.abs(x-c),0)/a.length;return Math.round((d(A,m(A))-d(B,m(B)))*100)/100;",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Game 1",
+    "Game 2",
+    "Game 3",
+    "Game 4",
+    "Game 5"
+   ],
+   "colLabels": [
+    "Ana",
+    "Bea"
+   ],
+   "cells": [
+    [
+     "4",
+     "12"
+    ],
+    [
+     "18",
+     "17"
+    ],
+    [
+     "5",
+     "10"
+    ],
+    [
+     "19",
+     "16"
+    ],
+    [
+     "9",
+     "15"
+    ]
+   ],
+   "caption": "Points scored"
+  },
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "ccss": "6.SP.B.5.C",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "2.6",
+    "mis_step": "the student finds Ana's mean, 11, and uses 11 again for Bea, so Bea's distances are 1, 6, 1, 5 and 4, her MAD comes out 17 / 5 = 3.4, and 6 - 3.4 = 2.6"
+   },
+   {
+    "choice": "3",
+    "mis_step": "the student thinks comparing MADs means comparing how many points each player scores and subtracts the means, 14 - 11 = 3"
+   },
+   {
+    "choice": "3.4",
+    "mis_step": "the student uses Ana's median 9 and Bea's median 15 as the centers, getting MADs of 28 / 5 = 5.6 and 11 / 5 = 2.2, and 5.6 - 2.2 = 3.4"
+   }
+  ],
+  "distractor_solve": {
+   "3": "const A=[4,18,5,19,9],B=[12,17,10,16,15];const m=a=>a.reduce((s,x)=>s+x,0)/a.length;return m(B)-m(A);",
+   "2.6": "const A=[4,18,5,19,9],B=[12,17,10,16,15];const m=a=>a.reduce((s,x)=>s+x,0)/a.length;const d=(a,c)=>a.reduce((s,x)=>s+Math.abs(x-c),0)/a.length;return Math.round((d(A,m(A))-d(B,m(A)))*100)/100;",
+   "3.4": "const A=[4,18,5,19,9],B=[12,17,10,16,15];const md=a=>[...a].sort((x,y)=>x-y)[2];const d=(a,c)=>a.reduce((s,x)=>s+Math.abs(x-c),0)/a.length;return Math.round((d(A,md(A))-d(B,md(B)))*100)/100;"
+  }
+ },
+ {
+  "id": "MV2-D5-06",
+  "domain": "Statistics and Probability",
+  "subskill": "Multistep conversion: equal lengths in yards and feet to inches",
+  "difficulty": "medium",
+  "topic_tag": "5.MD.A.1",
+  "prompt": "A builder is putting trim around 6 windows. Each window needs a strip of trim that is 1 yard 1 foot long. How many inches of trim does the builder need in all?",
+  "choices": [
+   "252",
+   "288",
+   "248",
+   "228"
+  ],
+  "correct_answer": "288",
+  "explanation": "1 yard 1 foot = 36 + 12 = 48 inches. For 6 windows: 6 x 48 = 288 inches.",
+  "solve": "return 6*(36+12)",
+  "graphic": null,
+  "grade_target": 5,
+  "tier": "mid",
+  "rit_band": "RIT 200-209",
+  "ccss": "5.MD.A.1",
+  "area_25": "Measurement and Data",
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "252",
+    "mis_step": "The student gets 6 yards 6 feet, calls the 6 feet one more yard, and does 7 x 36."
+   },
+   {
+    "choice": "248",
+    "mis_step": "In 6 x 48 the student writes 8, carries 4, then writes 6 x 4 = 24 without adding the carry."
+   },
+   {
+    "choice": "228",
+    "mis_step": "The student does 6 x 36 = 216 and then adds 12 for the foot."
+   }
+  ],
+  "distractor_solve": {
+   "228": "return 6*36+12",
+   "248": "return 6*4*10+8",
+   "252": "return (6+1)*36"
+  }
+ }
+]

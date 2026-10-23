@@ -1,0 +1,24 @@
+{
+ "screened": 37,
+ "fails": {
+  "MV2-D6-04": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-N56-09": [
+   "S-R4 2 struck without solving: [\"1.75\",\"3.65\"] (1.25x2.6 lies between 1.25x2.5=3.125 and 1.25x3=3.75, so the answer lies between about 2.7 and 3.35, which strikes 1.75 and 3.65)"
+  ],
+  "MV2-N8-03": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MV2-D8-11": [
+   "S-R6 plug-back routine at try 1"
+  ],
+  "MV2-N56-06": [
+   "S-R4 2 struck without solving: [\"5 2/15\",\"1 13/15\"] (large copy is 4.2 so the difference is under 4.2 (strikes 5 2/15); small copy is under 1 so the difference exceeds 3.2 (strikes 1 13/15))"
+  ],
+  "MV2-D7-03": [
+   "S-R4 3 struck without solving: [\"350\",\"425\",\"450\"] (the combined rate lies strictly between 35% and 50% (strikes 350), and nearer 35% because that sample is 5 times larger, so it falls below the 42.5% midpoint (s)",
+   "S-R5 key identifiable without solving"
+  ]
+ }
+}
