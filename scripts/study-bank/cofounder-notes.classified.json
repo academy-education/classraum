@@ -1,6 +1,6 @@
 {
- "classified_at": "2026-10-24",
- "count": 162,
+ "classified_at": "2026-10-25",
+ "count": 164,
  "entries": [
   {
    "review_id": "10202606-bad1-41f5-ae8b-d581f73cf2c3",
@@ -1495,6 +1495,26 @@
    "scope": "item",
    "rationale": "Clean item but two distractors are easy eliminations; suggests a closer distractor ('sympathetic') to test strength of criticism. Authoring guidance, not a release defect.",
    "classified_by": "claude-opus-5.5 (in-session, 2026-10-24)"
+  },
+  {
+   "review_id": "6fd5e3ed-da25-4cfb-b86a-f895abd19810",
+   "defect_type": "distractor_too_easy",
+   "secondary_types": [],
+   "would_block": false,
+   "scope": "item",
+   "rationale": "Clean main-idea item; all three distractors easy to eliminate. Suggests a closer distractor ('adult overcame fear of water on their own') that tests noticing the instructor's central role. Authoring guidance, not a release defect.",
+   "classified_by": "claude-opus-5.5 (in-session, 2026-10-25)"
+  },
+  {
+   "review_id": "f9865bff-2cd9-454f-ba3c-91555becda70",
+   "defect_type": "distractor_too_easy",
+   "secondary_types": [
+    "difficulty_off"
+   ],
+   "would_block": false,
+   "scope": "item",
+   "rationale": "Attitude item judged unique and very easy; distractors far from the passage's tone. Suggests closer attitude words ('nostalgic', 'respectful but distant'; 'admiring' only with care). Note: blind pick C (resentful) vs key D (grateful) contradicts his own 'very easy' note - recorded as a probable misclick, not evidence of a second answer. Authoring guidance, not a release defect.",
+   "classified_by": "claude-opus-5.5 (in-session, 2026-10-25)"
   }
  ],
  "register": [

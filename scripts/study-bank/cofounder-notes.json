@@ -1,11 +1,11 @@
 {
- "built_at": "2026-10-23T15:28:54.223Z",
+ "built_at": "2026-10-24T16:04:39.260Z",
  "reviewer_id": "6ca6edaf-4044-4eed-84e0-137ebd79a81d",
  "counts": {
-  "rows": 1097,
-  "human": 1057,
+  "rows": 1109,
+  "human": 1069,
   "model_assisted_excluded": 40,
-  "review_entries": 162,
+  "review_entries": 164,
   "register_entries": 9
  },
  "taxonomy": {
@@ -1559,6 +1559,29 @@
    "item_sha": "22de92bd9ba778133aefe31f03e4b09f",
    "content_sha": "c55fba5665eaffe21c8f6637bdd3252c",
    "classified_by": "claude-opus-5.5 (in-session, 2026-10-23)"
+  },
+  {
+   "review_id": "6fd5e3ed-da25-4cfb-b86a-f895abd19810",
+   "item_id": "b0d9b5fe-190f-422e-8bb2-63238c5307fa",
+   "run_id": "iseereadingdraft3-spot1-cofounder-2026-10-23",
+   "cohort": "isee-reading-draft-3",
+   "family": "isee",
+   "section": "reading",
+   "task": "multiple_choice",
+   "verdict": "unique",
+   "note": "All three are easy to eliminate. A closer distractor such as “how an adult overcame a fear of water on their own” would test whether students noticed the instructor’s central role.",
+   "reviewed_at": "2026-10-24T10:26:03.586+00:00",
+   "defect_type": "distractor_too_easy",
+   "secondary_types": [],
+   "would_block": false,
+   "scope": "item",
+   "rationale": "Clean main-idea item; all three distractors easy to eliminate. Suggests a closer distractor ('adult overcame fear of water on their own') that tests noticing the instructor's central role. Authoring guidance, not a release defect.",
+   "source": "review",
+   "fresh": true,
+   "archived": false,
+   "item_sha": "6b1350a81be833868e2e44171e5c59b3",
+   "content_sha": "6b1350a81be833868e2e44171e5c59b3",
+   "classified_by": "claude-opus-5.5 (in-session, 2026-10-25)"
   },
   {
    "review_id": "700bf834-e697-4948-ace8-a4327bdfd3ec",
@@ -3816,6 +3839,31 @@
    "item_sha": "bd210cac83f9b6068ccf3935fd5b016a",
    "content_sha": "bd210cac83f9b6068ccf3935fd5b016a",
    "classified_by": "claude-opus-5.5 (in-session, 2026-10-23)"
+  },
+  {
+   "review_id": "f9865bff-2cd9-454f-ba3c-91555becda70",
+   "item_id": "c95d024e-2b92-4006-aa27-9855d1e625e9",
+   "run_id": "iseereadingdraft3-spot1-cofounder-2026-10-23",
+   "cohort": "isee-reading-draft-3",
+   "family": "isee",
+   "section": "reading",
+   "task": "multiple_choice",
+   "verdict": "unique",
+   "note": "With four options and all three distractors far from the passage’s tone, this is very easy. Closer distractors such as “admiring” (arguably also defensible, so use carefully), “nostalgic,” or “respectful but distant” would require finer judgment.",
+   "reviewed_at": "2026-10-24T10:28:39.207+00:00",
+   "defect_type": "distractor_too_easy",
+   "secondary_types": [
+    "difficulty_off"
+   ],
+   "would_block": false,
+   "scope": "item",
+   "rationale": "Attitude item judged unique and very easy; distractors far from the passage's tone. Suggests closer attitude words ('nostalgic', 'respectful but distant'; 'admiring' only with care). Note: blind pick C (resentful) vs key D (grateful) contradicts his own 'very easy' note - recorded as a probable misclick, not evidence of a second answer. Authoring guidance, not a release defect.",
+   "source": "review",
+   "fresh": true,
+   "archived": false,
+   "item_sha": "597299c250c3936e4d1a62090bcfaa4e",
+   "content_sha": "597299c250c3936e4d1a62090bcfaa4e",
+   "classified_by": "claude-opus-5.5 (in-session, 2026-10-25)"
   },
   {
    "review_id": "fa09b1ba-9fd0-44be-86f1-e6ff877a7531",
