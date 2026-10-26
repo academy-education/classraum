@@ -109,11 +109,17 @@ export async function setStatusBarStyle(style: StatusBarStyle): Promise<void> {
   try {
     let statusStyle: Style
     switch (style) {
+      // Capacitor names the BACKGROUND, not the icons: Style.Dark is "light
+      // text for dark backgrounds" and Style.Light is "dark text for light
+      // backgrounds" (@capacitor/status-bar definitions.d.ts; on Android
+      // setAppearanceLightStatusBars(!style.equals("DARK"))). Ours names the
+      // ICONS, so the two cross over. This used to map 'dark' to Style.Dark,
+      // which drew white clock/battery icons on our white bars.
       case 'light':
-        statusStyle = Style.Light // Light content (white icons) for dark backgrounds
+        statusStyle = Style.Dark // white icons, for dark backgrounds
         break
       case 'dark':
-        statusStyle = Style.Dark // Dark content (black icons) for light backgrounds
+        statusStyle = Style.Light // black icons, for light backgrounds
         break
       default:
         statusStyle = Style.Default

@@ -8,6 +8,7 @@ import { AdminBottomNav } from './AdminBottomNav';
 import { AdminUser } from '@/lib/admin-auth-shared';
 import { ConfirmProvider } from './useConfirm';
 import { useTranslation } from '@/hooks/useTranslation';
+import { useNativeApp } from '@/hooks/useNativeApp';
 
 /** The pinned rail takes over from the drawer at Tailwind's `lg`. */
 export const ADMIN_RAIL_QUERY = '(min-width: 1024px)';
@@ -37,6 +38,11 @@ export const ADMIN_RAIL_QUERY = '(min-width: 1024px)';
 export function AdminShell({ adminUser, children }: { adminUser: AdminUser; children: React.ReactNode }) {
   const pathname = usePathname();
   const { t } = useTranslation();
+  // Same native wiring as (app)/layout.tsx: status bar icon style and colour,
+  // splash hide, deep links and the Android back button. The admin surface
+  // never called it, so in the app the back button exited instead of going
+  // back and the status bar kept whatever the previous screen left it.
+  useNativeApp({ statusBarStyle: 'dark', statusBarColor: '#FFFFFF' });
   const [railOpen, setRailOpen] = useState(true);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const drawerRef = useRef<HTMLDivElement>(null);
@@ -82,11 +88,24 @@ export function AdminShell({ adminUser, children }: { adminUser: AdminUser; chil
         browser toolbar. `data-surface` scopes the phone touch-target floor
         in globals.css to the admin shell. The side padding keeps content
         out from under the notch / Dynamic Island in landscape (the root
-        viewport is viewport-fit=cover, so nothing else does). */}
+        viewport is viewport-fit=cover, so nothing else does). The top
+        padding does the same for the status bar: in the Capacitor shell the
+        StatusBar plugin overlays the WebView, so without it the header sat
+        under the clock and battery icons. The white strip fills that gap the
+        way (app)/layout.tsx does, so it reads as part of the header. */}
+    <div
+      className="fixed top-0 left-0 right-0 bg-white z-[100]"
+      style={{ height: 'var(--safe-area-top)' }}
+      aria-hidden="true"
+    />
     <div
       className="flex h-dvh bg-gray-50"
       data-surface="admin"
-      style={{ paddingLeft: 'var(--safe-area-left)', paddingRight: 'var(--safe-area-right)' }}
+      style={{
+        paddingTop: 'var(--safe-area-top)',
+        paddingLeft: 'var(--safe-area-left)',
+        paddingRight: 'var(--safe-area-right)',
+      }}
     >
       {/* Desktop rail — pinned on the left at lg and up. */}
       {railOpen && (
@@ -111,7 +130,7 @@ export function AdminShell({ adminUser, children }: { adminUser: AdminUser; chil
             ref={drawerRef}
             tabIndex={-1}
             className="fixed inset-y-0 left-0 z-50 bg-white shadow-xl outline-none"
-            style={{ paddingLeft: 'var(--safe-area-left)' }}
+            style={{ paddingLeft: 'var(--safe-area-left)', paddingTop: 'var(--safe-area-top)' }}
             role="dialog"
             aria-modal="true"
             aria-label={String(t('admin.header.menu'))}
