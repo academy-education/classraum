@@ -3109,6 +3109,8 @@ recorded only in a commit message is a finding nobody reads.
 
 - **2026-10-26** — **Co-founder MAP Reading c2 spot: 12/12, 0 misses, no notes -> map-reading-v2-c2 released (36) under Amendment 3 §8 (spots carry no blind guard). BUT his BLIND score was 7/12 = 58.3%** (c1 was 2/12; chance 25%; c1+c2 pooled 9/24 = 37.5%). Released by the pre-registered rule, not re-decided after the fact — recorded here as the finding that matters. The blind hits: two central-idea items where world knowledge alone picks the key (fairy rings' cause; land and water heating at different rates), one theme item with an absolute distractor ("always ... in every situation"), plus structure/purpose keys that read as the most sensible option. Implication for MAP Reading authoring: informational central-idea keys must not be the true-in-the-world statement among false ones (distractors should be true-but-off-target, not false), and the absolute-distractor tell is back. Before MAP launch, one human blind check across released Reading is worth running. Next run drawn: map-vocab-v2 bridge (12).
 
+- **2026-10-26** — **Co-founder MAP Vocabulary bridge: 12/12, blind 1/12 = 8.3%, 0 misses, no notes -> map-vocab-v2 released (64). MAP Reading live 160 (Vocabulary 70, Literary 45, Informational 45) = 3 complete forms, up from 0** — Vocabulary was the binding area and is no longer. Next run drawn: map-reading-v2-c3 spot (12).
+
 ## 6. The rule that keeps this honest
 
 A cohort is **not** clean because the cheap checks passed. Five
