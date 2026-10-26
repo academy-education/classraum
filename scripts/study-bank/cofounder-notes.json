@@ -1,11 +1,11 @@
 {
- "built_at": "2026-10-24T16:04:39.260Z",
+ "built_at": "2026-10-26T06:17:37.662Z",
  "reviewer_id": "6ca6edaf-4044-4eed-84e0-137ebd79a81d",
  "counts": {
-  "rows": 1109,
-  "human": 1069,
+  "rows": 1121,
+  "human": 1081,
   "model_assisted_excluded": 40,
-  "review_entries": 164,
+  "review_entries": 166,
   "register_entries": 9
  },
  "taxonomy": {
@@ -332,6 +332,31 @@
    "item_sha": "167754fa929c7c2cad62bb6e426197fb",
    "content_sha": "167754fa929c7c2cad62bb6e426197fb",
    "classified_by": "claude-opus-5.5 (in-session, 2026-10-23)"
+  },
+  {
+   "review_id": "125fa2c8-d13b-48c9-9601-952231f55a51",
+   "item_id": "af2a4ade-bf57-4a8c-940c-8d795fd5ba03",
+   "run_id": "mapreadingv2c1-bridge1-cofounder-2026-10-24",
+   "cohort": "map-reading-v2-c1",
+   "family": "map",
+   "section": "reading",
+   "task": "multiple_choice",
+   "verdict": "unique",
+   "note": "Only A addresses what his case rested on. It’s a clean evidence item, but very easy, since A is the only sentence that mentions women or the reasoning behind Annan’s side. A harder version would include another sentence about the hearing as a distractor, such as “She brought her diaries, drawings, and notes, which showed each step of her work over many months,” which is about proof but supports Knight’s case rather than characterizing Annan’s.",
+   "reviewed_at": "2026-10-25T12:34:48.644+00:00",
+   "defect_type": "distractor_too_easy",
+   "secondary_types": [
+    "difficulty_off"
+   ],
+   "would_block": false,
+   "scope": "item",
+   "rationale": "MAP evidence item, clean but very easy: the key is the only sentence mentioning women or Annan's reasoning. Suggests a distractor that is about proof but supports Knight's side (her diaries and drawings). Authoring guidance, not a release defect.",
+   "source": "review",
+   "fresh": true,
+   "archived": false,
+   "item_sha": "3f5410e062bfda1c8947f671da1df040",
+   "content_sha": "3f5410e062bfda1c8947f671da1df040",
+   "classified_by": "claude-opus-5.5 (in-session, 2026-10-26)"
   },
   {
    "review_id": "12d5bdaa-4037-4c3e-ba34-7988865325a5",
@@ -1306,6 +1331,29 @@
    "item_sha": "eab4b6382de088b1781a7ab2ed7aac12",
    "content_sha": "eab4b6382de088b1781a7ab2ed7aac12",
    "classified_by": "claude-opus-5.5 (in-session, 2026-10-23)"
+  },
+  {
+   "review_id": "56f68f2e-a8f9-4245-8b10-0f955acfb773",
+   "item_id": "83ca1498-b249-4ceb-9320-19576fe08756",
+   "run_id": "mapreadingv2c1-bridge1-cofounder-2026-10-24",
+   "cohort": "map-reading-v2-c1",
+   "family": "map",
+   "section": "reading",
+   "task": "multiple_choice",
+   "verdict": "unique",
+   "note": "Each distractor misstates a specific detail:\n\nB (crystals grow outward from the center): reverses the direction. Crystals grow inward from the walls toward the center. A good test of careful reading.\nA (only inside gas bubbles in lava): wrong because of “only”; geodes also form in limestone when a buried lump dissolves.\nD (prized by collectors who weigh them): the final paragraph’s detail, not the central idea.\n\nA clean central-idea item. B and A each target a precise misreading, which is better than off-topic distractors.",
+   "reviewed_at": "2026-10-25T12:35:46.597+00:00",
+   "defect_type": "praise/none",
+   "secondary_types": [],
+   "would_block": false,
+   "scope": "item",
+   "rationale": "MAP central-idea item called clean; he notes two distractors each target a precise misreading (reversed growth direction; 'only') and calls that better than off-topic distractors. Positive example for authoring: distractors that misstate one specific detail.",
+   "source": "review",
+   "fresh": true,
+   "archived": false,
+   "item_sha": "c4130470a616dff0996c2b3ef2f1bffd",
+   "content_sha": "c4130470a616dff0996c2b3ef2f1bffd",
+   "classified_by": "claude-opus-5.5 (in-session, 2026-10-26)"
   },
   {
    "review_id": "5a30bf55-ed5c-464e-ab97-6b8d0e9d1beb",
@@ -3857,7 +3905,7 @@
    ],
    "would_block": false,
    "scope": "item",
-   "rationale": "Attitude item judged unique and very easy; distractors far from the passage's tone. Suggests closer attitude words ('nostalgic', 'respectful but distant'; 'admiring' only with care). Note: blind pick C (resentful) vs key D (grateful) contradicts his own 'very easy' note - recorded as a probable misclick, not evidence of a second answer. Authoring guidance, not a release defect.",
+   "rationale": "Attitude item judged unique and very easy; distractors far from the passage's tone. Suggests closer attitude words ('nostalgic', 'respectful but distant'; 'admiring' only with care). (His blind pick differs from the key because the blind pick is made from the options alone, before the passage; that is the intended measurement, not a misclick - corrected 2026-10-26.) Authoring guidance, not a release defect.",
    "source": "review",
    "fresh": true,
    "archived": false,

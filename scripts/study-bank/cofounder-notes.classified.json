@@ -1,6 +1,6 @@
 {
- "classified_at": "2026-10-25",
- "count": 164,
+ "classified_at": "2026-10-26",
+ "count": 166,
  "entries": [
   {
    "review_id": "10202606-bad1-41f5-ae8b-d581f73cf2c3",
@@ -1513,8 +1513,28 @@
    ],
    "would_block": false,
    "scope": "item",
-   "rationale": "Attitude item judged unique and very easy; distractors far from the passage's tone. Suggests closer attitude words ('nostalgic', 'respectful but distant'; 'admiring' only with care). Note: blind pick C (resentful) vs key D (grateful) contradicts his own 'very easy' note - recorded as a probable misclick, not evidence of a second answer. Authoring guidance, not a release defect.",
+   "rationale": "Attitude item judged unique and very easy; distractors far from the passage's tone. Suggests closer attitude words ('nostalgic', 'respectful but distant'; 'admiring' only with care). (His blind pick differs from the key because the blind pick is made from the options alone, before the passage; that is the intended measurement, not a misclick - corrected 2026-10-26.) Authoring guidance, not a release defect.",
    "classified_by": "claude-opus-5.5 (in-session, 2026-10-25)"
+  },
+  {
+   "review_id": "125fa2c8-d13b-48c9-9601-952231f55a51",
+   "defect_type": "distractor_too_easy",
+   "secondary_types": [
+    "difficulty_off"
+   ],
+   "would_block": false,
+   "scope": "item",
+   "rationale": "MAP evidence item, clean but very easy: the key is the only sentence mentioning women or Annan's reasoning. Suggests a distractor that is about proof but supports Knight's side (her diaries and drawings). Authoring guidance, not a release defect.",
+   "classified_by": "claude-opus-5.5 (in-session, 2026-10-26)"
+  },
+  {
+   "review_id": "56f68f2e-a8f9-4245-8b10-0f955acfb773",
+   "defect_type": "praise/none",
+   "secondary_types": [],
+   "would_block": false,
+   "scope": "item",
+   "rationale": "MAP central-idea item called clean; he notes two distractors each target a precise misreading (reversed growth direction; 'only') and calls that better than off-topic distractors. Positive example for authoring: distractors that misstate one specific detail.",
+   "classified_by": "claude-opus-5.5 (in-session, 2026-10-26)"
   }
  ],
  "register": [
