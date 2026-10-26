@@ -1,0 +1,1359 @@
+[
+ {
+  "id": "MB4-N5-09",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 5,
+  "tier": "high",
+  "rit_band": "RIT 210-219",
+  "difficulty": "hard",
+  "ccss": "5.NBT.B.7",
+  "area_25": "Number and Operations",
+  "subskill": "Share what is left equally, then add one share to an amount",
+  "grade_rationale": "High for grade 5: 5.NBT.B.7 in a three-step chain whose order matters. The student must take Grandpa's part out BEFORE sharing (5.7 - 0.9 = 4.8), count the sharers correctly (Ana and her 2 cousins are 3 people, not 2 and not 4), divide a decimal by a whole number (4.8 / 3 = 1.6), and add the share to a hundredths amount. Only stronger grade-5 students get the order and the divisor both right.",
+  "prompt": "Grandpa has a 5.7-kilogram bag of birdseed. He keeps 0.9 kilogram for himself and shares the rest equally among Ana and Ana's 2 cousins. Ana already had 2.85 kilograms of birdseed. How many kilograms of birdseed does Ana have now?",
+  "choices": [
+   "2.55",
+   "3.85",
+   "4.05",
+   "4.45"
+  ],
+  "correct_answer": "4.45",
+  "explanation": "Birdseed Grandpa shares: 5.7 - 0.9 = 4.8 kilograms. It is shared among 3 people (Ana and her 2 cousins): 4.8 / 3 = 1.6 kilograms each. Ana now has 2.85 + 1.6 = 4.45 kilograms.",
+  "solve": "return (2.85+(5.7-0.9)/3).toFixed(2)",
+  "distractor_solve": {
+   "2.55": "return ((2.85+5.7-0.9)/3).toFixed(2)",
+   "3.85": "return (2.85+5.7/3-0.9).toFixed(2)",
+   "4.05": "return (2.85+(5.7-0.9)/4).toFixed(2)"
+  },
+  "mechanism": [
+   "subtract the part kept back",
+   "divide the rest by the number of sharers (Ana plus 2 cousins = 3)",
+   "add one share to Ana's amount"
+  ],
+  "quantity_asked": "kilograms of birdseed Ana has now",
+  "plugback": {
+   "substitutable": false,
+   "why": "To check an option a student must find Ana's share (subtract, then divide by 3) and compare; that is the whole problem, so no option is confirmed in one routine step."
+  },
+  "distractor_meta": {
+   "2.55": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "puts Ana's own birdseed into the amount being shared",
+    "why": "The student adds everything first and divides all of it by 3: (2.85 + 4.8) / 3 = 2.55, as if Ana's birdseed were shared too."
+   },
+   "3.85": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "takes the kept-back part out after sharing instead of before",
+    "why": "The student shares the whole bag (5.7 / 3 = 1.9), then takes Grandpa's 0.9 out of Ana's share alone: 2.85 + 1.9 - 0.9 = 3.85."
+   },
+   "4.05": {
+    "error_kind": "wrong_variable",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "counts Grandpa as one of the people sharing",
+    "why": "The student divides the 4.8 kilograms among 4 people (Grandpa, Ana and 2 cousins): 4.8 / 4 = 1.2, so 2.85 + 1.2 = 4.05."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "return (2.85+(5.7-0.9)/2).toFixed(2)",
+   "direction": "above",
+   "why": "Reads \"Ana's 2 cousins\" as 2 sharers and divides by 2: 2.85 + 2.4 = 5.25, above the key."
+  },
+  "far_distractor": {
+   "option": "4.05",
+   "natural_side": "above",
+   "why": "Miscounting the sharers is an error in the divisor, the part that pushes the answer the other way. Its usual form here, dividing by 2 for \"2 cousins\", makes each share bigger and the answer larger; counting Grandpa as a fourth sharer is the same kind of error and lands below."
+  },
+  "structure_check": "Largest key. Two parts push opposite ways: Ana's 2.85 kg and the shared amount raise the answer; the divisor (number of sharers) and the kept-back 0.9 kg lower it. A divisor that is too small, or forgetting the kept-back part, lands above; a divisor that is too big, or sharing Ana's own seed, lands below. The stem does not sign the errors.",
+  "intermediate_check": "2.55: no, it is not reached from the key by one printed amount (1.9 less; 1.9 is not printed); it divides everything by 3. 3.85: no, it is 0.6 less than the key, not printed; it shares first and subtracts after. 4.05: no, it is 0.4 less than the key, not printed; it divides by 4.",
+  "cheap_bound_check": "Cheapest one-sided bound: Ana gets some birdseed, so she has more than 2.85; it strikes only 2.55. 3.85 and 4.05 sit on the key's side of it.",
+  "shape_check": "The stem hands over: more than 2.85, less than 2.85 + 5.7, hundredths. 3.85, 4.05 and 4.45 survive all three; 2.55 fails \"more than 2.85\".",
+  "interior_parity_check": "The two middle values are 3.85 and 4.05: both two-place decimals ending in 5. Neither is cleaner.",
+  "arith_class_check": "Every share here is in tenths and Ana's amount ends in 5 hundredths, so the key ends in 5; all four options end in 5. The key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "shares? the rest equally",
+    "keeps&for (herself|himself)&equally",
+    "rice&equally|share",
+    "already had&equally",
+    "birdseed|bird seed"
+   ],
+   "hits_read": 9,
+   "nearest": "MV2-N56-05 (live: 6.3 kg of rice split into 3 jars, then 0.45 kg taken from one jar): divide first, then subtract from ONE share. Here a part is removed before sharing, the sharers must be counted (Ana plus 2 cousins), and the share is ADDED to a separate amount. map-math-g58-v5 \"combine amounts, then divide\" ends at the quotient; here the quotient is one step of three."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: everything is added or shared; all options are positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "Ana gets a share, so she has more than 2.85",
+    "strikes": [
+     "2.55"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: decimals; no parity is implied",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: the key ends in 5 hundredths and so does every option",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "each share is less than half of 5.7 (there are at least 2 sharers), so Ana has less than 2.85 + 2.85 = 5.7; with the first bound, between 2.85 and 5.7",
+    "strikes": [
+     "2.55"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "MECHANISM SWAP: a unit-fraction amount split equally into n parts, then k of those parts (5.NF.B.7a then a product) -> a + (b - c) / n with decimals, the divisor counted from the story, because the slot chain is the chain of map-math-g58-v3 \"a 6/7-mile path marked into 5 equal sections ... walks 9 sections\" and of map-math-g58-v4 \"cuts 1/2 pound of clay into 9 equal pieces and gives 7\", and because the slot's own DIVISOR errors (dividing by n - 1 or n + 1) change the key's denominator, which FORM refuses. Same class (DIVISOR), grade, tier and rank. Rank 4: below the key sit 4.05 (divides by 4: Grandpa counted), 3.85 (shares the whole bag, then takes 0.9 from Ana's share) and 2.55 (shares Ana's seed too). Covering the stem: sorted 2.55 < 3.85 < 4.05 < 4.45, the second-smallest is a distractor; no option is x2/x3/x4/x1.5/x10 of another; the key is not a midpoint; no option differs from the key in one digit. Two parts push opposite ways: the amounts added (up) and the divisor and kept-back part (down); the far distractor 4.05 is a divisor miscount whose usual form (divide by 2) lands above. K1: all options end in 5 hundredths. K2: \"more than 2.85\" strikes only 2.55; \"less than 5.7\" strikes none. K3: none. K4: rounding 2.85 to 3, 5.7 to 6, 0.9 to 1: E = 3 + 5/3 = 4.67; key 0.22 from E; 4.05 0.62, 3.85 0.82 (within one whole step), 2.55 2.12 (the only one beyond). K5: no table. Solved intermediates 4.8 and 1.6 are not options. Grade fit: order of operations, counting sharers and a decimal division in one chain is high for grade 5. Context family: nature (birdseed; 1 of 2)."
+  }
+ },
+ {
+  "id": "MB4-N6-04",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "6.NS.B.3",
+  "subskill": "Compare two costs from decimal lengths and decimal prices",
+  "grade_rationale": "High for grade 6: 6.NS.B.3 with two multi-digit decimal products (5.6 x 4.15 and 1.8 x 3.65), each needing the decimal placed by counting places, then a difference. Only stronger grade-6 students keep each length with its own price and multiply the decimals fully rather than part by part.",
+  "prompt": "At a fabric store, blue fabric costs $4.15 per meter and green fabric costs $3.65 per meter. Maya buys 5.6 meters of the blue fabric and 1.8 meters of the green fabric. How many more dollars does she spend on the blue fabric than on the green fabric?",
+  "choices": [
+   "12.97",
+   "15.77",
+   "16.57",
+   "16.67"
+  ],
+  "correct_answer": "16.67",
+  "explanation": "Blue fabric: 5.6 x 4.15. Multiply 56 x 415 = 23,240; there are 1 + 2 = 3 decimal places, so the blue fabric costs $23.24. Green fabric: 1.8 x 3.65. Multiply 18 x 365 = 6,570; with 3 decimal places that is $6.57. Difference: 23.24 - 6.57 = 16.67. She spends $16.67 more on the blue fabric.",
+  "solve": "return (5.6 * 4.15 - 1.8 * 3.65).toFixed(2)",
+  "distractor_solve": {
+   "12.97": "return (5.6 * 3.65 - 1.8 * 4.15).toFixed(2)",
+   "15.77": "return ((5.6 - 1.8) * 4.15).toFixed(2)",
+   "16.57": "return ((5 * 4 + 0.6 * 0.15) - (1 * 3 + 0.8 * 0.65)).toFixed(2)"
+  },
+  "mechanism": [
+   "multiply each decimal length by its own decimal price per meter (6.NS.B.3)",
+   "subtract the smaller cost from the larger"
+  ],
+  "quantity_asked": "how many more dollars Maya spends on the blue fabric than on the green fabric",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option cannot be checked against the stem without computing both products; there is no single step that tests a value."
+  },
+  "distractor_meta": {
+   "12.97": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "pairing each length with the other fabric's price",
+    "why": "He multiplies the blue length by the green price and the green length by the blue price: 5.6 x 3.65 - 1.8 x 4.15 = 20.44 - 7.47 = 12.97."
+   },
+   "15.77": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "finding the extra length first and pricing it at one rate, as if both fabrics cost the same",
+    "why": "She finds how much more blue fabric she bought, 5.6 - 1.8 = 3.8 m, and multiplies by the blue price: 3.8 x 4.15 = 15.77, leaving out that the green fabric is cheaper."
+   },
+   "16.57": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "multiplying decimals by multiplying the whole-number parts and the decimal parts separately",
+    "why": "For each cost he multiplies whole parts and decimal parts separately: blue 5 x 4 + 0.6 x 0.15 = 20.09, green 1 x 3 + 0.8 x 0.65 = 3.52, and 20.09 - 3.52 = 16.57."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "return (5.6 * 4.15 - (1 * 3 + 0.8 * 0.65)).toFixed(2)",
+   "direction": "above",
+   "why": "Multiplying whole parts and decimal parts separately on the green cost only shrinks the subtracted cost to 3.52 and gives 23.24 - 3.52 = 19.72, above the key."
+  },
+  "far_distractor": {
+   "option": "16.57",
+   "natural_side": "above",
+   "why": "The whole-part-and-decimal-part error drops the cross products, so on the SUBTRACTED green cost it shrinks that cost and pushes the answer up; here the student makes it on both costs, and the blue cost loses more (5 x 0.15 + 0.6 x 4 = 3.15) than the green cost (1 x 0.65 + 0.8 x 3 = 3.05), so the answer lands 0.10 below the key."
+  },
+  "structure_check": "Two parts push opposite ways: the blue cost is added and the green cost is subtracted. An error that shrinks the green cost (or uses a cheaper price for it) raises the answer; one that shrinks the blue cost lowers it. The stem names no maximum or bound, so a student cannot sign every error from the wording.",
+  "intermediate_check": "12.97: no - not reachable from the key by one printed price or length. 15.77: no - (5.6 - 1.8) x 4.15 is a wrong path, not a step toward 16.67; 16.67 - 15.77 = 0.90 is printed nowhere. 16.57: no - key - 0.10, not a printed amount; the true intermediates 23.24 and 6.57 are not options.",
+  "cheap_bound_check": "Cheapest one-sided bound: blue costs more than 5.6 x 4 = 22.4 and green less than 1.8 x 4 = 7.2, so the difference is more than 15.2; it strikes 12.97 only. 15.77 and 16.57 sit on the key's side of it (a finer bound, 5.5 x 4.15 - 2 x 3.65 = 15.525, still keeps both).",
+  "shape_check": "The stem hands over: positive (all four), less than 5.6 x 4.15 < 6 x 4.15 = 24.9 (all four), more than 15.2 (three survive), and a hundredths digit of 7 fixed by the two products (all four end in 7). 15.77, 16.57 and 16.67 survive all together.",
+  "interior_parity_check": "The key is the largest option (rank 4 slot). The two middle values 15.77 and 16.57 are both two-place decimals ending in 7, as is the key; none is cleaner.",
+  "arith_class_check": "Both products end in 0 thousandths, so the difference has a fixed hundredths digit (7); all four options end in 7. No whole-dollar, even or multiple-of-k class is implied.",
+  "dup_search": {
+   "queries": [
+    "per (meter|metre|yard|foot)&how (many )?(much )?more&fabric|ribbon|rope|cloth|wire",
+    "fabric|ribbon|cloth&per (meter|yard)",
+    "spend|spends|cost&more&per (meter|pound|kilogram)&[0-9]\\.[0-9]+ (meters|pounds|kilograms)&[0-9]\\.[0-9]+ (meters|pounds|kilograms)",
+    "how much more|how many more dollars&spend|spends|cost&\\$[0-9]+\\.[0-9]+ (per|each|a)&\\$[0-9]+\\.[0-9]+ (per|each|a)"
+   ],
+   "hits_read": 5,
+   "nearest": "MM3-N08 (v3, not banked): 5 erasers at $0.80 vs 7 pencils at $0.45, \"how much more\" - whole COUNTS times decimal prices, a grade-5 product. This item multiplies decimal lengths by decimal prices (6.NS.B.3), and its distractors are decimal-multiplication errors (part-by-part products) and price-length pairing errors that MM3-N08 cannot have. MM5P-N03 and MM5-N22 are totals, not differences."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "the blue fabric is longer and dearer, so the difference is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "blue > 5.6 x 4 = 22.4 and green < 1.8 x 4 = 7.2, so the difference is more than 15.2",
+    "strikes": [
+     "12.97"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: decimal amounts, no parity forced",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "both products end in 0 thousandths; their hundredths digits give a difference ending in 7 cents",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "blue < 6 x 4.15 = 24.9 and green > 1.8 x 3.5 = 6.3, so the difference is less than 18.6",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Rank 4 (L, DIFF). Below the key and the real error for each: 16.57 (whole parts and decimal parts multiplied separately in both costs), 15.77 (extra length priced at the blue rate only), 12.97 (prices swapped between the fabrics). Two parts push opposite ways: blue cost (added) and green cost (subtracted); far distractor 16.57 comes from an error whose action on the subtracted cost naturally raises the answer, but here lands below; counter error (not an option) 19.72, the same error on the green cost only. Covering the stem: sorted 12.97 / 15.77 / 16.57 / 16.67; second-smallest is 15.77 (fails); no ratio hub (16.67/12.97 = 1.29); key not a midpoint. Differences from the key -0.10, -0.90, -3.70: none printed, no x / 2x pair, none a sum of two printed numbers. K1: hundredths forced to 7, all four in it. K2: no benchmark percent; bound 15.2 strikes only 12.97. K3: none. K4: E = 6 x 4 - 2 x 4 = 16; key distance 0.67, band 1.34: 15.77 (0.23), 16.57 (0.57) inside, 12.97 outside - one; half-unit E = 5.5 x 4 - 2 x 3.5 = 15 (key 1.67, band 3.34) keeps all three. K5: no table. No solved intermediate (23.24, 6.57, 3.8) is an option. Really high for grade 6: two three-digit-by-two-digit decimal products. Cheapest bound strikes one distractor."
+  }
+ },
+ {
+  "id": "MB4-N6-05",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "6.NS.B.3",
+  "subskill": "Divide decimals to count pieces, then total the trimmed pieces",
+  "grade_rationale": "High for grade 6: 6.NS.B.3 division of a multi-digit decimal by a decimal (241.5 / 16.1 = 15, done as 2415 / 161) to find the number of pieces, then a product and a subtraction with the trims. Only stronger grade-6 students divide by a decimal correctly AND carry the count through to the total; the count itself is never asked, so the student cannot stop at the quotient.",
+  "prompt": "A board is 241.5 centimeters long. Kai cuts the whole board into equal pieces that are each 16.1 centimeters long, with no wood left over. Then he trims 1.2 centimeters off each piece. What is the total length, in centimeters, of all the trimmed pieces?",
+  "choices": [
+   "223.5",
+   "224.5",
+   "226.5",
+   "259.5"
+  ],
+  "correct_answer": "223.5",
+  "explanation": "Number of pieces: 241.5 / 16.1. Multiply both numbers by 10 to get 2415 / 161 = 15, so there are 15 pieces. Each piece is trimmed by 1.2 cm, so the trims total 15 x 1.2 = 18.0 cm. The trimmed pieces total 241.5 - 18.0 = 223.5 cm. (Or: each trimmed piece is 16.1 - 1.2 = 14.9 cm, and 15 x 14.9 = 223.5 cm.)",
+  "solve": "const n = Math.round(241.5 / 16.1); return (241.5 - n * 1.2).toFixed(1)",
+  "distractor_solve": {
+   "224.5": "const onesRow = ((5 * 2) % 10) + (5 * 1) * 10; const tensRow = 1 * 12 * 10; return (241.5 - (onesRow + tensRow) / 10).toFixed(1)",
+   "226.5": "const top = [1, 6, 1], bot = [0, 1, 2]; const d = top.map((x, i) => Math.abs(x - bot[i])); const piece = d[0] * 10 + d[1] + d[2] / 10; return (15 * piece).toFixed(1)",
+   "259.5": "const n = Math.round(241.5 / 16.1); return (n * (16.1 + 1.2)).toFixed(1)"
+  },
+  "mechanism": [
+   "divide the board length by a decimal piece length to count the pieces (exact)",
+   "multiply the count by the trim on each piece",
+   "subtract the total trim from the board length"
+  ],
+  "quantity_asked": "the total length of all the trimmed pieces, in centimeters",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option is a total after trimming; no option can be run forward or backward through the story without first dividing 241.5 by 16.1, which is the main step of the solution."
+  },
+  "distractor_meta": {
+   "224.5": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": true,
+    "misconception": "dropping the carried digit in a two-digit multiplication (15 x 12)",
+    "why": "He finds the 15 pieces and multiplies 15 x 1.2 as 15 x 12: in the ones row 5 x 2 = 10, he writes 0 but loses the carried 1, so the row is 50 instead of 60; the total trim is 17.0 cm and he gets 241.5 - 17.0 = 224.5."
+   },
+   "226.5": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "smaller-from-larger subtraction bug: in a column where the top digit is smaller, subtract top from bottom and do not regroup",
+    "why": "She finds each trimmed piece as 16.1 - 1.2; in the tenths column she cannot take 2 from 1, so she takes 1 from 2 and does not regroup, getting 15.1 cm, and 15 x 15.1 = 226.5."
+   },
+   "259.5": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "treating the trimmed amount as length added to each piece instead of taken off",
+    "why": "He adds the 1.2 cm to each piece, 16.1 + 1.2 = 17.3 cm, and multiplies by 15 pieces: 259.5, more than the whole board."
+   }
+  },
+  "counter_error": {
+   "error_kind": "other",
+   "solve": "return (15 * (16.1 - 2 * 1.2)).toFixed(1)",
+   "direction": "below",
+   "why": "Reading \"trims 1.2 centimeters off each piece\" as 1.2 cm off EACH END: each piece becomes 13.7 cm and the total 205.5, below the key."
+  },
+  "far_distractor": {
+   "option": "224.5",
+   "natural_side": "below",
+   "why": "The total trim 15 x 1.2 is the part that pulls the answer below the board length; a slip inside that product can make the trim too big (answer below the key) or too small (answer above). Here the dropped carry makes the trim 17.0 instead of 18.0, so the answer lands above."
+  },
+  "structure_check": "Two parts push opposite ways: the board length 241.5 (adds) and the total trim, count x 1.2 (subtracts). A mistake in the count or in the trim product can push the answer either way (too many pieces or a too-big trim product lowers it, as in the both-ends reading; a too-small product raises it), so the stem does not sign every error. No extremum or universal quantifier is asked.",
+  "intermediate_check": "224.5: no - not the key plus or minus a printed number (+1.0); the intermediates 15 (count), 18.0 (total trim) and 14.9 (trimmed piece) are not options. 226.5: no - +3.0, not printed; it is a wrong trimmed-piece length times 15. 259.5: no - +36.0, not printed and not one printed relation from the key; it exceeds the board length.",
+  "cheap_bound_check": "Cheapest one-sided bound: the trimmed pieces together are shorter than the board, so the answer is less than 241.5 (and, with at least two pieces trimmed, at most 239.1); it strikes 259.5 only. 224.5 and 226.5 sit on the key's side of it.",
+  "shape_check": "The stem hands over: positive (all four), less than the board 241.5 (three survive), and a length in tenths ending in 5 once the count is known (all four end in .5). 223.5, 224.5 and 226.5 survive all together.",
+  "interior_parity_check": "The key is the smallest option (rank 1 slot). The two middle values 224.5 and 226.5 are both one-place decimals ending in .5, like the key; none is cleaner.",
+  "arith_class_check": "The count is 15 (odd), and 15 x 1.2 = 18.0 is a whole number, so the answer keeps the board's .5; all four options end in .5. The key is not alone in any class (whole, even, multiple of 5).",
+  "dup_search": {
+   "queries": [
+    "trim",
+    "board|plank|strip&cut&pieces&each",
+    "pieces&centimeters? long&cuts?"
+   ],
+   "hits_read": 9,
+   "nearest": "MV2-D5-13 (withdrawn): a 5-yard board cut into 8-inch pieces, asking only the count (a single quotient, with a unit conversion). This item never asks the count: it divides by a decimal, then totals the trimmed pieces. MB2-D5-06 (dropped) is a roll of trim with two pieces cut off (subtraction with units), a different chain."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "a total length is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "the trimmed pieces together are shorter than the board, so the answer is less than 241.5",
+    "strikes": [
+     "259.5"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: lengths in tenths, no parity forced without the count",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none without the count: the tenths digit is 241.5 minus (count x 1.2); every option ends in .5",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "at least two pieces lose 1.2 cm, so the answer is at most 241.5 - 2.4 = 239.1",
+    "strikes": [
+     "259.5"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Rank 1 (S, NEGTERM). All three distractors sit above the key; the two parts that push opposite ways are the board length (adds) and the total trim, count x 1.2 (subtracts). Far distractor 224.5 is an error INSIDE the subtracted trim product (a dropped carry) - a slip of that kind goes either way, here it shrinks the trim and lands above; counter error (not an option) is the both-ends reading, 205.5, below. Covering the stem: sorted 223.5 / 224.5 / 226.5 / 259.5; the second-smallest pick gets 224.5 and fails; no ratio hub (259.5/223.5 = 1.16) and the key is no midpoint. Distances +1.0, +3.0, +36.0: none printed, no x / 2x pair, none a sum of two printed numbers (17.3, 242.7, 257.6). K1: count 15 makes the trim whole, so the answer ends in .5 - all four do. K2: no benchmark; the cap 241.5 strikes only 259.5. K3: none. K4: E = 15 x 15 = 225 (14.9 rounded) or 240 - 15 x 1 = 225; key distance 1.5, band 3.0: 224.5 (0.5) and 226.5 (1.5) inside, 259.5 outside - one. K5: no table. No solved intermediate (15, 18.0, 14.9) is an option. Really high for grade 6: dividing by a decimal is the hard step and the count is only a part of the chain. Cheapest bound (shorter than the board) strikes one. Earlier searches showed why the distractors are what they are: errors that act on the count (16 pieces, 14 pieces) shift the answer by a whole trimmed piece and cannot keep the final digit (FORM), and \"trims only one piece\" or a misplaced decimal in the trim total land next to 241.5, where \"more than two pieces are trimmed\" strikes them; the three kept errors act on the small term and stay inside the estimate. (read) PAIR: 223.5 + 259.5 = 2 x 241.5 because adding the trims instead of subtracting them mirrors the key about the board length; 259.5 is already struck by the board-length cap, so the mirror hands over nothing extra. (read) PLUG: the key is at try 1 by the slot; no option can be checked without the decimal division."
+  }
+ },
+ {
+  "id": "MB4-N6-01",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 6,
+  "tier": "low",
+  "rit_band": "RIT 200-209",
+  "difficulty": "easy",
+  "ccss": "6.NS.C.7",
+  "subskill": "Compare the sizes of two debts shown as negative balances",
+  "grade_rationale": "Low for grade 6: 6.NS.C.7c-d asks students to read a negative balance as a debt whose size is the absolute value, and to compare debts by size, not by order. The only computation is one decimal subtraction with one regrouping (a grade-5 skill), so most grade-6 students get it; the trap is treating the two debts as amounts to combine or mishandling the regrouping.",
+  "prompt": "Nia and Omar each borrowed money from their parents. They keep track of what they owe as negative balances. Nia's balance is -$58.45, and Omar's balance is -$15.65. How many dollars more does Nia owe than Omar?",
+  "choices": [
+   "42.10",
+   "42.80",
+   "43.20",
+   "74.10"
+  ],
+  "correct_answer": "42.80",
+  "explanation": "A balance of -$58.45 means Nia owes $58.45, and a balance of -$15.65 means Omar owes $15.65. The size of each debt is the absolute value of the balance: |-58.45| = 58.45 and |-15.65| = 15.65. To find how much more Nia owes, subtract: 58.45 - 15.65 = 42.80. Nia owes $42.80 more than Omar.",
+  "solve": "return (58.45 - 15.65).toFixed(2)",
+  "distractor_solve": {
+   "42.10": "const r = 58.45 - 16; return (r - (16 - 15.65)).toFixed(2)",
+   "43.20": "const top = [5, 8, 4, 5], bot = [1, 5, 6, 5]; const d = top.map((x, i) => Math.abs(x - bot[i])); return (d[0] * 10 + d[1] + d[2] / 10 + d[3] / 100).toFixed(2)",
+   "74.10": "return (58.45 + 15.65).toFixed(2)"
+  },
+  "mechanism": [
+   "read each negative balance as a debt of |balance| dollars",
+   "compare the debts by subtracting the smaller size from the larger, regrouping a dollar into dimes"
+  ],
+  "quantity_asked": "how many dollars more Nia owes than Omar",
+  "plugback": {
+   "substitutable": false,
+   "why": "Checking an option means adding it to 15.65 and comparing with 58.45, which is the same single decimal step as solving; no option can be confirmed or ruled out more cheaply than by doing the subtraction itself."
+  },
+  "distractor_meta": {
+   "42.10": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "compensating in the wrong direction after rounding the number being subtracted",
+    "why": "She rounds 15.65 up to 16 and gets 58.45 - 16 = 42.45, then takes away the extra 0.35 instead of adding it back, getting 42.10."
+   },
+   "43.20": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "smaller-from-larger subtraction bug: in a column where the top digit is smaller, subtract top from bottom and do not regroup",
+    "why": "In the tenths column he cannot take 6 from 4, so he takes 4 from 6 and writes 2, and never borrows from the 8, giving 43.20."
+   },
+   "74.10": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "treating two debts as amounts to combine: adding the sizes of the debts instead of comparing them",
+    "why": "Seeing two amounts owed, she adds them, 58.45 + 15.65 = 74.10, which is how much the two owe together, not how much more one owes."
+   }
+  },
+  "structure_check": "Interior key. The stem names two debts and asks for the difference in their sizes; nothing tells a student which way an error goes (a regrouping bug raises the answer, a wrong compensation lowers it, combining the debts raises it a lot).",
+  "intermediate_check": "42.10: no - not reachable from the key through any printed number (it is 0.70 below; 0.70 is printed nowhere). 43.20: no - a column-subtraction bug, 0.40 above the key, not a printed amount. 74.10: no - it is the sum of the two printed debts, not a step on the way to the key and not key +/- a printed number.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: the answer is a positive dollar amount (all four survive), it ends in a whole number of dimes because both balances end in 5 cents (all four end in 0), and it is less than 58.45 (all four survive). Every option survives all three together.",
+  "interior_parity_check": "The two middle values 42.80 and 43.20 are both dollars-and-dimes amounts with two decimal places; neither is rounder than the other (the key is not the cleaner one).",
+  "arith_class_check": "Both balances end in 5 cents, so the difference must end in 0 cents; all four options end in 0 cents, so the key is not alone in that class. No other class (whole dollars, even, multiple of 5) is implied.",
+  "dup_search": {
+   "queries": [
+    "owes|owe&balance&more",
+    "-\\$[0-9]+\\.[0-9]+&-\\$[0-9]+\\.[0-9]+",
+    "owes&owes",
+    "how many (more )?dollars more&owe"
+   ],
+   "hits_read": 45,
+   "nearest": "MV2-N56-19 (live): a debt scaled 5 times and then a distance across 0 to a POSITIVE balance (|a| + b). This item compares two debts (|a| - |b|), one subtraction of sizes on the same side of 0; MM4-N21 and MM5P-N07 are single-account change chains, not comparisons."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "the answer is how much more one person owes, so it is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "Omar owes more than $15, so the difference is less than 58.45 - 15 = 43.45",
+    "strikes": [
+     "74.10"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: decimal dollar amounts, no parity is forced",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "both balances end in 5 cents, so the difference ends in 0 cents",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "Omar owes less than $16, so the difference is more than 58.45 - 16 = 42.45",
+    "strikes": [
+     "42.10"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Rank 2 (slot), interior. Below the key: 42.10 only (wrong-direction compensation after rounding 15.65 to 16). Covering the stem: sorted 42.10 / 42.80 / 43.20 / 74.10, the second-smallest is the key, as the slot fixes; no option is x2/x3/x1.5/x10 of two others and the key is no midpoint (42.10 and 43.20 average 42.65). The key is not key +/- a printed number and no two distractors are key + x and key + 2x (-0.70, +0.40, +31.30). K1: the forced class is \"ends in 0 cents\" and all four are in it. K2: no printed percent or benchmark fraction; the cap 58.45 strikes nothing. K3: no circle. K4: E = 58 - 16 = 42; key distance 0.80, band 1.60: 42.10 (0.10), 43.20 (1.20) inside, 74.10 outside - one. K5: no table. No distractor is a solved intermediate (no intermediate exists beyond the two absolute values, which are printed). Really low for grade 6: one subtraction with one regroup, plus reading a negative balance as a debt. Cheapest bounds: 15.65 > 15 strikes 74.10; 15.65 < 16 strikes 42.10 - one each, and 42.80 and 43.20 survive both. A test-wise student who adds the debts gets an option, so the set is not one-sided; the remaining decision between 42.80 and 43.20 needs the regrouping done correctly. (read) PAIR lines: 74.10 - 42.80 = 2 x 15.65 and 74.10 + 42.80 = 2 x 58.45 are what adding instead of subtracting always produces; neither pair is a printed number, and a student who notices it still has to decide which of the two is the comparison, which is the item. (read) PLUG: the key is at try 2 by the slot's rank; checking an option costs the same subtraction as solving."
+  }
+ },
+ {
+  "id": "MB4-N6-02",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "6.NS.B.3",
+  "subskill": "Multiply multi-digit decimals, then subtract a spill",
+  "grade_rationale": "Mid for grade 6: 6.NS.B.3 fluency with multi-digit decimal multiplication (3.15 x 2.2, a three-digit by two-digit product with the decimal placed by counting places), followed by one subtraction. About half of grade-6 students place the decimal and carry the partial products correctly AND apply the spill once, not to every batch.",
+  "prompt": "A pancake recipe uses 3.15 cups of milk for each batch. Ravi measures out enough milk for 2.2 batches of pancakes. While pouring it into the mixing bowl, he spills 0.25 cup of the milk. How many cups of milk end up in the bowl?",
+  "choices": [
+   "5.78",
+   "6.38",
+   "6.68",
+   "7.18"
+  ],
+  "correct_answer": "6.68",
+  "explanation": "Milk for 2.2 batches: 3.15 x 2.2. Multiply 315 x 22 = 6,930. There are 2 + 1 = 3 decimal places in the factors, so 3.15 x 2.2 = 6.930 = 6.93 cups. He spills 0.25 cup once, so 6.93 - 0.25 = 6.68 cups end up in the bowl.",
+  "solve": "return (3.15 * 2.2 - 0.25).toFixed(2)",
+  "distractor_solve": {
+   "5.78": "return (3 * 2 + 0.15 * 0.2 - 0.25).toFixed(2)",
+   "6.38": "return ((3.15 - 0.25) * 2.2).toFixed(2)",
+   "7.18": "return (3.15 * 2.2 + 0.25).toFixed(2)"
+  },
+  "mechanism": [
+   "multiply a two-decimal amount per batch by a one-decimal number of batches (6.NS.B.3)",
+   "subtract one spill from the product"
+  ],
+  "quantity_asked": "how many cups of milk end up in the bowl",
+  "plugback": {
+   "substitutable": false,
+   "why": "There is no way to test an option against the stem except computing 3.15 x 2.2 and subtracting 0.25; an option cannot be run forward or backward through a single step."
+  },
+  "distractor_meta": {
+   "5.78": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "multiplying decimals by multiplying the whole-number parts and the decimal parts separately",
+    "why": "He multiplies 3 x 2 = 6 and 0.15 x 0.2 = 0.03, adds them to get 6.03 cups, and subtracts the spill: 5.78. The cross products 3 x 0.2 and 0.15 x 2 are lost."
+   },
+   "6.38": {
+    "error_kind": "wrong_variable",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "applying a one-time change to every unit: taking the spill out of each batch",
+    "why": "She subtracts the spill from the amount for one batch, 3.15 - 0.25 = 2.90, and then multiplies by 2.2 batches, getting 6.38, so the spill is taken out 2.2 times."
+   },
+   "7.18": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": true,
+    "misconception": "adding the spilled amount instead of subtracting it",
+    "why": "He finds 3.15 x 2.2 = 6.93 correctly, then adds the 0.25 cup that was spilled instead of taking it away: 7.18."
+   }
+  },
+  "structure_check": "Interior key. The product and the spill are the two parts; errors in the product push either way and the spill can be mishandled either way, so the stem does not sign the errors.",
+  "intermediate_check": "5.78: no - not a step toward the key; it comes from a wrong product. 6.38: no - it is (3.15 - 0.25) x 2.2, not reachable from 6.68 through one printed number (6.68 - 6.38 = 0.30, not printed). 7.18: no - the product 6.93 is the only intermediate and it is not an option; 7.18 is 6.93 + 0.25.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: positive, less than 3.15 x 3 = 9.45 (all four survive), more than 3 x 2 - 0.25 = 5.75 (all four survive), and a hundredths digit fixed by 5 x 2 in the last places (all four end in 8). At least 3 options survive all of them together.",
+  "interior_parity_check": "The two middle values 6.38 and 6.68 are both two-place decimals ending in 8; neither is cleaner.",
+  "arith_class_check": "The product 3.15 x 2.2 ends in 0 thousandths, so 6.93 - 0.25 must end in 8 hundredths; all four options end in 8. No whole-number, even or multiple-of-k class is implied.",
+  "dup_search": {
+   "queries": [
+    "batch(es)?&spill",
+    "batches&cups&[0-9]\\.[0-9] batches",
+    "batch&[0-9]\\.[0-9]+ (cups?|batch)"
+   ],
+   "hits_read": 0,
+   "nearest": "MV2-N56-14 (live): (7 - 0.4) x 3.75, a subtraction BEFORE the product. MV2-N56-09 (live): 1.25 x 2.6 - 0.4, the same shape (product then subtract) with a toy car rolling and bouncing back; this item differs in the step a student mishandles (a once-only loss that students apply per batch) and in the factor sizes (three-digit by two-digit). Read both; the multiplication-then-subtraction shape is the slot mechanism."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "milk in the bowl is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "3.15 > 3, so 3.15 x 2.2 > 6.6 and the answer is more than 6.6 - 0.25 = 6.35",
+    "strikes": [
+     "5.78"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: decimal amounts, no parity forced",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "5 x 2 = 10 in the last places, so the product ends in 0 thousandths and the answer ends in 8 hundredths",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "3.15 < 3.5, so the product is less than 3.5 x 2.2 = 7.7 and the answer is less than 7.45",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Rank 3 (slot). Below the key: 6.38 (the one-time spill taken out of every batch: (3.15 - 0.25) x 2.2) and 5.78 (whole parts and decimal parts multiplied separately: 3 x 2 + 0.15 x 0.2 - 0.25). Above: 7.18 (spill added). Covering the stem: sorted 5.78 / 6.38 / 6.68 / 7.18; second-smallest is 6.38, not the key; no ratio hub; key not a midpoint (5.78 and 7.18 average 6.48). Differences from the key are -0.90, -0.30, +0.50 - none printed, no x and 2x pair. 7.18 is key + 2 x 0.25 (a sign on the small term, the batch-1 survivor shape); it is a (read) PAIR line, not a printed difference. K1: the forced class is \"ends in 8 hundredths\", all four in it. K2: no benchmark percent; caps 9.45 and 5.75 strike nothing. K4: E = 3 x 2 - 0 = 6; key distance 0.68, band 1.36: 5.78 (0.22), 6.38 (0.38), 7.18 (1.18) all inside; with the friendlier E = 3 x 2.2 - 0.25 = 6.35 (key 0.33, one rounding step = 1): 5.78 (0.57), 6.38 (0.03), 7.18 (0.83) inside. K5: no table. No solved intermediate is an option (6.93 is not). Really mid for grade 6: the three-by-two-digit decimal product is the 6.NS.B.3 skill. Cheapest bound: 3.15 > 3 strikes 5.78 alone; 6.38 survives it (6.38 > 6.35)."
+  }
+ },
+ {
+  "id": "MB4-N5-07",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 5,
+  "tier": "high",
+  "rit_band": "RIT 210-219",
+  "difficulty": "hard",
+  "ccss": "5.NBT.B.7",
+  "area_25": "Number and Operations",
+  "subskill": "Compare two decimal totals from equal containers",
+  "grade_rationale": "High for grade 5: 5.NBT.B.7 at full depth. The student must build two totals, each a decimal times a whole number (7 x 1.9 needs a carry into the ones; 9 x 0.15 lands in hundredths), keep each count with its own container, and then subtract hundredths from tenths, which needs a placeholder zero and a borrow (13.30 - 1.35). Only stronger grade-5 students keep all of that straight; the common slips are pairing a count with the wrong container or subtracting per container first.",
+  "prompt": "A science lab has 7 large beakers that each hold 1.9 liters of water and 9 small flasks that each hold 0.15 liter of water. How many fewer liters of water are in all the small flasks than in all the large beakers?",
+  "choices": [
+   "11.95",
+   "12.05",
+   "13.15",
+   "16.05"
+  ],
+  "correct_answer": "11.95",
+  "explanation": "Large beakers: 7 x 1.9 = 13.3 liters. Small flasks: 9 x 0.15 = 1.35 liters. Difference: 13.30 - 1.35 = 11.95. The small flasks hold 11.95 fewer liters than the large beakers.",
+  "solve": "return (7*1.9-9*0.15).toFixed(2)",
+  "distractor_solve": {
+   "12.05": "const f=9*0.15, t=Math.floor(f*10+1e-9)/10;return (7*1.9-t+(f-t)).toFixed(2)",
+   "13.15": "return (7*1.9-0.15).toFixed(2)",
+   "16.05": "return (9*1.9-7*0.15).toFixed(2)"
+  },
+  "mechanism": [
+   "multiply each container size by its own count",
+   "subtract the smaller total from the larger, writing 13.3 as 13.30 and borrowing"
+  ],
+  "quantity_asked": "how many fewer liters are in all the small flasks than in all the large beakers",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option can be checked only by building both totals, which is the whole problem; there is no one-step check against the stem."
+  },
+  "distractor_meta": {
+   "12.05": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": true,
+    "misconception": "brings down the lone hundredths digit instead of writing 13.3 as 13.30",
+    "why": "Lining up 13.3 over 1.35, the student sees nothing above the 5 and writes 5, then 3 - 3 = 0 and 13 - 1 = 12, getting 12.05."
+   },
+   "13.15": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the size of one flask instead of the total of all the flasks",
+    "why": "The student builds the beaker total (13.3) but subtracts a single flask (0.15) instead of 9 flasks: 13.3 - 0.15 = 13.15."
+   },
+   "16.05": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "pairs each count with the other container",
+    "why": "The student multiplies the beaker size by 9 and the flask size by 7: 17.1 - 1.05 = 16.05."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "return (7*1.9-2*9*0.15).toFixed(2)",
+   "direction": "below",
+   "why": "Counts the flasks twice: after taking 1.35 from 13.3 the student takes the flask total away again (13.3 - 1.35 - 1.35 = 10.60), below the key."
+  },
+  "far_distractor": {
+   "option": "16.05",
+   "natural_side": "below",
+   "why": "Swapping the counts is an error that lowers the answer whenever the larger count belongs to the large containers (the large total shrinks and more small volume is taken away). Here the larger count, 9, belongs to the small flasks, so the swap enlarges the beaker total and 16.05 lands above the key."
+  },
+  "structure_check": "Smallest key. Two parts push opposite ways: the beaker total (7 x 1.9) raises the answer and the flask total (9 x 0.15) lowers it. Errors that shrink the flask total or skip the borrow land above; errors that shrink the beaker total or take the flasks away twice land below. The stem does not sign every error.",
+  "intermediate_check": "12.05: no, it is 0.1 more than the key and 0.1 is not printed; it is a placeholder-zero slip in the last subtraction. 13.15: no, it is the beaker total less ONE flask; the key follows from it only through 8 more flasks, and 8 x 0.15 is not printed. 16.05: no, it is 4.1 more than the key, not printed; it swaps the counts.",
+  "cheap_bound_check": "Cheapest one-sided bound: the difference is less than the beaker total, 7 x 1.9 = 13.3 (or 7 x 2 = 14); it strikes only 16.05. 12.05 and 13.15 sit on the key's side of it.",
+  "shape_check": "The stem hands over: positive, hundredths, less than the beaker total 13.3. 11.95, 12.05 and 13.15 survive all three; 16.05 fails only the cap.",
+  "interior_parity_check": "The two middle values are 12.05 and 13.15: both two-place decimals ending in 5. Neither is cleaner.",
+  "arith_class_check": "9 x 0.15 ends in 5 hundredths and the beaker total is in tenths, so the key ends in 5; all four options end in 5. The key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "bottles&liter&fewer",
+    "bottles&\\d\\.\\d+ liter&\\d\\.\\d+ liter",
+    "beakers?&liter",
+    "test tubes?|flasks?&liter",
+    "large&small&\\d\\.\\d+ liter&fewer|less|more liters"
+   ],
+   "hits_read": 4,
+   "nearest": "MMG-D04 (beakers in a line plot, water pooled and shared equally): a Statistics line-plot share, not two decimal products compared. MB4-N5-05 in this file also subtracts two products, but of mixed numbers with regrouping errors; here the operations are decimal products and the errors are count-pairing errors."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: the beakers clearly hold more (over 13 L against under 2 L); all options are positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "the difference is less than the beaker total, 7 x 1.9 = 13.3",
+    "strikes": [
+     "16.05"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: decimals; no parity is implied",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: the key must end in 5 hundredths and every option does",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "the flasks hold less than 9 x 0.2 = 1.8 L, so the difference is more than 13.3 - 1.8 = 11.5 and less than 13.3",
+    "strikes": [
+     "16.05"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Rank 1: covering the stem, sorted 11.95 < 12.05 < 13.15 < 16.05; the second-smallest is a distractor (the slip); no option is x2/x3/x4/x1.5/x10 of another; the key is not a midpoint; 12.05 and 13.15 each differ from 11.95 in two or more digits, so the key is not a one-digit centre. Two parts push opposite ways: beakers up, flasks down; the far distractor 16.05 comes from a count swap, an error that lowers the answer in the usual arrangement and raises it here. K1: all end in 5 hundredths. K2: \"less than 13.3\" strikes only 16.05; \"flasks under 1.8 L\" gives more than 11.5 and strikes nothing else. K3: none. K4: rounding 1.9 to 2 and 0.15 to 0, E = 14; key 2.05 from E; 12.05 1.95, 13.15 0.85, 16.05 2.05, all within 4.1. Rounding 0.15 to 0.2, E = 12.2: key 0.25, 12.05 0.15, 13.15 0.95 (within one step), 16.05 3.85 (the only one beyond). K5: no table. Solved intermediates 13.3 and 1.35 are not options. (read) PAIR 0.3 = 2 x 0.15 does not apply now; no option is the key plus or minus a printed amount. Grade fit: two decimal products and a borrowing subtraction with a placeholder zero, plus keeping the counts straight, is the top of 5.NBT.B.7: high. K7: N5-05 also compares two products, but of mixed numbers; its errors (one-lap difference, dropped regrouped whole, whole-part-only product) are not used here. N5-03 attaches one count to the wrong one of two per-item lengths; here two counts are exchanged between two containers. Context family: science measurement (1 of 2)."
+  }
+ },
+ {
+  "id": "MB4-N7-04",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 7,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "7.NS.A.2",
+  "subskill": "Two signed scores each multiplied by a negative fraction, then added",
+  "grade_rationale": "A high item for grade 7 (7.NS.A.2a and 7.NS.A.3): the student must multiply a negative decimal by a negative fraction and a positive decimal by a different negative fraction, keep both signs straight, and then add a small positive number to a larger negative one. Only stronger grade-7 students get every sign and both fraction products right; typical errors are taking one part of a fraction, a borrowing slip in the final subtraction, or adding the sizes of numbers with different signs.",
+  "prompt": "In a board game, a player's score can be positive or negative. Landing on a red square multiplies a player's score by -7/8. Landing on a blue square multiplies a player's score by -9/10. Ana's score is -1.2, and she lands on a red square. Ben's score is 9.6, and he lands on a blue square. What is the sum of Ana's new score and Ben's new score?",
+  "choices": [
+   "-9.69",
+   "-8.49",
+   "-7.69",
+   "-7.59"
+  ],
+  "correct_answer": "-7.59",
+  "explanation": "Ana's new score: (-1.2)(-7/8). One eighth of 1.2 is 0.15, so seven eighths is 1.05, and a negative times a negative is positive: 1.05. Ben's new score: (9.6)(-9/10). One tenth of 9.6 is 0.96, so nine tenths is 8.64, and a positive times a negative is negative: -8.64. Sum: 1.05 + (-8.64) = -(8.64 - 1.05) = -7.59.",
+  "solve": "return ((-1.2) * (-7 / 8) + 9.6 * (-9 / 10)).toFixed(2)",
+  "distractor_solve": {
+   "-9.69": "return (-(Math.abs((-1.2) * (-7 / 8)) + Math.abs(9.6 * (-9 / 10)))).toFixed(2)",
+   "-8.49": "return ((-1.2) * (-1 / 8) + 9.6 * (-9 / 10)).toFixed(2)",
+   "-7.69": "return (-(8.64 - 1.05 + 0.1)).toFixed(2)"
+  },
+  "mechanism": [
+   "multiply a negative decimal by a negative fraction",
+   "multiply a positive decimal by a negative fraction",
+   "add a positive and a negative decimal"
+  ],
+  "quantity_asked": "the sum of Ana's and Ben's new scores",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option cannot be checked against the story without finding both new scores, which is the whole problem; there is no single routine step that confirms a sum."
+  },
+  "distractor_meta": {
+   "-9.69": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "when adding a positive and a negative number, adds their sizes and keeps the negative sign",
+    "why": "The student finds 1.05 and -8.64 correctly but combines them as -(1.05 + 8.64) = -9.69, adding the sizes instead of subtracting them."
+   },
+   "-8.49": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "multiplies by the unit fraction 1/8 instead of 7/8 (finds one part, not seven parts)",
+    "why": "The student divides 1.2 by 8 to get 0.15 and stops, using 0.15 as Ana's new score, so the sum is 0.15 - 8.64 = -8.49."
+   },
+   "-7.69": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": true,
+    "misconception": "computational slip: borrows in the hundredths but does not reduce the tenths digit",
+    "why": "Working out 8.64 - 1.05, the student regroups to get 14 - 5 = 9 hundredths but then subtracts 6 - 0 instead of 5 - 0 in the tenths, getting 7.69, so the answer is -7.69."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "return ((-1.2) * (-7 / 8) + 9.6 * (9 / 10)).toFixed(2)",
+   "direction": "above",
+   "why": "A sign slip on Ben's product (taking a positive times a negative as positive, +8.64) gives 1.05 + 8.64 = 9.69, far above the key. Errors on Ben's part can push the sum up; errors on Ana's part push it down."
+  },
+  "far_distractor": {
+   "option": "-9.69",
+   "natural_side": "above",
+   "why": "Adding the sizes of two numbers instead of subtracting them usually gives a result that is too big; here the student keeps the negative sign of the larger number, so the error lands below the key instead of above it. The error acts on Ana's positive score, the part that pushes the sum up."
+  },
+  "structure_check": "Ana's new score (+1.05) pushes the sum up and Ben's (-8.64) pushes it down. A sign slip on Ben's product sends the sum far above the key (counter error 9.69); taking a unit fraction of Ana's score or treating her positive score as negative sends it below. The stem does not say which way an error goes.",
+  "intermediate_check": "-9.69: no, it is not the key moved by one printed rate; it combines the two products with the wrong rule. -8.49: no, it uses one eighth of Ana's score, not a printed relation from the key. -7.69: no, it is a borrowing slip in the last subtraction, not a value reached from the key through a printed number.",
+  "cheap_bound_check": "Cheapest one-sided bound: Ana's new score is positive and Ben's new score is negative but smaller in size than 9.6, so the sum is above -9.6; with Ben's score worked out (-8.64) the sum is above -8.64. Both strike only -9.69; -8.49 and -7.69 stay on the key's side.",
+  "shape_check": "The stem hands over: the sum is negative (Ben's score is much larger in size) - all four survive; the sum is greater than -9.6 - three survive (-8.49, -7.69, -7.59); two decimal places - all four survive.",
+  "interior_parity_check": "The two middle values -8.49 and -7.69 are both negative decimals to hundredths with the same digit pattern; the key is an end value and is not cleaner than them.",
+  "arith_class_check": "No class is forced: the products 1.05 and -8.64 give a sum ending in 9, and all four options end in 9. The key is not alone in any class (all negative, all two decimal places).",
+  "dup_search": {
+   "queries": [
+    "score&multipl",
+    "square&score&game",
+    "multiplies&negative",
+    "times&score&negative",
+    "score&negative",
+    "card&score"
+   ],
+   "hits_read": 6,
+   "nearest": "MM5-N23 (v5 card game: a score changed by adding and giving away signed cards) is addition only; MV2-N7-04 (golf scores relative to par) is a sum of integers. No earlier MAP item multiplies two signed scores by negative fractions and adds them. N7-02 in this file multiplies a fraction by a decimal once and divides a mixed number by a fraction; this item has two products and no division."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "Ana's new score is positive, Ben's is negative and larger in size, so the sum is negative",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "Ben's new score is between -9.6 and 0 and Ana's between 0 and 1.2, so the sum is between -9.6 and 1.2",
+    "strikes": [
+     "-9.69"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: 1.05 and 8.64 force no parity class; all options end in 9",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: the hundredths digit is 9 for every option",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "with Ben's new score worked out (-8.64), the sum is between -8.64 and -7.44 because Ana adds between 0 and 1.2",
+    "strikes": [
+     "-9.69"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "high",
+   "note": "Key rank 4. Distractors below it: -7.69 (borrowing slip in 8.64 - 1.05, the only slip), -8.49 (one eighth of Ana's score instead of seven eighths), -9.69 (adds the sizes 1.05 + 8.64 and keeps the negative sign). Covering the stem, the sorted set is -9.69, -8.49, -7.69, -7.59: second-smallest is -8.49, not the key; no option is x2/x3/x4/x1.5/x10 of two others and the key is in no ratio pair. Two parts push opposite ways: Ana's positive score up, Ben's negative score down; the far distractor -9.69 comes from an error on Ana's part (her positive score treated as negative). Counter error: sign slip on Ben's product gives 9.69, above the key, not an option. K1: no forced class; all options end in 9. K2: 9/10 and 7/8 are not within 10 points of 1/10, 1/4, 1/3, 1/2, 2/3 or 3/4 (7/8 is 12.5 points from 3/4). RISK: if a screener uses '7/8 > 3/4, so Ana's new score is more than 0.9' together with Ben's worked-out -8.64, the sum is above -7.74 and both -8.49 and -9.69 fall; that bound needs Ben's product computed and sits outside K2's window, and it is recorded here so the screener can rule on it. K3: no circle. K4: whole-number estimate E = (-1)(-7/8) + 10(-9/10) = -8.125; key distance 0.535; distances -8.49: 0.365, -7.69: 0.435, -9.69: 1.565 (the one beyond 1.07). Friendly estimate with 7/8 and 9/10 taken as 1: E = 1.2 - 9.6 = -8.4; key distance 0.81; distances 0.09, 0.71, 1.29, all inside 1.62. K5: no table. K6: forward chain. K7: N7-02 also multiplies a fraction by a decimal but has a division and a mixed number; the named misconceptions here (adding sizes across signs, unit fraction, borrow slip) are not used in my other items. No distractor is a solved intermediate (1.05, 8.64, -8.64 are not options). High tier for grade 7: two signed fraction products and a sum across zero. Cheapest declared bound strikes one distractor."
+  }
+ },
+ {
+  "id": "MB4-N6-03",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "6.NS.C.7",
+  "subskill": "Total vertical distance from signed elevations, one leg below 0",
+  "grade_rationale": "Mid for grade 6: 6.NS.C.7c, absolute value as distance. The first leg runs between two negative elevations (distance = difference of the absolute values) and the second crosses 0 (distance = sum of the absolute values); about half of grade-6 students use the right rule for each leg and subtract 4.8 - 2.75 with the missing hundredths written in.",
+  "prompt": "A dolphin is swimming at an elevation of -2.75 meters, which means 2.75 meters below the surface of the water. It dives straight down to an elevation of -4.8 meters. Then it swims straight up and leaps out of the water to an elevation of 2.6 meters. What is the total vertical distance, in meters, that the dolphin travels?",
+  "choices": [
+   "9.45",
+   "9.55",
+   "10.15",
+   "14.95"
+  ],
+  "correct_answer": "9.45",
+  "explanation": "Dive: from -2.75 down to -4.8. Both are below 0, so the distance is 4.80 - 2.75 = 2.05 meters. Climb: from -4.8 up to 2.6. This crosses 0, so the distance is 4.8 + 2.6 = 7.4 meters. Total vertical distance: 2.05 + 7.4 = 9.45 meters.",
+  "solve": "return ((4.8 - 2.75) + (4.8 + 2.6)).toFixed(2)",
+  "distractor_solve": {
+   "9.55": "const top = [4, 8, 0], bot = [2, 7, 5]; const d = top.map((x, i) => Math.abs(x - bot[i])); const dive = d[0] + d[1] / 10 + d[2] / 100; return (dive + 4.8 + 2.6).toFixed(2)",
+   "10.15": "return (2.75 + 4.8 + 2.6).toFixed(2)",
+   "14.95": "return ((4.8 + 2.75) + (4.8 + 2.6)).toFixed(2)"
+  },
+  "mechanism": [
+   "distance between two negative elevations: difference of the absolute values",
+   "distance across 0: sum of the absolute values",
+   "add the two legs"
+  ],
+  "quantity_asked": "the total vertical distance the dolphin travels, in meters",
+  "plugback": {
+   "substitutable": false,
+   "why": "A total distance cannot be checked by running the trip forward from an option; the only check is computing both legs, which is the solution itself."
+  },
+  "distractor_meta": {
+   "9.55": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "bringing down the extra digit when subtracting decimals of different lengths (no zero written in)",
+    "why": "She writes 4.8 over 2.75, sees nothing above the 5 and brings it down, then 8 - 7 = 1 and 4 - 2 = 2, so the dive is 2.15 m and the total 2.15 + 7.4 = 9.55."
+   },
+   "10.15": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "using each elevation's distance from the surface as a leg of the trip instead of the distance between points",
+    "why": "He adds the three distances from the surface, 2.75 + 4.8 + 2.6 = 10.15, as if the dolphin had started its dive at the surface."
+   },
+   "14.95": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "finding the distance between two negative numbers by adding their absolute values, as if they were on opposite sides of 0",
+    "why": "For the dive from -2.75 to -4.8 she adds 2.75 + 4.8 = 7.55 instead of subtracting, then adds the climb of 7.4: 14.95."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "return (2.6 - (-2.75)).toFixed(2)",
+   "direction": "below",
+   "why": "Using the net change from start to finish, 2.6 - (-2.75) = 5.35, instead of the distance travelled; a student who skips the dive lands below the key."
+  },
+  "far_distractor": {
+   "option": "10.15",
+   "natural_side": "below",
+   "why": "Adding the three distances from the surface usually comes out SHORT of the true total, because it replaces the dive (4.8 - 2.75) with the start depth 2.75, which is smaller than the dive whenever the dolphin starts near the surface; here the dolphin starts more than halfway down (2 x 2.75 = 5.5 > 4.8), so using 2.75 in place of the 2.05 m dive overshoots and lands above the key."
+  },
+  "structure_check": "Two parts push the answer opposite ways: the depth of the start (-2.75) is SUBTRACTED in the dive leg (a deeper start means a shorter dive), while the low point and the high point ADD. An error on the start (treating it as a surface start, or adding it) can push the total either way depending on where the start sits, so the stem does not sign every error; the net-change error lands below the key.",
+  "intermediate_check": "9.55: no - not the key plus or minus a printed number (+0.10). 10.15: no - the sum of the three printed distances, not a leg (the legs 2.05 and 7.4 are not options). 14.95: no - key + 5.50, which is 2 x 2.75, not a printed number and not a single printed relation from the key.",
+  "cheap_bound_check": "Cheapest one-sided bound: the dive is at most 4.8 m, so the total is at most 4.8 + 4.8 + 2.6 = 12.2; it strikes 14.95 only. The other side (total at least the climb, 7.4) strikes nothing; 9.55 and 10.15 sit on the key's side of every bound that does not require doing the subtraction 4.8 - 2.75.",
+  "shape_check": "The stem hands over: positive (all four), at least the climb 7.4 (all four), at most 12.2 (three survive), and a last digit of 5 hundredths from 2.75 (all four end in 5). 9.45, 9.55 and 10.15 survive all together.",
+  "interior_parity_check": "The two middle values 9.55 and 10.15 are both two-place decimals ending in 5; the key is the smallest option (rank 1 slot), not an interior value.",
+  "arith_class_check": "The hundredths digit is forced to 5 by 2.75 and all four options end in 5; no whole-number, even or multiple-of-k class is implied, and the key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "elevation&-[0-9]+\\.[0-9]+&total|in all|altogether",
+    "dolphin|diver|submarine|whale&above&below&total|in all",
+    "below&above&how (many|far)&(dives?|down)&(up|leaps?|jumps?|climbs?)",
+    "below&above&(dives?|swims? down|goes down)"
+   ],
+   "hits_read": 6,
+   "nearest": "MV2-N7-02 (withdrawn) and MV2-N56-20 (withdrawn): up-then-down totals where BOTH legs are read off directly (one across 0, one on the positive side). This item starts BELOW 0 and its first leg runs between two negatives (subtract the absolute values), which is where the far distractor 10.15 lives; the start-depth term is the new element. MV2-N7-01 (withdrawn) is a separation after two moves, not a distance travelled."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "a distance travelled is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "the dive is at most 4.8 m, so the total is at most 4.8 + 4.8 + 2.6 = 12.2",
+    "strikes": [
+     "14.95"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: decimal distances, no parity forced",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "the only hundredths digit printed is the 5 in 2.75, so the total ends in 5 hundredths",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "the total is at least the climb, 4.8 + 2.6 = 7.4",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Rank 1 (S, SIGNED). All three distractors sit above the key; the two parts that push opposite ways are the start depth (subtracted in the dive) and the low/high points (added). Far distractor 10.15: adding the three surface distances normally undershoots (shallow start) but overshoots here because 2 x 2.75 > 4.8; counter error (not an option) is the net change 5.35, below. Covering the stem: sorted 9.45 / 9.55 / 10.15 / 14.95; the second-smallest pick gets 9.55 and fails; no option is x2/x3/x1.5/x10 of two others (14.95/9.45 = 1.58); the key is no midpoint. Distances from the key +0.10, +0.70, +5.50: none printed, no x / 2x pair, none the sum of two printed numbers (7.55, 5.35, 7.4). K1: hundredths forced to 5, all four in it. K2: no benchmark fraction; the cap 12.2 strikes only 14.95. K3: none. K4: E = (5 - 3) + (5 + 3) = 10; key distance 0.55, band 1.10: 9.55 (0.45), 10.15 (0.15) inside, 14.95 outside - one; with half-unit rounding E = 9.5, the same single strike. K5: no table. No solved intermediate (2.05, 7.4) is an option. Really mid for grade 6: two different absolute-value distance rules plus a ragged-decimal subtraction. Cheapest bound strikes one (14.95). A student who reads only the cross-zero leg correctly and adds the start gets 14.95, one who brings down the 5 gets 9.55, one who uses surface distances gets 10.15, so the set is not one-sided. (read) PAIR: 14.95 - 9.45 = 2 x 2.75 is the sign on the start depth counted twice, the batch-1 survivor shape (a sign on a small term); 5.50 is not printed. (read) PLUG: total distance cannot be run forward from an option."
+  }
+ },
+ {
+  "id": "MB4-N7-02",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "7.NS.A.2",
+  "subskill": "Negative fraction times negative decimal plus mixed number divided by a fraction",
+  "grade_rationale": "A mid item for grade 7 (7.NS.A.2a-c, 7.NS.A.3): the student multiplies a negative fraction by a negative decimal (positive result), divides a negative mixed number by a fraction by multiplying by the reciprocal, and adds a positive and a negative decimal. Each step is grade-7 core; about half of grade-7 students keep every sign and the mixed-number sign right.",
+  "prompt": "Lena checks her homework. One problem asks her to multiply -2/3 by -1.95, divide -2 1/10 by 2/5, and add the two results. In other words, she must find (-2/3)(-1.95) + (-2 1/10) / (2/5). What number should she get?",
+  "choices": [
+   "-6.55",
+   "-3.95",
+   "-3.85",
+   "-3.45"
+  ],
+  "correct_answer": "-3.95",
+  "explanation": "First term: (-2/3)(-1.95). One third of 1.95 is 0.65, so two thirds is 1.30, and a negative times a negative is positive: 1.3. Second term: -2 1/10 = -2.1. Dividing by 2/5 is the same as multiplying by 5/2: -2.1 x 5/2 = -10.5 / 2 = -5.25. Add: 1.3 + (-5.25) = -3.95.",
+  "solve": "return ((-2 / 3) * (-1.95) + (-2.1) / (2 / 5)).toFixed(2)",
+  "distractor_solve": {
+   "-6.55": "return ((2 / 3) * (-1.95) + (-2.1) / (2 / 5)).toFixed(2)",
+   "-3.85": "return (1.4 + (-2.1) / (2 / 5)).toFixed(2)",
+   "-3.45": "return ((-2 / 3) * (-1.95) + (-2 + 0.1) / (2 / 5)).toFixed(2)"
+  },
+  "mechanism": [
+   "multiply a negative fraction by a negative decimal",
+   "divide a negative mixed number by a fraction",
+   "add a positive and a negative decimal"
+  ],
+  "quantity_asked": "the value of the expression",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option cannot be checked against the expression in one routine step; checking any value means evaluating both terms, which is the whole problem."
+  },
+  "distractor_meta": {
+   "-6.55": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "the product of two negative numbers is negative",
+    "why": "The student finds 2/3 of 1.95 = 1.3 but writes the product of the two negatives as -1.3, so the total is -1.3 - 5.25 = -6.55."
+   },
+   "-3.85": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": true,
+    "misconception": "computational slip in dividing 1.95 by 3 (0.70 recorded instead of 0.65)",
+    "why": "Dividing 1.95 by 3, the student carries the remainder into the tenths and writes 0.70 instead of 0.65, so two thirds becomes 1.40 and the total is 1.40 - 5.25 = -3.85."
+   },
+   "-3.45": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "applies the negative sign of a mixed number to the whole-number part only",
+    "why": "The student reads -2 1/10 as -2 + 1/10 = -1.9, so the quotient is -1.9 x 5/2 = -4.75 and the total is 1.3 - 4.75 = -3.45."
+   }
+  },
+  "structure_check": "Interior key (rank 2): the positive first term pushes the value up and the negative quotient pushes it down; one distractor lies below (sign error on the product) and two above.",
+  "intermediate_check": "-6.55: no, it is not reached from the key through a printed number; it changes the sign of the first term. -3.85: no, it is a slip inside the first term, not a printed relation. -3.45: no, it misreads the mixed number; it is not a step on the way to the key.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: the value is negative (the quotient is larger in size than the product) - all four survive; dividing by 2/5 makes the quotient bigger in size than 2.1, so the value is below 1.3 - 2.1 = -0.8 - all four survive; two decimal places - all four survive.",
+  "interior_parity_check": "The two middle values -3.95 (key) and -3.85 are both negative decimals to hundredths with the same digit pattern; the key is not the cleaner one.",
+  "arith_class_check": "No class is forced: 1.3 and -5.25 give a hundredths value ending in 5, and all options end in 5. The key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "-3/4&2.5",
+    "4/5&divid|÷ (4/5)",
+    "-3 1/5|3 1/5",
+    "without a calculator&fraction&negative",
+    "evaluate&negative&fraction",
+    "(-3/4)|(-2/3)|(-3/5)|(-1/4)",
+    "works out|simplif&calculator"
+   ],
+   "hits_read": 19,
+   "nearest": "MMG-N09 (map-math-g58-v1, not banked): -3.6 / (4/5) - (-1 1/4)(2.2), a decimal divided by a fraction minus a mixed number times a decimal. This slot's assigned mechanism is the mirror: a fraction times a decimal plus a mixed number divided by a fraction, with a different divisor (2/5) and a mixed-number sign error that MMG-N09 cannot carry. Flagged for the template reviewer."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "the quotient (-2.1 divided by a fraction less than 1) is larger in size than the product (less than 1.95), so the value is negative",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "2/5 is more than 1/3, so the quotient is smaller in size than 3 x 2.1 = 6.3 and the value is above 1.3 - 6.3 = -5.0",
+    "strikes": [
+     "-6.55"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: the hundredths digit is 5 for every option",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: every option ends in 5",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "2/5 is less than 1/2, so the quotient is larger in size than 4.2 and the value is below 1.95 - 4.2 = -2.25; the product is below 1.95, so the value is below 1.95 - 5.25 = -3.3",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Key rank 2. The one distractor below: -6.55 (product of two negatives taken as negative). Above: -3.85 (the one computational slip, in 1.95 / 3), -3.45 (negative sign on the whole part of -2 1/10 only). Covering the stem, sorted -6.55, -3.95, -3.85, -3.45: the second-smallest is the key by slot design (rank 2); no option is x2/x3/x4/x1.5/x10 of two others, the key is in no ratio pair and is not a midpoint. K1: no forced class; all end in 5. K2: 2/3 is exact (1/3 of 1.95 is 0.65); 2/5 sits between 1/3 and 1/2: '2/5 > 1/3' gives value > -5.0 (strikes -6.55 only), '2/5 < 1/2' gives value < -2.25 (strikes none); 'dividing by a fraction below 1 makes it bigger' gives value < -0.8 (none); 'the product is less than 1.95' gives value < -3.3 (none: -3.45 survives). K3: no circle. K4: whole-number estimate E = (2/3)(2) - 2 / (2/5) = -3.67; key distance 0.28; distances -3.85: 0.18, -3.45: 0.22, -6.55: 2.88 (the only one beyond 0.57). K5: no table. K6: forward evaluation. K7: N7-04 also multiplies by fractions but has two products, a context and no division; the misconceptions here (negative times negative, mixed-number sign, a division slip) are not reused in my file. No solved intermediate is an option (1.3, -5.25, -2.1 are not options). Mid tier for grade 7. Cheapest bound strikes one distractor."
+  }
+ },
+ {
+  "id": "MB4-N7-05",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 7,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "7.NS.A.2",
+  "subskill": "Distribute a negative over a difference, then add a negative product",
+  "grade_rationale": "A high item for grade 7 (7.NS.A.2a, 7.NS.A.3): the student must distribute -2.2 over a difference whose value is negative (or subtract inside first and keep the sign), then add a positive times a negative. Only stronger grade-7 students keep the subtraction order, multiply both terms, and read 1.5(-0.8) as a product.",
+  "prompt": "Omar uses the distributive property to find the value of -1.4(0.55 - 1.25) + 1.5(-0.2). What value should he get?",
+  "choices": [
+   "0.18",
+   "0.58",
+   "0.68",
+   "1.28"
+  ],
+  "correct_answer": "0.68",
+  "explanation": "Distribute -1.4: -1.4(0.55) - (-1.4)(1.25) = -0.77 + 1.75 = 0.98. (Or: 0.55 - 1.25 = -0.70, and -1.4 x (-0.70) = 0.98.) Next, 1.5(-0.2) = -0.3. Add: 0.98 + (-0.3) = 0.68.",
+  "solve": "return (-1.4 * (0.55 - 1.25) + 1.5 * (-0.2)).toFixed(2)",
+  "distractor_solve": {
+   "0.18": "return (-1.4 * 0.55 + 1.25 + 1.5 * (-0.2)).toFixed(2)",
+   "0.58": "return (0.88 + 1.5 * (-0.2)).toFixed(2)",
+   "1.28": "return (-1.4 * (0.55 - 1.25) + 1.5 * 0.2).toFixed(2)"
+  },
+  "mechanism": [
+   "distribute a negative decimal over a difference",
+   "multiply a positive decimal by a negative decimal",
+   "add the two results"
+  ],
+  "quantity_asked": "the value of the expression",
+  "plugback": {
+   "substitutable": false,
+   "why": "No option can be checked against the expression in one routine step; checking any value means evaluating both parts, which is the whole problem."
+  },
+  "distractor_meta": {
+   "0.18": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "distributes the sign to the second term but multiplies only the first term by the number",
+    "why": "The student writes -1.4(0.55) + 1.25, changing the sign of 1.25 but never multiplying it by 1.4, so the first part is -0.77 + 1.25 = 0.48 and the total is 0.48 - 0.3 = 0.18."
+   },
+   "0.58": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": true,
+    "misconception": "computational slip: adds the wrong carried digit when multiplying 14 by 7",
+    "why": "Working 1.4 x 0.70 as 14 x 7, the student writes the 8 from 4 x 7 = 28 but adds a carried 1 instead of 2 to 1 x 7, getting 0.88; the total is then 0.88 - 0.3 = 0.58."
+   },
+   "1.28": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "a positive number times a negative number is positive",
+    "why": "The student takes 1.5(-0.2) as +0.3, so the total is 0.98 + 0.3 = 1.28."
+   }
+  },
+  "structure_check": "Interior key (rank 3): the distributed first part is positive (0.98) and pushes the value up; 1.5(-0.2) is negative and pushes it down. Two distractors lie below (errors in the first part) and one above (a sign error in the second part).",
+  "intermediate_check": "0.18: no, it leaves 1.25 unmultiplied; not reached from the key through a printed number. 0.58: no, it is a carry slip inside the first part. 1.28: no, it flips the sign of the second part; it is not a step on the way to the key.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: the first part is positive and the second negative, so the value is above -0.3 - all four survive; the first part is less than 1.4 x 1 because 1.25 - 0.55 is less than 1, so the value is below 1.4 - 0.3 = 1.1 - three survive (1.28 fails); two decimal places - all four survive.",
+  "interior_parity_check": "The two middle values 0.58 and 0.68 are both two-decimal numbers below 1; the key is not the cleaner one.",
+  "arith_class_check": "No class is forced: 0.98 - 0.3 ends in 8 and every option ends in 8. The key is not alone in any class (all positive, all two decimal places).",
+  "dup_search": {
+   "queries": [
+    "distributive",
+    "parentheses&negative",
+    "-2.2|1.45",
+    "works out|simplif&calculator",
+    "-1.4|1.25"
+   ],
+   "hits_read": 16,
+   "nearest": "MV2-N7-06 (batch 1, withdrawn): (-3.5)(-1.5 - 0.6) + (-3.6), a negative times a bracket with a subtraction and then a negative added; MM4-N27 and MB2-N78-03 are -1.5 times a difference alone. This slot's assigned mechanism adds a second product, 1.5(-0.8), and its distractors come from partial distribution and reading a product as a difference, which none of those carry. Flagged for the template reviewer."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "0.55 - 1.25 is negative, so -1.4 times it is positive; it is about 1, larger than 0.3, so the value is positive - every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "1.25 - 0.55 is less than 1, so the first part is less than 1.4 and the value is less than 1.4 - 0.3 = 1.1",
+    "strikes": [
+     "1.28"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: every option ends in 8",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: every option ends in 8",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "the first part is more than half of 1.4 (1.25 - 0.55 is more than 1/2), so the value is above 0.7 - 0.3 = 0.4",
+    "strikes": [
+     "0.18"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "RETURN REVISION (screener S-R4/S-R5: the old set had two negative distractors struck by 'the value is positive' and 2.57 struck by 'the first term is under 2.2'). Numbers changed so every option is positive and only one distractor lies past the 'first part under 1.4' cap. Key rank 3 kept. Below the key: 0.18 (1.25 never multiplied by 1.4, the sign alone distributed), 0.58 (carry slip in 14 x 7, the one slip). Above: 1.28 (positive times negative taken as positive). Covering the stem, sorted 0.18, 0.58, 0.68, 1.28: the second-smallest is 0.58, not the key; no option is x2/x3/x4/x1.5/x10 of two others and the key is in no ratio pair or midpoint ((0.18 + 1.28)/2 = 0.73). Screener's bounds rerun: positive value strikes none; first part < 1.4 gives value < 1.1, strikes 1.28 only; first part > 0.7 (difference over 1/2) gives value > 0.4, strikes 0.18 only - each bound strikes one, and together they leave the key and 0.58. K1: every option ends in 8. K2: no printed fraction or percent; the 'over 1/2' bound is the one above. K4: whole-number estimate -1(1 - 1) + 2(0) = 0 (0.55 and 1.25 both round to 1, 0.2 to 0); key distance 0.68; all distractors within 1.36. K5/K6: none. K7: the only distribution item in my file; the sign rule here (positive x negative) is not N7-02's (negative x negative). No solved intermediate is an option (0.98, -0.3, -0.70, -0.77, 1.75 are not options). High tier for grade 7. Risk: 0.58 sits next to the key, and the two combined bounds leave the key and that slip."
+  }
+ },
+ {
+  "id": "MB4-N7-01",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "7.NS.A.3",
+  "subskill": "Mean of positive and negative weekly changes (hundredths)",
+  "grade_rationale": "A mid item for grade 7 (7.NS.A.3): the student must add two negative and two positive decimals in hundredths, keep track of the sign of the total, and then divide a negative total by 4. The hard step is combining the signed values correctly; a typical grade-7 student either slips a sign on one change or divides only part of the sum.",
+  "prompt": "A beekeeper weighs a beehive at the end of each week. Over four weeks, the weight of the hive changed by -3.48 kilograms, -1.40 kilograms, +0.12 kilogram, and +0.28 kilogram. What was the mean (average) weekly change in the weight of the hive, in kilograms?",
+  "choices": [
+   "-1.12",
+   "-1.02",
+   "-0.82",
+   "-0.42"
+  ],
+  "correct_answer": "-1.12",
+  "explanation": "Add the four changes: -3.48 + (-1.40) = -4.88. The gains add to 0.12 + 0.28 = 0.40, so the total change is -4.88 + 0.40 = -4.48. The mean is the total divided by the number of weeks: -4.48 / 4 = -1.12. The mean weekly change was -1.12 kilograms.",
+  "solve": "return ((-348 - 140 + 12 + 28) / 4 / 100).toFixed(2)",
+  "distractor_solve": {
+   "-1.02": "return ((-348 - 140 + 12 + 28 + 40) / 4 / 100).toFixed(2)",
+   "-0.82": "return (((-348 - 140) / 4 + 12 + 28) / 100).toFixed(2)",
+   "-0.42": "return ((-348 + 140 + 12 + 28) / 4 / 100).toFixed(2)"
+  },
+  "mechanism": [
+   "add two negative and two positive decimal changes",
+   "divide the signed total by the number of weeks"
+  ],
+  "quantity_asked": "the mean weekly change in the hive's weight, in kilograms",
+  "plugback": {
+   "substitutable": false,
+   "why": "To check an option a student must multiply it by 4 and compare it with the total of the four changes, which means finding that signed total first - the whole problem. No option can be checked against the story in one routine step."
+  },
+  "distractor_meta": {
+   "-1.02": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": true,
+    "misconception": "computational slip in the long division (a quotient digit recorded as 0)",
+    "why": "The student finds the total -4.48 correctly but, dividing 4.48 by 4 digit by digit, records 0 instead of 1 for the tenths (4 tenths divided by 4), writing -1.02."
+   },
+   "-0.82": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "divides only part of the sum by the count (order of operations in a mean)",
+    "why": "The student averages the two losses, (-3.48 - 1.40) / 4 = -1.22, and then adds the two gains in whole, -1.22 + 0.40 = -0.82, as if the division applied only to the first group of numbers."
+   },
+   "-0.42": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "treats a negative change as a positive one when adding signed numbers",
+    "why": "The student adds 1.40 instead of -1.40, so the total is -3.48 + 1.40 + 0.40 = -1.68 and the mean is -0.42."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "return ((-348 - 140 + 12 - 28) / 4 / 100).toFixed(2)",
+   "direction": "below",
+   "why": "A sign slip on a gain (using -0.28 instead of +0.28) makes the total -5.04 and the mean -1.26, below the key. Sign slips on the gains push the answer down; sign slips on the losses push it up."
+  },
+  "far_distractor": {
+   "option": "-0.82",
+   "natural_side": "below",
+   "why": "Leaving part of a sum undivided usually makes a mean too big in size, which for a negative mean would push it further below zero; here the part left undivided is the two GAINS, so the error lifts the answer above the key."
+  },
+  "structure_check": "The losses (-3.48, -1.40) pull the mean down and the gains (+0.12, +0.28) pull it up. A sign slip on a loss raises the answer; a sign slip on a gain lowers it (counter error -1.26); leaving the gains undivided raises it. The stem does not say which way an error goes.",
+  "intermediate_check": "-1.02: no, it is not reached from the key through a printed rate; it is a slip in the quotient digit. -0.82: no, it mixes a quarter of the losses with the whole gains, not a printed relation. -0.42: no, it comes from a sign change on one listed value, not from a printed relation.",
+  "cheap_bound_check": "Cheapest one-sided bound: the losses add to more than 4 (3.48 + 1.40) and the gains to less than 1 (0.12 + 0.28), so the total is below -3 and the mean is below -0.75. It strikes -0.42 only; -1.02 and -0.82 sit on the key's side with it.",
+  "shape_check": "The stem hands over: the mean is negative (losses outweigh gains) - all four survive; the mean lies between the smallest and largest change (-3.48 and 0.28) - all four survive; hundredths - all four survive.",
+  "interior_parity_check": "The two middle values -1.02 and -0.82 are both negative decimals to hundredths with the same digit pattern; the key is an end value and is not cleaner than them.",
+  "arith_class_check": "No class is forced: a hundredths total divided by 4 can end in any digit, and all four options end in 2. The key is not alone in any class (all negative, all two decimal places, none whole).",
+  "dup_search": {
+   "queries": [
+    "mean&change",
+    "hive|beehive",
+    "average&week",
+    "mean&negative"
+   ],
+   "hits_read": 19,
+   "nearest": "0174482d-b71 (DB map-math-g58-v5, pond water level, mean of +0.8, -6.3, -9.5, +4.4) uses the same add-then-divide chain; this slot's mechanism was assigned by the slot table after that check. Differences: hundredths with a zero-hundredths loss, weekly hive context, gains far smaller than losses, and a distractor set built on partial division and a quotient slip, which the pond item does not use. Flagged for the template reviewer."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "the losses total more than the gains, so the mean is negative",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "losses over 4 and gains under 1, so the total is below -3 and the mean below -0.75",
+    "strikes": [
+     "-0.42"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: a hundredths total divided by 4 forces no parity on the last digit; all options end in 2",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: the final digit comes from dividing the total by 4; all options end in 2",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "the mean lies between the smallest change -3.48 and the largest +0.28",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Key rank 1. Distractors above it: -1.02 (quotient-digit slip, the one slip), -0.82 (average only the losses, add the gains whole), -0.42 (sign slip on -1.40). Covering the stem, the sorted set is -1.12, -1.02, -0.82, -0.42: the second-smallest is -1.02, not the key; no option is x2/x3/x4/x1.5/x10 of two others and the key is in no ratio pair. Two parts push opposite ways: the losses push down, the gains push up; the far distractor -0.82 comes from an error on the gains. Counter error: sign slip on +0.28 gives -1.26, below the key, not an option. K1: no forced class; all options end in 2. K2: printed totals give 'losses over 4, gains under 1, mean below -0.75', which strikes only -0.42; a cap of 'gains under 1' gives the same bound. K3: no circle. K4: E = (-3 - 1 + 0 + 0) / 4 = -1.0; key distance 0.12; distractor distances -1.02: 0.02, -0.82: 0.18, -0.42: 0.58 - only -0.42 is beyond 0.24. K5: no table. K6: forward chain. K7: the only mean item in my file. No distractor is a solved intermediate (the total -4.48 and the loss total -4.88 are not options). Mid tier for grade 7: four signed hundredths and a negative quotient. Cheapest bound (magnitude) strikes one distractor. Duplicate risk: the live pond item has the same add-then-divide chain; this is the slot table's assigned mechanism, noted in dup_search."
+  }
+ }
+]

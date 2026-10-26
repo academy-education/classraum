@@ -1,0 +1,339 @@
+[
+ {
+  "id": "MB4-D-07",
+  "domain": "Statistics and Probability",
+  "subskill": "Independent events, one complemented: P(A and B) as a percent",
+  "difficulty": "medium",
+  "topic_tag": "7.SP.C.8a",
+  "prompt": "The probability that Jun wins his chess match on Saturday is 0.35. The probability that Mei wins her tennis match on Saturday is 0.3. The two results do not affect each other. What is the probability, as a percent, that Jun does NOT win his match and Mei wins her match?",
+  "choices": [
+   "19.5",
+   "24.5",
+   "10.5",
+   "45.5"
+  ],
+  "correct_answer": "19.5",
+  "explanation": "The probability that Jun does not win is 1 - 0.35 = 0.65. Because the results do not affect each other, multiply: 0.65 x 0.3 = 0.195, which is 19.5%.",
+  "solve": "return String(Math.round((1-0.35)*0.3*1000)/10);",
+  "graphic": null,
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "ccss": "7.SP.C.8a",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "24.5",
+    "mis_step": "The student complements Mei's probability instead of Jun's: 0.35 x 0.7 = 0.245, the chance that Jun wins and Mei does not: 24.5%."
+   },
+   {
+    "choice": "10.5",
+    "mis_step": "The student multiplies the two printed probabilities, 0.35 x 0.3 = 0.105, which is the chance that both win: 10.5%."
+   },
+   {
+    "choice": "45.5",
+    "mis_step": "Seeing one 'not', the student complements both probabilities: 0.65 x 0.7 = 0.455, the chance that neither wins: 45.5%."
+   }
+  ],
+  "distractor_solve": {
+   "10.5": "return String(Math.round(0.35*0.3*1000)/10);",
+   "24.5": "return String(Math.round(0.35*(1-0.3)*1000)/10);",
+   "45.5": "return String(Math.round((1-0.35)*(1-0.3)*1000)/10);"
+  }
+ },
+ {
+  "id": "MB4-D-12",
+  "domain": "Statistics and Probability",
+  "subskill": "Line of fit: mean of the predicted values for five x-values",
+  "difficulty": "medium",
+  "topic_tag": "8.SP.A.3",
+  "prompt": "A painter made a scatter plot of x, the length of a fence section in meters, and y, the time in minutes it took to paint the section. A line of fit for the data is y = 2.5x + 6. The painter has five more fence sections to paint, with lengths of 21, 22, 24, 28, and 29 meters. What is the mean of the five predicted painting times, in minutes?",
+  "choices": [
+   "66",
+   "68",
+   "63.2",
+   "77"
+  ],
+  "correct_answer": "68",
+  "explanation": "The predicted times are 2.5 x 21 + 6 = 58.5, 61, 66, 76 and 78.5 minutes. Their sum is 340, and 340 / 5 = 68. (Equivalently, the mean length is 124 / 5 = 24.8 meters, and 2.5 x 24.8 + 6 = 68.)",
+  "solve": "const xs=[21,22,24,28,29];const p=xs.map(x=>2.5*x+6);return String(p.reduce((a,b)=>a+b,0)/5);",
+  "graphic": null,
+  "grade_target": 8,
+  "tier": "mid",
+  "rit_band": "RIT 220-229",
+  "ccss": "8.SP.A.3",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "66",
+    "mis_step": "The student takes the middle length, 24 meters, as the typical section and gives its prediction, 2.5 x 24 + 6 = 66."
+   },
+   {
+    "choice": "63.2",
+    "mis_step": "The student computes 2.5 x (21 + 22 + 24 + 28 + 29) + 6 = 316 as the total of the predictions and divides by 5 to get 63.2."
+   },
+   {
+    "choice": "77",
+    "mis_step": "With the mean length 24.8, the student computes 2.5 x (24.8 + 6) = 77 instead of 2.5 x 24.8 + 6."
+   }
+  ],
+  "distractor_solve": {
+   "66": "const xs=[21,22,24,28,29];return String(2.5*xs[2]+6);",
+   "77": "const xs=[21,22,24,28,29];const m=xs.reduce((a,b)=>a+b,0)/5;return String(Math.round(2.5*(m+6)*10)/10);",
+   "63.2": "const xs=[21,22,24,28,29];const s=xs.reduce((a,b)=>a+b,0);return String(Math.round((2.5*s+6)/5*10)/10);"
+  }
+ },
+ {
+  "id": "MB4-D-05",
+  "domain": "Statistics and Probability",
+  "subskill": "Frequency table: how much greater the mean is than the mode",
+  "difficulty": "hard",
+  "topic_tag": "6.SP.B.5c",
+  "prompt": "A basketball player recorded how many points she scored in each of ten games. The table shows the results: each row gives a number of points and the number of games in which she scored that many points. How much greater is the mean number of points per game than the mode?",
+  "choices": [
+   "4.5",
+   "3",
+   "2.5",
+   "3.4"
+  ],
+  "correct_answer": "2.5",
+  "explanation": "The total number of points is 6 x 4 + 8 x 1 + 10 x 3 + 11 x 1 + 12 x 1 = 24 + 8 + 30 + 11 + 12 = 85, so the mean is 85 / 10 = 8.5 points. The mode is the number of points scored in the most games: 6 points (4 games). The mean is 8.5 - 6 = 2.5 points greater than the mode.",
+  "solve": "const v=[6,8,10,11,12],f=[4,1,3,1,1];const n=f.reduce((a,b)=>a+b,0);const mean=v.reduce((a,x,i)=>a+x*f[i],0)/n;const mode=v[f.indexOf(Math.max(...f))];return String(Math.round((mean-mode)*100)/100);",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "6",
+    "8",
+    "10",
+    "11",
+    "12"
+   ],
+   "colLabels": [
+    "Number of Games"
+   ],
+   "cells": [
+    [
+     4
+    ],
+    [
+     1
+    ],
+    [
+     3
+    ],
+    [
+     1
+    ],
+    [
+     1
+    ]
+   ]
+  },
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "ccss": "6.SP.B.5c",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "4.5",
+    "mis_step": "The student finds the mean 8.5 correctly but reports the mode as 4, the largest number in the Number of Games column, so 8.5 - 4 = 4.5."
+   },
+   {
+    "choice": "3",
+    "mis_step": "The student lists the ten scores in order, takes the middle value (8 + 10) / 2 = 9 as the 'average', and 9 - 6 = 3."
+   },
+   {
+    "choice": "3.4",
+    "mis_step": "The student finds the mean of 6, 8, 10, 11 and 12 (47 / 5 = 9.4) as if each value appeared once, and 9.4 - 6 = 3.4."
+   }
+  ],
+  "distractor_solve": {
+   "3": "const d=[6,6,6,6,8,10,10,10,11,12];return String((d[4]+d[5])/2-6);",
+   "3.4": "const v=[6,8,10,11,12];return String(Math.round((v.reduce((a,b)=>a+b,0)/v.length-6)*100)/100);",
+   "4.5": "const v=[6,8,10,11,12],f=[4,1,3,1,1];const mean=v.reduce((a,x,i)=>a+x*f[i],0)/10;return String(Math.round((mean-Math.max(...f))*100)/100);"
+  }
+ },
+ {
+  "id": "MB4-D-09",
+  "domain": "Statistics and Probability",
+  "subskill": "Probability model with a missing value: expected count",
+  "difficulty": "medium",
+  "topic_tag": "7.SP.C.7a",
+  "prompt": "A prize machine gives out red, blue, green, or yellow balls. The table shows the probability model for the color of one ball, but the probability for yellow is missing. Mason will get 200 balls from the machine. Based on the model, how many yellow balls should he expect to get?",
+  "choices": [
+   "65",
+   "50",
+   "54",
+   "119"
+  ],
+  "correct_answer": "65",
+  "explanation": "The four probabilities add to 1. Green is 1/8 = 0.125. So yellow is 1 - 0.25 - 0.3 - 0.125 = 0.325. In 200 balls, Mason should expect 0.325 x 200 = 65 yellow balls.",
+  "solve": "const y=1-0.25-0.3-1/8;return String(Math.round(y*200));",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Red",
+    "Blue",
+    "Green",
+    "Yellow"
+   ],
+   "colLabels": [
+    "Probability"
+   ],
+   "cells": [
+    [
+     "0.25"
+    ],
+    [
+     "0.3"
+    ],
+    [
+     "1/8"
+    ],
+    [
+     "?"
+    ]
+   ]
+  },
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "ccss": "7.SP.C.7a",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "50",
+    "mis_step": "Ignoring the model, the student gives each of the 4 colors a chance of 1/4 and expects 200 / 4 = 50 yellow balls."
+   },
+   {
+    "choice": "54",
+    "mis_step": "The student writes 1/8 as 0.18, so yellow is 1 - 0.25 - 0.3 - 0.18 = 0.27, and 0.27 x 200 = 54."
+   },
+   {
+    "choice": "119",
+    "mis_step": "Adding 0.25 and 0.3 with the right ends lined up, the student gets 0.28; then 1 - 0.28 - 0.125 = 0.595 and 0.595 x 200 = 119."
+   }
+  ],
+  "distractor_solve": {
+   "50": "return String(200/4);",
+   "54": "const y=1-0.25-0.3-0.18;return String(Math.round(y*200));",
+   "119": "const y=1-(0.25+0.03)-1/8;return String(Math.round(y*200));"
+  }
+ },
+ {
+  "id": "MB4-D-01",
+  "domain": "Statistics and Probability",
+  "subskill": "Line plot: total change when one value is re-recorded",
+  "difficulty": "medium",
+  "topic_tag": "5.MD.B.2",
+  "prompt": "Students measured the lengths of some shells, in inches. The table shows the line plot data: each row gives a length and the number of shells with that length. Later the students found that every shell recorded as 1 3/4 inches long was really 2 3/8 inches long. When those lengths are corrected, by how many inches does the total length of all the shells increase?",
+  "choices": [
+   "2 5/8",
+   "1 7/8",
+   "2 1/2",
+   "4 1/8"
+  ],
+  "correct_answer": "1 7/8",
+  "explanation": "Only the 3 shells recorded as 1 3/4 inches change. Each one is really 2 3/8 inches, so each grows by 2 3/8 - 1 3/4 = 2 3/8 - 1 6/8 = 1 11/8 - 1 6/8 = 5/8 inch. Three shells grow by 3 x 5/8 = 15/8 = 1 7/8 inches, so the total length increases by 1 7/8 inches.",
+  "solve": "const mx=(n,d)=>{const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d);n/=k;d/=k;const w=Math.floor(n/d),r=n-w*d;return r===0?String(w):(w?w+' '+r+'/'+d:r+'/'+d);};const per=(2*8+3)-(1*8+6);return mx(3*per,8);",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "1 1/2",
+    "1 3/4",
+    "2 1/8",
+    "2 3/8"
+   ],
+   "colLabels": [
+    "Number of Shells"
+   ],
+   "cells": [
+    [
+     5
+    ],
+    [
+     3
+    ],
+    [
+     6
+    ],
+    [
+     4
+    ]
+   ]
+  },
+  "grade_target": 5,
+  "tier": "mid",
+  "rit_band": "RIT 200-209",
+  "ccss": "5.MD.B.2",
+  "area_25": "Measurement and Data",
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "2 5/8",
+    "mis_step": "To subtract 1 6/8 from 2 3/8 the student borrows 1 whole as 10/8, making 1 13/8, so each shell grows 13/8 - 6/8 = 7/8 and 3 shells give 21/8 = 2 5/8."
+   },
+   {
+    "choice": "2 1/2",
+    "mis_step": "The student finds the 5/8 growth per shell correctly but multiplies by 4, the number of shells already in the 2 3/8 row, getting 20/8 = 2 1/2."
+   },
+   {
+    "choice": "4 1/8",
+    "mis_step": "Faced with 3/8 - 6/8, the student takes 6/8 - 3/8 = 3/8 and 2 - 1 = 1, so each shell grows 1 3/8 and 3 shells give 33/8 = 4 1/8."
+   }
+  ],
+  "distractor_solve": {
+   "2 5/8": "const mx=(n,d)=>{const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d);n/=k;d/=k;const w=Math.floor(n/d),r=n-w*d;return r===0?String(w):(w?w+' '+r+'/'+d:r+'/'+d);};const per=10+3-6;return mx(3*per,8);",
+   "2 1/2": "const mx=(n,d)=>{const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d);n/=k;d/=k;const w=Math.floor(n/d),r=n-w*d;return r===0?String(w):(w?w+' '+r+'/'+d:r+'/'+d);};const per=(2*8+3)-(1*8+6);return mx(4*per,8);",
+   "4 1/8": "const mx=(n,d)=>{const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d);n/=k;d/=k;const w=Math.floor(n/d),r=n-w*d;return r===0?String(w):(w?w+' '+r+'/'+d:r+'/'+d);};const per=8*(2-1)+(6-3);return mx(3*per,8);"
+  }
+ },
+ {
+  "id": "MB4-D-04",
+  "domain": "Statistics and Probability",
+  "subskill": "Range minus interquartile range for eleven unordered values",
+  "difficulty": "medium",
+  "topic_tag": "6.SP.B.5c",
+  "prompt": "The numbers of minutes that eleven bus trips took were 61, 35, 56, 17, 13, 15, 31, 19, 33, 23, and 16. Use this rule for quartiles: the first quartile is the median of the five values below the median, and the third quartile is the median of the five values above the median; the median itself is left out of both groups. How many minutes greater is the range of the trip times than the interquartile range?",
+  "choices": [
+   "26",
+   "25",
+   "29",
+   "30.5"
+  ],
+  "correct_answer": "29",
+  "explanation": "In order the times are 13, 15, 16, 17, 19, 23, 31, 33, 35, 56, 61. The range is 61 - 13 = 48. The median is 23. The five values below it are 13, 15, 16, 17, 19, so the first quartile is 16; the five above it are 31, 33, 35, 56, 61, so the third quartile is 35. The interquartile range is 35 - 16 = 19. The range is 48 - 19 = 29 minutes greater.",
+  "solve": "const v=[61,35,56,17,13,15,31,19,33,23,16];const s=[...v].sort((a,b)=>a-b);return String((s[10]-s[0])-(s[8]-s[2]));",
+  "graphic": null,
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "ccss": "6.SP.B.5c",
+  "area_25": null,
+  "map_area": "data",
+  "distractor_steps": [
+   {
+    "choice": "26",
+    "mis_step": "Without ordering, the student uses the first and last numbers in the list, 61 and 16, as the extremes, so the range is 45 and 45 - 19 = 26."
+   },
+   {
+    "choice": "25",
+    "mis_step": "The student finds the range correctly but takes the 3rd and 9th numbers as written, 56 and 33, as the quartiles, so the interquartile range is 23 and 48 - 23 = 25."
+   },
+   {
+    "choice": "30.5",
+    "mis_step": "Ignoring the rule, the student splits the eleven values into two groups of six that share 23, so the quartiles are 16.5 and 34, the interquartile range is 17.5, and 48 - 17.5 = 30.5."
+   }
+  ],
+  "distractor_solve": {
+   "25": "const v=[61,35,56,17,13,15,31,19,33,23,16];const s=[...v].sort((a,b)=>a-b);return String((s[10]-s[0])-Math.abs(v[8]-v[2]));",
+   "26": "const v=[61,35,56,17,13,15,31,19,33,23,16];const s=[...v].sort((a,b)=>a-b);return String(Math.abs(v[10]-v[0])-(s[8]-s[2]));",
+   "30.5": "const s=[61,35,56,17,13,15,31,19,33,23,16].sort((a,b)=>a-b);return String((s[10]-s[0])-((s[7]+s[8])/2-(s[2]+s[3])/2));"
+  }
+ }
+]

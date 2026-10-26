@@ -1,0 +1,44 @@
+{
+ "screened": 26,
+ "fails": {
+  "MB4-N5-02": [
+   "S-R4 2 struck without solving: [\"4 3/8\",\"4 7/8\"] (fractions 3/4+1/2+7/8 clearly exceed 2 (3/4+7/8>1.5, +1/2), so total > 5 kills both 4-wholes)",
+   "S-R7 option pair 5 1/8 & 5 5/8: +1/2"
+  ],
+  "MB4-D-05": [
+   "S-R7 option pair 1.9 & 2.9: +1 (mode 5 vs printed frequency 4)"
+  ],
+  "MB4-D-02": [
+   "S-R4 2 struck without solving: [\"3\",\"5\"] (pitcher is over 4 quarts (16 cups) and jar under 2 quarts (8 cups), so the difference exceeds 8 cups)",
+   "S-R8 one-sided extreme key"
+  ],
+  "MB4-N8-05": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MB4-N5-03": [
+   "S-R7 option pair 5.25 & 6.05: +0.2 x (5-1)",
+   "S-R8 one-sided extreme key"
+  ],
+  "MB4-D-06": [
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (6 of 20 is under a third, so the gap is more than 3 x 2.1 = 6.3)"
+  ],
+  "MB4-N5-05": [
+   "S-R4 3 struck without solving: [\"11 7/8\",\"10 5/8\",\"12 1/8\"] (Ana walked more than 5 x 3 = 16 km (at least 16) and Ben under 3 x 1 1/6 = 3.5 km, so the difference exceeds 12.5)",
+   "S-R5 key identifiable without solving",
+   "S-R8 one-sided extreme key",
+   "S-R10 single bound kills all (difference > 16 - 3.5 = 12.5)"
+  ],
+  "MB4-N7-05": [
+   "S-R4 3 struck without solving: [\"-1.07\",\"-3.07\",\"2.57\"] (-2.2 x (negative) is positive and near 1.9, which outweighs -1.2, so the value is positive; that term is under 2.2, so the total is under 1.0, which kills 2.57)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MB4-D-08": [
+   "S-R8 one-sided extreme key"
+  ],
+  "MB4-D-10": [
+   "S-R4 2 struck without solving: [\"7.2\",\"8.1\"] (Q is only 0.9 cm taller but has 9 g more food (the line predicts about 7 cm more), so Q's residual is lower and the difference is negative)"
+  ]
+ }
+}

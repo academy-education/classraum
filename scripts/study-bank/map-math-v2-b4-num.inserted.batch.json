@@ -1,0 +1,45 @@
+[
+ {
+  "id": "MB4-N5-09",
+  "domain": "Real and Complex Number Systems",
+  "subskill": "Share what is left equally, then add one share to an amount",
+  "difficulty": "hard",
+  "topic_tag": "5.NBT.B.7",
+  "prompt": "Grandpa has a 5.7-kilogram bag of birdseed. He keeps 0.9 kilogram for himself and shares the rest equally among Ana and Ana's 2 cousins. Ana already had 2.85 kilograms of birdseed. How many kilograms of birdseed does Ana have now?",
+  "choices": [
+   "4.45",
+   "3.85",
+   "2.55",
+   "4.05"
+  ],
+  "correct_answer": "4.45",
+  "explanation": "Birdseed Grandpa shares: 5.7 - 0.9 = 4.8 kilograms. It is shared among 3 people (Ana and her 2 cousins): 4.8 / 3 = 1.6 kilograms each. Ana now has 2.85 + 1.6 = 4.45 kilograms.",
+  "solve": "return (2.85+(5.7-0.9)/3).toFixed(2)",
+  "graphic": null,
+  "grade_target": 5,
+  "tier": "high",
+  "rit_band": "RIT 210-219",
+  "ccss": "5.NBT.B.7",
+  "area_25": "Number and Operations",
+  "map_area": "num",
+  "distractor_steps": [
+   {
+    "choice": "3.85",
+    "mis_step": "The student shares the whole bag (5.7 / 3 = 1.9), then takes Grandpa's 0.9 out of Ana's share alone: 2.85 + 1.9 - 0.9 = 3.85."
+   },
+   {
+    "choice": "2.55",
+    "mis_step": "The student adds everything first and divides all of it by 3: (2.85 + 4.8) / 3 = 2.55, as if Ana's birdseed were shared too."
+   },
+   {
+    "choice": "4.05",
+    "mis_step": "The student divides the 4.8 kilograms among 4 people (Grandpa, Ana and 2 cousins): 4.8 / 4 = 1.2, so 2.85 + 1.2 = 4.05."
+   }
+  ],
+  "distractor_solve": {
+   "2.55": "return ((2.85+5.7-0.9)/3).toFixed(2)",
+   "3.85": "return (2.85+5.7/3-0.9).toFixed(2)",
+   "4.05": "return (2.85+(5.7-0.9)/4).toFixed(2)"
+  }
+ }
+]

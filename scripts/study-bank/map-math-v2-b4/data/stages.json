@@ -1,0 +1,247 @@
+{
+ "prereg": "scripts/study-bank/MAP-MATH-V2-B4.prereg.md",
+ "area": "Statistics and Probability",
+ "frozenSha": "f3e8e0584ce67e23a1964a6c4a99e30268a1d8343fd72e5c884ab7d7853f74d1",
+ "n": 8,
+ "optionsOnly": {
+  "cand": {
+   "n": 8,
+   "picks": 24,
+   "hits": 8,
+   "unan": 2
+  },
+  "ctrl": {
+   "n": 8,
+   "picks": 24,
+   "hits": 7,
+   "unan": 1
+  },
+  "status": "pass",
+  "cr": 33.333333333333336,
+  "kr": 29.166666666666668,
+  "cu": 25,
+  "ku": 12.5,
+  "margin": 4.166666666666668,
+  "umar": 12.5,
+  "why": "candidate 33.3% vs control 29.2% (margin 4.2, bar +10); unanimous-correct rate 25.0% vs control 12.5% (12.5, bar +15)",
+  "letterControl": 25
+ },
+ "rankH1": {
+  "frozen": {
+   "n": 8,
+   "unscored": 0,
+   "hist": {
+    "1": 3,
+    "2": 2,
+    "3": 3,
+    "4": 0
+   },
+   "share2": 25,
+   "meets": true,
+   "line": "key rank 1/2/3/4 = 3/2/3/0 of 8; rank-2 share 25.0% (prediction <= 25%: met; recorded, not a gate)"
+  },
+  "solverPicks": {
+   "hist": {
+    "1": 0,
+    "2": 11,
+    "3": 13,
+    "4": 0
+   },
+   "picks": 24,
+   "pick2": 45.833333333333336,
+   "key2": 25,
+   "line": "candidate picks at rank 1/2/3/4 = 0/11/13/0 of 24 (rank-2 pick rate 45.8%) vs candidate keys at rank 2 2/8 = 25.0%"
+  },
+  "kept": {
+   "n": 6,
+   "unscored": 0,
+   "hist": {
+    "1": 2,
+    "2": 1,
+    "3": 3,
+    "4": 0
+   },
+   "share2": 16.666666666666668,
+   "meets": true,
+   "line": "key rank 1/2/3/4 = 2/1/3/0 of 6; rank-2 share 16.7% (prediction <= 25%: met; recorded, not a gate)"
+  },
+  "inserted": {
+   "n": 6,
+   "unscored": 0,
+   "hist": {
+    "1": 2,
+    "2": 1,
+    "3": 3,
+    "4": 0
+   },
+   "share2": 16.666666666666668,
+   "meets": true,
+   "line": "key rank 1/2/3/4 = 2/1/3/0 of 6; rank-2 share 16.7% (prediction <= 25%: met; recorded, not a gate)"
+  }
+ },
+ "gradeFitRecorded": {
+  "n": 8,
+  "judgments": 16,
+  "tooEasy": 0,
+  "tooHard": 2,
+  "tooEasyPct": 0,
+  "tooHardPct": 12.5,
+  "offA": 0.125,
+  "offB": 0.25,
+  "spreadA": 2,
+  "spreadB": 2,
+  "D1": true,
+  "D2": true,
+  "D3": true,
+  "status": "pass"
+ },
+ "coldOnKey": 16,
+ "items": {
+  "MB4-D-07": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MB4-D-12": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MB4-D-05": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MB4-D-10": {
+   "drop": [
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [
+    "G1 too_hard for its grade (both) - recorded, not a drop rule"
+   ],
+   "named": [],
+   "keep": false,
+   "difficulty": "hard"
+  },
+  "MB4-D-09": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MB4-D-01": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MB4-D-04": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MB4-D-03": {
+   "drop": [
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "easy"
+  }
+ },
+ "areaResult": {
+  "status": "pass",
+  "reasons": [],
+  "notes": [
+   "kept-set extremity: no measurement: 6 scorable of 6 (need >= 10); 0 non-numeric, 0 other skip (recorded; the inserter's gate measures from n >= 10)"
+  ],
+  "extremity": {
+   "total": 6,
+   "n": 6,
+   "nonNumeric": 0,
+   "otherSkip": 0,
+   "ext": 2,
+   "rate": 0.3333333333333333,
+   "chance": 0.5,
+   "threshold": null,
+   "status": "no-measurement",
+   "reason": "no measurement: 6 scorable of 6 (need >= 10); 0 non-numeric, 0 other skip"
+  },
+  "cprime": null,
+  "kept": 6,
+  "keptIds": [
+   "MB4-D-07",
+   "MB4-D-12",
+   "MB4-D-05",
+   "MB4-D-09",
+   "MB4-D-01",
+   "MB4-D-04"
+  ],
+  "insertedIds": [
+   "MB4-D-07",
+   "MB4-D-12",
+   "MB4-D-05",
+   "MB4-D-09",
+   "MB4-D-01",
+   "MB4-D-04"
+  ],
+  "deferredIds": []
+ },
+ "screenFlagsRecorded": {
+  "MB4-D-05": {
+   "p1": [
+    "S-R7 option pair 1.9 & 2.9: +1 (mode 5 vs printed frequency 4)"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": true
+  },
+  "MB4-D-10": {
+   "p1": [
+    "S-R4 2 struck without solving: [\"7.2\",\"8.1\"] (Q is only 0.9 cm taller but has 9 g more food (the line predicts about 7 cm more), so Q's residual is lower and the difference is negative)"
+   ],
+   "revised": true,
+   "p2": [
+    "S-R4 2 struck without solving: [\"-1.4\",\"-6.5\"] (Q's height 8.7 is below the intercept 12 so its residual is below -3.3, and P's predicted height is under 17+12=29 so its residual exceeds 4.5, making the diffe)",
+    "S-R7 option pair -14.4 and -10.4, differ by 4 (Plant Q's printed 4 grams)"
+   ],
+   "kept": false
+  }
+ },
+ "passIds": [
+  "MB4-D-07",
+  "MB4-D-12",
+  "MB4-D-05",
+  "MB4-D-09",
+  "MB4-D-01",
+  "MB4-D-04"
+ ],
+ "verdict": "PASS"
+}

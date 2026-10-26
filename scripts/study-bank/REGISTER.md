@@ -3111,6 +3111,8 @@ recorded only in a commit message is a finding nobody reads.
 
 - **2026-10-26** — **Co-founder MAP Vocabulary bridge: 12/12, blind 1/12 = 8.3%, 0 misses, no notes -> map-vocab-v2 released (64). MAP Reading live 160 (Vocabulary 70, Literary 45, Informational 45) = 3 complete forms, up from 0** — Vocabulary was the binding area and is no longer. Next run drawn: map-reading-v2-c3 spot (12).
 
+- **2026-10-26** — **MAP MATH v2 BATCH 4 (NUMBER SYSTEMS + STATISTICS) INSERTED: Statistics 6 (needed 1), Number Systems 1 (needed 4). Live MAP maths 214 = 4 forms; ONLY Number Systems binds now (47/50 for form 5).** Options-only passed both (N 36.4% vs 36.4%; D 33.3% vs 29.2%); cold keys 38/38. Number Systems funnel: 24 slots -> 15 authored (9 EMPTY: decimal roots cannot meet FORM; N8 wrote 1 of 5) -> screen fail 5/15 -> 4 withdrawn, 1 revised -> 11 frozen -> **1 kept**. The killer was R11: graders flagged six of eleven as the same chain as an earlier MAP item (live, withdrawn or staged) — **the brief said every mechanism had been checked against earlier chains, and authors then found four exact repeats of v1-v5 items in their own slots**, so the brief-writer's chain check is not reliable; one-grader drop_recommends took two more and the tie-break two (option pair, routine plug-back). The simple Number Systems chain space (signed sums, product-then-adjust, mean of signed changes, distribution) is now saturated across ~180 earlier MAP items. Next N batch must get mechanisms verified chain-by-chain against the full earlier list by a separate checker BEFORE authors write.
+
 ## 6. The rule that keeps this honest
 
 A cohort is **not** clean because the cheap checks passed. Five

@@ -1,0 +1,1050 @@
+[
+ {
+  "id": "MB4-D-07",
+  "domain": "Statistics and Probability",
+  "map_area": "data",
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "7.SP.C.8a",
+  "subskill": "Independent events, one complemented: P(A and B) as a percent",
+  "grade_rationale": "Mid tier for grade 7 (7.SP.C.8a, 7.SP.C.5): the student must take the complement of one probability (1 - 0.35 = 0.65), multiply by the other for independent events, and write the result as a percent. Complementing the right event is the step about half of grade-7 students get wrong.",
+  "prompt": "The probability that Jun wins his chess match on Saturday is 0.35. The probability that Mei wins her tennis match on Saturday is 0.3. The two results do not affect each other. What is the probability, as a percent, that Jun does NOT win his match and Mei wins her match?",
+  "choices": [
+   "24.5",
+   "45.5",
+   "19.5",
+   "10.5"
+  ],
+  "correct_answer": "19.5",
+  "explanation": "The probability that Jun does not win is 1 - 0.35 = 0.65. Because the results do not affect each other, multiply: 0.65 x 0.3 = 0.195, which is 19.5%.",
+  "solve": "return String(Math.round((1-0.35)*0.3*1000)/10);",
+  "distractor_solve": {
+   "10.5": "return String(Math.round(0.35*0.3*1000)/10);",
+   "24.5": "return String(Math.round(0.35*(1-0.3)*1000)/10);",
+   "45.5": "return String(Math.round((1-0.35)*(1-0.3)*1000)/10);"
+  },
+  "mechanism": [
+   "complement of one event",
+   "multiply probabilities of independent events",
+   "write as a percent"
+  ],
+  "quantity_asked": "probability, as a percent, that Jun does not win and Mei wins",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option cannot be checked against the stem except by computing the product, which is the solution."
+  },
+  "distractor_meta": {
+   "10.5": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "forgets to take the complement for 'does NOT win'",
+    "why": "The student multiplies the two printed probabilities, 0.35 x 0.3 = 0.105, which is the chance that both win: 10.5%."
+   },
+   "24.5": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "takes the complement of the wrong event",
+    "why": "The student complements Mei's probability instead of Jun's: 0.35 x 0.7 = 0.245, the chance that Jun wins and Mei does not: 24.5%."
+   },
+   "45.5": {
+    "error_kind": "sign_slip",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "takes the complement of both events",
+    "why": "Seeing one 'not', the student complements both probabilities: 0.65 x 0.7 = 0.455, the chance that neither wins: 45.5%."
+   }
+  },
+  "intermediate_check": "10.5: no, 0.35 x 0.3; the key is 30 - 10.5, but 30 is not printed (0.3 is) - noted for the hand read. 24.5: no, 0.35 x 0.7. 45.5: no, 0.65 x 0.7. The solved intermediate 0.65 (65%) is not an option.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: the probability of 'Mei wins and something else' is at most Mei's 30%, and it is positive. 10.5, 19.5 and 24.5 survive both together; 45.5 does not survive the 30% cap.",
+  "interior_parity_check": "Middle values 19.5 and 24.5: both end in .5 with three digits; the key is not the cleaner one.",
+  "arith_class_check": "No forced class beyond 'ends in 5 tenths' (a product of 0.05 steps): all four options are in it, so the key is not alone.",
+  "dup_search": {
+   "queries": [
+    "spinner|cube|coin&not&percent",
+    "probability&0\\.\\d+&not&and",
+    "independent&probability&percent"
+   ],
+   "hits_read": 9,
+   "nearest": "MV2-D7-10 (b1 live: compound probability of two independent choices from counts of soups and salads) - counts, no complement, no decimals. b24af6cc (ACT relay routes) is a reliability chain. No item complements one of two printed decimal probabilities."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "'Mei wins and ...' can be at most Mei's own chance, 30%",
+    "strikes": [
+     "45.5"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: no even or odd class applies",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "all four options end in .5; no digit is forced",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "the answer is between 0% and 30%",
+    "strikes": [
+     "45.5"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Key is rank 2: 10.5 below (no complement), 24.5 and 45.5 above (complement of the wrong event; of both). Covering the stem, 10.5 / 19.5 / 24.5 / 45.5: no ratio hub (24.5/10.5 = 2.33, 45.5/19.5 = 2.33 is a pair not through... 45.5/19.5 = 2.33 is not in the hub set), the key is not a midpoint ((10.5 + 24.5)/2 = 17.5, (10.5 + 45.5)/2 = 28), no run through the key. Pairs summing to a printed value appear only after converting a decimal to a percent (19.5 + 10.5 = 30 for 0.3; 24.5 + 45.5 = 70 for 1 - 0.3): they are true of every complement item and do not pick the key, since 10.5 + 24.5 = 35 for 0.35 is just as visible. K1: none. K2: 0.35 is near 1/3 and 0.3 near 1/3: the bound '30% cap' strikes 45.5 only; 'at most 65%' strikes nothing. K3: none. K4: rounding 0.35 to 0.4 and 0.3 stays gives 0.6 x 0.3 = 18; the key is 1.5 away, 10.5 is 7.5 and 24.5 is 6.5 away, so two sit beyond twice - but the rounding to 0.35 -> 1/3 gives 2/3 x 0.3 = 20, from which the key is 0.5 and 24.5 is 4.5 away: a rough product lands near the key because the key IS the product, which is the skill (complement then multiply), not a shortcut around it. K5: none. No solved intermediate is an option. Mid tier honest. Cheapest bound strikes one distractor."
+  }
+ },
+ {
+  "id": "MB4-D-12",
+  "domain": "Statistics and Probability",
+  "map_area": "data",
+  "grade_target": 8,
+  "tier": "mid",
+  "rit_band": "RIT 220-229",
+  "difficulty": "medium",
+  "ccss": "8.SP.A.3",
+  "subskill": "Line of fit: mean of the predicted values for five x-values",
+  "grade_rationale": "Mid tier for grade 8 (8.SP.A.3 with 6.SP.B.5c): five predictions from y = 2.5x + 6 must be averaged; the efficient route is 2.5 x (mean length) + 6, and each of the five predictions carries its own 6. Remembering the intercept in every prediction is the step about half of grade-8 students miss.",
+  "prompt": "A painter made a scatter plot of x, the length of a fence section in meters, and y, the time in minutes it took to paint the section. A line of fit for the data is y = 2.5x + 6. The painter has five more fence sections to paint, with lengths of 21, 22, 24, 28, and 29 meters. What is the mean of the five predicted painting times, in minutes?",
+  "choices": [
+   "77",
+   "63.2",
+   "68",
+   "66"
+  ],
+  "correct_answer": "68",
+  "explanation": "The predicted times are 2.5 x 21 + 6 = 58.5, 61, 66, 76 and 78.5 minutes. Their sum is 340, and 340 / 5 = 68. (Equivalently, the mean length is 124 / 5 = 24.8 meters, and 2.5 x 24.8 + 6 = 68.)",
+  "solve": "const xs=[21,22,24,28,29];const p=xs.map(x=>2.5*x+6);return String(p.reduce((a,b)=>a+b,0)/5);",
+  "distractor_solve": {
+   "66": "const xs=[21,22,24,28,29];return String(2.5*xs[2]+6);",
+   "77": "const xs=[21,22,24,28,29];const m=xs.reduce((a,b)=>a+b,0)/5;return String(Math.round(2.5*(m+6)*10)/10);",
+   "63.2": "const xs=[21,22,24,28,29];const s=xs.reduce((a,b)=>a+b,0);return String(Math.round((2.5*s+6)/5*10)/10);"
+  },
+  "mechanism": [
+   "predictions from a line of fit",
+   "mean of the predictions (equals the prediction at the mean x)"
+  ],
+  "quantity_asked": "mean of the five predicted painting times, in minutes",
+  "plugback": {
+   "substitutable": false,
+   "why": "A mean of five predictions cannot be checked against the stem without computing them."
+  },
+  "distractor_meta": {
+   "66": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "predicts at the middle length (the median) instead of the mean length",
+    "why": "The student takes the middle length, 24 meters, as the typical section and gives its prediction, 2.5 x 24 + 6 = 66."
+   },
+   "77": {
+    "error_kind": "wrong_operation",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds the intercept before multiplying by the slope",
+    "why": "With the mean length 24.8, the student computes 2.5 x (24.8 + 6) = 77 instead of 2.5 x 24.8 + 6."
+   },
+   "63.2": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds the intercept once to the total instead of once per prediction",
+    "why": "The student computes 2.5 x (21 + 22 + 24 + 28 + 29) + 6 = 316 as the total of the predictions and divides by 5 to get 63.2."
+   }
+  },
+  "intermediate_check": "63.2: no, 316 / 5; the key is not 63.2 combined with one printed number (68 - 63.2 = 4.8 = 6 x 4/5). 66: no, the prediction at 24; 68 - 66 = 2 is not printed. 77: no, 2.5 x 30.8. The solved intermediates 124, 24.8 and 340 are not options.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: the mean prediction lies between the predictions for the shortest and longest sections, 58.5 and 78.5; it is 2.5 x (mean length) + 6 where the mean length is between 21 and 29. 63.2, 66, 68 and 77 all survive these; at least 63.2, 66 and 68 survive any of them.",
+  "interior_parity_check": "Middle values 66 and 68: both two-digit whole numbers; the key is not the cleaner one.",
+  "arith_class_check": "2.5 x (sum / 5) = sum / 2, so the answer is a whole number or ends in .5; 66 and 77 are in that class with the key, so the key is not alone (63.2 is outside it, the one strike).",
+  "dup_search": {
+   "queries": [
+    "line of fit&mean of",
+    "line of fit&five|lengths",
+    "predict&mean&line"
+   ],
+   "hits_read": 0,
+   "nearest": "MV2-D8-08 (b1 live: fit a line through the mean point, then predict at one x) - its mean is of the data, used to place the line; here the line is printed and the mean is of five predictions. No MAP, ISEE or SSAT item averages predictions from a line of fit."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "the mean prediction lies between 2.5 x 21 + 6 = 58.5 and 2.5 x 29 + 6 = 78.5",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: no even or odd class is forced",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "2.5 x (sum of five lengths) / 5 is half the sum, so the answer ends in .0 or .5",
+    "strikes": [
+     "63.2"
+    ]
+   },
+   {
+    "kind": "range",
+    "bound": "the answer is between 58.5 and 78.5",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Key is rank 3. Below it: 63.2 (intercept added once to the total) and 66 (prediction at the median length). Above it: 77 (intercept added before multiplying). Covering the stem, 63.2 / 66 / 68 / 77: no ratio hub (77/63.2 = 1.22), the key is not a midpoint ((63.2 + 77)/2 = 70.1, (66 + 77)/2 = 71.5), no run through the key (64, 68, 72 or 59, 68, 77 absent). The key differs from options by 4.8, 2 and 9 ((2.5 - 1) x 6), none printed. K1: the half-integer class holds 66, 68 and 77; 63.2 struck (one). K2: no percent. K3: none. K4: the lengths are whole numbers, so the only rounding is of 2.5 (to 2 or 3): 2 x 24.8 + 6 = 55.6 and 3 x 24.8 + 6 = 80.4 bracket every option; a student estimating the mean length as 'about 25' gets 68.5, from which the key is 0.5 away and the distractors 2.5 to 8.5 away - but that estimate is the item's own first step (the mean length) done approximately, not a shortcut around it, and 66 (prediction at the middle length) is what a student gets who estimates the mean length by the middle value. K5: no table entry. No solved intermediate is an option. Mid tier honest. Cheapest bound strikes one distractor."
+  }
+ },
+ {
+  "id": "MB4-D-05",
+  "domain": "Statistics and Probability",
+  "map_area": "data",
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "6.SP.B.5c",
+  "subskill": "Frequency table: how much greater the mean is than the mode",
+  "grade_rationale": "High tier for grade 6 (6.SP.B.5c, 6.SP.A.3): the mean must be weighted by the counts (85 points over 10 games), the mode is the value with the largest count, not the count itself, and the two are then subtracted. Only stronger grade-6 students keep values and counts apart in both measures.",
+  "prompt": "A basketball player recorded how many points she scored in each of ten games. The table shows the results: each row gives a number of points and the number of games in which she scored that many points. How much greater is the mean number of points per game than the mode?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "6",
+    "8",
+    "10",
+    "11",
+    "12"
+   ],
+   "colLabels": [
+    "Number of Games"
+   ],
+   "cells": [
+    [
+     4
+    ],
+    [
+     1
+    ],
+    [
+     3
+    ],
+    [
+     1
+    ],
+    [
+     1
+    ]
+   ]
+  },
+  "choices": [
+   "3.4",
+   "2.5",
+   "4.5",
+   "3"
+  ],
+  "correct_answer": "2.5",
+  "explanation": "The total number of points is 6 x 4 + 8 x 1 + 10 x 3 + 11 x 1 + 12 x 1 = 24 + 8 + 30 + 11 + 12 = 85, so the mean is 85 / 10 = 8.5 points. The mode is the number of points scored in the most games: 6 points (4 games). The mean is 8.5 - 6 = 2.5 points greater than the mode.",
+  "solve": "const v=[6,8,10,11,12],f=[4,1,3,1,1];const n=f.reduce((a,b)=>a+b,0);const mean=v.reduce((a,x,i)=>a+x*f[i],0)/n;const mode=v[f.indexOf(Math.max(...f))];return String(Math.round((mean-mode)*100)/100);",
+  "distractor_solve": {
+   "3": "const d=[6,6,6,6,8,10,10,10,11,12];return String((d[4]+d[5])/2-6);",
+   "3.4": "const v=[6,8,10,11,12];return String(Math.round((v.reduce((a,b)=>a+b,0)/v.length-6)*100)/100);",
+   "4.5": "const v=[6,8,10,11,12],f=[4,1,3,1,1];const mean=v.reduce((a,x,i)=>a+x*f[i],0)/10;return String(Math.round((mean-Math.max(...f))*100)/100);"
+  },
+  "mechanism": [
+   "weighted mean from a frequency table",
+   "mode as the most frequent value",
+   "difference of the two"
+  ],
+  "quantity_asked": "how many points greater the mean is than the mode",
+  "plugback": {
+   "substitutable": false,
+   "why": "No option can be checked without computing the weighted mean, which is the main step."
+  },
+  "distractor_meta": {
+   "3": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the median in place of the mean",
+    "why": "The student lists the ten scores in order, takes the middle value (8 + 10) / 2 = 9 as the 'average', and 9 - 6 = 3."
+   },
+   "3.4": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "averages the listed values without using the counts",
+    "why": "The student finds the mean of 6, 8, 10, 11 and 12 (47 / 5 = 9.4) as if each value appeared once, and 9.4 - 6 = 3.4."
+   },
+   "4.5": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "takes the largest count as the mode instead of the value with that count",
+    "why": "The student finds the mean 8.5 correctly but reports the mode as 4, the largest number in the Number of Games column, so 8.5 - 4 = 4.5."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "return String(Math.round((8.5-9)*10)/10);",
+   "direction": "below",
+   "why": "The student finds the mean 8.5 but subtracts the median 9 instead of the mode, getting -0.5, below the key and not an option."
+  },
+  "far_distractor": {
+   "option": "3",
+   "natural_side": "below",
+   "why": "Putting the median in place of the mean usually lowers the answer, because with a long upper tail the median sits under the mean; here the four 6s pull the mean down to 8.5 while the median is 9, so it lands above."
+  },
+  "structure_check": "The answer is mean - mode. Errors on the mean (ignoring counts, using the median) can raise or lower it depending on where the counts pile up, and errors on the mode (taking a count or another value) push the difference the other way. The stem does not sign them.",
+  "intermediate_check": "3.4: no, 9.4 - 6 from an unweighted mean. 4.5: no, 8.5 - 4; it differs from the key by 2 (mode 6 against count 4), and 2 is not a table entry. 3: no, the median minus the mode. No option differs from the key by a printed value or count (differences 0.5, 0.9, 2). The solved intermediates 85, 8.5 and 6 are not options.",
+  "cheap_bound_check": "Cheapest one-sided bound: the mode 6 is the smallest score and the mean is below the middle score 10 because four games sit at 6, so the answer is between 0 and 4; this strikes 4.5 only. 3 and 3.4 sit on the key's side.",
+  "shape_check": "The stem hands over: a positive difference, less than 12 - 6 = 6, in tenths (mean of ten whole numbers). 2.5, 3, 3.4 and 4.5 all survive these; 2.5, 3 and 3.4 survive any further bound.",
+  "interior_parity_check": "Middle values 3 and 3.4: the key is not interior.",
+  "arith_class_check": "The forced class is 'tenths' (mean of ten whole numbers minus a whole number): all four options are in it, so the key is not alone.",
+  "dup_search": {
+   "queries": [
+    "mean&mode&frequency|table",
+    "\\bmode\\b&mean",
+    "points&games&table&mean"
+   ],
+   "hits_read": 2,
+   "nearest": "c55fb714 (ISEE: five integers with given mean, median and mode, greatest smallest value) - a construction item, not a weighted mean minus mode. MV2-D6-09 (b1 live) is mode minus median of a plain list."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: every option is positive; the mode is the smallest value, so the mean is above it",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "the mean lies between 6 and 12, so the difference is between 0 and 6",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: no even or odd class applies to tenths",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "the mean of ten whole numbers ends in a tenth; every option does",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "four of ten games at 6 and the rest at most 12 put the mean under 6 + 0.6 x 6 = 9.6, so the answer is under 3.6",
+    "strikes": [
+     "4.5"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "RETURN REVISION (screener S-R7: 1.9 and 2.9 differed by 1 = mode 5 minus printed count 4): new table, so the count-as-mode distractor now differs from the key by 2, which is not a table entry; same three named errors, key rank 1 kept. Key is rank 1 (smallest). Above it: 3 (median for mean), 3.4 (unweighted mean), 4.5 (largest count as the mode). Covering the stem, 2.5 / 3 / 3.4 / 4.5: second-smallest is 3 (a distractor); 4.5 = 1.5 x 3 is a ratio pair of two distractors (degree 1 each), the key is in no ratio pair; no option is the key plus a printed number (differences 0.5, 0.9, 2). Two parts push opposite ways: the mean (minuend) and the mode (subtrahend); far distractor 3 comes from the mean part. K1: tenths class shared by all four. K2: no percent; the 'under 3.6' cap strikes 4.5 only. K3: none. K4: a student estimating the mean as 'about 9' gets 3, the median distractor. K5: no distractor differs from the key by a table entry; no partial sum of cells is an option. No solved intermediate is an option. High tier honest. Cheapest bound strikes one distractor."
+  }
+ },
+ {
+  "id": "MB4-D-10",
+  "domain": "Statistics and Probability",
+  "map_area": "data",
+  "grade_target": 8,
+  "tier": "mid",
+  "rit_band": "RIT 220-229",
+  "difficulty": "medium",
+  "ccss": "8.SP.A.3",
+  "subskill": "Line of fit: difference of two signed residuals",
+  "grade_rationale": "Mid tier for grade 8 (8.SP.A.3): the student must compute two predictions from y = 0.8x + 12, find each residual as actual minus predicted (one positive, one negative), and subtract them keeping the signs. Keeping a negative residual negative through the subtraction is the step about half of grade-8 students miss.",
+  "prompt": "A scientist made a scatter plot of x, the grams of plant food given to each tomato plant, and y, the height of the plant in centimeters. A line of fit for the data is y = 0.8x + 12. The table shows the data for two of the plants. The residual for a plant is its actual height minus the height predicted by the line of fit. What is the residual for Plant Q minus the residual for Plant P?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Plant P",
+    "Plant Q"
+   ],
+   "colLabels": [
+    "Plant Food (grams)",
+    "Height (cm)"
+   ],
+   "cells": [
+    [
+     17,
+     33.5
+    ],
+    [
+     4,
+     8.7
+    ]
+   ]
+  },
+  "choices": [
+   "-6.5",
+   "-14.4",
+   "-1.4",
+   "-10.4"
+  ],
+  "correct_answer": "-14.4",
+  "explanation": "Plant P: predicted 0.8 x 17 + 12 = 25.6, so its residual is 33.5 - 25.6 = 7.9. Plant Q: predicted 0.8 x 4 + 12 = 15.2, so its residual is 8.7 - 15.2 = -6.5. Residual for Q minus residual for P: -6.5 - 7.9 = -14.4.",
+  "solve": "const p=0.8*17+12,q=0.8*4+12;const rP=33.5-p,rQ=8.7-q;return String(Math.round((rQ-rP)*10)/10);",
+  "distractor_solve": {
+   "-1.4": "const p=0.8*17+12,q=0.8*4+12;const rP=33.5-p,rQ=8.7-q;return String(Math.round((Math.abs(rQ)-rP)*10)/10);",
+   "-6.5": "const q=0.8*4+12;return String(Math.round((8.7-q)*10)/10);",
+   "-10.4": "const p=0.8*17+12,q=0.8*4+12;return String(Math.round((q-p)*10)/10);"
+  },
+  "mechanism": [
+   "two predictions from the line of fit",
+   "residual = actual - predicted for each plant",
+   "subtract the signed residuals"
+  ],
+  "quantity_asked": "the residual for Plant Q minus the residual for Plant P, in centimeters",
+  "plugback": {
+   "substitutable": false,
+   "why": "Nothing printed can be checked against an option without computing both residuals."
+  },
+  "distractor_meta": {
+   "-1.4": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "drops the negative sign on Plant Q's residual",
+    "why": "The student finds Q's residual as 6.5 instead of -6.5 (the size of the gap) and computes 6.5 - 7.9 = -1.4."
+   },
+   "-6.5": {
+    "error_kind": "partial_answer",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "stops after finding Plant Q's residual",
+    "why": "The student computes Q's residual, 8.7 - 15.2 = -6.5, and gives it as the answer without subtracting P's residual."
+   },
+   "-10.4": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts the predicted heights instead of the residuals",
+    "why": "The student finds the two predictions, 15.2 and 25.6, and subtracts them, 15.2 - 25.6 = -10.4, never using the actual heights."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "const rP=33.5-0.8*17,rQ=8.7-(0.8*4+12);return String(Math.round((rQ-rP)*10)/10);",
+   "direction": "below",
+   "why": "The student leaves the intercept 12 out of Plant P's prediction, so P's residual becomes 19.9 and Q minus P is -26.4, below the key and not an option."
+  },
+  "far_distractor": {
+   "option": "-1.4",
+   "natural_side": "below",
+   "why": "Dropping a sign lowers the answer when the negative residual is the one being subtracted (minus a negative becomes minus a positive); here the negative residual is Q's, the first term, so dropping its sign lands above the key."
+  },
+  "structure_check": "The answer is (Q's actual - Q's prediction) - (P's actual - P's prediction). Errors in the predictions push the other way from errors in the actual heights, and a dropped sign moves the answer up or down depending on which residual is negative. Every option is negative, so the sign hands nothing over; the only free bound (the answer exceeds the height gap -24.8, because Q also got 13 g less food) strikes no option.",
+  "intermediate_check": "-1.4: no, 6.5 - 7.9 from a dropped sign. -6.5: it is Q's residual, a solved intermediate on the way to the key; the key follows from it only through P's residual 7.9, which is not printed (noted for the hand read). -10.4: no, the difference of the predictions; the key = -24.8 - (-10.4), and -24.8 is a difference of two table values, not printed. Solved intermediates 25.6, 15.2 and 7.9 are not options.",
+  "cheap_bound_check": "Cheapest one-sided bound: Q is 24.8 cm shorter but also got 13 g less food, so Q's residual is less than 24.8 below P's: the answer is above -24.8. It strikes no option. The sign is negative for every option.",
+  "shape_check": "The stem hands over: a negative difference is possible and every option is negative; the answer lies above -24.8 (above). All four options survive what is free.",
+  "interior_parity_check": "Middle values -10.4 and -6.5: the key is not interior.",
+  "arith_class_check": "No forced class: residuals in tenths; every option is in tenths, so the key is not alone.",
+  "dup_search": {
+   "queries": [
+    "residual",
+    "line of fit&residual",
+    "residual&minus"
+   ],
+   "hits_read": 8,
+   "nearest": "MB2-D8-03 (b2 live: residual of one point, with a unit change) and a8f1f1a6 (ACT: residual of one point) find ONE residual; 4fa630b2 (SAT) takes greatest minus least residual over five days from a table. No ISEE, SSAT or MAP item subtracts two signed residuals."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "every option is negative; the sign strikes nothing",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "Q is 24.8 cm shorter but got 13 g less food, so the answer is above -24.8",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: tenths force no even or odd class",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: no last digit is forced",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "the answer is between -24.8 and 0 only after comparing 0.8 x 13 with 24.8, which is the calculation; free bound strikes nothing",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "RETURN REVISION (screener S-R4: Q 0.9 cm taller with 9 g more food signed the answer negative and struck the two positive options): new plants, so every option is negative and Q is both shorter and less fed, which leaves the sign and size open until both predictions are computed; the difference-of-predictions error is kept, the reversed-prediction error is replaced by stopping at Q's residual. Key rank 1 kept (-14.4). Above it: -10.4 (difference of predictions), -6.5 (Q's residual only), -1.4 (dropped sign on Q's residual). Covering the stem, -14.4 / -10.4 / -6.5 / -1.4: all one sign (no LONE sign); second-smallest -10.4 is a distractor; no ratio hub; no option is the key plus a printed number (differences 4, 7.9, 13; printed 0.8 and 12). Two parts that push opposite ways: the predictions and the actual heights; far distractor -1.4 is a sign error whose direction depends on which residual is negative. K1: none. K2: no percent. K3: none. K4: rounding 0.8 to 1 gives predictions 29 and 16, residuals 4.5 and -7.3, answer -11.8: the key is 2.6 away, -10.4 is 1.4, -6.5 is 5.3 and -1.4 is 10.4 away, so the rounded estimate does not pick the key. K5: no distractor differs from the key by a table entry (17, 33.5, 4, 8.7). Mid tier honest."
+  }
+ },
+ {
+  "id": "MB4-D-09",
+  "domain": "Statistics and Probability",
+  "map_area": "data",
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "7.SP.C.7a",
+  "subskill": "Probability model with a missing value: expected count",
+  "grade_rationale": "Mid tier for grade 7 (7.SP.C.7a, 7.SP.C.6): the student must use that a model's probabilities add to 1, convert 1/8 to 0.125, add decimals of different lengths, and multiply the missing probability by 200. Lining up 0.25, 0.3 and 0.125 correctly is where about half of grade-7 students slip.",
+  "prompt": "A prize machine gives out red, blue, green, or yellow balls. The table shows the probability model for the color of one ball, but the probability for yellow is missing. Mason will get 200 balls from the machine. Based on the model, how many yellow balls should he expect to get?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Red",
+    "Blue",
+    "Green",
+    "Yellow"
+   ],
+   "colLabels": [
+    "Probability"
+   ],
+   "cells": [
+    [
+     "0.25"
+    ],
+    [
+     "0.3"
+    ],
+    [
+     "1/8"
+    ],
+    [
+     "?"
+    ]
+   ]
+  },
+  "choices": [
+   "54",
+   "119",
+   "50",
+   "65"
+  ],
+  "correct_answer": "65",
+  "explanation": "The four probabilities add to 1. Green is 1/8 = 0.125. So yellow is 1 - 0.25 - 0.3 - 0.125 = 0.325. In 200 balls, Mason should expect 0.325 x 200 = 65 yellow balls.",
+  "solve": "const y=1-0.25-0.3-1/8;return String(Math.round(y*200));",
+  "distractor_solve": {
+   "50": "return String(200/4);",
+   "54": "const y=1-0.25-0.3-0.18;return String(Math.round(y*200));",
+   "119": "const y=1-(0.25+0.03)-1/8;return String(Math.round(y*200));"
+  },
+  "mechanism": [
+   "probabilities in a model add to 1",
+   "fraction to decimal and decimal addition",
+   "expected count = probability x trials"
+  ],
+  "quantity_asked": "expected number of yellow balls in 200",
+  "plugback": {
+   "substitutable": false,
+   "why": "An expected count cannot be checked against the table without finding the missing probability first, which is the calculation."
+  },
+  "distractor_meta": {
+   "50": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "assumes the four colors are equally likely",
+    "why": "Ignoring the model, the student gives each of the 4 colors a chance of 1/4 and expects 200 / 4 = 50 yellow balls."
+   },
+   "54": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "converts 1/8 to the decimal 0.18 by writing its digits",
+    "why": "The student writes 1/8 as 0.18, so yellow is 1 - 0.25 - 0.3 - 0.18 = 0.27, and 0.27 x 200 = 54."
+   },
+   "119": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds decimals by lining up the last digits",
+    "why": "Adding 0.25 and 0.3 with the right ends lined up, the student gets 0.28; then 1 - 0.28 - 0.125 = 0.595 and 0.595 x 200 = 119."
+   }
+  },
+  "intermediate_check": "50: no, 200 / 4 uses no model value. 54: no, from 0.27. 119: no, from 0.595. The key is not an option combined with 200 by one operation, and the solved intermediate 0.325 is not an option (nor 135, the expected count of the other colors).",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: red and blue already take 0.55, more than half, so yellow is under one half and the count is under 100; green 1/8 is under 0.2, so yellow is over 0.25 and the count is over 50. 54 and 65 survive both; 50 and 119 each fail one, and 54 and 65 are the two survivors.",
+  "interior_parity_check": "Middle values 54 and 65: both two-digit whole numbers; the key is not the cleaner one.",
+  "arith_class_check": "No forced class: 200 x a thousandths probability need not be a multiple of 5 or 10, and 54 shares the key's two-digit form; 50 is the only multiple of 10 and is a distractor.",
+  "dup_search": {
+   "queries": [
+    "probability model|model&missing",
+    "model&probabilit",
+    "expected|predict|about how many&probabilit"
+   ],
+   "hits_read": 20,
+   "nearest": "MV2-D7-15 (b1 withdrawn: expected count of red or green on a 12-section spinner) and MV2-D7-06 (b1 live: predict a frequency from experimental results) - counts of sections or trials, no model with a missing probability and no decimal-fraction mix."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: every option is positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "red and blue take 0.55, so yellow is under 0.45 and the count is under 90",
+    "strikes": [
+     "119"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: no even or odd class is forced",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: no last digit is forced",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "green 1/8 is under 0.2, so yellow is over 0.25 and the count is over 50",
+    "strikes": [
+     "50"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Key is rank 3. Below it: 50 (equal chances) and 54 (1/8 written as 0.18). Above it: 119 (0.3 added as 0.03). Covering the stem, 50 / 54 / 65 / 119: no ratio hub (65/50 = 1.3, 119/54 = 2.2), the key is not a midpoint ((54 + 119)/2 = 86.5, (50 + 119)/2 = 84.5), no run through the key. The key differs from options by 15, 11 and 54, none printed. K1: no class; 50 alone is a multiple of 10 and it is a distractor. K2: 0.25 is the benchmark 1/4 and 0.3 is near 1/3: the 'over 0.25' floor strikes 50 only; the 'under 0.45' cap strikes 119 only; together they leave 54 and 65, which differ by the real 1/8 conversion. K3: none. K4: rounding 0.25 to 0.3 and 1/8 to 0.1 gives yellow about 0.3, count about 60; the key is 5 away and 54 is 6 away, 50 is 10, 119 is 59: only 119 sits beyond twice the key's distance. K5: no distractor is a partial sum of printed cells. No solved intermediate is an option. Mid tier honest. Cheapest bounds strike one distractor each."
+  }
+ },
+ {
+  "id": "MB4-D-01",
+  "domain": "Statistics and Probability",
+  "map_area": "data",
+  "grade_target": 5,
+  "tier": "mid",
+  "rit_band": "RIT 200-209",
+  "difficulty": "medium",
+  "ccss": "5.MD.B.2",
+  "area_25": "Measurement and Data",
+  "subskill": "Line plot: total change when one value is re-recorded",
+  "grade_rationale": "Mid tier for grade 5 (5.MD.B.2 with 5.NF.A.1 and 5.NF.B.4): the student must see that only the shells in the 1 3/4 row change, find how much each one grows (2 3/8 - 1 3/4 needs eighths and regrouping across a whole) and multiply by that row's count. The regrouping subtraction is the hard step; about half of grade-5 students do it correctly.",
+  "prompt": "Students measured the lengths of some shells, in inches. The table shows the line plot data: each row gives a length and the number of shells with that length. Later the students found that every shell recorded as 1 3/4 inches long was really 2 3/8 inches long. When those lengths are corrected, by how many inches does the total length of all the shells increase?",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "1 1/2",
+    "1 3/4",
+    "2 1/8",
+    "2 3/8"
+   ],
+   "colLabels": [
+    "Number of Shells"
+   ],
+   "cells": [
+    [
+     5
+    ],
+    [
+     3
+    ],
+    [
+     6
+    ],
+    [
+     4
+    ]
+   ]
+  },
+  "choices": [
+   "2 1/2",
+   "1 7/8",
+   "4 1/8",
+   "2 5/8"
+  ],
+  "correct_answer": "1 7/8",
+  "explanation": "Only the 3 shells recorded as 1 3/4 inches change. Each one is really 2 3/8 inches, so each grows by 2 3/8 - 1 3/4 = 2 3/8 - 1 6/8 = 1 11/8 - 1 6/8 = 5/8 inch. Three shells grow by 3 x 5/8 = 15/8 = 1 7/8 inches, so the total length increases by 1 7/8 inches.",
+  "solve": "const mx=(n,d)=>{const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d);n/=k;d/=k;const w=Math.floor(n/d),r=n-w*d;return r===0?String(w):(w?w+' '+r+'/'+d:r+'/'+d);};const per=(2*8+3)-(1*8+6);return mx(3*per,8);",
+  "distractor_solve": {
+   "2 5/8": "const mx=(n,d)=>{const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d);n/=k;d/=k;const w=Math.floor(n/d),r=n-w*d;return r===0?String(w):(w?w+' '+r+'/'+d:r+'/'+d);};const per=10+3-6;return mx(3*per,8);",
+   "2 1/2": "const mx=(n,d)=>{const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d);n/=k;d/=k;const w=Math.floor(n/d),r=n-w*d;return r===0?String(w):(w?w+' '+r+'/'+d:r+'/'+d);};const per=(2*8+3)-(1*8+6);return mx(4*per,8);",
+   "4 1/8": "const mx=(n,d)=>{const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d);n/=k;d/=k;const w=Math.floor(n/d),r=n-w*d;return r===0?String(w):(w?w+' '+r+'/'+d:r+'/'+d);};const per=8*(2-1)+(6-3);return mx(3*per,8);"
+  },
+  "mechanism": [
+   "only the re-recorded row changes",
+   "growth of one shell: mixed-number subtraction with regrouping",
+   "times that row's count"
+  ],
+  "quantity_asked": "increase in the total length of all the shells, in inches",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option cannot be checked against the stem without finding the growth per shell and the row count, which is the whole calculation; there is no printed result to substitute into."
+  },
+  "distractor_meta": {
+   "2 5/8": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "regroups one whole as 10 eighths (base-ten borrowing in a fraction)",
+    "why": "To subtract 1 6/8 from 2 3/8 the student borrows 1 whole as 10/8, making 1 13/8, so each shell grows 13/8 - 6/8 = 7/8 and 3 shells give 21/8 = 2 5/8."
+   },
+   "2 1/2": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "multiplies by the count of the corrected value's row instead of the re-recorded row",
+    "why": "The student finds the 5/8 growth per shell correctly but multiplies by 4, the number of shells already in the 2 3/8 row, getting 20/8 = 2 1/2."
+   },
+   "4 1/8": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts the smaller fraction from the larger instead of regrouping",
+    "why": "Faced with 3/8 - 6/8, the student takes 6/8 - 3/8 = 3/8 and 2 - 1 = 1, so each shell grows 1 3/8 and 3 shells give 33/8 = 4 1/8."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "const mx=(n,d)=>{const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d);n/=k;d/=k;const w=Math.floor(n/d),r=n-w*d;return r===0?String(w):(w?w+' '+r+'/'+d:r+'/'+d);};return mx(5,8);",
+   "direction": "below",
+   "why": "The student finds how much ONE shell grows (5/8 inch) and stops, forgetting that 3 shells were re-recorded; 5/8 is below the key and is not an option."
+  },
+  "far_distractor": {
+   "option": "2 1/2",
+   "natural_side": "below",
+   "why": "Multiplying by the wrong row's count is an error in the multiplier, and it lands below the key whenever the row read is smaller than the re-recorded row; here the 2 3/8 row holds 4 shells against 3, so it lands above."
+  },
+  "structure_check": "The answer is (count of the 1 3/4 row) x (2 3/8 - 1 3/4). The count and the per-shell growth pull different ways: a count error can go up or down depending on which row is read, while the regrouping errors only change the growth. The stem does not say which way any error goes.",
+  "intermediate_check": "2 5/8: no, it is 3 x 7/8 from a wrong regrouping; no printed rate turns it into the key. 2 1/2: no, 4 x 5/8 uses a printed count with a solved growth; the key is not 2 1/2 combined with one printed number (2 1/2 x 3/4 is not a printed relation). 4 1/8: no, 3 x 1 3/8. The solved intermediate 5/8 (growth of one shell) is not an option.",
+  "cheap_bound_check": "Cheapest one-sided bound: each corrected shell grows by less than 1 inch (2 3/8 - 1 3/4 < 1) and 3 shells change, so the increase is less than 3; this strikes 4 1/8 only. 2 1/2 and 2 5/8 sit on the key's side of it.",
+  "shape_check": "The stem hands over: a positive increase, less than 3 inches (above), more than 3 x 1/2 = 1 1/2 inches (each shell grows more than 1/2 because 2 1/4 - 1 3/4 = 1/2). 1 7/8, 2 1/2 and 2 5/8 survive all of these together.",
+  "interior_parity_check": "Middle values 2 1/2 and 2 5/8: both mixed numbers; the key is not interior.",
+  "arith_class_check": "No forced class: 3 x (an eighths growth) need not be whole, and 2 5/8 and 4 1/8 share the key's eighths form, so the key is not alone.",
+  "dup_search": {
+   "queries": [
+    "line plot&actually|really|recorded|mistake",
+    "line plot&should|correct",
+    "leaf|leaves&line plot|table",
+    "shell&inch"
+   ],
+   "hits_read": 1,
+   "nearest": "MV2-D5-11 (b1 live, leaves line plot: find a missing count from a total length) - same display, different chain (no re-recording, no per-item growth times count). No MAP, ISEE or SSAT item re-records one line-plot value."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: every option is positive, as an increase must be",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "each corrected shell grows by less than 1 inch and 3 shells change, so the increase is less than 3",
+    "strikes": [
+     "4 1/8"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: eighths of an inch force no whole-number or even class",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: the stem forces no final digit or denominator beyond eighths, which all options use or reduce from",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "each shell grows by more than 1/2 inch, so the increase is more than 1 1/2",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Key is rank 1 (smallest). Distractors all above it: 2 1/2 (count of the wrong row: 4 x 5/8), 2 5/8 (borrowing 1 whole as 10/8), 4 1/8 (smaller-from-larger fraction subtraction). Covering the stem, 1 7/8 / 2 1/2 / 2 5/8 / 4 1/8: the second-smallest is 2 1/2 (a distractor); no option is x2, x3, x4, x1.5 or x10 of another; no option is the key plus a printed number (differences 5/8, 3/4, 2 1/4; no row label or count equals any of them). Two parts that push opposite ways: the row count (a wrong row can be larger or smaller) and the per-shell growth; far distractor 2 1/2 comes from the count part. K1: no forced class. K2: the 'less than 1 inch per shell, 3 shells' cap strikes 4 1/8 only; the band below it keeps 2 1/2 and 2 5/8. K3: no circle. K4: rounding both lengths to the nearest whole (2 and 2) gives a growth of 0, so that estimate decides nothing; rounding 2 3/8 to 2 1/2 and keeping 1 3/4 gives 3/4 per shell = 2 1/4 in all, from which the key is 3/8 away, 2 1/2 is 1/4 and 2 5/8 is 3/8 away, and only 4 1/8 sits beyond twice the key's distance. The estimate depends on the rounding chosen and does not single out the key. K5: no distractor differs from the key by a table entry (5, 3, 6, 4, or a row label) and none is a partial sum of cells. No solved intermediate (5/8) is an option. Grade fit: mid is honest; regrouping 2 3/8 - 1 6/8 is the hard step. Cheapest bound strikes one distractor (4 1/8)."
+  }
+ },
+ {
+  "id": "MB4-D-04",
+  "domain": "Statistics and Probability",
+  "map_area": "data",
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "6.SP.B.5c",
+  "subskill": "Range minus interquartile range for eleven unordered values",
+  "grade_rationale": "Mid tier for grade 6 (6.SP.B.5c, 6.SP.B.4): the eleven values are not in order, so the student must sort them, find the range and the quartiles by the stated rule, and subtract. Sorting before reading positions is the step about half of grade-6 students skip or botch.",
+  "prompt": "The numbers of minutes that eleven bus trips took were 61, 35, 56, 17, 13, 15, 31, 19, 33, 23, and 16. Use this rule for quartiles: the first quartile is the median of the five values below the median, and the third quartile is the median of the five values above the median; the median itself is left out of both groups. How many minutes greater is the range of the trip times than the interquartile range?",
+  "choices": [
+   "30.5",
+   "25",
+   "29",
+   "26"
+  ],
+  "correct_answer": "29",
+  "explanation": "In order the times are 13, 15, 16, 17, 19, 23, 31, 33, 35, 56, 61. The range is 61 - 13 = 48. The median is 23. The five values below it are 13, 15, 16, 17, 19, so the first quartile is 16; the five above it are 31, 33, 35, 56, 61, so the third quartile is 35. The interquartile range is 35 - 16 = 19. The range is 48 - 19 = 29 minutes greater.",
+  "solve": "const v=[61,35,56,17,13,15,31,19,33,23,16];const s=[...v].sort((a,b)=>a-b);return String((s[10]-s[0])-(s[8]-s[2]));",
+  "distractor_solve": {
+   "25": "const v=[61,35,56,17,13,15,31,19,33,23,16];const s=[...v].sort((a,b)=>a-b);return String((s[10]-s[0])-Math.abs(v[8]-v[2]));",
+   "26": "const v=[61,35,56,17,13,15,31,19,33,23,16];const s=[...v].sort((a,b)=>a-b);return String(Math.abs(v[10]-v[0])-(s[8]-s[2]));",
+   "30.5": "const s=[61,35,56,17,13,15,31,19,33,23,16].sort((a,b)=>a-b);return String((s[10]-s[0])-((s[7]+s[8])/2-(s[2]+s[3])/2));"
+  },
+  "mechanism": [
+   "order eleven values",
+   "range and quartiles by the stated rule",
+   "range minus interquartile range"
+  ],
+  "quantity_asked": "how many minutes greater the range is than the interquartile range",
+  "plugback": {
+   "substitutable": false,
+   "why": "No option can be tested against the stem without finding both the range and the interquartile range, which is the whole calculation."
+  },
+  "distractor_meta": {
+   "25": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "reads the quartiles by position in the unordered list",
+    "why": "The student finds the range correctly but takes the 3rd and 9th numbers as written, 56 and 33, as the quartiles, so the interquartile range is 23 and 48 - 23 = 25."
+   },
+   "26": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "takes the range as the last listed value minus the first listed value",
+    "why": "Without ordering, the student uses the first and last numbers in the list, 61 and 16, as the extremes, so the range is 45 and 45 - 19 = 26."
+   },
+   "30.5": {
+    "error_kind": "wrong_base",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "puts the median into both halves when finding the quartiles",
+    "why": "Ignoring the rule, the student splits the eleven values into two groups of six that share 23, so the quartiles are 16.5 and 34, the interquartile range is 17.5, and 48 - 17.5 = 30.5."
+   }
+  },
+  "intermediate_check": "30.5: no, 48 - 17.5; no printed number turns it into 29. 25: no, 48 - 23. 26: no, 45 - 19. The solved intermediates 48 (range) and 19 (interquartile range) are not options, and no option equals a listed time.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: the answer is positive, less than the range (which is cheap: largest 61 minus smallest 13 = 48), and a whole number because the rule makes both quartiles data values. 25, 26 and 29 survive all of these together.",
+  "interior_parity_check": "Middle values 26 and 29: both two-digit whole numbers; the key is not the cleaner one.",
+  "arith_class_check": "With the stated rule both quartiles are listed values, so the answer is whole; 25 and 26 are whole too, so the key is not alone (30.5 is outside that class, the one strike).",
+  "dup_search": {
+   "queries": [
+    "range&interquartile",
+    "interquartile&minutes",
+    "range&greater&interquartile"
+   ],
+   "hits_read": 14,
+   "nearest": "MV2-D6-16 (b1 live: how much greater one data set's IQR is than another's) and 2651c472 (SAT: IQR of seven values) - IQR alone or IQR versus IQR; none subtracts the IQR from the range of one data set."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: every option is positive, as the range is never less than the IQR",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "the answer is less than the range, 61 - 13 = 48",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "with this rule both quartiles are data values, so the answer is a whole number",
+    "strikes": [
+     "30.5"
+    ]
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: no last digit is forced",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "the answer is between 0 and 48",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Key is rank 3. Below it: 25 (quartiles read from the unordered list) and 26 (range from the first and last listed values). Above it: 30.5 (median kept in both halves). Covering the stem, 25 / 26 / 29 / 30.5: no ratio hub, the key is not the midpoint of two options ((25 + 30.5)/2 = 27.75, (26 + 30.5)/2 = 28.25), no run through the key (25, 29, 33 or 26, 29, 32 absent). The key differs from options by 4, 3 and 1.5, none of them a listed value. K1: the whole-number class is shared by 25 and 26; 30.5 is struck by it (one). K2: no printed percent; the cap 48 strikes nothing. K3: none. K4: whole numbers. K5: no option equals a listed value or the range or the IQR. 25 and 26 both come from not ordering the list, but at different steps (quartile positions vs the extremes), and a student who scans for the largest and smallest while reading quartile positions in place makes the first without the second. Mid tier honest. Cheapest bound (the integer class) strikes one distractor."
+  }
+ },
+ {
+  "id": "MB4-D-03",
+  "domain": "Statistics and Probability",
+  "map_area": "data",
+  "grade_target": 6,
+  "tier": "low",
+  "rit_band": "RIT 200-209",
+  "difficulty": "easy",
+  "ccss": "6.SP.B.5c",
+  "subskill": "New mean after the same amount is added to every value",
+  "grade_rationale": "Low tier for grade 6 (6.SP.B.5c): five whole-number scores, one repeated, and a fixed bonus on each; the student either adds 6 to each score and averages or averages and adds 6. Most grade-6 students who know how to find a mean get this right.",
+  "prompt": "Five students took a quiz. Their scores were 62, 85, 80, 85, and 78. The teacher then added 6 points to every score. What is the mean of the new scores?",
+  "choices": [
+   "86",
+   "79.2",
+   "105",
+   "84"
+  ],
+  "correct_answer": "84",
+  "explanation": "The new scores are 68, 91, 86, 91, and 84. Their sum is 420, and 420 / 5 = 84. (The old mean is 390 / 5 = 78, and adding 6 to every score adds 6 to the mean: 78 + 6 = 84.)",
+  "solve": "const s=[62,85,80,85,78].map(x=>x+6);return String(s.reduce((a,b)=>a+b,0)/s.length);",
+  "distractor_solve": {
+   "86": "const s=[62,85,80,85,78].sort((a,b)=>a-b);return String(s[2]+6);",
+   "105": "const s=[62,85,80,85,78];return String((s.reduce((a,b)=>a+b,0)+6*5)/4);",
+   "79.2": "const s=[62,85,80,85,78];return String((s.reduce((a,b)=>a+b,0)+6)/5);"
+  },
+  "mechanism": [
+   "add the same bonus to every score",
+   "mean of the new scores"
+  ],
+  "quantity_asked": "mean of the five new quiz scores",
+  "plugback": {
+   "substitutable": false,
+   "why": "A mean cannot be checked against the stem without adding all five new scores, which is the calculation itself."
+  },
+  "distractor_meta": {
+   "86": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the median as the mean",
+    "why": "The student puts the scores in order, takes the middle score 80, and adds 6 to get 86."
+   },
+   "105": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "counts the repeated score 85 only once when dividing",
+    "why": "The student adds 6 to every score (sum 420) but divides by 4, counting the two 85s as one score, and gets 105."
+   },
+   "79.2": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds the bonus to the total once instead of once per score",
+    "why": "The student adds the five old scores (390), adds 6 only once to get 396, and divides by 5 to get 79.2."
+   }
+  },
+  "intermediate_check": "79.2: no, it is 396 / 5; no printed number turns it into 84. 86: no, it is 80 + 6, the median plus the bonus; the key is not 86 combined with a printed number (86 - 84 = 2, not printed). 105: no, 420 / 4. The solved intermediates 390, 420 and 78 are not options.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: the mean of the new scores lies between the new lowest (68) and new highest (91) scores, and is more than 6 above the old lowest. 79.2, 84 and 86 survive all of these together; 105 does not survive the 'at most 91' cap.",
+  "interior_parity_check": "Middle values 84 and 86: both two-digit whole numbers; the key is not the cleaner one.",
+  "arith_class_check": "No forced class: a mean of five whole numbers need not be whole, and 86 shares the key's whole-number form, so the key is not alone.",
+  "dup_search": {
+   "queries": [
+    "points? (to|added)&every|each&mean",
+    "added&every|each&mean",
+    "increase|raise|add&each score|every score|each value|every value",
+    "quiz&mean&points"
+   ],
+   "hits_read": 4,
+   "nearest": "9175721a (ACT: 'Add 4 to every value' as one choice in a standard-deviation item) - a verbal choice about spread, not the new mean. No MAP, ISEE or SSAT item asks for the mean after a fixed amount is added to every value."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: every option is positive, as a mean score must be",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "a mean cannot exceed the largest new score, 85 + 6 = 91",
+    "strikes": [
+     "105"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: a mean of five whole numbers need not be whole",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: no last digit is forced",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "the new mean lies between the new lowest score 68 and the new highest score 91",
+    "strikes": [
+     "105"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "low",
+   "note": "Key is rank 2: 79.2 below it (bonus added once to the total), 86 and 105 above (median plus 6; dividing by 4 because 85 repeats). Covering the stem, 79.2 / 84 / 86 / 105: no ratio hub (105/84 = 1.25, 86/79.2 = 1.09), the key is not a midpoint ((79.2 + 105)/2 = 92.1), no option is the key plus a printed number (differences 4.8, 2, 21). The second-smallest is the key, as the slot's rank fixes; the screener checks that nothing else marks it. K1: no forced class. K2: the 91 cap strikes 105 only; the band 68-91 keeps three options. K3: none. K4: whole numbers; the estimate 'about 80 + 6' is 86, from which the key is 2 away, 79.2 is 6.8 and 105 is 19, so two distractors sit beyond twice the key's distance - but 'about 80' is the median, not a rounding: rounding each score to the nearest ten (60, 90, 80, 90, 80) gives 80 + 6 = 86 too, while rounding to the nearest five gives 78 + 6 = 84 exactly. The rough estimate lands on the 86 distractor, so it does not pick the key. K5: no table. No solved intermediate (78, 390, 420) is an option. Low tier is honest. Cheapest bound strikes one distractor (105)."
+  }
+ }
+]
