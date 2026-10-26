@@ -73,6 +73,34 @@ function lone(it) {
   }
   return out
 }
+/**
+ * Batch 3 (2026-10-26), refusing, only for slot rows with `rank`. b2 Geometry was held on options-only (+11.1): the
+ * solvers' picks went to the SECOND-SMALLEST option 39 of 54 times, and 6 of 18 candidate keys sat there (controls 2
+ * of 18); every candidate hit was a middle pick. Interior keys must therefore be pinned to rank 2 or 3 by the slot.
+ * RANK: the key's ascending rank among the four values (1 = smallest .. 4 = largest) equals the slot's.
+ * HUB: no option is linked to two or more others by a ratio in {2, 3, 4, 1.5, 10} (either way); the key is linked
+ *   to none; the key is not the midpoint of two other options (the "value the others derive from"). On the b2
+ *   controls a ratio-hub key drew hits; no b2 candidate key was one, so HUB guards the next tell, RANK the found one.
+ */
+const HUB_RATIOS = [2, 3, 4, 1.5, 10]
+function rankHub(it, rank) {
+  const out = [], key = String(it.correct_answer), vs = it.choices.map(c => [String(c), val(String(c))])
+  if (vs.some(([, v]) => !Number.isFinite(v))) return ['RANK unscorable option']
+  const kv = val(key), r = 1 + vs.filter(([, v]) => v < kv).length
+  if (r !== rank) out.push(`RANK key is rank ${r} of 4 ascending, slot rank ${rank} (1 smallest .. 4 largest)`)
+  const near = (a, b) => Math.abs(a - b) <= 1e-9 * Math.max(1, Math.abs(a), Math.abs(b))
+  const linked = (a, b) => a !== 0 && b !== 0 && HUB_RATIOS.some(q => near(b / a, q) || near(a / b, q))
+  for (const [c, v] of vs) {
+    const deg = vs.filter(([d, w]) => d !== c && linked(v, w)).map(([d]) => d)
+    if (deg.length >= 2) out.push(`HUB '${c}' is x2/x3/x4/x1.5/x10 of ${deg.join(', ')} (a hub; rebuild)`)
+    else if (c === key && deg.length === 1) out.push(`HUB the key is x2/x3/x4/x1.5/x10 of '${deg[0]}' (the key may not sit in a ratio pair)`)
+  }
+  for (let i = 0; i < vs.length; i++) for (let k = i + 1; k < vs.length; k++) {
+    const [a, x] = vs[i], [b, y] = vs[k]
+    if (a !== key && b !== key && near((x + y) / 2, kv)) out.push(`HUB key is the midpoint of '${a}' and '${b}'`)
+  }
+  return out
+}
 const lastClass = d => (d === '0' ? 'zero' : d === '5' ? 'five' : '2468'.includes(d) ? 'even' : 'odd')
 function formOf(c) {
   const t = String(c).trim(), fr = t.match(/^-?(?:(\d+) )?(\d+)\/(\d+)$/)
@@ -150,6 +178,7 @@ for (const it of items) {
   const sc = scoreItem(it.choices.map(String), String(it.correct_answer))
   const kp = sc.skip ? null : sc.keyMin ? 'S' : sc.keyMax ? 'L' : 'I'
   if (kp !== s.pos) bad.push(`key position by value is ${kp}, slot ${s.pos} (S smallest, L largest, I interior)`)
+  if (s.rank != null) bad.push(...rankHub(it, s.rank))   // batch 3+: only slot rows that carry `rank`
   if ((s.pos === 'S' || s.pos === 'L') && (!it.far_distractor || !it.counter_error)) bad.push('S/L slot: far_distractor and counter_error required')
   bad.push(...lone(it), ...bounds(it))
   const sl = slips(it); bad.push(...sl.out); if (sl.dupMis) bad.push('two distractors name the same misconception')

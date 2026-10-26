@@ -1,0 +1,314 @@
+{
+ "G5": {
+  "area": "Geometry",
+  "scope": "5.G, 5.MD.C",
+  "rows": [
+   {
+    "g": 5,
+    "tier": "low",
+    "pos": "I",
+    "rank": 2,
+    "id": "MB3-G5-01",
+    "cls": null,
+    "mech": "box whose base rectangle is given by four grid corners (first quadrant) and a printed height: volume"
+   },
+   {
+    "g": 5,
+    "tier": "low",
+    "pos": "I",
+    "rank": 3,
+    "id": "MB3-G5-02",
+    "cls": null,
+    "mech": "box filled with 1-cm cubes: cubes in one layer and the box length printed: the width (5.MD.C.5a)"
+   },
+   {
+    "g": 5,
+    "tier": "mid",
+    "pos": "S",
+    "rank": 1,
+    "id": "MB3-G5-03",
+    "cls": "DIFF",
+    "mech": "box B is k cubes longer than box A, same width and height: how many more unit cubes B holds"
+   },
+   {
+    "g": 5,
+    "tier": "mid",
+    "pos": "I",
+    "rank": 2,
+    "id": "MB3-G5-04",
+    "cls": null,
+    "mech": "box whose height is the grid distance between two printed points: volume"
+   },
+   {
+    "g": 5,
+    "tier": "high",
+    "pos": "I",
+    "rank": 3,
+    "id": "MB3-G5-05",
+    "cls": null,
+    "mech": "a cube with the same volume as a printed box: the cube's edge (64, 216, 512 by whole-number trial)"
+   },
+   {
+    "g": 5,
+    "tier": "mid",
+    "pos": "L",
+    "rank": 4,
+    "id": "MB3-G5-06",
+    "cls": "DIFF",
+    "mech": "two rectangles given by grid corners: how much longer one perimeter is than the other"
+   },
+   {
+    "g": 5,
+    "tier": "high",
+    "pos": "L",
+    "rank": 4,
+    "id": "MB3-G5-07",
+    "cls": "DIVISOR",
+    "mech": "how many 2-cm cubes fill a box with even edges (per-edge counting vs dividing the volume by 2)"
+   }
+  ]
+ },
+ "G6": {
+  "area": "Geometry",
+  "scope": "6.G",
+  "rows": [
+   {
+    "g": 6,
+    "tier": "low",
+    "pos": "I",
+    "rank": 2,
+    "id": "MB3-G6-01",
+    "cls": null,
+    "mech": "surface area of a cube from its net, edge a mixed number"
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "S",
+    "rank": 1,
+    "id": "MB3-G6-02",
+    "cls": "DIFF",
+    "mech": "a cube and a rectangular prism with the same volume: how much less surface area the cube has"
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "L",
+    "rank": 4,
+    "id": "MB3-G6-03",
+    "cls": "DIVISOR",
+    "mech": "prism with a fractional volume and a fractional rectangular base: its height"
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "I",
+    "rank": 3,
+    "id": "MB3-G6-04",
+    "cls": null,
+    "mech": "triangle in the coordinate plane with no side on a grid line: enclosing rectangle minus three right triangles"
+   },
+   {
+    "g": 6,
+    "tier": "high",
+    "pos": "S",
+    "rank": 1,
+    "id": "MB3-G6-05",
+    "cls": "DIVISOR",
+    "mech": "closed box: total surface area, length and width printed: the height (surface area worked backward)"
+   },
+   {
+    "g": 6,
+    "tier": "high",
+    "pos": "L",
+    "rank": 4,
+    "id": "MB3-G6-06",
+    "cls": "NEGTERM",
+    "mech": "a rectangle in the coordinate plane and its reflection across the x-axis touch along an edge: perimeter of the combined shape"
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "S",
+    "rank": 1,
+    "id": "MB3-G6-07",
+    "cls": "DIFF",
+    "mech": "a vertical segment crossing the x-axis and a horizontal segment crossing the y-axis, from coordinates: how much longer one is"
+   },
+   {
+    "g": 6,
+    "tier": "high",
+    "pos": "I",
+    "rank": 2,
+    "id": "MB3-G6-08",
+    "cls": null,
+    "mech": "the number of 1/4-inch cubes that fill a box and two of its edges printed: the third edge"
+   }
+  ]
+ },
+ "G7": {
+  "area": "Geometry",
+  "scope": "7.G",
+  "rows": [
+   {
+    "g": 7,
+    "tier": "low",
+    "pos": "I",
+    "rank": 2,
+    "id": "MB3-G7-01",
+    "cls": null,
+    "mech": "actual area of a room from a scale drawing with a linear scale (the scale squared)"
+   },
+   {
+    "g": 7,
+    "tier": "low",
+    "pos": "I",
+    "rank": 3,
+    "id": "MB3-G7-02",
+    "cls": null,
+    "mech": "two complementary angles in a ratio p:q: the larger angle"
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "S",
+    "rank": 1,
+    "id": "MB3-G7-03",
+    "cls": "DIFF",
+    "mech": "two wheels with printed diameters: how much farther the larger rolls in one full turn"
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "I",
+    "rank": 2,
+    "id": "MB3-G7-04",
+    "cls": null,
+    "mech": "volume of a right prism whose base is a trapezoid"
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "I",
+    "rank": 3,
+    "id": "MB3-G7-05",
+    "cls": null,
+    "mech": "a scale drawing photocopied at a percent enlargement: actual length from a length on the copy"
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "L",
+    "rank": 4,
+    "id": "MB3-G7-06",
+    "cls": "DIVISOR",
+    "mech": "map distance at a ratio scale, then travel time at a printed speed (scale conversion and division by speed)"
+   },
+   {
+    "g": 7,
+    "tier": "high",
+    "pos": "S",
+    "rank": 1,
+    "id": "MB3-G7-07",
+    "cls": "NEGTERM",
+    "mech": "three lines through one point with angle expressions: an angle found as 360 minus a sum"
+   },
+   {
+    "g": 7,
+    "tier": "high",
+    "pos": "I",
+    "rank": 3,
+    "id": "MB3-G7-08",
+    "cls": null,
+    "mech": "block whose cross-section is a rectangle with a half-circle cut from one side, times its length: volume"
+   },
+   {
+    "g": 7,
+    "tier": "high",
+    "pos": "L",
+    "rank": 4,
+    "id": "MB3-G7-09",
+    "cls": "DIFF",
+    "mech": "triangular-base prism and rectangular-base prism of the same length: how much more one holds"
+   }
+  ]
+ },
+ "G8": {
+  "area": "Geometry",
+  "scope": "8.G",
+  "rows": [
+   {
+    "g": 8,
+    "tier": "low",
+    "pos": "I",
+    "rank": 2,
+    "id": "MB3-G8-01",
+    "cls": null,
+    "mech": "two parallel lines and a transversal: an angle reached from a printed angle through one vertical and one same-side interior step"
+   },
+   {
+    "g": 8,
+    "tier": "mid",
+    "pos": "S",
+    "rank": 1,
+    "id": "MB3-G8-02",
+    "cls": "DIFF",
+    "mech": "segment between two points, then the same segment after a dilation by k about the origin: how much longer the image is"
+   },
+   {
+    "g": 8,
+    "tier": "mid",
+    "pos": "I",
+    "rank": 3,
+    "id": "MB3-G8-03",
+    "cls": null,
+    "mech": "sphere whose great-circle circumference is printed: its volume (3.14)"
+   },
+   {
+    "g": 8,
+    "tier": "mid",
+    "pos": "L",
+    "rank": 4,
+    "id": "MB3-G8-04",
+    "cls": "DIVISOR",
+    "mech": "height of a cylinder from its volume and diameter (3.14)"
+   },
+   {
+    "g": 8,
+    "tier": "high",
+    "pos": "S",
+    "rank": 1,
+    "id": "MB3-G8-05",
+    "cls": "DIVISOR",
+    "mech": "radius of a cone from its volume and height (3.14; the 1/3 and the diameter errors fall both ways)"
+   },
+   {
+    "g": 8,
+    "tier": "high",
+    "pos": "L",
+    "rank": 4,
+    "id": "MB3-G8-06",
+    "cls": "DIFF",
+    "mech": "a cone and a cylinder with the same volume and the same radius: how much taller the cone is"
+   },
+   {
+    "g": 8,
+    "tier": "high",
+    "pos": "I",
+    "rank": 2,
+    "id": "MB3-G8-07",
+    "cls": null,
+    "mech": "perimeter of a triangle in the xy-plane with one side off the grid lines (one Pythagorean side)"
+   },
+   {
+    "g": 8,
+    "tier": "mid",
+    "pos": "I",
+    "rank": 3,
+    "id": "MB3-G8-08",
+    "cls": null,
+    "mech": "box whose base is a rectangle with a printed diagonal and one printed side, and a printed height: volume (Pythagoras, then volume)"
+   }
+  ]
+ }
+}
