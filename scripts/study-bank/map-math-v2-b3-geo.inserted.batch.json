@@ -1,0 +1,647 @@
+[
+ {
+  "id": "MB3-G6-01",
+  "domain": "Geometry",
+  "subskill": "Surface area of a cube from its net, mixed-number edge",
+  "difficulty": "easy",
+  "topic_tag": "6.G.A.4",
+  "prompt": "Leo cut out a net that folds into a closed box shaped like a cube. The net is made of six squares, and each square is 1 1/4 inches long on each side. What is the surface area of the box, in square inches?",
+  "choices": [
+   "9 3/8",
+   "6 3/8",
+   "30",
+   "15"
+  ],
+  "correct_answer": "9 3/8",
+  "explanation": "The surface area is the total area of the six squares in the net. One square has area 1 1/4 x 1 1/4 = 5/4 x 5/4 = 25/16 square inches. Six squares: 6 x 25/16 = 150/16 = 9 3/8 square inches.",
+  "solve": "const mx=(n,d)=>{const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d);n/=k;d/=k;const w=Math.floor(n/d),r=n-w*d;return r===0?String(w):(w?w+' '+r+'/'+d:r+'/'+d);};const n=5,d=4;return mx(6*n*n,d*d);",
+  "graphic": null,
+  "grade_target": 6,
+  "tier": "low",
+  "rit_band": "RIT 200-209",
+  "ccss": "6.G.A.4",
+  "area_25": null,
+  "map_area": "geo",
+  "distractor_steps": [
+   {
+    "choice": "6 3/8",
+    "mis_step": "The student squares 1 1/4 as 1 x 1 + 1/4 x 1/4 = 1 1/16, dropping the two cross terms, then multiplies by 6 to get 6 3/8."
+   },
+   {
+    "choice": "30",
+    "mis_step": "The student uses each square's perimeter, 4 x 1 1/4 = 5, as if it were the area, and then 6 x 5 = 30."
+   },
+   {
+    "choice": "15",
+    "mis_step": "The student finds a square's area as 2 x 1 1/4 = 2 1/2, treating squaring as doubling, and then 6 x 2 1/2 = 15."
+   }
+  ],
+  "distractor_solve": {
+   "15": "const e=1.25;return String(6*(2*e));",
+   "30": "const e=1.25;return String(6*(4*e));",
+   "6 3/8": "const mx=(n,d)=>{const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d);n/=k;d/=k;const w=Math.floor(n/d),r=n-w*d;return r===0?String(w):(w?w+' '+r+'/'+d:r+'/'+d);};const fn=1*16+1,fd=16;return mx(6*fn,fd);"
+  }
+ },
+ {
+  "id": "MB3-G7-04",
+  "domain": "Geometry",
+  "subskill": "Volume of a prism with trapezoid ends",
+  "difficulty": "medium",
+  "topic_tag": "7.G.B.6",
+  "prompt": "A planter box is shaped like a prism that is 15 inches long. Each end of the box is a trapezoid. The two parallel sides of each trapezoid are 6 inches and 16 inches long, and the distance between them is 5 inches. What is the volume of the planter box, in cubic inches?",
+  "choices": [
+   "1050",
+   "825",
+   "1200",
+   "750"
+  ],
+  "correct_answer": "825",
+  "explanation": "Area of one trapezoid end: (6 + 16) / 2 x 5 = 11 x 5 = 55 square inches. Volume of the prism: base area x length = 55 x 15 = 825 cubic inches.",
+  "solve": "return (6+16)/2*5*15;",
+  "graphic": null,
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "ccss": "7.G.B.6",
+  "area_25": null,
+  "map_area": "geo",
+  "distractor_steps": [
+   {
+    "choice": "1050",
+    "mis_step": "Computes 6 + 16 / 2 = 14 instead of (6 + 16) / 2 = 11, so the end area is 70."
+   },
+   {
+    "choice": "1200",
+    "mis_step": "Uses 16 x 5 = 80 for the end area, ignoring that the top is shorter."
+   },
+   {
+    "choice": "750",
+    "mis_step": "Takes the difference 16 - 6 = 10 as the trapezoid's width, so the end area is 10 x 5 = 50."
+   }
+  ],
+  "distractor_solve": {
+   "750": "return (16-6)*5*15;",
+   "1050": "return (6+16/2)*5*15;",
+   "1200": "return 16*5*15;"
+  }
+ },
+ {
+  "id": "MB3-G7-01",
+  "domain": "Geometry",
+  "subskill": "Actual area from a scale drawing (scale squared)",
+  "difficulty": "easy",
+  "topic_tag": "7.G.A.1",
+  "prompt": "A floor plan of a classroom uses the scale 3 centimeters = 5 meters. On the floor plan, the classroom is a rectangle 12 centimeters long and 4.5 centimeters wide. What is the actual area of the classroom, in square meters?",
+  "choices": [
+   "1350",
+   "270",
+   "150",
+   "90"
+  ],
+  "correct_answer": "150",
+  "explanation": "Every 3 centimeters on the plan stand for 5 meters. The length 12 cm is 4 groups of 3 cm, so it stands for 4 x 5 = 20 meters. The width 4.5 cm is 1.5 groups of 3 cm, so it stands for 1.5 x 5 = 7.5 meters. The actual area is 20 x 7.5 = 150 square meters.",
+  "solve": "const L=12*5/3, W=4.5*5/3; return L*W;",
+  "graphic": null,
+  "grade_target": 7,
+  "tier": "low",
+  "rit_band": "RIT 200-209",
+  "ccss": "7.G.A.1",
+  "area_25": null,
+  "map_area": "geo",
+  "distractor_steps": [
+   {
+    "choice": "1350",
+    "mis_step": "Multiplies each length by 5 (60 m and 22.5 m) and multiplies, never dividing by 3."
+   },
+   {
+    "choice": "270",
+    "mis_step": "Finds the plan's area 54 and multiplies by 5, reading the scale as 1 square cm of plan = 5 square meters."
+   },
+   {
+    "choice": "90",
+    "mis_step": "Finds the plan's area 12 x 4.5 = 54 square cm and multiplies by 5/3 once, as if area scaled like length."
+   }
+  ],
+  "distractor_solve": {
+   "90": "return 12*4.5*5/3;",
+   "270": "return 12*4.5*5;",
+   "1350": "return (12*5)*(4.5*5);"
+  }
+ },
+ {
+  "id": "MB3-G5-01",
+  "domain": "Geometry",
+  "subskill": "Box volume with its bottom read from grid corners",
+  "difficulty": "easy",
+  "topic_tag": "5.G.A.2",
+  "prompt": "Maria draws the bottom of a jewelry box on a coordinate grid where each unit stands for 1 inch. The bottom is the rectangle with corners at (2, 1), (9, 1), (9, 4), and (2, 4). The box is shaped like a rectangular prism and is 5 inches tall. What is the volume of the box, in cubic inches?",
+  "choices": [
+   "105",
+   "45",
+   "160",
+   "275"
+  ],
+  "correct_answer": "105",
+  "explanation": "The bottom goes from x = 2 to x = 9, so it is 9 - 2 = 7 inches long. It goes from y = 1 to y = 4, so it is 4 - 1 = 3 inches wide. Volume = length x width x height = 7 x 3 x 5 = 105 cubic inches.",
+  "solve": "const L = 9 - 2, W = 4 - 1, H = 5; return L * W * H;",
+  "graphic": null,
+  "grade_target": 5,
+  "tier": "low",
+  "rit_band": "RIT 190-199",
+  "ccss": "5.G.A.2",
+  "area_25": "Geometry",
+  "map_area": "geo",
+  "distractor_steps": [
+   {
+    "choice": "45",
+    "mis_step": "Finds the 3-inch side and uses it twice, as if the bottom were a square: 3 x 3 x 5 = 45."
+   },
+   {
+    "choice": "160",
+    "mis_step": "Counts the grid points 2, 3, ..., 9 (8 of them) and 1, 2, 3, 4 (4 of them): 8 x 4 x 5 = 160."
+   },
+   {
+    "choice": "275",
+    "mis_step": "Adds 2 + 9 = 11 and 1 + 4 = 5 for the sides: 11 x 5 x 5 = 275."
+   }
+  ],
+  "distractor_solve": {
+   "45": "const s = Math.min(9 - 2, 4 - 1); return s * s * 5;",
+   "160": "return (9 - 2 + 1) * (4 - 1 + 1) * 5;",
+   "275": "return (2 + 9) * (1 + 4) * 5;"
+  }
+ },
+ {
+  "id": "MB3-G6-07",
+  "domain": "Geometry",
+  "subskill": "Compare a vertical and a horizontal segment across axes",
+  "difficulty": "medium",
+  "topic_tag": "6.G.A.3",
+  "prompt": "A park map is drawn in the coordinate plane, and each unit stands for 1 meter. A straight fence runs from (7, -3) to (7, 24). A straight path runs from (-9, -5) to (4, -5). How many meters longer is the fence than the path?",
+  "choices": [
+   "40",
+   "14",
+   "20",
+   "16"
+  ],
+  "correct_answer": "14",
+  "explanation": "The fence is vertical: from y = -3 to y = 24 is 3 + 24 = 27 meters. The path is horizontal: from x = -9 to x = 4 is 9 + 4 = 13 meters. The fence is 27 - 13 = 14 meters longer.",
+  "solve": "const V=Math.abs(24-(-3)),H=Math.abs(4-(-9));return String(V-H);",
+  "graphic": null,
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "ccss": "6.G.A.3",
+  "area_25": null,
+  "map_area": "geo",
+  "distractor_steps": [
+   {
+    "choice": "40",
+    "mis_step": "The student finds 27 and 13 correctly and adds them, 27 + 13 = 40."
+   },
+   {
+    "choice": "20",
+    "mis_step": "The student counts the fence from 0 to 24 and the path from 0 to 4, so 24 - 4 = 20."
+   },
+   {
+    "choice": "16",
+    "mis_step": "The student finds the fence as 24 - 3 = 21 and the path as 9 - 4 = 5, then 21 - 5 = 16."
+   }
+  ],
+  "distractor_solve": {
+   "16": "const V=24-3,H=9-4;return String(V-H);",
+   "20": "return String(24-4);",
+   "40": "const V=24+3,H=9+4;return String(V+H);"
+  }
+ },
+ {
+  "id": "MB3-G6-02",
+  "domain": "Geometry",
+  "subskill": "Cube vs prism of equal volume: surface area difference",
+  "difficulty": "medium",
+  "topic_tag": "6.G.A.4",
+  "prompt": "A block of clay is shaped like a rectangular prism that is 5 centimeters wide, 8 centimeters long, and 25 centimeters tall. Mai reshapes all of the clay into a cube, so the cube has the same volume as the prism. How many square centimeters less surface area does the cube have than the prism?",
+  "choices": [
+   "330",
+   "280",
+   "130",
+   "670"
+  ],
+  "correct_answer": "130",
+  "explanation": "Volume of the prism: 5 x 8 x 25 = 1,000 cubic cm, so the cube's edge is 10 cm (10 x 10 x 10 = 1,000). Prism surface area: 2 x (5 x 8 + 5 x 25 + 8 x 25) = 2 x (40 + 125 + 200) = 730 square cm. Cube surface area: 6 x 10 x 10 = 600 square cm. Difference: 730 - 600 = 130 square cm.",
+  "solve": "const l=5,w=8,h=25;const A=2*(l*w+l*h+w*h);const e=Math.round(Math.cbrt(l*w*h));return String(A-6*e*e);",
+  "graphic": null,
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "ccss": "6.G.A.4",
+  "area_25": null,
+  "map_area": "geo",
+  "distractor_steps": [
+   {
+    "choice": "330",
+    "mis_step": "The student finds the cube's surface area as 4 x 100 = 400, leaving out the top and bottom, and 730 - 400 = 330."
+   },
+   {
+    "choice": "280",
+    "mis_step": "The student counts the top and bottom (5 x 8) twice but takes all four side faces as 8 x 25, getting 880 for the prism, and 880 - 600 = 280."
+   },
+   {
+    "choice": "670",
+    "mis_step": "The student writes the cube's surface area as 6 x 10 = 60 instead of 6 x 10 x 10, and 730 - 60 = 670."
+   }
+  ],
+  "distractor_solve": {
+   "280": "const l=5,w=8,h=25;const A=2*l*w+4*w*h;return String(A-6*10*10);",
+   "330": "const l=5,w=8,h=25;const A=2*(l*w+l*h+w*h);return String(A-4*10*10);",
+   "670": "const l=5,w=8,h=25;const A=2*(l*w+l*h+w*h);return String(A-6*10);"
+  }
+ },
+ {
+  "id": "MB3-G5-07",
+  "domain": "Geometry",
+  "subskill": "Number of 2-cm cubes that fill a box",
+  "difficulty": "hard",
+  "topic_tag": "5.MD.C.4",
+  "prompt": "A toy maker packs 2-centimeter cubes into a box shaped like a rectangular prism. The inside of the box is 20 centimeters long, 16 centimeters wide, and 24 centimeters tall. The cubes fill the box with no gaps. How many 2-centimeter cubes are in the box?",
+  "choices": [
+   "120",
+   "960",
+   "30",
+   "160"
+  ],
+  "correct_answer": "960",
+  "explanation": "Along the length, 20 / 2 = 10 cubes fit. Along the width, 16 / 2 = 8 cubes fit. Along the height, 24 / 2 = 12 cubes fit. Number of cubes = 10 x 8 x 12 = 960.",
+  "solve": "return (20 / 2) * (16 / 2) * (24 / 2);",
+  "graphic": null,
+  "grade_target": 5,
+  "tier": "high",
+  "rit_band": "RIT 210-219",
+  "ccss": "5.MD.C.4",
+  "area_25": "Measurement and Data",
+  "map_area": "geo",
+  "distractor_steps": [
+   {
+    "choice": "120",
+    "mis_step": "Divides each edge by 4: 5 x 4 x 6 = 120."
+   },
+   {
+    "choice": "30",
+    "mis_step": "Finds 10, 8 and 12 cubes along the edges and adds them: 30."
+   },
+   {
+    "choice": "160",
+    "mis_step": "Finds the bottom's area 20 x 16 = 320 and divides by 2: 160."
+   }
+  ],
+  "distractor_solve": {
+   "30": "return 20 / 2 + 16 / 2 + 24 / 2;",
+   "120": "return (20 / 4) * (16 / 4) * (24 / 4);",
+   "160": "return 20 * 16 / 2;"
+  }
+ },
+ {
+  "id": "MB3-G5-05",
+  "domain": "Geometry",
+  "subskill": "Box volume when the bottom is given by perimeter and side",
+  "difficulty": "hard",
+  "topic_tag": "5.MD.C.5b",
+  "prompt": "Carlos builds a wooden storage box shaped like a rectangular prism. The bottom of the box is a rectangle with a perimeter of 72 inches, and one side of the bottom is 8 inches long. The box is 3 inches tall. What is the volume of the box, in cubic inches?",
+  "choices": [
+   "192",
+   "216",
+   "672",
+   "768"
+  ],
+  "correct_answer": "672",
+  "explanation": "The bottom has two sides of 8 inches and two equal sides of unknown length. 72 - 8 - 8 = 56, and 56 / 2 = 28, so the bottom is 8 inches by 28 inches. Volume = 8 x 28 x 3 = 672 cubic inches.",
+  "solve": "const w = (72 - 2 * 8) / 2; return 8 * w * 3;",
+  "graphic": null,
+  "grade_target": 5,
+  "tier": "high",
+  "rit_band": "RIT 210-219",
+  "ccss": "5.MD.C.5b",
+  "area_25": "Measurement and Data",
+  "map_area": "geo",
+  "distractor_steps": [
+   {
+    "choice": "192",
+    "mis_step": "Takes the bottom as 8 by 8: 8 x 8 x 3 = 192."
+   },
+   {
+    "choice": "216",
+    "mis_step": "Multiplies 72 by the height: 72 x 3 = 216."
+   },
+   {
+    "choice": "768",
+    "mis_step": "Finds (72 - 8) / 2 = 32 for the other side: 8 x 32 x 3 = 768."
+   }
+  ],
+  "distractor_solve": {
+   "192": "return 8 * 8 * 3;",
+   "216": "return 72 * 3;",
+   "768": "const w = (72 - 8) / 2; return 8 * w * 3;"
+  }
+ },
+ {
+  "id": "MB3-G6-06",
+  "domain": "Geometry",
+  "subskill": "Perimeter of a rectangle joined to its reflection",
+  "difficulty": "hard",
+  "topic_tag": "6.G.A.3",
+  "prompt": "In the coordinate plane, a rectangle has corners at (-9, 0), (1, 0), (1, 14), and (-9, 14). The rectangle is reflected across the x-axis. The rectangle and its image share one side, and together they form one larger shape. What is the perimeter of the larger shape, in units?",
+  "choices": [
+   "68",
+   "64",
+   "76",
+   "56"
+  ],
+  "correct_answer": "76",
+  "explanation": "The image has corners at (-9, 0), (1, 0), (1, -14), and (-9, -14), so the two rectangles share the side from (-9, 0) to (1, 0). Together they make a rectangle from y = -14 to y = 14 (28 units tall) and from x = -9 to x = 1 (10 units wide). Perimeter = 2 x (10 + 28) = 76 units.",
+  "solve": "const w=1-(-9),h=14;return String(2*(w+2*h));",
+  "graphic": null,
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "ccss": "6.G.A.3",
+  "area_25": null,
+  "map_area": "geo",
+  "distractor_steps": [
+   {
+    "choice": "68",
+    "mis_step": "Reading 'across the x-axis' as 'along the x-axis', the student makes the shape 20 wide and 14 tall: 2 x (20 + 14) = 68."
+   },
+   {
+    "choice": "64",
+    "mis_step": "The student's image runs from x = -1 to x = 9, overlapping the original; the outline of both runs from x = -9 to 9 and y = 0 to 14: 2 x (18 + 14) = 64."
+   },
+   {
+    "choice": "56",
+    "mis_step": "The student adds both perimeters, 48 + 48 = 96, and then takes the shared 10-unit side off twice for each rectangle, 96 - 40 = 56, instead of once for each."
+   }
+  ],
+  "distractor_solve": {
+   "56": "const w=1-(-9),h=14;return String(2*(2*w+2*h)-4*w);",
+   "64": "const h=14;const m=Math.max(9,1);return String(2*(2*m+h));",
+   "68": "const w=1-(-9),h=14;return String(2*(2*w+h));"
+  }
+ },
+ {
+  "id": "MB3-G8-03",
+  "domain": "Geometry",
+  "subskill": "Sphere volume from its great-circle circumference",
+  "difficulty": "medium",
+  "topic_tag": "8.G.C.9",
+  "prompt": "A ball is shaped like a sphere. The distance around the ball at its widest part (its circumference) is 17.27 centimeters. Using 3.14 for pi, what is the volume of the ball, in cubic centimeters? Round to the nearest hundredth.",
+  "choices": [
+   "94.99",
+   "65.30",
+   "31.66",
+   "87.07"
+  ],
+  "correct_answer": "87.07",
+  "explanation": "The distance around the widest part is 2 x pi x r, so r = 17.27 / (2 x 3.14) = 17.27 / 6.28 = 2.75 cm. The volume of a sphere is (4/3) x pi x r^3 = (4/3) x 3.14 x 2.75^3 = (4/3) x 3.14 x 20.796875, which is about 87.07 cubic centimeters.",
+  "solve": "const r = 17.27 / (2 * 3.14); const v = (4 / 3) * 3.14 * r ** 3; return (Math.round(v * 100) / 100).toFixed(2);",
+  "graphic": null,
+  "grade_target": 8,
+  "tier": "mid",
+  "rit_band": "RIT 220-229",
+  "ccss": "8.G.C.9",
+  "area_25": null,
+  "map_area": "geo",
+  "distractor_steps": [
+   {
+    "choice": "94.99",
+    "mis_step": "The student remembers a sphere formula with a 4 and pi in it, uses 4 x 3.14 x 2.75^2 = 94.985, and rounds to 94.99."
+   },
+   {
+    "choice": "65.30",
+    "mis_step": "The student finds r = 2.75 and computes pi x r^3 = 65.30, forgetting the factor 4/3."
+   },
+   {
+    "choice": "31.66",
+    "mis_step": "The student mixes the area power into the volume formula and computes (4/3) x 3.14 x 2.75^2 = 31.66."
+   }
+  ],
+  "distractor_solve": {
+   "65.30": "const r = 17.27 / (2 * 3.14); return (Math.round(3.14 * r ** 3 * 100) / 100).toFixed(2);",
+   "31.66": "const r = 17.27 / (2 * 3.14); return (Math.round((4 / 3) * 3.14 * r ** 2 * 100) / 100).toFixed(2);",
+   "94.99": "const r100 = 275; return (Math.round(4 * 314 * r100 * r100 / 10000) / 100).toFixed(2);"
+  }
+ },
+ {
+  "id": "MB3-G5-02",
+  "domain": "Geometry",
+  "subskill": "Total unit cubes in two boxes counted by layers",
+  "difficulty": "easy",
+  "topic_tag": "5.MD.C.5c",
+  "prompt": "Leo fills two boxes with 1-centimeter cubes, with no gaps. In Box A, the cubes are stacked in 8 layers, and each layer has 14 cubes. In Box B, the cubes are stacked in 3 layers, and each layer has 20 cubes. How many cubes are in the two boxes altogether?",
+  "choices": [
+   "172",
+   "202",
+   "132",
+   "102"
+  ],
+  "correct_answer": "172",
+  "explanation": "Box A holds 8 layers of 14 cubes: 8 x 14 = 112 cubes. Box B holds 3 layers of 20 cubes: 3 x 20 = 60 cubes. Together: 112 + 60 = 172 cubes.",
+  "solve": "return 8 * 14 + 3 * 20;",
+  "graphic": null,
+  "grade_target": 5,
+  "tier": "low",
+  "rit_band": "RIT 190-199",
+  "ccss": "5.MD.C.5c",
+  "area_25": "Measurement and Data",
+  "map_area": "geo",
+  "distractor_steps": [
+   {
+    "choice": "202",
+    "mis_step": "Mixes up which box has 8 layers: 3 x 14 + 8 x 20 = 42 + 160 = 202."
+   },
+   {
+    "choice": "132",
+    "mis_step": "Gets Box A right (112) but adds just one layer of Box B (20): 112 + 20 = 132."
+   },
+   {
+    "choice": "102",
+    "mis_step": "Adds 14 + 20 = 34 cubes per layer and multiplies by Box B's 3 layers for both boxes: 34 x 3 = 102."
+   }
+  ],
+  "distractor_solve": {
+   "102": "return (14 + 20) * 3;",
+   "132": "return 8 * 14 + 20;",
+   "202": "return 3 * 14 + 8 * 20;"
+  }
+ },
+ {
+  "id": "MB3-G7-06",
+  "domain": "Geometry",
+  "subskill": "Trip time from a ratio map scale and a speed",
+  "difficulty": "medium",
+  "topic_tag": "7.G.A.1",
+  "prompt": "The scale of a road map is the ratio 1 : 600,000. This means 1 centimeter on the map equals 600,000 centimeters of real ground. On this map, a lake resort is 24 centimeters from a city. A tour bus covers the real distance from the city to the resort at an average speed of 40 kilometers per hour. For how many minutes is the bus driving?",
+  "choices": [
+   "96",
+   "216",
+   "36",
+   "186"
+  ],
+  "correct_answer": "216",
+  "explanation": "600,000 centimeters = 6,000 meters = 6 kilometers, so 1 cm on the map stands for 6 km. The towns are 24 x 6 = 144 km apart. At 40 km per hour the trip takes 144 / 40 = 3.6 hours. In minutes: 3.6 x 60 = 216 minutes.",
+  "solve": "const km=24*600000/100000; return km/40*60;",
+  "graphic": null,
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "ccss": "7.G.A.1",
+  "area_25": null,
+  "map_area": "geo",
+  "distractor_steps": [
+   {
+    "choice": "96",
+    "mis_step": "Changes 40 km per hour to 2/3 km per minute and multiplies: 144 x 2/3 = 96."
+   },
+   {
+    "choice": "36",
+    "mis_step": "Treats 24 cm as 24 km, so the time is 24 / 40 = 0.6 h = 36 min."
+   },
+   {
+    "choice": "186",
+    "mis_step": "Finds 3.6 hours correctly and writes it as 3 h 6 min = 186 minutes."
+   }
+  ],
+  "distractor_solve": {
+   "36": "return 24/40*60;",
+   "96": "const km=24*6; return km*(40/60);",
+   "186": "const t=24*6/40; return Math.floor(t)*60+Math.round((t-Math.floor(t))*10);"
+  }
+ },
+ {
+  "id": "MB3-G7-02",
+  "domain": "Geometry",
+  "subskill": "Area of a slice of a rectangular prism",
+  "difficulty": "easy",
+  "topic_tag": "7.G.A.3",
+  "prompt": "A block of cheese is a rectangular prism 14 centimeters long, 9 centimeters wide, and 5 centimeters tall. Leo slices it once with a flat knife held straight up and down. The slice goes from the top of the block to the bottom, runs the full 14-centimeter length, and is parallel to the two long sides of the block. The slice leaves two new flat faces, one on each piece. What is the area of each new flat face, in square centimeters?",
+  "choices": [
+   "126",
+   "45",
+   "38",
+   "70"
+  ],
+  "correct_answer": "70",
+  "explanation": "The slice goes straight down from top to bottom, so each new face is as tall as the block, 5 cm. It runs the whole length, so each new face is 14 cm long. Each new face is a rectangle 14 cm by 5 cm, with area 14 x 5 = 70 square centimeters.",
+  "solve": "return 14*5;",
+  "graphic": null,
+  "grade_target": 7,
+  "tier": "low",
+  "rit_band": "RIT 200-209",
+  "ccss": "7.G.A.3",
+  "area_25": null,
+  "map_area": "geo",
+  "distractor_steps": [
+   {
+    "choice": "126",
+    "mis_step": "Multiplies length by width, 14 x 9, as if the cut were parallel to the top and bottom."
+   },
+   {
+    "choice": "45",
+    "mis_step": "Uses the width and height, 9 x 5, as if the cut ran across the 9-cm width instead of along the length."
+   },
+   {
+    "choice": "38",
+    "mis_step": "Sees the 14 by 5 rectangle but adds its sides: 2 x (14 + 5) = 38."
+   }
+  ],
+  "distractor_solve": {
+   "38": "return 2*(14+5);",
+   "45": "return 9*5;",
+   "126": "return 14*9;"
+  }
+ },
+ {
+  "id": "MB3-G7-07",
+  "domain": "Geometry",
+  "subskill": "Angle among three crossing lines from a vertical-angle equation",
+  "difficulty": "hard",
+  "topic_tag": "7.G.B.5",
+  "prompt": "Three straight lines cross at point O and form six angles around O. Going around O in order, the angles are angle 1, angle 2, angle 3, angle 4, angle 5, and angle 6, so angle 1 and angle 4 are vertical angles, angle 2 and angle 5 are vertical angles, and angle 3 and angle 6 are vertical angles. Angle 1 measures (4x - 14) degrees, angle 4 measures (2x + 22) degrees, and angle 2 measures 47 degrees. What is the measure of angle 6, in degrees?",
+  "choices": [
+   "75",
+   "115",
+   "131",
+   "197"
+  ],
+  "correct_answer": "75",
+  "explanation": "Vertical angles are equal, so 4x - 14 = 2x + 22. Then 2x = 36 and x = 18, so angle 1 = 4(18) - 14 = 58 degrees and angle 4 = 58 degrees. Angle 5 = angle 2 = 47 degrees. The six angles make 360 degrees: angle 3 + angle 6 = 360 - (58 + 47 + 58 + 47) = 150, and angles 3 and 6 are equal, so angle 6 = 75 degrees. (Check: angles 5, 6 and 1 lie along one straight line, and 47 + 75 + 58 = 180.)",
+  "solve": "const x=(22+14)/(4-2); const a1=4*x-14; return (360-2*a1-2*47)/2;",
+  "graphic": null,
+  "grade_target": 7,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "ccss": "7.G.B.5",
+  "area_25": null,
+  "map_area": "geo",
+  "distractor_steps": [
+   {
+    "choice": "115",
+    "mis_step": "Solves x = 18 correctly but subtracts 18 instead of 58: 180 - 18 - 47."
+   },
+   {
+    "choice": "131",
+    "mis_step": "Writes 2x = 22 - 14 = 8, so x = 4 and angle 1 = 2 degrees, then 180 - 2 - 47."
+   },
+   {
+    "choice": "197",
+    "mis_step": "Finds angle 1 = angle 4 = 58 and does 360 - 58 - 47 - 58, leaving out angle 5 and treating what is left as angle 6 alone."
+   }
+  ],
+  "distractor_solve": {
+   "115": "const x=(22+14)/(4-2); return 180-x-47;",
+   "131": "const x=(22-14)/(4-2); return 180-(4*x-14)-47;",
+   "197": "const x=(22+14)/(4-2); const a1=4*x-14; return 360-a1-47-a1;"
+  }
+ },
+ {
+  "id": "MB3-G6-08",
+  "domain": "Geometry",
+  "subskill": "Third edge of a box from a count of 1/4-inch cubes",
+  "difficulty": "hard",
+  "topic_tag": "6.G.A.2",
+  "prompt": "A box shaped like a rectangular prism is filled completely, with no gaps, with 3,168 cubes that are each 1/4 inch long on every edge. The box is 4 inches long and 1 1/2 inches wide. How tall is the box, in inches?",
+  "choices": [
+   "11",
+   "8 1/4",
+   "9",
+   "4 1/2"
+  ],
+  "correct_answer": "8 1/4",
+  "explanation": "Each inch holds 4 cubes along an edge. Along the length: 4 x 4 = 16 cubes; along the width: 1 1/2 x 4 = 6 cubes; so one layer has 16 x 6 = 96 cubes. Number of layers: 3,168 / 96 = 33. Each layer is 1/4 inch tall, so the box is 33 x 1/4 = 8 1/4 inches tall.",
+  "solve": "const mx=(n,d)=>{const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d);n/=k;d/=k;const w=Math.floor(n/d),r=n-w*d;return r===0?String(w):(w?w+' '+r+'/'+d:r+'/'+d);};const N=3168,a=4,b=1.5;const layer=(4*a)*(4*b);const layers=N/layer;return mx(layers,4);",
+  "graphic": null,
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "ccss": "6.G.A.2",
+  "area_25": null,
+  "map_area": "geo",
+  "distractor_steps": [
+   {
+    "choice": "11",
+    "mis_step": "The student counts the cubes along the width as 4 x 1 + 1/2 = 4 1/2, so a layer is 16 x 4 1/2 = 72 cubes, 3,168 / 72 = 44 layers, and 44 / 4 = 11 inches."
+   },
+   {
+    "choice": "9",
+    "mis_step": "The student finds the volume 3,168 / 64 = 49 1/2 cubic inches and divides by 4 + 1 1/2 = 5 1/2 instead of 4 x 1 1/2 = 6, getting 9."
+   },
+   {
+    "choice": "4 1/2",
+    "mis_step": "The student divides 49 1/2 by the perimeter of the bottom, 2 x (4 + 1 1/2) = 11, getting 4 1/2."
+   }
+  ],
+  "distractor_solve": {
+   "9": "const V=3168/64;return String(V/(4+1.5));",
+   "11": "const along=4*1+1/2;const layer=16*along;return String(3168/layer/4);",
+   "4 1/2": "const mx=(n,d)=>{const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d);n/=k;d/=k;const w=Math.floor(n/d),r=n-w*d;return r===0?String(w):(w?w+' '+r+'/'+d:r+'/'+d);};const V=3168/64;const q=V/(2*(4+1.5));return mx(Math.round(q*2),2);"
+  }
+ }
+]

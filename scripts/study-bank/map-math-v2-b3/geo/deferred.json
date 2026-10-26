@@ -1,0 +1,221 @@
+{
+ "prereg": "scripts/study-bank/MAP-MATH-V2-B3.prereg.md",
+ "rule": "C-prime",
+ "seed": 20261573,
+ "n": 16,
+ "e": 6,
+ "m": 1,
+ "why": "deferred 1 of 10 kept interior items: 6/15 = 40.0% at an end (was 6/16 = 37.5%)",
+ "items": [
+  {
+   "id": "MB3-G6-04",
+   "item": {
+    "id": "MB3-G6-04",
+    "domain": "Geometry",
+    "map_area": "geo",
+    "grade_target": 6,
+    "tier": "mid",
+    "rit_band": "RIT 210-219",
+    "difficulty": "medium",
+    "ccss": "6.G.A.3",
+    "subskill": "Area of a slanted triangle by enclosing rectangle",
+    "grade_rationale": "Mid tier for grade 6 (6.G.A.1 and 6.G.A.3): no side lies on a grid line, so the student must box the triangle, find three right-triangle legs from coordinates that cross both axes, halve each, and subtract. About half of grade-6 students complete it; the slips are in reading leg lengths across or below the axes.",
+    "prompt": "On a map in the coordinate plane, each unit stands for 1 meter. A flower bed is shaped like a triangle with corners at (-1, -4), (8, -1), and (2, 6). None of its sides runs along a grid line. What is the area of the flower bed, in square meters?",
+    "choices": [
+     "31.5",
+     "45",
+     "40.5",
+     "30"
+    ],
+    "correct_answer": "40.5",
+    "explanation": "Draw the rectangle around the triangle: x from -1 to 8 (9 units) and y from -4 to 6 (10 units), area 90. Cut off three right triangles: between (-1, -4) and (8, -1), legs 9 and 3, area 13.5; between (8, -1) and (2, 6), legs 6 and 7, area 21; between (2, 6) and (-1, -4), legs 3 and 10, area 15. Area of the flower bed = 90 - 13.5 - 21 - 15 = 40.5 square meters.",
+    "solve": "const A=[-1,-4],B=[8,-1],C=[2,6];const xs=[A[0],B[0],C[0]],ys=[A[1],B[1],C[1]];const R=(Math.max(...xs)-Math.min(...xs))*(Math.max(...ys)-Math.min(...ys));const t=(P,Q)=>Math.abs(P[0]-Q[0])*Math.abs(P[1]-Q[1])/2;return String(R-t(A,B)-t(B,C)-t(C,A));",
+    "distractor_solve": {
+     "30": "return String(90-13.5-7*9/2-15);",
+     "45": "return String(9*10/2);",
+     "31.5": "return String(90-9*(4+1)/2-21-15);"
+    },
+    "mechanism": [
+     "enclosing rectangle from the extreme coordinates",
+     "three right-triangle corners, each half a rectangle",
+     "rectangle minus the three corners"
+    ],
+    "quantity_asked": "area of the triangular flower bed in square meters",
+    "plugback": {
+     "substitutable": false,
+     "why": "There is no printed area to check against; an option can only be tested by doing the whole decomposition."
+    },
+    "distractor_meta": {
+     "30": {
+      "error_kind": "wrong_variable",
+      "error_sense": "swaps",
+      "direction": "below",
+      "stem_predicts_direction": false,
+      "slip": false,
+      "misconception": "measures a leg along the whole side of the rectangle instead of from the triangle's corner",
+      "why": "For the top-right corner triangle the student takes the horizontal leg as the full width 9 (from x = -1) instead of 6 (from x = 2), so that triangle is 31.5, and 90 - 13.5 - 31.5 - 15 = 30."
+     },
+     "45": {
+      "error_kind": "other",
+      "error_sense": "swaps",
+      "direction": "above",
+      "stem_predicts_direction": false,
+      "slip": false,
+      "misconception": "thinks any triangle is half of the rectangle around it",
+      "why": "The student halves the enclosing rectangle, 90 / 2 = 45, which is true only when two sides of the triangle lie along the rectangle."
+     },
+     "31.5": {
+      "error_kind": "sign_slip",
+      "error_sense": "adds",
+      "direction": "below",
+      "stem_predicts_direction": false,
+      "slip": false,
+      "misconception": "finds the distance between two negative numbers by adding their sizes",
+      "why": "For the corner triangle below (8, -1), the student reads the vertical leg from -4 to -1 as 4 + 1 = 5 instead of 3, so that triangle is 22.5, and 90 - 22.5 - 21 - 15 = 31.5."
+     }
+    },
+    "intermediate_check": "31.5: no, it is the rectangle minus a wrongly sized corner; 40.5 - 31.5 = 9 is not printed. 30: no, 40.5 - 30 = 10.5, not printed. 45: no, 45 is half the rectangle; the key does not follow from it through one printed number (45 - 40.5 = 4.5). The solved values 90, 13.5, 21, 15 and 49.5 are not options.",
+    "cheap_bound_check": "interior key",
+    "shape_check": "The stem hands over: positive area; area of a triangle with whole-number corners is a whole or half number; less than half the enclosing rectangle (45) unless two sides lie on it, which the stem rules out. 30, 31.5 and 40.5 survive all of these together.",
+    "interior_parity_check": "Middle values 31.5 and 40.5: both have one decimal place ending in .5, same form.",
+    "arith_class_check": "Class: whole or half numbers. Every option is one (30 and 45 whole, 31.5 and 40.5 halves), so the key is not alone.",
+    "dup_search": {
+     "queries": [
+      "vertices&triangle&coordinate",
+      "triangle&corners&area"
+     ],
+     "hits_read": 18,
+     "nearest": "ACT f98b8321 ((-3,1),(5,4),(2,-6) area) is the same enclosing-rectangle chain but in the ACT family (not ISEE/SSAT/MAP); ISEE/SSAT hits (fd423ed1, ecd5818f-style) all have a side on a grid line. MV2-G56-19 (base below the x-axis) has a horizontal base; MB2-G6-15 (two triangles on one path) also has a horizontal base."
+    },
+    "bound_screen": [
+     {
+      "kind": "sign",
+      "bound": "none: every option is positive",
+      "strikes": []
+     },
+     {
+      "kind": "magnitude",
+      "bound": "triangle area < half its enclosing rectangle = 45 (no side on the rectangle's edges here)",
+      "strikes": [
+       "45"
+      ]
+     },
+     {
+      "kind": "parity",
+      "bound": "none: half and whole numbers are both possible",
+      "strikes": []
+     },
+     {
+      "kind": "units_digit",
+      "bound": "none: the key may end in .5 or a whole number",
+      "strikes": []
+     },
+     {
+      "kind": "range",
+      "bound": "0 < area < 45",
+      "strikes": [
+       "45"
+      ]
+     }
+    ],
+    "self_audit": {
+     "risk": "medium",
+     "note": "Key rank 3 (slot 3). Distractors below the key and their real errors: 31.5 (adding the sizes of -4 and -1 for a vertical leg: a same-sign distance read as if it crossed zero) and 30 (a corner leg measured along the full rectangle side instead of from the triangle's corner). Above: 45 (triangle = half its rectangle). Covering the stem: 30, 31.5, 40.5, 45; the second-smallest (31.5) is a distractor; no ratio hub, no midpoint (the key is not (31.5+45)/2 = 38.25 or (30+45)/2 = 37.5); no option is key +/- a printed number. K1: halves/wholes, all options in class. K2: the only cap is 'less than half the rectangle (45)', which strikes 45 only and leaves a 15-point band below. K3: no pi. K4: whole-number coordinates; no rounding. K5: no table. No distractor is a solved intermediate. Mid tier: a three-corner subtraction with negative coordinates. Cheapest bound strikes one distractor (45). The slip on -4 to -1 is applied to one leg only: it is the only leg between two negative numbers in the problem (the other legs cross an axis or join two positive numbers), so a student who adds sizes for same-sign pairs makes it exactly once. (read) DPAIR 40.5 - 31.5 = 9 = 8 + 1: 9 is the rectangle's width (from -1 to 8), the size of the extra strip the slip adds (2 extra units of leg x 9 / 2); a student cannot read 9 off the stem without finding the width, and no option is the key +/- 9 except through that error. (read) FORM: 30 and 45 are whole, 31.5 and 40.5 halves; areas from whole coordinates can be either. (read) closest MAP MMG-G08 (j=0.46) read: a pentagon with one slanted side split into a rectangle and a triangle; this item boxes a triangle with three slanted sides and subtracts three corners, a different chain."
+    }
+   },
+   "stage": {
+    "drop": [],
+    "hold": [],
+    "need": [],
+    "rec": [
+     "G1 too_hard for its grade (both) - recorded, not a drop rule"
+    ],
+    "named": [],
+    "keep": true,
+    "difficulty": "hard",
+    "graderD": {
+     "my_answer": "40.5",
+     "exclusive": true,
+     "second_defensible": null,
+     "struck": [
+      "45"
+     ],
+     "n_struck": 1,
+     "free_elimination": "Bounding box is 9 x 10 = 90; a triangle inscribed in it has area at most half (45), with equality only when two vertices are box corners; only (-1,-4) is a corner, so 45 is impossible. Test-wise students also recognise 'half the box' as the trap.",
+     "key_identifiable_free": false,
+     "plugback_tries": null,
+     "plugback_routine": false,
+     "error_directions": {
+      "30": "below: subtracts a wrong corner-triangle set; not predictable",
+      "45": "above: half the bounding box; predictable as the upper bound",
+      "31.5": "below: miscounted corner triangle; not predictable"
+     },
+     "one_sided": false,
+     "extreme_single_bound": null,
+     "single_bound_kills_all": false,
+     "interior_parity": "31.5 and 40.5: both halves, same form",
+     "interior_tell": false,
+     "arith_tell": null,
+     "option_pair_tell": null,
+     "same_template_as": [],
+     "live_duplicate": null,
+     "area_judged": "Geometry",
+     "on_blueprint": true,
+     "grade_fit": "too_hard",
+     "grade_assigned": 7,
+     "tier_assigned": "high",
+     "grade_note": "Triangle with no side on a grid line needs box-minus-three-triangles across quadrants; that is a high-end grade-6 task, not typical",
+     "note": "Box x -1..8 (9), y -4..6 (10) = 90; corners 13.5 + 21 + 15 = 49.5; 90 - 49.5 = 40.5 (shoelace 81/2 agrees).",
+     "key_ok": true,
+     "key_note": "Key matches my stage-1 answer; recomputed.",
+     "path_coherent": true,
+     "path_note": "30, 31.5 (corner-triangle leg misreads) and 45 (half the box) reproduce.",
+     "distractors_weak": false,
+     "drop_recommend": false,
+     "drop_reason": "Not a drop; re-tier to high. 45 is struck by the half-box bound.",
+     "grade_fit_final": "too_hard",
+     "grade_note_final": "A triangle with no grid-line side needs box-minus-corners across quadrants; high for grade 6."
+    },
+    "graderE": {
+     "my_answer": "40.5",
+     "exclusive": true,
+     "second_defensible": null,
+     "struck": [
+      "45"
+     ],
+     "n_struck": 1,
+     "free_elimination": "45: a triangle inside the 9 x 10 bounding box has area at most half the box (45), reached only with a side on the box's edge, which the stem rules out",
+     "key_identifiable_free": false,
+     "plugback_tries": null,
+     "plugback_routine": false,
+     "error_directions": "45: half the bounding box, above; 31.5: subtracted corners mis-sized, below; 30: unclear, below. Not predictable.",
+     "one_sided": false,
+     "extreme_single_bound": null,
+     "single_bound_kills_all": false,
+     "interior_parity": "31.5 and 40.5: same form (halves)",
+     "interior_tell": false,
+     "arith_tell": null,
+     "option_pair_tell": null,
+     "same_template_as": [],
+     "live_duplicate": null,
+     "area_judged": "Geometry",
+     "on_blueprint": true,
+     "grade_fit": "too_hard",
+     "grade_assigned": 7,
+     "tier_assigned": "high",
+     "grade_note": "Area of a slanted triangle by box-minus-three-triangles across quadrants; harder than typical grade 6",
+     "note": "Box 9 x 10 = 90; corners 13.5 + 21 + 15 = 49.5; 90 - 49.5 = 40.5 (shoelace 81/2 agrees).",
+     "key_ok": true,
+     "key_note": "key matches my stage-1 answer",
+     "path_coherent": true,
+     "path_note": "all three distractor paths reproduce their values",
+     "distractors_weak": false,
+     "drop_recommend": false,
+     "drop_reason": null,
+     "grade_fit_final": "too_hard",
+     "grade_note_final": "Slanted triangle by enclosing box across quadrants; re-tier high. D (45) is strikable by the half-box bound, which the stem's 'none of its sides runs along a grid line' signals."
+    }
+   }
+  }
+ ]
+}
