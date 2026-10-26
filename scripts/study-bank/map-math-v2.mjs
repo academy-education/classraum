@@ -4,7 +4,10 @@
  * MAP-PLAN-2026-10-23 §3.1), 2026-10-24. `--batch b2` (anywhere on the command line) selects batch 2; the default is
  * batch 1, unchanged. Batch 2 differs in work dir, slots, ids (MB2-), authors (only files present; core-only is
  * normal), seeds, math-check flags (--slots --prior --families isee,ssat,map), cohorts map-math-v2-b2-<area>,
- * options-only parts of <= 60 rows, R11 against the 221 batch-1 items, and rule C-prime.
+ * options-only parts of <= 60 rows, R11 against the 221 batch-1 items, and rule C-prime. `--batch b3`
+ * (MAP-MATH-V2-B3.prereg.md): Geometry only (oo/grade/score default to G), ids MB3-, 4 authors, dump-b3 prior corpus,
+ * R11 against batches 1 and 2 (221 + 72), C-prime on, cohort map-math-v2-b3-geo, and the H1 key-rank record (frozen
+ * rank-2 share <= 25%, recorded at freeze and score, never a gate).
  * map-math-g58-v5.mjs made general to the four MAP maths areas. Inputs: the 11 author files
  * scratchpad/map-v2-math-work/<author>/items.json (221 slots in map-v2-work/math/slots.json, checked per item by
  * map-v2-work/math/math-check.mjs). Every bar runs PER AREA and each area freezes as its own batch.
@@ -57,7 +60,8 @@ export const BATCHES = {
     work: ROOT + '/scratchpad/map-math-v2-work', authored: ROOT + '/scratchpad/map-v2-math-work',
     results: D + 'map-math-v2/', slots: D + 'map-v2-work/math/slots.json', idPrefix: 'MV2',
     checkArgs: [], authorsPresentOnly: false, slotTotal: 221,
-    cohortStem: 'map-math-v2', cPrime: false, ooPartMax: null, earlierFile: null,
+    cohortStem: 'map-math-v2', cPrime: false, ooPartMax: null, earlierFile: null, earlier: null, areas: ['O', 'N', 'G', 'D'], rankRecord: false,
+    expect: { authors: 11, earlierN: 0 },
     seed: {
       screen1Order: 20261301, screen1Deal: 20261302, screen2Order: 20261303, screen2Deal: 20261304,
       freeze: { O: 20261311, N: 20261312, G: 20261313, D: 20261314 },
@@ -73,13 +77,28 @@ export const BATCHES = {
     checkArgs: ['--slots', D + 'map-v2-work/math-b2/slots.json', '--prior', ROOT + '/scratchpad/map-v2-math-work/dump-b2/prior-math.json', '--families', 'isee,ssat,map'],
     authorsPresentOnly: true, slotTotal: 254,
     cohortStem: 'map-math-v2-b2',   // prereg's cohort table: map-math-v2-b2-<oa|num|geo|data>
-    cPrime: true, ooPartMax: 60, earlierFile: D + 'map-v2-work/math-b2/EXCLUSIONS-map-math-b2.txt',
+    cPrime: true, ooPartMax: 60, earlierFile: D + 'map-v2-work/math-b2/EXCLUSIONS-map-math-b2.txt', earlier: 'b1', areas: ['O', 'N', 'G', 'D'], rankRecord: false,
+    expect: { authors: 16, earlierN: 221 },
     seed: {
       screen1Order: 20261401, screen1Deal: 20261402, screen2Order: 20261403, screen2Deal: 20261404,
       freeze: { O: 20261411, N: 20261412, G: 20261413, D: 20261414 },
       oo: { O: 20261421, N: 20261422, G: 20261423, D: 20261424 },
       grade: { O: 20261430, N: 20261440, G: 20261450, D: 20261460 },
       cPrime: { O: 20261471, N: 20261472, G: 20261473, D: 20261474 },
+    },
+  },
+  b3: {
+    name: 'map-v2 Math batch 3 (Geometry)', prereg: 'scripts/study-bank/MAP-MATH-V2-B3.prereg.md',
+    work: ROOT + '/scratchpad/map-math-v2-b3-work', authored: ROOT + '/scratchpad/map-v2-math-b3-work',
+    results: D + 'map-math-v2-b3/', slots: D + 'map-v2-work/math-b3/slots.json', idPrefix: 'MB3',
+    checkArgs: ['--slots', D + 'map-v2-work/math-b3/slots.json', '--prior', ROOT + '/scratchpad/map-v2-math-work/dump-b3/prior-math.json', '--families', 'isee,ssat,map'],
+    authorsPresentOnly: true, slotTotal: 32,
+    cohortStem: 'map-math-v2-b3',   // cohort map-math-v2-b3-geo
+    cPrime: true, ooPartMax: 60, earlierFile: D + 'map-v2-work/math-b3/EXCLUSIONS-map-geometry-b3.txt', earlier: 'b1+b2', areas: ['G'], rankRecord: true,
+    expect: { authors: 4, earlierN: 293 },
+    seed: {
+      screen1Order: 20261501, screen1Deal: 20261502, screen2Order: 20261503, screen2Deal: 20261504,
+      freeze: { G: 20261513 }, oo: { G: 20261523 }, grade: { G: 20261550 }, cPrime: { G: 20261573 },
     },
   },
 }
@@ -112,16 +131,28 @@ export const SCREEN_PACKET_MAX = 40, GRADE_PART_MAX = 35
 export const ID_RE = new RegExp(`^${B.idPrefix}-([ONGD])[0-9A-Z]*-\\d\\d$`)
 /** batch 2: R11 also counts a template of any batch-1 item (the graders get the EXCLUSIONS file's batch-1 section) */
 function earlierBatchIds() {
-  if (!B.earlierFile) return { ids: [], text: null }
-  const t = readFileSync(B.earlierFile, 'utf8'), at = t.indexOf('# ---- map-math-v2 batch 1')
-  if (at < 0) die(`${B.earlierFile}: no batch-1 section`)
-  const text = t.slice(at), ids = [...new Set([...text.matchAll(/\((MV2-[ONGD][0-9A-Z]*-\d\d)\)/g)].map(m => m[1]))]
-  if (ids.length !== 221) die(`${B.earlierFile}: batch-1 section names ${ids.length} ids, expected 221`)
-  return { ids, text }
+  if (!B.earlier) return { ids: [], text: null }
+  // the 221 batch-1 ids, read from the b2 exclusions file's batch-1 section (one source for b2 and b3)
+  const b2x = D + 'map-v2-work/math-b2/EXCLUSIONS-map-math-b2.txt', t = readFileSync(b2x, 'utf8'), at = t.indexOf('# ---- map-math-v2 batch 1')
+  if (at < 0) die(`${b2x}: no batch-1 section`)
+  const b1text = t.slice(at), b1 = [...new Set([...b1text.matchAll(/\((MV2-[ONGD][0-9A-Z]*-\d\d)\)/g)].map(m => m[1]))]
+  if (b1.length !== 221) die(`${b2x}: batch-1 section names ${b1.length} ids, expected 221`)
+  if (B.earlier === 'b1') return { ids: b1, text: b1text }
+  // b1+b2 (batch 3): plus every assembled batch-2 item (72, incl. the 12 held Geometry); graders read the prereg's
+  // Geometry-only exclusions file, whose every MV2/MB2 id must be in the set
+  const b2p = ROOT + '/scratchpad/map-math-v2-b2-work/assembled.json'
+  if (!existsSync(b2p)) die(`R11 needs the batch-2 items: missing ${b2p}`)
+  const b2 = JSON.parse(readFileSync(b2p, 'utf8')).map(i => i.id)
+  if (b2.length !== 72 || new Set(b2).size !== 72 || !b2.every(x => /^MB2-[ONGD]/.test(x))) die(`${b2p}: expected 72 distinct MB2 ids, read ${b2.length}`)
+  const ids = [...b1, ...b2], text = readFileSync(B.earlierFile, 'utf8')
+  const named = [...new Set([...text.matchAll(/\(((?:MV2|MB2)-[ONGD][0-9A-Z]*-\d\d)\)/g)].map(m => m[1]))]
+  const stray = named.filter(x => !ids.includes(x)); if (stray.length) die(`${B.earlierFile} names ids outside batches 1-2: ${stray.slice(0, 5).join(' ')}`)
+  if (!named.length) die(`${B.earlierFile}: names no batch-1/2 ids`)
+  return { ids, text, named: named.length }
 }
 const areaOfItem = it => { const L = LETTER_OF_DOMAIN[it?.domain]; if (!L) die(`${it?.id}: domain '${it?.domain}' is not a MAP maths area`); if (AREAS[L].key !== it.map_area) die(`${it.id}: map_area '${it.map_area}' != '${AREAS[L].key}' for ${it.domain}`); return L }
-const areaArg = a => { if (!a) return Object.keys(AREAS); if (!AREAS[a]) die(`area must be one of ${Object.keys(AREAS).join(' ')}`); return [a] }
-const areaDir = L => R + AREAS[L].key + '/'
+const areaArg = a => { if (!a) return B.areas; if (!B.areas.includes(a)) die(`${BATCH}: area must be one of ${B.areas.join(' ')}`); return [a] }
+export const areaDir = L => R + AREAS[L].key + '/'
 
 /** n items into k = ceil(n / max) balanced chunks, in order */
 export function chunk(arr, max) {
@@ -150,6 +181,7 @@ export const RULES = {
   smallNHolds: false,      // n < 10 -> no measurement, recorded; NOT a hold (plan removed v1's n >= 10 hold)
   cPrime: true,            // batch 2: a C failure defers the minimum interior items by seed (batch 1 runs with false)
   cPrimeExtra: 0,          // selftest-only: shifts m to revert minimality
+  rank2Pred: 25,           // batch 3 H1 prediction: frozen rank-2 share <= 25% (recorded, never a gate)
   // per-item with-source rules
   keyDisputeAnyDrops: true,   // R1 key_ok false by either grader -> drop (the key is sandbox-recomputed; a dispute is about the stem)
   exclBoth: true, exclOneTb: true,   // R2 exclusivity: both -> drop; one -> tie-break grader F
@@ -168,6 +200,20 @@ export const RULES = {
   areaFreezeMin: 0,        // no per-area minimum
   // cold/keyed integrity
   coldCompare: true,
+}
+
+/* ---- batch 3, H1 (recorded, never a gate): key rank. Ascending rank 1-4 of the key among the four option values. */
+export function rankOf(choices, v) {
+  const vs = choices.map(c => val(String(c))), x = val(String(v))
+  if (vs.some(z => !Number.isFinite(z)) || !Number.isFinite(x) || new Set(vs).size !== vs.length) return null
+  return 1 + vs.filter(z => z < x).length
+}
+export function rankRecord(items, Rl = RULES) {
+  const hist = { 1: 0, 2: 0, 3: 0, 4: 0 }; let n = 0, unscored = 0
+  for (const it of items) { const r = rankOf(it.choices, it.correct_answer); if (r == null) { unscored++; continue } hist[r]++; n++ }
+  if (!n) return { n, unscored, hist, share2: NaN, meets: null, line: `no measurement: 0 scorable of ${items.length}` }
+  const share2 = 100 * hist[2] / n, meets = share2 <= Rl.rank2Pred + 1e-9
+  return { n, unscored, hist, share2, meets, line: `key rank 1/2/3/4 = ${hist[1]}/${hist[2]}/${hist[3]}/${hist[4]} of ${n}; rank-2 share ${f1(share2)}% (prediction <= ${Rl.rank2Pred}%: ${meets ? 'met' : 'NOT met'}; recorded, not a gate)` }
 }
 
 /** the rules this batch runs under: batch 1 without C-prime (its prereg), batch 2 with it */
@@ -400,6 +446,12 @@ function cases(Rl) {
   const cp2 = controlPlan({ 'data/easy': 19, 'data/medium': 45 }, { 'data/easy': 14, 'data/medium': 49, 'geo/easy': 99 })
   t(cp2.short.includes('data/easy short by 1') && !cp2.take.some(x => x.from.startsWith('geo')), 'control: exhausted -> short (refuses), never another area')
   t(controlPlan({ 'oa/easy': 12 }, { 'oa/easy': 51 }).substituted.length === 0, 'control: a covered cell substitutes nothing')
+  // batch 3 H1 rank record, at its margin (recorded, never a gate)
+  const rk = (n2, n) => Array.from({ length: n }, (_, i) => ({ choices: ['2', '5', '9', '14'], correct_answer: i < n2 ? '5' : ['2', '9', '14'][i % 3] }))
+  t(rankOf(['14', '2', '9', '5'], '5') === 2 && rankOf(['2', '5', '9', '14'], '14') === 4 && rankOf(['2', '2', '9', '14'], '9') === null, 'rankOf: ascending rank by value; tied options unreadable')
+  t(rankRecord(rk(8, 32), Rl).meets === true && rankRecord(rk(8, 32), Rl).hist[2] === 8, 'H1: 8/32 = 25.0% at rank 2 meets the prediction')
+  t(rankRecord(rk(9, 32), Rl).meets === false, 'H1: 9/32 = 28.1% at rank 2 does not')
+  t(rankRecord([], Rl).meets === null, 'H1: no items -> no measurement, never "met"')
   // freeze and screen-drop policy
   t(freezable({ O: 3, N: 40 }, Rl).O === true, 'an area keeping 3 still freezes (no minimum)')
   t(Object.keys(stage0Drops({ [`${B.idPrefix}-O56-01`]: 'x' }, { [`${B.idPrefix}-N7-02`]: ['S-R4 2 struck'] }, Rl)).join() === `${B.idPrefix}-O56-01`, 'pass-2 fail recorded, not dropped; withdrawal drops')
@@ -471,7 +523,7 @@ const MUTATIONS = {
   'screen wrong-answer flag removed': { screenWrongAnswer: false }, 'screen malformed check removed': { screenMalformed: false },
   'pass-2 one-screener drop re-imposed (v5)': { screenP2Drops: true }, 'per-area freeze minimum 15 re-imposed (v5)': { areaFreezeMin: 15 },
   'coldcheck field compare removed': { coldCompare: false },
-  'C-prime removed (batch-1 rule on batch 2)': { cPrime: false }, 'C-prime defers one too few': { cPrimeExtra: -1 }, 'C-prime defers one too many': { cPrimeExtra: 1 },
+  'H1 rank-2 prediction loosened to 30%': { rank2Pred: 30 }, 'C-prime removed (batch-1 rule on batch 2)': { cPrime: false }, 'C-prime defers one too few': { cPrimeExtra: -1 }, 'C-prime defers one too many': { cPrimeExtra: 1 },
 }
 
 async function selftest() {
@@ -480,16 +532,19 @@ async function selftest() {
   for (const [ok, msg] of base) if (!ok) { bad++; console.error('FAIL', msg) }
   // structure
   const sl = rd(SLOTS_FILE), slotIds = Object.values(sl).flatMap(v => v.rows.map(r => r.id))
-  const core = slotIds.filter((_, i) => Object.values(sl).flatMap(v => v.rows)[i].core === true).length
-  const b1Ids = BATCH === 'b2' ? earlierBatchIds().ids : []
+  const rows = Object.values(sl).flatMap(v => v.rows), core = rows.filter(r => r.core === true).length
+  const er = earlierBatchIds(), screenN = BATCH === 'b2' ? core : B.slotTotal
+  const packets = chunk([...Array(screenN).keys()], SCREEN_PACKET_MAX).map(x => x.length).join()
   const st = [[slotIds.length === B.slotTotal && new Set(slotIds).size === B.slotTotal && slotIds.every(id => ID_RE.test(id)), `${BATCH} slots: ${B.slotTotal} distinct ids, all ${B.idPrefix}-<area><cell>-NN (read ${slotIds.length})`],
-    [Object.keys(sl).length === (BATCH === 'b1' ? 11 : 16) && AUTHORS.length === Object.keys(sl).length, `${BATCH} slots: ${BATCH === 'b1' ? 11 : 16} author cells, each in one area`],
+    [Object.keys(sl).length === B.expect.authors && AUTHORS.length === Object.keys(sl).length, `${BATCH} slots: ${B.expect.authors} author cells, each in one area`],
     [Object.entries(sl).every(([a, v]) => AREAS[a[0]].domain === v.area), 'each author cell is in its letter\'s area'],
-    [BATCH === 'b1' ? chunk([...Array(221).keys()], SCREEN_PACKET_MAX).map(x => x.length).join() === '37,37,37,37,37,36' : core === 77 && chunk([...Array(core).keys()], SCREEN_PACKET_MAX).length === 2 && chunk([...Array(254).keys()], SCREEN_PACKET_MAX).length === 7, BATCH === 'b1' ? 'screen packets 221 -> 6 of 36-37' : `b2: ${core} core slots -> 2 screen packets; FULL 254 -> 7 (prereg)`],
-    [BATCH === 'b1' || (b1Ids.length === 221 && b1Ids.every(x => /^MV2-/.test(x))), 'b2: the 221 batch-1 ids are read for R11 (earlier items)'],
-    [BATCH === 'b1' || (B.ooPartMax === 60 && chunk([...Array(120).keys()], B.ooPartMax).length === 2 && chunk([...Array(60).keys()], B.ooPartMax).length === 1), 'b2: options-only parts of <= 60 rows (60 -> 1, 120 -> 2)'],
-    [RL.cPrime === (BATCH === 'b2'), `${BATCH} runs ${BATCH === 'b2' ? 'with' : 'without'} C-prime`],
-    [BATCH === 'b1' || ['O', 'N', 'G', 'D'].every(L => Number.isInteger(SEED.cPrime?.[L])), 'b2: a C-prime seed per area'],
+    [rows.every(r => B.areas.includes(LETTER_OF_DOMAIN[Object.values(sl).find(v => v.rows.includes(r)).area])), `${BATCH}: every slot is in the batch's areas (${B.areas.join(' ')})`],
+    [{ b1: '37,37,37,37,37,36', b2: '39,38', b3: '32' }[BATCH] === packets && (BATCH !== 'b2' || (core === 77 && chunk([...Array(254).keys()], SCREEN_PACKET_MAX).length === 7)), `${BATCH}: screen packets ${packets}${BATCH === 'b2' ? ' (77 core; FULL 254 -> 7)' : ''}`],
+    [er.ids.length === B.expect.earlierN && new Set(er.ids).size === er.ids.length, `${BATCH}: R11 earlier ids ${er.ids.length} (expected ${B.expect.earlierN}${BATCH === 'b3' ? `: 221 batch-1 + 72 batch-2; graders' file names ${er.named}` : ''})`],
+    [BATCH === 'b1' || (B.ooPartMax === 60 && chunk([...Array(120).keys()], B.ooPartMax).length === 2 && chunk([...Array(60).keys()], B.ooPartMax).length === 1), `${BATCH}: options-only parts of <= 60 rows`],
+    [RL.cPrime === (BATCH !== 'b1'), `${BATCH} runs ${BATCH !== 'b1' ? 'with' : 'without'} C-prime`],
+    [BATCH === 'b1' || B.areas.every(L => [SEED.freeze, SEED.oo, SEED.grade, SEED.cPrime].every(x => Number.isInteger(x?.[L]))), `${BATCH}: freeze / oo / grade / C-prime seeds for every area`],
+    [!B.rankRecord || (['1', '2', '3', '4'].map(r => rows.filter(x => String(x.rank) === r).length).join('/') === '8/8/8/8' && rows.every(x => [1, 2, 3, 4].includes(x.rank) && x.pos === (x.rank === 1 ? 'S' : x.rank === 4 ? 'L' : 'I'))), `${BATCH}: slot key ranks 8/8/8/8, each consistent with its S/I/L position`],
     [chunk([...Array(35).keys()], GRADE_PART_MAX).length === 1 && chunk([...Array(36).keys()], GRADE_PART_MAX).map(x => x.length).join() === '18,18', 'grade parts: 35 -> 1, 36 -> 18+18'],
     [(() => { try { return renderGraphic({ type: 'twowaytable', colLabels: ['a', 'b'], rowLabels: ['x'], cells: [['1', '2']] }).includes('| x | 1 | 2 |') } catch { return false } })(), 'graphic renders as a markdown table']]
   for (const [ok, msg] of st) if (!ok) { bad++; console.error('FAIL', msg) }
@@ -551,7 +606,7 @@ async function cmdAssemble() {
   const order = Object.keys(slot)
   const sorted = order.map(id => items.find(i => i.id === id)).filter(Boolean)
   wj(WORK + '/assembled.json', sorted)
-  for (const L of Object.keys(AREAS)) {
+  for (const L of B.areas) {
     const a = sorted.filter(i => areaOfItem(i) === L), v = keyExtremityVerdict(a)
     const g = {}; for (const it of a) g[it.grade_target] = (g[it.grade_target] ?? 0) + 1
     console.log(`  ${L} ${AREAS[L].domain.padEnd(34)} n ${String(a.length).padStart(3)}  by grade ${JSON.stringify(g)}  key extremity ${v.status} ${Number.isFinite(v.rate) ? f1(100 * v.rate) + '%' : ''}  graphics ${a.filter(i => i.graphic).length}`)
@@ -709,7 +764,7 @@ function cmdScreenScore(pass) {
 async function cmdFreeze() {
   if (!existsSync(WORK + '/screen-p1.json')) die('the screen has not run (screen-p1.json missing)')
   const p1 = rd(WORK + '/screen-p1.json'), nf = Object.keys(p1.fails).length
-  if (Object.keys(AREAS).some(L => existsSync(areaDir(L) + 'batch.json'))) die('an area batch is already frozen; freeze runs once')
+  if (B.areas.some(L => existsSync(areaDir(L) + 'batch.json'))) die('an area batch is already frozen; freeze runs once')
   let items
   const withdrawn = existsSync(WORK + '/returns/withdrawn.json') ? rd(WORK + '/returns/withdrawn.json') : {}
   let p2 = { fails: {} }
@@ -725,9 +780,10 @@ async function cmdFreeze() {
   const files = Object.entries(by).map(([a, xs]) => { const p = `${WORK}/tmp/freeze-${a}.json`; wj(p, xs); return p })
   const n = await checkAll(files, 'freeze')
   if (n !== kept.length) die(`math-check read ${n}, kept ${kept.length}`)
-  const counts = Object.fromEntries(Object.keys(AREAS).map(L => [L, kept.filter(i => areaOfItem(i) === L).length]))
+  const outside = kept.filter(i => !B.areas.includes(areaOfItem(i))); if (outside.length) die(`${outside.length} item(s) outside ${BATCH}'s areas (${B.areas.join(' ')}): ${outside.slice(0, 5).map(i => i.id).join(' ')}`)
+  const counts = Object.fromEntries(B.areas.map(L => [L, kept.filter(i => areaOfItem(i) === L).length]))
   const fz = freezable(counts)
-  for (const L of Object.keys(AREAS)) {
+  for (const L of B.areas) {
     if (!fz[L]) { console.log(`  ${L} keeps ${counts[L]}: nothing to freeze`); continue }
     const a = kept.filter(i => areaOfItem(i) === L)
     const order = shuffleWith(a.map(i => i.id), rng(SEED.freeze[L]))
@@ -738,6 +794,7 @@ async function cmdFreeze() {
     wj(areaDir(L) + 'screen-flags.json', flags)
     const v = keyExtremityVerdict(frozen)
     console.log(`FROZEN ${L} ${AREAS[L].key.padEnd(4)} ${frozen.length} -> ${areaDir(L)}batch.json sha256 ${sha(areaDir(L) + 'batch.json')}  extremity ${v.status} (${v.reason})  screen-flagged ${Object.keys(flags).length}`)
+    if (B.rankRecord) { const rr = rankRecord(frozen); wj(areaDir(L) + 'rank-h1.json', { prereg: PREREG, stage: 'freeze', frozenSha: sha(areaDir(L) + 'batch.json'), ...rr }); console.log(`  H1 frozen ${rr.line}`); if (rr.n !== frozen.length) die(`H1: ${rr.unscored} frozen item(s) have no readable key rank`) }
   }
   mkdirSync(R, { recursive: true })
   wj(R + 'stage0-drops.json', drops)
@@ -809,8 +866,8 @@ function writeEarlier(dir) {
   console.log(`${dir}/earlier-items.md  sha ${sha(dir + '/earlier-items.md').slice(0, 16)}`)
 }
 /** R11's earlier set: items earlier in the frozen order, plus every batch-1 id in batch 2 */
-const earlierSet = (frozen, i) => new Set([...frozen.slice(0, i).map(x => x.id), ...earlierBatchIds().ids])
-const partsOf = L => rd(areaDir(L) + 'ws.parts.json').map(p => p.part)
+export const earlierSet = (frozen, i) => new Set([...frozen.slice(0, i).map(x => x.id), ...earlierBatchIds().ids])
+export const partsOf = L => rd(areaDir(L) + 'ws.parts.json').map(p => p.part)
 function cmdStage(L, k, g, which) {
   if (!AREAS[L] || !partsOf(L).includes(+k) || !['d', 'e'].includes(g) || !['cold', 'keyed'].includes(which)) die('stage <O|N|G|D> <part> <d|e> <cold|keyed>')
   const tag = `${L}-p${k}-${g}`, dir = `${WORK}/grade/${tag}`; mkdirSync(dir, { recursive: true })
@@ -827,7 +884,7 @@ function cmdStage(L, k, g, which) {
   console.log(`snapshot ${snap} sha ${shas[tag].slice(0, 16)}; keyed.md released into ${dir}`)
 }
 
-function loadGrader(tag) {
+export function loadGrader(tag) {
   const snapP = `${WORK}/snap/${tag}.stage1.json`
   return { s1: rd(snapP), s2: rd(`${WORK}/grade/${tag}/stage2.json`), snapSha: sha(snapP) }
 }
@@ -844,7 +901,7 @@ function cmdColdcheck(L) {
   console.log(`coldcheck ${L}: ${rows} cold rows, ${changed} changed or missing`); if (!rows) process.exit(2); process.exit(changed ? 1 : 0)
 }
 
-function scoreOo(L) {
+export function scoreOo(L) {
   const key = rd(areaDir(L) + 'oo.key.json'), ids = Object.keys(key)
   // batch 1: one file per solver; batch 2: one file per solver per part, pooled per area before any rate is computed
   const parts = B.ooPartMax ? rd(areaDir(L) + 'oo.parts.json') : [{ dir: `${WORK}/oo/${L}`, ids }]
@@ -855,7 +912,19 @@ function scoreOo(L) {
   const dist = {}; for (const i of ids) dist[key[i].letter] = (dist[key[i].letter] ?? 0) + 1
   return { cand: c, ctrl: k, ...ooVerdict(c, k), letterControl: pct(Math.max(...Object.values(dist)), ids.length) }
 }
-function loadF(L) {
+/** H1: the rank of each solver's pick among the option values, on candidates, beside the candidate rank-2 key share */
+function solverRankPicks(L) {
+  const key = rd(areaDir(L) + 'oo.key.json'), blind = rd(areaDir(L) + 'oo.blind.json')
+  const parts = B.ooPartMax ? rd(areaDir(L) + 'oo.parts.json') : [{ dir: `${WORK}/oo/${L}`, ids: Object.keys(key) }]
+  const cand = Object.keys(key).filter(i => key[i].kind === 'candidate')
+  const h = { 1: 0, 2: 0, 3: 0, 4: 0 }; let picks = 0, keys2 = 0
+  for (const i of cand) { const opts = blind[i].options, vals = Object.values(opts); if (rankOf(vals, opts[key[i].letter]) === 2) keys2++ }
+  for (const x of ['a', 'b', 'c']) for (const p of parts) { const j = rd(`${p.dir}/solver-${x}.json`), m = j.items ?? j; for (const i of p.ids) if (key[i].kind === 'candidate') { const opts = blind[i].options, r = rankOf(Object.values(opts), opts[String(m[i]?.pick).trim().toUpperCase()]); if (r) { h[r]++; picks++ } } }
+  if (!picks) die('H1: no readable candidate pick')
+  return { hist: h, picks, pick2: 100 * h[2] / picks, key2: 100 * keys2 / cand.length, line: `candidate picks at rank 1/2/3/4 = ${h[1]}/${h[2]}/${h[3]}/${h[4]} of ${picks} (rank-2 pick rate ${f1(100 * h[2] / picks)}%) vs candidate keys at rank 2 ${keys2}/${cand.length} = ${f1(100 * keys2 / cand.length)}%` }
+}
+
+export function loadF(L) {
   const kp = areaDir(L) + 'tb.key.json'
   if (!existsSync(kp)) return null
   const p = `${WORK}/grade/${L}-f-tb/stage1.json`
@@ -869,6 +938,7 @@ function cmdScore(L) {
   const out = { prereg: PREREG, area: AREAS[L].domain, frozenSha: sha(FZ), n: frozen.length }
   const oo = scoreOo(L); out.optionsOnly = oo
   console.log(`OPTIONS-ONLY ${L} (three samples of one solver; letter control ${f1(oo.letterControl)}%): cand ${oo.cand.hits}/${oo.cand.picks} ctrl ${oo.ctrl.hits}/${oo.ctrl.picks}  ${oo.status.toUpperCase()}  ${oo.why}`)
+  if (B.rankRecord) { out.rankH1 = { frozen: rankRecord(frozen), solverPicks: solverRankPicks(L) }; console.log(`H1 frozen ${out.rankH1.frozen.line}\nH1 options-only: ${out.rankH1.solverPicks.line}`) }
   const G = { d: {}, e: {} }
   for (const k of partsOf(L)) for (const g of ['d', 'e']) { const { s2 } = loadGrader(`${L}-p${k}-${g}`); for (const [id, row] of Object.entries(s2)) if (ID_RE.test(id)) G[g][id] = row }
   const missing = frozen.filter(i => !G.d[i.id] || !G.e[i.id]).map(i => i.id); if (missing.length) die(`grader rows missing for ${missing.join(' ')}`)
@@ -907,6 +977,7 @@ function cmdScore(L) {
   for (const it of frozen) if (items[it.id].rec.length) console.log(`  (recorded) ${it.id}: ${items[it.id].rec.join('; ')}`)
   const sf = Object.entries(out.screenFlagsRecorded); if (sf.length) console.log(`  screen-flagged items: ${sf.length}, kept by the graders ${sf.filter(([, f]) => f.kept).length}${sf.filter(([, f]) => f.p2).length ? `; still failing pass 2: ${sf.filter(([, f]) => f.p2).map(([id, f]) => id + (f.kept ? ' (kept)' : '')).join(' ')}` : ''}`)
   console.log(`AREA ${L} ${AREAS[L].key} frozen ${frozen.length} kept ${kept.length}  extremity ${as.extremity.status} (${as.extremity.reason})  oo ${oo.status}  => ${as.status.toUpperCase()}${as.reasons.length ? ' - ' + as.reasons.join('; ') : ''}${as.notes.length ? ' | ' + as.notes.join('; ') : ''}`)
+  if (B.rankRecord) { out.rankH1.kept = rankRecord(kept); out.rankH1.inserted = rankRecord(insIt); console.log(`H1 kept ${out.rankH1.kept.line}\nH1 inserted ${out.rankH1.inserted.line}`) }
   out.passIds = as.status === 'pass' ? insIt.map(i => i.id) : []
   out.verdict = out.passIds.length ? 'PASS' : 'HELD'
   console.log(`cold answers on key ${out.coldOnKey}/${2 * frozen.length}; VERDICT ${out.verdict}; insertable ${out.passIds.length} (cohort ${AREAS[L].cohort})`)
@@ -951,7 +1022,7 @@ export function toInsertRow(it, choices) {
 function ledgerInsert(entry) {
   const LP = D + 'ledger.json', text = readFileSync(LP, 'utf8'), before = JSON.parse(text)
   const prior = (before.batches ?? []).find(b => b.id === entry.id || b.contentSha === entry.contentSha)
-  if (prior) { if (prior.id === entry.id && prior.contentSha === entry.contentSha) { console.log(`ledger: ${entry.id} already recorded at this sha; unchanged`); return false } die(`ledger already holds ${prior.id} (sha ${String(prior.contentSha).slice(0, 12)}); refusing to add ${entry.id} at ${entry.contentSha.slice(0, 12)}`) }
+  if (prior) { if (prior.contentSha === entry.contentSha && prior.cohort === entry.cohort) { console.log(`ledger: ${prior.id} already records this file (same sha, cohort ${prior.cohort}); unchanged`); return false } die(`ledger already holds ${prior.id} (sha ${String(prior.contentSha).slice(0, 12)}); refusing to add ${entry.id} at ${entry.contentSha.slice(0, 12)}`) }
   const start = text.indexOf('"batches": ['); if (start < 0) die('ledger: no batches array')
   let i = text.indexOf('[', start), depth = 0, inStr = false, esc = false, end = -1
   for (; i < text.length; i++) { const c = text[i]; if (inStr) { if (esc) esc = false; else if (c === '\\') esc = true; else if (c === '"') inStr = false; continue } if (c === '"') inStr = true; else if (c === '[' || c === '{') depth++; else if (c === ']' || c === '}') { depth--; if (depth === 0) { end = i; break } } }
