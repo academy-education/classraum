@@ -3103,6 +3103,8 @@ recorded only in a commit message is a finding nobody reads.
 
 - **2026-10-26** — **Co-founder MAP Reading c1 bridge: 12/12, blind 2/12 = 16.7% (under the 25% four-choice line), 0 misses -> map-reading-v2-c1 released (36, MAP still unshipped).** Notes: one evidence item "very easy" (distractor_too_easy); one central-idea item praised — "B and A each target a precise misreading, which is better than off-topic distractors" (praise/none; a positive authoring example). MAP reading stratum now at L1 per the tracker, so the next run is a 12-item spot on c2 (drawn: `mapreadingv2c2-spot1-cofounder-2026-10-26`).
 
+- **2026-10-26** — **OWNER DECISIONS D1 + VOCAB: (1) the 68 previously staged MAP maths items RELEASED (v1 Statistics 11, v3 Operations 25 + Geometry 20, v5 Number Systems 12) after a key re-check — `math-bank-helper verify` sandbox 68/68 recompute to key, per-batch extremity PASS (45.5 / 48.9 / 50.0%), DB keys match the inserted batch files 68/68; live MAP maths 124 -> 192 = 4 complete forms, Geometry binds at 42 (needs 50 for 5). (2) The 64 standalone MAP Vocabulary items STAGED as `map-vocab-v2` (`stage-map-vocab-v2.mjs`; context sentence in item.passage, no passage group; vocab-check 0 problems; duplicate-hash refusal confirmed), queued as a 12-item bridge spot, 3rd in the co-founder's queue.** Why vocab matters: MAP Reading had 27 Literary + 27 Informational live but only 6 Vocabulary against 13 per form, so Reading could not assemble a single form; Vocabulary, not passages, was the binding area.
+
 ## 6. The rule that keeps this honest
 
 A cohort is **not** clean because the cheap checks passed. Five
