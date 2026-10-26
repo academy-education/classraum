@@ -7,7 +7,9 @@
  * options-only parts of <= 60 rows, R11 against the 221 batch-1 items, and rule C-prime. `--batch b3`
  * (MAP-MATH-V2-B3.prereg.md): Geometry only (oo/grade/score default to G), ids MB3-, 4 authors, dump-b3 prior corpus,
  * R11 against batches 1 and 2 (221 + 72), C-prime on, cohort map-math-v2-b3-geo, and the H1 key-rank record (frozen
- * rank-2 share <= 25%, recorded at freeze and score, never a gate).
+ * rank-2 share <= 25%, recorded at freeze and score, never a gate). `--batch b4` (MAP-MATH-V2-B4.prereg.md): areas N
+ * and D, each its own batch; ids MB4-, 5 authors, dump-b4, R11 against batches 1-3 (221 + 72 + 30), cohorts
+ * map-math-v2-b4-num / -data, rank record per area.
  * map-math-g58-v5.mjs made general to the four MAP maths areas. Inputs: the 11 author files
  * scratchpad/map-v2-math-work/<author>/items.json (221 slots in map-v2-work/math/slots.json, checked per item by
  * map-v2-work/math/math-check.mjs). Every bar runs PER AREA and each area freezes as its own batch.
@@ -61,7 +63,7 @@ export const BATCHES = {
     results: D + 'map-math-v2/', slots: D + 'map-v2-work/math/slots.json', idPrefix: 'MV2',
     checkArgs: [], authorsPresentOnly: false, slotTotal: 221,
     cohortStem: 'map-math-v2', cPrime: false, ooPartMax: null, earlierFile: null, earlier: null, areas: ['O', 'N', 'G', 'D'], rankRecord: false,
-    expect: { authors: 11, earlierN: 0 },
+    expect: { authors: 11, earlierN: 0, packets: '37,37,37,37,37,36' },
     seed: {
       screen1Order: 20261301, screen1Deal: 20261302, screen2Order: 20261303, screen2Deal: 20261304,
       freeze: { O: 20261311, N: 20261312, G: 20261313, D: 20261314 },
@@ -78,7 +80,7 @@ export const BATCHES = {
     authorsPresentOnly: true, slotTotal: 254,
     cohortStem: 'map-math-v2-b2',   // prereg's cohort table: map-math-v2-b2-<oa|num|geo|data>
     cPrime: true, ooPartMax: 60, earlierFile: D + 'map-v2-work/math-b2/EXCLUSIONS-map-math-b2.txt', earlier: 'b1', areas: ['O', 'N', 'G', 'D'], rankRecord: false,
-    expect: { authors: 16, earlierN: 221 },
+    expect: { authors: 16, earlierN: 221, packets: '39,38' },
     seed: {
       screen1Order: 20261401, screen1Deal: 20261402, screen2Order: 20261403, screen2Deal: 20261404,
       freeze: { O: 20261411, N: 20261412, G: 20261413, D: 20261414 },
@@ -95,10 +97,24 @@ export const BATCHES = {
     authorsPresentOnly: true, slotTotal: 32,
     cohortStem: 'map-math-v2-b3',   // cohort map-math-v2-b3-geo
     cPrime: true, ooPartMax: 60, earlierFile: D + 'map-v2-work/math-b3/EXCLUSIONS-map-geometry-b3.txt', earlier: 'b1+b2', areas: ['G'], rankRecord: true,
-    expect: { authors: 4, earlierN: 293 },
+    expect: { authors: 4, earlierN: 293, packets: '32', ranks: { G: '8/8/8/8' } },
     seed: {
       screen1Order: 20261501, screen1Deal: 20261502, screen2Order: 20261503, screen2Deal: 20261504,
       freeze: { G: 20261513 }, oo: { G: 20261523 }, grade: { G: 20261550 }, cPrime: { G: 20261573 },
+    },
+  },
+  b4: {
+    name: 'map-v2 Math batch 4 (Number Systems + Statistics)', prereg: 'scripts/study-bank/MAP-MATH-V2-B4.prereg.md',
+    work: ROOT + '/scratchpad/map-math-v2-b4-work', authored: ROOT + '/scratchpad/map-v2-math-b4-work',
+    results: D + 'map-math-v2-b4/', slots: D + 'map-v2-work/math-b4/slots.json', idPrefix: 'MB4',
+    checkArgs: ['--slots', D + 'map-v2-work/math-b4/slots.json', '--prior', ROOT + '/scratchpad/map-v2-math-work/dump-b4/prior-math.json', '--families', 'isee,ssat,map'],
+    authorsPresentOnly: true, slotTotal: 36,
+    cohortStem: 'map-math-v2-b4',   // cohorts map-math-v2-b4-num, map-math-v2-b4-data
+    cPrime: true, ooPartMax: 60, earlierFile: D + 'map-v2-work/math-b4/EXCLUSIONS-map-num-stat-b4.txt', earlier: 'b1+b2+b3', areas: ['N', 'D'], rankRecord: true,
+    expect: { authors: 5, earlierN: 323, packets: '36', ranks: { N: '6/6/6/6', D: '3/3/3/3' } },
+    seed: {
+      screen1Order: 20261601, screen1Deal: 20261602, screen2Order: 20261603, screen2Deal: 20261604,
+      freeze: { N: 20261612, D: 20261614 }, oo: { N: 20261622, D: 20261624 }, grade: { N: 20261640, D: 20261660 }, cPrime: { N: 20261672, D: 20261674 },
     },
   },
 }
@@ -138,15 +154,21 @@ function earlierBatchIds() {
   const b1text = t.slice(at), b1 = [...new Set([...b1text.matchAll(/\((MV2-[ONGD][0-9A-Z]*-\d\d)\)/g)].map(m => m[1]))]
   if (b1.length !== 221) die(`${b2x}: batch-1 section names ${b1.length} ids, expected 221`)
   if (B.earlier === 'b1') return { ids: b1, text: b1text }
-  // b1+b2 (batch 3): plus every assembled batch-2 item (72, incl. the 12 held Geometry); graders read the prereg's
-  // Geometry-only exclusions file, whose every MV2/MB2 id must be in the set
-  const b2p = ROOT + '/scratchpad/map-math-v2-b2-work/assembled.json'
-  if (!existsSync(b2p)) die(`R11 needs the batch-2 items: missing ${b2p}`)
-  const b2 = JSON.parse(readFileSync(b2p, 'utf8')).map(i => i.id)
-  if (b2.length !== 72 || new Set(b2).size !== 72 || !b2.every(x => /^MB2-[ONGD]/.test(x))) die(`${b2p}: expected 72 distinct MB2 ids, read ${b2.length}`)
+  // b1+b2 (batch 3) / b1+b2+b3 (batch 4): plus every assembled item of the later batches (b2 72, incl. the 12 held
+  // Geometry; b3 30); graders read the prereg's own exclusions file, whose every earlier id must be in the set
+  const later = { b2: [ROOT + '/scratchpad/map-math-v2-b2-work/assembled.json', 72, 'MB2'], b3: [ROOT + '/scratchpad/map-math-v2-b3-work/assembled.json', 30, 'MB3'] }
+  const extra = []
+  for (const b of B.earlier.split('+').filter(x => x !== 'b1')) {
+    const [path, n, pre] = later[b] ?? die(`unknown earlier batch '${b}'`)
+    if (!existsSync(path)) die(`R11 needs the ${b} items: missing ${path}`)
+    const xs = JSON.parse(readFileSync(path, 'utf8')).map(i => i.id)
+    if (xs.length !== n || new Set(xs).size !== n || !xs.every(x => x.startsWith(pre + '-'))) die(`${path}: expected ${n} distinct ${pre} ids, read ${xs.length}`)
+    extra.push(...xs)
+  }
+  const b2 = extra
   const ids = [...b1, ...b2], text = readFileSync(B.earlierFile, 'utf8')
-  const named = [...new Set([...text.matchAll(/\(((?:MV2|MB2)-[ONGD][0-9A-Z]*-\d\d)\)/g)].map(m => m[1]))]
-  const stray = named.filter(x => !ids.includes(x)); if (stray.length) die(`${B.earlierFile} names ids outside batches 1-2: ${stray.slice(0, 5).join(' ')}`)
+  const named = [...new Set([...text.matchAll(/\(((?:MV2|MB\d)-[ONGD][0-9A-Z]*-\d\d)\)/g)].map(m => m[1]))]
+  const stray = named.filter(x => !ids.includes(x)); if (stray.length) die(`${B.earlierFile} names ids outside the earlier batches: ${stray.slice(0, 5).join(' ')}`)
   if (!named.length) die(`${B.earlierFile}: names no batch-1/2 ids`)
   return { ids, text, named: named.length }
 }
@@ -539,12 +561,12 @@ async function selftest() {
     [Object.keys(sl).length === B.expect.authors && AUTHORS.length === Object.keys(sl).length, `${BATCH} slots: ${B.expect.authors} author cells, each in one area`],
     [Object.entries(sl).every(([a, v]) => AREAS[a[0]].domain === v.area), 'each author cell is in its letter\'s area'],
     [rows.every(r => B.areas.includes(LETTER_OF_DOMAIN[Object.values(sl).find(v => v.rows.includes(r)).area])), `${BATCH}: every slot is in the batch's areas (${B.areas.join(' ')})`],
-    [{ b1: '37,37,37,37,37,36', b2: '39,38', b3: '32' }[BATCH] === packets && (BATCH !== 'b2' || (core === 77 && chunk([...Array(254).keys()], SCREEN_PACKET_MAX).length === 7)), `${BATCH}: screen packets ${packets}${BATCH === 'b2' ? ' (77 core; FULL 254 -> 7)' : ''}`],
-    [er.ids.length === B.expect.earlierN && new Set(er.ids).size === er.ids.length, `${BATCH}: R11 earlier ids ${er.ids.length} (expected ${B.expect.earlierN}${BATCH === 'b3' ? `: 221 batch-1 + 72 batch-2; graders' file names ${er.named}` : ''})`],
+    [B.expect.packets === packets && (BATCH !== 'b2' || (core === 77 && chunk([...Array(254).keys()], SCREEN_PACKET_MAX).length === 7)), `${BATCH}: screen packets ${packets}${BATCH === 'b2' ? ' (77 core; FULL 254 -> 7)' : ''}`],
+    [er.ids.length === B.expect.earlierN && new Set(er.ids).size === er.ids.length, `${BATCH}: R11 earlier ids ${er.ids.length} (expected ${B.expect.earlierN}${er.named ? `: ${B.earlier}; graders' file names ${er.named}, all inside` : ''})`],
     [BATCH === 'b1' || (B.ooPartMax === 60 && chunk([...Array(120).keys()], B.ooPartMax).length === 2 && chunk([...Array(60).keys()], B.ooPartMax).length === 1), `${BATCH}: options-only parts of <= 60 rows`],
     [RL.cPrime === (BATCH !== 'b1'), `${BATCH} runs ${BATCH !== 'b1' ? 'with' : 'without'} C-prime`],
     [BATCH === 'b1' || B.areas.every(L => [SEED.freeze, SEED.oo, SEED.grade, SEED.cPrime].every(x => Number.isInteger(x?.[L]))), `${BATCH}: freeze / oo / grade / C-prime seeds for every area`],
-    [!B.rankRecord || (['1', '2', '3', '4'].map(r => rows.filter(x => String(x.rank) === r).length).join('/') === '8/8/8/8' && rows.every(x => [1, 2, 3, 4].includes(x.rank) && x.pos === (x.rank === 1 ? 'S' : x.rank === 4 ? 'L' : 'I'))), `${BATCH}: slot key ranks 8/8/8/8, each consistent with its S/I/L position`],
+    [!B.rankRecord || (B.areas.every(L => { const rs = Object.values(sl).filter(v => v.area === AREAS[L].domain).flatMap(v => v.rows); return ['1', '2', '3', '4'].map(r => rs.filter(x => String(x.rank) === r).length).join('/') === B.expect.ranks[L] }) && rows.every(x => [1, 2, 3, 4].includes(x.rank) && x.pos === (x.rank === 1 ? 'S' : x.rank === 4 ? 'L' : 'I'))), `${BATCH}: slot key ranks per area ${B.rankRecord ? JSON.stringify(B.expect.ranks) : '(none)'}, each consistent with its S/I/L position`],
     [chunk([...Array(35).keys()], GRADE_PART_MAX).length === 1 && chunk([...Array(36).keys()], GRADE_PART_MAX).map(x => x.length).join() === '18,18', 'grade parts: 35 -> 1, 36 -> 18+18'],
     [(() => { try { return renderGraphic({ type: 'twowaytable', colLabels: ['a', 'b'], rowLabels: ['x'], cells: [['1', '2']] }).includes('| x | 1 | 2 |') } catch { return false } })(), 'graphic renders as a markdown table']]
   for (const [ok, msg] of st) if (!ok) { bad++; console.error('FAIL', msg) }
