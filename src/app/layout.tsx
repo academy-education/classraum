@@ -7,6 +7,7 @@ import { AuthProvider } from '@/contexts/AuthContext'
 import { ToastProvider } from '@/components/ui/ToastProvider'
 import { GlobalHaptics } from '@/components/GlobalHaptics'
 import { NativeAuthLinkOpener } from '@/components/NativeAuthLinkOpener'
+import { NativeStatusBar } from '@/components/NativeStatusBar'
 import { SupportedLanguage } from '@/locales'
 
 const montserrat = Montserrat({
@@ -132,6 +133,7 @@ export default function RootLayout({
               <GlobalHaptics />
               {/* Native only: email auth links must be LOADED, not routed — see the component. */}
               <NativeAuthLinkOpener />
+              <NativeStatusBar />
             </CommandPaletteProvider>
           </LanguageWrapper>
         </AuthProvider>

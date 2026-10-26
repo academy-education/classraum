@@ -98,7 +98,12 @@ const config: CapacitorConfig = {
       resizeOnFullScreen: true,
     },
     StatusBar: {
-      style: 'dark',
+      // Capacitor names the BACKGROUND: 'LIGHT' = dark icons for a light
+      // bar. This was 'dark', i.e. white icons on our white bar, so the
+      // clock and battery were invisible until a page overrode it. Native
+      // config: reaches users only with the next store build; the web layer
+      // (NativeStatusBar, useNativeApp) already sets it on every page.
+      style: 'LIGHT',
       backgroundColor: '#FFFFFF',
       overlaysWebView: true,
     },
