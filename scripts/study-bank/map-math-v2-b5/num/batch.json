@@ -1,0 +1,487 @@
+[
+ {
+  "id": "MB5-N8-01",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 8,
+  "tier": "high",
+  "rit_band": "RIT 230-239",
+  "difficulty": "hard",
+  "ccss": "8.EE.A.1 / 8.EE.A.2",
+  "subskill": "Negative exponent, negative square root, then evaluate",
+  "grade_rationale": "High for grade 8: three steps across 8.EE.A.1 and 8.EE.A.2 with a sign condition at each. The student must read x^-2 = 1/25 as x^2 = 25 (negative exponent as reciprocal), take the NEGATIVE square root because x is negative, then evaluate x^3 - 6x keeping two signs straight (an odd power of a negative is negative; -6 times a negative is positive). Typical grade-8 students drop the sign condition, treat a negative cubed like a negative squared, or lose the sign on -6x.",
+  "prompt": "A negative number x satisfies x^-2 = 1/25. Evaluate the expression x^3 - 6x.",
+  "choices": [
+   "-155",
+   "-95",
+   "95",
+   "155"
+  ],
+  "correct_answer": "-95",
+  "explanation": "A negative exponent means a reciprocal, so x^-2 = 1/x^2. Since 1/x^2 = 1/25, x^2 = 25. The numbers whose square is 25 are 5 and -5, and x is negative, so x = -5. Then x^3 = (-5)(-5)(-5) = -125, and -6x = -6(-5) = 30. So x^3 - 6x = -125 + 30 = -95.",
+  "solve": "const x = -Math.sqrt(25); return String(x**3 - 6*x);",
+  "distractor_solve": {
+   "95": "const x = Math.sqrt(25); return String(x**3 - 6*x);",
+   "155": "const x = -5; return String(125 - 6*x);",
+   "-155": "const x = -5; return String(x**3 - 30);"
+  },
+  "mechanism": [
+   "negative exponent means reciprocal: x^2 = 25",
+   "x is negative, so take the negative square root: x = -5",
+   "evaluate x^3 - 6x with signs: -125 + 30"
+  ],
+  "quantity_asked": "the value of the expression x^3 - 6x",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option is a value of the expression, not a value of x; a student cannot check it against the stem without first finding x, which is the whole problem."
+  },
+  "distractor_meta": {
+   "95": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "the square root of 25 is only 5 (ignores the condition that x is negative)",
+    "why": "The student solves x^2 = 25 as x = 5, never uses 'x is negative', and gets 125 - 30 = 95."
+   },
+   "155": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "a negative number raised to a power is always positive (treats the cube like a square)",
+    "why": "The student finds x = -5 and gets -6x = 30 right, but writes (-5)^3 = 125 as if the negatives cancel, getting 125 + 30 = 155."
+   },
+   "-155": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": true,
+    "misconception": "subtracting 6x when x is negative still makes the answer smaller",
+    "why": "The student finds x = -5 and x^3 = -125 but writes -6x as -30 instead of +30, getting -125 - 30 = -155."
+   }
+  },
+  "structure_check": "Interior key. The stem does not tell a student which way any error goes: the x^3 term pulls the value negative and the -6x term pulls it positive, so the overall sign depends on the size of x, which is the work.",
+  "intermediate_check": "95: no, it is the expression at x = 5, not a step on the way to -95. -155: no, it is a wrong value of the whole expression, not -125 or 30. 155: no, same reason. The solved intermediates (25, -5, -125, 30) are not options.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: x negative (it does not fix the sign of x^3 - 6x without the size of x, because the two terms have opposite signs), a whole-number answer (all four survive), divisible by 5 (all four survive). All four options survive every property together.",
+  "interior_parity_check": "The two middle values are -95 and 95: same display form (two-digit integer ending in 5), same complexity; the key is not the cleaner one.",
+  "arith_class_check": "The stem forces x = +/-5, so every value of x^3 - 6x is an odd multiple of 5 ending in 5. All four options are odd multiples of 5 ending in 5, so the key is not alone in any class (not the only negative: -155 is negative too; not a perfect square or cube; none round to 10).",
+  "dup_search": {
+   "queries": [
+    "x^-2|x\\^-2",
+    "negative&1/25",
+    "x is negative&x^3|x\\^3",
+    "x^3 - |x\\^3 -|x^3 +"
+   ],
+   "hits_read": 30,
+   "nearest": "MM3-N27 (cube root of 0.216, then x^-2): the reverse direction, no sign condition, no evaluation of a polynomial expression. ACT 23aadbee (f(x) = x^3 - 4x, total change from 1 to 4) and the SAT remainder items share only the cubic shape, not the negative-exponent / negative-root chain."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: x^3 is negative and -6x is positive, so the sign of the sum is not readable without the size of x",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "none: no printed number gives the size of the answer before x is found; all four options are within the same order of magnitude (95 to 155)",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "x = +/-5 makes every value odd; all four options are odd",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "x^3 ends in 5 and 6x ends in 0, so the answer ends in 5; all four options end in 5",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "none: no printed cap or floor on the expression",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Slot mechanism note: with x^3 + kx (k > 0) every natural error lands ABOVE the key (positive root 125+5k, kx sign slip -125+5k, cube-made-positive 125-5k), so the key is always rank 1; rank 2 needs the kx term written as x^3 - kx (k = 6), which is the same chain with the sign of the small term reversed. The sign-slip on -kx then lands below the key. Closest earlier item in my exclusion section: MM3-N27 (cube root -> square -> reciprocal); my chain goes reciprocal -> NEGATIVE square root -> evaluate a two-term expression, and the negative-root choice and the evaluation of x^3 - 6x are not in it; MMG-N15 subtracts two roots and never uses a negative exponent. Key rank 2: below it sits only -155, from -6(-5) written as -30. Above: 95 (positive root) and 155 (negative cubed taken as positive). Covering the stem: the set is two opposite pairs, which is forced because x^3 - 6x is odd in x, so the positive-root error is always -key; no option is x2, x3, x1.5 or x10 of another, the key is not a midpoint (midpoint of -155 and 95 is -30, of -155 and 155 is 0), and no option is the one the others are built from: -95 and 95 differ from -155 and 155 by 60 = 2 x 6 x 5, not a printed number. A test-wise student who guesses 'negative because x is negative' still has two negatives, and choosing between them is the sign of -6x, the real work. K1: forced class is odd multiples of 5 ending in 5; all four are in it. K2: no benchmark percent or fraction; 1/25 is a reciprocal, not a part of a whole; no printed total. K3: no circle. K4: no decimals to round; the order-of-magnitude estimate (|x|^3 about 125) puts all four options within 30 of 125 in size, so no option leaves the magnitude band; sign is not decidable without x. K5: no table. No distractor is a solved intermediate (25, -5, -125, 30 are not options). Tier: really high for grade 8 - three sign decisions in a row (reciprocal, negative root, odd power and negative times negative), each the error a typical grade-8 student makes. Near-dup flags read: ISEE 0e50f3f4 (x - y = 4, xy = 21, x^2y - xy^2 by factoring) and SSAT 03e1d20c (a linear system, x + y) matched only on the wording 'If ... what is the value of x'; neither uses a negative exponent or a root, and the stem was reworded. MV2-N8-06 (9^x = 100, then 3^(x+3)) rewrites powers of 3 and never takes a root or uses a sign condition. Plug-back (read): not substitutable because an option is a value of the expression, not of x; running the stem forward from an option is impossible."
+  }
+ },
+ {
+  "id": "MB5-N7-02",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 7,
+  "tier": "low",
+  "rit_band": "RIT 200-209",
+  "difficulty": "easy",
+  "ccss": "7.NS.A.1",
+  "subskill": "A number minus its opposite, then add a decimal",
+  "grade_rationale": "Low for grade 7 (7.NS.A.1c): subtracting a number's opposite is adding the number to itself, so the number is half of -7.4, which is -3.7; then add two negative decimals. Each step is a single grade-7 operation; the common miss is to use -7.4 itself as the number.",
+  "prompt": "Lena thinks of a number. When she subtracts the opposite of her number from her number, she gets -7.4. What does she get when she adds -2.65 to her number?",
+  "choices": [
+   "-17.45",
+   "-10.05",
+   "-6.35",
+   "-5.85"
+  ],
+  "correct_answer": "-6.35",
+  "explanation": "Subtracting the opposite of a number is the same as adding the number: n - (-n) = n + n = 2n. So 2n = -7.4, and n = -7.4 / 2 = -3.7. Then -3.7 + (-2.65) = -6.35.",
+  "solve": "const n = -7.4 / 2; return Math.round((n + (-2.65)) * 100) / 100;",
+  "distractor_solve": {
+   "-10.05": "const n = -7.4; return Math.round((n + (-2.65)) * 100) / 100;",
+   "-17.45": "const n = -7.4 * 2; return Math.round((n + (-2.65)) * 100) / 100;",
+   "-5.85": "const n = -3.2; return Math.round((n + (-2.65)) * 100) / 100;"
+  },
+  "mechanism": [
+   "subtracting the opposite doubles the number: n - (-n) = 2n",
+   "halve the printed negative decimal, keeping the sign",
+   "add a negative decimal"
+  ],
+  "quantity_asked": "the number plus -2.65",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const n = v + 2.65; return Math.abs((n - (-n)) - (-7.4)) < 1e-9;",
+   "why": "A student can add 2.65 back to an option to get Lena's number, then check whether the number minus its opposite is -7.4."
+  },
+  "distractor_meta": {
+   "-10.05": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "takes the printed result -7.4 to be the number itself, as if n - (-n) were just n",
+    "why": "The student reads 'the result is -7.4' as 'the number is -7.4' and never halves, so -7.4 + (-2.65) = -10.05."
+   },
+   "-17.45": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "undoes 'twice the number' by multiplying by 2 instead of dividing",
+    "why": "The student sees that n - (-n) is two of the number but doubles -7.4 to -14.8 instead of halving it, then adds -2.65 to get -17.45."
+   },
+   "-5.85": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": true,
+    "misconception": "halves a decimal digit by digit and drops the remainder",
+    "why": "Halving 7.4, the student takes half of 7 as 3 and half of 4 tenths as 2 tenths, losing the leftover 1 one, so n = -3.2 and -3.2 + (-2.65) = -5.85."
+   }
+  },
+  "intermediate_check": "-10.05: no; it is -7.4 + (-2.65), the printed numbers combined without the halving, not a value the key follows from by one printed relation. -17.45: no; it uses a doubled number that is never a step of the solution. -5.85: no; -3.2 is not a step of the correct work. The solved intermediate -3.7 is not an option.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: the result is negative (a negative number plus -2.65) - all four survive; it is below -2.65 - all four survive; it ends in 5 hundredths - all four survive.",
+  "interior_parity_check": "Middle values -10.05 and -6.35: both negative two-place decimals ending in 5, same complexity; the key is not the cleaner one.",
+  "arith_class_check": "Every path adds -2.65 to a tenths value, so every value ends in 5 hundredths; all four options are negative two-place decimals ending in 5. The key is alone in no class.",
+  "dup_search": {
+   "queries": [
+    "its opposite",
+    "minus (its|the) opposite|opposite.*subtract",
+    "opposite&number&(-|negative)",
+    "opposite of (a|the) number|the opposite of n|n - \\(-n\\)|x - \\(-x\\)"
+   ],
+   "hits_read": 10,
+   "nearest": "MV2-N56-24 (live): marks the opposite of a GIVEN number 7.5 and measures a segment; MV2-N56-21/-23 take the opposite of a found point. None recovers an unknown from n - (-n) = 2n."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "the number is negative and -2.65 is negative, so the result is negative: all four options are negative",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "adding -2.65 to a negative number gives less than -2.65: all four options are below -2.65",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: decimal values, no whole-number parity",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "every path adds -2.65 to a tenths number, so every value ends in 5 hundredths: all four do",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "the number is negative, so the answer is below -2.65; nothing printed gives a lower bound without first knowing n - (-n) = 2n",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Closest in my exclusion section: MV2-N56-24 (opposite of a given 7.5, then a segment length) and MV2-N56-21/-23; none recovers an unknown from n - (-n) = 2n - that step is new. The brief's listed errors (sign of n, opposite of the printed value) were tried first and refused: n = +3.7 lands exactly 7.4 (the printed value) from the key (PAIR refuses it) and n = +7.4 makes a midpoint with the doubled error; an exhaustive search over v and c left the all-negative set used here (c printed negative) or a set with the key's exact opposite as an option, which I rejected as a +/- pair tell. Rank 3: below it are -17.45 (doubled instead of halved) and -10.05 (never halved: -7.4 used as the number); above it -5.85 (digit-by-digit halving slip, the one slip). Covering the stem: sorted -17.45, -10.05, -6.35, -5.85; second-smallest picks -10.05 (wrong); no option is x2/x3/x4/x1.5/x10 of two others and the key is in no ratio pair or midpoint. K1: all four negative two-place decimals ending in 5. K2: no benchmark percent or cap. K3: no circle. K4: rounding -7.4 to -7 and -2.65 to -3 gives E = -3.5 + (-3) = -6.5; key 0.15 away, -5.85 0.65 away, -10.05 3.55 away, -17.45 10.95 away; the two far ones are concept errors (no halving, doubling) whose own estimates land on them, so the estimate only separates a student who already knows to halve - the halving IS the item. A screener may still read this as K4 striking two; I flag it. K5: no table. -3.7 (the solved intermediate) is not an option. Low tier for grade 7: yes - one property of opposites, one halving, one sum of two negatives."
+  }
+ },
+ {
+  "id": "MB5-N6-03",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "6.NS.B.4",
+  "subskill": "GCF plus LCM from prime factorizations",
+  "grade_rationale": "6.NS.B.4: GCF and LCM of two whole numbers. Both numbers carry a repeated shared prime (60 = 2 x 2 x 3 x 5, 80 = 2 x 2 x 2 x 2 x 5), so the GCF needs the shared 2 twice (2 x 2 x 5 = 20) and the LCM needs the higher power of 2 (2 x 2 x 2 x 2 x 3 x 5 = 240). Counting a repeated shared prime only once is what stronger grade-6 students still do; most students who list multiples or multiply the numbers do not reach 240.",
+  "prompt": "Ana uses prime factorization to find the greatest common factor (GCF) and the least common multiple (LCM) of 60 and 80. What is the sum of the GCF and the LCM?",
+  "choices": [
+   "220",
+   "250",
+   "260",
+   "490"
+  ],
+  "correct_answer": "260",
+  "explanation": "60 = 2 x 2 x 3 x 5 and 80 = 2 x 2 x 2 x 2 x 5. The GCF uses each shared prime the fewest times it appears in either number: 2 twice and 5 once, so the GCF is 2 x 2 x 5 = 20. The LCM uses each prime the most times it appears in either number: 2 x 2 x 2 x 2 x 3 x 5 = 240. The sum is 20 + 240 = 260.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a; const G=g(60,80); const L=60*80/G; return G+L;",
+  "distractor_solve": {
+   "220": "const G=20; const L=240; return L-G;",
+   "250": "const G=2*5; const L=2*2*2*2*3*5; return G+L;",
+   "490": "const G=2*5; const L=G*(60/G)*(80/G); return G+L;"
+  },
+  "mechanism": [
+   "prime factorizations 60 = 2 x 2 x 3 x 5 and 80 = 2 x 2 x 2 x 2 x 5",
+   "GCF from the lower power of each shared prime: 2 x 2 x 5 = 20",
+   "LCM from the higher power of each prime: 240",
+   "add the GCF and the LCM"
+  ],
+  "quantity_asked": "the sum of the GCF and the LCM of 60 and 80",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option is a sum of two unknowns; it cannot be checked against the stem without finding the GCF and the LCM, which is the whole item."
+  },
+  "distractor_meta": {
+   "220": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts the GCF from the LCM instead of adding them",
+    "why": "The student finds GCF 20 and LCM 240 correctly but writes 240 - 20 = 220."
+   },
+   "250": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "writes the GCF with each shared prime only once (2 x 5 = 10), missing that 2 is shared twice",
+    "why": "The student sees 2 and 5 in both lists, writes GCF = 2 x 5 = 10, finds the LCM 240 correctly from the highest powers, and adds to get 250."
+   },
+   "490": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "builds the LCM as GCF x leftover factors of each number, starting from a GCF that treats the second shared 2 as unshared",
+    "why": "The student takes GCF = 10, so the leftovers are 6 and 8, multiplies 10 x 6 x 8 = 480 for the LCM, and adds 10 to get 490."
+   }
+  },
+  "structure_check": "Interior key. Errors go both ways: a GCF missing a shared 2 lowers the answer when the LCM is found separately (250) and raises it when the LCM is built from that GCF (490); subtracting lowers it (220). The stem does not say which way any error goes.",
+  "intermediate_check": "250: no, it uses a wrong GCF (10). 490: no, wrong GCF and wrong LCM (480). 220: no, the correct path never subtracts. The intermediates 20 and 240 are not options.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over a whole number equal to (a factor of 60 and of 80) + (a multiple of 60 and of 80). Every option passes that test with some choice: 220 = 40 + 180 (40 divides 80, 180 is a multiple of 60) and 220 = 60 + 160 (60 divides 60, 160 is a multiple of 80); 250 = 10 + 240; 260 = 20 + 240; 490 = 10 + 480. All four are even and end in 0; all exceed 160, the least the sum can be once the LCM is known to be a multiple of 80 other than 80.",
+  "interior_parity_check": "The two middle values are 250 and 260: both three-digit whole numbers ending in 0; the key is not the cleaner one.",
+  "arith_class_check": "Both numbers are even, so GCF and LCM are even and the sum is even; every option is even and a multiple of 10. The key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "greatest common factor&least common multiple",
+    "GCF&LCM",
+    "prime factorization&common",
+    "least common multiple&sum|add",
+    "prime factorization",
+    "common factor&60|common multiple&80"
+   ],
+   "hits_read": 4,
+   "nearest": "ISEE f5c459b7 and SSAT ed9a89f1 recover a number from GCF x LCM = product; ISEE ac44cdd7 sums the n with LCM(n, 18) = 180. This item computes BOTH the GCF and the LCM from prime factorizations and adds them; MV2-N56-10 and MMG-N06 each use one of them as a count."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: every option and the key are positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "the GCF is at most 60 and divides 60; the LCM is a multiple of 80 and is not 80 (60 does not divide 80), so it is at least 160, and the LCM is at most 60 x 80 = 4800; the sum is between 161 and 4860, and all four options are inside",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "GCF and LCM of two even numbers are even, so the sum is even; all four options are even",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: all four options end in 0",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "each option minus some factor of 60 is a multiple of 80 above 80, and minus some factor of 80 is a multiple of 60 above 60 (220: 60 + 160 and 40 + 180; 250 and 260: 10 or 20 + 240; 490: 10 + 480), so the 'multiple of the larger number' test strikes nothing",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Revision after screen pass 1 (S-R4: with 25 and 45, 'the LCM is a multiple of 45 other than 45' struck 50 and 70). With 60 and 80 every distractor is (a factor of each number) + (a multiple of each number), checked option by option in shape_check and range, so that test strikes none; the only remaining distinction is whether the multiple is the LEAST common one, which is the work. Closest exclusion item: MM2-N09 (GCF of 48 and 72 as the factor in a(b + c)) and MV2-N56-10 (GCF as a stack size). Step not in either: the LCM from the higher power of each prime, and the sum of GCF and LCM. Key rank 3: below it 220 (LCM - GCF) and 250 (GCF with the shared 2 counted once, LCM right); above it 490 (the same short GCF, then LCM built as GCF x leftovers 6 and 8). Covering the stem: sorted 220, 250, 260, 490; second-smallest is 250, not the key; no x2/x3/x4/x1.5/x10 link involves the key and the key is no midpoint (220+490 = 710, 250+490 = 740, 220+250 = 470). K1: even + even, every option even and a multiple of 10. K2: no percent or benchmark fraction; the caps (LCM at least 160, at most 4800) strike nothing. K3: no circle. K4: exact whole numbers; the estimate 'LCM near the product 4800' strikes nothing in particular. K5: no table. Solved intermediates: none (20 and 240 are not options). (read) PLUG try 2 descending ('greatest common factor' in the stem): an option is a sum of two unknowns and cannot be checked without finding both. Tier: high for grade 6; a shared prime that repeats (2 twice) in both numbers is the depth of 6.NS.B.4. Residual risk, stated for the screener: a student who first finds the GCF (20) can test each option minus 20 for being a multiple of 80, and that leaves only 260 and 500-type values. Doing so means finding the GCF, which is half the chain, not a free bound. At rank 3, any value below GCF + LCM must use a common factor that is not the greatest, so if the GCF itself is counted as free, no numbers can meet this slot and it should be withdrawn."
+  }
+ },
+ {
+  "id": "MB5-N5-01",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 5,
+  "tier": "mid",
+  "rit_band": "RIT 200-209",
+  "difficulty": "medium",
+  "ccss": "5.NBT.B.5",
+  "area_25": "Number and Operations",
+  "subskill": "Missing factor when one factor is divided by 3",
+  "grade_rationale": "Mid for grade 5 (5.NBT.B.5): the multiplication is a 3-digit by 1-digit product with two carries, but the student must first see that 20 is one third of 60 and reason that the other factor has to be three times as large to keep the product the same. Many grade-5 students instead divide the other factor by 3, add the 40 that 60 lost, or drop a carry when tripling 135; about half get it right.",
+  "prompt": "Tia knows that the equation 60 x 135 = 20 x n is true. What number is n?",
+  "choices": [
+   "45",
+   "175",
+   "395",
+   "405"
+  ],
+  "correct_answer": "405",
+  "explanation": "20 is one third of 60, because 60 / 3 = 20. When one factor is divided by 3, the other factor must be multiplied by 3 to keep the same product. So n = 135 x 3 = 405. Check: 60 x 135 = 8,100 and 20 x 405 = 8,100.",
+  "solve": "return String((60*135)/20);",
+  "distractor_solve": {
+   "45": "return String(135/3);",
+   "175": "return String(135 + (60-20));",
+   "395": "return String(100*3 + 3*3*10 + 5);"
+  },
+  "mechanism": [
+   "see that 20 is 60 divided by 3",
+   "the product stays the same, so the other factor is multiplied by 3",
+   "multiply 135 by 3 with two carries"
+  ],
+  "quantity_asked": "the missing factor n",
+  "plugback": {
+   "substitutable": true,
+   "verify": "return 20*Number(v) === 60*135;",
+   "why": "a student can multiply 20 by an option and compare with 60 x 135 = 8,100; the key is the 4th option tried in ascending order"
+  },
+  "distractor_meta": {
+   "45": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "changes both factors the same way: one factor was divided by 3, so divides the other by 3 too",
+    "why": "The student sees 60 became 20 (divided by 3) and does the same to 135, getting 45, instead of doing the opposite."
+   },
+   "175": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "additive compensation: treats a product like a sum, so what one factor loses the other gains",
+    "why": "The student says 60 went down by 40, so 135 must go up by 40, and writes 135 + 40 = 175."
+   },
+   "395": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": true,
+    "misconception": "forgets the regrouped ten when multiplying 135 by 3",
+    "why": "The student finds the rule (triple 135) but writes 3 x 5 = 15 as 5 and then writes 3 x 3 = 9 without adding the carried 1, getting 395."
+   }
+  },
+  "counter_error": {
+   "error_kind": "other",
+   "solve": "return String(135*3*3);",
+   "direction": "above",
+   "why": "The student multiplies 135 by 3 and then by 3 again (once for 60 / 20 = 3 and once more to 'undo' the division), getting 1,215, above the key."
+  },
+  "far_distractor": {
+   "option": "175",
+   "natural_side": "above",
+   "why": "Additive compensation pushes 135 UP (it adds what 60 lost), the opposite way from dividing 135 by 3; the added 40 is far smaller than the needed 270, so it lands below the key while acting in the upward direction."
+  },
+  "structure_check": "The stem does not say which way the errors go: dividing 135 by 3 pushes the answer down from 135, while additive compensation and over-tripling push it up from 135 (175 below the key, 1,215 above it).",
+  "intermediate_check": "45: not a value the key follows from through one printed relation (45 x 9 = 405; 9 is not printed). 175: no, 175 + 230 = 405 and 230 is not printed. 395: no, 395 + 10 = 405 and 10 is not printed; it is a dropped carry, not a step of the solution.",
+  "cheap_bound_check": "Cheapest one-sided bound: 20 is less than 60, so n must be more than 135. It strikes only 45; 175 and 395 sit on the key's side with the key.",
+  "shape_check": "n must be a whole number greater than 135: 175, 395 and 405 survive. Units digit: 135 x 3 ends in 5; all four end in 5. Odd: all four odd.",
+  "interior_parity_check": "Middle values 175 and 395: both three-digit whole numbers ending in 5; the key 405 is not between them and is no cleaner than 395.",
+  "arith_class_check": "The key is odd, a multiple of 5 and ends in 5; every option is too. The stem implies no other class a grade-5 student would test (multiple of 135 is the solution itself).",
+  "dup_search": {
+   "queries": [
+    "same product|equation is true&x ?",
+    "halved|half&double",
+    "box&equation&product",
+    "third&triple|three times",
+    "missing factor|unknown factor",
+    "makes the equation true|make the equation true",
+    "without multiplying|without finding the product",
+    "= 20 x|= 15 x|= 12 x",
+    "compensat",
+    "missing number&×|missing number&x ",
+    "what number goes|which number goes",
+    "60 × 45|60 x 45",
+    "same value as&×",
+    "missing number",
+    "equal to the product",
+    "same product",
+    "□",
+    "true&×&box|true&x&box",
+    "times as many&one third|1/3 as many"
+   ],
+   "hits_read": 7,
+   "nearest": "MMG-N02 (exclusion section: dividend = divisor x quotient + remainder) recovers a dividend by multiplying; mine recovers a missing factor from the product-preserving relation (one factor divided by 3, the other multiplied by 3). No hit in the dump holds a missing factor in A x B = C x n. Checker-named MV2-N8-06 (j=0.53) read: see self_audit."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: all values are positive whole numbers",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "20 < 60 so n > 135",
+    "strikes": [
+     "45"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: all four options are odd",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: 20 x n ends in 0 for every option; all options end in 5",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "n < 60 x 135 / 10 = 810 (since 20 > 10): strikes none",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Closest earlier item in my exclusion section: MMG-N02 (multiply divisor by quotient, add a remainder) - my step 'one factor divided by 3 means the other is multiplied by 3' is not in it; MM2-N01 only computes a product. Checker's nearest MV2-N8-06 (j=0.53) is a grade-8 exponent-rule item (9^x, 3^(x+3)): the wording 'makes the equation true' is shared, the chain is not. Key is rank 4: below it 45 (divides 135 by 3, same-direction change), 175 (additive compensation 135 + 40), 395 (dropped carry in 135 x 3, the one slip). Covering the stem: sorted 45, 175, 395, 405; second-smallest 175 is wrong; no derivation centre (no x2/x3/x4/x1.5/x10 pair; 405/45 = 9; key is no midpoint). K1: odd, ends in 5 - shared by all four; no other class implied. K2: no percent/benchmark fraction; the floor n > 135 strikes only 45. K3: no circle. K4: E from rounding 60 x 140 / 20 = 420; key distance 15; 395 at 25 (inside 2x), 175 at 245 and 45 at 375 (both outside). This is the known cost of the slot: it is plug-back checkable by design (key at try 4 ascending), and the brief's named errors (wrong way, additive) cannot land near 3 x B; the dropped-carry 395 survives every estimate, so an estimating student is still left with 395 vs 405. K5: no table. No distractor is a solved intermediate (the only intermediates are 3 and 8,100). Grade fit: mid for grade 5 - the 3-digit by 1-digit product is routine, the inverse-change reasoning is the step about half the grade misses."
+  }
+ }
+]

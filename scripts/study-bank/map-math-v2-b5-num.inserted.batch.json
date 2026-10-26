@@ -1,0 +1,174 @@
+[
+ {
+  "id": "MB5-N8-01",
+  "domain": "Real and Complex Number Systems",
+  "subskill": "Negative exponent, negative square root, then evaluate",
+  "difficulty": "hard",
+  "topic_tag": "8.EE.A.1 / 8.EE.A.2",
+  "prompt": "A negative number x satisfies x^-2 = 1/25. Evaluate the expression x^3 - 6x.",
+  "choices": [
+   "-95",
+   "155",
+   "95",
+   "-155"
+  ],
+  "correct_answer": "-95",
+  "explanation": "A negative exponent means a reciprocal, so x^-2 = 1/x^2. Since 1/x^2 = 1/25, x^2 = 25. The numbers whose square is 25 are 5 and -5, and x is negative, so x = -5. Then x^3 = (-5)(-5)(-5) = -125, and -6x = -6(-5) = 30. So x^3 - 6x = -125 + 30 = -95.",
+  "solve": "const x = -Math.sqrt(25); return String(x**3 - 6*x);",
+  "graphic": null,
+  "grade_target": 8,
+  "tier": "high",
+  "rit_band": "RIT 230-239",
+  "ccss": "8.EE.A.1 / 8.EE.A.2",
+  "area_25": null,
+  "map_area": "num",
+  "distractor_steps": [
+   {
+    "choice": "155",
+    "mis_step": "The student finds x = -5 and gets -6x = 30 right, but writes (-5)^3 = 125 as if the negatives cancel, getting 125 + 30 = 155."
+   },
+   {
+    "choice": "95",
+    "mis_step": "The student solves x^2 = 25 as x = 5, never uses 'x is negative', and gets 125 - 30 = 95."
+   },
+   {
+    "choice": "-155",
+    "mis_step": "The student finds x = -5 and x^3 = -125 but writes -6x as -30 instead of +30, getting -125 - 30 = -155."
+   }
+  ],
+  "distractor_solve": {
+   "95": "const x = Math.sqrt(25); return String(x**3 - 6*x);",
+   "155": "const x = -5; return String(125 - 6*x);",
+   "-155": "const x = -5; return String(x**3 - 30);"
+  }
+ },
+ {
+  "id": "MB5-N7-02",
+  "domain": "Real and Complex Number Systems",
+  "subskill": "A number minus its opposite, then add a decimal",
+  "difficulty": "easy",
+  "topic_tag": "7.NS.A.1",
+  "prompt": "Lena thinks of a number. When she subtracts the opposite of her number from her number, she gets -7.4. What does she get when she adds -2.65 to her number?",
+  "choices": [
+   "-10.05",
+   "-6.35",
+   "-5.85",
+   "-17.45"
+  ],
+  "correct_answer": "-6.35",
+  "explanation": "Subtracting the opposite of a number is the same as adding the number: n - (-n) = n + n = 2n. So 2n = -7.4, and n = -7.4 / 2 = -3.7. Then -3.7 + (-2.65) = -6.35.",
+  "solve": "const n = -7.4 / 2; return Math.round((n + (-2.65)) * 100) / 100;",
+  "graphic": null,
+  "grade_target": 7,
+  "tier": "low",
+  "rit_band": "RIT 200-209",
+  "ccss": "7.NS.A.1",
+  "area_25": null,
+  "map_area": "num",
+  "distractor_steps": [
+   {
+    "choice": "-10.05",
+    "mis_step": "The student reads 'the result is -7.4' as 'the number is -7.4' and never halves, so -7.4 + (-2.65) = -10.05."
+   },
+   {
+    "choice": "-5.85",
+    "mis_step": "Halving 7.4, the student takes half of 7 as 3 and half of 4 tenths as 2 tenths, losing the leftover 1 one, so n = -3.2 and -3.2 + (-2.65) = -5.85."
+   },
+   {
+    "choice": "-17.45",
+    "mis_step": "The student sees that n - (-n) is two of the number but doubles -7.4 to -14.8 instead of halving it, then adds -2.65 to get -17.45."
+   }
+  ],
+  "distractor_solve": {
+   "-10.05": "const n = -7.4; return Math.round((n + (-2.65)) * 100) / 100;",
+   "-17.45": "const n = -7.4 * 2; return Math.round((n + (-2.65)) * 100) / 100;",
+   "-5.85": "const n = -3.2; return Math.round((n + (-2.65)) * 100) / 100;"
+  }
+ },
+ {
+  "id": "MB5-N6-03",
+  "domain": "Real and Complex Number Systems",
+  "subskill": "GCF plus LCM from prime factorizations",
+  "difficulty": "hard",
+  "topic_tag": "6.NS.B.4",
+  "prompt": "Ana uses prime factorization to find the greatest common factor (GCF) and the least common multiple (LCM) of 60 and 80. What is the sum of the GCF and the LCM?",
+  "choices": [
+   "220",
+   "490",
+   "260",
+   "250"
+  ],
+  "correct_answer": "260",
+  "explanation": "60 = 2 x 2 x 3 x 5 and 80 = 2 x 2 x 2 x 2 x 5. The GCF uses each shared prime the fewest times it appears in either number: 2 twice and 5 once, so the GCF is 2 x 2 x 5 = 20. The LCM uses each prime the most times it appears in either number: 2 x 2 x 2 x 2 x 3 x 5 = 240. The sum is 20 + 240 = 260.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a; const G=g(60,80); const L=60*80/G; return G+L;",
+  "graphic": null,
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "ccss": "6.NS.B.4",
+  "area_25": null,
+  "map_area": "num",
+  "distractor_steps": [
+   {
+    "choice": "220",
+    "mis_step": "The student finds GCF 20 and LCM 240 correctly but writes 240 - 20 = 220."
+   },
+   {
+    "choice": "490",
+    "mis_step": "The student takes GCF = 10, so the leftovers are 6 and 8, multiplies 10 x 6 x 8 = 480 for the LCM, and adds 10 to get 490."
+   },
+   {
+    "choice": "250",
+    "mis_step": "The student sees 2 and 5 in both lists, writes GCF = 2 x 5 = 10, finds the LCM 240 correctly from the highest powers, and adds to get 250."
+   }
+  ],
+  "distractor_solve": {
+   "220": "const G=20; const L=240; return L-G;",
+   "250": "const G=2*5; const L=2*2*2*2*3*5; return G+L;",
+   "490": "const G=2*5; const L=G*(60/G)*(80/G); return G+L;"
+  }
+ },
+ {
+  "id": "MB5-N5-01",
+  "domain": "Real and Complex Number Systems",
+  "subskill": "Missing factor when one factor is divided by 3",
+  "difficulty": "medium",
+  "topic_tag": "5.NBT.B.5",
+  "prompt": "Tia knows that the equation 60 x 135 = 20 x n is true. What number is n?",
+  "choices": [
+   "175",
+   "45",
+   "395",
+   "405"
+  ],
+  "correct_answer": "405",
+  "explanation": "20 is one third of 60, because 60 / 3 = 20. When one factor is divided by 3, the other factor must be multiplied by 3 to keep the same product. So n = 135 x 3 = 405. Check: 60 x 135 = 8,100 and 20 x 405 = 8,100.",
+  "solve": "return String((60*135)/20);",
+  "graphic": null,
+  "grade_target": 5,
+  "tier": "mid",
+  "rit_band": "RIT 200-209",
+  "ccss": "5.NBT.B.5",
+  "area_25": "Number and Operations",
+  "map_area": "num",
+  "distractor_steps": [
+   {
+    "choice": "175",
+    "mis_step": "The student says 60 went down by 40, so 135 must go up by 40, and writes 135 + 40 = 175."
+   },
+   {
+    "choice": "45",
+    "mis_step": "The student sees 60 became 20 (divided by 3) and does the same to 135, getting 45, instead of doing the opposite."
+   },
+   {
+    "choice": "395",
+    "mis_step": "The student finds the rule (triple 135) but writes 3 x 5 = 15 as 5 and then writes 3 x 3 = 9 without adding the carried 1, getting 395."
+   }
+  ],
+  "distractor_solve": {
+   "45": "return String(135/3);",
+   "175": "return String(135 + (60-20));",
+   "395": "return String(100*3 + 3*3*10 + 5);"
+  }
+ }
+]

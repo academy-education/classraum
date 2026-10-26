@@ -1,0 +1,21 @@
+{
+ "screened": 8,
+ "fails": {
+  "MB5-N6-02": [
+   "S-R4 2 struck without solving: [\"-8.9\",\"8.9\"] (Quadrant IV coordinates have opposite signs, so the sum's size is the difference 6.4 - 2.5, never 8.9, striking both +/-8.9)"
+  ],
+  "MB5-N6-03": [
+   "S-R4 2 struck without solving: [\"50\",\"70\"] (the LCM is a multiple of 45 and is not 45 (25 does not divide 45), so it is at least 90 and the sum exceeds 90, striking 50 and 70)"
+  ],
+  "MB5-N7-01": [
+   "S-R4 2 struck without solving: [\"8\",\"6\"] (three negative factors make the product negative, striking 8 and 6)"
+  ],
+  "MB5-N7-03": [
+   "S-R4 3 struck without solving: [\"-42\",\"-8\",\"288\"] (positive divided by negative is negative, so -48/n negative means n positive, striking -42 and -8; 4.5 is bigger than 0.75 so the quotient's size exceeds 1, mea)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MB5-N6-01": [
+   "S-R4 2 struck without solving: [\"-1.6\",\"-8.6\"] (8.5 is plainly the largest absolute value so the sum is 8.5 plus another listed number; no listed number gives -1.6 or -8.6 (both would need a value below -8.5')"
+  ]
+ }
+}

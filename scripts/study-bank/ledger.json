@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-26T13:30:41.454Z",
+  "generatedAt": "2026-10-26T14:43:46.191Z",
   "note": "Generated from the real result files. Numbers are computed, not transcribed.",
   "baselines": [
     {
@@ -12838,6 +12838,50 @@
           "passed": true,
           "contentSha": "190b3adc461ca3b8ceafc36e1da4c05778af0dcb154f9e96be804cf9a5f86902",
           "verdict": "Key at an extreme on this file: no measurement: 6 scorable of 6 (need >= 10); 0 non-numeric, 0 other skip (no-measurement). Key letters in this file (with-source deal) {\"A\":2,\"B\":2,\"C\":2}. Banked difficulty (graders' tier_assigned) easy 0 / medium 5 / hard 1. Unanimity compared to the control at batch level only. Screen-flagged survivors: 1."
+        }
+      }
+    },
+    {
+      "id": "map-math-v2-b5-num-2026-10-26",
+      "createdAt": "2026-10-26",
+      "targetTest": "map",
+      "section": "math",
+      "task": "multiple_choice",
+      "family": "mc_stem_source",
+      "cohort": "map-math-v2-b5-num",
+      "contentSha": "bf3cf54fe47219acadbca9c839c81f1c8591256d3f995217d7ad3c354c1d5480",
+      "status": "qc",
+      "note": "map-v2 Math batch 5 (Number Systems), Real and Complex Number Systems (scripts/study-bank/MAP-MATH-V2-B5.prereg.md; MAP-PLAN-2026-10-23 §3.1). Assembled 8 from N5 + N6 + N7 + N8; frozen 4 as this area's own batch (sha eafcd89ba8ded3c4); 4 kept by the graders; 4 in this file. contentSha = sha256 of scripts/study-bank/map-math-v2-b5-num.inserted.batch.json; qc scripts/study-bank/map-math-v2-b5-num.qc.json. Written by map-math-v2.mjs insert-prep, which re-derives every verdict from the reviewer files. Not inserted when recorded.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "bf3cf54fe47219acadbca9c839c81f1c8591256d3f995217d7ad3c354c1d5480",
+          "n": 4,
+          "verdict": "Stage 0: 8/8 PART OK at assemble (math-check: sandbox key + every distractor, slot, LONE, bound screen, misconceptions, mf27-mf30 construction checks, near-dup vs live ISEE/SSAT and every earlier MAP item, FORM and SLIP refusing). Cold screen pass 1: 5 of 8 failed, returned once (revised 1, withdrawn 4, stood 0); pass 2: 0 still failed, recorded and not dropped (the screen never drops on one screener). Frozen 4, no per-area minimum. Survivors: math-check 4/4 PART OK; math-bank-helper verify on this file Sandbox 4/4; Distractors: 12 of 12 recomputed across 4 item(s); 0 item(s) with a mismatch.."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "bf3cf54fe47219acadbca9c839c81f1c8591256d3f995217d7ad3c354c1d5480",
+          "n": 4,
+          "candidatePct": 58.3,
+          "control": 66.7,
+          "controlN": 4,
+          "margin": -8.3,
+          "verdict": "Options-only, three samples of one Claude solver, 4 frozen candidates vs 4 live ISEE num controls matched 1:1 by tier (low->easy, mid/high->medium), blind sha 4495ee5c2ab09732: 7/12 = 58.3% vs 8/12 = 66.7%, margin -8.3 (bar +10; control under the 90% ceiling); unanimous-correct rate 50.0% vs 50.0% (0.0, bar +15; batch level only). Measures whether the option set alone decides an item; the stem-visible half is the graders'."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "bf3cf54fe47219acadbca9c839c81f1c8591256d3f995217d7ad3c354c1d5480",
+          "n": 4,
+          "coldOnKey": 8,
+          "kept": 4,
+          "verdict": "Two Claude graders per part (1 part(s)), cold then keyed, private folders; stage 1 snapshotted, hashed, chmod 444 before keyed.md; coldcheck re-run here 8 cold rows, 0 changed. 8/8 cold answers on key. Free elimination (R4 >= 2 struck, R5 key identifiable), exclusivity (R2), plug-back, option pair, one-sided / single bound and template rules: both graders -> drop, one -> tie-break grader F (1 item(s) to F, 2 of 3, tie -> drop). Dropped 0: none. Grade fit recorded, not a drop rule: too_easy 0/8, too_hard 1/8, offsets -0.25/-0.25, tier spreads 2.00/1.00."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "bf3cf54fe47219acadbca9c839c81f1c8591256d3f995217d7ad3c354c1d5480",
+          "cExtremity": "not-measured",
+          "verdict": "Key at an extreme on this file: no measurement: 4 scorable of 4 (need >= 10); 0 non-numeric, 0 other skip (C and C-prime NOT MEASURED below 10 scorable items: recorded, neither a pass nor a fail; C-prime did not fire). Key letters in this file (with-source deal) {\"A\":1,\"B\":1,\"C\":1,\"D\":1}. Banked difficulty (graders' tier_assigned) easy 1 / medium 1 / hard 2. Unanimity compared to the control at batch level only. Screen-flagged survivors: 1."
         }
       }
     }
