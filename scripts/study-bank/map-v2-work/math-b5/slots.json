@@ -1,0 +1,114 @@
+{
+ "N5": {
+  "area": "Real and Complex Number Systems",
+  "scope": "5.NBT.B.5",
+  "rows": [
+   {
+    "g": 5,
+    "tier": "mid",
+    "pos": "L",
+    "rank": 4,
+    "id": "MB5-N5-01",
+    "cls": "DIVISOR",
+    "mech": "a whole-number product equals a product in which one factor is halved (or divided by 3 or 4): the missing other factor, by doubling (tripling, ...) the other factor",
+    "ccss_hint": "5.NBT.B.5",
+    "checker_id": "R30"
+   }
+  ]
+ },
+ "N6": {
+  "area": "Real and Complex Number Systems",
+  "scope": "6.NS.B.4, 6.NS.C.7, 6.NS.C.8",
+  "rows": [
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "I",
+    "rank": 3,
+    "id": "MB5-N6-01",
+    "cls": null,
+    "mech": "a list of five signed decimals: the sum of the two numbers with the greatest absolute values, added as signed numbers",
+    "ccss_hint": "6.NS.C.7",
+    "checker_id": "C06"
+   },
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "I",
+    "rank": 2,
+    "id": "MB5-N6-02",
+    "cls": null,
+    "mech": "a point's distances from the x-axis and the y-axis and its quadrant (II, III or IV): x + y or x - y of the point",
+    "ccss_hint": "6.NS.C.8",
+    "checker_id": "R06"
+   },
+   {
+    "g": 6,
+    "tier": "high",
+    "pos": "I",
+    "rank": 3,
+    "id": "MB5-N6-03",
+    "cls": null,
+    "mech": "the sum of the greatest common factor and the least common multiple of two two-digit numbers, found from prime factorizations",
+    "ccss_hint": "6.NS.B.4",
+    "checker_id": "C25"
+   }
+  ]
+ },
+ "N7": {
+  "area": "Real and Complex Number Systems",
+  "scope": "7.NS.A.1, 7.NS.A.2",
+  "rows": [
+   {
+    "g": 7,
+    "tier": "high",
+    "pos": "S",
+    "rank": 1,
+    "id": "MB5-N7-01",
+    "cls": "SIGNED",
+    "mech": "a product of four signed factors (decimals and fractions) whose sign is fixed by counting the negative factors and whose size comes from pairing factors into whole numbers",
+    "ccss_hint": "7.NS.A.2",
+    "checker_id": "C11"
+   },
+   {
+    "g": 7,
+    "tier": "low",
+    "pos": "I",
+    "rank": 3,
+    "id": "MB5-N7-02",
+    "cls": null,
+    "mech": "a number minus its opposite equals a printed negative decimal; the ask is that number plus a printed decimal (the offset keeps the errors off x2 pairs with the key)",
+    "ccss_hint": "7.NS.A.1",
+    "checker_id": "R08"
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "I",
+    "rank": 3,
+    "id": "MB5-N7-03",
+    "cls": null,
+    "mech": "a signed decimal quotient p / q is evaluated, then -A / n is set equal to it: the integer n",
+    "ccss_hint": "7.NS.A.2b",
+    "checker_id": "R22"
+   }
+  ]
+ },
+ "N8": {
+  "area": "Real and Complex Number Systems",
+  "scope": "8.EE.A.1, 8.EE.A.2",
+  "rows": [
+   {
+    "g": 8,
+    "tier": "high",
+    "pos": "I",
+    "rank": 2,
+    "id": "MB5-N8-01",
+    "cls": null,
+    "mech": "x^-2 = 1/n^2 and x is negative: the value of x^3 + kx (k a small whole number)",
+    "ccss_hint": "8.EE.A.1 / 8.EE.A.2",
+    "checker_id": "R18"
+   }
+  ]
+ }
+}

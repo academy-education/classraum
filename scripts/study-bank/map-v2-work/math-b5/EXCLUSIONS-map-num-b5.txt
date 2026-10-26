@@ -1,0 +1,183 @@
+# map-v2 Math batch 5 exclusions — NUMBER SYSTEMS (2026-10-26)
+#
+# For each batch-5 slot: the earlier items the independent checker (CHAIN-CHECK.md, CHAIN-CHECK-R2.md) named as closest
+# to its mechanism, with their chains, and the live ISEE/SSAT items it cited. Your item must not share these chains.
+# Below that, the full list of every earlier MAP Number Systems item is in earlier-N-chains.json (285 entries, all
+# batches, all statuses); read the entries for your grade before you start.
+
+## MB5-N6-01 (C06: rank by absolute value, add the two largest as signed numbers)
+
+Do NOT rank by signed value (that is MM4-N19 / round-2 R05) and do not take the greatest and least (MM4-N19). Do not end with a distance.
+
+- MM4-N19 | v4 | file only (never banked) | g6
+    chain: divide 11.75 by 0.37 and keep the whole number of markers -> multiply back and subtract to find the money left
+    prompt: A store sells markers for $0.37 each. Leo has $11.75. He buys as many markers as he can. How much money, in dollars, does Leo have left?
+    key: 0.28
+- MM4-N19 | v4 work stage0.pre-return.json | file only (never banked) | g6
+    chain: write the mixed numbers as decimals -> order the four numbers, including the two negatives -> add the distances from 0 of the least and the greatest
+    prompt: Four numbers are marked on a number line: -2 3/4, 1.8, -1.85, and 2 1/5. What is the distance between the least of these numbers and the greatest of these numbers?
+    key: 4.95
+- MM4-N15 | v4 | file only (never banked) | g6
+    chain: read distance from 0 as absolute value -> compare each absolute value with 6.45 and 7.4 by place value
+    prompt: Which number is farther from 0 than -6.45 and closer to 0 than 7.4?
+    key: 6.88
+- MV2-N56-22 | b1 | LIVE | g6
+    chain: opposite of -5 is 5 -> absolute value of -1.5 is 1.5 -> |2 - 9| is the distance 7 -> combine 5 - 1.5 + 7
+    prompt: Lia writes the expression -(-5) - |-1.5| + |2 - 9| on the board and works it out step by step. What number should she get?
+    key: 10.5
+
+## MB5-N6-02 (R06: distances to the axes + quadrant -> signed coordinates)
+
+Do not start from coordinates (MM4-N11, MM5-N16) and do not reflect or translate (MM4-N14, ISEE 1f4b0427, round-2 R15).
+
+- MM4-N11 | v4 | file only (never banked) | g6
+    chain: see the points share an x-coordinate -> points on the same side of the x-axis: subtract the absolute values of the y-coordinates
+    prompt: A town map is drawn on a coordinate plane, and each unit on the map stands for one block. The bus stop is at the point (-3.5, -4), and the school is at the point (-3.5, -13). How many blocks apart are the bus stop and the school?
+    key: 9
+- MM4-N11 | v4 work stage0.pre-return.json | file only (never banked) | g6
+    chain: see the points share an x-coordinate -> points on opposite sides of the x-axis: add the absolute values of the y-coordinates
+    prompt: A town map is drawn on a coordinate plane, and each unit on the map stands for one block. The library is at the point (-9, 3), and the pool is at the point (-9, -10). How many blocks apart are the library and the pool?
+    key: 13
+- MM5-N16 | v5 | LIVE | g6
+    chain: length across the y-axis: add absolute values -> length on one side of the x-axis: subtract -> perimeter of the rectangle -> take off the gate
+    prompt: On a map drawn on a coordinate plane, each unit stands for 1 meter. A rectangular garden has corners at (-10, 5), (22, 5), (22, 23) and (-10, 23). A fence will go all the way around the garden except for a gate that is 4 meters wide. How many meters of fence are needed?
+    key: 96
+- MM4-N14 | v4 work assembled.json | file only (never banked) | g6
+    chain: reflect across the x-axis: change the sign of y -> reflect the image across the y-axis: change the sign of x -> add the coordinates of the final point
+    prompt: In the coordinate plane, point A is at (-1, 4.5). Point B is the reflection of point A across the x-axis. Point C is the reflection of point B across the y-axis. What is the sum of the x-coordinate and the y-coordinate of point C?
+    key: -3.5
+- MM4-N14 | v4 work stage0.pre-return.json | file only (never banked) | g6
+    chain: reflect across the x-axis: change the sign of y -> reflect the image across the y-axis: change the sign of x -> add the coordinates of the final point
+    prompt: In the coordinate plane, point A is at (2, 3.5). Point B is the reflection of point A across the x-axis. Point C is the reflection of point B across the y-axis. What is the sum of the x-coordinate and the y-coordinate of point C?
+    key: -5.5
+- live isee 1f4b0427-1ebe-4c04-b3e4-a45cf26ce772 (isee-math-s10)
+    prompt: Point P(-3, 5) is reflected across the x-axis, and the image is then translated 4 units to the right, producing point Q. What is the sum of the coordinates of Q?
+    options: ["12","-4","2","-12"] key -4
+
+## MB5-N6-03 (C25: GCF + LCM of two numbers, from prime factorizations)
+
+Do not use GCF x LCM = product to recover a number (ISEE f5c459b7, SSAT ed9a89f1) and do not turn the GCF or LCM into a count (MV2-N56-10, MMG-N06, MM4-N17).
+
+- MV2-N56-10 | b1 | LIVE | g6
+    chain: common stack size must divide both counts -> tallest stacks: greatest common factor 21 -> stacks of each colour: 63/21 and 84/21 -> add the two counts
+    prompt: A gym teacher has 63 red mats and 84 blue mats. She stacks them so that every stack has mats of only one color and every stack has the same number of mats. She makes the stacks as tall as she can. How many stacks does she make in all?
+    key: 7
+- MMG-N06 | v1 | file only (never banked) | g6
+    chain: recognize the least common multiple -> LCM of 12 and 8 is 24 -> convert items to packs of each kind and add
+    prompt: Paper plates are sold in packs of 12, and paper cups are sold in packs of 8. Mr. Diaz wants to buy exactly the same number of plates as cups, and he wants to buy as few packs as possible. How many packs will he buy in all?
+    key: 5
+- MM4-N17 | v4 | file only (never banked) | g6
+    chain: the lights flash together at the common multiples of 6 and 10 -> find the least common multiple (30) -> take the third multiple after the start
+    prompt: A sign has two lights. The red light flashes every 6 seconds, and the blue light flashes every 10 seconds. Both lights flash at the same moment when the sign is turned on. How many seconds after the sign is turned on do the two lights flash at the same moment for the third time after that?
+    key: 90
+- MM4-N17 | v4 work stage0.pre-return.json | file only (never banked) | g6
+    chain: find the length from -3 to 5 across 0 -> divide by 40 for one part -> move 18 parts right from -3
+    prompt: A number line from -3 to 5 is divided into 40 equal parts. Lia starts at -3 and counts 18 parts to the right. At what number on the number line does she stop?
+    key: 0.6
+- MM2-N09 | v2 | file only (never banked) | g6
+    chain: 'no common factor' means a is the GCF -> GCF of 48 and 72 = 24 -> b = 2, c = 3, then add a + b + c
+    prompt: Using the distributive property, Kim writes 48 + 72 as a(b + c), where a x b = 48, a x c = 72, and b and c are whole numbers with no common factor other than 1. What is the value of a + b + c?
+    key: 29
+- live isee f5c459b7-75af-4876-b764-b0a978e41455 (isee-math-s11)
+    prompt: The greatest common factor of 24 and a second whole number is 6, and the least common multiple of the two numbers is 360. What is the second number?
+    options: ["15","90","60","144"] key 90
+- live ssat ed9a89f1-bc42-4f46-8c6f-937b76aeee5e (ssat-math-s2)
+    prompt: Two positive integers have a greatest common factor of 6 and a least common multiple of 180. If one of the integers is 36, what is the other integer?
+    options: ["5","6","30","180","216"] key 30
+
+## MB5-N7-01 (C11: product of four signed factors, sign by counting negatives, pair to whole numbers)
+
+Not a two-factor product (MM4-N22, MM2-N11) and not a sum of two products (MB4-N7-04, MB4-N7-02).
+
+- MM4-N22 | v4 | file only (never banked) | g7
+    chain: sign of a product of two negatives -> mixed numbers to fractions, multiply
+    prompt: Find the product (-1 3/4) x (-2 1/5). Write your answer as a mixed number.
+    key: 3 17/20
+- MM2-N11 | v2 | file only (never banked) | g7
+    chain: negative times negative is positive -> multiply 45 x 34 and place two decimal places
+    prompt: Maya multiplies -4.5 by -3.4 without a calculator. What product should she get?
+    key: 15.3
+- MM2-N11 | v2 first-written | file only (never banked) | g7
+    chain: negative times negative is positive -> multiply 34 x 25 and place two decimal places
+    prompt: Maya multiplies -3.4 by -2.5 without a calculator. What product should she get?
+    key: 8.5
+- MB4-N7-04 | b4 | dropped by graders | g7
+    chain: multiply a negative decimal by a negative fraction -> multiply a positive decimal by a negative fraction -> add a positive and a negative decimal
+    prompt: In a board game, a player's score can be positive or negative. Landing on a red square multiplies a player's score by -7/8. Landing on a blue square multiplies a player's score by -9/10. Ana's score is -1.2, and she lands on a red square. Ben's score is 9.6, and he lands on a blue square. What is the sum of Ana's new score and Ben's new score?
+    key: -7.59
+
+## MB5-N7-02 (R08: a number minus its opposite)
+
+The unknown is recovered from x - (-x) = 2x; do not give the number and ask for its opposite (MV2-N56-24) or a distance from it (MV2-N56-23, round-2 R20).
+
+- MV2-N56-21 | b1 | withdrawn | g6
+    chain: move 8.5 left of -15: -23.5 -> opposite: B = 23.5 -> opposite sides of 0: add 15 + 23.5
+    prompt: Start at point A, which is at -15 on a number line. Move 8.5 units to the left. Point B is at the opposite of the number where you stop. How many units apart are points A and B?
+    key: 38.5
+- MV2-N56-23 | b1 | dropped by graders | g6
+    chain: halfway: half of the distance 17 is 8.5, so P = -2.5 -> opposite: Q = 2.5 -> same side of 0: 9 - 2.5
+    prompt: Point P is halfway between -11 and 6 on a number line. Point Q is at the opposite of the number at point P. How far is point Q from 9?
+    key: 6.5
+- MV2-N56-24 | b1 | LIVE | g6
+    chain: opposite of 7.5 is -7.5 -> move 1.5 right: B = -6 -> same side of 0: subtract the sizes
+    prompt: Jin marks the opposite of 7.5 on a number line. From that mark he moves 1.5 units to the right and marks point B. He also marks point A at -0.5. How many units long is the segment from A to B?
+    key: 5.5
+
+## MB5-N7-03 (R22: missing divisor after a signed decimal quotient)
+
+Only ONE missing-operand item is in this batch besides MB5-N5-01: do not write a missing addend (round-2 R01, MM4-N24 stage0), a missing denominator (R16) or "divide by n = multiply by" (R19).
+
+- MM4-N24 | v4 work assembled.json | file only (never banked) | g7
+    chain: divide two negative decimals (positive quotient) -> write a mixed number as a decimal -> add
+    prompt: Without a calculator, Omar finds the value of 2 1/5 + (-6.2) ÷ (-0.8) and writes it as a decimal. What value should he get?
+    key: 9.95
+- MM4-N24 | v4 work stage0.pre-return.json | file only (never banked) | g7
+    chain: missing addend: subtract the negative -> add mixed numbers in 24ths and regroup
+    prompt: When -2 5/6 is added to a number n, the sum is 1 3/8. What is the value of n? Write your answer as a mixed number.
+    key: 4 5/24
+- MM4-N25 | v4 work assembled.json | file only (never banked) | g7
+    chain: write a negative mixed number as a decimal -> multiply a negative fraction by a decimal -> add two negatives
+    prompt: Without a calculator, Ines finds the value of -12 2/5 + (-5/8)(6.8) and writes it as a decimal. What value should she get?
+    key: -16.65
+- MM4-N25 | v4 work stage0.pre-return.json | file only (never banked) | g7
+    chain: change across zero -> quotient of two negatives as a decimal
+    prompt: On Monday, the temperature in a town fell from 3.1 degrees Celsius to -4.1 degrees Celsius. On Tuesday, the temperature changed by -1.6 degrees Celsius. Monday's change in temperature was how many times Tuesday's change?
+    key: 4.5
+- MM4-N23 | v4 | file only (never banked) | g7
+    chain: sign of a quotient of two negatives -> multiply by the reciprocal of the divisor
+    prompt: Find the quotient (-2 1/4) ÷ (-3/5). Write your answer as a mixed number.
+    key: 3 3/4
+
+## MB5-N8-01 (R18: x^-2 = 1/n^2 with x negative, then a power expression)
+
+Do not go cube root -> square -> reciprocal (MM3-N27) and do not subtract a square root from a cube root (MMG-N15).
+
+- MM3-N27 | v3 | file only (never banked) | g8
+    chain: find the cube root of a decimal -> square the decimal -> take the reciprocal for the negative exponent
+    prompt: The number x is the cube root of 0.216, so x^3 = 0.216. What is the value of x^-2? Give the answer as a fraction or mixed number.
+    key: 2 7/9
+- MMG-N15 | v1 | file only (never banked) | g8
+    chain: take the cube root of a negative decimal -> take the positive square root of a decimal -> subtract a positive number from a negative number
+    prompt: Lena solved two equations. The solution of x^3 = -0.216 is x, and the positive solution of y^2 = 1.69 is y. When she subtracts y from x, what number does she get?
+    key: -1.9
+- MM4-N36 | v4 work assembled.json | file only (never banked) | g8
+    chain: a negative exponent is the reciprocal of the positive power -> 2^3 = 8 -> multiply 75 by 1/8
+    prompt: What is the value of 75 x 2^-3? Write your answer as a decimal or whole number.
+    key: 9.375
+- MM4-N36 | v4 work stage0.pre-return.json | file only (never banked) | g8
+    chain: negative exponent means reciprocal: 2/5 -> square the reciprocal: 4/25
+    prompt: Write the value of (5/2)^-2 as a fraction or mixed number.
+    key: 4/25
+
+## MB5-N5-01 (R30: missing factor by halving one factor and doubling the other)
+
+This is the batch's missing-factor item: do not write a decimal version (round-2 R12) and do not ask for the product itself.
+
+- MM2-N01 | v2 | file only (never banked) | g5
+    chain: standard algorithm, 46 over 37 -> partial product 46 x 7 with a carry -> partial product 46 x 30 with a carry -> add the partial products
+    prompt: A school orders 37 boxes of crayons. Each box holds 46 crayons. How many crayons does the school order in all?
+    key: 1702
+- MMG-N02 | v1 | file only (never banked) | g5
+    chain: dividend = divisor x quotient + remainder -> multiply 24 x 35 with partial products -> add the remainder
+    prompt: Kai divided a whole number by 24. His answer was 35 R17, which means the quotient was 35 and the remainder was 17. What number did Kai divide by 24?
+    key: 857

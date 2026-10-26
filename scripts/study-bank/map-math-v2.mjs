@@ -117,6 +117,22 @@ export const BATCHES = {
       freeze: { N: 20261612, D: 20261614 }, oo: { N: 20261622, D: 20261624 }, grade: { N: 20261640, D: 20261660 }, cPrime: { N: 20261672, D: 20261674 },
     },
   },
+  b5: {
+    name: 'map-v2 Math batch 5 (Number Systems)', prereg: 'scripts/study-bank/MAP-MATH-V2-B5.prereg.md',
+    // WORK per the prereg (scratchpad); map-v2-work/math-b5/ holds the brief, slots and checker files only
+    work: ROOT + '/scratchpad/map-math-v2-b5-work', authored: ROOT + '/scratchpad/map-v2-math-b5-work',
+    results: D + 'map-math-v2-b5/', slots: D + 'map-v2-work/math-b5/slots.json', idPrefix: 'MB5',
+    checkArgs: ['--slots', D + 'map-v2-work/math-b5/slots.json', '--prior', ROOT + '/scratchpad/map-v2-math-work/dump-b5/prior-math.json', '--families', 'isee,ssat,map'],
+    authorsPresentOnly: true, slotTotal: 8,
+    cohortStem: 'map-math-v2-b5',   // cohort map-math-v2-b5-num
+    cPrime: true, ooPartMax: 60, earlierFile: D + 'map-v2-work/math-b5/EXCLUSIONS-map-num-b5.txt', earlier: 'b5-chains', areas: ['N'], rankRecord: true,
+    positionExpect: 33,   // prereg H3: position-only hit rate at ranks 1/2/4/1 (recorded)
+    expect: { authors: 4, earlierN: 238, packets: '8', ranks: { N: '1/2/4/1' } },
+    seed: {
+      screen1Order: 20261701, screen1Deal: 20261702, screen2Order: 20261703, screen2Deal: 20261704,
+      freeze: { N: 20261712 }, oo: { N: 20261722 }, grade: { N: 20261740 }, cPrime: { N: 20261772 },
+    },
+  },
 }
 export const BATCH = (() => { const i = process.argv.indexOf('--batch'); if (i < 0) return 'b1'; const b = process.argv[i + 1]; process.argv.splice(i, 2); if (!BATCHES[b]) { console.error(`REFUSING: --batch must be one of ${Object.keys(BATCHES).join(' ')}`); process.exit(2) } return b })()
 export const B = BATCHES[BATCH]
@@ -154,6 +170,19 @@ function earlierBatchIds() {
   const b1text = t.slice(at), b1 = [...new Set([...b1text.matchAll(/\((MV2-[ONGD][0-9A-Z]*-\d\d)\)/g)].map(m => m[1]))]
   if (b1.length !== 221) die(`${b2x}: batch-1 section names ${b1.length} ids, expected 221`)
   if (B.earlier === 'b1') return { ids: b1, text: b1text }
+  if (B.earlier === 'b5-chains') {
+    // batch 5 prereg: R11 against the 285 entries of earlier-N-chains.json plus batch 4's items in dump-b5;
+    // graders get the exclusions file and the chain table
+    const cp = D + 'map-v2-work/math-b5/earlier-N-chains.json', dp = ROOT + '/scratchpad/map-v2-math-work/dump-b5/prior-math.json'
+    for (const f of [cp, dp, B.earlierFile]) if (!existsSync(f)) die(`R11 needs ${f}`)
+    const chains = JSON.parse(readFileSync(cp, 'utf8'))
+    if (!Array.isArray(chains) || chains.length !== 285 || chains.some(c => !c?.id || !c.chain)) die(`${cp}: expected 285 entries with id and chain, read ${Array.isArray(chains) ? chains.length : typeof chains}`)
+    const b4 = [...new Set(JSON.parse(readFileSync(dp, 'utf8')).filter(x => /^MB4-/.test(x.id ?? '')).map(x => x.id))]
+    if (b4.length !== 26) die(`${dp}: expected the 26 batch-4 ids, read ${b4.length}`)
+    const ids = [...new Set([...chains.map(c => String(c.id)), ...b4])]
+    const text = readFileSync(B.earlierFile, 'utf8') + `\n\n# ---- earlier Number Systems chains (${chains.length} entries; the same id twice = first-written and revised) ----\n# id | batch | status | grade || chain || prompt\n` + chains.map(c => `${c.id} | ${c.batch ?? ''} | ${c.status ?? ''} | g${c.grade ?? '?'} || ${c.chain} || ${String(c.prompt ?? '').replace(/\s+/g, ' ')}`).join('\n') + '\n'
+    return { ids, text, named: chains.length }
+  }
   // b1+b2 (batch 3) / b1+b2+b3 (batch 4): plus every assembled item of the later batches (b2 72, incl. the 12 held
   // Geometry; b3 30); graders read the prereg's own exclusions file, whose every earlier id must be in the set
   const later = { b2: [ROOT + '/scratchpad/map-math-v2-b2-work/assembled.json', 72, 'MB2'], b3: [ROOT + '/scratchpad/map-math-v2-b3-work/assembled.json', 30, 'MB3'] }
@@ -203,6 +232,7 @@ export const RULES = {
   smallNHolds: false,      // n < 10 -> no measurement, recorded; NOT a hold (plan removed v1's n >= 10 hold)
   cPrime: true,            // batch 2: a C failure defers the minimum interior items by seed (batch 1 runs with false)
   cPrimeExtra: 0,          // selftest-only: shifts m to revert minimality
+  cMinN: 10,               // C measures from 10 scorable items (key-extremity-gate MIN_N); below: not measured, neither pass nor fail
   rank2Pred: 25,           // batch 3 H1 prediction: frozen rank-2 share <= 25% (recorded, never a gate)
   // per-item with-source rules
   keyDisputeAnyDrops: true,   // R1 key_ok false by either grader -> drop (the key is sandbox-recomputed; a dispute is about the stem)
@@ -272,17 +302,17 @@ export function cPrimeDeferral(kept, seed, Rl = RULES) {
 }
 
 export function areaStatus(kept, oo, Rl = RULES, seed = null) {
-  let ext = keyExtremityVerdict(kept), inserted = kept, deferred = [], cprime = null
+  let ext = keyExtremityVerdict(kept, { minN: Rl.cMinN }), inserted = kept, deferred = [], cprime = null
   const reasons = [], notes = []
   if (oo !== 'pass') reasons.push(`options-only ${oo}`)
   if (ext.status === 'fail' && Rl.extremityGate) {
     if (Rl.cPrime) {
-      if (!Number.isInteger(seed)) die('C-prime needs the area seed')
-      cprime = cPrimeDeferral(kept, seed, Rl)
-      if (!cprime.ok) reasons.push(`kept-set key extremity fail and C-prime cannot apply (${cprime.why}): ${ext.reason}`)
+      if (!Number.isInteger(seed)) reasons.push('kept-set key extremity fail and no C-prime seed for this area: held')
+      else cprime = cPrimeDeferral(kept, seed, Rl)
+      if (!cprime) { /* held above */ } else if (!cprime.ok) reasons.push(`kept-set key extremity fail and C-prime cannot apply (${cprime.why}): ${ext.reason}`)
       else {
         deferred = cprime.deferred; inserted = kept.filter(i => !deferred.includes(i))
-        const after = keyExtremityVerdict(inserted), share = cprime.e / (cprime.n - cprime.m)
+        const after = keyExtremityVerdict(inserted, { minN: Rl.cMinN }), share = cprime.e / (cprime.n - cprime.m)
         notes.push(`C-prime: ${cprime.why}; C on the inserted set: ${after.status} (${after.reason})`)
         // C re-run on the inserted set must not fail, and the share must reach 40% by the prereg's own arithmetic
         if (after.status === 'fail' || share + 1e-9 < 0.4) reasons.push(`after C-prime the inserted set still fails C: ${after.reason}`)
@@ -292,7 +322,10 @@ export function areaStatus(kept, oo, Rl = RULES, seed = null) {
   }
   if (ext.status === 'no-measurement') (Rl.smallNHolds ? reasons : notes).push(`${cprime ? 'inserted' : 'kept'}-set extremity: ${ext.reason} (recorded; the inserter's gate measures from n >= 10)`)
   if (!inserted.length) reasons.push('nothing kept')
-  return { status: reasons.length ? 'held' : 'pass', reasons, notes, extremity: ext, inserted, deferred, cprime: cprime && { n: cprime.n, e: cprime.e, m: cprime.m, why: cprime.why } }
+  // cState: what C says about the inserted set. 'not-measured' (n < 10) is recorded and is neither a pass nor a fail:
+  // it never holds the area and never fires C-prime (prereg b1, restated b5)
+  const cState = ext.status === 'no-measurement' ? 'not-measured' : ext.status
+  return { status: reasons.length ? 'held' : 'pass', reasons, notes, extremity: ext, cState, cPrimeFired: !!cprime?.ok, inserted, deferred, cprime: cprime && { n: cprime.n, e: cprime.e, m: cprime.m, why: cprime.why } }
 }
 
 /* ---- the screen: one cold screener row -> rule codes */
@@ -459,6 +492,13 @@ function cases(Rl) {
   t(cPrimeDeferral(exi(21, 8), 1, Rl).m === 1, 'C-prime: 8/21 = 38.1% -> m = 21 - 20 = 1 (8/20 = 40.0%)')
   t(areaStatus(exi(12, 0), 'pass', Rl, 1).status === 'held', 'C-prime: no end key -> held, nothing inserted')
   t(areaStatus(exi(20, 7), 'hold', Rl, 1).status === 'held', 'C-prime never rescues an options-only hold')
+  // below 10 (batch 5: 8 slots): C is not measured, which is neither a pass nor a fail; C-prime never fires
+  for (const [n, e] of [[8, 1], [8, 0], [9, 3], [8, 8]]) {
+    const r = areaStatus(exi(n, e), 'pass', Rl, 20261772)
+    t(r.cState === 'not-measured' && r.extremity.status === 'no-measurement' && r.status === 'pass' && !r.cPrimeFired && r.deferred.length === 0 && r.inserted.length === n && r.notes.some(x => /recorded/.test(x)), `n = ${n}, ${e} end key(s): C not measured (not pass, not fail), recorded, not a hold; C-prime does not fire; all ${n} inserted`)
+  }
+  t(areaStatus(exi(8, 1), 'hold', Rl, 1).status === 'held', 'n = 8: the options-only bar still decides (C not measured does not pass the area)')
+  { const r = areaStatus(exi(10, 3), 'pass', Rl, 1); t(r.cPrimeFired && r.deferred.length === 3 && r.status === 'pass' && r.cState === 'not-measured', 'n = 10 is measured: 3/10 fails C, C-prime fires and defers 3; the 7 left are below 10, so C on them is recorded as not measured (the boundary is 10)') }
   t(areaStatus(ex(9, 0), 'pass', Rl).status === 'pass', 'n = 9: extremity not measured, recorded, NOT a hold (no per-area minimum)')
   t(areaStatus(ex(12, 6), 'hold', Rl).status === 'held', 'options-only hold holds the area')
   t(areaStatus(ex(12, 6), 'not-measured', Rl).status === 'held', 'options-only not-measured holds the area')
@@ -545,7 +585,7 @@ const MUTATIONS = {
   'screen wrong-answer flag removed': { screenWrongAnswer: false }, 'screen malformed check removed': { screenMalformed: false },
   'pass-2 one-screener drop re-imposed (v5)': { screenP2Drops: true }, 'per-area freeze minimum 15 re-imposed (v5)': { areaFreezeMin: 15 },
   'coldcheck field compare removed': { coldCompare: false },
-  'H1 rank-2 prediction loosened to 30%': { rank2Pred: 30 }, 'C-prime removed (batch-1 rule on batch 2)': { cPrime: false }, 'C-prime defers one too few': { cPrimeExtra: -1 }, 'C-prime defers one too many': { cPrimeExtra: 1 },
+  'H1 rank-2 prediction loosened to 30%': { rank2Pred: 30 }, 'C measured below 10 (minN 1)': { cMinN: 1 }, 'C-prime removed (batch-1 rule on batch 2)': { cPrime: false }, 'C-prime defers one too few': { cPrimeExtra: -1 }, 'C-prime defers one too many': { cPrimeExtra: 1 },
 }
 
 async function selftest() {
@@ -891,7 +931,7 @@ function writeEarlier(dir) {
 export const earlierSet = (frozen, i) => new Set([...frozen.slice(0, i).map(x => x.id), ...earlierBatchIds().ids])
 export const partsOf = L => rd(areaDir(L) + 'ws.parts.json').map(p => p.part)
 function cmdStage(L, k, g, which) {
-  if (!AREAS[L] || !partsOf(L).includes(+k) || !['d', 'e'].includes(g) || !['cold', 'keyed'].includes(which)) die('stage <O|N|G|D> <part> <d|e> <cold|keyed>')
+  if (!B.areas.includes(L) || !partsOf(L).includes(+k) || !['d', 'e'].includes(g) || !['cold', 'keyed'].includes(which)) die(`stage <area> <part> <d|e> <cold|keyed>: ${BATCH} areas are ${B.areas.join(' ')}`)
   const tag = `${L}-p${k}-${g}`, dir = `${WORK}/grade/${tag}`; mkdirSync(dir, { recursive: true })
   if (which === 'cold') { copyFileSync(areaDir(L) + `ws-p${k}.md`, `${dir}/grade.md`); console.log(`${dir}/grade.md  sha ${sha(dir + '/grade.md').slice(0, 16)}`); writeEarlier(dir); return }
   const s1 = `${dir}/stage1.json`, j = rd(s1)
@@ -911,7 +951,7 @@ export function loadGrader(tag) {
   return { s1: rd(snapP), s2: rd(`${WORK}/grade/${tag}/stage2.json`), snapSha: sha(snapP) }
 }
 function cmdColdcheck(L) {
-  if (!AREAS[L]) die('coldcheck <O|N|G|D>')
+  if (!B.areas.includes(L)) die(`coldcheck <area>: ${BATCH} areas are ${B.areas.join(' ')}`)
   const shas = rd(WORK + '/coldshas.json'); let rows = 0, changed = 0
   for (const k of partsOf(L)) for (const g of ['d', 'e']) {
     const tag = `${L}-p${k}-${g}`, { s1, s2, snapSha } = loadGrader(tag)
@@ -955,12 +995,12 @@ export function loadF(L) {
 }
 
 function cmdScore(L) {
-  if (!AREAS[L]) die('score <O|N|G|D>')
+  if (!B.areas.includes(L)) die(`score <area>: ${BATCH} areas are ${B.areas.join(' ')}`)
   const FZ = areaDir(L) + 'batch.json', frozen = rd(FZ)
   const out = { prereg: PREREG, area: AREAS[L].domain, frozenSha: sha(FZ), n: frozen.length }
   const oo = scoreOo(L); out.optionsOnly = oo
   console.log(`OPTIONS-ONLY ${L} (three samples of one solver; letter control ${f1(oo.letterControl)}%): cand ${oo.cand.hits}/${oo.cand.picks} ctrl ${oo.ctrl.hits}/${oo.ctrl.picks}  ${oo.status.toUpperCase()}  ${oo.why}`)
-  if (B.rankRecord) { out.rankH1 = { frozen: rankRecord(frozen), solverPicks: solverRankPicks(L) }; console.log(`H1 frozen ${out.rankH1.frozen.line}\nH1 options-only: ${out.rankH1.solverPicks.line}`) }
+  if (B.rankRecord) { out.rankH1 = { frozen: rankRecord(frozen), solverPicks: solverRankPicks(L) }; console.log(`H1 frozen ${out.rankH1.frozen.line}\nH1 options-only: ${out.rankH1.solverPicks.line}`); if (B.positionExpect != null) { out.rankH1.h3 = { candidateHitPct: oo.cr, rank2PickPct: out.rankH1.solverPicks.pick2, positionOnlyExpectPct: B.positionExpect }; console.log(`H3 (recorded): candidate hit rate ${f1(oo.cr)}%, rank-2 pick share ${f1(out.rankH1.solverPicks.pick2)}%, vs position-only expectation ${B.positionExpect}%`) } }
   const G = { d: {}, e: {} }
   for (const k of partsOf(L)) for (const g of ['d', 'e']) { const { s2 } = loadGrader(`${L}-p${k}-${g}`); for (const [id, row] of Object.entries(s2)) if (ID_RE.test(id)) G[g][id] = row }
   const missing = frozen.filter(i => !G.d[i.id] || !G.e[i.id]).map(i => i.id); if (missing.length) die(`grader rows missing for ${missing.join(' ')}`)
@@ -1007,7 +1047,7 @@ function cmdScore(L) {
 }
 
 function cmdTiebreak(L) {
-  if (!AREAS[L]) die('tiebreak <O|N|G|D>')
+  if (!B.areas.includes(L)) die(`tiebreak <area>: ${BATCH} areas are ${B.areas.join(' ')}`)
   const needs = rd(`${WORK}/tb-needs-${L}.json`); if (!needs.length) die('no tie-break needs')
   if (existsSync(areaDir(L) + 'tb.key.json')) die('tie-break render already exists; it is made once')
   const frozen = rd(areaDir(L) + 'batch.json')
@@ -1059,7 +1099,7 @@ function ledgerInsert(entry) {
 }
 
 async function cmdInsertPrep(L) {
-  if (!AREAS[L]) die('insert-prep <O|N|G|D>')
+  if (!B.areas.includes(L)) die(`insert-prep <area>: ${BATCH} areas are ${B.areas.join(' ')}`)
   const A = AREAS[L], FZ = areaDir(L) + 'batch.json', frozen = rd(FZ), st = rd(areaDir(L) + 'stages.json')
   if (st.verdict !== 'PASS') die(`${L}: score verdict is ${st.verdict}, not PASS`, 1)
   if (st.frozenSha !== sha(FZ)) die(`${L}: frozen batch changed since score`)
@@ -1123,7 +1163,7 @@ async function cmdInsertPrep(L) {
       shape: { passed: true, contentSha: bsha, n: batch.length, verdict: `Stage 0: ${assembledN}/${assembledN} PART OK at assemble (math-check: sandbox key + every distractor, slot, LONE, bound screen, misconceptions, mf27-mf30 construction checks, near-dup vs live ISEE/SSAT and every earlier MAP item${L === 'N' ? ', FORM and SLIP refusing' : ''}). Cold screen pass 1: ${p1f.length} of ${assembledN} failed, returned once (revised ${revN}, withdrawn ${wd.length}, stood ${standN}); pass 2: ${p2f.length} still failed, recorded and not dropped (the screen never drops on one screener). Frozen ${frozen.length}, no per-area minimum. Survivors: math-check ${checked}/${survivors.length} PART OK; math-bank-helper verify on this file Sandbox ${sb[1]}/${sb[2]}; ${distr}.` },
       nosource: { passed: true, contentSha: bsha, n: oo.cand.n, candidatePct: +f1(oo.cr), control: +f1(oo.kr), controlN: oo.ctrl.n, margin: +f1(oo.margin), verdict: `Options-only, three samples of one Claude solver, ${oo.cand.n} frozen candidates vs ${oo.ctrl.n} live ISEE ${A.key} controls matched 1:1 by tier (low->easy, mid/high->medium${subst ? `; ${subst} control row(s) drawn one difficulty up under the pre-registered substitution` : ''}), blind sha ${sha(areaDir(L) + 'oo.blind.json').slice(0, 16)}: ${oo.cand.hits}/${oo.cand.picks} = ${f1(oo.cr)}% vs ${oo.ctrl.hits}/${oo.ctrl.picks} = ${f1(oo.kr)}%, margin ${f1(oo.margin)} (bar +10; control under the 90% ceiling); unanimous-correct rate ${f1(oo.cu)}% vs ${f1(oo.ku)}% (${f1(oo.umar)}, bar +15; batch level only). Measures whether the option set alone decides an item; the stem-visible half is the graders'.` },
       withsource: { passed: true, contentSha: bsha, n: frozen.length, coldOnKey: st.coldOnKey, kept: keepIds.length, verdict: `Two Claude graders per part (${partsOf(L).length} part(s)), cold then keyed, private folders; stage 1 snapshotted, hashed, chmod 444 before keyed.md; coldcheck re-run here ${rows} cold rows, 0 changed. ${st.coldOnKey}/${2 * frozen.length} cold answers on key. Free elimination (R4 >= 2 struck, R5 key identifiable), exclusivity (R2), plug-back, option pair, one-sided / single bound and template rules: both graders -> drop, one -> tie-break grader F (${tbN} item(s) to F, 2 of 3, tie -> drop). Dropped ${dropped.length}: ${dropped.join('; ') || 'none'}. Grade fit recorded, not a drop rule: too_easy ${fd.tooEasy}/${fd.judgments}, too_hard ${fd.tooHard}/${fd.judgments}, offsets ${fd.offA?.toFixed(2)}/${fd.offB?.toFixed(2)}, tier spreads ${fd.spreadA?.toFixed(2)}/${fd.spreadB?.toFixed(2)}.` },
-      tells: { passed: true, contentSha: bsha, verdict: `${as.cprime ? `C-prime: ${as.cprime.why}; deferred items are not in this file. ` : ''}Key at an extreme on this file: ${kx.reason} (${kx.status}). Key letters in this file (with-source deal) ${JSON.stringify(letters)}. Banked difficulty (graders' tier_assigned) ${diffs}. Unanimity compared to the control at batch level only. Screen-flagged survivors: ${keepIds.filter(id => st.screenFlagsRecorded?.[id]).length}.` },
+      tells: { passed: true, contentSha: bsha, cExtremity: kx.status === 'no-measurement' ? 'not-measured' : kx.status, verdict: `${as.cprime ? `C-prime: ${as.cprime.why}; deferred items are not in this file. ` : ''}Key at an extreme on this file: ${kx.reason} (${kx.status === 'no-measurement' ? 'C and C-prime NOT MEASURED below 10 scorable items: recorded, neither a pass nor a fail; C-prime did not fire' : kx.status}). Key letters in this file (with-source deal) ${JSON.stringify(letters)}. Banked difficulty (graders' tier_assigned) ${diffs}. Unanimity compared to the control at batch level only. Screen-flagged survivors: ${keepIds.filter(id => st.screenFlagsRecorded?.[id]).length}.` },
     },
   }
   const wrote = ledgerInsert(entry)
