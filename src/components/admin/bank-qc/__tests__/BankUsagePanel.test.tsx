@@ -60,6 +60,7 @@ describe('sectionLabel', () => {
   it('reads as the test and section a person would say', () => {
     expect(sectionLabel({ family: 'sat', section: 'reading_writing' })).toBe('SAT Reading & Writing')
     expect(sectionLabel({ family: 'map', section: 'language' })).toBe('MAP Language Usage')
+    expect(sectionLabel({ family: 'map', section: 'science' })).toBe('MAP Science')
   })
 })
 

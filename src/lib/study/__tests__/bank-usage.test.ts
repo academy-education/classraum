@@ -47,6 +47,7 @@ describe('bankRowsPerTest reads the blueprints', () => {
     expect(bankRowsPerTest('isee', 'math')).toBe(37 + 47)
     expect(bankRowsPerTest('ssat', 'verbal')).toBe(60)
     expect(bankRowsPerTest('map', 'language')).toBe(39)
+    expect(bankRowsPerTest('map', 'science')).toBe(39)
   })
   it('TOEFL counts bank ROWS: a Complete-the-Words paragraph is one row, ten questions', () => {
     // 48 scored-convention questions per path, but 30 rows (2 CtW + 28 MC).

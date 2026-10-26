@@ -380,8 +380,9 @@ const SECTION_CREDIT_COST: Record<string, Record<string, number>> = {
   // ships it cannot be the one section priced by a stale literal.
   act: { english: 3, math: 3, reading: 3, science: 3, writing: 3 },
   // MAP (not shipped; behind the coming-soon gate). 2 per subject, the
-  // SSAT/ISEE price. Owner decision 2026-10-20 (MAP-LAUNCH-PLAN Q7).
-  map: { reading: 2, language: 2, math: 2 },
+  // SSAT/ISEE price. Owner decision 2026-10-20 (MAP-LAUNCH-PLAN Q7);
+  // Science 2 by owner decision D2 2026-10-27 (MAP-SCIENCE-PLAN).
+  map: { reading: 2, language: 2, math: 2, science: 2 },
 }
 
 /** Credit cost to start one full test for (family, section). */

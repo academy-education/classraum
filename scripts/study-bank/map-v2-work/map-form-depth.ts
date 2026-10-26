@@ -3,7 +3,7 @@
  *
  *   npx tsx scripts/study-bank/map-v2-work/map-form-depth.ts                 # live rows only (verified=true)
  *   npx tsx scripts/study-bank/map-v2-work/map-form-depth.ts --staged        # also count staged rows as if released
- *   npx tsx scripts/study-bank/map-v2-work/map-form-depth.ts --staged --add '{"lit":19,"info":19,"vocab":53,"wri":65,"gram":65,"mech":28,"oa":25,"num":38,"geo":30,"stat":39}'
+ *   npx tsx scripts/study-bank/map-v2-work/map-form-depth.ts --staged --add '{"lit":19,"info":19,"vocab":53,"wri":65,"gram":65,"mech":28,"oa":25,"num":38,"geo":30,"stat":39,"life":65,"phys":65,"earth":65}'
  *
  * Why it exists: admission-form-depth.ts replays SSAT and ISEE only, with drawByPassage, and never calls the MAP
  * per-area draw; depth-snapshot.json has no MAP entry, so runout-monitor cannot see MAP at all.
@@ -15,6 +15,7 @@
  * items and the block is full: a backfilled or short area is not a complete MAP test.
  * --add appends synthetic rows: lit/info in 3-item passages, everything else one item per group.
  * Break-test (2026-10-24): the plan's projection gives 5/5/5; removing ONE item or passage from any area gives 4.
+ * Science (2026-10-27): --add '{"life":65,"phys":65,"earth":65}' gives 5/5/5; 64 in any one area gives 4/4/4.
  * Exits 2 on a failed or truncated read.
  */
 import { createClient } from '@supabase/supabase-js'
@@ -22,7 +23,7 @@ import { readFileSync } from 'node:fs'
 import { drawByPassage, ITEMS_PER_PASSAGE, MAP_AREA_QUOTAS, ADMISSION_BLUEPRINT } from '../../../src/lib/study/admission-tests'
 
 type Row = { id: string; domain: string | null; passageGroupId: string | null }
-type Sec = 'reading' | 'language' | 'math'
+type Sec = 'reading' | 'language' | 'math' | 'science'
 function drawMapAreas(ranked: Row[], section: Sec, n: number, isFresh: (r: Row) => boolean) {
   const taken = new Set<string>(); const out: Row[] = []; const short: string[] = []
   for (const { area, count, passages } of MAP_AREA_QUOTAS[section]) {
@@ -73,10 +74,10 @@ async function main() {
   const A = (section: string, domain: string, g: string | null) => rows.push({ id: `synthetic-${k++}`, section, domain, passageGroupId: g })
   for (let p = 0; p < (add.lit ?? 0); p++) for (let i = 0; i < 3; i++) A('reading', 'Literary Text', `syn-lit-${p}`)
   for (let p = 0; p < (add.info ?? 0); p++) for (let i = 0; i < 3; i++) A('reading', 'Informational Text', `syn-info-${p}`)
-  const one: Record<string, [string, string]> = { vocab: ['reading', 'Vocabulary'], wri: ['language', 'Writing: Write, Revise Texts for Purpose and Audience'], gram: ['language', 'Language: Understand, Edit for Grammar, Usage'], mech: ['language', 'Language: Understand, Edit for Mechanics'], oa: ['math', 'Operations and Algebraic Thinking'], num: ['math', 'Real and Complex Number Systems'], geo: ['math', 'Geometry'], stat: ['math', 'Statistics and Probability'] }
+  const one: Record<string, [string, string]> = { vocab: ['reading', 'Vocabulary'], wri: ['language', 'Writing: Write, Revise Texts for Purpose and Audience'], gram: ['language', 'Language: Understand, Edit for Grammar, Usage'], mech: ['language', 'Language: Understand, Edit for Mechanics'], oa: ['math', 'Operations and Algebraic Thinking'], num: ['math', 'Real and Complex Number Systems'], geo: ['math', 'Geometry'], stat: ['math', 'Statistics and Probability'], life: ['science', 'Life Science'], phys: ['science', 'Physical Science'], earth: ['science', 'Earth and Space Science'] }
   for (const [key, [sec, dom]] of Object.entries(one)) for (let i = 0; i < (add[key] ?? 0); i++) A(sec, dom, null)
   console.log(`MAP rows read: ${count} (${staged ? 'live + staged' : 'live only'})${k ? `, plus ${k} synthetic` : ''}`)
-  for (const sec of ['reading', 'language', 'math'] as Sec[]) {
+  for (const sec of ['reading', 'language', 'math', 'science'] as Sec[]) {
     const rs = rows.filter(r => r.section === sec)
     const by: Record<string, number> = {}; for (const r of rs) by[r.domain ?? '?'] = (by[r.domain ?? '?'] || 0) + 1
     const runs = ['a', 'b', 'c'].map(s => replay(rs, sec, 7, s))

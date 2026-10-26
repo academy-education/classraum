@@ -1649,7 +1649,9 @@ export async function assembleAdmissionSection(p: {
        * predate the "[Synonym]"/"[Analogy]" prompt tags — without it, 52 of
        * 180 SSAT verbal rows classify as nothing and drop out of the split
        * draw. */
-      /* `domain` is MAP's instructional area (MAP_AREA_QUOTAS). */
+      /* `domain` is MAP's instructional area (MAP_AREA_QUOTAS). Science
+       * (Life / Physical / Earth and Space) draws through the same generic
+       * drawMapAreas; its stimulus rides in item.passage / item.graphic. */
       .select('id, difficulty, item, passage_group_id, task, domain', withCount ? { count: 'exact' } : undefined)
       .eq('family', p.family)
       .eq('section', block.bankSection!)

@@ -22,6 +22,10 @@
  * Owner decisions 2026-10-12: grades 5-8 first, Math included, Language
  * Usage waits for ~20 cleared Spelling items. The family stays behind the
  * coming-soon gate (shipped-tests.ts) until its items clear human review.
+ * Science (2026-10-27, MAP-SCIENCE-PLAN.md) is wired the same way with no
+ * items yet: 39 standalone four-choice items, 13 per NGSS area (Life,
+ * Physical, Earth and Space). It has no study_topics row, so it is not
+ * reachable even after the family flips; the row is created at launch.
  */
 export type AdmissionFamily = 'ssat' | 'isee' | 'map'
 
@@ -31,7 +35,7 @@ export interface AdmissionSection {
   name: string
   /** study_item_bank.section this block draws from. null = not drawn from
    *  the bank (essay prompts, which are free-response). */
-  bankSection: 'verbal' | 'math' | 'reading' | 'writing' | 'language' | null
+  bankSection: 'verbal' | 'math' | 'reading' | 'writing' | 'language' | 'science' | null
   questions: number
   /** 0 = untimed (MAP). The runner then counts elapsed time up and never
    *  auto-submits; see TestSession `untimed`. */
@@ -85,12 +89,15 @@ export const ADMISSION_BLUEPRINT: Record<AdmissionFamily, AdmissionSection[]> = 
    * them. Counts follow MAP-LAUNCH-PLAN.md §1: an event is "max 43 incl.
    * field test", so ~39-40 scored; Reading and Language Usage are balanced
    * at 13 per instructional area, Math 6+ per-area counts are not published
-   * so it is balanced at 10 x 4. Four-option multiple choice only.
+   * so it is balanced at 10 x 4. Science balanced 13 x 3, inferred (NWEA
+   * states the three areas but publishes no per-area count; owner decision
+   * D1, 2026-10-27). Four-option multiple choice only.
    */
   map: [
     { key: 'reading',   name: 'Reading',                  bankSection: 'reading',  questions: 39, minutes: 0, choiceCount: 4, scored: true },
     { key: 'language',  name: 'Language Usage',           bankSection: 'language', questions: 39, minutes: 0, choiceCount: 4, scored: true },
     { key: 'math',      name: 'Math',                     bankSection: 'math',     questions: 40, minutes: 0, choiceCount: 4, scored: true },
+    { key: 'science',   name: 'Science',                  bankSection: 'science',  questions: 39, minutes: 0, choiceCount: 4, scored: true },
   ],
 }
 
@@ -106,7 +113,7 @@ export const ADMISSION_BLUEPRINT: Record<AdmissionFamily, AdmissionSection[]> = 
 /* `passages`: drawn by whole passage at ITEMS_PER_PASSAGE.map. Every other
  * area takes one item per group, the bijective-set rule every non-reading
  * admission draw keeps. */
-export const MAP_AREA_QUOTAS: Record<'reading' | 'language' | 'math', Array<{ area: string; count: number; passages: boolean }>> = {
+export const MAP_AREA_QUOTAS: Record<'reading' | 'language' | 'math' | 'science', Array<{ area: string; count: number; passages: boolean }>> = {
   reading: [
     { area: 'Literary Text',      count: 13, passages: true },
     { area: 'Informational Text', count: 13, passages: true },
@@ -122,6 +129,14 @@ export const MAP_AREA_QUOTAS: Record<'reading' | 'language' | 'math', Array<{ ar
     { area: 'Real and Complex Number Systems',   count: 10, passages: false },
     { area: 'Geometry',                           count: 10, passages: false },
     { area: 'Statistics and Probability',         count: 10, passages: false },
+  ],
+  /* Standalone: every item carries its own stimulus (scenario, table or
+   * graph) in item.passage / item.graphic, so one item per group and no
+   * passage fragments (MAP-SCIENCE-PLAN §2.1). */
+  science: [
+    { area: 'Life Science',            count: 13, passages: false },
+    { area: 'Physical Science',        count: 13, passages: false },
+    { area: 'Earth and Space Science', count: 13, passages: false },
   ],
 }
 
@@ -526,6 +541,9 @@ export const ADMISSION_TOPIC_SLUGS: Record<string, { family: AdmissionFamily; ke
   'map-reading':           { family: 'map', key: 'reading' },
   'map-language':          { family: 'map', key: 'language' },
   'map-math':              { family: 'map', key: 'math' },
+  // No row and no SECTION_TOPIC entry until Science holds 5 clean forms
+  // (MAP-SCIENCE-PLAN §3 items 5-6): the row is the reachability switch.
+  'map-science':           { family: 'map', key: 'science' },
 }
 
 /** The blueprint section a topic slug names, or null if the slug is not

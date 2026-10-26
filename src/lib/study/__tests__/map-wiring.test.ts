@@ -14,6 +14,10 @@ import { isShippedTestFamily, isShippedTestSlug } from '@/lib/study/shipped-test
 import { creditCostForTest } from '@/lib/study/plans'
 import { familyFromTopicSlug, mapAreaBreakdown, type ResultRow } from '@/lib/study/test-result'
 import { isUntimedTest } from '@/lib/study/test-clock'
+import { SECTION_TOPIC } from '@/lib/study/section-topics'
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
+import depthSnapshot from '../../../../scripts/study-bank/depth-snapshot.json'
 
 type Row = { id: string; domain: string | null; passageGroupId: string | null }
 
@@ -26,8 +30,9 @@ function rows(area: string, n: number, perPassage = 0, prefix = area): Row[] {
 }
 
 describe('MAP blueprint', () => {
-  it('has the three subjects, untimed, four-choice, scored', () => {
-    expect(ADMISSION_BLUEPRINT.map.map(b => b.key)).toEqual(['reading', 'language', 'math'])
+  it('has the four subjects, untimed, four-choice, scored', () => {
+    expect(ADMISSION_BLUEPRINT.map.map(b => b.key)).toEqual(['reading', 'language', 'math', 'science'])
+    expect(Object.keys(MAP_AREA_QUOTAS).sort()).toEqual(['language', 'math', 'reading', 'science'])
     for (const b of ADMISSION_BLUEPRINT.map) {
       expect(b.minutes).toBe(0)
       expect(b.choiceCount).toBe(4)
@@ -44,6 +49,15 @@ describe('MAP blueprint', () => {
     }
   })
 
+  it('Science is 39 items, 13 in each of the three NGSS areas, all standalone (owner D1, 2026-10-27)', () => {
+    expect(ADMISSION_BLUEPRINT.map.find(b => b.key === 'science')?.questions).toBe(39)
+    expect(MAP_AREA_QUOTAS.science).toEqual([
+      { area: 'Life Science',            count: 13, passages: false },
+      { area: 'Physical Science',        count: 13, passages: false },
+      { area: 'Earth and Space Science', count: 13, passages: false },
+    ])
+  })
+
   it('only Literary and Informational Text draw by passage; everything else is one per group', () => {
     // A vocabulary or mechanics set banked with a shared option pool leaks
     // if two of it land on one form (bijective-set rule).
@@ -55,9 +69,20 @@ describe('MAP blueprint', () => {
     expect(admissionSectionForSlug('map-reading')?.section.key).toBe('reading')
     expect(admissionSectionForSlug('map-language')?.section.key).toBe('language')
     expect(admissionSectionForSlug('map-math')?.section.key).toBe('math')
+    expect(admissionSectionForSlug('map-science')?.section.key).toBe('science')
     expect(admissionSectionForSlug('test-map')).toBeNull()
   })
 })
+
+/** The `map: { ... }` row of SECTION_CREDIT_COST, read from SOURCE: the
+ *  table is module-private, and through creditCostForTest a listed price
+ *  and the fallback are indistinguishable whenever they coincide. */
+function mapPriceLiteral(): string {
+  const src = readFileSync(join(process.cwd(), 'src/lib/study/plans.ts'), 'utf8')
+  const table = src.slice(src.indexOf('const SECTION_CREDIT_COST'))
+  const row = table.slice(table.indexOf('map: {'))
+  return row.slice(0, row.indexOf('}'))
+}
 
 describe('MAP is wired but not shipped', () => {
   it('the API gate still refuses it', () => {
@@ -65,14 +90,38 @@ describe('MAP is wired but not shipped', () => {
     expect(isShippedTestSlug('test-map')).toBe(false)
   })
 
+  it('Science stays unreachable: no topic row is wired for it', () => {
+    // The study_topics row is the reachability switch (MAP-SCIENCE-PLAN §3
+    // items 5-6). Its SECTION_TOPIC entry lands in the same change that
+    // creates the row, after Science holds 5 clean forms - never before.
+    expect(SECTION_TOPIC.map?.science).toBeUndefined()
+  })
+
+  it('Science is priced 2 by an explicit literal (owner D2), not by the fallback', () => {
+    // The loop below would also pass if the fallback were ever raised to 2,
+    // so the literal itself is pinned.
+    expect(mapPriceLiteral()).toMatch(/\bscience: 2\b/)
+    expect(creditCostForTest('map', 'science')).toBe(2)
+  })
+
   it('every block is priced explicitly, never the 1-credit fallback', () => {
-    for (const b of ADMISSION_BLUEPRINT.map) expect(creditCostForTest('map', b.key)).toBe(2)
+    for (const b of ADMISSION_BLUEPRINT.map) {
+      expect(mapPriceLiteral()).toMatch(new RegExp(`\\b${b.key}: \\d`))
+      expect(creditCostForTest('map', b.key)).toBe(2)
+    }
     expect(creditCostForTest('map', 'nonsense')).toBe(1) // the fallback this guards against
   })
 
   it('result screens recognise the family', () => {
     expect(familyFromTopicSlug('map')).toBe('map')
     expect(familyFromTopicSlug('map-math')).toBe('map')
+    expect(familyFromTopicSlug('map-science')).toBe('map')
+  })
+
+  it('every block has a depth-snapshot entry, so runout-monitor and the admin panel see it', () => {
+    const snap = (depthSnapshot as unknown as { sections: Record<string, { value: number }> }).sections
+    for (const b of ADMISSION_BLUEPRINT.map) expect(typeof snap[`map/${b.key}`]?.value).toBe('number')
+    expect(snap['map/science']?.value).toBe(0)
   })
 })
 
@@ -115,6 +164,14 @@ describe('drawMapAreas', () => {
     expect(got.filter(r => r.domain === 'Not a MAP area')).toHaveLength(0)
     const short = drawMapAreas(pool.slice(0, 35), 'math', 40)
     expect(short.filter(r => r.domain === 'Not a MAP area').length).toBeGreaterThan(0)
+  })
+
+  it('draws Science 13 per area, one item per group', () => {
+    const pool = MAP_AREA_QUOTAS.science.flatMap(a => rows(a.area, 20))
+    const got = drawMapAreas(pool, 'science', 39)
+    expect(got).toHaveLength(39)
+    for (const a of MAP_AREA_QUOTAS.science) expect(got.filter(r => r.domain === a.area)).toHaveLength(13)
+    expect(warn).not.toHaveBeenCalled()
   })
 
   it('takes reading passages whole, three per passage', () => {
