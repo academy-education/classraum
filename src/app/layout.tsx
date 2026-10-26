@@ -98,10 +98,19 @@ export default function RootLayout({
             sync with :root{color-scheme} in globals.css. */}
         <meta name="color-scheme" content="light" />
         {/* Add .native-app class to <html> when running in Capacitor so viewport-locking
-            CSS in globals.css applies on iOS/Android but not on the web. */}
+            CSS in globals.css applies on iOS/Android but not on the web.
+
+            It also keeps the Android system-bar insets across full page
+            loads. MainActivity measures the status and gesture bars and
+            writes --safe-area-* onto <html>, but only for a few seconds
+            after an insets change; a full reload (sign-in, window.location)
+            wipes those inline values and nothing rewrites them, so bottom
+            bars slid under the gesture handle. The last values the native
+            side wrote are saved and restored before first paint; a fresh
+            native write still wins. */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{if(window.Capacitor&&window.Capacitor.isNativePlatform&&window.Capacitor.isNativePlatform()){document.documentElement.classList.add('native-app')}}catch(e){}})();`,
+            __html: `(function(){try{if(!(window.Capacitor&&window.Capacitor.isNativePlatform&&window.Capacitor.isNativePlatform()))return;var d=document.documentElement;d.classList.add('native-app');var K='cr-safe-area',P=['top','bottom','left','right'];try{var v=JSON.parse(localStorage.getItem(K)||'null');if(v)P.forEach(function(p){if(v[p]&&!d.style.getPropertyValue('--safe-area-'+p))d.style.setProperty('--safe-area-'+p,v[p])})}catch(e){}new MutationObserver(function(){var o={},any=false;P.forEach(function(p){var x=d.style.getPropertyValue('--safe-area-'+p);if(x){o[p]=x;any=true}});if(any)try{localStorage.setItem(K,JSON.stringify(o))}catch(e){}}).observe(d,{attributes:true,attributeFilter:['style']})}catch(e){}})();`,
           }}
         />
         {/* Pre-paint theme script — REMOVED 2026-08-11, dark mode is off

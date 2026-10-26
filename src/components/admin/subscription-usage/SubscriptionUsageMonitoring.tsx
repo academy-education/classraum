@@ -237,7 +237,65 @@ export function SubscriptionUsageMonitoring() {
         {!loading && usageData.length === 0 ? (
           <AdminEmptyState icon={TrendingUp} title={String(t('admin.usage.noUsageData'))} />
         ) : (
-          <div className="overflow-x-auto">
+          <>
+          {/* Phone: one card per academy. The six-column table needs 720px,
+              so below md it was a sideways scroller inside a 380px card. */}
+          <ul className="md:hidden divide-y divide-gray-100" data-testid="usage-cards">
+            {loading && [0, 1, 2].map(i => (
+              <li key={i} className="px-4 py-4"><div className="h-20 rounded-lg bg-gray-100 animate-pulse" /></li>
+            ))}
+            {!loading && usageData.map((usage) => {
+              const academy = Array.isArray(usage.academies) ? usage.academies[0] : usage.academies;
+              const subscription = Array.isArray(usage.academy_subscriptions)
+                ? usage.academy_subscriptions[0]
+                : usage.academy_subscriptions;
+              if (!subscription) return null;
+              const tone: StatusTone =
+                subscription.plan_tier === 'free' ? 'muted'
+                : subscription.plan_tier === 'individual' ? 'info'
+                : subscription.plan_tier === 'basic' ? 'brand'
+                : 'violet'
+              const meters = [
+                { key: 'students', used: String(usage.current_student_count), limit: `${subscription.student_limit + (subscription.additional_students || 0)}`, pct: getUsagePercentage(usage.current_student_count, subscription.student_limit, subscription.additional_students) },
+                { key: 'teachers', used: String(usage.current_teacher_count), limit: `${subscription.teacher_limit + (subscription.additional_teachers || 0)}`, pct: getUsagePercentage(usage.current_teacher_count, subscription.teacher_limit, subscription.additional_teachers) },
+                { key: 'storage', used: usage.current_storage_gb.toFixed(1), limit: `${subscription.storage_limit_gb + (subscription.additional_storage_gb || 0)} GB`, pct: getUsagePercentage(usage.current_storage_gb, subscription.storage_limit_gb, subscription.additional_storage_gb) },
+              ]
+              return (
+                <li key={usage.id} className="px-4 py-4 space-y-3">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <p className="text-sm font-medium text-gray-900 truncate">{academy?.name || String(t('admin.common.unknown'))}</p>
+                      <p className="text-xs text-gray-500">
+                        {String(t('admin.usage.lastUpdatedDate', { date: new Date(usage.calculated_at).toLocaleDateString(getDateLocale(language)) }))}
+                      </p>
+                    </div>
+                    <StatusBadge tone={tone}><span className="capitalize">{subscription.plan_tier}</span></StatusBadge>
+                  </div>
+                  <div className="grid grid-cols-1 gap-2">
+                    {meters.map(m => (
+                      <div key={m.key} className="space-y-1">
+                        <div className="flex items-center justify-between gap-2 text-xs">
+                          <span className="text-gray-500">{String(t(`admin.usage.columns.${m.key}`))}</span>
+                          <span>
+                            <span className={`font-medium ${getUsageColor(m.pct)}`}>{m.used} / {m.limit}</span>
+                            <span className="text-gray-500 ml-2">{m.pct.toFixed(0)}%</span>
+                          </span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-1.5">
+                          <div className={`h-1.5 rounded-full ${getProgressBarColor(m.pct)}`} style={{ width: `${Math.min(m.pct, 100)}%` }} />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-gray-500">{String(t('admin.usage.columns.classrooms'))}</span>
+                    <span className="text-sm text-gray-900">{usage.current_classroom_count}</span>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+          <div className="hidden md:block overflow-x-auto">
             <table className="w-full min-w-[720px]">
               <thead className="bg-gray-50/60">
                 <tr>
@@ -365,6 +423,7 @@ export function SubscriptionUsageMonitoring() {
               </tbody>
             </table>
           </div>
+          </>
         )}
 
         {/* Pagination */}
