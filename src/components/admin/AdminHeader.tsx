@@ -10,8 +10,8 @@ import {
   RefreshCw,
   PanelLeftClose,
   PanelLeftOpen,
-  Menu
 } from 'lucide-react';
+import Image from 'next/image';
 import { AdminUser } from '@/lib/admin-auth-shared';
 import { performLogout } from '@/lib/logout';
 import { db } from '@/lib/supabase';
@@ -23,13 +23,10 @@ interface AdminHeaderProps {
   /** lg+: collapse / restore the pinned rail. */
   onToggleRail?: () => void;
   railOpen?: boolean;
-  /** Below lg: open the off-canvas drawer. */
-  onOpenDrawer?: () => void;
-  drawerOpen?: boolean;
 }
 
 
-export function AdminHeader({ adminUser, onToggleRail, railOpen = true, onOpenDrawer, drawerOpen = false }: AdminHeaderProps) {
+export function AdminHeader({ adminUser, onToggleRail, railOpen = true }: AdminHeaderProps) {
   const { t, language, setLanguage } = useTranslation();
   const router = useRouter();
   const [showUserMenu, setShowUserMenu] = useState(false);
@@ -55,23 +52,18 @@ export function AdminHeader({ adminUser, onToggleRail, railOpen = true, onOpenDr
   return (
     <header className="flex-shrink-0 h-[57px] bg-white border-b border-gray-100 px-2 sm:px-4 flex items-center">
       <div className="flex items-center justify-between w-full">
-        {/* Left: two controls for two different things. Below lg the
-            sidebar is an off-canvas drawer and this opens it; at lg+ the
-            other button collapses the pinned rail. They used to be one
-            button toggling one shared state, which is how a rail left
-            "open" on a landscape tablet became an uninvited modal drawer
-            when the tablet was turned upright. */}
-        <button
-          type="button"
-          onClick={onOpenDrawer}
-          className="lg:hidden inline-flex items-center justify-center w-10 h-10 -ml-1 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
-          aria-label={String(t('admin.header.openMenu'))}
-          aria-haspopup="dialog"
-          aria-expanded={drawerOpen}
-          data-testid="admin-menu-button"
-        >
-          <Menu className="w-5 h-5" />
-        </button>
+        {/* Left: below lg there is no rail and no drawer (the bottom bar is
+            the navigation), so the logo stands here; at lg+ this collapses
+            the pinned rail. */}
+        <Image
+          src="/text_logo.png"
+          alt="Classraum logo"
+          width={150}
+          height={50}
+          className="lg:hidden w-auto ml-2"
+          style={{ height: '1.5rem', width: 'auto' }}
+          priority
+        />
         <button
           type="button"
           onClick={onToggleRail}

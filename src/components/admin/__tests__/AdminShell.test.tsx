@@ -4,13 +4,12 @@
  * The admin chrome, rendered as the app renders it (AdminLayout hands this
  * exact component its children after the auth check). The cases that matter:
  *
- *  - the drawer is closed on first render whatever the viewport, and the
- *    server render matches — the old shell started "open" on the server and
- *    on any >= 1024px client, which became an uninvited modal drawer the
- *    moment a tablet was turned upright;
- *  - it opens only from a tap (header menu or the bottom bar's More) and
- *    closes from X, backdrop, Escape, navigation and crossing into lg;
- *  - the bottom bar's tabs, active state and permission filtering.
+ *  - there is no drawer at any width: below lg the bottom bar and its shelves
+ *    are the whole navigation, like the academy-mode bar;
+ *  - every page the rail lists sits in exactly one bar group, filtered by the
+ *    same permissions, so the bar can never hide a page the rail shows;
+ *  - shelves open from a tap and close from X, outside, Escape and navigation;
+ *  - the rail toggle at lg+ and the server render do not depend on the window.
  */
 import React from 'react'
 import { act, fireEvent, render, screen, within } from '@testing-library/react'
@@ -40,7 +39,8 @@ jest.mock('@/hooks/useTranslation', () => {
 })
 
 import { AdminShell } from '../AdminShell'
-import { ADMIN_BOTTOM_TABS } from '../AdminBottomNav'
+import { ADMIN_BOTTOM_GROUPS, visibleAdminPages } from '../AdminBottomNav'
+import { navigationItems, superAdminItems } from '../AdminSidebar'
 import type { AdminUser } from '@/lib/admin-auth-shared'
 
 /** A controllable matchMedia for the one query the shell cares about. */
@@ -63,9 +63,9 @@ const admin = (role: 'admin' | 'super_admin' = 'super_admin'): AdminUser => ({
   id: 'u1', email: 'ops@example.test', name: 'Ops Person', role, createdAt: new Date('2025-01-01'),
 })
 
-const drawer = () => screen.queryByRole('dialog')
-const menuButton = () => screen.getByTestId('admin-menu-button')
+const shelf = () => screen.queryByTestId('admin-shelf')
 const bottomNav = () => screen.getByTestId('admin-bottom-nav')
+const groupLabels = () => [...bottomNav().querySelectorAll('a, button')].map(e => e.textContent)
 
 function renderShell(role: 'admin' | 'super_admin' = 'super_admin') {
   return render(<AdminShell adminUser={admin(role)}><p>page body</p></AdminShell>)
@@ -73,136 +73,118 @@ function renderShell(role: 'admin' | 'super_admin' = 'super_admin') {
 
 beforeEach(() => { mockPath = '/admin/users' })
 
-describe('AdminShell drawer', () => {
-  it('server render has no drawer and does not depend on the window', () => {
+describe('AdminShell without a drawer', () => {
+  it('server render has the rail and no drawer or shelf', () => {
     installMatchMedia(true)
     const html = renderToString(<AdminShell adminUser={admin()}><p>page body</p></AdminShell>)
     expect(html).not.toContain('role="dialog"')
     expect(html).toContain('data-testid="admin-rail"')
   })
 
-  it('starts closed even when the first render is desktop-width', () => {
-    installMatchMedia(true)
-    renderShell()
-    expect(drawer()).toBeNull()
-    expect(screen.getByTestId('admin-rail')).toBeInTheDocument()
+  it('has no drawer control anywhere, at phone or desktop width', () => {
+    for (const wide of [false, true]) {
+      installMatchMedia(wide)
+      const { unmount } = renderShell()
+      expect(screen.queryByTestId('admin-menu-button')).toBeNull()
+      expect(screen.queryByRole('button', { name: /open menu/i })).toBeNull()
+      expect(screen.queryByRole('dialog')).toBeNull()
+      unmount()
+    }
   })
 
-  it('a landscape tablet turned upright does not get an uninvited drawer (the reported bug)', () => {
-    const mq = installMatchMedia(true)
-    renderShell()
-    mq.set(false)
-    expect(drawer()).toBeNull()
-  })
-
-  it('opens from the menu button and closes from the X', () => {
-    installMatchMedia(false)
-    renderShell()
-    expect(menuButton()).toHaveAttribute('aria-expanded', 'false')
-    fireEvent.click(menuButton())
-    expect(drawer()).toBeInTheDocument()
-    expect(menuButton()).toHaveAttribute('aria-expanded', 'true')
-    fireEvent.click(within(drawer()!).getByRole('button', { name: 'Close sidebar' }))
-    expect(drawer()).toBeNull()
-  })
-
-  it('closes from the backdrop', () => {
-    installMatchMedia(false)
-    renderShell()
-    fireEvent.click(menuButton())
-    fireEvent.click(screen.getByTestId('admin-drawer-backdrop'))
-    expect(drawer()).toBeNull()
-  })
-
-  it('closes on Escape', () => {
-    installMatchMedia(false)
-    renderShell()
-    fireEvent.click(menuButton())
-    fireEvent.keyDown(window, { key: 'Escape' })
-    expect(drawer()).toBeNull()
-  })
-
-  it('closes on navigation', () => {
-    installMatchMedia(false)
-    const { rerender } = renderShell()
-    fireEvent.click(menuButton())
-    expect(drawer()).toBeInTheDocument()
-    mockPath = '/admin/analytics'
-    rerender(<AdminShell adminUser={admin()}><p>page body</p></AdminShell>)
-    expect(drawer()).toBeNull()
-  })
-
-  it('is retired when the viewport grows into rail territory, and stays closed coming back', () => {
-    const mq = installMatchMedia(false)
-    renderShell()
-    fireEvent.click(menuButton())
-    mq.set(true)
-    mq.set(false)
-    expect(drawer()).toBeNull()
-  })
-
-  it('the desktop rail toggle is a separate control and never opens the drawer', () => {
+  it('the desktop rail toggle hides and restores the rail', () => {
     installMatchMedia(true)
     renderShell()
     fireEvent.click(screen.getByTestId('admin-rail-toggle'))
     expect(screen.queryByTestId('admin-rail')).toBeNull()
-    expect(drawer()).toBeNull()
     fireEvent.click(screen.getByTestId('admin-rail-toggle'))
     expect(screen.getByTestId('admin-rail')).toBeInTheDocument()
   })
 })
 
 describe('AdminShell bottom bar', () => {
-  it('shows Home, Bank QC, Users, Support and More, with the current page active', () => {
-    installMatchMedia(false)
-    renderShell()
-    const nav = bottomNav()
-    const labels = [...within(nav).getAllByRole('link'), ...within(nav).getAllByRole('button')].map(e => e.textContent)
-    expect(labels).toEqual(['Home', 'Bank QC', 'Users', 'Support', 'More'])
-    expect(within(nav).getByRole('link', { name: 'Users' })).toHaveAttribute('aria-current', 'page')
-    expect(within(nav).getByRole('link', { name: 'Home' })).not.toHaveAttribute('aria-current')
+  it('every rail page is in exactly one group, and no group names a page the rail lacks', () => {
+    const railHrefs = [...navigationItems, ...superAdminItems].map(i => i.href).sort()
+    const grouped = ADMIN_BOTTOM_GROUPS.flatMap(g => g.hrefs)
+    expect([...grouped].sort()).toEqual(railHrefs)
+    expect(new Set(grouped).size).toBe(grouped.length)
   })
 
-  it('Home is active only on /admin itself, not on every admin page', () => {
+  it('a super admin gets Home, Business, Study, People and More', () => {
+    installMatchMedia(false)
+    renderShell()
+    expect(groupLabels()).toEqual(['Home', 'Business', 'Study', 'People', 'More'])
+  })
+
+  it('a regular admin has no More (all super-admin) and no super-admin page in any shelf', () => {
+    installMatchMedia(false)
+    renderShell('admin')
+    expect(groupLabels()).toEqual(['Home', 'Business', 'Study', 'People'])
+    for (const name of ['Business', 'Study', 'People']) {
+      fireEvent.click(within(bottomNav()).getByRole('button', { name }))
+      const hrefs = within(shelf()!).getAllByRole('link').map(a => a.getAttribute('href'))
+      expect(hrefs.filter(h => superAdminItems.some(i => i.href === h))).toEqual([])
+    }
+    expect(visibleAdminPages(admin('admin')).map(p => p.href)).toEqual(navigationItems.map(i => i.href))
+  })
+
+  it('Home is a direct link, active only on /admin itself', () => {
     installMatchMedia(false)
     mockPath = '/admin'
     renderShell()
     expect(within(bottomNav()).getByRole('link', { name: 'Home' })).toHaveAttribute('aria-current', 'page')
   })
 
-  it('More opens the full drawer, and is the active tab on a page without its own tab', () => {
+  it('a group with several pages opens its shelf, and the current page is marked in it', () => {
+    installMatchMedia(false)
+    mockPath = '/admin/users'
+    renderShell()
+    const people = within(bottomNav()).getByRole('button', { name: 'People' })
+    expect(people.className).toMatch(/text-primary/)
+    expect(shelf()).toBeNull()
+    fireEvent.click(people)
+    expect(people).toHaveAttribute('aria-expanded', 'true')
+    const links = within(shelf()!).getAllByRole('link')
+    expect(links.map(a => a.getAttribute('href'))).toEqual(['/admin/users', '/admin/support', '/admin/comment-reports', '/admin/nickname-reports'])
+    expect(within(shelf()!).getByRole('link', { name: 'Users' })).toHaveAttribute('aria-current', 'page')
+  })
+
+  it('a super-admin page lights More', () => {
     installMatchMedia(false)
     mockPath = '/admin/webhook-events'
     renderShell()
-    const more = within(bottomNav()).getByRole('button', { name: 'More' })
-    expect(more.className).toMatch(/text-primary/)
-    expect(within(bottomNav()).queryByRole('link', { current: 'page' })).toBeNull()
-    fireEvent.click(more)
-    expect(drawer()).toBeInTheDocument()
-    expect(more).toHaveAttribute('aria-expanded', 'true')
+    expect(within(bottomNav()).getByRole('button', { name: 'More' }).className).toMatch(/text-primary/)
+    expect(within(bottomNav()).getByRole('button', { name: 'People' }).className).not.toMatch(/text-primary/)
   })
 
-  it('never puts a super-admin-only destination on the bar, for either role', () => {
-    const superOnly = ['/admin/activity-logs', '/admin/error-logs', '/admin/subscription-usage', '/admin/webhook-events', '/admin/system', '/admin/settings']
-    expect(ADMIN_BOTTOM_TABS.map(t => t.href).filter(h => superOnly.includes(h))).toEqual([])
+  it('the shelf closes from X, Escape, a tap outside, a second tap, and navigation', () => {
     installMatchMedia(false)
-    renderShell('admin')
-    const hrefs = within(bottomNav()).getAllByRole('link').map(a => a.getAttribute('href'))
-    expect(hrefs).toEqual(['/admin', '/admin/bank-qc', '/admin/users', '/admin/support'])
-  })
-
-  it('a regular admin opening More sees no super-admin section in the drawer', () => {
-    installMatchMedia(false)
-    renderShell('admin')
-    fireEvent.click(within(bottomNav()).getByRole('button', { name: 'More' }))
-    expect(within(drawer()!).queryByRole('link', { name: /System|Error logs|Webhook events/ })).toBeNull()
+    const { rerender } = renderShell()
+    const study = () => within(bottomNav()).getByRole('button', { name: 'Study' })
+    fireEvent.click(study())
+    fireEvent.click(within(shelf()!).getByRole('button', { name: 'Close menu' }))
+    expect(shelf()).toBeNull()
+    fireEvent.click(study())
+    fireEvent.keyDown(window, { key: 'Escape' })
+    expect(shelf()).toBeNull()
+    fireEvent.click(study())
+    fireEvent.mouseDown(screen.getByText('page body'))
+    expect(shelf()).toBeNull()
+    fireEvent.click(study())
+    fireEvent.click(study())
+    expect(shelf()).toBeNull()
+    fireEvent.click(study())
+    mockPath = '/admin/bank-qc'
+    rerender(<AdminShell adminUser={admin()}><p>page body</p></AdminShell>)
+    expect(shelf()).toBeNull()
   })
 
   it('the bar sits after <main> in the column, so it is in flow and cannot cover page content', () => {
     installMatchMedia(false)
     renderShell()
     const main = screen.getByRole('main')
-    expect(main.nextElementSibling).toBe(bottomNav())
+    expect(main.nextElementSibling).toContainElement(bottomNav())
+    expect(main.nextElementSibling!.className).not.toMatch(/\bfixed\b|\babsolute\b/)
     expect(bottomNav().className).not.toMatch(/\bfixed\b|\babsolute\b/)
   })
 })

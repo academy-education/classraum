@@ -38,7 +38,7 @@ interface AdminSidebarProps {
   onClose?: () => void;
 }
 
-interface NavigationItem {
+export interface NavigationItem {
   // Translation key suffixes under `admin.sidebar.*` — see locales/en.json.
   // We keep the keys instead of resolved strings so the arrays can live at
   // module scope without re-running on every language change.
@@ -49,7 +49,7 @@ interface NavigationItem {
   permission?: keyof ReturnType<typeof getAdminPermissions>;
 }
 
-const navigationItems: NavigationItem[] = [
+export const navigationItems: NavigationItem[] = [
   { nameKey: 'dashboard',      descriptionKey: 'dashboardDesc',      href: '/admin',                 icon: LayoutDashboard, permission: 'viewDashboard' },
   { nameKey: 'academies',      descriptionKey: 'academiesDesc',      href: '/admin/academies',       icon: Building2,       permission: 'manageAcademies' },
   { nameKey: 'subscriptions',  descriptionKey: 'subscriptionsDesc',  href: '/admin/subscriptions',   icon: CreditCard,      permission: 'viewSubscriptions' },
@@ -63,7 +63,7 @@ const navigationItems: NavigationItem[] = [
   { nameKey: 'nicknameReports', descriptionKey: 'nicknameReportsDesc', href: '/admin/nickname-reports', icon: Flag,          permission: 'manageSupport' },
 ];
 
-const superAdminItems: NavigationItem[] = [
+export const superAdminItems: NavigationItem[] = [
   { nameKey: 'activityLogs',    descriptionKey: 'activityLogsDesc',    href: '/admin/activity-logs',      icon: ScrollText,   permission: undefined },
   { nameKey: 'errorLogs',       descriptionKey: 'errorLogsDesc',       href: '/admin/error-logs',         icon: Bug,          permission: undefined },
   { nameKey: 'usageMonitoring', descriptionKey: 'usageMonitoringDesc', href: '/admin/subscription-usage', icon: TrendingUp,   permission: undefined },
