@@ -97,7 +97,11 @@ export function ModalShell({
           <div className="px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-100 flex items-start justify-between gap-4">
             <div className="min-w-0">
               {title !== undefined && (
-                <h2 className="text-xl font-semibold text-gray-900 truncate">{title}</h2>
+                // Wraps rather than truncates: titles here are often a node
+                // (name + email/ID), where `truncate`'s nowrap was inherited
+                // by the children and a long academy name or ID was simply
+                // cut off at the edge of a phone-width dialog, no ellipsis.
+                <h2 className="text-lg sm:text-xl font-semibold text-gray-900 [overflow-wrap:anywhere]">{title}</h2>
               )}
               {description !== undefined && (
                 <p className="text-sm text-gray-500 mt-1">{description}</p>

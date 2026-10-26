@@ -18,17 +18,20 @@ const row = (over: Partial<SectionUsage>): SectionUsage => ({
   family: 'sat', section: 'math', live: 0, staged: 0, stagedInOpenReview: 0, stagedHumanReviewed: 0,
   perTest: 44, liveTestsByDivision: 0, stagedTestsByDivision: 0, measuredDepth: null, measuredHardRoute: null,
   measuredAtLeast: false, liveTests: 0, liveTestsSource: 'division', low: true, completedTests: 0,
-  studentsWithTests: 0, maxTestsOneStudent: 0, studentsUnder5Left: 0, studentsNoMeasurement: 0, ...over,
+  studentsWithTests: 0, maxTestsOneStudent: 0, studentsUnder5Left: 0, studentsNoMeasurement: 0,
+  total: (over.live ?? 0) + (over.staged ?? 0), maxSeenOneStudent: 0, maxLiveSeenOneStudent: 0,
+  maxSeenShareOfLive: (over.live ?? 0) > 0 ? 0 : null, studentsSeen: 0, ...over,
 })
 
 const REPORT = {
   generatedAt: '2026-10-23T01:00:00.000Z',
   snapshotMeasured: '2026-10-22',
   realStudents: 80,
-  read: { bank: 16067, sessions: 283, reviews: 1119, attempts: 3150 },
+  read: { bank: 16067, sessions: 283, reviews: 1119, attempts: 3150, exposures: 6633 },
   sections: [
     row({ family: 'sat', section: 'reading_writing', live: 1489, perTest: 54, liveTestsByDivision: 27, measuredDepth: 18,
-      measuredHardRoute: 9, liveTests: 18, liveTestsSource: 'measured', low: false, completedTests: 15, studentsWithTests: 4, maxTestsOneStudent: 10 }),
+      measuredHardRoute: 9, liveTests: 18, liveTestsSource: 'measured', low: false, completedTests: 15, studentsWithTests: 4, maxTestsOneStudent: 10,
+      maxSeenOneStudent: 560, maxLiveSeenOneStudent: 551, maxSeenShareOfLive: 551 / 1489, studentsSeen: 6 }),
     row({ family: 'isee', section: 'reading', live: 153, staged: 540, perTest: 36, liveTestsByDivision: 4, stagedTestsByDivision: 15,
       measuredDepth: 3, liveTests: 3, liveTestsSource: 'measured', low: true, completedTests: 1, studentsWithTests: 1, maxTestsOneStudent: 1, studentsUnder5Left: 1 }),
     row({ family: 'map', section: 'math', live: 0, staged: 68, perTest: 40, stagedTestsByDivision: 1, liveTests: 0, low: true }),
@@ -65,7 +68,7 @@ describe('BankUsagePanel', () => {
     mockFetch(REPORT)
     render(<BankUsagePanel />)
     const table = await screen.findByRole('table')
-    const rows = within(table).getAllByRole('row').slice(1)
+    const rows = within(table).getAllByTestId('usage-section-row')
     expect(rows).toHaveLength(4)
 
     const isee = rows.find(r => r.textContent?.includes('ISEE Reading'))!
@@ -132,5 +135,72 @@ describe('BankUsagePanel', () => {
     mockFetch({ generatedAt: 'x' })
     render(<BankUsagePanel />)
     expect(await screen.findByRole('alert')).toHaveTextContent('malformed response')
+  })
+
+  it('shows raw live / staged / total question counts as columns, not tooltips', async () => {
+    mockFetch(REPORT)
+    render(<BankUsagePanel />)
+    const table = await screen.findByRole('table')
+    const head = within(table).getAllByRole('columnheader').map(h => h.textContent)
+    expect(head).toEqual(expect.arrayContaining(['Live questions', 'Staged questions', 'Total']))
+    const isee = within(table).getAllByTestId('usage-section-row').find(r => r.textContent?.includes('ISEE Reading'))!
+    const cells = within(isee).getAllByRole('cell').map(c => c.textContent)
+    expect(cells[1]).toBe('153')     // live
+    expect(cells[2]).toContain('540') // staged
+    expect(cells[3]).toBe('693')     // total
+  })
+
+  it('puts one summary row per test above its sections, with sums and the MAX usage', async () => {
+    const twoSat = {
+      ...REPORT,
+      sections: [
+        row({ family: 'sat', section: 'math', live: 1676, liveTests: 38, low: false, completedTests: 2, studentsWithTests: 2,
+          maxTestsOneStudent: 1, maxSeenOneStudent: 47, maxLiveSeenOneStudent: 47, maxSeenShareOfLive: 47 / 1676, studentsSeen: 2 }),
+        ...REPORT.sections,
+      ],
+    }
+    mockFetch(twoSat)
+    render(<BankUsagePanel />)
+    const table = await screen.findByRole('table')
+    const fams = within(table).getAllByTestId('usage-family-row')
+    expect(fams.map(f => f.querySelector('th')!.textContent)).toEqual([
+      'SAT: all sections', 'ISEE: all sections1 under 5 tests', 'MAP: all sections1 under 5 tests', 'TOEFL: all sections',
+    ])
+    const sat = within(fams[0]!).getAllByRole('cell').map(c => c.textContent)
+    expect(sat[0]).toBe('3,165')  // 1676 + 1489 live
+    expect(sat[2]).toBe('3,165')  // total
+    expect(sat[4]).toContain('10') // most tests: max(1, 10), not 11
+    expect(sat[5]).toContain('560') // most seen: max(47, 560), not 607
+    expect(sat[5]).toContain('37%') // the worse section's share: 551 / 1489
+    // The family row sits directly above its own sections.
+    const order = within(table).getAllByRole('row').slice(1).map(r => r.getAttribute('data-testid'))
+    expect(order.slice(0, 3)).toEqual(['usage-family-row', 'usage-section-row', 'usage-section-row'])
+  })
+
+  it('shows the most distinct questions one student has seen, and that as a share of live', async () => {
+    mockFetch(REPORT)
+    render(<BankUsagePanel />)
+    const table = await screen.findByRole('table')
+    const sat = within(table).getAllByTestId('usage-section-row').find(r => r.textContent?.includes('SAT Reading & Writing'))!
+    const seen = within(sat).getByTestId('seen-cell')
+    expect(seen).toHaveTextContent('560')
+    expect(seen).toHaveTextContent('37% of live')
+    expect(seen).toHaveTextContent('6 students served')
+    const map = within(table).getAllByTestId('usage-section-row').find(r => r.textContent?.includes('MAP Math'))!
+    expect(map).toHaveTextContent('None seen yet')
+    expect(screen.getByText(/6,633 exposure rows read in full/)).toBeInTheDocument()
+  })
+
+  it('phone cards carry the same fields as the table, grouped under each test', async () => {
+    mockFetch(REPORT)
+    render(<BankUsagePanel />)
+    await screen.findByRole('table')
+    expect(screen.getAllByTestId('usage-family-card')).toHaveLength(4)
+    const satCard = screen.getAllByTestId('usage-card').find(c => c.textContent?.includes('SAT Reading & Writing'))!
+    for (const label of ['Live questions', 'Staged questions', 'Total', 'Live tests', 'Most tests by one student', 'Most questions seen by one student', 'Students under 5 left']) {
+      expect(within(satCard).getByText(label)).toBeInTheDocument()
+    }
+    expect(satCard).toHaveTextContent('560 · 37%')
+    expect(satCard).toHaveTextContent('1,489')
   })
 })

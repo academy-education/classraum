@@ -58,7 +58,7 @@ export function StudyAdmin() {
 
       {/* View tabs — the underline idiom shared by the camp/payments pages. */}
       <div className="border-b border-gray-200">
-        <nav className="flex space-x-8 overflow-x-auto">
+        <nav className="flex gap-6 sm:gap-8 overflow-x-auto -mb-px">
           {(['lookup', 'subscriptions', 'payments', 'reports'] as Tab[]).map(k => (
             <button
               key={k}
@@ -189,8 +189,11 @@ function UserLookup() {
   }, [adminFetch])
 
   return (
-    <div className="grid md:grid-cols-[280px_1fr] gap-5">
-      <div>
+    // grid-cols-1 + min-w-0: a grid track defaults to min-width:auto, so
+    // one long unbroken email in the list stretched the single phone column
+    // to ~530px and the right side of every row was clipped off-screen.
+    <div className="grid grid-cols-1 md:grid-cols-[280px_minmax(0,1fr)] gap-5">
+      <div className="min-w-0">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
           <Input
@@ -243,7 +246,7 @@ function UserLookup() {
         </div>
       </div>
 
-      <div>
+      <div className="min-w-0">
         {loading && (
           <div className="space-y-5">
             {/* Identity + panel skeletons, matching the loaded layout */}
@@ -1026,7 +1029,7 @@ function ReportsQueue() {
     <div>
       <Card className="p-4 gap-0 mb-4">
         <Select value={status} onValueChange={setStatus}>
-          <SelectTrigger className="w-[200px]">
+          <SelectTrigger className="w-full sm:w-[200px]">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -1287,11 +1290,11 @@ function SubscriptionsList() {
           <Input value={q} onChange={e => setQ(e.target.value)} placeholder={String(t('admin.studyConsole.searchPlaceholder'))} className="pl-9" />
         </div>
         <Select value={status} onValueChange={v => { setStatus(v); setPage(1) }}>
-          <SelectTrigger className="w-[160px]"><SelectValue /></SelectTrigger>
+          <SelectTrigger className="w-full sm:w-[160px]"><SelectValue /></SelectTrigger>
           <SelectContent>{SUB_STATUS_OPTIONS.map(s => <SelectItem key={s} value={s}>{statusLabel(s)}</SelectItem>)}</SelectContent>
         </Select>
         <Select value={plan} onValueChange={v => { setPlan(v); setPage(1) }}>
-          <SelectTrigger className="w-[190px]"><SelectValue /></SelectTrigger>
+          <SelectTrigger className="w-full sm:w-[190px]"><SelectValue /></SelectTrigger>
           <SelectContent>{SUB_PLAN_OPTIONS.map(p => <SelectItem key={p} value={p}>{p === 'all' ? String(t('admin.studyConsole.subAllPlans')) : p}</SelectItem>)}</SelectContent>
         </Select>
         <TestFilterSelect value={test} onChange={v => { setTest(v); setPage(1) }} />
@@ -1477,11 +1480,11 @@ function PaymentsList() {
           <Input value={q} onChange={e => setQ(e.target.value)} placeholder={String(t('admin.studyConsole.searchPlaceholder'))} className="pl-9" />
         </div>
         <Select value={kind} onValueChange={v => { setKind(v); setPage(1) }}>
-          <SelectTrigger className="w-[180px]"><SelectValue /></SelectTrigger>
+          <SelectTrigger className="w-full sm:w-[180px]"><SelectValue /></SelectTrigger>
           <SelectContent>{PAY_KIND_OPTIONS.map(k => <SelectItem key={k} value={k}>{kindOptLabel(k)}</SelectItem>)}</SelectContent>
         </Select>
         <Select value={payStatus} onValueChange={v => { setPayStatus(v); setPage(1) }}>
-          <SelectTrigger className="w-[180px]"><SelectValue /></SelectTrigger>
+          <SelectTrigger className="w-full sm:w-[180px]"><SelectValue /></SelectTrigger>
           <SelectContent>{PAY_STATUS_OPTIONS.map(s => <SelectItem key={s} value={s}>{statusOptLabel(s)}</SelectItem>)}</SelectContent>
         </Select>
         <div className="text-xs text-gray-500 ml-auto">

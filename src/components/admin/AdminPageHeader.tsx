@@ -45,7 +45,10 @@ export function AdminPageHeader({ kicker, title, description, actions }: AdminPa
         )}
       </div>
       {actions && (
-        <div className="flex-shrink-0 flex flex-wrap items-center gap-2">
+        // Not flex-shrink-0: a non-shrinking action row is as wide as all its
+        // buttons on one line, so on a phone the last one (Refresh, Export
+        // CSV) was pushed past the edge and clipped. min-w-0 lets it wrap.
+        <div className="min-w-0 max-w-full flex flex-wrap items-center gap-2">
           {actions}
         </div>
       )}

@@ -272,7 +272,7 @@ export function AcademyDetailModal({ academy, onClose }: AcademyDetailModalProps
         <span className="inline-flex items-center gap-3 min-w-0">
           <Building2 className="h-6 w-6 text-primary flex-shrink-0" />
           <span className="flex flex-col min-w-0">
-            <span className="text-xl font-semibold text-gray-900">{academy.name}</span>
+            <span className="text-lg sm:text-xl font-semibold text-gray-900">{academy.name}</span>
             <span className="text-sm font-normal text-gray-500 break-all">ID: {academy.id}</span>
           </span>
         </span>

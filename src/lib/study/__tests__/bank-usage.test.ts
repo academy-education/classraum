@@ -1,8 +1,8 @@
 /** @jest-environment node */
 import {
-  aggregateBankUsage, depthFor, realStudentIds, studentSectionRows, tallyFullTests,
+  aggregateBankUsage, depthFor, familySummaries, realStudentIds, seenBySection, studentSectionRows, tallyFullTests,
   taskMixBySession, testsWorth, toeflPathFromTaskMix, snapshotAgeDays, snapshotIsStale,
-  type BankRowLite, type DepthSnapshot, type ExclusionTables, type SessionFactsRow,
+  type BankRowLite, type DepthSnapshot, type ExclusionTables, type SectionUsage, type SessionFactsRow,
 } from '../bank-usage'
 import { bankRowsPerTest } from '../bank-test-size'
 
@@ -223,5 +223,112 @@ describe('aggregateBankUsage', () => {
     const tally = tallyFullTests(sessions, new Set(), () => null)
     expect(tally.taken.size).toBe(0)
     expect(realStudentIds([], NO_EXCLUSIONS).size).toBe(0)
+  })
+})
+
+describe('seenBySection — most distinct questions served to one real student', () => {
+  const ex = (student_id: string, item_id: string) => ({ student_id, item_id })
+
+  it('counts DISTINCT items per student, so a re-serve does not count twice', () => {
+    const { bySection } = seenBySection([ex('s1', 'r0'), ex('s1', 'r0'), ex('s1', 'r1'), ex('s2', 'r0')], bank, real)
+    expect(bySection.get('ssat/reading')).toEqual({ maxSeen: 2, maxLiveSeen: 2, students: 2 })
+  })
+
+  it('takes the heaviest student, not the sum across students', () => {
+    const many = [
+      ...Array.from({ length: 30 }, (_, i) => ex('s1', `r${i}`)),
+      ...Array.from({ length: 50 }, (_, i) => ex('s2', `r${i + 30}`)),
+    ]
+    expect(seenBySection(many, bank, real).bySection.get('ssat/reading')!.maxSeen).toBe(50)
+  })
+
+  it('ignores non-real students entirely', () => {
+    const { bySection } = seenBySection([ex('intruder', 'r0'), ex('intruder', 'r1')], bank, real)
+    expect(bySection.size).toBe(0)
+  })
+
+  it("keys by the ITEM's section and separates live from staged and archived", () => {
+    const { bySection } = seenBySection([ex('s1', 'r0'), ex('s1', 'rs0'), ex('s1', 'ra0'), ex('s1', 'map1')], bank, real)
+    expect(bySection.get('ssat/reading')).toEqual({ maxSeen: 3, maxLiveSeen: 1, students: 1 })
+    expect(bySection.get('map/math')).toEqual({ maxSeen: 1, maxLiveSeen: 1, students: 1 })
+  })
+
+  it('reports exposures to items missing from the bank read, so the loader can refuse', () => {
+    expect(seenBySection([ex('s1', 'not-in-bank')], bank, real).unmatched).toBe(1)
+  })
+
+  it('works past 1000 rows (no page cap in the arithmetic)', () => {
+    const bigBank: BankRowLite[] = Array.from({ length: 1500 }, (_, i) => ({ id: `q${i}`, family: 'sat', section: 'math', verified: true, archived: false }))
+    const rows = bigBank.map(b => ex('s1', b.id))
+    expect(seenBySection(rows, bigBank, real).bySection.get('sat/math')!.maxSeen).toBe(1500)
+  })
+})
+
+describe('aggregateBankUsage with exposures', () => {
+  const withSeen = (exposures: Array<{ student_id: string; item_id: string }>) => {
+    const { bySection } = seenBySection(exposures, bank, real)
+    return aggregateBankUsage({ bank, reviews, studentRows: [], snapshot: snap, perTest: bankRowsPerTest, seen: bySection })
+  }
+  const by = (out: SectionUsage[], k: string) => out.find(s => `${s.family}/${s.section}` === k)!
+
+  it('total = live + staged, archived excluded', () => {
+    expect(by(withSeen([]), 'ssat/reading').total).toBe(85 + 81)
+  })
+
+  it('share of live = live items the heaviest student saw / live items', () => {
+    const exposures = Array.from({ length: 17 }, (_, i) => ({ student_id: 's1', item_id: `r${i}` }))
+    const r = by(withSeen(exposures), 'ssat/reading')
+    expect(r.maxSeenOneStudent).toBe(17)
+    expect(r.maxLiveSeenOneStudent).toBe(17)
+    expect(r.maxSeenShareOfLive).toBeCloseTo(17 / 85)
+  })
+
+  it('staged items seen raise the count but not the share of live', () => {
+    const exposures = [{ student_id: 's1', item_id: 'r0' }, { student_id: 's1', item_id: 'rs5' }]
+    const r = by(withSeen(exposures), 'ssat/reading')
+    expect(r.maxSeenOneStudent).toBe(2)
+    expect(r.maxSeenShareOfLive).toBeCloseTo(1 / 85)
+  })
+
+  it('a section nobody has seen reads 0 with exposures supplied, and NULL without them', () => {
+    expect(by(withSeen([]), 'ssat/reading').maxSeenOneStudent).toBe(0)
+    const noSeen = aggregateBankUsage({ bank, reviews, studentRows: [], snapshot: snap, perTest: bankRowsPerTest })
+    expect(by(noSeen, 'ssat/reading').maxSeenOneStudent).toBeNull()
+    expect(by(noSeen, 'ssat/reading').maxSeenShareOfLive).toBeNull()
+  })
+
+  it('no live items: the share is null, not a division by zero', () => {
+    const out = aggregateBankUsage({
+      bank: [{ id: 'x1', family: 'map', section: 'language', verified: false, archived: false }],
+      reviews: [], studentRows: [], snapshot: { measured: 'x', sections: {} }, perTest: bankRowsPerTest,
+      seen: new Map([['map/language', { maxSeen: 1, maxLiveSeen: 0, students: 1 }]]),
+    })
+    expect(out[0]!.maxSeenShareOfLive).toBeNull()
+  })
+})
+
+describe('familySummaries', () => {
+  const sec = (family: string, section: string, o: Partial<SectionUsage>) =>
+    ({ family, section, live: 0, staged: 0, total: 0, completedTests: 0, maxTestsOneStudent: 0, maxSeenOneStudent: null,
+      maxSeenShareOfLive: null, studentsUnder5Left: 0, low: false, ...o }) as SectionUsage
+
+  it('sums question counts, but takes the MAX (not the sum) of per-student usage', () => {
+    const [sat] = familySummaries([
+      sec('sat', 'math', { live: 100, staged: 10, total: 110, maxTestsOneStudent: 3, maxSeenOneStudent: 120, maxSeenShareOfLive: 0.2, completedTests: 5 }),
+      sec('sat', 'reading_writing', { live: 200, staged: 0, total: 200, maxTestsOneStudent: 7, maxSeenOneStudent: 90, maxSeenShareOfLive: 0.45, completedTests: 9, low: true }),
+    ])
+    expect(sat).toMatchObject({ family: 'sat', live: 300, staged: 10, total: 310, completedTests: 14,
+      maxTestsOneStudent: 7, maxSeenOneStudent: 120, maxSeenShareOfLive: 0.45, lowSections: 1 })
+    expect(sat!.sections).toHaveLength(2)
+  })
+
+  it('keeps family order and lists each family once', () => {
+    const out = familySummaries([sec('sat', 'math', {}), sec('act', 'math', {}), sec('act', 'english', {})])
+    expect(out.map(f => [f.family, f.sections.length])).toEqual([['sat', 1], ['act', 2]])
+  })
+
+  it('unknown seen stays null, a known 0 stays 0', () => {
+    expect(familySummaries([sec('map', 'math', {})])[0]!.maxSeenOneStudent).toBeNull()
+    expect(familySummaries([sec('map', 'math', { maxSeenOneStudent: 0 }), sec('map', 'reading', {})])[0]!.maxSeenOneStudent).toBe(0)
   })
 })
