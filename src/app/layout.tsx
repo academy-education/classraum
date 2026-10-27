@@ -8,6 +8,7 @@ import { ToastProvider } from '@/components/ui/ToastProvider'
 import { GlobalHaptics } from '@/components/GlobalHaptics'
 import { NativeAuthLinkOpener } from '@/components/NativeAuthLinkOpener'
 import { NativeStatusBar } from '@/components/NativeStatusBar'
+import { DatadogAppRouter } from '@datadog/browser-rum-nextjs'
 import { SupportedLanguage } from '@/locales'
 
 const montserrat = Montserrat({
@@ -143,6 +144,8 @@ export default function RootLayout({
               {/* Native only: email auth links must be LOADED, not routed — see the component. */}
               <NativeAuthLinkOpener />
               <NativeStatusBar />
+              {/* Route-change views for Datadog RUM (inert unless instrumentation-client.ts initialised it). */}
+              <DatadogAppRouter />
             </CommandPaletteProvider>
           </LanguageWrapper>
         </AuthProvider>
