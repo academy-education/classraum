@@ -1,0 +1,70 @@
+{
+ "items": [
+  {
+   "id": "ASV9a-P5-Q4",
+   "cold_pick": "D",
+   "cold_defensible": [],
+   "cold_note": "Exp 1 (all K, 20.0 cm2): 75g->3.0, 150g->6.0, 225g->9.0 cm; depth = 0.04 cm/g x mass, linear through all three rows. 300 g -> 12.0 cm > 10.0 cm height, so it cannot float upright. A (10.0) and B (9.0) misextrapolate; C contradicts the table (all areas 20.0).",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": "Shared passage (Exp. 1 / Exp. 2 text): 'Four cylinders of a solid, unnamed plastic ... each with a cross-sectional area of 20.0 cm2 but with different masses', and Exp. 2 calls it 'the same solid plastic'. Every cylinder is 10.0 cm tall, so all have volume 200 cm3; one solid, non-absorbing material at fixed volume has one mass (density fixed). 75, 150, 225, 300 g of the same solid plastic at identical dimensions is physically impossible (implied densities 0.375, 0.75, 1.125, 1.5 g/cm3). The flotation numbers are otherwise internally consistent (Liquid K = 1.25 g/cm3 from every Exp. 1 row; 300 g at 1.5 g/cm3 sinks), but the setup breaks conservation of density for one material. Passage-level: it affects the whole sc9a-p5 stimulus.",
+   "no_source_needed": "yes",
+   "recognised_real_data": null,
+   "free_elimination": {
+    "letters": [
+     "B",
+     "C"
+    ],
+    "how": "Stem says the cylinder SANK. B says the needed depth is LESS than its height, which would let it float, so it contradicts the stem. C is self-contradictory physics (a larger area displaces more liquid at a given depth, not less). A is weak too ('equals its height exactly' is a borderline, not a reason to sink). Only D gives a reason to sink."
+   },
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "no",
+   "difficulty": "easy",
+   "note": "Recomputed: 3.0/75 = 6.0/150 = 9.0/225 = 0.04 cm/g, linear over all three floating rows; 300 g -> 12.0 cm > 10.0 cm. Key is correct. no_source_needed yes: with the passage and table covered, the stem's 'sank' plus each option's own stated reason selects D. Needed depth > height is the only stated mechanism that explains sinking. The 12.0 value is not checkable blind, but it does not need to be: the option carries its own comparison ('more than its height'). Free elimination kills 2 distractors (B, C)."
+  },
+  {
+   "id": "ASV9a-P7-Q1",
+   "cold_pick": "C",
+   "cold_defensible": [],
+   "cold_note": "Student 1: 'After ice covers the lake in November ... clay and diatom shells settle slowly through the winter to form the dark layer.' Diatoms grow summer/fall (B/D lure) but the layer forms in winter; silt (light layer) is spring/summer.",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": null,
+   "free_elimination": null,
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "yes",
+   "difficulty": "easy",
+   "note": "Student 1: 'clay and diatom shells settle slowly through the winter to form the dark layer.' no_source_needed yes (moderate confidence): the passage is the textbook glacial-varve model (light silt summer layer, dark clay winter layer under ice), which is standard high-school Earth science (e.g. Regents Earth Science). A student who knows varves picks Winter for 'the dark layer' without reading Student 1. Not flagged as recognised_real_data because there is no dataset, only the canonical model. A student without varve knowledge cannot pick it blind (Fall/Summer are plausible), so this rests on background knowledge rather than a free elimination."
+  },
+  {
+   "id": "ASV9a-P7-Q3",
+   "cold_pick": "A",
+   "cold_defensible": [],
+   "cold_note": "Student 1 predicts couplets above a layer of known age = its age in years; 348 vs 350 nearly equal. D is false (348 < 350). B restates Student 2's premise but does not explain why this finding fits Student 2 better; Student 2 only says the count need not equal age. C's reasoning (ash is a separate layer) does not bear on either view.",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": null,
+   "free_elimination": {
+    "letters": [
+     "D",
+     "C"
+    ],
+    "how": "D says 348 is GREATER than 350, which is false from the stem's own numbers (a comparison, not arithmetic). C's reason (the ash lies beneath the couplets above it) is a tautology that bears on neither view. B gives a reason that ignores the stated finding."
+   },
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "no",
+   "difficulty": "easy",
+   "note": "Key correct: Student 1 predicts count = age; 348 is close to 350. Student 2 says only that the count 'need not equal' age, which is weaker. no_source_needed yes: the options carry each viewpoint's prediction in their reasons ('Student 1, because ... nearly equals the ash's age in years'), so the key can be picked without reading the viewpoints. A is the only option whose reason actually uses the stated finding correctly. Free elimination kills 2 (D by the stem's numbers, C as irrelevant), leaving A vs B, and B's reason does not engage the data."
+  }
+ ],
+ "batch": {
+  "cross_item_pattern": null
+ }
+}

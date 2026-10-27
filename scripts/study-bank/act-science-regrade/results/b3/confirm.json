@@ -1,0 +1,52 @@
+{
+ "items": {
+  "ASV6b-P2-Q2": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Every cloud-base cell equals 125 m x (T - dew point) within 20 m, the standard meteorology rule (g1, g2, r1)."
+  },
+  "ASV6b-P2-Q3": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Same table: the stem numbers alone give 10 x 125 = 1,250 m."
+  },
+  "ASV6b-P7-Q1": {
+   "fact": "confirmed",
+   "scope": "passage",
+   "why": "Coordinator recomputation: perihelion 2.0 AU, aphelion 6.0 AU -> a = 4.0 AU -> Kepler period 8.0 yr; the passage states 7.4 yr. Physically impossible orbit."
+  },
+  "ASV6b-P7-Q2": {
+   "fact": "confirmed",
+   "scope": "passage",
+   "why": "Coordinator recomputation: perihelion 2.0 AU, aphelion 6.0 AU -> a = 4.0 AU -> Kepler period 8.0 yr; the passage states 7.4 yr. Physically impossible orbit."
+  },
+  "ASV6b-P7-Q3": {
+   "fact": "confirmed",
+   "scope": "passage",
+   "why": "Coordinator recomputation: perihelion 2.0 AU, aphelion 6.0 AU -> a = 4.0 AU -> Kepler period 8.0 yr; the passage states 7.4 yr. Physically impossible orbit."
+  },
+  "ASV6b-P7-Q4": {
+   "fact": "confirmed",
+   "scope": "passage",
+   "why": "Coordinator recomputation: perihelion 2.0 AU, aphelion 6.0 AU -> a = 4.0 AU -> Kepler period 8.0 yr; the passage states 7.4 yr. Physically impossible orbit."
+  },
+  "ASV6b-P7-Q5": {
+   "fact": "confirmed",
+   "scope": "passage",
+   "why": "Coordinator recomputation: perihelion 2.0 AU, aphelion 6.0 AU -> a = 4.0 AU -> Kepler period 8.0 yr; the passage states 7.4 yr. Physically impossible orbit."
+  },
+  "ASV6b-P7-Q6": {
+   "fact": "confirmed",
+   "scope": "passage",
+   "why": "Coordinator recomputation: perihelion 2.0 AU, aphelion 6.0 AU -> a = 4.0 AU -> Kepler period 8.0 yr; the passage states 7.4 yr. Physically impossible orbit."
+  }
+ },
+ "batch": {
+  "pattern": {
+   "named_by_both": false,
+   "rule": null,
+   "decides": [],
+   "why": "g1 named a single-condition design rule; g2 named range-bracket and modal-combination rules. Different rules: recorded, nothing drops (prereg R8)."
+  }
+ }
+}

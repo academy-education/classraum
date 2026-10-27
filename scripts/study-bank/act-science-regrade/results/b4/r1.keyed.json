@@ -1,0 +1,203 @@
+{
+ "items": [
+  {
+   "id": "ASV7a-P3-Q4",
+   "cold_pick": "C",
+   "cold_defensible": [],
+   "cold_note": "Exp.1 20 C row: 0.05, 0.09, 0.20, 0.38, 0.55. Increments 0.04, 0.11, 0.18, 0.17; still rising 0.38->0.55 from 18 h to 24 h, no plateau (cf. 30 C 0.80->0.82, 0.5 g/L 0.40->0.41->0.41 which did level off). So 0.55 is not shown to be a maximum. A is true (20 C lowest at 6/12/18/24 h: 0.09<0.12<0.22, 0.20<0.30<0.61, 0.38<0.52<0.80, 0.55<0.66<0.82) but does not bear on a maximum; B true but irrelevant; D false (0.55<0.66).",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": null,
+   "free_elimination": {
+    "letters": [
+     "A",
+     "B",
+     "D"
+    ],
+    "how": "The stem asks whether 0.55 is a MAXIMUM for the 20 C flask. A, B and D all justify by comparing the 20 C flask with other flasks, which cannot bear on whether that one flask stopped rising. C is the only option that addresses leveling off, and it carries its own numbers (0.38 -> 0.55)."
+   },
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "no",
+   "difficulty": "easy",
+   "note": "Recomputed: 20 C row 0.05/0.09/0.20/0.38/0.55, last increment +0.17, no plateau (contrast 30 C +0.02 and 0.5 g/L +0.00). A true but irrelevant; D false (0.55 < 0.66). no_source_needed yes: with table covered, the logic of a maximum (needs a plateau) plus C stating the still-rising values picks C. Shared data plausible (0.5 g/L plateau 0.41 is half of 1 g/L 0.82; optimum at 30 C)."
+  },
+  {
+   "id": "ASV7a-P5-Q5",
+   "cold_pick": "A",
+   "cold_defensible": [],
+   "cold_note": "Exp.2 holds mass 100 g and amplitude 2.0 cm fixed, varies only spring (20/40/60 coils), so differences in extension (4.0/8.0/12.0) and time (4.01/5.68/6.95) can be attributed to coil number. B false: extensions differ. C: amplitude not varied in Exp.2. D: mass not varied in Exp.2.",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": null,
+   "free_elimination": {
+    "letters": [
+     "C",
+     "D"
+    ],
+    "how": "The stem says amplitude and mass were held the same for every spring, so the experiment cannot compare how amplitude (C) or mass (D) affects anything."
+   },
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "no",
+   "difficulty": "easy",
+   "note": "Recomputed: Exp.2 100 g, 2.0 cm for all; extensions 4.0/8.0/12.0, so B false. no_source_needed yes: generic controlled-variables item; once C/D are killed from the stem, B (same mass on different springs gives same stretch) is false to anyone who knows springs differ in stiffness, and A is the textbook purpose of holding variables constant. Number of coils is the only thing left to differ among springs."
+  },
+  {
+   "id": "ASV7a-P5-Q6",
+   "cold_pick": "C",
+   "cold_defensible": [],
+   "cold_note": "Need two trials with same extension but different spring and mass. Spring 1 200 g: ext 8.0, 5.68 s; Spring 2 100 g: ext 8.0, 5.68 s. Same extension, same time, different spring and mass -> supports. A: 50 g/Spring1 ext 2.0, 2.84 s vs Spring3 100 g ext 12.0, 6.95 s; differing extension and differing time is consistent with, not contradicting, the hypothesis. B: same spring, only mass varies, does not test 'no matter which spring'. D: extensions differ (8.0 vs 12.0), so differing times do not contradict.",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": null,
+   "free_elimination": {
+    "letters": [
+     "A",
+     "B"
+    ],
+    "how": "A: two trials with different extensions and different times cannot contradict a hypothesis that time depends on extension. B: both trials use Spring 1, so they cannot test \"no matter which spring\". Neither needs the table."
+   },
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "no",
+   "difficulty": "medium",
+   "note": "Recomputed: S1 200 g ext 8.0, 5.68 s; S2 100 g ext 8.0, 5.68 s. Only same-extension, different-spring-and-mass pair in Table 1. Data obey T = 2*pi*sqrt(x/g) exactly (2.0 cm -> 0.284 s, 4.0 -> 0.401, 8.0 -> 0.568, 12.0 -> 0.695), so the hypothesis is real physics, consistent, not a fact error. no_source_needed yes: C is the only option that pairs equal extensions and states its own values; D reasons from equal mass, not equal extension; and a student who knows T = 2*pi*sqrt(extension/g) for a hanging spring knows the hypothesis is true, which leaves only the supporting options."
+  },
+  {
+   "id": "ASV7a-P6-Q2",
+   "cold_pick": "B",
+   "cold_defensible": [],
+   "cold_note": "Scientist 1: deep water warmer in August because sunlight is stronger in summer. Test = track deep-water temperature against sunlight strength over the year. A, C, D are single or irrelevant measurements (salinity once, air temp once, depth) that do not relate seasonal deep temperature to sunlight.",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": null,
+   "free_elimination": {
+    "letters": [
+     "A",
+     "C",
+     "D"
+    ],
+    "how": "The stem asks about a SEASONAL difference (August vs February). A and C are single measurements at one time and D is the lake depth; none can show how deep-water temperature changes across seasons. B is the only option measured repeatedly through the year."
+   },
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "no",
+   "difficulty": "easy",
+   "note": "Key matches S1 (\"warmer in August than in February because sunlight is stronger in summer\"). Shared stimulus physics checked: 250 g/kg brine at 54 C (~1.17-1.19 g/cm3) is denser than 40 g/kg water at 28 C (~1.02); salt-gradient solar-pond heating is real. Resembles real heliothermal lakes (e.g. Medve, Solar Lake), but the figures do not match any dataset I know, so not recorded as real data."
+  },
+  {
+   "id": "ASV7a-P6-Q4",
+   "cold_pick": "B",
+   "cold_defensible": [],
+   "cold_note": "S1: deep water so salty that even at 54 C it is denser than the water above. S2: spring water so salty it is denser than the less salty water above. Both: denser despite warmer. A: S1 says heat lost within weeks after mixing (S2 says warm again in days) - not shared. C: only S1 (S2 says dissolved buried salt deposits). D: only S1.",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": null,
+   "free_elimination": null,
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "no",
+   "difficulty": "medium",
+   "note": "Recomputed from text: S1 \"even at 54 C, it is denser\"; S2 \"although it is hot, the spring water is so salty that it is denser\". A = S2 only (S1: loses heat within weeks). C = S1 only (S2: buried salt deposits). D = S1 only. no_source_needed yes: warm water can only stay below cooler water if it is denser, so B is physically required of ANY explanation of a stable warm bottom layer, while A, C and D are claims about the heat or salt source that two rival explanations would dispute. The CV \"agree\" key is the non-mechanistic premise; see the batch note."
+  },
+  {
+   "id": "ASV7a-P7-Q6",
+   "cold_pick": "C",
+   "cold_defensible": [],
+   "cold_note": "S1's calcium claim: Species M builds normal shells at as little as 4 mg/L (and the drop to 6 mg/L is too small to matter). C varies calcium (4, 8, 14 mg/L) with fish excluded and compares shell thickness at a given length - directly tests it, and against S2's 8 mg/L threshold. A is correlational field data with no calcium manipulation. B holds calcium at 14 and varies fish (tests predation). D confounds 4 mg/L with fish and measures predation only.",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": null,
+   "free_elimination": {
+    "letters": [
+     "A",
+     "B",
+     "D"
+    ],
+    "how": "The stem asks for an experiment on CALCIUM NEEDS. A does not change calcium at all (correlational), and B (14 mg/L only) and D (4 mg/L only) each hold calcium at a single level and add fish, measuring predation. C is the only option that varies calcium."
+   },
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "no",
+   "difficulty": "medium",
+   "note": "Key matches S1 (\"can build normal shells in water with as little as 4 mg/L calcium\"); C includes 4 mg/L, excludes fish, and measures thickness at a given length, which is the outcome S1 and S2 dispute. no_source_needed yes: standard controlled-experiment logic picks it from the stem alone."
+  },
+  {
+   "id": "ASV7b-P4-Q4",
+   "cold_pick": "D",
+   "cold_defensible": [],
+   "cold_note": "Exp.3 series: 2.0, 4.0, 6.0, 8.0 cm at 0.5/1.0/1.5/2.0 N. Exp.1 40 coils: 2.0, 4.0, 6.0, 8.0. Identical at all four weights -> consistent. A and B false (ratio 1, not 2 or 0.5). C false and irrelevant: parallel 0.5/1.0/1.5/2.0 differs from 40-coil, and the hypothesis is about end-to-end (series).",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": null,
+   "free_elimination": {
+    "letters": [
+     "C"
+    ],
+    "how": "The stem asks about springs hooked END TO END; C cites the parallel pair, which is not what the hypothesis describes."
+   },
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "no",
+   "difficulty": "easy",
+   "note": "Recomputed: series 2.0/4.0/6.0/8.0 = 40-coil 2.0/4.0/6.0/8.0 at every weight; ratio 1, so A and B are false. Shared table checked against real physics: k proportional to 1/N (20/40/60 coils give 1x/2x/3x extension), k proportional to 1/D^3 (15 mm: 3.375x gives 3.4/6.75/10.1/13.5; 20 mm: 8x), series doubles and parallel halves extension. All correct, so no fact error. no_source_needed yes: textbook series-spring law (two identical springs in series have k/2) together with k proportional to 1/N gives \"same extension\" with no table."
+  },
+  {
+   "id": "ASV7b-P6-Q3",
+   "cold_pick": "C",
+   "cold_defensible": [],
+   "cold_note": "Both accept the field observation (dark gray at dawn, pale cream at midday): S1 explains by cold at dawn/hot at midday, S2 by shadowed gray dunes at dawn/pale sunlit sand at midday. A and B are S2 only; D is S1 only.",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": null,
+   "free_elimination": null,
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "no",
+   "difficulty": "easy",
+   "note": "Key matches both: S1 explains dawn darkening as cold-lizard warming and S2 as matching shadowed gray dunes; both accept that lizards are darker at dawn. A and B = S2 only; D = S1 only. no_source_needed yes: B and D are mutually exclusive control signals (eyes vs body temperature) and A goes with B, so the three mechanism options split between two rival explanations. The remaining option C is an observation, and background knowledge that reptiles darken when cold makes it plausible. Not enough without the reading to be certain, but enough to pick it."
+  },
+  {
+   "id": "ASV7b-P7-Q4",
+   "cold_pick": "A",
+   "cold_defensible": [],
+   "cold_note": "S3: film becomes thinner as ice gets colder, so ice less slippery at very low temperatures -> at -40 C thinner film, greater friction. B contradicts S3 (film depends on temperature). C reverses direction. D: pressure is S1's mechanism; S3 says the film needs no pressure, and same blade gives same pressure.",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": null,
+   "free_elimination": {
+    "letters": [
+     "D"
+    ],
+    "how": "The stem fixes the same blade at the same speed, so nothing in it changes the pressure; D invokes a pressure change that the stem gives no source for."
+   },
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "yes",
+   "difficulty": "easy",
+   "note": "Key is one sentence of S3: \"It becomes thinner as the ice gets colder, so ice should become less slippery at very low temperatures.\" B contradicts this, C reverses it, and D is S1 mechanism. Shared stimulus checked: steel-on-ice friction of about 1/10 to 1/20 of dry solids and a ~0.3 C pressure-melting depression are reasonable; the surface premelting layer (S3) is real science. no_source_needed yes: real-world knowledge that ice gets less slippery at very low temperatures, and that the quasi-liquid layer thins with cold, picks A over its reverse C."
+  }
+ ],
+ "batch": {
+  "cross_item_pattern": null
+ }
+}

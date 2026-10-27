@@ -1,0 +1,93 @@
+{
+ "items": [
+  {
+   "id": "ASV8a-P7-Q3",
+   "cold_pick": "C",
+   "cold_defensible": [],
+   "cold_note": "Student 2: 'Powder sealed in moisture-proof bags will cake if it is heavily loaded'; bottom layer carries 175 kg; Student 1 says sealed powder will not cake however loaded, so the result contradicts S1. A is false (bottom sack carries load); B/D cite S1, whom the result refutes.",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": null,
+   "free_elimination": {
+    "letters": [
+     "A",
+     "B"
+    ],
+    "how": "From the stem alone: A says the powder 'carried no load', but the stem puts the sacks in the bottom layer of an 8-high stack. B's reason (humid floor) cannot apply to sacks the stem says were sealed in moisture-proof bags."
+   },
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "no",
+   "difficulty": "easy",
+   "note": "Key recomputed: S2 explicitly predicts sealed and heavily loaded powder cakes; S1 explicitly predicts it will not. Why no_source_needed is yes: with A and B killed by the stem, C is the only remaining option whose reason restates the result (caked under load while dry). D cites 'kept dry' as support for a theory without saying why that would support it. You can pick C without reading which student holds which view. This is the usual shape of an ACT CV 'cited as evidence by' item, so treat it as borderline, not a clear defect."
+  },
+  {
+   "id": "ASV8b-P3-Q4",
+   "cold_pick": "A",
+   "cold_defensible": [],
+   "cold_note": "Exp 2 varies %blue at 200 umol/m2/s; repeating it at 400 (higher intensity) compares the %blue effect on stem length across intensity. B changes duration, C keeps 200 and Exp 1 is light colour, D varies temperature in an intensity series at fixed 25% blue.",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "no",
+   "recognised_real_data": null,
+   "free_elimination": {
+    "letters": [
+     "B",
+     "D"
+    ],
+    "how": "The stem asks about a higher light intensity. B changes the growth period and D changes the temperature, so neither varies intensity. That leaves A (400) and C (200), and 'higher' points to the larger flux without the passage."
+   },
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "no",
+   "difficulty": "easy",
+   "note": "Checked the table for consistency: the shared conditions match across experiments (Exp1 red = Exp2 0% = 180/95; Exp1 blue = Exp2 100% = 150/40; 50% blue = 210/55 in both; Exp2 25% = Exp3 200 = 235/62). C is wrong because Exp 1 varies light colour, not %blue, and is already at 200. Only the passage separates A from C ('which experiment varies %blue'), but the stem-plus-options tell gets there without it."
+  },
+  {
+   "id": "ASV8b-P6-Q2",
+   "cold_pick": "B",
+   "cold_defensible": [],
+   "cold_note": "S1: 'bacteria decomposing dead plant material on the lake bottom use up oxygen all winter'; S2: ammonia 'which bacteria release as they decompose dead plant material on the lake bottom'. A is S2 only (S1 says photosynthesis stops), C is S2 only, D is S1 only (S2 says DO stays high).",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": null,
+   "free_elimination": null,
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "no",
+   "difficulty": "easy",
+   "note": "Key verified: both scientists state that bacteria decompose dead plant material on the bottom (S1: it uses up oxygen; S2: it releases ammonia). A and C belong to S2 only, and D to S1 only (S2 says DO stays high). Why no_source_needed is yes: B is the only option that is a general background fact (decomposition happens). A, C and D are specific mechanism claims with thresholds of the kind two rival explanations would dispute. A student could pick the 'uncontested common ground' option without reading the viewpoints. I could not name a mechanical elimination, so free_elimination is null."
+  },
+  {
+   "id": "ASV8b-P7-Q2",
+   "cold_pick": "B",
+   "cold_defensible": [],
+   "cold_note": "S1: calm atmosphere, very little heat moves from dayside, hottest point at the substellar point. S2 predicts a 30 deg east shift, so finding supports S1. A misattributes S2's winds to S1; C and D cite S2, whom the finding contradicts.",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": null,
+   "free_elimination": {
+    "letters": [
+     "A",
+     "D"
+    ],
+    "how": "A's reason (winds blowing west to east) is the mechanism that would shift a hot spot, so it cannot support a hot spot directly beneath the star. D's reason (absorbing nearly all starlight) says nothing about where the hottest point is."
+   },
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "yes",
+   "difficulty": "easy",
+   "note": "Key verified: S1 says the atmosphere is calm, little heat leaves the dayside, and the hottest point is substellar; S2 predicts a 30 deg east shift. Why no_source_needed is yes: from background physics alone, winds carrying heat shift the hot spot. So 'little heat moves away from the dayside' is the only reason that fits a substellar hot spot, and the key falls out without the viewpoints. The setup echoes real hot-Jupiter results (eastward hot-spot offsets from superrotating winds, e.g. HD 189733b), but the numbers are not a specific published dataset I can identify, so recognised_real_data is null. Side note on the passage only: 55% absorption would give about 1900 x 0.55^0.25 = ~1640 K, not 1400 K. That sits inside Scientist 1's viewpoint and is not a key error."
+  }
+ ],
+ "batch": {
+  "cross_item_pattern": null
+ }
+}

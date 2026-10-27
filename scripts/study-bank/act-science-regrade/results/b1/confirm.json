@@ -1,0 +1,118 @@
+{
+ "items": {
+  "ASV5a-P4-Q2": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Handbook freezing-point values (seawater -1.9 C at 35 g/kg, colligative constants)."
+  },
+  "ASV5a-P4-Q3": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Handbook freezing-point values (seawater -1.9 C at 35 g/kg, colligative constants)."
+  },
+  "ASV5a-P4-Q5": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Handbook freezing-point values (seawater -1.9 C at 35 g/kg, colligative constants)."
+  },
+  "ASV5a-P4-Q6": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Handbook freezing-point values (seawater -1.9 C at 35 g/kg, colligative constants)."
+  },
+  "ASV5a-P5-Q3": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Canonical salinity vs latitude (evaporation minus precipitation) profile."
+  },
+  "ASV5a-P5-Q5": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Canonical salinity vs latitude (evaporation minus precipitation) profile."
+  },
+  "ASV5a-P7-Q2": {
+   "real_data": "confirmed",
+   "scope": "item",
+   "why": "Cascadia ghost forest; the hypothetical is the real tree-ring result."
+  },
+  "ASV5b-P1-Q1": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Every period is T = 2*pi*sqrt(L/g) incl. the standard large-angle correction."
+  },
+  "ASV5b-P1-Q2": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Every period is T = 2*pi*sqrt(L/g) incl. the standard large-angle correction."
+  },
+  "ASV5b-P1-Q3": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Every period is T = 2*pi*sqrt(L/g) incl. the standard large-angle correction."
+  },
+  "ASV5b-P1-Q4": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Every period is T = 2*pi*sqrt(L/g) incl. the standard large-angle correction."
+  },
+  "ASV5b-P2-Q1": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Handbook refractive indices with exact Snell angles."
+  },
+  "ASV5b-P2-Q3": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Handbook refractive indices with exact Snell angles."
+  },
+  "ASV5b-P2-Q4": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Handbook refractive indices with exact Snell angles."
+  },
+  "ASV5b-P2-Q5": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Handbook refractive indices with exact Snell angles."
+  },
+  "ASV5b-P5-Q1": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Handbook resistivities (Cu 0.086, Fe 0.49, constantan 2.50, nichrome 5.60 ohm)."
+  },
+  "ASV5b-P5-Q2": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Handbook resistivities (Cu 0.086, Fe 0.49, constantan 2.50, nichrome 5.60 ohm)."
+  },
+  "ASV5b-P5-Q3": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Handbook resistivities (Cu 0.086, Fe 0.49, constantan 2.50, nichrome 5.60 ohm)."
+  },
+  "ASV5b-P5-Q5": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Handbook resistivities (Cu 0.086, Fe 0.49, constantan 2.50, nichrome 5.60 ohm)."
+  },
+  "ASV5b-P5-Q6": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Handbook resistivities (Cu 0.086, Fe 0.49, constantan 2.50, nichrome 5.60 ohm)."
+  }
+ },
+ "batch": {
+  "pattern": {
+   "named_by_both": true,
+   "rule": "In a Conflicting-Viewpoints item whose stem gives a new (hypothetical or stated) finding and asks which viewpoint/scientist/hypothesis it strengthens, supports, weakens or is consistent with, and whose options each read '<scientist/hypothesis>, because <reason>', pick the option whose because-clause restates the finding's own content in the same direction (same quantity, same direction of change).",
+   "decides": [
+    "ASV5a-P3-Q3",
+    "ASV5a-P7-Q2",
+    "ASV5a-P7-Q4",
+    "ASV5b-P6-Q4",
+    "ASV5b-P7-Q5"
+   ],
+   "why": "Both graders named the same CV because-clause rule. Applied to all 80 items from the cold packet by a fresh agent (scratchpad/act-science-regrade/_r8/b1/picks.json) before the key was opened; decides = items where the rule picked exactly one option and it is the key."
+  }
+ }
+}

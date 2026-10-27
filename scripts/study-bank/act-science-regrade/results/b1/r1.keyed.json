@@ -1,0 +1,199 @@
+{
+ "items": [
+  {
+   "id": "ASV5a-P4-Q6",
+   "cold_pick": "B",
+   "cold_defensible": [],
+   "cold_note": "Exp 1: NaCl drops 1.7 C per 0.5 mol/kg, linear (0,-1.7,-3.4,-5.1,-6.8). Exp 2: 1.0 mol/kg CaCl2 = -5.0 (vs NaCl -3.4, glucose -1.9). Halving CaCl2 concentration by the Exp 1 linear scaling gives ~-2.5 C, i.e. between -1.7 and -3.4. A would need 0.5 CaCl2 to beat 0.5 NaCl (-1.7) the wrong way; C and D exceed the 1.0 mol/kg value.",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": "Table values are real freezing-point-depression data / textbook Kf=1.86 output: glucose 1 mol/kg -1.9 (1.86), NaCl 1 mol/kg -3.4, seawater 35 g/kg -1.9 (the standard textbook seawater freezing point). Passage-level (shared table); coordinator to confirm whether it rises to R5.",
+   "free_elimination": null,
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "no",
+   "difficulty": "medium",
+   "note": "Recomputed: Exp 1 linear at -3.4 per mol/kg; CaCl2 1.0 = -5.0, so 0.5 ~ -2.5, only B's interval fits. no_source reason: dTf = i*Kf*m = 3 x 1.86 x 0.5 = -2.8 C lands in B with no table, because the option intervals are fixed numbers; a student who knows the colligative formula needs neither passage nor figure."
+  },
+  {
+   "id": "ASV5a-P6-Q4",
+   "cold_pick": "D",
+   "cold_defensible": [],
+   "cold_note": "Exp 2: rebound varies with ball temperature 0.52 (-10 C) to 0.88 (60 C), so holding the ball at 20 C controls temperature as a variable when surface is changed. A: Exp 3 steel 0.8 = Exp 1 1.00 m 0.8, but equalising with Exp 1 is not the purpose. B: 20 C is not the max (60 C gives 0.88). C: ball warmed, not surfaces; not supported by Exp 2.",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": null,
+   "free_elimination": null,
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "no",
+   "difficulty": "easy",
+   "note": "Exp 2 range 0.52-0.88 m confirms temperature matters; 20 C is not the max (B false); surfaces were not conditioned (C). no_source reason: D is the generic controlled-variable rationale; with the stem saying the ball was held at a fixed temperature, general experimental-design knowledge picks D without Exp 2's data. Not a defect of the key."
+  },
+  {
+   "id": "ASV5a-P6-Q6",
+   "cold_pick": "D",
+   "cold_defensible": [],
+   "cold_note": "Ratios 0.4/0.50, 0.8/1.00, 1.2/1.50, 1.6/2.00 all = 0.80, so directly proportional. A, C contradict increasing rebound; B false (rebound < drop at every height).",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": null,
+   "free_elimination": {
+    "letters": [
+     "B"
+    ],
+    "how": "Non-sequitur: a rebound height greater than the drop height says nothing about proportionality (and is physically impossible for a dropped ball)."
+   },
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "no",
+   "difficulty": "easy",
+   "note": "Recomputed all four ratios = 0.80. no_source reason: D's reason is the definition of direct proportionality (constant multiple); A (rebound falls with drop height) and C (same rebound at every height) are ruled out by everyday knowledge that a ball dropped from higher bounces higher; B is a non-sequitur. Key pickable from stem and options alone."
+  },
+  {
+   "id": "ASV5a-P7-Q5",
+   "cold_pick": "B",
+   "cold_defensible": [],
+   "cold_note": "Passage states living trees die when salt water reaches roots; S1 has advancing salt water killing trees, S2 has tidal water flooding the soil after subsidence. Both mechanisms end in salt water at roots. C is S1 only, D is S2 only; A: both attribute sand to waves (storm vs tsunami) but neither says burial killed the trees.",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": "The scenario is the canonical Cascadia 'ghost forest' (Copalis River, WA) evidence for the 1700 earthquake: drowned cedars, sharp soil/mud contact, tsunami sand thinning upstream. Recognisable, though this item does not depend on knowing it.",
+   "free_elimination": {
+    "letters": [
+     "C",
+     "D"
+    ],
+    "how": "C (gradual sea-level rise for centuries) and D (sudden land drop) are mutually exclusive mechanisms, the reversed pair; under a 'both would agree' stem neither can be the shared view."
+   },
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "yes",
+   "difficulty": "easy",
+   "note": "Key confirmed: S1 advancing salt water, S2 tidal flooding; intro states trees die when salt water reaches roots. no_source reason: the key is the umbrella cause that both opposed mechanisms (C vs D) lead to, and the shared intro states it in one sentence; the viewpoints need not be read."
+  },
+  {
+   "id": "ASV5b-P1-Q3",
+   "cold_pick": "A",
+   "cold_defensible": [],
+   "cold_note": "40 vs 10 deg: 1.03/1.00=+3.0%, 1.46/1.42=+2.8%, 2.07/2.01=+3.0%, 2.53/2.46=+2.8%, 2.92/2.84=+2.8%; all under 5%, far from doubling. B false (not ~2x), C false (40 deg always longer), D's fact true (2.92 at 40) but does not support doubling.",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": "Table is textbook pendulum output: 10-degree periods equal T = 2*pi*sqrt(L/g) (0.25 m -> 1.003, 0.50 -> 1.419, 1.00 -> 2.006, 1.50 -> 2.458, 2.00 -> 2.838 s) and the 40-degree column is the standard large-amplitude correction (~+3%, 1 + theta^2/16). Passage-level (shared table).",
+   "free_elimination": {
+    "letters": [
+     "D"
+    ],
+    "how": "Non-sequitur: the longest period in the table being at 40 degrees says nothing about doubling."
+   },
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "no",
+   "difficulty": "easy",
+   "note": "Recomputed all five rows: +2.8% to +3.0%, all under 5%. no_source reason: HS physics teaches that a pendulum's period is (nearly) independent of amplitude, which kills both Yes options; of the No options, 'slightly longer' (A) is the one consistent with that and with the known slight increase at large amplitude."
+  },
+  {
+   "id": "ASV5b-P2-Q2",
+   "cold_pick": "D",
+   "cold_defensible": [],
+   "cold_note": "Passage: for each material refraction measured at 30 deg and again at 60 deg incidence; the two columns differ only by angle of incidence. Speed of light is from a reference book, one red laser, thickness not mentioned.",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": "Speeds give the real refractive indices (ice 1.31, water 1.33, acrylic 1.49, flint glass 1.62, diamond 2.42) and every angle is exact Snell's-law output. The passage openly says the speeds come from a reference book, so this is disclosed; a solver who knows Snell's law and these indices needs no table for the passage's computational items. Passage-level; for coordinator to judge.",
+   "free_elimination": {
+    "letters": [
+     "B"
+    ],
+    "how": "The stem says 'for each material'; the speed of light in a given material is a property of that material and cannot be deliberately changed within it."
+   },
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "yes",
+   "difficulty": "easy",
+   "note": "Verified Snell's law: ice 0.5/sin22.4 = 1.31 and 0.866/sin41.4 = 1.31; diamond 2.42 at both angles. no_source reason: the angle of incidence is the canonical independent variable of a refraction experiment and the stem's 'two angle-of-refraction columns' points to two settings of it; HS optics knowledge also rules out thickness (does not change the refraction angle)."
+  },
+  {
+   "id": "ASV5b-P3-Q5",
+   "cold_pick": "A",
+   "cold_defensible": [],
+   "cold_note": "Exp 3 trials 9-12: 0,1,2,3 drops -> 60, 38, 27, 20 s; time falls with each added drop, shorter time = faster reaction, so yes. B false (20 vs 60), C has the right fact but wrong conclusion, D wrong direction.",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": null,
+   "free_elimination": {
+    "letters": [
+     "C",
+     "D"
+    ],
+    "how": "C repeats the key's fact (time decreased) with the conclusion reversed (the duplicate-and-reverse tell); D pairs 'Yes, increases the rate' with a time that increased, which contradicts itself once time-to-colour is read as inverse rate, and the options call the substance 'the catalyst'."
+   },
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "no",
+   "difficulty": "easy",
+   "note": "Trials 9-12: 60, 38, 27, 20 s, falling each drop. no_source reason: the options name ammonium molybdate 'the catalyst', and catalysts speed reactions; with shorter time meaning faster (general clock-reaction knowledge), A is the only option where both the conclusion and the reason fit."
+  },
+  {
+   "id": "ASV5b-P3-Q6",
+   "cold_pick": "A",
+   "cold_defensible": [],
+   "cold_note": "Passage: thiosulfate converts I2 back until used up; colour appears when thiosulfate is exhausted. A fixed 0.0010 mol thiosulfate means each colour change marks the same amount of I2 produced, so times are comparable rates. B: catalyst is not consumed by thiosulfate; C: temperature unrelated; D: starch-iodine combination is not what the thiosulfate amount controls (thiosulfate delays it).",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": "The iodine clock reaction (H2O2/KI/thiosulfate/starch) is a canonical textbook demonstration, and its thiosulfate role is standard knowledge. The data follow textbook behaviour (time halves when [KI] doubles; time roughly halves per 10 C). A canonical experiment, not a specific dataset; for coordinator.",
+   "free_elimination": {
+    "letters": [
+     "C",
+     "B"
+    ],
+    "how": "C: the amount of a reagent cannot be what keeps the H2O2 solution at a given temperature (non-sequitur to the stem). B: by definition a catalyst is not used up, so a thiosulfate amount chosen to use up the catalyst is incoherent."
+   },
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "no",
+   "difficulty": "medium",
+   "note": "Key follows from the passage: colour appears only when the fixed thiosulfate is exhausted, so each change marks the same iodine produced. no_source reason: thiosulfate's role in the iodine clock is textbook knowledge; B and C die by definition/non-sequitur; and D misstates thiosulfate's role (it delays, not enables, the starch-iodine colour)."
+  },
+  {
+   "id": "ASV5b-P4-Q6",
+   "cold_pick": "B",
+   "cold_defensible": [],
+   "cold_note": "Comparison trial is foam, lid, 200 mL (Exp 2 default volume). To isolate material with a lid, change only material: aluminum, lid, 200 mL. A changes volume not material; C changes material and volume; D changes material and removes the lid.",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "no",
+   "recognised_real_data": null,
+   "free_elimination": {
+    "letters": [
+     "A",
+     "D"
+    ],
+    "how": "From the stem alone: A keeps the material as foam, so it cannot test material; D removes the lid, but the stem asks about cups WITH a lid. Only B vs C (200 vs 400 mL) needs the passage."
+   },
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "no",
+   "difficulty": "easy",
+   "note": "The lidded foam cup in Exp 2 held the default 200 mL, so B changes only the material. The 200 mL comes only from the passage, so a student without the source is left choosing between B and C."
+  }
+ ],
+ "batch": {
+  "cross_item_pattern": null
+ }
+}

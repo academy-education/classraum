@@ -1,0 +1,63 @@
+{
+ "items": {
+  "ASV5c-P4-Q2": {
+   "real_data": "confirmed",
+   "scope": "item",
+   "why": "The canonical steel-wool demonstration that air is ~21% oxygen; the demo gives the key."
+  },
+  "ASV5d-P1-Q1": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Table is exactly alpha x L x dT with handbook coefficients (Al 23, brass 19, Cu 17, steel 12 x10^-6/C)."
+  },
+  "ASV5d-P1-Q2": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Table is exactly alpha x L x dT with handbook coefficients (Al 23, brass 19, Cu 17, steel 12 x10^-6/C)."
+  },
+  "ASV5d-P1-Q3": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Table is exactly alpha x L x dT with handbook coefficients (Al 23, brass 19, Cu 17, steel 12 x10^-6/C)."
+  },
+  "ASV5d-P1-Q4": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Table is exactly alpha x L x dT with handbook coefficients (Al 23, brass 19, Cu 17, steel 12 x10^-6/C)."
+  },
+  "ASV5d-P1-Q5": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Table is exactly alpha x L x dT with handbook coefficients (Al 23, brass 19, Cu 17, steel 12 x10^-6/C)."
+  },
+  "ASV5d-P4-Q3": {
+   "real_data": "confirmed",
+   "scope": "item",
+   "why": "Exact computed textbook HCl/NaOH titration curve; the equivalence jump gives the key."
+  },
+  "ASV5d-P5-Q4": {
+   "real_data": "rejected",
+   "scope": "item",
+   "why": "Caffeine stimulant / ethanol depressant is general knowledge, not a recognised dataset (already handled under no_source_needed)."
+  },
+  "ASV5d-P6-Q1": {
+   "real_data": "rejected",
+   "scope": "item",
+   "why": "Nereth resembles Triton, but its numbers are invented and knowing Triton gives no key."
+  }
+ },
+ "batch": {
+  "pattern": {
+   "named_by_both": true,
+   "rule": "In a design item whose stem names the variable, factor or object to be tested or isolated ('which study / comparison / experiment would best test ...', 'which trials should be compared to determine whether ...'), pick the only option that varies, manipulates or examines that stem-named variable/object alone; every other option varies or measures something else.",
+   "decides": [
+    "ASV5c-P4-Q3",
+    "ASV5c-P7-Q6",
+    "ASV5d-P5-Q6",
+    "ASV5d-P7-Q5",
+    "ASV5d-P7-Q6"
+   ],
+   "why": "Both graders named the same single-variable design rule (g2 Rule 1). Applied to all 80 items from the cold packet by a fresh agent (_r8/b2/picks.json) before the key was opened."
+  }
+ }
+}

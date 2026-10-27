@@ -1,0 +1,108 @@
+{
+ "items": [
+  {
+   "id": "ASV6a-P2-Q4",
+   "cold_pick": "D",
+   "cold_defensible": [],
+   "cold_note": "6 m/s row: 0.15 mm = 1.4 g/cm/min (moved), 0.60 mm = 0 (not moved; first nonzero at 8 m/s = 0.7). Fines are winnowed, surface enriches in 0.60 mm. A false (1.4 vs 0); C false (0.15 mm moved); B inverts the enrichment.",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": null,
+   "free_elimination": {
+    "letters": [
+     "B"
+    ],
+    "how": "B is self-contradictory: a size that is carried away fastest cannot become enriched at the surface left behind."
+   },
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "yes",
+   "difficulty": "easy",
+   "note": "Key recomputed: 6 m/s row, 0.15 mm = 1.4, 0.60 mm = 0 (first nonzero 0.7 at 8 m/s). no_source_needed yes: wind winnowing/deflation lag (fines removed, coarse left) is high-school earth science and D's own reason states it; the only data claim in A and C is checkable but the key is reachable from background knowledge alone."
+  },
+  {
+   "id": "ASV6a-P7-Q3",
+   "cold_pick": "C",
+   "cold_defensible": [],
+   "cold_note": "Passage: sterilizing wash kills skin microorganisms but does not harm cells inside the fruit. Washed batch gave 0.1 L vs 1.8 L, so removing skin microbes nearly stopped gas: supports Student 1. A contradicts the passage (cells unharmed); B contradicts the near-zero result; D has no basis.",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": null,
+   "free_elimination": {
+    "letters": [
+     "D",
+     "B"
+    ],
+    "how": "D: a sterilizing solution adding sugar is an absurd mechanism. B: the stem's 'only 0.1 L' signals gas nearly stopped, which contradicts 'the fruit's own cells produced the gas'."
+   },
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "no",
+   "difficulty": "easy",
+   "note": "Key matches the passage (wash kills skin microbes, spares inner cells; 1.8 L -> 0.1 L). no_source_needed yes: without the viewpoints, B and C together imply Student 1 = skin microbes and Student 2 = fruit cells; A's reason (fruit cells killed) would then support Student 2, not Student 1, so A is internally mismatched; D and B die as above. C is the only option whose reasoning coheres with 'sterilizing' plus 'only 0.1 L'."
+  },
+  {
+   "id": "ASV6b-P2-Q3",
+   "cold_pick": "B",
+   "cold_defensible": [],
+   "cold_note": "Spread T - Td for new station = 26-16 = 10 C. Table spreads vs base: C 3->380, D 6->760, A 8->990, F 12->1490, B 16->2010, E 20->2480, monotonic over all six. 10 lies between A (8, 990) and F (12, 1490), so 990-1490 m. RH check: 26/16 gives ~54%, between F 46% (1490) and A 61% (990), same interval. Air temperature alone is not monotonic (F 21 C -> 1490, A 24 -> 990, D 27 -> 760), so a temperature-only interpolation toward D is not supported.",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": "The table follows the textbook lifting-condensation-level rule, cloud base ~ 125 m x (T - Td): 8->1000 (990), 16->2000 (2010), 3->375 (380), 6->750 (760), 20->2500 (2480), 12->1500 (1490), all within 20 m. A student who knows the rule computes 10 x 125 = 1250 m without the table. Passage-level: the shared table is this formula.",
+   "free_elimination": null,
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "no",
+   "difficulty": "medium",
+   "note": "Key recomputed: spread 10 C between A (8, 990) and F (12, 1490); spread vs base monotonic over all six rows; RH (~54%) between F 46% and A 61% gives the same interval. Air temperature alone is non-monotonic, so the D trap is a real trap, not a defensible answer. no_source_needed yes: the 125 m per degree dew-point-spread rule (Espy) gives 1250 m from the stem alone."
+  },
+  {
+   "id": "ASV6b-P4-Q4",
+   "cold_pick": "B",
+   "cold_defensible": [],
+   "cold_note": "Exp 2 varies only temperature (5, 20, 35 C) with diameter 0.125 mm and salinity 0 fixed: controlling grain size isolates temperature. A false (0.5 mm had greatest speed, 72 mm/s; 0.125 = 10); C false (Exp 3 clay 0.002 mm, different variable); D false (clumping was clay in salt water only).",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": null,
+   "free_elimination": null,
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "no",
+   "difficulty": "easy",
+   "note": "Key correct: Exp 2 varies only temperature (5/20/35 C) at fixed 0.125 mm and 0 g/kg. A false (0.5 mm fastest, 72 mm/s), C false (Exp 3 is 0.002 mm clay), D false (clumping only clay at >=2 g/kg). no_source_needed yes: 'why hold X fixed in an experiment' is answered by the controlled-variable rationale from general experimental design; the stem plus option B suffice. Data plausible: settling speed rises with temperature (lower viscosity), roughly Stokes-consistent sizes; salt flocculation of clay is real."
+  },
+  {
+   "id": "ASV6b-P6-Q5",
+   "cold_pick": "C",
+   "cold_defensible": [],
+   "cold_note": "Temperature and UV covary with elevation in the field, so only a factorial that decouples them (cold/warm x high/low UV, one seed source) distinguishes S1 (hair tracks UV) from S2 (hair tracks temperature). A repeats the confounded elevation gradient; D is one elevation and one aspect with no comparison; B tests whether hairs aid growth, which both explanations predict.",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": null,
+   "free_elimination": {
+    "letters": [
+     "D"
+    ],
+    "how": "D measures one condition (one elevation, one aspect) and computes an average: with no comparison it cannot distinguish any two explanations."
+   },
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "no",
+   "difficulty": "easy",
+   "note": "Key correct: S1 ties hair density to UV, S2 to temperature; both covary with elevation, so only a design decoupling them distinguishes. A keeps them confounded; B's growth outcome is predicted by both. no_source_needed yes: C is the only fully crossed controlled experiment in the set and names the two candidate factors itself, so a student picks it by design principles without reading the viewpoints."
+  }
+ ],
+ "batch": {
+  "cross_item_pattern": null
+ }
+}

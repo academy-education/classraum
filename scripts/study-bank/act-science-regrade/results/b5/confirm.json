@@ -1,0 +1,27 @@
+{
+ "items": {
+  "ASV8a-P6-Q2": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Frequencies follow f = (1/2L) sqrt(T/mu) within ~1% (Mersenne); doubling length halves f from the law alone."
+  },
+  "ASV8a-P6-Q4": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Same table; the option set contains the mass ratio and its square root."
+  },
+  "ASV8b-P5-Q2": {
+   "real_data": "rejected",
+   "scope": "item",
+   "why": "Beverloo / Janssen grain-flow laws are beyond high-school science; knowing them does not give the key at the level tested."
+  }
+ },
+ "batch": {
+  "pattern": {
+   "named_by_both": false,
+   "rule": null,
+   "decides": [],
+   "why": "g1 named a camp-neutral both-agree rule; g2 named a single-variable design rule. Different rules: recorded, nothing drops."
+  }
+ }
+}

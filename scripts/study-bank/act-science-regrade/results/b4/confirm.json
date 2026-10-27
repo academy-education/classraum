@@ -1,0 +1,45 @@
+{
+ "items": {
+  "ASV7a-P5-Q4": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Times are exactly 10 x 2*pi*sqrt(m/k), k = 24.5 N/m: the textbook mass-spring law reproduces the table."
+  },
+  "ASV7a-P5-Q6": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Same table."
+  },
+  "ASV7b-P1-Q5": {
+   "real_data": "confirmed",
+   "scope": "item",
+   "why": "Absorbance is exactly linear in concentration (Beer-Lambert); the law gives the key without the table."
+  },
+  "ASV7b-P4-Q6": {
+   "real_data": "rejected",
+   "scope": "item",
+   "why": "Coil-spring 1/D^3 law is not high-school content; knowing it does not give the key at the level tested."
+  },
+  "ASV7b-P5-Q1": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Pressures are exact ideal-gas values (100 x (T+273.15)/273.15; PV = 6000); the stated reference points plus the gas laws answer the items."
+  },
+  "ASV7b-P5-Q2": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Same table."
+  },
+  "ASV7b-P5-Q4": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Same table."
+  },
+  "ASV7b-P5-Q6": {
+   "real_data": "confirmed",
+   "scope": "passage",
+   "why": "Same table."
+  }
+ },
+ "batch": {}
+}
