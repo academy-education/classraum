@@ -1,7 +1,8 @@
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import {
-  composeGraderPrompt, OPEN_RESPONSE_TYPES, RESPONSE_SKILL_BY_TYPE, UNSCORED_RESPONSE_TYPES,
+  composeGraderPrompt, isBatchGradedType, OPEN_RESPONSE_TYPES, PRACTICE_FEEDBACK_TYPES,
+  RESPONSE_SKILL_BY_TYPE, UNSCORED_RESPONSE_TYPES,
 } from '@/lib/study/openResponse'
 
 // The real item from session 114cc85d, which scored 3 on task
@@ -62,18 +63,45 @@ describe('composeGraderPrompt', () => {
 
   it('every caller that sends to the grader guards on the skill map, not the union', () => {
     // This is the bug the split was made to prevent, so it is pinned at the
-    // call sites rather than trusted. Each of these fires the rubric grader
-    // or renders a rubric band; guarding on OPEN_RESPONSE_TYPES would send an
-    // unscored admission essay to a grader with no skill for it, and leave the
-    // result screen waiting on a band nobody issues.
+    // call sites rather than trusted. Guarding on OPEN_RESPONSE_TYPES would
+    // send an unscored type to a grader with no skill for it. Since
+    // 2026-10-27 the batch ALSO grades the practice essays, through
+    // PRACTICE_FEEDBACK_TYPES; the client trigger and the batch filter share
+    // isBatchGradedType / planBatchTargets so they cannot disagree.
+    const read = (f: string) => readFileSync(join(process.cwd(), f), 'utf8')
     for (const f of [
       'src/app/mobile/study/session/[id]/TestSession.tsx',
       'src/app/mobile/study/session/[id]/test/TestResultView.tsx',
       'src/app/api/study/response/grade-batch/route.ts',
+      'src/lib/study/gradeBatchTargets.ts',
     ]) {
-      const src = readFileSync(join(process.cwd(), f), 'utf8')
-      expect(src).not.toMatch(/OPEN_RESPONSE_TYPES\.has/)
-      expect(src).toMatch(/RESPONSE_SKILL_BY_TYPE/)
+      expect(read(f)).not.toMatch(/OPEN_RESPONSE_TYPES\.has/)
+    }
+    expect(read('src/app/mobile/study/session/[id]/TestSession.tsx')).toMatch(/isBatchGradedType\(/)
+    expect(read('src/app/mobile/study/session/[id]/test/TestResultView.tsx')).toMatch(/RESPONSE_SKILL_BY_TYPE/)
+    expect(read('src/app/api/study/response/grade-batch/route.ts')).toMatch(/planBatchTargets\(/)
+    const targets = read('src/lib/study/gradeBatchTargets.ts')
+    expect(targets).toMatch(/RESPONSE_SKILL_BY_TYPE/)
+    expect(targets).toMatch(/PRACTICE_FEEDBACK_TYPES/)
+  })
+})
+
+describe('practice feedback types (2026-10-27)', () => {
+  it('are exactly the two admission essays, and stay unscored', () => {
+    expect([...PRACTICE_FEEDBACK_TYPES].sort()).toEqual(['essay', 'essay_choice'])
+    // Still out of the key-scored denominator...
+    for (const t of PRACTICE_FEEDBACK_TYPES) expect(UNSCORED_RESPONSE_TYPES.has(t)).toBe(true)
+    for (const t of PRACTICE_FEEDBACK_TYPES) expect(OPEN_RESPONSE_TYPES.has(t)).toBe(true)
+    // ...and out of every rubric / section score, which all key on the skill map.
+    for (const t of PRACTICE_FEEDBACK_TYPES) expect(t in RESPONSE_SKILL_BY_TYPE).toBe(false)
+  })
+
+  it('isBatchGradedType covers rubric and practice types and nothing key-scored', () => {
+    for (const t of ['speaking_interview', 'writing_email', 'writing_discussion', 'essay', 'essay_choice']) {
+      expect(isBatchGradedType(t)).toBe(true)
+    }
+    for (const t of ['multiple_choice', 'arrange_words', 'speaking_repeat', 'fill_in_blanks', '', null, 'toString']) {
+      expect(isBatchGradedType(t)).toBe(false)
     }
   })
 })

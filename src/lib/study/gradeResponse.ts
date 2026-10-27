@@ -13,6 +13,9 @@ import {
 } from '@/lib/study/responseRubrics'
 import { runStagedGrade, type QualityStageCall, type TextStageCall } from '@/lib/study/gradePipeline'
 import { composeGraderPrompt } from '@/lib/study/openResponse'
+import type { PracticeEssayTask } from '@/lib/study/essayChoice'
+import { isPracticeEssayFamily, PRACTICE_SCALE_MAX, type PracticeEssayFamily } from '@/lib/study/practiceEssay'
+import { runPracticeEssayGrade, type PracticeEssayCall } from '@/lib/study/practiceEssayGrader'
 
 /**
  * Grade ONE open response and persist it.
@@ -30,7 +33,9 @@ export interface GradeResponseParams {
   sessionId: string
   /** study_sessions.language — anything other than 'ko' grades as 'en'. */
   sessionLanguage: string | null
-  testFamily: ResponseTestFamily
+  /** 'ssat' / 'isee' are the PRACTICE essay families (practiceEssay.ts):
+   *  graded for feedback by our own practice rubric, never scored. */
+  testFamily: ResponseTestFamily | PracticeEssayFamily
   skill: ResponseSkill
   taskType?: ResponseTaskType
   promptText: string
@@ -42,6 +47,14 @@ export interface GradeResponseParams {
   clarity?: number | null
   /** Supplied by the audio route, which grades from the recording. */
   qualityStage?: QualityStageCall
+  /** Practice essays only, and required for them: the CHOSEN prompt and
+   *  the essay text with the choice marker removed (essayChoice.ts). The
+   *  grader reads these; `promptText`/`responseText` stay the bare
+   *  instruction and the stored answer, because those are the dedupe key
+   *  and the key the result screen joins a grade back to its question on. */
+  practiceTask?: PracticeEssayTask
+  /** Tests inject this so no real model is called. */
+  practiceCall?: PracticeEssayCall
 }
 
 export interface GradedResponse {
@@ -124,8 +137,51 @@ export function openAiStages(): { text: TextStageCall; quality: QualityStageCall
   }
 }
 
+/**
+ * The practice-essay model call: the same provider, model and settings as
+ * the quality stage in openAiStages (gpt-4o, temperature 0, generateObject).
+ */
+export function openAiPracticeEssayCall(): PracticeEssayCall {
+  const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY })
+  return async ({ schema, schemaName, prompt }) => {
+    const r = await generateObject({
+      model: openai('gpt-4o'),
+      schema,
+      schemaName,
+      prompt,
+      temperature: 0,
+    })
+    return {
+      object: r.object,
+      usage: { tokensIn: r.usage?.inputTokens ?? 0, tokensOut: r.usage?.outputTokens ?? 0 },
+    }
+  }
+}
+
+/** What one grading run produced, in the shape the grade row stores. */
+interface ProducedGrade {
+  grade: {
+    overallBand: number
+    criteria: unknown
+    annotations: unknown
+    modelRewrite: string | null
+    summary: string | null
+  }
+  usage: { tokensIn: number; tokensOut: number }
+  graderModel: string
+  diagnostics: GradedResponse['diagnostics']
+}
+
 export async function gradeAndPersistResponse(p: GradeResponseParams): Promise<GradedResponse> {
-  const rubric = getRubric(p.testFamily, p.skill, p.taskType)
+  const practice = isPracticeEssayFamily(p.testFamily)
+  if (practice && !p.practiceTask) {
+    // A practice essay graded without its resolved task would be scored
+    // against the bare "choose one of the two prompts" instruction.
+    throw new GradeGenerationError('practice essay graded without its chosen prompt')
+  }
+  const scaleMax = practice
+    ? PRACTICE_SCALE_MAX
+    : getRubric(p.testFamily as ResponseTestFamily, p.skill, p.taskType).scaleMax
   const xpSourceId = xpSourceIdFor(p.sessionId, p.promptText)
 
   // Identical prompt + response already graded in this session → return
@@ -155,7 +211,7 @@ export async function gradeAndPersistResponse(p: GradeResponseParams): Promise<G
           modelRewrite: g.model_rewrite,
           summary: g.summary,
         },
-        scaleMax: rubric.scaleMax,
+        scaleMax,
         cached: true,
         xpSourceId,
         diagnostics: null,
@@ -163,51 +219,16 @@ export async function gradeAndPersistResponse(p: GradeResponseParams): Promise<G
     }
   }
 
-  const wordCount = p.responseText.trim().split(/\s+/).filter(Boolean).length
+  const gradedText = practice ? p.practiceTask!.essayText : p.responseText
+  const wordCount = gradedText.trim().split(/\s+/).filter(Boolean).length
   const language = (p.sessionLanguage === 'ko' ? 'ko' : 'en') as 'ko' | 'en'
-  const { text: textStage, quality: defaultQuality } = openAiStages()
 
-  // The task the grader is scoring against lives in the attempt's
-  // `passage`, not in `promptText` — see composeGraderPrompt. Resolved
-  // HERE rather than in the two routes so the per-item request and the
-  // batch cannot disagree about what the task was, and so `prompt_text`
-  // stays the bare instruction: it is the dedupe key AND the join key
-  // the result screen uses to match a grade back to its question.
-  const { data: attempt } = await dbAdmin
-    .from('study_attempts')
-    .select('question')
-    .eq('session_id', p.sessionId)
-    .eq('question->>prompt', p.promptText)
-    .limit(1)
-    .maybeSingle()
-  const passage = (attempt?.question as { passage?: string | null } | null)?.passage ?? null
-  const graderPrompt = composeGraderPrompt(passage, p.promptText)
-
-  let staged
-  try {
-    staged = await runStagedGrade({
-      family: p.testFamily,
-      skill: p.skill,
-      taskType: p.taskType,
-      promptText: graderPrompt,
-      responseText: p.responseText,
-      durationSeconds: p.durationSeconds ?? null,
-      wordCount,
-      language,
-      speechSignals: p.skill === 'speaking' ? {
-        wpm: p.wpm ?? null,
-        pauseCount: p.pauseCount ?? null,
-        clarity: p.clarity ?? null,
-      } : null,
-    }, { text: textStage, quality: p.qualityStage ?? defaultQuality })
-  } catch (err) {
-    console.error('[gradeResponse] generation', err)
-    throw new GradeGenerationError(err instanceof Error ? err.message : 'grading failed')
-  }
-
-  const grade = staged.grade
-  const usage = staged.usage
-  const clampedBand = Math.max(0, Math.min(rubric.scaleMax, grade.overallBand))
+  const produced = practice
+    ? await producePracticeGrade(p, language)
+    : await produceStagedGrade(p, language, wordCount)
+  const grade = produced.grade
+  const usage = produced.usage
+  const clampedBand = Math.max(0, Math.min(scaleMax, grade.overallBand))
 
   // Persist. The cache check at the top is a read followed by this write,
   // so two callers a second apart (grade-batch + the review panel, or a
@@ -220,11 +241,11 @@ export async function gradeAndPersistResponse(p: GradeResponseParams): Promise<G
   const gradeRow: GradeRowFields = {
     student_id: p.userId,
     overall_band: clampedBand,
-    rubric_scores: grade.criteria,
-    annotations: grade.annotations,
+    rubric_scores: grade.criteria as GradeRowFields['rubric_scores'],
+    annotations: grade.annotations as GradeRowFields['annotations'],
     model_rewrite: grade.modelRewrite,
     summary: grade.summary,
-    grader_model: 'gpt-4o+staged-ets',
+    grader_model: produced.graderModel,
     tokens_in: usage.tokensIn,
     tokens_out: usage.tokensOut,
   }
@@ -257,7 +278,7 @@ export async function gradeAndPersistResponse(p: GradeResponseParams): Promise<G
       return {
         submissionId: adopted.submissionId,
         grade: adopted.grade,
-        scaleMax: rubric.scaleMax,
+        scaleMax,
         cached: true,
         xpSourceId,
         diagnostics: null,
@@ -280,7 +301,7 @@ export async function gradeAndPersistResponse(p: GradeResponseParams): Promise<G
         return {
           submissionId: adopted.submissionId,
           grade: adopted.grade,
-          scaleMax: rubric.scaleMax,
+          scaleMax,
           cached: true,
           xpSourceId,
           diagnostics: null,
@@ -303,9 +324,62 @@ export async function gradeAndPersistResponse(p: GradeResponseParams): Promise<G
       modelRewrite: grade.modelRewrite,
       summary: grade.summary,
     },
-    scaleMax: rubric.scaleMax,
+    scaleMax,
     cached: false,
     xpSourceId,
+    diagnostics: produced.diagnostics,
+  }
+}
+
+/** TOEFL / IELTS: the staged ETS pipeline, exactly as before. */
+async function produceStagedGrade(
+  p: GradeResponseParams,
+  language: 'en' | 'ko',
+  wordCount: number,
+): Promise<ProducedGrade> {
+  const { text: textStage, quality: defaultQuality } = openAiStages()
+  // The task the grader is scoring against lives in the attempt's
+  // `passage`, not in `promptText` — see composeGraderPrompt. Resolved
+  // HERE rather than in the two routes so the per-item request and the
+  // batch cannot disagree about what the task was, and so `prompt_text`
+  // stays the bare instruction: it is the dedupe key AND the join key
+  // the result screen uses to match a grade back to its question.
+  const { data: attempt } = await dbAdmin
+    .from('study_attempts')
+    .select('question')
+    .eq('session_id', p.sessionId)
+    .eq('question->>prompt', p.promptText)
+    .limit(1)
+    .maybeSingle()
+  const passage = (attempt?.question as { passage?: string | null } | null)?.passage ?? null
+  const graderPrompt = composeGraderPrompt(passage, p.promptText)
+
+  let staged
+  try {
+    staged = await runStagedGrade({
+      family: p.testFamily as ResponseTestFamily,
+      skill: p.skill,
+      taskType: p.taskType,
+      promptText: graderPrompt,
+      responseText: p.responseText,
+      durationSeconds: p.durationSeconds ?? null,
+      wordCount,
+      language,
+      speechSignals: p.skill === 'speaking' ? {
+        wpm: p.wpm ?? null,
+        pauseCount: p.pauseCount ?? null,
+        clarity: p.clarity ?? null,
+      } : null,
+    }, { text: textStage, quality: p.qualityStage ?? defaultQuality })
+  } catch (err) {
+    console.error('[gradeResponse] generation', err)
+    throw new GradeGenerationError(err instanceof Error ? err.message : 'grading failed')
+  }
+
+  return {
+    grade: staged.grade,
+    usage: staged.usage,
+    graderModel: 'gpt-4o+staged-ets',
     diagnostics: {
       relevanceLevel: staged.relevance?.level ?? null,
       relevanceCeiling: staged.relevanceCeiling,
@@ -313,6 +387,39 @@ export async function gradeAndPersistResponse(p: GradeResponseParams): Promise<G
       languageScore: staged.languageScore,
       zeroReasons: staged.zeroReasons,
     },
+  }
+}
+
+/**
+ * SSAT / ISEE practice essays: our practice rubric, one call. Any failure
+ * throws GradeGenerationError — the batch reports the item as failed and the
+ * result screen shows "feedback unavailable / retry". It never becomes a band.
+ */
+async function producePracticeGrade(
+  p: GradeResponseParams,
+  language: 'en' | 'ko',
+): Promise<ProducedGrade> {
+  let r
+  try {
+    r = await runPracticeEssayGrade(
+      { family: p.testFamily as PracticeEssayFamily, task: p.practiceTask!, language },
+      p.practiceCall ?? openAiPracticeEssayCall(),
+    )
+  } catch (err) {
+    console.error('[gradeResponse] practice essay generation', err)
+    throw new GradeGenerationError(err instanceof Error ? err.message : 'grading failed')
+  }
+  return {
+    grade: {
+      overallBand: r.overallBand,
+      criteria: r.criteria,
+      annotations: r.annotations,
+      modelRewrite: null,
+      summary: r.summary,
+    },
+    usage: r.usage,
+    graderModel: 'gpt-4o+practice-essay-v1',
+    diagnostics: null,
   }
 }
 

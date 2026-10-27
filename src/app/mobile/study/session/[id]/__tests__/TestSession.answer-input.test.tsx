@@ -22,7 +22,9 @@
  *   choice list           a [data-runner-option] button
  *   numeric_entry         a text input with inputMode="decimal"
  *   fill_in_blanks        at least one text input per blank
- *   writing_* / essay*    a textarea
+ *   writing_* / essay     a textarea
+ *   essay_choice          a prompt option card (role=radio); the textarea
+ *                         follows the pick
  *   speaking_*            the start screen's button (the recorder itself is
  *                         gated behind mic priming and is a separate contract)
  *
@@ -88,7 +90,9 @@ const CASES: Array<{ type: string; family: string; section: string; q: Record<st
     control: c => c.querySelector('textarea') },
   { type: 'essay_choice', family: 'ssat', section: 'Writing',
     q: { prompt: 'ESSAYCHOICE prompt: choose ONE of the two prompts.', type: 'essay_choice', passage: '[Essay]\nA claim.\n\n[Story Starter]\nA sentence.', choices: [], correct_answer: '' },
-    control: c => c.querySelector('textarea') },
+    // Since 2026-10-27 the first control is the prompt picker; the textarea
+    // appears once a prompt is chosen (TestSession.essay-choice.test.tsx).
+    control: c => c.querySelector('[role="radio"]') },
   { type: 'speaking_repeat', family: 'toefl', section: 'Speaking',
     q: { prompt: 'SR prompt', type: 'speaking_repeat', passage: 'Repeat me.', choices: [], correct_answer: '' },
     control: c => [...c.querySelectorAll('button')].find(b => /Start Test/.test(b.textContent ?? '')) ?? null },

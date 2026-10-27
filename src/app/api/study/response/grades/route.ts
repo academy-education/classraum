@@ -5,6 +5,7 @@ import {
   getRubric, inferSpeakingTaskType,
   type ResponseSkill, type ResponseTaskType,
 } from '@/lib/study/responseRubrics'
+import { isPracticeEssayFamily, PRACTICE_SCALE_MAX } from '@/lib/study/practiceEssay'
 
 /**
  * Every rubric grade in one session, for the result screen.
@@ -30,7 +31,7 @@ export async function GET(req: NextRequest) {
 
   const { data, error } = await dbAdmin
     .from('study_response_submissions')
-    .select('id, prompt_text, skill, test_family, audio_path, created_at, study_response_grades(overall_band, summary, rubric_scores)')
+    .select('id, prompt_text, skill, test_family, audio_path, created_at, study_response_grades(overall_band, summary, rubric_scores, annotations)')
     .eq('session_id', sessionId)
     // Ownership is enforced here, not by RLS: dbAdmin is the service role.
     .eq('student_id', user.id)
@@ -56,6 +57,11 @@ export async function GET(req: NextRequest) {
      *  post-submit screen has it in component state, the summary has
      *  only what this endpoint sends. */
     audioPath: string | null
+    /** True for an SSAT/ISEE practice-essay grade: feedback only, never a
+     *  score, on OUR practice rubric (practiceEssay.ts). */
+    practice: boolean
+    /** Practice essays: strengths / improvements with quotes. */
+    comments: unknown
   }> = {}
   for (const row of data ?? []) {
     const g = Array.isArray(row.study_response_grades)
@@ -63,12 +69,19 @@ export async function GET(req: NextRequest) {
       : row.study_response_grades
     if (!g) continue
     const skill = row.skill as ResponseSkill
+    const practice = isPracticeEssayFamily(row.test_family)
     const taskType: ResponseTaskType | undefined = skill === 'speaking'
       ? inferSpeakingTaskType(row.prompt_text)
       : row.prompt_text.toLowerCase().includes('email') ? 'email' : 'academic_discussion'
     byPrompt[row.prompt_text] = {
       band: Number(g.overall_band),
-      scaleMax: getRubric(row.test_family as 'toefl' | 'ielts', skill, taskType).scaleMax,
+      // A practice family has no ETS rubric; getRubric would return
+      // undefined for it and this whole lookup would 500.
+      scaleMax: practice
+        ? PRACTICE_SCALE_MAX
+        : getRubric(row.test_family as 'toefl' | 'ielts', skill, taskType).scaleMax,
+      practice,
+      comments: practice ? g.annotations : null,
       summary: g.summary,
       criteria: g.rubric_scores,
       skill: row.skill,

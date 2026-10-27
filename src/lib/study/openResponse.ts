@@ -23,7 +23,8 @@ export const RESPONSE_SKILL_BY_TYPE: Readonly<Record<string, ResponseSkill>> = {
 }
 
 /**
- * Types with no answer key AND no rubric — ADDED 2026-09-25.
+ * Types with no answer key and NO SCORE — ADDED 2026-09-25. (Since
+ * 2026-10-27 they do get practice feedback; see PRACTICE_FEEDBACK_TYPES.)
  *
  * ISEE Essay and the SSAT Writing Sample are `scored: false` in
  * admission-tests.ts: the real tests send the writing to schools unscored,
@@ -40,6 +41,32 @@ export const RESPONSE_SKILL_BY_TYPE: Readonly<Record<string, ResponseSkill>> = {
  */
 export const UNSCORED_RESPONSE_TYPES: ReadonlySet<string> =
   new Set(['essay', 'essay_choice'])
+
+/**
+ * Unscored types that still get PRACTICE feedback — ADDED 2026-10-27 at the
+ * owner's request, overriding the 2026-09-25 "no band at all" decision above
+ * for feedback only.
+ *
+ * Students get AI comments and a 1-5 practice band from OUR practice rubric
+ * (practiceEssay.ts — there is no official SSAT/ISEE writing rubric). The
+ * types stay in UNSCORED_RESPONSE_TYPES, so they stay out of the key-scored
+ * denominator, and stay OUT of RESPONSE_SKILL_BY_TYPE, so the practice band
+ * never enters a rubric tally, a section score or study_sessions.score —
+ * every one of those keys on the skill map. This set only decides "send to
+ * the whole-test grade batch for feedback".
+ */
+export const PRACTICE_FEEDBACK_TYPES: ReadonlySet<string> =
+  new Set(['essay', 'essay_choice'])
+
+/** Does the whole-test grade batch handle this type (rubric-scored OR
+ *  practice feedback)? The one predicate for "fire grade-batch" and "the
+ *  batch picks this item up", so the client trigger and the server filter
+ *  cannot disagree and leave an item that nobody grades. */
+export function isBatchGradedType(type: string | null | undefined): boolean {
+  const t = type ?? ''
+  return Object.prototype.hasOwnProperty.call(RESPONSE_SKILL_BY_TYPE, t)
+    || PRACTICE_FEEDBACK_TYPES.has(t)
+}
 
 /**
  * Answers NOT scored against an answer key: rubric-graded ones and unscored

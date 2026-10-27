@@ -25,7 +25,9 @@ import {
   scoreToeflSection, bandFromProportion, detectToeflSection, WEIGHTS_FOR,
 } from '@/lib/study/toefl-section-score'
 import { scoreListenRepeat } from '@/lib/study/listen-repeat-accuracy'
-import { RESPONSE_SKILL_BY_TYPE } from '@/lib/study/openResponse'
+import { RESPONSE_SKILL_BY_TYPE, PRACTICE_FEEDBACK_TYPES } from '@/lib/study/openResponse'
+import { chosenEssaySection, decodeEssayAnswer, isStorySection } from '@/lib/study/essayChoice'
+import { PracticeEssayFeedback } from './PracticeEssayFeedback'
 import {
   buildSectionBreakdown, bracketedLabel, normaliseSectionLabel,
 } from '@/lib/study/section-breakdown'
@@ -100,6 +102,9 @@ export function TestResultView({
   // all about the answers the student actually spoke or wrote.
   const [grades, setGrades] = useState<Record<string, RubricGrade>>({})
   const [gradesLoaded, setGradesLoaded] = useState(false)
+  /** Bumped to re-read grades after a practice-feedback retry. */
+  const [gradesNonce, setGradesNonce] = useState(0)
+  const [practiceRetry, setPracticeRetry] = useState<'idle' | 'running' | 'failed'>('idle')
   const hasRubricRows = model.rows.some(r => r.ungraded)
 
   /* Is the score safe to show?
@@ -141,7 +146,28 @@ export function TestResultView({
       }
     })()
     return () => { alive = false }
-  }, [sessionId, hasRubricRows, gradingOpenResponses])
+  }, [sessionId, hasRubricRows, gradingOpenResponses, gradesNonce])
+
+  /* Practice-essay retry. Re-runs the SAME whole-test batch that grades on
+     submit — it is idempotent (stored grades come back from the dedupe
+     cache, only the missing item is paid for) — so there is still exactly
+     one writer per item. Then re-reads the grades. */
+  const retryPracticeFeedback = async () => {
+    setPracticeRetry('running')
+    try {
+      const res = await fetch('/api/study/response/grade-batch', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', ...(await authHeaders()) },
+        body: JSON.stringify({ sessionId }),
+      })
+      setPracticeRetry(res.ok ? 'idle' : 'failed')
+    } catch (e) {
+      console.warn('[TestResultView] practice feedback retry failed', e)
+      setPracticeRetry('failed')
+    } finally {
+      setGradesNonce(n => n + 1)
+    }
+  }
 
   const split = scoreSplit(model.rows, grades)
   /* SSAT/ISEE raw score. Derived from rows the submit path already
@@ -889,6 +915,10 @@ export function TestResultView({
                 ko={ko}
                 audioPath={answerAudioPaths[i]}
                 gradeAudioPath={grades[row.question.prompt ?? '']?.audioPath ?? undefined}
+                grade={grades[row.question.prompt ?? '']}
+                gradesPending={gradingOpenResponses || !gradesLoaded}
+                onRetryPractice={retryPracticeFeedback}
+                practiceRetry={practiceRetry}
                 speechSignals={answerSpeechSignals[i]}
                 speakingGradeMode={speakingGradeMode}
               />
@@ -1136,6 +1166,7 @@ function AnswerLine({ tone, text }: {
 /** One CARD in the review list. */
 function ResultCard({
   row, deliveredTotal, sessionId, ko, audioPath, gradeAudioPath, speechSignals, speakingGradeMode,
+  grade, gradesPending = false, onRetryPractice, practiceRetry = 'idle',
 }: {
   row: ResultRow
   deliveredTotal: number
@@ -1147,6 +1178,11 @@ function ResultCard({
   gradeAudioPath?: string
   speechSignals?: SpeechSignals
   speakingGradeMode: 'text' | 'audio'
+  /** This item's stored grade, if any (practice essays read it here). */
+  grade?: RubricGrade
+  gradesPending?: boolean
+  onRetryPractice?: () => void
+  practiceRetry?: 'idle' | 'running' | 'failed'
 }) {
   const { t } = useTranslation()
   const [isOpen, setOpen] = useState(false)
@@ -1160,6 +1196,14 @@ function ResultCard({
   // essays are open-response but have no band, so they render as the student's
   // own text rather than as an empty rubric card.
   const isRubricItem = (q.type ?? '') in RESPONSE_SKILL_BY_TYPE
+  // ISEE Essay / SSAT Writing Sample: no key, no score, practice feedback.
+  // The stored answer may carry the chosen-prompt marker; decode it with the
+  // one helper rather than showing it to the student.
+  const isPracticeItem = PRACTICE_FEEDBACK_TYPES.has(q.type ?? '')
+  const chosenSection = q.type === 'essay_choice' ? chosenEssaySection(q.passage, studentAnswer) : null
+  const shownAnswer = isPracticeItem && studentAnswer != null
+    ? decodeEssayAnswer(studentAnswer).body
+    : studentAnswer
   const rawTag = q.prompt ? bracketedLabel(q.prompt) : null
   const taskTag = rawTag ? normaliseSectionLabel(rawTag) : null
 
@@ -1267,7 +1311,15 @@ function ResultCard({
 
       {isOpen && (
         <div className="px-4 pb-4 space-y-2 border-t border-gray-100 pt-3 text-[15px]">
-          {q.passage && (
+          {chosenSection ? (
+            // Only the prompt the student chose, not both.
+            <div className="rounded-xl ring-1 ring-primary/20 bg-primary/[0.03] px-3 py-2 text-[13px] text-gray-800">
+              <div className="text-[11px] font-semibold uppercase tracking-[0.10em] text-primary mb-0.5">
+                {ko ? `선택한 주제 · ${chosenSection.label}` : `Prompt chosen · ${chosenSection.label}`}
+              </div>
+              <PassageParagraphs text={chosenSection.text} />
+            </div>
+          ) : q.passage && (
             <div className="rounded-xl ring-1 ring-gray-200/70 bg-gray-50 px-3 py-2 text-[13px] text-gray-800">
               <PassageParagraphs text={q.passage} />
             </div>
@@ -1320,7 +1372,7 @@ function ResultCard({
                   box containing an em dash above the student's essay in
                   failure red — an answer the grader had just given 5 out
                   of 5 read as wrong with the solution withheld. */}
-              {!isRubricItem && (
+              {!isRubricItem && !isPracticeItem && (
                 <div className="px-3 py-2 rounded-xl bg-emerald-50 text-emerald-900 text-[13px] ring-1 ring-emerald-200/70">
                   <div className="font-semibold mb-0.5">{ko ? '정답' : 'Correct answer'}</div>
                   <div className="whitespace-pre-wrap">{normalizeDisplayText(row.correctAnswerDisplay)}</div>
@@ -1330,19 +1382,30 @@ function ResultCard({
                 <div className={`px-3 py-2 rounded-xl text-[13px] ring-1 ${
                   // Neutral for rubric items whatever the band: red here
                   // would contradict the score sitting directly below it.
-                  isRubricItem || row.correct
+                  isRubricItem || isPracticeItem || row.correct
                     ? 'bg-gray-50 text-gray-700 ring-gray-200/70'
                     : 'bg-rose-50 text-rose-900 ring-rose-200/70'
                 }`}>
                   <div className="font-semibold mb-0.5">
-                    {isRubricItem ? (ko ? '내 답변' : 'Your response') : (ko ? '내 답' : 'Your answer')}
+                    {isRubricItem || isPracticeItem ? (ko ? '내 답변' : 'Your response') : (ko ? '내 답' : 'Your answer')}
                   </div>
-                  <div className="whitespace-pre-wrap">{normalizeDisplayText(studentAnswer)}</div>
+                  <div className="whitespace-pre-wrap">{normalizeDisplayText(shownAnswer ?? '')}</div>
                 </div>
               ) : (
                 <div className="px-3 py-2 rounded-xl bg-amber-50 text-amber-900 text-[13px] ring-1 ring-amber-200/70">
                   {ko ? '답하지 않음' : 'Not answered'}
                 </div>
+              )}
+              {isPracticeItem && studentAnswer != null && onRetryPractice && (
+                <PracticeEssayFeedback
+                  grade={grade}
+                  pending={gradesPending}
+                  story={chosenSection ? isStorySection(chosenSection) : /^\s*write a story/i.test(q.prompt ?? '')}
+                  ko={ko}
+                  onRetry={onRetryPractice}
+                  retrying={practiceRetry === 'running'}
+                  retryFailed={practiceRetry === 'failed'}
+                />
               )}
               {(q.type === 'writing_email' || q.type === 'writing_discussion') && studentAnswer != null && (
                 <WritingFeedbackPanel

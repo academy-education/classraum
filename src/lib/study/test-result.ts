@@ -445,6 +445,14 @@ export interface RubricGrade {
    *  still holds the path in component state, but a reopened session has
    *  only what the grades endpoint returns. */
   audioPath?: string | null
+  /** Per-criterion scores as stored ({ key, evidence, score }[]). */
+  criteria?: unknown
+  /** True for an SSAT/ISEE PRACTICE essay grade: feedback only. It never
+   *  enters scoreSplit (that loop skips types outside RESPONSE_SKILL_BY_TYPE)
+   *  or any section score. */
+  practice?: boolean
+  /** Practice essays: strengths / improvements (practiceEssay.ts). */
+  comments?: unknown
 }
 
 export interface ScoreSplit {

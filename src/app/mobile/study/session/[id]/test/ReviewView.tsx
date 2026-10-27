@@ -1,5 +1,6 @@
 "use client"
 
+import { essayAnswerForSubmit } from '@/lib/study/essayChoice'
 import Link from 'next/link'
 import { useTranslation } from '@/hooks/useTranslation'
 import { buildResultModel, familyFromTopicSlug } from '@/lib/study/test-result'
@@ -77,7 +78,11 @@ export function ReviewView({
     scorePercent: result.scorePercent,
     cards: test.questions.map((q, i) => ({
       question: q,
-      studentAnswer: answers[i] ?? null,
+      // Same normalisation submit applied: a picked essay prompt with
+      // nothing written is a blank, not an answer.
+      studentAnswer: (q.type === 'essay' || q.type === 'essay_choice')
+        ? essayAnswerForSubmit(answers[i])
+        : (answers[i] ?? null),
       correct: !!result.verdicts[i]?.correct,
       ungraded: !!result.verdicts[i]?.ungraded,
       // Freshly submitted: the array IS the delivered order, so every

@@ -5,12 +5,11 @@ import { requireStudyUser } from '@/lib/study/auth'
 import { enforceRateLimit } from '@/lib/rate-limit'
 import { recomputeAndPersistSessionScore } from '@/lib/study/persist-session-score'
 import { awardXp } from '@/lib/study/xp'
-import { RESPONSE_SKILL_BY_TYPE } from '@/lib/study/openResponse'
+import { planBatchTargets } from '@/lib/study/gradeBatchTargets'
 import {
   inferSpeakingTaskType,
   type ResponseSkill,
   type ResponseTaskType,
-  type ResponseTestFamily,
 } from '@/lib/study/responseRubrics'
 import {
   gradeAndPersistResponse,
@@ -94,15 +93,6 @@ async function handlePOST(req: NextRequest) {
 
   const topicRel = session.topic as { slug: string } | { slug: string }[] | null
   const topicSlug = (Array.isArray(topicRel) ? topicRel[0]?.slug : topicRel?.slug) ?? ''
-  // Only TOEFL and IELTS have response rubrics; test_family has a CHECK
-  // constraint allowing exactly those two.
-  const testFamily: ResponseTestFamily | null =
-    topicSlug.startsWith('toefl-') ? 'toefl'
-    : topicSlug.startsWith('ielts-') ? 'ielts'
-    : null
-  if (!testFamily) {
-    return NextResponse.json({ graded: 0, items: [], reason: 'no_rubric_family' })
-  }
 
   const { data: attempts } = await dbAdmin
     .from('study_attempts')
@@ -111,41 +101,34 @@ async function handlePOST(req: NextRequest) {
     .order('position', { ascending: true, nullsFirst: false })
     .order('id', { ascending: true })
 
-
-  const audioGraded = new Set(body.audioGradedPositions ?? [])
-
-  const targets = (attempts ?? []).flatMap(a => {
-    const q = a.question as { type?: string; prompt?: string } | null
-    const type = q?.type ?? ''
-    // Guard on the skill map, not the union: the next line looks the skill up,
-    // and an unscored essay type would pass the union check and then hand the
-    // grader `undefined`.
-    if (!q?.prompt || !(type in RESPONSE_SKILL_BY_TYPE)) return []
-    const skill = RESPONSE_SKILL_BY_TYPE[type]
-    if (!skill) return []
-    // An unanswered open response has nothing to grade; grading an empty
-    // string would spend a gpt-4o call to be told it is a zero.
-    const answer = (a.student_answer ?? '').trim()
-    if (!answer) return []
-    // A recorded Speaking answer is graded from the audio by
-    // /api/study/speaking/grade-audio, which the client calls directly.
-    // Grading it here as well would produce a SECOND submission row for
-    // the same task: the dedupe in gradeAndPersistResponse is a read
-    // then a write, so two callers a second apart both miss and both
-    // insert. That is exactly what put four submissions and two
-    // disagreeing bands on one Writing test. One writer per item.
-    // Skip ONLY the positions the client is actually sending to
-    // grade-audio. This used to skip anything that merely HAD an
-    // audioPath, which silently dropped every recorded answer belonging
-    // to a student on the text grading tier: the batch skipped it
-    // because audio existed, and grade-audio never ran because
-    // speakingGradeMode was 'text'. The item then reached no writer at
-    // all here, was graded later by the review panel — which has no
-    // audioPath on the durable summary — and so its submission row
-    // stored audio_path NULL. 66 recordings in storage, zero rows
-    // pointing at them.
-    if (a.position != null && audioGraded.has(a.position)) return []
-    return [{ position: a.position, type, skill, prompt: q.prompt, answer }]
+  // Which attempts this batch grades lives in planBatchTargets (pure,
+  // tested): TOEFL/IELTS rubric responses, scored; and since 2026-10-27 the
+  // ISEE Essay / SSAT Writing Sample, graded for PRACTICE FEEDBACK only with
+  // the prompt the student chose. Two exclusions that matter, kept there:
+  //
+  // A recorded Speaking answer is graded from the audio by
+  // /api/study/speaking/grade-audio, which the client calls directly.
+  // Grading it here as well would produce a SECOND submission row for
+  // the same task: the dedupe in gradeAndPersistResponse is a read
+  // then a write, so two callers a second apart both miss and both
+  // insert. That is exactly what put four submissions and two
+  // disagreeing bands on one Writing test. One writer per item.
+  // Skip ONLY the positions the client is actually sending to
+  // grade-audio. This used to skip anything that merely HAD an
+  // audioPath, which silently dropped every recorded answer belonging
+  // to a student on the text grading tier: the batch skipped it
+  // because audio existed, and grade-audio never ran because
+  // speakingGradeMode was 'text'. The item then reached no writer at
+  // all here, was graded later by the review panel — which has no
+  // audioPath on the durable summary — and so its submission row
+  // stored audio_path NULL. 66 recordings in storage, zero rows
+  // pointing at them.
+  //
+  // A blank answer (for an essay: a picked prompt with nothing written)
+  // is never sent to the grader.
+  const targets = planBatchTargets(attempts ?? [], {
+    topicSlug,
+    audioGradedPositions: new Set(body.audioGradedPositions ?? []),
   })
 
   if (targets.length === 0) {
@@ -155,6 +138,18 @@ async function handlePOST(req: NextRequest) {
   // Parallel: four independent gpt-4o pipelines at ~15s each run inside
   // the 300s budget together, where sequentially they would not.
   const settled = await Promise.allSettled(targets.map(t => {
+    if (t.kind === 'practice') {
+      return gradeAndPersistResponse({
+        userId: user.id,
+        sessionId: body.sessionId,
+        sessionLanguage: session.language,
+        testFamily: t.family,
+        skill: 'writing',
+        promptText: t.prompt,
+        responseText: t.answer,
+        practiceTask: t.task,
+      }).then(r => ({ position: t.position, skill: t.skill, ...r }))
+    }
     const taskType = (t.skill === 'speaking'
       ? inferSpeakingTaskType(t.type)
       : t.type === 'writing_email' ? 'email' : 'academic_discussion'
@@ -168,7 +163,7 @@ async function handlePOST(req: NextRequest) {
       userId: user.id,
       sessionId: body.sessionId,
       sessionLanguage: session.language,
-      testFamily,
+      testFamily: t.family,
       skill: t.skill,
       taskType,
       promptText: t.prompt,

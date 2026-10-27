@@ -16,7 +16,11 @@ import { lcFirst, ucFirst, openerChip, assembledChips, endPunctuation } from '@/
 import { useRunnerKeys } from './useRunnerKeys'
 import { CREDIT_PACKS, MICRO_PACK } from '@/lib/study/plans'
 import { authHeaders } from '@/lib/auth-headers'
-import { RESPONSE_SKILL_BY_TYPE } from '@/lib/study/openResponse'
+import { isBatchGradedType } from '@/lib/study/openResponse'
+import {
+  decodeEssayAnswer, encodeEssayAnswer, essayAnswerForSubmit, isEssayAnswerBlank,
+  parseEssayChoicePassage, chosenEssaySection,
+} from '@/lib/study/essayChoice'
 import { db } from '@/lib/supabase'
 import { PathMascot } from '../../_shared/PathMascot'
 import { hapticSelection } from '@/lib/nativeHaptics'
@@ -124,6 +128,9 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
   /** Batch grading of open responses runs after submit — see the call
    *  site. Drives the result screen's "scoring your responses" state. */
   const [gradingOpenResponses, setGradingOpenResponses] = useState(false)
+  /** SSAT Writing Sample: question index → the prompt cards are re-opened
+   *  to change the pick. Not persisted: the PICK lives in the answer. */
+  const [essayPickerOpen, setEssayPickerOpen] = useState<Record<number, boolean>>({})
   const router = useRouter()
   // TOEFL Listening audio is playing — locks Prev/Next/Grid so students
   // can't skim ahead while a recording is speaking (ETS-faithful:
@@ -965,7 +972,15 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       // so a test with blank trailing questions would otherwise be shorter
       // than test.questions and the server would 400 on the length check.
       // Explicit nulls make every unanswered slot survive the round-trip.
-      const fullAnswers: (string | null)[] = test.questions.map((_, i) => answers[i] ?? null)
+      //
+      // Essay slots go through essayAnswerForSubmit: a picked SSAT prompt
+      // with nothing written is stored locally as the choice marker alone
+      // (so the pick survives a reload), but it is not an answer, so it
+      // submits as null like any skipped question.
+      const fullAnswers: (string | null)[] = test.questions.map((q, i) =>
+        (q.type === 'essay' || q.type === 'essay_choice')
+          ? essayAnswerForSubmit(answers[i])
+          : (answers[i] ?? null))
       const body = JSON.stringify({
         sessionId,
         questions: test.questions,
@@ -1047,10 +1062,13 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           }, [])
         : []
 
-      // RESPONSE_SKILL_BY_TYPE, not OPEN_RESPONSE_TYPES: the union now also
-      // holds the unscored admission essays, and firing the rubric batch for
-      // those would leave the result screen waiting on a grade nobody issues.
-      if (test.questions.some(q => q.type in RESPONSE_SKILL_BY_TYPE)) {
+      // isBatchGradedType — the SAME predicate the batch filters on: the
+      // rubric-scored TOEFL/IELTS types plus, since 2026-10-27, the ISEE /
+      // SSAT essays, which the batch grades for practice feedback only.
+      // Not OPEN_RESPONSE_TYPES membership alone: if the client fired for a
+      // type the batch then skipped, the result screen would wait on a
+      // grade nobody issues.
+      if (test.questions.some(q => isBatchGradedType(q.type))) {
         setGradingOpenResponses(true)
         void (async () => {
           try {
@@ -1142,7 +1160,10 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
       track('submit_failed', submitFailedProps(failure, {
         sessionId,
         questionCount: test.questions.length,
-        answeredCount: answers.filter(a => a != null && a !== '').length,
+        answeredCount: answers.filter((a, i) => {
+          const t = test.questions[i]?.type
+          return (t === 'essay' || t === 'essay_choice') ? !isEssayAnswerBlank(a) : (a != null && a !== '')
+        }).length,
       }))
       setSubmitError((err as Error).message || describeSubmitFailure(500, null, ko).message)
       // Drop back to taking so the student can retry instead of
@@ -1566,6 +1587,8 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
     const raw = answers[idx]
     if (raw == null || raw.trim() === '') return false
     const item = test.questions[idx]
+    // A picked SSAT prompt with nothing written yet is not an answer.
+    if (item?.type === 'essay' || item?.type === 'essay_choice') return !isEssayAnswerBlank(raw)
     if (item?.type === 'fill_in_blanks') {
       const blanksArr = item.blanks ?? []
       if (blanksArr.length === 0) return true
@@ -2069,6 +2092,11 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           // interviewer question as prose either; the audio does that.
           && q.type !== 'speaking_repeat'
           && q.type !== 'speaking_interview'
+          // An SSAT Writing Sample whose passage splits into prompt
+          // sections shows them as option cards below; printing the same
+          // two prompts in a passage box above the cards would show every
+          // prompt twice.
+          && !(q.type === 'essay_choice' && parseEssayChoicePassage(q.passage).length >= 2)
           && (() => {
           // Passage-group header + read-only passage box. Skipped for
           // fill_in_blanks (TOEFL Complete-the-Words) because the
@@ -2579,56 +2607,148 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
           (() => {
             const isEssay = q.type === 'essay' || q.type === 'essay_choice'
             const target = isEssay ? 0 : q.type === 'writing_email' ? 100 : 150
-            const student = answers[currentIdx] ?? ''
+            const raw = answers[currentIdx] ?? ''
+            // SSAT Writing Sample: choose a prompt, then write. The passage
+            // carries both prompts as `[Label]` sections; they render as
+            // option cards and the pick is recorded in the answer itself
+            // (essayChoice.ts — the one encode/decode, used by submit, the
+            // grade batch and the review screen too). Fewer than two
+            // sections means there is nothing to choose between, and the
+            // item behaves as it always did.
+            const sections = q.type === 'essay_choice' ? parseEssayChoicePassage(q.passage) : []
+            const choosing = sections.length >= 2
+            const decoded = choosing ? decodeEssayAnswer(raw) : { label: null, body: raw }
+            const chosen = choosing ? chosenEssaySection(q.passage, raw) : null
+            const pickerOpen = choosing && (!chosen || !!essayPickerOpen[currentIdx])
+            const student = decoded.body
             const wordCount = student.trim().split(/\s+/).filter(Boolean).length
+            const writeRaw = (val: string) => setAnswers(prev => {
+              const next = [...prev]
+              next[currentIdx] = val
+              return next
+            })
+            const pick = (label: string) => {
+              hapticSelection()
+              // Changing the prompt keeps every word already written.
+              setAnswers(prev => {
+                const next = [...prev]
+                next[currentIdx] = encodeEssayAnswer(label, decodeEssayAnswer(prev[currentIdx] ?? '').body)
+                return next
+              })
+              setEssayPickerOpen(prev => ({ ...prev, [currentIdx]: false }))
+            }
             return (
               <div className="space-y-3">
-                <p id={`writing-prompt-${currentIdx}`} className="text-[11px] uppercase tracking-[0.10em] text-gray-500">
-                  {q.type === 'writing_email'
-                    ? (ko ? '이메일 답장을 작성하세요' : 'Write your email reply')
-                    : q.type === 'writing_discussion'
-                    ? (ko ? '토론에 기여할 글을 작성하세요' : 'Write your contribution to the discussion')
-                    : q.type === 'essay_choice'
-                    // SSAT prints both prompts in the passage box and asks the
-                    // student to pick one, so the answer has to say which.
-                    ? (ko ? '선택한 주제를 먼저 적고, 에세이를 작성하세요' : 'Name the prompt you chose, then write your essay')
-                    : (ko ? '에세이를 작성하세요' : 'Write your essay')}
-                </p>
-                <textarea
-                  aria-labelledby={`writing-prompt-${currentIdx}`}
-                  value={student}
-                  onChange={(e) => {
-                    const val = e.target.value
-                    setAnswers(prev => {
-                      const next = [...prev]
-                      next[currentIdx] = val
-                      return next
-                    })
-                  }}
-                  rows={12}
-                  placeholder={q.type === 'writing_email'
-                    ? (ko ? '여기에 이메일을 작성하세요…' : 'Type your email here…')
-                    : q.type === 'writing_discussion'
-                    ? (ko ? '여기에 토론 기여글을 작성하세요…' : 'Type your contribution here…')
-                    : q.type === 'essay_choice'
-                    ? (ko ? '예: [Essay] 선택 — 그리고 이어서 에세이를 작성하세요…' : 'e.g. "Choosing the Essay prompt." — then write your response…')
-                    : (ko ? '여기에 에세이를 작성하세요…' : 'Write your essay here…')}
-                  className="w-full px-4 py-3 rounded-2xl ring-1 ring-gray-200/70 bg-white text-[17px] text-gray-900 leading-relaxed placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-shadow"
-                />
-                <div className="flex items-center justify-between text-[11px] text-gray-500">
-                  {/* No invented word target on the admission essays. ISEE
-                      Essay and the SSAT Writing Sample are `scored: false`
-                      in admission-tests.ts — schools read them, we do not
-                      band them — so printing "Target: 300+ words" would be
-                      asserting a requirement neither test publishes. */}
-                  <span>{isEssay ? '' : `${ko ? '목표' : 'Target'}: ${target}+ ${ko ? '단어' : 'words'}`}</span>
-                  <span className={!isEssay && wordCount >= target ? 'text-emerald-600 font-semibold' : ''}>
-                    {wordCount} {ko ? '단어' : 'words'}
-                  </span>
-                </div>
+                {choosing && pickerOpen && (
+                  <div className="space-y-2">
+                    <p id={`essay-choice-${currentIdx}`} className="text-[11px] uppercase tracking-[0.10em] text-gray-500">
+                      {ko ? '쓸 주제를 하나 고르세요' : 'Pick the prompt you will write about'}
+                    </p>
+                    <div className="space-y-2" role="radiogroup" aria-labelledby={`essay-choice-${currentIdx}`}>
+                      {sections.map((sec, i) => {
+                        const selected = chosen?.label === sec.label
+                        const letter = String.fromCharCode(65 + i)
+                        return (
+                          <button
+                            key={`${i}-${sec.label}`}
+                            type="button"
+                            role="radio"
+                            aria-checked={selected}
+                            aria-label={`${letter} · ${sec.label}`}
+                            onClick={() => pick(sec.label)}
+                            className={`w-full text-left px-4 py-3 rounded-xl border text-[15px] transition-colors active:scale-[0.99] flex items-start gap-3 ${
+                              selected
+                                ? 'border-primary bg-primary/5 text-gray-900'
+                                : 'border-gray-200 bg-white text-gray-700 hover:border-gray-300'
+                            }`}
+                          >
+                            <span className={`flex-shrink-0 inline-flex items-center justify-center min-w-[28px] h-6 px-1.5 rounded-md text-[13px] font-semibold tabular-nums ${
+                              selected ? 'bg-primary/15 text-primary' : 'bg-gray-100 text-gray-600'
+                            }`}>
+                              {letter}
+                            </span>
+                            <span className="flex-1 min-w-0">
+                              <span className="block text-[13px] font-semibold text-gray-900 mb-1">{sec.label}</span>
+                              <span className="block leading-relaxed whitespace-pre-wrap">{normalizeDisplayText(sec.text)}</span>
+                            </span>
+                          </button>
+                        )
+                      })}
+                    </div>
+                    {chosen && (
+                      <button
+                        type="button"
+                        onClick={() => setEssayPickerOpen(prev => ({ ...prev, [currentIdx]: false }))}
+                        className="text-[13px] font-medium text-primary hover:underline"
+                      >
+                        {ko ? `'${chosen.label}' 그대로 쓰기` : `Keep "${chosen.label}"`}
+                      </button>
+                    )}
+                  </div>
+                )}
+                {choosing && chosen && !pickerOpen && (
+                  <div className="rounded-xl border border-primary/25 bg-primary/[0.03] px-4 py-3" data-testid="essay-chosen-prompt">
+                    <div className="flex items-center justify-between gap-2 mb-1">
+                      <span className="text-[11px] font-semibold uppercase tracking-[0.10em] text-primary">
+                        {ko ? `선택한 주제 · ${chosen.label}` : `Your prompt · ${chosen.label}`}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => setEssayPickerOpen(prev => ({ ...prev, [currentIdx]: true }))}
+                        className="text-[13px] font-medium text-primary hover:underline flex-shrink-0"
+                      >
+                        {ko ? '주제 바꾸기' : 'Change prompt'}
+                      </button>
+                    </div>
+                    <p className="text-[15px] text-gray-800 leading-relaxed whitespace-pre-wrap">{normalizeDisplayText(chosen.text)}</p>
+                  </div>
+                )}
+                {/* No textarea until a prompt is chosen: writing first and
+                    choosing later is how the old screen ended up asking the
+                    student to type the prompt's name into the essay. */}
+                {(!choosing || chosen) && (
+                  <>
+                    <p id={`writing-prompt-${currentIdx}`} className="text-[11px] uppercase tracking-[0.10em] text-gray-500">
+                      {q.type === 'writing_email'
+                        ? (ko ? '이메일 답장을 작성하세요' : 'Write your email reply')
+                        : q.type === 'writing_discussion'
+                        ? (ko ? '토론에 기여할 글을 작성하세요' : 'Write your contribution to the discussion')
+                        : chosen && /story/i.test(chosen.label)
+                        ? (ko ? '이야기를 작성하세요' : 'Write your story')
+                        : (ko ? '에세이를 작성하세요' : 'Write your essay')}
+                    </p>
+                    <textarea
+                      aria-labelledby={`writing-prompt-${currentIdx}`}
+                      value={student}
+                      onChange={(e) => {
+                        const val = e.target.value
+                        writeRaw(choosing && chosen ? encodeEssayAnswer(chosen.label, val) : val)
+                      }}
+                      rows={12}
+                      placeholder={q.type === 'writing_email'
+                        ? (ko ? '여기에 이메일을 작성하세요…' : 'Type your email here…')
+                        : q.type === 'writing_discussion'
+                        ? (ko ? '여기에 토론 기여글을 작성하세요…' : 'Type your contribution here…')
+                        : (ko ? '여기에 작성하세요…' : 'Write your response here…')}
+                      className="w-full px-4 py-3 rounded-2xl ring-1 ring-gray-200/70 bg-white text-[17px] text-gray-900 leading-relaxed placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-shadow"
+                    />
+                    <div className="flex items-center justify-between text-[11px] text-gray-500">
+                      {/* No invented word target on the admission essays.
+                          Neither ISEE nor SSAT publishes one, so printing
+                          "Target: 300+ words" would assert a requirement
+                          neither test has. */}
+                      <span>{isEssay ? '' : `${ko ? '목표' : 'Target'}: ${target}+ ${ko ? '단어' : 'words'}`}</span>
+                      <span className={!isEssay && wordCount >= target ? 'text-emerald-600 font-semibold' : ''}>
+                        {wordCount} {ko ? '단어' : 'words'}
+                      </span>
+                    </div>
+                  </>
+                )}
                 <p className="text-[11px] text-gray-500 leading-relaxed">
                   {isEssay
-                    ? (ko ? '이 글은 점수로 환산되지 않습니다. 실제 시험처럼 학교가 직접 읽는 영역이며, 작성한 내용은 저장되어 시험 후 리뷰에서 다시 볼 수 있습니다.' : 'This piece is not scored. Like the real test, it is read by schools rather than banded — your writing is saved and available in the post-test review.')
+                    ? (ko
+                        ? '이 글은 점수에 반영되지 않습니다. 실제 시험처럼 학교가 직접 읽는 영역이에요. 제출하면 시험 후 리뷰에서 AI 연습 피드백(연습용 밴드와 코멘트)을 볼 수 있습니다.'
+                        : 'This piece does not count toward your score — like the real test, schools read it as written. After you submit, AI practice feedback (a practice band and comments) appears in the review.')
                     : (ko ? '자동 채점: 최소 길이 확인. 세부 밴드 점수는 시험 후 리뷰에서 확인 가능합니다.' : 'Auto-grading: length check only. Full rubric band is available in the post-test review.')}
                 </p>
               </div>
