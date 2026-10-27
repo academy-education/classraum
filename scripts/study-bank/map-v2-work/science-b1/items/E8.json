@@ -1,0 +1,1450 @@
+[
+ {
+  "id": "MSB1-E8-01",
+  "map_area": "Earth and Space Science",
+  "grade_target": 8,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 195-204",
+  "dci": "ESS3",
+  "ngss_pe": "MS-ESS3-1",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "conditions",
+  "ask": "meets-criterion",
+  "invented": true,
+  "names_used": [
+   "Ysel",
+   "Tomrey",
+   "Wendrick",
+   "Sevrantine"
+  ],
+  "passage": "A power company tested four sites for a geothermal power plant. A geothermal plant uses hot water from deep underground to make electricity. At each site the company measured the rock temperature 2 km down and drilled a test well.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Ysel",
+    "Tomrey",
+    "Wendrick",
+    "Sevrantine"
+   ],
+   "colLabels": [
+    "Rock temperature at 2 km (°C)",
+    "Water flow from test well (L/s)"
+   ],
+   "cells": [
+    [
+     170,
+     8
+    ],
+    [
+     160,
+     26
+    ],
+    [
+     120,
+     35
+    ],
+    [
+     145,
+     18
+    ]
+   ],
+   "caption": "Table 1. Test results at four possible plant sites"
+  },
+  "prompt": "The company will build only where the rock at 2 km is at least 150 °C and the test well gives at least 20 L/s of water. Based on Table 1, which site meets both needs?",
+  "choices": [
+   "Ysel",
+   "Tomrey",
+   "Wendrick",
+   "Sevrantine"
+  ],
+  "correct_answer": "Tomrey",
+  "key_evidence": {
+   "refs": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ]
+   ]
+  },
+  "explanation": "Tomrey has rock at 160 °C (at least 150 °C) and a flow of 26 L/s (at least 20 L/s), so it is the only site that passes both limits.",
+  "distractor_rationales": [
+   {
+    "choice": "Ysel",
+    "fault": "its rock is hot enough at 170 °C, but its well gives only 8 L/s, below 20 L/s"
+   },
+   {
+    "choice": "Wendrick",
+    "fault": "its well gives plenty of water, 35 L/s, but its rock is only 120 °C, below 150 °C"
+   },
+   {
+    "choice": "Sevrantine",
+    "fault": "it fails both limits: 145 °C is below 150 °C and 18 L/s is below 20 L/s"
+   }
+  ],
+  "real_world_check": "Geothermal energy is unevenly distributed: a usable site needs both high rock temperature and enough hot water flowing through the rock."
+ },
+ {
+  "id": "MSB1-E8-02",
+  "map_area": "Earth and Space Science",
+  "grade_target": 8,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 195-204",
+  "dci": "ESS3",
+  "ngss_pe": "MS-ESS3-2",
+  "kind": "data",
+  "stimulus": "line",
+  "format": "values",
+  "ask": "read",
+  "invented": true,
+  "names_used": [
+   "Vellmar",
+   "Station T-5"
+  ],
+  "passage": "Scientists keep a GPS unit, Station T-5, on the side of the volcano Vellmar. Before an eruption, magma rising underground can push the ground upward. The graph shows how far the ground at the station had risen since day 0.",
+  "graphic": {
+   "type": "line",
+   "series": [
+    {
+     "points": [
+      [
+       0,
+       0
+      ],
+      [
+       10,
+       8
+      ],
+      [
+       20,
+       20
+      ],
+      [
+       30,
+       36
+      ],
+      [
+       40,
+       48
+      ]
+     ]
+    }
+   ],
+   "xLabel": "Day",
+   "yLabel": "Ground uplift since day 0 (mm)",
+   "caption": "Ground uplift measured at Station T-5 on Vellmar"
+  },
+  "prompt": "According to the graph, how far had the ground at Station T-5 risen by day 30?",
+  "choices": [
+   "20 mm",
+   "36 mm",
+   "8 mm",
+   "30 mm"
+  ],
+  "correct_answer": "36 mm",
+  "key_evidence": {
+   "refs": [
+    [
+     30,
+     36
+    ]
+   ],
+   "expr": "v0"
+  },
+  "explanation": "Going up from day 30 on the x-axis to the line and across to the y-axis gives 36 mm of uplift.",
+  "distractor_rationales": [
+   {
+    "choice": "20 mm",
+    "fault": "this is the uplift at day 20, one point too early"
+   },
+   {
+    "choice": "8 mm",
+    "fault": "this is the uplift at day 10, not day 30"
+   },
+   {
+    "choice": "30 mm",
+    "fault": "this copies the day number from the x-axis instead of reading the y-axis"
+   }
+  ],
+  "real_world_check": "Rising magma can inflate a volcano so the ground surface bulges upward, which GPS stations measure in millimeters.",
+  "prior_free": "No standard says how much this invented volcano swelled or by what day; the 36 mm at day 30 exists only on this graph."
+ },
+ {
+  "id": "MSB1-E8-03",
+  "map_area": "Earth and Space Science",
+  "grade_target": 8,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 195-204",
+  "dci": "ESS2",
+  "ngss_pe": "MS-ESS2-6",
+  "kind": "data",
+  "stimulus": "scatter",
+  "format": "trend",
+  "ask": "increase-then-level",
+  "invented": true,
+  "names_used": [
+   "Varden"
+  ],
+  "passage": "On a clear summer afternoon, students read the air temperature at weather stations set at different distances inland from the coast near the town of Varden.",
+  "graphic": {
+   "type": "scatter",
+   "points": [
+    [
+     0,
+     21
+    ],
+    [
+     5,
+     24
+    ],
+    [
+     10,
+     27
+    ],
+    [
+     15,
+     29
+    ],
+    [
+     20,
+     30
+    ],
+    [
+     30,
+     30
+    ],
+    [
+     40,
+     30
+    ],
+    [
+     50,
+     30
+    ]
+   ],
+   "xLabel": "Distance inland from the coast (km)",
+   "yLabel": "Air temperature (°C)",
+   "caption": "Afternoon air temperature at stations inland from the coast near Varden"
+  },
+  "prompt": "Based on the graph, how does the afternoon air temperature change as the distance from the coast increases?",
+  "choices": [
+   "increases, then decreases",
+   "remains the same, then rises",
+   "decreases, then stays the same",
+   "rises, then levels off"
+  ],
+  "correct_answer": "rises, then levels off",
+  "key_evidence": {
+   "refs": [
+    [
+     0,
+     21
+    ],
+    [
+     20,
+     30
+    ],
+    [
+     50,
+     30
+    ]
+   ]
+  },
+  "explanation": "The temperature climbs from 21 °C at the coast to about 30 °C at 20 km. From 20 km to 50 km it holds at 30 °C.",
+  "distractor_rationales": [
+   {
+    "choice": "increases, then decreases",
+    "fault": "beyond 20 km the points stay near 30 °C; they never fall back"
+   },
+   {
+    "choice": "remains the same, then rises",
+    "fault": "the temperature rises right away from the coast, then holds steady"
+   },
+   {
+    "choice": "decreases, then stays the same",
+    "fault": "the temperature goes up from 21 °C, it does not go down"
+   }
+  ],
+  "real_world_check": "On summer afternoons the ocean heats more slowly than land, so air near the coast is cooler and the cooling fades with distance inland.",
+  "prior_free": "The standard says oceans moderate coastal climate but not how far inland that reaches; the air could keep warming across the whole region, so only the data show it stops at about 20 km."
+ },
+ {
+  "id": "MSB1-E8-04",
+  "map_area": "Earth and Space Science",
+  "grade_target": 8,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 195-204",
+  "dci": "ESS2",
+  "ngss_pe": "MS-ESS2-5",
+  "kind": "investigation",
+  "stimulus": "procedure",
+  "format": "claim",
+  "ask": "supported",
+  "invented": true,
+  "names_used": [
+   "Run S",
+   "Run X",
+   "Run U"
+  ],
+  "passage": "Students made a model of two air masses meeting. They used a long clear tank with a removable divider in the middle. In each run they filled one side with red-dyed water and the other side with blue-dyed water, then lifted the divider and watched. In Run S the red water was 30 °C and the blue water was 10 °C. The blue water slid along the bottom under the red water and reached the far wall in 20 seconds. In Run X the red water was 25 °C and the blue water was 15 °C. The blue water again slid under the red water and reached the far wall in 35 seconds. In Run U both colors were 20 °C. No layers formed, and the colors slowly blended over several minutes.",
+  "graphic": null,
+  "prompt": "Which claim is supported by the results of the three runs?",
+  "choices": [
+   "The warm water slid under the cold water in every run",
+   "Water at one temperature layered the fastest",
+   "Layers formed only when the temperatures differed",
+   "A smaller temperature difference made the cold water spread faster"
+  ],
+  "correct_answer": "Layers formed only when the temperatures differed",
+  "key_evidence": {
+   "refs": [
+    {
+     "quote": "In Run U both colors were 20 °C. No layers formed"
+    },
+    {
+     "quote": "The blue water slid along the bottom under the red water"
+    }
+   ]
+  },
+  "explanation": "Runs S and X, where the two colors had different temperatures, both formed a cold bottom layer. Run U, with both colors at 20 °C, formed no layers and only blended.",
+  "distractor_rationales": [
+   {
+    "choice": "The warm water slid under the cold water in every run",
+    "fault": "in Runs S and X the cold blue water went under; in Run U nothing slid under"
+   },
+   {
+    "choice": "Water at one temperature layered the fastest",
+    "fault": "Run U, at one temperature, formed no layers at all"
+   },
+   {
+    "choice": "A smaller temperature difference made the cold water spread faster",
+    "fault": "Run X had the smaller difference and took 35 seconds, slower than Run S at 20 seconds"
+   }
+  ],
+  "real_world_check": "Colder fluid is denser than warmer fluid, so when air masses of different temperature meet, the cold mass wedges beneath the warm one."
+ },
+ {
+  "id": "MSB1-E8-05",
+  "map_area": "Earth and Space Science",
+  "grade_target": 8,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 195-204",
+  "dci": "ESS3",
+  "ngss_pe": "MS-ESS3-5",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "quantity",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "Earth's average surface temperature has risen by about 1 °C over the past century. Scientists link most of this rise to an increase in which quantity?",
+  "choices": [
+   "ozone hole size",
+   "Sun's energy output",
+   "Earth's orbit distance",
+   "atmospheric carbon dioxide level"
+  ],
+  "correct_answer": "atmospheric carbon dioxide level",
+  "explanation": "Burning fossil fuels has raised the amount of carbon dioxide in the air. This greenhouse gas traps more of the energy Earth gives off, which warms the surface.",
+  "distractor_rationales": [
+   {
+    "choice": "ozone hole size",
+    "fault": "misconception: the ozone hole causes global warming; it lets in more ultraviolet light but is not the main cause of the warming"
+   },
+   {
+    "choice": "Sun's energy output",
+    "fault": "misconception: recent warming comes from a brighter Sun; measured solar output has not risen enough to explain it"
+   },
+   {
+    "choice": "Earth's orbit distance",
+    "fault": "misconception: Earth has moved closer to the Sun; orbit changes act over many thousands of years, not one century"
+   }
+  ],
+  "real_world_check": "Rising levels of carbon dioxide from human fuel burning are the main cause of the global temperature rise of the past century."
+ },
+ {
+  "id": "MSB1-E8-06",
+  "map_area": "Earth and Space Science",
+  "grade_target": 8,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 195-204",
+  "dci": "ESS2",
+  "ngss_pe": "MS-ESS2-6",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "explains",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "All year round, ocean surface water near the equator is warmer than ocean surface water near the poles. Which statement best explains this difference?",
+  "choices": [
+   "The equator lies much closer to the Sun than the poles do.",
+   "Sunlight strikes the equator more directly.",
+   "Heat from Earth's core rises more strongly under the equator.",
+   "Ocean currents carry warm water from the poles toward the equator."
+  ],
+  "correct_answer": "Sunlight strikes the equator more directly.",
+  "explanation": "Near the equator sunlight arrives nearly straight down, so each square meter of water gets more energy. Near the poles the same light hits at a low angle and spreads out.",
+  "distractor_rationales": [
+   {
+    "choice": "The equator lies much closer to the Sun than the poles do.",
+    "fault": "misconception: distance to the Sun sets temperature; the difference in distance is tiny compared with the distance to the Sun"
+   },
+   {
+    "choice": "Heat from Earth's core rises more strongly under the equator.",
+    "fault": "misconception: Earth's inner heat warms the surface oceans; heat from the core is small and not stronger at the equator"
+   },
+   {
+    "choice": "Ocean currents carry warm water from the poles toward the equator.",
+    "fault": "misconception: warm water comes from the poles; currents carry warm water away from the equator toward the poles"
+   }
+  ],
+  "real_world_check": "Unequal heating of Earth comes from the angle of sunlight: direct rays near the equator deliver more energy per area than slanted rays near the poles."
+ },
+ {
+  "id": "MSB1-E8-07",
+  "map_area": "Earth and Space Science",
+  "grade_target": 8,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 205-214",
+  "dci": "ESS2",
+  "ngss_pe": "MS-ESS2-3",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "values",
+  "ask": "interpolate",
+  "invented": true,
+  "names_used": [
+   "Wexley",
+   "Site S-1",
+   "Site S-2",
+   "Site S-3",
+   "Site S-4"
+  ],
+  "passage": "Scientists drilled rock samples from the ocean floor at four sites, all on the east side of a spreading center named Wexley. They recorded each site's distance from the center and found the age of the rock there.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Site S-1",
+    "Site S-2",
+    "Site S-3",
+    "Site S-4"
+   ],
+   "colLabels": [
+    "Distance from spreading center (km)",
+    "Age of rock (million years)"
+   ],
+   "cells": [
+    [
+     20,
+     1
+    ],
+    [
+     50,
+     2.5
+    ],
+    [
+     90,
+     4.5
+    ],
+    [
+     140,
+     7
+    ]
+   ],
+   "caption": "Table 1. Age of seafloor rock east of Wexley"
+  },
+  "prompt": "A new sample is drilled 80 km east of the spreading center. Based on Table 1, what is the best estimate of its age?",
+  "choices": [
+   "2.5 million years",
+   "4.5 million years",
+   "3.5 million years",
+   "4.0 million years"
+  ],
+  "correct_answer": "4.0 million years",
+  "key_evidence": {
+   "refs": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ]
+   ],
+   "expr": "v0 + (80 - v2) / (v3 - v2) * (v1 - v0)"
+  },
+  "explanation": "Between 50 km (2.5 million years) and 90 km (4.5 million years) the age rises 2.0 million years over 40 km. 80 km is 30 km past 50 km, three quarters of the way, so the age is 2.5 + 1.5 = 4.0 million years. The whole table fits the same rate of 20 km per million years.",
+  "distractor_rationales": [
+   {
+    "choice": "2.5 million years",
+    "fault": "this is the age at 50 km, the nearer listed site, not at 80 km"
+   },
+   {
+    "choice": "4.5 million years",
+    "fault": "this is the age at 90 km, which is farther out than 80 km"
+   },
+   {
+    "choice": "3.5 million years",
+    "fault": "this is halfway between the 50 km and 90 km ages, but 80 km is not halfway between them"
+   }
+  ],
+  "real_world_check": "New oceanic crust forms at a spreading center and moves away at a steady rate, so rock age increases with distance from the center.",
+  "prior_free": "The standard says rock gets older away from a spreading center but not how fast at this invented center; the rate of 20 km per million years comes only from the table."
+ },
+ {
+  "id": "MSB1-E8-08",
+  "map_area": "Earth and Space Science",
+  "grade_target": 8,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 205-214",
+  "dci": "ESS1",
+  "ngss_pe": "MS-ESS1-3",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "conditions",
+  "ask": "controlled-pair",
+  "invented": true,
+  "names_used": [
+   "Run Z",
+   "Run S",
+   "Run T-4",
+   "Run UV-31",
+   "Run WXY-205"
+  ],
+  "passage": "Students modeled how impact craters form on a moon's surface. They dropped steel balls into trays of fine sand and measured the width of each crater.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Run Z",
+    "Run S",
+    "Run T-4",
+    "Run UV-31",
+    "Run WXY-205"
+   ],
+   "colLabels": [
+    "Ball mass (g)",
+    "Drop height (cm)",
+    "Sand depth (cm)",
+    "Crater width (mm)"
+   ],
+   "cells": [
+    [
+     20,
+     50,
+     6,
+     41
+    ],
+    [
+     20,
+     100,
+     3,
+     47
+    ],
+    [
+     20,
+     100,
+     6,
+     52
+    ],
+    [
+     40,
+     50,
+     6,
+     50
+    ],
+    [
+     40,
+     100,
+     6,
+     63
+    ]
+   ],
+   "caption": "Table 1. Settings and crater widths for five runs"
+  },
+  "prompt": "The students want to find out whether drop height affects crater width. Which run should they compare with Run Z?",
+  "choices": [
+   "Run S",
+   "Run UV-31",
+   "Run WXY-205",
+   "Run T-4"
+  ],
+  "correct_answer": "Run T-4",
+  "key_evidence": {
+   "refs": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     2,
+     2
+    ]
+   ]
+  },
+  "explanation": "Run T-4 uses the same 20 g ball and the same 6 cm of sand as Run Z. Only the drop height differs (100 cm instead of 50 cm), so any change in crater width can be traced to height.",
+  "distractor_rationales": [
+   {
+    "choice": "Run S",
+    "fault": "it changes the drop height but also uses 3 cm of sand instead of 6 cm, so two settings differ"
+   },
+   {
+    "choice": "Run UV-31",
+    "fault": "it is dropped from the same 50 cm height; it changes the ball mass instead"
+   },
+   {
+    "choice": "Run WXY-205",
+    "fault": "it changes both the ball mass and the drop height, so the effect of height cannot be separated"
+   }
+  ],
+  "real_world_check": "A fair comparison changes only one setting; in crater models a faster, higher-energy impact makes a wider crater."
+ },
+ {
+  "id": "MSB1-E8-09",
+  "map_area": "Earth and Space Science",
+  "grade_target": 8,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 205-214",
+  "dci": "ESS3",
+  "ngss_pe": "MS-ESS3-4",
+  "kind": "data",
+  "stimulus": "bar",
+  "format": "conditions",
+  "ask": "least",
+  "invented": true,
+  "names_used": [
+   "Sova",
+   "Tamrel",
+   "Vellisor",
+   "Ulbermaine"
+  ],
+  "passage": "Four towns take their water from the same river. Sova has 20,000 people, Tamrel has 60,000, Vellisor has 30,000 and Ulbermaine has 10,000. The graph shows how much fresh water each town uses in one day.",
+  "graphic": {
+   "type": "bar",
+   "bars": [
+    {
+     "label": "Sova",
+     "value": 6
+    },
+    {
+     "label": "Tamrel",
+     "value": 9
+    },
+    {
+     "label": "Vellisor",
+     "value": 12
+    },
+    {
+     "label": "Ulbermaine",
+     "value": 3
+    }
+   ],
+   "xLabel": "Town",
+   "yLabel": "Water used (million liters per day)",
+   "caption": "Fresh water used in one day by four towns"
+  },
+  "prompt": "Which town uses the least water per person?",
+  "choices": [
+   "Tamrel",
+   "Sova",
+   "Ulbermaine",
+   "Vellisor"
+  ],
+  "correct_answer": "Tamrel",
+  "key_evidence": {
+   "refs": [
+    "Tamrel",
+    "Sova",
+    "Vellisor",
+    "Ulbermaine"
+   ]
+  },
+  "explanation": "Dividing each bar by the population: Tamrel 9 million L / 60,000 = 150 L per person; Sova 6 million / 20,000 = 300 L; Vellisor 12 million / 30,000 = 400 L; Ulbermaine 3 million / 10,000 = 300 L. Tamrel is lowest.",
+  "distractor_rationales": [
+   {
+    "choice": "Sova",
+    "fault": "it uses 6 million L for 20,000 people, or 300 L per person, twice Tamrel's 150 L"
+   },
+   {
+    "choice": "Ulbermaine",
+    "fault": "it has the shortest bar, the least total water, but with only 10,000 people that is 300 L per person"
+   },
+   {
+    "choice": "Vellisor",
+    "fault": "it uses 12 million L for 30,000 people, 400 L per person, the most of the four"
+   }
+  ],
+  "real_world_check": "A population's total use of a resource equals the number of people times the use per person, so a large town can still use less per person."
+ },
+ {
+  "id": "MSB1-E8-10",
+  "map_area": "Earth and Space Science",
+  "grade_target": 8,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 205-214",
+  "dci": "ESS1",
+  "ngss_pe": "MS-ESS1-4",
+  "kind": "investigation",
+  "stimulus": "procedure+table",
+  "format": "conditions",
+  "ask": "meets-criterion",
+  "invented": true,
+  "names_used": [
+   "Sull",
+   "Tavirn",
+   "Yorrabel",
+   "Ventimoral"
+  ],
+  "passage": "Geologists drilled a core of layered mud at each of four sites around a lake. Every core contains one thin layer of volcanic ash from a single eruption and one bed of snail shells. At each site the layers lie flat and have never been folded or overturned, so deeper layers formed earlier. The geologists measured how far below the surface each layer begins. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Tavirn",
+    "Sull",
+    "Yorrabel",
+    "Ventimoral"
+   ],
+   "colLabels": [
+    "Depth of ash layer (m)",
+    "Depth of shell bed (m)"
+   ],
+   "cells": [
+    [
+     6,
+     5.2
+    ],
+    [
+     3,
+     4.5
+    ],
+    [
+     9.5,
+     7.8
+    ],
+    [
+     2,
+     1
+    ]
+   ],
+   "caption": "Table 1. Layer depths in four lake cores"
+  },
+  "prompt": "At which site did the snail shells collect before the ash fell?",
+  "choices": [
+   "Sull",
+   "Tavirn",
+   "Ventimoral",
+   "Yorrabel"
+  ],
+  "correct_answer": "Sull",
+  "key_evidence": {
+   "refs": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ]
+   ]
+  },
+  "explanation": "Only at Sull is the shell bed (4.5 m) deeper than the ash layer (3.0 m). In undisturbed layers the deeper one formed first, so those shells collected before the ash fell.",
+  "distractor_rationales": [
+   {
+    "choice": "Tavirn",
+    "fault": "its shell bed at 5.2 m lies above its ash at 6.0 m, so the shells came after the ash"
+   },
+   {
+    "choice": "Ventimoral",
+    "fault": "its shell bed at 1.0 m lies above its ash at 2.0 m, so the shells are younger"
+   },
+   {
+    "choice": "Yorrabel",
+    "fault": "its shell bed is the deepest of all at 7.8 m, but its ash is deeper still at 9.5 m, so the shells formed after the ash"
+   }
+  ],
+  "real_world_check": "In undisturbed layers of sediment, lower layers are older than the layers above them (superposition), and an ash layer from one eruption marks one moment in time."
+ },
+ {
+  "id": "MSB1-E8-11",
+  "map_area": "Earth and Space Science",
+  "grade_target": 8,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 205-214",
+  "dci": "ESS3",
+  "ngss_pe": "MS-ESS3-1",
+  "kind": "investigation",
+  "stimulus": "procedure+table",
+  "format": "values",
+  "ask": "interpolate",
+  "invented": true,
+  "names_used": [
+   "Tolbern",
+   "Hole W-7",
+   "Sample S-1",
+   "Sample S-2",
+   "Sample S-3",
+   "Sample S-4",
+   "Sample S-5"
+  ],
+  "passage": "Geologists studying a copper deposit at a site called Tolbern drilled one hole, Hole W-7, straight down. They kept rock samples from five depths. In the lab they crushed each sample and measured how many kilograms of copper one tonne of that rock contains. The rock was the same type at every depth. The sample from 80 m was lost before it could be tested. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Sample S-1",
+    "Sample S-2",
+    "Sample S-3",
+    "Sample S-4",
+    "Sample S-5"
+   ],
+   "colLabels": [
+    "Depth (m)",
+    "Copper (kg per tonne)"
+   ],
+   "cells": [
+    [
+     20,
+     6
+    ],
+    [
+     40,
+     10
+    ],
+    [
+     60,
+     14
+    ],
+    [
+     100,
+     22
+    ],
+    [
+     120,
+     26
+    ]
+   ],
+   "caption": "Table 1. Copper content of samples from Hole W-7"
+  },
+  "prompt": "Based on Table 1, what is the best estimate of the copper content of the rock at 80 m in Hole W-7?",
+  "choices": [
+   "18.0 kg per tonne",
+   "14.0 kg per tonne",
+   "8.0 kg per tonne",
+   "17.6 kg per tonne"
+  ],
+  "correct_answer": "18.0 kg per tonne",
+  "key_evidence": {
+   "refs": [
+    [
+     2,
+     1
+    ],
+    [
+     3,
+     1
+    ],
+    [
+     2,
+     0
+    ],
+    [
+     3,
+     0
+    ]
+   ],
+   "expr": "v0 + (80 - v2) / (v3 - v2) * (v1 - v0)"
+  },
+  "explanation": "Copper rises 2.0 kg per tonne for every 10 m of depth. At 60 m it is 14.0 and at 100 m it is 22.0; 80 m is halfway, so 14.0 + 4.0 = 18.0 kg per tonne.",
+  "distractor_rationales": [
+   {
+    "choice": "14.0 kg per tonne",
+    "fault": "this is the value at 60 m, the shallower neighbor, not at 80 m"
+   },
+   {
+    "choice": "8.0 kg per tonne",
+    "fault": "this is the whole change from 60 m to 100 m, not the content at 80 m"
+   },
+   {
+    "choice": "17.6 kg per tonne",
+    "fault": "this scales the 100 m value by 80/100 as if copper rose in proportion from zero at the surface; the table does not start from zero (6.0 at 20 m, not 4.4)"
+   }
+  ],
+  "real_world_check": "Mineral resources are unevenly distributed because of past geologic processes, so the amount of ore in rock can change with depth.",
+  "prior_free": "The standard says ores are unevenly distributed but gives no copper values; the content at 80 m in this invented hole can only come from the table's pattern."
+ },
+ {
+  "id": "MSB1-E8-12",
+  "map_area": "Earth and Space Science",
+  "grade_target": 8,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 205-214",
+  "dci": "ESS2",
+  "ngss_pe": "MS-ESS2-3",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "structure",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "Scientists drilling the ocean floor find that the rock is youngest along one long feature. The rock gets older at the same rate on both sides of it, in a mirror pattern. What is this feature?",
+  "choices": [
+   "hot spot",
+   "island arc",
+   "ocean trench",
+   "mid-ocean ridge"
+  ],
+  "correct_answer": "mid-ocean ridge",
+  "explanation": "New oceanic crust forms where plates pull apart at a mid-ocean ridge. The new rock then moves away on both sides, so ages increase symmetrically outward.",
+  "distractor_rationales": [
+   {
+    "choice": "hot spot",
+    "fault": "misconception: hot spots make mirror-image seafloor; hot-spot islands get older in only one direction as a plate moves over them"
+   },
+   {
+    "choice": "island arc",
+    "fault": "misconception: new seafloor spreads out from island arcs; arcs form above a sinking plate, with no mirror pattern of ages"
+   },
+   {
+    "choice": "ocean trench",
+    "fault": "misconception: new crust forms at trenches; old crust sinks back into the mantle there"
+   }
+  ],
+  "real_world_check": "Seafloor spreading at mid-ocean ridges produces the youngest rock at the ridge and progressively older rock symmetrically on both sides."
+ },
+ {
+  "id": "MSB1-E8-13",
+  "map_area": "Earth and Space Science",
+  "grade_target": 8,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 205-214",
+  "dci": "ESS3",
+  "ngss_pe": "MS-ESS3-5",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "predicts",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "Suppose Earth's average temperature keeps rising for the next hundred years. Which prediction about global sea level is best supported by science?",
+  "choices": [
+   "Sea level will rise as land ice melts and seawater warms and expands.",
+   "Sea level will rise, mainly because floating sea ice melts.",
+   "Sea level will fall because warmer oceans lose more water to evaporation.",
+   "Sea level will stay the same because meltwater refreezes in winter."
+  ],
+  "correct_answer": "Sea level will rise as land ice melts and seawater warms and expands.",
+  "explanation": "Melting glaciers and ice sheets on land add new water to the ocean, and warmer water takes up more space. Both raise sea level.",
+  "distractor_rationales": [
+   {
+    "choice": "Sea level will rise, mainly because floating sea ice melts.",
+    "fault": "misconception: melting floating ice raises sea level a lot; floating ice already displaces its own weight of water"
+   },
+   {
+    "choice": "Sea level will fall because warmer oceans lose more water to evaporation.",
+    "fault": "misconception: evaporation removes water from Earth; evaporated water returns as rain and snow"
+   },
+   {
+    "choice": "Sea level will stay the same because meltwater refreezes in winter.",
+    "fault": "misconception: ice lost to warming always comes back each winter; ongoing warming shrinks land ice year after year"
+   }
+  ],
+  "real_world_check": "Global sea level rises with warming because land ice melts into the ocean and seawater expands as it warms."
+ },
+ {
+  "id": "MSB1-E8-14",
+  "map_area": "Earth and Space Science",
+  "grade_target": 8,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 205-214",
+  "dci": "ESS3",
+  "ngss_pe": "MS-ESS3-2",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "predicts",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "This summer, the ocean surface in a region where hurricanes form is 2 °C warmer than usual. Which prediction about hurricanes in that region is best supported?",
+  "choices": [
+   "Fewer hurricanes may form, because warm water calms the air above it.",
+   "Hurricanes there will be weaker, since storms feed on cold water.",
+   "Hurricanes there may become stronger than usual.",
+   "Hurricane strength will not change, since wind alone powers storms."
+  ],
+  "correct_answer": "Hurricanes there may become stronger than usual.",
+  "explanation": "Hurricanes get their energy from warm ocean water that evaporates and then releases heat as it condenses. Warmer water supplies more energy, so storms can grow stronger.",
+  "distractor_rationales": [
+   {
+    "choice": "Fewer hurricanes may form, because warm water calms the air above it.",
+    "fault": "misconception: warm water calms the air; warm water makes air rise and fuels storms"
+   },
+   {
+    "choice": "Hurricanes there will be weaker, since storms feed on cold water.",
+    "fault": "misconception: storms draw strength from cold water; cold water weakens hurricanes"
+   },
+   {
+    "choice": "Hurricane strength will not change, since wind alone powers storms.",
+    "fault": "misconception: wind is the energy source of a hurricane; the energy comes from warm, moist ocean air"
+   }
+  ],
+  "real_world_check": "Hurricanes draw energy from warm ocean surface water, so warmer-than-usual seas allow storms to become more intense."
+ },
+ {
+  "id": "MSB1-E8-15",
+  "map_area": "Earth and Space Science",
+  "grade_target": 8,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 215-224",
+  "dci": "ESS2",
+  "ngss_pe": "MS-ESS2-5",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "values",
+  "ask": "difference",
+  "invented": true,
+  "names_used": [
+   "Station Tennick"
+  ],
+  "passage": "Weather observers at Station Tennick took readings every three hours on one spring day. A cold front passed the station between two of the readings. The wind changed direction at the moment the front passed.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "06:00",
+    "09:00",
+    "12:00",
+    "15:00",
+    "18:00"
+   ],
+   "colLabels": [
+    "Temperature (°C)",
+    "Wind from",
+    "Air pressure (hPa)"
+   ],
+   "cells": [
+    [
+     18,
+     "S",
+     1012
+    ],
+    [
+     21,
+     "S",
+     1009
+    ],
+    [
+     23,
+     "S",
+     1006
+    ],
+    [
+     14,
+     "NW",
+     1010
+    ],
+    [
+     12,
+     "NW",
+     1013
+    ]
+   ],
+   "caption": "Table 1. Readings at Station Tennick on one day"
+  },
+  "prompt": "By how much did the temperature drop from the last reading before the front passed to the first reading after it?",
+  "choices": [
+   "7 °C",
+   "9 °C",
+   "6 °C",
+   "11 °C"
+  ],
+  "correct_answer": "9 °C",
+  "key_evidence": {
+   "refs": [
+    [
+     2,
+     0
+    ],
+    [
+     3,
+     0
+    ]
+   ],
+   "expr": "v0 - v1"
+  },
+  "explanation": "The wind shifts from S to NW between 12:00 and 15:00, so the front passed then. The temperature went from 23 °C at 12:00 to 14 °C at 15:00, a drop of 9 °C.",
+  "distractor_rationales": [
+   {
+    "choice": "7 °C",
+    "fault": "this uses 21 °C at 09:00, but the last reading before the front was 23 °C at 12:00"
+   },
+   {
+    "choice": "6 °C",
+    "fault": "this is the change over the whole day, from 18 °C at 06:00 to 12 °C at 18:00"
+   },
+   {
+    "choice": "11 °C",
+    "fault": "this uses 12 °C at 18:00, but the first reading after the front was 14 °C at 15:00"
+   }
+  ],
+  "real_world_check": "When a cold front passes, the wind shifts direction, the temperature falls and the air pressure begins to rise.",
+  "prior_free": "The standard says cold fronts bring cooler air but not how much this invented front cooled or between which readings it passed; the student must find the wind shift in the table."
+ },
+ {
+  "id": "MSB1-E8-16",
+  "map_area": "Earth and Space Science",
+  "grade_target": 8,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 215-224",
+  "dci": "ESS1",
+  "ngss_pe": "MS-ESS1-2",
+  "kind": "data",
+  "stimulus": "bar",
+  "format": "values",
+  "ask": "ratio",
+  "invented": true,
+  "names_used": [
+   "Zellan",
+   "Sorra",
+   "Tuvel",
+   "Varn",
+   "Wesk"
+  ],
+  "passage": "Engineers are planning a robot probe that will land on four planets of the star Zellan. The graph shows the strength of gravity at each planet's surface. The probe's mass stays the same on every planet.",
+  "graphic": {
+   "type": "bar",
+   "bars": [
+    {
+     "label": "Sorra",
+     "value": 2
+    },
+    {
+     "label": "Tuvel",
+     "value": 6
+    },
+    {
+     "label": "Varn",
+     "value": 8
+    },
+    {
+     "label": "Wesk",
+     "value": 4
+    }
+   ],
+   "xLabel": "Planet",
+   "yLabel": "Surface gravity (N/kg)",
+   "caption": "Surface gravity of four planets of the star Zellan"
+  },
+  "prompt": "How many times as much will the probe weigh on Varn as on Sorra?",
+  "choices": [
+   "3 times",
+   "8 times",
+   "4 times",
+   "2 times"
+  ],
+  "correct_answer": "4 times",
+  "key_evidence": {
+   "refs": [
+    "Varn",
+    "Sorra"
+   ],
+   "expr": "v0 / v1"
+  },
+  "explanation": "Weight is mass times surface gravity, and the mass does not change. Varn's gravity is 8 N/kg and Sorra's is 2 N/kg, so the probe weighs 8 / 2 = 4 times as much on Varn.",
+  "distractor_rationales": [
+   {
+    "choice": "3 times",
+    "fault": "this compares Tuvel (6 N/kg) with Sorra, the wrong planet"
+   },
+   {
+    "choice": "8 times",
+    "fault": "this is Varn's gravity value read off the axis, not a comparison with Sorra"
+   },
+   {
+    "choice": "2 times",
+    "fault": "this compares Varn with Wesk (8 / 4), not with Sorra"
+   }
+  ],
+  "real_world_check": "An object's weight equals its mass times the local strength of gravity, so with the same mass, weight scales with surface gravity.",
+  "prior_free": "The gravity of these invented planets exists only in the graph; knowing that weight depends on gravity does not tell a student that Varn pulls four times harder than Sorra."
+ },
+ {
+  "id": "MSB1-E8-17",
+  "map_area": "Earth and Space Science",
+  "grade_target": 8,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 215-224",
+  "dci": "ESS1",
+  "ngss_pe": "MS-ESS1-2",
+  "kind": "data",
+  "stimulus": "line",
+  "format": "trend",
+  "ask": "no-change",
+  "invented": true,
+  "names_used": [
+   "Tessar"
+  ],
+  "passage": "A student used a computer model to place satellites of different masses in circular orbits around the planet Tessar. Every satellite orbited at the same distance, 9,000 km from the planet's center. The model timed one full orbit for each satellite.",
+  "graphic": {
+   "type": "line",
+   "series": [
+    {
+     "points": [
+      [
+       100,
+       6
+      ],
+      [
+       200,
+       6
+      ],
+      [
+       400,
+       6
+      ],
+      [
+       800,
+       6
+      ]
+     ]
+    }
+   ],
+   "xLabel": "Satellite mass (kg)",
+   "yLabel": "Time for one orbit (h)",
+   "caption": "Orbit times of model satellites around Tessar"
+  },
+  "prompt": "Based on the graph, how does the time for one orbit change as the satellite mass goes up?",
+  "choices": [
+   "decreases for heavier satellites",
+   "stays the same for heavier satellites",
+   "rises for heavier satellites",
+   "rises, then stays level for heavier satellites"
+  ],
+  "correct_answer": "stays the same for heavier satellites",
+  "key_evidence": {
+   "refs": [
+    [
+     100,
+     6
+    ],
+    [
+     800,
+     6
+    ]
+   ]
+  },
+  "explanation": "Every point sits at 6 h, from the 100 kg satellite to the 800 kg satellite, so the orbit time does not change with mass.",
+  "distractor_rationales": [
+   {
+    "choice": "decreases for heavier satellites",
+    "fault": "the 800 kg satellite takes 6 h, the same as the 100 kg one, not less"
+   },
+   {
+    "choice": "rises for heavier satellites",
+    "fault": "the line is flat at 6 h; heavier satellites do not take longer"
+   },
+   {
+    "choice": "rises, then stays level for heavier satellites",
+    "fault": "the line never rises; it is level at 6 h from the first point"
+   }
+  ],
+  "real_world_check": "At a given distance from a planet, a small satellite's orbital period depends on the planet's mass and the distance, not on the satellite's own mass.",
+  "prior_free": "MS-ESS1-2 says gravity holds objects in orbit but not whether a heavier satellite circles faster or slower; many students expect a change, so the flat line is the evidence."
+ },
+ {
+  "id": "MSB1-E8-18",
+  "map_area": "Earth and Space Science",
+  "grade_target": 8,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 215-224",
+  "dci": "ESS1",
+  "ngss_pe": "MS-ESS1-1",
+  "kind": "investigation",
+  "stimulus": "procedure",
+  "format": "variable",
+  "ask": "controlled",
+  "invented": true,
+  "names_used": [
+   "Bulb S",
+   "Bulb T"
+  ],
+  "passage": "Students used a model to study how the sunlight reaching the ground changes with the seasons. They set a dark tile under a lamp and used a sensor to record the energy the tile absorbed. They changed the tilt of the light beam, testing angles of 30°, 60° and 90° to the tile. They also changed the number of minutes the lamp shone, using 5 minutes and 10 minutes. Each combination was tested once with Bulb S and once with Bulb T, so the type of lamp bulb changed too. The lamp distance was 40 cm from the tile in every run.",
+  "graphic": null,
+  "prompt": "Which setting did the students keep the same in every run?",
+  "choices": [
+   "lamp distance",
+   "type of lamp bulb",
+   "tilt of the light beam",
+   "number of minutes the lamp shone"
+  ],
+  "correct_answer": "lamp distance",
+  "option_roles": [
+   "setting",
+   "setting",
+   "setting",
+   "setting"
+  ],
+  "key_evidence": {
+   "refs": [
+    {
+     "quote": "The lamp distance was 40 cm from the tile in every run"
+    }
+   ]
+  },
+  "explanation": "The procedure states that the lamp stayed 40 cm from the tile in every run. The beam tilt, the time on and the bulb were each changed across runs.",
+  "distractor_rationales": [
+   {
+    "choice": "type of lamp bulb",
+    "fault": "each combination was run with Bulb S and with Bulb T, so the bulb changed"
+   },
+   {
+    "choice": "tilt of the light beam",
+    "fault": "the students tested three angles, 30°, 60° and 90°"
+   },
+   {
+    "choice": "number of minutes the lamp shone",
+    "fault": "the lamp shone for 5 minutes in some runs and 10 minutes in others"
+   }
+  ],
+  "real_world_check": "Seasons come from the changing angle of sunlight and length of daylight as tilted Earth orbits the Sun; a model must hold other settings, like lamp distance, fixed."
+ },
+ {
+  "id": "MSB1-E8-19",
+  "map_area": "Earth and Space Science",
+  "grade_target": 8,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 215-224",
+  "dci": "ESS1",
+  "ngss_pe": "MS-ESS1-1",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "example",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "Sometimes the Moon moves into the shadow that Earth casts into space. Which is an example of this kind of event?",
+  "choices": [
+   "a new moon",
+   "a waning crescent",
+   "a total lunar eclipse",
+   "a solar eclipse"
+  ],
+  "correct_answer": "a total lunar eclipse",
+  "explanation": "In a total lunar eclipse the Sun, Earth and Moon line up and the whole Moon passes through the darkest part of Earth's shadow.",
+  "distractor_rationales": [
+   {
+    "choice": "a new moon",
+    "fault": "misconception: Moon phases are caused by Earth's shadow; at new moon we face the Moon's unlit half"
+   },
+   {
+    "choice": "a waning crescent",
+    "fault": "misconception: Earth's shadow covers part of the Moon to make a crescent; crescents come from our viewing angle on the sunlit half"
+   },
+   {
+    "choice": "a solar eclipse",
+    "fault": "misconception: in a solar eclipse Earth shadows the Moon; it is the Moon's shadow that falls on Earth"
+   }
+  ],
+  "real_world_check": "A lunar eclipse happens when Earth lies between the Sun and the Moon and Earth's shadow falls on the Moon; phases are not caused by Earth's shadow."
+ },
+ {
+  "id": "MSB1-E8-20",
+  "map_area": "Earth and Space Science",
+  "grade_target": 8,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 215-224",
+  "dci": "ESS1",
+  "ngss_pe": "MS-ESS1-1",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "explains",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "People on Earth see the same side of the Moon night after night, year after year. Which statement explains why?",
+  "choices": [
+   "The Moon does not spin on its axis at all.",
+   "The Moon is too far away for its other side to be seen.",
+   "The Moon spins once during every trip around Earth.",
+   "The far side gets no sunlight, so it stays hidden from us."
+  ],
+  "correct_answer": "The Moon spins once during every trip around Earth.",
+  "explanation": "The Moon turns on its axis in the same time it takes to orbit Earth, about 27 days. Its spin keeps pace with its orbit, so the same half always faces Earth.",
+  "distractor_rationales": [
+   {
+    "choice": "The Moon does not spin on its axis at all.",
+    "fault": "misconception: the Moon does not rotate; a Moon with no spin would show us all of its sides during each orbit"
+   },
+   {
+    "choice": "The Moon is too far away for its other side to be seen.",
+    "fault": "misconception: distance hides the far side; distance does not decide which side faces us"
+   },
+   {
+    "choice": "The far side gets no sunlight, so it stays hidden from us.",
+    "fault": "misconception: there is a permanent dark side; the far side is fully sunlit at new moon"
+   }
+  ],
+  "real_world_check": "The Moon is tidally locked: it rotates once per orbit around Earth, so the same face always points toward Earth."
+ }
+]

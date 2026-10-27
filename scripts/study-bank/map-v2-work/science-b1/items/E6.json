@@ -1,0 +1,1463 @@
+[
+ {
+  "id": "MSB1-E6-01",
+  "map_area": "Earth and Space Science",
+  "grade_target": 6,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 189-198",
+  "dci": "ESS2",
+  "ngss_pe": "MS-ESS2-1",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "conditions",
+  "ask": "controlled-pair",
+  "invented": true,
+  "names_used": [
+   "Run G",
+   "Run H-4",
+   "Run JK-18",
+   "Run LHG-207",
+   "Run K",
+   "Sample J-2",
+   "Sample J-5"
+  ],
+  "passage": "Students put rock chips in a turning drum to model how rocks break down as they knock together in a stream. Before each run they weighed the chips, and after it they weighed them again to find the mass lost.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Run K",
+    "Run G",
+    "Run H-4",
+    "Run JK-18",
+    "Run LHG-207"
+   ],
+   "colLabels": [
+    "Rock sample",
+    "Turning time (min)",
+    "Water added (mL)",
+    "Mass lost (g)"
+   ],
+   "cells": [
+    [
+     "J-2",
+     30,
+     100,
+     4
+    ],
+    [
+     "J-5",
+     30,
+     100,
+     2.5
+    ],
+    [
+     "J-2",
+     30,
+     200,
+     4.5
+    ],
+    [
+     "J-5",
+     60,
+     100,
+     4
+    ],
+    [
+     "J-2",
+     60,
+     100,
+     7.5
+    ]
+   ],
+   "caption": "Table 1. Rock chip runs in the turning drum"
+  },
+  "prompt": "The students want to find out whether turning time changes the mass lost. Which run should they compare with Run K?",
+  "choices": [
+   "Run LHG-207",
+   "Run G",
+   "Run H-4",
+   "Run JK-18"
+  ],
+  "correct_answer": "Run LHG-207",
+  "key_evidence": {
+   "refs": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     4,
+     0
+    ],
+    [
+     4,
+     1
+    ],
+    [
+     4,
+     2
+    ]
+   ]
+  },
+  "explanation": "Run K used sample J-2, 30 min and 100 mL of water. Run LHG-207 also used sample J-2 and 100 mL, but turned for 60 min, so turning time is the only setting that differs.",
+  "distractor_rationales": [
+   {
+    "choice": "Run G",
+    "fault": "uses rock sample J-5 with the same time, so it changes the rock, not the turning time"
+   },
+   {
+    "choice": "Run H-4",
+    "fault": "keeps 30 min of turning and changes only the water added, so time is not tested"
+   },
+   {
+    "choice": "Run JK-18",
+    "fault": "changes both the rock sample and the turning time, so the cause of any difference is unclear"
+   }
+  ],
+  "real_world_check": "A fair comparison of one variable changes only that variable and keeps every other setting the same."
+ },
+ {
+  "id": "MSB1-E6-02",
+  "map_area": "Earth and Space Science",
+  "grade_target": 6,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 189-198",
+  "dci": "ESS2",
+  "ngss_pe": "MS-ESS2-4",
+  "kind": "data",
+  "stimulus": "bar",
+  "format": "conditions",
+  "ask": "meets-criterion",
+  "invented": true,
+  "names_used": [
+   "Pan H",
+   "Pan G-7",
+   "Pan KJ-26",
+   "Pan LHG-305",
+   "Pan IG-9"
+  ],
+  "passage": "Students set out five open pans of water at different places around a town. Each day they measured how many millimeters the water level in each pan went down.",
+  "graphic": {
+   "type": "bar",
+   "bars": [
+    {
+     "label": "Pan H",
+     "value": 12
+    },
+    {
+     "label": "Pan G-7",
+     "value": 4.5
+    },
+    {
+     "label": "Pan LHG-305",
+     "value": 7.5
+    },
+    {
+     "label": "Pan IG-9",
+     "value": 1.5
+    },
+    {
+     "label": "Pan KJ-26",
+     "value": 10.5
+    }
+   ],
+   "xLabel": "Pan",
+   "yLabel": "Average water lost per day (mm)",
+   "caption": "Average daily evaporation from five pans"
+  },
+  "prompt": "Which pan lost more than 6 mm but less than 9 mm of water per day?",
+  "choices": [
+   "Pan H",
+   "Pan G-7",
+   "Pan LHG-305",
+   "Pan KJ-26"
+  ],
+  "correct_answer": "Pan LHG-305",
+  "key_evidence": {
+   "refs": [
+    "Pan LHG-305"
+   ]
+  },
+  "explanation": "The bar for Pan LHG-305 ends halfway between the 6 mm and 9 mm ticks, so it is the only listed pan inside that range.",
+  "distractor_rationales": [
+   {
+    "choice": "Pan H",
+    "fault": "its bar reaches the top tick of 12 mm, which is more than 9 mm"
+   },
+   {
+    "choice": "Pan G-7",
+    "fault": "its bar ends between 3 and 6 mm, which is less than 6 mm"
+   },
+   {
+    "choice": "Pan KJ-26",
+    "fault": "its bar ends between 9 and 12 mm, which is more than 9 mm"
+   }
+  ],
+  "real_world_check": "Water evaporates from open water at different rates in different places, and a pan loses depth as it evaporates."
+ },
+ {
+  "id": "MSB1-E6-03",
+  "map_area": "Earth and Space Science",
+  "grade_target": 6,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 189-198",
+  "dci": "ESS3",
+  "ngss_pe": "MS-ESS3-4",
+  "kind": "data",
+  "stimulus": "line",
+  "format": "values",
+  "ask": "read",
+  "invented": true,
+  "names_used": [
+   "Ilbury"
+  ],
+  "passage": "The town of Ilbury buries its trash at one landfill. As the town grew, it made more trash each year. The graph shows the total trash buried there since records began.",
+  "graphic": {
+   "type": "line",
+   "series": [
+    {
+     "points": [
+      [
+       0,
+       4
+      ],
+      [
+       1,
+       7
+      ],
+      [
+       2,
+       12
+      ],
+      [
+       3,
+       16
+      ],
+      [
+       4,
+       20
+      ],
+      [
+       5,
+       30
+      ],
+      [
+       6,
+       46
+      ],
+      [
+       7,
+       62
+      ],
+      [
+       8,
+       80
+      ]
+     ]
+    }
+   ],
+   "xLabel": "Years since records began",
+   "yLabel": "Total trash buried (thousand tons)",
+   "caption": "Total trash buried at the Ilbury landfill"
+  },
+  "prompt": "Based on the graph, how much trash in total had been buried at the landfill by year 4?",
+  "choices": [
+   "30 thousand tons",
+   "46 thousand tons",
+   "62 thousand tons",
+   "20 thousand tons"
+  ],
+  "correct_answer": "20 thousand tons",
+  "key_evidence": {
+   "refs": [
+    [
+     4,
+     20
+    ]
+   ],
+   "expr": "v0"
+  },
+  "explanation": "At year 4 on the x-axis, the line sits on the 20 thousand tons tick, so 20 thousand tons had been buried by then.",
+  "distractor_rationales": [
+   {
+    "choice": "30 thousand tons",
+    "fault": "is the total at year 5, one year past the year asked about"
+   },
+   {
+    "choice": "46 thousand tons",
+    "fault": "is the total at year 6, read from the wrong point on the x-axis"
+   },
+   {
+    "choice": "62 thousand tons",
+    "fault": "is the total at year 7, read far past year 4"
+   }
+  ],
+  "real_world_check": "A growing town produces more waste, so the total trash buried at a landfill keeps rising over time.",
+  "prior_free": "MS-ESS3-4 says a growing population makes more waste, but it does not give how many tons Ilbury had buried by year 4; that number exists only on this graph."
+ },
+ {
+  "id": "MSB1-E6-04",
+  "map_area": "Earth and Space Science",
+  "grade_target": 6,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 189-198",
+  "dci": "ESS1",
+  "ngss_pe": "MS-ESS1-1",
+  "kind": "investigation",
+  "stimulus": "procedure",
+  "format": "variable",
+  "ask": "dependent",
+  "invented": true,
+  "names_used": [
+   "Site Ilvane"
+  ],
+  "passage": "Students at Site Ilvane asked whether the Sun comes up at the same place on the horizon all year. On the first clear morning of each month, they stood at the viewing spot, a post they had set in the schoolyard. They used a compass to find the sunrise direction, in degrees north or south of due east. They also wrote down the clock time of sunrise. They used the same compass and the same viewing spot every time. They recorded the month with each result.",
+  "graphic": null,
+  "prompt": "Which was the dependent variable that answered the students' question?",
+  "choices": [
+   "the month",
+   "the sunrise direction",
+   "the viewing spot",
+   "the clock time of sunrise"
+  ],
+  "correct_answer": "the sunrise direction",
+  "option_roles": [
+   "setting",
+   "result",
+   "setting",
+   "result"
+  ],
+  "key_evidence": {
+   "refs": [
+    {
+     "quote": "They used a compass to find the sunrise direction"
+    }
+   ]
+  },
+  "explanation": "The question asked whether the Sun rises at the same place on the horizon. The sunrise direction is the measured result that shows where the Sun came up each month.",
+  "distractor_rationales": [
+   {
+    "choice": "the month",
+    "fault": "is the independent variable the students changed by observing in different months"
+   },
+   {
+    "choice": "the viewing spot",
+    "fault": "was kept the same every time, so it is a controlled variable"
+   },
+   {
+    "choice": "the clock time of sunrise",
+    "fault": "is measured, but it tells when the Sun rose, not where on the horizon"
+   }
+  ],
+  "real_world_check": "Over a year, the place where the Sun rises shifts north of east in summer and south of east in winter."
+ },
+ {
+  "id": "MSB1-E6-05",
+  "map_area": "Earth and Space Science",
+  "grade_target": 6,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 189-198",
+  "dci": "ESS2",
+  "ngss_pe": "MS-ESS2-2",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "process",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "During a heavy storm, rainwater runs down a bare hillside. The moving water carries loose soil down the slope and into a stream. What is the process that moved the soil?",
+  "choices": [
+   "deposition",
+   "erosion",
+   "frost wedging",
+   "chemical weathering"
+  ],
+  "correct_answer": "erosion",
+  "explanation": "Erosion is the moving of soil and rock pieces by water, wind or ice. Here running water carried loose soil away.",
+  "distractor_rationales": [
+   {
+    "choice": "deposition",
+    "fault": "misconception: deposition is the carrying of sediment, when it is the dropping of sediment where water slows"
+   },
+   {
+    "choice": "frost wedging",
+    "fault": "misconception: breaking rock apart also moves it; frost wedging only cracks rock when water freezes"
+   },
+   {
+    "choice": "chemical weathering",
+    "fault": "misconception: rain dissolving rock is the same as carrying soil away; weathering breaks down, it does not move"
+   }
+  ],
+  "real_world_check": "Weathering breaks rock down in place, erosion moves the pieces, and deposition drops them."
+ },
+ {
+  "id": "MSB1-E6-06",
+  "map_area": "Earth and Space Science",
+  "grade_target": 6,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 189-198",
+  "dci": "ESS3",
+  "ngss_pe": "MS-ESS3-1",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "explains",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "Large deposits of copper ore are found in only a few regions of the world. Most places have almost none. Which statement best explains this pattern?",
+  "choices": [
+   "Copper ore forms in a few years wherever rain soaks into the soil.",
+   "Copper was once spread evenly, but people have mined it out of most places.",
+   "Ore forms only where past geologic processes concentrated the metal.",
+   "Living things make copper ore, so it builds up only under old forests."
+  ],
+  "correct_answer": "Ore forms only where past geologic processes concentrated the metal.",
+  "explanation": "Mineral deposits are uneven because they formed where processes such as cooling magma or moving hot water gathered metal in rock long ago.",
+  "distractor_rationales": [
+   {
+    "choice": "Copper ore forms in a few years wherever rain soaks into the soil.",
+    "fault": "misconception: mineral resources form quickly and anywhere; ore takes very long and needs special conditions"
+   },
+   {
+    "choice": "Copper was once spread evenly, but people have mined it out of most places.",
+    "fault": "misconception: human use caused the uneven pattern; deposits were uneven before mining began"
+   },
+   {
+    "choice": "Living things make copper ore, so it builds up only under old forests.",
+    "fault": "misconception: all Earth resources come from living things; metal ore forms by geologic processes, not from life"
+   }
+  ],
+  "real_world_check": "Mineral resources are unevenly distributed because past geologic processes concentrated them in particular places."
+ },
+ {
+  "id": "MSB1-E6-07",
+  "map_area": "Earth and Space Science",
+  "grade_target": 6,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 199-208",
+  "dci": "ESS1",
+  "ngss_pe": "MS-ESS1-2",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "values",
+  "ask": "interpolate",
+  "invented": true,
+  "names_used": [
+   "Halvorn",
+   "Moon H-1",
+   "Moon H-2",
+   "Moon H-3",
+   "Moon H-4"
+  ],
+  "passage": "The planet Halvorn has four known moons. Gravity holds each moon in orbit. The table gives each moon's distance from Halvorn and the time it takes to go around the planet once.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Moon H-1",
+    "Moon H-2",
+    "Moon H-3",
+    "Moon H-4"
+   ],
+   "colLabels": [
+    "Distance from Halvorn (thousand km)",
+    "Time for one orbit (days)"
+   ],
+   "cells": [
+    [
+     20,
+     3
+    ],
+    [
+     40,
+     8
+    ],
+    [
+     80,
+     22
+    ],
+    [
+     120,
+     42
+    ]
+   ],
+   "caption": "Table 1. Moons of Halvorn"
+  },
+  "prompt": "A fifth moon is found 60 thousand km from Halvorn. Based on the table, its time for one orbit is closest to which value?",
+  "choices": [
+   "15 days",
+   "22 days",
+   "32 days",
+   "42 days"
+  ],
+  "correct_answer": "15 days",
+  "key_evidence": {
+   "refs": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     1
+    ]
+   ],
+   "expr": "(v0 + v1) / 2"
+  },
+  "explanation": "The new moon lies between Moon H-2 (40 thousand km, 8 days) and Moon H-3 (80 thousand km, 22 days), so its orbit time falls between 8 and 22 days, near 15 days.",
+  "distractor_rationales": [
+   {
+    "choice": "22 days",
+    "fault": "is the time for Moon H-3 at 80 thousand km, farther out than the new moon"
+   },
+   {
+    "choice": "32 days",
+    "fault": "falls between Moon H-3 and Moon H-4, the wrong pair of rows for 60 thousand km"
+   },
+   {
+    "choice": "42 days",
+    "fault": "is the time for Moon H-4 at 120 thousand km, twice as far as the new moon"
+   }
+  ],
+  "real_world_check": "Moons farther from a planet take longer to complete an orbit, so a moon between two others has an orbit time between theirs.",
+  "prior_free": "The standard says gravity holds moons in orbit and farther ones take longer, but it gives no orbit times for Halvorn; only the H-2 and H-3 rows place the answer between 8 and 22 days."
+ },
+ {
+  "id": "MSB1-E6-08",
+  "map_area": "Earth and Space Science",
+  "grade_target": 6,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 199-208",
+  "dci": "ESS1",
+  "ngss_pe": "MS-ESS1-3",
+  "kind": "data",
+  "stimulus": "bar",
+  "format": "values",
+  "ask": "ratio",
+  "invented": true,
+  "names_used": [
+   "Asteroid GK",
+   "Asteroid HL",
+   "Asteroid JI",
+   "Asteroid KG"
+  ],
+  "passage": "A survey measured the widths of four asteroids in the asteroid belt.",
+  "graphic": {
+   "type": "bar",
+   "bars": [
+    {
+     "label": "Asteroid GK",
+     "value": 2
+    },
+    {
+     "label": "Asteroid HL",
+     "value": 6
+    },
+    {
+     "label": "Asteroid JI",
+     "value": 8
+    },
+    {
+     "label": "Asteroid KG",
+     "value": 3
+    }
+   ],
+   "xLabel": "Asteroid",
+   "yLabel": "Diameter (hundreds of km)",
+   "caption": "Diameters of four surveyed asteroids"
+  },
+  "prompt": "Based on the graph, the diameter of Asteroid JI is how many times the diameter of Asteroid GK?",
+  "choices": [
+   "3 times",
+   "6 times",
+   "4 times",
+   "8 times"
+  ],
+  "correct_answer": "4 times",
+  "key_evidence": {
+   "refs": [
+    "Asteroid JI",
+    "Asteroid GK"
+   ],
+   "expr": "v0 / v1"
+  },
+  "explanation": "Asteroid JI reaches the top tick at 8 hundred km and Asteroid GK reaches the first tick at 2 hundred km. Dividing 8 by 2 gives 4.",
+  "distractor_rationales": [
+   {
+    "choice": "3 times",
+    "fault": "divides Asteroid HL (6) by Asteroid GK (2), using the wrong bar"
+   },
+   {
+    "choice": "6 times",
+    "fault": "subtracts 2 from 8 instead of dividing, giving a difference, not a ratio"
+   },
+   {
+    "choice": "8 times",
+    "fault": "reads the height of Asteroid JI alone and does not divide by Asteroid GK"
+   }
+  ],
+  "real_world_check": "Objects in the asteroid belt range widely in size, and comparing diameters by division shows how many times larger one is.",
+  "prior_free": "No standard gives the sizes of these invented asteroids; the 8 and 2 come only from the bar heights, so the ratio needs the graph."
+ },
+ {
+  "id": "MSB1-E6-09",
+  "map_area": "Earth and Space Science",
+  "grade_target": 6,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 199-208",
+  "dci": "ESS2",
+  "ngss_pe": "MS-ESS2-5",
+  "kind": "data",
+  "stimulus": "line",
+  "format": "trend",
+  "ask": "no-change",
+  "invented": true,
+  "names_used": [
+   "Site Jorrin"
+  ],
+  "passage": "A weather station at Site Jorrin recorded the air temperature every 3 hours during one day, starting at 6 a.m.",
+  "graphic": {
+   "type": "line",
+   "series": [
+    {
+     "points": [
+      [
+       0,
+       10
+      ],
+      [
+       3,
+       16
+      ],
+      [
+       6,
+       16
+      ],
+      [
+       9,
+       16
+      ],
+      [
+       12,
+       8
+      ]
+     ]
+    }
+   ],
+   "xLabel": "Hours after 6 a.m.",
+   "yLabel": "Air temperature (°C)",
+   "caption": "Air temperature at Site Jorrin during one day"
+  },
+  "prompt": "From hour 3 to hour 9, how did the air temperature at Site Jorrin change?",
+  "choices": [
+   "It stayed the same.",
+   "It rose.",
+   "It dropped.",
+   "It rose, then stayed the same."
+  ],
+  "correct_answer": "It stayed the same.",
+  "key_evidence": {
+   "refs": [
+    [
+     3,
+     16
+    ],
+    [
+     6,
+     16
+    ],
+    [
+     9,
+     16
+    ]
+   ]
+  },
+  "explanation": "The points at hours 3, 6 and 9 are all at 16 °C, so the temperature did not change over that stretch.",
+  "distractor_rationales": [
+   {
+    "choice": "It rose.",
+    "fault": "describes hour 0 to hour 3, when the temperature went from 10 to 16 °C, not the stretch asked about"
+   },
+   {
+    "choice": "It dropped.",
+    "fault": "describes hour 9 to hour 12, when it fell to 8 °C, after the stretch asked about"
+   },
+   {
+    "choice": "It rose, then stayed the same.",
+    "fault": "describes hour 0 to hour 9; from hour 3 on there was no rise at all"
+   }
+  ],
+  "real_world_check": "Air temperature can hold steady for hours, for example under thick cloud, and then fall when a cooler air mass arrives.",
+  "prior_free": "MS-ESS2-5 explains that air masses change the weather, but nothing in it says when Site Jorrin's temperature held steady; each option is true for some other stretch of this graph."
+ },
+ {
+  "id": "MSB1-E6-10",
+  "map_area": "Earth and Space Science",
+  "grade_target": 6,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 199-208",
+  "dci": "ESS1",
+  "ngss_pe": "MS-ESS1-1",
+  "kind": "data",
+  "stimulus": "scatter",
+  "format": "trend",
+  "ask": "increase-then-level",
+  "invented": true,
+  "names_used": [
+   "Lorvane"
+  ],
+  "passage": "Lorvane is a planet whose axis is tilted. One full day and night there lasts 20 hours. The graph shows the hours of daylight on Lorvane’s longest day of the year at places from 10 to 50 degrees north of its equator.",
+  "graphic": {
+   "type": "scatter",
+   "points": [
+    [
+     10,
+     11.3
+    ],
+    [
+     15,
+     12.1
+    ],
+    [
+     20,
+     12.9
+    ],
+    [
+     25,
+     13.8
+    ],
+    [
+     30,
+     14.8
+    ],
+    [
+     35,
+     16.3
+    ],
+    [
+     40,
+     20
+    ],
+    [
+     45,
+     20
+    ],
+    [
+     50,
+     20
+    ]
+   ],
+   "xLabel": "Latitude (degrees north)",
+   "yLabel": "Daylight on the longest day (hours)",
+   "caption": "Daylight on Lorvane's longest day at nine latitudes"
+  },
+  "prompt": "Based on the graph, how does daylight on Lorvane's longest day change from 10 to 50 degrees north?",
+  "choices": [
+   "It falls, then stays the same.",
+   "It increases, then it decreases.",
+   "It decreases, then increases again.",
+   "It rises, then levels off."
+  ],
+  "correct_answer": "It rises, then levels off.",
+  "key_evidence": {
+   "refs": [
+    [
+     10,
+     11.3
+    ],
+    [
+     35,
+     16.3
+    ],
+    [
+     40,
+     20
+    ],
+    [
+     50,
+     20
+    ]
+   ]
+  },
+  "explanation": "Daylight grows from about 11 hours at 10 degrees to 20 hours at 40 degrees, then stays at 20 hours from 40 to 50 degrees.",
+  "distractor_rationales": [
+   {
+    "choice": "It falls, then stays the same.",
+    "fault": "the points get higher from 10 to 40 degrees, so daylight never falls"
+   },
+   {
+    "choice": "It increases, then it decreases.",
+    "fault": "after 40 degrees the points stay at 20 hours; daylight never goes back down"
+   },
+   {
+    "choice": "It decreases, then increases again.",
+    "fault": "daylight never goes down anywhere from 10 to 50 degrees, so it cannot first decrease"
+   }
+  ],
+  "real_world_check": "On a tilted planet's summer solstice, daylight grows with latitude until it reaches a full day poleward of 90 degrees minus the tilt, then stays there.",
+  "prior_free": "The standard says tilt makes summer days longer toward the pole, and on Earth they keep growing to 66.5 degrees; Lorvane's tilt is not given, so only the points show daylight topping out at 40 degrees inside this range."
+ },
+ {
+  "id": "MSB1-E6-11",
+  "map_area": "Earth and Space Science",
+  "grade_target": 6,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 199-208",
+  "dci": "ESS1",
+  "ngss_pe": "MS-ESS1-4",
+  "kind": "investigation",
+  "stimulus": "procedure+table",
+  "format": "conditions",
+  "ask": "greatest",
+  "invented": true,
+  "names_used": [
+   "Gendry",
+   "Core G",
+   "Core K-5",
+   "Core JG-14",
+   "Core HLJ-207"
+  ],
+  "passage": "Scientists drilled tubes of mud from the bottoms of four lakes near the village of Gendry. In these lakes, one thin layer of mud settles each year, so each layer stands for one year. The scientists measured the length of each mud tube, called a core. They counted the layers in each core. Then they compared how thick the layers were, on average, in each lake.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Core G",
+    "Core HLJ-207",
+    "Core K-5",
+    "Core JG-14"
+   ],
+   "colLabels": [
+    "Length (cm)",
+    "Layers counted"
+   ],
+   "cells": [
+    [
+     60,
+     40
+    ],
+    [
+     48,
+     24
+    ],
+    [
+     100,
+     80
+    ],
+    [
+     72,
+     90
+    ]
+   ],
+   "caption": "Table 1. Lake mud cores"
+  },
+  "prompt": "Which core had the greatest average thickness per layer?",
+  "choices": [
+   "Core G",
+   "Core HLJ-207",
+   "Core K-5",
+   "Core JG-14"
+  ],
+  "correct_answer": "Core HLJ-207",
+  "key_evidence": {
+   "refs": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ]
+   ]
+  },
+  "explanation": "Average layer thickness is length divided by layers: 60/40 = 1.5 cm, 48/24 = 2.0 cm, 100/80 = 1.25 cm and 72/90 = 0.8 cm. Core HLJ-207 has the thickest layers.",
+  "distractor_rationales": [
+   {
+    "choice": "Core G",
+    "fault": "its layers average 60 / 40 = 1.5 cm, thinner than 2.0 cm"
+   },
+   {
+    "choice": "Core K-5",
+    "fault": "is the longest core, but 100 / 80 = 1.25 cm per layer"
+   },
+   {
+    "choice": "Core JG-14",
+    "fault": "has the most layers, so each layer is thinnest at 72 / 90 = 0.8 cm"
+   }
+  ],
+  "real_world_check": "Lakes that lay down one sediment layer a year record time in their layers, and thicker layers mean more sediment settled each year."
+ },
+ {
+  "id": "MSB1-E6-12",
+  "map_area": "Earth and Space Science",
+  "grade_target": 6,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 199-208",
+  "dci": "ESS1",
+  "ngss_pe": "MS-ESS1-4",
+  "kind": "investigation",
+  "stimulus": "procedure+table",
+  "format": "values",
+  "ask": "read",
+  "invented": true,
+  "names_used": [
+   "Jar J-4"
+  ],
+  "passage": "Students modeled how layers of sediment build up on a lake floor. They half filled Jar J-4 with water. First they poured in a scoop of red sand and let it settle for a day. Next they added gray silt, then white sand, and last brown clay, waiting a day after each one. Nothing in the jar was stirred. Then they measured the thickness of each layer through the glass.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Top layer",
+    "Second layer from top",
+    "Third layer from top",
+    "Bottom layer"
+   ],
+   "colLabels": [
+    "Thickness (mm)"
+   ],
+   "cells": [
+    [
+     14
+    ],
+    [
+     20
+    ],
+    [
+     31
+    ],
+    [
+     46
+    ]
+   ],
+   "caption": "Table 1. Layers in Jar J-4"
+  },
+  "prompt": "What was the thickness of the layer that was added second?",
+  "choices": [
+   "14 mm",
+   "20 mm",
+   "31 mm",
+   "46 mm"
+  ],
+  "correct_answer": "31 mm",
+  "key_evidence": {
+   "refs": [
+    [
+     2,
+     0
+    ]
+   ],
+   "expr": "v0"
+  },
+  "explanation": "Each new layer settles on top of the earlier ones, so the bottom layer was added first and the layer just above it, third from the top, was added second. That layer is 31 mm thick.",
+  "distractor_rationales": [
+   {
+    "choice": "14 mm",
+    "fault": "is the top layer, the brown clay that was added last"
+   },
+   {
+    "choice": "20 mm",
+    "fault": "counts second from the top, which is the third layer added, not the second"
+   },
+   {
+    "choice": "46 mm",
+    "fault": "is the bottom layer, the red sand that was added first"
+   }
+  ],
+  "real_world_check": "In undisturbed layers of sediment, lower layers were deposited before the layers above them.",
+  "prior_free": "Superposition tells which layer came second, but not how thick it is; the 31 mm exists only in the table, and the step from added order to table row needs the procedure."
+ },
+ {
+  "id": "MSB1-E6-13",
+  "map_area": "Earth and Space Science",
+  "grade_target": 6,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 199-208",
+  "dci": "ESS3",
+  "ngss_pe": "MS-ESS3-1",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "example",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "A resource is nonrenewable when it forms over millions of years, far more slowly than people use it. Which of these is an example of a nonrenewable resource?",
+  "choices": [
+   "timber",
+   "sunlight",
+   "wind energy",
+   "oil"
+  ],
+  "correct_answer": "oil",
+  "explanation": "Oil forms from buried remains over millions of years, so people use it far faster than it forms.",
+  "distractor_rationales": [
+   {
+    "choice": "timber",
+    "fault": "misconception: resources from living things cannot be replaced; trees can be regrown in decades"
+   },
+   {
+    "choice": "sunlight",
+    "fault": "misconception: using sunlight uses it up; the Sun keeps sending energy no matter how much is captured"
+   },
+   {
+    "choice": "wind energy",
+    "fault": "misconception: wind can run out if turbines take it; wind keeps forming as the Sun heats air unevenly"
+   }
+  ],
+  "real_world_check": "Fossil fuels such as oil form over millions of years and are nonrenewable on human timescales."
+ },
+ {
+  "id": "MSB1-E6-14",
+  "map_area": "Earth and Space Science",
+  "grade_target": 6,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 199-208",
+  "dci": "ESS2",
+  "ngss_pe": "MS-ESS2-5",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "predicts",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "A warm, humid air mass sits over a town. A cold, dry air mass moves in quickly and pushes in underneath it. Which prediction about the town's weather is best?",
+  "choices": [
+   "The two air masses will blend at once, and the weather will not change.",
+   "The cold air will rise over the warm air and bring clear, warm skies.",
+   "The air may turn drier and clearer, because cold air holds more water vapor.",
+   "The warm air will be pushed upward, so clouds and rain are likely to form soon."
+  ],
+  "correct_answer": "The warm air will be pushed upward, so clouds and rain are likely to form soon.",
+  "explanation": "Dense cold air wedges under warm humid air and lifts it. As the warm air rises it cools, its water vapor condenses, and clouds and rain form along the front.",
+  "distractor_rationales": [
+   {
+    "choice": "The two air masses will blend at once, and the weather will not change.",
+    "fault": "misconception: air masses mix evenly when they meet; they stay separate and form a front where weather changes"
+   },
+   {
+    "choice": "The cold air will rise over the warm air and bring clear, warm skies.",
+    "fault": "misconception: cold air rises; cold air is denser and sinks under warm air"
+   },
+   {
+    "choice": "The air may turn drier and clearer, because cold air holds more water vapor.",
+    "fault": "misconception: cold air holds more water vapor than warm air; warm air holds more"
+   }
+  ],
+  "real_world_check": "At a cold front, denser cold air lifts warm moist air, which cools and forms clouds and often rain."
+ },
+ {
+  "id": "MSB1-E6-15",
+  "map_area": "Earth and Space Science",
+  "grade_target": 6,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 209-218",
+  "dci": "ESS2",
+  "ngss_pe": "MS-ESS2-4",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "values",
+  "ask": "difference",
+  "invented": true,
+  "names_used": [
+   "Station G",
+   "Station H",
+   "Station J",
+   "Station K"
+  ],
+  "passage": "After one storm, students read a rain gauge at four stations. They also measured how much water ran off the ground into a drain at each station. Assume all the rain that did not run off soaked into the ground.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Station G",
+    "Station H",
+    "Station J",
+    "Station K"
+   ],
+   "colLabels": [
+    "Rain (mm)",
+    "Runoff (mm)"
+   ],
+   "cells": [
+    [
+     40,
+     12
+    ],
+    [
+     45,
+     31
+    ],
+    [
+     60,
+     22
+    ],
+    [
+     25,
+     5
+    ]
+   ],
+   "caption": "Table 1. Rain and runoff after one storm"
+  },
+  "prompt": "How much more water soaked into the ground at Station J than at Station H?",
+  "choices": [
+   "9 mm",
+   "24 mm",
+   "38 mm",
+   "52 mm"
+  ],
+  "correct_answer": "24 mm",
+  "key_evidence": {
+   "refs": [
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ]
+   ],
+   "expr": "(v0 - v1) - (v2 - v3)"
+  },
+  "explanation": "Water soaked in = rain minus runoff. Station J: 60 - 22 = 38 mm. Station H: 45 - 31 = 14 mm. The difference is 38 - 14 = 24 mm.",
+  "distractor_rationales": [
+   {
+    "choice": "9 mm",
+    "fault": "subtracts the runoff values (31 - 22) and ignores the rain"
+   },
+   {
+    "choice": "38 mm",
+    "fault": "is the amount that soaked in at Station J alone, without comparing to Station H"
+   },
+   {
+    "choice": "52 mm",
+    "fault": "adds the soaked-in amounts (38 + 14) instead of finding the difference"
+   }
+  ],
+  "real_world_check": "Rain that reaches the ground either runs off over the surface or soaks in, so infiltration equals rain minus runoff when evaporation is ignored.",
+  "prior_free": "MS-ESS2-4 says some rain runs off and some soaks in, but how much more soaked in at Station J depends on four invented numbers in the table."
+ },
+ {
+  "id": "MSB1-E6-16",
+  "map_area": "Earth and Space Science",
+  "grade_target": 6,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 209-218",
+  "dci": "ESS3",
+  "ngss_pe": "MS-ESS3-3",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "conditions",
+  "ask": "meets-criterion",
+  "invented": true,
+  "names_used": [
+   "Site J",
+   "Site GHK-5",
+   "Site K",
+   "Site LIJ-384",
+   "Site H-7"
+  ],
+  "passage": "A county wants a new landfill that will not pollute drinking water. Engineers tested five possible places.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Site J",
+    "Site GHK-5",
+    "Site K",
+    "Site LIJ-384",
+    "Site H-7"
+   ],
+   "colLabels": [
+    "Distance to nearest well (km)",
+    "Clay layer thickness (m)",
+    "Depth to groundwater (m)"
+   ],
+   "cells": [
+    [
+     1.4,
+     8,
+     30
+    ],
+    [
+     3.1,
+     6,
+     28
+    ],
+    [
+     0.8,
+     2,
+     12
+    ],
+    [
+     4.5,
+     3,
+     35
+    ],
+    [
+     2.6,
+     7,
+     15
+    ]
+   ],
+   "caption": "Table 1. Test results at five possible places"
+  },
+  "prompt": "The landfill must be at least 2 km from any well, sit on clay at least 5 m thick, and have groundwater deeper than 20 m. Which place meets all three rules?",
+  "choices": [
+   "Site J",
+   "Site GHK-5",
+   "Site LIJ-384",
+   "Site H-7"
+  ],
+  "correct_answer": "Site GHK-5",
+  "key_evidence": {
+   "refs": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ]
+   ]
+  },
+  "explanation": "Site GHK-5 is 3.1 km from a well, sits on 6 m of clay, and has groundwater 28 m down, so it passes all three rules.",
+  "distractor_rationales": [
+   {
+    "choice": "Site J",
+    "fault": "is only 1.4 km from the nearest well, closer than the 2 km rule allows"
+   },
+   {
+    "choice": "Site LIJ-384",
+    "fault": "has only 3 m of clay, less than the 5 m the rule needs"
+   },
+   {
+    "choice": "Site H-7",
+    "fault": "has groundwater only 15 m down, not deeper than 20 m"
+   }
+  ],
+  "real_world_check": "Thick clay slows liquid seeping from a landfill, and distance from wells and deep groundwater lower the chance of polluting drinking water."
+ },
+ {
+  "id": "MSB1-E6-17",
+  "map_area": "Earth and Space Science",
+  "grade_target": 6,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 209-218",
+  "dci": "ESS3",
+  "ngss_pe": "MS-ESS3-3",
+  "kind": "investigation",
+  "stimulus": "procedure",
+  "format": "claim",
+  "ask": "supported",
+  "invented": true,
+  "names_used": [
+   "Dish G",
+   "Dish H",
+   "Dish J",
+   "Dish K",
+   "Fiber L"
+  ],
+  "passage": "Students tested a way to clean up an oil spill on water. They filled four dishes with the same amount of water and poured 20 mL of cooking oil onto each one. Dish G got no pads. Dishes H, J and K got 1, 2 and 3 cleanup pads made of Fiber L. Every pad was the same size, and each lay on the oil for one minute. After the pads were lifted out, the students measured the oil left floating in each dish. The amounts were G 20 mL, H 9 mL, J 4 mL and K 4 mL.",
+  "graphic": null,
+  "prompt": "Which claim do the results support?",
+  "choices": [
+   "Every pad that was added lowered the oil left floating in the dish.",
+   "Three pads of Fiber L took all of the cooking oil off the water.",
+   "One pad removed less than half of the oil.",
+   "Going from two pads to three did not lower the oil left."
+  ],
+  "correct_answer": "Going from two pads to three did not lower the oil left.",
+  "key_evidence": {
+   "refs": [
+    {
+     "quote": "The amounts were G 20 mL, H 9 mL, J 4 mL and K 4 mL"
+    }
+   ]
+  },
+  "explanation": "Dish J (2 pads) and Dish K (3 pads) both had 4 mL of oil left, so adding the third pad removed no more oil.",
+  "distractor_rationales": [
+   {
+    "choice": "Every pad that was added lowered the oil left floating in the dish.",
+    "fault": "the third pad left the amount at 4 mL, so not every added pad lowered it"
+   },
+   {
+    "choice": "Three pads of Fiber L took all of the cooking oil off the water.",
+    "fault": "Dish K still had 4 mL of oil floating, not 0 mL"
+   },
+   {
+    "choice": "One pad removed less than half of the oil.",
+    "fault": "one pad took the oil from 20 mL to 9 mL, removing 11 mL, which is more than half"
+   }
+  ],
+  "real_world_check": "Absorbent pads soak up oil floating on water, so they are used to clean up oil spills and limit harm to water ecosystems."
+ },
+ {
+  "id": "MSB1-E6-18",
+  "map_area": "Earth and Space Science",
+  "grade_target": 6,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 209-218",
+  "dci": "ESS3",
+  "ngss_pe": "MS-ESS3-1",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "structure",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "A town drills a well 60 m down into a deep layer of sandstone. Water fills the tiny spaces between the sand grains and can flow through them into the well. What is this water-holding rock layer called?",
+  "choices": [
+   "an aquifer",
+   "soil",
+   "the water table",
+   "a cavern"
+  ],
+  "correct_answer": "an aquifer",
+  "explanation": "An aquifer is a layer of rock or sediment with connected pore spaces that store groundwater and let it flow to wells.",
+  "distractor_rationales": [
+   {
+    "choice": "soil",
+    "fault": "misconception: well water comes from the soil just below the surface; this water is in rock 60 m down"
+   },
+   {
+    "choice": "the water table",
+    "fault": "misconception: the water table is a layer of water-filled rock; it is only the top surface of the saturated zone"
+   },
+   {
+    "choice": "a cavern",
+    "fault": "misconception: groundwater sits in big open underground caves or lakes; here it fills tiny spaces between grains"
+   }
+  ],
+  "real_world_check": "Groundwater is stored in the pore spaces of permeable rock layers called aquifers, which supply wells."
+ },
+ {
+  "id": "MSB1-E6-19",
+  "map_area": "Earth and Space Science",
+  "grade_target": 6,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 209-218",
+  "dci": "ESS3",
+  "ngss_pe": "MS-ESS3-2",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "explains",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "Before many volcanic eruptions, instruments record the ground near the volcano bulging upward and many small earthquakes. Scientists use these signs to warn people. Which statement best explains why these signs often come before an eruption?",
+  "choices": [
+   "Rising magma must push rock aside, so the ground bulges and cracks.",
+   "Eruptions follow a fixed schedule, and these signs always mark the date.",
+   "Sunlight heats the mountain, and it swells and shakes before erupting.",
+   "Heavy rain soaks into the volcano and makes it swell and shake."
+  ],
+  "correct_answer": "Rising magma must push rock aside, so the ground bulges and cracks.",
+  "explanation": "Magma moving up toward the surface takes up space, so it pushes the ground up and breaks rock, causing small earthquakes before it erupts.",
+  "distractor_rationales": [
+   {
+    "choice": "Eruptions follow a fixed schedule, and these signs always mark the date.",
+    "fault": "misconception: volcanoes erupt on a regular schedule; eruptions are irregular, which is why monitoring is needed"
+   },
+   {
+    "choice": "Sunlight heats the mountain, and it swells and shakes before erupting.",
+    "fault": "misconception: heat from the Sun drives eruptions; the heat and pressure come from magma inside Earth"
+   },
+   {
+    "choice": "Heavy rain soaks into the volcano and makes it swell and shake.",
+    "fault": "misconception: weather causes the bulging and quakes; they come from magma moving underground"
+   }
+  ],
+  "real_world_check": "Ground swelling and swarms of small earthquakes at a volcano are caused by magma moving upward and are used to forecast eruptions."
+ },
+ {
+  "id": "MSB1-E6-20",
+  "map_area": "Earth and Space Science",
+  "grade_target": 6,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 209-218",
+  "dci": "ESS1",
+  "ngss_pe": "MS-ESS1-1",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "predicts",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "Suppose Earth's axis were not tilted at all, but Earth still spun once a day and orbited the Sun once a year. Think about a town halfway between the equator and the North Pole. Which prediction is best?",
+  "choices": [
+   "The town would always have its longest days in June, as it does now.",
+   "Summers would still be warm there, since distance to the Sun causes seasons.",
+   "The town would get about 12 hours of daylight on every single day of the year.",
+   "The town would have six months of daylight and then six months of night."
+  ],
+  "correct_answer": "The town would get about 12 hours of daylight on every single day of the year.",
+  "explanation": "Without tilt, the Sun would always be over the equator, so the line between day and night would pass through both poles and every town would get equal day and night all year.",
+  "distractor_rationales": [
+   {
+    "choice": "The town would always have its longest days in June, as it does now.",
+    "fault": "misconception: day length changes for reasons other than tilt; without tilt day length would not change through the year"
+   },
+   {
+    "choice": "Summers would still be warm there, since distance to the Sun causes seasons.",
+    "fault": "misconception: seasons come from Earth's distance to the Sun; they come from the tilt of the axis"
+   },
+   {
+    "choice": "The town would have six months of daylight and then six months of night.",
+    "fault": "misconception: long polar days happen at every latitude; they happen only near the poles and only because of tilt"
+   }
+  ],
+  "real_world_check": "With no axial tilt the Sun stays over the equator, so away from the poles day and night would each last about 12 hours all year."
+ }
+]

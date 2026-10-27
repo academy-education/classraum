@@ -1,0 +1,60 @@
+{
+  "id": "MSB1-L6-11",
+  "map_area": "Life Science",
+  "grade_target": 6,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 199-208",
+  "dci": "LS3",
+  "ngss_pe": "MS-LS3-2",
+  "kind": "investigation",
+  "stimulus": "procedure",
+  "format": "variable",
+  "ask": "dependent",
+  "invented": true,
+  "names_used": [
+    "plant line K-4"
+  ],
+  "passage": "Students tested plant line K-4, whose leaves have lobes like the fingers of a hand. They grew 15 new plants from cuttings of one parent plant and 15 from its seeds, so how each new plant began differed between the groups. The amount of soil in each pot was 500 g, and every pot got the same water and light. Their question was which group would vary more in lobe number. After 8 weeks they counted the lobes on each new leaf. They also measured the height of each new plant, only to check that all the plants were healthy.",
+  "graphic": null,
+  "prompt": "For the question the students wanted to answer, which is the dependent variable?",
+  "choices": [
+    "how each new plant began",
+    "lobes on each new leaf",
+    "the amount of soil in each pot",
+    "the height of each new plant"
+  ],
+  "correct_answer": "lobes on each new leaf",
+  "option_roles": [
+    "setting",
+    "result",
+    "setting",
+    "result"
+  ],
+  "key_evidence": {
+    "refs": [
+      {
+        "quote": "Their question was which group would vary more in lobe number"
+      },
+      {
+        "quote": "After 8 weeks they counted the lobes on each new leaf"
+      }
+    ]
+  },
+  "explanation": "The students changed how the new plants began (cuttings or seeds) and asked which group would vary more in lobe number. The measured outcome that answers that question is the lobe count on the new leaves.",
+  "distractor_rationales": [
+    {
+      "choice": "how each new plant began",
+      "fault": "this is what the students changed on purpose (cuttings or seeds), the independent variable"
+    },
+    {
+      "choice": "the amount of soil in each pot",
+      "fault": "this was kept the same (500 g) in every pot, so it is a controlled variable"
+    },
+    {
+      "choice": "the height of each new plant",
+      "fault": "it was measured, but only as a health check; their question was about lobe number, not height"
+    }
+  ],
+  "real_world_check": "A dependent variable is the measured outcome that may change because of the independent variable the experimenter changes."
+}

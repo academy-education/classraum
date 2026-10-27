@@ -1,0 +1,42 @@
+{
+  "id": "MSB1-P5-14",
+  "map_area": "Physical Science",
+  "grade_target": 5,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 196-205",
+  "dci": "PS4",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "predicts",
+  "invented": false,
+  "ngss_pe": "4-PS4-2",
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "A student sits in a closed room with no windows. The lights are off, and no light gets in. She holds a red apple in front of her face. Which prediction is correct?",
+  "choices": [
+    "She will see the apple dimly after her eyes adjust to the dark.",
+    "She will see the apple because red things give off their own light.",
+    "She can always see the apple because her eyes send out light.",
+    "She cannot see the apple at all until light reflects off it into her eyes."
+  ],
+  "correct_answer": "She cannot see the apple at all until light reflects off it into her eyes.",
+  "explanation": "We see an object only when light bounces off it and enters our eyes. With no light in the room, no light can reflect off the apple, so she cannot see it until a light is turned on.",
+  "distractor_rationales": [
+    {
+      "choice": "She will see the apple dimly after her eyes adjust to the dark.",
+      "fault": "misconception: eyes can adjust to see in total darkness"
+    },
+    {
+      "choice": "She will see the apple because red things give off their own light.",
+      "fault": "misconception: colored objects make their own light"
+    },
+    {
+      "choice": "She can always see the apple because her eyes send out light.",
+      "fault": "misconception: eyes send out rays that let us see"
+    }
+  ],
+  "real_world_check": "Objects are seen when light reflects from them and enters the eye (4-PS4-2); an apple does not make its own light."
+}

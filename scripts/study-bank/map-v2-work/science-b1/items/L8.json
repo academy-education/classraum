@@ -1,0 +1,1427 @@
+[
+ {
+  "id": "MSB1-L8-01",
+  "map_area": "Life Science",
+  "grade_target": 8,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 195-204",
+  "dci": "LS3",
+  "ngss_pe": "MS-LS3-1",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "values",
+  "ask": "interpolate",
+  "invented": true,
+  "names_used": [
+   "Strain U-4",
+   "Strain U-4m"
+  ],
+  "passage": "Strain U-4 is a normal beetle line. Strain U-4m has a mutation in the gene for a protein that helps make dark pigment. Researchers raised larvae of both strains at five temperatures and recorded the percent of larvae that developed dark bands.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "16 °C",
+    "20 °C",
+    "24 °C",
+    "28 °C",
+    "32 °C"
+   ],
+   "colLabels": [
+    "Strain U-4 banded (%)",
+    "Strain U-4m banded (%)"
+   ],
+   "cells": [
+    [
+     95,
+     92
+    ],
+    [
+     96,
+     80
+    ],
+    [
+     94,
+     46
+    ],
+    [
+     96,
+     12
+    ],
+    [
+     95,
+     4
+    ]
+   ],
+   "caption": "Table 1. Percent of larvae with dark bands at each rearing temperature"
+  },
+  "prompt": "Based on Table 1, which is the best estimate of the percent of Strain U-4m larvae that would develop dark bands if raised at 26 °C?",
+  "choices": [
+   "46%",
+   "29%",
+   "63%",
+   "95%"
+  ],
+  "correct_answer": "29%",
+  "key_evidence": {
+   "refs": [
+    [
+     2,
+     1
+    ],
+    [
+     3,
+     1
+    ]
+   ],
+   "expr": "(v0 + v1) / 2"
+  },
+  "explanation": "26 °C lies halfway between 24 °C and 28 °C. In the Strain U-4m column those rows read 46% and 12%, so the best estimate is about (46 + 12) / 2 = 29%.",
+  "distractor_rationales": [
+   {
+    "choice": "46%",
+    "fault": "reads the 24 °C row instead of estimating between 24 °C and 28 °C"
+   },
+   {
+    "choice": "63%",
+    "fault": "averages the 20 °C and 24 °C rows, the wrong pair of temperatures"
+   },
+   {
+    "choice": "95%",
+    "fault": "uses the normal Strain U-4 column instead of the mutant strain"
+   }
+  ],
+  "real_world_check": "Some mutations make a protein that works at cool temperatures but loses function when warm, as with the temperature-sensitive coat-color enzyme of Siamese cats.",
+  "prior_free": "MS-LS3-1 says a mutation can change how a protein works, but nothing in the standard says at which temperatures this mutant protein fails or by how much; the 26 °C value exists only between two rows of this table."
+ },
+ {
+  "id": "MSB1-L8-02",
+  "map_area": "Life Science",
+  "grade_target": 8,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 195-204",
+  "dci": "LS2",
+  "ngss_pe": "MS-LS2-1",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "conditions",
+  "ask": "meets-criterion",
+  "invented": true,
+  "names_used": [
+   "water flea line Z-11"
+  ],
+  "passage": "Ecologists stocked four tanks with water fleas of line Z-11. Each tank got a different daily amount of algae as food. They counted the fleas on day 0 and on day 28, and they measured the algae left in the water on day 28.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Tank X-7",
+    "Tank Z-416",
+    "Tank TU-5093",
+    "Tank WSVT-7180"
+   ],
+   "colLabels": [
+    "Fleas on day 0",
+    "Fleas on day 28",
+    "Algae left (mg/L)"
+   ],
+   "cells": [
+    [
+     60,
+     300,
+     35
+    ],
+    [
+     40,
+     380,
+     24
+    ],
+    [
+     80,
+     460,
+     12
+    ],
+    [
+     120,
+     400,
+     30
+    ]
+   ],
+   "caption": "Table 1. Water flea counts and algae left in four tanks"
+  },
+  "prompt": "The ecologists want a tank where the flea population increased by more than 300 fleas and at least 20 mg/L of algae was left on day 28. Based on Table 1, which tank meets both conditions?",
+  "choices": [
+   "Tank Z-416",
+   "Tank X-7",
+   "Tank WSVT-7180",
+   "Tank TU-5093"
+  ],
+  "correct_answer": "Tank Z-416",
+  "key_evidence": {
+   "refs": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ]
+   ]
+  },
+  "explanation": "Tank Z-416 went from 40 to 380 fleas, an increase of 340, and still had 24 mg/L of algae left, so it meets both conditions.",
+  "distractor_rationales": [
+   {
+    "choice": "Tank X-7",
+    "fault": "its fleas increased by only 240, from 60 to 300"
+   },
+   {
+    "choice": "Tank WSVT-7180",
+    "fault": "it ended with many fleas but grew by only 280, from 120 to 400"
+   },
+   {
+    "choice": "Tank TU-5093",
+    "fault": "its fleas grew by 380, but only 12 mg/L of algae was left"
+   }
+  ],
+  "real_world_check": "A population with plenty of food can grow quickly, and a growing population eats down its food supply."
+ },
+ {
+  "id": "MSB1-L8-03",
+  "map_area": "Life Science",
+  "grade_target": 8,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 195-204",
+  "dci": "LS3",
+  "ngss_pe": "MS-LS3-2",
+  "kind": "data",
+  "stimulus": "bar",
+  "format": "conditions",
+  "ask": "meets-criterion",
+  "invented": true,
+  "names_used": [
+   "sea anemone line V-58"
+  ],
+  "passage": "Sea anemones of line V-58 can split in two to make offspring, or they can reproduce sexually. Researchers checked a genetic marker in 50 offspring from each of five colonies. The graph shows the percent of offspring whose marker differed from their parent's.",
+  "graphic": {
+   "type": "bar",
+   "bars": [
+    {
+     "label": "Colony T-4",
+     "value": 4
+    },
+    {
+     "label": "Colony UX-71",
+     "value": 74
+    },
+    {
+     "label": "Colony WY-8",
+     "value": 8
+    },
+    {
+     "label": "Colony VSZ-306",
+     "value": 56
+    },
+    {
+     "label": "Colony ZSTU-9014",
+     "value": 92
+    }
+   ],
+   "xLabel": "Colony",
+   "yLabel": "Offspring differing from parent (%)",
+   "caption": "Genetic marker results for five colonies of sea anemone line V-58"
+  },
+  "prompt": "Offspring of sexual reproduction get genes from two parents, so many differ from the parent. A colony counts as reproducing sexually if more than 40% of its offspring differed. Of the colonies that meet this criterion, which had the smallest percent of differing offspring?",
+  "choices": [
+   "Colony T-4",
+   "Colony ZSTU-9014",
+   "Colony VSZ-306",
+   "Colony UX-71"
+  ],
+  "correct_answer": "Colony VSZ-306",
+  "key_evidence": {
+   "refs": [
+    "Colony VSZ-306"
+   ]
+  },
+  "explanation": "Three colonies have bars above 40%: Colony VSZ-306 (between the 46 and 69 ticks), Colony UX-71 and Colony ZSTU-9014. Of these, the Colony VSZ-306 bar is the shortest.",
+  "distractor_rationales": [
+   {
+    "choice": "Colony T-4",
+    "fault": "its bar is near zero, far below the 40% criterion"
+   },
+   {
+    "choice": "Colony ZSTU-9014",
+    "fault": "it meets the criterion but has the largest percent, not the smallest"
+   },
+   {
+    "choice": "Colony UX-71",
+    "fault": "it meets the criterion, but its bar is taller than Colony VSZ-306"
+   }
+  ],
+  "real_world_check": "Offspring made by splitting are genetic copies of one parent apart from rare mutations, while sexual reproduction mixes genes from two parents."
+ },
+ {
+  "id": "MSB1-L8-04",
+  "map_area": "Life Science",
+  "grade_target": 8,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 195-204",
+  "dci": "LS1",
+  "ngss_pe": "MS-LS1-4",
+  "kind": "investigation",
+  "stimulus": "procedure",
+  "format": "variable",
+  "ask": "controlled",
+  "invented": true,
+  "names_used": [
+   "Hive U-3"
+  ],
+  "passage": "Students studied what draws bees from Hive U-3 to flowers. They built four model flowers. They changed the petal color of each model and the scent oil on each model, so no two models matched. They kept the amount of sugar water in each model at 2 mL. Every morning they moved the models along a row, so the spot in the row for each model changed from day to day. Over five mornings, they counted bee visits to each model.",
+  "graphic": null,
+  "prompt": "Which factor did the students keep the same for the four model flowers?",
+  "choices": [
+   "the petal color of each model",
+   "the scent oil on each model",
+   "the spot in the row for each model",
+   "the amount of sugar water in each model"
+  ],
+  "correct_answer": "the amount of sugar water in each model",
+  "option_roles": [
+   "setting",
+   "setting",
+   "setting",
+   "setting"
+  ],
+  "key_evidence": {
+   "refs": [
+    {
+     "quote": "They kept the amount of sugar water in each model at 2 mL."
+    }
+   ]
+  },
+  "explanation": "The procedure fixes the sugar water at 2 mL in every model. Petal color and scent oil were changed between models, and the models were moved to new spots each morning.",
+  "distractor_rationales": [
+   {
+    "choice": "the petal color of each model",
+    "fault": "the students changed petal color so no two models matched"
+   },
+   {
+    "choice": "the scent oil on each model",
+    "fault": "the scent oil differed from model to model"
+   },
+   {
+    "choice": "the spot in the row for each model",
+    "fault": "the models were moved every morning, so their spots changed"
+   }
+  ],
+  "real_world_check": "A controlled variable is a setting kept the same in every trial so it cannot explain differences in the results."
+ },
+ {
+  "id": "MSB1-L8-05",
+  "map_area": "Life Science",
+  "grade_target": 8,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 195-204",
+  "dci": "LS1",
+  "ngss_pe": "MS-LS1-6",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "quantity",
+  "invented": false,
+  "passage": null,
+  "graphic": null,
+  "prompt": "A water plant sits in a sealed, clear jar of pond water in bright sunlight for six hours. During this time its leaves make sugar. Which quantity inside the jar most likely decreases?",
+  "choices": [
+   "dissolved carbon dioxide",
+   "total mass of the jar",
+   "dissolved oxygen",
+   "plant mass"
+  ],
+  "correct_answer": "dissolved carbon dioxide",
+  "explanation": "Photosynthesis uses carbon dioxide and water to make sugar and releases oxygen. In bright light the plant takes in carbon dioxide faster than it releases it, so dissolved carbon dioxide falls.",
+  "distractor_rationales": [
+   {
+    "choice": "total mass of the jar",
+    "fault": "misconception: matter is used up when living things make food, so a sealed jar loses mass"
+   },
+   {
+    "choice": "dissolved oxygen",
+    "fault": "misconception: plants take in oxygen to make their food; in fact photosynthesis releases oxygen"
+   },
+   {
+    "choice": "plant mass",
+    "fault": "misconception: plants use up their own matter to make food; the sugar they build adds mass"
+   }
+  ],
+  "real_world_check": "In photosynthesis plants take in carbon dioxide and water and give off oxygen, and in a sealed container total mass stays the same."
+ },
+ {
+  "id": "MSB1-L8-06",
+  "map_area": "Life Science",
+  "grade_target": 8,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 195-204",
+  "dci": "LS4",
+  "ngss_pe": "MS-LS4-4",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "predicts",
+  "invented": false,
+  "passage": null,
+  "graphic": null,
+  "prompt": "On an island, lizards of one species vary in leg length, and young lizards tend to inherit their parents' leg length. A snake that hunts on the ground arrives. Lizards with longer legs run faster and escape it more often. What will most likely happen to this population over many generations?",
+  "choices": [
+   "Each lizard will grow longer legs during its life by running.",
+   "New long legs will appear in lizards because they need to escape.",
+   "Leg length will stop varying in the population after just one generation.",
+   "Longer-legged lizards will make up a larger part of the population."
+  ],
+  "correct_answer": "Longer-legged lizards will make up a larger part of the population.",
+  "explanation": "Longer-legged lizards survive and reproduce more, and leg length is inherited, so their share of the population grows over generations. This is natural selection.",
+  "distractor_rationales": [
+   {
+    "choice": "Each lizard will grow longer legs during its life by running.",
+    "fault": "misconception: traits an individual gains by use during its life are passed on"
+   },
+   {
+    "choice": "New long legs will appear in lizards because they need to escape.",
+    "fault": "misconception: new traits appear because organisms need them"
+   },
+   {
+    "choice": "Leg length will stop varying in the population after just one generation.",
+    "fault": "misconception: natural selection removes all variation at once"
+   }
+  ],
+  "real_world_check": "Natural selection increases the share of individuals with an inherited trait that improves survival and reproduction over many generations."
+ },
+ {
+  "id": "MSB1-L8-07",
+  "map_area": "Life Science",
+  "grade_target": 8,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 205-214",
+  "dci": "LS1",
+  "ngss_pe": "MS-LS1-5",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "values",
+  "ask": "difference",
+  "invented": true,
+  "names_used": [
+   "Strain TZ-1",
+   "Strain TZ-5"
+  ],
+  "passage": "Researchers grew two strains of a grass, Strain TZ-1 and Strain TZ-5, from seed at four temperatures. All pots had the same soil, water and light. After three weeks they found the mean shoot length for each strain.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "14 °C",
+    "20 °C",
+    "26 °C",
+    "32 °C"
+   ],
+   "colLabels": [
+    "Strain TZ-1 shoot (mm)",
+    "Strain TZ-5 shoot (mm)"
+   ],
+   "cells": [
+    [
+     22,
+     18
+    ],
+    [
+     41,
+     30
+    ],
+    [
+     55,
+     47
+    ],
+    [
+     38,
+     53
+    ]
+   ],
+   "caption": "Table 1. Mean shoot length of two grass strains after three weeks"
+  },
+  "prompt": "Based on Table 1, how much longer were the shoots of Strain TZ-1 than the shoots of Strain TZ-5 at 26 °C?",
+  "choices": [
+   "11 mm",
+   "17 mm",
+   "15 mm",
+   "8 mm"
+  ],
+  "correct_answer": "8 mm",
+  "key_evidence": {
+   "refs": [
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ]
+   ],
+   "expr": "v0 - v1"
+  },
+  "explanation": "In the 26 °C row, Strain TZ-1 shoots are 55 mm and Strain TZ-5 shoots are 47 mm, so the difference is 55 - 47 = 8 mm.",
+  "distractor_rationales": [
+   {
+    "choice": "11 mm",
+    "fault": "subtracts the 20 °C row (41 - 30) instead of the 26 °C row"
+   },
+   {
+    "choice": "17 mm",
+    "fault": "compares Strain TZ-1 at 26 °C with Strain TZ-1 at 32 °C, one strain at two temperatures"
+   },
+   {
+    "choice": "15 mm",
+    "fault": "uses the 32 °C row, where Strain TZ-5 is the longer strain"
+   }
+  ],
+  "real_world_check": "Strains with different genes can have different best temperatures for growth, so which strain grows longer can change with temperature.",
+  "prior_free": "MS-LS1-5 says genes and temperature both affect growth, but it cannot say which strain is longer at 26 °C or by how many millimeters; the two strains even swap order at 32 °C."
+ },
+ {
+  "id": "MSB1-L8-08",
+  "map_area": "Life Science",
+  "grade_target": 8,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 205-214",
+  "dci": "LS4",
+  "ngss_pe": "MS-LS4-6",
+  "kind": "data",
+  "stimulus": "bar",
+  "format": "values",
+  "ask": "ratio",
+  "invented": true,
+  "names_used": [
+   "weevil line T-9"
+  ],
+  "passage": "Weevils of line T-9 feed inside seeds. After a farm switched to a seed with a thicker shell, researchers counted the weevils with long snouts in four generations.",
+  "graphic": {
+   "type": "bar",
+   "bars": [
+    {
+     "label": "Generation 0",
+     "value": 1
+    },
+    {
+     "label": "Generation 5",
+     "value": 2
+    },
+    {
+     "label": "Generation 10",
+     "value": 3
+    },
+    {
+     "label": "Generation 15",
+     "value": 4
+    }
+   ],
+   "xLabel": "Generation",
+   "yLabel": "Long-snouted weevils (thousands)",
+   "caption": "Long-snouted weevils of line T-9 after the seed switch"
+  },
+  "prompt": "According to the graph, the number of long-snouted weevils in Generation 15 was about how many times the number in Generation 0?",
+  "choices": [
+   "4.00 times",
+   "1.33 times",
+   "0.25 times",
+   "3.00 times"
+  ],
+  "correct_answer": "4.00 times",
+  "key_evidence": {
+   "refs": [
+    "Generation 15",
+    "Generation 0"
+   ],
+   "expr": "v0 / v1"
+  },
+  "explanation": "The Generation 15 bar reaches the top tick (4 thousand) and the Generation 0 bar reaches the first tick (1 thousand), so the ratio is 4 / 1 = 4.00.",
+  "distractor_rationales": [
+   {
+    "choice": "1.33 times",
+    "fault": "compares Generation 15 with Generation 10 instead of Generation 0"
+   },
+   {
+    "choice": "0.25 times",
+    "fault": "divides Generation 0 by Generation 15, turning the ratio upside down"
+   },
+   {
+    "choice": "3.00 times",
+    "fault": "uses the Generation 10 bar in place of Generation 15"
+   }
+  ],
+  "real_world_check": "When an inherited trait helps individuals feed and reproduce, the number carrying it tends to rise over generations.",
+  "prior_free": "Natural selection predicts that long-snouted weevils become more common after the switch, but not by what factor over 15 generations; that factor exists only in the bar heights."
+ },
+ {
+  "id": "MSB1-L8-09",
+  "map_area": "Life Science",
+  "grade_target": 8,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 205-214",
+  "dci": "LS2",
+  "ngss_pe": "MS-LS2-1",
+  "kind": "data",
+  "stimulus": "line",
+  "format": "values",
+  "ask": "read",
+  "invented": true,
+  "names_used": [
+   "aphid line Z-63"
+  ],
+  "passage": "Aphids of line Z-63 feed on a bean field. On day 20, farmers released ladybird beetles, which eat aphids. Scouts counted aphids on sample leaves every 10 days.",
+  "graphic": {
+   "type": "line",
+   "series": [
+    {
+     "points": [
+      [
+       0,
+       15
+      ],
+      [
+       10,
+       30
+      ],
+      [
+       20,
+       80
+      ],
+      [
+       30,
+       55
+      ],
+      [
+       40,
+       70
+      ]
+     ]
+    }
+   ],
+   "xLabel": "Day",
+   "yLabel": "Aphids per leaf",
+   "caption": "Aphids of line Z-63 in a bean field"
+  },
+  "prompt": "According to the graph, about how many aphids per leaf were there on day 30?",
+  "choices": [
+   "80 per leaf",
+   "70 per leaf",
+   "55 per leaf",
+   "30 per leaf"
+  ],
+  "correct_answer": "55 per leaf",
+  "key_evidence": {
+   "refs": [
+    [
+     30,
+     55
+    ]
+   ],
+   "expr": "v0"
+  },
+  "explanation": "The point above day 30 sits a little below the 60 tick, at about 55 aphids per leaf.",
+  "distractor_rationales": [
+   {
+    "choice": "80 per leaf",
+    "fault": "reads the day 20 peak instead of day 30"
+   },
+   {
+    "choice": "70 per leaf",
+    "fault": "reads the day 40 point instead of day 30"
+   },
+   {
+    "choice": "30 per leaf",
+    "fault": "reads the day 10 point instead of day 30"
+   }
+  ],
+  "real_world_check": "Adding a predator can lower a prey population, and the prey can rebound later.",
+  "prior_free": "MS-LS2-1 says predators can lower prey numbers, but it cannot give the aphid count on day 30, or say whether the drop was small or large; that value is readable only from this graph."
+ },
+ {
+  "id": "MSB1-L8-10",
+  "map_area": "Life Science",
+  "grade_target": 8,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 205-214",
+  "dci": "LS1",
+  "ngss_pe": "MS-LS1-5",
+  "kind": "investigation",
+  "stimulus": "procedure+table",
+  "format": "values",
+  "ask": "interpolate",
+  "invented": true,
+  "names_used": [
+   "plant line U-52"
+  ],
+  "passage": "Students tested how soil water affects the sprouting of seeds of plant line U-52. They filled five trays with the same potting soil and planted 50 seeds in each tray. They added water so the soil in each tray held a different percent of water by mass. All trays sat at 22 °C under the same lamps. After ten days, they counted the sprouted seeds in each tray and worked out the percent that sprouted.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Tray 1",
+    "Tray 2",
+    "Tray 3",
+    "Tray 4",
+    "Tray 5"
+   ],
+   "colLabels": [
+    "Soil water (%)",
+    "Seeds sprouted (%)"
+   ],
+   "cells": [
+    [
+     10,
+     30
+    ],
+    [
+     20,
+     84
+    ],
+    [
+     30,
+     70
+    ],
+    [
+     40,
+     46
+    ],
+    [
+     50,
+     18
+    ]
+   ],
+   "caption": "Table 1. Sprouting of plant line U-52 seeds at five soil water levels"
+  },
+  "prompt": "Based on the results, about what percent of seeds would sprout in soil that holds 35% water?",
+  "choices": [
+   "58%",
+   "77%",
+   "32%",
+   "46%"
+  ],
+  "correct_answer": "58%",
+  "key_evidence": {
+   "refs": [
+    [
+     2,
+     1
+    ],
+    [
+     3,
+     1
+    ]
+   ],
+   "expr": "(v0 + v1) / 2"
+  },
+  "explanation": "Soil with 35% water lies halfway between Tray 3 (30% water, 70% sprouted) and Tray 4 (40% water, 46% sprouted), so about (70 + 46) / 2 = 58% would sprout.",
+  "distractor_rationales": [
+   {
+    "choice": "77%",
+    "fault": "averages Tray 2 and Tray 3, the 20% and 30% soils, the wrong pair"
+   },
+   {
+    "choice": "32%",
+    "fault": "averages Tray 4 and Tray 5, as if the soil held 45% water"
+   },
+   {
+    "choice": "46%",
+    "fault": "reads Tray 4 (40% water) instead of estimating between 30% and 40%"
+   }
+  ],
+  "real_world_check": "Seeds need water to sprout, but waterlogged soil holds little oxygen, so sprouting often peaks at a middle water level.",
+  "prior_free": "MS-LS1-5 says water affects growth, but not where this line's best soil water lies or how quickly sprouting falls in wetter soil, so the 35% value needs these rows."
+ },
+ {
+  "id": "MSB1-L8-11",
+  "map_area": "Life Science",
+  "grade_target": 8,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 205-214",
+  "dci": "LS3",
+  "ngss_pe": "MS-LS3-2",
+  "kind": "investigation",
+  "stimulus": "procedure",
+  "format": "claim",
+  "ask": "supported",
+  "invented": true,
+  "names_used": [
+   "plant line T-75"
+  ],
+  "passage": "Plant line T-75 can reproduce in two ways. It sends out runners that root and grow into new plants, and it makes seeds when two plants cross-pollinate. A student took one parent plant, which had leaf type 1, and grew 24 new plants from its runners and 24 from its seeds in the same soil and light. After six weeks, she sorted each plant into one of four leaf types by the shape of its leaves. The 24 runner plants were all type 1. Of the 24 seed plants, 5 were type 1, 9 were type 2, 7 were type 3 and 3 were type 4.",
+  "graphic": null,
+  "prompt": "Which claim about the seed plants do the student's results support?",
+  "choices": [
+   "Among the seed plants, the parent's leaf type was the most common.",
+   "Among the seed plants, type 4 outnumbered type 3.",
+   "Among the seed plants, type 2 outnumbered the parent's type.",
+   "Among the seed plants, fewer than half had a type unlike the parent's."
+  ],
+  "correct_answer": "Among the seed plants, type 2 outnumbered the parent's type.",
+  "key_evidence": {
+   "refs": [
+    {
+     "quote": "Of the 24 seed plants, 5 were type 1, 9 were type 2"
+    }
+   ]
+  },
+  "explanation": "The parent had leaf type 1. Among the seed plants, 9 were type 2 and only 5 were type 1, so type 2 outnumbered the parent's type.",
+  "distractor_rationales": [
+   {
+    "choice": "Among the seed plants, the parent's leaf type was the most common.",
+    "fault": "type 1 had 5 seed plants, fewer than type 2 (9) and type 3 (7)"
+   },
+   {
+    "choice": "Among the seed plants, type 4 outnumbered type 3.",
+    "fault": "type 4 had 3 seed plants and type 3 had 7, so type 3 outnumbered type 4"
+   },
+   {
+    "choice": "Among the seed plants, fewer than half had a type unlike the parent's.",
+    "fault": "19 of the 24 seed plants were not type 1, which is more than half"
+   }
+  ],
+  "real_world_check": "Sexual reproduction combines genes from two parents, so seed offspring can differ from the parent in many ways, while runner offspring are copies of one parent."
+ },
+ {
+  "id": "MSB1-L8-12",
+  "map_area": "Life Science",
+  "grade_target": 8,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 205-214",
+  "dci": "LS2",
+  "ngss_pe": "MS-LS2-2",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "example",
+  "invented": false,
+  "passage": null,
+  "graphic": null,
+  "prompt": "In mutualism, two species that interact closely both benefit from the relationship. Which pair is an example of mutualism?",
+  "choices": [
+   "owls catching mice",
+   "bees pollinating clover",
+   "ticks drinking deer blood",
+   "maples crowding out oak seedlings"
+  ],
+  "correct_answer": "bees pollinating clover",
+  "explanation": "Bees get nectar from clover flowers, and in visiting them they carry pollen that lets the clover make seeds, so both species benefit.",
+  "distractor_rationales": [
+   {
+    "choice": "owls catching mice",
+    "fault": "misconception: predation helps both species because it keeps prey numbers down; the eaten mouse is harmed"
+   },
+   {
+    "choice": "ticks drinking deer blood",
+    "fault": "misconception: any species living on another is a partner; this is parasitism, which harms the deer"
+   },
+   {
+    "choice": "maples crowding out oak seedlings",
+    "fault": "misconception: plants growing together help each other; this is competition, which harms the oaks"
+   }
+  ],
+  "real_world_check": "Pollinators such as bees get food from flowers while carrying the pollen the plants need to reproduce, a mutualism."
+ },
+ {
+  "id": "MSB1-L8-13",
+  "map_area": "Life Science",
+  "grade_target": 8,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 205-214",
+  "dci": "LS2",
+  "ngss_pe": "MS-LS2-3",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "explains",
+  "invented": false,
+  "passage": null,
+  "graphic": null,
+  "prompt": "In a meadow, rabbits eat grass and foxes eat rabbits. Ecologists count far fewer foxes than rabbits. Which statement best explains why the meadow supports fewer foxes than rabbits?",
+  "choices": [
+   "Energy cycles back into the grass, so less of it stays with the foxes.",
+   "Digestion destroys some matter, so rabbits pass on less matter to foxes.",
+   "Foxes get some of their energy straight from sunlight, just as grass does.",
+   "Rabbits use much of the energy from grass to live and lose it as heat, leaving less for foxes."
+  ],
+  "correct_answer": "Rabbits use much of the energy from grass to live and lose it as heat, leaving less for foxes.",
+  "explanation": "At each feeding level most energy is used for life processes and lost as heat, so only a small part passes to the next level. Less energy reaches foxes, so fewer foxes can be supported.",
+  "distractor_rationales": [
+   {
+    "choice": "Energy cycles back into the grass, so less of it stays with the foxes.",
+    "fault": "misconception: energy cycles in an ecosystem the way matter does; energy flows through and leaves as heat"
+   },
+   {
+    "choice": "Digestion destroys some matter, so rabbits pass on less matter to foxes.",
+    "fault": "misconception: matter is destroyed in living things; matter is rearranged, not destroyed"
+   },
+   {
+    "choice": "Foxes get some of their energy straight from sunlight, just as grass does.",
+    "fault": "misconception: animals can capture energy from sunlight like plants"
+   }
+  ],
+  "real_world_check": "In a food chain much of the energy at each level is used for life processes and released as heat, so less is available to the next level."
+ },
+ {
+  "id": "MSB1-L8-14",
+  "map_area": "Life Science",
+  "grade_target": 8,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 205-214",
+  "dci": "LS4",
+  "ngss_pe": "MS-LS4-2",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "explains",
+  "invented": false,
+  "passage": null,
+  "graphic": null,
+  "prompt": "Whales live their whole lives in water and have no back legs. Yet many whales have small hip bones inside their bodies, not joined to the backbone. Which statement best explains why whales have these hip bones?",
+  "choices": [
+   "Whales descended from ancestors that had back legs.",
+   "Over its life, each whale's legs shrink inside its body from lack of use.",
+   "Whales grew hip bones because they needed them to swim faster.",
+   "Hip bones appeared in whales recently because whales are becoming able to walk."
+  ],
+  "correct_answer": "Whales descended from ancestors that had back legs.",
+  "explanation": "Hip bones are part of the skeleton of four-legged animals. Small hip bones in whales are evidence that whales share ancestors with land animals that had back legs.",
+  "distractor_rationales": [
+   {
+    "choice": "Over its life, each whale's legs shrink inside its body from lack of use.",
+    "fault": "misconception: individuals evolve during their lives by use and disuse"
+   },
+   {
+    "choice": "Whales grew hip bones because they needed them to swim faster.",
+    "fault": "misconception: organisms develop new body parts because they need them"
+   },
+   {
+    "choice": "Hip bones appeared in whales recently because whales are becoming able to walk.",
+    "fault": "misconception: evolution moves toward a goal the organism will need in the future"
+   }
+  ],
+  "real_world_check": "Reduced hip bones in whales are anatomical evidence that whales descended from land-dwelling ancestors with hind legs."
+ },
+ {
+  "id": "MSB1-L8-15",
+  "map_area": "Life Science",
+  "grade_target": 8,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 215-224",
+  "dci": "LS1",
+  "ngss_pe": "MS-LS1-5",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "conditions",
+  "ask": "controlled-pair",
+  "invented": true,
+  "names_used": [
+   "Strain Z-3",
+   "Strain Z-5"
+  ],
+  "passage": "Researchers grew two strains of an herb, Strain Z-3 and Strain Z-5, in growth chambers. Each tray had its own strain, temperature and hours of light per day.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Tray W-6",
+    "Tray S-8",
+    "Tray XUW-50812",
+    "Tray TU-7130",
+    "Tray VY-31",
+    "Tray U-42"
+   ],
+   "colLabels": [
+    "Strain",
+    "Temperature (°C)",
+    "Light (h/day)",
+    "Shoot length (cm)"
+   ],
+   "cells": [
+    [
+     "Z-3",
+     18,
+     12,
+     9.4
+    ],
+    [
+     "Z-3",
+     18,
+     16,
+     12.5
+    ],
+    [
+     "Z-3",
+     24,
+     16,
+     17.2
+    ],
+    [
+     "Z-5",
+     24,
+     12,
+     11.8
+    ],
+    [
+     "Z-3",
+     24,
+     12,
+     14.1
+    ],
+    [
+     "Z-5",
+     18,
+     12,
+     7.9
+    ]
+   ],
+   "caption": "Table 1. Growing conditions and mean shoot length after four weeks"
+  },
+  "prompt": "To find out how temperature alone affects shoot length, the results from Tray W-6 should be compared with the results from which tray?",
+  "choices": [
+   "Tray S-8",
+   "Tray XUW-50812",
+   "Tray TU-7130",
+   "Tray VY-31"
+  ],
+  "correct_answer": "Tray VY-31",
+  "key_evidence": {
+   "refs": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     4,
+     0
+    ],
+    [
+     4,
+     1
+    ],
+    [
+     4,
+     2
+    ]
+   ]
+  },
+  "explanation": "Tray W-6 is Strain Z-3 at 18 °C with 12 h of light. Tray VY-31 is also Strain Z-3 with 12 h of light but at 24 °C, so temperature is the only setting that differs.",
+  "distractor_rationales": [
+   {
+    "choice": "Tray S-8",
+    "fault": "it differs from Tray W-6 only in hours of light, not in temperature"
+   },
+   {
+    "choice": "Tray XUW-50812",
+    "fault": "it differs in both temperature and hours of light"
+   },
+   {
+    "choice": "Tray TU-7130",
+    "fault": "it differs in both strain and temperature"
+   }
+  ],
+  "real_world_check": "To test one factor, two groups must differ only in that factor, with genes and other conditions the same."
+ },
+ {
+  "id": "MSB1-L8-16",
+  "map_area": "Life Science",
+  "grade_target": 8,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 215-224",
+  "dci": "LS4",
+  "ngss_pe": "MS-LS4-6",
+  "kind": "data",
+  "stimulus": "line",
+  "format": "trend",
+  "ask": "no-change",
+  "invented": true,
+  "names_used": [
+   "grasshopper line U-31"
+  ],
+  "passage": "A lizard that eats grasshoppers reached an island at generation 0. Researchers then tracked grasshoppers of line U-31 and recorded the percent with long hind legs, which help them jump away.",
+  "graphic": {
+   "type": "line",
+   "series": [
+    {
+     "points": [
+      [
+       0,
+       8
+      ],
+      [
+       10,
+       30
+      ],
+      [
+       20,
+       62
+      ],
+      [
+       30,
+       62
+      ],
+      [
+       40,
+       62
+      ],
+      [
+       50,
+       62
+      ]
+     ]
+    }
+   ],
+   "xLabel": "Generation",
+   "yLabel": "Grasshoppers with long hind legs (%)",
+   "caption": "Long-legged grasshoppers of line U-31 after the lizards arrived"
+  },
+  "prompt": "According to the graph, how did the percent of grasshoppers with long hind legs change from generation 20 to generation 50?",
+  "choices": [
+   "It fell.",
+   "It was unchanged.",
+   "It increased, then remained level.",
+   "It increased."
+  ],
+  "correct_answer": "It was unchanged.",
+  "key_evidence": {
+   "refs": [
+    [
+     20,
+     62
+    ],
+    [
+     30,
+     62
+    ],
+    [
+     40,
+     62
+    ],
+    [
+     50,
+     62
+    ]
+   ]
+  },
+  "explanation": "The points at generations 20, 30, 40 and 50 all sit at 62%, so over that span the percent did not change. The rise happened before generation 20.",
+  "distractor_rationales": [
+   {
+    "choice": "It fell.",
+    "fault": "no point after generation 20 is lower than 62%"
+   },
+   {
+    "choice": "It increased, then remained level.",
+    "fault": "describes generations 0 to 50; the rise ended at generation 20"
+   },
+   {
+    "choice": "It increased.",
+    "fault": "the percent was already 62% at generation 20 and never rose higher"
+   }
+  ],
+  "real_world_check": "Natural selection raises the share of a helpful inherited trait, but that share can level off below 100%, for example when the trait also has costs.",
+  "prior_free": "MS-LS4-6 predicts that a trait helping escape a new predator becomes more common, which points to an increase; only the graph shows that the share stopped rising at generation 20, far short of 100%."
+ },
+ {
+  "id": "MSB1-L8-17",
+  "map_area": "Life Science",
+  "grade_target": 8,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 215-224",
+  "dci": "LS3",
+  "ngss_pe": "MS-LS3-1",
+  "kind": "data",
+  "stimulus": "scatter",
+  "format": "trend",
+  "ask": "increase-then-level",
+  "invented": true,
+  "names_used": [
+   "yeast line T-27"
+  ],
+  "passage": "Researchers made mutant strains of yeast line T-27. Each strain has a different change in the gene for an enzyme the yeast needs to use one sugar. For each strain they measured enzyme activity, as a percent of the normal strain's, and counted the colonies it formed on that sugar.",
+  "graphic": {
+   "type": "scatter",
+   "points": [
+    [
+     5,
+     12
+    ],
+    [
+     10,
+     25
+    ],
+    [
+     20,
+     44
+    ],
+    [
+     30,
+     58
+    ],
+    [
+     40,
+     66
+    ],
+    [
+     55,
+     68
+    ],
+    [
+     70,
+     67
+    ],
+    [
+     85,
+     69
+    ],
+    [
+     100,
+     68
+    ]
+   ],
+   "xLabel": "Enzyme activity (% of normal)",
+   "yLabel": "Colonies formed",
+   "caption": "Colonies formed by mutant strains of yeast line T-27"
+  },
+  "prompt": "Based on the graph, which statement describes how the number of colonies changes as enzyme activity goes from 5% to 100% of normal?",
+  "choices": [
+   "It falls, then it levels off.",
+   "It stays level at first, then rises.",
+   "It rises, then levels off.",
+   "It rises, then it falls back down."
+  ],
+  "correct_answer": "It rises, then levels off.",
+  "key_evidence": {
+   "refs": [
+    [
+     5,
+     12
+    ],
+    [
+     40,
+     66
+    ],
+    [
+     100,
+     68
+    ]
+   ]
+  },
+  "explanation": "Colonies climb from 12 at 5% activity to 66 at 40%, then stay between 66 and 69 from 40% to 100%. The count rises and then levels off.",
+  "distractor_rationales": [
+   {
+    "choice": "It falls, then it levels off.",
+    "fault": "the count climbs at low activity, from 12 to 66; it never falls first"
+   },
+   {
+    "choice": "It stays level at first, then rises.",
+    "fault": "reverses the order; the rise comes first and the flat part comes last"
+   },
+   {
+    "choice": "It rises, then it falls back down.",
+    "fault": "the counts above 40% stay between 66 and 69 and do not drop"
+   }
+  ],
+  "real_world_check": "Cells often make more of an enzyme than they need, so a mutation that lowers its activity only partway can have little effect on growth.",
+  "prior_free": "MS-LS3-1 says a mutation can change how well a protein works, which suggests fewer colonies with less enzyme, but not that growth stops depending on the enzyme above about 40%; that plateau is visible only in these points."
+ },
+ {
+  "id": "MSB1-L8-18",
+  "map_area": "Life Science",
+  "grade_target": 8,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 215-224",
+  "dci": "LS3",
+  "ngss_pe": "MS-LS3-2",
+  "kind": "investigation",
+  "stimulus": "procedure+table",
+  "format": "conditions",
+  "ask": "meets-criterion",
+  "invented": true,
+  "names_used": [
+   "fish line V-29"
+  ],
+  "passage": "In fish line V-29, fin color is controlled by one gene with two alleles. The allele for red fins is dominant to the allele for gold fins. Students set up four ponds, each with one adult male and one adult female. When the young were old enough to show fin color, the students counted the red-finned and gold-finned young in each pond.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Pond TX-31",
+    "Pond YSTU-2075",
+    "Pond S-4",
+    "Pond WUZ-608"
+   ],
+   "colLabels": [
+    "Red-finned young",
+    "Gold-finned young"
+   ],
+   "cells": [
+    [
+     48,
+     0
+    ],
+    [
+     0,
+     52
+    ],
+    [
+     31,
+     29
+    ],
+    [
+     45,
+     15
+    ]
+   ],
+   "caption": "Table 1. Fin color of the young in four ponds"
+  },
+  "prompt": "Which pond's results best fit a cross between a fish with one red allele and one gold allele and a fish with two gold alleles?",
+  "choices": [
+   "Pond TX-31",
+   "Pond YSTU-2075",
+   "Pond S-4",
+   "Pond WUZ-608"
+  ],
+  "correct_answer": "Pond S-4",
+  "key_evidence": {
+   "refs": [
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ]
+   ]
+  },
+  "explanation": "Such a cross gives about half young with a red allele (red fins) and half with two gold alleles (gold fins). Pond S-4, with 31 red and 29 gold, is close to 1 to 1.",
+  "distractor_rationales": [
+   {
+    "choice": "Pond TX-31",
+    "fault": "no gold young at all fits a parent with two red alleles, not a 1 to 1 cross"
+   },
+   {
+    "choice": "Pond YSTU-2075",
+    "fault": "all gold young fits two parents that each have two gold alleles"
+   },
+   {
+    "choice": "Pond WUZ-608",
+    "fault": "about 3 red to 1 gold fits two parents that each carry one gold allele"
+   }
+  ],
+  "real_world_check": "A cross between a heterozygous parent and a homozygous recessive parent gives about half dominant and half recessive offspring."
+ },
+ {
+  "id": "MSB1-L8-19",
+  "map_area": "Life Science",
+  "grade_target": 8,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 215-224",
+  "dci": "LS2",
+  "ngss_pe": "MS-LS2-2",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "structure",
+  "invented": false,
+  "passage": null,
+  "graphic": null,
+  "prompt": "Bean plants and corn plants grow side by side in soil that holds very little nitrogen in a form plants can use. The beans stay green and healthy, but the corn leaves turn yellow. Tests show the bean plants contain far more nitrogen. Which structure most likely lets the beans get this nitrogen?",
+  "choices": [
+   "root hairs",
+   "root nodules",
+   "xylem",
+   "stomata"
+  ],
+  "correct_answer": "root nodules",
+  "explanation": "Bean roots form nodules that house bacteria. The bacteria turn nitrogen gas from the air into compounds the plant can use, and the plant feeds them sugar. Corn has no such partners.",
+  "distractor_rationales": [
+   {
+    "choice": "root hairs",
+    "fault": "misconception: root hairs can supply nitrogen the soil does not hold; corn has root hairs too"
+   },
+   {
+    "choice": "xylem",
+    "fault": "misconception: transport tissue makes nutrients; xylem only carries water and minerals"
+   },
+   {
+    "choice": "stomata",
+    "fault": "misconception: plants use nitrogen gas taken in through leaf pores; plants cannot use nitrogen gas directly"
+   }
+  ],
+  "real_world_check": "Legumes such as beans form root nodules with nitrogen-fixing bacteria, a mutualism that supplies the plant with usable nitrogen."
+ },
+ {
+  "id": "MSB1-L8-20",
+  "map_area": "Life Science",
+  "grade_target": 8,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 215-224",
+  "dci": "LS4",
+  "ngss_pe": "MS-LS4-5",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "predicts",
+  "invented": false,
+  "passage": null,
+  "graphic": null,
+  "prompt": "A farmer grows a tomato variety whose plants vary in how early their fruit ripens, and ripening time is partly inherited. Each year the farmer saves seeds only from the earliest-ripening plants and plants them the next year. What will most likely happen over many years?",
+  "choices": [
+   "Each plant will ripen earlier by trying to beat the frost.",
+   "Average ripening time in the crop will move earlier over the years.",
+   "Plants in later years will ripen on one shared day.",
+   "Ripening time will not change, since selection happens just in wild populations."
+  ],
+  "correct_answer": "Average ripening time in the crop will move earlier over the years.",
+  "explanation": "Choosing parents with an inherited trait is artificial selection. The share of early-ripening plants rises over the years, but plants still vary because of other genes and growing conditions.",
+  "distractor_rationales": [
+   {
+    "choice": "Each plant will ripen earlier by trying to beat the frost.",
+    "fault": "misconception: organisms change their traits by trying or by need"
+   },
+   {
+    "choice": "Plants in later years will ripen on one shared day.",
+    "fault": "misconception: selection removes all variation in a trait"
+   },
+   {
+    "choice": "Ripening time will not change, since selection happens just in wild populations.",
+    "fault": "misconception: selection works in nature but not when people choose the parents"
+   }
+  ],
+  "real_world_check": "Artificial selection, in which people breed individuals with a desired inherited trait, shifts that trait in a population over generations."
+ }
+]

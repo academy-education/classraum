@@ -902,6 +902,33 @@
       "size": 30,
       "family": "map",
       "runId": "map-sci-pilot-full-cofounder-{date}"
+    },
+    {
+      "cohort": "map-science-v1-life",
+      "tool": "item",
+      "domain": "Life Science",
+      "size": 12,
+      "family": "map",
+      "route": "spot",
+      "runId": "map-sci-v1-life-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "map-science-v1-phys",
+      "tool": "item",
+      "domain": "Physical Science",
+      "size": 12,
+      "family": "map",
+      "route": "spot",
+      "runId": "map-sci-v1-phys-spot-cofounder-{date}"
+    },
+    {
+      "cohort": "map-science-v1-earth",
+      "tool": "item",
+      "domain": "Earth and Space Science",
+      "size": 12,
+      "family": "map",
+      "route": "spot",
+      "runId": "map-sci-v1-earth-spot-cofounder-{date}"
     }
   ]
 }

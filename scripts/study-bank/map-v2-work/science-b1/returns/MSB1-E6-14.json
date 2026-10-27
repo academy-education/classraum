@@ -1,0 +1,42 @@
+{
+  "id": "MSB1-E6-14",
+  "map_area": "Earth and Space Science",
+  "grade_target": 6,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 199-208",
+  "dci": "ESS2",
+  "ngss_pe": "MS-ESS2-5",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "predicts",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "A warm, humid air mass sits over a town. A cold, dry air mass moves in quickly and pushes in underneath it. Which prediction about the town's weather is best?",
+  "choices": [
+    "The two air masses will blend at once, and the weather will not change.",
+    "The cold air will rise over the warm air and bring clear, warm skies.",
+    "The air may turn drier and clearer, because cold air holds more water vapor.",
+    "The warm air will be pushed upward, so clouds and rain are likely to form soon."
+  ],
+  "correct_answer": "The warm air will be pushed upward, so clouds and rain are likely to form soon.",
+  "explanation": "Dense cold air wedges under warm humid air and lifts it. As the warm air rises it cools, its water vapor condenses, and clouds and rain form along the front.",
+  "distractor_rationales": [
+    {
+      "choice": "The two air masses will blend at once, and the weather will not change.",
+      "fault": "misconception: air masses mix evenly when they meet; they stay separate and form a front where weather changes"
+    },
+    {
+      "choice": "The cold air will rise over the warm air and bring clear, warm skies.",
+      "fault": "misconception: cold air rises; cold air is denser and sinks under warm air"
+    },
+    {
+      "choice": "The air may turn drier and clearer, because cold air holds more water vapor.",
+      "fault": "misconception: cold air holds more water vapor than warm air; warm air holds more"
+    }
+  ],
+  "real_world_check": "At a cold front, denser cold air lifts warm moist air, which cools and forms clouds and often rain."
+}

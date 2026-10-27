@@ -1,0 +1,104 @@
+{
+ "id": "MSB1-P8-10",
+ "map_area": "Physical Science",
+ "grade_target": 8,
+ "tier": "mid",
+ "difficulty": "medium",
+ "rit_band_target": "RIT 205-214",
+ "dci": "PS2",
+ "ngss_pe": "MS-PS2-3",
+ "kind": "data",
+ "stimulus": "scatter",
+ "format": "trend",
+ "ask": "increase-then-level",
+ "invented": true,
+ "names_used": [
+  "Balloon T-3"
+ ],
+ "passage": "Students rubbed Balloon T-3 with a wool cloth a set number of times. Then they held it 10 cm from a hanging foil ball and measured how far the ball swung toward it, as an angle. They removed all charge from the balloon between trials.",
+ "graphic": {
+  "type": "scatter",
+  "points": [
+   [
+    2,
+    6
+   ],
+   [
+    4,
+    11
+   ],
+   [
+    6,
+    15
+   ],
+   [
+    8,
+    18
+   ],
+   [
+    10,
+    20
+   ],
+   [
+    12,
+    21
+   ],
+   [
+    14,
+    21
+   ],
+   [
+    16,
+    21
+   ]
+  ],
+  "xLabel": "Number of rubs",
+  "yLabel": "Swing of foil ball (degrees)",
+  "caption": "Swing of the foil ball after different numbers of rubs"
+ },
+ "prompt": "Based on the graph, which statement describes how the swing of the foil ball changed as the number of rubs went up?",
+ "choices": [
+  "As the rubs went up, the swing stayed the same",
+  "As the rubs went up, the swing increased, then stayed the same",
+  "As the rubs went up, the swing decreased at first, then increased",
+  "As the rubs went up, the swing decreased"
+ ],
+ "correct_answer": "As the rubs went up, the swing increased, then stayed the same",
+ "key_evidence": {
+  "refs": [
+   [
+    2,
+    6
+   ],
+   [
+    10,
+    20
+   ],
+   [
+    12,
+    21
+   ],
+   [
+    16,
+    21
+   ]
+  ]
+ },
+ "explanation": "The swing grows from 6 degrees at 2 rubs to 21 degrees at 12 rubs. From 12 to 16 rubs it stays at 21 degrees. So the swing increased and then leveled off.",
+ "distractor_rationales": [
+  {
+   "choice": "As the rubs went up, the swing stayed the same",
+   "fault": "the swing rose from 6 to 21 degrees over the first 12 rubs"
+  },
+  {
+   "choice": "As the rubs went up, the swing decreased at first, then increased",
+   "fault": "the swing never dropped at the start; it rose from the first point and then held at 21 degrees"
+  },
+  {
+   "choice": "As the rubs went up, the swing decreased",
+   "fault": "the swing never fell; it rose and then held at 21 degrees"
+  }
+ ],
+ "real_world_check": "Rubbing moves charge onto a balloon and a larger charge exerts a stronger electric force, but charging by rubbing reaches a limit, so the force stops growing (MS-PS2-3).",
+ "prior_free": "The standard says more charge gives a stronger electric force, which predicts a steady rise; that Balloon T-3 stops gaining swing after 12 rubs shows only in these data."
+}

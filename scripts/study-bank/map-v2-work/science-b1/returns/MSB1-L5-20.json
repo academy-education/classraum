@@ -1,0 +1,42 @@
+{
+  "id": "MSB1-L5-20",
+  "map_area": "Life Science",
+  "grade_target": 5,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 206-215",
+  "dci": "LS4",
+  "ngss_pe": "3-LS4-2",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "predicts",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "In a field, grasshoppers of one kind are either green or tan. Birds eat the grasshoppers they spot most easily. A long dry spell turns the grass tan for many years. Grasshoppers pass their color to their young. What will most likely happen to the grasshoppers in the field over many generations?",
+  "choices": [
+    "More of them will be tan, because birds spot and eat tan ones less often.",
+    "Green ones will turn their bodies tan so birds will not see them.",
+    "Tan ones will die out, because green ones feed better in dry grass.",
+    "The mix of colors will stay as it was, since birds catch both colors equally often."
+  ],
+  "correct_answer": "More of them will be tan, because birds spot and eat tan ones less often.",
+  "explanation": "On tan grass, tan grasshoppers are harder for birds to spot, so more of them live long enough to have young. Because color is passed to the young, the share of tan grasshoppers grows over many generations.",
+  "distractor_rationales": [
+    {
+      "choice": "Green ones will turn their bodies tan so birds will not see them.",
+      "fault": "misconception: individuals change their inherited traits because they need to; a grasshopper cannot change its color to match, and change happens across generations."
+    },
+    {
+      "choice": "Tan ones will die out, because green ones feed better in dry grass.",
+      "fault": "misconception: the color that matches the background is the one that loses; tan ones are hidden on tan grass, and color does not decide which grasshoppers find food."
+    },
+    {
+      "choice": "The mix of colors will stay as it was, since birds catch both colors equally often.",
+      "fault": "misconception: predators catch every color equally; the scenario says birds eat the ones they spot most easily."
+    }
+  ],
+  "real_world_check": "When individuals vary in an inherited trait that affects survival, such as color against a background, the helpful variation becomes more common over generations."
+}

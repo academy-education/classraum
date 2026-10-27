@@ -1,0 +1,92 @@
+{
+  "id": "MSB1-L7-17",
+  "map_area": "Life Science",
+  "grade_target": 7,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 212-221",
+  "dci": "LS3",
+  "ngss_pe": "MS-LS3-1",
+  "kind": "data",
+  "stimulus": "line",
+  "format": "trend",
+  "ask": "increase",
+  "invented": true,
+  "names_used": [
+    "fish line Q-1"
+  ],
+  "passage": "Fish line Q-1 makes an enzyme, a protein that helps digest food. The normal form of the enzyme works best near 30 °C. A mutation changed one part of the gene for this protein. Scientists measured how active the mutant form was at five temperatures.",
+  "graphic": {
+    "type": "line",
+    "series": [
+      {
+        "points": [
+          [
+            10,
+            8
+          ],
+          [
+            20,
+            14
+          ],
+          [
+            30,
+            22
+          ],
+          [
+            40,
+            31
+          ],
+          [
+            50,
+            12
+          ]
+        ]
+      }
+    ],
+    "xLabel": "Temperature (°C)",
+    "yLabel": "Mutant enzyme activity (units)",
+    "caption": "Activity of the mutant enzyme from fish line Q-1"
+  },
+  "prompt": "Based on the graph, how does the activity of the mutant enzyme change from 10 °C to 40 °C?",
+  "choices": [
+    "Activity falls from 10 °C to 40 °C.",
+    "Activity rises, then falls, from 10 °C to 40 °C.",
+    "Activity grows larger from 10 °C to 40 °C.",
+    "Activity stays flat from 10 °C to 40 °C."
+  ],
+  "correct_answer": "Activity grows larger from 10 °C to 40 °C.",
+  "key_evidence": {
+    "refs": [
+      [
+        10,
+        8
+      ],
+      [
+        30,
+        22
+      ],
+      [
+        40,
+        31
+      ]
+    ]
+  },
+  "explanation": "Activity is 8 units at 10 °C, 14 at 20 °C, 22 at 30 °C and 31 at 40 °C, so it climbs at every step in that range. The drop to 12 units comes only after 40 °C, at 50 °C.",
+  "distractor_rationales": [
+    {
+      "choice": "Activity falls from 10 °C to 40 °C.",
+      "fault": "The activity goes from 8 to 31 units in this range, so it goes up, not down."
+    },
+    {
+      "choice": "Activity rises, then falls, from 10 °C to 40 °C.",
+      "fault": "Within 10 °C to 40 °C there is no fall; the drop to 12 units comes only at 50 °C, and a peak at 30 °C fits the normal enzyme, not these data."
+    },
+    {
+      "choice": "Activity stays flat from 10 °C to 40 °C.",
+      "fault": "The activity changes from 8 to 31 units in this range, so it does not stay flat."
+    }
+  ],
+  "real_world_check": "A mutation can change a protein's structure and so change how it works, for example shifting the temperature at which an enzyme is most active.",
+  "prior_free": "The standard says a mutation may change a protein, but not how; the passage even suggests a peak near 30 °C, and only the graph shows activity still rising at 40 °C."
+}

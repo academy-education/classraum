@@ -1,0 +1,1368 @@
+[
+ {
+  "id": "MSB1-L7-01",
+  "map_area": "Life Science",
+  "grade_target": 7,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 192-201",
+  "dci": "LS4",
+  "ngss_pe": "MS-LS4-6",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "conditions",
+  "ask": "least",
+  "invented": true,
+  "names_used": [
+   "grasshopper line N-6"
+  ],
+  "passage": "Biologists kept grasshoppers of grasshopper line N-6 in four outdoor cages. Each grasshopper is either striped or unstriped, and the trait is inherited. Each cage held a different mix of plants. The table shows the percent of striped grasshoppers in each cage at the start and after 20 generations.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Cage R",
+    "Cage R-11",
+    "Cage RM-306",
+    "Cage RMN-4120"
+   ],
+   "colLabels": [
+    "At start (% striped)",
+    "Generation 20 (% striped)"
+   ],
+   "cells": [
+    [
+     25,
+     70
+    ],
+    [
+     15,
+     38
+    ],
+    [
+     50,
+     31
+    ],
+    [
+     60,
+     66
+    ]
+   ],
+   "caption": "Table 1. Striped grasshoppers of line N-6 in four cages"
+  },
+  "prompt": "Based on Table 1, in which cage did the percent of striped grasshoppers change the least between the start and generation 20?",
+  "choices": [
+   "Cage R-11",
+   "Cage RMN-4120",
+   "Cage R",
+   "Cage RM-306"
+  ],
+  "correct_answer": "Cage RMN-4120",
+  "key_evidence": {
+   "refs": [
+    [
+     3,
+     0
+    ],
+    [
+     3,
+     1
+    ]
+   ]
+  },
+  "explanation": "In Cage RMN-4120 the percent went from 60 to 66, a change of 6 points. Cage R rose 45 points (25 to 70), Cage R-11 rose 23 points (15 to 38), and Cage RM-306 fell 19 points (50 to 31). A change of 6 points is the smallest of the four.",
+  "distractor_rationales": [
+   {
+    "choice": "Cage R-11",
+    "fault": "It has the lowest percent at generation 20, but it changed by 23 points, far more than 6."
+   },
+   {
+    "choice": "Cage R",
+    "fault": "It changed the most of all four cages, rising 45 points from 25 to 70."
+   },
+   {
+    "choice": "Cage RM-306",
+    "fault": "Its percent fell from 50 to 31, a change of 19 points, which is more than 6."
+   }
+  ],
+  "real_world_check": "Different environments favor an inherited trait to different degrees, so natural selection can shift the trait's frequency by different amounts in separate populations over generations."
+ },
+ {
+  "id": "MSB1-L7-02",
+  "map_area": "Life Science",
+  "grade_target": 7,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 192-201",
+  "dci": "LS4",
+  "ngss_pe": "MS-LS4-5",
+  "kind": "data",
+  "stimulus": "bar",
+  "format": "values",
+  "ask": "ratio",
+  "invented": true,
+  "names_used": [
+   "melon line Q-3"
+  ],
+  "passage": "Growers planted melon line Q-3. Each generation, they saved seeds from the plants with the heaviest melons and planted those seeds the next year. The bar graph shows the mean mass of one melon in four generations.",
+  "graphic": {
+   "type": "bar",
+   "bars": [
+    {
+     "label": "Generation 0",
+     "value": 1
+    },
+    {
+     "label": "Generation 3",
+     "value": 2
+    },
+    {
+     "label": "Generation 6",
+     "value": 3
+    },
+    {
+     "label": "Generation 9",
+     "value": 4
+    }
+   ],
+   "xLabel": "Generation",
+   "yLabel": "Mean mass of one melon (kg)",
+   "caption": "Mean melon mass of melon line Q-3 over the breeding program"
+  },
+  "prompt": "According to the graph, the mean melon mass in generation 9 was how many times the mean melon mass in generation 0?",
+  "choices": [
+   "4.0 times",
+   "1.5 times",
+   "3.0 times",
+   "2.0 times"
+  ],
+  "correct_answer": "4.0 times",
+  "key_evidence": {
+   "refs": [
+    "Generation 9",
+    "Generation 0"
+   ],
+   "expr": "v0 / v1"
+  },
+  "explanation": "The generation 9 bar reaches the top tick, 4 kg, and the generation 0 bar reaches the first tick, 1 kg. Dividing 4 kg by 1 kg gives 4.0, so the later melons were 4.0 times as heavy.",
+  "distractor_rationales": [
+   {
+    "choice": "1.5 times",
+    "fault": "This divides generation 6 (3 kg) by generation 3 (2 kg), the wrong pair of bars."
+   },
+   {
+    "choice": "3.0 times",
+    "fault": "This subtracts 1 kg from 4 kg instead of dividing, or divides generation 6 by generation 0."
+   },
+   {
+    "choice": "2.0 times",
+    "fault": "This divides generation 9 (4 kg) by generation 3 (2 kg) instead of by generation 0."
+   }
+  ],
+  "real_world_check": "Artificial selection, where people choose which individuals breed, can increase a desired inherited trait such as fruit size over generations.",
+  "prior_free": "The standard says choosing the heaviest melons raises mass over generations, but it gives no size for the change; the factor comes only from reading these bars."
+ },
+ {
+  "id": "MSB1-L7-03",
+  "map_area": "Life Science",
+  "grade_target": 7,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 192-201",
+  "dci": "LS3",
+  "ngss_pe": "MS-LS3-2",
+  "kind": "investigation",
+  "stimulus": "procedure+table",
+  "format": "values",
+  "ask": "difference",
+  "invented": true,
+  "names_used": [
+   "aphid line Q-2"
+  ],
+  "passage": "Aphid line Q-2 can make young in two ways. In summer, females give birth without mating. In fall, males and females mate, and the young hatch from eggs. Students raised four broods of young, two made each way, under the same light and temperature. Each brood had 50 young. When the young were grown, the students sorted them by body color pattern. They counted how many different patterns appeared in each brood.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Brood M",
+    "Brood N",
+    "Brood O",
+    "Brood P"
+   ],
+   "colLabels": [
+    "How young were made",
+    "Young examined",
+    "Color patterns seen"
+   ],
+   "cells": [
+    [
+     "without mating",
+     50,
+     1
+    ],
+    [
+     "without mating",
+     50,
+     2
+    ],
+    [
+     "mating",
+     50,
+     9
+    ],
+    [
+     "mating",
+     50,
+     14
+    ]
+   ],
+   "caption": "Table 1. Color patterns among young of aphid line Q-2"
+  },
+  "prompt": "How many more color patterns were seen in Brood P, made by mating, than in Brood M, made without mating?",
+  "choices": [
+   "12 patterns",
+   "5 patterns",
+   "13 patterns",
+   "9 patterns"
+  ],
+  "correct_answer": "13 patterns",
+  "key_evidence": {
+   "refs": [
+    [
+     3,
+     2
+    ],
+    [
+     0,
+     2
+    ]
+   ],
+   "expr": "v0 - v1"
+  },
+  "explanation": "Brood P showed 14 color patterns and Brood M showed 1. The difference is 14 - 1 = 13 patterns.",
+  "distractor_rationales": [
+   {
+    "choice": "12 patterns",
+    "fault": "This subtracts Brood N (2 patterns) instead of Brood M (1 pattern) from 14."
+   },
+   {
+    "choice": "5 patterns",
+    "fault": "This compares Brood P with Brood O, the other mating brood, and finds 14 - 9."
+   },
+   {
+    "choice": "9 patterns",
+    "fault": "This is Brood O's own count, read from the wrong row with no subtraction."
+   }
+  ],
+  "real_world_check": "Sexual reproduction mixes alleles from two parents and gives more varied offspring, while young made without mating are nearly identical copies of their mother.",
+  "prior_free": "The standard predicts more variety among young made by mating, but not how many more patterns; that number exists only in these counts."
+ },
+ {
+  "id": "MSB1-L7-04",
+  "map_area": "Life Science",
+  "grade_target": 7,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 192-201",
+  "dci": "LS4",
+  "ngss_pe": "MS-LS4-1",
+  "kind": "investigation",
+  "stimulus": "procedure",
+  "format": "claim",
+  "ask": "not-supported",
+  "invented": true,
+  "names_used": [
+   "Quarry R-12",
+   "shell type N-1",
+   "shell type N-2",
+   "shell type N-3"
+  ],
+  "passage": "Paleontologists studied six undisturbed sedimentary rock layers at Quarry R-12. Layer 1 is at the bottom and Layer 6 is at the top. In each layer they counted fossil shells of three extinct clam-like animals, coded shell type N-1, shell type N-2 and shell type N-3. Shell type N-1 fossils appeared in Layers 1 to 4, and they were most plentiful in Layer 2. Shell type N-2 fossils appeared in Layers 3 to 6, and they were most plentiful in Layer 6. Shell type N-3 fossils appeared in Layers 5 and 6. The layers had not been folded or overturned.",
+  "graphic": null,
+  "prompt": "Which claim is NOT supported by the findings at Quarry R-12?",
+  "choices": [
+   "Shell type N-2 first appeared later than shell type N-1 did.",
+   "Shell types N-1 and N-2 lived during part of the same span of time.",
+   "Shell type N-3 appeared after the other two types had appeared.",
+   "Shell type N-1 was most common in the youngest layer where it is found."
+  ],
+  "correct_answer": "Shell type N-1 was most common in the youngest layer where it is found.",
+  "key_evidence": {
+   "refs": [
+    {
+     "quote": "Shell type N-1 fossils appeared in Layers 1 to 4, and they were most plentiful in Layer 2"
+    }
+   ]
+  },
+  "explanation": "In undisturbed layers, higher layers are younger. The youngest layer holding shell type N-1 is Layer 4, but N-1 was most plentiful in Layer 2, an older layer, so this claim goes against the findings. The other three claims match the layer ranges.",
+  "distractor_rationales": [
+   {
+    "choice": "Shell type N-2 first appeared later than shell type N-1 did.",
+    "fault": "Supported: N-2 first shows up in Layer 3, above N-1's first layer, Layer 1, so it is younger."
+   },
+   {
+    "choice": "Shell types N-1 and N-2 lived during part of the same span of time.",
+    "fault": "Supported: both types are found in Layers 3 and 4, so their time ranges overlap."
+   },
+   {
+    "choice": "Shell type N-3 appeared after the other two types had appeared.",
+    "fault": "Supported: N-3 first shows up in Layer 5, above the first layers of both N-1 and N-2."
+   }
+  ],
+  "real_world_check": "In undisturbed sedimentary rock, lower layers formed earlier than higher layers, so the order of fossils in the layers shows the order in which the organisms lived."
+ },
+ {
+  "id": "MSB1-L7-05",
+  "map_area": "Life Science",
+  "grade_target": 7,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 192-201",
+  "dci": "LS1",
+  "ngss_pe": "MS-LS1-7",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "explains",
+  "invented": false,
+  "passage": null,
+  "graphic": null,
+  "prompt": "During a fast run, Mara breathes faster and more deeply than when she sits still. Which statement best explains why?",
+  "choices": [
+   "Her lungs turn the air she breathes directly into energy for her legs.",
+   "Her muscle cells use more oxygen to release energy from sugar.",
+   "Her heart pumps air to her leg muscles.",
+   "Her working muscles make oxygen, and fast breathing gets rid of the extra."
+  ],
+  "correct_answer": "Her muscle cells use more oxygen to release energy from sugar.",
+  "explanation": "Working muscle cells release energy from sugar by cellular respiration, which uses oxygen and gives off carbon dioxide. Faster, deeper breathing brings in more oxygen and removes more carbon dioxide.",
+  "distractor_rationales": [
+   {
+    "choice": "Her lungs turn the air she breathes directly into energy for her legs.",
+    "fault": "misconception: air itself is energy; lungs only exchange gases, and cells release energy from food."
+   },
+   {
+    "choice": "Her heart pumps air to her leg muscles.",
+    "fault": "misconception: the heart moves air around the body; it pumps blood, which carries dissolved oxygen."
+   },
+   {
+    "choice": "Her working muscles make oxygen, and fast breathing gets rid of the extra.",
+    "fault": "misconception: muscles produce oxygen; they use oxygen and produce carbon dioxide."
+   }
+  ],
+  "real_world_check": "Cellular respiration in muscle cells uses oxygen to release energy from glucose, so active muscles raise the body's demand for oxygen and its output of carbon dioxide."
+ },
+ {
+  "id": "MSB1-L7-06",
+  "map_area": "Life Science",
+  "grade_target": 7,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 192-201",
+  "dci": "LS3",
+  "ngss_pe": "MS-LS3-2",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "predicts",
+  "invented": false,
+  "passage": null,
+  "graphic": null,
+  "prompt": "In one breed of guinea pig, the allele for black fur (B) is dominant over the allele for brown fur (b). Two black guinea pigs that are both Bb have many young together. Which prediction about their young is best?",
+  "choices": [
+   "About one in four of the young will have brown fur.",
+   "All of the young will be black.",
+   "None of the young can have brown fur, since neither parent is brown.",
+   "About half of the young will be brown."
+  ],
+  "correct_answer": "About one in four of the young will have brown fur.",
+  "explanation": "Each Bb parent passes on B or b with equal chance, so the young are BB, Bb, Bb or bb in a 1:2:1 ratio. Only bb young are brown, which is about one out of every four.",
+  "distractor_rationales": [
+   {
+    "choice": "All of the young will be black.",
+    "fault": "misconception: a dominant allele shows up in every offspring; bb young can still occur and be brown."
+   },
+   {
+    "choice": "None of the young can have brown fur, since neither parent is brown.",
+    "fault": "misconception: young can show only traits their parents show; hidden recessive alleles can pair up."
+   },
+   {
+    "choice": "About half of the young will be brown.",
+    "fault": "misconception: carrying one b allele gives a one-in-two chance of brown; a young needs b from both parents."
+   }
+  ],
+  "real_world_check": "A cross between two heterozygous parents (Bb x Bb) is expected to give about 25 percent offspring showing the recessive trait."
+ },
+ {
+  "id": "MSB1-L7-07",
+  "map_area": "Life Science",
+  "grade_target": 7,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 202-211",
+  "dci": "LS1",
+  "ngss_pe": "MS-LS1-6",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "conditions",
+  "ask": "greatest",
+  "invented": true,
+  "names_used": [
+   "moss line P-5"
+  ],
+  "passage": "Students grew four mats of moss line P-5 on trays of damp sand under grow lights. They weighed each mat at the start and again after 6 weeks.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Mat PN-140",
+    "Mat PNQ-6015",
+    "Mat P-23",
+    "Mat P"
+   ],
+   "colLabels": [
+    "Starting mass (g)",
+    "Mass after 6 weeks (g)"
+   ],
+   "cells": [
+    [
+     12,
+     30
+    ],
+    [
+     20,
+     34
+    ],
+    [
+     8,
+     20
+    ],
+    [
+     5,
+     26
+    ]
+   ],
+   "caption": "Table 1. Masses of four mats of moss line P-5"
+  },
+  "prompt": "Based on Table 1, which mat gained the most mass during the 6 weeks?",
+  "choices": [
+   "Mat PN-140",
+   "Mat PNQ-6015",
+   "Mat P-23",
+   "Mat P"
+  ],
+  "correct_answer": "Mat P",
+  "key_evidence": {
+   "refs": [
+    [
+     3,
+     0
+    ],
+    [
+     3,
+     1
+    ]
+   ]
+  },
+  "explanation": "Mat P went from 5 g to 26 g, a gain of 21 g. Mat PN-140 gained 18 g (12 to 30), Mat PNQ-6015 gained 14 g (20 to 34), and Mat P-23 gained 12 g (8 to 20).",
+  "distractor_rationales": [
+   {
+    "choice": "Mat PN-140",
+    "fault": "It gained 18 g, from 12 g to 30 g, which is less than 21 g."
+   },
+   {
+    "choice": "Mat PNQ-6015",
+    "fault": "It has the largest final mass, 34 g, but it started at 20 g and gained only 14 g."
+   },
+   {
+    "choice": "Mat P-23",
+    "fault": "It gained 12 g, from 8 g to 20 g, the smallest gain of the four."
+   }
+  ],
+  "real_world_check": "Plants such as mosses use light energy, carbon dioxide and water in photosynthesis to build sugars, so a growing mat gains mass over time."
+ },
+ {
+  "id": "MSB1-L7-08",
+  "map_area": "Life Science",
+  "grade_target": 7,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 202-211",
+  "dci": "LS2",
+  "ngss_pe": "MS-LS2-2",
+  "kind": "data",
+  "stimulus": "bar",
+  "format": "conditions",
+  "ask": "least",
+  "invented": true,
+  "names_used": [
+   "frog line R-3"
+  ],
+  "passage": "Dragonfly larvae eat tadpoles. Ecologists counted dragonfly larvae in four pools where frog line R-3 lays its eggs. Every count used the same size of net and the same number of sweeps.",
+  "graphic": {
+   "type": "bar",
+   "bars": [
+    {
+     "label": "Pool Q",
+     "value": 24
+    },
+    {
+     "label": "Pool Q-14",
+     "value": 32
+    },
+    {
+     "label": "Pool QM-305",
+     "value": 8
+    },
+    {
+     "label": "Pool QMR-4410",
+     "value": 16
+    }
+   ],
+   "xLabel": "Pool",
+   "yLabel": "Dragonfly larvae caught (number)",
+   "caption": "Dragonfly larvae caught in four pools used by frog line R-3"
+  },
+  "prompt": "Based on the graph, in which pool would tadpoles of frog line R-3 face the fewest of these predators?",
+  "choices": [
+   "Pool Q-14",
+   "Pool QM-305",
+   "Pool Q",
+   "Pool QMR-4410"
+  ],
+  "correct_answer": "Pool QM-305",
+  "key_evidence": {
+   "refs": [
+    "Pool QM-305"
+   ]
+  },
+  "explanation": "The bar for Pool QM-305 is the shortest, reaching only the first tick (8 larvae). Fewer dragonfly larvae means fewer predators of the tadpoles in that pool.",
+  "distractor_rationales": [
+   {
+    "choice": "Pool Q-14",
+    "fault": "Its bar is the tallest (32 larvae), so tadpoles there face the most predators."
+   },
+   {
+    "choice": "Pool Q",
+    "fault": "Its bar reaches the third tick (24 larvae), three times as many as Pool QM-305."
+   },
+   {
+    "choice": "Pool QMR-4410",
+    "fault": "Its bar reaches the second tick (16 larvae), twice as many as Pool QM-305."
+   }
+  ],
+  "real_world_check": "Prey such as tadpoles face more predation where their predators are more numerous, so predator counts help predict prey survival."
+ },
+ {
+  "id": "MSB1-L7-09",
+  "map_area": "Life Science",
+  "grade_target": 7,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 202-211",
+  "dci": "LS3",
+  "ngss_pe": "MS-LS3-2",
+  "kind": "data",
+  "stimulus": "line",
+  "format": "values",
+  "ask": "read",
+  "invented": true,
+  "names_used": [
+   "mouse line M-4"
+  ],
+  "passage": "In mouse line M-4, the allele for gray fur is dominant over the allele for white fur. Scientists crossed many pairs of mice that each carried one allele of each kind. As the young were born, they kept a running count. The graph shows the percent of all young counted so far that had white fur.",
+  "graphic": {
+   "type": "line",
+   "series": [
+    {
+     "points": [
+      [
+       10,
+       40
+      ],
+      [
+       20,
+       30
+      ],
+      [
+       40,
+       20
+      ],
+      [
+       80,
+       25
+      ],
+      [
+       160,
+       25
+      ]
+     ]
+    }
+   ],
+   "xLabel": "Young counted so far (number)",
+   "yLabel": "Young with white fur (%)",
+   "caption": "Running percent of white-furred young from mouse line M-4 crosses"
+  },
+  "prompt": "According to the graph, what percent of the young had white fur when the first 40 young had been counted?",
+  "choices": [
+   "25%",
+   "20%",
+   "40%",
+   "30%"
+  ],
+  "correct_answer": "20%",
+  "key_evidence": {
+   "refs": [
+    [
+     40,
+     20
+    ]
+   ],
+   "expr": "v0"
+  },
+  "explanation": "At 40 young counted on the x-axis, the line sits at 20% on the y-axis. The running percent settled near 25% only later, after 80 young.",
+  "distractor_rationales": [
+   {
+    "choice": "25%",
+    "fault": "This is the value after 80 and 160 young, or the value expected from a Punnett square, not the reading at 40."
+   },
+   {
+    "choice": "40%",
+    "fault": "This is the reading at 10 young, the first point, not at 40 young."
+   },
+   {
+    "choice": "30%",
+    "fault": "This is the reading at 20 young, one point too early."
+   }
+  ],
+  "real_world_check": "A cross between two heterozygous parents is expected to give about one quarter recessive offspring, but small samples can differ from that by chance.",
+  "prior_free": "A student who knows Punnett squares expects 25 percent; the early, small-sample value at 40 young differs and exists only on this graph."
+ },
+ {
+  "id": "MSB1-L7-10",
+  "map_area": "Life Science",
+  "grade_target": 7,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 202-211",
+  "dci": "LS2",
+  "ngss_pe": "MS-LS2-1",
+  "kind": "data",
+  "stimulus": "scatter",
+  "format": "trend",
+  "ask": "decrease",
+  "invented": true,
+  "names_used": [
+   "clover line O-7",
+   "grass line O-9"
+  ],
+  "passage": "Clover plants add nitrogen to soil, which can help other plants, but clover also shades the ground. Ecologists marked eight plots in a field. In each plot they counted plants of clover line O-7 and seedlings of grass line O-9.",
+  "graphic": {
+   "type": "scatter",
+   "points": [
+    [
+     2,
+     46
+    ],
+    [
+     5,
+     41
+    ],
+    [
+     8,
+     37
+    ],
+    [
+     11,
+     30
+    ],
+    [
+     14,
+     28
+    ],
+    [
+     17,
+     22
+    ],
+    [
+     20,
+     17
+    ],
+    [
+     23,
+     14
+    ]
+   ],
+   "xLabel": "Clover plants per square meter",
+   "yLabel": "Grass seedlings per square meter",
+   "caption": "Clover line O-7 and grass line O-9 counts in eight plots"
+  },
+  "prompt": "Which statement best describes the pattern in the scatterplot?",
+  "choices": [
+   "Grass seedling counts increase as clover plants become more crowded.",
+   "Grass seedling counts decrease as clover gets denser.",
+   "Grass seedling counts increase, then stay the same, as clover gets denser.",
+   "Grass seedling counts stay the same whatever the number of clover plants is."
+  ],
+  "correct_answer": "Grass seedling counts decrease as clover gets denser.",
+  "key_evidence": {
+   "refs": [
+    [
+     2,
+     46
+    ],
+    [
+     11,
+     30
+    ],
+    [
+     23,
+     14
+    ]
+   ]
+  },
+  "explanation": "The plot with 2 clover plants per square meter had 46 grass seedlings, the plot with 11 had 30, and the plot with 23 had 14. Each plot with more clover had fewer grass seedlings.",
+  "distractor_rationales": [
+   {
+    "choice": "Grass seedling counts increase as clover plants become more crowded.",
+    "fault": "The counts go down, from 46 to 14, as clover becomes more crowded."
+   },
+   {
+    "choice": "Grass seedling counts increase, then stay the same, as clover gets denser.",
+    "fault": "The counts never rise and never level off; every plot with more clover has fewer seedlings."
+   },
+   {
+    "choice": "Grass seedling counts stay the same whatever the number of clover plants is.",
+    "fault": "The counts change from 46 to 14 across the plots, so they do not stay the same."
+   }
+  ],
+  "real_world_check": "Plants compete for light and space, so a neighbor that shades the ground can reduce other seedlings even though it may also add nutrients.",
+  "prior_free": "The passage gives a reason clover could help grass (nitrogen) and a reason it could harm it (shade); only the plotted counts show which effect wins here."
+ },
+ {
+  "id": "MSB1-L7-11",
+  "map_area": "Life Science",
+  "grade_target": 7,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 202-211",
+  "dci": "LS1",
+  "ngss_pe": "MS-LS1-4",
+  "kind": "investigation",
+  "stimulus": "procedure",
+  "format": "variable",
+  "ask": "controlled",
+  "invented": true,
+  "names_used": [
+   "hive N-4"
+  ],
+  "passage": "Students tested whether petal color affects how often bees from hive N-4 visit a flower. They made twelve paper flowers, four each with blue, yellow or white petals. The kind of paper in the petals was not the same for every flower: some petals were card stock and some were tissue paper. Every flower held the same amount of sugar water, 2 mL, in a small cup at its center. The students set the flowers in the lawn wherever there was room, so the spacing between flowers ranged from 0.5 m to 2 m. For one hour, they counted the bees landing on each flower.",
+  "graphic": null,
+  "prompt": "Which of these was a controlled variable in this investigation?",
+  "choices": [
+   "amount of sugar water",
+   "petal color",
+   "spacing between flowers",
+   "kind of paper in the petals"
+  ],
+  "correct_answer": "amount of sugar water",
+  "option_roles": [
+   "setting",
+   "setting",
+   "setting",
+   "setting"
+  ],
+  "key_evidence": {
+   "refs": [
+    {
+     "quote": "Every flower held the same amount of sugar water, 2 mL"
+    }
+   ]
+  },
+  "explanation": "Every flower got 2 mL of the same sugar water, so that setting was held equal for all flowers on purpose. Petal color was changed on purpose to test it, and the paper and the spacing differed from flower to flower, so neither was held constant.",
+  "distractor_rationales": [
+   {
+    "choice": "petal color",
+    "fault": "It was set to three different colors on purpose, so it is the tested (independent) variable."
+   },
+   {
+    "choice": "spacing between flowers",
+    "fault": "It ranged from 0.5 m to 2 m, so it was not held the same for all flowers."
+   },
+   {
+    "choice": "kind of paper in the petals",
+    "fault": "Some petals were card stock and some tissue paper, so it was not kept the same."
+   }
+  ],
+  "real_world_check": "A controlled variable is a condition kept the same for every group; bees respond to both flower color and nectar, so sugar water is a sensible condition to hold equal."
+ },
+ {
+  "id": "MSB1-L7-12",
+  "map_area": "Life Science",
+  "grade_target": 7,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 202-211",
+  "dci": "LS1",
+  "ngss_pe": "MS-LS1-7",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "quantity",
+  "invented": false,
+  "passage": null,
+  "graphic": null,
+  "prompt": "A muscle cell in a runner's leg is releasing energy from sugar as fast as it can. Which quantity inside that cell goes up as this happens?",
+  "choices": [
+   "oxygen level",
+   "amount of stored glucose",
+   "carbon dioxide level",
+   "number of chloroplasts"
+  ],
+  "correct_answer": "carbon dioxide level",
+  "explanation": "Cellular respiration breaks down glucose using oxygen and gives off carbon dioxide and water. As the cell works harder, carbon dioxide builds up while oxygen and stored glucose are used up.",
+  "distractor_rationales": [
+   {
+    "choice": "oxygen level",
+    "fault": "misconception: cells make oxygen when they release energy; respiration uses oxygen up."
+   },
+   {
+    "choice": "amount of stored glucose",
+    "fault": "misconception: releasing energy builds sugar; respiration breaks stored sugar down."
+   },
+   {
+    "choice": "number of chloroplasts",
+    "fault": "misconception: animal cells have chloroplasts that make energy; muscle cells have none."
+   }
+  ],
+  "real_world_check": "Cellular respiration combines glucose with oxygen and produces carbon dioxide and water, releasing energy the cell can use."
+ },
+ {
+  "id": "MSB1-L7-13",
+  "map_area": "Life Science",
+  "grade_target": 7,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 202-211",
+  "dci": "LS4",
+  "ngss_pe": "MS-LS4-3",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "explains",
+  "invented": false,
+  "passage": null,
+  "graphic": null,
+  "prompt": "Early embryos of a fish, a chicken and a human all have similar folds, called pouches, in the neck area. Which statement best explains this similarity?",
+  "choices": [
+   "Humans and chickens developed from kinds of fish alive today.",
+   "Every animal embryo looks exactly the same until the moment it is born.",
+   "All three descend from a shared ancestor.",
+   "Each embryo needs gills because it breathes water before birth or hatching."
+  ],
+  "correct_answer": "All three descend from a shared ancestor.",
+  "explanation": "Similar structures in early embryos of different animals point to common ancestry: fish, birds and mammals all descend from an early vertebrate ancestor, and the pouches are inherited from it.",
+  "distractor_rationales": [
+   {
+    "choice": "Humans and chickens developed from kinds of fish alive today.",
+    "fault": "misconception: living species evolved from other living species; they share an ancestor that is now extinct."
+   },
+   {
+    "choice": "Every animal embryo looks exactly the same until the moment it is born.",
+    "fault": "misconception: embryos stay identical; embryos of different animals grow more different as they develop."
+   },
+   {
+    "choice": "Each embryo needs gills because it breathes water before birth or hatching.",
+    "fault": "misconception: human and chicken embryos breathe water with gills; they get oxygen from blood or through the eggshell."
+   }
+  ],
+  "real_world_check": "Similarities among the early embryos of different vertebrates, such as pharyngeal pouches, are evidence that these animals share a common ancestor."
+ },
+ {
+  "id": "MSB1-L7-14",
+  "map_area": "Life Science",
+  "grade_target": 7,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 202-211",
+  "dci": "LS2",
+  "ngss_pe": "MS-LS2-4",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "predicts",
+  "invented": false,
+  "passage": null,
+  "graphic": null,
+  "prompt": "In a pond, large fish eat small fish, small fish eat tiny animals called zooplankton, and zooplankton eat algae. A disease kills most of the large fish. Which prediction is best for the next few months?",
+  "choices": [
+   "Small fish will increase, and then zooplankton will decline.",
+   "Zooplankton will increase, since large fish ate them.",
+   "Algae will decrease right away because the large fish were feeding them.",
+   "Small fish will decrease, since losing one species shrinks the others too."
+  ],
+  "correct_answer": "Small fish will increase, and then zooplankton will decline.",
+  "explanation": "With fewer large fish eating them, more small fish survive. More small fish eat more zooplankton, so the zooplankton population then falls.",
+  "distractor_rationales": [
+   {
+    "choice": "Zooplankton will increase, since large fish ate them.",
+    "fault": "misconception: a predator eats every animal below it in a food chain; here large fish eat small fish, not zooplankton."
+   },
+   {
+    "choice": "Algae will decrease right away because the large fish were feeding them.",
+    "fault": "misconception: producers get their food from consumers; algae make their own food by photosynthesis."
+   },
+   {
+    "choice": "Small fish will decrease, since losing one species shrinks the others too.",
+    "fault": "misconception: removing a species lowers every population; the prey of the lost predator usually increases."
+   }
+  ],
+  "real_world_check": "When a top predator declines, its prey usually increases, and that prey then eats more of its own food organisms, which decline."
+ },
+ {
+  "id": "MSB1-L7-15",
+  "map_area": "Life Science",
+  "grade_target": 7,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 212-221",
+  "dci": "LS3",
+  "ngss_pe": "MS-LS3-2",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "values",
+  "ask": "difference",
+  "invented": true,
+  "names_used": [
+   "beetle line P-8"
+  ],
+  "passage": "In beetle line P-8, the allele for a green shell (G) is dominant over the allele for a tan shell (g). Students made four crosses between pairs of beetles and counted the offspring of each cross.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Cross M-1",
+    "Cross M-2",
+    "Cross M-3",
+    "Cross M-4"
+   ],
+   "colLabels": [
+    "Green offspring",
+    "Tan offspring"
+   ],
+   "cells": [
+    [
+     58,
+     0
+    ],
+    [
+     75,
+     27
+    ],
+    [
+     41,
+     37
+    ],
+    [
+     0,
+     64
+    ]
+   ],
+   "caption": "Table 1. Offspring shell colors in four crosses of beetle line P-8"
+  },
+  "prompt": "One of the crosses was between a Gg beetle and a gg beetle. In that cross, how many more offspring had green shells than tan shells?",
+  "choices": [
+   "48 offspring",
+   "58 offspring",
+   "4 offspring",
+   "64 offspring"
+  ],
+  "correct_answer": "4 offspring",
+  "key_evidence": {
+   "refs": [
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ]
+   ],
+   "expr": "v0 - v1"
+  },
+  "explanation": "A Gg x gg cross is expected to give green and tan offspring in about equal numbers. Only Cross M-3 (41 green, 37 tan) shows that pattern, so the difference is 41 - 37 = 4 offspring.",
+  "distractor_rationales": [
+   {
+    "choice": "48 offspring",
+    "fault": "This uses Cross M-2 (75 - 27), whose roughly 3 to 1 ratio fits a Gg x Gg cross."
+   },
+   {
+    "choice": "58 offspring",
+    "fault": "This uses Cross M-1, where every offspring was green, as from a GG parent."
+   },
+   {
+    "choice": "64 offspring",
+    "fault": "This uses Cross M-4, where every offspring was tan, as from two gg parents; tan outnumbers green there."
+   }
+  ],
+  "real_world_check": "A cross between a heterozygous parent and a homozygous recessive parent is expected to give about half dominant and half recessive offspring.",
+  "prior_free": "Knowing that a Gg x gg cross gives about half and half picks out the row, but the actual difference exists only in these counts."
+ },
+ {
+  "id": "MSB1-L7-16",
+  "map_area": "Life Science",
+  "grade_target": 7,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 212-221",
+  "dci": "LS2",
+  "ngss_pe": "MS-LS2-1",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "values",
+  "ask": "interpolate",
+  "invented": true,
+  "names_used": [
+   "rotifer line R-8"
+  ],
+  "passage": "Students kept rotifer line R-8 in five identical tanks of pond water. Each tank got a different amount of algae food per day. After 20 days, they counted the rotifers in 1 mL of water from each tank.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Tank 1",
+    "Tank 2",
+    "Tank 3",
+    "Tank 4",
+    "Tank 5"
+   ],
+   "colLabels": [
+    "Algae food per day (mg)",
+    "Rotifers per mL on day 20"
+   ],
+   "cells": [
+    [
+     10,
+     120
+    ],
+    [
+     20,
+     230
+    ],
+    [
+     40,
+     410
+    ],
+    [
+     60,
+     420
+    ],
+    [
+     80,
+     425
+    ]
+   ],
+   "caption": "Table 1. Rotifer line R-8 counts at five food amounts"
+  },
+  "prompt": "Assume the rotifer count changes at a steady rate between each pair of listed food amounts. About how many rotifers per mL would a tank given 30 mg of algae food per day have on day 20?",
+  "choices": [
+   "415 rotifers",
+   "345 rotifers",
+   "175 rotifers",
+   "320 rotifers"
+  ],
+  "correct_answer": "320 rotifers",
+  "key_evidence": {
+   "refs": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     1
+    ]
+   ],
+   "expr": "(v0 + v1) / 2"
+  },
+  "explanation": "30 mg lies halfway between 20 mg (230 rotifers per mL) and 40 mg (410 rotifers per mL). Halfway between 230 and 410 is (230 + 410) / 2 = 320.",
+  "distractor_rationales": [
+   {
+    "choice": "415 rotifers",
+    "fault": "This is halfway between the 40 mg and 60 mg rows, the wrong pair of food amounts."
+   },
+   {
+    "choice": "345 rotifers",
+    "fault": "This multiplies the 20 mg count by 1.5, assuming the count is proportional to food, which the table shows is false."
+   },
+   {
+    "choice": "175 rotifers",
+    "fault": "This is halfway between the 10 mg and 20 mg rows, the wrong pair of food amounts."
+   }
+  ],
+  "real_world_check": "A population grows larger with more food until some other factor, such as space or oxygen, limits it and the population levels off.",
+  "prior_free": "The standard says more food supports more rotifers, but not how many at 30 mg or that counts level off above 40 mg; only the table gives these values."
+ },
+ {
+  "id": "MSB1-L7-17",
+  "map_area": "Life Science",
+  "grade_target": 7,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 212-221",
+  "dci": "LS3",
+  "ngss_pe": "MS-LS3-1",
+  "kind": "data",
+  "stimulus": "line",
+  "format": "trend",
+  "ask": "increase",
+  "invented": true,
+  "names_used": [
+   "fish line Q-1"
+  ],
+  "passage": "Fish line Q-1 makes an enzyme, a protein that helps digest food. The normal form of the enzyme works best near 30 °C. A mutation changed one part of the gene for this protein. Scientists measured how active the mutant form was at five temperatures.",
+  "graphic": {
+   "type": "line",
+   "series": [
+    {
+     "points": [
+      [
+       10,
+       8
+      ],
+      [
+       20,
+       14
+      ],
+      [
+       30,
+       22
+      ],
+      [
+       40,
+       31
+      ],
+      [
+       50,
+       12
+      ]
+     ]
+    }
+   ],
+   "xLabel": "Temperature (°C)",
+   "yLabel": "Mutant enzyme activity (units)",
+   "caption": "Activity of the mutant enzyme from fish line Q-1"
+  },
+  "prompt": "Based on the graph, how does the activity of the mutant enzyme change from 10 °C to 40 °C?",
+  "choices": [
+   "Activity falls from 10 °C to 40 °C.",
+   "Activity rises, then falls, from 10 °C to 40 °C.",
+   "Activity grows larger from 10 °C to 40 °C.",
+   "Activity stays flat from 10 °C to 40 °C."
+  ],
+  "correct_answer": "Activity grows larger from 10 °C to 40 °C.",
+  "key_evidence": {
+   "refs": [
+    [
+     10,
+     8
+    ],
+    [
+     30,
+     22
+    ],
+    [
+     40,
+     31
+    ]
+   ]
+  },
+  "explanation": "Activity is 8 units at 10 °C, 14 at 20 °C, 22 at 30 °C and 31 at 40 °C, so it climbs at every step in that range. The drop to 12 units comes only after 40 °C, at 50 °C.",
+  "distractor_rationales": [
+   {
+    "choice": "Activity falls from 10 °C to 40 °C.",
+    "fault": "The activity goes from 8 to 31 units in this range, so it goes up, not down."
+   },
+   {
+    "choice": "Activity rises, then falls, from 10 °C to 40 °C.",
+    "fault": "Within 10 °C to 40 °C there is no fall; the drop to 12 units comes only at 50 °C, and a peak at 30 °C fits the normal enzyme, not these data."
+   },
+   {
+    "choice": "Activity stays flat from 10 °C to 40 °C.",
+    "fault": "The activity changes from 8 to 31 units in this range, so it does not stay flat."
+   }
+  ],
+  "real_world_check": "A mutation can change a protein's structure and so change how it works, for example shifting the temperature at which an enzyme is most active.",
+  "prior_free": "The standard says a mutation may change a protein, but not how; the passage even suggests a peak near 30 °C, and only the graph shows activity still rising at 40 °C."
+ },
+ {
+  "id": "MSB1-L7-18",
+  "map_area": "Life Science",
+  "grade_target": 7,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 212-221",
+  "dci": "LS1",
+  "ngss_pe": "MS-LS1-7",
+  "kind": "investigation",
+  "stimulus": "procedure+table",
+  "format": "conditions",
+  "ask": "least",
+  "invented": true,
+  "names_used": [
+   "mealworm line O-3"
+  ],
+  "passage": "Students compared cellular respiration in four colonies of mealworm line O-3. Each colony had been raised on a different food. For each trial, the students put 5 g of larvae from one colony in a sealed tube. A mesh held the larvae above a dish of blue indicator liquid, which turns yellow as carbon dioxide builds up. The students timed how long the liquid took to turn yellow. They ran two trials for each colony, all at the same temperature.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Tube O",
+    "Tube O-27",
+    "Tube OP-418",
+    "Tube OPR-5096"
+   ],
+   "colLabels": [
+    "Food",
+    "Trial 1 time (min)",
+    "Trial 2 time (min)"
+   ],
+   "cells": [
+    [
+     "apple peel",
+     12,
+     14
+    ],
+    [
+     "carrot",
+     27,
+     17
+    ],
+    [
+     "wheat flour",
+     18,
+     20
+    ],
+    [
+     "oat bran",
+     22,
+     26
+    ]
+   ],
+   "caption": "Table 1. Time for the indicator to turn yellow"
+  },
+  "prompt": "Using the mean of the two trials, which tube held the larvae with the lowest rate of cellular respiration?",
+  "choices": [
+   "Tube OPR-5096",
+   "Tube O",
+   "Tube O-27",
+   "Tube OP-418"
+  ],
+  "correct_answer": "Tube OPR-5096",
+  "key_evidence": {
+   "refs": [
+    [
+     3,
+     1
+    ],
+    [
+     3,
+     2
+    ]
+   ]
+  },
+  "explanation": "A slower color change means carbon dioxide built up more slowly, so respiration was slower. Mean times: Tube O 13 min, Tube O-27 22 min, Tube OP-418 19 min, Tube OPR-5096 24 min. The longest mean time, 24 min, marks the lowest rate.",
+  "distractor_rationales": [
+   {
+    "choice": "Tube O",
+    "fault": "Its liquid turned yellow fastest (mean 13 min), which shows the highest rate, not the lowest."
+   },
+   {
+    "choice": "Tube O-27",
+    "fault": "It has the single longest trial (27 min), but its mean is 22 min, shorter than 24 min."
+   },
+   {
+    "choice": "Tube OP-418",
+    "fault": "Its mean time is 19 min, shorter than 24 min, so its rate was higher."
+   }
+  ],
+  "real_world_check": "Cellular respiration releases carbon dioxide, which makes an indicator such as bromothymol blue turn yellow, so a slower color change means less carbon dioxide released per minute."
+ },
+ {
+  "id": "MSB1-L7-19",
+  "map_area": "Life Science",
+  "grade_target": 7,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 212-221",
+  "dci": "LS2",
+  "ngss_pe": "MS-LS2-2",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "example",
+  "invented": false,
+  "passage": null,
+  "graphic": null,
+  "prompt": "Ants of one kind live inside the hollow thorns of a tree and drink a sugary liquid the tree makes. The ants attack insects that try to eat the tree's leaves. Which is another example of this kind of relationship?",
+  "choices": [
+   "an owl eating a mouse",
+   "two shrubs competing for water",
+   "a tick on a dog",
+   "a bee pollinating clover"
+  ],
+  "correct_answer": "a bee pollinating clover",
+  "explanation": "The ants and the tree both benefit, which is mutualism. A bee gets nectar and pollen from clover while carrying pollen that lets the clover make seeds, so both benefit there too.",
+  "distractor_rationales": [
+   {
+    "choice": "an owl eating a mouse",
+    "fault": "misconception: predator and prey both benefit; predation helps the owl and harms the mouse."
+   },
+   {
+    "choice": "two shrubs competing for water",
+    "fault": "misconception: plants growing side by side help each other; competition harms both."
+   },
+   {
+    "choice": "a tick on a dog",
+    "fault": "misconception: organisms in close contact must both benefit; a tick is a parasite that harms the dog."
+   }
+  ],
+  "real_world_check": "Mutualism is an interaction in which both species benefit, as when pollinators feed on flowers and carry pollen between them."
+ },
+ {
+  "id": "MSB1-L7-20",
+  "map_area": "Life Science",
+  "grade_target": 7,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 212-221",
+  "dci": "LS4",
+  "ngss_pe": "MS-LS4-4",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "process",
+  "invented": false,
+  "passage": null,
+  "graphic": null,
+  "prompt": "For 15 years, a city sprayed the same weed killer on cracks in its sidewalks. At first, most weeds of one kind died. No one collected, planted or bred the weeds that lived; they spread their own seeds. Now most weeds of that kind there survive the spray. Which process best explains this change?",
+  "choices": [
+   "artificial selection",
+   "mutation",
+   "extinction",
+   "natural selection"
+  ],
+  "correct_answer": "natural selection",
+  "explanation": "A few weeds already had inherited traits that let them survive the spray. They lived and reproduced while others died, so the trait became common. No one chose which weeds would breed, so this is natural selection, even though people applied the spray.",
+  "distractor_rationales": [
+   {
+    "choice": "artificial selection",
+    "fault": "misconception: any change people cause is artificial selection; the stem says no one chose, planted or bred the surviving weeds."
+   },
+   {
+    "choice": "mutation",
+    "fault": "misconception: the spray made the weeds mutate to resist it; resistant forms arose at random and the spray only favored them."
+   },
+   {
+    "choice": "extinction",
+    "fault": "misconception: a population that changes has died out; the weeds are still there and the resistant kind is common."
+   }
+  ],
+  "real_world_check": "Herbicide and pesticide resistance spread by natural selection: individuals with inherited resistance survive and reproduce, so resistance becomes common."
+ }
+]

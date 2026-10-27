@@ -1,0 +1,106 @@
+{
+  "id": "MSB1-P7-03",
+  "map_area": "Physical Science",
+  "grade_target": 7,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 192-201",
+  "dci": "PS1",
+  "ngss_pe": "MS-PS1-6",
+  "kind": "data",
+  "stimulus": "line",
+  "format": "trend",
+  "ask": "increase",
+  "invented": true,
+  "names_used": [
+    "Powder M-8",
+    "Additive N-5",
+    "design Q-3"
+  ],
+  "passage": "Students built several copies of hand warmer design Q-3. Every copy held the same mass of Powder M-8, which releases thermal energy as it reacts with air, and the same amount of water. Each copy also held a different mass of Additive N-5. The graph shows the highest temperature rise each copy reached.",
+  "graphic": {
+    "type": "line",
+    "series": [
+      {
+        "points": [
+          [
+            0,
+            6
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            6,
+            10
+          ],
+          [
+            8,
+            15
+          ],
+          [
+            10,
+            20
+          ],
+          [
+            12,
+            20
+          ],
+          [
+            14,
+            20
+          ]
+        ]
+      }
+    ],
+    "xLabel": "Mass of Additive N-5 (g)",
+    "yLabel": "Highest temperature rise (°C)",
+    "caption": "Highest temperature rise of design Q-3 warmers holding different masses of Additive N-5"
+  },
+  "prompt": "According to the graph, how did the highest temperature rise change as the mass of Additive N-5 went from 6 g to 10 g?",
+  "choices": [
+    "It fell.",
+    "It stayed the same.",
+    "It increased.",
+    "It increased, then leveled off."
+  ],
+  "correct_answer": "It increased.",
+  "key_evidence": {
+    "refs": [
+      [
+        6,
+        10
+      ],
+      [
+        8,
+        15
+      ],
+      [
+        10,
+        20
+      ]
+    ]
+  },
+  "explanation": "The highest rise was 10 °C at 6 g, 15 °C at 8 g and 20 °C at 10 g. It went up 5 °C in each 2 g step, with no flat part between 6 g and 10 g.",
+  "distractor_rationales": [
+    {
+      "choice": "It fell.",
+      "fault": "no part of the line falls; between 6 g and 10 g each point is higher than the one before"
+    },
+    {
+      "choice": "It stayed the same.",
+      "fault": "the line is flat only from 0 g to 4 g and above 10 g; from 6 g to 10 g it climbs from 10 °C to 20 °C"
+    },
+    {
+      "choice": "It increased, then leveled off.",
+      "fault": "the leveling starts at 10 g, the end of the range asked about; inside 6-10 g the line climbs the whole way"
+    }
+  ],
+  "real_world_check": "Some added substances speed up the reaction of iron-type warmer powders with oxygen, so the same powder releases its energy faster and reaches a higher peak, up to a point where more additive gives no further gain (MS-PS1-6).",
+  "prior_free": "Additive N-5 is invented, so no standard says whether it raises, lowers or does not change the peak; the graph has a flat stretch to 4 g and a plateau from 10 g, so whether 6-10 g rises is decided only by the data."
+}

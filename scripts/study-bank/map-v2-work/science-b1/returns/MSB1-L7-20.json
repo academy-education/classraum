@@ -1,0 +1,41 @@
+{
+  "id": "MSB1-L7-20",
+  "map_area": "Life Science",
+  "grade_target": 7,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 212-221",
+  "dci": "LS4",
+  "ngss_pe": "MS-LS4-4",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "process",
+  "invented": false,
+  "passage": null,
+  "graphic": null,
+  "prompt": "For 15 years, a city sprayed the same weed killer on cracks in its sidewalks. At first, most weeds of one kind died. No one collected, planted or bred the weeds that lived; they spread their own seeds. Now most weeds of that kind there survive the spray. Which process best explains this change?",
+  "choices": [
+    "artificial selection",
+    "mutation",
+    "extinction",
+    "natural selection"
+  ],
+  "correct_answer": "natural selection",
+  "explanation": "A few weeds already had inherited traits that let them survive the spray. They lived and reproduced while others died, so the trait became common. No one chose which weeds would breed, so this is natural selection, even though people applied the spray.",
+  "distractor_rationales": [
+    {
+      "choice": "artificial selection",
+      "fault": "misconception: any change people cause is artificial selection; the stem says no one chose, planted or bred the surviving weeds."
+    },
+    {
+      "choice": "mutation",
+      "fault": "misconception: the spray made the weeds mutate to resist it; resistant forms arose at random and the spray only favored them."
+    },
+    {
+      "choice": "extinction",
+      "fault": "misconception: a population that changes has died out; the weeds are still there and the resistant kind is common."
+    }
+  ],
+  "real_world_check": "Herbicide and pesticide resistance spread by natural selection: individuals with inherited resistance survive and reproduce, so resistance becomes common."
+}

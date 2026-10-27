@@ -1,0 +1,889 @@
+[
+ {
+  "id": "MSB1-E6-10",
+  "map_area": "Earth and Space Science",
+  "grade_target": 6,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 199-208",
+  "dci": "ESS1",
+  "ngss_pe": "MS-ESS1-1",
+  "kind": "data",
+  "stimulus": "scatter",
+  "format": "trend",
+  "ask": "increase-then-level",
+  "invented": true,
+  "names_used": [
+   "Lorvane"
+  ],
+  "passage": "Lorvane is a planet whose axis is tilted. One full day and night there lasts 20 hours. The graph shows the hours of daylight on Lorvane’s longest day of the year at places from 10 to 50 degrees north of its equator.",
+  "graphic": {
+   "type": "scatter",
+   "points": [
+    [
+     10,
+     11.3
+    ],
+    [
+     15,
+     12.1
+    ],
+    [
+     20,
+     12.9
+    ],
+    [
+     25,
+     13.8
+    ],
+    [
+     30,
+     14.8
+    ],
+    [
+     35,
+     16.3
+    ],
+    [
+     40,
+     20
+    ],
+    [
+     45,
+     20
+    ],
+    [
+     50,
+     20
+    ]
+   ],
+   "xLabel": "Latitude (degrees north)",
+   "yLabel": "Daylight on the longest day (hours)",
+   "caption": "Daylight on Lorvane's longest day at nine latitudes"
+  },
+  "prompt": "Based on the graph, how does daylight on Lorvane's longest day change from 10 to 50 degrees north?",
+  "choices": [
+   "It falls, then stays the same.",
+   "It increases, then it decreases.",
+   "It decreases, then increases again.",
+   "It rises, then levels off."
+  ],
+  "correct_answer": "It rises, then levels off.",
+  "key_evidence": {
+   "refs": [
+    [
+     10,
+     11.3
+    ],
+    [
+     35,
+     16.3
+    ],
+    [
+     40,
+     20
+    ],
+    [
+     50,
+     20
+    ]
+   ]
+  },
+  "explanation": "Daylight grows from about 11 hours at 10 degrees to 20 hours at 40 degrees, then stays at 20 hours from 40 to 50 degrees.",
+  "distractor_rationales": [
+   {
+    "choice": "It falls, then stays the same.",
+    "fault": "the points get higher from 10 to 40 degrees, so daylight never falls"
+   },
+   {
+    "choice": "It increases, then it decreases.",
+    "fault": "after 40 degrees the points stay at 20 hours; daylight never goes back down"
+   },
+   {
+    "choice": "It decreases, then increases again.",
+    "fault": "daylight never goes down anywhere from 10 to 50 degrees, so it cannot first decrease"
+   }
+  ],
+  "real_world_check": "On a tilted planet's summer solstice, daylight grows with latitude until it reaches a full day poleward of 90 degrees minus the tilt, then stays there.",
+  "prior_free": "The standard says tilt makes summer days longer toward the pole, and on Earth they keep growing to 66.5 degrees; Lorvane's tilt is not given, so only the points show daylight topping out at 40 degrees inside this range."
+ },
+ {
+  "id": "MSB1-E6-14",
+  "map_area": "Earth and Space Science",
+  "grade_target": 6,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 199-208",
+  "dci": "ESS2",
+  "ngss_pe": "MS-ESS2-5",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "predicts",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "A warm, humid air mass sits over a town. A cold, dry air mass moves in quickly and pushes in underneath it. Which prediction about the town's weather is best?",
+  "choices": [
+   "The two air masses will blend at once, and the weather will not change.",
+   "The cold air will rise over the warm air and bring clear, warm skies.",
+   "The air may turn drier and clearer, because cold air holds more water vapor.",
+   "The warm air will be pushed upward, so clouds and rain are likely to form soon."
+  ],
+  "correct_answer": "The warm air will be pushed upward, so clouds and rain are likely to form soon.",
+  "explanation": "Dense cold air wedges under warm humid air and lifts it. As the warm air rises it cools, its water vapor condenses, and clouds and rain form along the front.",
+  "distractor_rationales": [
+   {
+    "choice": "The two air masses will blend at once, and the weather will not change.",
+    "fault": "misconception: air masses mix evenly when they meet; they stay separate and form a front where weather changes"
+   },
+   {
+    "choice": "The cold air will rise over the warm air and bring clear, warm skies.",
+    "fault": "misconception: cold air rises; cold air is denser and sinks under warm air"
+   },
+   {
+    "choice": "The air may turn drier and clearer, because cold air holds more water vapor.",
+    "fault": "misconception: cold air holds more water vapor than warm air; warm air holds more"
+   }
+  ],
+  "real_world_check": "At a cold front, denser cold air lifts warm moist air, which cools and forms clouds and often rain."
+ },
+ {
+  "id": "MSB1-L5-20",
+  "map_area": "Life Science",
+  "grade_target": 5,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 206-215",
+  "dci": "LS4",
+  "ngss_pe": "3-LS4-2",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "predicts",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "In a field, grasshoppers of one kind are either green or tan. Birds eat the grasshoppers they spot most easily. A long dry spell turns the grass tan for many years. Grasshoppers pass their color to their young. What will most likely happen to the grasshoppers in the field over many generations?",
+  "choices": [
+   "More of them will be tan, because birds spot and eat tan ones less often.",
+   "Green ones will turn their bodies tan so birds will not see them.",
+   "Tan ones will die out, because green ones feed better in dry grass.",
+   "The mix of colors will stay as it was, since birds catch both colors equally often."
+  ],
+  "correct_answer": "More of them will be tan, because birds spot and eat tan ones less often.",
+  "explanation": "On tan grass, tan grasshoppers are harder for birds to spot, so more of them live long enough to have young. Because color is passed to the young, the share of tan grasshoppers grows over many generations.",
+  "distractor_rationales": [
+   {
+    "choice": "Green ones will turn their bodies tan so birds will not see them.",
+    "fault": "misconception: individuals change their inherited traits because they need to; a grasshopper cannot change its color to match, and change happens across generations."
+   },
+   {
+    "choice": "Tan ones will die out, because green ones feed better in dry grass.",
+    "fault": "misconception: the color that matches the background is the one that loses; tan ones are hidden on tan grass, and color does not decide which grasshoppers find food."
+   },
+   {
+    "choice": "The mix of colors will stay as it was, since birds catch both colors equally often.",
+    "fault": "misconception: predators catch every color equally; the scenario says birds eat the ones they spot most easily."
+   }
+  ],
+  "real_world_check": "When individuals vary in an inherited trait that affects survival, such as color against a background, the helpful variation becomes more common over generations."
+ },
+ {
+  "id": "MSB1-L6-10",
+  "map_area": "Life Science",
+  "grade_target": 6,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 199-208",
+  "dci": "LS4",
+  "ngss_pe": "MS-LS4-4",
+  "kind": "data",
+  "stimulus": "scatter",
+  "format": "trend",
+  "ask": "increase-then-level",
+  "invented": true,
+  "names_used": [
+   "stick insect line J-12"
+  ],
+  "passage": "Years ago, a shrub with brown stems replaced most of the green plants on an island. Stick insect line J-12 lives there. Some of the insects have brown bodies, and birds spot them less easily on brown stems. Each point shows one yearly survey.",
+  "graphic": {
+   "type": "scatter",
+   "points": [
+    [
+     0,
+     8
+    ],
+    [
+     1,
+     15
+    ],
+    [
+     2,
+     24
+    ],
+    [
+     3,
+     33
+    ],
+    [
+     4,
+     41
+    ],
+    [
+     5,
+     46
+    ],
+    [
+     6,
+     48
+    ],
+    [
+     7,
+     48
+    ],
+    [
+     8,
+     48
+    ],
+    [
+     9,
+     48
+    ],
+    [
+     10,
+     48
+    ]
+   ],
+   "xLabel": "Years since the brown shrub spread",
+   "yLabel": "Insects with brown bodies (%)",
+   "caption": "Brown-bodied stick insects in line J-12, yearly surveys"
+  },
+  "prompt": "Based on the graph, which best describes how the percent of brown-bodied insects changed over the 10 years?",
+  "choices": [
+   "The percent rose, then stayed the same.",
+   "The percent kept rising.",
+   "The percent rose, then it fell.",
+   "The percent remained level."
+  ],
+  "correct_answer": "The percent rose, then stayed the same.",
+  "key_evidence": {
+   "refs": [
+    [
+     0,
+     8
+    ],
+    [
+     5,
+     46
+    ],
+    [
+     6,
+     48
+    ],
+    [
+     10,
+     48
+    ]
+   ]
+  },
+  "explanation": "The percent climbs from 8% at year 0 to 46% at year 5, then holds at 48% in every survey from year 6 to year 10. It neither keeps climbing nor falls back.",
+  "distractor_rationales": [
+   {
+    "choice": "The percent kept rising.",
+    "fault": "the percent stopped rising after year 6; the last five surveys are all 48%"
+   },
+   {
+    "choice": "The percent rose, then it fell.",
+    "fault": "after rising, the percent held at 48% and never fell back"
+   },
+   {
+    "choice": "The percent remained level.",
+    "fault": "the percent rose from 8% to 46% over the first five years, so it did not remain level"
+   }
+  ],
+  "real_world_check": "When a trait helps individuals survive, its share in a population rises over generations and can level off below 100%.",
+  "prior_free": "The setup says brown insects survive better, so a student expects a rise, but three options begin with a rise: whether it keeps climbing, levels at 48% or falls back after year 6 is shown only by the points."
+ },
+ {
+  "id": "MSB1-L6-11",
+  "map_area": "Life Science",
+  "grade_target": 6,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 199-208",
+  "dci": "LS3",
+  "ngss_pe": "MS-LS3-2",
+  "kind": "investigation",
+  "stimulus": "procedure",
+  "format": "variable",
+  "ask": "dependent",
+  "invented": true,
+  "names_used": [
+   "plant line K-4"
+  ],
+  "passage": "Students tested plant line K-4, whose leaves have lobes like the fingers of a hand. They grew 15 new plants from cuttings of one parent plant and 15 from its seeds, so how each new plant began differed between the groups. The amount of soil in each pot was 500 g, and every pot got the same water and light. Their question was which group would vary more in lobe number. After 8 weeks they counted the lobes on each new leaf. They also measured the height of each new plant, only to check that all the plants were healthy.",
+  "graphic": null,
+  "prompt": "For the question the students wanted to answer, which is the dependent variable?",
+  "choices": [
+   "how each new plant began",
+   "lobes on each new leaf",
+   "the amount of soil in each pot",
+   "the height of each new plant"
+  ],
+  "correct_answer": "lobes on each new leaf",
+  "option_roles": [
+   "setting",
+   "result",
+   "setting",
+   "result"
+  ],
+  "key_evidence": {
+   "refs": [
+    {
+     "quote": "Their question was which group would vary more in lobe number"
+    },
+    {
+     "quote": "After 8 weeks they counted the lobes on each new leaf"
+    }
+   ]
+  },
+  "explanation": "The students changed how the new plants began (cuttings or seeds) and asked which group would vary more in lobe number. The measured outcome that answers that question is the lobe count on the new leaves.",
+  "distractor_rationales": [
+   {
+    "choice": "how each new plant began",
+    "fault": "this is what the students changed on purpose (cuttings or seeds), the independent variable"
+   },
+   {
+    "choice": "the amount of soil in each pot",
+    "fault": "this was kept the same (500 g) in every pot, so it is a controlled variable"
+   },
+   {
+    "choice": "the height of each new plant",
+    "fault": "it was measured, but only as a health check; their question was about lobe number, not height"
+   }
+  ],
+  "real_world_check": "A dependent variable is the measured outcome that may change because of the independent variable the experimenter changes."
+ },
+ {
+  "id": "MSB1-L7-17",
+  "map_area": "Life Science",
+  "grade_target": 7,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 212-221",
+  "dci": "LS3",
+  "ngss_pe": "MS-LS3-1",
+  "kind": "data",
+  "stimulus": "line",
+  "format": "trend",
+  "ask": "increase",
+  "invented": true,
+  "names_used": [
+   "fish line Q-1"
+  ],
+  "passage": "Fish line Q-1 makes an enzyme, a protein that helps digest food. The normal form of the enzyme works best near 30 °C. A mutation changed one part of the gene for this protein. Scientists measured how active the mutant form was at five temperatures.",
+  "graphic": {
+   "type": "line",
+   "series": [
+    {
+     "points": [
+      [
+       10,
+       8
+      ],
+      [
+       20,
+       14
+      ],
+      [
+       30,
+       22
+      ],
+      [
+       40,
+       31
+      ],
+      [
+       50,
+       12
+      ]
+     ]
+    }
+   ],
+   "xLabel": "Temperature (°C)",
+   "yLabel": "Mutant enzyme activity (units)",
+   "caption": "Activity of the mutant enzyme from fish line Q-1"
+  },
+  "prompt": "Based on the graph, how does the activity of the mutant enzyme change from 10 °C to 40 °C?",
+  "choices": [
+   "Activity falls from 10 °C to 40 °C.",
+   "Activity rises, then falls, from 10 °C to 40 °C.",
+   "Activity grows larger from 10 °C to 40 °C.",
+   "Activity stays flat from 10 °C to 40 °C."
+  ],
+  "correct_answer": "Activity grows larger from 10 °C to 40 °C.",
+  "key_evidence": {
+   "refs": [
+    [
+     10,
+     8
+    ],
+    [
+     30,
+     22
+    ],
+    [
+     40,
+     31
+    ]
+   ]
+  },
+  "explanation": "Activity is 8 units at 10 °C, 14 at 20 °C, 22 at 30 °C and 31 at 40 °C, so it climbs at every step in that range. The drop to 12 units comes only after 40 °C, at 50 °C.",
+  "distractor_rationales": [
+   {
+    "choice": "Activity falls from 10 °C to 40 °C.",
+    "fault": "The activity goes from 8 to 31 units in this range, so it goes up, not down."
+   },
+   {
+    "choice": "Activity rises, then falls, from 10 °C to 40 °C.",
+    "fault": "Within 10 °C to 40 °C there is no fall; the drop to 12 units comes only at 50 °C, and a peak at 30 °C fits the normal enzyme, not these data."
+   },
+   {
+    "choice": "Activity stays flat from 10 °C to 40 °C.",
+    "fault": "The activity changes from 8 to 31 units in this range, so it does not stay flat."
+   }
+  ],
+  "real_world_check": "A mutation can change a protein's structure and so change how it works, for example shifting the temperature at which an enzyme is most active.",
+  "prior_free": "The standard says a mutation may change a protein, but not how; the passage even suggests a peak near 30 °C, and only the graph shows activity still rising at 40 °C."
+ },
+ {
+  "id": "MSB1-L7-20",
+  "map_area": "Life Science",
+  "grade_target": 7,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 212-221",
+  "dci": "LS4",
+  "ngss_pe": "MS-LS4-4",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "process",
+  "invented": false,
+  "passage": null,
+  "graphic": null,
+  "prompt": "For 15 years, a city sprayed the same weed killer on cracks in its sidewalks. At first, most weeds of one kind died. No one collected, planted or bred the weeds that lived; they spread their own seeds. Now most weeds of that kind there survive the spray. Which process best explains this change?",
+  "choices": [
+   "artificial selection",
+   "mutation",
+   "extinction",
+   "natural selection"
+  ],
+  "correct_answer": "natural selection",
+  "explanation": "A few weeds already had inherited traits that let them survive the spray. They lived and reproduced while others died, so the trait became common. No one chose which weeds would breed, so this is natural selection, even though people applied the spray.",
+  "distractor_rationales": [
+   {
+    "choice": "artificial selection",
+    "fault": "misconception: any change people cause is artificial selection; the stem says no one chose, planted or bred the surviving weeds."
+   },
+   {
+    "choice": "mutation",
+    "fault": "misconception: the spray made the weeds mutate to resist it; resistant forms arose at random and the spray only favored them."
+   },
+   {
+    "choice": "extinction",
+    "fault": "misconception: a population that changes has died out; the weeds are still there and the resistant kind is common."
+   }
+  ],
+  "real_world_check": "Herbicide and pesticide resistance spread by natural selection: individuals with inherited resistance survive and reproduce, so resistance becomes common."
+ },
+ {
+  "id": "MSB1-L8-11",
+  "map_area": "Life Science",
+  "grade_target": 8,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 205-214",
+  "dci": "LS3",
+  "ngss_pe": "MS-LS3-2",
+  "kind": "investigation",
+  "stimulus": "procedure",
+  "format": "claim",
+  "ask": "supported",
+  "invented": true,
+  "names_used": [
+   "plant line T-75"
+  ],
+  "passage": "Plant line T-75 can reproduce in two ways. It sends out runners that root and grow into new plants, and it makes seeds when two plants cross-pollinate. A student took one parent plant, which had leaf type 1, and grew 24 new plants from its runners and 24 from its seeds in the same soil and light. After six weeks, she sorted each plant into one of four leaf types by the shape of its leaves. The 24 runner plants were all type 1. Of the 24 seed plants, 5 were type 1, 9 were type 2, 7 were type 3 and 3 were type 4.",
+  "graphic": null,
+  "prompt": "Which claim about the seed plants do the student's results support?",
+  "choices": [
+   "Among the seed plants, the parent's leaf type was the most common.",
+   "Among the seed plants, type 4 outnumbered type 3.",
+   "Among the seed plants, type 2 outnumbered the parent's type.",
+   "Among the seed plants, fewer than half had a type unlike the parent's."
+  ],
+  "correct_answer": "Among the seed plants, type 2 outnumbered the parent's type.",
+  "key_evidence": {
+   "refs": [
+    {
+     "quote": "Of the 24 seed plants, 5 were type 1, 9 were type 2"
+    }
+   ]
+  },
+  "explanation": "The parent had leaf type 1. Among the seed plants, 9 were type 2 and only 5 were type 1, so type 2 outnumbered the parent's type.",
+  "distractor_rationales": [
+   {
+    "choice": "Among the seed plants, the parent's leaf type was the most common.",
+    "fault": "type 1 had 5 seed plants, fewer than type 2 (9) and type 3 (7)"
+   },
+   {
+    "choice": "Among the seed plants, type 4 outnumbered type 3.",
+    "fault": "type 4 had 3 seed plants and type 3 had 7, so type 3 outnumbered type 4"
+   },
+   {
+    "choice": "Among the seed plants, fewer than half had a type unlike the parent's.",
+    "fault": "19 of the 24 seed plants were not type 1, which is more than half"
+   }
+  ],
+  "real_world_check": "Sexual reproduction combines genes from two parents, so seed offspring can differ from the parent in many ways, while runner offspring are copies of one parent."
+ },
+ {
+  "id": "MSB1-L8-20",
+  "map_area": "Life Science",
+  "grade_target": 8,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 215-224",
+  "dci": "LS4",
+  "ngss_pe": "MS-LS4-5",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "predicts",
+  "invented": false,
+  "passage": null,
+  "graphic": null,
+  "prompt": "A farmer grows a tomato variety whose plants vary in how early their fruit ripens, and ripening time is partly inherited. Each year the farmer saves seeds only from the earliest-ripening plants and plants them the next year. What will most likely happen over many years?",
+  "choices": [
+   "Each plant will ripen earlier by trying to beat the frost.",
+   "Average ripening time in the crop will move earlier over the years.",
+   "Plants in later years will ripen on one shared day.",
+   "Ripening time will not change, since selection happens just in wild populations."
+  ],
+  "correct_answer": "Average ripening time in the crop will move earlier over the years.",
+  "explanation": "Choosing parents with an inherited trait is artificial selection. The share of early-ripening plants rises over the years, but plants still vary because of other genes and growing conditions.",
+  "distractor_rationales": [
+   {
+    "choice": "Each plant will ripen earlier by trying to beat the frost.",
+    "fault": "misconception: organisms change their traits by trying or by need"
+   },
+   {
+    "choice": "Plants in later years will ripen on one shared day.",
+    "fault": "misconception: selection removes all variation in a trait"
+   },
+   {
+    "choice": "Ripening time will not change, since selection happens just in wild populations.",
+    "fault": "misconception: selection works in nature but not when people choose the parents"
+   }
+  ],
+  "real_world_check": "Artificial selection, in which people breed individuals with a desired inherited trait, shifts that trait in a population over generations."
+ },
+ {
+  "id": "MSB1-P5-14",
+  "map_area": "Physical Science",
+  "grade_target": 5,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 196-205",
+  "dci": "PS4",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "predicts",
+  "invented": false,
+  "ngss_pe": "4-PS4-2",
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "A student sits in a closed room with no windows. The lights are off, and no light gets in. She holds a red apple in front of her face. Which prediction is correct?",
+  "choices": [
+   "She will see the apple dimly after her eyes adjust to the dark.",
+   "She will see the apple because red things give off their own light.",
+   "She can always see the apple because her eyes send out light.",
+   "She cannot see the apple at all until light reflects off it into her eyes."
+  ],
+  "correct_answer": "She cannot see the apple at all until light reflects off it into her eyes.",
+  "explanation": "We see an object only when light bounces off it and enters our eyes. With no light in the room, no light can reflect off the apple, so she cannot see it until a light is turned on.",
+  "distractor_rationales": [
+   {
+    "choice": "She will see the apple dimly after her eyes adjust to the dark.",
+    "fault": "misconception: eyes can adjust to see in total darkness"
+   },
+   {
+    "choice": "She will see the apple because red things give off their own light.",
+    "fault": "misconception: colored objects make their own light"
+   },
+   {
+    "choice": "She can always see the apple because her eyes send out light.",
+    "fault": "misconception: eyes send out rays that let us see"
+   }
+  ],
+  "real_world_check": "Objects are seen when light reflects from them and enters the eye (4-PS4-2); an apple does not make its own light."
+ },
+ {
+  "id": "MSB1-P5-20",
+  "map_area": "Physical Science",
+  "grade_target": 5,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 206-215",
+  "dci": "PS4",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "predicts",
+  "invented": false,
+  "ngss_pe": "4-PS4-1",
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "A cork floats in the middle of a calm pond. A student drops a stone into the pond near the cork, and small waves spread out across the water. What will most likely happen to the cork as the waves pass it?",
+  "choices": [
+   "It will be carried along by the waves to the shore.",
+   "It will bob up and down but stay near the same spot in the pond.",
+   "It will stay still, since only the water below it moves.",
+   "It will sink, since waves always pull floating things under."
+  ],
+  "correct_answer": "It will bob up and down but stay near the same spot in the pond.",
+  "explanation": "A wave carries energy across the water, but the water itself mostly moves up and down in place. A floating cork moves with that water, so it bobs as each wave passes and ends up near where it started.",
+  "distractor_rationales": [
+   {
+    "choice": "It will be carried along by the waves to the shore.",
+    "fault": "misconception: waves carry water and floating objects along with them"
+   },
+   {
+    "choice": "It will stay still, since only the water below it moves.",
+    "fault": "misconception: a wave passes under floating objects without moving the surface"
+   },
+   {
+    "choice": "It will sink, since waves always pull floating things under.",
+    "fault": "misconception: waves drag floating objects downward"
+   }
+  ],
+  "real_world_check": "Water waves move energy, not water, across a pond; the water and anything floating on it mainly move up and down as a wave passes (4-PS4-1)."
+ },
+ {
+  "id": "MSB1-P7-03",
+  "map_area": "Physical Science",
+  "grade_target": 7,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 192-201",
+  "dci": "PS1",
+  "ngss_pe": "MS-PS1-6",
+  "kind": "data",
+  "stimulus": "line",
+  "format": "trend",
+  "ask": "increase",
+  "invented": true,
+  "names_used": [
+   "Powder M-8",
+   "Additive N-5",
+   "design Q-3"
+  ],
+  "passage": "Students built several copies of hand warmer design Q-3. Every copy held the same mass of Powder M-8, which releases thermal energy as it reacts with air, and the same amount of water. Each copy also held a different mass of Additive N-5. The graph shows the highest temperature rise each copy reached.",
+  "graphic": {
+   "type": "line",
+   "series": [
+    {
+     "points": [
+      [
+       0,
+       6
+      ],
+      [
+       2,
+       6
+      ],
+      [
+       4,
+       6
+      ],
+      [
+       6,
+       10
+      ],
+      [
+       8,
+       15
+      ],
+      [
+       10,
+       20
+      ],
+      [
+       12,
+       20
+      ],
+      [
+       14,
+       20
+      ]
+     ]
+    }
+   ],
+   "xLabel": "Mass of Additive N-5 (g)",
+   "yLabel": "Highest temperature rise (°C)",
+   "caption": "Highest temperature rise of design Q-3 warmers holding different masses of Additive N-5"
+  },
+  "prompt": "According to the graph, how did the highest temperature rise change as the mass of Additive N-5 went from 6 g to 10 g?",
+  "choices": [
+   "It fell.",
+   "It stayed the same.",
+   "It increased.",
+   "It increased, then leveled off."
+  ],
+  "correct_answer": "It increased.",
+  "key_evidence": {
+   "refs": [
+    [
+     6,
+     10
+    ],
+    [
+     8,
+     15
+    ],
+    [
+     10,
+     20
+    ]
+   ]
+  },
+  "explanation": "The highest rise was 10 °C at 6 g, 15 °C at 8 g and 20 °C at 10 g. It went up 5 °C in each 2 g step, with no flat part between 6 g and 10 g.",
+  "distractor_rationales": [
+   {
+    "choice": "It fell.",
+    "fault": "no part of the line falls; between 6 g and 10 g each point is higher than the one before"
+   },
+   {
+    "choice": "It stayed the same.",
+    "fault": "the line is flat only from 0 g to 4 g and above 10 g; from 6 g to 10 g it climbs from 10 °C to 20 °C"
+   },
+   {
+    "choice": "It increased, then leveled off.",
+    "fault": "the leveling starts at 10 g, the end of the range asked about; inside 6-10 g the line climbs the whole way"
+   }
+  ],
+  "real_world_check": "Some added substances speed up the reaction of iron-type warmer powders with oxygen, so the same powder releases its energy faster and reaches a higher peak, up to a point where more additive gives no further gain (MS-PS1-6).",
+  "prior_free": "Additive N-5 is invented, so no standard says whether it raises, lowers or does not change the peak; the graph has a flat stretch to 4 g and a plateau from 10 g, so whether 6-10 g rises is decided only by the data."
+ },
+ {
+  "id": "MSB1-P8-10",
+  "map_area": "Physical Science",
+  "grade_target": 8,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 205-214",
+  "dci": "PS2",
+  "ngss_pe": "MS-PS2-3",
+  "kind": "data",
+  "stimulus": "scatter",
+  "format": "trend",
+  "ask": "increase-then-level",
+  "invented": true,
+  "names_used": [
+   "Balloon T-3"
+  ],
+  "passage": "Students rubbed Balloon T-3 with a wool cloth a set number of times. Then they held it 10 cm from a hanging foil ball and measured how far the ball swung toward it, as an angle. They removed all charge from the balloon between trials.",
+  "graphic": {
+   "type": "scatter",
+   "points": [
+    [
+     2,
+     6
+    ],
+    [
+     4,
+     11
+    ],
+    [
+     6,
+     15
+    ],
+    [
+     8,
+     18
+    ],
+    [
+     10,
+     20
+    ],
+    [
+     12,
+     21
+    ],
+    [
+     14,
+     21
+    ],
+    [
+     16,
+     21
+    ]
+   ],
+   "xLabel": "Number of rubs",
+   "yLabel": "Swing of foil ball (degrees)",
+   "caption": "Swing of the foil ball after different numbers of rubs"
+  },
+  "prompt": "Based on the graph, which statement describes how the swing of the foil ball changed as the number of rubs went up?",
+  "choices": [
+   "As the rubs went up, the swing stayed the same",
+   "As the rubs went up, the swing increased, then stayed the same",
+   "As the rubs went up, the swing decreased at first, then increased",
+   "As the rubs went up, the swing decreased"
+  ],
+  "correct_answer": "As the rubs went up, the swing increased, then stayed the same",
+  "key_evidence": {
+   "refs": [
+    [
+     2,
+     6
+    ],
+    [
+     10,
+     20
+    ],
+    [
+     12,
+     21
+    ],
+    [
+     16,
+     21
+    ]
+   ]
+  },
+  "explanation": "The swing grows from 6 degrees at 2 rubs to 21 degrees at 12 rubs. From 12 to 16 rubs it stays at 21 degrees. So the swing increased and then leveled off.",
+  "distractor_rationales": [
+   {
+    "choice": "As the rubs went up, the swing stayed the same",
+    "fault": "the swing rose from 6 to 21 degrees over the first 12 rubs"
+   },
+   {
+    "choice": "As the rubs went up, the swing decreased at first, then increased",
+    "fault": "the swing never dropped at the start; it rose from the first point and then held at 21 degrees"
+   },
+   {
+    "choice": "As the rubs went up, the swing decreased",
+    "fault": "the swing never fell; it rose and then held at 21 degrees"
+   }
+  ],
+  "real_world_check": "Rubbing moves charge onto a balloon and a larger charge exerts a stronger electric force, but charging by rubbing reaches a limit, so the force stops growing (MS-PS2-3).",
+  "prior_free": "The standard says more charge gives a stronger electric force, which predicts a steady rise; that Balloon T-3 stops gaining swing after 12 rubs shows only in these data."
+ }
+]

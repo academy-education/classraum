@@ -1,0 +1,1429 @@
+[
+ {
+  "id": "MSB1-P6-01",
+  "map_area": "Physical Science",
+  "grade_target": 6,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 189-198",
+  "dci": "PS1",
+  "ngss_pe": "MS-PS1-4",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "conditions",
+  "ask": "meets-criterion",
+  "invented": true,
+  "names_used": [
+   "Substance G-7",
+   "Substance L",
+   "Substance HJ-30",
+   "Substance KLH-582"
+  ],
+  "passage": null,
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Substance G-7",
+    "Substance L",
+    "Substance HJ-30",
+    "Substance KLH-582"
+   ],
+   "colLabels": [
+    "Melting point (°C)",
+    "Boiling point (°C)"
+   ],
+   "cells": [
+    [
+     63,
+     210
+    ],
+    [
+     12,
+     46
+    ],
+    [
+     51,
+     140
+    ],
+    [
+     38,
+     118
+    ]
+   ],
+   "caption": "Table 1. Melting and boiling points measured for four lab substances"
+  },
+  "prompt": "Table 1 lists the melting point and boiling point of four substances. A substance is a liquid at temperatures above its melting point and below its boiling point. Which substance is a liquid at 50 °C?",
+  "choices": [
+   "Substance G-7",
+   "Substance L",
+   "Substance HJ-30",
+   "Substance KLH-582"
+  ],
+  "correct_answer": "Substance KLH-582",
+  "key_evidence": {
+   "refs": [
+    [
+     3,
+     0
+    ],
+    [
+     3,
+     1
+    ]
+   ]
+  },
+  "explanation": "Substance KLH-582 melts at 38 °C and boils at 118 °C. 50 °C is above its melting point and below its boiling point, so at 50 °C it is a liquid.",
+  "distractor_rationales": [
+   {
+    "choice": "Substance G-7",
+    "fault": "it melts at 63 °C, so at 50 °C it has not melted yet and is still a solid"
+   },
+   {
+    "choice": "Substance L",
+    "fault": "it boils at 46 °C, so at 50 °C it has already become a gas"
+   },
+   {
+    "choice": "Substance HJ-30",
+    "fault": "it melts at 51 °C, just above 50 °C, so at 50 °C it is still a solid"
+   }
+  ],
+  "real_world_check": "A pure substance is a liquid at temperatures between its melting point and its boiling point, a solid below the melting point and a gas above the boiling point."
+ },
+ {
+  "id": "MSB1-P6-02",
+  "map_area": "Physical Science",
+  "grade_target": 6,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 189-198",
+  "dci": "PS1",
+  "ngss_pe": "MS-PS1-6",
+  "kind": "data",
+  "stimulus": "line",
+  "format": "trend",
+  "ask": "no-change",
+  "invented": true,
+  "names_used": [
+   "Pack HL-2"
+  ],
+  "passage": "Students squeezed a hand-warmer pack, Pack HL-2, to mix the chemicals inside. They taped a thermometer to the pack and read its temperature from 0 to 60 minutes.",
+  "graphic": {
+   "type": "line",
+   "series": [
+    {
+     "points": [
+      [
+       0,
+       20
+      ],
+      [
+       5,
+       36
+      ],
+      [
+       10,
+       52
+      ],
+      [
+       15,
+       52
+      ],
+      [
+       20,
+       52
+      ],
+      [
+       25,
+       52
+      ],
+      [
+       30,
+       52
+      ],
+      [
+       35,
+       52
+      ],
+      [
+       45,
+       41
+      ],
+      [
+       60,
+       28
+      ]
+     ]
+    }
+   ],
+   "xLabel": "Time after mixing (min)",
+   "yLabel": "Temperature of pack (°C)",
+   "caption": "Temperature of Pack HL-2 after its chemicals were mixed"
+  },
+  "prompt": "According to the graph, how did the temperature of Pack HL-2 change from 15 minutes to 35 minutes?",
+  "choices": [
+   "It decreased.",
+   "It remained level.",
+   "It rose.",
+   "It rose, then it fell."
+  ],
+  "correct_answer": "It remained level.",
+  "key_evidence": {
+   "refs": [
+    [
+     15,
+     52
+    ],
+    [
+     35,
+     52
+    ]
+   ]
+  },
+  "explanation": "The points at 15, 20, 25, 30 and 35 minutes are all at 52 °C. Over that stretch the line is flat, so the temperature did not change.",
+  "distractor_rationales": [
+   {
+    "choice": "It decreased.",
+    "fault": "the temperature falls only after 35 minutes, outside the stretch the question asks about"
+   },
+   {
+    "choice": "It rose.",
+    "fault": "the temperature rises only during the first 10 minutes, before the stretch asked about"
+   },
+   {
+    "choice": "It rose, then it fell.",
+    "fault": "this describes the whole 60 minutes; from 15 to 35 minutes the line is flat at 52 °C"
+   }
+  ],
+  "real_world_check": "A chemical reaction can release thermal energy; the temperature holds steady while the energy released balances the energy lost to the surroundings, then falls as the reactants run out.",
+  "prior_free": "MS-PS1-6 says reactions can release thermal energy, but nothing in it says when this invented pack stops warming or how long it holds steady; only the graph shows the flat stretch from 15 to 35 minutes."
+ },
+ {
+  "id": "MSB1-P6-03",
+  "map_area": "Physical Science",
+  "grade_target": 6,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 189-198",
+  "dci": "PS2",
+  "ngss_pe": "MS-PS2-3",
+  "kind": "data",
+  "stimulus": "scatter",
+  "format": "trend",
+  "ask": "increase-then-level",
+  "invented": true,
+  "names_used": [
+   "Disc J-6"
+  ],
+  "passage": "Students stacked identical Disc J-6 magnets on top of one another. For each stack, they counted how many identical steel washers the bottom of the stack could hold up in a hanging chain.",
+  "graphic": {
+   "type": "scatter",
+   "points": [
+    [
+     1,
+     3
+    ],
+    [
+     2,
+     6
+    ],
+    [
+     3,
+     8
+    ],
+    [
+     4,
+     9
+    ],
+    [
+     5,
+     10
+    ],
+    [
+     6,
+     9
+    ],
+    [
+     7,
+     10
+    ],
+    [
+     8,
+     9
+    ]
+   ],
+   "xLabel": "Number of discs in the stack",
+   "yLabel": "Washers held up",
+   "caption": "Washers held up by stacks of Disc J-6 magnets"
+  },
+  "prompt": "Based on the graph, how does the number of washers held up change as more discs are added to the stack?",
+  "choices": [
+   "It rises, then stays the same.",
+   "It stays the same.",
+   "It rises.",
+   "It drops, then it stays the same."
+  ],
+  "correct_answer": "It rises, then stays the same.",
+  "key_evidence": {
+   "refs": [
+    [
+     1,
+     3
+    ],
+    [
+     4,
+     9
+    ],
+    [
+     8,
+     9
+    ]
+   ]
+  },
+  "explanation": "From 1 to 4 discs the count climbs from 3 to 9 washers. From 4 to 8 discs it stays at 9 or 10 washers, so after the first few discs, more discs do not hold up more washers.",
+  "distractor_rationales": [
+   {
+    "choice": "It stays the same.",
+    "fault": "the first four stacks climb from 3 to 9 washers, so the count does not stay level from the start"
+   },
+   {
+    "choice": "It rises.",
+    "fault": "after about 4 discs the count stops climbing and stays at 9 or 10 washers"
+   },
+   {
+    "choice": "It drops, then it stays the same.",
+    "fault": "no part of the cloud falls; the count climbs first, it never drops"
+   }
+  ],
+  "real_world_check": "For a stack of disc magnets holding steel, the pull grows as the stack gets longer at first, then extra discs far from the steel add very little, so the holding force levels off.",
+  "prior_free": "MS-PS2-3 says magnet size affects magnetic force, but it does not say that adding discs stops helping, or after how many; only these counts show the level-off near four discs."
+ },
+ {
+  "id": "MSB1-P6-04",
+  "map_area": "Physical Science",
+  "grade_target": 6,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 189-198",
+  "dci": "PS4",
+  "ngss_pe": "MS-PS4-2",
+  "kind": "investigation",
+  "stimulus": "procedure",
+  "format": "claim",
+  "ask": "supported",
+  "invented": true,
+  "names_used": [
+   "Barrier G-4",
+   "Barrier JH",
+   "Barrier K-27"
+  ],
+  "passage": "Students made waves in a long tank of water. A paddle at one end moved the same way in every trial. Halfway down the tank, they placed one barrier at a time: Barrier G-4, Barrier JH or Barrier K-27. A sensor at the far end measured how tall the waves were after they passed the barrier. With no barrier, the waves there were 30 mm tall. With Barrier G-4, they were 12 mm tall. With Barrier JH, they were 24 mm tall. With Barrier K-27, they were 6 mm tall. A second sensor in front of the barrier showed that Barrier K-27 sent back the tallest waves toward the paddle.",
+  "graphic": null,
+  "prompt": "Taller waves carry more energy. Which claim do these results support?",
+  "choices": [
+   "Barrier K-27 let more wave energy pass than Barrier G-4.",
+   "Barrier JH let more wave energy pass than Barrier G-4 did.",
+   "Barrier G-4 sent more wave energy back than Barrier K-27 did.",
+   "Barrier JH sent back more of the wave energy than Barrier K-27 did."
+  ],
+  "correct_answer": "Barrier JH let more wave energy pass than Barrier G-4 did.",
+  "key_evidence": {
+   "refs": [
+    {
+     "quote": "With Barrier JH, they were 24 mm tall."
+    },
+    {
+     "quote": "With Barrier G-4, they were 12 mm tall."
+    }
+   ]
+  },
+  "explanation": "Behind Barrier JH the waves were 24 mm tall, and behind Barrier G-4 they were only 12 mm tall. Taller waves carry more energy, so more wave energy got past Barrier JH.",
+  "distractor_rationales": [
+   {
+    "choice": "Barrier K-27 let more wave energy pass than Barrier G-4.",
+    "fault": "waves behind Barrier K-27 were 6 mm tall, shorter than the 12 mm behind Barrier G-4"
+   },
+   {
+    "choice": "Barrier G-4 sent more wave energy back than Barrier K-27 did.",
+    "fault": "the front sensor showed Barrier K-27 sent back the tallest waves of all"
+   },
+   {
+    "choice": "Barrier JH sent back more of the wave energy than Barrier K-27 did.",
+    "fault": "the front sensor showed Barrier K-27, not Barrier JH, sent back the tallest waves"
+   }
+  ],
+  "real_world_check": "A barrier reflects and absorbs part of a wave, so the wave that passes through is smaller, and a wave with a larger height (amplitude) carries more energy."
+ },
+ {
+  "id": "MSB1-P6-05",
+  "map_area": "Physical Science",
+  "grade_target": 6,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 189-198",
+  "dci": "PS4",
+  "ngss_pe": "MS-PS4-2",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "explains",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "During a storm, Jun sees a flash of lightning far away. He hears the thunder from that same flash about five seconds later. Which statement best explains why he hears the thunder after he sees the flash?",
+  "choices": [
+   "The thunder is made several seconds after the flash ends.",
+   "Light from the flash travels much faster through air than its sound does.",
+   "Sound starts out slow and speeds up as it moves along.",
+   "His eyes notice things faster than his ears do."
+  ],
+  "correct_answer": "Light from the flash travels much faster through air than its sound does.",
+  "key_evidence": null,
+  "explanation": "The flash and the thunder are made at the same moment. Light crosses the distance almost at once, but sound in air is far slower, so the thunder arrives seconds later.",
+  "distractor_rationales": [
+   {
+    "choice": "The thunder is made several seconds after the flash ends.",
+    "fault": "misconception: thunder happens later than lightning; the heated air makes the sound at the same moment as the flash"
+   },
+   {
+    "choice": "Sound starts out slow and speeds up as it moves along.",
+    "fault": "misconception: sound changes speed as it travels; in still air of one temperature its speed stays about the same"
+   },
+   {
+    "choice": "His eyes notice things faster than his ears do.",
+    "fault": "misconception: the delay comes from our senses; the senses differ by a small fraction of a second, not five seconds"
+   }
+  ],
+  "real_world_check": "Light travels through air at about 300,000 km per second while sound travels at about 340 m per second, so the sound of a distant lightning flash arrives seconds after its light."
+ },
+ {
+  "id": "MSB1-P6-06",
+  "map_area": "Physical Science",
+  "grade_target": 6,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 189-198",
+  "dci": "PS4",
+  "ngss_pe": "MS-PS4-1",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "predicts",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "Hana makes waves by moving one end of a long rope up and down. Next, she keeps the same number of shakes each second, but she moves her hand twice as far up and down. Which prediction about the new waves is correct?",
+  "choices": [
+   "The waves will reach the far end much sooner.",
+   "The waves will be spaced farther apart.",
+   "The waves will carry more energy along the rope.",
+   "The rope itself will travel along with the waves to the end."
+  ],
+  "correct_answer": "The waves will carry more energy along the rope.",
+  "key_evidence": null,
+  "explanation": "Moving her hand farther gives the waves a larger amplitude. A wave with a larger amplitude carries more energy. The shaking rate and the rope are the same, so the speed and spacing of the waves do not change.",
+  "distractor_rationales": [
+   {
+    "choice": "The waves will reach the far end much sooner.",
+    "fault": "misconception: bigger waves travel faster; wave speed depends on the rope, not on the amplitude"
+   },
+   {
+    "choice": "The waves will be spaced farther apart.",
+    "fault": "misconception: amplitude sets wavelength; with the same shaking rate and the same rope, the spacing stays the same"
+   },
+   {
+    "choice": "The rope itself will travel along with the waves to the end.",
+    "fault": "misconception: a wave carries matter along with it; the rope only moves up and down while energy moves along it"
+   }
+  ],
+  "real_world_check": "The energy a wave carries increases with its amplitude, while its speed is set by the medium and its wavelength by speed and frequency."
+ },
+ {
+  "id": "MSB1-P6-07",
+  "map_area": "Physical Science",
+  "grade_target": 6,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 199-208",
+  "dci": "PS2",
+  "ngss_pe": "MS-PS2-4",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "values",
+  "ask": "difference",
+  "invented": true,
+  "names_used": [
+   "Planet Gavrel",
+   "Planet Halvic",
+   "Planet Jorrin",
+   "Planet Kesset"
+  ],
+  "passage": "A space agency plans to land the same 10 kg probe on four planets. The planets differ in both mass and size. The table gives each planet's mass compared with Earth's and the weight the probe would have there.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Planet Gavrel",
+    "Planet Halvic",
+    "Planet Jorrin",
+    "Planet Kesset"
+   ],
+   "colLabels": [
+    "Mass (Earth = 1)",
+    "Weight of probe (N)"
+   ],
+   "cells": [
+    [
+     0.5,
+     "62.0"
+    ],
+    [
+     2,
+     "75.5"
+    ],
+    [
+     4,
+     "141.0"
+    ],
+    [
+     0.1,
+     "24.5"
+    ]
+   ],
+   "caption": "Table 1. Planet mass and the weight of one probe on each planet"
+  },
+  "prompt": "How much more would the probe weigh on Planet Jorrin than on Planet Gavrel?",
+  "choices": [
+   "79.0 N",
+   "116.5 N",
+   "65.5 N",
+   "141.0 N"
+  ],
+  "correct_answer": "79.0 N",
+  "key_evidence": {
+   "refs": [
+    [
+     2,
+     1
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "expr": "v0 - v1"
+  },
+  "explanation": "The probe weighs 141.0 N on Planet Jorrin and 62.0 N on Planet Gavrel. The difference is 141.0 N minus 62.0 N, which is 79.0 N.",
+  "distractor_rationales": [
+   {
+    "choice": "116.5 N",
+    "fault": "this subtracts the weight on Planet Kesset, the wrong planet"
+   },
+   {
+    "choice": "65.5 N",
+    "fault": "this subtracts the weight on Planet Halvic, the wrong row"
+   },
+   {
+    "choice": "141.0 N",
+    "fault": "this is the weight on Planet Jorrin alone, not the difference"
+   }
+  ],
+  "real_world_check": "The gravitational force on an object depends on the planet's mass and on the distance to the planet's center, so a larger planet with more mass can still give a smaller weight.",
+  "prior_free": "Weight depends on a planet's mass and its size together, so no rule tells a student these invented planets' pull; the gap between Jorrin and Gavrel exists only in the table."
+ },
+ {
+  "id": "MSB1-P6-08",
+  "map_area": "Physical Science",
+  "grade_target": 6,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 199-208",
+  "dci": "PS1",
+  "ngss_pe": "MS-PS1-4",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "conditions",
+  "ask": "controlled-pair",
+  "invented": true,
+  "names_used": [
+   "Tablet GK",
+   "Trial J-2",
+   "Trial HGLK-73",
+   "Trial K",
+   "Trial G-6",
+   "Trial LJ-15"
+  ],
+  "passage": "Students timed how long Tablet GK took to dissolve in water. From trial to trial, they changed the water temperature, the form of the tablet and whether the water was stirred.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Trial J-2",
+    "Trial HGLK-73",
+    "Trial K",
+    "Trial G-6",
+    "Trial LJ-15"
+   ],
+   "colLabels": [
+    "Water temperature (°C)",
+    "Tablet form",
+    "Stirred",
+    "Time to dissolve (s)"
+   ],
+   "cells": [
+    [
+     20,
+     "whole",
+     "no",
+     240
+    ],
+    [
+     45,
+     "whole",
+     "no",
+     130
+    ],
+    [
+     20,
+     "crushed",
+     "no",
+     95
+    ],
+    [
+     45,
+     "crushed",
+     "no",
+     50
+    ],
+    [
+     20,
+     "whole",
+     "yes",
+     160
+    ]
+   ],
+   "caption": "Table 1. Dissolving times for Tablet GK"
+  },
+  "prompt": "The students want to find out whether water temperature changes how fast Tablet GK dissolves. Which trial should they compare with Trial J-2?",
+  "choices": [
+   "Trial HGLK-73",
+   "Trial K",
+   "Trial G-6",
+   "Trial LJ-15"
+  ],
+  "correct_answer": "Trial HGLK-73",
+  "key_evidence": {
+   "refs": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ]
+   ]
+  },
+  "explanation": "Trial J-2 used a whole tablet in unstirred water at 20 °C. Trial HGLK-73 also used a whole tablet in unstirred water, but at 45 °C. Only the water temperature differs, so the two trials test its effect.",
+  "distractor_rationales": [
+   {
+    "choice": "Trial K",
+    "fault": "it has the same temperature as Trial J-2 and changes the tablet form instead"
+   },
+   {
+    "choice": "Trial G-6",
+    "fault": "it changes both the temperature and the tablet form, so the effect of temperature cannot be separated"
+   },
+   {
+    "choice": "Trial LJ-15",
+    "fault": "it has the same temperature as Trial J-2 and changes the stirring instead"
+   }
+  ],
+  "real_world_check": "To test one variable, two trials must differ only in that variable; warmer water speeds dissolving because its particles move faster."
+ },
+ {
+  "id": "MSB1-P6-09",
+  "map_area": "Physical Science",
+  "grade_target": 6,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 199-208",
+  "dci": "PS1",
+  "ngss_pe": "MS-PS1-2",
+  "kind": "data",
+  "stimulus": "bar",
+  "format": "conditions",
+  "ask": "least",
+  "invented": true,
+  "names_used": [
+   "Liquid L",
+   "Liquid J-4",
+   "Liquid KHL-305",
+   "Liquid GH-27"
+  ],
+  "passage": "Students measured out 100 g of each of four liquids. They poured each liquid into a measuring cylinder and read the volume it took up.",
+  "graphic": {
+   "type": "bar",
+   "bars": [
+    {
+     "label": "Liquid L",
+     "value": 80
+    },
+    {
+     "label": "Liquid J-4",
+     "value": 115
+    },
+    {
+     "label": "Liquid KHL-305",
+     "value": 100
+    },
+    {
+     "label": "Liquid GH-27",
+     "value": 140
+    }
+   ],
+   "xLabel": "Liquid",
+   "yLabel": "Volume of 100 g (mL)",
+   "caption": "Volume taken up by 100 g of each liquid"
+  },
+  "prompt": "Based on the graph, which liquid has the least density?",
+  "choices": [
+   "Liquid L",
+   "Liquid J-4",
+   "Liquid KHL-305",
+   "Liquid GH-27"
+  ],
+  "correct_answer": "Liquid GH-27",
+  "key_evidence": {
+   "refs": [
+    "Liquid GH-27",
+    "Liquid J-4"
+   ]
+  },
+  "explanation": "Every sample had the same mass, 100 g. Density is mass divided by volume, so the liquid that takes up the most space for that mass is the least dense. Liquid GH-27 has the tallest bar.",
+  "distractor_rationales": [
+   {
+    "choice": "Liquid L",
+    "fault": "it has the shortest bar, so it packs 100 g into the least space and is the MOST dense; this reads small volume as low density"
+   },
+   {
+    "choice": "Liquid J-4",
+    "fault": "its 100 g takes up less space than Liquid GH-27, so it is denser"
+   },
+   {
+    "choice": "Liquid KHL-305",
+    "fault": "its 100 g takes up less space than Liquid GH-27, so it is denser"
+   }
+  ],
+  "real_world_check": "Density is mass divided by volume, so for equal masses the sample with the larger volume has the smaller density."
+ },
+ {
+  "id": "MSB1-P6-10",
+  "map_area": "Physical Science",
+  "grade_target": 6,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 199-208",
+  "dci": "PS3",
+  "ngss_pe": "MS-PS3-3",
+  "kind": "data",
+  "stimulus": "line",
+  "format": "values",
+  "ask": "read",
+  "invented": true,
+  "names_used": [
+   "Collector HK-6"
+  ],
+  "passage": "Students tested Collector HK-6, a small solar water heater. They set it in full sun with 2 L of water inside. They measured the water temperature every 15 minutes.",
+  "graphic": {
+   "type": "line",
+   "series": [
+    {
+     "points": [
+      [
+       0,
+       18
+      ],
+      [
+       15,
+       34
+      ],
+      [
+       30,
+       47
+      ],
+      [
+       45,
+       57
+      ],
+      [
+       60,
+       66
+      ]
+     ]
+    }
+   ],
+   "xLabel": "Time in sun (min)",
+   "yLabel": "Water temperature (°C)",
+   "caption": "Water temperature inside Collector HK-6"
+  },
+  "prompt": "According to the graph, what was the water temperature after 15 minutes in the sun?",
+  "choices": [
+   "47 °C",
+   "34 °C",
+   "57 °C",
+   "66 °C"
+  ],
+  "correct_answer": "34 °C",
+  "key_evidence": {
+   "refs": [
+    [
+     15,
+     34
+    ]
+   ],
+   "expr": "v0"
+  },
+  "explanation": "The point above 15 minutes on the time axis sits at 34 °C on the temperature axis.",
+  "distractor_rationales": [
+   {
+    "choice": "47 °C",
+    "fault": "this is the reading at 30 minutes, one point too far along the time axis"
+   },
+   {
+    "choice": "57 °C",
+    "fault": "this is the reading at 45 minutes, the wrong time"
+   },
+   {
+    "choice": "66 °C",
+    "fault": "this is the final reading at 60 minutes, not the reading at 15 minutes"
+   }
+  ],
+  "real_world_check": "Water in a sunlit collector absorbs energy and warms, rising more slowly as it gets warmer because it loses more heat to cooler surroundings.",
+  "prior_free": "MS-PS3-3 says a collector gains thermal energy from sunlight, but no rule gives this invented collector's temperature at any time; the 15-minute value has to be read from the graph."
+ },
+ {
+  "id": "MSB1-P6-11",
+  "map_area": "Physical Science",
+  "grade_target": 6,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 199-208",
+  "dci": "PS3",
+  "ngss_pe": "MS-PS3-3",
+  "kind": "investigation",
+  "stimulus": "procedure",
+  "format": "variable",
+  "ask": "dependent",
+  "invented": true,
+  "names_used": [
+   "Wrap G-5",
+   "Wrap JK",
+   "Wrap L-18"
+  ],
+  "passage": "Students tested how well three wraps keep hot water warm. The wraps were Wrap G-5, Wrap JK and Wrap L-18. First, they measured the mass of each empty steel cup, and all four cups were 150 g. They varied the kind of wrap put around each cup, and one cup got no wrap. They poured 200 mL of hot water into each cup. The starting temperature of the hot water was 80 °C in every cup. All the cups sat on one table in the same room. After 30 minutes, they recorded the final water temperature in each cup.",
+  "graphic": null,
+  "prompt": "Which quantity is the dependent variable in this investigation?",
+  "choices": [
+   "the kind of wrap put around each cup",
+   "the mass of each empty steel cup",
+   "the final water temperature",
+   "the starting temperature of the hot water"
+  ],
+  "correct_answer": "the final water temperature",
+  "option_roles": [
+   "setting",
+   "result",
+   "result",
+   "setting"
+  ],
+  "key_evidence": {
+   "refs": [
+    {
+     "quote": "After 30 minutes, they recorded the final water temperature in each cup."
+    }
+   ]
+  },
+  "explanation": "The students changed the wrap to see its effect. The quantity that responds to that change, and that they measured at the end, is the water temperature after 30 minutes.",
+  "distractor_rationales": [
+   {
+    "choice": "the kind of wrap put around each cup",
+    "fault": "this is what the students changed on purpose, the independent variable"
+   },
+   {
+    "choice": "the mass of each empty steel cup",
+    "fault": "it was measured before the test as a check and was 150 g for every cup; the wrap could not change it"
+   },
+   {
+    "choice": "the starting temperature of the hot water",
+    "fault": "it was set to 80 °C in every cup, a condition held the same"
+   }
+  ],
+  "real_world_check": "In an investigation, the dependent variable is the outcome measured to see the effect of the variable the experimenter changes."
+ },
+ {
+  "id": "MSB1-P6-12",
+  "map_area": "Physical Science",
+  "grade_target": 6,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 199-208",
+  "dci": "PS2",
+  "ngss_pe": "MS-PS2-3",
+  "kind": "investigation",
+  "stimulus": "procedure+table",
+  "format": "values",
+  "ask": "read",
+  "invented": true,
+  "names_used": [
+   "Balloon H",
+   "Balloon JL-6"
+  ],
+  "passage": "Students rubbed two kinds of balloon, Balloon H and Balloon JL-6, on a wool cloth. They changed the number of rubs: 5, 10, 15 or 20. After rubbing, they slowly moved the balloon toward a strip of foil hanging from a thread. They measured the distance between the balloon and the foil when the foil first moved toward the balloon. The cloth, the foil strip and the room were the same in every trial. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "5 rubs",
+    "10 rubs",
+    "15 rubs",
+    "20 rubs"
+   ],
+   "colLabels": [
+    "Balloon H distance (cm)",
+    "Balloon JL-6 distance (cm)"
+   ],
+   "cells": [
+    [
+     "7.0",
+     "6.0"
+    ],
+    [
+     "13.0",
+     "11.0"
+    ],
+    [
+     "19.0",
+     "15.5"
+    ],
+    [
+     "22.5",
+     "18.0"
+    ]
+   ],
+   "caption": "Table 1. Distance at which the foil first moved"
+  },
+  "prompt": "According to Table 1, at what distance did the foil first move toward Balloon JL-6 after 15 rubs?",
+  "choices": [
+   "18.0 cm",
+   "11.0 cm",
+   "19.0 cm",
+   "15.5 cm"
+  ],
+  "correct_answer": "15.5 cm",
+  "key_evidence": {
+   "refs": [
+    [
+     2,
+     1
+    ]
+   ],
+   "expr": "v0"
+  },
+  "explanation": "In Table 1, the row for 15 rubs and the column for Balloon JL-6 meet at 15.5 cm.",
+  "distractor_rationales": [
+   {
+    "choice": "18.0 cm",
+    "fault": "this is Balloon JL-6 after 20 rubs, the wrong row"
+   },
+   {
+    "choice": "11.0 cm",
+    "fault": "this is Balloon JL-6 after 10 rubs, the wrong row"
+   },
+   {
+    "choice": "19.0 cm",
+    "fault": "this is Balloon H after 15 rubs, the wrong column"
+   }
+  ],
+  "real_world_check": "Rubbing transfers electric charge, and a balloon with more charge exerts an electric force strong enough to move a light foil strip from farther away.",
+  "prior_free": "MS-PS2-3 says more charge gives a stronger electric force, but it gives no distance for this invented balloon at 15 rubs; that number appears only in Table 1."
+ },
+ {
+  "id": "MSB1-P6-13",
+  "map_area": "Physical Science",
+  "grade_target": 6,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 199-208",
+  "dci": "PS2",
+  "ngss_pe": "MS-PS2-5",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "structure",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "A magnet sits on a table. A steel paper clip slid toward it jumps to the magnet before the two touch. The magnet pulls steel clips but not bits of paper or foil, and it pulls just as well through a sheet of glass. What surrounds the magnet and pulls on the clip?",
+  "choices": [
+   "static electricity",
+   "suction of moving air",
+   "the magnet's own gravity",
+   "a magnetic field"
+  ],
+  "correct_answer": "a magnetic field",
+  "key_evidence": null,
+  "explanation": "A magnet is surrounded by a magnetic field. The field reaches into the space around the magnet and pulls on steel without contact, even through glass, while paper and foil are not affected.",
+  "distractor_rationales": [
+   {
+    "choice": "static electricity",
+    "fault": "misconception: magnetism is the same as static electricity; a charged object would also pull bits of paper, and this magnet does not"
+   },
+   {
+    "choice": "suction of moving air",
+    "fault": "misconception: magnets pull by sucking in air; the pull works just as well through a glass sheet that blocks air"
+   },
+   {
+    "choice": "the magnet's own gravity",
+    "fault": "misconception: magnets attract by gravity; a small magnet's gravity is far too weak to move a clip, and gravity would pull paper too"
+   }
+  ],
+  "real_world_check": "A magnet is surrounded by a magnetic field that exerts forces on iron and steel objects without contact and passes through materials such as glass."
+ },
+ {
+  "id": "MSB1-P6-14",
+  "map_area": "Physical Science",
+  "grade_target": 6,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 199-208",
+  "dci": "PS3",
+  "ngss_pe": "MS-PS3-1",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "predicts",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "Lena rides her skateboard at 2 m/s. Later, she rides the same skateboard at 4 m/s. Her mass does not change. Which prediction about her kinetic energy at 4 m/s is correct?",
+  "choices": [
+   "It will be twice as great as before.",
+   "It will stay the same, because her mass has not changed.",
+   "It will stay the same, because energy is conserved.",
+   "It will be four times as great as before."
+  ],
+  "correct_answer": "It will be four times as great as before.",
+  "key_evidence": null,
+  "explanation": "Kinetic energy depends on the square of speed. Doubling the speed from 2 m/s to 4 m/s multiplies the kinetic energy by 2 x 2, so it becomes four times as great.",
+  "distractor_rationales": [
+   {
+    "choice": "It will be twice as great as before.",
+    "fault": "misconception: kinetic energy grows in step with speed; it grows with the square of speed, so doubling speed gives four times the energy"
+   },
+   {
+    "choice": "It will stay the same, because her mass has not changed.",
+    "fault": "misconception: kinetic energy depends only on mass; it also depends on speed"
+   },
+   {
+    "choice": "It will stay the same, because energy is conserved.",
+    "fault": "misconception: conservation means one object's energy cannot change; energy is conserved in total, but her kinetic energy rises as she speeds up"
+   }
+  ],
+  "real_world_check": "Kinetic energy equals one half of mass times speed squared, so doubling an object's speed makes its kinetic energy four times as great."
+ },
+ {
+  "id": "MSB1-P6-15",
+  "map_area": "Physical Science",
+  "grade_target": 6,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 209-218",
+  "dci": "PS2",
+  "ngss_pe": "MS-PS2-2",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "values",
+  "ask": "interpolate",
+  "invented": true,
+  "names_used": [
+   "Puck HJ-4"
+  ],
+  "passage": "A steady jet of air pushed Puck HJ-4 across an air table, where friction is almost zero. The puck was already moving when timing began. Students measured its speed four times.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Reading 1",
+    "Reading 2",
+    "Reading 3",
+    "Reading 4"
+   ],
+   "colLabels": [
+    "Time (s)",
+    "Speed (m/s)"
+   ],
+   "cells": [
+    [
+     0,
+     "0.60"
+    ],
+    [
+     2,
+     "1.50"
+    ],
+    [
+     6,
+     "3.30"
+    ],
+    [
+     8,
+     "4.20"
+    ]
+   ],
+   "caption": "Table 1. Speed of Puck HJ-4 under a steady push"
+  },
+  "prompt": "Based on Table 1, what was the speed of Puck HJ-4 at 4 s?",
+  "choices": [
+   "2.40 m/s",
+   "1.50 m/s",
+   "2.20 m/s",
+   "1.95 m/s"
+  ],
+  "correct_answer": "2.40 m/s",
+  "key_evidence": {
+   "refs": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     1
+    ]
+   ],
+   "expr": "(v0 + v1) / 2"
+  },
+  "explanation": "The speed rises by the same amount, 0.45 m/s, every second. 4 s is halfway between the 2 s and 6 s readings, so the speed is halfway between 1.50 m/s and 3.30 m/s, which is 2.40 m/s.",
+  "distractor_rationales": [
+   {
+    "choice": "1.50 m/s",
+    "fault": "this is the speed at 2 s, the earlier reading, not the speed at 4 s"
+   },
+   {
+    "choice": "2.20 m/s",
+    "fault": "this scales the 6 s speed by 4/6 as if the puck started from rest, but it was already moving at 0.60 m/s"
+   },
+   {
+    "choice": "1.95 m/s",
+    "fault": "this averages the 0 s and 6 s readings, which gives the speed at 3 s, not 4 s"
+   }
+  ],
+  "real_world_check": "A steady unbalanced force on an object with almost no friction makes its speed increase by the same amount each second.",
+  "prior_free": "Knowing that a steady push speeds the puck up steadily does not give its speed at 4 s, because its starting speed and rate of gain exist only in this table."
+ },
+ {
+  "id": "MSB1-P6-16",
+  "map_area": "Physical Science",
+  "grade_target": 6,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 209-218",
+  "dci": "PS4",
+  "ngss_pe": "MS-PS4-1",
+  "kind": "data",
+  "stimulus": "bar",
+  "format": "values",
+  "ask": "ratio",
+  "invented": true,
+  "names_used": [
+   "Cord G-2",
+   "Cord HJ",
+   "Cord KH-5",
+   "Cord L-30"
+  ],
+  "passage": "Students attached four cords, one at a time, to a machine that shook the end of the cord at the same rate every time. They measured the wavelength of the waves on each cord.",
+  "graphic": {
+   "type": "bar",
+   "bars": [
+    {
+     "label": "Cord G-2",
+     "value": 0.8
+    },
+    {
+     "label": "Cord HJ",
+     "value": 0.2
+    },
+    {
+     "label": "Cord KH-5",
+     "value": 0.6
+    },
+    {
+     "label": "Cord L-30",
+     "value": 0.4
+    }
+   ],
+   "xLabel": "Cord",
+   "yLabel": "Wavelength (m)",
+   "caption": "Wavelength of waves on four cords shaken at one rate"
+  },
+  "prompt": "The wavelength on Cord KH-5 is how many times the wavelength on Cord L-30?",
+  "choices": [
+   "1.5 times",
+   "2.0 times",
+   "3.0 times",
+   "4.0 times"
+  ],
+  "correct_answer": "1.5 times",
+  "key_evidence": {
+   "refs": [
+    "Cord KH-5",
+    "Cord L-30"
+   ],
+   "expr": "v0 / v1"
+  },
+  "explanation": "The bar for Cord KH-5 reaches 0.6 m and the bar for Cord L-30 reaches 0.4 m. 0.6 divided by 0.4 is 1.5.",
+  "distractor_rationales": [
+   {
+    "choice": "2.0 times",
+    "fault": "this divides Cord L-30 by Cord HJ, a different pair of cords"
+   },
+   {
+    "choice": "3.0 times",
+    "fault": "this divides Cord KH-5 by Cord HJ instead of by Cord L-30"
+   },
+   {
+    "choice": "4.0 times",
+    "fault": "this divides the tallest bar, Cord G-2, by the shortest, Cord HJ"
+   }
+  ],
+  "real_world_check": "At one shaking rate, wavelength is proportional to wave speed, and wave speed differs from cord to cord because it depends on the cord's tension and mass per length.",
+  "prior_free": "MS-PS4-1 says waves have a wavelength, but nothing in it predicts these invented cords' wavelengths; the ratio needs the two bar heights."
+ },
+ {
+  "id": "MSB1-P6-17",
+  "map_area": "Physical Science",
+  "grade_target": 6,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 209-218",
+  "dci": "PS3",
+  "ngss_pe": "MS-PS3-4",
+  "kind": "investigation",
+  "stimulus": "procedure+table",
+  "format": "conditions",
+  "ask": "greatest",
+  "invented": true,
+  "names_used": [
+   "Block HL-71",
+   "Block K",
+   "Block JKL-508",
+   "Block G-2"
+  ],
+  "passage": "Students tested four blocks made of different materials. They placed one block at a time inside an insulated box with a small heater. The heater ran for exactly 60 seconds for each block, so every block received the same amount of energy. Before heating, they found the mass of each block. After heating, they recorded how many degrees the temperature of the block had risen. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Block HL-71",
+    "Block K",
+    "Block JKL-508",
+    "Block G-2"
+   ],
+   "colLabels": [
+    "Mass (g)",
+    "Temperature rise (°C)"
+   ],
+   "cells": [
+    [
+     100,
+     15
+    ],
+    [
+     25,
+     40
+    ],
+    [
+     80,
+     9
+    ],
+    [
+     400,
+     3
+    ]
+   ],
+   "caption": "Table 1. Mass and temperature rise of each block"
+  },
+  "prompt": "Which block is made of the material that needs the greatest amount of energy to warm 1 g of it by 1 °C?",
+  "choices": [
+   "Block HL-71",
+   "Block K",
+   "Block JKL-508",
+   "Block G-2"
+  ],
+  "correct_answer": "Block JKL-508",
+  "key_evidence": {
+   "refs": [
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ]
+   ]
+  },
+  "explanation": "Each block got the same energy. Multiply mass by temperature rise: 1,500 for Block HL-71, 1,000 for Block K, 720 for Block JKL-508 and 1,200 for Block G-2. The same energy spread over the smallest number of gram-degrees means each gram-degree took the most energy, so Block JKL-508 is the answer.",
+  "distractor_rationales": [
+   {
+    "choice": "Block HL-71",
+    "fault": "its mass times rise, 1,500, is the largest, so its material needs the LEAST energy per gram per degree"
+   },
+   {
+    "choice": "Block K",
+    "fault": "it had the largest temperature rise, and its mass times rise, 1,000, is larger than 720"
+   },
+   {
+    "choice": "Block G-2",
+    "fault": "it had the smallest rise only because it is so heavy; its mass times rise, 1,200, is larger than 720"
+   }
+  ],
+  "real_world_check": "When equal energy goes into different samples, the energy needed per gram per degree equals that energy divided by mass times temperature rise, so the smallest product marks the material that needs the most energy."
+ },
+ {
+  "id": "MSB1-P6-18",
+  "map_area": "Physical Science",
+  "grade_target": 6,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 209-218",
+  "dci": "PS4",
+  "ngss_pe": "MS-PS4-3",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "example",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "An analog signal changes smoothly, like a ramp. A digital signal is made of separate pulses, such as on and off, like steps. Which of these is an example of a digital signal?",
+  "choices": [
+   "a vinyl record's groove",
+   "a basic microphone's voltage",
+   "a text message",
+   "a liquid thermometer's reading"
+  ],
+  "correct_answer": "a text message",
+  "key_evidence": null,
+  "explanation": "A text message is sent as a code of separate on-off pulses, so it is a digital signal. The other three change smoothly, so they are analog.",
+  "distractor_rationales": [
+   {
+    "choice": "a vinyl record's groove",
+    "fault": "misconception: recorded sound on a disc is stored as pulses; a record groove is a smooth wavy copy of the sound, an analog signal"
+   },
+   {
+    "choice": "a basic microphone's voltage",
+    "fault": "misconception: any electrical signal is digital; a basic microphone makes a voltage that rises and falls smoothly with the sound"
+   },
+   {
+    "choice": "a liquid thermometer's reading",
+    "fault": "misconception: a reading on a numbered scale is digital; the liquid rises and falls smoothly between the marks, which is analog"
+   }
+  ],
+  "real_world_check": "A digital signal encodes information as separate on-off pulses, as in text messages, while an analog signal varies smoothly, as in a record groove or a microphone's voltage."
+ },
+ {
+  "id": "MSB1-P6-19",
+  "map_area": "Physical Science",
+  "grade_target": 6,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 209-218",
+  "dci": "PS1",
+  "ngss_pe": "MS-PS1-2",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "process",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "Kenji heats white sugar in a pan. It turns into a liquid, then turns brown and then black. Steam and a sharp smell rise from the pan. After cooling, the pan holds a hard black solid that does not taste sweet. Which process made the black solid?",
+  "choices": [
+   "melting",
+   "evaporation",
+   "a chemical reaction",
+   "a physical change of state"
+  ],
+  "correct_answer": "a chemical reaction",
+  "key_evidence": null,
+  "explanation": "The black solid has new properties: a different color and no sweet taste, and it did not turn back into sugar when it cooled. New substances formed, so a chemical reaction took place.",
+  "distractor_rationales": [
+   {
+    "choice": "melting",
+    "fault": "misconception: any change caused by heating is melting; melted sugar would cool back into sweet sugar, not a black solid"
+   },
+   {
+    "choice": "evaporation",
+    "fault": "misconception: steam and smell mean the sugar simply evaporated; evaporation removes a liquid and cannot make a new black solid"
+   },
+   {
+    "choice": "a physical change of state",
+    "fault": "misconception: heating can only change a substance's state; the solid that formed is a different substance, not sugar in another state"
+   }
+  ],
+  "real_world_check": "Strongly heated sugar breaks down into new substances, including black carbon-rich solid and water vapor, which is a chemical change because the products have new properties."
+ },
+ {
+  "id": "MSB1-P6-20",
+  "map_area": "Physical Science",
+  "grade_target": 6,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 209-218",
+  "dci": "PS3",
+  "ngss_pe": "MS-PS3-3",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "explains",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "A metal spoon and a wooden spoon have been on the same kitchen table all night. When Gina touches them, the metal spoon feels much colder than the wooden spoon. Which statement best explains this?",
+  "choices": [
+   "The metal spoon is at a lower temperature than the wooden spoon.",
+   "Metal moves heat out of her hand faster than wood.",
+   "Cold flows out of the metal and into her hand.",
+   "Wood makes its own heat, while metal holds on to cold."
+  ],
+  "correct_answer": "Metal moves heat out of her hand faster than wood.",
+  "key_evidence": null,
+  "explanation": "After a night on the same table, both spoons are at room temperature. Her hand is warmer than both. Metal conducts heat away from her skin much faster than wood, so her skin cools faster and the metal feels colder.",
+  "distractor_rationales": [
+   {
+    "choice": "The metal spoon is at a lower temperature than the wooden spoon.",
+    "fault": "misconception: an object that feels colder is at a lower temperature; both spoons sat all night in the same room and reached the same temperature"
+   },
+   {
+    "choice": "Cold flows out of the metal and into her hand.",
+    "fault": "misconception: cold is a thing that flows; heat flows from her warm hand into the cooler metal"
+   },
+   {
+    "choice": "Wood makes its own heat, while metal holds on to cold.",
+    "fault": "misconception: some materials make their own warmth or store cold; neither spoon produces heat"
+   }
+  ],
+  "real_world_check": "Objects left in the same room reach the same temperature, and metal feels colder than wood because it conducts heat away from the skin faster."
+ }
+]

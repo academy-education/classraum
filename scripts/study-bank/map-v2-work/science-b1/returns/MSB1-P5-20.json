@@ -1,0 +1,42 @@
+{
+  "id": "MSB1-P5-20",
+  "map_area": "Physical Science",
+  "grade_target": 5,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 206-215",
+  "dci": "PS4",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "predicts",
+  "invented": false,
+  "ngss_pe": "4-PS4-1",
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "A cork floats in the middle of a calm pond. A student drops a stone into the pond near the cork, and small waves spread out across the water. What will most likely happen to the cork as the waves pass it?",
+  "choices": [
+    "It will be carried along by the waves to the shore.",
+    "It will bob up and down but stay near the same spot in the pond.",
+    "It will stay still, since only the water below it moves.",
+    "It will sink, since waves always pull floating things under."
+  ],
+  "correct_answer": "It will bob up and down but stay near the same spot in the pond.",
+  "explanation": "A wave carries energy across the water, but the water itself mostly moves up and down in place. A floating cork moves with that water, so it bobs as each wave passes and ends up near where it started.",
+  "distractor_rationales": [
+    {
+      "choice": "It will be carried along by the waves to the shore.",
+      "fault": "misconception: waves carry water and floating objects along with them"
+    },
+    {
+      "choice": "It will stay still, since only the water below it moves.",
+      "fault": "misconception: a wave passes under floating objects without moving the surface"
+    },
+    {
+      "choice": "It will sink, since waves always pull floating things under.",
+      "fault": "misconception: waves drag floating objects downward"
+    }
+  ],
+  "real_world_check": "Water waves move energy, not water, across a pond; the water and anything floating on it mainly move up and down as a wave passes (4-PS4-1)."
+}

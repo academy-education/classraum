@@ -1,0 +1,1429 @@
+[
+ {
+  "id": "MSB1-P7-01",
+  "map_area": "Physical Science",
+  "grade_target": 7,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 192-201",
+  "dci": "PS3",
+  "ngss_pe": "MS-PS3-3",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "values",
+  "ask": "difference",
+  "invented": true,
+  "names_used": [
+   "Cooker M-2",
+   "Cooker N-7",
+   "Cooker P-3",
+   "Cooker R-5"
+  ],
+  "passage": "Students built four solar cookers, each lined with a different material. They set the cookers side by side in full sunlight at the same time. They measured the air temperature inside each cooker at the start, after 30 minutes and after 60 minutes.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Cooker M-2",
+    "Cooker N-7",
+    "Cooker P-3",
+    "Cooker R-5"
+   ],
+   "colLabels": [
+    "Start (°C)",
+    "30 min (°C)",
+    "60 min (°C)"
+   ],
+   "cells": [
+    [
+     22,
+     32,
+     40
+    ],
+    [
+     23,
+     29,
+     35
+    ],
+    [
+     24,
+     40,
+     51
+    ],
+    [
+     25,
+     36,
+     45
+    ]
+   ],
+   "caption": "Table 1. Air temperature inside four solar cookers"
+  },
+  "prompt": "According to Table 1, by how many degrees did the air inside Cooker P-3 warm from the start to 60 minutes?",
+  "choices": [
+   "27 °C",
+   "18 °C",
+   "16 °C",
+   "12 °C"
+  ],
+  "correct_answer": "27 °C",
+  "key_evidence": {
+   "refs": [
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     2
+    ]
+   ],
+   "expr": "v1 - v0"
+  },
+  "explanation": "Cooker P-3 started at 24 °C and reached 51 °C at 60 minutes, so its air warmed by 51 - 24 = 27 °C.",
+  "distractor_rationales": [
+   {
+    "choice": "18 °C",
+    "fault": "this is the 60-minute gain of Cooker M-2 (40 - 22), the wrong row"
+   },
+   {
+    "choice": "16 °C",
+    "fault": "this is the gain of Cooker P-3 in the first 30 minutes only (40 - 24), the wrong column"
+   },
+   {
+    "choice": "12 °C",
+    "fault": "this is the 60-minute gain of Cooker N-7 (35 - 23), the wrong row"
+   }
+  ],
+  "real_world_check": "A solar cooker warms as it absorbs sunlight, and the lining material changes how much of that energy is kept inside, so different cookers warm by different amounts (MS-PS3-3).",
+  "prior_free": "The standard says a device can be designed to keep in thermal energy, but nothing in it says how many degrees Cooker P-3 gained; only the 24 and 51 in the table give 27."
+ },
+ {
+  "id": "MSB1-P7-02",
+  "map_area": "Physical Science",
+  "grade_target": 7,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 192-201",
+  "dci": "PS2",
+  "ngss_pe": "MS-PS2-5",
+  "kind": "data",
+  "stimulus": "bar",
+  "format": "conditions",
+  "ask": "meets-criterion",
+  "invented": true,
+  "names_used": [
+   "Magnet MQ-14",
+   "Magnet N",
+   "Magnet R-6",
+   "Magnet PRN-305",
+   "Magnet Q-2"
+  ],
+  "passage": "Students slid each of five magnets slowly along a ruler toward a compass. For each magnet, they recorded how far from the compass the magnet was when the compass needle first turned.",
+  "graphic": {
+   "type": "bar",
+   "bars": [
+    {
+     "label": "Magnet MQ-14",
+     "value": 15
+    },
+    {
+     "label": "Magnet N",
+     "value": 5
+    },
+    {
+     "label": "Magnet R-6",
+     "value": 27
+    },
+    {
+     "label": "Magnet PRN-305",
+     "value": 35
+    },
+    {
+     "label": "Magnet Q-2",
+     "value": 40
+    }
+   ],
+   "xLabel": "Magnet",
+   "yLabel": "Distance when needle first turned (cm)",
+   "caption": "Distance from the compass at which each magnet first turned the needle"
+  },
+  "prompt": "The students want a magnet that first turns the needle from farther than 10 cm away but closer than 20 cm. Which magnet meets this need?",
+  "choices": [
+   "Magnet MQ-14",
+   "Magnet PRN-305",
+   "Magnet N",
+   "Magnet R-6"
+  ],
+  "correct_answer": "Magnet MQ-14",
+  "key_evidence": {
+   "refs": [
+    "Magnet MQ-14"
+   ]
+  },
+  "explanation": "The bar for Magnet MQ-14 reaches halfway between the 10 cm and 20 cm marks, about 15 cm, so it is the only one of these magnets inside the 10-20 cm window.",
+  "distractor_rationales": [
+   {
+    "choice": "Magnet PRN-305",
+    "fault": "its bar is past the 30 cm mark, so it turns the needle from farther than 20 cm"
+   },
+   {
+    "choice": "Magnet N",
+    "fault": "its bar stops below the 10 cm mark, so it must come closer than 10 cm"
+   },
+   {
+    "choice": "Magnet R-6",
+    "fault": "its bar is between the 20 cm and 30 cm marks, so it is farther than 20 cm"
+   }
+  ],
+  "real_world_check": "A magnet acts on a compass needle through its magnetic field without touching it, and a stronger field turns the needle from farther away (MS-PS2-5)."
+ },
+ {
+  "id": "MSB1-P7-03",
+  "map_area": "Physical Science",
+  "grade_target": 7,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 192-201",
+  "dci": "PS1",
+  "ngss_pe": "MS-PS1-6",
+  "kind": "data",
+  "stimulus": "line",
+  "format": "trend",
+  "ask": "increase",
+  "invented": true,
+  "names_used": [
+   "Powder M-8",
+   "Additive N-5",
+   "design Q-3"
+  ],
+  "passage": "Students built several copies of hand warmer design Q-3. Every copy held the same mass of Powder M-8, which releases thermal energy as it reacts with air, and the same amount of water. Each copy also held a different mass of Additive N-5. The graph shows the highest temperature rise each copy reached.",
+  "graphic": {
+   "type": "line",
+   "series": [
+    {
+     "points": [
+      [
+       0,
+       6
+      ],
+      [
+       2,
+       6
+      ],
+      [
+       4,
+       6
+      ],
+      [
+       6,
+       10
+      ],
+      [
+       8,
+       15
+      ],
+      [
+       10,
+       20
+      ],
+      [
+       12,
+       20
+      ],
+      [
+       14,
+       20
+      ]
+     ]
+    }
+   ],
+   "xLabel": "Mass of Additive N-5 (g)",
+   "yLabel": "Highest temperature rise (°C)",
+   "caption": "Highest temperature rise of design Q-3 warmers holding different masses of Additive N-5"
+  },
+  "prompt": "According to the graph, how did the highest temperature rise change as the mass of Additive N-5 went from 6 g to 10 g?",
+  "choices": [
+   "It fell.",
+   "It stayed the same.",
+   "It increased.",
+   "It increased, then leveled off."
+  ],
+  "correct_answer": "It increased.",
+  "key_evidence": {
+   "refs": [
+    [
+     6,
+     10
+    ],
+    [
+     8,
+     15
+    ],
+    [
+     10,
+     20
+    ]
+   ]
+  },
+  "explanation": "The highest rise was 10 °C at 6 g, 15 °C at 8 g and 20 °C at 10 g. It went up 5 °C in each 2 g step, with no flat part between 6 g and 10 g.",
+  "distractor_rationales": [
+   {
+    "choice": "It fell.",
+    "fault": "no part of the line falls; between 6 g and 10 g each point is higher than the one before"
+   },
+   {
+    "choice": "It stayed the same.",
+    "fault": "the line is flat only from 0 g to 4 g and above 10 g; from 6 g to 10 g it climbs from 10 °C to 20 °C"
+   },
+   {
+    "choice": "It increased, then leveled off.",
+    "fault": "the leveling starts at 10 g, the end of the range asked about; inside 6-10 g the line climbs the whole way"
+   }
+  ],
+  "real_world_check": "Some added substances speed up the reaction of iron-type warmer powders with oxygen, so the same powder releases its energy faster and reaches a higher peak, up to a point where more additive gives no further gain (MS-PS1-6).",
+  "prior_free": "Additive N-5 is invented, so no standard says whether it raises, lowers or does not change the peak; the graph has a flat stretch to 4 g and a plateau from 10 g, so whether 6-10 g rises is decided only by the data."
+ },
+ {
+  "id": "MSB1-P7-04",
+  "map_area": "Physical Science",
+  "grade_target": 7,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 192-201",
+  "dci": "PS3",
+  "ngss_pe": "MS-PS3-3",
+  "kind": "investigation",
+  "stimulus": "procedure",
+  "format": "variable",
+  "ask": "controlled",
+  "invented": true,
+  "names_used": [
+   "Foil N-4"
+  ],
+  "passage": "Students tested whether the number of foil layers around a can changes how fast the ice inside it melts. They wrapped four metal cans in 0, 1, 2 or 3 layers of Foil N-4. They put 150 g of ice in each can, so the mass of ice never differed. The class had only two kinds of cans, so the can brand was not the same for every can. Each can was set wherever there was room, so the spot where each can sat differed from can to can. Every 10 minutes, the students checked each can and wrote down when its last ice melted.",
+  "graphic": null,
+  "prompt": "Which variable did the students control in this investigation?",
+  "choices": [
+   "the spot where each can sat",
+   "the mass of ice",
+   "the can brand",
+   "the number of foil layers"
+  ],
+  "correct_answer": "the mass of ice",
+  "key_evidence": {
+   "refs": [
+    {
+     "quote": "so the mass of ice never differed"
+    }
+   ]
+  },
+  "explanation": "A controlled variable is kept the same in every trial. Each can got 150 g of ice, so the mass of ice was held constant.",
+  "distractor_rationales": [
+   {
+    "choice": "the spot where each can sat",
+    "fault": "the procedure says the spot changed from can to can, so it was not held the same"
+   },
+   {
+    "choice": "the can brand",
+    "fault": "two kinds of cans were used, so the brand was not the same for every can"
+   },
+   {
+    "choice": "the number of foil layers",
+    "fault": "this is the variable the students changed on purpose (0 to 3 layers), the independent variable"
+   }
+  ],
+  "real_world_check": "In a fair comparison only the tested variable changes, and a controlled variable is one the experimenter holds the same in every trial (MS-PS3-3 design testing).",
+  "option_roles": [
+   "setting",
+   "setting",
+   "setting",
+   "setting"
+  ]
+ },
+ {
+  "id": "MSB1-P7-05",
+  "map_area": "Physical Science",
+  "grade_target": 7,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 192-201",
+  "dci": "PS3",
+  "ngss_pe": "MS-PS3-3",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "example",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "Thermal energy can move by conduction, convection or radiation. Which of these is an example of thermal energy moving mainly by radiation?",
+  "choices": [
+   "a pot handle getting hotter",
+   "warm air rising off radiators",
+   "sunlight warming a roof",
+   "ice melting in warm hands"
+  ],
+  "correct_answer": "sunlight warming a roof",
+  "explanation": "Sunlight crosses empty space and the air as electromagnetic radiation and warms the roof when it is absorbed. Nothing has to touch the roof or flow to it.",
+  "distractor_rationales": [
+   {
+    "choice": "a pot handle getting hotter",
+    "fault": "misconception: all heating from a hot source is radiation; the handle warms by conduction through the metal of the pot"
+   },
+   {
+    "choice": "warm air rising off radiators",
+    "fault": "misconception: a radiator heats a room mainly by radiation, as its name suggests; the warm rising air is convection"
+   },
+   {
+    "choice": "ice melting in warm hands",
+    "fault": "misconception: cold flows out of the ice into the hand; the hand conducts thermal energy into the ice by touch"
+   }
+  ],
+  "real_world_check": "The Sun warms Earth's surface by radiation, which needs no contact or moving fluid; contact transfer is conduction and transfer by moving warm fluid is convection."
+ },
+ {
+  "id": "MSB1-P7-06",
+  "map_area": "Physical Science",
+  "grade_target": 7,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 192-201",
+  "dci": "PS3",
+  "ngss_pe": "MS-PS3-4",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "explains",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "A metal railing and a wooden bench sat outside in the same cool air all night, so both are at the same temperature. In the morning, the railing feels much colder to the touch than the bench. Which statement explains this?",
+  "choices": [
+   "The metal railing is at a lower temperature than the wooden bench.",
+   "Metal conducts thermal energy away from a hand faster than wood does.",
+   "Metal sends cold into the skin more quickly than wood does.",
+   "Wood makes its own heat, and that heat keeps the bench warmer than the railing."
+  ],
+  "correct_answer": "Metal conducts thermal energy away from a hand faster than wood does.",
+  "explanation": "Both objects are at the air temperature, below skin temperature. Metal is a good conductor, so it carries thermal energy out of the warm hand faster, and the hand feels that loss as cold.",
+  "distractor_rationales": [
+   {
+    "choice": "The metal railing is at a lower temperature than the wooden bench.",
+    "fault": "misconception: an object that feels colder must be colder; the scenario states both are at the same temperature"
+   },
+   {
+    "choice": "Metal sends cold into the skin more quickly than wood does.",
+    "fault": "misconception: cold is a thing that flows; only thermal energy moves, from the warm hand to the cooler metal"
+   },
+   {
+    "choice": "Wood makes its own heat, and that heat keeps the bench warmer than the railing.",
+    "fault": "misconception: materials such as wood produce their own heat; wood only conducts energy away more slowly"
+   }
+  ],
+  "real_world_check": "Objects left in the same surroundings reach the same temperature; metals feel colder because their high thermal conductivity draws energy from the skin faster than wood does."
+ },
+ {
+  "id": "MSB1-P7-07",
+  "map_area": "Physical Science",
+  "grade_target": 7,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 202-211",
+  "dci": "PS2",
+  "ngss_pe": "MS-PS2-3",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "values",
+  "ask": "interpolate",
+  "invented": true,
+  "names_used": [
+   "Rod Q-5"
+  ],
+  "passage": "Students rubbed Rod Q-5 with wool a set number of times. Then they lowered the rod slowly toward tiny bits of paper and measured the greatest distance at which the rod lifted the bits.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Trial 1",
+    "Trial 2",
+    "Trial 3",
+    "Trial 4",
+    "Trial 5"
+   ],
+   "colLabels": [
+    "Number of rubs",
+    "Lifting distance (cm)"
+   ],
+   "cells": [
+    [
+     10,
+     1.6
+    ],
+    [
+     20,
+     3
+    ],
+    [
+     30,
+     4.2
+    ],
+    [
+     40,
+     5
+    ],
+    [
+     50,
+     5.4
+    ]
+   ],
+   "caption": "Table 1. Lifting distance of Rod Q-5 after different numbers of rubs"
+  },
+  "prompt": "If the students rubbed Rod Q-5 25 times, what is the best estimate of its lifting distance?",
+  "choices": [
+   "3.0 cm",
+   "3.6 cm",
+   "2.3 cm",
+   "2.7 cm"
+  ],
+  "correct_answer": "3.6 cm",
+  "key_evidence": {
+   "refs": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     1
+    ]
+   ],
+   "expr": "(v0 + v1) / 2"
+  },
+  "explanation": "Twenty-five rubs is halfway between 20 rubs (3.0 cm) and 30 rubs (4.2 cm). Halfway between those distances is (3.0 + 4.2) / 2 = 3.6 cm.",
+  "distractor_rationales": [
+   {
+    "choice": "3.0 cm",
+    "fault": "this is the distance for 20 rubs; 25 rubs gave more charge, so the distance should be greater than 3.0 cm"
+   },
+   {
+    "choice": "2.3 cm",
+    "fault": "this is halfway between 10 and 20 rubs, the wrong pair of rows"
+   },
+   {
+    "choice": "2.7 cm",
+    "fault": "this takes half of the 50-rub distance, as if distance grew in proportion to rubs, which the table does not show"
+   }
+  ],
+  "real_world_check": "Rubbing moves charge onto the rod, and more charge makes a stronger electric force that can act on the paper from farther away, with the gain shrinking as charge builds up (MS-PS2-3).",
+  "prior_free": "The standard says more charge gives a stronger electric force, which fixes the direction but not the size; the 3.6 cm comes only from the 3.0 and 4.2 in the table."
+ },
+ {
+  "id": "MSB1-P7-08",
+  "map_area": "Physical Science",
+  "grade_target": 7,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 202-211",
+  "dci": "PS3",
+  "ngss_pe": "MS-PS3-4",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "conditions",
+  "ask": "greatest",
+  "invented": true,
+  "names_used": [
+   "Sample M-7",
+   "Sample QR-24",
+   "Sample PMR-305",
+   "Sample N"
+  ],
+  "passage": "Students gave 100 g samples of four solid materials the same amount of thermal energy. They used the same heater for the same time on each sample. They recorded each sample's temperature before and after heating.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Sample M-7",
+    "Sample QR-24",
+    "Sample PMR-305",
+    "Sample N"
+   ],
+   "colLabels": [
+    "Before heating (°C)",
+    "After heating (°C)"
+   ],
+   "cells": [
+    [
+     22,
+     50
+    ],
+    [
+     14,
+     46
+    ],
+    [
+     25,
+     55
+    ],
+    [
+     20,
+     53
+    ]
+   ],
+   "caption": "Table 1. Temperatures of four 100 g samples"
+  },
+  "prompt": "Based on Table 1, which sample's temperature went up by the greatest number of degrees?",
+  "choices": [
+   "Sample QR-24",
+   "Sample M-7",
+   "Sample PMR-305",
+   "Sample N"
+  ],
+  "correct_answer": "Sample N",
+  "key_evidence": {
+   "refs": [
+    [
+     3,
+     0
+    ],
+    [
+     3,
+     1
+    ]
+   ]
+  },
+  "explanation": "The temperature rises are 50 - 22 = 28 °C, 46 - 14 = 32 °C, 55 - 25 = 30 °C and 53 - 20 = 33 °C. The 33 °C rise of Sample N is the greatest.",
+  "distractor_rationales": [
+   {
+    "choice": "Sample QR-24",
+    "fault": "it started lowest, but it rose 32 °C, one degree less than Sample N"
+   },
+   {
+    "choice": "Sample M-7",
+    "fault": "it rose only 28 °C, the smallest rise of the four"
+   },
+   {
+    "choice": "Sample PMR-305",
+    "fault": "it reached the highest final temperature, but it rose only 30 °C because it started warmest"
+   }
+  ],
+  "real_world_check": "Equal masses of different materials given the same thermal energy change temperature by different amounts, because materials differ in how much energy each degree takes (MS-PS3-4)."
+ },
+ {
+  "id": "MSB1-P7-09",
+  "map_area": "Physical Science",
+  "grade_target": 7,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 202-211",
+  "dci": "PS1",
+  "ngss_pe": "MS-PS1-4",
+  "kind": "data",
+  "stimulus": "bar",
+  "format": "values",
+  "ask": "ratio",
+  "invented": true,
+  "names_used": [
+   "Wax N-2",
+   "Wax Q-7",
+   "Wax P-5",
+   "Wax M-6"
+  ],
+  "passage": "Students placed a 5 g cube of each of four waxes on the same hot plate, set to the same heat. They timed how long each cube took to melt completely.",
+  "graphic": {
+   "type": "bar",
+   "bars": [
+    {
+     "label": "Wax N-2",
+     "value": 8
+    },
+    {
+     "label": "Wax Q-7",
+     "value": 4
+    },
+    {
+     "label": "Wax P-5",
+     "value": 6
+    },
+    {
+     "label": "Wax M-6",
+     "value": 2
+    }
+   ],
+   "xLabel": "Wax",
+   "yLabel": "Time to melt (min)",
+   "caption": "Melting times of four waxes on one hot plate"
+  },
+  "prompt": "The melting time of Wax N-2 was how many times the melting time of Wax M-6?",
+  "choices": [
+   "6.0 times",
+   "1.5 times",
+   "3.0 times",
+   "4.0 times"
+  ],
+  "correct_answer": "4.0 times",
+  "key_evidence": {
+   "refs": [
+    "Wax N-2",
+    "Wax M-6"
+   ],
+   "expr": "v0 / v1"
+  },
+  "explanation": "The bar for Wax N-2 reaches the top tick, 8 minutes, and the bar for Wax M-6 reaches the first tick, 2 minutes. 8 ÷ 2 = 4.0, so Wax N-2 took 4.0 times as long.",
+  "distractor_rationales": [
+   {
+    "choice": "6.0 times",
+    "fault": "this subtracts the times (8 - 2 = 6) instead of dividing them"
+   },
+   {
+    "choice": "1.5 times",
+    "fault": "this divides the wrong pair of bars, Wax P-5 by Wax Q-7 (6 ÷ 4)"
+   },
+   {
+    "choice": "3.0 times",
+    "fault": "this uses the Wax P-5 bar (6 minutes) in place of Wax N-2, giving 6 ÷ 2"
+   }
+  ],
+  "real_world_check": "Different substances need different amounts of thermal energy to melt, so equal pieces heated the same way melt in different times (MS-PS1-4).",
+  "prior_free": "The standard says adding thermal energy melts a solid but gives no melting times for invented waxes; the 4.0 comes only from reading 8 and 2 off the bars."
+ },
+ {
+  "id": "MSB1-P7-10",
+  "map_area": "Physical Science",
+  "grade_target": 7,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 202-211",
+  "dci": "PS4",
+  "ngss_pe": "MS-PS4-2",
+  "kind": "data",
+  "stimulus": "scatter",
+  "format": "trend",
+  "ask": "decrease",
+  "invented": true,
+  "names_used": [
+   "Liquid R-5"
+  ],
+  "passage": "Students shone a narrow beam of light onto the flat surface of Liquid R-5 in a tray. They changed the angle of the beam above the surface and measured the percent of the light reflected off the liquid.",
+  "graphic": {
+   "type": "scatter",
+   "points": [
+    [
+     10,
+     58
+    ],
+    [
+     15,
+     47
+    ],
+    [
+     25,
+     38
+    ],
+    [
+     30,
+     27
+    ],
+    [
+     40,
+     22
+    ],
+    [
+     50,
+     12
+    ],
+    [
+     60,
+     10
+    ],
+    [
+     70,
+     8
+    ],
+    [
+     80,
+     4
+    ]
+   ],
+   "xLabel": "Angle of beam above surface (°)",
+   "yLabel": "Light reflected (%)",
+   "caption": "Reflection of light from Liquid R-5 at different beam angles"
+  },
+  "prompt": "Based on the graph, how does the percent of light reflected change as the angle of the beam above the surface gets larger?",
+  "choices": [
+   "It becomes lower.",
+   "It rises.",
+   "It rises, then levels off.",
+   "It is constant."
+  ],
+  "correct_answer": "It becomes lower.",
+  "key_evidence": {
+   "refs": [
+    [
+     10,
+     58
+    ],
+    [
+     40,
+     22
+    ],
+    [
+     80,
+     4
+    ]
+   ]
+  },
+  "explanation": "At 10° about 58% of the light was reflected, at 40° about 22% and at 80° only 4%. The points fall as the angle grows.",
+  "distractor_rationales": [
+   {
+    "choice": "It rises.",
+    "fault": "the reflected percent is highest at the smallest angle and goes down, not up"
+   },
+   {
+    "choice": "It rises, then levels off.",
+    "fault": "no part of the cloud goes up; the points drop from 58% toward 4%"
+   },
+   {
+    "choice": "It is constant.",
+    "fault": "the reflected percent changes by more than 50 points across the angles"
+   }
+  ],
+  "real_world_check": "A liquid surface reflects a larger share of light that strikes it at a low, glancing angle and transmits more of the light that strikes it nearly straight on (MS-PS4-2).",
+  "prior_free": "The standard says light can be reflected or transmitted but gives no rule for how the reflected share depends on angle; a student could as easily expect straight-on light to bounce back more, so only the points decide."
+ },
+ {
+  "id": "MSB1-P7-11",
+  "map_area": "Physical Science",
+  "grade_target": 7,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 202-211",
+  "dci": "PS1",
+  "ngss_pe": "MS-PS1-2",
+  "kind": "investigation",
+  "stimulus": "procedure+table",
+  "format": "conditions",
+  "ask": "least",
+  "invented": true,
+  "names_used": [
+   "Bead MP-31",
+   "Bead QRN-746",
+   "Bead N-6",
+   "Bead Q"
+  ],
+  "passage": "Students were given four plastic beads and asked which plastic has the least density. Density is mass divided by volume, and it is a property that helps identify a substance. The students measured the mass of each bead on a balance. To find each bead's volume, they lowered the bead into a measuring cylinder of water and noted how much the water level rose. Table 1 shows their results.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Bead N-6",
+    "Bead MP-31",
+    "Bead QRN-746",
+    "Bead Q"
+   ],
+   "colLabels": [
+    "Mass (g)",
+    "Volume (cm³)"
+   ],
+   "cells": [
+    [
+     9,
+     6
+    ],
+    [
+     8,
+     5
+    ],
+    [
+     33,
+     30
+    ],
+    [
+     14,
+     20
+    ]
+   ],
+   "caption": "Table 1. Mass and volume of four plastic beads"
+  },
+  "prompt": "Which bead is made of the plastic with the least density?",
+  "choices": [
+   "Bead MP-31",
+   "Bead QRN-746",
+   "Bead N-6",
+   "Bead Q"
+  ],
+  "correct_answer": "Bead Q",
+  "key_evidence": {
+   "refs": [
+    [
+     3,
+     0
+    ],
+    [
+     3,
+     1
+    ]
+   ]
+  },
+  "explanation": "Dividing mass by volume gives 9 ÷ 6 = 1.5, 8 ÷ 5 = 1.6, 33 ÷ 30 = 1.1 and 14 ÷ 20 = 0.7 g/cm³. Bead Q has the least density.",
+  "distractor_rationales": [
+   {
+    "choice": "Bead MP-31",
+    "fault": "it has the least mass and volume, but its density, 1.6 g/cm³, is the greatest"
+   },
+   {
+    "choice": "Bead QRN-746",
+    "fault": "it has the largest volume, but its density is 1.1 g/cm³, more than 0.7"
+   },
+   {
+    "choice": "Bead N-6",
+    "fault": "its density is 1.5 g/cm³, more than twice that of Bead Q"
+   }
+  ],
+  "real_world_check": "Density is mass divided by volume, a characteristic property that does not depend on the size of the sample (MS-PS1-2)."
+ },
+ {
+  "id": "MSB1-P7-12",
+  "map_area": "Physical Science",
+  "grade_target": 7,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 202-211",
+  "dci": "PS4",
+  "ngss_pe": "MS-PS4-1",
+  "kind": "investigation",
+  "stimulus": "procedure+table",
+  "format": "values",
+  "ask": "difference",
+  "invented": true,
+  "names_used": [
+   "Rope M-3",
+   "Rope N-8",
+   "Rope Q-5",
+   "Rope R-1"
+  ],
+  "passage": "Students tied one end of each of four ropes to a post. They gave the free end of each rope one quick flick of the same size, sending a single pulse along it. A video camera filmed each pulse. From the video, the students measured the pulse's height at the start, after it had traveled 2 m, and after it had traveled 4 m. A pulse that loses energy as it travels becomes shorter.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Rope M-3",
+    "Rope N-8",
+    "Rope Q-5",
+    "Rope R-1"
+   ],
+   "colLabels": [
+    "Start (cm)",
+    "At 2 m (cm)",
+    "At 4 m (cm)"
+   ],
+   "cells": [
+    [
+     12,
+     9,
+     7
+    ],
+    [
+     15,
+     9,
+     4
+    ],
+    [
+     14,
+     11,
+     7
+    ],
+    [
+     13,
+     12,
+     11
+    ]
+   ],
+   "caption": "Table 1. Pulse height along four ropes"
+  },
+  "prompt": "By how many centimeters did the pulse on Rope N-8 shrink between the start and the 4 m mark?",
+  "choices": [
+   "6 cm",
+   "7 cm",
+   "2 cm",
+   "11 cm"
+  ],
+  "correct_answer": "11 cm",
+  "key_evidence": {
+   "refs": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     2
+    ]
+   ],
+   "expr": "v0 - v1"
+  },
+  "explanation": "On Rope N-8 the pulse was 15 cm high at the start and 4 cm high at 4 m, so it shrank by 15 - 4 = 11 cm.",
+  "distractor_rationales": [
+   {
+    "choice": "6 cm",
+    "fault": "this is how much the Rope N-8 pulse shrank in the first 2 m only (15 - 9)"
+   },
+   {
+    "choice": "7 cm",
+    "fault": "this is how much the Rope Q-5 pulse shrank over 4 m (14 - 7), the wrong row"
+   },
+   {
+    "choice": "2 cm",
+    "fault": "this is how much the Rope R-1 pulse shrank over 4 m (13 - 11), the wrong row"
+   }
+  ],
+  "real_world_check": "A wave's amplitude is tied to the energy it carries, and a pulse on a rope loses energy as it travels, so its height shrinks by an amount that depends on the rope (MS-PS4-1).",
+  "prior_free": "The standard links amplitude to energy, but it cannot say how much height the Rope N-8 pulse loses over 4 m; only the 15 and 4 in the table give 11."
+ },
+ {
+  "id": "MSB1-P7-13",
+  "map_area": "Physical Science",
+  "grade_target": 7,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 202-211",
+  "dci": "PS4",
+  "ngss_pe": "MS-PS4-1",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "quantity",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "Mira plucks a guitar string gently. Then she plucks the same string much harder. The second sound is louder, but its pitch is the same. Which property of the sound wave is greater the second time?",
+  "choices": [
+   "vibration frequency",
+   "amplitude",
+   "speed",
+   "the wavelength"
+  ],
+  "correct_answer": "amplitude",
+  "explanation": "A harder pluck gives the wave more energy, which shows up as a larger amplitude and a louder sound. The pitch did not change, so the frequency, and with it the wavelength in the same air, did not change.",
+  "distractor_rationales": [
+   {
+    "choice": "vibration frequency",
+    "fault": "misconception: a louder sound has a higher frequency; frequency sets pitch, and the pitch stayed the same"
+   },
+   {
+    "choice": "speed",
+    "fault": "misconception: louder sounds travel faster; the speed of sound depends on the air, not on how hard the string is plucked"
+   },
+   {
+    "choice": "the wavelength",
+    "fault": "misconception: louder sounds have longer waves; with the same pitch in the same air, the wavelength is unchanged"
+   }
+  ],
+  "real_world_check": "Loudness depends on a sound wave's amplitude, pitch depends on its frequency, and the speed of sound is set by the medium (MS-PS4-1)."
+ },
+ {
+  "id": "MSB1-P7-14",
+  "map_area": "Physical Science",
+  "grade_target": 7,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 202-211",
+  "dci": "PS1",
+  "ngss_pe": "MS-PS1-5",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "explains",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "A student weighs a clean copper sheet. Then she holds it in a gas flame in open air, and the sheet turns black. After it cools, its mass is slightly greater than before. Which statement explains the gain in mass?",
+  "choices": [
+   "Oxygen atoms from the air joined the copper.",
+   "Heat from the flame added its own mass to the copper sheet.",
+   "The flame made new copper atoms, so the sheet now holds more of them.",
+   "The sheet expanded in the flame, and a larger sheet has more mass."
+  ],
+  "correct_answer": "Oxygen atoms from the air joined the copper.",
+  "explanation": "The black coating is a new substance made when copper reacts with oxygen from the air. Atoms are not created or destroyed, so the added mass is the mass of the oxygen atoms that joined the copper.",
+  "distractor_rationales": [
+   {
+    "choice": "Heat from the flame added its own mass to the copper sheet.",
+    "fault": "misconception: heat is a substance with mass; thermal energy adds no measurable mass"
+   },
+   {
+    "choice": "The flame made new copper atoms, so the sheet now holds more of them.",
+    "fault": "misconception: chemical reactions create new atoms; atoms are only rearranged, never made"
+   },
+   {
+    "choice": "The sheet expanded in the flame, and a larger sheet has more mass.",
+    "fault": "misconception: getting bigger adds mass; expansion spreads the same atoms out, and the sheet was weighed after cooling"
+   }
+  ],
+  "real_world_check": "Copper heated in air reacts with oxygen to form black copper oxide, and the mass gained equals the mass of oxygen combined, as conservation of mass requires (MS-PS1-5)."
+ },
+ {
+  "id": "MSB1-P7-15",
+  "map_area": "Physical Science",
+  "grade_target": 7,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 212-221",
+  "dci": "PS4",
+  "ngss_pe": "MS-PS4-1",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "conditions",
+  "ask": "least",
+  "invented": true,
+  "names_used": [
+   "Tank M-5",
+   "Tank Q",
+   "Tank RN-12",
+   "Tank PQM-306"
+  ],
+  "passage": "Students made water waves in four tanks. In each tank they measured the wavelength and the frequency of the waves. A wave's speed equals its wavelength multiplied by its frequency.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Tank M-5",
+    "Tank Q",
+    "Tank RN-12",
+    "Tank PQM-306"
+   ],
+   "colLabels": [
+    "Wavelength (cm)",
+    "Frequency (waves per second)"
+   ],
+   "cells": [
+    [
+     6,
+     5
+    ],
+    [
+     2,
+     12
+    ],
+    [
+     9,
+     3
+    ],
+    [
+     4,
+     5
+    ]
+   ],
+   "caption": "Table 1. Wavelength and frequency of water waves in four tanks"
+  },
+  "prompt": "In which tank did the waves travel at the lowest speed?",
+  "choices": [
+   "Tank RN-12",
+   "Tank Q",
+   "Tank PQM-306",
+   "Tank M-5"
+  ],
+  "correct_answer": "Tank PQM-306",
+  "key_evidence": {
+   "refs": [
+    [
+     3,
+     0
+    ],
+    [
+     3,
+     1
+    ]
+   ]
+  },
+  "explanation": "Multiplying wavelength by frequency gives 6 x 5 = 30, 2 x 12 = 24, 9 x 3 = 27 and 4 x 5 = 20 cm per second. The waves in Tank PQM-306 were slowest.",
+  "distractor_rationales": [
+   {
+    "choice": "Tank RN-12",
+    "fault": "it has the lowest frequency, but its long wavelength gives a speed of 27 cm per second"
+   },
+   {
+    "choice": "Tank Q",
+    "fault": "it has the shortest wavelength, but its high frequency gives a speed of 24 cm per second"
+   },
+   {
+    "choice": "Tank M-5",
+    "fault": "its waves moved at 30 cm per second, the fastest of the four"
+   }
+  ],
+  "real_world_check": "For any wave, speed equals wavelength times frequency, so neither the shortest wavelength nor the lowest frequency alone fixes the slowest wave (MS-PS4-1)."
+ },
+ {
+  "id": "MSB1-P7-16",
+  "map_area": "Physical Science",
+  "grade_target": 7,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 212-221",
+  "dci": "PS1",
+  "ngss_pe": "MS-PS1-2",
+  "kind": "data",
+  "stimulus": "line",
+  "format": "values",
+  "ask": "read",
+  "invented": true,
+  "names_used": [
+   "Solution M-9",
+   "Solution P-6"
+  ],
+  "passage": "Students added Solution M-9, a little at a time, to a foam cup holding 50 mL of Solution P-6. Their dropper delivers 4 mL with each squeeze. The two solutions react and release thermal energy. After each addition, the students recorded how far the temperature had risen above its starting value.",
+  "graphic": {
+   "type": "line",
+   "series": [
+    {
+     "points": [
+      [
+       0,
+       0
+      ],
+      [
+       4,
+       0.8
+      ],
+      [
+       8,
+       1.6
+      ],
+      [
+       12,
+       2.4
+      ],
+      [
+       16,
+       3.2
+      ],
+      [
+       20,
+       4
+      ],
+      [
+       24,
+       3.8
+      ],
+      [
+       28,
+       3.6
+      ]
+     ]
+    }
+   ],
+   "xLabel": "Solution M-9 added (mL)",
+   "yLabel": "Temperature rise (°C)",
+   "caption": "Temperature rise as Solution M-9 was added to Solution P-6"
+  },
+  "prompt": "What was the temperature rise after the students had squeezed the dropper 3 times?",
+  "choices": [
+   "3.2 °C",
+   "4.0 °C",
+   "2.4 °C",
+   "0.6 °C"
+  ],
+  "correct_answer": "2.4 °C",
+  "key_evidence": {
+   "refs": [
+    [
+     12,
+     2.4
+    ]
+   ],
+   "expr": "v0"
+  },
+  "explanation": "Three squeezes of 4 mL add 3 x 4 = 12 mL of Solution M-9. At 12 mL the line shows a rise of 2.4 °C.",
+  "distractor_rationales": [
+   {
+    "choice": "3.2 °C",
+    "fault": "this is the rise at 16 mL, which is four squeezes, not three"
+   },
+   {
+    "choice": "4.0 °C",
+    "fault": "this is the highest rise, reached at 20 mL when Solution P-6 was used up, not the rise after 12 mL"
+   },
+   {
+    "choice": "0.6 °C",
+    "fault": "this reads the line at 3 mL, treating 3 squeezes as 3 mL instead of 12 mL"
+   }
+  ],
+  "real_world_check": "In a reaction that releases thermal energy, the temperature rise grows with the amount reacted until one reactant is used up; adding more room-temperature solution after that only dilutes the mixture and lowers the temperature slightly.",
+  "prior_free": "The standard says a reaction can release thermal energy, but only this graph gives the rise at 12 mL; the student must turn 3 squeezes into 12 mL and read the line there."
+ },
+ {
+  "id": "MSB1-P7-17",
+  "map_area": "Physical Science",
+  "grade_target": 7,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 212-221",
+  "dci": "PS4",
+  "ngss_pe": "MS-PS4-3",
+  "kind": "investigation",
+  "stimulus": "procedure",
+  "format": "claim",
+  "ask": "not-supported",
+  "invented": true,
+  "names_used": [
+   "Method M",
+   "Method N"
+  ],
+  "passage": "Students sent the same list of 20 numbers down a long, dim hallway in two ways. In Method M, a lamp glowed at one of ten brightness levels for each number, from 0 to 9, and a light meter at the far end turned each brightness back into a number. In Method N, each number was sent as a pattern of on-and-off flashes from the same lamp, read by the same meter. They sent the list with 0, 1 and 2 sheets of tissue paper taped over the lamp. Method M gave 1, 6 and 13 wrong numbers. Method N gave 0, 0 and 1 wrong numbers.",
+  "graphic": null,
+  "prompt": "Which statement is NOT supported by the results?",
+  "choices": [
+   "Adding tissue paper raised the number of errors more for Method N than for Method M.",
+   "Method M made more errors each time a sheet of tissue paper was added.",
+   "With two sheets, Method N made fewer errors than Method M did.",
+   "Method N made zero errors when the lamp had no tissue on it."
+  ],
+  "correct_answer": "Adding tissue paper raised the number of errors more for Method N than for Method M.",
+  "key_evidence": {
+   "refs": [
+    {
+     "quote": "Method M gave 1, 6 and 13 wrong numbers. Method N gave 0, 0 and 1 wrong numbers."
+    }
+   ]
+  },
+  "explanation": "Going from no tissue to two sheets, Method M went from 1 to 13 wrong numbers, a rise of 12, while Method N went from 0 to 1, a rise of 1. The tissue raised errors far more for Method M, so this statement contradicts the results.",
+  "distractor_rationales": [
+   {
+    "choice": "Method M made more errors each time a sheet of tissue paper was added.",
+    "fault": "supported: Method M went from 1 to 6 to 13 wrong numbers as sheets were added"
+   },
+   {
+    "choice": "With two sheets, Method N made fewer errors than Method M did.",
+    "fault": "supported: with two sheets Method N had 1 wrong number and Method M had 13"
+   },
+   {
+    "choice": "Method N made zero errors when the lamp had no tissue on it.",
+    "fault": "supported: Method N gave 0 wrong numbers with no tissue paper"
+   }
+  ],
+  "real_world_check": "A signal sent as on-off pulses (digital) is read more reliably through noise or weakening than one sent as many brightness levels (analog), because only two states must be told apart (MS-PS4-3)."
+ },
+ {
+  "id": "MSB1-P7-18",
+  "map_area": "Physical Science",
+  "grade_target": 7,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 212-221",
+  "dci": "PS2",
+  "ngss_pe": "MS-PS2-3",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "process",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "Ana strokes a steel paper clip many times in one direction with a strong magnet. Afterward, the paper clip by itself picks up small steel pins. What process happened to the paper clip?",
+  "choices": [
+   "static charging",
+   "transfer of iron atoms",
+   "magnetizing",
+   "heating by friction"
+  ],
+  "correct_answer": "magnetizing",
+  "explanation": "Stroking steel with a magnet lines up tiny magnetic regions inside the steel, so the clip becomes a weak magnet itself and attracts other steel objects.",
+  "distractor_rationales": [
+   {
+    "choice": "static charging",
+    "fault": "misconception: a magnet's pull is the same thing as static electricity; the clip attracts only steel pins, a magnetic effect"
+   },
+   {
+    "choice": "transfer of iron atoms",
+    "fault": "misconception: magnetism is a material that flows from the magnet into the clip; no matter moves between them"
+   },
+   {
+    "choice": "heating by friction",
+    "fault": "misconception: rubbing makes metal magnetic by warming it; heating actually weakens magnets"
+   }
+  ],
+  "real_world_check": "Stroking steel with a permanent magnet aligns its magnetic domains, turning it into a temporary magnet; heat tends to destroy that alignment (MS-PS2-3)."
+ },
+ {
+  "id": "MSB1-P7-19",
+  "map_area": "Physical Science",
+  "grade_target": 7,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 212-221",
+  "dci": "PS2",
+  "ngss_pe": "MS-PS2-1",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "predicts",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "Two students stand face to face on skateboards on a smooth, level floor. One student has a mass of 40 kg and the other 60 kg. They press their palms together and push off. What will happen?",
+  "choices": [
+   "The heavier student feels the larger push and rolls away faster.",
+   "The pushes are equal in size, and the lighter student rolls away faster.",
+   "The pushes are equal in size, so both students roll away at the same speed.",
+   "The lighter student rolls away, and the heavier one stays put."
+  ],
+  "correct_answer": "The pushes are equal in size, and the lighter student rolls away faster.",
+  "explanation": "By Newton's third law the two pushes are equal in size and opposite in direction. The same size force changes the motion of the smaller mass more, so the 40 kg student rolls away faster.",
+  "distractor_rationales": [
+   {
+    "choice": "The heavier student feels the larger push and rolls away faster.",
+    "fault": "misconception: the heavier object in an interaction gets the larger force; the forces are equal, and the larger mass speeds up less"
+   },
+   {
+    "choice": "The pushes are equal in size, so both students roll away at the same speed.",
+    "fault": "misconception: equal forces give equal motion no matter the mass; the lighter student speeds up more"
+   },
+   {
+    "choice": "The lighter student rolls away, and the heavier one stays put.",
+    "fault": "misconception: only the lighter object is moved by a push; the heavier student is pushed too and rolls the other way, more slowly"
+   }
+  ],
+  "real_world_check": "Interacting objects exert equal and opposite forces on each other, and the same force gives a smaller mass a greater change in motion (MS-PS2-1, MS-PS2-2)."
+ },
+ {
+  "id": "MSB1-P7-20",
+  "map_area": "Physical Science",
+  "grade_target": 7,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 212-221",
+  "dci": "PS2",
+  "ngss_pe": "MS-PS2-4",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "predicts",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "A space probe is launched from Earth. Its engines shut off, and it coasts farther and farther away toward another planet. What happens to the gravitational force between Earth and the probe as the distance grows?",
+  "choices": [
+   "It drops to zero once the probe is above the air.",
+   "It stays the same because the masses of Earth and the probe do not change.",
+   "It turns into a push that keeps the probe moving away from Earth.",
+   "It becomes weaker but still pulls the probe toward Earth."
+  ],
+  "correct_answer": "It becomes weaker but still pulls the probe toward Earth.",
+  "explanation": "Gravitational force depends on both mass and distance. As the distance grows, the attraction gets weaker, but it never switches off or turns into a push.",
+  "distractor_rationales": [
+   {
+    "choice": "It drops to zero once the probe is above the air.",
+    "fault": "misconception: there is no gravity in space or above the atmosphere; Earth's pull extends far beyond the air"
+   },
+   {
+    "choice": "It stays the same because the masses of Earth and the probe do not change.",
+    "fault": "misconception: gravity depends only on mass; it also gets weaker with distance"
+   },
+   {
+    "choice": "It turns into a push that keeps the probe moving away from Earth.",
+    "fault": "misconception: a moving object needs a force pushing it forward to keep moving; gravity only attracts, and the probe coasts on its own motion"
+   }
+  ],
+  "real_world_check": "Gravitational forces are always attractive and depend on the masses of the objects and the distance between them, getting weaker as distance increases (MS-PS2-4)."
+ }
+]

@@ -1,0 +1,116 @@
+{
+  "id": "MSB1-L6-10",
+  "map_area": "Life Science",
+  "grade_target": 6,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 199-208",
+  "dci": "LS4",
+  "ngss_pe": "MS-LS4-4",
+  "kind": "data",
+  "stimulus": "scatter",
+  "format": "trend",
+  "ask": "increase-then-level",
+  "invented": true,
+  "names_used": [
+    "stick insect line J-12"
+  ],
+  "passage": "Years ago, a shrub with brown stems replaced most of the green plants on an island. Stick insect line J-12 lives there. Some of the insects have brown bodies, and birds spot them less easily on brown stems. Each point shows one yearly survey.",
+  "graphic": {
+    "type": "scatter",
+    "points": [
+      [
+        0,
+        8
+      ],
+      [
+        1,
+        15
+      ],
+      [
+        2,
+        24
+      ],
+      [
+        3,
+        33
+      ],
+      [
+        4,
+        41
+      ],
+      [
+        5,
+        46
+      ],
+      [
+        6,
+        48
+      ],
+      [
+        7,
+        48
+      ],
+      [
+        8,
+        48
+      ],
+      [
+        9,
+        48
+      ],
+      [
+        10,
+        48
+      ]
+    ],
+    "xLabel": "Years since the brown shrub spread",
+    "yLabel": "Insects with brown bodies (%)",
+    "caption": "Brown-bodied stick insects in line J-12, yearly surveys"
+  },
+  "prompt": "Based on the graph, which best describes how the percent of brown-bodied insects changed over the 10 years?",
+  "choices": [
+    "The percent rose, then stayed the same.",
+    "The percent kept rising.",
+    "The percent rose, then it fell.",
+    "The percent remained level."
+  ],
+  "correct_answer": "The percent rose, then stayed the same.",
+  "key_evidence": {
+    "refs": [
+      [
+        0,
+        8
+      ],
+      [
+        5,
+        46
+      ],
+      [
+        6,
+        48
+      ],
+      [
+        10,
+        48
+      ]
+    ]
+  },
+  "explanation": "The percent climbs from 8% at year 0 to 46% at year 5, then holds at 48% in every survey from year 6 to year 10. It neither keeps climbing nor falls back.",
+  "distractor_rationales": [
+    {
+      "choice": "The percent kept rising.",
+      "fault": "the percent stopped rising after year 6; the last five surveys are all 48%"
+    },
+    {
+      "choice": "The percent rose, then it fell.",
+      "fault": "after rising, the percent held at 48% and never fell back"
+    },
+    {
+      "choice": "The percent remained level.",
+      "fault": "the percent rose from 8% to 46% over the first five years, so it did not remain level"
+    }
+  ],
+  "real_world_check": "When a trait helps individuals survive, its share in a population rises over generations and can level off below 100%.",
+  "prior_free": "The setup says brown insects survive better, so a student expects a rise, but three options begin with a rise: whether it keeps climbing, levels at 48% or falls back after year 6 is shown only by the points."
+}

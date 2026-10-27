@@ -1,0 +1,1495 @@
+[
+ {
+  "id": "MSB1-E5-01",
+  "map_area": "Earth and Space Science",
+  "grade_target": 5,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 186-195",
+  "dci": "ESS1",
+  "ngss_pe": "5-ESS1-2",
+  "kind": "data",
+  "stimulus": "bar",
+  "format": "values",
+  "ask": "ratio",
+  "invented": true,
+  "names_used": [
+   "Belcott"
+  ],
+  "passage": "Students in the town of Belcott stood a stick 1 meter tall straight up in an open schoolyard. On one spring day, they measured the length of its shadow at five different times.",
+  "graphic": {
+   "type": "bar",
+   "bars": [
+    {
+     "label": "8 a.m.",
+     "value": 2.4
+    },
+    {
+     "label": "10 a.m.",
+     "value": 1.2
+    },
+    {
+     "label": "Noon",
+     "value": 0.6
+    },
+    {
+     "label": "2 p.m.",
+     "value": 0.9
+    },
+    {
+     "label": "4 p.m.",
+     "value": 1.8
+    }
+   ],
+   "xLabel": "Time of day",
+   "yLabel": "Shadow length (m)",
+   "caption": "Shadow of the stick in Belcott on one spring day"
+  },
+  "prompt": "Based on the graph, the shadow at 4 p.m. was how many times as long as the shadow at noon?",
+  "choices": [
+   "2.0 times",
+   "4.0 times",
+   "1.5 times",
+   "3.0 times"
+  ],
+  "correct_answer": "3.0 times",
+  "key_evidence": {
+   "refs": [
+    "4 p.m.",
+    "Noon"
+   ],
+   "expr": "v0 / v1"
+  },
+  "explanation": "The 4 p.m. bar reaches 1.8 m and the noon bar reaches 0.6 m. 1.8 divided by 0.6 is 3.0, so the 4 p.m. shadow was 3.0 times as long.",
+  "distractor_rationales": [
+   {
+    "choice": "2.0 times",
+    "fault": "uses the 10 a.m. bar (1.2 m) instead of the 4 p.m. bar: 1.2 / 0.6"
+   },
+   {
+    "choice": "4.0 times",
+    "fault": "uses the 8 a.m. bar (2.4 m) instead of the 4 p.m. bar: 2.4 / 0.6"
+   },
+   {
+    "choice": "1.5 times",
+    "fault": "divides by the 10 a.m. shadow (1.2 m) instead of the noon shadow: 1.8 / 1.2"
+   }
+  ],
+  "real_world_check": "A shadow is shortest near midday, when the Sun is highest, and grows longer as the Sun gets lower in the morning and afternoon.",
+  "prior_free": "Knowing that shadows are shortest near midday gives no size for the change; the comparison of the 4 p.m. and noon shadows exists only in these invented bar heights."
+ },
+ {
+  "id": "MSB1-E5-02",
+  "map_area": "Earth and Space Science",
+  "grade_target": 5,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 186-195",
+  "dci": "ESS2",
+  "ngss_pe": "3-ESS2-1",
+  "kind": "data",
+  "stimulus": "line",
+  "format": "values",
+  "ask": "read",
+  "invented": true,
+  "names_used": [
+   "Station C-4"
+  ],
+  "passage": "A weather station named Station C-4 recorded the air temperature every 2 hours on one spring day. The first reading was taken at sunrise.",
+  "graphic": {
+   "type": "line",
+   "series": [
+    {
+     "points": [
+      [
+       0,
+       4
+      ],
+      [
+       2,
+       8
+      ],
+      [
+       4,
+       12
+      ],
+      [
+       6,
+       16
+      ],
+      [
+       8,
+       14
+      ]
+     ]
+    }
+   ],
+   "xLabel": "Hours after sunrise",
+   "yLabel": "Air temperature (°C)",
+   "caption": "Air temperature at Station C-4 on one spring day"
+  },
+  "prompt": "According to the graph, what was the air temperature 4 hours after sunrise?",
+  "choices": [
+   "16 °C",
+   "8 °C",
+   "14 °C",
+   "12 °C"
+  ],
+  "correct_answer": "12 °C",
+  "key_evidence": {
+   "refs": [
+    [
+     4,
+     12
+    ]
+   ],
+   "expr": "v0"
+  },
+  "explanation": "Find 4 on the hours axis. The point above it lines up with 12 on the temperature axis, so the air was 12 °C four hours after sunrise.",
+  "distractor_rationales": [
+   {
+    "choice": "16 °C",
+    "fault": "reads the highest point, which is at 6 hours, not 4 hours"
+   },
+   {
+    "choice": "8 °C",
+    "fault": "reads the point at 2 hours after sunrise, one point too early"
+   },
+   {
+    "choice": "14 °C",
+    "fault": "reads the last point, at 8 hours, after the air began cooling"
+   }
+  ],
+  "real_world_check": "Air temperature usually rises through the morning as sunlight warms the ground and air, then can fall later in the day.",
+  "prior_free": "Weather knowledge says air often warms after sunrise, but not how warm this invented station was at any hour; only the plotted point gives the reading."
+ },
+ {
+  "id": "MSB1-E5-03",
+  "map_area": "Earth and Space Science",
+  "grade_target": 5,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 186-195",
+  "dci": "ESS3",
+  "ngss_pe": "4-ESS3-2",
+  "kind": "investigation",
+  "stimulus": "procedure",
+  "format": "variable",
+  "ask": "independent",
+  "invented": true,
+  "names_used": [
+   "Arbel School"
+  ],
+  "passage": "Students at Arbel School tested ways to help a building stay standing during an earthquake. They built four towers from wooden blocks. They kept the number of blocks in each tower at 20. Each tower stood on a different pad: foam, rubber, cork, or bare wood. They wrote the pad material on a card beside each tower. They set each tower on a shake table and kept the table's shaking speed the same for every test. They also kept the length of each shaking test at 30 seconds. After each test, they counted the blocks that fell.",
+  "graphic": null,
+  "prompt": "Which variable did the students change on purpose in this investigation?",
+  "choices": [
+   "the table's shaking speed",
+   "the number of blocks in each tower",
+   "the pad material",
+   "the length of each shaking test"
+  ],
+  "correct_answer": "the pad material",
+  "option_roles": [
+   "setting",
+   "setting",
+   "setting",
+   "setting"
+  ],
+  "key_evidence": {
+   "refs": [
+    {
+     "quote": "Each tower stood on a different pad"
+    }
+   ]
+  },
+  "explanation": "Each tower stood on a different pad (foam, rubber, cork or bare wood), so the pad material is what the students changed on purpose. The other three were held the same in every test.",
+  "distractor_rationales": [
+   {
+    "choice": "the table's shaking speed",
+    "fault": "the procedure says it stayed the same for every test"
+   },
+   {
+    "choice": "the number of blocks in each tower",
+    "fault": "it was kept at 20 blocks for every tower"
+   },
+   {
+    "choice": "the length of each shaking test",
+    "fault": "every shaking test was kept at 30 seconds"
+   }
+  ],
+  "real_world_check": "In an investigation, the independent variable is the one factor changed on purpose, while the other factors are held the same."
+ },
+ {
+  "id": "MSB1-E5-04",
+  "map_area": "Earth and Space Science",
+  "grade_target": 5,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 186-195",
+  "dci": "ESS1",
+  "ngss_pe": "4-ESS1-1",
+  "kind": "investigation",
+  "stimulus": "procedure",
+  "format": "claim",
+  "ask": "not-supported",
+  "invented": true,
+  "names_used": [
+   "Efton"
+  ],
+  "passage": "Students studied the rock layers in the wall of a road cut near the town of Efton. The layers are flat and have not been tipped, folded or flipped. The students drew four layers and searched each one for fossils. Layer 1, at the bottom, held fossil shells of clams and sea snails. Layer 2 held fossils of sea stars. Layer 3 held fossil fern leaves and pieces of tree bark. Layer 4, at the top, held rounded river pebbles and no fossils.",
+  "graphic": null,
+  "prompt": "Which claim is NOT supported by what the students observed?",
+  "choices": [
+   "Sea animals lived here before ferns grew in this place.",
+   "The fern layer formed before both layers that hold sea fossils.",
+   "Land plants grew in this place at one time long ago.",
+   "A river ran through this place after the ferns had grown."
+  ],
+  "correct_answer": "The fern layer formed before both layers that hold sea fossils.",
+  "key_evidence": {
+   "refs": [
+    {
+     "quote": "Layer 3 held fossil fern leaves"
+    },
+    {
+     "quote": "Layer 1, at the bottom, held fossil shells"
+    }
+   ]
+  },
+  "explanation": "In flat, unflipped layers, lower layers formed first. The fern fossils are in Layer 3, above both sea-fossil layers (1 and 2), so the fern layer formed later, not earlier. The other three claims match the layers.",
+  "distractor_rationales": [
+   {
+    "choice": "Sea animals lived here before ferns grew in this place.",
+    "fault": "supported: the sea fossils in Layers 1 and 2 lie below the ferns in Layer 3"
+   },
+   {
+    "choice": "Land plants grew in this place at one time long ago.",
+    "fault": "supported: Layer 3 holds fern leaves and tree bark, which are land plants"
+   },
+   {
+    "choice": "A river ran through this place after the ferns had grown.",
+    "fault": "supported: rounded river pebbles in Layer 4 lie above the fern layer"
+   }
+  ],
+  "real_world_check": "In rock layers that have not been overturned, lower layers formed before the layers above them, and fossils show what lived there at the time."
+ },
+ {
+  "id": "MSB1-E5-05",
+  "map_area": "Earth and Space Science",
+  "grade_target": 5,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 186-195",
+  "dci": "ESS3",
+  "ngss_pe": "5-ESS3-1",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "explains",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "Farmers on a wide, open stretch of land plant long rows of trees along the edges of their fields. Strong spring winds blow across the land while the fields are still bare. Which statement best explains how the rows of trees help protect the farmland?",
+  "choices": [
+   "The trees slow the wind near the ground, so it carries off less soil.",
+   "The tree roots spread out under the whole field and hold the soil in place.",
+   "The trees stop the wind, so the air over the fields stays still.",
+   "Fallen leaves become new soil each spring as fast as wind takes it."
+  ],
+  "correct_answer": "The trees slow the wind near the ground, so it carries off less soil.",
+  "explanation": "A row of trees breaks the wind and slows it near the ground. Slower wind can lift and carry less loose soil off the bare fields, so less soil is lost.",
+  "distractor_rationales": [
+   {
+    "choice": "The tree roots spread out under the whole field and hold the soil in place.",
+    "fault": "misconception: roots at the field edge anchor the soil across a whole field; they reach only a short way"
+   },
+   {
+    "choice": "The trees stop the wind, so the air over the fields stays still.",
+    "fault": "misconception: a windbreak stops the wind; it only slows it, and air still moves over the field"
+   },
+   {
+    "choice": "Fallen leaves become new soil each spring as fast as wind takes it.",
+    "fault": "misconception: soil forms quickly; new soil forms far more slowly than wind can blow it away"
+   }
+  ],
+  "real_world_check": "Windbreaks of trees reduce wind speed near the ground on their downwind side, which reduces wind erosion of soil."
+ },
+ {
+  "id": "MSB1-E5-06",
+  "map_area": "Earth and Space Science",
+  "grade_target": 5,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 186-195",
+  "dci": "ESS1",
+  "ngss_pe": "5-ESS1-1",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "explains",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "On a clear day, a student sees the Sun but no other stars. On a clear night, she sees many stars. Which statement best explains why the other stars are not seen in the daytime?",
+  "choices": [
+   "Stars stop giving off light in the morning, once the Sun comes up in the east.",
+   "The Moon covers up the other stars during the day.",
+   "Stars move to the far side of the Sun during the daytime.",
+   "Sunlight brightens the whole sky, and faint starlight is lost in it."
+  ],
+  "correct_answer": "Sunlight brightens the whole sky, and faint starlight is lost in it.",
+  "explanation": "The other stars are still in the sky and still shining in the daytime. Sunlight spread across the sky makes it far brighter than the faint light reaching us from those distant stars, so we cannot pick them out.",
+  "distractor_rationales": [
+   {
+    "choice": "Stars stop giving off light in the morning, once the Sun comes up in the east.",
+    "fault": "misconception: stars shine only at night; they give off light all the time"
+   },
+   {
+    "choice": "The Moon covers up the other stars during the day.",
+    "fault": "misconception: the Moon hides the stars; the Moon is far too small to cover the sky, and it is often up at night too"
+   },
+   {
+    "choice": "Stars move to the far side of the Sun during the daytime.",
+    "fault": "misconception: stars travel away in the day; day and night come from Earth spinning, and the stars do not move around the Sun"
+   }
+  ],
+  "real_world_check": "Stars are above the horizon in daytime too, but sunlight scattered by the air makes the sky much brighter than their light."
+ },
+ {
+  "id": "MSB1-E5-07",
+  "map_area": "Earth and Space Science",
+  "grade_target": 5,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 196-205",
+  "dci": "ESS2",
+  "ngss_pe": "4-ESS2-1",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "values",
+  "ask": "difference",
+  "invented": true,
+  "names_used": [
+   "Sample A-1",
+   "Sample B-2",
+   "Sample C-3",
+   "Sample D-4"
+  ],
+  "passage": "Students placed four rock samples, one at a time, in a jar with water and small pebbles. They turned the jar for three days to model rocks tumbling in a fast stream. They weighed each rock before and after.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Sample A-1",
+    "Sample B-2",
+    "Sample C-3",
+    "Sample D-4"
+   ],
+   "colLabels": [
+    "Mass before (g)",
+    "Mass after (g)"
+   ],
+   "cells": [
+    [
+     120,
+     111
+    ],
+    [
+     120,
+     96
+    ],
+    [
+     150,
+     133
+    ],
+    [
+     150,
+     144
+    ]
+   ],
+   "caption": "Table 1. Rock masses before and after tumbling"
+  },
+  "prompt": "Based on Table 1, how many grams of mass did Sample C-3 lose?",
+  "choices": [
+   "17 g",
+   "9 g",
+   "24 g",
+   "22 g"
+  ],
+  "correct_answer": "17 g",
+  "key_evidence": {
+   "refs": [
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ]
+   ],
+   "expr": "v0 - v1"
+  },
+  "explanation": "Sample C-3 had a mass of 150 g before and 133 g after. 150 minus 133 is 17, so it lost 17 g.",
+  "distractor_rationales": [
+   {
+    "choice": "9 g",
+    "fault": "this is the loss for Sample A-1 (120 - 111), the wrong row"
+   },
+   {
+    "choice": "24 g",
+    "fault": "this is the loss for Sample B-2 (120 - 96), the wrong row"
+   },
+   {
+    "choice": "22 g",
+    "fault": "subtracts Sample A-1's after mass from Sample C-3's after mass (133 - 111)"
+   }
+  ],
+  "real_world_check": "Rocks knocked against pebbles in moving water wear down and lose mass, which is a kind of weathering.",
+  "prior_free": "The standard says moving water and rubbing wear rock down, but not how much any one rock loses; the loss is found only from Sample C-3's two invented masses."
+ },
+ {
+  "id": "MSB1-E5-08",
+  "map_area": "Earth and Space Science",
+  "grade_target": 5,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 196-205",
+  "dci": "ESS3",
+  "ngss_pe": "3-ESS3-1",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "values",
+  "ask": "interpolate",
+  "invented": true,
+  "names_used": [
+   "Cadley"
+  ],
+  "passage": "Students built a model of the town of Cadley beside a model river on a long tray. They put a clay wall between the river and the houses. To model a flood, they poured 500 mL of water down the river. They measured how much water got past the wall. They tested walls of four heights.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Test 1",
+    "Test 2",
+    "Test 3",
+    "Test 4"
+   ],
+   "colLabels": [
+    "Wall height (cm)",
+    "Water that got past the wall (mL)"
+   ],
+   "cells": [
+    [
+     2,
+     150
+    ],
+    [
+     4,
+     110
+    ],
+    [
+     6,
+     70
+    ],
+    [
+     8,
+     40
+    ]
+   ],
+   "caption": "Table 1. Flood water that got past each clay wall"
+  },
+  "prompt": "The students plan to try a wall 5 cm tall. Based on Table 1, about how much water would most likely get past it?",
+  "choices": [
+   "110 mL",
+   "130 mL",
+   "90 mL",
+   "70 mL"
+  ],
+  "correct_answer": "90 mL",
+  "key_evidence": {
+   "refs": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     1
+    ]
+   ],
+   "expr": "(v0 + v1) / 2"
+  },
+  "explanation": "A 5 cm wall is halfway between the 4 cm wall (110 mL got past) and the 6 cm wall (70 mL). Halfway between 110 and 70 is 90 mL.",
+  "distractor_rationales": [
+   {
+    "choice": "110 mL",
+    "fault": "this is the 4 cm wall's result; a taller 5 cm wall should let less water past"
+   },
+   {
+    "choice": "130 mL",
+    "fault": "is halfway between the 2 cm and 4 cm walls, the wrong pair of rows"
+   },
+   {
+    "choice": "70 mL",
+    "fault": "this is the 6 cm wall's result; a shorter 5 cm wall should let more water past"
+   }
+  ],
+  "real_world_check": "A taller flood wall holds back more floodwater, so less water gets past it to the houses.",
+  "prior_free": "Knowing a taller wall holds back more water gives only the direction; the estimate for 5 cm needs the invented 4 cm and 6 cm results."
+ },
+ {
+  "id": "MSB1-E5-09",
+  "map_area": "Earth and Space Science",
+  "grade_target": 5,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 196-205",
+  "dci": "ESS3",
+  "ngss_pe": "4-ESS3-2",
+  "kind": "data",
+  "stimulus": "line",
+  "format": "trend",
+  "ask": "increase",
+  "invented": true,
+  "names_used": [
+   "Corran"
+  ],
+  "passage": "Wind blows sand off the shore at the town of Corran and onto a road. The town put up a fence made of wooden slats to catch the blowing sand. Every two months, workers measured the height of the sand piled against the fence.",
+  "graphic": {
+   "type": "line",
+   "series": [
+    {
+     "points": [
+      [
+       0,
+       0
+      ],
+      [
+       2,
+       14
+      ],
+      [
+       4,
+       30
+      ],
+      [
+       6,
+       44
+      ],
+      [
+       8,
+       60
+      ],
+      [
+       10,
+       75
+      ]
+     ]
+    }
+   ],
+   "xLabel": "Months after the fence was built",
+   "yLabel": "Height of sand at the fence (cm)",
+   "caption": "Sand piled against the fence at Corran"
+  },
+  "prompt": "Based on the graph, how did the height of the sand at the fence change during the 10 months?",
+  "choices": [
+   "It fell.",
+   "It stayed the same.",
+   "It increased and then leveled off.",
+   "It increased."
+  ],
+  "correct_answer": "It increased.",
+  "key_evidence": {
+   "refs": [
+    [
+     0,
+     0
+    ],
+    [
+     8,
+     60
+    ],
+    [
+     10,
+     75
+    ]
+   ]
+  },
+  "explanation": "The height goes from 0 cm to 75 cm, and it is still climbing between month 8 (60 cm) and month 10 (75 cm). It went up the whole time and never flattened out.",
+  "distractor_rationales": [
+   {
+    "choice": "It fell.",
+    "fault": "every point is higher than the one before it"
+   },
+   {
+    "choice": "It stayed the same.",
+    "fault": "the height changed from 0 cm to 75 cm"
+   },
+   {
+    "choice": "It increased and then leveled off.",
+    "fault": "it rose 15 cm in the last two months, so it had not leveled off"
+   }
+  ],
+  "real_world_check": "A fence slows the wind near the ground, so blowing sand drops and piles up against it.",
+  "prior_free": "Knowing a fence traps blowing sand predicts growth but not whether the pile had already stopped growing; only the last points show it still rising."
+ },
+ {
+  "id": "MSB1-E5-10",
+  "map_area": "Earth and Space Science",
+  "grade_target": 5,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 196-205",
+  "dci": "ESS1",
+  "ngss_pe": "4-ESS1-1",
+  "kind": "data",
+  "stimulus": "scatter",
+  "format": "trend",
+  "ask": "decrease",
+  "invented": true,
+  "names_used": [
+   "Site Abbery"
+  ],
+  "passage": "Scientists drilled a core through flat rock layers at Site Abbery. The layers have not been tipped or flipped. They cut a sample from the core at each meter of depth and counted the fossil shells in 100 grams of each sample.",
+  "graphic": {
+   "type": "scatter",
+   "points": [
+    [
+     1,
+     42
+    ],
+    [
+     2,
+     38
+    ],
+    [
+     3,
+     35
+    ],
+    [
+     4,
+     29
+    ],
+    [
+     5,
+     24
+    ],
+    [
+     6,
+     22
+    ],
+    [
+     7,
+     16
+    ],
+    [
+     8,
+     11
+    ]
+   ],
+   "xLabel": "Depth below the surface (m)",
+   "yLabel": "Fossil shells in 100 g of rock",
+   "caption": "Fossil shells in core samples from Site Abbery"
+  },
+  "prompt": "Based on the graph, how did the number of fossil shells change as the depth of the samples increased?",
+  "choices": [
+   "The count went higher.",
+   "The count stayed the same.",
+   "The count fell.",
+   "The count rose, then leveled off."
+  ],
+  "correct_answer": "The count fell.",
+  "key_evidence": {
+   "refs": [
+    [
+     1,
+     42
+    ],
+    [
+     4,
+     29
+    ],
+    [
+     8,
+     11
+    ]
+   ]
+  },
+  "explanation": "The shallowest sample (1 m) had 42 shells, the 4 m sample had 29, and the deepest (8 m) had 11. Deeper samples had fewer shells.",
+  "distractor_rationales": [
+   {
+    "choice": "The count went higher.",
+    "fault": "the deepest sample has the fewest shells, 11 compared with 42"
+   },
+   {
+    "choice": "The count stayed the same.",
+    "fault": "the count changes from 42 to 11 across the samples"
+   },
+   {
+    "choice": "The count rose, then leveled off.",
+    "fault": "the count never rises; each deeper part of the graph is lower"
+   }
+  ],
+  "real_world_check": "In flat, undisturbed rock layers, deeper layers are older, and the number of fossils can differ from one layer to the next.",
+  "prior_free": "The rock-layer standard says which layers are older but nothing about how many shells each holds; only these invented points show the count falling."
+ },
+ {
+  "id": "MSB1-E5-11",
+  "map_area": "Earth and Space Science",
+  "grade_target": 5,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 196-205",
+  "dci": "ESS2",
+  "ngss_pe": "5-ESS2-1",
+  "kind": "investigation",
+  "stimulus": "procedure+table",
+  "format": "values",
+  "ask": "ratio",
+  "invented": true,
+  "names_used": [
+   "Soil A-6",
+   "Soil B-4",
+   "Soil C-2",
+   "Soil E-5"
+  ],
+  "passage": "Students tested how much water four soil samples can hold. They put 300 g of each soil in a cup with small holes in the bottom. They poured 200 mL of water onto each soil, one cup at a time. They caught the water that drained out of the holes and measured it. The water that did not drain out stayed in the soil. Table 1 shows the results.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Soil A-6",
+    "Soil B-4",
+    "Soil C-2",
+    "Soil E-5"
+   ],
+   "colLabels": [
+    "Water poured in (mL)",
+    "Water that drained out (mL)"
+   ],
+   "cells": [
+    [
+     200,
+     180
+    ],
+    [
+     200,
+     140
+    ],
+    [
+     200,
+     160
+    ],
+    [
+     200,
+     80
+    ]
+   ],
+   "caption": "Table 1. Water poured onto and drained from four soils"
+  },
+  "prompt": "Based on Table 1, Soil B-4 held how many times as much water as Soil A-6?",
+  "choices": [
+   "3.0 times",
+   "7.0 times",
+   "0.8 times",
+   "6.0 times"
+  ],
+  "correct_answer": "3.0 times",
+  "key_evidence": {
+   "refs": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "expr": "(v0 - v1) / (v2 - v3)"
+  },
+  "explanation": "Soil B-4 held 200 - 140 = 60 mL. Soil A-6 held 200 - 180 = 20 mL. 60 divided by 20 is 3.0.",
+  "distractor_rationales": [
+   {
+    "choice": "7.0 times",
+    "fault": "divides the water that drained from Soil B-4 (140 mL) by the water Soil A-6 held (20 mL)"
+   },
+   {
+    "choice": "0.8 times",
+    "fault": "compares the water that drained out (140 / 180) instead of the water each soil held"
+   },
+   {
+    "choice": "6.0 times",
+    "fault": "uses Soil E-5, which held 120 mL, instead of Soil B-4: 120 / 20"
+   }
+  ],
+  "real_world_check": "Soils differ in how much water they hold, and the water poured in minus the water drained out is the water the soil kept.",
+  "prior_free": "The standard says soil and water interact but gives no amounts; the comparison needs both invented soils' poured and drained water, worked out in two steps."
+ },
+ {
+  "id": "MSB1-E5-12",
+  "map_area": "Earth and Space Science",
+  "grade_target": 5,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 196-205",
+  "dci": "ESS2",
+  "ngss_pe": "4-ESS2-1",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "process",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "A fast stream flows down a mountain carrying sand and pebbles. Where the stream enters a calm lake, it slows down. The sand and pebbles settle to the lake bottom and slowly build a fan of new land. What is the settling of the sand and pebbles called?",
+  "choices": [
+   "deposition of sediment",
+   "erosion by water",
+   "weathering of rock",
+   "uplift of land"
+  ],
+  "correct_answer": "deposition of sediment",
+  "explanation": "When moving water slows, it can no longer carry its sand and pebbles, and it drops them. Dropping carried sediment in a new place is deposition.",
+  "distractor_rationales": [
+   {
+    "choice": "erosion by water",
+    "fault": "misconception: erosion means any work water does; erosion is picking up and carrying sediment away, not dropping it"
+   },
+   {
+    "choice": "weathering of rock",
+    "fault": "misconception: weathering builds land; weathering only breaks rock into smaller pieces where it sits"
+   },
+   {
+    "choice": "uplift of land",
+    "fault": "misconception: all new land is pushed up from below; this land is built by sediment dropped from above"
+   }
+  ],
+  "real_world_check": "When a stream slows on entering still water, it drops its sediment, and this deposition builds deltas and fans."
+ },
+ {
+  "id": "MSB1-E5-13",
+  "map_area": "Earth and Space Science",
+  "grade_target": 5,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 196-205",
+  "dci": "ESS1",
+  "ngss_pe": "5-ESS1-1",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "quantity",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "Two stars give off the same amount of light. Seen from Earth, one of them looks much brighter than the other. Which quantity explains why one star looks brighter?",
+  "choices": [
+   "the star's age",
+   "distance from Earth",
+   "distance from the Sun",
+   "the star's width"
+  ],
+  "correct_answer": "distance from Earth",
+  "explanation": "The two stars give off equal light, so the one that looks brighter must be closer to Earth. A star's light spreads out as it travels, so a nearer star looks brighter.",
+  "distractor_rationales": [
+   {
+    "choice": "the star's age",
+    "fault": "misconception: older stars always look dimmer; how bright a star looks depends on the light it gives off and its distance, and the light is equal here"
+   },
+   {
+    "choice": "distance from the Sun",
+    "fault": "misconception: stars shine by reflecting sunlight; stars make their own light, so distance from the Sun does not matter"
+   },
+   {
+    "choice": "the star's width",
+    "fault": "misconception: a wider star always looks brighter; these two give off the same light, so width cannot explain the difference"
+   }
+  ],
+  "real_world_check": "Two stars that give off the same amount of light look different in brightness from Earth because of their different distances from Earth."
+ },
+ {
+  "id": "MSB1-E5-14",
+  "map_area": "Earth and Space Science",
+  "grade_target": 5,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 196-205",
+  "dci": "ESS3",
+  "ngss_pe": "5-ESS3-1",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "predicts",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "A town paves over a large grassy field to make a parking lot. A stream runs beside the lot. Which prediction about the water reaching the stream during a heavy rain is correct?",
+  "choices": [
+   "Less water will reach the stream, since pavement soaks up rain like a sponge.",
+   "More water will reach the stream, and faster, because rain cannot soak into pavement.",
+   "The same amount will reach it, because rain always ends up in the stream.",
+   "Less water will reach the stream, since hot pavement dries up rain at once."
+  ],
+  "correct_answer": "More water will reach the stream, and faster, because rain cannot soak into pavement.",
+  "explanation": "Grass and soil let rain soak into the ground. Pavement is hard and sealed, so the rain runs off across it and reaches the stream faster and in greater amounts.",
+  "distractor_rationales": [
+   {
+    "choice": "Less water will reach the stream, since pavement soaks up rain like a sponge.",
+    "fault": "misconception: pavement absorbs water; it is sealed, so water runs off it"
+   },
+   {
+    "choice": "The same amount will reach it, because rain always ends up in the stream.",
+    "fault": "misconception: the ground surface does not matter; soil soaks up much of the rain, but pavement does not"
+   },
+   {
+    "choice": "Less water will reach the stream, since hot pavement dries up rain at once.",
+    "fault": "misconception: pavement makes heavy rain vanish at once; evaporation during a storm is far too slow"
+   }
+  ],
+  "real_world_check": "Paved surfaces stop rain from soaking into the ground, which increases the amount and speed of runoff into nearby streams."
+ },
+ {
+  "id": "MSB1-E5-15",
+  "map_area": "Earth and Space Science",
+  "grade_target": 5,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 206-215",
+  "dci": "ESS2",
+  "ngss_pe": "3-ESS2-2",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "conditions",
+  "ask": "greatest",
+  "invented": true,
+  "names_used": [
+   "Eske",
+   "Corvin",
+   "Bastable",
+   "Ambleforth"
+  ],
+  "passage": "The table shows climate records for four places. Each temperature is the average for that month over 30 years.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Ambleforth",
+    "Eske",
+    "Bastable",
+    "Corvin"
+   ],
+   "colLabels": [
+    "Warmest month (°C)",
+    "Coldest month (°C)",
+    "Rain per year (cm)"
+   ],
+   "cells": [
+    [
+     31,
+     20,
+     140
+    ],
+    [
+     29,
+     4,
+     45
+    ],
+    [
+     18,
+     0,
+     60
+    ],
+    [
+     26,
+     5,
+     90
+    ]
+   ],
+   "caption": "Table 1. Climate records for four places"
+  },
+  "prompt": "Based on Table 1, which place has the greatest difference between its warmest-month and coldest-month temperatures?",
+  "choices": [
+   "Corvin",
+   "Eske",
+   "Ambleforth",
+   "Bastable"
+  ],
+  "correct_answer": "Eske",
+  "key_evidence": {
+   "refs": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     3,
+     0
+    ],
+    [
+     3,
+     1
+    ],
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ]
+   ]
+  },
+  "explanation": "Subtract each coldest-month temperature from the warmest-month temperature: Eske 29 - 4 = 25, Corvin 26 - 5 = 21, Bastable 18 - 0 = 18, Ambleforth 31 - 20 = 11. Eske has the greatest difference.",
+  "distractor_rationales": [
+   {
+    "choice": "Corvin",
+    "fault": "its difference is 26 - 5 = 21 degrees, less than the 25 at Eske"
+   },
+   {
+    "choice": "Ambleforth",
+    "fault": "it has the warmest summer month, but its difference is only 31 - 20 = 11 degrees"
+   },
+   {
+    "choice": "Bastable",
+    "fault": "it has the coldest month, but its difference is only 18 - 0 = 18 degrees"
+   }
+  ],
+  "real_world_check": "A place's climate includes its typical temperature range through the year, which is the warmest-month average minus the coldest-month average."
+ },
+ {
+  "id": "MSB1-E5-16",
+  "map_area": "Earth and Space Science",
+  "grade_target": 5,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 206-215",
+  "dci": "ESS3",
+  "ngss_pe": "5-ESS3-1",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "conditions",
+  "ask": "least",
+  "invented": true,
+  "names_used": [
+   "Edon",
+   "Calbry",
+   "Brannock",
+   "Dorrington"
+  ],
+  "passage": "Four schools in one town are working to send less trash to the landfill. The table shows how many students each school has and how much trash each sent to the landfill in one week.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Edon",
+    "Calbry",
+    "Brannock",
+    "Dorrington"
+   ],
+   "colLabels": [
+    "Students",
+    "Trash sent to landfill (kg)"
+   ],
+   "cells": [
+    [
+     200,
+     100
+    ],
+    [
+     400,
+     160
+    ],
+    [
+     100,
+     60
+    ],
+    [
+     500,
+     150
+    ]
+   ],
+   "caption": "Table 1. Trash sent to the landfill by four schools in one week"
+  },
+  "prompt": "Based on Table 1, which school sent the least trash to the landfill for each student?",
+  "choices": [
+   "Calbry",
+   "Edon",
+   "Dorrington",
+   "Brannock"
+  ],
+  "correct_answer": "Dorrington",
+  "key_evidence": {
+   "refs": [
+    [
+     3,
+     0
+    ],
+    [
+     3,
+     1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ]
+   ]
+  },
+  "explanation": "Divide each school's trash by its number of students: Dorrington 150 / 500 = 0.3 kg, Calbry 160 / 400 = 0.4 kg, Edon 100 / 200 = 0.5 kg, Brannock 60 / 100 = 0.6 kg. Dorrington sent the least per student.",
+  "distractor_rationales": [
+   {
+    "choice": "Calbry",
+    "fault": "it sent 160 / 400 = 0.4 kg per student, more than Dorrington's 0.3 kg"
+   },
+   {
+    "choice": "Edon",
+    "fault": "it sent 100 / 200 = 0.5 kg per student, more than Dorrington's 0.3 kg"
+   },
+   {
+    "choice": "Brannock",
+    "fault": "it sent the least trash in total, but 60 / 100 = 0.6 kg per student is the most"
+   }
+  ],
+  "real_world_check": "Comparing trash per person, not total trash, shows which community is doing the most to reduce waste sent to landfills."
+ },
+ {
+  "id": "MSB1-E5-17",
+  "map_area": "Earth and Space Science",
+  "grade_target": 5,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 206-215",
+  "dci": "ESS3",
+  "ngss_pe": "3-ESS3-1",
+  "kind": "data",
+  "stimulus": "bar",
+  "format": "conditions",
+  "ask": "least",
+  "invented": true,
+  "names_used": [
+   "Arley",
+   "Bexter",
+   "Cobbett",
+   "Dax",
+   "Elmerston"
+  ],
+  "passage": "During one storm, students measured how much rainwater ran off five yards into the street drain. Three of the yards, Dax, Cobbett and Elmerston, have rain gardens. A rain garden is a bed of plants that soaks up water. The Arley and Bexter yards do not have rain gardens.",
+  "graphic": {
+   "type": "bar",
+   "bars": [
+    {
+     "label": "Arley",
+     "value": 30
+    },
+    {
+     "label": "Bexter",
+     "value": 140
+    },
+    {
+     "label": "Cobbett",
+     "value": 75
+    },
+    {
+     "label": "Dax",
+     "value": 60
+    },
+    {
+     "label": "Elmerston",
+     "value": 40
+    }
+   ],
+   "xLabel": "Yard",
+   "yLabel": "Water into the drain (L)",
+   "caption": "Rainwater that ran into the street drain from five yards"
+  },
+  "prompt": "Among the yards that have rain gardens, which one sent the least water into the drain?",
+  "choices": [
+   "Arley",
+   "Elmerston",
+   "Dax",
+   "Cobbett"
+  ],
+  "correct_answer": "Elmerston",
+  "key_evidence": {
+   "refs": [
+    "Elmerston",
+    "Dax",
+    "Cobbett"
+   ]
+  },
+  "explanation": "Only Dax, Cobbett and Elmerston have rain gardens. Of their three bars, Elmerston's is the shortest (about 40 L, below Dax at about 60 L and Cobbett at about 75 L).",
+  "distractor_rationales": [
+   {
+    "choice": "Arley",
+    "fault": "its bar is the shortest of all, but the Arley yard has no rain garden"
+   },
+   {
+    "choice": "Dax",
+    "fault": "its bar is taller than Elmerston's, so it sent more water"
+   },
+   {
+    "choice": "Cobbett",
+    "fault": "it has the tallest bar of the three rain-garden yards"
+   }
+  ],
+  "real_world_check": "Rain gardens hold storm water and let it soak into the ground, which reduces runoff that can cause flooding."
+ },
+ {
+  "id": "MSB1-E5-18",
+  "map_area": "Earth and Space Science",
+  "grade_target": 5,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 206-215",
+  "dci": "ESS2",
+  "ngss_pe": "4-ESS2-1",
+  "kind": "investigation",
+  "stimulus": "procedure+table",
+  "format": "conditions",
+  "ask": "controlled-pair",
+  "invented": true,
+  "names_used": [
+   "Tray E",
+   "Tray C-6",
+   "Tray B-35",
+   "Tray DE-14",
+   "Tray A-8",
+   "Tray ABE-207"
+  ],
+  "passage": "Students used a fan to model wind blowing across trays of sand. Every tray held 500 g of sand. From tray to tray, they changed three things: the fan setting, whether pebbles covered the sand, and whether the sand was dry or damp. They ran the fan for 2 minutes over each tray. Then they weighed the sand left in the tray to find how much had blown away.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Tray E",
+    "Tray C-6",
+    "Tray B-35",
+    "Tray DE-14",
+    "Tray A-8",
+    "Tray ABE-207"
+   ],
+   "colLabels": [
+    "Fan setting",
+    "Surface",
+    "Sand",
+    "Sand blown away (g)"
+   ],
+   "cells": [
+    [
+     3,
+     "bare",
+     "dry",
+     52
+    ],
+    [
+     2,
+     "bare",
+     "damp",
+     6
+    ],
+    [
+     2,
+     "pebbles",
+     "damp",
+     2
+    ],
+    [
+     2,
+     "bare",
+     "dry",
+     30
+    ],
+    [
+     3,
+     "bare",
+     "damp",
+     12
+    ],
+    [
+     2,
+     "pebbles",
+     "dry",
+     9
+    ]
+   ],
+   "caption": "Table 1. Sand blown away from six trays"
+  },
+  "prompt": "The students want to find out whether damp sand blows away less than dry sand. Which tray should they compare with Tray C-6?",
+  "choices": [
+   "Tray A-8",
+   "Tray ABE-207",
+   "Tray DE-14",
+   "Tray E"
+  ],
+  "correct_answer": "Tray DE-14",
+  "key_evidence": {
+   "refs": [
+    [
+     3,
+     0
+    ],
+    [
+     3,
+     1
+    ],
+    [
+     3,
+     2
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ]
+   ]
+  },
+  "explanation": "Tray C-6 has fan setting 2, a bare surface and damp sand. Tray DE-14 has fan setting 2 and a bare surface too, but dry sand. It is the only tray that differs from Tray C-6 in the sand alone.",
+  "distractor_rationales": [
+   {
+    "choice": "Tray A-8",
+    "fault": "it has damp sand like Tray C-6 and differs in the fan setting (3), so it tests the fan, not the sand"
+   },
+   {
+    "choice": "Tray ABE-207",
+    "fault": "it has dry sand but is also covered with pebbles, so two things differ"
+   },
+   {
+    "choice": "Tray E",
+    "fault": "it has dry sand but also fan setting 3, so two things differ"
+   }
+  ],
+  "real_world_check": "To test one factor, compare two trials that differ only in that factor; damp sand grains stick together and resist being blown by wind."
+ },
+ {
+  "id": "MSB1-E5-19",
+  "map_area": "Earth and Space Science",
+  "grade_target": 5,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 206-215",
+  "dci": "ESS2",
+  "ngss_pe": "4-ESS2-2",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "structure",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "A map shows ocean depths along one line. Near the coast, the water is 200 m deep. Farther out, the ocean floor is about 4,000 m deep. Then, beside a curved chain of volcanic islands, a long, narrow strip drops to 10,000 m deep. What is this long, narrow, very deep feature called?",
+  "choices": [
+   "trench",
+   "continental shelf",
+   "seamount",
+   "mid-ocean ridge"
+  ],
+  "correct_answer": "trench",
+  "explanation": "A long, narrow strip of ocean floor much deeper than the floor around it, lying beside a chain of volcanic islands, is an ocean trench.",
+  "distractor_rationales": [
+   {
+    "choice": "continental shelf",
+    "fault": "misconception: the shelf is a deep part of the ocean; it is the shallow edge near the coast, like the 200 m water here"
+   },
+   {
+    "choice": "seamount",
+    "fault": "misconception: a seamount is a deep pit; it is an underwater mountain that rises above the ocean floor"
+   },
+   {
+    "choice": "mid-ocean ridge",
+    "fault": "misconception: ridges are the deepest places; a mid-ocean ridge is a raised mountain chain, shallower than the floor around it"
+   }
+  ],
+  "real_world_check": "Ocean trenches are long, narrow, very deep parts of the ocean floor, often found beside chains of volcanic islands."
+ },
+ {
+  "id": "MSB1-E5-20",
+  "map_area": "Earth and Space Science",
+  "grade_target": 5,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 206-215",
+  "dci": "ESS1",
+  "ngss_pe": "5-ESS1-2",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "predicts",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "At 9 p.m. in January, a student in the northern half of Earth sees a bright group of stars high in the southern sky. She looks for the same group at 9 p.m. in July. Which prediction is correct?",
+  "choices": [
+   "It will be in the same spot, because stars do not move across the sky.",
+   "It will look larger, because Earth will be closer to those stars in July.",
+   "It will be gone for good, because stars burn out after a few months.",
+   "It will be up in the daytime then, so she will not see it."
+  ],
+  "correct_answer": "It will be up in the daytime then, so she will not see it.",
+  "explanation": "As Earth travels around the Sun, the stars we face at night change with the seasons. By July, the Sun lies in the direction of that star group, so the group is in the sky during the day and cannot be seen at 9 p.m.",
+  "distractor_rationales": [
+   {
+    "choice": "It will be in the same spot, because stars do not move across the sky.",
+    "fault": "misconception: stars stay fixed in our sky; they appear to move nightly and with the seasons"
+   },
+   {
+    "choice": "It will look larger, because Earth will be closer to those stars in July.",
+    "fault": "misconception: Earth's orbit brings it noticeably closer to stars; the stars are so far away that the change makes no visible difference"
+   },
+   {
+    "choice": "It will be gone for good, because stars burn out after a few months.",
+    "fault": "misconception: stars last only months; stars shine for millions to billions of years"
+   }
+  ],
+  "real_world_check": "Because Earth orbits the Sun, a star group seen high in the evening sky in winter is in the daytime sky six months later."
+ }
+]

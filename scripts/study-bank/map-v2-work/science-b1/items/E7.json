@@ -1,0 +1,1402 @@
+[
+ {
+  "id": "MSB1-E7-01",
+  "map_area": "Earth and Space Science",
+  "grade_target": 7,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 192-201",
+  "dci": "ESS2",
+  "ngss_pe": "MS-ESS2-2",
+  "kind": "data",
+  "stimulus": "bar",
+  "format": "conditions",
+  "ask": "greatest",
+  "invented": true,
+  "names_used": [
+   "Post M-4",
+   "Post NR-12",
+   "Post Q-9",
+   "Post RMN-207",
+   "Post OPQR-5150"
+  ],
+  "passage": "A team set five survey posts along the edge of a sea coast. At each post, they measured how much land the waves wore away during one year.",
+  "graphic": {
+   "type": "bar",
+   "bars": [
+    {
+     "label": "Post Q-9",
+     "value": 0.9
+    },
+    {
+     "label": "Post M-4",
+     "value": 0.4
+    },
+    {
+     "label": "Post RMN-207",
+     "value": 1.6
+    },
+    {
+     "label": "Post NR-12",
+     "value": 0.7
+    },
+    {
+     "label": "Post OPQR-5150",
+     "value": 1.3
+    }
+   ],
+   "xLabel": "Survey post",
+   "yLabel": "Land worn away by waves (m)",
+   "caption": "Land lost to wave erosion at five survey posts in one year"
+  },
+  "prompt": "Based on the graph, at which survey post did the waves wear away the most land during the year?",
+  "choices": [
+   "Post M-4",
+   "Post RMN-207",
+   "Post NR-12",
+   "Post OPQR-5150"
+  ],
+  "correct_answer": "Post RMN-207",
+  "key_evidence": {
+   "refs": [
+    "Post RMN-207"
+   ]
+  },
+  "explanation": "The bar for Post RMN-207 is the tallest, reaching about 1.6 m, so the most land was worn away there. Post OPQR-5150 comes next at about 1.3 m, and every other bar is shorter.",
+  "distractor_rationales": [
+   {
+    "choice": "Post M-4",
+    "fault": "its bar is the shortest, so the least land was lost there, the reverse of what is asked"
+   },
+   {
+    "choice": "Post NR-12",
+    "fault": "its bar is under 1 m, well below the tallest bar on the graph"
+   },
+   {
+    "choice": "Post OPQR-5150",
+    "fault": "its bar is the second tallest, about 1.3 m, still lower than Post RMN-207"
+   }
+  ],
+  "real_world_check": "Waves erode coastlines at different rates from place to place, depending on rock type and wave exposure, so the amount of land lost must be measured at each site."
+ },
+ {
+  "id": "MSB1-E7-02",
+  "map_area": "Earth and Space Science",
+  "grade_target": 7,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 192-201",
+  "dci": "ESS3",
+  "ngss_pe": "MS-ESS3-4",
+  "kind": "data",
+  "stimulus": "bar",
+  "format": "values",
+  "ask": "ratio",
+  "invented": true,
+  "names_used": [
+   "Mennick",
+   "Ostry",
+   "Quell",
+   "Ralo"
+  ],
+  "passage": "A planning office recorded how much forest land was cleared to build new homes in four counties over the same ten years.",
+  "graphic": {
+   "type": "bar",
+   "bars": [
+    {
+     "label": "Mennick",
+     "value": 4
+    },
+    {
+     "label": "Ostry",
+     "value": 1
+    },
+    {
+     "label": "Quell",
+     "value": 3
+    },
+    {
+     "label": "Ralo",
+     "value": 2
+    }
+   ],
+   "xLabel": "County",
+   "yLabel": "Forest cleared for new homes (km²)",
+   "caption": "Forest land cleared for housing in each county over ten years"
+  },
+  "prompt": "Based on the graph, how many times as much forest land was cleared in Mennick County as in Ostry County?",
+  "choices": [
+   "2.0 times",
+   "1.5 times",
+   "3.0 times",
+   "4.0 times"
+  ],
+  "correct_answer": "4.0 times",
+  "key_evidence": {
+   "refs": [
+    "Mennick",
+    "Ostry"
+   ],
+   "expr": "v0 / v1"
+  },
+  "explanation": "The Mennick bar reaches 4 km² and the Ostry bar reaches 1 km². Dividing 4 by 1 gives 4.0, so Mennick cleared four times as much forest land as Ostry.",
+  "distractor_rationales": [
+   {
+    "choice": "2.0 times",
+    "fault": "divides Mennick (4 km²) by Ralo (2 km²) instead of by Ostry"
+   },
+   {
+    "choice": "1.5 times",
+    "fault": "divides Quell (3 km²) by Ralo (2 km²), comparing the wrong two counties"
+   },
+   {
+    "choice": "3.0 times",
+    "fault": "divides Quell (3 km²) by Ostry (1 km²), using the wrong county on top"
+   }
+  ],
+  "real_world_check": "As human populations grow, more land such as forest is cleared for housing, and the amount cleared differs from place to place.",
+  "prior_free": "The standard says growing towns use more land, but it cannot say how much each county cleared; the ratio exists only in these bar heights."
+ },
+ {
+  "id": "MSB1-E7-03",
+  "map_area": "Earth and Space Science",
+  "grade_target": 7,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 192-201",
+  "dci": "ESS2",
+  "ngss_pe": "MS-ESS2-2",
+  "kind": "investigation",
+  "stimulus": "procedure",
+  "format": "variable",
+  "ask": "controlled",
+  "invented": true,
+  "names_used": [
+   "Site Ruann"
+  ],
+  "passage": "Students built a model hillside from a long plastic tray of soil. They wanted to learn what controls how much soil a rainstorm carries downhill. They ran eight trials and changed three settings between trials: the tilt of the tray (10° or 20°), the slope length (40 cm or 80 cm), and the flow rate of the sprinkler (gentle or strong). They tested every combination of these settings once. In every trial, the kind of soil in the tray stayed the same: a fine silt collected at Site Ruann. The sprinkler ran for 5 minutes each time. After each trial, the students dried and weighed the soil that washed into a pan at the foot of the tray.",
+  "graphic": null,
+  "prompt": "Which of these was a controlled variable in the students' investigation?",
+  "choices": [
+   "the tilt of the tray",
+   "the flow rate of the sprinkler",
+   "the slope length",
+   "the kind of soil in the tray"
+  ],
+  "correct_answer": "the kind of soil in the tray",
+  "option_roles": [
+   "setting",
+   "setting",
+   "setting",
+   "setting"
+  ],
+  "key_evidence": {
+   "refs": [
+    {
+     "quote": "the kind of soil in the tray stayed the same"
+    }
+   ]
+  },
+  "explanation": "A controlled variable is held the same in every trial. The procedure says all eight trials used the same fine silt from Site Ruann, so the soil type never changed. The other three settings were each switched between two values.",
+  "distractor_rationales": [
+   {
+    "choice": "the tilt of the tray",
+    "fault": "the tilt was switched between 10° and 20°, so it was changed on purpose, not held the same"
+   },
+   {
+    "choice": "the flow rate of the sprinkler",
+    "fault": "the sprinkler was set to gentle or strong in different trials, so it was changed on purpose"
+   },
+   {
+    "choice": "the slope length",
+    "fault": "the slope was 40 cm in some trials and 80 cm in others, so it was not held constant"
+   }
+  ],
+  "real_world_check": "In a controlled investigation, a controlled variable is kept the same in every trial so that only the tested settings can explain differences in the results."
+ },
+ {
+  "id": "MSB1-E7-04",
+  "map_area": "Earth and Space Science",
+  "grade_target": 7,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 192-201",
+  "dci": "ESS1",
+  "ngss_pe": "MS-ESS1-4",
+  "kind": "investigation",
+  "stimulus": "procedure+table",
+  "format": "conditions",
+  "ask": "least",
+  "invented": true,
+  "names_used": [
+   "Core NQ-14",
+   "Core PRQ-305",
+   "Core M-6",
+   "Core QMNO-7120"
+  ],
+  "passage": "Long ago, a volcano erupted and spread a thin layer of ash across a region. Students studied four sediment cores drilled at different places in that region. In each core, they found the ash layer. Then they measured how thick the sediment was above the ash and below the ash. Sediment builds up over time, so newer layers lie on top of older ones. Table 1 shows their measurements.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Core NQ-14",
+    "Core PRQ-305",
+    "Core M-6",
+    "Core QMNO-7120"
+   ],
+   "colLabels": [
+    "Sediment above ash (cm)",
+    "Sediment below ash (cm)"
+   ],
+   "cells": [
+    [
+     42,
+     18
+    ],
+    [
+     35,
+     7
+    ],
+    [
+     21,
+     64
+    ],
+    [
+     58,
+     12
+    ]
+   ],
+   "caption": "Table 1. Sediment thickness above and below the ash layer in four cores"
+  },
+  "prompt": "Based on Table 1, in which core did the least sediment build up after the volcano erupted?",
+  "choices": [
+   "Core NQ-14",
+   "Core PRQ-305",
+   "Core M-6",
+   "Core QMNO-7120"
+  ],
+  "correct_answer": "Core M-6",
+  "key_evidence": {
+   "refs": [
+    [
+     2,
+     0
+    ]
+   ]
+  },
+  "explanation": "Sediment that built up after the eruption lies above the ash, because newer layers sit on top. Core M-6 has only 21 cm above the ash, less than 35, 42 or 58 cm in the other cores.",
+  "distractor_rationales": [
+   {
+    "choice": "Core NQ-14",
+    "fault": "it has 42 cm of sediment above the ash, twice as much as Core M-6"
+   },
+   {
+    "choice": "Core PRQ-305",
+    "fault": "it has the least sediment BELOW the ash (7 cm), which formed before the eruption, not after"
+   },
+   {
+    "choice": "Core QMNO-7120",
+    "fault": "it has the most sediment above the ash (58 cm), the opposite of the least"
+   }
+  ],
+  "real_world_check": "By the law of superposition, undisturbed sediment layers above a dated layer formed after it, so the thickness above the ash records the sediment deposited since the eruption."
+ },
+ {
+  "id": "MSB1-E7-05",
+  "map_area": "Earth and Space Science",
+  "grade_target": 7,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 192-201",
+  "dci": "ESS2",
+  "ngss_pe": "MS-ESS2-4",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "predicts",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "On a humid summer evening, the sky is clear and the air is still. The air stays near 18 °C all night, but the grass loses heat and becomes a few degrees colder than the air around it. What will most likely be found on the grass by dawn?",
+  "choices": [
+   "A dry surface, as the cool air draws water out of grass.",
+   "Water droplets that condensed from vapor in the humid air.",
+   "Frost, because the grass drops below the freezing point of water.",
+   "Raindrops from clouds too thin to see in the dark."
+  ],
+  "correct_answer": "Water droplets that condensed from vapor in the humid air.",
+  "explanation": "When humid air touches a surface colder than its dew point, water vapor in that air condenses into liquid droplets. The cooled grass chills the air next to it, so dew forms on the blades. This is the condensation step of the water cycle.",
+  "distractor_rationales": [
+   {
+    "choice": "A dry surface, as the cool air draws water out of grass.",
+    "fault": "misconception: cold air soaks up water; cooling air makes it hold less water vapor, so water condenses out of it"
+   },
+   {
+    "choice": "Frost, because the grass drops below the freezing point of water.",
+    "fault": "misconception: any surface cooler than the air freezes; with air near 18 °C, grass a few degrees colder stays far above 0 °C"
+   },
+   {
+    "choice": "Raindrops from clouds too thin to see in the dark.",
+    "fault": "misconception: dew falls from the sky like rain; the sky is clear, and dew forms on the surface from nearby air"
+   }
+  ],
+  "real_world_check": "Dew forms when a surface cools below the dew point of the air touching it, so water vapor in that air condenses into liquid droplets on the surface."
+ },
+ {
+  "id": "MSB1-E7-06",
+  "map_area": "Earth and Space Science",
+  "grade_target": 7,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 192-201",
+  "dci": "ESS3",
+  "ngss_pe": "MS-ESS3-1",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "explains",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "Rich deposits of copper ore are found in a few areas, while most land holds very little copper. Which statement best explains why copper ore is spread so unevenly?",
+  "choices": [
+   "Long-ago geologic processes, like hot water in cracks, gathered copper in certain places.",
+   "Copper ore forms again within a few years in places where miners have dug it out.",
+   "People have already dug up the copper in other places, leaving ore in a few.",
+   "Copper ore grows larger each year in places that get more rain and snow."
+  ],
+  "correct_answer": "Long-ago geologic processes, like hot water in cracks, gathered copper in certain places.",
+  "explanation": "Metal ores form where geologic processes in the past concentrated the metal, for example hot fluids moving through cracks and leaving copper behind as they cooled. These conditions happened only in some places, so the ore is uneven.",
+  "distractor_rationales": [
+   {
+    "choice": "Copper ore forms again within a few years in places where miners have dug it out.",
+    "fault": "misconception: mineral resources renew quickly; ore deposits take thousands to millions of years to form"
+   },
+   {
+    "choice": "People have already dug up the copper in other places, leaving ore in a few.",
+    "fault": "misconception: uneven resources are caused by human removal; the deposits were uneven before mining began"
+   },
+   {
+    "choice": "Copper ore grows larger each year in places that get more rain and snow.",
+    "fault": "misconception: ore grows like a living thing from rainfall; ore forms through slow geologic processes"
+   }
+  ],
+  "real_world_check": "Mineral resources are unevenly distributed because they formed only where past geologic processes, such as hydrothermal activity, concentrated them."
+ },
+ {
+  "id": "MSB1-E7-07",
+  "map_area": "Earth and Space Science",
+  "grade_target": 7,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 202-211",
+  "dci": "ESS2",
+  "ngss_pe": "MS-ESS2-6",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "values",
+  "ask": "difference",
+  "invented": true,
+  "names_used": [
+   "Ossery Range",
+   "Station Merrow",
+   "Station Nalt",
+   "Station Osk",
+   "Station Quill"
+  ],
+  "passage": "Moist winds blow from the ocean toward the Ossery Range from the west. Stations Merrow and Nalt sit on the west side of the range. Stations Osk and Quill sit on the east side.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Station Merrow",
+    "Station Nalt",
+    "Station Osk",
+    "Station Quill"
+   ],
+   "colLabels": [
+    "Elevation (m)",
+    "Yearly rainfall (cm)"
+   ],
+   "cells": [
+    [
+     420,
+     168
+    ],
+    [
+     910,
+     214
+    ],
+    [
+     860,
+     52
+    ],
+    [
+     380,
+     37
+    ]
+   ],
+   "caption": "Elevation and yearly rainfall at four weather stations"
+  },
+  "prompt": "How much more rain falls each year at the wettest west-side station than at the driest east-side station?",
+  "choices": [
+   "131 cm",
+   "162 cm",
+   "177 cm",
+   "116 cm"
+  ],
+  "correct_answer": "177 cm",
+  "key_evidence": {
+   "refs": [
+    [
+     1,
+     1
+    ],
+    [
+     3,
+     1
+    ]
+   ],
+   "expr": "v0 - v1"
+  },
+  "explanation": "The wettest west-side station is Nalt, with 214 cm. The driest east-side station is Quill, with 37 cm. 214 - 37 = 177 cm.",
+  "distractor_rationales": [
+   {
+    "choice": "131 cm",
+    "fault": "uses Merrow (168 cm), the drier west-side station, instead of Nalt: 168 - 37"
+   },
+   {
+    "choice": "162 cm",
+    "fault": "uses Osk (52 cm), the wetter east-side station, instead of Quill: 214 - 52"
+   },
+   {
+    "choice": "116 cm",
+    "fault": "uses the wrong station on both sides: Merrow minus Osk, 168 - 52"
+   }
+  ],
+  "real_world_check": "Moist air forced up a mountain range cools and drops rain on the windward side, leaving the downwind side drier, a rain shadow.",
+  "prior_free": "Knowing the windward side is wetter gives only the direction; the 177 cm gap needs the right two rows of rainfall values."
+ },
+ {
+  "id": "MSB1-E7-08",
+  "map_area": "Earth and Space Science",
+  "grade_target": 7,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 202-211",
+  "dci": "ESS3",
+  "ngss_pe": "MS-ESS3-2",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "values",
+  "ask": "interpolate",
+  "invented": true,
+  "names_used": [
+   "Site Marn",
+   "Site Rennick"
+  ],
+  "passage": "Workers watched two hillsides that might slide. They measured how much water the soil held and how far a marker on the ground moved downhill each day.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Soil water 10%",
+    "Soil water 20%",
+    "Soil water 30%",
+    "Soil water 40%"
+   ],
+   "colLabels": [
+    "Site Marn movement (mm/day)",
+    "Site Rennick movement (mm/day)"
+   ],
+   "cells": [
+    [
+     0.4,
+     0.8
+    ],
+    [
+     1.2,
+     3.6
+    ],
+    [
+     3,
+     5.4
+    ],
+    [
+     6.5,
+     9.6
+    ]
+   ],
+   "caption": "Daily ground movement at two hillsides for different amounts of soil water"
+  },
+  "prompt": "Based on the table, about how fast would the ground at Site Marn move on a day when its soil holds 25% water?",
+  "choices": [
+   "3.0 mm/day",
+   "4.5 mm/day",
+   "3.6 mm/day",
+   "2.1 mm/day"
+  ],
+  "correct_answer": "2.1 mm/day",
+  "key_evidence": {
+   "refs": [
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ]
+   ],
+   "expr": "(v0 + v1) / 2"
+  },
+  "explanation": "25% lies halfway between the 20% and 30% rows. At Site Marn those rows show 1.2 and 3.0 mm/day. Halfway between them is (1.2 + 3.0) / 2 = 2.1 mm/day.",
+  "distractor_rationales": [
+   {
+    "choice": "3.0 mm/day",
+    "fault": "reads the Site Marn value at 30% water instead of estimating between 20% and 30%"
+   },
+   {
+    "choice": "4.5 mm/day",
+    "fault": "estimates halfway in the Site Rennick column, (3.6 + 5.4) / 2, not Site Marn"
+   },
+   {
+    "choice": "3.6 mm/day",
+    "fault": "reads the Site Rennick value at 20% water, the wrong column and no estimate"
+   }
+  ],
+  "real_world_check": "Water in soil adds weight and reduces friction between grains, so wetter slopes generally move faster and are more likely to slide; monitoring this helps forecast landslides.",
+  "prior_free": "The standard says wet slopes are hazardous but not this slope's rate at 25% water; it needs two Site Marn rows, not Rennick's column."
+ },
+ {
+  "id": "MSB1-E7-09",
+  "map_area": "Earth and Space Science",
+  "grade_target": 7,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 202-211",
+  "dci": "ESS1",
+  "ngss_pe": "MS-ESS1-3",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "conditions",
+  "ask": "least",
+  "invented": true,
+  "names_used": [
+   "Ormel",
+   "Rodane",
+   "Nerrowin",
+   "Pask",
+   "Quarnevale"
+  ],
+  "passage": "A space agency plans to land the same 200 kg probe on one of four moons of the planet Ormel. The table lists data for each moon.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Rodane",
+    "Nerrowin",
+    "Pask",
+    "Quarnevale"
+   ],
+   "colLabels": [
+    "Diameter (km)",
+    "Distance from Ormel (thousand km)",
+    "Surface gravity (m/s²)"
+   ],
+   "cells": [
+    [
+     900,
+     310,
+     0.38
+    ],
+    [
+     2400,
+     760,
+     0.67
+    ],
+    [
+     1400,
+     520,
+     0.23
+    ],
+    [
+     1800,
+     1180,
+     0.63
+    ]
+   ],
+   "caption": "Size, distance and surface gravity of four moons of Ormel"
+  },
+  "prompt": "Based on the table, on which moon would the probe weigh the least after it lands?",
+  "choices": [
+   "Nerrowin",
+   "Quarnevale",
+   "Pask",
+   "Rodane"
+  ],
+  "correct_answer": "Pask",
+  "key_evidence": {
+   "refs": [
+    [
+     2,
+     2
+    ]
+   ]
+  },
+  "explanation": "An object's weight on a moon depends on the surface gravity there. Pask has the weakest surface gravity, 0.23 m/s², so the probe would weigh least on Pask, even though Rodane is smaller.",
+  "distractor_rationales": [
+   {
+    "choice": "Nerrowin",
+    "fault": "it has the strongest surface gravity in the table (0.67 m/s²), so the probe would weigh the most there"
+   },
+   {
+    "choice": "Quarnevale",
+    "fault": "it is the farthest from Ormel, but distance from the planet does not set weight on the moon's surface; its gravity is 0.63 m/s²"
+   },
+   {
+    "choice": "Rodane",
+    "fault": "it has the smallest diameter, but its surface gravity (0.38 m/s²) is higher than Pask's"
+   }
+  ],
+  "real_world_check": "Weight equals mass times the local surface gravity, which depends on a body's mass and radius, so a larger, less dense moon can have weaker surface gravity than a smaller, denser one."
+ },
+ {
+  "id": "MSB1-E7-10",
+  "map_area": "Earth and Space Science",
+  "grade_target": 7,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 202-211",
+  "dci": "ESS3",
+  "ngss_pe": "MS-ESS3-3",
+  "kind": "data",
+  "stimulus": "line",
+  "format": "values",
+  "ask": "read",
+  "invented": true,
+  "names_used": [
+   "Nesbin River",
+   "Lake Morva"
+  ],
+  "passage": "Farmers along the Nesbin River planted trees on bare stream banks to hold the soil in place. Workers measured how much sediment the river carried into Lake Morva each year after the planting began.",
+  "graphic": {
+   "type": "line",
+   "series": [
+    {
+     "points": [
+      [
+       0,
+       60
+      ],
+      [
+       2,
+       52
+      ],
+      [
+       4,
+       41
+      ],
+      [
+       6,
+       30
+      ],
+      [
+       8,
+       22
+      ],
+      [
+       10,
+       14
+      ]
+     ]
+    }
+   ],
+   "xLabel": "Years after tree planting began",
+   "yLabel": "Sediment into Lake Morva (thousand tonnes per year)",
+   "caption": "Yearly sediment entering Lake Morva after tree planting began"
+  },
+  "prompt": "According to the graph, how much sediment entered Lake Morva in year 2 after the planting began?",
+  "choices": [
+   "30 thousand tonnes",
+   "52 thousand tonnes",
+   "41 thousand tonnes",
+   "14 thousand tonnes"
+  ],
+  "correct_answer": "52 thousand tonnes",
+  "key_evidence": {
+   "refs": [
+    [
+     2,
+     52
+    ]
+   ],
+   "expr": "v0"
+  },
+  "explanation": "Find 2 on the horizontal axis and go up to the line. The point there sits a little above the 45 mark, at 52 thousand tonnes.",
+  "distractor_rationales": [
+   {
+    "choice": "30 thousand tonnes",
+    "fault": "is the value at year 6, reading the wrong point on the line"
+   },
+   {
+    "choice": "41 thousand tonnes",
+    "fault": "is the value at year 4, one point too far to the right"
+   },
+   {
+    "choice": "14 thousand tonnes",
+    "fault": "is the value at year 10, the last point on the line"
+   }
+  ],
+  "real_world_check": "Tree roots hold stream-bank soil in place, so replanting bare banks reduces erosion and the sediment a river carries downstream.",
+  "prior_free": "The standard says planting can cut erosion, but no rule gives this river's sediment load in year 2; it must be read from the line."
+ },
+ {
+  "id": "MSB1-E7-11",
+  "map_area": "Earth and Space Science",
+  "grade_target": 7,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 202-211",
+  "dci": "ESS3",
+  "ngss_pe": "MS-ESS3-3",
+  "kind": "investigation",
+  "stimulus": "procedure",
+  "format": "claim",
+  "ask": "not-supported",
+  "invented": true,
+  "names_used": [
+   "Soil Mix P-6"
+  ],
+  "passage": "Students tested whether a strip of grass at the bottom of a sloped field can keep fertilizer out of a stream. They filled four sloped trays with the same soil, Soil Mix P-6, and mixed the same amount of blue dye into each to stand in for fertilizer. At the bottom of each tray, they grew a grass strip that was 0, 10, 20 or 30 cm wide. They sprinkled the same amount of water on each tray and measured the dye in the water that ran off. The runoff held 80 units of dye with no strip, 45 units with the 10 cm strip, 30 units with the 20 cm strip, and 28 units with the 30 cm strip.",
+  "graphic": null,
+  "prompt": "Which claim is NOT supported by the students' results?",
+  "choices": [
+   "Trays with a grass strip let less dye run off than the tray with no strip.",
+   "The first 10 cm of grass cut the dye more than the next 10 cm did.",
+   "Widening the strip from 20 to 30 cm changed little.",
+   "Each added 10 cm of grass cut the dye by an equal amount."
+  ],
+  "correct_answer": "Each added 10 cm of grass cut the dye by an equal amount.",
+  "key_evidence": {
+   "refs": [
+    {
+     "quote": "The runoff held 80 units of dye with no strip, 45 units with the 10 cm strip, 30 units with the 20 cm strip, and 28 units with the 30 cm strip"
+    }
+   ]
+  },
+  "explanation": "The dye fell by 35 units (80 to 45), then 15 units (45 to 30), then only 2 units (30 to 28). The cuts got smaller each time, so the claim of equal cuts goes against the data. The other three claims match the numbers.",
+  "distractor_rationales": [
+   {
+    "choice": "Trays with a grass strip let less dye run off than the tray with no strip.",
+    "fault": "supported: every strip tray (45, 30, 28 units) had less dye than the no-strip tray (80 units)"
+   },
+   {
+    "choice": "Widening the strip from 20 to 30 cm changed little.",
+    "fault": "supported: the dye dropped only from 30 to 28 units between those widths"
+   },
+   {
+    "choice": "The first 10 cm of grass cut the dye more than the next 10 cm did.",
+    "fault": "supported: the first 10 cm cut 35 units, the next 10 cm cut only 15 units"
+   }
+  ],
+  "real_world_check": "Vegetated buffer strips slow runoff and trap sediment and nutrients, reducing fertilizer pollution in streams, with diminishing gains as the strip widens."
+ },
+ {
+  "id": "MSB1-E7-12",
+  "map_area": "Earth and Space Science",
+  "grade_target": 7,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 202-211",
+  "dci": "ESS1",
+  "ngss_pe": "MS-ESS1-1",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "quantity",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "A planet moves around its star in a nearly circular path, so its distance from the star hardly changes. Yet the planet has hot summers and cold winters. Which quantity best explains why the planet has seasons?",
+  "choices": [
+   "the tilt of its axis",
+   "its size",
+   "its distance from the star",
+   "its spin speed"
+  ],
+  "correct_answer": "the tilt of its axis",
+  "explanation": "A tilted axis means each half of the planet leans toward its star for part of the orbit and away for another part. Sunlight strikes more directly and for more hours when a half leans toward the star, giving summer, and less when it leans away, giving winter.",
+  "distractor_rationales": [
+   {
+    "choice": "its size",
+    "fault": "misconception: bigger planets catch more sunlight and so have seasons; size does not change through the year"
+   },
+   {
+    "choice": "its distance from the star",
+    "fault": "misconception: seasons come from changing distance to the star; here the distance hardly changes"
+   },
+   {
+    "choice": "its spin speed",
+    "fault": "misconception: spinning on the axis causes seasons; spinning causes day and night, not summer and winter"
+   }
+  ],
+  "real_world_check": "Seasons are caused by the tilt of a planet's axis relative to its orbit, which changes the angle and duration of sunlight through the year; Earth's seasons are not caused by distance from the Sun."
+ },
+ {
+  "id": "MSB1-E7-13",
+  "map_area": "Earth and Space Science",
+  "grade_target": 7,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 202-211",
+  "dci": "ESS3",
+  "ngss_pe": "MS-ESS3-2",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "example",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "Scientists watch a volcano for signs that magma is moving up beneath it. Which is an example of a sign they use to help forecast an eruption?",
+  "choices": [
+   "a hot summer",
+   "ground swelling",
+   "a strong windstorm",
+   "an eclipse of the Sun"
+  ],
+  "correct_answer": "ground swelling",
+  "explanation": "As magma rises and collects under a volcano, it pushes the ground up so the volcano swells. Instruments that measure this swelling, along with small earthquakes and gas output, help scientists forecast eruptions.",
+  "distractor_rationales": [
+   {
+    "choice": "a hot summer",
+    "fault": "misconception: hot weather heats magma and sets off eruptions; magma is heated deep inside Earth, not by the weather"
+   },
+   {
+    "choice": "a strong windstorm",
+    "fault": "misconception: storms at the surface can trigger eruptions; wind does not affect magma underground"
+   },
+   {
+    "choice": "an eclipse of the Sun",
+    "fault": "misconception: eclipses cause volcanoes to erupt; an eclipse only blocks sunlight for a short time"
+   }
+  ],
+  "real_world_check": "Volcano monitoring uses ground deformation (swelling), earthquake swarms and changes in gas emissions to forecast eruptions."
+ },
+ {
+  "id": "MSB1-E7-14",
+  "map_area": "Earth and Space Science",
+  "grade_target": 7,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 202-211",
+  "dci": "ESS2",
+  "ngss_pe": "MS-ESS2-6",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "explains",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "Two cities are at the same latitude and elevation. One sits on an ocean coast, and the other is far inland. The coastal city has milder winters. Which statement best explains this difference?",
+  "choices": [
+   "Salt in the ocean air traps the Sun's heat like a blanket.",
+   "Land holds heat longer than water does, so inland air should stay warmer in winter.",
+   "Ocean water loses heat slowly, so it keeps nearby air warmer in winter.",
+   "Waves stir up heat from hot rock beneath the seafloor and warm the coast."
+  ],
+  "correct_answer": "Ocean water loses heat slowly, so it keeps nearby air warmer in winter.",
+  "explanation": "Water heats up and cools down much more slowly than land. In winter the ocean is still holding heat from summer, and it warms the air over the nearby coast, so the coastal city stays milder than the inland city.",
+  "distractor_rationales": [
+   {
+    "choice": "Salt in the ocean air traps the Sun's heat like a blanket.",
+    "fault": "misconception: salt in the air holds heat; salt spray does not act as a heat-trapping blanket"
+   },
+   {
+    "choice": "Land holds heat longer than water does, so inland air should stay warmer in winter.",
+    "fault": "misconception: land stores heat better than water; water holds heat longer, and this would make the inland city milder, not the coast"
+   },
+   {
+    "choice": "Waves stir up heat from hot rock beneath the seafloor and warm the coast.",
+    "fault": "misconception: the ocean is heated mainly from below by Earth's interior; ocean heat comes mostly from sunlight"
+   }
+  ],
+  "real_world_check": "Water has a higher specific heat than land, so oceans warm and cool slowly and moderate the climate of nearby coastal areas."
+ },
+ {
+  "id": "MSB1-E7-15",
+  "map_area": "Earth and Space Science",
+  "grade_target": 7,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 212-221",
+  "dci": "ESS2",
+  "ngss_pe": "MS-ESS2-3",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "conditions",
+  "ask": "greatest",
+  "invented": true,
+  "names_used": [
+   "Ponter Rift",
+   "Segment M-2",
+   "Segment NR-17",
+   "Segment PQO-406",
+   "Segment ORMN-8521"
+  ],
+  "passage": "New seafloor rock forms at the center of the Ponter Rift and then moves slowly away from it. At four segments along the rift, scientists dated one band of rock and measured how far that band now lies from the rift center.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Segment M-2",
+    "Segment NR-17",
+    "Segment PQO-406",
+    "Segment ORMN-8521"
+   ],
+   "colLabels": [
+    "Distance of band from rift center (km)",
+    "Age of band (million years)"
+   ],
+   "cells": [
+    [
+     30,
+     1.5
+    ],
+    [
+     84,
+     2.8
+    ],
+    [
+     70,
+     2.8
+    ],
+    [
+     132,
+     6
+    ]
+   ],
+   "caption": "Distance and age of one dated rock band at four segments of the Ponter Rift"
+  },
+  "prompt": "Based on the table, at which segment has the seafloor moved away from the rift center the fastest?",
+  "choices": [
+   "Segment M-2",
+   "Segment ORMN-8521",
+   "Segment PQO-406",
+   "Segment NR-17"
+  ],
+  "correct_answer": "Segment NR-17",
+  "key_evidence": {
+   "refs": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ]
+   ]
+  },
+  "explanation": "Speed is distance divided by time. Segment NR-17: 84 km / 2.8 million years = 30 km per million years. The others are 30 / 1.5 = 20, 70 / 2.8 = 25 and 132 / 6.0 = 22 km per million years, all slower.",
+  "distractor_rationales": [
+   {
+    "choice": "Segment M-2",
+    "fault": "its band is the youngest, but it has moved only 30 km in 1.5 million years, 20 km per million years"
+   },
+   {
+    "choice": "Segment ORMN-8521",
+    "fault": "its band is farthest from the center, but it took 6.0 million years: 22 km per million years"
+   },
+   {
+    "choice": "Segment PQO-406",
+    "fault": "its band is the same age as NR-17's but has moved less, 70 km: 25 km per million years"
+   }
+  ],
+  "real_world_check": "At a spreading center, seafloor rock gets older with distance from the rift, and the spreading rate equals a band's distance from the center divided by its age."
+ },
+ {
+  "id": "MSB1-E7-16",
+  "map_area": "Earth and Space Science",
+  "grade_target": 7,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 212-221",
+  "dci": "ESS1",
+  "ngss_pe": "MS-ESS1-4",
+  "kind": "data",
+  "stimulus": "line",
+  "format": "trend",
+  "ask": "increase",
+  "invented": true,
+  "names_used": [
+   "Lake Rolm",
+   "plant type Q-8"
+  ],
+  "passage": "Scientists drilled a core of mud from the floor of Lake Rolm. Deeper layers are older. In layers of different ages, they counted grains of pollen from plant type Q-8.",
+  "graphic": {
+   "type": "line",
+   "series": [
+    {
+     "points": [
+      [
+       0,
+       10
+      ],
+      [
+       2,
+       14
+      ],
+      [
+       4,
+       22
+      ],
+      [
+       6,
+       35
+      ],
+      [
+       8,
+       30
+      ],
+      [
+       10,
+       12
+      ]
+     ]
+    }
+   ],
+   "xLabel": "Age of layer (thousand years ago)",
+   "yLabel": "Type Q-8 pollen (grains per sample)",
+   "caption": "Pollen of plant type Q-8 in lake-core layers of different ages"
+  },
+  "prompt": "According to the graph, how did the amount of type Q-8 pollen change as time moved forward from 10 thousand years ago to 6 thousand years ago?",
+  "choices": [
+   "It dropped.",
+   "It stayed the same.",
+   "It rose.",
+   "It rose, then it fell."
+  ],
+  "correct_answer": "It rose.",
+  "key_evidence": {
+   "refs": [
+    [
+     10,
+     12
+    ],
+    [
+     8,
+     30
+    ],
+    [
+     6,
+     35
+    ]
+   ]
+  },
+  "explanation": "Moving forward in time means going from older layers to younger ones, which is right to left on this graph. The pollen goes from 12 grains at 10 thousand years ago to 30 at 8 thousand and 35 at 6 thousand, so it rose the whole way.",
+  "distractor_rationales": [
+   {
+    "choice": "It dropped.",
+    "fault": "reads the graph left to right, which runs backward in time from 6 to 10 thousand years ago"
+   },
+   {
+    "choice": "It stayed the same.",
+    "fault": "the counts change from 12 to 35 grains across this time span"
+   },
+   {
+    "choice": "It rose, then it fell.",
+    "fault": "describes the whole record from 10 thousand years ago to today, not the span asked about"
+   }
+  ],
+  "real_world_check": "In undisturbed sediment, deeper layers are older, so moving forward in time means moving from older (deeper) to younger (shallower) layers.",
+  "prior_free": "No law predicts this invented plant's pollen counts; the student must read the line and run time right to left, since larger ages are older."
+ },
+ {
+  "id": "MSB1-E7-17",
+  "map_area": "Earth and Space Science",
+  "grade_target": 7,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 212-221",
+  "dci": "ESS3",
+  "ngss_pe": "MS-ESS3-1",
+  "kind": "data",
+  "stimulus": "scatter",
+  "format": "trend",
+  "ask": "decrease",
+  "invented": true,
+  "names_used": [
+   "Nesk mine"
+  ],
+  "passage": "Long ago, hot water rose through cracks near an old volcanic vent at the Nesk mine and left copper in the rock. Geologists collected rock samples at different distances from the vent and measured how much copper each held.",
+  "graphic": {
+   "type": "scatter",
+   "points": [
+    [
+     50,
+     0.4
+    ],
+    [
+     100,
+     0.9
+    ],
+    [
+     150,
+     1.6
+    ],
+    [
+     200,
+     2.1
+    ],
+    [
+     300,
+     1.8
+    ],
+    [
+     400,
+     1.3
+    ],
+    [
+     500,
+     0.9
+    ],
+    [
+     600,
+     0.5
+    ],
+    [
+     700,
+     0.3
+    ]
+   ],
+   "xLabel": "Distance from vent (m)",
+   "yLabel": "Copper in rock (% by mass)",
+   "caption": "Copper content of rock samples at the Nesk mine"
+  },
+  "prompt": "For samples collected 200 m or more from the vent, how does copper content change with distance?",
+  "choices": [
+   "Copper content rises farther out.",
+   "Copper content falls as samples lie farther out.",
+   "Copper content stays the same with distance.",
+   "Copper content rises, then levels off."
+  ],
+  "correct_answer": "Copper content falls as samples lie farther out.",
+  "key_evidence": {
+   "refs": [
+    [
+     200,
+     2.1
+    ],
+    [
+     400,
+     1.3
+    ],
+    [
+     700,
+     0.3
+    ]
+   ]
+  },
+  "explanation": "From 200 m outward the copper goes 2.1, 1.8, 1.3, 0.9, 0.5 and 0.3 percent, so each sample farther out holds less. Copper rises only in the samples closer than 200 m, which the question leaves out.",
+  "distractor_rationales": [
+   {
+    "choice": "Copper content rises farther out.",
+    "fault": "describes only the samples closer than 200 m, which the question excludes"
+   },
+   {
+    "choice": "Copper content stays the same with distance.",
+    "fault": "beyond 200 m the copper drops from 2.1% to 0.3%, so it does not stay the same"
+   },
+   {
+    "choice": "Copper content rises, then levels off.",
+    "fault": "beyond 200 m there is no rise and no flat stretch; every point is lower than the one before"
+   }
+  ],
+  "real_world_check": "Ore deposits formed by hot water are zoned: metals settle out where the fluid cools, so metal content changes with distance from the heat source rather than evenly.",
+  "prior_free": "No rule in the standard says how copper varies with distance here, and nearest the vent copper is low, so the outer decline must be read from the points."
+ },
+ {
+  "id": "MSB1-E7-18",
+  "map_area": "Earth and Space Science",
+  "grade_target": 7,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 212-221",
+  "dci": "ESS1",
+  "ngss_pe": "MS-ESS1-4",
+  "kind": "investigation",
+  "stimulus": "procedure+table",
+  "format": "values",
+  "ask": "difference",
+  "invented": true,
+  "names_used": [
+   "Site Nobb"
+  ],
+  "passage": "Students studied four layers of banded shale exposed in a road cut at Site Nobb. Layer 1 is on top and Layer 4 is at the bottom. Each thin band in the shale formed in one year. The students measured how thick each layer is. By counting bands, they also found how fast each layer built up, in centimeters per 100 years. They assumed that each layer built up at a steady rate while it formed. Table 1 shows their results.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Layer 1",
+    "Layer 2",
+    "Layer 3",
+    "Layer 4"
+   ],
+   "colLabels": [
+    "Thickness (cm)",
+    "Build-up rate (cm per 100 years)"
+   ],
+   "cells": [
+    [
+     10,
+     2
+    ],
+    [
+     12,
+     3
+    ],
+    [
+     21,
+     3.5
+    ],
+    [
+     15,
+     5
+    ]
+   ],
+   "caption": "Table 1. Thickness and build-up rate of four shale layers"
+  },
+  "prompt": "Based on Table 1, how many more years did Layer 3 take to form than Layer 2?",
+  "choices": [
+   "200 years",
+   "900 years",
+   "600 years",
+   "1800 years"
+  ],
+  "correct_answer": "200 years",
+  "key_evidence": {
+   "refs": [
+    [
+     2,
+     0
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ]
+   ],
+   "expr": "v0 / v1 * 100 - v2 / v3 * 100"
+  },
+  "explanation": "Time to form = thickness divided by rate. Layer 3: 21 cm / 3.5 cm per 100 years = 6, so 600 years. Layer 2: 12 / 3 = 4, so 400 years. 600 - 400 = 200 years.",
+  "distractor_rationales": [
+   {
+    "choice": "900 years",
+    "fault": "subtracts the thicknesses (21 - 12 = 9 cm) and treats each centimeter as 100 years, ignoring the rates"
+   },
+   {
+    "choice": "600 years",
+    "fault": "is the time Layer 3 took to form by itself, without subtracting Layer 2's 400 years"
+   },
+   {
+    "choice": "1800 years",
+    "fault": "divides the thickness difference by the rate difference, 9 / 0.5 = 18, a method that does not give either layer's time"
+   }
+  ],
+  "real_world_check": "If a sediment layer builds up at a steady rate, the time it took to form equals its thickness divided by its deposition rate.",
+  "prior_free": "Superposition tells only which layer is older; how long each took depends on its own thickness and rate, so the gap must be computed."
+ },
+ {
+  "id": "MSB1-E7-19",
+  "map_area": "Earth and Space Science",
+  "grade_target": 7,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 212-221",
+  "dci": "ESS1",
+  "ngss_pe": "MS-ESS1-2",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "process",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "In a young star system, dust and rock clump into bodies many kilometers wide. As these bodies grow, which process mainly pulls more material onto them and keeps them circling the young star?",
+  "choices": [
+   "gravity",
+   "nuclear fusion",
+   "spin",
+   "magnetism"
+  ],
+  "correct_answer": "gravity",
+  "explanation": "Once bodies are kilometers wide, their gravity pulls in nearby dust and rock so they keep growing into planets. The star's much stronger gravity also holds all of these bodies in orbit around it.",
+  "distractor_rationales": [
+   {
+    "choice": "nuclear fusion",
+    "fault": "misconception: fusion builds planets; fusion powers the star's core but does not pull material onto planets or hold orbits"
+   },
+   {
+    "choice": "spin",
+    "fault": "misconception: spinning creates a pull that gathers matter and holds orbits; spinning tends to fling material outward"
+   },
+   {
+    "choice": "magnetism",
+    "fault": "misconception: magnetism holds planets in orbit; most rock and gas is not pulled together by magnets, but all mass attracts by gravity"
+   }
+  ],
+  "real_world_check": "Gravity pulls material together to form planets from a disk of gas and dust and keeps planets in orbit around their star."
+ },
+ {
+  "id": "MSB1-E7-20",
+  "map_area": "Earth and Space Science",
+  "grade_target": 7,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 212-221",
+  "dci": "ESS2",
+  "ngss_pe": "MS-ESS2-1",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "predicts",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "A body of granite formed deep underground. Over millions of years, uplift and erosion of the rock above it leave the granite exposed at the surface in a rainy climate. What will most likely happen to the exposed granite over time?",
+  "choices": [
+   "It will break down into grains that may later become sedimentary rock.",
+   "It will melt back into magma because sunlight heats the bare rock.",
+   "It will stay the same because granite is too hard to change.",
+   "It may turn into metamorphic rock because rain and cold air cool it quickly."
+  ],
+  "correct_answer": "It will break down into grains that may later become sedimentary rock.",
+  "explanation": "At the surface, rain, ice and chemical reactions break granite down into sand and clay. Water and wind carry these grains away, and when they are buried and pressed together they can become sedimentary rock, one path in the rock cycle.",
+  "distractor_rationales": [
+   {
+    "choice": "It will melt back into magma because sunlight heats the bare rock.",
+    "fault": "misconception: sunlight can melt rock; melting needs the high temperatures found deep underground"
+   },
+   {
+    "choice": "It will stay the same because granite is too hard to change.",
+    "fault": "misconception: hard rocks are permanent; weathering slowly breaks down even granite at the surface"
+   },
+   {
+    "choice": "It may turn into metamorphic rock because rain and cold air cool it quickly.",
+    "fault": "misconception: rocks become metamorphic at the surface; metamorphism needs high heat and pressure underground"
+   }
+  ],
+  "real_world_check": "Rock exposed at Earth's surface is broken down by weathering, and the sediment is eroded, deposited and can be compacted and cemented into sedimentary rock."
+ }
+]

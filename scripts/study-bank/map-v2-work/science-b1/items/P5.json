@@ -1,0 +1,1397 @@
+[
+ {
+  "id": "MSB1-P5-01",
+  "map_area": "Physical Science",
+  "grade_target": 5,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 186-195",
+  "dci": "PS2",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "conditions",
+  "ask": "least",
+  "invented": true,
+  "ngss_pe": "3-PS2-1",
+  "names_used": [
+   "Sole E",
+   "Sole B-2",
+   "Sole CA-15",
+   "Sole DFB-207"
+  ],
+  "passage": "Students tested the grip of four shoe soles. They glued each sole to the bottom of a wooden block. They set the block on a board and slowly tilted the board until the block began to slide. They did this once on a tile board and once on a wood board.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Sole E",
+    "Sole B-2",
+    "Sole CA-15",
+    "Sole DFB-207"
+   ],
+   "colLabels": [
+    "Tile board tilt (degrees)",
+    "Wood board tilt (degrees)"
+   ],
+   "cells": [
+    [
+     24,
+     31
+    ],
+    [
+     18,
+     27
+    ],
+    [
+     21,
+     16
+    ],
+    [
+     30,
+     35
+    ]
+   ],
+   "caption": "Table 1. Board tilt when each block began to slide"
+  },
+  "prompt": "Based on Table 1, on the wood board, which sole began to slide at the smallest tilt?",
+  "choices": [
+   "Sole E",
+   "Sole B-2",
+   "Sole DFB-207",
+   "Sole CA-15"
+  ],
+  "correct_answer": "Sole CA-15",
+  "key_evidence": {
+   "refs": [
+    [
+     2,
+     1
+    ]
+   ]
+  },
+  "explanation": "In the wood board column, Sole CA-15 slid at 16 degrees, less than 27, 31 or 35 degrees for the other soles.",
+  "distractor_rationales": [
+   {
+    "choice": "Sole E",
+    "fault": "Sole E needed 31 degrees on wood, more than Sole CA-15 needed"
+   },
+   {
+    "choice": "Sole B-2",
+    "fault": "Sole B-2 has the smallest tilt on TILE (18 degrees); on wood it needed 27 degrees"
+   },
+   {
+    "choice": "Sole DFB-207",
+    "fault": "Sole DFB-207 needed the LARGEST tilt on wood, 35 degrees, the opposite of the ask"
+   }
+  ],
+  "real_world_check": "A block slides when the downhill pull from gravity on the tilted board overcomes friction, so less friction means sliding at a smaller tilt."
+ },
+ {
+  "id": "MSB1-P5-02",
+  "map_area": "Physical Science",
+  "grade_target": 5,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 186-195",
+  "dci": "PS2",
+  "kind": "data",
+  "stimulus": "scatter",
+  "format": "trend",
+  "ask": "decrease",
+  "invented": true,
+  "ngss_pe": "3-PS2-3",
+  "names_used": [
+   "Magnet AE-5"
+  ],
+  "passage": "Students warmed Magnet AE-5 in a water bath to different temperatures. At each temperature, they dipped the magnet into a dish of steel paper clips and counted how many clips it lifted.",
+  "graphic": {
+   "type": "scatter",
+   "points": [
+    [
+     10,
+     24
+    ],
+    [
+     20,
+     23
+    ],
+    [
+     30,
+     20
+    ],
+    [
+     40,
+     19
+    ],
+    [
+     50,
+     15
+    ],
+    [
+     60,
+     13
+    ],
+    [
+     70,
+     10
+    ]
+   ],
+   "xLabel": "Magnet temperature (°C)",
+   "yLabel": "Clips lifted",
+   "caption": "Clips lifted by Magnet AE-5 at each temperature"
+  },
+  "prompt": "Based on the graph, how did the number of clips Magnet AE-5 lifted change as the magnet got warmer?",
+  "choices": [
+   "The clip count was rising.",
+   "The clip count was constant.",
+   "The clip count was decreasing.",
+   "The clip count was rising, then it leveled off."
+  ],
+  "correct_answer": "The clip count was decreasing.",
+  "key_evidence": {
+   "refs": [
+    [
+     10,
+     24
+    ],
+    [
+     70,
+     10
+    ]
+   ]
+  },
+  "explanation": "The points fall from 24 clips at 10 °C to 10 clips at 70 °C, and each warmer reading is lower than the one before it, so the warmer magnet lifted fewer clips.",
+  "distractor_rationales": [
+   {
+    "choice": "The clip count was rising.",
+    "fault": "The clip count went down from 24 to 10, not up"
+   },
+   {
+    "choice": "The clip count was constant.",
+    "fault": "The count changed by 14 clips across the graph, so it was not constant"
+   },
+   {
+    "choice": "The clip count was rising, then it leveled off.",
+    "fault": "There is no rise at all; the first point is the highest one"
+   }
+  ],
+  "real_world_check": "Permanent magnets get weaker as they are heated, so a warmer magnet holds less steel.",
+  "prior_free": "The standard says magnets pull on steel and that distance changes the pull; it says nothing about temperature, so whether a warmer magnet lifts more, fewer or the same clips comes only from these points."
+ },
+ {
+  "id": "MSB1-P5-03",
+  "map_area": "Physical Science",
+  "grade_target": 5,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 186-195",
+  "dci": "PS4",
+  "kind": "investigation",
+  "stimulus": "procedure+table",
+  "format": "values",
+  "ask": "ratio",
+  "invented": true,
+  "ngss_pe": "4-PS4-1",
+  "names_used": [
+   "Ball CE-3"
+  ],
+  "passage": "Students studied water waves in a long tank. They held Ball CE-3 above one end of the tank and let it fall into the water. A ruler taped to the far wall showed how tall the first wave was when it got there. They dropped the same ball from four heights. They waited for the water to be still before each drop. They did three drops at each height and found the average wave height.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Trial A",
+    "Trial B",
+    "Trial C",
+    "Trial D"
+   ],
+   "colLabels": [
+    "Drop height (cm)",
+    "Wave height (mm)"
+   ],
+   "cells": [
+    [
+     20,
+     4
+    ],
+    [
+     40,
+     6
+    ],
+    [
+     60,
+     9
+    ],
+    [
+     80,
+     12
+    ]
+   ],
+   "caption": "Table 1. Average height of the first wave for each drop"
+  },
+  "prompt": "Based on Table 1, the wave from the 80 cm drop was how many times as tall as the wave from the 20 cm drop?",
+  "choices": [
+   "2 times",
+   "4 times",
+   "8 times",
+   "3 times"
+  ],
+  "correct_answer": "3 times",
+  "key_evidence": {
+   "refs": [
+    [
+     3,
+     1
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "expr": "v0 / v1"
+  },
+  "explanation": "The 80 cm drop made a 12 mm wave and the 20 cm drop made a 4 mm wave. 12 divided by 4 is 3.",
+  "distractor_rationales": [
+   {
+    "choice": "2 times",
+    "fault": "This divides 12 mm by the 40 cm wave of 6 mm, the wrong row"
+   },
+   {
+    "choice": "4 times",
+    "fault": "This divides the drop heights, 80 by 20, instead of the wave heights"
+   },
+   {
+    "choice": "8 times",
+    "fault": "This subtracts 4 from 12 mm instead of dividing"
+   }
+  ],
+  "real_world_check": "A ball dropped from higher hits the water with more energy and makes a wave with a larger amplitude (height).",
+  "prior_free": "The standard says waves have an amplitude but not how much taller this wave gets; a drop four times as high gave a wave only three times as tall, which only the table shows."
+ },
+ {
+  "id": "MSB1-P5-04",
+  "map_area": "Physical Science",
+  "grade_target": 5,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 186-195",
+  "dci": "PS3",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "process",
+  "invented": false,
+  "ngss_pe": "5-PS3-1",
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "A rabbit eats clover plants. Later it uses energy from the clover to run. Which process first stored that energy in the clover?",
+  "choices": [
+   "roots pulling food from soil",
+   "clover soaking up rain",
+   "leaves capturing sunlight's energy",
+   "the rabbit creating energy"
+  ],
+  "correct_answer": "leaves capturing sunlight's energy",
+  "explanation": "Plants use energy from sunlight to make their food. The energy in the clover was captured from sunlight by its leaves, and the rabbit got it by eating the clover.",
+  "distractor_rationales": [
+   {
+    "choice": "roots pulling food from soil",
+    "fault": "misconception: plants take their food and energy from the soil"
+   },
+   {
+    "choice": "clover soaking up rain",
+    "fault": "misconception: water is the energy source for plants"
+   },
+   {
+    "choice": "the rabbit creating energy",
+    "fault": "misconception: animals can create energy from nothing"
+   }
+  ],
+  "real_world_check": "The energy in animal food was once energy from the Sun, captured by plants as they made food from air and water."
+ },
+ {
+  "id": "MSB1-P5-05",
+  "map_area": "Physical Science",
+  "grade_target": 5,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 186-195",
+  "dci": "PS1",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "quantity",
+  "invented": false,
+  "ngss_pe": "5-PS1-2",
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "Students sealed a clump of steel wool inside a glass jar and weighed the jar. A week later, the steel wool had rusted, and the jar was still sealed. Which of these was the same before and after the rusting?",
+  "choices": [
+   "amount of oxygen gas",
+   "amount of rust",
+   "total weight of the jar",
+   "the steel wool's own weight"
+  ],
+  "correct_answer": "total weight of the jar",
+  "explanation": "Rusting is a chemical change in which the iron in the steel wool joins with oxygen from the air. Nothing entered or left the sealed jar, so the total weight of the jar and everything in it stayed the same.",
+  "distractor_rationales": [
+   {
+    "choice": "amount of oxygen gas",
+    "fault": "misconception: air takes no part in rusting; really, oxygen gas is used up as it joins the iron"
+   },
+   {
+    "choice": "amount of rust",
+    "fault": "misconception: rusting makes no new substance; really, rust that was not there before formed"
+   },
+   {
+    "choice": "the steel wool's own weight",
+    "fault": "misconception: rust adds no matter to the metal; really, the solid gains the oxygen it joined with"
+   }
+  ],
+  "real_world_check": "When substances react in a sealed container, the total weight of matter stays the same (5-PS1-2), even though new substances form."
+ },
+ {
+  "id": "MSB1-P5-06",
+  "map_area": "Physical Science",
+  "grade_target": 5,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 186-195",
+  "dci": "PS3",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "explains",
+  "invented": false,
+  "ngss_pe": "4-PS3-1",
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "Two identical rubber balls roll across a floor into identical rows of plastic cups. Ball 1 rolls fast and knocks over 9 cups. Ball 2 rolls slowly and knocks over 3 cups. Which statement best explains the difference?",
+  "choices": [
+   "Energy was created when the fast ball hit.",
+   "Both balls had equal energy because they were identical.",
+   "The fast ball became heavier because it was moving quickly.",
+   "The faster ball carried more energy into the cups."
+  ],
+  "correct_answer": "The faster ball carried more energy into the cups.",
+  "explanation": "A moving object has more energy when it moves faster. The faster ball had more energy, so it could pass more energy to the cups and knock more of them over.",
+  "distractor_rationales": [
+   {
+    "choice": "Energy was created when the fast ball hit.",
+    "fault": "misconception: collisions create energy; energy is only passed along or changed in form"
+   },
+   {
+    "choice": "Both balls had equal energy because they were identical.",
+    "fault": "misconception: an object's energy depends only on the object, not on its speed"
+   },
+   {
+    "choice": "The fast ball became heavier because it was moving quickly.",
+    "fault": "misconception: moving faster makes an object heavier"
+   }
+  ],
+  "real_world_check": "The faster an object moves, the more energy it has, and in a collision some of that energy is transferred to what it hits (4-PS3-1, 4-PS3-3)."
+ },
+ {
+  "id": "MSB1-P5-07",
+  "map_area": "Physical Science",
+  "grade_target": 5,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 196-205",
+  "dci": "PS4",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "values",
+  "ask": "difference",
+  "invented": true,
+  "ngss_pe": "4-PS4-3",
+  "names_used": [
+   "Code AB-1",
+   "Code C-4",
+   "Code DE-2",
+   "Code F-7"
+  ],
+  "passage": "Students invented four codes for sending messages across the gym with flashes from one flashlight. Using each code, a sender sent the same 10-letter message and the same 20-letter message. A receiver wrote down the letters. Students timed each message.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Code AB-1",
+    "Code C-4",
+    "Code DE-2",
+    "Code F-7"
+   ],
+   "colLabels": [
+    "10-letter message (s)",
+    "20-letter message (s)"
+   ],
+   "cells": [
+    [
+     24,
+     50
+    ],
+    [
+     31,
+     64
+    ],
+    [
+     36,
+     72
+    ],
+    [
+     19,
+     42
+    ]
+   ],
+   "caption": "Table 1. Time to send each message with each code"
+  },
+  "prompt": "Based on Table 1, for the 20-letter message, how many more seconds did Code DE-2 take than Code AB-1?",
+  "choices": [
+   "22 s",
+   "36 s",
+   "12 s",
+   "30 s"
+  ],
+  "correct_answer": "22 s",
+  "key_evidence": {
+   "refs": [
+    [
+     2,
+     1
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "expr": "v0 - v1"
+  },
+  "explanation": "In the 20-letter column, Code DE-2 took 72 s and Code AB-1 took 50 s. 72 minus 50 is 22 seconds.",
+  "distractor_rationales": [
+   {
+    "choice": "36 s",
+    "fault": "This subtracts Code DE-2's own 10-letter time (72 - 36), not Code AB-1"
+   },
+   {
+    "choice": "12 s",
+    "fault": "This uses the 10-letter column (36 - 24), not the 20-letter message"
+   },
+   {
+    "choice": "30 s",
+    "fault": "This subtracts Code F-7's time (72 - 42), the wrong row"
+   }
+  ],
+  "real_world_check": "Messages can be sent as patterns of light flashes, and different coding patterns send the same information in different amounts of time.",
+  "prior_free": "Nothing in the standard says which invented flash code is faster or by how much; the 22-second gap exists only in these table cells."
+ },
+ {
+  "id": "MSB1-P5-08",
+  "map_area": "Physical Science",
+  "grade_target": 5,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 196-205",
+  "dci": "PS1",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "values",
+  "ask": "interpolate",
+  "invented": true,
+  "ngss_pe": "5-PS1-3",
+  "names_used": [
+   "Powder D-6"
+  ],
+  "passage": "Students stirred Powder D-6 into 100 mL of water until no more would dissolve. They did this at four water temperatures and weighed how much powder dissolved each time.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Test 1",
+    "Test 2",
+    "Test 3",
+    "Test 4"
+   ],
+   "colLabels": [
+    "Water temperature (°C)",
+    "Powder dissolved (g)"
+   ],
+   "cells": [
+    [
+     10,
+     52
+    ],
+    [
+     20,
+     44
+    ],
+    [
+     40,
+     28
+    ],
+    [
+     60,
+     16
+    ]
+   ],
+   "caption": "Table 1. Greatest mass of powder that dissolved in 100 mL of water"
+  },
+  "prompt": "Based on Table 1, about how many grams of Powder D-6 would dissolve in 100 mL of water at 30 °C?",
+  "choices": [
+   "44 g",
+   "52 g",
+   "48 g",
+   "36 g"
+  ],
+  "correct_answer": "36 g",
+  "key_evidence": {
+   "refs": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     1
+    ]
+   ],
+   "expr": "(v0 + v1) / 2"
+  },
+  "explanation": "30 °C is halfway between 20 °C (44 g) and 40 °C (28 g). Halfway between 44 g and 28 g is 36 g. The amount drops by 8 g for every 10 degrees in that range.",
+  "distractor_rationales": [
+   {
+    "choice": "44 g",
+    "fault": "This is the 20 °C value; at 30 °C less powder dissolves than at 20 °C"
+   },
+   {
+    "choice": "52 g",
+    "fault": "This is the 10 °C value, read from the wrong end of the table"
+   },
+   {
+    "choice": "48 g",
+    "fault": "This is halfway between the 10 °C and 20 °C rows, the wrong pair of rows"
+   }
+  ],
+  "real_world_check": "How much of a substance dissolves is a property that can identify it, and some real solids, such as calcium hydroxide, dissolve less in warmer water.",
+  "prior_free": "Most solids a student knows dissolve more in warmer water, but Powder D-6 dissolves less; both the direction and the 36 g value come only from the table."
+ },
+ {
+  "id": "MSB1-P5-09",
+  "map_area": "Physical Science",
+  "grade_target": 5,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 196-205",
+  "dci": "PS4",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "conditions",
+  "ask": "greatest",
+  "invented": true,
+  "ngss_pe": "4-PS4-2",
+  "names_used": [
+   "Paint E",
+   "Paint C-6",
+   "Paint BD-14",
+   "Paint FAE-302"
+  ],
+  "passage": "Students painted four road signs with different paints. At night, they shone a car's headlights on each sign and walked away until they could no longer read it. They did the same thing in daylight.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Paint E",
+    "Paint C-6",
+    "Paint BD-14",
+    "Paint FAE-302"
+   ],
+   "colLabels": [
+    "Night with headlights (m)",
+    "Daylight (m)"
+   ],
+   "cells": [
+    [
+     40,
+     90
+    ],
+    [
+     85,
+     70
+    ],
+    [
+     55,
+     95
+    ],
+    [
+     30,
+     80
+    ]
+   ],
+   "caption": "Table 1. Farthest distance at which each sign could be read"
+  },
+  "prompt": "Based on Table 1, at night with headlights, which paint could be read from the greatest distance?",
+  "choices": [
+   "Paint C-6",
+   "Paint BD-14",
+   "Paint E",
+   "Paint FAE-302"
+  ],
+  "correct_answer": "Paint C-6",
+  "key_evidence": {
+   "refs": [
+    [
+     1,
+     0
+    ]
+   ]
+  },
+  "explanation": "In the night column, Paint C-6 could be read from 85 m, farther than 55 m, 40 m or 30 m for the other paints.",
+  "distractor_rationales": [
+   {
+    "choice": "Paint BD-14",
+    "fault": "Paint BD-14 is greatest in DAYLIGHT (95 m); at night it reached only 55 m"
+   },
+   {
+    "choice": "Paint E",
+    "fault": "Paint E could be read from only 40 m at night"
+   },
+   {
+    "choice": "Paint FAE-302",
+    "fault": "Paint FAE-302 has the shortest night distance, 30 m"
+   }
+  ],
+  "real_world_check": "An object is seen when light reflects off it and enters the eye, so a paint that reflects more headlight back can be read from farther away."
+ },
+ {
+  "id": "MSB1-P5-10",
+  "map_area": "Physical Science",
+  "grade_target": 5,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 196-205",
+  "dci": "PS3",
+  "kind": "data",
+  "stimulus": "bar",
+  "format": "values",
+  "ask": "ratio",
+  "invented": true,
+  "ngss_pe": "4-PS3-2",
+  "names_used": [
+   "Cell AF-1",
+   "Cell B-4",
+   "Cell CE-7",
+   "Cell D-2"
+  ],
+  "passage": "Students connected the same small bulb to four different battery cells, one at a time. They timed how long the bulb stayed lit with each cell.",
+  "graphic": {
+   "type": "bar",
+   "bars": [
+    {
+     "label": "Cell AF-1",
+     "value": 8
+    },
+    {
+     "label": "Cell B-4",
+     "value": 1
+    },
+    {
+     "label": "Cell CE-7",
+     "value": 3
+    },
+    {
+     "label": "Cell D-2",
+     "value": 2
+    }
+   ],
+   "xLabel": "Battery cell",
+   "yLabel": "Time the bulb stayed lit (h)",
+   "caption": "How long one bulb stayed lit with each cell"
+  },
+  "prompt": "Based on the graph, Cell AF-1 kept the bulb lit how many times as long as Cell B-4 did?",
+  "choices": [
+   "4 times",
+   "8 times",
+   "3 times",
+   "2 times"
+  ],
+  "correct_answer": "8 times",
+  "key_evidence": {
+   "refs": [
+    "Cell AF-1",
+    "Cell B-4"
+   ],
+   "expr": "v0 / v1"
+  },
+  "explanation": "The Cell AF-1 bar reaches 8 hours, the top of the axis. The Cell B-4 bar reaches 1 hour, half of the first tick at 2. 8 divided by 1 is 8.",
+  "distractor_rationales": [
+   {
+    "choice": "4 times",
+    "fault": "This divides by the Cell D-2 bar (8 / 2) instead of Cell B-4"
+   },
+   {
+    "choice": "3 times",
+    "fault": "This compares Cell CE-7 (3 h) with Cell B-4, the wrong first bar"
+   },
+   {
+    "choice": "2 times",
+    "fault": "This compares Cell D-2 (2 h) with Cell B-4, the wrong first bar"
+   }
+  ],
+  "real_world_check": "A battery cell transfers energy to a bulb through an electric current, and cells that store more energy can keep the same bulb lit longer.",
+  "prior_free": "The standard says electric current carries energy to a bulb, but nothing tells how long these invented cells last; the 8-to-1 comparison exists only in the bars."
+ },
+ {
+  "id": "MSB1-P5-11",
+  "map_area": "Physical Science",
+  "grade_target": 5,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 196-205",
+  "dci": "PS3",
+  "kind": "data",
+  "stimulus": "line",
+  "format": "trend",
+  "ask": "increase",
+  "invented": true,
+  "ngss_pe": "4-PS3-2",
+  "names_used": [
+   "Chamber D-7"
+  ],
+  "passage": "Students put a metal cup of water inside Chamber D-7, a closed box that is kept at one set temperature. They recorded the temperature of the water every 5 minutes.",
+  "graphic": {
+   "type": "line",
+   "series": [
+    {
+     "points": [
+      [
+       0,
+       20
+      ],
+      [
+       5,
+       26
+      ],
+      [
+       10,
+       31
+      ],
+      [
+       15,
+       35
+      ],
+      [
+       20,
+       39
+      ],
+      [
+       25,
+       42
+      ]
+     ]
+    }
+   ],
+   "xLabel": "Time (min)",
+   "yLabel": "Water temperature (°C)",
+   "caption": "Water temperature in the cup inside Chamber D-7"
+  },
+  "prompt": "Based on the graph, how did the water temperature change while the cup was inside Chamber D-7?",
+  "choices": [
+   "The water temperature was getting higher.",
+   "The water temperature dropped.",
+   "The water temperature was constant.",
+   "The water temperature rose, then fell."
+  ],
+  "correct_answer": "The water temperature was getting higher.",
+  "key_evidence": {
+   "refs": [
+    [
+     0,
+     20
+    ],
+    [
+     25,
+     42
+    ]
+   ]
+  },
+  "explanation": "Every point is higher than the one before it, from 20 °C at 0 minutes to 42 °C at 25 minutes, so the water was warming the whole time it was measured.",
+  "distractor_rationales": [
+   {
+    "choice": "The water temperature dropped.",
+    "fault": "No point is lower than the one before it; the line only goes up"
+   },
+   {
+    "choice": "The water temperature was constant.",
+    "fault": "The temperature changed by 22 °C, so it was not constant"
+   },
+   {
+    "choice": "The water temperature rose, then fell.",
+    "fault": "The last point, 42 °C, is the highest; the temperature never fell"
+   }
+  ],
+  "real_world_check": "Heat moves from a warmer place to a cooler one, so water in a warmer chamber gains energy and its temperature goes up.",
+  "prior_free": "The passage never says whether Chamber D-7 is warmer or cooler than the water, so knowing that heat flows from warm to cool cannot give the direction; only the graph does."
+ },
+ {
+  "id": "MSB1-P5-12",
+  "map_area": "Physical Science",
+  "grade_target": 5,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 196-205",
+  "dci": "PS2",
+  "kind": "investigation",
+  "stimulus": "procedure+table",
+  "format": "conditions",
+  "ask": "controlled-pair",
+  "invented": true,
+  "ngss_pe": "3-PS2-1",
+  "names_used": [
+   "Run BD-4",
+   "Run E",
+   "Run C-2",
+   "Run AF-18",
+   "Run DCE-305",
+   "Run FA-7"
+  ],
+  "passage": "Students let a toy car roll down a ramp and across the floor. From run to run they changed three things: the height of the ramp, the number of clay lumps stuck on the car, and the floor surface at the bottom. Every clay lump had the same mass. They measured how far the car went past the bottom of the ramp. Table 1 lists the settings and results for each run.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Run BD-4",
+    "Run E",
+    "Run C-2",
+    "Run AF-18",
+    "Run DCE-305",
+    "Run FA-7"
+   ],
+   "colLabels": [
+    "Ramp height (cm)",
+    "Clay lumps",
+    "Floor",
+    "Distance (cm)"
+   ],
+   "cells": [
+    [
+     30,
+     2,
+     "tile",
+     140
+    ],
+    [
+     30,
+     5,
+     "tile",
+     152
+    ],
+    [
+     20,
+     5,
+     "tile",
+     98
+    ],
+    [
+     30,
+     5,
+     "carpet",
+     61
+    ],
+    [
+     30,
+     2,
+     "carpet",
+     57
+    ],
+    [
+     20,
+     2,
+     "carpet",
+     38
+    ]
+   ],
+   "caption": "Table 1. Settings and distance for each run"
+  },
+  "prompt": "Students want to know whether adding clay lumps changes how far the car goes. Which run should they compare with Run BD-4?",
+  "choices": [
+   "Run C-2",
+   "Run AF-18",
+   "Run E",
+   "Run DCE-305"
+  ],
+  "correct_answer": "Run E",
+  "key_evidence": {
+   "refs": [
+    [
+     0,
+     0
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     1,
+     2
+    ]
+   ]
+  },
+  "explanation": "Run BD-4 used a 30 cm ramp, 2 clay lumps and tile. Run E also used a 30 cm ramp and tile but 5 clay lumps, so the number of clay lumps is the only setting that differs.",
+  "distractor_rationales": [
+   {
+    "choice": "Run C-2",
+    "fault": "Run C-2 changes the ramp height to 20 cm as well as the clay lumps"
+   },
+   {
+    "choice": "Run AF-18",
+    "fault": "Run AF-18 changes the floor to carpet as well as the clay lumps"
+   },
+   {
+    "choice": "Run DCE-305",
+    "fault": "Run DCE-305 keeps 2 clay lumps and changes only the floor, the wrong variable"
+   }
+  ],
+  "real_world_check": "To find the effect of one factor on motion, compare trials that differ only in that factor while every other setting is kept the same."
+ },
+ {
+  "id": "MSB1-P5-13",
+  "map_area": "Physical Science",
+  "grade_target": 5,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 196-205",
+  "dci": "PS1",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "structure",
+  "invented": false,
+  "ngss_pe": "5-PS1-1",
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "When a student blows up a balloon, it gets bigger and firmer, even though no one can see the air inside it. Which description of air best explains this?",
+  "choices": [
+   "empty space with no matter",
+   "tiny gas particles",
+   "weightless puffs of wind",
+   "one continuous invisible fluid"
+  ],
+  "correct_answer": "tiny gas particles",
+  "explanation": "Air is matter made of gas particles too small to see. Blowing adds more particles, and they hit the inside of the balloon and push it outward, so it gets bigger and firmer.",
+  "distractor_rationales": [
+   {
+    "choice": "empty space with no matter",
+    "fault": "misconception: air is nothing, not matter, so it could not push the balloon out"
+   },
+   {
+    "choice": "weightless puffs of wind",
+    "fault": "misconception: air has no weight or mass"
+   },
+   {
+    "choice": "one continuous invisible fluid",
+    "fault": "misconception: matter is one continuous substance with no particles"
+   }
+  ],
+  "real_world_check": "Matter, including air, is made of particles too small to be seen, and gas particles pushing on the walls of a balloon inflate it (5-PS1-1)."
+ },
+ {
+  "id": "MSB1-P5-14",
+  "map_area": "Physical Science",
+  "grade_target": 5,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 196-205",
+  "dci": "PS4",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "predicts",
+  "invented": false,
+  "ngss_pe": "4-PS4-2",
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "A student sits in a closed room with no windows. The lights are off, and no light gets in. She holds a red apple in front of her face. Which prediction is correct?",
+  "choices": [
+   "She will see the apple dimly after her eyes adjust to the dark.",
+   "She will see the apple because red things give off their own light.",
+   "She can always see the apple because her eyes send out light.",
+   "She cannot see the apple at all until light reflects off it into her eyes."
+  ],
+  "correct_answer": "She cannot see the apple at all until light reflects off it into her eyes.",
+  "explanation": "We see an object only when light bounces off it and enters our eyes. With no light in the room, no light can reflect off the apple, so she cannot see it until a light is turned on.",
+  "distractor_rationales": [
+   {
+    "choice": "She will see the apple dimly after her eyes adjust to the dark.",
+    "fault": "misconception: eyes can adjust to see in total darkness"
+   },
+   {
+    "choice": "She will see the apple because red things give off their own light.",
+    "fault": "misconception: colored objects make their own light"
+   },
+   {
+    "choice": "She can always see the apple because her eyes send out light.",
+    "fault": "misconception: eyes send out rays that let us see"
+   }
+  ],
+  "real_world_check": "Objects are seen when light reflects from them and enters the eye (4-PS4-2); an apple does not make its own light."
+ },
+ {
+  "id": "MSB1-P5-15",
+  "map_area": "Physical Science",
+  "grade_target": 5,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 206-215",
+  "dci": "PS2",
+  "kind": "data",
+  "stimulus": "bar",
+  "format": "conditions",
+  "ask": "greatest",
+  "invented": true,
+  "ngss_pe": "3-PS2-3",
+  "names_used": [
+   "Cloth F",
+   "Cloth A-3",
+   "Cloth CE-12",
+   "Cloth DBF-405"
+  ],
+  "passage": "Students rubbed the same balloon with four different cloths. After each rubbing, they slowly moved the balloon toward a thin strip of foil hanging from a thread. They measured how far away the balloon was when the foil first swung toward it. Between trials, they wiped the balloon with a damp towel and let it dry.",
+  "graphic": {
+   "type": "bar",
+   "bars": [
+    {
+     "label": "Cloth F",
+     "value": 6
+    },
+    {
+     "label": "Cloth A-3",
+     "value": 9
+    },
+    {
+     "label": "Cloth CE-12",
+     "value": 15
+    },
+    {
+     "label": "Cloth DBF-405",
+     "value": 11
+    }
+   ],
+   "xLabel": "Cloth used",
+   "yLabel": "Distance when foil first moved (cm)",
+   "caption": "Distance at which the foil first moved toward the balloon"
+  },
+  "prompt": "Based on the graph, rubbing with which cloth gave the balloon the strongest electric charge?",
+  "choices": [
+   "Cloth A-3",
+   "Cloth CE-12",
+   "Cloth F",
+   "Cloth DBF-405"
+  ],
+  "correct_answer": "Cloth CE-12",
+  "key_evidence": {
+   "refs": [
+    "Cloth CE-12"
+   ]
+  },
+  "explanation": "A stronger charge pulls on the foil from farther away. The Cloth CE-12 bar is tallest, about 15 cm, so the balloon rubbed with it moved the foil from the greatest distance and had the strongest charge.",
+  "distractor_rationales": [
+   {
+    "choice": "Cloth A-3",
+    "fault": "Cloth A-3 moved the foil from about 9 cm, closer than Cloth CE-12, so its charge was weaker"
+   },
+   {
+    "choice": "Cloth F",
+    "fault": "Cloth F has the SHORTEST bar; the balloon had to come closest, which shows the weakest charge"
+   },
+   {
+    "choice": "Cloth DBF-405",
+    "fault": "Cloth DBF-405 reached about 11 cm, less than Cloth CE-12"
+   }
+  ],
+  "real_world_check": "Electric forces act between objects that are not touching and are stronger when the charge is greater, so a more strongly charged balloon moves foil from farther away."
+ },
+ {
+  "id": "MSB1-P5-16",
+  "map_area": "Physical Science",
+  "grade_target": 5,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 206-215",
+  "dci": "PS3",
+  "kind": "data",
+  "stimulus": "line",
+  "format": "values",
+  "ask": "read",
+  "invented": true,
+  "ngss_pe": "4-PS3-3",
+  "names_used": [
+   "Ball FC-9"
+  ],
+  "passage": "Students dropped Ball FC-9 onto a concrete floor from different heights. Each time, they measured how high the ball bounced back up.",
+  "graphic": {
+   "type": "line",
+   "series": [
+    {
+     "points": [
+      [
+       50,
+       34
+      ],
+      [
+       100,
+       60
+      ],
+      [
+       150,
+       74
+      ],
+      [
+       200,
+       80
+      ]
+     ]
+    }
+   ],
+   "xLabel": "Drop height (cm)",
+   "yLabel": "Bounce height (cm)",
+   "caption": "Drop and bounce heights for Ball FC-9"
+  },
+  "prompt": "In one of the drops, Ball FC-9 bounced back up to a height 40 cm lower than the height it was dropped from. Based on the graph, how high did it bounce in that drop?",
+  "choices": [
+   "60 cm",
+   "100 cm",
+   "74 cm",
+   "140 cm"
+  ],
+  "correct_answer": "60 cm",
+  "key_evidence": {
+   "refs": [
+    [
+     100,
+     60
+    ]
+   ],
+   "expr": "v0"
+  },
+  "explanation": "Only the point at a 100 cm drop has a bounce 40 cm lower: 100 cm minus 60 cm is 40 cm. The other drops lose 16, 76 and 120 cm. So the ball bounced to 60 cm.",
+  "distractor_rationales": [
+   {
+    "choice": "100 cm",
+    "fault": "This is the drop height read off the x-axis, not the bounce height"
+   },
+   {
+    "choice": "74 cm",
+    "fault": "This is the bounce from the 150 cm drop, which lost 76 cm, not 40 cm"
+   },
+   {
+    "choice": "140 cm",
+    "fault": "This adds 40 cm to the drop height instead of subtracting it"
+   }
+  ],
+  "real_world_check": "A dropped ball bounces back lower than its starting height because the collision with the floor transfers some of its energy to sound and heat.",
+  "prior_free": "The standard says a collision changes some energy into other forms but not how much height this invented ball loses; the one drop with a 40 cm loss appears only on the graph."
+ },
+ {
+  "id": "MSB1-P5-17",
+  "map_area": "Physical Science",
+  "grade_target": 5,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 206-215",
+  "dci": "PS2",
+  "kind": "investigation",
+  "stimulus": "procedure",
+  "format": "variable",
+  "ask": "independent",
+  "invented": true,
+  "ngss_pe": "3-PS2-1",
+  "names_used": [
+   "Cart BF-2"
+  ],
+  "passage": "Students placed Cart BF-2 in the middle of a smooth table. They tied a string to each end of the cart. Each string ran over a pulley at the edge of the table to a hanging cup. The number of washers held in the left cup was always 5. In each trial, they put a different number of washers in the right cup: 5, 6, 7 or 8. The size of each washer was the same. The length of each string that pulled the cart stayed the same. They let go of the cart and watched which way it moved and how far it went in 2 seconds.",
+  "graphic": null,
+  "prompt": "What was the independent variable, the one the students changed on purpose, in this investigation?",
+  "choices": [
+   "size of each washer",
+   "number of washers in the right cup",
+   "number of washers held in the left cup",
+   "length of each string that pulled the cart"
+  ],
+  "correct_answer": "number of washers in the right cup",
+  "key_evidence": {
+   "refs": [
+    {
+     "quote": "In each trial, they put a different number of washers in the right cup"
+    }
+   ]
+  },
+  "explanation": "The students put 5, 6, 7 or 8 washers in the right cup, a different number in each trial. That is the one setting they changed on purpose.",
+  "distractor_rationales": [
+   {
+    "choice": "size of each washer",
+    "fault": "Every washer was the same size, so this was kept the same, not changed"
+   },
+   {
+    "choice": "number of washers held in the left cup",
+    "fault": "The left cup always held 5 washers; it was kept the same, not changed"
+   },
+   {
+    "choice": "length of each string that pulled the cart",
+    "fault": "The string lengths stayed the same in every trial"
+   }
+  ],
+  "option_roles": [
+   "setting",
+   "setting",
+   "setting",
+   "setting"
+  ],
+  "real_world_check": "Unequal pulls on opposite sides of an object make unbalanced forces that change its motion, and a fair investigation changes one setting while others are kept the same."
+ },
+ {
+  "id": "MSB1-P5-18",
+  "map_area": "Physical Science",
+  "grade_target": 5,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 206-215",
+  "dci": "PS1",
+  "kind": "investigation",
+  "stimulus": "procedure",
+  "format": "claim",
+  "ask": "not-supported",
+  "invented": true,
+  "ngss_pe": "5-PS1-4",
+  "names_used": [
+   "Liquid C-3",
+   "Liquid E-8"
+  ],
+  "passage": "Students tested two clear liquids, Liquid C-3 and Liquid E-8. First, they poured each liquid through a paper filter. Nothing was left on either filter. Next, they mixed 50 mL of each liquid in a cup. The mixture turned cloudy, and a white solid slowly settled to the bottom. They poured the mixture through a new filter, and the white solid stayed on the paper. Last, they mixed 50 mL of Liquid C-3 with 50 mL of plain water. That mixture stayed clear, and nothing was left on a filter.",
+  "graphic": null,
+  "prompt": "Which statement is NOT supported by the students' results?",
+  "choices": [
+   "Mixing the two liquids made a solid that neither liquid had before.",
+   "Water alone did not make Liquid C-3 form a solid.",
+   "Liquid E-8 already held bits of the white solid before mixing.",
+   "A filter can separate the white solid from the liquid."
+  ],
+  "correct_answer": "Liquid E-8 already held bits of the white solid before mixing.",
+  "key_evidence": {
+   "refs": [
+    {
+     "quote": "Nothing was left on either filter"
+    }
+   ]
+  },
+  "explanation": "Before mixing, each liquid went through a filter and left nothing behind, so Liquid E-8 held no white solid. The solid appeared only after the two liquids were mixed, so this statement goes against the results.",
+  "distractor_rationales": [
+   {
+    "choice": "Mixing the two liquids made a solid that neither liquid had before.",
+    "fault": "Supported: the filters were empty before mixing and caught a white solid after"
+   },
+   {
+    "choice": "Water alone did not make Liquid C-3 form a solid.",
+    "fault": "Supported: Liquid C-3 mixed with plain water stayed clear and left nothing on a filter"
+   },
+   {
+    "choice": "A filter can separate the white solid from the liquid.",
+    "fault": "Supported: the white solid stayed on the paper when the mixture was filtered"
+   }
+  ],
+  "real_world_check": "When two substances are mixed and a new solid forms that neither had before, a new substance has been made (5-PS1-4)."
+ },
+ {
+  "id": "MSB1-P5-19",
+  "map_area": "Physical Science",
+  "grade_target": 5,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 206-215",
+  "dci": "PS1",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "explains",
+  "invented": false,
+  "ngss_pe": "5-PS1-1",
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "A student opens a bottle of perfume in one corner of a still room. A few minutes later, a friend across the room smells it, even though nobody saw anything move. Which statement best explains this?",
+  "choices": [
+   "Tiny perfume particles spread through the air.",
+   "The smell is energy that travels without any matter moving.",
+   "The air near the friend changed into perfume by itself.",
+   "Only drops large enough to see can carry a smell across a room."
+  ],
+  "correct_answer": "Tiny perfume particles spread through the air.",
+  "explanation": "Perfume is matter made of particles too small to see. The particles mix into the air and spread across the room, and the friend smells them when they reach her nose.",
+  "distractor_rationales": [
+   {
+    "choice": "The smell is energy that travels without any matter moving.",
+    "fault": "misconception: a smell is not matter; really, we smell particles of the substance"
+   },
+   {
+    "choice": "The air near the friend changed into perfume by itself.",
+    "fault": "misconception: one substance can turn into another on its own"
+   },
+   {
+    "choice": "Only drops large enough to see can carry a smell across a room.",
+    "fault": "misconception: matter too small to see cannot exist or move things"
+   }
+  ],
+  "real_world_check": "Matter is made of particles too small to be seen, and particles of a substance spread through air, which is how smells travel (5-PS1-1)."
+ },
+ {
+  "id": "MSB1-P5-20",
+  "map_area": "Physical Science",
+  "grade_target": 5,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 206-215",
+  "dci": "PS4",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "predicts",
+  "invented": false,
+  "ngss_pe": "4-PS4-1",
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "A cork floats in the middle of a calm pond. A student drops a stone into the pond near the cork, and small waves spread out across the water. What will most likely happen to the cork as the waves pass it?",
+  "choices": [
+   "It will be carried along by the waves to the shore.",
+   "It will bob up and down but stay near the same spot in the pond.",
+   "It will stay still, since only the water below it moves.",
+   "It will sink, since waves always pull floating things under."
+  ],
+  "correct_answer": "It will bob up and down but stay near the same spot in the pond.",
+  "explanation": "A wave carries energy across the water, but the water itself mostly moves up and down in place. A floating cork moves with that water, so it bobs as each wave passes and ends up near where it started.",
+  "distractor_rationales": [
+   {
+    "choice": "It will be carried along by the waves to the shore.",
+    "fault": "misconception: waves carry water and floating objects along with them"
+   },
+   {
+    "choice": "It will stay still, since only the water below it moves.",
+    "fault": "misconception: a wave passes under floating objects without moving the surface"
+   },
+   {
+    "choice": "It will sink, since waves always pull floating things under.",
+    "fault": "misconception: waves drag floating objects downward"
+   }
+  ],
+  "real_world_check": "Water waves move energy, not water, across a pond; the water and anything floating on it mainly move up and down as a wave passes (4-PS4-1)."
+ }
+]

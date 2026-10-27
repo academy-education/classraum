@@ -1,0 +1,60 @@
+{
+  "drop_A2_coordinator": [
+    "MSB1-L8-08",
+    "MSB1-L8-04",
+    "MSB1-L8-12",
+    "MSB1-L7-14",
+    "MSB1-P7-06",
+    "MSB1-P8-13",
+    "MSB1-P8-14",
+    "MSB1-P8-12",
+    "MSB1-E7-06",
+    "MSB1-E7-13",
+    "MSB1-E8-02",
+    "MSB1-E8-16",
+    "MSB1-E6-01",
+    "MSB1-E6-02",
+    "MSB1-E6-11",
+    "MSB1-E6-16",
+    "MSB1-L6-06",
+    "MSB1-L8-06",
+    "MSB1-L8-14"
+  ],
+  "drop_item_rules": {
+    "MSB1-P7-11": "fact_error confirmed (floating bead: printed displacement method cannot give the keyed 20 cm3)",
+    "MSB1-P6-16": "readability confirmed: renderer labels ticks 0.25/0.75 as 0.3/0.8; both key bars between ticks; misread -> 2.0 distractor",
+    "MSB1-E7-17": "no_source_needed yes from both graders"
+  },
+  "return_once": {
+    "MSB1-L6-10": "B4 stated law + no_source_needed (one grader)",
+    "MSB1-L6-11": "B1 lone measured result for dependent ask (one grader)",
+    "MSB1-L8-11": "B4 stated law + no_source_needed + key-reversal distractor (one grader)",
+    "MSB1-L8-20": "B3 key is the lone hedged option (one grader)",
+    "MSB1-L7-20": "second_defensible: artificial selection (one grader); stem never says no one chose",
+    "MSB1-L7-17": "B2 distractor B alone lacks the shared range phrase (one grader)",
+    "MSB1-L5-20": "B3 lone absolute 'only' on C (one grader)",
+    "MSB1-P6-11": "B1 lone measured result (empty cup mass is a pre-test check)",
+    "MSB1-P7-03": "B4 + no_source_needed: asked range 10-30 g is the part general knowledge predicts",
+    "MSB1-P8-10": "B2 lone qualifier on distractor C",
+    "MSB1-P5-20": "B3 lone absolute 'only' on C",
+    "MSB1-P5-14": "B3 lone listed absolute 'always' (key 'not at all' is absolute in meaning)",
+    "MSB1-E6-14": "B3 key is the lone hedged option ('are likely to form' vs 'will')",
+    "MSB1-E6-10": "B2 reversed: three distractors carry scope phrases, key bare"
+  },
+  "kept_coordinator_calls": {
+    "MSB1-L6-18": "Gause design with invented numbers: not recognised real DATA (pilot L-12 Mendel precedent)",
+    "MSB1-E7-01": "also a long-code key (RMN-207) but A2 was fixed before keys; recorded, not dropped post hoc"
+  },
+  "process_notes": [
+    "grader-keyed.md omitted prior_free and option_roles: B4 judged from stimulus; fix sci-packet for batch 2",
+    "graders shared one scratch folder; two overwrites, no key leakage; give each grader its own scratch dir",
+    "A2 item 3 text said L8-14 also falls under item 1; it does not (P8-14 does). L8-14 is dropped under item 3 as written."
+  ],
+  "drop_recheck": {
+    "MSB1-P8-10": "recheck grader: answerable without figure, option set decides, stated law (second hit after return)",
+    "MSB1-E6-10": "recheck grader: answerable without figure / stated law (second hit after return)"
+  },
+  "withdrawn": {
+    "MSB1-P6-11": "author withdrew: no second measured outcome can exist without becoming a valid answer"
+  }
+}

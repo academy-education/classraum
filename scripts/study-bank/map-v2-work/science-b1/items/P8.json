@@ -1,0 +1,1472 @@
+[
+ {
+  "id": "MSB1-P8-01",
+  "map_area": "Physical Science",
+  "grade_target": 8,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 195-204",
+  "dci": "PS2",
+  "ngss_pe": "MS-PS2-2",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "values",
+  "ask": "difference",
+  "invented": true,
+  "names_used": [
+   "Glider S-5",
+   "Glider V-2"
+  ],
+  "passage": "Students tested two gliders, Glider S-5 and Glider V-2, on an air track, where friction is almost zero. A small fan on each glider gave it a steady push. The students changed the fan setting to change the net force, and they measured how fast each glider sped up.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Setting 1",
+    "Setting 2",
+    "Setting 3",
+    "Setting 4"
+   ],
+   "colLabels": [
+    "Net force (N)",
+    "Glider S-5 acceleration (m/s²)",
+    "Glider V-2 acceleration (m/s²)"
+   ],
+   "cells": [
+    [
+     0.2,
+     0.8,
+     0.5
+    ],
+    [
+     0.4,
+     1.6,
+     1
+    ],
+    [
+     0.6,
+     2.4,
+     1.5
+    ],
+    [
+     0.8,
+     3.2,
+     2
+    ]
+   ],
+   "caption": "Table 1. Acceleration of two gliders at four fan settings"
+  },
+  "prompt": "Based on Table 1, when the net force was 0.6 N, how much greater was the acceleration of Glider S-5 than the acceleration of Glider V-2?",
+  "choices": [
+   "0.9 m/s²",
+   "1.2 m/s²",
+   "2.4 m/s²",
+   "0.6 m/s²"
+  ],
+  "correct_answer": "0.9 m/s²",
+  "key_evidence": {
+   "refs": [
+    [
+     2,
+     1
+    ],
+    [
+     2,
+     2
+    ]
+   ],
+   "expr": "v0 - v1"
+  },
+  "explanation": "At a net force of 0.6 N (Setting 3), Glider S-5 accelerated at 2.4 m/s² and Glider V-2 at 1.5 m/s². The difference is 2.4 - 1.5 = 0.9 m/s².",
+  "distractor_rationales": [
+   {
+    "choice": "1.2 m/s²",
+    "fault": "this is the gap at 0.8 N (3.2 - 2.0), the wrong row of the table"
+   },
+   {
+    "choice": "2.4 m/s²",
+    "fault": "this is the acceleration of Glider S-5 alone, not how much greater it is"
+   },
+   {
+    "choice": "0.6 m/s²",
+    "fault": "this is the gap at 0.4 N (1.6 - 1.0), and it also matches the net force value, the wrong row"
+   }
+  ],
+  "real_world_check": "Under the same net force, an object with less mass has a greater acceleration, and each glider's acceleration grows in proportion to the net force (MS-PS2-2).",
+  "prior_free": "Newton's second law says the lighter glider speeds up more, but the glider masses are never given, so the size of the gap at 0.6 N can come only from the table."
+ },
+ {
+  "id": "MSB1-P8-02",
+  "map_area": "Physical Science",
+  "grade_target": 8,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 195-204",
+  "dci": "PS4",
+  "ngss_pe": "MS-PS4-2",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "conditions",
+  "ask": "meets-criterion",
+  "invented": true,
+  "names_used": [
+   "Slab Z",
+   "Slab S-4",
+   "Slab UW-31",
+   "Slab TVX-208"
+  ],
+  "passage": "Students aimed a radio signal at four slabs of different building materials. For each slab, a receiver measured the percent of the signal reflected back and the percent that passed through. The rest of the signal was absorbed by the slab.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Slab Z",
+    "Slab S-4",
+    "Slab UW-31",
+    "Slab TVX-208"
+   ],
+   "colLabels": [
+    "Reflected (%)",
+    "Passed through (%)",
+    "Absorbed (%)"
+   ],
+   "cells": [
+    [
+     60,
+     30,
+     10
+    ],
+    [
+     15,
+     30,
+     55
+    ],
+    [
+     35,
+     10,
+     55
+    ],
+    [
+     10,
+     70,
+     20
+    ]
+   ],
+   "caption": "Table 1. What happened to the radio signal at each of four slabs"
+  },
+  "prompt": "An engineer needs a slab that absorbs more than half of the signal and reflects less than 20% of it. Based on Table 1, which slab meets both needs?",
+  "choices": [
+   "Slab UW-31",
+   "Slab S-4",
+   "Slab TVX-208",
+   "Slab Z"
+  ],
+  "correct_answer": "Slab S-4",
+  "key_evidence": {
+   "refs": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     2
+    ]
+   ]
+  },
+  "explanation": "Slab S-4 absorbed 55% of the signal, which is more than half, and reflected 15%, which is less than 20%. It is the one slab that meets both needs.",
+  "distractor_rationales": [
+   {
+    "choice": "Slab UW-31",
+    "fault": "it absorbs 55%, but it reflects 35%, which is more than 20%"
+   },
+   {
+    "choice": "Slab TVX-208",
+    "fault": "it reflects only 10%, but it absorbs just 20%, far less than half"
+   },
+   {
+    "choice": "Slab Z",
+    "fault": "it reflects 60% and absorbs only 10%, so it fails both needs"
+   }
+  ],
+  "real_world_check": "When a wave meets a material, its energy is partly reflected, partly transmitted and partly absorbed, and the three shares add up to the whole (MS-PS4-2)."
+ },
+ {
+  "id": "MSB1-P8-03",
+  "map_area": "Physical Science",
+  "grade_target": 8,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 195-204",
+  "dci": "PS1",
+  "ngss_pe": "MS-PS1-4",
+  "kind": "data",
+  "stimulus": "line",
+  "format": "values",
+  "ask": "read",
+  "invented": true,
+  "names_used": [
+   "Substance T-6"
+  ],
+  "passage": "Students melted a sample of Substance T-6. Then they set the container in a bath of ice water and recorded the temperature of the sample every 3 minutes. The sample was a liquid at the start and a solid at the end.",
+  "graphic": {
+   "type": "line",
+   "series": [
+    {
+     "points": [
+      [
+       0,
+       95
+      ],
+      [
+       3,
+       70
+      ],
+      [
+       6,
+       49
+      ],
+      [
+       9,
+       30
+      ],
+      [
+       12,
+       30
+      ],
+      [
+       15,
+       30
+      ],
+      [
+       18,
+       14
+      ]
+     ]
+    }
+   ],
+   "xLabel": "Time (min)",
+   "yLabel": "Temperature (°C)",
+   "caption": "Temperature of Substance T-6 as it cooled"
+  },
+  "prompt": "Based on the graph, at what temperature did Substance T-6 change from a liquid to a solid?",
+  "choices": [
+   "70 °C",
+   "30 °C",
+   "95 °C",
+   "49 °C"
+  ],
+  "correct_answer": "30 °C",
+  "key_evidence": {
+   "refs": [
+    [
+     9,
+     30
+    ],
+    [
+     15,
+     30
+    ]
+   ],
+   "expr": "v0"
+  },
+  "explanation": "From minute 9 to minute 15 the graph is flat at 30 °C. The temperature stops falling while the liquid freezes, because the substance gives off energy as it becomes a solid. So the sample froze at 30 °C.",
+  "distractor_rationales": [
+   {
+    "choice": "70 °C",
+    "fault": "this is the reading at minute 3, while the sample was still a cooling liquid"
+   },
+   {
+    "choice": "95 °C",
+    "fault": "this is the starting temperature of the melted sample, not where it froze"
+   },
+   {
+    "choice": "49 °C",
+    "fault": "this is the reading at minute 6, before the flat part where freezing happened"
+   }
+  ],
+  "real_world_check": "A pure substance stays at one temperature while it freezes, because removing thermal energy then changes its state rather than lowering its temperature (MS-PS1-4).",
+  "prior_free": "Substance T-6 is invented, so no standard gives its freezing temperature; it can be found only where this cooling curve goes flat."
+ },
+ {
+  "id": "MSB1-P8-04",
+  "map_area": "Physical Science",
+  "grade_target": 8,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 195-204",
+  "dci": "PS1",
+  "ngss_pe": "MS-PS1-2",
+  "kind": "investigation",
+  "stimulus": "procedure+table",
+  "format": "conditions",
+  "ask": "meets-criterion",
+  "invented": true,
+  "names_used": [
+   "Powder S-7",
+   "Powder W-2",
+   "Tube U",
+   "Tube Y-8",
+   "Tube SV-40",
+   "Tube XZT-612"
+  ],
+  "passage": "Students tested two white powders. Powder S-7 melts at 62 °C and does not dissolve in water. Powder W-2 melts at 145 °C and dissolves in water. The students put one scoop of each powder into each of four test tubes. They treated each tube in a different way. Afterward, they dried the solid left in each tube, found the temperature or temperatures at which it melted, and tested whether it dissolved in water. The table shows their results.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Tube U",
+    "Tube Y-8",
+    "Tube SV-40",
+    "Tube XZT-612"
+   ],
+   "colLabels": [
+    "Treatment",
+    "Melting point (°C)",
+    "Dissolves in water?"
+   ],
+   "cells": [
+    [
+     "ground together",
+     "62 and 145",
+     "partly"
+    ],
+    [
+     "heated to 200 °C",
+     "210",
+     "no"
+    ],
+    [
+     "stirred in water, then filtered",
+     "62",
+     "no"
+    ],
+    [
+     "heated to 100 °C",
+     "62 and 145",
+     "partly"
+    ]
+   ],
+   "caption": "Table 1. Properties of the solid left in each tube"
+  },
+  "prompt": "Which tube gives evidence that the two powders reacted to form a new substance?",
+  "choices": [
+   "Tube SV-40",
+   "Tube XZT-612",
+   "Tube Y-8",
+   "Tube U"
+  ],
+  "correct_answer": "Tube Y-8",
+  "key_evidence": {
+   "refs": [
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     2
+    ]
+   ]
+  },
+  "explanation": "The solid in Tube Y-8 melts at 210 °C and does not dissolve. Neither starting powder has that melting point, so it is a substance with new properties, which is evidence of a chemical reaction. Every other tube holds solids that keep the melting points of the starting powders.",
+  "distractor_rationales": [
+   {
+    "choice": "Tube SV-40",
+    "fault": "its solid melts at 62 °C and does not dissolve, the properties of Powder S-7 left behind after Powder W-2 dissolved away"
+   },
+   {
+    "choice": "Tube XZT-612",
+    "fault": "it was heated, but its solid still melts at 62 °C and 145 °C, so both starting powders are unchanged"
+   },
+   {
+    "choice": "Tube U",
+    "fault": "grinding only mixed the powders; the solid still melts at both starting melting points"
+   }
+  ],
+  "real_world_check": "A chemical reaction is shown by a product whose characteristic properties, such as melting point and solubility, differ from those of every starting substance (MS-PS1-2)."
+ },
+ {
+  "id": "MSB1-P8-05",
+  "map_area": "Physical Science",
+  "grade_target": 8,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 195-204",
+  "dci": "PS4",
+  "ngss_pe": "MS-PS4-2",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "example",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "Some waves can travel through empty space, but a mechanical wave needs matter to travel through. Which of these is an example of a mechanical wave?",
+  "choices": [
+   "x-rays through a hand",
+   "sound in water",
+   "radio signals to a satellite",
+   "sunlight reaching Earth"
+  ],
+  "correct_answer": "sound in water",
+  "explanation": "Sound is a mechanical wave: it moves as particles of matter bump into one another, and water is matter, so sound travels through it. X-rays, radio signals and sunlight are all light waves (electromagnetic waves), which can cross empty space.",
+  "distractor_rationales": [
+   {
+    "choice": "x-rays through a hand",
+    "fault": "misconception: a wave that can pass through matter must need matter; x-rays are light waves that also cross empty space"
+   },
+   {
+    "choice": "radio signals to a satellite",
+    "fault": "misconception: radio signals are a kind of sound; they are electromagnetic waves and need no matter"
+   },
+   {
+    "choice": "sunlight reaching Earth",
+    "fault": "misconception: light needs air to travel; sunlight crosses empty space on its way to Earth"
+   }
+  ],
+  "real_world_check": "Sound is a mechanical wave that needs a medium such as water or air, while light, radio waves and x-rays are electromagnetic waves that can travel through a vacuum (MS-PS4-2)."
+ },
+ {
+  "id": "MSB1-P8-06",
+  "map_area": "Physical Science",
+  "grade_target": 8,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 195-204",
+  "dci": "PS3",
+  "ngss_pe": "MS-PS3-4",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "explains",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "A bathtub full of water and a small cup of water are both at 40 °C. A student drops ice cubes into each until the water stops melting them. The bathtub melts far more ice than the cup. Which statement best explains this?",
+  "choices": [
+   "The tub water is at a higher temperature, because a larger amount of water stays hotter.",
+   "Cold from the ice spreads out into the big tub, so more of the ice can melt there.",
+   "Each drop of tub water carries more thermal energy than each drop of cup water.",
+   "Both are at 40 °C, but the tub holds far more water, so it has much more thermal energy to give."
+  ],
+  "correct_answer": "Both are at 40 °C, but the tub holds far more water, so it has much more thermal energy to give.",
+  "explanation": "Temperature measures the average motion of the particles, and both waters are at 40 °C. Thermal energy also depends on how much matter there is. The tub holds far more water, so it has much more thermal energy to transfer to ice before it cools down.",
+  "distractor_rationales": [
+   {
+    "choice": "The tub water is at a higher temperature, because a larger amount of water stays hotter.",
+    "fault": "misconception: a larger amount of a substance has a higher temperature; both waters read 40 °C"
+   },
+   {
+    "choice": "Cold from the ice spreads out into the big tub, so more of the ice can melt there.",
+    "fault": "misconception: cold is a substance that flows or spreads; thermal energy moves from the water into the ice"
+   },
+   {
+    "choice": "Each drop of tub water carries more thermal energy than each drop of cup water.",
+    "fault": "misconception: at the same temperature, particles in a larger sample carry more energy each; the average energy per particle is the same"
+   }
+  ],
+  "real_world_check": "Two samples of the same substance at the same temperature have the same average particle energy, but the larger sample holds more total thermal energy and can melt more ice (MS-PS3-4)."
+ },
+ {
+  "id": "MSB1-P8-07",
+  "map_area": "Physical Science",
+  "grade_target": 8,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 205-214",
+  "dci": "PS4",
+  "ngss_pe": "MS-PS4-1",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "conditions",
+  "ask": "controlled-pair",
+  "invented": true,
+  "names_used": [
+   "Spring Y-1",
+   "Spring Z-4",
+   "Run S-2",
+   "Run T",
+   "Run W-3",
+   "Run UV-18",
+   "Run XYZ-406"
+  ],
+  "passage": "Students made waves on a long spring by moving one end back and forth. They could change how often they moved it (frequency) and how far (amplitude). They used two springs, Spring Y-1 and Spring Z-4. A sensor at the far end measured the energy each wave delivered.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Run S-2",
+    "Run T",
+    "Run W-3",
+    "Run UV-18",
+    "Run XYZ-406"
+   ],
+   "colLabels": [
+    "Frequency (Hz)",
+    "Amplitude (cm)",
+    "Spring used",
+    "Energy delivered (mJ)"
+   ],
+   "cells": [
+    [
+     2,
+     10,
+     "Y-1",
+     12
+    ],
+    [
+     4,
+     10,
+     "Y-1",
+     48
+    ],
+    [
+     2,
+     20,
+     "Z-4",
+     30
+    ],
+    [
+     4,
+     20,
+     "Y-1",
+     192
+    ],
+    [
+     2,
+     20,
+     "Y-1",
+     48
+    ]
+   ],
+   "caption": "Table 1. Settings and results for five runs"
+  },
+  "prompt": "The students want to find out whether amplitude affects the energy a wave delivers. Which run should they compare with Run S-2?",
+  "choices": [
+   "Run W-3",
+   "Run T",
+   "Run UV-18",
+   "Run XYZ-406"
+  ],
+  "correct_answer": "Run XYZ-406",
+  "key_evidence": {
+   "refs": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     1
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     4,
+     0
+    ],
+    [
+     4,
+     1
+    ],
+    [
+     4,
+     2
+    ]
+   ]
+  },
+  "explanation": "Run S-2 used 2 Hz, 10 cm and Spring Y-1. Run XYZ-406 also used 2 Hz and Spring Y-1 but an amplitude of 20 cm. Only the amplitude differs, so comparing the two runs tests the effect of amplitude.",
+  "distractor_rationales": [
+   {
+    "choice": "Run W-3",
+    "fault": "it changes the amplitude but also uses Spring Z-4, so two things differ from Run S-2"
+   },
+   {
+    "choice": "Run T",
+    "fault": "it keeps the amplitude at 10 cm and changes the frequency, so it tests frequency instead"
+   },
+   {
+    "choice": "Run UV-18",
+    "fault": "it changes the amplitude and the frequency together, so the effect of amplitude cannot be separated"
+   }
+  ],
+  "real_world_check": "To test one variable, two trials must differ only in that variable; for a wave on a spring, a larger amplitude carries more energy (MS-PS4-1)."
+ },
+ {
+  "id": "MSB1-P8-08",
+  "map_area": "Physical Science",
+  "grade_target": 8,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 205-214",
+  "dci": "PS3",
+  "ngss_pe": "MS-PS3-3",
+  "kind": "data",
+  "stimulus": "bar",
+  "format": "conditions",
+  "ask": "greatest",
+  "invented": true,
+  "names_used": [
+   "Wrap V",
+   "Wrap S-2",
+   "Wrap TU-47",
+   "Wrap WXZ-903"
+  ],
+  "passage": "Students poured 300 mL of water at 80 °C into each of four identical jars. They wrapped each jar in a different material and left all four jars in the same room. After 30 minutes, they measured the temperature of the water in each jar.",
+  "graphic": {
+   "type": "bar",
+   "bars": [
+    {
+     "label": "Wrap V",
+     "value": 62
+    },
+    {
+     "label": "Wrap S-2",
+     "value": 55
+    },
+    {
+     "label": "Wrap TU-47",
+     "value": 38
+    },
+    {
+     "label": "Wrap WXZ-903",
+     "value": 70
+    }
+   ],
+   "xLabel": "Wrap",
+   "yLabel": "Water temperature after 30 min (°C)",
+   "caption": "Water temperature in each wrapped jar after 30 minutes"
+  },
+  "prompt": "Based on the graph, which wrap allowed the greatest amount of thermal energy to move out of the water?",
+  "choices": [
+   "Wrap TU-47",
+   "Wrap WXZ-903",
+   "Wrap V",
+   "Wrap S-2"
+  ],
+  "correct_answer": "Wrap TU-47",
+  "key_evidence": {
+   "refs": [
+    "Wrap TU-47",
+    "Wrap S-2"
+   ]
+  },
+  "explanation": "Every jar held the same amount of water starting at the same temperature. The water that ended coolest lost the most thermal energy. The jar in Wrap TU-47 has the shortest bar, so the most energy left the water through that wrap.",
+  "distractor_rationales": [
+   {
+    "choice": "Wrap WXZ-903",
+    "fault": "its water stayed warmest, so the least energy escaped; this reads the tallest bar as the most energy lost"
+   },
+   {
+    "choice": "Wrap V",
+    "fault": "its water ended warmer than the water in Wrap TU-47, so less energy moved out"
+   },
+   {
+    "choice": "Wrap S-2",
+    "fault": "its water ended warmer than the water in Wrap TU-47, so less energy moved out"
+   }
+  ],
+  "real_world_check": "For equal masses of water starting at the same temperature, the sample whose temperature falls most has transferred the most thermal energy to its surroundings (MS-PS3-3)."
+ },
+ {
+  "id": "MSB1-P8-09",
+  "map_area": "Physical Science",
+  "grade_target": 8,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 205-214",
+  "dci": "PS4",
+  "ngss_pe": "MS-PS4-1",
+  "kind": "data",
+  "stimulus": "bar",
+  "format": "values",
+  "ask": "ratio",
+  "invented": true,
+  "names_used": [
+   "Paddle S-1",
+   "Paddle T-4",
+   "Paddle U-2",
+   "Paddle W-7"
+  ],
+  "passage": "Four paddles made water waves in the same tank. The water was the same depth everywhere, so all the waves traveled at the same speed. The graph shows the frequency of the waves each paddle made.",
+  "graphic": {
+   "type": "bar",
+   "bars": [
+    {
+     "label": "Paddle S-1",
+     "value": 4
+    },
+    {
+     "label": "Paddle T-4",
+     "value": 2
+    },
+    {
+     "label": "Paddle U-2",
+     "value": 3
+    },
+    {
+     "label": "Paddle W-7",
+     "value": 1
+    }
+   ],
+   "xLabel": "Paddle",
+   "yLabel": "Frequency (waves per second)",
+   "caption": "Frequency of the waves made by four paddles"
+  },
+  "prompt": "The wavelength of the waves from Paddle T-4 is how many times the wavelength of the waves from Paddle S-1?",
+  "choices": [
+   "0.5 times",
+   "2.0 times",
+   "1.0 times",
+   "4.0 times"
+  ],
+  "correct_answer": "2.0 times",
+  "key_evidence": {
+   "refs": [
+    "Paddle S-1",
+    "Paddle T-4"
+   ],
+   "expr": "v0 / v1"
+  },
+  "explanation": "At the same wave speed, wavelength is speed divided by frequency, so a lower frequency means a longer wavelength. Paddle S-1 makes 4 waves per second and Paddle T-4 makes 2, so the waves from Paddle T-4 are 4 / 2 = 2.0 times as long.",
+  "distractor_rationales": [
+   {
+    "choice": "0.5 times",
+    "fault": "divides the frequencies the wrong way (2 / 4), treating wavelength as if it grew with frequency"
+   },
+   {
+    "choice": "1.0 times",
+    "fault": "assumes equal speed means equal wavelength and ignores the different frequencies"
+   },
+   {
+    "choice": "4.0 times",
+    "fault": "compares Paddle W-7 (1 per second) with Paddle S-1 instead of Paddle T-4, the wrong bar"
+   }
+  ],
+  "real_world_check": "For waves moving at the same speed, wavelength equals speed divided by frequency, so halving the frequency doubles the wavelength (MS-PS4-1).",
+  "prior_free": "The standard gives only the inverse link between frequency and wavelength; the factor depends on these invented paddles' frequencies, which exist only in the bars."
+ },
+ {
+  "id": "MSB1-P8-10",
+  "map_area": "Physical Science",
+  "grade_target": 8,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 205-214",
+  "dci": "PS2",
+  "ngss_pe": "MS-PS2-3",
+  "kind": "data",
+  "stimulus": "scatter",
+  "format": "trend",
+  "ask": "increase-then-level",
+  "invented": true,
+  "names_used": [
+   "Balloon T-3"
+  ],
+  "passage": "Students rubbed Balloon T-3 with a wool cloth a set number of times. Then they held it 10 cm from a hanging foil ball and measured how far the ball swung toward it, as an angle. They removed all charge from the balloon between trials.",
+  "graphic": {
+   "type": "scatter",
+   "points": [
+    [
+     2,
+     6
+    ],
+    [
+     4,
+     11
+    ],
+    [
+     6,
+     15
+    ],
+    [
+     8,
+     18
+    ],
+    [
+     10,
+     20
+    ],
+    [
+     12,
+     21
+    ],
+    [
+     14,
+     21
+    ],
+    [
+     16,
+     21
+    ]
+   ],
+   "xLabel": "Number of rubs",
+   "yLabel": "Swing of foil ball (degrees)",
+   "caption": "Swing of the foil ball after different numbers of rubs"
+  },
+  "prompt": "Based on the graph, which statement describes how the swing of the foil ball changed as the number of rubs went up?",
+  "choices": [
+   "As the rubs went up, the swing stayed the same",
+   "As the rubs went up, the swing increased, then stayed the same",
+   "As the rubs went up, the swing decreased at first, then increased",
+   "As the rubs went up, the swing decreased"
+  ],
+  "correct_answer": "As the rubs went up, the swing increased, then stayed the same",
+  "key_evidence": {
+   "refs": [
+    [
+     2,
+     6
+    ],
+    [
+     10,
+     20
+    ],
+    [
+     12,
+     21
+    ],
+    [
+     16,
+     21
+    ]
+   ]
+  },
+  "explanation": "The swing grows from 6 degrees at 2 rubs to 21 degrees at 12 rubs. From 12 to 16 rubs it stays at 21 degrees. So the swing increased and then leveled off.",
+  "distractor_rationales": [
+   {
+    "choice": "As the rubs went up, the swing stayed the same",
+    "fault": "the swing rose from 6 to 21 degrees over the first 12 rubs"
+   },
+   {
+    "choice": "As the rubs went up, the swing decreased at first, then increased",
+    "fault": "the swing never dropped at the start; it rose from the first point and then held at 21 degrees"
+   },
+   {
+    "choice": "As the rubs went up, the swing decreased",
+    "fault": "the swing never fell; it rose and then held at 21 degrees"
+   }
+  ],
+  "real_world_check": "Rubbing moves charge onto a balloon and a larger charge exerts a stronger electric force, but charging by rubbing reaches a limit, so the force stops growing (MS-PS2-3).",
+  "prior_free": "The standard says more charge gives a stronger electric force, which predicts a steady rise; that Balloon T-3 stops gaining swing after 12 rubs shows only in these data."
+ },
+ {
+  "id": "MSB1-P8-11",
+  "map_area": "Physical Science",
+  "grade_target": 8,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 205-214",
+  "dci": "PS2",
+  "ngss_pe": "MS-PS2-2",
+  "kind": "investigation",
+  "stimulus": "procedure+table",
+  "format": "values",
+  "ask": "interpolate",
+  "invented": true,
+  "names_used": [
+   "Cart U-4",
+   "Ramp S",
+   "Ramp Y"
+  ],
+  "passage": "Students placed Cart U-4 on a smooth ramp, Ramp S. They held the cart still with a spring scale that pulled straight up the ramp. They added loads to the cart to change its total mass, and each time they read the force on the scale. Then they repeated every test on a second ramp, Ramp Y, which was tilted at a larger angle. The table shows their results.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Load 1",
+    "Load 2",
+    "Load 3",
+    "Load 4"
+   ],
+   "colLabels": [
+    "Total mass (g)",
+    "Force on Ramp S (N)",
+    "Force on Ramp Y (N)"
+   ],
+   "cells": [
+    [
+     200,
+     0.6,
+     1
+    ],
+    [
+     400,
+     1.2,
+     2
+    ],
+    [
+     600,
+     1.8,
+     3
+    ],
+    [
+     800,
+     2.4,
+     4
+    ]
+   ],
+   "caption": "Table 1. Force needed to hold Cart U-4 still on two ramps"
+  },
+  "prompt": "Based on the table, what force would most likely be needed to hold Cart U-4 still on Ramp S at a total mass of 500 g?",
+  "choices": [
+   "2.0 N",
+   "1.8 N",
+   "2.5 N",
+   "1.5 N"
+  ],
+  "correct_answer": "1.5 N",
+  "key_evidence": {
+   "refs": [
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     1
+    ]
+   ],
+   "expr": "(v0 + v1) / 2"
+  },
+  "explanation": "On Ramp S, the force was 1.2 N at 400 g and 1.8 N at 600 g, and it rose by the same amount for every 200 g. A mass of 500 g is halfway between, so the force is halfway between: (1.2 + 1.8) / 2 = 1.5 N.",
+  "distractor_rationales": [
+   {
+    "choice": "2.0 N",
+    "fault": "this is the force on Ramp Y at 400 g, the wrong column and the wrong row"
+   },
+   {
+    "choice": "1.8 N",
+    "fault": "this is the force on Ramp S at 600 g, a listed row rather than the value at 500 g"
+   },
+   {
+    "choice": "2.5 N",
+    "fault": "this is halfway between the Ramp Y forces, the wrong column"
+   }
+  ],
+  "real_world_check": "The force needed to hold a cart still on a smooth ramp balances the part of its weight along the ramp, so it grows in proportion to the cart's mass and is larger on a steeper ramp (MS-PS2-2).",
+  "prior_free": "Knowing that more mass needs more holding force gives only the direction; the size of the force on this invented ramp at 500 g comes from the table."
+ },
+ {
+  "id": "MSB1-P8-12",
+  "map_area": "Physical Science",
+  "grade_target": 8,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 205-214",
+  "dci": "PS2",
+  "ngss_pe": "MS-PS2-1",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "explains",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "Sofia and Victor stand on skateboards, facing each other. Victor has twice Sofia's mass. They press their hands together and push off, and Sofia rolls away faster than Victor. Which statement correctly explains the forces during the push?",
+  "choices": [
+   "Each one pushes on the other with a force of equal size.",
+   "Victor pushes harder because he has more mass to push with.",
+   "Sofia feels the larger force, which is why she rolls away faster.",
+   "The skater who starts the push puts the larger force on the other one."
+  ],
+  "correct_answer": "Each one pushes on the other with a force of equal size.",
+  "explanation": "The forces in an interaction come in pairs that are equal in size and opposite in direction. Sofia rolls away faster because the same size force acts on her smaller mass, which gives her a greater change in motion.",
+  "distractor_rationales": [
+   {
+    "choice": "Victor pushes harder because he has more mass to push with.",
+    "fault": "misconception: the object with more mass exerts the larger force in an interaction"
+   },
+   {
+    "choice": "Sofia feels the larger force, which is why she rolls away faster.",
+    "fault": "misconception: the faster-moving object must have felt the larger force; her smaller mass explains her speed"
+   },
+   {
+    "choice": "The skater who starts the push puts the larger force on the other one.",
+    "fault": "misconception: the one who acts first pushes harder; paired forces are equal no matter who starts"
+   }
+  ],
+  "real_world_check": "By Newton's third law, the forces two objects exert on each other are equal in size and opposite in direction, whatever their masses (MS-PS2-1)."
+ },
+ {
+  "id": "MSB1-P8-13",
+  "map_area": "Physical Science",
+  "grade_target": 8,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 205-214",
+  "dci": "PS2",
+  "ngss_pe": "MS-PS2-4",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "predicts",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "A space probe is launched from Earth and travels toward Mars. Its mass does not change during the trip. Which prediction about the gravitational pull between Earth and the probe is correct as the probe moves away from Earth?",
+  "choices": [
+   "The pull stops completely once the probe has climbed above Earth's air.",
+   "The pull stays the same the whole way, since the probe's mass does not change.",
+   "Earth pulls on the probe at every point of the trip, but more weakly as the distance grows.",
+   "The pull grows stronger as the probe picks up more and more speed on its way to Mars."
+  ],
+  "correct_answer": "Earth pulls on the probe at every point of the trip, but more weakly as the distance grows.",
+  "explanation": "Gravity acts between any two masses at any distance, so Earth never stops pulling on the probe. The pull depends on the masses and on the distance between them; as the distance grows, the pull gets weaker.",
+  "distractor_rationales": [
+   {
+    "choice": "The pull stops completely once the probe has climbed above Earth's air.",
+    "fault": "misconception: there is no gravity in space, or gravity needs air; gravity reaches through empty space"
+   },
+   {
+    "choice": "The pull stays the same the whole way, since the probe's mass does not change.",
+    "fault": "misconception: gravitational force depends only on mass; it also weakens with distance"
+   },
+   {
+    "choice": "The pull grows stronger as the probe picks up more and more speed on its way to Mars.",
+    "fault": "misconception: gravity depends on how fast an object moves; speed does not set the pull"
+   }
+  ],
+  "real_world_check": "Gravitational force between two objects depends on their masses and gets weaker, but never reaches zero, as the distance between them increases (MS-PS2-4)."
+ },
+ {
+  "id": "MSB1-P8-14",
+  "map_area": "Physical Science",
+  "grade_target": 8,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 205-214",
+  "dci": "PS3",
+  "ngss_pe": "MS-PS3-1",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "predicts",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "A 2 kg cart rolls along a level track at 3 m/s. A student then sends the same cart along the track at 6 m/s. Which prediction about the cart's kinetic energy at 6 m/s is correct?",
+  "choices": [
+   "The kinetic energy stays the same, since the cart has the same mass as before.",
+   "The kinetic energy doubles, since kinetic energy grows in step with speed.",
+   "The kinetic energy rises by the same amount it would if the mass doubled instead.",
+   "The kinetic energy becomes four times as large, because it depends on the square of the speed."
+  ],
+  "correct_answer": "The kinetic energy becomes four times as large, because it depends on the square of the speed.",
+  "explanation": "Kinetic energy is one half of mass times speed squared. Doubling the speed from 3 m/s to 6 m/s multiplies the speed squared by 4, so the kinetic energy goes from 9 J to 36 J, four times as much.",
+  "distractor_rationales": [
+   {
+    "choice": "The kinetic energy stays the same, since the cart has the same mass as before.",
+    "fault": "misconception: kinetic energy depends only on mass; it also depends on speed"
+   },
+   {
+    "choice": "The kinetic energy doubles, since kinetic energy grows in step with speed.",
+    "fault": "misconception: kinetic energy is proportional to speed; it is proportional to speed squared"
+   },
+   {
+    "choice": "The kinetic energy rises by the same amount it would if the mass doubled instead.",
+    "fault": "misconception: mass and speed affect kinetic energy equally; doubling mass doubles it, doubling speed makes it four times as large"
+   }
+  ],
+  "real_world_check": "Kinetic energy equals one half of mass times speed squared, so doubling speed makes the kinetic energy four times as large while doubling mass only doubles it (MS-PS3-1)."
+ },
+ {
+  "id": "MSB1-P8-15",
+  "map_area": "Physical Science",
+  "grade_target": 8,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 215-224",
+  "dci": "PS1",
+  "ngss_pe": "MS-PS1-4",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "values",
+  "ask": "interpolate",
+  "invented": true,
+  "names_used": [
+   "Fluid U-5",
+   "Fluid X-2"
+  ],
+  "passage": "Students filled two thin glass tubes, one with Fluid U-5 and one with Fluid X-2. They warmed both tubes in the same water bath and measured the height of each liquid column at four temperatures.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Reading 1",
+    "Reading 2",
+    "Reading 3",
+    "Reading 4"
+   ],
+   "colLabels": [
+    "Temperature (°C)",
+    "Fluid U-5 column (mm)",
+    "Fluid X-2 column (mm)"
+   ],
+   "cells": [
+    [
+     10,
+     42,
+     40
+    ],
+    [
+     30,
+     54,
+     56
+    ],
+    [
+     50,
+     66,
+     72
+    ],
+    [
+     70,
+     78,
+     88
+    ]
+   ],
+   "caption": "Table 1. Height of two liquid columns as they were warmed"
+  },
+  "prompt": "Based on Table 1, at about what temperature would the column of Fluid U-5 be 60 mm high?",
+  "choices": [
+   "35 °C",
+   "30 °C",
+   "40 °C",
+   "50 °C"
+  ],
+  "correct_answer": "40 °C",
+  "key_evidence": {
+   "refs": [
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     2,
+     1
+    ]
+   ],
+   "expr": "v0 + (60 - v2) / (v3 - v2) * (v1 - v0)"
+  },
+  "explanation": "Fluid U-5 is 54 mm high at 30 °C and 66 mm at 50 °C, rising 12 mm over those 20 degrees. A height of 60 mm is 6 mm above 54 mm, half of the 12 mm, so the temperature is halfway from 30 °C to 50 °C: 40 °C.",
+  "distractor_rationales": [
+   {
+    "choice": "35 °C",
+    "fault": "this is where Fluid X-2 reaches 60 mm (56 mm at 30 °C, 72 mm at 50 °C), the wrong column"
+   },
+   {
+    "choice": "30 °C",
+    "fault": "at 30 °C Fluid U-5 is only 54 mm high; this stops at the listed row below 60 mm"
+   },
+   {
+    "choice": "50 °C",
+    "fault": "at 50 °C Fluid U-5 is already 66 mm high; this takes the listed row above 60 mm"
+   }
+  ],
+  "real_world_check": "A liquid expands as it is warmed because its particles move faster and farther apart, so its column in a thin tube rises with temperature (MS-PS1-4).",
+  "prior_free": "Knowing that liquids expand when warmed gives only the direction; the temperature at which invented Fluid U-5 reaches 60 mm needs the table, read backward from height to temperature."
+ },
+ {
+  "id": "MSB1-P8-16",
+  "map_area": "Physical Science",
+  "grade_target": 8,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 215-224",
+  "dci": "PS1",
+  "ngss_pe": "MS-PS1-5",
+  "kind": "data",
+  "stimulus": "line",
+  "format": "trend",
+  "ask": "no-change",
+  "invented": true,
+  "names_used": [
+   "Crystals V-9",
+   "Solution T-5"
+  ],
+  "passage": "Students added different masses of Crystals V-9 to flasks that each held 50 mL of Solution T-5. The two substances reacted and made a gas, which escaped from the open flask. The students found the mass of gas made in each flask from the drop in its total mass.",
+  "graphic": {
+   "type": "line",
+   "series": [
+    {
+     "points": [
+      [
+       0,
+       0
+      ],
+      [
+       2,
+       0.9
+      ],
+      [
+       4,
+       1.8
+      ],
+      [
+       6,
+       2.4
+      ],
+      [
+       8,
+       2.4
+      ],
+      [
+       10,
+       2.4
+      ]
+     ]
+    }
+   ],
+   "xLabel": "Mass of Crystals V-9 added (g)",
+   "yLabel": "Mass of gas made (g)",
+   "caption": "Gas made with different masses of Crystals V-9"
+  },
+  "prompt": "Based on the graph, how did the mass of gas made change as the mass of Crystals V-9 added went from 6 g to 10 g?",
+  "choices": [
+   "The gas mass fell",
+   "The gas mass increased",
+   "The gas mass stayed the same",
+   "The gas mass increased, then decreased"
+  ],
+  "correct_answer": "The gas mass stayed the same",
+  "key_evidence": {
+   "refs": [
+    [
+     6,
+     2.4
+    ],
+    [
+     8,
+     2.4
+    ],
+    [
+     10,
+     2.4
+    ]
+   ]
+  },
+  "explanation": "The graph is flat at 2.4 g from 6 g to 10 g of crystals. The 50 mL of Solution T-5 had all reacted by then, so the extra crystals had nothing left to react with and made no more gas.",
+  "distractor_rationales": [
+   {
+    "choice": "The gas mass fell",
+    "fault": "the graph never drops; it holds at 2.4 g from 6 g to 10 g"
+   },
+   {
+    "choice": "The gas mass increased",
+    "fault": "this is true only below 6 g; from 6 g to 10 g the gas mass does not rise"
+   },
+   {
+    "choice": "The gas mass increased, then decreased",
+    "fault": "there is no rise and no fall between 6 g and 10 g; the gas mass holds at 2.4 g"
+   }
+  ],
+  "real_world_check": "Atoms are conserved in a reaction, so once one reactant is used up, adding more of the other reactant produces no more product (MS-PS1-5).",
+  "prior_free": "A student who knows reactants make products would predict that more crystals always make more gas; only the graph shows the solution ran out before 6 g."
+ },
+ {
+  "id": "MSB1-P8-17",
+  "map_area": "Physical Science",
+  "grade_target": 8,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 215-224",
+  "dci": "PS3",
+  "ngss_pe": "MS-PS3-4",
+  "kind": "investigation",
+  "stimulus": "procedure",
+  "format": "variable",
+  "ask": "controlled",
+  "invented": true,
+  "names_used": [
+   "Metal S-6",
+   "Metal V-1",
+   "Metal Y-3",
+   "Heater W-4"
+  ],
+  "passage": "Students tested how the metal used, the mass of the block and the heating time affect how much a metal block warms up. They had blocks of Metal S-6, Metal V-1 and Metal Y-3, with blocks of 100 g and 200 g of each metal. Before each trial, they held the block in a 20 °C water bath until the starting temperature of the block was 20 °C. Then they set the block on Heater W-4 for 2, 4 or 6 minutes and recorded its temperature at the end.",
+  "graphic": null,
+  "prompt": "Which of these was a controlled variable in this investigation?",
+  "choices": [
+   "the starting temperature of the block",
+   "the heating time",
+   "the mass of the block",
+   "the metal used"
+  ],
+  "correct_answer": "the starting temperature of the block",
+  "option_roles": [
+   "setting",
+   "setting",
+   "setting",
+   "setting"
+  ],
+  "key_evidence": {
+   "refs": [
+    {
+     "quote": "until the starting temperature of the block was 20 °C"
+    }
+   ]
+  },
+  "explanation": "The students changed three settings on purpose: the metal, the mass (100 g or 200 g) and the heating time (2, 4 or 6 minutes). They brought every block to 20 °C before heating it, so the starting temperature was held the same in every trial.",
+  "distractor_rationales": [
+   {
+    "choice": "the heating time",
+    "fault": "it was changed on purpose, to 2, 4 or 6 minutes, so it was a tested variable"
+   },
+   {
+    "choice": "the mass of the block",
+    "fault": "blocks of 100 g and 200 g were used, so mass was a tested variable"
+   },
+   {
+    "choice": "the metal used",
+    "fault": "three different metals were tested, so the metal was changed on purpose"
+   }
+  ],
+  "real_world_check": "In a fair comparison of how much an object warms up, settings that also affect the result, such as its starting temperature, must be held constant while the tested variables change (MS-PS3-4)."
+ },
+ {
+  "id": "MSB1-P8-18",
+  "map_area": "Physical Science",
+  "grade_target": 8,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 215-224",
+  "dci": "PS4",
+  "ngss_pe": "MS-PS4-2",
+  "kind": "investigation",
+  "stimulus": "procedure",
+  "format": "claim",
+  "ask": "supported",
+  "invented": true,
+  "names_used": [
+   "Bar T-2",
+   "Bar Z-5"
+  ],
+  "passage": "Students studied how sound moves through two solid bars, Bar T-2 and Bar Z-5. Each bar was 1.0 m long. A student tapped one end with a small hammer, and a sensor at the other end recorded when the sound arrived. Sound took 0.40 ms to cross Bar T-2 and 0.25 ms to cross Bar Z-5. Next, the students joined two T-2 bars end to end to make one 2.0 m bar, and the sound took 0.80 ms to cross it. Finally, they tapped Bar T-2 softly and then hard. The hard tap was louder, but its sound also arrived after 0.40 ms.",
+  "graphic": null,
+  "prompt": "Which claim is supported by the results?",
+  "choices": [
+   "Sound moved faster through Bar Z-5 than through Bar T-2.",
+   "Joining two bars to double the length doubled the speed of the sound.",
+   "A hard tap made a louder sound that crossed the bar in less time.",
+   "Sound took longer to cross Bar Z-5, so the material in it slowed the sound down."
+  ],
+  "correct_answer": "Sound moved faster through Bar Z-5 than through Bar T-2.",
+  "key_evidence": {
+   "refs": [
+    {
+     "quote": "Sound took 0.40 ms to cross Bar T-2 and 0.25 ms to cross Bar Z-5"
+    }
+   ]
+  },
+  "explanation": "Both bars were 1.0 m long, and sound crossed Bar Z-5 in less time (0.25 ms against 0.40 ms), so it moved faster in Bar Z-5. The doubled bar took twice the time, so the speed did not change, and the hard tap took the same 0.40 ms as the soft one.",
+  "distractor_rationales": [
+   {
+    "choice": "Joining two bars to double the length doubled the speed of the sound.",
+    "fault": "twice the length took twice the time (0.80 ms), so the speed stayed the same"
+   },
+   {
+    "choice": "A hard tap made a louder sound that crossed the bar in less time.",
+    "fault": "the hard tap was louder but arrived after the same 0.40 ms as the soft tap"
+   },
+   {
+    "choice": "Sound took longer to cross Bar Z-5, so the material in it slowed the sound down.",
+    "fault": "sound took less time in Bar Z-5 (0.25 ms) than in Bar T-2 (0.40 ms), not more"
+   }
+  ],
+  "real_world_check": "The speed of sound depends on the material it travels through, not on the length of the path or the loudness, so a longer bar takes proportionally more time (MS-PS4-2)."
+ },
+ {
+  "id": "MSB1-P8-19",
+  "map_area": "Physical Science",
+  "grade_target": 8,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 215-224",
+  "dci": "PS3",
+  "ngss_pe": "MS-PS3-3",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "structure",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "A vacuum bottle keeps soup hot for hours. It has a steel outer shell, two glass walls with a silver coating, a cork in the top, and a space with no air between the two glass walls. Which part mainly stops thermal energy from leaving through the sides by conduction and convection?",
+  "choices": [
+   "the steel outer shell",
+   "the cork",
+   "the silvered glass walls",
+   "the airless space"
+  ],
+  "correct_answer": "the airless space",
+  "explanation": "Conduction and convection both need particles of matter to carry energy. The space between the glass walls has almost no particles, so very little energy crosses it by conduction or convection.",
+  "distractor_rationales": [
+   {
+    "choice": "the steel outer shell",
+    "fault": "misconception: a thick metal case holds heat in; steel is a good conductor of thermal energy"
+   },
+   {
+    "choice": "the cork",
+    "fault": "misconception: the stopper insulates the whole bottle; it only blocks energy loss through the top opening, not the sides"
+   },
+   {
+    "choice": "the silvered glass walls",
+    "fault": "misconception: a shiny coating blocks conduction; it mainly reflects radiation, and glass still conducts"
+   }
+  ],
+  "real_world_check": "A vacuum between two walls nearly stops conduction and convection because both need matter, while a silvered surface mainly reduces energy transfer by radiation (MS-PS3-3)."
+ },
+ {
+  "id": "MSB1-P8-20",
+  "map_area": "Physical Science",
+  "grade_target": 8,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 215-224",
+  "dci": "PS1",
+  "ngss_pe": "MS-PS1-4",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "quantity",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "A sealed steel tank holds helium gas. The tank is heated. Its volume cannot change, and no gas can get in or out. Which quantity of the gas increases?",
+  "choices": [
+   "size of each gas particle",
+   "gas mass",
+   "average particle speed",
+   "the number of gas particles"
+  ],
+  "correct_answer": "average particle speed",
+  "explanation": "Adding thermal energy to a gas makes its particles move faster, so their average speed rises along with the temperature. The particles themselves do not grow, and with no gas getting in or out, the number of particles and the mass stay the same.",
+  "distractor_rationales": [
+   {
+    "choice": "size of each gas particle",
+    "fault": "misconception: particles expand when heated; they move faster but stay the same size"
+   },
+   {
+    "choice": "gas mass",
+    "fault": "misconception: heating adds mass to a substance; thermal energy has no mass to add, and no gas entered"
+   },
+   {
+    "choice": "the number of gas particles",
+    "fault": "misconception: heating creates new particles; the tank is sealed, so the count stays the same"
+   }
+  ],
+  "real_world_check": "When thermal energy is added to a gas in a sealed rigid container, the average speed of its particles and its temperature increase while its mass and particle count stay the same (MS-PS1-4)."
+ }
+]

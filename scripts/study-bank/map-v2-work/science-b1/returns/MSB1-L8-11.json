@@ -1,0 +1,51 @@
+{
+  "id": "MSB1-L8-11",
+  "map_area": "Life Science",
+  "grade_target": 8,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 205-214",
+  "dci": "LS3",
+  "ngss_pe": "MS-LS3-2",
+  "kind": "investigation",
+  "stimulus": "procedure",
+  "format": "claim",
+  "ask": "supported",
+  "invented": true,
+  "names_used": [
+    "plant line T-75"
+  ],
+  "passage": "Plant line T-75 can reproduce in two ways. It sends out runners that root and grow into new plants, and it makes seeds when two plants cross-pollinate. A student took one parent plant, which had leaf type 1, and grew 24 new plants from its runners and 24 from its seeds in the same soil and light. After six weeks, she sorted each plant into one of four leaf types by the shape of its leaves. The 24 runner plants were all type 1. Of the 24 seed plants, 5 were type 1, 9 were type 2, 7 were type 3 and 3 were type 4.",
+  "graphic": null,
+  "prompt": "Which claim about the seed plants do the student's results support?",
+  "choices": [
+    "Among the seed plants, the parent's leaf type was the most common.",
+    "Among the seed plants, type 4 outnumbered type 3.",
+    "Among the seed plants, type 2 outnumbered the parent's type.",
+    "Among the seed plants, fewer than half had a type unlike the parent's."
+  ],
+  "correct_answer": "Among the seed plants, type 2 outnumbered the parent's type.",
+  "key_evidence": {
+    "refs": [
+      {
+        "quote": "Of the 24 seed plants, 5 were type 1, 9 were type 2"
+      }
+    ]
+  },
+  "explanation": "The parent had leaf type 1. Among the seed plants, 9 were type 2 and only 5 were type 1, so type 2 outnumbered the parent's type.",
+  "distractor_rationales": [
+    {
+      "choice": "Among the seed plants, the parent's leaf type was the most common.",
+      "fault": "type 1 had 5 seed plants, fewer than type 2 (9) and type 3 (7)"
+    },
+    {
+      "choice": "Among the seed plants, type 4 outnumbered type 3.",
+      "fault": "type 4 had 3 seed plants and type 3 had 7, so type 3 outnumbered type 4"
+    },
+    {
+      "choice": "Among the seed plants, fewer than half had a type unlike the parent's.",
+      "fault": "19 of the 24 seed plants were not type 1, which is more than half"
+    }
+  ],
+  "real_world_check": "Sexual reproduction combines genes from two parents, so seed offspring can differ from the parent in many ways, while runner offspring are copies of one parent."
+}

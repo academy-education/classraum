@@ -1,0 +1,108 @@
+{
+  "id": "MSB1-E6-10",
+  "map_area": "Earth and Space Science",
+  "grade_target": 6,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 199-208",
+  "dci": "ESS1",
+  "ngss_pe": "MS-ESS1-1",
+  "kind": "data",
+  "stimulus": "scatter",
+  "format": "trend",
+  "ask": "increase-then-level",
+  "invented": true,
+  "names_used": [
+    "Lorvane"
+  ],
+  "passage": "Lorvane is a planet whose axis is tilted. One full day and night there lasts 20 hours. The graph shows the hours of daylight on Lorvane’s longest day of the year at places from 10 to 50 degrees north of its equator.",
+  "graphic": {
+    "type": "scatter",
+    "points": [
+      [
+        10,
+        11.3
+      ],
+      [
+        15,
+        12.1
+      ],
+      [
+        20,
+        12.9
+      ],
+      [
+        25,
+        13.8
+      ],
+      [
+        30,
+        14.8
+      ],
+      [
+        35,
+        16.3
+      ],
+      [
+        40,
+        20
+      ],
+      [
+        45,
+        20
+      ],
+      [
+        50,
+        20
+      ]
+    ],
+    "xLabel": "Latitude (degrees north)",
+    "yLabel": "Daylight on the longest day (hours)",
+    "caption": "Daylight on Lorvane's longest day at nine latitudes"
+  },
+  "prompt": "Based on the graph, how does daylight on Lorvane's longest day change from 10 to 50 degrees north?",
+  "choices": [
+    "It falls, then stays the same.",
+    "It increases, then it decreases.",
+    "It decreases, then increases again.",
+    "It rises, then levels off."
+  ],
+  "correct_answer": "It rises, then levels off.",
+  "key_evidence": {
+    "refs": [
+      [
+        10,
+        11.3
+      ],
+      [
+        35,
+        16.3
+      ],
+      [
+        40,
+        20
+      ],
+      [
+        50,
+        20
+      ]
+    ]
+  },
+  "explanation": "Daylight grows from about 11 hours at 10 degrees to 20 hours at 40 degrees, then stays at 20 hours from 40 to 50 degrees.",
+  "distractor_rationales": [
+    {
+      "choice": "It falls, then stays the same.",
+      "fault": "the points get higher from 10 to 40 degrees, so daylight never falls"
+    },
+    {
+      "choice": "It increases, then it decreases.",
+      "fault": "after 40 degrees the points stay at 20 hours; daylight never goes back down"
+    },
+    {
+      "choice": "It decreases, then increases again.",
+      "fault": "daylight never goes down anywhere from 10 to 50 degrees, so it cannot first decrease"
+    }
+  ],
+  "real_world_check": "On a tilted planet's summer solstice, daylight grows with latitude until it reaches a full day poleward of 90 degrees minus the tilt, then stays there.",
+  "prior_free": "The standard says tilt makes summer days longer toward the pole, and on Earth they keep growing to 66.5 degrees; Lorvane's tilt is not given, so only the points show daylight topping out at 40 degrees inside this range."
+}

@@ -1,0 +1,1384 @@
+[
+ {
+  "id": "MSB1-L5-01",
+  "map_area": "Life Science",
+  "grade_target": 5,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 186-195",
+  "dci": "LS3",
+  "ngss_pe": "3-LS3-2",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "values",
+  "ask": "interpolate",
+  "invented": true,
+  "names_used": [
+   "plant line A-6"
+  ],
+  "passage": "Students planted seeds from one plant of plant line A-6, so every seed had the same parent. They grew one group of seedlings in each of four rooms, each kept at a different air temperature. All groups got the same light and water. After four weeks, they measured the leaves.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Group 1",
+    "Group 2",
+    "Group 3",
+    "Group 4"
+   ],
+   "colLabels": [
+    "Air temperature (°C)",
+    "Average leaf length (mm)"
+   ],
+   "cells": [
+    [
+     10,
+     18
+    ],
+    [
+     20,
+     30
+    ],
+    [
+     30,
+     22
+    ],
+    [
+     40,
+     10
+    ]
+   ],
+   "caption": "Table 1. Leaf length of plant line A-6 seedlings in four rooms"
+  },
+  "prompt": "Based on Table 1, what average leaf length would most likely be measured for plant line A-6 seedlings grown at an air temperature of 35 °C?",
+  "choices": [
+   "22 mm",
+   "30 mm",
+   "16 mm",
+   "26 mm"
+  ],
+  "correct_answer": "16 mm",
+  "key_evidence": {
+   "refs": [
+    [
+     2,
+     1
+    ],
+    [
+     3,
+     1
+    ]
+   ],
+   "expr": "(v0 + v1) / 2"
+  },
+  "explanation": "35 °C is halfway between 30 °C and 40 °C. The table gives 22 mm at 30 °C and 10 mm at 40 °C, and halfway between 22 mm and 10 mm is 16 mm.",
+  "distractor_rationales": [
+   {
+    "choice": "22 mm",
+    "fault": "It is the 30 °C value itself; it stops at the row below 35 °C instead of going halfway toward the 40 °C row."
+   },
+   {
+    "choice": "30 mm",
+    "fault": "It is the largest leaf length in the table, measured at 20 °C, not a value between 30 °C and 40 °C."
+   },
+   {
+    "choice": "26 mm",
+    "fault": "It is halfway between the 20 °C and 30 °C rows, which estimates 25 °C, not 35 °C."
+   }
+  ],
+  "real_world_check": "Plants with the same parent can grow differently in different environments, and temperature affects leaf size, often with a best temperature above and below which leaves are smaller.",
+  "prior_free": "The standard says the environment can change a trait, but not how leaf length responds to temperature; this line peaks at 20 °C and then shrinks, so only the 30 °C and 40 °C rows give the 35 °C value."
+ },
+ {
+  "id": "MSB1-L5-02",
+  "map_area": "Life Science",
+  "grade_target": 5,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 186-195",
+  "dci": "LS1",
+  "ngss_pe": "5-LS1-1",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "conditions",
+  "ask": "least",
+  "invented": true,
+  "names_used": [
+   "bean line D-3",
+   "Tray F",
+   "Tray B-8",
+   "Tray CA-40",
+   "Tray DEF-215"
+  ],
+  "passage": "Students grew seedlings of bean line D-3 in four trays. Each tray got a different amount of water each day. They weighed the seedlings in each tray at the start and again after three weeks.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Tray F",
+    "Tray CA-40",
+    "Tray DEF-215",
+    "Tray B-8"
+   ],
+   "colLabels": [
+    "Water per day (mL)",
+    "Seedling mass at start (g)",
+    "Seedling mass after 3 weeks (g)"
+   ],
+   "cells": [
+    [
+     20,
+     10,
+     24
+    ],
+    [
+     40,
+     12,
+     32
+    ],
+    [
+     60,
+     11,
+     34
+    ],
+    [
+     80,
+     22,
+     31
+    ]
+   ],
+   "caption": "Table 1. Seedling mass in four trays"
+  },
+  "prompt": "Based on Table 1, in which tray did the seedlings gain the least mass during the three weeks?",
+  "choices": [
+   "Tray B-8",
+   "Tray DEF-215",
+   "Tray F",
+   "Tray CA-40"
+  ],
+  "correct_answer": "Tray B-8",
+  "key_evidence": {
+   "refs": [
+    [
+     3,
+     1
+    ],
+    [
+     3,
+     2
+    ]
+   ]
+  },
+  "explanation": "Mass gained is the mass after 3 weeks minus the mass at the start. The gains are 24 - 10 = 14 g, 32 - 12 = 20 g, 34 - 11 = 23 g, and 31 - 22 = 9 g. The smallest gain, 9 g, belongs to the tray that got 80 mL of water a day.",
+  "distractor_rationales": [
+   {
+    "choice": "Tray F",
+    "fault": "It has the least water and the smallest final mass, but its seedlings gained 14 g, more than the 9 g gain in the 80 mL tray."
+   },
+   {
+    "choice": "Tray DEF-215",
+    "fault": "Its seedlings gained 34 - 11 = 23 g, the largest gain in the table."
+   },
+   {
+    "choice": "Tray CA-40",
+    "fault": "Its seedlings gained 32 - 12 = 20 g, more than twice the smallest gain."
+   }
+  ],
+  "real_world_check": "Plants need water to build their bodies, but roots in soil that stays too wet get too little air, so a plant given too much water can grow less."
+ },
+ {
+  "id": "MSB1-L5-03",
+  "map_area": "Life Science",
+  "grade_target": 5,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 186-195",
+  "dci": "LS1",
+  "ngss_pe": "3-LS1-1",
+  "kind": "data",
+  "stimulus": "line",
+  "format": "trend",
+  "ask": "increase",
+  "invented": true,
+  "names_used": [
+   "frog line E-4"
+  ],
+  "passage": "Scientists raised tadpoles of frog line E-4 in tanks of pond water. Every 10 days, they measured the average length of the tadpoles' tails.",
+  "graphic": {
+   "type": "line",
+   "series": [
+    {
+     "points": [
+      [
+       0,
+       4
+      ],
+      [
+       10,
+       10
+      ],
+      [
+       20,
+       16
+      ],
+      [
+       30,
+       8
+      ],
+      [
+       40,
+       2
+      ]
+     ]
+    }
+   ],
+   "xLabel": "Time (days)",
+   "yLabel": "Average tail length (mm)",
+   "caption": "Tail length of frog line E-4 tadpoles over 40 days"
+  },
+  "prompt": "According to the graph, how did the average tail length change from day 0 to day 20?",
+  "choices": [
+   "It rose from 4 mm to 16 mm.",
+   "It fell to 2 mm.",
+   "It stayed at 8 mm.",
+   "It rose to 16 mm, then fell to 2 mm."
+  ],
+  "correct_answer": "It rose from 4 mm to 16 mm.",
+  "key_evidence": {
+   "refs": [
+    [
+     0,
+     4
+    ],
+    [
+     10,
+     10
+    ],
+    [
+     20,
+     16
+    ]
+   ]
+  },
+  "explanation": "The graph starts at 4 mm on day 0, is at 10 mm on day 10, and reaches 16 mm on day 20. Over those 20 days the tail only got longer. The drop comes later, after day 20.",
+  "distractor_rationales": [
+   {
+    "choice": "It fell to 2 mm.",
+    "fault": "The tail falls to 2 mm only from day 20 to day 40, outside the time the question asks about."
+   },
+   {
+    "choice": "It stayed at 8 mm.",
+    "fault": "The tail length is never flat from day 0 to day 20; it climbs from 4 mm to 16 mm. The 8 mm value is from day 30."
+   },
+   {
+    "choice": "It rose to 16 mm, then fell to 2 mm.",
+    "fault": "This describes days 0 to 40; from day 0 to day 20 the tail never falls."
+   }
+  ],
+  "real_world_check": "In frogs' life cycles, a tadpole's tail first grows as the tadpole grows and is later absorbed during metamorphosis into an adult frog.",
+  "prior_free": "A student who knows the frog life cycle expects the tail to shrink and disappear; only this graph shows that in this line the tail is still growing through day 20."
+ },
+ {
+  "id": "MSB1-L5-04",
+  "map_area": "Life Science",
+  "grade_target": 5,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 186-195",
+  "dci": "LS2",
+  "ngss_pe": "3-LS2-1",
+  "kind": "investigation",
+  "stimulus": "procedure+table",
+  "format": "values",
+  "ask": "ratio",
+  "invented": true,
+  "names_used": [
+   "fish line B-5"
+  ],
+  "passage": "Scientists studied fish line B-5, a small fish that feeds on bits of food on the tank floor. They set up four tanks of the same size. Tank 1 held 1 fish, Tank 2 held 4 fish, Tank 3 held 8 fish, and Tank 4 held 16 fish. Every tank had plenty of food. A model heron, a bird that hunts fish, hung above each tank. For 10 minutes, the scientists timed how long one fish in each tank spent feeding instead of hiding or watching. The table shows the results.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Tank 1",
+    "Tank 2",
+    "Tank 3",
+    "Tank 4"
+   ],
+   "colLabels": [
+    "Number of fish",
+    "Time one fish spent feeding (s)"
+   ],
+   "cells": [
+    [
+     1,
+     120
+    ],
+    [
+     4,
+     240
+    ],
+    [
+     8,
+     360
+    ],
+    [
+     16,
+     390
+    ]
+   ],
+   "caption": "Table 1. Feeding time of one fish in groups of different sizes"
+  },
+  "prompt": "Based on Table 1, the fish in Tank 3 spent how many times as many seconds feeding as the fish in Tank 1?",
+  "choices": [
+   "2.0",
+   "1.5",
+   "1.1",
+   "3.0"
+  ],
+  "correct_answer": "3.0",
+  "key_evidence": {
+   "refs": [
+    [
+     2,
+     1
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "expr": "v0 / v1"
+  },
+  "explanation": "The fish in Tank 3 fed for 360 seconds, and the fish in Tank 1 fed for 120 seconds. Dividing, 360 / 120 = 3.0, so the fish in the group of 8 fed three times as long.",
+  "distractor_rationales": [
+   {
+    "choice": "2.0",
+    "fault": "It compares Tank 2 with Tank 1 (240 / 120), the wrong tank."
+   },
+   {
+    "choice": "1.5",
+    "fault": "It compares Tank 3 with Tank 2 (360 / 240) instead of with Tank 1."
+   },
+   {
+    "choice": "1.1",
+    "fault": "It compares Tank 4 with Tank 3 (390 / 360), two wrong rows."
+   }
+  ],
+  "real_world_check": "In many animal groups, each member spends less time watching for predators and more time feeding as the group gets larger, one way that living in groups helps animals survive.",
+  "prior_free": "The standard says groups can help animals survive, but not how many times longer a fish in a group of 8 feeds; that ratio exists only in this table."
+ },
+ {
+  "id": "MSB1-L5-05",
+  "map_area": "Life Science",
+  "grade_target": 5,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 186-195",
+  "dci": "LS1",
+  "ngss_pe": "5-LS1-1",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "quantity",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "A sunflower seed with a mass of less than 1 gram was planted in a pot of soil. Months later, the plant had a mass of about 2,000 grams, but the mass of the soil had barely changed. Where did most of the plant's added mass come from?",
+  "choices": [
+   "sunlight",
+   "fertilizer",
+   "carbon dioxide and water",
+   "soil minerals"
+  ],
+  "correct_answer": "carbon dioxide and water",
+  "explanation": "Plants build their bodies mostly from carbon dioxide taken from the air and water taken in by the roots. Sunlight supplies the energy for this, not the matter. That is why the plant gained about 2,000 grams while the soil lost almost nothing.",
+  "distractor_rationales": [
+   {
+    "choice": "sunlight",
+    "fault": "misconception: light is a material that becomes part of the plant; light supplies energy, not mass."
+   },
+   {
+    "choice": "fertilizer",
+    "fault": "misconception: fertilizer is plant food that builds most of the plant; it adds only small amounts of minerals."
+   },
+   {
+    "choice": "soil minerals",
+    "fault": "misconception: plants get their mass from the soil; the soil mass barely changed while the plant gained about 2,000 grams."
+   }
+  ],
+  "real_world_check": "Plants get the materials they need for growth chiefly from air (carbon dioxide) and water, not from the soil (NGSS 5-LS1-1)."
+ },
+ {
+  "id": "MSB1-L5-06",
+  "map_area": "Life Science",
+  "grade_target": 5,
+  "tier": "low",
+  "difficulty": "easy",
+  "rit_band_target": "RIT 186-195",
+  "dci": "LS2",
+  "ngss_pe": "5-LS2-1",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "predicts",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "Suppose every worm, fungus, and bacterium living in a forest's soil were removed, and none came back. Which prediction about the forest over the next several years is most likely correct?",
+  "choices": [
+   "Plants would grow larger, since soil life would stop taking food from their roots.",
+   "Dead leaves would break down faster, because sunlight would turn them into soil.",
+   "Dead leaves would pile up, and plants would get fewer nutrients.",
+   "Deer would begin to make their own food from sunlight."
+  ],
+  "correct_answer": "Dead leaves would pile up, and plants would get fewer nutrients.",
+  "explanation": "Worms, fungi, and bacteria are decomposers. They break down dead leaves and return nutrients to the soil, where plant roots take them up. Without decomposers, dead matter would build up and the soil would run short of nutrients for plants.",
+  "distractor_rationales": [
+   {
+    "choice": "Plants would grow larger, since soil life would stop taking food from their roots.",
+    "fault": "misconception: decomposers compete with plants for food; they actually return the nutrients plants need, so plants would do worse."
+   },
+   {
+    "choice": "Dead leaves would break down faster, because sunlight would turn them into soil.",
+    "fault": "misconception: rotting is caused by sunlight; dead matter is broken down mainly by living decomposers, so it would break down more slowly."
+   },
+   {
+    "choice": "Deer would begin to make their own food from sunlight.",
+    "fault": "misconception: animals can switch to making food; only producers such as plants make food from sunlight."
+   }
+  ],
+  "real_world_check": "Decomposers break down dead organisms and return their matter to the soil, where plants reuse it; without them, dead matter builds up and nutrients stop cycling."
+ },
+ {
+  "id": "MSB1-L5-07",
+  "map_area": "Life Science",
+  "grade_target": 5,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 196-205",
+  "dci": "LS4",
+  "ngss_pe": "3-LS4-2",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "values",
+  "ask": "difference",
+  "invented": true,
+  "names_used": [
+   "snail line C-8",
+   "Site D-1",
+   "Site D-2",
+   "Site D-3"
+  ],
+  "passage": "Scientists released 40 brown-shelled and 40 yellow-shelled snails of snail line C-8 at each of three sites. Birds at all three sites eat snails. After four weeks, the scientists counted the snails still alive.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Site D-1",
+    "Site D-2",
+    "Site D-3"
+   ],
+   "colLabels": [
+    "Brown snails alive",
+    "Yellow snails alive"
+   ],
+   "cells": [
+    [
+     34,
+     12
+    ],
+    [
+     27,
+     19
+    ],
+    [
+     15,
+     31
+    ]
+   ],
+   "caption": "Table 1. Snails still alive after four weeks"
+  },
+  "prompt": "At Site D-2, how many more brown-shelled snails than yellow-shelled snails were alive after four weeks?",
+  "choices": [
+   "22 snails",
+   "46 snails",
+   "16 snails",
+   "8 snails"
+  ],
+  "correct_answer": "8 snails",
+  "key_evidence": {
+   "refs": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ]
+   ],
+   "expr": "v0 - v1"
+  },
+  "explanation": "At Site D-2, 27 brown-shelled snails and 19 yellow-shelled snails were alive. 27 - 19 = 8, so 8 more brown-shelled snails survived there.",
+  "distractor_rationales": [
+   {
+    "choice": "22 snails",
+    "fault": "It is the difference at Site D-1 (34 - 12), the wrong row."
+   },
+   {
+    "choice": "46 snails",
+    "fault": "It adds the two Site D-2 counts (27 + 19) instead of subtracting them."
+   },
+   {
+    "choice": "16 snails",
+    "fault": "It is the difference at Site D-3 (31 - 15), the wrong row, where yellow snails did better."
+   }
+  ],
+  "real_world_check": "Within one species, differences such as shell color can change how likely individuals are to be spotted and eaten by predators in a particular habitat.",
+  "prior_free": "The standard says some variations help individuals survive, but not which shell color did better at Site D-2 or by how many; the colors even trade places at Site D-3."
+ },
+ {
+  "id": "MSB1-L5-08",
+  "map_area": "Life Science",
+  "grade_target": 5,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 196-205",
+  "dci": "LS3",
+  "ngss_pe": "3-LS3-1",
+  "kind": "data",
+  "stimulus": "bar",
+  "format": "conditions",
+  "ask": "meets-criterion",
+  "invented": true,
+  "names_used": [
+   "pepper line A-5",
+   "Parent F",
+   "Parent B-2",
+   "Parent AD-36",
+   "Parent CEF-401"
+  ],
+  "passage": "Students collected seeds from four parent plants of pepper line A-5. They grew 20 offspring from each parent in the same garden bed with the same water and light. The graph shows the average height of each parent's offspring.",
+  "graphic": {
+   "type": "bar",
+   "bars": [
+    {
+     "label": "Parent F",
+     "value": 70
+    },
+    {
+     "label": "Parent B-2",
+     "value": 80
+    },
+    {
+     "label": "Parent CEF-401",
+     "value": 30
+    },
+    {
+     "label": "Parent AD-36",
+     "value": 50
+    }
+   ],
+   "xLabel": "Parent plant",
+   "yLabel": "Average offspring height (cm)",
+   "caption": "Average height of offspring from four parent plants"
+  },
+  "prompt": "The students want seeds from a parent whose offspring averaged taller than 40 cm but shorter than 60 cm. Based on the graph, which parent should they choose?",
+  "choices": [
+   "Parent CEF-401",
+   "Parent F",
+   "Parent B-2",
+   "Parent AD-36"
+  ],
+  "correct_answer": "Parent AD-36",
+  "key_evidence": {
+   "refs": [
+    "Parent AD-36"
+   ]
+  },
+  "explanation": "The y-axis has ticks at 0, 20, 40, 60, and 80 cm. Only one bar ends between the 40 cm and 60 cm ticks: the bar at 50 cm. The other bars end at 30, 70, and 80 cm.",
+  "distractor_rationales": [
+   {
+    "choice": "Parent CEF-401",
+    "fault": "Its offspring averaged 30 cm, below the 40 cm lower limit."
+   },
+   {
+    "choice": "Parent F",
+    "fault": "Its offspring averaged 70 cm, above the 60 cm upper limit."
+   },
+   {
+    "choice": "Parent B-2",
+    "fault": "Its offspring averaged 80 cm, the tallest, well above the 60 cm limit."
+   }
+  ],
+  "real_world_check": "Offspring inherit traits from their parents, so plants grown from different parents in the same conditions can differ in traits such as height."
+ },
+ {
+  "id": "MSB1-L5-09",
+  "map_area": "Life Science",
+  "grade_target": 5,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 196-205",
+  "dci": "LS4",
+  "ngss_pe": "3-LS4-1",
+  "kind": "data",
+  "stimulus": "bar",
+  "format": "values",
+  "ask": "ratio",
+  "invented": true,
+  "names_used": [
+   "Quarry E-9",
+   "shell type F-7"
+  ],
+  "passage": "Scientists dug through four rock layers at Quarry E-9. In each layer, they counted the fossil shells of a sea animal they call shell type F-7. Layer 1 is the deepest and oldest layer.",
+  "graphic": {
+   "type": "bar",
+   "bars": [
+    {
+     "label": "Layer 1",
+     "value": 3
+    },
+    {
+     "label": "Layer 2",
+     "value": 6
+    },
+    {
+     "label": "Layer 3",
+     "value": 12
+    },
+    {
+     "label": "Layer 4",
+     "value": 9
+    }
+   ],
+   "xLabel": "Rock layer",
+   "yLabel": "Fossil shells found",
+   "caption": "Fossil shells of shell type F-7 in each rock layer"
+  },
+  "prompt": "Based on the graph, Layer 3 held how many times as many shell type F-7 fossils as Layer 1?",
+  "choices": [
+   "9",
+   "4",
+   "12",
+   "2"
+  ],
+  "correct_answer": "4",
+  "key_evidence": {
+   "refs": [
+    "Layer 3",
+    "Layer 1"
+   ],
+   "expr": "v0 / v1"
+  },
+  "explanation": "The Layer 3 bar reaches the top tick, 12 shells, and the Layer 1 bar reaches the first tick, 3 shells. 12 / 3 = 4, so Layer 3 held four times as many.",
+  "distractor_rationales": [
+   {
+    "choice": "9",
+    "fault": "It subtracts the two bars (12 - 3) instead of dividing them."
+   },
+   {
+    "choice": "12",
+    "fault": "It reads the Layer 3 bar alone and never compares it with Layer 1."
+   },
+   {
+    "choice": "2",
+    "fault": "It compares Layer 2 with Layer 1 (6 / 3), the wrong bar."
+   }
+  ],
+  "real_world_check": "Fossils in rock layers are evidence of the organisms that lived when each layer formed, and counts can be compared from layer to layer.",
+  "prior_free": "Knowing that fossils record past life says nothing about how many shells each layer of this quarry held; the comparison depends only on these bar heights."
+ },
+ {
+  "id": "MSB1-L5-10",
+  "map_area": "Life Science",
+  "grade_target": 5,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 196-205",
+  "dci": "LS4",
+  "ngss_pe": "3-LS4-4",
+  "kind": "data",
+  "stimulus": "line",
+  "format": "values",
+  "ask": "read",
+  "invented": true,
+  "names_used": [
+   "mouse line A-9"
+  ],
+  "passage": "Scientists counted the mice of mouse line A-9 living in one field every two years, starting in year 0. In year 3, a river flooded the field for several weeks.",
+  "graphic": {
+   "type": "line",
+   "series": [
+    {
+     "points": [
+      [
+       0,
+       400
+      ],
+      [
+       2,
+       350
+      ],
+      [
+       4,
+       100
+      ],
+      [
+       6,
+       150
+      ],
+      [
+       8,
+       250
+      ]
+     ]
+    }
+   ],
+   "xLabel": "Year",
+   "yLabel": "Number of mice",
+   "caption": "Mice of mouse line A-9 counted in the field"
+  },
+  "prompt": "Based on the graph, about how many mice of mouse line A-9 lived in the field in year 4?",
+  "choices": [
+   "350 mice",
+   "400 mice",
+   "100 mice",
+   "150 mice"
+  ],
+  "correct_answer": "100 mice",
+  "key_evidence": {
+   "refs": [
+    [
+     4,
+     100
+    ]
+   ],
+   "expr": "v0"
+  },
+  "explanation": "Above year 4, the line is at the first tick on the y-axis, 100 mice. This is the lowest point on the graph, the count taken after the flood.",
+  "distractor_rationales": [
+   {
+    "choice": "350 mice",
+    "fault": "It is the year 2 count, taken before the flood, read at the wrong year."
+   },
+   {
+    "choice": "400 mice",
+    "fault": "It is the year 0 count, the starting point of the line."
+   },
+   {
+    "choice": "150 mice",
+    "fault": "It is the year 6 count, after the population had begun to recover."
+   }
+  ],
+  "real_world_check": "When an environment changes suddenly, as in a flood, some organisms die or leave, so a population can drop and later grow again.",
+  "prior_free": "The standard says a flood can shrink a population, but not how many mice remained in year 4; the count is readable only from the plotted point."
+ },
+ {
+  "id": "MSB1-L5-11",
+  "map_area": "Life Science",
+  "grade_target": 5,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 196-205",
+  "dci": "LS3",
+  "ngss_pe": "3-LS3-2",
+  "kind": "data",
+  "stimulus": "scatter",
+  "format": "trend",
+  "ask": "decrease",
+  "invented": true,
+  "names_used": [
+   "ladybug line B-7"
+  ],
+  "passage": "Scientists raised young ladybugs of ladybug line B-7 in rooms set to different temperatures. All the young came from the same parents. When each ladybug became an adult, they counted the black spots on its back. Each point is one adult.",
+  "graphic": {
+   "type": "scatter",
+   "points": [
+    [
+     15,
+     14
+    ],
+    [
+     17,
+     13
+    ],
+    [
+     18,
+     12
+    ],
+    [
+     20,
+     12
+    ],
+    [
+     21,
+     10
+    ],
+    [
+     23,
+     9
+    ],
+    [
+     25,
+     8
+    ],
+    [
+     27,
+     6
+    ]
+   ],
+   "xLabel": "Room temperature (°C)",
+   "yLabel": "Number of black spots",
+   "caption": "Spots on adults of ladybug line B-7 raised at different temperatures"
+  },
+  "prompt": "Based on the graph, how did the number of black spots change as the room temperature went up?",
+  "choices": [
+   "It rose.",
+   "It decreased.",
+   "It stayed the same.",
+   "It rose, then stayed the same."
+  ],
+  "correct_answer": "It decreased.",
+  "key_evidence": {
+   "refs": [
+    [
+     15,
+     14
+    ],
+    [
+     27,
+     6
+    ]
+   ]
+  },
+  "explanation": "The ladybug raised at 15 °C has 14 spots, and the one raised at 27 °C has 6. The points slope downward from left to right, so warmer rooms gave fewer spots.",
+  "distractor_rationales": [
+   {
+    "choice": "It rose.",
+    "fault": "It reads the graph backward; the points go down, not up, as temperature increases."
+   },
+   {
+    "choice": "It stayed the same.",
+    "fault": "The spot count changes from 14 to 6 across the graph, so it is not the same."
+   },
+   {
+    "choice": "It rose, then stayed the same.",
+    "fault": "No part of the cloud rises; every warmer group has the same or fewer spots."
+   }
+  ],
+  "real_world_check": "In some insects, including ladybird beetles, the temperature during development changes the adult color pattern, so siblings raised at different temperatures can look different.",
+  "prior_free": "The standard says the environment can change traits, but it does not say whether warmth adds spots or removes them; only the plotted ladybugs show the direction."
+ },
+ {
+  "id": "MSB1-L5-12",
+  "map_area": "Life Science",
+  "grade_target": 5,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 196-205",
+  "dci": "LS2",
+  "ngss_pe": "3-LS2-1",
+  "kind": "investigation",
+  "stimulus": "procedure",
+  "format": "claim",
+  "ask": "not-supported",
+  "invented": true,
+  "names_used": [
+   "ant line C-3"
+  ],
+  "passage": "Students watched ants of ant line C-3 carry food to their nest. They placed one large crumb, the same size each time, 50 cm from the nest. They tested groups of 1, 5, 10, and 20 ants, three times each. A single ant could not move the crumb in any trial. Every group of 5, 10, or 20 ants got the crumb to the nest. Groups of 5 took an average of 9 minutes. Groups of 10 took 4 minutes. Groups of 20 also took 4 minutes, and many of those ants crowded around the crumb without pulling.",
+  "graphic": null,
+  "prompt": "Which claim is NOT supported by the results?",
+  "choices": [
+   "Every bigger group moved the crumb faster.",
+   "Working in a group let these ants move food that one ant could not.",
+   "All of the groups of five or more ants got the crumb back to the nest.",
+   "Going from 10 ants to 20 ants did not shorten the time to move the crumb."
+  ],
+  "correct_answer": "Every bigger group moved the crumb faster.",
+  "key_evidence": {
+   "refs": [
+    {
+     "quote": "Groups of 20 also took 4 minutes"
+    }
+   ]
+  },
+  "explanation": "Groups of 10 and groups of 20 both took 4 minutes, so making the group bigger past 10 ants did not make it faster. The claim that each larger group was faster goes against those two results. The other claims match the results.",
+  "distractor_rationales": [
+   {
+    "choice": "Working in a group let these ants move food that one ant could not.",
+    "fault": "Supported: a single ant never moved the crumb, but groups of 5 or more did."
+   },
+   {
+    "choice": "All of the groups of five or more ants got the crumb back to the nest.",
+    "fault": "Supported: the procedure states that every group of 5, 10, or 20 ants got the crumb to the nest."
+   },
+   {
+    "choice": "Going from 10 ants to 20 ants did not shorten the time to move the crumb.",
+    "fault": "Supported: both group sizes took 4 minutes."
+   }
+  ],
+  "real_world_check": "Some animals, such as ants, form groups that help members get food; adding more members helps only up to a point."
+ },
+ {
+  "id": "MSB1-L5-13",
+  "map_area": "Life Science",
+  "grade_target": 5,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 196-205",
+  "dci": "LS4",
+  "ngss_pe": "3-LS4-2",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "process",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "In a field, deer eat thistle plants. Some thistles have longer spines than others, and deer eat these less often. These plants make more seeds, which grow into plants with long spines. No new thistles come in from outside the field. After many years, most thistles in the field have long spines. What process is this?",
+  "choices": [
+   "learning",
+   "immigration",
+   "metamorphosis",
+   "natural selection"
+  ],
+  "correct_answer": "natural selection",
+  "explanation": "Thistles already varied in spine length. Long-spined plants were eaten less, so they made more seeds and passed long spines to their young. Over many generations the long-spined kind became most common. That is natural selection.",
+  "distractor_rationales": [
+   {
+    "choice": "learning",
+    "fault": "misconception: plants learn to grow longer spines during their lives and pass that on; spine length is inherited from parents, not learned."
+   },
+   {
+    "choice": "immigration",
+    "fault": "misconception: a population changes because new organisms move in; the scenario says no new thistles came in from outside."
+   },
+   {
+    "choice": "metamorphosis",
+    "fault": "misconception: a population changes form the way one insect changes in its life cycle; metamorphosis happens to one animal, not across generations of plants."
+   }
+  ],
+  "real_world_check": "Differences among individuals of a species can give advantages in surviving and reproducing, so over generations the helpful trait becomes more common (natural selection)."
+ },
+ {
+  "id": "MSB1-L5-14",
+  "map_area": "Life Science",
+  "grade_target": 5,
+  "tier": "mid",
+  "difficulty": "medium",
+  "rit_band_target": "RIT 196-205",
+  "dci": "LS2",
+  "ngss_pe": "5-LS2-1",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "term",
+  "ask": "structure",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "A gray mold grows on fallen apples on an orchard floor. No animal in the orchard eats this mold. The mold cannot make its own food. It takes in matter from the rotting apples, and the leftover matter returns to the soil, where trees can use it. Which word names the role this mold plays in the orchard's food web?",
+  "choices": [
+   "prey",
+   "grazer",
+   "producer",
+   "decomposer"
+  ],
+  "correct_answer": "decomposer",
+  "explanation": "The mold gets its matter by breaking down dead apples and returns what is left to the soil for plants to reuse. An organism that feeds on dead matter and recycles it this way is a decomposer.",
+  "distractor_rationales": [
+   {
+    "choice": "prey",
+    "fault": "misconception: every small living thing on the ground is some animal's food; the scenario says no animal eats this mold."
+   },
+   {
+    "choice": "grazer",
+    "fault": "misconception: anything that feeds on plant parts is a grazer; grazers are animals that eat living plants, while the mold feeds on dead, rotting fruit."
+   },
+   {
+    "choice": "producer",
+    "fault": "misconception: molds are plants that make their own food; the scenario says the mold cannot make its own food."
+   }
+  ],
+  "real_world_check": "Decomposers such as molds and bacteria break down dead plant and animal matter and return it to the soil, where plants can use it again."
+ },
+ {
+  "id": "MSB1-L5-15",
+  "map_area": "Life Science",
+  "grade_target": 5,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 206-215",
+  "dci": "LS3",
+  "ngss_pe": "3-LS3-1",
+  "kind": "data",
+  "stimulus": "table",
+  "format": "conditions",
+  "ask": "greatest",
+  "invented": true,
+  "names_used": [
+   "butterfly line F-5",
+   "Pair D",
+   "Pair B-4",
+   "Pair CF-17",
+   "Pair AEF-208"
+  ],
+  "passage": "Adults of butterfly line F-5 have either spotted wings or plain wings. Students mated four different pairs of adults and counted the offspring of each pair.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Pair D",
+    "Pair B-4",
+    "Pair CF-17",
+    "Pair AEF-208"
+   ],
+   "colLabels": [
+    "Offspring with spotted wings",
+    "Offspring with plain wings"
+   ],
+   "cells": [
+    [
+     30,
+     30
+    ],
+    [
+     18,
+     6
+    ],
+    [
+     36,
+     24
+    ],
+    [
+     10,
+     30
+    ]
+   ],
+   "caption": "Table 1. Wing pattern of the offspring of four pairs"
+  },
+  "prompt": "Based on Table 1, which pair had the greatest fraction of its offspring with spotted wings?",
+  "choices": [
+   "Pair CF-17",
+   "Pair B-4",
+   "Pair AEF-208",
+   "Pair D"
+  ],
+  "correct_answer": "Pair B-4",
+  "key_evidence": {
+   "refs": [
+    [
+     1,
+     0
+    ],
+    [
+     1,
+     1
+    ]
+   ]
+  },
+  "explanation": "Fraction spotted = spotted offspring / all offspring. The four pairs give 30/60 = 1/2, 18/24 = 3/4, 36/60 = 3/5, and 10/40 = 1/4. The largest fraction, 3/4, belongs to the pair with 18 spotted and 6 plain offspring.",
+  "distractor_rationales": [
+   {
+    "choice": "Pair CF-17",
+    "fault": "It has the most spotted offspring (36), but they are only 36 of 60, or 3/5, less than 3/4."
+   },
+   {
+    "choice": "Pair AEF-208",
+    "fault": "Only 10 of its 40 offspring, or 1/4, had spotted wings, the smallest fraction."
+   },
+   {
+    "choice": "Pair D",
+    "fault": "Exactly half of its 60 offspring (30) had spotted wings, less than 3/4."
+   }
+  ],
+  "real_world_check": "Offspring inherit traits from their parents, and different pairs of parents can pass a trait to different shares of their offspring."
+ },
+ {
+  "id": "MSB1-L5-16",
+  "map_area": "Life Science",
+  "grade_target": 5,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 206-215",
+  "dci": "LS3",
+  "ngss_pe": "3-LS3-2",
+  "kind": "investigation",
+  "stimulus": "procedure",
+  "format": "variable",
+  "ask": "independent",
+  "invented": true,
+  "names_used": [
+   "clover line E-6"
+  ],
+  "passage": "Students cut 12 stems from one plant of clover line E-6, so every cutting had the same genes. They planted each cutting in its own pot. Every pot held the same kind of soil, and the mass of soil in each pot was 200 g. The room temperature stayed at 22 °C, and every pot got 30 mL of water a day. The students split the pots into three groups. They gave the groups different hours of light per day: 6, 10, or 14. After a month, they counted the leaves on each plant.",
+  "graphic": null,
+  "prompt": "Which variable did the students change on purpose to see whether the environment affects the clover?",
+  "choices": [
+   "hours of light per day",
+   "room temperature",
+   "kind of soil",
+   "mass of soil in each pot"
+  ],
+  "correct_answer": "hours of light per day",
+  "option_roles": [
+   "setting",
+   "setting",
+   "setting",
+   "setting"
+  ],
+  "key_evidence": {
+   "refs": [
+    {
+     "quote": "They gave the groups different hours of light per day"
+    }
+   ]
+  },
+  "explanation": "The three groups got 6, 10, or 14 hours of light per day, so light was set to different values on purpose. Everything else in the procedure was given the same value in every pot.",
+  "distractor_rationales": [
+   {
+    "choice": "room temperature",
+    "fault": "The room stayed at 22 °C for every pot, so it was held the same."
+   },
+   {
+    "choice": "kind of soil",
+    "fault": "Every pot held the same kind of soil, so it was not changed."
+   },
+   {
+    "choice": "mass of soil in each pot",
+    "fault": "Every pot held 200 g of soil, so this was kept the same."
+   }
+  ],
+  "real_world_check": "In a fair investigation of how the environment affects a trait, one condition is changed on purpose while the others are kept the same, and plants with the same genes are used so that differences come from the environment."
+ },
+ {
+  "id": "MSB1-L5-17",
+  "map_area": "Life Science",
+  "grade_target": 5,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 206-215",
+  "dci": "LS1",
+  "ngss_pe": "4-LS1-1",
+  "kind": "investigation",
+  "stimulus": "procedure+table",
+  "format": "conditions",
+  "ask": "controlled-pair",
+  "invented": true,
+  "names_used": [
+   "pea line F-3",
+   "Pot D-5",
+   "Pot E",
+   "Pot A-2",
+   "Pot CD-14",
+   "Pot BEF-307"
+  ],
+  "passage": "Students grew seedlings of pea line F-3 to learn how leaves help a plant grow. Each pot held one seedling in the same kind of soil. The table shows how many hours of light each pot got per day, how much water it got per day, and how many leaves the students removed from its seedling at the start. After three weeks, they will weigh each seedling.",
+  "graphic": {
+   "type": "table",
+   "rowLabels": [
+    "Pot D-5",
+    "Pot E",
+    "Pot A-2",
+    "Pot CD-14",
+    "Pot BEF-307"
+   ],
+   "colLabels": [
+    "Light (hours per day)",
+    "Water (mL per day)",
+    "Leaves removed"
+   ],
+   "cells": [
+    [
+     12,
+     50,
+     0
+    ],
+    [
+     12,
+     50,
+     3
+    ],
+    [
+     12,
+     100,
+     3
+    ],
+    [
+     6,
+     50,
+     0
+    ],
+    [
+     6,
+     50,
+     3
+    ]
+   ],
+   "caption": "Table 1. Conditions for each pot"
+  },
+  "prompt": "The students want to test whether removing leaves changes how much a seedling grows. Which pot should they compare with Pot D-5?",
+  "choices": [
+   "Pot CD-14",
+   "Pot E",
+   "Pot BEF-307",
+   "Pot A-2"
+  ],
+  "correct_answer": "Pot E",
+  "key_evidence": {
+   "refs": [
+    [
+     0,
+     2
+    ],
+    [
+     1,
+     2
+    ]
+   ]
+  },
+  "explanation": "Pot D-5 got 12 hours of light, 50 mL of water, and 0 leaves removed. The pot with 12 hours, 50 mL, and 3 leaves removed matches it in light and water and differs only in leaves removed, so any difference in growth can be traced to the leaves.",
+  "distractor_rationales": [
+   {
+    "choice": "Pot CD-14",
+    "fault": "It differs from Pot D-5 only in light (6 hours), and its leaves were not removed, so it tests light, not leaves."
+   },
+   {
+    "choice": "Pot BEF-307",
+    "fault": "It differs from Pot D-5 in both light and leaves removed, so the effect of the leaves cannot be separated from light."
+   },
+   {
+    "choice": "Pot A-2",
+    "fault": "It differs from Pot D-5 in both water and leaves removed, so the effect of the leaves cannot be separated from water."
+   }
+  ],
+  "real_world_check": "Leaves are the structures where a plant makes food, so removing leaves can reduce growth; a fair comparison changes only that one condition."
+ },
+ {
+  "id": "MSB1-L5-18",
+  "map_area": "Life Science",
+  "grade_target": 5,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 206-215",
+  "dci": "LS2",
+  "ngss_pe": "5-LS2-1",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "explains",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "A sealed glass jar holds soil, water, moss, small snails, and tiny decomposers. It sits by a sunny window. Years later, the moss and snails are still alive, though no food has been added. Which statement best explains how they keep surviving?",
+  "choices": [
+   "The snails make their own food from sunlight, so they do not need the moss.",
+   "The moss takes its food from the soil, which holds enough food to last for years.",
+   "Snails eat the moss, and decomposers turn wastes into nutrients the moss uses again.",
+   "The moss and snails live off food packed into the jar at the start, which is running out."
+  ],
+  "correct_answer": "Snails eat the moss, and decomposers turn wastes into nutrients the moss uses again.",
+  "explanation": "Matter cycles inside the jar. The moss makes food from light, air, and water; the snails eat the moss; decomposers break down wastes and dead matter into nutrients that the moss takes up again. Because the same matter is reused, no food has to be added.",
+  "distractor_rationales": [
+   {
+    "choice": "The snails make their own food from sunlight, so they do not need the moss.",
+    "fault": "misconception: animals can make food from sunlight; only producers such as moss do."
+   },
+   {
+    "choice": "The moss takes its food from the soil, which holds enough food to last for years.",
+    "fault": "misconception: plants take in food from the soil; moss makes its own food from light, air, and water."
+   },
+   {
+    "choice": "The moss and snails live off food packed into the jar at the start, which is running out.",
+    "fault": "misconception: living things use up a one-time store of matter; a stored supply would have run out, while cycling lets the jar last for years."
+   }
+  ],
+  "real_world_check": "In an ecosystem, matter cycles among plants, animals, and decomposers: producers make food, consumers eat them, and decomposers return nutrients to the soil."
+ },
+ {
+  "id": "MSB1-L5-19",
+  "map_area": "Life Science",
+  "grade_target": 5,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 206-215",
+  "dci": "LS1",
+  "ngss_pe": "4-LS1-2",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "explains",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "On a dark night, an owl catches a mouse that it cannot see clearly. The mouse is moving through dry leaves. Which statement best explains how the owl finds the mouse?",
+  "choices": [
+   "Its eyes send out beams of light that bounce off the mouse and show where it is.",
+   "Its ears pick up the rustling sound, and its brain uses those signals to tell where the mouse is.",
+   "It hears the mouse, and its ears decide on their own which way to fly.",
+   "It remembers where mice were the night before, so it does not need its senses."
+  ],
+  "correct_answer": "Its ears pick up the rustling sound, and its brain uses those signals to tell where the mouse is.",
+  "explanation": "The moving mouse makes sound in the dry leaves. The owl's ears take in that sound and send signals to its brain, and the brain uses them to work out where the mouse is so the owl can strike.",
+  "distractor_rationales": [
+   {
+    "choice": "Its eyes send out beams of light that bounce off the mouse and show where it is.",
+    "fault": "misconception: eyes give off light to see; eyes only take in light that enters them."
+   },
+   {
+    "choice": "It hears the mouse, and its ears decide on their own which way to fly.",
+    "fault": "misconception: sense organs make decisions by themselves; ears only send signals, and the brain processes them and decides."
+   },
+   {
+    "choice": "It remembers where mice were the night before, so it does not need its senses.",
+    "fault": "misconception: animals can find moving prey without sensing it; mice move, so the owl needs current sense information."
+   }
+  ],
+  "real_world_check": "Animals take in information through sense organs such as ears, which send signals to the brain, where the information is processed to guide actions (NGSS 4-LS1-2)."
+ },
+ {
+  "id": "MSB1-L5-20",
+  "map_area": "Life Science",
+  "grade_target": 5,
+  "tier": "high",
+  "difficulty": "hard",
+  "rit_band_target": "RIT 206-215",
+  "dci": "LS4",
+  "ngss_pe": "3-LS4-2",
+  "kind": "model",
+  "stimulus": "scenario",
+  "format": "claim",
+  "ask": "predicts",
+  "invented": false,
+  "names_used": [],
+  "passage": null,
+  "graphic": null,
+  "prompt": "In a field, grasshoppers of one kind are either green or tan. Birds eat the grasshoppers they spot most easily. A long dry spell turns the grass tan for many years. Grasshoppers pass their color to their young. What will most likely happen to the grasshoppers in the field over many generations?",
+  "choices": [
+   "More of them will be tan, because birds spot and eat tan ones less often.",
+   "Green ones will turn their bodies tan so birds will not see them.",
+   "Tan ones will die out, because green ones feed better in dry grass.",
+   "The mix of colors will stay as it was, since birds catch both colors equally often."
+  ],
+  "correct_answer": "More of them will be tan, because birds spot and eat tan ones less often.",
+  "explanation": "On tan grass, tan grasshoppers are harder for birds to spot, so more of them live long enough to have young. Because color is passed to the young, the share of tan grasshoppers grows over many generations.",
+  "distractor_rationales": [
+   {
+    "choice": "Green ones will turn their bodies tan so birds will not see them.",
+    "fault": "misconception: individuals change their inherited traits because they need to; a grasshopper cannot change its color to match, and change happens across generations."
+   },
+   {
+    "choice": "Tan ones will die out, because green ones feed better in dry grass.",
+    "fault": "misconception: the color that matches the background is the one that loses; tan ones are hidden on tan grass, and color does not decide which grasshoppers find food."
+   },
+   {
+    "choice": "The mix of colors will stay as it was, since birds catch both colors equally often.",
+    "fault": "misconception: predators catch every color equally; the scenario says birds eat the ones they spot most easily."
+   }
+  ],
+  "real_world_check": "When individuals vary in an inherited trait that affects survival, such as color against a background, the helpful variation becomes more common over generations."
+ }
+]
