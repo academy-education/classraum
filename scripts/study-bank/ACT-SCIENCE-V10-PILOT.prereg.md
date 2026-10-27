@@ -20,3 +20,13 @@ sees a grade before the round is decided; no item is repaired in response to thi
 
 **What would make this invalid.** A grader who cannot read a figure (the packet refuses svg; the brief bans it); an
 author or grader seeing another's output; any change to GRADER-BRIEF.md or the drop rules after packets are built.
+
+## Amendment A1 (2026-10-27, before any b7 packet was built)
+
+`act-sci-packet.mjs` refused b7 because its structure check requires each cohort to be a complete 40-item form
+(2 DR / 3 RS / 2 CV), and the pilot is deliberately RS/CV only. b7 carries `"strictForm": false` in batches.json, and
+`build` / `decide` pass it to `structure()` (the option already existed and is exercised by the selftest). Every other
+check still applies: passage sizes (RS 6, CV 6), identical figure per passage, staged rows only, 4 distinct choices
+containing the key, unique ids. b1-b6 are unaffected (no `strictForm` key = strict). Grading rules are unchanged.
+The rows are graded from `_coordinator/b7/rows.json` (built from the two batch files) via `--from`, because the
+inserter requires a QC ledger entry, which is produced by this grading.

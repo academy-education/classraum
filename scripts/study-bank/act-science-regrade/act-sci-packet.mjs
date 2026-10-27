@@ -364,7 +364,7 @@ async function readRows(cohorts, from) {
 
 async function cmdBuild(batch, root, from) {
   const b = batchOf(batch), rows = await readRows(b.cohorts, from)
-  const passages = structure(rows, b.cohorts), d = deal(passages, b.seed)
+  const passages = structure(rows, b.cohorts, { strictForm: b.strictForm !== false }), d = deal(passages, b.seed)
   const title = `ACT Science agent re-grade, batch ${batch} (${b.cohorts.join(' + ')})`
   const cold = packet(passages, d, { keyed: false, title }), keyed = packet(passages, d, { keyed: true, title })
   if (/^KEY:|AUTHOR'S EXPLANATION/m.test(cold.text)) throw new Refusal('cold packet carries a key line: refusing to write it')
@@ -419,7 +419,7 @@ async function loadForDecide(batch, root) {
   const b = batchOf(batch), co = join(root, '_coordinator', batch), key = readJson(join(co, 'packet.key.json'))
   const built = readJson(join(co, 'build.json'))
   const rows = await readRows(b.cohorts, built.built_from.startsWith('study_item_bank') ? null : built.built_from)
-  const passages = structure(rows, b.cohorts)
+  const passages = structure(rows, b.cohorts, { strictForm: b.strictForm !== false })
   for (const p of passages) for (const r of p.items) {
     const k = key.items[r.verify_meta.localId]
     if (!k) throw new Refusal(`${r.verify_meta.localId} is not in the packet key: rebuild`)

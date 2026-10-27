@@ -1,0 +1,2595 @@
+[
+  {
+    "id": "ASV10b-P1-Q1",
+    "passage_id": "sc10b-p1",
+    "passage_title": "Temperature, Growth, and Spore Production in Three Isolates of a Soil Fungus",
+    "format": "research_summaries",
+    "passage": "Thalloria is a soil fungus that grows as a mat of fine threads and reproduces by releasing spores. Researchers grew three cultures (isolates) of Thalloria, each from soil collected at a different site: Isolate H from Harrow Pond, Isolate K from Kestle Ridge, and Isolate O from Orrin Flats. Before testing, all three isolates were stored for 3 weeks at 4 °C.\n\nExperiment 1\nFor each isolate, a 5 mm wide plug of fungus was placed at the center of each of 18 plates of nutrient agar, each plate 150 mm across. The plates were kept in the dark, 3 plates at each of six temperatures. The radius of each mat was measured on Day 2 and again on Day 6, and its growth rate was calculated as the increase in radius divided by 4 days. (In earlier trials, mats moved to a new temperature had grown irregularly for the first 30 to 40 hours.) Table 1 gives the average growth rate of the 3 plates, in millimeters per day (mm/day).\n\nExperiment 2\nPlates were prepared and kept as in Experiment 1, except that after 10 days the spores on each plate were rinsed off into 20 mL of water and counted. Table 1 gives the average number of spores per plate, in millions.",
+    "graphic": {
+      "type": "table",
+      "caption": "Table 1. Growth rate (Experiment 1) and spore count (Experiment 2) of three Thalloria isolates",
+      "colLabels": [
+        "Exp. 1: H growth (mm/day)",
+        "Exp. 1: K growth (mm/day)",
+        "Exp. 1: O growth (mm/day)",
+        "Exp. 2: H spores (millions)",
+        "Exp. 2: K spores (millions)",
+        "Exp. 2: O spores (millions)"
+      ],
+      "rowLabels": [
+        "8 °C",
+        "12 °C",
+        "16 °C",
+        "20 °C",
+        "24 °C",
+        "28 °C"
+      ],
+      "cells": [
+        [
+          2.1,
+          0.9,
+          0.0,
+          5.2,
+          1.1,
+          0.0
+        ],
+        [
+          3.4,
+          2.2,
+          0.6,
+          7.9,
+          4.0,
+          0.4
+        ],
+        [
+          3.9,
+          3.6,
+          1.8,
+          6.0,
+          6.8,
+          2.5
+        ],
+        [
+          3.1,
+          4.4,
+          3.5,
+          2.4,
+          7.1,
+          5.9
+        ],
+        [
+          1.2,
+          4.1,
+          4.8,
+          0.3,
+          3.2,
+          6.3
+        ],
+        [
+          0.0,
+          2.0,
+          4.6,
+          0.0,
+          0.5,
+          2.2
+        ]
+      ]
+    },
+    "prompt": "In Experiment 2, as the temperature increased, at which temperature did Isolate O first produce more spores than Isolate K?",
+    "choices": [
+      "12 °C",
+      "16 °C",
+      "20 °C",
+      "24 °C"
+    ],
+    "correct_answer": "24 °C",
+    "explanation": "Comparing the spore counts of Isolates O and K row by row: 0.4 vs 4.0 at 12 °C, 2.5 vs 6.8 at 16 °C, and 5.9 vs 7.1 at 20 °C, so K produced more at each of these. At 24 °C, O produced 6.3 million and K 3.2 million, the first temperature at which O exceeded K.",
+    "domain": "Interpretation of Data",
+    "difficulty": "medium",
+    "subskill": "compare two data series across conditions",
+    "topic_tag": "biology: fungal growth vs temperature",
+    "consistency_check": "All rates and counts non-negative; zero growth pairs with zero spores (H at 28 C, O at 8 C); largest mat after 10 days = 2.5 + 4.8*10 = 50.5 mm < 75 mm plate radius; each isolate has one interior optimum with plateaus and unequal shapes, no named law; K's growth and spore peaks are both 20 C, H's are 16 C and 12 C, O's both 24 C."
+  },
+  {
+    "id": "ASV10b-P1-Q2",
+    "passage_id": "sc10b-p1",
+    "passage_title": "Temperature, Growth, and Spore Production in Three Isolates of a Soil Fungus",
+    "format": "research_summaries",
+    "passage": "Thalloria is a soil fungus that grows as a mat of fine threads and reproduces by releasing spores. Researchers grew three cultures (isolates) of Thalloria, each from soil collected at a different site: Isolate H from Harrow Pond, Isolate K from Kestle Ridge, and Isolate O from Orrin Flats. Before testing, all three isolates were stored for 3 weeks at 4 °C.\n\nExperiment 1\nFor each isolate, a 5 mm wide plug of fungus was placed at the center of each of 18 plates of nutrient agar, each plate 150 mm across. The plates were kept in the dark, 3 plates at each of six temperatures. The radius of each mat was measured on Day 2 and again on Day 6, and its growth rate was calculated as the increase in radius divided by 4 days. (In earlier trials, mats moved to a new temperature had grown irregularly for the first 30 to 40 hours.) Table 1 gives the average growth rate of the 3 plates, in millimeters per day (mm/day).\n\nExperiment 2\nPlates were prepared and kept as in Experiment 1, except that after 10 days the spores on each plate were rinsed off into 20 mL of water and counted. Table 1 gives the average number of spores per plate, in millions.",
+    "graphic": {
+      "type": "table",
+      "caption": "Table 1. Growth rate (Experiment 1) and spore count (Experiment 2) of three Thalloria isolates",
+      "colLabels": [
+        "Exp. 1: H growth (mm/day)",
+        "Exp. 1: K growth (mm/day)",
+        "Exp. 1: O growth (mm/day)",
+        "Exp. 2: H spores (millions)",
+        "Exp. 2: K spores (millions)",
+        "Exp. 2: O spores (millions)"
+      ],
+      "rowLabels": [
+        "8 °C",
+        "12 °C",
+        "16 °C",
+        "20 °C",
+        "24 °C",
+        "28 °C"
+      ],
+      "cells": [
+        [
+          2.1,
+          0.9,
+          0.0,
+          5.2,
+          1.1,
+          0.0
+        ],
+        [
+          3.4,
+          2.2,
+          0.6,
+          7.9,
+          4.0,
+          0.4
+        ],
+        [
+          3.9,
+          3.6,
+          1.8,
+          6.0,
+          6.8,
+          2.5
+        ],
+        [
+          3.1,
+          4.4,
+          3.5,
+          2.4,
+          7.1,
+          5.9
+        ],
+        [
+          1.2,
+          4.1,
+          4.8,
+          0.3,
+          3.2,
+          6.3
+        ],
+        [
+          0.0,
+          2.0,
+          4.6,
+          0.0,
+          0.5,
+          2.2
+        ]
+      ]
+    },
+    "prompt": "Based on the results of Experiment 1, Isolates H and K would most likely have had equal growth rates at a temperature between:",
+    "choices": [
+      "8 °C and 12 °C.",
+      "12 °C and 16 °C.",
+      "16 °C and 20 °C.",
+      "20 °C and 24 °C."
+    ],
+    "correct_answer": "16 °C and 20 °C.",
+    "explanation": "Isolate H grew faster than Isolate K at 8, 12, and 16 °C (3.9 vs 3.6 mm/day at 16 °C), and Isolate K grew faster at 20 °C and above (4.4 vs 3.1 mm/day at 20 °C). The order switches only once, between 16 °C and 20 °C, so that is where the two rates would be equal.",
+    "domain": "Interpretation of Data",
+    "difficulty": "hard",
+    "subskill": "locate the crossing point of two data series",
+    "topic_tag": "biology: fungal growth vs temperature"
+  },
+  {
+    "id": "ASV10b-P1-Q3",
+    "passage_id": "sc10b-p1",
+    "passage_title": "Temperature, Growth, and Spore Production in Three Isolates of a Soil Fungus",
+    "format": "research_summaries",
+    "passage": "Thalloria is a soil fungus that grows as a mat of fine threads and reproduces by releasing spores. Researchers grew three cultures (isolates) of Thalloria, each from soil collected at a different site: Isolate H from Harrow Pond, Isolate K from Kestle Ridge, and Isolate O from Orrin Flats. Before testing, all three isolates were stored for 3 weeks at 4 °C.\n\nExperiment 1\nFor each isolate, a 5 mm wide plug of fungus was placed at the center of each of 18 plates of nutrient agar, each plate 150 mm across. The plates were kept in the dark, 3 plates at each of six temperatures. The radius of each mat was measured on Day 2 and again on Day 6, and its growth rate was calculated as the increase in radius divided by 4 days. (In earlier trials, mats moved to a new temperature had grown irregularly for the first 30 to 40 hours.) Table 1 gives the average growth rate of the 3 plates, in millimeters per day (mm/day).\n\nExperiment 2\nPlates were prepared and kept as in Experiment 1, except that after 10 days the spores on each plate were rinsed off into 20 mL of water and counted. Table 1 gives the average number of spores per plate, in millions.",
+    "graphic": {
+      "type": "table",
+      "caption": "Table 1. Growth rate (Experiment 1) and spore count (Experiment 2) of three Thalloria isolates",
+      "colLabels": [
+        "Exp. 1: H growth (mm/day)",
+        "Exp. 1: K growth (mm/day)",
+        "Exp. 1: O growth (mm/day)",
+        "Exp. 2: H spores (millions)",
+        "Exp. 2: K spores (millions)",
+        "Exp. 2: O spores (millions)"
+      ],
+      "rowLabels": [
+        "8 °C",
+        "12 °C",
+        "16 °C",
+        "20 °C",
+        "24 °C",
+        "28 °C"
+      ],
+      "cells": [
+        [
+          2.1,
+          0.9,
+          0.0,
+          5.2,
+          1.1,
+          0.0
+        ],
+        [
+          3.4,
+          2.2,
+          0.6,
+          7.9,
+          4.0,
+          0.4
+        ],
+        [
+          3.9,
+          3.6,
+          1.8,
+          6.0,
+          6.8,
+          2.5
+        ],
+        [
+          3.1,
+          4.4,
+          3.5,
+          2.4,
+          7.1,
+          5.9
+        ],
+        [
+          1.2,
+          4.1,
+          4.8,
+          0.3,
+          3.2,
+          6.3
+        ],
+        [
+          0.0,
+          2.0,
+          4.6,
+          0.0,
+          0.5,
+          2.2
+        ]
+      ]
+    },
+    "prompt": "The researchers want to find out whether the 3 weeks of storage at 4 °C changed Isolate H's growth rate. They will compare plates of stored Isolate H with plates of Isolate H that was never stored. Which plan would best test this?",
+    "choices": [
+      "Keep both sets of plates at 28 °C, and measure each mat's radius on Day 2 and Day 6.",
+      "Keep both sets of plates at 16 °C, and measure each mat's radius on Day 1 and Day 5.",
+      "Keep both sets of plates at 28 °C, and measure each mat's radius on Day 1 and Day 5.",
+      "Keep both sets of plates at 16 °C, and measure each mat's radius on Day 2 and Day 6."
+    ],
+    "correct_answer": "Keep both sets of plates at 16 °C, and measure each mat's radius on Day 2 and Day 6.",
+    "explanation": "Every plan compares stored with unstored fungus, so they differ only in temperature and timing. Table 1 shows that Isolate H did not grow at all at 28 °C (0.0 mm/day), so at that temperature no difference in growth rate could show up, whereas at 16 °C H grew 3.9 mm/day. The passage states that mats moved to a new temperature grew irregularly for the first 30 to 40 hours, so a Day 1 measurement falls inside that period; Day 2 and Day 6 match the procedure of Experiment 1.",
+    "domain": "Scientific Investigation",
+    "difficulty": "hard",
+    "subskill": "choose a test design from passage and table details",
+    "topic_tag": "biology: fungal growth vs temperature"
+  },
+  {
+    "id": "ASV10b-P1-Q4",
+    "passage_id": "sc10b-p1",
+    "passage_title": "Temperature, Growth, and Spore Production in Three Isolates of a Soil Fungus",
+    "format": "research_summaries",
+    "passage": "Thalloria is a soil fungus that grows as a mat of fine threads and reproduces by releasing spores. Researchers grew three cultures (isolates) of Thalloria, each from soil collected at a different site: Isolate H from Harrow Pond, Isolate K from Kestle Ridge, and Isolate O from Orrin Flats. Before testing, all three isolates were stored for 3 weeks at 4 °C.\n\nExperiment 1\nFor each isolate, a 5 mm wide plug of fungus was placed at the center of each of 18 plates of nutrient agar, each plate 150 mm across. The plates were kept in the dark, 3 plates at each of six temperatures. The radius of each mat was measured on Day 2 and again on Day 6, and its growth rate was calculated as the increase in radius divided by 4 days. (In earlier trials, mats moved to a new temperature had grown irregularly for the first 30 to 40 hours.) Table 1 gives the average growth rate of the 3 plates, in millimeters per day (mm/day).\n\nExperiment 2\nPlates were prepared and kept as in Experiment 1, except that after 10 days the spores on each plate were rinsed off into 20 mL of water and counted. Table 1 gives the average number of spores per plate, in millions.",
+    "graphic": {
+      "type": "table",
+      "caption": "Table 1. Growth rate (Experiment 1) and spore count (Experiment 2) of three Thalloria isolates",
+      "colLabels": [
+        "Exp. 1: H growth (mm/day)",
+        "Exp. 1: K growth (mm/day)",
+        "Exp. 1: O growth (mm/day)",
+        "Exp. 2: H spores (millions)",
+        "Exp. 2: K spores (millions)",
+        "Exp. 2: O spores (millions)"
+      ],
+      "rowLabels": [
+        "8 °C",
+        "12 °C",
+        "16 °C",
+        "20 °C",
+        "24 °C",
+        "28 °C"
+      ],
+      "cells": [
+        [
+          2.1,
+          0.9,
+          0.0,
+          5.2,
+          1.1,
+          0.0
+        ],
+        [
+          3.4,
+          2.2,
+          0.6,
+          7.9,
+          4.0,
+          0.4
+        ],
+        [
+          3.9,
+          3.6,
+          1.8,
+          6.0,
+          6.8,
+          2.5
+        ],
+        [
+          3.1,
+          4.4,
+          3.5,
+          2.4,
+          7.1,
+          5.9
+        ],
+        [
+          1.2,
+          4.1,
+          4.8,
+          0.3,
+          3.2,
+          6.3
+        ],
+        [
+          0.0,
+          2.0,
+          4.6,
+          0.0,
+          0.5,
+          2.2
+        ]
+      ]
+    },
+    "prompt": "A researcher claimed that Isolate H produced the most spores at a lower temperature than the temperature at which it grew fastest. Do the results of Experiments 1 and 2 support this claim?",
+    "choices": [
+      "Yes; Isolate H produced the most spores at 12 °C and grew fastest at 16 °C.",
+      "No; Isolate H produced the most spores and grew fastest at the same temperature, 20 °C.",
+      "No; Isolate H produced the most spores and grew fastest at the same temperature, 24 °C.",
+      "Yes; Isolate H produced more spores at 16 °C than at 20 °C but grew faster at 20 °C than at 16 °C."
+    ],
+    "correct_answer": "Yes; Isolate H produced the most spores at 12 °C and grew fastest at 16 °C.",
+    "explanation": "Isolate H's highest spore count was 7.9 million at 12 °C, and its highest growth rate was 3.9 mm/day at 16 °C, so its spore peak was at a lower temperature than its growth peak. Both peaks at 20 °C describe Isolate K, and both peaks at 24 °C describe Isolate O. H did produce more spores at 16 °C than at 20 °C (6.0 vs 2.4 million), but it grew more slowly at 20 °C than at 16 °C (3.1 vs 3.9 mm/day).",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "difficulty": "hard",
+    "subskill": "evaluate a claim about optima against two experiments",
+    "topic_tag": "biology: fungal growth vs temperature"
+  },
+  {
+    "id": "ASV10b-P1-Q5",
+    "passage_id": "sc10b-p1",
+    "passage_title": "Temperature, Growth, and Spore Production in Three Isolates of a Soil Fungus",
+    "format": "research_summaries",
+    "passage": "Thalloria is a soil fungus that grows as a mat of fine threads and reproduces by releasing spores. Researchers grew three cultures (isolates) of Thalloria, each from soil collected at a different site: Isolate H from Harrow Pond, Isolate K from Kestle Ridge, and Isolate O from Orrin Flats. Before testing, all three isolates were stored for 3 weeks at 4 °C.\n\nExperiment 1\nFor each isolate, a 5 mm wide plug of fungus was placed at the center of each of 18 plates of nutrient agar, each plate 150 mm across. The plates were kept in the dark, 3 plates at each of six temperatures. The radius of each mat was measured on Day 2 and again on Day 6, and its growth rate was calculated as the increase in radius divided by 4 days. (In earlier trials, mats moved to a new temperature had grown irregularly for the first 30 to 40 hours.) Table 1 gives the average growth rate of the 3 plates, in millimeters per day (mm/day).\n\nExperiment 2\nPlates were prepared and kept as in Experiment 1, except that after 10 days the spores on each plate were rinsed off into 20 mL of water and counted. Table 1 gives the average number of spores per plate, in millions.",
+    "graphic": {
+      "type": "table",
+      "caption": "Table 1. Growth rate (Experiment 1) and spore count (Experiment 2) of three Thalloria isolates",
+      "colLabels": [
+        "Exp. 1: H growth (mm/day)",
+        "Exp. 1: K growth (mm/day)",
+        "Exp. 1: O growth (mm/day)",
+        "Exp. 2: H spores (millions)",
+        "Exp. 2: K spores (millions)",
+        "Exp. 2: O spores (millions)"
+      ],
+      "rowLabels": [
+        "8 °C",
+        "12 °C",
+        "16 °C",
+        "20 °C",
+        "24 °C",
+        "28 °C"
+      ],
+      "cells": [
+        [
+          2.1,
+          0.9,
+          0.0,
+          5.2,
+          1.1,
+          0.0
+        ],
+        [
+          3.4,
+          2.2,
+          0.6,
+          7.9,
+          4.0,
+          0.4
+        ],
+        [
+          3.9,
+          3.6,
+          1.8,
+          6.0,
+          6.8,
+          2.5
+        ],
+        [
+          3.1,
+          4.4,
+          3.5,
+          2.4,
+          7.1,
+          5.9
+        ],
+        [
+          1.2,
+          4.1,
+          4.8,
+          0.3,
+          3.2,
+          6.3
+        ],
+        [
+          0.0,
+          2.0,
+          4.6,
+          0.0,
+          0.5,
+          2.2
+        ]
+      ]
+    },
+    "prompt": "How many plates of nutrient agar were used in Experiment 1?",
+    "choices": [
+      "18",
+      "36",
+      "54",
+      "108"
+    ],
+    "correct_answer": "54",
+    "explanation": "For each of the 3 isolates, 18 plates were used (3 plates at each of 6 temperatures), so Experiment 1 used 3 × 18 = 54 plates. Eighteen is the number for one isolate, and 108 counts the plates of both experiments together.",
+    "domain": "Scientific Investigation",
+    "difficulty": "medium",
+    "subskill": "reconstruct the design of an experiment",
+    "topic_tag": "biology: fungal growth vs temperature"
+  },
+  {
+    "id": "ASV10b-P1-Q6",
+    "passage_id": "sc10b-p1",
+    "passage_title": "Temperature, Growth, and Spore Production in Three Isolates of a Soil Fungus",
+    "format": "research_summaries",
+    "passage": "Thalloria is a soil fungus that grows as a mat of fine threads and reproduces by releasing spores. Researchers grew three cultures (isolates) of Thalloria, each from soil collected at a different site: Isolate H from Harrow Pond, Isolate K from Kestle Ridge, and Isolate O from Orrin Flats. Before testing, all three isolates were stored for 3 weeks at 4 °C.\n\nExperiment 1\nFor each isolate, a 5 mm wide plug of fungus was placed at the center of each of 18 plates of nutrient agar, each plate 150 mm across. The plates were kept in the dark, 3 plates at each of six temperatures. The radius of each mat was measured on Day 2 and again on Day 6, and its growth rate was calculated as the increase in radius divided by 4 days. (In earlier trials, mats moved to a new temperature had grown irregularly for the first 30 to 40 hours.) Table 1 gives the average growth rate of the 3 plates, in millimeters per day (mm/day).\n\nExperiment 2\nPlates were prepared and kept as in Experiment 1, except that after 10 days the spores on each plate were rinsed off into 20 mL of water and counted. Table 1 gives the average number of spores per plate, in millions.",
+    "graphic": {
+      "type": "table",
+      "caption": "Table 1. Growth rate (Experiment 1) and spore count (Experiment 2) of three Thalloria isolates",
+      "colLabels": [
+        "Exp. 1: H growth (mm/day)",
+        "Exp. 1: K growth (mm/day)",
+        "Exp. 1: O growth (mm/day)",
+        "Exp. 2: H spores (millions)",
+        "Exp. 2: K spores (millions)",
+        "Exp. 2: O spores (millions)"
+      ],
+      "rowLabels": [
+        "8 °C",
+        "12 °C",
+        "16 °C",
+        "20 °C",
+        "24 °C",
+        "28 °C"
+      ],
+      "cells": [
+        [
+          2.1,
+          0.9,
+          0.0,
+          5.2,
+          1.1,
+          0.0
+        ],
+        [
+          3.4,
+          2.2,
+          0.6,
+          7.9,
+          4.0,
+          0.4
+        ],
+        [
+          3.9,
+          3.6,
+          1.8,
+          6.0,
+          6.8,
+          2.5
+        ],
+        [
+          3.1,
+          4.4,
+          3.5,
+          2.4,
+          7.1,
+          5.9
+        ],
+        [
+          1.2,
+          4.1,
+          4.8,
+          0.3,
+          3.2,
+          6.3
+        ],
+        [
+          0.0,
+          2.0,
+          4.6,
+          0.0,
+          0.5,
+          2.2
+        ]
+      ]
+    },
+    "prompt": "A grower wants an isolate that, at 20 °C, grew at least 3.5 mm/day in Experiment 1 and produced at least 6.0 million spores per plate in Experiment 2. Based on Table 1, which isolate(s) meet both requirements?",
+    "choices": [
+      "Isolate O only",
+      "Isolates K and O only",
+      "Isolates H and O only",
+      "Isolate K only"
+    ],
+    "correct_answer": "Isolate K only",
+    "explanation": "At 20 °C, Isolate H grew 3.1 mm/day and produced 2.4 million spores, failing both. Isolate K grew 4.4 mm/day and produced 7.1 million spores, meeting both. Isolate O grew 3.5 mm/day, which meets the growth requirement, but produced only 5.9 million spores, just under 6.0. Only Isolate K meets both.",
+    "domain": "Interpretation of Data",
+    "difficulty": "hard",
+    "subskill": "apply two thresholds across two data sets",
+    "topic_tag": "biology: fungal growth vs temperature"
+  },
+  {
+    "id": "ASV10b-P2-Q1",
+    "passage_id": "sc10b-p2",
+    "passage_title": "Wear of an Experimental Resin Coating",
+    "format": "research_summaries",
+    "passage": "Resin Q-7 is an experimental clear coating. It is brushed onto steel and then cured (heated for a set time), which links its long molecules together. Engineers tested how well cured Resin Q-7 resists wear.\n\nEach test plate was a 10 cm × 10 cm steel square coated with a 25 µm (0.0025 cm) layer of resin and cured for 1 hour. In a wear test, the plate was clamped to a turntable, and two abrasive wheels pressing on the coating with a set total load rolled over a ring-shaped track with an area of 30 cm² as the turntable turned. Before the test and after every 1,000 revolutions, the plate was removed, brushed free of loose particles, and weighed. Cured Resin Q-7 has a density of 1.2 g/cm³. Only the coating inside the track was worn.\n\nExperiment 1\nPlates cured at 80 °C, 110 °C, or 140 °C were tested with a 500 g load.\n\nExperiment 2\nPlates cured at 110 °C were tested with a 1,000 g load.\n\nTable 1 gives the total mass lost by each plate, in milligrams (mg), after each number of revolutions.",
+    "graphic": {
+      "type": "table",
+      "caption": "Table 1. Total mass lost (mg) by Resin Q-7 coatings during the wear test",
+      "colLabels": [
+        "Exp. 1: cured at 80 °C, 500 g load",
+        "Exp. 1: cured at 110 °C, 500 g load",
+        "Exp. 1: cured at 140 °C, 500 g load",
+        "Exp. 2: cured at 110 °C, 1,000 g load"
+      ],
+      "rowLabels": [
+        "0 revolutions",
+        "1,000 revolutions",
+        "2,000 revolutions",
+        "3,000 revolutions",
+        "4,000 revolutions",
+        "5,000 revolutions",
+        "6,000 revolutions"
+      ],
+      "cells": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          8,
+          4,
+          2,
+          9
+        ],
+        [
+          17,
+          7,
+          4,
+          19
+        ],
+        [
+          25,
+          11,
+          7,
+          30
+        ],
+        [
+          34,
+          14,
+          17,
+          42
+        ],
+        [
+          42,
+          18,
+          36,
+          55
+        ],
+        [
+          51,
+          21,
+          46,
+          69
+        ]
+      ]
+    },
+    "prompt": "The engineers want to find out whether a 1,000 g load affects the coating cured at 80 °C the way it affected the coating cured at 110 °C. To compare fairly with the trials already run, the new plates should be coated with a layer of resin that is:",
+    "choices": [
+      "25 µm thick and cured at 80 °C for 1 hour.",
+      "25 µm thick and cured at 80 °C for 2 hours.",
+      "50 µm thick and cured at 80 °C for 1 hour.",
+      "50 µm thick and cured at 80 °C for 2 hours."
+    ],
+    "correct_answer": "25 µm thick and cured at 80 °C for 1 hour.",
+    "explanation": "Every plate in both experiments carried a 25 µm layer of resin cured for 1 hour; only the cure temperature and the load were changed. New plates must match those two conditions so that any difference can be credited to the load. A 50 µm layer or a 2-hour cure would add a second change.",
+    "domain": "Scientific Investigation",
+    "difficulty": "medium",
+    "subskill": "hold conditions constant from the procedure",
+    "topic_tag": "chemistry: polymer coating wear",
+    "consistency_check": "Mass lost is cumulative and never decreases; coating inside the track = 30 cm2 * 0.0025 cm * 1.2 g/cm3 = 90 mg, more than any loss in the table (max 69 mg); 140 C coating wears slowly then sharply (threshold), 80 C steadily, load effect more than doubles and grows (not proportional); no named law."
+  },
+  {
+    "id": "ASV10b-P2-Q2",
+    "passage_id": "sc10b-p2",
+    "passage_title": "Wear of an Experimental Resin Coating",
+    "format": "research_summaries",
+    "passage": "Resin Q-7 is an experimental clear coating. It is brushed onto steel and then cured (heated for a set time), which links its long molecules together. Engineers tested how well cured Resin Q-7 resists wear.\n\nEach test plate was a 10 cm × 10 cm steel square coated with a 25 µm (0.0025 cm) layer of resin and cured for 1 hour. In a wear test, the plate was clamped to a turntable, and two abrasive wheels pressing on the coating with a set total load rolled over a ring-shaped track with an area of 30 cm² as the turntable turned. Before the test and after every 1,000 revolutions, the plate was removed, brushed free of loose particles, and weighed. Cured Resin Q-7 has a density of 1.2 g/cm³. Only the coating inside the track was worn.\n\nExperiment 1\nPlates cured at 80 °C, 110 °C, or 140 °C were tested with a 500 g load.\n\nExperiment 2\nPlates cured at 110 °C were tested with a 1,000 g load.\n\nTable 1 gives the total mass lost by each plate, in milligrams (mg), after each number of revolutions.",
+    "graphic": {
+      "type": "table",
+      "caption": "Table 1. Total mass lost (mg) by Resin Q-7 coatings during the wear test",
+      "colLabels": [
+        "Exp. 1: cured at 80 °C, 500 g load",
+        "Exp. 1: cured at 110 °C, 500 g load",
+        "Exp. 1: cured at 140 °C, 500 g load",
+        "Exp. 2: cured at 110 °C, 1,000 g load"
+      ],
+      "rowLabels": [
+        "0 revolutions",
+        "1,000 revolutions",
+        "2,000 revolutions",
+        "3,000 revolutions",
+        "4,000 revolutions",
+        "5,000 revolutions",
+        "6,000 revolutions"
+      ],
+      "cells": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          8,
+          4,
+          2,
+          9
+        ],
+        [
+          17,
+          7,
+          4,
+          19
+        ],
+        [
+          25,
+          11,
+          7,
+          30
+        ],
+        [
+          34,
+          14,
+          17,
+          42
+        ],
+        [
+          42,
+          18,
+          36,
+          55
+        ],
+        [
+          51,
+          21,
+          46,
+          69
+        ]
+      ]
+    },
+    "prompt": "In Experiment 1, which cure temperature gave the smallest total mass loss after 3,000 revolutions, and which gave the smallest after 6,000 revolutions?",
+    "choices": [
+      "110 °C after 3,000; 110 °C after 6,000",
+      "140 °C after 3,000; 140 °C after 6,000",
+      "110 °C after 3,000; 140 °C after 6,000",
+      "140 °C after 3,000; 110 °C after 6,000"
+    ],
+    "correct_answer": "140 °C after 3,000; 110 °C after 6,000",
+    "explanation": "After 3,000 revolutions the losses were 25 mg (80 °C), 11 mg (110 °C), and 7 mg (140 °C), so 140 °C was smallest. After 6,000 revolutions they were 51 mg, 21 mg, and 46 mg, so 110 °C was smallest; the 140 °C coating lost little at first and then wore quickly.",
+    "domain": "Interpretation of Data",
+    "difficulty": "hard",
+    "subskill": "compare series at two points (reversal)",
+    "topic_tag": "chemistry: polymer coating wear"
+  },
+  {
+    "id": "ASV10b-P2-Q3",
+    "passage_id": "sc10b-p2",
+    "passage_title": "Wear of an Experimental Resin Coating",
+    "format": "research_summaries",
+    "passage": "Resin Q-7 is an experimental clear coating. It is brushed onto steel and then cured (heated for a set time), which links its long molecules together. Engineers tested how well cured Resin Q-7 resists wear.\n\nEach test plate was a 10 cm × 10 cm steel square coated with a 25 µm (0.0025 cm) layer of resin and cured for 1 hour. In a wear test, the plate was clamped to a turntable, and two abrasive wheels pressing on the coating with a set total load rolled over a ring-shaped track with an area of 30 cm² as the turntable turned. Before the test and after every 1,000 revolutions, the plate was removed, brushed free of loose particles, and weighed. Cured Resin Q-7 has a density of 1.2 g/cm³. Only the coating inside the track was worn.\n\nExperiment 1\nPlates cured at 80 °C, 110 °C, or 140 °C were tested with a 500 g load.\n\nExperiment 2\nPlates cured at 110 °C were tested with a 1,000 g load.\n\nTable 1 gives the total mass lost by each plate, in milligrams (mg), after each number of revolutions.",
+    "graphic": {
+      "type": "table",
+      "caption": "Table 1. Total mass lost (mg) by Resin Q-7 coatings during the wear test",
+      "colLabels": [
+        "Exp. 1: cured at 80 °C, 500 g load",
+        "Exp. 1: cured at 110 °C, 500 g load",
+        "Exp. 1: cured at 140 °C, 500 g load",
+        "Exp. 2: cured at 110 °C, 1,000 g load"
+      ],
+      "rowLabels": [
+        "0 revolutions",
+        "1,000 revolutions",
+        "2,000 revolutions",
+        "3,000 revolutions",
+        "4,000 revolutions",
+        "5,000 revolutions",
+        "6,000 revolutions"
+      ],
+      "cells": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          8,
+          4,
+          2,
+          9
+        ],
+        [
+          17,
+          7,
+          4,
+          19
+        ],
+        [
+          25,
+          11,
+          7,
+          30
+        ],
+        [
+          34,
+          14,
+          17,
+          42
+        ],
+        [
+          42,
+          18,
+          36,
+          55
+        ],
+        [
+          51,
+          21,
+          46,
+          69
+        ]
+      ]
+    },
+    "prompt": "The engineers want to find more precisely the number of revolutions at which the wear of the coating cured at 140 °C began to speed up. Over which range of revolutions should they add extra weighings every 200 revolutions?",
+    "choices": [
+      "2,000 to 3,000",
+      "3,000 to 4,000",
+      "4,000 to 5,000",
+      "5,000 to 6,000"
+    ],
+    "correct_answer": "3,000 to 4,000",
+    "explanation": "For the 140 °C coating, the mass lost in each 1,000 revolutions was 2, 2, 3, 10, 19, and 10 mg. The loss stayed at 2 to 3 mg per 1,000 revolutions through 3,000 revolutions and jumped to 10 mg between 3,000 and 4,000 revolutions, so the speed-up began in that range. By 4,000 revolutions the coating was already wearing quickly.",
+    "domain": "Scientific Investigation",
+    "difficulty": "hard",
+    "subskill": "target added measurements using the data",
+    "topic_tag": "chemistry: polymer coating wear"
+  },
+  {
+    "id": "ASV10b-P2-Q4",
+    "passage_id": "sc10b-p2",
+    "passage_title": "Wear of an Experimental Resin Coating",
+    "format": "research_summaries",
+    "passage": "Resin Q-7 is an experimental clear coating. It is brushed onto steel and then cured (heated for a set time), which links its long molecules together. Engineers tested how well cured Resin Q-7 resists wear.\n\nEach test plate was a 10 cm × 10 cm steel square coated with a 25 µm (0.0025 cm) layer of resin and cured for 1 hour. In a wear test, the plate was clamped to a turntable, and two abrasive wheels pressing on the coating with a set total load rolled over a ring-shaped track with an area of 30 cm² as the turntable turned. Before the test and after every 1,000 revolutions, the plate was removed, brushed free of loose particles, and weighed. Cured Resin Q-7 has a density of 1.2 g/cm³. Only the coating inside the track was worn.\n\nExperiment 1\nPlates cured at 80 °C, 110 °C, or 140 °C were tested with a 500 g load.\n\nExperiment 2\nPlates cured at 110 °C were tested with a 1,000 g load.\n\nTable 1 gives the total mass lost by each plate, in milligrams (mg), after each number of revolutions.",
+    "graphic": {
+      "type": "table",
+      "caption": "Table 1. Total mass lost (mg) by Resin Q-7 coatings during the wear test",
+      "colLabels": [
+        "Exp. 1: cured at 80 °C, 500 g load",
+        "Exp. 1: cured at 110 °C, 500 g load",
+        "Exp. 1: cured at 140 °C, 500 g load",
+        "Exp. 2: cured at 110 °C, 1,000 g load"
+      ],
+      "rowLabels": [
+        "0 revolutions",
+        "1,000 revolutions",
+        "2,000 revolutions",
+        "3,000 revolutions",
+        "4,000 revolutions",
+        "5,000 revolutions",
+        "6,000 revolutions"
+      ],
+      "cells": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          8,
+          4,
+          2,
+          9
+        ],
+        [
+          17,
+          7,
+          4,
+          19
+        ],
+        [
+          25,
+          11,
+          7,
+          30
+        ],
+        [
+          34,
+          14,
+          17,
+          42
+        ],
+        [
+          42,
+          18,
+          36,
+          55
+        ],
+        [
+          51,
+          21,
+          46,
+          69
+        ]
+      ]
+    },
+    "prompt": "An engineer claimed that, for the coating cured at 110 °C, doubling the load from 500 g to 1,000 g doubled the total mass lost. Do the results support this claim?",
+    "choices": [
+      "No; after 5,000 revolutions, the coating lost 18 mg with the 500 g load but 55 mg with the 1,000 g load.",
+      "Yes; after 1,000 revolutions, the coating lost 4 mg with the 500 g load and 8 mg with the 1,000 g load.",
+      "Yes; after 5,000 revolutions, the coating lost 18 mg with the 500 g load and 36 mg with the 1,000 g load.",
+      "No; after 1,000 revolutions, the coating lost 4 mg with the 500 g load but only 2 mg with the 1,000 g load."
+    ],
+    "correct_answer": "No; after 5,000 revolutions, the coating lost 18 mg with the 500 g load but 55 mg with the 1,000 g load.",
+    "explanation": "For the 110 °C coating, the 500 g load removed 4, 7, 11, 14, 18, and 21 mg and the 1,000 g load removed 9, 19, 30, 42, 55, and 69 mg. At 5,000 revolutions that is 18 mg against 55 mg, about three times as much, and the ratio grew as the test went on, so doubling the load more than doubled the loss. The values 8 mg, 36 mg, and 2 mg belong to the 80 °C and 140 °C coatings, not to the 1,000 g trial.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "difficulty": "hard",
+    "subskill": "evaluate a proportionality claim against a table",
+    "topic_tag": "chemistry: polymer coating wear"
+  },
+  {
+    "id": "ASV10b-P2-Q5",
+    "passage_id": "sc10b-p2",
+    "passage_title": "Wear of an Experimental Resin Coating",
+    "format": "research_summaries",
+    "passage": "Resin Q-7 is an experimental clear coating. It is brushed onto steel and then cured (heated for a set time), which links its long molecules together. Engineers tested how well cured Resin Q-7 resists wear.\n\nEach test plate was a 10 cm × 10 cm steel square coated with a 25 µm (0.0025 cm) layer of resin and cured for 1 hour. In a wear test, the plate was clamped to a turntable, and two abrasive wheels pressing on the coating with a set total load rolled over a ring-shaped track with an area of 30 cm² as the turntable turned. Before the test and after every 1,000 revolutions, the plate was removed, brushed free of loose particles, and weighed. Cured Resin Q-7 has a density of 1.2 g/cm³. Only the coating inside the track was worn.\n\nExperiment 1\nPlates cured at 80 °C, 110 °C, or 140 °C were tested with a 500 g load.\n\nExperiment 2\nPlates cured at 110 °C were tested with a 1,000 g load.\n\nTable 1 gives the total mass lost by each plate, in milligrams (mg), after each number of revolutions.",
+    "graphic": {
+      "type": "table",
+      "caption": "Table 1. Total mass lost (mg) by Resin Q-7 coatings during the wear test",
+      "colLabels": [
+        "Exp. 1: cured at 80 °C, 500 g load",
+        "Exp. 1: cured at 110 °C, 500 g load",
+        "Exp. 1: cured at 140 °C, 500 g load",
+        "Exp. 2: cured at 110 °C, 1,000 g load"
+      ],
+      "rowLabels": [
+        "0 revolutions",
+        "1,000 revolutions",
+        "2,000 revolutions",
+        "3,000 revolutions",
+        "4,000 revolutions",
+        "5,000 revolutions",
+        "6,000 revolutions"
+      ],
+      "cells": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          8,
+          4,
+          2,
+          9
+        ],
+        [
+          17,
+          7,
+          4,
+          19
+        ],
+        [
+          25,
+          11,
+          7,
+          30
+        ],
+        [
+          34,
+          14,
+          17,
+          42
+        ],
+        [
+          42,
+          18,
+          36,
+          55
+        ],
+        [
+          51,
+          21,
+          46,
+          69
+        ]
+      ]
+    },
+    "prompt": "About what percent of the coating inside the wear track had been worn away from the plate cured at 140 °C after 6,000 revolutions?",
+    "choices": [
+      "23%",
+      "51%",
+      "57%",
+      "77%"
+    ],
+    "correct_answer": "51%",
+    "explanation": "The coating inside the track had a volume of 30 cm² × 0.0025 cm = 0.075 cm³ and a mass of 0.075 cm³ × 1.2 g/cm³ = 0.090 g = 90 mg. The 140 °C plate lost 46 mg, and 46 ÷ 90 is about 51%. The other percents come from the 6,000-revolution losses of the other trials: 21 mg (23%), 51 mg (57%), and 69 mg (77%).",
+    "domain": "Interpretation of Data",
+    "difficulty": "hard",
+    "subskill": "combine passage quantities with a table value",
+    "topic_tag": "chemistry: polymer coating wear"
+  },
+  {
+    "id": "ASV10b-P2-Q6",
+    "passage_id": "sc10b-p2",
+    "passage_title": "Wear of an Experimental Resin Coating",
+    "format": "research_summaries",
+    "passage": "Resin Q-7 is an experimental clear coating. It is brushed onto steel and then cured (heated for a set time), which links its long molecules together. Engineers tested how well cured Resin Q-7 resists wear.\n\nEach test plate was a 10 cm × 10 cm steel square coated with a 25 µm (0.0025 cm) layer of resin and cured for 1 hour. In a wear test, the plate was clamped to a turntable, and two abrasive wheels pressing on the coating with a set total load rolled over a ring-shaped track with an area of 30 cm² as the turntable turned. Before the test and after every 1,000 revolutions, the plate was removed, brushed free of loose particles, and weighed. Cured Resin Q-7 has a density of 1.2 g/cm³. Only the coating inside the track was worn.\n\nExperiment 1\nPlates cured at 80 °C, 110 °C, or 140 °C were tested with a 500 g load.\n\nExperiment 2\nPlates cured at 110 °C were tested with a 1,000 g load.\n\nTable 1 gives the total mass lost by each plate, in milligrams (mg), after each number of revolutions.",
+    "graphic": {
+      "type": "table",
+      "caption": "Table 1. Total mass lost (mg) by Resin Q-7 coatings during the wear test",
+      "colLabels": [
+        "Exp. 1: cured at 80 °C, 500 g load",
+        "Exp. 1: cured at 110 °C, 500 g load",
+        "Exp. 1: cured at 140 °C, 500 g load",
+        "Exp. 2: cured at 110 °C, 1,000 g load"
+      ],
+      "rowLabels": [
+        "0 revolutions",
+        "1,000 revolutions",
+        "2,000 revolutions",
+        "3,000 revolutions",
+        "4,000 revolutions",
+        "5,000 revolutions",
+        "6,000 revolutions"
+      ],
+      "cells": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          8,
+          4,
+          2,
+          9
+        ],
+        [
+          17,
+          7,
+          4,
+          19
+        ],
+        [
+          25,
+          11,
+          7,
+          30
+        ],
+        [
+          34,
+          14,
+          17,
+          42
+        ],
+        [
+          42,
+          18,
+          36,
+          55
+        ],
+        [
+          51,
+          21,
+          46,
+          69
+        ]
+      ]
+    },
+    "prompt": "Suppose the wear test of the coating cured at 80 °C had continued, and the coating had kept losing mass at its average rate for the first 6,000 revolutions. All of the coating inside the wear track would have been worn away after a number of revolutions between:",
+    "choices": [
+      "9,000 and 10,000.",
+      "10,000 and 11,000.",
+      "11,000 and 12,000.",
+      "12,000 and 13,000."
+    ],
+    "correct_answer": "10,000 and 11,000.",
+    "explanation": "The 80 °C coating lost 51 mg in 6,000 revolutions, an average of 8.5 mg per 1,000 revolutions. The coating inside the track had a mass of 30 cm² × 0.0025 cm × 1.2 g/cm³ = 90 mg. At 8.5 mg per 1,000 revolutions, 90 mg is gone after about 90 ÷ 8.5 × 1,000 ≈ 10,600 revolutions: 85 mg at 10,000 and about 94 mg at 11,000.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "difficulty": "hard",
+    "subskill": "extrapolate a steady rate to a passage-derived limit",
+    "topic_tag": "chemistry: polymer coating wear"
+  },
+  {
+    "id": "ASV10b-P3-Q1",
+    "passage_id": "sc10b-p3",
+    "passage_title": "Water Chemistry of Glacier-Fed Springs",
+    "format": "research_summaries",
+    "passage": "Meltwater from Varn Glacier soaks into the ground and comes back to the surface farther downhill at springs. Researchers sampled five such springs, labeled T, F, M, R, and J, that lie at different distances from the glacier's lower edge. Springs M and R flow out through Unit C, a pale, fine-grained rock; the other three flow out through Unit B, a dark, coarse-grained rock.\n\nStudy 1\nIn mid-June, a water sample was collected at each spring at the point where the water left the ground, and the water temperature was recorded there. In the laboratory, each sample was filtered and warmed to 25 °C, and its conductivity (a measure of the total amount of dissolved salts) and its dissolved silica concentration were measured.\n\nStudy 2\nThe procedure of Study 1 was repeated at the same springs in late August.\n\nTable 1 gives the results.",
+    "graphic": {
+      "type": "table",
+      "caption": "Table 1. Water at five glacier-fed springs in June (Study 1) and August (Study 2)",
+      "colLabels": [
+        "Distance from glacier (km)",
+        "Rock unit",
+        "June temperature (°C)",
+        "June conductivity (µS/cm)",
+        "June silica (mg/L)",
+        "August temperature (°C)",
+        "August conductivity (µS/cm)",
+        "August silica (mg/L)"
+      ],
+      "rowLabels": [
+        "Spring T",
+        "Spring F",
+        "Spring M",
+        "Spring R",
+        "Spring J"
+      ],
+      "cells": [
+        [
+          0.4,
+          "B",
+          0.8,
+          18,
+          0.9,
+          1.1,
+          14,
+          0.7
+        ],
+        [
+          1.6,
+          "B",
+          1.9,
+          41,
+          2.6,
+          2.9,
+          29,
+          1.9
+        ],
+        [
+          2.0,
+          "C",
+          2.3,
+          164,
+          3.1,
+          3.5,
+          118,
+          2.4
+        ],
+        [
+          3.2,
+          "C",
+          3.0,
+          152,
+          3.8,
+          4.6,
+          131,
+          3.0
+        ],
+        [
+          4.5,
+          "B",
+          3.4,
+          63,
+          4.1,
+          5.3,
+          47,
+          3.3
+        ]
+      ]
+    },
+    "prompt": "From June to August, the conductivity of the spring water decreased by the greatest amount at which spring?",
+    "choices": [
+      "Spring M",
+      "Spring J",
+      "Spring F",
+      "Spring R"
+    ],
+    "correct_answer": "Spring M",
+    "explanation": "Subtracting each August conductivity from the June value gives decreases of 4 µS/cm (T), 12 (F), 46 (M), 21 (R), and 16 (J). The largest decrease, 164 − 118 = 46 µS/cm, was at Spring M.",
+    "domain": "Interpretation of Data",
+    "difficulty": "medium",
+    "subskill": "compute and compare differences across two studies",
+    "topic_tag": "earth science: spring water chemistry",
+    "consistency_check": "Silica and water temperature rise with distance in both months, flattening toward the far end; conductivity is lower in August than June at every spring; Unit C springs exceed every Unit B spring in both months, and M and R swap order between months; values in realistic ranges for dilute glacial springs (14-164 uS/cm, 0.7-4.1 mg/L silica); invented sites, no named law."
+  },
+  {
+    "id": "ASV10b-P3-Q2",
+    "passage_id": "sc10b-p3",
+    "passage_title": "Water Chemistry of Glacier-Fed Springs",
+    "format": "research_summaries",
+    "passage": "Meltwater from Varn Glacier soaks into the ground and comes back to the surface farther downhill at springs. Researchers sampled five such springs, labeled T, F, M, R, and J, that lie at different distances from the glacier's lower edge. Springs M and R flow out through Unit C, a pale, fine-grained rock; the other three flow out through Unit B, a dark, coarse-grained rock.\n\nStudy 1\nIn mid-June, a water sample was collected at each spring at the point where the water left the ground, and the water temperature was recorded there. In the laboratory, each sample was filtered and warmed to 25 °C, and its conductivity (a measure of the total amount of dissolved salts) and its dissolved silica concentration were measured.\n\nStudy 2\nThe procedure of Study 1 was repeated at the same springs in late August.\n\nTable 1 gives the results.",
+    "graphic": {
+      "type": "table",
+      "caption": "Table 1. Water at five glacier-fed springs in June (Study 1) and August (Study 2)",
+      "colLabels": [
+        "Distance from glacier (km)",
+        "Rock unit",
+        "June temperature (°C)",
+        "June conductivity (µS/cm)",
+        "June silica (mg/L)",
+        "August temperature (°C)",
+        "August conductivity (µS/cm)",
+        "August silica (mg/L)"
+      ],
+      "rowLabels": [
+        "Spring T",
+        "Spring F",
+        "Spring M",
+        "Spring R",
+        "Spring J"
+      ],
+      "cells": [
+        [
+          0.4,
+          "B",
+          0.8,
+          18,
+          0.9,
+          1.1,
+          14,
+          0.7
+        ],
+        [
+          1.6,
+          "B",
+          1.9,
+          41,
+          2.6,
+          2.9,
+          29,
+          1.9
+        ],
+        [
+          2.0,
+          "C",
+          2.3,
+          164,
+          3.1,
+          3.5,
+          118,
+          2.4
+        ],
+        [
+          3.2,
+          "C",
+          3.0,
+          152,
+          3.8,
+          4.6,
+          131,
+          3.0
+        ],
+        [
+          4.5,
+          "B",
+          3.4,
+          63,
+          4.1,
+          5.3,
+          47,
+          3.3
+        ]
+      ]
+    },
+    "prompt": "Based on Table 1, a spring 2.6 km from the glacier that flows out through Unit C would most likely have had a June silica concentration:",
+    "choices": [
+      "less than 2.6 mg/L.",
+      "between 2.6 mg/L and 3.1 mg/L.",
+      "between 3.1 mg/L and 3.8 mg/L.",
+      "greater than 3.8 mg/L."
+    ],
+    "correct_answer": "between 3.1 mg/L and 3.8 mg/L.",
+    "explanation": "In June, silica rose with every step farther from the glacier, whatever the rock unit: 0.9, 2.6, 3.1, 3.8, and 4.1 mg/L at 0.4, 1.6, 2.0, 3.2, and 4.5 km. A spring at 2.6 km lies between Spring M (2.0 km, 3.1 mg/L) and Spring R (3.2 km, 3.8 mg/L), both Unit C springs, so its silica should fall between 3.1 and 3.8 mg/L.",
+    "domain": "Interpretation of Data",
+    "difficulty": "medium",
+    "subskill": "interpolate within a monotonic series",
+    "topic_tag": "earth science: spring water chemistry"
+  },
+  {
+    "id": "ASV10b-P3-Q3",
+    "passage_id": "sc10b-p3",
+    "passage_title": "Water Chemistry of Glacier-Fed Springs",
+    "format": "research_summaries",
+    "passage": "Meltwater from Varn Glacier soaks into the ground and comes back to the surface farther downhill at springs. Researchers sampled five such springs, labeled T, F, M, R, and J, that lie at different distances from the glacier's lower edge. Springs M and R flow out through Unit C, a pale, fine-grained rock; the other three flow out through Unit B, a dark, coarse-grained rock.\n\nStudy 1\nIn mid-June, a water sample was collected at each spring at the point where the water left the ground, and the water temperature was recorded there. In the laboratory, each sample was filtered and warmed to 25 °C, and its conductivity (a measure of the total amount of dissolved salts) and its dissolved silica concentration were measured.\n\nStudy 2\nThe procedure of Study 1 was repeated at the same springs in late August.\n\nTable 1 gives the results.",
+    "graphic": {
+      "type": "table",
+      "caption": "Table 1. Water at five glacier-fed springs in June (Study 1) and August (Study 2)",
+      "colLabels": [
+        "Distance from glacier (km)",
+        "Rock unit",
+        "June temperature (°C)",
+        "June conductivity (µS/cm)",
+        "June silica (mg/L)",
+        "August temperature (°C)",
+        "August conductivity (µS/cm)",
+        "August silica (mg/L)"
+      ],
+      "rowLabels": [
+        "Spring T",
+        "Spring F",
+        "Spring M",
+        "Spring R",
+        "Spring J"
+      ],
+      "cells": [
+        [
+          0.4,
+          "B",
+          0.8,
+          18,
+          0.9,
+          1.1,
+          14,
+          0.7
+        ],
+        [
+          1.6,
+          "B",
+          1.9,
+          41,
+          2.6,
+          2.9,
+          29,
+          1.9
+        ],
+        [
+          2.0,
+          "C",
+          2.3,
+          164,
+          3.1,
+          3.5,
+          118,
+          2.4
+        ],
+        [
+          3.2,
+          "C",
+          3.0,
+          152,
+          3.8,
+          4.6,
+          131,
+          3.0
+        ],
+        [
+          4.5,
+          "B",
+          3.4,
+          63,
+          4.1,
+          5.3,
+          47,
+          3.3
+        ]
+      ]
+    },
+    "prompt": "Which of the following statements about conductivity is supported by the results of Studies 1 and 2?",
+    "choices": [
+      "In both months, conductivity increased at each step farther from the glacier.",
+      "In both months, Spring M had a higher conductivity than Spring R.",
+      "From June to August, conductivity fell at every one of the five springs by between 10 µS/cm and 20 µS/cm.",
+      "In both months, conductivity was higher at each Unit C spring than at each Unit B spring."
+    ],
+    "correct_answer": "In both months, conductivity was higher at each Unit C spring than at each Unit B spring.",
+    "explanation": "The two Unit C springs had 164 and 152 µS/cm in June and 118 and 131 µS/cm in August; the highest Unit B value was 63 µS/cm in June and 47 µS/cm in August, so every Unit C value was higher. Conductivity did not rise at each step (J, the farthest spring, was lower than M and R), M was below R in August (118 vs 131), and the June-to-August drops ranged from 4 to 46 µS/cm.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "difficulty": "hard",
+    "subskill": "judge which generalization the data support",
+    "topic_tag": "earth science: spring water chemistry"
+  },
+  {
+    "id": "ASV10b-P3-Q4",
+    "passage_id": "sc10b-p3",
+    "passage_title": "Water Chemistry of Glacier-Fed Springs",
+    "format": "research_summaries",
+    "passage": "Meltwater from Varn Glacier soaks into the ground and comes back to the surface farther downhill at springs. Researchers sampled five such springs, labeled T, F, M, R, and J, that lie at different distances from the glacier's lower edge. Springs M and R flow out through Unit C, a pale, fine-grained rock; the other three flow out through Unit B, a dark, coarse-grained rock.\n\nStudy 1\nIn mid-June, a water sample was collected at each spring at the point where the water left the ground, and the water temperature was recorded there. In the laboratory, each sample was filtered and warmed to 25 °C, and its conductivity (a measure of the total amount of dissolved salts) and its dissolved silica concentration were measured.\n\nStudy 2\nThe procedure of Study 1 was repeated at the same springs in late August.\n\nTable 1 gives the results.",
+    "graphic": {
+      "type": "table",
+      "caption": "Table 1. Water at five glacier-fed springs in June (Study 1) and August (Study 2)",
+      "colLabels": [
+        "Distance from glacier (km)",
+        "Rock unit",
+        "June temperature (°C)",
+        "June conductivity (µS/cm)",
+        "June silica (mg/L)",
+        "August temperature (°C)",
+        "August conductivity (µS/cm)",
+        "August silica (mg/L)"
+      ],
+      "rowLabels": [
+        "Spring T",
+        "Spring F",
+        "Spring M",
+        "Spring R",
+        "Spring J"
+      ],
+      "cells": [
+        [
+          0.4,
+          "B",
+          0.8,
+          18,
+          0.9,
+          1.1,
+          14,
+          0.7
+        ],
+        [
+          1.6,
+          "B",
+          1.9,
+          41,
+          2.6,
+          2.9,
+          29,
+          1.9
+        ],
+        [
+          2.0,
+          "C",
+          2.3,
+          164,
+          3.1,
+          3.5,
+          118,
+          2.4
+        ],
+        [
+          3.2,
+          "C",
+          3.0,
+          152,
+          3.8,
+          4.6,
+          131,
+          3.0
+        ],
+        [
+          4.5,
+          "B",
+          3.4,
+          63,
+          4.1,
+          5.3,
+          47,
+          3.3
+        ]
+      ]
+    },
+    "prompt": "The researchers want to compare one Unit C spring with one Unit B spring to test whether the rock unit, rather than the distance from the glacier, explains the high conductivity of Springs M and R. Which pair of springs would best do so?",
+    "choices": [
+      "Springs R and J",
+      "Springs M and J",
+      "Springs M and F",
+      "Springs R and T"
+    ],
+    "correct_answer": "Springs M and F",
+    "explanation": "Each pair contains one Unit C spring and one Unit B spring, so the best pair is the one whose distances from the glacier are most nearly equal. Springs M (2.0 km) and F (1.6 km) are 0.4 km apart; R and J are 1.3 km apart, M and J 2.5 km, and R and T 2.8 km.",
+    "domain": "Scientific Investigation",
+    "difficulty": "hard",
+    "subskill": "choose a comparison that controls a second variable",
+    "topic_tag": "earth science: spring water chemistry"
+  },
+  {
+    "id": "ASV10b-P3-Q5",
+    "passage_id": "sc10b-p3",
+    "passage_title": "Water Chemistry of Glacier-Fed Springs",
+    "format": "research_summaries",
+    "passage": "Meltwater from Varn Glacier soaks into the ground and comes back to the surface farther downhill at springs. Researchers sampled five such springs, labeled T, F, M, R, and J, that lie at different distances from the glacier's lower edge. Springs M and R flow out through Unit C, a pale, fine-grained rock; the other three flow out through Unit B, a dark, coarse-grained rock.\n\nStudy 1\nIn mid-June, a water sample was collected at each spring at the point where the water left the ground, and the water temperature was recorded there. In the laboratory, each sample was filtered and warmed to 25 °C, and its conductivity (a measure of the total amount of dissolved salts) and its dissolved silica concentration were measured.\n\nStudy 2\nThe procedure of Study 1 was repeated at the same springs in late August.\n\nTable 1 gives the results.",
+    "graphic": {
+      "type": "table",
+      "caption": "Table 1. Water at five glacier-fed springs in June (Study 1) and August (Study 2)",
+      "colLabels": [
+        "Distance from glacier (km)",
+        "Rock unit",
+        "June temperature (°C)",
+        "June conductivity (µS/cm)",
+        "June silica (mg/L)",
+        "August temperature (°C)",
+        "August conductivity (µS/cm)",
+        "August silica (mg/L)"
+      ],
+      "rowLabels": [
+        "Spring T",
+        "Spring F",
+        "Spring M",
+        "Spring R",
+        "Spring J"
+      ],
+      "cells": [
+        [
+          0.4,
+          "B",
+          0.8,
+          18,
+          0.9,
+          1.1,
+          14,
+          0.7
+        ],
+        [
+          1.6,
+          "B",
+          1.9,
+          41,
+          2.6,
+          2.9,
+          29,
+          1.9
+        ],
+        [
+          2.0,
+          "C",
+          2.3,
+          164,
+          3.1,
+          3.5,
+          118,
+          2.4
+        ],
+        [
+          3.2,
+          "C",
+          3.0,
+          152,
+          3.8,
+          4.6,
+          131,
+          3.0
+        ],
+        [
+          4.5,
+          "B",
+          3.4,
+          63,
+          4.1,
+          5.3,
+          47,
+          3.3
+        ]
+      ]
+    },
+    "prompt": "At the spring whose water temperature rose the most from June to August, the conductivity decreased by about what percent?",
+    "choices": [
+      "14%",
+      "22%",
+      "25%",
+      "29%"
+    ],
+    "correct_answer": "25%",
+    "explanation": "Water temperature rose by 0.3 °C at T, 1.0 at F, 1.2 at M, 1.6 at R, and 1.9 at J, so the largest rise was at Spring J. J's conductivity fell from 63 to 47 µS/cm, a drop of 16, and 16 ÷ 63 is about 25%. The other percents are the drops at R (21 ÷ 152 ≈ 14%), T (4 ÷ 18 ≈ 22%), and F (12 ÷ 41 ≈ 29%).",
+    "domain": "Interpretation of Data",
+    "difficulty": "hard",
+    "subskill": "two-step lookup then percent change",
+    "topic_tag": "earth science: spring water chemistry"
+  },
+  {
+    "id": "ASV10b-P3-Q6",
+    "passage_id": "sc10b-p3",
+    "passage_title": "Water Chemistry of Glacier-Fed Springs",
+    "format": "research_summaries",
+    "passage": "Meltwater from Varn Glacier soaks into the ground and comes back to the surface farther downhill at springs. Researchers sampled five such springs, labeled T, F, M, R, and J, that lie at different distances from the glacier's lower edge. Springs M and R flow out through Unit C, a pale, fine-grained rock; the other three flow out through Unit B, a dark, coarse-grained rock.\n\nStudy 1\nIn mid-June, a water sample was collected at each spring at the point where the water left the ground, and the water temperature was recorded there. In the laboratory, each sample was filtered and warmed to 25 °C, and its conductivity (a measure of the total amount of dissolved salts) and its dissolved silica concentration were measured.\n\nStudy 2\nThe procedure of Study 1 was repeated at the same springs in late August.\n\nTable 1 gives the results.",
+    "graphic": {
+      "type": "table",
+      "caption": "Table 1. Water at five glacier-fed springs in June (Study 1) and August (Study 2)",
+      "colLabels": [
+        "Distance from glacier (km)",
+        "Rock unit",
+        "June temperature (°C)",
+        "June conductivity (µS/cm)",
+        "June silica (mg/L)",
+        "August temperature (°C)",
+        "August conductivity (µS/cm)",
+        "August silica (mg/L)"
+      ],
+      "rowLabels": [
+        "Spring T",
+        "Spring F",
+        "Spring M",
+        "Spring R",
+        "Spring J"
+      ],
+      "cells": [
+        [
+          0.4,
+          "B",
+          0.8,
+          18,
+          0.9,
+          1.1,
+          14,
+          0.7
+        ],
+        [
+          1.6,
+          "B",
+          1.9,
+          41,
+          2.6,
+          2.9,
+          29,
+          1.9
+        ],
+        [
+          2.0,
+          "C",
+          2.3,
+          164,
+          3.1,
+          3.5,
+          118,
+          2.4
+        ],
+        [
+          3.2,
+          "C",
+          3.0,
+          152,
+          3.8,
+          4.6,
+          131,
+          3.0
+        ],
+        [
+          4.5,
+          "B",
+          3.4,
+          63,
+          4.1,
+          5.3,
+          47,
+          3.3
+        ]
+      ]
+    },
+    "prompt": "Suppose a sixth spring, 5.5 km from the glacier, flows out through Unit B. Based on Table 1, its August silica concentration and August conductivity would most likely be closest to:",
+    "choices": [
+      "2.0 mg/L and 50 µS/cm.",
+      "3.5 mg/L and 140 µS/cm.",
+      "2.0 mg/L and 140 µS/cm.",
+      "3.5 mg/L and 50 µS/cm."
+    ],
+    "correct_answer": "3.5 mg/L and 50 µS/cm.",
+    "explanation": "August silica rose with distance but more slowly at the far end (3.0 mg/L at 3.2 km, 3.3 mg/L at 4.5 km), so at 5.5 km it should be a little above 3.3, near 3.5 mg/L, not down at 2.0. August conductivity depended on the rock unit: Unit B springs had 14 to 47 µS/cm, while the Unit C springs had 118 and 131, so a Unit B spring should be near 50 µS/cm.",
+    "domain": "Interpretation of Data",
+    "difficulty": "hard",
+    "subskill": "extrapolate one variable and classify another",
+    "topic_tag": "earth science: spring water chemistry"
+  },
+  {
+    "id": "ASV10b-P4-Q1",
+    "passage_id": "sc10b-p4",
+    "passage_title": "Sound Absorption by an Experimental Fiber Panel",
+    "format": "research_summaries",
+    "passage": "Engineers are testing Material V, an experimental panel made of pressed plant fibers, as a sound absorber. A panel's absorption coefficient is the fraction of the sound energy striking it that is absorbed rather than reflected; it ranges from 0 (all of the sound is reflected) to 1 (all of it is absorbed).\n\nIn each trial, a disk of Material V was fitted snugly inside a tube 100 mm wide. A loudspeaker at one end of the tube played a steady tone, and microphones measured the sound traveling toward the panel and the sound reflected from it. Before testing, every panel was kept for 24 hours at 50% relative humidity.\n\nExperiment 1\nPanels 25 mm thick and 50 mm thick were each tested with the back of the panel pressed against the solid steel end of the tube.\n\nExperiment 2\nA 25 mm panel was tested with the steel end moved back to leave an air space behind the panel, first 25 mm deep and then 50 mm deep.\n\nTable 1 gives the absorption coefficient of each setup at four frequencies (pitches).",
+    "graphic": {
+      "type": "table",
+      "caption": "Table 1. Absorption coefficient of Material V setups",
+      "colLabels": [
+        "25 mm panel, no air space",
+        "50 mm panel, no air space",
+        "25 mm panel, 25 mm air space",
+        "25 mm panel, 50 mm air space"
+      ],
+      "rowLabels": [
+        "250 Hz",
+        "500 Hz",
+        "1,000 Hz",
+        "2,000 Hz"
+      ],
+      "cells": [
+        [
+          0.12,
+          0.29,
+          0.24,
+          0.38
+        ],
+        [
+          0.31,
+          0.66,
+          0.57,
+          0.71
+        ],
+        [
+          0.64,
+          0.83,
+          0.79,
+          0.62
+        ],
+        [
+          0.71,
+          0.68,
+          0.74,
+          0.75
+        ]
+      ]
+    },
+    "prompt": "At which frequency was the absorption coefficient of the 50 mm panel greater than that of the 25 mm panel with no air space by the greatest amount?",
+    "choices": [
+      "250 Hz",
+      "500 Hz",
+      "1,000 Hz",
+      "2,000 Hz"
+    ],
+    "correct_answer": "500 Hz",
+    "explanation": "The 50 mm panel minus the 25 mm panel (both with no air space) gives 0.29 − 0.12 = 0.17 at 250 Hz, 0.66 − 0.31 = 0.35 at 500 Hz, 0.83 − 0.64 = 0.19 at 1,000 Hz, and 0.68 − 0.71 = −0.03 at 2,000 Hz. The greatest difference is at 500 Hz.",
+    "domain": "Interpretation of Data",
+    "difficulty": "medium",
+    "subskill": "compute and compare differences between two series",
+    "topic_tag": "physics: sound absorption",
+    "consistency_check": "All absorption coefficients between 0 and 1; reflected fraction = 1 - absorption; air space helps at three frequencies and dips at 1,000 Hz, thicker panel loses at 2,000 Hz (non-monotonic, no exact proportionality); invented material, no handbook values or named law."
+  },
+  {
+    "id": "ASV10b-P4-Q2",
+    "passage_id": "sc10b-p4",
+    "passage_title": "Sound Absorption by an Experimental Fiber Panel",
+    "format": "research_summaries",
+    "passage": "Engineers are testing Material V, an experimental panel made of pressed plant fibers, as a sound absorber. A panel's absorption coefficient is the fraction of the sound energy striking it that is absorbed rather than reflected; it ranges from 0 (all of the sound is reflected) to 1 (all of it is absorbed).\n\nIn each trial, a disk of Material V was fitted snugly inside a tube 100 mm wide. A loudspeaker at one end of the tube played a steady tone, and microphones measured the sound traveling toward the panel and the sound reflected from it. Before testing, every panel was kept for 24 hours at 50% relative humidity.\n\nExperiment 1\nPanels 25 mm thick and 50 mm thick were each tested with the back of the panel pressed against the solid steel end of the tube.\n\nExperiment 2\nA 25 mm panel was tested with the steel end moved back to leave an air space behind the panel, first 25 mm deep and then 50 mm deep.\n\nTable 1 gives the absorption coefficient of each setup at four frequencies (pitches).",
+    "graphic": {
+      "type": "table",
+      "caption": "Table 1. Absorption coefficient of Material V setups",
+      "colLabels": [
+        "25 mm panel, no air space",
+        "50 mm panel, no air space",
+        "25 mm panel, 25 mm air space",
+        "25 mm panel, 50 mm air space"
+      ],
+      "rowLabels": [
+        "250 Hz",
+        "500 Hz",
+        "1,000 Hz",
+        "2,000 Hz"
+      ],
+      "cells": [
+        [
+          0.12,
+          0.29,
+          0.24,
+          0.38
+        ],
+        [
+          0.31,
+          0.66,
+          0.57,
+          0.71
+        ],
+        [
+          0.64,
+          0.83,
+          0.79,
+          0.62
+        ],
+        [
+          0.71,
+          0.68,
+          0.74,
+          0.75
+        ]
+      ]
+    },
+    "prompt": "The engineers will repeat Experiment 2 using panels cut from a newly made batch of Material V. To match the original trials, the new panels should be:",
+    "choices": [
+      "50 mm thick and kept for 24 hours at 50% relative humidity before testing.",
+      "50 mm thick and kept for 12 hours at 65% relative humidity before testing.",
+      "25 mm thick and kept for 24 hours at 50% relative humidity before testing.",
+      "25 mm thick and kept for 12 hours at 65% relative humidity before testing."
+    ],
+    "correct_answer": "25 mm thick and kept for 24 hours at 50% relative humidity before testing.",
+    "explanation": "Experiment 2 tested a 25 mm panel with air spaces behind it, and every panel was kept for 24 hours at 50% relative humidity before testing. Matching both details keeps the batch as the only change; a 50 mm panel belongs to Experiment 1, and 12 hours at 65% humidity was not the procedure used.",
+    "domain": "Scientific Investigation",
+    "difficulty": "medium",
+    "subskill": "reproduce the conditions of a specific experiment",
+    "topic_tag": "physics: sound absorption"
+  },
+  {
+    "id": "ASV10b-P4-Q3",
+    "passage_id": "sc10b-p4",
+    "passage_title": "Sound Absorption by an Experimental Fiber Panel",
+    "format": "research_summaries",
+    "passage": "Engineers are testing Material V, an experimental panel made of pressed plant fibers, as a sound absorber. A panel's absorption coefficient is the fraction of the sound energy striking it that is absorbed rather than reflected; it ranges from 0 (all of the sound is reflected) to 1 (all of it is absorbed).\n\nIn each trial, a disk of Material V was fitted snugly inside a tube 100 mm wide. A loudspeaker at one end of the tube played a steady tone, and microphones measured the sound traveling toward the panel and the sound reflected from it. Before testing, every panel was kept for 24 hours at 50% relative humidity.\n\nExperiment 1\nPanels 25 mm thick and 50 mm thick were each tested with the back of the panel pressed against the solid steel end of the tube.\n\nExperiment 2\nA 25 mm panel was tested with the steel end moved back to leave an air space behind the panel, first 25 mm deep and then 50 mm deep.\n\nTable 1 gives the absorption coefficient of each setup at four frequencies (pitches).",
+    "graphic": {
+      "type": "table",
+      "caption": "Table 1. Absorption coefficient of Material V setups",
+      "colLabels": [
+        "25 mm panel, no air space",
+        "50 mm panel, no air space",
+        "25 mm panel, 25 mm air space",
+        "25 mm panel, 50 mm air space"
+      ],
+      "rowLabels": [
+        "250 Hz",
+        "500 Hz",
+        "1,000 Hz",
+        "2,000 Hz"
+      ],
+      "cells": [
+        [
+          0.12,
+          0.29,
+          0.24,
+          0.38
+        ],
+        [
+          0.31,
+          0.66,
+          0.57,
+          0.71
+        ],
+        [
+          0.64,
+          0.83,
+          0.79,
+          0.62
+        ],
+        [
+          0.71,
+          0.68,
+          0.74,
+          0.75
+        ]
+      ]
+    },
+    "prompt": "Which setup had an absorption coefficient of at least 0.65 at both 500 Hz and 1,000 Hz?",
+    "choices": [
+      "The 25 mm panel with no air space",
+      "The 25 mm panel with a 25 mm air space",
+      "The 50 mm panel with no air space",
+      "The 25 mm panel with a 50 mm air space"
+    ],
+    "correct_answer": "The 50 mm panel with no air space",
+    "explanation": "At 500 Hz and 1,000 Hz the setups measured: 25 mm with no air space, 0.31 and 0.64; 50 mm with no air space, 0.66 and 0.83; 25 mm with a 25 mm air space, 0.57 and 0.79; 25 mm with a 50 mm air space, 0.71 and 0.62. Only the 50 mm panel reached 0.65 at both; the 50 mm air space setup fell short at 1,000 Hz.",
+    "domain": "Interpretation of Data",
+    "difficulty": "hard",
+    "subskill": "apply a two-condition threshold across setups",
+    "topic_tag": "physics: sound absorption"
+  },
+  {
+    "id": "ASV10b-P4-Q4",
+    "passage_id": "sc10b-p4",
+    "passage_title": "Sound Absorption by an Experimental Fiber Panel",
+    "format": "research_summaries",
+    "passage": "Engineers are testing Material V, an experimental panel made of pressed plant fibers, as a sound absorber. A panel's absorption coefficient is the fraction of the sound energy striking it that is absorbed rather than reflected; it ranges from 0 (all of the sound is reflected) to 1 (all of it is absorbed).\n\nIn each trial, a disk of Material V was fitted snugly inside a tube 100 mm wide. A loudspeaker at one end of the tube played a steady tone, and microphones measured the sound traveling toward the panel and the sound reflected from it. Before testing, every panel was kept for 24 hours at 50% relative humidity.\n\nExperiment 1\nPanels 25 mm thick and 50 mm thick were each tested with the back of the panel pressed against the solid steel end of the tube.\n\nExperiment 2\nA 25 mm panel was tested with the steel end moved back to leave an air space behind the panel, first 25 mm deep and then 50 mm deep.\n\nTable 1 gives the absorption coefficient of each setup at four frequencies (pitches).",
+    "graphic": {
+      "type": "table",
+      "caption": "Table 1. Absorption coefficient of Material V setups",
+      "colLabels": [
+        "25 mm panel, no air space",
+        "50 mm panel, no air space",
+        "25 mm panel, 25 mm air space",
+        "25 mm panel, 50 mm air space"
+      ],
+      "rowLabels": [
+        "250 Hz",
+        "500 Hz",
+        "1,000 Hz",
+        "2,000 Hz"
+      ],
+      "cells": [
+        [
+          0.12,
+          0.29,
+          0.24,
+          0.38
+        ],
+        [
+          0.31,
+          0.66,
+          0.57,
+          0.71
+        ],
+        [
+          0.64,
+          0.83,
+          0.79,
+          0.62
+        ],
+        [
+          0.71,
+          0.68,
+          0.74,
+          0.75
+        ]
+      ]
+    },
+    "prompt": "An engineer claimed that, for the same total depth of panel plus air space, a solid panel always absorbs a greater fraction of sound than a thinner panel backed by an air space. Do the results support this claim?",
+    "choices": [
+      "Yes; at every frequency tested, the 50 mm panel absorbed more than the 25 mm panel with a 25 mm air space.",
+      "No; at 500 Hz, the 25 mm panel with a 25 mm air space absorbed 0.66, and the 50 mm panel absorbed 0.57.",
+      "No; at 250 Hz, the 25 mm panel with a 25 mm air space absorbed 0.29, and the 50 mm panel absorbed 0.24.",
+      "No; at 2,000 Hz, the 25 mm panel with a 25 mm air space absorbed 0.74, and the 50 mm panel absorbed 0.68."
+    ],
+    "correct_answer": "No; at 2,000 Hz, the 25 mm panel with a 25 mm air space absorbed 0.74, and the 50 mm panel absorbed 0.68.",
+    "explanation": "The 50 mm panel and the 25 mm panel with a 25 mm air space both have a total depth of 50 mm. The solid panel absorbed more at 250 Hz (0.29 vs 0.24), 500 Hz (0.66 vs 0.57), and 1,000 Hz (0.83 vs 0.79), but less at 2,000 Hz (0.68 vs 0.74), so it did not always absorb more. The pairs quoted for 500 Hz and 250 Hz have the two setups' values swapped.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "difficulty": "hard",
+    "subskill": "test a universal claim against every condition",
+    "topic_tag": "physics: sound absorption"
+  },
+  {
+    "id": "ASV10b-P4-Q5",
+    "passage_id": "sc10b-p4",
+    "passage_title": "Sound Absorption by an Experimental Fiber Panel",
+    "format": "research_summaries",
+    "passage": "Engineers are testing Material V, an experimental panel made of pressed plant fibers, as a sound absorber. A panel's absorption coefficient is the fraction of the sound energy striking it that is absorbed rather than reflected; it ranges from 0 (all of the sound is reflected) to 1 (all of it is absorbed).\n\nIn each trial, a disk of Material V was fitted snugly inside a tube 100 mm wide. A loudspeaker at one end of the tube played a steady tone, and microphones measured the sound traveling toward the panel and the sound reflected from it. Before testing, every panel was kept for 24 hours at 50% relative humidity.\n\nExperiment 1\nPanels 25 mm thick and 50 mm thick were each tested with the back of the panel pressed against the solid steel end of the tube.\n\nExperiment 2\nA 25 mm panel was tested with the steel end moved back to leave an air space behind the panel, first 25 mm deep and then 50 mm deep.\n\nTable 1 gives the absorption coefficient of each setup at four frequencies (pitches).",
+    "graphic": {
+      "type": "table",
+      "caption": "Table 1. Absorption coefficient of Material V setups",
+      "colLabels": [
+        "25 mm panel, no air space",
+        "50 mm panel, no air space",
+        "25 mm panel, 25 mm air space",
+        "25 mm panel, 50 mm air space"
+      ],
+      "rowLabels": [
+        "250 Hz",
+        "500 Hz",
+        "1,000 Hz",
+        "2,000 Hz"
+      ],
+      "cells": [
+        [
+          0.12,
+          0.29,
+          0.24,
+          0.38
+        ],
+        [
+          0.31,
+          0.66,
+          0.57,
+          0.71
+        ],
+        [
+          0.64,
+          0.83,
+          0.79,
+          0.62
+        ],
+        [
+          0.71,
+          0.68,
+          0.74,
+          0.75
+        ]
+      ]
+    },
+    "prompt": "For the 25 mm panel with no air space, what fraction of the sound energy striking the panel at 1,000 Hz was reflected?",
+    "choices": [
+      "0.17",
+      "0.36",
+      "0.38",
+      "0.64"
+    ],
+    "correct_answer": "0.36",
+    "explanation": "The passage defines the absorption coefficient as the fraction of the sound energy that is absorbed rather than reflected, so the reflected fraction is 1 minus the coefficient. At 1,000 Hz the 25 mm panel with no air space absorbed 0.64, so 1 − 0.64 = 0.36 was reflected. The value 0.17 is the reflected fraction for the 50 mm panel, and 0.38 for the panel with a 50 mm air space.",
+    "domain": "Interpretation of Data",
+    "difficulty": "medium",
+    "subskill": "apply a passage definition to a table value",
+    "topic_tag": "physics: sound absorption"
+  },
+  {
+    "id": "ASV10b-P4-Q6",
+    "passage_id": "sc10b-p4",
+    "passage_title": "Sound Absorption by an Experimental Fiber Panel",
+    "format": "research_summaries",
+    "passage": "Engineers are testing Material V, an experimental panel made of pressed plant fibers, as a sound absorber. A panel's absorption coefficient is the fraction of the sound energy striking it that is absorbed rather than reflected; it ranges from 0 (all of the sound is reflected) to 1 (all of it is absorbed).\n\nIn each trial, a disk of Material V was fitted snugly inside a tube 100 mm wide. A loudspeaker at one end of the tube played a steady tone, and microphones measured the sound traveling toward the panel and the sound reflected from it. Before testing, every panel was kept for 24 hours at 50% relative humidity.\n\nExperiment 1\nPanels 25 mm thick and 50 mm thick were each tested with the back of the panel pressed against the solid steel end of the tube.\n\nExperiment 2\nA 25 mm panel was tested with the steel end moved back to leave an air space behind the panel, first 25 mm deep and then 50 mm deep.\n\nTable 1 gives the absorption coefficient of each setup at four frequencies (pitches).",
+    "graphic": {
+      "type": "table",
+      "caption": "Table 1. Absorption coefficient of Material V setups",
+      "colLabels": [
+        "25 mm panel, no air space",
+        "50 mm panel, no air space",
+        "25 mm panel, 25 mm air space",
+        "25 mm panel, 50 mm air space"
+      ],
+      "rowLabels": [
+        "250 Hz",
+        "500 Hz",
+        "1,000 Hz",
+        "2,000 Hz"
+      ],
+      "cells": [
+        [
+          0.12,
+          0.29,
+          0.24,
+          0.38
+        ],
+        [
+          0.31,
+          0.66,
+          0.57,
+          0.71
+        ],
+        [
+          0.64,
+          0.83,
+          0.79,
+          0.62
+        ],
+        [
+          0.71,
+          0.68,
+          0.74,
+          0.75
+        ]
+      ]
+    },
+    "prompt": "Consider the three trials of the 25 mm panel: no air space, a 25 mm air space, and a 50 mm air space. Which statement best describes the effect of each increase in air-space depth?",
+    "choices": [
+      "Each increase raised the absorption coefficient at 250 Hz, 500 Hz, and 2,000 Hz, but not at 1,000 Hz.",
+      "Each increase raised the absorption coefficient at every frequency tested.",
+      "Each increase raised the absorption coefficient at 250 Hz and 500 Hz, but not at 1,000 Hz or 2,000 Hz.",
+      "Each increase raised the absorption coefficient at 1,000 Hz and 2,000 Hz, but not at 250 Hz or 500 Hz."
+    ],
+    "correct_answer": "Each increase raised the absorption coefficient at 250 Hz, 500 Hz, and 2,000 Hz, but not at 1,000 Hz.",
+    "explanation": "Going from no air space to 25 mm to 50 mm, the coefficients were 0.12, 0.24, 0.38 at 250 Hz; 0.31, 0.57, 0.71 at 500 Hz; 0.64, 0.79, 0.62 at 1,000 Hz; and 0.71, 0.74, 0.75 at 2,000 Hz. Both increases raised absorption at 250, 500, and 2,000 Hz, but at 1,000 Hz the 50 mm air space gave less than the 25 mm air space and less than no air space at all.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "difficulty": "hard",
+    "subskill": "summarize a two-step effect across conditions",
+    "topic_tag": "physics: sound absorption"
+  },
+  {
+    "id": "ASV10b-P5-Q1",
+    "passage_id": "sc10b-p5",
+    "passage_title": "The Move of a Seabird Colony",
+    "format": "conflicting_viewpoints",
+    "passage": "The fenlark is a small seabird that nests on the ground on Hallen Island. Each pair lays two eggs in a shallow scrape in loose sand, and the eggs are incubated for about 24 days in late May and June. For at least 30 years, almost all of the island's fenlarks nested on the East Spit, a low bar of sand. Over the 12 years of a survey (Years 1 to 12), the colony shifted to the West Cliffs, rock cliffs 30 m high topped by a 1 to 2 m layer of sandy soil. The East Spit had 410 nests in Year 1, 400 in Year 3, 150 in Year 8, and 55 in Year 12; the West Cliffs had 25 nests in Year 1 and 360 in Year 12.\n\nTwo other changes occurred during the survey. Storms struck the spit in each of six winters, the first between the Year 3 and Year 4 nesting seasons and the last between the Year 8 and Year 9 seasons; together they removed about 40% of the spit's area. And brindle rats, which eat eggs, were first seen on the island in April of Year 4, near the harbor at the north end of the spit. Each year, researchers put a numbered leg band on every chick that lived long enough to fly. Fenlarks first nest when they are 2 years old. Two scientists explain the shift.\n\nScientist 1\nThe shift was caused by rats eating eggs. Rats began taking eggs at the north end of the spit in Year 4 and spread south, and by Year 7 they were found along the entire length of the spit. The percent of spit nests in which at least one egg hatched fell from 72% in Year 3 to 18% in Year 8. A fenlark whose eggs are lost usually nests somewhere else the following year. The cliff tops stayed free of rats because rats cannot climb the 30 m rock faces. The birds that moved to the cliffs were mainly experienced adults that had lost their eggs on the spit; birds nesting for the first time settled wherever older birds were already nesting. The number of cliff nests therefore began to rise in Year 5.\n\nScientist 2\nThe shift was caused by the loss of nesting ground. As the storms narrowed the spit, more of the remaining sand lay less than 1 m above the level of the highest spring tides, and tides in late May flooded many scrapes while eggs were being incubated. On the spit, rats ate eggs only within about 300 m of the harbor, where few fenlarks nested. A fenlark whose eggs are lost usually nests somewhere else the following year. The first birds to move were birds nesting for the first time, which choose the highest, driest ground available; most experienced adults kept returning to the spit until their own nest sites were washed away. The number of cliff nests therefore began to rise in Year 4.",
+    "prompt": "Suppose that rat traps set on the tops of the West Cliffs in Year 10 caught several rats. This finding would contradict a claim made by:",
+    "choices": [
+      "Scientist 1 only.",
+      "Scientist 2 only.",
+      "both Scientist 1 and Scientist 2.",
+      "neither Scientist 1 nor Scientist 2."
+    ],
+    "correct_answer": "Scientist 1 only.",
+    "explanation": "Scientist 1 claims that the cliff tops stayed free of rats because rats cannot climb the rock faces, so rats on the cliff tops contradicts Scientist 1. Scientist 2 says only that, on the spit, rats ate eggs within about 300 m of the harbor, and makes no claim about the cliffs.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "difficulty": "medium",
+    "subskill": "match a finding to the viewpoint it contradicts",
+    "topic_tag": "biology: seabird colony shift",
+    "consistency_check": "Nest totals 435 (Year 1) and 415 (Year 12): the colony moved rather than collapsed; first storm winter falls between the Year 3 and Year 4 seasons and rats arrive April of Year 4, so Scientist 2's Year 4 rise and Scientist 1's Year 5 rise each follow from their own mechanism; birds first nest at age 2, so chicks banded in Year 3 are first-time nesters in Year 5; hatch counts 0.72*400=288 and 0.18*150=27."
+  },
+  {
+    "id": "ASV10b-P5-Q2",
+    "passage_id": "sc10b-p5",
+    "passage_title": "The Move of a Seabird Colony",
+    "format": "conflicting_viewpoints",
+    "passage": "The fenlark is a small seabird that nests on the ground on Hallen Island. Each pair lays two eggs in a shallow scrape in loose sand, and the eggs are incubated for about 24 days in late May and June. For at least 30 years, almost all of the island's fenlarks nested on the East Spit, a low bar of sand. Over the 12 years of a survey (Years 1 to 12), the colony shifted to the West Cliffs, rock cliffs 30 m high topped by a 1 to 2 m layer of sandy soil. The East Spit had 410 nests in Year 1, 400 in Year 3, 150 in Year 8, and 55 in Year 12; the West Cliffs had 25 nests in Year 1 and 360 in Year 12.\n\nTwo other changes occurred during the survey. Storms struck the spit in each of six winters, the first between the Year 3 and Year 4 nesting seasons and the last between the Year 8 and Year 9 seasons; together they removed about 40% of the spit's area. And brindle rats, which eat eggs, were first seen on the island in April of Year 4, near the harbor at the north end of the spit. Each year, researchers put a numbered leg band on every chick that lived long enough to fly. Fenlarks first nest when they are 2 years old. Two scientists explain the shift.\n\nScientist 1\nThe shift was caused by rats eating eggs. Rats began taking eggs at the north end of the spit in Year 4 and spread south, and by Year 7 they were found along the entire length of the spit. The percent of spit nests in which at least one egg hatched fell from 72% in Year 3 to 18% in Year 8. A fenlark whose eggs are lost usually nests somewhere else the following year. The cliff tops stayed free of rats because rats cannot climb the 30 m rock faces. The birds that moved to the cliffs were mainly experienced adults that had lost their eggs on the spit; birds nesting for the first time settled wherever older birds were already nesting. The number of cliff nests therefore began to rise in Year 5.\n\nScientist 2\nThe shift was caused by the loss of nesting ground. As the storms narrowed the spit, more of the remaining sand lay less than 1 m above the level of the highest spring tides, and tides in late May flooded many scrapes while eggs were being incubated. On the spit, rats ate eggs only within about 300 m of the harbor, where few fenlarks nested. A fenlark whose eggs are lost usually nests somewhere else the following year. The first birds to move were birds nesting for the first time, which choose the highest, driest ground available; most experienced adults kept returning to the spit until their own nest sites were washed away. The number of cliff nests therefore began to rise in Year 4.",
+    "prompt": "The researchers want to use the leg bands to pick out fenlarks that were nesting for the first time on the West Cliffs in Year 5. These would be birds that had been banded in:",
+    "choices": [
+      "Year 1.",
+      "Year 2.",
+      "Year 3.",
+      "Year 5."
+    ],
+    "correct_answer": "Year 3.",
+    "explanation": "Bands were put on chicks in the year they hatched, and fenlarks first nest when they are 2 years old. A bird nesting for the first time in Year 5 therefore hatched, and was banded, in Year 3. Birds banded in Year 1 first nested in Year 3, birds banded in Year 2 first nested in Year 4, and a chick banded in Year 5 could not nest that year.",
+    "domain": "Scientific Investigation",
+    "difficulty": "medium",
+    "subskill": "use a passage fact to design a record search",
+    "topic_tag": "biology: seabird colony shift"
+  },
+  {
+    "id": "ASV10b-P5-Q3",
+    "passage_id": "sc10b-p5",
+    "passage_title": "The Move of a Seabird Colony",
+    "format": "conflicting_viewpoints",
+    "passage": "The fenlark is a small seabird that nests on the ground on Hallen Island. Each pair lays two eggs in a shallow scrape in loose sand, and the eggs are incubated for about 24 days in late May and June. For at least 30 years, almost all of the island's fenlarks nested on the East Spit, a low bar of sand. Over the 12 years of a survey (Years 1 to 12), the colony shifted to the West Cliffs, rock cliffs 30 m high topped by a 1 to 2 m layer of sandy soil. The East Spit had 410 nests in Year 1, 400 in Year 3, 150 in Year 8, and 55 in Year 12; the West Cliffs had 25 nests in Year 1 and 360 in Year 12.\n\nTwo other changes occurred during the survey. Storms struck the spit in each of six winters, the first between the Year 3 and Year 4 nesting seasons and the last between the Year 8 and Year 9 seasons; together they removed about 40% of the spit's area. And brindle rats, which eat eggs, were first seen on the island in April of Year 4, near the harbor at the north end of the spit. Each year, researchers put a numbered leg band on every chick that lived long enough to fly. Fenlarks first nest when they are 2 years old. Two scientists explain the shift.\n\nScientist 1\nThe shift was caused by rats eating eggs. Rats began taking eggs at the north end of the spit in Year 4 and spread south, and by Year 7 they were found along the entire length of the spit. The percent of spit nests in which at least one egg hatched fell from 72% in Year 3 to 18% in Year 8. A fenlark whose eggs are lost usually nests somewhere else the following year. The cliff tops stayed free of rats because rats cannot climb the 30 m rock faces. The birds that moved to the cliffs were mainly experienced adults that had lost their eggs on the spit; birds nesting for the first time settled wherever older birds were already nesting. The number of cliff nests therefore began to rise in Year 5.\n\nScientist 2\nThe shift was caused by the loss of nesting ground. As the storms narrowed the spit, more of the remaining sand lay less than 1 m above the level of the highest spring tides, and tides in late May flooded many scrapes while eggs were being incubated. On the spit, rats ate eggs only within about 300 m of the harbor, where few fenlarks nested. A fenlark whose eggs are lost usually nests somewhere else the following year. The first birds to move were birds nesting for the first time, which choose the highest, driest ground available; most experienced adults kept returning to the spit until their own nest sites were washed away. The number of cliff nests therefore began to rise in Year 4.",
+    "prompt": "Which of the following questions, if answered, would best help determine which scientist's explanation is correct?",
+    "choices": [
+      "Had most birds that first nested on the West Cliffs in Years 4 to 6 nested before?",
+      "Did fenlarks whose eggs were lost on the spit usually nest somewhere else the following year?",
+      "Did rats eat eggs from spit nests lying within about 300 m of the harbor at the north end?",
+      "Did the six winters of storms together remove about 40% of the spit's area?"
+    ],
+    "correct_answer": "Had most birds that first nested on the West Cliffs in Years 4 to 6 nested before?",
+    "explanation": "Scientist 1 says the birds that moved were mainly experienced adults, and Scientist 2 says the first birds to move were birds nesting for the first time, so the nesting history of the early cliff birds separates the two. Both scientists state that birds whose eggs are lost usually nest elsewhere the next year, both accept that rats ate eggs near the harbor, and the 40% loss of area is given as background that neither disputes.",
+    "domain": "Scientific Investigation",
+    "difficulty": "hard",
+    "subskill": "identify an observation on which the viewpoints differ",
+    "topic_tag": "biology: seabird colony shift"
+  },
+  {
+    "id": "ASV10b-P5-Q4",
+    "passage_id": "sc10b-p5",
+    "passage_title": "The Move of a Seabird Colony",
+    "format": "conflicting_viewpoints",
+    "passage": "The fenlark is a small seabird that nests on the ground on Hallen Island. Each pair lays two eggs in a shallow scrape in loose sand, and the eggs are incubated for about 24 days in late May and June. For at least 30 years, almost all of the island's fenlarks nested on the East Spit, a low bar of sand. Over the 12 years of a survey (Years 1 to 12), the colony shifted to the West Cliffs, rock cliffs 30 m high topped by a 1 to 2 m layer of sandy soil. The East Spit had 410 nests in Year 1, 400 in Year 3, 150 in Year 8, and 55 in Year 12; the West Cliffs had 25 nests in Year 1 and 360 in Year 12.\n\nTwo other changes occurred during the survey. Storms struck the spit in each of six winters, the first between the Year 3 and Year 4 nesting seasons and the last between the Year 8 and Year 9 seasons; together they removed about 40% of the spit's area. And brindle rats, which eat eggs, were first seen on the island in April of Year 4, near the harbor at the north end of the spit. Each year, researchers put a numbered leg band on every chick that lived long enough to fly. Fenlarks first nest when they are 2 years old. Two scientists explain the shift.\n\nScientist 1\nThe shift was caused by rats eating eggs. Rats began taking eggs at the north end of the spit in Year 4 and spread south, and by Year 7 they were found along the entire length of the spit. The percent of spit nests in which at least one egg hatched fell from 72% in Year 3 to 18% in Year 8. A fenlark whose eggs are lost usually nests somewhere else the following year. The cliff tops stayed free of rats because rats cannot climb the 30 m rock faces. The birds that moved to the cliffs were mainly experienced adults that had lost their eggs on the spit; birds nesting for the first time settled wherever older birds were already nesting. The number of cliff nests therefore began to rise in Year 5.\n\nScientist 2\nThe shift was caused by the loss of nesting ground. As the storms narrowed the spit, more of the remaining sand lay less than 1 m above the level of the highest spring tides, and tides in late May flooded many scrapes while eggs were being incubated. On the spit, rats ate eggs only within about 300 m of the harbor, where few fenlarks nested. A fenlark whose eggs are lost usually nests somewhere else the following year. The first birds to move were birds nesting for the first time, which choose the highest, driest ground available; most experienced adults kept returning to the spit until their own nest sites were washed away. The number of cliff nests therefore began to rise in Year 4.",
+    "prompt": "Which of the following findings, if true, would weaken Scientist 1's explanation but NOT Scientist 2's?",
+    "choices": [
+      "Rats were caught within 300 m of the harbor in Year 4.",
+      "In Years 5 through 8, no scrape on the spit was flooded while eggs were being incubated.",
+      "Fenlarks whose eggs were lost on the spit usually nested in the same spot the following year.",
+      "Traps set along the southern half of the spit in Year 7 caught no rats."
+    ],
+    "correct_answer": "Traps set along the southern half of the spit in Year 7 caught no rats.",
+    "explanation": "Scientist 1 claims that by Year 7 rats were found along the entire length of the spit; Scientist 2 says rats ate eggs only near the harbor, at the north end. No rats in the southern half in Year 7 therefore weakens only Scientist 1. No flooding weakens only Scientist 2, birds returning to the same spot after losing eggs weakens both (each relies on lost-egg birds moving), and rats near the harbor in Year 4 fits both.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "difficulty": "hard",
+    "subskill": "find evidence that weakens one viewpoint only",
+    "topic_tag": "biology: seabird colony shift"
+  },
+  {
+    "id": "ASV10b-P5-Q5",
+    "passage_id": "sc10b-p5",
+    "passage_title": "The Move of a Seabird Colony",
+    "format": "conflicting_viewpoints",
+    "passage": "The fenlark is a small seabird that nests on the ground on Hallen Island. Each pair lays two eggs in a shallow scrape in loose sand, and the eggs are incubated for about 24 days in late May and June. For at least 30 years, almost all of the island's fenlarks nested on the East Spit, a low bar of sand. Over the 12 years of a survey (Years 1 to 12), the colony shifted to the West Cliffs, rock cliffs 30 m high topped by a 1 to 2 m layer of sandy soil. The East Spit had 410 nests in Year 1, 400 in Year 3, 150 in Year 8, and 55 in Year 12; the West Cliffs had 25 nests in Year 1 and 360 in Year 12.\n\nTwo other changes occurred during the survey. Storms struck the spit in each of six winters, the first between the Year 3 and Year 4 nesting seasons and the last between the Year 8 and Year 9 seasons; together they removed about 40% of the spit's area. And brindle rats, which eat eggs, were first seen on the island in April of Year 4, near the harbor at the north end of the spit. Each year, researchers put a numbered leg band on every chick that lived long enough to fly. Fenlarks first nest when they are 2 years old. Two scientists explain the shift.\n\nScientist 1\nThe shift was caused by rats eating eggs. Rats began taking eggs at the north end of the spit in Year 4 and spread south, and by Year 7 they were found along the entire length of the spit. The percent of spit nests in which at least one egg hatched fell from 72% in Year 3 to 18% in Year 8. A fenlark whose eggs are lost usually nests somewhere else the following year. The cliff tops stayed free of rats because rats cannot climb the 30 m rock faces. The birds that moved to the cliffs were mainly experienced adults that had lost their eggs on the spit; birds nesting for the first time settled wherever older birds were already nesting. The number of cliff nests therefore began to rise in Year 5.\n\nScientist 2\nThe shift was caused by the loss of nesting ground. As the storms narrowed the spit, more of the remaining sand lay less than 1 m above the level of the highest spring tides, and tides in late May flooded many scrapes while eggs were being incubated. On the spit, rats ate eggs only within about 300 m of the harbor, where few fenlarks nested. A fenlark whose eggs are lost usually nests somewhere else the following year. The first birds to move were birds nesting for the first time, which choose the highest, driest ground available; most experienced adults kept returning to the spit until their own nest sites were washed away. The number of cliff nests therefore began to rise in Year 4.",
+    "prompt": "Based on Scientist 1's percents and the nest counts given in the passage, about how many spit nests had at least one egg hatch in Year 3 and in Year 8, respectively?",
+    "choices": [
+      "288 and 108",
+      "72 and 27",
+      "288 and 27",
+      "72 and 108"
+    ],
+    "correct_answer": "288 and 27",
+    "explanation": "The spit had 400 nests in Year 3 and 150 in Year 8. Scientist 1 says at least one egg hatched in 72% of spit nests in Year 3 and 18% in Year 8: 0.72 × 400 = 288 and 0.18 × 150 = 27. The values 72 and 108 come from applying each percent to the other year's count.",
+    "domain": "Interpretation of Data",
+    "difficulty": "hard",
+    "subskill": "combine a viewpoint figure with passage counts",
+    "topic_tag": "biology: seabird colony shift"
+  },
+  {
+    "id": "ASV10b-P5-Q6",
+    "passage_id": "sc10b-p5",
+    "passage_title": "The Move of a Seabird Colony",
+    "format": "conflicting_viewpoints",
+    "passage": "The fenlark is a small seabird that nests on the ground on Hallen Island. Each pair lays two eggs in a shallow scrape in loose sand, and the eggs are incubated for about 24 days in late May and June. For at least 30 years, almost all of the island's fenlarks nested on the East Spit, a low bar of sand. Over the 12 years of a survey (Years 1 to 12), the colony shifted to the West Cliffs, rock cliffs 30 m high topped by a 1 to 2 m layer of sandy soil. The East Spit had 410 nests in Year 1, 400 in Year 3, 150 in Year 8, and 55 in Year 12; the West Cliffs had 25 nests in Year 1 and 360 in Year 12.\n\nTwo other changes occurred during the survey. Storms struck the spit in each of six winters, the first between the Year 3 and Year 4 nesting seasons and the last between the Year 8 and Year 9 seasons; together they removed about 40% of the spit's area. And brindle rats, which eat eggs, were first seen on the island in April of Year 4, near the harbor at the north end of the spit. Each year, researchers put a numbered leg band on every chick that lived long enough to fly. Fenlarks first nest when they are 2 years old. Two scientists explain the shift.\n\nScientist 1\nThe shift was caused by rats eating eggs. Rats began taking eggs at the north end of the spit in Year 4 and spread south, and by Year 7 they were found along the entire length of the spit. The percent of spit nests in which at least one egg hatched fell from 72% in Year 3 to 18% in Year 8. A fenlark whose eggs are lost usually nests somewhere else the following year. The cliff tops stayed free of rats because rats cannot climb the 30 m rock faces. The birds that moved to the cliffs were mainly experienced adults that had lost their eggs on the spit; birds nesting for the first time settled wherever older birds were already nesting. The number of cliff nests therefore began to rise in Year 5.\n\nScientist 2\nThe shift was caused by the loss of nesting ground. As the storms narrowed the spit, more of the remaining sand lay less than 1 m above the level of the highest spring tides, and tides in late May flooded many scrapes while eggs were being incubated. On the spit, rats ate eggs only within about 300 m of the harbor, where few fenlarks nested. A fenlark whose eggs are lost usually nests somewhere else the following year. The first birds to move were birds nesting for the first time, which choose the highest, driest ground available; most experienced adults kept returning to the spit until their own nest sites were washed away. The number of cliff nests therefore began to rise in Year 4.",
+    "prompt": "Suppose the West Cliffs held 24 nests in Year 3, 26 in Year 4, and 71 in Year 5. Which scientist's explanation does this pattern support, and why?",
+    "choices": [
+      "Scientist 1, because the count rose in the first nesting season after rats first took eggs on the spit.",
+      "Scientist 2, because the count rose in the first nesting season after the first storm winter.",
+      "Scientist 1, because the count rose only after rats had been found along the entire length of the spit.",
+      "Scientist 2, because the count rose only after the storms had removed about 40% of the spit's area."
+    ],
+    "correct_answer": "Scientist 1, because the count rose in the first nesting season after rats first took eggs on the spit.",
+    "explanation": "The count barely changed in Year 4 and jumped in Year 5. According to Scientist 1, rats began taking eggs in Year 4, so the first season after that is Year 5, matching the jump. The first storm winter came between the Year 3 and Year 4 seasons, so Scientist 2's rise would appear in Year 4, when the count stayed nearly flat. Rats reached the whole spit only by Year 7, and the full 40% loss was complete only after the last storm winter, before Year 9; both come after the Year 5 rise.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "difficulty": "hard",
+    "subskill": "support a viewpoint using a dated sequence",
+    "topic_tag": "biology: seabird colony shift"
+  },
+  {
+    "id": "ASV10b-P6-Q1",
+    "passage_id": "sc10b-p6",
+    "passage_title": "Bands in Veltrite Nodules",
+    "format": "conflicting_viewpoints",
+    "passage": "Veltrite is a pale mineral that forms rounded lumps called nodules, 2 to 10 cm across, in a 2 m thick layer of clay at Kerran Gulch. When a nodule is cut in half, its face shows rings, one inside another: thin dark bands alternating with pale bands. Each cubic centimeter of a dark band contains about 3 times as much iron as a cubic centimeter of a pale band, and dark bands make up about 40% of a nodule's volume. A typical 6 cm nodule has 40 to 60 dark bands. Directly above the clay lies a layer of iron-rich sandstone. Two scientists discuss how the bands formed.\n\nScientist 1\nThe bands record slow growth over many years. Each nodule grew outward from a small central grain as veltrite came out of groundwater. Every spring, melting snow raised the water table, and water seeping down from the iron-rich sandstone above the clay reached the nodules and deposited a dark band; during the rest of the year, pale veltrite was deposited. One dark band and the pale band outside it record one year, so the innermost bands are the oldest. Neighboring nodules grew during the same years, and because the amount of snowmelt differs from year to year, neighboring nodules record the same sequence of thick and thin dark bands, which can be matched from nodule to nodule.\n\nScientist 2\nThe bands formed within a few months, after each nodule had already formed as evenly pale veltrite. Water seeping down from the iron-rich sandstone above the clay entered each nodule through its outer surface. As the water moved inward, iron came out of the water in a thin band, which used up the iron in the water just inside the band; farther in, once enough iron had built up again, another band formed, and so on. Each band is therefore younger than the band outside it. The spacing between dark bands shrinks from about 1.0 mm near the rim to about 0.3 mm near the center. Because the pattern depends on each nodule's own size and on how easily water moves through it, neighboring nodules do not share a sequence of thick and thin bands. A nodule that was cracked before the iron arrived would show bands that bend to follow the crack.",
+    "prompt": "Suppose that in 20 nodules from Kerran Gulch, the spacing between dark bands was about the same from the center of each nodule to its rim. This finding would be inconsistent with the claims of:",
+    "choices": [
+      "Scientist 1 only.",
+      "Scientist 2 only.",
+      "both Scientist 1 and Scientist 2.",
+      "neither Scientist 1 nor Scientist 2."
+    ],
+    "correct_answer": "Scientist 2 only.",
+    "explanation": "Scientist 2 claims that the spacing between dark bands shrinks from about 1.0 mm near the rim to about 0.3 mm near the center, so even spacing contradicts Scientist 2. Scientist 1 says band thickness varies from year to year with snowmelt but makes no claim that spacing changes steadily from rim to center.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "difficulty": "medium",
+    "subskill": "match a finding to the viewpoint it contradicts",
+    "topic_tag": "earth science: mineral banding",
+    "consistency_check": "Scientist 2's spacing (1.0 mm at rim to 0.3 mm at center, mean ~0.65 mm over a 30 mm radius) gives ~46 dark bands, inside the stated 40-60; Scientist 1's 48 bands over 30 mm = 0.625 mm/yr; iron share in dark bands = (0.4*3)/(0.4*3 + 0.6*1) = 2/3, per cubic centimeter as stated; both viewpoints source the iron from the sandstone above the clay; invented mineral and site."
+  },
+  {
+    "id": "ASV10b-P6-Q2",
+    "passage_id": "sc10b-p6",
+    "passage_title": "Bands in Veltrite Nodules",
+    "format": "conflicting_viewpoints",
+    "passage": "Veltrite is a pale mineral that forms rounded lumps called nodules, 2 to 10 cm across, in a 2 m thick layer of clay at Kerran Gulch. When a nodule is cut in half, its face shows rings, one inside another: thin dark bands alternating with pale bands. Each cubic centimeter of a dark band contains about 3 times as much iron as a cubic centimeter of a pale band, and dark bands make up about 40% of a nodule's volume. A typical 6 cm nodule has 40 to 60 dark bands. Directly above the clay lies a layer of iron-rich sandstone. Two scientists discuss how the bands formed.\n\nScientist 1\nThe bands record slow growth over many years. Each nodule grew outward from a small central grain as veltrite came out of groundwater. Every spring, melting snow raised the water table, and water seeping down from the iron-rich sandstone above the clay reached the nodules and deposited a dark band; during the rest of the year, pale veltrite was deposited. One dark band and the pale band outside it record one year, so the innermost bands are the oldest. Neighboring nodules grew during the same years, and because the amount of snowmelt differs from year to year, neighboring nodules record the same sequence of thick and thin dark bands, which can be matched from nodule to nodule.\n\nScientist 2\nThe bands formed within a few months, after each nodule had already formed as evenly pale veltrite. Water seeping down from the iron-rich sandstone above the clay entered each nodule through its outer surface. As the water moved inward, iron came out of the water in a thin band, which used up the iron in the water just inside the band; farther in, once enough iron had built up again, another band formed, and so on. Each band is therefore younger than the band outside it. The spacing between dark bands shrinks from about 1.0 mm near the rim to about 0.3 mm near the center. Because the pattern depends on each nodule's own size and on how easily water moves through it, neighboring nodules do not share a sequence of thick and thin bands. A nodule that was cracked before the iron arrived would show bands that bend to follow the crack.",
+    "prompt": "Which of the following studies would best help determine which scientist's explanation is correct?",
+    "choices": [
+      "Measuring the iron content of the dark bands and pale bands in several nodules",
+      "Comparing the sequences of thick and thin dark bands in several neighboring nodules",
+      "Testing whether the iron in the dark bands of several nodules came from the sandstone above the clay",
+      "Counting the dark bands in several 6 cm nodules to see whether each has between 40 and 60"
+    ],
+    "correct_answer": "Comparing the sequences of thick and thin dark bands in several neighboring nodules",
+    "explanation": "Scientist 1 predicts that neighboring nodules, which grew during the same years, share a sequence of thick and thin dark bands; Scientist 2 says neighboring nodules do not share one. Both scientists accept that dark bands are richer in iron and that the iron came from the sandstone above the clay, and neither predicts a band count that the other rejects, so those studies would not separate them.",
+    "domain": "Scientific Investigation",
+    "difficulty": "hard",
+    "subskill": "identify a study on which the viewpoints differ",
+    "topic_tag": "earth science: mineral banding"
+  },
+  {
+    "id": "ASV10b-P6-Q3",
+    "passage_id": "sc10b-p6",
+    "passage_title": "Bands in Veltrite Nodules",
+    "format": "conflicting_viewpoints",
+    "passage": "Veltrite is a pale mineral that forms rounded lumps called nodules, 2 to 10 cm across, in a 2 m thick layer of clay at Kerran Gulch. When a nodule is cut in half, its face shows rings, one inside another: thin dark bands alternating with pale bands. Each cubic centimeter of a dark band contains about 3 times as much iron as a cubic centimeter of a pale band, and dark bands make up about 40% of a nodule's volume. A typical 6 cm nodule has 40 to 60 dark bands. Directly above the clay lies a layer of iron-rich sandstone. Two scientists discuss how the bands formed.\n\nScientist 1\nThe bands record slow growth over many years. Each nodule grew outward from a small central grain as veltrite came out of groundwater. Every spring, melting snow raised the water table, and water seeping down from the iron-rich sandstone above the clay reached the nodules and deposited a dark band; during the rest of the year, pale veltrite was deposited. One dark band and the pale band outside it record one year, so the innermost bands are the oldest. Neighboring nodules grew during the same years, and because the amount of snowmelt differs from year to year, neighboring nodules record the same sequence of thick and thin dark bands, which can be matched from nodule to nodule.\n\nScientist 2\nThe bands formed within a few months, after each nodule had already formed as evenly pale veltrite. Water seeping down from the iron-rich sandstone above the clay entered each nodule through its outer surface. As the water moved inward, iron came out of the water in a thin band, which used up the iron in the water just inside the band; farther in, once enough iron had built up again, another band formed, and so on. Each band is therefore younger than the band outside it. The spacing between dark bands shrinks from about 1.0 mm near the rim to about 0.3 mm near the center. Because the pattern depends on each nodule's own size and on how easily water moves through it, neighboring nodules do not share a sequence of thick and thin bands. A nodule that was cracked before the iron arrived would show bands that bend to follow the crack.",
+    "prompt": "Which of the following findings would support Scientist 2's explanation over Scientist 1's?",
+    "choices": [
+      "Each cubic centimeter of a dark band contains about 3 times as much iron as a pale band.",
+      "Several neighboring nodules show the same sequence of thick and thin dark bands.",
+      "Dating shows that the innermost bands of each nodule are older than its outer bands.",
+      "In a nodule that was cracked, the bands bend to follow the surfaces of the crack."
+    ],
+    "correct_answer": "In a nodule that was cracked, the bands bend to follow the surfaces of the crack.",
+    "explanation": "Scientist 2 predicts that a nodule cracked before the iron arrived would show bands bending to follow the crack, because iron-bearing water entered through the nodule's surfaces after it had formed. A shared band sequence and innermost bands being oldest are Scientist 1's predictions, and the iron ratio is background that both scientists accept.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "difficulty": "hard",
+    "subskill": "find evidence that favors one viewpoint",
+    "topic_tag": "earth science: mineral banding"
+  },
+  {
+    "id": "ASV10b-P6-Q4",
+    "passage_id": "sc10b-p6",
+    "passage_title": "Bands in Veltrite Nodules",
+    "format": "conflicting_viewpoints",
+    "passage": "Veltrite is a pale mineral that forms rounded lumps called nodules, 2 to 10 cm across, in a 2 m thick layer of clay at Kerran Gulch. When a nodule is cut in half, its face shows rings, one inside another: thin dark bands alternating with pale bands. Each cubic centimeter of a dark band contains about 3 times as much iron as a cubic centimeter of a pale band, and dark bands make up about 40% of a nodule's volume. A typical 6 cm nodule has 40 to 60 dark bands. Directly above the clay lies a layer of iron-rich sandstone. Two scientists discuss how the bands formed.\n\nScientist 1\nThe bands record slow growth over many years. Each nodule grew outward from a small central grain as veltrite came out of groundwater. Every spring, melting snow raised the water table, and water seeping down from the iron-rich sandstone above the clay reached the nodules and deposited a dark band; during the rest of the year, pale veltrite was deposited. One dark band and the pale band outside it record one year, so the innermost bands are the oldest. Neighboring nodules grew during the same years, and because the amount of snowmelt differs from year to year, neighboring nodules record the same sequence of thick and thin dark bands, which can be matched from nodule to nodule.\n\nScientist 2\nThe bands formed within a few months, after each nodule had already formed as evenly pale veltrite. Water seeping down from the iron-rich sandstone above the clay entered each nodule through its outer surface. As the water moved inward, iron came out of the water in a thin band, which used up the iron in the water just inside the band; farther in, once enough iron had built up again, another band formed, and so on. Each band is therefore younger than the band outside it. The spacing between dark bands shrinks from about 1.0 mm near the rim to about 0.3 mm near the center. Because the pattern depends on each nodule's own size and on how easily water moves through it, neighboring nodules do not share a sequence of thick and thin bands. A nodule that was cracked before the iron arrived would show bands that bend to follow the crack.",
+    "prompt": "According to Scientist 1, what was the average outward growth rate of a 6 cm nodule that has 48 dark bands?",
+    "choices": [
+      "0.31 mm per year",
+      "0.63 mm per year",
+      "1.25 mm per year",
+      "1.60 mm per year"
+    ],
+    "correct_answer": "0.63 mm per year",
+    "explanation": "Scientist 1 says one dark band and the pale band outside it record one year and that each nodule grew outward from a small central grain. A nodule with 48 dark bands grew for about 48 years, and a 6 cm nodule has a radius of 3 cm = 30 mm, so it grew about 30 mm ÷ 48 years ≈ 0.63 mm per year. Using the 60 mm width gives 1.25, counting every band as a year gives 0.31, and 48 ÷ 30 gives 1.60.",
+    "domain": "Interpretation of Data",
+    "difficulty": "hard",
+    "subskill": "apply a viewpoint rule to passage numbers",
+    "topic_tag": "earth science: mineral banding"
+  },
+  {
+    "id": "ASV10b-P6-Q5",
+    "passage_id": "sc10b-p6",
+    "passage_title": "Bands in Veltrite Nodules",
+    "format": "conflicting_viewpoints",
+    "passage": "Veltrite is a pale mineral that forms rounded lumps called nodules, 2 to 10 cm across, in a 2 m thick layer of clay at Kerran Gulch. When a nodule is cut in half, its face shows rings, one inside another: thin dark bands alternating with pale bands. Each cubic centimeter of a dark band contains about 3 times as much iron as a cubic centimeter of a pale band, and dark bands make up about 40% of a nodule's volume. A typical 6 cm nodule has 40 to 60 dark bands. Directly above the clay lies a layer of iron-rich sandstone. Two scientists discuss how the bands formed.\n\nScientist 1\nThe bands record slow growth over many years. Each nodule grew outward from a small central grain as veltrite came out of groundwater. Every spring, melting snow raised the water table, and water seeping down from the iron-rich sandstone above the clay reached the nodules and deposited a dark band; during the rest of the year, pale veltrite was deposited. One dark band and the pale band outside it record one year, so the innermost bands are the oldest. Neighboring nodules grew during the same years, and because the amount of snowmelt differs from year to year, neighboring nodules record the same sequence of thick and thin dark bands, which can be matched from nodule to nodule.\n\nScientist 2\nThe bands formed within a few months, after each nodule had already formed as evenly pale veltrite. Water seeping down from the iron-rich sandstone above the clay entered each nodule through its outer surface. As the water moved inward, iron came out of the water in a thin band, which used up the iron in the water just inside the band; farther in, once enough iron had built up again, another band formed, and so on. Each band is therefore younger than the band outside it. The spacing between dark bands shrinks from about 1.0 mm near the rim to about 0.3 mm near the center. Because the pattern depends on each nodule's own size and on how easily water moves through it, neighboring nodules do not share a sequence of thick and thin bands. A nodule that was cracked before the iron arrived would show bands that bend to follow the crack.",
+    "prompt": "Scientist 1 and Scientist 2 would most likely agree that:",
+    "choices": [
+      "the iron in the dark bands came in water seeping down from the sandstone above the clay.",
+      "iron reached the nodules only during spring, when melting snow raised the water table.",
+      "the iron entered each nodule through its outer surface only after the nodule had formed.",
+      "the iron came out of the water because the water warmed up as it seeped down into the clay."
+    ],
+    "correct_answer": "the iron in the dark bands came in water seeping down from the sandstone above the clay.",
+    "explanation": "Both scientists state that the iron arrived in water seeping down from the iron-rich sandstone above the clay. Only Scientist 1 ties its arrival to spring snowmelt, only Scientist 2 says it entered through the outer surface of an already formed nodule, and neither attributes it to the water warming.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "difficulty": "hard",
+    "subskill": "identify a mechanism both viewpoints state",
+    "topic_tag": "earth science: mineral banding"
+  },
+  {
+    "id": "ASV10b-P6-Q6",
+    "passage_id": "sc10b-p6",
+    "passage_title": "Bands in Veltrite Nodules",
+    "format": "conflicting_viewpoints",
+    "passage": "Veltrite is a pale mineral that forms rounded lumps called nodules, 2 to 10 cm across, in a 2 m thick layer of clay at Kerran Gulch. When a nodule is cut in half, its face shows rings, one inside another: thin dark bands alternating with pale bands. Each cubic centimeter of a dark band contains about 3 times as much iron as a cubic centimeter of a pale band, and dark bands make up about 40% of a nodule's volume. A typical 6 cm nodule has 40 to 60 dark bands. Directly above the clay lies a layer of iron-rich sandstone. Two scientists discuss how the bands formed.\n\nScientist 1\nThe bands record slow growth over many years. Each nodule grew outward from a small central grain as veltrite came out of groundwater. Every spring, melting snow raised the water table, and water seeping down from the iron-rich sandstone above the clay reached the nodules and deposited a dark band; during the rest of the year, pale veltrite was deposited. One dark band and the pale band outside it record one year, so the innermost bands are the oldest. Neighboring nodules grew during the same years, and because the amount of snowmelt differs from year to year, neighboring nodules record the same sequence of thick and thin dark bands, which can be matched from nodule to nodule.\n\nScientist 2\nThe bands formed within a few months, after each nodule had already formed as evenly pale veltrite. Water seeping down from the iron-rich sandstone above the clay entered each nodule through its outer surface. As the water moved inward, iron came out of the water in a thin band, which used up the iron in the water just inside the band; farther in, once enough iron had built up again, another band formed, and so on. Each band is therefore younger than the band outside it. The spacing between dark bands shrinks from about 1.0 mm near the rim to about 0.3 mm near the center. Because the pattern depends on each nodule's own size and on how easily water moves through it, neighboring nodules do not share a sequence of thick and thin bands. A nodule that was cracked before the iron arrived would show bands that bend to follow the crack.",
+    "prompt": "Based on the information given before the scientists' views, about what percent of the iron in a nodule is in its dark bands?",
+    "choices": [
+      "40%",
+      "60%",
+      "67%",
+      "75%"
+    ],
+    "correct_answer": "67%",
+    "explanation": "Take a nodule of 100 cm³: 40 cm³ is dark band and 60 cm³ is pale band. If a pale cubic centimeter holds 1 unit of iron, a dark one holds 3, so the dark bands hold 40 × 3 = 120 units and the pale bands 60 × 1 = 60 units. The dark share is 120 ÷ 180 ≈ 67%. The 40% and 60% figures are volumes, and 75% ignores the difference in volume.",
+    "domain": "Interpretation of Data",
+    "difficulty": "hard",
+    "subskill": "weighted share from two passage ratios",
+    "topic_tag": "earth science: mineral banding"
+  },
+  {
+    "id": "ASV10b-P7-Q1",
+    "passage_id": "sc10b-p7",
+    "passage_title": "The Brightening of an Icy Moon",
+    "format": "conflicting_viewpoints",
+    "passage": "Tessaly is an icy moon of the giant planet Orrun. Tessaly always keeps the same face toward Orrun, so one half of the moon always faces forward along its orbit (the leading hemisphere) and the other half faces backward (the trailing hemisphere). Since monitoring began in Year 0, Tessaly's albedo, the fraction of incoming sunlight its surface reflects, has risen. Over the same period, a spacecraft measured the height of the tallest jets of water vapor rising from vents along Kell Ridge, a ridge that runs along the equator of the trailing hemisphere. It also measured the density of a cloud of ice dust along Tessaly's orbit; the cloud formed after a large impact on Brannoch, a smaller moon, shortly before Year 0. Table 1 gives the measurements. Two scientists explain the brightening.\n\nScientist 1\nThe brightening is caused by frost from the Kell Ridge vents. Water vapor from the jets freezes into fine grains less than 20 µm across, which settle onto the surface as fresh frost. When the tallest jets are higher than about 100 km, frost is thrown far from the ridge and the albedo rises quickly; when they are lower, frost falls close to the ridge and the albedo rises only slowly. Brightening should be greatest near Kell Ridge, on the trailing hemisphere, and weaker farther north and south of the equator. Fresh ice on Tessaly stays bright for decades. The Brannoch dust is real, but too little of it reaches Tessaly's surface to matter.\n\nScientist 2\nThe brightening is caused by ice dust from Brannoch, which Tessaly sweeps up as it moves through the dust cloud. The grains it sweeps up are 50 to 200 µm across. When the dust density is above about 5.0 thousand grains per km³, the albedo rises quickly; below that, it rises only slowly. Because Tessaly sweeps up dust with the half that faces forward, brightening should be greatest at the center of the leading hemisphere and the same at all latitudes. Fresh ice on Tessaly stays bright for decades. The vents are real, but most of their frost falls within 100 km of Kell Ridge, covering less than 2% of the surface.",
+    "graphic": {
+      "type": "table",
+      "caption": "Table 1. Measurements of Tessaly and its surroundings",
+      "colLabels": [
+        "Albedo",
+        "Height of tallest jet (km)",
+        "Dust density (thousand grains per km³)"
+      ],
+      "rowLabels": [
+        "Year 0",
+        "Year 4",
+        "Year 8",
+        "Year 12",
+        "Year 16"
+      ],
+      "cells": [
+        [
+          0.42,
+          60,
+          3.1
+        ],
+        [
+          0.45,
+          95,
+          5.8
+        ],
+        [
+          0.51,
+          140,
+          6.2
+        ],
+        [
+          0.54,
+          150,
+          4.0
+        ],
+        [
+          0.55,
+          110,
+          2.2
+        ]
+      ]
+    },
+    "prompt": "According to Table 1, between which two consecutive observations did Tessaly's albedo increase the most, and how did the dust density change over that same interval?",
+    "choices": [
+      "Year 8 to Year 12; the dust density increased.",
+      "Year 4 to Year 8; the dust density decreased.",
+      "Year 8 to Year 12; the dust density decreased.",
+      "Year 4 to Year 8; the dust density increased."
+    ],
+    "correct_answer": "Year 4 to Year 8; the dust density increased.",
+    "explanation": "The albedo rose by 0.03 from Year 0 to Year 4, 0.06 from Year 4 to Year 8, 0.03 from Year 8 to Year 12, and 0.01 from Year 12 to Year 16, so the largest increase was from Year 4 to Year 8. Over that interval the dust density went from 5.8 to 6.2 thousand grains per km³, an increase; it fell only after Year 8.",
+    "domain": "Interpretation of Data",
+    "difficulty": "medium",
+    "subskill": "find the largest change and read a second series",
+    "topic_tag": "space science: moon albedo",
+    "consistency_check": "Albedo between 0 and 1 and never decreasing; Scientist 1's quick-rise condition (jets > 100 km) holds at Years 8, 12, 16, Scientist 2's (dust > 5.0) at Years 4, 8, so both expect a quick rise only at Year 8; the Year 12-16 rise (0.01) is slow while jets stayed above 100 km and dust stayed below 5.0; invented moon, ridge, and impact, no orbital or optical law used."
+  },
+  {
+    "id": "ASV10b-P7-Q2",
+    "passage_id": "sc10b-p7",
+    "passage_title": "The Brightening of an Icy Moon",
+    "format": "conflicting_viewpoints",
+    "passage": "Tessaly is an icy moon of the giant planet Orrun. Tessaly always keeps the same face toward Orrun, so one half of the moon always faces forward along its orbit (the leading hemisphere) and the other half faces backward (the trailing hemisphere). Since monitoring began in Year 0, Tessaly's albedo, the fraction of incoming sunlight its surface reflects, has risen. Over the same period, a spacecraft measured the height of the tallest jets of water vapor rising from vents along Kell Ridge, a ridge that runs along the equator of the trailing hemisphere. It also measured the density of a cloud of ice dust along Tessaly's orbit; the cloud formed after a large impact on Brannoch, a smaller moon, shortly before Year 0. Table 1 gives the measurements. Two scientists explain the brightening.\n\nScientist 1\nThe brightening is caused by frost from the Kell Ridge vents. Water vapor from the jets freezes into fine grains less than 20 µm across, which settle onto the surface as fresh frost. When the tallest jets are higher than about 100 km, frost is thrown far from the ridge and the albedo rises quickly; when they are lower, frost falls close to the ridge and the albedo rises only slowly. Brightening should be greatest near Kell Ridge, on the trailing hemisphere, and weaker farther north and south of the equator. Fresh ice on Tessaly stays bright for decades. The Brannoch dust is real, but too little of it reaches Tessaly's surface to matter.\n\nScientist 2\nThe brightening is caused by ice dust from Brannoch, which Tessaly sweeps up as it moves through the dust cloud. The grains it sweeps up are 50 to 200 µm across. When the dust density is above about 5.0 thousand grains per km³, the albedo rises quickly; below that, it rises only slowly. Because Tessaly sweeps up dust with the half that faces forward, brightening should be greatest at the center of the leading hemisphere and the same at all latitudes. Fresh ice on Tessaly stays bright for decades. The vents are real, but most of their frost falls within 100 km of Kell Ridge, covering less than 2% of the surface.",
+    "graphic": {
+      "type": "table",
+      "caption": "Table 1. Measurements of Tessaly and its surroundings",
+      "colLabels": [
+        "Albedo",
+        "Height of tallest jet (km)",
+        "Dust density (thousand grains per km³)"
+      ],
+      "rowLabels": [
+        "Year 0",
+        "Year 4",
+        "Year 8",
+        "Year 12",
+        "Year 16"
+      ],
+      "cells": [
+        [
+          0.42,
+          60,
+          3.1
+        ],
+        [
+          0.45,
+          95,
+          5.8
+        ],
+        [
+          0.51,
+          140,
+          6.2
+        ],
+        [
+          0.54,
+          150,
+          4.0
+        ],
+        [
+          0.55,
+          110,
+          2.2
+        ]
+      ]
+    },
+    "prompt": "Suppose maps made in Year 16 showed that, since Year 0, Tessaly had brightened by the same amount on its leading and trailing hemispheres. This finding would be inconsistent with the claims of:",
+    "choices": [
+      "Scientist 1 only.",
+      "Scientist 2 only.",
+      "both Scientist 1 and Scientist 2.",
+      "neither Scientist 1 nor Scientist 2."
+    ],
+    "correct_answer": "both Scientist 1 and Scientist 2.",
+    "explanation": "Scientist 1 says brightening should be greatest near Kell Ridge, on the trailing hemisphere, and Scientist 2 says it should be greatest at the center of the leading hemisphere. Equal brightening of the two hemispheres contradicts both predictions.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "difficulty": "medium",
+    "subskill": "test a finding against both viewpoints",
+    "topic_tag": "space science: moon albedo"
+  },
+  {
+    "id": "ASV10b-P7-Q3",
+    "passage_id": "sc10b-p7",
+    "passage_title": "The Brightening of an Icy Moon",
+    "format": "conflicting_viewpoints",
+    "passage": "Tessaly is an icy moon of the giant planet Orrun. Tessaly always keeps the same face toward Orrun, so one half of the moon always faces forward along its orbit (the leading hemisphere) and the other half faces backward (the trailing hemisphere). Since monitoring began in Year 0, Tessaly's albedo, the fraction of incoming sunlight its surface reflects, has risen. Over the same period, a spacecraft measured the height of the tallest jets of water vapor rising from vents along Kell Ridge, a ridge that runs along the equator of the trailing hemisphere. It also measured the density of a cloud of ice dust along Tessaly's orbit; the cloud formed after a large impact on Brannoch, a smaller moon, shortly before Year 0. Table 1 gives the measurements. Two scientists explain the brightening.\n\nScientist 1\nThe brightening is caused by frost from the Kell Ridge vents. Water vapor from the jets freezes into fine grains less than 20 µm across, which settle onto the surface as fresh frost. When the tallest jets are higher than about 100 km, frost is thrown far from the ridge and the albedo rises quickly; when they are lower, frost falls close to the ridge and the albedo rises only slowly. Brightening should be greatest near Kell Ridge, on the trailing hemisphere, and weaker farther north and south of the equator. Fresh ice on Tessaly stays bright for decades. The Brannoch dust is real, but too little of it reaches Tessaly's surface to matter.\n\nScientist 2\nThe brightening is caused by ice dust from Brannoch, which Tessaly sweeps up as it moves through the dust cloud. The grains it sweeps up are 50 to 200 µm across. When the dust density is above about 5.0 thousand grains per km³, the albedo rises quickly; below that, it rises only slowly. Because Tessaly sweeps up dust with the half that faces forward, brightening should be greatest at the center of the leading hemisphere and the same at all latitudes. Fresh ice on Tessaly stays bright for decades. The vents are real, but most of their frost falls within 100 km of Kell Ridge, covering less than 2% of the surface.",
+    "graphic": {
+      "type": "table",
+      "caption": "Table 1. Measurements of Tessaly and its surroundings",
+      "colLabels": [
+        "Albedo",
+        "Height of tallest jet (km)",
+        "Dust density (thousand grains per km³)"
+      ],
+      "rowLabels": [
+        "Year 0",
+        "Year 4",
+        "Year 8",
+        "Year 12",
+        "Year 16"
+      ],
+      "cells": [
+        [
+          0.42,
+          60,
+          3.1
+        ],
+        [
+          0.45,
+          95,
+          5.8
+        ],
+        [
+          0.51,
+          140,
+          6.2
+        ],
+        [
+          0.54,
+          150,
+          4.0
+        ],
+        [
+          0.55,
+          110,
+          2.2
+        ]
+      ]
+    },
+    "prompt": "Which of the following findings would weaken Scientist 2's explanation but NOT Scientist 1's?",
+    "choices": [
+      "Most of the grains in the newly brightened areas are less than 20 µm across.",
+      "The brightening is the same at all latitudes, north and south, within each hemisphere.",
+      "Fresh ice deposited on Tessaly's surface stays bright for several decades.",
+      "The density of the Brannoch dust fell steadily between Year 8 and Year 16."
+    ],
+    "correct_answer": "Most of the grains in the newly brightened areas are less than 20 µm across.",
+    "explanation": "Scientist 2 says the swept-up grains are 50 to 200 µm across, while Scientist 1 says vent frost forms grains less than 20 µm across, so finding mostly small grains weakens only Scientist 2. Equal brightening at all latitudes is Scientist 2's prediction and weakens Scientist 1. Both scientists state that fresh ice stays bright for decades, and the fall in dust density after Year 8 is in Table 1, which both accept.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "difficulty": "hard",
+    "subskill": "find evidence that weakens one viewpoint only",
+    "topic_tag": "space science: moon albedo"
+  },
+  {
+    "id": "ASV10b-P7-Q4",
+    "passage_id": "sc10b-p7",
+    "passage_title": "The Brightening of an Icy Moon",
+    "format": "conflicting_viewpoints",
+    "passage": "Tessaly is an icy moon of the giant planet Orrun. Tessaly always keeps the same face toward Orrun, so one half of the moon always faces forward along its orbit (the leading hemisphere) and the other half faces backward (the trailing hemisphere). Since monitoring began in Year 0, Tessaly's albedo, the fraction of incoming sunlight its surface reflects, has risen. Over the same period, a spacecraft measured the height of the tallest jets of water vapor rising from vents along Kell Ridge, a ridge that runs along the equator of the trailing hemisphere. It also measured the density of a cloud of ice dust along Tessaly's orbit; the cloud formed after a large impact on Brannoch, a smaller moon, shortly before Year 0. Table 1 gives the measurements. Two scientists explain the brightening.\n\nScientist 1\nThe brightening is caused by frost from the Kell Ridge vents. Water vapor from the jets freezes into fine grains less than 20 µm across, which settle onto the surface as fresh frost. When the tallest jets are higher than about 100 km, frost is thrown far from the ridge and the albedo rises quickly; when they are lower, frost falls close to the ridge and the albedo rises only slowly. Brightening should be greatest near Kell Ridge, on the trailing hemisphere, and weaker farther north and south of the equator. Fresh ice on Tessaly stays bright for decades. The Brannoch dust is real, but too little of it reaches Tessaly's surface to matter.\n\nScientist 2\nThe brightening is caused by ice dust from Brannoch, which Tessaly sweeps up as it moves through the dust cloud. The grains it sweeps up are 50 to 200 µm across. When the dust density is above about 5.0 thousand grains per km³, the albedo rises quickly; below that, it rises only slowly. Because Tessaly sweeps up dust with the half that faces forward, brightening should be greatest at the center of the leading hemisphere and the same at all latitudes. Fresh ice on Tessaly stays bright for decades. The vents are real, but most of their frost falls within 100 km of Kell Ridge, covering less than 2% of the surface.",
+    "graphic": {
+      "type": "table",
+      "caption": "Table 1. Measurements of Tessaly and its surroundings",
+      "colLabels": [
+        "Albedo",
+        "Height of tallest jet (km)",
+        "Dust density (thousand grains per km³)"
+      ],
+      "rowLabels": [
+        "Year 0",
+        "Year 4",
+        "Year 8",
+        "Year 12",
+        "Year 16"
+      ],
+      "cells": [
+        [
+          0.42,
+          60,
+          3.1
+        ],
+        [
+          0.45,
+          95,
+          5.8
+        ],
+        [
+          0.51,
+          140,
+          6.2
+        ],
+        [
+          0.54,
+          150,
+          4.0
+        ],
+        [
+          0.55,
+          110,
+          2.2
+        ]
+      ]
+    },
+    "prompt": "Which of the following questions, if answered, would best help determine which scientist's explanation is correct?",
+    "choices": [
+      "Did Tessaly's albedo increase between Year 0 and Year 16?",
+      "Is the newly deposited material on Tessaly's surface water ice?",
+      "Did the density of the Brannoch dust reach its highest value between Year 4 and Year 12?",
+      "Is the brightening weaker far to the north and south of the equator than near it?"
+    ],
+    "correct_answer": "Is the brightening weaker far to the north and south of the equator than near it?",
+    "explanation": "Scientist 1 predicts brightening that weakens farther north and south of the equator, and Scientist 2 predicts the same brightening at all latitudes, so the answer separates them. Both accept the albedo rise and the dust measurements in Table 1, and both describe the new material as ice (frost from water vapor, or ice dust).",
+    "domain": "Scientific Investigation",
+    "difficulty": "hard",
+    "subskill": "identify an observation on which the viewpoints differ",
+    "topic_tag": "space science: moon albedo"
+  },
+  {
+    "id": "ASV10b-P7-Q5",
+    "passage_id": "sc10b-p7",
+    "passage_title": "The Brightening of an Icy Moon",
+    "format": "conflicting_viewpoints",
+    "passage": "Tessaly is an icy moon of the giant planet Orrun. Tessaly always keeps the same face toward Orrun, so one half of the moon always faces forward along its orbit (the leading hemisphere) and the other half faces backward (the trailing hemisphere). Since monitoring began in Year 0, Tessaly's albedo, the fraction of incoming sunlight its surface reflects, has risen. Over the same period, a spacecraft measured the height of the tallest jets of water vapor rising from vents along Kell Ridge, a ridge that runs along the equator of the trailing hemisphere. It also measured the density of a cloud of ice dust along Tessaly's orbit; the cloud formed after a large impact on Brannoch, a smaller moon, shortly before Year 0. Table 1 gives the measurements. Two scientists explain the brightening.\n\nScientist 1\nThe brightening is caused by frost from the Kell Ridge vents. Water vapor from the jets freezes into fine grains less than 20 µm across, which settle onto the surface as fresh frost. When the tallest jets are higher than about 100 km, frost is thrown far from the ridge and the albedo rises quickly; when they are lower, frost falls close to the ridge and the albedo rises only slowly. Brightening should be greatest near Kell Ridge, on the trailing hemisphere, and weaker farther north and south of the equator. Fresh ice on Tessaly stays bright for decades. The Brannoch dust is real, but too little of it reaches Tessaly's surface to matter.\n\nScientist 2\nThe brightening is caused by ice dust from Brannoch, which Tessaly sweeps up as it moves through the dust cloud. The grains it sweeps up are 50 to 200 µm across. When the dust density is above about 5.0 thousand grains per km³, the albedo rises quickly; below that, it rises only slowly. Because Tessaly sweeps up dust with the half that faces forward, brightening should be greatest at the center of the leading hemisphere and the same at all latitudes. Fresh ice on Tessaly stays bright for decades. The vents are real, but most of their frost falls within 100 km of Kell Ridge, covering less than 2% of the surface.",
+    "graphic": {
+      "type": "table",
+      "caption": "Table 1. Measurements of Tessaly and its surroundings",
+      "colLabels": [
+        "Albedo",
+        "Height of tallest jet (km)",
+        "Dust density (thousand grains per km³)"
+      ],
+      "rowLabels": [
+        "Year 0",
+        "Year 4",
+        "Year 8",
+        "Year 12",
+        "Year 16"
+      ],
+      "cells": [
+        [
+          0.42,
+          60,
+          3.1
+        ],
+        [
+          0.45,
+          95,
+          5.8
+        ],
+        [
+          0.51,
+          140,
+          6.2
+        ],
+        [
+          0.54,
+          150,
+          4.0
+        ],
+        [
+          0.55,
+          110,
+          2.2
+        ]
+      ]
+    },
+    "prompt": "At the time of which observation would both scientists expect Tessaly's albedo to have been rising quickly?",
+    "choices": [
+      "Year 4",
+      "Year 8",
+      "Year 12",
+      "Year 16"
+    ],
+    "correct_answer": "Year 8",
+    "explanation": "Scientist 1 expects a quick rise when the tallest jets are higher than about 100 km: Years 8 (140 km), 12 (150 km), and 16 (110 km). Scientist 2 expects a quick rise when the dust density is above about 5.0 thousand grains per km³: Years 4 (5.8) and 8 (6.2). Only Year 8 meets both conditions.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "difficulty": "hard",
+    "subskill": "apply both viewpoints’ thresholds to a table",
+    "topic_tag": "space science: moon albedo"
+  },
+  {
+    "id": "ASV10b-P7-Q6",
+    "passage_id": "sc10b-p7",
+    "passage_title": "The Brightening of an Icy Moon",
+    "format": "conflicting_viewpoints",
+    "passage": "Tessaly is an icy moon of the giant planet Orrun. Tessaly always keeps the same face toward Orrun, so one half of the moon always faces forward along its orbit (the leading hemisphere) and the other half faces backward (the trailing hemisphere). Since monitoring began in Year 0, Tessaly's albedo, the fraction of incoming sunlight its surface reflects, has risen. Over the same period, a spacecraft measured the height of the tallest jets of water vapor rising from vents along Kell Ridge, a ridge that runs along the equator of the trailing hemisphere. It also measured the density of a cloud of ice dust along Tessaly's orbit; the cloud formed after a large impact on Brannoch, a smaller moon, shortly before Year 0. Table 1 gives the measurements. Two scientists explain the brightening.\n\nScientist 1\nThe brightening is caused by frost from the Kell Ridge vents. Water vapor from the jets freezes into fine grains less than 20 µm across, which settle onto the surface as fresh frost. When the tallest jets are higher than about 100 km, frost is thrown far from the ridge and the albedo rises quickly; when they are lower, frost falls close to the ridge and the albedo rises only slowly. Brightening should be greatest near Kell Ridge, on the trailing hemisphere, and weaker farther north and south of the equator. Fresh ice on Tessaly stays bright for decades. The Brannoch dust is real, but too little of it reaches Tessaly's surface to matter.\n\nScientist 2\nThe brightening is caused by ice dust from Brannoch, which Tessaly sweeps up as it moves through the dust cloud. The grains it sweeps up are 50 to 200 µm across. When the dust density is above about 5.0 thousand grains per km³, the albedo rises quickly; below that, it rises only slowly. Because Tessaly sweeps up dust with the half that faces forward, brightening should be greatest at the center of the leading hemisphere and the same at all latitudes. Fresh ice on Tessaly stays bright for decades. The vents are real, but most of their frost falls within 100 km of Kell Ridge, covering less than 2% of the surface.",
+    "graphic": {
+      "type": "table",
+      "caption": "Table 1. Measurements of Tessaly and its surroundings",
+      "colLabels": [
+        "Albedo",
+        "Height of tallest jet (km)",
+        "Dust density (thousand grains per km³)"
+      ],
+      "rowLabels": [
+        "Year 0",
+        "Year 4",
+        "Year 8",
+        "Year 12",
+        "Year 16"
+      ],
+      "cells": [
+        [
+          0.42,
+          60,
+          3.1
+        ],
+        [
+          0.45,
+          95,
+          5.8
+        ],
+        [
+          0.51,
+          140,
+          6.2
+        ],
+        [
+          0.54,
+          150,
+          4.0
+        ],
+        [
+          0.55,
+          110,
+          2.2
+        ]
+      ]
+    },
+    "prompt": "From Year 12 to Year 16, the albedo rose by only 0.01. Which scientist's explanation better accounts for this small rise, and why?",
+    "choices": [
+      "Scientist 1, because the tallest jets stayed higher than 100 km in both Year 12 and Year 16.",
+      "Scientist 2, because the dust density stayed below 5.0 thousand grains per km³ in both years.",
+      "Scientist 1, because the tallest jets became 40 km lower between Year 12 and Year 16.",
+      "Scientist 2, because the dust density fell by more than half between Year 8 and Year 12."
+    ],
+    "correct_answer": "Scientist 2, because the dust density stayed below 5.0 thousand grains per km³ in both years.",
+    "explanation": "The dust density was 4.0 in Year 12 and 2.2 in Year 16, below the 5.0 at which Scientist 2 says the albedo rises quickly, so Scientist 2 expects the slow rise that was seen. The tallest jets were 150 km and 110 km, still above 100 km, so Scientist 1 expects a quick rise; the jets did get lower, but not below Scientist 1's 100 km mark. From Year 8 to Year 12 the dust density fell from 6.2 to 4.0, about a third, not more than half.",
+    "domain": "Evaluation of Models, Inferences, and Experimental Results",
+    "difficulty": "hard",
+    "subskill": "judge which viewpoint fits a data interval",
+    "topic_tag": "space science: moon albedo"
+  }
+]

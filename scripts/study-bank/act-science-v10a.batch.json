@@ -1,0 +1,4287 @@
+[
+ {
+  "id": "ASV10a-P1-Q1",
+  "passage_id": "sc10a-p1",
+  "passage_title": "Soil Fungi and the Growth of Orvala Seedlings",
+  "format": "research_summaries",
+  "passage": "Many plants form partnerships with soil fungi whose threads grow into the plant's roots. The fungus receives sugars from the plant, and the plant may receive water and mineral nutrients gathered by the fungal threads. Whether the plant gains or loses from the partnership can depend on growing conditions.\n\nBotanists studied Orvala, a small herb, and three strains of a root-colonizing soil fungus, labeled K1, K2, and K3. In every trial, 12 Orvala seedlings were planted one per pot in heat-sterilized soil (soil heated to kill any fungi already present). Seedlings were either left uninoculated or inoculated with one fungal strain at planting. After 30 days, the botanists measured the percent of each plant's total root length that was colonized by fungal threads and the plant's shoot dry mass (the mass of its stems and leaves after drying). Table 1 gives the average values for each trial.\n\nExperiment 1\nSeedlings were left uninoculated or were inoculated with K1, K2, or K3. All were grown at a soil moisture of 25% (water as a percent of soil mass) with no Compound M added.\n\nExperiment 2\nSeedlings were left uninoculated or were inoculated with K2 and were grown at soil moistures of 10%, 40%, and 55% with no Compound M added. (The 25% results for these two conditions are those of Experiment 1.)\n\nExperiment 3\nCompound M, an unnamed synthetic chemical, was mixed into the soil at 5 or 20 mg per kg of soil. Seedlings were left uninoculated or were inoculated with K2 and were grown at a soil moisture of 25%. (The 0 mg/kg results for these two conditions are those of Experiment 1.)",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Root colonization and shoot dry mass of Orvala seedlings after 30 days",
+   "colLabels": [
+    "Fungus",
+    "Soil moisture (%)",
+    "Compound M (mg/kg)",
+    "Root length colonized (%)",
+    "Shoot dry mass (mg)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "None (uninoculated)",
+     25,
+     0,
+     0,
+     142
+    ],
+    [
+     "K1",
+     25,
+     0,
+     38,
+     158
+    ],
+    [
+     "K2",
+     25,
+     0,
+     61,
+     208
+    ],
+    [
+     "K3",
+     25,
+     0,
+     74,
+     165
+    ],
+    [
+     "None (uninoculated)",
+     10,
+     0,
+     0,
+     88
+    ],
+    [
+     "K2",
+     10,
+     0,
+     22,
+     131
+    ],
+    [
+     "None (uninoculated)",
+     40,
+     0,
+     0,
+     176
+    ],
+    [
+     "K2",
+     40,
+     0,
+     55,
+     197
+    ],
+    [
+     "None (uninoculated)",
+     55,
+     0,
+     0,
+     151
+    ],
+    [
+     "K2",
+     55,
+     0,
+     18,
+     149
+    ],
+    [
+     "None (uninoculated)",
+     25,
+     5,
+     0,
+     150
+    ],
+    [
+     "K2",
+     25,
+     5,
+     79,
+     236
+    ],
+    [
+     "None (uninoculated)",
+     25,
+     20,
+     0,
+     139
+    ],
+    [
+     "K2",
+     25,
+     20,
+     30,
+     171
+    ]
+   ]
+  },
+  "prompt": "Based on Experiments 1 and 2, at which soil moisture was the shoot dry mass of uninoculated seedlings greatest, and at which soil moisture was the shoot dry mass of K2-inoculated seedlings greatest?",
+  "choices": [
+   "Uninoculated: 25%; K2: 25%",
+   "Uninoculated: 25%; K2: 40%",
+   "Uninoculated: 40%; K2: 25%",
+   "Uninoculated: 40%; K2: 40%"
+  ],
+  "correct_answer": "Uninoculated: 40%; K2: 25%",
+  "explanation": "With no Compound M, uninoculated shoot mass was 88 mg (10%), 142 mg (25%), 176 mg (40%), and 151 mg (55%), so it peaked at 40%. K2 shoot mass was 131, 208, 197, and 149 mg at the same moistures, so it peaked at 25%.",
+  "domain": "Interpretation of Data",
+  "subskill": "locate maxima in two series across two experiments",
+  "difficulty": "medium",
+  "topic_tag": "biology: plant-fungus partnership",
+  "consistency_check": "Uninoculated seedlings in sterilized soil show 0% colonization in every row; all colonization values are 0-100%; the 25%/0 mg/kg rows are reused, not repeated, as the passage states; every benefit used by Q2/Q6 recomputed: 10% 131-88=43, 25% 208-142=66, 40% 197-176=21, 55% 149-151=-2, M5 236-150=86, M20 171-139=32. No named law generates any cell (optimum in moisture, reversal of K2 benefit at 55% and 20 mg/kg)."
+ },
+ {
+  "id": "ASV10a-P1-Q2",
+  "passage_id": "sc10a-p1",
+  "passage_title": "Soil Fungi and the Growth of Orvala Seedlings",
+  "format": "research_summaries",
+  "passage": "Many plants form partnerships with soil fungi whose threads grow into the plant's roots. The fungus receives sugars from the plant, and the plant may receive water and mineral nutrients gathered by the fungal threads. Whether the plant gains or loses from the partnership can depend on growing conditions.\n\nBotanists studied Orvala, a small herb, and three strains of a root-colonizing soil fungus, labeled K1, K2, and K3. In every trial, 12 Orvala seedlings were planted one per pot in heat-sterilized soil (soil heated to kill any fungi already present). Seedlings were either left uninoculated or inoculated with one fungal strain at planting. After 30 days, the botanists measured the percent of each plant's total root length that was colonized by fungal threads and the plant's shoot dry mass (the mass of its stems and leaves after drying). Table 1 gives the average values for each trial.\n\nExperiment 1\nSeedlings were left uninoculated or were inoculated with K1, K2, or K3. All were grown at a soil moisture of 25% (water as a percent of soil mass) with no Compound M added.\n\nExperiment 2\nSeedlings were left uninoculated or were inoculated with K2 and were grown at soil moistures of 10%, 40%, and 55% with no Compound M added. (The 25% results for these two conditions are those of Experiment 1.)\n\nExperiment 3\nCompound M, an unnamed synthetic chemical, was mixed into the soil at 5 or 20 mg per kg of soil. Seedlings were left uninoculated or were inoculated with K2 and were grown at a soil moisture of 25%. (The 0 mg/kg results for these two conditions are those of Experiment 1.)",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Root colonization and shoot dry mass of Orvala seedlings after 30 days",
+   "colLabels": [
+    "Fungus",
+    "Soil moisture (%)",
+    "Compound M (mg/kg)",
+    "Root length colonized (%)",
+    "Shoot dry mass (mg)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "None (uninoculated)",
+     25,
+     0,
+     0,
+     142
+    ],
+    [
+     "K1",
+     25,
+     0,
+     38,
+     158
+    ],
+    [
+     "K2",
+     25,
+     0,
+     61,
+     208
+    ],
+    [
+     "K3",
+     25,
+     0,
+     74,
+     165
+    ],
+    [
+     "None (uninoculated)",
+     10,
+     0,
+     0,
+     88
+    ],
+    [
+     "K2",
+     10,
+     0,
+     22,
+     131
+    ],
+    [
+     "None (uninoculated)",
+     40,
+     0,
+     0,
+     176
+    ],
+    [
+     "K2",
+     40,
+     0,
+     55,
+     197
+    ],
+    [
+     "None (uninoculated)",
+     55,
+     0,
+     0,
+     151
+    ],
+    [
+     "K2",
+     55,
+     0,
+     18,
+     149
+    ],
+    [
+     "None (uninoculated)",
+     25,
+     5,
+     0,
+     150
+    ],
+    [
+     "K2",
+     25,
+     5,
+     79,
+     236
+    ],
+    [
+     "None (uninoculated)",
+     25,
+     20,
+     0,
+     139
+    ],
+    [
+     "K2",
+     25,
+     20,
+     30,
+     171
+    ]
+   ]
+  },
+  "prompt": "Define K2's growth benefit under a set of conditions as the shoot dry mass of K2-inoculated seedlings minus the shoot dry mass of uninoculated seedlings grown under the same conditions. Under which of the following conditions was K2's growth benefit greatest?",
+  "choices": [
+   "10% soil moisture, no Compound M",
+   "40% soil moisture, no Compound M",
+   "25% soil moisture, 20 mg/kg Compound M",
+   "25% soil moisture, 5 mg/kg Compound M"
+  ],
+  "correct_answer": "25% soil moisture, 5 mg/kg Compound M",
+  "explanation": "The benefits are 131 - 88 = 43 mg at 10% moisture, 197 - 176 = 21 mg at 40% moisture, 171 - 139 = 32 mg with 20 mg/kg Compound M, and 236 - 150 = 86 mg with 5 mg/kg Compound M. The 5 mg/kg condition gives the greatest benefit.",
+  "domain": "Interpretation of Data",
+  "subskill": "compute differences between paired rows",
+  "difficulty": "hard",
+  "topic_tag": "biology: plant-fungus partnership"
+ },
+ {
+  "id": "ASV10a-P1-Q3",
+  "passage_id": "sc10a-p1",
+  "passage_title": "Soil Fungi and the Growth of Orvala Seedlings",
+  "format": "research_summaries",
+  "passage": "Many plants form partnerships with soil fungi whose threads grow into the plant's roots. The fungus receives sugars from the plant, and the plant may receive water and mineral nutrients gathered by the fungal threads. Whether the plant gains or loses from the partnership can depend on growing conditions.\n\nBotanists studied Orvala, a small herb, and three strains of a root-colonizing soil fungus, labeled K1, K2, and K3. In every trial, 12 Orvala seedlings were planted one per pot in heat-sterilized soil (soil heated to kill any fungi already present). Seedlings were either left uninoculated or inoculated with one fungal strain at planting. After 30 days, the botanists measured the percent of each plant's total root length that was colonized by fungal threads and the plant's shoot dry mass (the mass of its stems and leaves after drying). Table 1 gives the average values for each trial.\n\nExperiment 1\nSeedlings were left uninoculated or were inoculated with K1, K2, or K3. All were grown at a soil moisture of 25% (water as a percent of soil mass) with no Compound M added.\n\nExperiment 2\nSeedlings were left uninoculated or were inoculated with K2 and were grown at soil moistures of 10%, 40%, and 55% with no Compound M added. (The 25% results for these two conditions are those of Experiment 1.)\n\nExperiment 3\nCompound M, an unnamed synthetic chemical, was mixed into the soil at 5 or 20 mg per kg of soil. Seedlings were left uninoculated or were inoculated with K2 and were grown at a soil moisture of 25%. (The 0 mg/kg results for these two conditions are those of Experiment 1.)",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Root colonization and shoot dry mass of Orvala seedlings after 30 days",
+   "colLabels": [
+    "Fungus",
+    "Soil moisture (%)",
+    "Compound M (mg/kg)",
+    "Root length colonized (%)",
+    "Shoot dry mass (mg)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "None (uninoculated)",
+     25,
+     0,
+     0,
+     142
+    ],
+    [
+     "K1",
+     25,
+     0,
+     38,
+     158
+    ],
+    [
+     "K2",
+     25,
+     0,
+     61,
+     208
+    ],
+    [
+     "K3",
+     25,
+     0,
+     74,
+     165
+    ],
+    [
+     "None (uninoculated)",
+     10,
+     0,
+     0,
+     88
+    ],
+    [
+     "K2",
+     10,
+     0,
+     22,
+     131
+    ],
+    [
+     "None (uninoculated)",
+     40,
+     0,
+     0,
+     176
+    ],
+    [
+     "K2",
+     40,
+     0,
+     55,
+     197
+    ],
+    [
+     "None (uninoculated)",
+     55,
+     0,
+     0,
+     151
+    ],
+    [
+     "K2",
+     55,
+     0,
+     18,
+     149
+    ],
+    [
+     "None (uninoculated)",
+     25,
+     5,
+     0,
+     150
+    ],
+    [
+     "K2",
+     25,
+     5,
+     79,
+     236
+    ],
+    [
+     "None (uninoculated)",
+     25,
+     20,
+     0,
+     139
+    ],
+    [
+     "K2",
+     25,
+     20,
+     30,
+     171
+    ]
+   ]
+  },
+  "prompt": "Which of the following lists the four seedling groups of Experiment 1 in order of increasing shoot dry mass?",
+  "choices": [
+   "Uninoculated, K1, K2, K3",
+   "Uninoculated, K1, K3, K2",
+   "K1, uninoculated, K2, K3",
+   "K1, uninoculated, K3, K2"
+  ],
+  "correct_answer": "Uninoculated, K1, K3, K2",
+  "explanation": "In Experiment 1, shoot dry mass was 142 mg uninoculated, 158 mg with K1, 165 mg with K3, and 208 mg with K2, so the increasing order is uninoculated, K1, K3, K2. Ordering by colonization (0, 38, 61, 74%) would instead put K2 before K3.",
+  "domain": "Interpretation of Data",
+  "subskill": "order values from a table",
+  "difficulty": "medium",
+  "topic_tag": "biology: plant-fungus partnership"
+ },
+ {
+  "id": "ASV10a-P1-Q4",
+  "passage_id": "sc10a-p1",
+  "passage_title": "Soil Fungi and the Growth of Orvala Seedlings",
+  "format": "research_summaries",
+  "passage": "Many plants form partnerships with soil fungi whose threads grow into the plant's roots. The fungus receives sugars from the plant, and the plant may receive water and mineral nutrients gathered by the fungal threads. Whether the plant gains or loses from the partnership can depend on growing conditions.\n\nBotanists studied Orvala, a small herb, and three strains of a root-colonizing soil fungus, labeled K1, K2, and K3. In every trial, 12 Orvala seedlings were planted one per pot in heat-sterilized soil (soil heated to kill any fungi already present). Seedlings were either left uninoculated or inoculated with one fungal strain at planting. After 30 days, the botanists measured the percent of each plant's total root length that was colonized by fungal threads and the plant's shoot dry mass (the mass of its stems and leaves after drying). Table 1 gives the average values for each trial.\n\nExperiment 1\nSeedlings were left uninoculated or were inoculated with K1, K2, or K3. All were grown at a soil moisture of 25% (water as a percent of soil mass) with no Compound M added.\n\nExperiment 2\nSeedlings were left uninoculated or were inoculated with K2 and were grown at soil moistures of 10%, 40%, and 55% with no Compound M added. (The 25% results for these two conditions are those of Experiment 1.)\n\nExperiment 3\nCompound M, an unnamed synthetic chemical, was mixed into the soil at 5 or 20 mg per kg of soil. Seedlings were left uninoculated or were inoculated with K2 and were grown at a soil moisture of 25%. (The 0 mg/kg results for these two conditions are those of Experiment 1.)",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Root colonization and shoot dry mass of Orvala seedlings after 30 days",
+   "colLabels": [
+    "Fungus",
+    "Soil moisture (%)",
+    "Compound M (mg/kg)",
+    "Root length colonized (%)",
+    "Shoot dry mass (mg)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "None (uninoculated)",
+     25,
+     0,
+     0,
+     142
+    ],
+    [
+     "K1",
+     25,
+     0,
+     38,
+     158
+    ],
+    [
+     "K2",
+     25,
+     0,
+     61,
+     208
+    ],
+    [
+     "K3",
+     25,
+     0,
+     74,
+     165
+    ],
+    [
+     "None (uninoculated)",
+     10,
+     0,
+     0,
+     88
+    ],
+    [
+     "K2",
+     10,
+     0,
+     22,
+     131
+    ],
+    [
+     "None (uninoculated)",
+     40,
+     0,
+     0,
+     176
+    ],
+    [
+     "K2",
+     40,
+     0,
+     55,
+     197
+    ],
+    [
+     "None (uninoculated)",
+     55,
+     0,
+     0,
+     151
+    ],
+    [
+     "K2",
+     55,
+     0,
+     18,
+     149
+    ],
+    [
+     "None (uninoculated)",
+     25,
+     5,
+     0,
+     150
+    ],
+    [
+     "K2",
+     25,
+     5,
+     79,
+     236
+    ],
+    [
+     "None (uninoculated)",
+     25,
+     20,
+     0,
+     139
+    ],
+    [
+     "K2",
+     25,
+     20,
+     30,
+     171
+    ]
+   ]
+  },
+  "prompt": "The botanists want to compare K3's growth benefit with K2's at each soil moisture used in Experiment 2, under otherwise identical conditions, without repeating any trial they have already run. Which set of new trials should they run?",
+  "choices": [
+   "K3-inoculated seedlings at 10%, 40%, and 55% soil moisture, no Compound M",
+   "K3-inoculated seedlings at 10%, 40%, and 55% soil moisture, 5 mg/kg Compound M",
+   "K3-inoculated seedlings at 25%, 40%, and 55% soil moisture, no Compound M",
+   "K3-inoculated seedlings at 25%, 40%, and 55% soil moisture, 5 mg/kg Compound M"
+  ],
+  "correct_answer": "K3-inoculated seedlings at 10%, 40%, and 55% soil moisture, no Compound M",
+  "explanation": "Experiment 2 used soil moistures of 10%, 40%, and 55% with no Compound M, and its uninoculated controls at those moistures already exist. K3 at 25% with no Compound M was already run in Experiment 1. So the only missing trials are K3 at 10%, 40%, and 55% with no Compound M; adding Compound M would change a condition, and a 25% trial would repeat Experiment 1.",
+  "domain": "Scientific Investigation",
+  "subskill": "design an extension that reuses existing trials",
+  "difficulty": "hard",
+  "topic_tag": "biology: plant-fungus partnership"
+ },
+ {
+  "id": "ASV10a-P1-Q5",
+  "passage_id": "sc10a-p1",
+  "passage_title": "Soil Fungi and the Growth of Orvala Seedlings",
+  "format": "research_summaries",
+  "passage": "Many plants form partnerships with soil fungi whose threads grow into the plant's roots. The fungus receives sugars from the plant, and the plant may receive water and mineral nutrients gathered by the fungal threads. Whether the plant gains or loses from the partnership can depend on growing conditions.\n\nBotanists studied Orvala, a small herb, and three strains of a root-colonizing soil fungus, labeled K1, K2, and K3. In every trial, 12 Orvala seedlings were planted one per pot in heat-sterilized soil (soil heated to kill any fungi already present). Seedlings were either left uninoculated or inoculated with one fungal strain at planting. After 30 days, the botanists measured the percent of each plant's total root length that was colonized by fungal threads and the plant's shoot dry mass (the mass of its stems and leaves after drying). Table 1 gives the average values for each trial.\n\nExperiment 1\nSeedlings were left uninoculated or were inoculated with K1, K2, or K3. All were grown at a soil moisture of 25% (water as a percent of soil mass) with no Compound M added.\n\nExperiment 2\nSeedlings were left uninoculated or were inoculated with K2 and were grown at soil moistures of 10%, 40%, and 55% with no Compound M added. (The 25% results for these two conditions are those of Experiment 1.)\n\nExperiment 3\nCompound M, an unnamed synthetic chemical, was mixed into the soil at 5 or 20 mg per kg of soil. Seedlings were left uninoculated or were inoculated with K2 and were grown at a soil moisture of 25%. (The 0 mg/kg results for these two conditions are those of Experiment 1.)",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Root colonization and shoot dry mass of Orvala seedlings after 30 days",
+   "colLabels": [
+    "Fungus",
+    "Soil moisture (%)",
+    "Compound M (mg/kg)",
+    "Root length colonized (%)",
+    "Shoot dry mass (mg)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "None (uninoculated)",
+     25,
+     0,
+     0,
+     142
+    ],
+    [
+     "K1",
+     25,
+     0,
+     38,
+     158
+    ],
+    [
+     "K2",
+     25,
+     0,
+     61,
+     208
+    ],
+    [
+     "K3",
+     25,
+     0,
+     74,
+     165
+    ],
+    [
+     "None (uninoculated)",
+     10,
+     0,
+     0,
+     88
+    ],
+    [
+     "K2",
+     10,
+     0,
+     22,
+     131
+    ],
+    [
+     "None (uninoculated)",
+     40,
+     0,
+     0,
+     176
+    ],
+    [
+     "K2",
+     40,
+     0,
+     55,
+     197
+    ],
+    [
+     "None (uninoculated)",
+     55,
+     0,
+     0,
+     151
+    ],
+    [
+     "K2",
+     55,
+     0,
+     18,
+     149
+    ],
+    [
+     "None (uninoculated)",
+     25,
+     5,
+     0,
+     150
+    ],
+    [
+     "K2",
+     25,
+     5,
+     79,
+     236
+    ],
+    [
+     "None (uninoculated)",
+     25,
+     20,
+     0,
+     139
+    ],
+    [
+     "K2",
+     25,
+     20,
+     30,
+     171
+    ]
+   ]
+  },
+  "prompt": "Which of the following factors was varied among the trials within each of the three experiments?",
+  "choices": [
+   "Soil moisture",
+   "Amount of Compound M added",
+   "Whether seedlings were inoculated with K2",
+   "Whether seedlings were inoculated with K3"
+  ],
+  "correct_answer": "Whether seedlings were inoculated with K2",
+  "explanation": "Each experiment included both uninoculated and K2-inoculated seedlings (Experiment 1 also had K1 and K3). Soil moisture was varied only in Experiment 2, Compound M only in Experiment 3, and K3 was used only in Experiment 1.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify variables across experiments",
+  "difficulty": "medium",
+  "topic_tag": "biology: plant-fungus partnership"
+ },
+ {
+  "id": "ASV10a-P1-Q6",
+  "passage_id": "sc10a-p1",
+  "passage_title": "Soil Fungi and the Growth of Orvala Seedlings",
+  "format": "research_summaries",
+  "passage": "Many plants form partnerships with soil fungi whose threads grow into the plant's roots. The fungus receives sugars from the plant, and the plant may receive water and mineral nutrients gathered by the fungal threads. Whether the plant gains or loses from the partnership can depend on growing conditions.\n\nBotanists studied Orvala, a small herb, and three strains of a root-colonizing soil fungus, labeled K1, K2, and K3. In every trial, 12 Orvala seedlings were planted one per pot in heat-sterilized soil (soil heated to kill any fungi already present). Seedlings were either left uninoculated or inoculated with one fungal strain at planting. After 30 days, the botanists measured the percent of each plant's total root length that was colonized by fungal threads and the plant's shoot dry mass (the mass of its stems and leaves after drying). Table 1 gives the average values for each trial.\n\nExperiment 1\nSeedlings were left uninoculated or were inoculated with K1, K2, or K3. All were grown at a soil moisture of 25% (water as a percent of soil mass) with no Compound M added.\n\nExperiment 2\nSeedlings were left uninoculated or were inoculated with K2 and were grown at soil moistures of 10%, 40%, and 55% with no Compound M added. (The 25% results for these two conditions are those of Experiment 1.)\n\nExperiment 3\nCompound M, an unnamed synthetic chemical, was mixed into the soil at 5 or 20 mg per kg of soil. Seedlings were left uninoculated or were inoculated with K2 and were grown at a soil moisture of 25%. (The 0 mg/kg results for these two conditions are those of Experiment 1.)",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Root colonization and shoot dry mass of Orvala seedlings after 30 days",
+   "colLabels": [
+    "Fungus",
+    "Soil moisture (%)",
+    "Compound M (mg/kg)",
+    "Root length colonized (%)",
+    "Shoot dry mass (mg)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "None (uninoculated)",
+     25,
+     0,
+     0,
+     142
+    ],
+    [
+     "K1",
+     25,
+     0,
+     38,
+     158
+    ],
+    [
+     "K2",
+     25,
+     0,
+     61,
+     208
+    ],
+    [
+     "K3",
+     25,
+     0,
+     74,
+     165
+    ],
+    [
+     "None (uninoculated)",
+     10,
+     0,
+     0,
+     88
+    ],
+    [
+     "K2",
+     10,
+     0,
+     22,
+     131
+    ],
+    [
+     "None (uninoculated)",
+     40,
+     0,
+     0,
+     176
+    ],
+    [
+     "K2",
+     40,
+     0,
+     55,
+     197
+    ],
+    [
+     "None (uninoculated)",
+     55,
+     0,
+     0,
+     151
+    ],
+    [
+     "K2",
+     55,
+     0,
+     18,
+     149
+    ],
+    [
+     "None (uninoculated)",
+     25,
+     5,
+     0,
+     150
+    ],
+    [
+     "K2",
+     25,
+     5,
+     79,
+     236
+    ],
+    [
+     "None (uninoculated)",
+     25,
+     20,
+     0,
+     139
+    ],
+    [
+     "K2",
+     25,
+     20,
+     30,
+     171
+    ]
+   ]
+  },
+  "prompt": "A botanist hypothesized that whenever K2 colonized a greater percent of root length, K2's growth benefit (K2 shoot mass minus uninoculated shoot mass under the same conditions) was also greater. Which pair of K2 trials gives results that CONTRADICT this hypothesis?",
+  "choices": [
+   "25% moisture with no Compound M, and 25% moisture with 5 mg/kg Compound M",
+   "10% moisture and 40% moisture, both with no Compound M",
+   "55% moisture with no Compound M, and 25% moisture with 20 mg/kg Compound M",
+   "25% moisture with no Compound M, and 25% moisture with 20 mg/kg Compound M"
+  ],
+  "correct_answer": "10% moisture and 40% moisture, both with no Compound M",
+  "explanation": "At 10% moisture K2 colonized 22% of root length with a benefit of 131 - 88 = 43 mg; at 40% it colonized 55% with a benefit of only 197 - 176 = 21 mg, so more colonization went with less benefit. The other pairs agree with the hypothesis: 61% and 66 mg vs 79% and 86 mg; 18% and -2 mg vs 30% and 32 mg; 61% and 66 mg vs 30% and 32 mg.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test a hypothesis against derived quantities",
+  "difficulty": "hard",
+  "topic_tag": "biology: plant-fungus partnership"
+ },
+ {
+  "id": "ASV10a-P2-Q1",
+  "passage_id": "sc10a-p2",
+  "passage_title": "Gas Release from Compound L with Three Catalysts",
+  "format": "research_summaries",
+  "passage": "When a solid catalyst powder is stirred into a water solution of Compound L, an unnamed substance, L breaks down and releases a gas. Without a catalyst, less than 1 mL of gas forms in 30 minutes at any of the temperatures used below.\n\nIn each trial, chemists placed 50.0 mL of the same L solution in a flask held at a set temperature, stirred in a catalyst powder, and collected the gas released. They recorded the volume of gas released in the first 5 minutes and the total volume released by the time gas stopped forming. All gas volumes were measured after the gas had been brought to 25 °C and 1 atm. The chemists call 0.20 g of catalyst at 30 °C the standard conditions.\n\nExperiment 1\nThree unnamed catalysts, R, S, and T, were each tested under the standard conditions.\n\nExperiment 2\n0.20 g of Catalyst S was tested at 20, 30, 40, 50, and 60 °C.\n\nExperiment 3\nCatalyst S was tested at 30 °C with 0.05, 0.10, 0.20, and 0.40 g of catalyst.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Gas released from 50.0 mL of Compound L solution (volumes at 25 °C and 1 atm)",
+   "colLabels": [
+    "Catalyst",
+    "Catalyst mass (g)",
+    "Temperature (°C)",
+    "Gas in first 5 min (mL)",
+    "Total gas (mL)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "R",
+     0.2,
+     30,
+     34,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     30,
+     58,
+     96
+    ],
+    [
+     "T",
+     0.2,
+     30,
+     21,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     20,
+     31,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     30,
+     58,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     40,
+     77,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     50,
+     70,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     60,
+     41,
+     81
+    ],
+    [
+     "S",
+     0.05,
+     30,
+     19,
+     96
+    ],
+    [
+     "S",
+     0.1,
+     30,
+     36,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     30,
+     58,
+     96
+    ],
+    [
+     "S",
+     0.4,
+     30,
+     66,
+     96
+    ]
+   ]
+  },
+  "prompt": "In Experiment 2, between which two consecutive temperatures did the gas volume released in the first 5 minutes change by the greatest amount (whether an increase or a decrease)?",
+  "choices": [
+   "20 °C and 30 °C",
+   "30 °C and 40 °C",
+   "40 °C and 50 °C",
+   "50 °C and 60 °C"
+  ],
+  "correct_answer": "50 °C and 60 °C",
+  "explanation": "The 5-minute volumes were 31, 58, 77, 70, and 41 mL at 20-60 °C. The changes are +27, +19, -7, and -29 mL, so the largest change, 29 mL, was between 50 °C and 60 °C.",
+  "domain": "Interpretation of Data",
+  "subskill": "compare successive differences",
+  "difficulty": "medium",
+  "topic_tag": "chemistry: invented catalyst",
+  "consistency_check": "Same 50.0 mL of L in every trial, so no total exceeds 96 mL; every 5-min volume is below its total; volumes are corrected to 25 C and 1 atm so totals at different temperatures are comparable; the standard trial (S, 0.20 g, 30 C) reads 58/96 in all three experiments; uncatalyzed release <1 mL, so the 60 C total of 81 mL is the catalyst stopping early, not a stoichiometry change. Optimum at 40 C and plateau in mass are invented, not Arrhenius or a rate law."
+ },
+ {
+  "id": "ASV10a-P2-Q2",
+  "passage_id": "sc10a-p2",
+  "passage_title": "Gas Release from Compound L with Three Catalysts",
+  "format": "research_summaries",
+  "passage": "When a solid catalyst powder is stirred into a water solution of Compound L, an unnamed substance, L breaks down and releases a gas. Without a catalyst, less than 1 mL of gas forms in 30 minutes at any of the temperatures used below.\n\nIn each trial, chemists placed 50.0 mL of the same L solution in a flask held at a set temperature, stirred in a catalyst powder, and collected the gas released. They recorded the volume of gas released in the first 5 minutes and the total volume released by the time gas stopped forming. All gas volumes were measured after the gas had been brought to 25 °C and 1 atm. The chemists call 0.20 g of catalyst at 30 °C the standard conditions.\n\nExperiment 1\nThree unnamed catalysts, R, S, and T, were each tested under the standard conditions.\n\nExperiment 2\n0.20 g of Catalyst S was tested at 20, 30, 40, 50, and 60 °C.\n\nExperiment 3\nCatalyst S was tested at 30 °C with 0.05, 0.10, 0.20, and 0.40 g of catalyst.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Gas released from 50.0 mL of Compound L solution (volumes at 25 °C and 1 atm)",
+   "colLabels": [
+    "Catalyst",
+    "Catalyst mass (g)",
+    "Temperature (°C)",
+    "Gas in first 5 min (mL)",
+    "Total gas (mL)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "R",
+     0.2,
+     30,
+     34,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     30,
+     58,
+     96
+    ],
+    [
+     "T",
+     0.2,
+     30,
+     21,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     20,
+     31,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     30,
+     58,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     40,
+     77,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     50,
+     70,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     60,
+     41,
+     81
+    ],
+    [
+     "S",
+     0.05,
+     30,
+     19,
+     96
+    ],
+    [
+     "S",
+     0.1,
+     30,
+     36,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     30,
+     58,
+     96
+    ],
+    [
+     "S",
+     0.4,
+     30,
+     66,
+     96
+    ]
+   ]
+  },
+  "prompt": "Which of the following statements about Catalyst S is supported by the results of Experiments 2 and 3?",
+  "choices": [
+   "Every trial in Experiment 3 released less gas in the first 5 minutes than the 40 °C trial of Experiment 2 did.",
+   "Every increase in temperature or in catalyst mass above the standard conditions increased the gas released in the first 5 minutes.",
+   "Every trial with Catalyst S released a total of 96 mL of gas.",
+   "Every trial that released less gas in the first 5 minutes than the standard trial also released less gas in total."
+  ],
+  "correct_answer": "Every trial in Experiment 3 released less gas in the first 5 minutes than the 40 °C trial of Experiment 2 did.",
+  "explanation": "The Experiment 3 volumes (19, 36, 58, 66 mL) are all below the 77 mL released at 40 °C. Raising the temperature to 60 °C lowered the 5-minute volume to 41 mL; the 60 °C trial released only 81 mL in total; and the 20 °C trial released less gas in 5 minutes (31 mL) but the full 96 mL in total.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate general statements against all rows",
+  "difficulty": "hard",
+  "topic_tag": "chemistry: invented catalyst"
+ },
+ {
+  "id": "ASV10a-P2-Q3",
+  "passage_id": "sc10a-p2",
+  "passage_title": "Gas Release from Compound L with Three Catalysts",
+  "format": "research_summaries",
+  "passage": "When a solid catalyst powder is stirred into a water solution of Compound L, an unnamed substance, L breaks down and releases a gas. Without a catalyst, less than 1 mL of gas forms in 30 minutes at any of the temperatures used below.\n\nIn each trial, chemists placed 50.0 mL of the same L solution in a flask held at a set temperature, stirred in a catalyst powder, and collected the gas released. They recorded the volume of gas released in the first 5 minutes and the total volume released by the time gas stopped forming. All gas volumes were measured after the gas had been brought to 25 °C and 1 atm. The chemists call 0.20 g of catalyst at 30 °C the standard conditions.\n\nExperiment 1\nThree unnamed catalysts, R, S, and T, were each tested under the standard conditions.\n\nExperiment 2\n0.20 g of Catalyst S was tested at 20, 30, 40, 50, and 60 °C.\n\nExperiment 3\nCatalyst S was tested at 30 °C with 0.05, 0.10, 0.20, and 0.40 g of catalyst.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Gas released from 50.0 mL of Compound L solution (volumes at 25 °C and 1 atm)",
+   "colLabels": [
+    "Catalyst",
+    "Catalyst mass (g)",
+    "Temperature (°C)",
+    "Gas in first 5 min (mL)",
+    "Total gas (mL)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "R",
+     0.2,
+     30,
+     34,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     30,
+     58,
+     96
+    ],
+    [
+     "T",
+     0.2,
+     30,
+     21,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     20,
+     31,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     30,
+     58,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     40,
+     77,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     50,
+     70,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     60,
+     41,
+     81
+    ],
+    [
+     "S",
+     0.05,
+     30,
+     19,
+     96
+    ],
+    [
+     "S",
+     0.1,
+     30,
+     36,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     30,
+     58,
+     96
+    ],
+    [
+     "S",
+     0.4,
+     30,
+     66,
+     96
+    ]
+   ]
+  },
+  "prompt": "Assume that 96 mL of gas is released when all of the Compound L in a trial has broken down. In the 60 °C trial, about what percent of the Compound L had NOT broken down when gas stopped forming?",
+  "choices": [
+   "16%",
+   "43%",
+   "57%",
+   "84%"
+  ],
+  "correct_answer": "16%",
+  "explanation": "The 60 °C trial released 81 mL in total, which is 81/96 = 84% of the possible gas, so about 100% - 84% = 16% of the L had not broken down. The 43% and 57% values come from using the 41 mL released in the first 5 minutes instead of the total.",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a fraction from table values",
+  "difficulty": "hard",
+  "topic_tag": "chemistry: invented catalyst"
+ },
+ {
+  "id": "ASV10a-P2-Q4",
+  "passage_id": "sc10a-p2",
+  "passage_title": "Gas Release from Compound L with Three Catalysts",
+  "format": "research_summaries",
+  "passage": "When a solid catalyst powder is stirred into a water solution of Compound L, an unnamed substance, L breaks down and releases a gas. Without a catalyst, less than 1 mL of gas forms in 30 minutes at any of the temperatures used below.\n\nIn each trial, chemists placed 50.0 mL of the same L solution in a flask held at a set temperature, stirred in a catalyst powder, and collected the gas released. They recorded the volume of gas released in the first 5 minutes and the total volume released by the time gas stopped forming. All gas volumes were measured after the gas had been brought to 25 °C and 1 atm. The chemists call 0.20 g of catalyst at 30 °C the standard conditions.\n\nExperiment 1\nThree unnamed catalysts, R, S, and T, were each tested under the standard conditions.\n\nExperiment 2\n0.20 g of Catalyst S was tested at 20, 30, 40, 50, and 60 °C.\n\nExperiment 3\nCatalyst S was tested at 30 °C with 0.05, 0.10, 0.20, and 0.40 g of catalyst.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Gas released from 50.0 mL of Compound L solution (volumes at 25 °C and 1 atm)",
+   "colLabels": [
+    "Catalyst",
+    "Catalyst mass (g)",
+    "Temperature (°C)",
+    "Gas in first 5 min (mL)",
+    "Total gas (mL)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "R",
+     0.2,
+     30,
+     34,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     30,
+     58,
+     96
+    ],
+    [
+     "T",
+     0.2,
+     30,
+     21,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     20,
+     31,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     30,
+     58,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     40,
+     77,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     50,
+     70,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     60,
+     41,
+     81
+    ],
+    [
+     "S",
+     0.05,
+     30,
+     19,
+     96
+    ],
+    [
+     "S",
+     0.1,
+     30,
+     36,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     30,
+     58,
+     96
+    ],
+    [
+     "S",
+     0.4,
+     30,
+     66,
+     96
+    ]
+   ]
+  },
+  "prompt": "The chemists want to find out whether Catalyst R releases its greatest 5-minute gas volume at the same temperature as Catalyst S does, using trials whose results can be compared directly with those of Experiment 2. Which set of trials should they run?",
+  "choices": [
+   "0.40 g of Catalyst R at 20, 30, 40, 50, and 60 °C",
+   "0.20 g of Catalyst R at 20, 30, 40, 50, and 60 °C",
+   "0.20 g of Catalyst R at 25, 35, 45, 55, and 65 °C",
+   "0.40 g of Catalyst R at 25, 35, 45, 55, and 65 °C"
+  ],
+  "correct_answer": "0.20 g of Catalyst R at 20, 30, 40, 50, and 60 °C",
+  "explanation": "Experiment 2 used 0.20 g of catalyst at 20, 30, 40, 50, and 60 °C. Trials of Catalyst R with that same mass at those same temperatures can be compared temperature by temperature with the Catalyst S results; a different mass or a different set of temperatures cannot.",
+  "domain": "Scientific Investigation",
+  "subskill": "design a directly comparable experiment",
+  "difficulty": "hard",
+  "topic_tag": "chemistry: invented catalyst"
+ },
+ {
+  "id": "ASV10a-P2-Q5",
+  "passage_id": "sc10a-p2",
+  "passage_title": "Gas Release from Compound L with Three Catalysts",
+  "format": "research_summaries",
+  "passage": "When a solid catalyst powder is stirred into a water solution of Compound L, an unnamed substance, L breaks down and releases a gas. Without a catalyst, less than 1 mL of gas forms in 30 minutes at any of the temperatures used below.\n\nIn each trial, chemists placed 50.0 mL of the same L solution in a flask held at a set temperature, stirred in a catalyst powder, and collected the gas released. They recorded the volume of gas released in the first 5 minutes and the total volume released by the time gas stopped forming. All gas volumes were measured after the gas had been brought to 25 °C and 1 atm. The chemists call 0.20 g of catalyst at 30 °C the standard conditions.\n\nExperiment 1\nThree unnamed catalysts, R, S, and T, were each tested under the standard conditions.\n\nExperiment 2\n0.20 g of Catalyst S was tested at 20, 30, 40, 50, and 60 °C.\n\nExperiment 3\nCatalyst S was tested at 30 °C with 0.05, 0.10, 0.20, and 0.40 g of catalyst.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Gas released from 50.0 mL of Compound L solution (volumes at 25 °C and 1 atm)",
+   "colLabels": [
+    "Catalyst",
+    "Catalyst mass (g)",
+    "Temperature (°C)",
+    "Gas in first 5 min (mL)",
+    "Total gas (mL)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "R",
+     0.2,
+     30,
+     34,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     30,
+     58,
+     96
+    ],
+    [
+     "T",
+     0.2,
+     30,
+     21,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     20,
+     31,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     30,
+     58,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     40,
+     77,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     50,
+     70,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     60,
+     41,
+     81
+    ],
+    [
+     "S",
+     0.05,
+     30,
+     19,
+     96
+    ],
+    [
+     "S",
+     0.1,
+     30,
+     36,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     30,
+     58,
+     96
+    ],
+    [
+     "S",
+     0.4,
+     30,
+     66,
+     96
+    ]
+   ]
+  },
+  "prompt": "Under the standard conditions, Catalyst R released 34 mL of gas in the first 5 minutes. Which single change from the standard conditions for Catalyst S, among those tested in Experiments 2 and 3, gave a 5-minute volume closest to 34 mL?",
+  "choices": [
+   "Lowering the temperature to 20 °C",
+   "Raising the temperature to 60 °C",
+   "Lowering the catalyst mass to 0.10 g",
+   "Lowering the catalyst mass to 0.05 g"
+  ],
+  "correct_answer": "Lowering the catalyst mass to 0.10 g",
+  "explanation": "Catalyst S released 31 mL at 20 °C (3 mL from 34), 41 mL at 60 °C (7 mL away), 36 mL with 0.10 g (2 mL away), and 19 mL with 0.05 g (15 mL away). The 0.10 g trial is closest.",
+  "domain": "Interpretation of Data",
+  "subskill": "compare values across experiments",
+  "difficulty": "hard",
+  "topic_tag": "chemistry: invented catalyst"
+ },
+ {
+  "id": "ASV10a-P2-Q6",
+  "passage_id": "sc10a-p2",
+  "passage_title": "Gas Release from Compound L with Three Catalysts",
+  "format": "research_summaries",
+  "passage": "When a solid catalyst powder is stirred into a water solution of Compound L, an unnamed substance, L breaks down and releases a gas. Without a catalyst, less than 1 mL of gas forms in 30 minutes at any of the temperatures used below.\n\nIn each trial, chemists placed 50.0 mL of the same L solution in a flask held at a set temperature, stirred in a catalyst powder, and collected the gas released. They recorded the volume of gas released in the first 5 minutes and the total volume released by the time gas stopped forming. All gas volumes were measured after the gas had been brought to 25 °C and 1 atm. The chemists call 0.20 g of catalyst at 30 °C the standard conditions.\n\nExperiment 1\nThree unnamed catalysts, R, S, and T, were each tested under the standard conditions.\n\nExperiment 2\n0.20 g of Catalyst S was tested at 20, 30, 40, 50, and 60 °C.\n\nExperiment 3\nCatalyst S was tested at 30 °C with 0.05, 0.10, 0.20, and 0.40 g of catalyst.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Gas released from 50.0 mL of Compound L solution (volumes at 25 °C and 1 atm)",
+   "colLabels": [
+    "Catalyst",
+    "Catalyst mass (g)",
+    "Temperature (°C)",
+    "Gas in first 5 min (mL)",
+    "Total gas (mL)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "R",
+     0.2,
+     30,
+     34,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     30,
+     58,
+     96
+    ],
+    [
+     "T",
+     0.2,
+     30,
+     21,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     20,
+     31,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     30,
+     58,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     40,
+     77,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     50,
+     70,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     60,
+     41,
+     81
+    ],
+    [
+     "S",
+     0.05,
+     30,
+     19,
+     96
+    ],
+    [
+     "S",
+     0.1,
+     30,
+     36,
+     96
+    ],
+    [
+     "S",
+     0.2,
+     30,
+     58,
+     96
+    ],
+    [
+     "S",
+     0.4,
+     30,
+     66,
+     96
+    ]
+   ]
+  },
+  "prompt": "The chemists want Catalyst S, at 30 °C, to release the same volume of gas in the first 5 minutes that Catalyst T released in Experiment 1. Based on the results, the mass of Catalyst S they should use is:",
+  "choices": [
+   "less than 0.05 g.",
+   "between 0.05 g and 0.10 g.",
+   "between 0.10 g and 0.20 g.",
+   "between 0.20 g and 0.40 g."
+  ],
+  "correct_answer": "between 0.05 g and 0.10 g.",
+  "explanation": "Catalyst T released 21 mL in Experiment 1. In Experiment 3, Catalyst S released 19 mL with 0.05 g and 36 mL with 0.10 g, so 21 mL lies between those masses.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose a level of an independent variable from data",
+  "difficulty": "medium",
+  "topic_tag": "chemistry: invented catalyst"
+ },
+ {
+  "id": "ASV10a-P3-Q1",
+  "passage_id": "sc10a-p3",
+  "passage_title": "Floodplain Deposits in a Laboratory Channel",
+  "format": "research_summaries",
+  "passage": "When a river floods, water spreads over its floodplain, slows down, and drops some of the sediment (mud and sand grains) it carries. Plants on a floodplain can change how much sediment settles and what size of grains settle.\n\nGeologists studying the floodplain of the Merrin River built a 12 m long laboratory channel with a raised shelf along one side to represent the floodplain. Rigid plastic rods 5 mm wide stood upright on the shelf to represent plant stems. In each trial, water carrying the same concentration of Merrin River sediment (2.0 g per liter) flowed through the channel and across the shelf. The flow speed was measured in the main channel just upstream of the shelf. After each trial, the geologists measured the average thickness of the deposit left on the shelf and its median grain size (half of the deposited grains, by mass, were smaller than this size).\n\nExperiment 1\nThe shelf held 0, 100, 400, or 1,600 rods per square meter. Water flowed at 0.30 m/s for 6 hours.\n\nExperiment 2\nThe shelf held 400 rods per square meter. Water flowed for 6 hours at 0.15, 0.30, 0.45, or 0.60 m/s.\n\nExperiment 3\nThe shelf held 400 rods per square meter. Water flowed at 0.30 m/s for 2, 6, 12, or 24 hours.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Shelf deposits in the laboratory channel",
+   "colLabels": [
+    "Rods per m²",
+    "Flow speed (m/s)",
+    "Duration (h)",
+    "Deposit thickness (mm)",
+    "Median grain size (µm)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     0,
+     0.3,
+     6,
+     1.2,
+     48
+    ],
+    [
+     100,
+     0.3,
+     6,
+     3.8,
+     58
+    ],
+    [
+     400,
+     0.3,
+     6,
+     5.1,
+     66
+    ],
+    [
+     1600,
+     0.3,
+     6,
+     2.0,
+     104
+    ],
+    [
+     400,
+     0.15,
+     6,
+     2.2,
+     22
+    ],
+    [
+     400,
+     0.3,
+     6,
+     5.1,
+     66
+    ],
+    [
+     400,
+     0.45,
+     6,
+     4.4,
+     95
+    ],
+    [
+     400,
+     0.6,
+     6,
+     1.6,
+     118
+    ],
+    [
+     400,
+     0.3,
+     2,
+     1.9,
+     70
+    ],
+    [
+     400,
+     0.3,
+     6,
+     5.1,
+     66
+    ],
+    [
+     400,
+     0.3,
+     12,
+     7.6,
+     61
+    ],
+    [
+     400,
+     0.3,
+     24,
+     8.3,
+     60
+    ]
+   ]
+  },
+  "prompt": "In which experiment(s) did the deposit thickness increase every time the quantity being varied was increased?",
+  "choices": [
+   "Experiment 1 only",
+   "Experiment 2 only",
+   "Experiment 3 only",
+   "None of the experiments"
+  ],
+  "correct_answer": "Experiment 3 only",
+  "explanation": "Experiment 1 thickness rose from 1.2 to 3.8 to 5.1 mm but fell to 2.0 mm at 1,600 rods/m². Experiment 2 rose from 2.2 to 5.1 mm, then fell to 4.4 and 1.6 mm. Experiment 3 rose every time: 1.9, 5.1, 7.6, 8.3 mm.",
+  "domain": "Interpretation of Data",
+  "subskill": "identify monotonic trends",
+  "difficulty": "medium",
+  "topic_tag": "earth science: river sediment",
+  "consistency_check": "The standard trial (400 rods, 0.30 m/s, 6 h) reads 5.1 mm / 66 um in all three experiments; thickness grows with duration but each later hour adds less (0.95, 0.80, 0.42, 0.06 mm/h), as a fixed sediment supply allows; faster flow gives coarser grains at every step (22, 66, 95, 118); the 1,600-rod deposit (2.0 mm, 104 um) lies between the 0.45 and 0.60 m/s deposits on BOTH measures, so Q6's inference is unique. Thickness optimum and the coarse dense-rod deposit follow no named law."
+ },
+ {
+  "id": "ASV10a-P3-Q2",
+  "passage_id": "sc10a-p3",
+  "passage_title": "Floodplain Deposits in a Laboratory Channel",
+  "format": "research_summaries",
+  "passage": "When a river floods, water spreads over its floodplain, slows down, and drops some of the sediment (mud and sand grains) it carries. Plants on a floodplain can change how much sediment settles and what size of grains settle.\n\nGeologists studying the floodplain of the Merrin River built a 12 m long laboratory channel with a raised shelf along one side to represent the floodplain. Rigid plastic rods 5 mm wide stood upright on the shelf to represent plant stems. In each trial, water carrying the same concentration of Merrin River sediment (2.0 g per liter) flowed through the channel and across the shelf. The flow speed was measured in the main channel just upstream of the shelf. After each trial, the geologists measured the average thickness of the deposit left on the shelf and its median grain size (half of the deposited grains, by mass, were smaller than this size).\n\nExperiment 1\nThe shelf held 0, 100, 400, or 1,600 rods per square meter. Water flowed at 0.30 m/s for 6 hours.\n\nExperiment 2\nThe shelf held 400 rods per square meter. Water flowed for 6 hours at 0.15, 0.30, 0.45, or 0.60 m/s.\n\nExperiment 3\nThe shelf held 400 rods per square meter. Water flowed at 0.30 m/s for 2, 6, 12, or 24 hours.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Shelf deposits in the laboratory channel",
+   "colLabels": [
+    "Rods per m²",
+    "Flow speed (m/s)",
+    "Duration (h)",
+    "Deposit thickness (mm)",
+    "Median grain size (µm)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     0,
+     0.3,
+     6,
+     1.2,
+     48
+    ],
+    [
+     100,
+     0.3,
+     6,
+     3.8,
+     58
+    ],
+    [
+     400,
+     0.3,
+     6,
+     5.1,
+     66
+    ],
+    [
+     1600,
+     0.3,
+     6,
+     2.0,
+     104
+    ],
+    [
+     400,
+     0.15,
+     6,
+     2.2,
+     22
+    ],
+    [
+     400,
+     0.3,
+     6,
+     5.1,
+     66
+    ],
+    [
+     400,
+     0.45,
+     6,
+     4.4,
+     95
+    ],
+    [
+     400,
+     0.6,
+     6,
+     1.6,
+     118
+    ],
+    [
+     400,
+     0.3,
+     2,
+     1.9,
+     70
+    ],
+    [
+     400,
+     0.3,
+     6,
+     5.1,
+     66
+    ],
+    [
+     400,
+     0.3,
+     12,
+     7.6,
+     61
+    ],
+    [
+     400,
+     0.3,
+     24,
+     8.3,
+     60
+    ]
+   ]
+  },
+  "prompt": "Which of the following was held at the same value in every trial of Experiments 2 and 3 but was varied in Experiment 1?",
+  "choices": [
+   "Flow speed",
+   "Flow duration",
+   "Sediment concentration of the water",
+   "Number of rods per square meter"
+  ],
+  "correct_answer": "Number of rods per square meter",
+  "explanation": "Experiments 2 and 3 both used 400 rods per square meter, while Experiment 1 used 0, 100, 400, and 1,600. Flow speed was varied in Experiment 2, duration in Experiment 3, and sediment concentration (2.0 g per liter) was the same in every trial.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify controlled and varied quantities",
+  "difficulty": "medium",
+  "topic_tag": "earth science: river sediment"
+ },
+ {
+  "id": "ASV10a-P3-Q3",
+  "passage_id": "sc10a-p3",
+  "passage_title": "Floodplain Deposits in a Laboratory Channel",
+  "format": "research_summaries",
+  "passage": "When a river floods, water spreads over its floodplain, slows down, and drops some of the sediment (mud and sand grains) it carries. Plants on a floodplain can change how much sediment settles and what size of grains settle.\n\nGeologists studying the floodplain of the Merrin River built a 12 m long laboratory channel with a raised shelf along one side to represent the floodplain. Rigid plastic rods 5 mm wide stood upright on the shelf to represent plant stems. In each trial, water carrying the same concentration of Merrin River sediment (2.0 g per liter) flowed through the channel and across the shelf. The flow speed was measured in the main channel just upstream of the shelf. After each trial, the geologists measured the average thickness of the deposit left on the shelf and its median grain size (half of the deposited grains, by mass, were smaller than this size).\n\nExperiment 1\nThe shelf held 0, 100, 400, or 1,600 rods per square meter. Water flowed at 0.30 m/s for 6 hours.\n\nExperiment 2\nThe shelf held 400 rods per square meter. Water flowed for 6 hours at 0.15, 0.30, 0.45, or 0.60 m/s.\n\nExperiment 3\nThe shelf held 400 rods per square meter. Water flowed at 0.30 m/s for 2, 6, 12, or 24 hours.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Shelf deposits in the laboratory channel",
+   "colLabels": [
+    "Rods per m²",
+    "Flow speed (m/s)",
+    "Duration (h)",
+    "Deposit thickness (mm)",
+    "Median grain size (µm)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     0,
+     0.3,
+     6,
+     1.2,
+     48
+    ],
+    [
+     100,
+     0.3,
+     6,
+     3.8,
+     58
+    ],
+    [
+     400,
+     0.3,
+     6,
+     5.1,
+     66
+    ],
+    [
+     1600,
+     0.3,
+     6,
+     2.0,
+     104
+    ],
+    [
+     400,
+     0.15,
+     6,
+     2.2,
+     22
+    ],
+    [
+     400,
+     0.3,
+     6,
+     5.1,
+     66
+    ],
+    [
+     400,
+     0.45,
+     6,
+     4.4,
+     95
+    ],
+    [
+     400,
+     0.6,
+     6,
+     1.6,
+     118
+    ],
+    [
+     400,
+     0.3,
+     2,
+     1.9,
+     70
+    ],
+    [
+     400,
+     0.3,
+     6,
+     5.1,
+     66
+    ],
+    [
+     400,
+     0.3,
+     12,
+     7.6,
+     61
+    ],
+    [
+     400,
+     0.3,
+     24,
+     8.3,
+     60
+    ]
+   ]
+  },
+  "prompt": "Which of the following trials left a deposit whose median grain size was closest to that of the deposit left in the 2-hour trial?",
+  "choices": [
+   "The 12-hour trial",
+   "The 100 rods/m² trial",
+   "The 0 rods/m² trial",
+   "The 0.45 m/s trial"
+  ],
+  "correct_answer": "The 12-hour trial",
+  "explanation": "The 2-hour deposit had a median grain size of 70 µm. The 12-hour deposit was 61 µm (9 µm away), the 100 rods/m² deposit 58 µm (12 away), the 0 rods/m² deposit 48 µm (22 away), and the 0.45 m/s deposit 95 µm (25 away).",
+  "domain": "Interpretation of Data",
+  "subskill": "compare a value across experiments",
+  "difficulty": "medium",
+  "topic_tag": "earth science: river sediment"
+ },
+ {
+  "id": "ASV10a-P3-Q4",
+  "passage_id": "sc10a-p3",
+  "passage_title": "Floodplain Deposits in a Laboratory Channel",
+  "format": "research_summaries",
+  "passage": "When a river floods, water spreads over its floodplain, slows down, and drops some of the sediment (mud and sand grains) it carries. Plants on a floodplain can change how much sediment settles and what size of grains settle.\n\nGeologists studying the floodplain of the Merrin River built a 12 m long laboratory channel with a raised shelf along one side to represent the floodplain. Rigid plastic rods 5 mm wide stood upright on the shelf to represent plant stems. In each trial, water carrying the same concentration of Merrin River sediment (2.0 g per liter) flowed through the channel and across the shelf. The flow speed was measured in the main channel just upstream of the shelf. After each trial, the geologists measured the average thickness of the deposit left on the shelf and its median grain size (half of the deposited grains, by mass, were smaller than this size).\n\nExperiment 1\nThe shelf held 0, 100, 400, or 1,600 rods per square meter. Water flowed at 0.30 m/s for 6 hours.\n\nExperiment 2\nThe shelf held 400 rods per square meter. Water flowed for 6 hours at 0.15, 0.30, 0.45, or 0.60 m/s.\n\nExperiment 3\nThe shelf held 400 rods per square meter. Water flowed at 0.30 m/s for 2, 6, 12, or 24 hours.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Shelf deposits in the laboratory channel",
+   "colLabels": [
+    "Rods per m²",
+    "Flow speed (m/s)",
+    "Duration (h)",
+    "Deposit thickness (mm)",
+    "Median grain size (µm)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     0,
+     0.3,
+     6,
+     1.2,
+     48
+    ],
+    [
+     100,
+     0.3,
+     6,
+     3.8,
+     58
+    ],
+    [
+     400,
+     0.3,
+     6,
+     5.1,
+     66
+    ],
+    [
+     1600,
+     0.3,
+     6,
+     2.0,
+     104
+    ],
+    [
+     400,
+     0.15,
+     6,
+     2.2,
+     22
+    ],
+    [
+     400,
+     0.3,
+     6,
+     5.1,
+     66
+    ],
+    [
+     400,
+     0.45,
+     6,
+     4.4,
+     95
+    ],
+    [
+     400,
+     0.6,
+     6,
+     1.6,
+     118
+    ],
+    [
+     400,
+     0.3,
+     2,
+     1.9,
+     70
+    ],
+    [
+     400,
+     0.3,
+     6,
+     5.1,
+     66
+    ],
+    [
+     400,
+     0.3,
+     12,
+     7.6,
+     61
+    ],
+    [
+     400,
+     0.3,
+     24,
+     8.3,
+     60
+    ]
+   ]
+  },
+  "prompt": "The geologists want to learn whether the effect of rod density on the deposit is different at a flow speed of 0.60 m/s. They will run new trials at 0.60 m/s that can be compared one-to-one with Experiment 1, without repeating any trial already run. Which set of trials should they run?",
+  "choices": [
+   "0, 100, and 400 rods/m² for 6 hours",
+   "0, 100, and 400 rods/m² for 12 hours",
+   "0, 100, and 1,600 rods/m² for 6 hours",
+   "0, 100, and 1,600 rods/m² for 12 hours"
+  ],
+  "correct_answer": "0, 100, and 1,600 rods/m² for 6 hours",
+  "explanation": "Experiment 1 used 0, 100, 400, and 1,600 rods/m² for 6 hours. A 400 rods/m², 0.60 m/s, 6-hour trial was already run in Experiment 2, so only 0, 100, and 1,600 rods/m² at 6 hours are needed; a 12-hour duration would not match Experiment 1.",
+  "domain": "Scientific Investigation",
+  "subskill": "design an extension that reuses existing trials",
+  "difficulty": "hard",
+  "topic_tag": "earth science: river sediment"
+ },
+ {
+  "id": "ASV10a-P3-Q5",
+  "passage_id": "sc10a-p3",
+  "passage_title": "Floodplain Deposits in a Laboratory Channel",
+  "format": "research_summaries",
+  "passage": "When a river floods, water spreads over its floodplain, slows down, and drops some of the sediment (mud and sand grains) it carries. Plants on a floodplain can change how much sediment settles and what size of grains settle.\n\nGeologists studying the floodplain of the Merrin River built a 12 m long laboratory channel with a raised shelf along one side to represent the floodplain. Rigid plastic rods 5 mm wide stood upright on the shelf to represent plant stems. In each trial, water carrying the same concentration of Merrin River sediment (2.0 g per liter) flowed through the channel and across the shelf. The flow speed was measured in the main channel just upstream of the shelf. After each trial, the geologists measured the average thickness of the deposit left on the shelf and its median grain size (half of the deposited grains, by mass, were smaller than this size).\n\nExperiment 1\nThe shelf held 0, 100, 400, or 1,600 rods per square meter. Water flowed at 0.30 m/s for 6 hours.\n\nExperiment 2\nThe shelf held 400 rods per square meter. Water flowed for 6 hours at 0.15, 0.30, 0.45, or 0.60 m/s.\n\nExperiment 3\nThe shelf held 400 rods per square meter. Water flowed at 0.30 m/s for 2, 6, 12, or 24 hours.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Shelf deposits in the laboratory channel",
+   "colLabels": [
+    "Rods per m²",
+    "Flow speed (m/s)",
+    "Duration (h)",
+    "Deposit thickness (mm)",
+    "Median grain size (µm)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     0,
+     0.3,
+     6,
+     1.2,
+     48
+    ],
+    [
+     100,
+     0.3,
+     6,
+     3.8,
+     58
+    ],
+    [
+     400,
+     0.3,
+     6,
+     5.1,
+     66
+    ],
+    [
+     1600,
+     0.3,
+     6,
+     2.0,
+     104
+    ],
+    [
+     400,
+     0.15,
+     6,
+     2.2,
+     22
+    ],
+    [
+     400,
+     0.3,
+     6,
+     5.1,
+     66
+    ],
+    [
+     400,
+     0.45,
+     6,
+     4.4,
+     95
+    ],
+    [
+     400,
+     0.6,
+     6,
+     1.6,
+     118
+    ],
+    [
+     400,
+     0.3,
+     2,
+     1.9,
+     70
+    ],
+    [
+     400,
+     0.3,
+     6,
+     5.1,
+     66
+    ],
+    [
+     400,
+     0.3,
+     12,
+     7.6,
+     61
+    ],
+    [
+     400,
+     0.3,
+     24,
+     8.3,
+     60
+    ]
+   ]
+  },
+  "prompt": "According to the results of Experiment 3, by how much did the deposit thickness increase between the 2-hour trial and the 12-hour trial?",
+  "choices": [
+   "0.7 mm",
+   "2.5 mm",
+   "3.2 mm",
+   "5.7 mm"
+  ],
+  "correct_answer": "5.7 mm",
+  "explanation": "The deposit was 1.9 mm after 2 hours and 7.6 mm after 12 hours, an increase of 7.6 - 1.9 = 5.7 mm. 3.2 mm is the 2-to-6-hour increase, 2.5 mm the 6-to-12-hour increase, and 0.7 mm the 12-to-24-hour increase.",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a difference from a table",
+  "difficulty": "medium",
+  "topic_tag": "earth science: river sediment"
+ },
+ {
+  "id": "ASV10a-P3-Q6",
+  "passage_id": "sc10a-p3",
+  "passage_title": "Floodplain Deposits in a Laboratory Channel",
+  "format": "research_summaries",
+  "passage": "When a river floods, water spreads over its floodplain, slows down, and drops some of the sediment (mud and sand grains) it carries. Plants on a floodplain can change how much sediment settles and what size of grains settle.\n\nGeologists studying the floodplain of the Merrin River built a 12 m long laboratory channel with a raised shelf along one side to represent the floodplain. Rigid plastic rods 5 mm wide stood upright on the shelf to represent plant stems. In each trial, water carrying the same concentration of Merrin River sediment (2.0 g per liter) flowed through the channel and across the shelf. The flow speed was measured in the main channel just upstream of the shelf. After each trial, the geologists measured the average thickness of the deposit left on the shelf and its median grain size (half of the deposited grains, by mass, were smaller than this size).\n\nExperiment 1\nThe shelf held 0, 100, 400, or 1,600 rods per square meter. Water flowed at 0.30 m/s for 6 hours.\n\nExperiment 2\nThe shelf held 400 rods per square meter. Water flowed for 6 hours at 0.15, 0.30, 0.45, or 0.60 m/s.\n\nExperiment 3\nThe shelf held 400 rods per square meter. Water flowed at 0.30 m/s for 2, 6, 12, or 24 hours.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Shelf deposits in the laboratory channel",
+   "colLabels": [
+    "Rods per m²",
+    "Flow speed (m/s)",
+    "Duration (h)",
+    "Deposit thickness (mm)",
+    "Median grain size (µm)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     0,
+     0.3,
+     6,
+     1.2,
+     48
+    ],
+    [
+     100,
+     0.3,
+     6,
+     3.8,
+     58
+    ],
+    [
+     400,
+     0.3,
+     6,
+     5.1,
+     66
+    ],
+    [
+     1600,
+     0.3,
+     6,
+     2.0,
+     104
+    ],
+    [
+     400,
+     0.15,
+     6,
+     2.2,
+     22
+    ],
+    [
+     400,
+     0.3,
+     6,
+     5.1,
+     66
+    ],
+    [
+     400,
+     0.45,
+     6,
+     4.4,
+     95
+    ],
+    [
+     400,
+     0.6,
+     6,
+     1.6,
+     118
+    ],
+    [
+     400,
+     0.3,
+     2,
+     1.9,
+     70
+    ],
+    [
+     400,
+     0.3,
+     6,
+     5.1,
+     66
+    ],
+    [
+     400,
+     0.3,
+     12,
+     7.6,
+     61
+    ],
+    [
+     400,
+     0.3,
+     24,
+     8.3,
+     60
+    ]
+   ]
+  },
+  "prompt": "Suppose that a deposit's thickness and median grain size depend only on the speed of the water moving among the rods, and that in Experiment 2 this speed equaled the flow speed measured upstream. Based on Experiments 1 and 2, in the 1,600 rods/m² trial the water moving among the rods most likely flowed at a speed:",
+  "choices": [
+   "less than 0.15 m/s.",
+   "between 0.15 m/s and 0.30 m/s.",
+   "between 0.30 m/s and 0.45 m/s.",
+   "between 0.45 m/s and 0.60 m/s."
+  ],
+  "correct_answer": "between 0.45 m/s and 0.60 m/s.",
+  "explanation": "The 1,600 rods/m² deposit was 2.0 mm thick with a median of 104 µm. In Experiment 2, 0.45 m/s gave 4.4 mm and 95 µm and 0.60 m/s gave 1.6 mm and 118 µm; both 2.0 mm and 104 µm fall between these, while slower flows gave much finer grains (22 and 66 µm).",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "infer an unmeasured variable by matching to a calibration series",
+  "difficulty": "hard",
+  "topic_tag": "earth science: river sediment"
+ },
+ {
+  "id": "ASV10a-P4-Q1",
+  "passage_id": "sc10a-p4",
+  "passage_title": "Odor Choices of the Ridge Beetle",
+  "format": "research_summaries",
+  "passage": "The ridge beetle Tarsella crista feeds on the leaves of two shrubs, Plant H and Plant J. Entomologists tested how the beetles respond to the odors of leaf extracts using a Y-shaped glass tube (a Y-maze). A beetle released at the base of the Y walks forward and must turn into one of the two arms. Air flowing out of one arm had passed over filter paper treated with a leaf extract; air flowing out of the other arm had passed over filter paper treated with solvent only.\n\nBefore testing, beetles were reared from eggs on the leaves of one plant and then starved (given no food) for a set time. In each trial, 40 adult beetles were tested one at a time, and no beetle was tested more than once. The entomologists recorded the percent of beetles that entered the extract arm and the mean decision time (the average time from release until a beetle entered an arm).\n\nExperiment 1\nBeetles reared on Plant H and starved for 24 hours were tested with Plant H extract at concentrations of 0.1, 1, 10, and 100 µg/mL.\n\nExperiment 2\nBeetles reared on Plant H were starved for 0, 12, 24, or 48 hours and tested with Plant H extract at 10 µg/mL.\n\nExperiment 3\nBeetles reared on Plant H and beetles reared on Plant J, all starved for 24 hours, were tested with Plant H extract or with Plant J extract at 10 µg/mL.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Responses of ridge beetles in the Y-maze (40 beetles per trial)",
+   "colLabels": [
+    "Rearing plant",
+    "Extract",
+    "Concentration (µg/mL)",
+    "Starvation (h)",
+    "Entered extract arm (%)",
+    "Mean decision time (s)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "H",
+     "H",
+     0.1,
+     24,
+     57.5,
+     142
+    ],
+    [
+     "H",
+     "H",
+     1,
+     24,
+     80.0,
+     96
+    ],
+    [
+     "H",
+     "H",
+     10,
+     24,
+     87.5,
+     71
+    ],
+    [
+     "H",
+     "H",
+     100,
+     24,
+     60.0,
+     118
+    ],
+    [
+     "H",
+     "H",
+     10,
+     0,
+     52.5,
+     165
+    ],
+    [
+     "H",
+     "H",
+     10,
+     12,
+     70.0,
+     104
+    ],
+    [
+     "H",
+     "H",
+     10,
+     24,
+     87.5,
+     71
+    ],
+    [
+     "H",
+     "H",
+     10,
+     48,
+     90.0,
+     69
+    ],
+    [
+     "H",
+     "H",
+     10,
+     24,
+     87.5,
+     71
+    ],
+    [
+     "H",
+     "J",
+     10,
+     24,
+     50.0,
+     150
+    ],
+    [
+     "J",
+     "H",
+     10,
+     24,
+     62.5,
+     112
+    ],
+    [
+     "J",
+     "J",
+     10,
+     24,
+     85.0,
+     80
+    ]
+   ]
+  },
+  "prompt": "In which experiment(s) was every beetle tested with an extract of the same plant on which it had been reared?",
+  "choices": [
+   "Experiment 1 only",
+   "Experiments 1 and 2 only",
+   "Experiment 3 only",
+   "Experiments 1, 2, and 3"
+  ],
+  "correct_answer": "Experiments 1 and 2 only",
+  "explanation": "In Experiments 1 and 2, all beetles were reared on Plant H and tested with Plant H extract. Experiment 3 included Plant H-reared beetles tested with Plant J extract and Plant J-reared beetles tested with Plant H extract.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify design features of each experiment",
+  "difficulty": "medium",
+  "topic_tag": "biology: fictional insect behaviour",
+  "consistency_check": "Each trial has 40 beetles, so every percent is a multiple of 2.5 (57.5, 80, 87.5, 60, 52.5, 70, 90, 50, 62.5, 85); 50% is the no-preference level and no value falls meaningfully below it; the shared condition (H-reared, H extract, 10 ug/mL, 24 h) reads 87.5%/71 s in all three experiments; the concentration response peaks then falls and decision time has a minimum, neither following any named law. Q5 recomputed: 80% of 40 = 32."
+ },
+ {
+  "id": "ASV10a-P4-Q2",
+  "passage_id": "sc10a-p4",
+  "passage_title": "Odor Choices of the Ridge Beetle",
+  "format": "research_summaries",
+  "passage": "The ridge beetle Tarsella crista feeds on the leaves of two shrubs, Plant H and Plant J. Entomologists tested how the beetles respond to the odors of leaf extracts using a Y-shaped glass tube (a Y-maze). A beetle released at the base of the Y walks forward and must turn into one of the two arms. Air flowing out of one arm had passed over filter paper treated with a leaf extract; air flowing out of the other arm had passed over filter paper treated with solvent only.\n\nBefore testing, beetles were reared from eggs on the leaves of one plant and then starved (given no food) for a set time. In each trial, 40 adult beetles were tested one at a time, and no beetle was tested more than once. The entomologists recorded the percent of beetles that entered the extract arm and the mean decision time (the average time from release until a beetle entered an arm).\n\nExperiment 1\nBeetles reared on Plant H and starved for 24 hours were tested with Plant H extract at concentrations of 0.1, 1, 10, and 100 µg/mL.\n\nExperiment 2\nBeetles reared on Plant H were starved for 0, 12, 24, or 48 hours and tested with Plant H extract at 10 µg/mL.\n\nExperiment 3\nBeetles reared on Plant H and beetles reared on Plant J, all starved for 24 hours, were tested with Plant H extract or with Plant J extract at 10 µg/mL.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Responses of ridge beetles in the Y-maze (40 beetles per trial)",
+   "colLabels": [
+    "Rearing plant",
+    "Extract",
+    "Concentration (µg/mL)",
+    "Starvation (h)",
+    "Entered extract arm (%)",
+    "Mean decision time (s)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "H",
+     "H",
+     0.1,
+     24,
+     57.5,
+     142
+    ],
+    [
+     "H",
+     "H",
+     1,
+     24,
+     80.0,
+     96
+    ],
+    [
+     "H",
+     "H",
+     10,
+     24,
+     87.5,
+     71
+    ],
+    [
+     "H",
+     "H",
+     100,
+     24,
+     60.0,
+     118
+    ],
+    [
+     "H",
+     "H",
+     10,
+     0,
+     52.5,
+     165
+    ],
+    [
+     "H",
+     "H",
+     10,
+     12,
+     70.0,
+     104
+    ],
+    [
+     "H",
+     "H",
+     10,
+     24,
+     87.5,
+     71
+    ],
+    [
+     "H",
+     "H",
+     10,
+     48,
+     90.0,
+     69
+    ],
+    [
+     "H",
+     "H",
+     10,
+     24,
+     87.5,
+     71
+    ],
+    [
+     "H",
+     "J",
+     10,
+     24,
+     50.0,
+     150
+    ],
+    [
+     "J",
+     "H",
+     10,
+     24,
+     62.5,
+     112
+    ],
+    [
+     "J",
+     "J",
+     10,
+     24,
+     85.0,
+     80
+    ]
+   ]
+  },
+  "prompt": "In Experiment 3, by how many percentage points did the percent of Plant H-reared beetles entering the Plant H extract arm exceed the percent of Plant J-reared beetles entering the Plant H extract arm?",
+  "choices": [
+   "2.5",
+   "22.5",
+   "25.0",
+   "37.5"
+  ],
+  "correct_answer": "25.0",
+  "explanation": "With Plant H extract, 87.5% of Plant H-reared beetles and 62.5% of Plant J-reared beetles entered the extract arm: 87.5 - 62.5 = 25.0 points. 37.5 compares Plant H-reared beetles' responses to the two extracts, 22.5 compares Plant J-reared beetles' responses, and 2.5 compares the two own-plant trials.",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a difference between specified rows",
+  "difficulty": "medium",
+  "topic_tag": "biology: fictional insect behaviour"
+ },
+ {
+  "id": "ASV10a-P4-Q3",
+  "passage_id": "sc10a-p4",
+  "passage_title": "Odor Choices of the Ridge Beetle",
+  "format": "research_summaries",
+  "passage": "The ridge beetle Tarsella crista feeds on the leaves of two shrubs, Plant H and Plant J. Entomologists tested how the beetles respond to the odors of leaf extracts using a Y-shaped glass tube (a Y-maze). A beetle released at the base of the Y walks forward and must turn into one of the two arms. Air flowing out of one arm had passed over filter paper treated with a leaf extract; air flowing out of the other arm had passed over filter paper treated with solvent only.\n\nBefore testing, beetles were reared from eggs on the leaves of one plant and then starved (given no food) for a set time. In each trial, 40 adult beetles were tested one at a time, and no beetle was tested more than once. The entomologists recorded the percent of beetles that entered the extract arm and the mean decision time (the average time from release until a beetle entered an arm).\n\nExperiment 1\nBeetles reared on Plant H and starved for 24 hours were tested with Plant H extract at concentrations of 0.1, 1, 10, and 100 µg/mL.\n\nExperiment 2\nBeetles reared on Plant H were starved for 0, 12, 24, or 48 hours and tested with Plant H extract at 10 µg/mL.\n\nExperiment 3\nBeetles reared on Plant H and beetles reared on Plant J, all starved for 24 hours, were tested with Plant H extract or with Plant J extract at 10 µg/mL.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Responses of ridge beetles in the Y-maze (40 beetles per trial)",
+   "colLabels": [
+    "Rearing plant",
+    "Extract",
+    "Concentration (µg/mL)",
+    "Starvation (h)",
+    "Entered extract arm (%)",
+    "Mean decision time (s)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "H",
+     "H",
+     0.1,
+     24,
+     57.5,
+     142
+    ],
+    [
+     "H",
+     "H",
+     1,
+     24,
+     80.0,
+     96
+    ],
+    [
+     "H",
+     "H",
+     10,
+     24,
+     87.5,
+     71
+    ],
+    [
+     "H",
+     "H",
+     100,
+     24,
+     60.0,
+     118
+    ],
+    [
+     "H",
+     "H",
+     10,
+     0,
+     52.5,
+     165
+    ],
+    [
+     "H",
+     "H",
+     10,
+     12,
+     70.0,
+     104
+    ],
+    [
+     "H",
+     "H",
+     10,
+     24,
+     87.5,
+     71
+    ],
+    [
+     "H",
+     "H",
+     10,
+     48,
+     90.0,
+     69
+    ],
+    [
+     "H",
+     "H",
+     10,
+     24,
+     87.5,
+     71
+    ],
+    [
+     "H",
+     "J",
+     10,
+     24,
+     50.0,
+     150
+    ],
+    [
+     "J",
+     "H",
+     10,
+     24,
+     62.5,
+     112
+    ],
+    [
+     "J",
+     "J",
+     10,
+     24,
+     85.0,
+     80
+    ]
+   ]
+  },
+  "prompt": "An entomologist claimed that, for Plant H-reared beetles starved for 24 hours, the higher the concentration of Plant H extract, the shorter the mean decision time. Do the results support this claim?",
+  "choices": [
+   "Yes; in Experiment 2, the mean decision time fell in every successive trial, from 165 s to 69 s.",
+   "Yes; in Experiment 3, the mean decision time fell from 150 s to 112 s between the second and third trials.",
+   "No; in Experiment 3, the mean decision time rose from 71 s to 150 s between the first two trials.",
+   "No; in Experiment 1, the mean decision time rose from 71 s to 118 s between the last two trials."
+  ],
+  "correct_answer": "No; in Experiment 1, the mean decision time rose from 71 s to 118 s between the last two trials.",
+  "explanation": "Concentration was varied only in Experiment 1. There the mean decision time fell from 142 s to 96 s to 71 s but rose to 118 s at 100 µg/mL, so the claim fails. Experiment 2 varied starvation time and Experiment 3 varied the rearing plant and the extract, so changes in those experiments do not bear on concentration.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate a claim against the experiment that tests it",
+  "difficulty": "hard",
+  "topic_tag": "biology: fictional insect behaviour"
+ },
+ {
+  "id": "ASV10a-P4-Q4",
+  "passage_id": "sc10a-p4",
+  "passage_title": "Odor Choices of the Ridge Beetle",
+  "format": "research_summaries",
+  "passage": "The ridge beetle Tarsella crista feeds on the leaves of two shrubs, Plant H and Plant J. Entomologists tested how the beetles respond to the odors of leaf extracts using a Y-shaped glass tube (a Y-maze). A beetle released at the base of the Y walks forward and must turn into one of the two arms. Air flowing out of one arm had passed over filter paper treated with a leaf extract; air flowing out of the other arm had passed over filter paper treated with solvent only.\n\nBefore testing, beetles were reared from eggs on the leaves of one plant and then starved (given no food) for a set time. In each trial, 40 adult beetles were tested one at a time, and no beetle was tested more than once. The entomologists recorded the percent of beetles that entered the extract arm and the mean decision time (the average time from release until a beetle entered an arm).\n\nExperiment 1\nBeetles reared on Plant H and starved for 24 hours were tested with Plant H extract at concentrations of 0.1, 1, 10, and 100 µg/mL.\n\nExperiment 2\nBeetles reared on Plant H were starved for 0, 12, 24, or 48 hours and tested with Plant H extract at 10 µg/mL.\n\nExperiment 3\nBeetles reared on Plant H and beetles reared on Plant J, all starved for 24 hours, were tested with Plant H extract or with Plant J extract at 10 µg/mL.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Responses of ridge beetles in the Y-maze (40 beetles per trial)",
+   "colLabels": [
+    "Rearing plant",
+    "Extract",
+    "Concentration (µg/mL)",
+    "Starvation (h)",
+    "Entered extract arm (%)",
+    "Mean decision time (s)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "H",
+     "H",
+     0.1,
+     24,
+     57.5,
+     142
+    ],
+    [
+     "H",
+     "H",
+     1,
+     24,
+     80.0,
+     96
+    ],
+    [
+     "H",
+     "H",
+     10,
+     24,
+     87.5,
+     71
+    ],
+    [
+     "H",
+     "H",
+     100,
+     24,
+     60.0,
+     118
+    ],
+    [
+     "H",
+     "H",
+     10,
+     0,
+     52.5,
+     165
+    ],
+    [
+     "H",
+     "H",
+     10,
+     12,
+     70.0,
+     104
+    ],
+    [
+     "H",
+     "H",
+     10,
+     24,
+     87.5,
+     71
+    ],
+    [
+     "H",
+     "H",
+     10,
+     48,
+     90.0,
+     69
+    ],
+    [
+     "H",
+     "H",
+     10,
+     24,
+     87.5,
+     71
+    ],
+    [
+     "H",
+     "J",
+     10,
+     24,
+     50.0,
+     150
+    ],
+    [
+     "J",
+     "H",
+     10,
+     24,
+     62.5,
+     112
+    ],
+    [
+     "J",
+     "J",
+     10,
+     24,
+     85.0,
+     80
+    ]
+   ]
+  },
+  "prompt": "Suppose the entomologists repeat Experiment 2 exactly, except that the beetles are reared on Plant J. Which set of trials should they run?",
+  "choices": [
+   "Plant H extract at 10 µg/mL, beetles starved 0, 12, 24, or 48 hours",
+   "Plant H extract at 100 µg/mL, beetles starved 0, 12, 24, or 48 hours",
+   "Plant J extract at 10 µg/mL, beetles starved 0, 12, 24, or 48 hours",
+   "Plant J extract at 100 µg/mL, beetles starved 0, 12, 24, or 48 hours"
+  ],
+  "correct_answer": "Plant H extract at 10 µg/mL, beetles starved 0, 12, 24, or 48 hours",
+  "explanation": "Experiment 2 tested beetles with Plant H extract at 10 µg/mL after 0, 12, 24, or 48 hours of starvation. Repeating it exactly with Plant J-reared beetles keeps the extract (Plant H) and concentration (10 µg/mL) and changes only the rearing plant.",
+  "domain": "Scientific Investigation",
+  "subskill": "replicate a procedure with one change",
+  "difficulty": "hard",
+  "topic_tag": "biology: fictional insect behaviour"
+ },
+ {
+  "id": "ASV10a-P4-Q5",
+  "passage_id": "sc10a-p4",
+  "passage_title": "Odor Choices of the Ridge Beetle",
+  "format": "research_summaries",
+  "passage": "The ridge beetle Tarsella crista feeds on the leaves of two shrubs, Plant H and Plant J. Entomologists tested how the beetles respond to the odors of leaf extracts using a Y-shaped glass tube (a Y-maze). A beetle released at the base of the Y walks forward and must turn into one of the two arms. Air flowing out of one arm had passed over filter paper treated with a leaf extract; air flowing out of the other arm had passed over filter paper treated with solvent only.\n\nBefore testing, beetles were reared from eggs on the leaves of one plant and then starved (given no food) for a set time. In each trial, 40 adult beetles were tested one at a time, and no beetle was tested more than once. The entomologists recorded the percent of beetles that entered the extract arm and the mean decision time (the average time from release until a beetle entered an arm).\n\nExperiment 1\nBeetles reared on Plant H and starved for 24 hours were tested with Plant H extract at concentrations of 0.1, 1, 10, and 100 µg/mL.\n\nExperiment 2\nBeetles reared on Plant H were starved for 0, 12, 24, or 48 hours and tested with Plant H extract at 10 µg/mL.\n\nExperiment 3\nBeetles reared on Plant H and beetles reared on Plant J, all starved for 24 hours, were tested with Plant H extract or with Plant J extract at 10 µg/mL.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Responses of ridge beetles in the Y-maze (40 beetles per trial)",
+   "colLabels": [
+    "Rearing plant",
+    "Extract",
+    "Concentration (µg/mL)",
+    "Starvation (h)",
+    "Entered extract arm (%)",
+    "Mean decision time (s)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "H",
+     "H",
+     0.1,
+     24,
+     57.5,
+     142
+    ],
+    [
+     "H",
+     "H",
+     1,
+     24,
+     80.0,
+     96
+    ],
+    [
+     "H",
+     "H",
+     10,
+     24,
+     87.5,
+     71
+    ],
+    [
+     "H",
+     "H",
+     100,
+     24,
+     60.0,
+     118
+    ],
+    [
+     "H",
+     "H",
+     10,
+     0,
+     52.5,
+     165
+    ],
+    [
+     "H",
+     "H",
+     10,
+     12,
+     70.0,
+     104
+    ],
+    [
+     "H",
+     "H",
+     10,
+     24,
+     87.5,
+     71
+    ],
+    [
+     "H",
+     "H",
+     10,
+     48,
+     90.0,
+     69
+    ],
+    [
+     "H",
+     "H",
+     10,
+     24,
+     87.5,
+     71
+    ],
+    [
+     "H",
+     "J",
+     10,
+     24,
+     50.0,
+     150
+    ],
+    [
+     "J",
+     "H",
+     10,
+     24,
+     62.5,
+     112
+    ],
+    [
+     "J",
+     "J",
+     10,
+     24,
+     85.0,
+     80
+    ]
+   ]
+  },
+  "prompt": "In Experiment 1, how many of the beetles tested with the 1 µg/mL extract entered the extract arm?",
+  "choices": [
+   "23",
+   "24",
+   "32",
+   "35"
+  ],
+  "correct_answer": "32",
+  "explanation": "Each trial tested 40 beetles, and 80.0% of those tested at 1 µg/mL entered the extract arm: 0.80 x 40 = 32. 23, 24, and 35 are 57.5%, 60.0%, and 87.5% of 40, the results at the other concentrations.",
+  "domain": "Scientific Investigation",
+  "subskill": "combine procedure details with table values",
+  "difficulty": "medium",
+  "topic_tag": "biology: fictional insect behaviour"
+ },
+ {
+  "id": "ASV10a-P4-Q6",
+  "passage_id": "sc10a-p4",
+  "passage_title": "Odor Choices of the Ridge Beetle",
+  "format": "research_summaries",
+  "passage": "The ridge beetle Tarsella crista feeds on the leaves of two shrubs, Plant H and Plant J. Entomologists tested how the beetles respond to the odors of leaf extracts using a Y-shaped glass tube (a Y-maze). A beetle released at the base of the Y walks forward and must turn into one of the two arms. Air flowing out of one arm had passed over filter paper treated with a leaf extract; air flowing out of the other arm had passed over filter paper treated with solvent only.\n\nBefore testing, beetles were reared from eggs on the leaves of one plant and then starved (given no food) for a set time. In each trial, 40 adult beetles were tested one at a time, and no beetle was tested more than once. The entomologists recorded the percent of beetles that entered the extract arm and the mean decision time (the average time from release until a beetle entered an arm).\n\nExperiment 1\nBeetles reared on Plant H and starved for 24 hours were tested with Plant H extract at concentrations of 0.1, 1, 10, and 100 µg/mL.\n\nExperiment 2\nBeetles reared on Plant H were starved for 0, 12, 24, or 48 hours and tested with Plant H extract at 10 µg/mL.\n\nExperiment 3\nBeetles reared on Plant H and beetles reared on Plant J, all starved for 24 hours, were tested with Plant H extract or with Plant J extract at 10 µg/mL.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Responses of ridge beetles in the Y-maze (40 beetles per trial)",
+   "colLabels": [
+    "Rearing plant",
+    "Extract",
+    "Concentration (µg/mL)",
+    "Starvation (h)",
+    "Entered extract arm (%)",
+    "Mean decision time (s)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "H",
+     "H",
+     0.1,
+     24,
+     57.5,
+     142
+    ],
+    [
+     "H",
+     "H",
+     1,
+     24,
+     80.0,
+     96
+    ],
+    [
+     "H",
+     "H",
+     10,
+     24,
+     87.5,
+     71
+    ],
+    [
+     "H",
+     "H",
+     100,
+     24,
+     60.0,
+     118
+    ],
+    [
+     "H",
+     "H",
+     10,
+     0,
+     52.5,
+     165
+    ],
+    [
+     "H",
+     "H",
+     10,
+     12,
+     70.0,
+     104
+    ],
+    [
+     "H",
+     "H",
+     10,
+     24,
+     87.5,
+     71
+    ],
+    [
+     "H",
+     "H",
+     10,
+     48,
+     90.0,
+     69
+    ],
+    [
+     "H",
+     "H",
+     10,
+     24,
+     87.5,
+     71
+    ],
+    [
+     "H",
+     "J",
+     10,
+     24,
+     50.0,
+     150
+    ],
+    [
+     "J",
+     "H",
+     10,
+     24,
+     62.5,
+     112
+    ],
+    [
+     "J",
+     "J",
+     10,
+     24,
+     85.0,
+     80
+    ]
+   ]
+  },
+  "prompt": "Suppose a beetle group is said to show a rearing preference if, under identical test conditions, a greater percent of the group enters the arm with the extract of its own rearing plant than the arm with the other plant's extract. Based on Experiment 3, which group(s) showed a rearing preference, and for which was the difference larger?",
+  "choices": [
+   "Plant H-reared beetles only",
+   "Both groups; the difference was larger for Plant H-reared beetles",
+   "Both groups; the difference was larger for Plant J-reared beetles",
+   "Plant J-reared beetles only"
+  ],
+  "correct_answer": "Both groups; the difference was larger for Plant H-reared beetles",
+  "explanation": "Plant H-reared beetles entered the Plant H arm 87.5% of the time and the Plant J arm 50.0% (difference 37.5 points). Plant J-reared beetles entered the Plant J arm 85.0% and the Plant H arm 62.5% (difference 22.5 points). Both groups preferred their own plant, and the difference was larger for Plant H-reared beetles.",
+  "domain": "Interpretation of Data",
+  "subskill": "apply a definition to table values",
+  "difficulty": "hard",
+  "topic_tag": "biology: fictional insect behaviour"
+ },
+ {
+  "id": "ASV10a-P5-Q1",
+  "passage_id": "sc10a-p5",
+  "passage_title": "The Two Layers of Lake Varn",
+  "format": "conflicting_viewpoints",
+  "passage": "Lake Varn is 40 m deep and lies in a closed mountain basin. One river, the Ostle, flows into the lake; no river flows out. Water leaves the lake by evaporation and by seepage through sandy ground at the southern shore. The lake has a northern basin and a southern basin, 2 km apart, each 40 m deep.\n\nThe lake water is divided into two layers that never mix with each other. The top layer, from the surface to 18 m, is nearly fresh (salinity 0.4 g/kg, meaning 0.4 g of dissolved salts per kilogram of water) and is mixed by wind every winter. Below 18 m, salinity rises steeply, and the bottom layer, from 22 m down to the floor, has a salinity of 14 g/kg and contains no dissolved oxygen. In Ostle River water, chloride makes up about 20% of the dissolved negative ions and sulfate about 70%. Two scientists explain the origin of the bottom layer.\n\nScientist 1\nThe bottom layer is fed by springs. A fault (a crack in the rock) crosses the floor of the northern basin. Groundwater rising along the fault dissolves a buried salt bed and enters the lake as springs whose water has a salinity of about 30 g/kg; chloride makes up more than 90% of its negative ions. Because the spring water is denser than lake water, it spreads along the lake floor, mixing with some lake water, and almost all of the bottom layer's dissolved salt comes from the springs. Salt slowly diffuses upward out of the bottom layer, but the springs replace it as fast as it is lost, so the bottom layer's salinity and the depth of its top, 22 m, stay constant. Salinity 1 m above the floor should be a few tenths of a g/kg higher in the northern basin, near the springs, than in the southern basin. The springs, and the layering, began when the fault became active at least 600 years ago.\n\nScientist 2\nThe bottom layer is left over from a drought. About 900 years ago, a long drought lowered the lake until it was only 20 m deep. Evaporation concentrated the salts brought in by the Ostle River until the remaining water had a salinity of about 25 g/kg, without changing the proportions of the dissolved ions. When wetter conditions returned, fresh river water refilled the lake to 40 m and floated on top of the dense brine, which remained as the bottom 20 m of the lake. No salt has entered the bottom layer since. Salt slowly diffuses upward out of the bottom layer, and the winter mixing of the top layer wears away the top of the bottom layer, so the bottom layer's salinity has been falling and its top has moved down by about 2 m since the drought. Because the brine formed throughout the lake at once, salinity at any given depth in the bottom layer should be the same in both basins.",
+  "prompt": "According to Scientist 2, how deep was Lake Varn at the end of the drought, and what was the salinity of the water that remained?",
+  "choices": [
+   "20 m; about 25 g/kg",
+   "20 m; about 30 g/kg",
+   "18 m; about 25 g/kg",
+   "18 m; about 30 g/kg"
+  ],
+  "correct_answer": "20 m; about 25 g/kg",
+  "explanation": "Scientist 2 says the drought lowered the lake until it was only 20 m deep and that evaporation raised the remaining water's salinity to about 25 g/kg. The 18 m depth is the bottom of today's top layer, and 30 g/kg is the salinity of Scientist 1's spring water.",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a stated claim in one viewpoint",
+  "difficulty": "medium",
+  "topic_tag": "earth science: fictional lake layering",
+  "consistency_check": "Closed basin with a seepage outlet, so salt can leave and Scientist 2's falling salinity is possible; Scientist 2's brine thickness equals the drought depth (20 m of a 40 m lake, top at 20 m, now 22 m after 2 m of erosion); Scientist 1's 30 g/kg spring water diluted by lake water to 14 g/kg is consistent; both source waters (30 and 25 g/kg) exceed 20 g/kg; 900 years satisfies 'at least 600 years'; river chloride 20% vs spring chloride >90% are distinct. All names, numbers and sites are invented."
+ },
+ {
+  "id": "ASV10a-P5-Q2",
+  "passage_id": "sc10a-p5",
+  "passage_title": "The Two Layers of Lake Varn",
+  "format": "conflicting_viewpoints",
+  "passage": "Lake Varn is 40 m deep and lies in a closed mountain basin. One river, the Ostle, flows into the lake; no river flows out. Water leaves the lake by evaporation and by seepage through sandy ground at the southern shore. The lake has a northern basin and a southern basin, 2 km apart, each 40 m deep.\n\nThe lake water is divided into two layers that never mix with each other. The top layer, from the surface to 18 m, is nearly fresh (salinity 0.4 g/kg, meaning 0.4 g of dissolved salts per kilogram of water) and is mixed by wind every winter. Below 18 m, salinity rises steeply, and the bottom layer, from 22 m down to the floor, has a salinity of 14 g/kg and contains no dissolved oxygen. In Ostle River water, chloride makes up about 20% of the dissolved negative ions and sulfate about 70%. Two scientists explain the origin of the bottom layer.\n\nScientist 1\nThe bottom layer is fed by springs. A fault (a crack in the rock) crosses the floor of the northern basin. Groundwater rising along the fault dissolves a buried salt bed and enters the lake as springs whose water has a salinity of about 30 g/kg; chloride makes up more than 90% of its negative ions. Because the spring water is denser than lake water, it spreads along the lake floor, mixing with some lake water, and almost all of the bottom layer's dissolved salt comes from the springs. Salt slowly diffuses upward out of the bottom layer, but the springs replace it as fast as it is lost, so the bottom layer's salinity and the depth of its top, 22 m, stay constant. Salinity 1 m above the floor should be a few tenths of a g/kg higher in the northern basin, near the springs, than in the southern basin. The springs, and the layering, began when the fault became active at least 600 years ago.\n\nScientist 2\nThe bottom layer is left over from a drought. About 900 years ago, a long drought lowered the lake until it was only 20 m deep. Evaporation concentrated the salts brought in by the Ostle River until the remaining water had a salinity of about 25 g/kg, without changing the proportions of the dissolved ions. When wetter conditions returned, fresh river water refilled the lake to 40 m and floated on top of the dense brine, which remained as the bottom 20 m of the lake. No salt has entered the bottom layer since. Salt slowly diffuses upward out of the bottom layer, and the winter mixing of the top layer wears away the top of the bottom layer, so the bottom layer's salinity has been falling and its top has moved down by about 2 m since the drought. Because the brine formed throughout the lake at once, salinity at any given depth in the bottom layer should be the same in both basins.",
+  "prompt": "Suppose chloride were found to make up 22% of the dissolved negative ions in the bottom layer. This result is consistent with the view(s) of:",
+  "choices": [
+   "Scientist 1 only.",
+   "Scientist 2 only.",
+   "both Scientist 1 and Scientist 2.",
+   "neither Scientist 1 nor Scientist 2."
+  ],
+  "correct_answer": "Scientist 2 only.",
+  "explanation": "Scientist 2 says the brine is concentrated Ostle River water with unchanged ion proportions, and chloride is about 20% of the river's negative ions, close to 22%. Scientist 1 says almost all of the bottom layer's salt comes from springs whose negative ions are more than 90% chloride.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test a new finding against each viewpoint",
+  "difficulty": "medium",
+  "topic_tag": "earth science: fictional lake layering"
+ },
+ {
+  "id": "ASV10a-P5-Q3",
+  "passage_id": "sc10a-p5",
+  "passage_title": "The Two Layers of Lake Varn",
+  "format": "conflicting_viewpoints",
+  "passage": "Lake Varn is 40 m deep and lies in a closed mountain basin. One river, the Ostle, flows into the lake; no river flows out. Water leaves the lake by evaporation and by seepage through sandy ground at the southern shore. The lake has a northern basin and a southern basin, 2 km apart, each 40 m deep.\n\nThe lake water is divided into two layers that never mix with each other. The top layer, from the surface to 18 m, is nearly fresh (salinity 0.4 g/kg, meaning 0.4 g of dissolved salts per kilogram of water) and is mixed by wind every winter. Below 18 m, salinity rises steeply, and the bottom layer, from 22 m down to the floor, has a salinity of 14 g/kg and contains no dissolved oxygen. In Ostle River water, chloride makes up about 20% of the dissolved negative ions and sulfate about 70%. Two scientists explain the origin of the bottom layer.\n\nScientist 1\nThe bottom layer is fed by springs. A fault (a crack in the rock) crosses the floor of the northern basin. Groundwater rising along the fault dissolves a buried salt bed and enters the lake as springs whose water has a salinity of about 30 g/kg; chloride makes up more than 90% of its negative ions. Because the spring water is denser than lake water, it spreads along the lake floor, mixing with some lake water, and almost all of the bottom layer's dissolved salt comes from the springs. Salt slowly diffuses upward out of the bottom layer, but the springs replace it as fast as it is lost, so the bottom layer's salinity and the depth of its top, 22 m, stay constant. Salinity 1 m above the floor should be a few tenths of a g/kg higher in the northern basin, near the springs, than in the southern basin. The springs, and the layering, began when the fault became active at least 600 years ago.\n\nScientist 2\nThe bottom layer is left over from a drought. About 900 years ago, a long drought lowered the lake until it was only 20 m deep. Evaporation concentrated the salts brought in by the Ostle River until the remaining water had a salinity of about 25 g/kg, without changing the proportions of the dissolved ions. When wetter conditions returned, fresh river water refilled the lake to 40 m and floated on top of the dense brine, which remained as the bottom 20 m of the lake. No salt has entered the bottom layer since. Salt slowly diffuses upward out of the bottom layer, and the winter mixing of the top layer wears away the top of the bottom layer, so the bottom layer's salinity has been falling and its top has moved down by about 2 m since the drought. Because the brine formed throughout the lake at once, salinity at any given depth in the bottom layer should be the same in both basins.",
+  "prompt": "With which of the following statements about the bottom layer would both scientists agree?",
+  "choices": [
+   "It gets almost all of its salt from water in which chloride makes up most of the negative ions.",
+   "It formed less than 1,000 years ago.",
+   "It receives new salt at the floor of the northern basin.",
+   "It formed from water whose salinity was greater than 20 g/kg."
+  ],
+  "correct_answer": "It formed from water whose salinity was greater than 20 g/kg.",
+  "explanation": "Scientist 1's spring water is about 30 g/kg and Scientist 2's drought brine was about 25 g/kg; both exceed 20 g/kg. Chloride-rich water and new salt entering in the northern basin are Scientist 1's claims only. Scientist 2 dates the layer to about 900 years ago, but Scientist 1 says only that it began at least 600 years ago, which sets no upper limit, so less than 1,000 years is Scientist 2's claim alone.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "find the claim common to both viewpoints",
+  "difficulty": "hard",
+  "topic_tag": "earth science: fictional lake layering"
+ },
+ {
+  "id": "ASV10a-P5-Q4",
+  "passage_id": "sc10a-p5",
+  "passage_title": "The Two Layers of Lake Varn",
+  "format": "conflicting_viewpoints",
+  "passage": "Lake Varn is 40 m deep and lies in a closed mountain basin. One river, the Ostle, flows into the lake; no river flows out. Water leaves the lake by evaporation and by seepage through sandy ground at the southern shore. The lake has a northern basin and a southern basin, 2 km apart, each 40 m deep.\n\nThe lake water is divided into two layers that never mix with each other. The top layer, from the surface to 18 m, is nearly fresh (salinity 0.4 g/kg, meaning 0.4 g of dissolved salts per kilogram of water) and is mixed by wind every winter. Below 18 m, salinity rises steeply, and the bottom layer, from 22 m down to the floor, has a salinity of 14 g/kg and contains no dissolved oxygen. In Ostle River water, chloride makes up about 20% of the dissolved negative ions and sulfate about 70%. Two scientists explain the origin of the bottom layer.\n\nScientist 1\nThe bottom layer is fed by springs. A fault (a crack in the rock) crosses the floor of the northern basin. Groundwater rising along the fault dissolves a buried salt bed and enters the lake as springs whose water has a salinity of about 30 g/kg; chloride makes up more than 90% of its negative ions. Because the spring water is denser than lake water, it spreads along the lake floor, mixing with some lake water, and almost all of the bottom layer's dissolved salt comes from the springs. Salt slowly diffuses upward out of the bottom layer, but the springs replace it as fast as it is lost, so the bottom layer's salinity and the depth of its top, 22 m, stay constant. Salinity 1 m above the floor should be a few tenths of a g/kg higher in the northern basin, near the springs, than in the southern basin. The springs, and the layering, began when the fault became active at least 600 years ago.\n\nScientist 2\nThe bottom layer is left over from a drought. About 900 years ago, a long drought lowered the lake until it was only 20 m deep. Evaporation concentrated the salts brought in by the Ostle River until the remaining water had a salinity of about 25 g/kg, without changing the proportions of the dissolved ions. When wetter conditions returned, fresh river water refilled the lake to 40 m and floated on top of the dense brine, which remained as the bottom 20 m of the lake. No salt has entered the bottom layer since. Salt slowly diffuses upward out of the bottom layer, and the winter mixing of the top layer wears away the top of the bottom layer, so the bottom layer's salinity has been falling and its top has moved down by about 2 m since the drought. Because the brine formed throughout the lake at once, salinity at any given depth in the bottom layer should be the same in both basins.",
+  "prompt": "Suppose plant remains buried in the lake-floor sediment showed that the bottom layer formed about 900 years ago. This finding would be consistent with the view(s) of:",
+  "choices": [
+   "Scientist 1 only.",
+   "Scientist 2 only.",
+   "both Scientist 1 and Scientist 2.",
+   "neither Scientist 1 nor Scientist 2."
+  ],
+  "correct_answer": "both Scientist 1 and Scientist 2.",
+  "explanation": "Scientist 2 dates the drought, and so the bottom layer, to about 900 years ago. Scientist 1 says the layering began at least 600 years ago, and 900 years is at least 600 years, so the finding fits both views.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test a new finding against each viewpoint",
+  "difficulty": "hard",
+  "topic_tag": "earth science: fictional lake layering"
+ },
+ {
+  "id": "ASV10a-P5-Q5",
+  "passage_id": "sc10a-p5",
+  "passage_title": "The Two Layers of Lake Varn",
+  "format": "conflicting_viewpoints",
+  "passage": "Lake Varn is 40 m deep and lies in a closed mountain basin. One river, the Ostle, flows into the lake; no river flows out. Water leaves the lake by evaporation and by seepage through sandy ground at the southern shore. The lake has a northern basin and a southern basin, 2 km apart, each 40 m deep.\n\nThe lake water is divided into two layers that never mix with each other. The top layer, from the surface to 18 m, is nearly fresh (salinity 0.4 g/kg, meaning 0.4 g of dissolved salts per kilogram of water) and is mixed by wind every winter. Below 18 m, salinity rises steeply, and the bottom layer, from 22 m down to the floor, has a salinity of 14 g/kg and contains no dissolved oxygen. In Ostle River water, chloride makes up about 20% of the dissolved negative ions and sulfate about 70%. Two scientists explain the origin of the bottom layer.\n\nScientist 1\nThe bottom layer is fed by springs. A fault (a crack in the rock) crosses the floor of the northern basin. Groundwater rising along the fault dissolves a buried salt bed and enters the lake as springs whose water has a salinity of about 30 g/kg; chloride makes up more than 90% of its negative ions. Because the spring water is denser than lake water, it spreads along the lake floor, mixing with some lake water, and almost all of the bottom layer's dissolved salt comes from the springs. Salt slowly diffuses upward out of the bottom layer, but the springs replace it as fast as it is lost, so the bottom layer's salinity and the depth of its top, 22 m, stay constant. Salinity 1 m above the floor should be a few tenths of a g/kg higher in the northern basin, near the springs, than in the southern basin. The springs, and the layering, began when the fault became active at least 600 years ago.\n\nScientist 2\nThe bottom layer is left over from a drought. About 900 years ago, a long drought lowered the lake until it was only 20 m deep. Evaporation concentrated the salts brought in by the Ostle River until the remaining water had a salinity of about 25 g/kg, without changing the proportions of the dissolved ions. When wetter conditions returned, fresh river water refilled the lake to 40 m and floated on top of the dense brine, which remained as the bottom 20 m of the lake. No salt has entered the bottom layer since. Salt slowly diffuses upward out of the bottom layer, and the winter mixing of the top layer wears away the top of the bottom layer, so the bottom layer's salinity has been falling and its top has moved down by about 2 m since the drought. Because the brine formed throughout the lake at once, salinity at any given depth in the bottom layer should be the same in both basins.",
+  "prompt": "Which of the following measurements would best help determine which scientist's explanation is correct?",
+  "choices": [
+   "Salinity 1 m above the floor in the northern basin and in the southern basin",
+   "Dissolved oxygen 1 m above the floor in the northern basin and in the southern basin",
+   "Salinity 10 m below the surface in the northern basin and in the southern basin",
+   "Salinity 1 m above the floor in the southern basin in summer and in winter"
+  ],
+  "correct_answer": "Salinity 1 m above the floor in the northern basin and in the southern basin",
+  "explanation": "Scientist 1 predicts that salinity just above the floor is a few tenths of a g/kg higher in the northern basin, near the springs; Scientist 2 predicts the same salinity at a given depth in both basins. Both describe a bottom layer with no oxygen, the 10 m level is in the wind-mixed top layer in both views, and neither view predicts a seasonal change in the bottom layer.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose a measurement that separates two models",
+  "difficulty": "hard",
+  "topic_tag": "earth science: fictional lake layering"
+ },
+ {
+  "id": "ASV10a-P5-Q6",
+  "passage_id": "sc10a-p5",
+  "passage_title": "The Two Layers of Lake Varn",
+  "format": "conflicting_viewpoints",
+  "passage": "Lake Varn is 40 m deep and lies in a closed mountain basin. One river, the Ostle, flows into the lake; no river flows out. Water leaves the lake by evaporation and by seepage through sandy ground at the southern shore. The lake has a northern basin and a southern basin, 2 km apart, each 40 m deep.\n\nThe lake water is divided into two layers that never mix with each other. The top layer, from the surface to 18 m, is nearly fresh (salinity 0.4 g/kg, meaning 0.4 g of dissolved salts per kilogram of water) and is mixed by wind every winter. Below 18 m, salinity rises steeply, and the bottom layer, from 22 m down to the floor, has a salinity of 14 g/kg and contains no dissolved oxygen. In Ostle River water, chloride makes up about 20% of the dissolved negative ions and sulfate about 70%. Two scientists explain the origin of the bottom layer.\n\nScientist 1\nThe bottom layer is fed by springs. A fault (a crack in the rock) crosses the floor of the northern basin. Groundwater rising along the fault dissolves a buried salt bed and enters the lake as springs whose water has a salinity of about 30 g/kg; chloride makes up more than 90% of its negative ions. Because the spring water is denser than lake water, it spreads along the lake floor, mixing with some lake water, and almost all of the bottom layer's dissolved salt comes from the springs. Salt slowly diffuses upward out of the bottom layer, but the springs replace it as fast as it is lost, so the bottom layer's salinity and the depth of its top, 22 m, stay constant. Salinity 1 m above the floor should be a few tenths of a g/kg higher in the northern basin, near the springs, than in the southern basin. The springs, and the layering, began when the fault became active at least 600 years ago.\n\nScientist 2\nThe bottom layer is left over from a drought. About 900 years ago, a long drought lowered the lake until it was only 20 m deep. Evaporation concentrated the salts brought in by the Ostle River until the remaining water had a salinity of about 25 g/kg, without changing the proportions of the dissolved ions. When wetter conditions returned, fresh river water refilled the lake to 40 m and floated on top of the dense brine, which remained as the bottom 20 m of the lake. No salt has entered the bottom layer since. Salt slowly diffuses upward out of the bottom layer, and the winter mixing of the top layer wears away the top of the bottom layer, so the bottom layer's salinity has been falling and its top has moved down by about 2 m since the drought. Because the brine formed throughout the lake at once, salinity at any given depth in the bottom layer should be the same in both basins.",
+  "prompt": "According to Scientist 2, if the drought had lowered the lake only until it was 30 m deep, then when wetter conditions returned the top of the bottom layer would most likely have been at a depth of about:",
+  "choices": [
+   "8 m.",
+   "10 m.",
+   "20 m.",
+   "30 m."
+  ],
+  "correct_answer": "10 m.",
+  "explanation": "In Scientist 2's view the brine left by the drought stayed as the bottom part of the refilled 40 m lake, as thick as the shrunken lake was deep. A 30 m deep remnant would occupy the bottom 30 m, from 10 m down to 40 m, so its top would be at about 10 m.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "extend a model to a new case",
+  "difficulty": "hard",
+  "topic_tag": "earth science: fictional lake layering"
+ },
+ {
+  "id": "ASV10a-P6-Q1",
+  "passage_id": "sc10a-p6",
+  "passage_title": "Why Do Lagoon Lacecorals Turn Pale?",
+  "format": "conflicting_viewpoints",
+  "passage": "Orrasea is a colonial animal of tropical lagoons that builds branching limestone skeletons. Its living outer tissue contains velarin, a purple pigment the animal makes itself. A colony is called pale when it has less than 10% of its normal amount of velarin. Pale colonies survive and can regain their color. In Tessan Lagoon, which is 1 to 6 m deep and has a river entering along its west shore, the percent of Orrasea colonies that were pale each September is shown in Figure 1. Three scientists explain the paling.\n\nScientist 1\nPaling is caused by ultraviolet (UV) light, which breaks velarin down faster than a colony can replace it. Since 2017 the lagoon water has become clearer, and the UV light reaching 2 m depth has roughly doubled. UV light is absorbed as it passes down through the water, so colonies deeper than 4 m do not pale, and on a shallower colony the upward-facing surfaces of the branches pale first while the shaded undersides stay purple. A pale colony moved to 5 m depth regains full color in about 3 weeks.\n\nScientist 2\nPaling is caused by low salinity. After heavy rains, river water spreads across the lagoon as a fresh layer about 2 m thick that floats on the saltier lagoon water. When the salinity around a colony stays below 28 g/kg for more than 5 days, the colony stops making velarin, and the velarin it has is lost as its outer tissue is replaced. Paling appears within 2 weeks of a heavy rain, affects all surfaces of a colony evenly, and is greatest near the west shore; colonies deeper than 2 m, below the fresh layer, do not pale. A pale colony regains full color about 6 weeks after the salinity returns to normal.\n\nScientist 3\nPaling is caused by Y-4, a bacterium that digests velarin. An infection begins at a single spot on a colony and spreads across the colony at about 1 cm per day, and it passes from colony to colony where branches touch. Y-4 grows faster in water warmer than 29 °C, so more colonies pale in warmer summers. Paling occurs at every depth in the lagoon, with no preference for upward-facing or downward-facing surfaces. Once Y-4 is cleared from a colony, the colony regains full color in about 6 weeks.",
+  "graphic": {
+   "type": "bar",
+   "caption": "Figure 1. Percent of Orrasea colonies in Tessan Lagoon that were pale each September",
+   "xLabel": "Year",
+   "yLabel": "Pale colonies (%)",
+   "bars": [
+    {
+     "label": "2016",
+     "value": 3
+    },
+    {
+     "label": "2017",
+     "value": 4
+    },
+    {
+     "label": "2018",
+     "value": 9
+    },
+    {
+     "label": "2019",
+     "value": 7
+    },
+    {
+     "label": "2020",
+     "value": 18
+    },
+    {
+     "label": "2021",
+     "value": 22
+    },
+    {
+     "label": "2022",
+     "value": 15
+    },
+    {
+     "label": "2023",
+     "value": 33
+    },
+    {
+     "label": "2024",
+     "value": 41
+    }
+   ]
+  },
+  "prompt": "According to Figure 1, between which consecutive years did the percent of pale colonies decrease?",
+  "choices": [
+   "Between 2018 and 2019 only",
+   "Between 2021 and 2022 only",
+   "Between 2019 and 2020, and between 2022 and 2023",
+   "Between 2018 and 2019, and between 2021 and 2022"
+  ],
+  "correct_answer": "Between 2018 and 2019, and between 2021 and 2022",
+  "explanation": "The percent fell from 9% in 2018 to 7% in 2019 and from 22% in 2021 to 15% in 2022. It rose in every other year-to-year step, including 2019 to 2020 (7% to 18%) and 2022 to 2023 (15% to 33%).",
+  "domain": "Interpretation of Data",
+  "subskill": "read changes from a bar graph",
+  "difficulty": "medium",
+  "topic_tag": "biology: fictional colonial animal",
+  "consistency_check": "Lagoon is 1-6 m deep, so Scientist 1's 4 m limit, Scientist 2's 2 m fresh layer and Scientist 3's 'every depth' are all testable inside it; paling is a pigment loss the colony survives, so recovery times (3 weeks vs 6 weeks vs 6 weeks) are possible; Figure 1 is invented and non-monotonic (dips 2019 and 2022) so each scientist can be asked to explain a dip; the organism, pigment, bacterium and lagoon are fictional and follow no named result."
+ },
+ {
+  "id": "ASV10a-P6-Q2",
+  "passage_id": "sc10a-p6",
+  "passage_title": "Why Do Lagoon Lacecorals Turn Pale?",
+  "format": "conflicting_viewpoints",
+  "passage": "Orrasea is a colonial animal of tropical lagoons that builds branching limestone skeletons. Its living outer tissue contains velarin, a purple pigment the animal makes itself. A colony is called pale when it has less than 10% of its normal amount of velarin. Pale colonies survive and can regain their color. In Tessan Lagoon, which is 1 to 6 m deep and has a river entering along its west shore, the percent of Orrasea colonies that were pale each September is shown in Figure 1. Three scientists explain the paling.\n\nScientist 1\nPaling is caused by ultraviolet (UV) light, which breaks velarin down faster than a colony can replace it. Since 2017 the lagoon water has become clearer, and the UV light reaching 2 m depth has roughly doubled. UV light is absorbed as it passes down through the water, so colonies deeper than 4 m do not pale, and on a shallower colony the upward-facing surfaces of the branches pale first while the shaded undersides stay purple. A pale colony moved to 5 m depth regains full color in about 3 weeks.\n\nScientist 2\nPaling is caused by low salinity. After heavy rains, river water spreads across the lagoon as a fresh layer about 2 m thick that floats on the saltier lagoon water. When the salinity around a colony stays below 28 g/kg for more than 5 days, the colony stops making velarin, and the velarin it has is lost as its outer tissue is replaced. Paling appears within 2 weeks of a heavy rain, affects all surfaces of a colony evenly, and is greatest near the west shore; colonies deeper than 2 m, below the fresh layer, do not pale. A pale colony regains full color about 6 weeks after the salinity returns to normal.\n\nScientist 3\nPaling is caused by Y-4, a bacterium that digests velarin. An infection begins at a single spot on a colony and spreads across the colony at about 1 cm per day, and it passes from colony to colony where branches touch. Y-4 grows faster in water warmer than 29 °C, so more colonies pale in warmer summers. Paling occurs at every depth in the lagoon, with no preference for upward-facing or downward-facing surfaces. Once Y-4 is cleared from a colony, the colony regains full color in about 6 weeks.",
+  "graphic": {
+   "type": "bar",
+   "caption": "Figure 1. Percent of Orrasea colonies in Tessan Lagoon that were pale each September",
+   "xLabel": "Year",
+   "yLabel": "Pale colonies (%)",
+   "bars": [
+    {
+     "label": "2016",
+     "value": 3
+    },
+    {
+     "label": "2017",
+     "value": 4
+    },
+    {
+     "label": "2018",
+     "value": 9
+    },
+    {
+     "label": "2019",
+     "value": 7
+    },
+    {
+     "label": "2020",
+     "value": 18
+    },
+    {
+     "label": "2021",
+     "value": 22
+    },
+    {
+     "label": "2022",
+     "value": 15
+    },
+    {
+     "label": "2023",
+     "value": 33
+    },
+    {
+     "label": "2024",
+     "value": 41
+    }
+   ]
+  },
+  "prompt": "Suppose divers found that on pale colonies at 1 m depth, the upward-facing surfaces of the branches were pale while the downward-facing undersides were still purple. This observation is most consistent with the view(s) of:",
+  "choices": [
+   "Scientist 1 only.",
+   "Scientist 2 only.",
+   "Scientist 3 only.",
+   "Scientists 2 and 3 only."
+  ],
+  "correct_answer": "Scientist 1 only.",
+  "explanation": "Scientist 1 says upward-facing surfaces pale first while shaded undersides stay purple. Scientist 2 says paling affects all surfaces evenly, and Scientist 3 says it shows no preference for upward- or downward-facing surfaces.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match an observation to viewpoint predictions",
+  "difficulty": "medium",
+  "topic_tag": "biology: fictional colonial animal"
+ },
+ {
+  "id": "ASV10a-P6-Q3",
+  "passage_id": "sc10a-p6",
+  "passage_title": "Why Do Lagoon Lacecorals Turn Pale?",
+  "format": "conflicting_viewpoints",
+  "passage": "Orrasea is a colonial animal of tropical lagoons that builds branching limestone skeletons. Its living outer tissue contains velarin, a purple pigment the animal makes itself. A colony is called pale when it has less than 10% of its normal amount of velarin. Pale colonies survive and can regain their color. In Tessan Lagoon, which is 1 to 6 m deep and has a river entering along its west shore, the percent of Orrasea colonies that were pale each September is shown in Figure 1. Three scientists explain the paling.\n\nScientist 1\nPaling is caused by ultraviolet (UV) light, which breaks velarin down faster than a colony can replace it. Since 2017 the lagoon water has become clearer, and the UV light reaching 2 m depth has roughly doubled. UV light is absorbed as it passes down through the water, so colonies deeper than 4 m do not pale, and on a shallower colony the upward-facing surfaces of the branches pale first while the shaded undersides stay purple. A pale colony moved to 5 m depth regains full color in about 3 weeks.\n\nScientist 2\nPaling is caused by low salinity. After heavy rains, river water spreads across the lagoon as a fresh layer about 2 m thick that floats on the saltier lagoon water. When the salinity around a colony stays below 28 g/kg for more than 5 days, the colony stops making velarin, and the velarin it has is lost as its outer tissue is replaced. Paling appears within 2 weeks of a heavy rain, affects all surfaces of a colony evenly, and is greatest near the west shore; colonies deeper than 2 m, below the fresh layer, do not pale. A pale colony regains full color about 6 weeks after the salinity returns to normal.\n\nScientist 3\nPaling is caused by Y-4, a bacterium that digests velarin. An infection begins at a single spot on a colony and spreads across the colony at about 1 cm per day, and it passes from colony to colony where branches touch. Y-4 grows faster in water warmer than 29 °C, so more colonies pale in warmer summers. Paling occurs at every depth in the lagoon, with no preference for upward-facing or downward-facing surfaces. Once Y-4 is cleared from a colony, the colony regains full color in about 6 weeks.",
+  "graphic": {
+   "type": "bar",
+   "caption": "Figure 1. Percent of Orrasea colonies in Tessan Lagoon that were pale each September",
+   "xLabel": "Year",
+   "yLabel": "Pale colonies (%)",
+   "bars": [
+    {
+     "label": "2016",
+     "value": 3
+    },
+    {
+     "label": "2017",
+     "value": 4
+    },
+    {
+     "label": "2018",
+     "value": 9
+    },
+    {
+     "label": "2019",
+     "value": 7
+    },
+    {
+     "label": "2020",
+     "value": 18
+    },
+    {
+     "label": "2021",
+     "value": 22
+    },
+    {
+     "label": "2022",
+     "value": 15
+    },
+    {
+     "label": "2023",
+     "value": 33
+    },
+    {
+     "label": "2024",
+     "value": 41
+    }
+   ]
+  },
+  "prompt": "Which of the scientists would predict that an Orrasea colony growing at a depth of 3 m in Tessan Lagoon could turn pale?",
+  "choices": [
+   "Scientists 1 and 2 only",
+   "Scientists 1 and 3 only",
+   "Scientists 2 and 3 only",
+   "Scientists 1, 2, and 3"
+  ],
+  "correct_answer": "Scientists 1 and 3 only",
+  "explanation": "Scientist 1 says only colonies deeper than 4 m are protected, so a 3 m colony can pale. Scientist 2 says colonies deeper than 2 m lie below the fresh layer and do not pale. Scientist 3 says paling occurs at every depth.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "apply each viewpoint to a new case",
+  "difficulty": "medium",
+  "topic_tag": "biology: fictional colonial animal"
+ },
+ {
+  "id": "ASV10a-P6-Q4",
+  "passage_id": "sc10a-p6",
+  "passage_title": "Why Do Lagoon Lacecorals Turn Pale?",
+  "format": "conflicting_viewpoints",
+  "passage": "Orrasea is a colonial animal of tropical lagoons that builds branching limestone skeletons. Its living outer tissue contains velarin, a purple pigment the animal makes itself. A colony is called pale when it has less than 10% of its normal amount of velarin. Pale colonies survive and can regain their color. In Tessan Lagoon, which is 1 to 6 m deep and has a river entering along its west shore, the percent of Orrasea colonies that were pale each September is shown in Figure 1. Three scientists explain the paling.\n\nScientist 1\nPaling is caused by ultraviolet (UV) light, which breaks velarin down faster than a colony can replace it. Since 2017 the lagoon water has become clearer, and the UV light reaching 2 m depth has roughly doubled. UV light is absorbed as it passes down through the water, so colonies deeper than 4 m do not pale, and on a shallower colony the upward-facing surfaces of the branches pale first while the shaded undersides stay purple. A pale colony moved to 5 m depth regains full color in about 3 weeks.\n\nScientist 2\nPaling is caused by low salinity. After heavy rains, river water spreads across the lagoon as a fresh layer about 2 m thick that floats on the saltier lagoon water. When the salinity around a colony stays below 28 g/kg for more than 5 days, the colony stops making velarin, and the velarin it has is lost as its outer tissue is replaced. Paling appears within 2 weeks of a heavy rain, affects all surfaces of a colony evenly, and is greatest near the west shore; colonies deeper than 2 m, below the fresh layer, do not pale. A pale colony regains full color about 6 weeks after the salinity returns to normal.\n\nScientist 3\nPaling is caused by Y-4, a bacterium that digests velarin. An infection begins at a single spot on a colony and spreads across the colony at about 1 cm per day, and it passes from colony to colony where branches touch. Y-4 grows faster in water warmer than 29 °C, so more colonies pale in warmer summers. Paling occurs at every depth in the lagoon, with no preference for upward-facing or downward-facing surfaces. Once Y-4 is cleared from a colony, the colony regains full color in about 6 weeks.",
+  "graphic": {
+   "type": "bar",
+   "caption": "Figure 1. Percent of Orrasea colonies in Tessan Lagoon that were pale each September",
+   "xLabel": "Year",
+   "yLabel": "Pale colonies (%)",
+   "bars": [
+    {
+     "label": "2016",
+     "value": 3
+    },
+    {
+     "label": "2017",
+     "value": 4
+    },
+    {
+     "label": "2018",
+     "value": 9
+    },
+    {
+     "label": "2019",
+     "value": 7
+    },
+    {
+     "label": "2020",
+     "value": 18
+    },
+    {
+     "label": "2021",
+     "value": 22
+    },
+    {
+     "label": "2022",
+     "value": 15
+    },
+    {
+     "label": "2023",
+     "value": 33
+    },
+    {
+     "label": "2024",
+     "value": 41
+    }
+   ]
+  },
+  "prompt": "Scientists 2 and 3 would most likely agree that a pale colony:",
+  "choices": [
+   "regains full color about 6 weeks after the cause of its paling ends.",
+   "regains full color about 3 weeks after the cause of its paling ends.",
+   "cannot be found at depths greater than 2 m.",
+   "first appears within 2 weeks of the event that causes its paling."
+  ],
+  "correct_answer": "regains full color about 6 weeks after the cause of its paling ends.",
+  "explanation": "Scientist 2 says recovery takes about 6 weeks after salinity returns to normal, and Scientist 3 says about 6 weeks after Y-4 is cleared. The 3-week recovery is Scientist 1's; the 2 m depth limit and the 2-week onset are Scientist 2's alone (Scientist 3 says paling occurs at every depth and spreads at 1 cm per day).",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "find the claim shared by two of three viewpoints",
+  "difficulty": "hard",
+  "topic_tag": "biology: fictional colonial animal"
+ },
+ {
+  "id": "ASV10a-P6-Q5",
+  "passage_id": "sc10a-p6",
+  "passage_title": "Why Do Lagoon Lacecorals Turn Pale?",
+  "format": "conflicting_viewpoints",
+  "passage": "Orrasea is a colonial animal of tropical lagoons that builds branching limestone skeletons. Its living outer tissue contains velarin, a purple pigment the animal makes itself. A colony is called pale when it has less than 10% of its normal amount of velarin. Pale colonies survive and can regain their color. In Tessan Lagoon, which is 1 to 6 m deep and has a river entering along its west shore, the percent of Orrasea colonies that were pale each September is shown in Figure 1. Three scientists explain the paling.\n\nScientist 1\nPaling is caused by ultraviolet (UV) light, which breaks velarin down faster than a colony can replace it. Since 2017 the lagoon water has become clearer, and the UV light reaching 2 m depth has roughly doubled. UV light is absorbed as it passes down through the water, so colonies deeper than 4 m do not pale, and on a shallower colony the upward-facing surfaces of the branches pale first while the shaded undersides stay purple. A pale colony moved to 5 m depth regains full color in about 3 weeks.\n\nScientist 2\nPaling is caused by low salinity. After heavy rains, river water spreads across the lagoon as a fresh layer about 2 m thick that floats on the saltier lagoon water. When the salinity around a colony stays below 28 g/kg for more than 5 days, the colony stops making velarin, and the velarin it has is lost as its outer tissue is replaced. Paling appears within 2 weeks of a heavy rain, affects all surfaces of a colony evenly, and is greatest near the west shore; colonies deeper than 2 m, below the fresh layer, do not pale. A pale colony regains full color about 6 weeks after the salinity returns to normal.\n\nScientist 3\nPaling is caused by Y-4, a bacterium that digests velarin. An infection begins at a single spot on a colony and spreads across the colony at about 1 cm per day, and it passes from colony to colony where branches touch. Y-4 grows faster in water warmer than 29 °C, so more colonies pale in warmer summers. Paling occurs at every depth in the lagoon, with no preference for upward-facing or downward-facing surfaces. Once Y-4 is cleared from a colony, the colony regains full color in about 6 weeks.",
+  "graphic": {
+   "type": "bar",
+   "caption": "Figure 1. Percent of Orrasea colonies in Tessan Lagoon that were pale each September",
+   "xLabel": "Year",
+   "yLabel": "Pale colonies (%)",
+   "bars": [
+    {
+     "label": "2016",
+     "value": 3
+    },
+    {
+     "label": "2017",
+     "value": 4
+    },
+    {
+     "label": "2018",
+     "value": 9
+    },
+    {
+     "label": "2019",
+     "value": 7
+    },
+    {
+     "label": "2020",
+     "value": 18
+    },
+    {
+     "label": "2021",
+     "value": 22
+    },
+    {
+     "label": "2022",
+     "value": 15
+    },
+    {
+     "label": "2023",
+     "value": 33
+    },
+    {
+     "label": "2024",
+     "value": 41
+    }
+   ]
+  },
+  "prompt": "Which of the following studies would best distinguish between the explanations of Scientist 2 and Scientist 3?",
+  "choices": [
+   "Measuring how long pale colonies at 1 m take to regain full color after the cause of paling ends",
+   "Comparing the paling of upward-facing and downward-facing surfaces on colonies at 1 m",
+   "Comparing the percent of colonies that are pale at 1 m depth and at 5 m depth",
+   "Comparing the amount of velarin in pale tissue and in purple tissue"
+  ],
+  "correct_answer": "Comparing the percent of colonies that are pale at 1 m depth and at 5 m depth",
+  "explanation": "Scientist 2 predicts no paling below 2 m, so colonies at 5 m stay purple, while Scientist 3 predicts paling at every depth. Both predict about 6 weeks to recover and no difference between upward- and downward-facing surfaces, and pale tissue has less velarin by definition in every view.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose a study that separates two models",
+  "difficulty": "hard",
+  "topic_tag": "biology: fictional colonial animal"
+ },
+ {
+  "id": "ASV10a-P6-Q6",
+  "passage_id": "sc10a-p6",
+  "passage_title": "Why Do Lagoon Lacecorals Turn Pale?",
+  "format": "conflicting_viewpoints",
+  "passage": "Orrasea is a colonial animal of tropical lagoons that builds branching limestone skeletons. Its living outer tissue contains velarin, a purple pigment the animal makes itself. A colony is called pale when it has less than 10% of its normal amount of velarin. Pale colonies survive and can regain their color. In Tessan Lagoon, which is 1 to 6 m deep and has a river entering along its west shore, the percent of Orrasea colonies that were pale each September is shown in Figure 1. Three scientists explain the paling.\n\nScientist 1\nPaling is caused by ultraviolet (UV) light, which breaks velarin down faster than a colony can replace it. Since 2017 the lagoon water has become clearer, and the UV light reaching 2 m depth has roughly doubled. UV light is absorbed as it passes down through the water, so colonies deeper than 4 m do not pale, and on a shallower colony the upward-facing surfaces of the branches pale first while the shaded undersides stay purple. A pale colony moved to 5 m depth regains full color in about 3 weeks.\n\nScientist 2\nPaling is caused by low salinity. After heavy rains, river water spreads across the lagoon as a fresh layer about 2 m thick that floats on the saltier lagoon water. When the salinity around a colony stays below 28 g/kg for more than 5 days, the colony stops making velarin, and the velarin it has is lost as its outer tissue is replaced. Paling appears within 2 weeks of a heavy rain, affects all surfaces of a colony evenly, and is greatest near the west shore; colonies deeper than 2 m, below the fresh layer, do not pale. A pale colony regains full color about 6 weeks after the salinity returns to normal.\n\nScientist 3\nPaling is caused by Y-4, a bacterium that digests velarin. An infection begins at a single spot on a colony and spreads across the colony at about 1 cm per day, and it passes from colony to colony where branches touch. Y-4 grows faster in water warmer than 29 °C, so more colonies pale in warmer summers. Paling occurs at every depth in the lagoon, with no preference for upward-facing or downward-facing surfaces. Once Y-4 is cleared from a colony, the colony regains full color in about 6 weeks.",
+  "graphic": {
+   "type": "bar",
+   "caption": "Figure 1. Percent of Orrasea colonies in Tessan Lagoon that were pale each September",
+   "xLabel": "Year",
+   "yLabel": "Pale colonies (%)",
+   "bars": [
+    {
+     "label": "2016",
+     "value": 3
+    },
+    {
+     "label": "2017",
+     "value": 4
+    },
+    {
+     "label": "2018",
+     "value": 9
+    },
+    {
+     "label": "2019",
+     "value": 7
+    },
+    {
+     "label": "2020",
+     "value": 18
+    },
+    {
+     "label": "2021",
+     "value": 22
+    },
+    {
+     "label": "2022",
+     "value": 15
+    },
+    {
+     "label": "2023",
+     "value": 33
+    },
+    {
+     "label": "2024",
+     "value": 41
+    }
+   ]
+  },
+  "prompt": "Scientist 3 would most likely explain the change in the percent of pale colonies from 2021 to 2022 shown in Figure 1 by proposing that, in the summer of 2022, the lagoon:",
+  "choices": [
+   "had less heavy rain than in 2021.",
+   "had less clear water than in 2021.",
+   "had more colonies growing deeper than 4 m than in 2021.",
+   "had cooler water than in 2021."
+  ],
+  "correct_answer": "had cooler water than in 2021.",
+  "explanation": "The percent of pale colonies fell from 22% to 15%. Scientist 3 says Y-4 grows faster in water warmer than 29 °C, so a cooler summer would mean fewer pale colonies. Rain is Scientist 2's factor, water clarity and the 4 m limit are Scientist 1's, and Scientist 3 says depth does not matter.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "explain a data feature within one viewpoint",
+  "difficulty": "medium",
+  "topic_tag": "biology: fictional colonial animal"
+ },
+ {
+  "id": "ASV10a-P7-Q1",
+  "passage_id": "sc10a-p7",
+  "passage_title": "Gas G in the Atmosphere of Kessa b",
+  "format": "conflicting_viewpoints",
+  "passage": "Kessa b is a rocky planet that orbits a small, cool star every 6.2 days and always keeps the same side facing the star. When the planet passes in front of the star (a transit), some starlight passes through the planet's atmosphere at its edge, or limb, and astronomers can measure which gases are present. The morning limb is the edge where the planet's rotation carries gas from the night side into daylight; the evening limb is the opposite edge.\n\nDuring six transits, astronomers measured Gas G, an unnamed molecule, in Kessa b's atmosphere, along with how many strong flares (sudden outbursts that fling energetic particles outward) the star produced in the 5 days before each transit (Table 1). Starlight destroys G: about half of the G present at any time is gone 3 days later. Gas P is abundant in the atmosphere. Two scientists explain the changes in G.\n\nScientist 1\nG forms when energetic particles from strong flares strike molecules of Gas P high in the atmosphere and break them apart. Each strong flare adds about 4 to 6 parts per million (ppm) of G within a day, and winds spread the new G evenly around the planet within hours, so G should be about equally abundant on the morning and evening limbs. Between flares, ordinary starlight breaks apart enough P to keep G at about 2 to 3 ppm. Kessa b's volcanoes, if any, are too weak to matter, so Gas S, a sulfur gas released by eruptions, should not be detected.\n\nScientist 2\nG comes from volcanic eruptions. Eruptions vent large amounts of Gas P together with Gas S, and starlight breaks the new P apart into G within hours. Because the volcanic region lies near the morning limb, for about 2 days after an eruption G is at least twice as abundant on the morning limb as on the evening limb; after 3 to 4 days, winds have spread it evenly. Between eruptions, slow venting keeps G at about 2 to 3 ppm. Flares do not affect G; high G after flares at some transits is a coincidence.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Gas G measured during six transits of Kessa b",
+   "colLabels": [
+    "Day of campaign",
+    "Strong flares in previous 5 days",
+    "Gas G (ppm)",
+    "Morning-limb G ÷ evening-limb G"
+   ],
+   "rowLabels": [
+    "Transit 1",
+    "Transit 2",
+    "Transit 3",
+    "Transit 4",
+    "Transit 5",
+    "Transit 6"
+   ],
+   "cells": [
+    [
+     0,
+     0,
+     3,
+     1.0
+    ],
+    [
+     31,
+     2,
+     14,
+     1.1
+    ],
+    [
+     62,
+     0,
+     2,
+     0.9
+    ],
+    [
+     93,
+     1,
+     6,
+     1.0
+    ],
+    [
+     124,
+     0,
+     19,
+     3.2
+    ],
+    [
+     155,
+     3,
+     17,
+     1.0
+    ]
+   ]
+  },
+  "prompt": "According to Table 1, at which transit was G most unevenly divided between the two limbs, and how many strong flares had the star produced in the 5 days before that transit?",
+  "choices": [
+   "Transit 2; 2 flares",
+   "Transit 4; 1 flare",
+   "Transit 5; 0 flares",
+   "Transit 6; 3 flares"
+  ],
+  "correct_answer": "Transit 5; 0 flares",
+  "explanation": "The morning-to-evening ratio was 3.2 at Transit 5, far from the values of 0.9 to 1.1 at the other transits, and Table 1 lists 0 strong flares before Transit 5.",
+  "domain": "Interpretation of Data",
+  "subskill": "read paired values from a table",
+  "difficulty": "medium",
+  "topic_tag": "earth/space: fictional exoplanet atmosphere",
+  "consistency_check": "Transits fall 31 days apart = 5 orbits of 6.2 days; G halves every 3 days, so a 3-4 day old pulse keeps roughly 40-50% of its G, which lets Scientist 2 attribute Transits 2 and 6 to earlier eruptions; Scientist 1's 4-6 ppm per flare plus a 2-3 ppm background gives 6.5-8.5, 10.5-14.5 and 14.5-20.5 ppm for 1, 2 and 3 flares, matching 6, 14 and 17; Transit 5 (0 flares, 19 ppm, ratio 3.2) fits only a fresh morning-limb eruption. Planet, gases and numbers are invented; no orbital law is used."
+ },
+ {
+  "id": "ASV10a-P7-Q2",
+  "passage_id": "sc10a-p7",
+  "passage_title": "Gas G in the Atmosphere of Kessa b",
+  "format": "conflicting_viewpoints",
+  "passage": "Kessa b is a rocky planet that orbits a small, cool star every 6.2 days and always keeps the same side facing the star. When the planet passes in front of the star (a transit), some starlight passes through the planet's atmosphere at its edge, or limb, and astronomers can measure which gases are present. The morning limb is the edge where the planet's rotation carries gas from the night side into daylight; the evening limb is the opposite edge.\n\nDuring six transits, astronomers measured Gas G, an unnamed molecule, in Kessa b's atmosphere, along with how many strong flares (sudden outbursts that fling energetic particles outward) the star produced in the 5 days before each transit (Table 1). Starlight destroys G: about half of the G present at any time is gone 3 days later. Gas P is abundant in the atmosphere. Two scientists explain the changes in G.\n\nScientist 1\nG forms when energetic particles from strong flares strike molecules of Gas P high in the atmosphere and break them apart. Each strong flare adds about 4 to 6 parts per million (ppm) of G within a day, and winds spread the new G evenly around the planet within hours, so G should be about equally abundant on the morning and evening limbs. Between flares, ordinary starlight breaks apart enough P to keep G at about 2 to 3 ppm. Kessa b's volcanoes, if any, are too weak to matter, so Gas S, a sulfur gas released by eruptions, should not be detected.\n\nScientist 2\nG comes from volcanic eruptions. Eruptions vent large amounts of Gas P together with Gas S, and starlight breaks the new P apart into G within hours. Because the volcanic region lies near the morning limb, for about 2 days after an eruption G is at least twice as abundant on the morning limb as on the evening limb; after 3 to 4 days, winds have spread it evenly. Between eruptions, slow venting keeps G at about 2 to 3 ppm. Flares do not affect G; high G after flares at some transits is a coincidence.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Gas G measured during six transits of Kessa b",
+   "colLabels": [
+    "Day of campaign",
+    "Strong flares in previous 5 days",
+    "Gas G (ppm)",
+    "Morning-limb G ÷ evening-limb G"
+   ],
+   "rowLabels": [
+    "Transit 1",
+    "Transit 2",
+    "Transit 3",
+    "Transit 4",
+    "Transit 5",
+    "Transit 6"
+   ],
+   "cells": [
+    [
+     0,
+     0,
+     3,
+     1.0
+    ],
+    [
+     31,
+     2,
+     14,
+     1.1
+    ],
+    [
+     62,
+     0,
+     2,
+     0.9
+    ],
+    [
+     93,
+     1,
+     6,
+     1.0
+    ],
+    [
+     124,
+     0,
+     19,
+     3.2
+    ],
+    [
+     155,
+     3,
+     17,
+     1.0
+    ]
+   ]
+  },
+  "prompt": "Scientist 1 says that between flares, G stays at about 2 to 3 ppm. Treating a transit with no strong flares in the previous 5 days as occurring between flares, which transit's results are inconsistent with this statement?",
+  "choices": [
+   "Transit 1",
+   "Transit 3",
+   "Transit 5",
+   "Transit 6"
+  ],
+  "correct_answer": "Transit 5",
+  "explanation": "Transits 1, 3, and 5 had no strong flares in the previous 5 days. G was 3 ppm at Transit 1 and 2 ppm at Transit 3, consistent with 2 to 3 ppm, but 19 ppm at Transit 5. Transit 6 followed 3 strong flares, so the statement does not apply to it.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "check a viewpoint's claim against data",
+  "difficulty": "medium",
+  "topic_tag": "earth/space: fictional exoplanet atmosphere"
+ },
+ {
+  "id": "ASV10a-P7-Q3",
+  "passage_id": "sc10a-p7",
+  "passage_title": "Gas G in the Atmosphere of Kessa b",
+  "format": "conflicting_viewpoints",
+  "passage": "Kessa b is a rocky planet that orbits a small, cool star every 6.2 days and always keeps the same side facing the star. When the planet passes in front of the star (a transit), some starlight passes through the planet's atmosphere at its edge, or limb, and astronomers can measure which gases are present. The morning limb is the edge where the planet's rotation carries gas from the night side into daylight; the evening limb is the opposite edge.\n\nDuring six transits, astronomers measured Gas G, an unnamed molecule, in Kessa b's atmosphere, along with how many strong flares (sudden outbursts that fling energetic particles outward) the star produced in the 5 days before each transit (Table 1). Starlight destroys G: about half of the G present at any time is gone 3 days later. Gas P is abundant in the atmosphere. Two scientists explain the changes in G.\n\nScientist 1\nG forms when energetic particles from strong flares strike molecules of Gas P high in the atmosphere and break them apart. Each strong flare adds about 4 to 6 parts per million (ppm) of G within a day, and winds spread the new G evenly around the planet within hours, so G should be about equally abundant on the morning and evening limbs. Between flares, ordinary starlight breaks apart enough P to keep G at about 2 to 3 ppm. Kessa b's volcanoes, if any, are too weak to matter, so Gas S, a sulfur gas released by eruptions, should not be detected.\n\nScientist 2\nG comes from volcanic eruptions. Eruptions vent large amounts of Gas P together with Gas S, and starlight breaks the new P apart into G within hours. Because the volcanic region lies near the morning limb, for about 2 days after an eruption G is at least twice as abundant on the morning limb as on the evening limb; after 3 to 4 days, winds have spread it evenly. Between eruptions, slow venting keeps G at about 2 to 3 ppm. Flares do not affect G; high G after flares at some transits is a coincidence.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Gas G measured during six transits of Kessa b",
+   "colLabels": [
+    "Day of campaign",
+    "Strong flares in previous 5 days",
+    "Gas G (ppm)",
+    "Morning-limb G ÷ evening-limb G"
+   ],
+   "rowLabels": [
+    "Transit 1",
+    "Transit 2",
+    "Transit 3",
+    "Transit 4",
+    "Transit 5",
+    "Transit 6"
+   ],
+   "cells": [
+    [
+     0,
+     0,
+     3,
+     1.0
+    ],
+    [
+     31,
+     2,
+     14,
+     1.1
+    ],
+    [
+     62,
+     0,
+     2,
+     0.9
+    ],
+    [
+     93,
+     1,
+     6,
+     1.0
+    ],
+    [
+     124,
+     0,
+     19,
+     3.2
+    ],
+    [
+     155,
+     3,
+     17,
+     1.0
+    ]
+   ]
+  },
+  "prompt": "Scientist 1 and Scientist 2 would both agree that:",
+  "choices": [
+   "energetic particles from flares break molecules of Gas P apart into G.",
+   "starlight breaks molecules of Gas P apart into G.",
+   "Gas P enters the atmosphere together with Gas S.",
+   "newly formed G is spread evenly around the planet within hours."
+  ],
+  "correct_answer": "starlight breaks molecules of Gas P apart into G.",
+  "explanation": "Scientist 1 says ordinary starlight breaks apart enough P between flares to keep G at 2 to 3 ppm, and Scientist 2 says starlight breaks newly vented P apart into G, so both have starlight making G from P. Flare particles making G and the spreading within hours are Scientist 1's claims only, and P arriving with S from eruptions is Scientist 2's claim only.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "find the claim common to both viewpoints",
+  "difficulty": "hard",
+  "topic_tag": "earth/space: fictional exoplanet atmosphere"
+ },
+ {
+  "id": "ASV10a-P7-Q4",
+  "passage_id": "sc10a-p7",
+  "passage_title": "Gas G in the Atmosphere of Kessa b",
+  "format": "conflicting_viewpoints",
+  "passage": "Kessa b is a rocky planet that orbits a small, cool star every 6.2 days and always keeps the same side facing the star. When the planet passes in front of the star (a transit), some starlight passes through the planet's atmosphere at its edge, or limb, and astronomers can measure which gases are present. The morning limb is the edge where the planet's rotation carries gas from the night side into daylight; the evening limb is the opposite edge.\n\nDuring six transits, astronomers measured Gas G, an unnamed molecule, in Kessa b's atmosphere, along with how many strong flares (sudden outbursts that fling energetic particles outward) the star produced in the 5 days before each transit (Table 1). Starlight destroys G: about half of the G present at any time is gone 3 days later. Gas P is abundant in the atmosphere. Two scientists explain the changes in G.\n\nScientist 1\nG forms when energetic particles from strong flares strike molecules of Gas P high in the atmosphere and break them apart. Each strong flare adds about 4 to 6 parts per million (ppm) of G within a day, and winds spread the new G evenly around the planet within hours, so G should be about equally abundant on the morning and evening limbs. Between flares, ordinary starlight breaks apart enough P to keep G at about 2 to 3 ppm. Kessa b's volcanoes, if any, are too weak to matter, so Gas S, a sulfur gas released by eruptions, should not be detected.\n\nScientist 2\nG comes from volcanic eruptions. Eruptions vent large amounts of Gas P together with Gas S, and starlight breaks the new P apart into G within hours. Because the volcanic region lies near the morning limb, for about 2 days after an eruption G is at least twice as abundant on the morning limb as on the evening limb; after 3 to 4 days, winds have spread it evenly. Between eruptions, slow venting keeps G at about 2 to 3 ppm. Flares do not affect G; high G after flares at some transits is a coincidence.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Gas G measured during six transits of Kessa b",
+   "colLabels": [
+    "Day of campaign",
+    "Strong flares in previous 5 days",
+    "Gas G (ppm)",
+    "Morning-limb G ÷ evening-limb G"
+   ],
+   "rowLabels": [
+    "Transit 1",
+    "Transit 2",
+    "Transit 3",
+    "Transit 4",
+    "Transit 5",
+    "Transit 6"
+   ],
+   "cells": [
+    [
+     0,
+     0,
+     3,
+     1.0
+    ],
+    [
+     31,
+     2,
+     14,
+     1.1
+    ],
+    [
+     62,
+     0,
+     2,
+     0.9
+    ],
+    [
+     93,
+     1,
+     6,
+     1.0
+    ],
+    [
+     124,
+     0,
+     19,
+     3.2
+    ],
+    [
+     155,
+     3,
+     17,
+     1.0
+    ]
+   ]
+  },
+  "prompt": "How would Scientist 2 most likely explain the amount of G measured at Transit 2?",
+  "choices": [
+   "An eruption occurred about 3 to 4 days before Transit 2.",
+   "The two strong flares in the previous 5 days produced the G.",
+   "An eruption occurred less than a day before Transit 2.",
+   "Slow venting between eruptions produced the G."
+  ],
+  "correct_answer": "An eruption occurred about 3 to 4 days before Transit 2.",
+  "explanation": "Transit 2 had 14 ppm of G with a morning-to-evening ratio of 1.1. Scientist 2 rejects flares as a cause, says slow venting gives only 2 to 3 ppm, and says G is at least twice as abundant on the morning limb for about 2 days after an eruption. An eruption 3 to 4 days earlier, whose G winds had spread evenly, fits both values.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "explain a data point within one viewpoint",
+  "difficulty": "hard",
+  "topic_tag": "earth/space: fictional exoplanet atmosphere"
+ },
+ {
+  "id": "ASV10a-P7-Q5",
+  "passage_id": "sc10a-p7",
+  "passage_title": "Gas G in the Atmosphere of Kessa b",
+  "format": "conflicting_viewpoints",
+  "passage": "Kessa b is a rocky planet that orbits a small, cool star every 6.2 days and always keeps the same side facing the star. When the planet passes in front of the star (a transit), some starlight passes through the planet's atmosphere at its edge, or limb, and astronomers can measure which gases are present. The morning limb is the edge where the planet's rotation carries gas from the night side into daylight; the evening limb is the opposite edge.\n\nDuring six transits, astronomers measured Gas G, an unnamed molecule, in Kessa b's atmosphere, along with how many strong flares (sudden outbursts that fling energetic particles outward) the star produced in the 5 days before each transit (Table 1). Starlight destroys G: about half of the G present at any time is gone 3 days later. Gas P is abundant in the atmosphere. Two scientists explain the changes in G.\n\nScientist 1\nG forms when energetic particles from strong flares strike molecules of Gas P high in the atmosphere and break them apart. Each strong flare adds about 4 to 6 parts per million (ppm) of G within a day, and winds spread the new G evenly around the planet within hours, so G should be about equally abundant on the morning and evening limbs. Between flares, ordinary starlight breaks apart enough P to keep G at about 2 to 3 ppm. Kessa b's volcanoes, if any, are too weak to matter, so Gas S, a sulfur gas released by eruptions, should not be detected.\n\nScientist 2\nG comes from volcanic eruptions. Eruptions vent large amounts of Gas P together with Gas S, and starlight breaks the new P apart into G within hours. Because the volcanic region lies near the morning limb, for about 2 days after an eruption G is at least twice as abundant on the morning limb as on the evening limb; after 3 to 4 days, winds have spread it evenly. Between eruptions, slow venting keeps G at about 2 to 3 ppm. Flares do not affect G; high G after flares at some transits is a coincidence.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Gas G measured during six transits of Kessa b",
+   "colLabels": [
+    "Day of campaign",
+    "Strong flares in previous 5 days",
+    "Gas G (ppm)",
+    "Morning-limb G ÷ evening-limb G"
+   ],
+   "rowLabels": [
+    "Transit 1",
+    "Transit 2",
+    "Transit 3",
+    "Transit 4",
+    "Transit 5",
+    "Transit 6"
+   ],
+   "cells": [
+    [
+     0,
+     0,
+     3,
+     1.0
+    ],
+    [
+     31,
+     2,
+     14,
+     1.1
+    ],
+    [
+     62,
+     0,
+     2,
+     0.9
+    ],
+    [
+     93,
+     1,
+     6,
+     1.0
+    ],
+    [
+     124,
+     0,
+     19,
+     3.2
+    ],
+    [
+     155,
+     3,
+     17,
+     1.0
+    ]
+   ]
+  },
+  "prompt": "Suppose a transit occurs just after the star produces 3 strong flares, at a time when no eruption has occurred on Kessa b for more than 2 weeks. Which of the following best describes what each scientist would predict for G at that transit?",
+  "choices": [
+   "Scientist 1: about 2 to 3 ppm; Scientist 2: about 2 to 3 ppm",
+   "Scientist 1: about 2 to 3 ppm; Scientist 2: more than 10 ppm",
+   "Scientist 1: more than 10 ppm; Scientist 2: more than 10 ppm",
+   "Scientist 1: more than 10 ppm; Scientist 2: about 2 to 3 ppm"
+  ],
+  "correct_answer": "Scientist 1: more than 10 ppm; Scientist 2: about 2 to 3 ppm",
+  "explanation": "Scientist 1 says each strong flare adds about 4 to 6 ppm on top of the 2 to 3 ppm background, so 3 flares give roughly 14 to 21 ppm. Scientist 2 says flares do not affect G and slow venting keeps it at 2 to 3 ppm between eruptions; G from an eruption more than 2 weeks old would have halved about five times.",
+  "domain": "Scientific Investigation",
+  "subskill": "predict outcomes of a proposed test under each model",
+  "difficulty": "hard",
+  "topic_tag": "earth/space: fictional exoplanet atmosphere"
+ },
+ {
+  "id": "ASV10a-P7-Q6",
+  "passage_id": "sc10a-p7",
+  "passage_title": "Gas G in the Atmosphere of Kessa b",
+  "format": "conflicting_viewpoints",
+  "passage": "Kessa b is a rocky planet that orbits a small, cool star every 6.2 days and always keeps the same side facing the star. When the planet passes in front of the star (a transit), some starlight passes through the planet's atmosphere at its edge, or limb, and astronomers can measure which gases are present. The morning limb is the edge where the planet's rotation carries gas from the night side into daylight; the evening limb is the opposite edge.\n\nDuring six transits, astronomers measured Gas G, an unnamed molecule, in Kessa b's atmosphere, along with how many strong flares (sudden outbursts that fling energetic particles outward) the star produced in the 5 days before each transit (Table 1). Starlight destroys G: about half of the G present at any time is gone 3 days later. Gas P is abundant in the atmosphere. Two scientists explain the changes in G.\n\nScientist 1\nG forms when energetic particles from strong flares strike molecules of Gas P high in the atmosphere and break them apart. Each strong flare adds about 4 to 6 parts per million (ppm) of G within a day, and winds spread the new G evenly around the planet within hours, so G should be about equally abundant on the morning and evening limbs. Between flares, ordinary starlight breaks apart enough P to keep G at about 2 to 3 ppm. Kessa b's volcanoes, if any, are too weak to matter, so Gas S, a sulfur gas released by eruptions, should not be detected.\n\nScientist 2\nG comes from volcanic eruptions. Eruptions vent large amounts of Gas P together with Gas S, and starlight breaks the new P apart into G within hours. Because the volcanic region lies near the morning limb, for about 2 days after an eruption G is at least twice as abundant on the morning limb as on the evening limb; after 3 to 4 days, winds have spread it evenly. Between eruptions, slow venting keeps G at about 2 to 3 ppm. Flares do not affect G; high G after flares at some transits is a coincidence.",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Gas G measured during six transits of Kessa b",
+   "colLabels": [
+    "Day of campaign",
+    "Strong flares in previous 5 days",
+    "Gas G (ppm)",
+    "Morning-limb G ÷ evening-limb G"
+   ],
+   "rowLabels": [
+    "Transit 1",
+    "Transit 2",
+    "Transit 3",
+    "Transit 4",
+    "Transit 5",
+    "Transit 6"
+   ],
+   "cells": [
+    [
+     0,
+     0,
+     3,
+     1.0
+    ],
+    [
+     31,
+     2,
+     14,
+     1.1
+    ],
+    [
+     62,
+     0,
+     2,
+     0.9
+    ],
+    [
+     93,
+     1,
+     6,
+     1.0
+    ],
+    [
+     124,
+     0,
+     19,
+     3.2
+    ],
+    [
+     155,
+     3,
+     17,
+     1.0
+    ]
+   ]
+  },
+  "prompt": "What was the average amount of G at the transits that had no strong flares in the previous 5 days?",
+  "choices": [
+   "2.5 ppm",
+   "8.0 ppm",
+   "10.2 ppm",
+   "12.3 ppm"
+  ],
+  "correct_answer": "8.0 ppm",
+  "explanation": "Transits 1, 3, and 5 had no strong flares; their G values were 3, 2, and 19 ppm, averaging 24/3 = 8.0 ppm. 2.5 ppm leaves out Transit 5, 10.2 ppm averages all six transits, and 12.3 ppm averages the three transits that followed flares.",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a mean over selected rows",
+  "difficulty": "medium",
+  "topic_tag": "earth/space: fictional exoplanet atmosphere"
+ }
+]
