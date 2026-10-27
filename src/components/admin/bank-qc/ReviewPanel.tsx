@@ -132,6 +132,41 @@ export function ReviewPanel({ domains }: { domains: string[] }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  /*
+   * Pick up a run drawn while this page was already open.
+   *
+   * Runs are drawn by hand after the previous one closes, often while the
+   * reviewer's page is still open on the phone. Checking only on mount
+   * left that page empty until a manual reload, and twice (2026-10-27)
+   * the co-founder reported "no questions" with a run waiting for him.
+   * Re-check when the page regains focus and once a minute, but only
+   * while no run is in progress, so an answer is never refetched under
+   * the reviewer.
+   */
+  const runIdRef = React.useRef(runId)
+  runIdRef.current = runId
+  React.useEffect(() => {
+    let checking = false
+    const check = async () => {
+      if (runIdRef.current || checking || document.visibilityState !== 'visible') return
+      checking = true
+      try {
+        const open = await refresh()
+        if (open && !runIdRef.current) { setRunId(open); await nextItem(open) }
+      } finally { checking = false }
+    }
+    const onVisible = () => { void check() }
+    window.addEventListener('focus', onVisible)
+    document.addEventListener('visibilitychange', onVisible)
+    const timer = window.setInterval(onVisible, 60_000)
+    return () => {
+      window.removeEventListener('focus', onVisible)
+      document.removeEventListener('visibilitychange', onVisible)
+      window.clearInterval(timer)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   /** Returns the reviewer's unfinished run id, if any. */
   async function refresh(): Promise<string | null> {
     try {
