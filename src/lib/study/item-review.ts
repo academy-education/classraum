@@ -30,6 +30,21 @@
 export const SLOTS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'] as const
 export type Slot = (typeof SLOTS)[number]
 
+/**
+ * BLIND-ONLY RUNS (owner rule 2026-10-27, science). A run whose id contains
+ * this marker has ONE phase: the reviewer picks from the options and moves on.
+ * No reveal is sent and no verdict is asked for, so a row is finished once it
+ * has blind_at. The marker lives in run_id rather than a column so it needs no
+ * migration and travels with every row the run produced; mirror runs
+ * (`<source>-mirror`) inherit it. scripts/study-bank/autonomy-core.mjs carries
+ * the same string, and src/lib/study/__tests__/blind-only-runs.test.ts pins
+ * that the two agree.
+ */
+export const BLIND_ONLY_MARKER = '-blindonly-'
+export function isBlindOnlyRun(runId: string | null | undefined): boolean {
+  return typeof runId === 'string' && runId.includes(BLIND_ONLY_MARKER)
+}
+
 /** The slot letters an item of this width actually presents. */
 export function slotsFor(width: number): Slot[] {
   if (!Number.isInteger(width) || width < 2 || width > SLOTS.length) {

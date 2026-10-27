@@ -121,7 +121,7 @@ try {
   const pct = u => (u >= 1 ? '  —  ' : (100 * u).toFixed(1).padStart(5) + '%')
   console.log(`autonomy-state ${new Date().toISOString()}  (Amendment 3: L0->L1 at U < ${100 * PARAMS.promote[0]}%, L1->L2 at U < ${100 * PARAMS.promote[1]}%, CP one-sided ${100 * PARAMS.conf}%, prior x${PARAMS.priorWeight} after a clean ${PARAMS.bridgeSize}-item bridge, cap L${PARAMS.maxLevel}, never-autonomous cap L${PARAMS.neverAutonomousCap})`)
   const c = ev.counts
-  console.log(`reviews ${c.reviews} read (= count exact) | ${freshIds.size} fresh | model_assisted ${c.model_assisted} excluded | unanswered ${c.unanswered} | stale ${c.stale}: ${c.stale_excluded} excluded (no defect), ${c.stale_miss_counted} counted as misses | screen-flagged-kept ${c.screen_kept_excluded} excluded | duplicates merged ${c.duplicate_merged}`)
+  console.log(`reviews ${c.reviews} read (= count exact) | ${freshIds.size} fresh | model_assisted ${c.model_assisted} excluded | blind-only ${c.blind_only} excluded | unanswered ${c.unanswered} | stale ${c.stale}: ${c.stale_excluded} excluded (no defect), ${c.stale_miss_counted} counted as misses | screen-flagged-kept ${c.screen_kept_excluded} excluded | duplicates merged ${c.duplicate_merged}`)
   console.log(`evidence items ${c.evidence}, misses ${c.misses} (${c.verdict_misses} by verdict, ${c.note_misses} by note only) | ledger ${ledgerEntries.length} entries, ${byReview.size} joined | bank rows read: ${reviewed.length} reviewed, ${queued.length} in ${queueCohorts.length} queued cohorts`)
   console.log(`depth snapshot measured ${snapshot.measured}\n`)
   const H = `${'stratum'.padEnd(34)} ${'depth'.padStart(5)} ${'current method'.padEnd(42)} ${'n'.padStart(4)} ${'x'.padStart(3)} ${'U90'.padStart(6)} lvl cap bridge  next`

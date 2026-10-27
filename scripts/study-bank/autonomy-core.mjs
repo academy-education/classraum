@@ -53,6 +53,35 @@ export function stratumOf(family, section, task) {
 
 export const sectionOf = stratum => stratum.split('/').slice(0, 2).join('/')
 
+/* ------------------------------------------------------------------ *
+ * Blind-only runs (owner rule 2026-10-27, REGISTER §5 "OWNER RULE CHANGE")
+ * ------------------------------------------------------------------ */
+
+/** Same string as BLIND_ONLY_MARKER in src/lib/study/item-review.ts (a test pins that they agree). */
+export const BLIND_ONLY_MARKER = '-blindonly-'
+export const isBlindOnlyRun = runId => typeof runId === 'string' && runId.includes(BLIND_ONLY_MARKER)
+
+/**
+ * Sections whose co-founder runs are BLIND-ONLY: he picks from the options and nothing else. Release is decided by
+ * the agent with-source graders plus the pre-registered drop rules (release-by-shape.mjs science path), never by his
+ * verdicts, which on science are model-assisted.
+ */
+export const BLIND_ONLY_SECTIONS = Object.freeze(['act/science', 'map/science'])
+export const isBlindOnlySection = stratumOrSection => BLIND_ONLY_SECTIONS.includes(sectionOf(stratumOrSection))
+
+/** Insert the marker before '-cofounder-' (every queue run id carries it). Refuses an id it cannot mark. */
+export function withBlindOnlyMarker(runId) {
+  if (isBlindOnlyRun(runId)) return runId
+  if (!runId.includes('-cofounder-')) throw new RefusalError(`cannot mark "${runId}" blind-only: no "-cofounder-" to anchor the marker`)
+  return runId.replace('-cofounder-', `${BLIND_ONLY_MARKER}cofounder-`)
+}
+
+/** Old-rule (Amendment 1) run id of a queue entry: its template, marked when the entry is blind-only. */
+export function entryRunId(entry, n, date) {
+  const id = entry.runId.replace('{n}', String(n)).replace('{date}', date)
+  return entry.blindOnly === true ? withBlindOnlyMarker(id) : id
+}
+
 export function capFor(stratum, params = PARAMS) {
   const never = NEVER_AUTONOMOUS.some(p => (p.endsWith('/') ? stratum.startsWith(p) : stratum === p))
   return never ? Math.min(params.neverAutonomousCap, params.maxLevel) : params.maxLevel
@@ -387,20 +416,22 @@ export function methodKeyOf(cohort, table, declared = null) {
  *   ledger:   Map review_id -> entry (from joinLedger)
  *   methodOf: cohort -> method key
  *   freshIds: ids in study_item_reviews_fresh (cross-check of the stale computation), or null
- * Excluded and COUNTED: model_assisted, unanswered, stale rows with no defect (never a pass), screen-flagged-kept.
+ * Excluded and COUNTED: model_assisted, blind-only rows, unanswered, stale rows with no defect (never a pass), screen-flagged-kept.
  * Counted: a STALE row that carries a miss — the usual life of a flag is "he flags, the author edits", and dropping
  * those rows would erase exactly the misses the tracker exists to count.
  * One item sat twice counts once (a miss if either sitting found one), in the earlier sitting's unit.
  */
 /** @param {{ reviews: any[], items: Map<string, any>, ledger: Map<string, any>, methodOf: (c: string) => string, screenFlaggedKept?: Set<string>, freshIds?: Set<string>|null }} args */
 export function buildEvidence({ reviews, items, ledger, methodOf, screenFlaggedKept = new Set(), freshIds = null }) {
-  const counts = { reviews: reviews.length, model_assisted: 0, unanswered: 0, stale: 0, stale_excluded: 0, stale_miss_counted: 0, screen_kept_excluded: 0, duplicate_merged: 0, evidence: 0, misses: 0, verdict_misses: 0, note_misses: 0 }
+  const counts = { reviews: reviews.length, model_assisted: 0, blind_only: 0, unanswered: 0, stale: 0, stale_excluded: 0, stale_miss_counted: 0, screen_kept_excluded: 0, duplicate_merged: 0, evidence: 0, misses: 0, verdict_misses: 0, note_misses: 0 }
   const errors = []
   const perItem = new Map()
   for (const r of reviews) {
     const it = items.get(r.item_id)
     if (!it) { errors.push(`review ${r.id}: item ${r.item_id} not in the bank read (empty join)`); continue }
     if (r.reviewer_kind !== 'human') { counts.model_assisted++; continue }
+    // A blind-only row (science, 2026-10-27) has no verdict by design: it is not a sitting's evidence, nor unanswered.
+    if (isBlindOnlyRun(r.run_id)) { counts.blind_only++; continue }
     if (!r.blind_at || r.verdict == null) { counts.unanswered++; continue }
     const stale = r.item_sha !== it.content_sha
     if (freshIds && stale === freshIds.has(r.id)) errors.push(`review ${r.id}: stale by content_sha (${stale}) disagrees with study_item_reviews_fresh`)
@@ -482,6 +513,7 @@ export function simulateQueue({ strata, batches, depth, params = PARAMS, priorit
   const depthNow = new Map(depth)
   const left = [...batches]
   const runs = []
+  const held = []
   const stateOf = (stratum, method) => {
     const chain = chains.get(stratum)
     if (!chain) throw new RefusalError(`no chain for stratum ${stratum}`)
@@ -503,11 +535,24 @@ export function simulateQueue({ strata, batches, depth, params = PARAMS, priorit
       if (r < best) { best = r; pick = i }
     }
     const b = left.splice(pick, 1)[0]
+    // A held batch (every queue entry of its cohort at its `upTo`) is not drawn under either rule.
+    if (b.held) { held.push(b.cohort); continue }
     if (b.drawn) {
       if (b.old.items > 0) { runs.push({ stratum: b.stratum, shape: 'old-rule', batches: [{ cohort: b.cohort, items: b.old.items }], items: b.old.items, note: `already drawn: ${b.old.runs} more run(s) under its own rule` }); addClean(b.stratum, b.method, b.old.items, `${b.cohort}:old`); bump(b.stratum) }
       continue
     }
     const m = stateOf(b.stratum, b.method)
+    /* Blind-only sections: every run is one blind pass over the batch (whole passages, capped like a full sitting).
+     * Its picks carry no verdict, so it adds NO evidence to the level replay and never pools: the trust level of a
+     * blind-only stratum does not move, because release there is the agents' decision, not his. */
+    if (isBlindOnlySection(b.stratum)) {
+      let items, groups = []
+      if (b.groups.length) { const g = pickGroups(b.groups, 'full', params); items = g.items; groups = g.groups }
+      else items = Math.min(params.l0Cap, b.waiting)
+      runs.push({ stratum: b.stratum, shape: 'full', blindOnly: true, level: m.level, bridge: m.bridge, batches: [{ cohort: b.cohort, items, groups }], items })
+      bump(b.stratum)
+      continue
+    }
     const shape = shapeFor(m)
     if (shape === 'pooled') {
       const pool = [b]
@@ -529,5 +574,100 @@ export function simulateQueue({ strata, batches, depth, params = PARAMS, priorit
     addClean(b.stratum, b.method, items, `${b.cohort}:${shape}`)
     bump(b.stratum)
   }
-  return { runs, total: runs.reduce((a, r) => a + r.items, 0) }
+  return { runs, held, total: runs.reduce((a, r) => a + r.items, 0) }
+}
+
+/**
+ * The draw command for one simulated run (draw-next-levels.mjs prints and, with --commit, runs run 1's).
+ *   batches:  the batch list given to simulateQueue (entry, family, tool, groups)
+ *   runCount: Map cohort -> runs drawn so far (mutated: the next run of a cohort is numbered after it)
+ * A blind-only run's id carries BLIND_ONLY_MARKER, which is what makes the review route skip the reveal and the
+ * verdict for every one of its rows.
+ */
+export function commandForRun(run, { batches, runCount, reviewer, date }) {
+  const slug = s => s.replace(/[^a-z0-9]+/gi, '')
+  const b0 = batches.find(b => b.cohort === run.batches[0].cohort)
+  if (!b0) throw new RefusalError(`run names cohort ${run.batches[0].cohort}, which is not a batch`)
+  const mark = id => (run.blindOnly ? withBlindOnlyMarker(id) : id)
+  if (run.shape === 'old-rule') return `(already drawn: draw-next.mjs --old-rule draws ${b0.cohort} under its own entry)`
+  if (run.shape === 'pooled') {
+    const spec = run.batches.map(x => `${x.cohort}:${x.items}`).join(',')
+    return `DRAW_COHORT=${spec} DRAW_FAMILY=${b0.family} node scripts/study-bank/draw-review-run.mjs '*' 0 ${reviewer} ${mark(`${slug(run.stratum.split('/').slice(0, 3).join('-'))}-pooled-cofounder-${date}`)}`
+  }
+  const n = (runCount.get(b0.cohort) ?? 0) + 1; runCount.set(b0.cohort, n)
+  const runId = mark(`${slug(b0.cohort)}-${run.shape}${n}-cofounder-${date}`)
+  const g = run.batches[0].groups ?? []
+  if (b0.tool === 'sets') return `DRAW_SETS=${g.length || Math.ceil(run.items / setShape(b0.cohort).size)} node scripts/study-bank/draw-toefl-conv-runs.mjs ${b0.cohort} ${runId} --commit`
+  const single = b0.entry.domain && !b0.entry.domain.includes(':') && !b0.entry.domain.includes(',') && !g.length
+  return `DRAW_COHORT=${b0.cohort} DRAW_FAMILY=${b0.family}${g.length ? ` DRAW_GROUP=${g.join(',')}` : ''} node scripts/study-bank/draw-review-run.mjs ${single ? JSON.stringify(b0.entry.domain) : "'*'"} ${run.items} ${reviewer} ${runId}`
+}
+
+/** A queue cohort is held when it has entries and every one of them carries an `upTo` its runs have reached. */
+export function cohortHeld(entries, runsSoFar) {
+  return entries.length > 0 && entries.every(e => e.upTo != null && runsSoFar >= e.upTo)
+}
+
+/* ------------------------------------------------------------------ *
+ * Science release (owner rule 2026-10-27): agent with-source grading + a closed blind-only run
+ * ------------------------------------------------------------------ */
+
+/** Ids named under `keys` of a decisions/dropped file: arrays of ids, or objects keyed by id. */
+export function idsUnder(doc, keys) {
+  const out = new Set()
+  for (const k of keys) {
+    const v = doc?.[k]
+    if (v == null) throw new RefusalError(`drop record has no "${k}"`)
+    for (const id of Array.isArray(v) ? v : Object.keys(v)) out.add(id)
+  }
+  return out
+}
+
+/** Blind score of rows against the slots they were dealt; control = the best fixed-slot strategy on the same deal. */
+export function blindScore(rows) {
+  const n = rows.length
+  const hits = rows.filter(r => r.blind_pick != null && r.blind_pick === r.key_slot).length
+  /** @type {Record<string, number>} */
+  const bySlot = {}
+  for (const r of rows) bySlot[r.key_slot] = (bySlot[r.key_slot] ?? 0) + 1
+  const ctrl = n ? Math.max(...Object.values(bySlot)) : 0
+  return { n, hits, pct: n ? (100 * hits) / n : null, controlPct: n ? (100 * ctrl) / n : null }
+}
+
+/**
+ * Plan ONE science cohort's release from a closed blind-only run.
+ *   cfg:        the cohort's science-release.json entry (null = refuse)
+ *   staged:     every bank row of the cohort [{ id, verified, archived, qid }]
+ *   cleared:    Set of qids that survived the with-source drop rules
+ *   dropped:    Set of qids the drop rules removed (must not overlap cleared)
+ *   runRows:    this run's rows on the cohort [{ item_id, blind_at, blind_pick, key_slot, reviewer_kind }]
+ *   released:   Map cohort -> true when that cohort has been released (for cfg.after)
+ * Returns { release, refusals, hold, blind, kinds }. release is empty whenever refusals or hold is set.
+ * His VERDICTS play no part. His blind picks decide only where cfg.blindBar (fixed by a prereg) says so.
+ */
+/** @param {{ cohort: string, cfg: any, staged: any[], cleared: Set<string>, dropped: Set<string>, runRows: any[], released?: Map<string, boolean> }} args */
+export function planScienceRelease({ cohort, cfg, staged, cleared, dropped, runRows, released = new Map() }) {
+  const refusals = []
+  /** @type {Record<string, number>} */
+  const kinds = {}
+  for (const r of runRows) kinds[r.reviewer_kind ?? 'unknown'] = (kinds[r.reviewer_kind ?? 'unknown'] ?? 0) + 1
+  const blind = blindScore(runRows)
+  if (!cfg) return { release: [], refusals: [`${cohort}: no science-release.json entry`], hold: null, blind, kinds }
+  if (cfg.blocker) return { release: [], refusals: [`${cohort}: ${cfg.blocker}`], hold: null, blind, kinds }
+  const both = [...cleared].filter(q => dropped.has(q))
+  if (both.length) refusals.push(`${cohort}: ${both.length} id(s) both cleared and dropped, e.g. ${both[0]}`)
+  const open = staged.filter(r => !r.verified && !r.archived)
+  const noQid = open.filter(r => typeof r.qid !== 'string' || !r.qid)
+  if (noQid.length) refusals.push(`${cohort}: ${noQid.length} staged row(s) carry no ${cfg.qid} to join the with-source grading on`)
+  const uncleared = open.filter(r => r.qid && !cleared.has(r.qid))
+  if (uncleared.length) refusals.push(`${cohort}: ${uncleared.length} staged row(s) not on the cleared list, e.g. ${uncleared[0].qid}`)
+  if (!runRows.length) refusals.push(`${cohort}: the blind-only run has no row on this cohort`)
+  const unanswered = runRows.filter(r => !r.blind_at)
+  if (unanswered.length) refusals.push(`${cohort}: ${unanswered.length} blind row(s) unanswered: the run is not closed`)
+  for (const a of cfg.after ?? []) if (released.get(a) !== true) refusals.push(`${cohort}: waits for ${a} to be released (${cfg.afterBasis ?? 'science-release.json after'})`)
+  let hold = null
+  if (!refusals.length && cfg.blindBar && blind.pct != null && blind.pct > cfg.blindBar.maxPct) {
+    hold = `blind ${blind.hits}/${blind.n} = ${blind.pct.toFixed(1)}% exceeds the pre-registered ${cfg.blindBar.maxPct}% (${cfg.blindBar.basis})`
+  }
+  const release = refusals.length || hold ? [] : open.map(r => r.id)
+  return { release, refusals, hold, blind, kinds }
 }

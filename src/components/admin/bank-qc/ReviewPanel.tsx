@@ -20,7 +20,7 @@ import React from 'react'
 import { CheckCircle2, HelpCircle, Loader2, ShieldQuestion, XCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useQcT } from './i18n'
-import { SLOTS, type Slot } from '@/lib/study/item-review'
+import { SLOTS, isBlindOnlyRun, type Slot } from '@/lib/study/item-review'
 
 const CARD = 'bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]'
 
@@ -185,6 +185,9 @@ export function ReviewPanel({ domains }: { domains: string[] }) {
       const json = await authed('/api/admin/bank-qc/review', {
         method: 'PATCH', body: JSON.stringify({ runId, itemId, phase: 'blind', pick }),
       })
+      // A blind-only run (science, 2026-10-27) sends no reveal: the pick was
+      // the whole review, so go straight to the next item.
+      if (json.blindOnly || !json.reveal) { await nextItem(runId); return }
       setReveal(json.reveal)
     } catch (e) { setError((e as Error).message) } finally { setBusy(false) }
   }
@@ -273,6 +276,11 @@ export function ReviewPanel({ domains }: { domains: string[] }) {
           <p className="text-[11px] uppercase tracking-wide text-gray-500 mb-2">
             {t('admin.bankQc.review.blindQuestion')}
           </p>
+          {isBlindOnlyRun(runId) && (
+            <p className="text-[11.5px] text-gray-500 mb-2" data-testid="blind-only-hint">
+              {t('admin.bankQc.review.blindOnlyHint')}
+            </p>
+          )}
           <div className="grid gap-2">
             {options.map((o, i) => (
               <button

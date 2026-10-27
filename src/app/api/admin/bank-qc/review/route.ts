@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { requireAdmin } from '@/app/api/admin/_lib/admin-auth'
 import {
-  dealSlots, dealItem, groupRuns, readRun, reviewerAgreement,
+  dealSlots, dealItem, groupRuns, readRun, reviewerAgreement, isBlindOnlyRun,
   SLOTS, type Slot,
 } from '@/lib/study/item-review'
 
@@ -87,6 +87,8 @@ export async function GET(request: NextRequest) {
       .is('blind_at', null)
       .limit(1).maybeSingle()
     if (rowErr) return NextResponse.json({ error: rowErr.message }, { status: 500 })
+    // A blind-only run has no verdict step: every row with blind_at is finished.
+    if (!row && isBlindOnlyRun(runId)) return NextResponse.json({ done: true })
     if (!row) {
       /*
        * Phase 1 answered, phase 2 never saved (the app closed or the
@@ -189,6 +191,7 @@ export async function GET(request: NextRequest) {
     runId: g.runId,
     reviewerId: g.reviewerId,
     isMine: g.reviewerId === admin.userId,
+    blindOnly: isBlindOnlyRun(g.runId),
     ...g.score,
     ...readRun(g.score, PUBLISHED_MARGIN),
   }))
@@ -205,13 +208,32 @@ export async function GET(request: NextRequest) {
    * protect.
    */
   // Unfinished = a blind pick OR a verdict still missing; see the
-  // resume-at-reveal branch above.
-  const { data: open } = await reviews()
-    .select('run_id')
-    .eq('reviewer_id', admin.userId)
-    .or('blind_at.is.null,verdict.is.null')
-    .order('run_id', { ascending: false })
-    .limit(1).maybeSingle()
+  // resume-at-reveal branch above. A missing verdict does NOT count on a
+  // blind-only run (it never gets one), so that half filters those runs out;
+  // otherwise every closed blind-only run would read as open forever.
+  const [{ data: openBlind, error: obErr }, { data: openVerdict, error: ovErr }] = await Promise.all([
+    reviews()
+      .select('run_id')
+      .eq('reviewer_id', admin.userId)
+      .is('blind_at', null)
+      .order('run_id', { ascending: false })
+      .limit(1).maybeSingle(),
+    reviews()
+      .select('run_id')
+      .eq('reviewer_id', admin.userId)
+      .not('blind_at', 'is', null)
+      .is('verdict', null)
+      .not('run_id', 'like', '%-blindonly-%')
+      .order('run_id', { ascending: false })
+      .limit(1).maybeSingle(),
+  ])
+  if (obErr || ovErr) return NextResponse.json({ error: (obErr ?? ovErr)!.message }, { status: 500 })
+  const blindId = (openBlind as { run_id: string } | null)?.run_id ?? null
+  const verdictId = (openVerdict as { run_id: string } | null)?.run_id ?? null
+  const openIds = [blindId, verdictId && !isBlindOnlyRun(verdictId) ? verdictId : null]
+    .filter((r): r is string => r !== null)
+    .sort()
+  const open = openIds.length ? { run_id: openIds[openIds.length - 1] } : null
 
   /*
    * Pairwise agreement, across reviewers, on the items they BOTH saw.
@@ -487,7 +509,9 @@ export async function POST(request: NextRequest) {
  *   { runId, itemId, phase: 'reveal', verdict, realism, note? }
  *
  * The blind response carries the reveal payload, and nothing before it
- * does. `pick: null` is an explicit "can't tell" and is recorded as an
+ * does. On a BLIND-ONLY run (run_id contains "-blindonly-", see
+ * item-review.ts) it carries `{ ok, blindOnly }` and no reveal, and the
+ * reveal phase is refused: the run is complete when every row has blind_at. `pick: null` is an explicit "can't tell" and is recorded as an
  * answer, not as an abstention — abstaining must not be able to improve
  * a score.
  */
@@ -519,6 +543,16 @@ export async function PATCH(request: NextRequest) {
       return NextResponse.json({ error: 'Already answered — phase 1 is sealed.' }, { status: 409 })
     }
 
+    /*
+     * Blind-only run (science, owner rule 2026-10-27): the pick is the whole
+     * review. Nothing about the item — stimulus, graphic, key slot, whether
+     * the pick was right — leaves the server, so the reviewer's later picks
+     * in the same run cannot be calibrated by feedback on earlier ones.
+     */
+    if (isBlindOnlyRun(String(runId))) {
+      return NextResponse.json({ ok: true, blindOnly: true })
+    }
+
     // Only NOW does the server part with the answer.
     const { data: item } = await dbAdmin
       .from('study_item_bank').select('item').eq('id', updated.item_id).single()
@@ -543,6 +577,9 @@ export async function PATCH(request: NextRequest) {
   }
 
   if (phase === 'reveal') {
+    if (isBlindOnlyRun(String(runId))) {
+      return NextResponse.json({ error: 'This is a blind-only run: it has no verdict step.' }, { status: 409 })
+    }
     const { verdict, realism, note } = body
     if (!['unique', 'alternative', 'broken'].includes(verdict)) {
       return NextResponse.json({ error: `bad verdict: ${verdict}` }, { status: 400 })

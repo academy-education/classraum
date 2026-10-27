@@ -1,0 +1,174 @@
+{
+  "note": "Science release under the owner rule of 2026-10-27 (REGISTER §5 'OWNER RULE CHANGE'): act/science and map/science are released by the agent with-source graders and the pre-registered drop rules, plus a CLOSED blind-only co-founder run (run id contains '-blindonly-'). Read by release-by-shape.mjs; the rule is autonomy-core planScienceRelease. A cohort with a `blocker` cannot be released by this path, and the blocker says what is missing. `blindBar` is set ONLY where a prereg fixed one for his blind picks; otherwise the blind number is reported against its control and decides nothing. `cleared` lists the ids (verify_meta.<qid>) that survived the with-source drop rules; every staged row of the cohort must be on it.",
+  "cohorts": {
+    "act-science-v5a": {
+      "family": "act/science",
+      "prereg": "act-science-v5.RELEASE.PREREG.md",
+      "blocker": "No agent release rule is pre-registered for ACT Science: act-science-v5.RELEASE.PREREG.md makes the co-founder's spot verdict sitting the release gate and fixes no agent drop rules. The with-source grading exists only as a one-line summary in ledger.json (entry act-science-v5a-2026-10-23, stages.withsource: \"co-founder-standard grader with data tables: 0/40.\"); no per-item grade file and no cleared list is in the repo, so neither which items two fresh graders cleared nor whether they read the decoded graphics can be checked. To release: pre-register an agent release rule for ACT Science (owner), then commit per-item with-source grades from two fresh graders reading the decoded graphics, with a cleared list, and add them here. The ledger names a single grader for v5a-v5d (\"co-founder-standard grader with data tables\"), not two. Its 17-item run actsciencev5a-bridge1-cofounder-2026-10-27 was a verdict run whose verdicts are model-assisted (owner, 2026-10-27); it is not a blind-only run."
+    },
+    "act-science-v5b": {
+      "family": "act/science",
+      "prereg": "act-science-v5.RELEASE.PREREG.md",
+      "blocker": "No agent release rule is pre-registered for ACT Science: act-science-v5.RELEASE.PREREG.md makes the co-founder's spot verdict sitting the release gate and fixes no agent drop rules. The with-source grading exists only as a one-line summary in ledger.json (entry act-science-v5b-2026-10-23, stages.withsource: \"co-founder-standard grader with data tables: 0/40.\"); no per-item grade file and no cleared list is in the repo, so neither which items two fresh graders cleared nor whether they read the decoded graphics can be checked. To release: pre-register an agent release rule for ACT Science (owner), then commit per-item with-source grades from two fresh graders reading the decoded graphics, with a cleared list, and add them here. The ledger names a single grader for v5a-v5d, not two."
+    },
+    "act-science-v5c": {
+      "family": "act/science",
+      "prereg": "act-science-v5.RELEASE.PREREG.md (amendment)",
+      "blocker": "No agent release rule is pre-registered for ACT Science: act-science-v5.RELEASE.PREREG.md (amendment) makes the co-founder's spot verdict sitting the release gate and fixes no agent drop rules. The with-source grading exists only as a one-line summary in ledger.json (entry act-science-v5c-2026-10-23, stages.withsource: \"co-founder-standard grader with data: 0/40.\"); no per-item grade file and no cleared list is in the repo, so neither which items two fresh graders cleared nor whether they read the decoded graphics can be checked. To release: pre-register an agent release rule for ACT Science (owner), then commit per-item with-source grades from two fresh graders reading the decoded graphics, with a cleared list, and add them here. The ledger names a single grader for v5a-v5d, not two."
+    },
+    "act-science-v5d": {
+      "family": "act/science",
+      "prereg": "act-science-v5.RELEASE.PREREG.md (amendment)",
+      "blocker": "No agent release rule is pre-registered for ACT Science: act-science-v5.RELEASE.PREREG.md (amendment) makes the co-founder's full verdict sitting the release gate and fixes no agent drop rules. The with-source grading exists only as a one-line summary in ledger.json (entry act-science-v5d-2026-10-23, stages.withsource: \"co-founder-standard grader with data: 0/40.\"); no per-item grade file and no cleared list is in the repo, so neither which items two fresh graders cleared nor whether they read the decoded graphics can be checked. To release: pre-register an agent release rule for ACT Science (owner), then commit per-item with-source grades from two fresh graders reading the decoded graphics, with a cleared list, and add them here. The ledger names a single grader for v5a-v5d, not two."
+    },
+    "act-science-v6a": {
+      "family": "act/science",
+      "prereg": "act-v9-v6.RELEASE.PREREG.md",
+      "blocker": "No agent release rule is pre-registered for ACT Science: act-v9-v6.RELEASE.PREREG.md makes the co-founder's spot verdict sitting the release gate and fixes no agent drop rules. The with-source grading exists only as a one-line summary in ledger.json (entry act-science-v6a-2026-10-23, stages.withsource: \"co-founder-standard grader grader A 0/40, B 0/40.\"); no per-item grade file and no cleared list is in the repo, so neither which items two fresh graders cleared nor whether they read the decoded graphics can be checked. To release: pre-register an agent release rule for ACT Science (owner), then commit per-item with-source grades from two fresh graders reading the decoded graphics, with a cleared list, and add them here."
+    },
+    "act-science-v6b": {
+      "family": "act/science",
+      "prereg": "act-v9-v6.RELEASE.PREREG.md",
+      "blocker": "No agent release rule is pre-registered for ACT Science: act-v9-v6.RELEASE.PREREG.md makes the co-founder's spot verdict sitting the release gate and fixes no agent drop rules. The with-source grading exists only as a one-line summary in ledger.json (entry act-science-v6b-2026-10-23, stages.withsource: \"co-founder-standard grader grader A 1/40 (ASV6b-P5-Q5 stem scoped), B 0/40.\"); no per-item grade file and no cleared list is in the repo, so neither which items two fresh graders cleared nor whether they read the decoded graphics can be checked. To release: pre-register an agent release rule for ACT Science (owner), then commit per-item with-source grades from two fresh graders reading the decoded graphics, with a cleared list, and add them here. One item (ASV6b-P5-Q5) was repaired after grader A flagged it, not dropped."
+    },
+    "act-science-v7a": {
+      "family": "act/science",
+      "prereg": "REGISTER 2026-10-23 wave 4 (no prereg file names v7)",
+      "blocker": "No agent release rule is pre-registered for ACT Science: REGISTER 2026-10-23 wave 4 (no prereg file names v7) makes the co-founder's full verdict sitting the release gate and fixes no agent drop rules. The with-source grading exists only as a one-line summary in ledger.json (entry act-science-v7a-2026-10-23, stages.withsource: \"co-founder-standard grader: A 0/40, B 0/40\"); no per-item grade file and no cleared list is in the repo, so neither which items two fresh graders cleared nor whether they read the decoded graphics can be checked. To release: pre-register an agent release rule for ACT Science (owner), then commit per-item with-source grades from two fresh graders reading the decoded graphics, with a cleared list, and add them here."
+    },
+    "act-science-v7b": {
+      "family": "act/science",
+      "prereg": "REGISTER 2026-10-23 wave 4 (no prereg file names v7)",
+      "blocker": "No agent release rule is pre-registered for ACT Science: REGISTER 2026-10-23 wave 4 (no prereg file names v7) makes the co-founder's spot verdict sitting the release gate and fixes no agent drop rules. The with-source grading exists only as a one-line summary in ledger.json (entry act-science-v7b-2026-10-23, stages.withsource: \"co-founder-standard grader: A 0/40, B 0/40\"); no per-item grade file and no cleared list is in the repo, so neither which items two fresh graders cleared nor whether they read the decoded graphics can be checked. To release: pre-register an agent release rule for ACT Science (owner), then commit per-item with-source grades from two fresh graders reading the decoded graphics, with a cleared list, and add them here."
+    },
+    "act-science-v8a": {
+      "family": "act/science",
+      "prereg": "act-v11-v8-isee13.RELEASE.PREREG.md",
+      "blocker": "No agent release rule is pre-registered for ACT Science: act-v11-v8-isee13.RELEASE.PREREG.md makes the co-founder's spot verdict sitting the release gate and fixes no agent drop rules. The with-source grading exists only as a one-line summary in ledger.json (entry act-science-v8a-2026-10-23, stages.withsource: \"co-founder-standard grader: A 0/40, B 0/40\"); no per-item grade file and no cleared list is in the repo, so neither which items two fresh graders cleared nor whether they read the decoded graphics can be checked. To release: pre-register an agent release rule for ACT Science (owner), then commit per-item with-source grades from two fresh graders reading the decoded graphics, with a cleared list, and add them here."
+    },
+    "act-science-v8b": {
+      "family": "act/science",
+      "prereg": "act-v11-v8-isee13.RELEASE.PREREG.md",
+      "blocker": "No agent release rule is pre-registered for ACT Science: act-v11-v8-isee13.RELEASE.PREREG.md makes the co-founder's spot verdict sitting the release gate and fixes no agent drop rules. The with-source grading exists only as a one-line summary in ledger.json (entry act-science-v8b-2026-10-23, stages.withsource: \"co-founder-standard grader: A 0/40, B 0/40\"); no per-item grade file and no cleared list is in the repo, so neither which items two fresh graders cleared nor whether they read the decoded graphics can be checked. To release: pre-register an agent release rule for ACT Science (owner), then commit per-item with-source grades from two fresh graders reading the decoded graphics, with a cleared list, and add them here."
+    },
+    "act-science-v9a": {
+      "family": "act/science",
+      "prereg": "wave7.RELEASE.PREREG.md",
+      "blocker": "No agent release rule is pre-registered for ACT Science: wave7.RELEASE.PREREG.md makes the co-founder's full verdict sitting the release gate and fixes no agent drop rules. The with-source grading exists only as a one-line summary in ledger.json (entry act-science-v9a-2026-10-23, stages.withsource: \"co-founder-standard grader: A 0/40, B 0/40 on keys; both flagged background-knowledge decidability (floating cylinders by Archimedes, gel/salt, silt/clay, soil nitrate). Author reworked sc9a-p5 (unstated liquid densities, an absorbing foam cylinder) and three items; 13 changed items re-graded by fresh A+B: 13/13 unique, no item decidable by knowledge alone\"); no per-item grade file and no cleared list is in the repo, so neither which items two fresh graders cleared nor whether they read the decoded graphics can be checked. To release: pre-register an agent release rule for ACT Science (owner), then commit per-item with-source grades from two fresh graders reading the decoded graphics, with a cleared list, and add them here. Items flagged as knowledge-decidable were reworked and re-graded rather than dropped (13 changed items)."
+    },
+    "act-science-v9b": {
+      "family": "act/science",
+      "prereg": "wave7.RELEASE.PREREG.md",
+      "blocker": "No agent release rule is pre-registered for ACT Science: wave7.RELEASE.PREREG.md makes the co-founder's spot verdict sitting the release gate and fixes no agent drop rules. The with-source grading exists only as a one-line summary in ledger.json (entry act-science-v9b-2026-10-23, stages.withsource: \"co-founder-standard grader: A 1/40 broken (P3-Q6 key contradicted the 0-layer trial), B 0/40; both flagged P3-Q5, P5-Q4, P5-Q6 as decidable by knowledge or formula. All four reworked; re-grade 13/13 unique except P5-Q4, whose factor was exactly 1000 (answer = a table cell); fuel mass changed 0.84 -> 0.63 g, recomputed and asserted in the build\"); no per-item grade file and no cleared list is in the repo, so neither which items two fresh graders cleared nor whether they read the decoded graphics can be checked. To release: pre-register an agent release rule for ACT Science (owner), then commit per-item with-source grades from two fresh graders reading the decoded graphics, with a cleared list, and add them here. Four flagged items were reworked and re-graded rather than dropped."
+    },
+    "map-science-pilot": {
+      "family": "map/science",
+      "prereg": "MAP-SCIENCE-PILOT.prereg.md (amendments A1, A2)",
+      "qid": "draft.qid",
+      "cleared": "map-v2-work/science-pilot/cleared.json",
+      "dropped": [
+        {
+          "file": "map-v2-work/science-pilot/dropped.json",
+          "keys": [
+            "dropped"
+          ]
+        }
+      ],
+      "grades": [
+        "map-v2-work/science-pilot/grades/g3.keyed.json",
+        "map-v2-work/science-pilot/grades/g4.keyed.json"
+      ],
+      "blindBar": {
+        "maxPct": 35,
+        "basis": "MAP-SCIENCE-PILOT.prereg.md, Verdict: PASS requires H <= 35%; 'H > 35% (four-choice chance 25%): the sitting itself flags guessability'. Fixed before any item existed."
+      }
+    },
+    "map-science-v1-life": {
+      "family": "map/science",
+      "prereg": "MAP-SCIENCE-B1.prereg.md (amendments B1-A1, B1-A2)",
+      "qid": "draft.qid",
+      "qidPrefix": "MSB1-L",
+      "cleared": "map-v2-work/science-b1/cleared.json",
+      "dropped": [
+        {
+          "file": "map-v2-work/science-b1/decisions.json",
+          "keys": [
+            "drop_A2_coordinator",
+            "drop_item_rules",
+            "drop_recheck",
+            "withdrawn"
+          ]
+        }
+      ],
+      "grades": [
+        "map-v2-work/science-b1/grades/life-g1.keyed.json",
+        "map-v2-work/science-b1/grades/life-g2.keyed.json",
+        "map-v2-work/science-b1/grades/recheck.keyed.json"
+      ],
+      "after": [
+        "map-science-pilot"
+      ],
+      "afterBasis": "MAP-SCIENCE-B1.prereg.md B1-A1: no batch-1 row becomes drawable before the pilot sitting has closed, and the pilot outcome governs batch 1's release; the pilot is released only when its H bar passes.",
+      "blindBar": null,
+      "blindBarNote": "MAP-SCIENCE-B1.prereg.md fixes no bar on his blind picks for batch 1; reported against its control only."
+    },
+    "map-science-v1-phys": {
+      "family": "map/science",
+      "prereg": "MAP-SCIENCE-B1.prereg.md (amendments B1-A1, B1-A2)",
+      "qid": "draft.qid",
+      "qidPrefix": "MSB1-P",
+      "cleared": "map-v2-work/science-b1/cleared.json",
+      "dropped": [
+        {
+          "file": "map-v2-work/science-b1/decisions.json",
+          "keys": [
+            "drop_A2_coordinator",
+            "drop_item_rules",
+            "drop_recheck",
+            "withdrawn"
+          ]
+        }
+      ],
+      "grades": [
+        "map-v2-work/science-b1/grades/phys-g1.keyed.json",
+        "map-v2-work/science-b1/grades/phys-g2.keyed.json",
+        "map-v2-work/science-b1/grades/recheck.keyed.json"
+      ],
+      "after": [
+        "map-science-pilot"
+      ],
+      "afterBasis": "MAP-SCIENCE-B1.prereg.md B1-A1: no batch-1 row becomes drawable before the pilot sitting has closed, and the pilot outcome governs batch 1's release; the pilot is released only when its H bar passes.",
+      "blindBar": null,
+      "blindBarNote": "MAP-SCIENCE-B1.prereg.md fixes no bar on his blind picks for batch 1; reported against its control only."
+    },
+    "map-science-v1-earth": {
+      "family": "map/science",
+      "prereg": "MAP-SCIENCE-B1.prereg.md (amendments B1-A1, B1-A2)",
+      "qid": "draft.qid",
+      "qidPrefix": "MSB1-E",
+      "cleared": "map-v2-work/science-b1/cleared.json",
+      "dropped": [
+        {
+          "file": "map-v2-work/science-b1/decisions.json",
+          "keys": [
+            "drop_A2_coordinator",
+            "drop_item_rules",
+            "drop_recheck",
+            "withdrawn"
+          ]
+        }
+      ],
+      "grades": [
+        "map-v2-work/science-b1/grades/earth-g1.keyed.json",
+        "map-v2-work/science-b1/grades/earth-g2.keyed.json",
+        "map-v2-work/science-b1/grades/recheck.keyed.json"
+      ],
+      "after": [
+        "map-science-pilot"
+      ],
+      "afterBasis": "MAP-SCIENCE-B1.prereg.md B1-A1: no batch-1 row becomes drawable before the pilot sitting has closed, and the pilot outcome governs batch 1's release; the pilot is released only when its H bar passes.",
+      "blindBar": null,
+      "blindBarNote": "MAP-SCIENCE-B1.prereg.md fixes no bar on his blind picks for batch 1; reported against its control only."
+    }
+  }
+}

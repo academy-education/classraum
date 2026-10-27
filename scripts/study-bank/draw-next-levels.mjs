@@ -7,6 +7,9 @@
  *           L0 full sitting capped at 36, L1 a 12-item spot (fewest whole passages/sets reaching 12), L2 one pooled
  *           12-item run across up to 6 batches of the stratum's current method
  *   drawn   a batch that already has a run keeps the rule it was drawn under (Amendment 1's own transition rule)
+ *   blind   act/science and map/science (owner rule 2026-10-27): one BLIND-ONLY pass over whole unserved passages,
+ *           capped at 36, run id marked '-blindonly-' (no reveal, no verdict); never pooled, adds no level evidence
+ *   held    a cohort whose every queue entry is at its `upTo` is skipped (until 2026-10-27 this mode ignored upTo)
  *
  * Dry by default: prints the next 10 runs and the items he would answer for the whole queue under this rule and
  * under the old one. Refuses if the state file is older than the latest review (re-run autonomy-state.mjs).
@@ -14,11 +17,10 @@
 import { readFileSync } from 'node:fs'
 import { spawnSync } from 'node:child_process'
 import {
-  RefusalError, stratumOf, sectionOf, sectionDepth, simulateQueue, oldRuleItems, seededOrder, setShape, PARAMS,
+  RefusalError, stratumOf, sectionOf, sectionDepth, simulateQueue, oldRuleItems, seededOrder, PARAMS,
+  commandForRun, cohortHeld, isBlindOnlySection,
 } from './autonomy-core.mjs'
 import { client, pageExact, here } from './autonomy-io.mjs'
-
-const slug = s => s.replace(/[^a-z0-9]+/gi, '')
 
 export async function levelAwareDraw({ Q, stateFile, commit }) {
   const state = JSON.parse(readFileSync(stateFile, 'utf8'))
@@ -71,7 +73,11 @@ export async function levelAwareDraw({ Q, stateFile, commit }) {
     const pre = entries.find(e => e.group)?.group
     const order = seededOrder(whole.map(g => g.id).filter(g => g !== pre), `autonomy-spot:${cohort}`)
     const groups = [...(pre && whole.some(g => g.id === pre) ? [pre] : []), ...order].map(id => whole.find(g => g.id === id))
-    batches.push({ idx, cohort, stratum, method, tool, entry: entries[0], family: entries[0].family ?? rows[0].family, waiting: waitingRows.length, groups, drawn: runsOf(rows) > 0, old, runsSoFar: runsOf(rows) })
+    /* Blind-only sections (act/science, map/science) are never "already drawn": each run is one blind pass over
+     * whole passages nobody has served yet, so an earlier run (e.g. a verdict run from before the 2026-10-27 rule)
+     * only removes its items from the pool. `held`: every queue entry of the cohort is at its upTo. */
+    const blindOnly = isBlindOnlySection(stratum)
+    batches.push({ idx, cohort, stratum, method, tool, entry: entries[0], family: entries[0].family ?? rows[0].family, waiting: waitingRows.length, groups, drawn: !blindOnly && runsOf(rows) > 0, held: cohortHeld(entries, runsOf(rows)), old, runsSoFar: runsOf(rows) })
   }
 
   const strataChains = new Map(state.strata.map(s => [s.stratum, s.chain.map(c => ({ method: c.method, units: c.units }))]))
@@ -81,20 +87,7 @@ export async function levelAwareDraw({ Q, stateFile, commit }) {
 
   const date = new Date().toISOString().slice(0, 10)
   const runCount = new Map(batches.map(b => [b.cohort, b.runsSoFar]))
-  const commandFor = run => {
-    const b0 = batches.find(b => b.cohort === run.batches[0].cohort)
-    if (run.shape === 'old-rule') return `(already drawn: draw-next.mjs --old-rule draws ${b0.cohort} under its own entry)`
-    if (run.shape === 'pooled') {
-      const spec = run.batches.map(x => `${x.cohort}:${x.items}`).join(',')
-      return `DRAW_COHORT=${spec} DRAW_FAMILY=${b0.family} node scripts/study-bank/draw-review-run.mjs '*' 0 ${Q.reviewer} ${slug(run.stratum.split('/').slice(0, 3).join('-'))}-pooled-cofounder-${date}`
-    }
-    const n = (runCount.get(b0.cohort) ?? 0) + 1; runCount.set(b0.cohort, n)
-    const runId = `${slug(b0.cohort)}-${run.shape}${n}-cofounder-${date}`
-    const g = run.batches[0].groups ?? []
-    if (b0.tool === 'sets') return `DRAW_SETS=${g.length || Math.ceil(run.items / setShape(b0.cohort).size)} node scripts/study-bank/draw-toefl-conv-runs.mjs ${b0.cohort} ${runId} --commit`
-    const single = b0.entry.domain && !b0.entry.domain.includes(':') && !b0.entry.domain.includes(',') && !g.length
-    return `DRAW_COHORT=${b0.cohort} DRAW_FAMILY=${b0.family}${g.length ? ` DRAW_GROUP=${g.join(',')}` : ''} node scripts/study-bank/draw-review-run.mjs ${single ? JSON.stringify(b0.entry.domain) : "'*'"} ${run.items} ${Q.reviewer} ${runId}`
-  }
+  const commandFor = run => commandForRun(run, { batches, runCount, reviewer: Q.reviewer, date })
 
   console.log(`level-aware queue (Amendment 3; state ${state.generated_at}; depth snapshot ${snapshot.measured})`)
   const floorList = [...depth].filter(([, d]) => d != null && d < PARAMS.floor).sort((a, b) => a[1] - b[1]).map(([s, d]) => `${s} ${d}`)
@@ -106,10 +99,11 @@ export async function levelAwareDraw({ Q, stateFile, commit }) {
   for (const [i, r] of sim.runs.slice(0, SHOW).entries()) {
     const cmd = commandFor(r); cmds.push(cmd)
     const what = r.batches.map(x => `${x.cohort} ${x.items}${x.groups?.length ? ` [${x.groups.map(g => g.split(/[-:]/).pop().slice(0, 8)).join(',')}]` : ''}`).join(' + ')
-    console.log(`${String(i + 1).padStart(2)}. ${r.shape.padEnd(8)} ${String(r.items).padStart(3)} items  ${r.stratum.padEnd(32)} ${r.level != null ? `L${r.level}` : '  '}  ${what}`)
+    console.log(`${String(i + 1).padStart(2)}. ${(r.blindOnly ? 'blind' : r.shape).padEnd(8)} ${String(r.items).padStart(3)} items  ${r.stratum.padEnd(32)} ${r.level != null ? `L${r.level}` : '  '}  ${what}`)
     console.log(`      ${cmd}`)
   }
-  const byShape = {}; for (const r of sim.runs) byShape[r.shape] = (byShape[r.shape] ?? 0) + r.items
+  if (sim.held.length) console.log(`held (every queue entry at its upTo): ${sim.held.join(', ')}`)
+  const byShape = {}; for (const r of sim.runs) { const k = r.blindOnly ? 'blind-only' : r.shape; byShape[k] = (byShape[k] ?? 0) + r.items }
   console.log(`\nwhole current queue: ${sim.total} items in ${sim.runs.length} runs under Amendment 3 (${Object.entries(byShape).map(([k, v]) => `${k} ${v}`).join(', ')})`)
   console.log(`                     ${oldTotal} items in ${oldRuns.reduce((a, r) => a + r.runs, 0)} runs under the current rule (Amendment 1 queue entries, no flags)`)
   console.log('both assume every run comes back clean; each flag adds a full sitting of that batch under either rule.')

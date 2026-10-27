@@ -14,6 +14,7 @@
 import { createClient } from '@supabase/supabase-js'
 import { readFileSync, existsSync } from 'node:fs'
 import { spawnSync } from 'node:child_process'
+import { entryRunId } from './autonomy-core.mjs'
 const COMMIT = process.argv.includes('--commit')
 const here = new URL('.', import.meta.url).pathname
 const Q = JSON.parse(readFileSync(process.env.QUEUE_FILE || here + 'cofounder-queue.json', 'utf8')) // QUEUE_FILE: test queues
@@ -64,7 +65,8 @@ for (const [i, e] of Q.queue.entries()) {
 if (!next) { console.log('queue empty: every listed cohort has been fully served'); process.exit(0) }
 const { e, s } = next
 const date = new Date().toISOString().slice(0, 10)
-const runId = e.runId.replace('{n}', String(s.runs + 1)).replace('{date}', date)
+// entryRunId marks a blind-only entry's id with '-blindonly-' (science, owner rule 2026-10-27): no reveal, no verdict
+const runId = entryRunId(e, s.runs + 1, date)
 let cmd, args, extra = {}
 if (e.tool === 'item') {
   const size = Math.min(e.size, s.waiting)
