@@ -142,3 +142,22 @@ The rule:
 - `stage-map-science-pilot.mjs` 245a1ee9dcb8eb06
 
 `EXCLUSIONS-science.txt` is regenerated before authoring (`make-exclusions.mjs --live`), so it is not fingerprinted.
+
+## Amendments (2026-10-27, before any keyed pass, before any drop decision)
+
+**A1. The first two graders were not blind; two fresh graders decide.** GRADER-BRIEF.md told graders to read
+BRIEF.md, whose slot tables list every slot's key letter and key rank. Grader 1 reported it; grader 2 read the same
+brief. Their cold picks therefore say nothing about whether the keys are right, and they are recorded as non-blind
+(`packets/g1/cold.json`, `packets/g2/cold.json`). Fix: `BRIEF-grader.md` is BRIEF.md with the slot tables cut, and
+GRADER-BRIEF.md now points at it. Stage 1 is re-run by two FRESH graders (g3, g4) who are not shown g1/g2's output;
+the drop rules apply to g3/g4. g1/g2's shortcut flags (both independently flagged MSP-E-04, MSP-E-12, MSP-P-04,
+MSP-P-11; the flags do not depend on knowing the key) are recorded as findings and reported beside g3/g4, never
+substituted for them.
+
+**A2. Scorer fix.** `sci-packet.mjs score` compared each answer value to the key letter, so `{pick, basis}` answer
+files scored 0/72 instead of failing. It now accepts a bare letter or `{pick}` and refuses anything else (selftest
+cases added; removing the fix fails both). Report-only renders, scored after the fix: covered candidate 48.6%
+(unanimous 15/24, 9 on key); options-only candidate 59.3% vs live act/science control 58.3% (unanimity 61.1% vs
+83.3%). Caveat: each sample saw the covered render before the options-only one, and the options-only packet repeats
+the 24 covered items, so options-only picks on those items are not independent of the covered picks. A first
+single-pass "three samples" file set was voided unscored (`packets/void-single-pass/`).

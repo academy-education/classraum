@@ -127,11 +127,21 @@ async function liveControl(n) {
 
 function write(dir, name, obj) { mkdirSync(dir, { recursive: true }); const p = join(dir, name); writeFileSync(p, typeof obj === 'string' ? obj : JSON.stringify(obj, null, 1) + '\n'); console.log(`  wrote ${p}`) }
 
+/* An answer is a bare letter or {pick: letter}. Anything else is refused: an
+ * object compared to a letter is never equal, so the first live run scored
+ * {pick} files as 0/72 instead of failing (2026-10-27). */
+export function pickOf(v) {
+  const p = typeof v === 'string' ? v : v && typeof v === 'object' ? v.pick : undefined
+  return typeof p === 'string' && /^[A-D]$/.test(p.trim()) ? p.trim() : null
+}
+
 export function score(key, answers) {
   const arms = {}
   for (const [id, k] of Object.entries(key)) {
-    const picks = answers.map(a => a[id]).filter(Boolean)
-    if (picks.length !== answers.length) return { err: `item ${id} unanswered in ${answers.length - picks.length} file(s)` }
+    const raw = answers.map(a => a[id])
+    if (raw.some(v => v === undefined)) return { err: `item ${id} unanswered in ${raw.filter(v => v === undefined).length} file(s)` }
+    const picks = raw.map(pickOf)
+    if (picks.some(p => p === null)) return { err: `item ${id} has an answer that is not a letter A-D or {pick: letter}: ${JSON.stringify(raw)}` }
     const a = (arms[k.kind] ??= { n: 0, picks: 0, hits: 0, unan: 0, unanHit: 0 })
     a.n++; a.picks += picks.length; a.hits += picks.filter(p => p === k.letter).length
     if (new Set(picks).size === 1) { a.unan++; if (picks[0] === k.letter) a.unanHit++ }
@@ -165,6 +175,11 @@ async function selftest() {
   const s = score(oo.key, [ans(0), ans(1), ans(2)])
   ok(s.arms.candidate.hits === 26 && s.arms.candidate.unan === 8, `score: 26/27 picks, 8 unanimous (got ${s.arms.candidate.hits}, ${s.arms.candidate.unan})`)
   ok(!!score(oo.key, [ans(0), ans(1), {}]).err, 'score refuses an answer file with missing items')
+  const wrap = a => Object.fromEntries(Object.entries(a).map(([i, l]) => [i, { pick: l, basis: 'guess' }]))
+  const sw = score(oo.key, [wrap(ans(0)), ans(1), wrap(ans(2))])
+  ok(!sw.err && sw.arms.candidate.hits === 26 && sw.arms.candidate.unan === 8, `score reads {pick} answers the same as bare letters (got ${sw.err ?? sw.arms.candidate.hits})`)
+  const bad = Object.fromEntries(Object.keys(oo.key).map(i => [i, { choice: 'A' }]))
+  ok(!!score(oo.key, [ans(0), ans(1), bad]).err, 'score refuses answers that are neither a letter nor {pick}')
   console.log(fail ? `PACKET SELFTEST FAILED: ${fail}` : 'PACKET SELFTEST OK')
   process.exit(fail ? 1 : 0)
 }

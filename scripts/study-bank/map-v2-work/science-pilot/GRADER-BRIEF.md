@@ -5,7 +5,7 @@ Earth and Space). Your half **decides**. CLAUDE.md 2026-09-21 says: on a family 
 with-source half found every real defect in five consecutive batches. ACT Science is such a family, with model 88.9%
 against human 28.6% on the same shipped items.
 
-Pre-registration: `scripts/study-bank/MAP-SCIENCE-PILOT.prereg.md`. Author brief: `BRIEF.md`, the same folder (read its
+Pre-registration: `scripts/study-bank/MAP-SCIENCE-PILOT.prereg.md`. Author brief: `BRIEF-grader.md`, the same folder (NOT `BRIEF.md`: its slot tables carry the keys; read its
 fictional-experiment rule, stimulus rules and option formats).
 
 **Never open an NWEA item, NWEA's sample-item sheets, a MAP prep site, or any Herald file.** Claude only; no GPT.
