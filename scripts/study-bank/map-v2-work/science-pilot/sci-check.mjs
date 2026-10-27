@@ -40,6 +40,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import {
   AREAS, PES, peBand, dciOfPe, DIFF, RIT, STIMULI, FORMATS, TREND_WORDS, CLICHES, ABSOLUTE, HEDGE, LETTERS, norm, numOf,
+  QUALIFIER, RESULT_WORDS, NAME_PROPERTY, ABSOLUTE_B1,
 } from './sci-spec.mjs'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
@@ -118,8 +119,12 @@ export function loadExclusions(path) {
 }
 
 /* ---------------- per item ---------------- */
-export function checkItem(it, slot, ex = []) {
+/** opts.rules: 'b1' (default) adds the batch-1 rules; 'pilot' reproduces the pilot's checker exactly.
+ *  opts.disabled: a Set of B1 check ids switched off, used ONLY by --break-test to prove each check is load-bearing. */
+export const B1_CHECKS = ['QUAL', 'ROLE', 'LABEL', 'NAMEPROP', 'ABS', 'LAW', 'ABSDIS']
+export function checkItem(it, slot, ex = [], opts = {}) {
   const p = [], add = m => p.push(m)
+  const b1 = (opts.rules ?? 'b1') === 'b1', on = id => b1 && !(opts.disabled ?? new Set()).has(id)
   if (!slot) return [`SLOT ${it?.id}: not a slot in slots.json`]
   const want = { map_area: slot.area, grade_target: slot.g, tier: slot.tier, difficulty: DIFF[slot.tier], rit_band_target: RIT[slot.g][slot.tier], dci: slot.dci, kind: slot.kind, stimulus: slot.stimulus, format: slot.format, ask: slot.ask, invented: slot.invent }
   for (const [k, v] of Object.entries(want)) if (it[k] !== v) add(`SLOT ${k} is ${JSON.stringify(it[k])}, slot says ${JSON.stringify(v)}`)
@@ -220,6 +225,62 @@ export function checkItem(it, slot, ex = []) {
     }
   }
 
+  /* ---------- B1 rules (MAP-SCIENCE-B1.prereg.md; each from the pilot's graders g3/g4) ---------- */
+  // QUAL (rule b): trend options carry a qualifier on all four or on none. The pilot's lone qualified option was the key
+  // on L-10 "steadily", P-04 "with every trial", P-11 "overall", E-02 "close to".
+  if (on('QUAL') && slot.format === 'trend') {
+    const q = ch.filter(c => QUALIFIER.test(c)).length
+    if (q !== 0 && q !== 4) add(`QUAL ${q} of 4 trend options carry a qualifier (steadily / overall / about / each year ...); all four or none`)
+  }
+  // ROLE (rule a): variable items tag every option setting|result; the tags must agree with the wording; an outcome ask
+  // needs >= 2 result-worded options (E-12: the key was the only one); a setting ask (independent / controlled) takes
+  // none (L-06, P-07: "an outcome can never be the controlled variable" killed them free).
+  if (on('ROLE') && slot.format === 'variable') {
+    const R = it.option_roles
+    if (!Array.isArray(R) || R.length !== 4 || R.some(r => r !== 'setting' && r !== 'result')) add('ROLE variable item needs option_roles: four of "setting" | "result", in choice order')
+    else {
+      ch.forEach((c, i) => { if (RESULT_WORDS.test(c) && R[i] !== 'result') add(`ROLE "${c}" is worded as a measured result but tagged ${R[i]}`) })
+      const nRes = R.filter(r => r === 'result').length
+      if (slot.ask === 'dependent' && nRes < 2) add(`ROLE outcome ask with ${nRes} result-worded option(s): need >= 2, or the key is the lone measured result`)
+      if (slot.ask !== 'dependent' && nRes > 0) add(`ROLE ${slot.ask} ask with ${nRes} result-worded option(s): an outcome can never be the ${slot.ask} variable, so it dies free; use settings only`)
+      if (slot.ask === 'dependent' && R[ki] !== 'result') add('ROLE outcome ask but the key is tagged setting')
+    }
+  }
+  // LABEL (rule a): a condition label is an opaque name. No commas or slashes (E-04 "Marlowe, 30°, close"), no number
+  // with a unit, no lowercase descriptive word (L-03 "R-17, watered"), no token that repeats a setting printed in the
+  // table, and it must carry a code token (a digit, or a 1-4 letter capital code) or be one of names_used.
+  if (on('LABEL') && slot.format === 'conditions') {
+    const names = new Set((it.names_used ?? []).map(norm))
+    const cellWords = new Set()
+    if (g?.type === 'table') {
+      for (const row of g.cells ?? []) for (const v of row) if (typeof v === 'string') for (const w of norm(v).split(' ')) if (w.length >= 3) cellWords.add(w)
+      for (const c of g.colLabels ?? []) for (const w of norm(c.replace(/\(.*?\)/g, '')).split(' ')) if (w.length >= 3) cellWords.add(w)
+    }
+    for (const c of ch) {
+      const t = c.trim().split(/\s+/)
+      if (/[,;/]/.test(c)) add(`LABEL "${c}" lists several settings; use an opaque label and put the settings in the stimulus`)
+      else if (/\d\s*(°|%|[a-zA-Z]{1,3}\b)/.test(c) && !/^[A-Z]{0,4}-?\d+[A-Z]?$/.test(t[t.length - 1])) add(`LABEL "${c}" carries a number with a unit`)
+      else if (t.some(w => /^[a-z]{3,}$/.test(w))) add(`LABEL "${c}" has a lowercase descriptive word; labels name, they do not describe`)
+      const rep = t.map(w => w.toLowerCase().replace(/[^a-z]/g, '')).filter(w => w.length >= 3 && cellWords.has(w))
+      if (rep.length) add(`LABEL "${c}" repeats the setting "${rep[0]}" printed in the table`)
+      const code = t.some(w => /\d/.test(w) || /^[A-Z]{1,4}(-[A-Z0-9]+)?$/.test(w))
+      if (!code && !names.has(norm(c))) add(`LABEL "${c}" has no code token and is not one of names_used`)
+    }
+  }
+  // NAMEPROP (E-11): invented names and condition labels never carry a property word (low, steep, bluff, wet ...).
+  if (on('NAMEPROP')) {
+    const pool = [...(it.names_used ?? []), ...(slot.format === 'conditions' ? ch : [])]
+    for (const n of pool) { const m = String(n).match(NAME_PROPERTY); if (m) add(`NAMEPROP "${n}" carries the property word "${m[1]}"; use a neutral invented name`) }
+  }
+  // ABS (rule c): in claim items no option is the lone absolute or the lone absolute-free one.
+  if (on('ABS') && slot.format === 'claim') {
+    const a = ch.filter(c => ABSOLUTE_B1.test(c)).length
+    if (a === 1 || a === 3) add(`ABS ${a} of 4 claim options carry an absolute (always / never / only / all / any ...): that makes a lone ${a === 1 ? 'absolute' : 'absolute-free'} option; use 0, 2 or 4`)
+  }
+  // LAW (the dropped P-04 / P-11): an invented trend or values item states why the standard does not already give the
+  // answer. Presence and length only: the graders judge it (no_source_needed).
+  if (on('LAW') && slot.invent && (slot.format === 'trend' || slot.format === 'values') && words(it.prior_free).length < 8) add('LAW invented trend/values item needs prior_free (>= 8 words): why a student who knows the standard still needs these data')
+
   // LEAK
   if (g?.caption) {
     const kn = numOf(key)
@@ -245,8 +306,9 @@ export function checkItem(it, slot, ex = []) {
 }
 
 /* ---------------- batch ---------------- */
-export function checkBatch(items, SLOT) {
+export function checkBatch(items, SLOT, opts = {}) {
   const p = [], add = m => p.push(m), info = []
+  const b1 = (opts.rules ?? 'b1') === 'b1', on = id => b1 && !(opts.disabled ?? new Set()).has(id)
   const ids = items.map(i => i.id)
   if (new Set(ids).size !== ids.length) add('BATCH duplicate item ids')
   for (const id of Object.keys(SLOT)) if (!ids.includes(id)) add(`BATCH slot ${id} neither written nor marked empty`)
@@ -285,6 +347,14 @@ export function checkBatch(items, SLOT) {
   for (let a = 0; a < live.length; a++) for (let b = a + 1; b < live.length; b++) {
     const { i, j } = jacc(T[a], T[b]); if (i >= 8 && j >= 0.35) add(`BATCH ${live[a].id} and ${live[b].id} near-duplicate (J=${j.toFixed(2)})`)
   }
+  // ABSDIS (B1 rule c, batch): absolutes must not sit only on distractors across the claim items.
+  if (on('ABSDIS')) {
+    const claims = live.filter(i => SLOT[i.id]?.format === 'claim')
+    const onKey = claims.filter(i => ABSOLUTE_B1.test(i.correct_answer)).length
+    const onDis = claims.reduce((n, i) => n + i.choices.filter(c => c !== i.correct_answer && ABSOLUTE_B1.test(c)).length, 0)
+    info.push(`claim items ${claims.length}: absolutes on keys ${onKey}, on distractors ${onDis}`)
+    if (onDis >= 3 && onKey === 0) add(`BATCH absolutes appear on ${onDis} claim distractors and on no claim key: "reject the absolute" solves them`)
+  }
   return { p, info, fatal: false }
 }
 
@@ -297,45 +367,76 @@ function slotIndex(path) {
   return idx
 }
 
-async function selftest() {
-  const { FIXTURES, FIXTURE_SLOTS, MUTATIONS, BATCH_MUTATIONS } = await import('./sci-check.fixtures.mjs')
-  let fail = 0
-  const ex = [{ line: 'act-science-v1 | Corrosion of Steel Coupons | steel coupons immersed in salt solution lost mass over fourteen days in aerated sodium chloride', text: 'corrosion of steel coupons steel coupons immersed in salt solution lost mass over fourteen days in aerated sodium chloride solution oxygen', toks: toks('steel coupons immersed salt solution lost mass fourteen days aerated sodium chloride corrosion oxygen coating zinc epoxy temperature') }]
-  for (const f of FIXTURES) {
-    const pr = checkItem(f, FIXTURE_SLOTS[f.id], ex)
-    if (pr.length) { fail++; console.log(`  FAIL clean fixture ${f.id} (${f.stimulus}/${f.format}) refused:\n    ${pr.join('\n    ')}`) } else console.log(`  ok   clean fixture ${f.id} ${f.kind}/${f.stimulus}/${f.format} passes`)
+/** One pass over a fixture suite. Returns { fail, lines }. Pure: no exit, so --break-test can call it repeatedly. */
+function runSuite(label, { fixtures, slots, mutations, batchMutations }, opts, ex) {
+  let fail = 0; const lines = [], failed = []
+  const log = (ok, m) => { lines.push(`  ${ok ? 'ok  ' : 'FAIL'} [${label}] ${m}`); if (!ok) { fail++; failed.push(m) } }
+  for (const f of fixtures) {
+    const pr = checkItem(f, slots[f.id], ex, opts)
+    log(!pr.length, pr.length ? `clean fixture ${f.id} refused: ${pr.join(' | ')}` : `clean fixture ${f.id} ${f.kind}/${f.stimulus}/${f.format} passes`)
   }
-  for (const m of MUTATIONS) {
-    const base = structuredClone(FIXTURES.find(f => f.id === m.on)); m.mutate(base)
-    const pr = checkItem(base, FIXTURE_SLOTS[base.id], ex)
-    const fired = pr.some(x => x.startsWith(m.expect))
-    if (!fired) { fail++; console.log(`  FAIL ${m.name}: expected a ${m.expect} refusal, got ${pr.length ? pr.join(' | ') : 'none'}`) } else console.log(`  ok   ${m.name} -> ${pr.find(x => x.startsWith(m.expect))}`)
+  for (const m of mutations) {
+    const base = structuredClone(fixtures.find(f => f.id === m.on)); m.mutate(base)
+    const pr = checkItem(base, slots[base.id], ex, opts)
+    const hit = pr.find(x => x.startsWith(m.expect))
+    log(!!hit, hit ? `${m.name} -> ${hit}` : `${m.name}: expected a ${m.expect} refusal, got ${pr.length ? pr.join(' | ') : 'none'}`)
   }
-  {
-    const clean = checkBatch(FIXTURES, FIXTURE_SLOTS)
-    if (clean.p.length) { fail++; console.log(`  FAIL clean fixture batch refused: ${clean.p.join(' | ')}`) } else console.log(`  ok   clean fixture batch passes (${clean.info[0]})`)
+  const clean = checkBatch(fixtures, slots, opts)
+  log(!clean.p.length, clean.p.length ? `clean fixture batch refused: ${clean.p.join(' | ')}` : `clean fixture batch passes (${clean.info[0]})`)
+  for (const m of batchMutations) {
+    const b = structuredClone(fixtures); m.mutate(b)
+    const r = checkBatch(b, slots, opts), hit = r.p.find(x => x.includes(m.expect))
+    log(!!hit, hit ? `batch ${m.name} -> ${hit}` : `batch ${m.name}: expected "${m.expect}", got ${r.p.join(' | ') || 'none'}`)
   }
-  for (const m of BATCH_MUTATIONS) {
-    const b = structuredClone(FIXTURES); m.mutate(b)
-    const r = checkBatch(b, FIXTURE_SLOTS)
-    const fired = r.p.some(x => x.includes(m.expect))
-    if (!fired) { fail++; console.log(`  FAIL batch ${m.name}: expected "${m.expect}", got ${r.p.join(' | ') || 'none'}`) } else console.log(`  ok   batch ${m.name} -> ${r.p.find(x => x.includes(m.expect))}`)
+  return { fail, lines, failed, n: fixtures.length, nm: mutations.length, nb: batchMutations.length }
+}
+const SELFTEST_EX = [{ line: 'act-science-v1 | Corrosion of Steel Coupons | steel coupons immersed in salt solution lost mass over fourteen days in aerated sodium chloride', text: 'corrosion of steel coupons steel coupons immersed in salt solution lost mass over fourteen days in aerated sodium chloride solution oxygen', toks: toks('steel coupons immersed salt solution lost mass fourteen days aerated sodium chloride corrosion oxygen coating zinc epoxy temperature') }]
+async function suites() {
+  const F = await import('./sci-check.fixtures.mjs')
+  return {
+    pilot: { fixtures: F.FIXTURES, slots: F.FIXTURE_SLOTS, mutations: F.MUTATIONS, batchMutations: F.BATCH_MUTATIONS },
+    b1: { fixtures: F.FIXTURES_B1, slots: F.FIXTURE_SLOTS_B1, mutations: [...F.MUTATIONS_B1_CARRIED, ...F.MUTATIONS_B1], batchMutations: [...F.BATCH_MUTATIONS, ...F.BATCH_MUTATIONS_B1] },
   }
-  {
-    const r = checkBatch([{ id: FIXTURES[0].id, empty: true }], { [FIXTURES[0].id]: FIXTURE_SLOTS[FIXTURES[0].id] })
-    if (!r.fatal) { fail++; console.log('  FAIL all-empty batch did not refuse as fatal') } else console.log(`  ok   all-empty batch -> fatal: ${r.p[0]}`)
-  }
-  console.log(fail ? `SELFTEST FAILED: ${fail}` : `SELFTEST OK: ${FIXTURES.length} clean fixtures pass, ${MUTATIONS.length} item mutations and ${BATCH_MUTATIONS.length + 1} batch mutations each refused`)
+}
+async function selftest(disabled = new Set()) {
+  const S = await suites()
+  const a = runSuite('pilot rules', S.pilot, { rules: 'pilot' }, SELFTEST_EX)
+  const b = runSuite('b1 rules', S.b1, { rules: 'b1', disabled }, SELFTEST_EX)
+  for (const l of [...a.lines, ...b.lines]) console.log(l)
+  const e = checkBatch([{ id: S.pilot.fixtures[0].id, empty: true }], { [S.pilot.fixtures[0].id]: S.pilot.slots[S.pilot.fixtures[0].id] })
+  const efail = e.fatal ? 0 : 1
+  console.log(`  ${e.fatal ? 'ok  ' : 'FAIL'} all-empty batch -> ${e.fatal ? 'fatal: ' + e.p[0] : 'not fatal'}`)
+  const fail = a.fail + b.fail + efail
+  console.log(fail ? `SELFTEST FAILED: ${fail}` : `SELFTEST OK: pilot rules ${a.n} clean + ${a.nm} item + ${a.nb} batch mutations; b1 rules ${b.n} clean + ${b.nm} item + ${b.nb} batch mutations; + all-empty fatal`)
   process.exit(fail ? 1 : 0)
+}
+/** --break-test: switch off each B1 check in turn; the b1 suite MUST then fail, and fail on that check's own fixtures. */
+async function breakTest() {
+  const S = await suites(); let bad = 0
+  const base = runSuite('b1 rules', S.b1, { rules: 'b1' }, SELFTEST_EX)
+  console.log(`  control: all B1 checks on -> ${base.fail} failures (must be 0)`); if (base.fail) bad++
+  for (const id of B1_CHECKS) {
+    const r = runSuite('b1 rules', S.b1, { rules: 'b1', disabled: new Set([id]) }, SELFTEST_EX)
+    const own = r.failed.filter(m => m.includes(`expected a ${id} `) || (id === 'ABSDIS' && m.includes('absolutes appear on')))
+    const okk = r.fail > 0 && own.length > 0
+    if (!okk) bad++
+    console.log(`  ${okk ? 'ok  ' : 'FAIL'} ${id} disabled -> ${r.fail} fixture(s) fail, ${own.length} of them its own: ${r.failed.slice(0, 2).map(x => x.split(':')[0]).join('; ')}`)
+  }
+  console.log(bad ? `BREAK-TEST FAILED: ${bad}` : `BREAK-TEST OK: each of ${B1_CHECKS.join(', ')} is load-bearing (removing it fails its own fixture), and the suite is clean with all on`)
+  process.exit(bad ? 1 : 0)
 }
 
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]
 if (isMain) {
   const A = process.argv.slice(2)
-  if (A.includes('--selftest')) await selftest()
+  const ri = A.indexOf('--rules'), di = A.indexOf('--disable')
+  const RUNOPTS = { rules: ri >= 0 ? A[ri + 1] : 'b1', disabled: new Set(di >= 0 ? A[di + 1].split(',') : []) }
+  if (!['b1', 'pilot'].includes(RUNOPTS.rules)) { console.error('REFUSING: --rules must be b1 or pilot'); process.exit(2) }
+  if (A.includes('--break-test')) await breakTest()
+  if (A.includes('--selftest')) await selftest(RUNOPTS.disabled)
   const die = m => { console.error('REFUSING: ' + m); process.exit(2) }
   const opt = n => { const i = A.indexOf(n); return i >= 0 ? A[i + 1] : null }
-  const files = A.filter((a, i) => !a.startsWith('--') && !['--slots', '--exclusions'].includes(A[i - 1]))
+  const files = A.filter((a, i) => !a.startsWith('--') && !['--slots', '--exclusions', '--rules', '--disable'].includes(A[i - 1]))
   if (!files.length) die('usage: sci-check.mjs <items.json> | --batch <files...> | --selftest')
   let SLOT, EX
   try { SLOT = slotIndex(opt('--slots') ?? join(HERE, 'slots.json')); EX = loadExclusions(opt('--exclusions') ?? join(HERE, 'EXCLUSIONS-science.txt')) } catch (e) { die(e.message) }
@@ -350,12 +451,12 @@ if (isMain) {
   let bad = 0, ok = 0, empty = 0
   for (const it of items) {
     if (it?.empty) { empty++; console.log(`${it.id}: EMPTY (${it.reason ?? 'no reason given'})`); if (!SLOT[it.id]) { bad++; console.log('  not a slot') } continue }
-    const pr = checkItem(it, SLOT[it?.id], EX)
+    const pr = checkItem(it, SLOT[it?.id], EX, RUNOPTS)
     if (pr.length) { bad++; console.log(`${it?.id}: FAIL\n  ${pr.join('\n  ')}`) } else { ok++; console.log(`${it.id}: ok`) }
   }
   if (A.includes('--batch')) {
     const scope = Object.fromEntries(Object.entries(SLOT).filter(([id]) => items.some(i => i.id?.split('-')[1] === id.split('-')[1])))
-    const r = checkBatch(items, scope)
+    const r = checkBatch(items, scope, RUNOPTS)
     for (const l of r.info) console.log(`  [batch] ${l}`)
     for (const l of r.p) console.log(`  [batch] FAIL ${l}`)
     if (r.fatal) process.exit(2)

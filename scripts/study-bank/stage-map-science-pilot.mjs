@@ -74,7 +74,7 @@ export function plan(raw, { slots, exclusions, cleared, methods }) {
   const problems = []
   for (const it of raw) {
     if (it?.empty) { problems.push(`${it.id}: EMPTY slot cannot be staged (leave it out of the files, or re-author it)`); continue }
-    const pr = checkItem(it, slots[it?.id], exclusions)
+    const pr = checkItem(it, slots[it?.id], exclusions, { rules: 'pilot' })
     if (pr.length) problems.push(`${it?.id}: ${pr.join('; ')}`)
   }
   if (problems.length) throw `sci-check refuses ${problems.length} item(s):\n  ${problems.join('\n  ')}`

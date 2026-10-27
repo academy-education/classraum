@@ -107,3 +107,19 @@ export function numOf(s) {
   if (!m) return null
   return { v: Number(m[1]), places: (m[2] ?? '').length, unit: (m[3] ?? '').trim() }
 }
+
+/* ===================== batch-1 rules (2026-10-27, from the pilot's graders g3/g4; MAP-SCIENCE-B1.prereg.md) =====================
+ * Pilot mode (`--rules pilot`) does not use these, so the pilot's checks stay reproducible. */
+
+/** Trend qualifiers. The pilot shipped "increase steadily", "rises with every trial", "decreases overall" and
+ *  "stayed close to the same" as the ONLY qualified option, and both graders read it as the key's mark (B1 rule b). */
+export const QUALIFIER = /\b(steadily|overall|gradually|sharply|slowly|quickly|rapidly|slightly|greatly|consistently|roughly|nearly|almost|approximately|about|close to|a little|a lot|no matter|with every \w+|each (?:time|trial|year|week|day|month|step|hour|minute)|at every \w+|every (?:time|trial|year|week|day|step))\b/i
+/** Wording that makes an option read as a MEASURED RESULT rather than a setting (B1 rule a). Calibrated on the pilot:
+ *  it matches "number of sprouted seeds", "height of the tallest sprout", "the distance the cart rolled", "the time
+ *  the dyed water took to reach the far end", and none of the eight setting options in MSP-L-06 / P-07 / E-12. */
+export const RESULT_WORDS = /\b(height|heights|rolled|took|traveled|travelled|grew|grown|growth|sprouted|produced|formed|lost|gained|released|reached|final|afterward|counted|measured|recorded|how (?:far|long|much|many|high|fast)|rise in|drop in|change in)\b/i
+/** Property words an invented place or organism name must not carry (B1: MSP-E-11 "Ardwick Low Meadow",
+ *  "Mirefield Bluff" announced the height and slope the stem asked about). Applied to names_used and condition labels. */
+export const NAME_PROPERTY = /\b(low|high|upper|lower|steep|flat|plain|bluff|cliff|ridge|peak|summit|hill|rise|valley|hollow|meadow|marsh|mire|bog|swamp|dune|desert|deep|shallow|wet|dry|arid|hot|cold|warm|cool|icy|frost|sunny|shady|windy|rocky|sandy|salty|fast|slow|big|small|tall|short|heavy|light|bright|dark|thick|thin|strong|weak|fertile|barren|bare|lush)\b/i
+/** Absolutes for the B1 claim rules (wider than the pilot's: "any" and the -where/-ever forms read as absolutes). */
+export const ABSOLUTE_B1 = /\b(always|never|only|all|none|every|entirely|completely|solely|cannot|must|any|anywhere|everywhere|forever|nothing)\b/i

@@ -844,6 +844,24 @@
       "author": "agent",
       "grader": "cfg-v2",
       "source": "MAP-SCIENCE-PILOT.prereg.md: map-v2-work/science-pilot/BRIEF.md, 3 agent authors (L/P/E) on seeded slots, sci-check.mjs, two with-source graders + grader v2 pre-screen; options-only and figure-covered report-only; new stratum map/science/multiple_choice -> L0 full sitting of all 36"
+    },
+    "map-science-v1-life": {
+      "method_id": "map-sci-b1-agents+cfg-v2",
+      "author": "agent",
+      "grader": "cfg-v2",
+      "source": "MAP-SCIENCE-B1.prereg.md: map-v2-work/science-b1/BRIEF.md, 12 agent authors (area x grade) on seeded slots, sci-check.mjs --rules b1, two with-source graders on the slot-free brief + grader v2 pre-screen; options-only and figure-covered report-only; Life Science cohort, one L1 spot of 12"
+    },
+    "map-science-v1-phys": {
+      "method_id": "map-sci-b1-agents+cfg-v2",
+      "author": "agent",
+      "grader": "cfg-v2",
+      "source": "MAP-SCIENCE-B1.prereg.md: map-v2-work/science-b1/BRIEF.md, 12 agent authors (area x grade) on seeded slots, sci-check.mjs --rules b1, two with-source graders on the slot-free brief + grader v2 pre-screen; options-only and figure-covered report-only; Physical Science cohort, one L1 spot of 12"
+    },
+    "map-science-v1-earth": {
+      "method_id": "map-sci-b1-agents+cfg-v2",
+      "author": "agent",
+      "grader": "cfg-v2",
+      "source": "MAP-SCIENCE-B1.prereg.md: map-v2-work/science-b1/BRIEF.md, 12 agent authors (area x grade) on seeded slots, sci-check.mjs --rules b1, two with-source graders on the slot-free brief + grader v2 pre-screen; options-only and figure-covered report-only; Earth and Space Science cohort, one L1 spot of 12"
     }
   }
 }

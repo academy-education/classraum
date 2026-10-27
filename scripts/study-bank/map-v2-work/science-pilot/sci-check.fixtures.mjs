@@ -175,3 +175,101 @@ export const BATCH_MUTATIONS = [
   { name: 'a slot neither written nor marked empty', expect: 'neither written', mutate: b => { b.splice(b.findIndex(x => x.id === 'FX-E-02'), 1) } },
   { name: 'duplicate item ids', expect: 'duplicate item ids', mutate: b => { b.push(structuredClone(b[0])) } },
 ]
+
+/* ===================== batch-1 rules (MAP-SCIENCE-B1.prereg.md) =====================
+ * The B1 suite: the pilot fixtures rebuilt to pass the B1 rules (opaque condition labels, option_roles on variable
+ * items, no lone qualifier, no lone absolute, prior_free on invented trend/values items), one new fixture
+ * (an outcome-ask variable item), and mutations that each break exactly one B1 rule. Run with rules 'b1'. */
+const B1 = structuredClone(FIXTURES)
+const get = id => B1.find(x => x.id === id)
+export const FIXTURE_SLOTS_B1 = structuredClone(FIXTURE_SLOTS)
+FIXTURE_SLOTS_B1['FX-L-02'].rank = 2
+FIXTURE_SLOTS_B1['FX-L-04'] = slot('FX-L-04', 'Life Science', 6, 'mid', 'LS1', 'investigation', 'procedure', 'variable', 'dependent', 'C', 4)
+
+get('FX-L-01').prior_free = 'The standard says populations differ between habitats, not which pond holds more snails or by how much.'
+get('FX-E-01').prior_free = 'The standard says water deposits sediment, not the depth this invented basin reached at a given hour.'
+// FX-P-01: the pilot's bar labels named the surfaces themselves (settings); B1 labels are opaque track codes.
+Object.assign(get('FX-P-01'), {
+  passage: 'Students let cart K-2 roll off the same ramp onto four tracks, each covered with a different material.',
+  graphic: { type: 'bar', bars: [{ label: 'Track T-2', value: 35 }, { label: 'Track QX-40', value: 20 }, { label: 'Track B', value: 80 }, { label: 'Track RVW-118', value: 50 }], xLabel: 'Track', yLabel: 'Distance rolled (cm)', caption: 'Figure 1. How far cart K-2 rolled on four tracks' },
+  prompt: 'Based on Figure 1, on which track did cart K-2 roll the farthest?',
+  choices: ['Track T-2', 'Track QX-40', 'Track B', 'Track RVW-118'], correct_answer: 'Track B',
+  key_evidence: { refs: ['Track B'] },
+  explanation: 'The tallest bar in Figure 1 belongs to Track B, at 80 cm.',
+  distractor_rationales: [R('Track T-2', 'its bar is only 35 cm tall'), R('Track QX-40', 'its bar is the shortest of all'), R('Track RVW-118', 'second tallest bar, not the tallest')],
+})
+// FX-E-02: opaque tray codes; the settings live in table columns, never in the labels. "Lark Valley" carried a landform word (NAMEPROP).
+Object.assign(get('FX-E-02'), {
+  names_used: ['Lark Wenn trays'], passage: get('FX-E-02').passage.replace('Lark Valley trays', 'Lark Wenn trays'),
+  graphic: { type: 'table', rowLabels: ['Tray K', 'Tray M-4', 'Tray QR-17', 'Tray ZWX-208'], colLabels: ['Soil', 'Moss', 'Slope (degrees)', 'Soil washed away (g)'], cells: [['clay', 'yes', 10, 8], ['clay', 'no', 10, 25], ['sand', 'no', 10, 40], ['sand', 'yes', 20, 15]], caption: 'Table 1. Soil washed from four trays' },
+  prompt: 'To test only whether moss changes how much soil washes away, Tray K should be compared with which tray?',
+  choices: ['Tray QR-17', 'Tray ZWX-208', 'Tray K', 'Tray M-4'], correct_answer: 'Tray M-4',
+  key_evidence: { refs: [[0, 0], [1, 0], [0, 2], [1, 2]] },
+  explanation: 'Tray M-4 has the same clay soil and the same 10-degree slope as Tray K and differs only in having no moss.',
+  distractor_rationales: [R('Tray QR-17', 'differs in soil type as well as moss'), R('Tray ZWX-208', 'differs in soil type and slope, with moss on both'), R('Tray K', 'is the tray being tested, not a comparison')],
+})
+// FX-L-02: no qualifier on any option (the pilot key carried the only "steadily").
+Object.assign(get('FX-L-02'), {
+  choices: ['It dropped as the weeks went by.', 'It stayed the same.', 'It increased as the drought went on.', 'It rose at first and then stayed level.'],
+  correct_answer: 'It dropped as the weeks went by.',
+  distractor_rationales: [R('It stayed the same.', 'the points fall by about 25 hundred overall'), R('It increased as the drought went on.', 'reverses the direction of the points'), R('It rose at first and then stayed level.', 'no point is higher than the one before it')],
+  prior_free: 'An invented beetle could gain or lose under drought; only these points show which, for this line.',
+})
+// FX-L-03: "all four dishes" was the lone absolute among the claims.
+Object.assign(get('FX-L-03'), {
+  choices: ['Warm dishes made more gas than cool dishes.', 'Living yeast cells were seen in each of the four dishes.', 'Cool-dish yeast died within the hour.', 'The two warm dishes gave about the same results.'],
+  distractor_rationales: [R('Warm dishes made more gas than cool dishes.', 'the warm dishes made three times as many bubbles'), R('Living yeast cells were seen in each of the four dishes.', 'the microscope check states exactly this'), R('The two warm dishes gave about the same results.', 'both warm dishes are reported together as similar')],
+})
+// FX-P-02: a controlled ask takes setting options only ("final water temperature" was a free kill).
+Object.assign(get('FX-P-02'), {
+  passage: get('FX-P-02').passage + ' The stirring spoon that was used differed for each cup, picked at random from a drawer.',
+  choices: ['mass of Substance M', 'starting temperature of the water', 'stirring spoon that was used', 'time of day'],
+  option_roles: ['setting', 'setting', 'setting', 'setting'],
+  distractor_rationales: [R('mass of Substance M', 'it was changed on purpose from 5 g to 20 g'), R('stirring spoon that was used', 'a different spoon was used for each cup'), R('time of day', 'the passage says trials ran at different times')],
+})
+B1.push({
+  ...head(FIXTURE_SLOTS_B1['FX-L-04']), ngss_pe: 'MS-LS1-5', names_used: ['bean line V-9'],
+  passage: 'Students grew bean line V-9 under four lamps, changing the lamp position above the tray for each one. Every tray got the same soil, the same seeds and the same amount of water given each morning. After ten days the students measured the height the stems grew in each tray. They also noted the number of leaves on each plant, but they did not record it because the leaves were still curled.',
+  graphic: null,
+  prompt: 'Which quantity was recorded as the result of this investigation?',
+  choices: ['lamp position above the tray', 'number of leaves on each plant', 'the height the stems grew in each tray', 'amount of water given each morning'],
+  correct_answer: 'the height the stems grew in each tray',
+  option_roles: ['setting', 'result', 'result', 'setting'],
+  key_evidence: { refs: [{ quote: 'measured the height the stems grew in each tray' }] },
+  explanation: 'The students changed the lamp height and measured stem growth, so stem growth was the recorded result.',
+  distractor_rationales: [R('lamp position above the tray', 'the lamp position was the setting they changed'), R('number of leaves on each plant', 'it was noted but not recorded'), R('amount of water given each morning', 'it was kept the same for every tray')],
+  real_world_check: 'In an investigation the dependent variable is the quantity measured to see the effect of a change.',
+})
+export const FIXTURES_B1 = B1
+const CARRIED_ON = new Set(['FX-L-01', 'FX-E-01', 'FX-P-03', 'FX-E-03'])
+/** Pilot mutations on fixtures the B1 rebuild left untouched: every pilot check must still fire under B1 rules. */
+export const MUTATIONS_B1_CARRIED = MUTATIONS.filter(m => CARRIED_ON.has(m.on))
+export const MUTATIONS_B1 = [
+  // QUAL
+  { name: 'B1 trend key carries the lone qualifier', on: 'FX-L-02', expect: 'QUAL', mutate: it => setChoice(it, 'It dropped as the weeks went by.', 'It dropped steadily as the weeks went by.') },
+  { name: 'B1 three of four trend options qualified', on: 'FX-L-02', expect: 'QUAL', mutate: it => { setChoice(it, 'It stayed the same.', 'It stayed about the same.'); setChoice(it, 'It increased as the drought went on.', 'It increased slightly as the drought went on.'); setChoice(it, 'It dropped as the weeks went by.', 'It dropped each week.') } },
+  // ROLE
+  { name: 'B1 outcome ask with the key the lone measured result', on: 'FX-L-04', expect: 'ROLE', mutate: it => { setChoice(it, 'number of leaves on each plant', 'kind of soil in the trays'); it.option_roles = ['setting', 'setting', 'result', 'setting'] } },
+  { name: 'B1 controlled ask offers a measured result', on: 'FX-P-02', expect: 'ROLE', mutate: it => { it.passage += ' They recorded the final water temperature.'; setChoice(it, 'stirring spoon that was used', 'final water temperature'); it.option_roles = ['setting', 'setting', 'result', 'setting'] } },
+  { name: 'B1 result-worded option tagged setting', on: 'FX-L-04', expect: 'ROLE "the height the stems grew in each tray" is worded as a measured result', mutate: it => { it.option_roles = ['result', 'result', 'setting', 'setting'] } },
+  { name: 'B1 variable item without option_roles', on: 'FX-P-02', expect: 'ROLE', mutate: it => { delete it.option_roles } },
+  // LABEL
+  { name: 'B1 label lists several settings (E-04 shape)', on: 'FX-E-02', expect: 'LABEL', mutate: it => { it.graphic.rowLabels[2] = 'Sand, 10°'; setChoice(it, 'Tray QR-17', 'Sand, 10°') } },
+  { name: 'B1 label with a lowercase descriptive word (L-03 shape)', on: 'FX-P-01', expect: 'LABEL', mutate: it => { it.graphic.bars[0].label = 'Track T-2 rough'; setChoice(it, 'Track T-2', 'Track T-2 rough'); it.distractor_rationales[0].choice = 'Track T-2 rough' } },
+  { name: 'B1 label repeats a setting printed in the table', on: 'FX-E-02', expect: 'LABEL', mutate: it => { it.graphic.rowLabels[2] = 'Sand Tray'; setChoice(it, 'Tray QR-17', 'Sand Tray') } },
+  { name: 'B1 label carries a number with a unit', on: 'FX-P-01', expect: 'LABEL', mutate: it => { it.graphic.bars[1].label = 'Track 40 cm'; setChoice(it, 'Track QX-40', 'Track 40 cm') } },
+  { name: 'B1 label with no code token and not an invented name', on: 'FX-P-01', expect: 'LABEL', mutate: it => { it.graphic.bars[2].label = 'Tile'; setChoice(it, 'Track B', 'Tile'); it.key_evidence.refs = ['Tile'] } },
+  // NAMEPROP
+  { name: 'B1 invented name carries a property word (E-11 shape)', on: 'FX-E-01', expect: 'NAMEPROP', mutate: it => { it.names_used = ['Basin Orrin Low'] } },
+  // ABS
+  { name: 'B1 claim with a lone absolute distractor', on: 'FX-E-03', expect: 'ABS', mutate: it => setChoice(it, 'The Sun gives off more energy in June each year.', 'The Sun always gives off more energy in June.') },
+  { name: 'B1 claim with a lone absolute-free key', on: 'FX-E-03', expect: 'ABS', mutate: it => { setChoice(it, 'Earth is closer to the Sun in June.', 'Earth is always closest to the Sun in June.'); setChoice(it, 'The Sun gives off more energy in June each year.', 'The Sun gives off more energy in every June.'); setChoice(it, 'Clouds block more sunlight over southern oceans in June.', 'Clouds block all extra sunlight over southern oceans in June.') } },
+  // LAW
+  { name: 'B1 invented trend item without prior_free', on: 'FX-L-02', expect: 'LAW', mutate: it => { delete it.prior_free } },
+]
+export const BATCH_MUTATIONS_B1 = [
+  { name: 'B1 absolutes only on claim distractors', expect: 'absolutes appear on', mutate: b => {
+    const e = byId(b, 'FX-E-03'); setChoice(e, 'Earth is closer to the Sun in June.', 'Earth is always closer to the Sun in June.'); setChoice(e, 'The Sun gives off more energy in June each year.', 'The Sun never gives off the same energy in June.')
+    const l = byId(b, 'FX-L-03'); setChoice(l, 'Warm dishes made more gas than cool dishes.', 'Warm dishes always made more gas than cool dishes.'); setChoice(l, 'The two warm dishes gave about the same results.', 'The two warm dishes gave only the same results.')
+  } },
+]
