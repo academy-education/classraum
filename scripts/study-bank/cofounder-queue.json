@@ -1,7 +1,7 @@
 {
   "note": "The co-founder's release-sitting order (2026-10-22). Each entry is satisfied when its cohort has no staged row he has not reviewed, or when the cohort has had `upTo` runs drawn. draw-next.mjs draws the first unsatisfied entry. Order follows the runout monitor (real student closest to a repeat first); every move is an order-only amendment recorded in the cohort's prereg or REGISTER. | 2026-10-22 owner option 2: pre-screened batches get a spot-check (one passage / 12 items / one set run); every third reading batch a full sitting. Sample passages seeded \"spotcheck-groups-2026-10-22\". Rules: COFOUNDER-GRADER-2026-10-22.PREREG.md Amendment 1.",
-  "prioritySections": ["act/science", "act/reading"],
-  "prioritySectionsNote": "Owner decision 2026-10-27: ACT Science and ACT Reading ahead of the floor order (they have real students; MAP cannot launch until Science reaches 5). Order-only; depths and run shapes unchanged.",
+  "prioritySections": ["act/reading"],
+  "prioritySectionsNote": "Owner 2026-10-27: ACT Reading first (English). Science (ACT and MAP) leaves the co-founder verdict queue: agents decide science release; the co-founder sits blind-only science runs once that mode exists. Science entries below carry upTo 0 (held) until then. Order-only; depths and run shapes unchanged.",
   "reviewer": "6ca6edaf-4044-4eed-84e0-137ebd79a81d",
   "queue": [
     {
@@ -264,6 +264,8 @@
     },
     {
       "cohort": "act-science-v5a",
+      "upTo": 0,
+      "heldNote": "held 2026-10-27: science verdicts leave the co-founder queue; blind-only mode pending",
       "tool": "item",
       "domain": "Interpretation of Data:3,Evaluation of Models, Inferences, and Experimental Results:1,Scientific Investigation:1",
       "size": 5,
@@ -274,6 +276,8 @@
     },
     {
       "cohort": "act-science-v5b",
+      "upTo": 0,
+      "heldNote": "held 2026-10-27: science verdicts leave the co-founder queue; blind-only mode pending",
       "tool": "item",
       "domain": "Interpretation of Data:3,Scientific Investigation:2,Evaluation of Models, Inferences, and Experimental Results:1",
       "size": 6,
@@ -284,6 +288,8 @@
     },
     {
       "cohort": "act-science-v5c",
+      "upTo": 0,
+      "heldNote": "held 2026-10-27: science verdicts leave the co-founder queue; blind-only mode pending",
       "tool": "item",
       "domain": "Interpretation of Data:2,Scientific Investigation:2,Evaluation of Models, Inferences, and Experimental Results:2",
       "size": 6,
@@ -294,6 +300,8 @@
     },
     {
       "cohort": "act-science-v5d",
+      "upTo": 0,
+      "heldNote": "held 2026-10-27: science verdicts leave the co-founder queue; blind-only mode pending",
       "tool": "item",
       "domain": "Interpretation of Data:18,Evaluation of Models, Inferences, and Experimental Results:13,Scientific Investigation:9",
       "size": 40,
@@ -447,6 +455,8 @@
     },
     {
       "cohort": "act-science-v6a",
+      "upTo": 0,
+      "heldNote": "held 2026-10-27: science verdicts leave the co-founder queue; blind-only mode pending",
       "tool": "item",
       "domain": "Evaluation of Models, Inferences, and Experimental Results:4,Interpretation of Data:1,Scientific Investigation:1",
       "size": 6,
@@ -457,6 +467,8 @@
     },
     {
       "cohort": "act-science-v6b",
+      "upTo": 0,
+      "heldNote": "held 2026-10-27: science verdicts leave the co-founder queue; blind-only mode pending",
       "tool": "item",
       "domain": "Interpretation of Data:4,Evaluation of Models, Inferences, and Experimental Results:1",
       "size": 5,
@@ -572,6 +584,8 @@
     },
     {
       "cohort": "act-science-v7a",
+      "upTo": 0,
+      "heldNote": "held 2026-10-27: science verdicts leave the co-founder queue; blind-only mode pending",
       "tool": "item",
       "domain": "Interpretation of Data:18,Scientific Investigation:9,Evaluation of Models, Inferences, and Experimental Results:13",
       "size": 40,
@@ -581,6 +595,8 @@
     },
     {
       "cohort": "act-science-v7b",
+      "upTo": 0,
+      "heldNote": "held 2026-10-27: science verdicts leave the co-founder queue; blind-only mode pending",
       "tool": "item",
       "domain": "Evaluation of Models, Inferences, and Experimental Results:5,Interpretation of Data:1",
       "size": 6,
@@ -601,6 +617,8 @@
     },
     {
       "cohort": "act-science-v8a",
+      "upTo": 0,
+      "heldNote": "held 2026-10-27: science verdicts leave the co-founder queue; blind-only mode pending",
       "tool": "item",
       "domain": "Interpretation of Data:3,Scientific Investigation:1,Evaluation of Models, Inferences, and Experimental Results:1",
       "size": 5,
@@ -611,6 +629,8 @@
     },
     {
       "cohort": "act-science-v8b",
+      "upTo": 0,
+      "heldNote": "held 2026-10-27: science verdicts leave the co-founder queue; blind-only mode pending",
       "tool": "item",
       "domain": "Interpretation of Data:3,Scientific Investigation:2,Evaluation of Models, Inferences, and Experimental Results:1",
       "size": 6,
@@ -752,6 +772,8 @@
     },
     {
       "cohort": "act-science-v9a",
+      "upTo": 0,
+      "heldNote": "held 2026-10-27: science verdicts leave the co-founder queue; blind-only mode pending",
       "tool": "item",
       "domain": "Interpretation of Data:18,Scientific Investigation:9,Evaluation of Models, Inferences, and Experimental Results:13",
       "size": 40,
@@ -761,6 +783,8 @@
     },
     {
       "cohort": "act-science-v9b",
+      "upTo": 0,
+      "heldNote": "held 2026-10-27: science verdicts leave the co-founder queue; blind-only mode pending",
       "tool": "item",
       "domain": "Evaluation of Models, Inferences, and Experimental Results:5,Scientific Investigation:1",
       "size": 6,
@@ -897,6 +921,8 @@
     },
     {
       "cohort": "map-science-pilot",
+      "upTo": 0,
+      "heldNote": "held 2026-10-27: science verdicts leave the co-founder queue; blind-only mode pending",
       "tool": "item",
       "domain": "Life Science:10,Physical Science:10,Earth and Space Science:10",
       "size": 30,
@@ -905,6 +931,8 @@
     },
     {
       "cohort": "map-science-v1-life",
+      "upTo": 0,
+      "heldNote": "held 2026-10-27: science verdicts leave the co-founder queue; blind-only mode pending",
       "tool": "item",
       "domain": "Life Science",
       "size": 12,
@@ -914,6 +942,8 @@
     },
     {
       "cohort": "map-science-v1-phys",
+      "upTo": 0,
+      "heldNote": "held 2026-10-27: science verdicts leave the co-founder queue; blind-only mode pending",
       "tool": "item",
       "domain": "Physical Science",
       "size": 12,
@@ -923,6 +953,8 @@
     },
     {
       "cohort": "map-science-v1-earth",
+      "upTo": 0,
+      "heldNote": "held 2026-10-27: science verdicts leave the co-founder queue; blind-only mode pending",
       "tool": "item",
       "domain": "Earth and Space Science",
       "size": 12,
