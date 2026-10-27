@@ -476,7 +476,7 @@ const cloneChain = chain => chain.map(c => ({ method: c.method, units: c.units.m
  *   depth:   Map section -> live tests (floor ordering; +1 per batch released in a floor section, an approximation)
  * Returns { runs: [{ stratum, shape, batches: [{cohort, items, groups}], items, level, bridge }], total }
  */
-export function simulateQueue({ strata, batches, depth, params = PARAMS }) {
+export function simulateQueue({ strata, batches, depth, params = PARAMS, prioritySections = [] }) {
   const chains = new Map([...strata].map(([s, c]) => [s, cloneChain(c)]))
   const depthNow = new Map(depth)
   const left = [...batches]
@@ -492,9 +492,15 @@ export function simulateQueue({ strata, batches, depth, params = PARAMS }) {
   const addClean = (stratum, method, k, key) => { const c = chains.get(stratum).find(x => x.method === method); c.units.push({ key, items: Array.from({ length: k }, () => ({ miss: false })) }) }
   const bump = stratum => { const sec = sectionOf(stratum); const d = depthNow.get(sec); if (d != null && d < params.floor) depthNow.set(sec, d + 1) }
   while (left.length) {
-    // floor first: the lowest-depth section under the floor, earliest queue entry within it; else queue order
+    // owner priority first (cofounder-queue.json `prioritySections`, in listed order), then floor first: the
+    // lowest-depth section under the floor, earliest queue entry within it; else queue order. Priority is an
+    // explicit owner override of the floor ORDER only; it never changes a depth or a run's shape.
     let pick = 0, best = Infinity
-    for (const [i, b] of left.entries()) { const r = floorRank(depthNow.get(sectionOf(b.stratum)) ?? null, params); if (r < best) { best = r; pick = i } }
+    for (const [i, b] of left.entries()) {
+      const pi = prioritySections.indexOf(sectionOf(b.stratum))
+      const r = pi >= 0 ? -1e6 + pi : floorRank(depthNow.get(sectionOf(b.stratum)) ?? null, params)
+      if (r < best) { best = r; pick = i }
+    }
     const b = left.splice(pick, 1)[0]
     if (b.drawn) {
       if (b.old.items > 0) { runs.push({ stratum: b.stratum, shape: 'old-rule', batches: [{ cohort: b.cohort, items: b.old.items }], items: b.old.items, note: `already drawn: ${b.old.runs} more run(s) under its own rule` }); addClean(b.stratum, b.method, b.old.items, `${b.cohort}:old`); bump(b.stratum) }

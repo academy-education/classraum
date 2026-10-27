@@ -306,6 +306,13 @@ describe('queue planning', () => {
     const sim = simulateQueue({ strata, batches: [mk(0, 'a/x/t'), mk(1, 'b/y/t'), mk(2, 'c/z/t')], depth: new Map([['a/x', 10], ['b/y', 4], ['c/z', 3]]) })
     expect(sim.runs.map((r: { batches: { cohort: string }[] }) => r.batches[0].cohort)).toEqual(['k2', 'k1', 'k0'])
   })
+  it('owner prioritySections go first in listed order, ahead of a shallower floor section', () => {
+    const strata = new Map([['a/x/t', [{ method: 'm', units: [] }]], ['b/y/t', [{ method: 'm', units: [] }]], ['c/z/t', [{ method: 'm', units: [] }]]])
+    const mk = (i: number, s: string) => ({ idx: i, cohort: `k${i}`, stratum: s, method: 'm', tool: 'item', waiting: 36, groups: [], drawn: false, old: { runs: 1, items: 36 } })
+    // c/z is the shallowest (0) and would go first on the floor rule; the owner put a/x then b/y first.
+    const sim = simulateQueue({ strata, batches: [mk(0, 'a/x/t'), mk(1, 'b/y/t'), mk(2, 'c/z/t')], depth: new Map([['a/x', 3], ['b/y', 4], ['c/z', 0]]), prioritySections: ['a/x', 'b/y'] })
+    expect(sim.runs.map((r: { batches: { cohort: string }[] }) => r.batches[0].cohort)).toEqual(['k0', 'k1', 'k2'])
+  })
 })
 
 describe('Amendment 3 is one text', () => {

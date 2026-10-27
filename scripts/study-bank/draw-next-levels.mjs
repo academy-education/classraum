@@ -77,7 +77,7 @@ export async function levelAwareDraw({ Q, stateFile, commit }) {
   const strataChains = new Map(state.strata.map(s => [s.stratum, s.chain.map(c => ({ method: c.method, units: c.units }))]))
   for (const b of batches) if (!strataChains.has(b.stratum)) throw new RefusalError(`autonomy-state.json has no stratum ${b.stratum}`)
   const depth = new Map(); for (const b of batches) { const sec = sectionOf(b.stratum); depth.set(sec, sectionDepth(snapshot, sec)) }
-  const sim = simulateQueue({ strata: strataChains, batches, depth })
+  const sim = simulateQueue({ strata: strataChains, batches, depth, prioritySections: Q.prioritySections ?? [] })
 
   const date = new Date().toISOString().slice(0, 10)
   const runCount = new Map(batches.map(b => [b.cohort, b.runsSoFar]))
@@ -98,6 +98,7 @@ export async function levelAwareDraw({ Q, stateFile, commit }) {
 
   console.log(`level-aware queue (Amendment 3; state ${state.generated_at}; depth snapshot ${snapshot.measured})`)
   const floorList = [...depth].filter(([, d]) => d != null && d < PARAMS.floor).sort((a, b) => a[1] - b[1]).map(([s, d]) => `${s} ${d}`)
+  if (Q.prioritySections?.length) console.log(`owner priority (cofounder-queue.json prioritySections): ${Q.prioritySections.join(', ')}`)
   console.log(`floor priority (under ${PARAMS.floor} live tests): ${floorList.join(', ') || 'none'}\n`)
   const SHOW = process.argv.includes('--all') ? sim.runs.length : 10
   console.log(`next ${SHOW} runs (simulated as clean; a flag re-plans):`)
