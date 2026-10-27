@@ -476,6 +476,7 @@ const cloneChain = chain => chain.map(c => ({ method: c.method, units: c.units.m
  *   depth:   Map section -> live tests (floor ordering; +1 per batch released in a floor section, an approximation)
  * Returns { runs: [{ stratum, shape, batches: [{cohort, items, groups}], items, level, bridge }], total }
  */
+/** @param {{ strata: any, batches: any[], depth: any, params?: any, prioritySections?: string[] }} args */
 export function simulateQueue({ strata, batches, depth, params = PARAMS, prioritySections = [] }) {
   const chains = new Map([...strata].map(([s, c]) => [s, cloneChain(c)]))
   const depthNow = new Map(depth)
