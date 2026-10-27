@@ -1,11 +1,11 @@
 {
- "built_at": "2026-10-27T09:26:16.869Z",
+ "built_at": "2026-10-27T12:22:21.829Z",
  "reviewer_id": "6ca6edaf-4044-4eed-84e0-137ebd79a81d",
  "counts": {
-  "rows": 1192,
-  "human": 1152,
+  "rows": 1210,
+  "human": 1170,
   "model_assisted_excluded": 40,
-  "review_entries": 179,
+  "review_entries": 181,
   "register_entries": 9
  },
  "taxonomy": {
@@ -938,6 +938,29 @@
    "item_sha": "4ac3909908aadc5c92b99d6ad879807c",
    "content_sha": "4ac3909908aadc5c92b99d6ad879807c",
    "classified_by": "claude-opus-5.5 (in-session, 2026-10-23)"
+  },
+  {
+   "review_id": "398c711a-0617-47a8-a4d2-025c3a40d24e",
+   "item_id": "135520d9-f8f6-4655-9b67-b20e3f521432",
+   "run_id": "actreadingv8b-spot1-cofounder-2026-10-27",
+   "cohort": "act-reading-v8b",
+   "family": "act",
+   "section": "reading",
+   "task": "literary_narrative",
+   "verdict": "unique",
+   "note": "B has a real foothold worth noting\n\nB (learns his sister had hidden the landlord’s complaints for years): the strongest distractor, and more supported than it first looks. Mr. Haugland says, “I have mentioned the cooking smells in the hall before,” and since the father apparently never heard about it, a careful reader could infer that Paz left those earlier complaints out too. But that’s an inference the reader makes, not something the narrator is shown learning; the revelation Paz actually shares is about the pharmacist. And B reduces the story’s broader insight to a single hidden fact. So B isn’t a good summary, but a sharp student might argue for it. If you want to make the item airtight, change B to something clearly unsupported, for example “learns that his sister had been mistranslating the landlord’s words for years.”",
+   "reviewed_at": "2026-10-27T12:12:20.313+00:00",
+   "defect_type": "rival_some_pull",
+   "secondary_types": [],
+   "would_block": false,
+   "scope": "item",
+   "rationale": "Distractor B has a foothold by inference (earlier complaints the father never heard), but the reviewer judged the key unique: the narrator is never shown learning it and B narrows the story to one fact. Non-blocking; the suggested rewrite of B is an authoring note for future batches, not a repair (the co-founder reviews, he does not write).",
+   "source": "review",
+   "fresh": true,
+   "archived": false,
+   "item_sha": "6db12bb2fb32c361eb4e837e72e8063e",
+   "content_sha": "6db12bb2fb32c361eb4e837e72e8063e",
+   "classified_by": "claude-opus-5.5 (in-session, 2026-10-27)"
   },
   {
    "review_id": "3a4ad677-4b81-452d-bc7f-1f96d68fa4d6",
@@ -2374,6 +2397,29 @@
    "item_sha": "5e6976cec806a16be4951ef3755701dd",
    "content_sha": "5e6976cec806a16be4951ef3755701dd",
    "classified_by": "claude-opus-5.5 (in-session, 2026-10-23)"
+  },
+  {
+   "review_id": "94ef8317-460d-452c-941b-8785ff4bf051",
+   "item_id": "8b84282f-ab12-4bba-aa44-bcff1f3121e8",
+   "run_id": "actreadingv8b-spot1-cofounder-2026-10-27",
+   "cohort": "act-reading-v8b",
+   "family": "act",
+   "section": "reading",
+   "task": "literary_narrative",
+   "verdict": "unique",
+   "note": "The stem’s “most strongly suggests” fits, since the story never states Mr. Haugland’s thoughts. B is the reading best supported by the story’s design.",
+   "reviewed_at": "2026-10-27T12:11:45.911+00:00",
+   "defect_type": "praise/none",
+   "secondary_types": [],
+   "would_block": false,
+   "scope": "item",
+   "rationale": "Confirms the inference stem fits (the story never states Mr. Haugland's thoughts) and that B is best supported. No defect.",
+   "source": "review",
+   "fresh": true,
+   "archived": false,
+   "item_sha": "c9c551c7d9c69bec6689e570b89fefa0",
+   "content_sha": "c9c551c7d9c69bec6689e570b89fefa0",
+   "classified_by": "claude-opus-5.5 (in-session, 2026-10-27)"
   },
   {
    "review_id": "96139433-c761-4260-9fde-650e60df623b",

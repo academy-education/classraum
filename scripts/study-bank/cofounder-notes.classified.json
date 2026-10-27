@@ -1,6 +1,6 @@
 {
- "classified_at": "2026-10-27T09:26:15.944Z",
- "count": 179,
+ "classified_at": "2026-10-27T12:22:21.149Z",
+ "count": 181,
  "entries": [
   {
    "review_id": "10202606-bad1-41f5-ae8b-d581f73cf2c3",
@@ -1651,6 +1651,24 @@
    "would_block": false,
    "scope": "item",
    "rationale": "Precision note: the paragraph opens on cost alone, but the next sentence pairs price with testing rigor, so the key D is supported and no distractor offers a cost-only reading. He judged it unique and authentic; no repair needed.",
+   "classified_by": "claude-opus-5.5 (in-session, 2026-10-27)"
+  },
+  {
+   "review_id": "94ef8317-460d-452c-941b-8785ff4bf051",
+   "defect_type": "praise/none",
+   "secondary_types": [],
+   "would_block": false,
+   "scope": "item",
+   "rationale": "Confirms the inference stem fits (the story never states Mr. Haugland's thoughts) and that B is best supported. No defect.",
+   "classified_by": "claude-opus-5.5 (in-session, 2026-10-27)"
+  },
+  {
+   "review_id": "398c711a-0617-47a8-a4d2-025c3a40d24e",
+   "defect_type": "rival_some_pull",
+   "secondary_types": [],
+   "would_block": false,
+   "scope": "item",
+   "rationale": "Distractor B has a foothold by inference (earlier complaints the father never heard), but the reviewer judged the key unique: the narrator is never shown learning it and B narrows the story to one fact. Non-blocking; the suggested rewrite of B is an authoring note for future batches, not a repair (the co-founder reviews, he does not write).",
    "classified_by": "claude-opus-5.5 (in-session, 2026-10-27)"
   }
  ],
