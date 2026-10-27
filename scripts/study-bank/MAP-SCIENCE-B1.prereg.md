@@ -164,3 +164,15 @@ sitting. Released rows stay invisible to students until the MAP flip (all four s
 - `stage-map-science-pilot.mjs` 29a2731877cda0aa
 
 `science-b1/EXCLUSIONS-science.txt` is regenerated right before authoring, so it is not fingerprinted. A pilot-sitting amendment (start condition) re-fingerprints BRIEF-body/BRIEF/BRIEF-grader in the same commit.
+
+## Amendment B1-A1 (2026-10-27, before any batch-1 author output): owner override of the start condition
+
+The owner asked to author batch 1 now ("make it and make sure agent checks well and then have daniel check") instead
+of waiting for the pilot's L0 sitting. Authoring starts today. What does NOT change: every slot, binding rule,
+check, grader brief and drop rule above; and **no batch-1 row becomes drawable before the pilot sitting has closed**.
+The pilot outcome now governs batch 1's RELEASE instead of its START:
+- Pilot PASS: batch 1 is released through its planned spot checks.
+- Pilot PASS with notes: each note is checked against every batch-1 item before release; an item that breaks a
+  note is archived (not repaired — a repair made after the round that caught it is fitting to the instrument).
+- Pilot FAIL-METHOD (2+ archived): batch 1 goes to the co-founder as a FULL sitting, per release-by-shape's pilot rule.
+Cost of the override, stated plainly: pilot notes can no longer shape the authoring, only filter its output.
