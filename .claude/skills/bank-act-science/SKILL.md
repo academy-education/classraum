@@ -43,7 +43,10 @@ read v1 as easy 49 / medium 28 / hard 3).
 - Two with-source graders who DECODE the graphics (read SVG coordinates, table cells) and check every number the key relies on; flag `no_source_needed`.
 - Ledger entry; status `qc` until the sitting.
 
-## 3. Insert (hidden) and verify
+## 3. Insert (STAGED) and verify
+
+act-science is LIVE (unhidden 2026-09-19). Science inserts stage by default (verified=false);
+release is release-by-shape after the cohort's blind-only run. Never pass BANK_VERIFIED=true here.
 
 ```bash
 node scripts/study-bank/act-bank-helper.mjs insert science <batch.json> act-science-v<n> --apply

@@ -176,9 +176,20 @@ describe('science-release.json matches the records on disk', () => {
       expect(cl.length).toBeGreaterThan(0)
       const dropped = new Set<string>()
       for (const d of cfg.dropped) for (const q of idsUnder(JSON.parse(readFileSync(DIR + d.file, 'utf8')), d.keys)) dropped.add(q)
-      expect(dropped.size).toBeGreaterThan(0)
+      // Every listed dropped key is present (idsUnder throws otherwise); a
+      // cohort may legitimately have no drops at all, so size is not asserted.
+      for (const d of cfg.dropped) {
+        const doc = JSON.parse(readFileSync(DIR + d.file, 'utf8'))
+        for (const k of d.keys) expect(doc).toHaveProperty(k)
+      }
       expect(cl.filter(q => dropped.has(q))).toEqual([])
-      expect(c).toMatch(/^map-science-/)
+      expect(c).toMatch(/^(map|act)-science-/)
+      // ACT: cleared + dropped is exactly the cohort, so no staged row is
+      // left off both lists (planScienceRelease would refuse the cohort).
+      if (c.startsWith('act-science-')) {
+        const batch = JSON.parse(readFileSync(DIR + c + '.batch.json', 'utf8')) as { id: string }[]
+        expect(new Set([...cl, ...dropped])).toEqual(new Set(batch.map(i => i.id)))
+      }
     }
   })
 })

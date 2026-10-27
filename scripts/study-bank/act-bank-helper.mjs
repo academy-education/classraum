@@ -300,7 +300,13 @@ for (const it of batch) {
     // flag. Used for ACT English/Reading forms whose model attack reads as a
     // louder tell than the shipped forms had (B7 says the model number is a
     // screen, not a verdict - but a screen still screens).
-    word_count: null, verified: process.env.BANK_VERIFIED !== 'false', archived: false, source: 'hand', cohort,
+    // SCIENCE STAGES BY DEFAULT (2026-10-27). act-science has been live since
+    // 2026-09-19, and the old default (verified unless BANK_VERIFIED=false)
+    // put 84 freshly agent-graded v10 rows, three dropped passages among them,
+    // straight into the live draw; reverted within minutes, no session drew
+    // them. Science releases through release-by-shape after its blind-only
+    // run, never at insert, so it must ask for verified explicitly.
+    word_count: null, verified: section === 'science' ? process.env.BANK_VERIFIED === 'true' : process.env.BANK_VERIFIED !== 'false', archived: false, source: 'hand', cohort,
     verify_meta: {
       method: 'claude-authored; structure-checked by act-bank-helper before insert',
       localId: it.id, passage_id: it.passage_id, ...(section === 'reading' ? { genre: it.genre, paired: !!it.paired } : {}), ...(section === 'science' ? { format: it.format } : {}),

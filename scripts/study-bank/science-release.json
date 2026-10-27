@@ -13,8 +13,25 @@
     },
     "act-science-v5c": {
       "family": "act/science",
-      "prereg": "act-science-v5.RELEASE.PREREG.md (amendment)",
-      "blocker": "No agent release rule is pre-registered for ACT Science: act-science-v5.RELEASE.PREREG.md (amendment) makes the co-founder's spot verdict sitting the release gate and fixes no agent drop rules. The with-source grading exists only as a one-line summary in ledger.json (entry act-science-v5c-2026-10-23, stages.withsource: \"co-founder-standard grader with data: 0/40.\"); no per-item grade file and no cleared list is in the repo, so neither which items two fresh graders cleared nor whether they read the decoded graphics can be checked. To release: pre-register an agent release rule for ACT Science (owner), then commit per-item with-source grades from two fresh graders reading the decoded graphics, with a cleared list, and add them here. The ledger names a single grader for v5a-v5d, not two."
+      "prereg": "ACT-SCIENCE-AGENT-RELEASE.prereg.md",
+      "qid": "localId",
+      "cleared": "act-science-regrade/results/b2/act-science-v5c.cleared.json",
+      "dropped": [
+        {
+          "file": "act-science-regrade/results/b2/act-science-v5c.dropped.json",
+          "keys": [
+            "drop_rules",
+            "passage_incomplete"
+          ]
+        }
+      ],
+      "grades": [
+        "act-science-regrade/results/b2/g1.keyed.json",
+        "act-science-regrade/results/b2/g2.keyed.json",
+        "act-science-regrade/results/b2/r1.keyed.json"
+      ],
+      "blindBar": null,
+      "blindBarNote": "ACT-SCIENCE-AGENT-RELEASE.prereg.md fixes no bar on his blind picks; reported against the deal-derived control, with the 2026-09-18 bands (<=35 / 35-50 / >50) as reference only."
     },
     "act-science-v5d": {
       "family": "act/science",
@@ -28,8 +45,25 @@
     },
     "act-science-v6b": {
       "family": "act/science",
-      "prereg": "act-v9-v6.RELEASE.PREREG.md",
-      "blocker": "No agent release rule is pre-registered for ACT Science: act-v9-v6.RELEASE.PREREG.md makes the co-founder's spot verdict sitting the release gate and fixes no agent drop rules. The with-source grading exists only as a one-line summary in ledger.json (entry act-science-v6b-2026-10-23, stages.withsource: \"co-founder-standard grader grader A 1/40 (ASV6b-P5-Q5 stem scoped), B 0/40.\"); no per-item grade file and no cleared list is in the repo, so neither which items two fresh graders cleared nor whether they read the decoded graphics can be checked. To release: pre-register an agent release rule for ACT Science (owner), then commit per-item with-source grades from two fresh graders reading the decoded graphics, with a cleared list, and add them here. One item (ASV6b-P5-Q5) was repaired after grader A flagged it, not dropped."
+      "prereg": "ACT-SCIENCE-AGENT-RELEASE.prereg.md",
+      "qid": "localId",
+      "cleared": "act-science-regrade/results/b3/act-science-v6b.cleared.json",
+      "dropped": [
+        {
+          "file": "act-science-regrade/results/b3/act-science-v6b.dropped.json",
+          "keys": [
+            "drop_rules",
+            "passage_incomplete"
+          ]
+        }
+      ],
+      "grades": [
+        "act-science-regrade/results/b3/g1.keyed.json",
+        "act-science-regrade/results/b3/g2.keyed.json",
+        "act-science-regrade/results/b3/r1.keyed.json"
+      ],
+      "blindBar": null,
+      "blindBarNote": "ACT-SCIENCE-AGENT-RELEASE.prereg.md fixes no bar on his blind picks; reported against the deal-derived control, with the 2026-09-18 bands (<=35 / 35-50 / >50) as reference only."
     },
     "act-science-v7a": {
       "family": "act/science",
@@ -38,8 +72,25 @@
     },
     "act-science-v7b": {
       "family": "act/science",
-      "prereg": "REGISTER 2026-10-23 wave 4 (no prereg file names v7)",
-      "blocker": "No agent release rule is pre-registered for ACT Science: REGISTER 2026-10-23 wave 4 (no prereg file names v7) makes the co-founder's spot verdict sitting the release gate and fixes no agent drop rules. The with-source grading exists only as a one-line summary in ledger.json (entry act-science-v7b-2026-10-23, stages.withsource: \"co-founder-standard grader: A 0/40, B 0/40\"); no per-item grade file and no cleared list is in the repo, so neither which items two fresh graders cleared nor whether they read the decoded graphics can be checked. To release: pre-register an agent release rule for ACT Science (owner), then commit per-item with-source grades from two fresh graders reading the decoded graphics, with a cleared list, and add them here."
+      "prereg": "ACT-SCIENCE-AGENT-RELEASE.prereg.md",
+      "qid": "localId",
+      "cleared": "act-science-regrade/results/b4/act-science-v7b.cleared.json",
+      "dropped": [
+        {
+          "file": "act-science-regrade/results/b4/act-science-v7b.dropped.json",
+          "keys": [
+            "drop_rules",
+            "passage_incomplete"
+          ]
+        }
+      ],
+      "grades": [
+        "act-science-regrade/results/b4/g1.keyed.json",
+        "act-science-regrade/results/b4/g2.keyed.json",
+        "act-science-regrade/results/b4/r1.keyed.json"
+      ],
+      "blindBar": null,
+      "blindBarNote": "ACT-SCIENCE-AGENT-RELEASE.prereg.md fixes no bar on his blind picks; reported against the deal-derived control, with the 2026-09-18 bands (<=35 / 35-50 / >50) as reference only."
     },
     "act-science-v8a": {
       "family": "act/science",
@@ -48,8 +99,25 @@
     },
     "act-science-v8b": {
       "family": "act/science",
-      "prereg": "act-v11-v8-isee13.RELEASE.PREREG.md",
-      "blocker": "No agent release rule is pre-registered for ACT Science: act-v11-v8-isee13.RELEASE.PREREG.md makes the co-founder's spot verdict sitting the release gate and fixes no agent drop rules. The with-source grading exists only as a one-line summary in ledger.json (entry act-science-v8b-2026-10-23, stages.withsource: \"co-founder-standard grader: A 0/40, B 0/40\"); no per-item grade file and no cleared list is in the repo, so neither which items two fresh graders cleared nor whether they read the decoded graphics can be checked. To release: pre-register an agent release rule for ACT Science (owner), then commit per-item with-source grades from two fresh graders reading the decoded graphics, with a cleared list, and add them here."
+      "prereg": "ACT-SCIENCE-AGENT-RELEASE.prereg.md",
+      "qid": "localId",
+      "cleared": "act-science-regrade/results/b5/act-science-v8b.cleared.json",
+      "dropped": [
+        {
+          "file": "act-science-regrade/results/b5/act-science-v8b.dropped.json",
+          "keys": [
+            "drop_rules",
+            "passage_incomplete"
+          ]
+        }
+      ],
+      "grades": [
+        "act-science-regrade/results/b5/g1.keyed.json",
+        "act-science-regrade/results/b5/g2.keyed.json",
+        "act-science-regrade/results/b5/r1.keyed.json"
+      ],
+      "blindBar": null,
+      "blindBarNote": "ACT-SCIENCE-AGENT-RELEASE.prereg.md fixes no bar on his blind picks; reported against the deal-derived control, with the 2026-09-18 bands (<=35 / 35-50 / >50) as reference only."
     },
     "act-science-v9a": {
       "family": "act/science",
@@ -169,6 +237,48 @@
       "afterBasis": "MAP-SCIENCE-B1.prereg.md B1-A1: no batch-1 row becomes drawable before the pilot sitting has closed, and the pilot outcome governs batch 1's release; the pilot is released only when its H bar passes.",
       "blindBar": null,
       "blindBarNote": "MAP-SCIENCE-B1.prereg.md fixes no bar on his blind picks for batch 1; reported against its control only."
+    },
+    "act-science-v10a": {
+      "family": "act/science",
+      "prereg": "ACT-SCIENCE-V10-PILOT.prereg.md",
+      "qid": "localId",
+      "cleared": "act-science-regrade/results/b7/act-science-v10a.cleared.json",
+      "dropped": [
+        {
+          "file": "act-science-regrade/results/b7/act-science-v10a.dropped.json",
+          "keys": [
+            "drop_rules",
+            "passage_incomplete"
+          ]
+        }
+      ],
+      "grades": [
+        "act-science-regrade/results/b7/g1.keyed.json",
+        "act-science-regrade/results/b7/g2.keyed.json"
+      ],
+      "blindBar": null,
+      "blindBarNote": "ACT-SCIENCE-V10-PILOT.prereg.md fixes no bar on his blind picks; reported against the deal-derived control, with the 2026-09-18 bands (<=35 / 35-50 / >50) as reference only."
+    },
+    "act-science-v10b": {
+      "family": "act/science",
+      "prereg": "ACT-SCIENCE-V10-PILOT.prereg.md",
+      "qid": "localId",
+      "cleared": "act-science-regrade/results/b7/act-science-v10b.cleared.json",
+      "dropped": [
+        {
+          "file": "act-science-regrade/results/b7/act-science-v10b.dropped.json",
+          "keys": [
+            "drop_rules",
+            "passage_incomplete"
+          ]
+        }
+      ],
+      "grades": [
+        "act-science-regrade/results/b7/g1.keyed.json",
+        "act-science-regrade/results/b7/g2.keyed.json"
+      ],
+      "blindBar": null,
+      "blindBarNote": "ACT-SCIENCE-V10-PILOT.prereg.md fixes no bar on his blind picks; reported against the deal-derived control, with the 2026-09-18 bands (<=35 / 35-50 / >50) as reference only."
     }
   }
 }

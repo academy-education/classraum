@@ -12884,6 +12884,60 @@
           "verdict": "Key at an extreme on this file: no measurement: 4 scorable of 4 (need >= 10); 0 non-numeric, 0 other skip (C and C-prime NOT MEASURED below 10 scorable items: recorded, neither a pass nor a fail; C-prime did not fire). Key letters in this file (with-source deal) {\"A\":1,\"B\":1,\"C\":1,\"D\":1}. Banked difficulty (graders' tier_assigned) easy 1 / medium 1 / hard 2. Unanimity compared to the control at batch level only. Screen-flagged survivors: 1."
         }
       }
+    },
+    {
+      "id": "act-science-v10a-2026-10-27",
+      "createdAt": "2026-10-27",
+      "targetTest": "act",
+      "section": "science",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "act-science-v10a",
+      "contentSha": "639012aafbf9a8a47444d7e77534e335808aa4f6daf4ff5b7afbaba0de234f79",
+      "status": "staged-for-human-review",
+      "note": "Claude agent to ACT-SCIENCE-V10-BRIEF.md; graded under ACT-SCIENCE-V10-PILOT.prereg.md (batch b7). Release = agent cleared list + one blind-only co-founder run (science-release.json).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "639012aafbf9a8a47444d7e77534e335808aa4f6daf4ff5b7afbaba0de234f79",
+          "verdict": "act-bank-helper check OK; act-sci-packet build b7 OK (strictForm:false, amendment A1)."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "Two fresh graders, cold then keyed (b7 g1/g2): keys 84/84 both, no_source 0, real_data 0. 6 of 7 passages cleared. Drops: sc10a-p3 (R6 free elimination, both graders). Results: act-science-regrade/results/b7/."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "Not run: the model attack saturates on ACT Science (CLAUDE.md); with-source half decides."
+        }
+      }
+    },
+    {
+      "id": "act-science-v10b-2026-10-27",
+      "createdAt": "2026-10-27",
+      "targetTest": "act",
+      "section": "science",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "act-science-v10b",
+      "contentSha": "51c63687c77ec65b29e85402cd422b2da50430b7054f60887ab9620234789b35",
+      "status": "staged-for-human-review",
+      "note": "Claude agent to ACT-SCIENCE-V10-BRIEF.md; graded under ACT-SCIENCE-V10-PILOT.prereg.md (batch b7). Release = agent cleared list + one blind-only co-founder run (science-release.json).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "51c63687c77ec65b29e85402cd422b2da50430b7054f60887ab9620234789b35",
+          "verdict": "act-bank-helper check OK; act-sci-packet build b7 OK (strictForm:false, amendment A1)."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "Two fresh graders, cold then keyed (b7 g1/g2): keys 84/84 both, no_source 0, real_data 0. 5 of 7 passages cleared. Drops: sc10b-p3 (R2 second defensible, both), sc10b-p4 (R6 free elimination, both). Results: act-science-regrade/results/b7/."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "Not run: the model attack saturates on ACT Science (CLAUDE.md); with-source half decides."
+        }
+      }
     }
   ],
   "auditedCohorts": [
