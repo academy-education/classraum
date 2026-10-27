@@ -1,0 +1,238 @@
+[
+{
+ "id": "MSP-P-01", "map_area": "Physical Science",
+ "grade_target": 5, "tier": "low", "difficulty": "easy", "rit_band_target": "RIT 186-195",
+ "dci": "PS1", "ngss_pe": "5-PS1-1",
+ "kind": "model", "stimulus": "scenario", "format": "term", "ask": "structure", "invented": false,
+ "names_used": [],
+ "passage": null, "graphic": null,
+ "prompt": "Maya stirs a spoonful of sugar into a glass of cool water. Soon she cannot see any sugar, even with a magnifying glass. No bubbles form. The water tastes sweet in every part of the glass. The full glass weighs the same before and after stirring. The sugar is now spread through the water as which of these?",
+ "choices": ["melted sugar drops", "gas bubbles", "tiny sugar particles", "drops of water"],
+ "correct_answer": "tiny sugar particles",
+ "key_evidence": null,
+ "explanation": "Sugar is made of particles too small to see. When it dissolves, these particles spread out evenly among the water particles. The sugar is still there: the water tastes sweet everywhere, and the total weight does not change.",
+ "distractor_rationales": [
+  {"choice": "melted sugar drops", "fault": "misconception: dissolving is the same as melting; sugar does not melt in cool water, it breaks into particles that mix with the water"},
+  {"choice": "gas bubbles", "fault": "misconception: dissolved sugar turns into a gas and escapes; no bubbles form and the weight stays the same, so the sugar did not leave"},
+  {"choice": "drops of water", "fault": "misconception: dissolving changes the sugar into water; the sweet taste shows the sugar is still sugar"}
+ ],
+ "real_world_check": "Matter is made of particles too small to see, and when sugar dissolves in water its particles spread through the water while the total weight stays the same (5-PS1-1)."
+},
+{
+ "id": "MSP-P-02", "map_area": "Physical Science",
+ "grade_target": 5, "tier": "mid", "difficulty": "medium", "rit_band_target": "RIT 196-205",
+ "dci": "PS3", "ngss_pe": "4-PS3-2",
+ "kind": "data", "stimulus": "bar", "format": "conditions", "ask": "least", "invented": true,
+ "names_used": ["Rod H", "Rod A-6", "Rod RT-39", "Rod ZV-1104"],
+ "passage": "Students tested four rods made of different materials. The rods were the same length and thickness. They stood one end of each rod in hot water. A small bead of wax sat on the top end. The students timed how long the wax took to melt.",
+ "graphic": {"type": "bar", "bars": [{"label": "Rod H", "value": 40}, {"label": "Rod A-6", "value": 95}, {"label": "Rod RT-39", "value": 260}, {"label": "Rod ZV-1104", "value": 180}], "xLabel": "Rod", "yLabel": "Time for wax to melt (s)", "caption": "Time for a wax bead to melt on top of each rod"},
+ "prompt": "Based on the graph, which rod moved heat from the hot water up to the wax the least quickly?",
+ "choices": ["Rod A-6", "Rod H", "Rod RT-39", "Rod ZV-1104"],
+ "correct_answer": "Rod RT-39",
+ "key_evidence": {"refs": ["Rod RT-39", "Rod ZV-1104"]},
+ "explanation": "The wax melts when enough heat reaches the top of the rod. The slower a rod carries heat, the longer the wax takes to melt. Rod RT-39 has the tallest bar, so its wax took the longest time, and heat moved through it the least quickly.",
+ "distractor_rationales": [
+  {"choice": "Rod A-6", "fault": "its bar is shorter than Rod RT-39's, so heat reached its wax sooner"},
+  {"choice": "Rod H", "fault": "this is the shortest bar, the rod that moved heat the MOST quickly; it reads least time as least heat flow"},
+  {"choice": "Rod ZV-1104", "fault": "its wax melted sooner than the wax on Rod RT-39, so heat moved through it faster"}
+ ],
+ "real_world_check": "Heat moves through a solid by conduction, and a material that conducts heat more slowly takes longer to deliver enough energy to melt wax at its far end (4-PS3-2)."
+},
+{
+ "id": "MSP-P-03", "map_area": "Physical Science",
+ "grade_target": 5, "tier": "high", "difficulty": "hard", "rit_band_target": "RIT 206-215",
+ "dci": "PS1", "ngss_pe": "5-PS1-4",
+ "kind": "investigation", "stimulus": "procedure+table", "format": "conditions", "ask": "controlled-pair", "invented": true,
+ "names_used": ["Powder G", "Liquid V", "Jar RW-50", "Jar N", "Jar B-3", "Jar DFK-7", "Jar TQV-118"],
+ "passage": "Students mixed Powder G with Liquid V in clear jars of the same size. The mixture bubbled and made foam. The bubbles showed that a new gas was forming. From jar to jar, the students changed three things. They changed the mass of the powder, the temperature of the liquid, and the volume of the liquid. After one minute, they measured the height of the foam in each jar. Table 1 shows their results.",
+ "graphic": {"type": "table", "rowLabels": ["Jar RW-50", "Jar B-3", "Jar N", "Jar DFK-7", "Jar TQV-118"], "colLabels": ["Powder (g)", "Liquid temperature (°C)", "Liquid (mL)", "Foam height (cm)"], "cells": [[5, 20, 100, 3.0], [10, 40, 100, 6.5], [5, 40, 100, 4.5], [10, 20, 100, 5.5], [5, 20, 200, 3.5]], "caption": "Table 1. Foam height in five jars"},
+ "prompt": "The students want to find out whether the temperature of the liquid changes the foam height. Which jar should they compare with Jar RW-50?",
+ "choices": ["Jar B-3", "Jar N", "Jar TQV-118", "Jar DFK-7"],
+ "correct_answer": "Jar N",
+ "key_evidence": {"refs": [[0, 0], [2, 0], [0, 1], [2, 1], [0, 2], [2, 2]]},
+ "explanation": "A fair comparison changes only the variable being tested. Jar N and Jar RW-50 both used 5 g of powder and 100 mL of liquid. Only the liquid temperature differs: 40 °C against 20 °C. So any difference in foam height comes from temperature.",
+ "distractor_rationales": [
+  {"choice": "Jar B-3", "fault": "it differs from Jar RW-50 in temperature and also in powder mass (10 g), so the cause of the change cannot be known"},
+  {"choice": "Jar TQV-118", "fault": "its liquid temperature is the same 20 °C; only the liquid volume differs, so it cannot test temperature"},
+  {"choice": "Jar DFK-7", "fault": "its liquid temperature is the same 20 °C; only the powder mass differs, so it cannot test temperature"}
+ ],
+ "real_world_check": "To test whether one variable affects an outcome, two trials must differ in that variable only, with all other conditions kept the same."
+},
+{
+ "id": "MSP-P-04", "map_area": "Physical Science",
+ "grade_target": 6, "tier": "low", "difficulty": "easy", "rit_band_target": "RIT 189-198",
+ "dci": "PS2", "ngss_pe": "MS-PS2-2",
+ "kind": "investigation", "stimulus": "procedure+table", "format": "trend", "ask": "increase", "invented": true,
+ "names_used": ["Crate H-9"],
+ "passage": "Students studied friction with a wooden box labeled Crate H-9. They hooked a spring scale to the crate. Then they pulled it across the same tile floor at a slow, steady speed. The scale showed the pulling force needed to keep the crate sliding. Before each trial, they added sand to the crate to change its total mass. They also timed how long each 2 m pull took.",
+ "graphic": {"type": "table", "rowLabels": ["Trial 1", "Trial 2", "Trial 3", "Trial 4", "Trial 5", "Trial 6"], "colLabels": ["Total mass (kg)", "Pulling force (N)", "Time for 2 m (s)"], "cells": [[2, 5.9, 8.0], [4, 11.8, 8.1], [6, 17.6, 7.9], [8, 23.5, 8.0], [10, 29.4, 8.1], [12, 35.3, 8.0]], "caption": "Table 1. Pulling Crate H-9 across a tile floor"},
+ "prompt": "According to Table 1, what happens to the pulling force needed to keep Crate H-9 sliding as its total mass gets larger?",
+ "choices": ["The force needed increases, then stays the same.", "The force needed decreases.", "The force needed stays the same.", "The force needed rises with every trial."],
+ "correct_answer": "The force needed rises with every trial.",
+ "key_evidence": {"refs": [[0, 1], [1, 1], [2, 1], [3, 1], [4, 1], [5, 1]]},
+ "explanation": "The pulling force column goes 5.9, 11.8, 17.6, 23.5, 29.4 and 35.3 N as the mass goes from 2 kg to 12 kg. Each larger mass needed a larger force, all the way to the last trial, so the force never levels off.",
+ "distractor_rationales": [
+  {"choice": "The force needed increases, then stays the same.", "fault": "the force is still climbing between the last two trials (29.4 N to 35.3 N); it never levels off"},
+  {"choice": "The force needed decreases.", "fault": "every force in the table is larger than the one before it, the opposite of a decrease"},
+  {"choice": "The force needed stays the same.", "fault": "this describes the time column (about 8 s), not the pulling force column"}
+ ],
+ "real_world_check": "Sliding friction grows with the weight pressing the surfaces together, so a heavier crate needs a larger pull to keep it sliding at a steady speed."
+},
+{
+ "id": "MSP-P-05", "map_area": "Physical Science",
+ "grade_target": 6, "tier": "mid", "difficulty": "medium", "rit_band_target": "RIT 199-208",
+ "dci": "PS4", "ngss_pe": "MS-PS4-1",
+ "kind": "model", "stimulus": "scenario", "format": "term", "ask": "quantity", "invented": false,
+ "names_used": [],
+ "passage": null, "graphic": null,
+ "prompt": "Jon taps a drum softly with a stick. Then he hits the same drum much harder with the same stick. The second sound is louder, but it has the same pitch. Which quantity of the sound wave increased when Jon hit the drum harder?",
+ "choices": ["frequency", "wave amplitude", "amount of air carried", "travel speed"],
+ "correct_answer": "wave amplitude",
+ "key_evidence": null,
+ "explanation": "Hitting the drum harder gives the wave more energy, and a sound wave with more energy has a larger amplitude, which we hear as a louder sound. The pitch did not change, so the frequency did not change, and sound speed depends on the air, not on loudness.",
+ "distractor_rationales": [
+  {"choice": "frequency", "fault": "misconception: a louder sound has a higher frequency; frequency sets pitch, and the pitch stayed the same"},
+  {"choice": "amount of air carried", "fault": "misconception: sound carries air from the drum to the listener; a sound wave carries energy while the air only vibrates in place"},
+  {"choice": "travel speed", "fault": "misconception: louder sounds travel faster; the speed of sound depends on the medium, not on how loud the sound is"}
+ ],
+ "real_world_check": "The amplitude of a sound wave is related to its energy and loudness, while its frequency sets the pitch and its speed depends on the medium (MS-PS4-1)."
+},
+{
+ "id": "MSP-P-06", "map_area": "Physical Science",
+ "grade_target": 6, "tier": "high", "difficulty": "hard", "rit_band_target": "RIT 209-218",
+ "dci": "PS3", "ngss_pe": "MS-PS3-4",
+ "kind": "data", "stimulus": "line", "format": "values", "ask": "difference", "invented": true,
+ "names_used": ["Substance W-3"],
+ "passage": "Students heated a sample of Substance W-3 on a hot plate. The hot plate gave the sample energy at a steady rate the whole time. The sample was a solid at the start. The students recorded its temperature every 2 minutes.",
+ "graphic": {"type": "line", "series": [{"points": [[0, 10], [2, 30], [4, 30], [6, 30], [8, 30], [10, 50], [12, 70]]}], "xLabel": "Time (min)", "yLabel": "Temperature (°C)", "caption": "Temperature of Substance W-3 while it was heated"},
+ "prompt": "According to the graph, by how much did the temperature of Substance W-3 rise from minute 2 to minute 10?",
+ "choices": ["20 °C", "50 °C", "80 °C", "40 °C"],
+ "correct_answer": "20 °C",
+ "key_evidence": {"refs": [[2, 30], [10, 50]], "expr": "v1 - v0"},
+ "explanation": "At minute 2 the graph shows 30 °C, and at minute 10 it shows 50 °C. The rise is 50 - 30 = 20 °C. The temperature stayed flat from minute 2 to minute 8 while the solid melted, even though energy was still being added.",
+ "distractor_rationales": [
+  {"choice": "50 °C", "fault": "this is the temperature reading at minute 10, not the change since minute 2"},
+  {"choice": "80 °C", "fault": "assumes the early rate of 10 °C per minute lasted all 8 minutes and ignores the flat section"},
+  {"choice": "40 °C", "fault": "measures the rise from minute 0 (10 °C) instead of from minute 2"}
+ ],
+ "real_world_check": "When a solid is heated at a steady rate, its temperature stops rising while it melts because the added energy goes into changing its state (MS-PS3-4)."
+},
+{
+ "id": "MSP-P-07", "map_area": "Physical Science",
+ "grade_target": 7, "tier": "low", "difficulty": "easy", "rit_band_target": "RIT 192-201",
+ "dci": "PS2", "ngss_pe": "MS-PS2-2",
+ "kind": "investigation", "stimulus": "procedure", "format": "variable", "ask": "independent", "invented": true,
+ "names_used": ["cart K-8"],
+ "passage": "Students tested a small cart, labeled cart K-8, on a flat wooden track. A spring launcher at one end of the track gave the cart its push. In every trial the spring was pressed back 5 cm before release, so the push from the launcher was the same each time. The track surface was also the same for every trial. Before each trial, the students set the number of steel washers on the cart to 0, 2, 4, 6, or 8. After release, they measured the distance the cart rolled before it stopped. They ran each setup three times and averaged the results.",
+ "graphic": null,
+ "prompt": "What is the independent variable in this investigation?",
+ "choices": ["the number of steel washers on the cart", "the distance the cart rolled", "the track surface", "the push from the launcher"],
+ "correct_answer": "the number of steel washers on the cart",
+ "key_evidence": {"refs": [{"quote": "the students set the number of steel washers on the cart to 0, 2, 4, 6, or 8"}]},
+ "explanation": "The independent variable is the one the students deliberately set to different values. They set the washers to 0, 2, 4, 6 or 8 before each trial, while the push and the track stayed the same and the rolling distance was measured.",
+ "distractor_rationales": [
+  {"choice": "the distance the cart rolled", "fault": "this was measured after each release, so it is the dependent variable"},
+  {"choice": "the track surface", "fault": "the procedure keeps the track surface the same in every trial, so it is controlled"},
+  {"choice": "the push from the launcher", "fault": "the spring was pressed back 5 cm every time, so the push was held constant"}
+ ],
+ "real_world_check": "In a controlled investigation the independent variable is the one the experimenter changes on purpose, the dependent variable is the one measured, and the rest are held constant."
+},
+{
+ "id": "MSP-P-08", "map_area": "Physical Science",
+ "grade_target": 7, "tier": "mid", "difficulty": "medium", "rit_band_target": "RIT 202-211",
+ "dci": "PS4", "ngss_pe": "MS-PS4-2",
+ "kind": "model", "stimulus": "scenario", "format": "claim", "ask": "predicts", "invented": false,
+ "names_used": [],
+ "passage": null, "graphic": null,
+ "prompt": "In a dark room, Ana shines white light on a ripe red apple, and it looks red. Next she shines only pure blue light on the same apple. Which prediction about what Ana will see is correct?",
+ "choices": ["The apple will look red, as its color is the same in any light.", "The apple will look purple, since the blue light mixes with its red skin.", "The apple will look blue, because a surface reflects any color that hits it.", "The apple will look very dark, because its skin absorbs the blue light."],
+ "correct_answer": "The apple will look very dark, because its skin absorbs the blue light.",
+ "key_evidence": null,
+ "explanation": "A red apple looks red in white light because its skin reflects red light and absorbs the other colors. Pure blue light contains no red light to reflect, and the skin absorbs the blue, so very little light reaches Ana's eyes and the apple looks dark.",
+ "distractor_rationales": [
+  {"choice": "The apple will look red, as its color is the same in any light.", "fault": "misconception: color belongs to the object no matter what light hits it; the apple can only reflect red light that is present"},
+  {"choice": "The apple will look purple, since the blue light mixes with its red skin.", "fault": "misconception: light colors mix with object colors like paint; the skin absorbs the blue light instead of blending with it"},
+  {"choice": "The apple will look blue, because a surface reflects any color that hits it.", "fault": "misconception: objects reflect every color of light equally; a red surface absorbs most blue light"}
+ ],
+ "real_world_check": "An object's color comes from the wavelengths of light it reflects; a red surface absorbs blue light, so under pure blue light it looks dark (MS-PS4-2)."
+},
+{
+ "id": "MSP-P-09", "map_area": "Physical Science",
+ "grade_target": 7, "tier": "high", "difficulty": "hard", "rit_band_target": "RIT 212-221",
+ "dci": "PS2", "ngss_pe": "MS-PS2-2",
+ "kind": "data", "stimulus": "table", "format": "values", "ask": "read", "invented": true,
+ "names_used": ["fan cart F-3"],
+ "passage": "Students placed fan cart F-3 at rest on a level track. The fan pushed the cart forward. They tested three fan settings, where a higher setting gives a stronger push, and two loads placed on the cart. They measured the cart's speed after it had moved 3 m.",
+ "graphic": {"type": "table", "rowLabels": ["Trial 1", "Trial 2", "Trial 3", "Trial 4", "Trial 5", "Trial 6"], "colLabels": ["Fan setting", "Load (g)", "Speed at 3 m (m/s)"], "cells": [[2, 400, "1.15"], [3, 400, "1.41"], [1, 200, "0.93"], [1, 400, "0.82"], [2, 200, "1.31"], [3, 200, "1.60"]], "caption": "Table 1. Speed of fan cart F-3 after 3 m"},
+ "prompt": "For one more test, the students kept the load the same as in Trial 3 and raised the fan setting by 2. Based on Table 1, what speed at 3 m matches that test?",
+ "choices": ["1.60 m/s", "1.31 m/s", "0.93 m/s", "1.41 m/s"],
+ "correct_answer": "1.60 m/s",
+ "key_evidence": {"refs": [[5, 2]], "expr": "v0"},
+ "explanation": "Trial 3 used setting 1 with a 200 g load. Raising the setting by 2 gives setting 3, and keeping the load gives 200 g. The row with setting 3 and 200 g is Trial 6, whose speed is 1.60 m/s.",
+ "distractor_rationales": [
+  {"choice": "1.31 m/s", "fault": "this is setting 2 with 200 g, raising the setting by only 1"},
+  {"choice": "0.93 m/s", "fault": "this is Trial 3 itself, before the setting was raised"},
+  {"choice": "1.41 m/s", "fault": "this is setting 3 but with the 400 g load, so the load was not kept the same"}
+ ],
+ "real_world_check": "A stronger push gives a cart greater speed over the same distance, and a heavier load gives it less speed under the same push (MS-PS2-2)."
+},
+{
+ "id": "MSP-P-10", "map_area": "Physical Science",
+ "grade_target": 8, "tier": "low", "difficulty": "easy", "rit_band_target": "RIT 195-204",
+ "dci": "PS1", "ngss_pe": "MS-PS1-4",
+ "kind": "model", "stimulus": "scenario", "format": "claim", "ask": "explains", "invented": false,
+ "names_used": [],
+ "passage": null, "graphic": null,
+ "prompt": "Leo ties shut a balloon filled with air at room temperature. He puts it in a freezer for an hour. When he takes it out, the balloon is smaller, and it has not leaked. Which statement best explains why the balloon got smaller?",
+ "choices": ["The gas particles themselves shrink to a smaller size in the cold.", "Some gas particles are destroyed by the freezing cold.", "Coldness flows into the balloon and pulls the rubber walls in.", "The gas particles slow down, so they push less on the walls."],
+ "correct_answer": "The gas particles slow down, so they push less on the walls.",
+ "key_evidence": null,
+ "explanation": "Cooling removes thermal energy from the air inside, so its particles move more slowly. Slower particles hit the inside of the balloon less often and less hard, so the air takes up less space and the balloon shrinks. The number and size of the particles stay the same.",
+ "distractor_rationales": [
+  {"choice": "The gas particles themselves shrink to a smaller size in the cold.", "fault": "misconception: particles shrink when cooled; the particles keep their size and only move more slowly"},
+  {"choice": "Some gas particles are destroyed by the freezing cold.", "fault": "misconception: cooling destroys matter; the balloon did not leak, so every particle is still inside"},
+  {"choice": "Coldness flows into the balloon and pulls the rubber walls in.", "fault": "misconception: cold is a substance that flows into objects; cooling is thermal energy leaving the air"}
+ ],
+ "real_world_check": "Removing thermal energy from a gas lowers the average speed of its particles, so a gas in a stretchy container takes up less volume when cooled (MS-PS1-4)."
+},
+{
+ "id": "MSP-P-11", "map_area": "Physical Science",
+ "grade_target": 8, "tier": "mid", "difficulty": "medium", "rit_band_target": "RIT 205-214",
+ "dci": "PS3", "ngss_pe": "MS-PS3-4",
+ "kind": "data", "stimulus": "scatter", "format": "trend", "ask": "decrease", "invented": true,
+ "names_used": ["Heater H-6"],
+ "passage": "Students used Heater H-6 to warm water samples of different masses. The heater ran for 2 minutes each time, so it gave every sample the same amount of energy. Each sample started at 20 °C. The students recorded how much the temperature of each sample rose.",
+ "graphic": {"type": "scatter", "points": [[100, 25], [150, 17], [200, 12], [250, 10], [300, 8], [400, 6]], "xLabel": "Mass of water (g)", "yLabel": "Temperature rise (°C)", "caption": "Temperature rise of water samples warmed by Heater H-6"},
+ "prompt": "Based on the graph, how does the temperature rise change as the mass of the water sample gets larger?",
+ "choices": ["It increases.", "It stays about the same.", "It decreases overall.", "It increases, then decreases."],
+ "correct_answer": "It decreases overall.",
+ "key_evidence": {"refs": [[100, 25], [200, 12], [400, 6]]},
+ "explanation": "The 100 g sample rose 25 °C, the 200 g sample rose 12 °C, and the 400 g sample rose only 6 °C. Every larger sample shows a smaller rise, because the same energy was spread over more water.",
+ "distractor_rationales": [
+  {"choice": "It increases.", "fault": "the points slope downward; the largest sample has the smallest rise"},
+  {"choice": "It stays about the same.", "fault": "the rise falls from 25 °C to 6 °C across the samples, which is far from constant"},
+  {"choice": "It increases, then decreases.", "fault": "the smallest sample already has the largest rise, so there is no rising part"}
+ ],
+ "real_world_check": "When the same amount of energy is added, a larger mass of the same substance warms by a smaller amount (MS-PS3-4)."
+},
+{
+ "id": "MSP-P-12", "map_area": "Physical Science",
+ "grade_target": 8, "tier": "high", "difficulty": "hard", "rit_band_target": "RIT 215-224",
+ "dci": "PS4", "ngss_pe": "MS-PS4-2",
+ "kind": "data", "stimulus": "table", "format": "conditions", "ask": "greatest", "invented": true,
+ "names_used": ["Film G", "Film K-4", "Film MT-60", "Film RVS-205"],
+ "passage": "Light from one lamp struck four plastic films. A light meter measured the percent of the light reflected back from each film and the percent transmitted through it. The rest of the light that struck each film was absorbed.",
+ "graphic": {"type": "table", "rowLabels": ["Film K-4", "Film G", "Film MT-60", "Film RVS-205"], "colLabels": ["Light reflected (%)", "Light transmitted (%)"], "cells": [[60, 5], [15, 10], [5, 40], [20, 15]], "caption": "Table 1. Light reflected and transmitted by four films"},
+ "prompt": "Based on Table 1, which film absorbed the greatest percent of the light that struck it?",
+ "choices": ["Film MT-60", "Film G", "Film RVS-205", "Film K-4"],
+ "correct_answer": "Film G",
+ "key_evidence": {"refs": [[1, 0], [1, 1], [0, 0], [0, 1], [2, 0], [2, 1], [3, 0], [3, 1]]},
+ "explanation": "Absorbed light is what is left after reflected and transmitted light: 100% minus both. Film G absorbed 100 - 15 - 10 = 75%. Film RVS-205 absorbed 65%, Film MT-60 absorbed 55%, and Film K-4 absorbed 35%.",
+ "distractor_rationales": [
+  {"choice": "Film MT-60", "fault": "it reflects the least light, but it transmits 40%, so it absorbs only 55%"},
+  {"choice": "Film RVS-205", "fault": "it absorbs 100 - 20 - 15 = 65%, which is less than 75%"},
+  {"choice": "Film K-4", "fault": "it transmits the least light, but it reflects 60%, so it absorbs only 35%"}
+ ],
+ "real_world_check": "Light that strikes a material is reflected, transmitted or absorbed, so the three percents add up to 100% (MS-PS4-2)."
+}
+]

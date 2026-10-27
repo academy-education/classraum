@@ -1,0 +1,808 @@
+[
+  {
+    "id": "MSP-L-01",
+    "map_area": "Life Science",
+    "grade_target": 5,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 186-195",
+    "dci": "LS2",
+    "ngss_pe": "5-LS2-1",
+    "kind": "investigation",
+    "stimulus": "procedure+table",
+    "format": "conditions",
+    "ask": "meets-criterion",
+    "invented": true,
+    "names_used": [
+      "Mold W-2",
+      "Mold WX-40",
+      "Bacteria Q-7",
+      "Bacteria QZ-15"
+    ],
+    "passage": "Students tested four decomposers. They filled five bins with the same soil. The soil had been baked, so nothing in it was alive. Each bin got 100 g of chopped lettuce and carrot scraps. Four of the bins each got one decomposer: Mold W-2, Mold WX-40, Bacteria Q-7, or Bacteria QZ-15. The fifth bin got no decomposer. All five bins were kept damp and warm for four weeks. Then the students weighed the scraps that were left in each bin.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Mold W-2",
+        "Mold WX-40",
+        "Bacteria Q-7",
+        "Bacteria QZ-15",
+        "No decomposer"
+      ],
+      "colLabels": [
+        "Scraps left after 4 weeks (g)"
+      ],
+      "cells": [
+        [
+          62
+        ],
+        [
+          41
+        ],
+        [
+          55
+        ],
+        [
+          73
+        ],
+        [
+          97
+        ]
+      ],
+      "caption": "Table 1. Mass of scraps left in each bin (every bin started with 100 g)"
+    },
+    "prompt": "The students want a decomposer that broke down more than half of the scraps in four weeks. Based on Table 1, which decomposer did this?",
+    "choices": [
+      "Bacteria Q-7",
+      "Mold WX-40",
+      "Bacteria QZ-15",
+      "Mold W-2"
+    ],
+    "correct_answer": "Mold WX-40",
+    "key_evidence": {
+      "refs": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          3,
+          0
+        ]
+      ]
+    },
+    "explanation": "Every bin started with 100 g of scraps, so more than half was broken down only where less than 50 g was left. Mold WX-40 left 41 g, so it broke down 59 g. Mold W-2, Bacteria Q-7 and Bacteria QZ-15 left 62 g, 55 g and 73 g, so each broke down less than half.",
+    "distractor_rationales": [
+      {
+        "choice": "Bacteria Q-7",
+        "fault": "It left 55 g, so it broke down only 45 g, less than half; choosing it reads the mass left as the mass broken down."
+      },
+      {
+        "choice": "Bacteria QZ-15",
+        "fault": "It left 73 g, so it broke down only 27 g, far less than half of the scraps."
+      },
+      {
+        "choice": "Mold W-2",
+        "fault": "It left 62 g, so it broke down only 38 g, which is less than half."
+      }
+    ],
+    "real_world_check": "Decomposers such as molds and bacteria break down dead plant matter, so scraps lose mass where decomposers are active and barely change in sterile soil that has none."
+  },
+  {
+    "id": "MSP-L-02",
+    "map_area": "Life Science",
+    "grade_target": 5,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 196-205",
+    "dci": "LS2",
+    "ngss_pe": "5-LS2-1",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "explains",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A fallen log lies on a forest floor. Over ten years, the log becomes soft and crumbly. Then it shrinks until only a patch of dark, rich soil is left where it lay. Which statement best explains what happened to the matter in the log?",
+    "choices": [
+      "Nearby tree roots took in the solid wood and used it as food for growing.",
+      "The wood's matter was used up and stopped existing as it aged.",
+      "Decomposers broke the wood down and returned its matter to the soil.",
+      "Rainwater slowly dissolved the wood, the same way warm water dissolves sugar."
+    ],
+    "correct_answer": "Decomposers broke the wood down and returned its matter to the soil.",
+    "explanation": "Fungi, bacteria and small animals that feed on dead matter break down the wood. They use some of it and release the rest as carbon dioxide, water and nutrients, so the matter goes back to the soil and air instead of vanishing. That is why the log shrinks and leaves rich soil behind.",
+    "distractor_rationales": [
+      {
+        "choice": "Nearby tree roots took in the solid wood and used it as food for growing.",
+        "fault": "misconception: plants take in their food from the soil; plants make their own food, and roots cannot absorb solid wood."
+      },
+      {
+        "choice": "The wood's matter was used up and stopped existing as it aged.",
+        "fault": "misconception: matter is destroyed when things rot; matter changes form but is never used up into nothing."
+      },
+      {
+        "choice": "Rainwater slowly dissolved the wood, the same way warm water dissolves sugar.",
+        "fault": "misconception: rotting is a nonliving process like dissolving; wood does not dissolve in water, and decay is done by living decomposers."
+      }
+    ],
+    "real_world_check": "Decomposers such as fungi and bacteria break down dead organisms and return their matter to the soil and air; the matter is not destroyed."
+  },
+  {
+    "id": "MSP-L-03",
+    "map_area": "Life Science",
+    "grade_target": 5,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 206-215",
+    "dci": "LS1",
+    "ngss_pe": "5-LS1-1",
+    "kind": "data",
+    "stimulus": "bar",
+    "format": "conditions",
+    "ask": "controlled-pair",
+    "invented": true,
+    "names_used": [
+      "plant line R-4",
+      "plant line R-17",
+      "plant line RX-208"
+    ],
+    "passage": "Students grew three plant lines, R-4, R-17 and RX-208, in pots of the same soil and light. For four weeks, some pots of each line got 10 mL of water a week. These are marked \"dry.\" The other pots got 100 mL a week. These are marked \"watered.\" The graph shows the mass each group gained.",
+    "graphic": {
+      "type": "bar",
+      "bars": [
+        {
+          "label": "R-4, dry",
+          "value": 14
+        },
+        {
+          "label": "R-4, watered",
+          "value": 32
+        },
+        {
+          "label": "R-17, dry",
+          "value": 4
+        },
+        {
+          "label": "R-17, watered",
+          "value": 40
+        },
+        {
+          "label": "RX-208, dry",
+          "value": 9
+        },
+        {
+          "label": "RX-208, watered",
+          "value": 26
+        }
+      ],
+      "xLabel": "Plant line and water",
+      "yLabel": "Mass gained in 4 weeks (g)",
+      "caption": "Mass gained by six groups of plants"
+    },
+    "prompt": "The students want to test whether the amount of water affects how much mass a plant gains. Which group should they compare with the group that gained the LEAST mass?",
+    "choices": [
+      "R-17, watered",
+      "R-4, dry",
+      "RX-208, dry",
+      "RX-208, watered"
+    ],
+    "correct_answer": "R-17, watered",
+    "key_evidence": {
+      "refs": [
+        "R-17, dry",
+        "R-17, watered"
+      ]
+    },
+    "explanation": "The shortest bar is R-17, dry, so that group gained the least mass. To test water, the comparison group must differ from it only in water. R-17, watered is the same plant line in the same soil and light but got 100 mL a week instead of 10 mL.",
+    "distractor_rationales": [
+      {
+        "choice": "R-4, dry",
+        "fault": "It got the same water as R-17, dry but is a different plant line, so the pair tests plant line, not water."
+      },
+      {
+        "choice": "RX-208, dry",
+        "fault": "It got the same water as R-17, dry but is a different plant line, so the pair tests plant line, not water."
+      },
+      {
+        "choice": "RX-208, watered",
+        "fault": "It differs from R-17, dry in both plant line and water, so any difference could come from either one."
+      }
+    ],
+    "real_world_check": "Water is one of the main materials a plant uses to build its body, so within a normal range plants given more water gain more mass, and a fair comparison changes only one variable."
+  },
+  {
+    "id": "MSP-L-04",
+    "map_area": "Life Science",
+    "grade_target": 6,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 189-198",
+    "dci": "LS4",
+    "ngss_pe": "MS-LS4-6",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "conditions",
+    "ask": "meets-criterion",
+    "invented": true,
+    "names_used": [
+      "Population 7",
+      "Population 23A",
+      "Population 116-B",
+      "Population 4402-CX"
+    ],
+    "passage": "Hairy leaves help a plant lose less water. Scientists grew four populations of one wildflower in a dry greenhouse. Each population started from a different batch of seeds. The table shows the percentage of plants with hairy leaves in Generation 1 and in Generation 6.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Population 7",
+        "Population 23A",
+        "Population 116-B",
+        "Population 4402-CX"
+      ],
+      "colLabels": [
+        "Hairy leaves, Generation 1 (%)",
+        "Hairy leaves, Generation 6 (%)"
+      ],
+      "cells": [
+        [
+          20,
+          34
+        ],
+        [
+          15,
+          36
+        ],
+        [
+          45,
+          70
+        ],
+        [
+          30,
+          52
+        ]
+      ],
+      "caption": "Plants with hairy leaves in four populations grown in dry conditions"
+    },
+    "prompt": "In which population did the percentage of plants with hairy leaves MORE THAN DOUBLE from Generation 1 to Generation 6?",
+    "choices": [
+      "Population 7",
+      "Population 116-B",
+      "Population 4402-CX",
+      "Population 23A"
+    ],
+    "correct_answer": "Population 23A",
+    "key_evidence": {
+      "refs": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    "explanation": "Population 23A went from 15% to 36%. Double 15% is 30%, and 36% is more than that. Population 7 would need more than 40%, Population 116-B more than 90%, and Population 4402-CX more than 60%, and none of them reached it.",
+    "distractor_rationales": [
+      {
+        "choice": "Population 7",
+        "fault": "It rose from 20% to 34%, but doubling would need more than 40%."
+      },
+      {
+        "choice": "Population 116-B",
+        "fault": "It had the largest gain in points (25), but 70% is less than double 45%, which is 90%."
+      },
+      {
+        "choice": "Population 4402-CX",
+        "fault": "It rose from 30% to 52%, but doubling would need more than 60%."
+      }
+    ],
+    "real_world_check": "In a dry environment a trait that reduces water loss helps plants survive and reproduce, so natural selection makes that trait more common over generations."
+  },
+  {
+    "id": "MSP-L-05",
+    "map_area": "Life Science",
+    "grade_target": 6,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 199-208",
+    "dci": "LS4",
+    "ngss_pe": "MS-LS4-2",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "example",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A human arm has one upper bone, two lower bones, a group of wrist bones and finger bones. Some animals have a limb built on this same bone pattern because they share a common ancestor with humans. Which is an example of such a limb?",
+    "choices": [
+      "an octopus's arm",
+      "a butterfly's wing",
+      "a bat's wing",
+      "a lobster's walking leg"
+    ],
+    "correct_answer": "a bat's wing",
+    "explanation": "A bat's wing is held up by one upper bone, two lower bones, wrist bones and long finger bones, the same pattern as the human arm. Bats and humans are both mammals that inherited this limb plan from a shared ancestor, so the two limbs are homologous structures even though one is used for flying.",
+    "distractor_rationales": [
+      {
+        "choice": "an octopus's arm",
+        "fault": "misconception: body parts with the same name share an ancestry; an octopus arm has no bones at all."
+      },
+      {
+        "choice": "a butterfly's wing",
+        "fault": "misconception: parts that do the same job were inherited from a shared ancestor; an insect's wing has no bones and evolved separately from a bat's."
+      },
+      {
+        "choice": "a lobster's walking leg",
+        "fault": "misconception: any jointed limb has the same bone pattern; a lobster leg is a hard outer shell with no inner bones."
+      }
+    ],
+    "real_world_check": "The forelimbs of mammals such as humans and bats share one upper bone, two lower bones, wrist bones and digits inherited from a common ancestor, while insect wings, octopus arms and lobster legs contain no bones."
+  },
+  {
+    "id": "MSP-L-06",
+    "map_area": "Life Science",
+    "grade_target": 6,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 209-218",
+    "dci": "LS1",
+    "ngss_pe": "MS-LS1-5",
+    "kind": "investigation",
+    "stimulus": "procedure",
+    "format": "variable",
+    "ask": "controlled",
+    "invented": true,
+    "names_used": [
+      "plant line S-9"
+    ],
+    "passage": "Students tested whether soil temperature affects how seeds of plant line S-9 sprout. They filled four trays with 300 g of the same potting soil. They planted 20 seeds in each tray. Heating mats set the soil temperature of the trays to 15 °C, 20 °C, 25 °C and 30 °C. Each tray got 50 mL of water every day. To set the light level, each tray sat 30 cm below its own lamp, and all four lamps were the same model. For 10 days, the students recorded the number of sprouted seeds in each tray. On day 10, they also measured the height of the tallest sprout in each tray.",
+    "graphic": null,
+    "prompt": "Which of these quantities was a controlled variable in this investigation?",
+    "choices": [
+      "soil temperature",
+      "number of sprouted seeds",
+      "height of the tallest sprout",
+      "light level"
+    ],
+    "correct_answer": "light level",
+    "key_evidence": {
+      "refs": [
+        {
+          "quote": "each tray sat 30 cm below its own lamp, and all four lamps were the same model"
+        }
+      ]
+    },
+    "explanation": "Each tray sat the same distance below the same model of lamp, so every tray got the same light level; it was held constant on purpose. Soil temperature was set to a different value in each tray, so it was the variable the students changed. The number of sprouted seeds and the height of the tallest sprout were both measured as results.",
+    "distractor_rationales": [
+      {
+        "choice": "soil temperature",
+        "fault": "It was set to four different values, so it is the variable being tested, not one held constant."
+      },
+      {
+        "choice": "number of sprouted seeds",
+        "fault": "It was recorded as a result each day, so it is a measured (dependent) variable."
+      },
+      {
+        "choice": "height of the tallest sprout",
+        "fault": "It was measured on day 10 as a result, so it is a measured (dependent) variable."
+      }
+    ],
+    "real_world_check": "In a fair investigation only the tested variable is changed, factors such as light are held equal across groups, and the outcomes are measured; temperature does affect how fast seeds sprout."
+  },
+  {
+    "id": "MSP-L-07",
+    "map_area": "Life Science",
+    "grade_target": 7,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 192-201",
+    "dci": "LS3",
+    "ngss_pe": "MS-LS3-1",
+    "kind": "data",
+    "stimulus": "line",
+    "format": "values",
+    "ask": "ratio",
+    "invented": true,
+    "names_used": [
+      "plant line V-6"
+    ],
+    "passage": "Before planting, seeds of plant line V-6 were given different doses of radiation. Scientists then counted the seedlings that had a new leaf color caused by a mutation.",
+    "graphic": {
+      "type": "line",
+      "series": [
+        {
+          "points": [
+            [
+              0,
+              2
+            ],
+            [
+              10,
+              3.5
+            ],
+            [
+              20,
+              5
+            ],
+            [
+              30,
+              6.5
+            ],
+            [
+              40,
+              8
+            ]
+          ]
+        }
+      ],
+      "xLabel": "Radiation dose (Gy)",
+      "yLabel": "Seedlings with a new mutation (per 100,000)",
+      "caption": "New leaf-color mutations in plant line V-6"
+    },
+    "prompt": "Based on the graph, the number of seedlings with a new mutation at a dose of 40 Gy is how many times the number at a dose of 0 Gy?",
+    "choices": [
+      "0.25",
+      "4.00",
+      "6.00",
+      "2.50"
+    ],
+    "correct_answer": "4.00",
+    "key_evidence": {
+      "refs": [
+        [
+          40,
+          8
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "expr": "v0 / v1"
+    },
+    "explanation": "At 40 Gy the graph is at 8 seedlings per 100,000, and at 0 Gy it is at 2 per 100,000. Dividing, 8 / 2 = 4.00, so the higher dose gave four times as many mutant seedlings.",
+    "distractor_rationales": [
+      {
+        "choice": "0.25",
+        "fault": "It divides the 0 Gy value by the 40 Gy value (2 / 8), turning the ratio upside down."
+      },
+      {
+        "choice": "6.00",
+        "fault": "It subtracts the two values (8 - 2) instead of dividing them."
+      },
+      {
+        "choice": "2.50",
+        "fault": "It uses the 20 Gy value instead of the 40 Gy value (5 / 2)."
+      }
+    ],
+    "real_world_check": "Radiation damages DNA, so higher doses produce more mutations, and some mutations change a visible trait such as leaf color."
+  },
+  {
+    "id": "MSP-L-08",
+    "map_area": "Life Science",
+    "grade_target": 7,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 202-211",
+    "dci": "LS1",
+    "ngss_pe": "MS-LS1-7",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "predicts",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A healthy potted plant and a carbon dioxide sensor are sealed inside a clear box. The box is kept in a dark room with no light for 12 hours. Which prediction about the amount of carbon dioxide in the box is correct?",
+    "choices": [
+      "It will rise, because the plant's cells keep doing cellular respiration.",
+      "It will fall, because the plant keeps making sugar from carbon dioxide all night.",
+      "It will stay the same, because plants do not give off any carbon dioxide at any time.",
+      "It will fall, because plants breathe in carbon dioxide the way animals breathe in oxygen."
+    ],
+    "correct_answer": "It will rise, because the plant's cells keep doing cellular respiration.",
+    "explanation": "In the dark the plant cannot carry out photosynthesis, so it takes in no carbon dioxide. Its cells still break down sugar for energy by cellular respiration, day and night, and that process releases carbon dioxide. With nothing removing it, the carbon dioxide in the sealed box builds up.",
+    "distractor_rationales": [
+      {
+        "choice": "It will fall, because the plant keeps making sugar from carbon dioxide all night.",
+        "fault": "misconception: plants carry out photosynthesis without light; making sugar from carbon dioxide needs light energy."
+      },
+      {
+        "choice": "It will stay the same, because plants do not give off any carbon dioxide at any time.",
+        "fault": "misconception: plants do not do cellular respiration; all living plant cells respire and release carbon dioxide."
+      },
+      {
+        "choice": "It will fall, because plants breathe in carbon dioxide the way animals breathe in oxygen.",
+        "fault": "misconception: plant respiration is the reverse of animal respiration; plant cells respire just like animal cells, using oxygen and releasing carbon dioxide."
+      }
+    ],
+    "real_world_check": "Plant cells carry out cellular respiration at all times, releasing carbon dioxide, while photosynthesis, which takes in carbon dioxide, requires light."
+  },
+  {
+    "id": "MSP-L-09",
+    "map_area": "Life Science",
+    "grade_target": 7,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 212-221",
+    "dci": "LS4",
+    "ngss_pe": "MS-LS4-6",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "values",
+    "ask": "interpolate",
+    "invented": true,
+    "names_used": [
+      "yeast line Y-22"
+    ],
+    "passage": "A population of yeast line Y-22 was grown in very salty water for 50 generations. Some cells in the population could grow well in salt. Scientists measured the percentage of these salt-tolerant cells in some generations, but not in every one.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Generation 0",
+        "Generation 10",
+        "Generation 20",
+        "Generation 40",
+        "Generation 50"
+      ],
+      "colLabels": [
+        "Salt-tolerant cells (%)"
+      ],
+      "cells": [
+        [
+          4
+        ],
+        [
+          14
+        ],
+        [
+          24
+        ],
+        [
+          64
+        ],
+        [
+          75
+        ]
+      ],
+      "caption": "Salt-tolerant cells in yeast line Y-22 grown in salty water"
+    },
+    "prompt": "Assume the percentage of salt-tolerant cells changed at a steady rate from Generation 20 to Generation 40. What is the best estimate of the percentage at Generation 25?",
+    "choices": [
+      "34%",
+      "24%",
+      "44%",
+      "29%"
+    ],
+    "correct_answer": "34%",
+    "key_evidence": {
+      "refs": [
+        [
+          2,
+          0
+        ],
+        [
+          3,
+          0
+        ]
+      ],
+      "expr": "v0 + (v1 - v0) * 5 / 20"
+    },
+    "explanation": "From Generation 20 to Generation 40 the percentage rose from 24% to 64%, which is 40 points over 20 generations, or 2 points per generation. Generation 25 is 5 generations after Generation 20, so the estimate is 24% + 5 x 2 = 34%.",
+    "distractor_rationales": [
+      {
+        "choice": "24%",
+        "fault": "It is the Generation 20 value copied without adding the rise over the next 5 generations."
+      },
+      {
+        "choice": "44%",
+        "fault": "It is the halfway value between 24% and 64%, which treats Generation 25 as if it were Generation 30."
+      },
+      {
+        "choice": "29%",
+        "fault": "It uses the slower rate from Generation 10 to Generation 20 (1 point per generation) instead of the rate the stem names."
+      }
+    ],
+    "real_world_check": "When a trait helps individuals survive and reproduce in an environment, natural selection raises its share of the population over generations, often slowly at first, then faster, then leveling off."
+  },
+  {
+    "id": "MSP-L-10",
+    "map_area": "Life Science",
+    "grade_target": 8,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 195-204",
+    "dci": "LS2",
+    "ngss_pe": "MS-LS2-1",
+    "kind": "data",
+    "stimulus": "scatter",
+    "format": "trend",
+    "ask": "increase",
+    "invented": true,
+    "names_used": [
+      "cricket line C-7"
+    ],
+    "passage": "Ecologists set traps at different distances from a stream to count crickets of cricket line C-7. Each point shows one trap after three nights.",
+    "graphic": {
+      "type": "scatter",
+      "points": [
+        [
+          5,
+          3
+        ],
+        [
+          15,
+          5
+        ],
+        [
+          25,
+          9
+        ],
+        [
+          35,
+          11
+        ],
+        [
+          45,
+          15
+        ],
+        [
+          55,
+          18
+        ]
+      ],
+      "xLabel": "Distance from stream (m)",
+      "yLabel": "Crickets caught per trap",
+      "caption": "Cricket line C-7 caught in traps at six distances from a stream"
+    },
+    "prompt": "Which statement best describes the pattern in the scatterplot?",
+    "choices": [
+      "Crickets per trap decrease farther from the stream.",
+      "Crickets per trap increase steadily the farther the trap is from the stream.",
+      "Crickets per trap stay about the same no matter the distance.",
+      "Crickets per trap increase, then stay the same farther out."
+    ],
+    "correct_answer": "Crickets per trap increase steadily the farther the trap is from the stream.",
+    "key_evidence": {
+      "refs": [
+        [
+          5,
+          3
+        ],
+        [
+          25,
+          9
+        ],
+        [
+          55,
+          18
+        ]
+      ]
+    },
+    "explanation": "The trap 5 m from the stream caught 3 crickets, the trap at 25 m caught 9, and the trap at 55 m caught 18. Every trap farther out caught more than the one before it, and the counts keep climbing all the way to the farthest trap with no flat stretch.",
+    "distractor_rationales": [
+      {
+        "choice": "Crickets per trap decrease farther from the stream.",
+        "fault": "The counts go up, from 3 at 5 m to 18 at 55 m, not down."
+      },
+      {
+        "choice": "Crickets per trap stay about the same no matter the distance.",
+        "fault": "The counts change a lot, from 3 to 18, so they do not stay about the same."
+      },
+      {
+        "choice": "Crickets per trap increase, then stay the same farther out.",
+        "fault": "The counts keep rising through the last three traps (11, 15, 18), so they never level off."
+      }
+    ],
+    "real_world_check": "An animal population is larger where the conditions and resources it needs are more available, so its numbers can change steadily with distance from a feature such as a stream."
+  },
+  {
+    "id": "MSP-L-11",
+    "map_area": "Life Science",
+    "grade_target": 8,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 205-214",
+    "dci": "LS3",
+    "ngss_pe": "MS-LS3-2",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "process",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A gardener cuts a short stem from a rose bush and puts it in moist soil. The stem grows roots and becomes a new bush. A test shows that the new bush has exactly the same DNA as the bush it came from. Which process produced the new bush?",
+    "choices": [
+      "pollination",
+      "mutation",
+      "asexual reproduction",
+      "fertilization"
+    ],
+    "correct_answer": "asexual reproduction",
+    "explanation": "The new bush grew from a piece of one parent, with no sex cells joining. Offspring made from a single parent this way get a copy of that parent's genes, which is why its DNA matches exactly. Growing a plant from a cutting is a kind of asexual reproduction.",
+    "distractor_rationales": [
+      {
+        "choice": "pollination",
+        "fault": "misconception: every new plant must start with pollen moving between flowers; this bush grew from a cut stem with no flowers involved."
+      },
+      {
+        "choice": "mutation",
+        "fault": "misconception: a new organism comes from a mutation; a mutation is a change in DNA, and the new bush has no change at all."
+      },
+      {
+        "choice": "fertilization",
+        "fault": "misconception: all offspring come from joining an egg and a sperm; fertilization mixes genes from two parents, so the DNA would not match one parent exactly."
+      }
+    ],
+    "real_world_check": "A plant grown from a cutting is produced by asexual reproduction and is genetically identical to its single parent, while sexual reproduction combines genes from two parents."
+  },
+  {
+    "id": "MSP-L-12",
+    "map_area": "Life Science",
+    "grade_target": 8,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 215-224",
+    "dci": "LS3",
+    "ngss_pe": "MS-LS3-2",
+    "kind": "investigation",
+    "stimulus": "procedure",
+    "format": "claim",
+    "ask": "not-supported",
+    "invented": true,
+    "names_used": [
+      "plant line W-8"
+    ],
+    "passage": "Plants of plant line W-8 have either notched leaves or smooth leaves. Leaf shape is controlled by one gene that has two forms. Students did three crosses. In Cross 1, they crossed a notched plant with a smooth plant. All 40 offspring had notched leaves. In Cross 2, they crossed two of the Cross 1 offspring with each other. Of the 200 offspring, 152 had notched leaves and 48 had smooth leaves. In Cross 3, they let a smooth plant from Cross 2 pollinate itself. All 30 of its offspring had smooth leaves.",
+    "graphic": null,
+    "prompt": "Which claim is NOT supported by the results of these crosses?",
+    "choices": [
+      "A smooth plant passes only the smooth form of the gene to its offspring.",
+      "Two notched parents can produce offspring that have smooth leaves.",
+      "The smooth form is recessive, so it never shows when the notched form is present.",
+      "Plants from Cross 1 had just the notched form of the gene and no hidden smooth form."
+    ],
+    "correct_answer": "Plants from Cross 1 had just the notched form of the gene and no hidden smooth form.",
+    "key_evidence": {
+      "refs": [
+        {
+          "quote": "Of the 200 offspring, 152 had notched leaves and 48 had smooth leaves"
+        }
+      ]
+    },
+    "explanation": "When two Cross 1 offspring were crossed, 48 of 200 offspring had smooth leaves. Those smooth plants had to get the smooth form from their notched parents, so the Cross 1 offspring were carrying a hidden smooth form. The claim that they had no smooth form is contradicted by Cross 2.",
+    "distractor_rationales": [
+      {
+        "choice": "A smooth plant passes only the smooth form of the gene to its offspring.",
+        "fault": "Supported by Cross 3: a smooth plant that pollinated itself produced 30 offspring, all smooth."
+      },
+      {
+        "choice": "Two notched parents can produce offspring that have smooth leaves.",
+        "fault": "Supported by Cross 2: two notched Cross 1 plants produced 48 smooth offspring."
+      },
+      {
+        "choice": "The smooth form is recessive, so it never shows when the notched form is present.",
+        "fault": "Supported by Crosses 1 and 2: Cross 1 plants carried the smooth form yet all 40 were notched, and smooth returned at about one in four."
+      }
+    ],
+    "real_world_check": "For a gene with a dominant and a recessive form, crossing two carriers gives about 3 dominant-trait offspring to 1 recessive-trait offspring, and recessive-trait plants carry two recessive copies."
+  }
+]

@@ -1,0 +1,810 @@
+[
+  {
+    "id": "MSP-E-01",
+    "map_area": "Earth and Space Science",
+    "grade_target": 5,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 186-195",
+    "dci": "ESS2",
+    "ngss_pe": "4-ESS2-1",
+    "kind": "investigation",
+    "stimulus": "procedure+table",
+    "format": "conditions",
+    "ask": "greatest",
+    "invented": true,
+    "names_used": [
+      "Dunmore Ridge",
+      "Hale Bank",
+      "Sorrel Creek Bed",
+      "Marrow Flat"
+    ],
+    "passage": "Students wanted to know which soil washes away most easily in rain. They collected soil from four places. They packed each soil into a tray of the same size. They tilted every tray to the same angle. Then they sprinkled 500 mL of water over each tray, like a rainstorm. They caught the soil that washed off the low end of the tray. They dried that soil and weighed it. Table 1 shows whether plants were growing in each soil and how much soil washed away.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Dunmore Ridge",
+        "Hale Bank",
+        "Sorrel Creek Bed",
+        "Marrow Flat"
+      ],
+      "colLabels": [
+        "Plant cover",
+        "Soil washed away (g)"
+      ],
+      "cells": [
+        [
+          "none",
+          39
+        ],
+        [
+          "none",
+          48
+        ],
+        [
+          "grass",
+          9
+        ],
+        [
+          "grass",
+          12
+        ]
+      ],
+      "caption": "Table 1. Soil washed away from four trays"
+    },
+    "prompt": "Based on Table 1, soil from which place washed away the most?",
+    "choices": [
+      "Dunmore Ridge",
+      "Hale Bank",
+      "Sorrel Creek Bed",
+      "Marrow Flat"
+    ],
+    "correct_answer": "Hale Bank",
+    "key_evidence": {
+      "refs": [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          1
+        ]
+      ]
+    },
+    "explanation": "The soil-washed-away column reads 48 g for Hale Bank, more than Dunmore Ridge (39 g), Marrow Flat (12 g) and Sorrel Creek Bed (9 g). Both bare soils lost more than the grassy ones, but Hale Bank lost the most of all.",
+    "distractor_rationales": [
+      {
+        "choice": "Dunmore Ridge",
+        "fault": "it is bare too, but it lost 39 g, less than Hale Bank's 48 g"
+      },
+      {
+        "choice": "Sorrel Creek Bed",
+        "fault": "it lost only 9 g, the least of the four, not the most"
+      },
+      {
+        "choice": "Marrow Flat",
+        "fault": "its grass cover held it in place; it lost only 12 g"
+      }
+    ],
+    "real_world_check": "Running water erodes bare soil more than soil held by plant roots and cover, so the two bare soils lose the most."
+  },
+  {
+    "id": "MSP-E-02",
+    "map_area": "Earth and Space Science",
+    "grade_target": 5,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 196-205",
+    "dci": "ESS3",
+    "ngss_pe": "5-ESS3-1",
+    "kind": "data",
+    "stimulus": "scatter",
+    "format": "trend",
+    "ask": "no-change",
+    "invented": true,
+    "names_used": [
+      "Pellbrook"
+    ],
+    "passage": "For many years, farms near the town of Pellbrook pumped a lot of groundwater, and the water in the town's test well kept dropping. Then the town set a limit on how much water each farm could pump. After the limit began, students measured the height of the water in the test well once a year.",
+    "graphic": {
+      "type": "scatter",
+      "points": [
+        [
+          1,
+          14.2
+        ],
+        [
+          2,
+          14
+        ],
+        [
+          3,
+          14.3
+        ],
+        [
+          4,
+          14.1
+        ],
+        [
+          5,
+          13.9
+        ],
+        [
+          6,
+          14.2
+        ],
+        [
+          7,
+          14.1
+        ]
+      ],
+      "xLabel": "Years after the limit began",
+      "yLabel": "Height of water in test well (m)",
+      "caption": "Water in the Pellbrook test well, measured once a year after the pumping limit began"
+    },
+    "prompt": "Based on the graph, how did the height of the water in the test well change after the limit began?",
+    "choices": [
+      "It rose a little each year.",
+      "It stayed close to the same height.",
+      "It dropped a little each year.",
+      "It rose for a few years, then leveled off."
+    ],
+    "correct_answer": "It stayed close to the same height.",
+    "key_evidence": {
+      "refs": [
+        [
+          1,
+          14.2
+        ],
+        [
+          3,
+          14.3
+        ],
+        [
+          5,
+          13.9
+        ],
+        [
+          7,
+          14.1
+        ]
+      ]
+    },
+    "explanation": "Every yearly point sits between 13.9 m and 14.3 m, and the year-7 value (14.1 m) is almost the same as the year-1 value (14.2 m). The points neither climb nor fall, so after the limit the water height held steady instead of dropping as it had before.",
+    "distractor_rationales": [
+      {
+        "choice": "It rose a little each year.",
+        "fault": "year 7 (14.1 m) is not higher than year 1 (14.2 m); there is no climb"
+      },
+      {
+        "choice": "It dropped a little each year.",
+        "fault": "that was the pattern before the limit; after it, year 7 is about equal to year 1"
+      },
+      {
+        "choice": "It rose for a few years, then leveled off.",
+        "fault": "the first three years (14.2, 14.0, 14.3 m) show no rise before any leveling"
+      }
+    ],
+    "real_world_check": "When people pump groundwater faster than rain refills it the water level drops, and limiting pumping to about the refill rate keeps the level steady."
+  },
+  {
+    "id": "MSP-E-03",
+    "map_area": "Earth and Space Science",
+    "grade_target": 5,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 206-215",
+    "dci": "ESS1",
+    "ngss_pe": "5-ESS1-2",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "example",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "Every sunny day, a student measures the shadow of a flagpole. The shadow is long in the morning, short at noon, and long again in the late afternoon. This daily pattern is caused by one of Earth's motions. Which of these is another example of a pattern caused by that same motion?",
+    "choices": [
+      "Seasons of the year",
+      "Winter stars and summer stars",
+      "The Moon's phases",
+      "Day and night"
+    ],
+    "correct_answer": "Day and night",
+    "explanation": "The shadow changes through each day because Earth spins on its axis once a day, so the Sun appears to move across the sky. That same daily spin turns each place toward the Sun and then away from it, which makes day and night.",
+    "distractor_rationales": [
+      {
+        "choice": "Seasons of the year",
+        "fault": "misconception: the seasons come from Earth spinning or from its distance to the Sun; they come from Earth's tilt as it orbits the Sun over a year"
+      },
+      {
+        "choice": "Winter stars and summer stars",
+        "fault": "misconception: the stars we see change with the seasons because Earth spins; they change because Earth moves around the Sun over a year"
+      },
+      {
+        "choice": "The Moon's phases",
+        "fault": "misconception: phases are made by Earth's spin or by Earth's shadow; they come from the Moon orbiting Earth over about a month"
+      }
+    ],
+    "real_world_check": "Earth's rotation on its axis causes both day and night and the daily change in shadow length and direction; seasons and seasonal star patterns come from Earth's orbit, and Moon phases from the Moon's orbit."
+  },
+  {
+    "id": "MSP-E-04",
+    "map_area": "Earth and Space Science",
+    "grade_target": 6,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 189-198",
+    "dci": "ESS1",
+    "ngss_pe": "MS-ESS1-1",
+    "kind": "data",
+    "stimulus": "bar",
+    "format": "conditions",
+    "ask": "controlled-pair",
+    "invented": true,
+    "names_used": [
+      "Marlowe",
+      "Pym"
+    ],
+    "passage": "Students used a lamp as a model of the Sun. They shone it on trays of soil from two places, Marlowe and Pym. They changed the angle of the light (90° or 30°) and how far the lamp was from the soil (close = 20 cm, far = 40 cm). Each bar is one test and shows how much the soil warmed in 10 minutes.",
+    "graphic": {
+      "type": "bar",
+      "bars": [
+        {
+          "label": "Marlowe, 90°, close",
+          "value": 12
+        },
+        {
+          "label": "Marlowe, 30°, close",
+          "value": 6
+        },
+        {
+          "label": "Marlowe, 90°, far",
+          "value": 7
+        },
+        {
+          "label": "Pym, 30°, close",
+          "value": 4
+        },
+        {
+          "label": "Pym, 90°, far",
+          "value": 5
+        }
+      ],
+      "xLabel": "Test (soil, light angle, lamp distance)",
+      "yLabel": "Temperature rise (°C)",
+      "caption": "Warming of soil trays under a lamp in five tests"
+    },
+    "prompt": "The students want to compare the test \"Marlowe, 90°, close\" with the one other test that changed only the angle of the light. Which test should they use?",
+    "choices": [
+      "Pym, 30°, close",
+      "Marlowe, 90°, far",
+      "Pym, 90°, far",
+      "Marlowe, 30°, close"
+    ],
+    "correct_answer": "Marlowe, 30°, close",
+    "key_evidence": {
+      "refs": [
+        "Marlowe, 90°, close",
+        "Marlowe, 30°, close"
+      ]
+    },
+    "explanation": "The test \"Marlowe, 30°, close\" uses the same Marlowe soil and the same close lamp as \"Marlowe, 90°, close\". Only the light angle is different (30° instead of 90°), so any difference in warming can be traced to the angle.",
+    "distractor_rationales": [
+      {
+        "choice": "Pym, 30°, close",
+        "fault": "it changes the soil as well as the angle, so two things differ"
+      },
+      {
+        "choice": "Marlowe, 90°, far",
+        "fault": "it keeps the 90° angle and changes the lamp distance instead"
+      },
+      {
+        "choice": "Pym, 90°, far",
+        "fault": "it keeps the angle and changes both the soil and the distance"
+      }
+    ],
+    "real_world_check": "In the Earth-Sun model, light striking a surface at a steeper (more direct) angle concentrates energy on a smaller area and warms it more, which is why direct summer sunlight heats the ground more than low winter sunlight."
+  },
+  {
+    "id": "MSP-E-05",
+    "map_area": "Earth and Space Science",
+    "grade_target": 6,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 199-208",
+    "dci": "ESS1",
+    "ngss_pe": "MS-ESS1-1",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "predicts",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "At sunset, a student sees a full Moon rising in the east. About two weeks later, she looks at the sky again at sunset. Which prediction about what she will see, and why, is correct?",
+    "choices": [
+      "She will not see the Moon, because its lit half will face away from Earth.",
+      "She will see a full Moon again, because the Moon always shows Earth one face.",
+      "She will see a thin crescent, because Earth's shadow will cover most of the Moon.",
+      "She will see a half Moon, as the Moon will be farther from Earth then."
+    ],
+    "correct_answer": "She will not see the Moon, because its lit half will face away from Earth.",
+    "explanation": "A full Moon rises at sunset because it is on the opposite side of Earth from the Sun. About two weeks later, half a lunar cycle, the Moon has moved around to lie between Earth and the Sun. Its sunlit half then faces away from Earth (new moon), and it sets along with the Sun, so she cannot see it.",
+    "distractor_rationales": [
+      {
+        "choice": "She will see a full Moon again, because the Moon always shows Earth one face.",
+        "fault": "misconception: showing Earth the same face means showing the same phase; the side facing us is lit differently as the Moon orbits"
+      },
+      {
+        "choice": "She will see a thin crescent, because Earth's shadow will cover most of the Moon.",
+        "fault": "misconception: phases are caused by Earth's shadow; Earth's shadow falls on the Moon only during a lunar eclipse, at full moon"
+      },
+      {
+        "choice": "She will see a half Moon, as the Moon will be farther from Earth then.",
+        "fault": "misconception: phases come from the Moon's changing distance from Earth; they come from the Sun-Earth-Moon angle"
+      }
+    ],
+    "real_world_check": "Moon phases repeat about every 29.5 days, so about two weeks after a full Moon the Moon is near new moon, between Earth and the Sun with its lit half facing away and setting near the time the Sun sets."
+  },
+  {
+    "id": "MSP-E-06",
+    "map_area": "Earth and Space Science",
+    "grade_target": 6,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 209-218",
+    "dci": "ESS2",
+    "ngss_pe": "MS-ESS2-2",
+    "kind": "data",
+    "stimulus": "line",
+    "format": "values",
+    "ask": "ratio",
+    "invented": true,
+    "names_used": [
+      "Grell Wash"
+    ],
+    "passage": "Students built a model stream channel and lined it with sand from Grell Wash. They ran water down the channel at different speeds. For each speed, they collected water at the bottom end of the channel and measured how much sand it carried.",
+    "graphic": {
+      "type": "line",
+      "series": [
+        {
+          "points": [
+            [
+              10,
+              0.5
+            ],
+            [
+              20,
+              1
+            ],
+            [
+              30,
+              2
+            ],
+            [
+              40,
+              4
+            ]
+          ]
+        }
+      ],
+      "xLabel": "Water speed (cm/s)",
+      "yLabel": "Sand carried (g/L)",
+      "caption": "Sand carried by water at different speeds in a model stream channel"
+    },
+    "prompt": "A water speed of 40 cm/s is twice a speed of 20 cm/s. Based on the graph, how many times as much sand did the water carry at 40 cm/s as at 20 cm/s?",
+    "choices": [
+      "2 times",
+      "8 times",
+      "4 times",
+      "3 times"
+    ],
+    "correct_answer": "4 times",
+    "key_evidence": {
+      "refs": [
+        [
+          40,
+          4
+        ],
+        [
+          20,
+          1
+        ]
+      ],
+      "expr": "v0 / v1"
+    },
+    "explanation": "The graph shows 4.0 g/L of sand at 40 cm/s and 1.0 g/L at 20 cm/s. Dividing, 4.0 / 1.0 gives 4, so doubling the speed made the water carry four times as much sand.",
+    "distractor_rationales": [
+      {
+        "choice": "2 times",
+        "fault": "assumes sand carried goes up in step with speed; that is the speed ratio, not the sand ratio"
+      },
+      {
+        "choice": "8 times",
+        "fault": "compares 40 cm/s with the 10 cm/s point (4.0 / 0.5) instead of 20 cm/s"
+      },
+      {
+        "choice": "3 times",
+        "fault": "subtracts the two readings (4.0 - 1.0 = 3.0 g/L) instead of dividing them"
+      }
+    ],
+    "real_world_check": "Faster-moving water can carry much more sediment, and the amount carried rises faster than the speed itself, so doubling speed more than doubles the load."
+  },
+  {
+    "id": "MSP-E-07",
+    "map_area": "Earth and Space Science",
+    "grade_target": 7,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 192-201",
+    "dci": "ESS3",
+    "ngss_pe": "MS-ESS3-4",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "values",
+    "ask": "interpolate",
+    "invented": true,
+    "names_used": [
+      "Dunwell"
+    ],
+    "passage": "The table shows the population of the town of Dunwell and the amount of water the town used per day in four different years. Over these years, each person in Dunwell used about the same amount of water per day.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "1990",
+        "2000",
+        "2010",
+        "2020"
+      ],
+      "colLabels": [
+        "Population (thousands)",
+        "Water used (million L per day)"
+      ],
+      "cells": [
+        [
+          "12",
+          "3.0"
+        ],
+        [
+          "18",
+          "4.5"
+        ],
+        [
+          "30",
+          "7.5"
+        ],
+        [
+          "36",
+          "9.0"
+        ]
+      ],
+      "caption": "Table 1. Population and daily water use in Dunwell"
+    },
+    "prompt": "In one year between 2000 and 2010, Dunwell's population was 24 thousand. Based on the table, about how much water did the town use per day that year?",
+    "choices": [
+      "6.0 million L",
+      "4.5 million L",
+      "9.0 million L",
+      "7.5 million L"
+    ],
+    "correct_answer": "6.0 million L",
+    "key_evidence": {
+      "refs": [
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "expr": "(v0 + v1) / 2"
+    },
+    "explanation": "A population of 24 thousand is halfway between the 2000 row (18 thousand, 4.5 million L) and the 2010 row (30 thousand, 7.5 million L). Because each person used about the same amount, water use is also halfway: (4.5 + 7.5) / 2 = 6.0 million L per day.",
+    "distractor_rationales": [
+      {
+        "choice": "4.5 million L",
+        "fault": "copies the 2000 value, when only 18 thousand people lived there"
+      },
+      {
+        "choice": "9.0 million L",
+        "fault": "copies the 2020 value, for 36 thousand people, not 24 thousand"
+      },
+      {
+        "choice": "7.5 million L",
+        "fault": "copies the 2010 value, for 30 thousand people, not 24 thousand"
+      }
+    ],
+    "real_world_check": "If each person uses a steady amount of water, a town's total water use grows in proportion to its population (here 250 L per person per day)."
+  },
+  {
+    "id": "MSP-E-08",
+    "map_area": "Earth and Space Science",
+    "grade_target": 7,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 202-211",
+    "dci": "ESS2",
+    "ngss_pe": "MS-ESS2-4",
+    "kind": "investigation",
+    "stimulus": "procedure",
+    "format": "claim",
+    "ask": "supported",
+    "invented": true,
+    "names_used": [
+      "Harl Point"
+    ],
+    "passage": "Students tested what makes water evaporate faster at Harl Point, a sunny and windy hilltop. They filled four identical pans with 500 mL of water each. Pan 1 sat in full sun with no shield around it. Pan 2 sat in full sun inside a clear wind shield. Pan 3 sat in shade with no shield. Pan 4 sat in shade inside a clear wind shield. The shields blocked the wind but let light through. After two days, the students measured the water left in each pan. Pan 1 had lost 140 mL, Pan 2 had lost 95 mL, Pan 3 had lost 70 mL, and Pan 4 had lost 40 mL. No rain fell during the test.",
+    "graphic": null,
+    "prompt": "Which claim is supported by the students' results?",
+    "choices": [
+      "Adding a wind shield cut water loss more than moving a pan into shade did.",
+      "Shade and a wind shield each cut water loss by the same amount.",
+      "Moving a pan into the shade cut its water loss more than adding a wind shield did.",
+      "A wind shield cut water loss for sunny pans but not for shaded pans."
+    ],
+    "correct_answer": "Moving a pan into the shade cut its water loss more than adding a wind shield did.",
+    "key_evidence": {
+      "refs": [
+        {
+          "quote": "Pan 1 had lost 140 mL, Pan 2 had lost 95 mL, Pan 3 had lost 70 mL, and Pan 4 had lost 40 mL"
+        }
+      ]
+    },
+    "explanation": "Moving into shade cut water loss by 70 mL for open pans (140 to 70 mL) and by 55 mL for shielded pans (95 to 40 mL). Adding a shield cut it by only 45 mL in sun (140 to 95 mL) and 30 mL in shade (70 to 40 mL). Both comparisons show shade had the larger effect.",
+    "distractor_rationales": [
+      {
+        "choice": "Adding a wind shield cut water loss more than moving a pan into shade did.",
+        "fault": "reversed: the shield cut loss by 45 and 30 mL, shade by 70 and 55 mL"
+      },
+      {
+        "choice": "Shade and a wind shield each cut water loss by the same amount.",
+        "fault": "contradicted: shade cut 70 and 55 mL while the shield cut 45 and 30 mL"
+      },
+      {
+        "choice": "A wind shield cut water loss for sunny pans but not for shaded pans.",
+        "fault": "contradicted: the shaded pans also lost less with a shield (70 vs 40 mL)"
+      }
+    ],
+    "real_world_check": "Energy from sunlight and wind that carries moist air away both speed evaporation; which matters more depends on local conditions, so only the measured losses decide it here."
+  },
+  {
+    "id": "MSP-E-09",
+    "map_area": "Earth and Space Science",
+    "grade_target": 7,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 212-221",
+    "dci": "ESS1",
+    "ngss_pe": "MS-ESS1-4",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "process",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A canyon wall shows sedimentary rock layers. The four lowest layers are tilted, and their top edges are all cut off along one flat, even surface. Flat layers of younger rock lie on top of that surface. Which process formed the flat surface before the younger layers were laid down?",
+    "choices": [
+      "Deposition",
+      "Compaction and cementation",
+      "Folding",
+      "Weathering and erosion"
+    ],
+    "correct_answer": "Weathering and erosion",
+    "explanation": "The tilted layers were once complete. Something removed their upper parts evenly, cutting across every layer, before new sediment was laid on top. Breaking rock down and carrying it away is weathering and erosion; the flat surface is a buried erosion surface that marks a gap in the rock record.",
+    "distractor_rationales": [
+      {
+        "choice": "Deposition",
+        "fault": "misconception: laying down new sediment wears away the rock beneath it; deposition only adds layers and cannot remove the tilted tops"
+      },
+      {
+        "choice": "Compaction and cementation",
+        "fault": "misconception: the weight of later sediment presses tilted layers flat; compaction turns sediment into rock but does not cut across layers"
+      },
+      {
+        "choice": "Folding",
+        "fault": "misconception: the event that tilted the layers also flattened their tops; folding bends layers and cannot slice them off evenly"
+      }
+    ],
+    "real_world_check": "Where tilted rock layers are cut off by a flat surface with younger flat layers above, the surface is an unconformity formed by erosion of the tilted rock before the younger sediment was deposited."
+  },
+  {
+    "id": "MSP-E-10",
+    "map_area": "Earth and Space Science",
+    "grade_target": 8,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 195-204",
+    "dci": "ESS3",
+    "ngss_pe": "MS-ESS3-1",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "explains",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A town gets most of its electricity by burning coal mined nearby. A student says that coal is a nonrenewable resource. Which statement best explains why coal is nonrenewable?",
+    "choices": [
+      "Coal forms over millions of years, much slower than people use it.",
+      "Coal formed from the bodies of dinosaurs, and dinosaurs no longer live on Earth.",
+      "Coal is a kind of rock, and new rock can never form anywhere on Earth again.",
+      "Burning coal releases carbon dioxide, which keeps new coal from forming underground."
+    ],
+    "correct_answer": "Coal forms over millions of years, much slower than people use it.",
+    "explanation": "Coal forms when buried plant remains are pressed and heated for millions of years. People mine and burn it in a tiny fraction of that time, so it is not replaced over human lifetimes. That is what makes a resource nonrenewable.",
+    "distractor_rationales": [
+      {
+        "choice": "Coal formed from the bodies of dinosaurs, and dinosaurs no longer live on Earth.",
+        "fault": "misconception: fossil fuels come from dinosaurs; coal formed mostly from buried swamp plants"
+      },
+      {
+        "choice": "Coal is a kind of rock, and new rock can never form anywhere on Earth again.",
+        "fault": "misconception: rocks stopped forming long ago; new rock forms all the time in the rock cycle"
+      },
+      {
+        "choice": "Burning coal releases carbon dioxide, which keeps new coal from forming underground.",
+        "fault": "misconception: pollution from burning stops fuel from forming; carbon dioxide in the air does not stop buried plant matter from turning to coal"
+      }
+    ],
+    "real_world_check": "Coal is nonrenewable because it forms from buried plant matter over millions of years, far slower than the rate at which people extract and burn it."
+  },
+  {
+    "id": "MSP-E-11",
+    "map_area": "Earth and Space Science",
+    "grade_target": 8,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 205-214",
+    "dci": "ESS3",
+    "ngss_pe": "MS-ESS3-2",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "conditions",
+    "ask": "meets-criterion",
+    "invented": true,
+    "names_used": [
+      "Kell Rise",
+      "Mirefield Bluff",
+      "Sennet Plain",
+      "Ardwick Low Meadow",
+      "Callow River"
+    ],
+    "passage": "A town beside the Callow River wants to build an emergency shelter. The river's highest recorded flood rose 6 m above its normal level. The town will build only at a site that is higher than that flood and whose ground slopes less than 15°, because steep slopes can slide in heavy rain.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Kell Rise",
+        "Mirefield Bluff",
+        "Sennet Plain",
+        "Ardwick Low Meadow"
+      ],
+      "colLabels": [
+        "Height above normal river level (m)",
+        "Ground slope (°)"
+      ],
+      "cells": [
+        [
+          5,
+          6
+        ],
+        [
+          22,
+          31
+        ],
+        [
+          9,
+          11
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "caption": "Table 1. Four possible shelter sites"
+    },
+    "prompt": "Based on the table, at which site can the town build the shelter?",
+    "choices": [
+      "Mirefield Bluff",
+      "Kell Rise",
+      "Sennet Plain",
+      "Ardwick Low Meadow"
+    ],
+    "correct_answer": "Sennet Plain",
+    "key_evidence": {
+      "refs": [
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ]
+      ]
+    },
+    "explanation": "Sennet Plain is 9 m above the river's normal level, above the 6 m flood, and its ground slopes 11°, under the 15° limit. It is the only site that meets both rules.",
+    "distractor_rationales": [
+      {
+        "choice": "Mirefield Bluff",
+        "fault": "it is high enough (22 m), but its 31° slope is steeper than 15°"
+      },
+      {
+        "choice": "Kell Rise",
+        "fault": "its 5 m height is below the 6 m flood, so it could flood"
+      },
+      {
+        "choice": "Ardwick Low Meadow",
+        "fault": "its slope is gentle, but at 4 m it lies below the flood"
+      }
+    ],
+    "real_world_check": "Low ground near a river is at risk of flooding and steep slopes are at greater risk of landslides, so safe sites are both above flood level and gently sloping."
+  },
+  {
+    "id": "MSP-E-12",
+    "map_area": "Earth and Space Science",
+    "grade_target": 8,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 215-224",
+    "dci": "ESS2",
+    "ngss_pe": "MS-ESS2-6",
+    "kind": "investigation",
+    "stimulus": "procedure",
+    "format": "variable",
+    "ask": "dependent",
+    "invented": true,
+    "names_used": [
+      "Lisk Bay"
+    ],
+    "passage": "Students modeled how cold water moves along the ocean floor. They filled a long tank with water from Lisk Bay and held the temperature of the tank water at 22 °C. For each trial, they cooled 200 mL of Lisk Bay water and added 5 drops of dye, keeping the amount of dye the same in every trial. They changed the starting temperature of the dyed water from trial to trial: 4 °C, 10 °C, or 16 °C. They gently poured the dyed water into one end of the tank, where it sank and spread along the bottom. With a stopwatch, they recorded the time the dyed water took to reach the far end. They ran three trials at each starting temperature.",
+    "graphic": null,
+    "prompt": "In this investigation, which quantity is the dependent variable?",
+    "choices": [
+      "the temperature of the tank water",
+      "the time the dyed water took to reach the far end",
+      "the amount of dye",
+      "the starting temperature of the dyed water"
+    ],
+    "correct_answer": "the time the dyed water took to reach the far end",
+    "key_evidence": {
+      "refs": [
+        {
+          "quote": "With a stopwatch, they recorded the time the dyed water took to reach the far end"
+        }
+      ]
+    },
+    "explanation": "The dependent variable is what the students measured to see the effect of their change. They changed how cold the dyed water started and, with a stopwatch, measured how long it took to travel along the bottom of the tank.",
+    "distractor_rationales": [
+      {
+        "choice": "the temperature of the tank water",
+        "fault": "it was held at 22 °C in every trial, so it is a controlled variable"
+      },
+      {
+        "choice": "the amount of dye",
+        "fault": "it was kept at 5 drops each time, so it is controlled"
+      },
+      {
+        "choice": "the starting temperature of the dyed water",
+        "fault": "the students chose and changed it, so it is the independent variable"
+      }
+    ],
+    "real_world_check": "Colder water is denser, so it sinks below warmer water and flows along the bottom as a density current, as cold water does in deep ocean circulation."
+  }
+]
