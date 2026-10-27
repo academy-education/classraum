@@ -29,8 +29,8 @@
       "source": "toefl-form-depth.ts 2026-10-23 (speaking_repeat 24, speaking_interview 26)"
     },
     "ssat/reading": {
-      "value": 6,
-      "source": "admission-form-depth.ts --forms 20, 2026-10-23 (294 items in 57 passages; form 7 is 39/40)"
+      "value": 7,
+      "source": "admission-form-depth.ts --forms 20, 2026-10-27 (330 items; form 8 is 35/40)"
     },
     "ssat/verbal": {
       "value": 10,
@@ -45,8 +45,8 @@
       "source": "essay-bank-helper.mjs verify 2026-10-23 (17 pairs, 0 half-pairs, 0 keyed rows)"
     },
     "isee/reading": {
-      "value": 3,
-      "source": "admission-form-depth.ts --forms 20, 2026-10-23 (153 items in 35 passages; form 4 is 35/36). form-capacity.mjs prints 4, an item/form upper bound that ignores passage draws"
+      "value": 5,
+      "source": "admission-form-depth.ts --forms 20, 2026-10-27 (225 items; form 6 is 35/36)"
     },
     "isee/verbal": {
       "value": 14,
