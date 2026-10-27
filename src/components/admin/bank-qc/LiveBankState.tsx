@@ -323,27 +323,54 @@ export function LiveBankState({ tab }: { tab?: QcTab } = {}) {
     return () => { cancelled = true }
   }, [])
 
+  /*
+   * The review tool renders whatever happens to the live read. It was
+   * below the two early returns, so when /api/admin/bank-qc/live failed
+   * (17 parallel full-row pages timing out, 2026-10-27) the co-founder's
+   * Review tab was empty with a run waiting for him — the same defect the
+   * sweep panel had on 2026-08-31. It needs the live data only for the
+   * domain list of a NEW draw; resuming an open run needs none of it.
+   */
+  const reviewDomains = (data?.cohorts ?? [])
+    .filter(c => c.progress !== 'not-applicable')
+    .map(c => c.domain)
+    .filter((d, i, a) => a.indexOf(d) === i)
+  const review = (
+    <div hidden={!servesTab || hide('review')} className="mb-6">
+      <ReviewPanel domains={reviewDomains} />
+    </div>
+  )
+
   if (error) {
-    if (!servesTab) return null
+    if (!servesTab) return review
     return (
-      <div className={`${CARD} p-4 sm:p-5 mb-6`}>
+      <>
+      {review}
+      <div hidden={hide('live')} className={`${CARD} p-4 sm:p-5 mb-6`}>
         <p className="text-sm text-red-600">Live bank state unavailable ({error}).</p>
         <p className="text-[12.5px] text-gray-500 mt-1">
           The History tab is the checked-in ledger file, not the current bank.
         </p>
       </div>
+      </>
     )
   }
 
   if (!data) {
-    if (!servesTab) return null
-    return <div className={`${CARD} p-5 mb-6 animate-pulse h-32`} />
+    return (
+      <>
+      {review}
+      {servesTab && !hide('live') && <div className={`${CARD} p-5 mb-6 animate-pulse h-32`} />}
+      </>
+    )
   }
 
   const pctMeasured = data.totals.items === 0 ? 0
     : Math.round((100 * data.totals.measured) / data.totals.items)
 
   return (
+    <>
+    {review}
     <section hidden={!servesTab} className="mb-8 space-y-4">
       <div hidden={hide('live')}>
       {data.finish && <FinishBar finish={data.finish} cohorts={data.cohorts} />}
@@ -353,14 +380,6 @@ export function LiveBankState({ tab }: { tab?: QcTab } = {}) {
           cohorts the blind attack applies to — a maths cohort carries
           its whole problem in the stem, so "guess it from the options"
           is not a question about the item. */}
-      <div hidden={hide('review')}>
-      <ReviewPanel
-        domains={data.cohorts
-          .filter(c => c.progress !== 'not-applicable')
-          .map(c => c.domain)
-          .filter((d, i, a) => a.indexOf(d) === i)}
-      />
-      </div>
 
       <div hidden={hide('live')} className="space-y-4">
       <div className={`${CARD} p-4 sm:p-5`}>
@@ -497,5 +516,6 @@ export function LiveBankState({ tab }: { tab?: QcTab } = {}) {
       )}
       </div>
     </section>
+    </>
   )
 }

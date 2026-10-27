@@ -96,9 +96,20 @@ async function readBank() {
   if (countError) throw new Error(`study_item_bank count: ${countError.message}`)
 
   const pages = Math.max(1, Math.ceil((count ?? 0) / 1000))
-  const settled = await Promise.all(
-    Array.from({ length: pages }, (_, i) => select().range(i * 1000, i * 1000 + 999)),
-  )
+  /*
+   * At most PAGE_CONCURRENCY pages in flight. All at once was right at 5
+   * pages (2026-08-27); at 17 pages of full item JSON (2026-10-27) most of
+   * them hit the statement timeout together and the whole page 500'd.
+   */
+  const PAGE_CONCURRENCY = 4
+  const settled: Awaited<ReturnType<ReturnType<typeof select>['range']>>[] = []
+  for (let start = 0; start < pages; start += PAGE_CONCURRENCY) {
+    const batch = Array.from({ length: Math.min(PAGE_CONCURRENCY, pages - start) }, (_, k) => {
+      const i = start + k
+      return select().range(i * 1000, i * 1000 + 999)
+    })
+    settled.push(...(await Promise.all(batch)))
+  }
 
   const out: BankRow[] = []
   for (const { data, error } of settled) {

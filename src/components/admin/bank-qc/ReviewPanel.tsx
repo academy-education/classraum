@@ -98,6 +98,11 @@ async function authed(url: string, init?: RequestInit) {
 export function ReviewPanel({ domains }: { domains: string[] }) {
   const { t } = useQcT()
   const [domain, setDomain] = React.useState(domains[0] ?? '')
+  // The domain list arrives with the live read, which can finish after
+  // (or never, if it fails) — the panel itself mounts without it.
+  React.useEffect(() => {
+    if (!domain && domains[0]) setDomain(domains[0])
+  }, [domain, domains])
   const [size, setSize] = React.useState(12)
   const [mirrorOf, setMirrorOf] = React.useState('')
   const [runId, setRunId] = React.useState<string | null>(null)
