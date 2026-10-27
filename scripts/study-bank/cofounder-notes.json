@@ -1,11 +1,11 @@
 {
- "built_at": "2026-10-27T03:22:09.335Z",
+ "built_at": "2026-10-27T09:26:16.869Z",
  "reviewer_id": "6ca6edaf-4044-4eed-84e0-137ebd79a81d",
  "counts": {
-  "rows": 1174,
-  "human": 1134,
+  "rows": 1192,
+  "human": 1152,
   "model_assisted_excluded": 40,
-  "review_entries": 178,
+  "review_entries": 179,
   "register_entries": 9
  },
  "taxonomy": {
@@ -3624,6 +3624,29 @@
    "item_sha": "e69279cf7d32e9da189c084ca0955805",
    "content_sha": "e69279cf7d32e9da189c084ca0955805",
    "classified_by": "claude-opus-5.5 (in-session, 2026-10-23)"
+  },
+  {
+   "review_id": "e1f900d4-959f-4bbc-a325-15b2334cd6ec",
+   "item_id": "95f1e281-688d-476a-a29a-57e68ad553c3",
+   "run_id": "actreadingv8a-bridge1-cofounder-2026-10-27",
+   "cohort": "act-reading-v8a",
+   "family": "act",
+   "section": "reading",
+   "task": "social_science",
+   "verdict": "unique",
+   "note": "A precision note: the paragraph’s first sentence names only cost (“The cost is what makes…”), so a very strict reader might expect a cost-only key. But the next sentence immediately pairs price with the rigor of testing, so D is well supported, and none of the distractors offer a cost-only option that would compete.",
+   "reviewed_at": "2026-10-27T09:14:31.772+00:00",
+   "defect_type": "key_imprecise",
+   "secondary_types": [],
+   "would_block": false,
+   "scope": "item",
+   "rationale": "Precision note: the paragraph opens on cost alone, but the next sentence pairs price with testing rigor, so the key D is supported and no distractor offers a cost-only reading. He judged it unique and authentic; no repair needed.",
+   "source": "review",
+   "fresh": true,
+   "archived": false,
+   "item_sha": "c1a1b40c238e652a2c7c3b49869e28cf",
+   "content_sha": "c1a1b40c238e652a2c7c3b49869e28cf",
+   "classified_by": "claude-opus-5.5 (in-session, 2026-10-27)"
   },
   {
    "review_id": "e34603e8-6ae3-415b-8eb6-5b1e4956dee2",
