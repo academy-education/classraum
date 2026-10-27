@@ -143,6 +143,8 @@ export function ReviewPanel({ domains }: { domains: string[] }) {
     const json = await authed(`/api/admin/bank-qc/review?runId=${encodeURIComponent(rid)}&next=1`)
     if (json.done) { setItemId(null); setOptions(null); setRunId(null); await refresh(); return }
     setItemId(json.itemId); setOptions(json.options)
+    // A blind pick whose verdict never saved resumes at the reveal.
+    if (json.reveal) setReveal(json.reveal)
   }
 
   async function start() {

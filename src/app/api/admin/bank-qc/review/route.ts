@@ -87,7 +87,39 @@ export async function GET(request: NextRequest) {
       .is('blind_at', null)
       .limit(1).maybeSingle()
     if (rowErr) return NextResponse.json({ error: rowErr.message }, { status: 500 })
-    if (!row) return NextResponse.json({ done: true })
+    if (!row) {
+      /*
+       * Phase 1 answered, phase 2 never saved (the app closed or the
+       * request failed after the blind pick). This used to return done:
+       * the item never came back, the sitting looked finished to the
+       * reviewer, and the run could not close because one verdict was
+       * missing (mapreadingv2c3-spot1, 2026-10-26). The blind pick is
+       * sealed, so resuming at the reveal leaks nothing.
+       */
+      const { data: pend, error: pendErr } = await reviews()
+        .select('item_id, key_slot, shown_order, blind_pick')
+        .eq('run_id', runId).eq('reviewer_id', admin.userId)
+        .not('blind_at', 'is', null).is('verdict', null)
+        .limit(1).maybeSingle()
+      if (pendErr) return NextResponse.json({ error: pendErr.message }, { status: 500 })
+      if (!pend) return NextResponse.json({ done: true })
+      const { data: pItem, error: pItemErr } = await dbAdmin
+        .from('study_item_bank').select('item').eq('id', pend.item_id).single()
+      if (pItemErr) return NextResponse.json({ error: pItemErr.message }, { status: 500 })
+      const pit = (pItem as { item: BankItem['item'] }).item
+      const pShown = (pend.shown_order as number[]).map(i => pit?.choices?.[i] ?? '')
+      return NextResponse.json({
+        itemId: pend.item_id,
+        options: pShown,
+        reveal: {
+          stimulus: pit?.passage ?? '',
+          prompt: pit?.prompt ?? '',
+          options: pShown,
+          keySlot: pend.key_slot,
+          wasCorrect: pend.blind_pick !== null && pend.blind_pick === pend.key_slot,
+        },
+      })
+    }
 
     const { data: item, error: itemErr } = await dbAdmin
       .from('study_item_bank').select('item').eq('id', row.item_id).single()
@@ -171,10 +203,12 @@ export async function GET(request: NextRequest) {
    * fixed denominator that the draw-before-you-look design exists to
    * protect.
    */
+  // Unfinished = a blind pick OR a verdict still missing; see the
+  // resume-at-reveal branch above.
   const { data: open } = await reviews()
     .select('run_id')
     .eq('reviewer_id', admin.userId)
-    .is('blind_at', null)
+    .or('blind_at.is.null,verdict.is.null')
     .order('run_id', { ascending: false })
     .limit(1).maybeSingle()
 
