@@ -838,6 +838,12 @@
       "author": "in-session",
       "grader": "other",
       "source": "verify_meta.method 'claude-authored+claude-blind-grade' (Jul 21-28)"
+    },
+    "map-science-pilot": {
+      "method_id": "map-sci-pilot-agents+cfg-v2",
+      "author": "agent",
+      "grader": "cfg-v2",
+      "source": "MAP-SCIENCE-PILOT.prereg.md: map-v2-work/science-pilot/BRIEF.md, 3 agent authors (L/P/E) on seeded slots, sci-check.mjs, two with-source graders + grader v2 pre-screen; options-only and figure-covered report-only; new stratum map/science/multiple_choice -> L0 full sitting of all 36"
     }
   }
 }
