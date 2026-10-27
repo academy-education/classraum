@@ -114,6 +114,7 @@ export async function GET(request: NextRequest) {
         reveal: {
           stimulus: pit?.passage ?? '',
           prompt: pit?.prompt ?? '',
+          graphic: (pit as { graphic?: unknown } | undefined)?.graphic ?? null,
           options: pShown,
           keySlot: pend.key_slot,
           wasCorrect: pend.blind_pick !== null && pend.blind_pick === pend.key_slot,
@@ -527,6 +528,13 @@ export async function PATCH(request: NextRequest) {
       reveal: {
         stimulus: it?.passage ?? '',
         prompt: it?.prompt ?? '',
+        /*
+         * The table/chart the item is ABOUT. Without it every data item
+         * (ACT Science, MAP Science) was judged from prose that says
+         * "Table 1 shows…" with no table; the co-founder's notes on
+         * actsciencev5a-bridge1 (2026-10-27) were "I need a table".
+         */
+        graphic: (it as { graphic?: unknown } | undefined)?.graphic ?? null,
         options: shown,
         keySlot: updated.key_slot,
         wasCorrect: pick !== null && pick === updated.key_slot,

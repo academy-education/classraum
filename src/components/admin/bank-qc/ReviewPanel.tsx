@@ -14,6 +14,8 @@
  * single pass. This is that person, wired in.
  */
 
+import { QuestionGraphicView } from '@/app/mobile/study/session/[id]/test/QuestionGraphicView'
+import type { QuestionGraphic } from '@/app/mobile/study/session/[id]/test/types'
 import React from 'react'
 import { CheckCircle2, HelpCircle, Loader2, ShieldQuestion, XCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -40,6 +42,8 @@ type Realism = 'authentic' | 'artificial'
 interface Reveal {
   stimulus: string
   prompt: string
+  /** The item's table/chart, drawn with the student-facing renderer. */
+  graphic?: QuestionGraphic | null
   options: string[]
   keySlot: Slot
   wasCorrect: boolean
@@ -326,6 +330,11 @@ export function ReviewPanel({ domains }: { domains: string[] }) {
           <p className="text-[13.5px] text-gray-900 bg-gray-50 rounded-xl px-4 py-3 ring-1 ring-gray-100 whitespace-pre-wrap">
             {reveal.stimulus || <em className="text-gray-400">{t('admin.bankQc.review.noStimulus')}</em>}
           </p>
+          {reveal.graphic && (
+            <div className="mt-3 overflow-x-auto" data-testid="review-graphic">
+              <QuestionGraphicView graphic={reveal.graphic} />
+            </div>
+          )}
           {reveal.prompt && <p className="text-[12.5px] text-gray-500 mt-2">{reveal.prompt}</p>}
 
           <div className="grid gap-1.5 mt-3">

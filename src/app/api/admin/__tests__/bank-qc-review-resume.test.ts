@@ -10,7 +10,7 @@
  * verdict was missing. Neither side could move. These tests pin the resume.
  */
 import { NextRequest } from 'next/server'
-import { GET } from '@/app/api/admin/bank-qc/review/route'
+import { GET, PATCH } from '@/app/api/admin/bank-qc/review/route'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { requireAdmin } from '@/app/api/admin/_lib/admin-auth'
 
@@ -25,7 +25,7 @@ type Row = Record<string, unknown>
 let reviewRows: Row[] = []
 const bank: Record<string, Row> = {
   i1: { item: { passage: 'P1', prompt: 'Q1', choices: ['w', 'x', 'y', 'z'] } },
-  i2: { item: { passage: 'P2', prompt: 'Q2', choices: ['a', 'b', 'c', 'd'] } },
+  i2: { item: { passage: 'P2', prompt: 'Q2', choices: ['a', 'b', 'c', 'd'], graphic: { type: 'table', columns: ['x'], rows: [['1']] } } },
 }
 
 /** Just enough of the PostgREST builder for the filters the route uses. */
@@ -33,6 +33,8 @@ function table(rows: Row[]) {
   const preds: Array<(r: Row) => boolean> = []
   const q = {
     select: () => q,
+    update: (patch: Row) => { (q as { _patch?: Row })._patch = patch; return q },
+    match: (m: Row) => { for (const [k, v] of Object.entries(m)) preds.push(r => r[k] === v); return q },
     eq: (c: string, v: unknown) => { preds.push(r => r[c] === v); return q },
     is: (c: string, v: null) => { preds.push(r => (r[c] ?? null) === v); return q },
     not: (c: string, _op: string, v: null) => { preds.push(r => (r[c] ?? null) !== v); return q },
@@ -42,7 +44,12 @@ function table(rows: Row[]) {
     },
     order: () => q,
     limit: () => q,
-    maybeSingle: async () => ({ data: rows.filter(r => preds.every(p => p(r)))[0] ?? null, error: null }),
+    maybeSingle: async () => {
+      const hit = rows.filter(r => preds.every(p => p(r)))[0] ?? null
+      const patch = (q as { _patch?: Row })._patch
+      if (hit && patch) Object.assign(hit, patch)
+      return { data: hit, error: null }
+    },
     single: async () => ({ data: rows.filter(r => preds.every(p => p(r)))[0] ?? null, error: null }),
   }
   return q
@@ -68,7 +75,7 @@ it('resumes at the reveal when the blind pick saved and the verdict did not', as
   const json = await next()
   expect(json.done).toBeUndefined()
   expect(json.itemId).toBe('i2')
-  expect(json.reveal).toEqual({ stimulus: 'P2', prompt: 'Q2', options: ['d', 'c', 'b', 'a'], keySlot: 'B', wasCorrect: false })
+  expect(json.reveal).toEqual({ stimulus: 'P2', prompt: 'Q2', graphic: { type: 'table', columns: ['x'], rows: [['1']] }, options: ['d', 'c', 'b', 'a'], keySlot: 'B', wasCorrect: false })
 })
 
 it('a blind-pending item still comes first, with no reveal attached', async () => {
@@ -93,4 +100,16 @@ it("another reviewer's missing verdict is not resumed into mine", async () => {
     { run_id: 'run-1', reviewer_id: 'someone-else', item_id: 'i2', shown_order: [0, 1, 2, 3], key_slot: 'B', blind_pick: 'D', blind_at: 't', verdict: null },
   ]
   expect(await next()).toEqual({ done: true })
+})
+
+it('the blind answer returns the reveal WITH the item graphic (data items were judged without their table)', async () => {
+  reviewRows = [
+    { run_id: 'run-1', reviewer_id: ME, item_id: 'i2', shown_order: [3, 2, 1, 0], key_slot: 'B', blind_pick: null, blind_at: null, verdict: null },
+  ]
+  const res = await PATCH(new NextRequest('http://x/api/admin/bank-qc/review', {
+    method: 'PATCH', body: JSON.stringify({ runId: 'run-1', itemId: 'i2', phase: 'blind', pick: 'C' }),
+  }))
+  const json = await res.json()
+  expect(json.reveal.graphic).toEqual({ type: 'table', columns: ['x'], rows: [['1']] })
+  expect(json.reveal.wasCorrect).toBe(false)
 })
