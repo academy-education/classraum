@@ -176,3 +176,28 @@ The pilot outcome now governs batch 1's RELEASE instead of its START:
   note is archived (not repaired — a repair made after the round that caught it is fitting to the instrument).
 - Pilot FAIL-METHOD (2+ archived): batch 1 goes to the co-founder as a FULL sitting, per release-by-shape's pilot rule.
 Cost of the override, stated plainly: pilot notes can no longer shape the authoring, only filter its output.
+
+## Amendment B1-A2 (2026-10-27, after all six COLD passes, BEFORE any keyed packet is released)
+
+Cross-item patterns named by both graders of an area hold the batch for the coordinator (GRADER-BRIEF). Decided
+here, from the cold reports only, with no key seen by anyone:
+
+1. **Cross-grade duplicates** (named by both graders in all three areas). Keep the LOWEST-grade item of each
+   group, drop the rest (a rule fixed before keys, so it cannot pick the better-scoring twin):
+   - Life: {L7-02, L8-08} {L7-11, L8-04} {L7-19, L8-12} {L6-14, L7-14} -> drop L8-08, L8-04, L8-12, L7-14.
+     {L7-15, L8-18} was named by one grader only: recorded, not dropped.
+   - Physical: {P6-20, P7-06} {P7-20, P8-13} {P6-14, P8-14} {P7-19, P8-12} -> drop P7-06, P8-13, P8-14, P8-12.
+   - Earth: {E6-06, E7-06} {E6-19, E7-13, E8-02} {E6-08, E8-16} -> drop E7-06, E7-13, E8-02, E8-16.
+2. **Padded condition labels leak in one cell** (both Earth graders): in E6's conditions items the key is the lone
+   three-letter code (LHG-207, LHG-305, HLJ-207, GHK-5). Drop E6-01, E6-02, E6-11, E6-16. In the other cells both
+   graders found the key spread evenly over label lengths: recorded, not a tell. Batch 2 gets a checker rule:
+   no condition key may be the unique label shape in its option set.
+3. **Stock misconception distractors** (both Life graders): items carrying BOTH the "changed during its life" and
+   the "because they needed it" families lose two options on sight. Drop L6-06, L8-06, L8-14 (L8-14 also falls
+   under 1). Batch 2 gets a cap: each family at most once per author.
+4. **"invented" in student-facing passages** (E6-07, E6-08, E6-10): the word is deleted from the passage. This is
+   a typographic correction that changes no option, number or key, recorded here; no other text is touched.
+5. **Life-g2 blindness note:** the grader saw ~15 lines of another grader's Earth notes through a shared scratch
+   folder name; no Life item or key. Its Life picks stand.
+
+Per-item drop rules (GRADER-BRIEF table) then apply to the keyed passes as written.
