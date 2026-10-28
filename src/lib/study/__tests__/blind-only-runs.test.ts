@@ -86,6 +86,17 @@ describe('drawing', () => {
     expect(sim.runs.every((r: { blindOnly?: boolean; shape: string }) => r.blindOnly && r.shape === 'full')).toBe(true)
   })
 
+  it('a released blind-only cohort with nothing left to serve is skipped, not drawn as a 0-item run', () => {
+    // 2026-10-28: act-science-v5c was released and sat at the head of the queue as "0 items", so --commit failed.
+    const batches = [
+      batch(0, 'act-science-v5c', 'act/science/*', { groups: [], waiting: 0 }),
+      batch(1, 'act-science-v6b', 'act/science/*'),
+    ]
+    const sim = simulateQueue({ strata, batches, depth: new Map([['act/science', 3]]) })
+    expect(sim.runs.map((r: { batches: { cohort: string }[] }) => r.batches[0].cohort)).toEqual(['act-science-v6b'])
+    expect(sim.runs.every((r: { items: number }) => r.items > 0)).toBe(true)
+  })
+
   it('a held cohort is not drawn in level-aware mode', () => {
     expect(cohortHeld([{ upTo: 0 }], 0)).toBe(true)
     expect(cohortHeld([{ upTo: 0 }, {}], 0)).toBe(false)

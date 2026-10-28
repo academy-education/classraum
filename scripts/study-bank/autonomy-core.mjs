@@ -549,6 +549,8 @@ export function simulateQueue({ strata, batches, depth, params = PARAMS, priorit
       let items, groups = []
       if (b.groups.length) { const g = pickGroups(b.groups, 'full', params); items = g.items; groups = g.groups }
       else items = Math.min(params.l0Cap, b.waiting)
+      // A released cohort has nothing left to serve; a 0-item run would sit at the head of the queue (2026-10-28).
+      if (items === 0) continue
       runs.push({ stratum: b.stratum, shape: 'full', blindOnly: true, level: m.level, bridge: m.bridge, batches: [{ cohort: b.cohort, items, groups }], items })
       bump(b.stratum)
       continue
