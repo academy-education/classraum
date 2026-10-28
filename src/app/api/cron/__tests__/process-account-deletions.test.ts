@@ -20,7 +20,7 @@ jest.mock('@/lib/supabase-admin', () => ({
   dbAdmin: {
     from: jest.fn(),
     rpc: jest.fn(),
-    auth: { admin: { deleteUser: jest.fn() } },
+    auth: { admin: { deleteUser: jest.fn(), getUserById: jest.fn() } },
   },
 }))
 jest.mock('@/lib/cron-auth', () => ({ verifyCronAuth: jest.fn() }))
@@ -36,6 +36,8 @@ jest.mock('@/lib/account-deletion-emails', () => ({
 const fromMock = dbAdmin.from as unknown as jest.Mock
 const rpcMock = dbAdmin.rpc as unknown as jest.Mock
 const deleteUserMock = dbAdmin.auth.admin.deleteUser as unknown as jest.Mock
+const getUserByIdMock = dbAdmin.auth.admin.getUserById as unknown as jest.Mock
+const BANNED = { data: { user: { id: 'user-1', banned_until: '2126-01-01T00:00:00Z' } }, error: null }
 const verifyCronAuthMock = verifyCronAuth as unknown as jest.Mock
 const raiseAlertMock = raiseAlert as unknown as jest.Mock
 
@@ -59,6 +61,7 @@ describe('process-account-deletions — audit-log guard', () => {
     jest.spyOn(console, 'warn').mockImplementation(() => {})
     verifyCronAuthMock.mockReturnValue(true)
     deleteUserMock.mockResolvedValue({ error: null })
+    getUserByIdMock.mockResolvedValue(BANNED)
     rpcMock.mockResolvedValue({ data: { status: 'deleted' }, error: null })
     enqueue = tableRouter(fromMock)
   })
@@ -118,6 +121,48 @@ describe('process-account-deletions — audit-log guard', () => {
     })
     expect(deleteUserMock).toHaveBeenCalledWith('user-1')
     expect(body.results[0].status).toBe('hard_deleted')
+  })
+
+  it('does NOT run the cascade when the scheduled account is no longer banned', async () => {
+    // An admin set the account to "active": ban lifted, schedule left behind.
+    getUserByIdMock.mockResolvedValue({ data: { user: { id: 'user-1', banned_until: null } }, error: null })
+    enqueue('users', { data: [DUE_USER] })
+    enqueue('account_deletion_log', { data: [{ id: 'log-1' }] })
+
+    const res = await GET(req)
+    const body = await res.json()
+
+    expect(rpcMock).not.toHaveBeenCalled()
+    expect(deleteUserMock).not.toHaveBeenCalled()
+    expect(body.results).toEqual([
+      { userId: 'user-1', status: 'error', detail: 'scheduled_but_not_banned' },
+    ])
+    expect(raiseAlertMock).toHaveBeenCalledWith(
+      expect.objectContaining({ severity: 'critical', dedupeKey: 'account-deletion:not-banned' }),
+    )
+  })
+
+  it('does NOT run the cascade when the ban has already expired', async () => {
+    getUserByIdMock.mockResolvedValue({ data: { user: { id: 'user-1', banned_until: '2020-01-01T00:00:00Z' } }, error: null })
+    enqueue('users', { data: [DUE_USER] })
+    enqueue('account_deletion_log', { data: [{ id: 'log-1' }] })
+
+    const body = await (await GET(req)).json()
+
+    expect(rpcMock).not.toHaveBeenCalled()
+    expect(body.results[0].detail).toBe('scheduled_but_not_banned')
+  })
+
+  it('does NOT run the cascade when the auth lookup fails', async () => {
+    getUserByIdMock.mockResolvedValue({ data: { user: null }, error: { message: 'auth down' } })
+    enqueue('users', { data: [DUE_USER] })
+    enqueue('account_deletion_log', { data: [{ id: 'log-1' }] })
+
+    const body = await (await GET(req)).json()
+
+    expect(rpcMock).not.toHaveBeenCalled()
+    expect(deleteUserMock).not.toHaveBeenCalled()
+    expect(body.results[0].detail).toContain('auth down')
   })
 
   it('rejects unauthenticated callers without touching anything', async () => {

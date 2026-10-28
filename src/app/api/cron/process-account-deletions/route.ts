@@ -529,6 +529,45 @@ export async function GET(req: NextRequest) {
           continue
         }
 
+        // Step 0b — FAIL CLOSED: a scheduled account is always banned
+        // (/api/account/delete bans it in the same request). An account that
+        // is scheduled but NOT banned has been let back in by someone — on
+        // 2026-09-28 an admin set a scheduled student to "active", she paid
+        // for a month and studied, and this cron erased her on day 30. The
+        // admin toggle now cancels the schedule too; this guard catches any
+        // other path that lifts the ban without clearing the schedule.
+        const { data: authData, error: authLookupError } =
+          await dbAdmin.auth.admin.getUserById(userId)
+        const bannedUntil = (authData?.user as { banned_until?: string | null } | undefined)?.banned_until
+        const stillBanned = !!bannedUntil && new Date(bannedUntil).getTime() > Date.now()
+        if (authLookupError || !stillBanned) {
+          console.error(
+            `[CRON account-deletions] user=${userId} is scheduled but ${authLookupError ? 'auth lookup failed' : 'not banned'} — refusing to delete`,
+            authLookupError
+          )
+          await raiseAlert({
+            severity: 'critical',
+            title: 'Deletion skipped: account is not banned',
+            message:
+              `User ${userId} is past their 30-day deletion window but their ` +
+              `sign-in ${authLookupError ? 'could not be checked' : 'is not blocked'}, ` +
+              `so someone may have let them back in. The cascade was SKIPPED. ` +
+              `Either cancel the deletion (clear users.deletion_scheduled_at and ` +
+              `stamp account_deletion_log.reactivated_at) or re-ban the account.`,
+            dedupeKey: 'account-deletion:not-banned',
+            error: authLookupError,
+            context: { userId, role: user.role, stage: 'pre_cascade' },
+          })
+          results.push({
+            userId,
+            status: 'error',
+            detail: authLookupError
+              ? `auth lookup failed: ${authLookupError.message}`
+              : 'scheduled_but_not_banned',
+          })
+          continue
+        }
+
         // Step 1: run the per-role cascade.
         const { data: cascadeResult, error: cascadeError } =
           await dbAdmin.rpc('delete_user_account_cascade', {

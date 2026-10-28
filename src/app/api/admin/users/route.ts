@@ -250,6 +250,25 @@ export async function PATCH(request: NextRequest) {
             ban_duration: banDuration,
           } as any);
           if (banErr) throw banErr;
+
+          // "Active" must also cancel a pending self-deletion, exactly as
+          // /api/account/reactivate does. Lifting only the ban once let a
+          // scheduled student back in (2026-09-28); she paid and studied,
+          // and the hard-delete cron erased her 30 days after her request.
+          if (status === 'active') {
+            const { error: clearErr } = await supabase
+              .from('users')
+              .update({ deletion_scheduled_at: null } as any)
+              .eq('id', id);
+            if (clearErr) throw clearErr;
+            const { error: logErr } = await supabase
+              .from('account_deletion_log')
+              .update({ reactivated_at: new Date().toISOString() } as any)
+              .eq('user_id', id)
+              .is('reactivated_at', null)
+              .is('hard_deleted_at', null);
+            if (logErr) throw logErr;
+          }
         }
 
         if (role) {
