@@ -98,7 +98,7 @@
           <div class="flex flex-wrap items-center gap-2">
             <span class="text-xs text-gray-400" data-i18n="mockSwitch">목업 전환</span>
             <select id="partnerSel" class="h-10 px-3 rounded-lg border border-border bg-white text-sm shadow-sm focus:border-primary outline-none">
-              <option value="uhak">신세기유학원</option><option value="his">HIS 헤럴드교육센터</option>
+              <option value="uhak">신세기유학원</option><option value="his">HIS 헤럴드교육센터</option><option value="bt">비투게더</option>
             </select>
             <select id="rangeSel" class="h-10 px-3 rounded-lg border border-border bg-white text-sm shadow-sm focus:border-primary outline-none">
               <option value="30" data-i18n="p30">최근 30일</option><option value="90" selected data-i18n="p90">최근 90일</option><option value="all" data-i18n="pall">전체 기간</option>
@@ -112,7 +112,7 @@
           <div class="card xl:col-span-2 p-5 sm:p-6 relative overflow-hidden">
             <div class="absolute inset-x-0 top-0 h-1" id="accentBar"></div>
             <div class="flex flex-wrap items-center gap-4">
-              <div class="h-14 px-3 rounded-xl ring-1 ring-gray-100 bg-white flex items-center"><img id="logo" src="https://uhak114.com/layout/images/common/logo_on.png" alt="" class="h-9 w-auto"></div>
+              <div id="logoBox" class="h-14 px-3 rounded-xl ring-1 ring-gray-100 bg-white flex items-center"><img id="logo" src="https://uhak114.com/layout/images/common/logo_on.png" alt="" class="h-9 w-auto"></div>
               <div class="min-w-0">
                 <div class="flex items-center gap-2 flex-wrap">
                   <h2 class="text-lg font-semibold text-gray-900" id="pName">신세기유학원</h2>
@@ -123,7 +123,7 @@
             </div>
             <dl class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 pt-5 border-t border-gray-100">
               
-              <div><dt class="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500" data-i18n="tBenefit">학생 혜택</dt><dd class="mt-1 text-base font-semibold" data-i18n="tBenefitV">가입 크레딧 5개</dd></div>
+              <div><dt class="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500" data-i18n="tBenefit">학생 혜택</dt><dd class="mt-1 text-base font-semibold" data-i18n="tBenefitV">첫달 구독료 10% 할인</dd></div>
               <div><dt class="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500" data-i18n="tTests">주요 시험</dt><dd class="mt-1 text-base font-semibold" id="pTests">SAT · TOEFL</dd></div>
               
               <div><dt class="text-[11px] font-semibold uppercase tracking-[0.1em] text-gray-500" data-i18n="tUpdated">최근 업데이트</dt><dd class="mt-1 text-base font-semibold num">10.22 09:00</dd></div>
@@ -137,7 +137,7 @@
             <div class="flex items-center gap-4">
               <div class="min-w-0 flex-1">
                 <div class="text-3xl sm:text-4xl font-semibold tracking-[0.12em] text-gray-900 num" id="code">SSGUHK</div>
-                <p class="text-xs text-gray-500 mt-1" data-i18n="codeNote">가입 시 코드 입력 → 학생에게 크레딧 5개</p>
+                <p class="text-xs text-gray-500 mt-1" data-i18n="codeNote">가입 시 코드 입력 → 첫달 구독료 10% 할인</p>
               </div>
               <div class="qr w-20 h-20 p-1.5 rounded-lg ring-1 ring-gray-100 bg-white flex-none" id="qr"></div>
             </div>
@@ -221,19 +221,22 @@
 const PARTNERS = {
   uhak: { name:'신세기유학원', nameEn:'Shinsegi Study Abroad', short:'신', code:'SSGUHK', term:'2026.05 – 2027.04', rate:0.2,
           logo:'https://uhak114.com/layout/images/common/logo_on.png', accent:'linear-gradient(90deg,#2a64b8,#f08c1a)',
-          sub:'싱가포르 유학 전문 · Since 1997', subEn:'Singapore study-abroad specialists · Since 1997', scale:1.0, seed:11, tests:['SAT','TOEFL','ISEE','SSAT'] },
+          sub:'싱가포르 유학 전문 · Since 1997', subEn:'Singapore study-abroad specialists · Since 1997', scale:1.0, seed:11, tests:['IGCSE','iTEP Slate Plus','SSAT','ISEE','TOEFL','MAP Test'] },
   his:  { name:'HIS 헤럴드교육센터', nameEn:'HIS Herald Institute for Scholars', short:'H', code:'HSEDU7', term:'2026.05 – 2027.04', rate:0.2,
           logo:'https://www.hisacademy.co.kr/assets/images/logo01-3.svg', accent:'linear-gradient(90deg,#13233f,#b08a3e)',
-          sub:'국제학교 입학 · IB/AP/SAT 전문', subEn:'International-school admissions · IB/AP/SAT', scale:1.35, seed:29, tests:['SAT','SSAT','TOEFL','AP'] }
+          sub:'국제학교 입학 · IB/AP/SAT 전문', subEn:'International-school admissions · IB/AP/SAT', scale:1.35, seed:29, tests:['SAT','SSAT','ISEE','MAP Test','TOEFL'] },
+  bt:   { name:'비투게더', nameEn:'Be Together', short:'비', code:'BTGTHR', term:'2026.05 – 2027.04', rate:0.2,
+          logo:'https://www.betogether.co.kr/default/img/d3t/images/logo.png', logoBg:'#25ADE8', accent:'linear-gradient(90deg,#25ADE8,#8fd3f4)',
+          sub:'국제학교 · 유학생 온·오프라인 영어 교육 · Since 2016', subEn:'Online and in-person English for international-school students · Since 2016', scale:0.8, seed:41, tests:['SAT','SSAT','ISEE','TOEFL','MAP Test'] }
 }
 const PLANS = [ {id:'basic', ko:'베이직', en:'Basic', price:9900}, {id:'premium', ko:'프리미엄', en:'Premium', price:18900}, {id:'plus', ko:'프리미엄 플러스', en:'Premium Plus', price:26900} ]
 const T = {
-  ko:{navDash:'대시보드',tBenefit:'학생 혜택',tBenefitV:'가입 크레딧 5개',tTests:'주요 시험',tGrade:'학년',navStudents:'추천 학생',navAccount:'계정',navSettings:'설정',role:'파트너 관리자',sample:'샘플 데이터 · 디자인 검토용',eyebrow:'PARTNER',title:'파트너 대시보드',desc:'추천 코드로 가입한 학생 현황을 확인하세요.',mockSwitch:'목업 전환',p30:'최근 30일',p90:'최근 90일',pall:'전체 기간',export:'내보내기',active:'제휴 활성',tUpdated:'최근 업데이트',codeTitle:'추천 코드',codeNote:'가입 시 코드 입력 → 학생에게 크레딧 5개',copyLink:'링크 복사',copyCode:'코드 복사',trend:'월별 가입 및 유료 전환',trendS:'최근 6개월',signups:'가입',paid:'유료 전환',funnel:'전환 퍼널',funnelS:'선택한 기간 기준',mix:'플랜 구성',mixS:'현재 구독 중인 학생',status:'상태',students:'추천 학생',studentsS:'개인정보 보호를 위해 학생 이름은 표시되지 않습니다',fAll:'모든 상태',fPaid:'구독 중',fFree:'무료',fChurn:'해지',tJoined:'가입일',tTarget:'목표 시험',tPlan:'플랜',tStatus:'상태',prev:'이전',next:'다음',foot:'파트너 문의 partners@classraum.com · 표시된 수치는 샘플 데이터입니다.',
+  ko:{navDash:'대시보드',tBenefit:'학생 혜택',tBenefitV:'첫달 구독료 10% 할인',tTests:'주요 시험',tGrade:'학년',navStudents:'추천 학생',navAccount:'계정',navSettings:'설정',role:'파트너 관리자',sample:'샘플 데이터 · 디자인 검토용',eyebrow:'PARTNER',title:'파트너 대시보드',desc:'추천 코드로 가입한 학생 현황을 확인하세요.',mockSwitch:'목업 전환',p30:'최근 30일',p90:'최근 90일',pall:'전체 기간',export:'내보내기',active:'제휴 활성',tUpdated:'최근 업데이트',codeTitle:'추천 코드',codeNote:'가입 시 코드 입력 → 첫달 구독료 10% 할인',copyLink:'링크 복사',copyCode:'코드 복사',trend:'월별 가입 및 유료 전환',trendS:'최근 6개월',signups:'가입',paid:'유료 전환',funnel:'전환 퍼널',funnelS:'선택한 기간 기준',mix:'플랜 구성',mixS:'현재 구독 중인 학생',status:'상태',students:'추천 학생',studentsS:'개인정보 보호를 위해 학생 이름은 표시되지 않습니다',fAll:'모든 상태',fPaid:'구독 중',fFree:'무료',fChurn:'해지',tJoined:'가입일',tTarget:'목표 시험',tPlan:'플랜',tStatus:'상태',prev:'이전',next:'다음',foot:'파트너 문의 partners@classraum.com · 표시된 수치는 샘플 데이터입니다.',
       sSign:'코드 가입',sPaid:'유료 전환',vs:'지난 기간 대비',fVisit:'링크 방문',fSign:'가입',fTrial:'첫 시험 응시',fPaid2:'유료 전환',stPaid:'구독 중',stFree:'무료',stChurn:'해지',freeTier:'무료 이용',none:'조건에 맞는 학생이 없습니다',copied:'클립보드에 복사했습니다',mock:'목업에서는 동작하지 않습니다',people:'명',pageInfo:(a,b,n)=>`전체 ${n}명 중 ${a}–${b}`,
-      msg:{parent:(p,c,l)=>`안녕하세요, ${p}입니다.\n\n자녀분의 SAT·TOEFL·SSAT 준비를 위해 Classraum Study를 안내해 드립니다. 실제 시험과 같은 형식의 모의고사와 AI 피드백으로 가정에서도 체계적으로 준비할 수 있습니다.\n\n아래 링크로 가입하시고 추천 코드 ${c}를 입력하시면 무료 크레딧 5개가 제공됩니다.\n${l}`,student:(p,c,l)=>`[${p}] Classraum Study 안내\nSAT·TOEFL·SSAT 실전 모의고사와 AI 피드백 학습 앱입니다.\n가입 시 추천 코드 ${c}를 입력하면 무료 크레딧 5개가 지급됩니다.\n${l}`,short:(p,c,l)=>`Classraum Study 추천 코드 ${c} 입력 시 무료 크레딧 5개 (${p})\n${l}`}},
-  en:{navDash:'Dashboard',tBenefit:'Student benefit',tBenefitV:'5 sign-up credits',tTests:'Main tests',tGrade:'Grade',navStudents:'Referred students',navAccount:'Account',navSettings:'Settings',role:'Partner admin',sample:'Sample data · design review',eyebrow:'PARTNER',title:'Partner dashboard',desc:'Track students who joined with your code.',mockSwitch:'Mock switch',p30:'Last 30 days',p90:'Last 90 days',pall:'All time',export:'Export',active:'Active',tUpdated:'Last updated',codeTitle:'Referral code',codeNote:'Students enter the code at sign-up → 5 credits',copyLink:'Copy link',copyCode:'Copy code',trend:'Monthly sign-ups and paid conversions',trendS:'Last 6 months',signups:'Sign-ups',paid:'Paid',funnel:'Conversion funnel',funnelS:'For the selected period',mix:'Plan mix',mixS:'Currently subscribed students',status:'Status',students:'Referred students',studentsS:'Student names are not shown, to protect their privacy',fAll:'All statuses',fPaid:'Subscribed',fFree:'Free',fChurn:'Cancelled',tJoined:'Joined',tTarget:'Target test',tPlan:'Plan',tStatus:'Status',prev:'Previous',next:'Next',foot:'Partner support partners@classraum.com · figures shown are sample data.',
+      msg:{parent:(p,c,l)=>`안녕하세요, ${p}입니다.\n\n자녀분의 SAT·TOEFL·SSAT 준비를 위해 Classraum Study를 안내해 드립니다. 실제 시험과 같은 형식의 모의고사와 AI 피드백으로 가정에서도 체계적으로 준비할 수 있습니다.\n\n아래 링크로 가입하시고 추천 코드 ${c}를 입력하시면 첫달 구독료 10% 할인이 적용됩니다.\n${l}`,student:(p,c,l)=>`[${p}] Classraum Study 안내\nSAT·TOEFL·SSAT 실전 모의고사와 AI 피드백 학습 앱입니다.\n가입 시 추천 코드 ${c}를 입력하면 첫달 구독료 10% 할인이 적용됩니다.\n${l}`,short:(p,c,l)=>`Classraum Study 추천 코드 ${c} 입력 시 첫달 구독료 10% 할인 (${p})\n${l}`}},
+  en:{navDash:'Dashboard',tBenefit:'Student benefit',tBenefitV:'10% off the first month',tTests:'Main tests',tGrade:'Grade',navStudents:'Referred students',navAccount:'Account',navSettings:'Settings',role:'Partner admin',sample:'Sample data · design review',eyebrow:'PARTNER',title:'Partner dashboard',desc:'Track students who joined with your code.',mockSwitch:'Mock switch',p30:'Last 30 days',p90:'Last 90 days',pall:'All time',export:'Export',active:'Active',tUpdated:'Last updated',codeTitle:'Referral code',codeNote:'Students enter the code at sign-up → 10% off the first month',copyLink:'Copy link',copyCode:'Copy code',trend:'Monthly sign-ups and paid conversions',trendS:'Last 6 months',signups:'Sign-ups',paid:'Paid',funnel:'Conversion funnel',funnelS:'For the selected period',mix:'Plan mix',mixS:'Currently subscribed students',status:'Status',students:'Referred students',studentsS:'Student names are not shown, to protect their privacy',fAll:'All statuses',fPaid:'Subscribed',fFree:'Free',fChurn:'Cancelled',tJoined:'Joined',tTarget:'Target test',tPlan:'Plan',tStatus:'Status',prev:'Previous',next:'Next',foot:'Partner support partners@classraum.com · figures shown are sample data.',
       sSign:'Code sign-ups',sPaid:'Paid conversions',vs:'vs previous period',fVisit:'Link visits',fSign:'Signed up',fTrial:'First test',fPaid2:'Paid',stPaid:'Subscribed',stFree:'Free',stChurn:'Cancelled',freeTier:'Free tier',none:'No students match',copied:'Copied to clipboard',mock:'Not functional in the mock',people:'',pageInfo:(a,b,n)=>`${a}–${b} of ${n}`,
-      msg:{parent:(p,c,l)=>`Hello from ${p}.\n\nWe would like to introduce Classraum Study for your child's SAT, TOEFL and SSAT preparation: full mock tests in the real exam format with AI feedback.\n\nSign up with the link below and enter referral code ${c} to receive 5 free credits.\n${l}`,student:(p,c,l)=>`[${p}] Classraum Study\nReal-format SAT, TOEFL and SSAT mock tests with AI feedback.\nEnter referral code ${c} at sign-up for 5 free credits.\n${l}`,short:(p,c,l)=>`Classraum Study code ${c} → 5 free credits (${p})\n${l}`}}
+      msg:{parent:(p,c,l)=>`Hello from ${p}.\n\nWe would like to introduce Classraum Study for your child's SAT, TOEFL and SSAT preparation: full mock tests in the real exam format with AI feedback.\n\nSign up with the link below and enter referral code ${c} to get 10% off the first month.\n${l}`,student:(p,c,l)=>`[${p}] Classraum Study\nReal-format SAT, TOEFL and SSAT mock tests with AI feedback.\nEnter referral code ${c} at sign-up for 10% off the first month.\n${l}`,short:(p,c,l)=>`Classraum Study code ${c} → 10% off the first month (${p})\n${l}`}}
 }
 let state = { p:'uhak', range:'90', lang:'ko', filter:'all', q:'', msg:'parent', sort:'joined', dir:'desc', page:0 }
 const PAGE = 10
@@ -347,6 +350,7 @@ function renderRows(){
 function renderPartner(){
   const P = D.P, nm = state.lang==='ko'?P.name:P.nameEn
   document.getElementById('logo').src = P.logo; document.getElementById('logo').alt = nm
+  document.getElementById('logoBox').style.background = P.logoBg || '#fff' // a white logo needs its own brand colour behind it
   document.getElementById('accentBar').style.background = P.accent
   document.getElementById('pName').textContent = nm
   document.getElementById('pSub').textContent = state.lang==='ko'?P.sub:P.subEn
