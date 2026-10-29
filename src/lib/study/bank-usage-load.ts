@@ -24,6 +24,7 @@ type PageResult<T> = PromiseLike<{ data: T[] | null; error: Err }>
 type CountResult = PromiseLike<{ count: number | null; error: Err }>
 
 const PAGE = 1000
+const PAGE_CONCURRENCY = 6
 
 async function readAll<T>(
   label: string,
@@ -33,7 +34,17 @@ async function readAll<T>(
   const { count: n, error: ce } = await count()
   if (ce || typeof n !== 'number') throw new Error(`${label}: count failed (${ce?.message ?? 'no count'})`)
   const pages = Math.max(1, Math.ceil(n / PAGE))
-  const settled = await Promise.all(Array.from({ length: pages }, (_, i) => page(i * PAGE, i * PAGE + PAGE - 1)))
+  /* At most PAGE_CONCURRENCY pages in flight. All at once was ~18 bank pages fired together on every page
+   * load; next to the live route's reads they hit the 8 s statement timeout (Datadog, 2026-10-27: four
+   * "study_item_bank: canceling statement due to statement timeout"). */
+  const settled: Awaited<PageResult<T>>[] = []
+  for (let start = 0; start < pages; start += PAGE_CONCURRENCY) {
+    const batch = Array.from({ length: Math.min(PAGE_CONCURRENCY, pages - start) }, (_, k) => {
+      const i = start + k
+      return page(i * PAGE, i * PAGE + PAGE - 1)
+    })
+    settled.push(...(await Promise.all(batch)))
+  }
   const out: T[] = []
   for (const { data, error } of settled) {
     if (error) throw new Error(`${label}: ${error.message}`)

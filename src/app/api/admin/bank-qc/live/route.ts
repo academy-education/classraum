@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { requireAdmin } from '@/app/api/admin/_lib/admin-auth'
 import { progressFor, overallProgress, type HumanEvidence } from '@/lib/study/bank-targets'
+import { parseLiveBankRows } from '@/lib/study/bank-qc-live-rows'
 import {
   pooledAcrossReviewers, reviewerAgreement,
   type AgreementPair, type Slot, type Verdict,
@@ -38,96 +39,25 @@ import {
  */
 export const dynamic = 'force-dynamic'
 
-/*
- * Paginated reads. PostgREST silently caps a response at 1000 rows, and
- * a truncated read here would under-report both item counts and
- * coverage — i.e. make the bank look BETTER than it is, which is the
- * one direction this page must never fail in.
- *
- * Written as two concrete functions rather than one generic helper so
- * the table names stay literal and keep their generated types.
- */
 /**
- * PAGES IN PARALLEL, NOT ONE AFTER ANOTHER.
+ * The live bank in ONE read (migration 130, `bank_qc_live_rows()`).
  *
- * Measured 2026-08-27: the bank is 4,970 rows, so the sequential loop was
- * five round-trips that each waited on the last — 3,729ms, and the single
- * slowest thing in the admin panel. Counting first and fetching the pages
- * together does the identical work in 947ms.
+ * This used to page study_item_bank with .range() selecting the full `item` and `verify_meta` JSON. An
+ * OFFSET page still computes the projection for every row it skips, so at 17,259 rows the last page
+ * detoasted ~17,000 item blobs to return 1,000 (2.0 s by EXPLAIN ANALYZE), the pages grew roughly
+ * quadratically, and ~45 MB crossed the wire: Datadog measured p50 23 s, p95 50 s, and 15 failures
+ * (500/504) in 2.5 days (2026-10-29). The route only needed four facts from those blobs — whether
+ * `item.choices` is an array, and verify_meta's method / harvested_from / key names — so the function
+ * computes them in SQL and returns everything as one json value.
  *
- * IT KEEPS THE SEQUENTIAL LOOP'S GUARANTEE. The old loop stopped when a
- * page came back short, which is self-correcting if rows are inserted
- * mid-read. A count taken up front is not: a row added between the count
- * and the fetch would fall past the last page and vanish. So if the final
- * page comes back FULL — meaning the bank grew — this keeps paging
- * sequentially until it sees a short one, exactly as before.
- *
- * The ORDER BY id below is what makes parallel ranges legitimate at all;
- * see the comment on it. Without a total order these would be five
- * independent scans rather than five windows onto one.
+ * One json value means PostgREST's 1000-row cap cannot truncate it, and the payload carries `count`, so a
+ * partial read throws (parseLiveBankRows) instead of making the bank look smaller and better measured.
+ * Archived rows are filtered in SQL with the same predicate as before (`archived is not true`).
  */
-async function readBank() {
-  const select = () =>
-    dbAdmin
-      .from('study_item_bank')
-      .select('id, family, domain, source, cohort, created_at, verify_meta, item, archived')
-      /*
-       * ORDER BY id — the pagination is worthless without it.
-       *
-       * `.range()` is OFFSET/LIMIT. Postgres makes no ordering promise
-       * for a query with no ORDER BY, so two successive .range() calls
-       * are two independent scans: a row can appear in both windows or
-       * in neither, and the loop's `data.length < 1000` stop condition
-       * cannot tell. A dropped row makes the bank SMALLER and its
-       * measured coverage HIGHER — i.e. it makes the bank look better
-       * than it is, the one direction this page must never fail in.
-       *
-       * `id` is the primary key, so it is a TOTAL order: no ties, no
-       * ambiguity left for the planner to resolve differently between
-       * pages. A non-unique sort column (created_at, cohort) would not
-       * be enough — rows sharing a value could still be re-ordered
-       * between the two scans.
-       */
-      .order('id', { ascending: true })
-
-  const { count, error: countError } = await dbAdmin
-    .from('study_item_bank')
-    .select('id', { count: 'exact', head: true })
-  if (countError) throw new Error(`study_item_bank count: ${countError.message}`)
-
-  const pages = Math.max(1, Math.ceil((count ?? 0) / 1000))
-  /*
-   * At most PAGE_CONCURRENCY pages in flight. All at once was right at 5
-   * pages (2026-08-27); at 17 pages of full item JSON (2026-10-27) most of
-   * them hit the statement timeout together and the whole page 500'd.
-   */
-  const PAGE_CONCURRENCY = 4
-  const settled: Awaited<ReturnType<ReturnType<typeof select>['range']>>[] = []
-  for (let start = 0; start < pages; start += PAGE_CONCURRENCY) {
-    const batch = Array.from({ length: Math.min(PAGE_CONCURRENCY, pages - start) }, (_, k) => {
-      const i = start + k
-      return select().range(i * 1000, i * 1000 + 999)
-    })
-    settled.push(...(await Promise.all(batch)))
-  }
-
-  const out: BankRow[] = []
-  for (const { data, error } of settled) {
-    if (error) throw new Error(`study_item_bank: ${error.message}`)
-    out.push(...((data ?? []) as unknown as BankRow[]))
-  }
-
-  // The bank grew while we were reading it. Fall back to the old
-  // stop-on-short-page walk for whatever landed past the counted end.
-  if ((settled[settled.length - 1]?.data ?? []).length === 1000) {
-    for (let from = pages * 1000; ; from += 1000) {
-      const { data, error } = await select().range(from, from + 999)
-      if (error) throw new Error(`study_item_bank: ${error.message}`)
-      out.push(...((data ?? []) as unknown as BankRow[]))
-      if (!data || data.length < 1000) break
-    }
-  }
-  return out
+async function readLiveBank() {
+  const { data, error } = await dbAdmin.rpc('bank_qc_live_rows')
+  if (error) throw new Error(`bank_qc_live_rows: ${error.message}`)
+  return parseLiveBankRows(data)
 }
 
 async function readAttacks() {
@@ -154,11 +84,6 @@ async function readAttacks() {
   return out
 }
 
-interface BankRow {
-  id: string; family: string | null; domain: string | null; source: string | null
-  cohort: string | null; created_at: string; verify_meta: Record<string, unknown> | null
-  item: Record<string, unknown> | null; archived: boolean
-}
 interface AttackRow {
   item_id: string; run_id: string; solvers: number; correct: number; attacked_at: string
 }
@@ -245,8 +170,7 @@ export async function GET(request: NextRequest) {
       })
     }
 
-    const live = (await readBank()).filter(i => !i.archived)
-    const attacks = await readAttacks()
+    const [{ rows: live, verifyMetaKeys }, attacks] = await Promise.all([readLiveBank(), readAttacks()])
 
     // Latest attack per item — a repaired item should report its
     // post-repair number while its history stays on the table.
@@ -270,7 +194,7 @@ export async function GET(request: NextRequest) {
         // Whether the attack even APPLIES: an item with no choices has
         // nothing to withhold, so counting it as unmeasured would make
         // free-response cohorts look permanently behind.
-        if (Array.isArray((i.item as { choices?: unknown[] })?.choices)) e.mc++
+        if (i.multipleChoice) e.mc++
         const a = latest.get(i.id)
         if (a) {
           e.measured++
@@ -508,15 +432,14 @@ export async function GET(request: NextRequest) {
     const provenance = [...byCohort.entries()].map(([cohort, e]) => {
       const members = live.filter(i => (i.cohort ?? '(none)') === cohort)
       const first = members[0]
-      const vm = (first?.verify_meta ?? {}) as Record<string, unknown>
       const blindPct = e.picks > 0 ? Math.round((1000 * e.correct) / e.picks) / 10 : null
       return {
         cohort,
         source: first?.source ?? null,
         // The authoring METHOD as recorded on the items themselves —
         // this is the "how was it made" the page never showed.
-        method: (vm.method as string) ?? (vm.harvested_from ? `harvested: ${vm.harvested_from}` : null),
-        verifyMetaKeys: [...new Set(members.flatMap(m => Object.keys(m.verify_meta ?? {})))].sort(),
+        method: first?.method ?? (first?.harvestedFrom ? `harvested: ${first.harvestedFrom}` : null),
+        verifyMetaKeys: verifyMetaKeys.get(cohort) ?? [],
         items: e.items,
         created: members.map(m => m.created_at).sort()[0]?.slice(0, 10) ?? null,
         measured: e.measured,

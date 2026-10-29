@@ -6052,6 +6052,7 @@ export type Database = {
         }
         Returns: string
       }
+      bank_qc_live_rows: { Args: never; Returns: Json }
       can_access_assignment_grade: {
         Args: { assignment_id_param: string; user_id_param: string }
         Returns: boolean

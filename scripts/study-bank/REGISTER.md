@@ -6316,3 +6316,13 @@ structural checks are pre-flight only. See CLAUDE.md.
   isee/reading (5, at the floor), ssat/reading (6), act/reading, act/english. Order only; depths and rules
   unchanged. Owner also confirmed the heavy non-internal study accounts (윤태원, 김, 이누엘, Stellar Sung, Minho,
   이태규, 민병헌) are real students, not testers — the item-stats detector counts them.
+
+- **2026-10-29 — /admin/bank-qc live and usage endpoints sped up (owner go, from Datadog).** Datadog, 2.5 days:
+  live p50 23 s / p95 50 s with 12x500 + 3x504; usage p50 28 s with 4 statement timeouts on study_item_bank.
+  Cause: the live route paged the whole bank with OFFSET selecting full `item` + `verify_meta` JSON — an
+  OFFSET page computes the projection for every skipped row, so the last page detoasted ~17,000 blobs (2.0 s
+  by EXPLAIN ANALYZE), and ~45 MB crossed the wire; usage's ~18 parallel bank pages timed out beside it.
+  Fix: migration 130 `bank_qc_live_rows()` returns the live bank's slim facts as one json value with a count
+  (0.6-1.0 s over HTTP, 2.6 MB; 517 ms in SQL); `parseLiveBankRows` refuses a partial read; usage pages at
+  most 6 at a time. Equivalence checked on live data: 15,085 rows, 0 differences in family/domain/source/
+  cohort/created_at/multiple-choice/method/verify_meta keys versus the old paged read.
