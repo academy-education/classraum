@@ -1,0 +1,716 @@
+[
+ {
+  "id": "S01",
+  "g": 5,
+  "ccss": "5.NF.B.4b",
+  "ask": "a rectangular board with mixed-number sides has a border of fractional width w on every side: the area of the border",
+  "chain": "inner sides = each side minus 2w (a strip on BOTH sides) -> inner area as a product of mixed numbers -> border = outer area minus inner area",
+  "twist": "the width comes off each side twice; perimeter x width (corners counted twice) and one-w-per-side are the natural errors",
+  "q": [
+   "border & (wide|width) & area & (frame|picture|mat|board|rug)",
+   "(walkway|path|border) & around & area & (feet|meters|inches) & (1/2|1/4|3/4|0\\.5)",
+   "frame & (area|square inches) & inside"
+  ],
+  "e": "border|frame|walkway|around the"
+ },
+ {
+  "id": "S02",
+  "g": 5,
+  "ccss": "5.NF.B.6",
+  "ask": "g/h of a class are girls; p/q of the girls and r/s of the boys walk to school: the fraction of the whole class that walks",
+  "chain": "girls who walk = g/h x p/q -> boys are 1 - g/h, boys who walk = (1 - g/h) x r/s -> add the two products over a common denominator",
+  "twist": "each walking fraction is of a different part; using r/s of the class (or g/h for the boys too) is the natural error",
+  "q": [
+   "(girls|boys) & walk & fraction of (the|all)",
+   "of the girls & of the boys & fraction",
+   "(3/4|2/3|1/2|2/5) of the (girls|boys)"
+  ],
+  "e": "of the girls|of the boys|fraction of the class"
+ },
+ {
+  "id": "S03",
+  "g": 5,
+  "ccss": "5.NBT.A.4",
+  "ask": "Leo rounds each of four prices to the nearest whole dollar before adding; Mia adds the exact prices: how much greater is Leo's total than Mia's",
+  "chain": "each price's rounding change (up is +, down is -) -> add the changes, letting ups and downs cancel (or: rounded total minus exact total) -> the difference",
+  "twist": "rounding changes have directions that partly cancel; adding their sizes, or rounding the exact total once, are the natural errors",
+  "q": [
+   "round(s|ed)? each & before & (adding|adds|add) & (exact|actual)",
+   "(rounded|estimated) total & (exact|actual) total & (difference|greater|less)",
+   "round & nearest (dollar|whole number) & how much (more|greater|less)"
+  ],
+  "e": "round(s|ed)? each|rounded total|estimate.*exact"
+ },
+ {
+  "id": "S04",
+  "g": 5,
+  "ccss": "5.NBT.B.7",
+  "ask": "a number pyramid of decimals (each brick is the sum of the two below it) with the top and two bottom bricks given: the missing middle bottom brick",
+  "chain": "top = left + 2 x middle + right (the middle feeds both upper bricks) -> subtract the two outer bricks from the top -> halve",
+  "twist": "the middle bottom brick is counted twice; top minus the two outer bricks without halving is the natural error",
+  "q": [
+   "pyramid",
+   "(brick|box|block) & sum of the two (below|under)",
+   "each (brick|box|number) & (is|equals) the sum of"
+  ],
+  "e": "pyramid|sum of the two (below|under)"
+ },
+ {
+  "id": "S05",
+  "g": 5,
+  "ccss": "5.NF.B.6",
+  "ask": "a container that holds C (a mixed number) liters is f full: how many more liters fill it",
+  "chain": "the empty part is 1 - f of the container -> (1 - f) x C as a product of fractions -> rename",
+  "twist": "f is a fraction of the container, not an amount; C - f (subtracting the fraction as liters) is the natural error",
+  "q": [
+   "(full|filled) & how (many|much) more & (fill|full)",
+   "(is|was) (2/3|3/4|3/5|5/8|1/4|2/5|3/8|5/6) full",
+   "(tank|jug|bottle|container|pitcher) & full & (holds|capacity) & more"
+  ],
+  "e": "full|capacity"
+ },
+ {
+  "id": "S06",
+  "g": 5,
+  "ccss": "5.NF.B.6",
+  "ask": "a jar full of honey weighs F kg; when it is f full it weighs W kg: the weight of the empty jar",
+  "chain": "F - W is the honey in (1 - f) of the jar -> honey in a full jar = (F - W) / (1 - f) (for f = 1/2 double it) -> jar = F - full honey",
+  "twist": "two readings of the same jar; the difference is a FRACTION of the contents, not all of it",
+  "q": [
+   "full & (half|1/2|3/4|2/3|1/4) full & weigh",
+   "empty (jar|bucket|bottle|box|container) & weigh",
+   "(jar|bucket|bottle|basket) & weighs & when (it is )?(half|full)"
+  ],
+  "e": "empty jar|half full|full .* weighs"
+ },
+ {
+  "id": "S07",
+  "g": 5,
+  "ccss": "5.NBT.B.7",
+  "ask": "the product of two one-place decimals compared with the product of their nearest whole numbers: how far apart the two products are",
+  "chain": "exact product a.b x c.d -> estimate (nearest whole x nearest whole) -> difference of the two products",
+  "twist": "estimation error of a product is not the sum (or product) of the rounding changes",
+  "q": [
+   "(estimate|rounded|nearest whole) & product & (exact|actual) & (difference|differ|how far)",
+   "round(s|ed)? (each|both) (factor|number)s? & multipl",
+   "(exact|actual) product & estimate"
+  ],
+  "e": "rounded factors|estimate.*product|nearest whole number .*multipl"
+ },
+ {
+  "id": "S08",
+  "g": 5,
+  "ccss": "5.NBT.A.4",
+  "ask": "a price with two decimal places is rounded to the nearest tenth of a dollar before n items are bought: how much more (or less) the rounded total is than the exact total",
+  "chain": "rounding change of one price (to the nearest tenth) -> times n (the change happens on every item) -> the difference",
+  "twist": "the rounding change repeats on every item; rounding the exact total once is the natural error",
+  "q": [
+   "round & nearest (tenth|dime) & (before|first) & (total|cost)",
+   "round(ed)? price & (exact|actual) & total",
+   "nearest (ten cents|dime|tenth of a dollar)"
+  ],
+  "e": "nearest tenth .*total|rounded price"
+ },
+ {
+  "id": "S09",
+  "g": 5,
+  "ccss": "5.NBT.B.7",
+  "ask": "two objects are measured with a ruler whose end is broken, so each object is laid between two marks that do not start at 0: their total length",
+  "chain": "length of each = right mark - left mark (decimals) -> add the two lengths",
+  "twist": "neither measurement starts at 0; reading the right marks only is the natural error",
+  "q": [
+   "broken & ruler",
+   "(ruler|tape) & (starts|start|begins) at & (mark|cm|inch)",
+   "(left|one) end & at the & mark & (right|other) end"
+  ],
+  "e": "ruler|broken"
+ },
+ {
+  "id": "S10",
+  "g": 5,
+  "ccss": "5.NF.B.4b",
+  "ask": "a unit square has a vertical strip a wide and a horizontal strip b tall shaded (fractions): the area shaded by EXACTLY one strip",
+  "chain": "overlap = a x b (fraction x fraction area) -> area covered at least once = a + b - ab -> exactly once = a + b - 2ab",
+  "twist": "the overlap is removed twice: once because it is counted twice, once because it is shaded by both",
+  "q": [
+   "(strip|band|stripe) & (overlap|both) & (area|square)",
+   "shaded by (exactly|only) one",
+   "(overlap|overlapping) & (fraction|area) & (square|rectangle) & (shaded|painted)"
+  ],
+  "e": "overlap|strip|exactly one"
+ },
+ {
+  "id": "S11",
+  "g": 5,
+  "ccss": "5.NBT.B.7",
+  "ask": "a full jar of nuts weighs F kg and the empty jar weighs J kg; nuts cost P dollars per kg: the cost of the nuts",
+  "chain": "net weight = F - J -> cost = net weight x price per kg (decimal x decimal)",
+  "twist": "the price applies to the contents only; multiplying the full weight is the natural error",
+  "q": [
+   "(per kilogram|per pound|a pound|per kg) & (jar|container|box) & (empty|weighs)",
+   "(empty|tare) & weigh & (cost|price)",
+   "jar & weighs & (per pound|per kilogram)"
+  ],
+  "e": "per (pound|kilogram).*jar|tare"
+ },
+ {
+  "id": "S12",
+  "g": 5,
+  "ccss": "5.NF.B.4b",
+  "ask": "a unit square shaded with a vertical decimal strip and a horizontal decimal strip: the area left unshaded",
+  "chain": "overlap = a x b -> covered = a + b - ab -> unshaded = 1 - covered",
+  "twist": "the overlap must be subtracted once from the strip total; 1 - a - b (no overlap) and 1 - a - b - ab are the natural errors",
+  "q": [
+   "(strip|band|stripe) & (unshaded|not shaded|white) & (square|grid)",
+   "(0\\.[0-9]+) (wide|tall) & strip",
+   "(not covered|uncovered) & (strip|square)"
+  ],
+  "e": "strip|unshaded"
+ },
+ {
+  "id": "S13",
+  "g": 6,
+  "ccss": "6.NS.C.7",
+  "ask": "three houses at signed decimal positions on a straight road: the least possible total walking distance from one meeting point to all three",
+  "chain": "total distance is least at the middle position -> add the distances from the middle point (= greatest - least)",
+  "twist": "the best point is the median, not 0 or the mean; distances across 0 add",
+  "q": [
+   "(least|smallest|minimum) (possible )?total distance",
+   "(meet|meeting) & (point|place) & total distance",
+   "(sum|total) of (the )?distances & (least|smallest|minimum)"
+  ],
+  "e": "total distance|meeting point|least .*distance"
+ },
+ {
+  "id": "S14",
+  "g": 6,
+  "ccss": "6.NS.C.7",
+  "ask": "four signed points on a number line (mixed numbers): the least possible total distance from one point to all four",
+  "chain": "any point between the two middle points gives the least total -> total = (greatest - least) + (third - second)",
+  "twist": "with four points the best place is a whole interval; distances across 0 add",
+  "q": [
+   "(least|smallest|minimum) (possible )?(total|sum) & distance & (four|4) (points|houses|friends)",
+   "(stand|choose) a point & total distance",
+   "sum of (the )?distances (to|from) (all|each)"
+  ],
+  "e": "total distance|sum of .*distances"
+ },
+ {
+  "id": "S15",
+  "g": 5,
+  "ccss": "5.NBT.B.7",
+  "ask": "an account starts at a decimal balance; five deposits and withdrawals follow: the lowest balance at any time during the week",
+  "chain": "running balance after each transaction (decimal add/subtract) -> compare the running balances -> the least",
+  "twist": "the question is about an intermediate state, not the end; the final balance and start-minus-all-withdrawals are the natural errors",
+  "q": [
+   "lowest balance",
+   "(least|smallest|lowest) (amount|balance) & (during|at any time|any point)",
+   "running (balance|total)"
+  ],
+  "e": "lowest balance|running (balance|total)|least .* during"
+ },
+ {
+  "id": "S16",
+  "g": 6,
+  "ccss": "6.NS.C.8",
+  "ask": "a robot walks clockwise along the sides of a rectangle with signed decimal vertices, starting at the top-left vertex: the y-coordinate after it has walked d units",
+  "chain": "top side length = difference of the x-coordinates across the y-axis -> the remaining distance goes down the right side -> y = top y minus the remaining distance",
+  "twist": "the walk turns a corner, so the distance splits between two sides; ignoring the corner is the natural error",
+  "q": [
+   "(walks|travels|moves) & along the (sides|edges|perimeter) & coordinate",
+   "clockwise & (rectangle|square) & (vertex|corner)",
+   "(ant|robot|bug) & (rectangle|perimeter) & (coordinate|point)"
+  ],
+  "e": "clockwise|along the (sides|edges)"
+ },
+ {
+  "id": "S17",
+  "g": 6,
+  "ccss": "6.NS.A.1",
+  "ask": "a rope: u/v of it is used, then L meters more are used, and R meters are left: the original length",
+  "chain": "undo the last step: R + L is what was left after the first use -> that is (1 - u/v) of the rope -> divide by 1 - u/v",
+  "twist": "work backward in the reverse order; dividing by the USED fraction, or dividing first and adding L after, are the natural errors",
+  "q": [
+   "(used|cut|spent|ate) & (of the|of it) & (then|and then) & (more|another) & (left|remained)",
+   "(left|remain) & (original|at first|start) & (used|spent) & (1/3|2/5|3/8|1/4|3/4|2/3)",
+   "work(ing)? backward"
+  ],
+  "e": "working backward|left .* original|at first"
+ },
+ {
+  "id": "S18",
+  "g": 6,
+  "ccss": "6.NS.A.1",
+  "ask": "Ana divided a mixed number by a fraction by flipping the FIRST number instead of the divisor: by how much does her answer differ from the correct quotient",
+  "chain": "correct quotient (multiply by the reciprocal of the divisor) -> her value (reciprocal of the dividend times the divisor) -> difference",
+  "twist": "error analysis on fraction division: the misconception value must be computed",
+  "q": [
+   "(flipped|inverted|reciprocal) & (wrong|first|instead) & (divid|quotient)",
+   "(mistake|error) & divid & fraction",
+   "(should have|instead of) & reciprocal"
+  ],
+  "e": "flipped|reciprocal of the (first|dividend)"
+ },
+ {
+  "id": "S19",
+  "g": 6,
+  "ccss": "6.NS.B.3",
+  "ask": "a diver at a decimal depth below sea level descends a further fraction (u/v) of her current depth: her new elevation",
+  "chain": "u/v of the depth (fraction x decimal) -> descend: subtract from the elevation -> new elevation (negative)",
+  "twist": "the extra descent is a fraction of the depth, not an amount; subtracting u/v itself is the natural error",
+  "q": [
+   "(descends|dives|goes down) & (of (her|his|its) (depth|distance)|as far again|another)",
+   "(depth|elevation) & (1/4|1/3|2/5|3/4|1/2|2/3) of",
+   "(below sea level) & (fraction|of the way|of its depth)"
+  ],
+  "e": "of (her|his|its) (current )?depth|descends"
+ },
+ {
+  "id": "S20",
+  "g": 6,
+  "ccss": "6.NS.A.1",
+  "ask": "q = a / b for two printed fractions; then q minus its reciprocal",
+  "chain": "divide the fractions (multiply by the reciprocal) -> reciprocal of the quotient (= b / a) -> subtract",
+  "twist": "the reverse quotient is the reciprocal of the first; recomputing it is the long way, and q + 1/q is the natural slip",
+  "q": [
+   "reciprocal & (quotient|divided) & (minus|subtract|difference)",
+   "(a|first) divided by (b|second) & (b|second) divided by (a|first)",
+   "(divided by|÷) & (divided by|÷) & reciprocal"
+  ],
+  "e": "reciprocal"
+ },
+ {
+  "id": "S21",
+  "g": 7,
+  "ccss": "7.NS.A.1",
+  "ask": "a hiker's signed elevation changes over five legs from a printed starting elevation: the highest elevation reached",
+  "chain": "running elevation after each leg (signed decimal sums) -> compare -> the greatest",
+  "twist": "an intermediate maximum, not the end; the final elevation and start-plus-all-climbs are the natural errors",
+  "q": [
+   "highest (point|elevation) & (reached|during)",
+   "(greatest|highest) (elevation|height|altitude) & (during|at any (time|point))",
+   "(climbs|rises) & (descends|drops) & highest"
+  ],
+  "e": "highest (point|elevation)|greatest elevation"
+ },
+ {
+  "id": "S22",
+  "g": 6,
+  "ccss": "6.NS.C.7",
+  "ask": "two houses on a road at signed positions; a store must be built so the total trip for k1 deliveries to one and k2 to the other is least: that least total",
+  "chain": "weighted total distance is least at the house with more deliveries -> total = (fewer deliveries) x (distance between the houses)",
+  "twist": "the best point is not the midpoint; the weights decide",
+  "q": [
+   "(deliveries|trips|visits) & (least|smallest|minimum) total",
+   "(times|trips) a (day|week) & total distance & (least|smallest)",
+   "where should & (build|put|place) & total (distance|walking)"
+  ],
+  "e": "total distance|deliveries"
+ },
+ {
+  "id": "S23",
+  "g": 6,
+  "ccss": "6.NS.C.7",
+  "ask": "a meeting point P is chosen at a printed signed position: how much longer the total distance to three signed houses is than the least possible total",
+  "chain": "total distance from P (three absolute distances, across 0) -> least total (from the middle house) -> subtract",
+  "twist": "compares a given choice with the median optimum",
+  "q": [
+   "(how much|how many) (longer|farther|more) & total distance",
+   "total distance & (least|shortest) possible & (than|compared)",
+   "(shorter|longer) & total (walk|distance) & (meeting|meet)"
+  ],
+  "e": "total distance"
+ },
+ {
+  "id": "S24",
+  "g": 6,
+  "ccss": "6.NS.A.1",
+  "ask": "a recipe for m dozen (mixed number) uses c cups (mixed number): cups needed for n dozen",
+  "chain": "cups per dozen = c / m (fraction division) -> times n",
+  "twist": "scaling through a unit amount found by fraction division",
+  "q": [
+   "(recipe|batch) & dozen & (cups|cup) & (2/3|1/3|3/4|1/2|1/4)",
+   "(makes|for) [0-9] [0-9]/[0-9] dozen",
+   "cups (of|per) & dozen & how (many|much)"
+  ],
+  "e": "dozen"
+ },
+ {
+  "id": "S25",
+  "g": 8,
+  "ccss": "8.NS.A.2",
+  "ask": "Ana estimates √n by placing n between the consecutive squares a^2 and (a+1)^2 and using the same fraction of the way from a to a+1: her estimate",
+  "chain": "find the bracketing squares a^2 < n < (a+1)^2 -> fraction of the way = (n - a^2) / ((a+1)^2 - a^2) -> estimate = a + that fraction",
+  "twist": "linear interpolation between perfect squares; the gap between consecutive squares is 2a + 1, not a or 10",
+  "q": [
+   "(between|consecutive) & (perfect )?squares & (fraction|part) of the way",
+   "(estimate|approximate) & square root & (between|lies between) & (25|36|49|64|81|16)",
+   "(same|proportion|fraction) & between & (perfect squares|square numbers) & estimate"
+  ],
+  "e": "fraction of the way|between .*squares|interpolat"
+ },
+ {
+  "id": "S26",
+  "g": 8,
+  "ccss": "8.NS.A.2",
+  "ask": "Ana estimates the cube root of n by placing n between consecutive cubes a^3 and (a+1)^3 and using the same fraction of the way from a to a+1: her estimate",
+  "chain": "bracketing cubes a^3 < n < (a+1)^3 -> fraction of the way = (n - a^3) / ((a+1)^3 - a^3) -> estimate = a + that fraction",
+  "twist": "interpolation between perfect cubes; the gap is (a+1)^3 - a^3",
+  "q": [
+   "(between|consecutive) & cubes & (fraction|part) of the way",
+   "(estimate|approximate) & cube root & between",
+   "(perfect cubes|cube numbers) & estimate"
+  ],
+  "e": "cube root.*between|between .*cubes"
+ },
+ {
+  "id": "S27",
+  "g": 8,
+  "ccss": "8.NS.A.1",
+  "ask": "two one-digit repeating decimals (0.aaa... + 0.bbb..., a + b > 9) are added: the exact sum as a fraction or mixed number",
+  "chain": "each repeating decimal is a ninths fraction (a/9, b/9) -> add the ninths -> rename as a mixed number (or: column addition with a carry into EVERY repeating column)",
+  "twist": "adding the repeats column by column needs the carry from the column to the right in every column; dropping it gives 1.111... instead of 1.222...",
+  "q": [
+   "repeat & repeat & (sum|add|plus)",
+   "0\\.(4444|5555|6666|7777|8888|3333) & \\+",
+   "(digit|digits) [0-9] repeats & (sum|added|plus)"
+  ],
+  "e": "repeat.*(sum|add|plus)|(sum|add).*repeat"
+ },
+ {
+  "id": "S28",
+  "g": 8,
+  "ccss": "8.NS.A.1",
+  "ask": "two two-digit repeating decimals (0.abab... + 0.cdcd...) with a block sum above 99: the exact sum as a mixed number",
+  "chain": "each is a ninety-ninths fraction -> add the 99ths -> rename past 1 (the extra 99/99 is the carry that wraps around the repeating block)",
+  "twist": "the wrap-around carry: the block sum minus 99, not minus 100",
+  "q": [
+   "repeat & (block|digits) & (sum|add|plus)",
+   "0\\.([0-9][0-9])\\1 & 0\\.",
+   "(two digits|digits [0-9][0-9]) repeat & (sum|add|plus)"
+  ],
+  "e": "repeat.*(sum|add|plus)|99"
+ },
+ {
+  "id": "S29",
+  "g": 8,
+  "ccss": "8.NS.A.1",
+  "ask": "a one-digit repeating decimal minus a two-digit repeating decimal (0.aaa... - 0.bcbc...): the exact difference as a fraction",
+  "chain": "0.aaa... = 11a/99, 0.bcbc... = bc/99 -> subtract the 99ths -> lowest terms",
+  "twist": "periods of different length must be written over the same 99",
+  "q": [
+   "repeat & repeat & (difference|subtract|minus|less)",
+   "0\\.[0-9]{4} & repeat & (minus|subtract|less than|difference)",
+   "repeating & (fraction|lowest terms) & (difference|subtract)"
+  ],
+  "e": "repeat.*(differ|subtract|minus)"
+ },
+ {
+  "id": "S30",
+  "g": 8,
+  "ccss": "8.EE.A.2",
+  "ask": "x^2 = p/q and y^3 = -r/s for perfect-square and perfect-cube fractions: the least possible value of x + y",
+  "chain": "two square roots (choose the negative one for the least sum) -> the cube root of the negative fraction (one value, negative) -> add the signed fractions",
+  "twist": "'least possible' forces the negative square root; the cube root has no choice",
+  "q": [
+   "least possible value & x \\+ y",
+   "x\\^2 = & y\\^3 =",
+   "(square|squared) & (cube|cubed) & least (possible )?value"
+  ],
+  "e": "x\\^2 =.*y\\^3|least possible value of x"
+ },
+ {
+  "id": "S31",
+  "g": 8,
+  "ccss": "8.EE.A.2",
+  "ask": "x^3 = -p/q (a perfect cube fraction) and y^2 = r/s with y < 0: the value of x times y",
+  "chain": "cube root of the negative fraction -> negative square root from the condition -> multiply (two negatives)",
+  "twist": "two roots each with a sign decided differently, then the product sign rule",
+  "q": [
+   "x\\^3 = & y\\^2 = & (product|times|xy)",
+   "(cube|cubed) & (square|squared) & (negative|less than 0) & product",
+   "y < 0 & y\\^2"
+  ],
+  "e": "x\\^3 =.*y\\^2|y\\^2 =.*x\\^3"
+ },
+ {
+  "id": "S32",
+  "g": 8,
+  "ccss": "8.NS.A.2",
+  "ask": "using a printed fraction approximation of √7 (e.g. 2 13/20 ≈ 2.65), the approximate value of √28 + √63",
+  "chain": "rewrite each radicand as a perfect square times 7 (28 = 4 x 7, 63 = 9 x 7) -> 2√7 + 3√7 = 5√7 -> multiply the approximation",
+  "twist": "the roots combine only after the perfect-square factor is taken out; √(28 + 63) and halving instead of rooting are the natural errors",
+  "q": [
+   "approximat & (√|square root) & (\\+|plus|sum) & (√|square root)",
+   "(use|using) & (2\\.65|1\\.41|1\\.73|2\\.24|2\\.45) & (√|square root)",
+   "(simplif|rewrite) & square root & (sum|add)"
+  ],
+  "e": "approximat.*root|√28|√63"
+ },
+ {
+  "id": "S33",
+  "g": 8,
+  "ccss": "8.NS.A.1",
+  "ask": "a list of six numbers mixing perfect-square roots, a cube root, a repeating decimal and two irrationals: the sum of the rational numbers in the list",
+  "chain": "classify each (perfect-square or perfect-cube root -> rational; repeating decimal -> rational, as a fraction; non-perfect root and pi -> irrational) -> convert the rationals to fractions -> add",
+  "twist": "a repeating decimal is rational and must be converted; dropping it (or keeping a non-perfect root) is the natural error",
+  "q": [
+   "(rational|irrational) & sum",
+   "sum of (all )?the rational",
+   "(rational numbers) & (list|these) & (add|sum|total)"
+  ],
+  "e": "rational.*sum|sum of the rational"
+ },
+ {
+  "id": "S34",
+  "g": 8,
+  "ccss": "8.EE.A.4",
+  "ask": "a total given as k x (a x 10^m) + (b x 10^n): the total in standard form",
+  "chain": "multiply the count into the coefficient -> write both terms with the same power of 10 (or in standard form) -> add",
+  "twist": "the two powers differ, so the coefficients cannot be added directly",
+  "q": [
+   "x 10\\^ & x 10\\^ & (total|altogether|in all) & (standard form|how many)",
+   "(scientific notation) & total & (boxes|crates|bags|trucks)",
+   "[0-9] x \\([0-9.]+ x 10\\^"
+  ],
+  "e": "10\\^"
+ },
+ {
+  "id": "S35",
+  "g": 8,
+  "ccss": "8.EE.A.4",
+  "ask": "(a x 10^m) + (b x 10^n) with n = m - 1, written in scientific notation: its coefficient",
+  "chain": "rewrite b x 10^n as (b/10) x 10^m -> add the coefficients -> renormalise if the coefficient passes 10",
+  "twist": "the coefficient is only addable after matching powers",
+  "q": [
+   "scientific notation & (sum|add) & coefficient",
+   "written in scientific notation & (\\+|sum|plus) & 10\\^",
+   "(the )?(number|value) of (a|c|the coefficient) & 10\\^"
+  ],
+  "e": "coefficient|scientific notation"
+ },
+ {
+  "id": "S36",
+  "g": 8,
+  "ccss": "8.EE.A.4",
+  "ask": "(a x 10^-m) - (b x 10^-n) with n > m: the difference as a decimal in standard form",
+  "chain": "write each in standard form with the right number of zeros -> line up places -> subtract",
+  "twist": "negative exponents of different sizes; subtracting coefficients is the natural error",
+  "q": [
+   "10\\^\\(?-[0-9] & 10\\^\\(?-[0-9] & (difference|subtract|minus|less|how much)",
+   "(scientific notation) & (thick|wide|width|mass) & 10\\^-",
+   "(how much|how many) (thicker|wider|longer|heavier) & 10\\^"
+  ],
+  "e": "10\\^-|10\\^\\(-"
+ },
+ {
+  "id": "S37",
+  "g": 8,
+  "ccss": "8.NS.A.1",
+  "ask": "0.abab... is given as the fraction p/11 (or p/99); which fraction equals the decimal with the two digits of the block reversed",
+  "chain": "0.abab... + 0.baba... = 0.(a+b)(a+b)... -> when a + b = 9 the sum is 0.999... = 1 -> reversed = 1 - p/11 (or convert 0.baba... = ba/99 directly)",
+  "twist": "the digit-reversal pair sums to a repeating 9s decimal",
+  "q": [
+   "repeat & (reverse|reversed|switched|swap)",
+   "0\\.(27|36|45|18|09|63|72|81|54|90) & repeat",
+   "(11|99) & repeat & (fraction|lowest terms)"
+  ],
+  "e": "repeat.*(reverse|swap)|reverse.*repeat"
+ },
+ {
+  "id": "S38",
+  "g": 8,
+  "ccss": "8.NS.A.2",
+  "ask": "Ana estimates √n by interpolating between consecutive squares; Ben uses the halfway value a + 1/2: how far apart the two estimates are",
+  "chain": "bracketing squares -> interpolation fraction (n - a^2)/(2a + 1) -> difference from 1/2 over a common denominator",
+  "twist": "compares two estimation methods; the fraction of the way must be found first",
+  "q": [
+   "(estimate|approximate) & square root & (halfway|half way|midpoint)",
+   "(two|both) (estimates|approximations) & square root & (differ|apart|difference)",
+   "(between|consecutive) (perfect )?squares & estimate & difference"
+  ],
+  "e": "interpolat|halfway"
+ },
+ {
+  "id": "S39",
+  "g": 5,
+  "ccss": "5.NBT.B.7",
+  "ask": "a pyramid of decimals with four bottom bricks (each brick the sum of the two below): the top brick",
+  "chain": "each middle bottom brick is used three times, each end brick once -> top = a + 3b + 3c + d (or build the three rows) -> add",
+  "twist": "inner bricks feed several paths up; adding the bottom row once is the natural error",
+  "q": [
+   "pyramid",
+   "(brick|box|block) & sum of the two (below|under)",
+   "top (brick|box|number) & (bottom|row)"
+  ],
+  "e": "pyramid|sum of the two"
+ },
+ {
+  "id": "S40",
+  "g": 5,
+  "ccss": "5.NF.A.1",
+  "ask": "three runners' segment times in mixed numbers of minutes for a relay; the team's planned total and the actual times: how far the actual total was over the plan",
+  "chain": "add three mixed numbers with unlike denominators (twelfths) -> subtract the planned total -> regroup",
+  "twist": "two totals compared; unlike denominators (fourths, sixths, thirds) must be renamed to twelfths",
+  "q": [
+   "relay & (minutes|seconds) & (1/4|1/3|1/6|3/4|2/3|5/6)",
+   "(planned|goal|target) & (total|time) & (over|more than|longer)",
+   "(team|relay) & (total time|altogether)"
+  ],
+  "e": "relay|planned"
+ },
+ {
+  "id": "S41",
+  "g": 6,
+  "ccss": "6.NS.C.7",
+  "ask": "three friends live at signed positions on a number line (fractions in twelfths): the least possible total distance from a meeting point, when the meeting point must be at one of the houses",
+  "chain": "total from each house (sum of two distances, across 0) -> compare the three totals -> least (the middle house)",
+  "twist": "comparing three totals of distances; the middle house wins",
+  "q": [
+   "(meet|meeting) at (one of|someone's|a friend's) & (house|home) & (total|least)",
+   "(whose|which) (house|home) & (meet|meeting) & distance",
+   "total distance & (house|home) & (least|shortest)"
+  ],
+  "e": "meeting|total distance"
+ },
+ {
+  "id": "S42",
+  "g": 8,
+  "ccss": "8.NS.A.2",
+  "ask": "Ana estimates √n for a mixed number n = a^2 + r/s by interpolating between consecutive squares: her estimate",
+  "chain": "bracket the mixed number between a^2 and (a+1)^2 -> (n - a^2) / (2a + 1) as a fraction of a fraction -> add to a",
+  "twist": "interpolation with a fractional numerator (complex fraction)",
+  "q": [
+   "(estimate|approximate) & square root & [0-9] [0-9]/[0-9]",
+   "square root of (a )?mixed number",
+   "(between|consecutive) squares & mixed number"
+  ],
+  "e": "interpolat|between .*squares"
+ },
+ {
+  "id": "S43",
+  "g": 5,
+  "ccss": "5.NF.A.2",
+  "ask": "five fractions with denominators 3, 4, 6 and 12 (one of them equal to 1/2): the sum of the ones GREATER than 1/2",
+  "chain": "compare each fraction with the benchmark 1/2 (rename or compare numerator with half the denominator) -> keep those strictly greater -> add them over twelfths",
+  "twist": "the fraction equal to 1/2 must be left out, and the sum of the kept ones is the answer, not their count",
+  "q": [
+   "greater than 1/2 & (sum|add|total)",
+   "(add|sum) (of )?(all )?(the )?(fractions|numbers) (that are )?(greater|more|less) than",
+   "(benchmark|half) & (fractions|numbers) & (sum|add)"
+  ],
+  "e": "greater than 1/2|benchmark"
+ },
+ {
+  "id": "S44",
+  "g": 6,
+  "ccss": "6.NS.A.1",
+  "ask": "S cups of flour (a mixed number) are used in servings of f cup (a fraction): how much MORE flour is needed to make one more full serving",
+  "chain": "S / f by the reciprocal -> a whole number of servings and a fractional part of a serving -> the missing part (1 - fractional part) -> times f to get cups",
+  "twist": "the leftover is read in servings and the shortfall must be converted back to cups",
+  "q": [
+   "how much more & (one more|another) (full )?(serving|batch|cup|piece|bag)",
+   "(servings|batches) & (more|another) & (needed|need) & (cup|pound)",
+   "enough for (one more|another)"
+  ],
+  "e": "one more|another full"
+ },
+ {
+  "id": "S47",
+  "g": 5,
+  "ccss": "5.NF.B.6",
+  "ask": "a school's students are split into three grades by fractions; a different fraction of each grade rides the bus: the fraction of all the students who ride",
+  "chain": "third grade's share = 1 - the other two -> each grade's riders = grade fraction x its riding fraction -> add the three products",
+  "twist": "each riding fraction is of a different part; the third share must be found first",
+  "q": [
+   "(of the|of all) (students|children) & (ride|take) the bus & fraction",
+   "(fourth|fifth|sixth) (grade|graders) & (ride|walk) & fraction of (all|the)",
+   "of the (fourth|fifth|sixth) graders & fraction"
+  ],
+  "e": "ride the bus|of the .*graders"
+ },
+ {
+  "id": "S48",
+  "g": 5,
+  "ccss": "5.NF.A.2",
+  "ask": "a tank's water level starts at a mixed number of feet and changes by five rises and drops in mixed numbers with unlike denominators: the lowest level during the day",
+  "chain": "running level after each change (unlike-denominator add/subtract, eighths) -> compare -> least",
+  "twist": "the lowest point is an intermediate level, not the end; start-minus-all-drops and the final level are the natural errors",
+  "q": [
+   "lowest (level|point|depth) & (during|any time)",
+   "(water level|level) & (rose|rises|fell|drops) & lowest",
+   "(tank|pond|lake) & level & (1/2|1/4|3/8|5/8|3/4) & (lowest|least)"
+  ],
+  "e": "lowest|least .*during"
+ },
+ {
+  "id": "S49",
+  "g": 6,
+  "ccss": "6.NS.C.8",
+  "ask": "a robot walks clockwise around a rectangle with signed decimal vertices starting at the bottom-left vertex: the x-coordinate after d units",
+  "chain": "left side length = difference of the y-coordinates across the x-axis -> the remaining distance goes right along the top -> x = left x plus the remaining distance",
+  "twist": "the walk turns a corner; ignoring it, or measuring a side across 0 by subtracting sizes, are the natural errors",
+  "q": [
+   "(walks|travels|moves) & along the (sides|edges|perimeter) & coordinate",
+   "clockwise & (rectangle|square) & (vertex|corner)",
+   "(ant|robot|bug) & (rectangle|perimeter) & (coordinate|point)"
+  ],
+  "e": "clockwise|along the (sides|edges)"
+ },
+ {
+  "id": "S50",
+  "g": 8,
+  "ccss": "8.NS.A.1",
+  "ask": "a list of decimals and roots (√0.25-type, √0.4-type, ∛0.008-type, a repeating decimal, π/10, a terminating decimal): the sum of the rational numbers as a fraction",
+  "chain": "classify (root of a perfect-square decimal or perfect-cube decimal -> rational; repeating -> rational; non-perfect root, π multiple -> irrational) -> convert the rationals to fractions -> add",
+  "twist": "a decimal inside a root can be a perfect square (0.25) or not (0.4); a repeating decimal is rational",
+  "q": [
+   "(rational|irrational) & sum",
+   "sum of (all )?the rational",
+   "√0\\.(25|36|49|64|81|16|09|04) & (rational|irrational)"
+  ],
+  "e": "rational.*sum|sum of the rational"
+ },
+ {
+  "id": "S51",
+  "g": 8,
+  "ccss": "8.NS.A.1",
+  "ask": "a list of roots of fractions, a cube root, a repeating decimal and two irrationals: the greatest rational number in the list minus the least rational number",
+  "chain": "classify each as rational or irrational -> write the rationals as fractions -> order them -> greatest minus least",
+  "twist": "the classification decides which numbers compete; a repeating decimal or a perfect-square root left out changes the extremes",
+  "q": [
+   "(rational|irrational) & (greatest|least|largest|smallest) & (difference|minus|subtract)",
+   "greatest rational",
+   "(rational numbers) & (list|these) & (greatest|least)"
+  ],
+  "e": "rational.*(greatest|least)|greatest rational"
+ },
+ {
+  "id": "S54",
+  "g": 8,
+  "ccss": "8.EE.A.2",
+  "ask": "a list of five fractions, three of them perfect squares (one only after it is simplified, e.g. 18/50) and two not: the sum of the rational square roots",
+  "chain": "simplify each fraction -> test numerator and denominator for perfect squares -> take the square roots of the perfect-square ones -> add",
+  "twist": "a fraction can be a perfect square only after simplifying; leaving it out, or rooting numerators only, are the natural errors",
+  "q": [
+   "(perfect square|square root) & (simplif|lowest terms) & (fraction|sum)",
+   "(18/50|8/18|12/27|20/45|27/48|32/50|50/72) & (square root|√)",
+   "square roots? & (rational|whole) & (sum|add) & (fractions|these)"
+  ],
+  "e": "perfect square.*fraction|square root.*simplif"
+ },
+ {
+  "id": "S55",
+  "g": 8,
+  "ccss": "8.EE.A.1",
+  "ask": "five powers with whole-number and fraction bases and zero or negative exponents: the sum of the ones whose value is less than 1",
+  "chain": "evaluate each power (a negative exponent flips the base; a zero power is 1) -> keep the values less than 1 -> add them as fractions",
+  "twist": "which powers count depends on evaluating them: a fraction base with a negative exponent is greater than 1, and a zero power is not less than 1",
+  "q": [
+   "(less|greater) than 1 & (\\^ ?\\(?-[0-9]|negative exponent) & (sum|add|total)",
+   "(\\^-[0-9]|\\^\\(-[0-9]\\)) & (\\^0|zero exponent) & (sum|add|which)",
+   "(powers|expressions) & (less than 1|greater than 1) & exponent"
+  ],
+  "e": "less than 1.*exponent|negative exponent.*sum"
+ }
+]

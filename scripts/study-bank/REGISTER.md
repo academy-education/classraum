@@ -6506,3 +6506,10 @@ structural checks are pre-flight only. See CLAUDE.md.
     closes, `draw-review-run` refuses the audit draw.
   - MAP Math form 6 needs more than Number Systems: f6 is short OA 5/10, N 1/10, Geo 7/10, Stats 5/10.
   - autonomy-state.json is stale (review table changed); re-run autonomy-state.mjs before the next level-aware draw.
+
+- **2026-10-30 — MAP Math b9 (Number Systems, grades 5/6/8 focus): 51 drafted, 15 probe-dropped, 23 not writable,
+  13 writable and probe-clean (g5 6, g6 3, g7 1, g8 3; about 9 distinct families).** New generator refusals: the b8
+  sign rule, a key-gap rule (the key may not be n times a gap when n is printed), no extreme key under a least/greatest
+  stem, and a RANGE rule (a stem interval may leave at most one distractor outside it). The range rule killed every
+  root-interpolation draft. All 7 scientific-notation and repeating-decimal drafts collided with earlier MAP or b5
+  items. `map-v2-work/math-b9/`. Independent chain checker running.

@@ -1,0 +1,1707 @@
+{
+ "S01": {
+  "live_prior": [
+   {
+    "q": "border & (wide|width) & area & (frame|picture|mat|board|rug)",
+    "head": "59607aa6-6ed [live sat/sat-adv-v11 Advanced Math medium]",
+    "text": "A rectangular photograph measuring 8 inches by 10 inches is mounted with a border of uniform width on all four sides. The framed rectangle has an area of 168 square inches. What is the width, in inches, of the border? options [\"2\",\"11\",\"4\",\"12\"] key 2"
+   },
+   {
+    "q": "border & (wide|width) & area & (frame|picture|mat|board|rug)",
+    "head": "SAM11-15 [prior sat-adv-v11.batch.json]",
+    "text": "A rectangular photograph measuring 8 inches by 10 inches is mounted with a border of uniform width on all four sides. The framed rectangle has an area of 168 square inches. What is the width, in inches, of the border? options [\"2\",\"11\",\"4\",\"12\"] key 2"
+   },
+   {
+    "q": "border & (wide|width) & area & (frame|picture|mat|board|rug)",
+    "head": "MM2-G09 [prior map-math-g58-v2]",
+    "text": "A rectangular mat is 18 inches wide and 15 inches tall. A rectangular photo is placed on the mat so that the mat shows a border around the photo: the border is 2 inches wide along the left and right sides and 3 inches wide along the top and bottom. What is the area of the photo, in square inches? op"
+   },
+   {
+    "q": "border & (wide|width) & area & (frame|picture|mat|board|rug)",
+    "head": "MM2-G09 [prior map-math-g58-v2/stage0.assembled.json]",
+    "text": "A rectangular mat is 18 inches wide and 15 inches tall. A rectangular photo is placed on the mat so that the mat shows a border around the photo: the border is 2 inches wide along the left and right sides and 3 inches wide along the top and bottom. What is the area of the photo, in square inches? op"
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MM5-N16",
+    "st": "LIVE",
+    "g": 6,
+    "chain": "length across the y-axis: add absolute values -> length on one side of the x-axis: subtract -> perimeter of the rectangle -> take off the gate",
+    "prompt": "On a map drawn on a coordinate plane, each unit stands for 1 meter. A rectangular garden has corners at (-10, 5), (22, 5), (22, 23) and (-10, 23). A fence will "
+   },
+   {
+    "id": "MB4-N5-05",
+    "st": "withdrawn",
+    "g": 5,
+    "chain": "multiply each mixed-number lap length by its lap count -> regroup the improper fraction part -> subtract the mixed numbers, renaming and borrowing",
+    "prompt": "One lap around a lake trail is 3 1/4 kilometers. One lap around a park trail is 1 1/8 kilometers. This week Ana walked 5 laps around the lake trail, and Ben wal"
+   }
+  ]
+ },
+ "S02": {
+  "live_prior": [],
+  "earlier": []
+ },
+ "S03": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MM3-N13",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "divide and round each quotient up to whole boxes -> multiply back and subtract to find each leftover -> add the two leftovers",
+    "prompt": "A school needs 1,300 pencils and 1,450 erasers. Pencils are sold only in boxes of 32, and erasers only in boxes of 45. The school buys just enough whole boxes o"
+   },
+   {
+    "id": "MM4-N01",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "round each decimal factor to the nearest whole number -> multiply the rounded factors",
+    "prompt": "Leo wants to estimate 6.8 x 4.3. He rounds each number to the nearest whole number and then multiplies the rounded numbers. What estimate does Leo get?"
+   },
+   {
+    "id": "MM5-N03",
+    "st": "LIVE",
+    "g": 5,
+    "chain": "look at the hundredths digit of each number -> round each to the nearest tenth -> count the numbers that round to 4.7",
+    "prompt": "Look at these numbers: 4.643, 4.645, 4.648, 4.65, 4.651, 4.653, 4.655, 4.657, 4.704, 4.741, 4.752. How many of them round to 4.7 when they are rounded to the ne"
+   },
+   {
+    "id": "MM5-N06",
+    "st": "LIVE",
+    "g": 5,
+    "chain": "look at the hundredths digit of each price -> round 3.95 up across the dollar -> add the four rounded prices",
+    "prompt": "Leo buys a book for $6.24, a cap for $2.63, a snack for $3.95, and a toy for $1.61. To estimate the total, he rounds each price to the nearest ten cents and the"
+   },
+   {
+    "id": "MM3-N13",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "divide each item count by its own box size -> round each quotient up to a whole box -> add the two box counts",
+    "prompt": "A school needs 1,300 pencils and 1,500 erasers. Pencils are sold only in boxes of 32, and erasers only in boxes of 45. The school buys whole boxes, and it buys "
+   }
+  ]
+ },
+ "S04": {
+  "live_prior": [
+   {
+    "q": "pyramid",
+    "head": "46c882a0-575 [live act/act-math-v25 Geometry medium]",
+    "text": "A right pyramid has a square base with edges 10 centimeters long, and each of its 4 lateral edges is 13 centimeters long. To the nearest hundredth of a degree, what is the measure of the angle that a lateral edge makes with the base of the pyramid? options [\"59.49\",\"47.49\",\"49.59\",\"57.05\"] key 57.05"
+   },
+   {
+    "q": "pyramid",
+    "head": "801de346-789 [live act/act-math-v28 Geometry hard]",
+    "text": "The roof of a gazebo has the shape of the four triangular faces of a right pyramid with a square base: the top point of the roof is directly above the center of the square. Each of the four triangular faces of the roof makes an angle of 32° with the horizontal, and the total area of the four faces i"
+   },
+   {
+    "q": "pyramid",
+    "head": "99948868-3f8 [live act/act-math-v29 Geometry hard]",
+    "text": "A solid pyramid has rectangular base ABCD with AB = 15 centimeters and BC = 11 centimeters. Its apex V is directly above vertex A, so that edge VA is perpendicular to the base, and VA = 10 centimeters. To the nearest hundredth of a square centimeter, what is the total surface area of the pyramid, in"
+   },
+   {
+    "q": "pyramid",
+    "head": "e97a9db1-e36 [live isee/isee-math-s15 Math medium]",
+    "text": "A solid pyramid has a square base 10 centimeters on each side. Each of its four triangular faces has a height (slant height) of 13 centimeters, measured from the middle of a base edge up to the top point. What is the volume of the pyramid, in cubic centimeters? (The volume of a pyramid is (1/3) x ba"
+   },
+   {
+    "q": "pyramid",
+    "head": "f7417f90-18f [live act/act-math-v10-mix Geometry medium]",
+    "text": "A right pyramid has a square base with edges 12 centimeters long. Its slant height, the distance from the apex to the midpoint of a base edge, is 10 centimeters. What is the volume of the pyramid, in cubic centimeters? options [\"384\",\"480\",\"1152\",\"1440\"] key 384"
+   },
+   {
+    "q": "pyramid",
+    "head": "f965f855-734 [live sat/sat-math-v30-full Geometry and Trigonometry easy]",
+    "text": "A sculptor has two solid blocks of stone. The first is a right pyramid with a square base; each edge of the base is 12 centimeters long, and the height of the pyramid is 5 centimeters. The second is a rectangular prism with a square base; each edge of the base is 7 centimeters long, and the height o"
+   },
+   {
+    "q": "pyramid",
+    "head": "ALG-H2-19 [prior sat-alg-hard-v2.batch.json]",
+    "text": "The volume of a pyramid is given by V = (1/3)Bh, where B is the area of its base and h is its height. Which of the following gives B in terms of V and h? options [\"3V/h\",\"V/(3h)\",\"Vh/3\",\"3h/V\"] key 3V/h"
+   },
+   {
+    "q": "pyramid",
+    "head": "GEO3-13 [prior sat-geo-v3.batch.json]",
+    "text": "A right pyramid has a square base with edges of length 24 feet, and the slant height of each triangular face is 15 feet. What is the volume of the pyramid, in cubic feet? options [\"2592\",\"2880\",\"5184\",\"1728\"] key 1728"
+   },
+   {
+    "q": "pyramid",
+    "head": "MMG-G06 [prior map-math-g58-v1]",
+    "text": "A paper net folds up into a pyramid. The net is made of one square with sides 9 centimeters long and four triangles that are all the same size. Each triangle has a base of 9 centimeters, which is one side of the square, and a height of 12 centimeters. What is the total area of the net in square cent"
+   },
+   {
+    "q": "pyramid",
+    "head": "MMG-G06 [prior map-math-g58-v1.batch.json]",
+    "text": "A paper net folds up into a pyramid. The net is made of one square with sides 9 centimeters long and four triangles that are all the same size. Each triangle has a base of 9 centimeters, which is one side of the square, and a height of 12 centimeters. What is the total area of the net in square cent"
+   },
+   {
+    "q": "each (brick|box|number) & (is|equals) the sum of",
+    "head": "e268c4fc-0ec [live isee/isee-math-s17 Math hard]",
+    "text": "The function f is defined by f(x) = (x + 1)/(1 - x). A list of numbers begins with 3, and each number after the first is f of the number before it. What is the sum of the first 50 numbers in the list? options [\"15\",\"14\",\"85/6\",\"44/3\"] key 15 "
+   }
+  ],
+  "earlier": []
+ },
+ "S05": {
+  "live_prior": [
+   {
+    "q": "(full|filled) & how (many|much) more & (fill|full)",
+    "head": "d7ff14b8-003 [live sat/sat-math-v28-full Algebra medium]",
+    "text": "A group of people is being seated at a banquet, where all the tables are the same size. If 5 people sit at each table, 18 people have no seat. If instead 8 people sit at each table, 3 of the tables are left empty and every other table is full. How many more people would have to join the group so tha"
+   },
+   {
+    "q": "(full|filled) & how (many|much) more & (fill|full)",
+    "head": "SM28F-C05 [prior sat-math-v28-full-c.batch.json]",
+    "text": "A group of people is being seated at a banquet, where all the tables are the same size. If 5 people sit at each table, 18 people have no seat. If instead 8 people sit at each table, 3 of the tables are left empty and every other table is full. How many more people would have to join the group so tha"
+   },
+   {
+    "q": "(full|filled) & how (many|much) more & (fill|full)",
+    "head": "MM2-G02 [prior map-math-g58-v2]",
+    "text": "A box is 12 centimeters long, 5 centimeters wide, and 9 centimeters tall. Ken has already filled the bottom 4 layers of the box with 1-centimeter cubes. How many more 1-centimeter cubes does Ken need to fill the box completely? options [\"300\",\"360\",\"480\",\"780\"] key 300"
+   },
+   {
+    "q": "(full|filled) & how (many|much) more & (fill|full)",
+    "head": "MM2-G02 [prior map-math-g58-v2/stage0.assembled.json]",
+    "text": "A box is 12 centimeters long, 5 centimeters wide, and 9 centimeters tall. Ken has already filled the bottom 4 layers of the box with 1-centimeter cubes. How many more 1-centimeter cubes does Ken need to fill the box completely? options [\"300\",\"360\",\"480\",\"780\"] key 300"
+   },
+   {
+    "q": "(full|filled) & how (many|much) more & (fill|full)",
+    "head": "MV2-N56-17 [prior map-math-v2 b1 LIVE]",
+    "text": "A tank holds 10 10/11 gallons of water. Pump A, working alone, empties the full tank at a rate of 1 1/5 gallons per minute. Pump B, working alone, empties the full tank at a rate of 1 3/5 gallons per minute. How many more minutes does pump A take to empty the full tank than pump B takes? options [\"2"
+   },
+   {
+    "q": "(full|filled) & how (many|much) more & (fill|full)",
+    "head": "MB3-G5-03 [prior map-math-v2 b3 dropped by graders]",
+    "text": "Box A is 8 centimeters long, 7 centimeters wide, and 10 centimeters tall. Box B has the same width and the same height as Box A, but it is 2 centimeters longer. Both boxes can be filled exactly with 1-centimeter cubes. How many more cubes does Box B hold than Box A? options [\"140\",\"520\",\"160\",\"700\"]"
+   },
+   {
+    "q": "(is|was) (2/3|3/4|3/5|5/8|1/4|2/5|3/8|5/6) full",
+    "head": "207e7440-54b [live isee/isee-math-s7 Math hard]",
+    "text": "A water tank is 3/8 full. After 15 more liters are poured in, the tank is 5/8 full. What is the tank's full capacity, in liters? options [\"40\",\"60\",\"75\",\"120\"] key 60"
+   },
+   {
+    "q": "(is|was) (2/3|3/4|3/5|5/8|1/4|2/5|3/8|5/6) full",
+    "head": "9dd66412-df9 [live isee/isee-math-s6 Math medium]",
+    "text": "A water tank is 2/5 full. After 18 more liters of water are added, the tank is 7/10 full. What is the total capacity of the tank, in liters? options [\"60\",\"72\",\"90\",\"120\"] key 60"
+   },
+   {
+    "q": "(is|was) (2/3|3/4|3/5|5/8|1/4|2/5|3/8|5/6) full",
+    "head": "SALG3-09 [prior sat-alg-0919b.batch.json]",
+    "text": "A water tank was 2/5 full. After 42 liters of water were added, the tank was 3/4 full. What is the capacity of the tank, in liters? options [\"105\",\"120\",\"840\",\"168\"] key 120"
+   },
+   {
+    "q": "(is|was) (2/3|3/4|3/5|5/8|1/4|2/5|3/8|5/6) full",
+    "head": "SM28F-C02 [prior sat-math-v28-full-c.batch.json]",
+    "text": "A glass jar is partly filled with water. When the jar is 3/4 full of water, the jar and the water together weigh 1,140 grams. When the jar is 1/3 full of water, the jar and the water together weigh 640 grams. What is the total weight, in grams, of the jar and the water when the jar is completely ful"
+   },
+   {
+    "q": "(is|was) (2/3|3/4|3/5|5/8|1/4|2/5|3/8|5/6) full",
+    "head": "MM4-N06 [prior map-math-g58-v4]",
+    "text": "A parking lot has 550 spaces. On Monday the lot was 9/10 full. On Tuesday the lot was 2/5 full. How many fewer cars were parked in the lot on Tuesday than on Monday? options [\"275\",\"295\",\"297\",\"383\"] key 275"
+   },
+   {
+    "q": "(is|was) (2/3|3/4|3/5|5/8|1/4|2/5|3/8|5/6) full",
+    "head": "MM4-N06 [prior map-math-g58-v4 (as first written)]",
+    "text": "A bookshelf has spaces for 120 books. On Monday the shelf was 5/6 full. On Tuesday the shelf was 3/8 full. How many fewer books were on the shelf on Tuesday than on Monday? options [\"55\",\"75\",\"82\",\"100\"] key 55 "
+   },
+   {
+    "q": "(tank|jug|bottle|container|pitcher) & full & (holds|capacity) & more",
+    "head": "207e7440-54b [live isee/isee-math-s7 Math hard]",
+    "text": "A water tank is 3/8 full. After 15 more liters are poured in, the tank is 5/8 full. What is the tank's full capacity, in liters? options [\"40\",\"60\",\"75\",\"120\"] key 60"
+   },
+   {
+    "q": "(tank|jug|bottle|container|pitcher) & full & (holds|capacity) & more",
+    "head": "9dd66412-df9 [live isee/isee-math-s6 Math medium]",
+    "text": "A water tank is 2/5 full. After 18 more liters of water are added, the tank is 7/10 full. What is the total capacity of the tank, in liters? options [\"60\",\"72\",\"90\",\"120\"] key 60"
+   },
+   {
+    "q": "(tank|jug|bottle|container|pitcher) & full & (holds|capacity) & more",
+    "head": "MV2-N56-17 [prior map-math-v2 b1 LIVE]",
+    "text": "A tank holds 10 10/11 gallons of water. Pump A, working alone, empties the full tank at a rate of 1 1/5 gallons per minute. Pump B, working alone, empties the full tank at a rate of 1 3/5 gallons per minute. How many more minutes does pump A take to empty the full tank than pump B takes? options [\"2"
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MMG-N05",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "amount for a whole = amount for the part divided by the part -> divide by a fraction by multiplying by its reciprocal",
+    "prompt": "Mia used 2 1/2 cups of flour to make 3/4 of a batch of muffins. At this rate, how many cups of flour are needed to make a full batch?"
+   },
+   {
+    "id": "MM2-N10",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "3,276 / 24 = 136.5, so 136 full cases -> 136 x 9.65 by partial products -> add 1224 + 81.6 + 6.8",
+    "prompt": "A factory has 3,276 cans of soup. It packs them into cases of 24 cans each, and only full cases are shipped. Each full case weighs 9.65 kilograms. What is the t"
+   },
+   {
+    "id": "MM4-N06",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "find 9/10 of 550 -> find 2/5 of 550 -> subtract the two amounts",
+    "prompt": "A parking lot has 550 spaces. On Monday the lot was 9/10 full. On Tuesday the lot was 2/5 full. How many fewer cars were parked in the lot on Tuesday than on Mo"
+   },
+   {
+    "id": "MM4-N08",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "divide 10.9 by 0.35 (1090 by 35) -> keep only the whole number of full cups",
+    "prompt": "A jug holds 10.9 liters of juice. Kai pours all of the juice into cups that each hold 0.35 liter, filling each cup to the top before he starts the next one. Whe"
+   },
+   {
+    "id": "MM4-N06",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "find 5/6 of 120 -> find 3/8 of 120 -> subtract the two amounts",
+    "prompt": "A bookshelf has spaces for 120 books. On Monday the shelf was 5/6 full. On Tuesday the shelf was 3/8 full. How many fewer books were on the shelf on Tuesday tha"
+   },
+   {
+    "id": "MM4-N08",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "divide 8.5 by 0.35 (850 by 35) -> keep only the whole number of full cups",
+    "prompt": "A jug holds 8.5 liters of juice. Kai pours the juice into cups that each hold 0.35 liter. How many cups can he fill completely?"
+   },
+   {
+    "id": "MV2-N56-11",
+    "st": "LIVE",
+    "g": 6,
+    "chain": "divide 5,985 by 19 (paperback boxes) -> divide 1,995 by 21 (hardcover boxes) -> add the two numbers of boxes",
+    "prompt": "A school library packs 5,985 paperback books into boxes that hold 19 books and 1,995 hardcover books into boxes that hold 21 books. Every box is full, and paper"
+   },
+   {
+    "id": "MV2-N56-15",
+    "st": "LIVE",
+    "g": 6,
+    "chain": "divide 6,300 by 14 (450 trays) -> divide 6,300 by 35 (180 trays) -> subtract to find how many fewer",
+    "prompt": "A bakery has 6,300 cookies to pack. If it packs them in trays that hold 14 cookies, every tray is full. If it packs them in trays that hold 35 cookies, every tr"
+   },
+   {
+    "id": "MV2-N56-17",
+    "st": "LIVE",
+    "g": 6,
+    "chain": "time for pump A: 10 10/11 / 1 1/5 -> time for pump B: 10 10/11 / 1 3/5 -> subtract the two times, regrouping a whole",
+    "prompt": "A tank holds 10 10/11 gallons of water. Pump A, working alone, empties the full tank at a rate of 1 1/5 gallons per minute. Pump B, working alone, empties the f"
+   },
+   {
+    "id": "MV2-N56-17",
+    "st": "revised away",
+    "g": 6,
+    "chain": "time for pump A: 5 5/7 / 5/6 -> time for pump B: 5 5/7 / 1 1/3 -> subtract the two times",
+    "prompt": "A tank holds 5 5/7 gallons of water. Pump A, working alone, empties the full tank at a rate of 5/6 gallon per minute. Pump B, working alone, empties the full ta"
+   },
+   {
+    "id": "B7-D13",
+    "st": "b7 mechanism D13 (draft K04), checker: REPEAT",
+    "g": 6,
+    "chain": "mixed supply ÷ fractional batch -> quotient as a mixed number -> the fractional part read as part of a batch (not the leftover in cups)",
+    "prompt": "ASK: how many full batches a mixed-number supply makes at a fractional batch size, and what FRACTION OF A BATCH the leftover is | TWIST: interpreting the fracti"
+   },
+   {
+    "id": "B7-D28",
+    "st": "b7 mechanism D28 (draft M19), checker: REPEAT",
+    "g": 7,
+    "chain": "evaluate each factor -> spot that one factor is 0 -> product is 0 -> add the remaining term",
+    "prompt": "ASK: a product of signed numbers in which one factor is zero hidden as an expression (e.g. (3.5 - 7/2)): the value of the full expression | TWIST: the zero fact"
+   },
+   {
+    "id": "B7-K13",
+    "st": "b7 draft dropped by probe (see math-b7/DROPPED.md)",
+    "g": 6,
+    "chain": "prime-factorize -> keep each prime once -> multiply",
+    "prompt": "ASK: the product of the distinct prime factors of a whole number | TWIST: distinct primes only (the radical); the full number and the repeated-prime product are"
+   },
+   {
+    "id": "B7-M14",
+    "st": "b7 draft dropped by probe (see math-b7/DROPPED.md)",
+    "g": 6,
+    "chain": "convert the decimal to a fraction -> divide by 2/3 (multiply by 3/2) -> whole servings (floor)",
+    "prompt": "ASK: how many 2/3-cup servings are in a container, given the container's capacity as a decimal number of cups | TWIST: a decimal dividend with a fraction diviso"
+   },
+   {
+    "id": "B8-E11",
+    "st": "b8 mechanism E11 (draft Q22), checker: REPEAT",
+    "g": 7,
+    "chain": "overlap runs from the greater left end to the lesser right end -> subtract the signed ends (across 0 when they have opposite signs)",
+    "prompt": "ASK: two intervals on a number line with signed mixed-number ends (one from a negative to a positive, one fully to one side or across 0): the length of their ov"
+   },
+   {
+    "id": "B8-Q46",
+    "st": "b8 draft not writable (see math-b8/FEASIBILITY.md)",
+    "g": 6,
+    "chain": "one piece plus one cut uses piece + kerf -> divide the board by that (whole number of pieces) -> leftover = board - pieces x piece - cuts x kerf",
+    "prompt": "ASK: pieces of a decimal length are cut from a decimal board until no full piece is left; each cut wastes a decimal width: the length left over | TWIST: kerf tu"
+   },
+   {
+    "id": "B8-Q49",
+    "st": "b8 draft dropped by probe (see math-b8/DROPPED.md)",
+    "g": 6,
+    "chain": "net gain per day-night cycle u - v -> d cycles -> add the final daytime gain u",
+    "prompt": "ASK: a climber gains u meters each day and slips back v meters each night (decimals): the height after d full days and one more daytime climb | TWIST: grouping "
+   }
+  ]
+ },
+ "S06": {
+  "live_prior": [
+   {
+    "q": "full & (half|1/2|3/4|2/3|1/4) full & weigh",
+    "head": "SM28F-C02 [prior sat-math-v28-full-c.batch.json]",
+    "text": "A glass jar is partly filled with water. When the jar is 3/4 full of water, the jar and the water together weigh 1,140 grams. When the jar is 1/3 full of water, the jar and the water together weigh 640 grams. What is the total weight, in grams, of the jar and the water when the jar is completely ful"
+   },
+   {
+    "q": "empty (jar|bucket|bottle|box|container) & weigh",
+    "head": "b205095c-2d8 [live ssat/ssat-math-s15 Math easy]",
+    "text": "A jar full of honey weighs 900 grams. After 40 percent of the honey is poured out, the jar and the remaining honey weigh 660 grams. How many grams does the empty jar weigh? options [\"240\",\"264\",\"300\",\"396\",\"500\"] key 300 "
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MM2-N10",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "3,276 / 24 = 136.5, so 136 full cases -> 136 x 9.65 by partial products -> add 1224 + 81.6 + 6.8",
+    "prompt": "A factory has 3,276 cans of soup. It packs them into cases of 24 cans each, and only full cases are shipped. Each full case weighs 9.65 kilograms. What is the t"
+   }
+  ]
+ },
+ "S07": {
+  "live_prior": [
+   {
+    "q": "round(s|ed)? (each|both) (factor|number)s? & multipl",
+    "head": "MM4-N01 [prior map-math-g58-v4]",
+    "text": "Leo wants to estimate 6.8 x 4.3. He rounds each number to the nearest whole number and then multiplies the rounded numbers. What estimate does Leo get? options [\"24\",\"28\",\"29\",\"35\"] key 28"
+   },
+   {
+    "q": "round(s|ed)? (each|both) (factor|number)s? & multipl",
+    "head": "MM4-N01 [prior map-math-g58-v4.batch.json]",
+    "text": "Leo wants to estimate 6.8 x 4.3. He rounds each number to the nearest whole number and then multiplies the rounded numbers. What estimate does Leo get? options [\"24\",\"28\",\"29\",\"35\"] key 28 "
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MM4-N01",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "round each decimal factor to the nearest whole number -> multiply the rounded factors",
+    "prompt": "Leo wants to estimate 6.8 x 4.3. He rounds each number to the nearest whole number and then multiplies the rounded numbers. What estimate does Leo get?"
+   },
+   {
+    "id": "B7-D20",
+    "st": "b7 mechanism D20 (draft P04), checker: REPEAT; wrong area",
+    "g": 6,
+    "chain": "estimate with the square root of the product -> test the neighbouring pair -> add",
+    "prompt": "ASK: two consecutive whole numbers have a printed product (e.g. 552): their sum | TWIST: factoring a product into consecutive factors by estimating near its squ"
+   }
+  ]
+ },
+ "S08": {
+  "live_prior": [
+   {
+    "q": "nearest (ten cents|dime|tenth of a dollar)",
+    "head": "5fcb66dc-79f [prior DB map-math-g58-v5]",
+    "text": "Leo buys a book for $6.24, a cap for $2.63, a snack for $3.95, and a toy for $1.61. To estimate the total, he rounds each price to the nearest ten cents and then adds the rounded prices. What estimate does he get, in dollars? options [\"14.70\",\"14.30\",\"14.40\",\"14.60\"] key 14.40 "
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MM5-N06",
+    "st": "LIVE",
+    "g": 5,
+    "chain": "look at the hundredths digit of each price -> round 3.95 up across the dollar -> add the four rounded prices",
+    "prompt": "Leo buys a book for $6.24, a cap for $2.63, a snack for $3.95, and a toy for $1.61. To estimate the total, he rounds each price to the nearest ten cents and the"
+   }
+  ]
+ },
+ "S09": {
+  "live_prior": [],
+  "earlier": []
+ },
+ "S10": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MM3-N06",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "count 1/2-meter tiles along 3 1/2 meters -> count 1/3-meter tiles along 2 2/3 meters -> multiply rows by columns",
+    "prompt": "A rectangular floor is 3 1/2 meters long and 2 2/3 meters wide. It is covered with no gaps or overlaps by tiles that are each 1/2 meter long and 1/3 meter wide."
+   },
+   {
+    "id": "MM4-N18",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "the square's side is the LCM of 10 and 14 -> count tiles along each side -> multiply the two counts",
+    "prompt": "Mia has many rectangular tiles that are each 10 centimeters long and 14 centimeters wide. She places them side by side, all turned the same way, with no gaps or"
+   },
+   {
+    "id": "MB8-N6-01",
+    "st": "b8 written, PART OK, file only (not gated)",
+    "g": 6,
+    "chain": "the fold point is halfway between -4.5 and 5.5: 0.5 -> -2.5 is 3 units left of the fold -> it lands 3 units right of the fold: 3.5",
+    "prompt": "Ella draws a number line on a long strip of paper. She folds the strip so that the point at -4.5 lands exactly on the point at 5.5. Where on the number line doe"
+   },
+   {
+    "id": "B8-E05",
+    "st": "b8 mechanism E05 (draft Q14), checker: REPEAT",
+    "g": 6,
+    "chain": "the overlap starts at the greater left end and stops at the lesser right end -> its length is the distance between those (across 0 if needed)",
+    "prompt": "ASK: two intervals on a number line, each from a negative decimal to a positive decimal: the length of the part where they overlap | TWIST: interval intersectio"
+   },
+   {
+    "id": "B8-E11",
+    "st": "b8 mechanism E11 (draft Q22), checker: REPEAT",
+    "g": 7,
+    "chain": "overlap runs from the greater left end to the lesser right end -> subtract the signed ends (across 0 when they have opposite signs)",
+    "prompt": "ASK: two intervals on a number line with signed mixed-number ends (one from a negative to a positive, one fully to one side or across 0): the length of their ov"
+   }
+  ]
+ },
+ "S11": {
+  "live_prior": [],
+  "earlier": []
+ },
+ "S12": {
+  "live_prior": [
+   {
+    "q": "(not covered|uncovered) & (strip|square)",
+    "head": "e3f3f363-f87 [live ssat/ssat-math-s16 Math easy]",
+    "text": "A rectangular lawn measures 20 meters by 30 meters. Two straight paths, each 2 meters wide, cross the lawn: one runs the full length parallel to the 30-meter sides, and the other runs the full width parallel to the 20-meter sides. What is the area, in square meters, of the lawn that is not covered b"
+   },
+   {
+    "q": "(not covered|uncovered) & (strip|square)",
+    "head": "MM5P-N02 [prior map-math-g58-v5p (pilot)]",
+    "text": "A rectangular garden is 2 1/4 meters long and 2 1/3 meters wide. Ben covers 1 2/3 square meters of the garden with stones. How many square meters of the garden are not covered with stones? options [\"2 11/12\",\"3 1/12\",\"3 5/12\",\"3 7/12\"] key 3 7/12"
+   },
+   {
+    "q": "(not covered|uncovered) & (strip|square)",
+    "head": "MM5P-N02 [prior map-math-g58-v5p.batch.json]",
+    "text": "A rectangular garden is 2 1/4 meters long and 2 1/3 meters wide. Ben covers 1 2/3 square meters of the garden with stones. How many square meters of the garden are not covered with stones? options [\"2 11/12\",\"3 1/12\",\"3 5/12\",\"3 7/12\"] key 3 7/12 "
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MB8-N6-01",
+    "st": "b8 written, PART OK, file only (not gated)",
+    "g": 6,
+    "chain": "the fold point is halfway between -4.5 and 5.5: 0.5 -> -2.5 is 3 units left of the fold -> it lands 3 units right of the fold: 3.5",
+    "prompt": "Ella draws a number line on a long strip of paper. She folds the strip so that the point at -4.5 lands exactly on the point at 5.5. Where on the number line doe"
+   }
+  ]
+ },
+ "S13": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MM4-N19",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "write the mixed numbers as decimals -> order the four numbers, including the two negatives -> add the distances from 0 of the least and the greatest",
+    "prompt": "Four numbers are marked on a number line: -2 3/4, 1.8, -1.85, and 2 1/5. What is the distance between the least of these numbers and the greatest of these numbe"
+   },
+   {
+    "id": "B7-M31",
+    "st": "b7 draft dropped by probe (see math-b7/DROPPED.md)",
+    "g": 6,
+    "chain": "convert the relative depth to an elevation (signed sum) -> compare elevations -> report the least",
+    "prompt": "ASK: several underwater depths given as negative numbers and one as a distance below a reference that is itself below sea level: which is deepest, and its eleva"
+   },
+   {
+    "id": "B8-Q21",
+    "st": "b8 draft not writable (see math-b8/FEASIBILITY.md)",
+    "g": 7,
+    "chain": "total distance = sum of the sizes of the moves -> distance from start = size of the signed sum -> subtract",
+    "prompt": "ASK: a robot makes four signed moves (mixed numbers): how much greater the total distance travelled is than its distance from the start | TWIST: contrasting the"
+   }
+  ]
+ },
+ "S14": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "B8-Q21",
+    "st": "b8 draft not writable (see math-b8/FEASIBILITY.md)",
+    "g": 7,
+    "chain": "total distance = sum of the sizes of the moves -> distance from start = size of the signed sum -> subtract",
+    "prompt": "ASK: a robot makes four signed moves (mixed numbers): how much greater the total distance travelled is than its distance from the start | TWIST: contrasting the"
+   }
+  ]
+ },
+ "S15": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MM3-N14",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "find the least common multiple of 15 and 25 -> count the multiples of 75 from 75 to 300 minutes -> leave out the first moment and keep the one at 300",
+    "prompt": "Two ferries leave a dock at the same moment. After that, Ferry A leaves again once in 15 minutes, and Ferry B leaves again once in 25 minutes. Not counting the "
+   },
+   {
+    "id": "B7-D31",
+    "st": "b7 mechanism D31 (draft M28), checker: BORDERLINE",
+    "g": 7,
+    "chain": "cumulative signed sums hour by hour -> find the first crossing",
+    "prompt": "ASK: a thermometer reading changes by a signed amount each hour for some hours, then by a different signed amount; at what hour does it first drop below a given"
+   },
+   {
+    "id": "B7-M20",
+    "st": "b7 draft dropped by probe (see math-b7/DROPPED.md)",
+    "g": 6,
+    "chain": "add three decimals with different place values -> add the remainder",
+    "prompt": "ASK: a running total: three decimal purchases from a gift card, and the card's value is the sum of the purchases plus a stated remainder: the card's starting va"
+   },
+   {
+    "id": "B8-E10",
+    "st": "b8 mechanism E10 (draft Q20), checker: BORDERLINE (near REPEAT)",
+    "g": 7,
+    "chain": "the wrong sign moved the total by twice the change -> subtract (or add) twice the change -> correct total",
+    "prompt": "ASK: a signed running total was computed with one change entered with the wrong sign: the correct total | TWIST: repairing a signed sum: removing the wrong entr"
+   }
+  ]
+ },
+ "S16": {
+  "live_prior": [],
+  "earlier": []
+ },
+ "S17": {
+  "live_prior": [
+   {
+    "q": "(left|remain) & (original|at first|start) & (used|spent) & (1/3|2/5|3/8|1/4|3/4|2/3)",
+    "head": "aeaeba9d-28a [live isee/isee-math-s4 Math medium]",
+    "text": "Ravi spent 1/3 of his money on a book and then 1/4 of what was left on lunch. He has $27 remaining. How much money, in dollars, did he start with? options [\"36\",\"54\",\"81\",\"108\"] key 54"
+   },
+   {
+    "q": "(left|remain) & (original|at first|start) & (used|spent) & (1/3|2/5|3/8|1/4|3/4|2/3)",
+    "head": "MB2-O7E-16 [prior map-math-v2 b2 LIVE]",
+    "text": "Lucia spent 3/8 of her money on a phone case. Then she spent $3.65 on a snack. After that, she had $20.05 left. How much money did Lucia have at first? options [\"37.92\",\"26.24\",\"63.20\",\"35.73\"] key 37.92 "
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MV2-N7-16",
+    "st": "withdrawn",
+    "g": 7,
+    "chain": "3 times as deep: 3 x (-2.35) = -7.05 -> raise by 1.6: -7.05 + 1.6",
+    "prompt": "Workers dig a hole for a post. At first the bottom of the hole is at an elevation of -2.35 meters, which is 2.35 meters below the ground. They dig until the hol"
+   }
+  ]
+ },
+ "S18": {
+  "live_prior": [
+   {
+    "q": "(mistake|error) & divid & fraction",
+    "head": "298cfe3d-ae9 [live sat/v2 Problem-Solving and Data Analysis medium]",
+    "text": "Two independent random samples are used to estimate the mean commute time of workers in a city. Sample 1 contains 100 workers and Sample 2 contains 400 workers. Assuming both samples have the same standard deviation, and that the margin of error is proportional to 1 divided by the square root of the"
+   }
+  ],
+  "earlier": []
+ },
+ "S19": {
+  "live_prior": [
+   {
+    "q": "(depth|elevation) & (1/4|1/3|2/5|3/4|1/2|2/3) of",
+    "head": "MM3-N20 [prior map-math-g58-v3]",
+    "text": "A small submarine is at an elevation of -17.4 meters. It rises 2/3 of the way to the surface of the water (elevation 0). Then it dives 4.8 meters. What is its elevation now, in meters? options [\"-33.8\",\"-16.4\",\"-10.6\",\"-7.4\"] key -10.6"
+   },
+   {
+    "q": "(depth|elevation) & (1/4|1/3|2/5|3/4|1/2|2/3) of",
+    "head": "MM3-N20 [prior map-math-g58-v3.batch.json]",
+    "text": "A small submarine is at an elevation of -17.4 meters. It rises 2/3 of the way to the surface of the water (elevation 0). Then it dives 4.8 meters. What is its elevation now, in meters? options [\"-33.8\",\"-16.4\",\"-10.6\",\"-7.4\"] key -10.6"
+   },
+   {
+    "q": "(depth|elevation) & (1/4|1/3|2/5|3/4|1/2|2/3) of",
+    "head": "MV2-N7-07 [prior map-math-v2 b1 withdrawn]",
+    "text": "A climbing wall goes down into a pit. The bottom of the pit is at an elevation of -14.4 meters, and the top of the wall is at an elevation of 30.2 meters. Lena starts at the bottom of the pit and climbs straight up 1/4 of the way to the top of the wall. What is her elevation now, in meters? options "
+   }
+  ],
+  "earlier": []
+ },
+ "S20": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MMG-N09",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "divide a negative decimal by a fraction using the reciprocal -> multiply two negative rational numbers in mixed forms -> subtract a negative number",
+    "prompt": "Without a calculator, Nora works out -3.6 ÷ (4/5) - (-1 1/4)(2.2). What number should she get?"
+   },
+   {
+    "id": "MMG-N05",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "amount for a whole = amount for the part divided by the part -> divide by a fraction by multiplying by its reciprocal",
+    "prompt": "Mia used 2 1/2 cups of flour to make 3/4 of a batch of muffins. At this rate, how many cups of flour are needed to make a full batch?"
+   },
+   {
+    "id": "MM2-N07",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "servings = amount / serving size -> write 1 1/5 as 6/5 -> multiply by the reciprocal 3/2 and simplify",
+    "prompt": "A pitcher holds 1 1/5 liters of lemonade. One serving is 2/3 liter. How many servings of lemonade are in the pitcher?"
+   },
+   {
+    "id": "MM2-N17",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "a negative exponent means the reciprocal: 2^-2 = 1/4 -> write 1/4 as 0.25 and subtract from 6",
+    "prompt": "Sam is asked to find 6 - 2^-2 and to write the answer as a decimal. What decimal should he write?"
+   },
+   {
+    "id": "MM3-N23",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "evaluate an odd power of a negative base -> rewrite a negative exponent as a reciprocal -> multiply a negative whole number by a fraction",
+    "prompt": "Ana works out the product (-2)^3 x 3^-2 and writes her answer as a fraction or mixed number. What is the product?"
+   },
+   {
+    "id": "MM3-N27",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "find the cube root of a decimal -> square the decimal -> take the reciprocal for the negative exponent",
+    "prompt": "The number x is the cube root of 0.216, so x^3 = 0.216. What is the value of x^-2? Give the answer as a fraction or mixed number."
+   },
+   {
+    "id": "MM4-N23",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "sign of a quotient of two negatives -> multiply by the reciprocal of the divisor",
+    "prompt": "Find the quotient (-2 1/4) ÷ (-3/5). Write your answer as a mixed number."
+   },
+   {
+    "id": "MM3-N09",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "read 'how many times as long' as division -> rename both mixed numbers as fractions -> multiply by the reciprocal and simplify",
+    "prompt": "A table is 5 1/3 feet long. A bench is 1 1/4 feet long. How many times as long as the bench is the table?"
+   },
+   {
+    "id": "MM4-N36",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "a negative exponent is the reciprocal of the positive power -> 2^3 = 8 -> multiply 75 by 1/8",
+    "prompt": "What is the value of 75 x 2^-3? Write your answer as a decimal or whole number."
+   },
+   {
+    "id": "MM4-N36",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "negative exponent means reciprocal: 2/5 -> square the reciprocal: 4/25",
+    "prompt": "Write the value of (5/2)^-2 as a fraction or mixed number."
+   },
+   {
+    "id": "MV2-N56-12",
+    "st": "dropped by graders",
+    "g": 6,
+    "chain": "rename the mixed number 2 4/7 as 18/7 -> multiply by the reciprocal 3/2 -> simplify 54/14 to 3 6/7",
+    "prompt": "A green rope is 2 4/7 meters long. A blue rope is 2/3 meter long. How many times as long as the blue rope is the green rope?"
+   },
+   {
+    "id": "MV2-N8-01",
+    "st": "LIVE",
+    "g": 8,
+    "chain": "-2^4 is the opposite of 2^4 -> 2^-2 is the reciprocal 1/4 -> 7^0 is 1 -> combine -16 + 14 - 6",
+    "prompt": "Marcus is checking his homework. One problem asks for the value of -2^4 + 56 x 2^-2 - 6 x 7^0. What is the correct value?"
+   },
+   {
+    "id": "MB2-N56-16",
+    "st": "withdrawn",
+    "g": 6,
+    "chain": "rewrite both mixed numbers as fractions -> multiply by the reciprocal of the divisor -> rename the improper fraction as a mixed number",
+    "prompt": "Omar is making trail mix. One batch of trail mix uses 1 1/4 cups of peanuts. Omar has 3 1/2 cups of peanuts, and he uses all of them. How many batches of trail "
+   },
+   {
+    "id": "MB4-N8-05",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "decimal base to a negative exponent as a whole-number power of the reciprocal -> coefficient times a negative power -> zero exponent on a subtracted term -> com",
+    "prompt": "Without a calculator, Nadia works out 0.2^(-2) + 6 x 0.5^(-3) - 10 x 4^0, using the meaning of negative and zero exponents. What value should she get?"
+   },
+   {
+    "id": "MB5-N8-01",
+    "st": "LIVE",
+    "g": 8,
+    "chain": "negative exponent means reciprocal: x^2 = 25 -> x is negative, so take the negative square root: x = -5 -> evaluate x^3 - 6x with signs: -125 + 30",
+    "prompt": "A negative number x satisfies x^-2 = 1/25. Evaluate the expression x^3 - 6x."
+   },
+   {
+    "id": "B7-D34",
+    "st": "b7 mechanism D34 (draft K09), checker: BORDERLINE",
+    "g": 8,
+    "chain": "evaluate each power (negative exponent = reciprocal; fraction base flips) -> rank -> subtract least from greatest",
+    "prompt": "ASK: of four values written with zero and negative exponents (different bases and fraction bases), the difference between the greatest and the least | TWIST: ra"
+   },
+   {
+    "id": "B7-D39",
+    "st": "b7 mechanism D39 (draft M30), checker: BORDERLINE",
+    "g": 8,
+    "chain": "pair each a/b with a b/a (product 1) -> one a/b left over",
+    "prompt": "ASK: (a/b)^n x (b/a)^(n-1) for whole n: the value, by pairing reciprocal factors | TWIST: reciprocal pairing collapses a long product of powers"
+   },
+   {
+    "id": "B8-Q10",
+    "st": "b8 draft not writable (see math-b8/FEASIBILITY.md)",
+    "g": 6,
+    "chain": "evaluate the innermost sum b + 1/c as an improper fraction -> take its reciprocal (1 divided by a fraction) -> add a",
+    "prompt": "ASK: the value of a continued fraction a + 1/(b + 1/c) for whole numbers a, b, c, as a mixed number | TWIST: division by a fraction appears as the reciprocal of"
+   },
+   {
+    "id": "B8-Q51",
+    "st": "b8 draft not writable (see math-b8/FEASIBILITY.md)",
+    "g": 6,
+    "chain": "evaluate the denominator b + c/d as an improper fraction -> divide a by it (multiply by the reciprocal) -> rename as a mixed number",
+    "prompt": "ASK: the value of a/(b + c/d) for small whole numbers, as a mixed number (a fraction whose denominator is itself a mixed sum) | TWIST: a fraction bar over a mix"
+   },
+   {
+    "id": "B8-Q40",
+    "st": "b8 draft not writable (see math-b8/FEASIBILITY.md)",
+    "g": 7,
+    "chain": "the greatest quotient is positive: same signs, numerator greatest in size and divisor least in size -> divide (multiply by the reciprocal)",
+    "prompt": "ASK: from a printed set of signed fractions, the greatest quotient a ÷ b of two different numbers | TWIST: optimising a quotient over a signed set; dividing the"
+   },
+   {
+    "id": "B8-Q45",
+    "st": "b8 draft not writable (see math-b8/FEASIBILITY.md)",
+    "g": 7,
+    "chain": "evaluate b + 1/c (a negative improper fraction) -> its reciprocal keeps the sign -> add to a",
+    "prompt": "ASK: the value of a signed continued fraction a + 1/(b + 1/c) with a and b negative whole numbers | TWIST: the reciprocal of a negative nested sum; adding the u"
+   }
+  ]
+ },
+ "S21": {
+  "live_prior": [],
+  "earlier": []
+ },
+ "S22": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "B8-Q21",
+    "st": "b8 draft not writable (see math-b8/FEASIBILITY.md)",
+    "g": 7,
+    "chain": "total distance = sum of the sizes of the moves -> distance from start = size of the signed sum -> subtract",
+    "prompt": "ASK: a robot makes four signed moves (mixed numbers): how much greater the total distance travelled is than its distance from the start | TWIST: contrasting the"
+   }
+  ]
+ },
+ "S23": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "B8-Q21",
+    "st": "b8 draft not writable (see math-b8/FEASIBILITY.md)",
+    "g": 7,
+    "chain": "total distance = sum of the sizes of the moves -> distance from start = size of the signed sum -> subtract",
+    "prompt": "ASK: a robot makes four signed moves (mixed numbers): how much greater the total distance travelled is than its distance from the start | TWIST: contrasting the"
+   }
+  ]
+ },
+ "S24": {
+  "live_prior": [],
+  "earlier": []
+ },
+ "S25": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MM3-N26",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "square each decimal bound -> find the whole numbers strictly between the squares -> count them",
+    "prompt": "For how many whole numbers n is the square root of n greater than 3.5 and less than 6.6?"
+   },
+   {
+    "id": "B7-K05",
+    "st": "b7 draft dropped by probe (see math-b7/DROPPED.md)",
+    "g": 6,
+    "chain": "distance between the two signed endpoints -> fraction of that distance -> add to the starting endpoint (direction from the order)",
+    "prompt": "ASK: a point that is a given fraction of the way from one signed rational to another on a number line: its value | TWIST: partitioning a segment whose endpoints"
+   },
+   {
+    "id": "B7-M26",
+    "st": "b7 draft dropped by probe (see math-b7/DROPPED.md)",
+    "g": 8,
+    "chain": "square the bounds -> perfect squares in that range -> count",
+    "prompt": "ASK: how many whole numbers n make √n a whole number between two given decimals (e.g. √n between 3.5 and 7.2) | TWIST: perfect squares between squared decimal b"
+   }
+  ]
+ },
+ "S26": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MM4-N37",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "edge = cube root of the volume -> cube root of 5 is between 1 and 2 -> cube decimals to find the closest",
+    "prompt": "A cube-shaped storage box holds exactly 5 cubic feet. Which of these is closest to the length of one edge of the box, in feet?"
+   }
+  ]
+ },
+ "S27": {
+  "live_prior": [
+   {
+    "q": "repeat & repeat & (sum|add|plus)",
+    "head": "0b87f4b6-1f2 [live ssat/ssat-math-s16 Math medium]",
+    "text": "The digits a and b are each one of 1, 2, ..., 9 (they may be equal). The repeating decimal 0.abab... has the block ab repeating forever, and 0.baba... has the block ba repeating forever. How many different values can the sum 0.abab... + 0.baba... have? options [\"19\",\"17\",\"36\",\"45\",\"81\"] key 17"
+   },
+   {
+    "q": "repeat & repeat & (sum|add|plus)",
+    "head": "9679fb76-36b [live isee/isee-math-s13 Math medium]",
+    "text": "The sequence 8, -5, 3, 8, -5, 3, ... repeats the three numbers 8, -5, and 3 in that order forever. What is the sum of the first 40 terms of the sequence? options [\"78\",\"86\",\"84\",\"80\"] key 86 "
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MV2-N8-14",
+    "st": "LIVE",
+    "g": 8,
+    "chain": "multiply by 1000 and by 10 -> subtract to get 990n = 345 -> simplify 345/990 to 23/66 -> add numerator and denominator",
+    "prompt": "In the decimal 0.3484848..., the digits 48 repeat forever and the 3 does not repeat. When this decimal is written as a fraction a/b in simplest form, what is a "
+   },
+   {
+    "id": "B7-D33",
+    "st": "b7 mechanism D33 (draft P05), checker: BORDERLINE (area risk)",
+    "g": 7,
+    "chain": "apply the signed multiply-then-add rule -> repeat on each output (signs alternate)",
+    "prompt": "ASK: a rule 'multiply by -2, then add 3' applied three times starting from a signed fraction or decimal: the result | TWIST: iterating a signed rule; the sign f"
+   },
+   {
+    "id": "B7-K17",
+    "st": "b7 draft dropped by probe (see math-b7/DROPPED.md)",
+    "g": 8,
+    "chain": "convert each to a decimal (approximate the root) -> order -> take the third",
+    "prompt": "ASK: in a list of five numbers in different forms (a square root, a fraction, a repeating decimal, a terminating decimal, a percent), the number in the MIDDLE |"
+   },
+   {
+    "id": "B8-Q49",
+    "st": "b8 draft dropped by probe (see math-b8/DROPPED.md)",
+    "g": 6,
+    "chain": "net gain per day-night cycle u - v -> d cycles -> add the final daytime gain u",
+    "prompt": "ASK: a climber gains u meters each day and slips back v meters each night (decimals): the height after d full days and one more daytime climb | TWIST: grouping "
+   },
+   {
+    "id": "B8-Q19",
+    "st": "b8 draft dropped by probe (see math-b8/DROPPED.md)",
+    "g": 7,
+    "chain": "net of one cycle u - v (signed) -> k cycles -> add the extra +u and the start",
+    "prompt": "ASK: a signed pattern of moves repeated (+u then -v, as mixed numbers) k times and then one more +u from a signed start: the final position | TWIST: grouping a "
+   }
+  ]
+ },
+ "S28": {
+  "live_prior": [
+   {
+    "q": "repeat & (block|digits) & (sum|add|plus)",
+    "head": "0b87f4b6-1f2 [live ssat/ssat-math-s16 Math medium]",
+    "text": "The digits a and b are each one of 1, 2, ..., 9 (they may be equal). The repeating decimal 0.abab... has the block ab repeating forever, and 0.baba... has the block ba repeating forever. How many different values can the sum 0.abab... + 0.baba... have? options [\"19\",\"17\",\"36\",\"45\",\"81\"] key 17 "
+   },
+   {
+    "q": "0\\.([0-9][0-9])\\1 & 0\\.",
+    "head": "3f6c8e6d-10c [live sat/v2 Problem-Solving and Data Analysis medium]",
+    "text": "A certain alloy has a density of 8.4 grams per cubic centimeter. Given that 1 gram = 0.001 kilogram and 1 cubic centimeter = 0.000001 cubic meter, what is the density of the alloy in kilograms per cubic meter? options [\"8.4\",\"0.0084\",\"8400\",\"8400000\"] key 8400"
+   },
+   {
+    "q": "0\\.([0-9][0-9])\\1 & 0\\.",
+    "head": "a175b647-127 [live ssat/ssat-math-s16 Math medium]",
+    "text": "What is the value of 0.666... divided by 0.060606... ? (In 0.666... the digit 6 repeats forever; in 0.060606... the block 06 repeats forever.) options [\"10\",\"11\",\"4/99\",\"100/9\",\"99/10\"] key 11"
+   },
+   {
+    "q": "0\\.([0-9][0-9])\\1 & 0\\.",
+    "head": "MM4-N35 [prior map-math-g58-v4]",
+    "text": "Mr. Ortiz writes these eight numbers on the board: √0.49, √0.4, π, ∛(-0.027), √20 ÷ √5, 0.4111... (the digit 1 repeats forever), 0.1010010001... (the runs of 0s keep getting longer), and 5.8988988898888... (the runs of 8s keep getting longer). How many of the eight numbers are irrational? options [\""
+   },
+   {
+    "q": "0\\.([0-9][0-9])\\1 & 0\\.",
+    "head": "MM4-N35 [prior map-math-g58-v4 (as first written)]",
+    "text": "Mr. Ortiz writes these eight numbers on the board: √36, √40, ∛(-27), √0.49, π, 0.5555... (the digit 5 repeats forever), 0.1011011101111... (the runs of 1s keep getting longer), and 2.1211211121111... (the runs of 1s keep getting longer). How many of the eight numbers are irrational? options [\"2\",\"4\""
+   },
+   {
+    "q": "0\\.([0-9][0-9])\\1 & 0\\.",
+    "head": "MM4-N35 [prior map-math-g58-v4.batch.json]",
+    "text": "Mr. Ortiz writes these eight numbers on the board: √0.49, √0.4, π, ∛(-0.027), √20 ÷ √5, 0.4111... (the digit 1 repeats forever), 0.1010010001... (the runs of 0s keep getting longer), and 5.8988988898888... (the runs of 8s keep getting longer). How many of the eight numbers are irrational? options [\""
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MV2-N56-11",
+    "st": "LIVE",
+    "g": 6,
+    "chain": "divide 5,985 by 19 (paperback boxes) -> divide 1,995 by 21 (hardcover boxes) -> add the two numbers of boxes",
+    "prompt": "A school library packs 5,985 paperback books into boxes that hold 19 books and 1,995 hardcover books into boxes that hold 21 books. Every box is full, and paper"
+   },
+   {
+    "id": "MV2-N8-14",
+    "st": "LIVE",
+    "g": 8,
+    "chain": "multiply by 1000 and by 10 -> subtract to get 990n = 345 -> simplify 345/990 to 23/66 -> add numerator and denominator",
+    "prompt": "In the decimal 0.3484848..., the digits 48 repeat forever and the 3 does not repeat. When this decimal is written as a fraction a/b in simplest form, what is a "
+   },
+   {
+    "id": "B7-D33",
+    "st": "b7 mechanism D33 (draft P05), checker: BORDERLINE (area risk)",
+    "g": 7,
+    "chain": "apply the signed multiply-then-add rule -> repeat on each output (signs alternate)",
+    "prompt": "ASK: a rule 'multiply by -2, then add 3' applied three times starting from a signed fraction or decimal: the result | TWIST: iterating a signed rule; the sign f"
+   },
+   {
+    "id": "B7-K17",
+    "st": "b7 draft dropped by probe (see math-b7/DROPPED.md)",
+    "g": 8,
+    "chain": "convert each to a decimal (approximate the root) -> order -> take the third",
+    "prompt": "ASK: in a list of five numbers in different forms (a square root, a fraction, a repeating decimal, a terminating decimal, a percent), the number in the MIDDLE |"
+   }
+  ]
+ },
+ "S29": {
+  "live_prior": [
+   {
+    "q": "repeat & repeat & (difference|subtract|minus|less)",
+    "head": "38fc3aa8-17b [live sat/math-v5-psda-hard Problem-Solving and Data Analysis hard]",
+    "text": "A sports news website posted an online poll asking visitors whether a city should build a new stadium using public funds. Of the 12000 visitors who chose to respond, 78 percent answered yes. A columnist concluded that about 78 percent of the city's residents support using public funds for the stadiu"
+   },
+   {
+    "q": "repeat & repeat & (difference|subtract|minus|less)",
+    "head": "PSDA-H-29 [prior sat-psda-hard-v1.batch.json]",
+    "text": "A sports news website posted an online poll asking visitors whether a city should build a new stadium using public funds. Of the 12000 visitors who chose to respond, 78 percent answered yes. A columnist concluded that about 78 percent of the city's residents support using public funds for the stadiu"
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MM2-N19",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "2/3 is the repeating decimal 0.666... -> subtract 0.6 keeping the repeat (or 2/3 - 3/5 = 1/15) -> round to the nearest thousandth only at the end",
+    "prompt": "How much greater is 2/3 than 0.6? Round your answer to the nearest thousandth."
+   }
+  ]
+ },
+ "S30": {
+  "live_prior": [
+   {
+    "q": "least possible value & x \\+ y",
+    "head": "14838ea8-0cc [live act/act-math-v20 Algebra medium]",
+    "text": "Positive integers x and y satisfy the equation xy = 3x + 2y + 6. What is the least possible value of x + y ? options [\"10\",\"18\",\"7\",\"12\"] key 12"
+   },
+   {
+    "q": "least possible value & x \\+ y",
+    "head": "SM26L-B6 [prior sat-math-v26-alg-b.batch.json]",
+    "text": "kx + y = 14 x - y = 1 In the system of equations above, k is a constant. For each integer k with -6 ≤ k ≤ 6 for which the system has a solution (x, y), let y be the y-coordinate of that solution. What is the least possible value of y? options [\"-16\",\"-4\",\"8/7\",\"14\"] key -16 "
+   }
+  ],
+  "earlier": []
+ },
+ "S31": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MMG-N15",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "take the cube root of a negative decimal -> take the positive square root of a decimal -> subtract a positive number from a negative number",
+    "prompt": "Lena solved two equations. The solution of x^3 = -0.216 is x, and the positive solution of y^2 = 1.69 is y. When she subtracts y from x, what number does she ge"
+   }
+  ]
+ },
+ "S32": {
+  "live_prior": [
+   {
+    "q": "approximat & (√|square root) & (\\+|plus|sum) & (√|square root)",
+    "head": "b6f57116-44c [live sat/math-v5-psda-hard Problem-Solving and Data Analysis hard]",
+    "text": "A polling organization found that a random sample of 250 adults produced a margin of error of 6 percentage points for the estimated proportion who favor a policy. Assuming the same population proportion and confidence level, and that the margin of error is inversely proportional to the square root o"
+   },
+   {
+    "q": "approximat & (√|square root) & (\\+|plus|sum) & (√|square root)",
+    "head": "PSDA-H-31 [prior sat-psda-hard-v1.batch.json]",
+    "text": "A polling organization found that a random sample of 250 adults produced a margin of error of 6 percentage points for the estimated proportion who favor a policy. Assuming the same population proportion and confidence level, and that the margin of error is inversely proportional to the square root o"
+   }
+  ],
+  "earlier": [
+   {
+    "id": "B7-K17",
+    "st": "b7 draft dropped by probe (see math-b7/DROPPED.md)",
+    "g": 8,
+    "chain": "convert each to a decimal (approximate the root) -> order -> take the third",
+    "prompt": "ASK: in a list of five numbers in different forms (a square root, a fraction, a repeating decimal, a terminating decimal, a percent), the number in the MIDDLE |"
+   },
+   {
+    "id": "B8-Q35",
+    "st": "b8 draft not writable (see math-b8/FEASIBILITY.md)",
+    "g": 8,
+    "chain": "divide n by the guess -> average the guess and the quotient -> the new estimate as a mixed number",
+    "prompt": "ASK: one step of the averaging (Babylonian) method for √n from a whole-number guess g: the new estimate | TWIST: a rational approximation of a square root built"
+   }
+  ]
+ },
+ "S33": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "B7-D29",
+    "st": "b7 mechanism D29 (draft M21), checker: REPEAT",
+    "g": 7,
+    "chain": "total of the list -> the removed number must equal the total -> identify it in the list",
+    "prompt": "ASK: a list of signed rational numbers that sums to a printed total: which single number, if removed, makes the sum 0 | TWIST: additive identity reasoning to pi"
+   },
+   {
+    "id": "B7-K17",
+    "st": "b7 draft dropped by probe (see math-b7/DROPPED.md)",
+    "g": 8,
+    "chain": "convert each to a decimal (approximate the root) -> order -> take the third",
+    "prompt": "ASK: in a list of five numbers in different forms (a square root, a fraction, a repeating decimal, a terminating decimal, a percent), the number in the MIDDLE |"
+   }
+  ]
+ },
+ "S34": {
+  "live_prior": [
+   {
+    "q": "x 10\\^ & x 10\\^ & (total|altogether|in all) & (standard form|how many)",
+    "head": "MV2-N8-11 [prior map-math-v2 b1 withdrawn]",
+    "text": "A company has 1.2 x 10^4 computer servers. Each server can store 2.5 x 10^2 terabytes of data. How many terabytes can all of the servers store in total? options [\"300000000\",\"3700000\",\"3000000\",\"300\"] key 3000000 "
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MMG-N14",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "divide coefficients and subtract exponents, one of them negative -> rewrite 0.2 x 10^k in scientific notation -> convert milligrams to kilograms by 10^-6",
+    "prompt": "A sample of 7 × 10^7 bacteria has a total mass of 1.4 × 10^-1 milligram, and each bacterium has the same mass. The mass of one bacterium, in kilograms, can be w"
+   },
+   {
+    "id": "MM2-N16",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "write both numbers with the same power of 10 (or in standard form) -> subtract, regrouping across zeros",
+    "prompt": "A city's reservoir held 5.2 x 10^6 liters of water. During a dry month, 3.85 x 10^5 liters of the water were used. How many liters of water were left in the res"
+   },
+   {
+    "id": "MM2-N18",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "multiply coefficients and add exponents -> write both amounts with the same place value -> subtract with a regrouping",
+    "prompt": "A factory makes 2.4 x 10^4 bolts each day for 1.5 x 10^2 days. During that time it ships 6.8 x 10^5 of the bolts to stores. How many of the bolts made in that t"
+   },
+   {
+    "id": "MM3-N22",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "divide the coefficients -> subtract the exponents, one of them negative -> write the result in standard form",
+    "prompt": "A grain of sand is about 5 x 10^-4 meter wide. A speck of dust is about 2 x 10^-6 meter wide. How many specks of dust, lined up side by side, would make a row a"
+   },
+   {
+    "id": "MM3-N25",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "multiply the coefficients -> add the exponents -> write the result in standard form",
+    "prompt": "A grain of rice has a mass of about 3.5 x 10^-2 gram. A sack holds about 4.6 x 10^6 grains of rice. Using these numbers, what is the total mass of the rice in t"
+   },
+   {
+    "id": "MM5-N38",
+    "st": "LIVE",
+    "g": 8,
+    "chain": "write each value in standard form -> add the three values -> divide the sum by 3",
+    "prompt": "The populations of three towns are shown in scientific notation. Town A: 3.284 x 10^5 people. Town B: 1.9 x 10^4 people. Town C: 1.68 x 10^5 people. What is the"
+   },
+   {
+    "id": "MM5P-N12",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "divide coefficients and subtract a negative exponent -> write amounts in scientific notation in standard form -> subtract and add the adjustments",
+    "prompt": "A factory makes 5.13 x 10^5 grams of candy. Each piece of candy has a mass of 1.35 x 10^(-1) gram. Then 2.6 x 10^4 of the pieces are thrown away, and 4.5 x 10^3"
+   },
+   {
+    "id": "MM5P-N11",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "divide coefficients and subtract exponents for each density -> compare the two densities by subtraction",
+    "prompt": "Country A has 8.4 x 10^6 people living on 1.2 x 10^4 square kilometers. Country B has 4.2 x 10^6 people living on 1.4 x 10^4 square kilometers. How many more pe"
+   },
+   {
+    "id": "MM3-N25",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "multiply the decimal coefficients -> add the exponents, one of them negative -> write the product in standard form",
+    "prompt": "A grain of rice has a mass of about 2.5 x 10^-2 gram. A sack holds about 4.8 x 10^6 grains of rice. Using these numbers, what is the total mass of the rice in t"
+   },
+   {
+    "id": "MM5-N44",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "second rate: 2.5 x 2.4 x 10^5 = 6.0 x 10^5 -> total: 4.8 x 10^5 + 1.8 x 10^6 = 2.28 x 10^6 -> mean: divide by 5 hours",
+    "prompt": "During a sale, a website had 2.4 x 10^5 visits per hour for the first 2 hours. For each of the next 3 hours, it had 2.5 times as many visits per hour as in each"
+   },
+   {
+    "id": "MV2-N56-08",
+    "st": "LIVE",
+    "g": 5,
+    "chain": "read 10^3, 10^2 and 10^1 as 1,000, 100 and 10 -> take the shipped bags away from the bag count -> combine thousands, hundreds, tens and ones",
+    "prompt": "A toy factory has 3 crates of marbles, and each crate holds 10^3 marbles. It has 19 boxes of marbles, and each box holds 10^2 marbles. It also has 87 bags of ma"
+   },
+   {
+    "id": "MV2-N56-08",
+    "st": "revised away",
+    "g": 5,
+    "chain": "read 10^3 and 10^2 as 1,000 and 100 -> take the shipped boxes away from the box count -> combine thousands, hundreds and ones",
+    "prompt": "A toy factory has 3 crates of marbles, and each crate holds 10^3 marbles. It also has 26 boxes of marbles, and each box holds 10^2 marbles. There are also 6 loo"
+   },
+   {
+    "id": "MV2-N8-05",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "time = total ÷ rate -> divide coefficients 4 ÷ 1.6 -> subtract exponents 8 - 2 -> write 2.5 x 10^6 in standard form",
+    "prompt": "A lake holds about 4 x 10^8 liters of water. A pump removes 1.6 x 10^2 liters of water each minute. At this rate, how many minutes would it take the pump to rem"
+   },
+   {
+    "id": "MV2-N8-11",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "total = servers x storage each -> multiply coefficients 1.2 x 2.5 -> add exponents 4 + 2 -> write 3 x 10^6 in standard form",
+    "prompt": "A company has 1.2 x 10^4 computer servers. Each server can store 2.5 x 10^2 terabytes of data. How many terabytes can all of the servers store in total?"
+   },
+   {
+    "id": "MB2-N78-14",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "rewrite both numbers with the same power of ten (or in standard form) -> subtract with regrouping -> give the difference in standard form",
+    "prompt": "A video on a website has been viewed 1.84 x 10^7 times. A second video has been viewed 7.5 x 10^5 times. How many more times has the first video been viewed tha"
+   },
+   {
+    "id": "MB2-N78-16",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "divide the coefficients (result less than 1) -> subtract the exponents, one of them negative -> write the product of the two results in standard form",
+    "prompt": "Write the quotient (2.4 x 10^5) / (3 x 10^(-1)) as a number in standard form."
+   },
+   {
+    "id": "MB2-N78-18",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "divide the larger quantity by the smaller -> divide the coefficients (1.1 / 8.8 = 1/8, less than 1) -> subtract the exponents, one negative -> write the ratio i",
+    "prompt": "A garbage truck has a mass of 1.1 x 10^4 kilograms. A duck has a mass of 8.8 x 10^(-1) kilogram. The mass of the truck is how many times the mass of the duck?"
+   }
+  ]
+ },
+ "S35": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MMG-N14",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "divide coefficients and subtract exponents, one of them negative -> rewrite 0.2 x 10^k in scientific notation -> convert milligrams to kilograms by 10^-6",
+    "prompt": "A sample of 7 × 10^7 bacteria has a total mass of 1.4 × 10^-1 milligram, and each bacterium has the same mass. The mass of one bacterium, in kilograms, can be w"
+   },
+   {
+    "id": "MM2-N18",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "multiply coefficients and add exponents -> write both amounts with the same place value -> subtract with a regrouping",
+    "prompt": "A factory makes 2.4 x 10^4 bolts each day for 1.5 x 10^2 days. During that time it ships 6.8 x 10^5 of the bolts to stores. How many of the bolts made in that t"
+   },
+   {
+    "id": "MM3-N22",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "divide the coefficients -> subtract the exponents, one of them negative -> write the result in standard form",
+    "prompt": "A grain of sand is about 5 x 10^-4 meter wide. A speck of dust is about 2 x 10^-6 meter wide. How many specks of dust, lined up side by side, would make a row a"
+   },
+   {
+    "id": "MM3-N25",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "multiply the coefficients -> add the exponents -> write the result in standard form",
+    "prompt": "A grain of rice has a mass of about 3.5 x 10^-2 gram. A sack holds about 4.6 x 10^6 grains of rice. Using these numbers, what is the total mass of the rice in t"
+   },
+   {
+    "id": "MM5-N38",
+    "st": "LIVE",
+    "g": 8,
+    "chain": "write each value in standard form -> add the three values -> divide the sum by 3",
+    "prompt": "The populations of three towns are shown in scientific notation. Town A: 3.284 x 10^5 people. Town B: 1.9 x 10^4 people. Town C: 1.68 x 10^5 people. What is the"
+   },
+   {
+    "id": "MM5P-N12",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "divide coefficients and subtract a negative exponent -> write amounts in scientific notation in standard form -> subtract and add the adjustments",
+    "prompt": "A factory makes 5.13 x 10^5 grams of candy. Each piece of candy has a mass of 1.35 x 10^(-1) gram. Then 2.6 x 10^4 of the pieces are thrown away, and 4.5 x 10^3"
+   },
+   {
+    "id": "MM5P-N11",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "divide coefficients and subtract exponents for each density -> compare the two densities by subtraction",
+    "prompt": "Country A has 8.4 x 10^6 people living on 1.2 x 10^4 square kilometers. Country B has 4.2 x 10^6 people living on 1.4 x 10^4 square kilometers. How many more pe"
+   },
+   {
+    "id": "MM3-N25",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "multiply the decimal coefficients -> add the exponents, one of them negative -> write the product in standard form",
+    "prompt": "A grain of rice has a mass of about 2.5 x 10^-2 gram. A sack holds about 4.8 x 10^6 grains of rice. Using these numbers, what is the total mass of the rice in t"
+   },
+   {
+    "id": "MV2-N8-03",
+    "st": "dropped by graders",
+    "g": 8,
+    "chain": "power of a power: multiply exponents -> quotient of powers: subtract exponents -> multiply by the coefficient 5",
+    "prompt": "A calculator screen shows the expression 5 x (3^2)^3 ÷ 3^3. Without a calculator, find the number this expression equals."
+   },
+   {
+    "id": "MV2-N8-05",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "time = total ÷ rate -> divide coefficients 4 ÷ 1.6 -> subtract exponents 8 - 2 -> write 2.5 x 10^6 in standard form",
+    "prompt": "A lake holds about 4 x 10^8 liters of water. A pump removes 1.6 x 10^2 liters of water each minute. At this rate, how many minutes would it take the pump to rem"
+   },
+   {
+    "id": "MV2-N8-11",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "total = servers x storage each -> multiply coefficients 1.2 x 2.5 -> add exponents 4 + 2 -> write 3 x 10^6 in standard form",
+    "prompt": "A company has 1.2 x 10^4 computer servers. Each server can store 2.5 x 10^2 terabytes of data. How many terabytes can all of the servers store in total?"
+   },
+   {
+    "id": "MB2-N78-16",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "divide the coefficients (result less than 1) -> subtract the exponents, one of them negative -> write the product of the two results in standard form",
+    "prompt": "Write the quotient (2.4 x 10^5) / (3 x 10^(-1)) as a number in standard form."
+   },
+   {
+    "id": "MB2-N78-18",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "divide the larger quantity by the smaller -> divide the coefficients (1.1 / 8.8 = 1/8, less than 1) -> subtract the exponents, one negative -> write the ratio i",
+    "prompt": "A garbage truck has a mass of 1.1 x 10^4 kilograms. A duck has a mass of 8.8 x 10^(-1) kilogram. The mass of the truck is how many times the mass of the duck?"
+   },
+   {
+    "id": "MB4-N8-05",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "decimal base to a negative exponent as a whole-number power of the reciprocal -> coefficient times a negative power -> zero exponent on a subtracted term -> com",
+    "prompt": "Without a calculator, Nadia works out 0.2^(-2) + 6 x 0.5^(-3) - 10 x 4^0, using the meaning of negative and zero exponents. What value should she get?"
+   }
+  ]
+ },
+ "S36": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MMG-N14",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "divide coefficients and subtract exponents, one of them negative -> rewrite 0.2 x 10^k in scientific notation -> convert milligrams to kilograms by 10^-6",
+    "prompt": "A sample of 7 × 10^7 bacteria has a total mass of 1.4 × 10^-1 milligram, and each bacterium has the same mass. The mass of one bacterium, in kilograms, can be w"
+   },
+   {
+    "id": "MM3-N22",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "divide the coefficients -> subtract the exponents, one of them negative -> write the result in standard form",
+    "prompt": "A grain of sand is about 5 x 10^-4 meter wide. A speck of dust is about 2 x 10^-6 meter wide. How many specks of dust, lined up side by side, would make a row a"
+   },
+   {
+    "id": "MM3-N25",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "multiply the coefficients -> add the exponents -> write the result in standard form",
+    "prompt": "A grain of rice has a mass of about 3.5 x 10^-2 gram. A sack holds about 4.6 x 10^6 grains of rice. Using these numbers, what is the total mass of the rice in t"
+   },
+   {
+    "id": "MM5P-N12",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "divide coefficients and subtract a negative exponent -> write amounts in scientific notation in standard form -> subtract and add the adjustments",
+    "prompt": "A factory makes 5.13 x 10^5 grams of candy. Each piece of candy has a mass of 1.35 x 10^(-1) gram. Then 2.6 x 10^4 of the pieces are thrown away, and 4.5 x 10^3"
+   },
+   {
+    "id": "MM3-N25",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "multiply the decimal coefficients -> add the exponents, one of them negative -> write the product in standard form",
+    "prompt": "A grain of rice has a mass of about 2.5 x 10^-2 gram. A sack holds about 4.8 x 10^6 grains of rice. Using these numbers, what is the total mass of the rice in t"
+   },
+   {
+    "id": "MB2-N78-16",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "divide the coefficients (result less than 1) -> subtract the exponents, one of them negative -> write the product of the two results in standard form",
+    "prompt": "Write the quotient (2.4 x 10^5) / (3 x 10^(-1)) as a number in standard form."
+   },
+   {
+    "id": "MB2-N78-18",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "divide the larger quantity by the smaller -> divide the coefficients (1.1 / 8.8 = 1/8, less than 1) -> subtract the exponents, one negative -> write the ratio i",
+    "prompt": "A garbage truck has a mass of 1.1 x 10^4 kilograms. A duck has a mass of 8.8 x 10^(-1) kilogram. The mass of the truck is how many times the mass of the duck?"
+   }
+  ]
+ },
+ "S37": {
+  "live_prior": [
+   {
+    "q": "0\\.(27|36|45|18|09|63|72|81|54|90) & repeat",
+    "head": "7d39df0a-ef7 [live act/act-math-v3nq Number and Quantity medium]",
+    "text": "The decimal 0.4555…, in which only the digit 5 repeats, is equal to which of the following fractions? options [\"41/90\",\"5/11\",\"5/9\",\"9/20\"] key 41/90 "
+   },
+   {
+    "q": "(11|99) & repeat & (fraction|lowest terms)",
+    "head": "7d39df0a-ef7 [live act/act-math-v3nq Number and Quantity medium]",
+    "text": "The decimal 0.4555…, in which only the digit 5 repeats, is equal to which of the following fractions? options [\"41/90\",\"5/11\",\"5/9\",\"9/20\"] key 41/90"
+   },
+   {
+    "q": "(11|99) & repeat & (fraction|lowest terms)",
+    "head": "bde1402b-5ce [live ssat/ssat-math-q9 Math medium]",
+    "text": "Each fraction below is in lowest terms. Which one is equal to a decimal that ends rather than repeating forever? options [\"7/40\",\"4/15\",\"11/48\",\"5/12\",\"7/30\"] key 7/40 "
+   }
+  ],
+  "earlier": []
+ },
+ "S38": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MV2-N56-23",
+    "st": "dropped by graders",
+    "g": 6,
+    "chain": "halfway: half of the distance 17 is 8.5, so P = -2.5 -> opposite: Q = 2.5 -> same side of 0: 9 - 2.5",
+    "prompt": "Point P is halfway between -11 and 6 on a number line. Point Q is at the opposite of the number at point P. How far is point Q from 9?"
+   },
+   {
+    "id": "B7-M07",
+    "st": "b7 draft dropped by probe (see math-b7/DROPPED.md)",
+    "g": 6,
+    "chain": "common denominator (doubled, so the halfway value is a whole numerator) -> add -> halve",
+    "prompt": "ASK: the number exactly halfway between two positive fractions with unlike denominators | TWIST: midpoint of two fractions; the average of the numerators and of"
+   },
+   {
+    "id": "MB8-N6-01",
+    "st": "b8 written, PART OK, file only (not gated)",
+    "g": 6,
+    "chain": "the fold point is halfway between -4.5 and 5.5: 0.5 -> -2.5 is 3 units left of the fold -> it lands 3 units right of the fold: 3.5",
+    "prompt": "Ella draws a number line on a long strip of paper. She folds the strip so that the point at -4.5 lands exactly on the point at 5.5. Where on the number line doe"
+   },
+   {
+    "id": "B8-E06",
+    "st": "b8 mechanism E06 (draft Q47), checker: BORDERLINE (near REPEAT)",
+    "g": 6,
+    "chain": "the crease is the point halfway between a and b -> c lands as far beyond the crease as it was before it -> image = a + b - c",
+    "prompt": "ASK: a number line is folded so that point a lands on point b: where the point c lands | TWIST: folding as reflection about a non-zero point found from two give"
+   },
+   {
+    "id": "B8-E15",
+    "st": "b8 mechanism E15 (draft Q26), checker: BORDERLINE (near REPEAT)",
+    "g": 7,
+    "chain": "the crease is the point halfway between the two -> the image of c is a + b - c -> evaluate with signed fractions",
+    "prompt": "ASK: a number line is folded so that a negative mixed number lands on a positive one: where another signed point lands | TWIST: a reflection about a non-zero, p"
+   }
+  ]
+ },
+ "S39": {
+  "live_prior": [
+   {
+    "q": "pyramid",
+    "head": "46c882a0-575 [live act/act-math-v25 Geometry medium]",
+    "text": "A right pyramid has a square base with edges 10 centimeters long, and each of its 4 lateral edges is 13 centimeters long. To the nearest hundredth of a degree, what is the measure of the angle that a lateral edge makes with the base of the pyramid? options [\"59.49\",\"47.49\",\"49.59\",\"57.05\"] key 57.05"
+   },
+   {
+    "q": "pyramid",
+    "head": "801de346-789 [live act/act-math-v28 Geometry hard]",
+    "text": "The roof of a gazebo has the shape of the four triangular faces of a right pyramid with a square base: the top point of the roof is directly above the center of the square. Each of the four triangular faces of the roof makes an angle of 32° with the horizontal, and the total area of the four faces i"
+   },
+   {
+    "q": "pyramid",
+    "head": "99948868-3f8 [live act/act-math-v29 Geometry hard]",
+    "text": "A solid pyramid has rectangular base ABCD with AB = 15 centimeters and BC = 11 centimeters. Its apex V is directly above vertex A, so that edge VA is perpendicular to the base, and VA = 10 centimeters. To the nearest hundredth of a square centimeter, what is the total surface area of the pyramid, in"
+   },
+   {
+    "q": "pyramid",
+    "head": "e97a9db1-e36 [live isee/isee-math-s15 Math medium]",
+    "text": "A solid pyramid has a square base 10 centimeters on each side. Each of its four triangular faces has a height (slant height) of 13 centimeters, measured from the middle of a base edge up to the top point. What is the volume of the pyramid, in cubic centimeters? (The volume of a pyramid is (1/3) x ba"
+   },
+   {
+    "q": "pyramid",
+    "head": "f7417f90-18f [live act/act-math-v10-mix Geometry medium]",
+    "text": "A right pyramid has a square base with edges 12 centimeters long. Its slant height, the distance from the apex to the midpoint of a base edge, is 10 centimeters. What is the volume of the pyramid, in cubic centimeters? options [\"384\",\"480\",\"1152\",\"1440\"] key 384"
+   },
+   {
+    "q": "pyramid",
+    "head": "f965f855-734 [live sat/sat-math-v30-full Geometry and Trigonometry easy]",
+    "text": "A sculptor has two solid blocks of stone. The first is a right pyramid with a square base; each edge of the base is 12 centimeters long, and the height of the pyramid is 5 centimeters. The second is a rectangular prism with a square base; each edge of the base is 7 centimeters long, and the height o"
+   },
+   {
+    "q": "pyramid",
+    "head": "ALG-H2-19 [prior sat-alg-hard-v2.batch.json]",
+    "text": "The volume of a pyramid is given by V = (1/3)Bh, where B is the area of its base and h is its height. Which of the following gives B in terms of V and h? options [\"3V/h\",\"V/(3h)\",\"Vh/3\",\"3h/V\"] key 3V/h"
+   },
+   {
+    "q": "pyramid",
+    "head": "GEO3-13 [prior sat-geo-v3.batch.json]",
+    "text": "A right pyramid has a square base with edges of length 24 feet, and the slant height of each triangular face is 15 feet. What is the volume of the pyramid, in cubic feet? options [\"2592\",\"2880\",\"5184\",\"1728\"] key 1728"
+   },
+   {
+    "q": "pyramid",
+    "head": "MMG-G06 [prior map-math-g58-v1]",
+    "text": "A paper net folds up into a pyramid. The net is made of one square with sides 9 centimeters long and four triangles that are all the same size. Each triangle has a base of 9 centimeters, which is one side of the square, and a height of 12 centimeters. What is the total area of the net in square cent"
+   },
+   {
+    "q": "pyramid",
+    "head": "MMG-G06 [prior map-math-g58-v1.batch.json]",
+    "text": "A paper net folds up into a pyramid. The net is made of one square with sides 9 centimeters long and four triangles that are all the same size. Each triangle has a base of 9 centimeters, which is one side of the square, and a height of 12 centimeters. What is the total area of the net in square cent"
+   },
+   {
+    "q": "top (brick|box|number) & (bottom|row)",
+    "head": "356cc194-0fb [live sat/sat-math-v29-full Advanced Math medium]",
+    "text": "A rectangular sheet of cardboard is 24 inches long and 18 inches wide. A square with side length x inches is cut from each of its four corners, and the four flaps are folded up to make an open-top box. The bottom of the box has an area of 280 square inches. What is the total area, in square inches, "
+   },
+   {
+    "q": "top (brick|box|number) & (bottom|row)",
+    "head": "SM29F-P08 [prior sat-math-v29-full-p.batch.json]",
+    "text": "A rectangular sheet of cardboard is 24 inches long and 18 inches wide. A square with side length x inches is cut from each of its four corners, and the four flaps are folded up to make an open-top box. The bottom of the box has an area of 280 square inches. What is the total area, in square inches, "
+   },
+   {
+    "q": "top (brick|box|number) & (bottom|row)",
+    "head": "MV2-G56-02 [prior map-math-v2 b1 LIVE]",
+    "text": "A tower is made of two boxes that do not overlap. The bottom box is 8 inches long, 8 inches wide, and 5 inches tall. The top box is a cube, and each of its edges is half as long as the length of the bottom box. What is the total volume of the tower, in cubic inches? options [\"400\",\"336\",\"384\",\"480\"]"
+   },
+   {
+    "q": "top (brick|box|number) & (bottom|row)",
+    "head": "MV2-G78-09 [prior map-math-v2 b1 withdrawn]",
+    "text": "Two boxes are glued together to make a display stand. The bottom box is 12 centimeters long, 8 centimeters wide, and 4 centimeters tall. The top box is 6 centimeters long, 5 centimeters wide, and 3 centimeters tall, and its whole bottom face is glued to the top face of the bottom box. The stand rest"
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MB7-N6-01",
+    "st": "b7 written then dropped (near-dup ISEE 5d6f2a16)",
+    "g": 6,
+    "chain": "rename 1 5/7 as 12/7 and 1 1/2 as 3/2 -> the missing side is the area divided by the known side: 12/7 / 3/2 = 8/7 -> perimeter is twice the sum of the two sides",
+    "prompt": "A rectangular garden bed has an area of 1 5/7 square meters. One side of the bed is 1 1/2 meters long. What is the perimeter of the garden bed, in meters?"
+   },
+   {
+    "id": "B7-D03",
+    "st": "b7 mechanism D03 (draft K14), checker: NEW",
+    "g": 5,
+    "chain": "rename the fraction over a common multiple -> split the numerator into two divisors of the denominator -> simplify each part to a unit fraction -> add the denom",
+    "prompt": "ASK: a fraction written as the sum of two different unit fractions: the sum of the two denominators | TWIST: decomposition into unit fractions (5/6 = 1/2 + 1/3)"
+   }
+  ]
+ },
+ "S40": {
+  "live_prior": [
+   {
+    "q": "(planned|goal|target) & (total|time) & (over|more than|longer)",
+    "head": "28931201-a57 [live sat/sat-alg-hard-v1 Algebra medium]",
+    "text": "A vendor sells bracelets for 7 dollars each and necklaces for 12 dollars each. She needs to take in at least 500 dollars, and she can display no more than 55 items in total. If she sells exactly 10 bracelets, what is the least number of necklaces she must sell to reach her revenue goal? options [\"35"
+   },
+   {
+    "q": "(planned|goal|target) & (total|time) & (over|more than|longer)",
+    "head": "3ebf96ce-882 [live isee/isee-math-s8 Math hard]",
+    "text": "Through 6 games a team has averaged 74 points per game. The coach wants the team's average over 8 games to be greater than 78 points per game. What is the least number of points, in total, the team can score in its last two games and still meet the coach's goal? options [\"148\",\"157\",\"180\",\"181\"] key"
+   },
+   {
+    "q": "(planned|goal|target) & (total|time) & (over|more than|longer)",
+    "head": "AL-H-23 [prior sat-alg-hard-v1.batch.json]",
+    "text": "A vendor sells bracelets for 7 dollars each and necklaces for 12 dollars each. She needs to take in at least 500 dollars, and she can display no more than 55 items in total. If she sells exactly 10 bracelets, what is the least number of necklaces she must sell to reach her revenue goal? options [\"35"
+   }
+  ],
+  "earlier": []
+ },
+ "S41": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "B8-Q21",
+    "st": "b8 draft not writable (see math-b8/FEASIBILITY.md)",
+    "g": 7,
+    "chain": "total distance = sum of the sizes of the moves -> distance from start = size of the signed sum -> subtract",
+    "prompt": "ASK: a robot makes four signed moves (mixed numbers): how much greater the total distance travelled is than its distance from the start | TWIST: contrasting the"
+   }
+  ]
+ },
+ "S42": {
+  "live_prior": [
+   {
+    "q": "(estimate|approximate) & square root & [0-9] [0-9]/[0-9]",
+    "head": "298cfe3d-ae9 [live sat/v2 Problem-Solving and Data Analysis medium]",
+    "text": "Two independent random samples are used to estimate the mean commute time of workers in a city. Sample 1 contains 100 workers and Sample 2 contains 400 workers. Assuming both samples have the same standard deviation, and that the margin of error is proportional to 1 divided by the square root of the"
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MM3-N26",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "square each decimal bound -> find the whole numbers strictly between the squares -> count them",
+    "prompt": "For how many whole numbers n is the square root of n greater than 3.5 and less than 6.6?"
+   },
+   {
+    "id": "B7-M26",
+    "st": "b7 draft dropped by probe (see math-b7/DROPPED.md)",
+    "g": 8,
+    "chain": "square the bounds -> perfect squares in that range -> count",
+    "prompt": "ASK: how many whole numbers n make √n a whole number between two given decimals (e.g. √n between 3.5 and 7.2) | TWIST: perfect squares between squared decimal b"
+   }
+  ]
+ },
+ "S43": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "B7-D04",
+    "st": "b7 mechanism D04 (draft K29), checker: BORDERLINE",
+    "g": 5,
+    "chain": "convert the benchmark fraction to a decimal -> compare each decimal by place value -> count",
+    "prompt": "ASK: of four decimals, how many are greater than a given fraction (the fraction converted to a decimal) | TWIST: comparison against a fractional benchmark, answ"
+   },
+   {
+    "id": "B7-D08",
+    "st": "b7 mechanism D08 (draft M03), checker: NEW",
+    "g": 5,
+    "chain": "add each pair with a common denominator (or benchmark against 1/2) -> distance of each sum from 1 -> pick the least",
+    "prompt": "ASK: of four pairs of fractions, the pair whose sum is closest to 1 | TWIST: benchmark comparison of sums, not a single sum"
+   },
+   {
+    "id": "B7-D15",
+    "st": "b7 mechanism D15 (draft K15), checker: NEW",
+    "g": 6,
+    "chain": "distance of each fraction from 1/2 (common denominators or decimals) -> compare the distances -> pick the least",
+    "prompt": "ASK: of four fractions on both sides of 1/2, the one closest to 1/2 | TWIST: closeness measured as |f - 1/2| across fractions above and below the benchmark"
+   },
+   {
+    "id": "B8-Q08",
+    "st": "b8 draft dropped by probe (see math-b8/DROPPED.md)",
+    "g": 5,
+    "chain": "tenths digits must sum to 9 or 10 -> hundredths digits chosen to pull the sum toward 1 -> add with a carry",
+    "prompt": "ASK: four digit cards used once each to make 0.ab and 0.cd: the sum that is closest to 1 | TWIST: an optimisation to a benchmark over digit placement; maximisin"
+   }
+  ]
+ },
+ "S44": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "B8-Q49",
+    "st": "b8 draft dropped by probe (see math-b8/DROPPED.md)",
+    "g": 6,
+    "chain": "net gain per day-night cycle u - v -> d cycles -> add the final daytime gain u",
+    "prompt": "ASK: a climber gains u meters each day and slips back v meters each night (decimals): the height after d full days and one more daytime climb | TWIST: grouping "
+   },
+   {
+    "id": "B8-Q19",
+    "st": "b8 draft dropped by probe (see math-b8/DROPPED.md)",
+    "g": 7,
+    "chain": "net of one cycle u - v (signed) -> k cycles -> add the extra +u and the start",
+    "prompt": "ASK: a signed pattern of moves repeated (+u then -v, as mixed numbers) k times and then one more +u from a signed start: the final position | TWIST: grouping a "
+   }
+  ]
+ },
+ "S47": {
+  "live_prior": [],
+  "earlier": []
+ },
+ "S48": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MM3-N14",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "find the least common multiple of 15 and 25 -> count the multiples of 75 from 75 to 300 minutes -> leave out the first moment and keep the one at 300",
+    "prompt": "Two ferries leave a dock at the same moment. After that, Ferry A leaves again once in 15 minutes, and Ferry B leaves again once in 25 minutes. Not counting the "
+   },
+   {
+    "id": "MM5-N02",
+    "st": "LIVE",
+    "g": 5,
+    "chain": "multiply the whole number by the numerator -> divide by the denominator -> write the result as a mixed number in lowest terms",
+    "prompt": "A ribbon is 16 feet long. Lena uses 5/12 of the ribbon to make a bow. How many feet of ribbon does she use?"
+   },
+   {
+    "id": "B8-E02",
+    "st": "b8 mechanism E02 (draft Q04), checker: BORDERLINE; wrong area",
+    "g": 5,
+    "chain": "new red count r + k -> new total n + k -> fraction (r + k)/(n + k) in lowest terms",
+    "prompt": "ASK: a bag holds n marbles, r of them red; k more red marbles are added: the fraction of the marbles that are red now | TWIST: both numerator and denominator ch"
+   }
+  ]
+ },
+ "S49": {
+  "live_prior": [],
+  "earlier": []
+ },
+ "S50": {
+  "live_prior": [
+   {
+    "q": "√0\\.(25|36|49|64|81|16|09|04) & (rational|irrational)",
+    "head": "MM4-N35 [prior map-math-g58-v4]",
+    "text": "Mr. Ortiz writes these eight numbers on the board: √0.49, √0.4, π, ∛(-0.027), √20 ÷ √5, 0.4111... (the digit 1 repeats forever), 0.1010010001... (the runs of 0s keep getting longer), and 5.8988988898888... (the runs of 8s keep getting longer). How many of the eight numbers are irrational? options [\""
+   },
+   {
+    "q": "√0\\.(25|36|49|64|81|16|09|04) & (rational|irrational)",
+    "head": "MM4-N35 [prior map-math-g58-v4 (as first written)]",
+    "text": "Mr. Ortiz writes these eight numbers on the board: √36, √40, ∛(-27), √0.49, π, 0.5555... (the digit 5 repeats forever), 0.1011011101111... (the runs of 1s keep getting longer), and 2.1211211121111... (the runs of 1s keep getting longer). How many of the eight numbers are irrational? options [\"2\",\"4\""
+   },
+   {
+    "q": "√0\\.(25|36|49|64|81|16|09|04) & (rational|irrational)",
+    "head": "MM4-N35 [prior map-math-g58-v4.batch.json]",
+    "text": "Mr. Ortiz writes these eight numbers on the board: √0.49, √0.4, π, ∛(-0.027), √20 ÷ √5, 0.4111... (the digit 1 repeats forever), 0.1010010001... (the runs of 0s keep getting longer), and 5.8988988898888... (the runs of 8s keep getting longer). How many of the eight numbers are irrational? options [\""
+   }
+  ],
+  "earlier": [
+   {
+    "id": "B7-D29",
+    "st": "b7 mechanism D29 (draft M21), checker: REPEAT",
+    "g": 7,
+    "chain": "total of the list -> the removed number must equal the total -> identify it in the list",
+    "prompt": "ASK: a list of signed rational numbers that sums to a printed total: which single number, if removed, makes the sum 0 | TWIST: additive identity reasoning to pi"
+   },
+   {
+    "id": "B7-K17",
+    "st": "b7 draft dropped by probe (see math-b7/DROPPED.md)",
+    "g": 8,
+    "chain": "convert each to a decimal (approximate the root) -> order -> take the third",
+    "prompt": "ASK: in a list of five numbers in different forms (a square root, a fraction, a repeating decimal, a terminating decimal, a percent), the number in the MIDDLE |"
+   }
+  ]
+ },
+ "S51": {
+  "live_prior": [],
+  "earlier": []
+ },
+ "S54": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "B7-K36",
+    "st": "b7 draft dropped by probe (see math-b7/DROPPED.md)",
+    "g": 8,
+    "chain": "compare the given value with nearby perfect squares -> pick the nearest",
+    "prompt": "ASK: the integer whose square is closest to a given non-square fraction or decimal | TWIST: inverse root estimation"
+   }
+  ]
+ },
+ "S55": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MB2-N78-16",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "divide the coefficients (result less than 1) -> subtract the exponents, one of them negative -> write the product of the two results in standard form",
+    "prompt": "Write the quotient (2.4 x 10^5) / (3 x 10^(-1)) as a number in standard form."
+   },
+   {
+    "id": "MB2-N78-18",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "divide the larger quantity by the smaller -> divide the coefficients (1.1 / 8.8 = 1/8, less than 1) -> subtract the exponents, one negative -> write the ratio i",
+    "prompt": "A garbage truck has a mass of 1.1 x 10^4 kilograms. A duck has a mass of 8.8 x 10^(-1) kilogram. The mass of the truck is how many times the mass of the duck?"
+   }
+  ]
+ }
+}

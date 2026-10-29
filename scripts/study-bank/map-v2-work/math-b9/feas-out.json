@@ -1,0 +1,1335 @@
+{
+ "S02": {
+  "sets": 8820,
+  "ranks": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "examples": {
+   "1": [
+    {
+     "params": {
+      "girls": "1/3",
+      "girlsWalk": "2/3",
+      "boysWalk": "1/5"
+     },
+     "options": [
+      "16/45",
+      "19/45",
+      "29/45",
+      "23/45"
+     ],
+     "errors": [
+      "uses r/s of the whole class for the boys",
+      "fraction that does NOT walk",
+      "swaps the two walking fractions"
+     ]
+    },
+    {
+     "params": {
+      "girls": "1/3",
+      "girlsWalk": "2/3",
+      "boysWalk": "2/5"
+     },
+     "options": [
+      "22/45",
+      "28/45",
+      "23/45",
+      "26/45"
+     ],
+     "errors": [
+      "uses r/s of the whole class for the boys",
+      "fraction that does NOT walk",
+      "swaps the two walking fractions"
+     ]
+    }
+   ],
+   "2": [
+    {
+     "params": {
+      "girls": "1/3",
+      "girlsWalk": "1/3",
+      "boysWalk": "4/7"
+     },
+     "options": [
+      "31/63",
+      "43/63",
+      "32/63",
+      "26/63"
+     ],
+     "errors": [
+      "uses r/s of the whole class for the boys",
+      "fraction that does NOT walk",
+      "swaps the two walking fractions"
+     ]
+    },
+    {
+     "params": {
+      "girls": "1/3",
+      "girlsWalk": "2/3",
+      "boysWalk": "1/5"
+     },
+     "options": [
+      "16/45",
+      "13/45",
+      "29/45",
+      "23/45"
+     ],
+     "errors": [
+      "uses the girls fraction for the boys too",
+      "fraction that does NOT walk",
+      "swaps the two walking fractions"
+     ]
+    }
+   ],
+   "3": [
+    {
+     "params": {
+      "girls": "1/3",
+      "girlsWalk": "1/3",
+      "boysWalk": "3/5"
+     },
+     "options": [
+      "23/45",
+      "32/45",
+      "22/45",
+      "19/45"
+     ],
+     "errors": [
+      "uses r/s of the whole class for the boys",
+      "fraction that does NOT walk",
+      "swaps the two walking fractions"
+     ]
+    },
+    {
+     "params": {
+      "girls": "1/3",
+      "girlsWalk": "1/3",
+      "boysWalk": "4/5"
+     },
+     "options": [
+      "29/45",
+      "41/45",
+      "16/45",
+      "22/45"
+     ],
+     "errors": [
+      "uses r/s of the whole class for the boys",
+      "fraction that does NOT walk",
+      "swaps the two walking fractions"
+     ]
+    }
+   ],
+   "4": [
+    {
+     "params": {
+      "girls": "1/3",
+      "girlsWalk": "1/3",
+      "boysWalk": "3/5"
+     },
+     "options": [
+      "23/45",
+      "14/45",
+      "22/45",
+      "19/45"
+     ],
+     "errors": [
+      "uses the girls fraction for the boys too",
+      "fraction that does NOT walk",
+      "swaps the two walking fractions"
+     ]
+    },
+    {
+     "params": {
+      "girls": "1/3",
+      "girlsWalk": "1/3",
+      "boysWalk": "4/5"
+     },
+     "options": [
+      "29/45",
+      "17/45",
+      "16/45",
+      "22/45"
+     ],
+     "errors": [
+      "uses the girls fraction for the boys too",
+      "fraction that does NOT walk",
+      "swaps the two walking fractions"
+     ]
+    }
+   ]
+  }
+ },
+ "S03": {
+  "sets": 16872,
+  "ranks": [],
+  "examples": {}
+ },
+ "S04": {
+  "sets": 27370,
+  "ranks": [],
+  "examples": {}
+ },
+ "S39": {
+  "sets": 196560,
+  "ranks": [],
+  "examples": {}
+ },
+ "S07": {
+  "sets": 2556,
+  "ranks": [],
+  "examples": {}
+ },
+ "S08": {
+  "sets": 5040,
+  "ranks": [],
+  "examples": {}
+ },
+ "S09": {
+  "sets": 15840,
+  "ranks": [],
+  "examples": {}
+ },
+ "S10": {
+  "sets": 729,
+  "ranks": [
+   2,
+   3
+  ],
+  "examples": {
+   "2": [
+    {
+     "params": {
+      "a": "7/9",
+      "b": "8/9"
+     },
+     "options": [
+      "23/81",
+      "79/81",
+      "56/81",
+      "2/81"
+     ],
+     "errors": [
+      "shaded at least once (removes the overlap once)",
+      "shaded by both (the overlap)",
+      "not shaded"
+     ]
+    },
+    {
+     "params": {
+      "a": "8/9",
+      "b": "7/9"
+     },
+     "options": [
+      "23/81",
+      "79/81",
+      "56/81",
+      "2/81"
+     ],
+     "errors": [
+      "shaded at least once (removes the overlap once)",
+      "shaded by both (the overlap)",
+      "not shaded"
+     ]
+    }
+   ],
+   "3": [
+    {
+     "params": {
+      "a": "1/3",
+      "b": "4/9"
+     },
+     "options": [
+      "13/27",
+      "17/27",
+      "4/27",
+      "10/27"
+     ],
+     "errors": [
+      "shaded at least once (removes the overlap once)",
+      "shaded by both (the overlap)",
+      "not shaded"
+     ]
+    },
+    {
+     "params": {
+      "a": "1/3",
+      "b": "5/9"
+     },
+     "options": [
+      "14/27",
+      "19/27",
+      "5/27",
+      "8/27"
+     ],
+     "errors": [
+      "shaded at least once (removes the overlap once)",
+      "shaded by both (the overlap)",
+      "not shaded"
+     ]
+    }
+   ]
+  }
+ },
+ "S13": {
+  "sets": 236933,
+  "ranks": [],
+  "examples": {}
+ },
+ "S41": {
+  "sets": 3879,
+  "ranks": [],
+  "examples": {}
+ },
+ "S14": {
+  "sets": 1499,
+  "ranks": [
+   2
+  ],
+  "examples": {
+   "2": [
+    {
+     "params": {
+      "points": [
+       "-45/8",
+       "-39/8",
+       "-3/8",
+       "5/8"
+      ]
+     },
+     "options": [
+      "10.75",
+      "6.25",
+      "12.25",
+      "12.75"
+     ],
+     "errors": [
+      "outer span only (the three-point habit)",
+      "total from the leftmost point",
+      "total from the rightmost point"
+     ]
+    },
+    {
+     "params": {
+      "points": [
+       "-45/8",
+       "-37/8",
+       "7/8",
+       "13/8"
+      ]
+     },
+     "options": [
+      "12.75",
+      "7.25",
+      "14.75",
+      "14.25"
+     ],
+     "errors": [
+      "outer span only (the three-point habit)",
+      "total from the leftmost point",
+      "total from the rightmost point"
+     ]
+    }
+   ]
+  }
+ },
+ "S22": {
+  "sets": 21390,
+  "ranks": [],
+  "examples": {}
+ },
+ "S23": {
+  "sets": 94462,
+  "ranks": [],
+  "examples": {}
+ },
+ "S15": {
+  "sets": 35519,
+  "ranks": [
+   2,
+   3
+  ],
+  "examples": {
+   "2": [
+    {
+     "params": {
+      "start": 58.49,
+      "transactions": [
+       -10.6,
+       16,
+       -4.4,
+       16.2,
+       -4.8
+      ]
+     },
+     "options": [
+      "47.89",
+      "70.89",
+      "38.69",
+      "59.49"
+     ],
+     "errors": [
+      "final balance",
+      "start minus all the withdrawals",
+      "second-lowest balance"
+     ]
+    },
+    {
+     "params": {
+      "start": 36.33,
+      "transactions": [
+       -12.6,
+       20.4,
+       -18.4,
+       20,
+       -6.6
+      ]
+     },
+     "options": [
+      "23.73",
+      "39.13",
+      "17.93",
+      "25.73"
+     ],
+     "errors": [
+      "final balance",
+      "start minus the largest withdrawal",
+      "second-lowest balance"
+     ]
+    }
+   ],
+   "3": [
+    {
+     "params": {
+      "start": 44.25,
+      "transactions": [
+       -6.2,
+       10.2,
+       -14.8,
+       16.2,
+       -6.8
+      ]
+     },
+     "options": [
+      "33.45",
+      "42.85",
+      "16.45",
+      "29.45"
+     ],
+     "errors": [
+      "final balance",
+      "start minus all the withdrawals",
+      "start minus the largest withdrawal"
+     ]
+    },
+    {
+     "params": {
+      "start": 44.25,
+      "transactions": [
+       -6.2,
+       10.2,
+       -14.8,
+       16.2,
+       -6.8
+      ]
+     },
+     "options": [
+      "33.45",
+      "16.45",
+      "29.45",
+      "38.05"
+     ],
+     "errors": [
+      "start minus all the withdrawals",
+      "start minus the largest withdrawal",
+      "second-lowest balance"
+     ]
+    }
+   ]
+  }
+ },
+ "S21": {
+  "sets": 36767,
+  "ranks": [
+   2,
+   3
+  ],
+  "examples": {
+   "2": [
+    {
+     "params": {
+      "start": -34.59,
+      "changes": [
+       3.4,
+       -17,
+       8.2,
+       -5.8,
+       10
+      ]
+     },
+     "options": [
+      "-31.19",
+      "-35.79",
+      "-12.99",
+      "-24.59"
+     ],
+     "errors": [
+      "final elevation",
+      "start plus all the climbs",
+      "start plus the largest climb"
+     ]
+    },
+    {
+     "params": {
+      "start": -42.39,
+      "changes": [
+       4,
+       -13.4,
+       3.6,
+       -8.2,
+       14.2
+      ]
+     },
+     "options": [
+      "-38.39",
+      "-42.19",
+      "-20.59",
+      "-28.19"
+     ],
+     "errors": [
+      "final elevation",
+      "start plus all the climbs",
+      "start plus the largest climb"
+     ]
+    }
+   ],
+   "3": [
+    {
+     "params": {
+      "start": -42.69,
+      "changes": [
+       15.4,
+       -17.8,
+       4.8,
+       -16.6,
+       9.2
+      ]
+     },
+     "options": [
+      "-27.29",
+      "-47.69",
+      "-13.29",
+      "-40.29"
+     ],
+     "errors": [
+      "final elevation",
+      "start plus all the climbs",
+      "second-highest elevation"
+     ]
+    },
+    {
+     "params": {
+      "start": -42.55,
+      "changes": [
+       4.4,
+       -3.8,
+       10.8,
+       -16.2,
+       7.8
+      ]
+     },
+     "options": [
+      "-31.15",
+      "-39.55",
+      "-19.55",
+      "-31.75"
+     ],
+     "errors": [
+      "final elevation",
+      "start plus all the climbs",
+      "start plus the largest climb"
+     ]
+    }
+   ]
+  }
+ },
+ "S16": {
+  "sets": 235432,
+  "ranks": [
+   3
+  ],
+  "examples": {
+   "3": [
+    {
+     "params": {
+      "xl": -3.25,
+      "xr": 2.25,
+      "yt": 6,
+      "yb": -6.5,
+      "d": 5.65
+     },
+     "options": [
+      "5.85",
+      "0.35",
+      "1.35",
+      "6.15"
+     ],
+     "errors": [
+      "ignores the corner (goes straight down d)",
+      "top side as |xr| - |xl| (sizes subtracted across 0)",
+      "goes up instead of down after the corner"
+     ]
+    },
+    {
+     "params": {
+      "xl": -3.25,
+      "xr": 2.25,
+      "yt": 6,
+      "yb": -6.5,
+      "d": 5.85
+     },
+     "options": [
+      "5.65",
+      "0.15",
+      "1.15",
+      "6.35"
+     ],
+     "errors": [
+      "ignores the corner (goes straight down d)",
+      "top side as |xr| - |xl| (sizes subtracted across 0)",
+      "goes up instead of down after the corner"
+     ]
+    }
+   ]
+  }
+ },
+ "S18": {
+  "sets": 2184,
+  "ranks": [],
+  "examples": {}
+ },
+ "S20": {
+  "sets": 868,
+  "ranks": [],
+  "examples": {}
+ },
+ "S24": {
+  "sets": 900,
+  "ranks": [],
+  "examples": {}
+ },
+ "S25": {
+  "sets": 208,
+  "ranks": [],
+  "examples": {}
+ },
+ "S26": {
+  "sets": 336,
+  "ranks": [],
+  "examples": {}
+ },
+ "S38": {
+  "sets": 208,
+  "ranks": [],
+  "examples": {}
+ },
+ "S42": {
+  "sets": 2592,
+  "ranks": [],
+  "examples": {}
+ },
+ "S30": {
+  "sets": 644,
+  "ranks": [],
+  "examples": {}
+ },
+ "S31": {
+  "sets": 644,
+  "ranks": [],
+  "examples": {}
+ },
+ "S32": {
+  "sets": 80,
+  "ranks": [],
+  "examples": {}
+ },
+ "S33": {
+  "sets": 2952,
+  "ranks": [
+   3,
+   4
+  ],
+  "examples": {
+   "3": [
+    {
+     "params": {
+      "sqrt": "√(25/81)",
+      "cbrt": "∛(-1/8)",
+      "repeating": "0.888..."
+     },
+     "options": [
+      "17/18",
+      "1/18",
+      "7/18",
+      "1 17/18"
+     ],
+     "errors": [
+      "leaves out the repeating decimal (thinks it irrational)",
+      "leaves out the square root (thinks every root irrational)",
+      "drops the cube root sign"
+     ]
+    },
+    {
+     "params": {
+      "sqrt": "√(36/25)",
+      "cbrt": "∛(-1/27)",
+      "repeating": "0.666..."
+     },
+     "options": [
+      "1 8/15",
+      "13/15",
+      "1 13/15",
+      "1 7/15"
+     ],
+     "errors": [
+      "leaves out the repeating decimal (thinks it irrational)",
+      "leaves out the cube root",
+      "reads the repeating decimal as k/10"
+     ]
+    }
+   ],
+   "4": [
+    {
+     "params": {
+      "sqrt": "√(1/81)",
+      "cbrt": "∛(8/27)",
+      "repeating": "0.444..."
+     },
+     "options": [
+      "1 2/9",
+      "7/9",
+      "1 1/9",
+      "5/9"
+     ],
+     "errors": [
+      "leaves out the repeating decimal (thinks it irrational)",
+      "leaves out the square root (thinks every root irrational)",
+      "leaves out the cube root"
+     ]
+    },
+    {
+     "params": {
+      "sqrt": "√(1/81)",
+      "cbrt": "∛(64/27)",
+      "repeating": "0.777..."
+     },
+     "options": [
+      "2 2/9",
+      "1 4/9",
+      "2 1/9",
+      "8/9"
+     ],
+     "errors": [
+      "leaves out the repeating decimal (thinks it irrational)",
+      "leaves out the square root (thinks every root irrational)",
+      "leaves out the cube root"
+     ]
+    }
+   ]
+  }
+ },
+ "S43": {
+  "sets": 450,
+  "ranks": [
+   2,
+   3
+  ],
+  "examples": {
+   "2": [
+    {
+     "params": {
+      "list": [
+       "2/4",
+       "1/3",
+       "2/3",
+       "1/4",
+       "11/12"
+      ]
+     },
+     "options": [
+      "1 7/12",
+      "2 1/12",
+      "11/12",
+      "1 11/12"
+     ],
+     "errors": [
+      "includes the fraction equal to 1/2",
+      "leaves out the kept fraction nearest 1/2",
+      "keeps the left-out fraction nearest 1/2 as well"
+     ]
+    },
+    {
+     "params": {
+      "list": [
+       "2/4",
+       "1/3",
+       "2/3",
+       "1/6",
+       "11/12"
+      ]
+     },
+     "options": [
+      "1 7/12",
+      "2 1/12",
+      "11/12",
+      "1 11/12"
+     ],
+     "errors": [
+      "includes the fraction equal to 1/2",
+      "leaves out the kept fraction nearest 1/2",
+      "keeps the left-out fraction nearest 1/2 as well"
+     ]
+    }
+   ],
+   "3": [
+    {
+     "params": {
+      "list": [
+       "2/4",
+       "1/3",
+       "2/3",
+       "1/4",
+       "11/12"
+      ]
+     },
+     "options": [
+      "1 7/12",
+      "2 1/12",
+      "7/12",
+      "11/12"
+     ],
+     "errors": [
+      "includes the fraction equal to 1/2",
+      "adds the fractions less than 1/2",
+      "leaves out the kept fraction nearest 1/2"
+     ]
+    },
+    {
+     "params": {
+      "list": [
+       "2/4",
+       "1/3",
+       "2/3",
+       "1/4",
+       "11/12"
+      ]
+     },
+     "options": [
+      "1 7/12",
+      "7/12",
+      "11/12",
+      "1 11/12"
+     ],
+     "errors": [
+      "adds the fractions less than 1/2",
+      "leaves out the kept fraction nearest 1/2",
+      "keeps the left-out fraction nearest 1/2 as well"
+     ]
+    }
+   ]
+  }
+ },
+ "S44": {
+  "sets": 2846,
+  "ranks": [],
+  "examples": {}
+ },
+ "S47": {
+  "sets": 51480,
+  "ranks": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "examples": {
+   "1": [
+    {
+     "params": {
+      "grades": [
+       "1/2",
+       "1/4",
+       "rest"
+      ],
+      "ride": [
+       "3/5",
+       "1/4",
+       "2/5"
+      ]
+     },
+     "options": [
+      "37/80",
+      "61/80",
+      "43/80",
+      "41/80"
+     ],
+     "errors": [
+      "uses the third riding fraction of the whole school",
+      "fraction that does NOT ride",
+      "uses the first grade's riding fraction for the third grade"
+     ]
+    },
+    {
+     "params": {
+      "grades": [
+       "1/2",
+       "1/4",
+       "rest"
+      ],
+      "ride": [
+       "3/5",
+       "1/6",
+       "2/5"
+      ]
+     },
+     "options": [
+      "53/120",
+      "89/120",
+      "67/120",
+      "59/120"
+     ],
+     "errors": [
+      "uses the third riding fraction of the whole school",
+      "fraction that does NOT ride",
+      "uses the first grade's riding fraction for the third grade"
+     ]
+    }
+   ],
+   "2": [
+    {
+     "params": {
+      "grades": [
+       "1/2",
+       "1/3",
+       "rest"
+      ],
+      "ride": [
+       "1/2",
+       "1/3",
+       "2/3"
+      ]
+     },
+     "options": [
+      "17/36",
+      "1 1/36",
+      "19/36",
+      "13/36"
+     ],
+     "errors": [
+      "uses the third riding fraction of the whole school",
+      "fraction that does NOT ride",
+      "leaves out the third grade (its share not found)"
+     ]
+    },
+    {
+     "params": {
+      "grades": [
+       "1/2",
+       "1/3",
+       "rest"
+      ],
+      "ride": [
+       "1/3",
+       "1/5",
+       "4/5"
+      ]
+     },
+     "options": [
+      "11/30",
+      "1 1/30",
+      "19/30",
+      "7/30"
+     ],
+     "errors": [
+      "uses the third riding fraction of the whole school",
+      "fraction that does NOT ride",
+      "leaves out the third grade (its share not found)"
+     ]
+    }
+   ],
+   "3": [
+    {
+     "params": {
+      "grades": [
+       "1/2",
+       "1/3",
+       "rest"
+      ],
+      "ride": [
+       "3/4",
+       "1/3",
+       "1/2"
+      ]
+     },
+     "options": [
+      "41/72",
+      "71/72",
+      "31/72",
+      "35/72"
+     ],
+     "errors": [
+      "uses the third riding fraction of the whole school",
+      "fraction that does NOT ride",
+      "leaves out the third grade (its share not found)"
+     ]
+    },
+    {
+     "params": {
+      "grades": [
+       "1/2",
+       "1/3",
+       "rest"
+      ],
+      "ride": [
+       "3/4",
+       "1/3",
+       "2/3"
+      ]
+     },
+     "options": [
+      "43/72",
+      "1 11/72",
+      "29/72",
+      "35/72"
+     ],
+     "errors": [
+      "uses the third riding fraction of the whole school",
+      "fraction that does NOT ride",
+      "leaves out the third grade (its share not found)"
+     ]
+    }
+   ],
+   "4": [
+    {
+     "params": {
+      "grades": [
+       "1/2",
+       "1/3",
+       "rest"
+      ],
+      "ride": [
+       "2/5",
+       "5/6",
+       "2/3"
+      ]
+     },
+     "options": [
+      "53/90",
+      "37/90",
+      "43/90",
+      "49/90"
+     ],
+     "errors": [
+      "fraction that does NOT ride",
+      "leaves out the third grade (its share not found)",
+      "uses the first grade's riding fraction for the third grade"
+     ]
+    },
+    {
+     "params": {
+      "grades": [
+       "1/2",
+       "1/4",
+       "rest"
+      ],
+      "ride": [
+       "1/5",
+       "5/6",
+       "4/5"
+      ]
+     },
+     "options": [
+      "61/120",
+      "59/120",
+      "37/120",
+      "43/120"
+     ],
+     "errors": [
+      "fraction that does NOT ride",
+      "leaves out the third grade (its share not found)",
+      "uses the first grade's riding fraction for the third grade"
+     ]
+    }
+   ]
+  }
+ },
+ "S48": {
+  "sets": 31804,
+  "ranks": [
+   2,
+   3
+  ],
+  "examples": {
+   "2": [
+    {
+     "params": {
+      "start": 9,
+      "changes": [
+       -0.375,
+       1.75,
+       -2.25,
+       2.75,
+       -0.75
+      ]
+     },
+     "options": [
+      "8.125",
+      "10.125",
+      "5.625",
+      "8.625"
+     ],
+     "errors": [
+      "final level",
+      "start minus all the drops",
+      "second-lowest level"
+     ]
+    },
+    {
+     "params": {
+      "start": 10.5,
+      "changes": [
+       -1.125,
+       0.125,
+       -0.375,
+       3.375,
+       -1.125
+      ]
+     },
+     "options": [
+      "9.125",
+      "11.375",
+      "7.875",
+      "9.375"
+     ],
+     "errors": [
+      "final level",
+      "start minus all the drops",
+      "start minus the largest drop"
+     ]
+    }
+   ],
+   "3": [
+    {
+     "params": {
+      "start": 11,
+      "changes": [
+       -0.125,
+       2.25,
+       -1.125,
+       2.75,
+       -0.125
+      ]
+     },
+     "options": [
+      "10.875",
+      "14.625",
+      "9.625",
+      "9.875"
+     ],
+     "errors": [
+      "final level",
+      "start minus all the drops",
+      "start minus the largest drop"
+     ]
+    },
+    {
+     "params": {
+      "start": 6.5,
+      "changes": [
+       -0.375,
+       3.375,
+       -1.375,
+       0.75,
+       -0.125
+      ]
+     },
+     "options": [
+      "6.125",
+      "4.625",
+      "5.125",
+      "8.125"
+     ],
+     "errors": [
+      "start minus all the drops",
+      "start minus the largest drop",
+      "second-lowest level"
+     ]
+    }
+   ]
+  }
+ },
+ "S49": {
+  "sets": 235432,
+  "ranks": [
+   2
+  ],
+  "examples": {
+   "2": [
+    {
+     "params": {
+      "xl": -6.5,
+      "xr": 1.5,
+      "yt": 2.25,
+      "yb": -3.25,
+      "d": 5.65
+     },
+     "options": [
+      "-6.35",
+      "-0.85",
+      "-1.85",
+      "-6.65"
+     ],
+     "errors": [
+      "ignores the corner (goes straight on d)",
+      "left side as |yt| - |yb| (sizes subtracted across 0)",
+      "goes left instead of right after the corner"
+     ]
+    },
+    {
+     "params": {
+      "xl": -6.5,
+      "xr": 1.5,
+      "yt": 2.25,
+      "yb": -3.25,
+      "d": 5.75
+     },
+     "options": [
+      "-6.25",
+      "-0.75",
+      "-1.75",
+      "-6.75"
+     ],
+     "errors": [
+      "ignores the corner (goes straight on d)",
+      "left side as |yt| - |yb| (sizes subtracted across 0)",
+      "goes left instead of right after the corner"
+     ]
+    }
+   ]
+  }
+ },
+ "S50": {
+  "sets": 6912,
+  "ranks": [],
+  "examples": {}
+ },
+ "S51": {
+  "sets": 26240,
+  "ranks": [
+   4
+  ],
+  "examples": {
+   "4": [
+    {
+     "params": {
+      "sqrt": "√(4/9)",
+      "cbrt": "∛(-1/27)",
+      "repeating": "0.888...",
+      "fraction": "7/9"
+     },
+     "options": [
+      "1 2/9",
+      "1 1/9",
+      "2/9",
+      "5/9"
+     ],
+     "errors": [
+      "leaves out the repeating decimal",
+      "leaves out the cube root",
+      "drops the cube root sign"
+     ]
+    },
+    {
+     "params": {
+      "sqrt": "√(16/81)",
+      "cbrt": "∛(-1/27)",
+      "repeating": "0.888...",
+      "fraction": "7/9"
+     },
+     "options": [
+      "1 2/9",
+      "1 1/9",
+      "4/9",
+      "5/9"
+     ],
+     "errors": [
+      "leaves out the repeating decimal",
+      "leaves out the cube root",
+      "drops the cube root sign"
+     ]
+    }
+   ]
+  }
+ },
+ "S54": {
+  "sets": 8775,
+  "ranks": [],
+  "examples": {}
+ },
+ "S55": {
+  "sets": 14999,
+  "ranks": [
+   2
+  ],
+  "examples": {
+   "2": [
+    {
+     "params": {
+      "powers": [
+       "(2)^-3",
+       "(0.25)^3",
+       "(2)^0",
+       "(0.5)^-1",
+       "(0.5)^-2"
+      ]
+     },
+     "options": [
+      "9/64",
+      "57/64",
+      "1 9/64",
+      "1/64"
+     ],
+     "errors": [
+      "does not flip a fraction base with a negative exponent",
+      "includes the zero powers (reads less than 1 as at most 1)",
+      "does not flip a whole-number base with a negative exponent"
+     ]
+    },
+    {
+     "params": {
+      "powers": [
+       "(2)^-3",
+       "(0.25)^3",
+       "(2)^0",
+       "(0.5)^-1",
+       "(0.5)^-2"
+      ]
+     },
+     "options": [
+      "9/64",
+      "57/64",
+      "1 9/64",
+      "1/64"
+     ],
+     "errors": [
+      "does not flip a fraction base with a negative exponent",
+      "includes the zero powers (reads less than 1 as at most 1)",
+      "does not flip a whole-number base with a negative exponent"
+     ]
+    }
+   ]
+  }
+ }
+}

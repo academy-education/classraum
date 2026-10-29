@@ -1,0 +1,72 @@
+S02 fraction of a class that walks (different fractions of girls and boys)
+   sets 8820; most same-form natural errors in one set: 6; passing triples 1552; refusals: FORM (fewer than 3 natural errors share the key's form) 4340, RANGE (bound strikes 2) 3968, LONE 2397, HUB 1656, key not writable in 3 dp or as a fraction 1340, RUN 556, DPAIR/DSUM 165, KGAP 80, PAIR 43
+S03 rounded-first total minus exact total (nearest dollar, four prices)
+   sets 16872; most same-form natural errors in one set: 3; passing triples 0; refusals: FORM (fewer than 3 natural errors share the key's form) 15427, RUN 1127, LONE 318
+S04 pyramid: missing middle bottom brick
+   sets 27370; most same-form natural errors in one set: 2; passing triples 0; refusals: FORM (fewer than 3 natural errors share the key's form) 27249, KEYPRINT 121
+S39 pyramid: top brick from four bottom bricks
+   sets 196560; most same-form natural errors in one set: 4; passing triples 0; refusals: RUN 351572, PAIR 337118, FORM (fewer than 3 natural errors share the key's form) 19760, LONE 4230
+S07 exact product vs rounded-factor product: difference
+   sets 2556; most same-form natural errors in one set: 2; passing triples 0; refusals: FORM (fewer than 3 natural errors share the key's form) 2556
+S08 rounding one price to the nearest tenth, n items: rounded total minus exact
+   sets 5040; most same-form natural errors in one set: 3; passing triples 0; refusals: FORM (fewer than 3 natural errors share the key's form) 4824, HUB 144, RANGE (bound strikes 2) 63, RUN 9
+S09 broken ruler: total length of two objects
+   sets 15840; most same-form natural errors in one set: 4; passing triples 0; refusals: RUN 28791, PAIR 27752, FORM (fewer than 3 natural errors share the key's form) 1608, LONE 91, KEYPRINT 73, HUB 2
+S10 two strips in a unit square: shaded by exactly one
+   sets 729; most same-form natural errors in one set: 4; passing triples 50; refusals: FORM (fewer than 3 natural errors share the key's form) 525, RUN 80, LONE 69, HUB 39, PAIR 2
+S13 least total distance to three signed houses (decimals)
+   sets 236933; most same-form natural errors in one set: 3; passing triples 0; refusals: FORM (fewer than 3 natural errors share the key's form) 161880, LONE 44002, PAIR 29975, HUB 878, RUN 198
+S41 least total distance, meeting at a house (twelfths)
+   sets 3879; most same-form natural errors in one set: 2; passing triples 0; refusals: FORM (fewer than 3 natural errors share the key's form) 3879
+S14 least total distance to four signed points
+   sets 1499; most same-form natural errors in one set: 3; passing triples 321; refusals: FORM (fewer than 3 natural errors share the key's form) 1079, HUB 42, LONE 33, RUN 24
+S22 weighted two-house total, least
+   sets 21390; most same-form natural errors in one set: 4; passing triples 0; refusals: FORM (fewer than 3 natural errors share the key's form) 21012, HUB 268, LONE 125, KEYPRINT 48, RUN 30
+S23 excess of a chosen meeting point over the least total
+   sets 94462; most same-form natural errors in one set: 4; passing triples 0; refusals: PAIR 106643, LONE 18164, HUB 12359, KEYPRINT 736, FORM (fewer than 3 natural errors share the key's form) 640, RUN 347
+S15 lowest running balance during the week
+   sets 35519; most same-form natural errors in one set: 5; passing triples 19894; refusals: LONE 31805, PAIR 27066, FORM (fewer than 3 natural errors share the key's form) 9075, RUN 1214, HUB 1095, DIR 854, DPAIR/DSUM 722, SIGN 11
+S21 highest running elevation (signed)
+   sets 36767; most same-form natural errors in one set: 5; passing triples 18164; refusals: LONE 32755, PAIR 29858, FORM (fewer than 3 natural errors share the key's form) 10729, HUB 1230, RUN 951, DIR 858, DPAIR/DSUM 699, SIGN 485
+S16 perimeter walk: y-coordinate after d units
+   sets 235432; most same-form natural errors in one set: 4; passing triples 1453; refusals: LONE 595099, PAIR 218901, SIGN 37921, HUB 7448, RUN 5016, KEYPRINT 3553, DPAIR/DSUM 848, FORM (fewer than 3 natural errors share the key's form) 110
+S18 flip-the-dividend error: difference from the correct quotient
+   sets 2184; most same-form natural errors in one set: 3; passing triples 0; refusals: key not writable in 3 dp or as a fraction 1402, FORM (fewer than 3 natural errors share the key's form) 775, LONE 4, HUB 2, RUN 1
+S20 quotient minus its reciprocal
+   sets 868; most same-form natural errors in one set: 3; passing triples 0; refusals: FORM (fewer than 3 natural errors share the key's form) 490, key not writable in 3 dp or as a fraction 372, RUN 3, LONE 3
+S24 recipe scaled through cups per dozen
+   sets 900; most same-form natural errors in one set: 2; passing triples 0; refusals: FORM (fewer than 3 natural errors share the key's form) 839, KEYPRINT 61
+S25 square-root estimate by interpolation between consecutive squares
+   sets 208; most same-form natural errors in one set: 4; passing triples 0; refusals: LONE 528, RANGE (bound strikes 2) 176, FORM (fewer than 3 natural errors share the key's form) 32
+S26 cube-root estimate by interpolation between consecutive cubes
+   sets 336; most same-form natural errors in one set: 4; passing triples 0; refusals: LONE 995, RANGE (bound strikes 2) 340, HUB 5, RUN 3, PAIR 1
+S38 interpolation estimate vs halfway estimate: difference
+   sets 208; most same-form natural errors in one set: 1; passing triples 0; refusals: FORM (fewer than 3 natural errors share the key's form) 208
+S42 interpolation estimate of the square root of a mixed number
+   sets 2592; most same-form natural errors in one set: 4; passing triples 0; refusals: RANGE (bound strikes 2) 2296, PAIR 200, FORM (fewer than 3 natural errors share the key's form) 80, HUB 10, RUN 9
+S30 least x + y from x^2 = p/q and y^3 = -r/s
+   sets 644; most same-form natural errors in one set: 3; passing triples 0; refusals: FORM (fewer than 3 natural errors share the key's form) 642, LONE 2
+S31 xy from x^3 = -p/q and y^2 = r/s with y < 0
+   sets 644; most same-form natural errors in one set: 2; passing triples 0; refusals: FORM (fewer than 3 natural errors share the key's form) 644
+S32 approximate √(k1^2 m) + √(k2^2 m) from a printed approximation of √m
+   sets 80; most same-form natural errors in one set: 2; passing triples 0; refusals: FORM (fewer than 3 natural errors share the key's form) 80
+S33 sum of the rational numbers in a mixed list
+   sets 2952; most same-form natural errors in one set: 4; passing triples 23; refusals: FORM (fewer than 3 natural errors share the key's form) 2613, LONE 197, key not writable in 3 dp or as a fraction 108, HUB 48, RUN 13, KEYPRINT 12, PAIR 7, SIGN 5, DPAIR/DSUM 4
+S43 sum of the listed fractions greater than 1/2
+   sets 450; most same-form natural errors in one set: 4; passing triples 21; refusals: FORM (fewer than 3 natural errors share the key's form) 396, PAIR 18, LONE 15, KEYPRINT 15, RUN 12
+S44 flour needed for one more full serving
+   sets 2846; most same-form natural errors in one set: 4; passing triples 0; refusals: FORM (fewer than 3 natural errors share the key's form) 2714, HUB 152, RUN 79, PAIR 29, DPAIR/DSUM 15, RANGE (bound strikes 2) 8, LONE 2
+S47 fraction of all students who ride (three grades)
+   sets 51480; most same-form natural errors in one set: 5; passing triples 3511; refusals: FORM (fewer than 3 natural errors share the key's form) 31714, key not writable in 3 dp or as a fraction 14776, RANGE (bound strikes 2) 2480, HUB 1131, LONE 926, RUN 290, PAIR 29, DPAIR/DSUM 1
+S48 lowest running level (mixed numbers, eighths)
+   sets 31804; most same-form natural errors in one set: 4; passing triples 2294; refusals: FORM (fewer than 3 natural errors share the key's form) 27451, PAIR 836, RUN 774, KEYPRINT 532, HUB 516, LONE 391, DIR 12
+S49 perimeter walk: x-coordinate after d units
+   sets 235432; most same-form natural errors in one set: 4; passing triples 1453; refusals: LONE 548992, PAIR 189783, SIGN 39201, RUN 10771, HUB 7480, KEYPRINT 3323, FORM (fewer than 3 natural errors share the key's form) 1697, DPAIR/DSUM 887
+S50 sum of the rational numbers in a decimal list
+   sets 6912; most same-form natural errors in one set: 2; passing triples 0; refusals: FORM (fewer than 3 natural errors share the key's form) 5892, key not writable in 3 dp or as a fraction 1020
+S51 greatest rational minus least rational in a mixed list
+   sets 26240; most same-form natural errors in one set: 3; passing triples 15; refusals: FORM (fewer than 3 natural errors share the key's form) 25472, KEYPRINT 732, RUN 8, LONE 8, PAIR 3, HUB 2
+S54 sum of the rational square roots in a list of fractions
+   sets 8775; most same-form natural errors in one set: 2; passing triples 0; refusals: FORM (fewer than 3 natural errors share the key's form) 6954, key not writable in 3 dp or as a fraction 1800, KEYPRINT 21
+S55 sum of the listed powers that are less than 1
+   sets 14999; most same-form natural errors in one set: 4; passing triples 71; refusals: FORM (fewer than 3 natural errors share the key's form) 11715, LONE 9709, PAIR 1285, HUB 427, RUN 357, KEYPRINT 215, DPAIR/DSUM 214, SIGN 213
