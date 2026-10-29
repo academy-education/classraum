@@ -6112,3 +6112,13 @@ structural checks are pre-flight only. See CLAUDE.md.
     (p3) — all three picked A against key C, each naming both as support; both pre-screens flagged it too.
   - Survivors not yet inserted; release route per the gate sheet (English to a full co-founder sitting, Reading
     to a spot), queued behind the open ACT Science run.
+
+- **2026-10-29 — b10 (act-science-v12b) graded: 8 of 9 passages cleared (47 of 52 items) — the prereg's
+  "keep writing" band (>= 5).** First batch written to the v12 lessons. 52/52 keys correct (both graders),
+  0 fact errors, **0 no_source_needed, 0 free_elimination, no cross-item pattern** from either grader — against
+  5-7 no-source items per batch in b8/b9. Only drop: P9 (data representation bar graph) — R7 readability
+  confirmed by the coordinator (no value labels and no gridline at the 170 cutoff; the key needs 165 read as
+  under 170, a tenth of a tick gap), named by both graders and by r1. Repair note: label bar values or draw the
+  cutoff line. Coordinator added the empty `batch.cross_item_pattern: null` field the format requires to r1's
+  keyed.json (the re-check prompt asked only for `items`); no grade was changed. Release of the 47 not yet wired.
+  Conclusion: the v12 brief works; scale ACT Science authoring on it.

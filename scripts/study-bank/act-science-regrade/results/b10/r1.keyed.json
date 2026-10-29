@@ -1,0 +1,29 @@
+{
+ "items": [
+  {
+   "id": "ASV12b-P9-Q5",
+   "cold_pick": "B",
+   "cold_defensible": [
+    "C"
+   ],
+   "cold_note": "Threshold 170. Bars: 300=140, 400=165, 500=190, 600=178, 700=163, 800=120. Only 500 (190) and 600 (178) reach 170 -> B. But the student sees only ticks 0/47.5/95/142.5/190 and no value labels. 170 sits 27.5 above the 142.5 tick (58% of the interval); 400 (165, 47% of the interval) and 700 (163, 43%) are 5-7 units below it, about 10-15% of one tick interval. 600 (178) is 8 above. Telling 165 from 170 by eye against 47.5-unit ticks is not reliable, so a careful student could read the 400 bar as at or just above 170 and defend C. The 700 bar is 2 units lower than 400, so D needs a reading error at both and is weaker. Readability concern: these ticks are too coarse for the cut that the question asks for.",
+   "key_correct": "yes",
+   "second_defensible": {
+    "letter": "C",
+    "reason": "No value labels and ticks 47.5 units apart (142.5, 190). The 400°C bar (165) is 5 units below the 170 cut, about 10% of one tick interval, and the 600°C bar (178) that counts as passing is only 8 above. Against these ticks a careful student cannot tell 165 from 170, so reading 400°C as meeting the cut and choosing C is defensible from what is drawn."
+   },
+   "fact_error": null,
+   "no_source_needed": "no",
+   "recognised_real_data": null,
+   "free_elimination": null,
+   "readability": "problem",
+   "readability_note": "The key depends on whether the 400°C bar (165) and the 700°C bar (163) clear 170, and the student can only estimate heights against ticks at 0/47.5/95/142.5/190 with no gridline or tick at 170. The margins are 5 and 7 units below the cut (10-15% of one tick interval), and the 600°C bar that passes is 8 above. The ticks are too coarse for the cut the stem asks for. The data are right, but the drawn figure does not decide the key.",
+   "single_sentence": "no",
+   "difficulty": "medium",
+   "note": "From the data the key is correct: 190 and 178 are >= 170, while 165, 163, 140 and 120 are not. The options are nested supersets ordered by threshold, so no free elimination without the figure. The defect is purely visual: the data were authored with near-miss values at a cut that falls between ticks. It is passage-level only in the sense that the same chart sits under every question; other items asking for coarser comparisons may be fine."
+  }
+ ],
+ "batch": {
+  "cross_item_pattern": null
+ }
+}

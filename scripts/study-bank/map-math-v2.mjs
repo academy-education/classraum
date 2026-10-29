@@ -133,6 +133,20 @@ export const BATCHES = {
       freeze: { N: 20261712 }, oo: { N: 20261722 }, grade: { N: 20261740 }, cPrime: { N: 20261772 },
     },
   },
+  b6: {
+    name: 'map-v2 Math batch 6 (Operations + Statistics)', prereg: 'scripts/study-bank/MAP-MATH-V2-B6.prereg.md',
+    work: ROOT + '/scratchpad/map-math-v2-b6-work', authored: ROOT + '/scratchpad/map-v2-math-b6-work',
+    results: D + 'map-math-v2-b6/', slots: D + 'map-v2-work/math-b6/slots.json', idPrefix: 'MB6',
+    checkArgs: ['--slots', D + 'map-v2-work/math-b6/slots.json', '--prior', ROOT + '/scratchpad/map-v2-math-work/dump-b6/prior-math.json', '--families', 'isee,ssat,map'],
+    authorsPresentOnly: true, slotTotal: 6,
+    cohortStem: 'map-math-v2-b6',   // cohorts map-math-v2-b6-oa, map-math-v2-b6-data
+    cPrime: true, ooPartMax: 60, earlierFile: D + 'map-v2-work/math-b6/EXCLUSIONS-map-b6.txt', earlier: 'dump-b6', areas: ['O', 'D'], rankRecord: true,
+    expect: { authors: 4, earlierN: 688, packets: '6', ranks: { O: '0/1/1/0', D: '0/3/1/0' } },
+    seed: {
+      screen1Order: 20261801, screen1Deal: 20261802, screen2Order: 20261803, screen2Deal: 20261804,
+      freeze: { O: 20261811, D: 20261814 }, oo: { O: 20261821, D: 20261824 }, grade: { O: 20261830, D: 20261860 }, cPrime: { O: 20261871, D: 20261874 },
+    },
+  },
 }
 export const BATCH = (() => { const i = process.argv.indexOf('--batch'); if (i < 0) return 'b1'; const b = process.argv[i + 1]; process.argv.splice(i, 2); if (!BATCHES[b]) { console.error(`REFUSING: --batch must be one of ${Object.keys(BATCHES).join(' ')}`); process.exit(2) } return b })()
 export const B = BATCHES[BATCH]
@@ -170,6 +184,17 @@ function earlierBatchIds() {
   const b1text = t.slice(at), b1 = [...new Set([...b1text.matchAll(/\((MV2-[ONGD][0-9A-Z]*-\d\d)\)/g)].map(m => m[1]))]
   if (b1.length !== 221) die(`${b2x}: batch-1 section names ${b1.length} ids, expected 221`)
   if (B.earlier === 'b1') return { ids: b1, text: b1text }
+  if (B.earlier === 'dump-b6') {
+    // batch 6 prereg: R11 against every earlier MAP maths item in dump-b6 (live, staged, dropped, withdrawn,
+    // first-written); graders get EXCLUSIONS-map-b6.txt, which lists each id in parentheses with its prompt
+    const dp = ROOT + '/scratchpad/map-v2-math-work/dump-b6/prior-math.json'
+    for (const f of [dp, B.earlierFile]) if (!existsSync(f)) die(`R11 needs ${f}`)
+    const ids = [...new Set(JSON.parse(readFileSync(dp, 'utf8')).filter(x => /map-math|DB map/.test(x.file ?? '')).map(x => String(x.id)))]
+    const text = readFileSync(B.earlierFile, 'utf8')
+    const named = new Set([...text.matchAll(/^\(([^)]+)\)/gm)].map(m => m[1]))
+    if (ids.some(x => !named.has(x))) die(`${B.earlierFile} is missing earlier ids (rebuild it from dump-b6)`)
+    return { ids, text, named: named.size }
+  }
   if (B.earlier === 'b5-chains') {
     // batch 5 prereg: R11 against the 285 entries of earlier-N-chains.json plus batch 4's items in dump-b5;
     // graders get the exclusions file and the chain table
