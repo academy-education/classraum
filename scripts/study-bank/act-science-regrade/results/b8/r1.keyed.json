@@ -1,0 +1,54 @@
+{
+ "items": [
+  {
+   "id": "ASV11a-P5-Q2",
+   "cold_pick": "B",
+   "cold_defensible": [],
+   "cold_note": "S2: calling begins 'about 1 week after day length falls below 15.5 h' (preparation takes about 1 week). S3: calling begins 'about 1 week after the midges emerge' (energy build-up takes about 1 week). Both posit a ~1-week lag after their trigger. A is S3's trigger only (S2 says food does not matter); C is S2's trigger only (S3 says 'whatever the day length'); D is S1's trigger, rejected by S2 explicitly and by S3 ('whatever the ... water temperature').",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": null,
+   "free_elimination": {
+    "letters": [
+     "A",
+     "C",
+     "D"
+    ],
+    "how": "A, C and D are three different, mutually exclusive specific triggers (food, day length, water temperature): a parallel set of rival triggers, each of which can belong to only one scientist. B is the only option written at the abstraction level that two scientists with different triggers could share, and its wording 'their trigger' itself presupposes that the two scientists name different triggers. Stem + options alone give B."
+   },
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "no",
+   "difficulty": "easy",
+   "note": "Key verified: S2 'this preparation takes about 1 week' and S3 'building up the energy reserves ... takes about 1 week'. No distractor is held by both S2 and S3: A is contradicted by S2 ('food do[es] not affect'), C by S3 ('whatever the day length'), D by both. The item is sound with the source, but the option set decides it without the source: the 'abstract-commonality key vs. each scientist's specific claim' shape. Same shape as ASV11a-P6-Q2 (see that note)."
+  },
+  {
+   "id": "ASV11a-P6-Q2",
+   "cold_pick": "B",
+   "cold_defensible": [],
+   "cold_note": "S1: 'Each dark band formed during a single major storm.' S2: 'Each dark band formed from the ash of a single eruption.' Both: one band = one event. A is S1 only (storms ~every 10 yr; S2's recorded eruptions are 39 and 38 yr apart and gives no rate). C is S1 only (S2 says ash from Mount Ell). D is S2 only (S1 says rounded beach grains).",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": null,
+   "free_elimination": {
+    "letters": [
+     "C",
+     "D"
+    ],
+    "how": "C (grains eroded from the beach's own sand) and D (grains are volcanic glass) are mutually exclusive origins: the two sides of the dispute, so neither can be what both scientists agree on. That leaves A against B, where B is the only option stated as an abstraction ('a single event') that two rival mechanisms could share; A is a specific rate claim. A is not killable without the passage, so only C and D are listed."
+   },
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "no",
+   "difficulty": "easy",
+   "note": "Key verified: S1 'Each dark band formed during a single major storm', S2 'Each dark band formed from the ash of a single eruption'. A is S1 only: S2 gives eruptions 1912/1951/1989 (gaps 39 and 38 yr) and allows unrecorded smaller ones, but never states a rate, so A is not a shared claim. Both scientists also agree that bigger events make thicker bands, but that is not an option. Same shape as ASV11a-P5-Q2: in a 'Scientists X and Y would most likely agree' stem the key is the only option that generalises across the rivals ('their trigger', 'a single event'), and the distractors are each one scientist's specific claim. Only 2 items are in this re-check packet, below the brief's 3-item threshold for a cross-item pattern, so it is recorded here, not as the batch pattern. The coordinator may want to apply it to the other 'would most likely agree' items in b8."
+  }
+ ],
+ "batch": {
+  "cross_item_pattern": null
+ }
+}

@@ -71,3 +71,18 @@ breaks Kepler's third law).
 2. Recompute every key from the cells. Check every trend over all rows, every interpolation against both neighbours.
 3. Shuffle so the stored key position is roughly flat (A/B/C/D) within the cohort.
 4. Run `act-bank-helper.mjs check science`. Do not insert.
+
+## v11 lessons (b8, 2026-10-29: 1 of 7 passages cleared)
+
+Every key was right; the passages died on guessability the brief already warns about, written to one template:
+
+- **"Would most likely agree" items:** do not make the key the only general/structural option while each
+  distractor is one scientist's specific mechanism. Two of the distractors must also be claims BOTH viewpoints
+  could hold in general form, separated only by a detail stated in the passage.
+- **Yes/No claim items:** "all four reasons true in the table" is not enough. At least two distractors' reasons
+  must bear on the claim as worded too (a second counterexample-shaped reason that fails on a passage detail),
+  so the key cannot be found by asking which reason is relevant.
+- **Stems must not name the mechanism** the item asks about (P7-Q4 "blocks rain-splashed soil").
+- **No option may be the only one connected to a stem cue** (P7-Q5 "distance from the road" → only exhaust option;
+  P5-Q6 "briefly" → only duration option).
+- Write at most one "agree" item and one Yes/No item per passage, and vary their shape across the cohort.

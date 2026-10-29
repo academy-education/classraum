@@ -6040,3 +6040,15 @@ structural checks are pre-flight only. See CLAUDE.md.
   Self-audit fixes before the prereg: two CV support items where the key was the only finding-echo (b1's R8 pattern);
   the frog passage's day length (a 16 h longest day cannot drop below 15 h by mid-July; recomputed at ~49°N, now
   15.5 h near July 21 with a 1-week lag).
+
+- **2026-10-29 — b8 (act-science-v11a buffer) graded: 1 of 7 passages cleared (6 of 42 items).** Two fresh
+  graders plus a re-check (r1 on P5-Q2, P6-Q2), instrument unchanged. Every key correct (42/42 cold pick = key,
+  both graders); 0 fact errors, 0 second-defensible. Drops: 10 by rule (R4 no-source by both on P2-Q6, P5-Q6,
+  P6-Q1, P7-Q4, P7-Q5; R4b on P5-Q2/P6-Q2 confirmed by r1; R6 on P1-Q4, P2-Q5, P4-Q4), 26 passage_incomplete.
+  Cleared: P3 only. Both graders named a cross-item pattern but different ones, so R8 dropped nothing
+  (confirm.json, as b3/b5): g1 — in "Scientists X and Y would most likely agree" items the key is the only
+  structural/shared option, the distractors each one side's mechanism; g2 — in Yes/No claim items every evidence
+  clause is true in the table, so the key is the only one that bears on the claim as worded. Against the v10
+  pilot's 11/14 this is a regression: the v11 author wrote both "agree" and "Yes/No" items to one template each.
+  Brief amended (ACT-SCIENCE-V10-BRIEF.md, "v11 lessons"). Release of the 6 cleared rows (stage insert,
+  science-release.json, queue entry) not yet done.
