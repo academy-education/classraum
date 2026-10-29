@@ -1,0 +1,3071 @@
+{
+ "K01": {
+  "live_prior": [
+   {
+    "q": "left over|remain & 0\\.\\d+ (liter|L|kg|meter|m|pound)",
+    "head": "SALG3-05 [prior sat-alg-0919b.batch.json]",
+    "text": "The volume V, in liters, of water remaining in a tank t minutes after a drain is opened is modeled by V = 640 - 0.4t. Which of the following statements is best supported by the model? options [\"The tank loses 0.4 liter of water ea"
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MMG-N04",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "find 2/7 of the whole -> subtract to find the remaining land -> find 5/8 of the remaining land"
+   },
+   {
+    "id": "MMG-N02",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "dividend = divisor x quotient + remainder -> multiply 24 x 35 with partial products -> add the remainder"
+   },
+   {
+    "id": "MM2-N14",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "change over the first 4 hours: 4 x -0.64 -> subtract that from the total (subtracting a negative) -> split the remaining rise equally over 2"
+   },
+   {
+    "id": "MM2-N06",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "cost / pounds -> shift both decimal points one place: 124 / 16 -> carry the division past the remainder to hundredths"
+   },
+   {
+    "id": "MM3-N03",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "divide 315 by 24 with long division -> find the remainder after the last step -> report the remainder, not the quotient"
+   },
+   {
+    "id": "MM3-N13",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "divide and round each quotient up to whole boxes -> multiply back and subtract to find each leftover -> add the two leftovers"
+   },
+   {
+    "id": "MM3-N02",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "read the sharing as 14 divided by 5 -> find the whole pounds each -> share the leftover pounds as fifths"
+   },
+   {
+    "id": "MM5-N10",
+    "st": "LIVE",
+    "g": 5,
+    "chain": "add the money raised -> subtract the supplies -> divide by 20 and write the remainder as hundredths"
+   },
+   {
+    "id": "MM3-N12",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "divide the whole meters, carrying the remainder -> bring down each decimal digit and keep dividing -> place the decimal point in the quotien"
+   },
+   {
+    "id": "MM3-N04",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "subtract the pen's cost from the total -> divide the decimal by 4 with long division -> carry each remainder and annex a zero"
+   },
+   {
+    "id": "MM4-N16",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "find the least common multiple of 4, 6 and 9 -> take the multiple of it that lies between 115 and 150"
+   },
+   {
+    "id": "MM4-N20",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "the number of bracelets is a common factor of all three counts -> find the greatest common factor of 48, 144 and 180"
+   },
+   {
+    "id": "MB4-N6-05",
+    "st": "dropped by graders",
+    "g": 6,
+    "chain": "divide the board length by a decimal piece length to count the pieces (exact) -> multiply the count by the trim on each piece -> subtract th"
+   }
+  ]
+ },
+ "K02": {
+  "live_prior": [
+   {
+    "q": "of (the|what) remain & of (the|what) remain",
+    "head": "0fb4c9e8-471 [live sat/math-v5-psda-hard Problem-Solving and Data Analysis hard]",
+    "text": "The mean of a list of 8 numbers is 45. When two of the numbers are removed from the list, the mean of the remaining 6 numbers is 42. The two removed numbers differ by 10. What is the smaller of the two removed numbers? options [\"4"
+   },
+   {
+    "q": "of (the|what) remain & of (the|what) remain",
+    "head": "138570f9-f0e [live act/act-unit-0918 Integrating Essential Skills medium]",
+    "text": "The mean of 9 test scores is 71. When the two lowest scores are removed, the mean of the remaining 7 scores is 76. What is the mean of the two scores that were removed? options [\"36\",\"53.5\",\"58.5\",\"66\"] key 53.5"
+   },
+   {
+    "q": "of (the|what) remain & of (the|what) remain",
+    "head": "2037ed95-aee [live ssat/ssat-math-s2 Math medium]",
+    "text": "The average of 8 numbers is 12. When one of the numbers is removed, the average of the remaining 7 numbers is 13. What is the value of the number that was removed? options [\"1\",\"5\",\"7\",\"8\",\"20\"] key 5"
+   },
+   {
+    "q": "of (the|what) remain & of (the|what) remain",
+    "head": "2a93095c-a3c [live act/act-math-v25 Statistics and Probability medium]",
+    "text": "A data set consists of 20 values. Its mean is 50, and its standard deviation is 5.2, where the standard deviation is the square root of the mean of the squared deviations from the mean. Two values in the data set, 42 and 58, are r"
+   },
+   {
+    "q": "of (the|what) remain & of (the|what) remain",
+    "head": "2acafacc-8ec [live ssat/ssat-math-s4 Math easy]",
+    "text": "The average (arithmetic mean) of five numbers is 12. When one of the numbers is removed, the average of the remaining four numbers is 13. What number was removed? options [\"1\",\"8\",\"12\",\"13\",\"52\"] key 8"
+   },
+   {
+    "q": "of (the|what) remain & of (the|what) remain",
+    "head": "363a381f-8f3 [live isee/isee-math-s15 Math easy]",
+    "text": "Six judges gave a performance the scores 88, 97, 68, 85, 99, and 79. The highest and the lowest scores are dropped, and the mean of the remaining scores is the final score. What is the final score? options [\"86\",\"86.5\",\"87.25\",\"83"
+   },
+   {
+    "q": "of (the|what) remain & of (the|what) remain",
+    "head": "6a0bd975-6af [live sat/v2 Problem-Solving and Data Analysis medium]",
+    "text": "A data set of 12 numbers has an average of 55. When one number is removed from the set, the average of the remaining 11 numbers becomes 58. What was the value of the number that was removed? options [\"25\",\"22\",\"33\",\"46\"] key 22"
+   },
+   {
+    "q": "of (the|what) remain & of (the|what) remain",
+    "head": "8b838316-fc9 [live sat/math-v3 Algebra medium]",
+    "text": "A cafe opens a new 40-cup bag of flour for the morning bake. The baker first sets aside 15/2 cups for dusting the work surfaces, and each batch of scones uses 5/2 cups of flour. If the baker uses all of the remaining flour on b fu"
+   },
+   {
+    "q": "of (the|what) remain & of (the|what) remain",
+    "head": "9aa6a03c-dc9 [live act/act-math-v1 Statistics and Probability easy]",
+    "text": "The mean of 6 numbers is 20. When one of the numbers, 45, is removed from the set, what is the mean of the remaining 5 numbers? options [\"20\",\"15\",\"27.5\",\"33\"] key 15"
+   },
+   {
+    "q": "of (the|what) remain & of (the|what) remain",
+    "head": "a48e926e-2de [live ssat/ssat-math-s15 Math medium]",
+    "text": "Seven numbers have a mean of 12. If the largest of the numbers is removed, the mean of the remaining six is 10. If instead the smallest of the numbers is removed, the mean of the remaining six is 13. What is the range of the seven"
+   },
+   {
+    "q": "of (the|what) remain & of (the|what) remain",
+    "head": "b60e87ae-ff4 [live act/act-math-v25 Statistics and Probability medium]",
+    "text": "A data set consists of 12 values. The mean of the values is 52, the median is 47, and the greatest value is 94. Each of the 12 values is multiplied by 1.25, and then 6 is subtracted from each result. The greatest of the 12 new val"
+   },
+   {
+    "q": "of (the|what) remain & of (the|what) remain",
+    "head": "ba51ae4e-5b9 [live ssat/ssat-math-s3 Math medium]",
+    "text": "The 20 students in a class have an average (arithmetic mean) score of 78 on a test. When the two lowest scores are removed, the average of the remaining 18 scores is 81. What is the average of the two removed scores? options [\"51\""
+   },
+   {
+    "q": "of (the|what) remain & of (the|what) remain",
+    "head": "bc366175-a8e [live isee/isee-math-s15 Math medium]",
+    "text": "A list of 7 integers has a mean of 10. If the largest number is removed, the mean of the remaining numbers is 8. If instead the smallest number is removed, the mean of the remaining numbers is 11. What is the range of the list? op"
+   },
+   {
+    "q": "of (the|what) remain & of (the|what) remain",
+    "head": "PSDA-H-13 [prior sat-psda-hard-v1.batch.json]",
+    "text": "The mean of a list of 8 numbers is 45. When two of the numbers are removed from the list, the mean of the remaining 6 numbers is 42. The two removed numbers differ by 10. What is the smaller of the two removed numbers? options [\"4"
+   },
+   {
+    "q": "of (the|what) remain & of (the|what) remain",
+    "head": "PSDA5-24 [prior sat-psda-v5.batch.json]",
+    "text": "The table shows the scores of the 28 students who took a quiz. If the two students who scored 95 are removed from the data set, what is the mean of the remaining scores, to the nearest tenth? options [\"87.9\",\"74.8\",\"80.0\",\"80.6\"] "
+   },
+   {
+    "q": "of (the|what) remain & of (the|what) remain",
+    "head": "MMG-N04 [prior map-math-g58-v1]",
+    "text": "A farmer has 168 acres of land. He plants corn on 2/7 of the land. He plants wheat on 5/8 of the remaining land. He leaves the rest of the land empty. How many acres does he plant with wheat? options [\"30\",\"45\",\"57\",\"75\"] key 75"
+   },
+   {
+    "q": "of (the|what) remain & of (the|what) remain",
+    "head": "MMG-N04 [prior map-math-g58-v1.batch.json]",
+    "text": "A farmer has 168 acres of land. He plants corn on 2/7 of the land. He plants wheat on 5/8 of the remaining land. He leaves the rest of the land empty. How many acres does he plant with wheat? options [\"30\",\"45\",\"57\",\"75\"] key 75 "
+   },
+   {
+    "q": "of what was left & then",
+    "head": "aeaeba9d-28a [live isee/isee-math-s4 Math medium]",
+    "text": "Ravi spent 1/3 of his money on a book and then 1/4 of what was left on lunch. He has $27 remaining. How much money, in dollars, did he start with? options [\"36\",\"54\",\"81\",\"108\"] key 54"
+   },
+   {
+    "q": "of what was left & then",
+    "head": "b2c5cafc-553 [live act/act-math-v4gi Integrating Essential Skills medium]",
+    "text": "Marcus spent 1/3 of his savings on a bicycle and then spent 1/4 of what was left on a helmet. He has $90 remaining. How many dollars did he have in savings before these purchases? options [\"135\",\"180\",\"216\",\"270\"] key 180 "
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MMG-N04",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "find 2/7 of the whole -> subtract to find the remaining land -> find 5/8 of the remaining land"
+   },
+   {
+    "id": "MMG-N02",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "dividend = divisor x quotient + remainder -> multiply 24 x 35 with partial products -> add the remainder"
+   },
+   {
+    "id": "MM2-N14",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "change over the first 4 hours: 4 x -0.64 -> subtract that from the total (subtracting a negative) -> split the remaining rise equally over 2"
+   },
+   {
+    "id": "MM2-N16",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "write both numbers with the same power of 10 (or in standard form) -> subtract, regrouping across zeros"
+   },
+   {
+    "id": "MM2-N06",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "cost / pounds -> shift both decimal points one place: 124 / 16 -> carry the division past the remainder to hundredths"
+   },
+   {
+    "id": "MM3-N03",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "divide 315 by 24 with long division -> find the remainder after the last step -> report the remainder, not the quotient"
+   },
+   {
+    "id": "MM3-N13",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "divide and round each quotient up to whole boxes -> multiply back and subtract to find each leftover -> add the two leftovers"
+   },
+   {
+    "id": "MM3-N02",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "read the sharing as 14 divided by 5 -> find the whole pounds each -> share the leftover pounds as fifths"
+   },
+   {
+    "id": "MM4-N19",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "divide 11.75 by 0.37 and keep the whole number of markers -> multiply back and subtract to find the money left"
+   },
+   {
+    "id": "MM4-N04",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "rename fractions as twelfths -> regroup one whole as 12/12 added to 3/12 -> subtract wholes and twelfths"
+   },
+   {
+    "id": "MM5-N18",
+    "st": "LIVE",
+    "g": 6,
+    "chain": "add the two amounts of juice -> divide by a decimal less than 1 -> subtract the bottles given away"
+   },
+   {
+    "id": "MM5-N10",
+    "st": "LIVE",
+    "g": 5,
+    "chain": "add the money raised -> subtract the supplies -> divide by 20 and write the remainder as hundredths"
+   },
+   {
+    "id": "MM5-N28",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "five moves right: 5 x 2 1/8 = 10 5/8 -> -1 1/8 + 10 5/8 = 9 4/8 -> 9 4/8 - 1 3/8"
+   },
+   {
+    "id": "MM5P-N01",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "multiply a decimal price by a whole number -> add the two costs -> subtract from a whole-dollar amount, regrouping across zeros"
+   },
+   {
+    "id": "MM5P-N10",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "add exponents for a product of powers with the same base -> evaluate powers before multiplying -> subtract the two terms"
+   },
+   {
+    "id": "MM5P-N05",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "move left from a negative mixed number -> distance between two negatives as a difference of absolute values -> subtract mixed numbers with r"
+   },
+   {
+    "id": "MM3-N12",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "divide the whole meters, carrying the remainder -> bring down each decimal digit and keep dividing -> place the decimal point in the quotien"
+   },
+   {
+    "id": "MM3-N04",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "subtract the pen's cost from the total -> divide the decimal by 4 with long division -> carry each remainder and annex a zero"
+   },
+   {
+    "id": "MM3-N12",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "rename 6 2/3 as 20/3 -> divide by 3/8 by multiplying by 8/3 -> keep only the whole number of pieces"
+   },
+   {
+    "id": "MM4-N05",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "find 1/8 of 160 and take it away -> find 1/5 of the pages left (140) and take it away"
+   },
+   {
+    "id": "MM4-N07",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "multiply the mixed number 1 1/8 by 7 -> subtract the product from 17 by regrouping a whole as eighths"
+   },
+   {
+    "id": "MM4-N29",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "divide by a fraction, then multiply, left to right -> write a negative mixed number as a decimal -> subtract from the negative"
+   },
+   {
+    "id": "MM4-N07",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "multiply the mixed number 1 1/8 by 6 -> subtract the product from 11 by regrouping a whole as eighths (or fourths)"
+   },
+   {
+    "id": "MM4-N16",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "find the least common multiple of 4, 6 and 9 -> take the multiple of it that lies between 115 and 150"
+   },
+   {
+    "id": "MM4-N20",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "the number of bracelets is a common factor of all three counts -> find the greatest common factor of 48, 144 and 180"
+   },
+   {
+    "id": "MV2-N56-05",
+    "st": "LIVE",
+    "g": 5,
+    "chain": "divide a decimal by a whole number -> subtract a decimal from one share"
+   },
+   {
+    "id": "MV2-N56-08",
+    "st": "LIVE",
+    "g": 5,
+    "chain": "read 10^3, 10^2 and 10^1 as 1,000, 100 and 10 -> take the shipped bags away from the bag count -> combine thousands, hundreds, tens and ones"
+   },
+   {
+    "id": "MV2-N56-08",
+    "st": "revised away",
+    "g": 5,
+    "chain": "read 10^3 and 10^2 as 1,000 and 100 -> take the shipped boxes away from the box count -> combine thousands, hundreds and ones"
+   },
+   {
+    "id": "MV2-N56-21",
+    "st": "withdrawn",
+    "g": 6,
+    "chain": "move 8.5 left of -15: -23.5 -> opposite: B = 23.5 -> opposite sides of 0: add 15 + 23.5"
+   },
+   {
+    "id": "MV2-N7-08",
+    "st": "withdrawn",
+    "g": 7,
+    "chain": "opposite of 1 1/8 is -1 1/8 -> move left: -1 1/8 - 2 11/12 -> regroup 3 25/24 as 4 1/24"
+   },
+   {
+    "id": "MV2-N7-17",
+    "st": "LIVE",
+    "g": 7,
+    "chain": "loaves: 3 x 1 2/3 = 5 -> left: 11 1/2 - 5 = 6 1/2 -> keep 3/4 of it: 6 1/2 x 3/4"
+   },
+   {
+    "id": "MB4-N5-03",
+    "st": "withdrawn",
+    "g": 5,
+    "chain": "add the two lengths each gift uses -> multiply the decimal by the number of gifts -> subtract the hundredths total from a whole number of me"
+   },
+   {
+    "id": "MB4-N6-05",
+    "st": "dropped by graders",
+    "g": 6,
+    "chain": "divide the board length by a decimal piece length to count the pieces (exact) -> multiply the count by the trim on each piece -> subtract th"
+   }
+  ]
+ },
+ "K03": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MMG-N12",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "locate √5 between consecutive whole numbers and refine to tenths -> multiply the approximation by 2"
+   },
+   {
+    "id": "MMG-N01",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "rewrite the mixed number as a fraction -> multiply the fractions -> rewrite as a mixed number"
+   },
+   {
+    "id": "MM2-N04",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "subtract the saved 3 m first: 76 m -> divide 76 by 25 past the decimal point -> keep the 0 in the tenths place: 3.04"
+   },
+   {
+    "id": "MM4-N04",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "rename fractions as twelfths -> regroup one whole as 12/12 added to 3/12 -> subtract wholes and twelfths"
+   },
+   {
+    "id": "MM4-N09",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "divide 1/2 by 9 to get the size of one piece -> multiply by 7 pieces -> subtract from 3 by regrouping a whole as 18/18"
+   },
+   {
+    "id": "MM5-N07",
+    "st": "LIVE",
+    "g": 5,
+    "chain": "multiply the whole part and the fraction part by 5 -> rename in twelfths -> subtract the cut piece"
+   },
+   {
+    "id": "MM5P-N12",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "divide coefficients and subtract a negative exponent -> write amounts in scientific notation in standard form -> subtract and add the adjust"
+   },
+   {
+    "id": "MM3-N12",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "divide the whole meters, carrying the remainder -> bring down each decimal digit and keep dividing -> place the decimal point in the quotien"
+   },
+   {
+    "id": "MM3-N12",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "rename 6 2/3 as 20/3 -> divide by 3/8 by multiplying by 8/3 -> keep only the whole number of pieces"
+   },
+   {
+    "id": "MB4-N6-05",
+    "st": "dropped by graders",
+    "g": 6,
+    "chain": "divide the board length by a decimal piece length to count the pieces (exact) -> multiply the count by the trim on each piece -> subtract th"
+   }
+  ]
+ },
+ "K04": {
+  "live_prior": [
+   {
+    "q": "batch & 3/4|2/3|5/8 cup",
+    "head": "46c2321e-d31 [live isee/isee-math-s16 Math medium]",
+    "text": "One batch of a cookie recipe uses 5 cups of flour, 3 eggs, and 2/3 cup of butter. A baker has 52 cups of flour, 38 eggs, and 4 1/2 cups of butter, and she makes as many whole batches as her supplies allow. How many eggs does she h"
+   },
+   {
+    "q": "batch & 3/4|2/3|5/8 cup",
+    "head": "d802c785-d86 [live act/act-ies-alg-0919 Integrating Essential Skills medium]",
+    "text": "A recipe uses 5/6 cup of flour for each batch of muffins. A baker has 4 cups of flour and makes as many whole batches as the flour allows. How many cups of flour are left over? options [\"1/5\",\"1/3\",\"2/3\",\"4/5\"] key 2/3"
+   },
+   {
+    "q": "batch & 3/4|2/3|5/8 cup",
+    "head": "MMG-N05 [prior map-math-g58-v1]",
+    "text": "Mia used 2 1/2 cups of flour to make 3/4 of a batch of muffins. At this rate, how many cups of flour are needed to make a full batch? options [\"1 7/8\",\"3 1/8\",\"3 1/6\",\"3 1/3\"] key 3 1/3"
+   },
+   {
+    "q": "batch & 3/4|2/3|5/8 cup",
+    "head": "MMG-N05 [prior map-math-g58-v1.batch.json]",
+    "text": "Mia used 2 1/2 cups of flour to make 3/4 of a batch of muffins. At this rate, how many cups of flour are needed to make a full batch? options [\"1 7/8\",\"3 1/8\",\"3 1/6\",\"3 1/3\"] key 3 1/3 "
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MMG-N05",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "amount for a whole = amount for the part divided by the part -> divide by a fraction by multiplying by its reciprocal"
+   },
+   {
+    "id": "MM5P-N09",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "find a fraction of an amount -> add it to a negative balance -> subtract the new balance from a target"
+   },
+   {
+    "id": "MB2-N56-16",
+    "st": "withdrawn",
+    "g": 6,
+    "chain": "rewrite both mixed numbers as fractions -> multiply by the reciprocal of the divisor -> rename the improper fraction as a mixed number"
+   },
+   {
+    "id": "MB4-N6-02",
+    "st": "dropped by graders",
+    "g": 6,
+    "chain": "multiply a two-decimal amount per batch by a one-decimal number of batches (6.NS.B.3) -> subtract one spill from the product"
+   }
+  ]
+ },
+ "K05": {
+  "live_prior": [
+   {
+    "q": "of the way from",
+    "head": "f25d6138-6dd [live act/act-math-v15-mix Integrating Essential Skills easy]",
+    "text": "On a number line, point A is at -4 and point B is at 11. What number is located 3/5 of the way from A to B ? options [\"3.5\",\"5\",\"6.6\",\"9\"] key 5 "
+   },
+   {
+    "q": "of the distance from .* to",
+    "head": "9be20541-84f [live act/act-math-v26 Functions hard]",
+    "text": "The sound level L, in decibels, of a sound with intensity I is L = 10 log(I/I₀), where I₀ is a fixed reference intensity. The intensity of the sound from a machine is inversely proportional to the square of the distance from the m"
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MM3-N20",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "find 2/3 of the distance to the surface -> move up that far from -17.4 -> add the 4.8-meter dive as a negative change"
+   },
+   {
+    "id": "MV2-N56-23",
+    "st": "dropped by graders",
+    "g": 6,
+    "chain": "halfway: half of the distance 17 is 8.5, so P = -2.5 -> opposite: Q = 2.5 -> same side of 0: 9 - 2.5"
+   },
+   {
+    "id": "MV2-N7-07",
+    "st": "withdrawn",
+    "g": 7,
+    "chain": "whole climb across zero: 30.2 - (-14.4) = 44.6 -> 1/4 of 44.6 = 11.15 -> start plus climb: -14.4 + 11.15"
+   }
+  ]
+ },
+ "K06": {
+  "live_prior": [
+   {
+    "q": "greatest common factor & distributive",
+    "head": "MV2-N56-25 [prior map-math-v2 b1 withdrawn]",
+    "text": "Ana uses the distributive property to rewrite 15 + 105 as a product of two factors. The first factor is the greatest common factor of 15 and 105. The second factor is a sum of two whole numbers. What is the value of that sum? opti"
+   },
+   {
+    "q": "as a product & common factor & sum",
+    "head": "MV2-N56-25 [prior map-math-v2 b1 withdrawn]",
+    "text": "Ana uses the distributive property to rewrite 15 + 105 as a product of two factors. The first factor is the greatest common factor of 15 and 105. The second factor is a sum of two whole numbers. What is the value of that sum? opti"
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MM2-N09",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "'no common factor' means a is the GCF -> GCF of 48 and 72 = 24 -> b = 2, c = 3, then add a + b + c"
+   },
+   {
+    "id": "MV2-N56-25",
+    "st": "withdrawn",
+    "g": 6,
+    "chain": "GCF of 15 and 105 is 15 -> divide each addend by 15 -> add the quotients"
+   },
+   {
+    "id": "MB4-N7-05",
+    "st": "dropped by graders",
+    "g": 7,
+    "chain": "distribute a negative decimal over a difference -> multiply a positive decimal by a negative decimal -> add the two results"
+   },
+   {
+    "id": "MB4-N7-05",
+    "st": "revised away",
+    "g": 7,
+    "chain": "distribute a negative decimal over a difference -> multiply a positive decimal by a negative decimal -> add the two results"
+   }
+  ]
+ },
+ "K07": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MMG-N08",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "write the downward rate as a negative number -> multiply rate by time -> add the change to the negative starting position"
+   },
+   {
+    "id": "MMG-N05",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "amount for a whole = amount for the part divided by the part -> divide by a fraction by multiplying by its reciprocal"
+   },
+   {
+    "id": "MM2-N13",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "total change = rate x time with a negative rate -> convert mixed numbers to improper fractions and multiply -> rename 56/15 as a mixed numbe"
+   },
+   {
+    "id": "MM3-N01",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "match each count with its crate size -> multiply two 2-digit numbers twice -> add the two products"
+   },
+   {
+    "id": "MM5P-N08",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "multiply signed decimal rates by times -> add the changes to a negative start -> read a negative elevation as a depth"
+   },
+   {
+    "id": "MM3-N18",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "find the change from a positive to a negative reading -> divide by the hours to get the rate -> extend the rate and add to a negative"
+   },
+   {
+    "id": "MM3-N18",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "find the change from 3.5 to -4.5 across 0 -> divide by the 5 hours for the hourly rate -> extend the rate 3 hours from the midnight reading"
+   },
+   {
+    "id": "MM5-N44",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "second rate: 2.5 x 2.4 x 10^5 = 6.0 x 10^5 -> total: 4.8 x 10^5 + 1.8 x 10^6 = 2.28 x 10^6 -> mean: divide by 5 hours"
+   },
+   {
+    "id": "MV2-N56-07",
+    "st": "LIVE",
+    "g": 5,
+    "chain": "divide each farm's total by its own crate count -> two-digit divisors -> subtract the per-crate amounts -> scale the difference to 5 crates"
+   },
+   {
+    "id": "MV2-N56-08",
+    "st": "LIVE",
+    "g": 5,
+    "chain": "read 10^3, 10^2 and 10^1 as 1,000, 100 and 10 -> take the shipped bags away from the bag count -> combine thousands, hundreds, tens and ones"
+   },
+   {
+    "id": "MV2-N56-08",
+    "st": "revised away",
+    "g": 5,
+    "chain": "read 10^3 and 10^2 as 1,000 and 100 -> take the shipped boxes away from the box count -> combine thousands, hundreds and ones"
+   },
+   {
+    "id": "MV2-N56-16",
+    "st": "LIVE",
+    "g": 6,
+    "chain": "downstream speed: add the current, 5.65 + 0.25 -> distance: multiply speed by time, 5.9 x 1.4 -> subtract the one-time trip back of 0.75 km"
+   },
+   {
+    "id": "MV2-N56-16",
+    "st": "revised away",
+    "g": 6,
+    "chain": "downstream speed: add the current, 8.25 + 0.5 -> distance: multiply speed by time, 8.75 x 1.4"
+   },
+   {
+    "id": "MV2-N56-17",
+    "st": "LIVE",
+    "g": 6,
+    "chain": "time for pump A: 10 10/11 / 1 1/5 -> time for pump B: 10 10/11 / 1 3/5 -> subtract the two times, regrouping a whole"
+   },
+   {
+    "id": "MV2-N56-17",
+    "st": "revised away",
+    "g": 6,
+    "chain": "time for pump A: 5 5/7 / 5/6 -> time for pump B: 5 5/7 / 1 1/3 -> subtract the two times"
+   },
+   {
+    "id": "MV2-N7-11",
+    "st": "withdrawn",
+    "g": 7,
+    "chain": "A: 2.6 x 3 = 7.8 -> B: -(3.85 x 5) = -19.25 -> distance across zero: 7.8 - (-19.25)"
+   },
+   {
+    "id": "MV2-N7-15",
+    "st": "withdrawn",
+    "g": 7,
+    "chain": "net change per minute: -1.35 + 0.4 -> 9 minutes: 9 x (-0.95) = -8.55 -> start plus change: 6.4 + (-8.55)"
+   },
+   {
+    "id": "MV2-N7-18",
+    "st": "LIVE",
+    "g": 7,
+    "chain": "down: 11.5 x 4.5 = 51.75 -> up: 5.6 x 2 = 11.2 -> start plus changes: -6.4 - 51.75 + 11.2"
+   },
+   {
+    "id": "MV2-N8-05",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "time = total ÷ rate -> divide coefficients 4 ÷ 1.6 -> subtract exponents 8 - 2 -> write 2.5 x 10^6 in standard form"
+   },
+   {
+    "id": "MB2-N56-19",
+    "st": "dropped by graders",
+    "g": 6,
+    "chain": "elapsed time across midnight -> rate times hours for the fall -> extend a below-zero reading further below zero -> gap across zero on the th"
+   }
+  ]
+ },
+ "K08": {
+  "live_prior": [
+   {
+    "q": "how many & irrational",
+    "head": "MM4-N35 [prior map-math-g58-v4]",
+    "text": "Mr. Ortiz writes these eight numbers on the board: √0.49, √0.4, π, ∛(-0.027), √20 ÷ √5, 0.4111... (the digit 1 repeats forever), 0.1010010001... (the runs of 0s keep getting longer), and 5.8988988898888... (the runs of 8s keep get"
+   },
+   {
+    "q": "how many & irrational",
+    "head": "MM4-N35 [prior map-math-g58-v4 (as first written)]",
+    "text": "Mr. Ortiz writes these eight numbers on the board: √36, √40, ∛(-27), √0.49, π, 0.5555... (the digit 5 repeats forever), 0.1011011101111... (the runs of 1s keep getting longer), and 2.1211211121111... (the runs of 1s keep getting l"
+   },
+   {
+    "q": "how many & irrational",
+    "head": "MM4-N35 [prior map-math-g58-v4.batch.json]",
+    "text": "Mr. Ortiz writes these eight numbers on the board: √0.49, √0.4, π, ∛(-0.027), √20 ÷ √5, 0.4111... (the digit 1 repeats forever), 0.1010010001... (the runs of 0s keep getting longer), and 5.8988988898888... (the runs of 8s keep get"
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MM4-N35",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "simplify each root (a perfect square or cube under it, or a quotient of roots) -> repeating decimals are rational -> endless non-repeating d"
+   },
+   {
+    "id": "MM4-N35",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "decide which roots are of perfect squares or cubes -> a repeating decimal is rational -> a patterned decimal with no repeating block is irra"
+   }
+  ]
+ },
+ "K09": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MMG-N14",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "divide coefficients and subtract exponents, one of them negative -> rewrite 0.2 x 10^k in scientific notation -> convert milligrams to kilog"
+   },
+   {
+    "id": "MM2-N17",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "a negative exponent means the reciprocal: 2^-2 = 1/4 -> write 1/4 as 0.25 and subtract from 6"
+   },
+   {
+    "id": "MM2-N19",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "2^-2 = 1/4 and 3^-2 = 1/9 -> 3 x 1/4 = 3/4 -> add 3/4 + 1/9 in 36ths"
+   },
+   {
+    "id": "MM2-N20",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "2^-2 x 2^6 = 2^4 -> (2^4)^3 = 2^12 -> divide by (2^2)^2 = 2^4"
+   },
+   {
+    "id": "MM2-N20",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "product of powers with a negative exponent -> power of a power -> divide by a negative power: subtract a negative exponent"
+   },
+   {
+    "id": "MM3-N22",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "divide the coefficients -> subtract the exponents, one of them negative -> write the result in standard form"
+   },
+   {
+    "id": "MM3-N23",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "evaluate an odd power of a negative base -> rewrite a negative exponent as a reciprocal -> multiply a negative whole number by a fraction"
+   },
+   {
+    "id": "MM3-N24",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "write 1/1024 as a power of 4 with a negative exponent -> write 625 as a power of 5 -> subtract a negative exponent"
+   },
+   {
+    "id": "MM3-N25",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "multiply the coefficients -> add the exponents -> write the result in standard form"
+   },
+   {
+    "id": "MM3-N27",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "find the cube root of a decimal -> square the decimal -> take the reciprocal for the negative exponent"
+   },
+   {
+    "id": "MM5P-N12",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "divide coefficients and subtract a negative exponent -> write amounts in scientific notation in standard form -> subtract and add the adjust"
+   },
+   {
+    "id": "MM3-N24",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "write 1/128 as a power of 2 with a negative exponent -> write 81 as a power of 3 -> subtract a negative exponent"
+   },
+   {
+    "id": "MM3-N25",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "multiply the decimal coefficients -> add the exponents, one of them negative -> write the product in standard form"
+   },
+   {
+    "id": "MM4-N36",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "a negative exponent is the reciprocal of the positive power -> 2^3 = 8 -> multiply 75 by 1/8"
+   },
+   {
+    "id": "MM4-N38",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "write 8 and 32 as powers of 2 -> power of a power multiplies exponents -> quotient of powers subtracts exponents"
+   },
+   {
+    "id": "MM4-N40",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "list powers of 2 upward to 64 -> list negative powers down to 1/64 and compare with 0.01 -> count the exponents from -6 to 6, including 0"
+   },
+   {
+    "id": "MM4-N36",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "negative exponent means reciprocal: 2/5 -> square the reciprocal: 4/25"
+   },
+   {
+    "id": "MM4-N38",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "write 8 and 32 as powers of 2 -> power of a power with a negative exponent: (2^3)^-2 = 2^-6 -> quotient rule: -6 - 5"
+   },
+   {
+    "id": "MM4-N40",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "powers of 3 below 100: n = 0 to 4 -> negative powers above 1/1000: n = -1 to -6 -> count both sides including n = 0"
+   },
+   {
+    "id": "MM5-N39",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "quotient inside: 7 - (-2) = 9 -> power of a power: 9 x (-4) = -36 -> quotient: -36 - (-42) = 6"
+   },
+   {
+    "id": "MM5-N40",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "power of a power: (-10)(4) = -40 -> product: 31 + (-40) = -9 -> quotient: -9 - (-16) = 7"
+   },
+   {
+    "id": "MV2-N8-01",
+    "st": "LIVE",
+    "g": 8,
+    "chain": "-2^4 is the opposite of 2^4 -> 2^-2 is the reciprocal 1/4 -> 7^0 is 1 -> combine -16 + 14 - 6"
+   },
+   {
+    "id": "MV2-N8-07",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "quotient of powers: subtract exponents 3 - (-3) = 6 -> 4^6 = 4096 -> multiply by 5"
+   },
+   {
+    "id": "MV2-N8-12",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "add exponents 5 + (-2) = 3 -> 2^3 = 8 -> multiply by 5"
+   },
+   {
+    "id": "MB4-N8-05",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "decimal base to a negative exponent as a whole-number power of the reciprocal -> coefficient times a negative power -> zero exponent on a su"
+   },
+   {
+    "id": "MB5-N8-01",
+    "st": "LIVE",
+    "g": 8,
+    "chain": "negative exponent means reciprocal: x^2 = 25 -> x is negative, so take the negative square root: x = -5 -> evaluate x^3 - 6x with signs: -12"
+   }
+  ]
+ },
+ "K10": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MMG-N13",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "take the square root of a decimal perfect square -> shorten the side -> square the new side"
+   },
+   {
+    "id": "MM4-N35",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "simplify each root (a perfect square or cube under it, or a quotient of roots) -> repeating decimals are rational -> endless non-repeating d"
+   },
+   {
+    "id": "MM4-N35",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "decide which roots are of perfect squares or cubes -> a repeating decimal is rational -> a patterned decimal with no repeating block is irra"
+   }
+  ]
+ },
+ "K11": {
+  "live_prior": [
+   {
+    "q": "2\\^a|2\\^\\{?a|2\\^x & 3\\^",
+    "head": "c4f4813b-8b1 [live ssat/ssat-math-s16 Math medium]",
+    "text": "If 2^x = 3 and 3^y = 4, what is the value of 2^(xy) ? options [\"3\",\"12\",\"4\",\"81\",\"7\"] key 4"
+   },
+   {
+    "q": "2\\^a|2\\^\\{?a|2\\^x & 3\\^",
+    "head": "MM3-N24 [prior map-math-g58-v3 (as first written)]",
+    "text": "Two whole-number exponents are hidden in these facts: 2 raised to the power a equals 1/128, and 3 raised to the power b equals 81. In symbols, 2^a = 1/128 and 3^b = 81. What is b - a? options [\"-3\",\"11\",\"34\",\"68\"] key 11 "
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MM3-N24",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "write 1/1024 as a power of 4 with a negative exponent -> write 625 as a power of 5 -> subtract a negative exponent"
+   },
+   {
+    "id": "MM3-N24",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "write 1/128 as a power of 2 with a negative exponent -> write 81 as a power of 3 -> subtract a negative exponent"
+   }
+  ]
+ },
+ "K12": {
+  "live_prior": [
+   {
+    "q": "how many (positive )?(factors|divisors)",
+    "head": "20fbf7cc-c78 [live ssat/ssat-math-s15 Math medium]",
+    "text": "How many positive divisors of 720 are multiples of 15? options [\"4\",\"15\",\"10\",\"48\",\"8\"] key 10"
+   },
+   {
+    "q": "how many (positive )?(factors|divisors)",
+    "head": "2ee78243-b32 [live ssat/ssat-math-s17 Math medium]",
+    "text": "The only prime factors of the positive integer n are 2 and 3. Multiplying n by 2 gives a number that has exactly 3 more positive divisors than n has, and multiplying n by 3 gives a number that has exactly 6 more positive divisors "
+   },
+   {
+    "q": "how many (positive )?(factors|divisors)",
+    "head": "6b2e9374-ac0 [live isee/isee-math-s17 Math medium]",
+    "text": "How many positive factors of 120 are NOT factors of 84? options [\"4\",\"10\",\"8\",\"1\"] key 10"
+   },
+   {
+    "q": "how many (positive )?(factors|divisors)",
+    "head": "76f0c5df-81d [live ssat/ssat-math-s5 Math easy]",
+    "text": "How many positive factors does 36 have? options [\"4\",\"5\",\"8\",\"9\",\"18\"] key 9"
+   },
+   {
+    "q": "how many (positive )?(factors|divisors)",
+    "head": "870c9e39-275 [live ssat/ssat-math-s2 Math medium]",
+    "text": "Let N = 2^4 x 3^2 x 5. How many positive factors of N are perfect squares? options [\"30\",\"15\",\"12\",\"6\",\"5\"] key 6"
+   },
+   {
+    "q": "how many (positive )?(factors|divisors)",
+    "head": "a512a3c8-7fb [live isee/isee-math-s15 Math medium]",
+    "text": "How many positive divisors of 2^4 x 3^3 x 5 are multiples of 10? options [\"12\",\"16\",\"8\",\"9\"] key 16 "
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MV2-N56-07",
+    "st": "LIVE",
+    "g": 5,
+    "chain": "divide each farm's total by its own crate count -> two-digit divisors -> subtract the per-crate amounts -> scale the difference to 5 crates"
+   }
+  ]
+ },
+ "K13": {
+  "live_prior": [
+   {
+    "q": "distinct prime",
+    "head": "4579a5ee-40c [live ssat/ssat-math-q9 Math medium]",
+    "text": "What is the sum of the distinct prime factors of 546? options [\"22\",\"25\",\"26\",\"18\",\"12\"] key 25"
+   },
+   {
+    "q": "distinct prime",
+    "head": "8422aa76-aee [live isee/isee-math-s10 Math easy]",
+    "text": "What is the sum of the distinct prime factors of 180? options [\"10\",\"30\",\"15\",\"11\"] key 10 "
+   }
+  ],
+  "earlier": []
+ },
+ "K14": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MMG-N03",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "multiply the number of bags by a mixed number -> subtract the saved flour -> divide by a unit fraction"
+   }
+  ]
+ },
+ "K15": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MMG-N12",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "locate √5 between consecutive whole numbers and refine to tenths -> multiply the approximation by 2"
+   },
+   {
+    "id": "MM4-N39",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "approximate √50 just above 7 -> approximate √30 just below 5.5 -> subtract the approximations and round only at the end"
+   },
+   {
+    "id": "MM4-N37",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "edge = cube root of the volume -> cube root of 5 is between 1 and 2 -> cube decimals to find the closest"
+   },
+   {
+    "id": "MM4-N31",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "place the square root between two whole numbers -> narrow to tenths by squaring -> square two-decimal choices and compare with 7.6"
+   },
+   {
+    "id": "MM4-N33",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "product of square roots is the square root of the product -> place the root of 20 between 4 and 5 -> square choices to find the closest"
+   },
+   {
+    "id": "MM4-N31",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "square each decimal -> compare the squares with 3.3 -> pick the decimal whose square is closest to 3.3"
+   },
+   {
+    "id": "MM4-N33",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "approximate √2 as 1.414 and √3 as 1.732 -> add the approximations -> pick the closest decimal"
+   }
+  ]
+ },
+ "K16": {
+  "live_prior": [
+   {
+    "q": "\\(-1\\)\\^",
+    "head": "b5a7e6e8-3fa [live isee/isee-math-s15 Math medium]",
+    "text": "The nth term of a sequence is (-1)^n x (2n + 1), so the sequence begins -3, 5, -7, 9, .... What is the sum of the first 25 terms? options [\"-51\",\"-25\",\"-27\",\"75\"] key -27 "
+   }
+  ],
+  "earlier": []
+ },
+ "K17": {
+  "live_prior": [
+   {
+    "q": "√ & order|least to greatest|middle",
+    "head": "2739e126-ba2 [live sat/v2 Geometry and Trigonometry easy]",
+    "text": "In right triangle ABC, the right angle is at B, leg AB = 8, and leg BC = 15. What is the length of the hypotenuse AC? options [\"√161\",\"17\",\"23\",\"19\"] key 17"
+   },
+   {
+    "q": "√ & order|least to greatest|middle",
+    "head": "29d88e12-bfe [live sat/v2 Geometry and Trigonometry hard]",
+    "text": "In right triangle ABC the right angle is at B, and altitude BD is drawn to hypotenuse AC. If AD = 4 and DC = 9, what is the length of AB? options [\"6\",\"2√13\",\"13\",\"√117\"] key 2√13"
+   },
+   {
+    "q": "√ & order|least to greatest|middle",
+    "head": "4822c21c-193 [live act/act-math-v25 Algebra medium]",
+    "text": "The distance d, in miles, to the horizon for an observer whose eyes are h feet above sea level is approximately d = √(1.5h). An observer's eyes are 40 feet above sea level. To the nearest hundredth of a foot, how many feet higher "
+   },
+   {
+    "q": "√ & order|least to greatest|middle",
+    "head": "572d2c0d-d84 [live sat/v2 Geometry and Trigonometry medium]",
+    "text": "In right triangle ABC, the right angle is at B, the hypotenuse AC = 15, and leg BC = 12. What is the length of leg AB? options [\"√39\",\"3√11\",\"6\",\"9\"] key 9"
+   },
+   {
+    "q": "√ & order|least to greatest|middle",
+    "head": "9a77794d-a2c [live ssat/ssat-math-s17 Math medium]",
+    "text": "Point P lies inside rectangle ABCD, whose vertices are labeled in order around the rectangle. The distance from P to A is 6, the distance from P to B is 24, and the distance from P to C is 32. What is the distance from P to D? opt"
+   },
+   {
+    "q": "√ & order|least to greatest|middle",
+    "head": "MM5-N37 [prior map-math-g58-v5.batch.json]",
+    "text": "On a quiz, Jun must evaluate -4^2 + √(225 + 400), using the rules for exponents, square roots and the order of operations. What number should Jun get? options [\"9\",\"17\",\"19\",\"41\"] key 9 "
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MM2-N01",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "standard algorithm, 46 over 37 -> partial product 46 x 7 with a carry -> partial product 46 x 30 with a carry -> add the partial products"
+   },
+   {
+    "id": "MM5-N37",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "-4^2 = -(4 x 4) = -16 -> square root of the sum: √625 = 25 -> -16 + 25"
+   },
+   {
+    "id": "MM4-N19",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "write the mixed numbers as decimals -> order the four numbers, including the two negatives -> add the distances from 0 of the least and the "
+   },
+   {
+    "id": "MV2-N7-14",
+    "st": "withdrawn",
+    "g": 7,
+    "chain": "divide first: -7.2 / 2.5 = -2.88 -> then multiply: -2.88 x 4.5 = -12.96 -> subtract a negative: -3.5 - (-12.96)"
+   }
+  ]
+ },
+ "K18": {
+  "live_prior": [
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "0d1827b5-5a8 [live act/act-alg-fn-0918 Algebra medium]",
+    "text": "What is the sum of all integer values of x that satisfy |x - 4| + |x + 2| = 6? options [\"7\",\"2\",\"1\",\"3\"] key 7"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "109c9105-5cf [live sat/sat-alg-unit-0919 Algebra medium]",
+    "text": "If |x - 5| <= 3 and |y + 2| <= 1, what is the greatest possible value of 3x - 2y? options [\"30\",\"26\",\"8\",\"18\"] key 30"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "14b8fa0a-69f [live sat/v2 Algebra medium]",
+    "text": "What is the sum of all solutions to the equation |2x − 3| = |x + 4|? options [\"7\",\"20/3\",\"22/3\",\"-1/3\"] key 20/3"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "16b8e24e-aaf [live isee/isee-math-s16 Math hard]",
+    "text": "How many integers x satisfy |x - 2| + |x + 4| <= 10? options [\"9\",\"15\",\"10\",\"11\"] key 11"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "16b9481b-2f1 [live isee/isee-math-s15 Math medium]",
+    "text": "What value of x satisfies |x - 4| = 2x + 1 ? options [\"1\",\"-5\",\"5/3\",\"3\"] key 1"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "1cc39a79-69b [live ssat/ssat-math-s14 Math medium]",
+    "text": "What is the greatest value of x for which |x - 3| + |x + 5| = 12? options [\"2\",\"-7\",\"7\",\"5\",\"-1\"] key 5"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "2517f8e8-9ad [live sat/v2 Algebra medium]",
+    "text": "The function f(x) = |x − 3| + |x + 2| has a minimum value m over all real numbers x. What is m? options [\"1\",\"0\",\"5\",\"6\"] key 5"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "269cf9ec-599 [live ssat/ssat-math-s16 Math medium]",
+    "text": "The numbers x and y satisfy |x| + x = 10 and |y| - y = 12. What is the value of x + y? options [\"11\",\"-2\",\"-1\",\"-7\",\"4\"] key -1"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "2be5111d-b5c [live sat/sat-math-v24-adv Advanced Math medium]",
+    "text": "For constants a, h, and k with a > 0, let f(x) = a|x - h| + k. In the xy-plane, the V-shaped graph of y = f(x) contains the points (-2, 20), (10, 20), and (6, 8). At what y-value does this graph cross the y-axis? options [\"14\",\"16"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "32189cf1-398 [live sat/sat-math-v24-adv Advanced Math medium]",
+    "text": "Each real number x satisfying |x - 5| = |x^2 - 25| is squared, and those squares are added together. What total results? options [\"41\",\"61\",\"77\",\"102\"] key 77"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "3b013506-34d [live act/act-math-v18 Algebra medium]",
+    "text": "What is the sum of the squares of all real solutions of the equation |x² − 4x| = 5 ? options [\"32\",\"16\",\"26\",\"50\"] key 26"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "3b9c28f6-ffd [live sat/sat-math-v25-adv Advanced Math medium]",
+    "text": "Every real number x that satisfies |x^2 - 19| = 3x + 9 is listed, and the listed numbers are multiplied together. What product results? options [\"-28\",\"-10\",\"14\",\"280\"] key 14"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "3cdb9c14-f46 [live sat/sat-math-v25-adv Advanced Math medium]",
+    "text": "In the xy-plane, the parabola y = (x - 7)^2 - 20 crosses the V-shaped graph of y = |x - 7| at exactly two points. Find the product of the x-coordinates of those crossing points. options [\"24\",\"33\",\"36\",\"792\"] key 24"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "43d79e48-416 [live sat/v2 Algebra medium]",
+    "text": "What is the sum of all values of x that satisfy |3x - 1| = |x + 5|? options [\"4\",\"3\",\"-1\",\"2\"] key 2"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "4580fe89-859 [live act/act-math-v1 Algebra medium]",
+    "text": "How many integers x satisfy the inequality |x - 3| ≤ 5? options [\"5\",\"8\",\"10\",\"11\"] key 11"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "528bfa9d-305 [live sat/sat-math-v20-adv Advanced Math hard]",
+    "text": "In the xy-plane, the graph of y = |x² − 2x − 3| and the line y = x + b, where b is a constant, intersect at exactly three points. What is the greatest possible value of b? options [\"−21/4\",\"1\",\"13/4\",\"4\"] key 13/4"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "56102dc4-575 [live sat/sat-math-v29-full Advanced Math hard]",
+    "text": "Let f(x) = (x - 5)^2 - 14. For exactly one value of the constant k, the equation f(|x|) = k is true for exactly three real numbers x. What is the value of f(4) - k? options [\"-24\",\"-13\",\"1\",\"56\"] key -24"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "64d48cdd-055 [live act/act-math-v25 Functions medium]",
+    "text": "In the standard (x,y) coordinate plane, the graphs of y = 2|x − 4| − 3 and y = 9 − |x| intersect at exactly two points. To the nearest hundredth, what is the distance between these two points? options [\"9.65\",\"11.31\",\"9.61\",\"15.08"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "699edd9c-c38 [live sat/v2 Algebra medium]",
+    "text": "What is the sum of all values of x that satisfy |2x - 5| = |x + 4| ? options [\"9\",\"1/3\",\"28/3\",\"10\"] key 28/3"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "70c9d0a2-a25 [live act/act-math-v26 Algebra hard]",
+    "text": "What is the sum of all real solutions of the equation |x + 3| + |x − 9| = 1.25x + 5, rounded to the nearest hundredth? options [\"8.98\",\"14.97\",\"20.57\",\"20.27\"] key 20.27"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "71fb4402-e3f [live act/act-math-v1 Functions easy]",
+    "text": "Let f(x) = |x|. The graph of g(x) = f(x − 3) + 2 is a translation of the graph of f. What are the coordinates of the vertex of the graph of g? options [\"(-3, -2)\",\"(-3, 2)\",\"(3, 2)\",\"(3, -2)\"] key (3, 2)"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "72068a31-d78 [live ssat/ssat-math-s15 Math medium]",
+    "text": "What value of x satisfies |x - 2| = 2x + 5 ? options [\"-7\",\"-7/3\",\"-1\",\"3\",\"7/3\"] key -1"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "78bfa7df-e46 [live sat/v2 Algebra medium]",
+    "text": "How many distinct real solutions does the equation |x^2 - 4| = 3 have? options [\"1\",\"2\",\"4\",\"3\"] key 4"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "7d1c0baf-e59 [live isee/isee-math-s17 Math medium]",
+    "text": "The equation |x - 3| = 2|x + 1| has exactly two solutions. What is the product of the two solutions? options [\"-14/3\",\"-5/3\",\"-7\",\"-25/3\"] key -5/3"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "7f79547f-7e8 [live ssat/ssat-math-s4 Math hard]",
+    "text": "If x is a real number and x² > x, which of the following must be true? options [\"x > 1\",\"x > 0\",\"x < 0\",\"|x| > 1\",\"x ≠ 0 and x ≠ 1\"] key x ≠ 0 and x ≠ 1"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "80c14bd7-842 [live act/act-math-v8-nq Number and Quantity easy]",
+    "text": "If |x - 3| = 8, what is the greatest possible value of x ? options [\"11\",\"-5\",\"5\",\"24\"] key 11"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "85f54d52-517 [live isee/isee-math-s17 Math hard]",
+    "text": "The numbers x and y satisfy both of the equations below. |x| + x + y = 10 x + |y| - y = 15 What is the value of x + y ? options [\"3\",\"-5\",\"25\",\"9\"] key 3"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "87b83c3e-e64 [live sat/v2 Advanced Math medium]",
+    "text": "How many real solutions does the equation |x^2 - 4| = 3 have? options [\"2\",\"3\",\"1\",\"4\"] key 4"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "917721d3-c36 [live sat/v2 Advanced Math medium]",
+    "text": "What is the sum of all solutions to the equation |2x - 5| = |x + 4|? options [\"9\",\"28/3\",\"1/3\",\"26/3\"] key 28/3"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "9d26969d-062 [live sat/sat-math-v16-adv Advanced Math hard]",
+    "text": "What is the positive solution to the equation |x − 3| + |x + 2| = 11? options [\"1\",\"5\",\"6\",\"8.5\"] key 6"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "a002a827-5d8 [live act/act-math-v11 Algebra hard]",
+    "text": "What is the solution of the equation |x − 8| = 2x − 7 ? options [\"-1\",\"4\",\"5\",\"15\"] key 5"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "b1c2f5c9-a5a [live act/act-math-v8-nq Number and Quantity medium]",
+    "text": "If |x - 3| = |x + 7|, what is the value of x ? options [\"-2\",\"5\",\"-5\",\"10\"] key -2"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "b3f7f307-71a [live isee/isee-math-s17 Math medium]",
+    "text": "How many integers x satisfy the inequality ||x - 4| - 7| <= 3 ? options [\"14\",\"4\",\"20\",\"12\"] key 14"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "bebd816e-c66 [live isee/isee-math-s16 Math easy]",
+    "text": "The function g is defined by g(x) = k|x - 4| + 3, where k is a constant. If g(1) = 15, what is the value of g(10)? options [\"27\",\"30\",\"39\",\"59\"] key 27"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "cf4e00b1-749 [live sat/sat-alg-0918 Algebra medium]",
+    "text": "If |3x + 4| = |x - 8|, what is the greater of the two possible values of x? options [\"1\",\"-6\",\"-3\",\"3\"] key 1"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "d22e5299-4ab [live sat/v2 Algebra medium]",
+    "text": "How many real values of x satisfy |x^2 - 4| = 3? options [\"2\",\"3\",\"0\",\"4\"] key 4"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "d41e5451-c42 [live sat/sat-math-v12 Advanced Math hard]",
+    "text": "What is the sum of all real solutions to |x - 3| = x^2 - 9? options [\"-4\",\"-3\",\"3\",\"-1\"] key -1"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "e7da6664-9c4 [live sat/v2 Algebra medium]",
+    "text": "What is the sum of all values of x that satisfy |3x − 4| = |x + 8|? options [\"7\",\"5\",\"-7\",\"6\"] key 5"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "f3fc14f3-f47 [live act/act-math-v2-alg Algebra medium]",
+    "text": "How many integer values of x satisfy the inequality |x - 4| ≤ 6? options [\"13\",\"17\",\"11\",\"12\"] key 13"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "f6c7e47d-951 [live act/act-math-v3nq Number and Quantity hard]",
+    "text": "How many integer values of x satisfy |x − 3| + |x + 5| = 8? options [\"0\",\"2\",\"7\",\"9\"] key 9"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "fe2338f1-b82 [live sat/sat-alg-h5 Algebra medium]",
+    "text": "If |x - 10| = 2x - 8, what is the value of x? options [\"-2\",\"6\",\"9\",\"18\"] key 6"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "ffe54dab-497 [live ssat/ssat-math-s15 Math easy]",
+    "text": "In the coordinate plane, the graph of y = |x + 1| and the horizontal line y = 5 enclose a region. What is the area of that region, in square units? options [\"50\",\"20\",\"25\",\"16\",\"10\"] key 25"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "SADV2-11 [prior sat-adv-0919.batch.json]",
+    "text": "The function f is defined by f(x) = −3|x − 2| + 15. In the xy-plane, the graph of y = f(x) intersects the x-axis at points P and Q. What is the length of segment PQ? options [\"10\",\"24\",\"12\",\"7\"] key 10"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "SADV2-12 [prior sat-adv-0919.batch.json]",
+    "text": "The function f is defined by f(x) = |x − 4| − |x + 2|. What is the value of f(−5) − f(6)? options [\"0\",\"12\",\"4\",\"6\"] key 12"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "AM2-15 [prior sat-adv-hard-v2.batch.json]",
+    "text": "How many integer values of x satisfy the inequality |x^2 - 10| <= 6 ? options [\"3\",\"2\",\"6\",\"9\"] key 6"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "AM2-17 [prior sat-adv-hard-v2.batch.json]",
+    "text": "What is the sum of all solutions to the equation |x - 3| = 2x + 1 ? options [\"-10/3\",\"-4\",\"0\",\"2/3\"] key 2/3"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "AM3-04 [prior sat-adv-hard-v3.batch.json]",
+    "text": "What is the solution to the equation |x − 3| = 2x − 9 ? options [\"2\",\"4\",\"6\",\"10\"] key 6"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "SALG-03 [prior sat-alg-0918.batch.json]",
+    "text": "If |3x + 4| = |x - 8|, what is the greater of the two possible values of x? options [\"1\",\"-6\",\"-3\",\"3\"] key 1"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "SALG2-11 [prior sat-alg-0919.batch.json]",
+    "text": "If |x - 5| <= 3 and |y + 2| <= 1, what is the greatest possible value of 3x - 2y? options [\"30\",\"26\",\"8\",\"18\"] key 30"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "ALG-H5-04 [prior sat-alg-h5.batch.json]",
+    "text": "If |x - 10| = 2x - 8, what is the value of x? options [\"-2\",\"6\",\"9\",\"18\"] key 6"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "ALG-H2-03 [prior sat-alg-hard-v2.batch.json]",
+    "text": "What is the sum of all values of x that satisfy |x + 7| = 3x - 13? options [\"1.5\",\"8.5\",\"10\",\"11.5\"] key 10"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "ALG-H2-09 [prior sat-alg-hard-v2.batch.json]",
+    "text": "If the ordered pair (x, y) satisfies both y = 2x + 1 and y = |x| + 4, what is the value of x + y? options [\"4\",\"7\",\"10\",\"14\"] key 10"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "ALG-H3-03 [prior sat-alg-hard-v3.batch.json]",
+    "text": "What value of x satisfies |x - 25| = 2x - 38? options [\"13\",\"19\",\"21\",\"25\"] key 21"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "SM12A-12 [prior sat-math-v12-adv.batch.json]",
+    "text": "What is the sum of all real solutions to |x - 3| = x^2 - 9? options [\"-4\",\"-3\",\"3\",\"-1\"] key -1"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "SM12L-20 [prior sat-math-v12-alg.batch.json]",
+    "text": "What is the least integer value of x that satisfies |x - 5| < 3x - 7? options [\"7/3\",\"4\",\"3\",\"12\"] key 4"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "SM16A-17 [prior sat-math-v16-adv.kept.batch.json]",
+    "text": "What is the positive solution to the equation |x − 3| + |x + 2| = 11? options [\"1\",\"5\",\"6\",\"8.5\"] key 6"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "SM20A-B4 [prior sat-math-v20-adv-b.batch.json]",
+    "text": "In the xy-plane, the graph of y = |x² − 2x − 3| and the line y = x + b, where b is a constant, intersect at exactly three points. What is the greatest possible value of b? options [\"−21/4\",\"1\",\"13/4\",\"4\"] key 13/4"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "SM24V-D02 [prior sat-math-v24-adv-d.batch.json]",
+    "text": "For constants a, h, and k with a > 0, let f(x) = a|x - h| + k. In the xy-plane, the V-shaped graph of y = f(x) contains the points (-2, 20), (10, 20), and (6, 8). At what y-value does this graph cross the y-axis? options [\"14\",\"16"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "SM24V-D05 [prior sat-math-v24-adv-d.batch.json]",
+    "text": "Every real number x satisfying x^2 - 2|x| - 15 = 0 is found, and these numbers are multiplied together. What product results? options [\"-25\",\"-5\",\"75\",\"225\"] key -25"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "SM24V-D08 [prior sat-math-v24-adv-d.batch.json]",
+    "text": "Each real number x satisfying |x - 5| = |x^2 - 25| is squared, and those squares are added together. What total results? options [\"41\",\"61\",\"77\",\"102\"] key 77"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "SM25V-D03 [prior sat-math-v25-adv-d.batch.json]",
+    "text": "In the xy-plane, the parabola y = (x - 7)^2 - 20 crosses the V-shaped graph of y = |x - 7| at exactly two points. Find the product of the x-coordinates of those crossing points. options [\"24\",\"33\",\"36\",\"792\"] key 24"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "SM25V-D04 [prior sat-math-v25-adv-d.batch.json]",
+    "text": "Every real number x that satisfies |x^2 - 19| = 3x + 9 is listed, and the listed numbers are multiplied together. What product results? options [\"-28\",\"-10\",\"14\",\"280\"] key 14"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "SM29F-S06 [prior sat-math-v29-full-s.batch.json]",
+    "text": "Let f(x) = (x - 5)^2 - 14. For exactly one value of the constant k, the equation f(|x|) = k is true for exactly three real numbers x. What is the value of f(4) - k? options [\"-24\",\"-13\",\"1\",\"56\"] key -24"
+   },
+   {
+    "q": "\\|x|\\| ?x ?-",
+    "head": "SM29F-S10 [prior sat-math-v29-full-s.batch.json]",
+    "text": "In the xy-plane, the graph of y = a|x - h| + k, where a, h and k are constants, has its vertex at (5, -36) and passes through the point (11, -12). The graph crosses the x-axis at two points. What is the distance between these two "
+   }
+  ],
+  "earlier": []
+ },
+ "K19": {
+  "live_prior": [
+   {
+    "q": "-\\d\\^2 & \\(-\\d\\)\\^2",
+    "head": "1b31caad-544 [live isee/isee-math-s15 Math medium]",
+    "text": "What is the value of -3^2 + (-3)^2 - 27 x 3^(-2) ? options [\"-4.5\",\"-3\",\"162\",\"-21\"] key -3 "
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MM5-N37",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "-4^2 = -(4 x 4) = -16 -> square root of the sum: √625 = 25 -> -16 + 25"
+   }
+  ]
+ },
+ "K20": {
+  "live_prior": [
+   {
+    "q": "owes|in debt & -\\$",
+    "head": "MM5-N33 [prior map-math-g58-v5.batch.json]",
+    "text": "A club's bank account balance is -$36.40, which means the club owes the bank $36.40. First, the bank adds a service charge equal to 1/4 of the amount the club owes. Then, from week 3 through week 9, the club pays a fee of $3.50 ou"
+   },
+   {
+    "q": "owes|in debt & -\\$",
+    "head": "MV2-N56-19 [prior map-math-v2 b1 LIVE]",
+    "text": "Kai's bank balance is -$0.75, which means he owes the bank $0.75. Lena owes the bank 5 times as much money as Kai owes. Max has a balance of $12.50. On a number line of balances, how many dollars apart are Lena's balance and Max's"
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MM2-N02",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "convert mixed numbers to fractions (or a four-part area model) -> multiply 7/3 x 6/5 -> simplify 42/15 to a mixed number"
+   },
+   {
+    "id": "MM2-N16",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "write both numbers with the same power of 10 (or in standard form) -> subtract, regrouping across zeros"
+   },
+   {
+    "id": "MM2-N20",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "product of powers with a negative exponent -> power of a power -> divide by a negative power: subtract a negative exponent"
+   },
+   {
+    "id": "MM3-N23",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "evaluate an odd power of a negative base -> rewrite a negative exponent as a reciprocal -> multiply a negative whole number by a fraction"
+   },
+   {
+    "id": "MM3-N24",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "write 1/1024 as a power of 4 with a negative exponent -> write 625 as a power of 5 -> subtract a negative exponent"
+   },
+   {
+    "id": "MM4-N21",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "subtract a negative from a negative -> share the change equally over 5 weeks -> add one week's rise to the starting balance"
+   },
+   {
+    "id": "MM4-N28",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "total repaid, moves the negative balance up -> fraction of the current debt -> borrowing moves the balance down"
+   },
+   {
+    "id": "MM5-N02",
+    "st": "LIVE",
+    "g": 5,
+    "chain": "multiply the whole number by the numerator -> divide by the denominator -> write the result as a mixed number in lowest terms"
+   },
+   {
+    "id": "MM5-N33",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "charge: 1/4 of 36.40 = 9.10 owed, balance -45.50 -> weeks 3 through 9 = 7 fees: -24.50 -> deposit: +27.70"
+   },
+   {
+    "id": "MM5P-N07",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "subtract a charge from a negative balance -> add a credit to a negative balance -> read a negative balance as an amount owed"
+   },
+   {
+    "id": "MM5P-N10",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "add exponents for a product of powers with the same base -> evaluate powers before multiplying -> subtract the two terms"
+   },
+   {
+    "id": "MM3-N24",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "write 1/128 as a power of 2 with a negative exponent -> write 81 as a power of 3 -> subtract a negative exponent"
+   },
+   {
+    "id": "MM4-N03",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "line up the decimals place by place -> compare each with the lower bound 2.95 and the upper bound 3.1"
+   },
+   {
+    "id": "MM4-N36",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "a negative exponent is the reciprocal of the positive power -> 2^3 = 8 -> multiply 75 by 1/8"
+   },
+   {
+    "id": "MM4-N38",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "write 8 and 32 as powers of 2 -> power of a power multiplies exponents -> quotient of powers subtracts exponents"
+   },
+   {
+    "id": "MM4-N40",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "list powers of 2 upward to 64 -> list negative powers down to 1/64 and compare with 0.01 -> count the exponents from -6 to 6, including 0"
+   },
+   {
+    "id": "MM4-N38",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "write 8 and 32 as powers of 2 -> power of a power with a negative exponent: (2^3)^-2 = 2^-6 -> quotient rule: -6 - 5"
+   },
+   {
+    "id": "MM4-N40",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "powers of 3 below 100: n = 0 to 4 -> negative powers above 1/1000: n = -1 to -6 -> count both sides including n = 0"
+   },
+   {
+    "id": "MM5-N39",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "quotient inside: 7 - (-2) = 9 -> power of a power: 9 x (-4) = -36 -> quotient: -36 - (-42) = 6"
+   },
+   {
+    "id": "MM5-N40",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "power of a power: (-10)(4) = -40 -> product: 31 + (-40) = -9 -> quotient: -9 - (-16) = 7"
+   },
+   {
+    "id": "MV2-N56-18",
+    "st": "LIVE",
+    "g": 6,
+    "chain": "first leg across the y-axis: add 4.5 + 5 -> reflect (5, 7) across the x-axis: (5, -7) -> second leg across the x-axis: 7 + 7 -> add the two "
+   },
+   {
+    "id": "MV2-N56-19",
+    "st": "LIVE",
+    "g": 6,
+    "chain": "size of Lena's debt: 5 x 0.75 -> her balance is negative -> opposite sides of 0: add the sizes"
+   },
+   {
+    "id": "MV2-N56-19",
+    "st": "revised away",
+    "g": 6,
+    "chain": "size of Lena's debt: 3 x 1.25 -> her balance is negative -> opposite sides of 0: add the sizes"
+   },
+   {
+    "id": "MV2-N7-12",
+    "st": "LIVE",
+    "g": 7,
+    "chain": "A: 7 x (-1.35) = -9.45 -> B: 11 x (-0.6) = -6.6 -> how much lower: -6.6 - (-9.45)"
+   },
+   {
+    "id": "MV2-N8-03",
+    "st": "dropped by graders",
+    "g": 8,
+    "chain": "power of a power: multiply exponents -> quotient of powers: subtract exponents -> multiply by the coefficient 5"
+   },
+   {
+    "id": "MV2-N8-07",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "quotient of powers: subtract exponents 3 - (-3) = 6 -> 4^6 = 4096 -> multiply by 5"
+   },
+   {
+    "id": "MV2-N8-12",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "add exponents 5 + (-2) = 3 -> 2^3 = 8 -> multiply by 5"
+   },
+   {
+    "id": "MB2-N78-14",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "rewrite both numbers with the same power of ten (or in standard form) -> subtract with regrouping -> give the difference in standard form"
+   },
+   {
+    "id": "MB2-N78-19",
+    "st": "LIVE",
+    "g": 8,
+    "chain": "product of powers: add the exponents -> set the exponent sum equal to the right-hand exponent -> solve x + 2 - 7 = -2 with negatives"
+   },
+   {
+    "id": "MB4-N6-01",
+    "st": "dropped by graders",
+    "g": 6,
+    "chain": "read each negative balance as a debt of |balance| dollars -> compare the debts by subtracting the smaller size from the larger, regrouping a"
+   },
+   {
+    "id": "MB4-N8-05",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "decimal base to a negative exponent as a whole-number power of the reciprocal -> coefficient times a negative power -> zero exponent on a su"
+   },
+   {
+    "id": "MB5-N6-03",
+    "st": "LIVE",
+    "g": 6,
+    "chain": "prime factorizations 60 = 2 x 2 x 3 x 5 and 80 = 2 x 2 x 2 x 2 x 5 -> GCF from the lower power of each shared prime: 2 x 2 x 5 = 20 -> LCM f"
+   },
+   {
+    "id": "MB5-N6-03",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "prime factorizations 25 = 5 x 5 and 45 = 3 x 3 x 5 -> GCF from the lower power of the shared prime: 5 -> LCM from the higher power of each p"
+   }
+  ]
+ },
+ "K21": {
+  "live_prior": [
+   {
+    "q": "less than .* factor",
+    "head": "13df0635-fc9 [live ssat/ssat-math-s14 Math medium]",
+    "text": "How many positive integers less than 50 have exactly three positive factors? options [\"7\",\"13\",\"4\",\"15\",\"6\"] key 4 "
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MMG-N07",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "evaluate the absolute value of a negative number -> locate the first integer greater than a negative mixed number -> count integers in the i"
+   },
+   {
+    "id": "MM3-N26",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "square each decimal bound -> find the whole numbers strictly between the squares -> count them"
+   },
+   {
+    "id": "MM5-N18",
+    "st": "LIVE",
+    "g": 6,
+    "chain": "add the two amounts of juice -> divide by a decimal less than 1 -> subtract the bottles given away"
+   },
+   {
+    "id": "MM5P-N03",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "multiply a decimal price by a decimal less than 1 -> multiply a price by a whole number -> add the two costs"
+   },
+   {
+    "id": "MB2-N78-16",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "divide the coefficients (result less than 1) -> subtract the exponents, one of them negative -> write the product of the two results in stan"
+   },
+   {
+    "id": "MB2-N78-18",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "divide the larger quantity by the smaller -> divide the coefficients (1.1 / 8.8 = 1/8, less than 1) -> subtract the exponents, one negative "
+   }
+  ]
+ },
+ "K22": {
+  "live_prior": [
+   {
+    "q": "÷ \\(-|divided by -\\d\\.",
+    "head": "MM3-N21 [prior map-math-g58-v3]",
+    "text": "Jin divides the sum of -1/2 and 1 2/3 by the sum of -2 1/6 and 1/2. In other words, he works out (-1/2 + 1 2/3) ÷ (-2 1/6 + 1/2). What quotient does he get? options [\"-1 3/7\",\"-7/8\",\"-7/10\",\"-7/16\"] key -7/10"
+   },
+   {
+    "q": "÷ \\(-|divided by -\\d\\.",
+    "head": "MM4-N23 [prior map-math-g58-v4]",
+    "text": "Find the quotient (-2 1/4) ÷ (-3/5). Write your answer as a mixed number. options [\"1 7/20\",\"2 1/2\",\"3 3/4\",\"4 1/6\"] key 3 3/4"
+   },
+   {
+    "q": "÷ \\(-|divided by -\\d\\.",
+    "head": "MM4-N24 [prior map-math-g58-v4]",
+    "text": "Without a calculator, Omar finds the value of 2 1/5 + (-6.2) ÷ (-0.8) and writes it as a decimal. What value should he get? options [\"7.16\",\"9.8\",\"9.9\",\"9.95\"] key 9.95"
+   },
+   {
+    "q": "÷ \\(-|divided by -\\d\\.",
+    "head": "MM4-N29 [prior map-math-g58-v4 (as first written)]",
+    "text": "Without a calculator, Mina evaluates -2 1/4 + 3.6 ÷ (-3/4). What value should she get, written as a decimal? options [\"-7.05\",\"-6.85\",\"-6.55\",\"-4.95\"] key -7.05"
+   },
+   {
+    "q": "÷ \\(-|divided by -\\d\\.",
+    "head": "MM3-N21 [prior map-math-g58-v3.batch.json]",
+    "text": "Jin divides the sum of -1/2 and 1 2/3 by the sum of -2 1/6 and 1/2. In other words, he works out (-1/2 + 1 2/3) ÷ (-2 1/6 + 1/2). What quotient does he get? options [\"-1 3/7\",\"-7/8\",\"-7/10\",\"-7/16\"] key -7/10"
+   },
+   {
+    "q": "÷ \\(-|divided by -\\d\\.",
+    "head": "MM4-N23 [prior map-math-g58-v4.batch.json]",
+    "text": "Find the quotient (-2 1/4) ÷ (-3/5). Write your answer as a mixed number. options [\"1 7/20\",\"2 1/2\",\"3 3/4\",\"4 1/6\"] key 3 3/4 "
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MMG-N09",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "divide a negative decimal by a fraction using the reciprocal -> multiply two negative rational numbers in mixed forms -> subtract a negative"
+   },
+   {
+    "id": "MMG-N05",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "amount for a whole = amount for the part divided by the part -> divide by a fraction by multiplying by its reciprocal"
+   },
+   {
+    "id": "MM3-N21",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "add a negative fraction and a positive mixed number -> add a negative mixed number and a positive fraction -> divide fractions with unlike s"
+   },
+   {
+    "id": "MM3-N02",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "read the sharing as 14 divided by 5 -> find the whole pounds each -> share the leftover pounds as fifths"
+   },
+   {
+    "id": "MM4-N35",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "simplify each root (a perfect square or cube under it, or a quotient of roots) -> repeating decimals are rational -> endless non-repeating d"
+   },
+   {
+    "id": "MM4-N23",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "sign of a quotient of two negatives -> multiply by the reciprocal of the divisor"
+   },
+   {
+    "id": "MM5-N27",
+    "st": "LIVE",
+    "g": 7,
+    "chain": "rises: 0.8 + 4.4 = 5.2 -> total: 5.2 + (-15.8) = -10.6 -> mean: -10.6 ÷ 4"
+   },
+   {
+    "id": "MM3-N02",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "interpret sharing as 8 divided by 5 -> write the quotient as a fraction -> rename as a mixed number"
+   },
+   {
+    "id": "MM4-N24",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "divide two negative decimals (positive quotient) -> write a mixed number as a decimal -> add"
+   },
+   {
+    "id": "MM4-N26",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "divide a negative decimal by a decimal -> multiply two negatives (positive product) -> subtract the product from the quotient"
+   },
+   {
+    "id": "MM4-N27",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "divide a decimal by a decimal first -> subtract a positive from a negative (add the sizes, keep negative)"
+   },
+   {
+    "id": "MM4-N29",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "divide by a fraction, then multiply, left to right -> write a negative mixed number as a decimal -> subtract from the negative"
+   },
+   {
+    "id": "MM4-N38",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "write 8 and 32 as powers of 2 -> power of a power multiplies exponents -> quotient of powers subtracts exponents"
+   },
+   {
+    "id": "MM4-N12",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "write the comparison as 15.6 ÷ 0.8 -> move both decimal points one place and divide 156 by 8"
+   },
+   {
+    "id": "MM4-N29",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "divide before adding -> decimal divided by a negative fraction -> add two negatives"
+   },
+   {
+    "id": "MM4-N38",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "write 8 and 32 as powers of 2 -> power of a power with a negative exponent: (2^3)^-2 = 2^-6 -> quotient rule: -6 - 5"
+   },
+   {
+    "id": "MM5-N39",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "quotient inside: 7 - (-2) = 9 -> power of a power: 9 x (-4) = -36 -> quotient: -36 - (-42) = 6"
+   },
+   {
+    "id": "MM5-N40",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "power of a power: (-10)(4) = -40 -> product: 31 + (-40) = -9 -> quotient: -9 - (-16) = 7"
+   },
+   {
+    "id": "MV2-N7-14",
+    "st": "withdrawn",
+    "g": 7,
+    "chain": "divide first: -7.2 / 2.5 = -2.88 -> then multiply: -2.88 x 4.5 = -12.96 -> subtract a negative: -3.5 - (-12.96)"
+   },
+   {
+    "id": "MV2-N8-03",
+    "st": "dropped by graders",
+    "g": 8,
+    "chain": "power of a power: multiply exponents -> quotient of powers: subtract exponents -> multiply by the coefficient 5"
+   },
+   {
+    "id": "MV2-N8-05",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "time = total ÷ rate -> divide coefficients 4 ÷ 1.6 -> subtract exponents 8 - 2 -> write 2.5 x 10^6 in standard form"
+   },
+   {
+    "id": "MV2-N8-07",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "quotient of powers: subtract exponents 3 - (-3) = 6 -> 4^6 = 4096 -> multiply by 5"
+   },
+   {
+    "id": "MV2-N8-15",
+    "st": "LIVE",
+    "g": 8,
+    "chain": "square root of 256 -> cube root of 64 -> divide"
+   },
+   {
+    "id": "MB5-N5-01",
+    "st": "LIVE",
+    "g": 5,
+    "chain": "see that 20 is 60 divided by 3 -> the product stays the same, so the other factor is multiplied by 3 -> multiply 135 by 3 with two carries"
+   },
+   {
+    "id": "MB5-N7-03",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "evaluate the signed decimal quotient 4.5 ÷ (-0.75) = -6 -> set -48 ÷ n equal to it -> solve for the divisor with the sign rule: n = -48 ÷ (-"
+   }
+  ]
+ },
+ "K23": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MM4-N14",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "reflect across the x-axis: change the sign of y -> reflect the image across the y-axis: change the sign of x -> add the coordinates of the f"
+   },
+   {
+    "id": "MM4-N14",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "reflect across the x-axis: change the sign of y -> reflect the image across the y-axis: change the sign of x -> add the coordinates of the f"
+   },
+   {
+    "id": "MV2-N56-18",
+    "st": "LIVE",
+    "g": 6,
+    "chain": "first leg across the y-axis: add 4.5 + 5 -> reflect (5, 7) across the x-axis: (5, -7) -> second leg across the x-axis: 7 + 7 -> add the two "
+   },
+   {
+    "id": "MV2-N56-18",
+    "st": "revised away",
+    "g": 6,
+    "chain": "reflect across the x-axis: y changes sign -> same x, opposite sides of the axis: add 7 + 4 -> scale 11 units by 2.5 miles"
+   }
+  ]
+ },
+ "K24": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MM3-N10",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "divide by 1.6 to find Mia's distance -> subtract from Sam's distance with decimals lined up"
+   },
+   {
+    "id": "MM3-N10",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "multiply 2.45 by 1.8 to find Leo's distance -> subtract Sam's 3.6 with the decimal points lined up"
+   },
+   {
+    "id": "MV2-N56-02",
+    "st": "LIVE",
+    "g": 5,
+    "chain": "8 x 7/8 = Ana's distance -> 2/5 of Ana's distance = Ben's distance -> subtract"
+   }
+  ]
+ },
+ "K25": {
+  "live_prior": [
+   {
+    "q": "scoop",
+    "head": "221800f3-122 [live isee/isee-math-s15 Math easy]",
+    "text": "An ice cream shop has 6 flavors. A cup holds 2 scoops, the two scoops may be the same flavor, and the order of the scoops does not matter. How many different cups are possible? options [\"21\",\"18\",\"30\",\"15\"] key 21"
+   },
+   {
+    "q": "scoop",
+    "head": "9250153d-2ec [live sat/sat-math-v26-alg Algebra hard]",
+    "text": "A feed mix is made from whole scoops of two pellets. Each scoop of pellet P contains 8 grams of protein and 3 grams of fiber and costs 8 cents. Each scoop of pellet Q contains 5 grams of protein and 8 grams of fiber and costs 6 ce"
+   },
+   {
+    "q": "scoop",
+    "head": "968fbec0-528 [live sat/sat-alg-0919c Algebra medium]",
+    "text": "A feed blend is made from two ingredients measured by weight, so the number of scoops of each need not be a whole number. Each scoop of ingredient A contains 18 grams of protein and 6 grams of fat, and each scoop of ingredient B c"
+   },
+   {
+    "q": "scoop",
+    "head": "SALG5A-06 [prior sat-alg-0919c-a.batch.json]",
+    "text": "A feed blend is made from two ingredients measured by weight, so the number of scoops of each need not be a whole number. Each scoop of ingredient A contains 18 grams of protein and 6 grams of fat, and each scoop of ingredient B c"
+   },
+   {
+    "q": "scoop",
+    "head": "SM26L-D5 [prior sat-math-v26-alg-d.batch.json]",
+    "text": "A feed mix is made from whole scoops of two pellets. Each scoop of pellet P contains 8 grams of protein and 3 grams of fiber and costs 8 cents. Each scoop of pellet Q contains 5 grams of protein and 8 grams of fiber and costs 6 ce"
+   },
+   {
+    "q": "scoop",
+    "head": "MV2-G78-20 [prior map-math-v2 b1 LIVE]",
+    "text": "An ice cream cone is shaped like a cone with a radius of 3 centimeters and a height of 17 centimeters. A scoop of ice cream shaped like a sphere with a radius of 3 centimeters sits on the cone. The scoop melts, and all of it flows"
+   }
+  ],
+  "earlier": []
+ },
+ "K26": {
+  "live_prior": [
+   {
+    "q": "√\\d+ ?(×|x|·) ?√\\d+",
+    "head": "MM4-N33 [prior map-math-g58-v4]",
+    "text": "Without a calculator, Kim wants to estimate √2 x √10. Which of these decimals is closest to √2 x √10? options [\"3.46\",\"4.44\",\"4.46\",\"4.47\"] key 4.47 "
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MM4-N33",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "product of square roots is the square root of the product -> place the root of 20 between 4 and 5 -> square choices to find the closest"
+   },
+   {
+    "id": "MV2-N8-09",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "square root of 225 -> cube root of 64 -> multiply"
+   }
+  ]
+ },
+ "K27": {
+  "live_prior": [
+   {
+    "q": "repeat & block|period",
+    "head": "0b87f4b6-1f2 [live ssat/ssat-math-s16 Math medium]",
+    "text": "The digits a and b are each one of 1, 2, ..., 9 (they may be equal). The repeating decimal 0.abab... has the block ab repeating forever, and 0.baba... has the block ba repeating forever. How many different values can the sum 0.aba"
+   },
+   {
+    "q": "repeat & block|period",
+    "head": "24fbd00c-1e7 [live isee/isee-math-s17 Math medium]",
+    "text": "The decimal 0.2454545... has a 2 in the tenths place, followed by the block 45 repeating forever. When this decimal is written as a fraction in lowest terms, what is the numerator? options [\"49\",\"245\",\"27\",\"136\"] key 27"
+   },
+   {
+    "q": "repeat & block|period",
+    "head": "7209630d-21a [live isee/isee-math-s2 Math hard]",
+    "text": "The fraction 3/7 written as a decimal is 0.428571428571..., where the block 428571 repeats forever. What is the 100th digit to the right of the decimal point? options [\"1\",\"5\",\"7\",\"8\"] key 5"
+   },
+   {
+    "q": "repeat & block|period",
+    "head": "a175b647-127 [live ssat/ssat-math-s16 Math medium]",
+    "text": "What is the value of 0.666... divided by 0.060606... ? (In 0.666... the digit 6 repeats forever; in 0.060606... the block 06 repeats forever.) options [\"10\",\"11\",\"4/99\",\"100/9\",\"99/10\"] key 11"
+   },
+   {
+    "q": "repeat & block|period",
+    "head": "c45ca0fb-8ae [live ssat/ssat-math-s10 Math medium]",
+    "text": "When two sevenths is written as a decimal, the digits after the decimal point repeat in a block of six. What is the 50th digit after the decimal point? options [\"5\",\"8\",\"1\",\"4\",\"2\"] key 8 "
+   },
+   {
+    "q": "terminat",
+    "head": "3b775d60-646 [live isee/isee-math-s15 Math hard]",
+    "text": "Ana writes each of the fractions 1/60, 2/60, 3/60, ..., 59/60 as a decimal. How many of these 59 decimals terminate (come to an end) instead of repeating forever? options [\"40\",\"19\",\"20\",\"27\"] key 19"
+   },
+   {
+    "q": "terminat",
+    "head": "f1e21e9b-a8f [live isee/isee-math-s17 Math hard]",
+    "text": "For how many positive integers n does the decimal form of 1/n terminate with exactly 4 digits after the decimal point? (For example, 1/8 = 0.125 terminates with exactly 3 digits after the decimal point.) options [\"9\",\"10\",\"24\",\"16"
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MM2-N19",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "2/3 is the repeating decimal 0.666... -> subtract 0.6 keeping the repeat (or 2/3 - 3/5 = 1/15) -> round to the nearest thousandth only at th"
+   },
+   {
+    "id": "MM4-N35",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "simplify each root (a perfect square or cube under it, or a quotient of roots) -> repeating decimals are rational -> endless non-repeating d"
+   },
+   {
+    "id": "MM4-N35",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "decide which roots are of perfect squares or cubes -> a repeating decimal is rational -> a patterned decimal with no repeating block is irra"
+   },
+   {
+    "id": "MV2-N8-14",
+    "st": "LIVE",
+    "g": 8,
+    "chain": "multiply by 1000 and by 10 -> subtract to get 990n = 345 -> simplify 345/990 to 23/66 -> add numerator and denominator"
+   }
+  ]
+ },
+ "K28": {
+  "live_prior": [
+   {
+    "q": "perimeter & \\(-\\d",
+    "head": "2c808247-d82 [live ssat/ssat-math-v1 Math medium]",
+    "text": "In the coordinate plane, triangle ABC has vertices A(-6, 3), B(2, 3), and C(2, -12). What is the perimeter of triangle ABC? options [\"17\",\"23\",\"40\",\"46\",\"60\"] key 40"
+   },
+   {
+    "q": "perimeter & \\(-\\d",
+    "head": "MB3-G6-06 [prior map-math-v2 b3 LIVE]",
+    "text": "In the coordinate plane, a rectangle has corners at (-9, 0), (1, 0), (1, 14), and (-9, 14). The rectangle is reflected across the x-axis. The rectangle and its image share one side, and together they form one larger shape. What is"
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MM5-N16",
+    "st": "LIVE",
+    "g": 6,
+    "chain": "length across the y-axis: add absolute values -> length on one side of the x-axis: subtract -> perimeter of the rectangle -> take off the ga"
+   },
+   {
+    "id": "MV2-N8-08",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "side = √2000 -> estimate √2000 between 44 and 45 -> perimeter = 4 x side -> round to the nearest 10"
+   }
+  ]
+ },
+ "K29": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MM2-N18",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "multiply coefficients and add exponents -> write both amounts with the same place value -> subtract with a regrouping"
+   },
+   {
+    "id": "MM4-N35",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "simplify each root (a perfect square or cube under it, or a quotient of roots) -> repeating decimals are rational -> endless non-repeating d"
+   },
+   {
+    "id": "MM5-N03",
+    "st": "LIVE",
+    "g": 5,
+    "chain": "look at the hundredths digit of each number -> round each to the nearest tenth -> count the numbers that round to 4.7"
+   },
+   {
+    "id": "MM4-N35",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "decide which roots are of perfect squares or cubes -> a repeating decimal is rational -> a patterned decimal with no repeating block is irra"
+   },
+   {
+    "id": "MV2-N56-01",
+    "st": "LIVE",
+    "g": 5,
+    "chain": "3/4 of 480 = vegetable plots -> 5/12 of the vegetable plots, not of all plots"
+   }
+  ]
+ },
+ "K30": {
+  "live_prior": [
+   {
+    "q": "fee & balance & -|overdraw",
+    "head": "MM5P-N07 [prior map-math-g58-v5p (pilot)]",
+    "text": "Kai's bank account balance is -$23.46. The bank charges him an $8.75 fee. Then a $2.60 refund is added to his account. How much money, in dollars, does Kai owe the bank now? options [\"29.61\",\"30.41\",\"30.61\",\"34.81\"] key 29.61"
+   },
+   {
+    "q": "fee & balance & -|overdraw",
+    "head": "MM5-N33 [prior map-math-g58-v5.batch.json]",
+    "text": "A club's bank account balance is -$36.40, which means the club owes the bank $36.40. First, the bank adds a service charge equal to 1/4 of the amount the club owes. Then, from week 3 through week 9, the club pays a fee of $3.50 ou"
+   },
+   {
+    "q": "fee & balance & -|overdraw",
+    "head": "MM5P-N07 [prior map-math-g58-v5p.batch.json]",
+    "text": "Kai's bank account balance is -$23.46. The bank charges him an $8.75 fee. Then a $2.60 refund is added to his account. How much money, in dollars, does Kai owe the bank now? options [\"29.61\",\"30.41\",\"30.61\",\"34.81\"] key 29.61 "
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MMG-N08",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "write the downward rate as a negative number -> multiply rate by time -> add the change to the negative starting position"
+   },
+   {
+    "id": "MM4-N37",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "edge = cube root of the volume -> cube root of 5 is between 1 and 2 -> cube decimals to find the closest"
+   },
+   {
+    "id": "MM5-N07",
+    "st": "LIVE",
+    "g": 5,
+    "chain": "multiply the whole part and the fraction part by 5 -> rename in twelfths -> subtract the cut piece"
+   },
+   {
+    "id": "MM5-N02",
+    "st": "LIVE",
+    "g": 5,
+    "chain": "multiply the whole number by the numerator -> divide by the denominator -> write the result as a mixed number in lowest terms"
+   },
+   {
+    "id": "MM5-N33",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "charge: 1/4 of 36.40 = 9.10 owed, balance -45.50 -> weeks 3 through 9 = 7 fees: -24.50 -> deposit: +27.70"
+   },
+   {
+    "id": "MM5P-N07",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "subtract a charge from a negative balance -> add a credit to a negative balance -> read a negative balance as an amount owed"
+   },
+   {
+    "id": "MM3-N09",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "read 'how many times as long' as division -> rename both mixed numbers as fractions -> multiply by the reciprocal and simplify"
+   },
+   {
+    "id": "MM3-N28",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "take the cube root of the volume to get the edge -> shorten the edge by 1/2 -> cube the new edge"
+   }
+  ]
+ },
+ "K31": {
+  "live_prior": [
+   {
+    "q": "digit & quotient & remainder",
+    "head": "c0d1d037-237 [live ssat/ssat-math-s17 Math hard]",
+    "text": "A two-digit whole number is divided by the sum of its own two digits. For example, 47 divided by 4 + 7 = 11 gives a quotient of 4 and a remainder of 3. What is the greatest possible remainder? options [\"13\",\"9\",\"16\",\"15\",\"12\"] key"
+   }
+  ],
+  "earlier": []
+ },
+ "K32": {
+  "live_prior": [
+   {
+    "q": "square & cube & same|equal & area & volume",
+    "head": "MB3-G6-02 [prior map-math-v2 b3 LIVE]",
+    "text": "A block of clay is shaped like a rectangular prism that is 5 centimeters wide, 8 centimeters long, and 25 centimeters tall. Mai reshapes all of the clay into a cube, so the cube has the same volume as the prism. How many square ce"
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MMG-N15",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "take the cube root of a negative decimal -> take the positive square root of a decimal -> subtract a positive number from a negative number"
+   },
+   {
+    "id": "MM3-N27",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "find the cube root of a decimal -> square the decimal -> take the reciprocal for the negative exponent"
+   },
+   {
+    "id": "MM4-N35",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "simplify each root (a perfect square or cube under it, or a quotient of roots) -> repeating decimals are rational -> endless non-repeating d"
+   },
+   {
+    "id": "MM4-N35",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "decide which roots are of perfect squares or cubes -> a repeating decimal is rational -> a patterned decimal with no repeating block is irra"
+   },
+   {
+    "id": "MM4-N39",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "cube root of a negative decimal: x = -0.5 -> positive square root of a decimal: y = 0.6 -> subtract: -0.5 - 0.6"
+   },
+   {
+    "id": "MV2-N8-02",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "square root of 144 -> cube root of 729 -> subtract -> square the difference"
+   },
+   {
+    "id": "MV2-N8-09",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "square root of 225 -> cube root of 64 -> multiply"
+   },
+   {
+    "id": "MV2-N8-10",
+    "st": "LIVE",
+    "g": 8,
+    "chain": "√64 = 8 and double it -> cube root of -729 is -9 -> add"
+   },
+   {
+    "id": "MV2-N8-15",
+    "st": "LIVE",
+    "g": 8,
+    "chain": "square root of 256 -> cube root of 64 -> divide"
+   },
+   {
+    "id": "MV2-N8-17",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "5^3 = 125 -> √100 = 10 -> subtract"
+   },
+   {
+    "id": "MV2-N8-18",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "edge = ∛2000 -> estimate ∛2000 between 12 and 13 (about 12.6) -> face area = edge^2 -> round to the nearest 10"
+   }
+  ]
+ },
+ "K33": {
+  "live_prior": [],
+  "earlier": []
+ },
+ "K34": {
+  "live_prior": [
+   {
+    "q": "product .* greater than",
+    "head": "eff79230-744 [live ssat/ssat-math-s2 Math hard]",
+    "text": "The product of the two digits of a certain two-digit number is 24. Reversing the digits of that number produces a number that is 18 greater than the original. What is the original number? options [\"24\",\"38\",\"46\",\"64\",\"83\"] key 46"
+   },
+   {
+    "q": "product .* greater than",
+    "head": "f770e0cd-b05 [live isee/isee-math-s15 Math medium]",
+    "text": "A box holds six tickets numbered 1, 2, 3, 4, 5, and 6. Two tickets are drawn at random without replacement. What is the probability that the product of the two numbers is greater than 10? options [\"7/30\",\"7/15\",\"2/3\",\"2/5\"] key 7/"
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MMG-N07",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "evaluate the absolute value of a negative number -> locate the first integer greater than a negative mixed number -> count integers in the i"
+   },
+   {
+    "id": "MM3-N26",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "square each decimal bound -> find the whole numbers strictly between the squares -> count them"
+   }
+  ]
+ },
+ "K35": {
+  "live_prior": [
+   {
+    "q": "is the midpoint of",
+    "head": "235629f7-ea0 [live ssat/ssat-math-v1 Math hard]",
+    "text": "In triangle ABC, D is the midpoint of side BC and E is the midpoint of segment AD. The area of triangle ABC is 48 square units. What is the area of triangle ABE, in square units? options [\"8\",\"12\",\"16\",\"24\",\"32\"] key 12"
+   },
+   {
+    "q": "is the midpoint of",
+    "head": "7f018ffc-127 [live isee/isee-math-s5 Math hard]",
+    "text": "The point M(3, -1) is the midpoint of segment AB, and A is the point (-2, 4). What are the coordinates of B? options [\"(1, 3)\",\"(0.5, 1.5)\",\"(-7, 9)\",\"(8, -6)\"] key (8, -6)"
+   },
+   {
+    "q": "is the midpoint of",
+    "head": "823612ed-ea9 [live ssat/ssat-math-s6 Math hard]",
+    "text": "In the coordinate plane, A is the point (-1, 1) and B is the point (7, 7). M is the midpoint of segment AB. What is the distance from M to the origin? options [\"5\",\"6.5\",\"8\",\"10\",\"13\"] key 5"
+   },
+   {
+    "q": "is the midpoint of",
+    "head": "9513dc73-887 [live act/act-math-v6-geo Geometry easy]",
+    "text": "In the standard (x,y) coordinate plane, M(4,−1) is the midpoint of segment PQ, and point P has coordinates (−2,5). What are the coordinates of point Q? options [\"(10, -7)\",\"(1, 2)\",\"(6, -6)\",\"(-8, 11)\"] key (10, -7)"
+   },
+   {
+    "q": "is the midpoint of",
+    "head": "a1d88519-826 [live isee/isee-math-s17 Math medium]",
+    "text": "In the coordinate plane, triangle ABC has vertices A(-6, -4), B(6, 5), and C(2, -2). Point M is the midpoint of side AB, and point N is the midpoint of side AC. What is the slope of line MN? options [\"3/4\",\"11/20\",\"7/4\",\"1/4\"] key"
+   },
+   {
+    "q": "is the midpoint of",
+    "head": "b69b3157-9d0 [live isee/isee-math-s17 Math medium]",
+    "text": "Triangle ABC has an area of 60 square centimeters. Point D lies on side BC so that BD : DC = 2 : 3. Point E is the midpoint of segment AD. What is the area of triangle BEC, in square centimeters? options [\"20\",\"36\",\"30\",\"15\"] key "
+   },
+   {
+    "q": "is the midpoint of",
+    "head": "bb1f35b1-81a [live sat/sat-math-v30-full Algebra medium]",
+    "text": "17 - 2x <= 4x - 31 4(x + 4) + 20 < 2x + 90 The numbers x that satisfy both inequalities above are exactly the numbers in an interval a <= x < b. What is the midpoint of this interval? options [\"17.5\",\"20.5\",\"22.5\",\"25.5\"] key 17.5"
+   },
+   {
+    "q": "is the midpoint of",
+    "head": "SM29F-B07 [prior sat-math-v29-full-b.batch.json]",
+    "text": "In the xy-plane, triangle ABC has vertices A(-1, 10), B(-4, 7), and C(6, -9). Point M is the midpoint of side BC. What is the slope of the line through A and M? options [\"-5.5\",\"-4\",\"-3\",\"-1.6\"] key -5.5 "
+   }
+  ],
+  "earlier": []
+ },
+ "K36": {
+  "live_prior": [
+   {
+    "q": "whose square",
+    "head": "MM4-N39 [prior map-math-g58-v4 (as first written)]",
+    "text": "Lia thinks of a number whose cube is -0.125. Ben thinks of a positive number whose square is 0.36. Lia subtracts Ben's number from her own number. What result does she get? options [\"-1.1\",\"-0.85\",\"-0.68\",\"-0.56\"] key -1.1 "
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MM4-N31",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "square each decimal -> compare the squares with 3.3 -> pick the decimal whose square is closest to 3.3"
+   },
+   {
+    "id": "MM4-N39",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "cube root of a negative decimal: x = -0.5 -> positive square root of a decimal: y = 0.6 -> subtract: -0.5 - 0.6"
+   }
+  ]
+ },
+ "K37": {
+  "live_prior": [
+   {
+    "q": "below sea level & above sea level",
+    "head": "MM3-N11 [prior map-math-g58-v3]",
+    "text": "A submarine is 351 meters below sea level, so its elevation is -351 meters. A diver is at 4/9 of the submarine's depth. A seagull is flying 38 meters above sea level. How many meters apart are the diver and the seagull? options [\""
+   },
+   {
+    "q": "below sea level & above sea level",
+    "head": "MM3-N11 [prior map-math-g58-v3 (as first written)]",
+    "text": "A submarine is 245 meters below sea level, so its elevation is -245 meters. A diver is at 3/5 of the submarine's depth. A seagull is flying 38 meters above sea level. How many meters apart are the diver and the seagull? options [\""
+   },
+   {
+    "q": "below sea level & above sea level",
+    "head": "MM3-N11 [prior map-math-g58-v3.batch.json]",
+    "text": "A submarine is 351 meters below sea level, so its elevation is -351 meters. A diver is at 4/9 of the submarine's depth. A seagull is flying 38 meters above sea level. How many meters apart are the diver and the seagull? options [\""
+   },
+   {
+    "q": "sea level & how many",
+    "head": "4822c21c-193 [live act/act-math-v25 Algebra medium]",
+    "text": "The distance d, in miles, to the horizon for an observer whose eyes are h feet above sea level is approximately d = √(1.5h). An observer's eyes are 40 feet above sea level. To the nearest hundredth of a foot, how many feet higher "
+   },
+   {
+    "q": "sea level & how many",
+    "head": "MM3-N11 [prior map-math-g58-v3]",
+    "text": "A submarine is 351 meters below sea level, so its elevation is -351 meters. A diver is at 4/9 of the submarine's depth. A seagull is flying 38 meters above sea level. How many meters apart are the diver and the seagull? options [\""
+   },
+   {
+    "q": "sea level & how many",
+    "head": "MM3-N11 [prior map-math-g58-v3 (as first written)]",
+    "text": "A submarine is 245 meters below sea level, so its elevation is -245 meters. A diver is at 3/5 of the submarine's depth. A seagull is flying 38 meters above sea level. How many meters apart are the diver and the seagull? options [\""
+   },
+   {
+    "q": "sea level & how many",
+    "head": "MM3-N11 [prior map-math-g58-v3.batch.json]",
+    "text": "A submarine is 351 meters below sea level, so its elevation is -351 meters. A diver is at 4/9 of the submarine's depth. A seagull is flying 38 meters above sea level. How many meters apart are the diver and the seagull? options [\""
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MM3-N11",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "find a fraction of the depth -> write the diver's elevation as a negative number -> add the distances on each side of sea level"
+   },
+   {
+    "id": "MM3-N11",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "find 3/5 of 245 for the diver's depth -> see the two elevations are on opposite sides of 0 -> add the two distances from sea level"
+   }
+  ]
+ },
+ "K38": {
+  "live_prior": [],
+  "earlier": []
+ },
+ "K39": {
+  "live_prior": [],
+  "earlier": []
+ },
+ "K40": {
+  "live_prior": [
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "05c092ef-4dd [live sat/sat-math-v14 Advanced Math medium]",
+    "text": "The function f is defined by f(x) = a*b^x, where a and b are positive constants. If f(2) = 45 and f(4) = 405, what is the value of f(0)? options [\"3\",\"5\",\"9\",\"15\"] key 5"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "0d7b9102-80e [live sat/v2 Advanced Math medium]",
+    "text": "If 2^x * 2^y = 32 and (2^x)/(2^y) = 2, what is the value of xy? options [\"1\",\"8\",\"6\",\"2\"] key 6"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "0da96925-7ea [live ssat/ssat-math-s5 Math medium]",
+    "text": "If 3^(x + 2) = 81, what is the value of 3^x? options [\"2\",\"6\",\"9\",\"79\",\"81\"] key 9"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "0e85d634-dff [live sat/sat-math-v28-full Advanced Math medium]",
+    "text": "A function f has the form f(x) = a(b)^x, where a and b are positive constants, and the constant a is less than 40. The outputs of f satisfy two conditions: f(0) + f(2) = 75, and f(1) = 36. Using these conditions, what is the value"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "19b064a0-8c8 [live act/act-math-v9-alg Algebra medium]",
+    "text": "If 3^x = 7, what is the value of 3^(x + 2) ? options [\"63\",\"9\",\"21\",\"49\"] key 63"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "2201af81-0d6 [live act/act-math-v8-nq Number and Quantity medium]",
+    "text": "If 8^x = 32, what is the value of x ? options [\"5/3\",\"4\",\"3/5\",\"24\"] key 5/3"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "26db8091-ec0 [live sat/v2 Algebra hard]",
+    "text": "What is the sum of all solutions to the equation 2^(2x) - 9(2^x) + 8 = 0? options [\"3\",\"0\",\"8\",\"9\"] key 3"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "331af042-b5a [live isee/isee-math-s17 Math medium]",
+    "text": "The numbers x and y satisfy both of the equations below. 9^x * 27^y = 3^26 25^x / 5^y = 5^10 What is the value of xy ? options [\"28\",\"8\",\"90\",\"72\"] key 28"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "3e4f4366-d7c [live sat/sat-form24 Advanced Math medium]",
+    "text": "The function g is defined by g(x) = a·3^x + c, where a and c are constants. The graph of y = g(x) in the xy-plane has the horizontal asymptote y = -90, and g(2) = 99. What is the value of a? options [\"1\",\"11\",\"189\",\"21\"] key 21"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "4534dd16-fb5 [live sat/sat-form24 Advanced Math medium]",
+    "text": "What is the solution to the equation 2^(x + 3) + 2^x = 2304 ? options [\"11\",\"256\",\"8\",\"5\"] key 8"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "4873d49b-628 [live act/act-math-v25 Functions medium]",
+    "text": "In the standard (x,y) coordinate plane, the graph of y = 2^x is stretched vertically by a factor of 6, and the resulting graph is then translated 2 units to the right and 11 units down. To the nearest thousandth, what is the x-coo"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "4e0643f4-61a [live act/act-math-v1 Functions hard]",
+    "text": "The function f(x) = a · b^x, where a and b are positive constants, satisfies f(0) = 5 and f(2) = 45. What is the value of f(3)? options [\"65\",\"90\",\"125\",\"135\"] key 135"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "50bea35f-dc5 [live sat/v2 Algebra medium]",
+    "text": "What is the sum of all real solutions to the equation 2^(2x) - 5·2^x + 4 = 0 ? options [\"2\",\"3\",\"5\",\"4\"] key 2"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "5621443f-665 [live sat/sat-math-v24-adv Advanced Math medium]",
+    "text": "If 9^x + 6^x = 12(4^x), what is the value of (9^x + 4^x)/6^x, rounded to the nearest hundredth? options [\"2.67\",\"3.33\",\"4.25\",\"9.11\"] key 3.33"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "58d82aec-4a7 [live sat/sat-math-v28-full Advanced Math medium]",
+    "text": "Two different real numbers, a and b, each satisfy the equation 3(9^x) - 10(3^x) + 3 = 0. Combining both solutions, what is the value of the sum 9^a + 9^b ? options [\"1\",\"10/3\",\"82/9\",\"18\"] key 82/9"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "5b269623-c62 [live sat/sat-math-v24-adv Advanced Math medium]",
+    "text": "The number x satisfies 2^(x + 2) · 5^(x - 1) = 800. Using this equation, find the value of the product 2^x · 5^(x + 1). options [\"128\",\"1000\",\"2000\",\"5000\"] key 5000"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "5bd12c74-552 [live sat/sat-math-v25-adv Advanced Math medium]",
+    "text": "Given that 2^(x + 2) - 2^(x - 1) = 126, compute 4^x + 2^x. options [\"812\",\"1332\",\"1806\",\"4032\"] key 1332"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "60a8cf2c-7db [live sat/sat-form24 Advanced Math medium]",
+    "text": "A quantity is modeled by f(x) = a(3/2)^x, where a is a constant and x is the number of growth periods that have passed. If f(4) = 405, what is the value of a? options [\"45\",\"5\",\"80\",\"180\"] key 80"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "70d58605-b69 [live sat/v2 Advanced Math medium]",
+    "text": "If 2^x · 4^y = 64 and x + y = 5, what is the value of x? options [\"4\",\"1\",\"3\",\"6\"] key 4"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "72bbe516-d67 [live sat/sat-math-v21-adv Advanced Math medium]",
+    "text": "What is the sum of all solutions to the equation 2^(2x + 1) - 33(2^x) + 16 = 0? options [\"-4\",\"3\",\"4\",\"5\"] key 3"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "75433de6-b6d [live ssat/ssat-math-s2 Math medium]",
+    "text": "If 3^n + 3^n + 3^n = 3^12, what is the value of n? options [\"4\",\"9\",\"11\",\"12\",\"36\"] key 11"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "79be58aa-974 [live sat/v2 Advanced Math medium]",
+    "text": "If 8^x = 4^(x + 1), what is the value of x? options [\"1\",\"2\",\"0.67\",\"1.71\"] key 2"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "7ea6c7a6-5ea [live act/act-alg-fn-0918 Algebra easy]",
+    "text": "If 4^x = 10, what is the value of 2^(2x + 3)? options [\"80\",\"18\",\"13\",\"30\"] key 80"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "852ef7f4-143 [live act/act-math-v18 Functions medium]",
+    "text": "The function f is defined by f(x) = a·2^x, where a is a positive constant. The average rate of change of f from x = 1 to x = 4 is 28. What is the value of a ? options [\"5.6\",\"10.5\",\"6\",\"8\"] key 6"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "86af0ced-3c3 [live sat/v2 Advanced Math medium]",
+    "text": "What value of x satisfies 4^x = 8^(x - 1)? options [\"0\",\"1\",\"2\",\"3\"] key 3"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "8b809409-501 [live sat/sat-form24 Advanced Math medium]",
+    "text": "What is the sum of the solutions of the equation 2^(2x + 1) - 24·2^x + 64 = 0 ? options [\"5\",\"12\",\"8\",\"32\"] key 5"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "8c9f257e-e7b [live sat/sat-math-v25-adv Advanced Math medium]",
+    "text": "An exponential function g satisfies g(x) = a(b)^x for positive constants a and b, with g(0) = 4. Over the interval from x = 0 to x = 2, the average rate of change of g is 10. Over the next interval, from x = 2 to x = 4, what is th"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "8f7c1755-45d [live sat/sat-math-v29-full Advanced Math medium]",
+    "text": "The function f is defined by f(x) = 4^x. For the real numbers a and b, f(a) = 3 and f(b) = 15. To the nearest hundredth, what is the value of f((a + b)/2) ? options [\"4.24\",\"5.61\",\"6.71\",\"9.00\"] key 6.71"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "8fd77a0f-c54 [live sat/v2 Advanced Math medium]",
+    "text": "What is the value of x that satisfies 4^x - 9(2^x) + 8 = 0, given that x is a positive integer greater than 1? options [\"2\",\"8\",\"3\",\"1\"] key 3"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "9295d3dc-cce [live sat/sat-math-v24-adv Advanced Math medium]",
+    "text": "For the exponential function f(x) = a(b)^x, where a and b are positive constants, f(1) + f(2) = 30 and f(3) + f(4) = 120. Which number is the output of f at x = 5? options [\"96\",\"160\",\"240\",\"480\"] key 160"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "ab520683-b15 [live sat/sat-math-v24-adv Advanced Math medium]",
+    "text": "Let x1 and x2 be the two real numbers that satisfy 9^x - 4(3^(x + 1)) + 20 = 0, with x1 < x2. Compute 3^(x2 - x1). options [\"5\",\"8\",\"12\",\"36\"] key 5"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "abcaf297-90e [live act/act-math-v26 Algebra medium]",
+    "text": "The equation (1/4)^x · 2^(x²) = 2 · 32^x has two real solutions. To the nearest hundredth, what is the positive difference between the two solutions? options [\"6.71\",\"3.61\",\"5.74\",\"7.28\"] key 7.28"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "b8dd5c3f-674 [live act/act-math-v1 Number and Quantity easy]",
+    "text": "If 27^x = 9^6, what is the value of x? options [\"4\",\"6\",\"9\",\"18\"] key 4"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "bde8737a-e42 [live sat/sat-adv-v11 Advanced Math medium]",
+    "text": "What is the solution to the equation (4^x)(8^(x+2)) = 32^3 ? options [\"1.8\",\"3\",\"2.25\",\"0.4\"] key 1.8"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "c4f4813b-8b1 [live ssat/ssat-math-s16 Math medium]",
+    "text": "If 2^x = 3 and 3^y = 4, what is the value of 2^(xy) ? options [\"3\",\"12\",\"4\",\"81\",\"7\"] key 4"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "cb4d1dd1-bf4 [live sat/v2 Algebra medium]",
+    "text": "If 4^x = 8^(x − 1), what is the value of x? options [\"1\",\"3\",\"0\",\"2\"] key 3"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "cdc2005e-a25 [live act/act-math-v16 Functions easy]",
+    "text": "The graph of g(x) = 2^x + k in the standard (x,y) coordinate plane passes through the point (3, 2), where k is a constant. What is the value of k ? options [\"-4\",\"-1\",\"1/4\",\"-6\"] key -6"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "da508f33-12b [live sat/sat-math-v28-full Advanced Math medium]",
+    "text": "Real numbers x and y satisfy both of the following equations. 5^(x + y) = 72 5^(x - y) = 8 Based on these two equations, what is the sum of the two numbers 5^x and 5^y ? options [\"27\",\"33\",\"40\",\"72\"] key 27"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "e11c710e-e2c [live isee/isee-math-s15 Math easy]",
+    "text": "If 2^x + 2^x + 2^x + 2^x = 4^5, what is the value of x? options [\"5/2\",\"8\",\"3\",\"10/3\"] key 8"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "f15ad17a-967 [live sat/sat-math-v29-full Advanced Math hard]",
+    "text": "In the xy-plane, the graphs of y = 4^x and y = k(2^x) - 16, where k is a constant, intersect at two points whose x-coordinates differ by 2. What is the sum of the y-coordinates of the two intersection points? options [\"10\",\"36\",\"6"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SADV-18 [prior sat-adv-0918.batch.json]",
+    "text": "If 4^x + 4^x + 4^x + 4^x = 4^7, what is the value of x? options [\"6\",\"3\",\"8\",\"1.75\"] key 6"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SADVC-08 [prior sat-adv-0918c.batch.json]",
+    "text": "The function f is defined by f(x) = 3^x. For all values of x, f(x + 5) − f(x + 3) = k · f(x), where k is a constant. What is the value of k? options [\"2\",\"9\",\"234\",\"216\"] key 216"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SADV3-10 [prior sat-adv-0919b.batch.json]",
+    "text": "What is the sum of all solutions to the equation 4^x − 12 · 2^x + 32 = 0 ? options [\"5\",\"12\",\"32\",\"3\"] key 5"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SADV5B-01 [prior sat-adv-0919c-b.batch.json]",
+    "text": "The function f is defined by f(x) = a·b^x, where a and b are positive constants. In the xy-plane, the graph of y = f(x) passes through the points (0, 16) and (2, 36). What is the value of f(3)? options [\"40.5\",\"72\",\"54\",\"121.5\"] k"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SADV5B-06 [prior sat-adv-0919c-b.batch.json]",
+    "text": "What is the solution to the equation 4^x − 6·2^x − 16 = 0 ? options [\"3\",\"64\",\"1\",\"8\"] key 3"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SADV5B-08 [prior sat-adv-0919c-b.batch.json]",
+    "text": "If (1/27)^x = 81^(x − 7), what is the value of x? options [\"28\",\"4\",\"14/3\",\"7/2\"] key 4"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SADV5B-09 [prior sat-adv-0919c-b.batch.json]",
+    "text": "The function f is defined by f(x) = a·3^x + c, where a and c are constants. If f(0) = 7 and f(2) = 47, what is the value of f(-1)? options [\"17/3\",\"1/3\",\"7/3\",\"11/3\"] key 11/3"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SADV6B-06 [prior sat-adv-0919d-b.batch.json]",
+    "text": "The function f is defined by f(x) = a · b^x, where a and b are positive constants. If f(1) = 10 and f(3) = 250, what is the value of f(4)? options [\"1250\",\"370\",\"6250\",\"490\"] key 1250"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SADV7B-01 [prior sat-adv-0919e-b.batch.json]",
+    "text": "The function f is defined by f(x) = a·b^x, where a and b are positive constants. It is given that f(0) = 7 and f(11)/f(5) = 64. For what value of x does f(x) = 28672? options [\"17\",\"12\",\"2\",\"23\"] key 12"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SADV7B-02 [prior sat-adv-0919e-b.batch.json]",
+    "text": "The function g is defined by g(x) = a·3^x + c, where a and c are constants. The graph of y = g(x) in the xy-plane has the horizontal asymptote y = -90, and g(2) = 99. What is the value of a? options [\"1\",\"11\",\"189\",\"21\"] key 21"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SADV7B-03 [prior sat-adv-0919e-b.batch.json]",
+    "text": "What is the sum of the solutions of the equation 2^(2x + 1) - 24·2^x + 64 = 0 ? options [\"5\",\"12\",\"8\",\"32\"] key 5"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SADV7B-05 [prior sat-adv-0919e-b.batch.json]",
+    "text": "The functions f and g are defined by f(n) = 4·2^n and g(n) = 45n + 70. What is the least integer value of n for which f(n) > g(n) ? options [\"13\",\"7\",\"3\",\"9\"] key 7"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SADV7B-06 [prior sat-adv-0919e-b.batch.json]",
+    "text": "A quantity is modeled by f(x) = a(3/2)^x, where a is a constant and x is the number of growth periods that have passed. If f(4) = 405, what is the value of a? options [\"45\",\"5\",\"80\",\"180\"] key 80"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SADV7B-10 [prior sat-adv-0919e-b.batch.json]",
+    "text": "For every value of x, 7·2^(x + 4) = c·2^x, where c is a constant. What is the value of c? options [\"112\",\"16\",\"23\",\"11\"] key 112"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SADV7B-11 [prior sat-adv-0919e-b.batch.json]",
+    "text": "The function f is defined by f(x) = a·b^x, where a and b are positive constants. It is given that f(2) = 36 and f(5) = 972. What is the value of a + b? options [\"15\",\"7\",\"39\",\"12\"] key 7"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SADV7B-12 [prior sat-adv-0919e-b.batch.json]",
+    "text": "What is the solution to the equation 2^(x + 3) + 2^x = 2304 ? options [\"11\",\"256\",\"8\",\"5\"] key 8"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SAM11-08 [prior sat-adv-v11.batch.json]",
+    "text": "What is the solution to the equation (4^x)(8^(x+2)) = 32^3 ? options [\"1.8\",\"3\",\"2.25\",\"0.4\"] key 1.8"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "ADV5-20 [prior sat-adv-v5.batch.json]",
+    "text": "If 8^x = 32, what is the value of x? options [\"8/5\",\"5/3\",\"4/3\",\"3/2\"] key 5/3"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SM14A-02 [prior sat-math-v14-adv.batch.json]",
+    "text": "The function f is defined by f(x) = 3(2)^x. What is the value of f(4)? options [\"19\",\"24\",\"48\",\"81\"] key 48"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SM14A-18 [prior sat-math-v14-adv.batch.json]",
+    "text": "The function f is defined by f(x) = a*b^x, where a and b are positive constants. If f(2) = 45 and f(4) = 405, what is the value of f(0)? options [\"3\",\"5\",\"9\",\"15\"] key 5"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SM15A-09 [prior sat-math-v15-adv.batch.json]",
+    "text": "If 5^x = 12, what is the value of 5^(2x + 1)? options [\"720\",\"144\",\"120\",\"60\"] key 720"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SM16A-12 [prior sat-math-v16-adv.batch.json]",
+    "text": "The function f is defined by f(x) = a(b^x), where a and b are positive constants. If f(1) = 54 and f(4) = 1458, what is the value of b? options [\"2\",\"3\",\"18\",\"27\"] key 3"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SM17A-A3 [prior sat-math-v17-adv-a.batch.json]",
+    "text": "The function f is defined by f(x) = a * b^x, where a and b are positive constants. If f(2) = 45 and f(5) = 1215, what is the value of a + b? options [\"8\",\"15\",\"18\",\"48\"] key 8"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SM21A-B4 [prior sat-math-v21-adv-b.batch.json]",
+    "text": "What is the sum of all solutions to the equation 2^(2x + 1) - 33(2^x) + 16 = 0? options [\"-4\",\"3\",\"5\",\"33/2\"] key 3"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SM24V-B06 [prior sat-math-v24-adv-b.batch.json]",
+    "text": "The number x satisfies 2^(x + 2) · 5^(x - 1) = 800. Using this equation, find the value of the product 2^x · 5^(x + 1). options [\"128\",\"1000\",\"2000\",\"5000\"] key 5000"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SM24V-B11 [prior sat-math-v24-adv-b.batch.json]",
+    "text": "In the equation 4^x - k(2^x) + 40 = 0, k is a constant. If the equation has exactly two real solutions, which of the following could be the value of k? options [\"-14\",\"1\",\"7\",\"13\"] key 13"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SM24V-B12 [prior sat-math-v24-adv-b.batch.json]",
+    "text": "Let x1 and x2 be the two real numbers that satisfy 9^x - 4(3^(x + 1)) + 20 = 0, with x1 < x2. Compute 3^(x2 - x1). options [\"5\",\"8\",\"12\",\"36\"] key 5"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SM24V-B13 [prior sat-math-v24-adv-b.batch.json]",
+    "text": "For the exponential function f(x) = a(b)^x, where a and b are positive constants, f(1) + f(2) = 30 and f(3) + f(4) = 120. Which number is the output of f at x = 5? options [\"96\",\"160\",\"240\",\"480\"] key 160"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SM24V-B14 [prior sat-math-v24-adv-b.batch.json]",
+    "text": "A model has the form g(x) = a(b)^x + c, where a, b, and c are constants. The model gives g(0) = 23, g(1) = 29, and g(2) = 47. According to the model, what is g(3)? options [\"65\",\"77\",\"81\",\"101\"] key 101"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SM24V-B15 [prior sat-math-v24-adv-b.batch.json]",
+    "text": "If 9^x + 6^x = 12(4^x), what is the value of (9^x + 4^x)/6^x, rounded to the nearest hundredth? options [\"2.67\",\"3.33\",\"4.25\",\"9.11\"] key 3.33"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SM25V-B01 [prior sat-math-v25-adv-b.batch.json]",
+    "text": "An exponential function g satisfies g(x) = a(b)^x for positive constants a and b, with g(0) = 4. Over the interval from x = 0 to x = 2, the average rate of change of g is 10. Over the next interval, from x = 2 to x = 4, what is th"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SM25V-B11 [prior sat-math-v25-adv-b.batch.json]",
+    "text": "Suppose 3^x = 49. Evaluate the sum 3^(x/2) + 3^(-x/2), giving your answer to two decimal places. options [\"7.14\",\"24.54\",\"49.02\",\"49.14\"] key 7.14"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SM25V-B13 [prior sat-math-v25-adv-b.batch.json]",
+    "text": "Given that 2^(x + 2) - 2^(x - 1) = 126, compute 4^x + 2^x. options [\"812\",\"1332\",\"1806\",\"4032\"] key 1332"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SM25V-D01 [prior sat-math-v25-adv-d.batch.json]",
+    "text": "A power function has the form f(x) = ax^n, with a and n positive constants. Doubling any positive input multiplies the output by 8, that is, f(2x) = 8f(x) whenever x > 0. Given that f(3) = 54, compute f(5). options [\"70\",\"90\",\"150"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SM28F-Q04 [prior sat-math-v28-full-q.batch.json]",
+    "text": "Real numbers x and y satisfy both of the following equations. 5^(x + y) = 72 5^(x - y) = 8 Based on these two equations, what is the sum of the two numbers 5^x and 5^y ? options [\"27\",\"33\",\"40\",\"72\"] key 27"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SM28F-Q05 [prior sat-math-v28-full-q.batch.json]",
+    "text": "Two different real numbers, a and b, each satisfy the equation 3(9^x) - 10(3^x) + 3 = 0. Combining both solutions, what is the value of the sum 9^a + 9^b ? options [\"1\",\"10/3\",\"82/9\",\"18\"] key 82/9"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SM28F-Q06 [prior sat-math-v28-full-q.batch.json]",
+    "text": "A function f has the form f(x) = a(b)^x, where a and b are positive constants, and the constant a is less than 40. The outputs of f satisfy two conditions: f(0) + f(2) = 75, and f(1) = 36. Using these conditions, what is the value"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SM29F-Q02 [prior sat-math-v29-full-q.batch.json]",
+    "text": "The function f is defined by f(x) = 4^x. For the real numbers a and b, f(a) = 3 and f(b) = 15. To the nearest hundredth, what is the value of f((a + b)/2) ? options [\"4.24\",\"5.61\",\"6.71\",\"9.00\"] key 6.71"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "SM29F-Q06 [prior sat-math-v29-full-q.batch.json]",
+    "text": "In the xy-plane, the graphs of y = 4^x and y = k(2^x) - 16, where k is a constant, intersect at two points whose x-coordinates differ by 2. What is the sum of the y-coordinates of the two intersection points? options [\"10\",\"36\",\"6"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "MMG-N14 [prior map-math-g58-v1]",
+    "text": "A sample of 7 × 10^7 bacteria has a total mass of 1.4 × 10^-1 milligram, and each bacterium has the same mass. The mass of one bacterium, in kilograms, can be written as a × 10^n, where 1 ≤ a < 10. What is the value of n? (1 gram "
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "MMG-N14 [prior map-math-g58-v1.batch.json]",
+    "text": "A sample of 7 × 10^7 bacteria has a total mass of 1.4 × 10^-1 milligram, and each bacterium has the same mass. The mass of one bacterium, in kilograms, can be written as a × 10^n, where 1 ≤ a < 10. What is the value of n? (1 gram "
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "MV2-N8-06 [prior map-math-v2 b1 LIVE]",
+    "text": "The number x makes the equation 3^x = 10 true. What is the value of 9^x + 3^(x + 3)? options [\"130\",\"1100\",\"370\",\"290\"] key 370"
+   },
+   {
+    "q": "\\^n|\\^x & =",
+    "head": "MB2-N78-19 [prior map-math-v2 b2 LIVE]",
+    "text": "Priya multiplies three powers of 2 and writes the product as a single power: (2^x)(2^2)(2^(-7)) = 2^(-2). Which integer did she use for the exponent x? options [\"-11\",\"-7\",\"3\",\"7\"] key 3 "
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MMG-N14",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "divide coefficients and subtract exponents, one of them negative -> rewrite 0.2 x 10^k in scientific notation -> convert milligrams to kilog"
+   },
+   {
+    "id": "MM5-N39",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "quotient inside: 7 - (-2) = 9 -> power of a power: 9 x (-4) = -36 -> quotient: -36 - (-42) = 6"
+   },
+   {
+    "id": "MV2-N8-06",
+    "st": "LIVE",
+    "g": 8,
+    "chain": "9^x = (3^x)^2 = 100 -> 3^(x+3) = 3^x x 3^3 = 270 -> add"
+   },
+   {
+    "id": "MB2-N78-19",
+    "st": "LIVE",
+    "g": 8,
+    "chain": "product of powers: add the exponents -> set the exponent sum equal to the right-hand exponent -> solve x + 2 - 7 = -2 with negatives"
+   }
+  ]
+ },
+ "K41": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MMG-N13",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "take the square root of a decimal perfect square -> shorten the side -> square the new side"
+   },
+   {
+    "id": "MM2-N02",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "convert mixed numbers to fractions (or a four-part area model) -> multiply 7/3 x 6/5 -> simplify 42/15 to a mixed number"
+   },
+   {
+    "id": "MM5P-N02",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "convert mixed numbers and multiply for the area -> rename a mixed number in twelfths -> subtract with regrouping"
+   },
+   {
+    "id": "MM4-N10",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "area = length x width -> write both mixed numbers as fractions (or use all four partial products) -> multiply and write the product as a mix"
+   },
+   {
+    "id": "MM4-N10",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "area = length x width -> write both mixed numbers as fractions -> multiply and write the product as a mixed number"
+   },
+   {
+    "id": "MV2-N8-08",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "side = √2000 -> estimate √2000 between 44 and 45 -> perimeter = 4 x side -> round to the nearest 10"
+   },
+   {
+    "id": "MV2-N8-18",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "edge = ∛2000 -> estimate ∛2000 between 12 and 13 (about 12.6) -> face area = edge^2 -> round to the nearest 10"
+   }
+  ]
+ },
+ "K42": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MM2-N16",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "write both numbers with the same power of 10 (or in standard form) -> subtract, regrouping across zeros"
+   },
+   {
+    "id": "MM5-N09",
+    "st": "LIVE",
+    "g": 5,
+    "chain": "divide 24.30 by 6 with a zero in the quotient -> multiply the bottle price by 4 -> subtract from 50 and add 2.50"
+   },
+   {
+    "id": "MM5P-N01",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "multiply a decimal price by a whole number -> add the two costs -> subtract from a whole-dollar amount, regrouping across zeros"
+   },
+   {
+    "id": "MM3-N04",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "subtract the pen's cost from the total -> divide the decimal by 4 with long division -> carry each remainder and annex a zero"
+   },
+   {
+    "id": "MM4-N30",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "distance across zero split at floor 0 -> count gaps on each side and use each gap's height -> add the three parts"
+   },
+   {
+    "id": "MM4-N25",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "change across zero -> quotient of two negatives as a decimal"
+   },
+   {
+    "id": "MM4-N30",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "distance across zero split at floor 0 -> count gaps on each side and use each gap's height -> add the three parts"
+   },
+   {
+    "id": "MV2-N56-04",
+    "st": "withdrawn",
+    "g": 5,
+    "chain": "value of the tens digit: 40 -> value of the hundredths digit: 0.04 -> subtract, regrouping across zeros"
+   },
+   {
+    "id": "MV2-N7-01",
+    "st": "withdrawn",
+    "g": 7,
+    "chain": "new balloon height 85.6 - 12.4 -> new diver position -4.35 - 2.7 -> distance across zero: 73.2 - (-7.05)"
+   },
+   {
+    "id": "MV2-N7-02",
+    "st": "withdrawn",
+    "g": 7,
+    "chain": "climb up across zero: 27.6 - (-12.35) -> walk down: 27.6 - 8.4 -> add the two legs"
+   },
+   {
+    "id": "MV2-N7-03",
+    "st": "LIVE",
+    "g": 7,
+    "chain": "Monday rise across zero: 3.6 - (-7.35) -> Tuesday rise across zero: 4.2 - (-2.6) -> compare: 10.95 - 6.8"
+   },
+   {
+    "id": "MV2-N7-05",
+    "st": "LIVE",
+    "g": 7,
+    "chain": "length across zero: 0.45 - (-4.05) -> 10 rungs make 9 spaces: 4.5 / 9 -> the 4th rung is 3 spaces down: 0.45 - 3(0.5)"
+   },
+   {
+    "id": "MV2-N7-07",
+    "st": "withdrawn",
+    "g": 7,
+    "chain": "whole climb across zero: 30.2 - (-14.4) = 44.6 -> 1/4 of 44.6 = 11.15 -> start plus climb: -14.4 + 11.15"
+   },
+   {
+    "id": "MV2-N7-11",
+    "st": "withdrawn",
+    "g": 7,
+    "chain": "A: 2.6 x 3 = 7.8 -> B: -(3.85 x 5) = -19.25 -> distance across zero: 7.8 - (-19.25)"
+   },
+   {
+    "id": "MB2-N56-19",
+    "st": "dropped by graders",
+    "g": 6,
+    "chain": "elapsed time across midnight -> rate times hours for the fall -> extend a below-zero reading further below zero -> gap across zero on the th"
+   },
+   {
+    "id": "MB4-N8-05",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "decimal base to a negative exponent as a whole-number power of the reciprocal -> coefficient times a negative power -> zero exponent on a su"
+   }
+  ]
+ }
+}

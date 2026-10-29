@@ -1,0 +1,62 @@
+{
+ "P04": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MMG-N12",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "locate √5 between consecutive whole numbers and refine to tenths -> multiply the approximation by 2"
+   }
+  ]
+ },
+ "P05": {
+  "live_prior": [],
+  "earlier": []
+ },
+ "P09": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MM2-N16",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "write both numbers with the same power of 10 (or in standard form) -> subtract, regrouping across zeros"
+   },
+   {
+    "id": "MM5P-N01",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "multiply a decimal price by a whole number -> add the two costs -> subtract from a whole-dollar amount, regrouping across zeros"
+   },
+   {
+    "id": "MV2-N56-04",
+    "st": "withdrawn",
+    "g": 5,
+    "chain": "value of the tens digit: 40 -> value of the hundredths digit: 0.04 -> subtract, regrouping across zeros"
+   }
+  ]
+ },
+ "P14": {
+  "live_prior": [
+   {
+    "q": "no common factor (other than|except) 1",
+    "head": "MM2-N09 [prior map-math-g58-v2]",
+    "text": "Using the distributive property, Kim writes 48 + 72 as a(b + c), where a x b = 48, a x c = 72, and b and c are whole numbers with no common factor other than 1. What is the value of a + b + c? options [\"5\",\"22\",\"23\",\"29\"] key 29"
+   },
+   {
+    "q": "no common factor (other than|except) 1",
+    "head": "MM2-N09 [prior map-math-g58-v2/stage0.assembled.json]",
+    "text": "Using the distributive property, Kim writes 48 + 72 as a(b + c), where a x b = 48, a x c = 72, and b and c are whole numbers with no common factor other than 1. What is the value of a + b + c? options [\"5\",\"22\",\"23\",\"29\"] key 29 "
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MM2-N09",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "'no common factor' means a is the GCF -> GCF of 48 and 72 = 24 -> b = 2, c = 3, then add a + b + c"
+   }
+  ]
+ }
+}

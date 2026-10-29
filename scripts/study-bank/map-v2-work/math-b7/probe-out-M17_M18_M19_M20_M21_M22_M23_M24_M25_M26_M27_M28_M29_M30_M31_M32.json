@@ -1,0 +1,709 @@
+{
+ "M17": {
+  "live_prior": [],
+  "earlier": []
+ },
+ "M18": {
+  "live_prior": [
+   {
+    "q": "written one after another",
+    "head": "48d506cf-ea2 [live isee/isee-math-s15 Math medium]",
+    "text": "The counting numbers are written one after another without spaces: 123456789101112131415... What digit is in the 300th position? options [\"1\",\"3\",\"6\",\"9\"] key 6 "
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MM3-N01",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "match each count with its crate size -> multiply two 2-digit numbers twice -> add the two products"
+   },
+   {
+    "id": "MM3-N09",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "multiply the digits as whole numbers with partial products -> count decimal places to place the point"
+   },
+   {
+    "id": "MM4-N35",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "simplify each root (a perfect square or cube under it, or a quotient of roots) -> repeating decimals are rational -> endless non-repeating d"
+   },
+   {
+    "id": "MM5-N03",
+    "st": "LIVE",
+    "g": 5,
+    "chain": "look at the hundredths digit of each number -> round each to the nearest tenth -> count the numbers that round to 4.7"
+   },
+   {
+    "id": "MM5-N06",
+    "st": "LIVE",
+    "g": 5,
+    "chain": "look at the hundredths digit of each price -> round 3.95 up across the dollar -> add the four rounded prices"
+   },
+   {
+    "id": "MM3-N12",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "divide the whole meters, carrying the remainder -> bring down each decimal digit and keep dividing -> place the decimal point in the quotien"
+   },
+   {
+    "id": "MM4-N35",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "decide which roots are of perfect squares or cubes -> a repeating decimal is rational -> a patterned decimal with no repeating block is irra"
+   },
+   {
+    "id": "MV2-N56-04",
+    "st": "withdrawn",
+    "g": 5,
+    "chain": "value of the tens digit: 40 -> value of the hundredths digit: 0.04 -> subtract, regrouping across zeros"
+   },
+   {
+    "id": "MV2-N56-07",
+    "st": "LIVE",
+    "g": 5,
+    "chain": "divide each farm's total by its own crate count -> two-digit divisors -> subtract the per-crate amounts -> scale the difference to 5 crates"
+   },
+   {
+    "id": "MV2-N8-14",
+    "st": "LIVE",
+    "g": 8,
+    "chain": "multiply by 1000 and by 10 -> subtract to get 990n = 345 -> simplify 345/990 to 23/66 -> add numerator and denominator"
+   }
+  ]
+ },
+ "M19": {
+  "live_prior": [],
+  "earlier": []
+ },
+ "M20": {
+  "live_prior": [
+   {
+    "q": "gift card & left",
+    "head": "fb3df48f-29b [live sat/math-v3 Algebra medium]",
+    "text": "A bookstore gift card is loaded with $132. Paperbacks cost $6.00 each and stationery sets cost $4.50 each, and the equation 6p + 4.5s = 132 represents every combination of p paperbacks and s stationery sets that uses the card's fu"
+   },
+   {
+    "q": "gift card",
+    "head": "fb3df48f-29b [live sat/math-v3 Algebra medium]",
+    "text": "A bookstore gift card is loaded with $132. Paperbacks cost $6.00 each and stationery sets cost $4.50 each, and the equation 6p + 4.5s = 132 represents every combination of p paperbacks and s stationery sets that uses the card's fu"
+   }
+  ],
+  "earlier": []
+ },
+ "M21": {
+  "live_prior": [],
+  "earlier": []
+ },
+ "M22": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MM4-N35",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "decide which roots are of perfect squares or cubes -> a repeating decimal is rational -> a patterned decimal with no repeating block is irra"
+   }
+  ]
+ },
+ "M23": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MM4-N14",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "reflect across the x-axis: change the sign of y -> reflect the image across the y-axis: change the sign of x -> add the coordinates of the f"
+   },
+   {
+    "id": "MM4-N14",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "reflect across the x-axis: change the sign of y -> reflect the image across the y-axis: change the sign of x -> add the coordinates of the f"
+   },
+   {
+    "id": "MV2-N56-18",
+    "st": "LIVE",
+    "g": 6,
+    "chain": "first leg across the y-axis: add 4.5 + 5 -> reflect (5, 7) across the x-axis: (5, -7) -> second leg across the x-axis: 7 + 7 -> add the two "
+   },
+   {
+    "id": "MV2-N56-18",
+    "st": "revised away",
+    "g": 6,
+    "chain": "reflect across the x-axis: y changes sign -> same x, opposite sides of the axis: add 7 + 4 -> scale 11 units by 2.5 miles"
+   }
+  ]
+ },
+ "M24": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MM2-N02",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "convert mixed numbers to fractions (or a four-part area model) -> multiply 7/3 x 6/5 -> simplify 42/15 to a mixed number"
+   },
+   {
+    "id": "MM2-N16",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "write both numbers with the same power of 10 (or in standard form) -> subtract, regrouping across zeros"
+   },
+   {
+    "id": "MM2-N20",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "product of powers with a negative exponent -> power of a power -> divide by a negative power: subtract a negative exponent"
+   },
+   {
+    "id": "MM3-N23",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "evaluate an odd power of a negative base -> rewrite a negative exponent as a reciprocal -> multiply a negative whole number by a fraction"
+   },
+   {
+    "id": "MM3-N24",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "write 1/1024 as a power of 4 with a negative exponent -> write 625 as a power of 5 -> subtract a negative exponent"
+   },
+   {
+    "id": "MM4-N21",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "subtract a negative from a negative -> share the change equally over 5 weeks -> add one week's rise to the starting balance"
+   },
+   {
+    "id": "MM4-N28",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "total repaid, moves the negative balance up -> fraction of the current debt -> borrowing moves the balance down"
+   },
+   {
+    "id": "MM5-N02",
+    "st": "LIVE",
+    "g": 5,
+    "chain": "multiply the whole number by the numerator -> divide by the denominator -> write the result as a mixed number in lowest terms"
+   },
+   {
+    "id": "MM5-N33",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "charge: 1/4 of 36.40 = 9.10 owed, balance -45.50 -> weeks 3 through 9 = 7 fees: -24.50 -> deposit: +27.70"
+   },
+   {
+    "id": "MM5P-N07",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "subtract a charge from a negative balance -> add a credit to a negative balance -> read a negative balance as an amount owed"
+   },
+   {
+    "id": "MM5P-N10",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "add exponents for a product of powers with the same base -> evaluate powers before multiplying -> subtract the two terms"
+   },
+   {
+    "id": "MM3-N24",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "write 1/128 as a power of 2 with a negative exponent -> write 81 as a power of 3 -> subtract a negative exponent"
+   },
+   {
+    "id": "MM4-N03",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "line up the decimals place by place -> compare each with the lower bound 2.95 and the upper bound 3.1"
+   },
+   {
+    "id": "MM4-N36",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "a negative exponent is the reciprocal of the positive power -> 2^3 = 8 -> multiply 75 by 1/8"
+   },
+   {
+    "id": "MM4-N38",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "write 8 and 32 as powers of 2 -> power of a power multiplies exponents -> quotient of powers subtracts exponents"
+   },
+   {
+    "id": "MM4-N40",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "list powers of 2 upward to 64 -> list negative powers down to 1/64 and compare with 0.01 -> count the exponents from -6 to 6, including 0"
+   },
+   {
+    "id": "MM4-N38",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "write 8 and 32 as powers of 2 -> power of a power with a negative exponent: (2^3)^-2 = 2^-6 -> quotient rule: -6 - 5"
+   },
+   {
+    "id": "MM4-N40",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "powers of 3 below 100: n = 0 to 4 -> negative powers above 1/1000: n = -1 to -6 -> count both sides including n = 0"
+   },
+   {
+    "id": "MM5-N39",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "quotient inside: 7 - (-2) = 9 -> power of a power: 9 x (-4) = -36 -> quotient: -36 - (-42) = 6"
+   },
+   {
+    "id": "MM5-N40",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "power of a power: (-10)(4) = -40 -> product: 31 + (-40) = -9 -> quotient: -9 - (-16) = 7"
+   },
+   {
+    "id": "MV2-N56-18",
+    "st": "LIVE",
+    "g": 6,
+    "chain": "first leg across the y-axis: add 4.5 + 5 -> reflect (5, 7) across the x-axis: (5, -7) -> second leg across the x-axis: 7 + 7 -> add the two "
+   },
+   {
+    "id": "MV2-N56-19",
+    "st": "LIVE",
+    "g": 6,
+    "chain": "size of Lena's debt: 5 x 0.75 -> her balance is negative -> opposite sides of 0: add the sizes"
+   },
+   {
+    "id": "MV2-N56-19",
+    "st": "revised away",
+    "g": 6,
+    "chain": "size of Lena's debt: 3 x 1.25 -> her balance is negative -> opposite sides of 0: add the sizes"
+   },
+   {
+    "id": "MV2-N7-12",
+    "st": "LIVE",
+    "g": 7,
+    "chain": "A: 7 x (-1.35) = -9.45 -> B: 11 x (-0.6) = -6.6 -> how much lower: -6.6 - (-9.45)"
+   },
+   {
+    "id": "MV2-N8-03",
+    "st": "dropped by graders",
+    "g": 8,
+    "chain": "power of a power: multiply exponents -> quotient of powers: subtract exponents -> multiply by the coefficient 5"
+   },
+   {
+    "id": "MV2-N8-07",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "quotient of powers: subtract exponents 3 - (-3) = 6 -> 4^6 = 4096 -> multiply by 5"
+   },
+   {
+    "id": "MV2-N8-12",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "add exponents 5 + (-2) = 3 -> 2^3 = 8 -> multiply by 5"
+   },
+   {
+    "id": "MB2-N78-14",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "rewrite both numbers with the same power of ten (or in standard form) -> subtract with regrouping -> give the difference in standard form"
+   },
+   {
+    "id": "MB2-N78-19",
+    "st": "LIVE",
+    "g": 8,
+    "chain": "product of powers: add the exponents -> set the exponent sum equal to the right-hand exponent -> solve x + 2 - 7 = -2 with negatives"
+   },
+   {
+    "id": "MB4-N6-01",
+    "st": "dropped by graders",
+    "g": 6,
+    "chain": "read each negative balance as a debt of |balance| dollars -> compare the debts by subtracting the smaller size from the larger, regrouping a"
+   },
+   {
+    "id": "MB4-N8-05",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "decimal base to a negative exponent as a whole-number power of the reciprocal -> coefficient times a negative power -> zero exponent on a su"
+   },
+   {
+    "id": "MB5-N6-03",
+    "st": "LIVE",
+    "g": 6,
+    "chain": "prime factorizations 60 = 2 x 2 x 3 x 5 and 80 = 2 x 2 x 2 x 2 x 5 -> GCF from the lower power of each shared prime: 2 x 2 x 5 = 20 -> LCM f"
+   },
+   {
+    "id": "MB5-N6-03",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "prime factorizations 25 = 5 x 5 and 45 = 3 x 3 x 5 -> GCF from the lower power of the shared prime: 5 -> LCM from the higher power of each p"
+   }
+  ]
+ },
+ "M25": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MM3-N03",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "divide 315 by 24 with long division -> find the remainder after the last step -> report the remainder, not the quotient"
+   },
+   {
+    "id": "MM3-N13",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "divide and round each quotient up to whole boxes -> multiply back and subtract to find each leftover -> add the two leftovers"
+   },
+   {
+    "id": "MM4-N16",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "find the least common multiple of 4, 6 and 9 -> take the multiple of it that lies between 115 and 150"
+   },
+   {
+    "id": "MM4-N20",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "the number of bracelets is a common factor of all three counts -> find the greatest common factor of 48, 144 and 180"
+   },
+   {
+    "id": "MB4-N6-05",
+    "st": "dropped by graders",
+    "g": 6,
+    "chain": "divide the board length by a decimal piece length to count the pieces (exact) -> multiply the count by the trim on each piece -> subtract th"
+   }
+  ]
+ },
+ "M26": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MMG-N13",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "take the square root of a decimal perfect square -> shorten the side -> square the new side"
+   },
+   {
+    "id": "MM4-N35",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "simplify each root (a perfect square or cube under it, or a quotient of roots) -> repeating decimals are rational -> endless non-repeating d"
+   },
+   {
+    "id": "MM4-N35",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "decide which roots are of perfect squares or cubes -> a repeating decimal is rational -> a patterned decimal with no repeating block is irra"
+   }
+  ]
+ },
+ "M27": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MV2-N56-13",
+    "st": "withdrawn",
+    "g": 6,
+    "chain": "list the factors of 24 -> keep those that also divide 60 -> count them"
+   }
+  ]
+ },
+ "M28": {
+  "live_prior": [
+   {
+    "q": "first (drop|fall)s? below",
+    "head": "1bbc1ced-cd5 [live sat/math-v3 Advanced Math medium]",
+    "text": "To conserve battery, an e-reader's adaptive display starts a reading session at 500 nits and automatically reduces its brightness by 20% of its current value at the end of each hour. The display becomes hard to read outdoors once "
+   },
+   {
+    "q": "first (drop|fall)s? below",
+    "head": "35c25711-b64 [live sat/v2 Problem-Solving and Data Analysis medium]",
+    "text": "Each year, the amount of a certain chemical remaining in a tank is multiplied by 0.8. After how many whole years will the amount first drop below half of its initial value? options [\"1\",\"3\",\"4\",\"7\"] key 4"
+   },
+   {
+    "q": "first (drop|fall)s? below",
+    "head": "de8946fb-1da [live sat/v2 Problem-Solving and Data Analysis medium]",
+    "text": "A city's annual water usage is projected to decrease by 4% each year due to conservation. If current usage is 500 million liters, in how many full years will usage first drop below 400 million liters? Give a whole number of years."
+   },
+   {
+    "q": "first (drop|fall)s? below",
+    "head": "e56b49c5-c8c [live sat/v2 Problem-Solving and Data Analysis hard]",
+    "text": "A radioactive sample decays so that its mass is multiplied by 0.85 each year. The initial mass is 500 grams. To the nearest whole year, after how many years will the mass first drop below 200 grams? options [\"5\",\"6\",\"7\",\"4\"] key 6"
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MMG-N07",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "evaluate the absolute value of a negative number -> locate the first integer greater than a negative mixed number -> count integers in the i"
+   },
+   {
+    "id": "MM2-N14",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "change over the first 4 hours: 4 x -0.64 -> subtract that from the total (subtracting a negative) -> split the remaining rise equally over 2"
+   },
+   {
+    "id": "MM2-N04",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "subtract the saved 3 m first: 76 m -> divide 76 by 25 past the decimal point -> keep the 0 in the tenths place: 3.04"
+   },
+   {
+    "id": "MM3-N14",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "find the least common multiple of 15 and 25 -> count the multiples of 75 from 75 to 300 minutes -> leave out the first moment and keep the o"
+   },
+   {
+    "id": "MM4-N21",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "subtract a negative from a negative -> share the change equally over 5 weeks -> add one week's rise to the starting balance"
+   },
+   {
+    "id": "MM5-N33",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "charge: 1/4 of 36.40 = 9.10 owed, balance -45.50 -> weeks 3 through 9 = 7 fees: -24.50 -> deposit: +27.70"
+   },
+   {
+    "id": "MM3-N28",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "take the cube root of the volume to get the edge -> shorten the edge by 0.2 -> cube the new edge"
+   },
+   {
+    "id": "MM3-N28",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "take the cube root of the volume to get the edge -> shorten the edge by 1/2 -> cube the new edge"
+   },
+   {
+    "id": "MM4-N27",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "divide a decimal by a decimal first -> subtract a positive from a negative (add the sizes, keep negative)"
+   },
+   {
+    "id": "MM5-N44",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "second rate: 2.5 x 2.4 x 10^5 = 6.0 x 10^5 -> total: 4.8 x 10^5 + 1.8 x 10^6 = 2.28 x 10^6 -> mean: divide by 5 hours"
+   },
+   {
+    "id": "MV2-N56-07",
+    "st": "LIVE",
+    "g": 5,
+    "chain": "divide each farm's total by its own crate count -> two-digit divisors -> subtract the per-crate amounts -> scale the difference to 5 crates"
+   },
+   {
+    "id": "MV2-N56-18",
+    "st": "LIVE",
+    "g": 6,
+    "chain": "first leg across the y-axis: add 4.5 + 5 -> reflect (5, 7) across the x-axis: (5, -7) -> second leg across the x-axis: 7 + 7 -> add the two "
+   },
+   {
+    "id": "MV2-N56-25",
+    "st": "withdrawn",
+    "g": 6,
+    "chain": "GCF of 15 and 105 is 15 -> divide each addend by 15 -> add the quotients"
+   },
+   {
+    "id": "MV2-N7-06",
+    "st": "withdrawn",
+    "g": 7,
+    "chain": "inside the brackets: -1.5 - 0.6 = -2.1 -> negative times negative: (-3.5)(-2.1) = 7.35 -> add -3.6"
+   },
+   {
+    "id": "MV2-N7-14",
+    "st": "withdrawn",
+    "g": 7,
+    "chain": "divide first: -7.2 / 2.5 = -2.88 -> then multiply: -2.88 x 4.5 = -12.96 -> subtract a negative: -3.5 - (-12.96)"
+   },
+   {
+    "id": "MV2-N7-16",
+    "st": "withdrawn",
+    "g": 7,
+    "chain": "3 times as deep: 3 x (-2.35) = -7.05 -> raise by 1.6: -7.05 + 1.6"
+   },
+   {
+    "id": "MV2-N8-02",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "square root of 144 -> cube root of 729 -> subtract -> square the difference"
+   },
+   {
+    "id": "MV2-N8-12",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "add exponents 5 + (-2) = 3 -> 2^3 = 8 -> multiply by 5"
+   },
+   {
+    "id": "MB2-N78-03",
+    "st": "withdrawn",
+    "g": 7,
+    "chain": "subtract inside the parentheses (negative result) -> multiply a negative decimal by the negative difference -> apply the sign rule for a pro"
+   },
+   {
+    "id": "MB2-N78-14",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "rewrite both numbers with the same power of ten (or in standard form) -> subtract with regrouping -> give the difference in standard form"
+   }
+  ]
+ },
+ "M29": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MM2-N06",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "multiply 475 by 22 with two partial products -> place the decimal point three places from the right"
+   },
+   {
+    "id": "MM2-N06",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "cost / pounds -> shift both decimal points one place: 124 / 16 -> carry the division past the remainder to hundredths"
+   },
+   {
+    "id": "MM4-N13",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "multiply the weight by the price per pound -> subtract the cost from 10.00"
+   },
+   {
+    "id": "MM5P-N04",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "divide a decimal price by a decimal weight below 1 -> subtract a per-pound difference"
+   }
+  ]
+ },
+ "M30": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MM2-N20",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "2^-2 x 2^6 = 2^4 -> (2^4)^3 = 2^12 -> divide by (2^2)^2 = 2^4"
+   },
+   {
+    "id": "MM2-N20",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "product of powers with a negative exponent -> power of a power -> divide by a negative power: subtract a negative exponent"
+   },
+   {
+    "id": "MM3-N23",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "evaluate an odd power of a negative base -> rewrite a negative exponent as a reciprocal -> multiply a negative whole number by a fraction"
+   },
+   {
+    "id": "MM4-N36",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "negative exponent means reciprocal: 2/5 -> square the reciprocal: 4/25"
+   },
+   {
+    "id": "MM4-N38",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "write 8 and 32 as powers of 2 -> power of a power with a negative exponent: (2^3)^-2 = 2^-6 -> quotient rule: -6 - 5"
+   },
+   {
+    "id": "MM5-N39",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "quotient inside: 7 - (-2) = 9 -> power of a power: 9 x (-4) = -36 -> quotient: -36 - (-42) = 6"
+   },
+   {
+    "id": "MM5-N40",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "power of a power: (-10)(4) = -40 -> product: 31 + (-40) = -9 -> quotient: -9 - (-16) = 7"
+   },
+   {
+    "id": "MV2-N8-02",
+    "st": "withdrawn",
+    "g": 8,
+    "chain": "square root of 144 -> cube root of 729 -> subtract -> square the difference"
+   },
+   {
+    "id": "MV2-N8-03",
+    "st": "dropped by graders",
+    "g": 8,
+    "chain": "power of a power: multiply exponents -> quotient of powers: subtract exponents -> multiply by the coefficient 5"
+   },
+   {
+    "id": "MV2-N8-06",
+    "st": "LIVE",
+    "g": 8,
+    "chain": "9^x = (3^x)^2 = 100 -> 3^(x+3) = 3^x x 3^3 = 270 -> add"
+   }
+  ]
+ },
+ "M31": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MMG-N08",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "write the downward rate as a negative number -> multiply rate by time -> add the change to the negative starting position"
+   },
+   {
+    "id": "MM5P-N08",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "multiply signed decimal rates by times -> add the changes to a negative start -> read a negative elevation as a depth"
+   },
+   {
+    "id": "MM4-N30",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "distance across zero split at floor 0 -> count gaps on each side and use each gap's height -> add the three parts"
+   },
+   {
+    "id": "MM4-N30",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "distance across zero split at floor 0 -> count gaps on each side and use each gap's height -> add the three parts"
+   },
+   {
+    "id": "MV2-N7-01",
+    "st": "withdrawn",
+    "g": 7,
+    "chain": "new balloon height 85.6 - 12.4 -> new diver position -4.35 - 2.7 -> distance across zero: 73.2 - (-7.05)"
+   },
+   {
+    "id": "MV2-N7-16",
+    "st": "withdrawn",
+    "g": 7,
+    "chain": "3 times as deep: 3 x (-2.35) = -7.05 -> raise by 1.6: -7.05 + 1.6"
+   },
+   {
+    "id": "MB2-N78-02",
+    "st": "LIVE",
+    "g": 7,
+    "chain": "start at a negative elevation -> add a negative decimal change (down) -> add a positive decimal change (up)"
+   },
+   {
+    "id": "MB4-N6-03",
+    "st": "dropped by graders",
+    "g": 6,
+    "chain": "distance between two negative elevations: difference of the absolute values -> distance across 0: sum of the absolute values -> add the two "
+   }
+  ]
+ },
+ "M32": {
+  "live_prior": [],
+  "earlier": []
+ }
+}

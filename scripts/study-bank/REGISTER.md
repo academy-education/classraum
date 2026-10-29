@@ -6217,3 +6217,25 @@ structural checks are pre-flight only. See CLAUDE.md.
   after the coordinator relayed the b11 design-item tell, P3-Q3 and P4-Q3 were rebuilt so all four options share
   the factor and condition and differ only in a passage detail. Keys A13 B13 C13 D13; key uniquely longest 5/52;
   IoD 32 / SI 7 / EMI 13. Packets: `scratchpad/act-science-regrade/b14-g{1,2}/grader-cold.md` (0 render warnings).
+
+- **2026-10-29 — b11 (act-science-v12c) 5 of 9 passages (28 items); b12 (act-science-v12d) 6 of 9 (34 items).**
+  Both in the prereg "keep writing" band. All 104 keys correct, 0 fact errors.
+  - b11: drops P1-P4, all from design items ("which trials best test X under Y": the key alone varies X and
+    sets Y). R6 by both graders on P1-Q4, P2-Q5, P3-Q5, P4-Q6; r1 confirmed no_source on P1-Q4/P2-Q5/P3-Q3/P3-Q5;
+    both graders named the same R8 rule on the three design items, all already R6-dropped.
+  - b12: 0 no-source, 0 R6 drops. Both graders named the same R8 rule on the three "agree" items (key = the only
+    general-category option). Applied blind by a fresh agent from the cold packet (_r8/b12/rule-picks.json): it
+    found exactly those three items and picked the key 3 of 3, so P5/P6/P7 drop.
+  - Brief amended ("v12c/v12d lessons"); v12e/v12f authors told before their packets.
+  - ACT Science cleared today, not yet released: v12a 18, v12b 47, v12c 28, v12d 34 = 127 items.
+
+- **2026-10-29 — MAP Math batch 7 (Number Systems) step 1: 40 candidate mechanisms for an independent chain check;
+  nothing written, nothing inserted.** MAP Math stays capped at 5 forms by Number Systems (51 live, quota 10).
+  Following the batch-5 lesson (no items before a checker vets mechanisms), `map-v2-work/math-b7/` holds:
+  `earlier-N-chains.json` (294 entries = batch 5's 285 + batch 5's own N items, statuses refreshed; `collect.mjs`,
+  read-only; DB: 51 N rows, all live), `candidates.json` (78 drafted), `probe.mjs` (each candidate through
+  `mf30-kw.mjs` over dump-b6 + a regex over the earlier list), `DROPPED.md` (38 dropped for a probe collision —
+  e.g. divisor counts, distinct primes, "of the way from", midpoint backward, |x - a| = b, -a^2 vs (-a)^2, irrational
+  counts, halfway between fractions, golf par, tiling, servings, concatenated digits), `MECHANISMS.md` (40 listed in
+  the batch-5 format: 2 strong, 26 medium, 12 weak; g5 12, g6 10, g7 11, g8 7) and `CHECKER-PROMPT.md`. Next: one
+  fresh checker writes `CHAIN-CHECK.md`; the brief and prereg follow only from its recommended set.

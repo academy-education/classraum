@@ -1,0 +1,1017 @@
+[
+ {
+  "id": "K01",
+  "g": 5,
+  "ccss": "5.NBT.B.7",
+  "ask": "how many equal decimal portions fit in a decimal total, and the decimal amount left over",
+  "chain": "divide a decimal total by a decimal portion -> take the whole-number part as the count -> leftover = total - count x portion (a decimal remainder)",
+  "twist": "the remainder of a decimal division, in units, not a whole-number remainder and not a rounded quotient",
+  "q": [
+   "left over|remain & 0\\.\\d+ (liter|L|kg|meter|m|pound)",
+   "how many .* can .* fill & left"
+  ],
+  "e": "remain|left over|leftover"
+ },
+ {
+  "id": "K02",
+  "g": 5,
+  "ccss": "5.NF.B.4a",
+  "ask": "after three successive spends, each a fraction of what is left, the fraction of the original that remains",
+  "chain": "remaining after step 1 = 1 - a -> step 2 takes b of the remainder -> step 3 takes c of the new remainder -> product of the three complements",
+  "twist": "three successive fraction-of-the-remainder steps; the answer is a product of complements, not a sum of the fractions",
+  "q": [
+   "of (the|what) remain & of (the|what) remain",
+   "of what was left & then"
+  ],
+  "e": "remain|left"
+ },
+ {
+  "id": "K03",
+  "g": 5,
+  "ccss": "5.NF.B.7c",
+  "ask": "a whole length cut into unit-fraction pieces, the pieces shared equally among a group: pieces per person",
+  "chain": "whole / unit fraction = number of pieces -> pieces / group size",
+  "twist": "whole \u00f7 unit fraction feeding a second whole-number division of the count",
+  "q": [
+   "pieces & 1/(3|4|5|6|8) (foot|yard|meter|mile|cup|pound) & each|equally",
+   "cut into .*1/\\d"
+  ],
+  "e": "pieces|cut"
+ },
+ {
+  "id": "K04",
+  "g": 6,
+  "ccss": "6.NS.A.1",
+  "ask": "how many full batches a mixed-number supply makes at a fractional batch size, and what FRACTION OF A BATCH the leftover is",
+  "chain": "mixed supply \u00f7 fractional batch -> quotient as a mixed number -> the fractional part read as part of a batch (not the leftover in cups)",
+  "twist": "interpreting the fractional part of a fraction quotient as a fraction of the divisor; the leftover-in-units value is the natural distractor",
+  "q": [
+   "batch & 3/4|2/3|5/8 cup",
+   "fraction of (a|another) (batch|serving|bag|box)"
+  ],
+  "e": "batch|fraction of a"
+ },
+ {
+  "id": "K05",
+  "g": 6,
+  "ccss": "6.NS.C.6c",
+  "ask": "a point that is a given fraction of the way from one signed rational to another on a number line: its value",
+  "chain": "distance between the two signed endpoints -> fraction of that distance -> add to the starting endpoint (direction from the order)",
+  "twist": "partitioning a segment whose endpoints have opposite signs; the answer is a position, not a distance",
+  "q": [
+   "of the way from",
+   "of the distance from .* to"
+  ],
+  "e": "of the way|of the distance"
+ },
+ {
+  "id": "K06",
+  "g": 6,
+  "ccss": "6.NS.B.4",
+  "ask": "a sum of two whole numbers written as GCF x (sum of two numbers with no common factor): the sum inside the parentheses",
+  "chain": "GCF of the two addends -> divide each addend by the GCF -> add the two quotients",
+  "twist": "the distributive property used to factor a sum by its GCF; answer is the cofactor sum, not the GCF",
+  "q": [
+   "greatest common factor & distributive",
+   "GCF & \\(.*\\+.*\\)",
+   "as a product & common factor & sum"
+  ],
+  "e": "distributive|GCF\\(|factor out"
+ },
+ {
+  "id": "K07",
+  "g": 7,
+  "ccss": "7.NS.A.3",
+  "ask": "an average rate of change from two signed readings (altitude, depth or temperature) taken at two decimal times",
+  "chain": "signed difference of the readings (final - initial) -> elapsed time -> divide, keeping the sign",
+  "twist": "rate from two signed readings rather than rate x time; the sign of the change is the main trap",
+  "q": [
+   "per (minute|hour) & below|feet below|degrees below & from .* to",
+   "average (rate|change) per & -\\d"
+  ],
+  "e": "per minute|per hour|rate"
+ },
+ {
+  "id": "K08",
+  "g": 8,
+  "ccss": "8.NS.A.1",
+  "ask": "how many numbers in a printed list of six are irrational, where several are disguised rationals",
+  "chain": "simplify each (a root of a perfect-square fraction, a quotient of roots, a terminating or repeating decimal, a pattern decimal that never repeats) -> classify -> count",
+  "twist": "counting after simplification, where \u221a(a)/\u221a(b) with a/b a perfect square and \u03c0/\u03c0 look irrational but are not",
+  "q": [
+   "how many & irrational",
+   "irrational & list|following numbers"
+  ],
+  "e": "irrational"
+ },
+ {
+  "id": "K09",
+  "g": 8,
+  "ccss": "8.EE.A.1",
+  "ask": "of four values written with zero and negative exponents (different bases and fraction bases), the difference between the greatest and the least",
+  "chain": "evaluate each power (negative exponent = reciprocal; fraction base flips) -> rank -> subtract least from greatest",
+  "twist": "ranking powers with negative exponents and fraction bases, then a range; not a single evaluation and not an exponent law",
+  "q": [
+   "\\^\\(?-\\d & greatest & least",
+   "\\^-\\d & greatest|least"
+  ],
+  "e": "\\^\\s*-|negative exponent"
+ },
+ {
+  "id": "K10",
+  "g": 8,
+  "ccss": "8.EE.A.2",
+  "ask": "the smallest positive whole number n such that a given number times n is a perfect square (or a perfect cube)",
+  "chain": "prime-factorize the given number -> find the primes with odd (or non-multiple-of-3) exponents -> product of the missing factors",
+  "twist": "completing a prime factorization to a perfect power",
+  "q": [
+   "perfect square & smallest",
+   "perfect cube & smallest"
+  ],
+  "e": "perfect square|perfect cube"
+ },
+ {
+  "id": "K11",
+  "g": 6,
+  "ccss": "6.NS.B.4",
+  "ask": "2^a x 3^b x 5^c equals a printed whole number: the value of a + b + c",
+  "chain": "prime-factorize the number -> read each exponent -> add the exponents",
+  "twist": "reading exponents out of a prime factorization, not the factorization itself",
+  "q": [
+   "2\\^a|2\\^\\{?a|2\\^x & 3\\^",
+   "prime factorization & exponent"
+  ],
+  "e": "\\^a|\\^b"
+ },
+ {
+  "id": "K12",
+  "g": 6,
+  "ccss": "6.NS.B.4",
+  "ask": "how many whole-number factors a number has, from its prime factorization (the number is too big to list by hand comfortably)",
+  "chain": "prime-factorize -> add 1 to each exponent -> multiply",
+  "twist": "divisor count from exponents (2^3 x 3^2 x 5 -> 4 x 3 x 2 = 24)",
+  "q": [
+   "how many (positive )?(factors|divisors)",
+   "number of (factors|divisors)"
+  ],
+  "e": "factors does|divisors"
+ },
+ {
+  "id": "K13",
+  "g": 6,
+  "ccss": "6.NS.B.4",
+  "ask": "the product of the distinct prime factors of a whole number",
+  "chain": "prime-factorize -> keep each prime once -> multiply",
+  "twist": "distinct primes only (the radical); the full number and the repeated-prime product are the natural errors",
+  "q": [
+   "distinct prime",
+   "product of (the|all) .*prime factors"
+  ],
+  "e": "distinct prime|prime factors"
+ },
+ {
+  "id": "K14",
+  "g": 5,
+  "ccss": "5.NF.A.1",
+  "ask": "a fraction written as the sum of two different unit fractions: the sum of the two denominators",
+  "chain": "rename the fraction over a common multiple -> split the numerator into two divisors of the denominator -> simplify each part to a unit fraction -> add the denominators",
+  "twist": "decomposition into unit fractions (5/6 = 1/2 + 1/3)",
+  "q": [
+   "unit fraction",
+   "sum of two (different )?unit"
+  ],
+  "e": "unit fraction"
+ },
+ {
+  "id": "K15",
+  "g": 6,
+  "ccss": "6.NS.C.7b",
+  "ask": "of four fractions on both sides of 1/2, the one closest to 1/2",
+  "chain": "distance of each fraction from 1/2 (common denominators or decimals) -> compare the distances -> pick the least",
+  "twist": "closeness measured as |f - 1/2| across fractions above and below the benchmark",
+  "q": [
+   "closest to 1/2|closest to one-half",
+   "nearest to 1/2"
+  ],
+  "e": "closest to"
+ },
+ {
+  "id": "K16",
+  "g": 7,
+  "ccss": "7.NS.A.2a",
+  "ask": "the value of (-1)^1 + (-1)^2 + ... + (-1)^n (or a similar alternating sum of signed powers) for a stated n",
+  "chain": "evaluate the sign of (-1)^k by parity -> pair terms that cancel -> count the unpaired term",
+  "twist": "parity of the exponent decides the sign; pairing cancels",
+  "q": [
+   "\\(-1\\)\\^",
+   "\\(\u22121\\)\\^"
+  ],
+  "e": "\\(-1\\)\\^"
+ },
+ {
+  "id": "K17",
+  "g": 8,
+  "ccss": "8.NS.A.2",
+  "ask": "in a list of five numbers in different forms (a square root, a fraction, a repeating decimal, a terminating decimal, a percent), the number in the MIDDLE",
+  "chain": "convert each to a decimal (approximate the root) -> order -> take the third",
+  "twist": "ordering mixed forms that include an irrational root; the answer is the median value, not a sum",
+  "q": [
+   "\u221a & order|least to greatest|middle",
+   "square root & least to greatest"
+  ],
+  "e": "order|least to greatest"
+ },
+ {
+  "id": "K18",
+  "g": 7,
+  "ccss": "7.NS.A.1d",
+  "ask": "the value of x if |x - a| = b and x is negative (or: the sum of both solutions)",
+  "chain": "two numbers at distance b from a -> a + b and a - b -> pick the one satisfying the condition (or add them)",
+  "twist": "absolute value as distance used backwards to find a position",
+  "q": [
+   "\\|x|\\| ?x ?-",
+   "absolute value of x"
+  ],
+  "e": "\\|x"
+ },
+ {
+  "id": "K19",
+  "g": 8,
+  "ccss": "8.EE.A.1",
+  "ask": "the value of -a^2 + (-a)^2 - (-a)^3 for a small whole a, where the notation decides the sign",
+  "chain": "read -a^2 as -(a^2) -> (-a)^2 positive -> (-a)^3 negative, subtracted -> combine",
+  "twist": "the order-of-operations difference between -a^2 and (-a)^2 is the whole item",
+  "q": [
+   "-\\d\\^2 & \\(-\\d\\)\\^2",
+   "\u2212\\d\\^2"
+  ],
+  "e": "-\\d\\^2"
+ },
+ {
+  "id": "K20",
+  "g": 6,
+  "ccss": "6.NS.C.7c",
+  "ask": "several account balances (some negative): which balance represents the largest debt, and how much more debt it is than a second balance",
+  "chain": "a debt is the absolute value of a negative balance -> compare absolute values -> subtract the absolute values",
+  "twist": "absolute value read as size of debt, where the most negative balance is the largest debt",
+  "q": [
+   "debt & balance",
+   "owes|in debt & -\\$"
+  ],
+  "e": "debt|owe"
+ },
+ {
+  "id": "K21",
+  "g": 5,
+  "ccss": "5.NBT.B.7",
+  "ask": "a decimal product compared with one of its factors: by how much the product is less than the larger factor",
+  "chain": "multiply two decimals (one less than 1) -> subtract the product from the larger factor",
+  "twist": "multiplying by a decimal under 1 makes the result smaller; the size of the decrease is asked",
+  "q": [
+   "less than .* factor",
+   "how much less & 0\\.\\d+ times"
+  ],
+  "e": "less than"
+ },
+ {
+  "id": "K22",
+  "g": 7,
+  "ccss": "7.NS.A.2c",
+  "ask": "the quotient of a negative mixed number by a negative decimal, then multiplied by a positive fraction",
+  "chain": "divide two negatives (positive result) -> multiply by a fraction -> simplify",
+  "twist": "sign changes across a division and a multiplication of different number types",
+  "q": [
+   "\u00f7 \\(-|divided by -\\d\\.",
+   "\u00f7 \\(\u2212"
+  ],
+  "e": "divided by|\u00f7"
+ },
+ {
+  "id": "K23",
+  "g": 6,
+  "ccss": "6.NS.C.6b",
+  "ask": "a point reflected across the x-axis and then across the y-axis: the distance between the original point and the final point",
+  "chain": "two reflections = both signs flip -> the segment passes through the origin -> distance = twice the distance from the origin (or by Pythagoras for an off-axis point)",
+  "twist": "composition of two reflections gives a 180\u00b0 rotation",
+  "q": [
+   "reflected across the x-axis & then & y-axis",
+   "reflect.* x-axis .* y-axis"
+  ],
+  "e": "reflect"
+ },
+ {
+  "id": "K24",
+  "g": 7,
+  "ccss": "7.NS.A.1b",
+  "ask": "an elevator or diver making signed moves, with ONE move given as a fraction of a previous move: the final position",
+  "chain": "signed moves -> one move = a fraction of an earlier move (with sign) -> net sum",
+  "twist": "a move defined relative to another move",
+  "q": [
+   "half as far|twice as far & down|below",
+   "as far as .* (down|up) & floor|feet"
+  ],
+  "e": "as far as"
+ },
+ {
+  "id": "K25",
+  "g": 5,
+  "ccss": "5.NF.B.6",
+  "ask": "a recipe scaled by a mixed number and an ingredient measured in fractional cups: how many 1/4-cup scoops are needed",
+  "chain": "amount x mixed-number scale -> divide by 1/4 (multiply by 4)",
+  "twist": "scaling then converting to a count of unit-fraction scoops",
+  "q": [
+   "scoop",
+   "1/4-cup|1/3-cup"
+  ],
+  "e": "scoop|-cup"
+ },
+ {
+  "id": "K26",
+  "g": 8,
+  "ccss": "8.NS.A.2",
+  "ask": "the whole-number value nearest to the product of two square roots of non-squares (\u221aa x \u221ab with ab a perfect square)",
+  "chain": "recognize \u221aa x \u221ab = \u221a(ab) -> ab is a perfect square -> exact whole value",
+  "twist": "two irrational factors with a rational product",
+  "q": [
+   "\u221a\\d+ ?(\u00d7|x|\u00b7) ?\u221a\\d+",
+   "square root of \\d+ times the square root"
+  ],
+  "e": "\u221a\\d+ ?(\u00d7|x)"
+ },
+ {
+  "id": "K27",
+  "g": 7,
+  "ccss": "7.NS.A.2d",
+  "ask": "which fraction in a list has a decimal form that terminates soonest / has the longest repeating block",
+  "chain": "rewrite as a decimal by division -> compare the forms",
+  "twist": "comparing decimal expansions of several fractions",
+  "q": [
+   "repeat & block|period",
+   "terminat"
+  ],
+  "e": "terminat|repeat"
+ },
+ {
+  "id": "K28",
+  "g": 6,
+  "ccss": "6.NS.C.8",
+  "ask": "two points with the same y-coordinate in different quadrants and a third point directly below one of them: the perimeter of the right triangle",
+  "chain": "horizontal distance by |x1 - x2| across the axis -> vertical distance by |y1 - y2| -> hypotenuse is NOT needed if the triangle's legs are asked, else Pythagorean triple",
+  "twist": "axis-parallel distances across quadrants combined in a figure",
+  "q": [
+   "quadrant & perimeter",
+   "perimeter & \\(-\\d"
+  ],
+  "e": "perimeter"
+ },
+ {
+  "id": "K29",
+  "g": 5,
+  "ccss": "5.NBT.A.3b",
+  "ask": "of four decimals, how many are greater than a given fraction (the fraction converted to a decimal)",
+  "chain": "convert the benchmark fraction to a decimal -> compare each decimal by place value -> count",
+  "twist": "comparison against a fractional benchmark, answer is a count",
+  "q": [
+   "how many .* greater than & 0\\.\\d+",
+   "how many of the (numbers|decimals)"
+  ],
+  "e": "how many of"
+ },
+ {
+  "id": "K30",
+  "g": 7,
+  "ccss": "7.NS.A.3",
+  "ask": "a bank account's balance after a deposit, a percent fee on the new balance, and a withdrawal that makes it negative: the final balance",
+  "chain": "signed sum -> percent of an intermediate value -> subtract -> final signed decimal",
+  "twist": "a percent step inside a signed-number chain",
+  "q": [
+   "fee & balance & -|overdraw",
+   "overdra"
+  ],
+  "e": "fee|overdra"
+ },
+ {
+  "id": "K31",
+  "g": 6,
+  "ccss": "6.NS.B.2",
+  "ask": "a long-division problem with one missing digit in the dividend: the missing digit, given the quotient and remainder",
+  "chain": "dividend = divisor x quotient + remainder -> compute -> read the missing digit",
+  "twist": "the division identity used backward on a digit",
+  "q": [
+   "missing digit",
+   "digit & quotient & remainder"
+  ],
+  "e": "missing digit"
+ },
+ {
+  "id": "K32",
+  "g": 8,
+  "ccss": "8.EE.A.2",
+  "ask": "a square and a cube with the same numeric area and volume given as a fraction: the difference of their side lengths",
+  "chain": "side of square = \u221a(area) -> edge of cube = \u221b(volume) -> subtract",
+  "twist": "square root and cube root of fractions compared in one figure context",
+  "q": [
+   "square & cube & same|equal & area & volume",
+   "edge & side & area .* volume"
+  ],
+  "e": "cube.*square|square.*cube"
+ },
+ {
+  "id": "K33",
+  "g": 6,
+  "ccss": "6.NS.C.7a",
+  "ask": "four temperatures in a city: how many degrees warmer the warmest is than the median temperature",
+  "chain": "order signed values -> median of four (mean of middle two) -> subtract",
+  "twist": "median of signed values then a signed difference",
+  "q": [
+   "median & temperature & -\\d",
+   "median & below zero"
+  ],
+  "e": "median"
+ },
+ {
+  "id": "K34",
+  "g": 5,
+  "ccss": "5.NF.B.5b",
+  "ask": "which of four expressions (a number times different fractions) gives a product greater than the number \u2014 answer is how many",
+  "chain": "compare each fraction factor with 1 -> count the factors greater than 1",
+  "twist": "scaling by comparing a factor to 1 without multiplying",
+  "q": [
+   "greater than .* without (multiplying|computing)",
+   "product .* greater than"
+  ],
+  "e": "greater than"
+ },
+ {
+  "id": "K35",
+  "g": 7,
+  "ccss": "7.NS.A.1c",
+  "ask": "a number line with a point P at a signed decimal: the point Q such that P is the midpoint of Q and a given point R",
+  "chain": "distance from R to P -> go the same distance past P -> signed coordinate of Q",
+  "twist": "midpoint used backward on a signed number line",
+  "q": [
+   "midpoint & number line",
+   "is the midpoint of"
+  ],
+  "e": "midpoint"
+ },
+ {
+  "id": "K36",
+  "g": 8,
+  "ccss": "8.NS.A.2",
+  "ask": "the integer whose square is closest to a given non-square fraction or decimal",
+  "chain": "compare the given value with nearby perfect squares -> pick the nearest",
+  "twist": "inverse root estimation",
+  "q": [
+   "square is closest",
+   "whose square"
+  ],
+  "e": "square is closest|whose square"
+ },
+ {
+  "id": "K37",
+  "g": 6,
+  "ccss": "6.NS.C.5",
+  "ask": "sea level and two elevations (one below): the vertical distance between them as an absolute difference, then how many 0.5-meter steps that is",
+  "chain": "signed difference across zero -> divide by a decimal step",
+  "twist": "absolute difference across zero converted to a count of decimal units",
+  "q": [
+   "below sea level & above sea level",
+   "sea level & how many"
+  ],
+  "e": "sea level"
+ },
+ {
+  "id": "K38",
+  "g": 5,
+  "ccss": "5.NF.A.2",
+  "ask": "a student's wrong sum of two unlike fractions (numerators and denominators added): how far it is from the correct sum",
+  "chain": "correct sum with a common denominator -> the student's (a+c)/(b+d) value -> subtract",
+  "twist": "error analysis against the add-across misconception",
+  "q": [
+   "student & added & incorrect|mistake & fraction",
+   "error & 2/3 \\+"
+  ],
+  "e": "mistake|error|incorrect"
+ },
+ {
+  "id": "K39",
+  "g": 7,
+  "ccss": "7.NS.A.2b",
+  "ask": "for integers p and q (q \u2260 0) the quotient -p/q equals which other form, given values \u2014 answer as a number",
+  "chain": "-(p/q) = (-p)/q = p/(-q) -> evaluate one form",
+  "twist": "equivalence of sign placement in a quotient",
+  "q": [
+   "-p/q|\u2212p/q",
+   "\\(-p\\)/q"
+  ],
+  "e": "p/q"
+ },
+ {
+  "id": "K40",
+  "g": 8,
+  "ccss": "8.EE.A.1",
+  "ask": "a^m x a^n = a^k with a numeric base and one exponent negative, solved for the unknown exponent, then used to evaluate a^(that exponent)",
+  "chain": "product rule -> solve the exponent equation -> evaluate the power",
+  "twist": "solve an exponent then evaluate with it",
+  "q": [
+   "\\^n|\\^x & =",
+   "exponent & solve"
+  ],
+  "e": "\\^x|\\^n"
+ },
+ {
+  "id": "K41",
+  "g": 6,
+  "ccss": "6.NS.A.1",
+  "ask": "a rectangle with a fractional area and one fractional side: the other side, then the perimeter",
+  "chain": "area \u00f7 side = other side (fraction division) -> perimeter = 2(l + w) with unlike denominators",
+  "twist": "fraction division feeding a perimeter",
+  "q": [
+   "area & square (foot|yard|meter) & 3/4|2/3 & perimeter",
+   "area of .*/.* square .* length"
+  ],
+  "e": "area"
+ },
+ {
+  "id": "K42",
+  "g": 7,
+  "ccss": "7.NS.A.1a",
+  "ask": "two quantities that combine to make zero (a charge and an opposite charge, a gain and a loss): the second quantity given the first as a mixed number and one extra signed amount",
+  "chain": "additive inverse of a sum",
+  "twist": "opposite quantities combine to zero",
+  "q": [
+   "combine to (make )?0|make zero",
+   "opposite.* zero"
+  ],
+  "e": "zero"
+ },
+ {
+  "id": "M01",
+  "g": 5,
+  "ccss": "5.NF.B.3",
+  "ask": "pies shared equally among tables, then each table's share split equally among the people at it: the amount per person as a mixed number or fraction",
+  "chain": "a/b as the share per table (fraction as division) -> divide that share by the people per table -> simplify",
+  "twist": "two sharing stages; the per-person share is a / (tables x people)",
+  "q": [
+   "shared equally among & tables|groups & then",
+   "each table & share"
+  ],
+  "e": "share"
+ },
+ {
+  "id": "M02",
+  "g": 5,
+  "ccss": "5.NF.B.4b",
+  "ask": "a rectangle with fractional side lengths tiled exactly by squares of side 1/4 (or 1/3, 1/6) unit: how many tiles",
+  "chain": "side / tile side for each dimension (count along each side) -> multiply the two counts",
+  "twist": "5.NF.B.4b tiling by unit-fraction squares; the area in square units is the natural distractor",
+  "q": [
+   "tiles? & 1/4|1/3|1/6 & square",
+   "covered (with|by) .* squares"
+  ],
+  "e": "tile"
+ },
+ {
+  "id": "M03",
+  "g": 5,
+  "ccss": "5.NF.A.2",
+  "ask": "of four pairs of fractions, the pair whose sum is closest to 1",
+  "chain": "add each pair with a common denominator (or benchmark against 1/2) -> distance of each sum from 1 -> pick the least",
+  "twist": "benchmark comparison of sums, not a single sum",
+  "q": [
+   "closest to 1\\b|closest to one",
+   "sum is closest"
+  ],
+  "e": "closest"
+ },
+ {
+  "id": "M04",
+  "g": 5,
+  "ccss": "5.NBT.A.3a",
+  "ask": "the sum of two numbers each written in expanded form with fractional place values (one with a missing place)",
+  "chain": "read each expanded form as a decimal (zero placeholders) -> add with the decimal points aligned",
+  "twist": "expanded form with unit-fraction place values and a skipped place",
+  "q": [
+   "expanded form",
+   "\u00d7 ?\\(1/100\\)|x \\(1/1000\\)"
+  ],
+  "e": "expanded"
+ },
+ {
+  "id": "M05",
+  "g": 6,
+  "ccss": "6.NS.B.4",
+  "ask": "a five-digit number with one missing digit is divisible by 9 (or by both 3 and 4): the missing digit",
+  "chain": "digit sum of the known digits -> the next multiple of 9 -> the missing digit (or: last two digits divisible by 4, then digit sum by 3)",
+  "twist": "divisibility rules used to recover a digit",
+  "q": [
+   "divisible by 9 & digit",
+   "missing digit & divisible"
+  ],
+  "e": "divisible"
+ },
+ {
+  "id": "M06",
+  "g": 6,
+  "ccss": "6.NS.B.4",
+  "ask": "the sum of all prime numbers between two whole numbers (e.g. 40 and 60)",
+  "chain": "list the candidates in the interval -> test each for primality (divisibility by 2, 3, 5, 7) -> add the primes",
+  "twist": "primality testing across an interval, answer a sum",
+  "q": [
+   "sum of (all )?the prime numbers between",
+   "prime numbers between"
+  ],
+  "e": "prime numbers between"
+ },
+ {
+  "id": "M07",
+  "g": 6,
+  "ccss": "6.NS.C.6c",
+  "ask": "the number exactly halfway between two positive fractions with unlike denominators",
+  "chain": "common denominator (doubled, so the halfway value is a whole numerator) -> add -> halve",
+  "twist": "midpoint of two fractions; the average of the numerators and of the denominators is the natural error",
+  "q": [
+   "halfway between & /",
+   "exactly halfway"
+  ],
+  "e": "halfway"
+ },
+ {
+  "id": "M08",
+  "g": 7,
+  "ccss": "7.NS.A.1b",
+  "ask": "golf: the total number of strokes over four holes from each hole's par and the player's signed score relative to par",
+  "chain": "par for each hole + its signed difference -> add the four stroke counts (or total par + total of the signed differences)",
+  "twist": "signed differences from a varying reference value",
+  "q": [
+   "\\bpar\\b",
+   "under par|over par"
+  ],
+  "e": "\\bpar\\b"
+ },
+ {
+  "id": "M09",
+  "g": 7,
+  "ccss": "7.NS.A.1c",
+  "ask": "of four numbers, the one farthest from a given signed reference value on the number line",
+  "chain": "|value - reference| for each (crossing zero for some) -> compare -> pick the greatest",
+  "twist": "distance from a nonzero reference, not from 0",
+  "q": [
+   "farthest from",
+   "greatest distance from"
+  ],
+  "e": "farthest"
+ },
+ {
+  "id": "M10",
+  "g": 7,
+  "ccss": "7.NS.A.3",
+  "ask": "a table of altitudes (signed decimals) at hourly readings: the greatest change between consecutive readings, as a signed or absolute value",
+  "chain": "consecutive signed differences -> compare their sizes -> report the greatest",
+  "twist": "differences of a signed sequence, not a total",
+  "q": [
+   "greatest change & hour",
+   "between (two )?consecutive (readings|hours)"
+  ],
+  "e": "consecutive"
+ },
+ {
+  "id": "M11",
+  "g": 8,
+  "ccss": "8.EE.A.2",
+  "ask": "the area of one square is a fractional multiple (a perfect-square fraction like 2 1/4) of another's: how many times as long its side is",
+  "chain": "rewrite the multiple as an improper fraction -> square root of numerator and denominator -> write as a fraction or mixed number",
+  "twist": "square root of an area ratio gives the side ratio; the area ratio itself is the natural error",
+  "q": [
+   "area & times (as large|the area) & side",
+   "times as long & square"
+  ],
+  "e": "times as"
+ },
+ {
+  "id": "M12",
+  "g": 8,
+  "ccss": "8.EE.A.1",
+  "ask": "three powers of 2, 4 and 8 (e.g. 2^20, 4^9, 8^6): the greatest, by rewriting with base 2",
+  "chain": "rewrite each base as a power of 2 -> power of a power -> compare exponents",
+  "twist": "ordering by rewriting with a common base, not evaluating",
+  "q": [
+   "4\\^\\d & 8\\^\\d & greatest|least",
+   "which is (the )?greatest & \\^"
+  ],
+  "e": "greatest"
+ },
+ {
+  "id": "M13",
+  "g": 5,
+  "ccss": "5.NBT.B.7",
+  "ask": "four operations on the same two decimals (sum, difference, product, quotient): the difference between the greatest and least result",
+  "chain": "compute each result -> rank -> subtract",
+  "twist": "compares the effect of each operation on the same decimals (multiplying by a decimal under 1 shrinks, dividing grows)",
+  "q": [
+   "greatest result",
+   "sum, difference, product"
+  ],
+  "e": "greatest result"
+ },
+ {
+  "id": "M14",
+  "g": 6,
+  "ccss": "6.NS.A.1",
+  "ask": "how many 2/3-cup servings are in a container, given the container's capacity as a decimal number of cups",
+  "chain": "convert the decimal to a fraction -> divide by 2/3 (multiply by 3/2) -> whole servings (floor)",
+  "twist": "a decimal dividend with a fraction divisor, then the whole-number part",
+  "q": [
+   "servings & 2/3|3/4 cup & \\d\\.\\d",
+   "how many full servings"
+  ],
+  "e": "servings"
+ },
+ {
+  "id": "M15",
+  "g": 7,
+  "ccss": "7.NS.A.3",
+  "ask": "the average daily change in a stock price over a week, from five signed fractional changes",
+  "chain": "sum the signed fractions (common denominator) -> divide by 5",
+  "twist": "mean of signed rationals in a Number Systems context",
+  "q": [
+   "average daily change",
+   "average change & -\\d/\\d"
+  ],
+  "e": "average daily"
+ },
+ {
+  "id": "M16",
+  "g": 6,
+  "ccss": "6.NS.C.7a",
+  "ask": "a number line with three labeled signed points: how many of the printed inequality statements about them are true",
+  "chain": "read each point's value -> test each inequality (including absolute values) -> count the true ones",
+  "twist": "interpreting inequalities and absolute value statements as positions; the answer is a count",
+  "q": [
+   "how many of the (following )?statements are true & <",
+   "statements .* true & number line"
+  ],
+  "e": "statements"
+ },
+ {
+  "id": "M17",
+  "g": 5,
+  "ccss": "5.NF.B.5a",
+  "ask": "a number multiplied by a fraction greater than 1 and another multiplied by a fraction less than 1 give the same product: which original number is larger, by how much (with numbers)",
+  "chain": "set the products equal -> solve for one number given the other -> subtract",
+  "twist": "interpreting scaling when two scaled quantities are equal",
+  "q": [
+   "same product & fraction",
+   "the product is the same"
+  ],
+  "e": "same product"
+ },
+ {
+  "id": "M18",
+  "g": 8,
+  "ccss": "8.NS.A.1",
+  "ask": "a decimal that is built by a stated rule (e.g. digits 1, 12, 123 ... written in order): rational or irrational, and the 20th digit",
+  "chain": "generate the digits by the rule -> locate the 20th digit -> classify",
+  "twist": "a rule-generated non-repeating decimal; the answer is a digit",
+  "q": [
+   "20th digit|15th digit|nth digit & pattern",
+   "written one after another"
+  ],
+  "e": "digit"
+ },
+ {
+  "id": "M19",
+  "g": 7,
+  "ccss": "7.NS.A.2a",
+  "ask": "a product of signed numbers in which one factor is zero hidden as an expression (e.g. (3.5 - 7/2)): the value of the full expression",
+  "chain": "evaluate each factor -> spot that one factor is 0 -> product is 0 -> add the remaining term",
+  "twist": "the zero factor hides inside a difference of a decimal and a fraction",
+  "q": [
+   "\\(3\\.5 - 7/2\\)|\\(0\\.75 - 3/4\\)",
+   "- 7/2\\)"
+  ],
+  "e": "3\\.5 - 7/2"
+ },
+ {
+  "id": "M20",
+  "g": 6,
+  "ccss": "6.NS.B.3",
+  "ask": "a running total: three decimal purchases from a gift card, and the card's value is the sum of the purchases plus a stated remainder: the card's starting value",
+  "chain": "add three decimals with different place values -> add the remainder",
+  "twist": "aligning decimals of different lengths in a sum",
+  "q": [
+   "gift card & left",
+   "gift card"
+  ],
+  "e": "gift card"
+ },
+ {
+  "id": "M21",
+  "g": 7,
+  "ccss": "7.NS.A.1d",
+  "ask": "a list of signed rational numbers that sums to a printed total: which single number, if removed, makes the sum 0",
+  "chain": "total of the list -> the removed number must equal the total -> identify it in the list",
+  "twist": "additive identity reasoning to pick an element",
+  "q": [
+   "removed & sum (of the remaining|is 0)",
+   "if .* removed & sum"
+  ],
+  "e": "removed"
+ },
+ {
+  "id": "M22",
+  "g": 8,
+  "ccss": "8.EE.A.2",
+  "ask": "a cube with a fractional edge and a cube with a whole edge: how many of the small cubes fit in the large one",
+  "chain": "large edge / small edge -> cube the ratio (or volume / volume)",
+  "twist": "counting via the cube of a fractional ratio",
+  "q": [
+   "small cubes & fit",
+   "how many cubes with edge"
+  ],
+  "e": "cubes"
+ },
+ {
+  "id": "M23",
+  "g": 6,
+  "ccss": "6.NS.C.6b",
+  "ask": "a point and its images under reflections across the x-axis, the y-axis and both: the area of the rectangle formed by the four points",
+  "chain": "four points (\u00b1a, \u00b1b) -> width 2|a|, height 2|b| -> area",
+  "twist": "reflections build a rectangle centred on the origin",
+  "q": [
+   "reflect & rectangle & area",
+   "four points & reflect"
+  ],
+  "e": "reflect"
+ },
+ {
+  "id": "M24",
+  "g": 7,
+  "ccss": "7.NS.A.2c",
+  "ask": "an amount of money divided evenly among people as a signed debt (e.g. a shared negative balance) then each person pays a fraction of their share: what each still owes",
+  "chain": "divide a negative decimal by a whole number -> take a fraction of the share -> subtract (signed)",
+  "twist": "a signed quotient followed by a fraction-of step on the quotient",
+  "q": [
+   "owe & split|divided evenly & -\\$",
+   "share of the debt"
+  ],
+  "e": "owe|debt"
+ },
+ {
+  "id": "M25",
+  "g": 5,
+  "ccss": "5.NF.B.7b",
+  "ask": "a whole number of cups divided into servings of a unit fraction, then the servings divided among bowls with some servings left over: servings left over",
+  "chain": "whole \u00f7 unit fraction -> divide by the number of bowls -> remainder",
+  "twist": "remainder after a unit-fraction division count",
+  "q": [
+   "left over & servings & 1/(3|4|5|6)",
+   "servings .* left"
+  ],
+  "e": "left over"
+ },
+ {
+  "id": "M26",
+  "g": 8,
+  "ccss": "8.NS.A.2",
+  "ask": "how many whole numbers n make \u221an a whole number between two given decimals (e.g. \u221an between 3.5 and 7.2)",
+  "chain": "square the bounds -> perfect squares in that range -> count",
+  "twist": "perfect squares between squared decimal bounds",
+  "q": [
+   "perfect squares between",
+   "\u221an & between"
+  ],
+  "e": "perfect square"
+ },
+ {
+  "id": "M27",
+  "g": 6,
+  "ccss": "6.NS.B.4",
+  "ask": "two numbers are both multiples of 6 and both factors of 72: how many such numbers are there",
+  "chain": "factors of 72 -> keep those divisible by 6 -> count",
+  "twist": "intersection of a factor list and a multiple list",
+  "q": [
+   "multiples of \\d+ & factors of \\d+ & how many",
+   "both a factor of .* and a multiple of"
+  ],
+  "e": "factors of"
+ },
+ {
+  "id": "M28",
+  "g": 7,
+  "ccss": "7.NS.A.1b",
+  "ask": "a thermometer reading changes by a signed amount each hour for some hours, then by a different signed amount; at what hour does it first drop below a given negative value",
+  "chain": "cumulative signed sums hour by hour -> find the first crossing",
+  "twist": "first-crossing time of a signed running total",
+  "q": [
+   "first (drop|fall)s? below",
+   "first time .* below"
+  ],
+  "e": "first"
+ },
+ {
+  "id": "M29",
+  "g": 5,
+  "ccss": "5.NBT.B.7",
+  "ask": "a price per pound (decimal) and a weight in ounces: the cost, converting ounces to a decimal part of a pound first",
+  "chain": "ounces / 16 as a decimal -> multiply by the price per pound -> round to the cent",
+  "twist": "unit conversion to a decimal fraction before a decimal product",
+  "q": [
+   "per pound & ounces",
+   "ounces & \\$\\d+\\.\\d+ (a|per) pound"
+  ],
+  "e": "per pound"
+ },
+ {
+  "id": "M30",
+  "g": 8,
+  "ccss": "8.EE.A.1",
+  "ask": "(a/b)^n x (b/a)^(n-1) for whole n: the value, by pairing reciprocal factors",
+  "chain": "pair each a/b with a b/a (product 1) -> one a/b left over",
+  "twist": "reciprocal pairing collapses a long product of powers",
+  "q": [
+   "\\(\\d/\\d\\)\\^\\d+ ?(\u00d7|x) ?\\(\\d/\\d\\)\\^",
+   "reciprocal & \\^"
+  ],
+  "e": "\\)\\^"
+ },
+ {
+  "id": "M31",
+  "g": 6,
+  "ccss": "6.NS.C.7c",
+  "ask": "several underwater depths given as negative numbers and one as a distance below a reference that is itself below sea level: which is deepest, and its elevation",
+  "chain": "convert the relative depth to an elevation (signed sum) -> compare elevations -> report the least",
+  "twist": "a depth measured from a non-zero reference",
+  "q": [
+   "below the (dock|surface of the lake|boat) & sea level",
+   "feet below .* which is"
+  ],
+  "e": "below the"
+ },
+ {
+  "id": "M32",
+  "g": 7,
+  "ccss": "7.NS.A.2b",
+  "ask": "a fraction with a negative numerator and a negative denominator, written in different forms: which form has a different value",
+  "chain": "simplify the sign of each form (-a/-b = a/b; -(a/-b) = a/b; -a/b = -(a/b)) -> find the one that differs",
+  "twist": "sign placement in quotients",
+  "q": [
+   "which (of the following )?(expressions )?(is|has) a different value",
+   "not equal to -"
+  ],
+  "e": "different value"
+ },
+ {
+  "id": "P04",
+  "g": 6,
+  "ccss": "6.NS.B.4",
+  "ask": "two consecutive whole numbers have a printed product (e.g. 552): their sum",
+  "chain": "estimate with the square root of the product -> test the neighbouring pair -> add",
+  "twist": "factoring a product into consecutive factors by estimating near its square root",
+  "q": [
+   "consecutive & product (is|of) \\d{3}",
+   "two consecutive (whole )?numbers & product"
+  ],
+  "e": "consecutive"
+ },
+ {
+  "id": "P05",
+  "g": 7,
+  "ccss": "7.NS.A.2c",
+  "ask": "a rule 'multiply by -2, then add 3' applied three times starting from a signed fraction or decimal: the result",
+  "chain": "apply the signed multiply-then-add rule -> repeat on each output (signs alternate)",
+  "twist": "iterating a signed rule; the sign flips each round",
+  "q": [
+   "multiply by -\\d & then add & (three|3) times|repeat",
+   "rule & multiply by -"
+  ],
+  "e": "multiply by -"
+ },
+ {
+  "id": "P09",
+  "g": 8,
+  "ccss": "8.EE.A.1",
+  "ask": "how many zeros the product 2^a x 5^b x 3 ends with",
+  "chain": "each 2 x 5 pair makes a factor of 10 -> the number of pairs is the smaller exponent -> the extra factors do not add zeros",
+  "twist": "trailing zeros from paired prime powers",
+  "q": [
+   "zeros at the end",
+   "end (in|with) .* zeros"
+  ],
+  "e": "zeros"
+ },
+ {
+  "id": "P14",
+  "g": 6,
+  "ccss": "6.NS.B.4",
+  "ask": "of four pairs of two-digit numbers, how many pairs have no common factor other than 1",
+  "chain": "prime-factorize each pair (or test small primes) -> check for a shared prime -> count the relatively prime pairs",
+  "twist": "relative primality tested across pairs; the answer is a count",
+  "q": [
+   "no common factor (other than|except) 1",
+   "relatively prime"
+  ],
+  "e": "common factor other than"
+ }
+]

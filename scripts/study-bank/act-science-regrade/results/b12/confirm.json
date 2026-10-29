@@ -1,0 +1,15 @@
+{
+ "items": {},
+ "batch": {
+  "pattern": {
+   "named_by_both": true,
+   "rule": "In a 'Scientists X and Y would most likely agree that' item, pick the only option stated as a general class of cause or process; every distractor names a specific mechanism, value, identity or timing.",
+   "decides": [
+    "ASV12d-P5-Q5",
+    "ASV12d-P6-Q5",
+    "ASV12d-P7-Q5"
+   ],
+   "why": "Both graders named the same rule on the same three items. Applied blind by a fresh agent from the cold packet (stems and options only, scratchpad/act-science-regrade/_r8/b12/rule-picks.json): it found exactly these three agree items and picked the key on 3 of 3. R8 drops them; their passages go."
+  }
+ }
+}

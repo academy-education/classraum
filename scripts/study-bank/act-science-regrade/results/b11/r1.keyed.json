@@ -1,0 +1,103 @@
+{
+ "items": [
+  {
+   "id": "ASV12c-P1-Q4",
+   "cold_pick": "A",
+   "cold_defensible": [],
+   "cold_note": "Question needs sandy vs clay with only salt raised; Exp 3 is sandy/clay at 0.5% salt, 12 h light. A keeps both soils and 12 h light, raises salt to 1.5%. B swaps sandy for loam and changes light. C uses the wrong soils at the old salt level. D keeps 0.5% salt and changes light, so salt is never tested.",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": null,
+   "free_elimination": {
+    "letters": [
+     "B",
+     "C",
+     "D"
+    ],
+    "how": "The stem names the sandy-vs-clay difference, so B (loam+clay) and C (sandy+loam) die on soil names alone. Of the two sandy+clay pairs, the stem asks about a HIGHER salt level and D's 0.5% is below A's 1.5%, so D dies by comparing the options; D also varies light, which the stem never mentions."
+   },
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "no",
+   "difficulty": "easy",
+   "note": "Key matches my cold pick. With the passage covered, the stem ('sandy and clay', 'higher salt level') plus the option set leaves only A. The passage's 0.5%/12 h controls confirm A but are not needed to pick it."
+  },
+  {
+   "id": "ASV12c-P2-Q5",
+   "cold_pick": "A",
+   "cold_defensible": [],
+   "cold_note": "Exp 1 (0% plasticizer) peaks at 100 C (34 MPa vs 27 at 80 and 31 at 120). To see whether plasticizer moves the peak you need plasticized films across a range of temperatures; A gives 10% at 60/100/140, compared with Exp 1 rows 18/34/22. B holds temperature fixed at 120. C and D use no plasticizer. A's three-temperature grid is coarse, but it is the only option that varies temperature with plasticizer present.",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": null,
+   "free_elimination": {
+    "letters": [
+     "B",
+     "C",
+     "D"
+    ],
+    "how": "The stem asks whether adding plasticizer changes which curing TEMPERATURE is best. C and D contain no plasticizer, and B holds one temperature (120 C), so it cannot locate a best temperature. Only A both contains plasticizer and varies temperature. No passage needed."
+   },
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "no",
+   "difficulty": "easy",
+   "note": "Key matches my cold pick and is correct. The author's explanation mislabels the distractors ('second and third have no plasticizer, fourth varies plasticizer at a single temperature'); in this deal those are C/D and B. That looks like a letter-order slip in the prose and does not affect the key. A's three-point grid (60/100/140) is coarse and could miss a peak that moves to 80 or 120, but no other option is better, so this is not a second defence."
+  },
+  {
+   "id": "ASV12c-P3-Q3",
+   "cold_pick": "B",
+   "cold_defensible": [],
+   "cold_note": "Gray 50%: 3.6 mm/day, 23 C; black 50%: 4.3 mm/day, 27 C. So more evaporation and warmer water.",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": null,
+   "free_elimination": null,
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "no",
+   "difficulty": "easy",
+   "note": "Black 4.3 mm/day and 27 C against gray 3.6 and 23 C, so B. no_source_needed=yes because common background knowledge (dark surfaces absorb more sunlight, so the water warms more, and warmer water evaporates more) gives 'more evaporation and warmer water' with the table covered, and the data agree with that intuition. The options are a full 2x2 grid, so there is no structural elimination; the leak comes from background knowledge, not from the option set. Real 'shade balls' (black, LA reservoirs) are a real-world precedent but not a recognisable dataset, so recognised_real_data is null."
+  },
+  {
+   "id": "ASV12c-P3-Q5",
+   "cold_pick": "C",
+   "cold_defensible": [],
+   "cold_note": "Exp 3 compares white/gray/black at 50% cover and 2 m/s (3.1/3.6/4.3). The question needs the same colour comparison at a strong wind: C repeats the three colours at 50% and 8 m/s, matching the Exp 2 gray 8 m/s condition. B varies wind for black only, at 75% cover, so no colour comparison is possible. A has gray only and no wind. D uses a 2 m/s wind.",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": null,
+   "free_elimination": {
+    "letters": [
+     "A",
+     "B",
+     "D"
+    ],
+    "how": "The stem asks whether COLOR matters more when the wind is STRONG. A and B each use a single color, so they cannot test color. D compares colors but at 2 m/s, the lowest wind among the options against C's 8 m/s, so it is not the 'strong' condition. Only C varies color under a strong wind."
+   },
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "no",
+   "difficulty": "easy",
+   "note": "Key matches my cold pick. The author's explanation mislabels the distractors relative to this deal ('second varies cover in still air' is A here; 'fourth uses one color' is A/B), which looks like a prose ordering slip and does not affect the key. As with the other SI design items here, the stem names both variables and only one option varies the right one at the right level, so the passage is needed only to confirm the 50% control."
+  }
+ ],
+ "batch": {
+  "cross_item_pattern": {
+   "rule": "In Scientific Investigation 'which new set/pair would best test X' items, the key is the only option that varies the variable the stem names (and holds the stem's named comparison), at the level the stem names; every distractor either omits the stem's named factor or varies a different one. The rule is applied from the stem and options alone.",
+   "items": [
+    "ASV12c-P1-Q4",
+    "ASV12c-P2-Q5",
+    "ASV12c-P3-Q5"
+   ]
+  }
+ }
+}

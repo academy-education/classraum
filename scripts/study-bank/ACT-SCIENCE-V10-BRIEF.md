@@ -98,3 +98,13 @@ cross-item rule (the key is the only option whose reason tests exactly the claim
   others; no mirror-reversed pairs ("higher by 11" / "lower by 11"); no two trivially invalid designs (changes two
   factors / changes none) among the four.
 - **Options must not quote a viewpoint's claim so that the finding alone rules them out** (P7-Q4).
+
+## v12c/v12d lessons (b11 5/9, b12 6/9 — both in the "keep writing" band)
+
+- **Raising Scientific Investigation brought back rule 1** (b11). On "which new set of trials would best test
+  whether X matters under condition Y", the key was the only option that both varies X and sets Y. All four
+  options must vary the named factor AND set the named condition, differing only in a passage detail; no
+  distractor may fail on its own text ("50 lux" against "200 lux or more"). Fewer SI items beat leaky ones.
+- **"Would most likely agree" keys must not be the only general-category option** (b12; confirmed by blind
+  application, 3 of 3). Mix levels: at least two distractors are equally broad claims held by only one scientist
+  or by neither, and the key is sometimes a specific shared detail.

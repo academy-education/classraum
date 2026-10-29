@@ -1,0 +1,413 @@
+{
+ "M01": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MMG-N10",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "write each stage as a signed total change -> combine the totals into a net change -> undo the net change by subtracting a negative"
+   },
+   {
+    "id": "MM3-N17",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "add three negative and two positive changes -> find the change for one share -> multiply by the number of shares"
+   },
+   {
+    "id": "MM3-N16",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "find 2/5 of the Monday fall -> write Tuesday's change as a negative number -> add the two negative changes"
+   },
+   {
+    "id": "MM3-N02",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "read the sharing as 14 divided by 5 -> find the whole pounds each -> share the leftover pounds as fifths"
+   },
+   {
+    "id": "MM4-N11",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "see the points share an x-coordinate -> points on the same side of the x-axis: subtract the absolute values of the y-coordinates"
+   },
+   {
+    "id": "MM4-N21",
+    "st": "file only (never banked)",
+    "g": 7,
+    "chain": "subtract a negative from a negative -> share the change equally over 5 weeks -> add one week's rise to the starting balance"
+   },
+   {
+    "id": "MM5-N10",
+    "st": "LIVE",
+    "g": 5,
+    "chain": "add the money raised -> subtract the supplies -> divide by 20 and write the remainder as hundredths"
+   },
+   {
+    "id": "MM3-N02",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "interpret sharing as 8 divided by 5 -> write the quotient as a fraction -> rename as a mixed number"
+   },
+   {
+    "id": "MM4-N11",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "see the points share an x-coordinate -> points on opposite sides of the x-axis: add the absolute values of the y-coordinates"
+   },
+   {
+    "id": "MV2-N56-05",
+    "st": "LIVE",
+    "g": 5,
+    "chain": "divide a decimal by a whole number -> subtract a decimal from one share"
+   },
+   {
+    "id": "MB4-N5-09",
+    "st": "LIVE",
+    "g": 5,
+    "chain": "subtract the part kept back -> divide the rest by the number of sharers (Ana plus 2 cousins = 3) -> add one share to Ana's amount"
+   },
+   {
+    "id": "MB5-N6-03",
+    "st": "LIVE",
+    "g": 6,
+    "chain": "prime factorizations 60 = 2 x 2 x 3 x 5 and 80 = 2 x 2 x 2 x 2 x 5 -> GCF from the lower power of each shared prime: 2 x 2 x 5 = 20 -> LCM f"
+   },
+   {
+    "id": "MB5-N6-03",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "prime factorizations 25 = 5 x 5 and 45 = 3 x 3 x 5 -> GCF from the lower power of the shared prime: 5 -> LCM from the higher power of each p"
+   }
+  ]
+ },
+ "M02": {
+  "live_prior": [
+   {
+    "q": "covered (with|by) .* squares",
+    "head": "464c6bb7-cc9 [live act/act-math-v20 Geometry medium]",
+    "text": "A square with sides 10 centimeters long is rotated 45° about its center, and the rotated copy is placed on top of the original square. The region covered by both squares is an octagon. To the nearest tenth of a square centimeter, "
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MM3-N06",
+    "st": "file only (never banked)",
+    "g": 5,
+    "chain": "count 1/2-meter tiles along 3 1/2 meters -> count 1/3-meter tiles along 2 2/3 meters -> multiply rows by columns"
+   },
+   {
+    "id": "MM4-N18",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "the square's side is the LCM of 10 and 14 -> count tiles along each side -> multiply the two counts"
+   },
+   {
+    "id": "MV2-N56-14",
+    "st": "LIVE",
+    "g": 6,
+    "chain": "subtract the finished part: 7 - 0.4 = 6.6 -> multiply 6.6 by 3.75 with the standard algorithm -> place the decimal point (3 places)"
+   }
+  ]
+ },
+ "M03": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MMG-N12",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "locate √5 between consecutive whole numbers and refine to tenths -> multiply the approximation by 2"
+   },
+   {
+    "id": "MM4-N39",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "approximate √50 just above 7 -> approximate √30 just below 5.5 -> subtract the approximations and round only at the end"
+   },
+   {
+    "id": "MM4-N37",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "edge = cube root of the volume -> cube root of 5 is between 1 and 2 -> cube decimals to find the closest"
+   },
+   {
+    "id": "MM4-N31",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "place the square root between two whole numbers -> narrow to tenths by squaring -> square two-decimal choices and compare with 7.6"
+   },
+   {
+    "id": "MM4-N33",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "product of square roots is the square root of the product -> place the root of 20 between 4 and 5 -> square choices to find the closest"
+   },
+   {
+    "id": "MM4-N31",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "square each decimal -> compare the squares with 3.3 -> pick the decimal whose square is closest to 3.3"
+   },
+   {
+    "id": "MM4-N33",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "approximate √2 as 1.414 and √3 as 1.732 -> add the approximations -> pick the closest decimal"
+   }
+  ]
+ },
+ "M04": {
+  "live_prior": [],
+  "earlier": []
+ },
+ "M05": {
+  "live_prior": [
+   {
+    "q": "divisible by 9 & digit",
+    "head": "88303912-c45 [live ssat/ssat-math-s16 Math hard]",
+    "text": "Each digit of a three-digit number is even (0, 2, 4, 6 or 8), and the number is divisible by 9. How many such three-digit numbers are there? options [\"18\",\"12\",\"10\",\"30\",\"11\"] key 10"
+   },
+   {
+    "q": "divisible by 9 & digit",
+    "head": "a7a5db44-9f0 [live isee/isee-math-s16 Math medium]",
+    "text": "How many three-digit whole numbers have digits whose product is 24 and are also divisible by 9? options [\"12\",\"6\",\"21\",\"18\"] key 6 "
+   }
+  ],
+  "earlier": []
+ },
+ "M06": {
+  "live_prior": [],
+  "earlier": []
+ },
+ "M07": {
+  "live_prior": [
+   {
+    "q": "halfway between & /",
+    "head": "d9d17101-106 [live ssat/ssat-math-q9 Math medium]",
+    "text": "What number is exactly halfway between 1/4 and 5/6 on a number line? options [\"3/5\",\"13/24\",\"1/2\",\"7/12\",\"7/24\"] key 13/24 "
+   },
+   {
+    "q": "exactly halfway",
+    "head": "d9d17101-106 [live ssat/ssat-math-q9 Math medium]",
+    "text": "What number is exactly halfway between 1/4 and 5/6 on a number line? options [\"3/5\",\"13/24\",\"1/2\",\"7/12\",\"7/24\"] key 13/24"
+   },
+   {
+    "q": "exactly halfway",
+    "head": "ddfe7763-b0b [live ssat/ssat-math-s16 Math medium]",
+    "text": "Train A leaves station P at 9:00 a.m. and travels toward station Q. Train B leaves station Q at 9:40 a.m. and travels toward P on a parallel track, at a speed 20 kilometers per hour greater than train A's. Each train keeps a const"
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MV2-N56-23",
+    "st": "dropped by graders",
+    "g": 6,
+    "chain": "halfway: half of the distance 17 is 8.5, so P = -2.5 -> opposite: Q = 2.5 -> same side of 0: 9 - 2.5"
+   }
+  ]
+ },
+ "M08": {
+  "live_prior": [
+   {
+    "q": "\\bpar\\b",
+    "head": "MV2-N7-04 [prior map-math-v2 b1 dropped by graders]",
+    "text": "In golf, a player's score for a round can be written compared with par: a negative score means that many strokes under par, and a positive score means that many strokes over par. Par for each round of a tournament is 70 strokes. O"
+   },
+   {
+    "q": "under par|over par",
+    "head": "MV2-N7-04 [prior map-math-v2 b1 dropped by graders]",
+    "text": "In golf, a player's score for a round can be written compared with par: a negative score means that many strokes under par, and a positive score means that many strokes over par. Par for each round of a tournament is 70 strokes. O"
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MV2-N7-04",
+    "st": "dropped by graders",
+    "g": 7,
+    "chain": "par total 4 x 70 -> net of the scores -8 + 1 - 7 + 9 -> par total plus the net"
+   }
+  ]
+ },
+ "M09": {
+  "live_prior": [
+   {
+    "q": "farthest from",
+    "head": "dc437765-a13 [live act/act-math-v17 Geometry medium]",
+    "text": "A closed box shaped like a rectangular prism has a square base 12 inches on each side and a height of 8 inches. A thin straight rod runs inside the box from one bottom corner to the top corner farthest from it. To the nearest degr"
+   }
+  ],
+  "earlier": []
+ },
+ "M10": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MMG-N12",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "locate √5 between consecutive whole numbers and refine to tenths -> multiply the approximation by 2"
+   }
+  ]
+ },
+ "M11": {
+  "live_prior": [
+   {
+    "q": "times as long & square",
+    "head": "0eca60b9-2dc [live ssat/ssat-math-s12 Math easy]",
+    "text": "A rectangle is 3 times as long as it is wide, and its perimeter is 64 cm. What is its area, in square centimetres? options [\"192\",\"24\",\"32\",\"48\",\"96\"] key 192 "
+   }
+  ],
+  "earlier": [
+   {
+    "id": "MM4-N12",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "write the comparison as 15.84 / 0.75 -> move both decimal points two places and divide 1584 by 75"
+   },
+   {
+    "id": "MM3-N10",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "divide by 1.6 to find Mia's distance -> subtract from Sam's distance with decimals lined up"
+   },
+   {
+    "id": "MM3-N09",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "read 'how many times as long' as division -> rename both mixed numbers as fractions -> multiply by the reciprocal and simplify"
+   },
+   {
+    "id": "MM3-N10",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "multiply 2.45 by 1.8 to find Leo's distance -> subtract Sam's 3.6 with the decimal points lined up"
+   },
+   {
+    "id": "MM4-N12",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "write the comparison as 15.6 ÷ 0.8 -> move both decimal points one place and divide 156 by 8"
+   },
+   {
+    "id": "MM5-N44",
+    "st": "file only (never banked)",
+    "g": 8,
+    "chain": "second rate: 2.5 x 2.4 x 10^5 = 6.0 x 10^5 -> total: 4.8 x 10^5 + 1.8 x 10^6 = 2.28 x 10^6 -> mean: divide by 5 hours"
+   },
+   {
+    "id": "MV2-N56-06",
+    "st": "LIVE",
+    "g": 5,
+    "chain": "multiply a mixed number by a mixed number -> multiply a mixed number by a fraction -> subtract fifths and fifteenths with regrouping"
+   },
+   {
+    "id": "MV2-N56-06",
+    "st": "revised away",
+    "g": 5,
+    "chain": "multiply a mixed number by a mixed number -> multiply a mixed number by a fraction -> subtract with regrouping"
+   },
+   {
+    "id": "MV2-N56-12",
+    "st": "dropped by graders",
+    "g": 6,
+    "chain": "rename the mixed number 2 4/7 as 18/7 -> multiply by the reciprocal 3/2 -> simplify 54/14 to 3 6/7"
+   },
+   {
+    "id": "MV2-N56-19",
+    "st": "LIVE",
+    "g": 6,
+    "chain": "size of Lena's debt: 5 x 0.75 -> her balance is negative -> opposite sides of 0: add the sizes"
+   },
+   {
+    "id": "MV2-N56-19",
+    "st": "revised away",
+    "g": 6,
+    "chain": "size of Lena's debt: 3 x 1.25 -> her balance is negative -> opposite sides of 0: add the sizes"
+   },
+   {
+    "id": "MV2-N7-16",
+    "st": "withdrawn",
+    "g": 7,
+    "chain": "3 times as deep: 3 x (-2.35) = -7.05 -> raise by 1.6: -7.05 + 1.6"
+   }
+  ]
+ },
+ "M12": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MM4-N20",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "the number of bracelets is the greatest common factor of 48 and 180 (12) -> divide the blue beads by the number of bracelets"
+   },
+   {
+    "id": "MM4-N19",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "write the mixed numbers as decimals -> order the four numbers, including the two negatives -> add the distances from 0 of the least and the "
+   },
+   {
+    "id": "MM4-N20",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "the number of bracelets is a common factor of all three counts -> find the greatest common factor of 48, 144 and 180"
+   },
+   {
+    "id": "MV2-N56-10",
+    "st": "LIVE",
+    "g": 6,
+    "chain": "common stack size must divide both counts -> tallest stacks: greatest common factor 21 -> stacks of each colour: 63/21 and 84/21 -> add the "
+   },
+   {
+    "id": "MV2-N56-25",
+    "st": "withdrawn",
+    "g": 6,
+    "chain": "GCF of 15 and 105 is 15 -> divide each addend by 15 -> add the quotients"
+   },
+   {
+    "id": "MB5-N6-03",
+    "st": "LIVE",
+    "g": 6,
+    "chain": "prime factorizations 60 = 2 x 2 x 3 x 5 and 80 = 2 x 2 x 2 x 2 x 5 -> GCF from the lower power of each shared prime: 2 x 2 x 5 = 20 -> LCM f"
+   },
+   {
+    "id": "MB5-N6-01",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "find the absolute value of each of five signed decimals -> pick the two numbers greatest in size (one positive, one negative) -> add them as"
+   },
+   {
+    "id": "MB5-N6-03",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "prime factorizations 25 = 5 x 5 and 45 = 3 x 3 x 5 -> GCF from the lower power of the shared prime: 5 -> LCM from the higher power of each p"
+   }
+  ]
+ },
+ "M13": {
+  "live_prior": [],
+  "earlier": []
+ },
+ "M14": {
+  "live_prior": [],
+  "earlier": [
+   {
+    "id": "MM2-N07",
+    "st": "file only (never banked)",
+    "g": 6,
+    "chain": "servings = amount / serving size -> write 1 1/5 as 6/5 -> multiply by the reciprocal 3/2 and simplify"
+   }
+  ]
+ },
+ "M15": {
+  "live_prior": [],
+  "earlier": []
+ },
+ "M16": {
+  "live_prior": [],
+  "earlier": []
+ }
+}
