@@ -13127,6 +13127,94 @@
           "verdict": "Not run: the model attack saturates on ACT Science (CLAUDE.md); with-source half decides."
         }
       }
+    },
+    {
+      "id": "act-english-v10-kept-2026-10-30",
+      "createdAt": "2026-10-30",
+      "targetTest": "act",
+      "section": "english",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "spec": {
+        "n": 40,
+        "authors": 1,
+        "method": "one in-session Claude author, gate sheet ACT-EN10-RD13A-GATE.md (pre-registered before any grader)"
+      },
+      "contentSha": "98036279d065e3f8ea1c76a99a7e14baba2d591c9f377a8c55dc15dcf5dc06aa",
+      "status": "staged-for-human-review",
+      "cohort": "act-english-v10",
+      "note": "Passages P1, P2, P3, P5 of the frozen 50-item act-english-v10 batch (sha 2d6b3547); P4 dropped whole at the with-source gate (P4-Q07 second-defensible). A selection, not an edit. Route per gate sheet: full co-founder sitting (v9 is still held on PoW), oversampling CSE and PoW (blind flags). REGISTER section 5, 2026-10-29 / 2026-10-30.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "98036279d065e3f8ea1c76a99a7e14baba2d591c9f377a8c55dc15dcf5dc06aa",
+          "verdict": "act-bank-helper check english: structure OK on the kept 40 (CSE 22 / PoW 12 / KoL 6)."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "98036279d065e3f8ea1c76a99a7e14baba2d591c9f377a8c55dc15dcf5dc06aa",
+          "verdict": "3 Claude graders (a, b plain; c adversarial): 50/50 all three agree with the key; drop rules (any pick off key; 2+ same second-defensible; PoW 2+ no_source_needed) dropped P4 only. Adversarial cross-item note recorded, not a drop rule: No Change keyed 5 of ~45 eligible items."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "98036279d065e3f8ea1c76a99a7e14baba2d591c9f377a8c55dc15dcf5dc06aa",
+          "verdict": "SCREEN, NOT A VERDICT (gate sheet step 1). 10 split solvers, 1 item per passage per file: CSE 27/27 = 100% vs live 68.0 + 15 = FLAG; PoW 13/15 = 86.7% vs 66.7 + 15 = FLAG; KoL 8/8 report-only. Kept passages: CSE 22/22, PoW 10/12, KoL 6/6. Flags drop nothing; the sitting oversamples CSE and PoW. The options-only instrument saturates on ACT verbal (CLAUDE.md), so the human sitting decides."
+        },
+        "elimination": {
+          "passed": true,
+          "contentSha": "98036279d065e3f8ea1c76a99a7e14baba2d591c9f377a8c55dc15dcf5dc06aa",
+          "verdict": "Covered by the with-source PoW rule (no_source_needed by 2+ of 3 graders drops): none reached it on kept passages."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "98036279d065e3f8ea1c76a99a7e14baba2d591c9f377a8c55dc15dcf5dc06aa",
+          "verdict": "Key uniquely shortest 7/50, uniquely longest 0/50; key slots dealt flat by seeded shuffle; semicolon keyed on 3 boundary items. Known tell carried to the sitting: No Change keyed 5 of ~45 eligible (adversarial grader), so a never-pick-NC student gains on NC items. Next English brief: NC near a quarter of eligible items."
+        }
+      }
+    },
+    {
+      "id": "act-reading-v13a-kept-2026-10-30",
+      "createdAt": "2026-10-30",
+      "targetTest": "act",
+      "section": "reading",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "spec": {
+        "n": 27,
+        "authors": 1,
+        "method": "one in-session Claude author, gate sheet ACT-EN10-RD13A-GATE.md"
+      },
+      "contentSha": "873fe669b67ca875bdbdf82bdc88b4ce8d443f75b775e746142a1a82a0f6e6ef",
+      "status": "staged-for-human-review",
+      "cohort": "act-reading-v13a",
+      "note": "Passages p1 (literary), p2 (social science), p4 (natural science, paired) of the frozen 36-item act-reading-v13a batch (sha 906b7860); p3 (humanities) dropped whole (ARV13a-26: all three graders picked A against key C). A selection, not an edit. Route: spot one passage chosen by sha256 mod 3 of the kept file.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "873fe669b67ca875bdbdf82bdc88b4ce8d443f75b775e746142a1a82a0f6e6ef",
+          "verdict": "act-bank-helper check reading: structure OK on the kept 27 (KID 13 / C&S 8 / IKI 6; 3 genres, 1 paired)."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "873fe669b67ca875bdbdf82bdc88b4ce8d443f75b775e746142a1a82a0f6e6ef",
+          "verdict": "3 Claude graders: 35/36 all agree with the key; only drop ARV13a-26, taking p3."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "873fe669b67ca875bdbdf82bdc88b4ce8d443f75b775e746142a1a82a0f6e6ef",
+          "verdict": "REPORT-ONLY (gate sheet): 9 split solvers, 32/36 = 88.9%. The model attack saturates on ACT Reading (shipped 96.3% by model, 10% by a person), so this is not a verdict."
+        },
+        "elimination": {
+          "passed": true,
+          "contentSha": "873fe669b67ca875bdbdf82bdc88b4ce8d443f75b775e746142a1a82a0f6e6ef",
+          "verdict": "Not a separate instrument for ACT Reading; with-source graders checked second-defensible options and found one item (dropped)."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "873fe669b67ca875bdbdf82bdc88b4ce8d443f75b775e746142a1a82a0f6e6ef",
+          "verdict": "Keys 9/9/9/9 across 36; no cross-item pattern named by the adversarial grader for Reading."
+        }
+      }
     }
   ],
   "auditedCohorts": [

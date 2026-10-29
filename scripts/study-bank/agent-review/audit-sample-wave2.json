@@ -1,0 +1,219 @@
+{
+ "runId": "agentreview-audit2-cofounder-2026-10-30",
+ "reviewer": "6ca6edaf-4044-4eed-84e0-137ebd79a81d",
+ "seed": "agentreview-audit-wave2-2026-10-30",
+ "total": 21,
+ "command": "DRAW_IDS_FILE=scripts/study-bank/agent-review/audit-sample-wave2.ids.json DRAW_COHORT='act-reading-v10a:1,act-reading-v10b:1,act-reading-v11a:1,act-reading-v12b:1,act-reading-v8d:1,act-reading-v9b:1,cr-v19:1,cr-v20:1,isee-reading-draft-13:1,isee-reading-draft-14:1,isee-reading-draft-9:1,toefl-conv-draft-1:1,toefl-conv-draft-2:1,toefl-passage-draft-5:1,toefl-passage-draft-6:1,toefl-passage-draft-7:1,toefl-talk-draft-3:1,toefl-talk-draft-4:1,toefl-talk-draft-5:1,toefl-talk-draft-6:1,toefl-talk-draft-7:1' node scripts/study-bank/draw-review-run.mjs '*' 21 6ca6edaf-4044-4eed-84e0-137ebd79a81d agentreview-audit2-cofounder-2026-10-30",
+ "cohorts": [
+  {
+   "cohort": "act-reading-v10a",
+   "cleared": 36,
+   "rank": 2,
+   "n": 1,
+   "ids": [
+    "6d56eb89-4716-4f11-ae4c-b535bbbdbe74"
+   ],
+   "group": "act-reading-v10a:arv10a-p2"
+  },
+  {
+   "cohort": "act-reading-v10b",
+   "cleared": 36,
+   "rank": 2,
+   "n": 1,
+   "ids": [
+    "0c99f06c-675c-4aa1-8775-d67d4e976347"
+   ],
+   "group": "act-reading-v10b:arv10b-p3"
+  },
+  {
+   "cohort": "act-reading-v11a",
+   "cleared": 27,
+   "rank": 2,
+   "n": 1,
+   "ids": [
+    "d1dcd13c-eea7-434d-b9f7-d97b2b2eb9ff"
+   ],
+   "group": "act-reading-v11a:arv11a-p4"
+  },
+  {
+   "cohort": "act-reading-v12b",
+   "cleared": 27,
+   "rank": 2,
+   "n": 1,
+   "ids": [
+    "083c750e-cd76-4737-bd42-dc0c0a24c712"
+   ],
+   "group": "act-reading-v12b:arv12b-p2"
+  },
+  {
+   "cohort": "act-reading-v8d",
+   "cleared": 27,
+   "rank": 2,
+   "n": 1,
+   "ids": [
+    "2830df02-b90c-4cd3-bd90-17bd390eb96b"
+   ],
+   "group": "act-reading-v8d:arv8d-p4"
+  },
+  {
+   "cohort": "act-reading-v9b",
+   "cleared": 36,
+   "rank": 2,
+   "n": 1,
+   "ids": [
+    "bcfa6237-13e3-410f-b6c5-89a680087add"
+   ],
+   "group": "act-reading-v9b:arv9b-p3"
+  },
+  {
+   "cohort": "cr-v19",
+   "cleared": 17,
+   "rank": 2,
+   "n": 1,
+   "ids": [
+    "0c55c731-fd44-417f-b10c-6b624dcc04a5"
+   ],
+   "group": null
+  },
+  {
+   "cohort": "cr-v20",
+   "cleared": 17,
+   "rank": 2,
+   "n": 1,
+   "ids": [
+    "8fc8c9af-d00e-4a8a-b991-73ef93ac4718"
+   ],
+   "group": null
+  },
+  {
+   "cohort": "isee-reading-draft-13",
+   "cleared": 18,
+   "rank": 2,
+   "n": 1,
+   "ids": [
+    "0f364a64-8a1d-490e-b199-75ada2063d32"
+   ],
+   "group": "iseedraft13-IR13-P01"
+  },
+  {
+   "cohort": "isee-reading-draft-14",
+   "cleared": 36,
+   "rank": 2,
+   "n": 1,
+   "ids": [
+    "43bde43a-cef7-45b8-be34-a6792afd0d74"
+   ],
+   "group": "iseedraft14-IR14-P04"
+  },
+  {
+   "cohort": "isee-reading-draft-9",
+   "cleared": 12,
+   "rank": 2,
+   "n": 1,
+   "ids": [
+    "11d6e6a3-9af9-4fe9-b1b2-3780cd0814b8"
+   ],
+   "group": "iseedraft9-IR9-P03"
+  },
+  {
+   "cohort": "toefl-conv-draft-1",
+   "cleared": 14,
+   "rank": 2,
+   "n": 1,
+   "ids": [
+    "0202cbe7-829b-4371-a65d-b2472c608560"
+   ],
+   "group": null
+  },
+  {
+   "cohort": "toefl-conv-draft-2",
+   "cleared": 21,
+   "rank": 2,
+   "n": 1,
+   "ids": [
+    "d4f41a7a-347e-4893-9edb-af459754e251"
+   ],
+   "group": null
+  },
+  {
+   "cohort": "toefl-passage-draft-5",
+   "cleared": 15,
+   "rank": 2,
+   "n": 1,
+   "ids": [
+    "b546c348-f373-4d93-9b05-b9d7d2ddc0a8"
+   ],
+   "group": "pg-a5517d729edbc5fa0b1e604a40e2f540"
+  },
+  {
+   "cohort": "toefl-passage-draft-6",
+   "cleared": 10,
+   "rank": 2,
+   "n": 1,
+   "ids": [
+    "6164c283-accf-4b49-a50c-a751202b94c4"
+   ],
+   "group": "pg-606e8950e453aa08449a929785ae317e"
+  },
+  {
+   "cohort": "toefl-passage-draft-7",
+   "cleared": 15,
+   "rank": 2,
+   "n": 1,
+   "ids": [
+    "b5d300c9-90ae-4174-91dd-c81d294fe81f"
+   ],
+   "group": "pg-c0eef9fda99ca6a43b10946437e4f4ba"
+  },
+  {
+   "cohort": "toefl-talk-draft-3",
+   "cleared": 33,
+   "rank": 2,
+   "n": 1,
+   "ids": [
+    "75376d5f-09aa-4691-a98c-14c404ba3649"
+   ],
+   "group": null
+  },
+  {
+   "cohort": "toefl-talk-draft-4",
+   "cleared": 39,
+   "rank": 2,
+   "n": 1,
+   "ids": [
+    "95ad87ed-2e3b-4ad3-bd99-41db7e080bf4"
+   ],
+   "group": null
+  },
+  {
+   "cohort": "toefl-talk-draft-5",
+   "cleared": 31,
+   "rank": 2,
+   "n": 1,
+   "ids": [
+    "1aeaae32-826d-4d94-a745-74904bad398c"
+   ],
+   "group": null
+  },
+  {
+   "cohort": "toefl-talk-draft-6",
+   "cleared": 36,
+   "rank": 2,
+   "n": 1,
+   "ids": [
+    "3df7bc48-2514-4483-a76e-a65e318c6ce7"
+   ],
+   "group": null
+  },
+  {
+   "cohort": "toefl-talk-draft-7",
+   "cleared": 32,
+   "rank": 2,
+   "n": 1,
+   "ids": [
+    "30960534-16f0-4b55-843f-d7b0de2df17c"
+   ],
+   "group": null
+  }
+ ]
+}

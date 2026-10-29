@@ -306,7 +306,11 @@ for (const it of batch) {
     // straight into the live draw; reverted within minutes, no session drew
     // them. Science releases through release-by-shape after its blind-only
     // run, never at insert, so it must ask for verified explicitly.
-    word_count: null, verified: section === 'science' ? process.env.BANK_VERIFIED === 'true' : process.env.BANK_VERIFIED !== 'false', archived: false, source: 'hand', cohort,
+    // ENGLISH AND READING TOO (2026-10-30): the same default put 67 gate
+    // survivors (act-english-v10, act-reading-v13a) live on insert; reverted
+    // within a minute, 0 exposures. Every section now stages unless
+    // BANK_VERIFIED=true.
+    word_count: null, verified: process.env.BANK_VERIFIED === 'true', archived: false, source: 'hand', cohort,
     verify_meta: {
       method: 'claude-authored; structure-checked by act-bank-helper before insert',
       localId: it.id, passage_id: it.passage_id, ...(section === 'reading' ? { genre: it.genre, paired: !!it.paired } : {}), ...(section === 'science' ? { format: it.format } : {}),

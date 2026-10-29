@@ -6456,3 +6456,18 @@ structural checks are pre-flight only. See CLAUDE.md.
   `choose-response-tell`). TOEFL Reading passages 40/360: one_template and key_form on drafts 1-4.
   Zero-cleared cohorts with no HOLD were checked: every drop comes from item rules taking whole passages, not
   from unreadable grades.
+
+- **2026-10-30 — ACT English v10 (40) and Reading v13a (27) gate survivors staged and queued; wave-2 audit sample
+  built.** Kept files are selections, not edits: `act-english-v10.kept.batch.json` (98036279, P4 out) and
+  `act-reading-v13a.kept.batch.json` (873fe669, p3 out). Ledger `act-*-kept-2026-10-30`.
+  - **Blind split screen (gate sheet step 1, run this round):** English CSE 27/27 = 100% and PoW 13/15 = 86.7%,
+    both over live + 15, so both are FLAGS. Flags drop nothing; the full sitting oversamples CSE and PoW. KoL 8/8 is
+    report-only. Reading 32/36 = 88.9%, report-only (saturating instrument).
+  - **Insert mistake, caught and reverted the same minute:** `act-bank-helper insert --apply` was run without
+    `BANK_VERIFIED=false`, so the 67 rows went in verified=true (live). They were set back to verified=false
+    straight away. study_item_exposures and study_attempts show 0 rows for both cohorts, so no student was served
+    one. Always prefix ACT inserts with `BANK_VERIFIED=false`, and read verified back after an insert.
+  - Queue: English v10 full sitting (40); Reading v13a spot arv13a-p2 (sha256 mod 3 of the kept file).
+  - Wave-2 audit: `agent-review-audit-sample.mjs --wave2` gives 21 items, 1 per cleared cohort
+    (`agent-review/audit-sample-wave2.json`). Queued as `thenManualDraw` behind the first audit; draw-next prints it.
+    Release runs through `agent-review-release.mjs <run> --wave2`.

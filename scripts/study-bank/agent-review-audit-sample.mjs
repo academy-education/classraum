@@ -3,7 +3,10 @@
  * agent-review-audit-sample.mjs — picks the pre-release audit sample for the SSAT/MAP agent review
  * (AGENT-REVIEW-SSAT-MAP.prereg.md, "Release after A1"). Read-only against the bank.
  *
- *   node scripts/study-bank/agent-review-audit-sample.mjs [--write]
+ *   node scripts/study-bank/agent-review-audit-sample.mjs [--write] [--wave2]
+ *
+ * --wave2 samples agent-review/results-wave2 (AGENT-REVIEW-WAVE2.prereg.md) into audit-sample-wave2.json under its own
+ * run id and seed.
  *
  * From every cohort with cleared items in agent-review/results/, it picks a seeded sample of CLEARED items the
  * co-founder has never been served: SSAT Reading 2 items from one passage per cohort, MAP Language 2 per cohort
@@ -19,11 +22,12 @@ import { rng, shuffleWith } from './seeded-shuffle.mjs'
 import { auditPlan, AUDIT_CAP, seedOf } from './agent-review-core.mjs'
 
 const HERE = new URL('.', import.meta.url).pathname
-const RESULTS = join(HERE, 'agent-review/results')
-const OUT = join(HERE, 'agent-review/audit-sample.json')
+const WAVE2 = process.argv.includes('--wave2')
+const RESULTS = join(HERE, WAVE2 ? 'agent-review/results-wave2' : 'agent-review/results')
+const OUT = join(HERE, WAVE2 ? 'agent-review/audit-sample-wave2.json' : 'agent-review/audit-sample.json')
 const REVIEWER = '6ca6edaf-4044-4eed-84e0-137ebd79a81d'
-const RUN_ID = 'agentreview-audit-cofounder-2026-10-29'
-const SEED = 'agentreview-audit-2026-10-29'
+const RUN_ID = WAVE2 ? 'agentreview-audit2-cofounder-2026-10-30' : 'agentreview-audit-cofounder-2026-10-29'
+const SEED = WAVE2 ? 'agentreview-audit-wave2-2026-10-30' : 'agentreview-audit-2026-10-29'
 const refuse = m => { console.error('REFUSING: ' + m); process.exit(2) }
 
 const env = Object.fromEntries(readFileSync(join(HERE, '../../.env.local'), 'utf8').split('\n').filter(l => l.includes('=') && !l.startsWith('#')).map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]))
@@ -70,7 +74,7 @@ const total = picked.reduce((s, p) => s + p.n, 0)
 if (total > AUDIT_CAP) refuse(`sample is ${total}, over the cap of ${AUDIT_CAP}`)
 
 const drawCohort = picked.map(p => `${p.cohort}:${p.n}`).join(',')
-const command = `DRAW_IDS_FILE=scripts/study-bank/agent-review/audit-sample.ids.json DRAW_COHORT='${drawCohort}' node scripts/study-bank/draw-review-run.mjs '*' ${total} ${REVIEWER} ${RUN_ID}`
+const command = `DRAW_IDS_FILE=scripts/study-bank/agent-review/${WAVE2 ? 'audit-sample-wave2' : 'audit-sample'}.ids.json DRAW_COHORT='${drawCohort}' node scripts/study-bank/draw-review-run.mjs '*' ${total} ${REVIEWER} ${RUN_ID}`
 console.log(`audit sample: ${total} items over ${picked.length} cohorts (cap ${AUDIT_CAP}); reviewer has seen ${seen.size} items, all excluded`)
 for (const p of picked) console.log(`  ${p.cohort.padEnd(30)} ${p.n}  of ${String(p.cleared).padStart(3)} cleared${p.group ? `  passage ${p.group}` : ''}`)
 console.log(`\ndraw command (only once the open run has closed):\n  ${command}`)

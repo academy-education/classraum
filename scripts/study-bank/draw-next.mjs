@@ -25,6 +25,7 @@ if (Q.nextManualDraw && !process.argv.includes('--skip-manual')) {
   console.log(`NEXT DRAW IS MANUAL (${Q.nextManualDraw.runId}): ${Q.nextManualDraw.note}`)
   console.log(`  ${Q.nextManualDraw.command}`)
   console.log('  remove nextManualDraw from cofounder-queue.json once it is drawn; draw-next will not draw a queue run before then.')
+  if (Q.thenManualDraw) console.log(`  after it closes, promote thenManualDraw (${Q.thenManualDraw.runId}) to nextManualDraw.`)
   process.exit(0)
 }
 /* LEVEL-AWARE MODE (Amendment 3, 2026-10-23): when autonomy-state.json exists (written by autonomy-state.mjs;
