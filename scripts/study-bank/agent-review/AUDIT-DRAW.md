@@ -11,14 +11,14 @@ field is there `draw-next.mjs` prints this command and draws nothing else. Remov
 
 ## The command (from the repo root)
 
-    DRAW_IDS_FILE=scripts/study-bank/agent-review/audit-sample.ids.json DRAW_COHORT='ssat-reading-draft-10:2,ssat-reading-draft-11:2,ssat-reading-draft-14:2,ssat-reading-draft-8:2,ssat-reading-draft-9:2,map-language-v2-mechanics:2,map-language-v2-writing:2,map-lu-v3-punctuation:1,map-lu-v6-spelling:2,map-reading-draft-1:1,map-reading-v2-c4:1,map-vocab-v3:1,ssat-verbal-draft-2:1,ssat-verbal-draft-3:1,ssat-verbal-draft-4:1,ssat-verbal-draft-5:1' node scripts/study-bank/draw-review-run.mjs '*' 24 6ca6edaf-4044-4eed-84e0-137ebd79a81d agentreview-audit-cofounder-2026-10-29
+    DRAW_IDS_FILE=scripts/study-bank/agent-review/audit-sample.ids.json DRAW_COHORT='ssat-reading-draft-10:2,ssat-reading-draft-11:2,ssat-reading-draft-14:2,ssat-reading-draft-8:2,ssat-reading-draft-9:2,map-language-v2-mechanics:2,map-language-v2-writing:2,map-lu-v3-punctuation:1,map-lu-v6-spelling:2,map-reading-draft-1:1,map-reading-v2-c4:1,map-vocab-v3:1,ssat-verbal-draft-2:1,ssat-verbal-draft-3:1,ssat-verbal-draft-4:1,ssat-verbal-draft-5:1,map-language-v3-grammar:2,map-language-v3-writing:2' node scripts/study-bank/draw-review-run.mjs '*' 28 6ca6edaf-4044-4eed-84e0-137ebd79a81d agentreview-audit-cofounder-2026-10-29
 
 `draw-review-run.mjs` refuses while any run is open (checked 2026-10-29: it refuses on v6b). `DRAW_IDS_FILE` limits
 every cohort's pool to the pre-chosen ids, and each cohort's count equals its number of ids, so the draw is fully
 determined. A dry run under a dummy reviewer showed exactly 1-2 reviewable items per cohort and 24 rows; without the
 file the same cohorts showed 6-159 reviewable (break test).
 
-## The sample: 24 items, 16 cohorts, seeded ("agentreview-audit-2026-10-29")
+## The sample: 28 items, 18 cohorts, seeded ("agentreview-audit-2026-10-29"; +4 MAP Language v3 items seeded "agentreview-audit-v3", added 2026-10-30)
 
 Picked by `agent-review-audit-sample.mjs --write` from the A1 cleared lists (`results/`), only items Daniel has never been
 served. Ids are in `audit-sample.ids.json`, and the plan is in `audit-sample.json`.

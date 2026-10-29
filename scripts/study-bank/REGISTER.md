@@ -6389,3 +6389,10 @@ structural checks are pre-flight only. See CLAUDE.md.
   still to run**. The held v2 Grammar/Writing rows are still staged; archiving them needs the owner's go.
   **Open:** lu3-check is pre-flight only. It cannot see a semantic tell, and the v2 lesson is that the next tell is
   one no check was built for. The graders decide.
+
+- **2026-10-30 — MAP Language v3 rewrite graded: 131 of 156 cleared (grammar 67/78, writing 64/78), 0 cohorts held.**
+  Same 3-grader instrument and Amendment A1 rules as the SSAT/MAP agent review; no v2 tell recurred on 3+ items.
+  4 v3 items (2 grammar, 2 writing, seeded "agentreview-audit-v3") added to Daniel's pre-release audit sample,
+  now 28 items over 18 cohorts (AUDIT-DRAW.md and the queue's nextManualDraw updated). With mechanics (76) and
+  v2 writing (76) already cleared, MAP Language reaches 5 forms once the audit releases them (grammar binds at
+  67 / 13 per form). The 88 v2 grammar rows stay held; archiving them waits for the owner.
