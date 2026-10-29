@@ -1,0 +1,118 @@
+{
+ "cohort": "map-vocab-v3",
+ "total": 40,
+ "cleared": [
+  "002c444e-5d57-4932-a7c8-df6ec9590af9",
+  "02b05fcb-ec5a-44b2-8acb-0ada6f6a36f8",
+  "0ce1621a-a8de-4411-846c-6ac889a96d48",
+  "0ec30b2d-001d-4b4c-a29b-9e1c07975cdc",
+  "122f3a51-7de6-4598-a13f-8239af8e079f",
+  "2153bc03-5c13-4db3-97b6-ac5c91c70042",
+  "21d41d62-9489-40c2-b227-2faebbd798b7",
+  "235a7112-0c59-4ba2-8e06-7809ac95da69",
+  "273e9020-c66a-4e45-a69f-f11aaab274f5",
+  "2afbd1e1-113c-46fa-8dd2-72d0322104c0",
+  "341674e6-e312-4342-87a7-f9c5abb2e232",
+  "37ed1894-a452-4688-a291-fd99e47cb942",
+  "3ef6bfef-7a42-4cc9-96b6-0679cd51215b",
+  "45f1f0c1-a0cb-4291-9fa7-f174b0d1a379",
+  "48e0c370-b126-4079-b4c1-08d89e855fb0",
+  "5f0394cf-ee4e-44e5-a383-617f4ce0f614",
+  "60118253-f34f-473a-b82d-dd890e4a52cc",
+  "6525c007-ceae-465c-b22d-21b080e33d7a",
+  "6829d041-3490-4f15-b54b-8589fcb6bee3",
+  "6900fc4e-5454-48eb-97f1-d38ba51883f2",
+  "6ff8e8ad-6a70-45d4-9ae6-fabc345bae24",
+  "7d2f5332-0447-497d-bd9c-dc1873888a4a",
+  "863fed8c-4796-4c46-829a-7fc1f901967c",
+  "8bf19bcc-7731-4cec-a483-1252b1f4db25",
+  "8c977afb-4387-4548-b6e7-2d4639e63030",
+  "98e48f54-e798-467b-9bfd-7f7a4d5c76b8",
+  "997b13b7-f397-4e8a-a7db-1cd8091825df",
+  "9e7936d4-3170-44d0-9598-d17f7ec9114e",
+  "a18bf264-af1e-42ac-8205-53c906ef31f2",
+  "b7d7ec84-7725-4aba-9b9c-0566733039c8",
+  "bc49a034-49a6-4846-940a-59577608bcf8",
+  "c038e950-f4e7-457c-a27f-529c0bd2a5d0",
+  "e80d62bc-3bc4-481c-ba7d-8c2873fc8382",
+  "f0c63b09-aa7e-472a-84e6-6b05a9d5cef4",
+  "fe6105b7-c7f5-45e2-ba11-ea9403c081a5"
+ ],
+ "dropped": {
+  "1b9e8e1d-14c1-43be-b3e1-421fb3eb9ab6": "pattern: stem_gives_answer, stem_gives_answer, stem_answerable_word_choice",
+  "45246ff6-35b4-4f23-bea9-cb419417ff34": "pattern: stem_gives_answer, stem_gives_answer, stem_answerable_word_choice",
+  "00897c81-4f9e-49e7-be21-87d8f99bd1c3": "pattern: stem_gives_answer, stem_gives_answer, stem_answerable_word_choice",
+  "45b80985-52e2-485b-83a3-ee29cd197651": "pattern: stem_gives_answer, stem_gives_answer, stem_answerable_word_choice",
+  "b463700b-b5b0-4d99-8705-3c65d69e47c7": "pattern: stem_gives_answer, stem_gives_answer, stem_answerable_word_choice"
+ },
+ "hold": false,
+ "patternShare": 0.125,
+ "patterns": [
+  {
+   "graders": [
+    "a",
+    "b"
+   ],
+   "pattern": "stem_gives_answer",
+   "other": "stem_answerable_word_choice",
+   "items": [
+    5,
+    6,
+    11,
+    15,
+    17
+   ],
+   "ids": [
+    "1b9e8e1d-14c1-43be-b3e1-421fb3eb9ab6",
+    "45246ff6-35b4-4f23-bea9-cb419417ff34",
+    "00897c81-4f9e-49e7-be21-87d8f99bd1c3",
+    "45b80985-52e2-485b-83a3-ee29cd197651",
+    "b463700b-b5b0-4d99-8705-3c65d69e47c7"
+   ]
+  },
+  {
+   "graders": [
+    "a",
+    "c"
+   ],
+   "pattern": "stem_gives_answer",
+   "other": "stem_names_target",
+   "items": [
+    5,
+    6,
+    11,
+    15,
+    17
+   ],
+   "ids": [
+    "1b9e8e1d-14c1-43be-b3e1-421fb3eb9ab6",
+    "45246ff6-35b4-4f23-bea9-cb419417ff34",
+    "00897c81-4f9e-49e7-be21-87d8f99bd1c3",
+    "45b80985-52e2-485b-83a3-ee29cd197651",
+    "b463700b-b5b0-4d99-8705-3c65d69e47c7"
+   ]
+  },
+  {
+   "graders": [
+    "b",
+    "c"
+   ],
+   "pattern": "stem_answerable_word_choice",
+   "other": "stem_names_target",
+   "items": [
+    5,
+    6,
+    11,
+    15,
+    17
+   ],
+   "ids": [
+    "1b9e8e1d-14c1-43be-b3e1-421fb3eb9ab6",
+    "45246ff6-35b4-4f23-bea9-cb419417ff34",
+    "00897c81-4f9e-49e7-be21-87d8f99bd1c3",
+    "45b80985-52e2-485b-83a3-ee29cd197651",
+    "b463700b-b5b0-4d99-8705-3c65d69e47c7"
+   ]
+  }
+ ]
+}

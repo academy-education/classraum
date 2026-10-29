@@ -19,6 +19,14 @@ const COMMIT = process.argv.includes('--commit')
 const here = new URL('.', import.meta.url).pathname
 const Q = JSON.parse(readFileSync(process.env.QUEUE_FILE || here + 'cofounder-queue.json', 'utf8')) // QUEUE_FILE: test queues
 const refuse = m => { console.error('REFUSING: ' + m); process.exit(2) }
+/* A manual draw the owner put first (2026-10-29: the agent-review pre-release audit) runs before anything in the
+ * queue. draw-next prints its command and refuses to draw a queue run until Q.nextManualDraw is removed. */
+if (Q.nextManualDraw && !process.argv.includes('--skip-manual')) {
+  console.log(`NEXT DRAW IS MANUAL (${Q.nextManualDraw.runId}): ${Q.nextManualDraw.note}`)
+  console.log(`  ${Q.nextManualDraw.command}`)
+  console.log('  remove nextManualDraw from cofounder-queue.json once it is drawn; draw-next will not draw a queue run before then.')
+  process.exit(0)
+}
 /* LEVEL-AWARE MODE (Amendment 3, 2026-10-23): when autonomy-state.json exists (written by autonomy-state.mjs;
  * AUTONOMY_STATE_FILE overrides the path), runs are ordered by the five-test floor and shaped by each batch's trust
  * level — see draw-next-levels.mjs. With no state file, or with --old-rule, everything below runs unchanged. */

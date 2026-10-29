@@ -1,0 +1,109 @@
+{
+ "cohort": "ssat-reading-draft-15",
+ "total": 36,
+ "cleared": [],
+ "dropped": {
+  "0b959732-0c4e-4649-b9d7-3c5828463ff2": "item: b:alternative/second_defensible",
+  "3886cba8-d4b5-4e71-80b7-964e255bd5b2": "passage: draft15-D15-P02 lost an item",
+  "8cdbc9d1-4aec-44ff-a5d7-45c273786bf6": "passage: draft15-D15-P02 lost an item",
+  "8e18b0e1-48c5-4516-a105-c3cda6eb9bb6": "passage: draft15-D15-P02 lost an item",
+  "910d2065-4416-4d44-95cf-a902cc6ca63a": "passage: draft15-D15-P02 lost an item",
+  "c528c5d7-d6f0-496d-9346-d8aca0b4961d": "passage: draft15-D15-P02 lost an item"
+ },
+ "hold": true,
+ "patternShare": 0.6111111111111112,
+ "patterns": [
+  {
+   "graders": [
+    "a",
+    "c"
+   ],
+   "pattern": "key_form",
+   "other": "key_form",
+   "items": [
+    4,
+    5,
+    9,
+    10,
+    11,
+    13,
+    15,
+    18,
+    20,
+    21,
+    22,
+    24,
+    27,
+    28,
+    31,
+    34
+   ],
+   "ids": [
+    "49830453-fe2e-4de1-988f-2009208239a1",
+    "58e2fb33-ffaf-4bb0-8a66-3cf972b2c44f",
+    "a5ba8741-a229-4651-a49e-b82d7fffe7a4",
+    "ca22ea95-ca80-468f-ae1b-65e16604a164",
+    "cd609d4b-f374-43e8-8dc1-570153abcb92",
+    "3cd6c994-f038-46a5-938a-6dece78b9d19",
+    "ac1fecf0-2040-45d0-90f8-f3868a7b7d6b",
+    "f0d0b3cf-77b0-4724-8823-9180204881e1",
+    "310d0a71-a184-4649-91c8-b3353957ce35",
+    "78be16a1-7fb9-4dbc-8539-ac7bb768e920",
+    "7ee4facf-5c87-419d-b5a1-927f2991f6b6",
+    "f36ef317-3e3d-4812-8073-6c08fa20d0e3",
+    "45b521e3-344c-4f3b-86cc-3bb6b3595641",
+    "895c05a6-d1ee-4198-8863-80b25188d034",
+    "0b959732-0c4e-4649-b9d7-3c5828463ff2",
+    "8e18b0e1-48c5-4516-a105-c3cda6eb9bb6"
+   ]
+  },
+  {
+   "graders": [
+    "b",
+    "c"
+   ],
+   "pattern": "reused_option_words",
+   "other": "one_template",
+   "items": [
+    1,
+    12,
+    14,
+    23,
+    30,
+    32
+   ],
+   "ids": [
+    "15e12428-2778-49da-9ccf-3a6e41a2615d",
+    "fd6245fc-94a7-4c76-a6d5-ade1a2d8cbde",
+    "529fba8d-33ff-4d33-b9df-07166a628a12",
+    "df910d42-3d1d-4396-bb5f-83aa5a75d27d",
+    "b2fbc89b-69b9-4187-92c2-da1e9a5b2b34",
+    "3886cba8-d4b5-4e71-80b7-964e255bd5b2"
+   ]
+  },
+  {
+   "graders": [
+    "b",
+    "c"
+   ],
+   "pattern": "reused_option_words",
+   "other": "reused_option_set",
+   "items": [
+    1,
+    12,
+    14,
+    23,
+    30,
+    32
+   ],
+   "ids": [
+    "15e12428-2778-49da-9ccf-3a6e41a2615d",
+    "fd6245fc-94a7-4c76-a6d5-ade1a2d8cbde",
+    "529fba8d-33ff-4d33-b9df-07166a628a12",
+    "df910d42-3d1d-4396-bb5f-83aa5a75d27d",
+    "b2fbc89b-69b9-4187-92c2-da1e9a5b2b34",
+    "3886cba8-d4b5-4e71-80b7-964e255bd5b2"
+   ]
+  }
+ ]
+}

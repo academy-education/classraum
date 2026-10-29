@@ -1,0 +1,177 @@
+{
+ "runId": "agentreview-audit-cofounder-2026-10-29",
+ "reviewer": "6ca6edaf-4044-4eed-84e0-137ebd79a81d",
+ "seed": "agentreview-audit-2026-10-29",
+ "total": 24,
+ "command": "DRAW_IDS_FILE=scripts/study-bank/agent-review/audit-sample.ids.json DRAW_COHORT='ssat-reading-draft-10:2,ssat-reading-draft-11:2,ssat-reading-draft-14:2,ssat-reading-draft-8:2,ssat-reading-draft-9:2,map-language-v2-mechanics:2,map-language-v2-writing:2,map-lu-v3-punctuation:1,map-lu-v6-spelling:2,map-reading-draft-1:1,map-reading-v2-c4:1,map-vocab-v3:1,ssat-verbal-draft-2:1,ssat-verbal-draft-3:1,ssat-verbal-draft-4:1,ssat-verbal-draft-5:1' node scripts/study-bank/draw-review-run.mjs '*' 24 6ca6edaf-4044-4eed-84e0-137ebd79a81d agentreview-audit-cofounder-2026-10-29",
+ "cohorts": [
+  {
+   "cohort": "ssat-reading-draft-10",
+   "cleared": 36,
+   "rank": 0,
+   "n": 2,
+   "ids": [
+    "aa9cd918-0131-4230-9d58-665d991296cb",
+    "fc49479e-6daf-40bd-a4c4-21bfa138a94f"
+   ],
+   "group": "draft10-D10-P05"
+  },
+  {
+   "cohort": "ssat-reading-draft-11",
+   "cleared": 36,
+   "rank": 0,
+   "n": 2,
+   "ids": [
+    "b06d8c7d-b7d4-4fdf-9400-f45545102ca6",
+    "c9adac36-c9ea-482c-81e7-08db1e9ebf93"
+   ],
+   "group": "draft11-D11-P03"
+  },
+  {
+   "cohort": "ssat-reading-draft-14",
+   "cleared": 36,
+   "rank": 0,
+   "n": 2,
+   "ids": [
+    "86efb7e6-aeb6-4962-b560-64494780e7a3",
+    "7a99fd6d-5a84-441e-9e43-9bf834f9224b"
+   ],
+   "group": "draft14-D14-P06"
+  },
+  {
+   "cohort": "ssat-reading-draft-8",
+   "cleared": 30,
+   "rank": 0,
+   "n": 2,
+   "ids": [
+    "1565d09d-ebfd-4fd9-a0d5-14d70e142a1e",
+    "e7f8eebe-f704-499e-a5cb-7a3a8db30f5d"
+   ],
+   "group": "draft8-D8-P04"
+  },
+  {
+   "cohort": "ssat-reading-draft-9",
+   "cleared": 6,
+   "rank": 0,
+   "n": 2,
+   "ids": [
+    "7e3a6380-b3e5-404a-8577-608dbb1ba386",
+    "314c05e6-9b93-406c-aa56-4d1b691f6b8d"
+   ],
+   "group": "draft9-D9-P03"
+  },
+  {
+   "cohort": "map-language-v2-mechanics",
+   "cleared": 40,
+   "rank": 1,
+   "n": 2,
+   "ids": [
+    "e1b656af-e6c1-46fc-aade-bbea10037582",
+    "f0c903fc-55bc-4b62-bc70-c0a926b66ced"
+   ],
+   "group": null
+  },
+  {
+   "cohort": "map-language-v2-writing",
+   "cleared": 76,
+   "rank": 1,
+   "n": 2,
+   "ids": [
+    "ac1d97dd-9942-4241-9a87-73b4a74ae644",
+    "36d2665f-651c-40e5-9989-ff37edcfa09e"
+   ],
+   "group": null
+  },
+  {
+   "cohort": "map-lu-v3-punctuation",
+   "cleared": 10,
+   "rank": 1,
+   "n": 1,
+   "ids": [
+    "cd434b90-1cd1-48b8-8bc8-37921d4e7fde"
+   ],
+   "group": null
+  },
+  {
+   "cohort": "map-lu-v6-spelling",
+   "cleared": 26,
+   "rank": 1,
+   "n": 2,
+   "ids": [
+    "2fd3afe7-5f9e-4fac-8655-4db87bf613cf",
+    "1945e617-31c0-4c39-bdaa-97c98dc48c5f"
+   ],
+   "group": null
+  },
+  {
+   "cohort": "map-reading-draft-1",
+   "cleared": 20,
+   "rank": 2,
+   "n": 1,
+   "ids": [
+    "fb6b4a30-4523-40ae-b28c-c41d5d3ab9ab"
+   ],
+   "group": "map-draft1-M1-P11"
+  },
+  {
+   "cohort": "map-reading-v2-c4",
+   "cleared": 18,
+   "rank": 2,
+   "n": 1,
+   "ids": [
+    "9cc77b5a-c075-4435-8e6c-5514ba6c81a2"
+   ],
+   "group": "mapv2-MRV2-R7-P06"
+  },
+  {
+   "cohort": "map-vocab-v3",
+   "cleared": 35,
+   "rank": 2,
+   "n": 1,
+   "ids": [
+    "6525c007-ceae-465c-b22d-21b080e33d7a"
+   ],
+   "group": null
+  },
+  {
+   "cohort": "ssat-verbal-draft-2",
+   "cleared": 105,
+   "rank": 2,
+   "n": 1,
+   "ids": [
+    "8c5f02e1-81c5-47f1-8331-8c772d611e4e"
+   ],
+   "group": null
+  },
+  {
+   "cohort": "ssat-verbal-draft-3",
+   "cleared": 120,
+   "rank": 2,
+   "n": 1,
+   "ids": [
+    "c7e4e8d8-1da7-497b-a15a-a4a1b41a27f5"
+   ],
+   "group": null
+  },
+  {
+   "cohort": "ssat-verbal-draft-4",
+   "cleared": 104,
+   "rank": 2,
+   "n": 1,
+   "ids": [
+    "f91dff95-1688-4e8f-9002-8fbb759b828f"
+   ],
+   "group": null
+  },
+  {
+   "cohort": "ssat-verbal-draft-5",
+   "cleared": 128,
+   "rank": 2,
+   "n": 1,
+   "ids": [
+    "ca4d0e6a-1e65-48cc-a570-6b636810cfb4"
+   ],
+   "group": null
+  }
+ ]
+}

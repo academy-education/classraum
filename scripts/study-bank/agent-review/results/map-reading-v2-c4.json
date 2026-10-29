@@ -1,0 +1,110 @@
+{
+ "cohort": "map-reading-v2-c4",
+ "total": 36,
+ "cleared": [
+  "0020b3bc-0160-4b23-8c29-34971a00aa37",
+  "0600ae84-05c8-4afd-a01d-0ef80631a4ba",
+  "13e66380-c31a-4213-a02a-725b1f98f05b",
+  "1805e00e-2e54-4c4a-bb09-dc627c55809a",
+  "18ca07e6-76a6-4390-8330-868585555b96",
+  "1a88320f-369f-436a-a894-81eb69b274ef",
+  "41460aa7-6097-40d8-90c4-df4ca9423b1c",
+  "54a0de52-5b22-424c-b33d-9c60445f248b",
+  "5dd14fec-9c4c-4c20-b919-1afe829ebe01",
+  "6c38857a-fa27-4d0d-a734-2c02a230071a",
+  "7d8b4a50-aba6-4578-aaa8-913da0d00b33",
+  "86bd8c41-a611-4dc8-8c48-a25030e7893d",
+  "909df805-218e-4b48-baeb-c45beea05644",
+  "9ac21b31-0717-46e7-a298-4d6bcc9e773a",
+  "9cc77b5a-c075-4435-8e6c-5514ba6c81a2",
+  "be040427-f436-4462-8d5c-b086e61e5d73",
+  "c6afa1a3-817e-4fdd-bdf0-89c5b3019e59",
+  "edfb9681-cd32-4e3d-b445-678e6e1e0723"
+ ],
+ "dropped": {
+  "013d4134-9517-49ba-88ae-42ec3481b19f": "item: c:alternative/second_defensible",
+  "732a5f77-a30e-44c5-bfdf-ebef7cc262db": "passage: mapv2-MRV2-R7-P05 lost an item",
+  "b81a8a60-c229-4839-bcbe-32b791d37edf": "passage: mapv2-MRV2-R7-P05 lost an item",
+  "0a358d29-a40b-4812-804b-40271afefcb8": "passage: mapv2-MRV2-R8-P04 lost an item",
+  "1bb561d6-f14b-47ab-8b58-088f0cb68b31": "passage: mapv2-MRV2-R8-P04 lost an item",
+  "327fca5d-a212-44f7-a6ae-f0e382fac162": "pattern: key_form, key_form, key_form",
+  "0a984fae-8749-45be-ba62-aa6936d2fd1b": "passage: mapv2-MRV2-R8-P01 lost an item",
+  "3bfcacad-41ce-4b2b-a9d9-f8d6d30b8472": "pattern: key_form, key_form, key_form",
+  "787c7b50-504c-49c5-9d49-5852424e4bcc": "passage: mapv2-MRV2-R8-P01 lost an item",
+  "b61ec354-3e56-4d7e-81cb-4818b45e6094": "passage: mapv2-MRV2-R8-P02 lost an item",
+  "b65d46f6-b535-46fe-94ed-a5ef21c6be47": "passage: mapv2-MRV2-R8-P02 lost an item",
+  "d457a6fc-91f7-424c-a14d-4c288b39b595": "pattern: key_form, key_form, key_form",
+  "424dac1f-fb19-489d-b44f-0d5f45e5ec0b": "passage: mapv2-MRV2-R8-P06 lost an item",
+  "c22cfed1-3ae3-4de3-a9a2-26ec01f9fecd": "passage: mapv2-MRV2-R8-P06 lost an item",
+  "eb568654-a4c0-41d7-bf3d-59a2639ad816": "pattern: key_form",
+  "160e6afe-347c-42d8-be7c-2206bcd5d5e3": "pattern: key_form, key_form, key_form",
+  "32c3e96d-075d-4a2c-84a1-6663e9f59385": "passage: mapv2-MRV2-R8-P03 lost an item",
+  "75a22584-f325-4c5e-ab27-3b3f77c2f0bc": "passage: mapv2-MRV2-R8-P03 lost an item"
+ },
+ "hold": false,
+ "patternShare": 0.1388888888888889,
+ "patterns": [
+  {
+   "graders": [
+    "a",
+    "b"
+   ],
+   "pattern": "key_form",
+   "other": "key_form",
+   "items": [
+    3,
+    5,
+    9,
+    15,
+    16
+   ],
+   "ids": [
+    "327fca5d-a212-44f7-a6ae-f0e382fac162",
+    "3bfcacad-41ce-4b2b-a9d9-f8d6d30b8472",
+    "d457a6fc-91f7-424c-a14d-4c288b39b595",
+    "eb568654-a4c0-41d7-bf3d-59a2639ad816",
+    "160e6afe-347c-42d8-be7c-2206bcd5d5e3"
+   ]
+  },
+  {
+   "graders": [
+    "a",
+    "c"
+   ],
+   "pattern": "key_form",
+   "other": "key_form",
+   "items": [
+    3,
+    5,
+    9,
+    16
+   ],
+   "ids": [
+    "327fca5d-a212-44f7-a6ae-f0e382fac162",
+    "3bfcacad-41ce-4b2b-a9d9-f8d6d30b8472",
+    "d457a6fc-91f7-424c-a14d-4c288b39b595",
+    "160e6afe-347c-42d8-be7c-2206bcd5d5e3"
+   ]
+  },
+  {
+   "graders": [
+    "b",
+    "c"
+   ],
+   "pattern": "key_form",
+   "other": "key_form",
+   "items": [
+    3,
+    5,
+    9,
+    16
+   ],
+   "ids": [
+    "327fca5d-a212-44f7-a6ae-f0e382fac162",
+    "3bfcacad-41ce-4b2b-a9d9-f8d6d30b8472",
+    "d457a6fc-91f7-424c-a14d-4c288b39b595",
+    "160e6afe-347c-42d8-be7c-2206bcd5d5e3"
+   ]
+  }
+ ]
+}

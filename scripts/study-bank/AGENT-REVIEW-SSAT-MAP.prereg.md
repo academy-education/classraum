@@ -111,3 +111,13 @@ The owner changed §4: nothing is released until Daniel has sat a small audit sa
   cohort is clean (no `alternative`/`broken` verdict and no `would_block` note), that cohort's cleared items are
   released (`verified=true`); any defect on a cohort's sample holds that cohort's cleared items and lists them. Dry-run
   by default; `--apply` writes.
+
+### A1 addendum: the audit draw (written after re-scoring, 2026-10-29; no rule changed)
+
+Re-scored under A1: 826 of 1,558 cleared, 386 dropped by verdict, pattern or passage, and 8 of 27 cohorts held
+(pattern union at or above 50%). The audit is 24 items over the 16 cohorts with cleared items: SSAT Reading 2 per
+cohort from one passage, MAP Language 2 per cohort (1 for map-lu-v3-punctuation, which cleared 10), and 1 for every
+other cohort. The sample is seeded `agentreview-audit-2026-10-29` and the ids are in `agent-review/audit-sample.ids.json`.
+Draw it the moment `actsciencev6b-full1-blindonly-cofounder-2026-10-28` closes, from the repo root:
+
+    DRAW_IDS_FILE=scripts/study-bank/agent-review/audit-sample.ids.json DRAW_COHORT='ssat-reading-draft-10:2,ssat-reading-draft-11:2,ssat-reading-draft-14:2,ssat-reading-draft-8:2,ssat-reading-draft-9:2,map-language-v2-mechanics:2,map-language-v2-writing:2,map-lu-v3-punctuation:1,map-lu-v6-spelling:2,map-reading-draft-1:1,map-reading-v2-c4:1,map-vocab-v3:1,ssat-verbal-draft-2:1,ssat-verbal-draft-3:1,ssat-verbal-draft-4:1,ssat-verbal-draft-5:1' node scripts/study-bank/draw-review-run.mjs '*' 24 6ca6edaf-4044-4eed-84e0-137ebd79a81d agentreview-audit-cofounder-2026-10-29

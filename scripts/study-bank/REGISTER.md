@@ -6339,3 +6339,32 @@ structural checks are pre-flight only. See CLAUDE.md.
   `agent-review-score.mjs` (pure rules in agent-review-core.mjs; jest agent-review-score.test.ts, each guard
   break-tested) refuses missing/malformed grader files. Release still needs the owner's go; Daniel then audits a
   pooled 12 per stratum per wave.
+
+- **2026-10-29 — Agent review SSAT/MAP re-scored under Amendment A1, 826 of 1,558 cleared, NOTHING released (owner:
+  Daniel checks a sample first).**
+  - **A1:** answer-letter patterns are excluded, because the app reshuffles choices per student. A pattern confined
+    to a subset drops only those items and their passages, and holds the cohort only at 50% or more. Committed
+    1bdde3e9 before re-scoring. Implemented in agent-review-core.mjs, and both rules were break-tested in jest.
+  - **Result:** 8 of 27 cohorts held: map-language-v2-grammar 59%; ssat-reading-draft-1, -6, -7, -17 and -18 at
+    100%; ssat-reading-draft-15 61%; ssat-verbal-draft-1 58%.
+  - **Cleared by area:**
+
+    | area | cleared |
+    |---|---|
+    | ssat/verbal | 457 |
+    | ssat/reading | 144 (24 passages; drafts 8, 9, 10, 11, 14) |
+    | map/language mechanics | 76 |
+    | map/language writing | 76 |
+    | map/language grammar | 0 |
+    | map/reading | 73 (Literary 15, Informational 18, Vocabulary 40) |
+
+  - **Audit:** 24 items over the 16 cleared cohorts, seeded, unseen by Daniel, ids in
+    `agent-review/audit-sample.ids.json`. Drawn only after actsciencev6b closes. The command is in
+    `agent-review/AUDIT-DRAW.md`, and `cofounder-queue.json` `nextManualDraw` makes draw-next print it and draw
+    nothing else until the field is removed. New `DRAW_IDS_FILE` allowlist in draw-review-run.mjs: a cohort pool
+    otherwise includes agent-DROPPED items. Break-tested: 1 reviewable per cohort with the file, 6-159 without.
+  - **Release:** `agent-review-release.mjs <run>` refuses while open, on an unclassified note, a stray or missing
+    row, or an edited item. A clean sample releases that cohort's cleared items; any miss holds them. Dry run by
+    default. The pure rule is decideRelease, and all six mechanisms were break-tested.
+  - **Found:** MAP Language still has no forms after release (grammar held, and a form needs all three areas), so
+    the grammar rewrite is the blocker there.

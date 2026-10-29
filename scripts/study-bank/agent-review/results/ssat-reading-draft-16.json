@@ -1,0 +1,143 @@
+{
+ "cohort": "ssat-reading-draft-16",
+ "total": 36,
+ "cleared": [],
+ "dropped": {
+  "1d6c5886-d101-4e56-a532-7f9f010604a8": "pattern: reused_option_set",
+  "1f45209f-dab2-42cf-a585-598ecd3996c7": "passage: draft16-D16-P02 lost an item",
+  "3ce1e593-0042-4cfe-bcb9-fcaefd94a199": "passage: draft16-D16-P02 lost an item",
+  "4807c6bb-a0a3-448c-b6f5-c02668508c63": "pattern: one_template",
+  "db3c6ec1-83aa-4458-ae7b-80edf025ff39": "pattern: identical_key_prose",
+  "dd631f65-a864-4b4d-92b6-4cfd6ab819de": "pattern: identical_key_prose, one_template",
+  "77c8a88b-d71b-4490-b270-54eb804c60dd": "pattern: identical_key_prose",
+  "906f2b30-12f5-4497-b1da-1c7998f2b131": "pattern: reused_option_set",
+  "9ab96534-1c3d-47e8-ba5c-1bc7101a1551": "pattern: one_template",
+  "cc55c390-6ee9-47c5-ac3f-cb53f4af71ff": "pattern: identical_key_prose, one_template",
+  "dbf5c6a7-1365-4968-b5b5-66bc93934693": "passage: draft16-D16-P03 lost an item",
+  "e3cfdfa8-a3f5-4c9b-b783-090be038de22": "passage: draft16-D16-P03 lost an item",
+  "3cef6537-4c10-47f7-9c28-488ee524a71b": "passage: draft16-D16-P06 lost an item",
+  "7c926c49-3437-426a-9b42-c24488239d69": "passage: draft16-D16-P06 lost an item",
+  "8c80e16d-ddba-420b-b341-e0b3d8b07d84": "pattern: one_template",
+  "a1ac3ae7-1730-4ba4-853b-042dcb3f6189": "passage: draft16-D16-P06 lost an item",
+  "b2ecac26-06d0-4d4f-a757-2b5e60118e52": "passage: draft16-D16-P06 lost an item",
+  "cebb27d5-8b4c-4dbf-ac72-08604f0f5e0c": "pattern: reused_option_set",
+  "0d3cb361-9ac2-48a0-a24f-4861b9353e8a": "passage: draft16-D16-P04 lost an item",
+  "1b03f352-3268-4143-8bcd-6d986ee4d8b7": "passage: draft16-D16-P04 lost an item",
+  "28e09a31-e990-4122-822e-1eb1b927ffdc": "passage: draft16-D16-P04 lost an item",
+  "5b9849a6-5307-4052-ba43-ff0e5d5aa874": "passage: draft16-D16-P04 lost an item",
+  "6aa29ead-e719-404d-b6b8-57748934d9ea": "passage: draft16-D16-P04 lost an item",
+  "d42edd02-c102-4aa9-ae94-f3c0537e0488": "pattern: one_template",
+  "334afbd0-e99a-4a76-a8c1-42a548967412": "pattern: identical_key_prose",
+  "4a7227e5-25dd-4154-9aa1-a678e2e6f66e": "pattern: identical_key_prose, one_template",
+  "4a9dc145-5b54-4c0f-a53e-cf722bb65957": "passage: draft16-D16-P01 lost an item",
+  "5b65c96e-43a8-47d9-9bb9-c1d8c174bb6d": "passage: draft16-D16-P01 lost an item",
+  "66b330bc-b3c2-4b2f-be00-ba053c744be8": "passage: draft16-D16-P01 lost an item",
+  "82f7aa88-c7f3-4243-9b02-939fc46bc80a": "pattern: one_template",
+  "03eb240b-e3de-4beb-b48a-6b3a6c294d38": "passage: draft16-D16-P05 lost an item",
+  "2f19f3a1-f71d-48a3-a062-c0066db5bba3": "passage: draft16-D16-P05 lost an item",
+  "5fef331f-2b02-41c3-82d9-0eb0d6281064": "passage: draft16-D16-P05 lost an item",
+  "89064498-0619-4bc9-a522-425798420614": "passage: draft16-D16-P05 lost an item",
+  "9815939c-9495-4f92-8d8c-da2867995e8b": "passage: draft16-D16-P05 lost an item",
+  "e40d4a56-ce32-4c8d-ba30-4045d8fa348e": "pattern: one_template"
+ },
+ "hold": false,
+ "patternShare": 0.4166666666666667,
+ "patterns": [
+  {
+   "graders": [
+    "a",
+    "b"
+   ],
+   "pattern": "reused_option_set",
+   "other": "reused_option_set",
+   "items": [
+    1,
+    8,
+    18
+   ],
+   "ids": [
+    "1d6c5886-d101-4e56-a532-7f9f010604a8",
+    "906f2b30-12f5-4497-b1da-1c7998f2b131",
+    "cebb27d5-8b4c-4dbf-ac72-08604f0f5e0c"
+   ]
+  },
+  {
+   "graders": [
+    "a",
+    "c"
+   ],
+   "pattern": "identical_key_prose",
+   "other": "identical_key_prose",
+   "items": [
+    6,
+    10,
+    26
+   ],
+   "ids": [
+    "dd631f65-a864-4b4d-92b6-4cfd6ab819de",
+    "cc55c390-6ee9-47c5-ac3f-cb53f4af71ff",
+    "4a7227e5-25dd-4154-9aa1-a678e2e6f66e"
+   ]
+  },
+  {
+   "graders": [
+    "a",
+    "c"
+   ],
+   "pattern": "one_template",
+   "other": "one_template",
+   "items": [
+    4,
+    9,
+    15,
+    24,
+    30,
+    36
+   ],
+   "ids": [
+    "4807c6bb-a0a3-448c-b6f5-c02668508c63",
+    "9ab96534-1c3d-47e8-ba5c-1bc7101a1551",
+    "8c80e16d-ddba-420b-b341-e0b3d8b07d84",
+    "d42edd02-c102-4aa9-ae94-f3c0537e0488",
+    "82f7aa88-c7f3-4243-9b02-939fc46bc80a",
+    "e40d4a56-ce32-4c8d-ba30-4045d8fa348e"
+   ]
+  },
+  {
+   "graders": [
+    "b",
+    "c"
+   ],
+   "pattern": "identical_key_prose",
+   "other": "identical_key_prose",
+   "items": [
+    5,
+    7,
+    25
+   ],
+   "ids": [
+    "db3c6ec1-83aa-4458-ae7b-80edf025ff39",
+    "77c8a88b-d71b-4490-b270-54eb804c60dd",
+    "334afbd0-e99a-4a76-a8c1-42a548967412"
+   ]
+  },
+  {
+   "graders": [
+    "b",
+    "c"
+   ],
+   "pattern": "one_template",
+   "other": "one_template",
+   "items": [
+    6,
+    10,
+    26
+   ],
+   "ids": [
+    "dd631f65-a864-4b4d-92b6-4cfd6ab819de",
+    "cc55c390-6ee9-47c5-ac3f-cb53f4af71ff",
+    "4a7227e5-25dd-4154-9aa1-a678e2e6f66e"
+   ]
+  }
+ ]
+}

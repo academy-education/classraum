@@ -1,0 +1,93 @@
+{
+ "cohort": "ssat-reading-draft-12",
+ "total": 36,
+ "cleared": [],
+ "dropped": {
+  "00f0fd30-b7c0-435b-af41-247f8da56fc3": "passage: draft12-D12-P03 lost an item",
+  "39dc5a55-a708-48d0-bb4e-8d8ed7d94021": "pattern: one_template",
+  "4e734aa7-69a3-4692-bc94-20164b56058b": "passage: draft12-D12-P03 lost an item",
+  "55b9c252-f5c6-4b30-ac52-a14345a88345": "passage: draft12-D12-P03 lost an item",
+  "d59e69a0-55a6-4e25-af34-9b8bb86bdde5": "passage: draft12-D12-P03 lost an item",
+  "e545ff9a-e256-413a-a87c-2eff9ddbea68": "passage: draft12-D12-P03 lost an item",
+  "2453db16-dac2-484c-a7a6-fec75a73ff83": "item: c:hold/self_contradiction",
+  "2536e9ad-a4b8-48a5-9e28-a2314620d64b": "passage: draft12-D12-P04 lost an item",
+  "71c3aa44-14f7-4307-b68a-123696823f78": "passage: draft12-D12-P04 lost an item",
+  "7bd4557f-5426-4785-842c-4173a270ce32": "passage: draft12-D12-P04 lost an item",
+  "ce1fb2c3-dbd8-4ac0-adf8-e57ff2033ff3": "passage: draft12-D12-P04 lost an item",
+  "fa5b6601-5f54-4f14-bcbb-897667c4be59": "pattern: one_template",
+  "170cbd36-f96c-4f95-b798-1ea03fa0248c": "item: b:hold/self_contradiction",
+  "36ce054e-136d-4295-a16d-9a14821aa789": "item: b:hold/self_contradiction",
+  "74be6360-4c4b-4213-9e73-2bd5340f70f2": "item: b:hold/self_contradiction",
+  "972ed194-f7dc-47a9-9e70-5d5eafe26fa7": "item: b:hold/self_contradiction",
+  "a67f8785-5ee7-4658-b63c-931f720311c4": "item: b:hold/self_contradiction",
+  "c6eb341c-0800-457a-a21c-62cbbce815db": "item: b:hold/self_contradiction",
+  "089087cf-e1b0-450f-b5b9-4186a295728e": "passage: draft12-D12-P01 lost an item",
+  "608a18da-0d05-43a9-a426-005eddaca07e": "passage: draft12-D12-P01 lost an item",
+  "6af9dfde-5217-4a14-b28f-018f0054f82e": "passage: draft12-D12-P01 lost an item",
+  "6cfc5fdf-770b-49b0-92e4-cf372b4879f9": "passage: draft12-D12-P01 lost an item",
+  "f073d54b-4e9d-4ace-a2a1-92e0f5f1fc4b": "pattern: function_key_is_only_rhetorical_role",
+  "f343909a-be9d-4110-b24b-94e042a7289c": "pattern: one_template",
+  "0747cb5c-d9af-4505-9bd0-f38774327c06": "passage: draft12-D12-P02 lost an item",
+  "1c4dc876-1761-44f9-a1f1-c91daaeb9642": "pattern: function_key_is_only_rhetorical_role",
+  "36bfb1ad-36f2-4847-afa5-68b628b96f93": "passage: draft12-D12-P02 lost an item",
+  "3aa2fee8-3d05-46aa-be75-3396f45cefaf": "pattern: one_template",
+  "7963a0ab-7214-4f36-94aa-409e17224968": "passage: draft12-D12-P02 lost an item",
+  "88988ca3-8921-4d68-ae02-d6b0a6ba0ade": "passage: draft12-D12-P02 lost an item",
+  "00bda107-51f4-4b1f-90b6-2bdf84e334ee": "passage: draft12-D12-P06 lost an item",
+  "0bf13a71-7e58-4c89-bcc8-d71e375665b6": "pattern: one_template",
+  "5cdd866c-3bbb-4885-981b-246d6c1dfc5a": "pattern: function_key_is_only_rhetorical_role",
+  "c2ff1101-ef5f-4a91-a33e-f5357e9f4181": "passage: draft12-D12-P06 lost an item",
+  "c685226c-70c1-4b69-806c-4144c1918a69": "passage: draft12-D12-P06 lost an item",
+  "ed47595f-eae4-46df-ae6d-9cf3b4c11c8a": "passage: draft12-D12-P06 lost an item"
+ },
+ "hold": false,
+ "patternShare": 0.3055555555555556,
+ "patterns": [
+  {
+   "graders": [
+    "a",
+    "b"
+   ],
+   "pattern": "one_template",
+   "other": "one_template",
+   "items": [
+    2,
+    12,
+    16,
+    24,
+    28,
+    32
+   ],
+   "ids": [
+    "39dc5a55-a708-48d0-bb4e-8d8ed7d94021",
+    "fa5b6601-5f54-4f14-bcbb-897667c4be59",
+    "972ed194-f7dc-47a9-9e70-5d5eafe26fa7",
+    "f343909a-be9d-4110-b24b-94e042a7289c",
+    "3aa2fee8-3d05-46aa-be75-3396f45cefaf",
+    "0bf13a71-7e58-4c89-bcc8-d71e375665b6"
+   ]
+  },
+  {
+   "graders": [
+    "b",
+    "c"
+   ],
+   "pattern": "function_key_is_only_rhetorical_role",
+   "other": "key_form",
+   "items": [
+    7,
+    18,
+    23,
+    26,
+    33
+   ],
+   "ids": [
+    "2453db16-dac2-484c-a7a6-fec75a73ff83",
+    "c6eb341c-0800-457a-a21c-62cbbce815db",
+    "f073d54b-4e9d-4ace-a2a1-92e0f5f1fc4b",
+    "1c4dc876-1761-44f9-a1f1-c91daaeb9642",
+    "5cdd866c-3bbb-4885-981b-246d6c1dfc5a"
+   ]
+  }
+ ]
+}

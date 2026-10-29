@@ -70,6 +70,15 @@ if (!domains.length || !reviewerId || sizes.some(n => !Number.isFinite(n) || n <
 if (domains.includes('*') && !entries.every(e => e.cohort)) { console.error("REFUSING: domain '*' needs DRAW_COHORT (an unbounded pool is never drawn)"); process.exit(1) }
 const GROUPS = (process.env.DRAW_GROUP || '').split(',').map(g => g.trim()).filter(Boolean)
 const FAMILY = process.env.DRAW_FAMILY || null
+/* DRAW_IDS_FILE=<json array of item ids>, added 2026-10-29 (agent-review pre-release audit, AGENT-REVIEW-SSAT-MAP
+ * Amendment A1): only those items are drawable. A cohort's pool also holds the items the agent graders DROPPED, and an
+ * audit of "the cleared items" must never serve one of those. The file is the pre-chosen sample, so with each cohort's
+ * size equal to its count of listed ids the draw is fully determined. An empty or unreadable file refuses. */
+let ALLOW = null
+if (process.env.DRAW_IDS_FILE) {
+  try { ALLOW = new Set(JSON.parse(readFileSync(process.env.DRAW_IDS_FILE, 'utf8'))) } catch (e) { console.error(`DRAW_IDS_FILE unreadable: ${e.message}`); process.exit(1) }
+  if (!ALLOW.size) { console.error('DRAW_IDS_FILE is empty — refusing'); process.exit(1) }
+}
 const offsets = sizes.reduce((acc, n) => (acc.push(acc[acc.length - 1] + n), acc), [0])
 /* The full slot alphabet, mirroring src/lib/study/item-review.ts. The
  * bank is not four-wide everywhere: 1,200 live items (18.6%), including
@@ -139,6 +148,7 @@ for (const [di, domain] of domains.entries()) {
     const it = r.item
     const n = Array.isArray(it?.choices) ? it.choices.length : 0
     return !seen.has(r.id)
+      && (!ALLOW || ALLOW.has(r.id))
       && n >= 2 && n <= L.length
       && typeof it.correct_answer === 'string' && it.choices.indexOf(it.correct_answer) >= 0
       && new Set(it.choices.map(c => String(c).trim())).size === n
