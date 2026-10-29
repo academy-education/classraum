@@ -1,0 +1,2865 @@
+[
+ {
+  "id": "ASV11a-P1-Q1",
+  "passage_id": "sc11a-p1",
+  "passage_title": "Host Leaves, Temperature, and Tessan Beetle Larvae",
+  "format": "research_summaries",
+  "passage": "Tessan beetles are leaf-eating insects found in upland meadows. Their larvae feed on the leaves of two local shrubs, Brell and Cormin. Entomologists studied how host plant, temperature, and a coating of fine silica powder on the leaves affected larval growth and survival.\n\nIn every trial, 20 newly hatched larvae were each placed alone in a covered dish and given fresh leaves daily for 14 days. On day 14, the entomologists recorded the percent of larvae still alive and the average mass of the surviving larvae. Table 1 gives the results.\n\nExperiment 1\nLarvae were fed Brell leaves or Cormin leaves at 22°C. No silica was applied.\n\nExperiment 2\nLarvae were fed Brell leaves at 16°C, 19°C, 25°C, or 28°C. No silica was applied. (The 22°C result for Brell is that of Experiment 1.)\n\nExperiment 3\nBrell leaves were dusted with silica powder at 2 or 6 grams per square meter (g/m²) of leaf surface before being fed to larvae at 22°C. (The 0 g/m² result is that of Experiment 1.)",
+  "prompt": "Among the trials in which larvae were fed Brell leaves with no silica, the average larval mass was greatest at which temperature?",
+  "choices": [
+   "19°C",
+   "22°C",
+   "28°C",
+   "25°C"
+  ],
+  "correct_answer": "25°C",
+  "explanation": "Brell, no silica: 18.4 mg (16°C), 31.0 mg (19°C), 41.6 mg (22°C), 44.2 mg (25°C), 36.5 mg (28°C). The greatest is 44.2 mg at \"25°C\".",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a maximum within one series",
+  "difficulty": "medium",
+  "topic_tag": "biology: insect larval growth",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Survival and average mass of Tessan beetle larvae after 14 days",
+   "colLabels": [
+    "Host leaves",
+    "Temperature (°C)",
+    "Silica (g/m²)",
+    "Average larval mass (mg)",
+    "Survival (%)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "Brell",
+     22,
+     0,
+     41.6,
+     85
+    ],
+    [
+     "Cormin",
+     22,
+     0,
+     27.3,
+     60
+    ],
+    [
+     "Brell",
+     16,
+     0,
+     18.4,
+     90
+    ],
+    [
+     "Brell",
+     19,
+     0,
+     31.0,
+     90
+    ],
+    [
+     "Brell",
+     25,
+     0,
+     44.2,
+     70
+    ],
+    [
+     "Brell",
+     28,
+     0,
+     36.5,
+     45
+    ],
+    [
+     "Brell",
+     22,
+     2,
+     35.9,
+     80
+    ],
+    [
+     "Brell",
+     22,
+     6,
+     22.8,
+     75
+    ]
+   ]
+  },
+  "consistency_check": "20 larvae per trial, so every survival value is a multiple of 5%; the Brell/22°C/0 g/m² row is shared by all three experiments and listed once; mass peaks at 25°C while survival is highest at 16-19°C; silica rows lower both mass and survival; no named law generates any column."
+ },
+ {
+  "id": "ASV11a-P1-Q2",
+  "passage_id": "sc11a-p1",
+  "passage_title": "Host Leaves, Temperature, and Tessan Beetle Larvae",
+  "format": "research_summaries",
+  "passage": "Tessan beetles are leaf-eating insects found in upland meadows. Their larvae feed on the leaves of two local shrubs, Brell and Cormin. Entomologists studied how host plant, temperature, and a coating of fine silica powder on the leaves affected larval growth and survival.\n\nIn every trial, 20 newly hatched larvae were each placed alone in a covered dish and given fresh leaves daily for 14 days. On day 14, the entomologists recorded the percent of larvae still alive and the average mass of the surviving larvae. Table 1 gives the results.\n\nExperiment 1\nLarvae were fed Brell leaves or Cormin leaves at 22°C. No silica was applied.\n\nExperiment 2\nLarvae were fed Brell leaves at 16°C, 19°C, 25°C, or 28°C. No silica was applied. (The 22°C result for Brell is that of Experiment 1.)\n\nExperiment 3\nBrell leaves were dusted with silica powder at 2 or 6 grams per square meter (g/m²) of leaf surface before being fed to larvae at 22°C. (The 0 g/m² result is that of Experiment 1.)",
+  "prompt": "For Brell-fed larvae with no silica, as temperature increased from 16°C to 28°C, survival:",
+  "choices": [
+   "stayed the same from 16°C to 19°C and then decreased.",
+   "increased at every step.",
+   "decreased at every step.",
+   "decreased from 16°C to 22°C and then increased."
+  ],
+  "correct_answer": "stayed the same from 16°C to 19°C and then decreased.",
+  "explanation": "Survival was 90% at 16°C and 19°C, then 85% (22°C), 70% (25°C), and 45% (28°C). So it \"stayed the same from 16°C to 19°C and then decreased.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "describe a trend across combined experiments",
+  "difficulty": "medium",
+  "topic_tag": "biology: insect larval growth",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Survival and average mass of Tessan beetle larvae after 14 days",
+   "colLabels": [
+    "Host leaves",
+    "Temperature (°C)",
+    "Silica (g/m²)",
+    "Average larval mass (mg)",
+    "Survival (%)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "Brell",
+     22,
+     0,
+     41.6,
+     85
+    ],
+    [
+     "Cormin",
+     22,
+     0,
+     27.3,
+     60
+    ],
+    [
+     "Brell",
+     16,
+     0,
+     18.4,
+     90
+    ],
+    [
+     "Brell",
+     19,
+     0,
+     31.0,
+     90
+    ],
+    [
+     "Brell",
+     25,
+     0,
+     44.2,
+     70
+    ],
+    [
+     "Brell",
+     28,
+     0,
+     36.5,
+     45
+    ],
+    [
+     "Brell",
+     22,
+     2,
+     35.9,
+     80
+    ],
+    [
+     "Brell",
+     22,
+     6,
+     22.8,
+     75
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV11a-P1-Q3",
+  "passage_id": "sc11a-p1",
+  "passage_title": "Host Leaves, Temperature, and Tessan Beetle Larvae",
+  "format": "research_summaries",
+  "passage": "Tessan beetles are leaf-eating insects found in upland meadows. Their larvae feed on the leaves of two local shrubs, Brell and Cormin. Entomologists studied how host plant, temperature, and a coating of fine silica powder on the leaves affected larval growth and survival.\n\nIn every trial, 20 newly hatched larvae were each placed alone in a covered dish and given fresh leaves daily for 14 days. On day 14, the entomologists recorded the percent of larvae still alive and the average mass of the surviving larvae. Table 1 gives the results.\n\nExperiment 1\nLarvae were fed Brell leaves or Cormin leaves at 22°C. No silica was applied.\n\nExperiment 2\nLarvae were fed Brell leaves at 16°C, 19°C, 25°C, or 28°C. No silica was applied. (The 22°C result for Brell is that of Experiment 1.)\n\nExperiment 3\nBrell leaves were dusted with silica powder at 2 or 6 grams per square meter (g/m²) of leaf surface before being fed to larvae at 22°C. (The 0 g/m² result is that of Experiment 1.)",
+  "prompt": "The entomologists want to test whether silica coating affects larvae fed Cormin leaves, and they want the new results to be directly comparable with the results of Experiment 3. Which set of trials should they run?",
+  "choices": [
+   "Cormin leaves with 0, 2, and 6 g/m² of silica, at 22°C",
+   "Cormin leaves with 0, 2, and 6 g/m² of silica, at 25°C",
+   "Cormin leaves with 0, 2, and 6 g/m² of silica, at 19°C",
+   "Cormin leaves with 0, 2, and 6 g/m² of silica, at 16°C"
+  ],
+  "correct_answer": "Cormin leaves with 0, 2, and 6 g/m² of silica, at 22°C",
+  "explanation": "Experiment 3 used 0, 2, and 6 g/m² of silica at 22°C. Only \"Cormin leaves with 0, 2, and 6 g/m² of silica, at 22°C\" changes nothing but the host plant.",
+  "domain": "Scientific Investigation",
+  "subskill": "design a directly comparable experiment",
+  "difficulty": "hard",
+  "topic_tag": "biology: insect larval growth",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Survival and average mass of Tessan beetle larvae after 14 days",
+   "colLabels": [
+    "Host leaves",
+    "Temperature (°C)",
+    "Silica (g/m²)",
+    "Average larval mass (mg)",
+    "Survival (%)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "Brell",
+     22,
+     0,
+     41.6,
+     85
+    ],
+    [
+     "Cormin",
+     22,
+     0,
+     27.3,
+     60
+    ],
+    [
+     "Brell",
+     16,
+     0,
+     18.4,
+     90
+    ],
+    [
+     "Brell",
+     19,
+     0,
+     31.0,
+     90
+    ],
+    [
+     "Brell",
+     25,
+     0,
+     44.2,
+     70
+    ],
+    [
+     "Brell",
+     28,
+     0,
+     36.5,
+     45
+    ],
+    [
+     "Brell",
+     22,
+     2,
+     35.9,
+     80
+    ],
+    [
+     "Brell",
+     22,
+     6,
+     22.8,
+     75
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV11a-P1-Q4",
+  "passage_id": "sc11a-p1",
+  "passage_title": "Host Leaves, Temperature, and Tessan Beetle Larvae",
+  "format": "research_summaries",
+  "passage": "Tessan beetles are leaf-eating insects found in upland meadows. Their larvae feed on the leaves of two local shrubs, Brell and Cormin. Entomologists studied how host plant, temperature, and a coating of fine silica powder on the leaves affected larval growth and survival.\n\nIn every trial, 20 newly hatched larvae were each placed alone in a covered dish and given fresh leaves daily for 14 days. On day 14, the entomologists recorded the percent of larvae still alive and the average mass of the surviving larvae. Table 1 gives the results.\n\nExperiment 1\nLarvae were fed Brell leaves or Cormin leaves at 22°C. No silica was applied.\n\nExperiment 2\nLarvae were fed Brell leaves at 16°C, 19°C, 25°C, or 28°C. No silica was applied. (The 22°C result for Brell is that of Experiment 1.)\n\nExperiment 3\nBrell leaves were dusted with silica powder at 2 or 6 grams per square meter (g/m²) of leaf surface before being fed to larvae at 22°C. (The 0 g/m² result is that of Experiment 1.)",
+  "prompt": "A student claims that, in Experiment 2, larvae that reached a greater average mass also had a higher survival rate. Do the Experiment 2 results support this claim?",
+  "choices": [
+   "Yes; at 19°C, larvae had a greater mass than at 16°C, and survival was 90% at both temperatures.",
+   "Yes; at 28°C, larvae had a lower mass than at 25°C and also a lower survival.",
+   "No; at 28°C, larvae had a lower mass than at 25°C.",
+   "No; at 25°C, larvae had a greater mass than at 19°C but a lower survival."
+  ],
+  "correct_answer": "No; at 25°C, larvae had a greater mass than at 19°C but a lower survival.",
+  "explanation": "At 25°C mass was 44.2 mg and survival 70%; at 19°C mass was 31.0 mg and survival 90%. \"No; at 25°C, larvae had a greater mass than at 19°C but a lower survival\" is a case that contradicts the claim. The other statements are true but do not test it.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test a claim against paired rows",
+  "difficulty": "hard",
+  "topic_tag": "biology: insect larval growth",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Survival and average mass of Tessan beetle larvae after 14 days",
+   "colLabels": [
+    "Host leaves",
+    "Temperature (°C)",
+    "Silica (g/m²)",
+    "Average larval mass (mg)",
+    "Survival (%)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "Brell",
+     22,
+     0,
+     41.6,
+     85
+    ],
+    [
+     "Cormin",
+     22,
+     0,
+     27.3,
+     60
+    ],
+    [
+     "Brell",
+     16,
+     0,
+     18.4,
+     90
+    ],
+    [
+     "Brell",
+     19,
+     0,
+     31.0,
+     90
+    ],
+    [
+     "Brell",
+     25,
+     0,
+     44.2,
+     70
+    ],
+    [
+     "Brell",
+     28,
+     0,
+     36.5,
+     45
+    ],
+    [
+     "Brell",
+     22,
+     2,
+     35.9,
+     80
+    ],
+    [
+     "Brell",
+     22,
+     6,
+     22.8,
+     75
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV11a-P1-Q5",
+  "passage_id": "sc11a-p1",
+  "passage_title": "Host Leaves, Temperature, and Tessan Beetle Larvae",
+  "format": "research_summaries",
+  "passage": "Tessan beetles are leaf-eating insects found in upland meadows. Their larvae feed on the leaves of two local shrubs, Brell and Cormin. Entomologists studied how host plant, temperature, and a coating of fine silica powder on the leaves affected larval growth and survival.\n\nIn every trial, 20 newly hatched larvae were each placed alone in a covered dish and given fresh leaves daily for 14 days. On day 14, the entomologists recorded the percent of larvae still alive and the average mass of the surviving larvae. Table 1 gives the results.\n\nExperiment 1\nLarvae were fed Brell leaves or Cormin leaves at 22°C. No silica was applied.\n\nExperiment 2\nLarvae were fed Brell leaves at 16°C, 19°C, 25°C, or 28°C. No silica was applied. (The 22°C result for Brell is that of Experiment 1.)\n\nExperiment 3\nBrell leaves were dusted with silica powder at 2 or 6 grams per square meter (g/m²) of leaf surface before being fed to larvae at 22°C. (The 0 g/m² result is that of Experiment 1.)",
+  "prompt": "If larvae were fed Brell leaves dusted with 4 g/m² of silica at 22°C, their average mass would most likely be:",
+  "choices": [
+   "less than 22.8 mg.",
+   "between 22.8 mg and 35.9 mg.",
+   "between 35.9 mg and 41.6 mg.",
+   "greater than 41.6 mg."
+  ],
+  "correct_answer": "between 22.8 mg and 35.9 mg.",
+  "explanation": "At 22°C, mass was 41.6 mg (0 g/m²), 35.9 mg (2 g/m²), and 22.8 mg (6 g/m²). 4 g/m² lies between 2 and 6, so mass is most likely \"between 22.8 mg and 35.9 mg.\"",
+  "domain": "Scientific Investigation",
+  "subskill": "predict the result of an additional trial",
+  "difficulty": "medium",
+  "topic_tag": "biology: insect larval growth",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Survival and average mass of Tessan beetle larvae after 14 days",
+   "colLabels": [
+    "Host leaves",
+    "Temperature (°C)",
+    "Silica (g/m²)",
+    "Average larval mass (mg)",
+    "Survival (%)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "Brell",
+     22,
+     0,
+     41.6,
+     85
+    ],
+    [
+     "Cormin",
+     22,
+     0,
+     27.3,
+     60
+    ],
+    [
+     "Brell",
+     16,
+     0,
+     18.4,
+     90
+    ],
+    [
+     "Brell",
+     19,
+     0,
+     31.0,
+     90
+    ],
+    [
+     "Brell",
+     25,
+     0,
+     44.2,
+     70
+    ],
+    [
+     "Brell",
+     28,
+     0,
+     36.5,
+     45
+    ],
+    [
+     "Brell",
+     22,
+     2,
+     35.9,
+     80
+    ],
+    [
+     "Brell",
+     22,
+     6,
+     22.8,
+     75
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV11a-P1-Q6",
+  "passage_id": "sc11a-p1",
+  "passage_title": "Host Leaves, Temperature, and Tessan Beetle Larvae",
+  "format": "research_summaries",
+  "passage": "Tessan beetles are leaf-eating insects found in upland meadows. Their larvae feed on the leaves of two local shrubs, Brell and Cormin. Entomologists studied how host plant, temperature, and a coating of fine silica powder on the leaves affected larval growth and survival.\n\nIn every trial, 20 newly hatched larvae were each placed alone in a covered dish and given fresh leaves daily for 14 days. On day 14, the entomologists recorded the percent of larvae still alive and the average mass of the surviving larvae. Table 1 gives the results.\n\nExperiment 1\nLarvae were fed Brell leaves or Cormin leaves at 22°C. No silica was applied.\n\nExperiment 2\nLarvae were fed Brell leaves at 16°C, 19°C, 25°C, or 28°C. No silica was applied. (The 22°C result for Brell is that of Experiment 1.)\n\nExperiment 3\nBrell leaves were dusted with silica powder at 2 or 6 grams per square meter (g/m²) of leaf surface before being fed to larvae at 22°C. (The 0 g/m² result is that of Experiment 1.)",
+  "prompt": "Which statement about Brell-fed larvae with no silica is supported by Table 1?",
+  "choices": [
+   "Mass was greatest at 25°C, and survival was greatest at 16°C and 19°C.",
+   "Mass was greatest at 28°C, and survival was lowest at 28°C.",
+   "Mass was greatest at 25°C, and survival was greatest at 25°C.",
+   "Mass was greatest at 22°C, and survival was greatest at 16°C and 19°C."
+  ],
+  "correct_answer": "Mass was greatest at 25°C, and survival was greatest at 16°C and 19°C.",
+  "explanation": "Mass peaked at 25°C (44.2 mg), while survival was highest, 90%, at 16°C and 19°C. Only \"Mass was greatest at 25°C, and survival was greatest at 16°C and 19°C\" has both parts right.",
+  "domain": "Interpretation of Data",
+  "subskill": "evaluate two-part statements against all rows",
+  "difficulty": "hard",
+  "topic_tag": "biology: insect larval growth",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Survival and average mass of Tessan beetle larvae after 14 days",
+   "colLabels": [
+    "Host leaves",
+    "Temperature (°C)",
+    "Silica (g/m²)",
+    "Average larval mass (mg)",
+    "Survival (%)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "Brell",
+     22,
+     0,
+     41.6,
+     85
+    ],
+    [
+     "Cormin",
+     22,
+     0,
+     27.3,
+     60
+    ],
+    [
+     "Brell",
+     16,
+     0,
+     18.4,
+     90
+    ],
+    [
+     "Brell",
+     19,
+     0,
+     31.0,
+     90
+    ],
+    [
+     "Brell",
+     25,
+     0,
+     44.2,
+     70
+    ],
+    [
+     "Brell",
+     28,
+     0,
+     36.5,
+     45
+    ],
+    [
+     "Brell",
+     22,
+     2,
+     35.9,
+     80
+    ],
+    [
+     "Brell",
+     22,
+     6,
+     22.8,
+     75
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV11a-P2-Q1",
+  "passage_id": "sc11a-p2",
+  "passage_title": "Glow Time of Lumivae Gel",
+  "format": "research_summaries",
+  "passage": "Lumivae are single-celled algae that store energy from light and later release some of it as a faint green glow. A design team embedded Lumivae in a clear gel to make a coating that glows in the dark, and tested how long the coating glows.\n\nIn each trial, a 10 cm × 10 cm panel was coated with gel containing the same number of Lumivae per cubic centimeter. The panel was exposed to a lamp of fixed brightness for a set time and then moved into a dark chamber held at a set temperature. A light sensor recorded the glow duration: the time until the glow fell below a fixed detection level. Table 1 gives the results.\n\nExperiment 1\nPanels with gel 2 mm thick were exposed for 1, 2, 4, 8, or 16 minutes. The dark chamber was at 20°C.\n\nExperiment 2\nPanels with gel 1, 4, or 6 mm thick were exposed for 8 minutes. The dark chamber was at 20°C. (The 2 mm result is that of Experiment 1.)\n\nExperiment 3\nPanels with gel 2 mm thick were exposed for 8 minutes. The dark chamber was at 10°C or 30°C. (The 20°C result is that of Experiment 1.)",
+  "prompt": "In Experiment 1, increasing the exposure time from 8 minutes to 16 minutes increased the glow duration by:",
+  "choices": [
+   "1 min.",
+   "4 min.",
+   "7 min.",
+   "11 min."
+  ],
+  "correct_answer": "1 min.",
+  "explanation": "Glow duration was 22 min at 8 minutes and 23 min at 16 minutes, an increase of \"1 min.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a difference between rows",
+  "difficulty": "medium",
+  "topic_tag": "biology: glowing algae gel",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Glow duration of Lumivae gel panels",
+   "colLabels": [
+    "Exposure time (min)",
+    "Gel thickness (mm)",
+    "Chamber temperature (°C)",
+    "Glow duration (min)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     1,
+     2,
+     20,
+     6
+    ],
+    [
+     2,
+     2,
+     20,
+     11
+    ],
+    [
+     4,
+     2,
+     20,
+     18
+    ],
+    [
+     8,
+     2,
+     20,
+     22
+    ],
+    [
+     16,
+     2,
+     20,
+     23
+    ],
+    [
+     8,
+     1,
+     20,
+     15
+    ],
+    [
+     8,
+     4,
+     20,
+     26
+    ],
+    [
+     8,
+     6,
+     20,
+     19
+    ],
+    [
+     8,
+     2,
+     10,
+     31
+    ],
+    [
+     8,
+     2,
+     30,
+     12
+    ]
+   ]
+  },
+  "consistency_check": "Exposure-duration relation saturates (22 to 23 min from 8 to 16 min) rather than following any formula; thickness has an optimum at 4 mm; warmer chambers shorten the glow; the 8 min/2 mm/20°C trial is shared and listed once."
+ },
+ {
+  "id": "ASV11a-P2-Q2",
+  "passage_id": "sc11a-p2",
+  "passage_title": "Glow Time of Lumivae Gel",
+  "format": "research_summaries",
+  "passage": "Lumivae are single-celled algae that store energy from light and later release some of it as a faint green glow. A design team embedded Lumivae in a clear gel to make a coating that glows in the dark, and tested how long the coating glows.\n\nIn each trial, a 10 cm × 10 cm panel was coated with gel containing the same number of Lumivae per cubic centimeter. The panel was exposed to a lamp of fixed brightness for a set time and then moved into a dark chamber held at a set temperature. A light sensor recorded the glow duration: the time until the glow fell below a fixed detection level. Table 1 gives the results.\n\nExperiment 1\nPanels with gel 2 mm thick were exposed for 1, 2, 4, 8, or 16 minutes. The dark chamber was at 20°C.\n\nExperiment 2\nPanels with gel 1, 4, or 6 mm thick were exposed for 8 minutes. The dark chamber was at 20°C. (The 2 mm result is that of Experiment 1.)\n\nExperiment 3\nPanels with gel 2 mm thick were exposed for 8 minutes. The dark chamber was at 10°C or 30°C. (The 20°C result is that of Experiment 1.)",
+  "prompt": "For panels exposed for 8 minutes in a 20°C chamber, which gel thickness gave the longest glow?",
+  "choices": [
+   "1 mm",
+   "4 mm",
+   "2 mm",
+   "6 mm"
+  ],
+  "correct_answer": "4 mm",
+  "explanation": "At 8 minutes and 20°C: 15 min (1 mm), 22 min (2 mm), 26 min (4 mm), 19 min (6 mm). The longest is at \"4 mm\".",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a maximum within one series",
+  "difficulty": "medium",
+  "topic_tag": "biology: glowing algae gel",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Glow duration of Lumivae gel panels",
+   "colLabels": [
+    "Exposure time (min)",
+    "Gel thickness (mm)",
+    "Chamber temperature (°C)",
+    "Glow duration (min)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     1,
+     2,
+     20,
+     6
+    ],
+    [
+     2,
+     2,
+     20,
+     11
+    ],
+    [
+     4,
+     2,
+     20,
+     18
+    ],
+    [
+     8,
+     2,
+     20,
+     22
+    ],
+    [
+     16,
+     2,
+     20,
+     23
+    ],
+    [
+     8,
+     1,
+     20,
+     15
+    ],
+    [
+     8,
+     4,
+     20,
+     26
+    ],
+    [
+     8,
+     6,
+     20,
+     19
+    ],
+    [
+     8,
+     2,
+     10,
+     31
+    ],
+    [
+     8,
+     2,
+     30,
+     12
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV11a-P2-Q3",
+  "passage_id": "sc11a-p2",
+  "passage_title": "Glow Time of Lumivae Gel",
+  "format": "research_summaries",
+  "passage": "Lumivae are single-celled algae that store energy from light and later release some of it as a faint green glow. A design team embedded Lumivae in a clear gel to make a coating that glows in the dark, and tested how long the coating glows.\n\nIn each trial, a 10 cm × 10 cm panel was coated with gel containing the same number of Lumivae per cubic centimeter. The panel was exposed to a lamp of fixed brightness for a set time and then moved into a dark chamber held at a set temperature. A light sensor recorded the glow duration: the time until the glow fell below a fixed detection level. Table 1 gives the results.\n\nExperiment 1\nPanels with gel 2 mm thick were exposed for 1, 2, 4, 8, or 16 minutes. The dark chamber was at 20°C.\n\nExperiment 2\nPanels with gel 1, 4, or 6 mm thick were exposed for 8 minutes. The dark chamber was at 20°C. (The 2 mm result is that of Experiment 1.)\n\nExperiment 3\nPanels with gel 2 mm thick were exposed for 8 minutes. The dark chamber was at 10°C or 30°C. (The 20°C result is that of Experiment 1.)",
+  "prompt": "Which trial's conditions were shared by all three experiments?",
+  "choices": [
+   "16 min exposure, 2 mm gel, 20°C chamber",
+   "8 min exposure, 2 mm gel, 20°C chamber",
+   "8 min exposure, 4 mm gel, 20°C chamber",
+   "8 min exposure, 2 mm gel, 10°C chamber"
+  ],
+  "correct_answer": "8 min exposure, 2 mm gel, 20°C chamber",
+  "explanation": "Experiment 1 includes 8 min at 2 mm and 20°C; Experiment 2 reuses it as its 2 mm result; Experiment 3 reuses it as its 20°C result. So the shared trial is \"8 min exposure, 2 mm gel, 20°C chamber\".",
+  "domain": "Scientific Investigation",
+  "subskill": "identify variables across experiments",
+  "difficulty": "medium",
+  "topic_tag": "biology: glowing algae gel",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Glow duration of Lumivae gel panels",
+   "colLabels": [
+    "Exposure time (min)",
+    "Gel thickness (mm)",
+    "Chamber temperature (°C)",
+    "Glow duration (min)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     1,
+     2,
+     20,
+     6
+    ],
+    [
+     2,
+     2,
+     20,
+     11
+    ],
+    [
+     4,
+     2,
+     20,
+     18
+    ],
+    [
+     8,
+     2,
+     20,
+     22
+    ],
+    [
+     16,
+     2,
+     20,
+     23
+    ],
+    [
+     8,
+     1,
+     20,
+     15
+    ],
+    [
+     8,
+     4,
+     20,
+     26
+    ],
+    [
+     8,
+     6,
+     20,
+     19
+    ],
+    [
+     8,
+     2,
+     10,
+     31
+    ],
+    [
+     8,
+     2,
+     30,
+     12
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV11a-P2-Q4",
+  "passage_id": "sc11a-p2",
+  "passage_title": "Glow Time of Lumivae Gel",
+  "format": "research_summaries",
+  "passage": "Lumivae are single-celled algae that store energy from light and later release some of it as a faint green glow. A design team embedded Lumivae in a clear gel to make a coating that glows in the dark, and tested how long the coating glows.\n\nIn each trial, a 10 cm × 10 cm panel was coated with gel containing the same number of Lumivae per cubic centimeter. The panel was exposed to a lamp of fixed brightness for a set time and then moved into a dark chamber held at a set temperature. A light sensor recorded the glow duration: the time until the glow fell below a fixed detection level. Table 1 gives the results.\n\nExperiment 1\nPanels with gel 2 mm thick were exposed for 1, 2, 4, 8, or 16 minutes. The dark chamber was at 20°C.\n\nExperiment 2\nPanels with gel 1, 4, or 6 mm thick were exposed for 8 minutes. The dark chamber was at 20°C. (The 2 mm result is that of Experiment 1.)\n\nExperiment 3\nPanels with gel 2 mm thick were exposed for 8 minutes. The dark chamber was at 10°C or 30°C. (The 20°C result is that of Experiment 1.)",
+  "prompt": "If a 2 mm panel were exposed for 8 minutes and placed in a 25°C chamber, its glow duration would most likely be:",
+  "choices": [
+   "less than 12 min.",
+   "between 22 min and 31 min.",
+   "greater than 31 min.",
+   "between 12 min and 22 min."
+  ],
+  "correct_answer": "between 12 min and 22 min.",
+  "explanation": "At 8 minutes and 2 mm, glow duration was 31 min (10°C), 22 min (20°C), and 12 min (30°C). 25°C lies between 20°C and 30°C, so the duration is most likely \"between 12 min and 22 min.\"",
+  "domain": "Scientific Investigation",
+  "subskill": "predict the result of an additional trial",
+  "difficulty": "medium",
+  "topic_tag": "biology: glowing algae gel",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Glow duration of Lumivae gel panels",
+   "colLabels": [
+    "Exposure time (min)",
+    "Gel thickness (mm)",
+    "Chamber temperature (°C)",
+    "Glow duration (min)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     1,
+     2,
+     20,
+     6
+    ],
+    [
+     2,
+     2,
+     20,
+     11
+    ],
+    [
+     4,
+     2,
+     20,
+     18
+    ],
+    [
+     8,
+     2,
+     20,
+     22
+    ],
+    [
+     16,
+     2,
+     20,
+     23
+    ],
+    [
+     8,
+     1,
+     20,
+     15
+    ],
+    [
+     8,
+     4,
+     20,
+     26
+    ],
+    [
+     8,
+     6,
+     20,
+     19
+    ],
+    [
+     8,
+     2,
+     10,
+     31
+    ],
+    [
+     8,
+     2,
+     30,
+     12
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV11a-P2-Q5",
+  "passage_id": "sc11a-p2",
+  "passage_title": "Glow Time of Lumivae Gel",
+  "format": "research_summaries",
+  "passage": "Lumivae are single-celled algae that store energy from light and later release some of it as a faint green glow. A design team embedded Lumivae in a clear gel to make a coating that glows in the dark, and tested how long the coating glows.\n\nIn each trial, a 10 cm × 10 cm panel was coated with gel containing the same number of Lumivae per cubic centimeter. The panel was exposed to a lamp of fixed brightness for a set time and then moved into a dark chamber held at a set temperature. A light sensor recorded the glow duration: the time until the glow fell below a fixed detection level. Table 1 gives the results.\n\nExperiment 1\nPanels with gel 2 mm thick were exposed for 1, 2, 4, 8, or 16 minutes. The dark chamber was at 20°C.\n\nExperiment 2\nPanels with gel 1, 4, or 6 mm thick were exposed for 8 minutes. The dark chamber was at 20°C. (The 2 mm result is that of Experiment 1.)\n\nExperiment 3\nPanels with gel 2 mm thick were exposed for 8 minutes. The dark chamber was at 10°C or 30°C. (The 20°C result is that of Experiment 1.)",
+  "prompt": "A team member claims that, in Experiment 1, glow duration levels off as exposure time increases. Do the Experiment 1 results support this claim?",
+  "choices": [
+   "Yes; increasing exposure from 1 to 2 minutes raised glow duration by 5 minutes.",
+   "No; glow duration was longer after 16 minutes of exposure than after 8 minutes.",
+   "Yes; increasing exposure from 8 to 16 minutes raised glow duration by only 1 minute.",
+   "No; increasing exposure from 2 to 4 minutes raised glow duration by 7 minutes."
+  ],
+  "correct_answer": "Yes; increasing exposure from 8 to 16 minutes raised glow duration by only 1 minute.",
+  "explanation": "Successive increases were 5, 7, 4, and then only 1 minute. \"Yes; increasing exposure from 8 to 16 minutes raised glow duration by only 1 minute\" shows the leveling off. The other statements are true but do not bear on whether the curve levels off.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "compare successive differences",
+  "difficulty": "hard",
+  "topic_tag": "biology: glowing algae gel",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Glow duration of Lumivae gel panels",
+   "colLabels": [
+    "Exposure time (min)",
+    "Gel thickness (mm)",
+    "Chamber temperature (°C)",
+    "Glow duration (min)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     1,
+     2,
+     20,
+     6
+    ],
+    [
+     2,
+     2,
+     20,
+     11
+    ],
+    [
+     4,
+     2,
+     20,
+     18
+    ],
+    [
+     8,
+     2,
+     20,
+     22
+    ],
+    [
+     16,
+     2,
+     20,
+     23
+    ],
+    [
+     8,
+     1,
+     20,
+     15
+    ],
+    [
+     8,
+     4,
+     20,
+     26
+    ],
+    [
+     8,
+     6,
+     20,
+     19
+    ],
+    [
+     8,
+     2,
+     10,
+     31
+    ],
+    [
+     8,
+     2,
+     30,
+     12
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV11a-P2-Q6",
+  "passage_id": "sc11a-p2",
+  "passage_title": "Glow Time of Lumivae Gel",
+  "format": "research_summaries",
+  "passage": "Lumivae are single-celled algae that store energy from light and later release some of it as a faint green glow. A design team embedded Lumivae in a clear gel to make a coating that glows in the dark, and tested how long the coating glows.\n\nIn each trial, a 10 cm × 10 cm panel was coated with gel containing the same number of Lumivae per cubic centimeter. The panel was exposed to a lamp of fixed brightness for a set time and then moved into a dark chamber held at a set temperature. A light sensor recorded the glow duration: the time until the glow fell below a fixed detection level. Table 1 gives the results.\n\nExperiment 1\nPanels with gel 2 mm thick were exposed for 1, 2, 4, 8, or 16 minutes. The dark chamber was at 20°C.\n\nExperiment 2\nPanels with gel 1, 4, or 6 mm thick were exposed for 8 minutes. The dark chamber was at 20°C. (The 2 mm result is that of Experiment 1.)\n\nExperiment 3\nPanels with gel 2 mm thick were exposed for 8 minutes. The dark chamber was at 10°C or 30°C. (The 20°C result is that of Experiment 1.)",
+  "prompt": "Which explanation is consistent with the results of Experiment 3?",
+  "choices": [
+   "Lumivae release their stored light energy more slowly at higher temperatures.",
+   "Temperature does not affect how fast Lumivae release their stored light energy.",
+   "Lumivae store more light energy at higher temperatures, so they glow longer.",
+   "Lumivae release their stored light energy faster at higher temperatures."
+  ],
+  "correct_answer": "Lumivae release their stored light energy faster at higher temperatures.",
+  "explanation": "The glow lasted 31 min at 10°C, 22 min at 20°C, and 12 min at 30°C: warmer panels ran out sooner. That fits \"Lumivae release their stored light energy faster at higher temperatures.\"",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match a mechanism to a trend",
+  "difficulty": "medium",
+  "topic_tag": "biology: glowing algae gel",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Glow duration of Lumivae gel panels",
+   "colLabels": [
+    "Exposure time (min)",
+    "Gel thickness (mm)",
+    "Chamber temperature (°C)",
+    "Glow duration (min)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     1,
+     2,
+     20,
+     6
+    ],
+    [
+     2,
+     2,
+     20,
+     11
+    ],
+    [
+     4,
+     2,
+     20,
+     18
+    ],
+    [
+     8,
+     2,
+     20,
+     22
+    ],
+    [
+     16,
+     2,
+     20,
+     23
+    ],
+    [
+     8,
+     1,
+     20,
+     15
+    ],
+    [
+     8,
+     4,
+     20,
+     26
+    ],
+    [
+     8,
+     6,
+     20,
+     19
+    ],
+    [
+     8,
+     2,
+     10,
+     31
+    ],
+    [
+     8,
+     2,
+     30,
+     12
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV11a-P3-Q1",
+  "passage_id": "sc11a-p3",
+  "passage_title": "Insect Visits to Merrow Flowers",
+  "format": "research_summaries",
+  "passage": "Merrow is a meadow wildflower that comes in white, yellow, and violet forms. Ecologists planted Merrow in patches in an open meadow beside a forest and counted visits by pollinating insects.\n\nIn each trial, potted Merrow plants were set out in a square patch on a calm, sunny morning. Observers counted every insect landing on a flower for 2 hours and reported the number of visits per flower per hour. Each value in Table 1 is the average of 6 mornings.\n\nExperiment 1\nPatches of 5, 10, 20, or 40 white-flowered plants were placed 50 m from the forest edge.\n\nExperiment 2\nPatches of 20 yellow-flowered or 20 violet-flowered plants were placed 50 m from the forest edge. (The white result is that of Experiment 1.)\n\nExperiment 3\nPatches of 20 white-flowered plants were placed 10 m or 200 m from the forest edge. (The 50 m result is that of Experiment 1.)",
+  "prompt": "In Experiment 1, the fewest visits per flower per hour were recorded in the patch with:",
+  "choices": [
+   "10 plants.",
+   "20 plants.",
+   "5 plants.",
+   "40 plants."
+  ],
+  "correct_answer": "5 plants.",
+  "explanation": "Experiment 1 gave 3.1 (5 plants), 4.6 (10), 5.2 (20), and 4.0 (40). The fewest was in the patch with \"5 plants.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a minimum within one series",
+  "difficulty": "medium",
+  "topic_tag": "biology: pollinator visits",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Insect visits to Merrow patches",
+   "colLabels": [
+    "Plants in patch",
+    "Flower color",
+    "Distance from forest edge (m)",
+    "Visits per flower per hour"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     5,
+     "white",
+     50,
+     3.1
+    ],
+    [
+     10,
+     "white",
+     50,
+     4.6
+    ],
+    [
+     20,
+     "white",
+     50,
+     5.2
+    ],
+    [
+     40,
+     "white",
+     50,
+     4.0
+    ],
+    [
+     20,
+     "yellow",
+     50,
+     6.8
+    ],
+    [
+     20,
+     "violet",
+     50,
+     2.9
+    ],
+    [
+     20,
+     "white",
+     10,
+     7.4
+    ],
+    [
+     20,
+     "white",
+     200,
+     2.2
+    ]
+   ]
+  },
+  "consistency_check": "Averages of 6 mornings, so one decimal place; patch size shows an optimum at 20 plants; yellow > white > violet at 50 m; visits fall with distance from the forest; the 20-white-50 m trial is shared and listed once."
+ },
+ {
+  "id": "ASV11a-P3-Q2",
+  "passage_id": "sc11a-p3",
+  "passage_title": "Insect Visits to Merrow Flowers",
+  "format": "research_summaries",
+  "passage": "Merrow is a meadow wildflower that comes in white, yellow, and violet forms. Ecologists planted Merrow in patches in an open meadow beside a forest and counted visits by pollinating insects.\n\nIn each trial, potted Merrow plants were set out in a square patch on a calm, sunny morning. Observers counted every insect landing on a flower for 2 hours and reported the number of visits per flower per hour. Each value in Table 1 is the average of 6 mornings.\n\nExperiment 1\nPatches of 5, 10, 20, or 40 white-flowered plants were placed 50 m from the forest edge.\n\nExperiment 2\nPatches of 20 yellow-flowered or 20 violet-flowered plants were placed 50 m from the forest edge. (The white result is that of Experiment 1.)\n\nExperiment 3\nPatches of 20 white-flowered plants were placed 10 m or 200 m from the forest edge. (The 50 m result is that of Experiment 1.)",
+  "prompt": "For patches of 20 white-flowered plants, as distance from the forest edge increased from 10 m to 200 m, visits per flower per hour:",
+  "choices": [
+   "decreased only.",
+   "increased only.",
+   "increased and then decreased.",
+   "decreased and then increased."
+  ],
+  "correct_answer": "decreased only.",
+  "explanation": "Visits were 7.4 (10 m), 5.2 (50 m), and 2.2 (200 m), so they \"decreased only.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "describe a trend across combined experiments",
+  "difficulty": "medium",
+  "topic_tag": "biology: pollinator visits",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Insect visits to Merrow patches",
+   "colLabels": [
+    "Plants in patch",
+    "Flower color",
+    "Distance from forest edge (m)",
+    "Visits per flower per hour"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     5,
+     "white",
+     50,
+     3.1
+    ],
+    [
+     10,
+     "white",
+     50,
+     4.6
+    ],
+    [
+     20,
+     "white",
+     50,
+     5.2
+    ],
+    [
+     40,
+     "white",
+     50,
+     4.0
+    ],
+    [
+     20,
+     "yellow",
+     50,
+     6.8
+    ],
+    [
+     20,
+     "violet",
+     50,
+     2.9
+    ],
+    [
+     20,
+     "white",
+     10,
+     7.4
+    ],
+    [
+     20,
+     "white",
+     200,
+     2.2
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV11a-P3-Q3",
+  "passage_id": "sc11a-p3",
+  "passage_title": "Insect Visits to Merrow Flowers",
+  "format": "research_summaries",
+  "passage": "Merrow is a meadow wildflower that comes in white, yellow, and violet forms. Ecologists planted Merrow in patches in an open meadow beside a forest and counted visits by pollinating insects.\n\nIn each trial, potted Merrow plants were set out in a square patch on a calm, sunny morning. Observers counted every insect landing on a flower for 2 hours and reported the number of visits per flower per hour. Each value in Table 1 is the average of 6 mornings.\n\nExperiment 1\nPatches of 5, 10, 20, or 40 white-flowered plants were placed 50 m from the forest edge.\n\nExperiment 2\nPatches of 20 yellow-flowered or 20 violet-flowered plants were placed 50 m from the forest edge. (The white result is that of Experiment 1.)\n\nExperiment 3\nPatches of 20 white-flowered plants were placed 10 m or 200 m from the forest edge. (The 50 m result is that of Experiment 1.)",
+  "prompt": "The ecologists want to test whether the effect of flower color depends on distance from the forest edge, using results that can be compared directly with Experiments 2 and 3. Which plan should they use?",
+  "choices": [
+   "Patches of each color at 10 m and at 200 m, with 40 plants per patch",
+   "Patches of each color at 10 m and at 200 m, with 5 plants per patch",
+   "Patches of each color at 10 m and at 200 m, with 10 plants per patch",
+   "Patches of each color at 10 m and at 200 m, with 20 plants per patch"
+  ],
+  "correct_answer": "Patches of each color at 10 m and at 200 m, with 20 plants per patch",
+  "explanation": "Experiments 2 and 3 both used 20-plant patches. \"Patches of each color at 10 m and at 200 m, with 20 plants per patch\" keeps patch size the same as those experiments.",
+  "domain": "Scientific Investigation",
+  "subskill": "design a directly comparable experiment",
+  "difficulty": "hard",
+  "topic_tag": "biology: pollinator visits",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Insect visits to Merrow patches",
+   "colLabels": [
+    "Plants in patch",
+    "Flower color",
+    "Distance from forest edge (m)",
+    "Visits per flower per hour"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     5,
+     "white",
+     50,
+     3.1
+    ],
+    [
+     10,
+     "white",
+     50,
+     4.6
+    ],
+    [
+     20,
+     "white",
+     50,
+     5.2
+    ],
+    [
+     40,
+     "white",
+     50,
+     4.0
+    ],
+    [
+     20,
+     "yellow",
+     50,
+     6.8
+    ],
+    [
+     20,
+     "violet",
+     50,
+     2.9
+    ],
+    [
+     20,
+     "white",
+     10,
+     7.4
+    ],
+    [
+     20,
+     "white",
+     200,
+     2.2
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV11a-P3-Q4",
+  "passage_id": "sc11a-p3",
+  "passage_title": "Insect Visits to Merrow Flowers",
+  "format": "research_summaries",
+  "passage": "Merrow is a meadow wildflower that comes in white, yellow, and violet forms. Ecologists planted Merrow in patches in an open meadow beside a forest and counted visits by pollinating insects.\n\nIn each trial, potted Merrow plants were set out in a square patch on a calm, sunny morning. Observers counted every insect landing on a flower for 2 hours and reported the number of visits per flower per hour. Each value in Table 1 is the average of 6 mornings.\n\nExperiment 1\nPatches of 5, 10, 20, or 40 white-flowered plants were placed 50 m from the forest edge.\n\nExperiment 2\nPatches of 20 yellow-flowered or 20 violet-flowered plants were placed 50 m from the forest edge. (The white result is that of Experiment 1.)\n\nExperiment 3\nPatches of 20 white-flowered plants were placed 10 m or 200 m from the forest edge. (The 50 m result is that of Experiment 1.)",
+  "prompt": "At 50 m from the forest edge, patches of 20 plants of which flower color received the most visits per flower per hour?",
+  "choices": [
+   "White",
+   "Violet",
+   "Yellow",
+   "White and yellow equally"
+  ],
+  "correct_answer": "Yellow",
+  "explanation": "At 50 m with 20 plants: white 5.2, yellow 6.8, violet 2.9. \"Yellow\" received the most.",
+  "domain": "Interpretation of Data",
+  "subskill": "compare values across experiments",
+  "difficulty": "medium",
+  "topic_tag": "biology: pollinator visits",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Insect visits to Merrow patches",
+   "colLabels": [
+    "Plants in patch",
+    "Flower color",
+    "Distance from forest edge (m)",
+    "Visits per flower per hour"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     5,
+     "white",
+     50,
+     3.1
+    ],
+    [
+     10,
+     "white",
+     50,
+     4.6
+    ],
+    [
+     20,
+     "white",
+     50,
+     5.2
+    ],
+    [
+     40,
+     "white",
+     50,
+     4.0
+    ],
+    [
+     20,
+     "yellow",
+     50,
+     6.8
+    ],
+    [
+     20,
+     "violet",
+     50,
+     2.9
+    ],
+    [
+     20,
+     "white",
+     10,
+     7.4
+    ],
+    [
+     20,
+     "white",
+     200,
+     2.2
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV11a-P3-Q5",
+  "passage_id": "sc11a-p3",
+  "passage_title": "Insect Visits to Merrow Flowers",
+  "format": "research_summaries",
+  "passage": "Merrow is a meadow wildflower that comes in white, yellow, and violet forms. Ecologists planted Merrow in patches in an open meadow beside a forest and counted visits by pollinating insects.\n\nIn each trial, potted Merrow plants were set out in a square patch on a calm, sunny morning. Observers counted every insect landing on a flower for 2 hours and reported the number of visits per flower per hour. Each value in Table 1 is the average of 6 mornings.\n\nExperiment 1\nPatches of 5, 10, 20, or 40 white-flowered plants were placed 50 m from the forest edge.\n\nExperiment 2\nPatches of 20 yellow-flowered or 20 violet-flowered plants were placed 50 m from the forest edge. (The white result is that of Experiment 1.)\n\nExperiment 3\nPatches of 20 white-flowered plants were placed 10 m or 200 m from the forest edge. (The 50 m result is that of Experiment 1.)",
+  "prompt": "Which statement is supported by Table 1?",
+  "choices": [
+   "Visits per flower were greatest in the largest patch tested.",
+   "Changing a 20-plant patch at 50 m from white to violet lowered visits more than moving a 20-plant white patch from 50 m to 200 m did.",
+   "Moving a 20-plant white patch from 50 m to 10 m from the forest edge raised visits more than changing its flowers from white to yellow did.",
+   "Increasing a white patch at 50 m from 20 plants to 40 plants raised visits."
+  ],
+  "correct_answer": "Moving a 20-plant white patch from 50 m to 10 m from the forest edge raised visits more than changing its flowers from white to yellow did.",
+  "explanation": "Moving from 50 m to 10 m raised visits from 5.2 to 7.4 (+2.2); changing white to yellow raised them from 5.2 to 6.8 (+1.6). So the statement about moving to 10 m is supported. Violet lowered visits by 2.3, less than the 3.0 drop at 200 m; 40 plants gave 4.0, less than 5.2.",
+  "domain": "Interpretation of Data",
+  "subskill": "compare differences between pairs of rows",
+  "difficulty": "hard",
+  "topic_tag": "biology: pollinator visits",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Insect visits to Merrow patches",
+   "colLabels": [
+    "Plants in patch",
+    "Flower color",
+    "Distance from forest edge (m)",
+    "Visits per flower per hour"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     5,
+     "white",
+     50,
+     3.1
+    ],
+    [
+     10,
+     "white",
+     50,
+     4.6
+    ],
+    [
+     20,
+     "white",
+     50,
+     5.2
+    ],
+    [
+     40,
+     "white",
+     50,
+     4.0
+    ],
+    [
+     20,
+     "yellow",
+     50,
+     6.8
+    ],
+    [
+     20,
+     "violet",
+     50,
+     2.9
+    ],
+    [
+     20,
+     "white",
+     10,
+     7.4
+    ],
+    [
+     20,
+     "white",
+     200,
+     2.2
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV11a-P3-Q6",
+  "passage_id": "sc11a-p3",
+  "passage_title": "Insect Visits to Merrow Flowers",
+  "format": "research_summaries",
+  "passage": "Merrow is a meadow wildflower that comes in white, yellow, and violet forms. Ecologists planted Merrow in patches in an open meadow beside a forest and counted visits by pollinating insects.\n\nIn each trial, potted Merrow plants were set out in a square patch on a calm, sunny morning. Observers counted every insect landing on a flower for 2 hours and reported the number of visits per flower per hour. Each value in Table 1 is the average of 6 mornings.\n\nExperiment 1\nPatches of 5, 10, 20, or 40 white-flowered plants were placed 50 m from the forest edge.\n\nExperiment 2\nPatches of 20 yellow-flowered or 20 violet-flowered plants were placed 50 m from the forest edge. (The white result is that of Experiment 1.)\n\nExperiment 3\nPatches of 20 white-flowered plants were placed 10 m or 200 m from the forest edge. (The 50 m result is that of Experiment 1.)",
+  "prompt": "If a patch of 30 white-flowered plants were placed 50 m from the forest edge, its visits per flower per hour would most likely be:",
+  "choices": [
+   "less than 3.1.",
+   "between 3.1 and 4.0.",
+   "between 4.0 and 5.2.",
+   "greater than 5.2."
+  ],
+  "correct_answer": "between 4.0 and 5.2.",
+  "explanation": "At 50 m, white patches gave 5.2 (20 plants) and 4.0 (40 plants). A 30-plant patch lies between them, so \"between 4.0 and 5.2\" is most likely.",
+  "domain": "Scientific Investigation",
+  "subskill": "predict the result of an additional trial",
+  "difficulty": "medium",
+  "topic_tag": "biology: pollinator visits",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Insect visits to Merrow patches",
+   "colLabels": [
+    "Plants in patch",
+    "Flower color",
+    "Distance from forest edge (m)",
+    "Visits per flower per hour"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     5,
+     "white",
+     50,
+     3.1
+    ],
+    [
+     10,
+     "white",
+     50,
+     4.6
+    ],
+    [
+     20,
+     "white",
+     50,
+     5.2
+    ],
+    [
+     40,
+     "white",
+     50,
+     4.0
+    ],
+    [
+     20,
+     "yellow",
+     50,
+     6.8
+    ],
+    [
+     20,
+     "violet",
+     50,
+     2.9
+    ],
+    [
+     20,
+     "white",
+     10,
+     7.4
+    ],
+    [
+     20,
+     "white",
+     200,
+     2.2
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV11a-P4-Q1",
+  "passage_id": "sc11a-p4",
+  "passage_title": "Setting Time and Hardness of Resin R",
+  "format": "research_summaries",
+  "passage": "Resin R is an unnamed liquid plastic that hardens after a liquid catalyst is stirred into it. Chemists studied how the amount of catalyst, the pH of the resin, and an added powder, Salt S, affect how quickly Resin R sets and how hard it becomes.\n\nIn every trial, 50 g of Resin R at 25°C was poured into a mold. The set time is the number of minutes until the surface no longer marked when touched with a probe. Hardness was measured 24 hours later on a scale from 0 (soft) to 100 (very hard). Table 1 gives the results.\n\nExperiment 1\n1, 2, 3, 4, or 6 drops of catalyst were added to resin at pH 7. No Salt S was added.\n\nExperiment 2\n3 drops of catalyst were added to resin adjusted to pH 5, 6, 8, or 9. No Salt S was added. (The pH 7 result is that of Experiment 1.)\n\nExperiment 3\n0.5 g or 1.0 g of Salt S was mixed into resin at pH 7 before 3 drops of catalyst were added. (The 0 g result is that of Experiment 1.)",
+  "prompt": "In Experiment 1, the resin became hardest when how many drops of catalyst were added?",
+  "choices": [
+   "2",
+   "4",
+   "3",
+   "6"
+  ],
+  "correct_answer": "4",
+  "explanation": "Experiment 1 hardness: 61 (1 drop), 66 (2), 70 (3), 71 (4), 64 (6). The hardest was with \"4\" drops.",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a maximum within one series",
+  "difficulty": "medium",
+  "topic_tag": "chemistry: setting resin",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Set time and hardness of Resin R",
+   "colLabels": [
+    "Catalyst (drops)",
+    "pH",
+    "Salt S (g)",
+    "Set time (min)",
+    "Hardness (0-100)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     1,
+     7,
+     0,
+     48,
+     61
+    ],
+    [
+     2,
+     7,
+     0,
+     30,
+     66
+    ],
+    [
+     3,
+     7,
+     0,
+     22,
+     70
+    ],
+    [
+     4,
+     7,
+     0,
+     19,
+     71
+    ],
+    [
+     6,
+     7,
+     0,
+     18,
+     64
+    ],
+    [
+     3,
+     5,
+     0,
+     41,
+     58
+    ],
+    [
+     3,
+     6,
+     0,
+     27,
+     66
+    ],
+    [
+     3,
+     8,
+     0,
+     25,
+     69
+    ],
+    [
+     3,
+     9,
+     0,
+     38,
+     60
+    ],
+    [
+     3,
+     7,
+     0.5,
+     26,
+     72
+    ],
+    [
+     3,
+     7,
+     1.0,
+     35,
+     75
+    ]
+   ]
+  },
+  "consistency_check": "Set time falls with catalyst but levels off (19 to 18 min from 4 to 6 drops) while hardness peaks at 4 drops; set time is shortest at pH 7 and hardness highest near pH 7-8; Salt S lengthens set time and raises hardness; the 3 drop/pH 7/0 g trial is shared and listed once."
+ },
+ {
+  "id": "ASV11a-P4-Q2",
+  "passage_id": "sc11a-p4",
+  "passage_title": "Setting Time and Hardness of Resin R",
+  "format": "research_summaries",
+  "passage": "Resin R is an unnamed liquid plastic that hardens after a liquid catalyst is stirred into it. Chemists studied how the amount of catalyst, the pH of the resin, and an added powder, Salt S, affect how quickly Resin R sets and how hard it becomes.\n\nIn every trial, 50 g of Resin R at 25°C was poured into a mold. The set time is the number of minutes until the surface no longer marked when touched with a probe. Hardness was measured 24 hours later on a scale from 0 (soft) to 100 (very hard). Table 1 gives the results.\n\nExperiment 1\n1, 2, 3, 4, or 6 drops of catalyst were added to resin at pH 7. No Salt S was added.\n\nExperiment 2\n3 drops of catalyst were added to resin adjusted to pH 5, 6, 8, or 9. No Salt S was added. (The pH 7 result is that of Experiment 1.)\n\nExperiment 3\n0.5 g or 1.0 g of Salt S was mixed into resin at pH 7 before 3 drops of catalyst were added. (The 0 g result is that of Experiment 1.)",
+  "prompt": "For resin with 3 drops of catalyst and no Salt S, set time was shortest at which pH?",
+  "choices": [
+   "6",
+   "8",
+   "9",
+   "7"
+  ],
+  "correct_answer": "7",
+  "explanation": "With 3 drops and no Salt S: 41 min (pH 5), 27 (pH 6), 22 (pH 7, from Experiment 1), 25 (pH 8), 38 (pH 9). The shortest is at \"7\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compare values across experiments",
+  "difficulty": "medium",
+  "topic_tag": "chemistry: setting resin",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Set time and hardness of Resin R",
+   "colLabels": [
+    "Catalyst (drops)",
+    "pH",
+    "Salt S (g)",
+    "Set time (min)",
+    "Hardness (0-100)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     1,
+     7,
+     0,
+     48,
+     61
+    ],
+    [
+     2,
+     7,
+     0,
+     30,
+     66
+    ],
+    [
+     3,
+     7,
+     0,
+     22,
+     70
+    ],
+    [
+     4,
+     7,
+     0,
+     19,
+     71
+    ],
+    [
+     6,
+     7,
+     0,
+     18,
+     64
+    ],
+    [
+     3,
+     5,
+     0,
+     41,
+     58
+    ],
+    [
+     3,
+     6,
+     0,
+     27,
+     66
+    ],
+    [
+     3,
+     8,
+     0,
+     25,
+     69
+    ],
+    [
+     3,
+     9,
+     0,
+     38,
+     60
+    ],
+    [
+     3,
+     7,
+     0.5,
+     26,
+     72
+    ],
+    [
+     3,
+     7,
+     1.0,
+     35,
+     75
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV11a-P4-Q3",
+  "passage_id": "sc11a-p4",
+  "passage_title": "Setting Time and Hardness of Resin R",
+  "format": "research_summaries",
+  "passage": "Resin R is an unnamed liquid plastic that hardens after a liquid catalyst is stirred into it. Chemists studied how the amount of catalyst, the pH of the resin, and an added powder, Salt S, affect how quickly Resin R sets and how hard it becomes.\n\nIn every trial, 50 g of Resin R at 25°C was poured into a mold. The set time is the number of minutes until the surface no longer marked when touched with a probe. Hardness was measured 24 hours later on a scale from 0 (soft) to 100 (very hard). Table 1 gives the results.\n\nExperiment 1\n1, 2, 3, 4, or 6 drops of catalyst were added to resin at pH 7. No Salt S was added.\n\nExperiment 2\n3 drops of catalyst were added to resin adjusted to pH 5, 6, 8, or 9. No Salt S was added. (The pH 7 result is that of Experiment 1.)\n\nExperiment 3\n0.5 g or 1.0 g of Salt S was mixed into resin at pH 7 before 3 drops of catalyst were added. (The 0 g result is that of Experiment 1.)",
+  "prompt": "To find the effect of Salt S, the Experiment 3 results should be compared with which result?",
+  "choices": [
+   "Experiment 1, 3 drops of catalyst",
+   "Experiment 1, 4 drops of catalyst",
+   "Experiment 2, pH 6",
+   "Experiment 2, pH 8"
+  ],
+  "correct_answer": "Experiment 1, 3 drops of catalyst",
+  "explanation": "Experiment 3 used 3 drops at pH 7; only Salt S differed. The matching no-salt trial is \"Experiment 1, 3 drops of catalyst\" (pH 7, 0 g).",
+  "domain": "Scientific Investigation",
+  "subskill": "identify the comparison trial",
+  "difficulty": "medium",
+  "topic_tag": "chemistry: setting resin",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Set time and hardness of Resin R",
+   "colLabels": [
+    "Catalyst (drops)",
+    "pH",
+    "Salt S (g)",
+    "Set time (min)",
+    "Hardness (0-100)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     1,
+     7,
+     0,
+     48,
+     61
+    ],
+    [
+     2,
+     7,
+     0,
+     30,
+     66
+    ],
+    [
+     3,
+     7,
+     0,
+     22,
+     70
+    ],
+    [
+     4,
+     7,
+     0,
+     19,
+     71
+    ],
+    [
+     6,
+     7,
+     0,
+     18,
+     64
+    ],
+    [
+     3,
+     5,
+     0,
+     41,
+     58
+    ],
+    [
+     3,
+     6,
+     0,
+     27,
+     66
+    ],
+    [
+     3,
+     8,
+     0,
+     25,
+     69
+    ],
+    [
+     3,
+     9,
+     0,
+     38,
+     60
+    ],
+    [
+     3,
+     7,
+     0.5,
+     26,
+     72
+    ],
+    [
+     3,
+     7,
+     1.0,
+     35,
+     75
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV11a-P4-Q4",
+  "passage_id": "sc11a-p4",
+  "passage_title": "Setting Time and Hardness of Resin R",
+  "format": "research_summaries",
+  "passage": "Resin R is an unnamed liquid plastic that hardens after a liquid catalyst is stirred into it. Chemists studied how the amount of catalyst, the pH of the resin, and an added powder, Salt S, affect how quickly Resin R sets and how hard it becomes.\n\nIn every trial, 50 g of Resin R at 25°C was poured into a mold. The set time is the number of minutes until the surface no longer marked when touched with a probe. Hardness was measured 24 hours later on a scale from 0 (soft) to 100 (very hard). Table 1 gives the results.\n\nExperiment 1\n1, 2, 3, 4, or 6 drops of catalyst were added to resin at pH 7. No Salt S was added.\n\nExperiment 2\n3 drops of catalyst were added to resin adjusted to pH 5, 6, 8, or 9. No Salt S was added. (The pH 7 result is that of Experiment 1.)\n\nExperiment 3\n0.5 g or 1.0 g of Salt S was mixed into resin at pH 7 before 3 drops of catalyst were added. (The 0 g result is that of Experiment 1.)",
+  "prompt": "A chemist claims that every change that shortened the set time also made the resin harder. Do the results support this claim?",
+  "choices": [
+   "Yes; going from 1 to 2 drops of catalyst shortened the set time and raised the hardness.",
+   "No; adding 0.5 g of Salt S lengthened the set time and raised the hardness.",
+   "Yes; going from pH 5 to pH 6 shortened the set time and raised the hardness.",
+   "No; going from 4 to 6 drops of catalyst shortened the set time but lowered the hardness."
+  ],
+  "correct_answer": "No; going from 4 to 6 drops of catalyst shortened the set time but lowered the hardness.",
+  "explanation": "From 4 to 6 drops, set time fell from 19 to 18 min while hardness fell from 71 to 64. \"No; going from 4 to 6 drops of catalyst shortened the set time but lowered the hardness\" contradicts the claim. Salt S lengthened set time, so it does not test the claim.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test a claim against paired rows",
+  "difficulty": "hard",
+  "topic_tag": "chemistry: setting resin",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Set time and hardness of Resin R",
+   "colLabels": [
+    "Catalyst (drops)",
+    "pH",
+    "Salt S (g)",
+    "Set time (min)",
+    "Hardness (0-100)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     1,
+     7,
+     0,
+     48,
+     61
+    ],
+    [
+     2,
+     7,
+     0,
+     30,
+     66
+    ],
+    [
+     3,
+     7,
+     0,
+     22,
+     70
+    ],
+    [
+     4,
+     7,
+     0,
+     19,
+     71
+    ],
+    [
+     6,
+     7,
+     0,
+     18,
+     64
+    ],
+    [
+     3,
+     5,
+     0,
+     41,
+     58
+    ],
+    [
+     3,
+     6,
+     0,
+     27,
+     66
+    ],
+    [
+     3,
+     8,
+     0,
+     25,
+     69
+    ],
+    [
+     3,
+     9,
+     0,
+     38,
+     60
+    ],
+    [
+     3,
+     7,
+     0.5,
+     26,
+     72
+    ],
+    [
+     3,
+     7,
+     1.0,
+     35,
+     75
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV11a-P4-Q5",
+  "passage_id": "sc11a-p4",
+  "passage_title": "Setting Time and Hardness of Resin R",
+  "format": "research_summaries",
+  "passage": "Resin R is an unnamed liquid plastic that hardens after a liquid catalyst is stirred into it. Chemists studied how the amount of catalyst, the pH of the resin, and an added powder, Salt S, affect how quickly Resin R sets and how hard it becomes.\n\nIn every trial, 50 g of Resin R at 25°C was poured into a mold. The set time is the number of minutes until the surface no longer marked when touched with a probe. Hardness was measured 24 hours later on a scale from 0 (soft) to 100 (very hard). Table 1 gives the results.\n\nExperiment 1\n1, 2, 3, 4, or 6 drops of catalyst were added to resin at pH 7. No Salt S was added.\n\nExperiment 2\n3 drops of catalyst were added to resin adjusted to pH 5, 6, 8, or 9. No Salt S was added. (The pH 7 result is that of Experiment 1.)\n\nExperiment 3\n0.5 g or 1.0 g of Salt S was mixed into resin at pH 7 before 3 drops of catalyst were added. (The 0 g result is that of Experiment 1.)",
+  "prompt": "If 5 drops of catalyst were added to resin at pH 7 with no Salt S, the set time would most likely be:",
+  "choices": [
+   "less than 18 min.",
+   "between 18 min and 19 min.",
+   "between 19 min and 22 min.",
+   "greater than 22 min."
+  ],
+  "correct_answer": "between 18 min and 19 min.",
+  "explanation": "At pH 7 with no salt, set time was 19 min with 4 drops and 18 min with 6 drops. 5 drops lies between them, so \"between 18 min and 19 min\" is most likely.",
+  "domain": "Scientific Investigation",
+  "subskill": "predict the result of an additional trial",
+  "difficulty": "medium",
+  "topic_tag": "chemistry: setting resin",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Set time and hardness of Resin R",
+   "colLabels": [
+    "Catalyst (drops)",
+    "pH",
+    "Salt S (g)",
+    "Set time (min)",
+    "Hardness (0-100)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     1,
+     7,
+     0,
+     48,
+     61
+    ],
+    [
+     2,
+     7,
+     0,
+     30,
+     66
+    ],
+    [
+     3,
+     7,
+     0,
+     22,
+     70
+    ],
+    [
+     4,
+     7,
+     0,
+     19,
+     71
+    ],
+    [
+     6,
+     7,
+     0,
+     18,
+     64
+    ],
+    [
+     3,
+     5,
+     0,
+     41,
+     58
+    ],
+    [
+     3,
+     6,
+     0,
+     27,
+     66
+    ],
+    [
+     3,
+     8,
+     0,
+     25,
+     69
+    ],
+    [
+     3,
+     9,
+     0,
+     38,
+     60
+    ],
+    [
+     3,
+     7,
+     0.5,
+     26,
+     72
+    ],
+    [
+     3,
+     7,
+     1.0,
+     35,
+     75
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV11a-P4-Q6",
+  "passage_id": "sc11a-p4",
+  "passage_title": "Setting Time and Hardness of Resin R",
+  "format": "research_summaries",
+  "passage": "Resin R is an unnamed liquid plastic that hardens after a liquid catalyst is stirred into it. Chemists studied how the amount of catalyst, the pH of the resin, and an added powder, Salt S, affect how quickly Resin R sets and how hard it becomes.\n\nIn every trial, 50 g of Resin R at 25°C was poured into a mold. The set time is the number of minutes until the surface no longer marked when touched with a probe. Hardness was measured 24 hours later on a scale from 0 (soft) to 100 (very hard). Table 1 gives the results.\n\nExperiment 1\n1, 2, 3, 4, or 6 drops of catalyst were added to resin at pH 7. No Salt S was added.\n\nExperiment 2\n3 drops of catalyst were added to resin adjusted to pH 5, 6, 8, or 9. No Salt S was added. (The pH 7 result is that of Experiment 1.)\n\nExperiment 3\n0.5 g or 1.0 g of Salt S was mixed into resin at pH 7 before 3 drops of catalyst were added. (The 0 g result is that of Experiment 1.)",
+  "prompt": "Which description of Salt S is consistent with Experiment 3?",
+  "choices": [
+   "Salt S slows the setting and makes the set resin harder.",
+   "Salt S speeds the setting and makes the set resin harder.",
+   "Salt S slows the setting and makes the set resin softer.",
+   "Salt S speeds the setting and makes the set resin softer."
+  ],
+  "correct_answer": "Salt S slows the setting and makes the set resin harder.",
+  "explanation": "With 0, 0.5, and 1.0 g of Salt S, set time rose 22 → 26 → 35 min (slower) and hardness rose 70 → 72 → 75. So \"Salt S slows the setting and makes the set resin harder.\"",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match a two-part description to a trend",
+  "difficulty": "medium",
+  "topic_tag": "chemistry: setting resin",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Set time and hardness of Resin R",
+   "colLabels": [
+    "Catalyst (drops)",
+    "pH",
+    "Salt S (g)",
+    "Set time (min)",
+    "Hardness (0-100)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     1,
+     7,
+     0,
+     48,
+     61
+    ],
+    [
+     2,
+     7,
+     0,
+     30,
+     66
+    ],
+    [
+     3,
+     7,
+     0,
+     22,
+     70
+    ],
+    [
+     4,
+     7,
+     0,
+     19,
+     71
+    ],
+    [
+     6,
+     7,
+     0,
+     18,
+     64
+    ],
+    [
+     3,
+     5,
+     0,
+     41,
+     58
+    ],
+    [
+     3,
+     6,
+     0,
+     27,
+     66
+    ],
+    [
+     3,
+     8,
+     0,
+     25,
+     69
+    ],
+    [
+     3,
+     9,
+     0,
+     38,
+     60
+    ],
+    [
+     3,
+     7,
+     0.5,
+     26,
+     72
+    ],
+    [
+     3,
+     7,
+     1.0,
+     35,
+     75
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV11a-P5-Q1",
+  "passage_id": "sc11a-p5",
+  "passage_title": "When Kessa Frogs Begin to Call",
+  "format": "conflicting_viewpoints",
+  "passage": "Kessa frogs live in a northern marsh. Each summer, males begin calling at night to attract females. In most years, calling begins between July 26 and August 1. At the marsh, day length is longest (about 16.1 hours) on June 21 and falls below 15.5 hours on about July 21. Midges, the frogs' main food, emerge from the water in large numbers on about July 20 in most years. Water temperature in the marsh first stays above 21°C for 10 nights in a row in late July in most years. Three scientists explain what starts the calling.\n\nScientist 1\nCalling is triggered by warm water. Males begin calling as soon as the water has stayed above 21°C for 10 nights in a row. A single warm night, or a few warm nights, does not start calling. Day length and food do not affect when calling begins.\n\nScientist 2\nCalling is triggered by shortening days. When day length falls below 15.5 hours, the males' bodies begin preparing to breed, and this preparation takes about 1 week. Calling therefore begins about 1 week after day length falls below 15.5 hours. Water temperature and food do not affect when calling begins.\n\nScientist 3\nCalling is triggered by food. When the midges emerge, males feed heavily, and building up the energy reserves needed for calling takes about 1 week. Calling therefore begins about 1 week after the midges emerge, whatever the day length or water temperature.",
+  "prompt": "In one year, the midges emerged on July 6, about two weeks earlier than usual. Day length and water temperature followed their usual pattern, and males began calling on July 28. This observation weakens the view of which scientist(s)?",
+  "choices": [
+   "Scientist 3 only",
+   "Scientist 1 only",
+   "Scientist 2 only",
+   "Scientists 1 and 3 only"
+  ],
+  "correct_answer": "Scientist 3 only",
+  "explanation": "Scientist 3 predicts calling about 1 week after the midges emerge, around July 13, not July 28. Scientists 1 and 2 predict late July in a year with usual water temperatures and day length, so \"Scientist 3 only\" is weakened.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test viewpoints against a new finding",
+  "difficulty": "hard",
+  "topic_tag": "biology: frog calling season",
+  "consistency_check": "Day length at ~49 deg N recomputed from solar declination: ~16.1 h on June 21, ~15.5 h near July 21 (a 1 h drop takes until early August, so a 15 h trigger in mid-July would be impossible). All three views predict calling in late July in a typical year (July 21 + 1 week = July 28; July 20 midges + 1 week; water warm for 10 nights in late July), so only unusual years or experiments separate them; each finding in the items was checked against all three views."
+ },
+ {
+  "id": "ASV11a-P5-Q2",
+  "passage_id": "sc11a-p5",
+  "passage_title": "When Kessa Frogs Begin to Call",
+  "format": "conflicting_viewpoints",
+  "passage": "Kessa frogs live in a northern marsh. Each summer, males begin calling at night to attract females. In most years, calling begins between July 26 and August 1. At the marsh, day length is longest (about 16.1 hours) on June 21 and falls below 15.5 hours on about July 21. Midges, the frogs' main food, emerge from the water in large numbers on about July 20 in most years. Water temperature in the marsh first stays above 21°C for 10 nights in a row in late July in most years. Three scientists explain what starts the calling.\n\nScientist 1\nCalling is triggered by warm water. Males begin calling as soon as the water has stayed above 21°C for 10 nights in a row. A single warm night, or a few warm nights, does not start calling. Day length and food do not affect when calling begins.\n\nScientist 2\nCalling is triggered by shortening days. When day length falls below 15.5 hours, the males' bodies begin preparing to breed, and this preparation takes about 1 week. Calling therefore begins about 1 week after day length falls below 15.5 hours. Water temperature and food do not affect when calling begins.\n\nScientist 3\nCalling is triggered by food. When the midges emerge, males feed heavily, and building up the energy reserves needed for calling takes about 1 week. Calling therefore begins about 1 week after the midges emerge, whatever the day length or water temperature.",
+  "prompt": "Scientists 2 and 3 would most likely agree that:",
+  "choices": [
+   "calling begins once day length falls below 15.5 hours.",
+   "calling begins once males have fed heavily on midges.",
+   "calling begins once the water has stayed above 21°C for 10 nights.",
+   "males need about 1 week after their trigger before they begin calling."
+  ],
+  "correct_answer": "males need about 1 week after their trigger before they begin calling.",
+  "explanation": "Scientist 2 says preparation takes about 1 week after day length falls below 15.5 hours; Scientist 3 says building reserves takes about 1 week after the midges emerge. Both say \"males need about 1 week after their trigger before they begin calling.\"",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a shared claim",
+  "difficulty": "medium",
+  "topic_tag": "biology: frog calling season"
+ },
+ {
+  "id": "ASV11a-P5-Q3",
+  "passage_id": "sc11a-p5",
+  "passage_title": "When Kessa Frogs Begin to Call",
+  "format": "conflicting_viewpoints",
+  "passage": "Kessa frogs live in a northern marsh. Each summer, males begin calling at night to attract females. In most years, calling begins between July 26 and August 1. At the marsh, day length is longest (about 16.1 hours) on June 21 and falls below 15.5 hours on about July 21. Midges, the frogs' main food, emerge from the water in large numbers on about July 20 in most years. Water temperature in the marsh first stays above 21°C for 10 nights in a row in late July in most years. Three scientists explain what starts the calling.\n\nScientist 1\nCalling is triggered by warm water. Males begin calling as soon as the water has stayed above 21°C for 10 nights in a row. A single warm night, or a few warm nights, does not start calling. Day length and food do not affect when calling begins.\n\nScientist 2\nCalling is triggered by shortening days. When day length falls below 15.5 hours, the males' bodies begin preparing to breed, and this preparation takes about 1 week. Calling therefore begins about 1 week after day length falls below 15.5 hours. Water temperature and food do not affect when calling begins.\n\nScientist 3\nCalling is triggered by food. When the midges emerge, males feed heavily, and building up the energy reserves needed for calling takes about 1 week. Calling therefore begins about 1 week after the midges emerge, whatever the day length or water temperature.",
+  "prompt": "Suppose males are kept in an outdoor tank with warm water and plenty of midges, but lights keep the day length at 16 hours all summer. According to Scientist 2, the males would:",
+  "choices": [
+   "begin calling after 10 warm nights.",
+   "never begin calling that summer.",
+   "begin calling about 1 week after first being fed midges.",
+   "begin calling as soon as they are placed in the tank."
+  ],
+  "correct_answer": "never begin calling that summer.",
+  "explanation": "Scientist 2 says calling begins only about 1 week after day length falls below 15.5 hours, and that water and food do not matter. With day length held at 16 hours, the males would \"never begin calling that summer.\"",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "predict from one viewpoint",
+  "difficulty": "medium",
+  "topic_tag": "biology: frog calling season"
+ },
+ {
+  "id": "ASV11a-P5-Q4",
+  "passage_id": "sc11a-p5",
+  "passage_title": "When Kessa Frogs Begin to Call",
+  "format": "conflicting_viewpoints",
+  "passage": "Kessa frogs live in a northern marsh. Each summer, males begin calling at night to attract females. In most years, calling begins between July 26 and August 1. At the marsh, day length is longest (about 16.1 hours) on June 21 and falls below 15.5 hours on about July 21. Midges, the frogs' main food, emerge from the water in large numbers on about July 20 in most years. Water temperature in the marsh first stays above 21°C for 10 nights in a row in late July in most years. Three scientists explain what starts the calling.\n\nScientist 1\nCalling is triggered by warm water. Males begin calling as soon as the water has stayed above 21°C for 10 nights in a row. A single warm night, or a few warm nights, does not start calling. Day length and food do not affect when calling begins.\n\nScientist 2\nCalling is triggered by shortening days. When day length falls below 15.5 hours, the males' bodies begin preparing to breed, and this preparation takes about 1 week. Calling therefore begins about 1 week after day length falls below 15.5 hours. Water temperature and food do not affect when calling begins.\n\nScientist 3\nCalling is triggered by food. When the midges emerge, males feed heavily, and building up the energy reserves needed for calling takes about 1 week. Calling therefore begins about 1 week after the midges emerge, whatever the day length or water temperature.",
+  "prompt": "Males kept under the natural day length in cool water (18°C) were given plenty of midges starting on June 1. They began calling on July 29. This result supports the view of which scientist?",
+  "choices": [
+   "Scientist 1",
+   "Scientist 2",
+   "Scientist 3",
+   "Scientists 1 and 3"
+  ],
+  "correct_answer": "Scientist 2",
+  "explanation": "Scientist 1 predicts no calling (the water never stayed above 21°C). Scientist 3 predicts calling about 1 week after feeding began, in early June. Scientist 2 predicts calling about 1 week after July 21, around July 28, which matches. So \"Scientist 2\".",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test viewpoints against an experiment",
+  "difficulty": "hard",
+  "topic_tag": "biology: frog calling season"
+ },
+ {
+  "id": "ASV11a-P5-Q5",
+  "passage_id": "sc11a-p5",
+  "passage_title": "When Kessa Frogs Begin to Call",
+  "format": "conflicting_viewpoints",
+  "passage": "Kessa frogs live in a northern marsh. Each summer, males begin calling at night to attract females. In most years, calling begins between July 26 and August 1. At the marsh, day length is longest (about 16.1 hours) on June 21 and falls below 15.5 hours on about July 21. Midges, the frogs' main food, emerge from the water in large numbers on about July 20 in most years. Water temperature in the marsh first stays above 21°C for 10 nights in a row in late July in most years. Three scientists explain what starts the calling.\n\nScientist 1\nCalling is triggered by warm water. Males begin calling as soon as the water has stayed above 21°C for 10 nights in a row. A single warm night, or a few warm nights, does not start calling. Day length and food do not affect when calling begins.\n\nScientist 2\nCalling is triggered by shortening days. When day length falls below 15.5 hours, the males' bodies begin preparing to breed, and this preparation takes about 1 week. Calling therefore begins about 1 week after day length falls below 15.5 hours. Water temperature and food do not affect when calling begins.\n\nScientist 3\nCalling is triggered by food. When the midges emerge, males feed heavily, and building up the energy reserves needed for calling takes about 1 week. Calling therefore begins about 1 week after the midges emerge, whatever the day length or water temperature.",
+  "prompt": "Which observation would weaken the view of Scientist 1 but not the views of Scientists 2 and 3?",
+  "choices": [
+   "In a cool year, the water never stayed above 21°C for 10 nights in a row, yet males began calling on July 28.",
+   "In a year when the midges emerged in early August, males began calling in mid-August.",
+   "In a year with usual water temperatures, day length, and midges, males began calling on July 29.",
+   "Males kept under 16-hour days in warm water with plenty of midges never began calling."
+  ],
+  "correct_answer": "In a cool year, the water never stayed above 21°C for 10 nights in a row, yet males began calling on July 28.",
+  "explanation": "Without 10 warm nights Scientist 1 predicts no calling, but day length and midges were normal, so Scientists 2 and 3 predict late July. That fits \"In a cool year, the water never stayed above 21°C for 10 nights in a row, yet males began calling on July 28.\" The August midge year weakens Scientists 1 and 2; the 16-hour tank weakens Scientists 1 and 3.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "find a finding that separates viewpoints",
+  "difficulty": "hard",
+  "topic_tag": "biology: frog calling season"
+ },
+ {
+  "id": "ASV11a-P5-Q6",
+  "passage_id": "sc11a-p5",
+  "passage_title": "When Kessa Frogs Begin to Call",
+  "format": "conflicting_viewpoints",
+  "passage": "Kessa frogs live in a northern marsh. Each summer, males begin calling at night to attract females. In most years, calling begins between July 26 and August 1. At the marsh, day length is longest (about 16.1 hours) on June 21 and falls below 15.5 hours on about July 21. Midges, the frogs' main food, emerge from the water in large numbers on about July 20 in most years. Water temperature in the marsh first stays above 21°C for 10 nights in a row in late July in most years. Three scientists explain what starts the calling.\n\nScientist 1\nCalling is triggered by warm water. Males begin calling as soon as the water has stayed above 21°C for 10 nights in a row. A single warm night, or a few warm nights, does not start calling. Day length and food do not affect when calling begins.\n\nScientist 2\nCalling is triggered by shortening days. When day length falls below 15.5 hours, the males' bodies begin preparing to breed, and this preparation takes about 1 week. Calling therefore begins about 1 week after day length falls below 15.5 hours. Water temperature and food do not affect when calling begins.\n\nScientist 3\nCalling is triggered by food. When the midges emerge, males feed heavily, and building up the energy reserves needed for calling takes about 1 week. Calling therefore begins about 1 week after the midges emerge, whatever the day length or water temperature.",
+  "prompt": "According to Scientist 1, why do males not begin calling in June even when the water is briefly warmer than 21°C?",
+  "choices": [
+   "The water has not yet stayed above 21°C for 10 nights in a row.",
+   "Day length is still longer than 15.5 hours.",
+   "The midges have not yet emerged.",
+   "The males have not yet had 1 week to prepare."
+  ],
+  "correct_answer": "The water has not yet stayed above 21°C for 10 nights in a row.",
+  "explanation": "Scientist 1 says a single warm night, or a few, does not start calling; calling begins only after \"The water has not yet stayed above 21°C for 10 nights in a row\" is no longer true.",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a reason within one viewpoint",
+  "difficulty": "medium",
+  "topic_tag": "biology: frog calling season"
+ },
+ {
+  "id": "ASV11a-P6-Q1",
+  "passage_id": "sc11a-p6",
+  "passage_title": "The Dark Bands of Tarrow Beach",
+  "format": "conflicting_viewpoints",
+  "passage": "At the back of Tarrow Beach, a low cliff of sand 1.2 m high has been cut by waves. The cliff shows 9 dark bands, each 1 to 4 cm thick, separated by thicker layers of light-colored sand. The dark bands are made mostly of dark mineral grains that are denser than the light grains. Mount Ell, a volcano, lies 60 km north of the beach, and winds there usually blow from the north. Two scientists explain how the dark bands formed.\n\nScientist 1\nEach dark band formed during a single major storm. Large storm waves wash over the beach and throw sand far up onto the back of the beach. The waves carry light grains back to the sea more easily than the denser dark grains, so a layer rich in dark grains is left behind. The dark grains come from the beach's own sand; they have been rolled by waves for a long time, so they are rounded and match the dark sand now on the beach. Storms strong enough to reach the back of the beach strike about once every 10 years. Stronger storms move more sand, so they leave thicker dark bands.\n\nScientist 2\nEach dark band formed from the ash of a single eruption of Mount Ell. Ash blown south by the wind settled on the beach and was buried by light sand. Ash grains are bits of volcanic glass, so they are sharp-edged, not rounded. Because the ash came from the north, each band should be thicker at the north end of the cliff than at the south end. Larger eruptions spread more ash, so they leave thicker dark bands. Written records list eruptions in 1912, 1951, and 1989, but smaller eruptions may not have been recorded.",
+  "prompt": "Under a microscope, the dark grains in the bands are rounded and match the dark sand now on the beach. This finding supports:",
+  "choices": [
+   "Scientist 2, because the dark grains match the dark sand now on the beach.",
+   "Scientist 1, because each dark band formed during a single storm.",
+   "Scientist 1, because the dark grains were worn round by waves on the beach itself.",
+   "Scientist 2, because the dark grains are rounded."
+  ],
+  "correct_answer": "Scientist 1, because the dark grains were worn round by waves on the beach itself.",
+  "explanation": "Scientist 1 says the dark grains are rounded and match the beach's own dark sand; Scientist 2 says they are sharp volcanic glass. So the finding supports \"Scientist 1, because the dark grains were worn round by waves on the beach itself.\" The options naming Scientist 2 restate the finding, but Scientist 2 says the grains are sharp volcanic glass, so the finding counts against that view.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match a finding to a viewpoint",
+  "difficulty": "hard",
+  "topic_tag": "earth science: beach sand layers",
+  "consistency_check": "Both views explain 9 single-event bands of varied thickness; they differ on grain shape (rounded vs sharp glass), source (beach vs volcano), and along-cliff thickness (none vs thicker to the north); each item's finding was checked against both views."
+ },
+ {
+  "id": "ASV11a-P6-Q2",
+  "passage_id": "sc11a-p6",
+  "passage_title": "The Dark Bands of Tarrow Beach",
+  "format": "conflicting_viewpoints",
+  "passage": "At the back of Tarrow Beach, a low cliff of sand 1.2 m high has been cut by waves. The cliff shows 9 dark bands, each 1 to 4 cm thick, separated by thicker layers of light-colored sand. The dark bands are made mostly of dark mineral grains that are denser than the light grains. Mount Ell, a volcano, lies 60 km north of the beach, and winds there usually blow from the north. Two scientists explain how the dark bands formed.\n\nScientist 1\nEach dark band formed during a single major storm. Large storm waves wash over the beach and throw sand far up onto the back of the beach. The waves carry light grains back to the sea more easily than the denser dark grains, so a layer rich in dark grains is left behind. The dark grains come from the beach's own sand; they have been rolled by waves for a long time, so they are rounded and match the dark sand now on the beach. Storms strong enough to reach the back of the beach strike about once every 10 years. Stronger storms move more sand, so they leave thicker dark bands.\n\nScientist 2\nEach dark band formed from the ash of a single eruption of Mount Ell. Ash blown south by the wind settled on the beach and was buried by light sand. Ash grains are bits of volcanic glass, so they are sharp-edged, not rounded. Because the ash came from the north, each band should be thicker at the north end of the cliff than at the south end. Larger eruptions spread more ash, so they leave thicker dark bands. Written records list eruptions in 1912, 1951, and 1989, but smaller eruptions may not have been recorded.",
+  "prompt": "Scientists 1 and 2 would most likely agree that:",
+  "choices": [
+   "the dark grains were eroded from the beach's own sand.",
+   "each dark band formed during a single event.",
+   "the dark grains are bits of volcanic glass.",
+   "dark bands form about once every 10 years."
+  ],
+  "correct_answer": "each dark band formed during a single event.",
+  "explanation": "Scientist 1 says each band formed during one storm; Scientist 2 says each formed from one eruption. Both say \"each dark band formed during a single event.\"",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a shared claim",
+  "difficulty": "medium",
+  "topic_tag": "earth science: beach sand layers"
+ },
+ {
+  "id": "ASV11a-P6-Q3",
+  "passage_id": "sc11a-p6",
+  "passage_title": "The Dark Bands of Tarrow Beach",
+  "format": "conflicting_viewpoints",
+  "passage": "At the back of Tarrow Beach, a low cliff of sand 1.2 m high has been cut by waves. The cliff shows 9 dark bands, each 1 to 4 cm thick, separated by thicker layers of light-colored sand. The dark bands are made mostly of dark mineral grains that are denser than the light grains. Mount Ell, a volcano, lies 60 km north of the beach, and winds there usually blow from the north. Two scientists explain how the dark bands formed.\n\nScientist 1\nEach dark band formed during a single major storm. Large storm waves wash over the beach and throw sand far up onto the back of the beach. The waves carry light grains back to the sea more easily than the denser dark grains, so a layer rich in dark grains is left behind. The dark grains come from the beach's own sand; they have been rolled by waves for a long time, so they are rounded and match the dark sand now on the beach. Storms strong enough to reach the back of the beach strike about once every 10 years. Stronger storms move more sand, so they leave thicker dark bands.\n\nScientist 2\nEach dark band formed from the ash of a single eruption of Mount Ell. Ash blown south by the wind settled on the beach and was buried by light sand. Ash grains are bits of volcanic glass, so they are sharp-edged, not rounded. Because the ash came from the north, each band should be thicker at the north end of the cliff than at the south end. Larger eruptions spread more ash, so they leave thicker dark bands. Written records list eruptions in 1912, 1951, and 1989, but smaller eruptions may not have been recorded.",
+  "prompt": "If Scientist 2 is correct, measurements of one dark band along the length of the cliff would show that the band is:",
+  "choices": [
+   "thicker at the south end than at the north end.",
+   "thicker at the north end than at the south end.",
+   "equally thick along the whole cliff.",
+   "thickest in the middle of the cliff."
+  ],
+  "correct_answer": "thicker at the north end than at the south end.",
+  "explanation": "Scientist 2 says the ash came from Mount Ell to the north, so each band should be \"thicker at the north end than at the south end.\"",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "predict from one viewpoint",
+  "difficulty": "medium",
+  "topic_tag": "earth science: beach sand layers"
+ },
+ {
+  "id": "ASV11a-P6-Q4",
+  "passage_id": "sc11a-p6",
+  "passage_title": "The Dark Bands of Tarrow Beach",
+  "format": "conflicting_viewpoints",
+  "passage": "At the back of Tarrow Beach, a low cliff of sand 1.2 m high has been cut by waves. The cliff shows 9 dark bands, each 1 to 4 cm thick, separated by thicker layers of light-colored sand. The dark bands are made mostly of dark mineral grains that are denser than the light grains. Mount Ell, a volcano, lies 60 km north of the beach, and winds there usually blow from the north. Two scientists explain how the dark bands formed.\n\nScientist 1\nEach dark band formed during a single major storm. Large storm waves wash over the beach and throw sand far up onto the back of the beach. The waves carry light grains back to the sea more easily than the denser dark grains, so a layer rich in dark grains is left behind. The dark grains come from the beach's own sand; they have been rolled by waves for a long time, so they are rounded and match the dark sand now on the beach. Storms strong enough to reach the back of the beach strike about once every 10 years. Stronger storms move more sand, so they leave thicker dark bands.\n\nScientist 2\nEach dark band formed from the ash of a single eruption of Mount Ell. Ash blown south by the wind settled on the beach and was buried by light sand. Ash grains are bits of volcanic glass, so they are sharp-edged, not rounded. Because the ash came from the north, each band should be thicker at the north end of the cliff than at the south end. Larger eruptions spread more ash, so they leave thicker dark bands. Written records list eruptions in 1912, 1951, and 1989, but smaller eruptions may not have been recorded.",
+  "prompt": "Which finding would most strongly support Scientist 2's view?",
+  "choices": [
+   "The dark grains in the bands are rounded.",
+   "Each band is equally thick along the whole cliff.",
+   "The dark grains in the bands match the dark sand now on the beach.",
+   "The dark grains in the bands are sharp-edged and glassy."
+  ],
+  "correct_answer": "The dark grains in the bands are sharp-edged and glassy.",
+  "explanation": "Scientist 2 says ash grains are sharp-edged volcanic glass; rounded grains, beach-matching grains, and even thickness all fit Scientist 1 instead. So \"The dark grains in the bands are sharp-edged and glassy.\"",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "choose evidence for one viewpoint",
+  "difficulty": "medium",
+  "topic_tag": "earth science: beach sand layers"
+ },
+ {
+  "id": "ASV11a-P6-Q5",
+  "passage_id": "sc11a-p6",
+  "passage_title": "The Dark Bands of Tarrow Beach",
+  "format": "conflicting_viewpoints",
+  "passage": "At the back of Tarrow Beach, a low cliff of sand 1.2 m high has been cut by waves. The cliff shows 9 dark bands, each 1 to 4 cm thick, separated by thicker layers of light-colored sand. The dark bands are made mostly of dark mineral grains that are denser than the light grains. Mount Ell, a volcano, lies 60 km north of the beach, and winds there usually blow from the north. Two scientists explain how the dark bands formed.\n\nScientist 1\nEach dark band formed during a single major storm. Large storm waves wash over the beach and throw sand far up onto the back of the beach. The waves carry light grains back to the sea more easily than the denser dark grains, so a layer rich in dark grains is left behind. The dark grains come from the beach's own sand; they have been rolled by waves for a long time, so they are rounded and match the dark sand now on the beach. Storms strong enough to reach the back of the beach strike about once every 10 years. Stronger storms move more sand, so they leave thicker dark bands.\n\nScientist 2\nEach dark band formed from the ash of a single eruption of Mount Ell. Ash blown south by the wind settled on the beach and was buried by light sand. Ash grains are bits of volcanic glass, so they are sharp-edged, not rounded. Because the ash came from the north, each band should be thicker at the north end of the cliff than at the south end. Larger eruptions spread more ash, so they leave thicker dark bands. Written records list eruptions in 1912, 1951, and 1989, but smaller eruptions may not have been recorded.",
+  "prompt": "Scientist 1 would most likely explain why some dark bands are 4 cm thick while others are only 1 cm thick by stating that:",
+  "choices": [
+   "larger eruptions left thicker bands.",
+   "stronger storms left thicker bands.",
+   "thicker bands formed closer to the volcano.",
+   "thicker bands built up over several storm years."
+  ],
+  "correct_answer": "stronger storms left thicker bands.",
+  "explanation": "Scientist 1 says stronger storms move more sand and leave thicker dark bands, so \"stronger storms left thicker bands.\" The eruption and volcano explanations are Scientist 2's; several storm years contradicts Scientist 1's single-storm bands.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "locate an explanation within one viewpoint",
+  "difficulty": "medium",
+  "topic_tag": "earth science: beach sand layers"
+ },
+ {
+  "id": "ASV11a-P6-Q6",
+  "passage_id": "sc11a-p6",
+  "passage_title": "The Dark Bands of Tarrow Beach",
+  "format": "conflicting_viewpoints",
+  "passage": "At the back of Tarrow Beach, a low cliff of sand 1.2 m high has been cut by waves. The cliff shows 9 dark bands, each 1 to 4 cm thick, separated by thicker layers of light-colored sand. The dark bands are made mostly of dark mineral grains that are denser than the light grains. Mount Ell, a volcano, lies 60 km north of the beach, and winds there usually blow from the north. Two scientists explain how the dark bands formed.\n\nScientist 1\nEach dark band formed during a single major storm. Large storm waves wash over the beach and throw sand far up onto the back of the beach. The waves carry light grains back to the sea more easily than the denser dark grains, so a layer rich in dark grains is left behind. The dark grains come from the beach's own sand; they have been rolled by waves for a long time, so they are rounded and match the dark sand now on the beach. Storms strong enough to reach the back of the beach strike about once every 10 years. Stronger storms move more sand, so they leave thicker dark bands.\n\nScientist 2\nEach dark band formed from the ash of a single eruption of Mount Ell. Ash blown south by the wind settled on the beach and was buried by light sand. Ash grains are bits of volcanic glass, so they are sharp-edged, not rounded. Because the ash came from the north, each band should be thicker at the north end of the cliff than at the south end. Larger eruptions spread more ash, so they leave thicker dark bands. Written records list eruptions in 1912, 1951, and 1989, but smaller eruptions may not have been recorded.",
+  "prompt": "Which finding, if true, would weaken the views of both scientists?",
+  "choices": [
+   "The dark grains in the bands are sharp-edged and glassy.",
+   "Each dark band is thicker at its north end than at its south end.",
+   "The dark grains in the bands are rounded.",
+   "Each dark band is made of several thin dark layers, separated by light sand, that formed in different years."
+  ],
+  "correct_answer": "Each dark band is made of several thin dark layers, separated by light sand, that formed in different years.",
+  "explanation": "Both scientists say each band formed during one event. \"Each dark band is made of several thin dark layers, separated by light sand, that formed in different years\" contradicts both. Glassy grains or a northward thickening weaken only Scientist 1; rounded grains weaken only Scientist 2.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "find a finding that weakens every viewpoint",
+  "difficulty": "hard",
+  "topic_tag": "earth science: beach sand layers"
+ },
+ {
+  "id": "ASV11a-P7-Q1",
+  "passage_id": "sc11a-p7",
+  "passage_title": "Yellow Spots on Tamarel Shrubs",
+  "format": "conflicting_viewpoints",
+  "passage": "Tamarel is an evergreen shrub planted along a busy road through a city park. Over the last three years, many of the park's Tamarel shrubs have developed yellow spots on their leaves. On a Tamarel shrub, the oldest leaves are the lowest ones, and new leaves grow at the tips of the branches. Three scientists explain the spots.\n\nScientist 1\nThe spots are caused by a fungus. Its spores live in the soil and are splashed onto leaves by raindrops, so spots appear first on the lowest leaves and spread upward over the summer. The fungus also spreads from shrub to shrub. Spraying a fungicide (a chemical that kills fungi) stops new spots from appearing.\n\nScientist 2\nThe spots are caused by a shortage of a trace mineral, which the scientists call T, in the park's soil. When T is scarce, a shrub moves T out of its oldest leaves into its new leaves, so spots appear first on the oldest leaves, which are the lowest ones. Adding fertilizer containing T to the soil stops new spots from appearing within 3 weeks. Spots do not spread from shrub to shrub.\n\nScientist 3\nThe spots are caused by ozone, a gas formed from vehicle exhaust in sunlight. Ozone is most concentrated within about 100 m of the road, so shrubs farther than 100 m from the road should have no spots. Spots appear on the upper surfaces of leaves, at any height on the shrub, and are worst after hot, sunny days.",
+  "prompt": "Tamarel shrubs 300 m from the road were found to have as many spots as shrubs beside the road. This finding weakens the view of which scientist(s)?",
+  "choices": [
+   "Scientist 1 only",
+   "Scientist 2 only",
+   "Scientist 3 only",
+   "Scientists 1 and 2 only"
+  ],
+  "correct_answer": "Scientist 3 only",
+  "explanation": "Scientist 3 says shrubs farther than 100 m from the road should have no spots. Scientists 1 and 2 say nothing about distance from the road, so \"Scientist 3 only\" is weakened.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test viewpoints against a new finding",
+  "difficulty": "medium",
+  "topic_tag": "biology: plant leaf spots",
+  "consistency_check": "Scientists 1 and 2 both place first spots on the lowest leaves (splash vs oldest leaves), giving a shared claim; Scientist 3 is the only one tied to distance from the road; fungicide and mineral T tests separate 1 and 2; T is a named-only invented mineral so no real deficiency knowledge decides an item."
+ },
+ {
+  "id": "ASV11a-P7-Q2",
+  "passage_id": "sc11a-p7",
+  "passage_title": "Yellow Spots on Tamarel Shrubs",
+  "format": "conflicting_viewpoints",
+  "passage": "Tamarel is an evergreen shrub planted along a busy road through a city park. Over the last three years, many of the park's Tamarel shrubs have developed yellow spots on their leaves. On a Tamarel shrub, the oldest leaves are the lowest ones, and new leaves grow at the tips of the branches. Three scientists explain the spots.\n\nScientist 1\nThe spots are caused by a fungus. Its spores live in the soil and are splashed onto leaves by raindrops, so spots appear first on the lowest leaves and spread upward over the summer. The fungus also spreads from shrub to shrub. Spraying a fungicide (a chemical that kills fungi) stops new spots from appearing.\n\nScientist 2\nThe spots are caused by a shortage of a trace mineral, which the scientists call T, in the park's soil. When T is scarce, a shrub moves T out of its oldest leaves into its new leaves, so spots appear first on the oldest leaves, which are the lowest ones. Adding fertilizer containing T to the soil stops new spots from appearing within 3 weeks. Spots do not spread from shrub to shrub.\n\nScientist 3\nThe spots are caused by ozone, a gas formed from vehicle exhaust in sunlight. Ozone is most concentrated within about 100 m of the road, so shrubs farther than 100 m from the road should have no spots. Spots appear on the upper surfaces of leaves, at any height on the shrub, and are worst after hot, sunny days.",
+  "prompt": "Spraying fungicide on spotted shrubs did not stop new spots, but adding fertilizer containing mineral T stopped new spots within 3 weeks. These results support:",
+  "choices": [
+   "Scientist 1, because new spots stopped appearing.",
+   "Scientist 2, because adding mineral T stopped new spots from appearing.",
+   "Scientist 3, because fungicide did not stop new spots.",
+   "Scientist 1, because adding mineral T stopped new spots from appearing."
+  ],
+  "correct_answer": "Scientist 2, because adding mineral T stopped new spots from appearing.",
+  "explanation": "Scientist 2 says fertilizer containing T stops new spots within 3 weeks; Scientist 1 says fungicide stops them, which it did not. So the results support \"Scientist 2, because adding mineral T stopped new spots from appearing.\"",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match a finding to a viewpoint",
+  "difficulty": "hard",
+  "topic_tag": "biology: plant leaf spots"
+ },
+ {
+  "id": "ASV11a-P7-Q3",
+  "passage_id": "sc11a-p7",
+  "passage_title": "Yellow Spots on Tamarel Shrubs",
+  "format": "conflicting_viewpoints",
+  "passage": "Tamarel is an evergreen shrub planted along a busy road through a city park. Over the last three years, many of the park's Tamarel shrubs have developed yellow spots on their leaves. On a Tamarel shrub, the oldest leaves are the lowest ones, and new leaves grow at the tips of the branches. Three scientists explain the spots.\n\nScientist 1\nThe spots are caused by a fungus. Its spores live in the soil and are splashed onto leaves by raindrops, so spots appear first on the lowest leaves and spread upward over the summer. The fungus also spreads from shrub to shrub. Spraying a fungicide (a chemical that kills fungi) stops new spots from appearing.\n\nScientist 2\nThe spots are caused by a shortage of a trace mineral, which the scientists call T, in the park's soil. When T is scarce, a shrub moves T out of its oldest leaves into its new leaves, so spots appear first on the oldest leaves, which are the lowest ones. Adding fertilizer containing T to the soil stops new spots from appearing within 3 weeks. Spots do not spread from shrub to shrub.\n\nScientist 3\nThe spots are caused by ozone, a gas formed from vehicle exhaust in sunlight. Ozone is most concentrated within about 100 m of the road, so shrubs farther than 100 m from the road should have no spots. Spots appear on the upper surfaces of leaves, at any height on the shrub, and are worst after hot, sunny days.",
+  "prompt": "Scientists 1 and 2 would most likely agree that:",
+  "choices": [
+   "spots spread from shrub to shrub.",
+   "adding mineral T to the soil stops new spots.",
+   "spots appear first on the lowest leaves of a shrub.",
+   "spots are worst after hot, sunny days."
+  ],
+  "correct_answer": "spots appear first on the lowest leaves of a shrub.",
+  "explanation": "Scientist 1 says raindrops splash spores onto the lowest leaves first; Scientist 2 says the oldest, lowest leaves lose T first. Both say \"spots appear first on the lowest leaves of a shrub.\"",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a shared claim",
+  "difficulty": "medium",
+  "topic_tag": "biology: plant leaf spots"
+ },
+ {
+  "id": "ASV11a-P7-Q4",
+  "passage_id": "sc11a-p7",
+  "passage_title": "Yellow Spots on Tamarel Shrubs",
+  "format": "conflicting_viewpoints",
+  "passage": "Tamarel is an evergreen shrub planted along a busy road through a city park. Over the last three years, many of the park's Tamarel shrubs have developed yellow spots on their leaves. On a Tamarel shrub, the oldest leaves are the lowest ones, and new leaves grow at the tips of the branches. Three scientists explain the spots.\n\nScientist 1\nThe spots are caused by a fungus. Its spores live in the soil and are splashed onto leaves by raindrops, so spots appear first on the lowest leaves and spread upward over the summer. The fungus also spreads from shrub to shrub. Spraying a fungicide (a chemical that kills fungi) stops new spots from appearing.\n\nScientist 2\nThe spots are caused by a shortage of a trace mineral, which the scientists call T, in the park's soil. When T is scarce, a shrub moves T out of its oldest leaves into its new leaves, so spots appear first on the oldest leaves, which are the lowest ones. Adding fertilizer containing T to the soil stops new spots from appearing within 3 weeks. Spots do not spread from shrub to shrub.\n\nScientist 3\nThe spots are caused by ozone, a gas formed from vehicle exhaust in sunlight. Ozone is most concentrated within about 100 m of the road, so shrubs farther than 100 m from the road should have no spots. Spots appear on the upper surfaces of leaves, at any height on the shrub, and are worst after hot, sunny days.",
+  "prompt": "Suppose a plastic sheet is placed around the base of a shrub so that rain cannot splash soil onto its leaves. According to Scientist 1, new spots on the shrub's lower leaves would most likely:",
+  "choices": [
+   "appear more often.",
+   "appear just as often as before.",
+   "stop appearing.",
+   "appear only on the upper surfaces of the leaves."
+  ],
+  "correct_answer": "stop appearing.",
+  "explanation": "Scientist 1 says spores reach the leaves by rain splash from the soil, so blocking the splash means new spots would \"stop appearing.\"",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "predict from one viewpoint",
+  "difficulty": "medium",
+  "topic_tag": "biology: plant leaf spots"
+ },
+ {
+  "id": "ASV11a-P7-Q5",
+  "passage_id": "sc11a-p7",
+  "passage_title": "Yellow Spots on Tamarel Shrubs",
+  "format": "conflicting_viewpoints",
+  "passage": "Tamarel is an evergreen shrub planted along a busy road through a city park. Over the last three years, many of the park's Tamarel shrubs have developed yellow spots on their leaves. On a Tamarel shrub, the oldest leaves are the lowest ones, and new leaves grow at the tips of the branches. Three scientists explain the spots.\n\nScientist 1\nThe spots are caused by a fungus. Its spores live in the soil and are splashed onto leaves by raindrops, so spots appear first on the lowest leaves and spread upward over the summer. The fungus also spreads from shrub to shrub. Spraying a fungicide (a chemical that kills fungi) stops new spots from appearing.\n\nScientist 2\nThe spots are caused by a shortage of a trace mineral, which the scientists call T, in the park's soil. When T is scarce, a shrub moves T out of its oldest leaves into its new leaves, so spots appear first on the oldest leaves, which are the lowest ones. Adding fertilizer containing T to the soil stops new spots from appearing within 3 weeks. Spots do not spread from shrub to shrub.\n\nScientist 3\nThe spots are caused by ozone, a gas formed from vehicle exhaust in sunlight. Ozone is most concentrated within about 100 m of the road, so shrubs farther than 100 m from the road should have no spots. Spots appear on the upper surfaces of leaves, at any height on the shrub, and are worst after hot, sunny days.",
+  "prompt": "According to Scientist 3, why should shrubs far from the road have no spots?",
+  "choices": [
+   "Ozone formed from vehicle exhaust is concentrated within about 100 m of the road.",
+   "Rain splashes fewer fungal spores onto shrubs far from the road.",
+   "The soil far from the road contains more mineral T.",
+   "Shrubs far from the road have younger leaves."
+  ],
+  "correct_answer": "Ozone formed from vehicle exhaust is concentrated within about 100 m of the road.",
+  "explanation": "Scientist 3 says ozone forms from vehicle exhaust and is most concentrated within about 100 m of the road. That gives \"Ozone formed from vehicle exhaust is concentrated within about 100 m of the road.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a reason within one viewpoint",
+  "difficulty": "medium",
+  "topic_tag": "biology: plant leaf spots"
+ },
+ {
+  "id": "ASV11a-P7-Q6",
+  "passage_id": "sc11a-p7",
+  "passage_title": "Yellow Spots on Tamarel Shrubs",
+  "format": "conflicting_viewpoints",
+  "passage": "Tamarel is an evergreen shrub planted along a busy road through a city park. Over the last three years, many of the park's Tamarel shrubs have developed yellow spots on their leaves. On a Tamarel shrub, the oldest leaves are the lowest ones, and new leaves grow at the tips of the branches. Three scientists explain the spots.\n\nScientist 1\nThe spots are caused by a fungus. Its spores live in the soil and are splashed onto leaves by raindrops, so spots appear first on the lowest leaves and spread upward over the summer. The fungus also spreads from shrub to shrub. Spraying a fungicide (a chemical that kills fungi) stops new spots from appearing.\n\nScientist 2\nThe spots are caused by a shortage of a trace mineral, which the scientists call T, in the park's soil. When T is scarce, a shrub moves T out of its oldest leaves into its new leaves, so spots appear first on the oldest leaves, which are the lowest ones. Adding fertilizer containing T to the soil stops new spots from appearing within 3 weeks. Spots do not spread from shrub to shrub.\n\nScientist 3\nThe spots are caused by ozone, a gas formed from vehicle exhaust in sunlight. Ozone is most concentrated within about 100 m of the road, so shrubs farther than 100 m from the road should have no spots. Spots appear on the upper surfaces of leaves, at any height on the shrub, and are worst after hot, sunny days.",
+  "prompt": "Which finding would weaken Scientist 2's view and support Scientist 1's view?",
+  "choices": [
+   "New spots stopped appearing on shrubs given fertilizer containing mineral T.",
+   "Shrubs 300 m from the road had no spots.",
+   "New spots kept appearing on shrubs given fertilizer containing mineral T, but stopped on shrubs sprayed with fungicide.",
+   "Spots appeared only on the upper surfaces of leaves facing the road."
+  ],
+  "correct_answer": "New spots kept appearing on shrubs given fertilizer containing mineral T, but stopped on shrubs sprayed with fungicide.",
+  "explanation": "Scientist 2 predicts that mineral T stops new spots; Scientist 1 predicts that fungicide does. \"New spots kept appearing on shrubs given fertilizer containing mineral T, but stopped on shrubs sprayed with fungicide\" fits Scientist 1 and contradicts Scientist 2.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "find a finding that separates viewpoints",
+  "difficulty": "hard",
+  "topic_tag": "biology: plant leaf spots"
+ }
+]

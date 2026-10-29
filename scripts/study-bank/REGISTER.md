@@ -6026,3 +6026,17 @@ structural checks are pre-flight only. See CLAUDE.md.
   the blind-only branch of `simulateQueue` pushed a run even when a cohort had nothing left to serve. It now
   skips such a cohort (regression test in `blind-only-runs.test.ts`, break-tested). Drawn next:
   `actsciencev6b-full1-blindonly-cofounder-2026-10-28` (11 items). Queue after it: v7b 5, v8b 10, v10a 36, v10b 30.
+
+- **2026-10-29 — "Make more questions": where authoring helps, and the ACT Science v11a buffer.** bank-state counts:
+  map/science 0 drawable / 245 staged, map/language 0 / 253 staged, map/reading 196 / 60, act/science 130 / 92.
+  MAP Science (pilot + v1 = 83/82/80 against 65 per area) and MAP Language (v2 216 + v3/v6 37) are NOT short of
+  authored items; both wait on review (MAP Language on the co-founder's queue, MAP Science on blind-only runs behind
+  ACT). Authoring more there does not move the floor (same finding as 2026-10-27), so none was written. ACT Science
+  serves 3 forms (form-capacity) and the queued v5c-v10b survivors give about 5 with no spare, so one buffer cohort was
+  written: **act-science-v11a, 42 items (4 RS + 3 CV), to ACT-SCIENCE-V10-BRIEF.md, not inserted.**
+  Prereg `ACT-SCIENCE-V11-BUFFER.prereg.md` and batch `b8` (seed 2026102908, strictForm false) committed before any
+  grader; packets built from `_coordinator/b8/rows.json` (inserter hash), 0 render warnings, keys A11 B11 C10 D10.
+  The coordinator wrote the cohort, so it cannot grade it: **b8 needs two fresh graders (g1, g2) and a fresh r1.**
+  Self-audit fixes before the prereg: two CV support items where the key was the only finding-echo (b1's R8 pattern);
+  the frog passage's day length (a 16 h longest day cannot drop below 15 h by mid-July; recomputed at ~49°N, now
+  15.5 h near July 21 with a 1-week lag).
