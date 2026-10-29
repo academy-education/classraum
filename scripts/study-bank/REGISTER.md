@@ -6513,3 +6513,10 @@ structural checks are pre-flight only. See CLAUDE.md.
   stem, and a RANGE rule (a stem interval may leave at most one distractor outside it). The range rule killed every
   root-interpolation draft. All 7 scientific-notation and repeating-decimal drafts collided with earlier MAP or b5
   items. `map-v2-work/math-b9/`. Independent chain checker running.
+
+- **2026-10-30 — v5c withdrawn, SSAT/MAP audit drawn, Daniel messaged (owner "Yep").**
+  `actsciencev5c-full1-blindonly-cofounder-2026-10-27` deleted: 10 rows, all seen, none answered. Science is no longer
+  sat. `agentreview-audit-cofounder-2026-10-29` drawn: 28 rows, the only open run (control 25.0%). In
+  cofounder-queue.json the first audit's nextManualDraw was removed and the wave-2 audit
+  (`agentreview-audit2-cofounder-2026-10-30`) promoted to nextManualDraw. Daniel was told on KakaoTalk (KO + EN, text
+  approved by the owner) that science review is over and the 28-question check is ready.
