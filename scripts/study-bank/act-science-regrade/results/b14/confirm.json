@@ -1,0 +1,22 @@
+{
+ "items": {
+  "ASV12f-P3-Q4": {
+   "readability": "rejected",
+   "scope": "item",
+   "why": "The key uses the shared control row (20C), which the passage explicitly assigns to this experiment: \"(The 20°C result is the 60 kg/m³ result of Experiment 1.)\" Cross-referencing a shared control row is a standard ACT reading skill, not a render defect. Flagged by g2 only; g1 found no problem, and g2's own keyed note on P3-Q4 says a careful student would not land on C."
+  },
+  "ASV12f-P4-Q4": {
+   "readability": "rejected",
+   "scope": "item",
+   "why": "The key uses the shared control row (24-hour), which the passage explicitly assigns to this experiment: \"(The 24-hour result is the 8-m/s result of Study 1.)\" Cross-referencing a shared control row is a standard ACT reading skill, not a render defect. Flagged by g2 only; g1 found no problem, and g2's own keyed note on P3-Q4 says a careful student would not land on C."
+  }
+ },
+ "batch": {
+  "pattern": {
+   "named_by_both": false,
+   "rule": null,
+   "decides": [],
+   "why": "Neither grader named a cross-item pattern."
+  }
+ }
+}

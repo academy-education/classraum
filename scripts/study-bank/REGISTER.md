@@ -6239,3 +6239,21 @@ structural checks are pre-flight only. See CLAUDE.md.
   counts, halfway between fractions, golf par, tiling, servings, concatenated digits), `MECHANISMS.md` (40 listed in
   the batch-5 format: 2 strong, 26 medium, 12 weak; g5 12, g6 10, g7 11, g8 7) and `CHECKER-PROMPT.md`. Next: one
   fresh checker writes `CHAIN-CHECK.md`; the brief and prereg follow only from its recommended set.
+
+- **2026-10-29 — b14 (act-science-v12f): 9 of 9 passages cleared (52 of 52).** First clean batch: 52/52 keys,
+  0 fact errors, 0 no-source, no R6 drop, no pattern from either grader. g2 raised R7 readability on P3-Q4 and
+  P4-Q4 (the key uses the shared control row labelled with the other experiment); coordinator REJECTED both — the
+  passage states the assignment outright ("The 20°C result is the 60 kg/m³ result of Experiment 1"; "The 24-hour
+  result is the 8-m/s result of Study 1"), cross-referencing a shared control row is a standard ACT reading
+  skill, g1 saw no problem, and g2's own keyed note said a careful student would not miss it.
+- **2026-10-29 — MAP Reading MRV3: vocabulary staged, passages held.** Round 1 (2 graders per set): both named
+  the theme "should"-distractor tell and the central-idea one-template tell; vocab item 18 second-defensible.
+  One repair round by the author, then fresh round-2 graders on new packets. Vocabulary round 2: 40/40 unique,
+  no pattern, from both — **staged as map-vocab-v3 (40 rows, verified=false) and queued after map-vocab-v2.**
+  Passages round 2: both graders named NEW template tells the repair introduced (central-idea: drop the one
+  narrow detail and the two overclaiming options; theme: "usually"/"tends to" only in distractors; purpose:
+  "prove"/"argue" only in distractors; within-passage key echoes). One repair round is the limit, and every
+  passage carries a theme or central-idea item, so **all 20 MRV3 passages are held, not staged.** g1 also
+  raised a possible fact error in the Maathai passage (her mother called the fig "a tree of God"; the soil
+  link is presented as the adults' reason) — human check needed if the passage is ever reused. Consistent with
+  memory agent-reading-comprehension-limit: agents write vocab/mechanics well; comprehension keeps failing.
