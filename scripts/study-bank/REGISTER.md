@@ -6060,3 +6060,10 @@ structural checks are pre-flight only. See CLAUDE.md.
   `cofounder-queue.json`. A new draft would add 36 more rows behind them and zero forms until Daniel reaches it,
   the same finding as MAP Science/Language and ACT Reading (2026-10-27). The lever for these sections is review
   throughput (spot/pooled shapes under Amendment 3), not authoring.
+
+- **2026-10-29 — act-science-v12a authored (b9), prereg committed before any grader.** 4 RS + 3 CV passages, 42
+  items, written to the amended brief ("v11 lessons"). Self-audit fixed the P7 "agree" distractors (all general now)
+  and broke the three-item Yes/No template (P1 now a true claim, P4 a choose-the-comparison item). Every table key
+  recomputed by script; `act-bank-helper check science` passes; key slots A11 B11 C10 D10, key uniquely longest 3/42.
+  Bars: >=4/7 keep, 2-3 revise, 0-1 stop. Not inserted; cold packets built for g1/g2 under
+  `scratchpad/act-science-regrade/b9-g{1,2}/`.

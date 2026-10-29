@@ -1,0 +1,3345 @@
+[
+ {
+  "id": "ASV12a-P1-Q1",
+  "passage_id": "sc12a-p1",
+  "passage_title": "Salinity, Food, and Light in Pelluna Ciliate Cultures",
+  "format": "research_summaries",
+  "passage": "Pelluna is a single-celled freshwater ciliate that feeds on algae. Biologists grew Pelluna in glass flasks to see how salinity (dissolved salt, in parts per thousand, ppt), the kind of alga supplied as food, and the daily light period affected the cultures.\n\nEvery flask began with 100 Pelluna cells per milliliter (cells/mL) and was kept at 20°C. After 5 days, the biologists recorded the cell density and the average cell length of the Pelluna in each flask (see Table 1).\n\nExperiment 1\nFlasks were fed the alga Ternia at salinities of 0, 2, 4, 6, or 8 ppt. Each flask received 12 hours of light per day.\n\nExperiment 2\nFlasks were fed the alga Vosk at the same five salinities. Each flask received 12 hours of light per day.\n\nExperiment 3\nFlasks were fed Ternia at 4 ppt and received 6, 12, or 18 hours of light per day. (The 12-hour result is that of Experiment 1 at 4 ppt.)",
+  "prompt": "In Experiment 2, the cell density after 5 days was greatest at which salinity?",
+  "choices": [
+   "2 ppt",
+   "4 ppt",
+   "6 ppt",
+   "8 ppt"
+  ],
+  "correct_answer": "6 ppt",
+  "explanation": "Vosk densities: 410 (0 ppt), 880 (2 ppt), 1,090 (4 ppt), 1,240 (6 ppt), 1,020 (8 ppt). The greatest is 1,240 cells/mL at \"6 ppt\".",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a maximum within one series",
+  "difficulty": "medium",
+  "topic_tag": "Salinity, Food, and Light in Pelluna Ciliate Cultures",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Pelluna cultures after 5 days",
+   "colLabels": [
+    "Food alga",
+    "Salinity (ppt)",
+    "Light (hours/day)",
+    "Cell density (cells/mL)",
+    "Average cell length (µm)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "Ternia",
+     0,
+     12,
+     640,
+     48
+    ],
+    [
+     "Ternia",
+     2,
+     12,
+     1180,
+     46
+    ],
+    [
+     "Ternia",
+     4,
+     12,
+     1520,
+     45
+    ],
+    [
+     "Ternia",
+     6,
+     12,
+     1310,
+     43
+    ],
+    [
+     "Ternia",
+     8,
+     12,
+     520,
+     40
+    ],
+    [
+     "Vosk",
+     0,
+     12,
+     410,
+     52
+    ],
+    [
+     "Vosk",
+     2,
+     12,
+     880,
+     51
+    ],
+    [
+     "Vosk",
+     4,
+     12,
+     1090,
+     50
+    ],
+    [
+     "Vosk",
+     6,
+     12,
+     1240,
+     49
+    ],
+    [
+     "Vosk",
+     8,
+     12,
+     1020,
+     47
+    ],
+    [
+     "Ternia",
+     4,
+     6,
+     960,
+     45
+    ],
+    [
+     "Ternia",
+     4,
+     18,
+     1600,
+     44
+    ]
+   ]
+  },
+  "consistency_check": "Densities start at 100 cells/mL and stay below 1,700; Ternia peaks at 4 ppt and Vosk at 6 ppt (an interaction, no law); the 12-hour, 4 ppt Ternia trial is shared by Experiments 1 and 3 with identical values."
+ },
+ {
+  "id": "ASV12a-P1-Q2",
+  "passage_id": "sc12a-p1",
+  "passage_title": "Salinity, Food, and Light in Pelluna Ciliate Cultures",
+  "format": "research_summaries",
+  "passage": "Pelluna is a single-celled freshwater ciliate that feeds on algae. Biologists grew Pelluna in glass flasks to see how salinity (dissolved salt, in parts per thousand, ppt), the kind of alga supplied as food, and the daily light period affected the cultures.\n\nEvery flask began with 100 Pelluna cells per milliliter (cells/mL) and was kept at 20°C. After 5 days, the biologists recorded the cell density and the average cell length of the Pelluna in each flask (see Table 1).\n\nExperiment 1\nFlasks were fed the alga Ternia at salinities of 0, 2, 4, 6, or 8 ppt. Each flask received 12 hours of light per day.\n\nExperiment 2\nFlasks were fed the alga Vosk at the same five salinities. Each flask received 12 hours of light per day.\n\nExperiment 3\nFlasks were fed Ternia at 4 ppt and received 6, 12, or 18 hours of light per day. (The 12-hour result is that of Experiment 1 at 4 ppt.)",
+  "prompt": "Over which salinity range did the cell density of Ternia-fed cultures decrease while the cell density of Vosk-fed cultures increased?",
+  "choices": [
+   "From 0 ppt to 2 ppt",
+   "From 2 ppt to 4 ppt",
+   "From 4 ppt to 6 ppt",
+   "From 6 ppt to 8 ppt"
+  ],
+  "correct_answer": "From 4 ppt to 6 ppt",
+  "explanation": "Ternia: 640, 1,180, 1,520, 1,310, 520; Vosk: 410, 880, 1,090, 1,240, 1,020. Only \"From 4 ppt to 6 ppt\" has Ternia falling (1,520 to 1,310) while Vosk rises (1,090 to 1,240); from 6 to 8 ppt both fall, and below 4 ppt both rise.",
+  "domain": "Interpretation of Data",
+  "subskill": "compare trends of two series",
+  "difficulty": "hard",
+  "topic_tag": "Salinity, Food, and Light in Pelluna Ciliate Cultures",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Pelluna cultures after 5 days",
+   "colLabels": [
+    "Food alga",
+    "Salinity (ppt)",
+    "Light (hours/day)",
+    "Cell density (cells/mL)",
+    "Average cell length (µm)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "Ternia",
+     0,
+     12,
+     640,
+     48
+    ],
+    [
+     "Ternia",
+     2,
+     12,
+     1180,
+     46
+    ],
+    [
+     "Ternia",
+     4,
+     12,
+     1520,
+     45
+    ],
+    [
+     "Ternia",
+     6,
+     12,
+     1310,
+     43
+    ],
+    [
+     "Ternia",
+     8,
+     12,
+     520,
+     40
+    ],
+    [
+     "Vosk",
+     0,
+     12,
+     410,
+     52
+    ],
+    [
+     "Vosk",
+     2,
+     12,
+     880,
+     51
+    ],
+    [
+     "Vosk",
+     4,
+     12,
+     1090,
+     50
+    ],
+    [
+     "Vosk",
+     6,
+     12,
+     1240,
+     49
+    ],
+    [
+     "Vosk",
+     8,
+     12,
+     1020,
+     47
+    ],
+    [
+     "Ternia",
+     4,
+     6,
+     960,
+     45
+    ],
+    [
+     "Ternia",
+     4,
+     18,
+     1600,
+     44
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12a-P1-Q3",
+  "passage_id": "sc12a-p1",
+  "passage_title": "Salinity, Food, and Light in Pelluna Ciliate Cultures",
+  "format": "research_summaries",
+  "passage": "Pelluna is a single-celled freshwater ciliate that feeds on algae. Biologists grew Pelluna in glass flasks to see how salinity (dissolved salt, in parts per thousand, ppt), the kind of alga supplied as food, and the daily light period affected the cultures.\n\nEvery flask began with 100 Pelluna cells per milliliter (cells/mL) and was kept at 20°C. After 5 days, the biologists recorded the cell density and the average cell length of the Pelluna in each flask (see Table 1).\n\nExperiment 1\nFlasks were fed the alga Ternia at salinities of 0, 2, 4, 6, or 8 ppt. Each flask received 12 hours of light per day.\n\nExperiment 2\nFlasks were fed the alga Vosk at the same five salinities. Each flask received 12 hours of light per day.\n\nExperiment 3\nFlasks were fed Ternia at 4 ppt and received 6, 12, or 18 hours of light per day. (The 12-hour result is that of Experiment 1 at 4 ppt.)",
+  "prompt": "Which of the following was the same in every trial of Experiment 3?",
+  "choices": [
+   "Food alga and light period",
+   "Light period only",
+   "Salinity and light period",
+   "Salinity and food alga"
+  ],
+  "correct_answer": "Salinity and food alga",
+  "explanation": "Experiment 3 fed Ternia at 4 ppt and changed only the light period (6, 12, 18 hours). So \"Salinity and food alga\" were the same in every trial.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify controlled variables",
+  "difficulty": "medium",
+  "topic_tag": "Salinity, Food, and Light in Pelluna Ciliate Cultures",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Pelluna cultures after 5 days",
+   "colLabels": [
+    "Food alga",
+    "Salinity (ppt)",
+    "Light (hours/day)",
+    "Cell density (cells/mL)",
+    "Average cell length (µm)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "Ternia",
+     0,
+     12,
+     640,
+     48
+    ],
+    [
+     "Ternia",
+     2,
+     12,
+     1180,
+     46
+    ],
+    [
+     "Ternia",
+     4,
+     12,
+     1520,
+     45
+    ],
+    [
+     "Ternia",
+     6,
+     12,
+     1310,
+     43
+    ],
+    [
+     "Ternia",
+     8,
+     12,
+     520,
+     40
+    ],
+    [
+     "Vosk",
+     0,
+     12,
+     410,
+     52
+    ],
+    [
+     "Vosk",
+     2,
+     12,
+     880,
+     51
+    ],
+    [
+     "Vosk",
+     4,
+     12,
+     1090,
+     50
+    ],
+    [
+     "Vosk",
+     6,
+     12,
+     1240,
+     49
+    ],
+    [
+     "Vosk",
+     8,
+     12,
+     1020,
+     47
+    ],
+    [
+     "Ternia",
+     4,
+     6,
+     960,
+     45
+    ],
+    [
+     "Ternia",
+     4,
+     18,
+     1600,
+     44
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12a-P1-Q4",
+  "passage_id": "sc12a-p1",
+  "passage_title": "Salinity, Food, and Light in Pelluna Ciliate Cultures",
+  "format": "research_summaries",
+  "passage": "Pelluna is a single-celled freshwater ciliate that feeds on algae. Biologists grew Pelluna in glass flasks to see how salinity (dissolved salt, in parts per thousand, ppt), the kind of alga supplied as food, and the daily light period affected the cultures.\n\nEvery flask began with 100 Pelluna cells per milliliter (cells/mL) and was kept at 20°C. After 5 days, the biologists recorded the cell density and the average cell length of the Pelluna in each flask (see Table 1).\n\nExperiment 1\nFlasks were fed the alga Ternia at salinities of 0, 2, 4, 6, or 8 ppt. Each flask received 12 hours of light per day.\n\nExperiment 2\nFlasks were fed the alga Vosk at the same five salinities. Each flask received 12 hours of light per day.\n\nExperiment 3\nFlasks were fed Ternia at 4 ppt and received 6, 12, or 18 hours of light per day. (The 12-hour result is that of Experiment 1 at 4 ppt.)",
+  "prompt": "A student claims that raising the salinity from 6 ppt to 8 ppt lowered the cell density for both food algae. Do the results support this claim?",
+  "choices": [
+   "Yes; in Experiments 1 and 2, the culture at 8 ppt reached a lower density than the culture at 6 ppt.",
+   "No; the Experiment 2 culture at 8 ppt reached a higher density than the Experiment 1 culture at 8 ppt.",
+   "Yes; in Experiment 1, the cultures at 8 ppt and at 0 ppt both reached lower densities than the culture at 6 ppt.",
+   "No; in Experiment 2, the culture at 8 ppt reached a higher density than the culture at 2 ppt."
+  ],
+  "correct_answer": "Yes; in Experiments 1 and 2, the culture at 8 ppt reached a lower density than the culture at 6 ppt.",
+  "explanation": "Ternia (Experiment 1) fell from 1,310 to 520 and Vosk (Experiment 2) fell from 1,240 to 1,020 between 6 and 8 ppt, so \"Yes; in Experiments 1 and 2...\". The Experiment 1 reason covers Ternia only. Comparing Vosk with Ternia at 8 ppt (1,020 vs 520) compares food algae, not salinities, and 8 ppt vs 2 ppt is not the 6-to-8 step.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate a claim against data",
+  "difficulty": "hard",
+  "topic_tag": "Salinity, Food, and Light in Pelluna Ciliate Cultures",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Pelluna cultures after 5 days",
+   "colLabels": [
+    "Food alga",
+    "Salinity (ppt)",
+    "Light (hours/day)",
+    "Cell density (cells/mL)",
+    "Average cell length (µm)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "Ternia",
+     0,
+     12,
+     640,
+     48
+    ],
+    [
+     "Ternia",
+     2,
+     12,
+     1180,
+     46
+    ],
+    [
+     "Ternia",
+     4,
+     12,
+     1520,
+     45
+    ],
+    [
+     "Ternia",
+     6,
+     12,
+     1310,
+     43
+    ],
+    [
+     "Ternia",
+     8,
+     12,
+     520,
+     40
+    ],
+    [
+     "Vosk",
+     0,
+     12,
+     410,
+     52
+    ],
+    [
+     "Vosk",
+     2,
+     12,
+     880,
+     51
+    ],
+    [
+     "Vosk",
+     4,
+     12,
+     1090,
+     50
+    ],
+    [
+     "Vosk",
+     6,
+     12,
+     1240,
+     49
+    ],
+    [
+     "Vosk",
+     8,
+     12,
+     1020,
+     47
+    ],
+    [
+     "Ternia",
+     4,
+     6,
+     960,
+     45
+    ],
+    [
+     "Ternia",
+     4,
+     18,
+     1600,
+     44
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12a-P1-Q5",
+  "passage_id": "sc12a-p1",
+  "passage_title": "Salinity, Food, and Light in Pelluna Ciliate Cultures",
+  "format": "research_summaries",
+  "passage": "Pelluna is a single-celled freshwater ciliate that feeds on algae. Biologists grew Pelluna in glass flasks to see how salinity (dissolved salt, in parts per thousand, ppt), the kind of alga supplied as food, and the daily light period affected the cultures.\n\nEvery flask began with 100 Pelluna cells per milliliter (cells/mL) and was kept at 20°C. After 5 days, the biologists recorded the cell density and the average cell length of the Pelluna in each flask (see Table 1).\n\nExperiment 1\nFlasks were fed the alga Ternia at salinities of 0, 2, 4, 6, or 8 ppt. Each flask received 12 hours of light per day.\n\nExperiment 2\nFlasks were fed the alga Vosk at the same five salinities. Each flask received 12 hours of light per day.\n\nExperiment 3\nFlasks were fed Ternia at 4 ppt and received 6, 12, or 18 hours of light per day. (The 12-hour result is that of Experiment 1 at 4 ppt.)",
+  "prompt": "If a Vosk-fed culture had been grown at 5 ppt under the conditions of Experiment 2, its cell density after 5 days would most likely have been:",
+  "choices": [
+   "greater than 1,520 cells/mL.",
+   "between 1,240 cells/mL and 1,520 cells/mL.",
+   "between 1,090 cells/mL and 1,240 cells/mL.",
+   "less than 1,090 cells/mL."
+  ],
+  "correct_answer": "between 1,090 cells/mL and 1,240 cells/mL.",
+  "explanation": "Vosk density rose from 1,090 (4 ppt) to 1,240 (6 ppt), so at 5 ppt it would most likely be \"between 1,090 cells/mL and 1,240 cells/mL\".",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate within one series",
+  "difficulty": "medium",
+  "topic_tag": "Salinity, Food, and Light in Pelluna Ciliate Cultures",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Pelluna cultures after 5 days",
+   "colLabels": [
+    "Food alga",
+    "Salinity (ppt)",
+    "Light (hours/day)",
+    "Cell density (cells/mL)",
+    "Average cell length (µm)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "Ternia",
+     0,
+     12,
+     640,
+     48
+    ],
+    [
+     "Ternia",
+     2,
+     12,
+     1180,
+     46
+    ],
+    [
+     "Ternia",
+     4,
+     12,
+     1520,
+     45
+    ],
+    [
+     "Ternia",
+     6,
+     12,
+     1310,
+     43
+    ],
+    [
+     "Ternia",
+     8,
+     12,
+     520,
+     40
+    ],
+    [
+     "Vosk",
+     0,
+     12,
+     410,
+     52
+    ],
+    [
+     "Vosk",
+     2,
+     12,
+     880,
+     51
+    ],
+    [
+     "Vosk",
+     4,
+     12,
+     1090,
+     50
+    ],
+    [
+     "Vosk",
+     6,
+     12,
+     1240,
+     49
+    ],
+    [
+     "Vosk",
+     8,
+     12,
+     1020,
+     47
+    ],
+    [
+     "Ternia",
+     4,
+     6,
+     960,
+     45
+    ],
+    [
+     "Ternia",
+     4,
+     18,
+     1600,
+     44
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12a-P1-Q6",
+  "passage_id": "sc12a-p1",
+  "passage_title": "Salinity, Food, and Light in Pelluna Ciliate Cultures",
+  "format": "research_summaries",
+  "passage": "Pelluna is a single-celled freshwater ciliate that feeds on algae. Biologists grew Pelluna in glass flasks to see how salinity (dissolved salt, in parts per thousand, ppt), the kind of alga supplied as food, and the daily light period affected the cultures.\n\nEvery flask began with 100 Pelluna cells per milliliter (cells/mL) and was kept at 20°C. After 5 days, the biologists recorded the cell density and the average cell length of the Pelluna in each flask (see Table 1).\n\nExperiment 1\nFlasks were fed the alga Ternia at salinities of 0, 2, 4, 6, or 8 ppt. Each flask received 12 hours of light per day.\n\nExperiment 2\nFlasks were fed the alga Vosk at the same five salinities. Each flask received 12 hours of light per day.\n\nExperiment 3\nFlasks were fed Ternia at 4 ppt and received 6, 12, or 18 hours of light per day. (The 12-hour result is that of Experiment 1 at 4 ppt.)",
+  "prompt": "A biologist wants to learn whether the light period affects Vosk-fed cultures the way it affected Ternia-fed cultures, while keeping all other conditions the same as in Experiment 3. Which set of trials should the biologist run?",
+  "choices": [
+   "Vosk-fed cultures at 8 ppt with 6, 12, and 18 hours of light per day",
+   "Vosk-fed cultures at 6 ppt with 6, 12, and 18 hours of light per day",
+   "Vosk-fed cultures at 4 ppt with 6, 12, and 18 hours of light per day",
+   "Vosk-fed cultures at 2 ppt with 6, 12, and 18 hours of light per day"
+  ],
+  "correct_answer": "Vosk-fed cultures at 4 ppt with 6, 12, and 18 hours of light per day",
+  "explanation": "Experiment 3 was run at 4 ppt, so only the food alga should change: \"Vosk-fed cultures at 4 ppt with 6, 12, and 18 hours of light per day\". The other plans also change the salinity.",
+  "domain": "Scientific Investigation",
+  "subskill": "design a controlled follow-up",
+  "difficulty": "medium",
+  "topic_tag": "Salinity, Food, and Light in Pelluna Ciliate Cultures",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Pelluna cultures after 5 days",
+   "colLabels": [
+    "Food alga",
+    "Salinity (ppt)",
+    "Light (hours/day)",
+    "Cell density (cells/mL)",
+    "Average cell length (µm)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "Ternia",
+     0,
+     12,
+     640,
+     48
+    ],
+    [
+     "Ternia",
+     2,
+     12,
+     1180,
+     46
+    ],
+    [
+     "Ternia",
+     4,
+     12,
+     1520,
+     45
+    ],
+    [
+     "Ternia",
+     6,
+     12,
+     1310,
+     43
+    ],
+    [
+     "Ternia",
+     8,
+     12,
+     520,
+     40
+    ],
+    [
+     "Vosk",
+     0,
+     12,
+     410,
+     52
+    ],
+    [
+     "Vosk",
+     2,
+     12,
+     880,
+     51
+    ],
+    [
+     "Vosk",
+     4,
+     12,
+     1090,
+     50
+    ],
+    [
+     "Vosk",
+     6,
+     12,
+     1240,
+     49
+    ],
+    [
+     "Vosk",
+     8,
+     12,
+     1020,
+     47
+    ],
+    [
+     "Ternia",
+     4,
+     6,
+     960,
+     45
+    ],
+    [
+     "Ternia",
+     4,
+     18,
+     1600,
+     44
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12a-P2-Q1",
+  "passage_id": "sc12a-p2",
+  "passage_title": "Catalyst, Humidity, and Curing of Varex Sealant",
+  "format": "research_summaries",
+  "passage": "Varex is a liquid sealant that hardens after a small amount of catalyst is stirred in. Materials engineers measured how catalyst concentration, air humidity, and temperature affected two properties: set time (the time until the sealant no longer feels tacky) and final hardness after 7 days, measured on a scale from 0 to 100.\n\nEach trial used a 50-gram sample spread 3 mm thick on a steel plate. Table 1 gives the results.\n\nExperiment 1\nCatalyst concentration was 0.5%, 1.0%, 1.5%, 2.0%, or 2.5% by mass. Samples cured at 50% humidity and 20°C.\n\nExperiment 2\nSamples with 1.5% catalyst cured at 20°C and 20%, 35%, 50%, 65%, or 80% humidity. (The 50% result is that of Experiment 1 at 1.5%.)\n\nExperiment 3\nSamples with 1.5% catalyst cured at 50% humidity and 10°C, 20°C, or 30°C. (The 20°C result is that of Experiment 1 at 1.5%.)",
+  "prompt": "In Experiment 1, final hardness was greatest at which catalyst concentration?",
+  "choices": [
+   "1.0%",
+   "1.5%",
+   "2.0%",
+   "2.5%"
+  ],
+  "correct_answer": "1.5%",
+  "explanation": "Experiment 1 hardness: 64, 72, 76, 74, 69 for 0.5% to 2.5%. The greatest, 76, is at \"1.5%\".",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a maximum within one series",
+  "difficulty": "medium",
+  "topic_tag": "Catalyst, Humidity, and Curing of Varex Sealant",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Set time and final hardness of Varex samples",
+   "colLabels": [
+    "Catalyst (%)",
+    "Humidity (%)",
+    "Temperature (°C)",
+    "Set time (min)",
+    "Final hardness"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     0.5,
+     50,
+     20,
+     96,
+     64
+    ],
+    [
+     1.0,
+     50,
+     20,
+     58,
+     72
+    ],
+    [
+     1.5,
+     50,
+     20,
+     40,
+     76
+    ],
+    [
+     2.0,
+     50,
+     20,
+     33,
+     74
+    ],
+    [
+     2.5,
+     50,
+     20,
+     31,
+     69
+    ],
+    [
+     1.5,
+     20,
+     20,
+     62,
+     71
+    ],
+    [
+     1.5,
+     35,
+     20,
+     48,
+     74
+    ],
+    [
+     1.5,
+     65,
+     20,
+     37,
+     70
+    ],
+    [
+     1.5,
+     80,
+     20,
+     39,
+     61
+    ],
+    [
+     1.5,
+     50,
+     10,
+     75,
+     72
+    ],
+    [
+     1.5,
+     50,
+     30,
+     24,
+     73
+    ]
+   ]
+  },
+  "consistency_check": "Set time falls then levels off with catalyst while hardness peaks at 1.5%; humidity gives a minimum set time at 65% and falling hardness above 50%; the 1.5%/50%/20°C trial is shared by all three experiments with identical values."
+ },
+ {
+  "id": "ASV12a-P2-Q2",
+  "passage_id": "sc12a-p2",
+  "passage_title": "Catalyst, Humidity, and Curing of Varex Sealant",
+  "format": "research_summaries",
+  "passage": "Varex is a liquid sealant that hardens after a small amount of catalyst is stirred in. Materials engineers measured how catalyst concentration, air humidity, and temperature affected two properties: set time (the time until the sealant no longer feels tacky) and final hardness after 7 days, measured on a scale from 0 to 100.\n\nEach trial used a 50-gram sample spread 3 mm thick on a steel plate. Table 1 gives the results.\n\nExperiment 1\nCatalyst concentration was 0.5%, 1.0%, 1.5%, 2.0%, or 2.5% by mass. Samples cured at 50% humidity and 20°C.\n\nExperiment 2\nSamples with 1.5% catalyst cured at 20°C and 20%, 35%, 50%, 65%, or 80% humidity. (The 50% result is that of Experiment 1 at 1.5%.)\n\nExperiment 3\nSamples with 1.5% catalyst cured at 50% humidity and 10°C, 20°C, or 30°C. (The 20°C result is that of Experiment 1 at 1.5%.)",
+  "prompt": "Which of the following trials had the longest set time?",
+  "choices": [
+   "The Experiment 1 trial with 0.5% catalyst",
+   "The Experiment 2 trial at 20% humidity",
+   "The Experiment 2 trial at 80% humidity",
+   "The Experiment 3 trial at 10°C"
+  ],
+  "correct_answer": "The Experiment 1 trial with 0.5% catalyst",
+  "explanation": "Set times: 96 min (0.5% catalyst), 75 min (10°C), 62 min (20% humidity), 39 min (80% humidity). The longest is \"The Experiment 1 trial with 0.5% catalyst\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compare values across experiments",
+  "difficulty": "medium",
+  "topic_tag": "Catalyst, Humidity, and Curing of Varex Sealant",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Set time and final hardness of Varex samples",
+   "colLabels": [
+    "Catalyst (%)",
+    "Humidity (%)",
+    "Temperature (°C)",
+    "Set time (min)",
+    "Final hardness"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     0.5,
+     50,
+     20,
+     96,
+     64
+    ],
+    [
+     1.0,
+     50,
+     20,
+     58,
+     72
+    ],
+    [
+     1.5,
+     50,
+     20,
+     40,
+     76
+    ],
+    [
+     2.0,
+     50,
+     20,
+     33,
+     74
+    ],
+    [
+     2.5,
+     50,
+     20,
+     31,
+     69
+    ],
+    [
+     1.5,
+     20,
+     20,
+     62,
+     71
+    ],
+    [
+     1.5,
+     35,
+     20,
+     48,
+     74
+    ],
+    [
+     1.5,
+     65,
+     20,
+     37,
+     70
+    ],
+    [
+     1.5,
+     80,
+     20,
+     39,
+     61
+    ],
+    [
+     1.5,
+     50,
+     10,
+     75,
+     72
+    ],
+    [
+     1.5,
+     50,
+     30,
+     24,
+     73
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12a-P2-Q3",
+  "passage_id": "sc12a-p2",
+  "passage_title": "Catalyst, Humidity, and Curing of Varex Sealant",
+  "format": "research_summaries",
+  "passage": "Varex is a liquid sealant that hardens after a small amount of catalyst is stirred in. Materials engineers measured how catalyst concentration, air humidity, and temperature affected two properties: set time (the time until the sealant no longer feels tacky) and final hardness after 7 days, measured on a scale from 0 to 100.\n\nEach trial used a 50-gram sample spread 3 mm thick on a steel plate. Table 1 gives the results.\n\nExperiment 1\nCatalyst concentration was 0.5%, 1.0%, 1.5%, 2.0%, or 2.5% by mass. Samples cured at 50% humidity and 20°C.\n\nExperiment 2\nSamples with 1.5% catalyst cured at 20°C and 20%, 35%, 50%, 65%, or 80% humidity. (The 50% result is that of Experiment 1 at 1.5%.)\n\nExperiment 3\nSamples with 1.5% catalyst cured at 50% humidity and 10°C, 20°C, or 30°C. (The 20°C result is that of Experiment 1 at 1.5%.)",
+  "prompt": "The engineers most likely used 1.5% catalyst in Experiments 2 and 3 because, in Experiment 1, that concentration:",
+  "choices": [
+   "produced the shortest set time.",
+   "gave the largest drop in set time compared with the next lower concentration.",
+   "was the lowest concentration that gave a set time under 35 minutes.",
+   "produced the greatest final hardness."
+  ],
+  "correct_answer": "produced the greatest final hardness.",
+  "explanation": "In Experiment 1, 1.5% gave the greatest hardness (76). The shortest set time was at 2.5% (31 min); the lowest concentration under 35 min was 2.0% (33 min); the largest drop came from 0.5% to 1.0% (96 to 58 min). So \"produced the greatest final hardness.\"",
+  "domain": "Scientific Investigation",
+  "subskill": "infer the reason for a design choice from data",
+  "difficulty": "hard",
+  "topic_tag": "Catalyst, Humidity, and Curing of Varex Sealant",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Set time and final hardness of Varex samples",
+   "colLabels": [
+    "Catalyst (%)",
+    "Humidity (%)",
+    "Temperature (°C)",
+    "Set time (min)",
+    "Final hardness"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     0.5,
+     50,
+     20,
+     96,
+     64
+    ],
+    [
+     1.0,
+     50,
+     20,
+     58,
+     72
+    ],
+    [
+     1.5,
+     50,
+     20,
+     40,
+     76
+    ],
+    [
+     2.0,
+     50,
+     20,
+     33,
+     74
+    ],
+    [
+     2.5,
+     50,
+     20,
+     31,
+     69
+    ],
+    [
+     1.5,
+     20,
+     20,
+     62,
+     71
+    ],
+    [
+     1.5,
+     35,
+     20,
+     48,
+     74
+    ],
+    [
+     1.5,
+     65,
+     20,
+     37,
+     70
+    ],
+    [
+     1.5,
+     80,
+     20,
+     39,
+     61
+    ],
+    [
+     1.5,
+     50,
+     10,
+     75,
+     72
+    ],
+    [
+     1.5,
+     50,
+     30,
+     24,
+     73
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12a-P2-Q4",
+  "passage_id": "sc12a-p2",
+  "passage_title": "Catalyst, Humidity, and Curing of Varex Sealant",
+  "format": "research_summaries",
+  "passage": "Varex is a liquid sealant that hardens after a small amount of catalyst is stirred in. Materials engineers measured how catalyst concentration, air humidity, and temperature affected two properties: set time (the time until the sealant no longer feels tacky) and final hardness after 7 days, measured on a scale from 0 to 100.\n\nEach trial used a 50-gram sample spread 3 mm thick on a steel plate. Table 1 gives the results.\n\nExperiment 1\nCatalyst concentration was 0.5%, 1.0%, 1.5%, 2.0%, or 2.5% by mass. Samples cured at 50% humidity and 20°C.\n\nExperiment 2\nSamples with 1.5% catalyst cured at 20°C and 20%, 35%, 50%, 65%, or 80% humidity. (The 50% result is that of Experiment 1 at 1.5%.)\n\nExperiment 3\nSamples with 1.5% catalyst cured at 50% humidity and 10°C, 20°C, or 30°C. (The 20°C result is that of Experiment 1 at 1.5%.)",
+  "prompt": "An engineer claims that raising the humidity always shortened the set time of Varex. Do the results support this claim?",
+  "choices": [
+   "No; in Experiment 2, the set time at 80% humidity was longer than the set time at 65% humidity.",
+   "Yes; in Experiment 2, the set time at 35% humidity was shorter than the set time at 20% humidity.",
+   "Yes; in Experiment 2, the set time decreased each time the humidity was raised from 20% to 50%.",
+   "No; the Experiment 3 trial at 10°C had a longer set time than the Experiment 2 trial at 20% humidity."
+  ],
+  "correct_answer": "No; in Experiment 2, the set time at 80% humidity was longer than the set time at 65% humidity.",
+  "explanation": "In Experiment 2 the set time rose from 37 min (65%) to 39 min (80%), so \"No; in Experiment 2, the set time at 80% humidity was longer...\". The 10°C trial (75 min) did have higher humidity (50%) than the 20% trial (62 min), but it was also 10°C colder, so it does not isolate humidity. The \"Yes\" reasons are true only up to 50% or 65%.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "evaluate a claim against data",
+  "difficulty": "hard",
+  "topic_tag": "Catalyst, Humidity, and Curing of Varex Sealant",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Set time and final hardness of Varex samples",
+   "colLabels": [
+    "Catalyst (%)",
+    "Humidity (%)",
+    "Temperature (°C)",
+    "Set time (min)",
+    "Final hardness"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     0.5,
+     50,
+     20,
+     96,
+     64
+    ],
+    [
+     1.0,
+     50,
+     20,
+     58,
+     72
+    ],
+    [
+     1.5,
+     50,
+     20,
+     40,
+     76
+    ],
+    [
+     2.0,
+     50,
+     20,
+     33,
+     74
+    ],
+    [
+     2.5,
+     50,
+     20,
+     31,
+     69
+    ],
+    [
+     1.5,
+     20,
+     20,
+     62,
+     71
+    ],
+    [
+     1.5,
+     35,
+     20,
+     48,
+     74
+    ],
+    [
+     1.5,
+     65,
+     20,
+     37,
+     70
+    ],
+    [
+     1.5,
+     80,
+     20,
+     39,
+     61
+    ],
+    [
+     1.5,
+     50,
+     10,
+     75,
+     72
+    ],
+    [
+     1.5,
+     50,
+     30,
+     24,
+     73
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12a-P2-Q5",
+  "passage_id": "sc12a-p2",
+  "passage_title": "Catalyst, Humidity, and Curing of Varex Sealant",
+  "format": "research_summaries",
+  "passage": "Varex is a liquid sealant that hardens after a small amount of catalyst is stirred in. Materials engineers measured how catalyst concentration, air humidity, and temperature affected two properties: set time (the time until the sealant no longer feels tacky) and final hardness after 7 days, measured on a scale from 0 to 100.\n\nEach trial used a 50-gram sample spread 3 mm thick on a steel plate. Table 1 gives the results.\n\nExperiment 1\nCatalyst concentration was 0.5%, 1.0%, 1.5%, 2.0%, or 2.5% by mass. Samples cured at 50% humidity and 20°C.\n\nExperiment 2\nSamples with 1.5% catalyst cured at 20°C and 20%, 35%, 50%, 65%, or 80% humidity. (The 50% result is that of Experiment 1 at 1.5%.)\n\nExperiment 3\nSamples with 1.5% catalyst cured at 50% humidity and 10°C, 20°C, or 30°C. (The 20°C result is that of Experiment 1 at 1.5%.)",
+  "prompt": "If a Varex sample with 1.5% catalyst had cured at 20°C and 72% humidity, its final hardness would most likely have been:",
+  "choices": [
+   "less than 61.",
+   "between 61 and 70.",
+   "between 70 and 76.",
+   "greater than 76."
+  ],
+  "correct_answer": "between 61 and 70.",
+  "explanation": "Hardness fell from 70 (65% humidity) to 61 (80% humidity), so at 72% it would most likely be \"between 61 and 70\".",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate within one series",
+  "difficulty": "medium",
+  "topic_tag": "Catalyst, Humidity, and Curing of Varex Sealant",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Set time and final hardness of Varex samples",
+   "colLabels": [
+    "Catalyst (%)",
+    "Humidity (%)",
+    "Temperature (°C)",
+    "Set time (min)",
+    "Final hardness"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     0.5,
+     50,
+     20,
+     96,
+     64
+    ],
+    [
+     1.0,
+     50,
+     20,
+     58,
+     72
+    ],
+    [
+     1.5,
+     50,
+     20,
+     40,
+     76
+    ],
+    [
+     2.0,
+     50,
+     20,
+     33,
+     74
+    ],
+    [
+     2.5,
+     50,
+     20,
+     31,
+     69
+    ],
+    [
+     1.5,
+     20,
+     20,
+     62,
+     71
+    ],
+    [
+     1.5,
+     35,
+     20,
+     48,
+     74
+    ],
+    [
+     1.5,
+     65,
+     20,
+     37,
+     70
+    ],
+    [
+     1.5,
+     80,
+     20,
+     39,
+     61
+    ],
+    [
+     1.5,
+     50,
+     10,
+     75,
+     72
+    ],
+    [
+     1.5,
+     50,
+     30,
+     24,
+     73
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12a-P2-Q6",
+  "passage_id": "sc12a-p2",
+  "passage_title": "Catalyst, Humidity, and Curing of Varex Sealant",
+  "format": "research_summaries",
+  "passage": "Varex is a liquid sealant that hardens after a small amount of catalyst is stirred in. Materials engineers measured how catalyst concentration, air humidity, and temperature affected two properties: set time (the time until the sealant no longer feels tacky) and final hardness after 7 days, measured on a scale from 0 to 100.\n\nEach trial used a 50-gram sample spread 3 mm thick on a steel plate. Table 1 gives the results.\n\nExperiment 1\nCatalyst concentration was 0.5%, 1.0%, 1.5%, 2.0%, or 2.5% by mass. Samples cured at 50% humidity and 20°C.\n\nExperiment 2\nSamples with 1.5% catalyst cured at 20°C and 20%, 35%, 50%, 65%, or 80% humidity. (The 50% result is that of Experiment 1 at 1.5%.)\n\nExperiment 3\nSamples with 1.5% catalyst cured at 50% humidity and 10°C, 20°C, or 30°C. (The 20°C result is that of Experiment 1 at 1.5%.)",
+  "prompt": "A contractor needs Varex that sets in less than 45 minutes and reaches a final hardness of at least 73 when cured at 50% humidity and 20°C. Based on Experiment 1, which catalyst concentrations meet both requirements?",
+  "choices": [
+   "1.0%, 1.5%, and 2.0% only",
+   "1.5% and 2.0% only",
+   "2.0% and 2.5% only",
+   "1.5% only"
+  ],
+  "correct_answer": "1.5% and 2.0% only",
+  "explanation": "1.0%: 58 min (too slow). 1.5%: 40 min, 76. 2.0%: 33 min, 74. 2.5%: 31 min but hardness 69 (too soft). So \"1.5% and 2.0% only\".",
+  "domain": "Interpretation of Data",
+  "subskill": "apply two criteria to a table",
+  "difficulty": "hard",
+  "topic_tag": "Catalyst, Humidity, and Curing of Varex Sealant",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Set time and final hardness of Varex samples",
+   "colLabels": [
+    "Catalyst (%)",
+    "Humidity (%)",
+    "Temperature (°C)",
+    "Set time (min)",
+    "Final hardness"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     0.5,
+     50,
+     20,
+     96,
+     64
+    ],
+    [
+     1.0,
+     50,
+     20,
+     58,
+     72
+    ],
+    [
+     1.5,
+     50,
+     20,
+     40,
+     76
+    ],
+    [
+     2.0,
+     50,
+     20,
+     33,
+     74
+    ],
+    [
+     2.5,
+     50,
+     20,
+     31,
+     69
+    ],
+    [
+     1.5,
+     20,
+     20,
+     62,
+     71
+    ],
+    [
+     1.5,
+     35,
+     20,
+     48,
+     74
+    ],
+    [
+     1.5,
+     65,
+     20,
+     37,
+     70
+    ],
+    [
+     1.5,
+     80,
+     20,
+     39,
+     61
+    ],
+    [
+     1.5,
+     50,
+     10,
+     75,
+     72
+    ],
+    [
+     1.5,
+     50,
+     30,
+     24,
+     73
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12a-P3-Q1",
+  "passage_id": "sc12a-p3",
+  "passage_title": "Ground Cover, Slope, and Grazing at Tollan Ridge",
+  "format": "research_summaries",
+  "passage": "At Tollan Ridge, a hillside pasture, soil scientists measured how quickly water from a rainfall simulator soaked into the ground. In each trial, simulated rain fell at 60 millimeters per hour (mm/h) for 1 hour on a 1 m² plot. The scientists recorded the infiltration rate (how fast water entered the soil, in mm/h) and the runoff (the percent of the applied water that flowed off the plot). Table 1 gives the results.\n\nStudy 1\nPlots with three ground covers (bare soil, short grass, or shrub litter, a layer of fallen leaves and twigs) were tested on slopes of 2°, 8°, and 15°. None of these plots had been grazed for 5 years.\n\nStudy 2\nPlots of short grass on an 8° slope were grazed for one season by 0, 2, 4, or 6 sheep per hectare before being tested. (The 0-sheep result is that of Study 1 for short grass at 8°.)",
+  "prompt": "Which Study 1 plot had an infiltration rate closest to 30 mm/h?",
+  "choices": [
+   "Shrub litter on the 15° slope",
+   "Bare soil on the 2° slope",
+   "Short grass on the 15° slope",
+   "Short grass on the 8° slope"
+  ],
+  "correct_answer": "Short grass on the 8° slope",
+  "explanation": "Short grass at 8° measured 31 mm/h (1 from 30); short grass at 15° measured 27 and shrub litter at 15° measured 33 (3 from 30); bare soil at 2° measured 18. So \"Short grass on the 8° slope\".",
+  "domain": "Interpretation of Data",
+  "subskill": "read and compare table values",
+  "difficulty": "medium",
+  "topic_tag": "Ground Cover, Slope, and Grazing at Tollan Ridge",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Infiltration rate and runoff at Tollan Ridge",
+   "colLabels": [
+    "Ground cover",
+    "Slope",
+    "Sheep per hectare",
+    "Infiltration rate (mm/h)",
+    "Runoff (%)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2"
+   ],
+   "cells": [
+    [
+     "Bare soil",
+     "2°",
+     0,
+     18,
+     31
+    ],
+    [
+     "Bare soil",
+     "8°",
+     0,
+     12,
+     47
+    ],
+    [
+     "Bare soil",
+     "15°",
+     0,
+     9,
+     58
+    ],
+    [
+     "Short grass",
+     "2°",
+     0,
+     34,
+     9
+    ],
+    [
+     "Short grass",
+     "8°",
+     0,
+     31,
+     14
+    ],
+    [
+     "Short grass",
+     "15°",
+     0,
+     27,
+     21
+    ],
+    [
+     "Shrub litter",
+     "2°",
+     0,
+     41,
+     5
+    ],
+    [
+     "Shrub litter",
+     "8°",
+     0,
+     40,
+     6
+    ],
+    [
+     "Shrub litter",
+     "15°",
+     0,
+     33,
+     15
+    ],
+    [
+     "Short grass",
+     "8°",
+     2,
+     29,
+     16
+    ],
+    [
+     "Short grass",
+     "8°",
+     4,
+     22,
+     27
+    ],
+    [
+     "Short grass",
+     "8°",
+     6,
+     14,
+     41
+    ]
+   ]
+  },
+  "consistency_check": "Infiltration and runoff move in opposite directions in every row; slope matters far more on bare soil than under litter (interaction); grazing losses grow with each step (2, 7, 8 mm/h); the 0-sheep row of Study 2 equals the grass 8° row of Study 1."
+ },
+ {
+  "id": "ASV12a-P3-Q2",
+  "passage_id": "sc12a-p3",
+  "passage_title": "Ground Cover, Slope, and Grazing at Tollan Ridge",
+  "format": "research_summaries",
+  "passage": "At Tollan Ridge, a hillside pasture, soil scientists measured how quickly water from a rainfall simulator soaked into the ground. In each trial, simulated rain fell at 60 millimeters per hour (mm/h) for 1 hour on a 1 m² plot. The scientists recorded the infiltration rate (how fast water entered the soil, in mm/h) and the runoff (the percent of the applied water that flowed off the plot). Table 1 gives the results.\n\nStudy 1\nPlots with three ground covers (bare soil, short grass, or shrub litter, a layer of fallen leaves and twigs) were tested on slopes of 2°, 8°, and 15°. None of these plots had been grazed for 5 years.\n\nStudy 2\nPlots of short grass on an 8° slope were grazed for one season by 0, 2, 4, or 6 sheep per hectare before being tested. (The 0-sheep result is that of Study 1 for short grass at 8°.)",
+  "prompt": "In Study 2, as grazing increased from 0 to 6 sheep per hectare, the drop in infiltration rate from each grazing level to the next:",
+  "choices": [
+   "was largest between 0 and 2 sheep per hectare.",
+   "stayed the same at each step.",
+   "became smaller with each step.",
+   "became larger with each step."
+  ],
+  "correct_answer": "became larger with each step.",
+  "explanation": "Infiltration fell 31 to 29 (2), 29 to 22 (7), and 22 to 14 (8) mm/h, so the drop \"became larger with each step.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "describe the change between consecutive values",
+  "difficulty": "hard",
+  "topic_tag": "Ground Cover, Slope, and Grazing at Tollan Ridge",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Infiltration rate and runoff at Tollan Ridge",
+   "colLabels": [
+    "Ground cover",
+    "Slope",
+    "Sheep per hectare",
+    "Infiltration rate (mm/h)",
+    "Runoff (%)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2"
+   ],
+   "cells": [
+    [
+     "Bare soil",
+     "2°",
+     0,
+     18,
+     31
+    ],
+    [
+     "Bare soil",
+     "8°",
+     0,
+     12,
+     47
+    ],
+    [
+     "Bare soil",
+     "15°",
+     0,
+     9,
+     58
+    ],
+    [
+     "Short grass",
+     "2°",
+     0,
+     34,
+     9
+    ],
+    [
+     "Short grass",
+     "8°",
+     0,
+     31,
+     14
+    ],
+    [
+     "Short grass",
+     "15°",
+     0,
+     27,
+     21
+    ],
+    [
+     "Shrub litter",
+     "2°",
+     0,
+     41,
+     5
+    ],
+    [
+     "Shrub litter",
+     "8°",
+     0,
+     40,
+     6
+    ],
+    [
+     "Shrub litter",
+     "15°",
+     0,
+     33,
+     15
+    ],
+    [
+     "Short grass",
+     "8°",
+     2,
+     29,
+     16
+    ],
+    [
+     "Short grass",
+     "8°",
+     4,
+     22,
+     27
+    ],
+    [
+     "Short grass",
+     "8°",
+     6,
+     14,
+     41
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12a-P3-Q3",
+  "passage_id": "sc12a-p3",
+  "passage_title": "Ground Cover, Slope, and Grazing at Tollan Ridge",
+  "format": "research_summaries",
+  "passage": "At Tollan Ridge, a hillside pasture, soil scientists measured how quickly water from a rainfall simulator soaked into the ground. In each trial, simulated rain fell at 60 millimeters per hour (mm/h) for 1 hour on a 1 m² plot. The scientists recorded the infiltration rate (how fast water entered the soil, in mm/h) and the runoff (the percent of the applied water that flowed off the plot). Table 1 gives the results.\n\nStudy 1\nPlots with three ground covers (bare soil, short grass, or shrub litter, a layer of fallen leaves and twigs) were tested on slopes of 2°, 8°, and 15°. None of these plots had been grazed for 5 years.\n\nStudy 2\nPlots of short grass on an 8° slope were grazed for one season by 0, 2, 4, or 6 sheep per hectare before being tested. (The 0-sheep result is that of Study 1 for short grass at 8°.)",
+  "prompt": "To learn whether grazing lowers infiltration under shrub litter as much as it does under short grass, the scientists plan to repeat Study 2, changing only the ground cover. Which plan does this?",
+  "choices": [
+   "Shrub litter on a 15° slope, grazed by 0, 2, 4, or 6 sheep per hectare",
+   "Shrub litter on an 8° slope, grazed by 0, 2, 4, or 6 sheep per hectare",
+   "Shrub litter on an 8° slope, grazed by 0, 4, 8, or 12 sheep per hectare",
+   "Shrub litter on a 2° slope, grazed by 0, 2, 4, or 6 sheep per hectare"
+  ],
+  "correct_answer": "Shrub litter on an 8° slope, grazed by 0, 2, 4, or 6 sheep per hectare",
+  "explanation": "Study 2 used an 8° slope and 0, 2, 4, and 6 sheep per hectare, so only the cover should change: \"Shrub litter on an 8° slope, grazed by 0, 2, 4, or 6 sheep per hectare\". The other plans also change the slope or the grazing levels.",
+  "domain": "Scientific Investigation",
+  "subskill": "design a controlled follow-up",
+  "difficulty": "medium",
+  "topic_tag": "Ground Cover, Slope, and Grazing at Tollan Ridge",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Infiltration rate and runoff at Tollan Ridge",
+   "colLabels": [
+    "Ground cover",
+    "Slope",
+    "Sheep per hectare",
+    "Infiltration rate (mm/h)",
+    "Runoff (%)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2"
+   ],
+   "cells": [
+    [
+     "Bare soil",
+     "2°",
+     0,
+     18,
+     31
+    ],
+    [
+     "Bare soil",
+     "8°",
+     0,
+     12,
+     47
+    ],
+    [
+     "Bare soil",
+     "15°",
+     0,
+     9,
+     58
+    ],
+    [
+     "Short grass",
+     "2°",
+     0,
+     34,
+     9
+    ],
+    [
+     "Short grass",
+     "8°",
+     0,
+     31,
+     14
+    ],
+    [
+     "Short grass",
+     "15°",
+     0,
+     27,
+     21
+    ],
+    [
+     "Shrub litter",
+     "2°",
+     0,
+     41,
+     5
+    ],
+    [
+     "Shrub litter",
+     "8°",
+     0,
+     40,
+     6
+    ],
+    [
+     "Shrub litter",
+     "15°",
+     0,
+     33,
+     15
+    ],
+    [
+     "Short grass",
+     "8°",
+     2,
+     29,
+     16
+    ],
+    [
+     "Short grass",
+     "8°",
+     4,
+     22,
+     27
+    ],
+    [
+     "Short grass",
+     "8°",
+     6,
+     14,
+     41
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12a-P3-Q4",
+  "passage_id": "sc12a-p3",
+  "passage_title": "Ground Cover, Slope, and Grazing at Tollan Ridge",
+  "format": "research_summaries",
+  "passage": "At Tollan Ridge, a hillside pasture, soil scientists measured how quickly water from a rainfall simulator soaked into the ground. In each trial, simulated rain fell at 60 millimeters per hour (mm/h) for 1 hour on a 1 m² plot. The scientists recorded the infiltration rate (how fast water entered the soil, in mm/h) and the runoff (the percent of the applied water that flowed off the plot). Table 1 gives the results.\n\nStudy 1\nPlots with three ground covers (bare soil, short grass, or shrub litter, a layer of fallen leaves and twigs) were tested on slopes of 2°, 8°, and 15°. None of these plots had been grazed for 5 years.\n\nStudy 2\nPlots of short grass on an 8° slope were grazed for one season by 0, 2, 4, or 6 sheep per hectare before being tested. (The 0-sheep result is that of Study 1 for short grass at 8°.)",
+  "prompt": "Which of the following statements is supported by the results of Study 1?",
+  "choices": [
+   "On every slope, shrub litter had the highest infiltration rate of the three ground covers.",
+   "On every slope, short grass produced less runoff than shrub litter did.",
+   "On every slope, runoff from bare soil was more than three times the runoff from short grass.",
+   "Raising the slope from 2° to 8° lowered infiltration more under shrub litter than on bare soil."
+  ],
+  "correct_answer": "On every slope, shrub litter had the highest infiltration rate of the three ground covers.",
+  "explanation": "Litter beat grass and bare soil at 2° (41 vs 34, 18), 8° (40 vs 31, 12), and 15° (33 vs 27, 9). Grass had MORE runoff than litter (9 vs 5 at 2°); from 2° to 8° litter dropped 1 mm/h but bare soil dropped 6; at 15° bare-soil runoff (58%) was less than three times grass runoff (21%).",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "select the statement the data support",
+  "difficulty": "hard",
+  "topic_tag": "Ground Cover, Slope, and Grazing at Tollan Ridge",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Infiltration rate and runoff at Tollan Ridge",
+   "colLabels": [
+    "Ground cover",
+    "Slope",
+    "Sheep per hectare",
+    "Infiltration rate (mm/h)",
+    "Runoff (%)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2"
+   ],
+   "cells": [
+    [
+     "Bare soil",
+     "2°",
+     0,
+     18,
+     31
+    ],
+    [
+     "Bare soil",
+     "8°",
+     0,
+     12,
+     47
+    ],
+    [
+     "Bare soil",
+     "15°",
+     0,
+     9,
+     58
+    ],
+    [
+     "Short grass",
+     "2°",
+     0,
+     34,
+     9
+    ],
+    [
+     "Short grass",
+     "8°",
+     0,
+     31,
+     14
+    ],
+    [
+     "Short grass",
+     "15°",
+     0,
+     27,
+     21
+    ],
+    [
+     "Shrub litter",
+     "2°",
+     0,
+     41,
+     5
+    ],
+    [
+     "Shrub litter",
+     "8°",
+     0,
+     40,
+     6
+    ],
+    [
+     "Shrub litter",
+     "15°",
+     0,
+     33,
+     15
+    ],
+    [
+     "Short grass",
+     "8°",
+     2,
+     29,
+     16
+    ],
+    [
+     "Short grass",
+     "8°",
+     4,
+     22,
+     27
+    ],
+    [
+     "Short grass",
+     "8°",
+     6,
+     14,
+     41
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12a-P3-Q5",
+  "passage_id": "sc12a-p3",
+  "passage_title": "Ground Cover, Slope, and Grazing at Tollan Ridge",
+  "format": "research_summaries",
+  "passage": "At Tollan Ridge, a hillside pasture, soil scientists measured how quickly water from a rainfall simulator soaked into the ground. In each trial, simulated rain fell at 60 millimeters per hour (mm/h) for 1 hour on a 1 m² plot. The scientists recorded the infiltration rate (how fast water entered the soil, in mm/h) and the runoff (the percent of the applied water that flowed off the plot). Table 1 gives the results.\n\nStudy 1\nPlots with three ground covers (bare soil, short grass, or shrub litter, a layer of fallen leaves and twigs) were tested on slopes of 2°, 8°, and 15°. None of these plots had been grazed for 5 years.\n\nStudy 2\nPlots of short grass on an 8° slope were grazed for one season by 0, 2, 4, or 6 sheep per hectare before being tested. (The 0-sheep result is that of Study 1 for short grass at 8°.)",
+  "prompt": "If Study 2 had included a plot grazed by 3 sheep per hectare, its runoff would most likely have been:",
+  "choices": [
+   "between 27% and 41%.",
+   "between 16% and 27%.",
+   "between 14% and 16%.",
+   "less than 14%."
+  ],
+  "correct_answer": "between 16% and 27%.",
+  "explanation": "Runoff was 16% at 2 sheep and 27% at 4 sheep per hectare, so at 3 it would most likely be \"between 16% and 27%\".",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate within one series",
+  "difficulty": "medium",
+  "topic_tag": "Ground Cover, Slope, and Grazing at Tollan Ridge",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Infiltration rate and runoff at Tollan Ridge",
+   "colLabels": [
+    "Ground cover",
+    "Slope",
+    "Sheep per hectare",
+    "Infiltration rate (mm/h)",
+    "Runoff (%)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2"
+   ],
+   "cells": [
+    [
+     "Bare soil",
+     "2°",
+     0,
+     18,
+     31
+    ],
+    [
+     "Bare soil",
+     "8°",
+     0,
+     12,
+     47
+    ],
+    [
+     "Bare soil",
+     "15°",
+     0,
+     9,
+     58
+    ],
+    [
+     "Short grass",
+     "2°",
+     0,
+     34,
+     9
+    ],
+    [
+     "Short grass",
+     "8°",
+     0,
+     31,
+     14
+    ],
+    [
+     "Short grass",
+     "15°",
+     0,
+     27,
+     21
+    ],
+    [
+     "Shrub litter",
+     "2°",
+     0,
+     41,
+     5
+    ],
+    [
+     "Shrub litter",
+     "8°",
+     0,
+     40,
+     6
+    ],
+    [
+     "Shrub litter",
+     "15°",
+     0,
+     33,
+     15
+    ],
+    [
+     "Short grass",
+     "8°",
+     2,
+     29,
+     16
+    ],
+    [
+     "Short grass",
+     "8°",
+     4,
+     22,
+     27
+    ],
+    [
+     "Short grass",
+     "8°",
+     6,
+     14,
+     41
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12a-P3-Q6",
+  "passage_id": "sc12a-p3",
+  "passage_title": "Ground Cover, Slope, and Grazing at Tollan Ridge",
+  "format": "research_summaries",
+  "passage": "At Tollan Ridge, a hillside pasture, soil scientists measured how quickly water from a rainfall simulator soaked into the ground. In each trial, simulated rain fell at 60 millimeters per hour (mm/h) for 1 hour on a 1 m² plot. The scientists recorded the infiltration rate (how fast water entered the soil, in mm/h) and the runoff (the percent of the applied water that flowed off the plot). Table 1 gives the results.\n\nStudy 1\nPlots with three ground covers (bare soil, short grass, or shrub litter, a layer of fallen leaves and twigs) were tested on slopes of 2°, 8°, and 15°. None of these plots had been grazed for 5 years.\n\nStudy 2\nPlots of short grass on an 8° slope were grazed for one season by 0, 2, 4, or 6 sheep per hectare before being tested. (The 0-sheep result is that of Study 1 for short grass at 8°.)",
+  "prompt": "A short-grass plot on an 8° slope is grazed by 4 sheep per hectare. Compared with an ungrazed shrub-litter plot on a 15° slope, its infiltration rate is:",
+  "choices": [
+   "lower by about 19 mm/h.",
+   "higher by about 11 mm/h.",
+   "about the same.",
+   "lower by about 11 mm/h."
+  ],
+  "correct_answer": "lower by about 11 mm/h.",
+  "explanation": "Grass, 8°, 4 sheep: 22 mm/h. Litter, 15°, ungrazed: 33 mm/h. 33 - 22 = 11, so \"lower by about 11 mm/h.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a difference across studies",
+  "difficulty": "medium",
+  "topic_tag": "Ground Cover, Slope, and Grazing at Tollan Ridge",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Infiltration rate and runoff at Tollan Ridge",
+   "colLabels": [
+    "Ground cover",
+    "Slope",
+    "Sheep per hectare",
+    "Infiltration rate (mm/h)",
+    "Runoff (%)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2"
+   ],
+   "cells": [
+    [
+     "Bare soil",
+     "2°",
+     0,
+     18,
+     31
+    ],
+    [
+     "Bare soil",
+     "8°",
+     0,
+     12,
+     47
+    ],
+    [
+     "Bare soil",
+     "15°",
+     0,
+     9,
+     58
+    ],
+    [
+     "Short grass",
+     "2°",
+     0,
+     34,
+     9
+    ],
+    [
+     "Short grass",
+     "8°",
+     0,
+     31,
+     14
+    ],
+    [
+     "Short grass",
+     "15°",
+     0,
+     27,
+     21
+    ],
+    [
+     "Shrub litter",
+     "2°",
+     0,
+     41,
+     5
+    ],
+    [
+     "Shrub litter",
+     "8°",
+     0,
+     40,
+     6
+    ],
+    [
+     "Shrub litter",
+     "15°",
+     0,
+     33,
+     15
+    ],
+    [
+     "Short grass",
+     "8°",
+     2,
+     29,
+     16
+    ],
+    [
+     "Short grass",
+     "8°",
+     4,
+     22,
+     27
+    ],
+    [
+     "Short grass",
+     "8°",
+     6,
+     14,
+     41
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12a-P4-Q1",
+  "passage_id": "sc12a-p4",
+  "passage_title": "Smoke-Water and Cold Storage in Mirelle Seed Germination",
+  "format": "research_summaries",
+  "passage": "Mirelle is a wildflower whose seeds often fail to sprout. Botanists tested two treatments: soaking seeds in smoke-water (water through which smoke from burned plants has been bubbled, then diluted) and storing seeds in a cold, moist place before planting.\n\nIn every trial, 200 seeds were soaked for 24 hours, then planted on moist paper at 18°C. After 21 days, the botanists recorded the percent of seeds that germinated and the mean number of days until germination (see Table 1).\n\nExperiment 1\nSeeds were soaked in plain water (none) or in smoke-water diluted 1:1,000, 1:100, or 1:10, then planted with no cold storage.\n\nExperiment 2\nSeeds were soaked as in Experiment 1, stored at 4°C for 6 weeks, then planted.\n\nExperiment 3\nSeeds were soaked in 1:100 smoke-water and stored at 4°C for 0, 2, 4, 6, or 8 weeks before planting. (The 0-week result is that of Experiment 1 and the 6-week result is that of Experiment 2 for 1:100.)",
+  "prompt": "In Experiment 1, germination was highest with which soaking treatment?",
+  "choices": [
+   "1:10",
+   "1:100",
+   "1:1,000",
+   "none"
+  ],
+  "correct_answer": "1:100",
+  "explanation": "Experiment 1 germination: 12% (none), 31% (1:1,000), 47% (1:100), 22% (1:10). The highest is \"1:100\".",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a maximum within one series",
+  "difficulty": "medium",
+  "topic_tag": "Smoke-Water and Cold Storage in Mirelle Seed Germination",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Germination of Mirelle seeds after 21 days",
+   "colLabels": [
+    "Smoke-water",
+    "Cold storage (weeks)",
+    "Germination (%)",
+    "Mean days to germinate"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "none",
+     0,
+     12,
+     15.8
+    ],
+    [
+     "1:1,000",
+     0,
+     31,
+     13.1
+    ],
+    [
+     "1:100",
+     0,
+     47,
+     11.4
+    ],
+    [
+     "1:10",
+     0,
+     22,
+     12.9
+    ],
+    [
+     "none",
+     6,
+     38,
+     10.2
+    ],
+    [
+     "1:1,000",
+     6,
+     55,
+     9.0
+    ],
+    [
+     "1:100",
+     6,
+     61,
+     8.7
+    ],
+    [
+     "1:10",
+     6,
+     58,
+     8.9
+    ],
+    [
+     "1:100",
+     2,
+     52,
+     10.3
+    ],
+    [
+     "1:100",
+     4,
+     58,
+     9.4
+    ],
+    [
+     "1:100",
+     8,
+     60,
+     8.8
+    ]
+   ]
+  },
+  "consistency_check": "Germination never exceeds 61% and moves opposite to mean days in each series; the strongest smoke-water depresses germination without cold but not after it (interaction); storage gains level off after 6 weeks; shared trials (1:100 at 0 and 6 weeks) have identical values across experiments."
+ },
+ {
+  "id": "ASV12a-P4-Q2",
+  "passage_id": "sc12a-p4",
+  "passage_title": "Smoke-Water and Cold Storage in Mirelle Seed Germination",
+  "format": "research_summaries",
+  "passage": "Mirelle is a wildflower whose seeds often fail to sprout. Botanists tested two treatments: soaking seeds in smoke-water (water through which smoke from burned plants has been bubbled, then diluted) and storing seeds in a cold, moist place before planting.\n\nIn every trial, 200 seeds were soaked for 24 hours, then planted on moist paper at 18°C. After 21 days, the botanists recorded the percent of seeds that germinated and the mean number of days until germination (see Table 1).\n\nExperiment 1\nSeeds were soaked in plain water (none) or in smoke-water diluted 1:1,000, 1:100, or 1:10, then planted with no cold storage.\n\nExperiment 2\nSeeds were soaked as in Experiment 1, stored at 4°C for 6 weeks, then planted.\n\nExperiment 3\nSeeds were soaked in 1:100 smoke-water and stored at 4°C for 0, 2, 4, 6, or 8 weeks before planting. (The 0-week result is that of Experiment 1 and the 6-week result is that of Experiment 2 for 1:100.)",
+  "prompt": "For which soaking treatment did 6 weeks of cold storage raise germination by the greatest number of percentage points?",
+  "choices": [
+   "1:100",
+   "1:1,000",
+   "none",
+   "1:10"
+  ],
+  "correct_answer": "1:10",
+  "explanation": "Experiment 1 to Experiment 2: none 12 to 38 (+26); 1:1,000 31 to 55 (+24); 1:100 47 to 61 (+14); 1:10 22 to 58 (+36). The greatest rise is \"1:10\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compute and compare differences",
+  "difficulty": "hard",
+  "topic_tag": "Smoke-Water and Cold Storage in Mirelle Seed Germination",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Germination of Mirelle seeds after 21 days",
+   "colLabels": [
+    "Smoke-water",
+    "Cold storage (weeks)",
+    "Germination (%)",
+    "Mean days to germinate"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "none",
+     0,
+     12,
+     15.8
+    ],
+    [
+     "1:1,000",
+     0,
+     31,
+     13.1
+    ],
+    [
+     "1:100",
+     0,
+     47,
+     11.4
+    ],
+    [
+     "1:10",
+     0,
+     22,
+     12.9
+    ],
+    [
+     "none",
+     6,
+     38,
+     10.2
+    ],
+    [
+     "1:1,000",
+     6,
+     55,
+     9.0
+    ],
+    [
+     "1:100",
+     6,
+     61,
+     8.7
+    ],
+    [
+     "1:10",
+     6,
+     58,
+     8.9
+    ],
+    [
+     "1:100",
+     2,
+     52,
+     10.3
+    ],
+    [
+     "1:100",
+     4,
+     58,
+     9.4
+    ],
+    [
+     "1:100",
+     8,
+     60,
+     8.8
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12a-P4-Q3",
+  "passage_id": "sc12a-p4",
+  "passage_title": "Smoke-Water and Cold Storage in Mirelle Seed Germination",
+  "format": "research_summaries",
+  "passage": "Mirelle is a wildflower whose seeds often fail to sprout. Botanists tested two treatments: soaking seeds in smoke-water (water through which smoke from burned plants has been bubbled, then diluted) and storing seeds in a cold, moist place before planting.\n\nIn every trial, 200 seeds were soaked for 24 hours, then planted on moist paper at 18°C. After 21 days, the botanists recorded the percent of seeds that germinated and the mean number of days until germination (see Table 1).\n\nExperiment 1\nSeeds were soaked in plain water (none) or in smoke-water diluted 1:1,000, 1:100, or 1:10, then planted with no cold storage.\n\nExperiment 2\nSeeds were soaked as in Experiment 1, stored at 4°C for 6 weeks, then planted.\n\nExperiment 3\nSeeds were soaked in 1:100 smoke-water and stored at 4°C for 0, 2, 4, 6, or 8 weeks before planting. (The 0-week result is that of Experiment 1 and the 6-week result is that of Experiment 2 for 1:100.)",
+  "prompt": "In Experiment 3, which of the following was held constant?",
+  "choices": [
+   "Both the smoke-water dilution and the length of cold storage",
+   "Neither the smoke-water dilution nor the length of cold storage",
+   "The length of cold storage only",
+   "The smoke-water dilution only"
+  ],
+  "correct_answer": "The smoke-water dilution only",
+  "explanation": "Experiment 3 used 1:100 smoke-water in every trial and changed the storage from 0 to 8 weeks, so \"The smoke-water dilution only\" was held constant.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify controlled variables",
+  "difficulty": "medium",
+  "topic_tag": "Smoke-Water and Cold Storage in Mirelle Seed Germination",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Germination of Mirelle seeds after 21 days",
+   "colLabels": [
+    "Smoke-water",
+    "Cold storage (weeks)",
+    "Germination (%)",
+    "Mean days to germinate"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "none",
+     0,
+     12,
+     15.8
+    ],
+    [
+     "1:1,000",
+     0,
+     31,
+     13.1
+    ],
+    [
+     "1:100",
+     0,
+     47,
+     11.4
+    ],
+    [
+     "1:10",
+     0,
+     22,
+     12.9
+    ],
+    [
+     "none",
+     6,
+     38,
+     10.2
+    ],
+    [
+     "1:1,000",
+     6,
+     55,
+     9.0
+    ],
+    [
+     "1:100",
+     6,
+     61,
+     8.7
+    ],
+    [
+     "1:10",
+     6,
+     58,
+     8.9
+    ],
+    [
+     "1:100",
+     2,
+     52,
+     10.3
+    ],
+    [
+     "1:100",
+     4,
+     58,
+     9.4
+    ],
+    [
+     "1:100",
+     8,
+     60,
+     8.8
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12a-P4-Q4",
+  "passage_id": "sc12a-p4",
+  "passage_title": "Smoke-Water and Cold Storage in Mirelle Seed Germination",
+  "format": "research_summaries",
+  "passage": "Mirelle is a wildflower whose seeds often fail to sprout. Botanists tested two treatments: soaking seeds in smoke-water (water through which smoke from burned plants has been bubbled, then diluted) and storing seeds in a cold, moist place before planting.\n\nIn every trial, 200 seeds were soaked for 24 hours, then planted on moist paper at 18°C. After 21 days, the botanists recorded the percent of seeds that germinated and the mean number of days until germination (see Table 1).\n\nExperiment 1\nSeeds were soaked in plain water (none) or in smoke-water diluted 1:1,000, 1:100, or 1:10, then planted with no cold storage.\n\nExperiment 2\nSeeds were soaked as in Experiment 1, stored at 4°C for 6 weeks, then planted.\n\nExperiment 3\nSeeds were soaked in 1:100 smoke-water and stored at 4°C for 0, 2, 4, 6, or 8 weeks before planting. (The 0-week result is that of Experiment 1 and the 6-week result is that of Experiment 2 for 1:100.)",
+  "prompt": "To decide whether storing seeds cold for longer than 6 weeks raises germination further, which two results should be compared?",
+  "choices": [
+   "The Experiment 3 results for 6 weeks and 8 weeks of storage",
+   "The Experiment 2 result for 1:1,000 smoke-water and the Experiment 3 result for 8 weeks",
+   "The Experiment 3 results for 4 weeks and 8 weeks of storage",
+   "The Experiment 1 result for 1:100 smoke-water and the Experiment 3 result for 8 weeks"
+  ],
+  "correct_answer": "The Experiment 3 results for 6 weeks and 8 weeks of storage",
+  "explanation": "Only \"The Experiment 3 results for 6 weeks and 8 weeks of storage\" change the storage beyond 6 weeks with the dilution held at 1:100 (61% vs 60%). The Experiment 2 result used 1:1,000 smoke-water, the Experiment 1 result had no storage, and 4 vs 8 weeks spans the 6-week point.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose a controlled comparison",
+  "difficulty": "hard",
+  "topic_tag": "Smoke-Water and Cold Storage in Mirelle Seed Germination",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Germination of Mirelle seeds after 21 days",
+   "colLabels": [
+    "Smoke-water",
+    "Cold storage (weeks)",
+    "Germination (%)",
+    "Mean days to germinate"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "none",
+     0,
+     12,
+     15.8
+    ],
+    [
+     "1:1,000",
+     0,
+     31,
+     13.1
+    ],
+    [
+     "1:100",
+     0,
+     47,
+     11.4
+    ],
+    [
+     "1:10",
+     0,
+     22,
+     12.9
+    ],
+    [
+     "none",
+     6,
+     38,
+     10.2
+    ],
+    [
+     "1:1,000",
+     6,
+     55,
+     9.0
+    ],
+    [
+     "1:100",
+     6,
+     61,
+     8.7
+    ],
+    [
+     "1:10",
+     6,
+     58,
+     8.9
+    ],
+    [
+     "1:100",
+     2,
+     52,
+     10.3
+    ],
+    [
+     "1:100",
+     4,
+     58,
+     9.4
+    ],
+    [
+     "1:100",
+     8,
+     60,
+     8.8
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12a-P4-Q5",
+  "passage_id": "sc12a-p4",
+  "passage_title": "Smoke-Water and Cold Storage in Mirelle Seed Germination",
+  "format": "research_summaries",
+  "passage": "Mirelle is a wildflower whose seeds often fail to sprout. Botanists tested two treatments: soaking seeds in smoke-water (water through which smoke from burned plants has been bubbled, then diluted) and storing seeds in a cold, moist place before planting.\n\nIn every trial, 200 seeds were soaked for 24 hours, then planted on moist paper at 18°C. After 21 days, the botanists recorded the percent of seeds that germinated and the mean number of days until germination (see Table 1).\n\nExperiment 1\nSeeds were soaked in plain water (none) or in smoke-water diluted 1:1,000, 1:100, or 1:10, then planted with no cold storage.\n\nExperiment 2\nSeeds were soaked as in Experiment 1, stored at 4°C for 6 weeks, then planted.\n\nExperiment 3\nSeeds were soaked in 1:100 smoke-water and stored at 4°C for 0, 2, 4, 6, or 8 weeks before planting. (The 0-week result is that of Experiment 1 and the 6-week result is that of Experiment 2 for 1:100.)",
+  "prompt": "If seeds soaked in 1:100 smoke-water had been stored at 4°C for 3 weeks, their germination would most likely have been:",
+  "choices": [
+   "less than 47%.",
+   "between 47% and 52%.",
+   "between 52% and 58%.",
+   "between 58% and 61%."
+  ],
+  "correct_answer": "between 52% and 58%.",
+  "explanation": "Germination was 52% at 2 weeks and 58% at 4 weeks, so at 3 weeks it would most likely be \"between 52% and 58%\".",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate within one series",
+  "difficulty": "medium",
+  "topic_tag": "Smoke-Water and Cold Storage in Mirelle Seed Germination",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Germination of Mirelle seeds after 21 days",
+   "colLabels": [
+    "Smoke-water",
+    "Cold storage (weeks)",
+    "Germination (%)",
+    "Mean days to germinate"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "none",
+     0,
+     12,
+     15.8
+    ],
+    [
+     "1:1,000",
+     0,
+     31,
+     13.1
+    ],
+    [
+     "1:100",
+     0,
+     47,
+     11.4
+    ],
+    [
+     "1:10",
+     0,
+     22,
+     12.9
+    ],
+    [
+     "none",
+     6,
+     38,
+     10.2
+    ],
+    [
+     "1:1,000",
+     6,
+     55,
+     9.0
+    ],
+    [
+     "1:100",
+     6,
+     61,
+     8.7
+    ],
+    [
+     "1:10",
+     6,
+     58,
+     8.9
+    ],
+    [
+     "1:100",
+     2,
+     52,
+     10.3
+    ],
+    [
+     "1:100",
+     4,
+     58,
+     9.4
+    ],
+    [
+     "1:100",
+     8,
+     60,
+     8.8
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12a-P4-Q6",
+  "passage_id": "sc12a-p4",
+  "passage_title": "Smoke-Water and Cold Storage in Mirelle Seed Germination",
+  "format": "research_summaries",
+  "passage": "Mirelle is a wildflower whose seeds often fail to sprout. Botanists tested two treatments: soaking seeds in smoke-water (water through which smoke from burned plants has been bubbled, then diluted) and storing seeds in a cold, moist place before planting.\n\nIn every trial, 200 seeds were soaked for 24 hours, then planted on moist paper at 18°C. After 21 days, the botanists recorded the percent of seeds that germinated and the mean number of days until germination (see Table 1).\n\nExperiment 1\nSeeds were soaked in plain water (none) or in smoke-water diluted 1:1,000, 1:100, or 1:10, then planted with no cold storage.\n\nExperiment 2\nSeeds were soaked as in Experiment 1, stored at 4°C for 6 weeks, then planted.\n\nExperiment 3\nSeeds were soaked in 1:100 smoke-water and stored at 4°C for 0, 2, 4, 6, or 8 weeks before planting. (The 0-week result is that of Experiment 1 and the 6-week result is that of Experiment 2 for 1:100.)",
+  "prompt": "For seeds that are planted with no cold storage, germination with 1:100 smoke-water was how many percentage points higher than germination with plain water?",
+  "choices": [
+   "49",
+   "35",
+   "26",
+   "14"
+  ],
+  "correct_answer": "35",
+  "explanation": "With no storage, 1:100 gave 47% and plain water gave 12%: 47 - 12 = \"35\". (26 is the plain-water gain from storage; 14 is the 1:100 gain from storage; 49 is 61 - 12.)",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a difference",
+  "difficulty": "medium",
+  "topic_tag": "Smoke-Water and Cold Storage in Mirelle Seed Germination",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Germination of Mirelle seeds after 21 days",
+   "colLabels": [
+    "Smoke-water",
+    "Cold storage (weeks)",
+    "Germination (%)",
+    "Mean days to germinate"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "none",
+     0,
+     12,
+     15.8
+    ],
+    [
+     "1:1,000",
+     0,
+     31,
+     13.1
+    ],
+    [
+     "1:100",
+     0,
+     47,
+     11.4
+    ],
+    [
+     "1:10",
+     0,
+     22,
+     12.9
+    ],
+    [
+     "none",
+     6,
+     38,
+     10.2
+    ],
+    [
+     "1:1,000",
+     6,
+     55,
+     9.0
+    ],
+    [
+     "1:100",
+     6,
+     61,
+     8.7
+    ],
+    [
+     "1:10",
+     6,
+     58,
+     8.9
+    ],
+    [
+     "1:100",
+     2,
+     52,
+     10.3
+    ],
+    [
+     "1:100",
+     4,
+     58,
+     9.4
+    ],
+    [
+     "1:100",
+     8,
+     60,
+     8.8
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12a-P5-Q1",
+  "passage_id": "sc12a-p5",
+  "passage_title": "Why Dunmore Vole Numbers Crash",
+  "format": "conflicting_viewpoints",
+  "passage": "In the Harl Valley, numbers of Dunmore voles rise for 3 years and then fall sharply in the 4th year. This 4-year cycle has been recorded for 40 years. In a peak year, voles reach about 300 per hectare; after a crash, about 20 per hectare remain. Ermines (small predators) eat voles, and voles feed mainly on cotton sedge, a grasslike plant. Three scientists explain the crash.\n\nScientist 1\nPredators cause the crash. When voles are plentiful, more young ermines survive, so ermine numbers lag vole numbers by about 1 year: ermines are most numerous in the year after voles peak. By then, ermines eat voles faster than voles can reproduce. The crash begins in late summer, when that year's young ermines start to hunt. Voles in a fenced plot that keeps ermines out would not crash. The condition of the sedge does not affect vole breeding.\n\nScientist 2\nThe sedge causes the crash. After voles have eaten more than half of the sedge leaves in an area for two summers in a row, the sedge grows leaves rich in silica the following spring. Silica-rich leaves wear down voles' teeth and provide little nourishment, so females stop breeding. Sedge leaves in a crash year contain about 3 times as much silica as usual. The crash begins in spring. Voles in a fenced plot that keeps ermines out would still crash.\n\nScientist 3\nCrowding causes the crash. When vole numbers first exceed about 250 per hectare, females fight over nest sites; stressed females produce fewer young, and many young die in the nest. The crash begins whenever this density is first passed, in any season. The sedge stays nutritious throughout the cycle, so food is not involved. Voles in a plot kept below 250 per hectare by removing voles would not crash, even with ermines present.",
+  "prompt": "Which scientist(s) would predict that a crash begins in spring?",
+  "choices": [
+   "Scientist 3 only",
+   "Scientist 1 only",
+   "Scientist 2 only",
+   "Scientists 1 and 2 only"
+  ],
+  "correct_answer": "Scientist 2 only",
+  "explanation": "Scientist 2 says \"The crash begins in spring.\" Scientist 1 says late summer, and Scientist 3 says whenever density first passes 250, in any season. So \"Scientist 2 only\".",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "locate a prediction in the viewpoints",
+  "difficulty": "medium",
+  "topic_tag": "Why Dunmore Vole Numbers Crash",
+  "consistency_check": "Each scientist predicts a different season (late summer / spring / whenever density passes 250) and a different fenced-plot outcome; ermine lag of 1 year puts the ermine peak in year 4, after the year-3 vole peak."
+ },
+ {
+  "id": "ASV12a-P5-Q2",
+  "passage_id": "sc12a-p5",
+  "passage_title": "Why Dunmore Vole Numbers Crash",
+  "format": "conflicting_viewpoints",
+  "passage": "In the Harl Valley, numbers of Dunmore voles rise for 3 years and then fall sharply in the 4th year. This 4-year cycle has been recorded for 40 years. In a peak year, voles reach about 300 per hectare; after a crash, about 20 per hectare remain. Ermines (small predators) eat voles, and voles feed mainly on cotton sedge, a grasslike plant. Three scientists explain the crash.\n\nScientist 1\nPredators cause the crash. When voles are plentiful, more young ermines survive, so ermine numbers lag vole numbers by about 1 year: ermines are most numerous in the year after voles peak. By then, ermines eat voles faster than voles can reproduce. The crash begins in late summer, when that year's young ermines start to hunt. Voles in a fenced plot that keeps ermines out would not crash. The condition of the sedge does not affect vole breeding.\n\nScientist 2\nThe sedge causes the crash. After voles have eaten more than half of the sedge leaves in an area for two summers in a row, the sedge grows leaves rich in silica the following spring. Silica-rich leaves wear down voles' teeth and provide little nourishment, so females stop breeding. Sedge leaves in a crash year contain about 3 times as much silica as usual. The crash begins in spring. Voles in a fenced plot that keeps ermines out would still crash.\n\nScientist 3\nCrowding causes the crash. When vole numbers first exceed about 250 per hectare, females fight over nest sites; stressed females produce fewer young, and many young die in the nest. The crash begins whenever this density is first passed, in any season. The sedge stays nutritious throughout the cycle, so food is not involved. Voles in a plot kept below 250 per hectare by removing voles would not crash, even with ermines present.",
+  "prompt": "Researchers built a fence that kept ermines out of one plot. Voles inside the fence crashed in the same spring as voles outside it. This result is inconsistent with the view of which scientist(s)?",
+  "choices": [
+   "Scientists 2 and 3 only",
+   "Scientist 2 only",
+   "Scientists 1 and 3 only",
+   "Scientist 1 only"
+  ],
+  "correct_answer": "Scientist 1 only",
+  "explanation": "Scientist 1 says fenced voles would not crash and that crashes begin in late summer. Scientist 2 says fenced voles would still crash in spring, and Scientist 3's crowding does not depend on ermines. So \"Scientist 1 only\".",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test viewpoints against a new result",
+  "difficulty": "hard",
+  "topic_tag": "Why Dunmore Vole Numbers Crash"
+ },
+ {
+  "id": "ASV12a-P5-Q3",
+  "passage_id": "sc12a-p5",
+  "passage_title": "Why Dunmore Vole Numbers Crash",
+  "format": "conflicting_viewpoints",
+  "passage": "In the Harl Valley, numbers of Dunmore voles rise for 3 years and then fall sharply in the 4th year. This 4-year cycle has been recorded for 40 years. In a peak year, voles reach about 300 per hectare; after a crash, about 20 per hectare remain. Ermines (small predators) eat voles, and voles feed mainly on cotton sedge, a grasslike plant. Three scientists explain the crash.\n\nScientist 1\nPredators cause the crash. When voles are plentiful, more young ermines survive, so ermine numbers lag vole numbers by about 1 year: ermines are most numerous in the year after voles peak. By then, ermines eat voles faster than voles can reproduce. The crash begins in late summer, when that year's young ermines start to hunt. Voles in a fenced plot that keeps ermines out would not crash. The condition of the sedge does not affect vole breeding.\n\nScientist 2\nThe sedge causes the crash. After voles have eaten more than half of the sedge leaves in an area for two summers in a row, the sedge grows leaves rich in silica the following spring. Silica-rich leaves wear down voles' teeth and provide little nourishment, so females stop breeding. Sedge leaves in a crash year contain about 3 times as much silica as usual. The crash begins in spring. Voles in a fenced plot that keeps ermines out would still crash.\n\nScientist 3\nCrowding causes the crash. When vole numbers first exceed about 250 per hectare, females fight over nest sites; stressed females produce fewer young, and many young die in the nest. The crash begins whenever this density is first passed, in any season. The sedge stays nutritious throughout the cycle, so food is not involved. Voles in a plot kept below 250 per hectare by removing voles would not crash, even with ermines present.",
+  "prompt": "Suppose sedge leaves collected in the spring of a crash year contained about 3 times as much silica as leaves collected in a peak year. This finding would most directly support the view of which scientist?",
+  "choices": [
+   "Scientist 2",
+   "Scientist 1",
+   "Scientist 3",
+   "None of the scientists"
+  ],
+  "correct_answer": "Scientist 2",
+  "explanation": "Only Scientist 2 says crash-year sedge has about 3 times the usual silica; Scientist 1 says the sedge does not affect breeding and Scientist 3 says the sedge stays nutritious. So \"Scientist 2\".",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match a finding to a viewpoint",
+  "difficulty": "medium",
+  "topic_tag": "Why Dunmore Vole Numbers Crash"
+ },
+ {
+  "id": "ASV12a-P5-Q4",
+  "passage_id": "sc12a-p5",
+  "passage_title": "Why Dunmore Vole Numbers Crash",
+  "format": "conflicting_viewpoints",
+  "passage": "In the Harl Valley, numbers of Dunmore voles rise for 3 years and then fall sharply in the 4th year. This 4-year cycle has been recorded for 40 years. In a peak year, voles reach about 300 per hectare; after a crash, about 20 per hectare remain. Ermines (small predators) eat voles, and voles feed mainly on cotton sedge, a grasslike plant. Three scientists explain the crash.\n\nScientist 1\nPredators cause the crash. When voles are plentiful, more young ermines survive, so ermine numbers lag vole numbers by about 1 year: ermines are most numerous in the year after voles peak. By then, ermines eat voles faster than voles can reproduce. The crash begins in late summer, when that year's young ermines start to hunt. Voles in a fenced plot that keeps ermines out would not crash. The condition of the sedge does not affect vole breeding.\n\nScientist 2\nThe sedge causes the crash. After voles have eaten more than half of the sedge leaves in an area for two summers in a row, the sedge grows leaves rich in silica the following spring. Silica-rich leaves wear down voles' teeth and provide little nourishment, so females stop breeding. Sedge leaves in a crash year contain about 3 times as much silica as usual. The crash begins in spring. Voles in a fenced plot that keeps ermines out would still crash.\n\nScientist 3\nCrowding causes the crash. When vole numbers first exceed about 250 per hectare, females fight over nest sites; stressed females produce fewer young, and many young die in the nest. The crash begins whenever this density is first passed, in any season. The sedge stays nutritious throughout the cycle, so food is not involved. Voles in a plot kept below 250 per hectare by removing voles would not crash, even with ermines present.",
+  "prompt": "Scientists 1 and 3 would most likely agree that:",
+  "choices": [
+   "the crash begins in late summer of the 4th year.",
+   "changes in the sedge do not cause the crash.",
+   "keeping ermines out of a plot would not prevent a crash there.",
+   "a crash cannot begin until vole numbers exceed about 250 per hectare."
+  ],
+  "correct_answer": "changes in the sedge do not cause the crash.",
+  "explanation": "Scientist 1 says the sedge does not affect breeding, and Scientist 3 says the sedge stays nutritious so food is not involved: \"changes in the sedge do not cause the crash.\" Late summer is Scientist 1 only; that fencing out ermines would not prevent a crash is held by Scientist 3, and Scientist 1 denies it; the 250 threshold is Scientist 3 only.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify common ground between viewpoints",
+  "difficulty": "hard",
+  "topic_tag": "Why Dunmore Vole Numbers Crash"
+ },
+ {
+  "id": "ASV12a-P5-Q5",
+  "passage_id": "sc12a-p5",
+  "passage_title": "Why Dunmore Vole Numbers Crash",
+  "format": "conflicting_viewpoints",
+  "passage": "In the Harl Valley, numbers of Dunmore voles rise for 3 years and then fall sharply in the 4th year. This 4-year cycle has been recorded for 40 years. In a peak year, voles reach about 300 per hectare; after a crash, about 20 per hectare remain. Ermines (small predators) eat voles, and voles feed mainly on cotton sedge, a grasslike plant. Three scientists explain the crash.\n\nScientist 1\nPredators cause the crash. When voles are plentiful, more young ermines survive, so ermine numbers lag vole numbers by about 1 year: ermines are most numerous in the year after voles peak. By then, ermines eat voles faster than voles can reproduce. The crash begins in late summer, when that year's young ermines start to hunt. Voles in a fenced plot that keeps ermines out would not crash. The condition of the sedge does not affect vole breeding.\n\nScientist 2\nThe sedge causes the crash. After voles have eaten more than half of the sedge leaves in an area for two summers in a row, the sedge grows leaves rich in silica the following spring. Silica-rich leaves wear down voles' teeth and provide little nourishment, so females stop breeding. Sedge leaves in a crash year contain about 3 times as much silica as usual. The crash begins in spring. Voles in a fenced plot that keeps ermines out would still crash.\n\nScientist 3\nCrowding causes the crash. When vole numbers first exceed about 250 per hectare, females fight over nest sites; stressed females produce fewer young, and many young die in the nest. The crash begins whenever this density is first passed, in any season. The sedge stays nutritious throughout the cycle, so food is not involved. Voles in a plot kept below 250 per hectare by removing voles would not crash, even with ermines present.",
+  "prompt": "According to Scientist 1, in which year of the cycle are ermines most numerous?",
+  "choices": [
+   "Year 1",
+   "Year 2",
+   "Year 3",
+   "Year 4"
+  ],
+  "correct_answer": "Year 4",
+  "explanation": "Voles rise for 3 years, so they peak in year 3. Scientist 1 says ermines are most numerous in the year after voles peak: \"Year 4\".",
+  "domain": "Interpretation of Data",
+  "subskill": "combine a viewpoint with the background facts",
+  "difficulty": "hard",
+  "topic_tag": "Why Dunmore Vole Numbers Crash"
+ },
+ {
+  "id": "ASV12a-P5-Q6",
+  "passage_id": "sc12a-p5",
+  "passage_title": "Why Dunmore Vole Numbers Crash",
+  "format": "conflicting_viewpoints",
+  "passage": "In the Harl Valley, numbers of Dunmore voles rise for 3 years and then fall sharply in the 4th year. This 4-year cycle has been recorded for 40 years. In a peak year, voles reach about 300 per hectare; after a crash, about 20 per hectare remain. Ermines (small predators) eat voles, and voles feed mainly on cotton sedge, a grasslike plant. Three scientists explain the crash.\n\nScientist 1\nPredators cause the crash. When voles are plentiful, more young ermines survive, so ermine numbers lag vole numbers by about 1 year: ermines are most numerous in the year after voles peak. By then, ermines eat voles faster than voles can reproduce. The crash begins in late summer, when that year's young ermines start to hunt. Voles in a fenced plot that keeps ermines out would not crash. The condition of the sedge does not affect vole breeding.\n\nScientist 2\nThe sedge causes the crash. After voles have eaten more than half of the sedge leaves in an area for two summers in a row, the sedge grows leaves rich in silica the following spring. Silica-rich leaves wear down voles' teeth and provide little nourishment, so females stop breeding. Sedge leaves in a crash year contain about 3 times as much silica as usual. The crash begins in spring. Voles in a fenced plot that keeps ermines out would still crash.\n\nScientist 3\nCrowding causes the crash. When vole numbers first exceed about 250 per hectare, females fight over nest sites; stressed females produce fewer young, and many young die in the nest. The crash begins whenever this density is first passed, in any season. The sedge stays nutritious throughout the cycle, so food is not involved. Voles in a plot kept below 250 per hectare by removing voles would not crash, even with ermines present.",
+  "prompt": "In one cycle, vole numbers first rose above 250 per hectare in the autumn of year 2, reaching 280 per hectare. Based on Scientist 3's view, the crash would most likely begin in:",
+  "choices": [
+   "the spring of year 3.",
+   "the autumn of year 2.",
+   "the late summer of year 4.",
+   "the spring of year 4."
+  ],
+  "correct_answer": "the autumn of year 2.",
+  "explanation": "Scientist 3 says the crash begins whenever density first passes about 250 per hectare, in any season. That happened in \"the autumn of year 2.\"",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "apply a viewpoint to a new case",
+  "difficulty": "medium",
+  "topic_tag": "Why Dunmore Vole Numbers Crash"
+ },
+ {
+  "id": "ASV12a-P6-Q1",
+  "passage_id": "sc12a-p6",
+  "passage_title": "Why the Cawl Ridge Springs Are Warm",
+  "format": "conflicting_viewpoints",
+  "passage": "Water flowing from the Cawl Ridge springs averages 34°C. Rainwater at the site averages 9°C, and ordinary groundwater from a well 1 km away is 11°C. The springs' flow rises about 2 months after the start of each wet season. Three scientists explain why the springs are warm.\n\nScientist 1\nRainwater sinks along a crack in the rock (a fault) to a depth of about 2 km, where the rock is warm, and then rises back to the surface. The round trip takes about 2 months, which is why flow rises about 2 months after the wet season starts. Because the deep rock stays at the same temperature all year, the water's temperature does not change with the flow. On its long trip, the water dissolves minerals, so it should carry about 900 milligrams of dissolved salts per liter (mg/L).\n\nScientist 2\nA body of hot rock lies only about 300 m below the springs. Rainwater that reaches the hot rock is heated and rises within a few days. The 2-month delay in flow is caused by a layer of clay above the hot rock that slows rainwater on its way down. Gas bubbling out of the springs should contain sulfur gases released by the hot rock.\n\nScientist 3\nRainwater seeps down to a layer of granite about 600 m deep. This granite is unusually rich in elements that release heat, so it warms the water that flows past it. The longer the water stays in contact with the granite, the warmer it becomes, so the springs should be warmest in the months when flow is lowest.",
+  "prompt": "Which scientist(s) would predict that the temperature of the spring water changes as the flow rate changes?",
+  "choices": [
+   "Scientist 1 only",
+   "Scientists 1 and 2 only",
+   "Scientist 3 only",
+   "Scientists 2 and 3 only"
+  ],
+  "correct_answer": "Scientist 3 only",
+  "explanation": "Scientist 3 says slower flow means warmer water. Scientist 1 says the temperature does not change with the flow, and Scientist 2 does not connect temperature to flow. So \"Scientist 3 only\".",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "locate a prediction in the viewpoints",
+  "difficulty": "medium",
+  "topic_tag": "Why the Cawl Ridge Springs Are Warm",
+  "consistency_check": "Depths are consistent with each claim (2 km, 300 m, 600 m); only Scientist 3 ties temperature to flow; only Scientist 1 predicts dissolved salts (900 mg/L); 34 - 11 = 23 and 34 - 9 = 25."
+ },
+ {
+  "id": "ASV12a-P6-Q2",
+  "passage_id": "sc12a-p6",
+  "passage_title": "Why the Cawl Ridge Springs Are Warm",
+  "format": "conflicting_viewpoints",
+  "passage": "Water flowing from the Cawl Ridge springs averages 34°C. Rainwater at the site averages 9°C, and ordinary groundwater from a well 1 km away is 11°C. The springs' flow rises about 2 months after the start of each wet season. Three scientists explain why the springs are warm.\n\nScientist 1\nRainwater sinks along a crack in the rock (a fault) to a depth of about 2 km, where the rock is warm, and then rises back to the surface. The round trip takes about 2 months, which is why flow rises about 2 months after the wet season starts. Because the deep rock stays at the same temperature all year, the water's temperature does not change with the flow. On its long trip, the water dissolves minerals, so it should carry about 900 milligrams of dissolved salts per liter (mg/L).\n\nScientist 2\nA body of hot rock lies only about 300 m below the springs. Rainwater that reaches the hot rock is heated and rises within a few days. The 2-month delay in flow is caused by a layer of clay above the hot rock that slows rainwater on its way down. Gas bubbling out of the springs should contain sulfur gases released by the hot rock.\n\nScientist 3\nRainwater seeps down to a layer of granite about 600 m deep. This granite is unusually rich in elements that release heat, so it warms the water that flows past it. The longer the water stays in contact with the granite, the warmer it becomes, so the springs should be warmest in the months when flow is lowest.",
+  "prompt": "Tests show that the spring water carries about 150 mg/L of dissolved salts, about the same as the well water 1 km away. This result most directly weakens the view of which scientist(s)?",
+  "choices": [
+   "Scientist 1 only",
+   "Scientist 3 only",
+   "Scientist 2 only",
+   "Scientists 1 and 3 only"
+  ],
+  "correct_answer": "Scientist 1 only",
+  "explanation": "Only Scientist 1 predicts about 900 mg/L of dissolved salts. The other scientists make no prediction about dissolved salts. So \"Scientist 1 only\".",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test viewpoints against a new result",
+  "difficulty": "medium",
+  "topic_tag": "Why the Cawl Ridge Springs Are Warm"
+ },
+ {
+  "id": "ASV12a-P6-Q3",
+  "passage_id": "sc12a-p6",
+  "passage_title": "Why the Cawl Ridge Springs Are Warm",
+  "format": "conflicting_viewpoints",
+  "passage": "Water flowing from the Cawl Ridge springs averages 34°C. Rainwater at the site averages 9°C, and ordinary groundwater from a well 1 km away is 11°C. The springs' flow rises about 2 months after the start of each wet season. Three scientists explain why the springs are warm.\n\nScientist 1\nRainwater sinks along a crack in the rock (a fault) to a depth of about 2 km, where the rock is warm, and then rises back to the surface. The round trip takes about 2 months, which is why flow rises about 2 months after the wet season starts. Because the deep rock stays at the same temperature all year, the water's temperature does not change with the flow. On its long trip, the water dissolves minerals, so it should carry about 900 milligrams of dissolved salts per liter (mg/L).\n\nScientist 2\nA body of hot rock lies only about 300 m below the springs. Rainwater that reaches the hot rock is heated and rises within a few days. The 2-month delay in flow is caused by a layer of clay above the hot rock that slows rainwater on its way down. Gas bubbling out of the springs should contain sulfur gases released by the hot rock.\n\nScientist 3\nRainwater seeps down to a layer of granite about 600 m deep. This granite is unusually rich in elements that release heat, so it warms the water that flows past it. The longer the water stays in contact with the granite, the warmer it becomes, so the springs should be warmest in the months when flow is lowest.",
+  "prompt": "According to Scientist 2, the delay of about 2 months between the start of the wet season and the rise in spring flow is caused by:",
+  "choices": [
+   "the time rainwater takes to sink to about 2 km and rise again.",
+   "slow flow of water past a layer of granite.",
+   "a clay layer that slows rainwater on its way down.",
+   "the time needed to heat the water to 34°C."
+  ],
+  "correct_answer": "a clay layer that slows rainwater on its way down.",
+  "explanation": "Scientist 2 says the delay \"is caused by a layer of clay above the hot rock that slows rainwater on its way down.\" The 2-km round trip is Scientist 1's explanation; granite is Scientist 3's heat source; Scientist 2 says water is heated within a few days.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a viewpoint's explanation",
+  "difficulty": "medium",
+  "topic_tag": "Why the Cawl Ridge Springs Are Warm"
+ },
+ {
+  "id": "ASV12a-P6-Q4",
+  "passage_id": "sc12a-p6",
+  "passage_title": "Why the Cawl Ridge Springs Are Warm",
+  "format": "conflicting_viewpoints",
+  "passage": "Water flowing from the Cawl Ridge springs averages 34°C. Rainwater at the site averages 9°C, and ordinary groundwater from a well 1 km away is 11°C. The springs' flow rises about 2 months after the start of each wet season. Three scientists explain why the springs are warm.\n\nScientist 1\nRainwater sinks along a crack in the rock (a fault) to a depth of about 2 km, where the rock is warm, and then rises back to the surface. The round trip takes about 2 months, which is why flow rises about 2 months after the wet season starts. Because the deep rock stays at the same temperature all year, the water's temperature does not change with the flow. On its long trip, the water dissolves minerals, so it should carry about 900 milligrams of dissolved salts per liter (mg/L).\n\nScientist 2\nA body of hot rock lies only about 300 m below the springs. Rainwater that reaches the hot rock is heated and rises within a few days. The 2-month delay in flow is caused by a layer of clay above the hot rock that slows rainwater on its way down. Gas bubbling out of the springs should contain sulfur gases released by the hot rock.\n\nScientist 3\nRainwater seeps down to a layer of granite about 600 m deep. This granite is unusually rich in elements that release heat, so it warms the water that flows past it. The longer the water stays in contact with the granite, the warmer it becomes, so the springs should be warmest in the months when flow is lowest.",
+  "prompt": "Scientists 1 and 3 would most likely agree that the spring water:",
+  "choices": [
+   "is rainwater that seeped underground before it was heated.",
+   "has traveled deeper than 1 km before returning to the surface.",
+   "is heated by rock that lies less than 1 km below the surface.",
+   "is warmest in the months when spring flow is lowest."
+  ],
+  "correct_answer": "is rainwater that seeped underground before it was heated.",
+  "explanation": "Scientist 1 says rainwater sinks along a fault; Scientist 3 says rainwater seeps down to the granite: \"is rainwater that seeped underground before it was heated.\" Only Scientist 1 sends the water deeper than 1 km (2 km); only Scientist 3 heats it less than 1 km down (600 m) and links warmth to low flow.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify common ground between viewpoints",
+  "difficulty": "hard",
+  "topic_tag": "Why the Cawl Ridge Springs Are Warm"
+ },
+ {
+  "id": "ASV12a-P6-Q5",
+  "passage_id": "sc12a-p6",
+  "passage_title": "Why the Cawl Ridge Springs Are Warm",
+  "format": "conflicting_viewpoints",
+  "passage": "Water flowing from the Cawl Ridge springs averages 34°C. Rainwater at the site averages 9°C, and ordinary groundwater from a well 1 km away is 11°C. The springs' flow rises about 2 months after the start of each wet season. Three scientists explain why the springs are warm.\n\nScientist 1\nRainwater sinks along a crack in the rock (a fault) to a depth of about 2 km, where the rock is warm, and then rises back to the surface. The round trip takes about 2 months, which is why flow rises about 2 months after the wet season starts. Because the deep rock stays at the same temperature all year, the water's temperature does not change with the flow. On its long trip, the water dissolves minerals, so it should carry about 900 milligrams of dissolved salts per liter (mg/L).\n\nScientist 2\nA body of hot rock lies only about 300 m below the springs. Rainwater that reaches the hot rock is heated and rises within a few days. The 2-month delay in flow is caused by a layer of clay above the hot rock that slows rainwater on its way down. Gas bubbling out of the springs should contain sulfur gases released by the hot rock.\n\nScientist 3\nRainwater seeps down to a layer of granite about 600 m deep. This granite is unusually rich in elements that release heat, so it warms the water that flows past it. The longer the water stays in contact with the granite, the warmer it becomes, so the springs should be warmest in the months when flow is lowest.",
+  "prompt": "A test hole is drilled near the springs to a depth of 350 m. Which scientist(s) would most likely predict that the rock at the bottom of the hole is warmer than 34°C?",
+  "choices": [
+   "Scientist 1 only",
+   "Scientist 2 only",
+   "Scientist 3 only",
+   "Scientists 2 and 3 only"
+  ],
+  "correct_answer": "Scientist 2 only",
+  "explanation": "Scientist 2 places hot rock about 300 m below the springs, so a 350-m hole would reach it. Scientist 3's granite is about 600 m deep, and Scientist 1's warm rock is about 2 km deep. So \"Scientist 2 only\".",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "apply viewpoints to a new case",
+  "difficulty": "hard",
+  "topic_tag": "Why the Cawl Ridge Springs Are Warm"
+ },
+ {
+  "id": "ASV12a-P6-Q6",
+  "passage_id": "sc12a-p6",
+  "passage_title": "Why the Cawl Ridge Springs Are Warm",
+  "format": "conflicting_viewpoints",
+  "passage": "Water flowing from the Cawl Ridge springs averages 34°C. Rainwater at the site averages 9°C, and ordinary groundwater from a well 1 km away is 11°C. The springs' flow rises about 2 months after the start of each wet season. Three scientists explain why the springs are warm.\n\nScientist 1\nRainwater sinks along a crack in the rock (a fault) to a depth of about 2 km, where the rock is warm, and then rises back to the surface. The round trip takes about 2 months, which is why flow rises about 2 months after the wet season starts. Because the deep rock stays at the same temperature all year, the water's temperature does not change with the flow. On its long trip, the water dissolves minerals, so it should carry about 900 milligrams of dissolved salts per liter (mg/L).\n\nScientist 2\nA body of hot rock lies only about 300 m below the springs. Rainwater that reaches the hot rock is heated and rises within a few days. The 2-month delay in flow is caused by a layer of clay above the hot rock that slows rainwater on its way down. Gas bubbling out of the springs should contain sulfur gases released by the hot rock.\n\nScientist 3\nRainwater seeps down to a layer of granite about 600 m deep. This granite is unusually rich in elements that release heat, so it warms the water that flows past it. The longer the water stays in contact with the granite, the warmer it becomes, so the springs should be warmest in the months when flow is lowest.",
+  "prompt": "According to the passage, the spring water is about how many degrees Celsius warmer than the well water 1 km away?",
+  "choices": [
+   "34",
+   "25",
+   "23",
+   "9"
+  ],
+  "correct_answer": "23",
+  "explanation": "Spring water averages 34°C and the well water is 11°C: 34 - 11 = \"23\". (25 compares the springs with rainwater, 9°C.)",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a difference from the passage",
+  "difficulty": "medium",
+  "topic_tag": "Why the Cawl Ridge Springs Are Warm"
+ },
+ {
+  "id": "ASV12a-P7-Q1",
+  "passage_id": "sc12a-p7",
+  "passage_title": "Why Fenn Wood Has So Few Young Oaks",
+  "format": "conflicting_viewpoints",
+  "passage": "In Fenn Wood, Ardel oaks older than 80 years are common, but oaks younger than 20 years are rare: about 3 per hectare, compared with about 60 per hectare in nearby Barrow Wood. The two woods have similar soil and similar numbers of old oaks. Three students explain the shortage of young oaks in Fenn Wood.\n\nStudent 1\nDeer eat young oaks. Fenn Wood has about 25 deer per square kilometer, compared with about 6 in Barrow Wood. Acorns in Fenn Wood do sprout each spring, but deer eat most of the seedlings before their second summer. Fencing out deer would let seedlings survive.\n\nStudent 2\nInsects destroy the acorns before they can sprout. In Fenn Wood, more than 90% of acorns on the ground have exit holes left by acorn weevils, compared with about 30% in Barrow Wood. As a result, few seedlings ever sprout in Fenn Wood. Fencing out deer would not increase the number of young oaks.\n\nStudent 3\nShade kills the seedlings. Glossbrook, a shrub that has spread through Fenn Wood since 1990, shades the ground. Acorns sprout, but a seedling dies within its first summer if the light reaching the ground is less than 5% of full sunlight; under glossbrook, the light is about 2% of full sunlight. Removing glossbrook would let seedlings survive, even if the deer remain.",
+  "prompt": "Which student(s) state that acorns in Fenn Wood do sprout?",
+  "choices": [
+   "Students 1 and 3 only",
+   "Student 1 only",
+   "Student 2 only",
+   "Students 2 and 3 only"
+  ],
+  "correct_answer": "Students 1 and 3 only",
+  "explanation": "Student 1 says acorns \"do sprout each spring,\" and Student 3 says \"Acorns sprout.\" Student 2 says few seedlings ever sprout. So \"Students 1 and 3 only\".",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "compare claims across viewpoints",
+  "difficulty": "medium",
+  "topic_tag": "Why Fenn Wood Has So Few Young Oaks",
+  "consistency_check": "Students 1 and 3 have seedlings sprouting, Student 2 does not; the fenced/no-glossbrook result (40 vs 4 per hectare) contradicts Student 2 (fencing would not help) and Student 3 (no glossbrook should be enough); 60/3 = 20 is not used."
+ },
+ {
+  "id": "ASV12a-P7-Q2",
+  "passage_id": "sc12a-p7",
+  "passage_title": "Why Fenn Wood Has So Few Young Oaks",
+  "format": "conflicting_viewpoints",
+  "passage": "In Fenn Wood, Ardel oaks older than 80 years are common, but oaks younger than 20 years are rare: about 3 per hectare, compared with about 60 per hectare in nearby Barrow Wood. The two woods have similar soil and similar numbers of old oaks. Three students explain the shortage of young oaks in Fenn Wood.\n\nStudent 1\nDeer eat young oaks. Fenn Wood has about 25 deer per square kilometer, compared with about 6 in Barrow Wood. Acorns in Fenn Wood do sprout each spring, but deer eat most of the seedlings before their second summer. Fencing out deer would let seedlings survive.\n\nStudent 2\nInsects destroy the acorns before they can sprout. In Fenn Wood, more than 90% of acorns on the ground have exit holes left by acorn weevils, compared with about 30% in Barrow Wood. As a result, few seedlings ever sprout in Fenn Wood. Fencing out deer would not increase the number of young oaks.\n\nStudent 3\nShade kills the seedlings. Glossbrook, a shrub that has spread through Fenn Wood since 1990, shades the ground. Acorns sprout, but a seedling dies within its first summer if the light reaching the ground is less than 5% of full sunlight; under glossbrook, the light is about 2% of full sunlight. Removing glossbrook would let seedlings survive, even if the deer remain.",
+  "prompt": "In a fenced plot in Fenn Wood with no glossbrook, 40 seedlings per hectare survived to their second summer. In an unfenced plot with no glossbrook, 4 seedlings per hectare survived. These results most directly weaken the view(s) of which student(s)?",
+  "choices": [
+   "Students 2 and 3 only",
+   "Student 3 only",
+   "Student 2 only",
+   "Student 1 only"
+  ],
+  "correct_answer": "Students 2 and 3 only",
+  "explanation": "Fencing raised survival (40 vs 4), against Student 2's claim that fencing out deer would not help. With no glossbrook in either plot, Student 3 predicts survival even with deer, yet only 4 per hectare survived unfenced. Student 1 is supported. So \"Students 2 and 3 only\".",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test viewpoints against a new result",
+  "difficulty": "hard",
+  "topic_tag": "Why Fenn Wood Has So Few Young Oaks"
+ },
+ {
+  "id": "ASV12a-P7-Q3",
+  "passage_id": "sc12a-p7",
+  "passage_title": "Why Fenn Wood Has So Few Young Oaks",
+  "format": "conflicting_viewpoints",
+  "passage": "In Fenn Wood, Ardel oaks older than 80 years are common, but oaks younger than 20 years are rare: about 3 per hectare, compared with about 60 per hectare in nearby Barrow Wood. The two woods have similar soil and similar numbers of old oaks. Three students explain the shortage of young oaks in Fenn Wood.\n\nStudent 1\nDeer eat young oaks. Fenn Wood has about 25 deer per square kilometer, compared with about 6 in Barrow Wood. Acorns in Fenn Wood do sprout each spring, but deer eat most of the seedlings before their second summer. Fencing out deer would let seedlings survive.\n\nStudent 2\nInsects destroy the acorns before they can sprout. In Fenn Wood, more than 90% of acorns on the ground have exit holes left by acorn weevils, compared with about 30% in Barrow Wood. As a result, few seedlings ever sprout in Fenn Wood. Fencing out deer would not increase the number of young oaks.\n\nStudent 3\nShade kills the seedlings. Glossbrook, a shrub that has spread through Fenn Wood since 1990, shades the ground. Acorns sprout, but a seedling dies within its first summer if the light reaching the ground is less than 5% of full sunlight; under glossbrook, the light is about 2% of full sunlight. Removing glossbrook would let seedlings survive, even if the deer remain.",
+  "prompt": "Based on Student 3's view, an oak seedling growing where the light reaching the ground is 4% of full sunlight would most likely:",
+  "choices": [
+   "fail to sprout from its acorn.",
+   "survive, because the light is above 2% of full sunlight.",
+   "die within its first summer.",
+   "survive its first summer and then be eaten by deer."
+  ],
+  "correct_answer": "die within its first summer.",
+  "explanation": "Student 3 says a seedling dies within its first summer if light is less than 5% of full sunlight; 4% is below 5%, so it would \"die within its first summer.\"",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "apply a viewpoint to a new case",
+  "difficulty": "medium",
+  "topic_tag": "Why Fenn Wood Has So Few Young Oaks"
+ },
+ {
+  "id": "ASV12a-P7-Q4",
+  "passage_id": "sc12a-p7",
+  "passage_title": "Why Fenn Wood Has So Few Young Oaks",
+  "format": "conflicting_viewpoints",
+  "passage": "In Fenn Wood, Ardel oaks older than 80 years are common, but oaks younger than 20 years are rare: about 3 per hectare, compared with about 60 per hectare in nearby Barrow Wood. The two woods have similar soil and similar numbers of old oaks. Three students explain the shortage of young oaks in Fenn Wood.\n\nStudent 1\nDeer eat young oaks. Fenn Wood has about 25 deer per square kilometer, compared with about 6 in Barrow Wood. Acorns in Fenn Wood do sprout each spring, but deer eat most of the seedlings before their second summer. Fencing out deer would let seedlings survive.\n\nStudent 2\nInsects destroy the acorns before they can sprout. In Fenn Wood, more than 90% of acorns on the ground have exit holes left by acorn weevils, compared with about 30% in Barrow Wood. As a result, few seedlings ever sprout in Fenn Wood. Fencing out deer would not increase the number of young oaks.\n\nStudent 3\nShade kills the seedlings. Glossbrook, a shrub that has spread through Fenn Wood since 1990, shades the ground. Acorns sprout, but a seedling dies within its first summer if the light reaching the ground is less than 5% of full sunlight; under glossbrook, the light is about 2% of full sunlight. Removing glossbrook would let seedlings survive, even if the deer remain.",
+  "prompt": "Researchers found that only 35% of acorns on the ground in Fenn Wood had weevil exit holes. Which student's view does this finding most weaken, and why?",
+  "choices": [
+   "Student 3, because Student 3 states that weevils damage acorns lying in deep shade.",
+   "Student 2, because Student 2 states that about 30% of Fenn Wood acorns have weevil exit holes.",
+   "Student 1, because Student 1 states that deer eat most acorns before they sprout.",
+   "Student 2, because Student 2 states that more than 90% of Fenn Wood acorns have weevil exit holes."
+  ],
+  "correct_answer": "Student 2, because Student 2 states that more than 90% of Fenn Wood acorns have weevil exit holes.",
+  "explanation": "Student 2 claims \"more than 90%\" of Fenn Wood acorns have weevil holes; 35% contradicts it. The 30% figure is Barrow Wood, not Fenn Wood; Student 1 says deer eat seedlings, not acorns; Student 3 says nothing about weevils.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match a finding to a viewpoint with its reason",
+  "difficulty": "hard",
+  "topic_tag": "Why Fenn Wood Has So Few Young Oaks"
+ },
+ {
+  "id": "ASV12a-P7-Q5",
+  "passage_id": "sc12a-p7",
+  "passage_title": "Why Fenn Wood Has So Few Young Oaks",
+  "format": "conflicting_viewpoints",
+  "passage": "In Fenn Wood, Ardel oaks older than 80 years are common, but oaks younger than 20 years are rare: about 3 per hectare, compared with about 60 per hectare in nearby Barrow Wood. The two woods have similar soil and similar numbers of old oaks. Three students explain the shortage of young oaks in Fenn Wood.\n\nStudent 1\nDeer eat young oaks. Fenn Wood has about 25 deer per square kilometer, compared with about 6 in Barrow Wood. Acorns in Fenn Wood do sprout each spring, but deer eat most of the seedlings before their second summer. Fencing out deer would let seedlings survive.\n\nStudent 2\nInsects destroy the acorns before they can sprout. In Fenn Wood, more than 90% of acorns on the ground have exit holes left by acorn weevils, compared with about 30% in Barrow Wood. As a result, few seedlings ever sprout in Fenn Wood. Fencing out deer would not increase the number of young oaks.\n\nStudent 3\nShade kills the seedlings. Glossbrook, a shrub that has spread through Fenn Wood since 1990, shades the ground. Acorns sprout, but a seedling dies within its first summer if the light reaching the ground is less than 5% of full sunlight; under glossbrook, the light is about 2% of full sunlight. Removing glossbrook would let seedlings survive, even if the deer remain.",
+  "prompt": "Students 1 and 3 would most likely agree that:",
+  "choices": [
+   "most young oaks in Fenn Wood die after they have sprouted.",
+   "most acorns in Fenn Wood never produce seedlings.",
+   "the shortage of young oaks in Fenn Wood began after 1990.",
+   "the shortage of young oaks in Fenn Wood is caused by an animal."
+  ],
+  "correct_answer": "most young oaks in Fenn Wood die after they have sprouted.",
+  "explanation": "Both say acorns sprout and the seedlings then die (eaten by deer, or shaded): \"most young oaks in Fenn Wood die after they have sprouted.\" Only Student 3 dates the cause (glossbrook since 1990); only Student 2 says acorns rarely produce seedlings; only Student 1 blames an animal (deer), while Student 3 blames a shrub.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify common ground between viewpoints",
+  "difficulty": "hard",
+  "topic_tag": "Why Fenn Wood Has So Few Young Oaks"
+ },
+ {
+  "id": "ASV12a-P7-Q6",
+  "passage_id": "sc12a-p7",
+  "passage_title": "Why Fenn Wood Has So Few Young Oaks",
+  "format": "conflicting_viewpoints",
+  "passage": "In Fenn Wood, Ardel oaks older than 80 years are common, but oaks younger than 20 years are rare: about 3 per hectare, compared with about 60 per hectare in nearby Barrow Wood. The two woods have similar soil and similar numbers of old oaks. Three students explain the shortage of young oaks in Fenn Wood.\n\nStudent 1\nDeer eat young oaks. Fenn Wood has about 25 deer per square kilometer, compared with about 6 in Barrow Wood. Acorns in Fenn Wood do sprout each spring, but deer eat most of the seedlings before their second summer. Fencing out deer would let seedlings survive.\n\nStudent 2\nInsects destroy the acorns before they can sprout. In Fenn Wood, more than 90% of acorns on the ground have exit holes left by acorn weevils, compared with about 30% in Barrow Wood. As a result, few seedlings ever sprout in Fenn Wood. Fencing out deer would not increase the number of young oaks.\n\nStudent 3\nShade kills the seedlings. Glossbrook, a shrub that has spread through Fenn Wood since 1990, shades the ground. Acorns sprout, but a seedling dies within its first summer if the light reaching the ground is less than 5% of full sunlight; under glossbrook, the light is about 2% of full sunlight. Removing glossbrook would let seedlings survive, even if the deer remain.",
+  "prompt": "Which study would best help decide between the views of Student 1 and Student 3?",
+  "choices": [
+   "Fence deer out of a plot in Fenn Wood and remove the glossbrook, and count surviving seedlings.",
+   "Fence deer out of a plot in Fenn Wood but leave the glossbrook in place, and count surviving seedlings.",
+   "Leave a plot in Fenn Wood unfenced with the glossbrook in place, protect its acorns from weevils, and count surviving seedlings.",
+   "Leave a plot in Fenn Wood unfenced with the glossbrook in place, and count surviving seedlings."
+  ],
+  "correct_answer": "Fence deer out of a plot in Fenn Wood but leave the glossbrook in place, and count surviving seedlings.",
+  "explanation": "With deer out but glossbrook left, Student 1 predicts seedlings survive and Student 3 predicts they die in the shade: \"Fence deer out of a plot... but leave the glossbrook in place\". Fenced with glossbrook removed, both predict survival; unfenced with glossbrook, both predict death (weevil protection changes neither).",
+  "domain": "Scientific Investigation",
+  "subskill": "design a study that separates viewpoints",
+  "difficulty": "hard",
+  "topic_tag": "Why Fenn Wood Has So Few Young Oaks"
+ }
+]
