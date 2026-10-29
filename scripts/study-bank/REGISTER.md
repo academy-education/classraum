@@ -6076,3 +6076,18 @@ structural checks are pre-flight only. See CLAUDE.md.
   Prereg band: 2-3 of 7 = revise the brief. Brief amended ("v12 lessons": no Yes/No-with-reason items, no
   convergent design option sets); the parallel v12b author was told before its packets were built. Up from 1/7
   in b8. Release of the 18 cleared rows not yet wired.
+
+- **2026-10-29 — ACT English v10 (50) + ACT Reading v13a (36) authored and frozen, gate packets built, NOT graded,
+  NOT inserted.** One form each, as buffer above the 7-form floor. **Finding first: both sections are review-bound,
+  not authoring-bound.** English v9 (130 staged) is held on PoW, and Reading v8d–v12b (288 staged) are waiting on
+  co-founder runs, so these two forms add to a queue rather than to live forms (the same finding as MAP on
+  2026-10-27). Gate sheet `ACT-EN10-RD13A-GATE.md`, committed before any solver or grader.
+  - **English v10:** CSE 27 / PoW 15 / KoL 8. Semicolon is the key on 3 boundary items (v9's semicolon tell).
+    Every PoW option is passage-anchored (v9's hold). Key uniquely shortest 7/50, uniquely longest 0/50.
+  - **Reading v13a:** the paired passage is natural science. KID 17 / C&S 11 / IKI 8.
+  - **Two instrument notes:**
+    1. The bank-act-english skill says SPLIT=5, but a 10-item passage needs SPLIT=10 for one item per passage per
+       file; make-attack refuses 5, and v9 used 10.
+    2. The v7/v8 solver and grader prompts that the v8/v9 preregs cite "verbatim" were never saved to disk. The
+       gate sheet now writes them out, in the JSON shapes `score-attack.mjs` and `act-english-v8-ws-score.mjs` read.
+  - **Needed:** 29 fresh agents (10 + 9 solvers, 3 + 3 with-source graders, and 2 + 2 co-founder-brief graders).
