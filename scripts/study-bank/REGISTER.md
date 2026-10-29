@@ -6165,3 +6165,14 @@ structural checks are pre-flight only. See CLAUDE.md.
   item that needed a +-3-point bar reading was replaced before packets were built. SI items 9 (v12b had 4). Keys
   A13 B13 C13 D13, uniquely longest 6/52. Packets: `scratchpad/act-science-regrade/b11-g{1,2}/grader-cold.md`;
   0 render warnings. Generator and rows: `scratchpad/act-science-regrade/_coordinator/b11/`.
+
+- **2026-10-29 — act-science-v12d authored (52 items, 4 RS + 3 CV + 2 DR) and b12 cold packets built; not graded,
+  not inserted.** Written to the v12 brief plus the b10 readability lesson (the bar passage uses values on multiples
+  of 25 on a 0-200 axis; every keyed comparison or cutoff is at least half a tick from the nearest bar). Topics:
+  geology (Vellet stone freeze-thaw; Marrow Hills boulders), astronomy (Kesh ice comet analogs; Tessaly dimming;
+  Halde meteors), microbiology (Orvel biofilms; Lake Sallow), atmospheric science (terpal haze), lake-core
+  sediments. SI raised to 7 (design-for-comparison x2, what-a-study-varied, a design limitation, question-matched-
+  to-experiment, locate-a-threshold, where-to-sample) with no Yes/No-with-reason items and no convergent option sets.
+  31 keys recomputed by script; `check science` OK; 0 render warnings; keys A13 B13 C13 D13. Prereg
+  `ACT-SCIENCE-V12D.prereg.md` (bars >=5 / 3-4 / 0-2 of 9). Packets: `scratchpad/act-science-regrade/b12-g1/` and
+  `b12-g2/grader-cold.md`.
