@@ -6429,3 +6429,30 @@ structural checks are pre-flight only. See CLAUDE.md.
   now 28 items over 18 cohorts (AUDIT-DRAW.md and the queue's nextManualDraw updated). With mechanics (76) and
   v2 writing (76) already cleared, MAP Language reaches 5 forms once the audit releases them (grammar binds at
   67 / 13 per form). The 88 v2 grammar rows stay held; archiving them waits for the owner.
+
+- **2026-10-30 — Science second-pass audit (key-visible, 2 auditors per packet, one adversarial): 562 of 562
+  items scored, 80 flagged, 80 passages / 117 items held under the prereg (349170c1). Nothing released.**
+  ACT Science 317 items: 9 flagged, 9 passages / 45 items held (v7b 1, v8b 1, v10a 1, v10b 1, v12b 1, v12f 3);
+  272 items in 43 passages clear. Reasons: 7 second-defensible, 1 unreadable bar gap, 1 fact error
+  (12 mm ground displacement at 56 km from a "small" quake), 1 no-source. v6b, v11a, v12a, v12c, v12d and v12e
+  had no flags.
+  MAP Science 245 items: 72 flagged and held. **68 of the 72 are `no_source` alone, raised on standalone
+  knowledge items that have no passage or figure.** MAP Science measures science knowledge, so for those items
+  "answerable from knowledge" is the construct, not a leak. That is the same saturation lesson recorded in CLAUDE.md
+  for ACT Science, and it is an owner call. The prereg's verdict stands as written and is not re-decided here.
+  The other 4 MAP flags are real defects: an unreadable kink (L8-16), a second-defensible star-distance item
+  (E5-13), and two passages that contradict their own figures (E6-03, E8-11).
+  Output: `scratchpad/science-audit/FLAGGED.json`.
+
+- **2026-10-30 — Agent review wave 2 (prereg a259b015, same 3-grader instrument with Amendment A1): 535 of 1,802
+  cleared, 18 of 48 cohorts held. Nothing released.** Results in `agent-review/results-wave2/`.
+  ACT Reading 189/324: v9b, v10a and v10b cleared in full; v8d, v11a and v12b at 27 each; v9a, v11b and v12a
+  held on key_form. v11a lost its weather-observer passage, because a minimum thermometer keeps its low until it is
+  reset, which breaks item 22's premise. ACT English v4: 0/50 (key_form plus second-defensible items took all 5
+  passages). ISEE Reading 66/468: draft-14 cleared 36, draft-13 18, draft-9 12. The rest fell to one_template,
+  reused_option_set or identical_key_prose, the same cross-item tells the earlier drafts showed. TOEFL Listening
+  240/600: Conversation 35/40, Academic Talk 171/296 (drafts 3-7 healthy; 1 and 2 held), Choose a Response 34/264
+  (only v19 and v20 partly survive; one_template and off-topic distractor templates everywhere, consistent with
+  `choose-response-tell`). TOEFL Reading passages 40/360: one_template and key_form on drafts 1-4.
+  Zero-cleared cohorts with no HOLD were checked: every drop comes from item rules taking whole passages, not
+  from unreadable grades.

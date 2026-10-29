@@ -1,0 +1,193 @@
+{
+ "cohort": "cr-v18",
+ "total": 36,
+ "cleared": [],
+ "dropped": {
+  "2b25622f-57ec-4783-87f4-e680eb3080e6": "item: a:alternative/second_defensible, c:alternative/second_defensible",
+  "8700424a-f0c5-4467-acf3-2ccddec61b49": "item: b:alternative/second_defensible, c:alternative/second_defensible",
+  "1d720ee3-316a-4ca2-ab3d-f670bdcfecfe": "item: a:alternative/second_defensible, b:alternative/second_defensible",
+  "db276705-2a3b-4c1a-929c-3e0b8a5f16fe": "item: b:alternative/second_defensible, c:alternative/second_defensible"
+ },
+ "hold": true,
+ "patternShare": 0.5,
+ "patterns": [
+  {
+   "graders": [
+    "a",
+    "b"
+   ],
+   "pattern": "off_topic_distractor_template",
+   "other": "one_template",
+   "items": [
+    4,
+    6,
+    8,
+    9,
+    13,
+    14,
+    17,
+    21,
+    25,
+    28,
+    30,
+    35,
+    2,
+    7,
+    19,
+    20
+   ],
+   "ids": [
+    "8700424a-f0c5-4467-acf3-2ccddec61b49",
+    "57d65a44-f8fe-4815-8e6e-6aacf2b20aef",
+    "1cc2b73a-3785-4039-bd08-e7a9e6fab063",
+    "736b55d3-c395-47ef-b82e-2973d7ec5aaf",
+    "f6856022-fead-43f7-b7aa-402a0c86098d",
+    "2c3358fb-4441-4451-9a75-533ea88aeca9",
+    "1e81bcfe-e9d3-4a0e-8baf-58d604d1ce26",
+    "8693e79e-1776-49fa-8aa3-886fa8015d6d",
+    "9f42433f-f6ac-4a49-b7c1-e7fa252690df",
+    "82620a24-cc25-478b-8f4c-b2cc71196e05",
+    "05f55d8e-d6dc-4370-ba57-311093318262",
+    "9a91e9e2-c2c7-4984-8e9f-59912720a966",
+    "1b2093e0-1849-40c0-9758-a6a7c6e30b96",
+    "b6fdaecb-0067-4346-9f9b-e97e65ee43ea",
+    "3d9c0d42-7110-4086-ba36-132c2ce61fe1",
+    "738377c8-c58b-49ac-b68c-528d461e4003"
+   ]
+  },
+  {
+   "graders": [
+    "a",
+    "b"
+   ],
+   "pattern": "off_topic_distractor_template",
+   "other": "reused_option_set",
+   "items": [
+    4,
+    6,
+    8,
+    9,
+    13,
+    14,
+    17,
+    21,
+    25,
+    30,
+    35
+   ],
+   "ids": [
+    "8700424a-f0c5-4467-acf3-2ccddec61b49",
+    "57d65a44-f8fe-4815-8e6e-6aacf2b20aef",
+    "1cc2b73a-3785-4039-bd08-e7a9e6fab063",
+    "736b55d3-c395-47ef-b82e-2973d7ec5aaf",
+    "f6856022-fead-43f7-b7aa-402a0c86098d",
+    "2c3358fb-4441-4451-9a75-533ea88aeca9",
+    "1e81bcfe-e9d3-4a0e-8baf-58d604d1ce26",
+    "8693e79e-1776-49fa-8aa3-886fa8015d6d",
+    "9f42433f-f6ac-4a49-b7c1-e7fa252690df",
+    "05f55d8e-d6dc-4370-ba57-311093318262",
+    "9a91e9e2-c2c7-4984-8e9f-59912720a966"
+   ]
+  },
+  {
+   "graders": [
+    "a",
+    "b"
+   ],
+   "pattern": "off_topic_distractor_template",
+   "other": "reused_option_set",
+   "items": [
+    9,
+    13,
+    7,
+    20
+   ],
+   "ids": [
+    "736b55d3-c395-47ef-b82e-2973d7ec5aaf",
+    "f6856022-fead-43f7-b7aa-402a0c86098d",
+    "b6fdaecb-0067-4346-9f9b-e97e65ee43ea",
+    "738377c8-c58b-49ac-b68c-528d461e4003"
+   ]
+  },
+  {
+   "graders": [
+    "a",
+    "c"
+   ],
+   "pattern": "off_topic_distractor_template",
+   "other": "one_template",
+   "items": [
+    13,
+    21,
+    2,
+    7
+   ],
+   "ids": [
+    "f6856022-fead-43f7-b7aa-402a0c86098d",
+    "8693e79e-1776-49fa-8aa3-886fa8015d6d",
+    "1b2093e0-1849-40c0-9758-a6a7c6e30b96",
+    "b6fdaecb-0067-4346-9f9b-e97e65ee43ea"
+   ]
+  },
+  {
+   "graders": [
+    "a",
+    "c"
+   ],
+   "pattern": "off_topic_distractor_template",
+   "other": "reused_option_set",
+   "items": [
+    9,
+    2,
+    7,
+    19
+   ],
+   "ids": [
+    "736b55d3-c395-47ef-b82e-2973d7ec5aaf",
+    "1b2093e0-1849-40c0-9758-a6a7c6e30b96",
+    "b6fdaecb-0067-4346-9f9b-e97e65ee43ea",
+    "3d9c0d42-7110-4086-ba36-132c2ce61fe1"
+   ]
+  },
+  {
+   "graders": [
+    "b",
+    "c"
+   ],
+   "pattern": "one_template",
+   "other": "one_template",
+   "items": [
+    2,
+    7,
+    13,
+    21
+   ],
+   "ids": [
+    "1b2093e0-1849-40c0-9758-a6a7c6e30b96",
+    "b6fdaecb-0067-4346-9f9b-e97e65ee43ea",
+    "f6856022-fead-43f7-b7aa-402a0c86098d",
+    "8693e79e-1776-49fa-8aa3-886fa8015d6d"
+   ]
+  },
+  {
+   "graders": [
+    "b",
+    "c"
+   ],
+   "pattern": "reused_option_set",
+   "other": "reused_option_set",
+   "items": [
+    7,
+    9,
+    22,
+    31
+   ],
+   "ids": [
+    "b6fdaecb-0067-4346-9f9b-e97e65ee43ea",
+    "736b55d3-c395-47ef-b82e-2973d7ec5aaf",
+    "1d720ee3-316a-4ca2-ab3d-f670bdcfecfe",
+    "f694d43e-b259-4dc9-bea2-7e6533fc9b34"
+   ]
+  }
+ ]
+}

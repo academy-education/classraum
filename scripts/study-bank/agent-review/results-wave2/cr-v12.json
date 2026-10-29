@@ -1,0 +1,117 @@
+{
+ "cohort": "cr-v12",
+ "total": 15,
+ "cleared": [],
+ "dropped": {
+  "f81a1023-0d31-4011-9689-a6dc26241334": "item: a:alternative/second_defensible, b:alternative/second_defensible, c:alternative/second_defensible",
+  "ac857f0d-fa39-47f8-a2f0-72478fccb6ec": "item: a:alternative/second_defensible, b:alternative/second_defensible, c:alternative/second_defensible",
+  "435a604e-bc2b-4d42-9152-97ba74b4286d": "item: b:alternative/second_defensible",
+  "a7b0c588-cbdd-48ce-bb49-8d1720ddc85b": "item: a:alternative/second_defensible, b:alternative/second_defensible, c:alternative/second_defensible"
+ },
+ "hold": true,
+ "patternShare": 0.8666666666666667,
+ "patterns": [
+  {
+   "graders": [
+    "a",
+    "b"
+   ],
+   "pattern": "transplanted_distractors",
+   "other": "one_template",
+   "items": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    7,
+    8,
+    10,
+    12,
+    14,
+    15
+   ],
+   "ids": [
+    "f81a1023-0d31-4011-9689-a6dc26241334",
+    "27d4e159-cc2e-487d-9866-9826f76d7571",
+    "79e0430b-104f-46b2-a61b-814f9e4ef938",
+    "a4e479e8-5ffb-400d-b596-74d77b38698e",
+    "14507b17-284a-44b9-81b6-bd8f4ef4c797",
+    "838af782-b061-4dd6-ab55-cfee3ae0f30e",
+    "fd584217-8795-43ad-af97-800fd1379486",
+    "435a604e-bc2b-4d42-9152-97ba74b4286d",
+    "0877d679-1c93-4863-b643-dc3af08688c2",
+    "44b3340b-5cce-4814-a52a-96099fa8d430",
+    "e0e30234-aad5-497b-a778-c2d54539d028"
+   ]
+  },
+  {
+   "graders": [
+    "a",
+    "c"
+   ],
+   "pattern": "transplanted_distractors",
+   "other": "off_topic_distractor_pool",
+   "items": [
+    2,
+    3,
+    4,
+    5,
+    7,
+    8,
+    10,
+    12,
+    14,
+    15
+   ],
+   "ids": [
+    "27d4e159-cc2e-487d-9866-9826f76d7571",
+    "79e0430b-104f-46b2-a61b-814f9e4ef938",
+    "a4e479e8-5ffb-400d-b596-74d77b38698e",
+    "14507b17-284a-44b9-81b6-bd8f4ef4c797",
+    "838af782-b061-4dd6-ab55-cfee3ae0f30e",
+    "fd584217-8795-43ad-af97-800fd1379486",
+    "435a604e-bc2b-4d42-9152-97ba74b4286d",
+    "0877d679-1c93-4863-b643-dc3af08688c2",
+    "44b3340b-5cce-4814-a52a-96099fa8d430",
+    "e0e30234-aad5-497b-a778-c2d54539d028"
+   ]
+  },
+  {
+   "graders": [
+    "b",
+    "c"
+   ],
+   "pattern": "one_template",
+   "other": "off_topic_distractor_pool",
+   "items": [
+    2,
+    3,
+    4,
+    5,
+    7,
+    8,
+    9,
+    10,
+    12,
+    13,
+    14,
+    15
+   ],
+   "ids": [
+    "27d4e159-cc2e-487d-9866-9826f76d7571",
+    "79e0430b-104f-46b2-a61b-814f9e4ef938",
+    "a4e479e8-5ffb-400d-b596-74d77b38698e",
+    "14507b17-284a-44b9-81b6-bd8f4ef4c797",
+    "838af782-b061-4dd6-ab55-cfee3ae0f30e",
+    "fd584217-8795-43ad-af97-800fd1379486",
+    "922820d5-c991-4406-a62e-465977e50733",
+    "435a604e-bc2b-4d42-9152-97ba74b4286d",
+    "0877d679-1c93-4863-b643-dc3af08688c2",
+    "7dd883e8-1b0f-483b-b9e9-54f2bb815359",
+    "44b3340b-5cce-4814-a52a-96099fa8d430",
+    "e0e30234-aad5-497b-a778-c2d54539d028"
+   ]
+  }
+ ]
+}

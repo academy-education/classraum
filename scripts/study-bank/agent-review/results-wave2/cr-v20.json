@@ -1,0 +1,106 @@
+{
+ "cohort": "cr-v20",
+ "total": 32,
+ "cleared": [
+  "02751764-9d57-45a6-95f5-fdc648c0d17e",
+  "44325cb3-a0dd-44d6-98d3-e5d1be86e3e2",
+  "4e4855dc-ecba-4c18-86e8-1854989a9901",
+  "4e9ce21d-8c75-4f4d-ac57-4c7967f2365d",
+  "52414a0c-9e21-412c-a78a-b9bce5d7cd40",
+  "546bc2ec-114a-42fd-8e07-ef651ee63c8e",
+  "572bcc93-de9f-4aa9-a89d-beba2562ae9c",
+  "8fc8c9af-d00e-4a8a-b991-73ef93ac4718",
+  "c55da30b-1f76-43be-b420-e566912da7cc",
+  "cb164b33-ce58-4fad-b7cf-44347cd06559",
+  "d03c3e33-29fe-4b3a-8fe3-2068da7d10f5",
+  "ddad64d5-d853-45de-a79d-8ce0653195f5",
+  "e0c27c14-5a22-4958-abf7-0d24a4e113a5",
+  "fa4bc232-09af-43f6-8dde-8e4d17220a0f",
+  "fa66a5e4-a7d2-47c7-b557-3cd79acd2bab",
+  "faf6b365-68a9-4574-b746-fb78324e9f32",
+  "ff33de42-8b7c-4159-b6a0-26e48652e223"
+ ],
+ "dropped": {
+  "898dbcc5-a3bd-4a3b-8b0c-6551ea94246f": "item: c:alternative/second_defensible",
+  "37887b9a-d4d5-4ab3-b997-603f9fb6ce6b": "pattern: off_topic_distractors",
+  "d9466952-79e8-47d8-b1cc-ad06d91145aa": "pattern: off_topic_distractors",
+  "a6c0edf6-8b53-4761-8798-05450940064b": "pattern: off_topic_distractors",
+  "0d210e5c-7b9b-49ec-81ef-10d81b7086e0": "pattern: off_topic_distractors",
+  "869f1589-596f-42fc-bafd-ab4a65f2ddda": "pattern: off_topic_distractors",
+  "e6afcde6-b2ea-4ecc-af6f-04d677104f2b": "pattern: off_topic_distractors",
+  "ff85e80d-5a54-4acf-a95a-bc61025291ce": "pattern: off_topic_distractors",
+  "f9641552-b5f6-42e8-a6d7-2f95836a75a0": "item: c:alternative/second_defensible",
+  "79094c70-60c6-4c18-b874-0fdcee84932a": "pattern: off_topic_distractors",
+  "c8c0de09-471a-409b-bc89-204604dbdc1b": "pattern: off_topic_distractors",
+  "e42708fa-7d55-45d4-8b80-c8d9731c251b": "pattern: off_topic_distractors",
+  "bba68dce-3ccd-431c-b97e-ea24b5737396": "pattern: off_topic_distractors",
+  "052e84bb-8dad-47eb-a7a7-c8d7f672d832": "pattern: off_topic_distractors",
+  "014e3e58-ea34-4656-ae8d-bb37aba3e2cb": "pattern: off_topic_distractors"
+ },
+ "hold": false,
+ "patternShare": 0.40625,
+ "patterns": [
+  {
+   "graders": [
+    "a",
+    "c"
+   ],
+   "pattern": "off_topic_distractors",
+   "other": "one_template",
+   "items": [
+    11,
+    14,
+    22,
+    24
+   ],
+   "ids": [
+    "869f1589-596f-42fc-bafd-ab4a65f2ddda",
+    "ff85e80d-5a54-4acf-a95a-bc61025291ce",
+    "052e84bb-8dad-47eb-a7a7-c8d7f672d832",
+    "014e3e58-ea34-4656-ae8d-bb37aba3e2cb"
+   ]
+  },
+  {
+   "graders": [
+    "a",
+    "c"
+   ],
+   "pattern": "off_topic_distractors",
+   "other": "identical_key_prose",
+   "items": [
+    4,
+    13,
+    19,
+    20
+   ],
+   "ids": [
+    "37887b9a-d4d5-4ab3-b997-603f9fb6ce6b",
+    "e6afcde6-b2ea-4ecc-af6f-04d677104f2b",
+    "e42708fa-7d55-45d4-8b80-c8d9731c251b",
+    "bba68dce-3ccd-431c-b97e-ea24b5737396"
+   ]
+  },
+  {
+   "graders": [
+    "a",
+    "c"
+   ],
+   "pattern": "off_topic_distractors",
+   "other": "key_form",
+   "items": [
+    6,
+    7,
+    8,
+    17,
+    18
+   ],
+   "ids": [
+    "d9466952-79e8-47d8-b1cc-ad06d91145aa",
+    "a6c0edf6-8b53-4761-8798-05450940064b",
+    "0d210e5c-7b9b-49ec-81ef-10d81b7086e0",
+    "79094c70-60c6-4c18-b874-0fdcee84932a",
+    "c8c0de09-471a-409b-bc89-204604dbdc1b"
+   ]
+  }
+ ]
+}

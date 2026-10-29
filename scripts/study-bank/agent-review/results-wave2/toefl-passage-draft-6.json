@@ -1,0 +1,162 @@
+{
+ "cohort": "toefl-passage-draft-6",
+ "total": 60,
+ "cleared": [
+  "08b88f35-b215-498d-98aa-fc331cf9d345",
+  "0ba403ad-6d8f-486c-95f8-74acb5fb39ec",
+  "24b32387-d5be-4199-b71e-add08e955d96",
+  "31432ff1-40b1-4fea-8d44-3a8216294920",
+  "4d7fe851-6187-42d6-b29e-837f9a5843a5",
+  "5ced6f49-7884-4fbd-87f4-27993d92e5f8",
+  "6164c283-accf-4b49-a50c-a751202b94c4",
+  "82141563-41ff-4b8e-9fa5-517c07da58e9",
+  "971fad8e-77b5-4da9-8c1c-c0dc614d2d96",
+  "c5d4cbc9-c02a-4df2-b461-c97181dfff17"
+ ],
+ "dropped": {
+  "5f6b438e-5ad9-4c2e-b032-a1b4f9cfef20": "passage: pg-0161d2b3fdd2226589ebc549ff8c20d2 lost an item",
+  "60b44c06-a736-46d7-9196-9d888605f3b4": "passage: pg-0161d2b3fdd2226589ebc549ff8c20d2 lost an item",
+  "631dd114-019f-4584-913b-e1415ef24c2f": "pattern: key_form",
+  "8255adb0-7f1f-4b67-b1d4-6bf9c69cd9b4": "passage: pg-0161d2b3fdd2226589ebc549ff8c20d2 lost an item",
+  "f2db8c48-1d4d-4db8-97d4-879906c8da2e": "passage: pg-0161d2b3fdd2226589ebc549ff8c20d2 lost an item",
+  "0c3eddec-a0bf-4808-a0d1-12b19ebe443f": "pattern: key_form",
+  "26e4e81f-284f-4c96-8abc-8dd7675b94aa": "passage: pg-0b40d4b055af119cdc6f84f7ad7c23a6 lost an item",
+  "692e4aeb-de3b-4315-884b-0f76adc14138": "passage: pg-0b40d4b055af119cdc6f84f7ad7c23a6 lost an item",
+  "8c5a7c03-afd8-4a0d-a279-db8be67e0557": "passage: pg-0b40d4b055af119cdc6f84f7ad7c23a6 lost an item",
+  "a7fbfee9-f715-4454-a5b5-708bc9932409": "passage: pg-0b40d4b055af119cdc6f84f7ad7c23a6 lost an item",
+  "1713eabd-4202-4823-98d6-337c63d948c0": "passage: pg-36bd07eee1793e5bdaa6c370d60f1157 lost an item",
+  "9ffd43db-b82d-4572-8ad9-fc2edebf65f0": "pattern: key_form",
+  "bb15f113-9705-4e39-a068-117ec99c72d5": "passage: pg-36bd07eee1793e5bdaa6c370d60f1157 lost an item",
+  "cbfbfa6b-4ebd-4003-9bef-8b5678aefc4b": "passage: pg-36bd07eee1793e5bdaa6c370d60f1157 lost an item",
+  "d9896337-bd48-4b53-b90a-9f329399fe84": "passage: pg-36bd07eee1793e5bdaa6c370d60f1157 lost an item",
+  "884ff366-0738-47ae-bea2-034490c6f6d4": "passage: pg-4fce45f888f98bc89d688d73273fc272 lost an item",
+  "8f9b0b74-6dad-44c6-8d39-5b158560b835": "pattern: key_form",
+  "af8a1f01-2e93-4df1-bfde-de3ed093203f": "passage: pg-4fce45f888f98bc89d688d73273fc272 lost an item",
+  "b964272a-5098-4596-b706-fb3d4aea2063": "passage: pg-4fce45f888f98bc89d688d73273fc272 lost an item",
+  "e71c843f-50e0-4ba3-8147-544793496f48": "passage: pg-4fce45f888f98bc89d688d73273fc272 lost an item",
+  "0bca72c1-40a3-41f3-a3a3-bb712c2c7042": "pattern: key_form, key_form",
+  "9b0341d1-1f51-4cd2-9ded-98fabe6f695a": "pattern: one_template",
+  "aec1e5fc-b2a5-4f91-b13a-f7dfa6dd160c": "pattern: key_form",
+  "ba524091-2eb9-4234-9c66-55dfdbd5094c": "passage: pg-ddb67510e9d31a8394a147cd7ea6d897 lost an item",
+  "bb607ab7-0d6b-4047-b124-a6873e0b9480": "passage: pg-ddb67510e9d31a8394a147cd7ea6d897 lost an item",
+  "356cd629-9247-4974-87d1-0ab9c9203a71": "pattern: key_form",
+  "ae924187-e3b4-43d7-8b9a-07a560e035b5": "pattern: key_form",
+  "c541143e-d374-4e66-90ab-917f44e8b9c9": "passage: pg-a85e163e1999b41c0b56096725074fd9 lost an item",
+  "ded7695d-475f-4a36-8ad1-75ed713075eb": "pattern: key_form",
+  "f066f22e-2720-4d08-a264-3b9fe2db83aa": "passage: pg-a85e163e1999b41c0b56096725074fd9 lost an item",
+  "23086d71-1cba-438f-9f5e-26f57c0dceb2": "passage: pg-f82c6b0e67003282886634b920853e41 lost an item",
+  "24c27364-48c2-49b9-8cd1-f3ba634b93fc": "pattern: key_form",
+  "2b88b93b-d3e0-47a7-a712-e67ea6071ed3": "pattern: key_form",
+  "cda4e8aa-e6f9-4893-a055-86f2c21e2364": "pattern: one_template",
+  "fcf9dc08-f9e7-470e-82b6-624c793f87b0": "passage: pg-f82c6b0e67003282886634b920853e41 lost an item",
+  "3a2a181d-b2fa-49bf-9d9b-4575ff93cb55": "pattern: key_form",
+  "55027f8a-79c3-4410-bca0-bd8e1de9ab45": "passage: pg-ece30e85ba3af86fbeacc4fd00f85823 lost an item",
+  "d266ab39-fae2-4c10-ad20-c425509c9a0e": "pattern: one_template",
+  "d2922c5e-9521-41c9-97f5-5e7003ecd6c3": "passage: pg-ece30e85ba3af86fbeacc4fd00f85823 lost an item",
+  "eda710a8-ce29-433c-8630-cc20cf57a0e0": "pattern: key_form",
+  "74a891f1-cf66-4abd-ba1d-a7efcc0918f4": "passage: pg-b0964b21c740ea53dcb2767f2d7cdfed lost an item",
+  "76a2d2c4-09f5-40d6-b621-95f58e4c2779": "passage: pg-b0964b21c740ea53dcb2767f2d7cdfed lost an item",
+  "7994f6c2-5026-4a99-bc1c-ef9dbf135fef": "pattern: key_form",
+  "9b3c4f86-cd43-4d64-9722-471f19ca3891": "passage: pg-b0964b21c740ea53dcb2767f2d7cdfed lost an item",
+  "cff91083-c4d6-47d7-abbc-9906e68c8390": "pattern: key_form",
+  "002e002f-907c-455e-8e18-1379ea8d812e": "pattern: key_form",
+  "0a81d7ed-a44e-497e-8dd3-3a4dfe55531d": "passage: pg-839bdd605643daa81512a508c5e46e35 lost an item",
+  "447de642-98b2-46ac-99ac-8a1263a2f2a8": "passage: pg-839bdd605643daa81512a508c5e46e35 lost an item",
+  "f4d0832e-4014-4450-b7f8-766135fea0da": "pattern: one_template",
+  "f5954c9e-b3ee-4d2f-9b1e-e10103b3e9b0": "passage: pg-839bdd605643daa81512a508c5e46e35 lost an item"
+ },
+ "hold": false,
+ "patternShare": 0.3333333333333333,
+ "patterns": [
+  {
+   "graders": [
+    "b",
+    "c"
+   ],
+   "pattern": "key_form",
+   "other": "key_form",
+   "items": [
+    8,
+    27,
+    16,
+    22
+   ],
+   "ids": [
+    "631dd114-019f-4584-913b-e1415ef24c2f",
+    "8f9b0b74-6dad-44c6-8d39-5b158560b835",
+    "0c3eddec-a0bf-4808-a0d1-12b19ebe443f",
+    "9ffd43db-b82d-4572-8ad9-fc2edebf65f0"
+   ]
+  },
+  {
+   "graders": [
+    "a",
+    "b"
+   ],
+   "pattern": "key_form",
+   "other": "key_form",
+   "items": [
+    1,
+    7,
+    25
+   ],
+   "ids": [
+    "0bca72c1-40a3-41f3-a3a3-bb712c2c7042",
+    "ae924187-e3b4-43d7-8b9a-07a560e035b5",
+    "cff91083-c4d6-47d7-abbc-9906e68c8390"
+   ]
+  },
+  {
+   "graders": [
+    "a",
+    "c"
+   ],
+   "pattern": "key_form",
+   "other": "key_form",
+   "items": [
+    1,
+    3,
+    6,
+    9,
+    12,
+    13,
+    16,
+    20,
+    23,
+    26
+   ],
+   "ids": [
+    "0bca72c1-40a3-41f3-a3a3-bb712c2c7042",
+    "aec1e5fc-b2a5-4f91-b13a-f7dfa6dd160c",
+    "356cd629-9247-4974-87d1-0ab9c9203a71",
+    "ded7695d-475f-4a36-8ad1-75ed713075eb",
+    "24c27364-48c2-49b9-8cd1-f3ba634b93fc",
+    "2b88b93b-d3e0-47a7-a712-e67ea6071ed3",
+    "3a2a181d-b2fa-49bf-9d9b-4575ff93cb55",
+    "eda710a8-ce29-433c-8630-cc20cf57a0e0",
+    "7994f6c2-5026-4a99-bc1c-ef9dbf135fef",
+    "002e002f-907c-455e-8e18-1379ea8d812e"
+   ]
+  },
+  {
+   "graders": [
+    "b",
+    "c"
+   ],
+   "pattern": "one_template",
+   "other": "one_template",
+   "items": [
+    2,
+    14,
+    18,
+    29
+   ],
+   "ids": [
+    "9b0341d1-1f51-4cd2-9ded-98fabe6f695a",
+    "cda4e8aa-e6f9-4893-a055-86f2c21e2364",
+    "d266ab39-fae2-4c10-ad20-c425509c9a0e",
+    "f4d0832e-4014-4450-b7f8-766135fea0da"
+   ]
+  }
+ ]
+}

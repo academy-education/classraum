@@ -1,0 +1,55 @@
+{
+ "cohort": "cr-v13",
+ "total": 13,
+ "cleared": [],
+ "dropped": {
+  "81da0aba-0ad9-441b-bdf4-6302d534a9fb": "item: a:alternative/second_defensible, b:alternative/second_defensible",
+  "62e004f1-3840-40e9-8441-afb440306326": "item: b:alternative/second_defensible, c:alternative/second_defensible",
+  "a2fc79ba-c0a7-411a-9488-fe3a7b9b5fd4": "item: a:alternative/second_defensible, b:alternative/second_defensible, c:alternative/second_defensible",
+  "25400e06-2526-4621-9c68-028226cfa4ab": "item: a:alternative/second_defensible, b:alternative/second_defensible, c:alternative/second_defensible"
+ },
+ "hold": true,
+ "patternShare": 0.5384615384615384,
+ "patterns": [
+  {
+   "graders": [
+    "b",
+    "c"
+   ],
+   "pattern": "recycled_distractors",
+   "other": "off_scenario_distractors",
+   "items": [
+    1,
+    9,
+    11,
+    12,
+    13
+   ],
+   "ids": [
+    "fd7c6a68-f520-4719-a31a-9979c00d7531",
+    "980fd72c-cdb8-49b7-ae2d-f27a269ea4b4",
+    "46fb9aaf-20ea-4acb-843d-cbcc38a04b20",
+    "4cfd4f1d-b55a-4033-b3c1-b489d6d1cd5c",
+    "9a564973-38d3-470c-9549-0a6555ee0bd6"
+   ]
+  },
+  {
+   "graders": [
+    "b",
+    "c"
+   ],
+   "pattern": "recycled_distractors",
+   "other": "reused_option_set",
+   "items": [
+    5,
+    10,
+    13
+   ],
+   "ids": [
+    "a2fc79ba-c0a7-411a-9488-fe3a7b9b5fd4",
+    "25400e06-2526-4621-9c68-028226cfa4ab",
+    "9a564973-38d3-470c-9549-0a6555ee0bd6"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,129 @@
+{
+ "cohort": "isee-reading-draft-11",
+ "total": 36,
+ "cleared": [],
+ "dropped": {
+  "0567e453-c663-437d-8b1d-e9180403dd05": "passage: iseedraft11-IR11-P05 lost an item",
+  "587ffe77-f719-4cde-926f-828aee7d2d01": "item: a:hold/self_contradiction",
+  "7e16183d-c631-4640-9039-942522bda6ae": "pattern: key_form",
+  "9d2a98d9-dc53-4011-95aa-35dbc1167d42": "passage: iseedraft11-IR11-P05 lost an item",
+  "e38bfd96-8339-4c19-b7b2-67b7bc2be3b9": "pattern: one_template",
+  "e60ab0d6-e9a4-4ca4-a7d7-c05e195e6080": "passage: iseedraft11-IR11-P05 lost an item",
+  "0d22d100-f832-4006-bd41-40c5e686ddee": "pattern: one_template, attitude_key_mild_positive",
+  "6fd74d91-eff8-4cfe-a79b-cf8ee8a54617": "passage: iseedraft11-IR11-P06 lost an item",
+  "b8e2778c-a149-4d87-81df-c8a58669a840": "pattern: one_template",
+  "cbf8f206-b5f7-430d-a870-cf063bd7b92d": "passage: iseedraft11-IR11-P06 lost an item",
+  "cc71db4e-a3ef-4a53-8611-02659bedd23f": "passage: iseedraft11-IR11-P06 lost an item",
+  "ff24c06d-df0d-4ed5-9006-fed325747736": "passage: iseedraft11-IR11-P06 lost an item",
+  "10087543-cc7b-4cd1-a5bb-df734e1384f9": "pattern: key_form",
+  "31174438-a006-4a6d-9188-a3200ace3a5e": "passage: iseedraft11-IR11-P02 lost an item",
+  "5f975c88-6cb6-4220-b9e5-b87e4a6a49d8": "passage: iseedraft11-IR11-P02 lost an item",
+  "bd1df8e6-648b-45e4-b8a3-cf99ed815160": "pattern: one_template, attitude_key_mild_positive",
+  "d1883f9a-6ded-49f3-8103-38b0dbc7787a": "pattern: one_template",
+  "e7ac3abb-712d-45c1-849f-5fcd4f54ebd2": "passage: iseedraft11-IR11-P02 lost an item",
+  "739a9438-fad2-4192-9781-a58355c21c3c": "passage: iseedraft11-IR11-P01 lost an item",
+  "b961dfcc-fe63-4348-b345-bdf38811381f": "passage: iseedraft11-IR11-P01 lost an item",
+  "f1284311-d360-4856-aa6c-96773dadf3d4": "pattern: one_template",
+  "f209d17f-fc65-4f04-ba7a-4d560ca5a3b7": "passage: iseedraft11-IR11-P01 lost an item",
+  "f468db2f-77ff-407c-9b22-11cbc1b552e6": "passage: iseedraft11-IR11-P01 lost an item",
+  "f804b488-5efb-4130-9454-e4f2a5f76bae": "passage: iseedraft11-IR11-P01 lost an item",
+  "1b198ff6-bb49-46c6-be22-d9fe1ee3d660": "pattern: one_template",
+  "9062f0fd-2238-4c05-939b-408387241649": "passage: iseedraft11-IR11-P03 lost an item",
+  "a7342252-c83f-4157-8da1-2a1f95a3fd2e": "pattern: one_template, attitude_key_mild_positive",
+  "cb401e5f-9042-4358-a5e8-1c111f9d9f12": "passage: iseedraft11-IR11-P03 lost an item",
+  "ee6b8877-0f1a-4562-99cc-7adcae4eb712": "pattern: key_form",
+  "f0ccc785-4e07-4469-974b-cfe9449b55d9": "passage: iseedraft11-IR11-P03 lost an item",
+  "77bb3104-c1b9-45d3-9209-6146b0c7a77d": "pattern: one_template",
+  "7f46ea09-e0e9-4bff-b078-7ddcd8789e18": "passage: iseedraft11-IR11-P04 lost an item",
+  "9e653d6f-e37e-4201-a094-1c9aeb47337b": "passage: iseedraft11-IR11-P04 lost an item",
+  "aca11e60-b132-493e-ad27-8b11cccac063": "passage: iseedraft11-IR11-P04 lost an item",
+  "caa8f248-582b-4b3b-a455-1826358ae40f": "passage: iseedraft11-IR11-P04 lost an item",
+  "e9513d0f-65d0-4d59-a784-d775a50e0a8c": "pattern: one_template, attitude_key_mild_positive"
+ },
+ "hold": false,
+ "patternShare": 0.3611111111111111,
+ "patterns": [
+  {
+   "graders": [
+    "a",
+    "c"
+   ],
+   "pattern": "key_form",
+   "other": "key_form",
+   "items": [
+    3,
+    13,
+    29
+   ],
+   "ids": [
+    "7e16183d-c631-4640-9039-942522bda6ae",
+    "10087543-cc7b-4cd1-a5bb-df734e1384f9",
+    "ee6b8877-0f1a-4562-99cc-7adcae4eb712"
+   ]
+  },
+  {
+   "graders": [
+    "b",
+    "c"
+   ],
+   "pattern": "one_template",
+   "other": "attitude_key_sole_positive",
+   "items": [
+    7,
+    16,
+    27,
+    36
+   ],
+   "ids": [
+    "0d22d100-f832-4006-bd41-40c5e686ddee",
+    "bd1df8e6-648b-45e4-b8a3-cf99ed815160",
+    "a7342252-c83f-4157-8da1-2a1f95a3fd2e",
+    "e9513d0f-65d0-4d59-a784-d775a50e0a8c"
+   ]
+  },
+  {
+   "graders": [
+    "b",
+    "c"
+   ],
+   "pattern": "one_template",
+   "other": "one_template",
+   "items": [
+    5,
+    9,
+    17,
+    21,
+    25,
+    31
+   ],
+   "ids": [
+    "e38bfd96-8339-4c19-b7b2-67b7bc2be3b9",
+    "b8e2778c-a149-4d87-81df-c8a58669a840",
+    "d1883f9a-6ded-49f3-8103-38b0dbc7787a",
+    "f1284311-d360-4856-aa6c-96773dadf3d4",
+    "1b198ff6-bb49-46c6-be22-d9fe1ee3d660",
+    "77bb3104-c1b9-45d3-9209-6146b0c7a77d"
+   ]
+  },
+  {
+   "graders": [
+    "b",
+    "c"
+   ],
+   "pattern": "attitude_key_mild_positive",
+   "other": "attitude_key_sole_positive",
+   "items": [
+    7,
+    16,
+    27,
+    36
+   ],
+   "ids": [
+    "0d22d100-f832-4006-bd41-40c5e686ddee",
+    "bd1df8e6-648b-45e4-b8a3-cf99ed815160",
+    "a7342252-c83f-4157-8da1-2a1f95a3fd2e",
+    "e9513d0f-65d0-4d59-a784-d775a50e0a8c"
+   ]
+  }
+ ]
+}
