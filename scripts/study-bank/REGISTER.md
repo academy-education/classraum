@@ -6489,3 +6489,20 @@ structural checks are pre-flight only. See CLAUDE.md.
   `math-b8/ITEMS.md`. Open risks: 1 of 5 keys at an extreme (inserter floor 40%); E12's area; E14's x3/2 chain in
   the options. Pool for the next Number Systems gate: 5 b8 items + MB7-N7-01 = 6 of the +9 needed. Grades 5 and 8
   are empty.
+
+- **2026-10-30 — OWNER "GO on both": science RELEASED on the two agent passes; science removed from Daniel's queue;
+  v6b withdrawn.** `release-science-audit-2026-10-30.mjs --apply`: 513 of 513 written verified=true. Population = the
+  562 audited rows; it refuses any row edited after the audit's built_at (0 were).
+  ACT Science 272 released (the 9 held passages / 45 items stay staged). MAP Science 241 released: the 68 flagged
+  only `no_source` count as clean, by the owner's call (standalone knowledge items); the 4 real defects stay staged
+  (L8-16, E5-13, E6-03, E8-11). **Depth after release:** ACT Science 3 -> 10 forms (form-capacity; verify-act-draw
+  drew 40 of 40); MAP Science 0 -> 5 (map-form-depth 5/5/5).
+  - `actsciencev6b-full1-blindonly-cofounder-2026-10-28`: 11 rows, 0 seen, deleted (withdrawn).
+  - The 25 science entries were removed from `cofounder-queue.json` (copy in
+    `agent-review/science-queue-removed-2026-10-30.json`). Queue 113 -> 88. The entries were rewritten one per line,
+    with no content change.
+  - **Still open:** `actsciencev5c-full1-blindonly-cofounder-2026-10-27` (10 rows, all 10 SEEN, 0 answered). Not
+    deleted: the reviewer has opened it, so blind_at is evidence. Owner to decide (finish it, or withdraw it). Until it
+    closes, `draw-review-run` refuses the audit draw.
+  - MAP Math form 6 needs more than Number Systems: f6 is short OA 5/10, N 1/10, Geo 7/10, Stats 5/10.
+  - autonomy-state.json is stale (review table changed); re-run autonomy-state.mjs before the next level-aware draw.

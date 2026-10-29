@@ -1,0 +1,275 @@
+{
+ "note": "Owner 2026-10-30 GO: science released on the two agent passes, so no science run is drawn for the co-founder. These entries were removed from cofounder-queue.json; unreleased science cohorts (v5a-v9b blocked, held passages) stay staged.",
+ "entries": [
+  {
+   "cohort": "act-science-v5a",
+   "upTo": 0,
+   "heldNote": "2026-10-27: no passage survived the agent re-grade (ACT-SCIENCE-AGENT-RELEASE-RESULT.md); every row archived. Kept for the record, never drawn.",
+   "blindOnly": true,
+   "tool": "item",
+   "domain": "Interpretation of Data:3,Evaluation of Models, Inferences, and Experimental Results:1,Scientific Investigation:1",
+   "size": 5,
+   "family": "act",
+   "group": "act-science-v5a:sc5a-p1",
+   "route": "spot",
+   "runId": "act-sci-v5a-spot-cofounder-{date}"
+  },
+  {
+   "cohort": "act-science-v5b",
+   "upTo": 0,
+   "heldNote": "2026-10-27: no passage survived the agent re-grade (ACT-SCIENCE-AGENT-RELEASE-RESULT.md); every row archived. Kept for the record, never drawn.",
+   "blindOnly": true,
+   "tool": "item",
+   "domain": "Interpretation of Data:3,Scientific Investigation:2,Evaluation of Models, Inferences, and Experimental Results:1",
+   "size": 6,
+   "family": "act",
+   "group": "act-science-v5b:sc5b-p3",
+   "route": "spot",
+   "runId": "act-sci-v5b-spot-cofounder-{date}"
+  },
+  {
+   "cohort": "act-science-v5c",
+   "blindOnly": true,
+   "tool": "item",
+   "domain": "Interpretation of Data:2,Scientific Investigation:2,Evaluation of Models, Inferences, and Experimental Results:2",
+   "size": 6,
+   "family": "act",
+   "route": "spot",
+   "runId": "act-sci-v5c-spot-cofounder-{date}"
+  },
+  {
+   "cohort": "act-science-v5d",
+   "upTo": 0,
+   "heldNote": "2026-10-27: no passage survived the agent re-grade (ACT-SCIENCE-AGENT-RELEASE-RESULT.md); every row archived. Kept for the record, never drawn.",
+   "blindOnly": true,
+   "tool": "item",
+   "domain": "Interpretation of Data:18,Evaluation of Models, Inferences, and Experimental Results:13,Scientific Investigation:9",
+   "size": 40,
+   "family": "act",
+   "route": "full",
+   "runId": "act-sci-v5d-release-cofounder-{date}"
+  },
+  {
+   "cohort": "act-science-v6a",
+   "upTo": 0,
+   "heldNote": "2026-10-27: no passage survived the agent re-grade (ACT-SCIENCE-AGENT-RELEASE-RESULT.md); every row archived. Kept for the record, never drawn.",
+   "blindOnly": true,
+   "tool": "item",
+   "domain": "Evaluation of Models, Inferences, and Experimental Results:4,Interpretation of Data:1,Scientific Investigation:1",
+   "size": 6,
+   "family": "act",
+   "group": "act-science-v6a:sc6a-p6",
+   "route": "spot",
+   "runId": "act-sci-v6a-spot-cofounder-{date}"
+  },
+  {
+   "cohort": "act-science-v6b",
+   "blindOnly": true,
+   "tool": "item",
+   "domain": "Interpretation of Data:4,Evaluation of Models, Inferences, and Experimental Results:1",
+   "size": 5,
+   "family": "act",
+   "route": "spot",
+   "runId": "act-sci-v6b-spot-cofounder-{date}"
+  },
+  {
+   "cohort": "act-science-v7a",
+   "upTo": 0,
+   "heldNote": "2026-10-27: no passage survived the agent re-grade (ACT-SCIENCE-AGENT-RELEASE-RESULT.md); every row archived. Kept for the record, never drawn.",
+   "blindOnly": true,
+   "tool": "item",
+   "domain": "Interpretation of Data:18,Scientific Investigation:9,Evaluation of Models, Inferences, and Experimental Results:13",
+   "size": 40,
+   "family": "act",
+   "route": "full",
+   "runId": "act-sci-v7a-release-cofounder-{date}"
+  },
+  {
+   "cohort": "act-science-v7b",
+   "blindOnly": true,
+   "tool": "item",
+   "domain": "Evaluation of Models, Inferences, and Experimental Results:5,Interpretation of Data:1",
+   "size": 6,
+   "family": "act",
+   "route": "spot",
+   "runId": "act-sci-v7b-spot-cofounder-{date}"
+  },
+  {
+   "cohort": "act-science-v8a",
+   "upTo": 0,
+   "heldNote": "2026-10-27: no passage survived the agent re-grade (ACT-SCIENCE-AGENT-RELEASE-RESULT.md); every row archived. Kept for the record, never drawn.",
+   "blindOnly": true,
+   "tool": "item",
+   "domain": "Interpretation of Data:3,Scientific Investigation:1,Evaluation of Models, Inferences, and Experimental Results:1",
+   "size": 5,
+   "family": "act",
+   "group": "act-science-v8a:sc8a-p5",
+   "route": "spot",
+   "runId": "act-sci-v8a-spot-cofounder-{date}"
+  },
+  {
+   "cohort": "act-science-v8b",
+   "blindOnly": true,
+   "tool": "item",
+   "domain": "Interpretation of Data:3,Scientific Investigation:2,Evaluation of Models, Inferences, and Experimental Results:1",
+   "size": 6,
+   "family": "act",
+   "route": "spot",
+   "runId": "act-sci-v8b-spot-cofounder-{date}"
+  },
+  {
+   "cohort": "act-science-v9a",
+   "upTo": 0,
+   "heldNote": "2026-10-27: no passage survived the agent re-grade (ACT-SCIENCE-AGENT-RELEASE-RESULT.md); every row archived. Kept for the record, never drawn.",
+   "blindOnly": true,
+   "tool": "item",
+   "domain": "Interpretation of Data:18,Scientific Investigation:9,Evaluation of Models, Inferences, and Experimental Results:13",
+   "size": 40,
+   "family": "act",
+   "route": "full",
+   "runId": "act-sci-v9a-release-cofounder-{date}"
+  },
+  {
+   "cohort": "act-science-v9b",
+   "upTo": 0,
+   "heldNote": "2026-10-27: no passage survived the agent re-grade (ACT-SCIENCE-AGENT-RELEASE-RESULT.md); every row archived. Kept for the record, never drawn.",
+   "blindOnly": true,
+   "tool": "item",
+   "domain": "Evaluation of Models, Inferences, and Experimental Results:5,Scientific Investigation:1",
+   "size": 6,
+   "family": "act",
+   "group": "act-science-v9b:sc9b-p6",
+   "route": "spot",
+   "runId": "act-sci-v9b-spot-cofounder-{date}"
+  },
+  {
+   "cohort": "act-science-v10a",
+   "blindOnly": true,
+   "tool": "item",
+   "domain": "Interpretation of Data:2,Scientific Investigation:2,Evaluation of Models, Inferences, and Experimental Results:2",
+   "size": 6,
+   "family": "act",
+   "route": "spot",
+   "runId": "act-sci-v10a-blindonly-cofounder-{date}"
+  },
+  {
+   "cohort": "act-science-v10b",
+   "blindOnly": true,
+   "tool": "item",
+   "domain": "Interpretation of Data:2,Scientific Investigation:2,Evaluation of Models, Inferences, and Experimental Results:2",
+   "size": 6,
+   "family": "act",
+   "route": "spot",
+   "runId": "act-sci-v10b-blindonly-cofounder-{date}"
+  },
+  {
+   "cohort": "act-science-v11a",
+   "blindOnly": true,
+   "tool": "item",
+   "domain": "Interpretation of Data:2,Scientific Investigation:2,Evaluation of Models, Inferences, and Experimental Results:2",
+   "size": 6,
+   "family": "act",
+   "route": "spot",
+   "runId": "act-sci-v11a-blindonly-cofounder-{date}"
+  },
+  {
+   "cohort": "act-science-v12a",
+   "blindOnly": true,
+   "tool": "item",
+   "domain": "Interpretation of Data:2,Scientific Investigation:2,Evaluation of Models, Inferences, and Experimental Results:2",
+   "size": 6,
+   "family": "act",
+   "route": "spot",
+   "runId": "act-sci-v12a-blindonly-cofounder-{date}"
+  },
+  {
+   "cohort": "act-science-v12b",
+   "blindOnly": true,
+   "tool": "item",
+   "domain": "Interpretation of Data:2,Scientific Investigation:2,Evaluation of Models, Inferences, and Experimental Results:2",
+   "size": 6,
+   "family": "act",
+   "route": "spot",
+   "runId": "act-sci-v12b-blindonly-cofounder-{date}"
+  },
+  {
+   "cohort": "act-science-v12c",
+   "blindOnly": true,
+   "tool": "item",
+   "domain": "Interpretation of Data:2,Scientific Investigation:2,Evaluation of Models, Inferences, and Experimental Results:2",
+   "size": 6,
+   "family": "act",
+   "route": "spot",
+   "runId": "act-sci-v12c-blindonly-cofounder-{date}"
+  },
+  {
+   "cohort": "act-science-v12d",
+   "blindOnly": true,
+   "tool": "item",
+   "domain": "Interpretation of Data:2,Scientific Investigation:2,Evaluation of Models, Inferences, and Experimental Results:2",
+   "size": 6,
+   "family": "act",
+   "route": "spot",
+   "runId": "act-sci-v12d-blindonly-cofounder-{date}"
+  },
+  {
+   "cohort": "act-science-v12e",
+   "blindOnly": true,
+   "tool": "item",
+   "domain": "Interpretation of Data:2,Scientific Investigation:2,Evaluation of Models, Inferences, and Experimental Results:2",
+   "size": 6,
+   "family": "act",
+   "route": "spot",
+   "runId": "act-sci-v12e-blindonly-cofounder-{date}"
+  },
+  {
+   "cohort": "act-science-v12f",
+   "blindOnly": true,
+   "tool": "item",
+   "domain": "Interpretation of Data:2,Scientific Investigation:2,Evaluation of Models, Inferences, and Experimental Results:2",
+   "size": 6,
+   "family": "act",
+   "route": "spot",
+   "runId": "act-sci-v12f-blindonly-cofounder-{date}"
+  },
+  {
+   "cohort": "map-science-pilot",
+   "blindOnly": true,
+   "tool": "item",
+   "domain": "Life Science:10,Physical Science:10,Earth and Space Science:10",
+   "size": 30,
+   "family": "map",
+   "runId": "map-sci-pilot-full-cofounder-{date}"
+  },
+  {
+   "cohort": "map-science-v1-life",
+   "blindOnly": true,
+   "tool": "item",
+   "domain": "Life Science",
+   "size": 12,
+   "family": "map",
+   "route": "spot",
+   "runId": "map-sci-v1-life-spot-cofounder-{date}"
+  },
+  {
+   "cohort": "map-science-v1-phys",
+   "blindOnly": true,
+   "tool": "item",
+   "domain": "Physical Science",
+   "size": 12,
+   "family": "map",
+   "route": "spot",
+   "runId": "map-sci-v1-phys-spot-cofounder-{date}"
+  },
+  {
+   "cohort": "map-science-v1-earth",
+   "blindOnly": true,
+   "tool": "item",
+   "domain": "Earth and Space Science",
+   "size": 12,
+   "family": "map",
+   "route": "spot",
+   "runId": "map-sci-v1-earth-spot-cofounder-{date}"
+  }
+ ]
+}

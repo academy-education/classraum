@@ -116,7 +116,8 @@ describe('drawing', () => {
   it('every science entry in cofounder-queue.json is blind-only', () => {
     const Q = JSON.parse(readFileSync(DIR + 'cofounder-queue.json', 'utf8'))
     const sci = Q.queue.filter((e: { cohort: string }) => /^(act|map)-science-/.test(e.cohort))
-    expect(sci.length).toBeGreaterThan(0)
+    // Since 2026-10-30 science releases on the agent passes and the queue holds no science entries; any that come
+    // back must still be blind-only.
     for (const e of sci) expect(e.blindOnly).toBe(true)
     for (const e of Q.queue.filter((x: { cohort: string }) => !/^(act|map)-science-/.test(x.cohort))) expect(e.blindOnly).toBeUndefined()
   })
