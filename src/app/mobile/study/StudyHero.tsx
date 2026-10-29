@@ -3,7 +3,7 @@
 import { useEffect, useState, type ReactNode } from 'react'
 import Link from 'next/link'
 import { Flame, TrendingUp, Search as SearchIcon } from '@/app/mobile/study/_shared/icons'
-import { authHeaders } from '@/lib/auth-headers'
+import { authedFetch } from '@/lib/study/authed-fetch'
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePersistentMobileAuth } from '@/contexts/PersistentMobileAuth'
 import { SkeletonBlock } from './skeletons'
@@ -56,9 +56,8 @@ export function StudyHero({ onOpenSearch, overflowMenu }: Props) {
     let cancelled = false
     void (async () => {
       try {
-        const headers = await authHeaders()
-        const res = await fetch('/api/study/streak', { headers })
-        if (!res.ok) return
+        const res = await authedFetch('/api/study/streak')
+        if (!res?.ok) return
         const json = await res.json() as { streak: number }
         if (!cancelled) setFallbackStreak(json.streak)
       } catch { /* silent */ }
@@ -71,9 +70,8 @@ export function StudyHero({ onOpenSearch, overflowMenu }: Props) {
     let cancelled = false
     void (async () => {
       try {
-        const headers = await authHeaders()
-        const res = await fetch('/api/study/progress', { headers })
-        if (!res.ok) return
+        const res = await authedFetch('/api/study/progress')
+        if (!res?.ok) return
         const json = await res.json() as Progress
         if (!cancelled) setFallbackProgress(json)
       } catch { /* silent */ }

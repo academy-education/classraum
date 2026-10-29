@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { X, Trophy } from '@/app/mobile/study/_shared/icons'
-import { authHeaders } from '@/lib/auth-headers'
+import { authedFetch } from '@/lib/study/authed-fetch'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLandingData } from '../LandingDataProvider'
 import { useDialogA11y } from './useDialogA11y'
@@ -96,10 +96,14 @@ export function DailyGoalCelebration() {
   useEffect(() => {
     if (landingData) return
     let cancelled = false
+    // Mounted in the mobile layout, so this runs on every page, test sessions
+    // included. A hidden tab skips the tick, and a lapsed session stops the loop
+    // (Datadog showed it firing 401 bursts after sign-out).
     const fetchOnce = async () => {
+      if (typeof document !== 'undefined' && document.visibilityState === 'hidden') return
       try {
-        const headers = await authHeaders()
-        const res = await fetch('/api/study/progress', { headers })
+        const res = await authedFetch('/api/study/progress')
+        if (!res || res.status === 401) { clearInterval(id); return }
         if (!res.ok) return
         const json = await res.json() as Progress
         if (cancelled) return
@@ -108,8 +112,8 @@ export function DailyGoalCelebration() {
         // Soft-fail.
       }
     }
-    void fetchOnce()
     const id = setInterval(fetchOnce, 30 * 1000)
+    void fetchOnce()
     return () => { cancelled = true; clearInterval(id) }
   }, [landingData])
 
