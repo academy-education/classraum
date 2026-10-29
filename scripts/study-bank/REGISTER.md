@@ -6302,3 +6302,12 @@ structural checks are pre-flight only. See CLAUDE.md.
   brief version is cut only when the current one has earned its bridge plus an L1 spot, when the same tell is named
   by both graders in two consecutive batches, or when yield hits the stop band. Blind-only sections (ACT/MAP
   Science) are exempt — brief changes there do not touch Daniel's load.
+
+- **2026-10-29 — student-attempt item statistics built (reports only).** `src/lib/study/item-stats.ts`,
+  `scripts/study-bank/item-stats-report.ts`, `ITEM-STATS.md`. The Amendment 3 "second ground truth" route (real
+  students, n >= 30) since the owner refuses a second reviewer. Guards (exclude is_internal and study test users
+  first; first attempt only; nothing flags below n=30; empty or malformed input throws; paged reads asserted
+  against an exact count) each break-tested. First live run: 8,247 attempts, 32 internal/test students excluded,
+  16 counted students, 6,486 first attempts over 3,523 items, **max per-item n = 7, 0 items at 30 — nothing
+  measurable yet.** Open question for the owner: several of the 16 counted accounts have 600-1,267 attempts since
+  August; confirm they are real students or flag them.
