@@ -6122,3 +6122,18 @@ structural checks are pre-flight only. See CLAUDE.md.
   cutoff line. Coordinator added the empty `batch.cross_item_pattern: null` field the format requires to r1's
   keyed.json (the re-check prompt asked only for `items`); no grade was changed. Release of the 47 not yet wired.
   Conclusion: the v12 brief works; scale ACT Science authoring on it.
+
+- **2026-10-29 — MAP Math v2 batch 6 (Operations + Statistics) authored and wired; NOT screened, nothing inserted.**
+  6 items, all `PART OK` in `math-check` (sandbox key + every distractor, near-dup vs live ISEE/SSAT and every
+  earlier MAP item): Operations 2 (markup-then-discount; fixed fee from two points), Statistics 4 (IQR of 11 values;
+  two draws without replacement; at least one of two independent events; letter-then-digit sample space). Assembled
+  sha 699b5ec64eedd1d5; screen pass-1 packet `scratchpad/map-math-v2-b6-work/screen/p1-a/screen.md` (6 items) ready for
+  one fresh screener. **Five more candidates were dropped before assembly as method duplicates of live items**
+  (exterior angle = ISEE s15; coordinate distance = SSAT s13 + MAP MM5P-N05; triangle angle expressions = MAP
+  MV2-G78-03, ISEE s4, SSAT s15; all-quadrant rectangle perimeter = SSAT v1; ticket system = ISEE s4): Geometry and
+  linear-system canon is saturated against the live admission banks, as `isee-math-bank-saturated` predicted;
+  probability and percent-change cleared. **Number Systems (the binding area, 51 live) was deliberately not
+  attempted**: batch 5's lesson requires an independent chain checker before authors write. MAP maths stays at 5
+  forms until a Number Systems batch lands (+9 for form 6). Prereg `MAP-MATH-V2-B6.prereg.md` (written after the
+  items — a stated deviation; bars copied from batch 5 unchanged; named risk: Statistics keys at rank 2/2/2/3).
+  `map-math-v2.mjs --batch b6` added (`earlier: 'dump-b6'`, 688 R11 ids); selftest 89/89 and 36/36 for b1-b6.
