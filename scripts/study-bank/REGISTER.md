@@ -6137,3 +6137,22 @@ structural checks are pre-flight only. See CLAUDE.md.
   forms until a Number Systems batch lands (+9 for form 6). Prereg `MAP-MATH-V2-B6.prereg.md` (written after the
   items — a stated deviation; bars copied from batch 5 unchanged; named risk: Statistics keys at rank 2/2/2/3).
   `map-math-v2.mjs --batch b6` added (`earlier: 'dump-b6'`, 688 R11 ids); selftest 89/89 and 36/36 for b1-b6.
+
+- **2026-10-29 — MAP READING BATCH 2 (MRV3) AUTHORED, NOT YET STAGED: 20 passages x 3 = 60 items (10 Literary,
+  10 Informational, grades 5-8) + 40 standalone Vocabulary; waiting on the grader v2 pre-screen.** Why: MAP Reading
+  is at 4 forms (Literary 63 / Informational 63 / Vocabulary 70 live at 13 per form); with c4 and draft-1 leftovers
+  staged it reaches about 5-6, and this batch would add about 2 more per area once released (Lit/Info 81 -> 111,
+  Vocab 70+6 -> 116). One in-session Claude author to `map-v2-work/reading/BRIEF.md` (same rules, co-founder
+  notes, banned-topic list), in `map-v2-work/reading-b2/` (merge.mjs and vocab-check.mjs copied with MRV3 ids;
+  assignments.json for this batch). Subjects checked against EXCLUSIONS and a live+staged passage search; five
+  first choices were dropped as already covered (scarecrow, shoe repair, cursive, crosswalk, light pollution).
+  **Checks:** merge.mjs 0 problems on 60 items (key slots 15/15/15/15; key uniquely longest 13/60, shortest
+  10/60 — it was 21/30 on the Informational file before 14 distractors were lengthened, the self-authored-key
+  tell); quote check 0 of 338 fragments; location check 0; vocab-check 0 problems on 40 (uniquely longest 10/40;
+  slots dealt flat 10 each). Absolute words kept out of distractors (the c2 tell); central-idea distractors are
+  true details of the passage, not false statements. **Packets:** `scratchpad/mapread4-grade/` (60) and
+  `scratchpad/mapvocab3-grade/` (40), COFOUNDER-BRIEF-v2, shuffled. **Staging:** `stage-map-reading-v3.mjs`
+  (cohorts map-reading-v3-c1/c2, 30 each) and `stage-map-vocab-v3.mjs` (map-vocab-v3) dry-run clean, no hash
+  clash; methods `map-rd-v3-insession+cfg-v2` / `map-vocab-v3-insession+cfg-v2` registered (new method, so a
+  bridge spot first). Not done: grader runs, staging, queue entries. Blind options-only attack not run (invalid for
+  MAP comprehension).

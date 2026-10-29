@@ -1,0 +1,1522 @@
+[
+ {
+  "id": "MRV3-V1-01",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 5,
+  "subtype": "multiple-meaning",
+  "difficulty": "easy",
+  "target_word": "bank",
+  "context": "After the storm, the children sat on the muddy bank and watched the river rush past.",
+  "prompt": "What does the word bank mean in this sentence?",
+  "choices": [
+   "a row of machines set side by side",
+   "a large pile of snow or of clouds",
+   "the sloping ground beside a river",
+   "a business that keeps people's money"
+  ],
+  "correct_answer": "the sloping ground beside a river",
+  "explanation": "\"the sloping ground beside a river\" is correct: the children sit on it and watch the river rush past, so it is the ground at the river's edge.",
+  "grade_rationale": "A common word whose land sense grade-5 readers meet less often than the money sense.",
+  "distractor_rationales": [
+   {
+    "choice": "a business that keeps people's money",
+    "fault": "other sense",
+    "reason": "\"a business that keeps people's money\" is the most common meaning of bank, but nobody sits on a business while watching a river."
+   },
+   {
+    "choice": "a row of machines set side by side",
+    "fault": "other sense",
+    "reason": "\"a row of machines set side by side\" is the sense in \"a bank of elevators,\" which cannot be muddy or sit beside a river."
+   },
+   {
+    "choice": "a large pile of snow or of clouds",
+    "fault": "other sense",
+    "reason": "\"a large pile of snow or of clouds\" is the sense in \"snowbank,\" but the sentence describes mud beside a river, not snow."
+   }
+  ],
+  "key_slot": "C"
+ },
+ {
+  "id": "MRV3-V1-02",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 5,
+  "subtype": "multiple-meaning",
+  "difficulty": "easy",
+  "target_word": "jam",
+  "context": "On the way to the game, our car was stuck in a jam that stretched for two miles.",
+  "prompt": "What does the word jam mean in this sentence?",
+  "choices": [
+   "a session of music played together",
+   "a long line of cars that barely moves",
+   "a part of a machine that has gotten stuck",
+   "a sweet spread that is made from fruit"
+  ],
+  "correct_answer": "a long line of cars that barely moves",
+  "explanation": "\"a long line of cars that barely moves\" is correct: the car is stuck and the jam stretches for two miles, so it is a line of slow traffic.",
+  "grade_rationale": "Grade-5 readers know jam as food; the traffic sense needs the context.",
+  "distractor_rationales": [
+   {
+    "choice": "a sweet spread that is made from fruit",
+    "fault": "other sense",
+    "reason": "\"a sweet spread that is made from fruit\" is the food meaning, which cannot stretch for two miles or trap a car."
+   },
+   {
+    "choice": "a session of music played together",
+    "fault": "other sense",
+    "reason": "\"a session of music played together\" is the sense in \"a jam session,\" which does not fit a car on the way to a game."
+   },
+   {
+    "choice": "a part of a machine that has gotten stuck",
+    "fault": "other sense",
+    "reason": "\"a part of a machine that has gotten stuck\" is the sense in \"a paper jam,\" but the sentence describes a road stretching for miles."
+   }
+  ],
+  "key_slot": "B"
+ },
+ {
+  "id": "MRV3-V1-03",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 5,
+  "subtype": "context-clue",
+  "difficulty": "medium",
+  "target_word": "frigid",
+  "context": "The lake was so frigid in early spring that my fingers went numb the moment I dipped them in.",
+  "prompt": "Which phrase means the same as frigid as it is used in the sentence?",
+  "choices": [
+   "freezing cold",
+   "rough and wavy",
+   "dark and muddy",
+   "very shallow"
+  ],
+  "correct_answer": "freezing cold",
+  "explanation": "\"freezing cold\" is correct: the speaker's fingers go numb as soon as they touch the water, which shows the lake is freezing cold.",
+  "grade_rationale": "A grade-5 word for extreme cold that the numb-fingers clue unlocks.",
+  "distractor_rationales": [
+   {
+    "choice": "rough and wavy",
+    "fault": "misses the clue",
+    "reason": "\"rough and wavy\" fits a lake but does not explain fingers going numb the moment they touch the water."
+   },
+   {
+    "choice": "dark and muddy",
+    "fault": "misses the clue",
+    "reason": "\"dark and muddy\" describes how a lake might look, but the clue is about what the water does to the fingers."
+   },
+   {
+    "choice": "very shallow",
+    "fault": "misses the clue",
+    "reason": "\"very shallow\" could describe a lake, yet shallow water would not make fingers go numb."
+   }
+  ],
+  "key_slot": "A"
+ },
+ {
+  "id": "MRV3-V1-04",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 5,
+  "subtype": "context-clue",
+  "difficulty": "medium",
+  "target_word": "abundant",
+  "context": "Blueberries were abundant that summer; we filled four buckets in an hour and still left plenty on the bushes.",
+  "prompt": "Which word means the same as abundant as it is used in the sentence?",
+  "choices": [
+   "sour",
+   "tiny",
+   "ripe",
+   "plentiful"
+  ],
+  "correct_answer": "plentiful",
+  "explanation": "\"plentiful\" is correct: four buckets filled in an hour with \"plenty\" left over shows there were a great many berries.",
+  "grade_rationale": "A grade-5 academic word with a clear example clue.",
+  "distractor_rationales": [
+   {
+    "choice": "ripe",
+    "fault": "misses the clue",
+    "reason": "\"ripe\" could describe berries, but the clue is about how many there were, not how ready they were."
+   },
+   {
+    "choice": "sour",
+    "fault": "misses the clue",
+    "reason": "\"sour\" describes taste, while the sentence is about filling bucket after bucket."
+   },
+   {
+    "choice": "tiny",
+    "fault": "misses the clue",
+    "reason": "\"tiny\" describes size, but the sentence shows that there were many berries, not small ones."
+   }
+  ],
+  "key_slot": "D"
+ },
+ {
+  "id": "MRV3-V1-05",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 5,
+  "subtype": "context-clue",
+  "difficulty": "easy",
+  "target_word": "drowsy",
+  "context": "After the long hike and a big dinner, Leo grew drowsy; his eyes kept closing, and he yawned again and again.",
+  "prompt": "Which word means the same as drowsy as it is used in the sentence?",
+  "choices": [
+   "grumpy",
+   "sleepy",
+   "chilly",
+   "hungry"
+  ],
+  "correct_answer": "sleepy",
+  "explanation": "\"sleepy\" is correct: his eyes keep closing and he yawns again and again, which shows he is sleepy.",
+  "grade_rationale": "A grade-5 word whose meaning follows from the yawning clue.",
+  "distractor_rationales": [
+   {
+    "choice": "hungry",
+    "fault": "misses the clue",
+    "reason": "\"hungry\" is ruled out by the big dinner he has just eaten."
+   },
+   {
+    "choice": "grumpy",
+    "fault": "misses the clue",
+    "reason": "\"grumpy\" describes a mood, but the clue describes closing eyes and yawning."
+   },
+   {
+    "choice": "chilly",
+    "fault": "misses the clue",
+    "reason": "\"chilly\" describes feeling cold, which closing eyes and yawning do not show."
+   }
+  ],
+  "key_slot": "B"
+ },
+ {
+  "id": "MRV3-V1-06",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 5,
+  "subtype": "word-parts",
+  "difficulty": "easy",
+  "target_word": "bilingual",
+  "context": "Mr. Reyes is bilingual, so he helps new students in both English and Spanish.",
+  "prompt": "Based on the prefix bi-, what does bilingual mean?",
+  "choices": [
+   "able to speak loudly and clearly",
+   "able to use two languages",
+   "able to read very quickly",
+   "able to learn one language well"
+  ],
+  "correct_answer": "able to use two languages",
+  "explanation": "\"able to use two languages\" is correct: the prefix bi- means \"two,\" and Mr. Reyes helps students in two languages.",
+  "grade_rationale": "Prefix bi- is taught in grade 5; the word is common in schools.",
+  "distractor_rationales": [
+   {
+    "choice": "able to read very quickly",
+    "fault": "wrong part",
+    "reason": "\"able to read very quickly\" ignores the prefix bi-, which means two, and has nothing to do with speed."
+   },
+   {
+    "choice": "able to speak loudly and clearly",
+    "fault": "wrong part",
+    "reason": "\"able to speak loudly and clearly\" describes speaking well and ignores what bi- adds to the word."
+   },
+   {
+    "choice": "able to learn one language well",
+    "fault": "wrong part",
+    "reason": "\"able to learn one language well\" reads the prefix as \"one\" instead of \"two.\""
+   }
+  ],
+  "key_slot": "B"
+ },
+ {
+  "id": "MRV3-V1-07",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 5,
+  "subtype": "word-parts",
+  "difficulty": "medium",
+  "target_word": "misplace",
+  "context": "If you misplace your house key, check the hook by the door first.",
+  "prompt": "Based on the prefix mis-, what does misplace mean?",
+  "choices": [
+   "to put somewhere and lose track of",
+   "to replace with a brand-new one",
+   "to put back in its proper spot",
+   "to place carefully on a high shelf"
+  ],
+  "correct_answer": "to put somewhere and lose track of",
+  "explanation": "\"to put somewhere and lose track of\" is correct: the prefix mis- means \"wrongly,\" so to misplace a key is to put it in the wrong place and lose it.",
+  "grade_rationale": "Prefix mis- is a grade-5 word-part standard.",
+  "distractor_rationales": [
+   {
+    "choice": "to put back in its proper spot",
+    "fault": "wrong part",
+    "reason": "\"to put back in its proper spot\" reads mis- as \"again\" or \"correctly,\" which is the opposite of its meaning."
+   },
+   {
+    "choice": "to place carefully on a high shelf",
+    "fault": "wrong part",
+    "reason": "\"to place carefully on a high shelf\" ignores mis- and reads only the base word place."
+   },
+   {
+    "choice": "to replace with a brand-new one",
+    "fault": "wrong part",
+    "reason": "\"to replace with a brand-new one\" confuses mis- with re-, the prefix in replace."
+   }
+  ],
+  "key_slot": "A"
+ },
+ {
+  "id": "MRV3-V1-08",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 5,
+  "subtype": "figurative",
+  "difficulty": "easy",
+  "target_word": "butterflies",
+  "context": "Before her first swim meet, Ava said she had butterflies in her stomach.",
+  "prompt": "What does the phrase \"butterflies in her stomach\" suggest about Ava?",
+  "choices": [
+   "She felt sick from eating lunch.",
+   "She felt nervous and jittery.",
+   "She felt excited about the bugs.",
+   "She felt calm and ready to win."
+  ],
+  "correct_answer": "She felt nervous and jittery.",
+  "explanation": "\"She felt nervous and jittery.\" is correct: the idiom describes the fluttery feeling of nerves before an important event like a first swim meet.",
+  "grade_rationale": "A common idiom grade-5 readers meet in fiction.",
+  "distractor_rationales": [
+   {
+    "choice": "She felt sick from eating lunch.",
+    "fault": "literal",
+    "reason": "\"She felt sick from eating lunch.\" reads the stomach literally; the idiom is about nerves, and the sentence never mentions food."
+   },
+   {
+    "choice": "She felt calm and ready to win.",
+    "fault": "wrong connotation",
+    "reason": "\"She felt calm and ready to win.\" is the opposite of the fluttery feeling the idiom describes."
+   },
+   {
+    "choice": "She felt excited about the bugs.",
+    "fault": "literal",
+    "reason": "\"She felt excited about the bugs.\" takes butterflies literally, but there are no insects in the sentence."
+   }
+  ],
+  "key_slot": "B"
+ },
+ {
+  "id": "MRV3-V1-09",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 5,
+  "subtype": "connotation",
+  "difficulty": "medium",
+  "target_word": "laughed",
+  "context": "When the puppy chased its own tail, Maya laughed.",
+  "prompt": "Which word best replaces laughed to show that Maya's laugh was small and gentle?",
+  "choices": [
+   "cackled",
+   "snorted",
+   "roared",
+   "giggled"
+  ],
+  "correct_answer": "giggled",
+  "explanation": "\"giggled\" is correct: giggled names a light, gentle laugh, which suits a small laugh at a puppy.",
+  "grade_rationale": "Grade-5 shades-of-meaning practice with common verbs.",
+  "distractor_rationales": [
+   {
+    "choice": "cackled",
+    "fault": "wrong connotation",
+    "reason": "\"cackled\" suggests a loud, harsh laugh, the opposite of small and gentle."
+   },
+   {
+    "choice": "roared",
+    "fault": "wrong connotation",
+    "reason": "\"roared\" suggests a very loud laugh, which is not small or gentle."
+   },
+   {
+    "choice": "snorted",
+    "fault": "wrong connotation",
+    "reason": "\"snorted\" suggests a rough, noisy laugh through the nose, not a gentle one."
+   }
+  ],
+  "key_slot": "D"
+ },
+ {
+  "id": "MRV3-V1-10",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 5,
+  "subtype": "multiple-meaning",
+  "difficulty": "medium",
+  "target_word": "coat",
+  "context": "Dad gave the fence a fresh coat of paint before the party.",
+  "prompt": "What does the word coat mean in this sentence?",
+  "choices": [
+   "the hard outer shell of a seed",
+   "a warm jacket worn outdoors",
+   "a thin layer spread over a surface",
+   "the fur that covers an animal"
+  ],
+  "correct_answer": "a thin layer spread over a surface",
+  "explanation": "\"a thin layer spread over a surface\" is correct: paint is spread over the fence in a thin layer.",
+  "grade_rationale": "Grade-5 readers know coat as clothing; the layer sense needs the context.",
+  "distractor_rationales": [
+   {
+    "choice": "a warm jacket worn outdoors",
+    "fault": "other sense",
+    "reason": "\"a warm jacket worn outdoors\" is the clothing meaning, which a fence cannot be given."
+   },
+   {
+    "choice": "the fur that covers an animal",
+    "fault": "other sense",
+    "reason": "\"the fur that covers an animal\" is the sense in \"a dog's coat,\" which does not fit paint on a fence."
+   },
+   {
+    "choice": "the hard outer shell of a seed",
+    "fault": "other sense",
+    "reason": "\"the hard outer shell of a seed\" is the sense in \"seed coat,\" which has nothing to do with paint."
+   }
+  ],
+  "key_slot": "C"
+ },
+ {
+  "id": "MRV3-V1-11",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 6,
+  "subtype": "multiple-meaning",
+  "difficulty": "hard",
+  "target_word": "grave",
+  "context": "The doctor's grave face told us the news was serious before she said a word.",
+  "prompt": "What does the word grave mean in this sentence?",
+  "choices": [
+   "marked with an accent sign",
+   "related to a place of burial",
+   "very solemn and serious",
+   "carved or cut in deeply"
+  ],
+  "correct_answer": "very solemn and serious",
+  "explanation": "\"very solemn and serious\" is correct: her face tells them the news is serious, so grave describes a solemn expression.",
+  "grade_rationale": "Grade-6 readers know the noun; the adjective sense is less familiar.",
+  "distractor_rationales": [
+   {
+    "choice": "related to a place of burial",
+    "fault": "other sense",
+    "reason": "\"related to a place of burial\" is the noun meaning, which cannot describe a doctor's face."
+   },
+   {
+    "choice": "carved or cut in deeply",
+    "fault": "other sense",
+    "reason": "\"carved or cut in deeply\" is an older sense of grave (as in engrave), which does not fit a face showing bad news."
+   },
+   {
+    "choice": "marked with an accent sign",
+    "fault": "other sense",
+    "reason": "\"marked with an accent sign\" is the sense in \"grave accent,\" a mark over a letter, not a face."
+   }
+  ],
+  "key_slot": "C"
+ },
+ {
+  "id": "MRV3-V1-12",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 6,
+  "subtype": "multiple-meaning",
+  "difficulty": "medium",
+  "target_word": "lap",
+  "context": "Jordan finished his last lap around the track and collapsed on the grass.",
+  "prompt": "What does the word lap mean in this sentence?",
+  "choices": [
+   "a gentle splash of small waves",
+   "one complete trip around a course",
+   "the top of a seated person's thighs",
+   "a quick drink taken with the tongue"
+  ],
+  "correct_answer": "one complete trip around a course",
+  "explanation": "\"one complete trip around a course\" is correct: he finishes his last lap \"around the track,\" so it is one full circuit.",
+  "grade_rationale": "Grade-6 readers know the sitting sense; the racing sense needs the context.",
+  "distractor_rationales": [
+   {
+    "choice": "the top of a seated person's thighs",
+    "fault": "other sense",
+    "reason": "\"the top of a seated person's thighs\" is the sense in \"sat on her lap,\" which cannot go around a track."
+   },
+   {
+    "choice": "a gentle splash of small waves",
+    "fault": "other sense",
+    "reason": "\"a gentle splash of small waves\" is the sense in \"the lap of waves,\" but the sentence describes running on a track."
+   },
+   {
+    "choice": "a quick drink taken with the tongue",
+    "fault": "other sense",
+    "reason": "\"a quick drink taken with the tongue\" is the sense in \"the dog's lap of water,\" which does not fit running."
+   }
+  ],
+  "key_slot": "B"
+ },
+ {
+  "id": "MRV3-V1-13",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 6,
+  "subtype": "context-clue",
+  "difficulty": "medium",
+  "target_word": "meager",
+  "context": "The hikers' meager supply of food, two granola bars and an apple for three people, would not last the weekend.",
+  "prompt": "What does meager mean as it is used in the sentence?",
+  "choices": [
+   "packed with care",
+   "hard to carry far",
+   "costly to replace",
+   "too small to be enough"
+  ],
+  "correct_answer": "too small to be enough",
+  "explanation": "\"too small to be enough\" is correct: two granola bars and an apple for three people \"would not last the weekend,\" so the supply is too small.",
+  "grade_rationale": "A grade-6 word with an example and a result clue.",
+  "distractor_rationales": [
+   {
+    "choice": "hard to carry far",
+    "fault": "misses the clue",
+    "reason": "\"hard to carry far\" fits hiking, but the clue is the tiny amount of food, not its weight."
+   },
+   {
+    "choice": "packed with care",
+    "fault": "misses the clue",
+    "reason": "\"packed with care\" could describe a food supply, but the sentence is about how little food there is."
+   },
+   {
+    "choice": "costly to replace",
+    "fault": "misses the clue",
+    "reason": "\"costly to replace\" adds an idea about price that the sentence never suggests."
+   }
+  ],
+  "key_slot": "D"
+ },
+ {
+  "id": "MRV3-V1-14",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 6,
+  "subtype": "context-clue",
+  "difficulty": "easy",
+  "target_word": "jubilant",
+  "context": "The team was jubilant after the final whistle, hugging, cheering, and tossing their caps into the air.",
+  "prompt": "Which word means the same as jubilant as it is used in the sentence?",
+  "choices": [
+   "confused",
+   "nervous",
+   "exhausted",
+   "joyful"
+  ],
+  "correct_answer": "joyful",
+  "explanation": "\"joyful\" is correct: hugging, cheering, and tossing caps show great joy.",
+  "grade_rationale": "A grade-6 word made clear by a list of actions.",
+  "distractor_rationales": [
+   {
+    "choice": "exhausted",
+    "fault": "misses the clue",
+    "reason": "\"exhausted\" could follow a game, but cheering and tossing caps show joy, not tiredness."
+   },
+   {
+    "choice": "nervous",
+    "fault": "misses the clue",
+    "reason": "\"nervous\" does not match the celebration the sentence describes."
+   },
+   {
+    "choice": "confused",
+    "fault": "misses the clue",
+    "reason": "\"confused\" has no support; the team's actions show clear celebration."
+   }
+  ],
+  "key_slot": "D"
+ },
+ {
+  "id": "MRV3-V1-15",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 6,
+  "subtype": "context-clue",
+  "difficulty": "medium",
+  "target_word": "hesitant",
+  "context": "Mila was hesitant to jump off the high diving board; she stood at the edge for a long time and twice turned back toward the ladder.",
+  "prompt": "What does hesitant mean as it is used in the sentence?",
+  "choices": [
+   "eager to go first",
+   "too tired to move",
+   "unsure and slow to act",
+   "proud and showy"
+  ],
+  "correct_answer": "unsure and slow to act",
+  "explanation": "\"unsure and slow to act\" is correct: standing at the edge for a long time and turning back twice shows she was unsure.",
+  "grade_rationale": "A grade-6 word with a behavior clue.",
+  "distractor_rationales": [
+   {
+    "choice": "eager to go first",
+    "fault": "misses the clue",
+    "reason": "\"eager to go first\" is the opposite of standing at the edge and turning back."
+   },
+   {
+    "choice": "proud and showy",
+    "fault": "misses the clue",
+    "reason": "\"proud and showy\" has no support; nothing she does is meant to be seen."
+   },
+   {
+    "choice": "too tired to move",
+    "fault": "misses the clue",
+    "reason": "\"too tired to move\" does not fit; she moves back toward the ladder twice, so she is not too tired."
+   }
+  ],
+  "key_slot": "C"
+ },
+ {
+  "id": "MRV3-V1-16",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 6,
+  "subtype": "word-parts",
+  "difficulty": "medium",
+  "target_word": "inaudible",
+  "context": "The speaker's voice was inaudible from the back row of the gym.",
+  "prompt": "Based on the prefix in-, what does inaudible mean?",
+  "choices": [
+   "very easy to hear",
+   "able to be recorded",
+   "heard from inside",
+   "too quiet to be heard"
+  ],
+  "correct_answer": "too quiet to be heard",
+  "explanation": "\"too quiet to be heard\" is correct: in- here means \"not\" and audible means \"able to be heard,\" so inaudible means not able to be heard.",
+  "grade_rationale": "Prefix in- (not) is a grade-6 word-part standard.",
+  "distractor_rationales": [
+   {
+    "choice": "heard from inside",
+    "fault": "wrong part",
+    "reason": "\"heard from inside\" reads in- as \"inside\" instead of \"not.\""
+   },
+   {
+    "choice": "very easy to hear",
+    "fault": "wrong part",
+    "reason": "\"very easy to hear\" ignores the prefix, which reverses the meaning of audible."
+   },
+   {
+    "choice": "able to be recorded",
+    "fault": "wrong part",
+    "reason": "\"able to be recorded\" confuses audible with a different idea; the root is about hearing."
+   }
+  ],
+  "key_slot": "D"
+ },
+ {
+  "id": "MRV3-V1-17",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 6,
+  "subtype": "word-parts",
+  "difficulty": "hard",
+  "target_word": "malfunction",
+  "context": "A malfunction in the alarm made it ring in the middle of the night.",
+  "prompt": "Based on the prefix mal-, what does malfunction mean?",
+  "choices": [
+   "a failure to work properly",
+   "a small, easy repair",
+   "a loud, sudden noise",
+   "a function that is new"
+  ],
+  "correct_answer": "a failure to work properly",
+  "explanation": "\"a failure to work properly\" is correct: mal- means \"badly,\" so a malfunction is when something works badly, like an alarm ringing at night.",
+  "grade_rationale": "Prefix mal- appears in grade-6 science and technology texts.",
+  "distractor_rationales": [
+   {
+    "choice": "a function that is new",
+    "fault": "wrong part",
+    "reason": "\"a function that is new\" misreads mal- as \"new.\""
+   },
+   {
+    "choice": "a small, easy repair",
+    "fault": "wrong part",
+    "reason": "\"a small, easy repair\" describes fixing something, not working badly."
+   },
+   {
+    "choice": "a loud, sudden noise",
+    "fault": "wrong part",
+    "reason": "\"a loud, sudden noise\" takes the alarm's ringing as the meaning instead of reading the prefix."
+   }
+  ],
+  "key_slot": "A"
+ },
+ {
+  "id": "MRV3-V1-18",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 6,
+  "subtype": "figurative",
+  "difficulty": "medium",
+  "target_word": "cold feet",
+  "context": "Ben planned to try out for the school play, but he got cold feet the day before.",
+  "prompt": "What does the phrase \"got cold feet\" mean in this sentence?",
+  "choices": [
+   "felt excited about the tryout",
+   "grew tired of practicing lines",
+   "caught a chill walking outside",
+   "became too nervous to go ahead"
+  ],
+  "correct_answer": "became too nervous to go ahead",
+  "explanation": "\"became too nervous to go ahead\" is correct: \"got cold feet\" is an idiom for losing courage just before doing something planned, like a tryout.",
+  "grade_rationale": "A common idiom in grade-6 fiction.",
+  "distractor_rationales": [
+   {
+    "choice": "caught a chill walking outside",
+    "fault": "literal",
+    "reason": "\"caught a chill walking outside\" reads the phrase literally; the sentence is about his plan to try out."
+   },
+   {
+    "choice": "grew tired of practicing lines",
+    "fault": "wrong part",
+    "reason": "\"grew tired of practicing lines\" adds a reason the sentence never gives; the idiom is about fear, not boredom."
+   },
+   {
+    "choice": "felt excited about the tryout",
+    "fault": "wrong connotation",
+    "reason": "\"felt excited about the tryout\" is the opposite of losing courage."
+   }
+  ],
+  "key_slot": "D"
+ },
+ {
+  "id": "MRV3-V1-19",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 6,
+  "subtype": "connotation",
+  "difficulty": "easy",
+  "target_word": "ate",
+  "context": "Starving after practice, Theo ate his dinner.",
+  "prompt": "Which word best replaces ate to show how hungry Theo was?",
+  "choices": [
+   "nibbled",
+   "sampled",
+   "devoured",
+   "picked at"
+  ],
+  "correct_answer": "devoured",
+  "explanation": "\"devoured\" is correct: devoured means ate quickly and eagerly, which fits someone starving.",
+  "grade_rationale": "Grade-6 shades of meaning with a common verb.",
+  "distractor_rationales": [
+   {
+    "choice": "nibbled",
+    "fault": "wrong connotation",
+    "reason": "\"nibbled\" suggests small, slow bites, which does not fit a starving boy."
+   },
+   {
+    "choice": "sampled",
+    "fault": "wrong connotation",
+    "reason": "\"sampled\" suggests tasting a little, not eating hungrily."
+   },
+   {
+    "choice": "picked at",
+    "fault": "wrong connotation",
+    "reason": "\"picked at\" suggests eating without interest, the opposite of starving."
+   }
+  ],
+  "key_slot": "C"
+ },
+ {
+  "id": "MRV3-V1-20",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 6,
+  "subtype": "connotation",
+  "difficulty": "medium",
+  "target_word": "asked",
+  "context": "\"Can I please, please stay up late?\" Mia asked her father for the third time.",
+  "prompt": "Which word best replaces asked to show that Mia was begging?",
+  "choices": [
+   "mentioned",
+   "pleaded",
+   "demanded",
+   "inquired"
+  ],
+  "correct_answer": "pleaded",
+  "explanation": "\"pleaded\" is correct: pleaded means asked urgently and emotionally, which fits \"please, please\" repeated a third time.",
+  "grade_rationale": "Grade-6 shades of meaning with speech verbs.",
+  "distractor_rationales": [
+   {
+    "choice": "demanded",
+    "fault": "wrong connotation",
+    "reason": "\"demanded\" suggests ordering, not begging with \"please, please.\""
+   },
+   {
+    "choice": "inquired",
+    "fault": "wrong connotation",
+    "reason": "\"inquired\" suggests a calm, formal question, not begging."
+   },
+   {
+    "choice": "mentioned",
+    "fault": "wrong connotation",
+    "reason": "\"mentioned\" suggests saying something in passing, not asking urgently."
+   }
+  ],
+  "key_slot": "B"
+ },
+ {
+  "id": "MRV3-V2-01",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 7,
+  "subtype": "multiple-meaning",
+  "difficulty": "medium",
+  "target_word": "pitch",
+  "context": "The coach liked our pitch for a new team logo and asked us to draw it.",
+  "prompt": "What does the word pitch mean in this sentence?",
+  "choices": [
+   "a dark, sticky material like tar",
+   "how high or low a sound is",
+   "a short talk meant to persuade",
+   "a throw of the ball to a batter"
+  ],
+  "correct_answer": "a short talk meant to persuade",
+  "explanation": "\"a short talk meant to persuade\" is correct: the coach liked the idea they presented and asked them to draw it, so their pitch was a persuasive suggestion.",
+  "grade_rationale": "Grade-7 readers know the sports and music senses; the business sense needs context.",
+  "distractor_rationales": [
+   {
+    "choice": "how high or low a sound is",
+    "fault": "other sense",
+    "reason": "\"how high or low a sound is\" is the musical meaning, which does not fit an idea for a logo."
+   },
+   {
+    "choice": "a throw of the ball to a batter",
+    "fault": "other sense",
+    "reason": "\"a throw of the ball to a batter\" is the baseball meaning, but the coach is responding to an idea for a logo."
+   },
+   {
+    "choice": "a dark, sticky material like tar",
+    "fault": "other sense",
+    "reason": "\"a dark, sticky material like tar\" is the sense in \"black as pitch,\" which cannot be liked as a logo idea."
+   }
+  ],
+  "key_slot": "C"
+ },
+ {
+  "id": "MRV3-V2-02",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 7,
+  "subtype": "multiple-meaning",
+  "difficulty": "hard",
+  "target_word": "rattled",
+  "context": "The surprise quiz rattled Omar so much that he forgot his own locker combination.",
+  "prompt": "What does the word rattled mean in this sentence?",
+  "choices": [
+   "drove along a bumpy road",
+   "made nervous and flustered",
+   "talked fast without a pause",
+   "shook so that it clicked"
+  ],
+  "correct_answer": "made nervous and flustered",
+  "explanation": "\"made nervous and flustered\" is correct: the quiz upsets him so much that he forgets his locker combination.",
+  "grade_rationale": "Grade-7 readers know the sound sense; the emotional sense needs context.",
+  "distractor_rationales": [
+   {
+    "choice": "shook so that it clicked",
+    "fault": "other sense",
+    "reason": "\"shook so that it clicked\" is the sound meaning, but a quiz cannot shake Omar until he clicks."
+   },
+   {
+    "choice": "talked fast without a pause",
+    "fault": "other sense",
+    "reason": "\"talked fast without a pause\" is the sense in \"rattled off,\" which does not fit what the quiz did to Omar."
+   },
+   {
+    "choice": "drove along a bumpy road",
+    "fault": "other sense",
+    "reason": "\"drove along a bumpy road\" is the sense in \"the truck rattled along,\" which has nothing to do with a quiz."
+   }
+  ],
+  "key_slot": "B"
+ },
+ {
+  "id": "MRV3-V2-03",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 7,
+  "subtype": "multiple-meaning",
+  "difficulty": "medium",
+  "target_word": "rare",
+  "context": "Mom likes her steak rare, but I like mine cooked all the way through.",
+  "prompt": "What does the word rare mean in this sentence?",
+  "choices": [
+   "cooked only a little",
+   "very fine or excellent",
+   "seldom found or seen",
+   "thin, like high mountain air"
+  ],
+  "correct_answer": "cooked only a little",
+  "explanation": "\"cooked only a little\" is correct: rare is contrasted with \"cooked all the way through,\" so it means lightly cooked.",
+  "grade_rationale": "Grade-7 readers know \"uncommon\"; the cooking sense needs the contrast clue.",
+  "distractor_rationales": [
+   {
+    "choice": "seldom found or seen",
+    "fault": "other sense",
+    "reason": "\"seldom found or seen\" is the most common meaning, but the sentence contrasts how the steak is cooked."
+   },
+   {
+    "choice": "thin, like high mountain air",
+    "fault": "other sense",
+    "reason": "\"thin, like high mountain air\" is the sense in \"rare air,\" which cannot describe a steak."
+   },
+   {
+    "choice": "very fine or excellent",
+    "fault": "other sense",
+    "reason": "\"very fine or excellent\" is the sense in \"a rare day,\" but the contrast is with cooking all the way through."
+   }
+  ],
+  "key_slot": "A"
+ },
+ {
+  "id": "MRV3-V2-04",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 7,
+  "subtype": "context-clue",
+  "difficulty": "medium",
+  "target_word": "obsolete",
+  "context": "Our school's old projectors are obsolete; no store sells their bulbs anymore, and newer screens have replaced them.",
+  "prompt": "What does obsolete mean as it is used in the sentence?",
+  "choices": [
+   "broken",
+   "too heavy",
+   "very costly",
+   "out of date"
+  ],
+  "correct_answer": "out of date",
+  "explanation": "\"out of date\" is correct: nobody sells their bulbs and newer screens have replaced them, so the projectors are out of date.",
+  "grade_rationale": "A grade-7 academic word with cause clues.",
+  "distractor_rationales": [
+   {
+    "choice": "too heavy",
+    "fault": "misses the clue",
+    "reason": "\"too heavy\" could describe old equipment, but the clue is about being replaced, not weight."
+   },
+   {
+    "choice": "very costly",
+    "fault": "misses the clue",
+    "reason": "\"very costly\" adds an idea about price that the sentence never mentions."
+   },
+   {
+    "choice": "broken",
+    "fault": "misses the clue",
+    "reason": "\"broken\" is not stated; the projectors are outdated, not said to be damaged."
+   }
+  ],
+  "key_slot": "D"
+ },
+ {
+  "id": "MRV3-V2-05",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 7,
+  "subtype": "context-clue",
+  "difficulty": "easy",
+  "target_word": "ominous",
+  "context": "Dark clouds piled up over the hills, and an ominous rumble of thunder made the campers hurry toward the lodge.",
+  "prompt": "What does ominous mean as it is used in the sentence?",
+  "choices": [
+   "distant",
+   "steady",
+   "cheerful",
+   "threatening"
+  ],
+  "correct_answer": "threatening",
+  "explanation": "\"threatening\" is correct: dark clouds and thunder make the campers hurry for shelter, so the rumble seems threatening.",
+  "grade_rationale": "A grade-7 word with a strong mood clue.",
+  "distractor_rationales": [
+   {
+    "choice": "cheerful",
+    "fault": "misses the clue",
+    "reason": "\"cheerful\" is the opposite of a rumble that makes campers hurry for shelter."
+   },
+   {
+    "choice": "distant",
+    "fault": "misses the clue",
+    "reason": "\"distant\" does not explain why the campers hurry; the clue is the danger the sound signals."
+   },
+   {
+    "choice": "steady",
+    "fault": "misses the clue",
+    "reason": "\"steady\" describes the sound's rhythm, not why it makes the campers hurry."
+   }
+  ],
+  "key_slot": "D"
+ },
+ {
+  "id": "MRV3-V2-06",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 7,
+  "subtype": "context-clue",
+  "difficulty": "medium",
+  "target_word": "placid",
+  "context": "Unlike the choppy bay, the pond was placid, so smooth that it reflected every cloud.",
+  "prompt": "What does placid mean as it is used in the sentence?",
+  "choices": [
+   "dark and cloudy",
+   "calm and still",
+   "cold and deep",
+   "shallow and clear"
+  ],
+  "correct_answer": "calm and still",
+  "explanation": "\"calm and still\" is correct: the pond is contrasted with the \"choppy bay\" and is smooth enough to reflect clouds, so it is calm.",
+  "grade_rationale": "A grade-7 word with a contrast clue.",
+  "distractor_rationales": [
+   {
+    "choice": "cold and deep",
+    "fault": "misses the clue",
+    "reason": "\"cold and deep\" could describe a pond, but the contrast with choppy water is about calmness."
+   },
+   {
+    "choice": "dark and cloudy",
+    "fault": "misses the clue",
+    "reason": "\"dark and cloudy\" contradicts the pond reflecting every cloud."
+   },
+   {
+    "choice": "shallow and clear",
+    "fault": "misses the clue",
+    "reason": "\"shallow and clear\" does not match the contrast with the choppy bay."
+   }
+  ],
+  "key_slot": "B"
+ },
+ {
+  "id": "MRV3-V2-07",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 7,
+  "subtype": "word-parts",
+  "difficulty": "medium",
+  "target_word": "postpone",
+  "context": "The coaches decided to postpone the game until the field dried out.",
+  "prompt": "Based on the prefix post-, what does postpone mean?",
+  "choices": [
+   "to put off until later",
+   "to move to an earlier time",
+   "to call off for good",
+   "to mail a notice to someone"
+  ],
+  "correct_answer": "to put off until later",
+  "explanation": "\"to put off until later\" is correct: post- means \"after,\" so to postpone is to move something to a later time.",
+  "grade_rationale": "Prefix post- is a grade-7 word-part standard.",
+  "distractor_rationales": [
+   {
+    "choice": "to mail a notice to someone",
+    "fault": "wrong part",
+    "reason": "\"to mail a notice to someone\" reads post as \"mail\" instead of the prefix meaning after."
+   },
+   {
+    "choice": "to call off for good",
+    "fault": "wrong part",
+    "reason": "\"to call off for good\" ignores post- (after): a postponed game still happens later."
+   },
+   {
+    "choice": "to move to an earlier time",
+    "fault": "wrong part",
+    "reason": "\"to move to an earlier time\" reverses the prefix, which means after, not before."
+   }
+  ],
+  "key_slot": "A"
+ },
+ {
+  "id": "MRV3-V2-08",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 7,
+  "subtype": "word-parts",
+  "difficulty": "easy",
+  "target_word": "transparent",
+  "context": "The transparent lid let us watch the soup bubble without lifting it.",
+  "prompt": "Based on the prefix trans-, what does transparent mean?",
+  "choices": [
+   "able to change its color",
+   "able to be moved easily",
+   "able to be seen through",
+   "able to keep heat inside"
+  ],
+  "correct_answer": "able to be seen through",
+  "explanation": "\"able to be seen through\" is correct: trans- means \"through,\" and the lid lets them see the soup without lifting it.",
+  "grade_rationale": "Prefix trans- appears in grade-7 science texts.",
+  "distractor_rationales": [
+   {
+    "choice": "able to be moved easily",
+    "fault": "wrong part",
+    "reason": "\"able to be moved easily\" reads trans- only as in transport and ignores the sight clue."
+   },
+   {
+    "choice": "able to keep heat inside",
+    "fault": "wrong part",
+    "reason": "\"able to keep heat inside\" describes a different job for a lid and ignores the prefix."
+   },
+   {
+    "choice": "able to change its color",
+    "fault": "wrong part",
+    "reason": "\"able to change its color\" confuses trans- with transform; the lid lets them see through it."
+   }
+  ],
+  "key_slot": "C"
+ },
+ {
+  "id": "MRV3-V2-09",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 7,
+  "subtype": "figurative",
+  "difficulty": "medium",
+  "target_word": "thin ice",
+  "context": "After missing two homework assignments, Jamal knew he was on thin ice with his teacher.",
+  "prompt": "What does the phrase \"on thin ice\" mean in this sentence?",
+  "choices": [
+   "in a risky position",
+   "doing very well in class",
+   "feeling cold and uneasy",
+   "walking on a frozen pond"
+  ],
+  "correct_answer": "in a risky position",
+  "explanation": "\"in a risky position\" is correct: missing two assignments has put Jamal at risk of trouble, as walking on thin ice risks falling through.",
+  "grade_rationale": "A common idiom in grade-7 fiction.",
+  "distractor_rationales": [
+   {
+    "choice": "walking on a frozen pond",
+    "fault": "literal",
+    "reason": "\"walking on a frozen pond\" takes the idiom literally; the sentence is about homework and a teacher."
+   },
+   {
+    "choice": "feeling cold and uneasy",
+    "fault": "literal",
+    "reason": "\"feeling cold and uneasy\" picks up the coldness of ice instead of the risk the idiom describes."
+   },
+   {
+    "choice": "doing very well in class",
+    "fault": "wrong connotation",
+    "reason": "\"doing very well in class\" is contradicted by the missed assignments."
+   }
+  ],
+  "key_slot": "A"
+ },
+ {
+  "id": "MRV3-V2-10",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 7,
+  "subtype": "connotation",
+  "difficulty": "easy",
+  "target_word": "walked",
+  "context": "After the ten-mile hike, the exhausted scouts walked the last hill to camp.",
+  "prompt": "Which word best replaces walked to show how tired the scouts were?",
+  "choices": [
+   "strolled",
+   "marched",
+   "skipped",
+   "trudged"
+  ],
+  "correct_answer": "trudged",
+  "explanation": "\"trudged\" is correct: trudged means walked slowly and heavily, which fits exhausted scouts.",
+  "grade_rationale": "Grade-7 shades of meaning with movement verbs.",
+  "distractor_rationales": [
+   {
+    "choice": "strolled",
+    "fault": "wrong connotation",
+    "reason": "\"strolled\" suggests a relaxed walk, not exhaustion."
+   },
+   {
+    "choice": "marched",
+    "fault": "wrong connotation",
+    "reason": "\"marched\" suggests firm, energetic steps, not tiredness."
+   },
+   {
+    "choice": "skipped",
+    "fault": "wrong connotation",
+    "reason": "\"skipped\" suggests light, happy steps, the opposite of exhausted."
+   }
+  ],
+  "key_slot": "D"
+ },
+ {
+  "id": "MRV3-V2-11",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 8,
+  "subtype": "multiple-meaning",
+  "difficulty": "medium",
+  "target_word": "yield",
+  "context": "The tomato plants yield more fruit when they get full sun.",
+  "prompt": "What does the word yield mean in this sentence?",
+  "choices": [
+   "give way to others",
+   "give up and surrender",
+   "stop and wait to merge",
+   "produce or provide"
+  ],
+  "correct_answer": "produce or provide",
+  "explanation": "\"produce or provide\" is correct: the plants give more fruit in full sun, so yield means produce.",
+  "grade_rationale": "Grade-8 readers know the traffic sense; the farming sense needs the context.",
+  "distractor_rationales": [
+   {
+    "choice": "give way to others",
+    "fault": "other sense",
+    "reason": "\"give way to others\" is the traffic meaning, which plants cannot do with fruit."
+   },
+   {
+    "choice": "stop and wait to merge",
+    "fault": "other sense",
+    "reason": "\"stop and wait to merge\" is the driving sense of a yield sign, which does not fit plants."
+   },
+   {
+    "choice": "give up and surrender",
+    "fault": "other sense",
+    "reason": "\"give up and surrender\" is the sense in \"yield to the enemy,\" which does not fit fruit and sun."
+   }
+  ],
+  "key_slot": "D"
+ },
+ {
+  "id": "MRV3-V2-12",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 8,
+  "subtype": "multiple-meaning",
+  "difficulty": "hard",
+  "target_word": "staple",
+  "context": "Rice is a staple in many households, eaten at almost every meal.",
+  "prompt": "What does the word staple mean in this sentence?",
+  "choices": [
+   "a basic, important item",
+   "a fiber of cotton or wool",
+   "a small metal fastener",
+   "a U-shaped wire nail"
+  ],
+  "correct_answer": "a basic, important item",
+  "explanation": "\"a basic, important item\" is correct: rice is eaten at almost every meal, so it is a basic food the household relies on.",
+  "grade_rationale": "Grade-8 readers know the office sense; the food sense needs the context.",
+  "distractor_rationales": [
+   {
+    "choice": "a small metal fastener",
+    "fault": "other sense",
+    "reason": "\"a small metal fastener\" is the office meaning, which cannot be eaten at meals."
+   },
+   {
+    "choice": "a fiber of cotton or wool",
+    "fault": "other sense",
+    "reason": "\"a fiber of cotton or wool\" is the textile sense of staple, which does not fit rice."
+   },
+   {
+    "choice": "a U-shaped wire nail",
+    "fault": "other sense",
+    "reason": "\"a U-shaped wire nail\" is the sense used for fences, which has nothing to do with food."
+   }
+  ],
+  "key_slot": "A"
+ },
+ {
+  "id": "MRV3-V2-13",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 8,
+  "subtype": "context-clue",
+  "difficulty": "medium",
+  "target_word": "prudent",
+  "context": "It would be prudent to bring a flashlight and extra water, since the trail is long and night falls early in October.",
+  "prompt": "What does prudent mean as it is used in the sentence?",
+  "choices": [
+   "fun and exciting",
+   "wise and careful",
+   "costly and heavy",
+   "quick and easy"
+  ],
+  "correct_answer": "wise and careful",
+  "explanation": "\"wise and careful\" is correct: bringing a flashlight and water because the trail is long and dark is a careful, sensible choice.",
+  "grade_rationale": "A grade-8 academic word with a reason clue.",
+  "distractor_rationales": [
+   {
+    "choice": "fun and exciting",
+    "fault": "misses the clue",
+    "reason": "\"fun and exciting\" does not match the careful planning for a long, dark trail."
+   },
+   {
+    "choice": "quick and easy",
+    "fault": "misses the clue",
+    "reason": "\"quick and easy\" ignores the reason given; the advice is about safety, not speed."
+   },
+   {
+    "choice": "costly and heavy",
+    "fault": "misses the clue",
+    "reason": "\"costly and heavy\" adds ideas about price and weight that the sentence never suggests."
+   }
+  ],
+  "key_slot": "B"
+ },
+ {
+  "id": "MRV3-V2-14",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 8,
+  "subtype": "context-clue",
+  "difficulty": "easy",
+  "target_word": "tenacious",
+  "context": "The tenacious puppy refused to let go of the rope, even when we lifted it off the ground.",
+  "prompt": "What does tenacious mean as it is used in the sentence?",
+  "choices": [
+   "stubbornly determined",
+   "playful and silly",
+   "small and weak",
+   "nervous and shy"
+  ],
+  "correct_answer": "stubbornly determined",
+  "explanation": "\"stubbornly determined\" is correct: the puppy refuses to let go even when lifted off the ground, which shows stubborn determination.",
+  "grade_rationale": "A grade-8 word with a behavior clue.",
+  "distractor_rationales": [
+   {
+    "choice": "playful and silly",
+    "fault": "misses the clue",
+    "reason": "\"playful and silly\" could describe a puppy, but the clue is how firmly it holds on."
+   },
+   {
+    "choice": "small and weak",
+    "fault": "misses the clue",
+    "reason": "\"small and weak\" is contradicted by the puppy holding on while lifted into the air."
+   },
+   {
+    "choice": "nervous and shy",
+    "fault": "misses the clue",
+    "reason": "\"nervous and shy\" does not fit a puppy that refuses to let go."
+   }
+  ],
+  "key_slot": "A"
+ },
+ {
+  "id": "MRV3-V2-15",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 8,
+  "subtype": "context-clue",
+  "difficulty": "hard",
+  "target_word": "scrutinize",
+  "context": "Before signing the form, Dad paused to scrutinize every line, reading each one twice and checking the small print.",
+  "prompt": "What does scrutinize mean as it is used in the sentence?",
+  "choices": [
+   "examine closely",
+   "fold neatly",
+   "read aloud",
+   "sign quickly"
+  ],
+  "correct_answer": "examine closely",
+  "explanation": "\"examine closely\" is correct: reading each line twice and checking the small print shows he examined it closely.",
+  "grade_rationale": "A grade-8 academic word with an example clue.",
+  "distractor_rationales": [
+   {
+    "choice": "sign quickly",
+    "fault": "misses the clue",
+    "reason": "\"sign quickly\" is contradicted by his pausing and reading each line twice before signing."
+   },
+   {
+    "choice": "fold neatly",
+    "fault": "misses the clue",
+    "reason": "\"fold neatly\" describes handling the paper, not reading it carefully."
+   },
+   {
+    "choice": "read aloud",
+    "fault": "misses the clue",
+    "reason": "\"read aloud\" is not stated; the clue is how carefully he reads, not out loud."
+   }
+  ],
+  "key_slot": "A"
+ },
+ {
+  "id": "MRV3-V2-16",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 8,
+  "subtype": "word-parts",
+  "difficulty": "medium",
+  "target_word": "retrospect",
+  "context": "In retrospect, I wish I had studied for the test instead of watching TV.",
+  "prompt": "Based on the prefix retro-, what does \"in retrospect\" mean?",
+  "choices": [
+   "looking at it once more",
+   "looking back on the past",
+   "looking ahead to the future",
+   "looking at it from above"
+  ],
+  "correct_answer": "looking back on the past",
+  "explanation": "\"looking back on the past\" is correct: retro- means \"backward,\" and the speaker looks back on a choice made before the test.",
+  "grade_rationale": "Prefix retro- appears in grade-8 texts.",
+  "distractor_rationales": [
+   {
+    "choice": "looking ahead to the future",
+    "fault": "wrong part",
+    "reason": "\"looking ahead to the future\" reverses the prefix, which means backward."
+   },
+   {
+    "choice": "looking at it from above",
+    "fault": "wrong part",
+    "reason": "\"looking at it from above\" reads the word part as a direction in space rather than in time."
+   },
+   {
+    "choice": "looking at it once more",
+    "fault": "wrong part",
+    "reason": "\"looking at it once more\" confuses retro- with re-, which means again."
+   }
+  ],
+  "key_slot": "B"
+ },
+ {
+  "id": "MRV3-V2-17",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 8,
+  "subtype": "word-parts",
+  "difficulty": "hard",
+  "target_word": "subterranean",
+  "context": "The town's subterranean tunnels once carried water to the mills.",
+  "prompt": "Based on the prefix sub- and the root terra, what does subterranean mean?",
+  "choices": [
+   "found under the water",
+   "covering the whole earth",
+   "located below the ground",
+   "built above the sea"
+  ],
+  "correct_answer": "located below the ground",
+  "explanation": "\"located below the ground\" is correct: sub- means \"under\" and terra means \"earth,\" so subterranean means underground.",
+  "grade_rationale": "Greek and Latin roots are a grade-8 standard.",
+  "distractor_rationales": [
+   {
+    "choice": "built above the sea",
+    "fault": "wrong part",
+    "reason": "\"built above the sea\" reverses sub- and confuses terra (earth) with the sea."
+   },
+   {
+    "choice": "found under the water",
+    "fault": "wrong part",
+    "reason": "\"found under the water\" reads sub- correctly but confuses terra (earth) with water."
+   },
+   {
+    "choice": "covering the whole earth",
+    "fault": "wrong part",
+    "reason": "\"covering the whole earth\" reads terra correctly but ignores sub-, which means under."
+   }
+  ],
+  "key_slot": "C"
+ },
+ {
+  "id": "MRV3-V2-18",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 8,
+  "subtype": "figurative",
+  "difficulty": "medium",
+  "target_word": "tip of the iceberg",
+  "context": "The broken window was just the tip of the iceberg; the old house needed a new roof, new pipes, and new floors.",
+  "prompt": "What does the phrase \"the tip of the iceberg\" mean in this sentence?",
+  "choices": [
+   "an easy problem to fix quickly",
+   "the very top of a tall building",
+   "a small sign of a bigger problem",
+   "the coldest part of the house"
+  ],
+  "correct_answer": "a small sign of a bigger problem",
+  "explanation": "\"a small sign of a bigger problem\" is correct: the broken window was only a small part of what was wrong, since the house also needed a roof, pipes, and floors.",
+  "grade_rationale": "A common idiom in grade-8 nonfiction.",
+  "distractor_rationales": [
+   {
+    "choice": "the coldest part of the house",
+    "fault": "literal",
+    "reason": "\"the coldest part of the house\" takes the ice literally; the sentence lists repairs, not temperatures."
+   },
+   {
+    "choice": "the very top of a tall building",
+    "fault": "literal",
+    "reason": "\"the very top of a tall building\" reads \"tip\" as the top of something, but the idiom is about a hidden problem."
+   },
+   {
+    "choice": "an easy problem to fix quickly",
+    "fault": "wrong connotation",
+    "reason": "\"an easy problem to fix quickly\" is contradicted by the long list of larger repairs."
+   }
+  ],
+  "key_slot": "C"
+ },
+ {
+  "id": "MRV3-V2-19",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 8,
+  "subtype": "figurative",
+  "difficulty": "easy",
+  "target_word": "under the weather",
+  "context": "Priya stayed home from practice because she was feeling under the weather.",
+  "prompt": "What does the phrase \"under the weather\" mean in this sentence?",
+  "choices": [
+   "a little bit sick",
+   "caught in the rain",
+   "sad about a loss",
+   "worried about storms"
+  ],
+  "correct_answer": "a little bit sick",
+  "explanation": "\"a little bit sick\" is correct: the idiom means slightly ill, which explains staying home from practice.",
+  "grade_rationale": "A common idiom in grade-8 fiction.",
+  "distractor_rationales": [
+   {
+    "choice": "caught in the rain",
+    "fault": "literal",
+    "reason": "\"caught in the rain\" takes \"weather\" literally; she stays home, so she was not caught outside."
+   },
+   {
+    "choice": "sad about a loss",
+    "fault": "wrong connotation",
+    "reason": "\"sad about a loss\" describes a mood, while the idiom means feeling ill."
+   },
+   {
+    "choice": "worried about storms",
+    "fault": "literal",
+    "reason": "\"worried about storms\" reads the weather literally; the sentence gives no storm."
+   }
+  ],
+  "key_slot": "A"
+ },
+ {
+  "id": "MRV3-V2-20",
+  "family": "map",
+  "map_area": "Vocabulary",
+  "grade_target": 8,
+  "subtype": "connotation",
+  "difficulty": "easy",
+  "target_word": "said",
+  "context": "\"Leave me alone,\" Rosa said, slamming the door.",
+  "prompt": "Which word best replaces said to show that Rosa was angry?",
+  "choices": [
+   "murmured",
+   "chuckled",
+   "snapped",
+   "replied"
+  ],
+  "correct_answer": "snapped",
+  "explanation": "\"snapped\" is correct: snapped means spoke sharply and angrily, which fits slamming the door.",
+  "grade_rationale": "Grade-8 shades of meaning with speech verbs.",
+  "distractor_rationales": [
+   {
+    "choice": "murmured",
+    "fault": "wrong connotation",
+    "reason": "\"murmured\" suggests speaking softly, not angrily."
+   },
+   {
+    "choice": "chuckled",
+    "fault": "wrong connotation",
+    "reason": "\"chuckled\" suggests amusement, which does not fit slamming a door."
+   },
+   {
+    "choice": "replied",
+    "fault": "wrong connotation",
+    "reason": "\"replied\" is neutral and shows no anger."
+   }
+  ],
+  "key_slot": "C"
+ }
+]

@@ -874,6 +874,24 @@
    "author": "in-session",
    "grader": "other",
    "source": "verify_meta.method 'claude-authored+claude-blind-grade' (Jul 21-28)"
+  },
+  "map-reading-v3-c1": {
+   "method_id": "map-rd-v3-insession+cfg-v2",
+   "author": "in-session",
+   "grader": "cfg-v2",
+   "source": "REGISTER 2026-10-29: map-v2-work/reading/BRIEF.md adapted to batch 2 (map-v2-work/reading-b2), one in-session Claude author, 20 passages x 3; grader v2 pre-screen x2. New method (in-session author), so its first batch gets a bridge spot."
+  },
+  "map-reading-v3-c2": {
+   "method_id": "map-rd-v3-insession+cfg-v2",
+   "author": "in-session",
+   "grader": "cfg-v2",
+   "source": "REGISTER 2026-10-29: map-v2-work/reading/BRIEF.md adapted to batch 2 (map-v2-work/reading-b2), one in-session Claude author, 20 passages x 3; grader v2 pre-screen x2. New method (in-session author), so its first batch gets a bridge spot."
+  },
+  "map-vocab-v3": {
+   "method_id": "map-vocab-v3-insession+cfg-v2",
+   "author": "in-session",
+   "grader": "cfg-v2",
+   "source": "REGISTER 2026-10-29: map-v2-work/reading-b2 standalone Vocabulary, 40 items, one in-session Claude author, vocab-check.mjs; grader v2 pre-screen x2."
   }
  }
 }
