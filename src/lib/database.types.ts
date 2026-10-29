@@ -5634,6 +5634,10 @@ export type Database = {
           name_prompt_snoozed_until: string | null
           phone: string | null
           role: string
+          signup_city: string | null
+          signup_country: string | null
+          signup_geo_at: string | null
+          signup_region: string | null
           updated_at: string | null
         }
         Insert: {
@@ -5650,6 +5654,10 @@ export type Database = {
           name_prompt_snoozed_until?: string | null
           phone?: string | null
           role: string
+          signup_city?: string | null
+          signup_country?: string | null
+          signup_geo_at?: string | null
+          signup_region?: string | null
           updated_at?: string | null
         }
         Update: {
@@ -5666,6 +5674,10 @@ export type Database = {
           name_prompt_snoozed_until?: string | null
           phone?: string | null
           role?: string
+          signup_city?: string | null
+          signup_country?: string | null
+          signup_geo_at?: string | null
+          signup_region?: string | null
           updated_at?: string | null
         }
         Relationships: []

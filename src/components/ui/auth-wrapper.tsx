@@ -9,6 +9,8 @@ import { appInitTracker } from '@/utils/appInitializationTracker'
 import { NamePrompt, type NamePromptUser } from '@/components/ui/name-prompt'
 import { SocialOnboardingModal } from '@/components/ui/social-onboarding-modal'
 import { needsSocialOnboarding } from '@/lib/auth/social-onboarding'
+import { isWithinSignupWindow } from '@/lib/auth/signup-geo'
+import { authHeaders } from '@/lib/auth-headers'
 
 interface AuthWrapperProps {
   children: React.ReactNode
@@ -45,6 +47,21 @@ export function AuthWrapper({ children, onUserData }: AuthWrapperProps) {
       console.error('DEV AUTH IS STILL ENABLED! This should be disabled.')
     }
   }, [])
+
+  // Record where a brand-new account signed up from (migration 129). The
+  // server reads Vercel's geo headers and only writes once, for a new account
+  // with no location yet; the local flag just saves the repeat request.
+  useEffect(() => {
+    if (!user?.id || !isWithinSignupWindow(user.created_at)) return
+    const key = `signup-geo:${user.id}`
+    try { if (localStorage.getItem(key)) return } catch { /* storage blocked: the server guard still holds */ }
+    void (async () => {
+      try {
+        const res = await fetch('/api/auth/signup-geo', { method: 'POST', headers: await authHeaders() })
+        if (res.ok) { try { localStorage.setItem(key, '1') } catch { /* ignore */ } }
+      } catch { /* best effort; never blocks sign-in */ }
+    })()
+  }, [user?.id, user?.created_at])
 
   // Fetch additional user data when user is available
   useEffect(() => {
