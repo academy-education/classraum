@@ -6471,3 +6471,11 @@ structural checks are pre-flight only. See CLAUDE.md.
   - Wave-2 audit: `agent-review-audit-sample.mjs --wave2` gives 21 items, 1 per cleared cohort
     (`agent-review/audit-sample-wave2.json`). Queued as `thenManualDraw` behind the first audit; draw-next prints it.
     Release runs through `agent-review-release.mjs <run> --wave2`.
+
+- **2026-10-30 — MAP Math b8 (Number Systems) step 1: 50 mechanisms drafted to b7's FEASIBILITY rules (signed
+  decimal or fixed-denominator answers whose natural errors keep the key's form). 14 probe collisions, 19 not
+  writable, 17 writable and probe-clean.** Five pairs among the 17 share a chain, so about 12 are distinct. Grade
+  split g5 4 / g6 2 / g7 10 / g8 1; grades 6 and 8 are thin. Nothing written or inserted. `map-v2-work/math-b8/`
+  (MECHANISMS.md, FEASIBILITY.md, DROPPED.md, CHECKER-PROMPT.md, gen8/diag8/probe/collect). Also committed
+  `math-b6/feas-lib.mjs`, which the b7 and b8 tools import and which had never been tracked. Next: one fresh
+  independent chain checker (running), then items for the recommended set.

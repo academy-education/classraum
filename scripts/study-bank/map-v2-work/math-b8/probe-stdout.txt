@@ -1,0 +1,343 @@
+
+=== Q01 g5 a number given in non-standard place-value units (a ones, t tenths and h hundredths with t and h abo
+  kw hits 0; earlier-N regex hits 7
+   * MM2-N18 [file only (never banked)] multiply coefficients and add exponents -> write both amounts with the same place value -> subtract with a regrouping
+   * MM3-N05 [file only (never banked)] line up tenths and hundredths -> subtract with a regroup into the tenths -> add with carries
+   * MM4-N15 [file only (never banked)] read distance from 0 as absolute value -> compare each absolute value with 6.45 and 7.4 by place value
+   * MM5-N01 [LIVE] multiply the bag weight by 7 -> carry hundredths into tenths -> add the box and carry again
+   * B7-D04 [b7 mechanism D04 (draft K29), checker: BORDERLINE] convert the benchmark fraction to a decimal -> compare each decimal by place value -> count
+   * B7-D09 [b7 mechanism D09 (draft M04), checker: BORDERLINE] read each expanded form as a decimal (zero placeholders) -> add with the decimal points aligned
+
+=== Q02 g5 four digit cards used once each to make two decimals 0.ab and 0.cd: the smallest possible positive d
+  kw hits 2; earlier-N regex hits 3
+   - 5576eb0c-219 [live isee/isee-math-s15 Math medium] :: Tim has 60 cards numbered 1 through 60. He removes every card whose number is a multiple of 4 or contains the digit 4. How many cards are left? options ["35","36","42","33"] key 35
+   - ef110e92-87d [live isee/isee-math-s16 Math medium] :: Ana picks one card at random from five cards numbered 1, 2, 3, 4 and 5. Ben picks one card at random from four cards numbered 2, 4, 6 and 8. What is the probability that Ana's number is greater than Ben's number? options ["9/20","3/20","2/5","1/5"] key 1/5 
+   * MM3-N14 [file only (never banked)] find the least common multiple of 15 and 25 -> count the multiples of 75 from 75 to 300 minutes -> leave out the first moment and keep the one at 300
+   * B7-D06 [b7 mechanism D06 (draft K38), checker: NEW] correct sum with a common denominator -> the student's (a+c)/(b+d) value -> subtract
+   * B7-K13 [b7 draft dropped by probe (see math-b7/DROPPED.md)] prime-factorize -> keep each prime once -> multiply
+
+=== Q03 g5 four decimals of different lengths (e.g. 0.6, 0.47, 0.508, 0.55): the difference between the two tha
+  kw hits 0; earlier-N regex hits 10
+   * MMG-N12 [file only (never banked)] locate √5 between consecutive whole numbers and refine to tenths -> multiply the approximation by 2
+   * MM4-N39 [file only (never banked)] approximate √50 just above 7 -> approximate √30 just below 5.5 -> subtract the approximations and round only at the end
+   * MM4-N37 [file only (never banked)] edge = cube root of the volume -> cube root of 5 is between 1 and 2 -> cube decimals to find the closest
+   * MM4-N31 [file only (never banked)] place the square root between two whole numbers -> narrow to tenths by squaring -> square two-decimal choices and compare with 7.6
+   * MM4-N33 [file only (never banked)] product of square roots is the square root of the product -> place the root of 20 between 4 and 5 -> square choices to find the closest
+   * MM4-N31 [file only (never banked)] square each decimal -> compare the squares with 3.3 -> pick the decimal whose square is closest to 3.3
+
+=== Q04 g5 a bag holds n marbles, r of them red; k more red marbles are added: the fraction of the marbles that
+  kw hits 0; earlier-N regex hits 2
+   * MM4-N28 [file only (never banked)] total repaid, moves the negative balance up -> fraction of the current debt -> borrowing moves the balance down
+   * MM5P-N12 [file only (never banked)] divide coefficients and subtract a negative exponent -> write amounts in scientific notation in standard form -> subtract and add the adjustments
+
+=== Q05 g5 nested zoom on a number line: the tenth-wide segment from A is split into 10 parts, point P at mark 
+  kw hits 0; earlier-N regex hits 0
+
+=== Q06 g5 two decimals given only in words (e.g. "four and twelve thousandths", "three and thirty-five hundred
+  kw hits 0; earlier-N regex hits 0
+
+=== Q07 g5 a total of several decimals was computed with one entry typed one place off (4.5 instead of 0.45): t
+  kw hits 0; earlier-N regex hits 0
+
+=== Q08 g5 four digit cards used once each to make 0.ab and 0.cd: the sum that is closest to 1
+  kw hits 0; earlier-N regex hits 2
+   * B7-D08 [b7 mechanism D08 (draft M03), checker: NEW] add each pair with a common denominator (or benchmark against 1/2) -> distance of each sum from 1 -> pick the least
+   * B7-D15 [b7 mechanism D15 (draft K15), checker: NEW] distance of each fraction from 1/2 (common denominators or decimals) -> compare the distances -> pick the least
+
+=== Q09 g5 group A (n people) share p pizzas and group B (m people) share q pizzas; then both groups pool all t
+  kw hits 3; earlier-N regex hits 7
+   - 7dbe7cd9-751 [live ssat/ssat-math-s16 Math medium] :: Ali brings 5 loaves of bread and Bo brings 7 loaves. They share all 12 loaves equally with Cy and Dee, who brought none. Cy and Dee together pay $24 for the bread they ate, and Ali and Bo divide the $24 fairly, in proportion to how much of Cy's and Dee's bread
+   - MMG-D04 [prior map-math-g58-v1] :: A science class put water in some beakers. The table shows the line plot data: each row gives an amount of water, in liters, and the number of beakers that held that amount. All the water is poured together and then shared equally among all of the beakers. How
+   - 6400f8f2-ee6 [prior DB map-math-g58-v1] :: A science class put water in some beakers. The table shows the line plot data: each row gives an amount of water, in liters, and the number of beakers that held that amount. All the water is poured together and then shared equally among all of the beakers. How
+   * MM3-N02 [file only (never banked)] read the sharing as 14 divided by 5 -> find the whole pounds each -> share the leftover pounds as fifths
+   * MM4-N21 [file only (never banked)] subtract a negative from a negative -> share the change equally over 5 weeks -> add one week's rise to the starting balance
+   * MM3-N02 [file only (never banked)] interpret sharing as 8 divided by 5 -> write the quotient as a fraction -> rename as a mixed number
+   * MV2-N56-05 [LIVE] divide a decimal by a whole number -> subtract a decimal from one share
+   * MB4-N5-09 [LIVE] subtract the part kept back -> divide the rest by the number of sharers (Ana plus 2 cousins = 3) -> add one share to Ana's amount
+   * B7-D02 [b7 mechanism D02 (draft K03), checker: BORDERLINE] whole / unit fraction = number of pieces -> pieces / group size
+
+=== Q37 g5 a board is cut into k pieces of a decimal length; each cut wastes a decimal width (saw kerf): the le
+  kw hits 0; earlier-N regex hits 0
+
+=== Q38 g5 tiered pricing: the first T kilograms cost one decimal price per kilogram and every kilogram after t
+  kw hits 7; earlier-N regex hits 0
+   - 05ec1073-208 [live act/act-math-v4-fn Functions medium] :: A parking garage charges $5 for the first hour or any part of an hour, and $3 for each additional hour or part of an additional hour. A car is parked for 3 hours and 25 minutes. How many dollars of the total charge are for the time after the first hour? option
+   - 1d281acd-3dd [live act/act-math-v25 Integrating Essential Skills medium] :: A taxi fare is computed as follows: an initial charge of $3.10, which includes the first 1/5 mile of the ride; $0.55 for each additional 1/5 mile or fraction of 1/5 mile; and $0.40 per minute of waiting time, with a fraction of a minute charged in proportion. 
+   - 2ca82d13-184 [live sat/sat-math-v12 Algebra hard] :: A parking garage charges $6.00 for the first 2 hours and $2.50 for each additional half hour or part of a half hour. A driver paid exactly $28.50. What is the greatest number of hours the driver could have parked? options ["6.5","4.5","6","11"] key 6.5
+   - 620f4fc8-ad4 [live act/act-math-v25 Integrating Essential Skills medium] :: A shipping company charges for each package according to its billable weight. The billable weight is the greater of the package's actual weight and its dimensional weight, rounded up to the next whole pound. The dimensional weight, in pounds, is (length × widt
+   - 743310f5-a39 [live act/act-math-v8-fn Functions hard] :: A shipping company charges $8.00 for the first 3 pounds of a package and $1.25 for each additional pound or part of a pound. The charge for a certain package was $19.25. What is the greatest possible weight of the package, in pounds? options ["9","11.25","12",
+   - 830d6f4a-520 [live act/act-math-v1 Integrating Essential Skills hard] :: A worker earns $18 per hour for the first 40 hours in a week and 1.5 times that rate for each additional hour. In one week the worker earned $936. How many hours beyond 40 did the worker work that week? options ["8","12","40","52"] key 8
+   - SM12L-15 [prior sat-math-v12-alg.batch.json] :: A parking garage charges $6.00 for the first 2 hours and $2.50 for each additional half hour or part of a half hour. A driver paid exactly $28.50. What is the greatest number of hours the driver could have parked? options ["6.5","4.5","6","11"] key 6.5 
+
+=== Q48 g5 the product (1 - 1/2)(1 - 1/3)(1 - 1/4)...(1 - 1/n) written as one fraction
+  kw hits 0; earlier-N regex hits 0
+
+=== Q50 g5 a 3-by-3 square of mixed numbers in sevenths in which every row, column and diagonal has the same su
+  kw hits 0; earlier-N regex hits 0
+
+=== Q10 g6 the value of a continued fraction a + 1/(b + 1/c) for whole numbers a, b, c, as a mixed number
+  kw hits 11; earlier-N regex hits 0
+   - 0729744e-180 [live sat/v2 Advanced Math medium] :: If 1/(x − 3) + 1/(x + 3) = 8/(x² − 9) and x ≠ ±3, what is the value of x? options ["16","8","3","4"] key 4
+   - 19083479-b93 [live sat/v2 Advanced Math hard] :: Which of the following is the complete solution set of 1/(x - 2) + 1/(x + 2) = 4/(x^2 - 4)? options ["x = 2","no solution","x = -2","x = 4"] key no solution
+   - 3648766d-90a [live sat/v2 Advanced Math medium] :: What is the sum of all values of x that satisfy 1/(x - 2) + 1/(x + 2) = 1/3? options ["2","3","6","0"] key 6
+   - 54d0f0e7-861 [live act/act-math-v7-alg Algebra hard] :: The equation 1/(x - 3) + 1/(x + 3) = 1 has two real solutions. What is the product of those two solutions? options ["-9","9","2","-2"] key -9
+   - 9558767e-b4d [live act/act-math-v1 Algebra medium] :: If 4/x + 1/(2x) = 3, what is the value of x? options ["2/3","5/6","3/2","9/2"] key 3/2
+   - a3b39cf9-a76 [live ssat/ssat-math-s2 Math hard] :: A nonzero number x satisfies x + 1/x = 5. What is the value of x squared + 1/(x squared)? options ["10","24","23","25","27"] key 23
+   - b8099166-b01 [live sat/v2 Advanced Math medium] :: What value of x satisfies 1/(x - 1) + 1/(x + 1) = 10/(x^2 - 1)? options ["1","-1","4","5"] key 5
+   - bc773760-d03 [live act/act-math-v29 Algebra medium] :: For x > 0, the sum 1/(x(x + 1)) + 1/((x + 1)(x + 2)) + 1/((x + 2)(x + 3)) + 1/((x + 3)(x + 4)) + 1/((x + 4)(x + 5)) + 1/((x + 5)(x + 6)) + 1/((x + 6)(x + 7)) is equal to 0.07. To the nearest hundredth, what is the value of x ? options ["7.66","9.51","7.09","7.
+
+=== Q11 g6 of four account balances, the one that shows a debt greater than $D while the balance is still great
+  kw hits 0; earlier-N regex hits 0
+
+=== Q12 g6 two points in different quadrants with decimal coordinates: the length of the shortest path between 
+  kw hits 8; earlier-N regex hits 3
+   - fdebedce-905 [live isee/isee-math-s17 Math hard] :: A town's streets form a square grid, and each intersection is named by coordinates (x, y), with blocks 1 unit long. Five friends live at the intersections (1, 2), (2, 9), (4, 1), (11, 8), and (12, 5). They want to meet at one intersection so that the total dis
+   - MMG-G04 [prior map-math-g58-v1] :: On a park map drawn on a coordinate plane, each unit stands for 20 meters. Tara starts at the gate at (2, 1) and walks along grid lines. She walks straight right to the pond, which is directly below the tower at (8, 13). Then she walks straight up to the tower
+   - MM3-G02 [prior map-math-g58-v3] :: A trail map is drawn on a coordinate grid, and each unit on the grid stands for 5 meters. The campsite is at (7, 68) and the lake is at (7, 49). The trail runs straight along the grid line from the campsite down to the lake. How many meters long is the trail? 
+   - MM3-G03 [prior map-math-g58-v3] :: A town map is drawn on a coordinate grid, and each unit on the grid is one block. Maya's home is at (2, 3), Joe's home is at (11, 13), and the school is at (11, 34). Maya walks along grid lines from her home straight right to the point below the school, then s
+   - MM3-G02 [prior map-math-g58-v3 (as first written)] :: A trail map is drawn on a coordinate grid, and each unit on the grid stands for one meter. The campsite is at (6, 51) and the lake is at (6, 36). The trail runs straight along the grid line from the campsite to the lake. How many meters long is the trail? opti
+   - MMG-G04 [prior map-math-g58-v1.batch.json] :: On a park map drawn on a coordinate plane, each unit stands for 20 meters. Tara starts at the gate at (2, 1) and walks along grid lines. She walks straight right to the pond, which is directly below the tower at (8, 13). Then she walks straight up to the tower
+   - 81b3b35d-95f [prior DB map-math-g58-v3] :: A town map is drawn on a coordinate grid, and each unit on the grid is one block. Maya's home is at (2, 3), Joe's home is at (11, 13), and the school is at (11, 34). Maya walks along grid lines from her home straight right to the point below the school, then s
+   - MV2-G56-10 [prior map-math-v2 b1 withdrawn] :: Point P is at (2, 3) on a coordinate grid. Point Q has a y-coordinate of 13 and is to the right of P. Walking only along grid lines, the shortest route from P to Q is 26 units long. What is the x-coordinate of Q? options ["25","28","19","18"] key 18 
+   * MM3-N07 [file only (never banked)] find one section as 1/5 of the path -> multiply by the number of sections -> rename an improper fraction
+   * MM3-N07 [file only (never banked)] find one section as 1/5 of 7/8 mile -> multiply by the 13 sections walked -> rename the improper fraction
+   * MV2-N8-08 [withdrawn] side = √2000 -> estimate √2000 between 44 and 45 -> perimeter = 4 x side -> round to the nearest 10
+
+=== Q13 g6 four digit cards used once each to make two decimals a.b and c.d: the greatest possible product
+  kw hits 0; earlier-N regex hits 0
+
+=== Q14 g6 two intervals on a number line, each from a negative decimal to a positive decimal: the length of th
+  kw hits 0; earlier-N regex hits 2
+   * MM3-N06 [file only (never banked)] count 1/2-meter tiles along 3 1/2 meters -> count 1/3-meter tiles along 2 2/3 meters -> multiply rows by columns
+   * MM4-N18 [file only (never banked)] the square's side is the LCM of 10 and 14 -> count tiles along each side -> multiply the two counts
+
+=== Q15 g6 a decimal and the decimal with its digits reversed (3.47 and 7.43): their difference
+  kw hits 36; earlier-N regex hits 0
+   - 038b0287-726 [live sat/v2 Advanced Math hard] :: The graph of a quadratic function f is shown, with vertex (1, -8) and x-intercepts at x = -1 and x = 3. What is the value of f(0)? options ["-2","10","-6","-8"] key -6
+   - 045fd01e-dd1 [live sat/v2 Geometry and Trigonometry easy] :: In the xy-plane shown, what is the distance between the points (-3, -4) and (0, 0)? options ["7","6","4","5"] key 5
+   - 05fa09ea-c9c [live sat/v2 Geometry and Trigonometry easy] :: In the xy-plane shown, what is the distance between the points (1, 2) and (9, 8)? options ["5.29","7","100","10"] key 10
+   - 06fe9356-fdc [live sat/v2 Algebra medium] :: The line shown passes through the points (0, 6) and (4, -2). What is the y-coordinate of the point on the line where x = 6? options ["-6","-12","-8","-4"] key -6
+   - 0cc0c266-871 [live sat/sat-math-v29-full Algebra medium] :: In the xy-plane, the line 9x + 7y = 134 contains the point (a, b), where a and b are constants. The line x - 9y = -166 contains the point whose coordinates are the same two numbers in reverse order, (b, a). What is the value of a + b? options ["14","18","19","
+   - 1666d768-751 [live sat/v2 Geometry and Trigonometry easy] :: In the xy-plane shown, what is the distance between the points (2, 3) and (14, 8)? options ["13","7","169","17"] key 13
+   - 17d71023-5ab [live sat/v2 Algebra medium] :: The line shown passes through the points (0, -3) and (4, 5). What is the y-coordinate of the point on the line where x = 6? options ["11","5","9","7"] key 9
+   - 1a8df508-b1c [live sat/v2 Algebra medium] :: A two-digit number has digits summing to 11. When the digits are reversed, the new number is 27 greater than the original. What is the original number? options ["74","38","47","56"] key 47
+
+=== Q46 g6 pieces of a decimal length are cut from a decimal board until no full piece is left; each cut wastes
+  kw hits 0; earlier-N regex hits 0
+
+=== Q47 g6 a number line is folded so that point a lands on point b: where the point c lands
+  kw hits 189; earlier-N regex hits 0
+   - 02788ad4-25d [live sat/sat-psda-hard-v2 Problem-Solving and Data Analysis hard] :: The table shows a company's revenue, in thousands of dollars, in each of six consecutive months. Between which two consecutive months listed did the revenue increase by the greatest percent? options ["January to February","March to April","April to May","May t
+   - 09fb9083-0cb [live sat/sat-math-v30-full Problem-Solving and Data Analysis medium] :: A store sells a lamp for $40. The lamp costs the store $25, and the store also pays a salesperson a commission on the sale of a lamp equal to 5% of the lamp's selling price, but never more than $1.92. The store's profit on a lamp is its selling price minus the
+   - 0a4537c6-b92 [live act/act-math-v12-mix Geometry medium] :: A circular fountain with a radius of 7 meters is rebuilt with a radius of 10 meters. By how many meters does the circumference of the fountain increase? options ["3π","34π","51π","6π"] key 6π
+   - 0c8dbc27-17f [live isee/isee-math-s16 Math medium] :: The mean of 12 numbers is 30. Each of the 5 largest numbers is decreased by 6, and each of the other 7 numbers is increased by 3. What is the mean of the 12 new numbers? options ["27","29.25","28.5","27.5"] key 29.25
+   - 0eeb7374-ca5 [live sat/sat-math-v28-full Advanced Math medium] :: A company estimates that its weekly profit P, in dollars, from selling a lamp at a price of x dollars is given by P(x) = -6x^2 + 300x - 2250. The company currently sells the lamp for 21 dollars. If the company changes the price to the value of x that maximizes
+   - 1cb82388-4a9 [live ssat/ssat-math-s14 Math easy] :: The mean of ten numbers is 13. Each of the ten numbers is increased by 20 percent, and then 4 is subtracted from each result. What is the mean of the ten new numbers? options ["15.2","9","11.6","15.6","10.8"] key 11.6
+   - 1eb7a622-3b4 [live sat/math-v5-psda-hard Problem-Solving and Data Analysis hard] :: Last year, 60 percent of a store's revenue came from clothing and the rest came from accessories. This year, clothing revenue is 10 percent greater than last year and accessories revenue is 20 percent less than last year. By what percent did the store's total 
+   - 202d610e-507 [live sat/sat-math-v30-full Problem-Solving and Data Analysis medium] :: The table shows the number of students and the number of teachers at a high school in each of three years. By what percent did the number of students per teacher at the school decrease from 2023 to 2025, to the nearest tenth of a percent? options ["4.2","4.3",
+
+=== Q49 g6 a climber gains u meters each day and slips back v meters each night (decimals): the height after d 
+  kw hits 1; earlier-N regex hits 0
+   - 01199b13-494 [live isee/isee-math-s17 Math medium] :: A beetle is at the bottom of a well that is 50 feet deep. Each day it climbs up 12 feet, and each night it slides back down 9 feet. It starts climbing on the morning of day 1. On which day does the beetle first reach the top of the well? options ["13","14","16
+
+=== Q51 g6 the value of a/(b + c/d) for small whole numbers, as a mixed number (a fraction whose denominator is
+  kw hits 4; earlier-N regex hits 2
+   - MM3-O01 [prior map-math-g58-v3] :: On a quiz, Jada must simplify 90 / (2 + 4) x 3, following the order of operations. What number should she get? options ["5","45","57","147"] key 45
+   - 8691bceb-96a [prior DB map-math-g58-v3] :: On a quiz, Jada must simplify 90 / (2 + 4) x 3, following the order of operations. What number should she get? options ["57","5","147","45"] key 45
+   - MV2-O56-01 [prior map-math-v2 b1 dropped by graders] :: In a math card game, each card shows an expression, and a player scores the value of the expression on the card. Tia draws the card 144 / (4 + 5) - 3. How many points does Tia score? options ["13","24","38","15"] key 13
+   - MV2-O56-10 [prior map-math-v2 b1 LIVE] :: Leo's homework has one problem: find 94 - [72 / (4 + 2) x 3 + 4]. He must use the correct order for the brackets, parentheses and operations. What is the correct answer? options ["54","66","86","63"] key 54 
+   * B7-D06 [b7 mechanism D06 (draft K38), checker: NEW] correct sum with a common denominator -> the student's (a+c)/(b+d) value -> subtract
+   * B7-K39 [b7 draft dropped by probe (see math-b7/DROPPED.md)] -(p/q) = (-p)/q = p/(-q) -> evaluate one form
+
+=== Q52 g6 walking along grid lines from a point in one quadrant to a point in another, but first touching the 
+  kw hits 0; earlier-N regex hits 1
+   * MV2-N56-18 [revised away] reflect across the x-axis: y changes sign -> same x, opposite sides of the axis: add 7 + 4 -> scale 11 units by 2.5 miles
+
+=== Q53 g6 tiered pricing backward: the first T kilograms cost one decimal price, every further kilogram a lowe
+  kw hits 2; earlier-N regex hits 0
+   - 2ca82d13-184 [live sat/sat-math-v12 Algebra hard] :: A parking garage charges $6.00 for the first 2 hours and $2.50 for each additional half hour or part of a half hour. A driver paid exactly $28.50. What is the greatest number of hours the driver could have parked? options ["6.5","4.5","6","11"] key 6.5
+   - SM12L-15 [prior sat-math-v12-alg.batch.json] :: A parking garage charges $6.00 for the first 2 hours and $2.50 for each additional half hour or part of a half hour. A driver paid exactly $28.50. What is the greatest number of hours the driver could have parked? options ["6.5","4.5","6","11"] key 6.5 
+
+=== Q16 g7 from a printed set of signed fractions, the least product of two different numbers
+  kw hits 107; earlier-N regex hits 0
+   - 07ec7c50-71c [live sat/sat-math-v26-alg Algebra medium] :: k + 1 ≤ x < 3k Exactly 5 integers x satisfy the compound inequality above, where k is a constant. What is the greatest possible value of k? options ["10/3","7/2","11/3","4"] key 10/3
+   - 0c5bb627-ae3 [live sat/sat-math-v28-full Algebra medium] :: f(x) = 3x - 11 For the function f defined above, the output at input 3n + 3 must stay below 60 more than twice the output at input n, that is, f(3n + 3) < 2f(n) + 60. If n is an integer, what is the greatest possible value of n ? options ["19","8","22","13"] k
+   - 109c9105-5cf [live sat/sat-alg-unit-0919 Algebra medium] :: If |x - 5| <= 3 and |y + 2| <= 1, what is the greatest possible value of 3x - 2y? options ["30","26","8","18"] key 30
+   - 14838ea8-0cc [live act/act-math-v20 Algebra medium] :: Positive integers x and y satisfy the equation xy = 3x + 2y + 6. What is the least possible value of x + y ? options ["10","18","7","12"] key 12
+   - 198c3b9d-f07 [live ssat/ssat-math-s17 Math medium] :: In the coordinate plane, A is the point (2, 3) and B is the point (10, 7). Point P can be any point on the x-axis. What is the least possible value of AP + PB? options ["2√41","√122","4√10","5 + √65","3√2 + √74"] key 2√41
+   - 248358cb-d94 [live ssat/ssat-math-s4 Math hard] :: A positive integer N leaves a remainder of 3 when it is divided by 5, and a remainder of 2 when it is divided by 4. What is the least possible value of N? options ["5","7","13","18","38"] key 18
+   - 38e3d49e-9b0 [live ssat/ssat-math-s17 Math medium] :: When each of the numbers 251, 323 and 443 is divided by the positive integer n, the three remainders are equal. What is the greatest possible value of n? options ["72","11","192","24","120"] key 24
+   - 3e829ca2-5c4 [live isee/isee-math-s4 Math hard] :: Five different positive integers have an average (arithmetic mean) of 10. What is the greatest possible value of the largest integer? options ["40","44","46","50"] key 40
+
+=== Q17 g7 a table of monthly signed changes: the two consecutive months whose combined change is closest to ze
+  kw hits 0; earlier-N regex hits 0
+
+=== Q18 g7 the product (-1/2)(-2/3)(-3/4)...(-(n-1)/n): its value
+  kw hits 9; earlier-N regex hits 0
+   - 2314a9de-ea7 [live act/act-math-v1 Algebra hard] :: What is the product of all real solutions of the equation |3x - 4| = 11? options ["-35/3","-7/3","8/3","5"] key -35/3
+   - 2c99d9a8-7d3 [live act/act-math-v18 Functions medium] :: A sequence is defined by a₁ = 3 and a₍ₙ₊₁₎ = 1/(1 − aₙ) for every integer n ≥ 1. What is the value of the product a₁₀₀ · a₁₀₁ ? options ["2","-6","-3/2","-1/3"] key -3/2
+   - 6927101e-a13 [live act/act-math-v2-alg Algebra medium] :: The equation 4x² - 7x - 6 = 0 has two real solutions. What is the product of those two solutions? options ["-3/2","7/4","-6","3/2"] key -3/2
+   - 7d1c0baf-e59 [live isee/isee-math-s17 Math medium] :: The equation |x - 3| = 2|x + 1| has exactly two solutions. What is the product of the two solutions? options ["-14/3","-5/3","-7","-25/3"] key -5/3
+   - SADV5A-02 [prior sat-adv-0919c-a.batch.json] :: The function f is defined by f(x) = (2x - 5)(4x + 13) + 6(2x - 5). In the xy-plane, the graph of y = f(x) crosses the x-axis at two points. What is the product of the x-coordinates of those two points? options ["-65/8","-95","-9/4","-95/8"] key -95/8
+   - SADV6A-06 [prior sat-adv-0919d-a.batch.json] :: The polynomial p is defined by p(x) = (x − 5)²(3x² − 14x − 5). What is the product of the distinct real zeros of p? options ["-25/3","-5/3","14/3","-15"] key -5/3
+   - MM3-N23 [prior map-math-g58-v3] :: Ana works out the product (-2)^3 x 3^-2 and writes her answer as a fraction or mixed number. What is the product? options ["-72","-7 8/9","-1 1/3","-8/9"] key -8/9
+   - MM3-N23 [prior map-math-g58-v3.batch.json] :: Ana works out the product (-2)^3 x 3^-2 and writes her answer as a fraction or mixed number. What is the product? options ["-72","-7 8/9","-1 1/3","-8/9"] key -8/9
+
+=== Q19 g7 a signed pattern of moves repeated (+u then -v, as mixed numbers) k times and then one more +u from 
+  kw hits 0; earlier-N regex hits 10
+   * MM2-N19 [file only (never banked)] 2/3 is the repeating decimal 0.666... -> subtract 0.6 keeping the repeat (or 2/3 - 3/5 = 1/15) -> round to the nearest thousandth only at the end
+   * MM4-N35 [file only (never banked)] simplify each root (a perfect square or cube under it, or a quotient of roots) -> repeating decimals are rational -> endless non-repeating decimals are irration
+   * MM4-N35 [file only (never banked)] decide which roots are of perfect squares or cubes -> a repeating decimal is rational -> a patterned decimal with no repeating block is irrational -> count the 
+   * MV2-N8-14 [LIVE] multiply by 1000 and by 10 -> subtract to get 990n = 345 -> simplify 345/990 to 23/66 -> add numerator and denominator
+   * B7-D33 [b7 mechanism D33 (draft P05), checker: BORDERLINE (area risk)] apply the signed multiply-then-add rule -> repeat on each output (signs alternate)
+   * B7-K08 [b7 draft dropped by probe (see math-b7/DROPPED.md)] simplify each (a root of a perfect-square fraction, a quotient of roots, a terminating or repeating decimal, a pattern decimal that never repeats) -> classify -
+
+=== Q20 g7 a signed running total was computed with one change entered with the wrong sign: the correct total
+  kw hits 0; earlier-N regex hits 0
+
+=== Q21 g7 a robot makes four signed moves (mixed numbers): how much greater the total distance travelled is th
+  kw hits 0; earlier-N regex hits 0
+
+=== Q22 g7 two intervals on a number line with signed mixed-number ends (one from a negative to a positive, one
+  kw hits 0; earlier-N regex hits 2
+   * MM3-N06 [file only (never banked)] count 1/2-meter tiles along 3 1/2 meters -> count 1/3-meter tiles along 2 2/3 meters -> multiply rows by columns
+   * MM4-N18 [file only (never banked)] the square's side is the LCM of 10 and 14 -> count tiles along each side -> multiply the two counts
+
+=== Q23 g7 a 3-by-3 magic square of signed fractions (sevenths) with the common sum printed and three entries m
+  kw hits 0; earlier-N regex hits 0
+
+=== Q24 g7 a scale reads a signed amount (e.g. -0.4 kg) when empty; it shows readings for n items weighed one a
+  kw hits 0; earlier-N regex hits 0
+
+=== Q25 g7 a student divided by a signed fraction when the problem said to multiply by it, and got R: the corre
+  kw hits 0; earlier-N regex hits 0
+
+=== Q26 g7 a number line is folded so that a negative mixed number lands on a positive one: where another signe
+  kw hits 189; earlier-N regex hits 0
+   - 02788ad4-25d [live sat/sat-psda-hard-v2 Problem-Solving and Data Analysis hard] :: The table shows a company's revenue, in thousands of dollars, in each of six consecutive months. Between which two consecutive months listed did the revenue increase by the greatest percent? options ["January to February","March to April","April to May","May t
+   - 09fb9083-0cb [live sat/sat-math-v30-full Problem-Solving and Data Analysis medium] :: A store sells a lamp for $40. The lamp costs the store $25, and the store also pays a salesperson a commission on the sale of a lamp equal to 5% of the lamp's selling price, but never more than $1.92. The store's profit on a lamp is its selling price minus the
+   - 0a4537c6-b92 [live act/act-math-v12-mix Geometry medium] :: A circular fountain with a radius of 7 meters is rebuilt with a radius of 10 meters. By how many meters does the circumference of the fountain increase? options ["3π","34π","51π","6π"] key 6π
+   - 0c8dbc27-17f [live isee/isee-math-s16 Math medium] :: The mean of 12 numbers is 30. Each of the 5 largest numbers is decreased by 6, and each of the other 7 numbers is increased by 3. What is the mean of the 12 new numbers? options ["27","29.25","28.5","27.5"] key 29.25
+   - 0eeb7374-ca5 [live sat/sat-math-v28-full Advanced Math medium] :: A company estimates that its weekly profit P, in dollars, from selling a lamp at a price of x dollars is given by P(x) = -6x^2 + 300x - 2250. The company currently sells the lamp for 21 dollars. If the company changes the price to the value of x that maximizes
+   - 1cb82388-4a9 [live ssat/ssat-math-s14 Math easy] :: The mean of ten numbers is 13. Each of the ten numbers is increased by 20 percent, and then 4 is subtracted from each result. What is the mean of the ten new numbers? options ["15.2","9","11.6","15.6","10.8"] key 11.6
+   - 1eb7a622-3b4 [live sat/math-v5-psda-hard Problem-Solving and Data Analysis hard] :: Last year, 60 percent of a store's revenue came from clothing and the rest came from accessories. This year, clothing revenue is 10 percent greater than last year and accessories revenue is 20 percent less than last year. By what percent did the store's total 
+   - 202d610e-507 [live sat/sat-math-v30-full Problem-Solving and Data Analysis medium] :: The table shows the number of students and the number of teachers at a high school in each of three years. By what percent did the number of students per teacher at the school decrease from 2023 to 2025, to the nearest tenth of a percent? options ["4.2","4.3",
+
+=== Q27 g7 plus or minus signs placed before each of three signed mixed numbers to make the value as close to 0
+  kw hits 0; earlier-N regex hits 46
+   * MMG-N11 [file only (never banked)] multiply a negative result by a fraction -> find the size of a combined loss and multiply by a mixed number -> add the three signed results
+   * MMG-N10 [file only (never banked)] write each stage as a signed total change -> combine the totals into a net change -> undo the net change by subtracting a negative
+   * MM2-N13 [file only (never banked)] total change = rate x time with a negative rate -> convert mixed numbers to improper fractions and multiply -> rename 56/15 as a mixed number and keep the sign
+   * MM3-N21 [file only (never banked)] add a negative fraction and a positive mixed number -> add a negative mixed number and a positive fraction -> divide fractions with unlike signs
+   * MM4-N17 [file only (never banked)] the lights flash together at the common multiples of 6 and 10 -> find the least common multiple (30) -> take the third multiple after the start
+   * MM4-N22 [file only (never banked)] sign of a product of two negatives -> mixed numbers to fractions, multiply
+
+=== Q28 g7 two cities with signed UTC offsets in decimal hours (e.g. -3.5 and +5.75); a flight of decimal lengt
+  kw hits 6; earlier-N regex hits 0
+   - 15da5d5f-699 [live sat/sat-psda-hard-v2 Problem-Solving and Data Analysis hard] :: The table summarizes the outcomes for the 250 patients in a clinical trial. Two entries have been omitted. Of the patients whose condition did not improve, what fraction received the drug? Round to the nearest hundredth. options ["0.35","0.40","0.47","0.48"] k
+   - 21b2f710-992 [live sat/math-v6-psda-hard Problem-Solving and Data Analysis medium] :: The table summarizes the 880 shipments that two carriers handled for a distributor last month. Two entries have been omitted. Of the shipments that did not arrive on time, what fraction was handled by Carrier R? Round to the nearest hundredth. options ["0.24",
+   - PSDA-H2-24 [prior sat-psda-hard-v2.batch.json] :: The table summarizes the outcomes for the 250 patients in a clinical trial. Two entries have been omitted. Of the patients whose condition did not improve, what fraction received the drug? Round to the nearest hundredth. options ["0.35","0.40","0.47","0.48"] k
+   - PSDA-H3-09 [prior sat-psda-hard-v3.batch.json] :: The table summarizes the 880 shipments that two carriers handled for a distributor last month. Two entries have been omitted. Of the shipments that did not arrive on time, what fraction was handled by Carrier R? Round to the nearest hundredth. options ["0.24",
+   - 1150b4e2-418 [live isee/isee-math-s15 Math medium] :: A flight leaves Seoul at 10:30 a.m. Seoul time and lasts 13 hours 20 minutes. New York time is 14 hours behind Seoul time. What is the local time in New York when the flight lands? options ["1:50 p.m.","9:50 a.m.","11:50 p.m.","8:30 p.m."] key 9:50 a.m.
+   - 6cf5c7c4-bc1 [live act/act-math-v18 Integrating Essential Skills medium] :: A flight leaves Denver at 10:35 a.m. Denver time and lands in New York at 4:50 p.m. New York time on the same day. New York time is 2 hours ahead of Denver time. The flight covers 1,620 miles. To the nearest mile per hour, what is the plane's average speed for
+
+=== Q29 g7 from a printed set of signed decimals, choosing distinct a, b, c to make a - b x c as great as possi
+  kw hits 107; earlier-N regex hits 0
+   - 07ec7c50-71c [live sat/sat-math-v26-alg Algebra medium] :: k + 1 ≤ x < 3k Exactly 5 integers x satisfy the compound inequality above, where k is a constant. What is the greatest possible value of k? options ["10/3","7/2","11/3","4"] key 10/3
+   - 0c5bb627-ae3 [live sat/sat-math-v28-full Algebra medium] :: f(x) = 3x - 11 For the function f defined above, the output at input 3n + 3 must stay below 60 more than twice the output at input n, that is, f(3n + 3) < 2f(n) + 60. If n is an integer, what is the greatest possible value of n ? options ["19","8","22","13"] k
+   - 109c9105-5cf [live sat/sat-alg-unit-0919 Algebra medium] :: If |x - 5| <= 3 and |y + 2| <= 1, what is the greatest possible value of 3x - 2y? options ["30","26","8","18"] key 30
+   - 14838ea8-0cc [live act/act-math-v20 Algebra medium] :: Positive integers x and y satisfy the equation xy = 3x + 2y + 6. What is the least possible value of x + y ? options ["10","18","7","12"] key 12
+   - 198c3b9d-f07 [live ssat/ssat-math-s17 Math medium] :: In the coordinate plane, A is the point (2, 3) and B is the point (10, 7). Point P can be any point on the x-axis. What is the least possible value of AP + PB? options ["2√41","√122","4√10","5 + √65","3√2 + √74"] key 2√41
+   - 248358cb-d94 [live ssat/ssat-math-s4 Math hard] :: A positive integer N leaves a remainder of 3 when it is divided by 5, and a remainder of 2 when it is divided by 4. What is the least possible value of N? options ["5","7","13","18","38"] key 18
+   - 38e3d49e-9b0 [live ssat/ssat-math-s17 Math medium] :: When each of the numbers 251, 323 and 443 is divided by the positive integer n, the three remainders are equal. What is the greatest possible value of n? options ["72","11","192","24","120"] key 24
+   - 3e829ca2-5c4 [live isee/isee-math-s4 Math hard] :: Five different positive integers have an average (arithmetic mean) of 10. What is the greatest possible value of the largest integer? options ["40","44","46","50"] key 40
+
+=== Q40 g7 from a printed set of signed fractions, the greatest quotient a ÷ b of two different numbers
+  kw hits 107; earlier-N regex hits 0
+   - 07ec7c50-71c [live sat/sat-math-v26-alg Algebra medium] :: k + 1 ≤ x < 3k Exactly 5 integers x satisfy the compound inequality above, where k is a constant. What is the greatest possible value of k? options ["10/3","7/2","11/3","4"] key 10/3
+   - 0c5bb627-ae3 [live sat/sat-math-v28-full Algebra medium] :: f(x) = 3x - 11 For the function f defined above, the output at input 3n + 3 must stay below 60 more than twice the output at input n, that is, f(3n + 3) < 2f(n) + 60. If n is an integer, what is the greatest possible value of n ? options ["19","8","22","13"] k
+   - 109c9105-5cf [live sat/sat-alg-unit-0919 Algebra medium] :: If |x - 5| <= 3 and |y + 2| <= 1, what is the greatest possible value of 3x - 2y? options ["30","26","8","18"] key 30
+   - 14838ea8-0cc [live act/act-math-v20 Algebra medium] :: Positive integers x and y satisfy the equation xy = 3x + 2y + 6. What is the least possible value of x + y ? options ["10","18","7","12"] key 12
+   - 198c3b9d-f07 [live ssat/ssat-math-s17 Math medium] :: In the coordinate plane, A is the point (2, 3) and B is the point (10, 7). Point P can be any point on the x-axis. What is the least possible value of AP + PB? options ["2√41","√122","4√10","5 + √65","3√2 + √74"] key 2√41
+   - 248358cb-d94 [live ssat/ssat-math-s4 Math hard] :: A positive integer N leaves a remainder of 3 when it is divided by 5, and a remainder of 2 when it is divided by 4. What is the least possible value of N? options ["5","7","13","18","38"] key 18
+   - 38e3d49e-9b0 [live ssat/ssat-math-s17 Math medium] :: When each of the numbers 251, 323 and 443 is divided by the positive integer n, the three remainders are equal. What is the greatest possible value of n? options ["72","11","192","24","120"] key 24
+   - 3e829ca2-5c4 [live isee/isee-math-s4 Math hard] :: Five different positive integers have an average (arithmetic mean) of 10. What is the greatest possible value of the largest integer? options ["40","44","46","50"] key 40
+
+=== Q44 g7 a thermometer reads a fixed signed amount too high; two readings are taken: the true change in tempe
+  kw hits 0; earlier-N regex hits 0
+
+=== Q45 g7 the value of a signed continued fraction a + 1/(b + 1/c) with a and b negative whole numbers
+  kw hits 0; earlier-N regex hits 0
+
+=== Q31 g8 x^3 + c = d with c and d fractions over a cube denominator: the value of x
+  kw hits 74; earlier-N regex hits 2
+   - 0ba84861-d01 [live sat/v2 Advanced Math medium] :: When the polynomial p(x) = x³ + kx² − 5x + 6 is divided by (x − 2), the remainder is 12. What is the value of k? options ["3","2","4","−3"] key 2
+   - 148680d8-a31 [live sat/sat-adv-v11 Advanced Math hard] :: The polynomial p is defined by p(x) = 4x^3 + 8x^2 - 3x + 5. What is the remainder when p(x) is divided by 2x - 1 ? options ["6","14","5","9"] key 6
+   - 1638b4d7-4bd [live sat/sat-math-v24-adv Advanced Math medium] :: Dividing the product p(x) = (x^2 - x + 4)(x^3 + 4x + 2) by x^2 leaves a linear remainder ax + b. Find a + b. options ["-10","14","22","28"] key 22
+   - 2284c4ae-46a [live sat/v2 Advanced Math medium] :: When the polynomial P(x) = 2x^3 + kx^2 - 5x + 3 is divided by (x - 2), the remainder is 1. What is the value of k? options ["-8","-2.25","-2","1"] key -2
+   - 2759d8bc-6cf [live sat/sat-math-v29-full Advanced Math medium] :: Let p(x) = x^3 - 2x^2 - 2x + 2, and let q(x) = p(x - 2). Multiplying out q(x) gives a cubic x^3 + bx^2 + cx + d, where b, c, and d are constants. What is 1 + b + c? options ["-3","1","7","11"] key 11
+   - 32019b99-0f4 [live sat/sat-math-v28-full Advanced Math medium] :: For constants a and b, the cubic p(x) = x^3 + ax^2 + bx - 9 takes equal values at x = 2 and at x = -2, and p(-1) = -11. What is p(3)? options ["-93","-69","-39","9"] key -39
+   - 4387b634-c22 [live isee/isee-math-s17 Math hard] :: Consider the integers x with -4 <= x <= 12. What is the sum of all such integers that satisfy x^3 + 45x < 14x^2 ? options ["21","11","43","62"] key 11
+   - 46f2da31-4da [live sat/math-v4 Advanced Math hard] :: A workshop's total assembly time, in minutes, for a batch of x sound insulation panels is modeled by T(x) = 6x^3 + 5x^2 + kx - 12, where k is a constant. To separate setup work from per-panel work, a planner rewrites the model as T(x) = (2x - 3)(3x^2 + ax + 4)
+   * MMG-N15 [file only (never banked)] take the cube root of a negative decimal -> take the positive square root of a decimal -> subtract a positive number from a negative number
+   * MM4-N39 [file only (never banked)] cube root of a negative decimal: x = -0.5 -> positive square root of a decimal: y = 0.6 -> subtract: -0.5 - 0.6
+
+=== Q32 g8 x^2 + c = d with fractions and x negative: the value of x
+  kw hits 2; earlier-N regex hits 1
+   - 9c8fae4f-b7a [live sat/sat-math-v29-full Advanced Math medium] :: A function f is given piecewise: when x is negative, f(x) = x^2 + bx, where b is a constant, and when x is 0 or greater, f(x) = 2x - 4. Applying f twice, starting with the input 1, gives -12; that is, f(f(1)) = -12. Find f(-5). options ["-15","-14","25","50"] 
+   - SM29F-S11 [prior sat-math-v29-full-s.batch.json] :: A function f is given piecewise: when x is negative, f(x) = x^2 + bx, where b is a constant, and when x is 0 or greater, f(x) = 2x - 4. Applying f twice, starting with the input 1, gives -12; that is, f(f(1)) = -12. Find f(-5). options ["-15","-14","25","50"] 
+   * MB5-N8-01 [LIVE] negative exponent means reciprocal: x^2 = 25 -> x is negative, so take the negative square root: x = -5 -> evaluate x^3 - 6x with signs: -125 + 30
+
+=== Q33 g8 the cube root of a product of two fractions that are perfect cubes (one negative), e.g. ∛(-8/27 x 12
+  kw hits 16; earlier-N regex hits 12
+   - 448ad65f-7c4 [live sat/sat-math-v25-adv Advanced Math medium] :: For positive numbers a and b, the product of the cube root of a and the square root of b is 6, so a^(1/3) * sqrt(b) = 6, and their quotient is a^(1/3) / sqrt(b) = 3/2. What is a + b? options ["5","13","17","31"] key 31
+   - b84fc6a0-6e1 [live sat/sat-math-v25-adv Advanced Math medium] :: In the equation x^(2/3) + 2x^(1/3) = 8, x^(1/3) denotes the real cube root of x, which may be negative. Adding together every real number x that satisfies this equation gives what total? options ["-56","-8","-2","8"] key -56
+   - SM25V-B04 [prior sat-math-v25-adv-b.batch.json] :: In the equation x^(2/3) + 2x^(1/3) = 8, x^(1/3) denotes the real cube root of x, which may be negative. Adding together every real number x that satisfies this equation gives what total? options ["-56","-8","-2","8"] key -56
+   - SM25V-B08 [prior sat-math-v25-adv-b.batch.json] :: For positive numbers a and b, the product of the cube root of a and the square root of b is 6, so a^(1/3) * sqrt(b) = 6, and their quotient is a^(1/3) / sqrt(b) = 3/2. What is a + b? options ["5","13","17","31"] key 31
+   - SM25V-B14 [prior sat-math-v25-adv-b.batch.json] :: In the equation (x - 1)^(4/3) = 16, the left side means the fourth power of the real cube root of x - 1. Multiplying together every real x that satisfies the equation gives what product? options ["-63","-15","2","9"] key -63
+   - MM3-N27 [prior map-math-g58-v3] :: The number x is the cube root of 0.216, so x^3 = 0.216. What is the value of x^-2? Give the answer as a fraction or mixed number. options ["1 4/9","2 7/25","2 14/25","2 7/9"] key 2 7/9
+   - MM3-N27 [prior map-math-g58-v3.batch.json] :: The number x is the cube root of 0.216, so x^3 = 0.216. What is the value of x^-2? Give the answer as a fraction or mixed number. options ["1 4/9","2 7/25","2 14/25","2 7/9"] key 2 7/9 
+   - 27b1da07-8ac [live sat/sat-adv-0919 Advanced Math medium] :: For x > 1, (∛(x²))ᵏ / x = x⁵, where k is a constant. What is the value of k? options ["9","15/2","4","8"] key 9
+   * MMG-N15 [file only (never banked)] take the cube root of a negative decimal -> take the positive square root of a decimal -> subtract a positive number from a negative number
+   * MM3-N27 [file only (never banked)] find the cube root of a decimal -> square the decimal -> take the reciprocal for the negative exponent
+   * MM4-N35 [file only (never banked)] simplify each root (a perfect square or cube under it, or a quotient of roots) -> repeating decimals are rational -> endless non-repeating decimals are irration
+   * MM4-N35 [file only (never banked)] decide which roots are of perfect squares or cubes -> a repeating decimal is rational -> a patterned decimal with no repeating block is irrational -> count the 
+   * MM4-N39 [file only (never banked)] cube root of a negative decimal: x = -0.5 -> positive square root of a decimal: y = 0.6 -> subtract: -0.5 - 0.6
+   * MV2-N8-02 [withdrawn] square root of 144 -> cube root of 729 -> subtract -> square the difference
+
+=== Q34 g8 a circle of diameter d: how much greater its circumference is when π is approximated by 22/7 than by
+  kw hits 8; earlier-N regex hits 1
+   - 08715fae-05d [live isee/isee-math-s13 Math medium] :: A circle has a radius of 7 centimeters. A square has a perimeter equal to the circumference of the circle. Using 22/7 for pi, what is the area of the square, in square centimeters? options ["98","49","44","121"] key 121
+   - 7cfc4bb9-3ca [live isee/isee-math-s15 Math medium] :: A rectangular sheet of metal measures 22 centimeters by 14 centimeters. It is rolled so that the 22-centimeter edges curve around to form the circular rim of an open cylinder, with the ends just meeting, and the cylinder is 14 centimeters tall. Using 22/7 for 
+   - 92388a14-571 [live ssat/ssat-math-q9 Math medium] :: A wheel has a diameter of 35 cm. Taking pi to be 22/7, how many complete revolutions does the wheel make while rolling 385 metres along a straight path? options ["1100","3.5","423.5","350","38.5"] key 350
+   - bb156153-893 [live ssat/ssat-math-v1 Math medium] :: A circular tabletop has a circumference of 88 cm. Using pi = 22/7, what is the area of the tabletop, in square centimeters? options ["14","28","44","616","2464"] key 616
+   - ce9e4168-be4 [live sat/sat-alg-0919c Algebra medium] :: In the xy-plane, line p passes through the points (1, 2) and (3, 8), and line q passes through the points (-1, 14) and (3, 6). What is the y-coordinate of the point where lines p and q intersect? options ["22/7","13/5","38/5","34/5"] key 34/5
+   - d03c531b-7be [live act/act-math-v6-geo Geometry medium] :: A square pane of glass measures 14 inches on each side. A quarter circle of radius 14 inches, centered at one corner of the square, is cut out and removed. Using 22/7 for π, what is the area of the piece that remains, in square inches? options ["42","154","350
+   - e45ecfa0-157 [live isee/isee-math-s15 Math easy] :: A paper label covers the curved side of a cylindrical can exactly once, with no overlap, and does not cover the top or bottom. The can has a diameter of 7 centimeters and a height of 10 centimeters. Using 22/7 for pi, what is the area of the label, in square c
+   - SALG5A-02 [prior sat-alg-0919c-a.batch.json] :: In the xy-plane, line p passes through the points (1, 2) and (3, 8), and line q passes through the points (-1, 14) and (3, 6). What is the y-coordinate of the point where lines p and q intersect? options ["22/7","13/5","38/5","34/5"] key 34/5 
+   * MM4-N32 [file only (never banked)] multiply 3.14 by itself -> round the product to the nearest tenth
+
+=== Q35 g8 one step of the averaging (Babylonian) method for √n from a whole-number guess g: the new estimate
+  kw hits 2; earlier-N regex hits 5
+   - MMG-O09 [prior map-math-g58-v1] :: Leo guessed that his walk to the park would take 48 minutes. The walk actually took 1 hour. What was the percent error of Leo's guess? options ["20","25","52","125"] key 20
+   - MMG-O09 [prior map-math-g58-v1.batch.json] :: Leo guessed that his walk to the park would take 48 minutes. The walk actually took 1 hour. What was the percent error of Leo's guess? options ["20","25","52","125"] key 20 
+   * MM5-N27 [LIVE] rises: 0.8 + 4.4 = 5.2 -> total: 5.2 + (-15.8) = -10.6 -> mean: -10.6 ÷ 4
+   * MB4-N7-01 [dropped by graders] add two negative and two positive decimal changes -> divide the signed total by the number of weeks
+   * B7-D23 [b7 mechanism D23 (draft K07), checker: REPEAT] signed difference of the readings (final - initial) -> elapsed time -> divide, keeping the sign
+   * B7-D27 [b7 mechanism D27 (draft M15), checker: REPEAT] sum the signed fractions (common denominator) -> divide by 5
+   * B7-M07 [b7 draft dropped by probe (see math-b7/DROPPED.md)] common denominator (doubled, so the halfway value is a whole numerator) -> add -> halve
+
+=== Q36 g8 a box with fractional edge lengths has the same volume as a cube: the edge of the cube
+  kw hits 2; earlier-N regex hits 0
+   - 8eadc464-2e8 [live act/act-math-v28 Integrating Essential Skills hard] :: A flat roof is a rectangle 30 feet by 40 feet. A storm left a uniform layer of snow 15 inches deep on the whole roof, and this snow weighed 12% as much as the same volume of water. Over the next two days the snow settled until its depth was 20% less, but none 
+   - MB3-G6-02 [prior map-math-v2 b3 LIVE] :: A block of clay is shaped like a rectangular prism that is 5 centimeters wide, 8 centimeters long, and 25 centimeters tall. Mai reshapes all of the clay into a cube, so the cube has the same volume as the prism. How many square centimeters less surface area do
+
+=== Q42 g8 two squares with fractional sides; a third square has area equal to their total area: its side
+  kw hits 0; earlier-N regex hits 0
+
+=== Q43 g8 (x - p)^2 = q with p and q fractions in sevenths and forty-ninths: the negative (lesser) solution
+  kw hits 4; earlier-N regex hits 0
+   - 04cb2917-a04 [live sat/sat-math-v24-adv Advanced Math medium] :: 3(x + 2)^2 = 27(x + 2) - 54 If r and s are the two values of x that satisfy the equation above, what is the value of rs? options ["4","12","18","40"] key 4
+   - 34ca9c91-9fc [live sat/sat-math-v25-adv Advanced Math easy] :: Every value of x that satisfies (x - 5)^2 = 36 is added together. What total results? options ["0","6","10","11"] key 10
+   - SM24V-A02 [prior sat-math-v24-adv-a.batch.json] :: 3(x + 2)^2 = 27(x + 2) - 54 If r and s are the two values of x that satisfy the equation above, what is the value of rs? options ["4","12","18","40"] key 4
+   - SM25V-A01 [prior sat-math-v25-adv-a.batch.json] :: Every value of x that satisfies (x - 5)^2 = 36 is added together. What total results? options ["0","6","10","11"] key 10 

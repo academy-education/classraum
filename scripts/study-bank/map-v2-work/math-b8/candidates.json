@@ -1,0 +1,690 @@
+[
+ {
+  "id": "Q01",
+  "g": 5,
+  "ccss": "5.NBT.A.3a",
+  "ask": "a number given in non-standard place-value units (a ones, t tenths and h hundredths with t and h above 9, u thousandths): its standard decimal",
+  "chain": "convert each unit count to a decimal (14 tenths = 1.4, 25 hundredths = 0.25) -> add the parts, regrouping into the next place -> standard decimal",
+  "twist": "unit counts above 9 must be regrouped across places; the no-regroup reading (one digit per place) is the natural error",
+  "q": [
+   "1[0-9] tenths|twelve tenths|fourteen tenths|[2-9][0-9] hundredths",
+   "tenths & hundredths & thousandths & ones",
+   "ones & tenths & hundredths & (standard form|what number|decimal)"
+  ],
+  "e": "tenths.*hundredths|hundredths.*tenths|expanded form|place value"
+ },
+ {
+  "id": "Q02",
+  "g": 5,
+  "ccss": "5.NBT.B.7",
+  "ask": "four digit cards used once each to make two decimals 0.ab and 0.cd: the smallest possible positive difference",
+  "chain": "tenths digits must be the closest pair -> the larger number takes the smaller remaining hundredth, the smaller number the larger -> subtract with regrouping",
+  "twist": "an optimisation over digit placement; the greedy placement (larger hundredth on the larger number) is the natural error",
+  "q": [
+   "digit & (once|each digit|exactly one time) & decimal",
+   "cards & digits & difference",
+   "(digit|number) cards|cards (numbered|labeled)"
+  ],
+  "e": "digit cards|each digit|once"
+ },
+ {
+  "id": "Q03",
+  "g": 5,
+  "ccss": "5.NBT.A.3b",
+  "ask": "four decimals of different lengths (e.g. 0.6, 0.47, 0.508, 0.55): the difference between the two that are closest together",
+  "chain": "line up places (annex zeros) -> order the four decimals -> difference of each adjacent pair -> the least difference",
+  "twist": "ordering decimals of unequal length feeds a minimum-gap search; \"longer is greater\" changes which pair is closest",
+  "q": [
+   "closest together|closest to each other|nearest to each other & decimal",
+   "two (numbers|decimals) that are closest",
+   "(closest|nearest) & decimals & difference"
+  ],
+  "e": "closest|nearest together|least difference"
+ },
+ {
+  "id": "Q04",
+  "g": 5,
+  "ccss": "5.NF.B.3",
+  "ask": "a bag holds n marbles, r of them red; k more red marbles are added: the fraction of the marbles that are red now",
+  "chain": "new red count r + k -> new total n + k -> fraction (r + k)/(n + k) in lowest terms",
+  "twist": "both numerator and denominator change; adding k to the numerator only is the natural error",
+  "q": [
+   "(more|additional) & (added|put in) & what fraction",
+   "fraction of the (marbles|beads|cards|students) (are|is) now",
+   "(red|blue|green) & (added|more) & fraction & (now|after)"
+  ],
+  "e": "fraction of the .* now|are added"
+ },
+ {
+  "id": "Q05",
+  "g": 5,
+  "ccss": "5.NBT.A.3",
+  "ask": "nested zoom on a number line: the tenth-wide segment from A is split into 10 parts, point P at mark m; the hundredth-wide segment from P is split into 10 parts, point Q at mark j: the value of Q",
+  "chain": "first zoom: each mark is 0.01, so P = A + m/100 -> second zoom: each mark is 0.001 -> Q = P + j/1000",
+  "twist": "two successive tenfold refinements of a number line; treating the second zoom at the first zoom's scale is the natural error",
+  "q": [
+   "number line & (enlarged|zoom|magnif)",
+   "divided into (10|ten) equal parts & number line & 0\\.0",
+   "zoom|magnif|close-up"
+  ],
+  "e": "zoom|enlarge|magnif|ten equal parts"
+ },
+ {
+  "id": "Q06",
+  "g": 5,
+  "ccss": "5.NBT.A.3a",
+  "ask": "two decimals given only in words (e.g. \"four and twelve thousandths\", \"three and thirty-five hundredths\"): their sum",
+  "chain": "write each word name as a decimal with placeholder zeros (4.012, 3.35) -> line up places -> add",
+  "twist": "reading a word name with a two-digit count of thousandths needs a zero placeholder; dropping it (4.12) is the natural error",
+  "q": [
+   "thousandths & and & (sum|add|total)",
+   "(twelve|fifteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety)[- a-z]* thousandths",
+   "and [a-z-]+ (thousandths|hundredths) & (sum|add|plus|total)"
+  ],
+  "e": "word name|written in words|thousandths"
+ },
+ {
+  "id": "Q07",
+  "g": 5,
+  "ccss": "5.NBT.B.7",
+  "ask": "a total of several decimals was computed with one entry typed one place off (4.5 instead of 0.45): the correct total",
+  "chain": "the shown total includes the wrong entry -> subtract the wrong entry -> add the intended entry",
+  "twist": "repairing a total for a decimal-point entry error, a remove-then-replace step, not a fresh sum",
+  "q": [
+   "instead of & (typed|entered|wrote|recorded) & total",
+   "(mistake|by mistake|accidentally) & decimal point & total",
+   "decimal point & (wrong|misplaced|forgot|left out)"
+  ],
+  "e": "instead of|typed|entered|mistake"
+ },
+ {
+  "id": "Q08",
+  "g": 5,
+  "ccss": "5.NBT.B.7",
+  "ask": "four digit cards used once each to make 0.ab and 0.cd: the sum that is closest to 1",
+  "chain": "tenths digits must sum to 9 or 10 -> hundredths digits chosen to pull the sum toward 1 -> add with a carry",
+  "twist": "an optimisation to a benchmark over digit placement; maximising instead of approaching 1 is the natural error",
+  "q": [
+   "digit & (once|each digit) & closest to 1",
+   "cards & sum & closest"
+  ],
+  "e": "digit cards|each digit|closest to 1"
+ },
+ {
+  "id": "Q09",
+  "g": 5,
+  "ccss": "5.NF.B.3",
+  "ask": "group A (n people) share p pizzas and group B (m people) share q pizzas; then both groups pool all the pizza and share it equally: each person's share",
+  "chain": "total pizza p + q -> total people n + m -> share (p + q)/(n + m) as a mixed number or fraction",
+  "twist": "pooling two equal-sharing situations; averaging the two shares is the natural error",
+  "q": [
+   "share & equally & (combine|together|pool|all of the)",
+   "(pizzas|pies|cakes) & shared equally & (groups|tables)"
+  ],
+  "e": "shared equally|share .* equally"
+ },
+ {
+  "id": "Q37",
+  "g": 5,
+  "ccss": "5.NBT.B.7",
+  "ask": "a board is cut into k pieces of a decimal length; each cut wastes a decimal width (saw kerf): the length left over",
+  "chain": "count the cuts (k cuts when a leftover piece remains) -> total waste = cuts x kerf -> leftover = board - k x piece - waste",
+  "twist": "cut-counting (fence-post) with decimals: the waste depends on the number of cuts, not pieces",
+  "q": [
+   "each cut & (wastes|loses|removes) & (cm|inch|meter|m)",
+   "saw & cut & left over",
+   "saw|blade & cut & (width|thick)"
+  ],
+  "e": "each cut|saw|kerf"
+ },
+ {
+  "id": "Q38",
+  "g": 5,
+  "ccss": "5.NBT.B.7",
+  "ask": "tiered pricing: the first T kilograms cost one decimal price per kilogram and every kilogram after that costs a lower decimal price: the cost of W kilograms",
+  "chain": "split W into T and W - T -> multiply each part by its own price -> add the two costs",
+  "twist": "splitting the quantity at a tier boundary before the two products; one rate for the whole amount is the natural error",
+  "q": [
+   "first & (kilogram|pound|kg|mile|hour) & each additional",
+   "(after the first|beyond the first) & per (pound|kilogram|mile)"
+  ],
+  "e": "each additional|after the first|beyond the first"
+ },
+ {
+  "id": "Q48",
+  "g": 5,
+  "ccss": "5.NF.B.4a",
+  "ask": "the product (1 - 1/2)(1 - 1/3)(1 - 1/4)...(1 - 1/n) written as one fraction",
+  "chain": "rewrite each factor as (k-1)/k -> cancel each numerator with the previous denominator (telescoping) -> 1/n",
+  "twist": "a product of many fractions collapsing by cancellation; multiplying only some factors or cancelling one step too far is the natural error",
+  "q": [
+   "\\(1 ?- ?1/2\\)|\\(1 - \\\\frac\\{1\\}\\{2\\}\\)",
+   "1/2 & 2/3 & 3/4 & 4/5 & (product|multiplied|x|×)",
+   "2/3 & 3/4 & 4/5 & 5/6"
+  ],
+  "e": "telescop|1 - 1/2|1/2 x 2/3"
+ },
+ {
+  "id": "Q50",
+  "g": 5,
+  "ccss": "5.NF.A.1",
+  "ask": "a 3-by-3 square of mixed numbers in sevenths in which every row, column and diagonal has the same sum, with two entries missing: one missing entry",
+  "chain": "find the common sum from a complete line -> a line with one gap gives the first missing entry by subtraction -> a line through it and the target gives the target",
+  "twist": "two chained missing addends in a magic square; the target cannot be found from its own row first",
+  "q": [
+   "magic square",
+   "(each|every) row & column & same sum",
+   "magic"
+  ],
+  "e": "magic square|same sum"
+ },
+ {
+  "id": "Q10",
+  "g": 6,
+  "ccss": "6.NS.A.1",
+  "ask": "the value of a continued fraction a + 1/(b + 1/c) for whole numbers a, b, c, as a mixed number",
+  "chain": "evaluate the innermost sum b + 1/c as an improper fraction -> take its reciprocal (1 divided by a fraction) -> add a",
+  "twist": "division by a fraction appears as the reciprocal of a nested sum; adding the unit fractions left to right is the natural error",
+  "q": [
+   "1 ?/ ?\\( ?\\d+ ?\\+ ?1 ?/",
+   "continued fraction|complex fraction",
+   "\\+ ?1 ?/ ?\\(|\\+ \\\\frac\\{1\\}\\{"
+  ],
+  "e": "continued fraction|complex fraction|1/\\(|nested"
+ },
+ {
+  "id": "Q11",
+  "g": 6,
+  "ccss": "6.NS.C.7d",
+  "ask": "of four account balances, the one that shows a debt greater than $D while the balance is still greater than -$E",
+  "chain": "debt greater than D means balance less than -D -> balance greater than -E -> keep the balance between -E and -D",
+  "twist": "separating statements about the size of a debt from statements about order of balances (7d), both bounds at once",
+  "q": [
+   "debt (of )?(more|greater) than",
+   "balance & greater than -|balance & less than -",
+   "debt & (greater|more) than & balance"
+  ],
+  "e": "debt greater|debt more|balance (is )?(greater|less) than"
+ },
+ {
+  "id": "Q12",
+  "g": 6,
+  "ccss": "6.NS.C.8",
+  "ask": "two points in different quadrants with decimal coordinates: the length of the shortest path between them that runs only along grid lines (horizontal then vertical)",
+  "chain": "horizontal leg = distance between the x-coordinates (add sizes across the y-axis, subtract on one side) -> vertical leg likewise for y -> add the legs",
+  "twist": "a two-leg (taxicab) distance where one leg crosses an axis and the other does not",
+  "q": [
+   "(along|follow) (the )?(grid|streets|lines) & (point|coordinate)",
+   "(horizontal|vertical) & then & (shortest|path|walk) & coordinate"
+  ],
+  "e": "grid lines|along the streets|horizontal then vertical|path"
+ },
+ {
+  "id": "Q13",
+  "g": 6,
+  "ccss": "6.NS.B.3",
+  "ask": "four digit cards used once each to make two decimals a.b and c.d: the greatest possible product",
+  "chain": "largest digits in the ones places -> pair the remaining tenths so the product is greatest (larger tenth with the smaller ones digit) -> multiply the decimals",
+  "twist": "an optimisation over digit placement in a decimal product; the greedy pairing is the natural error",
+  "q": [
+   "digit & (once|each digit) & (product|multiply) & decimal",
+   "cards & greatest & product",
+   "(digit|number) cards|each of the digits"
+  ],
+  "e": "digit cards|each digit|greatest product"
+ },
+ {
+  "id": "Q14",
+  "g": 6,
+  "ccss": "6.NS.C.7",
+  "ask": "two intervals on a number line, each from a negative decimal to a positive decimal: the length of the part where they overlap",
+  "chain": "the overlap starts at the greater left end and stops at the lesser right end -> its length is the distance between those (across 0 if needed)",
+  "twist": "interval intersection on a signed number line; the union length or the difference of lengths is the natural error",
+  "q": [
+   "overlap & number line",
+   "(both|each) (interval|segment|range) & (overlap|in common|shared)",
+   "interval|range & both & number line"
+  ],
+  "e": "overlap|in common"
+ },
+ {
+  "id": "Q15",
+  "g": 6,
+  "ccss": "6.NS.B.3",
+  "ask": "a decimal and the decimal with its digits reversed (3.47 and 7.43): their difference",
+  "chain": "write the reversed number -> line up places -> subtract with regrouping",
+  "twist": "digit reversal produces the second operand; subtracting the smaller digit from the larger in each column is the natural error",
+  "q": [
+   "reverse & digits & decimal",
+   "(digits|order) (reversed|switched|swapped) & decimal",
+   "revers"
+  ],
+  "e": "revers|swapped|switched"
+ },
+ {
+  "id": "Q46",
+  "g": 6,
+  "ccss": "6.NS.B.3",
+  "ask": "pieces of a decimal length are cut from a decimal board until no full piece is left; each cut wastes a decimal width: the length left over",
+  "chain": "one piece plus one cut uses piece + kerf -> divide the board by that (whole number of pieces) -> leftover = board - pieces x piece - cuts x kerf",
+  "twist": "kerf turns the divisor into piece + kerf, and the last cut may or may not be needed",
+  "q": [
+   "each cut & (wastes|loses|removes)",
+   "saw blade|saw & cut & left",
+   "saw|blade & cut & (width|thick)"
+  ],
+  "e": "each cut|saw|kerf"
+ },
+ {
+  "id": "Q47",
+  "g": 6,
+  "ccss": "6.NS.C.6",
+  "ask": "a number line is folded so that point a lands on point b: where the point c lands",
+  "chain": "the crease is the point halfway between a and b -> c lands as far beyond the crease as it was before it -> image = a + b - c",
+  "twist": "folding as reflection about a non-zero point found from two given points",
+  "q": [
+   "fold & number line",
+   "(folded|fold) & lands on",
+   "crease|folded"
+  ],
+  "e": "fold"
+ },
+ {
+  "id": "Q49",
+  "g": 6,
+  "ccss": "6.NS.B.3",
+  "ask": "a climber gains u meters each day and slips back v meters each night (decimals): the height after d full days and one more daytime climb",
+  "chain": "net gain per day-night cycle u - v -> d cycles -> add the final daytime gain u",
+  "twist": "grouping a repeating up-down cycle and treating the last climb separately",
+  "q": [
+   "(slips|slides) (back|down) & each night",
+   "climbs & each day & (slips|slides)"
+  ],
+  "e": "slips back|slides back|each night"
+ },
+ {
+  "id": "Q51",
+  "g": 6,
+  "ccss": "6.NS.A.1",
+  "ask": "the value of a/(b + c/d) for small whole numbers, as a mixed number (a fraction whose denominator is itself a mixed sum)",
+  "chain": "evaluate the denominator b + c/d as an improper fraction -> divide a by it (multiply by the reciprocal) -> rename as a mixed number",
+  "twist": "a fraction bar over a mixed sum; dividing a by each part separately is the natural error",
+  "q": [
+   "\\d+ ?/ ?\\( ?\\d+ ?\\+ ?\\d+ ?/ ?\\d+ ?\\)",
+   "complex fraction",
+   "\\d ?/ ?\\(\\d+ ?\\+"
+  ],
+  "e": "complex fraction|/\\("
+ },
+ {
+  "id": "Q52",
+  "g": 6,
+  "ccss": "6.NS.C.8",
+  "ask": "walking along grid lines from a point in one quadrant to a point in another, but first touching the x-axis: the shortest such path",
+  "chain": "vertical leg to the axis = |y1| -> from the axis to the second point: |y2| plus the horizontal distance -> add",
+  "twist": "a constrained grid path: the route must reach the axis, so the vertical legs are |y1| + |y2| even when both points are on one side",
+  "q": [
+   "(touch|visit|reach) (the )?x-axis & (path|walk)",
+   "grid & x-axis & (shortest|path)"
+  ],
+  "e": "grid|x-axis.*path"
+ },
+ {
+  "id": "Q53",
+  "g": 6,
+  "ccss": "6.NS.B.3",
+  "ask": "tiered pricing backward: the first T kilograms cost one decimal price, every further kilogram a lower one; a customer paid $P: how many kilograms were bought",
+  "chain": "cost of the first tier T x p1 -> money left P - T x p1 -> divide by the second price -> add T",
+  "twist": "inverting a two-tier price; dividing P by one price is the natural error",
+  "q": [
+   "first & (kilogram|pound) & each additional & how many",
+   "each additional & paid"
+  ],
+  "e": "each additional|after the first"
+ },
+ {
+  "id": "Q16",
+  "g": 7,
+  "ccss": "7.NS.A.2c",
+  "ask": "from a printed set of signed fractions, the least product of two different numbers",
+  "chain": "the least product is negative: pair the number greatest in size of one sign with the number greatest in size of the other -> multiply, applying the sign rule",
+  "twist": "optimising a product over a signed set; multiplying the two least numbers (both negative, a positive product) is the natural error",
+  "q": [
+   "(least|smallest) (possible )?product & two",
+   "product of two & (least|smallest) & negative",
+   "(least|smallest|greatest|largest) possible (product|quotient|value)"
+  ],
+  "e": "least product|smallest product"
+ },
+ {
+  "id": "Q17",
+  "g": 7,
+  "ccss": "7.NS.A.1d",
+  "ask": "a table of monthly signed changes: the two consecutive months whose combined change is closest to zero, and that combined change",
+  "chain": "add each pair of consecutive signed changes -> compare the sizes of the sums -> report the sum with the least size, keeping its sign",
+  "twist": "a closest-to-zero search over signed pair sums; picking the single change closest to zero is the natural error",
+  "q": [
+   "consecutive & (combined|together|total) & closest to (0|zero)",
+   "two (months|days|weeks) & closest to zero",
+   "closest to (0|zero)"
+  ],
+  "e": "closest to zero|closest to 0"
+ },
+ {
+  "id": "Q18",
+  "g": 7,
+  "ccss": "7.NS.A.2c",
+  "ask": "the product (-1/2)(-2/3)(-3/4)...(-(n-1)/n): its value",
+  "chain": "count the negative factors for the sign -> cancel each numerator with the previous denominator -> plus or minus 1/n",
+  "twist": "telescoping cancellation combined with a sign decided by the count of negative factors",
+  "q": [
+   "\\(-1/2\\) ?\\(-2/3\\)|-1/2 & -2/3 & -3/4",
+   "product & -\\d/\\d & -\\d/\\d & -\\d/\\d & -\\d/\\d",
+   "2/3 & 3/4 & 4/5 & 5/6"
+  ],
+  "e": "telescop|-1/2.*-2/3"
+ },
+ {
+  "id": "Q19",
+  "g": 7,
+  "ccss": "7.NS.A.1d",
+  "ask": "a signed pattern of moves repeated (+u then -v, as mixed numbers) k times and then one more +u from a signed start: the final position",
+  "chain": "net of one cycle u - v (signed) -> k cycles -> add the extra +u and the start",
+  "twist": "grouping a repeating signed cycle and handling the leftover move separately",
+  "q": [
+   "(repeats|repeated|pattern) & (up|forward|gains) & (down|back|loses) & (times|cycles)",
+   "then (moves|goes|falls) back & repeats"
+  ],
+  "e": "repeat|cycle|pattern of"
+ },
+ {
+  "id": "Q20",
+  "g": 7,
+  "ccss": "7.NS.A.3",
+  "ask": "a signed running total was computed with one change entered with the wrong sign: the correct total",
+  "chain": "the wrong sign moved the total by twice the change -> subtract (or add) twice the change -> correct total",
+  "twist": "repairing a signed sum: removing the wrong entry AND adding the right one shifts by twice its size",
+  "q": [
+   "wrong sign|(should have been|instead of) (negative|positive|-)",
+   "(recorded|entered|wrote) & (as a gain|as positive|instead of) & total",
+   "sign & (error|mistake|wrong) & total"
+  ],
+  "e": "wrong sign|should have been|instead of"
+ },
+ {
+  "id": "Q21",
+  "g": 7,
+  "ccss": "7.NS.A.1",
+  "ask": "a robot makes four signed moves (mixed numbers): how much greater the total distance travelled is than its distance from the start",
+  "chain": "total distance = sum of the sizes of the moves -> distance from start = size of the signed sum -> subtract",
+  "twist": "contrasting the sum of absolute values with the absolute value of the sum",
+  "q": [
+   "total distance & (travel|walk|move) & (from the start|from where)",
+   "distance (traveled|travelled) & (start|starting point) & signed|negative",
+   "distance (from|to) (the |its )?(start|starting)"
+  ],
+  "e": "total distance|distance travel"
+ },
+ {
+  "id": "Q22",
+  "g": 7,
+  "ccss": "7.NS.A.1c",
+  "ask": "two intervals on a number line with signed mixed-number ends (one from a negative to a positive, one fully to one side or across 0): the length of their overlap",
+  "chain": "overlap runs from the greater left end to the lesser right end -> subtract the signed ends (across 0 when they have opposite signs)",
+  "twist": "interval intersection with signed rational ends; union length or difference of lengths is the natural error",
+  "q": [
+   "overlap & number line",
+   "(intervals|segments) & overlap",
+   "interval|range & both & number line"
+  ],
+  "e": "overlap|in common"
+ },
+ {
+  "id": "Q23",
+  "g": 7,
+  "ccss": "7.NS.A.1d",
+  "ask": "a 3-by-3 magic square of signed fractions (sevenths) with the common sum printed and three entries missing: one missing entry that needs two steps",
+  "chain": "a line with one gap gives a first missing entry by subtracting a signed sum from the magic sum -> a line through that entry and the target then has one gap -> subtract again",
+  "twist": "chained missing signed addends; the target cannot be read from its own line",
+  "q": [
+   "magic square",
+   "(each|every) row & column & (same|equal) sum",
+   "magic"
+  ],
+  "e": "magic square|same sum"
+ },
+ {
+  "id": "Q24",
+  "g": 7,
+  "ccss": "7.NS.A.3",
+  "ask": "a scale reads a signed amount (e.g. -0.4 kg) when empty; it shows readings for n items weighed one at a time: their true total",
+  "chain": "each reading includes the offset -> the true total is the sum of the readings minus n x offset (subtracting a negative adds) -> total",
+  "twist": "a zero-offset correction applied once per reading; correcting once for the whole total is the natural error",
+  "q": [
+   "(reads|shows) & when (empty|nothing)|zero error",
+   "scale & (too low|too high|off by) & true",
+   "scale & (empty|zero) & (kg|pound|gram)"
+  ],
+  "e": "when empty|zero error|offset|too low|too high"
+ },
+ {
+  "id": "Q25",
+  "g": 7,
+  "ccss": "7.NS.A.2c",
+  "ask": "a student divided by a signed fraction when the problem said to multiply by it, and got R: the correct answer",
+  "chain": "undo the division: multiply R by the fraction to recover the original number -> multiply again by the fraction -> R x fraction^2",
+  "twist": "undoing a wrong signed operation before doing the right one; multiplying R once is the natural error",
+  "q": [
+   "(divided|multiplied) instead of (multiplied|divided)",
+   "(by mistake|mistakenly) & (divided|multiplied) & (should|correct)",
+   "instead of (multiplying|dividing)"
+  ],
+  "e": "instead of|mistake"
+ },
+ {
+  "id": "Q26",
+  "g": 7,
+  "ccss": "7.NS.A.1c",
+  "ask": "a number line is folded so that a negative mixed number lands on a positive one: where another signed point lands",
+  "chain": "the crease is the point halfway between the two -> the image of c is a + b - c -> evaluate with signed fractions",
+  "twist": "a reflection about a non-zero, possibly non-integer, crease found from two signed points",
+  "q": [
+   "fold & number line",
+   "(folded|fold) & lands on",
+   "crease|folded"
+  ],
+  "e": "fold"
+ },
+ {
+  "id": "Q27",
+  "g": 7,
+  "ccss": "7.NS.A.1d",
+  "ask": "plus or minus signs placed before each of three signed mixed numbers to make the value as close to 0 as possible: that value",
+  "chain": "compare the sizes: the largest against the other two -> choose signs so the sum is nearest 0 -> evaluate, keeping the sign",
+  "twist": "a sign-choice optimisation toward 0; using all plus signs or all minus signs is the natural error",
+  "q": [
+   "(plus|\\+) or (minus|-) sign & closest to (0|zero)",
+   "(signs|sign) & (each|between) & as close to (0|zero)",
+   "closest to (0|zero)"
+  ],
+  "e": "closest to zero|close to 0|sign"
+ },
+ {
+  "id": "Q28",
+  "g": 7,
+  "ccss": "7.NS.A.3",
+  "ask": "two cities with signed UTC offsets in decimal hours (e.g. -3.5 and +5.75); a flight of decimal length leaves city A at a local time: the local arrival time in city B",
+  "chain": "difference of the offsets (across 0) -> local departure + flight time + offset difference -> wrap past 24 hours",
+  "twist": "signed offsets across 0 feeding a sum that wraps around a 24-hour clock",
+  "q": [
+   "UTC|time zone",
+   "(hours ahead|hours behind) & (flight|arrive)"
+  ],
+  "e": "time zone|UTC|hours ahead"
+ },
+ {
+  "id": "Q29",
+  "g": 7,
+  "ccss": "7.NS.A.2c",
+  "ask": "from a printed set of signed decimals, choosing distinct a, b, c to make a - b x c as great as possible: that value",
+  "chain": "b x c should be as negative as possible (largest sizes, opposite signs) -> a the greatest remaining -> evaluate a - b x c",
+  "twist": "a sign-aware optimisation of a two-operation expression over a set",
+  "q": [
+   "(greatest|largest) (possible )?value & (choose|chosen|using) & (three|different) numbers",
+   "a - b ?x ?c|a - bc",
+   "(least|smallest|greatest|largest) possible (product|quotient|value)"
+  ],
+  "e": "greatest possible value|choose .* numbers"
+ },
+ {
+  "id": "Q40",
+  "g": 7,
+  "ccss": "7.NS.A.2c",
+  "ask": "from a printed set of signed fractions, the greatest quotient a ÷ b of two different numbers",
+  "chain": "the greatest quotient is positive: same signs, numerator greatest in size and divisor least in size -> divide (multiply by the reciprocal)",
+  "twist": "optimising a quotient over a signed set; dividing the two greatest numbers is the natural error",
+  "q": [
+   "(greatest|largest) (possible )?quotient",
+   "quotient & two & (greatest|largest) & negative",
+   "(least|smallest|greatest|largest) possible (product|quotient|value)"
+  ],
+  "e": "greatest quotient|largest quotient"
+ },
+ {
+  "id": "Q44",
+  "g": 7,
+  "ccss": "7.NS.A.3",
+  "ask": "a thermometer reads a fixed signed amount too high; two readings are taken: the true change in temperature between them",
+  "chain": "each true value = reading - offset -> true change = (r2 - offset) - (r1 - offset) -> the offset cancels; change = r2 - r1 across 0",
+  "twist": "an offset that cancels in a difference; subtracting it once is the natural error",
+  "q": [
+   "(reads|shows) & (too high|too low) & (change|rise|fall)",
+   "thermometer & (off by|incorrect|too high)",
+   "thermometer & (too|incorrect|error|off)"
+  ],
+  "e": "too high|too low|offset"
+ },
+ {
+  "id": "Q45",
+  "g": 7,
+  "ccss": "7.NS.A.2c",
+  "ask": "the value of a signed continued fraction a + 1/(b + 1/c) with a and b negative whole numbers",
+  "chain": "evaluate b + 1/c (a negative improper fraction) -> its reciprocal keeps the sign -> add to a",
+  "twist": "the reciprocal of a negative nested sum; adding the unit fractions left to right is the natural error",
+  "q": [
+   "1 ?/ ?\\( ?-\\d+ ?\\+ ?1 ?/",
+   "continued fraction",
+   "\\+ ?1 ?/ ?\\(-|1 ?/ ?\\(-\\d"
+  ],
+  "e": "continued fraction|1/\\(-"
+ },
+ {
+  "id": "Q31",
+  "g": 8,
+  "ccss": "8.EE.A.2",
+  "ask": "x^3 + c = d with c and d fractions over a cube denominator: the value of x",
+  "chain": "subtract c from d (signed fractions) to isolate x^3 -> cube root of a negative fraction (numerator and denominator separately) -> x",
+  "twist": "isolating the cube before the cube root; adding c instead of subtracting leads to another perfect cube, the natural error",
+  "q": [
+   "x\\^3 ?\\+|x³ ?\\+ & =",
+   "cube root & (343|125|27|64)",
+   "x\\^3 ?= ?-|x³ ?= ?-|x\\^3 ?= ?\\d+/"
+  ],
+  "e": "x\\^3 \\+|x³ \\+|cube root of a negative"
+ },
+ {
+  "id": "Q32",
+  "g": 8,
+  "ccss": "8.EE.A.2",
+  "ask": "x^2 + c = d with fractions and x negative: the value of x",
+  "chain": "subtract c from d to isolate x^2 -> square root of the fraction -> take the negative root",
+  "twist": "isolating the square, then the sign condition; the positive root and the wrong isolation are the natural errors",
+  "q": [
+   "x\\^2 ?\\+ ?\\d+/\\d+ ?=|x² ?\\+ ?\\d+/\\d+",
+   "x (is|<) negative & x\\^2|x²"
+  ],
+  "e": "x\\^2 \\+|x² \\+|negative square root"
+ },
+ {
+  "id": "Q33",
+  "g": 8,
+  "ccss": "8.EE.A.2",
+  "ask": "the cube root of a product of two fractions that are perfect cubes (one negative), e.g. ∛(-8/27 x 125/343)",
+  "chain": "cube root of a product = product of the cube roots -> ∛(-8/27) = -2/3, ∛(125/343) = 5/7 -> multiply",
+  "twist": "the product rule for cube roots on fractions with a sign; adding the two roots is the natural error",
+  "q": [
+   "cube root & (product|x|×) & /",
+   "∛ ?\\("
+  ],
+  "e": "cube root of .* (product|x)|∛"
+ },
+ {
+  "id": "Q34",
+  "g": 8,
+  "ccss": "8.NS.A.2",
+  "ask": "a circle of diameter d: how much greater its circumference is when π is approximated by 22/7 than by 3.14",
+  "chain": "circumference with 22/7 -> circumference with 3.14 -> subtract (or d x (22/7 - 3.14))",
+  "twist": "comparing two rational approximations of π on one quantity",
+  "q": [
+   "22/7 & 3\\.14",
+   "22/7 & (approximat|instead)",
+   "22/7"
+  ],
+  "e": "22/7|3\\.14"
+ },
+ {
+  "id": "Q35",
+  "g": 8,
+  "ccss": "8.NS.A.2",
+  "ask": "one step of the averaging (Babylonian) method for √n from a whole-number guess g: the new estimate",
+  "chain": "divide n by the guess -> average the guess and the quotient -> the new estimate as a mixed number",
+  "twist": "a rational approximation of a square root built by averaging, not by bracketing squares",
+  "q": [
+   "(average|mean) & guess & square root",
+   "(divide|divided) & guess & (average|mean)",
+   "guess"
+  ],
+  "e": "guess|babylon|averag"
+ },
+ {
+  "id": "Q36",
+  "g": 8,
+  "ccss": "8.EE.A.2",
+  "ask": "a box with fractional edge lengths has the same volume as a cube: the edge of the cube",
+  "chain": "multiply the three edges for the volume (a perfect-cube fraction) -> cube root of numerator and denominator -> edge",
+  "twist": "a cube root of a product of fractions in a volume context",
+  "q": [
+   "same volume & cube & (edge|side)",
+   "cube root & volume & fraction",
+   "same volume"
+  ],
+  "e": "same volume"
+ },
+ {
+  "id": "Q42",
+  "g": 8,
+  "ccss": "8.EE.A.2",
+  "ask": "two squares with fractional sides; a third square has area equal to their total area: its side",
+  "chain": "square each side -> add the areas over a common denominator -> square root of the sum",
+  "twist": "the root of a sum of squares (a perfect-square fraction); adding the sides is the natural error",
+  "q": [
+   "area & equal to the (sum|total) & square",
+   "(sum|total) of the areas & square & side",
+   "sum of (their|the) areas|areas (add|sum)"
+  ],
+  "e": "sum of the areas|total area"
+ },
+ {
+  "id": "Q43",
+  "g": 8,
+  "ccss": "8.EE.A.2",
+  "ask": "(x - p)^2 = q with p and q fractions in sevenths and forty-ninths: the negative (lesser) solution",
+  "chain": "square root of q gives two values, plus and minus -> add p to each -> the lesser value",
+  "twist": "two square roots shifted by p; taking only the positive root or subtracting p are the natural errors",
+  "q": [
+   "\\(x ?- ?\\d+/\\d+\\)\\^2|\\(x ?- ?\\d+/\\d+\\)²",
+   "\\(x ?[-+] ?\\d+\\)\\^2 ?="
+  ],
+  "e": "\\(x - .*\\)\\^2|\\(x - .*\\)²"
+ }
+]
