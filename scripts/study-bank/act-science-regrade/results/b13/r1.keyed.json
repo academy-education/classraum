@@ -1,0 +1,24 @@
+{
+ "items": [
+  {
+   "id": "ASV12e-P4-Q4",
+   "cold_pick": "D",
+   "cold_defensible": [],
+   "cold_note": "Table 1, 30-cm rows: 0.4 mm -> 94%, 0.8 mm (Exp 1 30-cm, named in Exp 2 text) -> 83%, 1.6 mm -> 60%. Cloudiness removed falls monotonically as grain size rises, and the drop per doubling grows (11 then 23 points). 3.2 mm lies beyond 1.6 mm, so extrapolation gives below 60%. 'Between 60% and 83%' would need the trend to reverse or flatten past 1.6 mm, which nothing in the data supports; B and C contradict the trend.",
+   "key_correct": "yes",
+   "second_defensible": null,
+   "fact_error": null,
+   "no_source_needed": "yes",
+   "recognised_real_data": null,
+   "free_elimination": null,
+   "readability": "ok",
+   "readability_note": "",
+   "single_sentence": "no",
+   "difficulty": "easy",
+   "note": "Key recomputed: 94 (0.4) > 83 (0.8) > 60 (1.6), monotone decreasing with grain size; 3.2 mm extrapolates below 60. Cold pick agrees. no_source_needed=yes: with the table covered, the options are four contiguous bins cut at 60/83/94, so 3.2 mm must fall in one of the two open-ended extremes or in a middle bin. Ordinary background knowledge (coarser sand has bigger pores and traps less fine clay) gives the direction: removal falls as grains get coarser. 3.2 mm is very coarse sand, and the 0.4/0.8/1.6/3.2 doubling pattern in the stem marks it as an extrapolation past the tested sizes. Background knowledge kills C (more than 94%, the opposite extreme), and the extrapolation cue points to the low extreme over the middle bins A and B. A student who knows only 'coarser filters remove less' and reads 3.2 mm as the coarsest case picks D without the table. The one thing the table adds is confirming that 3.2 lies beyond the tested range, and the stem's size alone strongly implies that. free_elimination left null because killing C needs background science, not a structural tell; on structure alone no distractor dies. Science is sound: finer grains slow the flow and raise removal, and thicker layers do the same with diminishing returns."
+  }
+ ],
+ "batch": {
+  "cross_item_pattern": null
+ }
+}

@@ -6257,3 +6257,12 @@ structural checks are pre-flight only. See CLAUDE.md.
   raised a possible fact error in the Maathai passage (her mother called the fig "a tree of God"; the soil
   link is presented as the adults' reason) — human check needed if the passage is ever reused. Consistent with
   memory agent-reading-comprehension-limit: agents write vocab/mechanics well; comprehension keeps failing.
+
+- **2026-10-29 — b13 (act-science-v12e): 7 of 9 passages cleared (40 of 52).** 52/52 keys correct, 0 fact
+  errors. Drops: P7-Q4 (no_source by both: the stem gives 0.3 s and 340 m/s, so the answer is arithmetic on the
+  stem alone) and P4-Q4 (no_source by g2, confirmed by r1: "coarser sand traps less" plus a doubling series that
+  reads as past the tested range). g2 named a step-change rule (the extreme step is the top pair; P1-Q5, P2-Q2,
+  P9-Q2); g1 named none, so R8 dropped nothing. Brief note: vary where the extreme step falls across tables.
+  - **ACT Science day total, cleared and not yet released: 219 items over six batches** (v12a 18, v12b 47,
+    v12c 28, v12d 34, v12e 40, v12f 52). Release still needs science-release.json wiring and the blind-only
+    co-founder runs.
