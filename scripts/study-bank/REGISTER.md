@@ -3120,6 +3120,18 @@ recorded only in a commit message is a finding nobody reads.
 - **2026-10-27** — **Owner go: 462 failed ACT Science rows archived** (v5a-v9b re-grade drops + v10 pilot drops; only rows still verified=false/archived=false, stamped verify_meta.archive_basis + archived_at). 102 survivors stay staged. Queue: v5c/v6b/v7b/v8b un-held (upTo/heldNote/group removed per prereg step 4), v10a/v10b added (blindOnly), the 8 zero-survivor cohorts stay held with a note; prioritySections = act/science, act/reading. draw-next dry run lists six blind-only runs over surviving passages only (10+11+5+10+36+30 = 102). Methods: v10a/b = act-sci-agent-brief-v10+agent-2grader.
 - **2026-10-27** — **act-reading-v8c released (spot, 0 misses, blind 1/18 = 5.6% vs 27.8% control; ACT Reading 270 drawable = 7 forms).** First ACT Science blind-only run drawn: actsciencev5c-full1-blindonly (10 items, control 30.0%).
 
+- **2026-10-30** — **Agent review wave 2 BUILT, not graded: 53 packets, 1,802 staged items, 159 grader spawns**
+  (`AGENT-REVIEW-WAVE2.prereg.md`, committed before any packet; `agent-review-build.mjs --wave2` →
+  `scratchpad/agent-review/MANIFEST-wave2.json`; wave 1's MANIFEST.json untouched). Same brief v2, 3 graders
+  (a, b plain; c adversarial), same scorer and A1. Packets in prereg order: isee/reading 13 (468), act/reading 9
+  (324), act/english 1 (50), toefl/listening 18 (600: talk 296, conversation 40, choose-response 264),
+  toefl/reading 12 (360, academic_passage). Skipped: act-english-v9 (130; co-founder runs 2026-10-10 and
+  2026-10-20 drawn), cr-v14 (35; spot run 2026-10-23), harvest-v1 (runs drawn; multiple_choice, not a listed task).
+  ACT English v10 / Reading v13a survivors are not staged, so they are outside the population. Two limits carried
+  into the prereg: TOEFL listening is graded from the stored transcript only (no audio), and on ACT Reading / TOEFL
+  the model over-solves without the source, so a "choosable without the source" flag there is not a guessability
+  verdict. The Daniel audit sample stays the human check.
+
 ## 6. The rule that keeps this honest
 
 A cohort is **not** clean because the cheap checks passed. Five

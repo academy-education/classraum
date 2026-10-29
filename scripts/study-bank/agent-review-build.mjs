@@ -4,6 +4,9 @@
  *
  *   node scripts/study-bank/agent-review-build.mjs            # dry: print the plan
  *   node scripts/study-bank/agent-review-build.mjs --write    # write packets + MANIFEST.json
+ *   node scripts/study-bank/agent-review-build.mjs --wave2 [--write]
+ *        # wave 2 (AGENT-REVIEW-WAVE2.prereg.md): ISEE/ACT Reading, ACT English,
+ *        # TOEFL; writes MANIFEST-wave2.json and never touches MANIFEST.json
  *
  * Population: every STAGED (verified=false, not archived) row of the strata
  * below. MAP Science is excluded — every staged MAP Science cohort already has a
@@ -20,12 +23,31 @@ const HERE = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(HERE, '../..')
 const OUT = 'scratchpad/agent-review'
 const BRIEF = 'scripts/study-bank/cofounder-grader/COFOUNDER-BRIEF-v2.md'
-const STRATA = [
-  { family: 'ssat', section: 'reading' },
-  { family: 'ssat', section: 'verbal' },
-  { family: 'map', section: 'language' },
-  { family: 'map', section: 'reading' },
-]
+const WAVES = {
+  1: {
+    prereg: 'scripts/study-bank/AGENT-REVIEW-SSAT-MAP.prereg.md', manifest: 'MANIFEST.json', skip: [],
+    strata: [
+      { family: 'ssat', section: 'reading' },
+      { family: 'ssat', section: 'verbal' },
+      { family: 'map', section: 'language' },
+      { family: 'map', section: 'reading' },
+    ],
+  },
+  // Order is the prereg's. Skipped cohorts have a co-founder run drawn under
+  // their current method (act-english-v9, cr-v14) or are not a listed task.
+  2: {
+    prereg: 'scripts/study-bank/AGENT-REVIEW-WAVE2.prereg.md', manifest: 'MANIFEST-wave2.json',
+    skip: ['act-english-v9', 'cr-v14', 'harvest-v1'],
+    strata: [
+      { family: 'isee', section: 'reading' },
+      { family: 'act', section: 'reading' },
+      { family: 'act', section: 'english' },
+      { family: 'toefl', section: 'listening', tasks: ['academic_talk', 'choose_response', 'conversation'] },
+      { family: 'toefl', section: 'reading', tasks: ['academic_passage'] },
+    ],
+  },
+}
+const WAVE = WAVES[process.argv.includes('--wave2') ? 2 : 1]
 const die = m => { console.error(`agent-review-build: ${m}`); process.exit(2) }
 
 async function db() {
@@ -35,14 +57,18 @@ async function db() {
   return createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
 }
 
-async function loadStratum(client, { family, section }) {
-  const { count, error: cErr } = await client.from('study_item_bank').select('id', { count: 'exact', head: true })
-    .eq('family', family).eq('section', section).eq('verified', false).or('archived.is.null,archived.eq.false')
+async function loadStratum(client, { family, section, tasks }) {
+  const scope = q => {
+    q = q.eq('family', family).eq('section', section).eq('verified', false).or('archived.is.null,archived.eq.false')
+    if (tasks) q = q.in('task', tasks)
+    for (const c of WAVE.skip) q = q.neq('cohort', c)
+    return q
+  }
+  const { count, error: cErr } = await scope(client.from('study_item_bank').select('id', { count: 'exact', head: true }))
   if (cErr) die(`${family}/${section} count: ${cErr.message}`)
   const rows = []
   for (let from = 0; ; from += 1000) {
-    const { data, error } = await client.from('study_item_bank').select('id,family,section,cohort,passage_group_id,item')
-      .eq('family', family).eq('section', section).eq('verified', false).or('archived.is.null,archived.eq.false')
+    const { data, error } = await scope(client.from('study_item_bank').select('id,family,section,cohort,passage_group_id,item'))
       .order('id').range(from, from + 999)
     if (error) die(`${family}/${section} page ${from}: ${error.message}`)
     rows.push(...data)
@@ -65,14 +91,15 @@ async function main() {
   const write = process.argv.includes('--write')
   const client = await db()
   const rows = []
-  for (const s of STRATA) {
+  for (const s of WAVE.strata) {
     const r = await loadStratum(client, s)
     console.log(`${s.family}/${s.section}: ${r.length} staged rows in ${new Set(r.map(x => x.cohort)).size} cohorts`)
     rows.push(...r)
   }
-  const packets = planPackets(rows)
+  const rank = r => WAVE.strata.findIndex(s => s.family === r.family && s.section === r.section)
+  const packets = planPackets(rows).sort((x, y) => rank(x.units[0].items[0]) - rank(y.units[0].items[0]))
   const briefSha = createHash('sha256').update(readFileSync(join(ROOT, BRIEF))).digest('hex')
-  const manifest = { prereg: 'scripts/study-bank/AGENT-REVIEW-SSAT-MAP.prereg.md', brief: BRIEF, brief_sha256: briefSha, graders: GRADERS, packets: [] }
+  const manifest = { prereg: WAVE.prereg, brief: BRIEF, brief_sha256: briefSha, graders: GRADERS, packets: [] }
   for (const p of packets) {
     const stratum = `${p.units[0].items[0].family}-${p.units[0].items[0].section}`
     const dir = `${OUT}/${stratum}/${p.id}`
@@ -91,9 +118,9 @@ async function main() {
   console.log(JSON.stringify(by, null, 1))
   console.log(`packets ${manifest.packets.length}, items ${manifest.packets.reduce((s, p) => s + p.items, 0)}, grader spawns ${manifest.packets.length * GRADERS.length}`)
   if (write) {
-    writeFileSync(join(ROOT, OUT, 'MANIFEST.json'), JSON.stringify(manifest, null, 1) + '\n')
-    console.log(`wrote ${OUT}/MANIFEST.json`)
-  } else console.log('dry run; pass --write to write packets and MANIFEST.json')
+    writeFileSync(join(ROOT, OUT, WAVE.manifest), JSON.stringify(manifest, null, 1) + '\n')
+    console.log(`wrote ${OUT}/${WAVE.manifest}`)
+  } else console.log(`dry run; pass --write to write packets and ${WAVE.manifest}`)
 }
 
 main().catch(e => die(e.message))
