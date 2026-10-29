@@ -6184,3 +6184,25 @@ structural checks are pre-flight only. See CLAUDE.md.
   "which new trial" items fix factor and condition in the stem and differ only in the held value that matches an
   existing trial. Both DR passages are tables (b10 readability rule). Two base-condition items keyed "30" were
   replaced before the prereg to avoid a cross-item rule. Not inserted, not graded; packets built for b13.
+
+- **2026-10-29 — MRV3 repair round (the one return), after the grader v2 pre-screen x2; NOT staged.** No item
+  broken. Fixed, per the graders' batch patterns:
+  - **Theme items:** all 10 rebuilt. In round 1, 9 of 10 had a lone "X should Y" distractor, and 8 of 10 keys
+    were hedged "X can Y". Now there is no "should" in any theme option; key forms vary; 4 of 10 keys and 17 of
+    30 distractors are hedged; each item has 2-3 universal life-lesson distractors that are wrong for a reason in
+    that passage.
+  - **Repeated theme:** P06 (paint play) took a new theme ("being trusted to choose"), so it no longer shares the
+    honesty key with P08. P02 is no longer "bad turns good" (it is now "the love behind a gift").
+  - **Central-idea items:** all 10 rebuilt. Two distractors in each are whole-passage summaries that misstate the
+    relationship, emphasis or conclusion; one is a paraphrased detail; 0 verbatim 7-word lifts. P10's key no
+    longer claims what prompted the safety hood.
+  - **Notes:** tuba plausibility (the harmonica now sits on a stand ledge beside the upturned bell and drops in
+    when the stands are bumped; the P03-3 key now says "bell"); "several hundred" khipus became "Hundreds".
+  - **Vocabulary:** V2-05 "ominous" (the thunder is now "right overhead", so "distant" no longer fits; "cheerful"
+    became "unremarkable"); V2-04 "obsolete" (the projectors "still turn on", so "broken" no longer fits); key
+    longest or tied 17/40 -> 9/40 by lengthening seven distractors.
+  - **Checks:** merge 0 problems on 60 (slots 15 each, key uniquely longest 11 and shortest 12); quotes 0;
+    location 0; vocab-check 0 (slots 10 each).
+  - **Fresh packets:** `scratchpad/mapread4-grade/packet-r2.json` + `index-r2.json`, and the same pair in
+    `scratchpad/mapvocab3-grade/`. These need fresh second-round graders; the round that caught the defects does
+    not clear its own repairs.

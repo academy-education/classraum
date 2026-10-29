@@ -160,7 +160,7 @@
   "choices": [
    "sleepy",
    "hungry",
-   "grumpy",
+   "irritable",
    "chilly"
   ],
   "correct_answer": "sleepy",
@@ -173,9 +173,9 @@
     "reason": "\"hungry\" is ruled out by the big dinner he has just eaten."
    },
    {
-    "choice": "grumpy",
+    "choice": "irritable",
     "fault": "misses the clue",
-    "reason": "\"grumpy\" describes a mood, but the clue describes closing eyes and yawning."
+    "reason": "\"irritable\" describes a mood, but the clue describes closing eyes and yawning."
    },
    {
     "choice": "chilly",
@@ -234,7 +234,7 @@
   "choices": [
    "to put somewhere and lose track of",
    "to put back in its proper spot",
-   "to place carefully on a high shelf",
+   "to place it carefully on a high shelf",
    "to replace with a brand-new one"
   ],
   "correct_answer": "to put somewhere and lose track of",
@@ -247,9 +247,9 @@
     "reason": "\"to put back in its proper spot\" reads mis- as \"again\" or \"correctly,\" which is the opposite of its meaning."
    },
    {
-    "choice": "to place carefully on a high shelf",
+    "choice": "to place it carefully on a high shelf",
     "fault": "wrong part",
-    "reason": "\"to place carefully on a high shelf\" ignores mis- and reads only the base word place."
+    "reason": "\"to place it carefully on a high shelf\" ignores mis- and reads only the base word place."
    },
    {
     "choice": "to replace with a brand-new one",
@@ -309,7 +309,7 @@
    "giggled",
    "cackled",
    "roared",
-   "snorted"
+   "guffawed"
   ],
   "correct_answer": "giggled",
   "explanation": "\"giggled\" is correct: giggled names a light, gentle laugh, which suits a small laugh at a puppy.",
@@ -326,9 +326,9 @@
     "reason": "\"roared\" suggests a very loud laugh, which is not small or gentle."
    },
    {
-    "choice": "snorted",
+    "choice": "guffawed",
     "fault": "wrong connotation",
-    "reason": "\"snorted\" suggests a rough, noisy laugh through the nose, not a gentle one."
+    "reason": "\"guffawed\" suggests a loud, hearty laugh, not a small and gentle one."
    }
   ]
  },
@@ -346,7 +346,7 @@
    "a thin layer spread over a surface",
    "a warm jacket worn outdoors",
    "the fur that covers an animal",
-   "the hard outer shell of a seed"
+   "the hard, thin outer shell of a seed"
   ],
   "correct_answer": "a thin layer spread over a surface",
   "explanation": "\"a thin layer spread over a surface\" is correct: paint is spread over the fence in a thin layer.",
@@ -363,9 +363,9 @@
     "reason": "\"the fur that covers an animal\" is the sense in \"a dog's coat,\" which does not fit paint on a fence."
    },
    {
-    "choice": "the hard outer shell of a seed",
+    "choice": "the hard, thin outer shell of a seed",
     "fault": "other sense",
-    "reason": "\"the hard outer shell of a seed\" is the sense in \"seed coat,\" which has nothing to do with paint."
+    "reason": "\"the hard, thin outer shell of a seed\" is the sense in \"seed coat,\" which has nothing to do with paint."
    }
   ]
  },
@@ -640,7 +640,7 @@
   "prompt": "What does the phrase \"got cold feet\" mean in this sentence?",
   "choices": [
    "became too nervous to go ahead",
-   "caught a chill walking outside",
+   "caught a chill from walking outside",
    "grew tired of practicing lines",
    "felt excited about the tryout"
   ],
@@ -649,9 +649,9 @@
   "grade_rationale": "A common idiom in grade-6 fiction.",
   "distractor_rationales": [
    {
-    "choice": "caught a chill walking outside",
+    "choice": "caught a chill from walking outside",
     "fault": "literal",
-    "reason": "\"caught a chill walking outside\" reads the phrase literally; the sentence is about his plan to try out."
+    "reason": "\"caught a chill from walking outside\" reads the phrase literally; the sentence is about his plan to try out."
    },
    {
     "choice": "grew tired of practicing lines",

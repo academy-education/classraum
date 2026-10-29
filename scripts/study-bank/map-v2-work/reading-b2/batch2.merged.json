@@ -22,7 +22,7 @@
    "genre": "mystery",
    "map_area": "Literary Text",
    "grade_target": 5,
-   "words": 235
+   "words": 251
   },
   {
    "passage_id": "MRV3-R1-P04",
@@ -168,29 +168,29 @@
    "difficulty": "medium",
    "prompt": "Which statement best expresses a theme of the story?",
    "choices": [
-    "Patience someone once showed you can be passed on to others.",
-    "Pride in your own work matters more than helping others.",
-    "Older relatives should teach children every skill they know.",
-    "A skill is learned best when a person practices it all alone."
+    "Patience that someone once showed you is worth passing on.",
+    "A first success often matters more than any success after it.",
+    "People usually feel proudest of what they do on their own.",
+    "Hard lessons tend to stick when someone pushes you to hurry."
    ],
-   "correct_answer": "Patience someone once showed you can be passed on to others.",
+   "correct_answer": "Patience that someone once showed you is worth passing on.",
    "why": "the way Aunt Rosa had waited beside him without a single sigh",
-   "explanation": "\"Patience someone once showed you can be passed on to others.\" is correct: Theo remembers \"the way Aunt Rosa had waited beside him without a single sigh\" and then teaches Mia slowly in the same way, so the patience he received is passed on.",
+   "explanation": "\"Patience that someone once showed you is worth passing on.\" is correct: Theo remembers \"the way Aunt Rosa had waited beside him without a single sigh\" and then teaches Mia slowly in the same way.",
    "distractor_rationales": [
     {
-     "choice": "A skill is learned best when a person practices it all alone.",
+     "choice": "Hard lessons tend to stick when someone pushes you to hurry.",
      "fault": "contradicts",
-     "reason": "\"A skill is learned best when a person practices it all alone.\" is contradicted by the story: Aunt Rosa stays with Theo while he learns, and Theo sits \"down next to her\" to help Mia."
+     "reason": "\"Hard lessons tend to stick when someone pushes you to hurry.\" is the opposite of what happens: Theo succeeds only when he goes slowly, and Mia's string tangles when he rushes."
     },
     {
-     "choice": "Older relatives should teach children every skill they know.",
-     "fault": "too broad",
-     "reason": "\"Older relatives should teach children every skill they know.\" goes far beyond the story, which shows one knot being taught and never claims anything about every skill."
+     "choice": "People usually feel proudest of what they do on their own.",
+     "fault": "contradicts",
+     "reason": "\"People usually feel proudest of what they do on their own.\" is contradicted by the ending, where Theo is \"prouder of her knot than he had been of his own.\""
     },
     {
-     "choice": "Pride in your own work matters more than helping others.",
+     "choice": "A first success often matters more than any success after it.",
      "fault": "contradicts",
-     "reason": "\"Pride in your own work matters more than helping others.\" is contradicted by the ending, where Theo is \"prouder of her knot than he had been of his own.\""
+     "reason": "\"A first success often matters more than any success after it.\" is contradicted by the ending, where Mia's later success means more to Theo than his own first one."
     }
    ],
    "passage_id": "MRV3-R1-P01",
@@ -285,29 +285,29 @@
    "difficulty": "medium",
    "prompt": "Which statement best expresses a theme of the story?",
    "choices": [
-    "Cooking breakfast is harder than it looks on a cooking show.",
-    "A plan that goes badly can still turn into a happy memory.",
-    "Children should ask an adult before cooking in the kitchen.",
-    "A surprise works only when everything goes exactly as planned."
+    "Surprises work best when they are kept small and simple.",
+    "The love behind a gift matters more than how well it turns out.",
+    "Mistakes made in front of family are usually hard to forget.",
+    "Waking up early tends to make a special day go more smoothly."
    ],
-   "correct_answer": "A plan that goes badly can still turn into a happy memory.",
-   "why": "Then she laughed so hard she had to sit down.",
-   "explanation": "\"A plan that goes badly can still turn into a happy memory.\" is correct: Everything in Operation Breakfast goes wrong, yet the mother \"laughed so hard she had to sit down\" and calls it the best birthday breakfast, so the failed plan becomes a happy memory.",
+   "correct_answer": "The love behind a gift matters more than how well it turns out.",
+   "why": "is the best birthday breakfast anyone has ever made me",
+   "explanation": "\"The love behind a gift matters more than how well it turns out.\" is correct: Every part of the breakfast goes wrong, yet the mother calls it \"the best birthday breakfast anyone has ever made me\" because of what the twins tried to do.",
    "distractor_rationales": [
     {
-     "choice": "Cooking breakfast is harder than it looks on a cooking show.",
-     "fault": "too narrow",
-     "reason": "\"Cooking breakfast is harder than it looks on a cooking show.\" fits only Nora's pancake trouble; it misses the ending, where the disaster becomes a joke the family shares."
-    },
-    {
-     "choice": "Children should ask an adult before cooking in the kitchen.",
+     "choice": "Surprises work best when they are kept small and simple.",
      "fault": "not in passage",
-     "reason": "\"Children should ask an adult before cooking in the kitchen.\" states a rule the story never makes; the mother laughs and is never angry about the twins cooking."
+     "reason": "\"Surprises work best when they are kept small and simple.\" draws a lesson the story never makes; the mother loves the surprise even though it was not simple."
     },
     {
-     "choice": "A surprise works only when everything goes exactly as planned.",
+     "choice": "Mistakes made in front of family are usually hard to forget.",
      "fault": "contradicts",
-     "reason": "\"A surprise works only when everything goes exactly as planned.\" is contradicted by the ending, where nothing goes as planned and the mother still calls it \"the best birthday breakfast.\""
+     "reason": "\"Mistakes made in front of family are usually hard to forget.\" is contradicted by the mother's laughter; the story treats the mistakes as funny, not painful."
+    },
+    {
+     "choice": "Waking up early tends to make a special day go more smoothly.",
+     "fault": "contradicts",
+     "reason": "\"Waking up early tends to make a special day go more smoothly.\" is contradicted by the 5:30 start that leads straight to smoke and a pancake on the refrigerator."
     }
    ],
    "passage_id": "MRV3-R1-P02",
@@ -402,29 +402,29 @@
    "difficulty": "medium",
    "prompt": "Which statement best expresses a theme of the story?",
    "choices": [
-    "Accidents during warm-ups can easily ruin an important concert.",
-    "A band plays its best when every member searches together.",
-    "Paying close attention to small changes can solve a puzzle.",
-    "Musicians should keep their instruments locked in cases."
+    "Lost things tend to turn up in the last place anyone looks.",
+    "Accidents usually happen when people are rushing around.",
+    "Answers sometimes come from noticing what has quietly changed.",
+    "Searching as a group usually finds things faster than searching alone."
    ],
-   "correct_answer": "Paying close attention to small changes can solve a puzzle.",
+   "correct_answer": "Answers sometimes come from noticing what has quietly changed.",
    "why": "Her tuba had sounded bright and loud an hour ago.",
-   "explanation": "\"Paying close attention to small changes can solve a puzzle.\" is correct: June solves the mystery because she notices that her notes are dull when \"Her tuba had sounded bright and loud an hour ago,\" so attention to a small change solves it.",
+   "explanation": "\"Answers sometimes come from noticing what has quietly changed.\" is correct: June solves the mystery because she notices her notes are dull when \"Her tuba had sounded bright and loud an hour ago.\"",
    "distractor_rationales": [
     {
-     "choice": "Musicians should keep their instruments locked in cases.",
-     "fault": "not in passage",
-     "reason": "\"Musicians should keep their instruments locked in cases.\" states a rule the story never makes; the lesson comes from June's noticing, not from a locked case."
-    },
-    {
-     "choice": "A band plays its best when every member searches together.",
-     "fault": "wrong part",
-     "reason": "\"A band plays its best when every member searches together.\" describes the search, which finds nothing; the harmonica is found by June's observation."
-    },
-    {
-     "choice": "Accidents during warm-ups can easily ruin an important concert.",
+     "choice": "Searching as a group usually finds things faster than searching alone.",
      "fault": "contradicts",
-     "reason": "\"Accidents during warm-ups can easily ruin an important concert.\" is contradicted by the ending: the harmonica is found before the concert begins."
+     "reason": "\"Searching as a group usually finds things faster than searching alone.\" is contradicted by the story: the group search finds nothing, and June finds the harmonica on her own."
+    },
+    {
+     "choice": "Accidents usually happen when people are rushing around.",
+     "fault": "not in passage",
+     "reason": "\"Accidents usually happen when people are rushing around.\" adds a cause the story never gives; Dev trips on a cable, and nothing says he was rushing."
+    },
+    {
+     "choice": "Lost things tend to turn up in the last place anyone looks.",
+     "fault": "not in passage",
+     "reason": "\"Lost things tend to turn up in the last place anyone looks.\" states a saying the story does not support; June finds the harmonica by reasoning, not by luck."
     }
    ],
    "passage_id": "MRV3-R1-P03",
@@ -432,7 +432,7 @@
    "genre": "mystery",
    "map_area": "Literary Text",
    "grade_target": 5,
-   "passage": "Ten minutes before the spring concert, Ms. Alvarez's harmonica was gone.\n\nShe played it for one short solo in the middle of the second song. She always left it on the music stand beside her chair, resting on top of its little blue case. June, who played the tuba, sat in the chair right next to hers.\n\n\"It was right here during warm-ups,\" Ms. Alvarez said. The case was there. The harmonica was not.\n\nThe band members searched their pockets and their folders. Dev, who played trombone, checked under the risers. Lena checked the hallway.\n\nWhile the others searched, June ran through her warm-up notes. They came out thick and dull, like someone humming into a pillow. She tried again. The same dull sound.\n\nJune frowned. Her tuba had sounded bright and loud an hour ago. She remembered what had happened right after warm-ups: Dev had tripped on a cable and bumped into the music stands, and everything on them had rattled and bounced.\n\nJune turned the tuba upside down over a chair cushion and gave it a gentle shake. Something slid through the curving tubes, clicked against the brass, and dropped onto the cushion.\n\nIt was the harmonica.\n\n\"It must have bounced into the bell,\" June said. \"My tuba was trying to tell us.\"\n\nMs. Alvarez laughed and wiped the harmonica on her sleeve. \"Then your tuba has earned a solo of its own.\"",
+   "passage": "Ten minutes before the spring concert, Ms. Alvarez's harmonica was gone.\n\nShe played it for one short solo in the middle of the second song, and she always rested it on the ledge of the music stand beside her chair. June, who played the tuba, sat in the chair right next to hers, and the wide bell of June's tuba pointed up just beside that stand.\n\n\"It was right here during warm-ups,\" Ms. Alvarez said. The ledge of the stand was empty.\n\nThe band members searched their pockets and their folders. Dev, who played trombone, checked under the risers. Lena checked the hallway.\n\nWhile the others searched, June ran through her warm-up notes. They came out thick and dull, like someone humming into a pillow. She tried again. The same dull sound.\n\nJune frowned. Her tuba had sounded bright and loud an hour ago. She remembered what had happened right after warm-ups: Dev had tripped on a cable and bumped into the music stands, and everything on them had rattled and bounced.\n\nJune turned the tuba upside down over a chair cushion and gave it a gentle shake. Something slid out of the deep curve of the bell, clicked against the brass, and dropped onto the cushion.\n\nIt was the harmonica.\n\n\"It must have bounced off the stand and into the bell,\" June said. \"My tuba was trying to tell us.\"\n\nMs. Alvarez laughed and wiped the harmonica on her sleeve. \"Then your tuba has earned a solo of its own.\"",
    "key_slot": "C"
   },
   {
@@ -471,7 +471,7 @@
    "genre": "mystery",
    "map_area": "Literary Text",
    "grade_target": 5,
-   "passage": "Ten minutes before the spring concert, Ms. Alvarez's harmonica was gone.\n\nShe played it for one short solo in the middle of the second song. She always left it on the music stand beside her chair, resting on top of its little blue case. June, who played the tuba, sat in the chair right next to hers.\n\n\"It was right here during warm-ups,\" Ms. Alvarez said. The case was there. The harmonica was not.\n\nThe band members searched their pockets and their folders. Dev, who played trombone, checked under the risers. Lena checked the hallway.\n\nWhile the others searched, June ran through her warm-up notes. They came out thick and dull, like someone humming into a pillow. She tried again. The same dull sound.\n\nJune frowned. Her tuba had sounded bright and loud an hour ago. She remembered what had happened right after warm-ups: Dev had tripped on a cable and bumped into the music stands, and everything on them had rattled and bounced.\n\nJune turned the tuba upside down over a chair cushion and gave it a gentle shake. Something slid through the curving tubes, clicked against the brass, and dropped onto the cushion.\n\nIt was the harmonica.\n\n\"It must have bounced into the bell,\" June said. \"My tuba was trying to tell us.\"\n\nMs. Alvarez laughed and wiped the harmonica on her sleeve. \"Then your tuba has earned a solo of its own.\"",
+   "passage": "Ten minutes before the spring concert, Ms. Alvarez's harmonica was gone.\n\nShe played it for one short solo in the middle of the second song, and she always rested it on the ledge of the music stand beside her chair. June, who played the tuba, sat in the chair right next to hers, and the wide bell of June's tuba pointed up just beside that stand.\n\n\"It was right here during warm-ups,\" Ms. Alvarez said. The ledge of the stand was empty.\n\nThe band members searched their pockets and their folders. Dev, who played trombone, checked under the risers. Lena checked the hallway.\n\nWhile the others searched, June ran through her warm-up notes. They came out thick and dull, like someone humming into a pillow. She tried again. The same dull sound.\n\nJune frowned. Her tuba had sounded bright and loud an hour ago. She remembered what had happened right after warm-ups: Dev had tripped on a cable and bumped into the music stands, and everything on them had rattled and bounced.\n\nJune turned the tuba upside down over a chair cushion and gave it a gentle shake. Something slid out of the deep curve of the bell, clicked against the brass, and dropped onto the cushion.\n\nIt was the harmonica.\n\n\"It must have bounced off the stand and into the bell,\" June said. \"My tuba was trying to tell us.\"\n\nMs. Alvarez laughed and wiped the harmonica on her sleeve. \"Then your tuba has earned a solo of its own.\"",
    "key_slot": "A"
   },
   {
@@ -480,14 +480,14 @@
    "difficulty": "easy",
    "prompt": "Why do June's warm-up notes sound \"thick and dull\"?",
    "choices": [
-    "Something is caught inside the tubes of her tuba.",
+    "Something is caught inside the bell of her tuba.",
     "She is nervous about playing in front of an audience.",
     "The other players are making too much noise while searching.",
     "Her tuba was dented when Dev bumped into the stands."
    ],
-   "correct_answer": "Something is caught inside the tubes of her tuba.",
-   "why": "Something slid through the curving tubes",
-   "explanation": "\"Something is caught inside the tubes of her tuba.\" is correct: When June shakes the tuba, \"Something slid through the curving tubes\" and drops out; the harmonica stuck inside is what muffled her notes.",
+   "correct_answer": "Something is caught inside the bell of her tuba.",
+   "why": "Something slid out of the deep curve of the bell",
+   "explanation": "\"Something is caught inside the bell of her tuba.\" is correct: when June shakes the tuba, \"Something slid out of the deep curve of the bell,\" and the harmonica stuck there was muffling her notes.",
    "distractor_rationales": [
     {
      "choice": "She is nervous about playing in front of an audience.",
@@ -510,7 +510,7 @@
    "genre": "mystery",
    "map_area": "Literary Text",
    "grade_target": 5,
-   "passage": "Ten minutes before the spring concert, Ms. Alvarez's harmonica was gone.\n\nShe played it for one short solo in the middle of the second song. She always left it on the music stand beside her chair, resting on top of its little blue case. June, who played the tuba, sat in the chair right next to hers.\n\n\"It was right here during warm-ups,\" Ms. Alvarez said. The case was there. The harmonica was not.\n\nThe band members searched their pockets and their folders. Dev, who played trombone, checked under the risers. Lena checked the hallway.\n\nWhile the others searched, June ran through her warm-up notes. They came out thick and dull, like someone humming into a pillow. She tried again. The same dull sound.\n\nJune frowned. Her tuba had sounded bright and loud an hour ago. She remembered what had happened right after warm-ups: Dev had tripped on a cable and bumped into the music stands, and everything on them had rattled and bounced.\n\nJune turned the tuba upside down over a chair cushion and gave it a gentle shake. Something slid through the curving tubes, clicked against the brass, and dropped onto the cushion.\n\nIt was the harmonica.\n\n\"It must have bounced into the bell,\" June said. \"My tuba was trying to tell us.\"\n\nMs. Alvarez laughed and wiped the harmonica on her sleeve. \"Then your tuba has earned a solo of its own.\"",
+   "passage": "Ten minutes before the spring concert, Ms. Alvarez's harmonica was gone.\n\nShe played it for one short solo in the middle of the second song, and she always rested it on the ledge of the music stand beside her chair. June, who played the tuba, sat in the chair right next to hers, and the wide bell of June's tuba pointed up just beside that stand.\n\n\"It was right here during warm-ups,\" Ms. Alvarez said. The ledge of the stand was empty.\n\nThe band members searched their pockets and their folders. Dev, who played trombone, checked under the risers. Lena checked the hallway.\n\nWhile the others searched, June ran through her warm-up notes. They came out thick and dull, like someone humming into a pillow. She tried again. The same dull sound.\n\nJune frowned. Her tuba had sounded bright and loud an hour ago. She remembered what had happened right after warm-ups: Dev had tripped on a cable and bumped into the music stands, and everything on them had rattled and bounced.\n\nJune turned the tuba upside down over a chair cushion and gave it a gentle shake. Something slid out of the deep curve of the bell, clicked against the brass, and dropped onto the cushion.\n\nIt was the harmonica.\n\n\"It must have bounced off the stand and into the bell,\" June said. \"My tuba was trying to tell us.\"\n\nMs. Alvarez laughed and wiped the harmonica on her sleeve. \"Then your tuba has earned a solo of its own.\"",
    "key_slot": "A"
   },
   {
@@ -519,29 +519,29 @@
    "difficulty": "medium",
    "prompt": "Which statement best expresses a theme of the poem?",
    "choices": [
-    "People should spend more time getting to know local shops.",
-    "Shop owners work harder in the morning than in the evening.",
-    "A city street looks its most beautiful just after it rains.",
-    "Even a busy place has a quiet side that people soon forget."
+    "Small shops have trouble opening on time each morning.",
+    "A city feels most alive in the quiet hours before dawn.",
+    "People remember quiet moments longer than noisy ones.",
+    "A busy day quickly buries the quiet it began with."
    ],
-   "correct_answer": "Even a busy place has a quiet side that people soon forget.",
+   "correct_answer": "A busy day quickly buries the quiet it began with.",
    "why": "and nobody remembers",
-   "explanation": "\"Even a busy place has a quiet side that people soon forget.\" is correct: The poem ends by saying \"nobody remembers\" how quiet the street was an hour earlier, so the busy street has a quiet side that is quickly forgotten.",
+   "explanation": "\"A busy day quickly buries the quiet it began with.\" is correct: By eight the street is full of noise, and \"nobody remembers\" how quiet it was an hour before.",
    "distractor_rationales": [
     {
-     "choice": "Shop owners work harder in the morning than in the evening.",
-     "fault": "not in passage",
-     "reason": "\"Shop owners work harder in the morning than in the evening.\" compares morning and evening work, which the poem never does; it shows only one morning hour."
+     "choice": "A city feels most alive in the quiet hours before dawn.",
+     "fault": "contradicts",
+     "reason": "\"A city feels most alive in the quiet hours before dawn.\" reverses the poem: the street comes alive when the shops open, not before."
     },
     {
-     "choice": "A city street looks its most beautiful just after it rains.",
-     "fault": "too narrow",
-     "reason": "\"A city street looks its most beautiful just after it rains.\" seizes on the rain in the first and last stanzas but misses the change from quiet to busy that the poem is about."
+     "choice": "People remember quiet moments longer than noisy ones.",
+     "fault": "contradicts",
+     "reason": "\"People remember quiet moments longer than noisy ones.\" is contradicted by the poem's statement that \"nobody remembers\" the quiet hour."
     },
     {
-     "choice": "People should spend more time getting to know local shops.",
+     "choice": "Small shops have trouble opening on time each morning.",
      "fault": "not in passage",
-     "reason": "\"People should spend more time getting to know local shops.\" states a lesson the poem never gives; the speaker describes the street without urging readers to do anything."
+     "reason": "\"Small shops have trouble opening on time each morning.\" has no support; every shop in the poem opens on schedule."
     }
    ],
    "passage_id": "MRV3-R1-P04",
@@ -636,29 +636,29 @@
    "difficulty": "hard",
    "prompt": "Which statement best expresses a theme of the folktale?",
    "choices": [
-    "Animals are often wiser than the people who rule a village.",
-    "A person's pride can be used to trick him into sharing.",
-    "A village leader should build things that everyone can see.",
-    "Tall containers hold more water than small containers do."
+    "Small gifts mean more than large ones.",
+    "Pride makes a person easy to fool.",
+    "Leaders tend to listen to the poorest people.",
+    "Generosity is usually rewarded in the end."
    ],
-   "correct_answer": "A person's pride can be used to trick him into sharing.",
-   "why": "He tipped his giant pot so that Pell could reach it.",
-   "explanation": "\"A person's pride can be used to trick him into sharing.\" is correct: Pell flatters Orrin's wish to be called the wisest man, and \"He tipped his giant pot so that Pell could reach it,\" spilling his water into everyone's pots.",
+   "correct_answer": "Pride makes a person easy to fool.",
+   "why": "Orrin liked the sound of that.",
+   "explanation": "\"Pride makes a person easy to fool.\" is correct: Pell's promise to call him the wisest man works because \"Orrin liked the sound of that,\" and he tips his pot for her.",
    "distractor_rationales": [
     {
-     "choice": "Tall containers hold more water than small containers do.",
-     "fault": "contradicts",
-     "reason": "\"Tall containers hold more water than small containers do.\" is contradicted by the story: Orrin's tall pot fills slowly while the small pots spill over."
+     "choice": "Generosity is usually rewarded in the end.",
+     "fault": "not in passage",
+     "reason": "\"Generosity is usually rewarded in the end.\" does not fit: Orrin never chooses to be generous; his water is spilled by a trick."
     },
     {
-     "choice": "Animals are often wiser than the people who rule a village.",
-     "fault": "too broad",
-     "reason": "\"Animals are often wiser than the people who rule a village.\" turns one clever goat into a claim about animals and rulers in general, which the tale never makes."
+     "choice": "Small gifts mean more than large ones.",
+     "fault": "not in passage",
+     "reason": "\"Small gifts mean more than large ones.\" states a lesson the tale never draws; no one gives a gift."
     },
     {
-     "choice": "A village leader should build things that everyone can see.",
+     "choice": "Leaders tend to listen to the poorest people.",
      "fault": "contradicts",
-     "reason": "\"A village leader should build things that everyone can see.\" is the opposite of the tale's point; Orrin's showy pot is exactly what Pell uses against him."
+     "reason": "\"Leaders tend to listen to the poorest people.\" is contradicted by Orrin, who builds a showy pot while the poorer families' pots overflow without his notice."
     }
    ],
    "passage_id": "MRV3-R1-P05",
@@ -753,29 +753,29 @@
    "difficulty": "medium",
    "prompt": "Which statement best expresses a theme of the play?",
    "choices": [
-    "A new job is easier when nobody notices your errors.",
-    "Owning up to a mistake can turn out better than hiding it.",
-    "Older workers should check every task a new worker does.",
-    "Customers care much more about the price than about the color."
+    "Experience matters more than effort when learning a new job.",
+    "Being trusted to make a choice often helps a person choose well.",
+    "Customers forgive almost anything once they get something free.",
+    "A serious mistake at work usually costs a person the job."
    ],
-   "correct_answer": "Owning up to a mistake can turn out better than hiding it.",
-   "why": "Mrs. Dell, I made a mistake when I mixed it.",
-   "explanation": "\"Owning up to a mistake can turn out better than hiding it.\" is correct: Marcus tells Mrs. Dell, \"Mrs. Dell, I made a mistake when I mixed it,\" and instead of trouble he gets an easy fix and a pleased customer, so honesty works out better than a cover story.",
+   "correct_answer": "Being trusted to make a choice often helps a person choose well.",
+   "why": "MS. OKAFOR: [quietly] Is that what happened?",
+   "explanation": "\"Being trusted to make a choice often helps a person choose well.\" is correct: Ms. Okafor never orders Marcus to confess; she asks \"[quietly] Is that what happened?\" and leaves the choice to him, and he chooses well.",
    "distractor_rationales": [
     {
-     "choice": "Customers care much more about the price than about the color.",
-     "fault": "not in passage",
-     "reason": "\"Customers care much more about the price than about the color.\" has no support; Mrs. Dell cares about the color, and the free paint is offered only after she likes it."
-    },
-    {
-     "choice": "Older workers should check every task a new worker does.",
-     "fault": "not in passage",
-     "reason": "\"Older workers should check every task a new worker does.\" states a rule the play never gives; Ms. Okafor lets Marcus decide what to say."
-    },
-    {
-     "choice": "A new job is easier when nobody notices your errors.",
+     "choice": "A serious mistake at work usually costs a person the job.",
      "fault": "contradicts",
-     "reason": "\"A new job is easier when nobody notices your errors.\" is the opposite of the play's point: the error is noticed and admitted, and things go well."
+     "reason": "\"A serious mistake at work usually costs a person the job.\" is contradicted by the ending, where Marcus is handed a fresh can to mix."
+    },
+    {
+     "choice": "Customers forgive almost anything once they get something free.",
+     "fault": "contradicts",
+     "reason": "\"Customers forgive almost anything once they get something free.\" gets the order wrong: Mrs. Dell is pleased with the green before any free paint is offered."
+    },
+    {
+     "choice": "Experience matters more than effort when learning a new job.",
+     "fault": "not in passage",
+     "reason": "\"Experience matters more than effort when learning a new job.\" sets experience against effort, which the play never does."
     }
    ],
    "passage_id": "MRV3-R1-P06",
@@ -870,29 +870,29 @@
    "difficulty": "medium",
    "prompt": "Which statement best expresses a theme of the narrative?",
    "choices": [
-    "Folding paper cranes takes hands that are naturally quick.",
-    "Grandparents should finish hard tasks for their grandchildren.",
-    "Crooked work is worth less than work that is done perfectly.",
-    "What a patient teacher gives can live on in the person taught."
+    "Talent matters more than practice in learning a craft.",
+    "Children learn best from people close to their own age.",
+    "Keepsakes slowly lose their meaning as the years pass.",
+    "Lessons taught with patience often outlive the teacher."
    ],
-   "correct_answer": "What a patient teacher gives can live on in the person taught.",
-   "why": "\"Again,\" I say, and I hear her voice when I say it.",
-   "explanation": "\"What a patient teacher gives can live on in the person taught.\" is correct: Years later the narrator teaches cousins with the grandmother's own word: \"Again,\" I say, and I hear her voice when I say it, so her patient teaching lives on.",
+   "correct_answer": "Lessons taught with patience often outlive the teacher.",
+   "why": "and I hear her voice when I say it",
+   "explanation": "\"Lessons taught with patience often outlive the teacher.\" is correct: Three years after the grandmother is gone, the narrator says \"Again\" to the cousins \"and I hear her voice when I say it.\"",
    "distractor_rationales": [
     {
-     "choice": "Folding paper cranes takes hands that are naturally quick.",
+     "choice": "Talent matters more than practice in learning a craft.",
      "fault": "contradicts",
-     "reason": "\"Folding paper cranes takes hands that are naturally quick.\" is contradicted by the story: the narrator's hands are clumsy and succeed through nine days of practice."
+     "reason": "\"Talent matters more than practice in learning a craft.\" is contradicted by the nine days of practice it takes the clumsy narrator to make a crane."
     },
     {
-     "choice": "Grandparents should finish hard tasks for their grandchildren.",
+     "choice": "Children learn best from people close to their own age.",
      "fault": "contradicts",
-     "reason": "\"Grandparents should finish hard tasks for their grandchildren.\" is the opposite of what happens: the grandmother refuses to fold the crane for the narrator."
+     "reason": "\"Children learn best from people close to their own age.\" is contradicted by the story, in which a grandmother is the teacher."
     },
     {
-     "choice": "Crooked work is worth less than work that is done perfectly.",
+     "choice": "Keepsakes slowly lose their meaning as the years pass.",
      "fault": "contradicts",
-     "reason": "\"Crooked work is worth less than work that is done perfectly.\" is contradicted by the crooked crane being kept on the windowsill \"where she kept the things she meant to keep forever.\""
+     "reason": "\"Keepsakes slowly lose their meaning as the years pass.\" is contradicted by the crooked crane, still on the windowsill, which \"My mother has never moved.\""
     }
    ],
    "passage_id": "MRV3-R1-P07",
@@ -987,29 +987,29 @@
    "difficulty": "hard",
    "prompt": "Which statement best expresses a theme of the story?",
    "choices": [
-    "Gifts from relatives often cause problems nobody expected.",
-    "Children should eat whatever food their parents pack for them each day.",
-    "Clever tricks are the best way to get around a strict rule.",
-    "Speaking honestly about a problem can work better than hiding it."
+    "Close watching usually makes children eat more healthily.",
+    "Machines understand people better than people understand each other.",
+    "Rules at home tend to loosen as children get older.",
+    "Telling people what you need works better than tricking them."
    ],
-   "correct_answer": "Speaking honestly about a problem can work better than hiding it.",
+   "correct_answer": "Telling people what you need works better than tricking them.",
    "why": "Can you tell my mom I'd eat carrots if they were cooked?",
-   "explanation": "\"Speaking honestly about a problem can work better than hiding it.\" is correct: A week of tricks fails, but when Kai asks, \"Can you tell my mom I'd eat carrots if they were cooked?\" the problem is solved that night.",
+   "explanation": "\"Telling people what you need works better than tricking them.\" is correct: A week of tricks fails, but when Kai asks, \"Can you tell my mom I'd eat carrots if they were cooked?\" the problem is solved that night.",
    "distractor_rationales": [
     {
-     "choice": "Gifts from relatives often cause problems nobody expected.",
-     "fault": "too narrow",
-     "reason": "\"Gifts from relatives often cause problems nobody expected.\" fits only the beginning, when the lunchbox starts reporting; it misses how Kai solves the problem."
-    },
-    {
-     "choice": "Children should eat whatever food their parents pack for them each day.",
-     "fault": "not in passage",
-     "reason": "\"Children should eat whatever food their parents pack for them each day.\" states a rule the story never makes; Kai's mother changes the food after hearing what he likes."
-    },
-    {
-     "choice": "Clever tricks are the best way to get around a strict rule.",
+     "choice": "Close watching usually makes children eat more healthily.",
      "fault": "contradicts",
-     "reason": "\"Clever tricks are the best way to get around a strict rule.\" is contradicted by the story: every trick fails, and honesty succeeds."
+     "reason": "\"Close watching usually makes children eat more healthily.\" is contradicted by the week of watching, which only leads Kai to hide his carrots."
+    },
+    {
+     "choice": "Machines understand people better than people understand each other.",
+     "fault": "not in passage",
+     "reason": "\"Machines understand people better than people understand each other.\" overreaches; the lunchbox only passes Kai's words to his mother, who understands them."
+    },
+    {
+     "choice": "Rules at home tend to loosen as children get older.",
+     "fault": "not in passage",
+     "reason": "\"Rules at home tend to loosen as children get older.\" has no support; nothing in the story is about age or changing rules."
     }
    ],
    "passage_id": "MRV3-R1-P08",
@@ -1104,29 +1104,29 @@
    "difficulty": "hard",
    "prompt": "Which statement best expresses a theme of the story?",
    "choices": [
-    "A factory closing harms a town for many years afterward.",
-    "Hard times can lead to learning that a person never planned.",
-    "Sewing is a more useful skill than reading for a young person.",
-    "Children in hard times should give up school to help at home."
+    "Skills learned young are often lost as people grow up.",
+    "Sometimes the work you never chose teaches you the most.",
+    "Books usually teach more than practical work does.",
+    "Hard times tend to pull a family apart."
    ],
-   "correct_answer": "Hard times can lead to learning that a person never planned.",
+   "correct_answer": "Sometimes the work you never chose teaches you the most.",
    "why": "It was not my plan.",
-   "explanation": "\"Hard times can lead to learning that a person never planned.\" is correct: The narrator says of her sewing work, \"It was not my plan,\" yet that winter brings both a skill and Mrs. Bly's lessons, so hardship leads to unplanned learning.",
+   "explanation": "\"Sometimes the work you never chose teaches you the most.\" is correct: The narrator says of her sewing, \"It was not my plan,\" yet she says she learned more that winter than \"in all my years of reading alone.\"",
    "distractor_rationales": [
     {
-     "choice": "Sewing is a more useful skill than reading for a young person.",
-     "fault": "not in passage",
-     "reason": "\"Sewing is a more useful skill than reading for a young person.\" sets the two skills against each other, which the story never does; the narrator gains both."
+     "choice": "Books usually teach more than practical work does.",
+     "fault": "contradicts",
+     "reason": "\"Books usually teach more than practical work does.\" reverses the narrator's conclusion that the winter's work taught her more than her years of reading."
     },
     {
-     "choice": "Children in hard times should give up school to help at home.",
+     "choice": "Hard times tend to pull a family apart.",
      "fault": "contradicts",
-     "reason": "\"Children in hard times should give up school to help at home.\" is contradicted by the lessons Mrs. Bly arranges, which the mother approves."
+     "reason": "\"Hard times tend to pull a family apart.\" is contradicted by the story: the family works together and the mother quietly approves the lessons."
     },
     {
-     "choice": "A factory closing harms a town for many years afterward.",
+     "choice": "Skills learned young are often lost as people grow up.",
      "fault": "contradicts",
-     "reason": "\"A factory closing harms a town for many years afterward.\" is contradicted by the ending: \"The factory opened again in the spring.\""
+     "reason": "\"Skills learned young are often lost as people grow up.\" is contradicted by the ending: \"I still count my stitches.\""
     }
    ],
    "passage_id": "MRV3-R1-P09",
@@ -1221,29 +1221,29 @@
    "difficulty": "medium",
    "prompt": "Which statement best expresses a theme of the poem?",
    "choices": [
-    "Cold weather makes it hard to stay outside and watch the sky.",
-    "Some experiences are best understood by quietly witnessing them.",
-    "Northern lights are easiest to see far from any town's glow.",
-    "Parents usually know more about nature than their children."
+    "Cold and discomfort usually spoil a memorable night.",
+    "Some wonders are understood by watching, not by explaining.",
+    "The most amazing sights are the hardest to reach.",
+    "Children notice beauty sooner than adults do."
    ],
-   "correct_answer": "Some experiences are best understood by quietly witnessing them.",
-   "why": "there are things you learn",
-   "explanation": "\"Some experiences are best understood by quietly witnessing them.\" is correct: The father says only \"Now you know,\" and the speaker realizes \"there are things you learn\" by standing quietly and watching, which is the poem's lesson.",
+   "correct_answer": "Some wonders are understood by watching, not by explaining.",
+   "why": "and simply watched",
+   "explanation": "\"Some wonders are understood by watching, not by explaining.\" is correct: The father who \"explains everything\" stands \"and simply watched,\" and the speaker learns that some things are learned by standing quietly.",
    "distractor_rationales": [
     {
-     "choice": "Parents usually know more about nature than their children.",
+     "choice": "Children notice beauty sooner than adults do.",
      "fault": "contradicts",
-     "reason": "\"Parents usually know more about nature than their children.\" misses the point that the father, \"who explains everything,\" offers no explanation and simply watches."
+     "reason": "\"Children notice beauty sooner than adults do.\" is contradicted by the poem: the father knows to wait and points the speaker toward the sky."
     },
     {
-     "choice": "Northern lights are easiest to see far from any town's glow.",
-     "fault": "too narrow",
-     "reason": "\"Northern lights are easiest to see far from any town's glow.\" fits only the setting, a field past \"the last farm light\"; the poem is about what watching teaches."
+     "choice": "The most amazing sights are the hardest to reach.",
+     "fault": "not in passage",
+     "reason": "\"The most amazing sights are the hardest to reach.\" has no support; the family simply drives past the last farm light."
     },
     {
-     "choice": "Cold weather makes it hard to stay outside and watch the sky.",
-     "fault": "wrong part",
-     "reason": "\"Cold weather makes it hard to stay outside and watch the sky.\" seizes on the cold in the second stanza, which the family endures; it is not what the poem means."
+     "choice": "Cold and discomfort usually spoil a memorable night.",
+     "fault": "contradicts",
+     "reason": "\"Cold and discomfort usually spoil a memorable night.\" is contradicted by the poem: the cold climbs through their boots, yet the night is unforgettable."
     }
    ],
    "passage_id": "MRV3-R1-P10",
@@ -1339,28 +1339,28 @@
    "prompt": "Which statement best expresses the central idea of the passage?",
    "choices": [
     "Seahorses are odd fish, built for holding still and carried by fathers.",
-    "A seahorse catches shrimp by sucking them up through its long snout.",
-    "Seahorse fathers give birth to hundreds of young at one time.",
-    "Seahorses grip seagrass mainly to hide from the animals that hunt them."
+    "Seahorses are fast hunters whose fathers guard the young until they can swim.",
+    "Seahorses survive mostly by hiding, and their mothers carry and raise the young.",
+    "A seahorse feeds by drawing small animals into its snout."
    ],
    "correct_answer": "Seahorses are odd fish, built for holding still and carried by fathers.",
    "why": "which parent carries the babies",
-   "explanation": "\"Seahorses are odd fish, built for holding still and carried by fathers.\" is correct: The passage describes how seahorses swim slowly and hold still, then turns to \"which parent carries the babies\"; together these make them unusual fish.",
+   "explanation": "\"Seahorses are odd fish, built for holding still and carried by fathers.\" is correct: The passage describes how seahorses swim slowly and hold still, then turns to \"which parent carries the babies.\"",
    "distractor_rationales": [
     {
-     "choice": "A seahorse catches shrimp by sucking them up through its long snout.",
-     "fault": "too narrow",
-     "reason": "\"A seahorse catches shrimp by sucking them up through its long snout.\" is true but describes only how seahorses feed, one detail in the third paragraph."
-    },
-    {
-     "choice": "Seahorse fathers give birth to hundreds of young at one time.",
-     "fault": "too narrow",
-     "reason": "\"Seahorse fathers give birth to hundreds of young at one time.\" is one part of the passage and overstates it: the passage says \"dozens or even hundreds,\" and it covers swimming and feeding too."
-    },
-    {
-     "choice": "Seahorses grip seagrass mainly to hide from the animals that hunt them.",
+     "choice": "Seahorses are fast hunters whose fathers guard the young until they can swim.",
      "fault": "contradicts",
-     "reason": "\"Seahorses grip seagrass mainly to hide from the animals that hunt them.\" gives the wrong reason: seahorses hold on because they swim poorly, and the passage says color change is what keeps them hidden."
+     "reason": "\"Seahorses are fast hunters whose fathers guard the young until they can swim.\" misstates both parts: seahorses are \"poor swimmers,\" and the young are on their own from birth."
+    },
+    {
+     "choice": "Seahorses survive mostly by hiding, and their mothers carry and raise the young.",
+     "fault": "contradicts",
+     "reason": "\"Seahorses survive mostly by hiding, and their mothers carry and raise the young.\" gets the parent wrong: the female puts her eggs in the male's pouch, and he carries them."
+    },
+    {
+     "choice": "A seahorse feeds by drawing small animals into its snout.",
+     "fault": "too narrow",
+     "reason": "\"A seahorse feeds by drawing small animals into its snout.\" describes only how seahorses eat, one detail from the third paragraph."
     }
    ],
    "passage_id": "MRV3-R2-P01",
@@ -1455,29 +1455,29 @@
    "difficulty": "medium",
    "prompt": "Which statement best expresses the central idea of the passage?",
    "choices": [
-    "Early zippers often came apart because their metal teeth were too small.",
-    "The name of the zipper comes from the sound it makes when used.",
-    "Gideon Sundback invented the very first zipper that people used.",
+    "Sundback's design gave the zipper neat rows of teeth that fit together.",
+    "Zippers worked well from the start, and later changes only gave them a new name.",
+    "A zipper's teeth lock on their own, and the slider is needed only to pull them apart.",
     "A zipper uses shaped teeth and a Y-shaped slider to lock and unlock."
    ],
    "correct_answer": "A zipper uses shaped teeth and a Y-shaped slider to lock and unlock.",
    "why": "in the shape of the letter Y",
-   "explanation": "\"A zipper uses shaped teeth and a Y-shaped slider to lock and unlock.\" is correct: Most of the passage explains how the teeth and the slider, with channels \"in the shape of the letter Y,\" join and separate the two rows.",
+   "explanation": "\"A zipper uses shaped teeth and a Y-shaped slider to lock and unlock.\" is correct: Most of the passage explains how the teeth and the slider, with channels \"in the shape of the letter Y,\" join and separate the rows.",
    "distractor_rationales": [
     {
-     "choice": "Gideon Sundback invented the very first zipper that people used.",
-     "fault": "overstates",
-     "reason": "\"Gideon Sundback invented the very first zipper that people used.\" goes beyond the passage, which says an early version came earlier and Sundback designed an improved one."
+     "choice": "A zipper's teeth lock on their own, and the slider is needed only to pull them apart.",
+     "fault": "contradicts",
+     "reason": "\"A zipper's teeth lock on their own, and the slider is needed only to pull them apart.\" misstates how the parts work together: the slider squeezes the teeth together on the way up as well as wedging them apart."
     },
     {
-     "choice": "The name of the zipper comes from the sound it makes when used.",
+     "choice": "Zippers worked well from the start, and later changes only gave them a new name.",
+     "fault": "contradicts",
+     "reason": "\"Zippers worked well from the start, and later changes only gave them a new name.\" misstates the history: the early version \"often came apart,\" and Sundback redesigned the teeth."
+    },
+    {
+     "choice": "Sundback's design gave the zipper neat rows of teeth that fit together.",
      "fault": "too narrow",
-     "reason": "\"The name of the zipper comes from the sound it makes when used.\" is one detail from the last paragraph, not what the passage mostly explains."
-    },
-    {
-     "choice": "Early zippers often came apart because their metal teeth were too small.",
-     "fault": "not in passage",
-     "reason": "\"Early zippers often came apart because their metal teeth were too small.\" adds a cause the passage never gives; it says only that the early version \"often came apart.\""
+     "reason": "\"Sundback's design gave the zipper neat rows of teeth that fit together.\" covers only one sentence of history, not the passage's explanation of how a zipper works."
     }
    ],
    "passage_id": "MRV3-R2-P02",
@@ -1573,28 +1573,28 @@
    "prompt": "Which statement best expresses the central idea of the passage?",
    "choices": [
     "A dandelion seed stays aloft because a ring of air forms above its bristles.",
-    "Most dandelion seeds land only a few meters from the parent plant.",
-    "Engineers have already built many small sensors that fly like dandelion seeds.",
-    "A dandelion's puff catches the air beneath it the way an umbrella does."
+    "A dandelion seed floats because its puff traps air underneath it, as an umbrella does.",
+    "Researchers found that a seed flies best when its bristles press against a ring of air.",
+    "Most dandelion seeds come down close to the plant they grew on."
    ],
    "correct_answer": "A dandelion seed stays aloft because a ring of air forms above its bristles.",
    "why": "forms a ring of swirling air that floats just above the puff",
-   "explanation": "\"A dandelion seed stays aloft because a ring of air forms above its bristles.\" is correct: The passage centers on the 2018 finding that air through the bristles \"forms a ring of swirling air that floats just above the puff,\" which slows the seed's fall.",
+   "explanation": "\"A dandelion seed stays aloft because a ring of air forms above its bristles.\" is correct: The passage centers on the finding that air through the bristles \"forms a ring of swirling air that floats just above the puff,\" slowing the seed's fall.",
    "distractor_rationales": [
     {
-     "choice": "Most dandelion seeds land only a few meters from the parent plant.",
-     "fault": "too narrow",
-     "reason": "\"Most dandelion seeds land only a few meters from the parent plant.\" is true but is a single detail from the fourth paragraph, not what the passage is about."
-    },
-    {
-     "choice": "Engineers have already built many small sensors that fly like dandelion seeds.",
-     "fault": "overstates",
-     "reason": "\"Engineers have already built many small sensors that fly like dandelion seeds.\" turns \"Some engineers now wonder\" into something already done."
-    },
-    {
-     "choice": "A dandelion's puff catches the air beneath it the way an umbrella does.",
+     "choice": "A dandelion seed floats because its puff traps air underneath it, as an umbrella does.",
      "fault": "contradicts",
-     "reason": "\"A dandelion's puff catches the air beneath it the way an umbrella does.\" states the old assumption that the 2018 research showed to be wrong."
+     "reason": "\"A dandelion seed floats because its puff traps air underneath it, as an umbrella does.\" states the old idea that the 2018 research corrected."
+    },
+    {
+     "choice": "Researchers found that a seed flies best when its bristles press against a ring of air.",
+     "fault": "contradicts",
+     "reason": "\"Researchers found that a seed flies best when its bristles press against a ring of air.\" misstates the finding: the ring floats above the puff \"without touching it.\""
+    },
+    {
+     "choice": "Most dandelion seeds come down close to the plant they grew on.",
+     "fault": "too narrow",
+     "reason": "\"Most dandelion seeds come down close to the plant they grew on.\" is one detail from the fourth paragraph, not what the passage explains."
     }
    ],
    "passage_id": "MRV3-R2-P03",
@@ -1689,29 +1689,29 @@
    "difficulty": "medium",
    "prompt": "Which statement best expresses the central idea of the passage?",
    "choices": [
-    "Students today use the abacus more often than they use calculators.",
-    "The word 'calculate' comes from a Latin word for a small stone.",
+    "Japan's soroban has one bead above the bar and four beads below it.",
+    "The abacus replaced counting boards because beads could hold much larger numbers.",
     "The abacus grew out of counting boards and uses place value to aid arithmetic.",
-    "The soroban needs fewer beads than the suanpan to show each digit."
+    "Counting boards and the abacus were separate inventions that worked in different ways."
    ],
    "correct_answer": "The abacus grew out of counting boards and uses place value to aid arithmetic.",
    "why": "Each rod stands for a place value",
-   "explanation": "\"The abacus grew out of counting boards and uses place value to aid arithmetic.\" is correct: The passage traces the abacus from counting boards to bead frames and explains that \"Each rod stands for a place value,\" which is how it makes arithmetic easier.",
+   "explanation": "\"The abacus grew out of counting boards and uses place value to aid arithmetic.\" is correct: The passage traces the abacus from counting boards to bead frames and explains that \"Each rod stands for a place value.\"",
    "distractor_rationales": [
     {
-     "choice": "The soroban needs fewer beads than the suanpan to show each digit.",
-     "fault": "too narrow",
-     "reason": "\"The soroban needs fewer beads than the suanpan to show each digit.\" is true but compares two designs in a single paragraph."
+     "choice": "Counting boards and the abacus were separate inventions that worked in different ways.",
+     "fault": "contradicts",
+     "reason": "\"Counting boards and the abacus were separate inventions that worked in different ways.\" misstates the relationship: the passage says counting boards were turned into frames of beads, and both use place value."
     },
     {
-     "choice": "The word 'calculate' comes from a Latin word for a small stone.",
-     "fault": "too narrow",
-     "reason": "\"The word 'calculate' comes from a Latin word for a small stone.\" is a single fact from the second paragraph, not the passage's main point."
-    },
-    {
-     "choice": "Students today use the abacus more often than they use calculators.",
+     "choice": "The abacus replaced counting boards because beads could hold much larger numbers.",
      "fault": "not in passage",
-     "reason": "\"Students today use the abacus more often than they use calculators.\" compares how often each is used, which the passage never does."
+     "reason": "\"The abacus replaced counting boards because beads could hold much larger numbers.\" gives a reason the passage never states for the change from boards to beads."
+    },
+    {
+     "choice": "Japan's soroban has one bead above the bar and four beads below it.",
+     "fault": "too narrow",
+     "reason": "\"Japan's soroban has one bead above the bar and four beads below it.\" describes one design from the third paragraph, not the passage as a whole."
     }
    ],
    "passage_id": "MRV3-R2-P04",
@@ -1806,29 +1806,29 @@
    "difficulty": "medium",
    "prompt": "Which statement best expresses the central idea of the passage?",
    "choices": [
-    "The Green Belt Movement paid women for every seedling they planted.",
-    "Maathai was arrested many times for planting trees on land that she did not own.",
+    "Maathai's tree planting succeeded because powerful leaders gave her public land.",
+    "Maathai received the Nobel Peace Prize in 2004 for her work.",
     "Maathai led a tree-planting effort that helped both the land and its people.",
-    "Maathai was the first woman in her region to earn a doctorate."
+    "Maathai is remembered mostly for her scientific research on Kenya's forests."
    ],
    "correct_answer": "Maathai led a tree-planting effort that helped both the land and its people.",
    "why": "planted tens of millions of trees",
-   "explanation": "\"Maathai led a tree-planting effort that helped both the land and its people.\" is correct: The passage follows how Maathai saw the damage, started the Green Belt Movement, and how its women \"planted tens of millions of trees\" for families and the land.",
+   "explanation": "\"Maathai led a tree-planting effort that helped both the land and its people.\" is correct: The passage follows how Maathai saw the damage, started the Green Belt Movement, and how its women \"planted tens of millions of trees.\"",
    "distractor_rationales": [
     {
-     "choice": "Maathai was the first woman in her region to earn a doctorate.",
-     "fault": "too narrow",
-     "reason": "\"Maathai was the first woman in her region to earn a doctorate.\" is true but is one achievement in the second paragraph, not the focus of the passage."
-    },
-    {
-     "choice": "The Green Belt Movement paid women for every seedling they planted.",
-     "fault": "overstates",
-     "reason": "\"The Green Belt Movement paid women for every seedling they planted.\" drops the condition in the passage: women were paid for each seedling \"that survived.\""
-    },
-    {
-     "choice": "Maathai was arrested many times for planting trees on land that she did not own.",
+     "choice": "Maathai is remembered mostly for her scientific research on Kenya's forests.",
      "fault": "contradicts",
-     "reason": "\"Maathai was arrested many times for planting trees on land that she did not own.\" gives the wrong reason; she was arrested for protesting when powerful people tried to take public land."
+     "reason": "\"Maathai is remembered mostly for her scientific research on Kenya's forests.\" misstates the emphasis: the passage barely mentions her research and focuses on the tree-planting movement."
+    },
+    {
+     "choice": "Maathai's tree planting succeeded because powerful leaders gave her public land.",
+     "fault": "contradicts",
+     "reason": "\"Maathai's tree planting succeeded because powerful leaders gave her public land.\" reverses the relationship: she protested when powerful people tried to take public land and was arrested."
+    },
+    {
+     "choice": "Maathai received the Nobel Peace Prize in 2004 for her work.",
+     "fault": "too narrow",
+     "reason": "\"Maathai received the Nobel Peace Prize in 2004 for her work.\" is one event from the last paragraph, not the passage's main point."
     }
    ],
    "passage_id": "MRV3-R2-P05",
@@ -1923,29 +1923,29 @@
    "difficulty": "medium",
    "prompt": "Which statement best expresses the central idea of the passage?",
    "choices": [
-    "Pangolins are the only mammals whose bodies are covered in scales.",
+    "Pangolins' armor protects them so well that trade bans have become unnecessary.",
     "A pangolin's armor guards it from predators but leaves it open to people.",
-    "Rescue groups have saved most of the pangolins taken by smugglers.",
-    "Pangolins catch ants and termites with long and very sticky tongues."
+    "Pangolins grind their food with small stones that they swallow.",
+    "Pangolins are in danger mainly because lions and leopards can break through their scales."
    ],
    "correct_answer": "A pangolin's armor guards it from predators but leaves it open to people.",
-   "why": "The same armor that protects pangolins from lions has made them a target for people.",
-   "explanation": "\"A pangolin's armor guards it from predators but leaves it open to people.\" is correct: The passage first shows how the scales defend against animals, then explains that \"The same armor that protects pangolins from lions has made them a target for people.\"",
+   "why": "has made them a target for people",
+   "explanation": "\"A pangolin's armor guards it from predators but leaves it open to people.\" is correct: The passage first shows how the scales defend against animals, then explains that the same armor \"has made them a target for people.\"",
    "distractor_rationales": [
     {
-     "choice": "Pangolins catch ants and termites with long and very sticky tongues.",
-     "fault": "too narrow",
-     "reason": "\"Pangolins catch ants and termites with long and very sticky tongues.\" is true but covers only how pangolins feed, part of one paragraph."
+     "choice": "Pangolins are in danger mainly because lions and leopards can break through their scales.",
+     "fault": "contradicts",
+     "reason": "\"Pangolins are in danger mainly because lions and leopards can break through their scales.\" misstates the threat: predators \"usually cannot break through,\" and the danger comes from people."
     },
     {
-     "choice": "Pangolins are the only mammals whose bodies are covered in scales.",
-     "fault": "too narrow",
-     "reason": "\"Pangolins are the only mammals whose bodies are covered in scales.\" is a fact from the first paragraph, not the point the passage builds to."
+     "choice": "Pangolins' armor protects them so well that trade bans have become unnecessary.",
+     "fault": "contradicts",
+     "reason": "\"Pangolins' armor protects them so well that trade bans have become unnecessary.\" misstates the conclusion: the armor fails against people, and whether protection is enough \"is still uncertain.\""
     },
     {
-     "choice": "Rescue groups have saved most of the pangolins taken by smugglers.",
-     "fault": "overstates",
-     "reason": "\"Rescue groups have saved most of the pangolins taken by smugglers.\" goes beyond the passage, which says groups rescue some pangolins and that success \"is still uncertain.\""
+     "choice": "Pangolins grind their food with small stones that they swallow.",
+     "fault": "too narrow",
+     "reason": "\"Pangolins grind their food with small stones that they swallow.\" describes only how pangolins digest food, a detail from the third paragraph."
     }
    ],
    "passage_id": "MRV3-R2-P06",
@@ -2040,29 +2040,29 @@
    "difficulty": "medium",
    "prompt": "Which statement best expresses the central idea of the passage?",
    "choices": [
-    "Comb plates keep riders' loose shoelaces from being caught in the steps.",
-    "A motor beneath the top landing turns gears that move the chains.",
-    "An escalator's handrail moves at nearly the same speed as its steps.",
+    "The handrail is driven so that it keeps pace with the steps.",
+    "An escalator's steps stay flat the whole way up, while the handrail does the lifting.",
+    "An escalator makes new steps at the bottom and folds them away for good at the top.",
     "An escalator is one loop of steps whose tracks shape them into stairs."
    ],
    "correct_answer": "An escalator is one loop of steps whose tracks shape them into stairs.",
    "why": "the same steps go around and around in a giant loop",
-   "explanation": "\"An escalator is one loop of steps whose tracks shape them into stairs.\" is correct: The passage explains that \"the same steps go around and around in a giant loop\" and that two tracks turn them into stairs and back into a platform.",
+   "explanation": "\"An escalator is one loop of steps whose tracks shape them into stairs.\" is correct: The passage explains that \"the same steps go around and around in a giant loop\" and that two tracks turn them into stairs and back.",
    "distractor_rationales": [
     {
-     "choice": "An escalator's handrail moves at nearly the same speed as its steps.",
-     "fault": "too narrow",
-     "reason": "\"An escalator's handrail moves at nearly the same speed as its steps.\" is true but describes only the handrail, the subject of the last paragraph."
+     "choice": "An escalator makes new steps at the bottom and folds them away for good at the top.",
+     "fault": "contradicts",
+     "reason": "\"An escalator makes new steps at the bottom and folds them away for good at the top.\" misstates the main point: the same steps travel back underneath and come around again."
     },
     {
-     "choice": "A motor beneath the top landing turns gears that move the chains.",
-     "fault": "too narrow",
-     "reason": "\"A motor beneath the top landing turns gears that move the chains.\" is true but is one detail from the second paragraph."
+     "choice": "An escalator's steps stay flat the whole way up, while the handrail does the lifting.",
+     "fault": "contradicts",
+     "reason": "\"An escalator's steps stay flat the whole way up, while the handrail does the lifting.\" misstates how it works: the tracks raise the back of each step to form a staircase."
     },
     {
-     "choice": "Comb plates keep riders' loose shoelaces from being caught in the steps.",
+     "choice": "The handrail is driven so that it keeps pace with the steps.",
      "fault": "too narrow",
-     "reason": "\"Comb plates keep riders' loose shoelaces from being caught in the steps.\" is a detail from the fourth paragraph, not what the passage mainly explains."
+     "reason": "\"The handrail is driven so that it keeps pace with the steps.\" describes only the handrail, the subject of the last paragraph."
     }
    ],
    "passage_id": "MRV3-R2-P07",
@@ -2158,28 +2158,28 @@
    "prompt": "Which statement best expresses the central idea of the passage?",
    "choices": [
     "The Inca kept records on knotted cords that scholars can only partly read.",
-    "The colors of khipu cords showed exactly what was being counted.",
-    "Leland Locke showed that khipus record numbers using place value.",
-    "Inca record keepers recited long histories from their knotted cords."
+    "Locke showed that khipu knots record numbers by place value.",
+    "The Inca wrote with knotted cords, and scholars can now read every khipu that survives.",
+    "Khipus were simple counting tools, so scholars agree that they held only numbers."
    ],
    "correct_answer": "The Inca kept records on knotted cords that scholars can only partly read.",
    "why": "scholars are still working to read the ones",
-   "explanation": "\"The Inca kept records on knotted cords that scholars can only partly read.\" is correct: The passage explains how khipus recorded numbers and ends by noting that \"scholars are still working to read the ones\" that do not follow the number system.",
+   "explanation": "\"The Inca kept records on knotted cords that scholars can only partly read.\" is correct: The passage explains how khipus recorded numbers and ends by noting that \"scholars are still working to read the ones\" that break the number system's rules.",
    "distractor_rationales": [
     {
-     "choice": "Leland Locke showed that khipus record numbers using place value.",
-     "fault": "too narrow",
-     "reason": "\"Leland Locke showed that khipus record numbers using place value.\" is true but is one discovery described in the third paragraph."
+     "choice": "The Inca wrote with knotted cords, and scholars can now read every khipu that survives.",
+     "fault": "contradicts",
+     "reason": "\"The Inca wrote with knotted cords, and scholars can now read every khipu that survives.\" misstates the conclusion: scholars are still working on khipus they cannot yet read."
     },
     {
-     "choice": "Inca record keepers recited long histories from their knotted cords.",
-     "fault": "too narrow",
-     "reason": "\"Inca record keepers recited long histories from their knotted cords.\" repeats a report from the fourth paragraph and treats it as the main idea."
+     "choice": "Khipus were simple counting tools, so scholars agree that they held only numbers.",
+     "fault": "contradicts",
+     "reason": "\"Khipus were simple counting tools, so scholars agree that they held only numbers.\" misstates the debate: some researchers suspect khipus recorded names, places, or stories."
     },
     {
-     "choice": "The colors of khipu cords showed exactly what was being counted.",
-     "fault": "overstates",
-     "reason": "\"The colors of khipu cords showed exactly what was being counted.\" turns the passage's \"may have shown\" into a certainty."
+     "choice": "Locke showed that khipu knots record numbers by place value.",
+     "fault": "too narrow",
+     "reason": "\"Locke showed that khipu knots record numbers by place value.\" is one discovery from the third paragraph, not the passage's main point."
     }
    ],
    "passage_id": "MRV3-R2-P08",
@@ -2187,7 +2187,7 @@
    "genre": "history article",
    "map_area": "Informational Text",
    "grade_target": 7,
-   "passage": "The Inca Empire stretched along the mountains of western South America in the 1400s and early 1500s, and it ran one of the largest states of its time. It collected taxes, counted its people, and stored food in thousands of warehouses. Yet as far as historians can tell, it had no system of writing like the ones used in Europe or China.\n\nInstead, the Inca kept records on khipus (also spelled quipus), bundles of knotted cords. A khipu has one main cord with many thinner cords hanging from it, sometimes hundreds. Some of those cords have smaller cords tied to them in turn. The cords came in different colors, and the color may have shown what was being counted.\n\nIn the early 1900s, a researcher named Leland Locke showed that many khipus record numbers using place value, much like our own system. Knots near the bottom of a cord stand for ones, the next cluster up for tens, then hundreds, and so on. Different kinds of knots, including long knots with several turns, show the digits. An empty space on the cord stands for zero.\n\nReading and making khipus was a job for trained record keepers, called khipukamayuq. Spanish writers who arrived in the 1500s described these keepers reciting long accounts, and even histories, from their cords.\n\nThat detail is one reason some researchers suspect that khipus recorded more than numbers: perhaps names, places, or even stories. So far, nobody has been able to prove it. Several hundred khipus survive in museums today, and scholars are still working to read the ones whose knots seem to break the rules of the number system.",
+   "passage": "The Inca Empire stretched along the mountains of western South America in the 1400s and early 1500s, and it ran one of the largest states of its time. It collected taxes, counted its people, and stored food in thousands of warehouses. Yet as far as historians can tell, it had no system of writing like the ones used in Europe or China.\n\nInstead, the Inca kept records on khipus (also spelled quipus), bundles of knotted cords. A khipu has one main cord with many thinner cords hanging from it, sometimes hundreds. Some of those cords have smaller cords tied to them in turn. The cords came in different colors, and the color may have shown what was being counted.\n\nIn the early 1900s, a researcher named Leland Locke showed that many khipus record numbers using place value, much like our own system. Knots near the bottom of a cord stand for ones, the next cluster up for tens, then hundreds, and so on. Different kinds of knots, including long knots with several turns, show the digits. An empty space on the cord stands for zero.\n\nReading and making khipus was a job for trained record keepers, called khipukamayuq. Spanish writers who arrived in the 1500s described these keepers reciting long accounts, and even histories, from their cords.\n\nThat detail is one reason some researchers suspect that khipus recorded more than numbers: perhaps names, places, or even stories. So far, nobody has been able to prove it. Hundreds of khipus survive in museums today, and scholars are still working to read the ones whose knots seem to break the rules of the number system.",
    "key_slot": "A"
   },
   {
@@ -2226,7 +2226,7 @@
    "genre": "history article",
    "map_area": "Informational Text",
    "grade_target": 7,
-   "passage": "The Inca Empire stretched along the mountains of western South America in the 1400s and early 1500s, and it ran one of the largest states of its time. It collected taxes, counted its people, and stored food in thousands of warehouses. Yet as far as historians can tell, it had no system of writing like the ones used in Europe or China.\n\nInstead, the Inca kept records on khipus (also spelled quipus), bundles of knotted cords. A khipu has one main cord with many thinner cords hanging from it, sometimes hundreds. Some of those cords have smaller cords tied to them in turn. The cords came in different colors, and the color may have shown what was being counted.\n\nIn the early 1900s, a researcher named Leland Locke showed that many khipus record numbers using place value, much like our own system. Knots near the bottom of a cord stand for ones, the next cluster up for tens, then hundreds, and so on. Different kinds of knots, including long knots with several turns, show the digits. An empty space on the cord stands for zero.\n\nReading and making khipus was a job for trained record keepers, called khipukamayuq. Spanish writers who arrived in the 1500s described these keepers reciting long accounts, and even histories, from their cords.\n\nThat detail is one reason some researchers suspect that khipus recorded more than numbers: perhaps names, places, or even stories. So far, nobody has been able to prove it. Several hundred khipus survive in museums today, and scholars are still working to read the ones whose knots seem to break the rules of the number system.",
+   "passage": "The Inca Empire stretched along the mountains of western South America in the 1400s and early 1500s, and it ran one of the largest states of its time. It collected taxes, counted its people, and stored food in thousands of warehouses. Yet as far as historians can tell, it had no system of writing like the ones used in Europe or China.\n\nInstead, the Inca kept records on khipus (also spelled quipus), bundles of knotted cords. A khipu has one main cord with many thinner cords hanging from it, sometimes hundreds. Some of those cords have smaller cords tied to them in turn. The cords came in different colors, and the color may have shown what was being counted.\n\nIn the early 1900s, a researcher named Leland Locke showed that many khipus record numbers using place value, much like our own system. Knots near the bottom of a cord stand for ones, the next cluster up for tens, then hundreds, and so on. Different kinds of knots, including long knots with several turns, show the digits. An empty space on the cord stands for zero.\n\nReading and making khipus was a job for trained record keepers, called khipukamayuq. Spanish writers who arrived in the 1500s described these keepers reciting long accounts, and even histories, from their cords.\n\nThat detail is one reason some researchers suspect that khipus recorded more than numbers: perhaps names, places, or even stories. So far, nobody has been able to prove it. Hundreds of khipus survive in museums today, and scholars are still working to read the ones whose knots seem to break the rules of the number system.",
    "key_slot": "D"
   },
   {
@@ -2265,7 +2265,7 @@
    "genre": "history article",
    "map_area": "Informational Text",
    "grade_target": 7,
-   "passage": "The Inca Empire stretched along the mountains of western South America in the 1400s and early 1500s, and it ran one of the largest states of its time. It collected taxes, counted its people, and stored food in thousands of warehouses. Yet as far as historians can tell, it had no system of writing like the ones used in Europe or China.\n\nInstead, the Inca kept records on khipus (also spelled quipus), bundles of knotted cords. A khipu has one main cord with many thinner cords hanging from it, sometimes hundreds. Some of those cords have smaller cords tied to them in turn. The cords came in different colors, and the color may have shown what was being counted.\n\nIn the early 1900s, a researcher named Leland Locke showed that many khipus record numbers using place value, much like our own system. Knots near the bottom of a cord stand for ones, the next cluster up for tens, then hundreds, and so on. Different kinds of knots, including long knots with several turns, show the digits. An empty space on the cord stands for zero.\n\nReading and making khipus was a job for trained record keepers, called khipukamayuq. Spanish writers who arrived in the 1500s described these keepers reciting long accounts, and even histories, from their cords.\n\nThat detail is one reason some researchers suspect that khipus recorded more than numbers: perhaps names, places, or even stories. So far, nobody has been able to prove it. Several hundred khipus survive in museums today, and scholars are still working to read the ones whose knots seem to break the rules of the number system.",
+   "passage": "The Inca Empire stretched along the mountains of western South America in the 1400s and early 1500s, and it ran one of the largest states of its time. It collected taxes, counted its people, and stored food in thousands of warehouses. Yet as far as historians can tell, it had no system of writing like the ones used in Europe or China.\n\nInstead, the Inca kept records on khipus (also spelled quipus), bundles of knotted cords. A khipu has one main cord with many thinner cords hanging from it, sometimes hundreds. Some of those cords have smaller cords tied to them in turn. The cords came in different colors, and the color may have shown what was being counted.\n\nIn the early 1900s, a researcher named Leland Locke showed that many khipus record numbers using place value, much like our own system. Knots near the bottom of a cord stand for ones, the next cluster up for tens, then hundreds, and so on. Different kinds of knots, including long knots with several turns, show the digits. An empty space on the cord stands for zero.\n\nReading and making khipus was a job for trained record keepers, called khipukamayuq. Spanish writers who arrived in the 1500s described these keepers reciting long accounts, and even histories, from their cords.\n\nThat detail is one reason some researchers suspect that khipus recorded more than numbers: perhaps names, places, or even stories. So far, nobody has been able to prove it. Hundreds of khipus survive in museums today, and scholars are still working to read the ones whose knots seem to break the rules of the number system.",
    "key_slot": "A"
   },
   {
@@ -2274,29 +2274,29 @@
    "difficulty": "medium",
    "prompt": "Which statement best expresses the central idea of the essay?",
    "choices": [
-    "Landscaping crews depend on fast tools to finish many yards a day.",
-    "Gas leaf blowers release more pollution than any modern car does.",
-    "Electric leaf blowers cost more than gas leaf blowers do.",
+    "Many gas blowers burn fuel less cleanly than modern cars do.",
+    "Gas blowers cause real harm, but they are too useful to limit in any way.",
+    "The town should ban gas blowers right away, since the cost to crews is unimportant.",
     "The town should slowly replace gas blowers while helping crews switch."
    ],
    "correct_answer": "The town should slowly replace gas blowers while helping crews switch.",
    "why": "I think it is time for our town to phase out gas-powered leaf blowers.",
-   "explanation": "\"The town should slowly replace gas blowers while helping crews switch.\" is correct: The author states, \"I think it is time for our town to phase out gas-powered leaf blowers,\" and later proposes doing it over a few years with help for crews.",
+   "explanation": "\"The town should slowly replace gas blowers while helping crews switch.\" is correct: The author states, \"I think it is time for our town to phase out gas-powered leaf blowers,\" and proposes doing it over a few years with help for crews.",
    "distractor_rationales": [
     {
-     "choice": "Electric leaf blowers cost more than gas leaf blowers do.",
-     "fault": "not in passage",
-     "reason": "\"Electric leaf blowers cost more than gas leaf blowers do.\" makes a price comparison the essay never makes; it says only that electric blowers \"cost money.\""
+     "choice": "The town should ban gas blowers right away, since the cost to crews is unimportant.",
+     "fault": "contradicts",
+     "reason": "\"The town should ban gas blowers right away, since the cost to crews is unimportant.\" misstates the author's plan, which sets a date years away and calls the crews' concern \"fair.\""
     },
     {
-     "choice": "Gas leaf blowers release more pollution than any modern car does.",
-     "fault": "overstates",
-     "reason": "\"Gas leaf blowers release more pollution than any modern car does.\" exaggerates the essay's hedged claim, which compares certain pollutants \"by some estimates.\""
+     "choice": "Gas blowers cause real harm, but they are too useful to limit in any way.",
+     "fault": "contradicts",
+     "reason": "\"Gas blowers cause real harm, but they are too useful to limit in any way.\" reverses the author's conclusion, which is to phase gas blowers out."
     },
     {
-     "choice": "Landscaping crews depend on fast tools to finish many yards a day.",
+     "choice": "Many gas blowers burn fuel less cleanly than modern cars do.",
      "fault": "too narrow",
-     "reason": "\"Landscaping crews depend on fast tools to finish many yards a day.\" states the counterclaim in the fourth paragraph, which the author answers rather than argues."
+     "reason": "\"Many gas blowers burn fuel less cleanly than modern cars do.\" is one supporting point from the third paragraph, not the essay's claim."
     }
    ],
    "passage_id": "MRV3-R2-P09",
@@ -2391,29 +2391,29 @@
    "difficulty": "medium",
    "prompt": "Which statement best expresses the central idea of the passage?",
    "choices": [
-    "Morgan's inventions came from solving safety problems he noticed around him.",
-    "Morgan helped rescue workers trapped in a tunnel under Lake Erie.",
-    "Morgan sold the rights to his traffic signal to General Electric.",
-    "Morgan's lack of schooling kept him from getting credit for his work."
+    "Morgan's curiosity led to inventions that made people safer.",
+    "Morgan's best inventions came from ideas he bought from other inventors.",
+    "Morgan is remembered mainly for his business success, not his inventions.",
+    "Morgan and his brother wore safety hoods during a tunnel rescue."
    ],
-   "correct_answer": "Morgan's inventions came from solving safety problems he noticed around him.",
+   "correct_answer": "Morgan's curiosity led to inventions that made people safer.",
    "why": "he had a mind that kept asking how things could work better",
-   "explanation": "\"Morgan's inventions came from solving safety problems he noticed around him.\" is correct: The passage opens by saying \"he had a mind that kept asking how things could work better\" and then shows that curiosity at work in the safety hood and the traffic signal.",
+   "explanation": "\"Morgan's curiosity led to inventions that made people safer.\" is correct: The passage opens by saying \"he had a mind that kept asking how things could work better\" and then describes his safety hood and traffic signal.",
    "distractor_rationales": [
     {
-     "choice": "Morgan helped rescue workers trapped in a tunnel under Lake Erie.",
-     "fault": "too narrow",
-     "reason": "\"Morgan helped rescue workers trapped in a tunnel under Lake Erie.\" is true but is one event in the fourth paragraph."
+     "choice": "Morgan's best inventions came from ideas he bought from other inventors.",
+     "fault": "not in passage",
+     "reason": "\"Morgan's best inventions came from ideas he bought from other inventors.\" has no support; the passage presents the hood and the signal as his own designs."
     },
     {
-     "choice": "Morgan sold the rights to his traffic signal to General Electric.",
-     "fault": "too narrow",
-     "reason": "\"Morgan sold the rights to his traffic signal to General Electric.\" is one detail from the fifth paragraph, not the passage's main point."
-    },
-    {
-     "choice": "Morgan's lack of schooling kept him from getting credit for his work.",
+     "choice": "Morgan is remembered mainly for his business success, not his inventions.",
      "fault": "contradicts",
-     "reason": "\"Morgan's lack of schooling kept him from getting credit for his work.\" gives the wrong cause; the passage links the lack of credit to newspapers ignoring two Black rescuers, not to his schooling."
+     "reason": "\"Morgan is remembered mainly for his business success, not his inventions.\" misstates the emphasis: the shops get one sentence, and the inventions fill most of the passage."
+    },
+    {
+     "choice": "Morgan and his brother wore safety hoods during a tunnel rescue.",
+     "fault": "too narrow",
+     "reason": "\"Morgan and his brother wore safety hoods during a tunnel rescue.\" is one event from the fourth paragraph, not the passage's main point."
     }
    ],
    "passage_id": "MRV3-R2-P10",

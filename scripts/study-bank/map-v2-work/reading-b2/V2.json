@@ -118,7 +118,7 @@
   "subtype": "context-clue",
   "difficulty": "medium",
   "target_word": "obsolete",
-  "context": "Our school's old projectors are obsolete; no store sells their bulbs anymore, and newer screens have replaced them.",
+  "context": "Our school's old projectors still turn on, but they are obsolete; no store sells their bulbs anymore, and newer screens have replaced them.",
   "prompt": "What does obsolete mean as it is used in the sentence?",
   "choices": [
    "out of date",
@@ -143,7 +143,7 @@
    {
     "choice": "broken",
     "fault": "misses the clue",
-    "reason": "\"broken\" is not stated; the projectors are outdated, not said to be damaged."
+    "reason": "\"broken\" is ruled out by the sentence: the projectors \"still turn on.\""
    }
   ]
  },
@@ -155,11 +155,11 @@
   "subtype": "context-clue",
   "difficulty": "easy",
   "target_word": "ominous",
-  "context": "Dark clouds piled up over the hills, and an ominous rumble of thunder made the campers hurry toward the lodge.",
+  "context": "Dark clouds piled up over the hills, and an ominous rumble of thunder, right overhead, made the campers hurry toward the lodge.",
   "prompt": "What does ominous mean as it is used in the sentence?",
   "choices": [
    "threatening",
-   "cheerful",
+   "unremarkable",
    "distant",
    "steady"
   ],
@@ -168,14 +168,14 @@
   "grade_rationale": "A grade-7 word with a strong mood clue.",
   "distractor_rationales": [
    {
-    "choice": "cheerful",
+    "choice": "unremarkable",
     "fault": "misses the clue",
-    "reason": "\"cheerful\" is the opposite of a rumble that makes campers hurry for shelter."
+    "reason": "\"unremarkable\" means ordinary, but a rumble right overhead that sends campers hurrying for shelter is not ordinary."
    },
    {
     "choice": "distant",
     "fault": "misses the clue",
-    "reason": "\"distant\" does not explain why the campers hurry; the clue is the danger the sound signals."
+    "reason": "\"distant\" is ruled out by the sentence: the thunder is \"right overhead,\" not far away."
    },
    {
     "choice": "steady",
@@ -457,7 +457,7 @@
    "wise and careful",
    "fun and exciting",
    "quick and easy",
-   "costly and heavy"
+   "costly and too heavy"
   ],
   "correct_answer": "wise and careful",
   "explanation": "\"wise and careful\" is correct: bringing a flashlight and water because the trail is long and dark is a careful, sensible choice.",
@@ -474,9 +474,9 @@
     "reason": "\"quick and easy\" ignores the reason given; the advice is about safety, not speed."
    },
    {
-    "choice": "costly and heavy",
+    "choice": "costly and too heavy",
     "fault": "misses the clue",
-    "reason": "\"costly and heavy\" adds ideas about price and weight that the sentence never suggests."
+    "reason": "\"costly and too heavy\" adds ideas about price and weight that the sentence never suggests."
    }
   ]
  },
@@ -605,7 +605,7 @@
    "located below the ground",
    "built above the sea",
    "found under the water",
-   "covering the whole earth"
+   "covering all of the earth"
   ],
   "correct_answer": "located below the ground",
   "explanation": "\"located below the ground\" is correct: sub- means \"under\" and terra means \"earth,\" so subterranean means underground.",
@@ -622,9 +622,9 @@
     "reason": "\"found under the water\" reads sub- correctly but confuses terra (earth) with water."
    },
    {
-    "choice": "covering the whole earth",
+    "choice": "covering all of the earth",
     "fault": "wrong part",
-    "reason": "\"covering the whole earth\" reads terra correctly but ignores sub-, which means under."
+    "reason": "\"covering all of the earth\" reads terra correctly but ignores sub-, which means under."
    }
   ]
  },
