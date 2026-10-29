@@ -508,6 +508,20 @@
    "grader": "cfg-v2",
    "source": "MAP-PLAN-2026-10-23.md 3.2: map-v2-work/language/BRIEF.md, 10 agent authors, grader v2 pre-screen x2 and one return; batch 1 in three cohorts by area"
   },
+  "map-language-v3-grammar": {
+   "method_id": "map-lu-v3-insession-rewrite+cfg-v2",
+   "author": "in-session",
+   "grader": "cfg-v2",
+   "authoring_brief": "MAP-LANGUAGE-V3-BRIEF.md",
+   "source": "MAP-LANGUAGE-V3.prereg.md: rewrite of the held map-language-v2-grammar (agent review one_template, key_form); in-session sub-batches, lu3-check.mjs pre-flight, agent-review gate"
+  },
+  "map-language-v3-writing": {
+   "method_id": "map-lu-v3-insession-rewrite+cfg-v2",
+   "author": "in-session",
+   "grader": "cfg-v2",
+   "authoring_brief": "MAP-LANGUAGE-V3-BRIEF.md",
+   "source": "MAP-LANGUAGE-V3.prereg.md: rewrite of the held map-language-v2-writing (agent review one_template); in-session sub-batches, lu3-check.mjs pre-flight, agent-review gate"
+  },
   "map-reading-draft-1": {
    "method_id": "map-rd-insession-d1",
    "author": "in-session",
