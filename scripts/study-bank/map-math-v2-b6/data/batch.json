@@ -1,0 +1,311 @@
+[
+ {
+  "id": "MB6-D7-02",
+  "domain": "Statistics and Probability",
+  "map_area": "data",
+  "grade_target": 7,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "7.SP.C.8a",
+  "subskill": "Probability that at least one of two independent events happens",
+  "grade_rationale": "High for grade 7 (7.SP.C.8a): two independent events from different chance devices, and the ask is \"at least one\". The student must either list the three winning cases or use 1 minus the probability that neither happens. Grade-7 students commonly add the two probabilities, give the probability of neither, or subtract only the both-happen case from 1.",
+  "prompt": "A spinner has 10 equal sections, and 3 of them are red. A number cube has faces numbered 1 to 6. Kenji spins the spinner once and rolls the number cube once. He wins a prize if the spinner lands on red, or the cube shows 5 or 6, or both. What is the probability that Kenji wins a prize?",
+  "choices": [
+   "7/15",
+   "8/15",
+   "19/30",
+   "9/10"
+  ],
+  "correct_answer": "8/15",
+  "explanation": "The spinner is red with probability 3/10 and the cube shows 5 or 6 with probability 2/6 = 1/3. Kenji loses only if neither happens: (7/10) x (2/3) = 14/30 = 7/15. So the probability that he wins is 1 - 7/15 = 8/15.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a; const fr=(n,d)=>{const k=g(Math.abs(n),Math.abs(d)); return (n/k)+'/'+(d/k)}; return fr(30-14,30);",
+  "distractor_solve": {
+   "7/15": "const g=(a,b)=>b?g(b,a%b):a; const fr=(n,d)=>{const k=g(Math.abs(n),Math.abs(d)); return (n/k)+'/'+(d/k)}; return fr(7*2,10*3);",
+   "19/30": "const g=(a,b)=>b?g(b,a%b):a; const fr=(n,d)=>{const k=g(Math.abs(n),Math.abs(d)); return (n/k)+'/'+(d/k)}; return fr(3*3+1*10,30);",
+   "9/10": "const g=(a,b)=>b?g(b,a%b):a; const fr=(n,d)=>{const k=g(Math.abs(n),Math.abs(d)); return (n/k)+'/'+(d/k)}; return fr(30-3*1,30);"
+  },
+  "mechanism": [
+   "probability of red: 3/10; probability of 5 or 6: 1/3",
+   "probability of neither: 7/10 x 2/3 = 7/15",
+   "at least one: 1 - 7/15"
+  ],
+  "quantity_asked": "the probability that at least one of the two events happens",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option cannot be checked without computing the compound probability; there is no inverse step to run from an option."
+  },
+  "structure_check": "No bound or extremum. Errors fall on both sides: the neither case is below the key; adding the two chances and the not-both case are above it.",
+  "intermediate_check": "Solved intermediates are 3/10, 1/3, and 7/15. 7/15 is an option: it is the omission error itself (the student stops at the complement), named in its distractor_meta.",
+  "cheap_bound_check": "The probability of at least one is at least the larger single probability (1/3); every option is above 1/3, so this bound strikes nothing. A student who knows it must be below 3/10 + 1/3 = 19/30 strikes 19/30 and 9/10 only by computing the sum, and the sum is itself one of the errors.",
+  "shape_check": "All options are fractions between 0 and 1; none is 0, 1, or a printed probability.",
+  "interior_parity_check": "Middle values 8/15 and 19/30: both reduced fractions; the key is not the cleaner one.",
+  "arith_class_check": "No forced class.",
+  "dup_search": "Probed earlier MAP Statistics items for 'at least', 'spinner', 'number cube', 'or both': no at-least-one compound item.",
+  "self_audit": "Key recomputed: 1 - (7/10)(2/3) = 1 - 7/15 = 8/15. Check by cases: red and 5-6 = 1/10, red only = 3/10 x 2/3 = 1/5, 5-6 only = 7/10 x 1/3 = 7/30; total 3/30 + 6/30 + 7/30 = 16/30 = 8/15.",
+  "distractor_meta": {
+   "7/15": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "gives the probability that neither event happens and forgets to subtract it from 1",
+    "why": "(7/10) x (2/3) = 7/15, the losing probability."
+   },
+   "19/30": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds the two probabilities, counting the both-happen case twice",
+    "why": "3/10 + 1/3 = 9/30 + 10/30 = 19/30."
+   },
+   "9/10": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts only the both-happen probability from 1",
+    "why": "1 - (3/10)(1/3) = 1 - 1/10 = 9/10."
+   }
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "At least one of two events is at least as likely as the more likely event (1/3); all options exceed 1/3."
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   }
+  ]
+ },
+ {
+  "id": "MB6-D7-03",
+  "domain": "Statistics and Probability",
+  "map_area": "data",
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "7.SP.C.8b",
+  "subskill": "Probability of a compound event from a letter-then-digit sample space",
+  "grade_rationale": "Mid for grade 7 (7.SP.C.8b): the student counts the vowels among the letters of a word (3 of 8), the even digits among 0 to 9 (5 of 10), and multiplies. Grade-7 students commonly leave 0 out of the even digits, treat \"vowel or not\" as a 50-50 choice, or put favorable symbols over all symbols.",
+  "prompt": "A game code is made of one letter chosen at random from the 8 letters of the word COMPUTER, followed by one digit chosen at random from 0 to 9. What is the probability that the code has a vowel and an even digit? (The vowels are A, E, I, O, and U. Count 0 as an even digit.)",
+  "choices": [
+   "3/20",
+   "3/16",
+   "1/4",
+   "4/9"
+  ],
+  "correct_answer": "3/16",
+  "explanation": "COMPUTER has 8 letters and 3 of them are vowels (O, U, E), so the letter is a vowel with probability 3/8. The even digits are 0, 2, 4, 6 and 8: probability 5/10 = 1/2. The two choices are independent, so the probability of both is 3/8 x 1/2 = 3/16.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a; const fr=(n,d)=>{const k=g(Math.abs(n),Math.abs(d)); return (n/k)+'/'+(d/k)}; return fr(3*5,8*10);",
+  "distractor_solve": {
+   "3/20": "const g=(a,b)=>b?g(b,a%b):a; const fr=(n,d)=>{const k=g(Math.abs(n),Math.abs(d)); return (n/k)+'/'+(d/k)}; return fr(3*4,8*10);",
+   "1/4": "const g=(a,b)=>b?g(b,a%b):a; const fr=(n,d)=>{const k=g(Math.abs(n),Math.abs(d)); return (n/k)+'/'+(d/k)}; return fr(1*1,2*2);",
+   "4/9": "const g=(a,b)=>b?g(b,a%b):a; const fr=(n,d)=>{const k=g(Math.abs(n),Math.abs(d)); return (n/k)+'/'+(d/k)}; return fr(3+5,8+10);"
+  },
+  "mechanism": [
+   "vowel: 3 of 8 letters (O, U, E)",
+   "even digit: 5 of 10",
+   "multiply: 3/8 x 1/2"
+  ],
+  "quantity_asked": "the probability of a vowel and an even digit",
+  "plugback": {
+   "substitutable": false,
+   "why": "A probability option cannot be checked without counting the favorable outcomes, which is the task."
+  },
+  "structure_check": "No bound or extremum. Errors fall on both sides: leaving 0 out is below the key; the 50-50 letter stage and pooling symbols are above.",
+  "intermediate_check": "Solved intermediates 3/8 and 1/2 are not options.",
+  "cheap_bound_check": "P(both) is at most min(3/8, 1/2) = 3/8, and the value must be a whole number of the 8 x 10 = 80 equally likely codes. Both rules strike 4/9 only (4/9 > 3/8; 9 does not divide 80). 3/20 = 12/80, 3/16 = 15/80 and 1/4 = 20/80 are on the 80-code grid and below 3/8. One strike, declared.",
+  "shape_check": "All options are fractions between 0 and 1.",
+  "interior_parity_check": "Middle values 3/16 and 1/4; the key is not the cleaner one.",
+  "arith_class_check": "No forced class: denominators 20, 16, 4, 9.",
+  "dup_search": "Probed earlier MAP Statistics items for \"code\", \"letter\", \"digit\", \"vowel\", \"COMPUTER\": none. Re-run through math-check near-duplicate after the return.",
+  "self_audit": "Revision after screen pass 1 (S-R4: with letters A, B, C, 6/13 was off the 30-code grid and 5/6 exceeded P(even) = 1/2, two strikes). With one vowel of three the only on-grid errors under the 1/3 cap are 4/30 and 6/30, which make an arithmetic run 4, 5, 6 through the key, so the letter stage was changed to the 8 letters of COMPUTER (3 vowels) and the \"adds the stage probabilities\" error (always above the cap) was dropped. Same mechanism: vowel letter AND even digit, two-stage product. Key 3/8 x 5/10 = 15/80 = 3/16, rank 2. Bound screen: only 4/9 is struck (cap 3/8 and the 80-grid strike the same option). Pairs: 3/16 / 3/20 = 5/4 (5 vs 4 even digits, as in the pass-1 version, not flagged there), 1/4 / 3/16 = 4/3, 4/9 / 3/16 = 64/27; no x2/x3/x4/x1.5/x10, no printed number (8, 10, 3, 5) as a ratio or difference; key not a midpoint ((12+20)/2 = 16 vs 15 in 80ths) and 12, 15, 20 is not a run. Residual, stated for the screener: a screener who reasons \"favorable codes = 3 vowels x (even digits), so a multiple of 3\" would strike 1/4 (20/80) as well; that reasoning is the product rule plus the vowel count, i.e. the solve itself, not a free bound.",
+  "distractor_meta": {
+   "3/20": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "leaves 0 out of the even digits, counting only 2, 4, 6, 8",
+    "why": "3/8 x 4/10 = 12/80 = 3/20."
+   },
+   "1/4": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "treats \"vowel or not a vowel\" as two equally likely outcomes, so takes the letter stage as 1/2 instead of counting 3 of 8",
+    "why": "1/2 x 1/2 = 1/4."
+   },
+   "4/9": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "counts favorable symbols over all symbols, adding the two stages instead of multiplying",
+    "why": "(3 + 5) / (8 + 10) = 8/18 = 4/9."
+   }
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [
+     "4/9"
+    ],
+    "why": "P(both) <= min(P(vowel), P(even)) = min(3/8, 1/2) = 3/8 strikes 4/9 only; 1/4 < 3/8 and 3/20 < 3/8."
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "range",
+    "strikes": [
+     "4/9"
+    ],
+    "why": "8 x 10 = 80 equally likely codes, so the reduced denominator must divide 80: strikes 4/9 only (the same option as the magnitude bound, one strike in all)."
+   }
+  ]
+ },
+ {
+  "id": "MB6-D6-01",
+  "domain": "Statistics and Probability",
+  "map_area": "data",
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "6.SP.B.5c",
+  "subskill": "Interquartile range from a list of 11 values",
+  "grade_rationale": "Mid for grade 6 (6.SP.B.5c): with 11 values the student must find the median, then the medians of the lower and upper five values (leaving the median out), and subtract. Grade-6 students confuse IQR with the range, or take half the box (median to a quartile).",
+  "prompt": "The numbers of minutes that a group of students spent reading last night were 9, 12, 15, 17, 20, 23, 26, 30, 34, 41, and 53. What is the interquartile range of the data?",
+  "choices": [
+   "8",
+   "16",
+   "19",
+   "44"
+  ],
+  "correct_answer": "19",
+  "explanation": "There are 11 values, so the median is the 6th value, 23. The lower half is 9, 12, 15, 17, 20, with median Q1 = 15. The upper half is 26, 30, 34, 41, 53, with median Q3 = 34. The interquartile range is Q3 - Q1 = 34 - 15 = 19.",
+  "solve": "const d=[9,12,15,17,20,23,26,30,34,41,53]; const lo=d.slice(0,5), hi=d.slice(6); return hi[2]-lo[2];",
+  "distractor_solve": {
+   "8": "const d=[9,12,15,17,20,23,26,30,34,41,53]; return d[5]-d.slice(0,5)[2];",
+   "16": "const d=[9,12,15,17,20,23,26,30,34,41,53]; const lo=d.slice(0,6), hi=d.slice(5); return (hi[2]+hi[3])/2-(lo[2]+lo[3])/2;",
+   "44": "const d=[9,12,15,17,20,23,26,30,34,41,53]; return d[10]-d[0];"
+  },
+  "mechanism": [
+   "median is the 6th value, 23",
+   "Q1 = median of 9, 12, 15, 17, 20 = 15; Q3 = median of 26, 30, 34, 41, 52 = 34",
+   "IQR = 34 - 15"
+  ],
+  "quantity_asked": "the interquartile range",
+  "plugback": {
+   "substitutable": false,
+   "why": "An IQR option cannot be checked against the list without finding both quartiles, which is the task."
+  },
+  "structure_check": "No bound or extremum. Errors fall on both sides: half the box and the median-included method are below the key; the range is above.",
+  "intermediate_check": "Solved intermediates are 23, 15 and 34; none is an option.",
+  "cheap_bound_check": "The IQR must be less than the range (44) and is usually more than half of it only for spread-out tails; no cheap bound strikes two options. A student who knows IQR < range strikes 44 alone.",
+  "shape_check": "All options are whole numbers; the key is not a printed value.",
+  "interior_parity_check": "Middle values 16 and 19; the key 19 is odd and 16 even, neither cleaner.",
+  "arith_class_check": "No forced class.",
+  "dup_search": "Probed earlier MAP Statistics items for 'interquartile', 'quartile', 'box plot': one box-plot reading item (MV2-D6-14) reads a range from a described plot; no IQR-from-a-list item.",
+  "self_audit": "Key recomputed: Q3 34 - Q1 15 = 19.",
+  "distractor_meta": {
+   "8": {
+    "error_kind": "partial_answer",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "measures only half the box, from Q1 to the median",
+    "why": "23 - 15 = 8."
+   },
+   "16": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "includes the median in both halves when finding the quartiles",
+    "why": "Lower six 9..23 give Q1 = 16, upper six 23..53 give Q3 = 32; 32 - 16 = 16."
+   },
+   "44": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "gives the range instead of the interquartile range",
+    "why": "53 - 9 = 44."
+   }
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "range",
+    "strikes": [
+     "44"
+    ],
+    "why": "The IQR cannot equal or exceed the range of the data (44), which strikes only 44."
+   }
+  ]
+ }
+]

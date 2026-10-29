@@ -1,0 +1,182 @@
+{
+ "prereg": "scripts/study-bank/MAP-MATH-V2-B6.prereg.md",
+ "area": "Statistics and Probability",
+ "frozenSha": "bf286988ab2df93dc425d2d71b356b00c702bb04cd19f97a31eeba2c0ecd3910",
+ "n": 3,
+ "optionsOnly": {
+  "cand": {
+   "n": 3,
+   "picks": 9,
+   "hits": 5,
+   "unan": 1
+  },
+  "ctrl": {
+   "n": 3,
+   "picks": 9,
+   "hits": 6,
+   "unan": 2
+  },
+  "status": "pass",
+  "cr": 55.55555555555556,
+  "kr": 66.66666666666667,
+  "cu": 33.333333333333336,
+  "ku": 66.66666666666667,
+  "margin": -11.111111111111114,
+  "umar": -33.333333333333336,
+  "why": "candidate 55.6% vs control 66.7% (margin -11.1, bar +10); unanimous-correct rate 33.3% vs control 66.7% (-33.3, bar +15)",
+  "letterControl": 33.333333333333336
+ },
+ "rankH1": {
+  "frozen": {
+   "n": 3,
+   "unscored": 0,
+   "hist": {
+    "1": 0,
+    "2": 2,
+    "3": 1,
+    "4": 0
+   },
+   "share2": 66.66666666666667,
+   "meets": false,
+   "line": "key rank 1/2/3/4 = 0/2/1/0 of 3; rank-2 share 66.7% (prediction <= 25%: NOT met; recorded, not a gate)"
+  },
+  "solverPicks": {
+   "hist": {
+    "1": 0,
+    "2": 4,
+    "3": 5,
+    "4": 0
+   },
+   "picks": 9,
+   "pick2": 44.44444444444444,
+   "key2": 66.66666666666667,
+   "line": "candidate picks at rank 1/2/3/4 = 0/4/5/0 of 9 (rank-2 pick rate 44.4%) vs candidate keys at rank 2 2/3 = 66.7%"
+  },
+  "kept": {
+   "n": 0,
+   "unscored": 0,
+   "hist": {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0
+   },
+   "share2": null,
+   "meets": null,
+   "line": "no measurement: 0 scorable of 0"
+  },
+  "inserted": {
+   "n": 0,
+   "unscored": 0,
+   "hist": {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0
+   },
+   "share2": null,
+   "meets": null,
+   "line": "no measurement: 0 scorable of 0"
+  }
+ },
+ "gradeFitRecorded": {
+  "n": 3,
+  "judgments": 6,
+  "tooEasy": 0,
+  "tooHard": 0,
+  "tooEasyPct": 0,
+  "tooHardPct": 0,
+  "offA": 0,
+  "offB": 0,
+  "spreadA": null,
+  "spreadB": null,
+  "D1": true,
+  "D2": true,
+  "D3": false,
+  "status": "fail"
+ },
+ "coldOnKey": 6,
+ "items": {
+  "MB6-D7-02": {
+   "drop": [
+    "R11 template of an earlier item (one grader + F)"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [
+    "MB4-D-08"
+   ],
+   "keep": false,
+   "difficulty": "hard"
+  },
+  "MB6-D7-03": {
+   "drop": [
+    "R11 template of an earlier item (one grader + F)"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [
+    "MV2-D7-10"
+   ],
+   "keep": false,
+   "difficulty": "medium"
+  },
+  "MB6-D6-01": {
+   "drop": [
+    "R2 not exclusive / second defensible (both)",
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [
+    "MB4-D-04",
+    "MV2-D6-11"
+   ],
+   "keep": false,
+   "difficulty": "medium"
+  }
+ },
+ "areaResult": {
+  "status": "held",
+  "reasons": [
+   "nothing kept"
+  ],
+  "notes": [
+   "kept-set extremity: no measurement: 0 scorable of 0 (need >= 10); 0 non-numeric, 0 other skip (recorded; the inserter's gate measures from n >= 10)"
+  ],
+  "extremity": {
+   "total": 0,
+   "n": 0,
+   "nonNumeric": 0,
+   "otherSkip": 0,
+   "ext": 0,
+   "rate": null,
+   "chance": null,
+   "threshold": null,
+   "status": "no-measurement",
+   "reason": "no measurement: 0 scorable of 0 (need >= 10); 0 non-numeric, 0 other skip"
+  },
+  "cState": "not-measured",
+  "cPrimeFired": false,
+  "cprime": null,
+  "kept": 0,
+  "keptIds": [],
+  "insertedIds": [],
+  "deferredIds": []
+ },
+ "screenFlagsRecorded": {
+  "MB6-D7-03": {
+   "p1": [
+    "S-R4 2 struck without solving: [\"6/13\",\"5/6\"] (6/13: 3x10=30 equally likely codes, 13 cannot be a denominator; 5/6: an AND probability cannot exceed P(even)=1/2)"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": false
+  }
+ },
+ "passIds": [],
+ "verdict": "HELD"
+}

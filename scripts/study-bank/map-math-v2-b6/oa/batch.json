@@ -1,0 +1,205 @@
+[
+ {
+  "id": "MB6-O7-01",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 7,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "7.RP.A.3",
+  "subskill": "Markup followed by a percent discount",
+  "grade_rationale": "High for grade 7 (7.RP.A.3): two percent changes applied in sequence to different bases. The student must apply the 25% discount to the marked-up price, not to the cost and not by combining the percents. Grade-7 students commonly combine 60% and 25% into one 35% change or stop after the markup.",
+  "prompt": "A store pays $54 for a jacket. The store marks up the price by 60% to set its selling price. During a sale, the store takes 25% off the selling price. What is the sale price of the jacket, in dollars?",
+  "choices": [
+   "61.4",
+   "64.8",
+   "72.9",
+   "78.3"
+  ],
+  "correct_answer": "64.8",
+  "explanation": "The markup is 60% of $54, which is $32.40, so the selling price is $54 + $32.40 = $86.40. The discount is 25% of $86.40, which is $21.60, so the sale price is $86.40 - $21.60 = $64.80.",
+  "solve": "return Math.round(54*1.6*0.75*100)/100;",
+  "distractor_solve": {
+   "61.4": "return Math.round((54*1.6-25)*100)/100;",
+   "72.9": "return Math.round(54*(1+0.60-0.25)*100)/100;",
+   "78.3": "return Math.round((54+0.75*(0.60*54))*100)/100;"
+  },
+  "mechanism": [
+   "selling price = 54 x 1.6 = 86.40",
+   "discount = 25% of 86.40 = 21.60",
+   "sale price = 86.40 - 21.60"
+  ],
+  "quantity_asked": "the sale price in dollars",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option cannot be checked without running both percent changes forward; there is no single inverse step."
+  },
+  "structure_check": "No bound or extremum. Errors fall on both sides: subtracting 25 dollars is below the key; combining the percents and discounting only the markup are above.",
+  "intermediate_check": "Solved intermediates 86.4 (selling price), 32.4 (markup) and 21.6 (discount) are not options. The \"stops after the markup\" error (86.4) was removed in the return because it is exactly key / 0.75.",
+  "cheap_bound_check": "\"Below the selling price\" needs the selling price (86.4) computed and every option is below it anyway; \"above the cost\" is not a valid rule in general but every option is above 54, so it strikes nothing either way.",
+  "shape_check": "All options are dollar amounts with one decimal place, between 54 and 86.4.",
+  "interior_parity_check": "Middle values 64.8 and 72.9: both one-decimal amounts; the key is not cleaner.",
+  "arith_class_check": "No forced class: last digits 4, 8, 9, 3.",
+  "dup_search": "Probed earlier MAP items for \"mark up\", \"markup\", \"marked up\": none. Re-run through math-check near-duplicate against live ISEE/SSAT and every earlier MAP item after the return.",
+  "self_audit": "Revision after screen pass 1 (S-R7: 57.6 & 76.8 differ by x0.75, the printed 25% off; 76.8 was the \"stops after the markup\" error, which is ALWAYS key / 0.75, so it was removed rather than renumbered). New error set: 1.6C - 25 (below), 1.35C (combined percents), C + 0.75 x 0.6C = 1.45C (discount taken off the markup only). Cost changed 48 -> 54 because at 48 the pair 51.8 & 64.8 is x1.251, close to the printed 25%. Key recomputed 54 x 1.6 x 0.75 = 64.8, rank 2. Every option pair checked for ratios 0.75, 1.25, 1.6, 1.35, 4/3, 0.6, 0.4, 2, 3, 4, 1.5, 10 and differences 25, 54, 60: none (ratios 1.125, 1.208, 1.074, 1.055, 1.187, 1.275). Key not a midpoint (61.4+72.9=134.3, 61.4+78.3=139.7, 72.9+78.3=151.2 vs 129.6) and no arithmetic run through it. Residual, stated for the screener: 78.3 - 64.8 = 13.5 = 25% of $54 and 72.9 - 64.8 = 8.1 = 15% of $54; both are inherent to those errors (1.45C - 1.2C, 1.35C - 1.2C) and need 25% or 15% of the cost computed, neither is a printed operation on an option, and neither singles out the key (the same 0.25C gap reading would equally support 78.3 as the answer).",
+  "distractor_meta": {
+   "61.4": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts 25 dollars instead of 25 percent",
+    "why": "86.40 - 25 = 61.40."
+   },
+   "72.9": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "combines the 60% markup and the 25% discount into one 35% increase on the cost",
+    "why": "54 x 1.35 = 72.90."
+   },
+   "78.3": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "takes the 25% off the markup only, as if the sale gives back part of the store's markup, not part of the selling price",
+    "why": "markup 32.40, 75% of it is 24.30; 54 + 24.30 = 78.30."
+   }
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "The sale price is below the selling price (86.4, not printed) and every option is below it; every option is above the $54 cost, so a (not valid) \"sale price above cost\" reading strikes nothing."
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   }
+  ]
+ },
+ {
+  "id": "MB6-O8-01",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 8,
+  "tier": "mid",
+  "rit_band": "RIT 220-229",
+  "difficulty": "medium",
+  "ccss": "8.F.B.4",
+  "subskill": "Initial value of a linear function from two input-output pairs",
+  "grade_rationale": "Mid for grade 8 (8.F.B.4): the student finds the rate from two data points and works back to the value at 0 hours. Grade-8 students often stop at the rate, give the difference in cost, or subtract only one hour of the rate.",
+  "prompt": "A plumber charges a fixed fee for each visit plus the same amount for each hour of work. A 3-hour job costs $310, and a 5-hour job costs $390. What is the fixed fee, in dollars?",
+  "choices": [
+   "40",
+   "80",
+   "190",
+   "270"
+  ],
+  "correct_answer": "190",
+  "explanation": "Two more hours cost $390 - $310 = $80, so each hour costs $80 / 2 = $40. Three hours cost 3 x $40 = $120, so the fixed fee is $310 - $120 = $190.",
+  "solve": "const r=(390-310)/(5-3); return 310-3*r;",
+  "distractor_solve": {
+   "40": "return (390-310)/(5-3);",
+   "80": "return 390-310;",
+   "270": "const r=(390-310)/(5-3); return 310-r;"
+  },
+  "mechanism": [
+   "rate = (390 - 310) / (5 - 3) = 40",
+   "3 hours cost 120",
+   "fee = 310 - 120"
+  ],
+  "quantity_asked": "the fixed fee in dollars (the value at 0 hours)",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const r=(390-310)/2; return v+3*r===310 && v+5*r===390;",
+   "why": "A fee option can be checked by adding 3 or 5 hours of the computed rate, but the rate must be found first."
+  },
+  "structure_check": "No bound or extremum. Errors fall on both sides: the rate and the difference are below the key; the one-hour subtraction is above.",
+  "intermediate_check": "40 and 80 are options: 80 is the difference of totals (solved first) and 40 the rate; both are named partial or wrong-variable errors in distractor_meta.",
+  "cheap_bound_check": "The fee is less than $310 (the 3-hour cost); every option is below 310, so it strikes nothing.",
+  "shape_check": "All options are whole dollar amounts.",
+  "interior_parity_check": "Middle values 80 and 190; both multiples of 10, the key not cleaner.",
+  "arith_class_check": "No forced class.",
+  "dup_search": "Probed earlier MAP Operations items for 'fixed fee', 'per hour', 'plus': no two-point initial-value item.",
+  "self_audit": "Key recomputed: rate 40, fee 310 - 120 = 190; check 190 + 5 x 40 = 390.",
+  "distractor_meta": {
+   "40": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "gives the hourly rate instead of the fixed fee",
+    "why": "(390 - 310) / 2 = 40."
+   },
+   "80": {
+    "error_kind": "partial_answer",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "gives the cost of the two extra hours (the difference in totals)",
+    "why": "390 - 310 = 80."
+   },
+   "270": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracts only one hour of the rate from the 3-hour cost",
+    "why": "310 - 40 = 270."
+   }
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "The fee is below the 3-hour cost of 310; all options are."
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   }
+  ]
+ }
+]

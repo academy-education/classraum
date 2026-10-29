@@ -10,6 +10,8 @@
  * rank-2 share <= 25%, recorded at freeze and score, never a gate). `--batch b4` (MAP-MATH-V2-B4.prereg.md): areas N
  * and D, each its own batch; ids MB4-, 5 authors, dump-b4, R11 against batches 1-3 (221 + 72 + 30), cohorts
  * map-math-v2-b4-num / -data, rank record per area.
+ * `--batch n789` (MAP-MATH-V2-N789.prereg.md): Number Systems only, the 9 PART OK items of batches 7-9 under one
+ * gate (ids MB7-/MB8-/MB9- via idPattern), 6 author cells, dump-n789, R11 against the 702 earlier MAP ids.
  * map-math-g58-v5.mjs made general to the four MAP maths areas. Inputs: the 11 author files
  * scratchpad/map-v2-math-work/<author>/items.json (221 slots in map-v2-work/math/slots.json, checked per item by
  * map-v2-work/math/math-check.mjs). Every bar runs PER AREA and each area freezes as its own batch.
@@ -147,6 +149,23 @@ export const BATCHES = {
       freeze: { O: 20261811, D: 20261814 }, oo: { O: 20261821, D: 20261824 }, grade: { O: 20261830, D: 20261860 }, cPrime: { O: 20261871, D: 20261874 },
     },
   },
+  n789: {
+    // MAP-MATH-V2-N789.prereg.md: the 9 PART OK Number Systems items of batches 7-9, gated together (items written
+    // before the prereg). Inputs from map-v2-work/math-n789/build.mjs: combined slots (cells <cell>-b<k>), authored
+    // dir of symlinks to the b7/b8/b9 author files, dump-n789 = dump-b10 minus the candidates' own rows
+    name: 'map-v2 Math batches 7-9 (Number Systems gate n789)', prereg: 'scripts/study-bank/MAP-MATH-V2-N789.prereg.md',
+    work: ROOT + '/scratchpad/map-math-v2-n789-work', authored: ROOT + '/scratchpad/map-v2-math-n789-work',
+    results: D + 'map-math-v2-n789/', slots: D + 'map-v2-work/math-n789/slots.json', idPrefix: 'MB8', idPattern: 'MB[789]',
+    checkArgs: ['--slots', D + 'map-v2-work/math-n789/slots.json', '--prior', ROOT + '/scratchpad/map-v2-math-work/dump-n789/prior-math.json', '--families', 'isee,ssat,map'],
+    authorsPresentOnly: true, slotTotal: 9,
+    cohortStem: 'map-math-v2-n789',   // cohort map-math-v2-n789-num
+    cPrime: true, ooPartMax: 60, earlierFile: D + 'map-v2-work/math-n789/EXCLUSIONS-map-n789.txt', earlier: 'dump-n789', earlierDump: ROOT + '/scratchpad/map-v2-math-work/dump-n789/prior-math.json', areas: ['N'], rankRecord: true,
+    expect: { authors: 6, earlierN: 702, packets: '9', ranks: { N: '0/2/6/1' } },
+    seed: {
+      screen1Order: 20262101, screen1Deal: 20262102, screen2Order: 20262103, screen2Deal: 20262104,
+      freeze: { N: 20262112 }, oo: { N: 20262122 }, grade: { N: 20262140 }, cPrime: { N: 20262172 },
+    },
+  },
 }
 export const BATCH = (() => { const i = process.argv.indexOf('--batch'); if (i < 0) return 'b1'; const b = process.argv[i + 1]; process.argv.splice(i, 2); if (!BATCHES[b]) { console.error(`REFUSING: --batch must be one of ${Object.keys(BATCHES).join(' ')}`); process.exit(2) } return b })()
 export const B = BATCHES[BATCH]
@@ -174,7 +193,7 @@ export const AUTHORS = Object.values(AREAS).flatMap(a => a.authors)
 const LETTER_OF_DOMAIN = Object.fromEntries(Object.entries(AREAS).map(([L, a]) => [a.domain, L]))
 export const SEED = B.seed
 export const SCREEN_PACKET_MAX = 40, GRADE_PART_MAX = 35
-export const ID_RE = new RegExp(`^${B.idPrefix}-([ONGD])[0-9A-Z]*-\\d\\d$`)
+export const ID_RE = new RegExp(`^${B.idPattern ?? B.idPrefix}-([ONGD])[0-9A-Z]*-\\d\\d$`)   // idPattern: n789 spans MB7/MB8/MB9
 /** batch 2: R11 also counts a template of any batch-1 item (the graders get the EXCLUSIONS file's batch-1 section) */
 function earlierBatchIds() {
   if (!B.earlier) return { ids: [], text: null }
@@ -184,10 +203,11 @@ function earlierBatchIds() {
   const b1text = t.slice(at), b1 = [...new Set([...b1text.matchAll(/\((MV2-[ONGD][0-9A-Z]*-\d\d)\)/g)].map(m => m[1]))]
   if (b1.length !== 221) die(`${b2x}: batch-1 section names ${b1.length} ids, expected 221`)
   if (B.earlier === 'b1') return { ids: b1, text: b1text }
-  if (B.earlier === 'dump-b6') {
+  if (B.earlier === 'dump-b6' || B.earlier === 'dump-n789') {
     // batch 6 prereg: R11 against every earlier MAP maths item in dump-b6 (live, staged, dropped, withdrawn,
-    // first-written); graders get EXCLUSIONS-map-b6.txt, which lists each id in parentheses with its prompt
-    const dp = ROOT + '/scratchpad/map-v2-math-work/dump-b6/prior-math.json'
+    // first-written); graders get EXCLUSIONS-map-b6.txt, which lists each id in parentheses with its prompt.
+    // n789: the same rule over dump-n789 (dump-b10 minus the nine candidates), graders get EXCLUSIONS-map-n789.txt
+    const dp = B.earlierDump ?? ROOT + '/scratchpad/map-v2-math-work/dump-b6/prior-math.json'
     for (const f of [dp, B.earlierFile]) if (!existsSync(f)) die(`R11 needs ${f}`)
     const ids = [...new Set(JSON.parse(readFileSync(dp, 'utf8')).filter(x => /map-math|DB map/.test(x.file ?? '')).map(x => String(x.id)))]
     const text = readFileSync(B.earlierFile, 'utf8')
@@ -634,6 +654,17 @@ async function selftest() {
     [!B.rankRecord || (B.areas.every(L => { const rs = Object.values(sl).filter(v => v.area === AREAS[L].domain).flatMap(v => v.rows); return ['1', '2', '3', '4'].map(r => rs.filter(x => String(x.rank) === r).length).join('/') === B.expect.ranks[L] }) && rows.every(x => [1, 2, 3, 4].includes(x.rank) && x.pos === (x.rank === 1 ? 'S' : x.rank === 4 ? 'L' : 'I'))), `${BATCH}: slot key ranks per area ${B.rankRecord ? JSON.stringify(B.expect.ranks) : '(none)'}, each consistent with its S/I/L position`],
     [chunk([...Array(35).keys()], GRADE_PART_MAX).length === 1 && chunk([...Array(36).keys()], GRADE_PART_MAX).map(x => x.length).join() === '18,18', 'grade parts: 35 -> 1, 36 -> 18+18'],
     [(() => { try { return renderGraphic({ type: 'twowaytable', colLabels: ['a', 'b'], rowLabels: ['x'], cells: [['1', '2']] }).includes('| x | 1 | 2 |') } catch { return false } })(), 'graphic renders as a markdown table']]
+  if (B.idPattern) {
+    // n789: one batch over three id prefixes. The pattern must take exactly the batch's prefixes, every candidate must be
+    // absent from the R11 earlier set AND from the math-check prior (a same-id row there is a self near-duplicate), every
+    // author file must be present, and the earlier set must still hold every non-candidate MB6-MB8 item
+    const prior = rd(B.earlierDump), pids = new Set(prior.map(x => String(x.id))), eids = new Set(er.ids)
+    const prefixes = [...new Set(slotIds.map(id => id.split('-')[0]))].sort().join()
+    st.push([prefixes === 'MB7,MB8,MB9' && ['MB7-N7-01', 'MB8-N7-05', 'MB9-N8-01'].every(x => ID_RE.test(x)) && !['MB6-D7-01', 'MB5-N7-01', 'MB10-N7-01', 'XMB8-N7-01'].some(x => ID_RE.test(x)), `${BATCH}: id pattern ${B.idPattern} takes MB7/MB8/MB9 (slots use ${prefixes}) and nothing else`],
+      [slotIds.every(id => !eids.has(id) && !pids.has(id)), `${BATCH}: no candidate is in the R11 earlier set or the math-check prior (${B.earlierDump.replace(ROOT + '/', '')}, ${prior.length} rows)`],
+      [['MB6-G6-01', 'MB6-D7-01', 'MB7-N6-01', 'MB8-N7-04', 'MB8-N8-01'].every(x => eids.has(x) && pids.has(x)), `${BATCH}: earlier set keeps the b6 items and the b7/b8 drops`],
+      [AUTHORS.every(a => existsSync(`${AUTHORED}/${a}/items.json`)), `${BATCH}: all ${AUTHORS.length} author files present (${AUTHORS.join(' ')})`])
+  }
   for (const [ok, msg] of st) if (!ok) { bad++; console.error('FAIL', msg) }
   const n = base.length + st.length
   if (bad) { console.error(`SELFTEST FAILED ${bad}/${n}`); process.exit(2) }

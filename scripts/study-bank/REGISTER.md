@@ -6520,3 +6520,16 @@ structural checks are pre-flight only. See CLAUDE.md.
   cofounder-queue.json the first audit's nextManualDraw was removed and the wave-2 audit
   (`agentreview-audit2-cofounder-2026-10-30`) promoted to nextManualDraw. Daniel was told on KakaoTalk (KO + EN, text
   approved by the owner) that science review is over and the 28-question check is ready.
+
+- **2026-10-30 — MAP Math b6 (Operations + Statistics) gated: 0 of 6 kept, both areas HELD.** Screen pass 1 failed 3
+  of 6. MB6-D7-01 was withdrawn (a script searched n=6-40: every option set carries free strikes from the
+  without-replacement denominator). The other two were revised; pass 2 recorded a fail on MB6-O7-01 (the
+  net-percent bound strikes two). Graders d/e cold then keyed, snapshots hashed, coldcheck 0 changed, cold on key
+  10/10.
+  - O: MB6-O7-01 is an R11 template of MB2-O7R-06 (both graders). The options-only HOLD (3/6 vs 1/6) rests on 2
+    items. Kept 1 (O8-01), but the area is HELD.
+  - D: MB6-D6-01 is not exclusive (the IQR quartile convention is not stated; both graders). D7-02 = MB4-D-08 and
+    D7-03 = MV2-D7-10 are R11 templates (one grader + F). Kept 0. Options-only PASS (55.6% vs 66.7%).
+  - **Lesson:** MAP's own earlier items now saturate OA and Statistics chains, as live ISEE/SSAT saturate Geometry.
+    A probe must cover every earlier MAP item in every area, including withdrawn and dropped ones, and a statistic
+    with competing conventions must state its convention. Relayed to the b10 author mid-run.

@@ -1,0 +1,8 @@
+{
+ "screened": 2,
+ "fails": {
+  "MB6-O7-01": [
+   "S-R4 2 struck without solving: [\"72.9\",\"78.3\"] (72.9 is 54 x 1.35, adding the percents, and a markup followed by a discount always nets less than the sum of the percents, so 72.9 and anything above it (78.3) )"
+  ]
+ }
+}
