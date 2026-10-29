@@ -6091,3 +6091,11 @@ structural checks are pre-flight only. See CLAUDE.md.
     2. The v7/v8 solver and grader prompts that the v8/v9 preregs cite "verbatim" were never saved to disk. The
        gate sheet now writes them out, in the JSON shapes `score-attack.mjs` and `act-english-v8-ws-score.mjs` read.
   - **Needed:** 29 fresh agents (10 + 9 solvers, 3 + 3 with-source graders, and 2 + 2 co-founder-brief graders).
+
+- **2026-10-29 — ACT Science v12b authored (b10), packets built, not graded or inserted.** One cohort, 52 items:
+  4 RS + 3 CV (6 each) + 2 DR (5 each: a table, a bar graph), seed 2026102910, `strictForm: false` (prereg
+  `ACT-SCIENCE-V12B.prereg.md`, A1). Written to the brief incl. v11 and v12 lessons: no Yes/No+reason or
+  "weakens X, because" items; design options with each level once (no modal set); CV options are labels. All 26
+  table/figure keys recomputed by script; keys A13 B13 C13 D13; key uniquely longest 4/52; domains IoD 31 / SI 4 /
+  EMI 17 (SI light, recorded). Bars: >= 5 of 9 keep, 3-4 revise, 0-2 stop. Cold packets
+  `scratchpad/act-science-regrade/b10-g1|g2/grader-cold.md`; generator and rows in `_coordinator/b10/`.

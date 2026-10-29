@@ -1,73 +1,81 @@
 {
-  "note": "ACT-SCIENCE-AGENT-RELEASE.prereg.md: the batch split, fixed before any packet is built. One batch = two sibling cohorts written to the same brief (80 items, 14 passages), so a grader sees the cross-item patterns a shared brief produces. Each batch gets TWO fresh graders (g1, g2); single-grader flags go to ONE fresh re-check grader per batch (r1) over only the flagged items. `seed` deals the option order (keys flat A/B/C/D per batch); it is fixed here so the deal cannot be re-rolled after a grader has seen it.",
-  "qid": "localId",
-  "batches": {
-    "b1": {
-      "cohorts": [
-        "act-science-v5a",
-        "act-science-v5b"
-      ],
-      "seed": 2026102701
-    },
-    "b2": {
-      "cohorts": [
-        "act-science-v5c",
-        "act-science-v5d"
-      ],
-      "seed": 2026102702
-    },
-    "b3": {
-      "cohorts": [
-        "act-science-v6a",
-        "act-science-v6b"
-      ],
-      "seed": 2026102703
-    },
-    "b4": {
-      "cohorts": [
-        "act-science-v7a",
-        "act-science-v7b"
-      ],
-      "seed": 2026102704
-    },
-    "b5": {
-      "cohorts": [
-        "act-science-v8a",
-        "act-science-v8b"
-      ],
-      "seed": 2026102705
-    },
-    "b6": {
-      "cohorts": [
-        "act-science-v9a",
-        "act-science-v9b"
-      ],
-      "seed": 2026102706
-    },
-    "b7": {
-      "cohorts": [
-        "act-science-v10a",
-        "act-science-v10b"
-      ],
-      "seed": 2026102707,
-      "note": "ACT-SCIENCE-V10-PILOT.prereg.md (added after b1-b6 were decided; b1-b6 unchanged)",
-      "strictForm": false
-    },
-    "b8": {
-      "cohorts": [
-        "act-science-v11a"
-      ],
-      "seed": 2026102908,
-      "note": "ACT-SCIENCE-V11-BUFFER.prereg.md (one cohort, RS/CV only; b1-b7 unchanged)",
-      "strictForm": false
-    },
-    "b9": {
-      "cohorts": [
-        "act-science-v12a"
-      ],
-      "seed": 2026102909,
-      "note": "ACT-SCIENCE-V12-BUFFER.prereg.md (one cohort, RS/CV only; b1-b8 unchanged)",
-      "strictForm": false
-    }
+ "note": "ACT-SCIENCE-AGENT-RELEASE.prereg.md: the batch split, fixed before any packet is built. One batch = two sibling cohorts written to the same brief (80 items, 14 passages), so a grader sees the cross-item patterns a shared brief produces. Each batch gets TWO fresh graders (g1, g2); single-grader flags go to ONE fresh re-check grader per batch (r1) over only the flagged items. `seed` deals the option order (keys flat A/B/C/D per batch); it is fixed here so the deal cannot be re-rolled after a grader has seen it.",
+ "qid": "localId",
+ "batches": {
+  "b1": {
+   "cohorts": [
+    "act-science-v5a",
+    "act-science-v5b"
+   ],
+   "seed": 2026102701
+  },
+  "b2": {
+   "cohorts": [
+    "act-science-v5c",
+    "act-science-v5d"
+   ],
+   "seed": 2026102702
+  },
+  "b3": {
+   "cohorts": [
+    "act-science-v6a",
+    "act-science-v6b"
+   ],
+   "seed": 2026102703
+  },
+  "b4": {
+   "cohorts": [
+    "act-science-v7a",
+    "act-science-v7b"
+   ],
+   "seed": 2026102704
+  },
+  "b5": {
+   "cohorts": [
+    "act-science-v8a",
+    "act-science-v8b"
+   ],
+   "seed": 2026102705
+  },
+  "b6": {
+   "cohorts": [
+    "act-science-v9a",
+    "act-science-v9b"
+   ],
+   "seed": 2026102706
+  },
+  "b7": {
+   "cohorts": [
+    "act-science-v10a",
+    "act-science-v10b"
+   ],
+   "seed": 2026102707,
+   "note": "ACT-SCIENCE-V10-PILOT.prereg.md (added after b1-b6 were decided; b1-b6 unchanged)",
+   "strictForm": false
+  },
+  "b8": {
+   "cohorts": [
+    "act-science-v11a"
+   ],
+   "seed": 2026102908,
+   "note": "ACT-SCIENCE-V11-BUFFER.prereg.md (one cohort, RS/CV only; b1-b7 unchanged)",
+   "strictForm": false
+  },
+  "b9": {
+   "cohorts": [
+    "act-science-v12a"
+   ],
+   "seed": 2026102909,
+   "note": "ACT-SCIENCE-V12-BUFFER.prereg.md (one cohort, RS/CV only; b1-b8 unchanged)",
+   "strictForm": false
+  },
+  "b10": {
+   "cohorts": [
+    "act-science-v12b"
+   ],
+   "seed": 2026102910,
+   "note": "ACT-SCIENCE-V12B.prereg.md (one cohort, 4 RS + 3 CV + 2 DR; b1-b9 unchanged)",
+   "strictForm": false
   }
+ }
 }
