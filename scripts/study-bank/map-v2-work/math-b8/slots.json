@@ -1,0 +1,99 @@
+{
+ "N6": {
+  "area": "Real and Complex Number Systems",
+  "scope": "6.NS.C.6",
+  "rows": [
+   {
+    "g": 6,
+    "tier": "mid",
+    "pos": "I",
+    "rank": 3,
+    "id": "MB8-N6-01",
+    "cls": null,
+    "mech": "a number line folded so a lands on b: where c lands (reflection about the midpoint)",
+    "ccss_hint": "6.NS.C.6c",
+    "checker_id": "E06"
+   }
+  ]
+ },
+ "N7": {
+  "area": "Real and Complex Number Systems",
+  "scope": "7.NS.A",
+  "rows": [
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "I",
+    "rank": 2,
+    "id": "MB8-N7-01",
+    "cls": null,
+    "mech": "least product of two numbers from a printed signed set (one of each sign, greatest size)",
+    "ccss_hint": "7.NS.A.2c",
+    "checker_id": "E07"
+   },
+   {
+    "g": 7,
+    "tier": "high",
+    "pos": "I",
+    "rank": 2,
+    "id": "MB8-N7-02",
+    "cls": null,
+    "mech": "divided by f instead of multiplying: undo, then apply, key R x f^2 (never R x f)",
+    "ccss_hint": "7.NS.A.2c",
+    "checker_id": "E14"
+   },
+   {
+    "g": 7,
+    "tier": "high",
+    "pos": "L",
+    "rank": 4,
+    "id": "MB8-N7-03",
+    "cls": null,
+    "mech": "choose + or - before mixed numbers to bring the value nearest 0",
+    "ccss_hint": "7.NS.A.1d",
+    "checker_id": "E16"
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "I",
+    "rank": 2,
+    "id": "MB8-N7-04",
+    "cls": null,
+    "mech": "telescoping product of -(n-1)/n factors with the sign by counting",
+    "ccss_hint": "7.NS.A.2c",
+    "checker_id": "E09",
+    "status": "dropped: BOUND-SCREEN sign strike (+ lexical near-dup flag); see ITEMS.md"
+   },
+   {
+    "g": 7,
+    "tier": "mid",
+    "pos": "I",
+    "rank": 3,
+    "id": "MB8-N7-05",
+    "cls": null,
+    "mech": "signed magic square, sum printed, target needs a first missing entry",
+    "ccss_hint": "7.NS.A.1d",
+    "checker_id": "E12"
+   }
+  ]
+ },
+ "N8": {
+  "area": "Real and Complex Number Systems",
+  "scope": "8.EE.A.2",
+  "rows": [
+   {
+    "g": 8,
+    "tier": "mid",
+    "pos": "I",
+    "rank": 2,
+    "id": "MB8-N8-01",
+    "cls": null,
+    "mech": "x^3 + c = d: isolate the cube, then a negative cube root",
+    "ccss_hint": "8.EE.A.2",
+    "checker_id": "E17",
+    "status": "dropped: BOUND-SCREEN sign strike (+ lexical near-dup flag); see ITEMS.md"
+   }
+  ]
+ }
+}

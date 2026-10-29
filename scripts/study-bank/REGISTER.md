@@ -6479,3 +6479,13 @@ structural checks are pre-flight only. See CLAUDE.md.
   (MECHANISMS.md, FEASIBILITY.md, DROPPED.md, CHECKER-PROMPT.md, gen8/diag8/probe/collect). Also committed
   `math-b6/feas-lib.mjs`, which the b7 and b8 tools import and which had never been tracked. Next: one fresh
   independent chain checker (running), then items for the recommended set.
+
+- **2026-10-30 — MAP Math b8: independent chain check 3 NEW / 8 BORDERLINE / 6 REPEAT; 7 items written, 5 PART OK.**
+  NEW E07, E14, E16 (all grade 7); BORDERLINE fill E06, E12 written; E09 and E17 dropped. Both failed near-dup on a
+  word-overlap false positive (not reworded, per the brief), and both were also broken by a cheap sign elimination.
+  **New construction rule:** FEASIBILITY never tested whether the key's SIGN follows from a sign rule. Where it does,
+  the opposite-sign options die for free (the same reason as the MB5-N7-01 withdrawal). Future generators must refuse
+  any option set that is split by sign when the sign is decidable. Author changes on E07, E14 and E16 are listed in
+  `math-b8/ITEMS.md`. Open risks: 1 of 5 keys at an extreme (inserter floor 40%); E12's area; E14's x3/2 chain in
+  the options. Pool for the next Number Systems gate: 5 b8 items + MB7-N7-01 = 6 of the +9 needed. Grades 5 and 8
+  are empty.
