@@ -6280,3 +6280,18 @@ structural checks are pre-flight only. See CLAUDE.md.
   - **Capacity:** live ACT Science stays at 3 forms (RS 9, DR 8, CV 6 passages) until released. Staged now RS
     23, DR 13, CV 19 passages; live + staged = RS 32, DR 21, CV 25, which is **10 forms** at 3 RS + 2 DR + 2 CV,
     bound by DR and CV. Today's seven cohorts alone are RS 17, DR 9, CV 13 = 4 forms.
+
+- **2026-10-29 — MAP Math batch 7 (Number Systems): 1 writable item from the checker round; no gate run.** The
+  independent chain checker (`map-v2-work/math-b7/CHAIN-CHECK.md`) passed 7 NEW mechanisms (6 distinct) plus a
+  BORDERLINE fill list. A feasibility search over each mechanism's natural error set against the Number Systems
+  construction rules (`math-b7/search7.mjs`, `gen7.mjs`; results in `math-b7/FEASIBILITY.md`) found only two
+  writable: D16 and D33. Counts (D04, D05, D19, D21) and small whole-number keys (D03, D14, D31) cannot carry four
+  real-error options under FORM final-digit, HUB and RUN; D06, D07 and D39 errors never share the key's denominator;
+  D15/D08/D25/D37 are not constructible (option forms). **D16 was written and passed every construction check, then
+  `math-check` refused it as a near-duplicate of live ISEE 5d6f2a16 (isee-math-s16, j 0.688), which runs the same
+  area / side -> other side -> perimeter chain behind one extra step: the checker's NEW verdict missed a live repeat.**
+  Dropped, not reworded. **MB7-N7-01 (D33, x(-2) + 5 pressed three times from 0.75, key 9, rank 3) prints PART OK**
+  and is kept (`math-b7/MB7-N7-01.items.json`, slot in `math-b7/slots.json`) to be gated with the next batch: a
+  one-item gate measures nothing on options-only and costs ~10 agents. MAP Math stays at 5 forms (Number Systems 51,
+  needs 60). Next round: draft only mechanisms whose answer is a signed decimal or a fixed-denominator fraction, and
+  run the feasibility search BEFORE the chain check.

@@ -1,0 +1,122 @@
+[
+ {
+  "id": "MB7-N6-01",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "6.NS.A.1",
+  "area_25": null,
+  "subskill": "Divide a fractional area by a fractional side, then find the perimeter",
+  "grade_rationale": "Mid for grade 6 (6.NS.A.1): the item is the standard's own strip-of-land model run backward. The student must see that the missing side is the area divided by the known side (12/7 divided by 3/2 = 8/7), then add four sides with unlike denominators. Students who multiply the area by the side, stop at the missing side, or add only three sides each land on an option; about half reach 5 2/7.",
+  "prompt": "A rectangular garden bed has an area of 1 5/7 square meters. One side of the bed is 1 1/2 meters long. What is the perimeter of the garden bed, in meters?",
+  "choices": [
+   "1 1/7",
+   "4 1/7",
+   "5 2/7",
+   "8 1/7"
+  ],
+  "correct_answer": "5 2/7",
+  "explanation": "The area is 1 5/7 = 12/7 square meters and one side is 1 1/2 = 3/2 meters. The other side is the area divided by the known side: 12/7 / 3/2 = 12/7 x 2/3 = 24/21 = 8/7 meters. The perimeter is 2 x (8/7 + 3/2) = 2 x (16/14 + 21/14) = 2 x 37/14 = 37/7 = 5 2/7 meters.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a;const M=(n,d)=>{const k=g(n,d);n/=k;d/=k;const w=Math.floor(n/d),r=n-w*d;return r===0?String(w):(w===0?r+'/'+d:w+' '+r+'/'+d)};return M(2*(8*2+3*7),14);",
+  "distractor_solve": {
+   "8 1/7": "const g=(a,b)=>b?g(b,a%b):a;const M=(n,d)=>{const k=g(n,d);n/=k;d/=k;const w=Math.floor(n/d),r=n-w*d;return r===0?String(w):(w===0?r+'/'+d:w+' '+r+'/'+d)};const other=(12*3)/(7*2);return M(2*(36*2+3*14),28);",
+   "1 1/7": "const g=(a,b)=>b?g(b,a%b):a;const M=(n,d)=>{const k=g(n,d);n/=k;d/=k;const w=Math.floor(n/d),r=n-w*d;return r===0?String(w):(w===0?r+'/'+d:w+' '+r+'/'+d)};return M(12*2,7*3);",
+   "4 1/7": "const g=(a,b)=>b?g(b,a%b):a;const M=(n,d)=>{const k=g(n,d);n/=k;d/=k;const w=Math.floor(n/d),r=n-w*d;return r===0?String(w):(w===0?r+'/'+d:w+' '+r+'/'+d)};return M(8*2+3*2*7,14);"
+  },
+  "mechanism": [
+   "rename 1 5/7 as 12/7 and 1 1/2 as 3/2",
+   "the missing side is the area divided by the known side: 12/7 / 3/2 = 8/7",
+   "perimeter is twice the sum of the two sides, adding 8/7 and 3/2 over 14ths"
+  ],
+  "quantity_asked": "the perimeter of the rectangle in meters",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "an option is a perimeter, not a side, so it cannot be multiplied back into the area; checking an option means redoing the division"
+  },
+  "distractor_meta": {
+   "8 1/7": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "multiplies the area by the known side instead of dividing to get the missing side",
+    "why": "The student treats 'area and a side' as a multiplication: 12/7 x 3/2 = 18/7 for the other side, then 2 x (18/7 + 3/2) = 57/7 = 8 1/7."
+   },
+   "1 1/7": {
+    "error_kind": "partial_answer",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "stops at the missing side and reports it as the answer",
+    "why": "The student correctly divides 12/7 by 3/2 to get 8/7 = 1 1/7 meters and stops there, giving the side instead of the perimeter."
+   },
+   "4 1/7": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds the known side twice but the found side only once (three sides instead of four)",
+    "why": "The student finds the other side 8/7 but adds 8/7 + 3/2 + 3/2 = 29/7 = 4 1/7, counting the 1 1/2-meter side twice and the 8/7-meter side once."
+   }
+  },
+  "structure_check": "Interior key (rank 3). The stem gives an area and one side; errors go both ways from the key: multiplying instead of dividing overshoots (8 1/7), while stopping at the side or leaving out a side undershoots (1 1/7, 4 1/7).",
+  "intermediate_check": "1 1/7 is the solved intermediate (the missing side 8/7), declared as a partial_answer distractor on purpose: the key follows from it by doubling the sum with 1 1/2, which is not a single printed relation (2 x (8/7 + 3/2)). 4 1/7 and 8 1/7 are not steps of the solution.",
+  "cheap_bound_check": "Cheapest bound: the perimeter is more than twice the known side, 2 x 1 1/2 = 3, which strikes only 1 1/7; 4 1/7 and 8 1/7 survive with the key.",
+  "shape_check": "All four options are mixed numbers in sevenths; the area is in sevenths and the side in halves, so a perimeter in sevenths gives no hint (halves times 2 vanish).",
+  "interior_parity_check": "Middle values 4 1/7 and 5 2/7 are both mixed numbers in sevenths; neither is cleaner than the other.",
+  "arith_class_check": "Every option is a mixed number with denominator 7; no option is a whole number or a half.",
+  "dup_search": {
+   "queries": [
+    "area&side&perimeter",
+    "square meters&perimeter",
+    "area of&one side&other side",
+    "divide&area&side",
+    "fraction&area&perimeter"
+   ],
+   "hits_read": 0,
+   "nearest": "MM4-N10 and MM5P-N02 multiply two fractional sides for an area; ISEE 49ab2017 goes perimeter + side -> side -> area with whole numbers. None divides a fractional area by a fractional side and builds a perimeter (chain checker D16: NEW)."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: a perimeter is positive and all options are positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "perimeter > 2 x 1 1/2 = 3",
+    "strikes": [
+     "1 1/7"
+    ]
+   },
+   {
+    "kind": "parity",
+    "bound": "none: options are mixed numbers",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: all options are in sevenths",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "the other side is less than the area (side > 1), so perimeter < 2 x (1 5/7 + 1 1/2) = 6 3/7: strikes 8 1/7 only",
+    "strikes": [
+     "8 1/7"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Chain checker's D16 (NEW): fractional area / fractional side (6.NS.A.1 strip model) -> perimeter with unlike denominators. Key rank 3 of 4 ascending; no x2/x3/x4/x1.5/x10 links; key is no midpoint. Errors: wrong operation (multiply, 8 1/7), partial answer (the side, 1 1/7), three sides (4 1/7). Two bounds each strike one distractor (magnitude 1 1/7, range 8 1/7), leaving 4 1/7 against the key."
+  }
+ }
+]

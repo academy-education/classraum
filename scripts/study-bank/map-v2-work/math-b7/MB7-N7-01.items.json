@@ -1,0 +1,117 @@
+[
+ {
+  "id": "MB7-N7-01",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "7.NS.A.3",
+  "area_25": null,
+  "subskill": "Apply a signed multiply-then-add rule three times in a row",
+  "grade_rationale": "Mid for grade 7 (7.NS.A.3): each press is one multiplication by -2 and one addition of 5 with signed decimals, and the sign of the screen number flips every press. Students who drop the negative sign, press one time too many, or multiply three times before adding land on an option; about half carry all three rounds to 9.",
+  "prompt": "A calculator has a key that multiplies the number on the screen by -2 and then adds 5. Mia enters 0.75 and then presses the key three times. What number is on the screen now?",
+  "choices": [
+   "-13",
+   "-1",
+   "9",
+   "41"
+  ],
+  "correct_answer": "9",
+  "explanation": "Press 1: 0.75 x (-2) + 5 = -1.5 + 5 = 3.5. Press 2: 3.5 x (-2) + 5 = -7 + 5 = -2. Press 3: -2 x (-2) + 5 = 4 + 5 = 9. The screen shows 9.",
+  "solve": "let x=0.75;for(let i=0;i<3;i++)x=-2*x+5;return String(x);",
+  "distractor_solve": {
+   "41": "let x=0.75;for(let i=0;i<3;i++)x=2*x+5;return String(x);",
+   "-13": "let x=0.75;for(let i=0;i<4;i++)x=-2*x+5;return String(x);",
+   "-1": "return String((-2)*(-2)*(-2)*0.75+5);"
+  },
+  "mechanism": [
+   "multiply 0.75 by -2 and add 5 to get 3.5",
+   "multiply 3.5 by -2 and add 5 to get -2",
+   "multiply -2 by -2 (positive 4) and add 5 to get 9"
+  ],
+  "quantity_asked": "the number on the screen after three presses",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "an option is the end of a three-step process; checking it means running the three presses forward (or undoing them backward), not substituting one value"
+  },
+  "distractor_meta": {
+   "41": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "drops the negative sign of the multiplier and multiplies by 2 each press",
+    "why": "The student uses 2 instead of -2: 0.75 x 2 + 5 = 6.5, then 6.5 x 2 + 5 = 18, then 18 x 2 + 5 = 41."
+   },
+   "-13": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "counts entering 0.75 as the first press and so presses one time too many",
+    "why": "The student does the three presses correctly to reach 9, then presses once more: 9 x (-2) + 5 = -13."
+   },
+   "-1": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "multiplies by -2 three times first and adds 5 only once at the end",
+    "why": "The student treats the rule as (-2) x (-2) x (-2) x 0.75 + 5 = -8 x 0.75 + 5 = -6 + 5 = -1, adding 5 once instead of after every press."
+   }
+  },
+  "structure_check": "Interior key (rank 3). The rule flips the sign each press, so errors land on both sides: dropping the sign overshoots (41), while an extra press (-13) or adding 5 only once (-1) lands below.",
+  "intermediate_check": "The intermediates are 3.5 and -2; neither is an option. -13 follows from the key by one more press (9 x -2 + 5), which is the rule itself, not a printed relation; 41 and -1 are not steps of the solution.",
+  "cheap_bound_check": "No cheap bound: the sign alternates press to press, so neither the sign nor the size of the answer is fixed without carrying out the presses. A sign guess (two presses of -2 give a positive multiplier) does not survive the +5 after each press.",
+  "shape_check": "All four options are odd whole numbers, two negative and two positive; the start value 0.75 gives no units-digit or parity hint for the end value.",
+  "interior_parity_check": "Middle values -1 and 9 are both odd whole numbers; neither is cleaner than the other.",
+  "arith_class_check": "Every option is an odd integer; none is a decimal, so the decimal start gives no class to test.",
+  "dup_search": {
+   "queries": [
+    "multiplies&by -2&adds",
+    "calculator&key&presses",
+    "rule&multiply&then add&three times",
+    "input&output&-2"
+   ],
+   "hits_read": 3,
+   "nearest": "SAT prior SM27F-A05 uses a multiply-by--2-then-add-3 key pressed twice and runs BACKWARD (find the input); MV2-N7-06 and MB4-N7-04 do one signed multiply-and-add round. This item runs a different rule (x -2, + 5) FORWARD three times from a decimal (chain checker D33: BORDERLINE, forward iteration new to MAP)."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: the sign alternates each press, so no sign bound holds without computing",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "none: |x| at most doubles plus 5 each press, so |answer| <= 2 x (2 x (2 x 0.75 + 5) + 5) + 5 = 41; strikes nothing",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: all four options are odd",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: the start is a decimal, so no units digit carries through",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "none beyond the magnitude bound",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Chain checker's D33 (BORDERLINE; area risk: an input-output rule is Operations-adjacent; near-twin SAT prior SM27F-A05 uses x(-2)+3, pressed twice, run backward). This item uses x(-2)+5 run forward three times from 0.75, so the rule and the direction both differ. Key rank 3; no ratio links; key is no midpoint (( -13 + 41)/2 = 14, (-1 + 41)/2 = 20, (-13 + -1)/2 = -7). Errors: sign slip (41), one press too many (-13), operations in the wrong order (-1)."
+  }
+ }
+]
