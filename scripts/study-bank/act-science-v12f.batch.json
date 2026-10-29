@@ -1,0 +1,3764 @@
+[
+ {
+  "id": "ASV12f-P1-Q1",
+  "passage_id": "sc12f-p1",
+  "passage_title": "Water Temperature, Time, and Talvine in Corrin Tremor",
+  "format": "research_summaries",
+  "passage": "Corrin tremor is an invented name for a condition in which a person's hand shakes after it has been chilled. Researchers studied volunteers who have the condition. Each volunteer held one hand in a bath of water and then lifted it out. A sensor on the hand measured the size of the shaking (the tremor amplitude, in mm) 1 minute after the hand left the water, and the researchers recorded the recovery time: the number of minutes until the shaking stopped (see Table 1).\n\nStudy 1\nHands were held in water at 5°C, 10°C, 15°C, 20°C, or 25°C for 2 minutes.\n\nStudy 2\nHands were held in water at 10°C for 1, 4, or 8 minutes. (The 2-minute result is the 10°C result of Study 1.)\n\nStudy 3\nThirty minutes before the test, volunteers swallowed 50, 100, or 200 mg of talvine, an experimental drug. Hands were then held in water at 10°C for 2 minutes. (The result with no talvine is the 10°C result of Study 1.)",
+  "prompt": "In Study 1, the tremor amplitude was greatest after hands were held in water at what temperature?",
+  "choices": [
+   "5°C",
+   "10°C",
+   "15°C",
+   "20°C"
+  ],
+  "correct_answer": "10°C",
+  "explanation": "Study 1 amplitudes: 2.6 mm (5°C), 3.4 mm (10°C), 2.2 mm (15°C), 1.1 mm (20°C), 0.9 mm (25°C). The greatest is at \"10°C\".",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a maximum within one series",
+  "difficulty": "medium",
+  "topic_tag": "Water Temperature, Time, and Talvine in Corrin Tremor",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Corrin tremor results (averages for each condition)",
+   "colLabels": [
+    "Water (°C)",
+    "Time in water (min)",
+    "Talvine (mg)",
+    "Tremor amplitude (mm)",
+    "Recovery time (min)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2",
+    "Study 3",
+    "Study 3",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     5,
+     2,
+     0,
+     2.6,
+     14
+    ],
+    [
+     10,
+     2,
+     0,
+     3.4,
+     19
+    ],
+    [
+     15,
+     2,
+     0,
+     2.2,
+     13
+    ],
+    [
+     20,
+     2,
+     0,
+     1.1,
+     7
+    ],
+    [
+     25,
+     2,
+     0,
+     0.9,
+     6
+    ],
+    [
+     10,
+     1,
+     0,
+     2.1,
+     10
+    ],
+    [
+     10,
+     4,
+     0,
+     4.0,
+     26
+    ],
+    [
+     10,
+     8,
+     0,
+     4.1,
+     41
+    ],
+    [
+     10,
+     2,
+     50,
+     2.5,
+     15
+    ],
+    [
+     10,
+     2,
+     100,
+     1.6,
+     10
+    ],
+    [
+     10,
+     2,
+     200,
+     1.5,
+     11
+    ]
+   ]
+  },
+  "consistency_check": "The 10 C, 2-minute, no-talvine trial (3.4 mm, 19 min) is listed once and serves all three studies; amplitude peaks at 10 C, levels off with time (4.0 to 4.1), and falls with dose until 100 mg; recovery rises 10 to 11 min from 100 to 200 mg; condition and drug are invented, no named law."
+ },
+ {
+  "id": "ASV12f-P1-Q2",
+  "passage_id": "sc12f-p1",
+  "passage_title": "Water Temperature, Time, and Talvine in Corrin Tremor",
+  "format": "research_summaries",
+  "passage": "Corrin tremor is an invented name for a condition in which a person's hand shakes after it has been chilled. Researchers studied volunteers who have the condition. Each volunteer held one hand in a bath of water and then lifted it out. A sensor on the hand measured the size of the shaking (the tremor amplitude, in mm) 1 minute after the hand left the water, and the researchers recorded the recovery time: the number of minutes until the shaking stopped (see Table 1).\n\nStudy 1\nHands were held in water at 5°C, 10°C, 15°C, 20°C, or 25°C for 2 minutes.\n\nStudy 2\nHands were held in water at 10°C for 1, 4, or 8 minutes. (The 2-minute result is the 10°C result of Study 1.)\n\nStudy 3\nThirty minutes before the test, volunteers swallowed 50, 100, or 200 mg of talvine, an experimental drug. Hands were then held in water at 10°C for 2 minutes. (The result with no talvine is the 10°C result of Study 1.)",
+  "prompt": "Based on Study 2, if a hand were held in water at 10°C for 6 minutes, the tremor amplitude would most likely be:",
+  "choices": [
+   "less than 3.4 mm.",
+   "between 3.4 mm and 4.0 mm.",
+   "between 4.0 mm and 4.1 mm.",
+   "greater than 4.1 mm."
+  ],
+  "correct_answer": "between 4.0 mm and 4.1 mm.",
+  "explanation": "In Study 2 the amplitude was 4.0 mm at 4 minutes and 4.1 mm at 8 minutes. 6 minutes lies between them, so \"between 4.0 mm and 4.1 mm.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate within a series",
+  "difficulty": "hard",
+  "topic_tag": "Water Temperature, Time, and Talvine in Corrin Tremor",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Corrin tremor results (averages for each condition)",
+   "colLabels": [
+    "Water (°C)",
+    "Time in water (min)",
+    "Talvine (mg)",
+    "Tremor amplitude (mm)",
+    "Recovery time (min)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2",
+    "Study 3",
+    "Study 3",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     5,
+     2,
+     0,
+     2.6,
+     14
+    ],
+    [
+     10,
+     2,
+     0,
+     3.4,
+     19
+    ],
+    [
+     15,
+     2,
+     0,
+     2.2,
+     13
+    ],
+    [
+     20,
+     2,
+     0,
+     1.1,
+     7
+    ],
+    [
+     25,
+     2,
+     0,
+     0.9,
+     6
+    ],
+    [
+     10,
+     1,
+     0,
+     2.1,
+     10
+    ],
+    [
+     10,
+     4,
+     0,
+     4.0,
+     26
+    ],
+    [
+     10,
+     8,
+     0,
+     4.1,
+     41
+    ],
+    [
+     10,
+     2,
+     50,
+     2.5,
+     15
+    ],
+    [
+     10,
+     2,
+     100,
+     1.6,
+     10
+    ],
+    [
+     10,
+     2,
+     200,
+     1.5,
+     11
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12f-P1-Q3",
+  "passage_id": "sc12f-p1",
+  "passage_title": "Water Temperature, Time, and Talvine in Corrin Tremor",
+  "format": "research_summaries",
+  "passage": "Corrin tremor is an invented name for a condition in which a person's hand shakes after it has been chilled. Researchers studied volunteers who have the condition. Each volunteer held one hand in a bath of water and then lifted it out. A sensor on the hand measured the size of the shaking (the tremor amplitude, in mm) 1 minute after the hand left the water, and the researchers recorded the recovery time: the number of minutes until the shaking stopped (see Table 1).\n\nStudy 1\nHands were held in water at 5°C, 10°C, 15°C, 20°C, or 25°C for 2 minutes.\n\nStudy 2\nHands were held in water at 10°C for 1, 4, or 8 minutes. (The 2-minute result is the 10°C result of Study 1.)\n\nStudy 3\nThirty minutes before the test, volunteers swallowed 50, 100, or 200 mg of talvine, an experimental drug. Hands were then held in water at 10°C for 2 minutes. (The result with no talvine is the 10°C result of Study 1.)",
+  "prompt": "The researchers want to learn whether talvine also shortens recovery after an 8-minute chill, and to compare each result directly with an untreated result already in Table 1. Volunteers will take 50, 100, or 200 mg of talvine and then hold a hand in water for 8 minutes. What should the water temperature be?",
+  "choices": [
+   "10°C",
+   "20°C",
+   "5°C",
+   "25°C"
+  ],
+  "correct_answer": "10°C",
+  "explanation": "The only untreated 8-minute chill in Table 1 used 10°C water (Study 2, recovery 41 min). Using \"10°C\" lets each talvine result be compared with it; 8-minute chills at 5°C, 20°C, and 25°C were never tested.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose conditions that allow comparison with earlier results",
+  "difficulty": "hard",
+  "topic_tag": "Water Temperature, Time, and Talvine in Corrin Tremor",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Corrin tremor results (averages for each condition)",
+   "colLabels": [
+    "Water (°C)",
+    "Time in water (min)",
+    "Talvine (mg)",
+    "Tremor amplitude (mm)",
+    "Recovery time (min)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2",
+    "Study 3",
+    "Study 3",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     5,
+     2,
+     0,
+     2.6,
+     14
+    ],
+    [
+     10,
+     2,
+     0,
+     3.4,
+     19
+    ],
+    [
+     15,
+     2,
+     0,
+     2.2,
+     13
+    ],
+    [
+     20,
+     2,
+     0,
+     1.1,
+     7
+    ],
+    [
+     25,
+     2,
+     0,
+     0.9,
+     6
+    ],
+    [
+     10,
+     1,
+     0,
+     2.1,
+     10
+    ],
+    [
+     10,
+     4,
+     0,
+     4.0,
+     26
+    ],
+    [
+     10,
+     8,
+     0,
+     4.1,
+     41
+    ],
+    [
+     10,
+     2,
+     50,
+     2.5,
+     15
+    ],
+    [
+     10,
+     2,
+     100,
+     1.6,
+     10
+    ],
+    [
+     10,
+     2,
+     200,
+     1.5,
+     11
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12f-P1-Q4",
+  "passage_id": "sc12f-p1",
+  "passage_title": "Water Temperature, Time, and Talvine in Corrin Tremor",
+  "format": "research_summaries",
+  "passage": "Corrin tremor is an invented name for a condition in which a person's hand shakes after it has been chilled. Researchers studied volunteers who have the condition. Each volunteer held one hand in a bath of water and then lifted it out. A sensor on the hand measured the size of the shaking (the tremor amplitude, in mm) 1 minute after the hand left the water, and the researchers recorded the recovery time: the number of minutes until the shaking stopped (see Table 1).\n\nStudy 1\nHands were held in water at 5°C, 10°C, 15°C, 20°C, or 25°C for 2 minutes.\n\nStudy 2\nHands were held in water at 10°C for 1, 4, or 8 minutes. (The 2-minute result is the 10°C result of Study 1.)\n\nStudy 3\nThirty minutes before the test, volunteers swallowed 50, 100, or 200 mg of talvine, an experimental drug. Hands were then held in water at 10°C for 2 minutes. (The result with no talvine is the 10°C result of Study 1.)",
+  "prompt": "In Study 3, which increase in the talvine dose was followed by the largest decrease in recovery time?",
+  "choices": [
+   "From 0 mg to 50 mg",
+   "From 100 mg to 200 mg",
+   "The decreases were the same at each step",
+   "From 50 mg to 100 mg"
+  ],
+  "correct_answer": "From 50 mg to 100 mg",
+  "explanation": "Recovery times: 19 min (0 mg), 15 min (50 mg), 10 min (100 mg), 11 min (200 mg). Decreases: 4 min, then 5 min; from 100 to 200 mg it rose by 1 min. The largest decrease is \"From 50 mg to 100 mg\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compare changes between steps",
+  "difficulty": "medium",
+  "topic_tag": "Water Temperature, Time, and Talvine in Corrin Tremor",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Corrin tremor results (averages for each condition)",
+   "colLabels": [
+    "Water (°C)",
+    "Time in water (min)",
+    "Talvine (mg)",
+    "Tremor amplitude (mm)",
+    "Recovery time (min)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2",
+    "Study 3",
+    "Study 3",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     5,
+     2,
+     0,
+     2.6,
+     14
+    ],
+    [
+     10,
+     2,
+     0,
+     3.4,
+     19
+    ],
+    [
+     15,
+     2,
+     0,
+     2.2,
+     13
+    ],
+    [
+     20,
+     2,
+     0,
+     1.1,
+     7
+    ],
+    [
+     25,
+     2,
+     0,
+     0.9,
+     6
+    ],
+    [
+     10,
+     1,
+     0,
+     2.1,
+     10
+    ],
+    [
+     10,
+     4,
+     0,
+     4.0,
+     26
+    ],
+    [
+     10,
+     8,
+     0,
+     4.1,
+     41
+    ],
+    [
+     10,
+     2,
+     50,
+     2.5,
+     15
+    ],
+    [
+     10,
+     2,
+     100,
+     1.6,
+     10
+    ],
+    [
+     10,
+     2,
+     200,
+     1.5,
+     11
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12f-P1-Q5",
+  "passage_id": "sc12f-p1",
+  "passage_title": "Water Temperature, Time, and Talvine in Corrin Tremor",
+  "format": "research_summaries",
+  "passage": "Corrin tremor is an invented name for a condition in which a person's hand shakes after it has been chilled. Researchers studied volunteers who have the condition. Each volunteer held one hand in a bath of water and then lifted it out. A sensor on the hand measured the size of the shaking (the tremor amplitude, in mm) 1 minute after the hand left the water, and the researchers recorded the recovery time: the number of minutes until the shaking stopped (see Table 1).\n\nStudy 1\nHands were held in water at 5°C, 10°C, 15°C, 20°C, or 25°C for 2 minutes.\n\nStudy 2\nHands were held in water at 10°C for 1, 4, or 8 minutes. (The 2-minute result is the 10°C result of Study 1.)\n\nStudy 3\nThirty minutes before the test, volunteers swallowed 50, 100, or 200 mg of talvine, an experimental drug. Hands were then held in water at 10°C for 2 minutes. (The result with no talvine is the 10°C result of Study 1.)",
+  "prompt": "Which condition produced a tremor amplitude below 1.5 mm AND a recovery time under 10 minutes?",
+  "choices": [
+   "20°C water for 2 minutes, no talvine",
+   "10°C water for 2 minutes, 100 mg of talvine",
+   "10°C water for 2 minutes, 200 mg of talvine",
+   "15°C water for 2 minutes, no talvine"
+  ],
+  "correct_answer": "20°C water for 2 minutes, no talvine",
+  "explanation": "20°C with no talvine gave 1.1 mm and 7 min, meeting both limits. 100 mg gave 1.6 mm and 10 min; 200 mg gave 1.5 mm and 11 min; 15°C gave 2.2 mm and 13 min.",
+  "domain": "Interpretation of Data",
+  "subskill": "apply two conditions to a table",
+  "difficulty": "hard",
+  "topic_tag": "Water Temperature, Time, and Talvine in Corrin Tremor",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Corrin tremor results (averages for each condition)",
+   "colLabels": [
+    "Water (°C)",
+    "Time in water (min)",
+    "Talvine (mg)",
+    "Tremor amplitude (mm)",
+    "Recovery time (min)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2",
+    "Study 3",
+    "Study 3",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     5,
+     2,
+     0,
+     2.6,
+     14
+    ],
+    [
+     10,
+     2,
+     0,
+     3.4,
+     19
+    ],
+    [
+     15,
+     2,
+     0,
+     2.2,
+     13
+    ],
+    [
+     20,
+     2,
+     0,
+     1.1,
+     7
+    ],
+    [
+     25,
+     2,
+     0,
+     0.9,
+     6
+    ],
+    [
+     10,
+     1,
+     0,
+     2.1,
+     10
+    ],
+    [
+     10,
+     4,
+     0,
+     4.0,
+     26
+    ],
+    [
+     10,
+     8,
+     0,
+     4.1,
+     41
+    ],
+    [
+     10,
+     2,
+     50,
+     2.5,
+     15
+    ],
+    [
+     10,
+     2,
+     100,
+     1.6,
+     10
+    ],
+    [
+     10,
+     2,
+     200,
+     1.5,
+     11
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12f-P1-Q6",
+  "passage_id": "sc12f-p1",
+  "passage_title": "Water Temperature, Time, and Talvine in Corrin Tremor",
+  "format": "research_summaries",
+  "passage": "Corrin tremor is an invented name for a condition in which a person's hand shakes after it has been chilled. Researchers studied volunteers who have the condition. Each volunteer held one hand in a bath of water and then lifted it out. A sensor on the hand measured the size of the shaking (the tremor amplitude, in mm) 1 minute after the hand left the water, and the researchers recorded the recovery time: the number of minutes until the shaking stopped (see Table 1).\n\nStudy 1\nHands were held in water at 5°C, 10°C, 15°C, 20°C, or 25°C for 2 minutes.\n\nStudy 2\nHands were held in water at 10°C for 1, 4, or 8 minutes. (The 2-minute result is the 10°C result of Study 1.)\n\nStudy 3\nThirty minutes before the test, volunteers swallowed 50, 100, or 200 mg of talvine, an experimental drug. Hands were then held in water at 10°C for 2 minutes. (The result with no talvine is the 10°C result of Study 1.)",
+  "prompt": "Which factor was kept the same in Study 1 and in Study 3 but was changed in Study 2?",
+  "choices": [
+   "Talvine dose",
+   "Water temperature",
+   "Time in water",
+   "Number of volunteers"
+  ],
+  "correct_answer": "Time in water",
+  "explanation": "Studies 1 and 3 both used 2 minutes in the water, and Study 2 used 1, 4, and 8 minutes. Water temperature was changed in Study 1, talvine dose was changed in Study 3, and the passage does not say the number of volunteers was changed in any study.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify controlled and varied factors",
+  "difficulty": "medium",
+  "topic_tag": "Water Temperature, Time, and Talvine in Corrin Tremor",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Corrin tremor results (averages for each condition)",
+   "colLabels": [
+    "Water (°C)",
+    "Time in water (min)",
+    "Talvine (mg)",
+    "Tremor amplitude (mm)",
+    "Recovery time (min)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2",
+    "Study 3",
+    "Study 3",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     5,
+     2,
+     0,
+     2.6,
+     14
+    ],
+    [
+     10,
+     2,
+     0,
+     3.4,
+     19
+    ],
+    [
+     15,
+     2,
+     0,
+     2.2,
+     13
+    ],
+    [
+     20,
+     2,
+     0,
+     1.1,
+     7
+    ],
+    [
+     25,
+     2,
+     0,
+     0.9,
+     6
+    ],
+    [
+     10,
+     1,
+     0,
+     2.1,
+     10
+    ],
+    [
+     10,
+     4,
+     0,
+     4.0,
+     26
+    ],
+    [
+     10,
+     8,
+     0,
+     4.1,
+     41
+    ],
+    [
+     10,
+     2,
+     50,
+     2.5,
+     15
+    ],
+    [
+     10,
+     2,
+     100,
+     1.6,
+     10
+    ],
+    [
+     10,
+     2,
+     200,
+     1.5,
+     11
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12f-P2-Q1",
+  "passage_id": "sc12f-p2",
+  "passage_title": "Depth, Season, and Distance from Shore in the Marrow Current",
+  "format": "research_summaries",
+  "passage": "The Marrow Current is an invented ocean current that flows along the coast of the invented country of Pell. Oceanographers released floating instruments called drifters, each set to stay at one depth below the surface, and tracked them by satellite. For each release they recorded the drifter's average speed (in centimeters per second, cm/s) and the distance it traveled in 10 days (in km) (see Table 1).\n\nStudy 1\nIn summer, drifters were released 60 km from shore at depths of 0, 50, 100, 200, or 400 m.\n\nStudy 2\nDrifters were released 60 km from shore at a depth of 50 m in winter, spring, or autumn. (The summer result is the 50-m result of Study 1.)\n\nStudy 3\nIn summer, drifters were released at a depth of 50 m, 20 km or 120 km from shore. (The 60-km result is the 50-m result of Study 1.)",
+  "prompt": "In Study 1, the drifters moved fastest at what depth?",
+  "choices": [
+   "0 m",
+   "50 m",
+   "100 m",
+   "200 m"
+  ],
+  "correct_answer": "50 m",
+  "explanation": "Study 1 speeds: 42 cm/s (0 m), 51 cm/s (50 m), 38 cm/s (100 m), 19 cm/s (200 m), 6 cm/s (400 m). The fastest is at \"50 m\".",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a maximum within one series",
+  "difficulty": "medium",
+  "topic_tag": "Depth, Season, and Distance from Shore in the Marrow Current",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Marrow Current drifter results",
+   "colLabels": [
+    "Depth (m)",
+    "Season",
+    "Distance from shore (km)",
+    "Average speed (cm/s)",
+    "Distance in 10 days (km)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2",
+    "Study 3",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     0,
+     "summer",
+     60,
+     42,
+     363
+    ],
+    [
+     50,
+     "summer",
+     60,
+     51,
+     441
+    ],
+    [
+     100,
+     "summer",
+     60,
+     38,
+     328
+    ],
+    [
+     200,
+     "summer",
+     60,
+     19,
+     164
+    ],
+    [
+     400,
+     "summer",
+     60,
+     6,
+     52
+    ],
+    [
+     50,
+     "winter",
+     60,
+     27,
+     233
+    ],
+    [
+     50,
+     "spring",
+     60,
+     36,
+     311
+    ],
+    [
+     50,
+     "autumn",
+     60,
+     44,
+     380
+    ],
+    [
+     50,
+     "summer",
+     20,
+     33,
+     285
+    ],
+    [
+     50,
+     "summer",
+     120,
+     24,
+     207
+    ]
+   ]
+  },
+  "consistency_check": "10-day distance = speed (cm/s) x 864,000 s / 100,000 cm per km = speed x 8.64, rounded (e.g., 51 cm/s -> 441 km); the 50 m, summer, 60 km release is listed once and serves all three studies; speed peaks at 50 m; spring-to-summer is the largest seasonal rise; the current is invented, no named law."
+ },
+ {
+  "id": "ASV12f-P2-Q2",
+  "passage_id": "sc12f-p2",
+  "passage_title": "Depth, Season, and Distance from Shore in the Marrow Current",
+  "format": "research_summaries",
+  "passage": "The Marrow Current is an invented ocean current that flows along the coast of the invented country of Pell. Oceanographers released floating instruments called drifters, each set to stay at one depth below the surface, and tracked them by satellite. For each release they recorded the drifter's average speed (in centimeters per second, cm/s) and the distance it traveled in 10 days (in km) (see Table 1).\n\nStudy 1\nIn summer, drifters were released 60 km from shore at depths of 0, 50, 100, 200, or 400 m.\n\nStudy 2\nDrifters were released 60 km from shore at a depth of 50 m in winter, spring, or autumn. (The summer result is the 50-m result of Study 1.)\n\nStudy 3\nIn summer, drifters were released at a depth of 50 m, 20 km or 120 km from shore. (The 60-km result is the 50-m result of Study 1.)",
+  "prompt": "Based on Study 1, a summer drifter released 60 km from shore at a depth of 300 m would most likely travel what distance in 10 days?",
+  "choices": [
+   "Less than 52 km",
+   "Between 52 km and 164 km",
+   "Between 164 km and 328 km",
+   "More than 328 km"
+  ],
+  "correct_answer": "Between 52 km and 164 km",
+  "explanation": "In Study 1 the 10-day distance was 164 km at 200 m and 52 km at 400 m. 300 m lies between those depths, so the distance would most likely be \"Between 52 km and 164 km\".",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate within a series",
+  "difficulty": "medium",
+  "topic_tag": "Depth, Season, and Distance from Shore in the Marrow Current",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Marrow Current drifter results",
+   "colLabels": [
+    "Depth (m)",
+    "Season",
+    "Distance from shore (km)",
+    "Average speed (cm/s)",
+    "Distance in 10 days (km)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2",
+    "Study 3",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     0,
+     "summer",
+     60,
+     42,
+     363
+    ],
+    [
+     50,
+     "summer",
+     60,
+     51,
+     441
+    ],
+    [
+     100,
+     "summer",
+     60,
+     38,
+     328
+    ],
+    [
+     200,
+     "summer",
+     60,
+     19,
+     164
+    ],
+    [
+     400,
+     "summer",
+     60,
+     6,
+     52
+    ],
+    [
+     50,
+     "winter",
+     60,
+     27,
+     233
+    ],
+    [
+     50,
+     "spring",
+     60,
+     36,
+     311
+    ],
+    [
+     50,
+     "autumn",
+     60,
+     44,
+     380
+    ],
+    [
+     50,
+     "summer",
+     20,
+     33,
+     285
+    ],
+    [
+     50,
+     "summer",
+     120,
+     24,
+     207
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12f-P2-Q3",
+  "passage_id": "sc12f-p2",
+  "passage_title": "Depth, Season, and Distance from Shore in the Marrow Current",
+  "format": "research_summaries",
+  "passage": "The Marrow Current is an invented ocean current that flows along the coast of the invented country of Pell. Oceanographers released floating instruments called drifters, each set to stay at one depth below the surface, and tracked them by satellite. For each release they recorded the drifter's average speed (in centimeters per second, cm/s) and the distance it traveled in 10 days (in km) (see Table 1).\n\nStudy 1\nIn summer, drifters were released 60 km from shore at depths of 0, 50, 100, 200, or 400 m.\n\nStudy 2\nDrifters were released 60 km from shore at a depth of 50 m in winter, spring, or autumn. (The summer result is the 50-m result of Study 1.)\n\nStudy 3\nIn summer, drifters were released at a depth of 50 m, 20 km or 120 km from shore. (The 60-km result is the 50-m result of Study 1.)",
+  "prompt": "The oceanographers want to learn whether, in winter as in summer, speed at 50 m depends on distance from shore, and to compare each winter result with a summer result already in Table 1. At what distances from shore should winter drifters be released at 50 m?",
+  "choices": [
+   "10, 50, and 100 km",
+   "30, 90, and 150 km",
+   "40, 80, and 160 km",
+   "20, 60, and 120 km"
+  ],
+  "correct_answer": "20, 60, and 120 km",
+  "explanation": "The summer releases at 50 m were made 20, 60, and 120 km from shore (Studies 1 and 3). Only \"20, 60, and 120 km\" repeats those distances, so each winter result can be compared with a summer result at the same distance; each other set includes distances never used in summer.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose conditions that allow comparison with earlier results",
+  "difficulty": "hard",
+  "topic_tag": "Depth, Season, and Distance from Shore in the Marrow Current",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Marrow Current drifter results",
+   "colLabels": [
+    "Depth (m)",
+    "Season",
+    "Distance from shore (km)",
+    "Average speed (cm/s)",
+    "Distance in 10 days (km)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2",
+    "Study 3",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     0,
+     "summer",
+     60,
+     42,
+     363
+    ],
+    [
+     50,
+     "summer",
+     60,
+     51,
+     441
+    ],
+    [
+     100,
+     "summer",
+     60,
+     38,
+     328
+    ],
+    [
+     200,
+     "summer",
+     60,
+     19,
+     164
+    ],
+    [
+     400,
+     "summer",
+     60,
+     6,
+     52
+    ],
+    [
+     50,
+     "winter",
+     60,
+     27,
+     233
+    ],
+    [
+     50,
+     "spring",
+     60,
+     36,
+     311
+    ],
+    [
+     50,
+     "autumn",
+     60,
+     44,
+     380
+    ],
+    [
+     50,
+     "summer",
+     20,
+     33,
+     285
+    ],
+    [
+     50,
+     "summer",
+     120,
+     24,
+     207
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12f-P2-Q4",
+  "passage_id": "sc12f-p2",
+  "passage_title": "Depth, Season, and Distance from Shore in the Marrow Current",
+  "format": "research_summaries",
+  "passage": "The Marrow Current is an invented ocean current that flows along the coast of the invented country of Pell. Oceanographers released floating instruments called drifters, each set to stay at one depth below the surface, and tracked them by satellite. For each release they recorded the drifter's average speed (in centimeters per second, cm/s) and the distance it traveled in 10 days (in km) (see Table 1).\n\nStudy 1\nIn summer, drifters were released 60 km from shore at depths of 0, 50, 100, 200, or 400 m.\n\nStudy 2\nDrifters were released 60 km from shore at a depth of 50 m in winter, spring, or autumn. (The summer result is the 50-m result of Study 1.)\n\nStudy 3\nIn summer, drifters were released at a depth of 50 m, 20 km or 120 km from shore. (The 60-km result is the 50-m result of Study 1.)",
+  "prompt": "In Study 2 and Study 1 together, between which two seasons did the speed at 50 m increase the most?",
+  "choices": [
+   "Winter to spring",
+   "Spring to summer",
+   "Summer to autumn",
+   "Autumn to winter"
+  ],
+  "correct_answer": "Spring to summer",
+  "explanation": "Speeds at 50 m: winter 27, spring 36, summer 51, autumn 44 cm/s. Winter to spring rose 9; spring to summer rose 15; summer to autumn fell 7; autumn to winter fell 17. The largest increase is \"Spring to summer\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compare changes between steps",
+  "difficulty": "medium",
+  "topic_tag": "Depth, Season, and Distance from Shore in the Marrow Current",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Marrow Current drifter results",
+   "colLabels": [
+    "Depth (m)",
+    "Season",
+    "Distance from shore (km)",
+    "Average speed (cm/s)",
+    "Distance in 10 days (km)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2",
+    "Study 3",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     0,
+     "summer",
+     60,
+     42,
+     363
+    ],
+    [
+     50,
+     "summer",
+     60,
+     51,
+     441
+    ],
+    [
+     100,
+     "summer",
+     60,
+     38,
+     328
+    ],
+    [
+     200,
+     "summer",
+     60,
+     19,
+     164
+    ],
+    [
+     400,
+     "summer",
+     60,
+     6,
+     52
+    ],
+    [
+     50,
+     "winter",
+     60,
+     27,
+     233
+    ],
+    [
+     50,
+     "spring",
+     60,
+     36,
+     311
+    ],
+    [
+     50,
+     "autumn",
+     60,
+     44,
+     380
+    ],
+    [
+     50,
+     "summer",
+     20,
+     33,
+     285
+    ],
+    [
+     50,
+     "summer",
+     120,
+     24,
+     207
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12f-P2-Q5",
+  "passage_id": "sc12f-p2",
+  "passage_title": "Depth, Season, and Distance from Shore in the Marrow Current",
+  "format": "research_summaries",
+  "passage": "The Marrow Current is an invented ocean current that flows along the coast of the invented country of Pell. Oceanographers released floating instruments called drifters, each set to stay at one depth below the surface, and tracked them by satellite. For each release they recorded the drifter's average speed (in centimeters per second, cm/s) and the distance it traveled in 10 days (in km) (see Table 1).\n\nStudy 1\nIn summer, drifters were released 60 km from shore at depths of 0, 50, 100, 200, or 400 m.\n\nStudy 2\nDrifters were released 60 km from shore at a depth of 50 m in winter, spring, or autumn. (The summer result is the 50-m result of Study 1.)\n\nStudy 3\nIn summer, drifters were released at a depth of 50 m, 20 km or 120 km from shore. (The 60-km result is the 50-m result of Study 1.)",
+  "prompt": "A drifter traveled about 285 km in 10 days. Which release does this match?",
+  "choices": [
+   "100 m depth, summer, 60 km from shore",
+   "50 m depth, spring, 60 km from shore",
+   "50 m depth, winter, 60 km from shore",
+   "50 m depth, summer, 20 km from shore"
+  ],
+  "correct_answer": "50 m depth, summer, 20 km from shore",
+  "explanation": "Table 1 lists 285 km for the summer, 50-m drifter released 20 km from shore. The others traveled 233 km (winter), 328 km (100 m), and 311 km (spring).",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a value in a table",
+  "difficulty": "medium",
+  "topic_tag": "Depth, Season, and Distance from Shore in the Marrow Current",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Marrow Current drifter results",
+   "colLabels": [
+    "Depth (m)",
+    "Season",
+    "Distance from shore (km)",
+    "Average speed (cm/s)",
+    "Distance in 10 days (km)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2",
+    "Study 3",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     0,
+     "summer",
+     60,
+     42,
+     363
+    ],
+    [
+     50,
+     "summer",
+     60,
+     51,
+     441
+    ],
+    [
+     100,
+     "summer",
+     60,
+     38,
+     328
+    ],
+    [
+     200,
+     "summer",
+     60,
+     19,
+     164
+    ],
+    [
+     400,
+     "summer",
+     60,
+     6,
+     52
+    ],
+    [
+     50,
+     "winter",
+     60,
+     27,
+     233
+    ],
+    [
+     50,
+     "spring",
+     60,
+     36,
+     311
+    ],
+    [
+     50,
+     "autumn",
+     60,
+     44,
+     380
+    ],
+    [
+     50,
+     "summer",
+     20,
+     33,
+     285
+    ],
+    [
+     50,
+     "summer",
+     120,
+     24,
+     207
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12f-P2-Q6",
+  "passage_id": "sc12f-p2",
+  "passage_title": "Depth, Season, and Distance from Shore in the Marrow Current",
+  "format": "research_summaries",
+  "passage": "The Marrow Current is an invented ocean current that flows along the coast of the invented country of Pell. Oceanographers released floating instruments called drifters, each set to stay at one depth below the surface, and tracked them by satellite. For each release they recorded the drifter's average speed (in centimeters per second, cm/s) and the distance it traveled in 10 days (in km) (see Table 1).\n\nStudy 1\nIn summer, drifters were released 60 km from shore at depths of 0, 50, 100, 200, or 400 m.\n\nStudy 2\nDrifters were released 60 km from shore at a depth of 50 m in winter, spring, or autumn. (The summer result is the 50-m result of Study 1.)\n\nStudy 3\nIn summer, drifters were released at a depth of 50 m, 20 km or 120 km from shore. (The 60-km result is the 50-m result of Study 1.)",
+  "prompt": "Based on Study 3, a summer drifter released at 50 m, 90 km from shore, would most likely have an average speed of:",
+  "choices": [
+   "less than 24 cm/s.",
+   "between 24 cm/s and 51 cm/s.",
+   "between 51 cm/s and 60 cm/s.",
+   "greater than 60 cm/s."
+  ],
+  "correct_answer": "between 24 cm/s and 51 cm/s.",
+  "explanation": "At 50 m in summer the speed was 51 cm/s at 60 km and 24 cm/s at 120 km. 90 km lies between them, so \"between 24 cm/s and 51 cm/s.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate between experiments",
+  "difficulty": "medium",
+  "topic_tag": "Depth, Season, and Distance from Shore in the Marrow Current",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Marrow Current drifter results",
+   "colLabels": [
+    "Depth (m)",
+    "Season",
+    "Distance from shore (km)",
+    "Average speed (cm/s)",
+    "Distance in 10 days (km)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2",
+    "Study 3",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     0,
+     "summer",
+     60,
+     42,
+     363
+    ],
+    [
+     50,
+     "summer",
+     60,
+     51,
+     441
+    ],
+    [
+     100,
+     "summer",
+     60,
+     38,
+     328
+    ],
+    [
+     200,
+     "summer",
+     60,
+     19,
+     164
+    ],
+    [
+     400,
+     "summer",
+     60,
+     6,
+     52
+    ],
+    [
+     50,
+     "winter",
+     60,
+     27,
+     233
+    ],
+    [
+     50,
+     "spring",
+     60,
+     36,
+     311
+    ],
+    [
+     50,
+     "autumn",
+     60,
+     44,
+     380
+    ],
+    [
+     50,
+     "summer",
+     20,
+     33,
+     285
+    ],
+    [
+     50,
+     "summer",
+     120,
+     24,
+     207
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12f-P3-Q1",
+  "passage_id": "sc12f-p3",
+  "passage_title": "Density, Temperature, and Thickness of Corvane Foam Pads",
+  "format": "research_summaries",
+  "passage": "Corvane is an invented foam made for the padding inside helmets. Engineers dropped a 1-kg steel ball from a height of 1 m onto square pads of Corvane. For each pad, they measured how high the ball bounced back (the rebound height, in cm) and the depth of the permanent dent left in the pad (in mm) (see Table 1).\n\nExperiment 1\nPads 4 cm thick were made with densities of 20, 40, 60, 80, or 100 kilograms per cubic meter (kg/m³) and tested at 20°C.\n\nExperiment 2\nPads 4 cm thick with a density of 60 kg/m³ were tested at −10°C, 0°C, or 40°C. (The 20°C result is the 60 kg/m³ result of Experiment 1.)\n\nExperiment 3\nPads with a density of 60 kg/m³ were made 2 cm or 8 cm thick and tested at 20°C. (The 4-cm result is the 60 kg/m³ result of Experiment 1.)",
+  "prompt": "In Experiment 1, the ball bounced highest from pads of what density?",
+  "choices": [
+   "40 kg/m³",
+   "60 kg/m³",
+   "80 kg/m³",
+   "100 kg/m³"
+  ],
+  "correct_answer": "60 kg/m³",
+  "explanation": "Experiment 1 rebound heights: 12, 21, 34, 30, 23 cm for 20 to 100 kg/m³. The highest, 34 cm, is at \"60 kg/m³\".",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a maximum within one series",
+  "difficulty": "medium",
+  "topic_tag": "Density, Temperature, and Thickness of Corvane Foam Pads",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Corvane pad results",
+   "colLabels": [
+    "Density (kg/m³)",
+    "Temperature (°C)",
+    "Thickness (cm)",
+    "Rebound height (cm)",
+    "Dent depth (mm)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     20,
+     20,
+     4,
+     12,
+     6.0
+    ],
+    [
+     40,
+     20,
+     4,
+     21,
+     3.5
+    ],
+    [
+     60,
+     20,
+     4,
+     34,
+     1.8
+    ],
+    [
+     80,
+     20,
+     4,
+     30,
+     1.1
+    ],
+    [
+     100,
+     20,
+     4,
+     23,
+     0.9
+    ],
+    [
+     60,
+     -10,
+     4,
+     18,
+     0.6
+    ],
+    [
+     60,
+     0,
+     4,
+     27,
+     1.0
+    ],
+    [
+     60,
+     40,
+     4,
+     29,
+     3.9
+    ],
+    [
+     60,
+     20,
+     2,
+     25,
+     2.9
+    ],
+    [
+     60,
+     20,
+     8,
+     36,
+     1.7
+    ]
+   ]
+  },
+  "consistency_check": "The 60 kg/m3, 20 C, 4-cm pad (34 cm, 1.8 mm) is listed once and serves all three experiments; rebound peaks at 60 kg/m3 and at 20 C; dent depth falls with density and rises with temperature at every step; 4 to 8 cm raises rebound 34 to 36 (about 6%); the foam is invented, no named law."
+ },
+ {
+  "id": "ASV12f-P3-Q2",
+  "passage_id": "sc12f-p3",
+  "passage_title": "Density, Temperature, and Thickness of Corvane Foam Pads",
+  "format": "research_summaries",
+  "passage": "Corvane is an invented foam made for the padding inside helmets. Engineers dropped a 1-kg steel ball from a height of 1 m onto square pads of Corvane. For each pad, they measured how high the ball bounced back (the rebound height, in cm) and the depth of the permanent dent left in the pad (in mm) (see Table 1).\n\nExperiment 1\nPads 4 cm thick were made with densities of 20, 40, 60, 80, or 100 kilograms per cubic meter (kg/m³) and tested at 20°C.\n\nExperiment 2\nPads 4 cm thick with a density of 60 kg/m³ were tested at −10°C, 0°C, or 40°C. (The 20°C result is the 60 kg/m³ result of Experiment 1.)\n\nExperiment 3\nPads with a density of 60 kg/m³ were made 2 cm or 8 cm thick and tested at 20°C. (The 4-cm result is the 60 kg/m³ result of Experiment 1.)",
+  "prompt": "Which pad was left with the shallowest dent?",
+  "choices": [
+   "The −10°C pad in Experiment 2",
+   "The 0°C pad in Experiment 2",
+   "The 8-cm pad in Experiment 3",
+   "The 100 kg/m³ pad in Experiment 1"
+  ],
+  "correct_answer": "The −10°C pad in Experiment 2",
+  "explanation": "Dent depths: −10°C pad 0.6 mm, 100 kg/m³ pad 0.9 mm, 8-cm pad 1.7 mm, 0°C pad 1.0 mm. The shallowest is \"The −10°C pad in Experiment 2\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compare entries across experiments",
+  "difficulty": "medium",
+  "topic_tag": "Density, Temperature, and Thickness of Corvane Foam Pads",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Corvane pad results",
+   "colLabels": [
+    "Density (kg/m³)",
+    "Temperature (°C)",
+    "Thickness (cm)",
+    "Rebound height (cm)",
+    "Dent depth (mm)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     20,
+     20,
+     4,
+     12,
+     6.0
+    ],
+    [
+     40,
+     20,
+     4,
+     21,
+     3.5
+    ],
+    [
+     60,
+     20,
+     4,
+     34,
+     1.8
+    ],
+    [
+     80,
+     20,
+     4,
+     30,
+     1.1
+    ],
+    [
+     100,
+     20,
+     4,
+     23,
+     0.9
+    ],
+    [
+     60,
+     -10,
+     4,
+     18,
+     0.6
+    ],
+    [
+     60,
+     0,
+     4,
+     27,
+     1.0
+    ],
+    [
+     60,
+     40,
+     4,
+     29,
+     3.9
+    ],
+    [
+     60,
+     20,
+     2,
+     25,
+     2.9
+    ],
+    [
+     60,
+     20,
+     8,
+     36,
+     1.7
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12f-P3-Q3",
+  "passage_id": "sc12f-p3",
+  "passage_title": "Density, Temperature, and Thickness of Corvane Foam Pads",
+  "format": "research_summaries",
+  "passage": "Corvane is an invented foam made for the padding inside helmets. Engineers dropped a 1-kg steel ball from a height of 1 m onto square pads of Corvane. For each pad, they measured how high the ball bounced back (the rebound height, in cm) and the depth of the permanent dent left in the pad (in mm) (see Table 1).\n\nExperiment 1\nPads 4 cm thick were made with densities of 20, 40, 60, 80, or 100 kilograms per cubic meter (kg/m³) and tested at 20°C.\n\nExperiment 2\nPads 4 cm thick with a density of 60 kg/m³ were tested at −10°C, 0°C, or 40°C. (The 20°C result is the 60 kg/m³ result of Experiment 1.)\n\nExperiment 3\nPads with a density of 60 kg/m³ were made 2 cm or 8 cm thick and tested at 20°C. (The 4-cm result is the 60 kg/m³ result of Experiment 1.)",
+  "prompt": "The engineers will test 60 kg/m³ pads 2, 4, and 8 cm thick to learn whether thicker pads reduce denting at the temperature at which the 4-cm, 60 kg/m³ pads dented most. At what temperature should they test them?",
+  "choices": [
+   "20°C",
+   "−10°C",
+   "0°C",
+   "40°C"
+  ],
+  "correct_answer": "40°C",
+  "explanation": "In Experiment 2 and Experiment 1, the 4-cm, 60 kg/m³ pads dented 0.6 mm (−10°C), 1.0 mm (0°C), 1.8 mm (20°C), and 3.9 mm (40°C). The deepest dent was at \"40°C\".",
+  "domain": "Scientific Investigation",
+  "subskill": "choose conditions for a follow-up test",
+  "difficulty": "medium",
+  "topic_tag": "Density, Temperature, and Thickness of Corvane Foam Pads",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Corvane pad results",
+   "colLabels": [
+    "Density (kg/m³)",
+    "Temperature (°C)",
+    "Thickness (cm)",
+    "Rebound height (cm)",
+    "Dent depth (mm)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     20,
+     20,
+     4,
+     12,
+     6.0
+    ],
+    [
+     40,
+     20,
+     4,
+     21,
+     3.5
+    ],
+    [
+     60,
+     20,
+     4,
+     34,
+     1.8
+    ],
+    [
+     80,
+     20,
+     4,
+     30,
+     1.1
+    ],
+    [
+     100,
+     20,
+     4,
+     23,
+     0.9
+    ],
+    [
+     60,
+     -10,
+     4,
+     18,
+     0.6
+    ],
+    [
+     60,
+     0,
+     4,
+     27,
+     1.0
+    ],
+    [
+     60,
+     40,
+     4,
+     29,
+     3.9
+    ],
+    [
+     60,
+     20,
+     2,
+     25,
+     2.9
+    ],
+    [
+     60,
+     20,
+     8,
+     36,
+     1.7
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12f-P3-Q4",
+  "passage_id": "sc12f-p3",
+  "passage_title": "Density, Temperature, and Thickness of Corvane Foam Pads",
+  "format": "research_summaries",
+  "passage": "Corvane is an invented foam made for the padding inside helmets. Engineers dropped a 1-kg steel ball from a height of 1 m onto square pads of Corvane. For each pad, they measured how high the ball bounced back (the rebound height, in cm) and the depth of the permanent dent left in the pad (in mm) (see Table 1).\n\nExperiment 1\nPads 4 cm thick were made with densities of 20, 40, 60, 80, or 100 kilograms per cubic meter (kg/m³) and tested at 20°C.\n\nExperiment 2\nPads 4 cm thick with a density of 60 kg/m³ were tested at −10°C, 0°C, or 40°C. (The 20°C result is the 60 kg/m³ result of Experiment 1.)\n\nExperiment 3\nPads with a density of 60 kg/m³ were made 2 cm or 8 cm thick and tested at 20°C. (The 4-cm result is the 60 kg/m³ result of Experiment 1.)",
+  "prompt": "In Experiment 2, as the temperature increased from −10°C to 40°C, how did the dent depth and the rebound height change?",
+  "choices": [
+   "Dent depth and rebound height both increased at every step.",
+   "Dent depth increased at every step; rebound height increased and then decreased.",
+   "Dent depth decreased at every step; rebound height increased at every step.",
+   "Dent depth and rebound height both increased and then decreased."
+  ],
+  "correct_answer": "Dent depth increased at every step; rebound height increased and then decreased.",
+  "explanation": "Dent depth: 0.6, 1.0, 1.8, 3.9 mm (up every step). Rebound: 18, 27, 34, 29 cm (up, then down after 20°C).",
+  "domain": "Interpretation of Data",
+  "subskill": "describe two trends together",
+  "difficulty": "hard",
+  "topic_tag": "Density, Temperature, and Thickness of Corvane Foam Pads",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Corvane pad results",
+   "colLabels": [
+    "Density (kg/m³)",
+    "Temperature (°C)",
+    "Thickness (cm)",
+    "Rebound height (cm)",
+    "Dent depth (mm)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     20,
+     20,
+     4,
+     12,
+     6.0
+    ],
+    [
+     40,
+     20,
+     4,
+     21,
+     3.5
+    ],
+    [
+     60,
+     20,
+     4,
+     34,
+     1.8
+    ],
+    [
+     80,
+     20,
+     4,
+     30,
+     1.1
+    ],
+    [
+     100,
+     20,
+     4,
+     23,
+     0.9
+    ],
+    [
+     60,
+     -10,
+     4,
+     18,
+     0.6
+    ],
+    [
+     60,
+     0,
+     4,
+     27,
+     1.0
+    ],
+    [
+     60,
+     40,
+     4,
+     29,
+     3.9
+    ],
+    [
+     60,
+     20,
+     2,
+     25,
+     2.9
+    ],
+    [
+     60,
+     20,
+     8,
+     36,
+     1.7
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12f-P3-Q5",
+  "passage_id": "sc12f-p3",
+  "passage_title": "Density, Temperature, and Thickness of Corvane Foam Pads",
+  "format": "research_summaries",
+  "passage": "Corvane is an invented foam made for the padding inside helmets. Engineers dropped a 1-kg steel ball from a height of 1 m onto square pads of Corvane. For each pad, they measured how high the ball bounced back (the rebound height, in cm) and the depth of the permanent dent left in the pad (in mm) (see Table 1).\n\nExperiment 1\nPads 4 cm thick were made with densities of 20, 40, 60, 80, or 100 kilograms per cubic meter (kg/m³) and tested at 20°C.\n\nExperiment 2\nPads 4 cm thick with a density of 60 kg/m³ were tested at −10°C, 0°C, or 40°C. (The 20°C result is the 60 kg/m³ result of Experiment 1.)\n\nExperiment 3\nPads with a density of 60 kg/m³ were made 2 cm or 8 cm thick and tested at 20°C. (The 4-cm result is the 60 kg/m³ result of Experiment 1.)",
+  "prompt": "If a 4-cm pad with a density of 120 kg/m³ were tested as in Experiment 1, its dent would most likely be:",
+  "choices": [
+   "less than 0.9 mm deep.",
+   "between 0.9 mm and 1.1 mm deep.",
+   "between 1.1 mm and 1.8 mm deep.",
+   "more than 1.8 mm deep."
+  ],
+  "correct_answer": "less than 0.9 mm deep.",
+  "explanation": "In Experiment 1 dent depth fell at every step: 6.0, 3.5, 1.8, 1.1, 0.9 mm. Continuing the trend past 100 kg/m³, the dent would most likely be \"less than 0.9 mm deep.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "extrapolate a trend",
+  "difficulty": "medium",
+  "topic_tag": "Density, Temperature, and Thickness of Corvane Foam Pads",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Corvane pad results",
+   "colLabels": [
+    "Density (kg/m³)",
+    "Temperature (°C)",
+    "Thickness (cm)",
+    "Rebound height (cm)",
+    "Dent depth (mm)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     20,
+     20,
+     4,
+     12,
+     6.0
+    ],
+    [
+     40,
+     20,
+     4,
+     21,
+     3.5
+    ],
+    [
+     60,
+     20,
+     4,
+     34,
+     1.8
+    ],
+    [
+     80,
+     20,
+     4,
+     30,
+     1.1
+    ],
+    [
+     100,
+     20,
+     4,
+     23,
+     0.9
+    ],
+    [
+     60,
+     -10,
+     4,
+     18,
+     0.6
+    ],
+    [
+     60,
+     0,
+     4,
+     27,
+     1.0
+    ],
+    [
+     60,
+     40,
+     4,
+     29,
+     3.9
+    ],
+    [
+     60,
+     20,
+     2,
+     25,
+     2.9
+    ],
+    [
+     60,
+     20,
+     8,
+     36,
+     1.7
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12f-P3-Q6",
+  "passage_id": "sc12f-p3",
+  "passage_title": "Density, Temperature, and Thickness of Corvane Foam Pads",
+  "format": "research_summaries",
+  "passage": "Corvane is an invented foam made for the padding inside helmets. Engineers dropped a 1-kg steel ball from a height of 1 m onto square pads of Corvane. For each pad, they measured how high the ball bounced back (the rebound height, in cm) and the depth of the permanent dent left in the pad (in mm) (see Table 1).\n\nExperiment 1\nPads 4 cm thick were made with densities of 20, 40, 60, 80, or 100 kilograms per cubic meter (kg/m³) and tested at 20°C.\n\nExperiment 2\nPads 4 cm thick with a density of 60 kg/m³ were tested at −10°C, 0°C, or 40°C. (The 20°C result is the 60 kg/m³ result of Experiment 1.)\n\nExperiment 3\nPads with a density of 60 kg/m³ were made 2 cm or 8 cm thick and tested at 20°C. (The 4-cm result is the 60 kg/m³ result of Experiment 1.)",
+  "prompt": "In Experiment 3 and Experiment 1, doubling the thickness of a 60 kg/m³ pad from 4 cm to 8 cm increased the rebound height by about what percent?",
+  "choices": [
+   "About 6%",
+   "About 25%",
+   "About 50%",
+   "About 100%"
+  ],
+  "correct_answer": "About 6%",
+  "explanation": "Rebound rose from 34 cm (4 cm) to 36 cm (8 cm): 2/34 is about 6%, so \"About 6%\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a percent change",
+  "difficulty": "hard",
+  "topic_tag": "Density, Temperature, and Thickness of Corvane Foam Pads",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Corvane pad results",
+   "colLabels": [
+    "Density (kg/m³)",
+    "Temperature (°C)",
+    "Thickness (cm)",
+    "Rebound height (cm)",
+    "Dent depth (mm)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     20,
+     20,
+     4,
+     12,
+     6.0
+    ],
+    [
+     40,
+     20,
+     4,
+     21,
+     3.5
+    ],
+    [
+     60,
+     20,
+     4,
+     34,
+     1.8
+    ],
+    [
+     80,
+     20,
+     4,
+     30,
+     1.1
+    ],
+    [
+     100,
+     20,
+     4,
+     23,
+     0.9
+    ],
+    [
+     60,
+     -10,
+     4,
+     18,
+     0.6
+    ],
+    [
+     60,
+     0,
+     4,
+     27,
+     1.0
+    ],
+    [
+     60,
+     40,
+     4,
+     29,
+     3.9
+    ],
+    [
+     60,
+     20,
+     2,
+     25,
+     2.9
+    ],
+    [
+     60,
+     20,
+     8,
+     36,
+     1.7
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12f-P4-Q1",
+  "passage_id": "sc12f-p4",
+  "passage_title": "Wind and Cold, Nutrient-Rich Water off Telmar Point",
+  "format": "research_summaries",
+  "passage": "Along some coasts, wind blowing parallel to the shore pushes surface water out to sea, and colder water rich in nitrate (a plant nutrient) rises from below to replace it. Oceanographers studied this off Telmar Point, an invented headland. Buoys measured how much the surface water cooled (the temperature drop, in °C) and the nitrate concentration in surface water (in micromoles per liter, µmol/L) at the end of each wind event (see Table 1).\n\nStudy 1\nAt a buoy 15 km offshore, the scientists recorded wind events that lasted 24 hours, with wind speeds of 2, 5, 8, 11, or 14 meters per second (m/s).\n\nStudy 2\nAt the 15-km buoy, they recorded 8-m/s wind events that lasted 6, 12, or 48 hours. (The 24-hour result is the 8-m/s result of Study 1.)\n\nStudy 3\nDuring one 24-hour, 8-m/s wind event, they compared buoys 5 km and 40 km offshore with the 15-km buoy of Study 1.",
+  "prompt": "In Study 1, the nitrate concentration was greatest after wind events of what speed?",
+  "choices": [
+   "5 m/s",
+   "8 m/s",
+   "11 m/s",
+   "14 m/s"
+  ],
+  "correct_answer": "11 m/s",
+  "explanation": "Study 1 nitrate: 1, 3, 8, 10, 9 µmol/L for 2 to 14 m/s. The greatest, 10 µmol/L, is at \"11 m/s\".",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a maximum within one series",
+  "difficulty": "medium",
+  "topic_tag": "Wind and Cold, Nutrient-Rich Water off Telmar Point",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Surface water at the end of each wind event",
+   "colLabels": [
+    "Wind speed (m/s)",
+    "Duration (hours)",
+    "Buoy distance offshore (km)",
+    "Temperature drop (°C)",
+    "Nitrate (µmol/L)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2",
+    "Study 3",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     2,
+     24,
+     15,
+     0.2,
+     1
+    ],
+    [
+     5,
+     24,
+     15,
+     0.9,
+     3
+    ],
+    [
+     8,
+     24,
+     15,
+     2.1,
+     8
+    ],
+    [
+     11,
+     24,
+     15,
+     2.6,
+     10
+    ],
+    [
+     14,
+     24,
+     15,
+     2.7,
+     9
+    ],
+    [
+     8,
+     6,
+     15,
+     0.6,
+     2
+    ],
+    [
+     8,
+     12,
+     15,
+     1.3,
+     4
+    ],
+    [
+     8,
+     48,
+     15,
+     2.4,
+     11
+    ],
+    [
+     8,
+     24,
+     5,
+     2.9,
+     13
+    ],
+    [
+     8,
+     24,
+     40,
+     0.7,
+     2
+    ]
+   ]
+  },
+  "consistency_check": "The 8 m/s, 24-hour, 15-km reading (2.1 C, 8 umol/L) is listed once and serves all three studies; temperature drop levels off with wind (2.6 to 2.7) while nitrate peaks at 11 m/s; 5-to-8 m/s is the largest rise in temperature drop (1.2 C); the place is invented, no named law."
+ },
+ {
+  "id": "ASV12f-P4-Q2",
+  "passage_id": "sc12f-p4",
+  "passage_title": "Wind and Cold, Nutrient-Rich Water off Telmar Point",
+  "format": "research_summaries",
+  "passage": "Along some coasts, wind blowing parallel to the shore pushes surface water out to sea, and colder water rich in nitrate (a plant nutrient) rises from below to replace it. Oceanographers studied this off Telmar Point, an invented headland. Buoys measured how much the surface water cooled (the temperature drop, in °C) and the nitrate concentration in surface water (in micromoles per liter, µmol/L) at the end of each wind event (see Table 1).\n\nStudy 1\nAt a buoy 15 km offshore, the scientists recorded wind events that lasted 24 hours, with wind speeds of 2, 5, 8, 11, or 14 meters per second (m/s).\n\nStudy 2\nAt the 15-km buoy, they recorded 8-m/s wind events that lasted 6, 12, or 48 hours. (The 24-hour result is the 8-m/s result of Study 1.)\n\nStudy 3\nDuring one 24-hour, 8-m/s wind event, they compared buoys 5 km and 40 km offshore with the 15-km buoy of Study 1.",
+  "prompt": "In Study 1, between which two wind speeds did the temperature drop increase the most?",
+  "choices": [
+   "2 m/s and 5 m/s",
+   "5 m/s and 8 m/s",
+   "8 m/s and 11 m/s",
+   "11 m/s and 14 m/s"
+  ],
+  "correct_answer": "5 m/s and 8 m/s",
+  "explanation": "Temperature drops: 0.2, 0.9, 2.1, 2.6, 2.7°C. Increases: 0.7, 1.2, 0.5, 0.1°C. The largest is between \"5 m/s and 8 m/s\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compare changes between steps",
+  "difficulty": "medium",
+  "topic_tag": "Wind and Cold, Nutrient-Rich Water off Telmar Point",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Surface water at the end of each wind event",
+   "colLabels": [
+    "Wind speed (m/s)",
+    "Duration (hours)",
+    "Buoy distance offshore (km)",
+    "Temperature drop (°C)",
+    "Nitrate (µmol/L)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2",
+    "Study 3",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     2,
+     24,
+     15,
+     0.2,
+     1
+    ],
+    [
+     5,
+     24,
+     15,
+     0.9,
+     3
+    ],
+    [
+     8,
+     24,
+     15,
+     2.1,
+     8
+    ],
+    [
+     11,
+     24,
+     15,
+     2.6,
+     10
+    ],
+    [
+     14,
+     24,
+     15,
+     2.7,
+     9
+    ],
+    [
+     8,
+     6,
+     15,
+     0.6,
+     2
+    ],
+    [
+     8,
+     12,
+     15,
+     1.3,
+     4
+    ],
+    [
+     8,
+     48,
+     15,
+     2.4,
+     11
+    ],
+    [
+     8,
+     24,
+     5,
+     2.9,
+     13
+    ],
+    [
+     8,
+     24,
+     40,
+     0.7,
+     2
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12f-P4-Q3",
+  "passage_id": "sc12f-p4",
+  "passage_title": "Wind and Cold, Nutrient-Rich Water off Telmar Point",
+  "format": "research_summaries",
+  "passage": "Along some coasts, wind blowing parallel to the shore pushes surface water out to sea, and colder water rich in nitrate (a plant nutrient) rises from below to replace it. Oceanographers studied this off Telmar Point, an invented headland. Buoys measured how much the surface water cooled (the temperature drop, in °C) and the nitrate concentration in surface water (in micromoles per liter, µmol/L) at the end of each wind event (see Table 1).\n\nStudy 1\nAt a buoy 15 km offshore, the scientists recorded wind events that lasted 24 hours, with wind speeds of 2, 5, 8, 11, or 14 meters per second (m/s).\n\nStudy 2\nAt the 15-km buoy, they recorded 8-m/s wind events that lasted 6, 12, or 48 hours. (The 24-hour result is the 8-m/s result of Study 1.)\n\nStudy 3\nDuring one 24-hour, 8-m/s wind event, they compared buoys 5 km and 40 km offshore with the 15-km buoy of Study 1.",
+  "prompt": "The scientists will compare 8-m/s wind events lasting 24 hours and 48 hours to learn whether a longer event raises nitrate even further at the buoy where nitrate was highest in Study 3. At which buoy should they measure?",
+  "choices": [
+   "5 km offshore",
+   "25 km offshore",
+   "15 km offshore",
+   "40 km offshore"
+  ],
+  "correct_answer": "5 km offshore",
+  "explanation": "In Study 3, nitrate after the 24-hour, 8-m/s event was 13 µmol/L at 5 km, 8 µmol/L at 15 km, and 2 µmol/L at 40 km; no buoy was 25 km offshore. The highest was at \"5 km offshore\".",
+  "domain": "Scientific Investigation",
+  "subskill": "design a follow-up observation",
+  "difficulty": "medium",
+  "topic_tag": "Wind and Cold, Nutrient-Rich Water off Telmar Point",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Surface water at the end of each wind event",
+   "colLabels": [
+    "Wind speed (m/s)",
+    "Duration (hours)",
+    "Buoy distance offshore (km)",
+    "Temperature drop (°C)",
+    "Nitrate (µmol/L)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2",
+    "Study 3",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     2,
+     24,
+     15,
+     0.2,
+     1
+    ],
+    [
+     5,
+     24,
+     15,
+     0.9,
+     3
+    ],
+    [
+     8,
+     24,
+     15,
+     2.1,
+     8
+    ],
+    [
+     11,
+     24,
+     15,
+     2.6,
+     10
+    ],
+    [
+     14,
+     24,
+     15,
+     2.7,
+     9
+    ],
+    [
+     8,
+     6,
+     15,
+     0.6,
+     2
+    ],
+    [
+     8,
+     12,
+     15,
+     1.3,
+     4
+    ],
+    [
+     8,
+     48,
+     15,
+     2.4,
+     11
+    ],
+    [
+     8,
+     24,
+     5,
+     2.9,
+     13
+    ],
+    [
+     8,
+     24,
+     40,
+     0.7,
+     2
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12f-P4-Q4",
+  "passage_id": "sc12f-p4",
+  "passage_title": "Wind and Cold, Nutrient-Rich Water off Telmar Point",
+  "format": "research_summaries",
+  "passage": "Along some coasts, wind blowing parallel to the shore pushes surface water out to sea, and colder water rich in nitrate (a plant nutrient) rises from below to replace it. Oceanographers studied this off Telmar Point, an invented headland. Buoys measured how much the surface water cooled (the temperature drop, in °C) and the nitrate concentration in surface water (in micromoles per liter, µmol/L) at the end of each wind event (see Table 1).\n\nStudy 1\nAt a buoy 15 km offshore, the scientists recorded wind events that lasted 24 hours, with wind speeds of 2, 5, 8, 11, or 14 meters per second (m/s).\n\nStudy 2\nAt the 15-km buoy, they recorded 8-m/s wind events that lasted 6, 12, or 48 hours. (The 24-hour result is the 8-m/s result of Study 1.)\n\nStudy 3\nDuring one 24-hour, 8-m/s wind event, they compared buoys 5 km and 40 km offshore with the 15-km buoy of Study 1.",
+  "prompt": "Based on Study 2, after an 8-m/s wind event lasting 36 hours, the temperature drop at the 15-km buoy would most likely be:",
+  "choices": [
+   "less than 1.3°C.",
+   "between 1.3°C and 2.1°C.",
+   "between 2.1°C and 2.4°C.",
+   "greater than 2.4°C."
+  ],
+  "correct_answer": "between 2.1°C and 2.4°C.",
+  "explanation": "The temperature drop was 2.1°C after 24 hours and 2.4°C after 48 hours. 36 hours lies between them, so \"between 2.1°C and 2.4°C.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate within a series",
+  "difficulty": "medium",
+  "topic_tag": "Wind and Cold, Nutrient-Rich Water off Telmar Point",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Surface water at the end of each wind event",
+   "colLabels": [
+    "Wind speed (m/s)",
+    "Duration (hours)",
+    "Buoy distance offshore (km)",
+    "Temperature drop (°C)",
+    "Nitrate (µmol/L)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2",
+    "Study 3",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     2,
+     24,
+     15,
+     0.2,
+     1
+    ],
+    [
+     5,
+     24,
+     15,
+     0.9,
+     3
+    ],
+    [
+     8,
+     24,
+     15,
+     2.1,
+     8
+    ],
+    [
+     11,
+     24,
+     15,
+     2.6,
+     10
+    ],
+    [
+     14,
+     24,
+     15,
+     2.7,
+     9
+    ],
+    [
+     8,
+     6,
+     15,
+     0.6,
+     2
+    ],
+    [
+     8,
+     12,
+     15,
+     1.3,
+     4
+    ],
+    [
+     8,
+     48,
+     15,
+     2.4,
+     11
+    ],
+    [
+     8,
+     24,
+     5,
+     2.9,
+     13
+    ],
+    [
+     8,
+     24,
+     40,
+     0.7,
+     2
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12f-P4-Q5",
+  "passage_id": "sc12f-p4",
+  "passage_title": "Wind and Cold, Nutrient-Rich Water off Telmar Point",
+  "format": "research_summaries",
+  "passage": "Along some coasts, wind blowing parallel to the shore pushes surface water out to sea, and colder water rich in nitrate (a plant nutrient) rises from below to replace it. Oceanographers studied this off Telmar Point, an invented headland. Buoys measured how much the surface water cooled (the temperature drop, in °C) and the nitrate concentration in surface water (in micromoles per liter, µmol/L) at the end of each wind event (see Table 1).\n\nStudy 1\nAt a buoy 15 km offshore, the scientists recorded wind events that lasted 24 hours, with wind speeds of 2, 5, 8, 11, or 14 meters per second (m/s).\n\nStudy 2\nAt the 15-km buoy, they recorded 8-m/s wind events that lasted 6, 12, or 48 hours. (The 24-hour result is the 8-m/s result of Study 1.)\n\nStudy 3\nDuring one 24-hour, 8-m/s wind event, they compared buoys 5 km and 40 km offshore with the 15-km buoy of Study 1.",
+  "prompt": "After one wind event, a buoy recorded a temperature drop of 2.6°C and a nitrate concentration of 10 µmol/L. Which event does this match?",
+  "choices": [
+   "14 m/s for 24 hours, 15 km offshore",
+   "8 m/s for 24 hours, 5 km offshore",
+   "8 m/s for 48 hours, 15 km offshore",
+   "11 m/s for 24 hours, 15 km offshore"
+  ],
+  "correct_answer": "11 m/s for 24 hours, 15 km offshore",
+  "explanation": "Table 1 lists 2.6°C and 10 µmol/L only for 11 m/s, 24 hours, 15 km. The others: 2.7°C and 9 (14 m/s), 2.9°C and 13 (5 km), 2.4°C and 11 (48 hours).",
+  "domain": "Interpretation of Data",
+  "subskill": "match two values to a row",
+  "difficulty": "medium",
+  "topic_tag": "Wind and Cold, Nutrient-Rich Water off Telmar Point",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Surface water at the end of each wind event",
+   "colLabels": [
+    "Wind speed (m/s)",
+    "Duration (hours)",
+    "Buoy distance offshore (km)",
+    "Temperature drop (°C)",
+    "Nitrate (µmol/L)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2",
+    "Study 3",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     2,
+     24,
+     15,
+     0.2,
+     1
+    ],
+    [
+     5,
+     24,
+     15,
+     0.9,
+     3
+    ],
+    [
+     8,
+     24,
+     15,
+     2.1,
+     8
+    ],
+    [
+     11,
+     24,
+     15,
+     2.6,
+     10
+    ],
+    [
+     14,
+     24,
+     15,
+     2.7,
+     9
+    ],
+    [
+     8,
+     6,
+     15,
+     0.6,
+     2
+    ],
+    [
+     8,
+     12,
+     15,
+     1.3,
+     4
+    ],
+    [
+     8,
+     48,
+     15,
+     2.4,
+     11
+    ],
+    [
+     8,
+     24,
+     5,
+     2.9,
+     13
+    ],
+    [
+     8,
+     24,
+     40,
+     0.7,
+     2
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12f-P4-Q6",
+  "passage_id": "sc12f-p4",
+  "passage_title": "Wind and Cold, Nutrient-Rich Water off Telmar Point",
+  "format": "research_summaries",
+  "passage": "Along some coasts, wind blowing parallel to the shore pushes surface water out to sea, and colder water rich in nitrate (a plant nutrient) rises from below to replace it. Oceanographers studied this off Telmar Point, an invented headland. Buoys measured how much the surface water cooled (the temperature drop, in °C) and the nitrate concentration in surface water (in micromoles per liter, µmol/L) at the end of each wind event (see Table 1).\n\nStudy 1\nAt a buoy 15 km offshore, the scientists recorded wind events that lasted 24 hours, with wind speeds of 2, 5, 8, 11, or 14 meters per second (m/s).\n\nStudy 2\nAt the 15-km buoy, they recorded 8-m/s wind events that lasted 6, 12, or 48 hours. (The 24-hour result is the 8-m/s result of Study 1.)\n\nStudy 3\nDuring one 24-hour, 8-m/s wind event, they compared buoys 5 km and 40 km offshore with the 15-km buoy of Study 1.",
+  "prompt": "Based on Study 3, during the same 24-hour, 8-m/s event, a buoy 25 km offshore would most likely have recorded a nitrate concentration of:",
+  "choices": [
+   "less than 2 µmol/L.",
+   "between 2 µmol/L and 8 µmol/L.",
+   "between 8 µmol/L and 13 µmol/L.",
+   "greater than 13 µmol/L."
+  ],
+  "correct_answer": "between 2 µmol/L and 8 µmol/L.",
+  "explanation": "Nitrate was 8 µmol/L at 15 km and 2 µmol/L at 40 km. 25 km lies between them, so \"between 2 µmol/L and 8 µmol/L.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate between experiments",
+  "difficulty": "medium",
+  "topic_tag": "Wind and Cold, Nutrient-Rich Water off Telmar Point",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Surface water at the end of each wind event",
+   "colLabels": [
+    "Wind speed (m/s)",
+    "Duration (hours)",
+    "Buoy distance offshore (km)",
+    "Temperature drop (°C)",
+    "Nitrate (µmol/L)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2",
+    "Study 3",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     2,
+     24,
+     15,
+     0.2,
+     1
+    ],
+    [
+     5,
+     24,
+     15,
+     0.9,
+     3
+    ],
+    [
+     8,
+     24,
+     15,
+     2.1,
+     8
+    ],
+    [
+     11,
+     24,
+     15,
+     2.6,
+     10
+    ],
+    [
+     14,
+     24,
+     15,
+     2.7,
+     9
+    ],
+    [
+     8,
+     6,
+     15,
+     0.6,
+     2
+    ],
+    [
+     8,
+     12,
+     15,
+     1.3,
+     4
+    ],
+    [
+     8,
+     48,
+     15,
+     2.4,
+     11
+    ],
+    [
+     8,
+     24,
+     5,
+     2.9,
+     13
+    ],
+    [
+     8,
+     24,
+     40,
+     0.7,
+     2
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12f-P5-Q1",
+  "passage_id": "sc12f-p5",
+  "passage_title": "Why Residents of Dunmere Cough Each Autumn",
+  "format": "conflicting_viewpoints",
+  "passage": "Since 2015, many residents of Dunmere, an invented mountain town, have had a dry cough each autumn from September through November. Three scientists explain the cough.\n\nScientist 1\nIn 2015, a stone quarry opened 3 km east of Dunmere. Fine dust from blasting is carried into town on east winds, which are most common in autumn. The dust irritates the throat. Coughing is worse on days when the wind blows from the east, and most cases are in the east district of town, closest to the quarry.\n\nScientist 2\nIn 2015, most homes in Dunmere replaced their old stoves with wood-pellet boilers. When the heating season starts in September, the boilers make indoor air very dry, and dry air irritates the throat. Coughing is worse indoors than outdoors, and cases are spread evenly across all districts. Running a humidifier at home would prevent most of the coughing.\n\nScientist 3\nIn 2013, the town planted graywort, a shrub, along its main roads. Graywort first flowers 2 years after planting, and it flowers each autumn. Its pollen causes the cough. Most cases are among people who live near the main roads, and the coughing stops each year after the first hard frost, which kills the flowers.",
+  "prompt": "Which scientist(s) attribute the cough to a change made in Dunmere in 2015?",
+  "choices": [
+   "Scientist 3 only",
+   "Scientists 1, 2, and 3",
+   "Scientists 2 and 3 only",
+   "Scientists 1 and 2 only"
+  ],
+  "correct_answer": "Scientists 1 and 2 only",
+  "explanation": "Scientist 1 dates the quarry to 2015 and Scientist 2 dates the pellet boilers to 2015. Scientist 3's graywort was planted in 2013. So \"Scientists 1 and 2 only\".",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "compare claims across viewpoints",
+  "difficulty": "medium",
+  "topic_tag": "Why Residents of Dunmere Cough Each Autumn",
+  "consistency_check": "Start dates: quarry 2015, pellet boilers 2015, graywort planted 2013 and flowering 2 years later (2015), all consistent with coughs since 2015; places: east district / all districts equally / near roads; only Scientist 3 says the cough stops after the first hard frost."
+ },
+ {
+  "id": "ASV12f-P5-Q2",
+  "passage_id": "sc12f-p5",
+  "passage_title": "Why Residents of Dunmere Cough Each Autumn",
+  "format": "conflicting_viewpoints",
+  "passage": "Since 2015, many residents of Dunmere, an invented mountain town, have had a dry cough each autumn from September through November. Three scientists explain the cough.\n\nScientist 1\nIn 2015, a stone quarry opened 3 km east of Dunmere. Fine dust from blasting is carried into town on east winds, which are most common in autumn. The dust irritates the throat. Coughing is worse on days when the wind blows from the east, and most cases are in the east district of town, closest to the quarry.\n\nScientist 2\nIn 2015, most homes in Dunmere replaced their old stoves with wood-pellet boilers. When the heating season starts in September, the boilers make indoor air very dry, and dry air irritates the throat. Coughing is worse indoors than outdoors, and cases are spread evenly across all districts. Running a humidifier at home would prevent most of the coughing.\n\nScientist 3\nIn 2013, the town planted graywort, a shrub, along its main roads. Graywort first flowers 2 years after planting, and it flowers each autumn. Its pollen causes the cough. Most cases are among people who live near the main roads, and the coughing stops each year after the first hard frost, which kills the flowers.",
+  "prompt": "A health survey finds that the cough is equally common in the east and west districts of Dunmere. This finding is inconsistent with the view of which scientist(s)?",
+  "choices": [
+   "Scientist 2 only",
+   "Scientists 1 and 3 only",
+   "Scientist 3 only",
+   "Scientist 1 only"
+  ],
+  "correct_answer": "Scientist 1 only",
+  "explanation": "Scientist 1 says most cases are in the east district, so an even spread contradicts that view. Scientist 2 says cases are spread evenly, and Scientist 3 places cases near main roads, not in one district.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test viewpoints against a new result",
+  "difficulty": "hard",
+  "topic_tag": "Why Residents of Dunmere Cough Each Autumn"
+ },
+ {
+  "id": "ASV12f-P5-Q3",
+  "passage_id": "sc12f-p5",
+  "passage_title": "Why Residents of Dunmere Cough Each Autumn",
+  "format": "conflicting_viewpoints",
+  "passage": "Since 2015, many residents of Dunmere, an invented mountain town, have had a dry cough each autumn from September through November. Three scientists explain the cough.\n\nScientist 1\nIn 2015, a stone quarry opened 3 km east of Dunmere. Fine dust from blasting is carried into town on east winds, which are most common in autumn. The dust irritates the throat. Coughing is worse on days when the wind blows from the east, and most cases are in the east district of town, closest to the quarry.\n\nScientist 2\nIn 2015, most homes in Dunmere replaced their old stoves with wood-pellet boilers. When the heating season starts in September, the boilers make indoor air very dry, and dry air irritates the throat. Coughing is worse indoors than outdoors, and cases are spread evenly across all districts. Running a humidifier at home would prevent most of the coughing.\n\nScientist 3\nIn 2013, the town planted graywort, a shrub, along its main roads. Graywort first flowers 2 years after planting, and it flowers each autumn. Its pollen causes the cough. Most cases are among people who live near the main roads, and the coughing stops each year after the first hard frost, which kills the flowers.",
+  "prompt": "In 2024, a hard frost came early, on October 1, yet residents coughed as often in October and November as in other years. This observation is inconsistent with the view of which scientist?",
+  "choices": [
+   "None of the scientists",
+   "Scientist 1",
+   "Scientist 2",
+   "Scientist 3"
+  ],
+  "correct_answer": "Scientist 3",
+  "explanation": "Scientist 3 says the coughing stops each year after the first hard frost kills the graywort flowers. Scientists 1 and 2 say nothing about frost.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test viewpoints against a new result",
+  "difficulty": "medium",
+  "topic_tag": "Why Residents of Dunmere Cough Each Autumn"
+ },
+ {
+  "id": "ASV12f-P5-Q4",
+  "passage_id": "sc12f-p5",
+  "passage_title": "Why Residents of Dunmere Cough Each Autumn",
+  "format": "conflicting_viewpoints",
+  "passage": "Since 2015, many residents of Dunmere, an invented mountain town, have had a dry cough each autumn from September through November. Three scientists explain the cough.\n\nScientist 1\nIn 2015, a stone quarry opened 3 km east of Dunmere. Fine dust from blasting is carried into town on east winds, which are most common in autumn. The dust irritates the throat. Coughing is worse on days when the wind blows from the east, and most cases are in the east district of town, closest to the quarry.\n\nScientist 2\nIn 2015, most homes in Dunmere replaced their old stoves with wood-pellet boilers. When the heating season starts in September, the boilers make indoor air very dry, and dry air irritates the throat. Coughing is worse indoors than outdoors, and cases are spread evenly across all districts. Running a humidifier at home would prevent most of the coughing.\n\nScientist 3\nIn 2013, the town planted graywort, a shrub, along its main roads. Graywort first flowers 2 years after planting, and it flowers each autumn. Its pollen causes the cough. Most cases are among people who live near the main roads, and the coughing stops each year after the first hard frost, which kills the flowers.",
+  "prompt": "Suppose every home in Dunmere ran a humidifier throughout the autumn. Which scientist(s) would most likely predict far fewer coughs?",
+  "choices": [
+   "Scientist 1 only",
+   "Scientists 1 and 2 only",
+   "Scientist 3 only",
+   "Scientist 2 only"
+  ],
+  "correct_answer": "Scientist 2 only",
+  "explanation": "Only Scientist 2 blames dry indoor air and says a humidifier would prevent most coughing. Scientist 1 blames quarry dust and Scientist 3 blames pollen, neither of which a humidifier removes.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "apply viewpoints to a new case",
+  "difficulty": "medium",
+  "topic_tag": "Why Residents of Dunmere Cough Each Autumn"
+ },
+ {
+  "id": "ASV12f-P5-Q5",
+  "passage_id": "sc12f-p5",
+  "passage_title": "Why Residents of Dunmere Cough Each Autumn",
+  "format": "conflicting_viewpoints",
+  "passage": "Since 2015, many residents of Dunmere, an invented mountain town, have had a dry cough each autumn from September through November. Three scientists explain the cough.\n\nScientist 1\nIn 2015, a stone quarry opened 3 km east of Dunmere. Fine dust from blasting is carried into town on east winds, which are most common in autumn. The dust irritates the throat. Coughing is worse on days when the wind blows from the east, and most cases are in the east district of town, closest to the quarry.\n\nScientist 2\nIn 2015, most homes in Dunmere replaced their old stoves with wood-pellet boilers. When the heating season starts in September, the boilers make indoor air very dry, and dry air irritates the throat. Coughing is worse indoors than outdoors, and cases are spread evenly across all districts. Running a humidifier at home would prevent most of the coughing.\n\nScientist 3\nIn 2013, the town planted graywort, a shrub, along its main roads. Graywort first flowers 2 years after planting, and it flowers each autumn. Its pollen causes the cough. Most cases are among people who live near the main roads, and the coughing stops each year after the first hard frost, which kills the flowers.",
+  "prompt": "The town of Ardle, 40 km away, also opened a quarry 3 km east of town in 2015 and has the same autumn east winds, but it has no pellet boilers and no graywort, and its residents have no autumn cough. This observation is most difficult to explain for which scientist?",
+  "choices": [
+   "Scientist 3",
+   "Scientist 2",
+   "None of the scientists",
+   "Scientist 1"
+  ],
+  "correct_answer": "Scientist 1",
+  "explanation": "Ardle shares only the quarry and east winds, which Scientist 1 says cause the cough, yet Ardle has no cough. Ardle lacks the boilers (Scientist 2) and the graywort (Scientist 3), so its lack of cough fits their views.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "use a new observation to evaluate viewpoints",
+  "difficulty": "hard",
+  "topic_tag": "Why Residents of Dunmere Cough Each Autumn"
+ },
+ {
+  "id": "ASV12f-P5-Q6",
+  "passage_id": "sc12f-p5",
+  "passage_title": "Why Residents of Dunmere Cough Each Autumn",
+  "format": "conflicting_viewpoints",
+  "passage": "Since 2015, many residents of Dunmere, an invented mountain town, have had a dry cough each autumn from September through November. Three scientists explain the cough.\n\nScientist 1\nIn 2015, a stone quarry opened 3 km east of Dunmere. Fine dust from blasting is carried into town on east winds, which are most common in autumn. The dust irritates the throat. Coughing is worse on days when the wind blows from the east, and most cases are in the east district of town, closest to the quarry.\n\nScientist 2\nIn 2015, most homes in Dunmere replaced their old stoves with wood-pellet boilers. When the heating season starts in September, the boilers make indoor air very dry, and dry air irritates the throat. Coughing is worse indoors than outdoors, and cases are spread evenly across all districts. Running a humidifier at home would prevent most of the coughing.\n\nScientist 3\nIn 2013, the town planted graywort, a shrub, along its main roads. Graywort first flowers 2 years after planting, and it flowers each autumn. Its pollen causes the cough. Most cases are among people who live near the main roads, and the coughing stops each year after the first hard frost, which kills the flowers.",
+  "prompt": "Which observation would best help decide between the views of Scientist 1 and Scientist 3?",
+  "choices": [
+   "Whether coughing is more common on days with east winds",
+   "Whether coughing is more common among adults than children",
+   "Whether coughing is more common indoors than outdoors",
+   "Whether the coughing began in September"
+  ],
+  "correct_answer": "Whether coughing is more common on days with east winds",
+  "explanation": "Scientist 1 says coughing is worse on east-wind days, when quarry dust reaches town; Scientist 3 ties the cough to pollen from roadside shrubs, not to wind direction. Indoor coughing separates Scientist 2 from the others; all three accept an autumn start; none mentions age.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose an observation that distinguishes viewpoints",
+  "difficulty": "hard",
+  "topic_tag": "Why Residents of Dunmere Cough Each Autumn"
+ },
+ {
+  "id": "ASV12f-P6-Q1",
+  "passage_id": "sc12f-p6",
+  "passage_title": "Why the Kesh Current Has Slowed",
+  "format": "conflicting_viewpoints",
+  "passage": "The Kesh Current is an invented warm current that flows along the west coast of Varn Island, an invented island. Its average speed fell from 60 centimeters per second (cm/s) in 1990 to 36 cm/s in 2020. Three scientists explain the slowing.\n\nScientist 1\nSince 2000, the Tarrow Ice Shelf north of Varn Island has been melting, adding fresh water to the sea. Fresh water is less dense than salty water, so the surface water north of the island now sinks less, and this sinking is what drives the Kesh Current. Surface water north of the island has become less salty since 2000, and the current is slowest each summer, when melting is greatest.\n\nScientist 2\nSince 1995, the trade winds that push the Kesh Current have weakened. The current's speed rises and falls with the strength of these winds from year to year. In any year when the trade winds are as strong as they were before 1995, the current should return to its 1990 speed.\n\nScientist 3\nIn 1993, an underwater landslide piled rock across the Haddon Gap, a narrow channel that the current flows through, making the channel shallower. Since then the current has been slower after it passes through the gap. Upstream of the gap, the current flows as fast as it did before 1993.",
+  "prompt": "According to the passage, the average speed of the Kesh Current fell by what percent from 1990 to 2020?",
+  "choices": [
+   "24%",
+   "36%",
+   "40%",
+   "60%"
+  ],
+  "correct_answer": "40%",
+  "explanation": "The speed fell from 60 cm/s to 36 cm/s, a drop of 24 cm/s. 24/60 = 0.40, so \"40%\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a percent change from the passage",
+  "difficulty": "hard",
+  "topic_tag": "Why the Kesh Current Has Slowed",
+  "consistency_check": "Average speed 60 cm/s (1990) to 36 cm/s (2020): a fall of 24 cm/s, 40%, or 8 cm/s per decade over 3 decades; start dates: 2000 (ice melt) / 1995 (winds) / 1993 (landslide); only Scientist 3 limits the slowing to water past the Haddon Gap."
+ },
+ {
+  "id": "ASV12f-P6-Q2",
+  "passage_id": "sc12f-p6",
+  "passage_title": "Why the Kesh Current Has Slowed",
+  "format": "conflicting_viewpoints",
+  "passage": "The Kesh Current is an invented warm current that flows along the west coast of Varn Island, an invented island. Its average speed fell from 60 centimeters per second (cm/s) in 1990 to 36 cm/s in 2020. Three scientists explain the slowing.\n\nScientist 1\nSince 2000, the Tarrow Ice Shelf north of Varn Island has been melting, adding fresh water to the sea. Fresh water is less dense than salty water, so the surface water north of the island now sinks less, and this sinking is what drives the Kesh Current. Surface water north of the island has become less salty since 2000, and the current is slowest each summer, when melting is greatest.\n\nScientist 2\nSince 1995, the trade winds that push the Kesh Current have weakened. The current's speed rises and falls with the strength of these winds from year to year. In any year when the trade winds are as strong as they were before 1995, the current should return to its 1990 speed.\n\nScientist 3\nIn 1993, an underwater landslide piled rock across the Haddon Gap, a narrow channel that the current flows through, making the channel shallower. Since then the current has been slower after it passes through the gap. Upstream of the gap, the current flows as fast as it did before 1993.",
+  "prompt": "Measurements show that the current upstream of the Haddon Gap has slowed as much as the current downstream of it since 1993. This finding is inconsistent with the view of which scientist?",
+  "choices": [
+   "Scientist 3",
+   "Scientist 1",
+   "Scientist 2",
+   "None of the scientists"
+  ],
+  "correct_answer": "Scientist 3",
+  "explanation": "Scientist 3 says the current upstream of the gap flows as fast as it did before 1993. Scientists 1 and 2 describe causes that would slow the current on both sides of the gap.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test viewpoints against a new result",
+  "difficulty": "medium",
+  "topic_tag": "Why the Kesh Current Has Slowed"
+ },
+ {
+  "id": "ASV12f-P6-Q3",
+  "passage_id": "sc12f-p6",
+  "passage_title": "Why the Kesh Current Has Slowed",
+  "format": "conflicting_viewpoints",
+  "passage": "The Kesh Current is an invented warm current that flows along the west coast of Varn Island, an invented island. Its average speed fell from 60 centimeters per second (cm/s) in 1990 to 36 cm/s in 2020. Three scientists explain the slowing.\n\nScientist 1\nSince 2000, the Tarrow Ice Shelf north of Varn Island has been melting, adding fresh water to the sea. Fresh water is less dense than salty water, so the surface water north of the island now sinks less, and this sinking is what drives the Kesh Current. Surface water north of the island has become less salty since 2000, and the current is slowest each summer, when melting is greatest.\n\nScientist 2\nSince 1995, the trade winds that push the Kesh Current have weakened. The current's speed rises and falls with the strength of these winds from year to year. In any year when the trade winds are as strong as they were before 1995, the current should return to its 1990 speed.\n\nScientist 3\nIn 1993, an underwater landslide piled rock across the Haddon Gap, a narrow channel that the current flows through, making the channel shallower. Since then the current has been slower after it passes through the gap. Upstream of the gap, the current flows as fast as it did before 1993.",
+  "prompt": "In 2018, the trade winds were as strong as they had been in 1990, and that year the current's average speed was 59 cm/s. This result is most consistent with the view of which scientist?",
+  "choices": [
+   "Scientist 2",
+   "Scientist 3",
+   "Scientist 1",
+   "None of the scientists"
+  ],
+  "correct_answer": "Scientist 2",
+  "explanation": "Scientist 2 says the current should return to its 1990 speed (60 cm/s) in any year with trade winds as strong as before 1995; 59 cm/s is almost that. Scientist 1's melting and Scientist 3's landslide did not go away in 2018.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match a finding to a viewpoint",
+  "difficulty": "medium",
+  "topic_tag": "Why the Kesh Current Has Slowed"
+ },
+ {
+  "id": "ASV12f-P6-Q4",
+  "passage_id": "sc12f-p6",
+  "passage_title": "Why the Kesh Current Has Slowed",
+  "format": "conflicting_viewpoints",
+  "passage": "The Kesh Current is an invented warm current that flows along the west coast of Varn Island, an invented island. Its average speed fell from 60 centimeters per second (cm/s) in 1990 to 36 cm/s in 2020. Three scientists explain the slowing.\n\nScientist 1\nSince 2000, the Tarrow Ice Shelf north of Varn Island has been melting, adding fresh water to the sea. Fresh water is less dense than salty water, so the surface water north of the island now sinks less, and this sinking is what drives the Kesh Current. Surface water north of the island has become less salty since 2000, and the current is slowest each summer, when melting is greatest.\n\nScientist 2\nSince 1995, the trade winds that push the Kesh Current have weakened. The current's speed rises and falls with the strength of these winds from year to year. In any year when the trade winds are as strong as they were before 1995, the current should return to its 1990 speed.\n\nScientist 3\nIn 1993, an underwater landslide piled rock across the Haddon Gap, a narrow channel that the current flows through, making the channel shallower. Since then the current has been slower after it passes through the gap. Upstream of the gap, the current flows as fast as it did before 1993.",
+  "prompt": "Which scientist(s) describe a cause that began before 2000?",
+  "choices": [
+   "Scientists 1 and 2 only",
+   "Scientists 1, 2, and 3",
+   "Scientists 2 and 3 only",
+   "Scientist 1 only"
+  ],
+  "correct_answer": "Scientists 2 and 3 only",
+  "explanation": "Scientist 2 dates the weaker winds to 1995 and Scientist 3 dates the landslide to 1993. Scientist 1's melting began in 2000. So \"Scientists 2 and 3 only\".",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "compare claims across viewpoints",
+  "difficulty": "medium",
+  "topic_tag": "Why the Kesh Current Has Slowed"
+ },
+ {
+  "id": "ASV12f-P6-Q5",
+  "passage_id": "sc12f-p6",
+  "passage_title": "Why the Kesh Current Has Slowed",
+  "format": "conflicting_viewpoints",
+  "passage": "The Kesh Current is an invented warm current that flows along the west coast of Varn Island, an invented island. Its average speed fell from 60 centimeters per second (cm/s) in 1990 to 36 cm/s in 2020. Three scientists explain the slowing.\n\nScientist 1\nSince 2000, the Tarrow Ice Shelf north of Varn Island has been melting, adding fresh water to the sea. Fresh water is less dense than salty water, so the surface water north of the island now sinks less, and this sinking is what drives the Kesh Current. Surface water north of the island has become less salty since 2000, and the current is slowest each summer, when melting is greatest.\n\nScientist 2\nSince 1995, the trade winds that push the Kesh Current have weakened. The current's speed rises and falls with the strength of these winds from year to year. In any year when the trade winds are as strong as they were before 1995, the current should return to its 1990 speed.\n\nScientist 3\nIn 1993, an underwater landslide piled rock across the Haddon Gap, a narrow channel that the current flows through, making the channel shallower. Since then the current has been slower after it passes through the gap. Upstream of the gap, the current flows as fast as it did before 1993.",
+  "prompt": "Salinity records show that surface water north of Varn Island has been exactly as salty since 2000 as it was before. This finding is inconsistent with the view of which scientist?",
+  "choices": [
+   "Scientist 3",
+   "Scientist 2",
+   "Scientist 1",
+   "None of the scientists"
+  ],
+  "correct_answer": "Scientist 1",
+  "explanation": "Scientist 1 says surface water north of the island has become less salty since 2000. Scientists 2 and 3 make no claim about salinity.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test viewpoints against a new result",
+  "difficulty": "medium",
+  "topic_tag": "Why the Kesh Current Has Slowed"
+ },
+ {
+  "id": "ASV12f-P6-Q6",
+  "passage_id": "sc12f-p6",
+  "passage_title": "Why the Kesh Current Has Slowed",
+  "format": "conflicting_viewpoints",
+  "passage": "The Kesh Current is an invented warm current that flows along the west coast of Varn Island, an invented island. Its average speed fell from 60 centimeters per second (cm/s) in 1990 to 36 cm/s in 2020. Three scientists explain the slowing.\n\nScientist 1\nSince 2000, the Tarrow Ice Shelf north of Varn Island has been melting, adding fresh water to the sea. Fresh water is less dense than salty water, so the surface water north of the island now sinks less, and this sinking is what drives the Kesh Current. Surface water north of the island has become less salty since 2000, and the current is slowest each summer, when melting is greatest.\n\nScientist 2\nSince 1995, the trade winds that push the Kesh Current have weakened. The current's speed rises and falls with the strength of these winds from year to year. In any year when the trade winds are as strong as they were before 1995, the current should return to its 1990 speed.\n\nScientist 3\nIn 1993, an underwater landslide piled rock across the Haddon Gap, a narrow channel that the current flows through, making the channel shallower. Since then the current has been slower after it passes through the gap. Upstream of the gap, the current flows as fast as it did before 1993.",
+  "prompt": "From 1990 to 2020, the average speed of the current fell by about how many cm/s per decade?",
+  "choices": [
+   "About 6 cm/s",
+   "About 8 cm/s",
+   "About 12 cm/s",
+   "About 24 cm/s"
+  ],
+  "correct_answer": "About 8 cm/s",
+  "explanation": "The speed fell 24 cm/s (60 to 36) over 3 decades: 24/3 = 8, so \"About 8 cm/s\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a rate from the passage",
+  "difficulty": "medium",
+  "topic_tag": "Why the Kesh Current Has Slowed"
+ },
+ {
+  "id": "ASV12f-P7-Q1",
+  "passage_id": "sc12f-p7",
+  "passage_title": "Why Lumite Roof Tiles Crack",
+  "format": "conflicting_viewpoints",
+  "passage": "Lumite is an invented clay roof tile. On many houses, Lumite tiles develop cracks after a few years. Three scientists explain the cracking.\n\nScientist 1\nWater soaks into the tiny pores of the tile and freezes in winter. Ice takes up more room than water, so it pushes the tile apart. Only tiles whose porosity (the percent of the tile's volume that is pores) is above 8% crack. Cracks begin at the bottom edge of the tile, where water collects. Coating tiles with a waterproof sealer would prevent the cracking.\n\nScientist 2\nOn sunny days, the dark surface of a tile heats much faster than its underside, and the difference in temperature strains the tile. Cracks begin in the middle of the tile and appear only on roofs that face south, toward the sun. Tiles crack this way even in dry climates where it never freezes.\n\nScientist 3\nLumite tiles are fastened with iron nails. A chemical in the tile's clay makes the nails rust, and rust takes up more room than iron, so it pushes the tile apart. Cracks begin at the nail holes. Tiles fastened with copper nails, which do not rust this way, do not crack.",
+  "prompt": "A survey finds that tiles on north-facing roofs crack as often as tiles on south-facing roofs. This finding is inconsistent with the view of which scientist?",
+  "choices": [
+   "Scientist 2",
+   "None of the scientists",
+   "Scientist 3",
+   "Scientist 1"
+  ],
+  "correct_answer": "Scientist 2",
+  "explanation": "Scientist 2 says the cracks appear only on roofs facing south. Scientists 1 and 3 say nothing about which way a roof faces.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test viewpoints against a new result",
+  "difficulty": "medium",
+  "topic_tag": "Why Lumite Roof Tiles Crack",
+  "consistency_check": "Crack starting places differ (bottom edge / middle / nail holes); only Scientist 1 sets a porosity threshold (above 8%); only Scientist 2 limits cracking to south-facing roofs; only Scientist 3 says copper-nailed tiles do not crack; the tile is invented."
+ },
+ {
+  "id": "ASV12f-P7-Q2",
+  "passage_id": "sc12f-p7",
+  "passage_title": "Why Lumite Roof Tiles Crack",
+  "format": "conflicting_viewpoints",
+  "passage": "Lumite is an invented clay roof tile. On many houses, Lumite tiles develop cracks after a few years. Three scientists explain the cracking.\n\nScientist 1\nWater soaks into the tiny pores of the tile and freezes in winter. Ice takes up more room than water, so it pushes the tile apart. Only tiles whose porosity (the percent of the tile's volume that is pores) is above 8% crack. Cracks begin at the bottom edge of the tile, where water collects. Coating tiles with a waterproof sealer would prevent the cracking.\n\nScientist 2\nOn sunny days, the dark surface of a tile heats much faster than its underside, and the difference in temperature strains the tile. Cracks begin in the middle of the tile and appear only on roofs that face south, toward the sun. Tiles crack this way even in dry climates where it never freezes.\n\nScientist 3\nLumite tiles are fastened with iron nails. A chemical in the tile's clay makes the nails rust, and rust takes up more room than iron, so it pushes the tile apart. Cracks begin at the nail holes. Tiles fastened with copper nails, which do not rust this way, do not crack.",
+  "prompt": "Tiles with a porosity of 5%, coated with waterproof sealer and fastened with copper nails, were put on a south-facing roof in a desert where it never freezes. After 3 years, cracks appeared in the middle of many tiles. This result is most consistent with the view of which scientist?",
+  "choices": [
+   "None of the scientists",
+   "Scientist 1",
+   "Scientist 3",
+   "Scientist 2"
+  ],
+  "correct_answer": "Scientist 2",
+  "explanation": "Low porosity, sealer, and no frost rule out Scientist 1; copper nails rule out Scientist 3. Cracks in the middle of tiles on a sunny south-facing roof in a dry climate fit Scientist 2.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match a finding to a viewpoint",
+  "difficulty": "hard",
+  "topic_tag": "Why Lumite Roof Tiles Crack"
+ },
+ {
+  "id": "ASV12f-P7-Q3",
+  "passage_id": "sc12f-p7",
+  "passage_title": "Why Lumite Roof Tiles Crack",
+  "format": "conflicting_viewpoints",
+  "passage": "Lumite is an invented clay roof tile. On many houses, Lumite tiles develop cracks after a few years. Three scientists explain the cracking.\n\nScientist 1\nWater soaks into the tiny pores of the tile and freezes in winter. Ice takes up more room than water, so it pushes the tile apart. Only tiles whose porosity (the percent of the tile's volume that is pores) is above 8% crack. Cracks begin at the bottom edge of the tile, where water collects. Coating tiles with a waterproof sealer would prevent the cracking.\n\nScientist 2\nOn sunny days, the dark surface of a tile heats much faster than its underside, and the difference in temperature strains the tile. Cracks begin in the middle of the tile and appear only on roofs that face south, toward the sun. Tiles crack this way even in dry climates where it never freezes.\n\nScientist 3\nLumite tiles are fastened with iron nails. A chemical in the tile's clay makes the nails rust, and rust takes up more room than iron, so it pushes the tile apart. Cracks begin at the nail holes. Tiles fastened with copper nails, which do not rust this way, do not crack.",
+  "prompt": "Which test would best check Scientist 3's explanation?",
+  "choices": [
+   "On one roof, fasten identical tiles, half with iron and half with copper nails",
+   "On one roof, fasten dark tiles and light tiles, all with copper nails",
+   "On one roof, fasten tiles of 5% and of 12% porosity, all with iron nails",
+   "On two roofs facing north and south, fasten sealed tiles with iron nails"
+  ],
+  "correct_answer": "On one roof, fasten identical tiles, half with iron and half with copper nails",
+  "explanation": "Scientist 3 blames rusting iron nails and says copper-nailed tiles do not crack, so comparing identical tiles fastened with iron and with copper nails tests that claim directly. Porosity tests Scientist 1; dark versus light and north versus south test Scientist 2.",
+  "domain": "Scientific Investigation",
+  "subskill": "design a test of one viewpoint",
+  "difficulty": "medium",
+  "topic_tag": "Why Lumite Roof Tiles Crack"
+ },
+ {
+  "id": "ASV12f-P7-Q4",
+  "passage_id": "sc12f-p7",
+  "passage_title": "Why Lumite Roof Tiles Crack",
+  "format": "conflicting_viewpoints",
+  "passage": "Lumite is an invented clay roof tile. On many houses, Lumite tiles develop cracks after a few years. Three scientists explain the cracking.\n\nScientist 1\nWater soaks into the tiny pores of the tile and freezes in winter. Ice takes up more room than water, so it pushes the tile apart. Only tiles whose porosity (the percent of the tile's volume that is pores) is above 8% crack. Cracks begin at the bottom edge of the tile, where water collects. Coating tiles with a waterproof sealer would prevent the cracking.\n\nScientist 2\nOn sunny days, the dark surface of a tile heats much faster than its underside, and the difference in temperature strains the tile. Cracks begin in the middle of the tile and appear only on roofs that face south, toward the sun. Tiles crack this way even in dry climates where it never freezes.\n\nScientist 3\nLumite tiles are fastened with iron nails. A chemical in the tile's clay makes the nails rust, and rust takes up more room than iron, so it pushes the tile apart. Cracks begin at the nail holes. Tiles fastened with copper nails, which do not rust this way, do not crack.",
+  "prompt": "Which scientist(s) say that cracks begin at a particular edge or hole of the tile rather than in its middle?",
+  "choices": [
+   "Scientists 1, 2, and 3",
+   "Scientist 2 only",
+   "Scientists 1 and 3 only",
+   "Scientist 3 only"
+  ],
+  "correct_answer": "Scientists 1 and 3 only",
+  "explanation": "Scientist 1 says cracks begin at the bottom edge and Scientist 3 says at the nail holes. Scientist 2 says cracks begin in the middle.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "compare claims across viewpoints",
+  "difficulty": "medium",
+  "topic_tag": "Why Lumite Roof Tiles Crack"
+ },
+ {
+  "id": "ASV12f-P7-Q5",
+  "passage_id": "sc12f-p7",
+  "passage_title": "Why Lumite Roof Tiles Crack",
+  "format": "conflicting_viewpoints",
+  "passage": "Lumite is an invented clay roof tile. On many houses, Lumite tiles develop cracks after a few years. Three scientists explain the cracking.\n\nScientist 1\nWater soaks into the tiny pores of the tile and freezes in winter. Ice takes up more room than water, so it pushes the tile apart. Only tiles whose porosity (the percent of the tile's volume that is pores) is above 8% crack. Cracks begin at the bottom edge of the tile, where water collects. Coating tiles with a waterproof sealer would prevent the cracking.\n\nScientist 2\nOn sunny days, the dark surface of a tile heats much faster than its underside, and the difference in temperature strains the tile. Cracks begin in the middle of the tile and appear only on roofs that face south, toward the sun. Tiles crack this way even in dry climates where it never freezes.\n\nScientist 3\nLumite tiles are fastened with iron nails. A chemical in the tile's clay makes the nails rust, and rust takes up more room than iron, so it pushes the tile apart. Cracks begin at the nail holes. Tiles fastened with copper nails, which do not rust this way, do not crack.",
+  "prompt": "Suppose every Lumite tile were coated with a waterproof sealer before it was installed. Which scientist(s) would most likely predict that the tiles would no longer crack?",
+  "choices": [
+   "Scientists 1 and 3 only",
+   "Scientist 2 only",
+   "Scientist 1 only",
+   "Scientist 3 only"
+  ],
+  "correct_answer": "Scientist 1 only",
+  "explanation": "Only Scientist 1 says the cracking comes from water in the pores and that a sealer would prevent it. Sealer does not change how a tile heats in the sun (Scientist 2) or stop iron nails from rusting (Scientist 3).",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "apply viewpoints to a new case",
+  "difficulty": "medium",
+  "topic_tag": "Why Lumite Roof Tiles Crack"
+ },
+ {
+  "id": "ASV12f-P7-Q6",
+  "passage_id": "sc12f-p7",
+  "passage_title": "Why Lumite Roof Tiles Crack",
+  "format": "conflicting_viewpoints",
+  "passage": "Lumite is an invented clay roof tile. On many houses, Lumite tiles develop cracks after a few years. Three scientists explain the cracking.\n\nScientist 1\nWater soaks into the tiny pores of the tile and freezes in winter. Ice takes up more room than water, so it pushes the tile apart. Only tiles whose porosity (the percent of the tile's volume that is pores) is above 8% crack. Cracks begin at the bottom edge of the tile, where water collects. Coating tiles with a waterproof sealer would prevent the cracking.\n\nScientist 2\nOn sunny days, the dark surface of a tile heats much faster than its underside, and the difference in temperature strains the tile. Cracks begin in the middle of the tile and appear only on roofs that face south, toward the sun. Tiles crack this way even in dry climates where it never freezes.\n\nScientist 3\nLumite tiles are fastened with iron nails. A chemical in the tile's clay makes the nails rust, and rust takes up more room than iron, so it pushes the tile apart. Cracks begin at the nail holes. Tiles fastened with copper nails, which do not rust this way, do not crack.",
+  "prompt": "Tiles from four factories have porosities of 4%, 7%, 9%, and 12%. According to Scientist 1, tiles from how many of these factories would be expected to crack?",
+  "choices": [
+   "1",
+   "2",
+   "3",
+   "4"
+  ],
+  "correct_answer": "2",
+  "explanation": "Scientist 1 says only tiles with porosity above 8% crack. 9% and 12% are above 8%; 4% and 7% are not. So \"2\".",
+  "domain": "Interpretation of Data",
+  "subskill": "apply a stated threshold",
+  "difficulty": "medium",
+  "topic_tag": "Why Lumite Roof Tiles Crack"
+ },
+ {
+  "id": "ASV12f-P8-Q1",
+  "passage_id": "sc12f-p8",
+  "passage_title": "An Exercise Marker in Three Groups of Runners",
+  "format": "data_representation",
+  "passage": "Brell marker is an invented substance whose level in the blood rises during hard exercise. Physiologists asked three groups of volunteers (untrained people, trained runners, and elite athletes) to run on treadmills at the same speed for 60 minutes. They measured each volunteer's blood level of Brell marker (in laboratory units) at several times and averaged the results for each group (see Table 1).",
+  "prompt": "At what time did the untrained group's average level first reach 15 units?",
+  "choices": [
+   "20 min",
+   "30 min",
+   "40 min",
+   "60 min"
+  ],
+  "correct_answer": "30 min",
+  "explanation": "Untrained levels: 2, 6, 11, 15, 16, 16. The first time at or above 15 is \"30 min\".",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a value in a series",
+  "difficulty": "medium",
+  "topic_tag": "An Exercise Marker in Three Groups of Runners",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average Brell marker level (laboratory units)",
+   "colLabels": [
+    "Untrained",
+    "Trained runners",
+    "Elite athletes"
+   ],
+   "rowLabels": [
+    "0 min",
+    "10 min",
+    "20 min",
+    "30 min",
+    "40 min",
+    "60 min"
+   ],
+   "cells": [
+    [
+     2,
+     2,
+     2
+    ],
+    [
+     6,
+     4,
+     3
+    ],
+    [
+     11,
+     7,
+     5
+    ],
+    [
+     15,
+     10,
+     7
+    ],
+    [
+     16,
+     12,
+     8
+    ],
+    [
+     16,
+     13,
+     9
+    ]
+   ]
+  },
+  "consistency_check": "All groups start at 2 units; untrained levels off at 16 after 40 min; 10-to-30 min rises: untrained 9, trained 6, athletes 4; at 40 min trained/athletes = 12/8 = 1.5; the marker is invented."
+ },
+ {
+  "id": "ASV12f-P8-Q2",
+  "passage_id": "sc12f-p8",
+  "passage_title": "An Exercise Marker in Three Groups of Runners",
+  "format": "data_representation",
+  "passage": "Brell marker is an invented substance whose level in the blood rises during hard exercise. Physiologists asked three groups of volunteers (untrained people, trained runners, and elite athletes) to run on treadmills at the same speed for 60 minutes. They measured each volunteer's blood level of Brell marker (in laboratory units) at several times and averaged the results for each group (see Table 1).",
+  "prompt": "At 20 minutes, the untrained group's average level was how many units greater than the elite athletes' level?",
+  "choices": [
+   "2",
+   "4",
+   "6",
+   "9"
+  ],
+  "correct_answer": "6",
+  "explanation": "At 20 min the untrained level was 11 and the athletes' level was 5: 11 − 5 = 6.",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a difference",
+  "difficulty": "medium",
+  "topic_tag": "An Exercise Marker in Three Groups of Runners",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average Brell marker level (laboratory units)",
+   "colLabels": [
+    "Untrained",
+    "Trained runners",
+    "Elite athletes"
+   ],
+   "rowLabels": [
+    "0 min",
+    "10 min",
+    "20 min",
+    "30 min",
+    "40 min",
+    "60 min"
+   ],
+   "cells": [
+    [
+     2,
+     2,
+     2
+    ],
+    [
+     6,
+     4,
+     3
+    ],
+    [
+     11,
+     7,
+     5
+    ],
+    [
+     15,
+     10,
+     7
+    ],
+    [
+     16,
+     12,
+     8
+    ],
+    [
+     16,
+     13,
+     9
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12f-P8-Q3",
+  "passage_id": "sc12f-p8",
+  "passage_title": "An Exercise Marker in Three Groups of Runners",
+  "format": "data_representation",
+  "passage": "Brell marker is an invented substance whose level in the blood rises during hard exercise. Physiologists asked three groups of volunteers (untrained people, trained runners, and elite athletes) to run on treadmills at the same speed for 60 minutes. They measured each volunteer's blood level of Brell marker (in laboratory units) at several times and averaged the results for each group (see Table 1).",
+  "prompt": "If the trained runners had continued for 80 minutes, their average level would most likely have been:",
+  "choices": [
+   "less than 12 units.",
+   "between 12 and 13 units.",
+   "between 13 and 16 units.",
+   "greater than 16 units."
+  ],
+  "correct_answer": "between 13 and 16 units.",
+  "explanation": "The trained runners' level rose more and more slowly: 10, 12, 13 at 30, 40, 60 min. Continuing slowly, at 80 min it would most likely be a little above 13, so \"between 13 and 16 units.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "extrapolate a slowing trend",
+  "difficulty": "hard",
+  "topic_tag": "An Exercise Marker in Three Groups of Runners",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average Brell marker level (laboratory units)",
+   "colLabels": [
+    "Untrained",
+    "Trained runners",
+    "Elite athletes"
+   ],
+   "rowLabels": [
+    "0 min",
+    "10 min",
+    "20 min",
+    "30 min",
+    "40 min",
+    "60 min"
+   ],
+   "cells": [
+    [
+     2,
+     2,
+     2
+    ],
+    [
+     6,
+     4,
+     3
+    ],
+    [
+     11,
+     7,
+     5
+    ],
+    [
+     15,
+     10,
+     7
+    ],
+    [
+     16,
+     12,
+     8
+    ],
+    [
+     16,
+     13,
+     9
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12f-P8-Q4",
+  "passage_id": "sc12f-p8",
+  "passage_title": "An Exercise Marker in Three Groups of Runners",
+  "format": "data_representation",
+  "passage": "Brell marker is an invented substance whose level in the blood rises during hard exercise. Physiologists asked three groups of volunteers (untrained people, trained runners, and elite athletes) to run on treadmills at the same speed for 60 minutes. They measured each volunteer's blood level of Brell marker (in laboratory units) at several times and averaged the results for each group (see Table 1).",
+  "prompt": "Which group's average level increased by the greatest amount between 10 and 30 minutes?",
+  "choices": [
+   "All three groups increased by the same amount",
+   "Trained runners",
+   "Untrained",
+   "Elite athletes"
+  ],
+  "correct_answer": "Untrained",
+  "explanation": "From 10 to 30 min: untrained 6 to 15 (9 units), trained 4 to 10 (6 units), athletes 3 to 7 (4 units). The greatest is \"Untrained\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compare changes across series",
+  "difficulty": "medium",
+  "topic_tag": "An Exercise Marker in Three Groups of Runners",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average Brell marker level (laboratory units)",
+   "colLabels": [
+    "Untrained",
+    "Trained runners",
+    "Elite athletes"
+   ],
+   "rowLabels": [
+    "0 min",
+    "10 min",
+    "20 min",
+    "30 min",
+    "40 min",
+    "60 min"
+   ],
+   "cells": [
+    [
+     2,
+     2,
+     2
+    ],
+    [
+     6,
+     4,
+     3
+    ],
+    [
+     11,
+     7,
+     5
+    ],
+    [
+     15,
+     10,
+     7
+    ],
+    [
+     16,
+     12,
+     8
+    ],
+    [
+     16,
+     13,
+     9
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12f-P8-Q5",
+  "passage_id": "sc12f-p8",
+  "passage_title": "An Exercise Marker in Three Groups of Runners",
+  "format": "data_representation",
+  "passage": "Brell marker is an invented substance whose level in the blood rises during hard exercise. Physiologists asked three groups of volunteers (untrained people, trained runners, and elite athletes) to run on treadmills at the same speed for 60 minutes. They measured each volunteer's blood level of Brell marker (in laboratory units) at several times and averaged the results for each group (see Table 1).",
+  "prompt": "At 40 minutes, the trained runners' average level was about how many times the elite athletes' level?",
+  "choices": [
+   "About 1.5 times",
+   "About 2 times",
+   "About 3 times",
+   "About 4 times"
+  ],
+  "correct_answer": "About 1.5 times",
+  "explanation": "At 40 min: trained 12 and athletes 8. 12/8 = 1.5, so \"About 1.5 times\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a ratio",
+  "difficulty": "medium",
+  "topic_tag": "An Exercise Marker in Three Groups of Runners",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Average Brell marker level (laboratory units)",
+   "colLabels": [
+    "Untrained",
+    "Trained runners",
+    "Elite athletes"
+   ],
+   "rowLabels": [
+    "0 min",
+    "10 min",
+    "20 min",
+    "30 min",
+    "40 min",
+    "60 min"
+   ],
+   "cells": [
+    [
+     2,
+     2,
+     2
+    ],
+    [
+     6,
+     4,
+     3
+    ],
+    [
+     11,
+     7,
+     5
+    ],
+    [
+     15,
+     10,
+     7
+    ],
+    [
+     16,
+     12,
+     8
+    ],
+    [
+     16,
+     13,
+     9
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12f-P9-Q1",
+  "passage_id": "sc12f-p9",
+  "passage_title": "Water Clarity in Ollin Bay",
+  "format": "data_representation",
+  "passage": "Ollin Bay is an invented bay. To measure how clear its water is, marine scientists lowered a white disk into the water and recorded the greatest depth (in meters, m) at which the disk could still be seen. Greater depths mean clearer water. Figure 1 shows the average result for each of five months in which the scientists made measurements.",
+  "prompt": "In which month was the water clearest?",
+  "choices": [
+   "July",
+   "October",
+   "January",
+   "March"
+  ],
+  "correct_answer": "March",
+  "explanation": "Depths: January 9 m, March 12 m, May 3 m, July 6 m, October 9 m. The greatest depth, and so the clearest water, is in \"March\".",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a maximum",
+  "difficulty": "medium",
+  "topic_tag": "Water Clarity in Ollin Bay",
+  "graphic": {
+   "type": "bar",
+   "xLabel": "Month",
+   "yLabel": "Depth at which disk was visible (m)",
+   "bars": [
+    {
+     "label": "January",
+     "value": 9
+    },
+    {
+     "label": "March",
+     "value": 12
+    },
+    {
+     "label": "May",
+     "value": 3
+    },
+    {
+     "label": "July",
+     "value": 6
+    },
+    {
+     "label": "October",
+     "value": 9
+    }
+   ],
+   "caption": "Figure 1. Average water clarity in Ollin Bay"
+  },
+  "consistency_check": "Values 9, 12, 3, 6, 9 m all fall on axis ticks every 3 m (max 12); March-to-May falls 9 m, every other step changes 3 m; the 7.5-m dive limit sits 1.5 m (half a tick) from the nearest bars (6 and 9); the bay is invented."
+ },
+ {
+  "id": "ASV12f-P9-Q2",
+  "passage_id": "sc12f-p9",
+  "passage_title": "Water Clarity in Ollin Bay",
+  "format": "data_representation",
+  "passage": "Ollin Bay is an invented bay. To measure how clear its water is, marine scientists lowered a white disk into the water and recorded the greatest depth (in meters, m) at which the disk could still be seen. Greater depths mean clearer water. Figure 1 shows the average result for each of five months in which the scientists made measurements.",
+  "prompt": "The disk was visible to about half the depth in July that it was in which month?",
+  "choices": [
+   "October",
+   "May",
+   "January",
+   "March"
+  ],
+  "correct_answer": "March",
+  "explanation": "July: 6 m. Half of March's 12 m is 6 m. January and October were 9 m (6 is two-thirds of 9) and May was 3 m.",
+  "domain": "Interpretation of Data",
+  "subskill": "compare two values as a ratio",
+  "difficulty": "medium",
+  "topic_tag": "Water Clarity in Ollin Bay",
+  "graphic": {
+   "type": "bar",
+   "xLabel": "Month",
+   "yLabel": "Depth at which disk was visible (m)",
+   "bars": [
+    {
+     "label": "January",
+     "value": 9
+    },
+    {
+     "label": "March",
+     "value": 12
+    },
+    {
+     "label": "May",
+     "value": 3
+    },
+    {
+     "label": "July",
+     "value": 6
+    },
+    {
+     "label": "October",
+     "value": 9
+    }
+   ],
+   "caption": "Figure 1. Average water clarity in Ollin Bay"
+  }
+ },
+ {
+  "id": "ASV12f-P9-Q3",
+  "passage_id": "sc12f-p9",
+  "passage_title": "Water Clarity in Ollin Bay",
+  "format": "data_representation",
+  "passage": "Ollin Bay is an invented bay. To measure how clear its water is, marine scientists lowered a white disk into the water and recorded the greatest depth (in meters, m) at which the disk could still be seen. Greater depths mean clearer water. Figure 1 shows the average result for each of five months in which the scientists made measurements.",
+  "prompt": "Between which two months shown, one after the other, did the clarity change by the greatest amount?",
+  "choices": [
+   "January and March",
+   "March and May",
+   "May and July",
+   "July and October"
+  ],
+  "correct_answer": "March and May",
+  "explanation": "Changes: January to March +3 m, March to May −9 m, May to July +3 m, July to October +3 m. The greatest change is between \"March and May\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compare changes between adjacent values",
+  "difficulty": "medium",
+  "topic_tag": "Water Clarity in Ollin Bay",
+  "graphic": {
+   "type": "bar",
+   "xLabel": "Month",
+   "yLabel": "Depth at which disk was visible (m)",
+   "bars": [
+    {
+     "label": "January",
+     "value": 9
+    },
+    {
+     "label": "March",
+     "value": 12
+    },
+    {
+     "label": "May",
+     "value": 3
+    },
+    {
+     "label": "July",
+     "value": 6
+    },
+    {
+     "label": "October",
+     "value": 9
+    }
+   ],
+   "caption": "Figure 1. Average water clarity in Ollin Bay"
+  }
+ },
+ {
+  "id": "ASV12f-P9-Q4",
+  "passage_id": "sc12f-p9",
+  "passage_title": "Water Clarity in Ollin Bay",
+  "format": "data_representation",
+  "passage": "Ollin Bay is an invented bay. To measure how clear its water is, marine scientists lowered a white disk into the water and recorded the greatest depth (in meters, m) at which the disk could still be seen. Greater depths mean clearer water. Figure 1 shows the average result for each of five months in which the scientists made measurements.",
+  "prompt": "In which two months was the average clarity the same?",
+  "choices": [
+   "January and October",
+   "January and May",
+   "March and July",
+   "May and July"
+  ],
+  "correct_answer": "January and October",
+  "explanation": "January and October were both 9 m. March (12) and July (6), May (3) and July (6), and January (9) and May (3) differ.",
+  "domain": "Interpretation of Data",
+  "subskill": "compare values across a figure",
+  "difficulty": "medium",
+  "topic_tag": "Water Clarity in Ollin Bay",
+  "graphic": {
+   "type": "bar",
+   "xLabel": "Month",
+   "yLabel": "Depth at which disk was visible (m)",
+   "bars": [
+    {
+     "label": "January",
+     "value": 9
+    },
+    {
+     "label": "March",
+     "value": 12
+    },
+    {
+     "label": "May",
+     "value": 3
+    },
+    {
+     "label": "July",
+     "value": 6
+    },
+    {
+     "label": "October",
+     "value": 9
+    }
+   ],
+   "caption": "Figure 1. Average water clarity in Ollin Bay"
+  }
+ },
+ {
+  "id": "ASV12f-P9-Q5",
+  "passage_id": "sc12f-p9",
+  "passage_title": "Water Clarity in Ollin Bay",
+  "format": "data_representation",
+  "passage": "Ollin Bay is an invented bay. To measure how clear its water is, marine scientists lowered a white disk into the water and recorded the greatest depth (in meters, m) at which the disk could still be seen. Greater depths mean clearer water. Figure 1 shows the average result for each of five months in which the scientists made measurements.",
+  "prompt": "A diving club requires that the disk be visible to at least 7.5 m. In how many of the five months shown was this requirement met?",
+  "choices": [
+   "1",
+   "2",
+   "3",
+   "4"
+  ],
+  "correct_answer": "3",
+  "explanation": "January (9 m), March (12 m), and October (9 m) reach 7.5 m; May (3 m) and July (6 m) do not. So \"3\".",
+  "domain": "Interpretation of Data",
+  "subskill": "apply a threshold to a figure",
+  "difficulty": "medium",
+  "topic_tag": "Water Clarity in Ollin Bay",
+  "graphic": {
+   "type": "bar",
+   "xLabel": "Month",
+   "yLabel": "Depth at which disk was visible (m)",
+   "bars": [
+    {
+     "label": "January",
+     "value": 9
+    },
+    {
+     "label": "March",
+     "value": 12
+    },
+    {
+     "label": "May",
+     "value": 3
+    },
+    {
+     "label": "July",
+     "value": 6
+    },
+    {
+     "label": "October",
+     "value": 9
+    }
+   ],
+   "caption": "Figure 1. Average water clarity in Ollin Bay"
+  }
+ }
+]
