@@ -9,6 +9,9 @@ import {
   planPackets, dealPacket, validateGrades, scorePacket, scoreCohorts, samePattern, ReviewError,
 } from '../../../../scripts/study-bank/agent-review-core.mjs'
 
+type CohortOut = { hold: boolean; cleared: string[]; dropped: Record<string, string> }
+const score = (packets: unknown[]) => scoreCohorts(packets) as Record<string, CohortOut>
+
 type Row = { id: string; family: string; section: string; cohort: string; passage_group_id: string | null; item: Record<string, unknown> }
 const mk = (id: string, cohort: string, group: string | null): Row => ({
   id, family: 'ssat', section: 'reading', cohort, passage_group_id: group,
@@ -73,7 +76,7 @@ describe('scoring', () => {
   ]
   it('drops an item one grader flags, takes its passage with it, and leaves standalone items alone', () => {
     const grades = { a: uniq(6), b: uniq(6, { 2: { verdict: 'hold', defect_type: 'factual_error' } }), c: uniq(6, { 5: { verdict: 'alternative', defect_type: 'second_defensible' } }) }
-    const out = scoreCohorts([{ index, score: scorePacket(index, grades) }]).c1
+    const out = score([{ index, score: scorePacket(index, grades) }]).c1
     expect(out.hold).toBe(false)
     expect(Object.keys(out.dropped).sort()).toEqual(['r1', 'r2', 'r5'])
     expect(out.dropped.r1).toMatch(/passage/)
@@ -82,13 +85,13 @@ describe('scoring', () => {
   it('holds the whole cohort when two graders name the same pattern on >= 3 items, not on 2', () => {
     const pat = (items: number[], pattern = 'key_form') => ({ pattern, items, evidence: 'x' })
     const held = { a: uniq(6, { batch_patterns: [pat([1, 3, 5])] }), b: uniq(6, { batch_patterns: [pat([1, 3, 5, 6])] }), c: uniq(6) }
-    const out = scoreCohorts([{ index, score: scorePacket(index, held) }]).c1
+    const out = score([{ index, score: scorePacket(index, held) }]).c1
     expect(out.hold).toBe(true)
     expect(out.cleared).toEqual([])
     const weak = { a: uniq(6, { batch_patterns: [pat([1, 3])] }), b: uniq(6, { batch_patterns: [pat([1, 3])] }), c: uniq(6) }
-    expect(scoreCohorts([{ index, score: scorePacket(index, weak) }]).c1.hold).toBe(false)
+    expect(score([{ index, score: scorePacket(index, weak) }]).c1.hold).toBe(false)
     const lone = { a: uniq(6, { batch_patterns: [pat([1, 3, 5])] }), b: uniq(6), c: uniq(6) }
-    expect(scoreCohorts([{ index, score: scorePacket(index, lone) }]).c1.hold).toBe(false)
+    expect(score([{ index, score: scorePacket(index, lone) }]).c1.hold).toBe(false)
   })
   it('matches patterns by type, or when either is a custom name', () => {
     expect(samePattern({ pattern: 'key_form', items: [1, 2, 3] }, { pattern: 'one_template', items: [1, 2, 3] })).toBe(false)
