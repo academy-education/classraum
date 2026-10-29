@@ -6156,3 +6156,12 @@ structural checks are pre-flight only. See CLAUDE.md.
   clash; methods `map-rd-v3-insession+cfg-v2` / `map-vocab-v3-insession+cfg-v2` registered (new method, so a
   bridge spot first). Not done: grader runs, staging, queue entries. Blind options-only attack not run (invalid for
   MAP comprehension).
+
+- **2026-10-29 — act-science-v12c written (52 items, 4 RS + 3 CV + 2 DR) for b11; cold packets built, not
+  graded, not inserted.** Scales the v12 brief after b10's 8/9. Topics: plant physiology, materials, hydrology,
+  animal behaviour (v12d, concurrent, takes geology/astronomy/microbiology). Prereg `ACT-SCIENCE-V12C.prereg.md`
+  (seed 2026102911, strictForm:false, bars >= 5 keep / 3-4 revise / 0-2 stop). New b10 lesson applied: every figure
+  value a key depends on is readable — P9's 45% cutoff is >= half a tick (11.75 pts) from every bar, and one ratio
+  item that needed a +-3-point bar reading was replaced before packets were built. SI items 9 (v12b had 4). Keys
+  A13 B13 C13 D13, uniquely longest 6/52. Packets: `scratchpad/act-science-regrade/b11-g{1,2}/grader-cold.md`;
+  0 render warnings. Generator and rows: `scratchpad/act-science-regrade/_coordinator/b11/`.

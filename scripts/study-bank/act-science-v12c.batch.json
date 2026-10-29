@@ -1,0 +1,3641 @@
+[
+ {
+  "id": "ASV12c-P1-Q1",
+  "passage_id": "sc12c-p1",
+  "passage_title": "Salt, Light, and Soil in Ferrow Bean Seedlings",
+  "format": "research_summaries",
+  "passage": "Ferrow beans are a crop plant. Botanists grew Ferrow bean seedlings for 21 days to study how the amount of salt in the soil (percent of the soil's dry mass), the hours of light per day, and the type of soil affect early growth. All seedlings were kept at 22°C and watered equally.\n\nAfter 21 days, the botanists measured the length of each seedling's longest root (in mm) and counted its leaves (see Table 1).\n\nExperiment 1\nSeedlings were grown in loam soil containing 0%, 0.5%, 1.0%, 1.5%, or 2.0% salt, with 12 hours of light per day.\n\nExperiment 2\nSeedlings were grown in loam soil containing 0.5% salt, with 8, 16, or 20 hours of light per day. (The 12-hour result is that of the 0.5% seedling in Experiment 1.)\n\nExperiment 3\nSeedlings were grown in sandy soil or in clay soil, each containing 0.5% salt, with 12 hours of light per day, and compared with the loam seedling of Experiment 1 grown under the same conditions.",
+  "prompt": "In Experiment 1, the seedling with the longest root was grown in soil containing how much salt?",
+  "choices": [
+   "0%",
+   "0.5%",
+   "1.0%",
+   "1.5%"
+  ],
+  "correct_answer": "0.5%",
+  "explanation": "Experiment 1 root lengths: 48 mm (0%), 55 mm (0.5%), 41 mm (1.0%), 26 mm (1.5%), 12 mm (2.0%). The longest is 55 mm at \"0.5%\".",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a maximum within one series",
+  "difficulty": "medium",
+  "topic_tag": "Salt, Light, and Soil in Ferrow Bean Seedlings",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Ferrow bean seedlings after 21 days",
+   "colLabels": [
+    "Soil",
+    "Salt (%)",
+    "Light (hours/day)",
+    "Longest root (mm)",
+    "Leaves"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "loam",
+     0,
+     12,
+     48,
+     6
+    ],
+    [
+     "loam",
+     0.5,
+     12,
+     55,
+     6
+    ],
+    [
+     "loam",
+     1.0,
+     12,
+     41,
+     5
+    ],
+    [
+     "loam",
+     1.5,
+     12,
+     26,
+     4
+    ],
+    [
+     "loam",
+     2.0,
+     12,
+     12,
+     3
+    ],
+    [
+     "loam",
+     0.5,
+     8,
+     38,
+     4
+    ],
+    [
+     "loam",
+     0.5,
+     16,
+     61,
+     7
+    ],
+    [
+     "loam",
+     0.5,
+     20,
+     49,
+     7
+    ],
+    [
+     "sandy",
+     0.5,
+     12,
+     63,
+     5
+    ],
+    [
+     "clay",
+     0.5,
+     12,
+     34,
+     6
+    ]
+   ]
+  },
+  "consistency_check": "The loam, 0.5% salt, 12-hour seedling (55 mm, 6 leaves) is listed once and shared by all three experiments; root length has an optimum at 0.5% salt and at 16 hours of light; the plant is invented and the values follow no named law."
+ },
+ {
+  "id": "ASV12c-P1-Q2",
+  "passage_id": "sc12c-p1",
+  "passage_title": "Salt, Light, and Soil in Ferrow Bean Seedlings",
+  "format": "research_summaries",
+  "passage": "Ferrow beans are a crop plant. Botanists grew Ferrow bean seedlings for 21 days to study how the amount of salt in the soil (percent of the soil's dry mass), the hours of light per day, and the type of soil affect early growth. All seedlings were kept at 22°C and watered equally.\n\nAfter 21 days, the botanists measured the length of each seedling's longest root (in mm) and counted its leaves (see Table 1).\n\nExperiment 1\nSeedlings were grown in loam soil containing 0%, 0.5%, 1.0%, 1.5%, or 2.0% salt, with 12 hours of light per day.\n\nExperiment 2\nSeedlings were grown in loam soil containing 0.5% salt, with 8, 16, or 20 hours of light per day. (The 12-hour result is that of the 0.5% seedling in Experiment 1.)\n\nExperiment 3\nSeedlings were grown in sandy soil or in clay soil, each containing 0.5% salt, with 12 hours of light per day, and compared with the loam seedling of Experiment 1 grown under the same conditions.",
+  "prompt": "Based on Experiment 1, a seedling grown in loam soil containing 1.25% salt with 12 hours of light per day would most likely have a longest root of:",
+  "choices": [
+   "less than 12 mm.",
+   "between 12 mm and 26 mm.",
+   "between 26 mm and 41 mm.",
+   "greater than 41 mm."
+  ],
+  "correct_answer": "between 26 mm and 41 mm.",
+  "explanation": "1.25% lies between 1.0% (41 mm) and 1.5% (26 mm), and root length falls steadily above 0.5% salt, so \"between 26 mm and 41 mm.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate within a series",
+  "difficulty": "medium",
+  "topic_tag": "Salt, Light, and Soil in Ferrow Bean Seedlings",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Ferrow bean seedlings after 21 days",
+   "colLabels": [
+    "Soil",
+    "Salt (%)",
+    "Light (hours/day)",
+    "Longest root (mm)",
+    "Leaves"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "loam",
+     0,
+     12,
+     48,
+     6
+    ],
+    [
+     "loam",
+     0.5,
+     12,
+     55,
+     6
+    ],
+    [
+     "loam",
+     1.0,
+     12,
+     41,
+     5
+    ],
+    [
+     "loam",
+     1.5,
+     12,
+     26,
+     4
+    ],
+    [
+     "loam",
+     2.0,
+     12,
+     12,
+     3
+    ],
+    [
+     "loam",
+     0.5,
+     8,
+     38,
+     4
+    ],
+    [
+     "loam",
+     0.5,
+     16,
+     61,
+     7
+    ],
+    [
+     "loam",
+     0.5,
+     20,
+     49,
+     7
+    ],
+    [
+     "sandy",
+     0.5,
+     12,
+     63,
+     5
+    ],
+    [
+     "clay",
+     0.5,
+     12,
+     34,
+     6
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12c-P1-Q3",
+  "passage_id": "sc12c-p1",
+  "passage_title": "Salt, Light, and Soil in Ferrow Bean Seedlings",
+  "format": "research_summaries",
+  "passage": "Ferrow beans are a crop plant. Botanists grew Ferrow bean seedlings for 21 days to study how the amount of salt in the soil (percent of the soil's dry mass), the hours of light per day, and the type of soil affect early growth. All seedlings were kept at 22°C and watered equally.\n\nAfter 21 days, the botanists measured the length of each seedling's longest root (in mm) and counted its leaves (see Table 1).\n\nExperiment 1\nSeedlings were grown in loam soil containing 0%, 0.5%, 1.0%, 1.5%, or 2.0% salt, with 12 hours of light per day.\n\nExperiment 2\nSeedlings were grown in loam soil containing 0.5% salt, with 8, 16, or 20 hours of light per day. (The 12-hour result is that of the 0.5% seedling in Experiment 1.)\n\nExperiment 3\nSeedlings were grown in sandy soil or in clay soil, each containing 0.5% salt, with 12 hours of light per day, and compared with the loam seedling of Experiment 1 grown under the same conditions.",
+  "prompt": "Which factor was varied in Experiment 2 but was the same for every seedling in Experiment 1?",
+  "choices": [
+   "Hours of light per day",
+   "Type of soil",
+   "Temperature",
+   "Amount of salt in the soil"
+  ],
+  "correct_answer": "Hours of light per day",
+  "explanation": "Experiment 2 varied the hours of light (8, 16, 20); every Experiment 1 seedling had 12 hours. Salt was varied in Experiment 1, not Experiment 2; soil type (loam) and temperature (22°C) were the same in both.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify the variables of an experiment",
+  "difficulty": "medium",
+  "topic_tag": "Salt, Light, and Soil in Ferrow Bean Seedlings",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Ferrow bean seedlings after 21 days",
+   "colLabels": [
+    "Soil",
+    "Salt (%)",
+    "Light (hours/day)",
+    "Longest root (mm)",
+    "Leaves"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "loam",
+     0,
+     12,
+     48,
+     6
+    ],
+    [
+     "loam",
+     0.5,
+     12,
+     55,
+     6
+    ],
+    [
+     "loam",
+     1.0,
+     12,
+     41,
+     5
+    ],
+    [
+     "loam",
+     1.5,
+     12,
+     26,
+     4
+    ],
+    [
+     "loam",
+     2.0,
+     12,
+     12,
+     3
+    ],
+    [
+     "loam",
+     0.5,
+     8,
+     38,
+     4
+    ],
+    [
+     "loam",
+     0.5,
+     16,
+     61,
+     7
+    ],
+    [
+     "loam",
+     0.5,
+     20,
+     49,
+     7
+    ],
+    [
+     "sandy",
+     0.5,
+     12,
+     63,
+     5
+    ],
+    [
+     "clay",
+     0.5,
+     12,
+     34,
+     6
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12c-P1-Q4",
+  "passage_id": "sc12c-p1",
+  "passage_title": "Salt, Light, and Soil in Ferrow Bean Seedlings",
+  "format": "research_summaries",
+  "passage": "Ferrow beans are a crop plant. Botanists grew Ferrow bean seedlings for 21 days to study how the amount of salt in the soil (percent of the soil's dry mass), the hours of light per day, and the type of soil affect early growth. All seedlings were kept at 22°C and watered equally.\n\nAfter 21 days, the botanists measured the length of each seedling's longest root (in mm) and counted its leaves (see Table 1).\n\nExperiment 1\nSeedlings were grown in loam soil containing 0%, 0.5%, 1.0%, 1.5%, or 2.0% salt, with 12 hours of light per day.\n\nExperiment 2\nSeedlings were grown in loam soil containing 0.5% salt, with 8, 16, or 20 hours of light per day. (The 12-hour result is that of the 0.5% seedling in Experiment 1.)\n\nExperiment 3\nSeedlings were grown in sandy soil or in clay soil, each containing 0.5% salt, with 12 hours of light per day, and compared with the loam seedling of Experiment 1 grown under the same conditions.",
+  "prompt": "The botanists want to find out whether the difference between sandy and clay soil seen in Experiment 3 also appears at a higher salt level. Which pair of new seedlings would best test this while allowing comparison with Experiment 3?",
+  "choices": [
+   "A loam and a clay seedling, each with 1.0% salt and 8 hours of light",
+   "A sandy and a loam seedling, each with 0.5% salt and 12 hours of light",
+   "A sandy and a clay seedling, each with 0.5% salt and 20 hours of light",
+   "A sandy and a clay seedling, each with 1.5% salt and 12 hours of light"
+  ],
+  "correct_answer": "A sandy and a clay seedling, each with 1.5% salt and 12 hours of light",
+  "explanation": "Experiment 3 compared sandy and clay soil at 0.5% salt and 12 hours of light. To test a higher salt level, the new pair must again be sandy and clay, keep 12 hours of light, and change only the salt: \"A sandy and a clay seedling, each with 1.5% salt and 12 hours of light.\" The 20-hour pair changes light instead of salt; the loam-clay pair changes the soils compared and the light; the sandy-loam pair keeps 0.5% salt.",
+  "domain": "Scientific Investigation",
+  "subskill": "design a follow-up that changes one factor",
+  "difficulty": "hard",
+  "topic_tag": "Salt, Light, and Soil in Ferrow Bean Seedlings",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Ferrow bean seedlings after 21 days",
+   "colLabels": [
+    "Soil",
+    "Salt (%)",
+    "Light (hours/day)",
+    "Longest root (mm)",
+    "Leaves"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "loam",
+     0,
+     12,
+     48,
+     6
+    ],
+    [
+     "loam",
+     0.5,
+     12,
+     55,
+     6
+    ],
+    [
+     "loam",
+     1.0,
+     12,
+     41,
+     5
+    ],
+    [
+     "loam",
+     1.5,
+     12,
+     26,
+     4
+    ],
+    [
+     "loam",
+     2.0,
+     12,
+     12,
+     3
+    ],
+    [
+     "loam",
+     0.5,
+     8,
+     38,
+     4
+    ],
+    [
+     "loam",
+     0.5,
+     16,
+     61,
+     7
+    ],
+    [
+     "loam",
+     0.5,
+     20,
+     49,
+     7
+    ],
+    [
+     "sandy",
+     0.5,
+     12,
+     63,
+     5
+    ],
+    [
+     "clay",
+     0.5,
+     12,
+     34,
+     6
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12c-P1-Q5",
+  "passage_id": "sc12c-p1",
+  "passage_title": "Salt, Light, and Soil in Ferrow Bean Seedlings",
+  "format": "research_summaries",
+  "passage": "Ferrow beans are a crop plant. Botanists grew Ferrow bean seedlings for 21 days to study how the amount of salt in the soil (percent of the soil's dry mass), the hours of light per day, and the type of soil affect early growth. All seedlings were kept at 22°C and watered equally.\n\nAfter 21 days, the botanists measured the length of each seedling's longest root (in mm) and counted its leaves (see Table 1).\n\nExperiment 1\nSeedlings were grown in loam soil containing 0%, 0.5%, 1.0%, 1.5%, or 2.0% salt, with 12 hours of light per day.\n\nExperiment 2\nSeedlings were grown in loam soil containing 0.5% salt, with 8, 16, or 20 hours of light per day. (The 12-hour result is that of the 0.5% seedling in Experiment 1.)\n\nExperiment 3\nSeedlings were grown in sandy soil or in clay soil, each containing 0.5% salt, with 12 hours of light per day, and compared with the loam seedling of Experiment 1 grown under the same conditions.",
+  "prompt": "In Experiment 3, compared with the loam seedling, the sandy-soil seedling had:",
+  "choices": [
+   "a shorter root and more leaves.",
+   "a longer root and more leaves.",
+   "a longer root and fewer leaves.",
+   "a shorter root and fewer leaves."
+  ],
+  "correct_answer": "a longer root and fewer leaves.",
+  "explanation": "Sandy: 63 mm and 5 leaves. Loam at 0.5% salt and 12 hours: 55 mm and 6 leaves. So the sandy seedling had \"a longer root and fewer leaves.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "compare two entries on two variables",
+  "difficulty": "medium",
+  "topic_tag": "Salt, Light, and Soil in Ferrow Bean Seedlings",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Ferrow bean seedlings after 21 days",
+   "colLabels": [
+    "Soil",
+    "Salt (%)",
+    "Light (hours/day)",
+    "Longest root (mm)",
+    "Leaves"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "loam",
+     0,
+     12,
+     48,
+     6
+    ],
+    [
+     "loam",
+     0.5,
+     12,
+     55,
+     6
+    ],
+    [
+     "loam",
+     1.0,
+     12,
+     41,
+     5
+    ],
+    [
+     "loam",
+     1.5,
+     12,
+     26,
+     4
+    ],
+    [
+     "loam",
+     2.0,
+     12,
+     12,
+     3
+    ],
+    [
+     "loam",
+     0.5,
+     8,
+     38,
+     4
+    ],
+    [
+     "loam",
+     0.5,
+     16,
+     61,
+     7
+    ],
+    [
+     "loam",
+     0.5,
+     20,
+     49,
+     7
+    ],
+    [
+     "sandy",
+     0.5,
+     12,
+     63,
+     5
+    ],
+    [
+     "clay",
+     0.5,
+     12,
+     34,
+     6
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12c-P1-Q6",
+  "passage_id": "sc12c-p1",
+  "passage_title": "Salt, Light, and Soil in Ferrow Bean Seedlings",
+  "format": "research_summaries",
+  "passage": "Ferrow beans are a crop plant. Botanists grew Ferrow bean seedlings for 21 days to study how the amount of salt in the soil (percent of the soil's dry mass), the hours of light per day, and the type of soil affect early growth. All seedlings were kept at 22°C and watered equally.\n\nAfter 21 days, the botanists measured the length of each seedling's longest root (in mm) and counted its leaves (see Table 1).\n\nExperiment 1\nSeedlings were grown in loam soil containing 0%, 0.5%, 1.0%, 1.5%, or 2.0% salt, with 12 hours of light per day.\n\nExperiment 2\nSeedlings were grown in loam soil containing 0.5% salt, with 8, 16, or 20 hours of light per day. (The 12-hour result is that of the 0.5% seedling in Experiment 1.)\n\nExperiment 3\nSeedlings were grown in sandy soil or in clay soil, each containing 0.5% salt, with 12 hours of light per day, and compared with the loam seedling of Experiment 1 grown under the same conditions.",
+  "prompt": "Which seedling had a longest root greater than 50 mm AND at least 7 leaves?",
+  "choices": [
+   "Loam, 0% salt, 12 hours of light",
+   "Loam, 0.5% salt, 16 hours of light",
+   "Loam, 0.5% salt, 20 hours of light",
+   "Sandy, 0.5% salt, 12 hours of light"
+  ],
+  "correct_answer": "Loam, 0.5% salt, 16 hours of light",
+  "explanation": "Loam at 0.5% salt and 16 hours: 61 mm and 7 leaves, meeting both conditions. The 20-hour seedling had 7 leaves but a 49-mm root; the sandy seedling had 5 leaves; the 0%-salt seedling had a 48-mm root.",
+  "domain": "Interpretation of Data",
+  "subskill": "apply two conditions to a table",
+  "difficulty": "medium",
+  "topic_tag": "Salt, Light, and Soil in Ferrow Bean Seedlings",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Ferrow bean seedlings after 21 days",
+   "colLabels": [
+    "Soil",
+    "Salt (%)",
+    "Light (hours/day)",
+    "Longest root (mm)",
+    "Leaves"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "loam",
+     0,
+     12,
+     48,
+     6
+    ],
+    [
+     "loam",
+     0.5,
+     12,
+     55,
+     6
+    ],
+    [
+     "loam",
+     1.0,
+     12,
+     41,
+     5
+    ],
+    [
+     "loam",
+     1.5,
+     12,
+     26,
+     4
+    ],
+    [
+     "loam",
+     2.0,
+     12,
+     12,
+     3
+    ],
+    [
+     "loam",
+     0.5,
+     8,
+     38,
+     4
+    ],
+    [
+     "loam",
+     0.5,
+     16,
+     61,
+     7
+    ],
+    [
+     "loam",
+     0.5,
+     20,
+     49,
+     7
+    ],
+    [
+     "sandy",
+     0.5,
+     12,
+     63,
+     5
+    ],
+    [
+     "clay",
+     0.5,
+     12,
+     34,
+     6
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12c-P2-Q1",
+  "passage_id": "sc12c-p2",
+  "passage_title": "Curing and Plasticizer in Daltex Plastic Film",
+  "format": "research_summaries",
+  "passage": "Daltex is an experimental plastic sold as thin film. Engineers made Daltex films to study how the curing temperature (the oven temperature at which the liquid plastic hardens), the curing time, and the amount of an added softener called a plasticizer (percent of the film's mass) affect the film.\n\nFor each film, the engineers measured its tensile strength, the pulling stress (in megapascals, MPa) at which a strip of the film breaks, and its stretch at break, how much longer the strip became before breaking (as a percent of its original length) (see Table 1).\n\nExperiment 1\nFilms with no plasticizer were cured for 30 minutes at 60°C, 80°C, 100°C, 120°C, or 140°C.\n\nExperiment 2\nFilms with no plasticizer were cured at 100°C for 15, 60, or 90 minutes. (The 30-minute result is that of the 100°C film in Experiment 1.)\n\nExperiment 3\nFilms containing 5%, 10%, or 15% plasticizer were cured at 100°C for 30 minutes. (The 0% result is that of the 100°C film in Experiment 1.)",
+  "prompt": "In Experiment 1, the strongest film was cured at what temperature?",
+  "choices": [
+   "60°C",
+   "80°C",
+   "100°C",
+   "120°C"
+  ],
+  "correct_answer": "100°C",
+  "explanation": "Experiment 1 tensile strengths: 18, 27, 34, 31, 22 MPa from 60°C to 140°C. The greatest, 34 MPa, is at \"100°C\".",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a maximum within one series",
+  "difficulty": "medium",
+  "topic_tag": "Curing and Plasticizer in Daltex Plastic Film",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Daltex film properties",
+   "colLabels": [
+    "Curing temperature (°C)",
+    "Curing time (min)",
+    "Plasticizer (%)",
+    "Tensile strength (MPa)",
+    "Stretch at break (%)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     60,
+     30,
+     0,
+     18,
+     40
+    ],
+    [
+     80,
+     30,
+     0,
+     27,
+     32
+    ],
+    [
+     100,
+     30,
+     0,
+     34,
+     25
+    ],
+    [
+     120,
+     30,
+     0,
+     31,
+     19
+    ],
+    [
+     140,
+     30,
+     0,
+     22,
+     15
+    ],
+    [
+     100,
+     15,
+     0,
+     26,
+     30
+    ],
+    [
+     100,
+     60,
+     0,
+     37,
+     19
+    ],
+    [
+     100,
+     90,
+     0,
+     36,
+     18
+    ],
+    [
+     100,
+     30,
+     5,
+     30,
+     41
+    ],
+    [
+     100,
+     30,
+     10,
+     24,
+     63
+    ],
+    [
+     100,
+     30,
+     15,
+     17,
+     88
+    ]
+   ]
+  },
+  "consistency_check": "The 100 C, 30 min, 0% plasticizer film (34 MPa, 25%) is listed once and shared by all three experiments; strength peaks at 100 C; plasticizer trades strength for stretch; the plastic and additive are invented and follow no named law."
+ },
+ {
+  "id": "ASV12c-P2-Q2",
+  "passage_id": "sc12c-p2",
+  "passage_title": "Curing and Plasticizer in Daltex Plastic Film",
+  "format": "research_summaries",
+  "passage": "Daltex is an experimental plastic sold as thin film. Engineers made Daltex films to study how the curing temperature (the oven temperature at which the liquid plastic hardens), the curing time, and the amount of an added softener called a plasticizer (percent of the film's mass) affect the film.\n\nFor each film, the engineers measured its tensile strength, the pulling stress (in megapascals, MPa) at which a strip of the film breaks, and its stretch at break, how much longer the strip became before breaking (as a percent of its original length) (see Table 1).\n\nExperiment 1\nFilms with no plasticizer were cured for 30 minutes at 60°C, 80°C, 100°C, 120°C, or 140°C.\n\nExperiment 2\nFilms with no plasticizer were cured at 100°C for 15, 60, or 90 minutes. (The 30-minute result is that of the 100°C film in Experiment 1.)\n\nExperiment 3\nFilms containing 5%, 10%, or 15% plasticizer were cured at 100°C for 30 minutes. (The 0% result is that of the 100°C film in Experiment 1.)",
+  "prompt": "In Experiment 3, as the amount of plasticizer increased from 0% to 15%, the stretch at break:",
+  "choices": [
+   "increased only.",
+   "decreased and then increased.",
+   "increased and then decreased.",
+   "decreased only."
+  ],
+  "correct_answer": "increased only.",
+  "explanation": "Stretch at break at 100°C and 30 minutes: 25% (0%), 41% (5%), 63% (10%), 88% (15%). It \"increased only.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "describe a trend",
+  "difficulty": "medium",
+  "topic_tag": "Curing and Plasticizer in Daltex Plastic Film",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Daltex film properties",
+   "colLabels": [
+    "Curing temperature (°C)",
+    "Curing time (min)",
+    "Plasticizer (%)",
+    "Tensile strength (MPa)",
+    "Stretch at break (%)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     60,
+     30,
+     0,
+     18,
+     40
+    ],
+    [
+     80,
+     30,
+     0,
+     27,
+     32
+    ],
+    [
+     100,
+     30,
+     0,
+     34,
+     25
+    ],
+    [
+     120,
+     30,
+     0,
+     31,
+     19
+    ],
+    [
+     140,
+     30,
+     0,
+     22,
+     15
+    ],
+    [
+     100,
+     15,
+     0,
+     26,
+     30
+    ],
+    [
+     100,
+     60,
+     0,
+     37,
+     19
+    ],
+    [
+     100,
+     90,
+     0,
+     36,
+     18
+    ],
+    [
+     100,
+     30,
+     5,
+     30,
+     41
+    ],
+    [
+     100,
+     30,
+     10,
+     24,
+     63
+    ],
+    [
+     100,
+     30,
+     15,
+     17,
+     88
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12c-P2-Q3",
+  "passage_id": "sc12c-p2",
+  "passage_title": "Curing and Plasticizer in Daltex Plastic Film",
+  "format": "research_summaries",
+  "passage": "Daltex is an experimental plastic sold as thin film. Engineers made Daltex films to study how the curing temperature (the oven temperature at which the liquid plastic hardens), the curing time, and the amount of an added softener called a plasticizer (percent of the film's mass) affect the film.\n\nFor each film, the engineers measured its tensile strength, the pulling stress (in megapascals, MPa) at which a strip of the film breaks, and its stretch at break, how much longer the strip became before breaking (as a percent of its original length) (see Table 1).\n\nExperiment 1\nFilms with no plasticizer were cured for 30 minutes at 60°C, 80°C, 100°C, 120°C, or 140°C.\n\nExperiment 2\nFilms with no plasticizer were cured at 100°C for 15, 60, or 90 minutes. (The 30-minute result is that of the 100°C film in Experiment 1.)\n\nExperiment 3\nFilms containing 5%, 10%, or 15% plasticizer were cured at 100°C for 30 minutes. (The 0% result is that of the 100°C film in Experiment 1.)",
+  "prompt": "Based on Experiment 3, a film containing 12% plasticizer, cured at 100°C for 30 minutes, would most likely have a tensile strength of:",
+  "choices": [
+   "less than 17 MPa.",
+   "between 17 MPa and 24 MPa.",
+   "between 24 MPa and 30 MPa.",
+   "greater than 30 MPa."
+  ],
+  "correct_answer": "between 17 MPa and 24 MPa.",
+  "explanation": "12% lies between 10% (24 MPa) and 15% (17 MPa), and strength falls steadily with more plasticizer, so \"between 17 MPa and 24 MPa.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate within a series",
+  "difficulty": "medium",
+  "topic_tag": "Curing and Plasticizer in Daltex Plastic Film",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Daltex film properties",
+   "colLabels": [
+    "Curing temperature (°C)",
+    "Curing time (min)",
+    "Plasticizer (%)",
+    "Tensile strength (MPa)",
+    "Stretch at break (%)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     60,
+     30,
+     0,
+     18,
+     40
+    ],
+    [
+     80,
+     30,
+     0,
+     27,
+     32
+    ],
+    [
+     100,
+     30,
+     0,
+     34,
+     25
+    ],
+    [
+     120,
+     30,
+     0,
+     31,
+     19
+    ],
+    [
+     140,
+     30,
+     0,
+     22,
+     15
+    ],
+    [
+     100,
+     15,
+     0,
+     26,
+     30
+    ],
+    [
+     100,
+     60,
+     0,
+     37,
+     19
+    ],
+    [
+     100,
+     90,
+     0,
+     36,
+     18
+    ],
+    [
+     100,
+     30,
+     5,
+     30,
+     41
+    ],
+    [
+     100,
+     30,
+     10,
+     24,
+     63
+    ],
+    [
+     100,
+     30,
+     15,
+     17,
+     88
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12c-P2-Q4",
+  "passage_id": "sc12c-p2",
+  "passage_title": "Curing and Plasticizer in Daltex Plastic Film",
+  "format": "research_summaries",
+  "passage": "Daltex is an experimental plastic sold as thin film. Engineers made Daltex films to study how the curing temperature (the oven temperature at which the liquid plastic hardens), the curing time, and the amount of an added softener called a plasticizer (percent of the film's mass) affect the film.\n\nFor each film, the engineers measured its tensile strength, the pulling stress (in megapascals, MPa) at which a strip of the film breaks, and its stretch at break, how much longer the strip became before breaking (as a percent of its original length) (see Table 1).\n\nExperiment 1\nFilms with no plasticizer were cured for 30 minutes at 60°C, 80°C, 100°C, 120°C, or 140°C.\n\nExperiment 2\nFilms with no plasticizer were cured at 100°C for 15, 60, or 90 minutes. (The 30-minute result is that of the 100°C film in Experiment 1.)\n\nExperiment 3\nFilms containing 5%, 10%, or 15% plasticizer were cured at 100°C for 30 minutes. (The 0% result is that of the 100°C film in Experiment 1.)",
+  "prompt": "The film cured at 100°C for 30 minutes with no plasticizer provides a result for which experiment(s)?",
+  "choices": [
+   "Experiments 1 and 2 only",
+   "Experiment 1 only",
+   "Experiments 1 and 3 only",
+   "Experiments 1, 2, and 3"
+  ],
+  "correct_answer": "Experiments 1, 2, and 3",
+  "explanation": "It is the 100°C film of Experiment 1, the passage names it as the 30-minute result of Experiment 2, and as the 0% result of Experiment 3. So \"Experiments 1, 2, and 3\".",
+  "domain": "Scientific Investigation",
+  "subskill": "identify a shared control trial",
+  "difficulty": "medium",
+  "topic_tag": "Curing and Plasticizer in Daltex Plastic Film",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Daltex film properties",
+   "colLabels": [
+    "Curing temperature (°C)",
+    "Curing time (min)",
+    "Plasticizer (%)",
+    "Tensile strength (MPa)",
+    "Stretch at break (%)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     60,
+     30,
+     0,
+     18,
+     40
+    ],
+    [
+     80,
+     30,
+     0,
+     27,
+     32
+    ],
+    [
+     100,
+     30,
+     0,
+     34,
+     25
+    ],
+    [
+     120,
+     30,
+     0,
+     31,
+     19
+    ],
+    [
+     140,
+     30,
+     0,
+     22,
+     15
+    ],
+    [
+     100,
+     15,
+     0,
+     26,
+     30
+    ],
+    [
+     100,
+     60,
+     0,
+     37,
+     19
+    ],
+    [
+     100,
+     90,
+     0,
+     36,
+     18
+    ],
+    [
+     100,
+     30,
+     5,
+     30,
+     41
+    ],
+    [
+     100,
+     30,
+     10,
+     24,
+     63
+    ],
+    [
+     100,
+     30,
+     15,
+     17,
+     88
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12c-P2-Q5",
+  "passage_id": "sc12c-p2",
+  "passage_title": "Curing and Plasticizer in Daltex Plastic Film",
+  "format": "research_summaries",
+  "passage": "Daltex is an experimental plastic sold as thin film. Engineers made Daltex films to study how the curing temperature (the oven temperature at which the liquid plastic hardens), the curing time, and the amount of an added softener called a plasticizer (percent of the film's mass) affect the film.\n\nFor each film, the engineers measured its tensile strength, the pulling stress (in megapascals, MPa) at which a strip of the film breaks, and its stretch at break, how much longer the strip became before breaking (as a percent of its original length) (see Table 1).\n\nExperiment 1\nFilms with no plasticizer were cured for 30 minutes at 60°C, 80°C, 100°C, 120°C, or 140°C.\n\nExperiment 2\nFilms with no plasticizer were cured at 100°C for 15, 60, or 90 minutes. (The 30-minute result is that of the 100°C film in Experiment 1.)\n\nExperiment 3\nFilms containing 5%, 10%, or 15% plasticizer were cured at 100°C for 30 minutes. (The 0% result is that of the 100°C film in Experiment 1.)",
+  "prompt": "The engineers want to find out whether adding plasticizer changes which curing temperature gives the strongest film. Which set of new films would best answer this question?",
+  "choices": [
+   "Films with 10% plasticizer cured for 30 minutes at 60°C, 100°C, and 140°C",
+   "Films with no plasticizer cured at 100°C for 15, 30, and 60 minutes",
+   "Films with no plasticizer cured for 60 minutes at 80°C, 100°C, and 120°C",
+   "Films with 5%, 15%, and 20% plasticizer cured at 120°C for 30 minutes"
+  ],
+  "correct_answer": "Films with 10% plasticizer cured for 30 minutes at 60°C, 100°C, and 140°C",
+  "explanation": "To see whether the best curing temperature changes with plasticizer, the films must contain plasticizer, vary the curing temperature, and keep the 30-minute time of Experiment 1 so the result can be compared with it. Only the first set does all three. The second and third have no plasticizer, and the fourth varies plasticizer at a single temperature.",
+  "domain": "Scientific Investigation",
+  "subskill": "design an experiment for a stated question",
+  "difficulty": "hard",
+  "topic_tag": "Curing and Plasticizer in Daltex Plastic Film",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Daltex film properties",
+   "colLabels": [
+    "Curing temperature (°C)",
+    "Curing time (min)",
+    "Plasticizer (%)",
+    "Tensile strength (MPa)",
+    "Stretch at break (%)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     60,
+     30,
+     0,
+     18,
+     40
+    ],
+    [
+     80,
+     30,
+     0,
+     27,
+     32
+    ],
+    [
+     100,
+     30,
+     0,
+     34,
+     25
+    ],
+    [
+     120,
+     30,
+     0,
+     31,
+     19
+    ],
+    [
+     140,
+     30,
+     0,
+     22,
+     15
+    ],
+    [
+     100,
+     15,
+     0,
+     26,
+     30
+    ],
+    [
+     100,
+     60,
+     0,
+     37,
+     19
+    ],
+    [
+     100,
+     90,
+     0,
+     36,
+     18
+    ],
+    [
+     100,
+     30,
+     5,
+     30,
+     41
+    ],
+    [
+     100,
+     30,
+     10,
+     24,
+     63
+    ],
+    [
+     100,
+     30,
+     15,
+     17,
+     88
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12c-P2-Q6",
+  "passage_id": "sc12c-p2",
+  "passage_title": "Curing and Plasticizer in Daltex Plastic Film",
+  "format": "research_summaries",
+  "passage": "Daltex is an experimental plastic sold as thin film. Engineers made Daltex films to study how the curing temperature (the oven temperature at which the liquid plastic hardens), the curing time, and the amount of an added softener called a plasticizer (percent of the film's mass) affect the film.\n\nFor each film, the engineers measured its tensile strength, the pulling stress (in megapascals, MPa) at which a strip of the film breaks, and its stretch at break, how much longer the strip became before breaking (as a percent of its original length) (see Table 1).\n\nExperiment 1\nFilms with no plasticizer were cured for 30 minutes at 60°C, 80°C, 100°C, 120°C, or 140°C.\n\nExperiment 2\nFilms with no plasticizer were cured at 100°C for 15, 60, or 90 minutes. (The 30-minute result is that of the 100°C film in Experiment 1.)\n\nExperiment 3\nFilms containing 5%, 10%, or 15% plasticizer were cured at 100°C for 30 minutes. (The 0% result is that of the 100°C film in Experiment 1.)",
+  "prompt": "Which film had a tensile strength greater than 30 MPa AND a stretch at break greater than 20%?",
+  "choices": [
+   "Cured at 100°C for 30 minutes, 5% plasticizer",
+   "Cured at 120°C for 30 minutes, no plasticizer",
+   "Cured at 100°C for 30 minutes, no plasticizer",
+   "Cured at 100°C for 60 minutes, no plasticizer"
+  ],
+  "correct_answer": "Cured at 100°C for 30 minutes, no plasticizer",
+  "explanation": "The 100°C, 30-minute film with no plasticizer: 34 MPa and 25%, meeting both. The 60-minute film stretched 19%; the 120°C film stretched 19%; the 5% film had 30 MPa, not greater than 30.",
+  "domain": "Interpretation of Data",
+  "subskill": "apply two conditions to a table",
+  "difficulty": "medium",
+  "topic_tag": "Curing and Plasticizer in Daltex Plastic Film",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Daltex film properties",
+   "colLabels": [
+    "Curing temperature (°C)",
+    "Curing time (min)",
+    "Plasticizer (%)",
+    "Tensile strength (MPa)",
+    "Stretch at break (%)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     60,
+     30,
+     0,
+     18,
+     40
+    ],
+    [
+     80,
+     30,
+     0,
+     27,
+     32
+    ],
+    [
+     100,
+     30,
+     0,
+     34,
+     25
+    ],
+    [
+     120,
+     30,
+     0,
+     31,
+     19
+    ],
+    [
+     140,
+     30,
+     0,
+     22,
+     15
+    ],
+    [
+     100,
+     15,
+     0,
+     26,
+     30
+    ],
+    [
+     100,
+     60,
+     0,
+     37,
+     19
+    ],
+    [
+     100,
+     90,
+     0,
+     36,
+     18
+    ],
+    [
+     100,
+     30,
+     5,
+     30,
+     41
+    ],
+    [
+     100,
+     30,
+     10,
+     24,
+     63
+    ],
+    [
+     100,
+     30,
+     15,
+     17,
+     88
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12c-P3-Q1",
+  "passage_id": "sc12c-p3",
+  "passage_title": "Floating Covers and Evaporation from Brede Water Tanks",
+  "format": "research_summaries",
+  "passage": "The town of Brede stores drinking water in open tanks, and much of it evaporates in summer. Engineers tested floating covers made of small plastic disks that spread across the water surface. They wanted to know how the fraction of the surface covered (percent), the wind speed over the tank (in meters per second, m/s, produced by fans), and the color of the disks affect evaporation.\n\nEach test tank held the same volume of water in full sun for 10 days. The engineers recorded the average evaporation (in mm of water depth lost per day) and the average water temperature 5 cm below the surface (see Table 1).\n\nExperiment 1\nGray disks covered 0%, 25%, 50%, 75%, or 100% of the surface, with a wind of 2 m/s.\n\nExperiment 2\nGray disks covered 50% of the surface, with winds of 0, 4, or 8 m/s. (The 2-m/s result is that of the 50% tank in Experiment 1.)\n\nExperiment 3\nWhite disks or black disks covered 50% of the surface, with a wind of 2 m/s, and were compared with the gray 50% tank of Experiment 1.",
+  "prompt": "In Experiment 1, between which two cover fractions did the evaporation decrease the most?",
+  "choices": [
+   "0% and 25%",
+   "25% and 50%",
+   "50% and 75%",
+   "75% and 100%"
+  ],
+  "correct_answer": "25% and 50%",
+  "explanation": "Experiment 1 evaporation: 6.0, 4.9, 3.6, 2.4, 1.9 mm/day. The decreases are 1.1, 1.3, 1.2, and 0.5 mm/day, so the largest is between \"25% and 50%\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compare changes between adjacent values",
+  "difficulty": "hard",
+  "topic_tag": "Floating Covers and Evaporation from Brede Water Tanks",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Brede test tanks over 10 days",
+   "colLabels": [
+    "Disk color",
+    "Surface covered (%)",
+    "Wind (m/s)",
+    "Evaporation (mm/day)",
+    "Water temperature (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "gray",
+     0,
+     2,
+     6.0,
+     21
+    ],
+    [
+     "gray",
+     25,
+     2,
+     4.9,
+     22
+    ],
+    [
+     "gray",
+     50,
+     2,
+     3.6,
+     23
+    ],
+    [
+     "gray",
+     75,
+     2,
+     2.4,
+     24
+    ],
+    [
+     "gray",
+     100,
+     2,
+     1.9,
+     26
+    ],
+    [
+     "gray",
+     50,
+     0,
+     2.2,
+     25
+    ],
+    [
+     "gray",
+     50,
+     4,
+     4.8,
+     22
+    ],
+    [
+     "gray",
+     50,
+     8,
+     6.9,
+     20
+    ],
+    [
+     "white",
+     50,
+     2,
+     3.1,
+     21
+    ],
+    [
+     "black",
+     50,
+     2,
+     4.3,
+     27
+    ]
+   ]
+  },
+  "consistency_check": "The gray, 50% cover, 2 m/s tank (3.6 mm/day, 23 C) is listed once and shared by all three experiments; evaporation falls with more cover and rises with wind; darker covers warm the water and save less; no named law."
+ },
+ {
+  "id": "ASV12c-P3-Q2",
+  "passage_id": "sc12c-p3",
+  "passage_title": "Floating Covers and Evaporation from Brede Water Tanks",
+  "format": "research_summaries",
+  "passage": "The town of Brede stores drinking water in open tanks, and much of it evaporates in summer. Engineers tested floating covers made of small plastic disks that spread across the water surface. They wanted to know how the fraction of the surface covered (percent), the wind speed over the tank (in meters per second, m/s, produced by fans), and the color of the disks affect evaporation.\n\nEach test tank held the same volume of water in full sun for 10 days. The engineers recorded the average evaporation (in mm of water depth lost per day) and the average water temperature 5 cm below the surface (see Table 1).\n\nExperiment 1\nGray disks covered 0%, 25%, 50%, 75%, or 100% of the surface, with a wind of 2 m/s.\n\nExperiment 2\nGray disks covered 50% of the surface, with winds of 0, 4, or 8 m/s. (The 2-m/s result is that of the 50% tank in Experiment 1.)\n\nExperiment 3\nWhite disks or black disks covered 50% of the surface, with a wind of 2 m/s, and were compared with the gray 50% tank of Experiment 1.",
+  "prompt": "Based on Experiment 2, a gray-covered tank with 50% of its surface covered and a wind of 6 m/s would most likely lose water at a rate of:",
+  "choices": [
+   "less than 3.6 mm/day.",
+   "between 3.6 and 4.8 mm/day.",
+   "between 4.8 and 6.9 mm/day.",
+   "more than 6.9 mm/day."
+  ],
+  "correct_answer": "between 4.8 and 6.9 mm/day.",
+  "explanation": "6 m/s lies between 4 m/s (4.8 mm/day) and 8 m/s (6.9 mm/day), and evaporation rises steadily with wind, so \"between 4.8 and 6.9 mm/day.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate within a series",
+  "difficulty": "medium",
+  "topic_tag": "Floating Covers and Evaporation from Brede Water Tanks",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Brede test tanks over 10 days",
+   "colLabels": [
+    "Disk color",
+    "Surface covered (%)",
+    "Wind (m/s)",
+    "Evaporation (mm/day)",
+    "Water temperature (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "gray",
+     0,
+     2,
+     6.0,
+     21
+    ],
+    [
+     "gray",
+     25,
+     2,
+     4.9,
+     22
+    ],
+    [
+     "gray",
+     50,
+     2,
+     3.6,
+     23
+    ],
+    [
+     "gray",
+     75,
+     2,
+     2.4,
+     24
+    ],
+    [
+     "gray",
+     100,
+     2,
+     1.9,
+     26
+    ],
+    [
+     "gray",
+     50,
+     0,
+     2.2,
+     25
+    ],
+    [
+     "gray",
+     50,
+     4,
+     4.8,
+     22
+    ],
+    [
+     "gray",
+     50,
+     8,
+     6.9,
+     20
+    ],
+    [
+     "white",
+     50,
+     2,
+     3.1,
+     21
+    ],
+    [
+     "black",
+     50,
+     2,
+     4.3,
+     27
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12c-P3-Q3",
+  "passage_id": "sc12c-p3",
+  "passage_title": "Floating Covers and Evaporation from Brede Water Tanks",
+  "format": "research_summaries",
+  "passage": "The town of Brede stores drinking water in open tanks, and much of it evaporates in summer. Engineers tested floating covers made of small plastic disks that spread across the water surface. They wanted to know how the fraction of the surface covered (percent), the wind speed over the tank (in meters per second, m/s, produced by fans), and the color of the disks affect evaporation.\n\nEach test tank held the same volume of water in full sun for 10 days. The engineers recorded the average evaporation (in mm of water depth lost per day) and the average water temperature 5 cm below the surface (see Table 1).\n\nExperiment 1\nGray disks covered 0%, 25%, 50%, 75%, or 100% of the surface, with a wind of 2 m/s.\n\nExperiment 2\nGray disks covered 50% of the surface, with winds of 0, 4, or 8 m/s. (The 2-m/s result is that of the 50% tank in Experiment 1.)\n\nExperiment 3\nWhite disks or black disks covered 50% of the surface, with a wind of 2 m/s, and were compared with the gray 50% tank of Experiment 1.",
+  "prompt": "In Experiment 3, compared with the gray-covered tank, the black-covered tank had:",
+  "choices": [
+   "more evaporation and warmer water.",
+   "less evaporation and cooler water.",
+   "less evaporation and warmer water.",
+   "more evaporation and cooler water."
+  ],
+  "correct_answer": "more evaporation and warmer water.",
+  "explanation": "Black: 4.3 mm/day and 27°C. Gray 50% at 2 m/s: 3.6 mm/day and 23°C. So the black tank had \"more evaporation and warmer water.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "compare two entries on two variables",
+  "difficulty": "medium",
+  "topic_tag": "Floating Covers and Evaporation from Brede Water Tanks",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Brede test tanks over 10 days",
+   "colLabels": [
+    "Disk color",
+    "Surface covered (%)",
+    "Wind (m/s)",
+    "Evaporation (mm/day)",
+    "Water temperature (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "gray",
+     0,
+     2,
+     6.0,
+     21
+    ],
+    [
+     "gray",
+     25,
+     2,
+     4.9,
+     22
+    ],
+    [
+     "gray",
+     50,
+     2,
+     3.6,
+     23
+    ],
+    [
+     "gray",
+     75,
+     2,
+     2.4,
+     24
+    ],
+    [
+     "gray",
+     100,
+     2,
+     1.9,
+     26
+    ],
+    [
+     "gray",
+     50,
+     0,
+     2.2,
+     25
+    ],
+    [
+     "gray",
+     50,
+     4,
+     4.8,
+     22
+    ],
+    [
+     "gray",
+     50,
+     8,
+     6.9,
+     20
+    ],
+    [
+     "white",
+     50,
+     2,
+     3.1,
+     21
+    ],
+    [
+     "black",
+     50,
+     2,
+     4.3,
+     27
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12c-P3-Q4",
+  "passage_id": "sc12c-p3",
+  "passage_title": "Floating Covers and Evaporation from Brede Water Tanks",
+  "format": "research_summaries",
+  "passage": "The town of Brede stores drinking water in open tanks, and much of it evaporates in summer. Engineers tested floating covers made of small plastic disks that spread across the water surface. They wanted to know how the fraction of the surface covered (percent), the wind speed over the tank (in meters per second, m/s, produced by fans), and the color of the disks affect evaporation.\n\nEach test tank held the same volume of water in full sun for 10 days. The engineers recorded the average evaporation (in mm of water depth lost per day) and the average water temperature 5 cm below the surface (see Table 1).\n\nExperiment 1\nGray disks covered 0%, 25%, 50%, 75%, or 100% of the surface, with a wind of 2 m/s.\n\nExperiment 2\nGray disks covered 50% of the surface, with winds of 0, 4, or 8 m/s. (The 2-m/s result is that of the 50% tank in Experiment 1.)\n\nExperiment 3\nWhite disks or black disks covered 50% of the surface, with a wind of 2 m/s, and were compared with the gray 50% tank of Experiment 1.",
+  "prompt": "In which experiment(s) was the wind 2 m/s for every tank?",
+  "choices": [
+   "Experiments 1, 2, and 3",
+   "Experiments 1 and 3 only",
+   "Experiment 1 only",
+   "Experiments 2 and 3 only"
+  ],
+  "correct_answer": "Experiments 1 and 3 only",
+  "explanation": "Every Experiment 1 tank and both Experiment 3 tanks had a 2-m/s wind. Experiment 2 varied the wind (0, 4, 8 m/s). So \"Experiments 1 and 3 only\".",
+  "domain": "Scientific Investigation",
+  "subskill": "identify the controlled variables",
+  "difficulty": "medium",
+  "topic_tag": "Floating Covers and Evaporation from Brede Water Tanks",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Brede test tanks over 10 days",
+   "colLabels": [
+    "Disk color",
+    "Surface covered (%)",
+    "Wind (m/s)",
+    "Evaporation (mm/day)",
+    "Water temperature (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "gray",
+     0,
+     2,
+     6.0,
+     21
+    ],
+    [
+     "gray",
+     25,
+     2,
+     4.9,
+     22
+    ],
+    [
+     "gray",
+     50,
+     2,
+     3.6,
+     23
+    ],
+    [
+     "gray",
+     75,
+     2,
+     2.4,
+     24
+    ],
+    [
+     "gray",
+     100,
+     2,
+     1.9,
+     26
+    ],
+    [
+     "gray",
+     50,
+     0,
+     2.2,
+     25
+    ],
+    [
+     "gray",
+     50,
+     4,
+     4.8,
+     22
+    ],
+    [
+     "gray",
+     50,
+     8,
+     6.9,
+     20
+    ],
+    [
+     "white",
+     50,
+     2,
+     3.1,
+     21
+    ],
+    [
+     "black",
+     50,
+     2,
+     4.3,
+     27
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12c-P3-Q5",
+  "passage_id": "sc12c-p3",
+  "passage_title": "Floating Covers and Evaporation from Brede Water Tanks",
+  "format": "research_summaries",
+  "passage": "The town of Brede stores drinking water in open tanks, and much of it evaporates in summer. Engineers tested floating covers made of small plastic disks that spread across the water surface. They wanted to know how the fraction of the surface covered (percent), the wind speed over the tank (in meters per second, m/s, produced by fans), and the color of the disks affect evaporation.\n\nEach test tank held the same volume of water in full sun for 10 days. The engineers recorded the average evaporation (in mm of water depth lost per day) and the average water temperature 5 cm below the surface (see Table 1).\n\nExperiment 1\nGray disks covered 0%, 25%, 50%, 75%, or 100% of the surface, with a wind of 2 m/s.\n\nExperiment 2\nGray disks covered 50% of the surface, with winds of 0, 4, or 8 m/s. (The 2-m/s result is that of the 50% tank in Experiment 1.)\n\nExperiment 3\nWhite disks or black disks covered 50% of the surface, with a wind of 2 m/s, and were compared with the gray 50% tank of Experiment 1.",
+  "prompt": "The engineers want to know whether disk color makes a larger difference in evaporation when the wind is strong. Which new set of tanks would best answer this question?",
+  "choices": [
+   "White, gray, and black disks each covering 50% of a tank, with a wind of 8 m/s",
+   "Black disks covering 75% of three tanks, with winds of 0, 4, and 8 m/s",
+   "White and black disks each covering 100% of a tank, with a wind of 2 m/s",
+   "Gray disks covering 25%, 50%, and 75% of three tanks, with no wind"
+  ],
+  "correct_answer": "White, gray, and black disks each covering 50% of a tank, with a wind of 8 m/s",
+  "explanation": "To compare colors in strong wind, the tanks must differ only in color, use a strong wind, and keep the 50% cover used in Experiment 3 so the color difference can be compared with the 2-m/s result. Only the first set does this. The second varies cover in still air, the third compares colors only in the same weak wind as Experiment 3, and the fourth uses one color.",
+  "domain": "Scientific Investigation",
+  "subskill": "design an experiment for a stated question",
+  "difficulty": "hard",
+  "topic_tag": "Floating Covers and Evaporation from Brede Water Tanks",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Brede test tanks over 10 days",
+   "colLabels": [
+    "Disk color",
+    "Surface covered (%)",
+    "Wind (m/s)",
+    "Evaporation (mm/day)",
+    "Water temperature (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "gray",
+     0,
+     2,
+     6.0,
+     21
+    ],
+    [
+     "gray",
+     25,
+     2,
+     4.9,
+     22
+    ],
+    [
+     "gray",
+     50,
+     2,
+     3.6,
+     23
+    ],
+    [
+     "gray",
+     75,
+     2,
+     2.4,
+     24
+    ],
+    [
+     "gray",
+     100,
+     2,
+     1.9,
+     26
+    ],
+    [
+     "gray",
+     50,
+     0,
+     2.2,
+     25
+    ],
+    [
+     "gray",
+     50,
+     4,
+     4.8,
+     22
+    ],
+    [
+     "gray",
+     50,
+     8,
+     6.9,
+     20
+    ],
+    [
+     "white",
+     50,
+     2,
+     3.1,
+     21
+    ],
+    [
+     "black",
+     50,
+     2,
+     4.3,
+     27
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12c-P3-Q6",
+  "passage_id": "sc12c-p3",
+  "passage_title": "Floating Covers and Evaporation from Brede Water Tanks",
+  "format": "research_summaries",
+  "passage": "The town of Brede stores drinking water in open tanks, and much of it evaporates in summer. Engineers tested floating covers made of small plastic disks that spread across the water surface. They wanted to know how the fraction of the surface covered (percent), the wind speed over the tank (in meters per second, m/s, produced by fans), and the color of the disks affect evaporation.\n\nEach test tank held the same volume of water in full sun for 10 days. The engineers recorded the average evaporation (in mm of water depth lost per day) and the average water temperature 5 cm below the surface (see Table 1).\n\nExperiment 1\nGray disks covered 0%, 25%, 50%, 75%, or 100% of the surface, with a wind of 2 m/s.\n\nExperiment 2\nGray disks covered 50% of the surface, with winds of 0, 4, or 8 m/s. (The 2-m/s result is that of the 50% tank in Experiment 1.)\n\nExperiment 3\nWhite disks or black disks covered 50% of the surface, with a wind of 2 m/s, and were compared with the gray 50% tank of Experiment 1.",
+  "prompt": "Which tank lost less than 3.0 mm of water per day AND had water no warmer than 24°C?",
+  "choices": [
+   "Gray disks, 50% covered, no wind",
+   "Gray disks, 100% covered, wind 2 m/s",
+   "Gray disks, 75% covered, wind 2 m/s",
+   "White disks, 50% covered, wind 2 m/s"
+  ],
+  "correct_answer": "Gray disks, 75% covered, wind 2 m/s",
+  "explanation": "The 75% gray tank: 2.4 mm/day and 24°C, meeting both. The 100% tank lost 1.9 mm/day but reached 26°C; the no-wind tank reached 25°C; the white tank lost 3.1 mm/day.",
+  "domain": "Interpretation of Data",
+  "subskill": "apply two conditions to a table",
+  "difficulty": "medium",
+  "topic_tag": "Floating Covers and Evaporation from Brede Water Tanks",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Brede test tanks over 10 days",
+   "colLabels": [
+    "Disk color",
+    "Surface covered (%)",
+    "Wind (m/s)",
+    "Evaporation (mm/day)",
+    "Water temperature (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "gray",
+     0,
+     2,
+     6.0,
+     21
+    ],
+    [
+     "gray",
+     25,
+     2,
+     4.9,
+     22
+    ],
+    [
+     "gray",
+     50,
+     2,
+     3.6,
+     23
+    ],
+    [
+     "gray",
+     75,
+     2,
+     2.4,
+     24
+    ],
+    [
+     "gray",
+     100,
+     2,
+     1.9,
+     26
+    ],
+    [
+     "gray",
+     50,
+     0,
+     2.2,
+     25
+    ],
+    [
+     "gray",
+     50,
+     4,
+     4.8,
+     22
+    ],
+    [
+     "gray",
+     50,
+     8,
+     6.9,
+     20
+    ],
+    [
+     "white",
+     50,
+     2,
+     3.1,
+     21
+    ],
+    [
+     "black",
+     50,
+     2,
+     4.3,
+     27
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12c-P4-Q1",
+  "passage_id": "sc12c-p4",
+  "passage_title": "Humidity, Light, and Hunger in Lorn Beetle Choices",
+  "format": "research_summaries",
+  "passage": "Lorn beetles live under logs on forest floors. Biologists studied which conditions the beetles move toward using a box divided into two chambers, A and B, joined by an open doorway.\n\nIn every trial, Chamber B was kept dark at 20% relative humidity. The biologists changed the conditions in Chamber A, released 20 beetles at the doorway, and after 30 minutes recorded the percent of the beetles that were in Chamber A (see Table 1). No food was placed in either chamber. A fresh group of beetles was used for each trial.\n\nExperiment 1\nChamber A was kept dark at a relative humidity of 40%, 60%, 80%, or 95%. The beetles had been fed just before the trial.\n\nExperiment 2\nChamber A was kept at 80% humidity and lit at 50, 200, or 800 lux (a measure of brightness). The beetles had been fed just before the trial. (The 0-lux result is that of the 80% trial in Experiment 1.)\n\nExperiment 3\nChamber A was kept at 80% humidity and 200 lux. The beetles had gone without food for 24 or 48 hours. (The fed result is that of the 200-lux trial in Experiment 2.)",
+  "prompt": "In Experiment 1, the greatest percent of beetles was in Chamber A when its humidity was:",
+  "choices": [
+   "40%.",
+   "60%.",
+   "80%.",
+   "95%."
+  ],
+  "correct_answer": "80%.",
+  "explanation": "Experiment 1: 55%, 72%, 88%, and 61% of beetles in Chamber A at 40%, 60%, 80%, and 95% humidity. The greatest, 88%, is at \"80%.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a maximum within one series",
+  "difficulty": "medium",
+  "topic_tag": "Humidity, Light, and Hunger in Lorn Beetle Choices",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Lorn beetles in Chamber A after 30 minutes",
+   "colLabels": [
+    "Chamber A humidity (%)",
+    "Chamber A light (lux)",
+    "Hours without food",
+    "Beetles in Chamber A (%)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     40,
+     0,
+     0,
+     55
+    ],
+    [
+     60,
+     0,
+     0,
+     72
+    ],
+    [
+     80,
+     0,
+     0,
+     88
+    ],
+    [
+     95,
+     0,
+     0,
+     61
+    ],
+    [
+     80,
+     50,
+     0,
+     80
+    ],
+    [
+     80,
+     200,
+     0,
+     52
+    ],
+    [
+     80,
+     800,
+     0,
+     18
+    ],
+    [
+     80,
+     200,
+     24,
+     66
+    ],
+    [
+     80,
+     200,
+     48,
+     79
+    ]
+   ]
+  },
+  "consistency_check": "Two shared trials, each listed once: 80% humidity in the dark (88%) serves Experiments 1 and 2, and 80% humidity at 200 lux with fed beetles (52%) serves Experiments 2 and 3; preference peaks at 80% humidity and falls with light; hunger raises it; the beetle is invented."
+ },
+ {
+  "id": "ASV12c-P4-Q2",
+  "passage_id": "sc12c-p4",
+  "passage_title": "Humidity, Light, and Hunger in Lorn Beetle Choices",
+  "format": "research_summaries",
+  "passage": "Lorn beetles live under logs on forest floors. Biologists studied which conditions the beetles move toward using a box divided into two chambers, A and B, joined by an open doorway.\n\nIn every trial, Chamber B was kept dark at 20% relative humidity. The biologists changed the conditions in Chamber A, released 20 beetles at the doorway, and after 30 minutes recorded the percent of the beetles that were in Chamber A (see Table 1). No food was placed in either chamber. A fresh group of beetles was used for each trial.\n\nExperiment 1\nChamber A was kept dark at a relative humidity of 40%, 60%, 80%, or 95%. The beetles had been fed just before the trial.\n\nExperiment 2\nChamber A was kept at 80% humidity and lit at 50, 200, or 800 lux (a measure of brightness). The beetles had been fed just before the trial. (The 0-lux result is that of the 80% trial in Experiment 1.)\n\nExperiment 3\nChamber A was kept at 80% humidity and 200 lux. The beetles had gone without food for 24 or 48 hours. (The fed result is that of the 200-lux trial in Experiment 2.)",
+  "prompt": "In Experiment 2, as the light in Chamber A increased from 0 lux to 800 lux, the percent of beetles in Chamber A:",
+  "choices": [
+   "increased only.",
+   "increased and then decreased.",
+   "decreased and then increased.",
+   "decreased only."
+  ],
+  "correct_answer": "decreased only.",
+  "explanation": "At 80% humidity: 88% (0 lux), 80% (50 lux), 52% (200 lux), 18% (800 lux). It \"decreased only.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "describe a trend",
+  "difficulty": "medium",
+  "topic_tag": "Humidity, Light, and Hunger in Lorn Beetle Choices",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Lorn beetles in Chamber A after 30 minutes",
+   "colLabels": [
+    "Chamber A humidity (%)",
+    "Chamber A light (lux)",
+    "Hours without food",
+    "Beetles in Chamber A (%)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     40,
+     0,
+     0,
+     55
+    ],
+    [
+     60,
+     0,
+     0,
+     72
+    ],
+    [
+     80,
+     0,
+     0,
+     88
+    ],
+    [
+     95,
+     0,
+     0,
+     61
+    ],
+    [
+     80,
+     50,
+     0,
+     80
+    ],
+    [
+     80,
+     200,
+     0,
+     52
+    ],
+    [
+     80,
+     800,
+     0,
+     18
+    ],
+    [
+     80,
+     200,
+     24,
+     66
+    ],
+    [
+     80,
+     200,
+     48,
+     79
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12c-P4-Q3",
+  "passage_id": "sc12c-p4",
+  "passage_title": "Humidity, Light, and Hunger in Lorn Beetle Choices",
+  "format": "research_summaries",
+  "passage": "Lorn beetles live under logs on forest floors. Biologists studied which conditions the beetles move toward using a box divided into two chambers, A and B, joined by an open doorway.\n\nIn every trial, Chamber B was kept dark at 20% relative humidity. The biologists changed the conditions in Chamber A, released 20 beetles at the doorway, and after 30 minutes recorded the percent of the beetles that were in Chamber A (see Table 1). No food was placed in either chamber. A fresh group of beetles was used for each trial.\n\nExperiment 1\nChamber A was kept dark at a relative humidity of 40%, 60%, 80%, or 95%. The beetles had been fed just before the trial.\n\nExperiment 2\nChamber A was kept at 80% humidity and lit at 50, 200, or 800 lux (a measure of brightness). The beetles had been fed just before the trial. (The 0-lux result is that of the 80% trial in Experiment 1.)\n\nExperiment 3\nChamber A was kept at 80% humidity and 200 lux. The beetles had gone without food for 24 or 48 hours. (The fed result is that of the 200-lux trial in Experiment 2.)",
+  "prompt": "Based on Experiment 2, if Chamber A were kept at 80% humidity and lit at 400 lux, with fed beetles, the percent of beetles in Chamber A would most likely be:",
+  "choices": [
+   "less than 18%.",
+   "between 18% and 52%.",
+   "between 52% and 80%.",
+   "greater than 80%."
+  ],
+  "correct_answer": "between 18% and 52%.",
+  "explanation": "400 lux lies between 200 lux (52%) and 800 lux (18%), and the percent falls steadily with light, so \"between 18% and 52%.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate within a series",
+  "difficulty": "medium",
+  "topic_tag": "Humidity, Light, and Hunger in Lorn Beetle Choices",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Lorn beetles in Chamber A after 30 minutes",
+   "colLabels": [
+    "Chamber A humidity (%)",
+    "Chamber A light (lux)",
+    "Hours without food",
+    "Beetles in Chamber A (%)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     40,
+     0,
+     0,
+     55
+    ],
+    [
+     60,
+     0,
+     0,
+     72
+    ],
+    [
+     80,
+     0,
+     0,
+     88
+    ],
+    [
+     95,
+     0,
+     0,
+     61
+    ],
+    [
+     80,
+     50,
+     0,
+     80
+    ],
+    [
+     80,
+     200,
+     0,
+     52
+    ],
+    [
+     80,
+     800,
+     0,
+     18
+    ],
+    [
+     80,
+     200,
+     24,
+     66
+    ],
+    [
+     80,
+     200,
+     48,
+     79
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12c-P4-Q4",
+  "passage_id": "sc12c-p4",
+  "passage_title": "Humidity, Light, and Hunger in Lorn Beetle Choices",
+  "format": "research_summaries",
+  "passage": "Lorn beetles live under logs on forest floors. Biologists studied which conditions the beetles move toward using a box divided into two chambers, A and B, joined by an open doorway.\n\nIn every trial, Chamber B was kept dark at 20% relative humidity. The biologists changed the conditions in Chamber A, released 20 beetles at the doorway, and after 30 minutes recorded the percent of the beetles that were in Chamber A (see Table 1). No food was placed in either chamber. A fresh group of beetles was used for each trial.\n\nExperiment 1\nChamber A was kept dark at a relative humidity of 40%, 60%, 80%, or 95%. The beetles had been fed just before the trial.\n\nExperiment 2\nChamber A was kept at 80% humidity and lit at 50, 200, or 800 lux (a measure of brightness). The beetles had been fed just before the trial. (The 0-lux result is that of the 80% trial in Experiment 1.)\n\nExperiment 3\nChamber A was kept at 80% humidity and 200 lux. The beetles had gone without food for 24 or 48 hours. (The fed result is that of the 200-lux trial in Experiment 2.)",
+  "prompt": "Which condition did the biologists change in Experiment 3?",
+  "choices": [
+   "How long the beetles had gone without food",
+   "The brightness of Chamber A",
+   "The humidity in Chamber A",
+   "The number of beetles released"
+  ],
+  "correct_answer": "How long the beetles had gone without food",
+  "explanation": "Experiment 3 kept Chamber A at 80% humidity and 200 lux and released 20 beetles each time, but used beetles that had gone without food for 24 or 48 hours (compared with fed beetles).",
+  "domain": "Scientific Investigation",
+  "subskill": "identify the independent variable",
+  "difficulty": "medium",
+  "topic_tag": "Humidity, Light, and Hunger in Lorn Beetle Choices",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Lorn beetles in Chamber A after 30 minutes",
+   "colLabels": [
+    "Chamber A humidity (%)",
+    "Chamber A light (lux)",
+    "Hours without food",
+    "Beetles in Chamber A (%)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     40,
+     0,
+     0,
+     55
+    ],
+    [
+     60,
+     0,
+     0,
+     72
+    ],
+    [
+     80,
+     0,
+     0,
+     88
+    ],
+    [
+     95,
+     0,
+     0,
+     61
+    ],
+    [
+     80,
+     50,
+     0,
+     80
+    ],
+    [
+     80,
+     200,
+     0,
+     52
+    ],
+    [
+     80,
+     800,
+     0,
+     18
+    ],
+    [
+     80,
+     200,
+     24,
+     66
+    ],
+    [
+     80,
+     200,
+     48,
+     79
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12c-P4-Q5",
+  "passage_id": "sc12c-p4",
+  "passage_title": "Humidity, Light, and Hunger in Lorn Beetle Choices",
+  "format": "research_summaries",
+  "passage": "Lorn beetles live under logs on forest floors. Biologists studied which conditions the beetles move toward using a box divided into two chambers, A and B, joined by an open doorway.\n\nIn every trial, Chamber B was kept dark at 20% relative humidity. The biologists changed the conditions in Chamber A, released 20 beetles at the doorway, and after 30 minutes recorded the percent of the beetles that were in Chamber A (see Table 1). No food was placed in either chamber. A fresh group of beetles was used for each trial.\n\nExperiment 1\nChamber A was kept dark at a relative humidity of 40%, 60%, 80%, or 95%. The beetles had been fed just before the trial.\n\nExperiment 2\nChamber A was kept at 80% humidity and lit at 50, 200, or 800 lux (a measure of brightness). The beetles had been fed just before the trial. (The 0-lux result is that of the 80% trial in Experiment 1.)\n\nExperiment 3\nChamber A was kept at 80% humidity and 200 lux. The beetles had gone without food for 24 or 48 hours. (The fed result is that of the 200-lux trial in Experiment 2.)",
+  "prompt": "In the trial with beetles that had gone 48 hours without food, about how many of the 20 beetles were in Chamber A after 30 minutes?",
+  "choices": [
+   "10",
+   "13",
+   "16",
+   "19"
+  ],
+  "correct_answer": "16",
+  "explanation": "79% of 20 beetles is 15.8, or about \"16\".",
+  "domain": "Interpretation of Data",
+  "subskill": "convert a percent to a count",
+  "difficulty": "medium",
+  "topic_tag": "Humidity, Light, and Hunger in Lorn Beetle Choices",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Lorn beetles in Chamber A after 30 minutes",
+   "colLabels": [
+    "Chamber A humidity (%)",
+    "Chamber A light (lux)",
+    "Hours without food",
+    "Beetles in Chamber A (%)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     40,
+     0,
+     0,
+     55
+    ],
+    [
+     60,
+     0,
+     0,
+     72
+    ],
+    [
+     80,
+     0,
+     0,
+     88
+    ],
+    [
+     95,
+     0,
+     0,
+     61
+    ],
+    [
+     80,
+     50,
+     0,
+     80
+    ],
+    [
+     80,
+     200,
+     0,
+     52
+    ],
+    [
+     80,
+     800,
+     0,
+     18
+    ],
+    [
+     80,
+     200,
+     24,
+     66
+    ],
+    [
+     80,
+     200,
+     48,
+     79
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12c-P4-Q6",
+  "passage_id": "sc12c-p4",
+  "passage_title": "Humidity, Light, and Hunger in Lorn Beetle Choices",
+  "format": "research_summaries",
+  "passage": "Lorn beetles live under logs on forest floors. Biologists studied which conditions the beetles move toward using a box divided into two chambers, A and B, joined by an open doorway.\n\nIn every trial, Chamber B was kept dark at 20% relative humidity. The biologists changed the conditions in Chamber A, released 20 beetles at the doorway, and after 30 minutes recorded the percent of the beetles that were in Chamber A (see Table 1). No food was placed in either chamber. A fresh group of beetles was used for each trial.\n\nExperiment 1\nChamber A was kept dark at a relative humidity of 40%, 60%, 80%, or 95%. The beetles had been fed just before the trial.\n\nExperiment 2\nChamber A was kept at 80% humidity and lit at 50, 200, or 800 lux (a measure of brightness). The beetles had been fed just before the trial. (The 0-lux result is that of the 80% trial in Experiment 1.)\n\nExperiment 3\nChamber A was kept at 80% humidity and 200 lux. The beetles had gone without food for 24 or 48 hours. (The fed result is that of the 200-lux trial in Experiment 2.)",
+  "prompt": "In which trial were more than 75% of the beetles in Chamber A while Chamber A was lit at 200 lux or more?",
+  "choices": [
+   "80% humidity, 200 lux, 48 hours without food",
+   "80% humidity, 50 lux, fed",
+   "80% humidity, 200 lux, 24 hours without food",
+   "80% humidity, dark, fed"
+  ],
+  "correct_answer": "80% humidity, 200 lux, 48 hours without food",
+  "explanation": "At 200 lux after 48 hours without food, 79% were in Chamber A. The 50-lux trial (80%) was lit below 200 lux; the 24-hour trial had 66%; the dark trial (88%) was not lit.",
+  "domain": "Interpretation of Data",
+  "subskill": "apply two conditions to a table",
+  "difficulty": "medium",
+  "topic_tag": "Humidity, Light, and Hunger in Lorn Beetle Choices",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Lorn beetles in Chamber A after 30 minutes",
+   "colLabels": [
+    "Chamber A humidity (%)",
+    "Chamber A light (lux)",
+    "Hours without food",
+    "Beetles in Chamber A (%)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     40,
+     0,
+     0,
+     55
+    ],
+    [
+     60,
+     0,
+     0,
+     72
+    ],
+    [
+     80,
+     0,
+     0,
+     88
+    ],
+    [
+     95,
+     0,
+     0,
+     61
+    ],
+    [
+     80,
+     50,
+     0,
+     80
+    ],
+    [
+     80,
+     200,
+     0,
+     52
+    ],
+    [
+     80,
+     800,
+     0,
+     18
+    ],
+    [
+     80,
+     200,
+     24,
+     66
+    ],
+    [
+     80,
+     200,
+     48,
+     79
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12c-P5-Q1",
+  "passage_id": "sc12c-p5",
+  "passage_title": "Why Sarn Maples on Ketter Ridge Turn Red Early",
+  "format": "conflicting_viewpoints",
+  "passage": "Sarn maple leaves turn from green to red in autumn when the trees begin making a red pigment. On Ketter Ridge, Sarn maples turn red about 10 days earlier each year than Sarn maples in the valley below. Three scientists explain the difference.\n\nScientist 1\nThe trees begin making the red pigment after the first nights colder than 5°C. The ridge is higher than the valley, so it reaches nights below 5°C about 10 days sooner each autumn. In a year when autumn nights stay warm, ridge and valley trees should turn red at about the same time.\n\nScientist 2\nThe trees begin making the red pigment when the soil around their roots dries below 15% moisture. Ridge soil is thin and drains quickly, so it falls below 15% by late August, while valley soil stays moist into September. Watering the soil around ridge trees through the autumn would delay their reddening.\n\nScientist 3\nTrees in soil poor in nitrogen begin making the red pigment sooner, whatever the temperature or moisture. Ridge soil has much less nitrogen than valley soil. Adding nitrogen fertilizer to the soil around ridge trees would delay their reddening.",
+  "prompt": "Which scientist(s) would predict that watering the soil around ridge trees through the autumn would delay their reddening?",
+  "choices": [
+   "Scientists 2 and 3 only",
+   "Scientist 2 only",
+   "Scientist 1 only",
+   "Scientists 1, 2, and 3"
+  ],
+  "correct_answer": "Scientist 2 only",
+  "explanation": "Only Scientist 2 ties reddening to soil moisture and says watering would delay it. Scientist 1 blames cold nights and Scientist 3 says nitrogen acts whatever the moisture.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "apply viewpoints to a new case",
+  "difficulty": "medium",
+  "topic_tag": "Why Sarn Maples on Ketter Ridge Turn Red Early",
+  "consistency_check": "Each scientist names a different trigger with a checkable consequence: S1 nights below 5 C (cold nights; warm-night years should remove the gap), S2 soil moisture below 15% (watering should delay), S3 low soil nitrogen (fertilizing should delay; independent of weather)."
+ },
+ {
+  "id": "ASV12c-P5-Q2",
+  "passage_id": "sc12c-p5",
+  "passage_title": "Why Sarn Maples on Ketter Ridge Turn Red Early",
+  "format": "conflicting_viewpoints",
+  "passage": "Sarn maple leaves turn from green to red in autumn when the trees begin making a red pigment. On Ketter Ridge, Sarn maples turn red about 10 days earlier each year than Sarn maples in the valley below. Three scientists explain the difference.\n\nScientist 1\nThe trees begin making the red pigment after the first nights colder than 5°C. The ridge is higher than the valley, so it reaches nights below 5°C about 10 days sooner each autumn. In a year when autumn nights stay warm, ridge and valley trees should turn red at about the same time.\n\nScientist 2\nThe trees begin making the red pigment when the soil around their roots dries below 15% moisture. Ridge soil is thin and drains quickly, so it falls below 15% by late August, while valley soil stays moist into September. Watering the soil around ridge trees through the autumn would delay their reddening.\n\nScientist 3\nTrees in soil poor in nitrogen begin making the red pigment sooner, whatever the temperature or moisture. Ridge soil has much less nitrogen than valley soil. Adding nitrogen fertilizer to the soil around ridge trees would delay their reddening.",
+  "prompt": "In a year when no night fell below 5°C until late October, ridge trees still turned red about 10 days before valley trees. This finding is inconsistent with the view(s) of which scientist(s)?",
+  "choices": [
+   "Scientist 2 only",
+   "Scientists 1 and 2 only",
+   "Scientist 3 only",
+   "Scientist 1 only"
+  ],
+  "correct_answer": "Scientist 1 only",
+  "explanation": "Scientist 1 says that with warm autumn nights the ridge and valley trees should turn red at about the same time; a 10-day gap anyway contradicts that. Scientists 2 and 3 do not depend on night temperature.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test viewpoints against a new result",
+  "difficulty": "hard",
+  "topic_tag": "Why Sarn Maples on Ketter Ridge Turn Red Early"
+ },
+ {
+  "id": "ASV12c-P5-Q3",
+  "passage_id": "sc12c-p5",
+  "passage_title": "Why Sarn Maples on Ketter Ridge Turn Red Early",
+  "format": "conflicting_viewpoints",
+  "passage": "Sarn maple leaves turn from green to red in autumn when the trees begin making a red pigment. On Ketter Ridge, Sarn maples turn red about 10 days earlier each year than Sarn maples in the valley below. Three scientists explain the difference.\n\nScientist 1\nThe trees begin making the red pigment after the first nights colder than 5°C. The ridge is higher than the valley, so it reaches nights below 5°C about 10 days sooner each autumn. In a year when autumn nights stay warm, ridge and valley trees should turn red at about the same time.\n\nScientist 2\nThe trees begin making the red pigment when the soil around their roots dries below 15% moisture. Ridge soil is thin and drains quickly, so it falls below 15% by late August, while valley soil stays moist into September. Watering the soil around ridge trees through the autumn would delay their reddening.\n\nScientist 3\nTrees in soil poor in nitrogen begin making the red pigment sooner, whatever the temperature or moisture. Ridge soil has much less nitrogen than valley soil. Adding nitrogen fertilizer to the soil around ridge trees would delay their reddening.",
+  "prompt": "Measurements show that ridge soil and valley soil contain the same amount of nitrogen. This result most weakens the view of which scientist?",
+  "choices": [
+   "Scientist 2",
+   "Scientist 1",
+   "None of the scientists",
+   "Scientist 3"
+  ],
+  "correct_answer": "Scientist 3",
+  "explanation": "Scientist 3 says ridge soil has much less nitrogen than valley soil. Equal nitrogen contradicts that claim. Scientists 1 and 2 say nothing about nitrogen.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test viewpoints against a new result",
+  "difficulty": "medium",
+  "topic_tag": "Why Sarn Maples on Ketter Ridge Turn Red Early"
+ },
+ {
+  "id": "ASV12c-P5-Q4",
+  "passage_id": "sc12c-p5",
+  "passage_title": "Why Sarn Maples on Ketter Ridge Turn Red Early",
+  "format": "conflicting_viewpoints",
+  "passage": "Sarn maple leaves turn from green to red in autumn when the trees begin making a red pigment. On Ketter Ridge, Sarn maples turn red about 10 days earlier each year than Sarn maples in the valley below. Three scientists explain the difference.\n\nScientist 1\nThe trees begin making the red pigment after the first nights colder than 5°C. The ridge is higher than the valley, so it reaches nights below 5°C about 10 days sooner each autumn. In a year when autumn nights stay warm, ridge and valley trees should turn red at about the same time.\n\nScientist 2\nThe trees begin making the red pigment when the soil around their roots dries below 15% moisture. Ridge soil is thin and drains quickly, so it falls below 15% by late August, while valley soil stays moist into September. Watering the soil around ridge trees through the autumn would delay their reddening.\n\nScientist 3\nTrees in soil poor in nitrogen begin making the red pigment sooner, whatever the temperature or moisture. Ridge soil has much less nitrogen than valley soil. Adding nitrogen fertilizer to the soil around ridge trees would delay their reddening.",
+  "prompt": "A Sarn maple on the ridge grows beside a spring, so the soil around it never dries below 30% moisture. It turns red at the same time as the valley trees. This observation is most consistent with the view of which scientist?",
+  "choices": [
+   "None of the scientists",
+   "Scientist 3",
+   "Scientist 1",
+   "Scientist 2"
+  ],
+  "correct_answer": "Scientist 2",
+  "explanation": "The tree feels the same cold nights as other ridge trees (Scientist 1 would predict early reddening) and grows in the same ridge soil (Scientist 3 would too). Only Scientist 2, who blames dry soil, predicts that a tree in moist soil would turn red on the valley schedule.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "use a viewpoint to explain a new observation",
+  "difficulty": "hard",
+  "topic_tag": "Why Sarn Maples on Ketter Ridge Turn Red Early"
+ },
+ {
+  "id": "ASV12c-P5-Q5",
+  "passage_id": "sc12c-p5",
+  "passage_title": "Why Sarn Maples on Ketter Ridge Turn Red Early",
+  "format": "conflicting_viewpoints",
+  "passage": "Sarn maple leaves turn from green to red in autumn when the trees begin making a red pigment. On Ketter Ridge, Sarn maples turn red about 10 days earlier each year than Sarn maples in the valley below. Three scientists explain the difference.\n\nScientist 1\nThe trees begin making the red pigment after the first nights colder than 5°C. The ridge is higher than the valley, so it reaches nights below 5°C about 10 days sooner each autumn. In a year when autumn nights stay warm, ridge and valley trees should turn red at about the same time.\n\nScientist 2\nThe trees begin making the red pigment when the soil around their roots dries below 15% moisture. Ridge soil is thin and drains quickly, so it falls below 15% by late August, while valley soil stays moist into September. Watering the soil around ridge trees through the autumn would delay their reddening.\n\nScientist 3\nTrees in soil poor in nitrogen begin making the red pigment sooner, whatever the temperature or moisture. Ridge soil has much less nitrogen than valley soil. Adding nitrogen fertilizer to the soil around ridge trees would delay their reddening.",
+  "prompt": "According to Scientist 2, the trees begin making the red pigment when soil moisture falls below what value?",
+  "choices": [
+   "5%",
+   "10%",
+   "15%",
+   "20%"
+  ],
+  "correct_answer": "15%",
+  "explanation": "Scientist 2 says the trees begin making the pigment when the soil \"dries below 15% moisture.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a value in a viewpoint",
+  "difficulty": "medium",
+  "topic_tag": "Why Sarn Maples on Ketter Ridge Turn Red Early"
+ },
+ {
+  "id": "ASV12c-P5-Q6",
+  "passage_id": "sc12c-p5",
+  "passage_title": "Why Sarn Maples on Ketter Ridge Turn Red Early",
+  "format": "conflicting_viewpoints",
+  "passage": "Sarn maple leaves turn from green to red in autumn when the trees begin making a red pigment. On Ketter Ridge, Sarn maples turn red about 10 days earlier each year than Sarn maples in the valley below. Three scientists explain the difference.\n\nScientist 1\nThe trees begin making the red pigment after the first nights colder than 5°C. The ridge is higher than the valley, so it reaches nights below 5°C about 10 days sooner each autumn. In a year when autumn nights stay warm, ridge and valley trees should turn red at about the same time.\n\nScientist 2\nThe trees begin making the red pigment when the soil around their roots dries below 15% moisture. Ridge soil is thin and drains quickly, so it falls below 15% by late August, while valley soil stays moist into September. Watering the soil around ridge trees through the autumn would delay their reddening.\n\nScientist 3\nTrees in soil poor in nitrogen begin making the red pigment sooner, whatever the temperature or moisture. Ridge soil has much less nitrogen than valley soil. Adding nitrogen fertilizer to the soil around ridge trees would delay their reddening.",
+  "prompt": "Which scientists attribute the early reddening to a condition of the soil on the ridge?",
+  "choices": [
+   "Scientists 1 and 3 only",
+   "Scientists 1 and 2 only",
+   "Scientists 1, 2, and 3",
+   "Scientists 2 and 3 only"
+  ],
+  "correct_answer": "Scientists 2 and 3 only",
+  "explanation": "Scientist 2 blames soil moisture and Scientist 3 blames soil nitrogen. Scientist 1 blames cold nights, a condition of the air, not the soil.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "compare claims across viewpoints",
+  "difficulty": "medium",
+  "topic_tag": "Why Sarn Maples on Ketter Ridge Turn Red Early"
+ },
+ {
+  "id": "ASV12c-P6-Q1",
+  "passage_id": "sc12c-p6",
+  "passage_title": "Why Harl Moths Gather at the Streetlamps of Brennan",
+  "format": "conflicting_viewpoints",
+  "passage": "On summer nights, large numbers of Harl moths gather around the streetlamps of the town of Brennan. Three scientists explain why.\n\nScientist 1\nHarl moths fly in a straight line by keeping a distant, bright light, normally the Moon, at a fixed angle to their path. A nearby lamp is so close that keeping it at a fixed angle makes a moth circle it. The moths are not trying to reach the lamp; they are trapped by their own way of steering. More moths should gather at lamps on moonless nights, when no brighter light competes with the lamps.\n\nScientist 2\nHarl moths cannot fly well when the air is colder than 10°C, and they move toward warm air. Streetlamps warm the air around them. More moths should gather at lamps on cold nights, and an unlit pole heated to the same temperature as a lamp should attract moths just as well.\n\nScientist 3\nThe flowers Harl moths feed on reflect ultraviolet (UV) light in patterns that guide the moths to nectar. The old streetlamps of Brennan give off UV light, and the moths approach them as if they were flowers. Many moths at the lamps extend their feeding tongues. Lamps that give off no UV light should attract few moths.",
+  "prompt": "Brennan replaced some old lamps with new lamps that give off no UV light. The new lamps attracted as many moths as the old ones. This finding is inconsistent with the view(s) of which scientist(s)?",
+  "choices": [
+   "Scientist 3 only",
+   "Scientists 1 and 3 only",
+   "Scientist 1 only",
+   "Scientist 2 only"
+  ],
+  "correct_answer": "Scientist 3 only",
+  "explanation": "Scientist 3 says lamps without UV should attract few moths, so equal numbers contradict that view. Scientists 1 and 2 do not depend on UV light.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test viewpoints against a new result",
+  "difficulty": "medium",
+  "topic_tag": "Why Harl Moths Gather at the Streetlamps of Brennan",
+  "consistency_check": "S1 navigation by a bright light at a fixed angle (more moths on moonless nights; moths circle, not trying to reach the lamp); S2 warmth below 10 C (a heated unlit pole should attract them; cold nights more); S3 ultraviolet resembling flowers (no-UV lamps attract few; moths extend tongues)."
+ },
+ {
+  "id": "ASV12c-P6-Q2",
+  "passage_id": "sc12c-p6",
+  "passage_title": "Why Harl Moths Gather at the Streetlamps of Brennan",
+  "format": "conflicting_viewpoints",
+  "passage": "On summer nights, large numbers of Harl moths gather around the streetlamps of the town of Brennan. Three scientists explain why.\n\nScientist 1\nHarl moths fly in a straight line by keeping a distant, bright light, normally the Moon, at a fixed angle to their path. A nearby lamp is so close that keeping it at a fixed angle makes a moth circle it. The moths are not trying to reach the lamp; they are trapped by their own way of steering. More moths should gather at lamps on moonless nights, when no brighter light competes with the lamps.\n\nScientist 2\nHarl moths cannot fly well when the air is colder than 10°C, and they move toward warm air. Streetlamps warm the air around them. More moths should gather at lamps on cold nights, and an unlit pole heated to the same temperature as a lamp should attract moths just as well.\n\nScientist 3\nThe flowers Harl moths feed on reflect ultraviolet (UV) light in patterns that guide the moths to nectar. The old streetlamps of Brennan give off UV light, and the moths approach them as if they were flowers. Many moths at the lamps extend their feeding tongues. Lamps that give off no UV light should attract few moths.",
+  "prompt": "Counts made on nights of the same temperature found more moths at the lamps on moonless nights than on nights with a full moon. This result is most consistent with the view of which scientist?",
+  "choices": [
+   "Scientist 2",
+   "Scientist 1",
+   "Scientist 3",
+   "None of the scientists"
+  ],
+  "correct_answer": "Scientist 1",
+  "explanation": "Scientist 1 predicts more moths on moonless nights, when the Moon does not compete with the lamps. With temperature the same, Scientist 2 predicts no difference, and Scientist 3 does not mention the Moon.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match a finding to a viewpoint",
+  "difficulty": "medium",
+  "topic_tag": "Why Harl Moths Gather at the Streetlamps of Brennan"
+ },
+ {
+  "id": "ASV12c-P6-Q3",
+  "passage_id": "sc12c-p6",
+  "passage_title": "Why Harl Moths Gather at the Streetlamps of Brennan",
+  "format": "conflicting_viewpoints",
+  "passage": "On summer nights, large numbers of Harl moths gather around the streetlamps of the town of Brennan. Three scientists explain why.\n\nScientist 1\nHarl moths fly in a straight line by keeping a distant, bright light, normally the Moon, at a fixed angle to their path. A nearby lamp is so close that keeping it at a fixed angle makes a moth circle it. The moths are not trying to reach the lamp; they are trapped by their own way of steering. More moths should gather at lamps on moonless nights, when no brighter light competes with the lamps.\n\nScientist 2\nHarl moths cannot fly well when the air is colder than 10°C, and they move toward warm air. Streetlamps warm the air around them. More moths should gather at lamps on cold nights, and an unlit pole heated to the same temperature as a lamp should attract moths just as well.\n\nScientist 3\nThe flowers Harl moths feed on reflect ultraviolet (UV) light in patterns that guide the moths to nectar. The old streetlamps of Brennan give off UV light, and the moths approach them as if they were flowers. Many moths at the lamps extend their feeding tongues. Lamps that give off no UV light should attract few moths.",
+  "prompt": "Which test would best help decide between the views of Scientist 1 and Scientist 2?",
+  "choices": [
+   "On a warm night, compare the moths at lamps that give off UV light with the moths at lamps that do not",
+   "Count how many of the moths at the lamps extend their feeding tongues",
+   "Compare the moths at the lamps of Brennan with the moths at the lamps of a nearby town with the same weather",
+   "On one night, compare the moths at an unlit pole heated to lamp temperature with the moths at a lit lamp that gives off no heat"
+  ],
+  "correct_answer": "On one night, compare the moths at an unlit pole heated to lamp temperature with the moths at a lit lamp that gives off no heat",
+  "explanation": "Scientist 1 says light draws the moths and Scientist 2 says warmth does. A heated unlit pole against a lit unheated lamp separates light from warmth. The UV comparison and the tongue count test Scientist 3, and comparing two similar towns separates no view.",
+  "domain": "Scientific Investigation",
+  "subskill": "design a test that separates viewpoints",
+  "difficulty": "hard",
+  "topic_tag": "Why Harl Moths Gather at the Streetlamps of Brennan"
+ },
+ {
+  "id": "ASV12c-P6-Q4",
+  "passage_id": "sc12c-p6",
+  "passage_title": "Why Harl Moths Gather at the Streetlamps of Brennan",
+  "format": "conflicting_viewpoints",
+  "passage": "On summer nights, large numbers of Harl moths gather around the streetlamps of the town of Brennan. Three scientists explain why.\n\nScientist 1\nHarl moths fly in a straight line by keeping a distant, bright light, normally the Moon, at a fixed angle to their path. A nearby lamp is so close that keeping it at a fixed angle makes a moth circle it. The moths are not trying to reach the lamp; they are trapped by their own way of steering. More moths should gather at lamps on moonless nights, when no brighter light competes with the lamps.\n\nScientist 2\nHarl moths cannot fly well when the air is colder than 10°C, and they move toward warm air. Streetlamps warm the air around them. More moths should gather at lamps on cold nights, and an unlit pole heated to the same temperature as a lamp should attract moths just as well.\n\nScientist 3\nThe flowers Harl moths feed on reflect ultraviolet (UV) light in patterns that guide the moths to nectar. The old streetlamps of Brennan give off UV light, and the moths approach them as if they were flowers. Many moths at the lamps extend their feeding tongues. Lamps that give off no UV light should attract few moths.",
+  "prompt": "According to Scientist 2, Harl moths cannot fly well when the air is colder than what temperature?",
+  "choices": [
+   "8°C",
+   "10°C",
+   "12°C",
+   "15°C"
+  ],
+  "correct_answer": "10°C",
+  "explanation": "Scientist 2 says the moths \"cannot fly well when the air is colder than 10°C.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a value in a viewpoint",
+  "difficulty": "medium",
+  "topic_tag": "Why Harl Moths Gather at the Streetlamps of Brennan"
+ },
+ {
+  "id": "ASV12c-P6-Q5",
+  "passage_id": "sc12c-p6",
+  "passage_title": "Why Harl Moths Gather at the Streetlamps of Brennan",
+  "format": "conflicting_viewpoints",
+  "passage": "On summer nights, large numbers of Harl moths gather around the streetlamps of the town of Brennan. Three scientists explain why.\n\nScientist 1\nHarl moths fly in a straight line by keeping a distant, bright light, normally the Moon, at a fixed angle to their path. A nearby lamp is so close that keeping it at a fixed angle makes a moth circle it. The moths are not trying to reach the lamp; they are trapped by their own way of steering. More moths should gather at lamps on moonless nights, when no brighter light competes with the lamps.\n\nScientist 2\nHarl moths cannot fly well when the air is colder than 10°C, and they move toward warm air. Streetlamps warm the air around them. More moths should gather at lamps on cold nights, and an unlit pole heated to the same temperature as a lamp should attract moths just as well.\n\nScientist 3\nThe flowers Harl moths feed on reflect ultraviolet (UV) light in patterns that guide the moths to nectar. The old streetlamps of Brennan give off UV light, and the moths approach them as if they were flowers. Many moths at the lamps extend their feeding tongues. Lamps that give off no UV light should attract few moths.",
+  "prompt": "Which scientist(s) claim that the moths at the lamps are NOT trying to reach the lamps?",
+  "choices": [
+   "Scientist 1 only",
+   "Scientists 1 and 3 only",
+   "Scientists 1 and 2 only",
+   "Scientist 2 only"
+  ],
+  "correct_answer": "Scientist 1 only",
+  "explanation": "Scientist 1 says the moths \"are not trying to reach the lamp\" but are trapped by their steering. Scientist 2 says they move toward the lamps' warm air, and Scientist 3 says they approach the lamps as if they were flowers.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "compare claims across viewpoints",
+  "difficulty": "medium",
+  "topic_tag": "Why Harl Moths Gather at the Streetlamps of Brennan"
+ },
+ {
+  "id": "ASV12c-P6-Q6",
+  "passage_id": "sc12c-p6",
+  "passage_title": "Why Harl Moths Gather at the Streetlamps of Brennan",
+  "format": "conflicting_viewpoints",
+  "passage": "On summer nights, large numbers of Harl moths gather around the streetlamps of the town of Brennan. Three scientists explain why.\n\nScientist 1\nHarl moths fly in a straight line by keeping a distant, bright light, normally the Moon, at a fixed angle to their path. A nearby lamp is so close that keeping it at a fixed angle makes a moth circle it. The moths are not trying to reach the lamp; they are trapped by their own way of steering. More moths should gather at lamps on moonless nights, when no brighter light competes with the lamps.\n\nScientist 2\nHarl moths cannot fly well when the air is colder than 10°C, and they move toward warm air. Streetlamps warm the air around them. More moths should gather at lamps on cold nights, and an unlit pole heated to the same temperature as a lamp should attract moths just as well.\n\nScientist 3\nThe flowers Harl moths feed on reflect ultraviolet (UV) light in patterns that guide the moths to nectar. The old streetlamps of Brennan give off UV light, and the moths approach them as if they were flowers. Many moths at the lamps extend their feeding tongues. Lamps that give off no UV light should attract few moths.",
+  "prompt": "On which kind of night would Scientists 1 and 2 both predict the greatest number of moths at the lamps?",
+  "choices": [
+   "A warm, moonless night",
+   "A cold night with a full moon",
+   "A warm night with a full moon",
+   "A cold, moonless night"
+  ],
+  "correct_answer": "A cold, moonless night",
+  "explanation": "Scientist 1 predicts more moths on moonless nights; Scientist 2 predicts more on cold nights. Both conditions together give \"A cold, moonless night.\"",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "combine predictions of two viewpoints",
+  "difficulty": "hard",
+  "topic_tag": "Why Harl Moths Gather at the Streetlamps of Brennan"
+ },
+ {
+  "id": "ASV12c-P7-Q1",
+  "passage_id": "sc12c-p7",
+  "passage_title": "Why the Water in Marrow Canal Is Falling",
+  "format": "conflicting_viewpoints",
+  "passage": "Over one summer, the water level in Marrow Canal fell by 30 cm, although the same amount of river water entered the canal at its upper end each day. Three scientists explain the fall.\n\nScientist 1\nThe clay lining of the canal has cracked, and water is seeping into the ground beneath it. Seepage is greatest in the lowest reach of the canal, where the water is deepest and presses hardest on the lining. Seepage does not depend on the weather, so the level should keep falling in cool, cloudy weeks as fast as in hot ones. Water seeping from the canal should raise the water in wells near the lowest reach.\n\nScientist 2\nThe summer was unusually hot and dry, and the water is evaporating. The canal's surface covers about 150,000 square meters (m²), and in hot, sunny weather about 4 mm of water evaporates from it each day. Evaporation is about the same per square meter all along the canal, and it nearly stops in cool, cloudy weeks, so the level should stop falling then.\n\nScientist 3\nFarms along the middle of the canal began drawing much more water for irrigation through their intake gate this summer. The level falls only in the part of the canal downstream of the farms' intake gate; upstream of the gate it has hardly changed. When the farms stop drawing water, the level should stop falling.",
+  "prompt": "During two cool, cloudy weeks in July, the water level kept falling at the same rate as in the hot weeks before. This finding is inconsistent with the view(s) of which scientist(s)?",
+  "choices": [
+   "Scientist 2 only",
+   "Scientist 1 only",
+   "Scientist 3 only",
+   "Scientists 1 and 3 only"
+  ],
+  "correct_answer": "Scientist 2 only",
+  "explanation": "Scientist 2 says evaporation nearly stops in cool, cloudy weeks, so the level should stop falling then. Scientist 1 says seepage does not depend on the weather, and Scientist 3 ties the fall to irrigation, not weather.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test viewpoints against a new result",
+  "difficulty": "medium",
+  "topic_tag": "Why the Water in Marrow Canal Is Falling",
+  "consistency_check": "S1 cracked lining, seepage greatest in the lowest reach, continues in any weather, raises nearby wells; S2 evaporation from 150,000 m2 at about 4 mm/day = 600 m3/day, stops in cool cloudy weeks, same along the canal; S3 irrigation withdrawals at the farms' intake gate, only downstream of the gate."
+ },
+ {
+  "id": "ASV12c-P7-Q2",
+  "passage_id": "sc12c-p7",
+  "passage_title": "Why the Water in Marrow Canal Is Falling",
+  "format": "conflicting_viewpoints",
+  "passage": "Over one summer, the water level in Marrow Canal fell by 30 cm, although the same amount of river water entered the canal at its upper end each day. Three scientists explain the fall.\n\nScientist 1\nThe clay lining of the canal has cracked, and water is seeping into the ground beneath it. Seepage is greatest in the lowest reach of the canal, where the water is deepest and presses hardest on the lining. Seepage does not depend on the weather, so the level should keep falling in cool, cloudy weeks as fast as in hot ones. Water seeping from the canal should raise the water in wells near the lowest reach.\n\nScientist 2\nThe summer was unusually hot and dry, and the water is evaporating. The canal's surface covers about 150,000 square meters (m²), and in hot, sunny weather about 4 mm of water evaporates from it each day. Evaporation is about the same per square meter all along the canal, and it nearly stops in cool, cloudy weeks, so the level should stop falling then.\n\nScientist 3\nFarms along the middle of the canal began drawing much more water for irrigation through their intake gate this summer. The level falls only in the part of the canal downstream of the farms' intake gate; upstream of the gate it has hardly changed. When the farms stop drawing water, the level should stop falling.",
+  "prompt": "Over the summer, the water in wells beside the lowest reach of the canal rose by 40 cm. This result is most consistent with the view of which scientist?",
+  "choices": [
+   "Scientist 1",
+   "Scientist 2",
+   "Scientist 3",
+   "None of the scientists"
+  ],
+  "correct_answer": "Scientist 1",
+  "explanation": "Scientist 1 says water seeping through the cracked lining should raise the water in wells near the lowest reach. Evaporation (Scientist 2) and irrigation withdrawals (Scientist 3) would not add water to those wells.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match a finding to a viewpoint",
+  "difficulty": "medium",
+  "topic_tag": "Why the Water in Marrow Canal Is Falling"
+ },
+ {
+  "id": "ASV12c-P7-Q3",
+  "passage_id": "sc12c-p7",
+  "passage_title": "Why the Water in Marrow Canal Is Falling",
+  "format": "conflicting_viewpoints",
+  "passage": "Over one summer, the water level in Marrow Canal fell by 30 cm, although the same amount of river water entered the canal at its upper end each day. Three scientists explain the fall.\n\nScientist 1\nThe clay lining of the canal has cracked, and water is seeping into the ground beneath it. Seepage is greatest in the lowest reach of the canal, where the water is deepest and presses hardest on the lining. Seepage does not depend on the weather, so the level should keep falling in cool, cloudy weeks as fast as in hot ones. Water seeping from the canal should raise the water in wells near the lowest reach.\n\nScientist 2\nThe summer was unusually hot and dry, and the water is evaporating. The canal's surface covers about 150,000 square meters (m²), and in hot, sunny weather about 4 mm of water evaporates from it each day. Evaporation is about the same per square meter all along the canal, and it nearly stops in cool, cloudy weeks, so the level should stop falling then.\n\nScientist 3\nFarms along the middle of the canal began drawing much more water for irrigation through their intake gate this summer. The level falls only in the part of the canal downstream of the farms' intake gate; upstream of the gate it has hardly changed. When the farms stop drawing water, the level should stop falling.",
+  "prompt": "Which measurement would best help decide between the views of Scientist 1 and Scientist 3?",
+  "choices": [
+   "The change in water level upstream of the farms' intake gate compared with the change downstream of it",
+   "The air temperature and cloud cover on each day of the summer",
+   "The change in water level in July compared with the change in August",
+   "The total area of the canal's water surface"
+  ],
+  "correct_answer": "The change in water level upstream of the farms' intake gate compared with the change downstream of it",
+  "explanation": "Scientist 3 says the level fell only downstream of the intake gate. Scientist 1's seepage occurs wherever the lining is cracked, mostly in the lowest reach, and Scientist 1 says nothing about the gate. Comparing levels above and below the gate tests Scientist 3's claim against Scientist 1's. Weather data and surface area bear on Scientist 2.",
+  "domain": "Scientific Investigation",
+  "subskill": "design a test that separates viewpoints",
+  "difficulty": "hard",
+  "topic_tag": "Why the Water in Marrow Canal Is Falling"
+ },
+ {
+  "id": "ASV12c-P7-Q4",
+  "passage_id": "sc12c-p7",
+  "passage_title": "Why the Water in Marrow Canal Is Falling",
+  "format": "conflicting_viewpoints",
+  "passage": "Over one summer, the water level in Marrow Canal fell by 30 cm, although the same amount of river water entered the canal at its upper end each day. Three scientists explain the fall.\n\nScientist 1\nThe clay lining of the canal has cracked, and water is seeping into the ground beneath it. Seepage is greatest in the lowest reach of the canal, where the water is deepest and presses hardest on the lining. Seepage does not depend on the weather, so the level should keep falling in cool, cloudy weeks as fast as in hot ones. Water seeping from the canal should raise the water in wells near the lowest reach.\n\nScientist 2\nThe summer was unusually hot and dry, and the water is evaporating. The canal's surface covers about 150,000 square meters (m²), and in hot, sunny weather about 4 mm of water evaporates from it each day. Evaporation is about the same per square meter all along the canal, and it nearly stops in cool, cloudy weeks, so the level should stop falling then.\n\nScientist 3\nFarms along the middle of the canal began drawing much more water for irrigation through their intake gate this summer. The level falls only in the part of the canal downstream of the farms' intake gate; upstream of the gate it has hardly changed. When the farms stop drawing water, the level should stop falling.",
+  "prompt": "According to Scientist 1, in which part of the canal is the water seeping out fastest?",
+  "choices": [
+   "The middle reach",
+   "The reach nearest the farms' intake gate",
+   "The highest reach",
+   "The lowest reach"
+  ],
+  "correct_answer": "The lowest reach",
+  "explanation": "Scientist 1 says seepage is greatest \"in the lowest reach of the canal, where the water is deepest.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a detail in a viewpoint",
+  "difficulty": "easy",
+  "topic_tag": "Why the Water in Marrow Canal Is Falling"
+ },
+ {
+  "id": "ASV12c-P7-Q5",
+  "passage_id": "sc12c-p7",
+  "passage_title": "Why the Water in Marrow Canal Is Falling",
+  "format": "conflicting_viewpoints",
+  "passage": "Over one summer, the water level in Marrow Canal fell by 30 cm, although the same amount of river water entered the canal at its upper end each day. Three scientists explain the fall.\n\nScientist 1\nThe clay lining of the canal has cracked, and water is seeping into the ground beneath it. Seepage is greatest in the lowest reach of the canal, where the water is deepest and presses hardest on the lining. Seepage does not depend on the weather, so the level should keep falling in cool, cloudy weeks as fast as in hot ones. Water seeping from the canal should raise the water in wells near the lowest reach.\n\nScientist 2\nThe summer was unusually hot and dry, and the water is evaporating. The canal's surface covers about 150,000 square meters (m²), and in hot, sunny weather about 4 mm of water evaporates from it each day. Evaporation is about the same per square meter all along the canal, and it nearly stops in cool, cloudy weeks, so the level should stop falling then.\n\nScientist 3\nFarms along the middle of the canal began drawing much more water for irrigation through their intake gate this summer. The level falls only in the part of the canal downstream of the farms' intake gate; upstream of the gate it has hardly changed. When the farms stop drawing water, the level should stop falling.",
+  "prompt": "Suppose the farms stopped drawing irrigation water on July 1 while the weather stayed hot and dry. Which scientist(s) would predict that the level would soon stop falling?",
+  "choices": [
+   "Scientist 3 only",
+   "Scientist 2 only",
+   "Scientists 1, 2, and 3",
+   "Scientists 2 and 3 only"
+  ],
+  "correct_answer": "Scientist 3 only",
+  "explanation": "Only Scientist 3 blames the irrigation withdrawals. Scientist 2 says evaporation continues in hot, dry weather, and Scientist 1 says seepage continues in any weather.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "apply viewpoints to a new case",
+  "difficulty": "medium",
+  "topic_tag": "Why the Water in Marrow Canal Is Falling"
+ },
+ {
+  "id": "ASV12c-P7-Q6",
+  "passage_id": "sc12c-p7",
+  "passage_title": "Why the Water in Marrow Canal Is Falling",
+  "format": "conflicting_viewpoints",
+  "passage": "Over one summer, the water level in Marrow Canal fell by 30 cm, although the same amount of river water entered the canal at its upper end each day. Three scientists explain the fall.\n\nScientist 1\nThe clay lining of the canal has cracked, and water is seeping into the ground beneath it. Seepage is greatest in the lowest reach of the canal, where the water is deepest and presses hardest on the lining. Seepage does not depend on the weather, so the level should keep falling in cool, cloudy weeks as fast as in hot ones. Water seeping from the canal should raise the water in wells near the lowest reach.\n\nScientist 2\nThe summer was unusually hot and dry, and the water is evaporating. The canal's surface covers about 150,000 square meters (m²), and in hot, sunny weather about 4 mm of water evaporates from it each day. Evaporation is about the same per square meter all along the canal, and it nearly stops in cool, cloudy weeks, so the level should stop falling then.\n\nScientist 3\nFarms along the middle of the canal began drawing much more water for irrigation through their intake gate this summer. The level falls only in the part of the canal downstream of the farms' intake gate; upstream of the gate it has hardly changed. When the farms stop drawing water, the level should stop falling.",
+  "prompt": "Based on Scientist 2's figures, about how much water evaporates from the canal each day in hot, sunny weather?",
+  "choices": [
+   "60 m³",
+   "600 m³",
+   "1,500 m³",
+   "6,000 m³"
+  ],
+  "correct_answer": "600 m³",
+  "explanation": "150,000 m² × 4 mm = 150,000 m² × 0.004 m = 600 m³, so \"600 m³\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a quantity from a viewpoint",
+  "difficulty": "hard",
+  "topic_tag": "Why the Water in Marrow Canal Is Falling"
+ },
+ {
+  "id": "ASV12c-P8-Q1",
+  "passage_id": "sc12c-p8",
+  "passage_title": "Three Coatings on Steel in Salt Spray",
+  "format": "data_representation",
+  "passage": "Engineers coated identical steel panels with one of three experimental coatings (Zelt, Varn, or Prask) or left them uncoated. The panels were placed in a chamber filled with a fine salt-water spray that speeds up rusting. At 2, 4, 8, and 16 weeks, the engineers measured the mass of metal each panel had lost to rust, in grams per square meter of panel surface (g/m²) (see Table 1).",
+  "prompt": "After 8 weeks, which coated panel had lost the least metal?",
+  "choices": [
+   "Prask",
+   "All three lost the same amount",
+   "Varn",
+   "Zelt"
+  ],
+  "correct_answer": "Zelt",
+  "explanation": "After 8 weeks: Zelt 20, Varn 25, Prask 31 g/m². The least is \"Zelt\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compare values in one column",
+  "difficulty": "medium",
+  "topic_tag": "Three Coatings on Steel in Salt Spray",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Metal lost to rust (g/m²)",
+   "colLabels": [
+    "2 weeks",
+    "4 weeks",
+    "8 weeks",
+    "16 weeks"
+   ],
+   "rowLabels": [
+    "No coating",
+    "Zelt",
+    "Varn",
+    "Prask"
+   ],
+   "cells": [
+    [
+     40,
+     85,
+     170,
+     330
+    ],
+    [
+     5,
+     9,
+     20,
+     64
+    ],
+    [
+     12,
+     18,
+     25,
+     33
+    ],
+    [
+     2,
+     6,
+     31,
+     120
+    ]
+   ]
+  },
+  "consistency_check": "Uncoated loss roughly doubles each interval (40, 85, 170, 330); Zelt is lowest early but fails by 16 weeks; Varn rises slowly; Prask stays low then jumps; coatings are invented."
+ },
+ {
+  "id": "ASV12c-P8-Q2",
+  "passage_id": "sc12c-p8",
+  "passage_title": "Three Coatings on Steel in Salt Spray",
+  "format": "data_representation",
+  "passage": "Engineers coated identical steel panels with one of three experimental coatings (Zelt, Varn, or Prask) or left them uncoated. The panels were placed in a chamber filled with a fine salt-water spray that speeds up rusting. At 2, 4, 8, and 16 weeks, the engineers measured the mass of metal each panel had lost to rust, in grams per square meter of panel surface (g/m²) (see Table 1).",
+  "prompt": "At which time did the Varn panel first show less metal loss than the Zelt panel?",
+  "choices": [
+   "2 weeks",
+   "4 weeks",
+   "8 weeks",
+   "16 weeks"
+  ],
+  "correct_answer": "16 weeks",
+  "explanation": "Varn vs Zelt: 12 vs 5, 18 vs 9, 25 vs 20, 33 vs 64 g/m². Varn is first lower at \"16 weeks\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compare two series over time",
+  "difficulty": "hard",
+  "topic_tag": "Three Coatings on Steel in Salt Spray",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Metal lost to rust (g/m²)",
+   "colLabels": [
+    "2 weeks",
+    "4 weeks",
+    "8 weeks",
+    "16 weeks"
+   ],
+   "rowLabels": [
+    "No coating",
+    "Zelt",
+    "Varn",
+    "Prask"
+   ],
+   "cells": [
+    [
+     40,
+     85,
+     170,
+     330
+    ],
+    [
+     5,
+     9,
+     20,
+     64
+    ],
+    [
+     12,
+     18,
+     25,
+     33
+    ],
+    [
+     2,
+     6,
+     31,
+     120
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12c-P8-Q3",
+  "passage_id": "sc12c-p8",
+  "passage_title": "Three Coatings on Steel in Salt Spray",
+  "format": "data_representation",
+  "passage": "Engineers coated identical steel panels with one of three experimental coatings (Zelt, Varn, or Prask) or left them uncoated. The panels were placed in a chamber filled with a fine salt-water spray that speeds up rusting. At 2, 4, 8, and 16 weeks, the engineers measured the mass of metal each panel had lost to rust, in grams per square meter of panel surface (g/m²) (see Table 1).",
+  "prompt": "From 8 weeks to 16 weeks, the metal lost by the Prask panel increased by about what factor?",
+  "choices": [
+   "About 1.5",
+   "About 2",
+   "About 4",
+   "About 8"
+  ],
+  "correct_answer": "About 4",
+  "explanation": "Prask: 31 g/m² at 8 weeks and 120 g/m² at 16 weeks. 120/31 is about 3.9, so \"About 4\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a ratio",
+  "difficulty": "medium",
+  "topic_tag": "Three Coatings on Steel in Salt Spray",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Metal lost to rust (g/m²)",
+   "colLabels": [
+    "2 weeks",
+    "4 weeks",
+    "8 weeks",
+    "16 weeks"
+   ],
+   "rowLabels": [
+    "No coating",
+    "Zelt",
+    "Varn",
+    "Prask"
+   ],
+   "cells": [
+    [
+     40,
+     85,
+     170,
+     330
+    ],
+    [
+     5,
+     9,
+     20,
+     64
+    ],
+    [
+     12,
+     18,
+     25,
+     33
+    ],
+    [
+     2,
+     6,
+     31,
+     120
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12c-P8-Q4",
+  "passage_id": "sc12c-p8",
+  "passage_title": "Three Coatings on Steel in Salt Spray",
+  "format": "data_representation",
+  "passage": "Engineers coated identical steel panels with one of three experimental coatings (Zelt, Varn, or Prask) or left them uncoated. The panels were placed in a chamber filled with a fine salt-water spray that speeds up rusting. At 2, 4, 8, and 16 weeks, the engineers measured the mass of metal each panel had lost to rust, in grams per square meter of panel surface (g/m²) (see Table 1).",
+  "prompt": "If the uncoated panel had stayed in the chamber for 32 weeks, its total metal loss would most likely have been:",
+  "choices": [
+   "less than 170 g/m².",
+   "between 170 and 330 g/m².",
+   "between 330 and 500 g/m².",
+   "more than 500 g/m²."
+  ],
+  "correct_answer": "more than 500 g/m².",
+  "explanation": "The uncoated loss about doubled each time the exposure doubled: 40, 85, 170, 330 g/m². Continuing the pattern gives about 650 g/m² at 32 weeks, \"more than 500 g/m².\"",
+  "domain": "Interpretation of Data",
+  "subskill": "extrapolate a trend",
+  "difficulty": "medium",
+  "topic_tag": "Three Coatings on Steel in Salt Spray",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Metal lost to rust (g/m²)",
+   "colLabels": [
+    "2 weeks",
+    "4 weeks",
+    "8 weeks",
+    "16 weeks"
+   ],
+   "rowLabels": [
+    "No coating",
+    "Zelt",
+    "Varn",
+    "Prask"
+   ],
+   "cells": [
+    [
+     40,
+     85,
+     170,
+     330
+    ],
+    [
+     5,
+     9,
+     20,
+     64
+    ],
+    [
+     12,
+     18,
+     25,
+     33
+    ],
+    [
+     2,
+     6,
+     31,
+     120
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12c-P8-Q5",
+  "passage_id": "sc12c-p8",
+  "passage_title": "Three Coatings on Steel in Salt Spray",
+  "format": "data_representation",
+  "passage": "Engineers coated identical steel panels with one of three experimental coatings (Zelt, Varn, or Prask) or left them uncoated. The panels were placed in a chamber filled with a fine salt-water spray that speeds up rusting. At 2, 4, 8, and 16 weeks, the engineers measured the mass of metal each panel had lost to rust, in grams per square meter of panel surface (g/m²) (see Table 1).",
+  "prompt": "At 4 weeks, the uncoated panel had lost about how many times as much metal as the Varn panel?",
+  "choices": [
+   "About 2 times",
+   "About 3 times",
+   "About 5 times",
+   "About 9 times"
+  ],
+  "correct_answer": "About 5 times",
+  "explanation": "At 4 weeks: uncoated 85 g/m² and Varn 18 g/m². 85/18 is about 4.7, so \"About 5 times\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a ratio",
+  "difficulty": "medium",
+  "topic_tag": "Three Coatings on Steel in Salt Spray",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Metal lost to rust (g/m²)",
+   "colLabels": [
+    "2 weeks",
+    "4 weeks",
+    "8 weeks",
+    "16 weeks"
+   ],
+   "rowLabels": [
+    "No coating",
+    "Zelt",
+    "Varn",
+    "Prask"
+   ],
+   "cells": [
+    [
+     40,
+     85,
+     170,
+     330
+    ],
+    [
+     5,
+     9,
+     20,
+     64
+    ],
+    [
+     12,
+     18,
+     25,
+     33
+    ],
+    [
+     2,
+     6,
+     31,
+     120
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12c-P9-Q1",
+  "passage_id": "sc12c-p9",
+  "passage_title": "Temperature and the Germination of Tessel Grass Seeds",
+  "format": "data_representation",
+  "passage": "Tessel grass is planted to hold soil on hillsides. Botanists placed 200 Tessel grass seeds on damp paper at each of six constant temperatures and recorded the percent of the seeds that germinated (sprouted) within 14 days (see Figure 1).",
+  "prompt": "The greatest percent of seeds germinated at what temperature?",
+  "choices": [
+   "10°C",
+   "15°C",
+   "20°C",
+   "25°C"
+  ],
+  "correct_answer": "20°C",
+  "explanation": "Germination: 6, 30, 80, 94, 62, 12% from 5°C to 30°C. The greatest, 94%, is at \"20°C\".",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a maximum",
+  "difficulty": "medium",
+  "topic_tag": "Temperature and the Germination of Tessel Grass Seeds",
+  "graphic": {
+   "type": "bar",
+   "xLabel": "Temperature (°C)",
+   "yLabel": "Seeds germinated (%)",
+   "bars": [
+    {
+     "label": "5",
+     "value": 6
+    },
+    {
+     "label": "10",
+     "value": 30
+    },
+    {
+     "label": "15",
+     "value": 80
+    },
+    {
+     "label": "20",
+     "value": 94
+    },
+    {
+     "label": "25",
+     "value": 62
+    },
+    {
+     "label": "30",
+     "value": 12
+    }
+   ],
+   "caption": "Figure 1. Germination of Tessel grass seeds after 14 days"
+  },
+  "consistency_check": "Germination peaks at 20 C (94%) and falls on both sides; the 45% cutoff is at least 11.8 points (half of a 23.5-point tick) from every bar (30 and 62); increases 24, 50, 14; the grass is invented."
+ },
+ {
+  "id": "ASV12c-P9-Q2",
+  "passage_id": "sc12c-p9",
+  "passage_title": "Temperature and the Germination of Tessel Grass Seeds",
+  "format": "data_representation",
+  "passage": "Tessel grass is planted to hold soil on hillsides. Botanists placed 200 Tessel grass seeds on damp paper at each of six constant temperatures and recorded the percent of the seeds that germinated (sprouted) within 14 days (see Figure 1).",
+  "prompt": "Seeds kept at 27.5°C would most likely have a germination percent:",
+  "choices": [
+   "less than 12%.",
+   "between 12% and 62%.",
+   "between 62% and 94%.",
+   "greater than 94%."
+  ],
+  "correct_answer": "between 12% and 62%.",
+  "explanation": "Germination falls from 62% at 25°C to 12% at 30°C, so at 27.5°C it would most likely be \"between 12% and 62%.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate between bars",
+  "difficulty": "medium",
+  "topic_tag": "Temperature and the Germination of Tessel Grass Seeds",
+  "graphic": {
+   "type": "bar",
+   "xLabel": "Temperature (°C)",
+   "yLabel": "Seeds germinated (%)",
+   "bars": [
+    {
+     "label": "5",
+     "value": 6
+    },
+    {
+     "label": "10",
+     "value": 30
+    },
+    {
+     "label": "15",
+     "value": 80
+    },
+    {
+     "label": "20",
+     "value": 94
+    },
+    {
+     "label": "25",
+     "value": 62
+    },
+    {
+     "label": "30",
+     "value": 12
+    }
+   ],
+   "caption": "Figure 1. Germination of Tessel grass seeds after 14 days"
+  }
+ },
+ {
+  "id": "ASV12c-P9-Q3",
+  "passage_id": "sc12c-p9",
+  "passage_title": "Temperature and the Germination of Tessel Grass Seeds",
+  "format": "data_representation",
+  "passage": "Tessel grass is planted to hold soil on hillsides. Botanists placed 200 Tessel grass seeds on damp paper at each of six constant temperatures and recorded the percent of the seeds that germinated (sprouted) within 14 days (see Figure 1).",
+  "prompt": "A seed mix is planted only at temperatures at which at least 45% of seeds germinate. Which temperatures meet this requirement?",
+  "choices": [
+   "20°C only",
+   "15°C and 20°C only",
+   "15°C, 20°C, and 25°C only",
+   "10°C, 15°C, 20°C, and 25°C only"
+  ],
+  "correct_answer": "15°C, 20°C, and 25°C only",
+  "explanation": "15°C (80%), 20°C (94%), and 25°C (62%) reach at least 45%; 10°C gave 30%. So \"15°C, 20°C, and 25°C only\".",
+  "domain": "Interpretation of Data",
+  "subskill": "apply a threshold to a figure",
+  "difficulty": "medium",
+  "topic_tag": "Temperature and the Germination of Tessel Grass Seeds",
+  "graphic": {
+   "type": "bar",
+   "xLabel": "Temperature (°C)",
+   "yLabel": "Seeds germinated (%)",
+   "bars": [
+    {
+     "label": "5",
+     "value": 6
+    },
+    {
+     "label": "10",
+     "value": 30
+    },
+    {
+     "label": "15",
+     "value": 80
+    },
+    {
+     "label": "20",
+     "value": 94
+    },
+    {
+     "label": "25",
+     "value": 62
+    },
+    {
+     "label": "30",
+     "value": 12
+    }
+   ],
+   "caption": "Figure 1. Germination of Tessel grass seeds after 14 days"
+  }
+ },
+ {
+  "id": "ASV12c-P9-Q4",
+  "passage_id": "sc12c-p9",
+  "passage_title": "Temperature and the Germination of Tessel Grass Seeds",
+  "format": "data_representation",
+  "passage": "Tessel grass is planted to hold soil on hillsides. Botanists placed 200 Tessel grass seeds on damp paper at each of six constant temperatures and recorded the percent of the seeds that germinated (sprouted) within 14 days (see Figure 1).",
+  "prompt": "Between which two adjacent temperatures did germination increase the most?",
+  "choices": [
+   "5°C and 10°C",
+   "10°C and 15°C",
+   "15°C and 20°C",
+   "20°C and 25°C"
+  ],
+  "correct_answer": "10°C and 15°C",
+  "explanation": "Increases: 6 to 30 (24 points), 30 to 80 (50 points), 80 to 94 (14 points); germination fell from 20°C to 25°C. The largest increase is between \"10°C and 15°C\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compare changes between adjacent values",
+  "difficulty": "medium",
+  "topic_tag": "Temperature and the Germination of Tessel Grass Seeds",
+  "graphic": {
+   "type": "bar",
+   "xLabel": "Temperature (°C)",
+   "yLabel": "Seeds germinated (%)",
+   "bars": [
+    {
+     "label": "5",
+     "value": 6
+    },
+    {
+     "label": "10",
+     "value": 30
+    },
+    {
+     "label": "15",
+     "value": 80
+    },
+    {
+     "label": "20",
+     "value": 94
+    },
+    {
+     "label": "25",
+     "value": 62
+    },
+    {
+     "label": "30",
+     "value": 12
+    }
+   ],
+   "caption": "Figure 1. Germination of Tessel grass seeds after 14 days"
+  }
+ },
+ {
+  "id": "ASV12c-P9-Q5",
+  "passage_id": "sc12c-p9",
+  "passage_title": "Temperature and the Germination of Tessel Grass Seeds",
+  "format": "data_representation",
+  "passage": "Tessel grass is planted to hold soil on hillsides. Botanists placed 200 Tessel grass seeds on damp paper at each of six constant temperatures and recorded the percent of the seeds that germinated (sprouted) within 14 days (see Figure 1).",
+  "prompt": "As the temperature increased from 20°C to 30°C, the percent of seeds that germinated:",
+  "choices": [
+   "decreased and then increased.",
+   "decreased only.",
+   "increased only.",
+   "increased and then decreased."
+  ],
+  "correct_answer": "decreased only.",
+  "explanation": "Germination was 94% at 20°C, 62% at 25°C, and 12% at 30°C, a fall at each step of 32 and 50 points, so it \"decreased only.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "describe a trend",
+  "difficulty": "medium",
+  "topic_tag": "Temperature and the Germination of Tessel Grass Seeds",
+  "graphic": {
+   "type": "bar",
+   "xLabel": "Temperature (°C)",
+   "yLabel": "Seeds germinated (%)",
+   "bars": [
+    {
+     "label": "5",
+     "value": 6
+    },
+    {
+     "label": "10",
+     "value": 30
+    },
+    {
+     "label": "15",
+     "value": 80
+    },
+    {
+     "label": "20",
+     "value": 94
+    },
+    {
+     "label": "25",
+     "value": 62
+    },
+    {
+     "label": "30",
+     "value": 12
+    }
+   ],
+   "caption": "Figure 1. Germination of Tessel grass seeds after 14 days"
+  }
+ }
+]
