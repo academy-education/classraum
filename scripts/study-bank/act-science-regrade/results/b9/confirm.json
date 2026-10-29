@@ -1,0 +1,15 @@
+{
+ "items": {},
+ "batch": {
+  "pattern": {
+   "named_by_both": true,
+   "rule": "In a claim-evaluation item (Yes/No + reason, or 'weakens X, because'), the key is the only option whose reason tests exactly the claim as the stem states it (same variable, step or range and subject, with a value that contradicts it).",
+   "decides": [
+    "ASV12a-P1-Q4",
+    "ASV12a-P2-Q4",
+    "ASV12a-P7-Q4"
+   ],
+   "why": "Both graders named the same rule on the same three items (3 of 3 vs 25% chance). Every item it decides is already dropped by R6 (both graders, 2+ distractors), so R8 removes nothing further and no blind re-application could change the outcome. Recorded for the brief: the Yes/No template survived the v11 lessons."
+  }
+ }
+}

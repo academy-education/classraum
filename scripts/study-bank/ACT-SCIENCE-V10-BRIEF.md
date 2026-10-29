@@ -86,3 +86,15 @@ Every key was right; the passages died on guessability the brief already warns a
 - **No option may be the only one connected to a stem cue** (P7-Q5 "distance from the road" → only exhaust option;
   P5-Q6 "briefly" → only duration option).
 - Write at most one "agree" item and one Yes/No item per passage, and vary their shape across the cohort.
+
+## v12 lessons (b9, 2026-10-29: 3 of 7 passages cleared — the prereg's "revise" band)
+
+Every key correct again. The v11 rule for Yes/No items did not hold: both graders independently named the same
+cross-item rule (the key is the only option whose reason tests exactly the claim as worded).
+
+- **Do not write "Yes/No + reason" or "weakens X, because…" items.** Use interpolation/extrapolation/trend reads,
+  "which result is consistent with Scientist X", and predictions from a stated model instead.
+- **Design items: no convergent option sets.** The key must not be the option sharing the most levels with the
+  others; no mirror-reversed pairs ("higher by 11" / "lower by 11"); no two trivially invalid designs (changes two
+  factors / changes none) among the four.
+- **Options must not quote a viewpoint's claim so that the finding alone rules them out** (P7-Q4).

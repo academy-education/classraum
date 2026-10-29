@@ -6067,3 +6067,12 @@ structural checks are pre-flight only. See CLAUDE.md.
   recomputed by script; `act-bank-helper check science` passes; key slots A11 B11 C10 D10, key uniquely longest 3/42.
   Bars: >=4/7 keep, 2-3 revise, 0-1 stop. Not inserted; cold packets built for g1/g2 under
   `scratchpad/act-science-regrade/b9-g{1,2}/`.
+
+- **2026-10-29 — b9 (act-science-v12a) graded: 3 of 7 passages cleared (P4, P5, P6; 18 of 42 items).** 42/42
+  keys correct, 0 fact errors, 0 second-defensible, no re-check needed. Drops by rule: R6 on P1-Q4, P2-Q4,
+  P3-Q3, P7-Q4 (both graders); passage_incomplete 20. Both graders named the SAME cross-item rule (claim-
+  evaluation items: the key is the only reason that tests the claim as worded) on P1-Q4/P2-Q4/P7-Q4; R8
+  confirmed named_by_both, but every item it decides was already dropped by R6, so it removed nothing more.
+  Prereg band: 2-3 of 7 = revise the brief. Brief amended ("v12 lessons": no Yes/No-with-reason items, no
+  convergent design option sets); the parallel v12b author was told before its packets were built. Up from 1/7
+  in b8. Release of the 18 cleared rows not yet wired.
