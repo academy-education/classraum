@@ -6326,3 +6326,16 @@ structural checks are pre-flight only. See CLAUDE.md.
   (0.6-1.0 s over HTTP, 2.6 MB; 517 ms in SQL); `parseLiveBankRows` refuses a partial read; usage pages at
   most 6 at a time. Equivalence checked on live data: 15,085 rows, 0 differences in family/domain/source/
   cohort/created_at/multiple-choice/method/verify_meta keys versus the old paged read.
+
+- **2026-10-29 — Agent review of staged SSAT/MAP items: gate built, not run (owner: "There is no way he can check
+  all of these").** Prereg `AGENT-REVIEW-SSAT-MAP.prereg.md` (6b8e71cd, committed before any packet or grader).
+  Population 1,558 staged items: ssat/reading 504 (14 cohorts), ssat/verbal 701 (5), map/language 253 (5),
+  map/reading 100 (3). map/science 245 EXCLUDED — every staged cohort already has a pre-registered with-source agent
+  grade in science-release.json and waits only on its blind-only run. 39 packets (14 / 14 / 7 / 4), whole passages,
+  seeded unbiased option deal (key positions flat: 4-option 90/87/82/94, 5-option 229/240/250/254/232), three fresh
+  graders each on COFOUNDER-BRIEF-v2 (a, b plain; c adversarial) = 117 spawns, prompts in
+  scratchpad/agent-review/MANIFEST.json. Rules: any grader's non-unique verdict drops the item; a dropped item takes
+  its passage; a pattern named by two graders on >= 3 shared items holds the cohort. Scorer
+  `agent-review-score.mjs` (pure rules in agent-review-core.mjs; jest agent-review-score.test.ts, each guard
+  break-tested) refuses missing/malformed grader files. Release still needs the owner's go; Daniel then audits a
+  pooled 12 per stratum per wave.
