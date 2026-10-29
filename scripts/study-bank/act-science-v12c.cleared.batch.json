@@ -1,0 +1,937 @@
+[
+ {
+  "id": "ASV12c-P5-Q1",
+  "passage_id": "sc12c-p5",
+  "passage_title": "Why Sarn Maples on Ketter Ridge Turn Red Early",
+  "format": "conflicting_viewpoints",
+  "passage": "Sarn maple leaves turn from green to red in autumn when the trees begin making a red pigment. On Ketter Ridge, Sarn maples turn red about 10 days earlier each year than Sarn maples in the valley below. Three scientists explain the difference.\n\nScientist 1\nThe trees begin making the red pigment after the first nights colder than 5°C. The ridge is higher than the valley, so it reaches nights below 5°C about 10 days sooner each autumn. In a year when autumn nights stay warm, ridge and valley trees should turn red at about the same time.\n\nScientist 2\nThe trees begin making the red pigment when the soil around their roots dries below 15% moisture. Ridge soil is thin and drains quickly, so it falls below 15% by late August, while valley soil stays moist into September. Watering the soil around ridge trees through the autumn would delay their reddening.\n\nScientist 3\nTrees in soil poor in nitrogen begin making the red pigment sooner, whatever the temperature or moisture. Ridge soil has much less nitrogen than valley soil. Adding nitrogen fertilizer to the soil around ridge trees would delay their reddening.",
+  "prompt": "Which scientist(s) would predict that watering the soil around ridge trees through the autumn would delay their reddening?",
+  "choices": [
+   "Scientists 2 and 3 only",
+   "Scientist 2 only",
+   "Scientist 1 only",
+   "Scientists 1, 2, and 3"
+  ],
+  "correct_answer": "Scientist 2 only",
+  "explanation": "Only Scientist 2 ties reddening to soil moisture and says watering would delay it. Scientist 1 blames cold nights and Scientist 3 says nitrogen acts whatever the moisture.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "apply viewpoints to a new case",
+  "difficulty": "medium",
+  "topic_tag": "Why Sarn Maples on Ketter Ridge Turn Red Early",
+  "consistency_check": "Each scientist names a different trigger with a checkable consequence: S1 nights below 5 C (cold nights; warm-night years should remove the gap), S2 soil moisture below 15% (watering should delay), S3 low soil nitrogen (fertilizing should delay; independent of weather)."
+ },
+ {
+  "id": "ASV12c-P5-Q2",
+  "passage_id": "sc12c-p5",
+  "passage_title": "Why Sarn Maples on Ketter Ridge Turn Red Early",
+  "format": "conflicting_viewpoints",
+  "passage": "Sarn maple leaves turn from green to red in autumn when the trees begin making a red pigment. On Ketter Ridge, Sarn maples turn red about 10 days earlier each year than Sarn maples in the valley below. Three scientists explain the difference.\n\nScientist 1\nThe trees begin making the red pigment after the first nights colder than 5°C. The ridge is higher than the valley, so it reaches nights below 5°C about 10 days sooner each autumn. In a year when autumn nights stay warm, ridge and valley trees should turn red at about the same time.\n\nScientist 2\nThe trees begin making the red pigment when the soil around their roots dries below 15% moisture. Ridge soil is thin and drains quickly, so it falls below 15% by late August, while valley soil stays moist into September. Watering the soil around ridge trees through the autumn would delay their reddening.\n\nScientist 3\nTrees in soil poor in nitrogen begin making the red pigment sooner, whatever the temperature or moisture. Ridge soil has much less nitrogen than valley soil. Adding nitrogen fertilizer to the soil around ridge trees would delay their reddening.",
+  "prompt": "In a year when no night fell below 5°C until late October, ridge trees still turned red about 10 days before valley trees. This finding is inconsistent with the view(s) of which scientist(s)?",
+  "choices": [
+   "Scientist 2 only",
+   "Scientists 1 and 2 only",
+   "Scientist 3 only",
+   "Scientist 1 only"
+  ],
+  "correct_answer": "Scientist 1 only",
+  "explanation": "Scientist 1 says that with warm autumn nights the ridge and valley trees should turn red at about the same time; a 10-day gap anyway contradicts that. Scientists 2 and 3 do not depend on night temperature.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test viewpoints against a new result",
+  "difficulty": "hard",
+  "topic_tag": "Why Sarn Maples on Ketter Ridge Turn Red Early"
+ },
+ {
+  "id": "ASV12c-P5-Q3",
+  "passage_id": "sc12c-p5",
+  "passage_title": "Why Sarn Maples on Ketter Ridge Turn Red Early",
+  "format": "conflicting_viewpoints",
+  "passage": "Sarn maple leaves turn from green to red in autumn when the trees begin making a red pigment. On Ketter Ridge, Sarn maples turn red about 10 days earlier each year than Sarn maples in the valley below. Three scientists explain the difference.\n\nScientist 1\nThe trees begin making the red pigment after the first nights colder than 5°C. The ridge is higher than the valley, so it reaches nights below 5°C about 10 days sooner each autumn. In a year when autumn nights stay warm, ridge and valley trees should turn red at about the same time.\n\nScientist 2\nThe trees begin making the red pigment when the soil around their roots dries below 15% moisture. Ridge soil is thin and drains quickly, so it falls below 15% by late August, while valley soil stays moist into September. Watering the soil around ridge trees through the autumn would delay their reddening.\n\nScientist 3\nTrees in soil poor in nitrogen begin making the red pigment sooner, whatever the temperature or moisture. Ridge soil has much less nitrogen than valley soil. Adding nitrogen fertilizer to the soil around ridge trees would delay their reddening.",
+  "prompt": "Measurements show that ridge soil and valley soil contain the same amount of nitrogen. This result most weakens the view of which scientist?",
+  "choices": [
+   "Scientist 2",
+   "Scientist 1",
+   "None of the scientists",
+   "Scientist 3"
+  ],
+  "correct_answer": "Scientist 3",
+  "explanation": "Scientist 3 says ridge soil has much less nitrogen than valley soil. Equal nitrogen contradicts that claim. Scientists 1 and 2 say nothing about nitrogen.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test viewpoints against a new result",
+  "difficulty": "medium",
+  "topic_tag": "Why Sarn Maples on Ketter Ridge Turn Red Early"
+ },
+ {
+  "id": "ASV12c-P5-Q4",
+  "passage_id": "sc12c-p5",
+  "passage_title": "Why Sarn Maples on Ketter Ridge Turn Red Early",
+  "format": "conflicting_viewpoints",
+  "passage": "Sarn maple leaves turn from green to red in autumn when the trees begin making a red pigment. On Ketter Ridge, Sarn maples turn red about 10 days earlier each year than Sarn maples in the valley below. Three scientists explain the difference.\n\nScientist 1\nThe trees begin making the red pigment after the first nights colder than 5°C. The ridge is higher than the valley, so it reaches nights below 5°C about 10 days sooner each autumn. In a year when autumn nights stay warm, ridge and valley trees should turn red at about the same time.\n\nScientist 2\nThe trees begin making the red pigment when the soil around their roots dries below 15% moisture. Ridge soil is thin and drains quickly, so it falls below 15% by late August, while valley soil stays moist into September. Watering the soil around ridge trees through the autumn would delay their reddening.\n\nScientist 3\nTrees in soil poor in nitrogen begin making the red pigment sooner, whatever the temperature or moisture. Ridge soil has much less nitrogen than valley soil. Adding nitrogen fertilizer to the soil around ridge trees would delay their reddening.",
+  "prompt": "A Sarn maple on the ridge grows beside a spring, so the soil around it never dries below 30% moisture. It turns red at the same time as the valley trees. This observation is most consistent with the view of which scientist?",
+  "choices": [
+   "None of the scientists",
+   "Scientist 3",
+   "Scientist 1",
+   "Scientist 2"
+  ],
+  "correct_answer": "Scientist 2",
+  "explanation": "The tree feels the same cold nights as other ridge trees (Scientist 1 would predict early reddening) and grows in the same ridge soil (Scientist 3 would too). Only Scientist 2, who blames dry soil, predicts that a tree in moist soil would turn red on the valley schedule.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "use a viewpoint to explain a new observation",
+  "difficulty": "hard",
+  "topic_tag": "Why Sarn Maples on Ketter Ridge Turn Red Early"
+ },
+ {
+  "id": "ASV12c-P5-Q5",
+  "passage_id": "sc12c-p5",
+  "passage_title": "Why Sarn Maples on Ketter Ridge Turn Red Early",
+  "format": "conflicting_viewpoints",
+  "passage": "Sarn maple leaves turn from green to red in autumn when the trees begin making a red pigment. On Ketter Ridge, Sarn maples turn red about 10 days earlier each year than Sarn maples in the valley below. Three scientists explain the difference.\n\nScientist 1\nThe trees begin making the red pigment after the first nights colder than 5°C. The ridge is higher than the valley, so it reaches nights below 5°C about 10 days sooner each autumn. In a year when autumn nights stay warm, ridge and valley trees should turn red at about the same time.\n\nScientist 2\nThe trees begin making the red pigment when the soil around their roots dries below 15% moisture. Ridge soil is thin and drains quickly, so it falls below 15% by late August, while valley soil stays moist into September. Watering the soil around ridge trees through the autumn would delay their reddening.\n\nScientist 3\nTrees in soil poor in nitrogen begin making the red pigment sooner, whatever the temperature or moisture. Ridge soil has much less nitrogen than valley soil. Adding nitrogen fertilizer to the soil around ridge trees would delay their reddening.",
+  "prompt": "According to Scientist 2, the trees begin making the red pigment when soil moisture falls below what value?",
+  "choices": [
+   "5%",
+   "10%",
+   "15%",
+   "20%"
+  ],
+  "correct_answer": "15%",
+  "explanation": "Scientist 2 says the trees begin making the pigment when the soil \"dries below 15% moisture.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a value in a viewpoint",
+  "difficulty": "medium",
+  "topic_tag": "Why Sarn Maples on Ketter Ridge Turn Red Early"
+ },
+ {
+  "id": "ASV12c-P5-Q6",
+  "passage_id": "sc12c-p5",
+  "passage_title": "Why Sarn Maples on Ketter Ridge Turn Red Early",
+  "format": "conflicting_viewpoints",
+  "passage": "Sarn maple leaves turn from green to red in autumn when the trees begin making a red pigment. On Ketter Ridge, Sarn maples turn red about 10 days earlier each year than Sarn maples in the valley below. Three scientists explain the difference.\n\nScientist 1\nThe trees begin making the red pigment after the first nights colder than 5°C. The ridge is higher than the valley, so it reaches nights below 5°C about 10 days sooner each autumn. In a year when autumn nights stay warm, ridge and valley trees should turn red at about the same time.\n\nScientist 2\nThe trees begin making the red pigment when the soil around their roots dries below 15% moisture. Ridge soil is thin and drains quickly, so it falls below 15% by late August, while valley soil stays moist into September. Watering the soil around ridge trees through the autumn would delay their reddening.\n\nScientist 3\nTrees in soil poor in nitrogen begin making the red pigment sooner, whatever the temperature or moisture. Ridge soil has much less nitrogen than valley soil. Adding nitrogen fertilizer to the soil around ridge trees would delay their reddening.",
+  "prompt": "Which scientists attribute the early reddening to a condition of the soil on the ridge?",
+  "choices": [
+   "Scientists 1 and 3 only",
+   "Scientists 1 and 2 only",
+   "Scientists 1, 2, and 3",
+   "Scientists 2 and 3 only"
+  ],
+  "correct_answer": "Scientists 2 and 3 only",
+  "explanation": "Scientist 2 blames soil moisture and Scientist 3 blames soil nitrogen. Scientist 1 blames cold nights, a condition of the air, not the soil.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "compare claims across viewpoints",
+  "difficulty": "medium",
+  "topic_tag": "Why Sarn Maples on Ketter Ridge Turn Red Early"
+ },
+ {
+  "id": "ASV12c-P6-Q1",
+  "passage_id": "sc12c-p6",
+  "passage_title": "Why Harl Moths Gather at the Streetlamps of Brennan",
+  "format": "conflicting_viewpoints",
+  "passage": "On summer nights, large numbers of Harl moths gather around the streetlamps of the town of Brennan. Three scientists explain why.\n\nScientist 1\nHarl moths fly in a straight line by keeping a distant, bright light, normally the Moon, at a fixed angle to their path. A nearby lamp is so close that keeping it at a fixed angle makes a moth circle it. The moths are not trying to reach the lamp; they are trapped by their own way of steering. More moths should gather at lamps on moonless nights, when no brighter light competes with the lamps.\n\nScientist 2\nHarl moths cannot fly well when the air is colder than 10°C, and they move toward warm air. Streetlamps warm the air around them. More moths should gather at lamps on cold nights, and an unlit pole heated to the same temperature as a lamp should attract moths just as well.\n\nScientist 3\nThe flowers Harl moths feed on reflect ultraviolet (UV) light in patterns that guide the moths to nectar. The old streetlamps of Brennan give off UV light, and the moths approach them as if they were flowers. Many moths at the lamps extend their feeding tongues. Lamps that give off no UV light should attract few moths.",
+  "prompt": "Brennan replaced some old lamps with new lamps that give off no UV light. The new lamps attracted as many moths as the old ones. This finding is inconsistent with the view(s) of which scientist(s)?",
+  "choices": [
+   "Scientist 3 only",
+   "Scientists 1 and 3 only",
+   "Scientist 1 only",
+   "Scientist 2 only"
+  ],
+  "correct_answer": "Scientist 3 only",
+  "explanation": "Scientist 3 says lamps without UV should attract few moths, so equal numbers contradict that view. Scientists 1 and 2 do not depend on UV light.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test viewpoints against a new result",
+  "difficulty": "medium",
+  "topic_tag": "Why Harl Moths Gather at the Streetlamps of Brennan",
+  "consistency_check": "S1 navigation by a bright light at a fixed angle (more moths on moonless nights; moths circle, not trying to reach the lamp); S2 warmth below 10 C (a heated unlit pole should attract them; cold nights more); S3 ultraviolet resembling flowers (no-UV lamps attract few; moths extend tongues)."
+ },
+ {
+  "id": "ASV12c-P6-Q2",
+  "passage_id": "sc12c-p6",
+  "passage_title": "Why Harl Moths Gather at the Streetlamps of Brennan",
+  "format": "conflicting_viewpoints",
+  "passage": "On summer nights, large numbers of Harl moths gather around the streetlamps of the town of Brennan. Three scientists explain why.\n\nScientist 1\nHarl moths fly in a straight line by keeping a distant, bright light, normally the Moon, at a fixed angle to their path. A nearby lamp is so close that keeping it at a fixed angle makes a moth circle it. The moths are not trying to reach the lamp; they are trapped by their own way of steering. More moths should gather at lamps on moonless nights, when no brighter light competes with the lamps.\n\nScientist 2\nHarl moths cannot fly well when the air is colder than 10°C, and they move toward warm air. Streetlamps warm the air around them. More moths should gather at lamps on cold nights, and an unlit pole heated to the same temperature as a lamp should attract moths just as well.\n\nScientist 3\nThe flowers Harl moths feed on reflect ultraviolet (UV) light in patterns that guide the moths to nectar. The old streetlamps of Brennan give off UV light, and the moths approach them as if they were flowers. Many moths at the lamps extend their feeding tongues. Lamps that give off no UV light should attract few moths.",
+  "prompt": "Counts made on nights of the same temperature found more moths at the lamps on moonless nights than on nights with a full moon. This result is most consistent with the view of which scientist?",
+  "choices": [
+   "Scientist 2",
+   "Scientist 1",
+   "Scientist 3",
+   "None of the scientists"
+  ],
+  "correct_answer": "Scientist 1",
+  "explanation": "Scientist 1 predicts more moths on moonless nights, when the Moon does not compete with the lamps. With temperature the same, Scientist 2 predicts no difference, and Scientist 3 does not mention the Moon.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match a finding to a viewpoint",
+  "difficulty": "medium",
+  "topic_tag": "Why Harl Moths Gather at the Streetlamps of Brennan"
+ },
+ {
+  "id": "ASV12c-P6-Q3",
+  "passage_id": "sc12c-p6",
+  "passage_title": "Why Harl Moths Gather at the Streetlamps of Brennan",
+  "format": "conflicting_viewpoints",
+  "passage": "On summer nights, large numbers of Harl moths gather around the streetlamps of the town of Brennan. Three scientists explain why.\n\nScientist 1\nHarl moths fly in a straight line by keeping a distant, bright light, normally the Moon, at a fixed angle to their path. A nearby lamp is so close that keeping it at a fixed angle makes a moth circle it. The moths are not trying to reach the lamp; they are trapped by their own way of steering. More moths should gather at lamps on moonless nights, when no brighter light competes with the lamps.\n\nScientist 2\nHarl moths cannot fly well when the air is colder than 10°C, and they move toward warm air. Streetlamps warm the air around them. More moths should gather at lamps on cold nights, and an unlit pole heated to the same temperature as a lamp should attract moths just as well.\n\nScientist 3\nThe flowers Harl moths feed on reflect ultraviolet (UV) light in patterns that guide the moths to nectar. The old streetlamps of Brennan give off UV light, and the moths approach them as if they were flowers. Many moths at the lamps extend their feeding tongues. Lamps that give off no UV light should attract few moths.",
+  "prompt": "Which test would best help decide between the views of Scientist 1 and Scientist 2?",
+  "choices": [
+   "On a warm night, compare the moths at lamps that give off UV light with the moths at lamps that do not",
+   "Count how many of the moths at the lamps extend their feeding tongues",
+   "Compare the moths at the lamps of Brennan with the moths at the lamps of a nearby town with the same weather",
+   "On one night, compare the moths at an unlit pole heated to lamp temperature with the moths at a lit lamp that gives off no heat"
+  ],
+  "correct_answer": "On one night, compare the moths at an unlit pole heated to lamp temperature with the moths at a lit lamp that gives off no heat",
+  "explanation": "Scientist 1 says light draws the moths and Scientist 2 says warmth does. A heated unlit pole against a lit unheated lamp separates light from warmth. The UV comparison and the tongue count test Scientist 3, and comparing two similar towns separates no view.",
+  "domain": "Scientific Investigation",
+  "subskill": "design a test that separates viewpoints",
+  "difficulty": "hard",
+  "topic_tag": "Why Harl Moths Gather at the Streetlamps of Brennan"
+ },
+ {
+  "id": "ASV12c-P6-Q4",
+  "passage_id": "sc12c-p6",
+  "passage_title": "Why Harl Moths Gather at the Streetlamps of Brennan",
+  "format": "conflicting_viewpoints",
+  "passage": "On summer nights, large numbers of Harl moths gather around the streetlamps of the town of Brennan. Three scientists explain why.\n\nScientist 1\nHarl moths fly in a straight line by keeping a distant, bright light, normally the Moon, at a fixed angle to their path. A nearby lamp is so close that keeping it at a fixed angle makes a moth circle it. The moths are not trying to reach the lamp; they are trapped by their own way of steering. More moths should gather at lamps on moonless nights, when no brighter light competes with the lamps.\n\nScientist 2\nHarl moths cannot fly well when the air is colder than 10°C, and they move toward warm air. Streetlamps warm the air around them. More moths should gather at lamps on cold nights, and an unlit pole heated to the same temperature as a lamp should attract moths just as well.\n\nScientist 3\nThe flowers Harl moths feed on reflect ultraviolet (UV) light in patterns that guide the moths to nectar. The old streetlamps of Brennan give off UV light, and the moths approach them as if they were flowers. Many moths at the lamps extend their feeding tongues. Lamps that give off no UV light should attract few moths.",
+  "prompt": "According to Scientist 2, Harl moths cannot fly well when the air is colder than what temperature?",
+  "choices": [
+   "8°C",
+   "10°C",
+   "12°C",
+   "15°C"
+  ],
+  "correct_answer": "10°C",
+  "explanation": "Scientist 2 says the moths \"cannot fly well when the air is colder than 10°C.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a value in a viewpoint",
+  "difficulty": "medium",
+  "topic_tag": "Why Harl Moths Gather at the Streetlamps of Brennan"
+ },
+ {
+  "id": "ASV12c-P6-Q5",
+  "passage_id": "sc12c-p6",
+  "passage_title": "Why Harl Moths Gather at the Streetlamps of Brennan",
+  "format": "conflicting_viewpoints",
+  "passage": "On summer nights, large numbers of Harl moths gather around the streetlamps of the town of Brennan. Three scientists explain why.\n\nScientist 1\nHarl moths fly in a straight line by keeping a distant, bright light, normally the Moon, at a fixed angle to their path. A nearby lamp is so close that keeping it at a fixed angle makes a moth circle it. The moths are not trying to reach the lamp; they are trapped by their own way of steering. More moths should gather at lamps on moonless nights, when no brighter light competes with the lamps.\n\nScientist 2\nHarl moths cannot fly well when the air is colder than 10°C, and they move toward warm air. Streetlamps warm the air around them. More moths should gather at lamps on cold nights, and an unlit pole heated to the same temperature as a lamp should attract moths just as well.\n\nScientist 3\nThe flowers Harl moths feed on reflect ultraviolet (UV) light in patterns that guide the moths to nectar. The old streetlamps of Brennan give off UV light, and the moths approach them as if they were flowers. Many moths at the lamps extend their feeding tongues. Lamps that give off no UV light should attract few moths.",
+  "prompt": "Which scientist(s) claim that the moths at the lamps are NOT trying to reach the lamps?",
+  "choices": [
+   "Scientist 1 only",
+   "Scientists 1 and 3 only",
+   "Scientists 1 and 2 only",
+   "Scientist 2 only"
+  ],
+  "correct_answer": "Scientist 1 only",
+  "explanation": "Scientist 1 says the moths \"are not trying to reach the lamp\" but are trapped by their steering. Scientist 2 says they move toward the lamps' warm air, and Scientist 3 says they approach the lamps as if they were flowers.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "compare claims across viewpoints",
+  "difficulty": "medium",
+  "topic_tag": "Why Harl Moths Gather at the Streetlamps of Brennan"
+ },
+ {
+  "id": "ASV12c-P6-Q6",
+  "passage_id": "sc12c-p6",
+  "passage_title": "Why Harl Moths Gather at the Streetlamps of Brennan",
+  "format": "conflicting_viewpoints",
+  "passage": "On summer nights, large numbers of Harl moths gather around the streetlamps of the town of Brennan. Three scientists explain why.\n\nScientist 1\nHarl moths fly in a straight line by keeping a distant, bright light, normally the Moon, at a fixed angle to their path. A nearby lamp is so close that keeping it at a fixed angle makes a moth circle it. The moths are not trying to reach the lamp; they are trapped by their own way of steering. More moths should gather at lamps on moonless nights, when no brighter light competes with the lamps.\n\nScientist 2\nHarl moths cannot fly well when the air is colder than 10°C, and they move toward warm air. Streetlamps warm the air around them. More moths should gather at lamps on cold nights, and an unlit pole heated to the same temperature as a lamp should attract moths just as well.\n\nScientist 3\nThe flowers Harl moths feed on reflect ultraviolet (UV) light in patterns that guide the moths to nectar. The old streetlamps of Brennan give off UV light, and the moths approach them as if they were flowers. Many moths at the lamps extend their feeding tongues. Lamps that give off no UV light should attract few moths.",
+  "prompt": "On which kind of night would Scientists 1 and 2 both predict the greatest number of moths at the lamps?",
+  "choices": [
+   "A warm, moonless night",
+   "A cold night with a full moon",
+   "A warm night with a full moon",
+   "A cold, moonless night"
+  ],
+  "correct_answer": "A cold, moonless night",
+  "explanation": "Scientist 1 predicts more moths on moonless nights; Scientist 2 predicts more on cold nights. Both conditions together give \"A cold, moonless night.\"",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "combine predictions of two viewpoints",
+  "difficulty": "hard",
+  "topic_tag": "Why Harl Moths Gather at the Streetlamps of Brennan"
+ },
+ {
+  "id": "ASV12c-P7-Q1",
+  "passage_id": "sc12c-p7",
+  "passage_title": "Why the Water in Marrow Canal Is Falling",
+  "format": "conflicting_viewpoints",
+  "passage": "Over one summer, the water level in Marrow Canal fell by 30 cm, although the same amount of river water entered the canal at its upper end each day. Three scientists explain the fall.\n\nScientist 1\nThe clay lining of the canal has cracked, and water is seeping into the ground beneath it. Seepage is greatest in the lowest reach of the canal, where the water is deepest and presses hardest on the lining. Seepage does not depend on the weather, so the level should keep falling in cool, cloudy weeks as fast as in hot ones. Water seeping from the canal should raise the water in wells near the lowest reach.\n\nScientist 2\nThe summer was unusually hot and dry, and the water is evaporating. The canal's surface covers about 150,000 square meters (m²), and in hot, sunny weather about 4 mm of water evaporates from it each day. Evaporation is about the same per square meter all along the canal, and it nearly stops in cool, cloudy weeks, so the level should stop falling then.\n\nScientist 3\nFarms along the middle of the canal began drawing much more water for irrigation through their intake gate this summer. The level falls only in the part of the canal downstream of the farms' intake gate; upstream of the gate it has hardly changed. When the farms stop drawing water, the level should stop falling.",
+  "prompt": "During two cool, cloudy weeks in July, the water level kept falling at the same rate as in the hot weeks before. This finding is inconsistent with the view(s) of which scientist(s)?",
+  "choices": [
+   "Scientist 2 only",
+   "Scientist 1 only",
+   "Scientist 3 only",
+   "Scientists 1 and 3 only"
+  ],
+  "correct_answer": "Scientist 2 only",
+  "explanation": "Scientist 2 says evaporation nearly stops in cool, cloudy weeks, so the level should stop falling then. Scientist 1 says seepage does not depend on the weather, and Scientist 3 ties the fall to irrigation, not weather.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test viewpoints against a new result",
+  "difficulty": "medium",
+  "topic_tag": "Why the Water in Marrow Canal Is Falling",
+  "consistency_check": "S1 cracked lining, seepage greatest in the lowest reach, continues in any weather, raises nearby wells; S2 evaporation from 150,000 m2 at about 4 mm/day = 600 m3/day, stops in cool cloudy weeks, same along the canal; S3 irrigation withdrawals at the farms' intake gate, only downstream of the gate."
+ },
+ {
+  "id": "ASV12c-P7-Q2",
+  "passage_id": "sc12c-p7",
+  "passage_title": "Why the Water in Marrow Canal Is Falling",
+  "format": "conflicting_viewpoints",
+  "passage": "Over one summer, the water level in Marrow Canal fell by 30 cm, although the same amount of river water entered the canal at its upper end each day. Three scientists explain the fall.\n\nScientist 1\nThe clay lining of the canal has cracked, and water is seeping into the ground beneath it. Seepage is greatest in the lowest reach of the canal, where the water is deepest and presses hardest on the lining. Seepage does not depend on the weather, so the level should keep falling in cool, cloudy weeks as fast as in hot ones. Water seeping from the canal should raise the water in wells near the lowest reach.\n\nScientist 2\nThe summer was unusually hot and dry, and the water is evaporating. The canal's surface covers about 150,000 square meters (m²), and in hot, sunny weather about 4 mm of water evaporates from it each day. Evaporation is about the same per square meter all along the canal, and it nearly stops in cool, cloudy weeks, so the level should stop falling then.\n\nScientist 3\nFarms along the middle of the canal began drawing much more water for irrigation through their intake gate this summer. The level falls only in the part of the canal downstream of the farms' intake gate; upstream of the gate it has hardly changed. When the farms stop drawing water, the level should stop falling.",
+  "prompt": "Over the summer, the water in wells beside the lowest reach of the canal rose by 40 cm. This result is most consistent with the view of which scientist?",
+  "choices": [
+   "Scientist 1",
+   "Scientist 2",
+   "Scientist 3",
+   "None of the scientists"
+  ],
+  "correct_answer": "Scientist 1",
+  "explanation": "Scientist 1 says water seeping through the cracked lining should raise the water in wells near the lowest reach. Evaporation (Scientist 2) and irrigation withdrawals (Scientist 3) would not add water to those wells.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match a finding to a viewpoint",
+  "difficulty": "medium",
+  "topic_tag": "Why the Water in Marrow Canal Is Falling"
+ },
+ {
+  "id": "ASV12c-P7-Q3",
+  "passage_id": "sc12c-p7",
+  "passage_title": "Why the Water in Marrow Canal Is Falling",
+  "format": "conflicting_viewpoints",
+  "passage": "Over one summer, the water level in Marrow Canal fell by 30 cm, although the same amount of river water entered the canal at its upper end each day. Three scientists explain the fall.\n\nScientist 1\nThe clay lining of the canal has cracked, and water is seeping into the ground beneath it. Seepage is greatest in the lowest reach of the canal, where the water is deepest and presses hardest on the lining. Seepage does not depend on the weather, so the level should keep falling in cool, cloudy weeks as fast as in hot ones. Water seeping from the canal should raise the water in wells near the lowest reach.\n\nScientist 2\nThe summer was unusually hot and dry, and the water is evaporating. The canal's surface covers about 150,000 square meters (m²), and in hot, sunny weather about 4 mm of water evaporates from it each day. Evaporation is about the same per square meter all along the canal, and it nearly stops in cool, cloudy weeks, so the level should stop falling then.\n\nScientist 3\nFarms along the middle of the canal began drawing much more water for irrigation through their intake gate this summer. The level falls only in the part of the canal downstream of the farms' intake gate; upstream of the gate it has hardly changed. When the farms stop drawing water, the level should stop falling.",
+  "prompt": "Which measurement would best help decide between the views of Scientist 1 and Scientist 3?",
+  "choices": [
+   "The change in water level upstream of the farms' intake gate compared with the change downstream of it",
+   "The air temperature and cloud cover on each day of the summer",
+   "The change in water level in July compared with the change in August",
+   "The total area of the canal's water surface"
+  ],
+  "correct_answer": "The change in water level upstream of the farms' intake gate compared with the change downstream of it",
+  "explanation": "Scientist 3 says the level fell only downstream of the intake gate. Scientist 1's seepage occurs wherever the lining is cracked, mostly in the lowest reach, and Scientist 1 says nothing about the gate. Comparing levels above and below the gate tests Scientist 3's claim against Scientist 1's. Weather data and surface area bear on Scientist 2.",
+  "domain": "Scientific Investigation",
+  "subskill": "design a test that separates viewpoints",
+  "difficulty": "hard",
+  "topic_tag": "Why the Water in Marrow Canal Is Falling"
+ },
+ {
+  "id": "ASV12c-P7-Q4",
+  "passage_id": "sc12c-p7",
+  "passage_title": "Why the Water in Marrow Canal Is Falling",
+  "format": "conflicting_viewpoints",
+  "passage": "Over one summer, the water level in Marrow Canal fell by 30 cm, although the same amount of river water entered the canal at its upper end each day. Three scientists explain the fall.\n\nScientist 1\nThe clay lining of the canal has cracked, and water is seeping into the ground beneath it. Seepage is greatest in the lowest reach of the canal, where the water is deepest and presses hardest on the lining. Seepage does not depend on the weather, so the level should keep falling in cool, cloudy weeks as fast as in hot ones. Water seeping from the canal should raise the water in wells near the lowest reach.\n\nScientist 2\nThe summer was unusually hot and dry, and the water is evaporating. The canal's surface covers about 150,000 square meters (m²), and in hot, sunny weather about 4 mm of water evaporates from it each day. Evaporation is about the same per square meter all along the canal, and it nearly stops in cool, cloudy weeks, so the level should stop falling then.\n\nScientist 3\nFarms along the middle of the canal began drawing much more water for irrigation through their intake gate this summer. The level falls only in the part of the canal downstream of the farms' intake gate; upstream of the gate it has hardly changed. When the farms stop drawing water, the level should stop falling.",
+  "prompt": "According to Scientist 1, in which part of the canal is the water seeping out fastest?",
+  "choices": [
+   "The middle reach",
+   "The reach nearest the farms' intake gate",
+   "The highest reach",
+   "The lowest reach"
+  ],
+  "correct_answer": "The lowest reach",
+  "explanation": "Scientist 1 says seepage is greatest \"in the lowest reach of the canal, where the water is deepest.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a detail in a viewpoint",
+  "difficulty": "easy",
+  "topic_tag": "Why the Water in Marrow Canal Is Falling"
+ },
+ {
+  "id": "ASV12c-P7-Q5",
+  "passage_id": "sc12c-p7",
+  "passage_title": "Why the Water in Marrow Canal Is Falling",
+  "format": "conflicting_viewpoints",
+  "passage": "Over one summer, the water level in Marrow Canal fell by 30 cm, although the same amount of river water entered the canal at its upper end each day. Three scientists explain the fall.\n\nScientist 1\nThe clay lining of the canal has cracked, and water is seeping into the ground beneath it. Seepage is greatest in the lowest reach of the canal, where the water is deepest and presses hardest on the lining. Seepage does not depend on the weather, so the level should keep falling in cool, cloudy weeks as fast as in hot ones. Water seeping from the canal should raise the water in wells near the lowest reach.\n\nScientist 2\nThe summer was unusually hot and dry, and the water is evaporating. The canal's surface covers about 150,000 square meters (m²), and in hot, sunny weather about 4 mm of water evaporates from it each day. Evaporation is about the same per square meter all along the canal, and it nearly stops in cool, cloudy weeks, so the level should stop falling then.\n\nScientist 3\nFarms along the middle of the canal began drawing much more water for irrigation through their intake gate this summer. The level falls only in the part of the canal downstream of the farms' intake gate; upstream of the gate it has hardly changed. When the farms stop drawing water, the level should stop falling.",
+  "prompt": "Suppose the farms stopped drawing irrigation water on July 1 while the weather stayed hot and dry. Which scientist(s) would predict that the level would soon stop falling?",
+  "choices": [
+   "Scientist 3 only",
+   "Scientist 2 only",
+   "Scientists 1, 2, and 3",
+   "Scientists 2 and 3 only"
+  ],
+  "correct_answer": "Scientist 3 only",
+  "explanation": "Only Scientist 3 blames the irrigation withdrawals. Scientist 2 says evaporation continues in hot, dry weather, and Scientist 1 says seepage continues in any weather.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "apply viewpoints to a new case",
+  "difficulty": "medium",
+  "topic_tag": "Why the Water in Marrow Canal Is Falling"
+ },
+ {
+  "id": "ASV12c-P7-Q6",
+  "passage_id": "sc12c-p7",
+  "passage_title": "Why the Water in Marrow Canal Is Falling",
+  "format": "conflicting_viewpoints",
+  "passage": "Over one summer, the water level in Marrow Canal fell by 30 cm, although the same amount of river water entered the canal at its upper end each day. Three scientists explain the fall.\n\nScientist 1\nThe clay lining of the canal has cracked, and water is seeping into the ground beneath it. Seepage is greatest in the lowest reach of the canal, where the water is deepest and presses hardest on the lining. Seepage does not depend on the weather, so the level should keep falling in cool, cloudy weeks as fast as in hot ones. Water seeping from the canal should raise the water in wells near the lowest reach.\n\nScientist 2\nThe summer was unusually hot and dry, and the water is evaporating. The canal's surface covers about 150,000 square meters (m²), and in hot, sunny weather about 4 mm of water evaporates from it each day. Evaporation is about the same per square meter all along the canal, and it nearly stops in cool, cloudy weeks, so the level should stop falling then.\n\nScientist 3\nFarms along the middle of the canal began drawing much more water for irrigation through their intake gate this summer. The level falls only in the part of the canal downstream of the farms' intake gate; upstream of the gate it has hardly changed. When the farms stop drawing water, the level should stop falling.",
+  "prompt": "Based on Scientist 2's figures, about how much water evaporates from the canal each day in hot, sunny weather?",
+  "choices": [
+   "60 m³",
+   "600 m³",
+   "1,500 m³",
+   "6,000 m³"
+  ],
+  "correct_answer": "600 m³",
+  "explanation": "150,000 m² × 4 mm = 150,000 m² × 0.004 m = 600 m³, so \"600 m³\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a quantity from a viewpoint",
+  "difficulty": "hard",
+  "topic_tag": "Why the Water in Marrow Canal Is Falling"
+ },
+ {
+  "id": "ASV12c-P8-Q1",
+  "passage_id": "sc12c-p8",
+  "passage_title": "Three Coatings on Steel in Salt Spray",
+  "format": "data_representation",
+  "passage": "Engineers coated identical steel panels with one of three experimental coatings (Zelt, Varn, or Prask) or left them uncoated. The panels were placed in a chamber filled with a fine salt-water spray that speeds up rusting. At 2, 4, 8, and 16 weeks, the engineers measured the mass of metal each panel had lost to rust, in grams per square meter of panel surface (g/m²) (see Table 1).",
+  "prompt": "After 8 weeks, which coated panel had lost the least metal?",
+  "choices": [
+   "Prask",
+   "All three lost the same amount",
+   "Varn",
+   "Zelt"
+  ],
+  "correct_answer": "Zelt",
+  "explanation": "After 8 weeks: Zelt 20, Varn 25, Prask 31 g/m². The least is \"Zelt\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compare values in one column",
+  "difficulty": "medium",
+  "topic_tag": "Three Coatings on Steel in Salt Spray",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Metal lost to rust (g/m²)",
+   "colLabels": [
+    "2 weeks",
+    "4 weeks",
+    "8 weeks",
+    "16 weeks"
+   ],
+   "rowLabels": [
+    "No coating",
+    "Zelt",
+    "Varn",
+    "Prask"
+   ],
+   "cells": [
+    [
+     40,
+     85,
+     170,
+     330
+    ],
+    [
+     5,
+     9,
+     20,
+     64
+    ],
+    [
+     12,
+     18,
+     25,
+     33
+    ],
+    [
+     2,
+     6,
+     31,
+     120
+    ]
+   ]
+  },
+  "consistency_check": "Uncoated loss roughly doubles each interval (40, 85, 170, 330); Zelt is lowest early but fails by 16 weeks; Varn rises slowly; Prask stays low then jumps; coatings are invented."
+ },
+ {
+  "id": "ASV12c-P8-Q2",
+  "passage_id": "sc12c-p8",
+  "passage_title": "Three Coatings on Steel in Salt Spray",
+  "format": "data_representation",
+  "passage": "Engineers coated identical steel panels with one of three experimental coatings (Zelt, Varn, or Prask) or left them uncoated. The panels were placed in a chamber filled with a fine salt-water spray that speeds up rusting. At 2, 4, 8, and 16 weeks, the engineers measured the mass of metal each panel had lost to rust, in grams per square meter of panel surface (g/m²) (see Table 1).",
+  "prompt": "At which time did the Varn panel first show less metal loss than the Zelt panel?",
+  "choices": [
+   "2 weeks",
+   "4 weeks",
+   "8 weeks",
+   "16 weeks"
+  ],
+  "correct_answer": "16 weeks",
+  "explanation": "Varn vs Zelt: 12 vs 5, 18 vs 9, 25 vs 20, 33 vs 64 g/m². Varn is first lower at \"16 weeks\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compare two series over time",
+  "difficulty": "hard",
+  "topic_tag": "Three Coatings on Steel in Salt Spray",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Metal lost to rust (g/m²)",
+   "colLabels": [
+    "2 weeks",
+    "4 weeks",
+    "8 weeks",
+    "16 weeks"
+   ],
+   "rowLabels": [
+    "No coating",
+    "Zelt",
+    "Varn",
+    "Prask"
+   ],
+   "cells": [
+    [
+     40,
+     85,
+     170,
+     330
+    ],
+    [
+     5,
+     9,
+     20,
+     64
+    ],
+    [
+     12,
+     18,
+     25,
+     33
+    ],
+    [
+     2,
+     6,
+     31,
+     120
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12c-P8-Q3",
+  "passage_id": "sc12c-p8",
+  "passage_title": "Three Coatings on Steel in Salt Spray",
+  "format": "data_representation",
+  "passage": "Engineers coated identical steel panels with one of three experimental coatings (Zelt, Varn, or Prask) or left them uncoated. The panels were placed in a chamber filled with a fine salt-water spray that speeds up rusting. At 2, 4, 8, and 16 weeks, the engineers measured the mass of metal each panel had lost to rust, in grams per square meter of panel surface (g/m²) (see Table 1).",
+  "prompt": "From 8 weeks to 16 weeks, the metal lost by the Prask panel increased by about what factor?",
+  "choices": [
+   "About 1.5",
+   "About 2",
+   "About 4",
+   "About 8"
+  ],
+  "correct_answer": "About 4",
+  "explanation": "Prask: 31 g/m² at 8 weeks and 120 g/m² at 16 weeks. 120/31 is about 3.9, so \"About 4\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a ratio",
+  "difficulty": "medium",
+  "topic_tag": "Three Coatings on Steel in Salt Spray",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Metal lost to rust (g/m²)",
+   "colLabels": [
+    "2 weeks",
+    "4 weeks",
+    "8 weeks",
+    "16 weeks"
+   ],
+   "rowLabels": [
+    "No coating",
+    "Zelt",
+    "Varn",
+    "Prask"
+   ],
+   "cells": [
+    [
+     40,
+     85,
+     170,
+     330
+    ],
+    [
+     5,
+     9,
+     20,
+     64
+    ],
+    [
+     12,
+     18,
+     25,
+     33
+    ],
+    [
+     2,
+     6,
+     31,
+     120
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12c-P8-Q4",
+  "passage_id": "sc12c-p8",
+  "passage_title": "Three Coatings on Steel in Salt Spray",
+  "format": "data_representation",
+  "passage": "Engineers coated identical steel panels with one of three experimental coatings (Zelt, Varn, or Prask) or left them uncoated. The panels were placed in a chamber filled with a fine salt-water spray that speeds up rusting. At 2, 4, 8, and 16 weeks, the engineers measured the mass of metal each panel had lost to rust, in grams per square meter of panel surface (g/m²) (see Table 1).",
+  "prompt": "If the uncoated panel had stayed in the chamber for 32 weeks, its total metal loss would most likely have been:",
+  "choices": [
+   "less than 170 g/m².",
+   "between 170 and 330 g/m².",
+   "between 330 and 500 g/m².",
+   "more than 500 g/m²."
+  ],
+  "correct_answer": "more than 500 g/m².",
+  "explanation": "The uncoated loss about doubled each time the exposure doubled: 40, 85, 170, 330 g/m². Continuing the pattern gives about 650 g/m² at 32 weeks, \"more than 500 g/m².\"",
+  "domain": "Interpretation of Data",
+  "subskill": "extrapolate a trend",
+  "difficulty": "medium",
+  "topic_tag": "Three Coatings on Steel in Salt Spray",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Metal lost to rust (g/m²)",
+   "colLabels": [
+    "2 weeks",
+    "4 weeks",
+    "8 weeks",
+    "16 weeks"
+   ],
+   "rowLabels": [
+    "No coating",
+    "Zelt",
+    "Varn",
+    "Prask"
+   ],
+   "cells": [
+    [
+     40,
+     85,
+     170,
+     330
+    ],
+    [
+     5,
+     9,
+     20,
+     64
+    ],
+    [
+     12,
+     18,
+     25,
+     33
+    ],
+    [
+     2,
+     6,
+     31,
+     120
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12c-P8-Q5",
+  "passage_id": "sc12c-p8",
+  "passage_title": "Three Coatings on Steel in Salt Spray",
+  "format": "data_representation",
+  "passage": "Engineers coated identical steel panels with one of three experimental coatings (Zelt, Varn, or Prask) or left them uncoated. The panels were placed in a chamber filled with a fine salt-water spray that speeds up rusting. At 2, 4, 8, and 16 weeks, the engineers measured the mass of metal each panel had lost to rust, in grams per square meter of panel surface (g/m²) (see Table 1).",
+  "prompt": "At 4 weeks, the uncoated panel had lost about how many times as much metal as the Varn panel?",
+  "choices": [
+   "About 2 times",
+   "About 3 times",
+   "About 5 times",
+   "About 9 times"
+  ],
+  "correct_answer": "About 5 times",
+  "explanation": "At 4 weeks: uncoated 85 g/m² and Varn 18 g/m². 85/18 is about 4.7, so \"About 5 times\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a ratio",
+  "difficulty": "medium",
+  "topic_tag": "Three Coatings on Steel in Salt Spray",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Metal lost to rust (g/m²)",
+   "colLabels": [
+    "2 weeks",
+    "4 weeks",
+    "8 weeks",
+    "16 weeks"
+   ],
+   "rowLabels": [
+    "No coating",
+    "Zelt",
+    "Varn",
+    "Prask"
+   ],
+   "cells": [
+    [
+     40,
+     85,
+     170,
+     330
+    ],
+    [
+     5,
+     9,
+     20,
+     64
+    ],
+    [
+     12,
+     18,
+     25,
+     33
+    ],
+    [
+     2,
+     6,
+     31,
+     120
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12c-P9-Q1",
+  "passage_id": "sc12c-p9",
+  "passage_title": "Temperature and the Germination of Tessel Grass Seeds",
+  "format": "data_representation",
+  "passage": "Tessel grass is planted to hold soil on hillsides. Botanists placed 200 Tessel grass seeds on damp paper at each of six constant temperatures and recorded the percent of the seeds that germinated (sprouted) within 14 days (see Figure 1).",
+  "prompt": "The greatest percent of seeds germinated at what temperature?",
+  "choices": [
+   "10°C",
+   "15°C",
+   "20°C",
+   "25°C"
+  ],
+  "correct_answer": "20°C",
+  "explanation": "Germination: 6, 30, 80, 94, 62, 12% from 5°C to 30°C. The greatest, 94%, is at \"20°C\".",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a maximum",
+  "difficulty": "medium",
+  "topic_tag": "Temperature and the Germination of Tessel Grass Seeds",
+  "graphic": {
+   "type": "bar",
+   "xLabel": "Temperature (°C)",
+   "yLabel": "Seeds germinated (%)",
+   "bars": [
+    {
+     "label": "5",
+     "value": 6
+    },
+    {
+     "label": "10",
+     "value": 30
+    },
+    {
+     "label": "15",
+     "value": 80
+    },
+    {
+     "label": "20",
+     "value": 94
+    },
+    {
+     "label": "25",
+     "value": 62
+    },
+    {
+     "label": "30",
+     "value": 12
+    }
+   ],
+   "caption": "Figure 1. Germination of Tessel grass seeds after 14 days"
+  },
+  "consistency_check": "Germination peaks at 20 C (94%) and falls on both sides; the 45% cutoff is at least 11.8 points (half of a 23.5-point tick) from every bar (30 and 62); increases 24, 50, 14; the grass is invented."
+ },
+ {
+  "id": "ASV12c-P9-Q2",
+  "passage_id": "sc12c-p9",
+  "passage_title": "Temperature and the Germination of Tessel Grass Seeds",
+  "format": "data_representation",
+  "passage": "Tessel grass is planted to hold soil on hillsides. Botanists placed 200 Tessel grass seeds on damp paper at each of six constant temperatures and recorded the percent of the seeds that germinated (sprouted) within 14 days (see Figure 1).",
+  "prompt": "Seeds kept at 27.5°C would most likely have a germination percent:",
+  "choices": [
+   "less than 12%.",
+   "between 12% and 62%.",
+   "between 62% and 94%.",
+   "greater than 94%."
+  ],
+  "correct_answer": "between 12% and 62%.",
+  "explanation": "Germination falls from 62% at 25°C to 12% at 30°C, so at 27.5°C it would most likely be \"between 12% and 62%.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate between bars",
+  "difficulty": "medium",
+  "topic_tag": "Temperature and the Germination of Tessel Grass Seeds",
+  "graphic": {
+   "type": "bar",
+   "xLabel": "Temperature (°C)",
+   "yLabel": "Seeds germinated (%)",
+   "bars": [
+    {
+     "label": "5",
+     "value": 6
+    },
+    {
+     "label": "10",
+     "value": 30
+    },
+    {
+     "label": "15",
+     "value": 80
+    },
+    {
+     "label": "20",
+     "value": 94
+    },
+    {
+     "label": "25",
+     "value": 62
+    },
+    {
+     "label": "30",
+     "value": 12
+    }
+   ],
+   "caption": "Figure 1. Germination of Tessel grass seeds after 14 days"
+  }
+ },
+ {
+  "id": "ASV12c-P9-Q3",
+  "passage_id": "sc12c-p9",
+  "passage_title": "Temperature and the Germination of Tessel Grass Seeds",
+  "format": "data_representation",
+  "passage": "Tessel grass is planted to hold soil on hillsides. Botanists placed 200 Tessel grass seeds on damp paper at each of six constant temperatures and recorded the percent of the seeds that germinated (sprouted) within 14 days (see Figure 1).",
+  "prompt": "A seed mix is planted only at temperatures at which at least 45% of seeds germinate. Which temperatures meet this requirement?",
+  "choices": [
+   "20°C only",
+   "15°C and 20°C only",
+   "15°C, 20°C, and 25°C only",
+   "10°C, 15°C, 20°C, and 25°C only"
+  ],
+  "correct_answer": "15°C, 20°C, and 25°C only",
+  "explanation": "15°C (80%), 20°C (94%), and 25°C (62%) reach at least 45%; 10°C gave 30%. So \"15°C, 20°C, and 25°C only\".",
+  "domain": "Interpretation of Data",
+  "subskill": "apply a threshold to a figure",
+  "difficulty": "medium",
+  "topic_tag": "Temperature and the Germination of Tessel Grass Seeds",
+  "graphic": {
+   "type": "bar",
+   "xLabel": "Temperature (°C)",
+   "yLabel": "Seeds germinated (%)",
+   "bars": [
+    {
+     "label": "5",
+     "value": 6
+    },
+    {
+     "label": "10",
+     "value": 30
+    },
+    {
+     "label": "15",
+     "value": 80
+    },
+    {
+     "label": "20",
+     "value": 94
+    },
+    {
+     "label": "25",
+     "value": 62
+    },
+    {
+     "label": "30",
+     "value": 12
+    }
+   ],
+   "caption": "Figure 1. Germination of Tessel grass seeds after 14 days"
+  }
+ },
+ {
+  "id": "ASV12c-P9-Q4",
+  "passage_id": "sc12c-p9",
+  "passage_title": "Temperature and the Germination of Tessel Grass Seeds",
+  "format": "data_representation",
+  "passage": "Tessel grass is planted to hold soil on hillsides. Botanists placed 200 Tessel grass seeds on damp paper at each of six constant temperatures and recorded the percent of the seeds that germinated (sprouted) within 14 days (see Figure 1).",
+  "prompt": "Between which two adjacent temperatures did germination increase the most?",
+  "choices": [
+   "5°C and 10°C",
+   "10°C and 15°C",
+   "15°C and 20°C",
+   "20°C and 25°C"
+  ],
+  "correct_answer": "10°C and 15°C",
+  "explanation": "Increases: 6 to 30 (24 points), 30 to 80 (50 points), 80 to 94 (14 points); germination fell from 20°C to 25°C. The largest increase is between \"10°C and 15°C\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compare changes between adjacent values",
+  "difficulty": "medium",
+  "topic_tag": "Temperature and the Germination of Tessel Grass Seeds",
+  "graphic": {
+   "type": "bar",
+   "xLabel": "Temperature (°C)",
+   "yLabel": "Seeds germinated (%)",
+   "bars": [
+    {
+     "label": "5",
+     "value": 6
+    },
+    {
+     "label": "10",
+     "value": 30
+    },
+    {
+     "label": "15",
+     "value": 80
+    },
+    {
+     "label": "20",
+     "value": 94
+    },
+    {
+     "label": "25",
+     "value": 62
+    },
+    {
+     "label": "30",
+     "value": 12
+    }
+   ],
+   "caption": "Figure 1. Germination of Tessel grass seeds after 14 days"
+  }
+ },
+ {
+  "id": "ASV12c-P9-Q5",
+  "passage_id": "sc12c-p9",
+  "passage_title": "Temperature and the Germination of Tessel Grass Seeds",
+  "format": "data_representation",
+  "passage": "Tessel grass is planted to hold soil on hillsides. Botanists placed 200 Tessel grass seeds on damp paper at each of six constant temperatures and recorded the percent of the seeds that germinated (sprouted) within 14 days (see Figure 1).",
+  "prompt": "As the temperature increased from 20°C to 30°C, the percent of seeds that germinated:",
+  "choices": [
+   "decreased and then increased.",
+   "decreased only.",
+   "increased only.",
+   "increased and then decreased."
+  ],
+  "correct_answer": "decreased only.",
+  "explanation": "Germination was 94% at 20°C, 62% at 25°C, and 12% at 30°C, a fall at each step of 32 and 50 points, so it \"decreased only.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "describe a trend",
+  "difficulty": "medium",
+  "topic_tag": "Temperature and the Germination of Tessel Grass Seeds",
+  "graphic": {
+   "type": "bar",
+   "xLabel": "Temperature (°C)",
+   "yLabel": "Seeds germinated (%)",
+   "bars": [
+    {
+     "label": "5",
+     "value": 6
+    },
+    {
+     "label": "10",
+     "value": 30
+    },
+    {
+     "label": "15",
+     "value": 80
+    },
+    {
+     "label": "20",
+     "value": 94
+    },
+    {
+     "label": "25",
+     "value": 62
+    },
+    {
+     "label": "30",
+     "value": 12
+    }
+   ],
+   "caption": "Figure 1. Germination of Tessel grass seeds after 14 days"
+  }
+ }
+]

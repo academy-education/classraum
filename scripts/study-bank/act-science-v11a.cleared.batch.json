@@ -1,0 +1,543 @@
+[
+ {
+  "id": "ASV11a-P3-Q1",
+  "passage_id": "sc11a-p3",
+  "passage_title": "Insect Visits to Merrow Flowers",
+  "format": "research_summaries",
+  "passage": "Merrow is a meadow wildflower that comes in white, yellow, and violet forms. Ecologists planted Merrow in patches in an open meadow beside a forest and counted visits by pollinating insects.\n\nIn each trial, potted Merrow plants were set out in a square patch on a calm, sunny morning. Observers counted every insect landing on a flower for 2 hours and reported the number of visits per flower per hour. Each value in Table 1 is the average of 6 mornings.\n\nExperiment 1\nPatches of 5, 10, 20, or 40 white-flowered plants were placed 50 m from the forest edge.\n\nExperiment 2\nPatches of 20 yellow-flowered or 20 violet-flowered plants were placed 50 m from the forest edge. (The white result is that of Experiment 1.)\n\nExperiment 3\nPatches of 20 white-flowered plants were placed 10 m or 200 m from the forest edge. (The 50 m result is that of Experiment 1.)",
+  "prompt": "In Experiment 1, the fewest visits per flower per hour were recorded in the patch with:",
+  "choices": [
+   "10 plants.",
+   "20 plants.",
+   "5 plants.",
+   "40 plants."
+  ],
+  "correct_answer": "5 plants.",
+  "explanation": "Experiment 1 gave 3.1 (5 plants), 4.6 (10), 5.2 (20), and 4.0 (40). The fewest was in the patch with \"5 plants.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a minimum within one series",
+  "difficulty": "medium",
+  "topic_tag": "biology: pollinator visits",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Insect visits to Merrow patches",
+   "colLabels": [
+    "Plants in patch",
+    "Flower color",
+    "Distance from forest edge (m)",
+    "Visits per flower per hour"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     5,
+     "white",
+     50,
+     3.1
+    ],
+    [
+     10,
+     "white",
+     50,
+     4.6
+    ],
+    [
+     20,
+     "white",
+     50,
+     5.2
+    ],
+    [
+     40,
+     "white",
+     50,
+     4.0
+    ],
+    [
+     20,
+     "yellow",
+     50,
+     6.8
+    ],
+    [
+     20,
+     "violet",
+     50,
+     2.9
+    ],
+    [
+     20,
+     "white",
+     10,
+     7.4
+    ],
+    [
+     20,
+     "white",
+     200,
+     2.2
+    ]
+   ]
+  },
+  "consistency_check": "Averages of 6 mornings, so one decimal place; patch size shows an optimum at 20 plants; yellow > white > violet at 50 m; visits fall with distance from the forest; the 20-white-50 m trial is shared and listed once."
+ },
+ {
+  "id": "ASV11a-P3-Q2",
+  "passage_id": "sc11a-p3",
+  "passage_title": "Insect Visits to Merrow Flowers",
+  "format": "research_summaries",
+  "passage": "Merrow is a meadow wildflower that comes in white, yellow, and violet forms. Ecologists planted Merrow in patches in an open meadow beside a forest and counted visits by pollinating insects.\n\nIn each trial, potted Merrow plants were set out in a square patch on a calm, sunny morning. Observers counted every insect landing on a flower for 2 hours and reported the number of visits per flower per hour. Each value in Table 1 is the average of 6 mornings.\n\nExperiment 1\nPatches of 5, 10, 20, or 40 white-flowered plants were placed 50 m from the forest edge.\n\nExperiment 2\nPatches of 20 yellow-flowered or 20 violet-flowered plants were placed 50 m from the forest edge. (The white result is that of Experiment 1.)\n\nExperiment 3\nPatches of 20 white-flowered plants were placed 10 m or 200 m from the forest edge. (The 50 m result is that of Experiment 1.)",
+  "prompt": "For patches of 20 white-flowered plants, as distance from the forest edge increased from 10 m to 200 m, visits per flower per hour:",
+  "choices": [
+   "decreased only.",
+   "increased only.",
+   "increased and then decreased.",
+   "decreased and then increased."
+  ],
+  "correct_answer": "decreased only.",
+  "explanation": "Visits were 7.4 (10 m), 5.2 (50 m), and 2.2 (200 m), so they \"decreased only.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "describe a trend across combined experiments",
+  "difficulty": "medium",
+  "topic_tag": "biology: pollinator visits",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Insect visits to Merrow patches",
+   "colLabels": [
+    "Plants in patch",
+    "Flower color",
+    "Distance from forest edge (m)",
+    "Visits per flower per hour"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     5,
+     "white",
+     50,
+     3.1
+    ],
+    [
+     10,
+     "white",
+     50,
+     4.6
+    ],
+    [
+     20,
+     "white",
+     50,
+     5.2
+    ],
+    [
+     40,
+     "white",
+     50,
+     4.0
+    ],
+    [
+     20,
+     "yellow",
+     50,
+     6.8
+    ],
+    [
+     20,
+     "violet",
+     50,
+     2.9
+    ],
+    [
+     20,
+     "white",
+     10,
+     7.4
+    ],
+    [
+     20,
+     "white",
+     200,
+     2.2
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV11a-P3-Q3",
+  "passage_id": "sc11a-p3",
+  "passage_title": "Insect Visits to Merrow Flowers",
+  "format": "research_summaries",
+  "passage": "Merrow is a meadow wildflower that comes in white, yellow, and violet forms. Ecologists planted Merrow in patches in an open meadow beside a forest and counted visits by pollinating insects.\n\nIn each trial, potted Merrow plants were set out in a square patch on a calm, sunny morning. Observers counted every insect landing on a flower for 2 hours and reported the number of visits per flower per hour. Each value in Table 1 is the average of 6 mornings.\n\nExperiment 1\nPatches of 5, 10, 20, or 40 white-flowered plants were placed 50 m from the forest edge.\n\nExperiment 2\nPatches of 20 yellow-flowered or 20 violet-flowered plants were placed 50 m from the forest edge. (The white result is that of Experiment 1.)\n\nExperiment 3\nPatches of 20 white-flowered plants were placed 10 m or 200 m from the forest edge. (The 50 m result is that of Experiment 1.)",
+  "prompt": "The ecologists want to test whether the effect of flower color depends on distance from the forest edge, using results that can be compared directly with Experiments 2 and 3. Which plan should they use?",
+  "choices": [
+   "Patches of each color at 10 m and at 200 m, with 40 plants per patch",
+   "Patches of each color at 10 m and at 200 m, with 5 plants per patch",
+   "Patches of each color at 10 m and at 200 m, with 10 plants per patch",
+   "Patches of each color at 10 m and at 200 m, with 20 plants per patch"
+  ],
+  "correct_answer": "Patches of each color at 10 m and at 200 m, with 20 plants per patch",
+  "explanation": "Experiments 2 and 3 both used 20-plant patches. \"Patches of each color at 10 m and at 200 m, with 20 plants per patch\" keeps patch size the same as those experiments.",
+  "domain": "Scientific Investigation",
+  "subskill": "design a directly comparable experiment",
+  "difficulty": "hard",
+  "topic_tag": "biology: pollinator visits",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Insect visits to Merrow patches",
+   "colLabels": [
+    "Plants in patch",
+    "Flower color",
+    "Distance from forest edge (m)",
+    "Visits per flower per hour"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     5,
+     "white",
+     50,
+     3.1
+    ],
+    [
+     10,
+     "white",
+     50,
+     4.6
+    ],
+    [
+     20,
+     "white",
+     50,
+     5.2
+    ],
+    [
+     40,
+     "white",
+     50,
+     4.0
+    ],
+    [
+     20,
+     "yellow",
+     50,
+     6.8
+    ],
+    [
+     20,
+     "violet",
+     50,
+     2.9
+    ],
+    [
+     20,
+     "white",
+     10,
+     7.4
+    ],
+    [
+     20,
+     "white",
+     200,
+     2.2
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV11a-P3-Q4",
+  "passage_id": "sc11a-p3",
+  "passage_title": "Insect Visits to Merrow Flowers",
+  "format": "research_summaries",
+  "passage": "Merrow is a meadow wildflower that comes in white, yellow, and violet forms. Ecologists planted Merrow in patches in an open meadow beside a forest and counted visits by pollinating insects.\n\nIn each trial, potted Merrow plants were set out in a square patch on a calm, sunny morning. Observers counted every insect landing on a flower for 2 hours and reported the number of visits per flower per hour. Each value in Table 1 is the average of 6 mornings.\n\nExperiment 1\nPatches of 5, 10, 20, or 40 white-flowered plants were placed 50 m from the forest edge.\n\nExperiment 2\nPatches of 20 yellow-flowered or 20 violet-flowered plants were placed 50 m from the forest edge. (The white result is that of Experiment 1.)\n\nExperiment 3\nPatches of 20 white-flowered plants were placed 10 m or 200 m from the forest edge. (The 50 m result is that of Experiment 1.)",
+  "prompt": "At 50 m from the forest edge, patches of 20 plants of which flower color received the most visits per flower per hour?",
+  "choices": [
+   "White",
+   "Violet",
+   "Yellow",
+   "White and yellow equally"
+  ],
+  "correct_answer": "Yellow",
+  "explanation": "At 50 m with 20 plants: white 5.2, yellow 6.8, violet 2.9. \"Yellow\" received the most.",
+  "domain": "Interpretation of Data",
+  "subskill": "compare values across experiments",
+  "difficulty": "medium",
+  "topic_tag": "biology: pollinator visits",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Insect visits to Merrow patches",
+   "colLabels": [
+    "Plants in patch",
+    "Flower color",
+    "Distance from forest edge (m)",
+    "Visits per flower per hour"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     5,
+     "white",
+     50,
+     3.1
+    ],
+    [
+     10,
+     "white",
+     50,
+     4.6
+    ],
+    [
+     20,
+     "white",
+     50,
+     5.2
+    ],
+    [
+     40,
+     "white",
+     50,
+     4.0
+    ],
+    [
+     20,
+     "yellow",
+     50,
+     6.8
+    ],
+    [
+     20,
+     "violet",
+     50,
+     2.9
+    ],
+    [
+     20,
+     "white",
+     10,
+     7.4
+    ],
+    [
+     20,
+     "white",
+     200,
+     2.2
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV11a-P3-Q5",
+  "passage_id": "sc11a-p3",
+  "passage_title": "Insect Visits to Merrow Flowers",
+  "format": "research_summaries",
+  "passage": "Merrow is a meadow wildflower that comes in white, yellow, and violet forms. Ecologists planted Merrow in patches in an open meadow beside a forest and counted visits by pollinating insects.\n\nIn each trial, potted Merrow plants were set out in a square patch on a calm, sunny morning. Observers counted every insect landing on a flower for 2 hours and reported the number of visits per flower per hour. Each value in Table 1 is the average of 6 mornings.\n\nExperiment 1\nPatches of 5, 10, 20, or 40 white-flowered plants were placed 50 m from the forest edge.\n\nExperiment 2\nPatches of 20 yellow-flowered or 20 violet-flowered plants were placed 50 m from the forest edge. (The white result is that of Experiment 1.)\n\nExperiment 3\nPatches of 20 white-flowered plants were placed 10 m or 200 m from the forest edge. (The 50 m result is that of Experiment 1.)",
+  "prompt": "Which statement is supported by Table 1?",
+  "choices": [
+   "Visits per flower were greatest in the largest patch tested.",
+   "Changing a 20-plant patch at 50 m from white to violet lowered visits more than moving a 20-plant white patch from 50 m to 200 m did.",
+   "Moving a 20-plant white patch from 50 m to 10 m from the forest edge raised visits more than changing its flowers from white to yellow did.",
+   "Increasing a white patch at 50 m from 20 plants to 40 plants raised visits."
+  ],
+  "correct_answer": "Moving a 20-plant white patch from 50 m to 10 m from the forest edge raised visits more than changing its flowers from white to yellow did.",
+  "explanation": "Moving from 50 m to 10 m raised visits from 5.2 to 7.4 (+2.2); changing white to yellow raised them from 5.2 to 6.8 (+1.6). So the statement about moving to 10 m is supported. Violet lowered visits by 2.3, less than the 3.0 drop at 200 m; 40 plants gave 4.0, less than 5.2.",
+  "domain": "Interpretation of Data",
+  "subskill": "compare differences between pairs of rows",
+  "difficulty": "hard",
+  "topic_tag": "biology: pollinator visits",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Insect visits to Merrow patches",
+   "colLabels": [
+    "Plants in patch",
+    "Flower color",
+    "Distance from forest edge (m)",
+    "Visits per flower per hour"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     5,
+     "white",
+     50,
+     3.1
+    ],
+    [
+     10,
+     "white",
+     50,
+     4.6
+    ],
+    [
+     20,
+     "white",
+     50,
+     5.2
+    ],
+    [
+     40,
+     "white",
+     50,
+     4.0
+    ],
+    [
+     20,
+     "yellow",
+     50,
+     6.8
+    ],
+    [
+     20,
+     "violet",
+     50,
+     2.9
+    ],
+    [
+     20,
+     "white",
+     10,
+     7.4
+    ],
+    [
+     20,
+     "white",
+     200,
+     2.2
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV11a-P3-Q6",
+  "passage_id": "sc11a-p3",
+  "passage_title": "Insect Visits to Merrow Flowers",
+  "format": "research_summaries",
+  "passage": "Merrow is a meadow wildflower that comes in white, yellow, and violet forms. Ecologists planted Merrow in patches in an open meadow beside a forest and counted visits by pollinating insects.\n\nIn each trial, potted Merrow plants were set out in a square patch on a calm, sunny morning. Observers counted every insect landing on a flower for 2 hours and reported the number of visits per flower per hour. Each value in Table 1 is the average of 6 mornings.\n\nExperiment 1\nPatches of 5, 10, 20, or 40 white-flowered plants were placed 50 m from the forest edge.\n\nExperiment 2\nPatches of 20 yellow-flowered or 20 violet-flowered plants were placed 50 m from the forest edge. (The white result is that of Experiment 1.)\n\nExperiment 3\nPatches of 20 white-flowered plants were placed 10 m or 200 m from the forest edge. (The 50 m result is that of Experiment 1.)",
+  "prompt": "If a patch of 30 white-flowered plants were placed 50 m from the forest edge, its visits per flower per hour would most likely be:",
+  "choices": [
+   "less than 3.1.",
+   "between 3.1 and 4.0.",
+   "between 4.0 and 5.2.",
+   "greater than 5.2."
+  ],
+  "correct_answer": "between 4.0 and 5.2.",
+  "explanation": "At 50 m, white patches gave 5.2 (20 plants) and 4.0 (40 plants). A 30-plant patch lies between them, so \"between 4.0 and 5.2\" is most likely.",
+  "domain": "Scientific Investigation",
+  "subskill": "predict the result of an additional trial",
+  "difficulty": "medium",
+  "topic_tag": "biology: pollinator visits",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Insect visits to Merrow patches",
+   "colLabels": [
+    "Plants in patch",
+    "Flower color",
+    "Distance from forest edge (m)",
+    "Visits per flower per hour"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     5,
+     "white",
+     50,
+     3.1
+    ],
+    [
+     10,
+     "white",
+     50,
+     4.6
+    ],
+    [
+     20,
+     "white",
+     50,
+     5.2
+    ],
+    [
+     40,
+     "white",
+     50,
+     4.0
+    ],
+    [
+     20,
+     "yellow",
+     50,
+     6.8
+    ],
+    [
+     20,
+     "violet",
+     50,
+     2.9
+    ],
+    [
+     20,
+     "white",
+     10,
+     7.4
+    ],
+    [
+     20,
+     "white",
+     200,
+     2.2
+    ]
+   ]
+  }
+ }
+]

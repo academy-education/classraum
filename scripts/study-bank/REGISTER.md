@@ -6266,3 +6266,17 @@ structural checks are pre-flight only. See CLAUDE.md.
   - **ACT Science day total, cleared and not yet released: 219 items over six batches** (v12a 18, v12b 47,
     v12c 28, v12d 34, v12e 40, v12f 52). Release still needs science-release.json wiring and the blind-only
     co-founder runs.
+
+- **2026-10-29 — ACT Science v11a and v12a–f wired for release (staged, queued).** For each cohort the
+  agent-cleared rows only were written to `act-science-<c>.cleared.batch.json` (cleared ∪ dropped checked =
+  the batch ids), each passed `act-bank-helper check science`, got a ledger entry (contentSha of the cleared
+  file; shape + withsource passed, nosource not run as it saturates), and was inserted with BANK_GATE_OVERRIDE
+  (reason recorded: with-source gate passed; nosource/elimination/tells superseded by R1–R8) and BANK_VERIFIED
+  unset. DB check: v11a 6, v12a 18, v12b 47, v12c 28, v12d 34, v12e 40, v12f 52 = **225 rows, 0 verified,
+  0 archived**. science-release.json, cofounder-queue.json (blind-only, route spot) and autonomy-methods.json
+  (`act-sci-agent-brief-v12+agent-2grader`) entries added textually; blind-only-runs.test.ts 18/18.
+  `draw-next --ignore-open` (dry): the seven cohorts queue after v7b, v8b, v10a, v10b; runs cap near 35 items,
+  so v12b/v12e/v12f each need a second run.
+  - **Capacity:** live ACT Science stays at 3 forms (RS 9, DR 8, CV 6 passages) until released. Staged now RS
+    23, DR 13, CV 19 passages; live + staged = RS 32, DR 21, CV 25, which is **10 forms** at 3 RS + 2 DR + 2 CV,
+    bound by DR and CV. Today's seven cohorts alone are RS 17, DR 9, CV 13 = 4 forms.

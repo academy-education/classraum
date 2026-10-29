@@ -12938,6 +12938,195 @@
           "verdict": "Not run: the model attack saturates on ACT Science (CLAUDE.md); with-source half decides."
         }
       }
+    },
+    {
+      "id": "act-science-v11a-2026-10-29",
+      "createdAt": "2026-10-29",
+      "targetTest": "act",
+      "section": "science",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "act-science-v11a",
+      "contentSha": "39aabc1efdfa3b8b4998ce68bbdbff6fe0802bf001f21b47f71c8d5dbc004a58",
+      "status": "staged-for-human-review",
+      "note": "Claude agent to ACT-SCIENCE-V10-BRIEF.md (v11/v12 lessons); graded under ACT-SCIENCE-V11-BUFFER.prereg.md (batch b8). Content = the 6 agent-cleared rows only (act-science-v11a.cleared.batch.json). Release = cleared list + one blind-only co-founder run (science-release.json).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "39aabc1efdfa3b8b4998ce68bbdbff6fe0802bf001f21b47f71c8d5dbc004a58",
+          "verdict": "act-bank-helper check OK on the cleared file; act-sci-packet build b8 OK (strictForm:false)."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "Two fresh graders, cold then keyed (b8 g1/g2): keys 42/42 both; r1 on 2. 1 of 7 passages cleared (P3). Drops: R4 no_source (both) on P2-Q6, P5-Q6, P6-Q1, P7-Q4, P7-Q5; R4b on P5-Q2, P6-Q2 (r1 confirmed); R6 on P1-Q4, P2-Q5, P4-Q4. R8: graders named different rules, nothing dropped. Results: act-science-regrade/results/b8/."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "Not run: the model attack saturates on ACT Science (CLAUDE.md); with-source half decides."
+        }
+      }
+    },
+    {
+      "id": "act-science-v12a-2026-10-29",
+      "createdAt": "2026-10-29",
+      "targetTest": "act",
+      "section": "science",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "act-science-v12a",
+      "contentSha": "597873758a60570638f0dee50e5294dc8f285bb5c634c259402b2d2a10fdd764",
+      "status": "staged-for-human-review",
+      "note": "Claude agent to ACT-SCIENCE-V10-BRIEF.md (v11/v12 lessons); graded under ACT-SCIENCE-V12-BUFFER.prereg.md (batch b9). Content = the 18 agent-cleared rows only (act-science-v12a.cleared.batch.json). Release = cleared list + one blind-only co-founder run (science-release.json).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "597873758a60570638f0dee50e5294dc8f285bb5c634c259402b2d2a10fdd764",
+          "verdict": "act-bank-helper check OK on the cleared file; act-sci-packet build b9 OK (strictForm:false)."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "Two fresh graders, cold then keyed (b9 g1/g2): keys 42/42 both. 3 of 7 passages cleared (P4, P5, P6). Drops: R6 (both) on P1-Q4, P2-Q4, P3-Q3, P7-Q4. R8 named by both (claim-evaluation rule) on items already dropped. Results: act-science-regrade/results/b9/."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "Not run: the model attack saturates on ACT Science (CLAUDE.md); with-source half decides."
+        }
+      }
+    },
+    {
+      "id": "act-science-v12b-2026-10-29",
+      "createdAt": "2026-10-29",
+      "targetTest": "act",
+      "section": "science",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "act-science-v12b",
+      "contentSha": "f48afeaaffe935599f3a4b372ffdde146df334ff65e2eb6d1923f538e5b955b3",
+      "status": "staged-for-human-review",
+      "note": "Claude agent to ACT-SCIENCE-V10-BRIEF.md (v11/v12 lessons); graded under ACT-SCIENCE-V12B.prereg.md (batch b10). Content = the 47 agent-cleared rows only (act-science-v12b.cleared.batch.json). Release = cleared list + one blind-only co-founder run (science-release.json).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "f48afeaaffe935599f3a4b372ffdde146df334ff65e2eb6d1923f538e5b955b3",
+          "verdict": "act-bank-helper check OK on the cleared file; act-sci-packet build b10 OK (strictForm:false)."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "Two fresh graders, cold then keyed (b10 g1/g2): keys 52/52 both; no_source 0, free elimination 0, no pattern. 8 of 9 passages cleared. Drop: P9 (R7 readability confirmed by coordinator: bar values unlabelled, 165 vs a 170 cutoff); r1 concurred. Results: act-science-regrade/results/b10/."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "Not run: the model attack saturates on ACT Science (CLAUDE.md); with-source half decides."
+        }
+      }
+    },
+    {
+      "id": "act-science-v12c-2026-10-29",
+      "createdAt": "2026-10-29",
+      "targetTest": "act",
+      "section": "science",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "act-science-v12c",
+      "contentSha": "ed3dac2e90e6caed880515bf93d9225a36e516fb82692f71df731d864126fb08",
+      "status": "staged-for-human-review",
+      "note": "Claude agent to ACT-SCIENCE-V10-BRIEF.md (v11/v12 lessons); graded under ACT-SCIENCE-V12C.prereg.md (batch b11). Content = the 28 agent-cleared rows only (act-science-v12c.cleared.batch.json). Release = cleared list + one blind-only co-founder run (science-release.json).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "ed3dac2e90e6caed880515bf93d9225a36e516fb82692f71df731d864126fb08",
+          "verdict": "act-bank-helper check OK on the cleared file; act-sci-packet build b11 OK (strictForm:false)."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "Two fresh graders, cold then keyed (b11 g1/g2): keys 52/52 both. 5 of 9 passages cleared (P5-P9). Drops: P1-P4 design items (R6 both; r1 confirmed no_source on 4); R8 named by both on items already dropped. Results: act-science-regrade/results/b11/."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "Not run: the model attack saturates on ACT Science (CLAUDE.md); with-source half decides."
+        }
+      }
+    },
+    {
+      "id": "act-science-v12d-2026-10-29",
+      "createdAt": "2026-10-29",
+      "targetTest": "act",
+      "section": "science",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "act-science-v12d",
+      "contentSha": "450dc5f26d245d11c4cfb66a8d87dcc1a88c2d8ac33713cfca606a2c622ce4a3",
+      "status": "staged-for-human-review",
+      "note": "Claude agent to ACT-SCIENCE-V10-BRIEF.md (v11/v12 lessons); graded under ACT-SCIENCE-V12D.prereg.md (batch b12). Content = the 34 agent-cleared rows only (act-science-v12d.cleared.batch.json). Release = cleared list + one blind-only co-founder run (science-release.json).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "450dc5f26d245d11c4cfb66a8d87dcc1a88c2d8ac33713cfca606a2c622ce4a3",
+          "verdict": "act-bank-helper check OK on the cleared file; act-sci-packet build b12 OK (strictForm:false)."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "Two fresh graders, cold then keyed (b12 g1/g2): keys 52/52 both; no_source 0. 6 of 9 passages cleared. Drops: P5, P6, P7 via R8 (agree-item rule named by both, applied blind by a fresh agent from the cold packet: 3 of 3 = key; _r8/b12/rule-picks.json). Results: act-science-regrade/results/b12/."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "Not run: the model attack saturates on ACT Science (CLAUDE.md); with-source half decides."
+        }
+      }
+    },
+    {
+      "id": "act-science-v12e-2026-10-29",
+      "createdAt": "2026-10-29",
+      "targetTest": "act",
+      "section": "science",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "act-science-v12e",
+      "contentSha": "3e834ded6b9f634c6d4a25a02467d50d7843303283c79d4164334b4dfaf5b576",
+      "status": "staged-for-human-review",
+      "note": "Claude agent to ACT-SCIENCE-V10-BRIEF.md (v11/v12 lessons); graded under ACT-SCIENCE-V12E.prereg.md (batch b13). Content = the 40 agent-cleared rows only (act-science-v12e.cleared.batch.json). Release = cleared list + one blind-only co-founder run (science-release.json).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "3e834ded6b9f634c6d4a25a02467d50d7843303283c79d4164334b4dfaf5b576",
+          "verdict": "act-bank-helper check OK on the cleared file; act-sci-packet build b13 OK (strictForm:false)."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "Two fresh graders, cold then keyed (b13 g1/g2): keys 52/52 both. 7 of 9 passages cleared. Drops: P7-Q4 (R4 no_source, both), P4-Q4 (R4b, r1 confirmed). R8: one grader only, nothing dropped. Results: act-science-regrade/results/b13/."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "Not run: the model attack saturates on ACT Science (CLAUDE.md); with-source half decides."
+        }
+      }
+    },
+    {
+      "id": "act-science-v12f-2026-10-29",
+      "createdAt": "2026-10-29",
+      "targetTest": "act",
+      "section": "science",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "act-science-v12f",
+      "contentSha": "66b96d78af07cbaff8b8294de8eaf5084a1e56cdd73ea33ce2651dd02542ddc7",
+      "status": "staged-for-human-review",
+      "note": "Claude agent to ACT-SCIENCE-V10-BRIEF.md (v11/v12 lessons); graded under ACT-SCIENCE-V12F.prereg.md (batch b14). Content = the 52 agent-cleared rows only (act-science-v12f.cleared.batch.json). Release = cleared list + one blind-only co-founder run (science-release.json).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "66b96d78af07cbaff8b8294de8eaf5084a1e56cdd73ea33ce2651dd02542ddc7",
+          "verdict": "act-bank-helper check OK on the cleared file; act-sci-packet build b14 OK (strictForm:false)."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "Two fresh graders, cold then keyed (b14 g1/g2): keys 52/52 both; no_source 0, no R6, no pattern. 9 of 9 passages cleared. g2's two R7 readability flags (shared control row) rejected by the coordinator: the passage assigns the row explicitly; confirm.json. Results: act-science-regrade/results/b14/."
+        },
+        "nosource": {
+          "passed": null,
+          "verdict": "Not run: the model attack saturates on ACT Science (CLAUDE.md); with-source half decides."
+        }
+      }
     }
   ],
   "auditedCohorts": [

@@ -1,0 +1,2793 @@
+[
+ {
+  "id": "ASV12e-P1-Q1",
+  "passage_id": "sc12e-p1",
+  "passage_title": "Temperature, Stirring, and Grain Size in Dissolving Kelsite",
+  "format": "research_summaries",
+  "passage": "Kelsite is an experimental salt that cools water as it dissolves. Chemists added 5 grams (g) of Kelsite crystals to 200 milliliters of water in a beaker and recorded the time (in seconds, s) until no crystals could be seen, and how much the water's temperature dropped (in °C) while the salt dissolved (see Table 1). Unless stated otherwise, the water started at 30°C, the beaker was stirred at 100 revolutions per minute (rpm), and the crystals were 0.5 millimeters (mm) across.\n\nExperiment 1\nThe starting water temperature was 10, 20, 30, 40, or 50°C.\n\nExperiment 2\nThe stirring rate was 0, 50, or 200 rpm. (The result at 100 rpm is that of the 30°C trial in Experiment 1.)\n\nExperiment 3\nThe crystals were 0.1 mm or 2.0 mm across. (The result for 0.5-mm crystals is that of the 30°C trial in Experiment 1.)",
+  "prompt": "In Experiment 1, raising the starting water temperature from 40°C to 50°C shortened the time to dissolve by how many seconds?",
+  "choices": [
+   "10 s",
+   "35 s",
+   "85 s",
+   "120 s"
+  ],
+  "correct_answer": "10 s",
+  "explanation": "Experiment 1: 170 s at 40°C and 160 s at 50°C, a decrease of \"10 s\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a difference within a series",
+  "difficulty": "medium",
+  "topic_tag": "Temperature, Stirring, and Grain Size in Dissolving Kelsite",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Kelsite dissolving results",
+   "colLabels": [
+    "Starting water temperature (°C)",
+    "Stirring rate (rpm)",
+    "Crystal size (mm)",
+    "Time to dissolve (s)",
+    "Temperature drop (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     10,
+     100,
+     0.5,
+     410,
+     4.1
+    ],
+    [
+     20,
+     100,
+     0.5,
+     290,
+     3.8
+    ],
+    [
+     30,
+     100,
+     0.5,
+     205,
+     3.6
+    ],
+    [
+     40,
+     100,
+     0.5,
+     170,
+     3.5
+    ],
+    [
+     50,
+     100,
+     0.5,
+     160,
+     3.5
+    ],
+    [
+     30,
+     0,
+     0.5,
+     980,
+     3.4
+    ],
+    [
+     30,
+     50,
+     0.5,
+     340,
+     3.6
+    ],
+    [
+     30,
+     200,
+     0.5,
+     150,
+     3.7
+    ],
+    [
+     30,
+     100,
+     0.1,
+     95,
+     3.6
+    ],
+    [
+     30,
+     100,
+     2.0,
+     520,
+     3.6
+    ]
+   ]
+  },
+  "consistency_check": "The 30 C / 100 rpm / 0.5 mm trial (205 s, 3.6 C) is listed once and shared by all three experiments; dissolving time levels off above 40 C and above 100 rpm; the salt and its values are invented and follow no named law."
+ },
+ {
+  "id": "ASV12e-P1-Q2",
+  "passage_id": "sc12e-p1",
+  "passage_title": "Temperature, Stirring, and Grain Size in Dissolving Kelsite",
+  "format": "research_summaries",
+  "passage": "Kelsite is an experimental salt that cools water as it dissolves. Chemists added 5 grams (g) of Kelsite crystals to 200 milliliters of water in a beaker and recorded the time (in seconds, s) until no crystals could be seen, and how much the water's temperature dropped (in °C) while the salt dissolved (see Table 1). Unless stated otherwise, the water started at 30°C, the beaker was stirred at 100 revolutions per minute (rpm), and the crystals were 0.5 millimeters (mm) across.\n\nExperiment 1\nThe starting water temperature was 10, 20, 30, 40, or 50°C.\n\nExperiment 2\nThe stirring rate was 0, 50, or 200 rpm. (The result at 100 rpm is that of the 30°C trial in Experiment 1.)\n\nExperiment 3\nThe crystals were 0.1 mm or 2.0 mm across. (The result for 0.5-mm crystals is that of the 30°C trial in Experiment 1.)",
+  "prompt": "Based on Experiment 2, crystals in 30°C water stirred at 150 rpm would most likely dissolve in:",
+  "choices": [
+   "less than 150 s.",
+   "between 150 s and 205 s.",
+   "between 205 s and 340 s.",
+   "more than 340 s."
+  ],
+  "correct_answer": "between 150 s and 205 s.",
+  "explanation": "At 30°C the time was 205 s at 100 rpm and 150 s at 200 rpm. 150 rpm lies between them, so \"between 150 s and 205 s.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate within a series",
+  "difficulty": "medium",
+  "topic_tag": "Temperature, Stirring, and Grain Size in Dissolving Kelsite",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Kelsite dissolving results",
+   "colLabels": [
+    "Starting water temperature (°C)",
+    "Stirring rate (rpm)",
+    "Crystal size (mm)",
+    "Time to dissolve (s)",
+    "Temperature drop (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     10,
+     100,
+     0.5,
+     410,
+     4.1
+    ],
+    [
+     20,
+     100,
+     0.5,
+     290,
+     3.8
+    ],
+    [
+     30,
+     100,
+     0.5,
+     205,
+     3.6
+    ],
+    [
+     40,
+     100,
+     0.5,
+     170,
+     3.5
+    ],
+    [
+     50,
+     100,
+     0.5,
+     160,
+     3.5
+    ],
+    [
+     30,
+     0,
+     0.5,
+     980,
+     3.4
+    ],
+    [
+     30,
+     50,
+     0.5,
+     340,
+     3.6
+    ],
+    [
+     30,
+     200,
+     0.5,
+     150,
+     3.7
+    ],
+    [
+     30,
+     100,
+     0.1,
+     95,
+     3.6
+    ],
+    [
+     30,
+     100,
+     2.0,
+     520,
+     3.6
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12e-P1-Q3",
+  "passage_id": "sc12e-p1",
+  "passage_title": "Temperature, Stirring, and Grain Size in Dissolving Kelsite",
+  "format": "research_summaries",
+  "passage": "Kelsite is an experimental salt that cools water as it dissolves. Chemists added 5 grams (g) of Kelsite crystals to 200 milliliters of water in a beaker and recorded the time (in seconds, s) until no crystals could be seen, and how much the water's temperature dropped (in °C) while the salt dissolved (see Table 1). Unless stated otherwise, the water started at 30°C, the beaker was stirred at 100 revolutions per minute (rpm), and the crystals were 0.5 millimeters (mm) across.\n\nExperiment 1\nThe starting water temperature was 10, 20, 30, 40, or 50°C.\n\nExperiment 2\nThe stirring rate was 0, 50, or 200 rpm. (The result at 100 rpm is that of the 30°C trial in Experiment 1.)\n\nExperiment 3\nThe crystals were 0.1 mm or 2.0 mm across. (The result for 0.5-mm crystals is that of the 30°C trial in Experiment 1.)",
+  "prompt": "The chemists want to know whether stirring at 200 rpm also shortens the dissolving time of 2.0-mm crystals. In which water should the new trial be run so that its result can be compared directly with a trial already in Table 1?",
+  "choices": [
+   "Water starting at 10°C",
+   "Water starting at 20°C",
+   "Water starting at 30°C",
+   "Water starting at 50°C"
+  ],
+  "correct_answer": "Water starting at 30°C",
+  "explanation": "The only 2.0-mm trial in Table 1 (Experiment 3) used water starting at 30°C and 100 rpm, so a 200-rpm trial in \"Water starting at 30°C\" changes only the stirring rate.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose a condition that allows comparison with an earlier trial",
+  "difficulty": "hard",
+  "topic_tag": "Temperature, Stirring, and Grain Size in Dissolving Kelsite",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Kelsite dissolving results",
+   "colLabels": [
+    "Starting water temperature (°C)",
+    "Stirring rate (rpm)",
+    "Crystal size (mm)",
+    "Time to dissolve (s)",
+    "Temperature drop (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     10,
+     100,
+     0.5,
+     410,
+     4.1
+    ],
+    [
+     20,
+     100,
+     0.5,
+     290,
+     3.8
+    ],
+    [
+     30,
+     100,
+     0.5,
+     205,
+     3.6
+    ],
+    [
+     40,
+     100,
+     0.5,
+     170,
+     3.5
+    ],
+    [
+     50,
+     100,
+     0.5,
+     160,
+     3.5
+    ],
+    [
+     30,
+     0,
+     0.5,
+     980,
+     3.4
+    ],
+    [
+     30,
+     50,
+     0.5,
+     340,
+     3.6
+    ],
+    [
+     30,
+     200,
+     0.5,
+     150,
+     3.7
+    ],
+    [
+     30,
+     100,
+     0.1,
+     95,
+     3.6
+    ],
+    [
+     30,
+     100,
+     2.0,
+     520,
+     3.6
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12e-P1-Q4",
+  "passage_id": "sc12e-p1",
+  "passage_title": "Temperature, Stirring, and Grain Size in Dissolving Kelsite",
+  "format": "research_summaries",
+  "passage": "Kelsite is an experimental salt that cools water as it dissolves. Chemists added 5 grams (g) of Kelsite crystals to 200 milliliters of water in a beaker and recorded the time (in seconds, s) until no crystals could be seen, and how much the water's temperature dropped (in °C) while the salt dissolved (see Table 1). Unless stated otherwise, the water started at 30°C, the beaker was stirred at 100 revolutions per minute (rpm), and the crystals were 0.5 millimeters (mm) across.\n\nExperiment 1\nThe starting water temperature was 10, 20, 30, 40, or 50°C.\n\nExperiment 2\nThe stirring rate was 0, 50, or 200 rpm. (The result at 100 rpm is that of the 30°C trial in Experiment 1.)\n\nExperiment 3\nThe crystals were 0.1 mm or 2.0 mm across. (The result for 0.5-mm crystals is that of the 30°C trial in Experiment 1.)",
+  "prompt": "Which trial had a time to dissolve of less than 200 s AND a temperature drop of exactly 3.6°C?",
+  "choices": [
+   "0.5-mm crystals, 40°C, 100 rpm",
+   "0.5-mm crystals, 30°C, 100 rpm",
+   "0.5-mm crystals, 30°C, 200 rpm",
+   "0.1-mm crystals, 30°C, 100 rpm"
+  ],
+  "correct_answer": "0.1-mm crystals, 30°C, 100 rpm",
+  "explanation": "0.1-mm crystals: 95 s and 3.6°C. The 40°C trial dropped 3.5°C; the 200-rpm trial dropped 3.7°C; the 30°C, 100-rpm, 0.5-mm trial took 205 s.",
+  "domain": "Interpretation of Data",
+  "subskill": "apply two conditions to a table",
+  "difficulty": "medium",
+  "topic_tag": "Temperature, Stirring, and Grain Size in Dissolving Kelsite",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Kelsite dissolving results",
+   "colLabels": [
+    "Starting water temperature (°C)",
+    "Stirring rate (rpm)",
+    "Crystal size (mm)",
+    "Time to dissolve (s)",
+    "Temperature drop (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     10,
+     100,
+     0.5,
+     410,
+     4.1
+    ],
+    [
+     20,
+     100,
+     0.5,
+     290,
+     3.8
+    ],
+    [
+     30,
+     100,
+     0.5,
+     205,
+     3.6
+    ],
+    [
+     40,
+     100,
+     0.5,
+     170,
+     3.5
+    ],
+    [
+     50,
+     100,
+     0.5,
+     160,
+     3.5
+    ],
+    [
+     30,
+     0,
+     0.5,
+     980,
+     3.4
+    ],
+    [
+     30,
+     50,
+     0.5,
+     340,
+     3.6
+    ],
+    [
+     30,
+     200,
+     0.5,
+     150,
+     3.7
+    ],
+    [
+     30,
+     100,
+     0.1,
+     95,
+     3.6
+    ],
+    [
+     30,
+     100,
+     2.0,
+     520,
+     3.6
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12e-P1-Q5",
+  "passage_id": "sc12e-p1",
+  "passage_title": "Temperature, Stirring, and Grain Size in Dissolving Kelsite",
+  "format": "research_summaries",
+  "passage": "Kelsite is an experimental salt that cools water as it dissolves. Chemists added 5 grams (g) of Kelsite crystals to 200 milliliters of water in a beaker and recorded the time (in seconds, s) until no crystals could be seen, and how much the water's temperature dropped (in °C) while the salt dissolved (see Table 1). Unless stated otherwise, the water started at 30°C, the beaker was stirred at 100 revolutions per minute (rpm), and the crystals were 0.5 millimeters (mm) across.\n\nExperiment 1\nThe starting water temperature was 10, 20, 30, 40, or 50°C.\n\nExperiment 2\nThe stirring rate was 0, 50, or 200 rpm. (The result at 100 rpm is that of the 30°C trial in Experiment 1.)\n\nExperiment 3\nThe crystals were 0.1 mm or 2.0 mm across. (The result for 0.5-mm crystals is that of the 30°C trial in Experiment 1.)",
+  "prompt": "A student claims that, for Kelsite, each 10°C increase in starting water temperature shortens the time to dissolve by at least 30 s. Which pair of Experiment 1 trials shows that the claim does NOT hold over the whole range tested?",
+  "choices": [
+   "40°C and 50°C",
+   "20°C and 30°C",
+   "10°C and 20°C",
+   "30°C and 40°C"
+  ],
+  "correct_answer": "40°C and 50°C",
+  "explanation": "Decreases in Experiment 1: 120 s (10 to 20°C), 85 s (20 to 30°C), 35 s (30 to 40°C), 10 s (40 to 50°C). Only \"40°C and 50°C\" falls short of 30 s.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "find the data that contradict a stated generalization",
+  "difficulty": "hard",
+  "topic_tag": "Temperature, Stirring, and Grain Size in Dissolving Kelsite",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Kelsite dissolving results",
+   "colLabels": [
+    "Starting water temperature (°C)",
+    "Stirring rate (rpm)",
+    "Crystal size (mm)",
+    "Time to dissolve (s)",
+    "Temperature drop (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     10,
+     100,
+     0.5,
+     410,
+     4.1
+    ],
+    [
+     20,
+     100,
+     0.5,
+     290,
+     3.8
+    ],
+    [
+     30,
+     100,
+     0.5,
+     205,
+     3.6
+    ],
+    [
+     40,
+     100,
+     0.5,
+     170,
+     3.5
+    ],
+    [
+     50,
+     100,
+     0.5,
+     160,
+     3.5
+    ],
+    [
+     30,
+     0,
+     0.5,
+     980,
+     3.4
+    ],
+    [
+     30,
+     50,
+     0.5,
+     340,
+     3.6
+    ],
+    [
+     30,
+     200,
+     0.5,
+     150,
+     3.7
+    ],
+    [
+     30,
+     100,
+     0.1,
+     95,
+     3.6
+    ],
+    [
+     30,
+     100,
+     2.0,
+     520,
+     3.6
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12e-P1-Q6",
+  "passage_id": "sc12e-p1",
+  "passage_title": "Temperature, Stirring, and Grain Size in Dissolving Kelsite",
+  "format": "research_summaries",
+  "passage": "Kelsite is an experimental salt that cools water as it dissolves. Chemists added 5 grams (g) of Kelsite crystals to 200 milliliters of water in a beaker and recorded the time (in seconds, s) until no crystals could be seen, and how much the water's temperature dropped (in °C) while the salt dissolved (see Table 1). Unless stated otherwise, the water started at 30°C, the beaker was stirred at 100 revolutions per minute (rpm), and the crystals were 0.5 millimeters (mm) across.\n\nExperiment 1\nThe starting water temperature was 10, 20, 30, 40, or 50°C.\n\nExperiment 2\nThe stirring rate was 0, 50, or 200 rpm. (The result at 100 rpm is that of the 30°C trial in Experiment 1.)\n\nExperiment 3\nThe crystals were 0.1 mm or 2.0 mm across. (The result for 0.5-mm crystals is that of the 30°C trial in Experiment 1.)",
+  "prompt": "Across all three experiments, how many different stirring rates were tested?",
+  "choices": [
+   "2",
+   "3",
+   "4",
+   "5"
+  ],
+  "correct_answer": "4",
+  "explanation": "Experiment 2 used 0, 50, and 200 rpm, and every other trial used 100 rpm, so \"4\" different stirring rates were tested.",
+  "domain": "Scientific Investigation",
+  "subskill": "read the design of a set of experiments",
+  "difficulty": "medium",
+  "topic_tag": "Temperature, Stirring, and Grain Size in Dissolving Kelsite",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Kelsite dissolving results",
+   "colLabels": [
+    "Starting water temperature (°C)",
+    "Stirring rate (rpm)",
+    "Crystal size (mm)",
+    "Time to dissolve (s)",
+    "Temperature drop (°C)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     10,
+     100,
+     0.5,
+     410,
+     4.1
+    ],
+    [
+     20,
+     100,
+     0.5,
+     290,
+     3.8
+    ],
+    [
+     30,
+     100,
+     0.5,
+     205,
+     3.6
+    ],
+    [
+     40,
+     100,
+     0.5,
+     170,
+     3.5
+    ],
+    [
+     50,
+     100,
+     0.5,
+     160,
+     3.5
+    ],
+    [
+     30,
+     0,
+     0.5,
+     980,
+     3.4
+    ],
+    [
+     30,
+     50,
+     0.5,
+     340,
+     3.6
+    ],
+    [
+     30,
+     200,
+     0.5,
+     150,
+     3.7
+    ],
+    [
+     30,
+     100,
+     0.1,
+     95,
+     3.6
+    ],
+    [
+     30,
+     100,
+     2.0,
+     520,
+     3.6
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12e-P2-Q1",
+  "passage_id": "sc12e-p2",
+  "passage_title": "Flare Angle, Length, and Wall Material in Torrin Horns",
+  "format": "research_summaries",
+  "passage": "A Torrin horn is an experimental horn that makes a small speaker sound louder. Engineers fitted the same speaker, playing the same steady tone, into the narrow end of each horn. A meter 2 meters in front of the horn recorded the sound level (in decibels, dB). The engineers also measured the spread: the width (in degrees) of the region in front of the horn where the sound level was within 3 dB of its greatest value (see Table 1). Unless stated otherwise, each horn was made of brass.\n\nExperiment 1\nHorns 60 centimeters (cm) long were made with flare angles (how quickly the horn widens) of 5°, 10°, 15°, 20°, or 25°.\n\nExperiment 2\nHorns with a 15° flare were made 30, 90, or 120 cm long. (The 60-cm result is that of the 15° horn in Experiment 1.)\n\nExperiment 3\nHorns 60 cm long with a 15° flare were made of wood or plastic and compared with the brass horn of Experiment 1.",
+  "prompt": "In Experiment 1, the loudest sound was produced by the horn with which flare angle?",
+  "choices": [
+   "10°",
+   "15°",
+   "20°",
+   "25°"
+  ],
+  "correct_answer": "15°",
+  "explanation": "Experiment 1 sound levels: 78, 84, 88, 86, and 81 dB for 5° to 25°. The greatest, 88 dB, is at \"15°\".",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a maximum within one series",
+  "difficulty": "medium",
+  "topic_tag": "Flare Angle, Length, and Wall Material in Torrin Horns",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Torrin horn results",
+   "colLabels": [
+    "Wall material",
+    "Length (cm)",
+    "Flare angle (°)",
+    "Sound level (dB)",
+    "Spread (°)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "brass",
+     60,
+     5,
+     78,
+     30
+    ],
+    [
+     "brass",
+     60,
+     10,
+     84,
+     42
+    ],
+    [
+     "brass",
+     60,
+     15,
+     88,
+     55
+    ],
+    [
+     "brass",
+     60,
+     20,
+     86,
+     68
+    ],
+    [
+     "brass",
+     60,
+     25,
+     81,
+     80
+    ],
+    [
+     "brass",
+     30,
+     15,
+     80,
+     62
+    ],
+    [
+     "brass",
+     90,
+     15,
+     91,
+     49
+    ],
+    [
+     "brass",
+     120,
+     15,
+     92,
+     46
+    ],
+    [
+     "wood",
+     60,
+     15,
+     85,
+     56
+    ],
+    [
+     "plastic",
+     60,
+     15,
+     82,
+     55
+    ]
+   ]
+  },
+  "consistency_check": "The 60 cm / 15 degree brass horn (88 dB, 55 degrees) is listed once and shared by all three experiments; loudness peaks at a 15 degree flare and levels off with length; spread rises steadily with flare; the horn and values are invented, no named law."
+ },
+ {
+  "id": "ASV12e-P2-Q2",
+  "passage_id": "sc12e-p2",
+  "passage_title": "Flare Angle, Length, and Wall Material in Torrin Horns",
+  "format": "research_summaries",
+  "passage": "A Torrin horn is an experimental horn that makes a small speaker sound louder. Engineers fitted the same speaker, playing the same steady tone, into the narrow end of each horn. A meter 2 meters in front of the horn recorded the sound level (in decibels, dB). The engineers also measured the spread: the width (in degrees) of the region in front of the horn where the sound level was within 3 dB of its greatest value (see Table 1). Unless stated otherwise, each horn was made of brass.\n\nExperiment 1\nHorns 60 centimeters (cm) long were made with flare angles (how quickly the horn widens) of 5°, 10°, 15°, 20°, or 25°.\n\nExperiment 2\nHorns with a 15° flare were made 30, 90, or 120 cm long. (The 60-cm result is that of the 15° horn in Experiment 1.)\n\nExperiment 3\nHorns 60 cm long with a 15° flare were made of wood or plastic and compared with the brass horn of Experiment 1.",
+  "prompt": "In Experiment 2, the sound level increased the LEAST between which two lengths that were tested one after the other?",
+  "choices": [
+   "The increase was the same between every pair",
+   "30 cm and 60 cm",
+   "60 cm and 90 cm",
+   "90 cm and 120 cm"
+  ],
+  "correct_answer": "90 cm and 120 cm",
+  "explanation": "Sound levels with a 15° flare: 80 dB (30 cm), 88 dB (60 cm), 91 dB (90 cm), 92 dB (120 cm). The increases are 8, 3, and 1 dB, so the least is between \"90 cm and 120 cm\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compare changes between adjacent values",
+  "difficulty": "medium",
+  "topic_tag": "Flare Angle, Length, and Wall Material in Torrin Horns",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Torrin horn results",
+   "colLabels": [
+    "Wall material",
+    "Length (cm)",
+    "Flare angle (°)",
+    "Sound level (dB)",
+    "Spread (°)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "brass",
+     60,
+     5,
+     78,
+     30
+    ],
+    [
+     "brass",
+     60,
+     10,
+     84,
+     42
+    ],
+    [
+     "brass",
+     60,
+     15,
+     88,
+     55
+    ],
+    [
+     "brass",
+     60,
+     20,
+     86,
+     68
+    ],
+    [
+     "brass",
+     60,
+     25,
+     81,
+     80
+    ],
+    [
+     "brass",
+     30,
+     15,
+     80,
+     62
+    ],
+    [
+     "brass",
+     90,
+     15,
+     91,
+     49
+    ],
+    [
+     "brass",
+     120,
+     15,
+     92,
+     46
+    ],
+    [
+     "wood",
+     60,
+     15,
+     85,
+     56
+    ],
+    [
+     "plastic",
+     60,
+     15,
+     82,
+     55
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12e-P2-Q3",
+  "passage_id": "sc12e-p2",
+  "passage_title": "Flare Angle, Length, and Wall Material in Torrin Horns",
+  "format": "research_summaries",
+  "passage": "A Torrin horn is an experimental horn that makes a small speaker sound louder. Engineers fitted the same speaker, playing the same steady tone, into the narrow end of each horn. A meter 2 meters in front of the horn recorded the sound level (in decibels, dB). The engineers also measured the spread: the width (in degrees) of the region in front of the horn where the sound level was within 3 dB of its greatest value (see Table 1). Unless stated otherwise, each horn was made of brass.\n\nExperiment 1\nHorns 60 centimeters (cm) long were made with flare angles (how quickly the horn widens) of 5°, 10°, 15°, 20°, or 25°.\n\nExperiment 2\nHorns with a 15° flare were made 30, 90, or 120 cm long. (The 60-cm result is that of the 15° horn in Experiment 1.)\n\nExperiment 3\nHorns 60 cm long with a 15° flare were made of wood or plastic and compared with the brass horn of Experiment 1.",
+  "prompt": "Based on Experiment 1, a 60-cm brass horn with a flare angle of 30° would most likely have a spread of:",
+  "choices": [
+   "less than 55°.",
+   "between 55° and 68°.",
+   "between 68° and 80°.",
+   "greater than 80°."
+  ],
+  "correct_answer": "greater than 80°.",
+  "explanation": "In Experiment 1 the spread rose at every step: 30°, 42°, 55°, 68°, 80°. Continuing the trend past 25°, a 30° flare would most likely give \"greater than 80°.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "extrapolate a trend",
+  "difficulty": "medium",
+  "topic_tag": "Flare Angle, Length, and Wall Material in Torrin Horns",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Torrin horn results",
+   "colLabels": [
+    "Wall material",
+    "Length (cm)",
+    "Flare angle (°)",
+    "Sound level (dB)",
+    "Spread (°)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "brass",
+     60,
+     5,
+     78,
+     30
+    ],
+    [
+     "brass",
+     60,
+     10,
+     84,
+     42
+    ],
+    [
+     "brass",
+     60,
+     15,
+     88,
+     55
+    ],
+    [
+     "brass",
+     60,
+     20,
+     86,
+     68
+    ],
+    [
+     "brass",
+     60,
+     25,
+     81,
+     80
+    ],
+    [
+     "brass",
+     30,
+     15,
+     80,
+     62
+    ],
+    [
+     "brass",
+     90,
+     15,
+     91,
+     49
+    ],
+    [
+     "brass",
+     120,
+     15,
+     92,
+     46
+    ],
+    [
+     "wood",
+     60,
+     15,
+     85,
+     56
+    ],
+    [
+     "plastic",
+     60,
+     15,
+     82,
+     55
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12e-P2-Q4",
+  "passage_id": "sc12e-p2",
+  "passage_title": "Flare Angle, Length, and Wall Material in Torrin Horns",
+  "format": "research_summaries",
+  "passage": "A Torrin horn is an experimental horn that makes a small speaker sound louder. Engineers fitted the same speaker, playing the same steady tone, into the narrow end of each horn. A meter 2 meters in front of the horn recorded the sound level (in decibels, dB). The engineers also measured the spread: the width (in degrees) of the region in front of the horn where the sound level was within 3 dB of its greatest value (see Table 1). Unless stated otherwise, each horn was made of brass.\n\nExperiment 1\nHorns 60 centimeters (cm) long were made with flare angles (how quickly the horn widens) of 5°, 10°, 15°, 20°, or 25°.\n\nExperiment 2\nHorns with a 15° flare were made 30, 90, or 120 cm long. (The 60-cm result is that of the 15° horn in Experiment 1.)\n\nExperiment 3\nHorns 60 cm long with a 15° flare were made of wood or plastic and compared with the brass horn of Experiment 1.",
+  "prompt": "Which of the following was changed from one horn to the next in Experiment 2?",
+  "choices": [
+   "The flare angle of the horn",
+   "The wall material of the horn",
+   "The tone played by the speaker",
+   "The length of the horn"
+  ],
+  "correct_answer": "The length of the horn",
+  "explanation": "Experiment 2 kept a 15° flare, brass walls and the same tone, and varied \"The length of the horn\" (30, 90, and 120 cm, plus the 60-cm horn of Experiment 1).",
+  "domain": "Scientific Investigation",
+  "subskill": "identify the independent variable",
+  "difficulty": "easy",
+  "topic_tag": "Flare Angle, Length, and Wall Material in Torrin Horns",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Torrin horn results",
+   "colLabels": [
+    "Wall material",
+    "Length (cm)",
+    "Flare angle (°)",
+    "Sound level (dB)",
+    "Spread (°)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "brass",
+     60,
+     5,
+     78,
+     30
+    ],
+    [
+     "brass",
+     60,
+     10,
+     84,
+     42
+    ],
+    [
+     "brass",
+     60,
+     15,
+     88,
+     55
+    ],
+    [
+     "brass",
+     60,
+     20,
+     86,
+     68
+    ],
+    [
+     "brass",
+     60,
+     25,
+     81,
+     80
+    ],
+    [
+     "brass",
+     30,
+     15,
+     80,
+     62
+    ],
+    [
+     "brass",
+     90,
+     15,
+     91,
+     49
+    ],
+    [
+     "brass",
+     120,
+     15,
+     92,
+     46
+    ],
+    [
+     "wood",
+     60,
+     15,
+     85,
+     56
+    ],
+    [
+     "plastic",
+     60,
+     15,
+     82,
+     55
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12e-P2-Q5",
+  "passage_id": "sc12e-p2",
+  "passage_title": "Flare Angle, Length, and Wall Material in Torrin Horns",
+  "format": "research_summaries",
+  "passage": "A Torrin horn is an experimental horn that makes a small speaker sound louder. Engineers fitted the same speaker, playing the same steady tone, into the narrow end of each horn. A meter 2 meters in front of the horn recorded the sound level (in decibels, dB). The engineers also measured the spread: the width (in degrees) of the region in front of the horn where the sound level was within 3 dB of its greatest value (see Table 1). Unless stated otherwise, each horn was made of brass.\n\nExperiment 1\nHorns 60 centimeters (cm) long were made with flare angles (how quickly the horn widens) of 5°, 10°, 15°, 20°, or 25°.\n\nExperiment 2\nHorns with a 15° flare were made 30, 90, or 120 cm long. (The 60-cm result is that of the 15° horn in Experiment 1.)\n\nExperiment 3\nHorns 60 cm long with a 15° flare were made of wood or plastic and compared with the brass horn of Experiment 1.",
+  "prompt": "Which horn produced a sound level greater than 85 dB AND a spread of at least 50°?",
+  "choices": [
+   "Brass, 90 cm, 15° flare",
+   "Brass, 60 cm, 15° flare",
+   "Brass, 60 cm, 25° flare",
+   "Wood, 60 cm, 15° flare"
+  ],
+  "correct_answer": "Brass, 60 cm, 15° flare",
+  "explanation": "Brass, 60 cm, 15°: 88 dB and 55°. The 90-cm horn spread only 49°; the wood horn reached only 85 dB; the 25° horn reached only 81 dB.",
+  "domain": "Interpretation of Data",
+  "subskill": "apply two conditions to a table",
+  "difficulty": "medium",
+  "topic_tag": "Flare Angle, Length, and Wall Material in Torrin Horns",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Torrin horn results",
+   "colLabels": [
+    "Wall material",
+    "Length (cm)",
+    "Flare angle (°)",
+    "Sound level (dB)",
+    "Spread (°)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "brass",
+     60,
+     5,
+     78,
+     30
+    ],
+    [
+     "brass",
+     60,
+     10,
+     84,
+     42
+    ],
+    [
+     "brass",
+     60,
+     15,
+     88,
+     55
+    ],
+    [
+     "brass",
+     60,
+     20,
+     86,
+     68
+    ],
+    [
+     "brass",
+     60,
+     25,
+     81,
+     80
+    ],
+    [
+     "brass",
+     30,
+     15,
+     80,
+     62
+    ],
+    [
+     "brass",
+     90,
+     15,
+     91,
+     49
+    ],
+    [
+     "brass",
+     120,
+     15,
+     92,
+     46
+    ],
+    [
+     "wood",
+     60,
+     15,
+     85,
+     56
+    ],
+    [
+     "plastic",
+     60,
+     15,
+     82,
+     55
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12e-P2-Q6",
+  "passage_id": "sc12e-p2",
+  "passage_title": "Flare Angle, Length, and Wall Material in Torrin Horns",
+  "format": "research_summaries",
+  "passage": "A Torrin horn is an experimental horn that makes a small speaker sound louder. Engineers fitted the same speaker, playing the same steady tone, into the narrow end of each horn. A meter 2 meters in front of the horn recorded the sound level (in decibels, dB). The engineers also measured the spread: the width (in degrees) of the region in front of the horn where the sound level was within 3 dB of its greatest value (see Table 1). Unless stated otherwise, each horn was made of brass.\n\nExperiment 1\nHorns 60 centimeters (cm) long were made with flare angles (how quickly the horn widens) of 5°, 10°, 15°, 20°, or 25°.\n\nExperiment 2\nHorns with a 15° flare were made 30, 90, or 120 cm long. (The 60-cm result is that of the 15° horn in Experiment 1.)\n\nExperiment 3\nHorns 60 cm long with a 15° flare were made of wood or plastic and compared with the brass horn of Experiment 1.",
+  "prompt": "Based on Experiment 3, if a 60-cm horn with a 15° flare were made of a fourth material, its spread would most likely be closest to:",
+  "choices": [
+   "30°",
+   "42°",
+   "55°",
+   "80°"
+  ],
+  "correct_answer": "55°",
+  "explanation": "In Experiment 3 the spread hardly changed with material: 55° (brass), 56° (wood), 55° (plastic), while the sound level did change. A fourth material would most likely give a spread closest to \"55°\".",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "generalize from a variable that had little effect",
+  "difficulty": "hard",
+  "topic_tag": "Flare Angle, Length, and Wall Material in Torrin Horns",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Torrin horn results",
+   "colLabels": [
+    "Wall material",
+    "Length (cm)",
+    "Flare angle (°)",
+    "Sound level (dB)",
+    "Spread (°)"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "brass",
+     60,
+     5,
+     78,
+     30
+    ],
+    [
+     "brass",
+     60,
+     10,
+     84,
+     42
+    ],
+    [
+     "brass",
+     60,
+     15,
+     88,
+     55
+    ],
+    [
+     "brass",
+     60,
+     20,
+     86,
+     68
+    ],
+    [
+     "brass",
+     60,
+     25,
+     81,
+     80
+    ],
+    [
+     "brass",
+     30,
+     15,
+     80,
+     62
+    ],
+    [
+     "brass",
+     90,
+     15,
+     91,
+     49
+    ],
+    [
+     "brass",
+     120,
+     15,
+     92,
+     46
+    ],
+    [
+     "wood",
+     60,
+     15,
+     85,
+     56
+    ],
+    [
+     "plastic",
+     60,
+     15,
+     82,
+     55
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12e-P3-Q1",
+  "passage_id": "sc12e-p3",
+  "passage_title": "Depth, Shade, and Fish in Ostry Fen Ponds",
+  "format": "research_summaries",
+  "passage": "Darter-flies are insects whose young (larvae) live in shallow water and later emerge from the water as winged adults. Ecologists dug ponds in the Ostry Fen, a wetland, and stocked each with the same number of darter-fly eggs. After 6 weeks they counted the larvae per square meter (m²) of pond bottom. At the end of the season they recorded the percent of larvae that emerged as adults (see Table 1). Unless stated otherwise, ponds were unshaded and contained no fish.\n\nStudy 1\nPonds were dug 20, 40, 60, 80, or 100 centimeters (cm) deep.\n\nStudy 2\nPonds 60 cm deep were covered with netting that shaded 50% or 90% of the water surface. (The unshaded result is that of the 60-cm pond in Study 1.)\n\nStudy 3\nA pond 60 cm deep was stocked with Kell minnows, small fish native to the fen, and compared with the 60-cm pond of Study 1.",
+  "prompt": "In Study 1, the pond with the most larvae per m² was how deep?",
+  "choices": [
+   "40 cm",
+   "60 cm",
+   "80 cm",
+   "100 cm"
+  ],
+  "correct_answer": "60 cm",
+  "explanation": "Study 1 larvae: 34, 58, 71, 52, and 30 per m² at 20 to 100 cm. The greatest, 71, is at \"60 cm\".",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a maximum within one series",
+  "difficulty": "medium",
+  "topic_tag": "Depth, Shade, and Fish in Ostry Fen Ponds",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Ostry Fen pond results",
+   "colLabels": [
+    "Depth (cm)",
+    "Shade (%)",
+    "Kell minnows?",
+    "Larvae per m²",
+    "Emerged as adults (%)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     20,
+     0,
+     "no",
+     34,
+     61
+    ],
+    [
+     40,
+     0,
+     "no",
+     58,
+     66
+    ],
+    [
+     60,
+     0,
+     "no",
+     71,
+     70
+    ],
+    [
+     80,
+     0,
+     "no",
+     52,
+     64
+    ],
+    [
+     100,
+     0,
+     "no",
+     30,
+     55
+    ],
+    [
+     60,
+     50,
+     "no",
+     64,
+     72
+    ],
+    [
+     60,
+     90,
+     "no",
+     23,
+     45
+    ],
+    [
+     60,
+     0,
+     "yes",
+     18,
+     39
+    ]
+   ]
+  },
+  "consistency_check": "The 60 cm, unshaded, fish-free pond (71 larvae, 70%) is listed once and shared by all three studies; larvae peak at 60 cm; heavy shade and Kell minnows both cut larvae and emergence; the insect, fish and fen are invented."
+ },
+ {
+  "id": "ASV12e-P3-Q2",
+  "passage_id": "sc12e-p3",
+  "passage_title": "Depth, Shade, and Fish in Ostry Fen Ponds",
+  "format": "research_summaries",
+  "passage": "Darter-flies are insects whose young (larvae) live in shallow water and later emerge from the water as winged adults. Ecologists dug ponds in the Ostry Fen, a wetland, and stocked each with the same number of darter-fly eggs. After 6 weeks they counted the larvae per square meter (m²) of pond bottom. At the end of the season they recorded the percent of larvae that emerged as adults (see Table 1). Unless stated otherwise, ponds were unshaded and contained no fish.\n\nStudy 1\nPonds were dug 20, 40, 60, 80, or 100 centimeters (cm) deep.\n\nStudy 2\nPonds 60 cm deep were covered with netting that shaded 50% or 90% of the water surface. (The unshaded result is that of the 60-cm pond in Study 1.)\n\nStudy 3\nA pond 60 cm deep was stocked with Kell minnows, small fish native to the fen, and compared with the 60-cm pond of Study 1.",
+  "prompt": "In Study 2, increasing the shade from 50% to 90% changed the number of larvae per m² by about what percent?",
+  "choices": [
+   "A decrease of about 9%",
+   "A decrease of about 41%",
+   "A decrease of about 64%",
+   "A decrease of about 90%"
+  ],
+  "correct_answer": "A decrease of about 64%",
+  "explanation": "Larvae fell from 64 to 23 per m², a drop of 41 out of 64, or about 64%: \"A decrease of about 64%\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a percent change",
+  "difficulty": "hard",
+  "topic_tag": "Depth, Shade, and Fish in Ostry Fen Ponds",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Ostry Fen pond results",
+   "colLabels": [
+    "Depth (cm)",
+    "Shade (%)",
+    "Kell minnows?",
+    "Larvae per m²",
+    "Emerged as adults (%)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     20,
+     0,
+     "no",
+     34,
+     61
+    ],
+    [
+     40,
+     0,
+     "no",
+     58,
+     66
+    ],
+    [
+     60,
+     0,
+     "no",
+     71,
+     70
+    ],
+    [
+     80,
+     0,
+     "no",
+     52,
+     64
+    ],
+    [
+     100,
+     0,
+     "no",
+     30,
+     55
+    ],
+    [
+     60,
+     50,
+     "no",
+     64,
+     72
+    ],
+    [
+     60,
+     90,
+     "no",
+     23,
+     45
+    ],
+    [
+     60,
+     0,
+     "yes",
+     18,
+     39
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12e-P3-Q3",
+  "passage_id": "sc12e-p3",
+  "passage_title": "Depth, Shade, and Fish in Ostry Fen Ponds",
+  "format": "research_summaries",
+  "passage": "Darter-flies are insects whose young (larvae) live in shallow water and later emerge from the water as winged adults. Ecologists dug ponds in the Ostry Fen, a wetland, and stocked each with the same number of darter-fly eggs. After 6 weeks they counted the larvae per square meter (m²) of pond bottom. At the end of the season they recorded the percent of larvae that emerged as adults (see Table 1). Unless stated otherwise, ponds were unshaded and contained no fish.\n\nStudy 1\nPonds were dug 20, 40, 60, 80, or 100 centimeters (cm) deep.\n\nStudy 2\nPonds 60 cm deep were covered with netting that shaded 50% or 90% of the water surface. (The unshaded result is that of the 60-cm pond in Study 1.)\n\nStudy 3\nA pond 60 cm deep was stocked with Kell minnows, small fish native to the fen, and compared with the 60-cm pond of Study 1.",
+  "prompt": "Compared with the 60-cm pond of Study 1, what was changed in the pond of Study 3?",
+  "choices": [
+   "The depth of the pond",
+   "Whether Kell minnows were present",
+   "The number of eggs stocked",
+   "The amount of shade on the pond"
+  ],
+  "correct_answer": "Whether Kell minnows were present",
+  "explanation": "Study 3 used a 60-cm, unshaded pond stocked with the same number of eggs, and added Kell minnows. So the change was \"Whether Kell minnows were present\".",
+  "domain": "Scientific Investigation",
+  "subskill": "identify the variable changed between two trials",
+  "difficulty": "easy",
+  "topic_tag": "Depth, Shade, and Fish in Ostry Fen Ponds",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Ostry Fen pond results",
+   "colLabels": [
+    "Depth (cm)",
+    "Shade (%)",
+    "Kell minnows?",
+    "Larvae per m²",
+    "Emerged as adults (%)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     20,
+     0,
+     "no",
+     34,
+     61
+    ],
+    [
+     40,
+     0,
+     "no",
+     58,
+     66
+    ],
+    [
+     60,
+     0,
+     "no",
+     71,
+     70
+    ],
+    [
+     80,
+     0,
+     "no",
+     52,
+     64
+    ],
+    [
+     100,
+     0,
+     "no",
+     30,
+     55
+    ],
+    [
+     60,
+     50,
+     "no",
+     64,
+     72
+    ],
+    [
+     60,
+     90,
+     "no",
+     23,
+     45
+    ],
+    [
+     60,
+     0,
+     "yes",
+     18,
+     39
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12e-P3-Q4",
+  "passage_id": "sc12e-p3",
+  "passage_title": "Depth, Shade, and Fish in Ostry Fen Ponds",
+  "format": "research_summaries",
+  "passage": "Darter-flies are insects whose young (larvae) live in shallow water and later emerge from the water as winged adults. Ecologists dug ponds in the Ostry Fen, a wetland, and stocked each with the same number of darter-fly eggs. After 6 weeks they counted the larvae per square meter (m²) of pond bottom. At the end of the season they recorded the percent of larvae that emerged as adults (see Table 1). Unless stated otherwise, ponds were unshaded and contained no fish.\n\nStudy 1\nPonds were dug 20, 40, 60, 80, or 100 centimeters (cm) deep.\n\nStudy 2\nPonds 60 cm deep were covered with netting that shaded 50% or 90% of the water surface. (The unshaded result is that of the 60-cm pond in Study 1.)\n\nStudy 3\nA pond 60 cm deep was stocked with Kell minnows, small fish native to the fen, and compared with the 60-cm pond of Study 1.",
+  "prompt": "Which pond had more than 50 larvae per m² but fewer than 65% of its larvae emerge as adults?",
+  "choices": [
+   "40 cm deep, unshaded",
+   "80 cm deep, unshaded",
+   "20 cm deep, unshaded",
+   "60 cm deep, 50% shade"
+  ],
+  "correct_answer": "80 cm deep, unshaded",
+  "explanation": "The 80-cm pond: 52 larvae per m² and 64% emerged. The 40-cm pond had 66% emerge; the 50%-shade pond had 72%; the 20-cm pond had only 34 larvae per m².",
+  "domain": "Interpretation of Data",
+  "subskill": "apply two conditions to a table",
+  "difficulty": "medium",
+  "topic_tag": "Depth, Shade, and Fish in Ostry Fen Ponds",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Ostry Fen pond results",
+   "colLabels": [
+    "Depth (cm)",
+    "Shade (%)",
+    "Kell minnows?",
+    "Larvae per m²",
+    "Emerged as adults (%)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     20,
+     0,
+     "no",
+     34,
+     61
+    ],
+    [
+     40,
+     0,
+     "no",
+     58,
+     66
+    ],
+    [
+     60,
+     0,
+     "no",
+     71,
+     70
+    ],
+    [
+     80,
+     0,
+     "no",
+     52,
+     64
+    ],
+    [
+     100,
+     0,
+     "no",
+     30,
+     55
+    ],
+    [
+     60,
+     50,
+     "no",
+     64,
+     72
+    ],
+    [
+     60,
+     90,
+     "no",
+     23,
+     45
+    ],
+    [
+     60,
+     0,
+     "yes",
+     18,
+     39
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12e-P3-Q5",
+  "passage_id": "sc12e-p3",
+  "passage_title": "Depth, Shade, and Fish in Ostry Fen Ponds",
+  "format": "research_summaries",
+  "passage": "Darter-flies are insects whose young (larvae) live in shallow water and later emerge from the water as winged adults. Ecologists dug ponds in the Ostry Fen, a wetland, and stocked each with the same number of darter-fly eggs. After 6 weeks they counted the larvae per square meter (m²) of pond bottom. At the end of the season they recorded the percent of larvae that emerged as adults (see Table 1). Unless stated otherwise, ponds were unshaded and contained no fish.\n\nStudy 1\nPonds were dug 20, 40, 60, 80, or 100 centimeters (cm) deep.\n\nStudy 2\nPonds 60 cm deep were covered with netting that shaded 50% or 90% of the water surface. (The unshaded result is that of the 60-cm pond in Study 1.)\n\nStudy 3\nA pond 60 cm deep was stocked with Kell minnows, small fish native to the fen, and compared with the 60-cm pond of Study 1.",
+  "prompt": "Starting from the 60-cm, unshaded, fish-free pond, which single change shown in Table 1 reduced the number of larvae per m² the most?",
+  "choices": [
+   "Shading 90% of the pond",
+   "Adding Kell minnows",
+   "Making the pond 20 cm deep",
+   "Making the pond 100 cm deep"
+  ],
+  "correct_answer": "Adding Kell minnows",
+  "explanation": "From 71 larvae per m²: Kell minnows gave 18 (down 53), 90% shade gave 23 (down 48), 100 cm gave 30 (down 41), 20 cm gave 34 (down 37). The largest reduction is \"Adding Kell minnows\".",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "compare the effects of different changes across studies",
+  "difficulty": "hard",
+  "topic_tag": "Depth, Shade, and Fish in Ostry Fen Ponds",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Ostry Fen pond results",
+   "colLabels": [
+    "Depth (cm)",
+    "Shade (%)",
+    "Kell minnows?",
+    "Larvae per m²",
+    "Emerged as adults (%)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     20,
+     0,
+     "no",
+     34,
+     61
+    ],
+    [
+     40,
+     0,
+     "no",
+     58,
+     66
+    ],
+    [
+     60,
+     0,
+     "no",
+     71,
+     70
+    ],
+    [
+     80,
+     0,
+     "no",
+     52,
+     64
+    ],
+    [
+     100,
+     0,
+     "no",
+     30,
+     55
+    ],
+    [
+     60,
+     50,
+     "no",
+     64,
+     72
+    ],
+    [
+     60,
+     90,
+     "no",
+     23,
+     45
+    ],
+    [
+     60,
+     0,
+     "yes",
+     18,
+     39
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12e-P3-Q6",
+  "passage_id": "sc12e-p3",
+  "passage_title": "Depth, Shade, and Fish in Ostry Fen Ponds",
+  "format": "research_summaries",
+  "passage": "Darter-flies are insects whose young (larvae) live in shallow water and later emerge from the water as winged adults. Ecologists dug ponds in the Ostry Fen, a wetland, and stocked each with the same number of darter-fly eggs. After 6 weeks they counted the larvae per square meter (m²) of pond bottom. At the end of the season they recorded the percent of larvae that emerged as adults (see Table 1). Unless stated otherwise, ponds were unshaded and contained no fish.\n\nStudy 1\nPonds were dug 20, 40, 60, 80, or 100 centimeters (cm) deep.\n\nStudy 2\nPonds 60 cm deep were covered with netting that shaded 50% or 90% of the water surface. (The unshaded result is that of the 60-cm pond in Study 1.)\n\nStudy 3\nA pond 60 cm deep was stocked with Kell minnows, small fish native to the fen, and compared with the 60-cm pond of Study 1.",
+  "prompt": "Based on Study 1, an unshaded, fish-free pond 70 cm deep would most likely have what percent of its larvae emerge as adults?",
+  "choices": [
+   "Less than 55%",
+   "Between 55% and 64%",
+   "Between 64% and 70%",
+   "More than 70%"
+  ],
+  "correct_answer": "Between 64% and 70%",
+  "explanation": "In Study 1, 70% emerged at 60 cm and 64% at 80 cm. A 70-cm pond lies between them, so \"Between 64% and 70%\".",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate within a series",
+  "difficulty": "medium",
+  "topic_tag": "Depth, Shade, and Fish in Ostry Fen Ponds",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Ostry Fen pond results",
+   "colLabels": [
+    "Depth (cm)",
+    "Shade (%)",
+    "Kell minnows?",
+    "Larvae per m²",
+    "Emerged as adults (%)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     20,
+     0,
+     "no",
+     34,
+     61
+    ],
+    [
+     40,
+     0,
+     "no",
+     58,
+     66
+    ],
+    [
+     60,
+     0,
+     "no",
+     71,
+     70
+    ],
+    [
+     80,
+     0,
+     "no",
+     52,
+     64
+    ],
+    [
+     100,
+     0,
+     "no",
+     30,
+     55
+    ],
+    [
+     60,
+     50,
+     "no",
+     64,
+     72
+    ],
+    [
+     60,
+     90,
+     "no",
+     23,
+     45
+    ],
+    [
+     60,
+     0,
+     "yes",
+     18,
+     39
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12e-P5-Q1",
+  "passage_id": "sc12e-p5",
+  "passage_title": "Why Torvane Solutions Turn Blue",
+  "format": "conflicting_viewpoints",
+  "passage": "Torvane is a compound that dissolves in water to make a colorless solution. Stored solutions slowly turn blue. Three scientists explain why.\n\nScientist 1\nOxygen from the air dissolves into the solution and reacts with torvane to form a blue product. The color forms first at the surface, where the solution touches air, and spreads downward. At 20°C, a solution with air above it shows color within 2 days. A container filled completely and sealed, so that no air is left inside, keeps the solution colorless, whatever the lighting.\n\nScientist 2\nLight breaks torvane apart, and one of the pieces is blue. Because light passes through the whole solution, the color appears evenly throughout rather than starting in one place. Solutions stored in the dark stay colorless, even when open to the air. In direct sunlight, a solution turns blue about twice as fast as in ordinary room light.\n\nScientist 3\nTraces of iron dissolve from metal that touches the solution, such as a steel cap or a steel can, and the iron turns torvane blue. The color forms first next to the metal. The larger the area of metal touching the solution, the faster the color forms. Solutions kept in glass bottles with plastic caps stay colorless, whether or not they are in light or have air above them.",
+  "prompt": "A completely full, sealed glass bottle with a plastic cap, kept on a sunny windowsill, turns blue. This result is consistent with the view(s) of which scientist(s)?",
+  "choices": [
+   "Scientist 2 only",
+   "Scientists 1 and 3 only",
+   "Scientist 1 only",
+   "Scientists 1, 2, and 3"
+  ],
+  "correct_answer": "Scientist 2 only",
+  "explanation": "Scientist 1 says a full, sealed container stays colorless; Scientist 3 says glass with a plastic cap stays colorless. Only Scientist 2, who blames light, expects the sunlit bottle to turn blue.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test viewpoints against a new result",
+  "difficulty": "medium",
+  "topic_tag": "Why Torvane Solutions Turn Blue",
+  "consistency_check": "Each scientist names a different required condition (air / light / metal contact) and a different place the color starts (surface / evenly / near metal); Scientist 2 alone gives a rate factor (twice as fast in sunlight); each prediction item was checked against all three views."
+ },
+ {
+  "id": "ASV12e-P5-Q2",
+  "passage_id": "sc12e-p5",
+  "passage_title": "Why Torvane Solutions Turn Blue",
+  "format": "conflicting_viewpoints",
+  "passage": "Torvane is a compound that dissolves in water to make a colorless solution. Stored solutions slowly turn blue. Three scientists explain why.\n\nScientist 1\nOxygen from the air dissolves into the solution and reacts with torvane to form a blue product. The color forms first at the surface, where the solution touches air, and spreads downward. At 20°C, a solution with air above it shows color within 2 days. A container filled completely and sealed, so that no air is left inside, keeps the solution colorless, whatever the lighting.\n\nScientist 2\nLight breaks torvane apart, and one of the pieces is blue. Because light passes through the whole solution, the color appears evenly throughout rather than starting in one place. Solutions stored in the dark stay colorless, even when open to the air. In direct sunlight, a solution turns blue about twice as fast as in ordinary room light.\n\nScientist 3\nTraces of iron dissolve from metal that touches the solution, such as a steel cap or a steel can, and the iron turns torvane blue. The color forms first next to the metal. The larger the area of metal touching the solution, the faster the color forms. Solutions kept in glass bottles with plastic caps stay colorless, whether or not they are in light or have air above them.",
+  "prompt": "In an open glass bottle with a plastic cap kept in a dark room, the blue color appears first at the surface of the solution. This observation supports the view of which scientist?",
+  "choices": [
+   "Scientist 2",
+   "Scientist 3",
+   "None of the scientists",
+   "Scientist 1"
+  ],
+  "correct_answer": "Scientist 1",
+  "explanation": "Scientist 1 says color forms first where the solution touches air and does not need light. Scientist 2 says dark solutions stay colorless; Scientist 3 says glass with a plastic cap stays colorless.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match an observation to a viewpoint",
+  "difficulty": "medium",
+  "topic_tag": "Why Torvane Solutions Turn Blue"
+ },
+ {
+  "id": "ASV12e-P5-Q3",
+  "passage_id": "sc12e-p5",
+  "passage_title": "Why Torvane Solutions Turn Blue",
+  "format": "conflicting_viewpoints",
+  "passage": "Torvane is a compound that dissolves in water to make a colorless solution. Stored solutions slowly turn blue. Three scientists explain why.\n\nScientist 1\nOxygen from the air dissolves into the solution and reacts with torvane to form a blue product. The color forms first at the surface, where the solution touches air, and spreads downward. At 20°C, a solution with air above it shows color within 2 days. A container filled completely and sealed, so that no air is left inside, keeps the solution colorless, whatever the lighting.\n\nScientist 2\nLight breaks torvane apart, and one of the pieces is blue. Because light passes through the whole solution, the color appears evenly throughout rather than starting in one place. Solutions stored in the dark stay colorless, even when open to the air. In direct sunlight, a solution turns blue about twice as fast as in ordinary room light.\n\nScientist 3\nTraces of iron dissolve from metal that touches the solution, such as a steel cap or a steel can, and the iron turns torvane blue. The color forms first next to the metal. The larger the area of metal touching the solution, the faster the color forms. Solutions kept in glass bottles with plastic caps stay colorless, whether or not they are in light or have air above them.",
+  "prompt": "According to Scientist 3, which change would make a solution stored in a steel can turn blue more slowly?",
+  "choices": [
+   "Pouring it into a glass bottle with a steel cap",
+   "Filling the can completely to the top",
+   "Leaving the lid of the can open to the air",
+   "Moving the can into a dark cupboard"
+  ],
+  "correct_answer": "Pouring it into a glass bottle with a steel cap",
+  "explanation": "Scientist 3 says the color forms faster the larger the area of metal touching the solution and does not depend on light or air. A glass bottle with a steel cap has far less metal touching the solution than a steel can.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "apply a viewpoint to a new case",
+  "difficulty": "hard",
+  "topic_tag": "Why Torvane Solutions Turn Blue"
+ },
+ {
+  "id": "ASV12e-P5-Q4",
+  "passage_id": "sc12e-p5",
+  "passage_title": "Why Torvane Solutions Turn Blue",
+  "format": "conflicting_viewpoints",
+  "passage": "Torvane is a compound that dissolves in water to make a colorless solution. Stored solutions slowly turn blue. Three scientists explain why.\n\nScientist 1\nOxygen from the air dissolves into the solution and reacts with torvane to form a blue product. The color forms first at the surface, where the solution touches air, and spreads downward. At 20°C, a solution with air above it shows color within 2 days. A container filled completely and sealed, so that no air is left inside, keeps the solution colorless, whatever the lighting.\n\nScientist 2\nLight breaks torvane apart, and one of the pieces is blue. Because light passes through the whole solution, the color appears evenly throughout rather than starting in one place. Solutions stored in the dark stay colorless, even when open to the air. In direct sunlight, a solution turns blue about twice as fast as in ordinary room light.\n\nScientist 3\nTraces of iron dissolve from metal that touches the solution, such as a steel cap or a steel can, and the iron turns torvane blue. The color forms first next to the metal. The larger the area of metal touching the solution, the faster the color forms. Solutions kept in glass bottles with plastic caps stay colorless, whether or not they are in light or have air above them.",
+  "prompt": "According to Scientist 2, compared with a solution kept in ordinary room light, a solution kept in direct sunlight would turn blue:",
+  "choices": [
+   "about half as fast.",
+   "at about the same rate.",
+   "about twice as fast.",
+   "about 10 times as fast."
+  ],
+  "correct_answer": "about twice as fast.",
+  "explanation": "Scientist 2 states that in direct sunlight a solution turns blue \"about twice as fast\" as in ordinary room light.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a quantitative claim in a viewpoint",
+  "difficulty": "easy",
+  "topic_tag": "Why Torvane Solutions Turn Blue"
+ },
+ {
+  "id": "ASV12e-P5-Q5",
+  "passage_id": "sc12e-p5",
+  "passage_title": "Why Torvane Solutions Turn Blue",
+  "format": "conflicting_viewpoints",
+  "passage": "Torvane is a compound that dissolves in water to make a colorless solution. Stored solutions slowly turn blue. Three scientists explain why.\n\nScientist 1\nOxygen from the air dissolves into the solution and reacts with torvane to form a blue product. The color forms first at the surface, where the solution touches air, and spreads downward. At 20°C, a solution with air above it shows color within 2 days. A container filled completely and sealed, so that no air is left inside, keeps the solution colorless, whatever the lighting.\n\nScientist 2\nLight breaks torvane apart, and one of the pieces is blue. Because light passes through the whole solution, the color appears evenly throughout rather than starting in one place. Solutions stored in the dark stay colorless, even when open to the air. In direct sunlight, a solution turns blue about twice as fast as in ordinary room light.\n\nScientist 3\nTraces of iron dissolve from metal that touches the solution, such as a steel cap or a steel can, and the iron turns torvane blue. The color forms first next to the metal. The larger the area of metal touching the solution, the faster the color forms. Solutions kept in glass bottles with plastic caps stay colorless, whether or not they are in light or have air above them.",
+  "prompt": "A half-full steel can of torvane solution, left open to the air in a dark cupboard, stays colorless for a month. This result is inconsistent with the view(s) of which scientist(s)?",
+  "choices": [
+   "Scientist 2 only",
+   "Scientists 1 and 3 only",
+   "Scientists 2 and 3 only",
+   "Scientist 1 only"
+  ],
+  "correct_answer": "Scientists 1 and 3 only",
+  "explanation": "Scientist 1 expects color within 2 days when air is present; Scientist 3 expects color wherever steel touches the solution. Scientist 2 expects a dark solution to stay colorless, so only Scientists 1 and 3 are contradicted.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test viewpoints against a new result",
+  "difficulty": "hard",
+  "topic_tag": "Why Torvane Solutions Turn Blue"
+ },
+ {
+  "id": "ASV12e-P5-Q6",
+  "passage_id": "sc12e-p5",
+  "passage_title": "Why Torvane Solutions Turn Blue",
+  "format": "conflicting_viewpoints",
+  "passage": "Torvane is a compound that dissolves in water to make a colorless solution. Stored solutions slowly turn blue. Three scientists explain why.\n\nScientist 1\nOxygen from the air dissolves into the solution and reacts with torvane to form a blue product. The color forms first at the surface, where the solution touches air, and spreads downward. At 20°C, a solution with air above it shows color within 2 days. A container filled completely and sealed, so that no air is left inside, keeps the solution colorless, whatever the lighting.\n\nScientist 2\nLight breaks torvane apart, and one of the pieces is blue. Because light passes through the whole solution, the color appears evenly throughout rather than starting in one place. Solutions stored in the dark stay colorless, even when open to the air. In direct sunlight, a solution turns blue about twice as fast as in ordinary room light.\n\nScientist 3\nTraces of iron dissolve from metal that touches the solution, such as a steel cap or a steel can, and the iron turns torvane blue. The color forms first next to the metal. The larger the area of metal touching the solution, the faster the color forms. Solutions kept in glass bottles with plastic caps stay colorless, whether or not they are in light or have air above them.",
+  "prompt": "Which scientist(s) would predict that a half-full glass bottle with a plastic cap, stored on a sunny windowsill, turns blue?",
+  "choices": [
+   "Scientists 1, 2, and 3",
+   "Scientist 3 only",
+   "Scientist 2 only",
+   "Scientists 1 and 2 only"
+  ],
+  "correct_answer": "Scientists 1 and 2 only",
+  "explanation": "A half-full bottle has air above the solution (Scientist 1) and the windowsill gives light (Scientist 2). Scientist 3 says glass with a plastic cap stays colorless.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "apply viewpoints to a new case",
+  "difficulty": "medium",
+  "topic_tag": "Why Torvane Solutions Turn Blue"
+ },
+ {
+  "id": "ASV12e-P6-Q1",
+  "passage_id": "sc12e-p6",
+  "passage_title": "Why Wedder Frogs Declined in Halley Fen",
+  "format": "conflicting_viewpoints",
+  "passage": "Halley Fen is a wetland where Wedder frogs lay their eggs in shallow pools. Surveys counted about 4,800 adult Wedder frogs in the fen in 1990 and about 1,200 in 2020. Three scientists explain the decline.\n\nScientist 1\nIn 1994, a drainage ditch was dug along the north edge of the fen, lowering the water table by about 30 centimeters. Tadpoles need a pool to hold water for at least 10 weeks to grow into frogs, and many northern pools now dry out sooner. Frog numbers have fallen since the mid-1990s, and most of the loss has been in the north, near the ditch. Blocking the ditch would let the northern pools recover.\n\nScientist 2\nSince 2001, Tamber reed, a tall plant brought in from elsewhere, has spread across the fen and shades many pools. Tadpoles grow slowly in cool, shaded water, and many die before becoming frogs. The decline began only after the reed spread. Pools that are still free of Tamber reed have as many frogs as they did in 1990.\n\nScientist 3\nA fungus that infects the skin of adult frogs reached the fen in about 1998, probably carried by visiting wading birds. Frog numbers have fallen ever since. Because the fungus spreads through the whole fen, frogs in every part of the fen have declined by about the same proportion.",
+  "prompt": "Older survey records show that the number of adult frogs was steady from 1990 to 2000 and fell only after 2000. This finding is inconsistent with the view(s) of which scientist(s)?",
+  "choices": [
+   "Scientists 2 and 3 only",
+   "Scientists 1 and 3 only",
+   "Scientist 2 only",
+   "Scientist 1 only"
+  ],
+  "correct_answer": "Scientists 1 and 3 only",
+  "explanation": "Scientist 1 says numbers fell from the mid-1990s and Scientist 3 says they fell from about 1998; both expect a decline before 2000. Scientist 2 says the decline began only after 2001, consistent with the records.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test viewpoints against a new result",
+  "difficulty": "hard",
+  "topic_tag": "Why Wedder Frogs Declined in Halley Fen",
+  "consistency_check": "Each scientist dates the cause differently (1994 ditch / 2001 reed / 1998 fungus) and places the loss differently (north near ditch / reed-covered pools / evenly); 4,800 to 1,200 frogs is a 75% fall; Scientist 1 alone gives the 10-week water requirement."
+ },
+ {
+  "id": "ASV12e-P6-Q2",
+  "passage_id": "sc12e-p6",
+  "passage_title": "Why Wedder Frogs Declined in Halley Fen",
+  "format": "conflicting_viewpoints",
+  "passage": "Halley Fen is a wetland where Wedder frogs lay their eggs in shallow pools. Surveys counted about 4,800 adult Wedder frogs in the fen in 1990 and about 1,200 in 2020. Three scientists explain the decline.\n\nScientist 1\nIn 1994, a drainage ditch was dug along the north edge of the fen, lowering the water table by about 30 centimeters. Tadpoles need a pool to hold water for at least 10 weeks to grow into frogs, and many northern pools now dry out sooner. Frog numbers have fallen since the mid-1990s, and most of the loss has been in the north, near the ditch. Blocking the ditch would let the northern pools recover.\n\nScientist 2\nSince 2001, Tamber reed, a tall plant brought in from elsewhere, has spread across the fen and shades many pools. Tadpoles grow slowly in cool, shaded water, and many die before becoming frogs. The decline began only after the reed spread. Pools that are still free of Tamber reed have as many frogs as they did in 1990.\n\nScientist 3\nA fungus that infects the skin of adult frogs reached the fen in about 1998, probably carried by visiting wading birds. Frog numbers have fallen ever since. Because the fungus spreads through the whole fen, frogs in every part of the fen have declined by about the same proportion.",
+  "prompt": "According to Scientist 2, which pools still have as many frogs as they did in 1990?",
+  "choices": [
+   "Pools that hold water for at least 10 weeks",
+   "Pools in the north of the fen",
+   "Pools rarely visited by wading birds",
+   "Pools free of Tamber reed"
+  ],
+  "correct_answer": "Pools free of Tamber reed",
+  "explanation": "Scientist 2 says pools still free of Tamber reed have as many frogs as in 1990. The other options draw on Scientist 1 (north, 10 weeks) and Scientist 3 (wading birds).",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a claim in one viewpoint",
+  "difficulty": "easy",
+  "topic_tag": "Why Wedder Frogs Declined in Halley Fen"
+ },
+ {
+  "id": "ASV12e-P6-Q3",
+  "passage_id": "sc12e-p6",
+  "passage_title": "Why Wedder Frogs Declined in Halley Fen",
+  "format": "conflicting_viewpoints",
+  "passage": "Halley Fen is a wetland where Wedder frogs lay their eggs in shallow pools. Surveys counted about 4,800 adult Wedder frogs in the fen in 1990 and about 1,200 in 2020. Three scientists explain the decline.\n\nScientist 1\nIn 1994, a drainage ditch was dug along the north edge of the fen, lowering the water table by about 30 centimeters. Tadpoles need a pool to hold water for at least 10 weeks to grow into frogs, and many northern pools now dry out sooner. Frog numbers have fallen since the mid-1990s, and most of the loss has been in the north, near the ditch. Blocking the ditch would let the northern pools recover.\n\nScientist 2\nSince 2001, Tamber reed, a tall plant brought in from elsewhere, has spread across the fen and shades many pools. Tadpoles grow slowly in cool, shaded water, and many die before becoming frogs. The decline began only after the reed spread. Pools that are still free of Tamber reed have as many frogs as they did in 1990.\n\nScientist 3\nA fungus that infects the skin of adult frogs reached the fen in about 1998, probably carried by visiting wading birds. Frog numbers have fallen ever since. Because the fungus spreads through the whole fen, frogs in every part of the fen have declined by about the same proportion.",
+  "prompt": "By about what percent did the number of adult Wedder frogs in the fen fall from 1990 to 2020?",
+  "choices": [
+   "About 25%",
+   "About 40%",
+   "About 60%",
+   "About 75%"
+  ],
+  "correct_answer": "About 75%",
+  "explanation": "From about 4,800 to about 1,200: a fall of 3,600 out of 4,800, or \"About 75%\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a percent change from a passage",
+  "difficulty": "medium",
+  "topic_tag": "Why Wedder Frogs Declined in Halley Fen"
+ },
+ {
+  "id": "ASV12e-P6-Q4",
+  "passage_id": "sc12e-p6",
+  "passage_title": "Why Wedder Frogs Declined in Halley Fen",
+  "format": "conflicting_viewpoints",
+  "passage": "Halley Fen is a wetland where Wedder frogs lay their eggs in shallow pools. Surveys counted about 4,800 adult Wedder frogs in the fen in 1990 and about 1,200 in 2020. Three scientists explain the decline.\n\nScientist 1\nIn 1994, a drainage ditch was dug along the north edge of the fen, lowering the water table by about 30 centimeters. Tadpoles need a pool to hold water for at least 10 weeks to grow into frogs, and many northern pools now dry out sooner. Frog numbers have fallen since the mid-1990s, and most of the loss has been in the north, near the ditch. Blocking the ditch would let the northern pools recover.\n\nScientist 2\nSince 2001, Tamber reed, a tall plant brought in from elsewhere, has spread across the fen and shades many pools. Tadpoles grow slowly in cool, shaded water, and many die before becoming frogs. The decline began only after the reed spread. Pools that are still free of Tamber reed have as many frogs as they did in 1990.\n\nScientist 3\nA fungus that infects the skin of adult frogs reached the fen in about 1998, probably carried by visiting wading birds. Frog numbers have fallen ever since. Because the fungus spreads through the whole fen, frogs in every part of the fen have declined by about the same proportion.",
+  "prompt": "A new survey finds that reed-free pools in the south of the fen, far from the ditch, lost about the same proportion of their frogs as pools near the ditch. This finding most weakens the view(s) of which scientist(s)?",
+  "choices": [
+   "Scientists 2 and 3 only",
+   "Scientist 1 only",
+   "Scientists 1 and 2 only",
+   "Scientist 3 only"
+  ],
+  "correct_answer": "Scientists 1 and 2 only",
+  "explanation": "Scientist 1 says most of the loss is near the ditch, and Scientist 2 says reed-free pools kept their frogs; an equal loss in distant, reed-free pools contradicts both. Scientist 3 predicts an equal decline everywhere.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test viewpoints against a new result",
+  "difficulty": "hard",
+  "topic_tag": "Why Wedder Frogs Declined in Halley Fen"
+ },
+ {
+  "id": "ASV12e-P6-Q5",
+  "passage_id": "sc12e-p6",
+  "passage_title": "Why Wedder Frogs Declined in Halley Fen",
+  "format": "conflicting_viewpoints",
+  "passage": "Halley Fen is a wetland where Wedder frogs lay their eggs in shallow pools. Surveys counted about 4,800 adult Wedder frogs in the fen in 1990 and about 1,200 in 2020. Three scientists explain the decline.\n\nScientist 1\nIn 1994, a drainage ditch was dug along the north edge of the fen, lowering the water table by about 30 centimeters. Tadpoles need a pool to hold water for at least 10 weeks to grow into frogs, and many northern pools now dry out sooner. Frog numbers have fallen since the mid-1990s, and most of the loss has been in the north, near the ditch. Blocking the ditch would let the northern pools recover.\n\nScientist 2\nSince 2001, Tamber reed, a tall plant brought in from elsewhere, has spread across the fen and shades many pools. Tadpoles grow slowly in cool, shaded water, and many die before becoming frogs. The decline began only after the reed spread. Pools that are still free of Tamber reed have as many frogs as they did in 1990.\n\nScientist 3\nA fungus that infects the skin of adult frogs reached the fen in about 1998, probably carried by visiting wading birds. Frog numbers have fallen ever since. Because the fungus spreads through the whole fen, frogs in every part of the fen have declined by about the same proportion.",
+  "prompt": "According to Scientist 1, for at least how long must a pool hold water for tadpoles to grow into frogs?",
+  "choices": [
+   "4 weeks",
+   "6 weeks",
+   "10 weeks",
+   "30 weeks"
+  ],
+  "correct_answer": "10 weeks",
+  "explanation": "Scientist 1 says tadpoles need a pool to hold water for at least \"10 weeks\".",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a detail in a viewpoint",
+  "difficulty": "easy",
+  "topic_tag": "Why Wedder Frogs Declined in Halley Fen"
+ },
+ {
+  "id": "ASV12e-P6-Q6",
+  "passage_id": "sc12e-p6",
+  "passage_title": "Why Wedder Frogs Declined in Halley Fen",
+  "format": "conflicting_viewpoints",
+  "passage": "Halley Fen is a wetland where Wedder frogs lay their eggs in shallow pools. Surveys counted about 4,800 adult Wedder frogs in the fen in 1990 and about 1,200 in 2020. Three scientists explain the decline.\n\nScientist 1\nIn 1994, a drainage ditch was dug along the north edge of the fen, lowering the water table by about 30 centimeters. Tadpoles need a pool to hold water for at least 10 weeks to grow into frogs, and many northern pools now dry out sooner. Frog numbers have fallen since the mid-1990s, and most of the loss has been in the north, near the ditch. Blocking the ditch would let the northern pools recover.\n\nScientist 2\nSince 2001, Tamber reed, a tall plant brought in from elsewhere, has spread across the fen and shades many pools. Tadpoles grow slowly in cool, shaded water, and many die before becoming frogs. The decline began only after the reed spread. Pools that are still free of Tamber reed have as many frogs as they did in 1990.\n\nScientist 3\nA fungus that infects the skin of adult frogs reached the fen in about 1998, probably carried by visiting wading birds. Frog numbers have fallen ever since. Because the fungus spreads through the whole fen, frogs in every part of the fen have declined by about the same proportion.",
+  "prompt": "Suppose the ditch were blocked in 2025 and nothing else changed. Which scientist(s) would most likely expect frog numbers to rise, mainly in the north of the fen?",
+  "choices": [
+   "Scientist 2 only",
+   "Scientists 1 and 3 only",
+   "Scientists 1, 2, and 3",
+   "Scientist 1 only"
+  ],
+  "correct_answer": "Scientist 1 only",
+  "explanation": "Only Scientist 1 links the decline to the ditch and says blocking it would let the northern pools recover. Scientists 2 and 3 blame the reed and the fungus, which the ditch does not affect.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "apply viewpoints to a new case",
+  "difficulty": "medium",
+  "topic_tag": "Why Wedder Frogs Declined in Halley Fen"
+ },
+ {
+  "id": "ASV12e-P8-Q1",
+  "passage_id": "sc12e-p8",
+  "passage_title": "Catalyst Amount, Temperature, and the Yield of Compound Q",
+  "format": "data_representation",
+  "passage": "Chemists made compound Q, an experimental dye, by mixing two liquids with a powdered catalyst (a substance that speeds up a reaction without being used up). Each mixture was kept at one of three temperatures for 1 hour, and the yield, the percent of the liquids converted to compound Q, was measured (see Table 1).",
+  "prompt": "Which combination of catalyst amount and temperature gave the greatest yield?",
+  "choices": [
+   "2 g at 60°C",
+   "4 g at 60°C",
+   "2 g at 80°C",
+   "4 g at 40°C"
+  ],
+  "correct_answer": "2 g at 60°C",
+  "explanation": "The greatest yield in Table 1 is 66%, with \"2 g at 60°C\". 4 g at 60°C gave 64%; 4 g at 40°C gave 50%; 2 g at 80°C gave 58%.",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a maximum in a two-way table",
+  "difficulty": "medium",
+  "topic_tag": "Catalyst Amount, Temperature, and the Yield of Compound Q",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Yield of compound Q (%) after 1 hour",
+   "colLabels": [
+    "40°C",
+    "60°C",
+    "80°C"
+   ],
+   "rowLabels": [
+    "0 g catalyst",
+    "1 g catalyst",
+    "2 g catalyst",
+    "4 g catalyst"
+   ],
+   "cells": [
+    [
+     12,
+     20,
+     26
+    ],
+    [
+     35,
+     52,
+     49
+    ],
+    [
+     48,
+     66,
+     58
+    ],
+    [
+     50,
+     64,
+     47
+    ]
+   ]
+  },
+  "consistency_check": "Yield peaks at 60 C for every catalyst amount except 0 g; 4 g is no better than 2 g at 60 and 80 C; every yield is between 0 and 100%; compound Q and its catalyst are invented."
+ },
+ {
+  "id": "ASV12e-P8-Q2",
+  "passage_id": "sc12e-p8",
+  "passage_title": "Catalyst Amount, Temperature, and the Yield of Compound Q",
+  "format": "data_representation",
+  "passage": "Chemists made compound Q, an experimental dye, by mixing two liquids with a powdered catalyst (a substance that speeds up a reaction without being used up). Each mixture was kept at one of three temperatures for 1 hour, and the yield, the percent of the liquids converted to compound Q, was measured (see Table 1).",
+  "prompt": "At 40°C, increasing the catalyst from 2 g to 4 g raised the yield by how many percentage points?",
+  "choices": [
+   "2",
+   "13",
+   "23",
+   "38"
+  ],
+  "correct_answer": "2",
+  "explanation": "At 40°C: 48% with 2 g and 50% with 4 g, an increase of \"2\" percentage points.",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a difference in a table",
+  "difficulty": "medium",
+  "topic_tag": "Catalyst Amount, Temperature, and the Yield of Compound Q",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Yield of compound Q (%) after 1 hour",
+   "colLabels": [
+    "40°C",
+    "60°C",
+    "80°C"
+   ],
+   "rowLabels": [
+    "0 g catalyst",
+    "1 g catalyst",
+    "2 g catalyst",
+    "4 g catalyst"
+   ],
+   "cells": [
+    [
+     12,
+     20,
+     26
+    ],
+    [
+     35,
+     52,
+     49
+    ],
+    [
+     48,
+     66,
+     58
+    ],
+    [
+     50,
+     64,
+     47
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12e-P8-Q3",
+  "passage_id": "sc12e-p8",
+  "passage_title": "Catalyst Amount, Temperature, and the Yield of Compound Q",
+  "format": "data_representation",
+  "passage": "Chemists made compound Q, an experimental dye, by mixing two liquids with a powdered catalyst (a substance that speeds up a reaction without being used up). Each mixture was kept at one of three temperatures for 1 hour, and the yield, the percent of the liquids converted to compound Q, was measured (see Table 1).",
+  "prompt": "At which temperature(s) was the yield with 4 g of catalyst LOWER than the yield with 2 g?",
+  "choices": [
+   "60°C and 80°C only",
+   "40°C, 60°C, and 80°C",
+   "80°C only",
+   "40°C only"
+  ],
+  "correct_answer": "60°C and 80°C only",
+  "explanation": "4 g vs 2 g: 50 vs 48 (40°C), 64 vs 66 (60°C), 47 vs 58 (80°C). The 4-g yield is lower at \"60°C and 80°C only\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compare two rows across columns",
+  "difficulty": "hard",
+  "topic_tag": "Catalyst Amount, Temperature, and the Yield of Compound Q",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Yield of compound Q (%) after 1 hour",
+   "colLabels": [
+    "40°C",
+    "60°C",
+    "80°C"
+   ],
+   "rowLabels": [
+    "0 g catalyst",
+    "1 g catalyst",
+    "2 g catalyst",
+    "4 g catalyst"
+   ],
+   "cells": [
+    [
+     12,
+     20,
+     26
+    ],
+    [
+     35,
+     52,
+     49
+    ],
+    [
+     48,
+     66,
+     58
+    ],
+    [
+     50,
+     64,
+     47
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12e-P8-Q4",
+  "passage_id": "sc12e-p8",
+  "passage_title": "Catalyst Amount, Temperature, and the Yield of Compound Q",
+  "format": "data_representation",
+  "passage": "Chemists made compound Q, an experimental dye, by mixing two liquids with a powdered catalyst (a substance that speeds up a reaction without being used up). Each mixture was kept at one of three temperatures for 1 hour, and the yield, the percent of the liquids converted to compound Q, was measured (see Table 1).",
+  "prompt": "With 1 g of catalyst at 50°C, the yield would most likely be:",
+  "choices": [
+   "less than 35%.",
+   "between 35% and 52%.",
+   "between 52% and 66%.",
+   "greater than 66%."
+  ],
+  "correct_answer": "between 35% and 52%.",
+  "explanation": "With 1 g, the yield was 35% at 40°C and 52% at 60°C. 50°C lies between them, so \"between 35% and 52%.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate within a row",
+  "difficulty": "medium",
+  "topic_tag": "Catalyst Amount, Temperature, and the Yield of Compound Q",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Yield of compound Q (%) after 1 hour",
+   "colLabels": [
+    "40°C",
+    "60°C",
+    "80°C"
+   ],
+   "rowLabels": [
+    "0 g catalyst",
+    "1 g catalyst",
+    "2 g catalyst",
+    "4 g catalyst"
+   ],
+   "cells": [
+    [
+     12,
+     20,
+     26
+    ],
+    [
+     35,
+     52,
+     49
+    ],
+    [
+     48,
+     66,
+     58
+    ],
+    [
+     50,
+     64,
+     47
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12e-P8-Q5",
+  "passage_id": "sc12e-p8",
+  "passage_title": "Catalyst Amount, Temperature, and the Yield of Compound Q",
+  "format": "data_representation",
+  "passage": "Chemists made compound Q, an experimental dye, by mixing two liquids with a powdered catalyst (a substance that speeds up a reaction without being used up). Each mixture was kept at one of three temperatures for 1 hour, and the yield, the percent of the liquids converted to compound Q, was measured (see Table 1).",
+  "prompt": "For how many of the four catalyst amounts was the yield at 80°C lower than the yield at 60°C?",
+  "choices": [
+   "1",
+   "2",
+   "3",
+   "4"
+  ],
+  "correct_answer": "3",
+  "explanation": "80°C vs 60°C: 26 vs 20 (0 g, higher), 49 vs 52 (1 g), 58 vs 66 (2 g), 47 vs 64 (4 g). The 80°C yield is lower for \"3\" amounts.",
+  "domain": "Interpretation of Data",
+  "subskill": "count cases across a table",
+  "difficulty": "hard",
+  "topic_tag": "Catalyst Amount, Temperature, and the Yield of Compound Q",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Yield of compound Q (%) after 1 hour",
+   "colLabels": [
+    "40°C",
+    "60°C",
+    "80°C"
+   ],
+   "rowLabels": [
+    "0 g catalyst",
+    "1 g catalyst",
+    "2 g catalyst",
+    "4 g catalyst"
+   ],
+   "cells": [
+    [
+     12,
+     20,
+     26
+    ],
+    [
+     35,
+     52,
+     49
+    ],
+    [
+     48,
+     66,
+     58
+    ],
+    [
+     50,
+     64,
+     47
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12e-P9-Q1",
+  "passage_id": "sc12e-p9",
+  "passage_title": "Muffler Length, Noise, and Power in Pell Generators",
+  "format": "data_representation",
+  "passage": "Engineers fitted Pell generators, small portable power generators, with mufflers of different lengths on the exhaust pipe. For each muffler length, they measured the noise 1 meter from the exhaust (in decibels, dB) and the power loss, the percent by which the generator's power output fell compared with having no muffler (see Table 1).",
+  "prompt": "Fitting a 20-cm muffler reduced the noise by how many decibels compared with having no muffler?",
+  "choices": [
+   "9 dB",
+   "13 dB",
+   "22 dB",
+   "29 dB"
+  ],
+  "correct_answer": "13 dB",
+  "explanation": "No muffler: 104 dB; 20-cm muffler: 91 dB. The reduction is \"13 dB\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a difference in a table",
+  "difficulty": "easy",
+  "topic_tag": "Muffler Length, Noise, and Power in Pell Generators",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Pell generator noise and power loss",
+   "colLabels": [
+    "Noise at 1 m (dB)",
+    "Power loss (%)"
+   ],
+   "rowLabels": [
+    "No muffler",
+    "20-cm muffler",
+    "40-cm muffler",
+    "60-cm muffler",
+    "80-cm muffler"
+   ],
+   "cells": [
+    [
+     104,
+     0
+    ],
+    [
+     91,
+     2
+    ],
+    [
+     82,
+     5
+    ],
+    [
+     77,
+     9
+    ],
+    [
+     75,
+     14
+    ]
+   ]
+  },
+  "consistency_check": "Noise falls with muffler length but levels off (13, 9, 5, 2 dB per 20 cm) while power loss grows faster (2, 3, 4, 5 points per 20 cm); the generator, muffler and values are invented, no named law."
+ },
+ {
+  "id": "ASV12e-P9-Q2",
+  "passage_id": "sc12e-p9",
+  "passage_title": "Muffler Length, Noise, and Power in Pell Generators",
+  "format": "data_representation",
+  "passage": "Engineers fitted Pell generators, small portable power generators, with mufflers of different lengths on the exhaust pipe. For each muffler length, they measured the noise 1 meter from the exhaust (in decibels, dB) and the power loss, the percent by which the generator's power output fell compared with having no muffler (see Table 1).",
+  "prompt": "Between which two muffler lengths, listed one after the other in Table 1, did the power loss increase the MOST?",
+  "choices": [
+   "40 cm and 60 cm",
+   "20 cm and 40 cm",
+   "No muffler and 20 cm",
+   "60 cm and 80 cm"
+  ],
+  "correct_answer": "60 cm and 80 cm",
+  "explanation": "Power loss rose by 2 (none to 20 cm), 3 (20 to 40 cm), 4 (40 to 60 cm), and 5 (60 to 80 cm) points. The largest increase is between \"60 cm and 80 cm\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compare changes between adjacent values",
+  "difficulty": "medium",
+  "topic_tag": "Muffler Length, Noise, and Power in Pell Generators",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Pell generator noise and power loss",
+   "colLabels": [
+    "Noise at 1 m (dB)",
+    "Power loss (%)"
+   ],
+   "rowLabels": [
+    "No muffler",
+    "20-cm muffler",
+    "40-cm muffler",
+    "60-cm muffler",
+    "80-cm muffler"
+   ],
+   "cells": [
+    [
+     104,
+     0
+    ],
+    [
+     91,
+     2
+    ],
+    [
+     82,
+     5
+    ],
+    [
+     77,
+     9
+    ],
+    [
+     75,
+     14
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12e-P9-Q3",
+  "passage_id": "sc12e-p9",
+  "passage_title": "Muffler Length, Noise, and Power in Pell Generators",
+  "format": "data_representation",
+  "passage": "Engineers fitted Pell generators, small portable power generators, with mufflers of different lengths on the exhaust pipe. For each muffler length, they measured the noise 1 meter from the exhaust (in decibels, dB) and the power loss, the percent by which the generator's power output fell compared with having no muffler (see Table 1).",
+  "prompt": "A generator must be quieter than 80 dB at 1 m and lose as little power as possible. Which tested muffler length should be chosen?",
+  "choices": [
+   "20 cm",
+   "40 cm",
+   "60 cm",
+   "80 cm"
+  ],
+  "correct_answer": "60 cm",
+  "explanation": "Only the 60-cm (77 dB, 9%) and 80-cm (75 dB, 14%) mufflers are quieter than 80 dB. Of these, the 60-cm muffler loses less power, so \"60 cm\".",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "apply two requirements to choose a design",
+  "difficulty": "hard",
+  "topic_tag": "Muffler Length, Noise, and Power in Pell Generators",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Pell generator noise and power loss",
+   "colLabels": [
+    "Noise at 1 m (dB)",
+    "Power loss (%)"
+   ],
+   "rowLabels": [
+    "No muffler",
+    "20-cm muffler",
+    "40-cm muffler",
+    "60-cm muffler",
+    "80-cm muffler"
+   ],
+   "cells": [
+    [
+     104,
+     0
+    ],
+    [
+     91,
+     2
+    ],
+    [
+     82,
+     5
+    ],
+    [
+     77,
+     9
+    ],
+    [
+     75,
+     14
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12e-P9-Q4",
+  "passage_id": "sc12e-p9",
+  "passage_title": "Muffler Length, Noise, and Power in Pell Generators",
+  "format": "data_representation",
+  "passage": "Engineers fitted Pell generators, small portable power generators, with mufflers of different lengths on the exhaust pipe. For each muffler length, they measured the noise 1 meter from the exhaust (in decibels, dB) and the power loss, the percent by which the generator's power output fell compared with having no muffler (see Table 1).",
+  "prompt": "If a 100-cm muffler were tested, its noise at 1 m would most likely be:",
+  "choices": [
+   "less than 60 dB.",
+   "between 60 dB and 70 dB.",
+   "between 70 dB and 75 dB.",
+   "greater than 75 dB."
+  ],
+  "correct_answer": "between 70 dB and 75 dB.",
+  "explanation": "Noise fell by 13, 9, 5, and 2 dB with each added 20 cm, ending at 75 dB. With the drop still shrinking, a 100-cm muffler would most likely give a little less than 75 dB: \"between 70 dB and 75 dB.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "extrapolate a levelling trend",
+  "difficulty": "hard",
+  "topic_tag": "Muffler Length, Noise, and Power in Pell Generators",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Pell generator noise and power loss",
+   "colLabels": [
+    "Noise at 1 m (dB)",
+    "Power loss (%)"
+   ],
+   "rowLabels": [
+    "No muffler",
+    "20-cm muffler",
+    "40-cm muffler",
+    "60-cm muffler",
+    "80-cm muffler"
+   ],
+   "cells": [
+    [
+     104,
+     0
+    ],
+    [
+     91,
+     2
+    ],
+    [
+     82,
+     5
+    ],
+    [
+     77,
+     9
+    ],
+    [
+     75,
+     14
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12e-P9-Q5",
+  "passage_id": "sc12e-p9",
+  "passage_title": "Muffler Length, Noise, and Power in Pell Generators",
+  "format": "data_representation",
+  "passage": "Engineers fitted Pell generators, small portable power generators, with mufflers of different lengths on the exhaust pipe. For each muffler length, they measured the noise 1 meter from the exhaust (in decibels, dB) and the power loss, the percent by which the generator's power output fell compared with having no muffler (see Table 1).",
+  "prompt": "For which muffler length was the noise reduction, compared with no muffler, greatest for each percent of power lost?",
+  "choices": [
+   "20 cm",
+   "40 cm",
+   "60 cm",
+   "80 cm"
+  ],
+  "correct_answer": "20 cm",
+  "explanation": "Reduction per percent of power lost: 13/2 = 6.5 (20 cm), 22/5 = 4.4 (40 cm), 27/9 = 3.0 (60 cm), 29/14 ≈ 2.1 (80 cm). The greatest is \"20 cm\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compute and compare ratios",
+  "difficulty": "hard",
+  "topic_tag": "Muffler Length, Noise, and Power in Pell Generators",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Pell generator noise and power loss",
+   "colLabels": [
+    "Noise at 1 m (dB)",
+    "Power loss (%)"
+   ],
+   "rowLabels": [
+    "No muffler",
+    "20-cm muffler",
+    "40-cm muffler",
+    "60-cm muffler",
+    "80-cm muffler"
+   ],
+   "cells": [
+    [
+     104,
+     0
+    ],
+    [
+     91,
+     2
+    ],
+    [
+     82,
+     5
+    ],
+    [
+     77,
+     9
+    ],
+    [
+     75,
+     14
+    ]
+   ]
+  }
+ }
+]

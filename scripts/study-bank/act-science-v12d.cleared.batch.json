@@ -1,0 +1,3539 @@
+[
+ {
+  "id": "ASV12d-P1-Q1",
+  "passage_id": "sc12d-p1",
+  "passage_title": "Porosity, Salt, and Freeze-Thaw Damage in Vellet Stone",
+  "format": "research_summaries",
+  "passage": "Vellet stone is a building stone that crumbles when water inside its pores freezes and thaws repeatedly. Geologists studied this damage using identical-sized blocks of Vellet stone that differed in porosity (the percent of each block's volume that is open pore space).\n\nEach block was soaked for 1 day in water containing a given concentration of dissolved salt (in grams per liter, g/L) and then put through a number of freeze-thaw cycles, each consisting of 12 hours at -10°C followed by 12 hours at +10°C. Afterward, the geologists measured each block's mass loss (as a percent of its original mass) and counted the cracks longer than 1 cm (see Table 1).\n\nExperiment 1\nBlocks with porosities of 8%, 14%, 20%, 26%, and 32% were soaked in water with no salt and put through 50 cycles.\n\nExperiment 2\nBlocks with 20% porosity were soaked in water containing 10, 30, or 60 g/L of salt and put through 50 cycles. (The no-salt result is that of the 20% block in Experiment 1.)\n\nExperiment 3\nBlocks with 20% porosity were soaked in water with no salt and put through 25, 100, or 200 cycles. (The 50-cycle result is that of the 20% block in Experiment 1.)",
+  "prompt": "In Experiment 1, the greatest mass loss occurred in the block with what porosity?",
+  "choices": [
+   "14%",
+   "20%",
+   "26%",
+   "32%"
+  ],
+  "correct_answer": "26%",
+  "explanation": "Experiment 1 mass losses: 0.4% (8%), 1.1% (14%), 2.9% (20%), 3.6% (26%), 3.3% (32%). The greatest is 3.6% at \"26%\".",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a maximum within one series",
+  "difficulty": "medium",
+  "topic_tag": "Porosity, Salt, and Freeze-Thaw Damage in Vellet Stone",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Vellet stone blocks after freeze-thaw testing",
+   "colLabels": [
+    "Porosity (%)",
+    "Salt (g/L)",
+    "Cycles",
+    "Mass loss (%)",
+    "Cracks"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     8,
+     0,
+     50,
+     0.4,
+     1
+    ],
+    [
+     14,
+     0,
+     50,
+     1.1,
+     3
+    ],
+    [
+     20,
+     0,
+     50,
+     2.9,
+     7
+    ],
+    [
+     26,
+     0,
+     50,
+     3.6,
+     9
+    ],
+    [
+     32,
+     0,
+     50,
+     3.3,
+     8
+    ],
+    [
+     20,
+     10,
+     50,
+     4.8,
+     11
+    ],
+    [
+     20,
+     30,
+     50,
+     6.1,
+     14
+    ],
+    [
+     20,
+     60,
+     50,
+     3.4,
+     8
+    ],
+    [
+     20,
+     0,
+     25,
+     1.2,
+     3
+    ],
+    [
+     20,
+     0,
+     100,
+     4.0,
+     10
+    ],
+    [
+     20,
+     0,
+     200,
+     4.4,
+     11
+    ]
+   ]
+  },
+  "consistency_check": "The 20% porosity, no-salt, 50-cycle block (2.9%, 7 cracks) is listed once and serves all three experiments; mass loss peaks at 26% porosity and at 30 g/L salt; mass loss levels off with more cycles (4.0 to 4.4 from 100 to 200); the stone and values are invented."
+ },
+ {
+  "id": "ASV12d-P1-Q2",
+  "passage_id": "sc12d-p1",
+  "passage_title": "Porosity, Salt, and Freeze-Thaw Damage in Vellet Stone",
+  "format": "research_summaries",
+  "passage": "Vellet stone is a building stone that crumbles when water inside its pores freezes and thaws repeatedly. Geologists studied this damage using identical-sized blocks of Vellet stone that differed in porosity (the percent of each block's volume that is open pore space).\n\nEach block was soaked for 1 day in water containing a given concentration of dissolved salt (in grams per liter, g/L) and then put through a number of freeze-thaw cycles, each consisting of 12 hours at -10°C followed by 12 hours at +10°C. Afterward, the geologists measured each block's mass loss (as a percent of its original mass) and counted the cracks longer than 1 cm (see Table 1).\n\nExperiment 1\nBlocks with porosities of 8%, 14%, 20%, 26%, and 32% were soaked in water with no salt and put through 50 cycles.\n\nExperiment 2\nBlocks with 20% porosity were soaked in water containing 10, 30, or 60 g/L of salt and put through 50 cycles. (The no-salt result is that of the 20% block in Experiment 1.)\n\nExperiment 3\nBlocks with 20% porosity were soaked in water with no salt and put through 25, 100, or 200 cycles. (The 50-cycle result is that of the 20% block in Experiment 1.)",
+  "prompt": "Based on Experiment 3, a 20% porosity block soaked in water with no salt and put through 150 cycles would most likely have a mass loss of:",
+  "choices": [
+   "less than 2.9%.",
+   "between 2.9% and 4.0%.",
+   "between 4.0% and 4.4%.",
+   "greater than 4.4%."
+  ],
+  "correct_answer": "between 4.0% and 4.4%.",
+  "explanation": "With no salt, mass loss was 4.0% after 100 cycles and 4.4% after 200 cycles; 150 cycles lies between them, so \"between 4.0% and 4.4%.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate within a series",
+  "difficulty": "medium",
+  "topic_tag": "Porosity, Salt, and Freeze-Thaw Damage in Vellet Stone",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Vellet stone blocks after freeze-thaw testing",
+   "colLabels": [
+    "Porosity (%)",
+    "Salt (g/L)",
+    "Cycles",
+    "Mass loss (%)",
+    "Cracks"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     8,
+     0,
+     50,
+     0.4,
+     1
+    ],
+    [
+     14,
+     0,
+     50,
+     1.1,
+     3
+    ],
+    [
+     20,
+     0,
+     50,
+     2.9,
+     7
+    ],
+    [
+     26,
+     0,
+     50,
+     3.6,
+     9
+    ],
+    [
+     32,
+     0,
+     50,
+     3.3,
+     8
+    ],
+    [
+     20,
+     10,
+     50,
+     4.8,
+     11
+    ],
+    [
+     20,
+     30,
+     50,
+     6.1,
+     14
+    ],
+    [
+     20,
+     60,
+     50,
+     3.4,
+     8
+    ],
+    [
+     20,
+     0,
+     25,
+     1.2,
+     3
+    ],
+    [
+     20,
+     0,
+     100,
+     4.0,
+     10
+    ],
+    [
+     20,
+     0,
+     200,
+     4.4,
+     11
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12d-P1-Q3",
+  "passage_id": "sc12d-p1",
+  "passage_title": "Porosity, Salt, and Freeze-Thaw Damage in Vellet Stone",
+  "format": "research_summaries",
+  "passage": "Vellet stone is a building stone that crumbles when water inside its pores freezes and thaws repeatedly. Geologists studied this damage using identical-sized blocks of Vellet stone that differed in porosity (the percent of each block's volume that is open pore space).\n\nEach block was soaked for 1 day in water containing a given concentration of dissolved salt (in grams per liter, g/L) and then put through a number of freeze-thaw cycles, each consisting of 12 hours at -10°C followed by 12 hours at +10°C. Afterward, the geologists measured each block's mass loss (as a percent of its original mass) and counted the cracks longer than 1 cm (see Table 1).\n\nExperiment 1\nBlocks with porosities of 8%, 14%, 20%, 26%, and 32% were soaked in water with no salt and put through 50 cycles.\n\nExperiment 2\nBlocks with 20% porosity were soaked in water containing 10, 30, or 60 g/L of salt and put through 50 cycles. (The no-salt result is that of the 20% block in Experiment 1.)\n\nExperiment 3\nBlocks with 20% porosity were soaked in water with no salt and put through 25, 100, or 200 cycles. (The 50-cycle result is that of the 20% block in Experiment 1.)",
+  "prompt": "The geologists will test three new salt concentrations on blocks that all share one porosity and one number of cycles, chosen so that each new result can be compared with a no-salt block already tested. Which porosity and number of cycles should the new blocks share?",
+  "choices": [
+   "14% porosity, 50 cycles",
+   "32% porosity, 200 cycles",
+   "26% porosity, 25 cycles",
+   "8% porosity, 100 cycles"
+  ],
+  "correct_answer": "14% porosity, 50 cycles",
+  "explanation": "No-salt blocks were tested at 14% porosity with 50 cycles (Experiment 1). No no-salt block was tested at 8% with 100 cycles, 26% with 25 cycles, or 32% with 200 cycles: Experiment 1 used only 50 cycles, and Experiment 3 used only 20% porosity.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose conditions that allow comparison with earlier results",
+  "difficulty": "hard",
+  "topic_tag": "Porosity, Salt, and Freeze-Thaw Damage in Vellet Stone",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Vellet stone blocks after freeze-thaw testing",
+   "colLabels": [
+    "Porosity (%)",
+    "Salt (g/L)",
+    "Cycles",
+    "Mass loss (%)",
+    "Cracks"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     8,
+     0,
+     50,
+     0.4,
+     1
+    ],
+    [
+     14,
+     0,
+     50,
+     1.1,
+     3
+    ],
+    [
+     20,
+     0,
+     50,
+     2.9,
+     7
+    ],
+    [
+     26,
+     0,
+     50,
+     3.6,
+     9
+    ],
+    [
+     32,
+     0,
+     50,
+     3.3,
+     8
+    ],
+    [
+     20,
+     10,
+     50,
+     4.8,
+     11
+    ],
+    [
+     20,
+     30,
+     50,
+     6.1,
+     14
+    ],
+    [
+     20,
+     60,
+     50,
+     3.4,
+     8
+    ],
+    [
+     20,
+     0,
+     25,
+     1.2,
+     3
+    ],
+    [
+     20,
+     0,
+     100,
+     4.0,
+     10
+    ],
+    [
+     20,
+     0,
+     200,
+     4.4,
+     11
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12d-P1-Q4",
+  "passage_id": "sc12d-p1",
+  "passage_title": "Porosity, Salt, and Freeze-Thaw Damage in Vellet Stone",
+  "format": "research_summaries",
+  "passage": "Vellet stone is a building stone that crumbles when water inside its pores freezes and thaws repeatedly. Geologists studied this damage using identical-sized blocks of Vellet stone that differed in porosity (the percent of each block's volume that is open pore space).\n\nEach block was soaked for 1 day in water containing a given concentration of dissolved salt (in grams per liter, g/L) and then put through a number of freeze-thaw cycles, each consisting of 12 hours at -10°C followed by 12 hours at +10°C. Afterward, the geologists measured each block's mass loss (as a percent of its original mass) and counted the cracks longer than 1 cm (see Table 1).\n\nExperiment 1\nBlocks with porosities of 8%, 14%, 20%, 26%, and 32% were soaked in water with no salt and put through 50 cycles.\n\nExperiment 2\nBlocks with 20% porosity were soaked in water containing 10, 30, or 60 g/L of salt and put through 50 cycles. (The no-salt result is that of the 20% block in Experiment 1.)\n\nExperiment 3\nBlocks with 20% porosity were soaked in water with no salt and put through 25, 100, or 200 cycles. (The 50-cycle result is that of the 20% block in Experiment 1.)",
+  "prompt": "In Experiment 1, the number of cracks increased the most between which two porosities?",
+  "choices": [
+   "8% and 14%",
+   "14% and 20%",
+   "20% and 26%",
+   "26% and 32%"
+  ],
+  "correct_answer": "14% and 20%",
+  "explanation": "Cracks: 1, 3, 7, 9, 8. Increases: 2 (8% to 14%), 4 (14% to 20%), 2 (20% to 26%); from 26% to 32% the count fell by 1. So \"14% and 20%\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compare changes between adjacent values",
+  "difficulty": "medium",
+  "topic_tag": "Porosity, Salt, and Freeze-Thaw Damage in Vellet Stone",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Vellet stone blocks after freeze-thaw testing",
+   "colLabels": [
+    "Porosity (%)",
+    "Salt (g/L)",
+    "Cycles",
+    "Mass loss (%)",
+    "Cracks"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     8,
+     0,
+     50,
+     0.4,
+     1
+    ],
+    [
+     14,
+     0,
+     50,
+     1.1,
+     3
+    ],
+    [
+     20,
+     0,
+     50,
+     2.9,
+     7
+    ],
+    [
+     26,
+     0,
+     50,
+     3.6,
+     9
+    ],
+    [
+     32,
+     0,
+     50,
+     3.3,
+     8
+    ],
+    [
+     20,
+     10,
+     50,
+     4.8,
+     11
+    ],
+    [
+     20,
+     30,
+     50,
+     6.1,
+     14
+    ],
+    [
+     20,
+     60,
+     50,
+     3.4,
+     8
+    ],
+    [
+     20,
+     0,
+     25,
+     1.2,
+     3
+    ],
+    [
+     20,
+     0,
+     100,
+     4.0,
+     10
+    ],
+    [
+     20,
+     0,
+     200,
+     4.4,
+     11
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12d-P1-Q5",
+  "passage_id": "sc12d-p1",
+  "passage_title": "Porosity, Salt, and Freeze-Thaw Damage in Vellet Stone",
+  "format": "research_summaries",
+  "passage": "Vellet stone is a building stone that crumbles when water inside its pores freezes and thaws repeatedly. Geologists studied this damage using identical-sized blocks of Vellet stone that differed in porosity (the percent of each block's volume that is open pore space).\n\nEach block was soaked for 1 day in water containing a given concentration of dissolved salt (in grams per liter, g/L) and then put through a number of freeze-thaw cycles, each consisting of 12 hours at -10°C followed by 12 hours at +10°C. Afterward, the geologists measured each block's mass loss (as a percent of its original mass) and counted the cracks longer than 1 cm (see Table 1).\n\nExperiment 1\nBlocks with porosities of 8%, 14%, 20%, 26%, and 32% were soaked in water with no salt and put through 50 cycles.\n\nExperiment 2\nBlocks with 20% porosity were soaked in water containing 10, 30, or 60 g/L of salt and put through 50 cycles. (The no-salt result is that of the 20% block in Experiment 1.)\n\nExperiment 3\nBlocks with 20% porosity were soaked in water with no salt and put through 25, 100, or 200 cycles. (The 50-cycle result is that of the 20% block in Experiment 1.)",
+  "prompt": "Starting from the 20% porosity, no-salt, 50-cycle block, which single change produced the greatest mass loss?",
+  "choices": [
+   "Raising the porosity to 26%",
+   "Adding 10 g/L of salt",
+   "Adding 30 g/L of salt",
+   "Adding 60 g/L of salt"
+  ],
+  "correct_answer": "Adding 30 g/L of salt",
+  "explanation": "Mass losses: 3.6% (26% porosity), 4.8% (10 g/L), 6.1% (30 g/L), 3.4% (60 g/L). The greatest is \"Adding 30 g/L of salt.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "compare results across experiments",
+  "difficulty": "hard",
+  "topic_tag": "Porosity, Salt, and Freeze-Thaw Damage in Vellet Stone",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Vellet stone blocks after freeze-thaw testing",
+   "colLabels": [
+    "Porosity (%)",
+    "Salt (g/L)",
+    "Cycles",
+    "Mass loss (%)",
+    "Cracks"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     8,
+     0,
+     50,
+     0.4,
+     1
+    ],
+    [
+     14,
+     0,
+     50,
+     1.1,
+     3
+    ],
+    [
+     20,
+     0,
+     50,
+     2.9,
+     7
+    ],
+    [
+     26,
+     0,
+     50,
+     3.6,
+     9
+    ],
+    [
+     32,
+     0,
+     50,
+     3.3,
+     8
+    ],
+    [
+     20,
+     10,
+     50,
+     4.8,
+     11
+    ],
+    [
+     20,
+     30,
+     50,
+     6.1,
+     14
+    ],
+    [
+     20,
+     60,
+     50,
+     3.4,
+     8
+    ],
+    [
+     20,
+     0,
+     25,
+     1.2,
+     3
+    ],
+    [
+     20,
+     0,
+     100,
+     4.0,
+     10
+    ],
+    [
+     20,
+     0,
+     200,
+     4.4,
+     11
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12d-P1-Q6",
+  "passage_id": "sc12d-p1",
+  "passage_title": "Porosity, Salt, and Freeze-Thaw Damage in Vellet Stone",
+  "format": "research_summaries",
+  "passage": "Vellet stone is a building stone that crumbles when water inside its pores freezes and thaws repeatedly. Geologists studied this damage using identical-sized blocks of Vellet stone that differed in porosity (the percent of each block's volume that is open pore space).\n\nEach block was soaked for 1 day in water containing a given concentration of dissolved salt (in grams per liter, g/L) and then put through a number of freeze-thaw cycles, each consisting of 12 hours at -10°C followed by 12 hours at +10°C. Afterward, the geologists measured each block's mass loss (as a percent of its original mass) and counted the cracks longer than 1 cm (see Table 1).\n\nExperiment 1\nBlocks with porosities of 8%, 14%, 20%, 26%, and 32% were soaked in water with no salt and put through 50 cycles.\n\nExperiment 2\nBlocks with 20% porosity were soaked in water containing 10, 30, or 60 g/L of salt and put through 50 cycles. (The no-salt result is that of the 20% block in Experiment 1.)\n\nExperiment 3\nBlocks with 20% porosity were soaked in water with no salt and put through 25, 100, or 200 cycles. (The 50-cycle result is that of the 20% block in Experiment 1.)",
+  "prompt": "Which block had a mass loss greater than 3.5% but fewer than 10 cracks?",
+  "choices": [
+   "20% porosity, no salt, 100 cycles",
+   "32% porosity, no salt, 50 cycles",
+   "20% porosity, 60 g/L salt, 50 cycles",
+   "26% porosity, no salt, 50 cycles"
+  ],
+  "correct_answer": "26% porosity, no salt, 50 cycles",
+  "explanation": "The 26% block lost 3.6% with 9 cracks. The 60 g/L block lost only 3.4%; the 100-cycle block had 10 cracks; the 32% block lost only 3.3%.",
+  "domain": "Interpretation of Data",
+  "subskill": "apply two conditions to a table",
+  "difficulty": "medium",
+  "topic_tag": "Porosity, Salt, and Freeze-Thaw Damage in Vellet Stone",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Vellet stone blocks after freeze-thaw testing",
+   "colLabels": [
+    "Porosity (%)",
+    "Salt (g/L)",
+    "Cycles",
+    "Mass loss (%)",
+    "Cracks"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     8,
+     0,
+     50,
+     0.4,
+     1
+    ],
+    [
+     14,
+     0,
+     50,
+     1.1,
+     3
+    ],
+    [
+     20,
+     0,
+     50,
+     2.9,
+     7
+    ],
+    [
+     26,
+     0,
+     50,
+     3.6,
+     9
+    ],
+    [
+     32,
+     0,
+     50,
+     3.3,
+     8
+    ],
+    [
+     20,
+     10,
+     50,
+     4.8,
+     11
+    ],
+    [
+     20,
+     30,
+     50,
+     6.1,
+     14
+    ],
+    [
+     20,
+     60,
+     50,
+     3.4,
+     8
+    ],
+    [
+     20,
+     0,
+     25,
+     1.2,
+     3
+    ],
+    [
+     20,
+     0,
+     100,
+     4.0,
+     10
+    ],
+    [
+     20,
+     0,
+     200,
+     4.4,
+     11
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12d-P2-Q1",
+  "passage_id": "sc12d-p2",
+  "passage_title": "Lamp Intensity, Dust, and Spin in Comet-Like Kesh Ice",
+  "format": "research_summaries",
+  "passage": "Comets release gas and dust when sunlight warms their icy surfaces. To study this, astronomers made pellets of Kesh ice, an artificial ice mixed with a chosen percent of fine dust (by mass). Each pellet was placed in a vacuum chamber and lit by a lamp of a chosen intensity (in watts per square meter, W/m²). Some pellets were spun on an axle at a chosen rate (in rotations per minute, rpm) so that their surfaces were lit unevenly.\n\nAfter 1 hour, the astronomers measured the rate at which each pellet released gas and the rate at which it ejected dust, both in milligrams per minute (mg/min) (see Table 1).\n\nStudy 1\nNon-spinning pellets with 10% dust were lit at 200, 400, 600, 800, or 1,000 W/m².\n\nStudy 2\nNon-spinning pellets with 0%, 30%, or 50% dust were lit at 600 W/m². (The 10% result is that of the 600 W/m² pellet in Study 1.)\n\nStudy 3\nPellets with 10% dust were lit at 600 W/m² while spinning at 2 or 8 rpm. (The 0-rpm result is that of the 600 W/m² pellet in Study 1.)",
+  "prompt": "In Study 2, the pellet with which dust content ejected dust at the greatest rate?",
+  "choices": [
+   "0%",
+   "10%",
+   "30%",
+   "50%"
+  ],
+  "correct_answer": "30%",
+  "explanation": "At 600 W/m² with no spin, dust ejection was 0.0 (0%), 3.8 (10%), 5.9 (30%), and 2.7 (50%) mg/min. The greatest is at \"30%\".",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a maximum within one series",
+  "difficulty": "medium",
+  "topic_tag": "Lamp Intensity, Dust, and Spin in Comet-Like Kesh Ice",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Kesh ice pellets after 1 hour",
+   "colLabels": [
+    "Lamp intensity (W/m²)",
+    "Dust (%)",
+    "Spin (rpm)",
+    "Gas released (mg/min)",
+    "Dust ejected (mg/min)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2",
+    "Study 3",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     200,
+     10,
+     0,
+     3,
+     0.4
+    ],
+    [
+     400,
+     10,
+     0,
+     9,
+     1.5
+    ],
+    [
+     600,
+     10,
+     0,
+     18,
+     3.8
+    ],
+    [
+     800,
+     10,
+     0,
+     22,
+     4.1
+    ],
+    [
+     1000,
+     10,
+     0,
+     23,
+     4.2
+    ],
+    [
+     600,
+     0,
+     0,
+     25,
+     0.0
+    ],
+    [
+     600,
+     30,
+     0,
+     11,
+     5.9
+    ],
+    [
+     600,
+     50,
+     0,
+     6,
+     2.7
+    ],
+    [
+     600,
+     10,
+     2,
+     15,
+     3.2
+    ],
+    [
+     600,
+     10,
+     8,
+     9,
+     1.1
+    ]
+   ]
+  },
+  "consistency_check": "The 600 W/m^2, 10% dust, non-rotating pellet (18 mg/min gas, 3.8 mg/min dust) is listed once and serves all three studies; gas release levels off above 800 W/m^2; dust ejection peaks at 30% dust; spinning lowers both rates; Kesh ice is invented."
+ },
+ {
+  "id": "ASV12d-P2-Q2",
+  "passage_id": "sc12d-p2",
+  "passage_title": "Lamp Intensity, Dust, and Spin in Comet-Like Kesh Ice",
+  "format": "research_summaries",
+  "passage": "Comets release gas and dust when sunlight warms their icy surfaces. To study this, astronomers made pellets of Kesh ice, an artificial ice mixed with a chosen percent of fine dust (by mass). Each pellet was placed in a vacuum chamber and lit by a lamp of a chosen intensity (in watts per square meter, W/m²). Some pellets were spun on an axle at a chosen rate (in rotations per minute, rpm) so that their surfaces were lit unevenly.\n\nAfter 1 hour, the astronomers measured the rate at which each pellet released gas and the rate at which it ejected dust, both in milligrams per minute (mg/min) (see Table 1).\n\nStudy 1\nNon-spinning pellets with 10% dust were lit at 200, 400, 600, 800, or 1,000 W/m².\n\nStudy 2\nNon-spinning pellets with 0%, 30%, or 50% dust were lit at 600 W/m². (The 10% result is that of the 600 W/m² pellet in Study 1.)\n\nStudy 3\nPellets with 10% dust were lit at 600 W/m² while spinning at 2 or 8 rpm. (The 0-rpm result is that of the 600 W/m² pellet in Study 1.)",
+  "prompt": "Based on Study 1, a non-spinning pellet with 10% dust lit at 1,200 W/m² would most likely release gas at a rate of:",
+  "choices": [
+   "less than 18 mg/min.",
+   "between 18 and 22 mg/min.",
+   "between 22 and 26 mg/min.",
+   "greater than 26 mg/min."
+  ],
+  "correct_answer": "between 22 and 26 mg/min.",
+  "explanation": "Gas release rose steeply at first but only from 22 to 23 mg/min between 800 and 1,000 W/m², so it is leveling off; at 1,200 W/m² it would most likely be \"between 22 and 26 mg/min.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "extrapolate a leveling trend",
+  "difficulty": "hard",
+  "topic_tag": "Lamp Intensity, Dust, and Spin in Comet-Like Kesh Ice",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Kesh ice pellets after 1 hour",
+   "colLabels": [
+    "Lamp intensity (W/m²)",
+    "Dust (%)",
+    "Spin (rpm)",
+    "Gas released (mg/min)",
+    "Dust ejected (mg/min)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2",
+    "Study 3",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     200,
+     10,
+     0,
+     3,
+     0.4
+    ],
+    [
+     400,
+     10,
+     0,
+     9,
+     1.5
+    ],
+    [
+     600,
+     10,
+     0,
+     18,
+     3.8
+    ],
+    [
+     800,
+     10,
+     0,
+     22,
+     4.1
+    ],
+    [
+     1000,
+     10,
+     0,
+     23,
+     4.2
+    ],
+    [
+     600,
+     0,
+     0,
+     25,
+     0.0
+    ],
+    [
+     600,
+     30,
+     0,
+     11,
+     5.9
+    ],
+    [
+     600,
+     50,
+     0,
+     6,
+     2.7
+    ],
+    [
+     600,
+     10,
+     2,
+     15,
+     3.2
+    ],
+    [
+     600,
+     10,
+     8,
+     9,
+     1.1
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12d-P2-Q3",
+  "passage_id": "sc12d-p2",
+  "passage_title": "Lamp Intensity, Dust, and Spin in Comet-Like Kesh Ice",
+  "format": "research_summaries",
+  "passage": "Comets release gas and dust when sunlight warms their icy surfaces. To study this, astronomers made pellets of Kesh ice, an artificial ice mixed with a chosen percent of fine dust (by mass). Each pellet was placed in a vacuum chamber and lit by a lamp of a chosen intensity (in watts per square meter, W/m²). Some pellets were spun on an axle at a chosen rate (in rotations per minute, rpm) so that their surfaces were lit unevenly.\n\nAfter 1 hour, the astronomers measured the rate at which each pellet released gas and the rate at which it ejected dust, both in milligrams per minute (mg/min) (see Table 1).\n\nStudy 1\nNon-spinning pellets with 10% dust were lit at 200, 400, 600, 800, or 1,000 W/m².\n\nStudy 2\nNon-spinning pellets with 0%, 30%, or 50% dust were lit at 600 W/m². (The 10% result is that of the 600 W/m² pellet in Study 1.)\n\nStudy 3\nPellets with 10% dust were lit at 600 W/m² while spinning at 2 or 8 rpm. (The 0-rpm result is that of the 600 W/m² pellet in Study 1.)",
+  "prompt": "Study 3 differed from Study 2 in that, in Study 3, the astronomers varied:",
+  "choices": [
+   "the spin rate while keeping the lamp intensity at 1,000 W/m².",
+   "the spin rate while keeping the dust content at 10%.",
+   "the lamp intensity while keeping the dust content at 10%.",
+   "the dust content while keeping the spin rate at 0 rpm."
+  ],
+  "correct_answer": "the spin rate while keeping the dust content at 10%.",
+  "explanation": "Study 3 spun 10% dust pellets at 2 or 8 rpm. Varying dust content at 0 rpm describes Study 2, varying lamp intensity describes Study 1, and all spinning pellets were lit at 600 W/m², not 1,000 W/m².",
+  "domain": "Scientific Investigation",
+  "subskill": "identify what an experiment varied",
+  "difficulty": "medium",
+  "topic_tag": "Lamp Intensity, Dust, and Spin in Comet-Like Kesh Ice",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Kesh ice pellets after 1 hour",
+   "colLabels": [
+    "Lamp intensity (W/m²)",
+    "Dust (%)",
+    "Spin (rpm)",
+    "Gas released (mg/min)",
+    "Dust ejected (mg/min)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2",
+    "Study 3",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     200,
+     10,
+     0,
+     3,
+     0.4
+    ],
+    [
+     400,
+     10,
+     0,
+     9,
+     1.5
+    ],
+    [
+     600,
+     10,
+     0,
+     18,
+     3.8
+    ],
+    [
+     800,
+     10,
+     0,
+     22,
+     4.1
+    ],
+    [
+     1000,
+     10,
+     0,
+     23,
+     4.2
+    ],
+    [
+     600,
+     0,
+     0,
+     25,
+     0.0
+    ],
+    [
+     600,
+     30,
+     0,
+     11,
+     5.9
+    ],
+    [
+     600,
+     50,
+     0,
+     6,
+     2.7
+    ],
+    [
+     600,
+     10,
+     2,
+     15,
+     3.2
+    ],
+    [
+     600,
+     10,
+     8,
+     9,
+     1.1
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12d-P2-Q4",
+  "passage_id": "sc12d-p2",
+  "passage_title": "Lamp Intensity, Dust, and Spin in Comet-Like Kesh Ice",
+  "format": "research_summaries",
+  "passage": "Comets release gas and dust when sunlight warms their icy surfaces. To study this, astronomers made pellets of Kesh ice, an artificial ice mixed with a chosen percent of fine dust (by mass). Each pellet was placed in a vacuum chamber and lit by a lamp of a chosen intensity (in watts per square meter, W/m²). Some pellets were spun on an axle at a chosen rate (in rotations per minute, rpm) so that their surfaces were lit unevenly.\n\nAfter 1 hour, the astronomers measured the rate at which each pellet released gas and the rate at which it ejected dust, both in milligrams per minute (mg/min) (see Table 1).\n\nStudy 1\nNon-spinning pellets with 10% dust were lit at 200, 400, 600, 800, or 1,000 W/m².\n\nStudy 2\nNon-spinning pellets with 0%, 30%, or 50% dust were lit at 600 W/m². (The 10% result is that of the 600 W/m² pellet in Study 1.)\n\nStudy 3\nPellets with 10% dust were lit at 600 W/m² while spinning at 2 or 8 rpm. (The 0-rpm result is that of the 600 W/m² pellet in Study 1.)",
+  "prompt": "In Study 1, gas release increased the most between which two lamp intensities?",
+  "choices": [
+   "200 and 400 W/m²",
+   "400 and 600 W/m²",
+   "600 and 800 W/m²",
+   "800 and 1,000 W/m²"
+  ],
+  "correct_answer": "400 and 600 W/m²",
+  "explanation": "Gas release: 3, 9, 18, 22, 23 mg/min. Increases: 6, 9, 4, 1. The largest, 9, is between \"400 and 600 W/m²\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compare changes between adjacent values",
+  "difficulty": "medium",
+  "topic_tag": "Lamp Intensity, Dust, and Spin in Comet-Like Kesh Ice",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Kesh ice pellets after 1 hour",
+   "colLabels": [
+    "Lamp intensity (W/m²)",
+    "Dust (%)",
+    "Spin (rpm)",
+    "Gas released (mg/min)",
+    "Dust ejected (mg/min)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2",
+    "Study 3",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     200,
+     10,
+     0,
+     3,
+     0.4
+    ],
+    [
+     400,
+     10,
+     0,
+     9,
+     1.5
+    ],
+    [
+     600,
+     10,
+     0,
+     18,
+     3.8
+    ],
+    [
+     800,
+     10,
+     0,
+     22,
+     4.1
+    ],
+    [
+     1000,
+     10,
+     0,
+     23,
+     4.2
+    ],
+    [
+     600,
+     0,
+     0,
+     25,
+     0.0
+    ],
+    [
+     600,
+     30,
+     0,
+     11,
+     5.9
+    ],
+    [
+     600,
+     50,
+     0,
+     6,
+     2.7
+    ],
+    [
+     600,
+     10,
+     2,
+     15,
+     3.2
+    ],
+    [
+     600,
+     10,
+     8,
+     9,
+     1.1
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12d-P2-Q5",
+  "passage_id": "sc12d-p2",
+  "passage_title": "Lamp Intensity, Dust, and Spin in Comet-Like Kesh Ice",
+  "format": "research_summaries",
+  "passage": "Comets release gas and dust when sunlight warms their icy surfaces. To study this, astronomers made pellets of Kesh ice, an artificial ice mixed with a chosen percent of fine dust (by mass). Each pellet was placed in a vacuum chamber and lit by a lamp of a chosen intensity (in watts per square meter, W/m²). Some pellets were spun on an axle at a chosen rate (in rotations per minute, rpm) so that their surfaces were lit unevenly.\n\nAfter 1 hour, the astronomers measured the rate at which each pellet released gas and the rate at which it ejected dust, both in milligrams per minute (mg/min) (see Table 1).\n\nStudy 1\nNon-spinning pellets with 10% dust were lit at 200, 400, 600, 800, or 1,000 W/m².\n\nStudy 2\nNon-spinning pellets with 0%, 30%, or 50% dust were lit at 600 W/m². (The 10% result is that of the 600 W/m² pellet in Study 1.)\n\nStudy 3\nPellets with 10% dust were lit at 600 W/m² while spinning at 2 or 8 rpm. (The 0-rpm result is that of the 600 W/m² pellet in Study 1.)",
+  "prompt": "Which pellet released gas at more than 10 mg/min while ejecting dust at less than 3 mg/min?",
+  "choices": [
+   "0% dust, 600 W/m², not spinning",
+   "10% dust, 600 W/m², spinning at 2 rpm",
+   "50% dust, 600 W/m², not spinning",
+   "10% dust, 400 W/m², not spinning"
+  ],
+  "correct_answer": "0% dust, 600 W/m², not spinning",
+  "explanation": "The 0% pellet released 25 mg/min of gas and ejected 0.0 mg/min of dust. The 50% pellet released only 6 mg/min; the 2-rpm pellet ejected 3.2 mg/min; the 400 W/m² pellet released only 9 mg/min.",
+  "domain": "Interpretation of Data",
+  "subskill": "apply two conditions to a table",
+  "difficulty": "medium",
+  "topic_tag": "Lamp Intensity, Dust, and Spin in Comet-Like Kesh Ice",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Kesh ice pellets after 1 hour",
+   "colLabels": [
+    "Lamp intensity (W/m²)",
+    "Dust (%)",
+    "Spin (rpm)",
+    "Gas released (mg/min)",
+    "Dust ejected (mg/min)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2",
+    "Study 3",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     200,
+     10,
+     0,
+     3,
+     0.4
+    ],
+    [
+     400,
+     10,
+     0,
+     9,
+     1.5
+    ],
+    [
+     600,
+     10,
+     0,
+     18,
+     3.8
+    ],
+    [
+     800,
+     10,
+     0,
+     22,
+     4.1
+    ],
+    [
+     1000,
+     10,
+     0,
+     23,
+     4.2
+    ],
+    [
+     600,
+     0,
+     0,
+     25,
+     0.0
+    ],
+    [
+     600,
+     30,
+     0,
+     11,
+     5.9
+    ],
+    [
+     600,
+     50,
+     0,
+     6,
+     2.7
+    ],
+    [
+     600,
+     10,
+     2,
+     15,
+     3.2
+    ],
+    [
+     600,
+     10,
+     8,
+     9,
+     1.1
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12d-P2-Q6",
+  "passage_id": "sc12d-p2",
+  "passage_title": "Lamp Intensity, Dust, and Spin in Comet-Like Kesh Ice",
+  "format": "research_summaries",
+  "passage": "Comets release gas and dust when sunlight warms their icy surfaces. To study this, astronomers made pellets of Kesh ice, an artificial ice mixed with a chosen percent of fine dust (by mass). Each pellet was placed in a vacuum chamber and lit by a lamp of a chosen intensity (in watts per square meter, W/m²). Some pellets were spun on an axle at a chosen rate (in rotations per minute, rpm) so that their surfaces were lit unevenly.\n\nAfter 1 hour, the astronomers measured the rate at which each pellet released gas and the rate at which it ejected dust, both in milligrams per minute (mg/min) (see Table 1).\n\nStudy 1\nNon-spinning pellets with 10% dust were lit at 200, 400, 600, 800, or 1,000 W/m².\n\nStudy 2\nNon-spinning pellets with 0%, 30%, or 50% dust were lit at 600 W/m². (The 10% result is that of the 600 W/m² pellet in Study 1.)\n\nStudy 3\nPellets with 10% dust were lit at 600 W/m² while spinning at 2 or 8 rpm. (The 0-rpm result is that of the 600 W/m² pellet in Study 1.)",
+  "prompt": "The results cannot show whether spinning changes the gas release of pellets with 50% dust. Why not?",
+  "choices": [
+   "No pellet with 50% dust was tested.",
+   "Every spinning pellet was lit at 1,000 W/m².",
+   "No pellet spun faster than 2 rpm.",
+   "Every spinning pellet had 10% dust."
+  ],
+  "correct_answer": "Every spinning pellet had 10% dust.",
+  "explanation": "Only Study 3 pellets spun, and all had 10% dust. A 50% pellet was tested (Study 2) but only without spin; the spinning pellets were lit at 600 W/m², and one spun at 8 rpm.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify a limitation of a design",
+  "difficulty": "hard",
+  "topic_tag": "Lamp Intensity, Dust, and Spin in Comet-Like Kesh Ice",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Kesh ice pellets after 1 hour",
+   "colLabels": [
+    "Lamp intensity (W/m²)",
+    "Dust (%)",
+    "Spin (rpm)",
+    "Gas released (mg/min)",
+    "Dust ejected (mg/min)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2",
+    "Study 3",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     200,
+     10,
+     0,
+     3,
+     0.4
+    ],
+    [
+     400,
+     10,
+     0,
+     9,
+     1.5
+    ],
+    [
+     600,
+     10,
+     0,
+     18,
+     3.8
+    ],
+    [
+     800,
+     10,
+     0,
+     22,
+     4.1
+    ],
+    [
+     1000,
+     10,
+     0,
+     23,
+     4.2
+    ],
+    [
+     600,
+     0,
+     0,
+     25,
+     0.0
+    ],
+    [
+     600,
+     30,
+     0,
+     11,
+     5.9
+    ],
+    [
+     600,
+     50,
+     0,
+     6,
+     2.7
+    ],
+    [
+     600,
+     10,
+     2,
+     15,
+     3.2
+    ],
+    [
+     600,
+     10,
+     8,
+     9,
+     1.1
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12d-P3-Q1",
+  "passage_id": "sc12d-p3",
+  "passage_title": "Temperature, Flow, and Copper in Orvel Biofilms",
+  "format": "research_summaries",
+  "passage": "Orvel bacteria grow as a slimy layer, or biofilm, on the inside walls of water pipes. Microbiologists grew Orvel biofilms in identical clear plastic pipes through which water was pumped for 7 days. They varied the water temperature (in °C), the speed of the water flow (in millimeters per second, mm/s), and the concentration of dissolved copper (in milligrams per liter, mg/L).\n\nAfter 7 days, they measured the average thickness of the biofilm (in micrometers, µm) and counted the bacterial colonies per square centimeter of pipe wall (see Table 1).\n\nExperiment 1\nCopper-free water flowing at 20 mm/s was kept at 10, 18, 26, 34, or 42°C.\n\nExperiment 2\nCopper-free water at 26°C flowed at 5, 40, or 80 mm/s. (The 20 mm/s result is that of the 26°C pipe in Experiment 1.)\n\nExperiment 3\nWater at 26°C flowing at 20 mm/s contained 2 or 10 mg/L of copper. (The copper-free result is that of the 26°C pipe in Experiment 1.)",
+  "prompt": "In Experiment 1, the thickest biofilm grew at what temperature?",
+  "choices": [
+   "18°C",
+   "26°C",
+   "34°C",
+   "42°C"
+  ],
+  "correct_answer": "26°C",
+  "explanation": "Experiment 1 thicknesses: 12 µm (10°C), 31 µm (18°C), 48 µm (26°C), 40 µm (34°C), 9 µm (42°C). The thickest is at \"26°C\".",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a maximum within one series",
+  "difficulty": "medium",
+  "topic_tag": "Temperature, Flow, and Copper in Orvel Biofilms",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Orvel biofilms after 7 days",
+   "colLabels": [
+    "Temperature (°C)",
+    "Flow (mm/s)",
+    "Copper (mg/L)",
+    "Thickness (µm)",
+    "Colonies per cm²"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     10,
+     20,
+     0,
+     12,
+     40
+    ],
+    [
+     18,
+     20,
+     0,
+     31,
+     95
+    ],
+    [
+     26,
+     20,
+     0,
+     48,
+     160
+    ],
+    [
+     34,
+     20,
+     0,
+     40,
+     150
+    ],
+    [
+     42,
+     20,
+     0,
+     9,
+     30
+    ],
+    [
+     26,
+     5,
+     0,
+     55,
+     210
+    ],
+    [
+     26,
+     40,
+     0,
+     26,
+     120
+    ],
+    [
+     26,
+     80,
+     0,
+     11,
+     60
+    ],
+    [
+     26,
+     20,
+     2,
+     44,
+     150
+    ],
+    [
+     26,
+     20,
+     10,
+     13,
+     25
+    ]
+   ]
+  },
+  "consistency_check": "The 26 C, 20 mm/s, copper-free pipe (48 um, 160 colonies) is listed once and serves all three experiments; thickness peaks at 26 C; faster flow thins the film; 2 mg/L copper barely acts while 10 mg/L cuts colonies to 25 (about 1/6); Orvel bacteria are invented."
+ },
+ {
+  "id": "ASV12d-P3-Q2",
+  "passage_id": "sc12d-p3",
+  "passage_title": "Temperature, Flow, and Copper in Orvel Biofilms",
+  "format": "research_summaries",
+  "passage": "Orvel bacteria grow as a slimy layer, or biofilm, on the inside walls of water pipes. Microbiologists grew Orvel biofilms in identical clear plastic pipes through which water was pumped for 7 days. They varied the water temperature (in °C), the speed of the water flow (in millimeters per second, mm/s), and the concentration of dissolved copper (in milligrams per liter, mg/L).\n\nAfter 7 days, they measured the average thickness of the biofilm (in micrometers, µm) and counted the bacterial colonies per square centimeter of pipe wall (see Table 1).\n\nExperiment 1\nCopper-free water flowing at 20 mm/s was kept at 10, 18, 26, 34, or 42°C.\n\nExperiment 2\nCopper-free water at 26°C flowed at 5, 40, or 80 mm/s. (The 20 mm/s result is that of the 26°C pipe in Experiment 1.)\n\nExperiment 3\nWater at 26°C flowing at 20 mm/s contained 2 or 10 mg/L of copper. (The copper-free result is that of the 26°C pipe in Experiment 1.)",
+  "prompt": "Based on Experiment 2, copper-free water at 26°C flowing at 60 mm/s would most likely produce a biofilm with a thickness of:",
+  "choices": [
+   "less than 11 µm.",
+   "between 11 and 26 µm.",
+   "between 26 and 48 µm.",
+   "greater than 48 µm."
+  ],
+  "correct_answer": "between 11 and 26 µm.",
+  "explanation": "At 26°C, thickness fell from 26 µm at 40 mm/s to 11 µm at 80 mm/s; 60 mm/s lies between them, so \"between 11 and 26 µm.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate within a series",
+  "difficulty": "medium",
+  "topic_tag": "Temperature, Flow, and Copper in Orvel Biofilms",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Orvel biofilms after 7 days",
+   "colLabels": [
+    "Temperature (°C)",
+    "Flow (mm/s)",
+    "Copper (mg/L)",
+    "Thickness (µm)",
+    "Colonies per cm²"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     10,
+     20,
+     0,
+     12,
+     40
+    ],
+    [
+     18,
+     20,
+     0,
+     31,
+     95
+    ],
+    [
+     26,
+     20,
+     0,
+     48,
+     160
+    ],
+    [
+     34,
+     20,
+     0,
+     40,
+     150
+    ],
+    [
+     42,
+     20,
+     0,
+     9,
+     30
+    ],
+    [
+     26,
+     5,
+     0,
+     55,
+     210
+    ],
+    [
+     26,
+     40,
+     0,
+     26,
+     120
+    ],
+    [
+     26,
+     80,
+     0,
+     11,
+     60
+    ],
+    [
+     26,
+     20,
+     2,
+     44,
+     150
+    ],
+    [
+     26,
+     20,
+     10,
+     13,
+     25
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12d-P3-Q3",
+  "passage_id": "sc12d-p3",
+  "passage_title": "Temperature, Flow, and Copper in Orvel Biofilms",
+  "format": "research_summaries",
+  "passage": "Orvel bacteria grow as a slimy layer, or biofilm, on the inside walls of water pipes. Microbiologists grew Orvel biofilms in identical clear plastic pipes through which water was pumped for 7 days. They varied the water temperature (in °C), the speed of the water flow (in millimeters per second, mm/s), and the concentration of dissolved copper (in milligrams per liter, mg/L).\n\nAfter 7 days, they measured the average thickness of the biofilm (in micrometers, µm) and counted the bacterial colonies per square centimeter of pipe wall (see Table 1).\n\nExperiment 1\nCopper-free water flowing at 20 mm/s was kept at 10, 18, 26, 34, or 42°C.\n\nExperiment 2\nCopper-free water at 26°C flowed at 5, 40, or 80 mm/s. (The 20 mm/s result is that of the 26°C pipe in Experiment 1.)\n\nExperiment 3\nWater at 26°C flowing at 20 mm/s contained 2 or 10 mg/L of copper. (The copper-free result is that of the 26°C pipe in Experiment 1.)",
+  "prompt": "Which of the following questions could be answered using the results of Experiment 2 alone?",
+  "choices": [
+   "How does temperature affect biofilm thickness at 40 mm/s?",
+   "How does flow speed affect biofilm thickness at 34°C?",
+   "How does copper affect the number of colonies at 5 mm/s?",
+   "How does flow speed affect biofilm thickness at 26°C?"
+  ],
+  "correct_answer": "How does flow speed affect biofilm thickness at 26°C?",
+  "explanation": "Experiment 2 varied flow speed (5, 40, and 80 mm/s, plus 20 mm/s from Experiment 1) with copper-free water at 26°C only. It used no copper, held temperature at 26°C, and never used 34°C.",
+  "domain": "Scientific Investigation",
+  "subskill": "match a question to the experiment that answers it",
+  "difficulty": "medium",
+  "topic_tag": "Temperature, Flow, and Copper in Orvel Biofilms",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Orvel biofilms after 7 days",
+   "colLabels": [
+    "Temperature (°C)",
+    "Flow (mm/s)",
+    "Copper (mg/L)",
+    "Thickness (µm)",
+    "Colonies per cm²"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     10,
+     20,
+     0,
+     12,
+     40
+    ],
+    [
+     18,
+     20,
+     0,
+     31,
+     95
+    ],
+    [
+     26,
+     20,
+     0,
+     48,
+     160
+    ],
+    [
+     34,
+     20,
+     0,
+     40,
+     150
+    ],
+    [
+     42,
+     20,
+     0,
+     9,
+     30
+    ],
+    [
+     26,
+     5,
+     0,
+     55,
+     210
+    ],
+    [
+     26,
+     40,
+     0,
+     26,
+     120
+    ],
+    [
+     26,
+     80,
+     0,
+     11,
+     60
+    ],
+    [
+     26,
+     20,
+     2,
+     44,
+     150
+    ],
+    [
+     26,
+     20,
+     10,
+     13,
+     25
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12d-P3-Q4",
+  "passage_id": "sc12d-p3",
+  "passage_title": "Temperature, Flow, and Copper in Orvel Biofilms",
+  "format": "research_summaries",
+  "passage": "Orvel bacteria grow as a slimy layer, or biofilm, on the inside walls of water pipes. Microbiologists grew Orvel biofilms in identical clear plastic pipes through which water was pumped for 7 days. They varied the water temperature (in °C), the speed of the water flow (in millimeters per second, mm/s), and the concentration of dissolved copper (in milligrams per liter, mg/L).\n\nAfter 7 days, they measured the average thickness of the biofilm (in micrometers, µm) and counted the bacterial colonies per square centimeter of pipe wall (see Table 1).\n\nExperiment 1\nCopper-free water flowing at 20 mm/s was kept at 10, 18, 26, 34, or 42°C.\n\nExperiment 2\nCopper-free water at 26°C flowed at 5, 40, or 80 mm/s. (The 20 mm/s result is that of the 26°C pipe in Experiment 1.)\n\nExperiment 3\nWater at 26°C flowing at 20 mm/s contained 2 or 10 mg/L of copper. (The copper-free result is that of the 26°C pipe in Experiment 1.)",
+  "prompt": "In Experiment 1, the number of colonies changed the least between which two temperatures?",
+  "choices": [
+   "10°C and 18°C",
+   "18°C and 26°C",
+   "26°C and 34°C",
+   "34°C and 42°C"
+  ],
+  "correct_answer": "26°C and 34°C",
+  "explanation": "Colonies: 40, 95, 160, 150, 30. Changes: 55, 65, 10, and 120. The smallest, 10, is between \"26°C and 34°C\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compare changes between adjacent values",
+  "difficulty": "medium",
+  "topic_tag": "Temperature, Flow, and Copper in Orvel Biofilms",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Orvel biofilms after 7 days",
+   "colLabels": [
+    "Temperature (°C)",
+    "Flow (mm/s)",
+    "Copper (mg/L)",
+    "Thickness (µm)",
+    "Colonies per cm²"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     10,
+     20,
+     0,
+     12,
+     40
+    ],
+    [
+     18,
+     20,
+     0,
+     31,
+     95
+    ],
+    [
+     26,
+     20,
+     0,
+     48,
+     160
+    ],
+    [
+     34,
+     20,
+     0,
+     40,
+     150
+    ],
+    [
+     42,
+     20,
+     0,
+     9,
+     30
+    ],
+    [
+     26,
+     5,
+     0,
+     55,
+     210
+    ],
+    [
+     26,
+     40,
+     0,
+     26,
+     120
+    ],
+    [
+     26,
+     80,
+     0,
+     11,
+     60
+    ],
+    [
+     26,
+     20,
+     2,
+     44,
+     150
+    ],
+    [
+     26,
+     20,
+     10,
+     13,
+     25
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12d-P3-Q5",
+  "passage_id": "sc12d-p3",
+  "passage_title": "Temperature, Flow, and Copper in Orvel Biofilms",
+  "format": "research_summaries",
+  "passage": "Orvel bacteria grow as a slimy layer, or biofilm, on the inside walls of water pipes. Microbiologists grew Orvel biofilms in identical clear plastic pipes through which water was pumped for 7 days. They varied the water temperature (in °C), the speed of the water flow (in millimeters per second, mm/s), and the concentration of dissolved copper (in milligrams per liter, mg/L).\n\nAfter 7 days, they measured the average thickness of the biofilm (in micrometers, µm) and counted the bacterial colonies per square centimeter of pipe wall (see Table 1).\n\nExperiment 1\nCopper-free water flowing at 20 mm/s was kept at 10, 18, 26, 34, or 42°C.\n\nExperiment 2\nCopper-free water at 26°C flowed at 5, 40, or 80 mm/s. (The 20 mm/s result is that of the 26°C pipe in Experiment 1.)\n\nExperiment 3\nWater at 26°C flowing at 20 mm/s contained 2 or 10 mg/L of copper. (The copper-free result is that of the 26°C pipe in Experiment 1.)",
+  "prompt": "In Experiment 3, the number of colonies in water with 10 mg/L of copper was about what fraction of the number in copper-free water?",
+  "choices": [
+   "About 1/10",
+   "About 1/6",
+   "About 1/4",
+   "About 1/2"
+  ],
+  "correct_answer": "About 1/6",
+  "explanation": "Copper-free water gave 160 colonies per cm² and 10 mg/L gave 25; 25/160 is about 0.16, so \"About 1/6\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a ratio from a table",
+  "difficulty": "hard",
+  "topic_tag": "Temperature, Flow, and Copper in Orvel Biofilms",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Orvel biofilms after 7 days",
+   "colLabels": [
+    "Temperature (°C)",
+    "Flow (mm/s)",
+    "Copper (mg/L)",
+    "Thickness (µm)",
+    "Colonies per cm²"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     10,
+     20,
+     0,
+     12,
+     40
+    ],
+    [
+     18,
+     20,
+     0,
+     31,
+     95
+    ],
+    [
+     26,
+     20,
+     0,
+     48,
+     160
+    ],
+    [
+     34,
+     20,
+     0,
+     40,
+     150
+    ],
+    [
+     42,
+     20,
+     0,
+     9,
+     30
+    ],
+    [
+     26,
+     5,
+     0,
+     55,
+     210
+    ],
+    [
+     26,
+     40,
+     0,
+     26,
+     120
+    ],
+    [
+     26,
+     80,
+     0,
+     11,
+     60
+    ],
+    [
+     26,
+     20,
+     2,
+     44,
+     150
+    ],
+    [
+     26,
+     20,
+     10,
+     13,
+     25
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12d-P3-Q6",
+  "passage_id": "sc12d-p3",
+  "passage_title": "Temperature, Flow, and Copper in Orvel Biofilms",
+  "format": "research_summaries",
+  "passage": "Orvel bacteria grow as a slimy layer, or biofilm, on the inside walls of water pipes. Microbiologists grew Orvel biofilms in identical clear plastic pipes through which water was pumped for 7 days. They varied the water temperature (in °C), the speed of the water flow (in millimeters per second, mm/s), and the concentration of dissolved copper (in milligrams per liter, mg/L).\n\nAfter 7 days, they measured the average thickness of the biofilm (in micrometers, µm) and counted the bacterial colonies per square centimeter of pipe wall (see Table 1).\n\nExperiment 1\nCopper-free water flowing at 20 mm/s was kept at 10, 18, 26, 34, or 42°C.\n\nExperiment 2\nCopper-free water at 26°C flowed at 5, 40, or 80 mm/s. (The 20 mm/s result is that of the 26°C pipe in Experiment 1.)\n\nExperiment 3\nWater at 26°C flowing at 20 mm/s contained 2 or 10 mg/L of copper. (The copper-free result is that of the 26°C pipe in Experiment 1.)",
+  "prompt": "The microbiologists want to find the lowest copper concentration that cuts the number of colonies by more than half at 26°C and 20 mm/s. Which additional copper concentrations should they test?",
+  "choices": [
+   "The 2 mg/L concentration again at 40 mm/s",
+   "Several concentrations between 2 and 10 mg/L",
+   "Several concentrations between 0 and 2 mg/L",
+   "Several concentrations above 10 mg/L"
+  ],
+  "correct_answer": "Several concentrations between 2 and 10 mg/L",
+  "explanation": "At 2 mg/L the count was 150 (down only from 160) and at 10 mg/L it was 25 (well below half of 160), so the concentration that first cuts colonies by more than half lies \"between 2 and 10 mg/L.\" Below 2 mg/L the cut is even smaller, above 10 mg/L it is already past half, and changing the flow would change a second variable.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose further trials to locate a threshold",
+  "difficulty": "hard",
+  "topic_tag": "Temperature, Flow, and Copper in Orvel Biofilms",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Orvel biofilms after 7 days",
+   "colLabels": [
+    "Temperature (°C)",
+    "Flow (mm/s)",
+    "Copper (mg/L)",
+    "Thickness (µm)",
+    "Colonies per cm²"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     10,
+     20,
+     0,
+     12,
+     40
+    ],
+    [
+     18,
+     20,
+     0,
+     31,
+     95
+    ],
+    [
+     26,
+     20,
+     0,
+     48,
+     160
+    ],
+    [
+     34,
+     20,
+     0,
+     40,
+     150
+    ],
+    [
+     42,
+     20,
+     0,
+     9,
+     30
+    ],
+    [
+     26,
+     5,
+     0,
+     55,
+     210
+    ],
+    [
+     26,
+     40,
+     0,
+     26,
+     120
+    ],
+    [
+     26,
+     80,
+     0,
+     11,
+     60
+    ],
+    [
+     26,
+     20,
+     2,
+     44,
+     150
+    ],
+    [
+     26,
+     20,
+     10,
+     13,
+     25
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12d-P4-Q1",
+  "passage_id": "sc12d-p4",
+  "passage_title": "Humidity, Ultraviolet Light, and Terpal Haze",
+  "format": "research_summaries",
+  "passage": "Haze forms when gases in the air react to make tiny particles that scatter light. Atmospheric scientists studied haze made from terpal, an invented plant vapor, in a sealed 10-cubic-meter chamber of clean air. In each trial they set the relative humidity (in %), the strength of an ultraviolet (UV) lamp (in lamp units, where 0 means the lamp was off), and the terpal concentration (in parts per billion, ppb).\n\nAfter 4 hours, they measured the number of haze particles (in thousands per cubic centimeter) and used a laser to estimate visibility, the distance (in km) at which a dark object could still be seen (see Table 1).\n\nStudy 1\nChambers with UV at 2 units and 20 ppb of terpal were held at 20%, 40%, 60%, 80%, or 95% humidity.\n\nStudy 2\nChambers at 60% humidity with 20 ppb of terpal had the UV lamp set to 0, 1, or 4 units. (The 2-unit result is that of the 60% chamber in Study 1.)\n\nStudy 3\nChambers at 60% humidity with UV at 2 units contained 5, 10, or 40 ppb of terpal. (The 20 ppb result is that of the 60% chamber in Study 1.)",
+  "prompt": "In Study 1, the lowest visibility occurred at what humidity?",
+  "choices": [
+   "40%",
+   "60%",
+   "80%",
+   "95%"
+  ],
+  "correct_answer": "60%",
+  "explanation": "Study 1 visibilities: 40 km (20%), 22 km (40%), 11 km (60%), 13 km (80%), 25 km (95%). The lowest is 11 km at \"60%\".",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a minimum within one series",
+  "difficulty": "medium",
+  "topic_tag": "Humidity, Ultraviolet Light, and Terpal Haze",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Terpal haze after 4 hours",
+   "colLabels": [
+    "Humidity (%)",
+    "UV (units)",
+    "Terpal (ppb)",
+    "Particles (thousand/cm³)",
+    "Visibility (km)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2",
+    "Study 3",
+    "Study 3",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     20,
+     2,
+     20,
+     5,
+     40
+    ],
+    [
+     40,
+     2,
+     20,
+     14,
+     22
+    ],
+    [
+     60,
+     2,
+     20,
+     26,
+     11
+    ],
+    [
+     80,
+     2,
+     20,
+     23,
+     13
+    ],
+    [
+     95,
+     2,
+     20,
+     12,
+     25
+    ],
+    [
+     60,
+     0,
+     20,
+     0.5,
+     60
+    ],
+    [
+     60,
+     1,
+     20,
+     12,
+     24
+    ],
+    [
+     60,
+     4,
+     20,
+     31,
+     9
+    ],
+    [
+     60,
+     2,
+     5,
+     4,
+     45
+    ],
+    [
+     60,
+     2,
+     10,
+     13,
+     25
+    ],
+    [
+     60,
+     2,
+     40,
+     29,
+     10
+    ]
+   ]
+  },
+  "consistency_check": "The 60% humidity, UV 2, 20 ppb chamber (26 thousand particles, 11 km) is listed once and serves all three studies; particles peak at 60% humidity; doubling terpal from 20 to 40 ppb adds only 3 (about 12%); visibility falls as particles rise in every study; terpal is an invented compound."
+ },
+ {
+  "id": "ASV12d-P4-Q2",
+  "passage_id": "sc12d-p4",
+  "passage_title": "Humidity, Ultraviolet Light, and Terpal Haze",
+  "format": "research_summaries",
+  "passage": "Haze forms when gases in the air react to make tiny particles that scatter light. Atmospheric scientists studied haze made from terpal, an invented plant vapor, in a sealed 10-cubic-meter chamber of clean air. In each trial they set the relative humidity (in %), the strength of an ultraviolet (UV) lamp (in lamp units, where 0 means the lamp was off), and the terpal concentration (in parts per billion, ppb).\n\nAfter 4 hours, they measured the number of haze particles (in thousands per cubic centimeter) and used a laser to estimate visibility, the distance (in km) at which a dark object could still be seen (see Table 1).\n\nStudy 1\nChambers with UV at 2 units and 20 ppb of terpal were held at 20%, 40%, 60%, 80%, or 95% humidity.\n\nStudy 2\nChambers at 60% humidity with 20 ppb of terpal had the UV lamp set to 0, 1, or 4 units. (The 2-unit result is that of the 60% chamber in Study 1.)\n\nStudy 3\nChambers at 60% humidity with UV at 2 units contained 5, 10, or 40 ppb of terpal. (The 20 ppb result is that of the 60% chamber in Study 1.)",
+  "prompt": "In Study 3, raising the terpal concentration from 20 ppb to 40 ppb increased the number of particles by about:",
+  "choices": [
+   "10%.",
+   "50%.",
+   "100%.",
+   "200%."
+  ],
+  "correct_answer": "10%.",
+  "explanation": "Particles rose from 26 to 29 thousand per cm³, an increase of 3 out of 26, about 12%, so \"10%.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a percent change from a table",
+  "difficulty": "hard",
+  "topic_tag": "Humidity, Ultraviolet Light, and Terpal Haze",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Terpal haze after 4 hours",
+   "colLabels": [
+    "Humidity (%)",
+    "UV (units)",
+    "Terpal (ppb)",
+    "Particles (thousand/cm³)",
+    "Visibility (km)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2",
+    "Study 3",
+    "Study 3",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     20,
+     2,
+     20,
+     5,
+     40
+    ],
+    [
+     40,
+     2,
+     20,
+     14,
+     22
+    ],
+    [
+     60,
+     2,
+     20,
+     26,
+     11
+    ],
+    [
+     80,
+     2,
+     20,
+     23,
+     13
+    ],
+    [
+     95,
+     2,
+     20,
+     12,
+     25
+    ],
+    [
+     60,
+     0,
+     20,
+     0.5,
+     60
+    ],
+    [
+     60,
+     1,
+     20,
+     12,
+     24
+    ],
+    [
+     60,
+     4,
+     20,
+     31,
+     9
+    ],
+    [
+     60,
+     2,
+     5,
+     4,
+     45
+    ],
+    [
+     60,
+     2,
+     10,
+     13,
+     25
+    ],
+    [
+     60,
+     2,
+     40,
+     29,
+     10
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12d-P4-Q3",
+  "passage_id": "sc12d-p4",
+  "passage_title": "Humidity, Ultraviolet Light, and Terpal Haze",
+  "format": "research_summaries",
+  "passage": "Haze forms when gases in the air react to make tiny particles that scatter light. Atmospheric scientists studied haze made from terpal, an invented plant vapor, in a sealed 10-cubic-meter chamber of clean air. In each trial they set the relative humidity (in %), the strength of an ultraviolet (UV) lamp (in lamp units, where 0 means the lamp was off), and the terpal concentration (in parts per billion, ppb).\n\nAfter 4 hours, they measured the number of haze particles (in thousands per cubic centimeter) and used a laser to estimate visibility, the distance (in km) at which a dark object could still be seen (see Table 1).\n\nStudy 1\nChambers with UV at 2 units and 20 ppb of terpal were held at 20%, 40%, 60%, 80%, or 95% humidity.\n\nStudy 2\nChambers at 60% humidity with 20 ppb of terpal had the UV lamp set to 0, 1, or 4 units. (The 2-unit result is that of the 60% chamber in Study 1.)\n\nStudy 3\nChambers at 60% humidity with UV at 2 units contained 5, 10, or 40 ppb of terpal. (The 20 ppb result is that of the 60% chamber in Study 1.)",
+  "prompt": "The scientists want to find out whether terpal concentration affects haze when the UV lamp is off, in a way that lets the new result be compared with a chamber already tested. Which chamber should they add?",
+  "choices": [
+   "UV off, 40 ppb of terpal, 95% humidity",
+   "UV off, 30 ppb of terpal, 80% humidity",
+   "UV off, 5 ppb of terpal, 20% humidity",
+   "UV off, 10 ppb of terpal, 60% humidity"
+  ],
+  "correct_answer": "UV off, 10 ppb of terpal, 60% humidity",
+  "explanation": "The only chamber already tested with the UV lamp off was at 60% humidity with 20 ppb of terpal (Study 2). A new UV-off chamber at 60% humidity with 10 ppb differs from it only in terpal. Each other option changes the humidity as well.",
+  "domain": "Scientific Investigation",
+  "subskill": "design a trial that changes one variable from an existing one",
+  "difficulty": "hard",
+  "topic_tag": "Humidity, Ultraviolet Light, and Terpal Haze",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Terpal haze after 4 hours",
+   "colLabels": [
+    "Humidity (%)",
+    "UV (units)",
+    "Terpal (ppb)",
+    "Particles (thousand/cm³)",
+    "Visibility (km)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2",
+    "Study 3",
+    "Study 3",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     20,
+     2,
+     20,
+     5,
+     40
+    ],
+    [
+     40,
+     2,
+     20,
+     14,
+     22
+    ],
+    [
+     60,
+     2,
+     20,
+     26,
+     11
+    ],
+    [
+     80,
+     2,
+     20,
+     23,
+     13
+    ],
+    [
+     95,
+     2,
+     20,
+     12,
+     25
+    ],
+    [
+     60,
+     0,
+     20,
+     0.5,
+     60
+    ],
+    [
+     60,
+     1,
+     20,
+     12,
+     24
+    ],
+    [
+     60,
+     4,
+     20,
+     31,
+     9
+    ],
+    [
+     60,
+     2,
+     5,
+     4,
+     45
+    ],
+    [
+     60,
+     2,
+     10,
+     13,
+     25
+    ],
+    [
+     60,
+     2,
+     40,
+     29,
+     10
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12d-P4-Q4",
+  "passage_id": "sc12d-p4",
+  "passage_title": "Humidity, Ultraviolet Light, and Terpal Haze",
+  "format": "research_summaries",
+  "passage": "Haze forms when gases in the air react to make tiny particles that scatter light. Atmospheric scientists studied haze made from terpal, an invented plant vapor, in a sealed 10-cubic-meter chamber of clean air. In each trial they set the relative humidity (in %), the strength of an ultraviolet (UV) lamp (in lamp units, where 0 means the lamp was off), and the terpal concentration (in parts per billion, ppb).\n\nAfter 4 hours, they measured the number of haze particles (in thousands per cubic centimeter) and used a laser to estimate visibility, the distance (in km) at which a dark object could still be seen (see Table 1).\n\nStudy 1\nChambers with UV at 2 units and 20 ppb of terpal were held at 20%, 40%, 60%, 80%, or 95% humidity.\n\nStudy 2\nChambers at 60% humidity with 20 ppb of terpal had the UV lamp set to 0, 1, or 4 units. (The 2-unit result is that of the 60% chamber in Study 1.)\n\nStudy 3\nChambers at 60% humidity with UV at 2 units contained 5, 10, or 40 ppb of terpal. (The 20 ppb result is that of the 60% chamber in Study 1.)",
+  "prompt": "In Study 1, the number of particles decreased the most between which two humidities?",
+  "choices": [
+   "20% and 40%",
+   "40% and 60%",
+   "60% and 80%",
+   "80% and 95%"
+  ],
+  "correct_answer": "80% and 95%",
+  "explanation": "Particles: 5, 14, 26, 23, 12. They rose from 20% to 60%, then fell by 3 (60% to 80%) and by 11 (80% to 95%). The largest decrease is between \"80% and 95%\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compare changes between adjacent values",
+  "difficulty": "medium",
+  "topic_tag": "Humidity, Ultraviolet Light, and Terpal Haze",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Terpal haze after 4 hours",
+   "colLabels": [
+    "Humidity (%)",
+    "UV (units)",
+    "Terpal (ppb)",
+    "Particles (thousand/cm³)",
+    "Visibility (km)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2",
+    "Study 3",
+    "Study 3",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     20,
+     2,
+     20,
+     5,
+     40
+    ],
+    [
+     40,
+     2,
+     20,
+     14,
+     22
+    ],
+    [
+     60,
+     2,
+     20,
+     26,
+     11
+    ],
+    [
+     80,
+     2,
+     20,
+     23,
+     13
+    ],
+    [
+     95,
+     2,
+     20,
+     12,
+     25
+    ],
+    [
+     60,
+     0,
+     20,
+     0.5,
+     60
+    ],
+    [
+     60,
+     1,
+     20,
+     12,
+     24
+    ],
+    [
+     60,
+     4,
+     20,
+     31,
+     9
+    ],
+    [
+     60,
+     2,
+     5,
+     4,
+     45
+    ],
+    [
+     60,
+     2,
+     10,
+     13,
+     25
+    ],
+    [
+     60,
+     2,
+     40,
+     29,
+     10
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12d-P4-Q5",
+  "passage_id": "sc12d-p4",
+  "passage_title": "Humidity, Ultraviolet Light, and Terpal Haze",
+  "format": "research_summaries",
+  "passage": "Haze forms when gases in the air react to make tiny particles that scatter light. Atmospheric scientists studied haze made from terpal, an invented plant vapor, in a sealed 10-cubic-meter chamber of clean air. In each trial they set the relative humidity (in %), the strength of an ultraviolet (UV) lamp (in lamp units, where 0 means the lamp was off), and the terpal concentration (in parts per billion, ppb).\n\nAfter 4 hours, they measured the number of haze particles (in thousands per cubic centimeter) and used a laser to estimate visibility, the distance (in km) at which a dark object could still be seen (see Table 1).\n\nStudy 1\nChambers with UV at 2 units and 20 ppb of terpal were held at 20%, 40%, 60%, 80%, or 95% humidity.\n\nStudy 2\nChambers at 60% humidity with 20 ppb of terpal had the UV lamp set to 0, 1, or 4 units. (The 2-unit result is that of the 60% chamber in Study 1.)\n\nStudy 3\nChambers at 60% humidity with UV at 2 units contained 5, 10, or 40 ppb of terpal. (The 20 ppb result is that of the 60% chamber in Study 1.)",
+  "prompt": "Suppose Study 3 had been carried out at 95% humidity instead of 60%. Based on Study 1, the particle counts in Study 3 would most likely have been:",
+  "choices": [
+   "higher at 5 ppb but lower at 40 ppb.",
+   "higher at every terpal concentration.",
+   "lower at every terpal concentration.",
+   "about the same at every terpal concentration."
+  ],
+  "correct_answer": "lower at every terpal concentration.",
+  "explanation": "In Study 1, with the other conditions of Study 3 (UV 2 units, 20 ppb), particles fell from 26 thousand per cm³ at 60% humidity to 12 at 95%. The most likely result at 95% is \"lower at every terpal concentration.\"",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "predict the effect of a changed condition",
+  "difficulty": "hard",
+  "topic_tag": "Humidity, Ultraviolet Light, and Terpal Haze",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Terpal haze after 4 hours",
+   "colLabels": [
+    "Humidity (%)",
+    "UV (units)",
+    "Terpal (ppb)",
+    "Particles (thousand/cm³)",
+    "Visibility (km)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2",
+    "Study 3",
+    "Study 3",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     20,
+     2,
+     20,
+     5,
+     40
+    ],
+    [
+     40,
+     2,
+     20,
+     14,
+     22
+    ],
+    [
+     60,
+     2,
+     20,
+     26,
+     11
+    ],
+    [
+     80,
+     2,
+     20,
+     23,
+     13
+    ],
+    [
+     95,
+     2,
+     20,
+     12,
+     25
+    ],
+    [
+     60,
+     0,
+     20,
+     0.5,
+     60
+    ],
+    [
+     60,
+     1,
+     20,
+     12,
+     24
+    ],
+    [
+     60,
+     4,
+     20,
+     31,
+     9
+    ],
+    [
+     60,
+     2,
+     5,
+     4,
+     45
+    ],
+    [
+     60,
+     2,
+     10,
+     13,
+     25
+    ],
+    [
+     60,
+     2,
+     40,
+     29,
+     10
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12d-P4-Q6",
+  "passage_id": "sc12d-p4",
+  "passage_title": "Humidity, Ultraviolet Light, and Terpal Haze",
+  "format": "research_summaries",
+  "passage": "Haze forms when gases in the air react to make tiny particles that scatter light. Atmospheric scientists studied haze made from terpal, an invented plant vapor, in a sealed 10-cubic-meter chamber of clean air. In each trial they set the relative humidity (in %), the strength of an ultraviolet (UV) lamp (in lamp units, where 0 means the lamp was off), and the terpal concentration (in parts per billion, ppb).\n\nAfter 4 hours, they measured the number of haze particles (in thousands per cubic centimeter) and used a laser to estimate visibility, the distance (in km) at which a dark object could still be seen (see Table 1).\n\nStudy 1\nChambers with UV at 2 units and 20 ppb of terpal were held at 20%, 40%, 60%, 80%, or 95% humidity.\n\nStudy 2\nChambers at 60% humidity with 20 ppb of terpal had the UV lamp set to 0, 1, or 4 units. (The 2-unit result is that of the 60% chamber in Study 1.)\n\nStudy 3\nChambers at 60% humidity with UV at 2 units contained 5, 10, or 40 ppb of terpal. (The 20 ppb result is that of the 60% chamber in Study 1.)",
+  "prompt": "Which chamber had more than 20 thousand particles per cm³ and a visibility greater than 12 km?",
+  "choices": [
+   "80% humidity, UV 2 units, 20 ppb",
+   "60% humidity, UV 4 units, 20 ppb",
+   "60% humidity, UV 2 units, 40 ppb",
+   "60% humidity, UV 2 units, 20 ppb"
+  ],
+  "correct_answer": "80% humidity, UV 2 units, 20 ppb",
+  "explanation": "The 80% chamber had 23 thousand particles per cm³ and 13 km visibility. The 60%/UV 2/20 ppb chamber had 11 km; the UV 4 chamber had 9 km; the 40 ppb chamber had 10 km.",
+  "domain": "Interpretation of Data",
+  "subskill": "apply two conditions to a table",
+  "difficulty": "medium",
+  "topic_tag": "Humidity, Ultraviolet Light, and Terpal Haze",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Terpal haze after 4 hours",
+   "colLabels": [
+    "Humidity (%)",
+    "UV (units)",
+    "Terpal (ppb)",
+    "Particles (thousand/cm³)",
+    "Visibility (km)"
+   ],
+   "rowLabels": [
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 1",
+    "Study 2",
+    "Study 2",
+    "Study 2",
+    "Study 3",
+    "Study 3",
+    "Study 3"
+   ],
+   "cells": [
+    [
+     20,
+     2,
+     20,
+     5,
+     40
+    ],
+    [
+     40,
+     2,
+     20,
+     14,
+     22
+    ],
+    [
+     60,
+     2,
+     20,
+     26,
+     11
+    ],
+    [
+     80,
+     2,
+     20,
+     23,
+     13
+    ],
+    [
+     95,
+     2,
+     20,
+     12,
+     25
+    ],
+    [
+     60,
+     0,
+     20,
+     0.5,
+     60
+    ],
+    [
+     60,
+     1,
+     20,
+     12,
+     24
+    ],
+    [
+     60,
+     4,
+     20,
+     31,
+     9
+    ],
+    [
+     60,
+     2,
+     5,
+     4,
+     45
+    ],
+    [
+     60,
+     2,
+     10,
+     13,
+     25
+    ],
+    [
+     60,
+     2,
+     40,
+     29,
+     10
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12d-P8-Q1",
+  "passage_id": "sc12d-p8",
+  "passage_title": "Layers in a Sediment Core from Lake Brel",
+  "format": "data_representation",
+  "passage": "Geoscientists drilled a 120-centimeter (cm) core of mud from the bottom of Lake Brel. At every 20 cm of depth, they estimated the age of the mud (in years before the present), measured the average size of its mineral grains (in micrometers, µm), counted the particles of charcoal per gram of mud, and found what percent of the pollen grains in the mud came from trees (see Table 1). Coarser grains are carried into the lake by floods; charcoal comes from fires near the lake.",
+  "prompt": "Charcoal was most abundant at what depth?",
+  "choices": [
+   "40 cm",
+   "60 cm",
+   "80 cm",
+   "100 cm"
+  ],
+  "correct_answer": "80 cm",
+  "explanation": "Charcoal: 3, 4, 2, 15, 22, 6, 5 particles/g from 0 to 120 cm. The greatest, 22, is at \"80 cm\".",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a maximum",
+  "difficulty": "medium",
+  "topic_tag": "Layers in a Sediment Core from Lake Brel",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Lake Brel sediment core",
+   "colLabels": [
+    "Age (years before present)",
+    "Average grain size (µm)",
+    "Charcoal (particles/g)",
+    "Tree pollen (%)"
+   ],
+   "rowLabels": [
+    "0 cm",
+    "20 cm",
+    "40 cm",
+    "60 cm",
+    "80 cm",
+    "100 cm",
+    "120 cm"
+   ],
+   "cells": [
+    [
+     0,
+     22,
+     3,
+     30
+    ],
+    [
+     300,
+     25,
+     4,
+     32
+    ],
+    [
+     650,
+     61,
+     2,
+     45
+    ],
+    [
+     1100,
+     58,
+     15,
+     60
+    ],
+    [
+     1700,
+     24,
+     22,
+     62
+    ],
+    [
+     2400,
+     19,
+     6,
+     70
+    ],
+    [
+     3200,
+     18,
+     5,
+     74
+    ]
+   ]
+  },
+  "consistency_check": "Ages increase with depth at a growing rate (300, 350, 450, 600, 700, 800 years per 20 cm); coarse grains (61, 58 um) only at 40-60 cm, dated 650-1,100 years; charcoal peaks at 80 cm; tree pollen rises with depth every step; the lake and values are invented."
+ },
+ {
+  "id": "ASV12d-P8-Q2",
+  "passage_id": "sc12d-p8",
+  "passage_title": "Layers in a Sediment Core from Lake Brel",
+  "format": "data_representation",
+  "passage": "Geoscientists drilled a 120-centimeter (cm) core of mud from the bottom of Lake Brel. At every 20 cm of depth, they estimated the age of the mud (in years before the present), measured the average size of its mineral grains (in micrometers, µm), counted the particles of charcoal per gram of mud, and found what percent of the pollen grains in the mud came from trees (see Table 1). Coarser grains are carried into the lake by floods; charcoal comes from fires near the lake.",
+  "prompt": "Mud at a depth of 50 cm is most likely how old?",
+  "choices": [
+   "Less than 650 years",
+   "Between 650 and 1,100 years",
+   "Between 1,100 and 1,700 years",
+   "More than 1,700 years"
+  ],
+  "correct_answer": "Between 650 and 1,100 years",
+  "explanation": "Mud at 40 cm is about 650 years old and mud at 60 cm about 1,100 years old, so mud at 50 cm is most likely \"Between 650 and 1,100 years\" old.",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate within a table",
+  "difficulty": "medium",
+  "topic_tag": "Layers in a Sediment Core from Lake Brel",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Lake Brel sediment core",
+   "colLabels": [
+    "Age (years before present)",
+    "Average grain size (µm)",
+    "Charcoal (particles/g)",
+    "Tree pollen (%)"
+   ],
+   "rowLabels": [
+    "0 cm",
+    "20 cm",
+    "40 cm",
+    "60 cm",
+    "80 cm",
+    "100 cm",
+    "120 cm"
+   ],
+   "cells": [
+    [
+     0,
+     22,
+     3,
+     30
+    ],
+    [
+     300,
+     25,
+     4,
+     32
+    ],
+    [
+     650,
+     61,
+     2,
+     45
+    ],
+    [
+     1100,
+     58,
+     15,
+     60
+    ],
+    [
+     1700,
+     24,
+     22,
+     62
+    ],
+    [
+     2400,
+     19,
+     6,
+     70
+    ],
+    [
+     3200,
+     18,
+     5,
+     74
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12d-P8-Q3",
+  "passage_id": "sc12d-p8",
+  "passage_title": "Layers in a Sediment Core from Lake Brel",
+  "format": "data_representation",
+  "passage": "Geoscientists drilled a 120-centimeter (cm) core of mud from the bottom of Lake Brel. At every 20 cm of depth, they estimated the age of the mud (in years before the present), measured the average size of its mineral grains (in micrometers, µm), counted the particles of charcoal per gram of mud, and found what percent of the pollen grains in the mud came from trees (see Table 1). Coarser grains are carried into the lake by floods; charcoal comes from fires near the lake.",
+  "prompt": "As depth increased from 0 cm to 120 cm, the percent of pollen from trees:",
+  "choices": [
+   "increased at every step.",
+   "increased, then decreased.",
+   "decreased, then increased.",
+   "decreased at every step."
+  ],
+  "correct_answer": "increased at every step.",
+  "explanation": "Tree pollen: 30, 32, 45, 60, 62, 70, 74%, a rise at every 20-cm step, so \"increased at every step.\"",
+  "domain": "Interpretation of Data",
+  "subskill": "describe a trend in a table",
+  "difficulty": "medium",
+  "topic_tag": "Layers in a Sediment Core from Lake Brel",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Lake Brel sediment core",
+   "colLabels": [
+    "Age (years before present)",
+    "Average grain size (µm)",
+    "Charcoal (particles/g)",
+    "Tree pollen (%)"
+   ],
+   "rowLabels": [
+    "0 cm",
+    "20 cm",
+    "40 cm",
+    "60 cm",
+    "80 cm",
+    "100 cm",
+    "120 cm"
+   ],
+   "cells": [
+    [
+     0,
+     22,
+     3,
+     30
+    ],
+    [
+     300,
+     25,
+     4,
+     32
+    ],
+    [
+     650,
+     61,
+     2,
+     45
+    ],
+    [
+     1100,
+     58,
+     15,
+     60
+    ],
+    [
+     1700,
+     24,
+     22,
+     62
+    ],
+    [
+     2400,
+     19,
+     6,
+     70
+    ],
+    [
+     3200,
+     18,
+     5,
+     74
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12d-P8-Q4",
+  "passage_id": "sc12d-p8",
+  "passage_title": "Layers in a Sediment Core from Lake Brel",
+  "format": "data_representation",
+  "passage": "Geoscientists drilled a 120-centimeter (cm) core of mud from the bottom of Lake Brel. At every 20 cm of depth, they estimated the age of the mud (in years before the present), measured the average size of its mineral grains (in micrometers, µm), counted the particles of charcoal per gram of mud, and found what percent of the pollen grains in the mud came from trees (see Table 1). Coarser grains are carried into the lake by floods; charcoal comes from fires near the lake.",
+  "prompt": "The 20 cm of mud between which two depths took the longest time to build up?",
+  "choices": [
+   "0 cm and 20 cm",
+   "40 cm and 60 cm",
+   "80 cm and 100 cm",
+   "100 cm and 120 cm"
+  ],
+  "correct_answer": "100 cm and 120 cm",
+  "explanation": "Age differences: 300 (0-20 cm), 450 (40-60 cm), 700 (80-100 cm), and 800 years (100-120 cm). The longest is between \"100 cm and 120 cm\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compute differences from a table",
+  "difficulty": "hard",
+  "topic_tag": "Layers in a Sediment Core from Lake Brel",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Lake Brel sediment core",
+   "colLabels": [
+    "Age (years before present)",
+    "Average grain size (µm)",
+    "Charcoal (particles/g)",
+    "Tree pollen (%)"
+   ],
+   "rowLabels": [
+    "0 cm",
+    "20 cm",
+    "40 cm",
+    "60 cm",
+    "80 cm",
+    "100 cm",
+    "120 cm"
+   ],
+   "cells": [
+    [
+     0,
+     22,
+     3,
+     30
+    ],
+    [
+     300,
+     25,
+     4,
+     32
+    ],
+    [
+     650,
+     61,
+     2,
+     45
+    ],
+    [
+     1100,
+     58,
+     15,
+     60
+    ],
+    [
+     1700,
+     24,
+     22,
+     62
+    ],
+    [
+     2400,
+     19,
+     6,
+     70
+    ],
+    [
+     3200,
+     18,
+     5,
+     74
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12d-P8-Q5",
+  "passage_id": "sc12d-p8",
+  "passage_title": "Layers in a Sediment Core from Lake Brel",
+  "format": "data_representation",
+  "passage": "Geoscientists drilled a 120-centimeter (cm) core of mud from the bottom of Lake Brel. At every 20 cm of depth, they estimated the age of the mud (in years before the present), measured the average size of its mineral grains (in micrometers, µm), counted the particles of charcoal per gram of mud, and found what percent of the pollen grains in the mud came from trees (see Table 1). Coarser grains are carried into the lake by floods; charcoal comes from fires near the lake.",
+  "prompt": "The geoscientists want to study the flood period recorded in the core in finer detail. Which section of the core should they sample more closely?",
+  "choices": [
+   "Between 80 cm and 100 cm",
+   "Between 40 cm and 60 cm",
+   "Between 0 cm and 20 cm",
+   "Between 100 cm and 120 cm"
+  ],
+  "correct_answer": "Between 40 cm and 60 cm",
+  "explanation": "Floods carry coarser grains, and the grains are coarse only at 40 cm (61 µm) and 60 cm (58 µm); elsewhere they are 18 to 25 µm. So the flood period lies \"Between 40 cm and 60 cm.\"",
+  "domain": "Scientific Investigation",
+  "subskill": "choose where to collect further data",
+  "difficulty": "medium",
+  "topic_tag": "Layers in a Sediment Core from Lake Brel",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Lake Brel sediment core",
+   "colLabels": [
+    "Age (years before present)",
+    "Average grain size (µm)",
+    "Charcoal (particles/g)",
+    "Tree pollen (%)"
+   ],
+   "rowLabels": [
+    "0 cm",
+    "20 cm",
+    "40 cm",
+    "60 cm",
+    "80 cm",
+    "100 cm",
+    "120 cm"
+   ],
+   "cells": [
+    [
+     0,
+     22,
+     3,
+     30
+    ],
+    [
+     300,
+     25,
+     4,
+     32
+    ],
+    [
+     650,
+     61,
+     2,
+     45
+    ],
+    [
+     1100,
+     58,
+     15,
+     60
+    ],
+    [
+     1700,
+     24,
+     22,
+     62
+    ],
+    [
+     2400,
+     19,
+     6,
+     70
+    ],
+    [
+     3200,
+     18,
+     5,
+     74
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12d-P9-Q1",
+  "passage_id": "sc12d-p9",
+  "passage_title": "Meteors Seen During the Halde Shower",
+  "format": "data_representation",
+  "passage": "Each year the Halde meteor shower lasts about six nights. Observers at a dark-sky site counted the meteors they saw each night and calculated the average number seen per hour (see Figure 1).",
+  "prompt": "On which night was the hourly rate of meteors greatest?",
+  "choices": [
+   "Night 2",
+   "Night 3",
+   "Night 4",
+   "Night 5"
+  ],
+  "correct_answer": "Night 4",
+  "explanation": "Rates: 25, 75, 150, 200, 125, 50 meteors per hour on Nights 1 to 6. The greatest, 200, is on \"Night 4\".",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a maximum in a figure",
+  "difficulty": "easy",
+  "topic_tag": "Meteors Seen During the Halde Shower",
+  "graphic": {
+   "type": "bar",
+   "xLabel": "Night of the shower",
+   "yLabel": "Meteors seen per hour",
+   "bars": [
+    {
+     "label": "Night 1",
+     "value": 25
+    },
+    {
+     "label": "Night 2",
+     "value": 75
+    },
+    {
+     "label": "Night 3",
+     "value": 150
+    },
+    {
+     "label": "Night 4",
+     "value": 200
+    },
+    {
+     "label": "Night 5",
+     "value": 125
+    },
+    {
+     "label": "Night 6",
+     "value": 50
+    }
+   ],
+   "caption": "Figure 1. Average number of Halde meteors seen per hour on each night"
+  },
+  "consistency_check": "Rates 25, 75, 150, 200, 125, 50 (multiples of 25 on a 0-200 axis); keyed comparisons differ by at least 25 (half a 50-unit tick): peak 200 vs 150; above-100 nights 150, 200, 125 (nearest others 75 and 50); largest rise 75 (night 2-3) vs 50; nights 3+4 sum 350."
+ },
+ {
+  "id": "ASV12d-P9-Q2",
+  "passage_id": "sc12d-p9",
+  "passage_title": "Meteors Seen During the Halde Shower",
+  "format": "data_representation",
+  "passage": "Each year the Halde meteor shower lasts about six nights. Observers at a dark-sky site counted the meteors they saw each night and calculated the average number seen per hour (see Figure 1).",
+  "prompt": "On how many nights did the observers see more than 100 meteors per hour?",
+  "choices": [
+   "1",
+   "2",
+   "3",
+   "4"
+  ],
+  "correct_answer": "3",
+  "explanation": "Nights 3 (150), 4 (200), and 5 (125) are above 100; Nights 1, 2, and 6 (25, 75, 50) are below it. So \"3\".",
+  "domain": "Interpretation of Data",
+  "subskill": "apply a threshold to a figure",
+  "difficulty": "medium",
+  "topic_tag": "Meteors Seen During the Halde Shower",
+  "graphic": {
+   "type": "bar",
+   "xLabel": "Night of the shower",
+   "yLabel": "Meteors seen per hour",
+   "bars": [
+    {
+     "label": "Night 1",
+     "value": 25
+    },
+    {
+     "label": "Night 2",
+     "value": 75
+    },
+    {
+     "label": "Night 3",
+     "value": 150
+    },
+    {
+     "label": "Night 4",
+     "value": 200
+    },
+    {
+     "label": "Night 5",
+     "value": 125
+    },
+    {
+     "label": "Night 6",
+     "value": 50
+    }
+   ],
+   "caption": "Figure 1. Average number of Halde meteors seen per hour on each night"
+  }
+ },
+ {
+  "id": "ASV12d-P9-Q3",
+  "passage_id": "sc12d-p9",
+  "passage_title": "Meteors Seen During the Halde Shower",
+  "format": "data_representation",
+  "passage": "Each year the Halde meteor shower lasts about six nights. Observers at a dark-sky site counted the meteors they saw each night and calculated the average number seen per hour (see Figure 1).",
+  "prompt": "Between which two consecutive nights did the hourly rate increase the most?",
+  "choices": [
+   "Night 2 and Night 3",
+   "Night 3 and Night 4",
+   "Night 5 and Night 6",
+   "Night 1 and Night 2"
+  ],
+  "correct_answer": "Night 2 and Night 3",
+  "explanation": "Increases: 50 (Night 1 to 2), 75 (Night 2 to 3), and 50 (Night 3 to 4); the rate fell from Night 5 to 6. The largest increase is between \"Night 2 and Night 3\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compare changes between bars",
+  "difficulty": "medium",
+  "topic_tag": "Meteors Seen During the Halde Shower",
+  "graphic": {
+   "type": "bar",
+   "xLabel": "Night of the shower",
+   "yLabel": "Meteors seen per hour",
+   "bars": [
+    {
+     "label": "Night 1",
+     "value": 25
+    },
+    {
+     "label": "Night 2",
+     "value": 75
+    },
+    {
+     "label": "Night 3",
+     "value": 150
+    },
+    {
+     "label": "Night 4",
+     "value": 200
+    },
+    {
+     "label": "Night 5",
+     "value": 125
+    },
+    {
+     "label": "Night 6",
+     "value": 50
+    }
+   ],
+   "caption": "Figure 1. Average number of Halde meteors seen per hour on each night"
+  }
+ },
+ {
+  "id": "ASV12d-P9-Q4",
+  "passage_id": "sc12d-p9",
+  "passage_title": "Meteors Seen During the Halde Shower",
+  "format": "data_representation",
+  "passage": "Each year the Halde meteor shower lasts about six nights. Observers at a dark-sky site counted the meteors they saw each night and calculated the average number seen per hour (see Figure 1).",
+  "prompt": "On which night did the hourly rate first rise above 100 meteors per hour?",
+  "choices": [
+   "Night 2",
+   "Night 3",
+   "Night 4",
+   "Night 5"
+  ],
+  "correct_answer": "Night 3",
+  "explanation": "The rate was 25 and 75 on Nights 1 and 2, then 150 on Night 3, so it first rose above 100 on \"Night 3\".",
+  "domain": "Interpretation of Data",
+  "subskill": "find when a series first passes a value",
+  "difficulty": "easy",
+  "topic_tag": "Meteors Seen During the Halde Shower",
+  "graphic": {
+   "type": "bar",
+   "xLabel": "Night of the shower",
+   "yLabel": "Meteors seen per hour",
+   "bars": [
+    {
+     "label": "Night 1",
+     "value": 25
+    },
+    {
+     "label": "Night 2",
+     "value": 75
+    },
+    {
+     "label": "Night 3",
+     "value": 150
+    },
+    {
+     "label": "Night 4",
+     "value": 200
+    },
+    {
+     "label": "Night 5",
+     "value": 125
+    },
+    {
+     "label": "Night 6",
+     "value": 50
+    }
+   ],
+   "caption": "Figure 1. Average number of Halde meteors seen per hour on each night"
+  }
+ },
+ {
+  "id": "ASV12d-P9-Q5",
+  "passage_id": "sc12d-p9",
+  "passage_title": "Meteors Seen During the Halde Shower",
+  "format": "data_representation",
+  "passage": "Each year the Halde meteor shower lasts about six nights. Observers at a dark-sky site counted the meteors they saw each night and calculated the average number seen per hour (see Figure 1).",
+  "prompt": "The hourly rates on Night 3 and Night 4 added together come to about:",
+  "choices": [
+   "150 meteors per hour.",
+   "250 meteors per hour.",
+   "350 meteors per hour.",
+   "450 meteors per hour."
+  ],
+  "correct_answer": "350 meteors per hour.",
+  "explanation": "Night 3 had 150 and Night 4 had 200 meteors per hour: 150 + 200 = 350.",
+  "domain": "Interpretation of Data",
+  "subskill": "combine values from a figure",
+  "difficulty": "medium",
+  "topic_tag": "Meteors Seen During the Halde Shower",
+  "graphic": {
+   "type": "bar",
+   "xLabel": "Night of the shower",
+   "yLabel": "Meteors seen per hour",
+   "bars": [
+    {
+     "label": "Night 1",
+     "value": 25
+    },
+    {
+     "label": "Night 2",
+     "value": 75
+    },
+    {
+     "label": "Night 3",
+     "value": 150
+    },
+    {
+     "label": "Night 4",
+     "value": 200
+    },
+    {
+     "label": "Night 5",
+     "value": 125
+    },
+    {
+     "label": "Night 6",
+     "value": 50
+    }
+   ],
+   "caption": "Figure 1. Average number of Halde meteors seen per hour on each night"
+  }
+ }
+]

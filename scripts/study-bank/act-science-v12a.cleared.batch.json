@@ -1,0 +1,911 @@
+[
+ {
+  "id": "ASV12a-P4-Q1",
+  "passage_id": "sc12a-p4",
+  "passage_title": "Smoke-Water and Cold Storage in Mirelle Seed Germination",
+  "format": "research_summaries",
+  "passage": "Mirelle is a wildflower whose seeds often fail to sprout. Botanists tested two treatments: soaking seeds in smoke-water (water through which smoke from burned plants has been bubbled, then diluted) and storing seeds in a cold, moist place before planting.\n\nIn every trial, 200 seeds were soaked for 24 hours, then planted on moist paper at 18°C. After 21 days, the botanists recorded the percent of seeds that germinated and the mean number of days until germination (see Table 1).\n\nExperiment 1\nSeeds were soaked in plain water (none) or in smoke-water diluted 1:1,000, 1:100, or 1:10, then planted with no cold storage.\n\nExperiment 2\nSeeds were soaked as in Experiment 1, stored at 4°C for 6 weeks, then planted.\n\nExperiment 3\nSeeds were soaked in 1:100 smoke-water and stored at 4°C for 0, 2, 4, 6, or 8 weeks before planting. (The 0-week result is that of Experiment 1 and the 6-week result is that of Experiment 2 for 1:100.)",
+  "prompt": "In Experiment 1, germination was highest with which soaking treatment?",
+  "choices": [
+   "1:10",
+   "1:100",
+   "1:1,000",
+   "none"
+  ],
+  "correct_answer": "1:100",
+  "explanation": "Experiment 1 germination: 12% (none), 31% (1:1,000), 47% (1:100), 22% (1:10). The highest is \"1:100\".",
+  "domain": "Interpretation of Data",
+  "subskill": "locate a maximum within one series",
+  "difficulty": "medium",
+  "topic_tag": "Smoke-Water and Cold Storage in Mirelle Seed Germination",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Germination of Mirelle seeds after 21 days",
+   "colLabels": [
+    "Smoke-water",
+    "Cold storage (weeks)",
+    "Germination (%)",
+    "Mean days to germinate"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "none",
+     0,
+     12,
+     15.8
+    ],
+    [
+     "1:1,000",
+     0,
+     31,
+     13.1
+    ],
+    [
+     "1:100",
+     0,
+     47,
+     11.4
+    ],
+    [
+     "1:10",
+     0,
+     22,
+     12.9
+    ],
+    [
+     "none",
+     6,
+     38,
+     10.2
+    ],
+    [
+     "1:1,000",
+     6,
+     55,
+     9.0
+    ],
+    [
+     "1:100",
+     6,
+     61,
+     8.7
+    ],
+    [
+     "1:10",
+     6,
+     58,
+     8.9
+    ],
+    [
+     "1:100",
+     2,
+     52,
+     10.3
+    ],
+    [
+     "1:100",
+     4,
+     58,
+     9.4
+    ],
+    [
+     "1:100",
+     8,
+     60,
+     8.8
+    ]
+   ]
+  },
+  "consistency_check": "Germination never exceeds 61% and moves opposite to mean days in each series; the strongest smoke-water depresses germination without cold but not after it (interaction); storage gains level off after 6 weeks; shared trials (1:100 at 0 and 6 weeks) have identical values across experiments."
+ },
+ {
+  "id": "ASV12a-P4-Q2",
+  "passage_id": "sc12a-p4",
+  "passage_title": "Smoke-Water and Cold Storage in Mirelle Seed Germination",
+  "format": "research_summaries",
+  "passage": "Mirelle is a wildflower whose seeds often fail to sprout. Botanists tested two treatments: soaking seeds in smoke-water (water through which smoke from burned plants has been bubbled, then diluted) and storing seeds in a cold, moist place before planting.\n\nIn every trial, 200 seeds were soaked for 24 hours, then planted on moist paper at 18°C. After 21 days, the botanists recorded the percent of seeds that germinated and the mean number of days until germination (see Table 1).\n\nExperiment 1\nSeeds were soaked in plain water (none) or in smoke-water diluted 1:1,000, 1:100, or 1:10, then planted with no cold storage.\n\nExperiment 2\nSeeds were soaked as in Experiment 1, stored at 4°C for 6 weeks, then planted.\n\nExperiment 3\nSeeds were soaked in 1:100 smoke-water and stored at 4°C for 0, 2, 4, 6, or 8 weeks before planting. (The 0-week result is that of Experiment 1 and the 6-week result is that of Experiment 2 for 1:100.)",
+  "prompt": "For which soaking treatment did 6 weeks of cold storage raise germination by the greatest number of percentage points?",
+  "choices": [
+   "1:100",
+   "1:1,000",
+   "none",
+   "1:10"
+  ],
+  "correct_answer": "1:10",
+  "explanation": "Experiment 1 to Experiment 2: none 12 to 38 (+26); 1:1,000 31 to 55 (+24); 1:100 47 to 61 (+14); 1:10 22 to 58 (+36). The greatest rise is \"1:10\".",
+  "domain": "Interpretation of Data",
+  "subskill": "compute and compare differences",
+  "difficulty": "hard",
+  "topic_tag": "Smoke-Water and Cold Storage in Mirelle Seed Germination",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Germination of Mirelle seeds after 21 days",
+   "colLabels": [
+    "Smoke-water",
+    "Cold storage (weeks)",
+    "Germination (%)",
+    "Mean days to germinate"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "none",
+     0,
+     12,
+     15.8
+    ],
+    [
+     "1:1,000",
+     0,
+     31,
+     13.1
+    ],
+    [
+     "1:100",
+     0,
+     47,
+     11.4
+    ],
+    [
+     "1:10",
+     0,
+     22,
+     12.9
+    ],
+    [
+     "none",
+     6,
+     38,
+     10.2
+    ],
+    [
+     "1:1,000",
+     6,
+     55,
+     9.0
+    ],
+    [
+     "1:100",
+     6,
+     61,
+     8.7
+    ],
+    [
+     "1:10",
+     6,
+     58,
+     8.9
+    ],
+    [
+     "1:100",
+     2,
+     52,
+     10.3
+    ],
+    [
+     "1:100",
+     4,
+     58,
+     9.4
+    ],
+    [
+     "1:100",
+     8,
+     60,
+     8.8
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12a-P4-Q3",
+  "passage_id": "sc12a-p4",
+  "passage_title": "Smoke-Water and Cold Storage in Mirelle Seed Germination",
+  "format": "research_summaries",
+  "passage": "Mirelle is a wildflower whose seeds often fail to sprout. Botanists tested two treatments: soaking seeds in smoke-water (water through which smoke from burned plants has been bubbled, then diluted) and storing seeds in a cold, moist place before planting.\n\nIn every trial, 200 seeds were soaked for 24 hours, then planted on moist paper at 18°C. After 21 days, the botanists recorded the percent of seeds that germinated and the mean number of days until germination (see Table 1).\n\nExperiment 1\nSeeds were soaked in plain water (none) or in smoke-water diluted 1:1,000, 1:100, or 1:10, then planted with no cold storage.\n\nExperiment 2\nSeeds were soaked as in Experiment 1, stored at 4°C for 6 weeks, then planted.\n\nExperiment 3\nSeeds were soaked in 1:100 smoke-water and stored at 4°C for 0, 2, 4, 6, or 8 weeks before planting. (The 0-week result is that of Experiment 1 and the 6-week result is that of Experiment 2 for 1:100.)",
+  "prompt": "In Experiment 3, which of the following was held constant?",
+  "choices": [
+   "Both the smoke-water dilution and the length of cold storage",
+   "Neither the smoke-water dilution nor the length of cold storage",
+   "The length of cold storage only",
+   "The smoke-water dilution only"
+  ],
+  "correct_answer": "The smoke-water dilution only",
+  "explanation": "Experiment 3 used 1:100 smoke-water in every trial and changed the storage from 0 to 8 weeks, so \"The smoke-water dilution only\" was held constant.",
+  "domain": "Scientific Investigation",
+  "subskill": "identify controlled variables",
+  "difficulty": "medium",
+  "topic_tag": "Smoke-Water and Cold Storage in Mirelle Seed Germination",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Germination of Mirelle seeds after 21 days",
+   "colLabels": [
+    "Smoke-water",
+    "Cold storage (weeks)",
+    "Germination (%)",
+    "Mean days to germinate"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "none",
+     0,
+     12,
+     15.8
+    ],
+    [
+     "1:1,000",
+     0,
+     31,
+     13.1
+    ],
+    [
+     "1:100",
+     0,
+     47,
+     11.4
+    ],
+    [
+     "1:10",
+     0,
+     22,
+     12.9
+    ],
+    [
+     "none",
+     6,
+     38,
+     10.2
+    ],
+    [
+     "1:1,000",
+     6,
+     55,
+     9.0
+    ],
+    [
+     "1:100",
+     6,
+     61,
+     8.7
+    ],
+    [
+     "1:10",
+     6,
+     58,
+     8.9
+    ],
+    [
+     "1:100",
+     2,
+     52,
+     10.3
+    ],
+    [
+     "1:100",
+     4,
+     58,
+     9.4
+    ],
+    [
+     "1:100",
+     8,
+     60,
+     8.8
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12a-P4-Q4",
+  "passage_id": "sc12a-p4",
+  "passage_title": "Smoke-Water and Cold Storage in Mirelle Seed Germination",
+  "format": "research_summaries",
+  "passage": "Mirelle is a wildflower whose seeds often fail to sprout. Botanists tested two treatments: soaking seeds in smoke-water (water through which smoke from burned plants has been bubbled, then diluted) and storing seeds in a cold, moist place before planting.\n\nIn every trial, 200 seeds were soaked for 24 hours, then planted on moist paper at 18°C. After 21 days, the botanists recorded the percent of seeds that germinated and the mean number of days until germination (see Table 1).\n\nExperiment 1\nSeeds were soaked in plain water (none) or in smoke-water diluted 1:1,000, 1:100, or 1:10, then planted with no cold storage.\n\nExperiment 2\nSeeds were soaked as in Experiment 1, stored at 4°C for 6 weeks, then planted.\n\nExperiment 3\nSeeds were soaked in 1:100 smoke-water and stored at 4°C for 0, 2, 4, 6, or 8 weeks before planting. (The 0-week result is that of Experiment 1 and the 6-week result is that of Experiment 2 for 1:100.)",
+  "prompt": "To decide whether storing seeds cold for longer than 6 weeks raises germination further, which two results should be compared?",
+  "choices": [
+   "The Experiment 3 results for 6 weeks and 8 weeks of storage",
+   "The Experiment 2 result for 1:1,000 smoke-water and the Experiment 3 result for 8 weeks",
+   "The Experiment 3 results for 4 weeks and 8 weeks of storage",
+   "The Experiment 1 result for 1:100 smoke-water and the Experiment 3 result for 8 weeks"
+  ],
+  "correct_answer": "The Experiment 3 results for 6 weeks and 8 weeks of storage",
+  "explanation": "Only \"The Experiment 3 results for 6 weeks and 8 weeks of storage\" change the storage beyond 6 weeks with the dilution held at 1:100 (61% vs 60%). The Experiment 2 result used 1:1,000 smoke-water, the Experiment 1 result had no storage, and 4 vs 8 weeks spans the 6-week point.",
+  "domain": "Scientific Investigation",
+  "subskill": "choose a controlled comparison",
+  "difficulty": "hard",
+  "topic_tag": "Smoke-Water and Cold Storage in Mirelle Seed Germination",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Germination of Mirelle seeds after 21 days",
+   "colLabels": [
+    "Smoke-water",
+    "Cold storage (weeks)",
+    "Germination (%)",
+    "Mean days to germinate"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "none",
+     0,
+     12,
+     15.8
+    ],
+    [
+     "1:1,000",
+     0,
+     31,
+     13.1
+    ],
+    [
+     "1:100",
+     0,
+     47,
+     11.4
+    ],
+    [
+     "1:10",
+     0,
+     22,
+     12.9
+    ],
+    [
+     "none",
+     6,
+     38,
+     10.2
+    ],
+    [
+     "1:1,000",
+     6,
+     55,
+     9.0
+    ],
+    [
+     "1:100",
+     6,
+     61,
+     8.7
+    ],
+    [
+     "1:10",
+     6,
+     58,
+     8.9
+    ],
+    [
+     "1:100",
+     2,
+     52,
+     10.3
+    ],
+    [
+     "1:100",
+     4,
+     58,
+     9.4
+    ],
+    [
+     "1:100",
+     8,
+     60,
+     8.8
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12a-P4-Q5",
+  "passage_id": "sc12a-p4",
+  "passage_title": "Smoke-Water and Cold Storage in Mirelle Seed Germination",
+  "format": "research_summaries",
+  "passage": "Mirelle is a wildflower whose seeds often fail to sprout. Botanists tested two treatments: soaking seeds in smoke-water (water through which smoke from burned plants has been bubbled, then diluted) and storing seeds in a cold, moist place before planting.\n\nIn every trial, 200 seeds were soaked for 24 hours, then planted on moist paper at 18°C. After 21 days, the botanists recorded the percent of seeds that germinated and the mean number of days until germination (see Table 1).\n\nExperiment 1\nSeeds were soaked in plain water (none) or in smoke-water diluted 1:1,000, 1:100, or 1:10, then planted with no cold storage.\n\nExperiment 2\nSeeds were soaked as in Experiment 1, stored at 4°C for 6 weeks, then planted.\n\nExperiment 3\nSeeds were soaked in 1:100 smoke-water and stored at 4°C for 0, 2, 4, 6, or 8 weeks before planting. (The 0-week result is that of Experiment 1 and the 6-week result is that of Experiment 2 for 1:100.)",
+  "prompt": "If seeds soaked in 1:100 smoke-water had been stored at 4°C for 3 weeks, their germination would most likely have been:",
+  "choices": [
+   "less than 47%.",
+   "between 47% and 52%.",
+   "between 52% and 58%.",
+   "between 58% and 61%."
+  ],
+  "correct_answer": "between 52% and 58%.",
+  "explanation": "Germination was 52% at 2 weeks and 58% at 4 weeks, so at 3 weeks it would most likely be \"between 52% and 58%\".",
+  "domain": "Interpretation of Data",
+  "subskill": "interpolate within one series",
+  "difficulty": "medium",
+  "topic_tag": "Smoke-Water and Cold Storage in Mirelle Seed Germination",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Germination of Mirelle seeds after 21 days",
+   "colLabels": [
+    "Smoke-water",
+    "Cold storage (weeks)",
+    "Germination (%)",
+    "Mean days to germinate"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "none",
+     0,
+     12,
+     15.8
+    ],
+    [
+     "1:1,000",
+     0,
+     31,
+     13.1
+    ],
+    [
+     "1:100",
+     0,
+     47,
+     11.4
+    ],
+    [
+     "1:10",
+     0,
+     22,
+     12.9
+    ],
+    [
+     "none",
+     6,
+     38,
+     10.2
+    ],
+    [
+     "1:1,000",
+     6,
+     55,
+     9.0
+    ],
+    [
+     "1:100",
+     6,
+     61,
+     8.7
+    ],
+    [
+     "1:10",
+     6,
+     58,
+     8.9
+    ],
+    [
+     "1:100",
+     2,
+     52,
+     10.3
+    ],
+    [
+     "1:100",
+     4,
+     58,
+     9.4
+    ],
+    [
+     "1:100",
+     8,
+     60,
+     8.8
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12a-P4-Q6",
+  "passage_id": "sc12a-p4",
+  "passage_title": "Smoke-Water and Cold Storage in Mirelle Seed Germination",
+  "format": "research_summaries",
+  "passage": "Mirelle is a wildflower whose seeds often fail to sprout. Botanists tested two treatments: soaking seeds in smoke-water (water through which smoke from burned plants has been bubbled, then diluted) and storing seeds in a cold, moist place before planting.\n\nIn every trial, 200 seeds were soaked for 24 hours, then planted on moist paper at 18°C. After 21 days, the botanists recorded the percent of seeds that germinated and the mean number of days until germination (see Table 1).\n\nExperiment 1\nSeeds were soaked in plain water (none) or in smoke-water diluted 1:1,000, 1:100, or 1:10, then planted with no cold storage.\n\nExperiment 2\nSeeds were soaked as in Experiment 1, stored at 4°C for 6 weeks, then planted.\n\nExperiment 3\nSeeds were soaked in 1:100 smoke-water and stored at 4°C for 0, 2, 4, 6, or 8 weeks before planting. (The 0-week result is that of Experiment 1 and the 6-week result is that of Experiment 2 for 1:100.)",
+  "prompt": "For seeds that are planted with no cold storage, germination with 1:100 smoke-water was how many percentage points higher than germination with plain water?",
+  "choices": [
+   "49",
+   "35",
+   "26",
+   "14"
+  ],
+  "correct_answer": "35",
+  "explanation": "With no storage, 1:100 gave 47% and plain water gave 12%: 47 - 12 = \"35\". (26 is the plain-water gain from storage; 14 is the 1:100 gain from storage; 49 is 61 - 12.)",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a difference",
+  "difficulty": "medium",
+  "topic_tag": "Smoke-Water and Cold Storage in Mirelle Seed Germination",
+  "graphic": {
+   "type": "table",
+   "caption": "Table 1. Germination of Mirelle seeds after 21 days",
+   "colLabels": [
+    "Smoke-water",
+    "Cold storage (weeks)",
+    "Germination (%)",
+    "Mean days to germinate"
+   ],
+   "rowLabels": [
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 1",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 2",
+    "Exp. 3",
+    "Exp. 3",
+    "Exp. 3"
+   ],
+   "cells": [
+    [
+     "none",
+     0,
+     12,
+     15.8
+    ],
+    [
+     "1:1,000",
+     0,
+     31,
+     13.1
+    ],
+    [
+     "1:100",
+     0,
+     47,
+     11.4
+    ],
+    [
+     "1:10",
+     0,
+     22,
+     12.9
+    ],
+    [
+     "none",
+     6,
+     38,
+     10.2
+    ],
+    [
+     "1:1,000",
+     6,
+     55,
+     9.0
+    ],
+    [
+     "1:100",
+     6,
+     61,
+     8.7
+    ],
+    [
+     "1:10",
+     6,
+     58,
+     8.9
+    ],
+    [
+     "1:100",
+     2,
+     52,
+     10.3
+    ],
+    [
+     "1:100",
+     4,
+     58,
+     9.4
+    ],
+    [
+     "1:100",
+     8,
+     60,
+     8.8
+    ]
+   ]
+  }
+ },
+ {
+  "id": "ASV12a-P5-Q1",
+  "passage_id": "sc12a-p5",
+  "passage_title": "Why Dunmore Vole Numbers Crash",
+  "format": "conflicting_viewpoints",
+  "passage": "In the Harl Valley, numbers of Dunmore voles rise for 3 years and then fall sharply in the 4th year. This 4-year cycle has been recorded for 40 years. In a peak year, voles reach about 300 per hectare; after a crash, about 20 per hectare remain. Ermines (small predators) eat voles, and voles feed mainly on cotton sedge, a grasslike plant. Three scientists explain the crash.\n\nScientist 1\nPredators cause the crash. When voles are plentiful, more young ermines survive, so ermine numbers lag vole numbers by about 1 year: ermines are most numerous in the year after voles peak. By then, ermines eat voles faster than voles can reproduce. The crash begins in late summer, when that year's young ermines start to hunt. Voles in a fenced plot that keeps ermines out would not crash. The condition of the sedge does not affect vole breeding.\n\nScientist 2\nThe sedge causes the crash. After voles have eaten more than half of the sedge leaves in an area for two summers in a row, the sedge grows leaves rich in silica the following spring. Silica-rich leaves wear down voles' teeth and provide little nourishment, so females stop breeding. Sedge leaves in a crash year contain about 3 times as much silica as usual. The crash begins in spring. Voles in a fenced plot that keeps ermines out would still crash.\n\nScientist 3\nCrowding causes the crash. When vole numbers first exceed about 250 per hectare, females fight over nest sites; stressed females produce fewer young, and many young die in the nest. The crash begins whenever this density is first passed, in any season. The sedge stays nutritious throughout the cycle, so food is not involved. Voles in a plot kept below 250 per hectare by removing voles would not crash, even with ermines present.",
+  "prompt": "Which scientist(s) would predict that a crash begins in spring?",
+  "choices": [
+   "Scientist 3 only",
+   "Scientist 1 only",
+   "Scientist 2 only",
+   "Scientists 1 and 2 only"
+  ],
+  "correct_answer": "Scientist 2 only",
+  "explanation": "Scientist 2 says \"The crash begins in spring.\" Scientist 1 says late summer, and Scientist 3 says whenever density first passes 250, in any season. So \"Scientist 2 only\".",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "locate a prediction in the viewpoints",
+  "difficulty": "medium",
+  "topic_tag": "Why Dunmore Vole Numbers Crash",
+  "consistency_check": "Each scientist predicts a different season (late summer / spring / whenever density passes 250) and a different fenced-plot outcome; ermine lag of 1 year puts the ermine peak in year 4, after the year-3 vole peak."
+ },
+ {
+  "id": "ASV12a-P5-Q2",
+  "passage_id": "sc12a-p5",
+  "passage_title": "Why Dunmore Vole Numbers Crash",
+  "format": "conflicting_viewpoints",
+  "passage": "In the Harl Valley, numbers of Dunmore voles rise for 3 years and then fall sharply in the 4th year. This 4-year cycle has been recorded for 40 years. In a peak year, voles reach about 300 per hectare; after a crash, about 20 per hectare remain. Ermines (small predators) eat voles, and voles feed mainly on cotton sedge, a grasslike plant. Three scientists explain the crash.\n\nScientist 1\nPredators cause the crash. When voles are plentiful, more young ermines survive, so ermine numbers lag vole numbers by about 1 year: ermines are most numerous in the year after voles peak. By then, ermines eat voles faster than voles can reproduce. The crash begins in late summer, when that year's young ermines start to hunt. Voles in a fenced plot that keeps ermines out would not crash. The condition of the sedge does not affect vole breeding.\n\nScientist 2\nThe sedge causes the crash. After voles have eaten more than half of the sedge leaves in an area for two summers in a row, the sedge grows leaves rich in silica the following spring. Silica-rich leaves wear down voles' teeth and provide little nourishment, so females stop breeding. Sedge leaves in a crash year contain about 3 times as much silica as usual. The crash begins in spring. Voles in a fenced plot that keeps ermines out would still crash.\n\nScientist 3\nCrowding causes the crash. When vole numbers first exceed about 250 per hectare, females fight over nest sites; stressed females produce fewer young, and many young die in the nest. The crash begins whenever this density is first passed, in any season. The sedge stays nutritious throughout the cycle, so food is not involved. Voles in a plot kept below 250 per hectare by removing voles would not crash, even with ermines present.",
+  "prompt": "Researchers built a fence that kept ermines out of one plot. Voles inside the fence crashed in the same spring as voles outside it. This result is inconsistent with the view of which scientist(s)?",
+  "choices": [
+   "Scientists 2 and 3 only",
+   "Scientist 2 only",
+   "Scientists 1 and 3 only",
+   "Scientist 1 only"
+  ],
+  "correct_answer": "Scientist 1 only",
+  "explanation": "Scientist 1 says fenced voles would not crash and that crashes begin in late summer. Scientist 2 says fenced voles would still crash in spring, and Scientist 3's crowding does not depend on ermines. So \"Scientist 1 only\".",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test viewpoints against a new result",
+  "difficulty": "hard",
+  "topic_tag": "Why Dunmore Vole Numbers Crash"
+ },
+ {
+  "id": "ASV12a-P5-Q3",
+  "passage_id": "sc12a-p5",
+  "passage_title": "Why Dunmore Vole Numbers Crash",
+  "format": "conflicting_viewpoints",
+  "passage": "In the Harl Valley, numbers of Dunmore voles rise for 3 years and then fall sharply in the 4th year. This 4-year cycle has been recorded for 40 years. In a peak year, voles reach about 300 per hectare; after a crash, about 20 per hectare remain. Ermines (small predators) eat voles, and voles feed mainly on cotton sedge, a grasslike plant. Three scientists explain the crash.\n\nScientist 1\nPredators cause the crash. When voles are plentiful, more young ermines survive, so ermine numbers lag vole numbers by about 1 year: ermines are most numerous in the year after voles peak. By then, ermines eat voles faster than voles can reproduce. The crash begins in late summer, when that year's young ermines start to hunt. Voles in a fenced plot that keeps ermines out would not crash. The condition of the sedge does not affect vole breeding.\n\nScientist 2\nThe sedge causes the crash. After voles have eaten more than half of the sedge leaves in an area for two summers in a row, the sedge grows leaves rich in silica the following spring. Silica-rich leaves wear down voles' teeth and provide little nourishment, so females stop breeding. Sedge leaves in a crash year contain about 3 times as much silica as usual. The crash begins in spring. Voles in a fenced plot that keeps ermines out would still crash.\n\nScientist 3\nCrowding causes the crash. When vole numbers first exceed about 250 per hectare, females fight over nest sites; stressed females produce fewer young, and many young die in the nest. The crash begins whenever this density is first passed, in any season. The sedge stays nutritious throughout the cycle, so food is not involved. Voles in a plot kept below 250 per hectare by removing voles would not crash, even with ermines present.",
+  "prompt": "Suppose sedge leaves collected in the spring of a crash year contained about 3 times as much silica as leaves collected in a peak year. This finding would most directly support the view of which scientist?",
+  "choices": [
+   "Scientist 2",
+   "Scientist 1",
+   "Scientist 3",
+   "None of the scientists"
+  ],
+  "correct_answer": "Scientist 2",
+  "explanation": "Only Scientist 2 says crash-year sedge has about 3 times the usual silica; Scientist 1 says the sedge does not affect breeding and Scientist 3 says the sedge stays nutritious. So \"Scientist 2\".",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "match a finding to a viewpoint",
+  "difficulty": "medium",
+  "topic_tag": "Why Dunmore Vole Numbers Crash"
+ },
+ {
+  "id": "ASV12a-P5-Q4",
+  "passage_id": "sc12a-p5",
+  "passage_title": "Why Dunmore Vole Numbers Crash",
+  "format": "conflicting_viewpoints",
+  "passage": "In the Harl Valley, numbers of Dunmore voles rise for 3 years and then fall sharply in the 4th year. This 4-year cycle has been recorded for 40 years. In a peak year, voles reach about 300 per hectare; after a crash, about 20 per hectare remain. Ermines (small predators) eat voles, and voles feed mainly on cotton sedge, a grasslike plant. Three scientists explain the crash.\n\nScientist 1\nPredators cause the crash. When voles are plentiful, more young ermines survive, so ermine numbers lag vole numbers by about 1 year: ermines are most numerous in the year after voles peak. By then, ermines eat voles faster than voles can reproduce. The crash begins in late summer, when that year's young ermines start to hunt. Voles in a fenced plot that keeps ermines out would not crash. The condition of the sedge does not affect vole breeding.\n\nScientist 2\nThe sedge causes the crash. After voles have eaten more than half of the sedge leaves in an area for two summers in a row, the sedge grows leaves rich in silica the following spring. Silica-rich leaves wear down voles' teeth and provide little nourishment, so females stop breeding. Sedge leaves in a crash year contain about 3 times as much silica as usual. The crash begins in spring. Voles in a fenced plot that keeps ermines out would still crash.\n\nScientist 3\nCrowding causes the crash. When vole numbers first exceed about 250 per hectare, females fight over nest sites; stressed females produce fewer young, and many young die in the nest. The crash begins whenever this density is first passed, in any season. The sedge stays nutritious throughout the cycle, so food is not involved. Voles in a plot kept below 250 per hectare by removing voles would not crash, even with ermines present.",
+  "prompt": "Scientists 1 and 3 would most likely agree that:",
+  "choices": [
+   "the crash begins in late summer of the 4th year.",
+   "changes in the sedge do not cause the crash.",
+   "keeping ermines out of a plot would not prevent a crash there.",
+   "a crash cannot begin until vole numbers exceed about 250 per hectare."
+  ],
+  "correct_answer": "changes in the sedge do not cause the crash.",
+  "explanation": "Scientist 1 says the sedge does not affect breeding, and Scientist 3 says the sedge stays nutritious so food is not involved: \"changes in the sedge do not cause the crash.\" Late summer is Scientist 1 only; that fencing out ermines would not prevent a crash is held by Scientist 3, and Scientist 1 denies it; the 250 threshold is Scientist 3 only.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify common ground between viewpoints",
+  "difficulty": "hard",
+  "topic_tag": "Why Dunmore Vole Numbers Crash"
+ },
+ {
+  "id": "ASV12a-P5-Q5",
+  "passage_id": "sc12a-p5",
+  "passage_title": "Why Dunmore Vole Numbers Crash",
+  "format": "conflicting_viewpoints",
+  "passage": "In the Harl Valley, numbers of Dunmore voles rise for 3 years and then fall sharply in the 4th year. This 4-year cycle has been recorded for 40 years. In a peak year, voles reach about 300 per hectare; after a crash, about 20 per hectare remain. Ermines (small predators) eat voles, and voles feed mainly on cotton sedge, a grasslike plant. Three scientists explain the crash.\n\nScientist 1\nPredators cause the crash. When voles are plentiful, more young ermines survive, so ermine numbers lag vole numbers by about 1 year: ermines are most numerous in the year after voles peak. By then, ermines eat voles faster than voles can reproduce. The crash begins in late summer, when that year's young ermines start to hunt. Voles in a fenced plot that keeps ermines out would not crash. The condition of the sedge does not affect vole breeding.\n\nScientist 2\nThe sedge causes the crash. After voles have eaten more than half of the sedge leaves in an area for two summers in a row, the sedge grows leaves rich in silica the following spring. Silica-rich leaves wear down voles' teeth and provide little nourishment, so females stop breeding. Sedge leaves in a crash year contain about 3 times as much silica as usual. The crash begins in spring. Voles in a fenced plot that keeps ermines out would still crash.\n\nScientist 3\nCrowding causes the crash. When vole numbers first exceed about 250 per hectare, females fight over nest sites; stressed females produce fewer young, and many young die in the nest. The crash begins whenever this density is first passed, in any season. The sedge stays nutritious throughout the cycle, so food is not involved. Voles in a plot kept below 250 per hectare by removing voles would not crash, even with ermines present.",
+  "prompt": "According to Scientist 1, in which year of the cycle are ermines most numerous?",
+  "choices": [
+   "Year 1",
+   "Year 2",
+   "Year 3",
+   "Year 4"
+  ],
+  "correct_answer": "Year 4",
+  "explanation": "Voles rise for 3 years, so they peak in year 3. Scientist 1 says ermines are most numerous in the year after voles peak: \"Year 4\".",
+  "domain": "Interpretation of Data",
+  "subskill": "combine a viewpoint with the background facts",
+  "difficulty": "hard",
+  "topic_tag": "Why Dunmore Vole Numbers Crash"
+ },
+ {
+  "id": "ASV12a-P5-Q6",
+  "passage_id": "sc12a-p5",
+  "passage_title": "Why Dunmore Vole Numbers Crash",
+  "format": "conflicting_viewpoints",
+  "passage": "In the Harl Valley, numbers of Dunmore voles rise for 3 years and then fall sharply in the 4th year. This 4-year cycle has been recorded for 40 years. In a peak year, voles reach about 300 per hectare; after a crash, about 20 per hectare remain. Ermines (small predators) eat voles, and voles feed mainly on cotton sedge, a grasslike plant. Three scientists explain the crash.\n\nScientist 1\nPredators cause the crash. When voles are plentiful, more young ermines survive, so ermine numbers lag vole numbers by about 1 year: ermines are most numerous in the year after voles peak. By then, ermines eat voles faster than voles can reproduce. The crash begins in late summer, when that year's young ermines start to hunt. Voles in a fenced plot that keeps ermines out would not crash. The condition of the sedge does not affect vole breeding.\n\nScientist 2\nThe sedge causes the crash. After voles have eaten more than half of the sedge leaves in an area for two summers in a row, the sedge grows leaves rich in silica the following spring. Silica-rich leaves wear down voles' teeth and provide little nourishment, so females stop breeding. Sedge leaves in a crash year contain about 3 times as much silica as usual. The crash begins in spring. Voles in a fenced plot that keeps ermines out would still crash.\n\nScientist 3\nCrowding causes the crash. When vole numbers first exceed about 250 per hectare, females fight over nest sites; stressed females produce fewer young, and many young die in the nest. The crash begins whenever this density is first passed, in any season. The sedge stays nutritious throughout the cycle, so food is not involved. Voles in a plot kept below 250 per hectare by removing voles would not crash, even with ermines present.",
+  "prompt": "In one cycle, vole numbers first rose above 250 per hectare in the autumn of year 2, reaching 280 per hectare. Based on Scientist 3's view, the crash would most likely begin in:",
+  "choices": [
+   "the spring of year 3.",
+   "the autumn of year 2.",
+   "the late summer of year 4.",
+   "the spring of year 4."
+  ],
+  "correct_answer": "the autumn of year 2.",
+  "explanation": "Scientist 3 says the crash begins whenever density first passes about 250 per hectare, in any season. That happened in \"the autumn of year 2.\"",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "apply a viewpoint to a new case",
+  "difficulty": "medium",
+  "topic_tag": "Why Dunmore Vole Numbers Crash"
+ },
+ {
+  "id": "ASV12a-P6-Q1",
+  "passage_id": "sc12a-p6",
+  "passage_title": "Why the Cawl Ridge Springs Are Warm",
+  "format": "conflicting_viewpoints",
+  "passage": "Water flowing from the Cawl Ridge springs averages 34°C. Rainwater at the site averages 9°C, and ordinary groundwater from a well 1 km away is 11°C. The springs' flow rises about 2 months after the start of each wet season. Three scientists explain why the springs are warm.\n\nScientist 1\nRainwater sinks along a crack in the rock (a fault) to a depth of about 2 km, where the rock is warm, and then rises back to the surface. The round trip takes about 2 months, which is why flow rises about 2 months after the wet season starts. Because the deep rock stays at the same temperature all year, the water's temperature does not change with the flow. On its long trip, the water dissolves minerals, so it should carry about 900 milligrams of dissolved salts per liter (mg/L).\n\nScientist 2\nA body of hot rock lies only about 300 m below the springs. Rainwater that reaches the hot rock is heated and rises within a few days. The 2-month delay in flow is caused by a layer of clay above the hot rock that slows rainwater on its way down. Gas bubbling out of the springs should contain sulfur gases released by the hot rock.\n\nScientist 3\nRainwater seeps down to a layer of granite about 600 m deep. This granite is unusually rich in elements that release heat, so it warms the water that flows past it. The longer the water stays in contact with the granite, the warmer it becomes, so the springs should be warmest in the months when flow is lowest.",
+  "prompt": "Which scientist(s) would predict that the temperature of the spring water changes as the flow rate changes?",
+  "choices": [
+   "Scientist 1 only",
+   "Scientists 1 and 2 only",
+   "Scientist 3 only",
+   "Scientists 2 and 3 only"
+  ],
+  "correct_answer": "Scientist 3 only",
+  "explanation": "Scientist 3 says slower flow means warmer water. Scientist 1 says the temperature does not change with the flow, and Scientist 2 does not connect temperature to flow. So \"Scientist 3 only\".",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "locate a prediction in the viewpoints",
+  "difficulty": "medium",
+  "topic_tag": "Why the Cawl Ridge Springs Are Warm",
+  "consistency_check": "Depths are consistent with each claim (2 km, 300 m, 600 m); only Scientist 3 ties temperature to flow; only Scientist 1 predicts dissolved salts (900 mg/L); 34 - 11 = 23 and 34 - 9 = 25."
+ },
+ {
+  "id": "ASV12a-P6-Q2",
+  "passage_id": "sc12a-p6",
+  "passage_title": "Why the Cawl Ridge Springs Are Warm",
+  "format": "conflicting_viewpoints",
+  "passage": "Water flowing from the Cawl Ridge springs averages 34°C. Rainwater at the site averages 9°C, and ordinary groundwater from a well 1 km away is 11°C. The springs' flow rises about 2 months after the start of each wet season. Three scientists explain why the springs are warm.\n\nScientist 1\nRainwater sinks along a crack in the rock (a fault) to a depth of about 2 km, where the rock is warm, and then rises back to the surface. The round trip takes about 2 months, which is why flow rises about 2 months after the wet season starts. Because the deep rock stays at the same temperature all year, the water's temperature does not change with the flow. On its long trip, the water dissolves minerals, so it should carry about 900 milligrams of dissolved salts per liter (mg/L).\n\nScientist 2\nA body of hot rock lies only about 300 m below the springs. Rainwater that reaches the hot rock is heated and rises within a few days. The 2-month delay in flow is caused by a layer of clay above the hot rock that slows rainwater on its way down. Gas bubbling out of the springs should contain sulfur gases released by the hot rock.\n\nScientist 3\nRainwater seeps down to a layer of granite about 600 m deep. This granite is unusually rich in elements that release heat, so it warms the water that flows past it. The longer the water stays in contact with the granite, the warmer it becomes, so the springs should be warmest in the months when flow is lowest.",
+  "prompt": "Tests show that the spring water carries about 150 mg/L of dissolved salts, about the same as the well water 1 km away. This result most directly weakens the view of which scientist(s)?",
+  "choices": [
+   "Scientist 1 only",
+   "Scientist 3 only",
+   "Scientist 2 only",
+   "Scientists 1 and 3 only"
+  ],
+  "correct_answer": "Scientist 1 only",
+  "explanation": "Only Scientist 1 predicts about 900 mg/L of dissolved salts. The other scientists make no prediction about dissolved salts. So \"Scientist 1 only\".",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "test viewpoints against a new result",
+  "difficulty": "medium",
+  "topic_tag": "Why the Cawl Ridge Springs Are Warm"
+ },
+ {
+  "id": "ASV12a-P6-Q3",
+  "passage_id": "sc12a-p6",
+  "passage_title": "Why the Cawl Ridge Springs Are Warm",
+  "format": "conflicting_viewpoints",
+  "passage": "Water flowing from the Cawl Ridge springs averages 34°C. Rainwater at the site averages 9°C, and ordinary groundwater from a well 1 km away is 11°C. The springs' flow rises about 2 months after the start of each wet season. Three scientists explain why the springs are warm.\n\nScientist 1\nRainwater sinks along a crack in the rock (a fault) to a depth of about 2 km, where the rock is warm, and then rises back to the surface. The round trip takes about 2 months, which is why flow rises about 2 months after the wet season starts. Because the deep rock stays at the same temperature all year, the water's temperature does not change with the flow. On its long trip, the water dissolves minerals, so it should carry about 900 milligrams of dissolved salts per liter (mg/L).\n\nScientist 2\nA body of hot rock lies only about 300 m below the springs. Rainwater that reaches the hot rock is heated and rises within a few days. The 2-month delay in flow is caused by a layer of clay above the hot rock that slows rainwater on its way down. Gas bubbling out of the springs should contain sulfur gases released by the hot rock.\n\nScientist 3\nRainwater seeps down to a layer of granite about 600 m deep. This granite is unusually rich in elements that release heat, so it warms the water that flows past it. The longer the water stays in contact with the granite, the warmer it becomes, so the springs should be warmest in the months when flow is lowest.",
+  "prompt": "According to Scientist 2, the delay of about 2 months between the start of the wet season and the rise in spring flow is caused by:",
+  "choices": [
+   "the time rainwater takes to sink to about 2 km and rise again.",
+   "slow flow of water past a layer of granite.",
+   "a clay layer that slows rainwater on its way down.",
+   "the time needed to heat the water to 34°C."
+  ],
+  "correct_answer": "a clay layer that slows rainwater on its way down.",
+  "explanation": "Scientist 2 says the delay \"is caused by a layer of clay above the hot rock that slows rainwater on its way down.\" The 2-km round trip is Scientist 1's explanation; granite is Scientist 3's heat source; Scientist 2 says water is heated within a few days.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify a viewpoint's explanation",
+  "difficulty": "medium",
+  "topic_tag": "Why the Cawl Ridge Springs Are Warm"
+ },
+ {
+  "id": "ASV12a-P6-Q4",
+  "passage_id": "sc12a-p6",
+  "passage_title": "Why the Cawl Ridge Springs Are Warm",
+  "format": "conflicting_viewpoints",
+  "passage": "Water flowing from the Cawl Ridge springs averages 34°C. Rainwater at the site averages 9°C, and ordinary groundwater from a well 1 km away is 11°C. The springs' flow rises about 2 months after the start of each wet season. Three scientists explain why the springs are warm.\n\nScientist 1\nRainwater sinks along a crack in the rock (a fault) to a depth of about 2 km, where the rock is warm, and then rises back to the surface. The round trip takes about 2 months, which is why flow rises about 2 months after the wet season starts. Because the deep rock stays at the same temperature all year, the water's temperature does not change with the flow. On its long trip, the water dissolves minerals, so it should carry about 900 milligrams of dissolved salts per liter (mg/L).\n\nScientist 2\nA body of hot rock lies only about 300 m below the springs. Rainwater that reaches the hot rock is heated and rises within a few days. The 2-month delay in flow is caused by a layer of clay above the hot rock that slows rainwater on its way down. Gas bubbling out of the springs should contain sulfur gases released by the hot rock.\n\nScientist 3\nRainwater seeps down to a layer of granite about 600 m deep. This granite is unusually rich in elements that release heat, so it warms the water that flows past it. The longer the water stays in contact with the granite, the warmer it becomes, so the springs should be warmest in the months when flow is lowest.",
+  "prompt": "Scientists 1 and 3 would most likely agree that the spring water:",
+  "choices": [
+   "is rainwater that seeped underground before it was heated.",
+   "has traveled deeper than 1 km before returning to the surface.",
+   "is heated by rock that lies less than 1 km below the surface.",
+   "is warmest in the months when spring flow is lowest."
+  ],
+  "correct_answer": "is rainwater that seeped underground before it was heated.",
+  "explanation": "Scientist 1 says rainwater sinks along a fault; Scientist 3 says rainwater seeps down to the granite: \"is rainwater that seeped underground before it was heated.\" Only Scientist 1 sends the water deeper than 1 km (2 km); only Scientist 3 heats it less than 1 km down (600 m) and links warmth to low flow.",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "identify common ground between viewpoints",
+  "difficulty": "hard",
+  "topic_tag": "Why the Cawl Ridge Springs Are Warm"
+ },
+ {
+  "id": "ASV12a-P6-Q5",
+  "passage_id": "sc12a-p6",
+  "passage_title": "Why the Cawl Ridge Springs Are Warm",
+  "format": "conflicting_viewpoints",
+  "passage": "Water flowing from the Cawl Ridge springs averages 34°C. Rainwater at the site averages 9°C, and ordinary groundwater from a well 1 km away is 11°C. The springs' flow rises about 2 months after the start of each wet season. Three scientists explain why the springs are warm.\n\nScientist 1\nRainwater sinks along a crack in the rock (a fault) to a depth of about 2 km, where the rock is warm, and then rises back to the surface. The round trip takes about 2 months, which is why flow rises about 2 months after the wet season starts. Because the deep rock stays at the same temperature all year, the water's temperature does not change with the flow. On its long trip, the water dissolves minerals, so it should carry about 900 milligrams of dissolved salts per liter (mg/L).\n\nScientist 2\nA body of hot rock lies only about 300 m below the springs. Rainwater that reaches the hot rock is heated and rises within a few days. The 2-month delay in flow is caused by a layer of clay above the hot rock that slows rainwater on its way down. Gas bubbling out of the springs should contain sulfur gases released by the hot rock.\n\nScientist 3\nRainwater seeps down to a layer of granite about 600 m deep. This granite is unusually rich in elements that release heat, so it warms the water that flows past it. The longer the water stays in contact with the granite, the warmer it becomes, so the springs should be warmest in the months when flow is lowest.",
+  "prompt": "A test hole is drilled near the springs to a depth of 350 m. Which scientist(s) would most likely predict that the rock at the bottom of the hole is warmer than 34°C?",
+  "choices": [
+   "Scientist 1 only",
+   "Scientist 2 only",
+   "Scientist 3 only",
+   "Scientists 2 and 3 only"
+  ],
+  "correct_answer": "Scientist 2 only",
+  "explanation": "Scientist 2 places hot rock about 300 m below the springs, so a 350-m hole would reach it. Scientist 3's granite is about 600 m deep, and Scientist 1's warm rock is about 2 km deep. So \"Scientist 2 only\".",
+  "domain": "Evaluation of Models, Inferences, and Experimental Results",
+  "subskill": "apply viewpoints to a new case",
+  "difficulty": "hard",
+  "topic_tag": "Why the Cawl Ridge Springs Are Warm"
+ },
+ {
+  "id": "ASV12a-P6-Q6",
+  "passage_id": "sc12a-p6",
+  "passage_title": "Why the Cawl Ridge Springs Are Warm",
+  "format": "conflicting_viewpoints",
+  "passage": "Water flowing from the Cawl Ridge springs averages 34°C. Rainwater at the site averages 9°C, and ordinary groundwater from a well 1 km away is 11°C. The springs' flow rises about 2 months after the start of each wet season. Three scientists explain why the springs are warm.\n\nScientist 1\nRainwater sinks along a crack in the rock (a fault) to a depth of about 2 km, where the rock is warm, and then rises back to the surface. The round trip takes about 2 months, which is why flow rises about 2 months after the wet season starts. Because the deep rock stays at the same temperature all year, the water's temperature does not change with the flow. On its long trip, the water dissolves minerals, so it should carry about 900 milligrams of dissolved salts per liter (mg/L).\n\nScientist 2\nA body of hot rock lies only about 300 m below the springs. Rainwater that reaches the hot rock is heated and rises within a few days. The 2-month delay in flow is caused by a layer of clay above the hot rock that slows rainwater on its way down. Gas bubbling out of the springs should contain sulfur gases released by the hot rock.\n\nScientist 3\nRainwater seeps down to a layer of granite about 600 m deep. This granite is unusually rich in elements that release heat, so it warms the water that flows past it. The longer the water stays in contact with the granite, the warmer it becomes, so the springs should be warmest in the months when flow is lowest.",
+  "prompt": "According to the passage, the spring water is about how many degrees Celsius warmer than the well water 1 km away?",
+  "choices": [
+   "34",
+   "25",
+   "23",
+   "9"
+  ],
+  "correct_answer": "23",
+  "explanation": "Spring water averages 34°C and the well water is 11°C: 34 - 11 = \"23\". (25 compares the springs with rainwater, 9°C.)",
+  "domain": "Interpretation of Data",
+  "subskill": "compute a difference from the passage",
+  "difficulty": "medium",
+  "topic_tag": "Why the Cawl Ridge Springs Are Warm"
+ }
+]
