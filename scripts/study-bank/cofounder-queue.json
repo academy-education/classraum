@@ -2,9 +2,12 @@
  "note": "The co-founder's release-sitting order (2026-10-22). Each entry is satisfied when its cohort has no staged row he has not reviewed, or when the cohort has had `upTo` runs drawn. draw-next.mjs draws the first unsatisfied entry. Order follows the runout monitor (real student closest to a repeat first); every move is an order-only amendment recorded in the cohort's prereg or REGISTER. | 2026-10-22 owner option 2: pre-screened batches get a spot-check (one passage / 12 items / one set run); every third reading batch a full sitting. Sample passages seeded \"spotcheck-groups-2026-10-22\". Rules: COFOUNDER-GRADER-2026-10-22.PREREG.md Amendment 1.",
  "prioritySections": [
   "act/science",
-  "act/reading"
+  "isee/reading",
+  "ssat/reading",
+  "act/reading",
+  "act/english"
  ],
- "prioritySectionsNote": "Owner 2026-10-27: ACT Reading first (English). Science (ACT and MAP) leaves the co-founder verdict queue: agents decide science release (release-by-shape.mjs science path, science-release.json); the co-founder sits BLIND-ONLY science runs (entries marked blindOnly; run ids carry '-blindonly-', no reveal, no verdict). The upTo 0 holds were removed 2026-10-27 once the blind-only path worked end to end. Order-only; depths unchanged. 2026-10-27: act/science first (3 forms, below the five-test floor; its surviving cohorts need one blind-only run each to release), then act/reading (6 forms).",
+ "prioritySectionsNote": "Owner 2026-10-27: ACT Reading first (English). Science (ACT and MAP) leaves the co-founder verdict queue: agents decide science release (release-by-shape.mjs science path, science-release.json); the co-founder sits BLIND-ONLY science runs (entries marked blindOnly; run ids carry '-blindonly-', no reveal, no verdict). The upTo 0 holds were removed 2026-10-27 once the blind-only path worked end to end. Order-only; depths unchanged. 2026-10-27: act/science first (3 forms, below the five-test floor; its surviving cohorts need one blind-only run each to release), then act/reading (6 forms). 2026-10-29 (owner go): floor-first order: act/science (3 live), isee/reading (5, at the floor), ssat/reading (6), act/reading, act/english.",
  "reviewer": "6ca6edaf-4044-4eed-84e0-137ebd79a81d",
  "queue": [
   {

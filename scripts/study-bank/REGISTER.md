@@ -6311,3 +6311,8 @@ structural checks are pre-flight only. See CLAUDE.md.
   16 counted students, 6,486 first attempts over 3,523 items, **max per-item n = 7, 0 items at 30 — nothing
   measurable yet.** Open question for the owner: several of the 16 counted accounts have 600-1,267 attempts since
   August; confirm they are real students or flag them.
+
+- **2026-10-29 — Co-founder queue reordered floor-first (owner go).** prioritySections: act/science (3 live),
+  isee/reading (5, at the floor), ssat/reading (6), act/reading, act/english. Order only; depths and rules
+  unchanged. Owner also confirmed the heavy non-internal study accounts (윤태원, 김, 이누엘, Stellar Sung, Minho,
+  이태규, 민병헌) are real students, not testers — the item-stats detector counts them.
