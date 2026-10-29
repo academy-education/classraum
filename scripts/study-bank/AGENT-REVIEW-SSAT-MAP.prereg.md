@@ -74,3 +74,40 @@ release is already the agents' decision; those cohorts wait only on their blind-
   rate is unknown until Daniel's audit samples measure it.
 - Packets put 36-66 items in front of one grader; batch patterns are judged within a packet, so a tell spread across
   a 159-item cohort's three packets is caught only if two graders name it inside one packet.
+
+## Amendment A1 (2026-10-29, owner-approved, written BEFORE re-scoring)
+
+The first scoring (all 117 grader files, run 2026-10-29) cleared 188 of 1,558 and held 21 of 27 cohorts under §3.3. The
+owner approved two corrections to the instrument, with these reasons; the grader files are unchanged and are not
+re-graded.
+
+1. **Answer-letter patterns are excluded.** A pattern whose name is about answer-letter position (`key_position`, or
+   any name containing `position` or `letter`) is not counted toward a hold, and a custom-named pattern never matches
+   one. Reason: the letters in a packet are this gate's own seeded deal (§2), and the app reshuffles every item's
+   choices per student at draw time (`shuffleDrawnChoices`, `src/lib/study/assemble.ts`), so no letter pattern in a
+   packet can reach a student. The graders themselves called the flagged skews "mild, not significant". This corrects
+   what the instrument measures; it does not reinterpret a result about the items.
+2. **A pattern confined to a subset drops that subset; only a cohort-wide pattern holds the cohort.** For each cohort,
+   take the union of the items named (shared by both graders) in every confirmed pattern. **If that union is at least
+   50% of the cohort's items, the whole cohort is held** for re-authoring (§3.3 unchanged in that case). **Below 50%,
+   only those items drop**, each taking its passage group (§3.2), and the rest of the cohort is scored normally.
+   Reason: one template across five of forty vocabulary items (map-vocab-v3) held 35 items no grader faulted. A tell
+   that runs through most of a cohort still holds it.
+
+Everything else in §3 stands: any one grader's non-unique verdict drops the item and its passage; a pattern needs two
+graders and at least 3 shared items to count.
+
+### Release after A1: Daniel checks a sample BEFORE release (owner, 2026-10-29)
+
+The owner changed §4: nothing is released until Daniel has sat a small audit sample of the cleared items.
+
+- **Sample:** 2-3 items per cleared cohort, at most 24 in all, whole passages for passage items, in this order: SSAT
+  Reading, then MAP Language, then any other cleared cohort. Drawn by `draw-review-run.mjs` into one run whose id
+  contains `agentreview-audit`.
+- **Timing:** Daniel has `actsciencev6b-full1-blindonly-cofounder-2026-10-28` open and only one run may be open, so the
+  audit run is drawn the moment v6b closes, before any other draw. The exact command is in
+  `scripts/study-bank/agent-review/AUDIT-DRAW.md` (written after re-scoring, from the cleared lists).
+- **Decision:** `agent-review-release.mjs <audit run id>` refuses while the run is open. If every sampled item of a
+  cohort is clean (no `alternative`/`broken` verdict and no `would_block` note), that cohort's cleared items are
+  released (`verified=true`); any defect on a cohort's sample holds that cohort's cleared items and lists them. Dry-run
+  by default; `--apply` writes.
