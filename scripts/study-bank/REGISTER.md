@@ -6295,3 +6295,10 @@ structural checks are pre-flight only. See CLAUDE.md.
   one-item gate measures nothing on options-only and costs ~10 agents. MAP Math stays at 5 forms (Number Systems 51,
   needs 60). Next round: draft only mechanisms whose answer is a signed decimal or a fixed-denominator fraction, and
   run the feasibility search BEFORE the chain check.
+
+- **2026-10-29 — Brief versioning rule adopted (owner go): BRIEF-VERSIONING.md.** Every queued verbal stratum was at
+  L0 / bridge pending in autonomy-state because briefs were amended after nearly every grading round, and each
+  amendment is a new method under Amendment 3. From now on lessons go to `briefs/<stratum>.pending.md` and a new
+  brief version is cut only when the current one has earned its bridge plus an L1 spot, when the same tell is named
+  by both graders in two consecutive batches, or when yield hits the stop band. Blind-only sections (ACT/MAP
+  Science) are exempt — brief changes there do not touch Daniel's load.
