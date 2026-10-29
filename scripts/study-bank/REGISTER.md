@@ -3132,6 +3132,27 @@ recorded only in a commit message is a finding nobody reads.
   the model over-solves without the source, so a "choosable without the source" flag there is not a guessability
   verdict. The Daniel audit sample stays the human check.
 
+- **2026-10-30 — Science key-visible audit built (owner: "check science one more time"); 0 auditors run, nothing
+  released.** `SCIENCE-AUDIT-2026-10-30.prereg.md` was committed before the builder ran.
+  - **Population:** every staged row whose qid is on its cohort's cleared list. All 562 staged rows across the 16
+    cohorts are on their lists, and no cleared qid lacks a row:
+    - ACT v6b–v12f: 317 items in 55 passages;
+    - MAP pilot and v1: 245 standalone items.
+  - **Packets:** 46 under `scratchpad/science-audit/` (ACT 7 passages each, MAP 8 items each). Manifest:
+    `scratchpad/science-audit/MANIFEST.json`.
+  - **Auditors:** 92 spawns still to run (2 per packet: a plain, b told to assume an error). Figures are rendered
+    by `decodeGraphic`. 0 refused figures, so `NOT-AUDITABLE.json` is empty.
+  - **Rule:** EITHER auditor's `key_verified:false`, or a raised second_defensible, unreadable, fact_error or
+    no_source issue, holds the whole passage for the owner.
+  - **Scorer:** `science-audit-score.mjs`, test `science-audit-score.test.ts`.
+  - **Found while break-testing (all fixed before commit):**
+    - The test drove its flag cases with `it.each(FLAG_TYPES)`, so deleting a type from the core deleted its test
+      case too, and the suite stayed green at 9 of 9. It is now a literal list plus an equality pin. All four
+      types, the key check, the passage hold and the missing-id refusal each fail when removed.
+    - A refused scorer run left an older `FLAGGED.json` that read as the current result. The scorer now deletes
+      it first.
+  - **Limit:** the two auditors are one model sampled twice, and both see the key.
+
 ## 6. The rule that keeps this honest
 
 A cohort is **not** clean because the cheap checks passed. Five
