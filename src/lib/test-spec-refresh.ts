@@ -35,7 +35,7 @@ import { z } from 'zod'
 import { dbAdmin } from '@/lib/supabase-admin'
 import { TEST_SPECS, type SectionSpec } from '@/lib/test-specs'
 import { verifyAndCorrect, type Question } from '@/lib/test-verify'
-import { describeExtractionError, orderByLeastRecentlyAttempted, isNonMcSection, cronSkipsFamily, normalizeDifficultyMix, normalizeItemDifficulty } from '@/lib/test-spec-refresh-summary'
+import { describeExtractionError, orderByLeastRecentlyAttempted, isNonMcSection, cronSkipsFamily, normalizeDifficultyMix, normalizeItemDifficulty, fullSectionQuestionCount } from '@/lib/test-spec-refresh-summary'
 
 /** Refresh target — uses arbitrary strings so any test works, not
  *  limited to the 8 hardcoded TestFamily values. */
@@ -55,6 +55,9 @@ export const SectionSpecSchema = z.object({
   name_en: z.string(),
   name_ko: z.string().nullish().transform(v => v ?? ''),
   questionsPerSection: z.number().int().min(1).max(300),
+  // Part structure, so a per-part headline can be summed (fullSectionQuestionCount). Not stored.
+  partsCount: z.number().int().min(1).max(12).nullish(),
+  questionsPerPart: z.number().int().min(1).max(150).nullish(),
   // Not .int(): IELTS Speaking is published as "11-14 minutes" and an
   // honest extractor returns 12.5. Rounded in coerceSpec.
   minutesPerSection: z.number().min(5).max(240),
@@ -123,6 +126,8 @@ const EXTRACT_PROMPT = (researchText: string) => `
 The following is a research report on a standardized test section's current format. Extract a clean structured spec from it.
 
 If the report says authoritative numbers couldn't be found, return the closest you can with a clear note in the patterns field saying "unverified — model could not find authoritative source."
+
+questionsPerSection is the TOTAL for the whole section across every part, module or passage — never one part's count. If the section is delivered in parts or modules, also set partsCount (how many parts) and questionsPerPart (questions in one part, when the parts are equal). Example: "4 parts of 10 questions" → questionsPerSection 40, partsCount 4, questionsPerPart 10.
 
 If the section has no multiple-choice questions (an essay, writing or speaking section), set choiceCount to 4 and describe the task types in patterns_en. If a field is genuinely unknown, omit it rather than inventing a value.
 
@@ -324,7 +329,10 @@ Do not invent items. If you cannot find ${count} hard items from authoritative s
 End with a "Sources:" line listing the URLs you used.
 `.trim()
 
-const SampleItemSchema = z.object({
+/** Upper bound on extracted sample items per section (keeps verbatim passages inside the output budget). */
+const MAX_SAMPLE_ITEMS = 10
+
+export const SampleItemSchema = z.object({
   // The passage / stimulus the item depends on, verbatim, or null. Until
   // 2026-10-02 there was no such field, so every reading-type item reached
   // the answer-key verifier with `passage: null` — asked to solve "Which
@@ -339,7 +347,9 @@ const SampleItemSchema = z.object({
   // here would reject the whole batch when one SPR item slips in.
   choices: z.array(z.string()),
   correct_answer: z.string(),
-  difficulty: z.preprocess(normalizeItemDifficulty, z.enum(['easy', 'medium', 'hard'])),
+  // An unrecognised label drops THIS item (counted in the notes), not the whole batch: on 2026-10-28 one
+  // Korean label ("상"-style) failed ksat/Korean's entire extraction. Known synonyms are mapped first.
+  difficulty: z.preprocess(normalizeItemDifficulty, z.enum(['easy', 'medium', 'hard']).nullable().catch(null)),
   why_hard: z.string(),
   source_url: z.string(),
 })
@@ -421,8 +431,11 @@ export async function refreshTestSpecExamples(
     const result = await generateObject({
       model: openai('gpt-4o-mini'),
       schema: SampleBatchSchema,
-      prompt: `Extract the practice items from this research report into the structured schema. Put the item's passage in "passage" verbatim (null when it has none). Skip items that are incomplete or that depend on figures/audio. If a "difficulty" label was given by the test maker, preserve it; otherwise estimate honestly.\n\nReport:\n${researchText}`,
+      prompt: `Extract the practice items from this research report into the structured schema. Put the item's passage in "passage" verbatim (null when it has none). Skip items that are incomplete or that depend on figures/audio. Extract at most ${MAX_SAMPLE_ITEMS} items, hardest first. Write "difficulty" as exactly one of easy, medium or hard (map the test maker's own label, e.g. 상/중/하, onto these); otherwise estimate honestly.\n\nReport:\n${researchText}`,
       temperature: 0.1,
+      // Verbatim passages are long: ksat/English failed on 2026-10-29 with finishReason=length at the
+      // default budget. The item cap above bounds it; this leaves room for it.
+      maxOutputTokens: 16_000,
     })
     items = result.object.items
   } catch (err) {
@@ -434,10 +447,17 @@ export async function refreshTestSpecExamples(
 
   // Filter out SPR / free-response items (empty choices) and any item
   // with fewer than 4 choices — our generator only does MC.
-  const mcItems = items.filter(it => it.choices.length >= 4 && it.choices.length <= 5)
+  const unlabelled = items.filter(it => it.difficulty === null).length
+  const mcItems = items
+    .filter((it): it is typeof it & { difficulty: 'easy' | 'medium' | 'hard' } => it.difficulty !== null)
+    .filter(it => it.choices.length >= 4 && it.choices.length <= 5)
+  if (unlabelled > 0) {
+    console.warn('[test-spec-refresh] sample items dropped for an unrecognised difficulty label', { family, sectionKey, unlabelled, of: items.length })
+  }
   if (mcItems.length === 0) {
-    await markAttempt(family, sectionKey, `samples: extracted ${items.length} items but none were MC`)
-    return { family, sectionKey, ok: true, empty: true, notes: `${items.length} items extracted, 0 MC`, sources: citedUrls, examplesAdded: 0 }
+    const why = unlabelled > 0 ? ` (${unlabelled} dropped for an unrecognised difficulty label)` : ''
+    await markAttempt(family, sectionKey, `samples: extracted ${items.length} items but none were MC${why}`)
+    return { family, sectionKey, ok: true, empty: true, notes: `${items.length} items extracted, 0 MC${why}`, sources: citedUrls, examplesAdded: 0 }
   }
 
   // Step 3: verify each item's answer key + actual difficulty via the
@@ -552,7 +572,13 @@ Why hard: ${q.explanation}`
  *  model returned something weird like 3 for a 25%-SPR section). */
 export function coerceSpec(s: z.infer<typeof SectionSpecSchema>): SectionSpec {
   const cc = s.choiceCount === 5 ? 5 : 4 // default to 4 for anything non-5, incl. null
-  const out: SectionSpec = { ...s, choiceCount: cc, minutesPerSection: Math.round(s.minutesPerSection) }
+  const { partsCount, questionsPerPart, ...rest } = s
+  const out: SectionSpec = {
+    ...rest,
+    questionsPerSection: fullSectionQuestionCount(s.questionsPerSection, partsCount, questionsPerPart),
+    choiceCount: cc,
+    minutesPerSection: Math.round(s.minutesPerSection),
+  }
   // Drop keys whose value is undefined so the stored JSON stays clean.
   for (const k of Object.keys(out) as Array<keyof SectionSpec>) {
     if (out[k] === undefined) delete out[k]
@@ -564,7 +590,7 @@ export function coerceSpec(s: z.infer<typeof SectionSpecSchema>): SectionSpec {
  *  If the model returned per-module numbers when we KNOW the section
  *  is multi-module (Digital SAT), reject the extraction so we don't
  *  overwrite a correct hardcoded value with worse data. */
-function isPlausibleExtraction(
+export function isPlausibleExtraction(
   s: SectionSpec,
   family: string,
   sectionKey: string,

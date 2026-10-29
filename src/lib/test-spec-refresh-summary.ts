@@ -112,13 +112,45 @@ export function normalizeDifficultyMix(v: unknown): unknown {
  * synonyms are mapped; any other word is returned unchanged so the enum still rejects it.
  */
 const DIFFICULTY_SYNONYMS: Record<string, 'easy' | 'medium' | 'hard'> = {
-  easy: 'easy', simple: 'easy', basic: 'easy', low: 'easy',
+  easy: 'easy', simple: 'easy', basic: 'easy', low: 'easy', 'very easy': 'easy',
   medium: 'medium', moderate: 'medium', intermediate: 'medium', average: 'medium', mid: 'medium',
   hard: 'hard', difficult: 'hard', challenging: 'hard', advanced: 'hard', high: 'hard',
+  'very hard': 'hard', 'very difficult': 'hard', hardest: 'hard',
+  // KSAT sources label difficulty in Korean (상/중/하, 고난도, 킬러). The examples refresh failed on
+  // 2026-10-28 with "items.0.difficulty: Invalid enum value" on ksat/Korean (국어) — an English-only map.
+  '하': 'easy', '쉬움': 'easy', '쉬운': 'easy', '기본': 'easy',
+  '중': 'medium', '보통': 'medium', '중간': 'medium',
+  '상': 'hard', '어려움': 'hard', '어려운': 'hard', '고난도': 'hard', '최상': 'hard', '킬러': 'hard', '준킬러': 'hard',
 }
 export function normalizeItemDifficulty(v: unknown): unknown {
   if (typeof v !== 'string') return v
-  return DIFFICULTY_SYNONYMS[v.trim().toLowerCase()] ?? v
+  return DIFFICULTY_SYNONYMS[v.trim().toLowerCase().replace(/[\s_-]+/g, ' ')] ?? v
+}
+
+/** Confidence in the model's own words ("High", " medium ") — case and whitespace only; any other word is
+ *  returned unchanged so the enum still rejects it. */
+export function normalizeConfidence(v: unknown): unknown {
+  if (typeof v !== 'string') return v
+  const k = v.trim().toLowerCase()
+  return k === 'high' || k === 'medium' || k === 'low' ? k : v
+}
+
+/**
+ * The full-section question count when the extractor reports a PER-PART number. IELTS Listening is 4 parts of
+ * 10 (40 in all); the format refresh read "10 questions per part" as the section total and the sanity check
+ * rejected it every day from 2026-10-03 (fail streak 27, a critical alert each morning). The extractor now also
+ * reports partsCount and questionsPerPart. When the headline count equals one part's count and there is more
+ * than one part, the parts are summed. Anything else — no part data, or a headline that is already larger than
+ * one part — is left alone, so a genuinely wrong extraction still reaches the sanity check and fails there.
+ */
+export function fullSectionQuestionCount(
+  questionsPerSection: number,
+  partsCount: number | null | undefined,
+  questionsPerPart: number | null | undefined,
+): number {
+  if (!partsCount || !questionsPerPart || partsCount < 2) return questionsPerSection
+  if (questionsPerSection !== questionsPerPart) return questionsPerSection
+  return partsCount * questionsPerPart
 }
 
 /**

@@ -20,6 +20,7 @@
 
 import { splitSourceFromStem } from '@/lib/study/split-source-from-stem'
 import { generateObject } from 'ai'
+import { describeExtractionError, normalizeConfidence, normalizeItemDifficulty } from '@/lib/test-spec-refresh-summary'
 import { createOpenAI } from '@ai-sdk/openai'
 import { z } from 'zod'
 
@@ -214,11 +215,13 @@ const VerifierItemSchema = z.object({
    *  step-by-step instead of pattern-matching against the explanation. */
   work: z.string().describe('Step-by-step solution from scratch, showing every arithmetic step. Do NOT shortcut.'),
   verified_answer: z.string().describe('After completing "work", the answer text — must match one of the choices verbatim, or "NONE" if your work produced a value not in any choice.'),
-  confidence: z.enum(['high', 'medium', 'low']),
+  // Case/synonym normalisation before the enum: the verifier failed whole batches with "response did not match
+  // schema" (2026-10-28, test-spec examples refresh), and a capitalised "High" or "Hard" is enough to do that.
+  confidence: z.preprocess(normalizeConfidence, z.enum(['high', 'medium', 'low'])),
   /** Independent re-rating of difficulty. Used to detect mislabeled hard
    *  items (the model claims a question is hard but the verifier solves
    *  it in one step). */
-  actual_difficulty: z.enum(['easy', 'medium', 'hard']),
+  actual_difficulty: z.preprocess(normalizeItemDifficulty, z.enum(['easy', 'medium', 'hard'])),
 })
 
 const VerifierBatchSchema = z.object({
@@ -323,7 +326,7 @@ export async function verifyAndCorrect(
         }
       }
     } catch (err) {
-      console.error(`[test-verify] batch ${batchIdx} failed; retrying per-item in parallel`, (err as Error).message)
+      console.error(`[test-verify] batch ${batchIdx} failed; retrying per-item in parallel`, describeExtractionError(err))
       // Fall back to per-item retries — also in parallel — so a single
       // bad batch doesn't stall the whole verification phase.
       const perItemResults = await Promise.all(batch.map(async (q): Promise<BatchResult> => {
@@ -353,7 +356,7 @@ export async function verifyAndCorrect(
             sub.kept.push({ ...q, difficulty: finalDifficulty })
           }
         } catch (innerErr) {
-          console.error('[test-verify] per-item retry also failed; dropping', (innerErr as Error).message)
+          console.error('[test-verify] per-item retry also failed; dropping', describeExtractionError(innerErr))
           sub.dropped++
         }
         return sub
