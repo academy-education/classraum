@@ -6176,3 +6176,11 @@ structural checks are pre-flight only. See CLAUDE.md.
   31 keys recomputed by script; `check science` OK; 0 render warnings; keys A13 B13 C13 D13. Prereg
   `ACT-SCIENCE-V12D.prereg.md` (bars >=5 / 3-4 / 0-2 of 9). Packets: `scratchpad/act-science-regrade/b12-g1/` and
   `b12-g2/grader-cold.md`.
+
+- **2026-10-29 — act-science-v12e authored (52 items: 4 RS, 3 CV, 2 DR) + b13 prereg, before any grader.** Fifth
+  cohort on the v12 brief (topics: invented compounds, wetlands, devices/acoustics). Generator asserts recompute
+  every key; `act-bank-helper check science` passes; key letters A13 B13 C13 D13, key uniquely longest 3/52;
+  domains IoD 27 / SI 5 / EMI 20. The coordinator's b11 design-item rule (relayed mid-authoring) was checked: the two
+  "which new trial" items fix factor and condition in the stem and differ only in the held value that matches an
+  existing trial. Both DR passages are tables (b10 readability rule). Two base-condition items keyed "30" were
+  replaced before the prereg to avoid a cross-item rule. Not inserted, not graded; packets built for b13.
