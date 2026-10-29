@@ -6099,3 +6099,16 @@ structural checks are pre-flight only. See CLAUDE.md.
   table/figure keys recomputed by script; keys A13 B13 C13 D13; key uniquely longest 4/52; domains IoD 31 / SI 4 /
   EMI 17 (SI light, recorded). Bars: >= 5 of 9 keep, 3-4 revise, 0-2 stop. Cold packets
   `scratchpad/act-science-regrade/b10-g1|g2/grader-cold.md`; generator and rows in `_coordinator/b10/`.
+
+- **2026-10-29 — ACT English v10 / ACT Reading v13a with-source gate (ACT-EN10-RD13A-GATE.md).** Three graders
+  per cohort (a, b plain; c adversarial) plus the two co-founder-brief pre-screens. The blind split attack (a
+  screen that drops nothing) was not run this round.
+  - **English v10: 4 of 5 passages clear (40 of 50).** 50/50 all three graders agree with the key. Drop: P4-Q07
+    (sentence placement) — D named second-defensible by 2 graders and by both pre-screens; passage P4 drops.
+    Adversarial grader's cross-item finding, recorded not dropped: "No Change" keys only 5 of ~45 eligible
+    items (a never-pick-NC student scores ~89% on them); the comma-splice items share one option cast; the two
+    tone items need no passage. Next English brief: NC keyed near a quarter of eligible items.
+  - **Reading v13a: 3 of 4 passages clear (27 of 36).** 35/36 all three agree with the key. Drop: ARV13a-26
+    (p3) — all three picked A against key C, each naming both as support; both pre-screens flagged it too.
+  - Survivors not yet inserted; release route per the gate sheet (English to a full co-founder sitting, Reading
+    to a spot), queued behind the open ACT Science run.
