@@ -6206,3 +6206,14 @@ structural checks are pre-flight only. See CLAUDE.md.
   - **Fresh packets:** `scratchpad/mapread4-grade/packet-r2.json` + `index-r2.json`, and the same pair in
     `scratchpad/mapvocab3-grade/`. These need fresh second-round graders; the round that caught the defects does
     not clear its own repairs.
+
+- **2026-10-29 — act-science-v12f written (52 items: 4 RS + 3 CV + 2 DR) and b14 cold packets built; not graded,
+  not inserted.** Prereg `ACT-SCIENCE-V12F.prereg.md` (seed 2026102914, strictForm:false, V12B bars: >= 5 of 9
+  keep writing / 3-4 revise / 0-2 stop) committed 7b2727a7 before any packet or grader. Topics: invented
+  physiology (Corrin tremor, Dunmere cough, Brell marker), invented currents (Marrow, Telmar, Kesh, Ollin Bay),
+  invented materials (Corvane foam, Lumite tiles). No Yes/No+reason, "weakens X, because" or "would most likely
+  agree" items; Figure 1 (P9) values all on 3-m ticks, dive limit half a tick from the nearest bars. Self-audit
+  fixed before the prereg: a stem cue on P1-Q3, a lone general key on P1-Q6, a lone spread option set on P2-Q3;
+  after the coordinator relayed the b11 design-item tell, P3-Q3 and P4-Q3 were rebuilt so all four options share
+  the factor and condition and differ only in a passage detail. Keys A13 B13 C13 D13; key uniquely longest 5/52;
+  IoD 32 / SI 7 / EMI 13. Packets: `scratchpad/act-science-regrade/b14-g{1,2}/grader-cold.md` (0 render warnings).
