@@ -6368,3 +6368,24 @@ structural checks are pre-flight only. See CLAUDE.md.
     default. The pure rule is decideRelease, and all six mechanisms were break-tested.
   - **Found:** MAP Language still has no forms after release (grammar held, and a form needs all three areas), so
     the grammar rewrite is the blocker there.
+
+- **2026-10-30 — MAP Language v3: held Grammar and Writing re-authored, staged, packets built (owner: "Rewrite
+  them").** The agent review held `map-language-v2-grammar` (one_template, key_form) and `map-language-v2-writing`
+  (one_template). Re-authored from nothing, not repaired: `MAP-LANGUAGE-V3-BRIEF.md` bans each tell the graders named
+  (2x2 grid, extra-word errors, odd-class connector keys, near-duplicate concessive templates, slang-free key among
+  casual options, never-keyed transition pool, trivia-aside removal keys, only-grammatical combine keys, key
+  longest) and adds the positive rules; prereg `MAP-LANGUAGE-V3.prereg.md` and method
+  `map-lu-v3-insession-rewrite+cfg-v2` committed before any item (aacb2303). Count: 13 per area per form x 5 = 65,
+  +20% = **78 Grammar (grades 5-8: 20/20/19/19; PoS 41, PCAS 37) + 78 Writing (20/20/20/18; Org 44, Style 34)**.
+  Grammar has six shapes, none above 26% (blank 19, revise 20, find-error 15, choose-correct 12, identify 10,
+  combine 2) and the key's form changes with the shape (the faulty sentence, the sound sentence, a word, a label).
+  Writing has eight formats, none above 18%. Pre-flight `map-v2-work/language-v3/lu3-check.mjs` (self-test
+  break-tests each area guard) passes: key uniquely longest 13.2% / 12.1%, uniquely shortest 26.5% / 17.2%;
+  transition key relations at most 2 each and no distractor in more than 2 items; irrelevant key final in 1 of 10;
+  0 option or passage reused from the 334 exclusion keys or the 253 MAP Language bank rows. Staged
+  `map-language-v3-grammar` 78 + `map-language-v3-writing` 78, verified=false, confirmed by query. Packets
+  (`agent-review-build-map-language-v3.mjs`): 4 x 39 under `scratchpad/agent-review/map-language-v3/`, key
+  positions 39/41/42/34, manifest `scratchpad/agent-review/MANIFEST-map-language-v3.json`, **12 grader spawns
+  still to run**. The held v2 Grammar/Writing rows are still staged; archiving them needs the owner's go.
+  **Open:** lu3-check is pre-flight only. It cannot see a semantic tell, and the v2 lesson is that the next tell is
+  one no check was built for. The graders decide.
