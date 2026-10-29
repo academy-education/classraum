@@ -6052,3 +6052,11 @@ structural checks are pre-flight only. See CLAUDE.md.
   pilot's 11/14 this is a regression: the v11 author wrote both "agree" and "Yes/No" items to one template each.
   Brief amended (ACT-SCIENCE-V10-BRIEF.md, "v11 lessons"). Release of the 6 cleared rows (stage insert,
   science-release.json, queue entry) not yet done.
+
+- **2026-10-29 — ISEE/SSAT Reading NOT authored: both are review-bound, not authoring-bound.** Asked to add
+  ISEE Reading (5 clean forms, form 6 at 35/36) then SSAT Reading (6 forms). `bank-state.mjs counts`: ISEE reading
+  225 drawable + **468 STAGED** (13 forms' worth at 36/form), SSAT reading 330 drawable + **504 STAGED** (12+ forms
+  at 40/form). All 32 staged cohorts (isee-reading-draft-1..16, ssat-reading-draft-3..18) are already in
+  `cofounder-queue.json`. A new draft would add 36 more rows behind them and zero forms until Daniel reaches it,
+  the same finding as MAP Science/Language and ACT Reading (2026-10-27). The lever for these sections is review
+  throughput (spot/pooled shapes under Amendment 3), not authoring.
