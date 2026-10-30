@@ -1,5 +1,6 @@
 "use client"
 
+import { MathText } from '@/components/ui/MathText'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -184,7 +185,7 @@ function MistakeCard({
 
       {/* Question — truncated to 2 lines for layout consistency */}
       <div className="text-[13px] text-gray-900 font-medium leading-relaxed line-clamp-2">
-        {mistake.question.prompt}
+        <MathText text={mistake.question.prompt} />
       </div>
 
       {/* Wrong / correct answers, stacked */}

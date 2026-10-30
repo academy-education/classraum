@@ -1,5 +1,6 @@
 "use client"
 
+import { mathPlain } from '@/lib/study/math-text'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -192,7 +193,7 @@ export function SearchSheet({ open, onClose }: { open: boolean; onClose: () => v
                   <ResultRow key={m.attempt_id} delay={(results.topics.length + results.sessions.length + results.snaps.length + i) * 30}
                     onClick={() => go('/mobile/study/wrong-notebook')}
                     icon={AlertCircle} accent="text-rose-600"
-                    title={m.prompt.slice(0, 80)}
+                    title={mathPlain(m.prompt).slice(0, 80)}
                     sub={formatAgo(m.created_at, ko)}
                     highlight={q} />
                 ))}

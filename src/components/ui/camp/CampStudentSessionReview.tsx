@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import { ModalShell } from '@/components/ui/common/ModalShell'
-import { normalizeDisplayText, PassageParagraphs, PromptText } from '@/app/mobile/study/session/[id]/test/helpers'
+import { normalizeDisplayText, PassageParagraphs, PromptText, DisplayText} from '@/app/mobile/study/session/[id]/test/helpers'
 import { QuestionGraphicView } from '@/app/mobile/study/session/[id]/test/QuestionGraphicView'
 import { displayCorrectAnswer, type ResultRowQuestion } from '@/lib/study/test-result'
 import { authHeaders } from '@/lib/auth-headers'
@@ -277,7 +277,7 @@ function SessionReviewCard({ row, index, total }: {
                       : 'bg-gray-50 text-gray-700 ring-gray-200/50'
                   }`}>
                     <div>
-                      {normalizeDisplayText(choice)}
+                      <DisplayText text={choice} />
                       {isCorrectChoice && (
                         <span className="ml-2 font-semibold">{t('camp.studentSession.correctMark')}</span>
                       )}
@@ -288,7 +288,7 @@ function SessionReviewCard({ row, index, total }: {
                     {distractorReason && isStudentPick && (
                       <div className="mt-1 text-[11px] leading-relaxed text-rose-800">
                         <span className="font-semibold">{t('camp.studentSession.whyWrong')} </span>
-                        {normalizeDisplayText(distractorReason)}
+                        <DisplayText text={distractorReason} />
                       </div>
                     )}
                   </div>
@@ -305,7 +305,7 @@ function SessionReviewCard({ row, index, total }: {
             <div className="space-y-2 mt-2">
               <div className="px-3 py-2 rounded-xl bg-emerald-50 text-emerald-900 text-xs ring-1 ring-emerald-200/70">
                 <div className="font-semibold mb-0.5">{t('camp.studentSession.correctAnswer')}</div>
-                <div className="whitespace-pre-wrap">{normalizeDisplayText(correctDisplay)}</div>
+                <div className="whitespace-pre-wrap"><DisplayText text={correctDisplay} /></div>
               </div>
               {row.studentAnswer != null ? (
                 <div className={`px-3 py-2 rounded-xl text-xs ring-1 ${
@@ -314,7 +314,7 @@ function SessionReviewCard({ row, index, total }: {
                     : 'bg-rose-50 text-rose-900 ring-rose-200/70'
                 }`}>
                   <div className="font-semibold mb-0.5">{t('camp.studentSession.studentAnswer')}</div>
-                  <div className="whitespace-pre-wrap">{normalizeDisplayText(row.studentAnswer)}</div>
+                  <div className="whitespace-pre-wrap"><DisplayText text={row.studentAnswer} /></div>
                 </div>
               ) : (
                 <div className="px-3 py-2 rounded-xl bg-amber-50 text-amber-900 text-xs ring-1 ring-amber-200/70">
@@ -331,7 +331,7 @@ function SessionReviewCard({ row, index, total }: {
                 {t('camp.studentSession.explanation')}
               </div>
               <p className="text-xs text-gray-700 leading-relaxed">
-                {normalizeDisplayText(q.explanation)}
+                <DisplayText text={q.explanation} />
               </p>
             </div>
           )}

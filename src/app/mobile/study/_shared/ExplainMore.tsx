@@ -1,5 +1,6 @@
 "use client"
 
+import { MathText } from '@/components/ui/MathText'
 import { useState } from 'react'
 import { Sparkles, Lightbulb, Loader2, Check, Send } from '@/app/mobile/study/_shared/icons'
 import { authHeaders } from '@/lib/auth-headers'
@@ -244,7 +245,7 @@ export function ExplainMore({
               {it.lang === 'ko' ? '설명을 불러오지 못했어요. 다시 시도해 주세요.' : "Couldn't load that. Try again."}
             </p>
           ) : (
-            <p className="text-[13px] text-gray-800 leading-relaxed whitespace-pre-wrap">{it.text}</p>
+            <p className="text-[13px] text-gray-800 leading-relaxed whitespace-pre-wrap"><MathText text={it.text} /></p>
           )}
         </div>
       ))}

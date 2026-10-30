@@ -1,5 +1,6 @@
 "use client"
 
+import { MathText } from '@/components/ui/MathText'
 import { use, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight, CheckCircle2, XCircle, Clock, RotateCcw, Sparkles, BookOpen, RefreshCw } from '@/app/mobile/study/_shared/icons'
@@ -608,7 +609,7 @@ function MistakeRow({ attempt, ko }: { attempt: AttemptRow; ko: boolean }) {
   return (
     <div className="rounded-2xl bg-white ring-1 ring-gray-200 p-4">
       <div className="text-[13px] text-gray-900 font-medium leading-relaxed line-clamp-2 mb-2">
-        {attempt.question?.prompt}
+        <MathText text={attempt.question?.prompt} />
       </div>
       <div className="flex items-start gap-2 text-[13px] mb-1">
         <XCircle className="w-3.5 h-3.5 text-rose-500 flex-shrink-0 mt-0.5" />
@@ -684,7 +685,7 @@ function MistakeRow({ attempt, ko }: { attempt: AttemptRow; ko: boolean }) {
                   }`}>
                     {String.fromCharCode(65 + i)}
                   </span>
-                  <span className="flex-1 truncate">{choice}</span>
+                  <span className="flex-1 truncate"><MathText text={choice} /></span>
                   {showCorrect && <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />}
                   {showWrongPick && <XCircle className="w-4 h-4 text-rose-500 flex-shrink-0" />}
                 </button>

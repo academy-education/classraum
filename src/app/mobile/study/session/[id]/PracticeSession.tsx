@@ -1,5 +1,6 @@
 "use client"
 
+import { MathText } from '@/components/ui/MathText'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -460,7 +461,7 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
               instead of a narrow centered column. Stacks on phones. */}
           <div className="lg:grid lg:grid-cols-[1.4fr_1fr] lg:gap-8 lg:items-start">
             <p className="text-[17px] text-gray-900 leading-relaxed whitespace-pre-wrap">
-              {q.prompt}
+              <MathText text={q.prompt} />
             </p>
 
             {/* Right pane: answer choices + post-submit feedback. */}
@@ -500,7 +501,7 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
                     }`}>
                       {letter}
                     </span>
-                    <span className="flex-1">{choice}</span>
+                    <span className="flex-1"><MathText text={choice} /></span>
                   </button>
                 )
               })
@@ -568,7 +569,7 @@ export function PracticeSession({ sessionId, language, topicId, daily = false }:
                 </span>
               </div>
               <p className="text-[15px] text-gray-700 leading-relaxed">
-                {verdict.aiExplanation}
+                <MathText text={verdict.aiExplanation} />
               </p>
               {!verdict.isCorrect && q.type !== 'short_answer' && (
                 <p className="text-[13px] text-gray-500 mt-2">

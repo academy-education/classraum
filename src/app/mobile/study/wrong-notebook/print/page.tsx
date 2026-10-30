@@ -1,5 +1,6 @@
 "use client"
 
+import { MathText } from '@/components/ui/MathText'
 import { Suspense, useEffect, useMemo, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -226,7 +227,7 @@ function PrintInner() {
                       </span>
                     )}
                   </div>
-                  <p className="text-[15px] leading-relaxed mb-3">{e.question.prompt}</p>
+                  <p className="text-[15px] leading-relaxed mb-3"><MathText text={e.question.prompt} /></p>
 
                   <div className="space-y-1 text-[13px] mb-3">
                     <div><span className="font-semibold text-gray-500 inline-block w-[88px]">{ko ? '내가 쓴 답' : 'My answer'}:</span> <span className="line-through">{e.student_answer || '—'}</span></div>
@@ -235,7 +236,7 @@ function PrintInner() {
 
                   {e.ai_explanation && (
                     <div className="text-[13px] leading-relaxed border-l-2 border-gray-300 pl-3 mb-3 text-gray-800">
-                      <span className="font-semibold">{ko ? '해설' : 'Explanation'}:</span> {e.ai_explanation}
+                      <span className="font-semibold">{ko ? '해설' : 'Explanation'}:</span> <MathText text={e.ai_explanation} />
                     </div>
                   )}
 

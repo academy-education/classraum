@@ -1,5 +1,7 @@
 "use client"
 
+import { MathText } from '@/components/ui/MathText'
+
 import { useEffect, useState } from 'react'
 import { StudyColumns, StudyMain, StudyAside } from '@/app/mobile/study/_shared/primitives'
 import {
@@ -8,7 +10,7 @@ import {
 } from '@/app/mobile/study/_shared/icons'
 import { PathMascot, type MascotState } from '@/app/mobile/study/_shared/PathMascot'
 import { useTranslation } from '@/hooks/useTranslation'
-import { normalizeDisplayText, PassageParagraphs, PromptText } from './helpers'
+import { normalizeDisplayText, PassageParagraphs, PromptText, DisplayText} from './helpers'
 import { QuestionGraphicView } from './QuestionGraphicView'
 import { WritingFeedbackPanel } from './WritingPanels'
 import { ReportQuestion } from '@/app/mobile/study/_shared/ReportQuestion'
@@ -1158,7 +1160,7 @@ function AnswerLine({ tone, text }: {
   return (
     <div className={`flex items-center gap-1.5 rounded-lg ring-1 px-2 py-1 ${spec.wrap}`}>
       <Icon className="w-3 h-3 flex-shrink-0" />
-      <span className="text-[11px] font-medium truncate">{text}</span>
+      <span className="text-[11px] font-medium truncate"><MathText text={text} /></span>
     </div>
   )
 }
@@ -1375,7 +1377,7 @@ function ResultCard({
               {!isRubricItem && !isPracticeItem && (
                 <div className="px-3 py-2 rounded-xl bg-emerald-50 text-emerald-900 text-[13px] ring-1 ring-emerald-200/70">
                   <div className="font-semibold mb-0.5">{ko ? '정답' : 'Correct answer'}</div>
-                  <div className="whitespace-pre-wrap">{normalizeDisplayText(row.correctAnswerDisplay)}</div>
+                  <div className="whitespace-pre-wrap"><DisplayText text={row.correctAnswerDisplay} /></div>
                 </div>
               )}
               {studentAnswer != null ? (
@@ -1389,7 +1391,7 @@ function ResultCard({
                   <div className="font-semibold mb-0.5">
                     {isRubricItem || isPracticeItem ? (ko ? '내 답변' : 'Your response') : (ko ? '내 답' : 'Your answer')}
                   </div>
-                  <div className="whitespace-pre-wrap">{normalizeDisplayText(shownAnswer ?? '')}</div>
+                  <div className="whitespace-pre-wrap"><DisplayText text={shownAnswer ?? ''} /></div>
                 </div>
               ) : (
                 <div className="px-3 py-2 rounded-xl bg-amber-50 text-amber-900 text-[13px] ring-1 ring-amber-200/70">
@@ -1442,14 +1444,14 @@ function ResultCard({
                       : 'bg-gray-50 text-gray-700 ring-gray-200/50'
                   }`}>
                     <div>
-                      {normalizeDisplayText(choice)}
+                      <DisplayText text={choice} />
                       {isCorrect && <span className="ml-2 font-semibold">{ko ? '정답' : 'Correct'}</span>}
                       {isStudentPick && !isCorrect && <span className="ml-2 font-semibold">{ko ? '내 답' : 'Your answer'}</span>}
                     </div>
                     {distractorReason && (
                       <div className={`mt-1 text-[11px] leading-relaxed ${isStudentPick ? 'text-rose-800' : 'text-gray-600'}`}>
                         <span className="font-semibold">{ko ? '오답 이유: ' : 'Why wrong: '}</span>
-                        {normalizeDisplayText(distractorReason)}
+                        <DisplayText text={distractorReason} />
                       </div>
                     )}
                   </div>
@@ -1470,7 +1472,7 @@ function ResultCard({
                 {ko ? '해설' : 'Why'}
               </div>
               <p className="text-[13px] text-gray-700 leading-relaxed">
-                {normalizeDisplayText(q.explanation)}
+                <DisplayText text={q.explanation} />
               </p>
             </div>
           )}

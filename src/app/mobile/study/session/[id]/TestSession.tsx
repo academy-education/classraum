@@ -1,5 +1,6 @@
 "use client"
 
+import { MathText } from '@/components/ui/MathText'
 import { isUntimedTest } from '@/lib/study/test-clock'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
@@ -32,6 +33,7 @@ import {
 } from '@/lib/study/writing-section-timing'
 import {
   normalizeDisplayText, choiceLabel, formatTime, passageGroupInfo, PassageParagraphs, PromptText,
+  DisplayText,
 } from './test/helpers'
 import { QuestionGraphicView } from './test/QuestionGraphicView'
 import { ListeningAudioPlayer, LISTENING_PLAY_COUNTS } from './test/ListeningAudioPlayer'
@@ -2265,7 +2267,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                         <span className={`flex-shrink-0 w-5 h-5 rounded border-2 mt-0.5 ${selected ? 'border-primary bg-primary' : 'border-gray-300 bg-white'}`}>
                           {selected && <CheckCircle2 className="w-full h-full text-white" />}
                         </span>
-                        <span className="flex-1">{choice}</span>
+                        <span className="flex-1"><MathText text={choice} /></span>
                       </button>
                     )
                   })}
@@ -2321,7 +2323,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                 <div className="rounded-2xl ring-1 ring-gray-200/70 bg-gradient-to-b from-gray-50 to-white px-4 py-5 text-[15px] text-gray-900 leading-[2.4] shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
                   {segments.map((seg, i) => {
                     const match = seg.match(/^\[(\d+)\]$/)
-                    if (!match) return <span key={i}>{normalizeDisplayText(seg)}</span>
+                    if (!match) return <span key={i}><DisplayText text={seg} /></span>
                     const id = parseInt(match[1], 10)
                     // Expected length from the blanks answer key —
                     // used to size the input and hint how many letters
@@ -2669,7 +2671,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                             </span>
                             <span className="flex-1 min-w-0">
                               <span className="block text-[13px] font-semibold text-gray-900 mb-1">{sec.label}</span>
-                              <span className="block leading-relaxed whitespace-pre-wrap">{normalizeDisplayText(sec.text)}</span>
+                              <span className="block leading-relaxed whitespace-pre-wrap"><DisplayText text={sec.text} /></span>
                             </span>
                           </button>
                         )
@@ -2700,7 +2702,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                         {ko ? '주제 바꾸기' : 'Change prompt'}
                       </button>
                     </div>
-                    <p className="text-[15px] text-gray-800 leading-relaxed whitespace-pre-wrap">{normalizeDisplayText(chosen.text)}</p>
+                    <p className="text-[15px] text-gray-800 leading-relaxed whitespace-pre-wrap"><DisplayText text={chosen.text} /></p>
                   </div>
                 )}
                 {/* No textarea until a prompt is chosen: writing first and
@@ -2936,7 +2938,7 @@ export function TestSession({ sessionId, language }: { sessionId: string; langua
                   }`}>
                     {label}
                   </span>
-                  <span className="flex-1">{normalizeDisplayText(choice)}</span>
+                  <span className="flex-1"><DisplayText text={choice} /></span>
                 </button>
               )
             })}

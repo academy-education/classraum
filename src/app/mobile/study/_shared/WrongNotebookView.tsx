@@ -1,5 +1,6 @@
 "use client"
 
+import { MathText } from '@/components/ui/MathText'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { Capacitor } from '@capacitor/core'
@@ -776,7 +777,7 @@ export function NotebookEntryCard({ entry, index, ko, onToggleReviewed }: {
               )}
             </div>
             <p className={`text-[13px] text-gray-900 leading-relaxed ${expanded ? '' : 'line-clamp-3'}`}>
-              {entry.question.prompt}
+              <MathText text={entry.question.prompt} />
             </p>
             {entry.question.prompt.length > 160 && (
               <button type="button" onClick={() => setExpanded(v => !v)}
@@ -845,7 +846,7 @@ export function NotebookEntryCard({ entry, index, ko, onToggleReviewed }: {
                     <span className={`block break-words ${
                       correct ? 'text-emerald-800 font-semibold'
                         : picked ? 'text-rose-700 line-through' : 'text-gray-600'}`}>
-                      {choice}
+                      <MathText text={choice} />
                     </span>
                     {/* The author's own reason this option is wrong — the
                       * student's actual complaint was that nothing told her
@@ -890,7 +891,7 @@ export function NotebookEntryCard({ entry, index, ko, onToggleReviewed }: {
 
         {entry.ai_explanation && (
           <div className="mt-3 rounded-xl bg-indigo-50/50 ring-1 ring-indigo-100 px-3 py-2 text-[13px] text-gray-700 leading-relaxed">
-            <span className="font-medium text-indigo-700">{t('study.wrongNotebook.explanationLabel')}: </span>{entry.ai_explanation}
+            <span className="font-medium text-indigo-700">{t('study.wrongNotebook.explanationLabel')}: </span><MathText text={entry.ai_explanation} />
           </div>
         )}
 

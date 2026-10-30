@@ -6575,3 +6575,13 @@ structural checks are pre-flight only. See CLAUDE.md.
   on it. **Reading:** the screen-first method removed the central-key tell that held n789 and b10 (mean margin
   +43 -> 0). What is left is a small-n unanimity bar. The next N batch should reach n >= 10 before its gate, so that
   one unanimous item cannot decide the area.
+
+- **2026-10-30 — Maths notation is now formatted at display time (owner: "We don't ever want ^ or computer
+  symbols").** 984 live items showed raw notation: 980 with a caret, 195 a "*" product, 170 sqrt(), 90 <=/>=, 58
+  "pi". Bank rows are served exactly as stored, and the old sanitize() ran only on generated tests (and turned only
+  ^digit into Unicode). Fix: `src/lib/study/math-text.ts` with `<MathText>` / `<DisplayText>` on every student-facing
+  render site (test, practice, results, mistake bank, wrong notebook and print, summary, ExplainMore, camp review);
+  `mathPlain` for title strings. Stored text is NOT edited: reviews are bound to content hashes. Guard:
+  `npx tsx scripts/study-bank/check-raw-math.ts [--all]` exits 1 if any field is still raw after formatting:
+  live 11,507 rows / 74,390 fields, 1,501 with a caret before formatting, 0 raw after; `--all` 15,308 rows, 0.
+  Tests: math-text (32, two rules break-tested) and a MathText render test.

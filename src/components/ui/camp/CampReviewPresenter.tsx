@@ -6,6 +6,7 @@ import type { Question } from '@/app/mobile/study/session/[id]/test/types'
 import { QuestionGraphicView } from '@/app/mobile/study/session/[id]/test/QuestionGraphicView'
 import {
   PassageParagraphs, PromptText, choiceLabel, normalizeDisplayText,
+  DisplayText,
 } from '@/app/mobile/study/session/[id]/test/helpers'
 import { useTranslation } from '@/hooks/useTranslation'
 import { ChevronLeft, ChevronRight, Eye, EyeOff, X, CheckCircle2 } from 'lucide-react'
@@ -127,7 +128,7 @@ export function CampReviewPresenter({ title, testFamily, questions, onClose }: C
                   >
                     {choiceLabel(testFamily, i, index)}
                   </span>
-                  <span className="flex-1 whitespace-pre-wrap">{normalizeDisplayText(choice)}</span>
+                  <span className="flex-1 whitespace-pre-wrap"><DisplayText text={choice} /></span>
                   {isKey(choice) && (
                     <CheckCircle2 className="w-6 h-6 text-emerald-500 flex-shrink-0 mt-0.5" />
                   )}
@@ -141,7 +142,7 @@ export function CampReviewPresenter({ title, testFamily, questions, onClose }: C
                   {t('camp.review.explanation')}
                 </p>
                 <p className="text-lg md:text-xl leading-relaxed text-gray-900 whitespace-pre-wrap">
-                  {normalizeDisplayText(q.explanation)}
+                  <DisplayText text={q.explanation} />
                 </p>
               </div>
             )}

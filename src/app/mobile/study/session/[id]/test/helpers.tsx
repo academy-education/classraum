@@ -2,6 +2,7 @@
 
 import type { Question } from './types'
 import { actLettersFor } from '@/lib/study/act-test'
+import { MathText } from '@/components/ui/MathText'
 
 /**
  * Normalize display text so students don't see raw \n or **bold**
@@ -38,14 +39,20 @@ export function PromptText({ text, className }: {
 }) {
   const full = normalizeDisplayText(text)
   const m = /^\s*\[([^\]\n]{1,48})\]\s*/.exec(full)
-  if (!m) return <span className={className}>{full}</span>
+  if (!m) return <span className={className}><MathText text={full} /></span>
   return (
     <span className={className}>
       <strong className="font-bold">{m[1]}</strong>
       {' '}
-      {full.slice(m[0].length)}
+      <MathText text={full.slice(m[0].length)} />
     </span>
   )
+}
+
+/** normalizeDisplayText plus maths typography: the render-site wrapper for
+ *  any question, choice, passage or explanation text. */
+export function DisplayText({ text }: { text: string | null | undefined }) {
+  return <MathText text={normalizeDisplayText(text)} />
 }
 
 export function normalizeDisplayText(text: string | null | undefined): string {
@@ -219,7 +226,7 @@ export function PassageParagraphs({ text }: { text: string }) {
   if (paragraphs.length <= 1) {
     // No paragraph breaks — render with whitespace-pre-wrap so any
     // intra-paragraph line breaks the model emits still show.
-    return <p className="whitespace-pre-wrap">{normalized}</p>
+    return <p className="whitespace-pre-wrap"><MathText text={normalized} /></p>
   }
   return (
     <div className="space-y-3">
@@ -233,7 +240,7 @@ export function PassageParagraphs({ text }: { text: string }) {
           // students to perceive paragraph breaks at a glance.
           style={i === 0 ? undefined : { textIndent: '2.5em' }}
         >
-          {p}
+          <MathText text={p} />
         </p>
       ))}
     </div>
