@@ -20,6 +20,10 @@
  *     from the serve-time shuffle - a Part 2 row that fails it would be
  *     served with its letters scrambled;
  *   - carries the content_hash stage-map-language-v4.mjs would compute;
+ *   - for a passage-set part (itemsPerGroup > 1: Reading/Listening Parts 2-3), is one of exactly
+ *     itemsPerGroup rows sharing a passage_group_id and one passage, with created_at strictly increasing
+ *     in batch order; a standalone Reading/Listening part has its own passage and NO group
+ *     (src/lib/study/itep-stage-check.ts, added 2026-10-31 for Reading v1);
  *   - has a cohort and a verify_meta.method_id.
  * Also refuses a hash already in the bank or repeated within the batch, and
  * exits 2 if the batch does not hold exactly --expect rows (never a verdict
@@ -32,18 +36,12 @@
 import { config } from 'dotenv'
 import { resolve } from 'node:path'
 import { readFileSync, writeFileSync } from 'node:fs'
-import { createHash } from 'node:crypto'
 import { createClient } from '@supabase/supabase-js'
-import { ITEP_PART_QUOTAS } from '@/lib/study/admission-tests'
-import { hasLabelledSegments } from '@/lib/study/labelled-segments'
+import { checkItepStageRows, type ItepStageRow } from '@/lib/study/itep-stage-check'
 
 config({ path: resolve(process.cwd(), '.env.local'), quiet: true })
 
-type Row = {
-  family: string; section: string; domain: string; cohort: string | null; verified: unknown
-  content_hash: string; item: { prompt: string; passage: string | null; choices: string[]; correct_answer: string }
-  verify_meta?: { method_id?: string; draft?: { qid?: string } }
-}
+type Row = ItepStageRow
 
 const die = (m: string, code = 1): never => { console.error(`itep-bank-helper: ${m}`); process.exit(code) }
 const args = process.argv.slice(2)
@@ -58,33 +56,8 @@ let rows: Row[]
 try { rows = JSON.parse(readFileSync(batchPath, 'utf8')) } catch (e) { die(`cannot read ${batchPath}: ${(e as Error).message}`, 2); throw e }
 if (!Array.isArray(rows) || rows.length !== expect) die(`read ${Array.isArray(rows) ? rows.length : 'no'} rows from ${batchPath}, --expect ${expect}`, 2)
 
-/* Same definition as stage-map-language-v4.mjs (passage + prompt + choices
- * in stored order), which is what the prereg (§5) fixed for this cohort. */
-const norm = (s: string | null | undefined) => (s || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()
-const hashOf = (it: Row['item']) => createHash('md5')
-  .update([norm(it.passage), norm(it.prompt), (it.choices || []).map(norm).join('|')].join('~~')).digest('hex')
-
-const ERROR_ID = 'Part 2: Error Identification'
-const problems: string[] = []
-const perPart: Record<string, number> = {}
-rows.forEach((r, i) => {
-  const id = r.verify_meta?.draft?.qid ?? `row ${i}`
-  const parts = ITEP_PART_QUOTAS[r.section as keyof typeof ITEP_PART_QUOTAS]
-  if (r.family !== 'itep') problems.push(`${id}: family '${r.family}', want 'itep'`)
-  if (!parts) problems.push(`${id}: section '${r.section}' is not an iTEP part table`)
-  else if (!parts.some(p => p.area === r.domain)) problems.push(`${id}: domain '${r.domain}' names no ${r.section} part`)
-  if (r.verified !== false) problems.push(`${id}: verified=${JSON.stringify(r.verified)}; this path stages verified=false only`)
-  if (!r.cohort) problems.push(`${id}: no cohort`)
-  if (!r.verify_meta?.method_id) problems.push(`${id}: no verify_meta.method_id`)
-  const it = r.item
-  const ok = Array.isArray(it?.choices) && it.choices.length === 4
-    && new Set(it.choices.map(c => String(c).trim())).size === 4 && it.choices.includes(it.correct_answer)
-  if (!ok) problems.push(`${id}: needs four distinct choices including the key`)
-  if (r.domain === ERROR_ID && !hasLabelledSegments(it)) problems.push(`${id}: Part 2 passage segments do not match the choices in order`)
-  if (r.domain !== ERROR_ID && it?.passage && /\[[A-F]:/.test(it.passage)) problems.push(`${id}: labelled segments outside Part 2`)
-  if (it && hashOf(it) !== r.content_hash) problems.push(`${id}: content_hash does not match passage+prompt+choices`)
-  perPart[`${r.section} / ${r.domain}`] = (perPart[`${r.section} / ${r.domain}`] ?? 0) + 1
-})
+/* The refusal rules live in src/lib/study/itep-stage-check.ts (pinned by jest). */
+const { problems, perPart } = checkItepStageRows(rows)
 console.log(`read ${rows.length} rows from ${batchPath}`)
 for (const [k, n] of Object.entries(perPart)) console.log(`  ${k}: ${n}`)
 if (problems.length) die(`${problems.length} problem(s):\n  ${problems.join('\n  ')}`)

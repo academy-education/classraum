@@ -6850,3 +6850,23 @@ structural checks are pre-flight only. See CLAUDE.md.
   test-spec-refresh crons (`listAllSpecTargetsFromDB`), so the iTEP leaves now get daily spec refreshes like IELTS/GRE.
   The DB rows went live before the code hiding them deploys: until that push, the landing strip lists iTEP SLATE as a
   locked coming-soon chip and a deep link opens its topic page (the API still refuses a start).
+
+- **2026-10-31 — iTEP SLATE Reading v1 pilot: 15 of 48 cleared ("broken" band), 15 STAGED verified=false
+  (cohort itep-reading-v1, read back 15 false / 0 true); Reading draws 6 of 12 (Part 3 empty).** Prereg
+  `ITEP-SLATE-READING-V1.prereg.md` (committed before any passage), brief `briefs/itep-slate-reading-v1.md` (SSAT d19-22
+  method adapted: 4 options, ESL levels, no attitude kind, NOT/EXCEPT added). **Part 1 modelled as two standalone
+  ~55-95-word texts with 1 question each** (blueprint's newest source; matches the existing wiring; still unconfirmed in
+  the demo). Four Claude authors, one form each; pre-flight `itep-reading-v1-work/itep-reading-check.mjs` PASS (break
+  test 8/8) after one cross-author round (prompt-opening caps; lone hedges 0/7 on keys). Gate: one 48-item packet,
+  COFOUNDER-BRIEF-v2, a/b/c under A1. **Item verdicts: 143 of 144 unique** (one c `alternative`, D-P2 main idea). **The
+  drop was a pattern all three graders named: `one_template` on 7 main-idea items** (the over-general option is never
+  the key), so 7 passage sets fell with them: every Part 3 (0/24 survive), Part 2 8/16 (B, C), Part 1 7/8. **Cause is
+  the brief's rule M**, which mandated a broader/narrower/misreading cast: the "forbid a key property, get the inverse
+  tell" lesson (MAP Science b3) again. Lessons 1-5 in `briefs/itep-slate-reading-v1.pending.md`; by the prereg's
+  "broken" band v2 must be cut before more passages. **Blind attack, REPORT-ONLY** (agent-written reading saturates the
+  model: SSAT draft 1 AI 83.9% vs Daniel 16.7%): candidate 86/120 = 71.7% vs live ISEE reading control 72/120 = 60.0%,
+  +11.7 (under the +25 write-up line); the control itself is far above 25%, and the per-file letter deal ran 35-45%
+  best-fixed-letter, so neither number is a clean measure. `itep-bank-helper.ts` now refuses broken passage sets
+  (whole group, one passage, strictly increasing created_at, Part 1 standalone) via `src/lib/study/itep-stage-check.ts`
+  (jest, each rule break-tested); `verify-itep-draw.ts` checks passage sets are drawn whole and in authored order.
+  Pool after v1: Part 1 7, Part 2 2 passages, Part 3 0; ten forms need 20 / 10 / 10.

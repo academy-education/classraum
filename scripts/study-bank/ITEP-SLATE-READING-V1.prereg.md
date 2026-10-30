@@ -134,3 +134,24 @@ control lands at 75%+ the run is reported as "no headroom, uninformative" (ceili
 - **One packet** means every grader sees all four authors, so cross-author patterns are visible; it also means one
   cohort-wide pattern can hold all 48.
 - **Part 1 shape is unconfirmed** (§0).
+
+## Results (2026-10-31, recorded after scoring; no rule changed)
+
+- **Authoring:** 4 authors, 48 items. Per-author pre-flight PASS on hand-in; the batch run failed 3 (prompt opening
+  "according to the passage," x7 and "what can be inferred" x5, max 4; a lone hedge on a distractor 7 times and never
+  on a key). Resolved per §3 by C and D (prompts reworded, hedge words removed with claims unchanged). Final pre-flight
+  PASS; break test 8/8 (`breaktest-check.mjs`; the hedge mutation first read "MISSED" because the test expected 3/3
+  and the checker reported 3/4: the assertion was too narrow, the checker fired).
+- **Gate** (`score.mjs` -> agent-review-score.mjs; files in `itep-reading-v1-work/results/`): 144 verdicts, 143
+  unique, 1 `alternative` (c: D-P2-1, a "broader" distractor the passage supports). Patterns: `one_template` on items
+  5, 16, 23, 29, 33, 38, 44 named by a, b and c (the over-general main-idea option never keyed). Union 7/48 = 14.6%, so
+  no hold; those 7 items drop with their sets. **Cleared 15 of 48: Part 1 7/8, Part 2 8/16, Part 3 0/24. Band:
+  broken.** Part 3 and Part 2 are each under half. The cause is rule M of this brief (pending lesson 1).
+- **Blind attack (report-only, §5):** candidate 71.7% (86/120, 40 items) vs control 60.0% (72/120), +11.7; unanimous
+  32/40 in each arm, on key 26 vs 21. The control's 60% and the deal's 35-45% best-fixed-letter lines mean this
+  instrument had little headroom here; nothing is read from it.
+- **Staged:** 15 rows, `itep-reading-v1.batch.json` -> `itep-bank-helper.ts stage --apply`, read back 15 false.
+  `verify-itep-draw.ts --section reading`: Part 1 2/2 (pool 7), Part 2 4/4 (pool 8, drawn whole, in order), Part 3 0/6:
+  SHORT 6 of 12, live path refuses.
+- **Next:** cut `itep-slate-reading-v2` folding pending lessons 1-5 (BRIEF-VERSIONING rule 3, "broken"), then author
+  Part 3-heavy.

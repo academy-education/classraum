@@ -26,7 +26,7 @@ config({ path: resolve(process.cwd(), '.env.local'), quiet: true })
 
 async function main() {
   // Dynamic: assemble.ts builds the admin client at import, so env first.
-  const { assembleAdmissionSection, drawItepParts, readBankItem, shuffleDrawnChoices } = await import('@/lib/study/assemble')
+  const { assembleAdmissionSection, drawItepParts, passagesInSeededOrder, readBankItem, shuffleDrawnChoices } = await import('@/lib/study/assemble')
   const { ADMISSION_BLUEPRINT, ITEP_PART_QUOTAS } = await import('@/lib/study/admission-tests')
   const { hasLabelledSegments } = await import('@/lib/study/labelled-segments')
   const { dbAdmin } = await import('@/lib/supabase-admin')
@@ -75,6 +75,21 @@ async function main() {
     // Disjoint forms: how many full forms the pool holds with no item repeated (the thinnest part decides).
     const forms = Math.min(...ITEP_PART_QUOTAS[section].map(({ area, count: want }) => Math.floor(rows.filter(r => r.domain === area).length / want)))
     console.log(`  disjoint full forms (no repeats, staged included): ${forms}`)
+    // Passage-set parts: every drawn group whole, one passage, questions in authored (created_at, id) order.
+    ITEP_PART_QUOTAS[section].forEach(({ area, itemsPerGroup }, i) => {
+      if (itemsPerGroup <= 1 || !parts[i].length) return
+      const pos = new Map(rows.map((r, k) => [r.id, k]))
+      const groups = new Map<string, typeof rows>()
+      for (const r of parts[i]) groups.set(r.passageGroupId ?? `solo:${r.id}`, [...(groups.get(r.passageGroupId ?? `solo:${r.id}`) ?? []), r])
+      const ordered = passagesInSeededOrder(parts[i], pos, seed)
+      const bad = [...groups].filter(([, g]) => g.length !== itemsPerGroup || new Set(g.map(r => r.item.passage)).size !== 1)
+      const inOrder = [...groups.keys()].every(k => {
+        const seq = ordered.filter(r => (r.passageGroupId ?? `solo:${r.id}`) === k).map(r => pos.get(r.id)!)
+        return seq.every((v, j) => j === 0 || v > seq[j - 1])
+      })
+      console.log(`  ${bad.length ? 'BROKEN' : 'ok   '} ${area}: ${groups.size} passage(s) drawn whole (${itemsPerGroup} each, one passage)${bad.length ? `; broken: ${bad.map(([k]) => k).join(', ')}` : ''}; in authored order: ${inOrder ? 'yes' : 'NO'}`)
+      if (bad.length || !inOrder) short++
+    })
     const ok = got === block.questions
     if (!ok) short++
     console.log(`  ${ok ? 'FULL ' : 'SHORT'} itep/${block.key}: ${got} of ${block.questions}${ok ? '' : `, short by ${block.questions - got}`}`)

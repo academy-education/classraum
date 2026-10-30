@@ -1,0 +1,1052 @@
+[
+ {
+  "family": "itep",
+  "section": "reading",
+  "domain": "Part 1: Short Text",
+  "subskill": "detail",
+  "topic_tag": "detail",
+  "difficulty": "easy",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "created_at": "2026-10-31T12:00:00.000Z",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "According to the notice, why will the games be played in the small gym?",
+   "passage": "To all students: The spring badminton tournament will start on Thursday, not Wednesday as we said last week. The floor in the main gym is being repaired, so all games will be played in the small gym next to the library. Players should arrive by 3:30 and wear clean indoor shoes. The school will lend rackets to anyone who needs one, but please bring your own water bottle. Parents are welcome to watch from the upper seats. Mr. Caddick, sports teacher",
+   "choices": [
+    "Another sports team needs to use the main gym.",
+    "The small gym has more seats for parents.",
+    "The small gym is easier for players to find.",
+    "Workers are fixing the floor of the main gym."
+   ],
+   "correct_answer": "Workers are fixing the floor of the main gym.",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "easy",
+   "explanation": "\"Workers are fixing the floor of the main gym.\" is correct: the notice says \"The floor in the main gym is being repaired, so all games will be played in the small gym\".",
+   "distractor_rationales": [
+    {
+     "choice": "Another sports team needs to use the main gym.",
+     "reason": "\"Another sports team needs to use the main gym.\" is not the reason given: the notice says \"The floor in the main gym is being repaired, so all games will be played in the small gym\"."
+    },
+    {
+     "choice": "The small gym has more seats for parents.",
+     "reason": "\"The small gym has more seats for parents.\" is not the reason given: parents may \"watch from the upper seats\", but the reason for the move is \"The floor in the main gym is being repaired\"."
+    },
+    {
+     "choice": "The small gym is easier for players to find.",
+     "reason": "\"The small gym is easier for players to find.\" is not the reason given: the small gym is \"next to the library\", but the games move there because \"The floor in the main gym is being repaired\"."
+    }
+   ]
+  },
+  "content_hash": "c383ee6219dac4380720d3bab1bbbd13",
+  "word_count": 81,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-reading-v1",
+  "verify_meta": {
+   "method_id": "itep-reading-v1-agent4+cfg-v2",
+   "itep": {
+    "part": "Part 1: Short Text",
+    "set_id": "ITR1-A-P1A",
+    "genre": "school notice",
+    "title": "Badminton tournament moved",
+    "kind": "detail",
+    "why": "The floor in the main gym is being repaired, so all games will be played in the small gym",
+    "why2": null
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITR1-A-P1A-1",
+    "qc": {
+     "gate": "ITEP-SLATE-READING-V1.prereg.md: pre-flight + 3 graders (a/b plain, c adversarial) on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-reading-v1-work/results/itep-reading-v1.json"
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "reading",
+  "domain": "Part 1: Short Text",
+  "subskill": "purpose",
+  "topic_tag": "purpose",
+  "difficulty": "easy",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "created_at": "2026-10-31T12:00:01.000Z",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Why did Esme send this message to Fenna?",
+   "passage": "Hi Fenna! Are you still coming snorkelling with my family on Saturday? We leave at eight. My mum says the water at the bay is cold this month, and my old wetsuit is too small for me now. You have two, right? Could I use your blue one for the day? I'll wash it before I give it back. If it's a problem, just tell me and I'll rent one at the beach shop. See you Saturday! Esme",
+   "choices": [
+    "to ask if she can use one of Fenna's wetsuits",
+    "to invite Fenna to go snorkelling on Saturday",
+    "to ask Fenna to rent a wetsuit at the shop",
+    "to offer Fenna her old wetsuit for the trip"
+   ],
+   "correct_answer": "to ask if she can use one of Fenna's wetsuits",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "easy",
+   "explanation": "\"to ask if she can use one of Fenna's wetsuits\" is correct: after saying \"my old wetsuit is too small for me now\" and \"You have two, right?\", Esme asks \"Could I use your blue one for the day?\"",
+   "distractor_rationales": [
+    {
+     "choice": "to invite Fenna to go snorkelling on Saturday",
+     "reason": "\"to invite Fenna to go snorkelling on Saturday\" is wrong: Fenna has already been invited, since Esme asks \"Are you still coming snorkelling with my family on Saturday?\""
+    },
+    {
+     "choice": "to ask Fenna to rent a wetsuit at the shop",
+     "reason": "\"to ask Fenna to rent a wetsuit at the shop\" is wrong: Esme is the one who would rent: \"just tell me and I'll rent one at the beach shop\"."
+    },
+    {
+     "choice": "to offer Fenna her old wetsuit for the trip",
+     "reason": "\"to offer Fenna her old wetsuit for the trip\" is wrong: Esme says \"my old wetsuit is too small for me now\" and asks to borrow Fenna's: \"Could I use your blue one for the day?\""
+    }
+   ]
+  },
+  "content_hash": "b462a3b8d7ef3a2fff391ffe5943097e",
+  "word_count": 78,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-reading-v1",
+  "verify_meta": {
+   "method_id": "itep-reading-v1-agent4+cfg-v2",
+   "itep": {
+    "part": "Part 1: Short Text",
+    "set_id": "ITR1-A-P1B",
+    "genre": "text message",
+    "title": "Borrowing a wetsuit",
+    "kind": "purpose",
+    "why": "Could I use your blue one for the day?",
+    "why2": null
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITR1-A-P1B-1",
+    "qc": {
+     "gate": "ITEP-SLATE-READING-V1.prereg.md: pre-flight + 3 graders (a/b plain, c adversarial) on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-reading-v1-work/results/itep-reading-v1.json"
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "reading",
+  "domain": "Part 1: Short Text",
+  "subskill": "vocabulary",
+  "topic_tag": "vocabulary",
+  "difficulty": "easy",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "created_at": "2026-10-31T12:00:02.000Z",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "In the poster, the word \"places\" is closest in meaning to",
+   "passage": "The Art Club is holding a bookbinding workshop on Thursday, 14 March, in Room 12. It starts at 3:30 and finishes at 5:00. You will learn to fold paper, sew the pages together and add a strong cover to make your own notebook. We will give you everything you need, so you just have to bring yourself. The workshop is free, but there are only twenty places. To sign up, write your name on the list outside the art room by Tuesday. Please ask Ms Hesketh if you have any questions.",
+   "choices": [
+    "towns or cities",
+    "spaces for people",
+    "positions in a race",
+    "homes to live in"
+   ],
+   "correct_answer": "spaces for people",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "easy",
+   "explanation": "\"spaces for people\" is correct: the poster says \"there are only twenty places. To sign up, write your name on the list\", so a place is a space for one student in the workshop.",
+   "distractor_rationales": [
+    {
+     "choice": "towns or cities",
+     "reason": "\"towns or cities\" is a real meaning of the word, but the workshop happens in one room, \"in Room 12\", and the places are something students take by signing up: \"To sign up, write your name on the list\"."
+    },
+    {
+     "choice": "positions in a race",
+     "reason": "\"positions in a race\" is a real meaning of the word, but the poster describes a workshop where \"You will learn to fold paper\", not a race; the places are filled when students \"write your name on the list\"."
+    },
+    {
+     "choice": "homes to live in",
+     "reason": "\"homes to live in\" is a real meaning of the word, but nobody lives at the workshop; the places are limited spots students claim when they \"write your name on the list outside the art room\"."
+    }
+   ]
+  },
+  "content_hash": "629ede7eae4c142952c705e28f845ac1",
+  "word_count": 91,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-reading-v1",
+  "verify_meta": {
+   "method_id": "itep-reading-v1-agent4+cfg-v2",
+   "itep": {
+    "part": "Part 1: Short Text",
+    "set_id": "ITR1-B-P1A",
+    "genre": "poster",
+    "title": "Bookbinding workshop poster",
+    "kind": "vocabulary",
+    "why": "there are only twenty places. To sign up, write your name on the list",
+    "why2": null
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITR1-B-P1A-1",
+    "qc": {
+     "gate": "ITEP-SLATE-READING-V1.prereg.md: pre-flight + 3 graders (a/b plain, c adversarial) on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-reading-v1-work/results/itep-reading-v1.json"
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "reading",
+  "domain": "Part 1: Short Text",
+  "subskill": "detail",
+  "topic_tag": "detail",
+  "difficulty": "easy",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "created_at": "2026-10-31T12:00:03.000Z",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Why does Kirra need to arrive at the stall earlier than last time?",
+   "passage": "Kirra,\nYour grandpa phoned this morning. His back hurts again, so he asked if you could help at his fruit stall at the market today. He needs you there by nine, not ten like last time, because the market opens an hour earlier in summer. He will stay until it closes at two. Bring a jacket, as the stall is in the shade all morning. He will pay you and give you a bag of plums to take home. I am taking your brother to swimming practice and will be back at noon.\nMum",
+   "choices": [
+    "Her grandfather's stall is moving to a sunnier part of the market.",
+    "She has to be at swimming practice later today.",
+    "The market starts earlier at this time of year.",
+    "Her grandfather wants to leave the market before lunch."
+   ],
+   "correct_answer": "The market starts earlier at this time of year.",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "easy",
+   "explanation": "\"The market starts earlier at this time of year.\" is correct: the note says he needs her \"by nine, not ten like last time, because the market opens an hour earlier in summer\".",
+   "distractor_rationales": [
+    {
+     "choice": "Her grandfather wants to leave the market before lunch.",
+     "reason": "\"Her grandfather wants to leave the market before lunch.\" is wrong because the note says \"He will stay until it closes at two\"."
+    },
+    {
+     "choice": "Her grandfather's stall is moving to a sunnier part of the market.",
+     "reason": "\"Her grandfather's stall is moving to a sunnier part of the market.\" is wrong because the note says \"the stall is in the shade all morning\"; the reason for the time is \"because the market opens an hour earlier in summer\"."
+    },
+    {
+     "choice": "She has to be at swimming practice later today.",
+     "reason": "\"She has to be at swimming practice later today.\" is wrong because swimming practice is for her brother: \"I am taking your brother to swimming practice\"."
+    }
+   ]
+  },
+  "content_hash": "10bc0657df61075b1652a5509e4b1b71",
+  "word_count": 94,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-reading-v1",
+  "verify_meta": {
+   "method_id": "itep-reading-v1-agent4+cfg-v2",
+   "itep": {
+    "part": "Part 1: Short Text",
+    "set_id": "ITR1-B-P1B",
+    "genre": "note",
+    "title": "Note about helping at the fruit stall",
+    "kind": "detail",
+    "why": "because the market opens an hour earlier in summer",
+    "why2": null
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITR1-B-P1B-1",
+    "qc": {
+     "gate": "ITEP-SLATE-READING-V1.prereg.md: pre-flight + 3 graders (a/b plain, c adversarial) on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-reading-v1-work/results/itep-reading-v1.json"
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "reading",
+  "domain": "Part 2: Intermediate Passage",
+  "subskill": "detail",
+  "topic_tag": "detail",
+  "difficulty": "medium",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": "itep-reading-v1-ITR1-B-P2",
+  "created_at": "2026-10-31T12:00:04.000Z",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "According to the passage, why did the signs on the main street grow so large?",
+   "passage": "Three hundred years ago, the main street of Hallowmere looked very different from today. Above almost every shop door hung a painted wooden sign with a picture on it. A baker showed a loaf of bread, a shoemaker showed a boot, and a locksmith showed a large golden key. These pictures rarely changed, and a shop often kept the same sign for a hundred years, even after a new family took it over.\n\nThe pictures had a practical purpose. Many people in the town could not read, so a written name over the door would have helped only a few customers. A picture could be understood by everyone, including farmers who came in from nearby villages on market day.\n\nThe signs also worked as addresses. Houses had no numbers yet, so people gave directions by naming the pictures. A letter might be sent to the tailor beside the green hen, and the messenger would know exactly where to go.\n\nOver time, however, the signs became a problem. Shopkeepers competed to hang the biggest ones, and some stretched halfway across the street. They blocked light from upper windows and creaked loudly in the wind. In 1771, after a heavy sign fell and injured a horse, the town council ordered that every sign be fixed flat against the wall. Later, when the town began to number its houses, many shops replaced their pictures with painted names.",
+   "choices": [
+    "Painters charged the same amount for a sign of any size.",
+    "Visitors from the villages found small signs hard to see.",
+    "Shop owners were trying to do better than one another.",
+    "The town council asked shops to make their signs bigger."
+   ],
+   "correct_answer": "Shop owners were trying to do better than one another.",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "medium",
+   "explanation": "\"Shop owners were trying to do better than one another.\" is correct: the passage says \"Shopkeepers competed to hang the biggest ones\", so each owner was trying to beat the others.",
+   "distractor_rationales": [
+    {
+     "choice": "Visitors from the villages found small signs hard to see.",
+     "reason": "\"Visitors from the villages found small signs hard to see.\" is wrong because the passage gives a different reason for the size: \"Shopkeepers competed to hang the biggest ones\"; the villagers are mentioned only as people who could understand pictures."
+    },
+    {
+     "choice": "The town council asked shops to make their signs bigger.",
+     "reason": "\"The town council asked shops to make their signs bigger.\" is wrong because the council acted against the signs: it \"ordered that every sign be fixed flat against the wall\"; the size came from the fact that \"Shopkeepers competed to hang the biggest ones\"."
+    },
+    {
+     "choice": "Painters charged the same amount for a sign of any size.",
+     "reason": "\"Painters charged the same amount for a sign of any size.\" is wrong because the passage explains the size in another way: \"Shopkeepers competed to hang the biggest ones\"."
+    }
+   ]
+  },
+  "content_hash": "695a9079837265aabfe5ee0aec959569",
+  "word_count": 234,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-reading-v1",
+  "verify_meta": {
+   "method_id": "itep-reading-v1-agent4+cfg-v2",
+   "itep": {
+    "part": "Part 2: Intermediate Passage",
+    "set_id": "ITR1-B-P2",
+    "genre": "informational history",
+    "title": "The picture signs of Hallowmere",
+    "kind": "detail",
+    "why": "Shopkeepers competed to hang the biggest ones",
+    "why2": null
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITR1-B-P2-1",
+    "qc": {
+     "gate": "ITEP-SLATE-READING-V1.prereg.md: pre-flight + 3 graders (a/b plain, c adversarial) on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-reading-v1-work/results/itep-reading-v1.json"
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "reading",
+  "domain": "Part 2: Intermediate Passage",
+  "subskill": "vocabulary",
+  "topic_tag": "vocabulary",
+  "difficulty": "medium",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": "itep-reading-v1-ITR1-B-P2",
+  "created_at": "2026-10-31T12:00:05.000Z",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "In paragraph 4, the word \"fixed\" is closest in meaning to",
+   "passage": "Three hundred years ago, the main street of Hallowmere looked very different from today. Above almost every shop door hung a painted wooden sign with a picture on it. A baker showed a loaf of bread, a shoemaker showed a boot, and a locksmith showed a large golden key. These pictures rarely changed, and a shop often kept the same sign for a hundred years, even after a new family took it over.\n\nThe pictures had a practical purpose. Many people in the town could not read, so a written name over the door would have helped only a few customers. A picture could be understood by everyone, including farmers who came in from nearby villages on market day.\n\nThe signs also worked as addresses. Houses had no numbers yet, so people gave directions by naming the pictures. A letter might be sent to the tailor beside the green hen, and the messenger would know exactly where to go.\n\nOver time, however, the signs became a problem. Shopkeepers competed to hang the biggest ones, and some stretched halfway across the street. They blocked light from upper windows and creaked loudly in the wind. In 1771, after a heavy sign fell and injured a horse, the town council ordered that every sign be fixed flat against the wall. Later, when the town began to number its houses, many shops replaced their pictures with painted names.",
+   "choices": [
+    "repaired",
+    "decided",
+    "attached",
+    "prepared"
+   ],
+   "correct_answer": "attached",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "medium",
+   "explanation": "\"attached\" is correct: after \"a heavy sign fell and injured a horse\", the council ordered \"every sign be fixed flat against the wall\", meaning attached firmly to the wall so it could not hang out and fall.",
+   "distractor_rationales": [
+    {
+     "choice": "repaired",
+     "reason": "\"repaired\" is a real meaning of the word, but the order was about where signs went after one \"fell and injured a horse\": every sign had to sit \"flat against the wall\", which is about attaching, not mending."
+    },
+    {
+     "choice": "decided",
+     "reason": "\"decided\" is a real meaning of the word (a price can be fixed), but a sign cannot be decided \"flat against the wall\"; the phrase describes where the sign is held."
+    },
+    {
+     "choice": "prepared",
+     "reason": "\"prepared\" is a real meaning of the word (to fix a meal), but a sign prepared \"flat against the wall\" makes no sense after a sign \"fell and injured a horse\"; the order was to hold signs to walls."
+    }
+   ]
+  },
+  "content_hash": "3595eff797cea5ee8289fae08ecb6b42",
+  "word_count": 234,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-reading-v1",
+  "verify_meta": {
+   "method_id": "itep-reading-v1-agent4+cfg-v2",
+   "itep": {
+    "part": "Part 2: Intermediate Passage",
+    "set_id": "ITR1-B-P2",
+    "genre": "informational history",
+    "title": "The picture signs of Hallowmere",
+    "kind": "vocabulary",
+    "why": "every sign be fixed flat against the wall",
+    "why2": null
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITR1-B-P2-2",
+    "qc": {
+     "gate": "ITEP-SLATE-READING-V1.prereg.md: pre-flight + 3 graders (a/b plain, c adversarial) on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-reading-v1-work/results/itep-reading-v1.json"
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "reading",
+  "domain": "Part 2: Intermediate Passage",
+  "subskill": "not-except",
+  "topic_tag": "not-except",
+  "difficulty": "medium",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": "itep-reading-v1-ITR1-B-P2",
+  "created_at": "2026-10-31T12:00:06.000Z",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Which of the following is NOT stated about the old signs of Hallowmere?",
+   "passage": "Three hundred years ago, the main street of Hallowmere looked very different from today. Above almost every shop door hung a painted wooden sign with a picture on it. A baker showed a loaf of bread, a shoemaker showed a boot, and a locksmith showed a large golden key. These pictures rarely changed, and a shop often kept the same sign for a hundred years, even after a new family took it over.\n\nThe pictures had a practical purpose. Many people in the town could not read, so a written name over the door would have helped only a few customers. A picture could be understood by everyone, including farmers who came in from nearby villages on market day.\n\nThe signs also worked as addresses. Houses had no numbers yet, so people gave directions by naming the pictures. A letter might be sent to the tailor beside the green hen, and the messenger would know exactly where to go.\n\nOver time, however, the signs became a problem. Shopkeepers competed to hang the biggest ones, and some stretched halfway across the street. They blocked light from upper windows and creaked loudly in the wind. In 1771, after a heavy sign fell and injured a horse, the town council ordered that every sign be fixed flat against the wall. Later, when the town began to number its houses, many shops replaced their pictures with painted names.",
+   "choices": [
+    "Farmers who visited from nearby villages could understand them.",
+    "They were taken down when a shop got a new owner.",
+    "They made a creaking noise when it was windy.",
+    "They hung above the doors of most of the shops."
+   ],
+   "correct_answer": "They were taken down when a shop got a new owner.",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "medium",
+   "explanation": "\"They were taken down when a shop got a new owner.\" is correct: the passage says the opposite: \"a shop often kept the same sign for a hundred years, even after a new family took it over\".",
+   "distractor_rationales": [
+    {
+     "choice": "They hung above the doors of most of the shops.",
+     "reason": "\"They hung above the doors of most of the shops.\" is stated: \"Above almost every shop door hung a painted wooden sign\"."
+    },
+    {
+     "choice": "Farmers who visited from nearby villages could understand them.",
+     "reason": "\"Farmers who visited from nearby villages could understand them.\" is stated: \"A picture could be understood by everyone, including farmers who came in from nearby villages\"."
+    },
+    {
+     "choice": "They made a creaking noise when it was windy.",
+     "reason": "\"They made a creaking noise when it was windy.\" is stated: the signs \"creaked loudly in the wind\"."
+    }
+   ]
+  },
+  "content_hash": "ed7d68c083dc22bd59b62ba657c6800e",
+  "word_count": 234,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-reading-v1",
+  "verify_meta": {
+   "method_id": "itep-reading-v1-agent4+cfg-v2",
+   "itep": {
+    "part": "Part 2: Intermediate Passage",
+    "set_id": "ITR1-B-P2",
+    "genre": "informational history",
+    "title": "The picture signs of Hallowmere",
+    "kind": "not-except",
+    "why": "even after a new family took it over",
+    "why2": null
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITR1-B-P2-3",
+    "qc": {
+     "gate": "ITEP-SLATE-READING-V1.prereg.md: pre-flight + 3 graders (a/b plain, c adversarial) on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-reading-v1-work/results/itep-reading-v1.json"
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "reading",
+  "domain": "Part 2: Intermediate Passage",
+  "subskill": "purpose",
+  "topic_tag": "purpose",
+  "difficulty": "medium",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": "itep-reading-v1-ITR1-B-P2",
+  "created_at": "2026-10-31T12:00:07.000Z",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Why does the writer include paragraph 3?",
+   "passage": "Three hundred years ago, the main street of Hallowmere looked very different from today. Above almost every shop door hung a painted wooden sign with a picture on it. A baker showed a loaf of bread, a shoemaker showed a boot, and a locksmith showed a large golden key. These pictures rarely changed, and a shop often kept the same sign for a hundred years, even after a new family took it over.\n\nThe pictures had a practical purpose. Many people in the town could not read, so a written name over the door would have helped only a few customers. A picture could be understood by everyone, including farmers who came in from nearby villages on market day.\n\nThe signs also worked as addresses. Houses had no numbers yet, so people gave directions by naming the pictures. A letter might be sent to the tailor beside the green hen, and the messenger would know exactly where to go.\n\nOver time, however, the signs became a problem. Shopkeepers competed to hang the biggest ones, and some stretched halfway across the street. They blocked light from upper windows and creaked loudly in the wind. In 1771, after a heavy sign fell and injured a horse, the town council ordered that every sign be fixed flat against the wall. Later, when the town began to number its houses, many shops replaced their pictures with painted names.",
+   "choices": [
+    "to describe another job the signs did for the town",
+    "to describe how the town first numbered its houses",
+    "to give the main reason that shops used pictures",
+    "to explain why letters often reached the wrong shop"
+   ],
+   "correct_answer": "to describe another job the signs did for the town",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "medium",
+   "explanation": "\"to describe another job the signs did for the town\" is correct: the paragraph opens \"The signs also worked as addresses\" and shows people giving \"directions by naming the pictures\", a second use beside telling customers what a shop sold.",
+   "distractor_rationales": [
+    {
+     "choice": "to explain why letters often reached the wrong shop",
+     "reason": "\"to explain why letters often reached the wrong shop\" is wrong because the paragraph says \"the messenger would know exactly where to go\"."
+    },
+    {
+     "choice": "to give the main reason that shops used pictures",
+     "reason": "\"to give the main reason that shops used pictures\" is wrong because that reason is in paragraph 2: \"Many people in the town could not read\"; paragraph 3 begins \"The signs also worked as addresses\"."
+    },
+    {
+     "choice": "to describe how the town first numbered its houses",
+     "reason": "\"to describe how the town first numbered its houses\" is wrong because paragraph 3 says \"Houses had no numbers yet\"; numbering comes only in paragraph 4: \"Later, when the town began to number its houses\"."
+    }
+   ]
+  },
+  "content_hash": "8331f09d239439c8d7fd084c1bd9bd53",
+  "word_count": 234,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-reading-v1",
+  "verify_meta": {
+   "method_id": "itep-reading-v1-agent4+cfg-v2",
+   "itep": {
+    "part": "Part 2: Intermediate Passage",
+    "set_id": "ITR1-B-P2",
+    "genre": "informational history",
+    "title": "The picture signs of Hallowmere",
+    "kind": "purpose",
+    "why": "The signs also worked as addresses",
+    "why2": null
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITR1-B-P2-4",
+    "qc": {
+     "gate": "ITEP-SLATE-READING-V1.prereg.md: pre-flight + 3 graders (a/b plain, c adversarial) on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-reading-v1-work/results/itep-reading-v1.json"
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "reading",
+  "domain": "Part 1: Short Text",
+  "subskill": "inference",
+  "topic_tag": "inference",
+  "difficulty": "easy",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "created_at": "2026-10-31T12:00:08.000Z",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "What can be inferred from the diary entry?",
+   "passage": "This morning my mother woke me at six because the weather report said there might be hail in the afternoon. We spent the whole morning putting old sheets over the lettuce and the young peppers in our garden. My arms hurt by lunch. At three o'clock the sky went dark, and white balls of ice the size of peas bounced across the yard for ten minutes. Afterwards I lifted the sheets. Every plant underneath was fine, but the beans by the fence had holes in their leaves. Next time we will need more sheets.",
+   "choices": [
+    "The writer covered the garden with no one to help.",
+    "The beans by the fence were left without a sheet.",
+    "The lettuce was hurt more badly than the beans.",
+    "The hail fell for most of the afternoon."
+   ],
+   "correct_answer": "The beans by the fence were left without a sheet.",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "easy",
+   "explanation": "\"The beans by the fence were left without a sheet.\" is correct: \"Every plant underneath was fine, but the beans by the fence had holes in their leaves\", and the writer adds \"Next time we will need more sheets\", so the sheets ran out before the beans were covered.",
+   "distractor_rationales": [
+    {
+     "choice": "The hail fell for most of the afternoon.",
+     "reason": "\"The hail fell for most of the afternoon.\" is wrong: the hail came \"At three o'clock\" and bounced across the yard \"for ten minutes\"."
+    },
+    {
+     "choice": "The writer covered the garden with no one to help.",
+     "reason": "\"The writer covered the garden with no one to help.\" is wrong: the writer's mother was there, and \"We spent the whole morning putting old sheets over the lettuce\"."
+    },
+    {
+     "choice": "The lettuce was hurt more badly than the beans.",
+     "reason": "\"The lettuce was hurt more badly than the beans.\" is wrong: the lettuce was under the sheets, and \"Every plant underneath was fine\", while \"the beans by the fence had holes in their leaves\"."
+    }
+   ]
+  },
+  "content_hash": "c8cef0c4c78e6987c38465bbd7965fca",
+  "word_count": 94,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-reading-v1",
+  "verify_meta": {
+   "method_id": "itep-reading-v1-agent4+cfg-v2",
+   "itep": {
+    "part": "Part 1: Short Text",
+    "set_id": "ITR1-C-P1B",
+    "genre": "diary entry",
+    "title": "Hail in the garden",
+    "kind": "inference",
+    "why": "Every plant underneath was fine, but the beans by the fence had holes in their leaves",
+    "why2": "Next time we will need more sheets."
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITR1-C-P1B-1",
+    "qc": {
+     "gate": "ITEP-SLATE-READING-V1.prereg.md: pre-flight + 3 graders (a/b plain, c adversarial) on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-reading-v1-work/results/itep-reading-v1.json"
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "reading",
+  "domain": "Part 2: Intermediate Passage",
+  "subskill": "main-idea",
+  "topic_tag": "main-idea",
+  "difficulty": "medium",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": "itep-reading-v1-ITR1-C-P2",
+  "created_at": "2026-10-31T12:00:09.000Z",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "What is the passage mainly about?",
+   "passage": "Have you ever noticed that a bowl of fruit often seems to ripen all at once? There is a simple reason for this. As many fruits ripen, they give off a gas called ethylene. The gas is invisible, but it works like a signal. When nearby fruit takes in the gas, it begins to ripen as well, and then it releases more ethylene of its own.\n\nRipening brings several changes. The fruit becomes softer, and its color often changes from green to yellow or red. In bananas and many other fruits, starch turns into sugar, so the fruit tastes sweeter. Bananas, tomatoes and avocados keep ripening after they are picked. Other fruits, such as grapes, strawberries and oranges, do not ripen much more once they leave the plant.\n\nFarmers and shops make use of these facts. Bananas are usually picked while they are still green and hard, because firm fruit travels well on long journeys. Near the end of the trip, they are often kept in warm rooms with a little added ethylene, which helps them ripen evenly before they reach the shops.\n\nYou can use the same idea at home. To ripen a hard avocado faster, put it in a paper bag with a ripe banana. The bag holds the gas close to the avocado. To slow ripening down, keep ripe fruit away from other fruit, or store it somewhere cool.",
+   "choices": [
+    "a quick way to soften a hard avocado in a paper bag at home",
+    "how the gas ethylene protects fruit from ripening too early",
+    "how a ripening gas from fruit works and how people use it",
+    "the natural changes that happen to fruit after it forms"
+   ],
+   "correct_answer": "how a ripening gas from fruit works and how people use it",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "medium",
+   "explanation": "\"how a ripening gas from fruit works and how people use it\" is correct: paragraph 1 explains that ripening fruit gives off \"a gas called ethylene\" that makes nearby fruit ripen, and paragraphs 3 and 4 show that \"Farmers and shops make use of these facts\" and \"You can use the same idea at home\".",
+   "distractor_rationales": [
+    {
+     "choice": "how the gas ethylene protects fruit from ripening too early",
+     "reason": "\"how the gas ethylene protects fruit from ripening too early\" is wrong about what the gas does: \"When nearby fruit takes in the gas, it begins to ripen as well\"."
+    },
+    {
+     "choice": "a quick way to soften a hard avocado in a paper bag at home",
+     "reason": "\"a quick way to soften a hard avocado in a paper bag at home\" is only the last paragraph (\"To ripen a hard avocado faster, put it in a paper bag\"); the passage also covers the gas, the changes and how \"Farmers and shops make use of these facts\"."
+    },
+    {
+     "choice": "the natural changes that happen to fruit after it forms",
+     "reason": "\"the natural changes that happen to fruit after it forms\" is too general: the passage is about one cause of ripening, \"a gas called ethylene\", and how people use it, not every change in fruit."
+    }
+   ]
+  },
+  "content_hash": "8188b0ade079f28def259bbde757f684",
+  "word_count": 232,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-reading-v1",
+  "verify_meta": {
+   "method_id": "itep-reading-v1-agent4+cfg-v2",
+   "itep": {
+    "part": "Part 2: Intermediate Passage",
+    "set_id": "ITR1-C-P2",
+    "genre": "informational science",
+    "title": "The ripening gas",
+    "kind": "main-idea",
+    "why": "As many fruits ripen, they give off a gas called ethylene.",
+    "why2": null
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITR1-C-P2-1",
+    "qc": {
+     "gate": "ITEP-SLATE-READING-V1.prereg.md: pre-flight + 3 graders (a/b plain, c adversarial) on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-reading-v1-work/results/itep-reading-v1.json"
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "reading",
+  "domain": "Part 2: Intermediate Passage",
+  "subskill": "not-except",
+  "topic_tag": "not-except",
+  "difficulty": "medium",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": "itep-reading-v1-ITR1-C-P2",
+  "created_at": "2026-10-31T12:00:10.000Z",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "All of the following are stated in the passage about ethylene EXCEPT:",
+   "passage": "Have you ever noticed that a bowl of fruit often seems to ripen all at once? There is a simple reason for this. As many fruits ripen, they give off a gas called ethylene. The gas is invisible, but it works like a signal. When nearby fruit takes in the gas, it begins to ripen as well, and then it releases more ethylene of its own.\n\nRipening brings several changes. The fruit becomes softer, and its color often changes from green to yellow or red. In bananas and many other fruits, starch turns into sugar, so the fruit tastes sweeter. Bananas, tomatoes and avocados keep ripening after they are picked. Other fruits, such as grapes, strawberries and oranges, do not ripen much more once they leave the plant.\n\nFarmers and shops make use of these facts. Bananas are usually picked while they are still green and hard, because firm fruit travels well on long journeys. Near the end of the trip, they are often kept in warm rooms with a little added ethylene, which helps them ripen evenly before they reach the shops.\n\nYou can use the same idea at home. To ripen a hard avocado faster, put it in a paper bag with a ripe banana. The bag holds the gas close to the avocado. To slow ripening down, keep ripe fruit away from other fruit, or store it somewhere cool.",
+   "choices": [
+    "People are unable to see it in the air.",
+    "Bananas are given a little of it on their journey.",
+    "Plant leaves and flowers give it off as well.",
+    "Fruit that takes it in starts to give it off too."
+   ],
+   "correct_answer": "Plant leaves and flowers give it off as well.",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "medium",
+   "explanation": "\"Plant leaves and flowers give it off as well.\" is correct: the passage says only that fruit makes the gas (\"As many fruits ripen, they give off a gas called ethylene\"); it says nothing about leaves or flowers.",
+   "distractor_rationales": [
+    {
+     "choice": "People are unable to see it in the air.",
+     "reason": "\"People are unable to see it in the air.\" is stated in paragraph 1: \"The gas is invisible\"."
+    },
+    {
+     "choice": "Fruit that takes it in starts to give it off too.",
+     "reason": "\"Fruit that takes it in starts to give it off too.\" is stated in paragraph 1: \"it begins to ripen as well, and then it releases more ethylene of its own\"."
+    },
+    {
+     "choice": "Bananas are given a little of it on their journey.",
+     "reason": "\"Bananas are given a little of it on their journey.\" is stated in paragraph 3: \"they are often kept in warm rooms with a little added ethylene\"."
+    }
+   ]
+  },
+  "content_hash": "29fe7609a87f5033d099e446cdc65647",
+  "word_count": 232,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-reading-v1",
+  "verify_meta": {
+   "method_id": "itep-reading-v1-agent4+cfg-v2",
+   "itep": {
+    "part": "Part 2: Intermediate Passage",
+    "set_id": "ITR1-C-P2",
+    "genre": "informational science",
+    "title": "The ripening gas",
+    "kind": "not-except",
+    "why": "As many fruits ripen, they give off a gas called ethylene.",
+    "why2": null
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITR1-C-P2-2",
+    "qc": {
+     "gate": "ITEP-SLATE-READING-V1.prereg.md: pre-flight + 3 graders (a/b plain, c adversarial) on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-reading-v1-work/results/itep-reading-v1.json"
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "reading",
+  "domain": "Part 2: Intermediate Passage",
+  "subskill": "detail",
+  "topic_tag": "detail",
+  "difficulty": "medium",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": "itep-reading-v1-ITR1-C-P2",
+  "created_at": "2026-10-31T12:00:11.000Z",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "How does a paper bag help a hard avocado ripen faster?",
+   "passage": "Have you ever noticed that a bowl of fruit often seems to ripen all at once? There is a simple reason for this. As many fruits ripen, they give off a gas called ethylene. The gas is invisible, but it works like a signal. When nearby fruit takes in the gas, it begins to ripen as well, and then it releases more ethylene of its own.\n\nRipening brings several changes. The fruit becomes softer, and its color often changes from green to yellow or red. In bananas and many other fruits, starch turns into sugar, so the fruit tastes sweeter. Bananas, tomatoes and avocados keep ripening after they are picked. Other fruits, such as grapes, strawberries and oranges, do not ripen much more once they leave the plant.\n\nFarmers and shops make use of these facts. Bananas are usually picked while they are still green and hard, because firm fruit travels well on long journeys. Near the end of the trip, they are often kept in warm rooms with a little added ethylene, which helps them ripen evenly before they reach the shops.\n\nYou can use the same idea at home. To ripen a hard avocado faster, put it in a paper bag with a ripe banana. The bag holds the gas close to the avocado. To slow ripening down, keep ripe fruit away from other fruit, or store it somewhere cool.",
+   "choices": [
+    "It keeps the avocado apart from the other fruit nearby.",
+    "It keeps the avocado cool while it softens.",
+    "It keeps the gas from the banana near the avocado.",
+    "It stops the banana from giving off more gas."
+   ],
+   "correct_answer": "It keeps the gas from the banana near the avocado.",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "medium",
+   "explanation": "\"It keeps the gas from the banana near the avocado.\" is correct: the avocado is put in the bag \"with a ripe banana\", and \"The bag holds the gas close to the avocado\".",
+   "distractor_rationales": [
+    {
+     "choice": "It keeps the avocado cool while it softens.",
+     "reason": "\"It keeps the avocado cool while it softens.\" is wrong: coolness slows ripening, as the passage says \"To slow ripening down\", you \"store it somewhere cool\"."
+    },
+    {
+     "choice": "It stops the banana from giving off more gas.",
+     "reason": "\"It stops the banana from giving off more gas.\" is wrong: the bag is there to hold the gas the banana gives off: \"The bag holds the gas close to the avocado\"."
+    },
+    {
+     "choice": "It keeps the avocado apart from the other fruit nearby.",
+     "reason": "\"It keeps the avocado apart from the other fruit nearby.\" is wrong: the avocado goes in the bag \"with a ripe banana\"; keeping fruit apart is how to slow ripening: \"keep ripe fruit away from other fruit\"."
+    }
+   ]
+  },
+  "content_hash": "b5009a1fdfc1f01d68b92af44d8a6637",
+  "word_count": 232,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-reading-v1",
+  "verify_meta": {
+   "method_id": "itep-reading-v1-agent4+cfg-v2",
+   "itep": {
+    "part": "Part 2: Intermediate Passage",
+    "set_id": "ITR1-C-P2",
+    "genre": "informational science",
+    "title": "The ripening gas",
+    "kind": "detail",
+    "why": "The bag holds the gas close to the avocado.",
+    "why2": null
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITR1-C-P2-3",
+    "qc": {
+     "gate": "ITEP-SLATE-READING-V1.prereg.md: pre-flight + 3 graders (a/b plain, c adversarial) on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-reading-v1-work/results/itep-reading-v1.json"
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "reading",
+  "domain": "Part 2: Intermediate Passage",
+  "subskill": "inference",
+  "topic_tag": "inference",
+  "difficulty": "medium",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": "itep-reading-v1-ITR1-C-P2",
+  "created_at": "2026-10-31T12:00:12.000Z",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Which of the following can be inferred about bananas?",
+   "passage": "Have you ever noticed that a bowl of fruit often seems to ripen all at once? There is a simple reason for this. As many fruits ripen, they give off a gas called ethylene. The gas is invisible, but it works like a signal. When nearby fruit takes in the gas, it begins to ripen as well, and then it releases more ethylene of its own.\n\nRipening brings several changes. The fruit becomes softer, and its color often changes from green to yellow or red. In bananas and many other fruits, starch turns into sugar, so the fruit tastes sweeter. Bananas, tomatoes and avocados keep ripening after they are picked. Other fruits, such as grapes, strawberries and oranges, do not ripen much more once they leave the plant.\n\nFarmers and shops make use of these facts. Bananas are usually picked while they are still green and hard, because firm fruit travels well on long journeys. Near the end of the trip, they are often kept in warm rooms with a little added ethylene, which helps them ripen evenly before they reach the shops.\n\nYou can use the same idea at home. To ripen a hard avocado faster, put it in a paper bag with a ripe banana. The bag holds the gas close to the avocado. To slow ripening down, keep ripe fruit away from other fruit, or store it somewhere cool.",
+   "choices": [
+    "Bananas are picked after they have turned yellow on the plant.",
+    "Bananas are given ethylene as soon as they are picked.",
+    "Bananas are kept in cold rooms near the end of their trip.",
+    "Bananas are less sweet when picked than when they reach the shops."
+   ],
+   "correct_answer": "Bananas are less sweet when picked than when they reach the shops.",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "medium",
+   "explanation": "\"Bananas are less sweet when picked than when they reach the shops.\" is correct: bananas \"are usually picked while they are still green and hard\" and ripen \"before they reach the shops\", and \"In bananas and many other fruits, starch turns into sugar, so the fruit tastes sweeter\".",
+   "distractor_rationales": [
+    {
+     "choice": "Bananas are picked after they have turned yellow on the plant.",
+     "reason": "\"Bananas are picked after they have turned yellow on the plant.\" is wrong: \"Bananas are usually picked while they are still green and hard\"."
+    },
+    {
+     "choice": "Bananas are given ethylene as soon as they are picked.",
+     "reason": "\"Bananas are given ethylene as soon as they are picked.\" is wrong: the ethylene comes later: \"Near the end of the trip, they are often kept in warm rooms with a little added ethylene\"."
+    },
+    {
+     "choice": "Bananas are kept in cold rooms near the end of their trip.",
+     "reason": "\"Bananas are kept in cold rooms near the end of their trip.\" is wrong: \"Near the end of the trip, they are often kept in warm rooms\"."
+    }
+   ]
+  },
+  "content_hash": "b4940c0bec2369862c34ac9216d30316",
+  "word_count": 232,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-reading-v1",
+  "verify_meta": {
+   "method_id": "itep-reading-v1-agent4+cfg-v2",
+   "itep": {
+    "part": "Part 2: Intermediate Passage",
+    "set_id": "ITR1-C-P2",
+    "genre": "informational science",
+    "title": "The ripening gas",
+    "kind": "inference",
+    "why": "In bananas and many other fruits, starch turns into sugar, so the fruit tastes sweeter.",
+    "why2": "Bananas are usually picked while they are still green and hard"
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITR1-C-P2-4",
+    "qc": {
+     "gate": "ITEP-SLATE-READING-V1.prereg.md: pre-flight + 3 graders (a/b plain, c adversarial) on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-reading-v1-work/results/itep-reading-v1.json"
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "reading",
+  "domain": "Part 1: Short Text",
+  "subskill": "purpose",
+  "topic_tag": "purpose",
+  "difficulty": "easy",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "created_at": "2026-10-31T12:00:13.000Z",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "Why was this notice written?",
+   "passage": "The Stelbridge library is planning a show about our town in the past, and we need your help. Do you have photographs of Stelbridge that were taken before 1980? Please bring them to the local history room on any Saturday morning in March. A librarian will scan each photo while you wait, and you will take your originals home with you the same day. The copies will hang in the main hall from April. If you know the year or the place, please write it on the back of each photo.",
+   "choices": [
+    "to ask people to give their old town photos to the library",
+    "to ask people to take new town photos for a library show",
+    "to ask people to lend their old town photos for copying",
+    "to tell people that a show of old town photos is now open"
+   ],
+   "correct_answer": "to ask people to lend their old town photos for copying",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "easy",
+   "explanation": "\"to ask people to lend their old town photos for copying\" is correct: the notice asks readers to \"bring them to the local history room\", where \"A librarian will scan each photo while you wait\", and the owners keep the originals, so the photos are lent and copied.",
+   "distractor_rationales": [
+    {
+     "choice": "to ask people to give their old town photos to the library",
+     "reason": "\"to ask people to give their old town photos to the library\" is wrong: the photos are only scanned, and \"you will take your originals home with you the same day\"."
+    },
+    {
+     "choice": "to ask people to take new town photos for a library show",
+     "reason": "\"to ask people to take new town photos for a library show\" is wrong: the library wants photographs \"that were taken before 1980\", not new ones."
+    },
+    {
+     "choice": "to tell people that a show of old town photos is now open",
+     "reason": "\"to tell people that a show of old town photos is now open\" is wrong: the library \"is planning a show\", and \"The copies will hang in the main hall from April\", so the show has not opened yet."
+    }
+   ]
+  },
+  "content_hash": "adcca25d14460916284b69143bdfe80a",
+  "word_count": 91,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-reading-v1",
+  "verify_meta": {
+   "method_id": "itep-reading-v1-agent4+cfg-v2",
+   "itep": {
+    "part": "Part 1: Short Text",
+    "set_id": "ITR1-D-P1A",
+    "genre": "library notice",
+    "title": "Old town photos wanted",
+    "kind": "purpose",
+    "why": "A librarian will scan each photo while you wait",
+    "why2": null
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITR1-D-P1A-1",
+    "qc": {
+     "gate": "ITEP-SLATE-READING-V1.prereg.md: pre-flight + 3 graders (a/b plain, c adversarial) on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-reading-v1-work/results/itep-reading-v1.json"
+    }
+   }
+  }
+ },
+ {
+  "family": "itep",
+  "section": "reading",
+  "domain": "Part 1: Short Text",
+  "subskill": "detail",
+  "topic_tag": "detail",
+  "difficulty": "easy",
+  "task": "multiple_choice",
+  "item_type": "multiple_choice",
+  "passage_group_id": null,
+  "created_at": "2026-10-31T12:00:14.000Z",
+  "item": {
+   "type": "multiple_choice",
+   "blanks": null,
+   "graphic": null,
+   "prompt": "When does Zora say she will return the tripod?",
+   "passage": "Hi Tuva,\n\nThanks for showing me your camera on Friday. My group has to film a short video about the school garden for science class, and my phone keeps shaking in my hands. Could I borrow your tripod? I can pick it up from your house on Saturday after my piano lesson, at about two o'clock. We plan to film on Sunday afternoon. I will bring the tripod back to school on Monday morning, before first period.\n\nSee you soon,\nZora",
+   "choices": [
+    "on Saturday, after her piano lesson ends",
+    "on Sunday, after her group films the video",
+    "on Friday, after she sees Tuva's camera",
+    "on Monday, before lessons start at school"
+   ],
+   "correct_answer": "on Monday, before lessons start at school",
+   "correct_answers": null,
+   "acceptable_answers": null,
+   "difficulty": "easy",
+   "explanation": "\"on Monday, before lessons start at school\" is correct: Zora writes \"I will bring the tripod back to school on Monday morning, before first period\", which is before lessons start.",
+   "distractor_rationales": [
+    {
+     "choice": "on Saturday, after her piano lesson ends",
+     "reason": "\"on Saturday, after her piano lesson ends\" is wrong: Saturday after the piano lesson is when she will \"pick it up from your house\", not return it."
+    },
+    {
+     "choice": "on Sunday, after her group films the video",
+     "reason": "\"on Sunday, after her group films the video\" is wrong: Sunday is only when \"We plan to film\"; she says \"I will bring the tripod back to school on Monday morning\"."
+    },
+    {
+     "choice": "on Friday, after she sees Tuva's camera",
+     "reason": "\"on Friday, after she sees Tuva's camera\" is wrong: Friday is in the past, when Tuva was \"showing me your camera on Friday\"; the tripod comes back \"on Monday morning\"."
+    }
+   ]
+  },
+  "content_hash": "cc1a3e2e25c4d60037ae0bad3896f37b",
+  "word_count": 81,
+  "verified": false,
+  "archived": false,
+  "source": "hand",
+  "cohort": "itep-reading-v1",
+  "verify_meta": {
+   "method_id": "itep-reading-v1-agent4+cfg-v2",
+   "itep": {
+    "part": "Part 1: Short Text",
+    "set_id": "ITR1-D-P1B",
+    "genre": "email",
+    "title": "Borrowing a tripod",
+    "kind": "detail",
+    "why": "I will bring the tripod back to school on Monday morning, before first period",
+    "why2": null
+   },
+   "draft": {
+    "status": "awaiting_release",
+    "qid": "ITR1-D-P1B-1",
+    "qc": {
+     "gate": "ITEP-SLATE-READING-V1.prereg.md: pre-flight + 3 graders (a/b plain, c adversarial) on COFOUNDER-BRIEF-v2, A1 rules",
+     "score_file": "scripts/study-bank/itep-reading-v1-work/results/itep-reading-v1.json"
+    }
+   }
+  }
+ }
+]

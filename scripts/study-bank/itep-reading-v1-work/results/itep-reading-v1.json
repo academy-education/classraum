@@ -1,0 +1,138 @@
+{
+ "cohort": "itep-reading-v1",
+ "total": 48,
+ "cleared": [
+  "ITR1-A-P1A-1",
+  "ITR1-A-P1B-1",
+  "ITR1-B-P1A-1",
+  "ITR1-B-P1B-1",
+  "ITR1-B-P2-1",
+  "ITR1-B-P2-2",
+  "ITR1-B-P2-3",
+  "ITR1-B-P2-4",
+  "ITR1-C-P1B-1",
+  "ITR1-C-P2-1",
+  "ITR1-C-P2-2",
+  "ITR1-C-P2-3",
+  "ITR1-C-P2-4",
+  "ITR1-D-P1A-1",
+  "ITR1-D-P1B-1"
+ ],
+ "dropped": {
+  "ITR1-B-P3-1": "pattern: one_template, one_template, one_template",
+  "ITR1-B-P3-2": "passage: itep-reading-v1-ITR1-B-P3 lost an item",
+  "ITR1-B-P3-3": "passage: itep-reading-v1-ITR1-B-P3 lost an item",
+  "ITR1-B-P3-4": "passage: itep-reading-v1-ITR1-B-P3 lost an item",
+  "ITR1-B-P3-5": "passage: itep-reading-v1-ITR1-B-P3 lost an item",
+  "ITR1-B-P3-6": "passage: itep-reading-v1-ITR1-B-P3 lost an item",
+  "ITR1-C-P3-1": "pattern: one_template, one_template, one_template",
+  "ITR1-C-P3-2": "passage: itep-reading-v1-ITR1-C-P3 lost an item",
+  "ITR1-C-P3-3": "passage: itep-reading-v1-ITR1-C-P3 lost an item",
+  "ITR1-C-P3-4": "passage: itep-reading-v1-ITR1-C-P3 lost an item",
+  "ITR1-C-P3-5": "passage: itep-reading-v1-ITR1-C-P3 lost an item",
+  "ITR1-C-P3-6": "passage: itep-reading-v1-ITR1-C-P3 lost an item",
+  "ITR1-D-P3-1": "pattern: one_template, one_template, one_template",
+  "ITR1-D-P3-2": "passage: itep-reading-v1-ITR1-D-P3 lost an item",
+  "ITR1-D-P3-3": "passage: itep-reading-v1-ITR1-D-P3 lost an item",
+  "ITR1-D-P3-4": "passage: itep-reading-v1-ITR1-D-P3 lost an item",
+  "ITR1-D-P3-5": "passage: itep-reading-v1-ITR1-D-P3 lost an item",
+  "ITR1-D-P3-6": "passage: itep-reading-v1-ITR1-D-P3 lost an item",
+  "ITR1-D-P2-1": "item: c:alternative/second_defensible",
+  "ITR1-D-P2-2": "passage: itep-reading-v1-ITR1-D-P2 lost an item",
+  "ITR1-D-P2-3": "passage: itep-reading-v1-ITR1-D-P2 lost an item",
+  "ITR1-D-P2-4": "passage: itep-reading-v1-ITR1-D-P2 lost an item",
+  "ITR1-A-P2-1": "pattern: one_template, one_template, one_template",
+  "ITR1-A-P2-2": "passage: itep-reading-v1-ITR1-A-P2 lost an item",
+  "ITR1-A-P2-3": "passage: itep-reading-v1-ITR1-A-P2 lost an item",
+  "ITR1-A-P2-4": "passage: itep-reading-v1-ITR1-A-P2 lost an item",
+  "ITR1-A-P3-1": "pattern: one_template, one_template, one_template",
+  "ITR1-A-P3-2": "passage: itep-reading-v1-ITR1-A-P3 lost an item",
+  "ITR1-A-P3-3": "passage: itep-reading-v1-ITR1-A-P3 lost an item",
+  "ITR1-A-P3-4": "passage: itep-reading-v1-ITR1-A-P3 lost an item",
+  "ITR1-A-P3-5": "passage: itep-reading-v1-ITR1-A-P3 lost an item",
+  "ITR1-A-P3-6": "passage: itep-reading-v1-ITR1-A-P3 lost an item",
+  "ITR1-C-P1A-1": "pattern: one_template, one_template, one_template"
+ },
+ "hold": false,
+ "patternShare": 0.14583333333333334,
+ "patterns": [
+  {
+   "graders": [
+    "a",
+    "b"
+   ],
+   "pattern": "one_template",
+   "other": "one_template",
+   "items": [
+    5,
+    16,
+    23,
+    29,
+    33,
+    38,
+    44
+   ],
+   "ids": [
+    "ITR1-B-P3-1",
+    "ITR1-C-P3-1",
+    "ITR1-D-P3-1",
+    "ITR1-D-P2-1",
+    "ITR1-A-P2-1",
+    "ITR1-A-P3-1",
+    "ITR1-C-P1A-1"
+   ]
+  },
+  {
+   "graders": [
+    "a",
+    "c"
+   ],
+   "pattern": "one_template",
+   "other": "one_template",
+   "items": [
+    5,
+    16,
+    23,
+    29,
+    33,
+    38,
+    44
+   ],
+   "ids": [
+    "ITR1-B-P3-1",
+    "ITR1-C-P3-1",
+    "ITR1-D-P3-1",
+    "ITR1-D-P2-1",
+    "ITR1-A-P2-1",
+    "ITR1-A-P3-1",
+    "ITR1-C-P1A-1"
+   ]
+  },
+  {
+   "graders": [
+    "b",
+    "c"
+   ],
+   "pattern": "one_template",
+   "other": "one_template",
+   "items": [
+    5,
+    16,
+    23,
+    29,
+    33,
+    38,
+    44
+   ],
+   "ids": [
+    "ITR1-B-P3-1",
+    "ITR1-C-P3-1",
+    "ITR1-D-P3-1",
+    "ITR1-D-P2-1",
+    "ITR1-A-P2-1",
+    "ITR1-A-P3-1",
+    "ITR1-C-P1A-1"
+   ]
+  }
+ ]
+}
