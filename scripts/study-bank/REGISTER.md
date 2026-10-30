@@ -6665,3 +6665,10 @@ structural checks are pre-flight only. See CLAUDE.md.
   6-36 per draft). What changed: one passage per genre per draft, per-passage question mixes, and merge refusals for
   each named cross-item pattern. Results in `agent-review/results-ssat-d19-22/`. Release route: a Daniel audit
   sample, as for the other agent-cleared cohorts. Carry this method to ISEE and MAP reading.
+
+- **2026-10-31 — MAP Language v4 agent review: 213 of 240 cleared, 0 cohorts held** (grammar 73/80, mechanics 72/80,
+  writing 68/80). Prereg MAP-LANGUAGE-V4.prereg.md was committed before any grader; it is a stated deviation, since
+  it was written after the items. No v2 or v3 tell recurred on 3 or more items for two graders, so the v4 claim
+  stands. Results are in `agent-review/results-map-language-v4/`. Release: Daniel audit sample (a new method, so a
+  bridge) plus the owner's go. With the v2/v3 stock (283 after release), MAP Language holds about 496 cleared items,
+  roughly 12 forms at 13 per area if the areas balance (map-form-depth after release decides).
