@@ -6703,3 +6703,20 @@ structural checks are pre-flight only. See CLAUDE.md.
   rule lists do not stop a cold reader finding property-based free eliminations; option sets must be screened in
   the loop BEFORE write-up.** ISEE math stays at 8 forms (quant 9, mathach 8). The next ISEE math round uses the
   screen-in-the-loop method and starts from blueprint areas with low live coverage.
+
+- **2026-10-31 — MAP Science batch 2 stage 1: all three areas HELD (rule 10).** Both graders of each area named the
+  same cross-item pattern in the COLD pass:
+  - Life: the trend-item key alone carries a trailing "as/with ..." clause; variable items use one passage template
+    that states each option's role (string lookup); definition-in-stem keys repeat the defining word; and the
+    interpolation key is the only option not printed in the table.
+  - Physical: the asked bar is the tallest, sits on the top tick label, and is the largest option.
+  - Earth: misconception distractors carry an intensifier plus a because/since rationale while the key is the plain,
+    shortest prediction.
+  Stage-1 drops otherwise L14 / P11 / E17. 36 single-grader returns would need re-check graders, and 4 fact errors
+  were confirmed (L5-05 shaded sunflowers grow taller; P6-15 ethanol + acetic acid gives ~77 °C, not 160 °C; P8-15
+  a 40 cm/s wave implies ~1.6 cm depth; E8-08 a rigid funnel). Every cold pick from 5 of 6 graders was on key.
+  earth-g1's cold file was malformed before hashing (40 picks lost); no rule uses cold picks. The scorer also
+  measured ascending-sorted distractors (59/60 numeric items), but `shuffleDrawnChoices` reorders every bank draw,
+  so it never reaches a student. Recorded, no checker needed. Nothing staged; MAP Science stays at 5 forms.
+  `scratchpad/map-science-b2/STAGE1-DECISION.json`. **Batch 3 re-authors fresh with each named pattern banned, and
+  the graders' cross_item_pattern question is asked on a small pilot cell before the full batch.**
