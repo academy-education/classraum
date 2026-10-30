@@ -6694,3 +6694,12 @@ structural checks are pre-flight only. See CLAUDE.md.
   double elimination; 22 b2 items were rebalanced by hand and no checker catches it yet. 6 graders (cold, then
   keyed after a hash) are running; the key-visible audit follows, and release goes on the agent passes (owner rule
   2026-10-30).
+
+- **2026-10-31 — ISEE Math s19 B4: HELD (prereg bar: more than 10 of 37 dropped).** Both anchored graders named
+  free eliminations killing 2 or more distractors on well over 10 items: units digit, parity, a perimeter or area cap,
+  the triangle inequality, a reciprocal above 1, a denominator that must be 64ths, adjacency pairs and range bounds.
+  Items named by both include A-07, A-16, A-18, A-35, B-02, C-15, D-03, D-07, E-14, F-09, C-17, C-18, D-19, F-01, F-03,
+  F-10 and R-03. No exclusivity or key problems. Nothing inserted. **Same lesson as MAP Math (2026-10-30): generator
+  rule lists do not stop a cold reader finding property-based free eliminations; option sets must be screened in
+  the loop BEFORE write-up.** ISEE math stays at 8 forms (quant 9, mathach 8). The next ISEE math round uses the
+  screen-in-the-loop method and starts from blueprint areas with low live coverage.

@@ -1,0 +1,315 @@
+{
+ "render_sha": "4f6a97c32019392b",
+ "grader": "Ab",
+ "half": 1,
+ "items": [
+  {
+   "id": "IM19A-05",
+   "pick": "5",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": {
+    "struck": [
+     "10"
+    ],
+    "how": "Range bound: only 8 odd primes are below 24, so at most 8 unordered pairs; 10 is impossible."
+   },
+   "difficulty": "medium",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "5+43, 7+41, 11+37, 17+31, 19+29. 6 likely counts 2+46 or 1; 10 is ordered count."
+  },
+  {
+   "id": "IM19A-06",
+   "pick": "26",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": {
+    "struck": [
+     "18"
+    ],
+    "how": "Magnitude: 9.75 / 0.375 is about 10/0.4 = 25; 18 is far off."
+   },
+   "difficulty": "easy",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "78/8 divided by 3/8 = 26. 24 and 25 survive the estimate; 24*3/8=9 exactly is a near-method check."
+  },
+  {
+   "id": "IM19A-07",
+   "pick": "4/3",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": {
+    "struck": [
+     "3/4",
+     "1/8",
+     "1/6"
+    ],
+    "how": "Sign/magnitude off the stem: 1/2 + 1/4 is between 0 and 1, so its reciprocal exceeds 1; 4/3 is the only option above 1."
+   },
+   "difficulty": "easy",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "Full free elimination: every distractor is below 1."
+  },
+  {
+   "id": "IM19A-08",
+   "pick": "91",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": null,
+   "difficulty": "easy",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "C(14,2)=14*13/2=91. Bound 14*13/2 < 98 would strike 105,182,156 but it is the cancellation itself, so not counted as a shortcut; item is one step."
+  },
+  {
+   "id": "IM19A-10",
+   "pick": "9",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": {
+    "struck": [
+     "4",
+     "8"
+    ],
+    "how": "Symmetry/parity: both endpoints lie between 4 and 5 in absolute value, so the integers run symmetrically about 0 and the count is odd."
+   },
+   "difficulty": "easy",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "-4 through 4 = 9."
+  },
+  {
+   "id": "IM19A-12",
+   "pick": "7/3",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": {
+    "struck": [
+     "1/2",
+     "4/3"
+    ],
+    "how": "Partial sum: the first two reciprocals already give 3/2, so the total exceeds 1/2 and 4/3."
+   },
+   "difficulty": "easy",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "Sum = sigma(12)/12 = 28/12 = 7/3. Adding 1/3 then 1/4 also passes 2."
+  },
+  {
+   "id": "IM19A-14",
+   "pick": "20",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": null,
+   "difficulty": "easy",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "n^2 = 400. 100 is n=400 confusion; 39/40 are odd-number-value traps."
+  },
+  {
+   "id": "IM19A-16",
+   "pick": "63/64",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": {
+    "struck": [
+     "15/16",
+     "31/32",
+     "3/32"
+    ],
+    "how": "Denominator: the last term is 1/64 and all others have denominator dividing 32, so the sum in lowest terms has denominator 64; also sum > 3/4 kills 3/32."
+   },
+   "difficulty": "easy",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "Full free elimination via denominator-that-must-occur. Finite geometric sum, in band."
+  },
+  {
+   "id": "IM19A-18",
+   "pick": "24",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": {
+    "struck": [
+     "23",
+     "9",
+     "4"
+    ],
+    "how": "Odd divisors of 120 are divisors of 15 (non-square, so an even number of odd divisors), so the sum is even, killing 23 and 9; 15 + 1 alone is 16, killing 4."
+   },
+   "difficulty": "medium",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "1+3+5+15 = 24. Full free elimination by parity plus magnitude."
+  },
+  {
+   "id": "IM19A-20",
+   "pick": "200",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": null,
+   "difficulty": "easy",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "~0.5*81/0.2 = 200 (39.8/0.198 = 201). Estimation is the method; no separate shortcut."
+  },
+  {
+   "id": "IM19A-21",
+   "pick": "1.0 x 10^6",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": {
+    "struck": [
+     "1.72 x 10^5",
+     "1.0 x 10^5"
+    ],
+    "how": "Magnitude: the sum must exceed the addend 9.2 x 10^5."
+   },
+   "difficulty": "easy",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "920,000 + 80,000 = 1,000,000. 9.28 x 10^5 is the exponent-mismatch trap and survives."
+  },
+  {
+   "id": "IM19A-29",
+   "pick": "102",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": null,
+   "difficulty": "easy",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "1-9: 45; 10-19: 10+45 = 55; 20: 2; total 102. 100 omits 20; 57 = 45+12 style trap."
+  },
+  {
+   "id": "IM19A-33",
+   "pick": "6",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": null,
+   "difficulty": "easy",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "3 quarters + 1 dime + 2 pennies = 6."
+  },
+  {
+   "id": "IM19A-34",
+   "pick": "5",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": {
+    "struck": [
+     "9"
+    ],
+    "how": "Limiting case: 1/2 is not greater than 0.8, so not all nine qualify."
+   },
+   "difficulty": "easy",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "Increasing list; 4/5 equals 0.8 exactly, leaving 5/6..9/10 = 5. 6 is the >= trap."
+  },
+  {
+   "id": "IM19A-35",
+   "pick": "385",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": {
+    "struck": [
+     "3025",
+     "506",
+     "285"
+    ],
+    "how": "Upper bound 10*100 = 1000 kills 3025; parity (five odd squares) makes the sum odd, killing 506; 100+81+64+49 = 294 already exceeds 285."
+   },
+   "difficulty": "easy",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "Full free elimination. 3025 = (1+..+10)^2 trap."
+  },
+  {
+   "id": "IM19B-02",
+   "pick": "960",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": {
+    "struck": [
+     "1152",
+     "800",
+     "400"
+    ],
+    "how": "Upper bound: no-stop output 144*8 = 1152, and stops reduce it, killing 1152; multiple-of: running stretches are 50 min (multiples of 5 min), so the total is a multiple of 12, killing 800 and 400."
+   },
+   "difficulty": "medium",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "50 min/hr -> 120 parts/hr -> 960. Full free elimination."
+  },
+  {
+   "id": "IM19B-11",
+   "pick": "8",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": {
+    "struck": [
+     "27",
+     "72"
+    ],
+    "how": "Magnitude: fat calories cannot exceed 240, so grams <= 240/9 < 27; kills 27 and 72."
+   },
+   "difficulty": "easy",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "72 cal / 9 = 8 g. 18 survives the bound."
+  },
+  {
+   "id": "IM19C-04",
+   "pick": "13",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": null,
+   "difficulty": "easy",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "t = 4, y = 13. All options odd; mod-4 pattern is not valid since t need not be an integer."
+  },
+  {
+   "id": "IM19C-10",
+   "pick": "420",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": {
+    "struck": [
+     "441"
+    ],
+    "how": "Parity: a product of consecutive integers is even; 441 is odd (a perfect square trap)."
+   },
+   "difficulty": "easy",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "2n+1 = 41, n = 20, 20*21 = 420. 210 = half; 380 = 19*20 off-by-one."
+  }
+ ],
+ "render_sha_end": "4f6a97c32019392b"
+}

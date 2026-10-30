@@ -1,0 +1,316 @@
+{
+ "render_sha": "4f6a97c32019392b",
+ "grader": "Aa",
+ "half": 2,
+ "items": [
+  {
+   "id": "IM19C-14",
+   "pick": "28",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": null,
+   "difficulty": "easy",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "(a+b)^2-(a-b)^2 = 4ab = 28. No option dies without the identity."
+  },
+  {
+   "id": "IM19C-15",
+   "pick": "1000",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": {
+    "struck": [
+     "1694",
+     "1331",
+     "729"
+    ],
+    "how": "units digit: at x=11 every power ends in 1, so units = 1-3+3-1 = 0; only 1000 ends in 0"
+   },
+   "difficulty": "easy",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "Expression is (x-1)^3 = 10^3 = 1000. Units-digit read kills all three distractors with no expansion."
+  },
+  {
+   "id": "IM19C-16",
+   "pick": "38",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": null,
+   "difficulty": "easy",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "Area factors (x+3)(x+4); sides 9 and 10 at x=6, perimeter 38. 90 is the area value; 40/42 are off-by-one sides. Parity (l+w odd -> perimeter 2 mod 4) would kill 40 but needs the factoring."
+  },
+  {
+   "id": "IM19C-17",
+   "pick": "11",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": {
+    "struck": [
+     "65",
+     "33"
+    ],
+    "how": "range bound: |x|<=7 and |y|<=4, so x-y<=11; 65 (49+16) and 33 (49-16) exceed it"
+   },
+   "difficulty": "easy",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "x=7, y=-4 gives 11. After the bound only 3 and 11 remain and 'greatest' picks the larger, so the bound nearly is the item."
+  },
+  {
+   "id": "IM19C-18",
+   "pick": "34",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": {
+    "struck": [
+     "24",
+     "21"
+    ],
+    "how": "adjacency: stem asks for the least integer meeting an inequality (a ceiling); the set contains exactly one adjacent pair 33/34, so the key is one of those"
+   },
+   "difficulty": "medium",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "5n/12 >= 14 -> n >= 33.6 -> 34. 33 gives 13.75 (fails). Adjacency tell narrows to 33/34."
+  },
+  {
+   "id": "IM19D-03",
+   "pick": "144",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": {
+    "struck": [
+     "225",
+     "900",
+     "48"
+    ],
+    "how": "48 is not a perfect square (area of a square); each rectangle has the square's side as one side and perimeter 30, so side < 15 and area < 225, killing 225 and 900"
+   },
+   "difficulty": "medium",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "Rectangles s by s/4: 2(s + s/4) = 30 -> s = 12, area 144. Perfect-square property plus a bound off the printed perimeter kills all three."
+  },
+  {
+   "id": "IM19D-07",
+   "pick": "20",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": {
+    "struck": [
+     "40",
+     "28",
+     "192"
+    ],
+    "how": "triangle inequality: diagonal < length + width = half the perimeter = 28; kills 40, 28 and 192"
+   },
+   "difficulty": "easy",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "14k = 56, k=4, sides 16 and 12, diagonal 20. Half-perimeter bound kills every distractor."
+  },
+  {
+   "id": "IM19D-18",
+   "pick": "90",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": {
+    "struck": [
+     "70",
+     "110",
+     "35"
+    ],
+    "how": "limiting case: DOE = (AOB+BOC)/2 is independent of the 70; set AOB=90 and DOE=45+45=90"
+   },
+   "difficulty": "easy",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "35 + 55 = 90. Classic bisector-of-linear-pair fact; the 70 is a red herring, which a student who knows the fact reads off instantly."
+  },
+  {
+   "id": "IM19D-19",
+   "pick": "32",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": {
+    "struck": [
+     "40",
+     "48"
+    ],
+    "how": "folding in half reduces the outline: folded perimeter must be less than the original 2(12+8)=40, killing 40 and 48"
+   },
+   "difficulty": "easy",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "Fold halves the 8 cm width: 12 by 4, perimeter 32. 28 is the wrong-fold (6 by 8) value; 32 vs 28 needs reading the fold direction."
+  },
+  {
+   "id": "IM19E-06",
+   "pick": "76",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": {
+    "struck": [
+     "101",
+     "100"
+    ],
+    "how": "bound: at most 4 toothpicks per square with sharing, so fewer than 4x25=100; kills 101 and 100"
+   },
+   "difficulty": "easy",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "3n+1 = 76. 77 remains after the bound (off-by-one)."
+  },
+  {
+   "id": "IM19E-12",
+   "pick": "110",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": null,
+   "difficulty": "medium",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "Next palindrome after 15951 is 16061; 16061 - 15951 = 110. 10 would give 15961 (not palindrome); 210 gives 16161, a later palindrome. No shortcut kills options."
+  },
+  {
+   "id": "IM19E-14",
+   "pick": "2.62",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": {
+    "struck": [
+     "42.62",
+     "57.38"
+    ],
+    "how": "magnitude: times are 62.47 s and 59.85 s, within ~3 s of each other; 42.62 and 57.38 are far too large"
+   },
+   "difficulty": "easy",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "62.47 - 59.85 = 2.62. 3.62 (borrow error) survives the magnitude cut."
+  },
+  {
+   "id": "IM19F-01",
+   "pick": "11",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": {
+    "struck": [
+     "30",
+     "20"
+    ],
+    "how": "adjacency: place counted from the top is (number above her)+1, and the set holds exactly one adjacent pair 10/11"
+   },
+   "difficulty": "medium",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "She beats 30 of 40, so 10 are above her: 11th. Adjacency tell narrows to 10/11; 30 is the count she beat."
+  },
+  {
+   "id": "IM19F-03",
+   "pick": "0.06",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": {
+    "struck": [
+     "3",
+     "0.56"
+    ],
+    "how": "bound: both probabilities lie in [0,1] and the theoretical one is 0.5, so the excess is at most 0.5; kills 3 and 0.56"
+   },
+   "difficulty": "easy",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "28/50 - 1/2 = 0.56 - 0.50 = 0.06. 0.28 survives the bound."
+  },
+  {
+   "id": "IM19F-09",
+   "pick": "51",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": {
+    "struck": [
+     "25",
+     "2"
+    ],
+    "how": "magnitude: the median of a list running 2 to 100 must sit near the middle (~50); 25 and 2 are far from it"
+   },
+   "difficulty": "easy",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "(50+52)/2 = 51. 52 is the 26th term; 51 is also the midpoint of the endpoints, so 51 vs 52 is the item."
+  },
+  {
+   "id": "IM19F-10",
+   "pick": "1/10",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": {
+    "struck": [
+     "1/11"
+    ],
+    "how": "denominator that cannot occur: the sample space is the 90 two-digit numbers, so the probability has a denominator dividing 90; 1/11 is impossible"
+   },
+   "difficulty": "medium",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "9 repdigits / 90 = 1/10. 11/90 counts 100-like errors; 1/9 uses 81 or 9-of-81."
+  },
+  {
+   "id": "IM19R-02",
+   "pick": "28",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": {
+    "struck": [
+     "16",
+     "32"
+    ],
+    "how": "divisibility: equal counts N is a multiple of 24, and packs = N/6 + N/8 = 7N/24, a multiple of 7; kills 16 and 32"
+   },
+   "difficulty": "medium",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "N = 96: 16 + 12 = 28 packs. 21 (N=72) survives the multiple-of-7 cut; 'greatest' then picks 28."
+  },
+  {
+   "id": "IM19R-03",
+   "pick": "120",
+   "exclusive": true,
+   "second_defensible": null,
+   "free_elimination": {
+    "struck": [
+     "90"
+    ],
+    "how": "multiple-of: n must be a multiple of 8; 90 is not"
+   },
+   "difficulty": "medium",
+   "in_band": true,
+   "band_reason": null,
+   "duplicate_of_live": null,
+   "note": "n multiple of lcm(8,30)=120; gcd(120,90)=30. 720 fails (gcd 90); 240 is valid but not least."
+  }
+ ],
+ "render_sha_end": "4f6a97c32019392b"
+}
