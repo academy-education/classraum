@@ -60,8 +60,6 @@ for (const [check, needle, label] of [
   ['BARPOS', 'Physical Science', 'Physical asked bars all middle'],
   ['BAREXT', 'top-tick', 'top-tick value never the key'],
   ['BAREXT', 'shortest bar value is offered in none', 'shortest bar never offered'],
-  ['RANKBAL', 'Earth and Space Science claim', 'Earth claim key shortest'],
-  ['RANKBAL', 'Physical Science values', 'Physical values key smallest'],
   ['NAMETPL', '-sk', 'Earth -sk names'],
 ]) {
   const h = batchHits(p1, check, needle)
@@ -109,7 +107,10 @@ ok(fires(tset('cccc'), 'TRENDFORM'), 'TRENDFORM compound keys 4/8 (50%) fires')
 // RANKBAL: claims n=3 with distinct length ranks pass; two shortest fail
 const claim = r => { const o = ['aaaaaa bb cc dd ee ff', 'aaaaaa bb cc dd ee ffgg', 'aaaaaa bb cc dd ee ffgghh', 'aaaaaa bb cc dd ee ffgghhii']; return { format: 'claim', choices: o, correct_answer: o[r - 1] } }
 ok(!fires(mk([claim(1), claim(2), claim(4)]), 'RANKBAL'), 'RANKBAL claims n=3 ranks 1/2/4 pass')
-ok(fires(mk([claim(1), claim(1), claim(4)]), 'RANKBAL'), 'RANKBAL claims n=3 ranks 1/1/4 fire')
+// RECALIBRATED 2026-10-31 (MAP-SCIENCE-B3-FULL.prereg.md; science-b3full/validate-b3full-rules.mjs): a rank needs 3 keys
+// and a binomial tail under 0.01 (or every key of the cell). Pilot 1's named 2-of-3 cells now sit below it by design.
+ok(!fires(mk([claim(1), claim(1), claim(4)]), 'RANKBAL'), 'RANKBAL claims n=3 ranks 1/1/4 pass (recalibrated: 2 keys are under the 3-item threshold)')
+ok(fires(mk([claim(1), claim(1), claim(1)]), 'RANKBAL'), 'RANKBAL claims n=3 ranks 1/1/1 fire (every key of the cell)')
 // NAMETPL: two shared endings pass, three fire
 const named = ns => mk(ns.map(n => ({ ...claim(1), names_used: [`Site ${n}`] })))
 ok(!fires(named(['Hesk', 'Marsk', 'Orla']), 'NAMETPL'), 'NAMETPL 2 items ending -sk pass')

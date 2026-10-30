@@ -152,7 +152,10 @@ export const B3_CHECKS = ['TRENDPAR', 'ROLESTATE', 'ECHO', 'INTERP', 'BARTOP', '
  *  forbade the asked bar being the chart's extreme) plus per-item TRENDDIR and batch BARPOS, BAREXT, TRENDFORM,
  *  RANKBAL, NAMETPL, which test that a property sits on keys at its base rate instead of banning it. */
 export const B3P2_CHECKS = ['TRENDDIR', 'BARPOS', 'BAREXT', 'TRENDFORM', 'RANKBAL', 'NAMETPL']
-const RULESETS = ['pilot', 'b1', 'b2', 'b3', 'b3p2']
+/** Full batch 3 (MAP-SCIENCE-B3-FULL.prereg.md): `--rules b3f` = every b3p2 check (RANKBAL and NAMETPL recalibrated for
+ *  both) plus item TERMSHAPE, CLAIMPOL and batch FILLER (refusing) and READCAST, NAMESHAPE (reported only). */
+export const B3F_CHECKS = ['TERMSHAPE', 'CLAIMPOL', 'FILLER', 'READCAST', 'NAMESHAPE']
+const RULESETS = ['pilot', 'b1', 'b2', 'b3', 'b3p2', 'b3f']
 /** What a trend option says once its direction words are removed (TRENDPAR). */
 export const trendSkeleton = s => norm(String(s).replace(TREND_STRIP, ' ')).replace(/[.]/g, ' ').replace(/\s+/g, ' ').trim()
 /** Crude stem for ECHO: lower-case, one suffix off. Two words echo when one stem starts the other (>= 4 letters). */
@@ -225,7 +228,7 @@ export function xdupReason(a, b) {
 }
 export function checkItem(it, slot, ex = [], opts = {}) {
   const p = [], add = m => p.push(m)
-  const R = opts.rules ?? 'b1', b1 = R === 'b1' || R === 'b2' || R === 'b3' || R === 'b3p2', dis = opts.disabled ?? new Set()
+  const RF = opts.rules === 'b3f', R = RF ? 'b3p2' : (opts.rules ?? 'b1'), b1 = R === 'b1' || R === 'b2' || R === 'b3' || R === 'b3p2', dis = opts.disabled ?? new Set()
   const on = id => b1 && !dis.has(id), on2 = id => (R === 'b2' || R === 'b3' || R === 'b3p2') && !dis.has(id)
   if (!slot) return [`SLOT ${it?.id}: not a slot in slots.json`]
   const want = { map_area: slot.area, grade_target: slot.g, tier: slot.tier, difficulty: DIFF[slot.tier], rit_band_target: RIT[slot.g][slot.tier], dci: slot.dci, kind: slot.kind, stimulus: slot.stimulus, format: slot.format, ask: slot.ask, invented: slot.invent }
@@ -454,6 +457,23 @@ export function checkItem(it, slot, ex = [], opts = {}) {
     if (n === 1 || n === 3) add(`CLAIMRAT ${n} of 4 claim options carry a degree word (much / exactly / very / no effect ...): use 0, 2 or 4 (E5-06 "much hotter", E8-14 "exactly the same")`)
   }
 
+  /* ---------- B3F item rules (full batch 3; each from a pilot-2 grader note) ---------- */
+  const on5 = id => RF && !dis.has(id)
+  // TERMSHAPE (pilot-2 L6-02, life-g1 + life-g2: "fossilization" the only one-word term among multi-word ones): in a term
+  // item no option is alone in its word count. Symmetric on purpose: it constrains every option, so it cannot invert
+  // into "the lone-shaped option is never the key".
+  if (on5('TERMSHAPE') && slot.format === 'term') {
+    const wc = ch.map(c => words(c).length), c = {}; for (const w of wc) c[w] = (c[w] ?? 0) + 1
+    const lone = ch.filter((_, i) => c[wc[i]] === 1)
+    if (lone.length) add(`TERMSHAPE term options have word counts ${wc.join('/')}; ${lone.map(x => `"${x}"`).join(', ')} ${lone.length === 1 ? 'is' : 'are'} alone in its word count (L6-02 "fossilization"); give every option a partner of the same word count`)
+  }
+  // CLAIMPOL (pilot-2 L6-01, life-g2: the key the lone "No" among three "Yes"-family answers): yes/no-led claim options
+  // come 0, 2 or 4 of each polarity.
+  if (on5('CLAIMPOL') && slot.format === 'claim') {
+    const y = ch.filter(c => /^\s*yes\b/i.test(c)).length, n = ch.filter(c => /^\s*no\b/i.test(c)).length
+    if ((y || n) && (y % 2 || n % 2)) add(`CLAIMPOL ${y} option(s) start "Yes" and ${n} start "No": a lone polarity (L6-01's key was the only "No"); use 2 and 2, or 4 and 0`)
+  }
+
   // LEAK
   if (g?.caption) {
     const kn = numOf(key)
@@ -481,7 +501,8 @@ export function checkItem(it, slot, ex = [], opts = {}) {
 /* ---------------- batch ---------------- */
 export function checkBatch(items, SLOT, opts = {}) {
   const p = [], add = m => p.push(m), info = []
-  const R = opts.rules ?? 'b1', b1 = R === 'b1' || R === 'b2' || R === 'b3' || R === 'b3p2', dis = opts.disabled ?? new Set()
+  let fatal = false
+  const RF = opts.rules === 'b3f', R = RF ? 'b3p2' : (opts.rules ?? 'b1'), b1 = R === 'b1' || R === 'b2' || R === 'b3' || R === 'b3p2', dis = opts.disabled ?? new Set()
   const on = id => b1 && !dis.has(id), on2 = id => (R === 'b2' || R === 'b3' || R === 'b3p2') && !dis.has(id)
   const ids = items.map(i => i.id)
   if (new Set(ids).size !== ids.length) add('BATCH duplicate item ids')
@@ -658,38 +679,126 @@ export function checkBatch(items, SLOT, opts = {}) {
     }
   }
   // RANKBAL (pilot-1 Earth g1/g2: claim key shortest in E5-02 and E8-01; Physical: values key smallest in P5-01 and
-  // P7-01; batch-2 Earth: the plain shortest claim): within one area and one format, no key rank (value rank for
-  // values, length rank otherwise) holds more than ceil(n/4) keys (+1 once n >= 8), n >= 2; also batch-wide per format.
+  // P7-01; batch-2 Earth: the plain shortest claim): within one area and one format (and batch-wide per format), no key
+  // rank (value rank for values, length rank otherwise) is over-represented.
+  // RECALIBRATED 2026-10-31 for the full batch (MAP-SCIENCE-B3-FULL.prereg.md): the first form (cap ceil(n/4), +1 at
+  // n >= 8) refused 16 times on batch 2's 224 items, none named by a grader, because any repeat at n = 2-7 fired. Now a
+  // rank count c fires only when c >= 3 (the A1 threshold: a pattern needs 3 items) AND the one-sided binomial tail
+  // P(X >= c | n, 1/4) < RANKBAL_ALPHA, or c is every key of the cell (a template at n >= 3). Pilot 1's two named cells
+  // (2 of 3) sit below it by design. Cells need n >= RANKBAL_MIN_N, except the all-keys case, which needs n >= 3.
   if (on4('RANKBAL')) {
+    let tests = 0
     for (const [nm, pool] of scopes) {
       for (const f of [...new Set(pool.map(i => SLOT[i.id]?.format))].filter(Boolean)) {
         const F = pool.filter(i => SLOT[i.id]?.format === f)
-        if (F.length < 2) continue
+        if (F.length < 3) continue
         const c = { 1: 0, 2: 0, 3: 0, 4: 0 }; for (const i of F) { const r = keyRank(i, f); if (r) c[r]++ }
-        const cap = Math.ceil(F.length / 4) + (F.length >= 8 ? 1 : 0)
-        info.push(`RANKBAL ${nm} ${f}: n=${F.length}, key ${f === 'values' ? 'value' : 'length'} ranks 1:${c[1]} 2:${c[2]} 3:${c[3]} 4:${c[4]} (cap ${cap})`)
-        for (const [r, v] of Object.entries(c)) if (v > cap) add(`BATCH RANKBAL ${nm} ${f}: ${v} of ${F.length} keys are ${f === 'values' ? 'value' : 'length'} rank ${r} (${r === '1' ? (f === 'values' ? 'smallest' : 'shortest') : r === '4' ? (f === 'values' ? 'largest' : 'longest') : `rank ${r}`}; cap ${cap})`)
+        if (F.length < RANKBAL_MIN_N && !Object.values(c).includes(F.length)) continue
+        tests++
+        const worst = Object.entries(c).map(([r, v]) => [r, v, binomUpper(F.length, 0.25, v)]).sort((x, y) => x[2] - y[2])[0]
+        info.push(`RANKBAL ${nm} ${f}: n=${F.length}, key ${f === 'values' ? 'value' : 'length'} ranks 1:${c[1]} 2:${c[2]} 3:${c[3]} 4:${c[4]} (most skewed: rank ${worst[0]} x${worst[1]}, P=${worst[2].toFixed(4)}; fires at >= ${RANKBAL_MIN_HITS} and P < ${RANKBAL_ALPHA}, or all n)`)
+        for (const [r, v] of Object.entries(c)) {
+          const pv = binomUpper(F.length, 0.25, v)
+          if (v >= RANKBAL_MIN_HITS && (pv < RANKBAL_ALPHA || v === F.length)) add(`BATCH RANKBAL ${nm} ${f}: ${v} of ${F.length} keys are ${f === 'values' ? 'value' : 'length'} rank ${r} (${r === '1' ? (f === 'values' ? 'smallest' : 'shortest') : r === '4' ? (f === 'values' ? 'largest' : 'longest') : `rank ${r}`}; P(X >= ${v} | n=${F.length}, 1/4) = ${pv.toFixed(4)} < ${RANKBAL_ALPHA})`)
+        }
       }
     }
+    info.push(`RANKBAL cells tested: ${tests} (n >= ${RANKBAL_MIN_N})`)
   }
-  // NAMETPL (pilot-1 Earth g2: "Field Hesk", "Town Marsk", "Ward Tesk"): invented name cores in one area share no
-  // two-letter ending across 3 or more items.
+  // NAMETPL (pilot-1 Earth g2: "Field Hesk", "Town Marsk", "Ward Tesk"): invented name cores in one area do not share a
+  // two-letter ending more often than English names do.
+  // RECALIBRATED 2026-10-31 (MAP-SCIENCE-B3-FULL.prereg.md): the first form fired whenever 3 items shared ANY ending and
+  // refused 14 times on batch 2, all on common English endings (-on, -er, -an, -en). Now each ending's expected item
+  // count comes from its base rate among English given names (name-endings.json, from /usr/share/dict/propernames):
+  // lambda = sum over the area's name-bearing items of 1 - (1 - p_e)^m_i (m_i = the item's name cores), and the ending
+  // fires when observed >= NAMETPL_MIN and the Poisson tail P(X >= observed | lambda) < NAMETPL_ALPHA. "-sk" (p ~ 0.0004)
+  // fires at 3 items; "-on" (p = 0.033) needs far more than an area holds.
   if (on4('NAMETPL')) {
-    for (const ar of areas) {
+    const T = nameEndings()
+    if (!T) { add(`BATCH NAMETPL cannot read ${NAME_ENDINGS_PATH} (run make-name-endings.mjs): no base rate, no verdict`); fatal = true }
+    else for (const ar of areas) {
+      const per = live.filter(x => area(x) === ar).map(i => ({ id: i.id, cores: [...new Set((i.names_used ?? []).map(x => String(x).trim().split(/\s+/).pop()).filter(n => /^[A-Z][a-z]{2,}$/.test(n)))] })).filter(x => x.cores.length)
       const where = {}
-      for (const i of live.filter(x => area(x) === ar)) for (const n of new Set((i.names_used ?? []).map(x => String(x).trim().split(/\s+/).pop()))) {
-        if (!/^[A-Z][a-z]{2,}$/.test(n)) continue
-        ;(where[n.slice(-2)] ??= new Map()).set(i.id, n)
+      for (const x of per) for (const n of x.cores) (where[n.slice(-2)] ??= new Map()).set(x.id, n)
+      let worst = null
+      for (const [e, m] of Object.entries(where)) {
+        const pe = Math.max(T.counts[e] ?? 0, 0.5) / T.n
+        const lambda = per.reduce((s, x) => s + 1 - (1 - pe) ** x.cores.length, 0)
+        const pv = poissonUpper(lambda, m.size)
+        if (!worst || pv < worst.pv) worst = { e, k: m.size, lambda, pv }
+        if (m.size >= NAMETPL_MIN && pv < NAMETPL_ALPHA) add(`BATCH NAMETPL ${ar}: ${m.size} items' invented names end in "-${e}" (${[...m].map(([id, n]) => `${n} ${id}`).join(', ')}); expected ${lambda.toFixed(2)} at the English base rate (P = ${pv.toExponential(1)} < ${NAMETPL_ALPHA}); one name template`)
       }
-      for (const [e, m] of Object.entries(where)) if (m.size >= NAMETPL_MIN) add(`BATCH NAMETPL ${ar}: ${m.size} items' invented names end in "-${e}" (${[...m].map(([id, n]) => `${n} ${id}`).join(', ')}); one name template`)
+      info.push(`NAMETPL ${ar}: ${per.length} name-bearing items, ${Object.keys(where).length} endings tested${worst ? `; most over-represented -${worst.e} x${worst.k} (expected ${worst.lambda.toFixed(2)}, P = ${worst.pv.toExponential(1)})` : ''}`)
     }
   }
-  return { p, info, fatal: false }
+  /* ---------- B3F batch rules (full batch 3; MAP-SCIENCE-B3-FULL.prereg.md; superset of b3p2) ---------- */
+  const on5 = id => RF && !dis.has(id)
+  // FILLER (pilot-2 life-g1 + life-g2: "It remained constant." a distractor in both Life trend items, never the key): an
+  // option text that is a distractor in 2+ items of one area (or of the batch) and the key in none is a stock filler.
+  // Values and conditions options are exempt (a repeated number or label is not a filler; labels are unique by NAMEREUSE).
+  if (on5('FILLER')) {
+    for (const [nm, pool] of scopes) {
+      const use = {}
+      for (const i of pool.filter(x => !['values', 'conditions'].includes(SLOT[x.id]?.format))) for (const c of i.choices) {
+        const k = norm(c).replace(/[.]+$/, ''); (use[k] ??= { d: new Set(), k: new Set(), text: c })[c === i.correct_answer ? 'k' : 'd'].add(i.id)
+      }
+      const reused = Object.values(use).filter(u => u.d.size + u.k.size >= 2)
+      info.push(`FILLER ${nm}: ${Object.keys(use).length} distinct option texts, ${reused.length} used in 2+ items`)
+      for (const u of reused) if (u.d.size >= 2 && !u.k.size) add(`BATCH FILLER ${nm}: "${u.text}" is a distractor in ${u.d.size} items (${[...u.d].join(', ')}) and the key in none; a reused filler dies on sight`)
+    }
+  }
+  // READCAST (pilot-2 life-g1: in read items the one unprinted value is never the key) and NAMESHAPE (pilot-2 life-g1/g2,
+  // phys-g1: one invented-name template per area): REPORTED, never refused. A student sees no printed values on a drawn
+  // axis, so an unprinted option is only identifiable by reading the chart, which is the task; and a name template keys
+  // nothing. Both are printed so a grader's remark can be checked against the counts.
+  if (on5('READCAST')) for (const [nm, pool] of scopes) {
+    const RD = pool.filter(isRead); if (!RD.length) continue
+    const all4 = RD.filter(i => i.choices.every(c => readYs(i).some(y => Math.abs(y - (numOf(c)?.v ?? NaN)) < 1e-9))).length
+    info.push(`READCAST ${nm}: read items ${RD.length}, all four options plotted values in ${all4}, one or more unprinted options in ${RD.length - all4}`)
+  }
+  if (on5('NAMESHAPE')) for (const ar of areas) {
+    const c = {}, I = live.filter(x => area(x) === ar && (x.names_used ?? []).length)
+    for (const i of I) { const k = nameShape(i.names_used[0]); c[k] = (c[k] ?? 0) + 1 }
+    const top = Object.entries(c).sort((a, b) => b[1] - a[1])
+    info.push(`NAMESHAPE ${ar}: ${I.length} items, ${top.length} first-name templates; top ${top.slice(0, 4).map(([k, v]) => `"${k}" ${v}`).join(', ')}`)
+  }
+  return { p, info, fatal }
 }
 export const BAREXT_BAND = [0.15, 0.5]
 export const TRENDFORM_BAND = [0.15, 0.4]
 export const TRENDFORM_MIN = 4
 export const NAMETPL_MIN = 3
+export const NAMETPL_ALPHA = 0.001
+export const RANKBAL_ALPHA = 0.01
+export const RANKBAL_MIN_N = 4
+export const RANKBAL_MIN_HITS = 3
+export const NAME_ENDINGS_PATH = join(HERE, 'name-endings.json')
+let _endings
+/** The English given-name ending base rate (name-endings.json), or null when it cannot be read. */
+export function nameEndings() {
+  if (_endings !== undefined) return _endings
+  try { const j = JSON.parse(readFileSync(NAME_ENDINGS_PATH, 'utf8')); _endings = j?.counts && j._n > 0 ? { counts: j.counts, n: j._n } : null } catch { _endings = null }
+  return _endings
+}
+const lnFact = n => { let s = 0; for (let k = 2; k <= n; k++) s += Math.log(k); return s }
+/** One-sided binomial tail P(X >= c), X ~ Bin(n, p). */
+export function binomUpper(n, p, c) {
+  if (c <= 0) return 1
+  let s = 0
+  for (let k = c; k <= n; k++) s += Math.exp(lnFact(n) - lnFact(k) - lnFact(n - k) + k * Math.log(p) + (n - k) * Math.log(1 - p))
+  return Math.min(1, s)
+}
+/** One-sided Poisson tail P(X >= c), X ~ Poisson(lambda). */
+export function poissonUpper(lambda, c) {
+  if (c <= 0) return 1
+  let below = 0
+  for (let k = 0; k < c; k++) below += Math.exp(-lambda + k * Math.log(lambda) - lnFact(k))
+  return Math.max(0, 1 - below)
+}
+/** Template of an invented name: lowercase word -> w, Capitalized word -> W, a code with a digit -> C, other caps -> K. */
+export function nameShape(n) {
+  return String(n).trim().split(/\s+/).map(t => /\d/.test(t) ? 'C' : /^[a-z]/.test(t) ? 'w' : /^[A-Z][a-z']+$/.test(t) ? 'W' : 'K').join(' ')
+}
 const isRead = i => i.format === 'values' && i.ask === 'read' && (i.graphic?.type === 'bar' || i.graphic?.type === 'line') && !shapeProblems(i.graphic).length
 const readYs = i => (i.graphic.type === 'bar' ? i.graphic.bars.map(b => b.value) : i.graphic.series[0].points.map(q => q[1]))
 /** tallest | shortest | middle: where the key's value sits among the chart's plotted values. */
@@ -799,8 +908,8 @@ if (isMain) {
   const A = process.argv.slice(2)
   const ri = A.indexOf('--rules'), di = A.indexOf('--disable')
   const RUNOPTS = { rules: ri >= 0 ? A[ri + 1] : 'b1', disabled: new Set(di >= 0 ? A[di + 1].split(',') : []) }
-  if (!RULESETS.includes(RUNOPTS.rules)) { console.error('REFUSING: --rules must be pilot, b1, b2, b3 or b3p2'); process.exit(2) }
-  if (RUNOPTS.rules === 'b3p2' && A.includes('--break-test')) { console.error('REFUSING: b3p2 is break-tested on real items by science-b3p2/validate-b3p2-rules.mjs (batch 2 + pilot 1), not on fixtures'); process.exit(2) }
+  if (!RULESETS.includes(RUNOPTS.rules)) { console.error('REFUSING: --rules must be pilot, b1, b2, b3, b3p2 or b3f'); process.exit(2) }
+  if ((RUNOPTS.rules === 'b3p2' || RUNOPTS.rules === 'b3f') && A.includes('--break-test')) { console.error('REFUSING: b3p2 is break-tested on real items by science-b3p2/validate-b3p2-rules.mjs (batch 2 + pilot 1), not on fixtures'); process.exit(2) }
   if (A.includes('--break-test')) await breakTest(RUNOPTS.rules === 'pilot' ? 'b1' : RUNOPTS.rules)
   if (A.includes('--selftest')) await selftest(RUNOPTS.disabled)
   const die = m => { console.error('REFUSING: ' + m); process.exit(2) }
