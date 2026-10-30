@@ -44,7 +44,14 @@ for (const r of rows) {
   if (new Date(r.updated_at) > new Date(w.updated_at)) refuse(`${w.qid} (${r.id}) edited after staging (${r.updated_at} > ${w.updated_at}): the audit is stale`)
   if (r.archived) refuse(`${w.qid} (${r.id}) is archived`)
 }
-const todo = rows.filter((r) => !r.verified)
+// Coordinator hold, 2026-10-31: E5-02 is a DATA item whose table is exactly the inverse-square law (both stage-2
+// auditors). The owner's "no_source alone clears" rule covers standalone knowledge items, not data items whose figure
+// adds nothing, so it stays staged.
+const COORD_HOLD = new Set(['MSB3-E5-02'])
+const qidOf = new Map(pop.map((r) => [r.row_id, r.qid]))
+if ([...COORD_HOLD].some((q) => !pop.some((r) => r.qid === q))) refuse('a coordinator-hold id is not in the population')
+const todo = rows.filter((r) => !r.verified && !COORD_HOLD.has(qidOf.get(r.id)))
+console.log(`coordinator hold: ${[...COORD_HOLD].join(', ')}`)
 const by = {}; for (const r of rows) { by[r.cohort] ??= { release: 0, already: 0 }; r.verified ? by[r.cohort].already++ : by[r.cohort].release++ }
 for (const [c, v] of Object.entries(by).sort()) console.log(`  ${c.padEnd(22)} to release ${String(v.release).padStart(3)}  already verified ${v.already}`)
 console.log(`population ${rows.length}; to write ${todo.length}; held at stage 2 (not staged): ${S2.held.length}`)
