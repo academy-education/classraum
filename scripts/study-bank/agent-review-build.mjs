@@ -7,6 +7,9 @@
  *   node scripts/study-bank/agent-review-build.mjs --wave2 [--write]
  *        # wave 2 (AGENT-REVIEW-WAVE2.prereg.md): ISEE/ACT Reading, ACT English,
  *        # TOEFL; writes MANIFEST-wave2.json and never touches MANIFEST.json
+ *   node scripts/study-bank/agent-review-build.mjs --wave2 --cohorts a,b --manifest MANIFEST-x.json [--write]
+ *        # the wave-2 layout and prompts for ONLY the listed cohorts (each must be staged), written to the
+ *        # named manifest; MANIFEST-wave2.json and every other packet dir are left alone (2026-10-31, ISEE d17-21)
  *
  * Population: every STAGED (verified=false, not archived) row of the strata
  * below. MAP Science is excluded — every staged MAP Science cohort already has a
@@ -49,6 +52,13 @@ const WAVES = {
 }
 const WAVE = WAVES[process.argv.includes('--wave2') ? 2 : 1]
 const die = m => { console.error(`agent-review-build: ${m}`); process.exit(2) }
+const argv = k => { const i = process.argv.indexOf(k); return i >= 0 ? process.argv[i + 1] : null }
+const ONLY = argv('--cohorts') ? argv('--cohorts').split(',').map(s => s.trim()).filter(Boolean) : null
+if (ONLY) {
+  const name = argv('--manifest')
+  if (!name || !/^MANIFEST-[\w.-]+\.json$/.test(name) || name === WAVE.manifest || name === 'MANIFEST.json') die('--cohorts needs --manifest MANIFEST-<name>.json (not an existing wave manifest)')
+  WAVE.manifest = name
+}
 
 async function db() {
   const { createClient } = await import('@supabase/supabase-js')
@@ -62,6 +72,7 @@ async function loadStratum(client, { family, section, tasks }) {
     q = q.eq('family', family).eq('section', section).eq('verified', false).or('archived.is.null,archived.eq.false')
     if (tasks) q = q.in('task', tasks)
     for (const c of WAVE.skip) q = q.neq('cohort', c)
+    if (ONLY) q = q.in('cohort', ONLY)
     return q
   }
   const { count, error: cErr } = await scope(client.from('study_item_bank').select('id', { count: 'exact', head: true }))
@@ -96,6 +107,8 @@ async function main() {
     console.log(`${s.family}/${s.section}: ${r.length} staged rows in ${new Set(r.map(x => x.cohort)).size} cohorts`)
     rows.push(...r)
   }
+  if (ONLY) for (const c of ONLY) if (!rows.some(r => r.cohort === c)) die(`--cohorts: ${c} has no staged rows in these strata`)
+  if (!rows.length) die('no rows')
   const rank = r => WAVE.strata.findIndex(s => s.family === r.family && s.section === r.section)
   const packets = planPackets(rows).sort((x, y) => rank(x.units[0].items[0]) - rank(y.units[0].items[0]))
   const briefSha = createHash('sha256').update(readFileSync(join(ROOT, BRIEF))).digest('hex')

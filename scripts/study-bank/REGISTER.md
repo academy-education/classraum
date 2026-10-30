@@ -6639,3 +6639,14 @@ structural checks are pre-flight only. See CLAUDE.md.
   secret"), so 80 drops as a selection, and 79 survive. Survivors stay staged, release through a Daniel audit
   sample. **Lesson for MRV5:** theme distractor families must exclude "plot summary / restates events"; every theme
   distractor must state a lesson. Literary binds MAP Reading (13 per form), so the next batch is Literary-heavy.
+
+- **2026-10-31 — ISEE Reading drafts 17-21 authored and staged (180, 5 x 36); agent review running (15 graders,
+  wave-2 instrument).** `isee-reading-drafts-17-21.METHOD.md`. **Finding on draft-14:** it did NOT clear for lack of
+  a tell. Grader c flagged one_template and reused_option_set on it, and a and b raised only letter position, so the
+  pattern never reached two graders. The new merge check fails drafts 13, 14 and 16 on lone-surface-feature keys.
+  Draft 14 is the prose bar, not the structure. Method: a per-passage question mix (6 of 8 kinds, no two passages
+  in a draft share a mix); distractor-construction labels capped at 2 per kind per draft; no shared key 4-grams or
+  options across all five drafts; a per-draft attitude-word pool disjoint from the 244 live and staged sets; and the
+  merge fails on a key that is the lone carrier of a surface feature. Checks are all clean, including quote 0 and
+  xcheck 0. The author also hand-added balanced ruled-out distractors to 7 items where the key was the only two-sided
+  option. `agent-review-build.mjs` gained a `--cohorts/--manifest` mode.
