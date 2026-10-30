@@ -6720,3 +6720,13 @@ structural checks are pre-flight only. See CLAUDE.md.
   so it never reaches a student. Recorded, no checker needed. Nothing staged; MAP Science stays at 5 forms.
   `scratchpad/map-science-b2/STAGE1-DECISION.json`. **Batch 3 re-authors fresh with each named pattern banned, and
   the graders' cross_item_pattern question is asked on a small pilot cell before the full batch.**
+
+- **2026-10-31 — MAP Science b3 PILOT failed its gate in all three areas (both graders per area named a pattern),
+  so the full batch is NOT written.** Life: trend keys are "X, then Y" compounds (both trend keys at C) and the key
+  is the only option in the data's direction ("dropped, then declined" has no plain "It fell"). Physical: the
+  B17 ban ("asked bar never tallest") INVERTED, so the option equal to the tallest bar on the top tick is never the
+  key and dies on sight. Earth: claim keys are still the plain, shortest statement (E5-02, E8-01). Also: E7-02 has a
+  fact error (it puts the far point of Earth's orbit in January). **Lesson, now on three item families (MAP Math
+  central key, b3 bars, b3 trends): a rule that FORBIDS a key property creates the inverse tell. Properties must be
+  RANDOMIZED at their base rate (key is the tallest bar about 1 in 4, key is the shortest claim about 1 in 4, trend
+  key form drawn from the same distribution as distractor forms), never banned.** Pilot 2 follows this principle.
