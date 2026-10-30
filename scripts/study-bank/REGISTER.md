@@ -6659,3 +6659,9 @@ structural checks are pre-flight only. See CLAUDE.md.
   passage per genre per draft, per-passage question mixes, and a merge check that refuses the named patterns. The old
   draft-18 `screencheck.ts` always read draft 8's batch whatever draft it was given; the new copy reads the batch it
   is passed and exits 2 on empty input.
+
+- **2026-10-31 — SSAT Reading d19-22 agent review: 138 of 144 cleared, 0 cohorts held** (d19, d21 and d22 36/36;
+  d20 30/36, one passage dropped). This is the best agent-authored reading result so far (wave-1 SSAT drafts were
+  6-36 per draft). What changed: one passage per genre per draft, per-passage question mixes, and merge refusals for
+  each named cross-item pattern. Results in `agent-review/results-ssat-d19-22/`. Release route: a Daniel audit
+  sample, as for the other agent-cleared cohorts. Carry this method to ISEE and MAP reading.
