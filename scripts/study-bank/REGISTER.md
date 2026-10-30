@@ -6543,3 +6543,15 @@ structural checks are pre-flight only. See CLAUDE.md.
   structural-proxy lesson from CLAUDE.md again. **Next MAP Math batches change the method:** a fresh cold screener runs
   on each CANDIDATE option set inside the authoring loop, and only screen-clean candidates are written up. A
   generator rule list cannot stand in for the attack.
+
+- **2026-10-30 — MAP Math n789 (Number Systems) GRADED: area HELD on the options-only bar.** Pass 2 cleared all 5
+  revised items; 2 were withdrawn (script search: their rank-2 slot builds in the strike). 7 frozen. Graders d/e: keys
+  14/14 on key cold, coldcheck 0 changed. One drop_recommend (MB8-N7-05, too_hard, grader e) and one R7 tie-break
+  (MB9-N5-01). **Options-only: 61.9% vs control 19.0% (margin +42.9, bar +10) -> HOLD.** The solvers' own heuristic was
+  "central value among the options; the distractors spread around the key". Keys were at rank 3 on 6 of 7 items.
+  **Finding:** the batch-1 lesson (extreme keys die on the screen) was over-applied. Every generator now places the key
+  in the interior with its natural errors close by on both sides, so the key is the options' centre of mass. That is
+  the extremity tell mirrored, and the per-batch extremity gate cannot see it below n=10. **For the next N batch:** key
+  ranks dealt across 1-4 (about 25% each), and no key may be the median or centroid of its option set. Add that as a
+  generator refusal, and keep the cold screener inside the authoring loop (previous entry). No tie-break was run;
+  the area verdict does not depend on it.

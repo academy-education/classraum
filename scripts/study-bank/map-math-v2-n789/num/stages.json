@@ -1,0 +1,145 @@
+{
+ "prereg": "scripts/study-bank/MAP-MATH-V2-N789.prereg.md",
+ "area": "Real and Complex Number Systems",
+ "frozenSha": "33a622c4611f5a5c226b95946af0f8168bff0845195b08f737964a728f2a1f43",
+ "n": 7,
+ "optionsOnly": {
+  "cand": {
+   "n": 7,
+   "picks": 21,
+   "hits": 13,
+   "unan": 3
+  },
+  "ctrl": {
+   "n": 7,
+   "picks": 21,
+   "hits": 4,
+   "unan": 1
+  },
+  "status": "hold",
+  "cr": 61.904761904761905,
+  "kr": 19.047619047619047,
+  "cu": 42.857142857142854,
+  "ku": 14.285714285714286,
+  "margin": 42.85714285714286,
+  "umar": 28.57142857142857,
+  "why": "candidate 61.9% vs control 19.0% (margin 42.9, bar +10); unanimous-correct rate 42.9% vs control 14.3% (28.6, bar +15)",
+  "letterControl": 28.571428571428573
+ },
+ "rankH1": {
+  "frozen": {
+   "n": 7,
+   "unscored": 0,
+   "hist": {
+    "1": 0,
+    "2": 0,
+    "3": 6,
+    "4": 1
+   },
+   "share2": 0,
+   "meets": true,
+   "line": "key rank 1/2/3/4 = 0/0/6/1 of 7; rank-2 share 0.0% (prediction <= 25%: met; recorded, not a gate)"
+  },
+  "solverPicks": {
+   "hist": {
+    "1": 0,
+    "2": 8,
+    "3": 13,
+    "4": 0
+   },
+   "picks": 21,
+   "pick2": 38.095238095238095,
+   "key2": 0,
+   "line": "candidate picks at rank 1/2/3/4 = 0/8/13/0 of 21 (rank-2 pick rate 38.1%) vs candidate keys at rank 2 0/7 = 0.0%"
+  }
+ },
+ "gradeFitRecorded": {
+  "n": 7,
+  "judgments": 14,
+  "tooEasy": 0,
+  "tooHard": 2,
+  "tooEasyPct": 0,
+  "tooHardPct": 14.285714285714286,
+  "offA": 0.14285714285714285,
+  "offB": -0.14285714285714285,
+  "spreadA": null,
+  "spreadB": null,
+  "D1": true,
+  "D2": true,
+  "D3": false,
+  "status": "fail"
+ },
+ "coldOnKey": 14,
+ "items": {
+  "MB9-N8-01": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MB7-N7-01": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MB8-N7-03": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MB9-N6-01": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MB8-N6-01": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MB9-N5-01": {
+   "drop": [],
+   "hold": [],
+   "need": [
+    "R7 option pair"
+   ],
+   "rec": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "medium"
+  },
+  "MB8-N7-05": {
+   "drop": [
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [
+    "G1 too_hard for its grade (both) - recorded, not a drop rule"
+   ],
+   "named": [],
+   "keep": false,
+   "difficulty": "hard"
+  }
+ },
+ "verdict": "INCOMPLETE"
+}

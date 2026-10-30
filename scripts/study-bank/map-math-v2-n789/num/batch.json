@@ -1,0 +1,814 @@
+[
+ {
+  "id": "MB9-N8-01",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "area_25": null,
+  "grade_target": 8,
+  "tier": "mid",
+  "rit_band": "RIT 220-229",
+  "difficulty": "medium",
+  "ccss": "8.NS.A.1",
+  "subskill": "Sum of the rational numbers in a list of roots, a repeating decimal and irrationals",
+  "grade_rationale": "Mid for grade 8 (8.NS.A.1): the student must decide that √(25/81) = 5/9 and ∛(-1/125) = -1/5 are rational, that 0.888... is rational and equals 8/9, and that π and √10 are irrational, then add 5/9 - 1/5 + 8/9. Students who think a square root sign means irrational, who drop the sign of the cube root of a negative, or who write 0.888... as 8/10 each land on an option.",
+  "prompt": "A list shows five numbers: π, √(25/81), ∛(-1/125), √10, and 0.888... (the 8 repeats forever). Lena adds together only the numbers in the list that are rational. What sum should she get?",
+  "choices": [
+   "31/45",
+   "1 7/45",
+   "1 11/45",
+   "1 29/45"
+  ],
+  "correct_answer": "1 11/45",
+  "explanation": "π and √10 are irrational (10 is not a perfect square). √(25/81) = 5/9, because (5/9)^2 = 25/81. ∛(-1/125) = -1/5, because (-1/5)^3 = -1/125. 0.888... = 8/9. So the sum is 5/9 + (-1/5) + 8/9 = 25/45 - 9/45 + 40/45 = 56/45 = 1 11/45.",
+  "solve": "const F=(n,d)=>{const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d);n/=k;d/=k;const s=n<0?'-':'';n=Math.abs(n);const w=Math.floor(n/d),r=n%d;return r?(w?s+w+' '+r+'/'+d:s+r+'/'+d):s+w};return F(25-9+40,45);",
+  "distractor_solve": {
+   "31/45": "const F=(n,d)=>{const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d);n/=k;d/=k;const s=n<0?'-':'';n=Math.abs(n);const w=Math.floor(n/d),r=n%d;return r?(w?s+w+' '+r+'/'+d:s+r+'/'+d):s+w};return F(-9+40,45);",
+   "1 7/45": "const F=(n,d)=>{const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d);n/=k;d/=k;const s=n<0?'-':'';n=Math.abs(n);const w=Math.floor(n/d),r=n%d;return r?(w?s+w+' '+r+'/'+d:s+r+'/'+d):s+w};return F(25-9+36,45);",
+   "1 29/45": "const F=(n,d)=>{const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d);n/=k;d/=k;const s=n<0?'-':'';n=Math.abs(n);const w=Math.floor(n/d),r=n%d;return r?(w?s+w+' '+r+'/'+d:s+r+'/'+d):s+w};return F(25+9+40,45);"
+  },
+  "mechanism": [
+   "classify: π and √10 irrational; √(25/81), ∛(-1/125), 0.888... rational",
+   "write the rationals as fractions: 5/9, -1/5, 8/9",
+   "add: 56/45 = 1 11/45"
+  ],
+  "quantity_asked": "the sum of the rational numbers in the list",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "an option cannot be checked without classifying the five numbers and converting the rational ones, which is the whole method"
+  },
+  "distractor_meta": {
+   "31/45": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "thinks any number written with a square root sign is irrational, so leaves out √(25/81)",
+    "why": "The student keeps only ∛(-1/125) and 0.888...: -1/5 + 8/9 = -9/45 + 40/45 = 31/45."
+   },
+   "1 7/45": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "writes the repeating decimal 0.888... as 8/10 instead of 8/9",
+    "why": "The student adds 5/9 - 1/5 + 8/10 = 5/9 + 3/5 = 25/45 + 27/45 = 52/45 = 1 7/45."
+   },
+   "1 29/45": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "thinks the cube root of a negative number is positive, so takes ∛(-1/125) as 1/5",
+    "why": "The student adds 5/9 + 1/5 + 8/9 = 25/45 + 9/45 + 40/45 = 74/45 = 1 29/45."
+   }
+  },
+  "structure_check": "Interior key (rank 3). Two errors land below (leaving out the square root, reading 0.888... as 8/10) and one above (dropping the cube root's sign).",
+  "intermediate_check": "The values 5/9, -1/5 and 8/9 are not options, and neither is any partial sum of two of them except as the omission error 31/45 (the cube root plus the decimal), which the key follows from by adding √(25/81) = 5/9; that value is not printed (the printed number is the root sign over 25/81, and evaluating it is the item's own step). \"Leaves out 0.888...\" (key - 8/9 = 16/45) is NOT offered: it always differs from the key by the printed decimal (the pass-1 S-R7). key - 1 7/45 = 4/45 (8/9 - 8/10); 1 29/45 - key = 2/5 (twice the cube root's size, not printed); none is printed, a sum of two printed numbers, or a ratio on one.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "All four options are positive forty-fifths (a fraction or mixed number); the sign of the sum needs the values, which is the work.",
+  "interior_parity_check": "Middle values 1 7/45 and 1 11/45: both mixed numbers in forty-fifths.",
+  "arith_class_check": "All four options are in forty-fifths; the key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "sum of the rational (0 hits)",
+    "rational numbers&sum (0 hits)",
+    "chain checker: (rational|irrational) & sum, sum of (all )?the rational (0 hits)"
+   ],
+   "hits_read": 0,
+   "nearest": "Chain checker F11: BORDERLINE. MM4-N35 (v4, file only) classifies a similar list and COUNTS the irrational ones; batch-5 C17 / R25 convert and add or subtract repeating decimals. Only the combination (classify, then convert and add the rationals) is new. Slotted without F12."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "all four options are positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "none: bounding the sum needs the three values, which is the work",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: fractions",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: every option is in forty-fifths",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "none readable without evaluating the roots",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Revision after screen pass 1 (S-R7: 13/15, \"leaves out 0.666...\", differed from the key by the printed 0.666... = 2/3). Leaving out the repeating decimal always differs from the key by the printed decimal, so that error is dropped. With the pass-1 numbers no replacement keeps FORM: the only natural errors in fifteenths were the three already used, and \"leaves out the square root\" (1/3) and \"cube root as -1/9\" (1 34/45) change the denominator. Same mechanism (classify, convert the repeating decimal, add the rationals), new numbers: searched square roots p^2/q^2 with p <= 12, q 2-12, cube roots -u^3/v^3 with u <= 4, v 2-5, and nine repeating decimals (returns/scratch/s-f11.mjs) for rank-3 sets that keep the decimal-conversion error (repeating decimal as one decimal place), pass FORM/LONE/HUB/RUN/PAIR/KGAP, and are all positive. Five sets survive; this one keeps π and √10 as the irrationals. Residual, stated for the screener: key - 31/45 = 5/9 is the value of the omitted √(25/81) (every \"leaves out X\" error differs from the key by X; pass 1 read the same relation on 1 13/15, key + 1/3 = the omitted cube root, and did not flag it, because the root's value is not printed). 1 7/45 sits 4/45 from the key: separating them is knowing 0.888... = 8/9, the construct."
+  }
+ },
+ {
+  "id": "MB7-N7-01",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "7.NS.A.3",
+  "area_25": null,
+  "subskill": "Apply a signed multiply-then-add rule three times in a row",
+  "grade_rationale": "Mid for grade 7 (7.NS.A.3): each press is one multiplication by -2 and one addition of 5 with signed decimals, and the sign of the screen number flips every press. Students who drop the negative sign, press one time too many, or multiply three times before adding land on an option; about half carry all three rounds to 9.",
+  "prompt": "A calculator has a key that multiplies the number on the screen by -2 and then adds 5. Mia enters 0.75 and then presses the key three times. What number is on the screen now?",
+  "choices": [
+   "-13",
+   "-1",
+   "9",
+   "41"
+  ],
+  "correct_answer": "9",
+  "explanation": "Press 1: 0.75 x (-2) + 5 = -1.5 + 5 = 3.5. Press 2: 3.5 x (-2) + 5 = -7 + 5 = -2. Press 3: -2 x (-2) + 5 = 4 + 5 = 9. The screen shows 9.",
+  "solve": "let x=0.75;for(let i=0;i<3;i++)x=-2*x+5;return String(x);",
+  "distractor_solve": {
+   "41": "let x=0.75;for(let i=0;i<3;i++)x=2*x+5;return String(x);",
+   "-13": "let x=0.75;for(let i=0;i<4;i++)x=-2*x+5;return String(x);",
+   "-1": "return String((-2)*(-2)*(-2)*0.75+5);"
+  },
+  "mechanism": [
+   "multiply 0.75 by -2 and add 5 to get 3.5",
+   "multiply 3.5 by -2 and add 5 to get -2",
+   "multiply -2 by -2 (positive 4) and add 5 to get 9"
+  ],
+  "quantity_asked": "the number on the screen after three presses",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "an option is the end of a three-step process; checking it means running the three presses forward (or undoing them backward), not substituting one value"
+  },
+  "distractor_meta": {
+   "41": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "drops the negative sign of the multiplier and multiplies by 2 each press",
+    "why": "The student uses 2 instead of -2: 0.75 x 2 + 5 = 6.5, then 6.5 x 2 + 5 = 18, then 18 x 2 + 5 = 41."
+   },
+   "-13": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "counts entering 0.75 as the first press and so presses one time too many",
+    "why": "The student does the three presses correctly to reach 9, then presses once more: 9 x (-2) + 5 = -13."
+   },
+   "-1": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "multiplies by -2 three times first and adds 5 only once at the end",
+    "why": "The student treats the rule as (-2) x (-2) x (-2) x 0.75 + 5 = -8 x 0.75 + 5 = -6 + 5 = -1, adding 5 once instead of after every press."
+   }
+  },
+  "structure_check": "Interior key (rank 3). The rule flips the sign each press, so errors land on both sides: dropping the sign overshoots (41), while an extra press (-13) or adding 5 only once (-1) lands below.",
+  "intermediate_check": "The intermediates are 3.5 and -2; neither is an option. -13 follows from the key by one more press (9 x -2 + 5), which is the rule itself, not a printed relation; 41 and -1 are not steps of the solution.",
+  "cheap_bound_check": "No cheap bound: the sign alternates press to press, so neither the sign nor the size of the answer is fixed without carrying out the presses. A sign guess (two presses of -2 give a positive multiplier) does not survive the +5 after each press.",
+  "shape_check": "All four options are odd whole numbers, two negative and two positive; the start value 0.75 gives no units-digit or parity hint for the end value.",
+  "interior_parity_check": "Middle values -1 and 9 are both odd whole numbers; neither is cleaner than the other.",
+  "arith_class_check": "Every option is an odd integer; none is a decimal, so the decimal start gives no class to test.",
+  "dup_search": {
+   "queries": [
+    "multiplies&by -2&adds",
+    "calculator&key&presses",
+    "rule&multiply&then add&three times",
+    "input&output&-2"
+   ],
+   "hits_read": 3,
+   "nearest": "SAT prior SM27F-A05 uses a multiply-by--2-then-add-3 key pressed twice and runs BACKWARD (find the input); MV2-N7-06 and MB4-N7-04 do one signed multiply-and-add round. This item runs a different rule (x -2, + 5) FORWARD three times from a decimal (chain checker D33: BORDERLINE, forward iteration new to MAP)."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none: the sign alternates each press, so no sign bound holds without computing",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "none: |x| at most doubles plus 5 each press, so |answer| <= 2 x (2 x (2 x 0.75 + 5) + 5) + 5 = 41; strikes nothing",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: all four options are odd",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: the start is a decimal, so no units digit carries through",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "none beyond the magnitude bound",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Chain checker's D33 (BORDERLINE; area risk: an input-output rule is Operations-adjacent; near-twin SAT prior SM27F-A05 uses x(-2)+3, pressed twice, run backward). This item uses x(-2)+5 run forward three times from 0.75, so the rule and the direction both differ. Key rank 3; no ratio links; key is no midpoint (( -13 + 41)/2 = 14, (-1 + 41)/2 = 20, (-13 + -1)/2 = -7). Errors: sign slip (41), one press too many (-13), operations in the wrong order (-1)."
+  }
+ },
+ {
+  "id": "MB8-N7-03",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "area_25": null,
+  "grade_target": 7,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "7.NS.A.1d",
+  "subskill": "Choose signs to bring a sum of mixed numbers closest to 0",
+  "grade_rationale": "High for grade 7 (7.NS.A.1d): there are four sign patterns; a strong student weighs the largest number against the other two and sees that 3 1/6 + 3 1/3 - 3 2/3 is closest to 0, then adds and subtracts mixed numbers with unlike denominators and renaming. Students who subtract in the wrong order, rename incorrectly, or use minus signs in both boxes land on options.",
+  "prompt": "Put a plus sign (+) or a minus sign (-) in each box so that the value of 3 1/6 [ ] 3 1/3 [ ] 3 2/3 is as close to 0 as possible. What is that value?",
+  "choices": [
+   "-3 5/6",
+   "-2 5/6",
+   "2 1/6",
+   "2 5/6"
+  ],
+  "correct_answer": "2 5/6",
+  "explanation": "Write all three in sixths: 3 1/6, 3 2/6, 3 4/6. The four choices are: + + gives 10 1/6; + - gives 3 1/6 + 3 2/6 - 3 4/6 = 6 3/6 - 3 4/6 = 5 9/6 - 3 4/6 = 2 5/6; - + gives 3 1/6 - 3 2/6 + 3 4/6 = 3 3/6 = 3 1/2; - - gives 3 1/6 - 3 2/6 - 3 4/6 = -3 5/6. The value closest to 0 is 2 5/6.",
+  "solve": "const F=(n,d)=>{const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d);n/=k;d/=k;const s=n<0?'-':'';n=Math.abs(n);const w=Math.floor(n/d),r=n%d;return r?(w?s+w+' '+r+'/'+d:s+r+'/'+d):s+w};let b=null;for(const s1 of [1,-1])for(const s2 of [1,-1]){const v=19+s1*20+s2*22;if(b===null||Math.abs(v)<Math.abs(b))b=v}return F(b,6);",
+  "distractor_solve": {
+   "-3 5/6": "const F=(n,d)=>{const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d);n/=k;d/=k;const s=n<0?'-':'';n=Math.abs(n);const w=Math.floor(n/d),r=n%d;return r?(w?s+w+' '+r+'/'+d:s+r+'/'+d):s+w};return F(19-20-22,6);",
+   "-2 5/6": "const F=(n,d)=>{const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d);n/=k;d/=k;const s=n<0?'-':'';n=Math.abs(n);const w=Math.floor(n/d),r=n%d;return r?(w?s+w+' '+r+'/'+d:s+r+'/'+d):s+w};return F(22-(19+20),6);",
+   "2 1/6": "const F=(n,d)=>{const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d);n/=k;d/=k;const s=n<0?'-':'';n=Math.abs(n);const w=Math.floor(n/d),r=n%d;return r?(w?s+w+' '+r+'/'+d:s+r+'/'+d):s+w};const big=19+20,sm=22;const w=Math.floor(big/6)-1-Math.floor(sm/6),f=(sm%6)-(big%6);return F(w*6+f,6);"
+  },
+  "mechanism": [
+   "compare the largest number with the sum of the other two",
+   "choose + then -: 3 1/6 + 3 1/3 - 3 2/3",
+   "add, rename and subtract in sixths: 6 3/6 - 3 4/6 = 2 5/6"
+  ],
+  "quantity_asked": "the value of the expression that is closest to 0",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "an option can be shown to be reachable by trying signs, but showing it is the CLOSEST to 0 means evaluating every sign pattern, which is the work"
+  },
+  "distractor_meta": {
+   "-3 5/6": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "thinks that subtracting as much as possible brings the value nearest 0, so puts a minus sign in both boxes",
+    "why": "The student writes 3 1/6 - 3 1/3 - 3 2/3 = 3 1/6 - 7 = -3 5/6."
+   },
+   "-2 5/6": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "chooses + then - but subtracts in the wrong order (the larger amount from the smaller), so the right size gets the wrong sign",
+    "why": "The student finds that 6 1/2 and 3 2/3 differ by 2 5/6 and writes it as negative because 3 2/3 is \"taken away\": -2 5/6."
+   },
+   "2 1/6": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": true,
+    "misconception": "renames 6 3/6 by taking 1 from the whole number but then subtracts the fractions backwards",
+    "why": "In 6 3/6 - 3 4/6 the student writes 5 - 3 = 2 for the wholes and 4/6 - 3/6 = 1/6 for the fractions: 2 1/6."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "const F=(n,d)=>{const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d);n/=k;d/=k;const s=n<0?'-':'';n=Math.abs(n);const w=Math.floor(n/d),r=n%d;return r?(w?s+w+' '+r+'/'+d:s+r+'/'+d):s+w};return F(19+20+22,6);",
+   "direction": "above",
+   "why": "Using plus signs in both boxes (no sign choice at all) gives 10 1/6, which lands above the key."
+  },
+  "far_distractor": {
+   "option": "2 1/6",
+   "natural_side": "above",
+   "why": "A renaming slip in a mixed-number subtraction usually makes the answer too large (subtracting the fractions backwards without renaming gives 3 1/6 here, above the key); this student also takes the 1 from the whole number, so the slip lands below the key at 2 1/6."
+  },
+  "structure_check": "Largest key (rank 4). The stem asks for the value nearest 0, but it does not say which way the errors go: a renaming slip (2 1/6) lands CLOSER to 0 than the key, a sign slip (-2 5/6) lands at the same size on the other side, and a both-minus choice lands just farther out (-3 5/6, 1 farther from 0 than the key). \"Pick the option nearest 0\" chooses 2 1/6, which is wrong.",
+  "intermediate_check": "-3 5/6: no, it is a different sign pattern, not a step. -2 5/6: no, it is the key with the subtraction reversed. 2 1/6: no, it is a slipped subtraction; the real intermediate is 6 3/6 = 6 1/2, which is not offered.",
+  "cheap_bound_check": "The cheapest one-sided bound is that the value nearest 0 has size at most that of any one sign pattern a student tries; trying + - gives 2 5/6 itself, so the bound is the work. Without it, \"nearest 0\" alone points to 2 1/6, a distractor on the key's near side (between the key and 0).",
+  "shape_check": "All four options are mixed numbers in sixths; two are positive and two negative, and the sign of the best value needs 3 1/6 + 3 1/3 compared with 3 2/3, a mixed-number sum, so all four survive the stem's properties. In sixths the printed numbers are 19, 20 and 22 sixths; every sign pattern gives an odd number of sixths, and so does every option (-23, -17, 13, 17). The remainders mod 6 of the four patterns are 1, 5 and 3; every option's numerator leaves 1 or 5, so a fractional-part check strikes nothing either.",
+  "interior_parity_check": "Middle values -2 5/6 and 2 1/6: both mixed numbers in sixths; neither is cleaner.",
+  "arith_class_check": "All four are sixths with odd numerators; the key is not alone in sign (2 1/6 is also positive) or in size.",
+  "dup_search": {
+   "queries": [
+    "plus or minus&close",
+    "sign&box&close to 0",
+    "(plus|+) or (minus|-) sign & closest to (0|zero) (chain checker, 0 hits)"
+   ],
+   "hits_read": 0,
+   "nearest": "No item assigns signs to bring a sum nearest a target (chain checker E16: NEW). B7-D08/D15 share only the distance-from-a-benchmark comparison at the end."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "none without the work: the sign of the best value depends on whether 3 1/6 + 3 1/3 is more or less than 3 2/3, a mixed-number sum; two options are positive and two negative",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "all plus signs gives the farthest value from 0, so the answer is smaller in size than 10 1/6; strikes nothing offered. Every option is between 2 and 4 in size, so \"too far from 0\" strikes nothing either",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "in sixths every pattern is 19 +- 20 +- 22, always odd; all four options have odd numerators in sixths (and leave 1 or 5 mod 6, which the patterns reach), so it strikes none",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: every option is in sixths",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "the value is between -10 1/6 and 10 1/6; all four options are inside",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "high",
+   "note": "Revision after screen pass 1 (S-R4: with 1 1/7, 2 2/7, 2 5/7 the renaming slip 2/7 had an even numerator while every sign pattern of 8, 16, 19 sevenths is odd, and -3 6/7 was struck as far from 0). Same mechanism, same three errors (both minus, reversed subtraction, the renaming slip), new numbers. With an odd denominator the renaming slip ALWAYS has the wrong parity (it differs from the key by 7 + 2 x (difference of the fractions) sevenths), so the denominator had to be even; with sixths it differs by an even number and also leaves a remainder mod 6 that a sign pattern reaches. Searched three mixed numbers with denominators 6, 7, 8, 9, 10, 12, 14, 16, wholes 1 to 4 (returns/scratch/s-e16.mjs): key at rank 4, two options of each sign, parity and full remainder (mod the denominator) consistent, FORM/LONE/HUB/RUN/PAIR/KGAP, the stricter pair screen, and the both-minus option within 2 x the key's size. Denominators 7, 9 and 10 give none; this set has the both-minus option at 1.35 x the key's size (the pass-1 set was 5.4 x). Pairs read: key - 2 1/6 = 2/3, key - (-3 5/6) = 6 2/3 = 2 x the printed 3 1/3 (always twice the term whose sign differs, and the same relation 32/7 = 2 x 2 2/7 sat unflagged in the pass-1 set), key + (-2 5/6) = 0 (the reversed subtraction). Plug-back on reachability (first term fixed positive: -2 5/6 and 2 1/6 are not reachable) still means trying the four patterns, which is the work."
+  }
+ },
+ {
+  "id": "MB9-N6-01",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "area_25": null,
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "6.NS.C.8",
+  "subskill": "Location after walking part of the way around a rectangle on the coordinate plane",
+  "grade_rationale": "High for grade 6 (6.NS.C.8): the student finds the top side's length across the y-axis (2.25 - (-3.25) = 5.5), sees that the robot turns the corner with 15.6 - 5.5 = 10.1 units left, and moves 10.1 down from y = 0.75, crossing the x-axis to -9.35. Going counterclockwise, subtracting the sizes 3.25 and 2.25 across 0, or measuring the leftover distance from the wrong corner each land on an option.",
+  "prompt": "A rectangle on the coordinate plane has vertices at (-3.25, 0.75), (2.25, 0.75), (2.25, -14.45), and (-3.25, -14.45). A robot starts at the vertex (-3.25, 0.75) and moves clockwise along the sides of the rectangle. After the robot has moved a total of 15.6 units, what is the y-coordinate of its location?",
+  "choices": [
+   "-14.45",
+   "-13.85",
+   "-9.35",
+   "-4.35"
+  ],
+  "correct_answer": "-9.35",
+  "explanation": "Moving clockwise from (-3.25, 0.75), the robot first goes right along the top side to (2.25, 0.75). That side is 2.25 - (-3.25) = 5.5 units long. It has 15.6 - 5.5 = 10.1 units left, so it turns the corner and moves 10.1 units down the right side, from y = 0.75 to y = 0.75 - 10.1 = -9.35. (The right side goes down to -14.45, so it is still on that side.)",
+  "solve": "const D=x=>(Math.round(x*100)/100).toFixed(2);const xl=-3.25,xr=2.25,yt=0.75,d=15.6;return D(yt-(d-(xr-xl)));",
+  "distractor_solve": {
+   "-14.45": "const D=x=>(Math.round(x*100)/100).toFixed(2);const yt=0.75,yb=-14.45,d=15.6;const H=yt-yb;return d>H?D(yb):D(yt-d);",
+   "-13.85": "const D=x=>(Math.round(x*100)/100).toFixed(2);return D(0.75-(15.6-(3.25-2.25)));",
+   "-4.35": "const D=x=>(Math.round(x*100)/100).toFixed(2);return D(-14.45+(15.6-(2.25+3.25)));"
+  },
+  "mechanism": [
+   "top side length across the y-axis: 2.25 - (-3.25) = 5.5",
+   "distance left after the corner: 15.6 - 5.5 = 10.1",
+   "move 10.1 down from y = 0.75: y = -9.35"
+  ],
+  "quantity_asked": "the y-coordinate of the robot after moving 15.6 units",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "checking an option needs the top side's length and the distance left after the corner, which is the whole method"
+  },
+  "distractor_meta": {
+   "-14.45": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "goes counterclockwise: down the left side first instead of right along the top",
+    "why": "The left side is 0.75 - (-14.45) = 15.2 units, so going down it the robot reaches the bottom corner with 0.4 units left and moves 0.4 along the bottom side, where y = -14.45."
+   },
+   "-13.85": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "finds the length of the top side by subtracting the sizes 3.25 and 2.25, not by adding the distances on each side of the y-axis",
+    "why": "The student takes the top side as 3.25 - 2.25 = 1, so 14.6 units are left and y = 0.75 - 14.6 = -13.85."
+   },
+   "-4.35": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "measures the 10.1 units left after the corner from the bottom of the right side instead of from the top",
+    "why": "The student counts 10.1 up from y = -14.45 and gets -4.35."
+   }
+  },
+  "structure_check": "Interior key (rank 3). Two errors land below (going counterclockwise, which wraps onto the bottom side; the top side from subtracted sizes) and one above (counting the leftover distance up from the bottom corner, which lands above the key because more than half the right side has been walked: 10.1 > 15.2 / 2).",
+  "intermediate_check": "None of the options is a step: the steps are 5.5 (top side) and 10.1 (distance left), and neither is offered. -14.45 is the printed bottom y (where the counterclockwise robot is), not a step of the clockwise path. -13.85 and -4.35 use a wrong side length or the wrong corner. \"Straight down 15.6 from the start\" (-14.85, the pass-1 -13.45 error, which always differs from the key by the top side 2.25 + 3.25) is not offered.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "All four options are negative two-place decimals ending in 5, and all lie between -14.45 and 0.75.",
+  "interior_parity_check": "Middle values -13.85 and -9.35: both negative two-place decimals ending in 5.",
+  "arith_class_check": "All four end in 5 with two decimal places; the key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "clockwise&rectangle (0 hits)",
+    "moves along the sides&coordinate (0 hits)",
+    "chain checker: clockwise, walks/travels along the sides/edges/perimeter, starts at the vertex ... rectangle (0 hits)"
+   ],
+   "hits_read": 0,
+   "nearest": "Chain checker F08: NEW. MM5-N16 and MV2-N56-18 (live) add sizes across an axis for a side length; MV2-N56-24 moves along a line from a point. None splits a given distance at a vertex. The ask is a coordinate, never a perimeter or side length (checker condition, 6.G.A.3 fence)."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "deciding that y is below the x-axis needs the distance left after the corner (10.1 > 0.75), which is the work; all four options are negative anyway",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "the robot is on the rectangle, so -14.45 <= y <= 0.75: all four options are inside (-14.45 is the boundary, not outside)",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: decimals",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "all four options end in 5",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "y = -14.45 needs the robot on the bottom side, which the clockwise path reaches only after 5.5 + 15.2 = 20.7 units, more than 15.6: strikes -14.45 only (it needs the top side, the work's first step). The robot cannot be lower than 0.75 - 15.6 = -14.85: strikes none",
+    "strikes": [
+     "-14.45"
+    ]
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Revision after screen pass 1 (S-R7: -13.45, \"straight down the full distance\", differed from the key by the top side 5.5 = 2.25 + 3.25, a sum of two printed numbers). That error always differs from the key by the top side, so it was dropped; the pass-1 screener also struck it once (drop of the full distance impossible clockwise). Same mechanism, the counterclockwise error instead: the left side (15.2) is now shorter than the distance walked (15.6), so going counterclockwise wraps onto the bottom side at y = -14.45 instead of coinciding with \"straight down\". It can be struck the same one way the old error was (the clockwise robot reaches the bottom only after 20.7 units), declared above as one strike; that strike needs the top side 5.5, the first step of the work. Searched x-coordinates in quarter/tenth steps, top y 0.5-3.5, bottom y -15 to -8 and d 8-16 in steps of 0.05 (returns/scratch/s-f08.mjs) for rank-3 sets with the three errors on the rectangle, all ending in the same digit, passing FORM/LONE/HUB/RUN/PAIR/KGAP/SIGN/RANGE and the stricter pair screen. Pairs read: key - (-13.85) = 4.5 = 2 x 2.25 (inherent to the sizes error, as in pass 1, read and not flagged), key - (-14.45) = 5.1, -4.35 - key = 5.0; none is a printed number, a sum of two or a ratio on one."
+  }
+ },
+ {
+  "id": "MB8-N6-01",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "area_25": null,
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "6.NS.C.6c",
+  "subskill": "Where a point lands when a number line is folded",
+  "grade_rationale": "Mid for grade 6 (6.NS.C.6c): the student finds the fold point halfway between -2 and 8 (3), sees that -7.5 is 10.5 to its left, and so lands 10.5 to its right at 13.5 (equivalently: -7.5 is 5.5 beyond -2, so it lands 5.5 beyond 8). Students who give the distance instead of the point, count the 5.5 from the fold instead of from 8, or put the fold at half the distance between the two points (5) without starting from -2 each land on an option.",
+  "prompt": "Ella draws a number line on a long strip of paper. She folds the strip so that the point at -2 lands exactly on the point at 8. Where on the number line does the point at -7.5 land?",
+  "choices": [
+   "8.5",
+   "10.5",
+   "13.5",
+   "17.5"
+  ],
+  "correct_answer": "13.5",
+  "explanation": "The fold is halfway between -2 and 8: (-2 + 8) / 2 = 3. The point -7.5 is 3 - (-7.5) = 10.5 units to the left of the fold, so it lands 10.5 units to the right of the fold: 3 + 10.5 = 13.5. (Check: -7.5 is 5.5 to the left of -2, and -2 lands on 8, so -7.5 lands 5.5 to the right of 8, at 13.5.)",
+  "solve": "const D=x=>String(Math.round(x*10)/10);const a=-2,b=8,c=-7.5;return D(a+b-c);",
+  "distractor_solve": {
+   "8.5": "const D=x=>String(Math.round(x*10)/10);const a=-2,b=8,c=-7.5,m=(a+b)/2;return D(m+(a-c));",
+   "10.5": "const D=x=>String(Math.round(x*10)/10);const a=-2,b=8,c=-7.5,m=(a+b)/2;return D(m-c);",
+   "17.5": "const D=x=>String(Math.round(x*10)/10);const a=-2,b=8,c=-7.5,m=(b-a)/2;return D(2*m-c);"
+  },
+  "mechanism": [
+   "the fold point is halfway between -2 and 8: 3",
+   "-7.5 is 10.5 units left of the fold",
+   "it lands 10.5 units right of the fold: 13.5"
+  ],
+  "quantity_asked": "the point where -7.5 lands after the fold",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "checking an option needs the fold point and the distance on both sides, which is the whole method"
+  },
+  "distractor_meta": {
+   "8.5": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "sees that -7.5 is 5.5 beyond -2 but counts the 5.5 from the fold point instead of from 8, where -2 lands",
+    "why": "The student finds the gap from -7.5 to -2 (5.5) and the fold (3), then counts 5.5 past the fold: 3 + 5.5 = 8.5."
+   },
+   "10.5": {
+    "error_kind": "partial_answer",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "finds how far -7.5 is from the fold and gives that distance as the answer instead of the point",
+    "why": "The student computes 3 - (-7.5) = 10.5, the distance to the fold, and stops without counting it off past the fold."
+   },
+   "17.5": {
+    "error_kind": "wrong_operation",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "puts the fold at half the distance between -2 and 8 (10 / 2 = 5) without starting from -2, then flips -7.5 about 5",
+    "why": "The student takes the fold to be at 5 (half of 10), sees -7.5 is 12.5 left of 5, and lands 12.5 right of it: 17.5."
+   }
+  },
+  "structure_check": "Interior key (rank 3). Two errors land below (counting the gap from the fold; giving the distance to the fold) and one above (folding about 5, half the distance, instead of the midpoint 3).",
+  "intermediate_check": "10.5 IS an intermediate (the distance from -7.5 to the fold), offered as the stop-early error; the key follows from it by adding the fold point 3, which is not printed. 8.5 and 17.5 are not steps. No option is a printed number or the opposite of one (-7.5 reflected about 0 would be 7.5, not offered).",
+  "cheap_bound_check": "interior key",
+  "shape_check": "Every option is a positive one-place decimal ending in 5; -7.5 is left of -2, so its image is right of 8, and all four options are right of 8.",
+  "interior_parity_check": "Middle values 10.5 and 13.5: same form.",
+  "arith_class_check": "All four are positive tenths ending in 5.",
+  "dup_search": {
+   "queries": [
+    "fold&number line",
+    "folded",
+    "crease|folded (chain checker)"
+   ],
+   "hits_read": 5,
+   "nearest": "The five \"folded\" hits are paper boxes, a folded corner crease (ACT 41e5c7f2) and similar geometry, none a number line. Chain checker E06: BORDERLINE (near REPEAT): the midpoint (MV2-N56-23, dropped) and a reflection about a non-zero point (ISEE 9c2ad5c9, MV2-G78-24) both exist; only chaining them is new."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "all four options are positive",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "-7.5 is left of -2, so after the fold it lands right of 8: every option (8.5, 10.5, 13.5, 17.5) is right of 8, strikes none",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: decimals",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "every option ends in 5",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "the point lands on the other side of the fold (3) from where it started: all four options are right of 3, strikes none. The fold point 3 and the opposite 7.5 are not offered",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Revision after screen pass 1 (S-R4/S-R5: with -4.5, 5.5, -2.5 every distractor fell free: 7.5 outside the strip between the two points, 2.5 the mirror about 0, 0.5 the crease, which only lands on itself). Same mechanism (fold a onto b, where does c land), new numbers and error set: the crease and the opposite of c are no longer offered, and c is placed outside [a, b] so the one region bound (\"lands right of 8\") strikes nothing. Searched every a < 0 < b, c in steps of 0.5 up to 9.5 (scripted, returns/scratch/s-n6b.mjs) against the screener's three strikes plus FORM/LONE/HUB/RUN/PAIR/KGAP and a stricter pair screen (no key gap equal to a printed size, a sum or difference of two, and no ratio equal to a printed number or one off): with c between a and b no set survives; this set is one of the 19 with c outside. Pairs read: 13.5 - 10.5 = 3 (the unprinted fold), 13.5 - 8.5 = 5 (half of 10), 17.5 - 13.5 = 4 = 2 x 2 (twice a printed size, the same kind as the 2 x 2.25 the pass-1 screener read on MB9-N6-01 and did not flag). Ratios 13.5/10.5 = 9/7, 13.5/8.5 = 27/17, 17.5/13.5 = 35/27."
+  }
+ },
+ {
+  "id": "MB9-N5-01",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "area_25": "Number and Operations",
+  "grade_target": 5,
+  "tier": "mid",
+  "rit_band": "RIT 200-209",
+  "difficulty": "medium",
+  "ccss": "5.NBT.B.7",
+  "subskill": "Lowest running balance during a list of decimal deposits and withdrawals",
+  "grade_rationale": "Mid for grade 5 (5.NBT.B.7): five decimal additions and subtractions to hundredths, kept in order as a running balance, then a comparison of the balances. The question is about a moment in the middle of the week, not the end, so students who give the final balance, who assume the lowest point comes right after the biggest withdrawal, or who forget a carry while adding a deposit each land on an option.",
+  "prompt": "On Monday morning, Priya had $46.33 in her savings account. During the week she made these changes, in this order: she took out $4.40, put in $13.50, took out $18.50, put in $9.50, and took out $6.30. What was the least amount of money, in dollars, that was in the account at any time during the week?",
+  "choices": [
+   "27.83",
+   "35.93",
+   "36.93",
+   "40.13"
+  ],
+  "correct_answer": "36.93",
+  "explanation": "Keep a running balance. 46.33 - 4.40 = 41.93; 41.93 + 13.50 = 55.43; 55.43 - 18.50 = 36.93; 36.93 + 9.50 = 46.43; 46.43 - 6.30 = 40.13. The balances during the week were 41.93, 55.43, 36.93, 46.43 and 40.13 (and 46.33 at the start). The least of these is 36.93, right after the third change. The final balance, 40.13, is not the least.",
+  "solve": "const D=x=>(Math.round(x*100)/100).toFixed(2);const t=[-4.4,13.5,-18.5,9.5,-6.3];let b=46.33,m=b;for(const x of t){b+=x;m=Math.min(m,b)}return D(m);",
+  "distractor_solve": {
+   "27.83": "const D=x=>(Math.round(x*100)/100).toFixed(2);return D(46.33-18.5);",
+   "35.93": "const D=x=>(Math.round(x*100)/100).toFixed(2);const b2=46.33-4.4+13.5-1;return D(b2-18.5);",
+   "40.13": "const D=x=>(Math.round(x*100)/100).toFixed(2);return D(46.33-4.4+13.5-18.5+9.5-6.3);"
+  },
+  "mechanism": [
+   "running balance after each change: 41.93, 55.43, 36.93, 46.43, 40.13",
+   "compare the balances (and the starting 46.33)",
+   "the least is 36.93, after the third change (an intermediate balance, not the final one)"
+  ],
+  "quantity_asked": "the least balance at any moment during the week",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "an option cannot be checked without computing the running balances and comparing them, which is the whole method"
+  },
+  "distractor_meta": {
+   "27.83": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "assumes the lowest point comes right after the biggest withdrawal and subtracts it from the starting amount, ignoring the order of the changes",
+    "why": "The student picks the largest withdrawal, 18.50, and computes 46.33 - 18.50 = 27.83, skipping the changes made before it."
+   },
+   "35.93": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": true,
+    "misconception": "keeps the running balance in order but forgets to carry when adding the deposit 13.50 to 41.93",
+    "why": "In 41.93 + 13.50 the tenths give 9 + 5 = 14; the student writes the 4 and drops the carried 1, getting 54.43 instead of 55.43, so the next balance is 54.43 - 18.50 = 35.93."
+   },
+   "40.13": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "answers with the balance at the end of the week instead of the least balance during the week",
+    "why": "The student runs all five changes and reports the final balance, 40.13."
+   }
+  },
+  "structure_check": "Interior key (rank 3) under a \"least\" stem: two natural errors (27.83 and 35.93) land below the key, so \"pick the smallest option\" is wrong, and the final balance (40.13) lands above it.",
+  "intermediate_check": "The running balances 41.93, 55.43, 46.43 are not options. 40.13 is the final balance, computed AFTER the key (40.13 - 36.93 = 3.20 = 9.50 - 6.30, a difference of two printed numbers, the same relation as the pass-1 set's 43.83 - 37.83 = 14.20 - 8.20). 27.83 is not a running balance (key - 27.83 = 9.10 = 13.50 - 4.40, also a difference of two printed numbers, as in pass 1). 35.93 is the key with the dropped carry: 1 less.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "Every change is in whole tenths, so every balance keeps the start's hundredths digit 3: all four options are two-place decimals ending in 3, and all are positive.",
+  "interior_parity_check": "Middle values 35.93 and 36.93: both two-place decimals ending in .93; neither is cleaner.",
+  "arith_class_check": "All four options end in 3 in the hundredths; the key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "least amount&account (0 hits)",
+    "(lowest|least) balance (0 hits)",
+    "chain checker: \"lowest balance\", \"running/cumulative total\", \"deposit/withdraw + lowest/least\" (0 hits)"
+   ],
+   "hits_read": 0,
+   "nearest": "Chain checker F04: NEW. Every earlier running-total item reports the end state (MB2-N78-02, MM3-N05, MV2-N7-18); B7-D31 stops at the first crossing of a printed threshold. This item prints no threshold and keys an intermediate balance."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "all four options are positive, as every balance is",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "the first change is a withdrawal, so the least balance is at most 46.33 - 4.40 = 41.93 (one subtraction), and the second balance 55.43 is higher still: all four options are at most 41.93, strikes none",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: decimals",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "every balance ends in 3 in the hundredths (changes are whole tenths); all four options do",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "the balance can never drop below 46.33 minus all the withdrawals (17.13), and it is at most 41.93 after the first withdrawal: [17.13, 41.93] holds all four options, strikes none",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Revision after screen pass 1 (S-R4: 43.83, the final balance, was above 41.43, the balance after the first withdrawal; 16.83 was start minus every withdrawal, the lower bound itself, impossible because deposits come in between). Same mechanism (least running balance, an intermediate one, no threshold). \"Start minus all the withdrawals\" is dropped: it is always that lower bound, so it is always struck. The final balance is kept, with numbers chosen so it is below both the start and the first two balances. \"Ignores a deposit\" errors were not used: each differs from the key by the printed deposit. Searched 3,000,000 random sequences (returns/scratch/s-f04.mjs: start 30-70, five alternating changes of 4.0-21.9, low point after the third change) for rank-3 sets with every distractor inside [start - all withdrawals, min(start, b1, b2)] that pass FORM/LONE/HUB/RUN/PAIR/KGAP/DIR and the stricter pair screen (differences of two printed numbers allowed, as pass 1 read and did not flag them): every surviving set needs one computational slip as the second below-key error; this one uses the dropped carry (the item's only slip). Risk named: 35.93 sits 1 below the key, so two options are 1 apart; telling them apart is doing the carry."
+  }
+ },
+ {
+  "id": "MB8-N7-05",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "area_25": null,
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "7.NS.A.1d",
+  "subskill": "Two chained missing entries in a signed magic square",
+  "grade_rationale": "Mid for grade 7 (7.NS.A.1d): the target's row, column and diagonal each have two blanks, so the student must first find a blank from a line with one gap (the middle column), then use it in the top row. Each step subtracts a sum of negative mixed numbers from a negative total. Students who treat the other blank as 0, stop at the first blank, or slip a sign when subtracting a negative land on options.",
+  "prompt": "In a magic square, the numbers in every row, every column, and both diagonals add up to the same sum. In this 3-by-3 magic square, that sum is -7 5/7. Top row: A, B, -1 4/7. Middle row: C, -2 4/7, -5 2/7. Bottom row: -3 4/7, -3 2/7, D. What number is A?",
+  "choices": [
+   "-7 3/7",
+   "-6 1/7",
+   "-4 2/7",
+   "-1 6/7"
+  ],
+  "correct_answer": "-4 2/7",
+  "explanation": "A's row, column and diagonal each have two unknowns, so find another blank first. The middle column has one unknown: B + (-2 4/7) + (-3 2/7) = -7 5/7, so B = -7 5/7 + 2 4/7 + 3 2/7 = -1 6/7. Now the top row: A + (-1 6/7) + (-1 4/7) = -7 5/7, so A = -7 5/7 + 1 6/7 + 1 4/7 = -4 2/7.",
+  "solve": "const F=(n,d)=>{const s=n<0?'-':'';n=Math.abs(n);const w=Math.floor(n/d),r=n%d;return r?(w?s+w+' '+r+'/'+d:s+r+'/'+d):s+w};const S=-54,B=S-(-18)-(-23);return F(S-B-(-11),7);",
+  "distractor_solve": {
+   "-7 3/7": "const F=(n,d)=>{const s=n<0?'-':'';n=Math.abs(n);const w=Math.floor(n/d),r=n%d;return r?(w?s+w+' '+r+'/'+d:s+r+'/'+d):s+w};const S=-54,B=S-(-18)-(-23);return F(S-B+(-11),7);",
+   "-6 1/7": "const F=(n,d)=>{const s=n<0?'-':'';n=Math.abs(n);const w=Math.floor(n/d),r=n%d;return r?(w?s+w+' '+r+'/'+d:s+r+'/'+d):s+w};const S=-54;return F(S-(-11),7);",
+   "-1 6/7": "const F=(n,d)=>{const s=n<0?'-':'';n=Math.abs(n);const w=Math.floor(n/d),r=n%d;return r?(w?s+w+' '+r+'/'+d:s+r+'/'+d):s+w};const S=-54;return F(S-(-18)-(-23),7);"
+  },
+  "mechanism": [
+   "middle column has one blank: B = -7 5/7 - (-2 4/7) - (-3 2/7) = -1 6/7",
+   "top row now has one blank: A = -7 5/7 - (-1 6/7) - (-1 4/7)",
+   "A = -4 2/7"
+  ],
+  "quantity_asked": "the missing entry A",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "A cannot be checked alone: its row, column and diagonal each have a second blank, so checking an option needs B, C or D first, which is the first step of the work"
+  },
+  "distractor_meta": {
+   "-7 3/7": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "subtracting -1 4/7 is treated as subtracting 1 4/7 (the sign of the negative entry is dropped in the last step)",
+    "why": "The student finds B = -1 6/7 but then computes -7 5/7 + 1 6/7 - 1 4/7 = -7 3/7."
+   },
+   "-6 1/7": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the top row at once and treats the blank B as 0",
+    "why": "The student writes A + (-1 4/7) = -7 5/7 and gets A = -6 1/7, ignoring B."
+   },
+   "-1 6/7": {
+    "error_kind": "wrong_variable",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "finds the first missing entry (B) and reports it as A",
+    "why": "The student solves the middle column correctly, gets -1 6/7, and stops."
+   }
+  },
+  "structure_check": "Interior key (rank 3). Errors land on both sides: the dropped sign and the blank-as-0 errors land below, the stop-at-B error lands above.",
+  "intermediate_check": "-1 6/7 IS the first intermediate (B), offered because stopping at B is the natural error. It is not a value the key follows from through one printed number: A = S - B - (-1 4/7) uses two printed numbers. -7 3/7 and -6 1/7: no.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "Every printed entry and the sum are negative sevenths; the answer is a sevenths value. All four options are negative sevenths and survive.",
+  "interior_parity_check": "Middle values -6 1/7 and -4 2/7: both negative mixed numbers in sevenths; neither is cleaner.",
+  "arith_class_check": "All four are negative sevenths; the key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "magic square",
+    "same sum&row&column",
+    "magic (chain checker: 0 hits in 6,503 rows)"
+   ],
+   "hits_read": 0,
+   "nearest": "No magic square in live or prior rows. Each step is a signed missing addend (MM4-N24 stage0); the chained use is the only new part (chain checker E12 BORDERLINE; area risk: magic squares can read as Operations and Algebraic Thinking)."
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "all printed entries and the sum are negative, so A is likely negative; all four options are negative",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "none: A could be anywhere a missing addend allows; no printed number bounds it without a second blank",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: fractions",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "none: every option is in sevenths",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "in a 3-by-3 magic square the centre is one third of the sum (-2 4/7, true here) and opposite entries average to the centre, so A + D = -5 1/7; D is unknown, so this strikes nothing",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Area risk named by the chain checker (magic square may read as OA); E12 preferred to E04 for that reason. -1 6/7 is the solved intermediate B, offered deliberately as the stop-early error; it does not lead to the key through one printed number. Could a student check an option in one routine step? No: A's lines each have two blanks. Mid for grade 7: two signed missing addends. Cheapest bound strikes none."
+  }
+ }
+]
