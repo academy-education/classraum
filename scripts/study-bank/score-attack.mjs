@@ -7,12 +7,18 @@ import { readFileSync, existsSync } from 'node:fs'
 const [tag, ...suff] = process.argv.slice(2)
 const key = JSON.parse(readFileSync(`scripts/study-bank/${tag}.key.json`, 'utf8'))
 const ids = Object.keys(key)
-const files = (suff.length ? suff : ['solver-a', 'solver-b', 'solver-c']).map(s => `scripts/study-bank/${tag}.${s}.json`).filter(existsSync)
+const wanted = (suff.length ? suff : ['solver-a', 'solver-b', 'solver-c']).map(s => `scripts/study-bank/${tag}.${s}.json`)
+const files = wanted.filter(existsSync)
+// A check that cannot read its input exits non-zero (CLAUDE.md). With no
+// solver file this used to print "mean NaN%" and list every item as solved by
+// all, exit 0 (found 2026-10-31 by the ACT English v11 author).
+if (!files.length) { console.error(`REFUSING: no solver file found (looked for ${wanted.map(f => f.split('/').pop()).join(', ')})`); process.exit(2) }
 const hits = Object.fromEntries(ids.map(i => [i, 0]))
 for (const f of files) {
   const s = JSON.parse(readFileSync(f, 'utf8'))
   let ok = 0, cOk = 0, cN = 0, n = 0
   for (const i of ids) { const v = s[i]; if (!v) continue; n++; const h = v.pick === key[i].letter; if (h) { ok++; hits[i]++ } if (v.basis === 'confident') { cN++; if (h) cOk++ } }
+  if (n === 0) { console.error(`REFUSING: ${f.split('/').pop()} answers 0 of ${ids.length} keyed items`); process.exit(2) }
   console.log(`${f.split('/').pop()}: ${ok}/${n} = ${(100 * ok / n).toFixed(1)}%  confident ${cOk}/${cN}`)
 }
 /*
