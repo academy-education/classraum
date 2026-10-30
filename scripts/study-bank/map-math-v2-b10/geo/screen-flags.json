@@ -1,0 +1,22 @@
+{
+ "MB10-G6-01": {
+  "p1": [
+   "S-R4 2 struck without solving: [\"269\",\"120\"] (269: odd, and far above a 15 m x 8 m-scale lawn (uses the slanted side); 120: exactly base x height, so the flower bed was never taken away)"
+  ],
+  "revised": true,
+  "p2": [
+   "S-R4 2 struck without solving: [\"122\",\"296\"] (122 and 296: 13 x 10 ends in 0 and the bed is 16, so the answer must end in 4; that leaves 54 and 114)"
+  ]
+ },
+ "MB10-G7-01": {
+  "p1": [
+   "S-R4 3 struck without solving: [\"28\",\"20\",\"35\"] (adjacency tell: 'least number must buy' signals rounding up and only 28/29 are adjacent, so the key is the upper of that pair and 28 is the truncation; 20 and 3)",
+   "S-R5 key identifiable without solving"
+  ],
+  "revised": true,
+  "p2": [
+   "S-R4 2 struck without solving: [\"38\",\"47\"] (38 and 47: 20 in > 18 in = 1.5 ft, so the volume is > 7 x 4 x 1.5 = 42 cu ft, and bags of 0.75 cu ft must number more than 56)",
+   "S-R7 option pair 47 and 63, divide by 0.75 (62.67 rounds up to 63)"
+  ]
+ }
+}

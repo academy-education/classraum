@@ -1,0 +1,231 @@
+{
+ "prereg": "scripts/study-bank/MAP-MATH-V2-B10.prereg.md",
+ "area": "Operations and Algebraic Thinking",
+ "frozenSha": "8cd463f4bb34f364cda8e2dbc7a8dcbe6ce32328dc725c1c3c3f7b8d7ec7bb40",
+ "n": 5,
+ "optionsOnly": {
+  "cand": {
+   "n": 5,
+   "picks": 15,
+   "hits": 11,
+   "unan": 3
+  },
+  "ctrl": {
+   "n": 5,
+   "picks": 15,
+   "hits": 3,
+   "unan": 1
+  },
+  "status": "hold",
+  "cr": 73.33333333333333,
+  "kr": 20,
+  "cu": 60,
+  "ku": 20,
+  "margin": 53.33333333333333,
+  "umar": 40,
+  "why": "candidate 73.3% vs control 20.0% (margin 53.3, bar +10); unanimous-correct rate 60.0% vs control 20.0% (40.0, bar +15)",
+  "letterControl": 40
+ },
+ "rankH1": {
+  "frozen": {
+   "n": 5,
+   "unscored": 0,
+   "hist": {
+    "1": 0,
+    "2": 3,
+    "3": 2,
+    "4": 0
+   },
+   "share2": 60,
+   "meets": false,
+   "line": "key rank 1/2/3/4 = 0/3/2/0 of 5; rank-2 share 60.0% (prediction <= 25%: NOT met; recorded, not a gate)"
+  },
+  "solverPicks": {
+   "hist": {
+    "1": 0,
+    "2": 8,
+    "3": 6,
+    "4": 1
+   },
+   "picks": 15,
+   "pick2": 53.333333333333336,
+   "key2": 60,
+   "line": "candidate picks at rank 1/2/3/4 = 0/8/6/1 of 15 (rank-2 pick rate 53.3%) vs candidate keys at rank 2 3/5 = 60.0%"
+  },
+  "kept": {
+   "n": 3,
+   "unscored": 0,
+   "hist": {
+    "1": 0,
+    "2": 2,
+    "3": 1,
+    "4": 0
+   },
+   "share2": 66.66666666666667,
+   "meets": false,
+   "line": "key rank 1/2/3/4 = 0/2/1/0 of 3; rank-2 share 66.7% (prediction <= 25%: NOT met; recorded, not a gate)"
+  },
+  "inserted": {
+   "n": 3,
+   "unscored": 0,
+   "hist": {
+    "1": 0,
+    "2": 2,
+    "3": 1,
+    "4": 0
+   },
+   "share2": 66.66666666666667,
+   "meets": false,
+   "line": "key rank 1/2/3/4 = 0/2/1/0 of 3; rank-2 share 66.7% (prediction <= 25%: NOT met; recorded, not a gate)"
+  }
+ },
+ "gradeFitRecorded": {
+  "n": 5,
+  "judgments": 10,
+  "tooEasy": 0,
+  "tooHard": 1,
+  "tooEasyPct": 0,
+  "tooHardPct": 10,
+  "offA": -0.2,
+  "offB": 0.2,
+  "spreadA": null,
+  "spreadB": null,
+  "D1": true,
+  "D2": true,
+  "D3": false,
+  "status": "fail"
+ },
+ "coldOnKey": 10,
+ "items": {
+  "MB10-O7-01": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MB10-O6-01": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "medium"
+  },
+  "MB10-O8-01": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MB10-O8-02": {
+   "drop": [
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "hard"
+  },
+  "MB10-O7-02": {
+   "drop": [
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "hard"
+  }
+ },
+ "areaResult": {
+  "status": "held",
+  "reasons": [
+   "options-only hold"
+  ],
+  "notes": [
+   "kept-set extremity: no measurement: 3 scorable of 3 (need >= 10); 0 non-numeric, 0 other skip (recorded; the inserter's gate measures from n >= 10)"
+  ],
+  "extremity": {
+   "total": 3,
+   "n": 3,
+   "nonNumeric": 0,
+   "otherSkip": 0,
+   "ext": 0,
+   "rate": 0,
+   "chance": 0.5,
+   "threshold": null,
+   "status": "no-measurement",
+   "reason": "no measurement: 3 scorable of 3 (need >= 10); 0 non-numeric, 0 other skip"
+  },
+  "cState": "not-measured",
+  "cPrimeFired": false,
+  "cprime": null,
+  "kept": 3,
+  "keptIds": [
+   "MB10-O7-01",
+   "MB10-O6-01",
+   "MB10-O8-01"
+  ],
+  "insertedIds": [
+   "MB10-O7-01",
+   "MB10-O6-01",
+   "MB10-O8-01"
+  ],
+  "deferredIds": []
+ },
+ "screenFlagsRecorded": {
+  "MB10-O6-01": {
+   "p1": [
+    "S-R4 3 struck without solving: [\"18\",\"50\",\"80.6\"] (the 18 C rise times 9/5 (between 1 and 2) puts the F rise strictly between 18 and 36, killing 18, 50 and 80.6)",
+    "S-R5 key identifiable without solving",
+    "S-R7 option pair 18 and 32.4, x9/5 (printed)"
+   ],
+   "revised": true,
+   "p2": [
+    "S-R4 3 struck without solving: [\"81\",\"91.8\",\"122\"] (91.8 and 122: the rise is at most 9/5 x 50 = 90 F, a bound read straight off the printed 50 and 9/5; 81: 49 is not a multiple of 5, so 9/5 x 49 cannot be whole )",
+    "S-R5 key identifiable without solving"
+   ],
+   "kept": true
+  },
+  "MB10-O7-01": {
+   "p1": [
+    "S-R4 2 struck without solving: [\"36\",\"25\"] (old takes 1080/24 = 45 min; less than twice as fast means the new one takes over half that time, so the saving is under 22.5, killing 36 and 25)",
+    "S-R7 option pair 20 and 36, x1.8 (1 + the printed 80%)"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": true
+  },
+  "MB10-O7-02": {
+   "p1": [
+    "S-R7 option pair 126 and 180, x0.7 (1 - the printed 30%)"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": false
+  },
+  "MB10-O8-02": {
+   "p1": [
+    "S-R4 3 struck without solving: [\"175\",\"18\",\"49\"] (175: a per-cm rate cannot be most of the whole 256 area; each 1-cm step from s to s+1 adds 2s+1, so between 19 (at 9) and 31 (at 15), which kills 18 and 49)",
+    "S-R5 key identifiable without solving"
+   ],
+   "revised": true,
+   "p2": [
+    "S-R4 2 struck without solving: [\"157.5\",\"74.2\"] (157.5 and 74.2: the area grows from 196 to less than 2500 over 35 cm, so the average is < 2500/35, about 71; 157.5 also exceeds even 2 x 49 = 98)"
+   ],
+   "kept": false
+  }
+ },
+ "passIds": [],
+ "verdict": "HELD"
+}

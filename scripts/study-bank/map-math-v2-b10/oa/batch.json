@@ -1,0 +1,519 @@
+[
+ {
+  "id": "MB10-O7-01",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 7,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "7.RP.A.3",
+  "subskill": "Time saved when a rate increases by a percent",
+  "grade_rationale": "High for grade 7 (7.RP.A.3): a 60% faster rate does not cut the time by 60%. The student finds the new rate, both times, and subtracts. Grade-7 students commonly cut the old time by 60%, add 60 pages per minute instead of 60%, or stop at the new rate.",
+  "prompt": "An old printer prints 50 pages per minute. A new printer prints 60% faster than the old printer. How many fewer minutes does the new printer take than the old printer to print 11,000 pages?",
+  "choices": [
+   "80",
+   "82.5",
+   "88",
+   "120"
+  ],
+  "correct_answer": "82.5",
+  "explanation": "The old printer takes 11,000 / 50 = 220 minutes. The new printer prints 60% faster: 50 x 1.6 = 80 pages per minute, so it takes 11,000 / 80 = 137.5 minutes. It takes 220 - 137.5 = 82.5 fewer minutes.",
+  "solve": "return 11000/50-11000/(50*1.6);",
+  "distractor_solve": {
+   "80": "return 50*1.6;",
+   "88": "return 11000/50*(1-0.6);",
+   "120": "return 11000/50-11000/(50+60);"
+  },
+  "mechanism": [
+   "old time 11,000 / 50 = 220",
+   "new rate 50 x 1.6 = 80; new time 137.5",
+   "saved 220 - 137.5 = 82.5"
+  ],
+  "quantity_asked": "how many fewer minutes the new printer takes",
+  "plugback": {
+   "substitutable": false,
+   "why": "A time saved cannot be checked without both times, which is the task."
+  },
+  "structure_check": "No bound or extremum. The new rate is below the key; the 60%-cut time and the add-60-pages saving are above.",
+  "intermediate_check": "80 is an option: it is the solved new rate, offered as the wrong-variable error and named in distractor_meta. 220 and 137.5 are not options (137.5 would be key / 0.6, a printed-multiplier pair, so it was left out).",
+  "cheap_bound_check": "Printed-multiplier bracket: 1.6 lies between 1.5 and 2, so the new time is between 1/2 and 2/3 of 220 and the saving is between 73.3 and 110; this strikes 120 only (80, 82.5 and 88 lie inside). The looser \"less than twice as fast\" bound (saving under 110) strikes the same 120. One option struck.",
+  "shape_check": "Options are whole numbers and one one-decimal number (82.5).",
+  "interior_parity_check": "Middle values 82.5 and 88; neither cleaner.",
+  "arith_class_check": "No forced class.",
+  "dup_search": "R11 probe of every earlier MAP maths item (mapgrep 'faster|slower', 'how many more/fewer minutes'): MMG-O14 and MV2-N56-17 compare two given rates for one job; no MAP item builds the new rate from a percent increase. Live: SSAT d404cfea upgrades a printer mid-job (remaining time), a different ask.",
+  "self_audit": "Revision after screen pass 1 (one return). Mechanism unchanged; numbers and option set changed. Adversarial self-screen of the new set with every pass-1 method (units digit / multiple-of, printed-multiplier bracket, increment bound, impossibility from totals or denominators, weighted-mean direction, round-up adjacency, option pair joined by a printed multiplier) plus sign, parity and magnitude; and the centre-of-mass check (the key is not the option nearest the mean of the four, in linear or log scale). Pass 1 struck 36 and 25 by \"less than twice as fast\" (both the 80%-of-old-time error and the new time ALWAYS exceed half the old time) and flagged 20 & 36 (x1.8). Neither of those errors is used now; the 20%/80% family is replaced by errors placed inside the bracket by the numbers (the new rate, and adding 60 pages per minute with a 50-page old rate). Every option pair checked against 1.6, 0.6, 0.4, 1/1.6, 1/0.6, 1/0.4, 1.6/0.6: none (ratios 1.031, 1.1, 1.5, 1.067, 1.455, 1.364; differences 2.5, 8, 40, 5.5, 37.5, 32; none printed: 50, 60, 11000). The 1.5 ratio of 120 to 80 is not a printed or derived multiplier. Mean 92.6: nearest option 88. Search: scratchpad/map-math-v2-b10-work/returns/search/o7lib.py + o701c.py (rates 20..120, p 40..80, pages 1,000..24,000): 11 one-strike sets, none zero-strike. Key recomputed 220 - 137.5 = 82.5.",
+  "distractor_meta": {
+   "80": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "stops at the new printing rate (pages per minute) and gives it as the answer",
+    "why": "50 x 1.6 = 80."
+   },
+   "88": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "takes the new time to be the old time cut by 60% and gives that time as the answer",
+    "why": "220 x (1 - 0.6) = 88."
+   },
+   "120": {
+    "error_kind": "wrong_operation",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds 60 pages per minute instead of 60%",
+    "why": "new rate 110; 220 - 11,000/110 = 220 - 100 = 120."
+   }
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [
+     "120"
+    ],
+    "why": "The saving is less than half of 220 = 110 (the new printer is less than twice as fast); 120 is above. One strike."
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "range",
+    "strikes": [
+     "120"
+    ],
+    "why": "Same bracket, sharpened with 1.6 > 1.5: between 73.3 and 110."
+   }
+  ]
+ },
+ {
+  "id": "MB10-O6-01",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "6.EE.A.2c",
+  "subskill": "Change in the output of a linear formula when the input changes",
+  "grade_rationale": "Mid for grade 6 (6.EE.A.2c): the student evaluates a real-world formula at two inputs (or sees that the +32 drops out) and subtracts. Grade-6 students commonly add 32 to the Celsius change as if F were C + 32, combine the two temperatures by adding instead of subtracting, or report one Fahrenheit temperature instead of the change.",
+  "prompt": "The formula F = (9/5)C + 32 changes a temperature of C degrees Celsius to F degrees Fahrenheit. A pot of water was heated from 1 degree Celsius to 50 degrees Celsius. By how many degrees Fahrenheit did the temperature of the water rise?",
+  "choices": [
+   "81",
+   "88.2",
+   "91.8",
+   "122"
+  ],
+  "correct_answer": "88.2",
+  "explanation": "At 1 degree Celsius, F = (9/5)(1) + 32 = 1.8 + 32 = 33.8. At 50 degrees Celsius, F = (9/5)(50) + 32 = 90 + 32 = 122. The rise is 122 - 33.8 = 88.2 degrees Fahrenheit. (The +32 is in both temperatures, so the rise is (9/5)(50 - 1) = (9/5)(49) = 88.2.)",
+  "solve": "return Math.round(((9/5)*50+32-((9/5)*1+32))*10)/10;",
+  "distractor_solve": {
+   "81": "return (50-1)+32;",
+   "122": "return Math.round(((9/5)*50+32)*10)/10;",
+   "91.8": "return Math.round((9/5)*(50+1)*10)/10;"
+  },
+  "mechanism": [
+   "F at 1 C = 33.8",
+   "F at 50 C = 122",
+   "rise = 122 - 33.8 = 88.2"
+  ],
+  "quantity_asked": "the rise in temperature in degrees Fahrenheit",
+  "plugback": {
+   "substitutable": false,
+   "why": "A rise in Fahrenheit cannot be checked without converting both temperatures, which is the task."
+  },
+  "structure_check": "No bound or extremum. The rise-plus-32 error is below the key; the added-temperatures error and the final Fahrenheit temperature are above.",
+  "intermediate_check": "122 is an option: it is the solved Fahrenheit temperature at 50 C, offered as the wrong-variable error and named in distractor_meta. 33.8 and the Celsius rise 49 are not options (49 is never an option: key / 49 is the printed 9/5).",
+  "cheap_bound_check": "Printed-multiplier bracket: the Fahrenheit rise is 9/5 times the Celsius rise 49, so it lies strictly between 49 and 98; this strikes 122 only (81, 88.2, 91.8 lie inside). Multiple-of: a whole-number Celsius rise times 9/5 is a multiple of 1.8; 81 = 1.8 x 45, 88.2 = 1.8 x 49 and 91.8 = 1.8 x 51 all pass, so this strikes only 122, the same option. One option struck in all.",
+  "shape_check": "Options are whole numbers and one-decimal numbers (81 and 122 whole, 88.2 and 91.8 one decimal); the key shares its form with a distractor.",
+  "interior_parity_check": "Middle values 88.2 and 91.8; both one-decimal multiples of 1.8, neither cleaner.",
+  "arith_class_check": "Every option but 122 is a multiple of 1.8 (the class the 9/5 factor forces); 122 is already struck by the bracket.",
+  "dup_search": "R11 probe of every earlier MAP maths item (mapgrep 'formula|fahrenheit|celsius'): MMG-O05 evaluates one formula at one input; no MAP item asks for a change in a formula's output. Live: no Fahrenheit-change item found by mf30-kw.",
+  "self_audit": "Revision after screen pass 1 (one return). Mechanism unchanged; numbers and option set changed. Adversarial self-screen of the new set with every pass-1 method (units digit / multiple-of, printed-multiplier bracket, increment bound, impossibility from totals or denominators, weighted-mean direction, round-up adjacency, option pair joined by a printed multiplier) plus sign, parity and magnitude; and the centre-of-mass check (the key is not the option nearest the mean of the four, in linear or log scale). Pass 1 struck 18, 50 and 80.6 by the 9/5 bracket and flagged 18 & 32.4 (x9/5). The Celsius rise is never an option now (always key x 5/9). The bracket strikes 122 only; multiple-of-1.8 strikes nothing else (81, 91.8 are 1.8 x 45, 1.8 x 51). Option pairs: ratios 1.089, 1.041, 1.383, 1.133, 1.329, 1.506; differences 7.2, 3.6, 33.8, 10.8, 41, 30.2: none is a printed number (9, 5, 32, 1, 50) or 9/5, 5/9. Mean of options 95.75: nearest option 91.8, not the key. Residual stated: after 122 is struck, the key is the middle of the three survivors. Setting changed from a morning to heated water only because a 49-degree rise is not a morning weather change. Search: scratchpad/map-math-v2-b10-work/returns/search/o601.py (C1 -20..30, C2 up to 60, 13 named errors): 15 sets survive both screens with one strike, none with zero. Key recomputed (9/5)(49) = 88.2.",
+  "distractor_meta": {
+   "81": {
+    "error_kind": "wrong_operation",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds 32 to the Celsius rise, as if F were C + 32 and the 32 belonged to the change",
+    "why": "(50 - 1) + 32 = 81."
+   },
+   "122": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "gives the final temperature in Fahrenheit instead of the rise",
+    "why": "(9/5)(50) + 32 = 122."
+   },
+   "91.8": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds the two Celsius temperatures instead of subtracting them, then converts with 9/5",
+    "why": "(9/5)(50 + 1) = (9/5)(51) = 91.8."
+   }
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [
+     "122"
+    ],
+    "why": "The rise is (9/5) x 49, between 49 and 2 x 49 = 98; 122 lies above. One strike."
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "range",
+    "strikes": [
+     "122"
+    ],
+    "why": "Same bracket as magnitude: strictly between 49 and 98."
+   }
+  ]
+ },
+ {
+  "id": "MB10-O8-01",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 8,
+  "tier": "high",
+  "rit_band": "RIT 230-239",
+  "difficulty": "hard",
+  "ccss": "8.EE.C.7b",
+  "subskill": "When one linear amount is twice another",
+  "grade_rationale": "High for grade 8 (8.EE.C.7b): the student writes 760 + 6w = 2(240 + 7w), distributes the 2 to both terms, and solves. Grade-8 students commonly double only the starting amount or only the weekly amount, ignore Ana's deposits, or add the rates.",
+  "prompt": "Ana has $760 in a savings account and adds $6 to it each week. Ben has $240 in his account and adds $7 to it each week. Neither of them takes any money out. After how many weeks will Ana have exactly twice as much money in her account as Ben has in his?",
+  "choices": [
+   "14",
+   "20",
+   "35",
+   "65"
+  ],
+  "correct_answer": "35",
+  "explanation": "After w weeks Ana has 760 + 6w and Ben has 240 + 7w. Set 760 + 6w = 2(240 + 7w) = 480 + 14w. Then 280 = 8w, so w = 35. Check: Ana has 760 + 210 = 970 and Ben has 240 + 245 = 485, and 970 = 2 x 485.",
+  "solve": "return (760-2*240)/(2*7-6);",
+  "distractor_solve": {
+   "14": "return (760-2*240)/(2*7+6);",
+   "20": "return (760-2*240)/(2*7);",
+   "65": "return (760-240)/(2*7-6);"
+  },
+  "mechanism": [
+   "760 + 6w = 2(240 + 7w)",
+   "280 = 8w",
+   "w = 35"
+  ],
+  "quantity_asked": "the number of weeks until Ana has twice as much as Ben",
+  "plugback": {
+   "substitutable": true,
+   "verify": "return 760+6*v===2*(240+7*v);",
+   "why": "An option can be checked by computing both balances after that many weeks; the key is reached at try 3 ascending."
+  },
+  "structure_check": "No bound or extremum. Errors fall on both sides: adding the rates and ignoring Ana's deposits are below the key; the half-doubled equation is above.",
+  "intermediate_check": "Solved intermediates are 280, 8, 970 and 485; none is an option.",
+  "cheap_bound_check": "No sign, size or parity fact read off the stem strikes two options; all are whole numbers of weeks.",
+  "shape_check": "All options are whole numbers.",
+  "interior_parity_check": "Middle values 20 and 35; neither cleaner.",
+  "arith_class_check": "No forced class.",
+  "dup_search": "R11 probe of every earlier MAP maths item (mapgrep 'twice as much|twice as many'): MV2-O56-06 doubles a saved amount once; MM2-O13 compares two interest accounts at a fixed time; no MAP item solves for when one linear amount is twice another. Live (ISEE/SSAT age items) set 'twice as old' with one starting relation; this item has two independent accounts.",
+  "self_audit": "Key recomputed: 280 / 8 = 35; 970 = 2 x 485.",
+  "distractor_meta": {
+   "14": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "moves 6w to the wrong side and adds the weekly amounts",
+    "why": "280 / (14 + 6) = 14."
+   },
+   "20": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "ignores Ana's weekly deposits",
+    "why": "280 / 14 = 20."
+   },
+   "65": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "doubles Ben's weekly amount but not his starting amount",
+    "why": "(760 - 240) / 8 = 65."
+   }
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "All options are positive week counts."
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   }
+  ]
+ },
+ {
+  "id": "MB10-O8-02",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 8,
+  "tier": "mid",
+  "rit_band": "RIT 220-229",
+  "difficulty": "medium",
+  "ccss": "8.F.B.4",
+  "subskill": "Average rate of change of a nonlinear function over an interval",
+  "grade_rationale": "Mid for grade 8 (8.F.B.4 with 8.F.A.3): A = s^2 is not linear, so the student finds the change in area and divides by the change in side. Grade-8 students commonly divide by one of the side lengths instead of the change in side, or add the two areas instead of subtracting.",
+  "prompt": "The area A, in square centimeters, of a square with sides s centimeters long is A = s^2. As the side length grows from 14 centimeters to 49 centimeters, by how many square centimeters does the area grow, on average, for each 1-centimeter increase in side length?",
+  "choices": [
+   "45",
+   "63",
+   "74.2",
+   "157.5"
+  ],
+  "correct_answer": "63",
+  "explanation": "At s = 14 the area is 196 square centimeters, and at s = 49 it is 2,401 square centimeters. The area grows by 2,401 - 196 = 2,205 square centimeters while the side grows by 49 - 14 = 35 centimeters, so on average it grows 2,205 / 35 = 63 square centimeters per centimeter.",
+  "solve": "return (49*49-14*14)/(49-14);",
+  "distractor_solve": {
+   "45": "return (49*49-14*14)/49;",
+   "74.2": "return Math.round((49*49+14*14)/(49-14)*10)/10;",
+   "157.5": "return (49*49-14*14)/14;"
+  },
+  "mechanism": [
+   "A(14) = 196, A(49) = 2,401",
+   "change 2,205 over 35",
+   "2,205 / 35 = 63"
+  ],
+  "quantity_asked": "the average growth in area per 1-centimeter increase in side",
+  "plugback": {
+   "substitutable": false,
+   "why": "An average rate cannot be checked without both areas, which is the task."
+  },
+  "structure_check": "No bound or extremum. Dividing by the final side is below the key; adding the areas and dividing by the starting side are above.",
+  "intermediate_check": "Solved intermediates 196, 2,401, 2,205 and 35 are not options.",
+  "cheap_bound_check": "Increment bound: each 1-cm step from s to s + 1 adds 2s + 1, from 29 (at 14) to 97 (at 48), so the average lies strictly between 29 and 97; this strikes 157.5 only. Magnitude: no option approaches the total change 2,205. One option struck.",
+  "shape_check": "Options are whole numbers and one-decimal numbers.",
+  "interior_parity_check": "Middle values 63 and 74.2; neither cleaner.",
+  "arith_class_check": "No forced class.",
+  "dup_search": "R11 probe of every earlier MAP maths item (mapgrep 'on average|average rate|rate of change'): MM2-O16 and MM2-O20 compare rates of change of LINEAR functions; no MAP item asks for an average rate of change of a nonlinear function. Live: SAT/ACT quadratic average-rate items use f(x) notation at high-school level.",
+  "self_audit": "Revision after screen pass 1 (one return). Mechanism unchanged; numbers and option set changed. Adversarial self-screen of the new set with every pass-1 method (units digit / multiple-of, printed-multiplier bracket, increment bound, impossibility from totals or denominators, weighted-mean direction, round-up adjacency, option pair joined by a printed multiplier) plus sign, parity and magnitude; and the centre-of-mass check (the key is not the option nearest the mean of the four, in linear or log scale). Pass 1 struck 175 (the total change, also a visible x7 pair with the key), 18 and 49 (the 2s + 1 increment bound: the start-rate error 2a is ALWAYS below 2a + 1). New set uses errors that divide by the wrong length or add the areas; the bound strikes only 157.5. The total change is no longer an option, so the key x (change in side) pair is gone. Pairs: 63/45 = 1.4, 74.2/63, 157.5/63 = 2.5, 74.2/45, 157.5/74.2, 157.5/45 = 3.5; differences 18, 11.2, 94.5, 29.2, 83.3, 112.5: none is a printed number (14, 49, 2) or the side change 35. Residual stated: 157.5 / 45 = 49 / 14 (dividing the same change by the two sides), a ratio of two printed numbers between two distractors; it does not point at the key, and 157.5 is the one struck option anyway. Mean 84.9: nearest option 74.2. Search: scratchpad/map-math-v2-b10-work/returns/search/o802.py (a 2..39, b to 59, natural errors only): this is the only set with at most one strike. Key recomputed 2,205 / 35 = 63.",
+  "distractor_meta": {
+   "45": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "divides the change in area by the final side length (49) instead of the change in side length",
+    "why": "2,205 / 49 = 45."
+   },
+   "74.2": {
+    "error_kind": "sign_slip",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "adds the two areas instead of subtracting them, then divides by the change in side",
+    "why": "(2,401 + 196) / 35 = 2,597 / 35 = 74.2."
+   },
+   "157.5": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "divides the change in area by the starting side length (14) instead of the change in side length",
+    "why": "2,205 / 14 = 157.5."
+   }
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "All options are far below the total change; no other size bound."
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "range",
+    "strikes": [
+     "157.5"
+    ],
+    "why": "Increments 2s + 1 run from 29 to 97, so the average is between them; 157.5 is above. One strike."
+   }
+  ]
+ },
+ {
+  "id": "MB10-O7-02",
+  "domain": "Operations and Algebraic Thinking",
+  "map_area": "oa",
+  "grade_target": 7,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "7.RP.A.3",
+  "subskill": "Original amount of a mixture from its percent before and after adding one part",
+  "grade_rationale": "High for grade 7 (7.RP.A.3 with 7.EE.B.4a): adding juice changes both the amount of juice and the total. The student sets up 0.15N + 24 = 0.25(N + 24) and solves. Grade-7 students commonly treat the added 24 liters as a percent of the drink by itself (25%, 15% or the 10-point rise).",
+  "prompt": "A tank holds a drink made only of juice and water, and 15% of the drink is juice. Ella adds 24 liters of juice and nothing else. Now 25% of the drink in the tank is juice. How many liters of drink were in the tank before Ella added the juice?",
+  "choices": [
+   "96",
+   "136",
+   "180",
+   "216"
+  ],
+  "correct_answer": "180",
+  "explanation": "Let N be the liters of drink before. The juice was 0.15N. After adding 24 liters of juice there are 0.15N + 24 liters of juice in N + 24 liters of drink, and this is 25%: 0.15N + 24 = 0.25(N + 24) = 0.25N + 6. So 0.10N = 18 and N = 180. Check: 27 + 24 = 51 liters of juice in 204 liters, and 51 / 204 = 25%.",
+  "solve": "return Math.round((24-0.25*24)/(0.25-0.15)*100)/100;",
+  "distractor_solve": {
+   "96": "return 24/0.25;",
+   "136": "return Math.round((24/0.15-24)*100)/100;",
+   "216": "return Math.round((24/(0.25-0.15)-24)*100)/100;"
+  },
+  "mechanism": [
+   "0.15N + 24 = 0.25(N + 24)",
+   "0.10N = 18",
+   "N = 180"
+  ],
+  "quantity_asked": "the number of liters in the tank before the juice was added",
+  "plugback": {
+   "substitutable": true,
+   "verify": "return Math.abs((0.15*v+24)/(v+24)-0.25)<1e-9;",
+   "why": "An option can be checked by finding 15% of it, adding 24 liters of juice, and testing for 25%; the key is reached at try 3 ascending."
+  },
+  "structure_check": "No bound or extremum. The two percent-of-24 errors are below the key; the 10-point-rise error is above.",
+  "intermediate_check": "Solved intermediates are 27, 51, 204 and 18; none is an option. 240 (24 / 0.10) is not an option.",
+  "cheap_bound_check": "Liters are continuous, so no whole-number or multiple-of rule applies. No total or denominator bound is readable off the stem, and every option exceeds the 24 liters added. No option strikes.",
+  "shape_check": "All options are whole numbers.",
+  "interior_parity_check": "Middle values 136 and 180; neither cleaner.",
+  "arith_class_check": "No forced class: amounts of liquid need not be whole.",
+  "dup_search": "R11 probe of every earlier MAP maths item (mapgrep 'make up|now .*%|become', '% & of those'): MM3-O13 and MV2-O56-12 are percent-of-a-part items with a fixed total; no MAP item changes one part and the percent together. Live: SSAT 66559fd0 asks how many red to add for a target probability (the unknown is the added amount, not the original total).",
+  "self_audit": "Revision after screen pass 1 (one return). Mechanism unchanged; numbers and option set changed. Adversarial self-screen of the new set with every pass-1 method (units digit / multiple-of, printed-multiplier bracket, increment bound, impossibility from totals or denominators, weighted-mean direction, round-up adjacency, option pair joined by a printed multiplier) plus sign, parity and magnitude; and the centre-of-mass check (the key is not the option nearest the mean of the four, in linear or log scale). Pass 1 flagged only the pair 126 & 180 (x0.7 = 1 - printed 30%): the water amount is ALWAYS (1 - p1) x key, and 30 / 10% is ALWAYS key / (1 - p2), so both were removed rather than renumbered. Every option pair checked for ratios 0.85, 0.75, 0.15, 0.25, 0.10, 0.85/0.75, 25/15, 10 and for a difference of 24: none (ratios 1.2, 1.32, 1.42, 1.59, 1.875, 2.25; differences 36, 44, 40, 80, 84, 120). Mean 157: nearest option 136. Search: scratchpad/map-math-v2-b10-work/returns/search/o702d.py (p1 5..85, p2 up to 90, A 5..60, natural errors only): 34 zero-strike sets passing both centre checks. Key recomputed 18 / 0.10 = 180; 51/204 = 0.25.",
+  "distractor_meta": {
+   "96": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "treats the 24 added liters as 25% of the drink",
+    "why": "24 / 0.25 = 96."
+   },
+   "136": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "treats the 24 added liters as 15% of the drink after adding, then subtracts the 24 liters",
+    "why": "24 / 0.15 = 160; 160 - 24 = 136."
+   },
+   "216": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "treats the 24 added liters as the 10-point rise, so the drink after adding is 24 / 0.10 = 240 liters, then subtracts the 24 liters",
+    "why": "240 - 24 = 216."
+   }
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "All options exceed the 24 liters added; no size bound is readable off the stem."
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   }
+  ]
+ }
+]

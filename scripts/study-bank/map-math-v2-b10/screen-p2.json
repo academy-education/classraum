@@ -1,0 +1,22 @@
+{
+ "screened": 8,
+ "fails": {
+  "MB10-D6-02": [
+   "S-R4 2 struck without solving: [\"24\",\"31\"] (24: the sum rises by 44, and 44 is not a multiple of 5, so the new mean cannot be a whole number; 31: same divisibility argument, and it is just the printed med)"
+  ],
+  "MB10-O6-01": [
+   "S-R4 3 struck without solving: [\"81\",\"91.8\",\"122\"] (91.8 and 122: the rise is at most 9/5 x 50 = 90 F, a bound read straight off the printed 50 and 9/5; 81: 49 is not a multiple of 5, so 9/5 x 49 cannot be whole )",
+   "S-R5 key identifiable without solving"
+  ],
+  "MB10-G6-01": [
+   "S-R4 2 struck without solving: [\"122\",\"296\"] (122 and 296: 13 x 10 ends in 0 and the bed is 16, so the answer must end in 4; that leaves 54 and 114)"
+  ],
+  "MB10-G7-01": [
+   "S-R4 2 struck without solving: [\"38\",\"47\"] (38 and 47: 20 in > 18 in = 1.5 ft, so the volume is > 7 x 4 x 1.5 = 42 cu ft, and bags of 0.75 cu ft must number more than 56)",
+   "S-R7 option pair 47 and 63, divide by 0.75 (62.67 rounds up to 63)"
+  ],
+  "MB10-O8-02": [
+   "S-R4 2 struck without solving: [\"157.5\",\"74.2\"] (157.5 and 74.2: the area grows from 196 to less than 2500 over 35 cm, so the average is < 2500/35, about 71; 157.5 also exceeds even 2 x 49 = 98)"
+  ]
+ }
+}

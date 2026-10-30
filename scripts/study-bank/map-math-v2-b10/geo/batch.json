@@ -1,0 +1,206 @@
+[
+ {
+  "id": "MB10-G6-01",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "6.G.A.1",
+  "subskill": "Area of a parallelogram minus a square region",
+  "grade_rationale": "Mid for grade 6 (6.G.A.1): the student finds a parallelogram area with the height, not the slanted side, and subtracts a square cut-out. Grade-6 students commonly multiply the base by the slanted side, compute 4 squared as 4 x 2, or take the bed's side off both dimensions of the lawn.",
+  "prompt": "A park lawn is shaped like a parallelogram. Its base is 13 meters, its height is 10 meters, and each slanted side is 24 meters long. A square flower bed with sides 4 meters long sits inside the lawn. How many square meters of the lawn are not covered by the flower bed?",
+  "choices": [
+   "54",
+   "114",
+   "122",
+   "296"
+  ],
+  "correct_answer": "114",
+  "explanation": "The area of a parallelogram is base x height: 13 x 10 = 130 square meters (the slanted side is not the height). The flower bed covers 4 x 4 = 16 square meters. The part not covered is 130 - 16 = 114 square meters.",
+  "solve": "return 13*10-4*4;",
+  "distractor_solve": {
+   "54": "return (13-4)*(10-4);",
+   "122": "return 13*10-4*2;",
+   "296": "return 13*24-4*4;"
+  },
+  "mechanism": [
+   "lawn = 13 x 10 = 130",
+   "bed = 4 x 4 = 16",
+   "130 - 16 = 114"
+  ],
+  "quantity_asked": "the uncovered area of the lawn",
+  "plugback": {
+   "substitutable": false,
+   "why": "An uncovered area cannot be checked without the lawn and bed areas, which is the task."
+  },
+  "structure_check": "No bound or extremum. The strip error is below the key; the 4 x 2 error and the slanted-side error are above.",
+  "intermediate_check": "Solved intermediates 130 and 16 are not options. The whole-lawn area 130 is deliberately not an option (it is the product of two printed numbers and was struck at sight in pass 1).",
+  "cheap_bound_check": "Magnitude: the uncovered part is less than the whole lawn, 130; this strikes 296 only. Parity: every printed length but 13 is even and the bed side is even, so the key is even; all four options are even, so parity strikes nothing. No option equals base x height or base x slant.",
+  "shape_check": "All options are whole numbers.",
+  "interior_parity_check": "Middle values 114 and 122; both even, neither cleaner.",
+  "arith_class_check": "All options even; no class separates the key.",
+  "dup_search": "R11 probe of every earlier MAP maths item (mapgrep 'parallelogram'): MM3-G10 and MM3-G11 find a parallelogram's height or area alone; MM2-G06 and MV2 baker subtract triangles from a RECTANGLE. No MAP item combines a parallelogram with a slanted-side distractor and a cut-out. Live: none found (mf30-kw 'parallelogram & patio|garden|lawn').",
+  "self_audit": "Revision after screen pass 1 (one return). Mechanism unchanged; numbers and option set changed. Adversarial self-screen of the new set with every pass-1 method (units digit / multiple-of, printed-multiplier bracket, increment bound, impossibility from totals or denominators, weighted-mean direction, round-up adjacency, option pair joined by a printed multiplier) plus sign, parity and magnitude; and the centre-of-mass check (the key is not the option nearest the mean of the four, in linear or log scale). Pass 1 struck 269 (odd, and far above the lawn) and 120 (exactly base x height, the bed never subtracted). The omission error is no longer an option, every option shares the key's parity, and only the slanted-side error lies above the lawn area (one strike). Bed side 4 keeps 4s = s^2, so the bed-perimeter error is not available; 4 x 2 is used instead. Pairs: ratios 2.11, 2.26, 5.48, 1.07, 2.60, 2.43; differences 60, 68, 242, 8, 182, 174: none printed (13, 10, 24, 4). Mean 146.5: nearest option 122. Search: scratchpad/map-math-v2-b10-work/returns/search/g601.py, g601b.py (base 10..30, height up to base, slant up to 2.5 x height, bed side 2..10): zero-strike sets exist only with the key at the centre of mass (rank 2 with both above-key errors bounded by the lawn area), so the slanted-side error is kept as the one struck, far option. Key recomputed 130 - 16 = 114.",
+  "distractor_meta": {
+   "54": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "takes the bed's 4-meter side off both the base and the height of the lawn, as if cutting strips, and multiplies",
+    "why": "(13 - 4) x (10 - 4) = 9 x 6 = 54."
+   },
+   "122": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "computes the bed's area 4 squared as 4 x 2 = 8",
+    "why": "130 - 8 = 122."
+   },
+   "296": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "multiplies the base by the slanted side instead of the height",
+    "why": "13 x 24 - 16 = 296."
+   }
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [
+     "296"
+    ],
+    "why": "Below the whole-lawn area 130; strikes 296 only."
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "All options are even, as the key is; no strike."
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   }
+  ]
+ },
+ {
+  "id": "MB10-G7-01",
+  "domain": "Geometry",
+  "map_area": "geo",
+  "grade_target": 7,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "7.G.B.6",
+  "subskill": "Volume with a unit conversion, then the least number of containers",
+  "grade_rationale": "High for grade 7 (7.G.B.6): volume of a prism with a unit conversion (inches to feet), division by the bag size, and rounding up. Grade-7 students commonly leave out the depth, write 1 foot 8 inches as 1.8 feet, or give the cubic feet (one bag per cubic foot).",
+  "prompt": "A raised garden bed is shaped like a rectangular prism 7 feet long and 4 feet wide. Mo will fill it with soil to a depth of 20 inches. Soil is sold in bags that each hold 0.75 cubic foot. What is the least number of bags Mo must buy?",
+  "choices": [
+   "38",
+   "47",
+   "63",
+   "68"
+  ],
+  "correct_answer": "63",
+  "explanation": "The depth is 20 inches = 20 / 12 feet. The volume of soil is 7 x 4 x 20/12 = 140/3 cubic feet, about 46.67 cubic feet. The number of bags is (140/3) / 0.75 = 560/9, about 62.2. Mo cannot buy part of a bag, and 62 bags would not hold enough, so the least number is 63 bags.",
+  "solve": "return Math.ceil(7*4*(20/12)/0.75);",
+  "distractor_solve": {
+   "38": "return Math.ceil(7*4/0.75);",
+   "47": "return Math.ceil(7*4*(20/12));",
+   "68": "return Math.ceil(7*4*1.8/0.75);"
+  },
+  "mechanism": [
+   "depth 20 in = 5/3 ft",
+   "volume 7 x 4 x 5/3 = 140/3 ft^3",
+   "(140/3) / 0.75 = 62.2, round up to 63"
+  ],
+  "quantity_asked": "the least whole number of bags that holds enough soil",
+  "plugback": {
+   "substitutable": false,
+   "why": "A bag count cannot be checked without the volume, which is the task."
+  },
+  "structure_check": "\"Least number of bags\" is a round-up ask, not a least-value ask over the options. Errors fall on both sides: no depth and the cubic-feet count are below the key; 1.8 feet is above. The round-down value 62 is not an option, so no option is adjacent to the key.",
+  "intermediate_check": "Solved intermediates 46.67 (cubic feet) and 62.2 (bags before rounding) are not options as such; 47 is the rounded-up cubic feet, offered as the wrong-variable error.",
+  "cheap_bound_check": "Depth bracket: 20 inches is between 1 and 2 feet, so the bags needed are between 28/0.75 = 37.3 and 56/0.75 = 74.7; every option lies inside, so this strikes nothing. Adjacency: no two options are consecutive whole numbers. Every option is a whole number of bags.",
+  "shape_check": "All options are whole numbers of bags.",
+  "interior_parity_check": "Middle values 47 and 63; both odd, neither cleaner.",
+  "arith_class_check": "No forced class.",
+  "dup_search": "R11 probe of every earlier MAP maths item (mapgrep 'bags', 'least number|fewest|at least'): MM2-G01 converts mixed units for one box volume; MMG-G09 rounds up a number of laps; no MAP item converts a depth, divides a volume by a container size and rounds up. Live: none found.",
+  "self_audit": "Revision after screen pass 1 (one return). Mechanism unchanged; numbers and option set changed. Adversarial self-screen of the new set with every pass-1 method (units digit / multiple-of, printed-multiplier bracket, increment bound, impossibility from totals or denominators, weighted-mean direction, round-up adjacency, option pair joined by a printed multiplier) plus sign, parity and magnitude; and the centre-of-mass check (the key is not the option nearest the mean of the four, in linear or log scale). Pass 1 struck 28 (the round-down value, adjacent to the key, which also gave the key away as the upper of the pair) plus 20 and 35. The round-down value is no longer an option; no option is adjacent to another; the depth bracket strikes nothing. Pairs: ratios 1.24, 1.34, 1.08, 1.66, 1.45, 1.79; differences 9, 16, 5, 25, 21, 30: none printed (7, 4, 20, 0.75) and none is 0.75 or 1/0.75. Mean 54: nearest option 47. Search: scratchpad/map-math-v2-b10-work/returns/search/g701.py (length 6..16, width 2..6, depth 14..30 in, six bag sizes): 26 zero-strike sets. Key recomputed 560/9 = 62.2 -> 63.",
+  "distractor_meta": {
+   "38": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "leaves out the depth and divides the area of the bed by the bag size",
+    "why": "28 / 0.75 = 37.3, rounded up to 38."
+   },
+   "47": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "gives the volume in cubic feet, rounded up, as if each bag held 1 cubic foot",
+    "why": "46.67 rounded up to 47."
+   },
+   "68": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "writes 20 inches (1 foot 8 inches) as 1.8 feet",
+    "why": "7 x 4 x 1.8 / 0.75 = 67.2, rounded up to 68."
+   }
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "Depth between 1 and 2 feet puts the answer between 37.3 and 74.7; every option is inside."
+   }
+  ]
+ }
+]

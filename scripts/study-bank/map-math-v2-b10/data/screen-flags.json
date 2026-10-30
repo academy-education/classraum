@@ -1,0 +1,18 @@
+{
+ "MB10-D6-01": {
+  "p1": [
+   "S-R4 2 struck without solving: [\"81.5\",\"79.2\"] (the double-weighted 98 pulls the grade above the plain mean 81.5, so 81.5 and 79.2 are too small; 81.5 also cannot be a fifth-denominator result)"
+  ],
+  "revised": true,
+  "p2": null
+ },
+ "MB10-D6-02": {
+  "p1": [
+   "S-R4 2 struck without solving: [\"23\",\"41\"] (23: the sum went up, so the mean must change; 41: raising one of five values by 18 raises the mean by much less than 18)"
+  ],
+  "revised": true,
+  "p2": [
+   "S-R4 2 struck without solving: [\"24\",\"31\"] (24: the sum rises by 44, and 44 is not a multiple of 5, so the new mean cannot be a whole number; 31: same divisibility argument, and it is just the printed med)"
+  ]
+ }
+}

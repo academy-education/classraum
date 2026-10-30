@@ -1,0 +1,309 @@
+[
+ {
+  "id": "MB10-D7-02",
+  "domain": "Statistics and Probability",
+  "map_area": "data",
+  "grade_target": 7,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "7.SP.C.8b",
+  "subskill": "Probability of exactly k successes in a small set of equally likely outcomes",
+  "grade_rationale": "High for grade 7 (7.SP.C.8b): the student lists the 16 equally likely answer patterns and counts the 6 with exactly 2 correct. Grade-7 students commonly treat the five possible scores (0 to 4) as equally likely, reason that 2 of 4 is one half, or count \"at least 2\".",
+  "prompt": "A quiz has 4 true-or-false questions. Dev guesses the answer to every question at random, so each answer has a 1/2 chance of being correct. What is the probability that Dev gets exactly 2 of the 4 answers correct?",
+  "choices": [
+   "1/5",
+   "3/8",
+   "1/2",
+   "11/16"
+  ],
+  "correct_answer": "3/8",
+  "explanation": "Each question is right or wrong, so there are 2 x 2 x 2 x 2 = 16 equally likely patterns. Exactly 2 correct can happen in 6 ways (RRWW, RWRW, RWWR, WRRW, WRWR, WWRR). The probability is 6/16 = 3/8.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a; const fr=(n,d)=>{const k=g(Math.abs(n),Math.abs(d)); return (n/k)+'/'+(d/k)}; return fr(6,16);",
+  "distractor_solve": {
+   "1/5": "const g=(a,b)=>b?g(b,a%b):a; const fr=(n,d)=>{const k=g(Math.abs(n),Math.abs(d)); return (n/k)+'/'+(d/k)}; return fr(1,5);",
+   "1/2": "const g=(a,b)=>b?g(b,a%b):a; const fr=(n,d)=>{const k=g(Math.abs(n),Math.abs(d)); return (n/k)+'/'+(d/k)}; return fr(2,4);",
+   "11/16": "const g=(a,b)=>b?g(b,a%b):a; const fr=(n,d)=>{const k=g(Math.abs(n),Math.abs(d)); return (n/k)+'/'+(d/k)}; return fr(6+4+1,16);"
+  },
+  "mechanism": [
+   "16 equally likely patterns",
+   "6 have exactly 2 correct",
+   "6/16 = 3/8"
+  ],
+  "quantity_asked": "the probability of exactly 2 correct answers",
+  "plugback": {
+   "substitutable": false,
+   "why": "A probability cannot be checked without counting the patterns, which is the task."
+  },
+  "structure_check": "No bound or extremum. Errors fall on both sides: equally likely scores is below the key; one half and at least 2 are above.",
+  "intermediate_check": "Solved intermediates are 16 and 6; neither is an option.",
+  "cheap_bound_check": "Exactly 2 is the most likely single score, so its probability is above 1/5; a student who knows that strikes 1/5 only.",
+  "shape_check": "All options are fractions between 0 and 1.",
+  "interior_parity_check": "Middle values 3/8 and 1/2; neither marks the key.",
+  "arith_class_check": "A probability from 16 equally likely patterns has a denominator dividing 16 in lowest terms; 1/5 fails that, which strikes 1/5 only.",
+  "dup_search": "R11 probe of every earlier MAP maths item (mapgrep 'coin', 'probability'): MV2 basketball simulates sets of 3 shots with random digits; MB6-D7-02 and MB4-D-08 use the complement for 'one or both'; no MAP item counts the patterns with exactly k successes. Live: not found by mf30-kw for 'exactly 2'.",
+  "self_audit": "Key recomputed: C(4,2) = 6; 6/16 = 3/8.",
+  "distractor_meta": {
+   "1/5": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "treats the five possible scores 0, 1, 2, 3, 4 as equally likely",
+    "why": "1 of 5 scores = 1/5."
+   },
+   "1/2": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "reasons that 2 correct out of 4 questions is one half",
+    "why": "2/4 = 1/2."
+   },
+   "11/16": {
+    "error_kind": "wrong_variable",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "counts at least 2 correct instead of exactly 2",
+    "why": "(6 + 4 + 1)/16 = 11/16."
+   }
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [
+     "1/5"
+    ],
+    "why": "The most likely score has probability above 1/5 (strikes 1/5 only; the same option as the denominator rule)."
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   }
+  ]
+ },
+ {
+  "id": "MB10-D6-02",
+  "domain": "Statistics and Probability",
+  "map_area": "data",
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "6.SP.B.5c",
+  "subskill": "Effect on the mean of increasing one value",
+  "grade_rationale": "High for grade 6 (6.SP.B.5c): the student reasons from the mean to the sum, changes the sum, and divides again; the median is a distractor. Grade-6 students commonly count the increase as a new value, report the median, or apply the change to the median.",
+  "prompt": "A data set has 5 values. The mean of the values is 20 and the median is 31. The greatest value is then increased by 44, and no other value changes. What is the mean of the new data set?",
+  "choices": [
+   "24",
+   "28.8",
+   "31",
+   "39.8"
+  ],
+  "correct_answer": "28.8",
+  "explanation": "The sum of the 5 values is 5 x 20 = 100. Increasing one value by 44 makes the sum 144. The new mean is 144 / 5 = 28.8. (The median does not affect the mean.)",
+  "solve": "return (5*20+44)/5;",
+  "distractor_solve": {
+   "24": "return (5*20+44)/6;",
+   "31": "return 31;",
+   "39.8": "return Math.round((31+44/5)*10)/10;"
+  },
+  "mechanism": [
+   "sum 5 x 20 = 100",
+   "new sum 144",
+   "144 / 5 = 28.8"
+  ],
+  "quantity_asked": "the mean of the new data set",
+  "plugback": {
+   "substitutable": false,
+   "why": "A new mean cannot be checked without the new sum, which is the task."
+  },
+  "structure_check": "No bound or extremum. Counting the increase as a sixth value is below the key; the median and the median plus 8.8 are above.",
+  "intermediate_check": "Solved intermediates 100 and 144 are not options.",
+  "cheap_bound_check": "The mean must rise (the sum went up) and by less than 44: every option lies strictly between 20 and 64, so neither strikes. Denominator: a fifth of a whole-number sum is a multiple of 0.2, and all four options are. No option strikes.",
+  "shape_check": "Options are whole numbers and one-decimal numbers, all multiples of 0.2.",
+  "interior_parity_check": "Middle values 28.8 and 31; neither cleaner.",
+  "arith_class_check": "All options are multiples of 0.2.",
+  "dup_search": "R11 probe of every earlier MAP maths item (mapgrep 'median', 'increased|changed|replaced'): MV2-D6-03 removes a value and asks the change in MEDIAN; MV2-D6-06 adds a value and asks the mean from a given median; MB4 shifts every score. No MAP item increases one value and asks the new mean from the old mean alone. Live: none found.",
+  "self_audit": "Revision after screen pass 1 (one return). Mechanism unchanged; numbers and option set changed. Adversarial self-screen of the new set with every pass-1 method (units digit / multiple-of, printed-multiplier bracket, increment bound, impossibility from totals or denominators, weighted-mean direction, round-up adjacency, option pair joined by a printed multiplier) plus sign, parity and magnitude; and the centre-of-mass check (the key is not the option nearest the mean of the four, in linear or log scale). Pass 1 struck 23 (unchanged mean) and 41 (mean + 18): both errors are ALWAYS outside the (mean, mean + increase) window, so neither is used. New errors all sit inside the window. Pairs: ratios 1.2, 1.29, 1.66, 1.08, 1.38, 1.28; differences 4.8, 7, 15.8, 2.2, 11, 8.8: none is a printed number (5, 20, 31, 44). Residual stated: 39.8 - 28.8 = 11 = 31 - 20 (the median-based error is always the key plus median minus mean); it pairs the key with one distractor and does not say which is right. Mean 30.9: nearest option 31. Search: scratchpad/map-math-v2-b10-work/returns/search/d602.py, d602b.py (mean 8..59, median above it, increase 5..59): 9,118 zero-strike sets; this distractor family is the one with the clearest names. Key recomputed 144/5 = 28.8.",
+  "distractor_meta": {
+   "24": {
+    "error_kind": "wrong_base",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "treats the increase of 44 as a sixth data value and divides by 6",
+    "why": "(100 + 44) / 6 = 24."
+   },
+   "31": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "reports the median, which the change does not affect, instead of the new mean",
+    "why": "31."
+   },
+   "39.8": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "applies the change to the median instead of the mean",
+    "why": "31 + 44/5 = 39.8."
+   }
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [],
+    "why": "The new mean lies between 20 and 20 + 44 = 64; every option is inside."
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   }
+  ]
+ },
+ {
+  "id": "MB10-D6-01",
+  "domain": "Statistics and Probability",
+  "map_area": "data",
+  "grade_target": 6,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "6.SP.B.5c",
+  "subskill": "Weighted mean when one score counts twice",
+  "grade_rationale": "Mid for grade 6 (6.SP.B.5c): a mean with one score counted twice. Grade-6 students commonly ignore the weighting (plain mean of the four scores) or count the wrong score twice.",
+  "prompt": "Mr. Lee finds each student's grade by averaging the scores, where the unit test counts twice as much as each quiz. Rosa scored 91, 94, and 66 on three quizzes and 93 on the unit test. What is Rosa's grade?",
+  "choices": [
+   "86",
+   "87",
+   "87.4",
+   "87.6"
+  ],
+  "correct_answer": "87.4",
+  "explanation": "The unit test counts twice, so add it twice and divide by 5 (three quizzes plus two test counts): (91 + 94 + 66 + 93 + 93) / 5 = 437 / 5 = 87.4.",
+  "solve": "return (91+94+66+2*93)/5;",
+  "distractor_solve": {
+   "86": "return (91+94+66+93)/4;",
+   "87": "return (91+94+66+91+93)/5;",
+   "87.6": "return (91+94+66+94+93)/5;"
+  },
+  "mechanism": [
+   "weighted sum 91 + 94 + 66 + 2 x 93 = 437",
+   "five counts",
+   "437 / 5 = 87.4"
+  ],
+  "quantity_asked": "Rosa's weighted grade",
+  "plugback": {
+   "substitutable": false,
+   "why": "A weighted grade cannot be checked without the weighted sum, which is the task."
+  },
+  "structure_check": "No bound or extremum. The plain mean and the first-quiz-twice error are below the key; counting the 94 twice is above.",
+  "intermediate_check": "Solved intermediates 437 and 251 are not options.",
+  "cheap_bound_check": "Weighted-mean direction: the test (93) is above the plain mean (86), so doubling it lifts the grade above 86; this strikes 86 only. The test carries 2/5 of the weight, under 1/2, so the grade is below the midpoint of the quiz mean (83.7) and the test (93), 88.3; every option is below 88.3. Denominator: a fifth of a whole-number sum is a multiple of 0.2, and all four options are. One option struck.",
+  "shape_check": "Options are whole numbers and one-decimal numbers, all multiples of 0.2.",
+  "interior_parity_check": "Middle values 87 and 87.4; neither cleaner.",
+  "arith_class_check": "All options are multiples of 0.2 (fifths); no class separates the key.",
+  "dup_search": "R11 probe of every earlier MAP maths item (mapgrep 'twice|weight|counts|average'): no MAP item weights a score; MAP means are plain means, means of combined groups (MB4) and means from frequency tables (MMG-D08). Live: SAT 1bc5ba89 and ACT d3b966c9 use percent weights (high-school level).",
+  "self_audit": "Revision after screen pass 1 (one return). Mechanism unchanged; numbers and option set changed. Adversarial self-screen of the new set with every pass-1 method (units digit / multiple-of, printed-multiplier bracket, increment bound, impossibility from totals or denominators, weighted-mean direction, round-up adjacency, option pair joined by a printed multiplier) plus sign, parity and magnitude; and the centre-of-mass check (the key is not the option nearest the mean of the four, in linear or log scale). Pass 1 struck 81.5 (plain mean) and 79.2 (a low quiz counted twice) by the weighted-mean direction. Inside the direction window (above the plain mean, below the quiz-mean/test midpoint) the only natural errors are counting a different high score twice, so two of those are used and the plain mean is the one struck option; the midpoint error is not used. Residual stated: the three unstruck options lie within 0.6 of each other (87, 87.4, 87.6), forced by the window; the key is 0.2 from a distractor. Pairs: differences 1, 1.4, 1.6, 0.4, 0.6, 0.2 and ratios near 1: none printed. Mean 87.0: nearest option 87, not the key. Search: scratchpad/map-math-v2-b10-work/returns/search/d601.py (150,000 random score sets, eight named errors): no zero-strike set; this one is among the best by centre-of-mass margin with the plain mean as the struck error. Key recomputed 437/5 = 87.4.",
+  "distractor_meta": {
+   "86": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "ignores the weighting and takes the plain mean of the four scores",
+    "why": "344 / 4 = 86."
+   },
+   "87": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "counts the first quiz twice instead of the unit test",
+    "why": "(251 + 91 + 93) / 5 = 87."
+   },
+   "87.6": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "counts the highest score, the 94 on the second quiz, twice instead of the unit test",
+    "why": "(251 + 94 + 93) / 5 = 87.6."
+   }
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "magnitude",
+    "strikes": [
+     "86"
+    ],
+    "why": "Doubling a test score above the plain mean lifts the grade above the plain mean 86; strikes 86 only."
+   },
+   {
+    "kind": "parity",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "units_digit",
+    "strikes": [],
+    "why": "No bound of this kind is readable off the stem; it strikes no option."
+   },
+   {
+    "kind": "range",
+    "strikes": [],
+    "why": "Below the quiz-mean/test midpoint 88.3 (test weight 2/5 < 1/2); every option is below it."
+   }
+  ]
+ }
+]

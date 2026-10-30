@@ -1,0 +1,187 @@
+{
+ "prereg": "scripts/study-bank/MAP-MATH-V2-B10.prereg.md",
+ "area": "Statistics and Probability",
+ "frozenSha": "4c3f932749d4484615b2da16a76a10d0f9eb3f848eff6b1573c199949ab06447",
+ "n": 3,
+ "optionsOnly": {
+  "cand": {
+   "n": 3,
+   "picks": 9,
+   "hits": 8,
+   "unan": 2
+  },
+  "ctrl": {
+   "n": 3,
+   "picks": 9,
+   "hits": 3,
+   "unan": 0
+  },
+  "status": "hold",
+  "cr": 88.88888888888889,
+  "kr": 33.333333333333336,
+  "cu": 66.66666666666667,
+  "ku": 0,
+  "margin": 55.55555555555555,
+  "umar": 66.66666666666667,
+  "why": "candidate 88.9% vs control 33.3% (margin 55.6, bar +10); unanimous-correct rate 66.7% vs control 0.0% (66.7, bar +15)",
+  "letterControl": 33.333333333333336
+ },
+ "rankH1": {
+  "frozen": {
+   "n": 3,
+   "unscored": 0,
+   "hist": {
+    "1": 0,
+    "2": 2,
+    "3": 1,
+    "4": 0
+   },
+   "share2": 66.66666666666667,
+   "meets": false,
+   "line": "key rank 1/2/3/4 = 0/2/1/0 of 3; rank-2 share 66.7% (prediction <= 25%: NOT met; recorded, not a gate)"
+  },
+  "solverPicks": {
+   "hist": {
+    "1": 0,
+    "2": 5,
+    "3": 3,
+    "4": 1
+   },
+   "picks": 9,
+   "pick2": 55.55555555555556,
+   "key2": 66.66666666666667,
+   "line": "candidate picks at rank 1/2/3/4 = 0/5/3/1 of 9 (rank-2 pick rate 55.6%) vs candidate keys at rank 2 2/3 = 66.7%"
+  },
+  "kept": {
+   "n": 2,
+   "unscored": 0,
+   "hist": {
+    "1": 0,
+    "2": 2,
+    "3": 0,
+    "4": 0
+   },
+   "share2": 100,
+   "meets": false,
+   "line": "key rank 1/2/3/4 = 0/2/0/0 of 2; rank-2 share 100.0% (prediction <= 25%: NOT met; recorded, not a gate)"
+  },
+  "inserted": {
+   "n": 2,
+   "unscored": 0,
+   "hist": {
+    "1": 0,
+    "2": 2,
+    "3": 0,
+    "4": 0
+   },
+   "share2": 100,
+   "meets": false,
+   "line": "key rank 1/2/3/4 = 0/2/0/0 of 2; rank-2 share 100.0% (prediction <= 25%: NOT met; recorded, not a gate)"
+  }
+ },
+ "gradeFitRecorded": {
+  "n": 3,
+  "judgments": 6,
+  "tooEasy": 0,
+  "tooHard": 1,
+  "tooEasyPct": 0,
+  "tooHardPct": 16.666666666666668,
+  "offA": 0.3333333333333333,
+  "offB": 0.3333333333333333,
+  "spreadA": null,
+  "spreadB": null,
+  "D1": true,
+  "D2": true,
+  "D3": false,
+  "status": "fail"
+ },
+ "coldOnKey": 6,
+ "items": {
+  "MB10-D7-02": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MB10-D6-02": {
+   "drop": [],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": true,
+   "difficulty": "hard"
+  },
+  "MB10-D6-01": {
+   "drop": [
+    "R3 distractors weak (both)",
+    "EXT-1 drop_recommend"
+   ],
+   "hold": [],
+   "need": [],
+   "rec": [],
+   "named": [],
+   "keep": false,
+   "difficulty": "hard"
+  }
+ },
+ "areaResult": {
+  "status": "held",
+  "reasons": [
+   "options-only hold"
+  ],
+  "notes": [
+   "kept-set extremity: no measurement: 2 scorable of 2 (need >= 10); 0 non-numeric, 0 other skip (recorded; the inserter's gate measures from n >= 10)"
+  ],
+  "extremity": {
+   "total": 2,
+   "n": 2,
+   "nonNumeric": 0,
+   "otherSkip": 0,
+   "ext": 0,
+   "rate": 0,
+   "chance": 0.5,
+   "threshold": null,
+   "status": "no-measurement",
+   "reason": "no measurement: 2 scorable of 2 (need >= 10); 0 non-numeric, 0 other skip"
+  },
+  "cState": "not-measured",
+  "cPrimeFired": false,
+  "cprime": null,
+  "kept": 2,
+  "keptIds": [
+   "MB10-D7-02",
+   "MB10-D6-02"
+  ],
+  "insertedIds": [
+   "MB10-D7-02",
+   "MB10-D6-02"
+  ],
+  "deferredIds": []
+ },
+ "screenFlagsRecorded": {
+  "MB10-D6-01": {
+   "p1": [
+    "S-R4 2 struck without solving: [\"81.5\",\"79.2\"] (the double-weighted 98 pulls the grade above the plain mean 81.5, so 81.5 and 79.2 are too small; 81.5 also cannot be a fifth-denominator result)"
+   ],
+   "revised": true,
+   "p2": null,
+   "kept": false
+  },
+  "MB10-D6-02": {
+   "p1": [
+    "S-R4 2 struck without solving: [\"23\",\"41\"] (23: the sum went up, so the mean must change; 41: raising one of five values by 18 raises the mean by much less than 18)"
+   ],
+   "revised": true,
+   "p2": [
+    "S-R4 2 struck without solving: [\"24\",\"31\"] (24: the sum rises by 44, and 44 is not a multiple of 5, so the new mean cannot be a whole number; 31: same divisibility argument, and it is just the printed med)"
+   ],
+   "kept": true
+  }
+ },
+ "passIds": [],
+ "verdict": "HELD"
+}

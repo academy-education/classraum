@@ -1,0 +1,39 @@
+{
+ "MB10-O6-01": {
+  "p1": [
+   "S-R4 3 struck without solving: [\"18\",\"50\",\"80.6\"] (the 18 C rise times 9/5 (between 1 and 2) puts the F rise strictly between 18 and 36, killing 18, 50 and 80.6)",
+   "S-R5 key identifiable without solving",
+   "S-R7 option pair 18 and 32.4, x9/5 (printed)"
+  ],
+  "revised": true,
+  "p2": [
+   "S-R4 3 struck without solving: [\"81\",\"91.8\",\"122\"] (91.8 and 122: the rise is at most 9/5 x 50 = 90 F, a bound read straight off the printed 50 and 9/5; 81: 49 is not a multiple of 5, so 9/5 x 49 cannot be whole )",
+   "S-R5 key identifiable without solving"
+  ]
+ },
+ "MB10-O7-01": {
+  "p1": [
+   "S-R4 2 struck without solving: [\"36\",\"25\"] (old takes 1080/24 = 45 min; less than twice as fast means the new one takes over half that time, so the saving is under 22.5, killing 36 and 25)",
+   "S-R7 option pair 20 and 36, x1.8 (1 + the printed 80%)"
+  ],
+  "revised": true,
+  "p2": null
+ },
+ "MB10-O7-02": {
+  "p1": [
+   "S-R7 option pair 126 and 180, x0.7 (1 - the printed 30%)"
+  ],
+  "revised": true,
+  "p2": null
+ },
+ "MB10-O8-02": {
+  "p1": [
+   "S-R4 3 struck without solving: [\"175\",\"18\",\"49\"] (175: a per-cm rate cannot be most of the whole 256 area; each 1-cm step from s to s+1 adds 2s+1, so between 19 (at 9) and 31 (at 15), which kills 18 and 49)",
+   "S-R5 key identifiable without solving"
+  ],
+  "revised": true,
+  "p2": [
+   "S-R4 2 struck without solving: [\"157.5\",\"74.2\"] (157.5 and 74.2: the area grows from 196 to less than 2500 over 35 cm, so the average is < 2500/35, about 71; 157.5 also exceeds even 2 x 49 = 98)"
+  ]
+ }
+}

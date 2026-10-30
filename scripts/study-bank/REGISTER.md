@@ -6555,3 +6555,13 @@ structural checks are pre-flight only. See CLAUDE.md.
   ranks dealt across 1-4 (about 25% each), and no key may be the median or centroid of its option set. Add that as a
   generator refusal, and keep the cold screener inside the authoring loop (previous entry). No tie-break was run;
   the area verdict does not depend on it.
+
+- **2026-10-30 — MAP Math b10 GRADED: all three areas HELD on the options-only bar; 0 insertable.** 10 frozen
+  (O 5 / G 2 / D 3) after the return: 8 revised, 5 withdrawn by script search. Keys 20/20 cold on key, coldcheck 0
+  changed. Options-only: **O 73.3% vs 20.0%, G 50.0% vs 0.0%, D 88.9% vs 33.3%**, every margin far over +10.
+  Grader drops also landed on O8-02 and O7-02 (drop_recommend) and D6-01 (weak distractors, both graders).
+  The revision kept the prereg's slot ranks (all 2-3), and the central-key tell from n789 survived it: inside a fixed
+  interior rank, moving distractors did not stop "pick the middle". **Confirms the method change:** key ranks must
+  be dealt 1-4 at authoring and option sets screened in the loop before write-up (the b11 stage-A method, whose
+  candidates scored 36.5% options-only vs n789's 61.9%). OA/Geo/Stats for MAP form 6 must be re-authored that way;
+  b10's withdrawn and held items stay on the R11 earlier list.

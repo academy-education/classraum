@@ -1,0 +1,53 @@
+{
+ "screened": 15,
+ "fails": {
+  "MB10-O6-02": [
+   "S-R4 2 struck without solving: [\"102\",\"70\"] (102 exceeds the 70 cups of ingredients he owns; 70 uses everything, impossible since 34:36 is not 1:2 (and 70 is not a multiple of 3 while every batch is 3 cups)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MB10-G8-02": [
+   "S-R4 3 struck without solving: [\"108\",\"57\",\"303\"] (any polygon angle sum is a multiple of 180 (units digit 0) and the four given end in 7, so the fifth ends in 3, killing 108 and 57; 303 is a reflex angle, far a)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MB10-D7-01": [
+   "S-R4 3 struck without solving: [\"59\",\"45\",\"36\"] (59: banned combos come in groups of 3 (one per hat), so the answer is 60 minus a multiple of 3; 45 and 36: forbidding one shirt-pants pairing cannot remove 15 o)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MB10-D7-03": [
+   "S-R4 2 struck without solving: [\"13/100\",\"1/7\"] (13/100: there are 90 tickets, not 100; 1/7: 90 is not divisible by 7, so the probability cannot be exactly 1/7)"
+  ],
+  "MB10-G6-01": [
+   "S-R4 2 struck without solving: [\"269\",\"120\"] (269: odd, and far above a 15 m x 8 m-scale lawn (uses the slanted side); 120: exactly base x height, so the flower bed was never taken away)"
+  ],
+  "MB10-O6-03": [
+   "S-R4 3 struck without solving: [\"39.00\",\"19.50\",\"24.00\"] (39.00 is full price for all 26 with no deal; she pays for at least 2/3 of 26 notebooks, i.e. at least 2/3 of $39 = $26, which kills 19.50 and 24.00)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MB10-O7-01": [
+   "S-R4 2 struck without solving: [\"36\",\"25\"] (old takes 1080/24 = 45 min; less than twice as fast means the new one takes over half that time, so the saving is under 22.5, killing 36 and 25)",
+   "S-R7 option pair 20 and 36, x1.8 (1 + the printed 80%)"
+  ],
+  "MB10-D6-01": [
+   "S-R4 2 struck without solving: [\"81.5\",\"79.2\"] (the double-weighted 98 pulls the grade above the plain mean 81.5, so 81.5 and 79.2 are too small; 81.5 also cannot be a fifth-denominator result)"
+  ],
+  "MB10-D6-02": [
+   "S-R4 2 struck without solving: [\"23\",\"41\"] (23: the sum went up, so the mean must change; 41: raising one of five values by 18 raises the mean by much less than 18)"
+  ],
+  "MB10-O7-02": [
+   "S-R7 option pair 126 and 180, x0.7 (1 - the printed 30%)"
+  ],
+  "MB10-G7-01": [
+   "S-R4 3 struck without solving: [\"28\",\"20\",\"35\"] (adjacency tell: 'least number must buy' signals rounding up and only 28/29 are adjacent, so the key is the upper of that pair and 28 is the truncation; 20 and 3)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MB10-O8-02": [
+   "S-R4 3 struck without solving: [\"175\",\"18\",\"49\"] (175: a per-cm rate cannot be most of the whole 256 area; each 1-cm step from s to s+1 adds 2s+1, so between 19 (at 9) and 31 (at 15), which kills 18 and 49)",
+   "S-R5 key identifiable without solving"
+  ],
+  "MB10-O6-01": [
+   "S-R4 3 struck without solving: [\"18\",\"50\",\"80.6\"] (the 18 C rise times 9/5 (between 1 and 2) puts the F rise strictly between 18 and 36, killing 18, 50 and 80.6)",
+   "S-R5 key identifiable without solving",
+   "S-R7 option pair 18 and 32.4, x9/5 (printed)"
+  ]
+ }
+}
