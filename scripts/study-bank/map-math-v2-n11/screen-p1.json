@@ -1,0 +1,18 @@
+{
+ "screened": 7,
+ "fails": {
+  "MB11-N8-01": [
+   "S-R7 option pair 17/18 and 5/18: differ by 2/3, the value of the printed sqrt(4/9)"
+  ],
+  "MB11-N6-01": [
+   "S-R7 option pair -3.85 and -7.35: differ by 3.5 = 1.25 + 2.25 (the top side, from two printed coordinates)"
+  ],
+  "MB11-N6-02": [
+   "S-R6 plug-back routine at try 1"
+  ],
+  "MB11-N7-03": [
+   "S-R4 2 struck without solving: [\"3 6/7\",\"4 3/7\"] (3 6/7 and 4 3/7: estimating 4 1/7 - 1 4/7 - 1 6/7 as about 4 - 3.4 gives a value under 1, so any value above 1 cannot be the closest to 0)",
+   "S-R7 option pair 5/7 and 3 6/7: differ by 2 x 1 4/7 (flipping the sign of a printed number)"
+  ]
+ }
+}

@@ -1,0 +1,668 @@
+[
+ {
+  "id": "MB11-N7-01",
+  "mech": "D33",
+  "frozen_from": "MB7-N7-01",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "area_25": null,
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "7.NS.A.3",
+  "subskill": "Apply a signed multiply-then-add rule several times in a row",
+  "grade_rationale": "Mid for grade 7 (7.NS.A.3): each press is one multiplication by -3 and one subtraction with signed decimals, and the sign of the screen number can flip every press.",
+  "prompt": "A calculator has a key that multiplies the number on the screen by -3 and then subtracts 3. Mia enters -1.25 and then presses the key two times. What number is on the screen now?",
+  "choices": [
+   "12.75",
+   "0.75",
+   "-14.25",
+   "-5.25"
+  ],
+  "correct_answer": "-5.25",
+  "explanation": "Press 1: -1.25 x (-3) - 3 = 0.75. Press 2: 0.75 x (-3) - 3 = -5.25. The screen shows -5.25.",
+  "solve": "const FM=v=>{for(const p of [0,1,2,3]){const m=Math.round(v*10**p);if(Math.abs(m/10**p-v)<1e-9)return String(+(m/10**p).toFixed(p))}for(let d=2;d<=200;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9){const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d),a=n/k,b=d/k,w=Math.trunc(Math.abs(a)/b),r=Math.abs(a)%b,s=a<0?'-':'';return w?s+w+' '+r+'/'+b:s+r+'/'+b}}return String(v)};let x=(-1.25);for(let i=0;i<2;i++)x=(-3)*x+(-3);return FM(x);",
+  "distractor_solve": {
+   "12.75": "const FM=v=>{for(const p of [0,1,2,3]){const m=Math.round(v*10**p);if(Math.abs(m/10**p-v)<1e-9)return String(+(m/10**p).toFixed(p))}for(let d=2;d<=200;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9){const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d),a=n/k,b=d/k,w=Math.trunc(Math.abs(a)/b),r=Math.abs(a)%b,s=a<0?'-':'';return w?s+w+' '+r+'/'+b:s+r+'/'+b}}return String(v)};let x=(-1.25);for(let i=0;i<3;i++)x=(-3)*x+(-3);return FM(x);",
+   "0.75": "const FM=v=>{for(const p of [0,1,2,3]){const m=Math.round(v*10**p);if(Math.abs(m/10**p-v)<1e-9)return String(+(m/10**p).toFixed(p))}for(let d=2;d<=200;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9){const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d),a=n/k,b=d/k,w=Math.trunc(Math.abs(a)/b),r=Math.abs(a)%b,s=a<0?'-':'';return w?s+w+' '+r+'/'+b:s+r+'/'+b}}return String(v)};let x=(-1.25);for(let i=0;i<1;i++)x=(-3)*x+(-3);return FM(x);",
+   "-14.25": "const FM=v=>{for(const p of [0,1,2,3]){const m=Math.round(v*10**p);if(Math.abs(m/10**p-v)<1e-9)return String(+(m/10**p).toFixed(p))}for(let d=2;d<=200;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9){const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d),a=n/k,b=d/k,w=Math.trunc(Math.abs(a)/b),r=Math.abs(a)%b,s=a<0?'-':'';return w?s+w+' '+r+'/'+b:s+r+'/'+b}}return String(v)};return FM(9*(-1.25)+(-3));"
+  },
+  "mechanism": [
+   "Press 1: -1.25 x (-3) - 3 = 0.75.",
+   "Press 2: 0.75 x (-3) - 3 = -5.25."
+  ],
+  "quantity_asked": "the number on the screen after the presses",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "an option cannot be checked against the stem without running the presses forward, which is the whole method"
+  },
+  "distractor_meta": {
+   "12.75": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "counts entering -1.25 as the first press and so presses one time too many",
+    "why": "The student applies the rule 3 times."
+   },
+   "0.75": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "stops one press early (counts the presses from 0 to 1)",
+    "why": "The student applies the rule 1 times."
+   },
+   "-14.25": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "multiplies by -3 two times first and adds -3 only once at the end",
+    "why": "The student computes -1.25 x (-3)^2 and then subtracts 3 once."
+   }
+  },
+  "structure_check": "Key rank 2 of 4 (dealt by the b11 plan). 12.75 (extra) lands above; 0.75 (fewer) lands above; -14.25 (multAll) lands below.",
+  "intermediate_check": "Steps of the method are not offered as options; differences from the key: key - (12.75) = -18; key - (0.75) = -6; key - (-14.25) = 9. PAIR/DPAIR/DSUM/KGAP refusals passed against every number printed in the stem.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "All four options share the key's form (same decimal places and final digit) and the signs split 2-2.",
+  "interior_parity_check": "same form for every option (FORM refusal)",
+  "arith_class_check": "the key is not alone in any form class (FORM refusal)",
+  "dup_search": {
+   "queries": [
+    "chain-checked mechanism; novelty not re-checked (b11 brief)"
+   ],
+   "hits_read": 0,
+   "nearest": "MB7-N7-01 (same mechanism, new numbers)"
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "two options of each sign; the sign of the answer needs the work",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: decimals",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "all four options end in 5",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "none readable from the stem without doing the steps",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "none readable from the stem without doing the steps",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b11 candidate for the cold screener. CENT: key off the centroid (rank 2). CENT clean."
+  },
+  "grade": 7,
+  "stem": "A calculator has a key that multiplies the number on the screen by -3 and then subtracts 3. Mia enters -1.25 and then presses the key two times. What number is on the screen now?",
+  "options": [
+   "12.75",
+   "0.75",
+   "-14.25",
+   "-5.25"
+  ],
+  "key": "-5.25",
+  "key_rank": 2,
+  "distractor_errors": {
+   "12.75": "extra: counts entering -1.25 as the first press and so presses one time too many",
+   "0.75": "fewer: stops one press early (counts the presses from 0 to 1)",
+   "-14.25": "multAll: multiplies by -3 two times first and adds -3 only once at the end"
+  },
+  "selected_from": "MB11C-D33-a"
+ },
+ {
+  "id": "MB11-N7-02",
+  "mech": "E12",
+  "frozen_from": "MB8-N7-05",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "area_25": null,
+  "grade_target": 7,
+  "tier": "mid",
+  "rit_band": "RIT 210-219",
+  "difficulty": "medium",
+  "ccss": "7.NS.A.1d",
+  "subskill": "Two chained missing entries in a signed magic square",
+  "grade_rationale": "Mid for grade 7 (7.NS.A.1d): two chained missing-addend steps with signed mixed numbers in sevenths; the second blank depends on the first.",
+  "prompt": "In a magic square, the numbers in every row, every column, and both diagonals add up to the same sum. In this 3-by-3 magic square, that sum is -2 4/7. Top row: A, B, 1/7. Middle row: C, -6/7, -3 3/7. Bottom row: -1 6/7, -1 3/7, D. What number is A?",
+  "choices": [
+   "-2/7",
+   "-2 1/7",
+   "-2 3/7",
+   "-5/7"
+  ],
+  "correct_answer": "-2 3/7",
+  "explanation": "The top row has two blanks, so first find B from the middle column: B = -2 4/7 - (-6/7) - (-1 3/7) = -2/7. Then the top row gives A = -2 4/7 - (-2/7) - (1/7) = -2 3/7.",
+  "solve": "const FM=v=>{for(const p of [0,1,2,3]){const m=Math.round(v*10**p);if(Math.abs(m/10**p-v)<1e-9)return String(+(m/10**p).toFixed(p))}for(let d=2;d<=200;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9){const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d),a=n/k,b=d/k,w=Math.trunc(Math.abs(a)/b),r=Math.abs(a)%b,s=a<0?'-':'';return w?s+w+' '+r+'/'+b:s+r+'/'+b}}return String(v)};const S=-18/7,ctr=-6/7,r32=-10/7,r13=1/7;const B=S-ctr-r32;return FM(S-B-r13);",
+  "distractor_solve": {
+   "-2/7": "const FM=v=>{for(const p of [0,1,2,3]){const m=Math.round(v*10**p);if(Math.abs(m/10**p-v)<1e-9)return String(+(m/10**p).toFixed(p))}for(let d=2;d<=200;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9){const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d),a=n/k,b=d/k,w=Math.trunc(Math.abs(a)/b),r=Math.abs(a)%b,s=a<0?'-':'';return w?s+w+' '+r+'/'+b:s+r+'/'+b}}return String(v)};return FM(-18/7-(-6/7)-(-10/7));",
+   "-2 1/7": "const FM=v=>{for(const p of [0,1,2,3]){const m=Math.round(v*10**p);if(Math.abs(m/10**p-v)<1e-9)return String(+(m/10**p).toFixed(p))}for(let d=2;d<=200;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9){const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d),a=n/k,b=d/k,w=Math.trunc(Math.abs(a)/b),r=Math.abs(a)%b,s=a<0?'-':'';return w?s+w+' '+r+'/'+b:s+r+'/'+b}}return String(v)};return FM(-18/7-(-2/7)+(1/7));",
+   "-5/7": "const FM=v=>{for(const p of [0,1,2,3]){const m=Math.round(v*10**p);if(Math.abs(m/10**p-v)<1e-9)return String(+(m/10**p).toFixed(p))}for(let d=2;d<=200;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9){const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d),a=n/k,b=d/k,w=Math.trunc(Math.abs(a)/b),r=Math.abs(a)%b,s=a<0?'-':'';return w?s+w+' '+r+'/'+b:s+r+'/'+b}}return String(v)};return FM(-18/7-(-13/7));"
+  },
+  "mechanism": [
+   "B from the middle column: -2/7",
+   "A from the top row: -2 4/7 - (-2/7) - (1/7)",
+   "A = -2 3/7"
+  ],
+  "quantity_asked": "the entry A",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "an option for A can only be checked once B is known, which is the first half of the method"
+  },
+  "distractor_meta": {
+   "-2/7": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "finds the first missing entry (B) and reports it as A",
+    "why": "B = -2 4/7 - (-6/7) - (-1 3/7) = -2/7."
+   },
+   "-2 1/7": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "drops the sign of the negative entry in the last step (subtracting 1/7 is treated as adding it)",
+    "why": "-2 4/7 - (-2/7) + (1/7)."
+   },
+   "-5/7": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "uses the left column at once and treats the blank C as 0",
+    "why": "-2 4/7 - (-1 6/7)."
+   }
+  },
+  "structure_check": "Key rank 1 of 4 (dealt by the b11 plan). -2/7 (givesB) lands above; -2 1/7 (signLast) lands above; -5/7 (colZero) lands above.",
+  "intermediate_check": "Steps of the method are not offered as options; differences from the key: key - (-2/7) = -2 1/7; key - (-2 1/7) = -2/7; key - (-5/7) = -1 5/7. PAIR/DPAIR/DSUM/KGAP refusals passed against every number printed in the stem.",
+  "cheap_bound_check": "extreme key; no stem-readable bound strikes a distractor",
+  "shape_check": "All four options share the key's form (same lowest-terms denominator) and sign.",
+  "interior_parity_check": "same form for every option (FORM refusal)",
+  "arith_class_check": "the key is not alone in any form class (FORM refusal)",
+  "dup_search": {
+   "queries": [
+    "chain-checked mechanism; novelty not re-checked (b11 brief)"
+   ],
+   "hits_read": 0,
+   "nearest": "MB8-N7-05 (same mechanism, new numbers)"
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "all four options are negative",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: fractions",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "every option is in the same denominator (7)",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "none readable from the stem without doing the steps",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "none readable from the stem without doing the steps",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b11 candidate for the cold screener. CENT: key off the centroid (rank 1). CENT clean."
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "const FM=v=>{for(const p of [0,1,2,3]){const m=Math.round(v*10**p);if(Math.abs(m/10**p-v)<1e-9)return String(+(m/10**p).toFixed(p))}for(let d=2;d<=200;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9){const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d),a=n/k,b=d/k,w=Math.trunc(Math.abs(a)/b),r=Math.abs(a)%b,s=a<0?'-':'';return w?s+w+' '+r+'/'+b:s+r+'/'+b}}return String(v)};return FM(-18/7-(1/7));",
+   "direction": "below",
+   "name": "bZero",
+   "value": "-2 5/7"
+  },
+  "far_distractor": {
+   "option": "-5/7",
+   "natural_side": "below",
+   "why": "uses the left column at once and treats the blank C as 0: this error usually lands below the true value, but with these numbers it lands above the key."
+  },
+  "grade": 7,
+  "stem": "In a magic square, the numbers in every row, every column, and both diagonals add up to the same sum. In this 3-by-3 magic square, that sum is -2 4/7. Top row: A, B, 1/7. Middle row: C, -6/7, -3 3/7. Bottom row: -1 6/7, -1 3/7, D. What number is A?",
+  "options": [
+   "-2/7",
+   "-2 1/7",
+   "-2 3/7",
+   "-5/7"
+  ],
+  "key": "-2 3/7",
+  "key_rank": 1,
+  "distractor_errors": {
+   "-2/7": "givesB: finds the first missing entry (B) and reports it as A",
+   "-2 1/7": "signLast: drops the sign of the negative entry in the last step (subtracting 1/7 is treated as adding it)",
+   "-5/7": "colZero: uses the left column at once and treats the blank C as 0"
+  },
+  "selected_from": "MB11C-E12-a"
+ },
+ {
+  "id": "MB11-N7-03",
+  "mech": "E16",
+  "frozen_from": "MB8-N7-03",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "area_25": null,
+  "grade_target": 7,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "7.NS.A.1d",
+  "subskill": "Choose signs to bring a sum of mixed numbers closest to 0",
+  "grade_rationale": "High for grade 7 (7.NS.A.1d): the student must weigh the three mixed numbers against each other, choose the signs, and carry out signed mixed-number arithmetic with regrouping, keeping the sign of the result.",
+  "prompt": "Put a plus sign (+) or a minus sign (-) in each box so that the value of 4 1/11 [ ] 3 3/11 [ ] 3 5/11 is as close to 0 as possible. What is that value?",
+  "choices": [
+   "-2 3/11",
+   "-3 4/11",
+   "-1 2/11",
+   "-2 7/11"
+  ],
+  "correct_answer": "-2 7/11",
+  "explanation": "There are four choices: 4 1/11 + 3 3/11 + 3 5/11 = 10 9/11; 4 1/11 + 3 3/11 - 3 5/11 = 3 10/11; 4 1/11 - 3 3/11 + 3 5/11 = 4 3/11; 4 1/11 - 3 3/11 - 3 5/11 = -2 7/11. The one closest to 0 is -2 7/11.",
+  "solve": "const FM=v=>{for(const p of [0,1,2,3]){const m=Math.round(v*10**p);if(Math.abs(m/10**p-v)<1e-9)return String(+(m/10**p).toFixed(p))}for(let d=2;d<=200;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9){const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d),a=n/k,b=d/k,w=Math.trunc(Math.abs(a)/b),r=Math.abs(a)%b,s=a<0?'-':'';return w?s+w+' '+r+'/'+b:s+r+'/'+b}}return String(v)};const a=45/11,b=36/11,c=38/11;const v=[a+b+c,a+b-c,a-b+c,a-b-c];let k=v[0];for(const t of v)if(Math.abs(t)<Math.abs(k))k=t;return FM(k);",
+  "distractor_solve": {
+   "-2 3/11": "const FM=v=>{for(const p of [0,1,2,3]){const m=Math.round(v*10**p);if(Math.abs(m/10**p-v)<1e-9)return String(+(m/10**p).toFixed(p))}for(let d=2;d<=200;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9){const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d),a=n/k,b=d/k,w=Math.trunc(Math.abs(a)/b),r=Math.abs(a)%b,s=a<0?'-':'';return w?s+w+' '+r+'/'+b:s+r+'/'+b}}return String(v)};const W=v=>Math.floor(v+1e-9);const S=(A,B,sl)=>{if(!sl)return A-B;const g=A>=B?1:-1,X=A>=B?A:B,Y=A>=B?B:A,fx=X-W(X),fy=Y-W(Y);return g*(fx+1e-9<fy?(W(X)-W(Y))+(fy-fx):X-Y)};const a=45/11,b=36/11,c=38/11;const s1=S(a,b,true);return FM(S(s1,c,true));",
+   "-3 4/11": "const FM=v=>{for(const p of [0,1,2,3]){const m=Math.round(v*10**p);if(Math.abs(m/10**p-v)<1e-9)return String(+(m/10**p).toFixed(p))}for(let d=2;d<=200;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9){const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d),a=n/k,b=d/k,w=Math.trunc(Math.abs(a)/b),r=Math.abs(a)%b,s=a<0?'-':'';return w?s+w+' '+r+'/'+b:s+r+'/'+b}}return String(v)};const W=v=>Math.floor(v+1e-9);const S=(A,B,sl)=>{if(!sl)return A-B;const g=A>=B?1:-1,X=A>=B?A:B,Y=A>=B?B:A,fx=X-W(X),fy=Y-W(Y);return g*(fx+1e-9<fy?(W(X)-W(Y))+(fy-fx):X-Y)};const a=45/11,b=36/11,c=38/11;const s1=S(a,b,false);return FM(S(s1,c,true));",
+   "-1 2/11": "const FM=v=>{for(const p of [0,1,2,3]){const m=Math.round(v*10**p);if(Math.abs(m/10**p-v)<1e-9)return String(+(m/10**p).toFixed(p))}for(let d=2;d<=200;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9){const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d),a=n/k,b=d/k,w=Math.trunc(Math.abs(a)/b),r=Math.abs(a)%b,s=a<0?'-':'';return w?s+w+' '+r+'/'+b:s+r+'/'+b}}return String(v)};const W=v=>Math.floor(v+1e-9),F=v=>v-W(v);const a=45/11,b=36/11,c=38/11;return FM(W(a)-W(b)-W(c)+F(a)+F(b)+F(c));"
+  },
+  "mechanism": [
+   "write the four sign choices",
+   "evaluate each with mixed-number addition and subtraction",
+   "the value nearest 0 is -2 7/11, keeping its sign"
+  ],
+  "quantity_asked": "the value of the expression nearest 0, with its sign",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "checking an option needs the four sign patterns evaluated, which is the whole method"
+  },
+  "distractor_meta": {
+   "-2 3/11": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "chooses the right signs but, whenever a subtraction needs regrouping, subtracts the smaller fraction from the larger instead of renaming a whole (the smaller-from-larger bug)",
+    "why": "The student uses the signs - then - but subtracts the fraction parts backwards when regrouping is needed, getting -2 3/11."
+   },
+   "-3 4/11": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": true,
+    "misconception": "chooses the right signs but slips on the second subtraction only, subtracting the smaller fraction from the larger",
+    "why": "The student gets the first step right but subtracts the fraction parts backwards in the second step, getting -3 4/11."
+   },
+   "-1 2/11": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "puts the minus sign on the whole-number part only, reading a subtracted mixed number such as - 1 4/7 as -1 + 4/7, so adds every fraction part",
+    "why": "The student combines the whole numbers with the chosen signs and then adds all three fraction parts, getting -1 2/11."
+   }
+  },
+  "structure_check": "Key rank 2 of 4 (slot rank, kept). -2 3/11 (slip) lands above; -3 4/11 (slip2) lands below; -1 2/11 (wholeSign) lands above.",
+  "intermediate_check": "Steps of the method are not offered as options; differences from the key: key - (-2 3/11) = -4/11; key - (-3 4/11) = 8/11; key - (-1 2/11) = -1 5/11. PAIR/DPAIR/DSUM/KGAP refusals passed against every number printed in the stem, and the return's strict pair screen (ext.mjs SP) passed on all six option pairs.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "All four options share the key's form (same lowest-terms denominator) and sign.",
+  "interior_parity_check": "same form for every option (FORM refusal)",
+  "arith_class_check": "the key is not alone in any form class (FORM refusal)",
+  "dup_search": {
+   "queries": [
+    "chain-checked mechanism; novelty not re-checked (b11 brief)"
+   ],
+   "hits_read": 0,
+   "nearest": "MB8-N7-03 (same mechanism, new numbers)"
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "all four options are negative",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: fractions",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "every option is in the same denominator (11)",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "flipping a sign changes the value by twice a number, so every possible value has a numerator (in 11ths) of the same parity as 45 + 36 + 38 = 119",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "none readable from the stem without doing the steps",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "none readable from the stem without doing the steps",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Screen return (n11 pass 1). Pass 1 failed S-R4 (an estimate struck 3 6/7 and 4 3/7) and S-R7 (5/7 and 3 6/7 differ by 2 x 1 4/7). Both came from offering the other sign patterns: any two sign patterns differ by twice a printed number or twice the sum or difference of two, so NO other sign pattern is offered now (structural). The three distractors are errors on the key's own pattern: smaller-from-larger in both subtractions (slip), in the second only (slip2), and the minus sign put on the whole-number part only (wholeSign). Search: stage-A E16 on a wider grid (D 6/7/9/11/12, numbers up to 6 wholes) with two added natural errors (improper fraction by adding the whole to the numerator; renaming with 10/D); with the strict parity bound, CENT, SLIP <= 1, SP (printed values, twice a printed value, and the whole and fraction parts printed in each mixed number) and the half-rounding estimate striking at most one, exactly 2 parameter sets survive, both with this option set; with the estimate striking none, 0 survive (run2.mjs). Elevenths are the only denominator that survives. The estimate (each number to the nearest half, error <= 0.75) strikes -1 2/11 only; rounding to whole numbers strikes nothing. The parity bound (odd number of elevenths) strikes nothing. CENT: clean (key rank 2)."
+  },
+  "grade": 7,
+  "stem": "Put a plus sign (+) or a minus sign (-) in each box so that the value of 4 1/11 [ ] 3 3/11 [ ] 3 5/11 is as close to 0 as possible. What is that value?",
+  "options": [
+   "-2 3/11",
+   "-3 4/11",
+   "-1 2/11",
+   "-2 7/11"
+  ],
+  "key": "-2 7/11",
+  "key_rank": 2,
+  "distractor_errors": {
+   "-2 3/11": "slip: chooses the right signs but, whenever a subtraction needs regrouping, subtracts the smaller fraction from the larger instead of renaming a whole (the smaller-from-larger bug)",
+   "-3 4/11": "slip2: chooses the right signs but slips on the second subtraction only, subtracting the smaller fraction from the larger",
+   "-1 2/11": "wholeSign: puts the minus sign on the whole-number part only, reading a subtracted mixed number such as - 1 4/7 as -1 + 4/7, so adds every fraction part"
+  },
+  "selected_from": "MB11C-E16-b"
+ },
+ {
+  "id": "MB11-N6-01",
+  "mech": "F08",
+  "frozen_from": "MB9-N6-01",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "area_25": null,
+  "grade_target": 6,
+  "tier": "high",
+  "rit_band": "RIT 220-229",
+  "difficulty": "hard",
+  "ccss": "6.NS.C.8",
+  "subskill": "Location after walking part of the way around a rectangle on the coordinate plane",
+  "grade_rationale": "High for grade 6 (6.NS.C.8): the student finds the bottom side's length across the y-axis, sees that the walker turns the corner with 5.65 units left, and moves that far up from y = -8.5.",
+  "prompt": "A rectangle on the coordinate plane has vertices at (-1.25, 0.5), (2.25, 0.5), (2.25, -8.5), and (-1.25, -8.5). An ant starts at the corner (2.25, -8.5) and moves clockwise along the sides of the rectangle. After it has moved a total of 9.15 units, what is the y-coordinate of its location?",
+  "choices": [
+   "-5.15",
+   "-8.35",
+   "-2.85",
+   "-2.05"
+  ],
+  "correct_answer": "-2.85",
+  "explanation": "Moving clockwise from (2.25, -8.5), it first goes left along the bottom side to (-1.25, -8.5). That side is 2.25 - (-1.25) = 3.5 units long. It has 9.15 - 3.5 = 5.65 units left, so it turns the corner and moves 5.65 units up the left side, from y = -8.5 to y = -2.85. (The left side goes up to 0.5, so it is still on that side.)",
+  "solve": "const FM=v=>{for(const p of [0,1,2,3]){const m=Math.round(v*10**p);if(Math.abs(m/10**p-v)<1e-9)return String(+(m/10**p).toFixed(p))}for(let d=2;d<=200;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9){const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d),a=n/k,b=d/k,w=Math.trunc(Math.abs(a)/b),r=Math.abs(a)%b,s=a<0?'-':'';return w?s+w+' '+r+'/'+b:s+r+'/'+b}}return String(v)};const xl=(-1.25),xr=2.25,yb=(-8.5),d=9.15;return FM(yb+(d-(xr-xl)));",
+  "distractor_solve": {
+   "-5.15": "const FM=v=>{for(const p of [0,1,2,3]){const m=Math.round(v*10**p);if(Math.abs(m/10**p-v)<1e-9)return String(+(m/10**p).toFixed(p))}for(let d=2;d<=200;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9){const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d),a=n/k,b=d/k,w=Math.trunc(Math.abs(a)/b),r=Math.abs(a)%b,s=a<0?'-':'';return w?s+w+' '+r+'/'+b:s+r+'/'+b}}return String(v)};return FM(0.5-(9.15-(2.25-(-1.25))));",
+   "-8.35": "const FM=v=>{for(const p of [0,1,2,3]){const m=Math.round(v*10**p);if(Math.abs(m/10**p-v)<1e-9)return String(+(m/10**p).toFixed(p))}for(let d=2;d<=200;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9){const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d),a=n/k,b=d/k,w=Math.trunc(Math.abs(a)/b),r=Math.abs(a)%b,s=a<0?'-':'';return w?s+w+' '+r+'/'+b:s+r+'/'+b}}return String(v)};return FM((-8.5)+(9.15-(0.5-((-8.5)))));",
+   "-2.05": "const FM=v=>{for(const p of [0,1,2,3]){const m=Math.round(v*10**p);if(Math.abs(m/10**p-v)<1e-9)return String(+(m/10**p).toFixed(p))}for(let d=2;d<=200;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9){const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d),a=n/k,b=d/k,w=Math.trunc(Math.abs(a)/b),r=Math.abs(a)%b,s=a<0?'-':'';return w?s+w+' '+r+'/'+b:s+r+'/'+b}}return String(v)};const bug=(a,b)=>{const A=String(Math.round(a*100)).padStart(6,'0'),B=String(Math.round(b*100)).padStart(6,'0');let r='';for(let k=0;k<6;k++)r+=Math.abs(+A[k]-+B[k]);return +r/100};return FM((-8.5)+bug(9.15,2.25-(-1.25)));"
+  },
+  "mechanism": [
+   "bottom side across the y-axis: 2.25 - (-1.25) = 3.5",
+   "distance left after the corner: 9.15 - 3.5 = 5.65",
+   "move 5.65 up from y = -8.5: y = -2.85"
+  ],
+  "quantity_asked": "the y-coordinate after moving 9.15 units",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "checking an option needs the bottom side's length and the distance left after the corner, which is the whole method"
+  },
+  "distractor_meta": {
+   "-5.15": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "measures the distance left after the corner down from the top of the left side instead of up from the bottom",
+    "why": "The student finds the 5.65 units left correctly but counts them down from (-1.25, 0.5)."
+   },
+   "-8.35": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "takes away the length of the left side (the side walked second) instead of the bottom side before turning the corner",
+    "why": "The student subtracts the left side's 9 from 9.15, leaving 0.15."
+   },
+   "-2.05": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": true,
+    "misconception": "finds the bottom side correctly but subtracts 3.5 from 9.15 column by column, taking the smaller digit from the larger instead of regrouping",
+    "why": "The student gets 6.45 for 9.15 - 3.5, so moves 6.45 up from -8.5."
+   }
+  },
+  "structure_check": "Key rank 3 of 4 (slot rank, kept). -5.15 (wrongCorner) lands below; -8.35 (wrongSide) lands below; -2.05 (slipRem) lands above.",
+  "intermediate_check": "Steps of the method are not offered as options; differences from the key: key - (-5.15) = 2.3; key - (-8.35) = 5.5; key - (-2.05) = -0.8. PAIR/DPAIR/DSUM/KGAP refusals passed against every number printed in the stem, and the return's strict pair screen (ext.mjs SP) passed on all six option pairs.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "All four options share the key's form (same decimal places and final digit) and sign.",
+  "interior_parity_check": "same form for every option (FORM refusal)",
+  "arith_class_check": "the key is not alone in any form class (FORM refusal)",
+  "dup_search": {
+   "queries": [
+    "chain-checked mechanism; novelty not re-checked (b11 brief)"
+   ],
+   "hits_read": 0,
+   "nearest": "MB9-N6-01 (same mechanism, new numbers)"
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "all four options are negative",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: decimals",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "all four options end in 5",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "the point is on the rectangle, so -8.5 <= y <= 0.5",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "it cannot be more than 9.15 units above the start, so y <= 0.65",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "Screen return (n11 pass 1). Pass 1 failed S-R7: -3.85 and -7.35 differed by 3.5, the top side. Structural in the old start corner: with the walk starting top-left, every natural error that lands BELOW the key (ignores the corner, top side as the difference of the sizes, as one half, from the x-axis, adds the top side) differs from the key by the top side, a printed coordinate or twice one, and rank 3 needs two below (returns/scratch/ext.mjs MECH.F08: 341 accepted rank-3 sets, 0 pass SP). Same chain (clockwise walk, first side crosses the y-axis, y after d units), started at the bottom-right corner so the walk turns UP the left side: the two below-key options are now the wrong-corner and wrong-side errors and the one above is a column-subtraction slip. 8333 option sets survive accept + SP at rank 3; this one also has no stem bound striking any option, all signs equal and no two options a whole number apart (pick.mjs). Remaining relation, recorded: key - wrongSide = 9 - 3.5 = 5.5, the left side minus the bottom side (two values read off the stem, combined), structural for that error. CENT: clean (key rank 3)."
+  },
+  "grade": 6,
+  "stem": "A rectangle on the coordinate plane has vertices at (-1.25, 0.5), (2.25, 0.5), (2.25, -8.5), and (-1.25, -8.5). An ant starts at the corner (2.25, -8.5) and moves clockwise along the sides of the rectangle. After it has moved a total of 9.15 units, what is the y-coordinate of its location?",
+  "options": [
+   "-5.15",
+   "-8.35",
+   "-2.85",
+   "-2.05"
+  ],
+  "key": "-2.85",
+  "key_rank": 3,
+  "distractor_errors": {
+   "-5.15": "wrongCorner: measures the distance left after the corner down from the top of the left side instead of up from the bottom",
+   "-8.35": "wrongSide: takes away the length of the left side (the side walked second) instead of the bottom side before turning the corner",
+   "-2.05": "slipRem: finds the bottom side correctly but subtracts 3.5 from 9.15 column by column, taking the smaller digit from the larger instead of regrouping"
+  },
+  "selected_from": "MB11C-F08-b"
+ },
+ {
+  "id": "MB11-N5-01",
+  "mech": "F04",
+  "frozen_from": "MB9-N5-01",
+  "domain": "Real and Complex Number Systems",
+  "map_area": "num",
+  "area_25": "Number and Operations",
+  "grade_target": 5,
+  "tier": "mid",
+  "rit_band": "RIT 200-209",
+  "difficulty": "medium",
+  "ccss": "5.NBT.B.7",
+  "subskill": "Lowest running balance during a list of decimal deposits and withdrawals",
+  "grade_rationale": "Mid for grade 5 (5.NBT.B.7): five decimal additions and subtractions to hundredths, kept in order as a running balance, then a comparison of the balances.",
+  "prompt": "On Monday morning, Jun had $46.33 in a savings account. During the week Jun made these changes, in this order: took out $8.80, put in $9.60, took out $13.80, put in $11.20, and took out $7.40. What was the least amount of money, in dollars, that was in the account at any time during the week?",
+  "choices": [
+   "34.73",
+   "33.33",
+   "32.53",
+   "37.13"
+  ],
+  "correct_answer": "33.33",
+  "explanation": "Keep a running balance: 37.53, 47.13, 33.33, 44.53, 37.13 (and 46.33 at the start). The least of these is 33.33, right after the third change. The final balance, 37.13, is not the least.",
+  "solve": "const FM=v=>{for(const p of [0,1,2,3]){const m=Math.round(v*10**p);if(Math.abs(m/10**p-v)<1e-9)return String(+(m/10**p).toFixed(p))}for(let d=2;d<=200;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9){const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d),a=n/k,b=d/k,w=Math.trunc(Math.abs(a)/b),r=Math.abs(a)%b,s=a<0?'-':'';return w?s+w+' '+r+'/'+b:s+r+'/'+b}}return String(v)};const t=[-8.8,9.6,-13.8,11.2,-7.4];let b=46.33,m=b;for(const x of t){b+=x;m=Math.min(m,b)}return FM(Math.round(m*100)/100);",
+  "distractor_solve": {
+   "34.73": "const FM=v=>{for(const p of [0,1,2,3]){const m=Math.round(v*10**p);if(Math.abs(m/10**p-v)<1e-9)return String(+(m/10**p).toFixed(p))}for(let d=2;d<=200;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9){const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d),a=n/k,b=d/k,w=Math.trunc(Math.abs(a)/b),r=Math.abs(a)%b,s=a<0?'-':'';return w?s+w+' '+r+'/'+b:s+r+'/'+b}}return String(v)};const C=(A,B)=>{let r=0,k=1;A=Math.round(A*100);B=Math.round(B*100);while(A>0||B>0){r+=Math.abs(A%10-B%10)*k;A=Math.floor(A/10);B=Math.floor(B/10);k*=10}return r/100};return FM(C(47.13,13.8));",
+   "32.53": "const FM=v=>{for(const p of [0,1,2,3]){const m=Math.round(v*10**p);if(Math.abs(m/10**p-v)<1e-9)return String(+(m/10**p).toFixed(p))}for(let d=2;d<=200;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9){const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d),a=n/k,b=d/k,w=Math.trunc(Math.abs(a)/b),r=Math.abs(a)%b,s=a<0?'-':'';return w?s+w+' '+r+'/'+b:s+r+'/'+b}}return String(v)};return FM(46.33-13.8);",
+   "37.13": "const FM=v=>{for(const p of [0,1,2,3]){const m=Math.round(v*10**p);if(Math.abs(m/10**p-v)<1e-9)return String(+(m/10**p).toFixed(p))}for(let d=2;d<=200;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9){const g=(a,b)=>b?g(b,a%b):a;const k=g(Math.abs(n),d),a=n/k,b=d/k,w=Math.trunc(Math.abs(a)/b),r=Math.abs(a)%b,s=a<0?'-':'';return w?s+w+' '+r+'/'+b:s+r+'/'+b}}return String(v)};return FM(46.33-8.8+9.6-13.8+11.2-7.4);"
+  },
+  "mechanism": [
+   "running balance after each change: 37.53, 47.13, 33.33, 44.53, 37.13",
+   "compare the balances (and the starting 46.33)",
+   "the least is 33.33, after the third change"
+  ],
+  "quantity_asked": "the least balance at any moment during the week",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false;",
+   "why": "an option cannot be checked without computing the running balances and comparing them, which is the whole method"
+  },
+  "distractor_meta": {
+   "34.73": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "keeps the running balance in order but, when taking 13.80 from 47.13, subtracts the smaller digit from the larger in each column instead of regrouping",
+    "why": "47.13 - 13.80 done column by column, smaller digit from larger."
+   },
+   "32.53": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "assumes the lowest point comes right after the biggest withdrawal and subtracts it from the starting amount, ignoring the order of the changes",
+    "why": "46.33 - 13.80."
+   },
+   "37.13": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "slip": false,
+    "misconception": "answers with the balance at the end of the week instead of the least balance during the week",
+    "why": "The student does all five changes and reports the end result."
+   }
+  },
+  "structure_check": "Key rank 2 of 4 (dealt by the b11 plan). 34.73 (subBug) lands above; 32.53 (maxW) lands below; 37.13 (final) lands above.",
+  "intermediate_check": "Steps of the method are not offered as options; differences from the key: key - (34.73) = -1.4; key - (32.53) = 0.8; key - (37.13) = -3.8. PAIR/DPAIR/DSUM/KGAP refusals passed against every number printed in the stem.",
+  "cheap_bound_check": "interior key",
+  "shape_check": "All four options share the key's form (same decimal places and final digit) and sign.",
+  "interior_parity_check": "same form for every option (FORM refusal)",
+  "arith_class_check": "the key is not alone in any form class (FORM refusal)",
+  "dup_search": {
+   "queries": [
+    "chain-checked mechanism; novelty not re-checked (b11 brief)"
+   ],
+   "hits_read": 0,
+   "nearest": "MB9-N5-01 (same mechanism, new numbers)"
+  },
+  "bound_screen": [
+   {
+    "kind": "sign",
+    "bound": "all four options are positive",
+    "strikes": []
+   },
+   {
+    "kind": "parity",
+    "bound": "none: decimals",
+    "strikes": []
+   },
+   {
+    "kind": "units_digit",
+    "bound": "all four options end in 3",
+    "strikes": []
+   },
+   {
+    "kind": "magnitude",
+    "bound": "the first change is a withdrawal, so the least balance is at most 46.33 - 8.80 = 37.53",
+    "strikes": []
+   },
+   {
+    "kind": "range",
+    "bound": "the balance never drops below 46.33 minus all the withdrawals (16.33)",
+    "strikes": []
+   }
+  ],
+  "self_audit": {
+   "risk": "medium",
+   "note": "b11 candidate for the cold screener. CENT: key off the centroid (rank 2). CENT clean."
+  },
+  "grade": 5,
+  "stem": "On Monday morning, Jun had $46.33 in a savings account. During the week Jun made these changes, in this order: took out $8.80, put in $9.60, took out $13.80, put in $11.20, and took out $7.40. What was the least amount of money, in dollars, that was in the account at any time during the week?",
+  "options": [
+   "34.73",
+   "33.33",
+   "32.53",
+   "37.13"
+  ],
+  "key": "33.33",
+  "key_rank": 2,
+  "distractor_errors": {
+   "34.73": "subBug: keeps the running balance in order but, when taking 13.80 from 47.13, subtracts the smaller digit from the larger in each column instead of regrouping",
+   "32.53": "maxW: assumes the lowest point comes right after the biggest withdrawal and subtracts it from the starting amount, ignoring the order of the changes",
+   "37.13": "final: answers with the balance at the end of the week instead of the least balance during the week"
+  },
+  "selected_from": "MB11C-F04-c"
+ }
+]

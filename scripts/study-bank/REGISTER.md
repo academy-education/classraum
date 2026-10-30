@@ -6565,3 +6565,13 @@ structural checks are pre-flight only. See CLAUDE.md.
   be dealt 1-4 at authoring and option sets screened in the loop before write-up (the b11 stage-A method, whose
   candidates scored 36.5% options-only vs n789's 61.9%). OA/Geo/Stats for MAP form 6 must be re-authored that way;
   b10's withdrawn and held items stay on the R11 earlier list.
+
+- **2026-10-30 — MAP Math n11 (b11 screen-in-the-loop, 5 frozen) GRADED: HELD on the options-only unanimity bar.**
+  Mean picks are fixed: candidate 40.0% vs control 40.0% (margin 0.0; n789 was +42.9, b10 +50 to +56). Unanimity:
+  40.0% vs 20.0%, margin +20.0 against a +15 bar. At n=5 one item moves it 20 points, but the bar was
+  pre-registered, so HOLD. Keys 10/10 cold on key. Both graders recommend dropping N7-03 (all-negative options let a
+  student fix both signs and skip the sign search). Four R11 one-grader flags were raised against each item's own
+  held predecessor (deviation 3: not an R11 finding); no tie-break was run, since the area verdict does not depend
+  on it. **Reading:** the screen-first method removed the central-key tell that held n789 and b10 (mean margin
+  +43 -> 0). What is left is a small-n unanimity bar. The next N batch should reach n >= 10 before its gate, so that
+  one unanimous item cannot decide the area.

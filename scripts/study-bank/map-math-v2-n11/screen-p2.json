@@ -1,0 +1,8 @@
+{
+ "screened": 2,
+ "fails": {
+  "MB11-N7-03": [
+   "S-R4 2 struck without solving: [\"-1 2/11\",\"-3 4/11\"] (-3 4/11: value is at least 4 - 3.5 - 3.5 = -3, so nothing below -3 is reachable; -1 2/11: the only negative combination (minus, minus) is below 4.1 - 3 - 3 - 0.)"
+  ]
+ }
+}
