@@ -1,0 +1,1425 @@
+{
+ "batch": "itep-reading-v2",
+ "authors": {
+  "A": {
+   "initials": "AB",
+   "lane": "animals, insects, birds, oceans, rivers and the natural world",
+   "sets": {
+    "P1A": {
+     "part": 1,
+     "genre": "shop notice",
+     "kinds": [
+      "main-idea"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "main-idea",
+       "breadth": "all-level",
+       "key_form": "two-part",
+       "cast": [
+        "two-part",
+        "two-part",
+        "two-part"
+       ],
+       "key_length": "middle"
+      }
+     ]
+    },
+    "P1B": {
+     "part": 1,
+     "genre": "library notice",
+     "kinds": [
+      "purpose"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "purpose",
+       "key_length": "middle"
+      }
+     ]
+    },
+    "P2A": {
+     "part": 2,
+     "genre": "story",
+     "kinds": [
+      "vocabulary",
+      "not-except",
+      "inference",
+      "detail"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "vocabulary"
+      },
+      {
+       "n": 2,
+       "kind": "not-except",
+       "key_type": "contradicted by the text",
+       "key_length": "middle"
+      },
+      {
+       "n": 3,
+       "kind": "inference",
+       "key_length": "longest"
+      },
+      {
+       "n": 4,
+       "kind": "detail",
+       "key_length": "shortest"
+      }
+     ]
+    },
+    "P2B": {
+     "part": 2,
+     "genre": "informational science",
+     "kinds": [
+      "vocabulary",
+      "main-idea",
+      "detail",
+      "purpose"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "vocabulary"
+      },
+      {
+       "n": 2,
+       "kind": "main-idea",
+       "breadth": "distractor-broader",
+       "key_form": "one-part",
+       "cast": [
+        "broader (wrong)",
+        "misreading",
+        "misreading"
+       ],
+       "key_length": "middle"
+      },
+      {
+       "n": 3,
+       "kind": "detail",
+       "key_length": "middle"
+      },
+      {
+       "n": 4,
+       "kind": "purpose",
+       "key_length": "middle"
+      }
+     ]
+    },
+    "P3A": {
+     "part": 3,
+     "genre": "informational science",
+     "kinds": [
+      "main-idea",
+      "detail",
+      "vocabulary",
+      "inference",
+      "not-except",
+      "inference"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "main-idea",
+       "breadth": "distractor-broader",
+       "key_form": "two-part",
+       "cast": [
+        "broader (wrong)",
+        "detail",
+        "two-part"
+       ],
+       "key_length": "middle"
+      },
+      {
+       "n": 2,
+       "kind": "detail",
+       "key_length": "middle"
+      },
+      {
+       "n": 3,
+       "kind": "vocabulary"
+      },
+      {
+       "n": 4,
+       "kind": "inference",
+       "key_length": "longest"
+      },
+      {
+       "n": 5,
+       "kind": "not-except",
+       "key_type": "contradicted by the text",
+       "key_length": "longest"
+      },
+      {
+       "n": 6,
+       "kind": "inference",
+       "key_length": "middle"
+      }
+     ]
+    },
+    "P3B": {
+     "part": 3,
+     "genre": "story",
+     "kinds": [
+      "purpose",
+      "main-idea",
+      "detail",
+      "detail",
+      "vocabulary",
+      "vocabulary"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "purpose",
+       "key_length": "shortest"
+      },
+      {
+       "n": 2,
+       "kind": "main-idea",
+       "breadth": "all-level",
+       "key_form": "two-part",
+       "cast": [
+        "misreading",
+        "two-part",
+        "two-part"
+       ],
+       "key_length": "shortest"
+      },
+      {
+       "n": 3,
+       "kind": "detail",
+       "key_length": "shortest"
+      },
+      {
+       "n": 4,
+       "kind": "detail",
+       "key_length": "longest"
+      },
+      {
+       "n": 5,
+       "kind": "vocabulary"
+      },
+      {
+       "n": 6,
+       "kind": "vocabulary"
+      }
+     ]
+    }
+   }
+  },
+  "B": {
+   "initials": "CD",
+   "lane": "sports, outdoor games, exercise, health and the human body",
+   "sets": {
+    "P1A": {
+     "part": 1,
+     "genre": "club announcement",
+     "kinds": [
+      "detail"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "detail",
+       "key_length": "shortest"
+      }
+     ]
+    },
+    "P1B": {
+     "part": 1,
+     "genre": "school notice",
+     "kinds": [
+      "detail"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "detail",
+       "key_length": "middle"
+      }
+     ]
+    },
+    "P2A": {
+     "part": 2,
+     "genre": "first-person school life",
+     "kinds": [
+      "detail",
+      "vocabulary",
+      "not-except",
+      "main-idea"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "detail",
+       "key_length": "middle"
+      },
+      {
+       "n": 2,
+       "kind": "vocabulary"
+      },
+      {
+       "n": 3,
+       "kind": "not-except",
+       "key_type": "not included in the text",
+       "key_length": "middle"
+      },
+      {
+       "n": 4,
+       "kind": "main-idea",
+       "breadth": "key-broadest",
+       "key_form": "one-part",
+       "cast": [
+        "detail",
+        "two-part",
+        "two-part"
+       ],
+       "key_length": "middle"
+      }
+     ]
+    },
+    "P3A": {
+     "part": 3,
+     "genre": "biography of an invented person",
+     "kinds": [
+      "main-idea",
+      "not-except",
+      "purpose",
+      "purpose",
+      "detail",
+      "vocabulary"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "main-idea",
+       "breadth": "key-broadest",
+       "key_form": "two-part",
+       "cast": [
+        "minor-point",
+        "misreading",
+        "two-part"
+       ],
+       "key_length": "shortest"
+      },
+      {
+       "n": 2,
+       "kind": "not-except",
+       "key_type": "contradicted by the text",
+       "key_length": "middle"
+      },
+      {
+       "n": 3,
+       "kind": "purpose",
+       "key_length": "shortest"
+      },
+      {
+       "n": 4,
+       "kind": "purpose",
+       "key_length": "middle"
+      },
+      {
+       "n": 5,
+       "kind": "detail",
+       "key_length": "middle"
+      },
+      {
+       "n": 6,
+       "kind": "vocabulary"
+      }
+     ]
+    },
+    "P3B": {
+     "part": 3,
+     "genre": "informational science",
+     "kinds": [
+      "vocabulary",
+      "main-idea",
+      "detail",
+      "purpose",
+      "purpose",
+      "detail"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "vocabulary"
+      },
+      {
+       "n": 2,
+       "kind": "main-idea",
+       "breadth": "distractor-broader",
+       "key_form": "one-part",
+       "cast": [
+        "broader (wrong)",
+        "detail",
+        "two-part"
+       ],
+       "key_length": "longest"
+      },
+      {
+       "n": 3,
+       "kind": "detail",
+       "key_length": "middle"
+      },
+      {
+       "n": 4,
+       "kind": "purpose",
+       "key_length": "longest"
+      },
+      {
+       "n": 5,
+       "kind": "purpose",
+       "key_length": "middle"
+      },
+      {
+       "n": 6,
+       "kind": "detail",
+       "key_length": "longest"
+      }
+     ]
+    }
+   }
+  },
+  "C": {
+   "initials": "EFG",
+   "lane": "towns, markets, shops, crafts, money and trade, past and present",
+   "sets": {
+    "P1A": {
+     "part": 1,
+     "genre": "poster",
+     "kinds": [
+      "vocabulary"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "vocabulary"
+      }
+     ]
+    },
+    "P1B": {
+     "part": 1,
+     "genre": "lost-and-found notice",
+     "kinds": [
+      "detail"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "detail",
+       "key_length": "longest"
+      }
+     ]
+    },
+    "P2A": {
+     "part": 2,
+     "genre": "story",
+     "kinds": [
+      "purpose",
+      "inference",
+      "main-idea",
+      "detail"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "purpose",
+       "key_length": "longest"
+      },
+      {
+       "n": 2,
+       "kind": "inference",
+       "key_length": "middle"
+      },
+      {
+       "n": 3,
+       "kind": "main-idea",
+       "breadth": "distractor-broader",
+       "key_form": "one-part",
+       "cast": [
+        "broader (wrong)",
+        "two-part",
+        "two-part"
+       ],
+       "key_length": "shortest"
+      },
+      {
+       "n": 4,
+       "kind": "detail",
+       "key_length": "middle"
+      }
+     ]
+    },
+    "P3A": {
+     "part": 3,
+     "genre": "informational history",
+     "kinds": [
+      "inference",
+      "not-except",
+      "vocabulary",
+      "detail",
+      "main-idea",
+      "purpose"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "inference",
+       "key_length": "middle"
+      },
+      {
+       "n": 2,
+       "kind": "not-except",
+       "key_type": "contradicted by the text",
+       "key_length": "middle"
+      },
+      {
+       "n": 3,
+       "kind": "vocabulary"
+      },
+      {
+       "n": 4,
+       "kind": "detail",
+       "key_length": "middle"
+      },
+      {
+       "n": 5,
+       "kind": "main-idea",
+       "breadth": "key-broadest",
+       "key_form": "one-part",
+       "cast": [
+        "detail",
+        "two-part",
+        "two-part"
+       ],
+       "key_length": "middle"
+      },
+      {
+       "n": 6,
+       "kind": "purpose",
+       "key_length": "middle"
+      }
+     ]
+    },
+    "P3B": {
+     "part": 3,
+     "genre": "first-person account",
+     "kinds": [
+      "inference",
+      "vocabulary",
+      "detail",
+      "detail",
+      "main-idea",
+      "purpose"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "inference",
+       "key_length": "middle"
+      },
+      {
+       "n": 2,
+       "kind": "vocabulary"
+      },
+      {
+       "n": 3,
+       "kind": "detail",
+       "key_length": "middle"
+      },
+      {
+       "n": 4,
+       "kind": "detail",
+       "key_length": "shortest"
+      },
+      {
+       "n": 5,
+       "kind": "main-idea",
+       "breadth": "key-broadest",
+       "key_form": "two-part",
+       "cast": [
+        "minor-point",
+        "misreading",
+        "two-part"
+       ],
+       "key_length": "shortest"
+      },
+      {
+       "n": 6,
+       "kind": "purpose",
+       "key_length": "longest"
+      }
+     ]
+    }
+   }
+  },
+  "D": {
+   "initials": "HIJ",
+   "lane": "plants, food, cooking, farming, gardens and weather",
+   "sets": {
+    "P1A": {
+     "part": 1,
+     "genre": "advertisement",
+     "kinds": [
+      "detail"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "detail",
+       "key_length": "middle"
+      }
+     ]
+    },
+    "P1B": {
+     "part": 1,
+     "genre": "postcard",
+     "kinds": [
+      "main-idea"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "main-idea",
+       "breadth": "key-broadest",
+       "key_form": "two-part",
+       "cast": [
+        "detail",
+        "minor-point",
+        "two-part"
+       ],
+       "key_length": "middle"
+      }
+     ]
+    },
+    "P2A": {
+     "part": 2,
+     "genre": "first-person school life",
+     "kinds": [
+      "purpose",
+      "not-except",
+      "detail",
+      "detail"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "purpose",
+       "key_length": "shortest"
+      },
+      {
+       "n": 2,
+       "kind": "not-except",
+       "key_type": "not included in the text",
+       "key_length": "longest"
+      },
+      {
+       "n": 3,
+       "kind": "detail",
+       "key_length": "middle"
+      },
+      {
+       "n": 4,
+       "kind": "detail",
+       "key_length": "longest"
+      }
+     ]
+    },
+    "P3A": {
+     "part": 3,
+     "genre": "informational science",
+     "kinds": [
+      "inference",
+      "purpose",
+      "vocabulary",
+      "detail",
+      "purpose",
+      "detail"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "inference",
+       "key_length": "middle"
+      },
+      {
+       "n": 2,
+       "kind": "purpose",
+       "key_length": "longest"
+      },
+      {
+       "n": 3,
+       "kind": "vocabulary"
+      },
+      {
+       "n": 4,
+       "kind": "detail",
+       "key_length": "middle"
+      },
+      {
+       "n": 5,
+       "kind": "purpose",
+       "key_length": "shortest"
+      },
+      {
+       "n": 6,
+       "kind": "detail",
+       "key_length": "middle"
+      }
+     ]
+    },
+    "P3B": {
+     "part": 3,
+     "genre": "informational history",
+     "kinds": [
+      "detail",
+      "inference",
+      "main-idea",
+      "vocabulary",
+      "detail",
+      "inference"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "detail",
+       "key_length": "longest"
+      },
+      {
+       "n": 2,
+       "kind": "inference",
+       "key_length": "shortest"
+      },
+      {
+       "n": 3,
+       "kind": "main-idea",
+       "breadth": "distractor-broader",
+       "key_form": "one-part",
+       "cast": [
+        "broader (wrong)",
+        "detail",
+        "misreading"
+       ],
+       "key_length": "middle"
+      },
+      {
+       "n": 4,
+       "kind": "vocabulary"
+      },
+      {
+       "n": 5,
+       "kind": "detail",
+       "key_length": "middle"
+      },
+      {
+       "n": 6,
+       "kind": "inference",
+       "key_length": "shortest"
+      }
+     ]
+    }
+   }
+  },
+  "E": {
+   "initials": "KLU",
+   "lane": "travel, roads, bridges, boats, trains, maps and how people got around",
+   "sets": {
+    "P1A": {
+     "part": 1,
+     "genre": "invitation",
+     "kinds": [
+      "main-idea"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "main-idea",
+       "breadth": "distractor-broader",
+       "key_form": "one-part",
+       "cast": [
+        "broader (wrong)",
+        "misreading",
+        "two-part"
+       ],
+       "key_length": "shortest"
+      }
+     ]
+    },
+    "P1B": {
+     "part": 1,
+     "genre": "travel update",
+     "kinds": [
+      "vocabulary"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "vocabulary"
+      }
+     ]
+    },
+    "P2A": {
+     "part": 2,
+     "genre": "informational science",
+     "kinds": [
+      "detail",
+      "purpose",
+      "detail",
+      "vocabulary"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "detail",
+       "key_length": "middle"
+      },
+      {
+       "n": 2,
+       "kind": "purpose",
+       "key_length": "longest"
+      },
+      {
+       "n": 3,
+       "kind": "detail",
+       "key_length": "longest"
+      },
+      {
+       "n": 4,
+       "kind": "vocabulary"
+      }
+     ]
+    },
+    "P2B": {
+     "part": 2,
+     "genre": "first-person school life",
+     "kinds": [
+      "not-except",
+      "inference",
+      "detail",
+      "main-idea"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "not-except",
+       "key_type": "contradicted by the text",
+       "key_length": "middle"
+      },
+      {
+       "n": 2,
+       "kind": "inference",
+       "key_length": "middle"
+      },
+      {
+       "n": 3,
+       "kind": "detail",
+       "key_length": "middle"
+      },
+      {
+       "n": 4,
+       "kind": "main-idea",
+       "breadth": "key-broadest",
+       "key_form": "two-part",
+       "cast": [
+        "detail",
+        "misreading",
+        "two-part"
+       ],
+       "key_length": "middle"
+      }
+     ]
+    },
+    "P3A": {
+     "part": 3,
+     "genre": "informational history",
+     "kinds": [
+      "inference",
+      "inference",
+      "vocabulary",
+      "not-except",
+      "vocabulary",
+      "detail"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "inference",
+       "key_length": "longest"
+      },
+      {
+       "n": 2,
+       "kind": "inference",
+       "key_length": "middle"
+      },
+      {
+       "n": 3,
+       "kind": "vocabulary"
+      },
+      {
+       "n": 4,
+       "kind": "not-except",
+       "key_type": "not included in the text",
+       "key_length": "shortest"
+      },
+      {
+       "n": 5,
+       "kind": "vocabulary"
+      },
+      {
+       "n": 6,
+       "kind": "detail",
+       "key_length": "shortest"
+      }
+     ]
+    },
+    "P3B": {
+     "part": 3,
+     "genre": "story",
+     "kinds": [
+      "vocabulary",
+      "inference",
+      "detail",
+      "purpose",
+      "vocabulary",
+      "purpose"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "vocabulary"
+      },
+      {
+       "n": 2,
+       "kind": "inference",
+       "key_length": "middle"
+      },
+      {
+       "n": 3,
+       "kind": "detail",
+       "key_length": "middle"
+      },
+      {
+       "n": 4,
+       "kind": "purpose",
+       "key_length": "shortest"
+      },
+      {
+       "n": 5,
+       "kind": "vocabulary"
+      },
+      {
+       "n": 6,
+       "kind": "purpose",
+       "key_length": "longest"
+      }
+     ]
+    }
+   }
+  },
+  "F": {
+   "initials": "MNO",
+   "lane": "inventions, tools, machines, everyday technology, letters and communication",
+   "sets": {
+    "P1A": {
+     "part": 1,
+     "genre": "text message",
+     "kinds": [
+      "inference"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "inference",
+       "key_length": "middle"
+      }
+     ]
+    },
+    "P1B": {
+     "part": 1,
+     "genre": "short review",
+     "kinds": [
+      "inference"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "inference",
+       "key_length": "middle"
+      }
+     ]
+    },
+    "P2A": {
+     "part": 2,
+     "genre": "story",
+     "kinds": [
+      "main-idea",
+      "purpose",
+      "detail",
+      "not-except"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "main-idea",
+       "breadth": "key-broadest",
+       "key_form": "one-part",
+       "cast": [
+        "detail",
+        "misreading",
+        "two-part"
+       ],
+       "key_length": "shortest"
+      },
+      {
+       "n": 2,
+       "kind": "purpose",
+       "key_length": "longest"
+      },
+      {
+       "n": 3,
+       "kind": "detail",
+       "key_length": "middle"
+      },
+      {
+       "n": 4,
+       "kind": "not-except",
+       "key_type": "not included in the text",
+       "key_length": "middle"
+      }
+     ]
+    },
+    "P3A": {
+     "part": 3,
+     "genre": "informational technology",
+     "kinds": [
+      "inference",
+      "detail",
+      "purpose",
+      "vocabulary",
+      "purpose",
+      "main-idea"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "inference",
+       "key_length": "middle"
+      },
+      {
+       "n": 2,
+       "kind": "detail",
+       "key_length": "longest"
+      },
+      {
+       "n": 3,
+       "kind": "purpose",
+       "key_length": "shortest"
+      },
+      {
+       "n": 4,
+       "kind": "vocabulary"
+      },
+      {
+       "n": 5,
+       "kind": "purpose",
+       "key_length": "middle"
+      },
+      {
+       "n": 6,
+       "kind": "main-idea",
+       "breadth": "all-level",
+       "key_form": "two-part",
+       "cast": [
+        "misreading",
+        "two-part",
+        "two-part"
+       ],
+       "key_length": "longest"
+      }
+     ]
+    },
+    "P3B": {
+     "part": 3,
+     "genre": "biography of an invented person",
+     "kinds": [
+      "detail",
+      "inference",
+      "vocabulary",
+      "main-idea",
+      "not-except",
+      "detail"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "detail",
+       "key_length": "shortest"
+      },
+      {
+       "n": 2,
+       "kind": "inference",
+       "key_length": "shortest"
+      },
+      {
+       "n": 3,
+       "kind": "vocabulary"
+      },
+      {
+       "n": 4,
+       "kind": "main-idea",
+       "breadth": "all-level",
+       "key_form": "one-part",
+       "cast": [
+        "misreading",
+        "misreading",
+        "two-part"
+       ],
+       "key_length": "longest"
+      },
+      {
+       "n": 5,
+       "kind": "not-except",
+       "key_type": "not included in the text",
+       "key_length": "middle"
+      },
+      {
+       "n": 6,
+       "kind": "detail",
+       "key_length": "middle"
+      }
+     ]
+    }
+   }
+  },
+  "G": {
+   "initials": "PQR",
+   "lane": "music, painting, theatre, buildings, libraries and museums",
+   "sets": {
+    "P1A": {
+     "part": 1,
+     "genre": "email",
+     "kinds": [
+      "vocabulary"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "vocabulary"
+      }
+     ]
+    },
+    "P1B": {
+     "part": 1,
+     "genre": "note",
+     "kinds": [
+      "purpose"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "purpose",
+       "key_length": "middle"
+      }
+     ]
+    },
+    "P2A": {
+     "part": 2,
+     "genre": "first-person school life",
+     "kinds": [
+      "vocabulary",
+      "detail",
+      "detail",
+      "main-idea"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "vocabulary"
+      },
+      {
+       "n": 2,
+       "kind": "detail",
+       "key_length": "middle"
+      },
+      {
+       "n": 3,
+       "kind": "detail",
+       "key_length": "longest"
+      },
+      {
+       "n": 4,
+       "kind": "main-idea",
+       "breadth": "all-level",
+       "key_form": "two-part",
+       "cast": [
+        "misreading",
+        "misreading",
+        "two-part"
+       ],
+       "key_length": "middle"
+      }
+     ]
+    },
+    "P3A": {
+     "part": 3,
+     "genre": "informational history",
+     "kinds": [
+      "vocabulary",
+      "detail",
+      "not-except",
+      "detail",
+      "main-idea",
+      "vocabulary"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "vocabulary"
+      },
+      {
+       "n": 2,
+       "kind": "detail",
+       "key_length": "middle"
+      },
+      {
+       "n": 3,
+       "kind": "not-except",
+       "key_type": "contradicted by the text",
+       "key_length": "middle"
+      },
+      {
+       "n": 4,
+       "kind": "detail",
+       "key_length": "longest"
+      },
+      {
+       "n": 5,
+       "kind": "main-idea",
+       "breadth": "all-level",
+       "key_form": "two-part",
+       "cast": [
+        "misreading",
+        "two-part",
+        "two-part"
+       ],
+       "key_length": "longest"
+      },
+      {
+       "n": 6,
+       "kind": "vocabulary"
+      }
+     ]
+    },
+    "P3B": {
+     "part": 3,
+     "genre": "informational technology",
+     "kinds": [
+      "inference",
+      "not-except",
+      "detail",
+      "vocabulary",
+      "inference",
+      "detail"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "inference",
+       "key_length": "shortest"
+      },
+      {
+       "n": 2,
+       "kind": "not-except",
+       "key_type": "not included in the text",
+       "key_length": "middle"
+      },
+      {
+       "n": 3,
+       "kind": "detail",
+       "key_length": "shortest"
+      },
+      {
+       "n": 4,
+       "kind": "vocabulary"
+      },
+      {
+       "n": 5,
+       "kind": "inference",
+       "key_length": "shortest"
+      },
+      {
+       "n": 6,
+       "kind": "detail",
+       "key_length": "middle"
+      }
+     ]
+    }
+   }
+  },
+  "H": {
+   "initials": "STVWYZ",
+   "lane": "rocks, volcanoes, caves, the sky, light, sound and other earth and space science; school clubs and competitions",
+   "sets": {
+    "P1A": {
+     "part": 1,
+     "genre": "diary entry",
+     "kinds": [
+      "purpose"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "purpose",
+       "key_length": "middle"
+      }
+     ]
+    },
+    "P1B": {
+     "part": 1,
+     "genre": "sign",
+     "kinds": [
+      "detail"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "detail",
+       "key_length": "longest"
+      }
+     ]
+    },
+    "P2A": {
+     "part": 2,
+     "genre": "informational history",
+     "kinds": [
+      "inference",
+      "inference",
+      "vocabulary",
+      "detail"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "inference",
+       "key_length": "middle"
+      },
+      {
+       "n": 2,
+       "kind": "inference",
+       "key_length": "middle"
+      },
+      {
+       "n": 3,
+       "kind": "vocabulary"
+      },
+      {
+       "n": 4,
+       "kind": "detail",
+       "key_length": "shortest"
+      }
+     ]
+    },
+    "P3A": {
+     "part": 3,
+     "genre": "informational science",
+     "kinds": [
+      "detail",
+      "inference",
+      "not-except",
+      "vocabulary",
+      "vocabulary",
+      "detail"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "detail",
+       "key_length": "middle"
+      },
+      {
+       "n": 2,
+       "kind": "inference",
+       "key_length": "middle"
+      },
+      {
+       "n": 3,
+       "kind": "not-except",
+       "key_type": "contradicted by the text",
+       "key_length": "middle"
+      },
+      {
+       "n": 4,
+       "kind": "vocabulary"
+      },
+      {
+       "n": 5,
+       "kind": "vocabulary"
+      },
+      {
+       "n": 6,
+       "kind": "detail",
+       "key_length": "longest"
+      }
+     ]
+    },
+    "P3B": {
+     "part": 3,
+     "genre": "story",
+     "kinds": [
+      "purpose",
+      "detail",
+      "not-except",
+      "vocabulary",
+      "detail",
+      "main-idea"
+     ],
+     "items": [
+      {
+       "n": 1,
+       "kind": "purpose",
+       "key_length": "shortest"
+      },
+      {
+       "n": 2,
+       "kind": "detail",
+       "key_length": "longest"
+      },
+      {
+       "n": 3,
+       "kind": "not-except",
+       "key_type": "not included in the text",
+       "key_length": "middle"
+      },
+      {
+       "n": 4,
+       "kind": "vocabulary"
+      },
+      {
+       "n": 5,
+       "kind": "detail",
+       "key_length": "shortest"
+      },
+      {
+       "n": 6,
+       "kind": "main-idea",
+       "breadth": "distractor-broader",
+       "key_form": "one-part",
+       "cast": [
+        "broader (wrong)",
+        "detail",
+        "minor-point"
+       ],
+       "key_length": "middle"
+      }
+     ]
+    }
+   }
+  }
+ }
+}
