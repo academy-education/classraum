@@ -106,3 +106,42 @@ Amendment 3, say so; nothing has been earned on the stratum yet, so either readi
 
 Same as v1 §5, cohort `itep-grammar-v2`, written by `itep-grammar-v2-work/build-batch.mjs` to
 `scripts/study-bank/itep-grammar-v2.batch.json`. File only: no database write (another agent owns the insert path).
+
+## Results (2026-10-31, recorded after scoring; no rule changed)
+
+- **Authoring:** 10 authors, 250 items. Per-author pre-flight and dedupe passed on first hand-in; the cross-author
+  dedupe then failed 28 pairs (22 shared key roots, 2 shared names, 2 shared 4-grams, 2 same-category root overlaps).
+  Resolved per §2 by the later author in three rounds (28 -> 5 -> 1 -> 0; each revision could create a new collision).
+  One checker fix after the first run, false positives only: possessive `'s` and greeting openers (Dear/Hi/Attention)
+  read as names; the pilot break-test still reproduces all four known collisions. One assignment defect surfaced by an
+  author and fixed before packets: H's owned point "pick it up, not pick up it" forces a dead option (brief rule 1);
+  C103 re-authored to an option set grammatical somewhere.
+- **Final pre-flight:** PASS, 250 read; key slot P1 33/33/32/32, P2 30/30/30/30; length rank balanced. Unique-shortest
+  key in Part 1 17.7% (chance 25%; pending lesson 5 persists, weaker).
+- **Gate** (`score.mjs`, files in `itep-grammar-v2-work/results/`; reproduces from the committed copies; break-tested:
+  a tampered cold file and a missing grade file each exit 2): 750 cold picks, **0 off key**, 1 `also_correct`; 750
+  keyed verdicts, 15 non-unique. **Cleared 176 of 250** (Part 1 109/130, Part 2 67/120). Band: 70.4% = "scale with
+  pending lessons queued". One packet held (packet 3).
+- **Drops by cause (74):**
+  - **59 by letter patterns only (rule 4).** Packets 1 and 3 drew Part 2 keys A 9/20 and A 3/23 from a pool that is
+    exactly 30/30/30/30. Two graders per packet named it, so packet 1 lost its 20 Part 2 items to the pattern union
+    rule, and packet 3's 23 Part 2 items reached 50% and held the whole packet (19 Part 1 items with it).
+    **This is a defect in this prereg's packet design, not in the items:** the deal was not stratified by Part 2
+    key slot, and rule 4 judges letters per packet while a student's form draws from the whole pool. Applied as
+    written anyway; re-deciding with a rule found afterwards is what pre-registration exists to prevent. Counterfactual
+    for the owner only, not acted on: without letter-pattern drops 235 of 250 clear.
+  - **15 on item grounds:** E066 (aspect nuance: "has been finalizing" is defensible, all three graders), E094
+    ("for fixing" can modify "toolbox", all three), C022 (end-placed modifier reads fine in context), C111, C035
+    ("by the time" + simple past acceptable in US usage), E037 (airport app / "station" self-contradiction), E082,
+    E086 and E099 (Part 2 errors living in attachment or logic BETWEEN segments, not in one segment), and two
+    counted template patterns: dangling-modifier items C065/E071/E059 (packet 2, all three graders) and the
+    same-shape items E039/E049/E098 (packet 4).
+- **Cross-author frames (the pilot's finding):** no grader named a shared lexical frame. Graders named repeated
+  RULES instead (dangling-modifier template in packets 2 and 5; "for -ing" vs "to" purpose leaking between two
+  items in packet 4), which the dedupe is not built to see.
+- **Survivors:** `scripts/study-bank/itep-grammar-v2.batch.json`, 176 rows (109 + 67), staging shape,
+  `verified=false`, cohort `itep-grammar-v2`. Not inserted. With the pilot: Part 1 120/130, Part 2 79/120;
+  shortfall to the 250 pool: **10 Part 1 + 41 Part 2**, a new batch (v3 ids), never a repair of these.
+- **Brief decision re-checked after the gate:** still no cut. The dangling-modifier template was named by two
+  graders in ONE batch (pilot did not name it); no tell has met "two consecutive batches". New pending lessons 7-10
+  recorded. The next batch (the top-up) will be the second consecutive batch: if the template recurs there, cut.

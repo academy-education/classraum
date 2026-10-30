@@ -1,0 +1,171 @@
+{
+ "1": {
+  "verdict": "unique"
+ },
+ "2": {
+  "verdict": "unique"
+ },
+ "3": {
+  "verdict": "unique"
+ },
+ "4": {
+  "verdict": "unique"
+ },
+ "5": {
+  "verdict": "unique"
+ },
+ "6": {
+  "verdict": "unique"
+ },
+ "7": {
+  "verdict": "unique"
+ },
+ "8": {
+  "verdict": "unique"
+ },
+ "9": {
+  "verdict": "unique"
+ },
+ "10": {
+  "verdict": "unique"
+ },
+ "11": {
+  "verdict": "unique"
+ },
+ "12": {
+  "verdict": "unique"
+ },
+ "13": {
+  "verdict": "unique"
+ },
+ "14": {
+  "verdict": "unique"
+ },
+ "15": {
+  "verdict": "unique"
+ },
+ "16": {
+  "verdict": "unique"
+ },
+ "17": {
+  "verdict": "unique"
+ },
+ "18": {
+  "verdict": "unique"
+ },
+ "19": {
+  "verdict": "unique"
+ },
+ "20": {
+  "verdict": "unique"
+ },
+ "21": {
+  "verdict": "unique"
+ },
+ "22": {
+  "verdict": "unique",
+  "note": "'stopped making' is grammatical but means ceased, which the context rules out"
+ },
+ "23": {
+  "verdict": "unique",
+  "note": "'mopped' with by-the-time is heard informally but not acceptable edited English for completion before a past point; accepted"
+ },
+ "24": {
+  "verdict": "unique"
+ },
+ "25": {
+  "verdict": "unique"
+ },
+ "26": {
+  "verdict": "unique"
+ },
+ "27": {
+  "verdict": "unique"
+ },
+ "28": {
+  "verdict": "unique"
+ },
+ "29": {
+  "verdict": "unique"
+ },
+ "30": {
+  "verdict": "unique"
+ },
+ "31": {
+  "verdict": "unique"
+ },
+ "32": {
+  "verdict": "unique"
+ },
+ "33": {
+  "verdict": "unique"
+ },
+ "34": {
+  "verdict": "unique"
+ },
+ "35": {
+  "verdict": "unique",
+  "note": "'The visitors were shown a statue by the guide' has some pull but the participle lands on 'guide'; accepted"
+ },
+ "36": {
+  "verdict": "unique"
+ },
+ "37": {
+  "verdict": "unique"
+ },
+ "38": {
+  "verdict": "unique"
+ },
+ "39": {
+  "verdict": "unique"
+ },
+ "40": {
+  "verdict": "unique"
+ },
+ "41": {
+  "verdict": "unique"
+ },
+ "42": {
+  "verdict": "unique",
+  "note": "the error is a logical connector (However vs So), not a grammar form; still the only faulty segment"
+ },
+ "batch_patterns": [
+  {
+   "pattern": "duplicate_concept",
+   "items": [
+    15,
+    30
+   ],
+   "evidence": "both keys are a say/explain verb wrongly taking a bare indirect object (said us / explained us); a student who learns one answers the other. Not a key tell, but two of 42 slots test the same point"
+  },
+  {
+   "pattern": "key_position_weak",
+   "items": [
+    1,
+    2,
+    4,
+    7,
+    8,
+    9,
+    11,
+    13,
+    14,
+    15,
+    17,
+    18,
+    19,
+    21,
+    26,
+    29,
+    30,
+    32,
+    37,
+    38,
+    40,
+    41,
+    42
+   ],
+   "evidence": "Error Identification keys: A 3, B 7, C 5, D 8 of 23 (A at 13% vs 25% chance). Overall letters A9 B11 C12 D10 are balanced; flagged as minor only, not significant at n=23"
+  }
+ ]
+}

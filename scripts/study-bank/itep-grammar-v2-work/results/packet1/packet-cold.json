@@ -1,0 +1,506 @@
+[
+ {
+  "n": 1,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "Community board: To join the cleanup, sign the list, pick up some gloves, and ________ outside the library at nine.",
+  "choices": [
+   "to meet",
+   "meeting",
+   "met",
+   "meet"
+  ]
+ },
+ {
+  "n": 2,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "Ines, on this trip I hope not only to visit the old castle but also ________ across the lake.",
+  "choices": [
+   "I will sail",
+   "sailing",
+   "to sail",
+   "for sailing"
+  ]
+ },
+ {
+  "n": 3,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "________ the deer would not hear us, we spoke in whispers along the river trail.",
+  "choices": [
+   "So that",
+   "Unless",
+   "So",
+   "Until"
+  ]
+ },
+ {
+  "n": 4,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Paintings by the younger students were brighter than [A: that] of the older ones, [B: whose work] [C: mostly used] [D: darker colors].",
+  "choices": [
+   "that",
+   "whose work",
+   "mostly used",
+   "darker colors"
+  ]
+ },
+ {
+  "n": 5,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Before [A: setting out] on the overnight hike, the scouts [B: who were leading] the group [C: discussed about] the storm [D: that the radio had predicted].",
+  "choices": [
+   "setting out",
+   "who were leading",
+   "discussed about",
+   "that the radio had predicted"
+  ]
+ },
+ {
+  "n": 6,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Arjun is [A: the better runner] [B: on] our team of twelve, but his swimming [C: is still worse] [D: than his younger sister's].",
+  "choices": [
+   "the better runner",
+   "on",
+   "is still worse",
+   "than his younger sister's"
+  ]
+ },
+ {
+  "n": 7,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "During the holidays, my brothers [A: get up early], [B: make their own] breakfast, and wash the dishes [C: by himself] [D: without being asked].",
+  "choices": [
+   "get up early",
+   "make their own",
+   "by himself",
+   "without being asked"
+  ]
+ },
+ {
+  "n": 8,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Jun [A: had reviewed] every chapter [B: of the textbook] twice and [C: felt confident] on the morning of the exam, [D: so he still forgot] one important formula.",
+  "choices": [
+   "had reviewed",
+   "of the textbook",
+   "felt confident",
+   "so he still forgot"
+  ]
+ },
+ {
+  "n": 9,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "When Grandpa called to say he was coming over, Mom told me ________ the table for five people.",
+  "choices": [
+   "to set",
+   "should set",
+   "to setting",
+   "setting"
+  ]
+ },
+ {
+  "n": 10,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "This time tomorrow, Selin [A: and her] class [B: were walking] [C: through] [D: an old fort].",
+  "choices": [
+   "and her",
+   "were walking",
+   "through",
+   "an old fort"
+  ]
+ },
+ {
+  "n": 11,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "My new room [A: is bigger] than [B: my old one] and [C: gets] [D: as much sunlight] than the kitchen.",
+  "choices": [
+   "is bigger",
+   "my old one",
+   "gets",
+   "as much sunlight"
+  ]
+ },
+ {
+  "n": 12,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Uncle Bao [A: had cooked] a big pot of soup for our visit, but my cousins [B: were all so hungry] that there was [C: hardly] [D: some for us].",
+  "choices": [
+   "had cooked",
+   "were all so hungry",
+   "hardly",
+   "some for us"
+  ]
+ },
+ {
+  "n": 13,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "The posters that the art club painted for last month's street festival ________ in the youth center hall until someone took them down yesterday.",
+  "choices": [
+   "was hanging",
+   "were hanging",
+   "are hanging",
+   "is hanging"
+  ]
+ },
+ {
+  "n": 14,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Tonight the ushers [A: are going to keep] the doors [B: closed] until the conductor [C: will give] them [D: a quick signal].",
+  "choices": [
+   "are going to keep",
+   "closed",
+   "will give",
+   "a quick signal"
+  ]
+ },
+ {
+  "n": 15,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "Every evening, the glass slides from our biology lessons ________ in a dry cupboard so that they stay clean.",
+  "choices": [
+   "have kept",
+   "are kept",
+   "had been keeping",
+   "are keeping"
+  ]
+ },
+ {
+  "n": 16,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "On the new timetable, each student in Ingrid's class ________ a quiz every Monday, and the results go up on Tuesday.",
+  "choices": [
+   "does",
+   "are doing",
+   "do",
+   "did"
+  ]
+ },
+ {
+  "n": 17,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Seo-yeon's ballet recital is on Saturday, and she wishes her grandparents [A: had flown in from Busan] to see it, but [B: they] [C: are working] [D: that weekend].",
+  "choices": [
+   "had flown in from Busan",
+   "they",
+   "are working",
+   "that weekend"
+  ]
+ },
+ {
+  "n": 18,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "Noah kept running laps ________ it was raining hard.",
+  "choices": [
+   "despite",
+   "because of",
+   "although",
+   "in spite of"
+  ]
+ },
+ {
+  "n": 19,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "On Mondays, our art lesson [A: begins] [B: at] nine, and French [C: teaches] [D: in Room 12 after lunch].",
+  "choices": [
+   "begins",
+   "at",
+   "teaches",
+   "in Room 12 after lunch"
+  ]
+ },
+ {
+  "n": 20,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "Would you ________ switching off your phone before tonight's play begins?",
+  "choices": [
+   "kindly",
+   "rather",
+   "please",
+   "mind"
+  ]
+ },
+ {
+  "n": 21,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "Elsa noticed that the maple leaves on the ground were dry and brown, but the ________ still on the branches were soft and green.",
+  "choices": [
+   "one",
+   "ones",
+   "it",
+   "these"
+  ]
+ },
+ {
+  "n": 22,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "The first video call [A: between two distant cities] [B: is believed] [C: to happen] [D: about a hundred years ago].",
+  "choices": [
+   "between two distant cities",
+   "is believed",
+   "to happen",
+   "about a hundred years ago"
+  ]
+ },
+ {
+  "n": 23,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "________ the river ferry leaves at nine, but on holidays it leaves at noon.",
+  "choices": [
+   "Usually",
+   "Hardly ever",
+   "Never",
+   "Always"
+  ]
+ },
+ {
+  "n": 24,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "At this moment in our rehearsal, Karim is tuning his guitar and ________ quietly to the drummer about the first song.",
+  "choices": [
+   "talks",
+   "talked",
+   "talk",
+   "talking"
+  ]
+ },
+ {
+  "n": 25,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "During a class visit, ________ the town museum's old maps with a magnifying glass.",
+  "choices": [
+   "to study is exciting",
+   "studying is exciting",
+   "it is exciting to study",
+   "is exciting to study"
+  ]
+ },
+ {
+  "n": 26,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Attention, travelers: Terminal 2, [A: closed] for repairs [B: since] March, will reopen [C: at Monday morning] [D: before the first flight].",
+  "choices": [
+   "closed",
+   "since",
+   "at Monday morning",
+   "before the first flight"
+  ]
+ },
+ {
+  "n": 27,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Hiro cooks [A: so good] that everyone [B: asks] him [C: to prepare] dinner [D: on weekends].",
+  "choices": [
+   "so good",
+   "asks",
+   "to prepare",
+   "on weekends"
+  ]
+ },
+ {
+  "n": 28,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "When the new bridge opens next year, visitors might ________ walk to the island.",
+  "choices": [
+   "can",
+   "being able to",
+   "been able to",
+   "be able to"
+  ]
+ },
+ {
+  "n": 29,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Our new airport app lets travelers [A: both booking their tickets online] and [B: choose] their seats [C: before] they [D: arrive at the station].",
+  "choices": [
+   "both booking their tickets online",
+   "choose",
+   "before",
+   "arrive at the station"
+  ]
+ },
+ {
+  "n": 30,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "Please note: all large bags ________ at the desk before passengers get on the ferry.",
+  "choices": [
+   "labeled",
+   "must be labeled",
+   "must label",
+   "label"
+  ]
+ },
+ {
+  "n": 31,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "Ranger Silva says campers may swim ________ an adult is watching; otherwise, they must stay ashore.",
+  "choices": [
+   "as long as",
+   "even if",
+   "until",
+   "unless"
+  ]
+ },
+ {
+  "n": 32,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "[A: This] peaches [B: are] soft and juicy, so I'll [C: buy] six [D: for my smoothie].",
+  "choices": [
+   "This",
+   "are",
+   "buy",
+   "for my smoothie"
+  ]
+ },
+ {
+  "n": 33,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "In the old palace, there were far ________ rooms for the guide to show us every one in a single hour.",
+  "choices": [
+   "enough",
+   "too little",
+   "too much",
+   "too many"
+  ]
+ },
+ {
+  "n": 34,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "Mom looked at the burnt tray and said, \"Kai, you ________ taken the cookies out of the oven ten minutes ago.\"",
+  "choices": [
+   "must",
+   "had better",
+   "should have",
+   "ought to"
+  ]
+ },
+ {
+  "n": 35,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "Good news, team: the robot finally did exactly ________ we programmed it to do!",
+  "choices": [
+   "what",
+   "which",
+   "where",
+   "that"
+  ]
+ },
+ {
+  "n": 36,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Our choir teacher [A: always lets] us [B: to sing] our [C: favorite songs] [D: after lunch].",
+  "choices": [
+   "always lets",
+   "to sing",
+   "favorite songs",
+   "after lunch"
+  ]
+ },
+ {
+  "n": 37,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Ever since a school trip to a bakery, Layla has been [A: interesting] in baking, and she now [B: makes] bread [C: for her family] [D: every weekend].",
+  "choices": [
+   "interesting",
+   "makes",
+   "for her family",
+   "every weekend"
+  ]
+ },
+ {
+  "n": 38,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Alma was more interested in mapping rivers than [A: to climb] mountains, so she [B: spent years] [C: traveling by canoe] [D: rather than] on foot.",
+  "choices": [
+   "to climb",
+   "spent years",
+   "traveling by canoe",
+   "rather than"
+  ]
+ },
+ {
+  "n": 39,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "That boy [A: plays] the guitar [B: on the stage] [C: is] my [D: older brother].",
+  "choices": [
+   "plays",
+   "on the stage",
+   "is",
+   "older brother"
+  ]
+ },
+ {
+  "n": 40,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "\"Dev, hold the knife by the handle, or you might cut ________,\" Dad said while we were cooking dinner.",
+  "choices": [
+   "you",
+   "you yourself",
+   "yourself",
+   "yourselves"
+  ]
+ },
+ {
+  "n": 41,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "In its review, the school newspaper called Greta's tomato soup ________ healthy but also delicious.",
+  "choices": [
+   "either",
+   "neither",
+   "not only",
+   "both"
+  ]
+ },
+ {
+  "n": 42,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "Although the new sofa is not ________ as the old one, Elena and her dad still needed help carrying it up the stairs.",
+  "choices": [
+   "the heaviest",
+   "as heavy",
+   "heavier",
+   "heavy"
+  ]
+ }
+]

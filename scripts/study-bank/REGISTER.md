@@ -3152,6 +3152,27 @@ recorded only in a commit message is a finding nobody reads.
     - A refused scorer run left an older `FLAGGED.json` that read as the current result. The scorer now deletes
       it first.
   - **Limit:** the two auditors are one model sampled twice, and both see the key.
+- **2026-10-31 — iTEP SLATE Grammar v2 scale-up: 250 authored, 176 cleared (Part 1 109/130, Part 2 67/120); NOT
+  inserted.** `ITEP-SLATE-GRAMMAR-V2.prereg.md`, `itep-grammar-v2-work/`, survivors in `itep-grammar-v2.batch.json`
+  (verified=false shape, cohort `itep-grammar-v2`). Ten Claude authors on frozen brief v1 (no cut: not earned, not
+  blocking, not broken), each with a disjoint topic pool, name list, discourse frames and one owned sub-point per
+  category; v1 gate unchanged in 6 packets x 3 graders, cold then keyed. 0 of 750 cold picks off key.
+  - **59 of the 74 drops are a packet-design defect, not item defects.** Part 2 letters count per packet (rule 4),
+    and the unstratified deal gave packets 1 and 3 A 9/20 and A 3/23 from a pool that is exactly 30/30/30/30;
+    packet 1 lost its 20 Part 2 items and packet 3 held whole. Applied as written. Next prereg: stratify every
+    packet's Part 2 items by key slot, and judge letter patterns against the pool, not the packet. Without them
+    235/250 would have cleared (owner information only; the batch is not re-decided).
+  - **15 item-ground drops** -> pending lessons 7-10: dangling-modifier template; Part 2 errors living between
+    segments (modifier attachment, logic clashes) or with an error-free reading; aspect-nuance keys; one rule tested
+    in two categories (purpose "for -ing" vs "to").
+  - **Cross-author frames (pilot lesson 2) did not recur in grading;** the new `dedupe.mjs` (shared names, key roots,
+    4-grams, same-category roots; exits 2 on unreadable/miscounted input; reproduces all four pilot collisions)
+    caught 28 cross-author pairs before packets, cleared in three revision rounds.
+  - **Pool after v1 + v2: Part 1 120/130, Part 2 79/120. Shortfall 10 + 41**, a v3 top-up batch. If the
+    dangling-modifier template recurs there, that is the second consecutive batch and the brief cut is "blocking".
+  - Pre-flight `itep-grammar-check.mjs` gained `--assigned/--author` (per-id table, category check, per-file
+    category cap); behaviour without the flag unchanged (pilot re-run PASS).
+
 
 ## 6. The rule that keeps this honest
 

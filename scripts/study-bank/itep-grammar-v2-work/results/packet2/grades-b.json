@@ -1,0 +1,166 @@
+{
+ "1": {
+  "verdict": "unique"
+ },
+ "2": {
+  "verdict": "unique"
+ },
+ "3": {
+  "verdict": "broken",
+  "defect_type": "key_wrong",
+  "other": "has been finalizing",
+  "reason": "Keyed segment is acceptable English: present perfect progressive for a just-finished activity with a present result (\"has been finalizing her notebook, so she can show it now\") reads naturally to many fluent speakers; no other segment is wrong, so the item may have no error at all. Only an aspect nuance separates it from has finalized."
+ },
+ "4": {
+  "verdict": "unique"
+ },
+ "5": {
+  "verdict": "unique"
+ },
+ "6": {
+  "verdict": "unique"
+ },
+ "7": {
+  "verdict": "unique"
+ },
+ "8": {
+  "verdict": "unique"
+ },
+ "9": {
+  "verdict": "unique"
+ },
+ "10": {
+  "verdict": "unique"
+ },
+ "11": {
+  "verdict": "unique"
+ },
+ "12": {
+  "verdict": "unique"
+ },
+ "13": {
+  "verdict": "unique"
+ },
+ "14": {
+  "verdict": "unique"
+ },
+ "15": {
+  "verdict": "unique"
+ },
+ "16": {
+  "verdict": "unique"
+ },
+ "17": {
+  "verdict": "unique"
+ },
+ "18": {
+  "verdict": "unique"
+ },
+ "19": {
+  "verdict": "unique"
+ },
+ "20": {
+  "verdict": "unique"
+ },
+ "21": {
+  "verdict": "unique"
+ },
+ "22": {
+  "verdict": "unique"
+ },
+ "23": {
+  "verdict": "unique"
+ },
+ "24": {
+  "verdict": "unique"
+ },
+ "25": {
+  "verdict": "unique"
+ },
+ "26": {
+  "verdict": "unique"
+ },
+ "27": {
+  "verdict": "unique"
+ },
+ "28": {
+  "verdict": "unique"
+ },
+ "29": {
+  "verdict": "unique"
+ },
+ "30": {
+  "verdict": "unique"
+ },
+ "31": {
+  "verdict": "unique"
+ },
+ "32": {
+  "verdict": "unique"
+ },
+ "33": {
+  "verdict": "unique"
+ },
+ "34": {
+  "verdict": "unique"
+ },
+ "35": {
+  "verdict": "unique"
+ },
+ "36": {
+  "verdict": "unique"
+ },
+ "37": {
+  "verdict": "unique"
+ },
+ "38": {
+  "verdict": "unique"
+ },
+ "39": {
+  "verdict": "unique"
+ },
+ "40": {
+  "verdict": "unique"
+ },
+ "41": {
+  "verdict": "unique"
+ },
+ "42": {
+  "verdict": "unique"
+ },
+ "batch_patterns": [
+  {
+   "pattern": "one_template",
+   "items": [
+    26,
+    31,
+    37
+   ],
+   "evidence": "three dangling-modifier items (opening participial phrase, key = the main-clause subject); solving one cues the others"
+  },
+  {
+   "pattern": "one_template",
+   "items": [
+    9,
+    14,
+    42,
+    39,
+    13
+   ],
+   "evidence": "verb-complement form errors repeated: refuses quitting, avoid to lean, look forward to try, had better not to leave, and needing for need; five of 20 error-ID keys are the gerund/infinitive segment"
+  },
+  {
+   "pattern": "key_position",
+   "items": [
+    3,
+    9,
+    11,
+    13,
+    18,
+    22,
+    24
+   ],
+   "evidence": "error-ID keys A 7, B 5, C 4, D 4 of 20 (mild A skew, not decisive); completion keys A 4, B 5, C 7, D 6 of 22: no strong positional pattern"
+  }
+ ]
+}

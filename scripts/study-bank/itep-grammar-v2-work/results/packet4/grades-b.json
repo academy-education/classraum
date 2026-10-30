@@ -1,0 +1,161 @@
+{
+ "1": {
+  "verdict": "unique"
+ },
+ "2": {
+  "verdict": "unique"
+ },
+ "3": {
+  "verdict": "unique"
+ },
+ "4": {
+  "verdict": "unique"
+ },
+ "5": {
+  "verdict": "unique"
+ },
+ "6": {
+  "verdict": "unique"
+ },
+ "7": {
+  "verdict": "unique"
+ },
+ "8": {
+  "verdict": "unique"
+ },
+ "9": {
+  "verdict": "alternative",
+  "defect_type": "second_defensible",
+  "other": "the referee handed the trophy to our captain with a big red bow",
+  "reason": "End-placed \"with a big red bow\" is ordinary English and is commonly read as describing the trophy (the thing handed over); a careful student who picked it has a reasonable complaint. The attachment-to-captain reading is a strict-rule preference, not a clear error."
+ },
+ "10": {
+  "verdict": "unique"
+ },
+ "11": {
+  "verdict": "unique"
+ },
+ "12": {
+  "verdict": "unique"
+ },
+ "13": {
+  "verdict": "unique"
+ },
+ "14": {
+  "verdict": "unique"
+ },
+ "15": {
+  "verdict": "unique"
+ },
+ "16": {
+  "verdict": "unique"
+ },
+ "17": {
+  "verdict": "unique"
+ },
+ "18": {
+  "verdict": "unique"
+ },
+ "19": {
+  "verdict": "unique"
+ },
+ "20": {
+  "verdict": "unique"
+ },
+ "21": {
+  "verdict": "unique"
+ },
+ "22": {
+  "verdict": "unique"
+ },
+ "23": {
+  "verdict": "unique"
+ },
+ "24": {
+  "verdict": "unique"
+ },
+ "25": {
+  "verdict": "unique"
+ },
+ "26": {
+  "verdict": "unique"
+ },
+ "27": {
+  "verdict": "unique"
+ },
+ "28": {
+  "verdict": "unique"
+ },
+ "29": {
+  "verdict": "unique"
+ },
+ "30": {
+  "verdict": "unique"
+ },
+ "31": {
+  "verdict": "unique"
+ },
+ "32": {
+  "verdict": "unique",
+  "note": "Key is defensible but not airtight: some style guides object to a passive main clause after an infinitive of purpose. Every distractor makes the subject (fridge/we/aunt) the one staying fresh, so the key is the only fit."
+ },
+ "33": {
+  "verdict": "unique"
+ },
+ "34": {
+  "verdict": "unique"
+ },
+ "35": {
+  "verdict": "unique"
+ },
+ "36": {
+  "verdict": "unique"
+ },
+ "37": {
+  "verdict": "broken",
+  "defect_type": "key_wrong",
+  "reason": "The keyed error \"for fixing\" reads acceptably as a modifier of the noun: \"her toolbox for fixing her robot's wheel\" (a toolbox meant for fixing it). Read that way, no segment is wrong. \"to fix\" is better only if the phrase is read as the purpose of coming. Flagged under the doubt rule; the item should force the purpose reading, e.g. move the phrase away from \"toolbox\"."
+ },
+ "38": {
+  "verdict": "unique"
+ },
+ "39": {
+  "verdict": "unique"
+ },
+ "40": {
+  "verdict": "unique"
+ },
+ "41": {
+  "verdict": "unique"
+ },
+ "42": {
+  "verdict": "unique"
+ },
+ "batch_patterns": [
+  {
+   "pattern": "reused_option_set",
+   "items": [
+    6,
+    27
+   ],
+   "evidence": "Both are reporting-verb items with object + to-infinitive (advised/told us to ...). The option sets overlap (said in both; suggested/agreed vs spoke/explained), so solving one tells you the answer to the other."
+  },
+  {
+   "pattern": "one_template",
+   "items": [
+    15,
+    37
+   ],
+   "evidence": "Both test purpose to-infinitive vs for + -ing. In 15 \"for using\" is a wrong option and \"to use\" is the key; in 37 \"for fixing\" is the keyed error. A student who solves one can answer the other."
+  },
+  {
+   "pattern": "repeated_rule",
+   "items": [
+    1,
+    10,
+    42
+   ],
+   "evidence": "Three error-ID items key a relative-clause error: \"that\" after a comma (1), \"whom\" for things (10), resumptive \"it\" (42). The same is true of conditional/time-clause tense in 3, 17, 22, 39. Not a tell, but the batch leans on two rule families."
+  }
+ ]
+}

@@ -1,0 +1,494 @@
+[
+ {
+  "n": 1,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "Measure each leaf ________ and write its length in your table.",
+  "choices": [
+   "more accurate",
+   "accurate",
+   "accurately",
+   "accuracy"
+  ]
+ },
+ {
+  "n": 2,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "The green curry was ________ of all the dishes we tried at the new Thai cafe.",
+  "choices": [
+   "spicier",
+   "a lot spicier",
+   "the spicier",
+   "the spiciest"
+  ]
+ },
+ {
+  "n": 3,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Hey team, the robot [A: won't start] today because [B: nobody] [C: remembered] [D: to pack no charger for its battery].",
+  "choices": [
+   "won't start",
+   "nobody",
+   "remembered",
+   "to pack no charger for its battery"
+  ]
+ },
+ {
+  "n": 4,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "[A: During today's video lesson], [B: should the Wi-Fi drops], you [C: can rejoin] by clicking the link [D: that Mr. Andersson sent] this morning.",
+  "choices": [
+   "During today's video lesson",
+   "should the Wi-Fi drops",
+   "can rejoin",
+   "that Mr. Andersson sent"
+  ]
+ },
+ {
+  "n": 5,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "The [A: torn] coat [B: lying] on the bench is [C: Andre's], so Lupe says the green one [D: on the hook near the window must be her].",
+  "choices": [
+   "torn",
+   "lying",
+   "Andre's",
+   "on the hook near the window must be her"
+  ]
+ },
+ {
+  "n": 6,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "My brother enjoys ________ by the staff to help with games.",
+  "choices": [
+   "being asked",
+   "to be asking",
+   "having asked",
+   "to be asked"
+  ]
+ },
+ {
+  "n": 7,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "The plates [A: from lunch] [B: has been washed], so we [C: can go] [D: to the park soon].",
+  "choices": [
+   "from lunch",
+   "has been washed",
+   "can go",
+   "to the park soon"
+  ]
+ },
+ {
+  "n": 8,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "On the second day of the trip, Keiko [A: asked] the ranger [B: whether] [C: would the river trail be open] [D: by the following morning].",
+  "choices": [
+   "asked",
+   "whether",
+   "would the river trail be open",
+   "by the following morning"
+  ]
+ },
+ {
+  "n": 9,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "Because she enjoys being creative, Rin prefers cooking her own meals at home to ________ at restaurants.",
+  "choices": [
+   "dining",
+   "dines",
+   "dined",
+   "dine"
+  ]
+ },
+ {
+  "n": 10,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "Mrs. Adeyemi shared her lemon cake recipe, ________ came from her grandmother in Lagos.",
+  "choices": [
+   "that",
+   "which",
+   "where it",
+   "whose"
+  ]
+ },
+ {
+  "n": 11,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "From a bench outside the post office, Yui watched a small boy ________ a huge box up the steps.",
+  "choices": [
+   "has carried",
+   "to carry",
+   "carrying",
+   "carried"
+  ]
+ },
+ {
+  "n": 12,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "In her message to the coding club, Ms. Rahman ________ that the lab would close early on Friday, so we saved our robot programs on Thursday.",
+  "choices": [
+   "warned us",
+   "announced us",
+   "suggested us",
+   "mentioned us"
+  ]
+ },
+ {
+  "n": 13,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "After Linnea [A: rebuilt] the robot's hand, its touch sensor became [B: much more accurate] and [C: so sensible] that it [D: could feel a single feather] resting on its palm.",
+  "choices": [
+   "rebuilt",
+   "much more accurate",
+   "so sensible",
+   "could feel a single feather"
+  ]
+ },
+ {
+  "n": 14,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Sofia used to be [A: nervous about] lab work, but this year she [B: has stopped being] [C: afraid from] the gas taps [D: on the long benches].",
+  "choices": [
+   "nervous about",
+   "has stopped being",
+   "afraid from",
+   "on the long benches"
+  ]
+ },
+ {
+  "n": 15,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "On exam day, Ms. Haddad reminded us [A: checking our units], [B: to show all of our work], and [C: not to leave] any question blank [D: on the answer sheet].",
+  "choices": [
+   "checking our units",
+   "to show all of our work",
+   "not to leave",
+   "on the answer sheet"
+  ]
+ },
+ {
+  "n": 16,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "Before he started delivering meals for the community kitchen, Nnamdi had never ________ a bike on such busy streets.",
+  "choices": [
+   "ridden",
+   "ride",
+   "rode",
+   "rides"
+  ]
+ },
+ {
+  "n": 17,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "Our teacher explained that the explorers carried extra drinking water ________ the river turned out to be too muddy.",
+  "choices": [
+   "otherwise",
+   "in case of",
+   "so",
+   "in case"
+  ]
+ },
+ {
+  "n": 18,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "Grandma still talks about the rainy summer ________ our whole family moved into the old farmhouse by the river.",
+  "choices": [
+   "where",
+   "whose",
+   "when",
+   "which"
+  ]
+ },
+ {
+  "n": 19,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "Yesterday afternoon, the crate of water bottles for both relay teams ________ delivered to the track.",
+  "choices": [
+   "were",
+   "was",
+   "is",
+   "are"
+  ]
+ },
+ {
+  "n": 20,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "Sorry we missed your party! If we ________ the earlier bus, we would have arrived in time.",
+  "choices": [
+   "had caught",
+   "caught",
+   "have caught",
+   "would catch"
+  ]
+ },
+ {
+  "n": 21,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Aunt Lucia's kitchen is always [A: warm], [B: comfort], and [C: filled with] the smell of [D: freshly baked] bread.",
+  "choices": [
+   "warm",
+   "comfort",
+   "filled with",
+   "freshly baked"
+  ]
+ },
+ {
+  "n": 22,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Most of the old benches [A: along] our street [B: are] so worn that they need [C: to replace before the first snow], says [D: a notice] at the library.",
+  "choices": [
+   "along",
+   "are",
+   "to replace before the first snow",
+   "a notice"
+  ]
+ },
+ {
+  "n": 23,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "This letter in the museum was written by a ________ sailor on his first voyage.",
+  "choices": [
+   "twelve-year-old's",
+   "twelve-year-old",
+   "twelve-year-olds",
+   "twelve years old"
+  ]
+ },
+ {
+  "n": 24,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "My coach's advice is to avoid [A: to skip breakfast], [B: staying up late], and [C: worrying] [D: about my time].",
+  "choices": [
+   "to skip breakfast",
+   "staying up late",
+   "worrying",
+   "about my time"
+  ]
+ },
+ {
+  "n": 25,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "[A: We needn't have brought our own laptops to the workshop], so we [B: left] them at home and [C: borrowed] the ones [D: that the school provided].",
+  "choices": [
+   "We needn't have brought our own laptops to the workshop",
+   "left",
+   "borrowed",
+   "that the school provided"
+  ]
+ },
+ {
+  "n": 26,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Hyun-woo's grandfather, who [A: lives] [B: next to] us, [C: always] [D: help] at the community garden.",
+  "choices": [
+   "lives",
+   "next to",
+   "always",
+   "help"
+  ]
+ },
+ {
+  "n": 27,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "My classmates argued over ________ the old bridge was really Roman.",
+  "choices": [
+   "whether",
+   "although",
+   "because",
+   "so that"
+  ]
+ },
+ {
+  "n": 28,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "On the last morning of the camping trip, Tae-yang saw that the lake was ________ still, like a mirror.",
+  "choices": [
+   "perfection",
+   "perfectionist",
+   "perfectly",
+   "perfect"
+  ]
+ },
+ {
+  "n": 29,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "At sea level, if pure water ________ to 100 degrees Celsius, it always boils.",
+  "choices": [
+   "was heated",
+   "is heated",
+   "heated",
+   "will be heated"
+  ]
+ },
+ {
+  "n": 30,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "On Tuesday, the baker promised that she ________ us a loaf of rye bread until the following morning.",
+  "choices": [
+   "will save",
+   "is going to save",
+   "will have saved",
+   "would save"
+  ]
+ },
+ {
+  "n": 31,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "The number of visitors [A: are] rising, so the old castle [B: needs] [C: more] guides [D: than before].",
+  "choices": [
+   "are",
+   "needs",
+   "more",
+   "than before"
+  ]
+ },
+ {
+  "n": 32,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "The post office clerk gave me some useful ________ about wrapping parcels.",
+  "choices": [
+   "advised",
+   "advise",
+   "advice",
+   "advises"
+  ]
+ },
+ {
+  "n": 33,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "According to the review, [A: the cheaper] stall in the entire market [B: is run] by two brothers [C: who] [D: learned their recipes] in Lima.",
+  "choices": [
+   "the cheaper",
+   "is run",
+   "who",
+   "learned their recipes"
+  ]
+ },
+ {
+  "n": 34,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Hi Grandma! I [A: worked] very [B: hardly] to save money [C: for] this trip [D: to Ghana].",
+  "choices": [
+   "worked",
+   "hardly",
+   "for",
+   "to Ghana"
+  ]
+ },
+ {
+  "n": 35,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Chef Moreau [A: has already reserved] the school hall, so next Saturday our club [B: is holding] a bake sale, and [C: we all] [D: were donating] two cakes.",
+  "choices": [
+   "has already reserved",
+   "is holding",
+   "we all",
+   "were donating"
+  ]
+ },
+ {
+  "n": 36,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Step three: [A: rinse the lettuce], [B: dry it gently], and [C: tear up] [D: every] leaves into small pieces.",
+  "choices": [
+   "rinse the lettuce",
+   "dry it gently",
+   "tear up",
+   "every"
+  ]
+ },
+ {
+  "n": 37,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "Before last Saturday's final, Freya walked onto the field and asked the referee ________.",
+  "choices": [
+   "when will the match begin",
+   "when the match will begin",
+   "when did the match begin",
+   "when the match would begin"
+  ]
+ },
+ {
+  "n": 38,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Ji-ho [A: took a picture of] the old castle [B: from the window] of [C: his train], [D: erected in 1350].",
+  "choices": [
+   "took a picture of",
+   "from the window",
+   "his train",
+   "erected in 1350"
+  ]
+ },
+ {
+  "n": 39,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "We tested every screw in the spare-parts box, yet ________ of them was the right size for the robot's new arm.",
+  "choices": [
+   "any",
+   "none",
+   "no",
+   "not"
+  ]
+ },
+ {
+  "n": 40,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "After [A: practicing] the scene for three hours, [B: the lines were finally memorized by Vikram], so he [C: could relax] [D: during] the dress rehearsal.",
+  "choices": [
+   "practicing",
+   "the lines were finally memorized by Vikram",
+   "could relax",
+   "during"
+  ]
+ },
+ {
+  "n": 41,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Every July, [A: I] [B: visit] my aunt in Toronto, and last year my brother and [C: me] [D: stayed] with her for a month.",
+  "choices": [
+   "I",
+   "visit",
+   "me",
+   "stayed"
+  ]
+ }
+]

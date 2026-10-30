@@ -1,0 +1,146 @@
+{
+ "1": {
+  "verdict": "unique"
+ },
+ "2": {
+  "verdict": "unique"
+ },
+ "3": {
+  "verdict": "unique"
+ },
+ "4": {
+  "verdict": "unique"
+ },
+ "5": {
+  "verdict": "unique"
+ },
+ "6": {
+  "verdict": "unique"
+ },
+ "7": {
+  "verdict": "unique"
+ },
+ "8": {
+  "verdict": "unique"
+ },
+ "9": {
+  "verdict": "unique"
+ },
+ "10": {
+  "verdict": "unique"
+ },
+ "11": {
+  "verdict": "unique"
+ },
+ "12": {
+  "verdict": "unique"
+ },
+ "13": {
+  "verdict": "unique"
+ },
+ "14": {
+  "verdict": "unique"
+ },
+ "15": {
+  "verdict": "unique"
+ },
+ "16": {
+  "verdict": "unique"
+ },
+ "17": {
+  "verdict": "unique"
+ },
+ "18": {
+  "verdict": "unique"
+ },
+ "19": {
+  "verdict": "unique"
+ },
+ "20": {
+  "verdict": "unique"
+ },
+ "21": {
+  "verdict": "unique"
+ },
+ "22": {
+  "verdict": "unique"
+ },
+ "23": {
+  "verdict": "unique"
+ },
+ "24": {
+  "verdict": "unique"
+ },
+ "25": {
+  "verdict": "unique"
+ },
+ "26": {
+  "verdict": "unique"
+ },
+ "27": {
+  "verdict": "unique"
+ },
+ "28": {
+  "verdict": "unique"
+ },
+ "29": {
+  "verdict": "unique"
+ },
+ "30": {
+  "verdict": "unique"
+ },
+ "31": {
+  "verdict": "unique"
+ },
+ "32": {
+  "verdict": "unique"
+ },
+ "33": {
+  "verdict": "unique"
+ },
+ "34": {
+  "verdict": "unique"
+ },
+ "35": {
+  "verdict": "alternative",
+  "defect_type": "second_defensible",
+  "other": "Our guide talked about a statue for an hour",
+  "reason": "\"carved from a single block of white marble\" can only refer to the statue, so the modifier attaches unambiguously even with \"for an hour\" in between; the sentence is grammatical and a careful student who picked it has a fair complaint. The key wins only on a strict adjacency rule, and \"The visitors were shown a statue by the guide\" also places \"statue\" near the modifier."
+ },
+ "36": {
+  "verdict": "unique"
+ },
+ "37": {
+  "verdict": "unique"
+ },
+ "38": {
+  "verdict": "unique"
+ },
+ "39": {
+  "verdict": "unique"
+ },
+ "40": {
+  "verdict": "unique"
+ },
+ "41": {
+  "verdict": "unique"
+ },
+ "42": {
+  "verdict": "unique"
+ },
+ "batch_patterns": [
+  {
+   "pattern": "repeated_tested_point",
+   "items": [
+    15,
+    30
+   ],
+   "evidence": "both Error ID keys test the same construction, a reporting verb taking a bare indirect object (\"said us\", \"explained us\"); solving one solves the other"
+  },
+  {
+   "pattern": "key_position_note",
+   "items": [],
+   "evidence": "overall key letters A9 B11 C12 D10, no run longer than 4 (CCCC at 3-6, BBBB at 29-32); Error ID keys alone are D9 B7 C5 A3 of 23, a mild D lean and not clearly a pattern. Key uniquely longest in 10 of 42."
+  }
+ ]
+}

@@ -1,0 +1,141 @@
+{
+ "1": {
+  "verdict": "unique"
+ },
+ "2": {
+  "verdict": "unique"
+ },
+ "3": {
+  "verdict": "broken",
+  "defect_type": "key_wrong",
+  "reason": "The key 'has been finalizing' is arguably correct: present perfect continuous for a just-finished activity with a present result is standard ('I've been cooking, so dinner is ready'). With can, show and us all fine, the sentence may have no clear error. The intended contrast (ongoing vs finished) is too weak to carry an error-ID key. I picked it cold, but only by elimination."
+ },
+ "4": {
+  "verdict": "unique"
+ },
+ "5": {
+  "verdict": "unique"
+ },
+ "6": {
+  "verdict": "unique"
+ },
+ "7": {
+  "verdict": "unique"
+ },
+ "8": {
+  "verdict": "unique"
+ },
+ "9": {
+  "verdict": "unique"
+ },
+ "10": {
+  "verdict": "unique"
+ },
+ "11": {
+  "verdict": "unique"
+ },
+ "12": {
+  "verdict": "unique"
+ },
+ "13": {
+  "verdict": "unique"
+ },
+ "14": {
+  "verdict": "unique"
+ },
+ "15": {
+  "verdict": "unique"
+ },
+ "16": {
+  "verdict": "unique"
+ },
+ "17": {
+  "verdict": "unique"
+ },
+ "18": {
+  "verdict": "unique"
+ },
+ "19": {
+  "verdict": "unique"
+ },
+ "20": {
+  "verdict": "unique"
+ },
+ "21": {
+  "verdict": "unique"
+ },
+ "22": {
+  "verdict": "unique"
+ },
+ "23": {
+  "verdict": "unique"
+ },
+ "24": {
+  "verdict": "unique"
+ },
+ "25": {
+  "verdict": "unique"
+ },
+ "26": {
+  "verdict": "unique"
+ },
+ "27": {
+  "verdict": "unique"
+ },
+ "28": {
+  "verdict": "unique"
+ },
+ "29": {
+  "verdict": "unique"
+ },
+ "30": {
+  "verdict": "unique"
+ },
+ "31": {
+  "verdict": "unique"
+ },
+ "32": {
+  "verdict": "unique"
+ },
+ "33": {
+  "verdict": "unique"
+ },
+ "34": {
+  "verdict": "unique"
+ },
+ "35": {
+  "verdict": "unique"
+ },
+ "36": {
+  "verdict": "unique"
+ },
+ "37": {
+  "verdict": "unique"
+ },
+ "38": {
+  "verdict": "unique"
+ },
+ "39": {
+  "verdict": "unique"
+ },
+ "40": {
+  "verdict": "unique"
+ },
+ "41": {
+  "verdict": "unique"
+ },
+ "42": {
+  "verdict": "unique"
+ },
+ "batch_patterns": [
+  {
+   "pattern": "repeated_rule_dangling_modifier",
+   "items": [
+    26,
+    31,
+    37
+   ],
+   "evidence": "3 of 42 items test the same dangling participial opener, and 26 and 37 share one frame: food cooked/made at a named cafe ('Baked in a wood-fired oven ... at the new cafe' / 'Made with fresh basil ... at Nora's cafe'). A student who solves one solves the others by picking (or flagging) the main-clause subject. Weak pattern. Key letters are close to even (completion A4 B5 C7 D6, error-ID A7 B5 C4 D4) and the key is the longest option in 7/22 completions and 7/20 error-IDs, which is near chance, so no position or form pattern."
+  }
+ ]
+}
