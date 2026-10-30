@@ -1,0 +1,68 @@
+{
+ "cohort": "isee-reading-draft-19",
+ "total": 36,
+ "cleared": [
+  "00ce9864-374a-42fb-9080-0d32d983c123",
+  "09dc1929-b16b-41de-8422-7fb8adf8efcd",
+  "25a4da0d-835a-4c7b-b26f-0274d05f7c69",
+  "3e75bce7-779c-4cee-8b72-2dbc1e9f079a",
+  "50200465-a7fb-41ab-9bb7-cdcda4aafcb3",
+  "70aa03be-da51-4ded-80c2-a03c8bcf38d9",
+  "c03892f3-ddd4-468d-a378-760b1473d983",
+  "c557309d-b6a8-41f6-ae3f-8a74e0f3ef67",
+  "da6365a4-f7ec-46c9-a5dc-74cd8bb02e9f",
+  "dcec0f9e-ea4f-4b30-b496-8a8e47758e51",
+  "eec5f282-03d9-4c34-9d07-22df678cb8a2",
+  "f2a66c9d-c972-4ddc-93a2-c17d0c8d8543"
+ ],
+ "dropped": {
+  "23a42e0a-9a1b-4674-a7ab-f4120cd9df24": "pattern: mirrored_pair",
+  "87c41ae2-ac2b-48fd-bfbf-e44accfb147d": "passage: iseedraft19-IR19-P05 lost an item",
+  "b3c2023e-79e7-4dbe-b817-673f78017612": "passage: iseedraft19-IR19-P05 lost an item",
+  "c493e57d-65e6-40f8-889f-4d3ee922ccb4": "passage: iseedraft19-IR19-P05 lost an item",
+  "f4706455-7228-4150-8e17-71326f154340": "passage: iseedraft19-IR19-P05 lost an item",
+  "fe045892-8436-4b58-89f5-5efb33ee6c8e": "pattern: mirrored_pair",
+  "109dcae0-faf9-48c7-aece-3c26ab37aba7": "passage: iseedraft19-IR19-P04 lost an item",
+  "2fc49333-24f4-4dd8-95a0-c7a9853152be": "passage: iseedraft19-IR19-P04 lost an item",
+  "45a69ebb-5a64-4096-afb8-8f413af2b8d0": "passage: iseedraft19-IR19-P04 lost an item",
+  "8095ef11-1b9a-4d81-bd13-ccf39044e54e": "passage: iseedraft19-IR19-P04 lost an item",
+  "83a8e289-443c-4108-86e7-c67458e69a30": "passage: iseedraft19-IR19-P04 lost an item",
+  "bc569c94-2389-4e82-8422-08a208b6164a": "pattern: mirrored_pair",
+  "1ab43e9f-88e5-463c-ab5c-3507d271fd88": "passage: iseedraft19-IR19-P06 lost an item",
+  "1ce7d955-3b83-49f5-abf1-97ca158bb616": "pattern: mirrored_pair",
+  "671c4785-7b6b-41ab-bf55-4154ba944427": "passage: iseedraft19-IR19-P06 lost an item",
+  "79449e57-9733-493a-97b2-efb1b43eea92": "passage: iseedraft19-IR19-P06 lost an item",
+  "b1433735-992f-43e0-b366-7def0c12d9d4": "passage: iseedraft19-IR19-P06 lost an item",
+  "bac3dd81-2f3d-44be-9eef-e119479ff6fd": "passage: iseedraft19-IR19-P06 lost an item",
+  "229ea94b-86f0-46c9-8c1a-861dd4bcca95": "item: b:hold/factual_error",
+  "9943bed9-d858-45f1-8e9a-8bfc0ce568c0": "item: b:hold/factual_error",
+  "9a698dde-6824-494b-bd2e-c1e3cb0711ad": "item: b:hold/factual_error",
+  "9cbfed83-8792-4a20-976c-c6100a62ce79": "item: b:hold/factual_error",
+  "d935df4c-c862-493b-9477-e08108d892d6": "item: b:hold/factual_error",
+  "dc5d2e0a-d303-48e1-bde6-41779065bb17": "item: b:hold/factual_error"
+ },
+ "hold": false,
+ "patternShare": 0.1111111111111111,
+ "patterns": [
+  {
+   "graders": [
+    "a",
+    "c"
+   ],
+   "pattern": "mirrored_pair",
+   "other": "near_twin_pair_contains_key",
+   "items": [
+    7,
+    12,
+    18,
+    20
+   ],
+   "ids": [
+    "23a42e0a-9a1b-4674-a7ab-f4120cd9df24",
+    "fe045892-8436-4b58-89f5-5efb33ee6c8e",
+    "bc569c94-2389-4e82-8422-08a208b6164a",
+    "1ce7d955-3b83-49f5-abf1-97ca158bb616"
+   ]
+  }
+ ]
+}

@@ -6650,3 +6650,12 @@ structural checks are pre-flight only. See CLAUDE.md.
   merge fails on a key that is the lone carrier of a surface feature. Checks are all clean, including quote 0 and
   xcheck 0. The author also hand-added balanced ruled-out distractors to 7 items where the key was the only two-sided
   option. `agent-review-build.mjs` gained a `--cohorts/--manifest` mode.
+
+- **2026-10-31 — ISEE Reading d17-21 agent review: 66 of 180 cleared** (d20 36/36, d21 18, d19 12; d17 held on
+  key_form, absolute_distractors and identical_key_prose; d18 held on key_form and key_in_matched_pair).
+  `agent-review/results-isee-d17-21/`. The method doubled the clean-draft rate (wave 2 drafts 4-16: 1 of 13 full
+  clears), but key_form still decides two drafts.
+- **2026-10-31 — SSAT Reading drafts 19-22 authored and staged (144, 4 x 36); agent review running (12 graders).** One
+  passage per genre per draft, per-passage question mixes, and a merge check that refuses the named patterns. The old
+  draft-18 `screencheck.ts` always read draft 8's batch whatever draft it was given; the new copy reads the batch it
+  is passed and exits 2 on empty input.
