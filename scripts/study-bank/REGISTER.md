@@ -6533,3 +6533,13 @@ structural checks are pre-flight only. See CLAUDE.md.
   - **Lesson:** MAP's own earlier items now saturate OA and Statistics chains, as live ISEE/SSAT saturate Geometry.
     A probe must cover every earlier MAP item in every area, including withdrawn and dropped ones, and a statistic
     with competing conventions must state its convention. Relayed to the b10 author mid-run.
+
+- **2026-10-30 — MAP Math screen pass 1: n789 (Number Systems) failed 7 of 9; b10 (OA 7 / Geo 3 / Stats 5) failed
+  13 of 15.** The preregs predicted at most 3 fails each. Both are in their one return round; nothing is dropped yet.
+  **Method finding:** every author check here (FORM, LONE, HUB, RUN, PAIR, sign, key-gap, range, the extreme-key rules)
+  is a closed list of known tells. One cold adversarial screener still finds a free elimination on most items, from
+  tells outside the list: units digits and multiple-of arguments, a bracket from a printed multiplier, increment
+  bounds, a denominator that cannot occur, the direction of a weighted mean, round-up adjacency. This is the
+  structural-proxy lesson from CLAUDE.md again. **Next MAP Math batches change the method:** a fresh cold screener runs
+  on each CANDIDATE option set inside the authoring loop, and only screen-clean candidates are written up. A
+  generator rule list cannot stand in for the attack.
