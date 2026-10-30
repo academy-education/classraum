@@ -123,3 +123,12 @@ export const RESULT_WORDS = /\b(height|heights|rolled|took|traveled|travelled|gr
 export const NAME_PROPERTY = /\b(low|high|upper|lower|steep|flat|plain|bluff|cliff|ridge|peak|summit|hill|rise|valley|hollow|meadow|marsh|mire|bog|swamp|dune|desert|deep|shallow|wet|dry|arid|hot|cold|warm|cool|icy|frost|sunny|shady|windy|rocky|sandy|salty|fast|slow|big|small|tall|short|heavy|light|bright|dark|thick|thin|strong|weak|fertile|barren|bare|lush)\b/i
 /** Absolutes for the B1 claim rules (wider than the pilot's: "any" and the -where/-ever forms read as absolutes). */
 export const ABSOLUTE_B1 = /\b(always|never|only|all|none|every|entirely|completely|solely|cannot|must|any|anywhere|everywhere|forever|nothing)\b/i
+
+/* ===================== batch-2 rules (2026-10-31, MAP-SCIENCE-B2.prereg.md) ===================== */
+/** b1 finding 4: "invented" reached three student-facing passages. The system is fictional to the author only. */
+export const INVENTED_WORD = /\b(invent(?:ed|ion|s)?|fictional|fictitious|imaginary|made[- ]up|pretend)\b/i
+/** b1 finding 3 (B1-A2 item 3): the two stock evolution distractor families, capped at once per author. */
+export const STOCK_MISCONCEPTIONS = {
+  'changed during its life': /\b(during|in|over) (its|their|his|her) (own )?(life|lives|lifetimes?)\b|\bchanged (its|their) bod(y|ies)\b/i,
+  'because they needed it': /\bbecause (it|they|the \w+) needed\b|\bneeded (it|them|to (survive|change|adapt))\b|\bin order to survive\b/i,
+}

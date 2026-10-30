@@ -84,6 +84,9 @@ export function graderPacket(items, keyed) {
     if (keyed) {
       lines.push(`KEY: ${SLOTS[it.choices.indexOf(it.correct_answer)]}) ${it.correct_answer}`, `AUTHOR'S EXPLANATION: ${it.explanation}`,
         `KEY EVIDENCE: ${JSON.stringify(it.key_evidence ?? null)}`, `REAL-WORLD CHECK: ${it.real_world_check}`,
+        // b1 finding 5: B4 (stated law) and B1 (option roles) were judged without the author's claims; show them.
+        ...(it.prior_free ? [`PRIOR-FREE (author's claim that the standard does not give the answer): ${it.prior_free}`] : []),
+        ...(Array.isArray(it.option_roles) ? [`OPTION ROLES (author's tags, choice order): ${it.choices.map((c, i) => `${SLOTS[i]}=${it.option_roles[i]}`).join(', ')}`] : []),
         ...((it.distractor_rationales ?? []).map(d => `  distractor "${d.choice}": ${d.fault}`)), '')
     }
   }
@@ -155,6 +158,12 @@ async function selftest() {
   const g = graderPacket(FIXTURES, false), k = graderPacket(FIXTURES, true)
   ok(!/KEY:/.test(g) && /KEY:/.test(k), 'cold packet carries no key; keyed packet does')
   ok(!/\/decrease\)/.test(g) && /\/decrease\)/.test(k), 'cold packet withholds the slot ask (a trend ask names the key direction)')
+  {
+    const { FIXTURES_B1 } = await import('./sci-check.fixtures.mjs')
+    const g1 = graderPacket(FIXTURES_B1, false), k1 = graderPacket(FIXTURES_B1, true)
+    ok(/PRIOR-FREE/.test(k1) && /OPTION ROLES/.test(k1), 'keyed packet carries prior_free and option_roles (b1 finding 5)')
+    ok(!/PRIOR-FREE|OPTION ROLES/.test(g1), 'cold packet carries neither prior_free nor option_roles (both point at the key)')
+  }
   ok(/y-axis tick labels the student sees: 0, 20, 40, 60, 80/.test(g), 'bar decoded with the renderer\'s tick labels (max 80 -> 0, 20, 40, 60, 80)')
   ok(/y tick labels: 0, 3.5, 7, 10.5, 14/.test(g), 'line decoded with the renderer\'s 5 ticks (0..14 -> 0, 3.5, 7, 10.5, 14)')
   const inv = FIXTURES.filter(f => f.kind !== 'model')

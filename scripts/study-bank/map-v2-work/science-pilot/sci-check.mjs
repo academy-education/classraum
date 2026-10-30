@@ -32,6 +32,13 @@
  *   keys; the lone-hedged / lone-absolute option is the key at most chance-plus-one; invented names unique across
  *   authors; no near-duplicate pair inside the batch. Prints every denominator.
  *
+ * RULE SETS (--rules): pilot | b1 (default; adds QUAL ROLE LABEL NAMEPROP ABS LAW, batch ABSDIS) | b2 (b1 plus, from the
+ *   batch-1 REGISTER findings and the 2026-10-30 audit: INVENTED "invented" in student-facing text; LSHAPE the key is the
+ *   only label of its shape; TICK a line point sits between x ticks; batch XDUP cross-author duplicate (words / key /
+ *   form refuse, stem route printed as XDUP-REVIEW), KEYDUP same term/trend/claim key twice in one area, MISC a stock
+ *   misconception family more than once per author). --break-test --rules b2 proves each is load-bearing;
+ *   science-b2/validate-b2-rules.mjs proves each reproduces its known batch-1 finding.
+ *
  * Exit codes: 2 unreadable input or empty population (never a number over nothing), 1 any item or batch failure,
  * 0 only when every item prints ok.
  */
@@ -40,7 +47,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import {
   AREAS, PES, peBand, dciOfPe, DIFF, RIT, STIMULI, FORMATS, TREND_WORDS, CLICHES, ABSOLUTE, HEDGE, LETTERS, norm, numOf,
-  QUALIFIER, RESULT_WORDS, NAME_PROPERTY, ABSOLUTE_B1,
+  QUALIFIER, RESULT_WORDS, NAME_PROPERTY, ABSOLUTE_B1, INVENTED_WORD, STOCK_MISCONCEPTIONS,
 } from './sci-spec.mjs'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
@@ -122,9 +129,53 @@ export function loadExclusions(path) {
 /** opts.rules: 'b1' (default) adds the batch-1 rules; 'pilot' reproduces the pilot's checker exactly.
  *  opts.disabled: a Set of B1 check ids switched off, used ONLY by --break-test to prove each check is load-bearing. */
 export const B1_CHECKS = ['QUAL', 'ROLE', 'LABEL', 'NAMEPROP', 'ABS', 'LAW', 'ABSDIS']
+/** Batch-2 checks (MAP-SCIENCE-B2.prereg.md): findings 1-4 of the batch-1 REGISTER entry plus the 2026-10-30
+ *  key-visible audit's unreadable kink (MSB1-L8-16). `--rules b2` = every b1 check + these. */
+export const B2_CHECKS = ['INVENTED', 'LSHAPE', 'TICK', 'XDUP', 'KEYDUP', 'MISC']
+const RULESETS = ['pilot', 'b1', 'b2']
+/** Shape of a condition label as a reader sees it: words -> W, all-caps codes -> C<n>, digit runs -> D<n>. */
+export function labelShape(s) {
+  return String(s).trim().split(/(\s+|-)/).filter(t => t && !/^\s+$/.test(t)).map(t => t === '-' ? '-' : /^\d+$/.test(t) ? `D${t.length}` : /^[A-Z]+$/.test(t) ? `C${t.length}` : /^[A-Z][a-z']+$/.test(t) ? 'W' : 'M').join(' ')
+}
+/** Line-graph x positions a student can place: on one of the renderer's 5 x ticks or exactly halfway between two. */
+export function offTickX(g) {
+  if (g?.type !== 'line' || !Array.isArray(g.series?.[0]?.points)) return []
+  const xs = g.series[0].points.map(q => q[0]), lo = Math.min(...xs, 0), hi = Math.max(...xs), half = (hi - lo) / 8
+  if (!(half > 0)) return []
+  return xs.filter(x => { const r = (x - lo) / half; return Math.abs(r - Math.round(r)) > 1e-9 })
+}
+const xdupToks = i => toks(`${i.passage ?? ''} ${i.prompt ?? ''} ${i.correct_answer ?? ''} ${(i.choices ?? []).join(' ')}`)
+/** Cross-item duplicate test used by XDUP (inside a batch) and probe-live.mjs (against live and staged rows).
+ *  Batch 1's named duplicates were mostly SEMANTIC (same PE and concept, or the same ask with the same key), so a
+ *  token overlap alone caught 6 of 13 (validate-b2-rules.mjs). Routes:
+ *    words   whole-item token overlap i >= 6 and Jaccard >= 0.22                      REFUSES
+ *    key     same NGSS PE and >= 2 content words shared by the two KEYS              REFUSES
+ *    form    same `ratio`/`difference` ask with the same numeric key (the "4 times"
+ *            twins L7-02/L8-08, E6-08/E8-16)                                          REFUSES
+ *    stem    same NGSS PE and >= 4 content words shared by the two stems             REVIEW (printed, never a pass)
+ *  On batch 1 the three refusing routes catch 10 of the 13 named pairs and fire on 17 other pairs; the stem route
+ *  catches the last 3 (the volcano-forecast triple) but also fires on ~70 unnamed same-PE pairs, too coarse to refuse.
+ *  Every REVIEW pair is adjudicated by the coordinator in writing before packets (MAP-SCIENCE-B2.prereg.md). */
+export const XDUP_MIN = { i: 6, j: 0.22 }
+export function xdupScore(a, b) { return jacc(xdupToks(a), xdupToks(b)) }
+const stemToks = i => toks(`${i.passage ?? ''} ${i.prompt ?? ''}`)
+/** Returns { refuse: bool, why } or null. */
+export function xdupReason(a, b) {
+  const w = xdupScore(a, b)
+  if (w.i >= XDUP_MIN.i && w.j >= XDUP_MIN.j) return { refuse: true, why: `words ${w.i}, J=${w.j.toFixed(2)}` }
+  const na = numOf(a.correct_answer), nb = numOf(b.correct_answer)
+  if (a.ask && a.ask === b.ask && ['ratio', 'difference'].includes(a.ask) && na && nb && na.v === nb.v) return { refuse: true, why: `form: both ${a.ask} items key ${na.v}` }
+  if (a.ngss_pe && a.ngss_pe === b.ngss_pe) {
+    const k = jacc(toks(a.correct_answer), toks(b.correct_answer)).i, st = jacc(stemToks(a), stemToks(b)).i
+    if (k >= 2) return { refuse: true, why: `key: same PE ${a.ngss_pe}, ${k} key words shared` }
+    if (st >= 4) return { refuse: false, why: `stem: same PE ${a.ngss_pe}, ${st} stem words shared` }
+  }
+  return null
+}
 export function checkItem(it, slot, ex = [], opts = {}) {
   const p = [], add = m => p.push(m)
-  const b1 = (opts.rules ?? 'b1') === 'b1', on = id => b1 && !(opts.disabled ?? new Set()).has(id)
+  const R = opts.rules ?? 'b1', b1 = R === 'b1' || R === 'b2', dis = opts.disabled ?? new Set()
+  const on = id => b1 && !dis.has(id), on2 = id => R === 'b2' && !dis.has(id)
   if (!slot) return [`SLOT ${it?.id}: not a slot in slots.json`]
   const want = { map_area: slot.area, grade_target: slot.g, tier: slot.tier, difficulty: DIFF[slot.tier], rit_band_target: RIT[slot.g][slot.tier], dci: slot.dci, kind: slot.kind, stimulus: slot.stimulus, format: slot.format, ask: slot.ask, invented: slot.invent }
   for (const [k, v] of Object.entries(want)) if (it[k] !== v) add(`SLOT ${k} is ${JSON.stringify(it[k])}, slot says ${JSON.stringify(v)}`)
@@ -281,6 +332,23 @@ export function checkItem(it, slot, ex = [], opts = {}) {
   // answer. Presence and length only: the graders judge it (no_source_needed).
   if (on('LAW') && slot.invent && (slot.format === 'trend' || slot.format === 'values') && words(it.prior_free).length < 8) add('LAW invented trend/values item needs prior_free (>= 8 words): why a student who knows the standard still needs these data')
 
+  /* ---------- B2 rules (MAP-SCIENCE-B2.prereg.md) ---------- */
+  // INVENTED (b1 finding 4): "invented" reached three student-facing passages (E6-07, E6-08, E6-10).
+  if (on2('INVENTED')) {
+    const face = [passage, it.prompt, ...ch, graphicText(g)].filter(Boolean).join(' \n ')
+    const m = face.match(INVENTED_WORD); if (m) add(`INVENTED student-facing text says "${m[0]}"; the system is fictional to the author, never to the student`)
+  }
+  // LSHAPE (b1 finding 1): in E6 the key was the lone three-letter code among shorter ones (B1-A2 item 2).
+  if (on2('LSHAPE') && slot.format === 'conditions') {
+    const sh = ch.map(labelShape), c = {}; for (const x of sh) c[x] = (c[x] ?? 0) + 1
+    if (c[sh[ki]] === 1) add(`LSHAPE the key "${key}" is the only label shaped "${sh[ki]}" (${sh.join(' | ')}); give the labels one shared shape (for example four invented names "Site Orla", "Site Penwick" ...), never a padded code ladder`)
+  }
+  // TICK (audit 2026-10-30, MSB1-L8-16): a line point the student must place sits between the renderer's x ticks.
+  if (on2('TICK') && g?.type === 'line' && !shapeProblems(g).length) {
+    const off = offTickX(g)
+    if (off.length) add(`TICK line points at x = ${off.join(', ')} fall neither on an x tick nor halfway between two (ticks every ${((Math.max(...g.series[0].points.map(q => q[0])) - Math.min(...g.series[0].points.map(q => q[0]), 0)) / 4)}); choose x values so ticks land on the data`)
+  }
+
   // LEAK
   if (g?.caption) {
     const kn = numOf(key)
@@ -308,7 +376,8 @@ export function checkItem(it, slot, ex = [], opts = {}) {
 /* ---------------- batch ---------------- */
 export function checkBatch(items, SLOT, opts = {}) {
   const p = [], add = m => p.push(m), info = []
-  const b1 = (opts.rules ?? 'b1') === 'b1', on = id => b1 && !(opts.disabled ?? new Set()).has(id)
+  const R = opts.rules ?? 'b1', b1 = R === 'b1' || R === 'b2', dis = opts.disabled ?? new Set()
+  const on = id => b1 && !dis.has(id), on2 = id => R === 'b2' && !dis.has(id)
   const ids = items.map(i => i.id)
   if (new Set(ids).size !== ids.length) add('BATCH duplicate item ids')
   for (const id of Object.keys(SLOT)) if (!ids.includes(id)) add(`BATCH slot ${id} neither written nor marked empty`)
@@ -355,6 +424,37 @@ export function checkBatch(items, SLOT, opts = {}) {
     info.push(`claim items ${claims.length}: absolutes on keys ${onKey}, on distractors ${onDis}`)
     if (onDis >= 3 && onKey === 0) add(`BATCH absolutes appear on ${onDis} claim distractors and on no claim key: "reject the absolute" solves them`)
   }
+  const area = i => SLOT[i.id]?.area, author = i => i.id.split('-')[1]
+  // XDUP (b1 finding 2): cross-grade duplicates were invisible to every per-author check (12 pairs dropped, B1-A2).
+  if (on2('XDUP')) {
+    let n = 0; const review = []
+    for (let a = 0; a < live.length; a++) for (let b = a + 1; b < live.length; b++) {
+      if (area(live[a]) !== area(live[b]) || author(live[a]) === author(live[b])) continue
+      n++
+      const r = xdupReason(live[a], live[b])
+      if (r?.refuse) add(`BATCH XDUP ${live[a].id} and ${live[b].id} share a topic across authors (${r.why})`)
+      else if (r) review.push(`${live[a].id} ~ ${live[b].id} (${r.why})`)
+    }
+    info.push(`XDUP cross-author same-area pairs compared: ${n}; REVIEW (stem route, adjudicate in writing): ${review.length}`)
+    for (const x of review) info.push(`XDUP-REVIEW ${x}`)
+  }
+  // KEYDUP: two items of one area keying the same term or the same trend wording.
+  if (on2('KEYDUP')) {
+    const seen = {}
+    for (const i of live) {
+      const f = SLOT[i.id]?.format; if (f !== 'term' && f !== 'trend' && f !== 'claim') continue
+      const k = `${area(i)}|${norm(i.correct_answer)}`
+      if (seen[k]) add(`BATCH KEYDUP ${seen[k]} and ${i.id} key the same ${f} "${i.correct_answer}"`)
+      else seen[k] = i.id
+    }
+  }
+  // MISC (b1 finding 3): stock misconception families at most once per author.
+  if (on2('MISC')) {
+    const per = {}
+    for (const i of live) for (const c of i.choices) if (c !== i.correct_answer) for (const [fam, re] of Object.entries(STOCK_MISCONCEPTIONS)) if (re.test(c)) (per[`${author(i)}|${fam}`] ??= []).push(i.id)
+    for (const [k, ids] of Object.entries(per)) if (ids.length > 1) add(`BATCH MISC author ${k.split('|')[0]} uses the stock "${k.split('|')[1]}" distractor ${ids.length} times (${ids.join(', ')}); max once per author`)
+    info.push(`MISC stock-misconception distractors: ${Object.values(per).reduce((n, x) => n + x.length, 0)}`)
+  }
   return { p, info, fatal: false }
 }
 
@@ -396,33 +496,36 @@ async function suites() {
   return {
     pilot: { fixtures: F.FIXTURES, slots: F.FIXTURE_SLOTS, mutations: F.MUTATIONS, batchMutations: F.BATCH_MUTATIONS },
     b1: { fixtures: F.FIXTURES_B1, slots: F.FIXTURE_SLOTS_B1, mutations: [...F.MUTATIONS_B1_CARRIED, ...F.MUTATIONS_B1], batchMutations: [...F.BATCH_MUTATIONS, ...F.BATCH_MUTATIONS_B1] },
+    b2: { fixtures: F.FIXTURES_B2, slots: F.FIXTURE_SLOTS_B2, mutations: [...F.MUTATIONS_B2_CARRIED, ...F.MUTATIONS_B2], batchMutations: [...F.BATCH_MUTATIONS, ...F.BATCH_MUTATIONS_B1, ...F.BATCH_MUTATIONS_B2] },
   }
 }
 async function selftest(disabled = new Set()) {
   const S = await suites()
   const a = runSuite('pilot rules', S.pilot, { rules: 'pilot' }, SELFTEST_EX)
   const b = runSuite('b1 rules', S.b1, { rules: 'b1', disabled }, SELFTEST_EX)
-  for (const l of [...a.lines, ...b.lines]) console.log(l)
+  const c = runSuite('b2 rules', S.b2, { rules: 'b2', disabled }, SELFTEST_EX)
+  for (const l of [...a.lines, ...b.lines, ...c.lines]) console.log(l)
   const e = checkBatch([{ id: S.pilot.fixtures[0].id, empty: true }], { [S.pilot.fixtures[0].id]: S.pilot.slots[S.pilot.fixtures[0].id] })
   const efail = e.fatal ? 0 : 1
   console.log(`  ${e.fatal ? 'ok  ' : 'FAIL'} all-empty batch -> ${e.fatal ? 'fatal: ' + e.p[0] : 'not fatal'}`)
-  const fail = a.fail + b.fail + efail
-  console.log(fail ? `SELFTEST FAILED: ${fail}` : `SELFTEST OK: pilot rules ${a.n} clean + ${a.nm} item + ${a.nb} batch mutations; b1 rules ${b.n} clean + ${b.nm} item + ${b.nb} batch mutations; + all-empty fatal`)
+  const fail = a.fail + b.fail + c.fail + efail
+  console.log(fail ? `SELFTEST FAILED: ${fail}` : `SELFTEST OK: pilot rules ${a.n} clean + ${a.nm} item + ${a.nb} batch mutations; b1 rules ${b.n} clean + ${b.nm} item + ${b.nb} batch mutations; b2 rules ${c.n} clean + ${c.nm} item + ${c.nb} batch mutations; + all-empty fatal`)
   process.exit(fail ? 1 : 0)
 }
 /** --break-test: switch off each B1 check in turn; the b1 suite MUST then fail, and fail on that check's own fixtures. */
-async function breakTest() {
+async function breakTest(rules = 'b1') {
   const S = await suites(); let bad = 0
-  const base = runSuite('b1 rules', S.b1, { rules: 'b1' }, SELFTEST_EX)
-  console.log(`  control: all B1 checks on -> ${base.fail} failures (must be 0)`); if (base.fail) bad++
-  for (const id of B1_CHECKS) {
-    const r = runSuite('b1 rules', S.b1, { rules: 'b1', disabled: new Set([id]) }, SELFTEST_EX)
-    const own = r.failed.filter(m => m.includes(`expected a ${id} `) || (id === 'ABSDIS' && m.includes('absolutes appear on')))
+  const suite = S[rules], label = `${rules} rules`, ids = rules === 'b2' ? [...B1_CHECKS, ...B2_CHECKS] : B1_CHECKS
+  const base = runSuite(label, suite, { rules }, SELFTEST_EX)
+  console.log(`  control: all ${rules} checks on -> ${base.fail} failures (must be 0)`); if (base.fail) bad++
+  for (const id of ids) {
+    const r = runSuite(label, suite, { rules, disabled: new Set([id]) }, SELFTEST_EX)
+    const own = r.failed.filter(m => m.includes(`expected a ${id} `) || (id === 'ABSDIS' && m.includes('absolutes appear on')) || m.includes(`expected "${id} `))
     const okk = r.fail > 0 && own.length > 0
     if (!okk) bad++
     console.log(`  ${okk ? 'ok  ' : 'FAIL'} ${id} disabled -> ${r.fail} fixture(s) fail, ${own.length} of them its own: ${r.failed.slice(0, 2).map(x => x.split(':')[0]).join('; ')}`)
   }
-  console.log(bad ? `BREAK-TEST FAILED: ${bad}` : `BREAK-TEST OK: each of ${B1_CHECKS.join(', ')} is load-bearing (removing it fails its own fixture), and the suite is clean with all on`)
+  console.log(bad ? `BREAK-TEST FAILED: ${bad}` : `BREAK-TEST OK (${rules}): each of ${ids.join(', ')} is load-bearing (removing it fails its own fixture), and the suite is clean with all on`)
   process.exit(bad ? 1 : 0)
 }
 
@@ -431,8 +534,8 @@ if (isMain) {
   const A = process.argv.slice(2)
   const ri = A.indexOf('--rules'), di = A.indexOf('--disable')
   const RUNOPTS = { rules: ri >= 0 ? A[ri + 1] : 'b1', disabled: new Set(di >= 0 ? A[di + 1].split(',') : []) }
-  if (!['b1', 'pilot'].includes(RUNOPTS.rules)) { console.error('REFUSING: --rules must be b1 or pilot'); process.exit(2) }
-  if (A.includes('--break-test')) await breakTest()
+  if (!RULESETS.includes(RUNOPTS.rules)) { console.error('REFUSING: --rules must be pilot, b1 or b2'); process.exit(2) }
+  if (A.includes('--break-test')) await breakTest(RUNOPTS.rules === 'pilot' ? 'b1' : RUNOPTS.rules)
   if (A.includes('--selftest')) await selftest(RUNOPTS.disabled)
   const die = m => { console.error('REFUSING: ' + m); process.exit(2) }
   const opt = n => { const i = A.indexOf(n); return i >= 0 ? A[i + 1] : null }

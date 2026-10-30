@@ -273,3 +273,75 @@ export const BATCH_MUTATIONS_B1 = [
     const l = byId(b, 'FX-L-03'); setChoice(l, 'Warm dishes made more gas than cool dishes.', 'Warm dishes always made more gas than cool dishes.'); setChoice(l, 'The two warm dishes gave about the same results.', 'The two warm dishes gave only the same results.')
   } },
 ]
+
+/* ===================== batch-2 rules (MAP-SCIENCE-B2.prereg.md) =====================
+ * The B2 suite: the B1 fixtures, with FX-E-01's line rebuilt so every x sits on a renderer tick (TICK), plus two
+ * fixtures from a second author so the cross-author batch checks (XDUP) have pairs to compare. Run with rules 'b2'. */
+const B2 = structuredClone(FIXTURES_B1)
+const get2 = id => B2.find(x => x.id === id)
+export const FIXTURE_SLOTS_B2 = structuredClone(FIXTURE_SLOTS_B1)
+// ticks for x 0..8 are 0, 2, 4, 6, 8: every point is on one (the pilot fixture's 0..6 put 2 and 4 between ticks).
+Object.assign(get2('FX-E-01'), {
+  graphic: { type: 'line', series: [{ points: [[0, 2], [2, 6], [4, 10], [6, 14], [8, 18]] }], xLabel: 'Time (hours)', yLabel: 'Sediment depth (mm)', caption: 'Figure 1. Sediment depth in Basin Orrin during a flood' },
+})
+// b2 LSHAPE: condition labels share one shape (four invented names), never a padded code ladder.
+Object.assign(get2('FX-P-01'), {
+  names_used: ['cart K-2', 'Track Telford', 'Track Quill', 'Track Bo', 'Track Renwickton'],
+  graphic: { type: 'bar', bars: [{ label: 'Track Telford', value: 35 }, { label: 'Track Quill', value: 20 }, { label: 'Track Bo', value: 80 }, { label: 'Track Renwickton', value: 50 }], xLabel: 'Track', yLabel: 'Distance rolled (cm)', caption: 'Figure 1. How far cart K-2 rolled on four tracks' },
+  choices: ['Track Telford', 'Track Quill', 'Track Bo', 'Track Renwickton'], correct_answer: 'Track Bo',
+  key_evidence: { refs: ['Track Bo'] },
+  explanation: 'The tallest bar in Figure 1 belongs to Track Bo, at 80 cm.',
+  distractor_rationales: [R('Track Telford', 'its bar is only 35 cm tall'), R('Track Quill', 'its bar is the shortest of all'), R('Track Renwickton', 'second tallest bar, not the tallest')],
+})
+Object.assign(get2('FX-E-02'), {
+  names_used: ['Lark Wenn trays', 'Tray Kell', 'Tray Morrow', 'Tray Quillane', 'Tray Zennabrook'],
+  graphic: { ...get2('FX-E-02').graphic, rowLabels: ['Tray Kell', 'Tray Morrow', 'Tray Quillane', 'Tray Zennabrook'] },
+  prompt: 'To test only whether moss changes how much soil washes away, Tray Kell should be compared with which tray?',
+  choices: ['Tray Quillane', 'Tray Zennabrook', 'Tray Kell', 'Tray Morrow'], correct_answer: 'Tray Morrow',
+  explanation: 'Tray Morrow has the same clay soil and the same 10-degree slope as Tray Kell and differs only in having no moss.',
+  distractor_rationales: [R('Tray Quillane', 'differs in soil type as well as moss'), R('Tray Zennabrook', 'differs in soil type and slope, with moss on both'), R('Tray Kell', 'is the tray being tested, not a comparison')],
+})
+FIXTURE_SLOTS_B2['FX-Q-01'] = slot('FX-Q-01', 'Life Science', 5, 'mid', 'LS4', 'model', 'scenario', 'claim', 'explains', 'D', 4)
+FIXTURE_SLOTS_B2['FX-Q-02'] = slot('FX-Q-02', 'Earth and Space Science', 6, 'low', 'ESS3', 'model', 'scenario', 'term', 'process', 'A', 1)
+B2.push({
+  ...head(FIXTURE_SLOTS_B2['FX-Q-01']), ngss_pe: '3-LS4-2', passage: null, graphic: null,
+  prompt: 'In a dry valley, cactus plants with thicker stems store more water and survive long droughts better than thin-stemmed ones. Stem thickness is inherited. Over many droughts, what most likely happens, and why?',
+  choices: ['Thin stems grow thicker as each plant drinks a lot more.', 'Stems stay the same, since rain falls on each one.', 'Seeds from thin stems sprout fast after rain.', 'More cacti have thick stems, as thick-stemmed parents leave more young.'],
+  correct_answer: 'More cacti have thick stems, as thick-stemmed parents leave more young.',
+  explanation: 'Thick-stemmed plants survive droughts and reproduce more, so the inherited trait becomes more common.',
+  distractor_rationales: [R('Thin stems grow thicker as each plant drinks a lot more.', 'misconception: traits acquired by effort are passed on'), R('Stems stay the same, since rain falls on each one.', 'misconception: variation does not affect survival'), R('Seeds from thin stems sprout fast after rain.', 'misconception: an unrelated advantage decides the trait')],
+  real_world_check: 'Inherited traits that improve survival become more common in a population over generations.',
+})
+B2.push({
+  ...head(FIXTURE_SLOTS_B2['FX-Q-02']), ngss_pe: 'MS-ESS3-1', passage: null, graphic: null,
+  prompt: 'Over millions of years, layers of dead ocean plankton were buried under mud, heated and squeezed. Which process formed the oil now pumped from those rocks?',
+  choices: ['fossilization', 'weathering of granite', 'evaporation of seawater', 'cooling of hot lava flows'],
+  correct_answer: 'fossilization',
+  explanation: 'Buried organic remains are slowly changed by heat and pressure into oil, a fossil fuel.',
+  distractor_rationales: [R('weathering of granite', 'misconception: oil comes from broken-down rock'), R('evaporation of seawater', 'misconception: oil is left behind like salt'), R('cooling of hot lava flows', 'misconception: oil is a volcanic product')],
+  real_world_check: 'Petroleum forms from buried marine organisms altered by heat and pressure over geologic time.',
+})
+export const FIXTURES_B2 = B2
+/** Every B1 mutation except those on the three fixtures rebuilt for b2 still fires under b2. */
+export const REBUILT_B2 = new Set(['FX-E-01', 'FX-P-01', 'FX-E-02'])
+export const MUTATIONS_B2_CARRIED = [...MUTATIONS_B1_CARRIED, ...MUTATIONS_B1].filter(m => !REBUILT_B2.has(m.on))
+export const MUTATIONS_B2 = [
+  // the B1 LABEL mutations, re-aimed at the rebuilt name labels
+  { name: 'B1 label lists several settings, b2 labels', on: 'FX-E-02', expect: 'LABEL', mutate: it => { it.graphic.rowLabels[2] = 'Sand, 10°'; setChoice(it, 'Tray Quillane', 'Sand, 10°') } },
+  { name: 'B1 label with a lowercase descriptive word, b2 labels', on: 'FX-P-01', expect: 'LABEL', mutate: it => { it.graphic.bars[0].label = 'Track Telford rough'; setChoice(it, 'Track Telford', 'Track Telford rough') } },
+  { name: 'B1 label repeats a table setting, b2 labels', on: 'FX-E-02', expect: 'LABEL', mutate: it => { it.graphic.rowLabels[2] = 'Sand Tray'; setChoice(it, 'Tray Quillane', 'Sand Tray') } },
+  { name: 'B1 label carries a number with a unit, b2 labels', on: 'FX-P-01', expect: 'LABEL', mutate: it => { it.graphic.bars[1].label = 'Track 40 cm'; setChoice(it, 'Track Quill', 'Track 40 cm') } },
+  { name: 'B1 label with no code and not a name, b2 labels', on: 'FX-P-01', expect: 'LABEL', mutate: it => { it.graphic.bars[2].label = 'Tile'; setChoice(it, 'Track Bo', 'Tile'); it.key_evidence.refs = ['Tile'] } },
+  { name: 'B1 invented name carries a property word, on a b2 fixture', on: 'FX-L-01', expect: 'NAMEPROP', mutate: it => { it.names_used = ['snail line Marsh T-3'] } },
+  { name: 'B2 "invented" in a student-facing passage (E6-07 shape)', on: 'FX-L-03', expect: 'INVENTED', mutate: it => { it.passage = it.passage.replace('yeast strain Y-12', 'an invented yeast, strain Y-12') } },
+  { name: 'B2 "invented" in a table caption', on: 'FX-L-01', expect: 'INVENTED', mutate: it => { it.graphic.caption = 'Table 1. Counts of the invented snail line T-3' } },
+  { name: 'B2 key is the lone label shape (E6 LHG-207 shape)', on: 'FX-E-02', expect: 'LSHAPE', mutate: it => {
+    it.graphic.rowLabels = ['Tray K', 'Tray LHG-207', 'Tray Q-1', 'Tray ZW-28']; it.choices = ['Tray Q-1', 'Tray ZW-28', 'Tray K', 'Tray LHG-207']; it.correct_answer = 'Tray LHG-207'
+    it.prompt = it.prompt.replace('Tray Kell', 'Tray K'); it.distractor_rationales = [R('Tray Q-1', 'differs in soil type as well as moss'), R('Tray ZW-28', 'differs in soil type and slope'), R('Tray K', 'is the tray being tested')] } },
+  { name: 'B2 line point between x ticks (L8-16 kink shape)', on: 'FX-E-01', expect: 'TICK', mutate: it => { it.graphic.series[0].points = [[0, 2], [10, 6], [20, 10], [30, 14], [40, 18], [50, 18]]; it.key_evidence.refs = [[20, 10]] } },
+]
+export const BATCH_MUTATIONS_B2 = [
+  { name: 'B2 cross-author duplicate topic (B1-A2 shape)', expect: 'XDUP ', mutate: b => { const q = byId(b, 'FX-Q-01'), l = byId(b, 'FX-L-03'); q.prompt = l.passage.slice(0, 300) + ' ' + l.prompt; q.choices = [...l.choices.slice(0, 3), q.correct_answer] } },
+  { name: 'B2 two items key the same claim in one area', expect: 'KEYDUP ', mutate: b => { const q = byId(b, 'FX-Q-01'), l = byId(b, 'FX-L-03'); q.choices[3] = l.correct_answer; q.correct_answer = l.correct_answer } },
+  { name: 'B2 one author uses a stock misconception twice', expect: 'MISC ', mutate: b => { const q = byId(b, 'FX-Q-01'); q.choices[0] = 'Thin stems grew thicker during their lives.'; q.distractor_rationales[0].choice = q.choices[0]; const q2 = byId(b, 'FX-Q-02'); q2.choices[2] = 'oil changed during its life' } },
+]
