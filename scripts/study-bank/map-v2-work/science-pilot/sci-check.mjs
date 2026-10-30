@@ -155,7 +155,15 @@ export const B3P2_CHECKS = ['TRENDDIR', 'BARPOS', 'BAREXT', 'TRENDFORM', 'RANKBA
 /** Full batch 3 (MAP-SCIENCE-B3-FULL.prereg.md): `--rules b3f` = every b3p2 check (RANKBAL and NAMETPL recalibrated for
  *  both) plus item TERMSHAPE, CLAIMPOL and batch FILLER (refusing) and READCAST, NAMESHAPE (reported only). */
 export const B3F_CHECKS = ['TERMSHAPE', 'CLAIMPOL', 'FILLER', 'READCAST', 'NAMESHAPE']
-const RULESETS = ['pilot', 'b1', 'b2', 'b3', 'b3p2', 'b3f']
+/** Batch 4 (MAP-SCIENCE-B4.prereg.md): `--rules b4` = every b3f check EXCEPT the per-item ECHO ban (replaced by the batch
+ *  distribution ECHOBAL, randomize-at-base-rate), plus one checker per b3-full rule-10a mechanical pattern (prereg 10d):
+ *  VARPLAN (shared variable-passage sentence plan), SHORTLBL (two-letter label never keyed), KEYWORD (one content word
+ *  only on keys within a format), ECHOBAL (only the key echoes a stem word), XKEY (one item's text names another item's
+ *  term option, B7); and two item checks from the B31 / Lamarckian brief amendment: LAMARCK (need/will/learn-driven
+ *  change on any Life option) and MISCDECL (model items declare the key's category and each distractor's misconception).
+ *  Break-tested on batch 3 full's named items by science-b4/validate-b4-rules.mjs. */
+export const B4_CHECKS = ['VARPLAN', 'SHORTLBL', 'KEYWORD', 'ECHOBAL', 'XKEY', 'LAMARCK', 'MISCDECL']
+const RULESETS = ['pilot', 'b1', 'b2', 'b3', 'b3p2', 'b3f', 'b4']
 /** What a trend option says once its direction words are removed (TRENDPAR). */
 export const trendSkeleton = s => norm(String(s).replace(TREND_STRIP, ' ')).replace(/[.]/g, ' ').replace(/\s+/g, ' ').trim()
 /** Crude stem for ECHO: lower-case, one suffix off. Two words echo when one stem starts the other (>= 4 letters). */
@@ -228,7 +236,7 @@ export function xdupReason(a, b) {
 }
 export function checkItem(it, slot, ex = [], opts = {}) {
   const p = [], add = m => p.push(m)
-  const RF = opts.rules === 'b3f', R = RF ? 'b3p2' : (opts.rules ?? 'b1'), b1 = R === 'b1' || R === 'b2' || R === 'b3' || R === 'b3p2', dis = opts.disabled ?? new Set()
+  const R4 = opts.rules === 'b4', RF = opts.rules === 'b3f' || R4, R = RF ? 'b3p2' : (opts.rules ?? 'b1'), b1 = R === 'b1' || R === 'b2' || R === 'b3' || R === 'b3p2', dis = opts.disabled ?? new Set()
   const on = id => b1 && !dis.has(id), on2 = id => (R === 'b2' || R === 'b3' || R === 'b3p2') && !dis.has(id)
   if (!slot) return [`SLOT ${it?.id}: not a slot in slots.json`]
   const want = { map_area: slot.area, grade_target: slot.g, tier: slot.tier, difficulty: DIFF[slot.tier], rit_band_target: RIT[slot.g][slot.tier], dci: slot.dci, kind: slot.kind, stimulus: slot.stimulus, format: slot.format, ask: slot.ask, invented: slot.invent }
@@ -425,7 +433,7 @@ export function checkItem(it, slot, ex = [], opts = {}) {
     if (m) add(`ROLESTATE the procedure states a role ("${m[0]}"); describe what was done and let the student infer which quantity was changed, measured or held (batch 2's "the X was the same / was the variable they changed" made the key a string lookup)`)
   }
   // ECHO (Life): a word in the stem that only the key repeats.
-  if (on3('ECHO') && (slot.format === 'term' || slot.format === 'claim')) {
+  if (on3('ECHO') && !R4 && (slot.format === 'term' || slot.format === 'claim')) {
     const e = stemEcho(it.prompt, key, others)
     if (e.length) add(`ECHO the key alone repeats the stem word(s) ${e.map(x => `"${x}"`).join(', ')} (L6-17 "breed" -> "breeding"); share the word with distractors or drop it from the key`)
   }
@@ -474,6 +482,26 @@ export function checkItem(it, slot, ex = [], opts = {}) {
     if ((y || n) && (y % 2 || n % 2)) add(`CLAIMPOL ${y} option(s) start "Yes" and ${n} start "No": a lone polarity (L6-01's key was the only "No"); use 2 and 2, or 4 and 0`)
   }
 
+  /* ---------- B4 item rules (MAP-SCIENCE-B4.prereg.md) ---------- */
+  const on6 = id => R4 && !dis.has(id)
+  // LAMARCK (b3-full Life, both graders, 5 items: L5-06 L6-06 L6-19 L7-13 L8-13): need-, will- or learning-driven change
+  // on an option. Such an option can never be a true model key, so randomizing it is impossible; it is refused on EVERY
+  // option of a Life item (symmetric: no option carries it, so its absence marks nothing).
+  if (on6('LAMARCK') && it.map_area === 'Life Science') {
+    const hit = ch.filter(c => LAMARCK_RE.test(c))
+    if (hit.length) add(`LAMARCK ${hit.map(x => `"${x}"`).join(', ')} describe(s) change driven by need, will, effort or learning (b3-full L5-06 / L6-19 "learn to"); a student who knows one rule kills it. Write a held misconception of the key's own category instead`)
+  }
+  // MISCDECL (B31 brief amendment): every model item declares the key's category and, per distractor, the misconception a
+  // student actually holds and that it is of the key's category. An author's declaration is NOT a check (CLAUDE.md); it
+  // forces the question per distractor, and the graders judge B31.
+  if (on6('MISCDECL') && slot.kind === 'model') {
+    if (words(it.key_category).length < 2) add('MISCDECL model item needs key_category (the kind of thing all four options are, >= 2 words)')
+    if (Array.isArray(dr)) for (const d of dr) {
+      if (words(d?.misconception).length < 6) add(`MISCDECL distractor "${d?.choice}" needs misconception: the belief a student holds that makes it attractive (>= 6 words)`)
+      if (d?.same_category !== true) add(`MISCDECL distractor "${d?.choice}" must declare same_category: true (it is a ${it.key_category ?? 'key_category'} too); if it is not, rewrite it`)
+    }
+  }
+
   // LEAK
   if (g?.caption) {
     const kn = numOf(key)
@@ -502,7 +530,7 @@ export function checkItem(it, slot, ex = [], opts = {}) {
 export function checkBatch(items, SLOT, opts = {}) {
   const p = [], add = m => p.push(m), info = []
   let fatal = false
-  const RF = opts.rules === 'b3f', R = RF ? 'b3p2' : (opts.rules ?? 'b1'), b1 = R === 'b1' || R === 'b2' || R === 'b3' || R === 'b3p2', dis = opts.disabled ?? new Set()
+  const R4 = opts.rules === 'b4', RF = opts.rules === 'b3f' || R4, R = RF ? 'b3p2' : (opts.rules ?? 'b1'), b1 = R === 'b1' || R === 'b2' || R === 'b3' || R === 'b3p2', dis = opts.disabled ?? new Set()
   const on = id => b1 && !dis.has(id), on2 = id => (R === 'b2' || R === 'b3' || R === 'b3p2') && !dis.has(id)
   const ids = items.map(i => i.id)
   if (new Set(ids).size !== ids.length) add('BATCH duplicate item ids')
@@ -762,6 +790,82 @@ export function checkBatch(items, SLOT, opts = {}) {
     const top = Object.entries(c).sort((a, b) => b[1] - a[1])
     info.push(`NAMESHAPE ${ar}: ${I.length} items, ${top.length} first-name templates; top ${top.slice(0, 4).map(([k, v]) => `"${k}" ${v}`).join(', ')}`)
   }
+  /* ---------- B4 batch rules (MAP-SCIENCE-B4.prereg.md; one per b3-full rule-10a mechanical pattern) ---------- */
+  const on6 = id => R4 && !dis.has(id)
+  // VARPLAN (b3-full: Life L5-17 L6-03 L7-16 L8-16, Physical P5-17 P6-10 P7-11 P8-02, Earth E5-10 E6-03 E7-10 E8-12):
+  // variable passages built on one sentence plan. Features per passage: REC = two or more options introduced right after a
+  // recording verb ("noted the <option>", "wrote down the <option>"); SERIES = "the first ..., then the second, third and
+  // fourth"; ONEVAL = an option introduced by a one-value phrase ("one slope", "a single bag"). A feature refuses once it sits in MORE
+  // than VARPLAN_SHARE of an area's (or the batch's) variable passages, and never in fewer than 2 (n = 4 -> 3, n = 2 -> 2). It is a template cap, symmetric across options, so it cannot mark a key.
+  if (on6('VARPLAN')) {
+    for (const [nm, pool] of scopes) {
+      const V = pool.filter(i => SLOT[i.id]?.format === 'variable'); if (!V.length) continue
+      const feat = {}
+      for (const i of V) for (const f of varPlanFeatures(i)) (feat[f] ??= []).push(i.id)
+      const cap = Math.max(2, Math.floor(VARPLAN_SHARE * V.length) + 1)
+      info.push(`VARPLAN ${nm}: variable passages ${V.length}; ${Object.entries(feat).map(([f, x]) => `${f} ${x.length}`).join(', ') || 'no plan feature'} (refuse at >= ${cap})`)
+      for (const [f, x] of Object.entries(feat)) if (x.length >= cap) add(`BATCH VARPLAN ${nm}: ${x.length} of ${V.length} variable passages share the sentence plan ${f} (${x.join(', ')}); b3-full graders read "wrote down / noted the <option>" across every passage. Vary how options enter the passage`)
+    }
+  }
+  // SHORTLBL (b3-full Earth, both graders, 5 items: E5-07 Ux, E7-08 Oz, E7-15 Qi, E8-08 Uo, E8-17 Al): a condition label
+  // whose distinctive core is 1-2 letters was a distractor 5 times and the key 0. Randomized, never forbidden: across an
+  // area's conditions items, short-core options must be keys at a rate inside SHORTLBL_BAND once SHORTLBL_MIN are used.
+  if (on6('SHORTLBL')) for (const [nm, pool] of scopes) {
+    const C = pool.filter(i => SLOT[i.id]?.format === 'conditions'); if (!C.length) continue
+    let k = 0, d = 0; const where = []
+    const ids = []
+    for (const i of C) { const sh = shortCoreOptions(i.choices); for (const c of sh) { if (c === i.correct_answer) k++; else d++; ids.push(i.id); where.push(`${i.id.split('-').slice(1).join('-')} ${c}${c === i.correct_answer ? '*' : ''}`) } }
+    info.push(`SHORTLBL ${nm}: conditions items ${C.length}; short-core labels on keys ${k}, on distractors ${d}${where.length ? ` (${where.join(', ')})` : ''}`)
+    const n = k + d
+    if (n >= SHORTLBL_MIN && (k / n < SHORTLBL_BAND[0] || k / n > SHORTLBL_BAND[1])) add(`BATCH SHORTLBL ${nm}: ${k} of ${n} one- or two-letter label cores are keys (${(100 * k / n).toFixed(0)}%; band ${100 * SHORTLBL_BAND[0]}-${100 * SHORTLBL_BAND[1]}%, no-tell 25%). b3-full: "Ux, Oz, Qi, Uo, Al" never the key. Use label cores of 3+ letters, or deal a short one onto a rank-1 key about 1 time in 4 (${[...new Set(ids)].join(', ')})`)
+  }
+  // KEYWORD (b3-full Physical, both graders: "energy" on the key of P7-17 P7-18 P8-17 P8-18 and on no distractor): within one
+  // area and one format, a content word whose options are keys far above the 1-in-4 base rate (binomial tail < KEYWORD_ALPHA,
+  // at least KEYWORD_MIN keys), or that sits on KEYWORD_MIN_INV+ distractors and never on a key ("heat/warm" only on
+  // distractors). Counted per option: a word on all four options of an item is 1 key + 3 distractors, i.e. neutral.
+  if (on6('KEYWORD')) for (const ar of areas) for (const f of ['claim', 'term', 'variable']) {
+    const F = live.filter(i => area(i) === ar && SLOT[i.id]?.format === f); if (F.length < KEYWORD_MIN) continue
+    const cnt = {}
+    for (const i of F) for (const c of i.choices) for (const t of new Set(kwToks(c))) { const e = (cnt[t] ??= { k: [], d: 0 }); if (c === i.correct_answer) e.k.push(i.id); else e.d++ }
+    let worst = null
+    for (const [t, e] of Object.entries(cnt)) {
+      const k = e.k.length, n = k + e.d, pv = binomUpper(n, 0.25, k)
+      if (k >= KEYWORD_MIN && (!worst || pv < worst.pv)) worst = { t, k, n, pv }
+      if (k >= KEYWORD_MIN && pv < KEYWORD_ALPHA) add(`BATCH KEYWORD ${ar} ${f}: "${t}" is on ${k} keys and ${e.d} distractors (P = ${pv.toExponential(1)} at 1-in-4; ${e.k.join(', ')}); b3-full "energy" only on keys. Put the word on distractors too, or off the keys`)
+      if (!k && e.d >= KEYWORD_MIN_INV) add(`BATCH KEYWORD ${ar} ${f}: "${t}" is on ${e.d} distractors and no key (P = ${Math.pow(0.75, e.d).toExponential(1)}); the inverse of the same tell`)
+    }
+    info.push(`KEYWORD ${ar} ${f}: ${F.length} items, ${Object.keys(cnt).length} content words${worst ? `; most key-heavy "${worst.t}" ${worst.k}/${worst.n} (P = ${worst.pv.toExponential(1)})` : ''}`)
+  }
+  // ECHOBAL (b3-full Life, both graders: L6-04 pollen -> self-pollination, L6-18 red, L8-18 four-legged -> legs; the per-item
+  // ECHO ban missed all three because its tokenizer drops 3-letter words and splits stems badly). Replaces the per-item ban:
+  // per area (and batch) per format (term, claim), count the options that ALONE echo a stem content word (echoMatch); the
+  // key's share of them must stay <= ECHOBAL_MAX_SHARE once ECHOBAL_MIN keys do, and >= ECHOBAL_MIN_SHARE once
+  // ECHOBAL_MIN_INV options do. Measured before batch 4: batch 2 (no ban) claim keys 12-30%; batch 3 full (per-item ban)
+  // claim keys 4-5% in every area, i.e. the ban produced the inverse tell, and Life term keys 4 of 7 (the named items).
+  if (on6('ECHOBAL')) for (const [sc, pool] of scopes) for (const f of ['term', 'claim']) {
+    const nm = `${sc} ${f}`, E = pool.filter(i => SLOT[i.id]?.format === f); if (!E.length) continue
+    let d = 0; const K = []
+    for (const i of E) { const L = loneEchoes(i), ki = i.choices.indexOf(i.correct_answer); if (L.has(ki)) K.push(i.id); d += [...L].filter(x => x !== ki).length }
+    const n = K.length + d, sh = n ? K.length / n : 0
+    info.push(`ECHOBAL ${nm}: items ${E.length}; options that alone echo a stem word: keys ${K.length}, distractors ${d}${K.length ? ` (keys: ${K.map(x => x.split('-').slice(1).join('-')).join(', ')})` : ''}; key share ${n ? (100 * sh).toFixed(0) + '%' : 'n/a'} (no-tell 25%)`)
+    if (K.length >= ECHOBAL_MIN && sh > ECHOBAL_MAX_SHARE) add(`BATCH ECHOBAL ${nm}: of ${n} options that alone echo a stem word, ${K.length} are keys (${(100 * sh).toFixed(0)}%, band <= ${100 * ECHOBAL_MAX_SHARE}%, no-tell 25%; ${K.join(', ')}); b3-full L6-04 pollen / L6-18 red / L8-18 legs. Give the echo to distractors as often`)
+    if (n >= ECHOBAL_MIN_INV && sh < ECHOBAL_MIN_SHARE) add(`BATCH ECHOBAL ${nm}: of ${n} options that alone echo a stem word, ${K.length} are keys (${(100 * sh).toFixed(0)}%, under ${100 * ECHOBAL_MIN_SHARE}%): the inverse tell, "the echoing option is a distractor"`)
+  }
+  // XKEY (b3-full Earth, both graders, B7: E8-04's passage tests "seawalls", E8-13 keys "seawall"; E8-07's hikers read "air
+  // pressure" on a barometer, E8-18 asks what a barometer measures). A TERM option (key or distractor: symmetric, so a term
+  // seen elsewhere cannot mark a distractor) appearing in another item's passage, prompt or graphic, unless it is in more
+  // than XKEY_MAX_DF other texts (then it is ordinary vocabulary, not a pointer). Batch-wide (forms draw
+  // across areas); probe-live-b4.mjs runs the same test against every live and staged row.
+  if (on6('XKEY')) {
+    const T = live.filter(i => SLOT[i.id]?.format === 'term'), txt = live.map(i => ({ id: i.id, t: ` ${norm(`${i.passage ?? ''} ${i.prompt ?? ''} ${graphicText(i.graphic)}`)} ` }))
+    let hits = 0, common = 0
+    for (const i of T) for (const c of i.choices) {
+      const where = txt.filter(o => o.id !== i.id && xkeyHit(c, o.t))
+      if (where.length > XKEY_MAX_DF) { common++; continue }
+      for (const o of where) { hits++; add(`BATCH XKEY ${o.id}'s text names "${c}", a term option of ${i.id}${c === i.correct_answer ? ' (its KEY)' : ''} (b3-full E8-04 -> E8-13 "seawall"); a student who sees both is handed it`) }
+    }
+    info.push(`XKEY term items ${T.length} x ${txt.length} item texts: ${hits} hits; ${common} options skipped as common words (in more than ${XKEY_MAX_DF} other texts)`)
+  }
   return { p, info, fatal }
 }
 export const BAREXT_BAND = [0.15, 0.5]
@@ -829,6 +933,83 @@ const rolePhrases = s => new Set([...String(s ?? '').matchAll(new RegExp(ROLE_ST
  *  at least 4 options in an area's claims are marked. Fixed before batch 3; batch 2 Earth reads 0 of 9 degree words. */
 export const CLAIMBAL_BAND = [0.15, 0.4]
 export const CLAIMBAL_MIN = 4
+
+/* ---------------- B4 helpers (MAP-SCIENCE-B4.prereg.md) ---------------- */
+/** LAMARCK: change driven by need, will, effort or learning. */
+export const LAMARCK_RE = /\b(needs?|needed|needing) (to|it|them|more|less)\b|\bin order to\b|\blearn(s|ed|t)? (to|how)\b|\b(decides?|decided|chooses?|chose|tries|tried|try|wants?|wanted|wishes|wished|works? hard|worked hard) to\b|\bso (that )?(it|they|the \w+) (could|can|would|will) (survive|reach|escape|get|keep|stay|live|beat)\b|\b(stretch|stretched|stretching|practic\w*|exercis\w*) (its|their)\b|\bto (beat|get ahead of|keep up with)\b|\bwhen (it is|they are) needed\b|\bby using (it|them|its|their)\b|\bfrom (being )?(used|use|disuse)\b|\b(use|disuse) of (its|their)\b/i
+/** VARPLAN: the share of an area's variable passages one plan feature may reach before it refuses. */
+export const VARPLAN_SHARE = 0.5
+const escRe = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+const REC_VERB = '(?:noted|notes|wrote(?: down)?|writes(?: down)?|recorded|records|logged|logs|listed|jotted(?: down)?|marked down|labeled|labelled|copied)'
+/** VARPLAN features of one variable item. REC: two or more options entering the passage right after a recording verb
+ *  ("noted the <option>", "wrote down each volunteer's age and the glass size"). SERIES: "the first ..., then the second,
+ *  third and fourth". ONEVAL: an option introduced by a one-value phrase ("sand in one tray", "a single bag"). BEFORE: an
+ *  option naming a measurement taken before the change ("seed mass measured first", "pulse measured at rest"), the
+ *  second-result shape batch 3's brief (B27) itself prescribed, which then recurred verbatim across areas. */
+export function varPlanFeatures(i) {
+  const P = String(i.passage ?? ''), ch = i.choices ?? [], f = []
+  const sentences = P.split(/(?<=[.!?])\s+/)
+  const rec = ch.filter(c => {
+    const o = escRe(c)
+    if (new RegExp(`\\b${REC_VERB}\\s+(?:down\\s+)?(?:the |each |its |their |a |which )?${o}\\b`, 'i').test(P)) return true
+    return sentences.some(s => new RegExp(`\\b${REC_VERB}\\b[^.]{0,60}\\band (?:the |each |its |their )?${o}\\b`, 'i').test(s))
+  }).length
+  if (rec >= 2) f.push('REC')
+  if (/\bthe first\b[^.]*\bthen\b[^.]*\bsecond\b[^.]*\bthird\b[^.]*\bfourth\b/i.test(P)) f.push('SERIES')
+  if (ch.some(c => /^(one|a single)\b|\b(in|on|from) (one|a single) \w+/i.test(c))) f.push('ONEVAL')
+  if (ch.some(c => /\b(measured|weighed|counted|taken|recorded|read|checked) (first|before|beforehand|at the start|at rest)\b|\bbefore (the|it|they|starting)\b|\bat the start\b/i.test(c))) f.push('BEFORE')
+  return f
+}
+/** SHORTLBL: distinctive core of a label once the words shared by all four labels are removed. */
+export function shortCoreOptions(ch) {
+  const W = ch.map(c => String(c).trim().split(/\s+/)), shared = W[0].filter(w => W.every(x => x.includes(w)))
+  return ch.filter((c, n) => { const core = W[n].filter(w => !shared.includes(w)).join(''); const L = core.replace(/[^A-Za-z]/g, ''); return L.length >= 1 && L.length <= 2 && !/\d/.test(core) })
+}
+export const SHORTLBL_BAND = [0.15, 0.4]
+export const SHORTLBL_MIN = 4
+/** Lemma for KEYWORD / ECHOBAL: lower-case, plural and -ed/-ing/-ation off, doubled final consonant collapsed. */
+export function lemma(w) {
+  let t = String(w).toLowerCase().replace(/[^a-z]/g, '')
+  if (t.length > 5) t = t.replace(/(ations?|itions?)$/, '')
+  if (t.length > 4) t = t.replace(/(ing|ied|ies|ed|es)$/, m => (m === 'ied' || m === 'ies' ? 'y' : ''))
+  if (t.length > 3) t = t.replace(/s$/, '')
+  if (/([b-df-hj-np-tv-z])\1$/.test(t)) t = t.slice(0, -1)
+  return t
+}
+const KW_STOP = new Set([...STOP, ...ECHO_STOP, 'will', 'with', 'from', 'into', 'than', 'that', 'this', 'more', 'less', 'same', 'other', 'because', 'since', 'they', 'their', 'there', 'when', 'what', 'which', 'were', 'have', 'does', 'make', 'made', 'only', 'also', 'each', 'some', 'most', 'much', 'many', 'very', 'just', 'even', 'like', 'onto', 'over', 'under', 'still', 'both', 'stay', 'stays', 'keep', 'keeps'])
+/** Content-word lemmas of an option (>= 4 letters, not a stop word). */
+export const kwToks = s => String(s ?? '').split(/[\s\-/]+/).map(w => w.toLowerCase().replace(/[^a-z]/g, '')).filter(w => w.length >= 4 && !KW_STOP.has(w)).map(lemma).filter(w => w.length >= 3)
+export const KEYWORD_ALPHA = 0.01
+export const KEYWORD_MIN = 3
+export const KEYWORD_MIN_INV = 17
+/** ECHOBAL token match: two lemmas echo when equal, or (both >= 4) share a prefix of >= 4 letters reaching within 2 of the shorter. */
+export function echoMatch(a, b) {
+  if (a === b) return true
+  const s = a.length <= b.length ? a : b, l = s === a ? b : a
+  if (s.length < 4) return false
+  let k = 0; while (k < s.length && s[k] === l[k]) k++
+  return k >= 4 && k >= s.length - 2
+}
+const echoWords = s => String(s ?? '').split(/[\s\-/]+/).map(w => w.toLowerCase().replace(/[^a-z]/g, '')).filter(w => w.length >= 3 && !KW_STOP.has(w)).map(lemma).filter(w => w.length >= 3)
+/** Options that ALONE echo some stem content word (a stem word echoed by exactly one option): Set of option indexes. */
+export function loneEchoes(i) {
+  const P = [...new Set(echoWords(i.prompt))], O = i.choices.map(c => [...new Set(echoWords(c))]), out = new Set()
+  for (const t of P) { const who = O.flatMap((o, n) => (o.some(w => echoMatch(w, t)) ? [n] : [])); if (who.length === 1) out.add(who[0]) }
+  return out
+}
+export const ECHOBAL_MIN = 3
+export const ECHOBAL_MAX_SHARE = 0.4
+export const ECHOBAL_MIN_INV = 10
+export const ECHOBAL_MIN_SHARE = 0.1
+/** XKEY: an option found in more than XKEY_MAX_DF other item texts is ordinary vocabulary ("year", "speed"), not a pointer
+ *  to one item; on batch 3 full a bare match fired 47 times, 40 of them on such words. */
+export const XKEY_MAX_DF = 2
+/** XKEY: a term option (article dropped, >= 3 letters) found in a normalized text (padded with spaces), plural allowed. */
+export function xkeyHit(option, paddedText) {
+  const o = norm(option).replace(/^(a|an|the) /, '').trim()
+  if (o.replace(/[^a-z]/g, '').length < 3) return false
+  return new RegExp(`[^a-z0-9]${escRe(o)}(s|es)?[^a-z0-9]`).test(paddedText)
+}
 
 /* ---------------- CLI ---------------- */
 function slotIndex(path) {
@@ -908,8 +1089,8 @@ if (isMain) {
   const A = process.argv.slice(2)
   const ri = A.indexOf('--rules'), di = A.indexOf('--disable')
   const RUNOPTS = { rules: ri >= 0 ? A[ri + 1] : 'b1', disabled: new Set(di >= 0 ? A[di + 1].split(',') : []) }
-  if (!RULESETS.includes(RUNOPTS.rules)) { console.error('REFUSING: --rules must be pilot, b1, b2, b3, b3p2 or b3f'); process.exit(2) }
-  if ((RUNOPTS.rules === 'b3p2' || RUNOPTS.rules === 'b3f') && A.includes('--break-test')) { console.error('REFUSING: b3p2 is break-tested on real items by science-b3p2/validate-b3p2-rules.mjs (batch 2 + pilot 1), not on fixtures'); process.exit(2) }
+  if (!RULESETS.includes(RUNOPTS.rules)) { console.error('REFUSING: --rules must be pilot, b1, b2, b3, b3p2, b3f or b4'); process.exit(2) }
+  if (['b3p2', 'b3f', 'b4'].includes(RUNOPTS.rules) && A.includes('--break-test')) { console.error('REFUSING: b3p2 is break-tested on real items by science-b3p2/validate-b3p2-rules.mjs (batch 2 + pilot 1), not on fixtures'); process.exit(2) }
   if (A.includes('--break-test')) await breakTest(RUNOPTS.rules === 'pilot' ? 'b1' : RUNOPTS.rules)
   if (A.includes('--selftest')) await selftest(RUNOPTS.disabled)
   const die = m => { console.error('REFUSING: ' + m); process.exit(2) }

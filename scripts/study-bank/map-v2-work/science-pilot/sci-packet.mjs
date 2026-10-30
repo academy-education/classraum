@@ -87,7 +87,9 @@ export function graderPacket(items, keyed) {
         // b1 finding 5: B4 (stated law) and B1 (option roles) were judged without the author's claims; show them.
         ...(it.prior_free ? [`PRIOR-FREE (author's claim that the standard does not give the answer): ${it.prior_free}`] : []),
         ...(Array.isArray(it.option_roles) ? [`OPTION ROLES (author's tags, choice order): ${it.choices.map((c, i) => `${SLOTS[i]}=${it.option_roles[i]}`).join(', ')}`] : []),
-        ...((it.distractor_rationales ?? []).map(d => `  distractor "${d.choice}": ${d.fault}`)), '')
+        // b4 (B38): the author's declared key category and each distractor's held misconception, judged by the grader.
+        ...(it.key_category ? [`KEY CATEGORY (author's declaration): ${it.key_category}`] : []),
+        ...((it.distractor_rationales ?? []).map(d => `  distractor "${d.choice}": ${d.fault}${d.misconception ? ` | HELD MISCONCEPTION (declared): ${d.misconception}` : ''}`)), '')
     }
   }
   return lines.join('\n') + '\n'
