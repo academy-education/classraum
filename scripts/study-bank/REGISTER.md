@@ -6672,3 +6672,11 @@ structural checks are pre-flight only. See CLAUDE.md.
   stands. Results are in `agent-review/results-map-language-v4/`. Release: Daniel audit sample (a new method, so a
   bridge) plus the owner's go. With the v2/v3 stock (283 after release), MAP Language holds about 496 cleared items,
   roughly 12 forms at 13 per area if the areas balance (map-form-depth after release decides).
+
+- **2026-10-31 — ACT English v12 gated: 6 of 10 passages (60) staged; queued for a full sitting.** With-source: h1
+  40/40, h2 28/30 and h3 30/30 all three graders on key. Dropped P3 (adjective/adverb, second defensible by all
+  three), P6 and P7 (a pick off the key plus a second defensible by two), and P4 (both pre-screen briefs, h1 q34).
+  **The v11 PoW fix worked:** no PoW item reached `no_source_needed` by two graders (v11 lost 5 passages to it).
+  Blind screen: CSE 98.1% FLAG; PoW 76.7%, no flag. Staged verified=false, read back as false. **ACT English
+  staged total:** v10 4 + v11 7 + v12 6 = 17 passages. With 38 live that is 55, above the 50 that 10 forms need, once
+  Daniel's sittings release them.

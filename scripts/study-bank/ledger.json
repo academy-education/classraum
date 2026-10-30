@@ -13259,6 +13259,50 @@
           "verdict": "No Change keyed 26/95 eligible (27.4%); boundary keys in 7 shapes; key uniquely longest 1/94, shortest 14/94; key slots dealt 30/30/30/30. Grader c noted a mild D lean in h1 (13/40) - letters reshuffle at draw time."
         }
       }
+    },
+    {
+      "id": "act-english-v12-kept-2026-10-31",
+      "createdAt": "2026-10-31",
+      "targetTest": "act",
+      "section": "english",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "spec": {
+        "n": 60,
+        "authors": 1,
+        "method": "one in-session Claude author, gate sheet ACT-EN12-GATE.md (committed before any solver or grader)"
+      },
+      "contentSha": "e229f1ed5703a647b4e02554698f27abd8a1dfe3e53bd2e7d1b8cc23cb63d3ac",
+      "status": "staged-for-human-review",
+      "cohort": "act-english-v12",
+      "note": "Passages P1 P2 P5 P8 P9 P10 of the frozen 100-item act-english-v12 batch (sha 61c2ab00); P3 P6 P7 dropped at the with-source gate (second defensible by 2-3 graders / pick off key), P4 dropped by both pre-screen briefs on Q04. Selection, not an edit. Route: full co-founder sitting, oversampling CSE.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "e229f1ed5703a647b4e02554698f27abd8a1dfe3e53bd2e7d1b8cc23cb63d3ac",
+          "verdict": "act-bank-helper check english: structure OK on the kept 60."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "e229f1ed5703a647b4e02554698f27abd8a1dfe3e53bd2e7d1b8cc23cb63d3ac",
+          "verdict": "3 graders per render: h1 40/40, h2 28/30, h3 30/30 all-three-agree-with-key; drops P3-Q06 (2nd defensible by 3), P6-Q02 and P7-Q04 (pick off key + 2nd defensible by 2). Pre-screens: both briefs named h1 q34 (P4) and h2 q12/q24 (P6/P7)."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "e229f1ed5703a647b4e02554698f27abd8a1dfe3e53bd2e7d1b8cc23cb63d3ac",
+          "verdict": "SCREEN, NOT A VERDICT: 10 split solvers: CSE 53/54 = 98.1% FLAG; PoW 23/30 = 76.7% (bar 81.7, no flag); KoL 14/16 report-only."
+        },
+        "elimination": {
+          "passed": true,
+          "contentSha": "e229f1ed5703a647b4e02554698f27abd8a1dfe3e53bd2e7d1b8cc23cb63d3ac",
+          "verdict": "PoW no_source_needed rule: no PoW item reached 2 graders (v11 lesson applied: purpose options all echo the stem)."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "e229f1ed5703a647b4e02554698f27abd8a1dfe3e53bd2e7d1b8cc23cb63d3ac",
+          "verdict": "NC keyed 21/81 eligible (25.9%); key uniquely shortest 14/79, longest 4/79; key slots 25/25/25/25."
+        }
+      }
     }
   ],
   "auditedCohorts": [
