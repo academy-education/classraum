@@ -1,0 +1,447 @@
+[
+{
+"id": "LV4-G6-01",
+"strand": "PoS",
+"grade": 6,
+"format": "blank",
+"ccss": "L.6.1a",
+"option_class": "pronouns",
+"prompt": "Which word or phrase correctly completes the sentence?",
+"passage": "The librarian asked two volunteers, Priya and ____, to shelve the new books before Monday.",
+"choices": [
+"I",
+"me",
+"myself",
+"mine"
+],
+"key": 1,
+"why_wrong": [
+"uses the subject form because the pronoun follows \"and\", though the pair renames \"volunteers\", the object of \"asked\"",
+"uses a reflexive pronoun with no earlier \"I\" in the sentence for it to refer back to",
+"uses a possessive pronoun where a person, not an owned thing, is named"
+],
+"explanation": "\"Priya and ____\" renames \"two volunteers\", which is the object of \"asked\", so the object pronoun \"me\" is needed. \"I\" is a subject form, \"myself\" needs an \"I\" earlier in the sentence, and \"mine\" shows ownership."
+},
+{
+"id": "LV4-G6-02",
+"strand": "PoS",
+"grade": 6,
+"format": "blank",
+"ccss": "L.6.1b",
+"option_class": "intensive pronouns",
+"prompt": "Which word or phrase correctly completes the sentence?",
+"passage": "After the movers left, we arranged all the furniture in the new apartment ____.",
+"choices": [
+"ourselves",
+"themselves",
+"yourselves",
+"itself"
+],
+"key": 0,
+"why_wrong": [
+"links the pronoun to \"the movers\", but they had already left; the people arranging are \"we\"",
+"uses a second-person pronoun although the speakers are \"we\"",
+"links the pronoun to \"the apartment\", which cannot arrange furniture"
+],
+"explanation": "The people who arranged the furniture are \"we\", so the intensive pronoun must be \"ourselves\". \"Themselves\" points to the movers, who had left, \"yourselves\" changes the person, and \"itself\" points to the apartment."
+},
+{
+"id": "LV4-G6-03",
+"strand": "PCAS",
+"grade": 6,
+"format": "blank",
+"ccss": "L.6.1c",
+"option_class": "pronouns",
+"prompt": "Which word or phrase correctly completes the sentence?",
+"passage": "Sea turtles return to the beach where ____ hatched, and the females lay their own eggs in the sand there.",
+"choices": [
+"it",
+"they",
+"she",
+"we"
+],
+"key": 1,
+"why_wrong": [
+"switches from the plural \"turtles\" to a singular pronoun",
+"switches to a singular pronoun because of the later word \"females\"",
+"switches to the first person, as if the writer were a turtle"
+],
+"explanation": "The pronoun refers to \"sea turtles\", which is third person plural, so \"they\" is correct. \"It\" and \"she\" are singular, and \"we\" changes the person."
+},
+{
+"id": "LV4-G6-04",
+"strand": "PoS",
+"grade": 6,
+"format": "blank",
+"ccss": "L.6.1a",
+"option_class": "pronouns",
+"prompt": "Which word or phrase correctly completes the sentence?",
+"passage": "The tent in the corner of the campground is ____, but the green one belongs to the Lees.",
+"choices": [
+"our",
+"ours",
+"us",
+"we"
+],
+"key": 1,
+"why_wrong": [
+"uses the form that must come before a noun (\"our tent\") where no noun follows",
+"uses the object pronoun, which cannot show ownership",
+"uses the subject pronoun, which cannot show ownership"
+],
+"explanation": "No noun follows the blank, so the stand-alone possessive \"ours\" is needed, just as the Lees' tent is named with a possessive. \"Our\" needs a noun after it, and \"us\" and \"we\" do not show ownership."
+},
+{
+"id": "LV4-G6-05",
+"strand": "PoS",
+"grade": 6,
+"format": "blank",
+"ccss": "L.6.1a",
+"option_class": "pronouns",
+"prompt": "Which word or phrase correctly completes the sentence?",
+"passage": "Nora left her umbrella at school, so on the walk home Ben lent her ____.",
+"choices": [
+"him",
+"his",
+"he",
+"himself"
+],
+"key": 1,
+"why_wrong": [
+"uses the object form, which would mean Ben lent Nora himself, not his umbrella",
+"uses the subject form where a word after \"lent her\" must name the thing lent",
+"uses a reflexive pronoun, which again would mean Ben lent Nora himself"
+],
+"explanation": "Ben lent Nora his umbrella, so the stand-alone possessive \"his\" is needed. \"Him\" and \"himself\" would mean Ben lent her himself, and \"he\" is a subject form that cannot follow \"lent her\"."
+},
+{
+"id": "LV4-G6-06",
+"strand": "PoS",
+"grade": 6,
+"format": "revise",
+"ccss": "L.6.1a",
+"prompt": "Which revision of the bracketed part is correct?",
+"passage": "Coach Reed said that the final decision about the team name is up to [you and I].",
+"choices": [
+"you and I",
+"you and me",
+"yourself and I",
+"you and myself"
+],
+"key": 1,
+"why_wrong": [
+"keeps the subject form \"I\" after the preposition \"to\"",
+"uses a reflexive pronoun with no matching subject, and keeps \"I\" after a preposition",
+"uses a reflexive pronoun with no \"I\" earlier in the sentence for it to refer to"
+],
+"explanation": "The pronouns follow the preposition \"to\", so both must be object forms: \"you and me\". \"I\" is a subject form, and \"yourself\" and \"myself\" are reflexive pronouns with nothing in the sentence to refer back to."
+},
+{
+"id": "LV4-G6-07",
+"strand": "PCAS",
+"grade": 6,
+"format": "revise",
+"ccss": "L.6.1c",
+"prompt": "Which choice correctly replaces the bracketed word?",
+"passage": "If one wants to see the comet tonight, [you] should look low in the western sky just after sunset.",
+"choices": [
+"you",
+"one",
+"we",
+"they"
+],
+"key": 1,
+"why_wrong": [
+"shifts from \"one\" to \"you\" in the middle of the sentence",
+"shifts from \"one\" to the first person \"we\"",
+"shifts from the singular \"one\" to the plural \"they\""
+],
+"explanation": "The sentence begins with \"one\", so the pronoun later in the sentence must stay \"one\". \"You\", \"we\" and \"they\" each shift the person or number partway through."
+},
+{
+"id": "LV4-G6-08",
+"strand": "PCAS",
+"grade": 6,
+"format": "revise",
+"ccss": "L.6.1d",
+"prompt": "Which choice correctly replaces the bracketed word?",
+"passage": "At the aquarium, [they] told us that an octopus can twist the lid off a jar to reach food inside.",
+"choices": [
+"they",
+"a guide",
+"it",
+"you"
+],
+"key": 1,
+"why_wrong": [
+"keeps \"they\", which has no noun in the sentence to refer to",
+"uses \"it\", which could mean the aquarium or the octopus but not a person who talks",
+"uses \"you\", which also has no clear person to refer to and shifts to the second person"
+],
+"explanation": "No noun in the sentence tells who \"they\" are, so the pronoun is vague. Naming the speaker, \"a guide\", makes the meaning clear. \"It\" and \"you\" are just as vague."
+},
+{
+"id": "LV4-G6-09",
+"strand": "PCAS",
+"grade": 6,
+"format": "revise",
+"ccss": "L.6.1c",
+"prompt": "Which revision of the bracketed part is correct?",
+"passage": "Each spring the robins return to our maple tree, and [it builds] a nest on the same low branch.",
+"choices": [
+"it builds",
+"they build",
+"he builds",
+"we build"
+],
+"key": 1,
+"why_wrong": [
+"switches from the plural \"robins\" to the singular \"it\"",
+"switches to a singular \"he\" for a group of birds",
+"switches to the first person, so the family would be building the nest"
+],
+"explanation": "The nest builders are \"the robins\", a plural noun, so the pronoun and verb must be \"they build\". \"It\" and \"he\" are singular, and \"we\" changes who is building."
+},
+{
+"id": "LV4-G6-10",
+"strand": "PoS",
+"grade": 6,
+"format": "revise",
+"ccss": "L.6.1a",
+"prompt": "Which revision of the bracketed part is correct?",
+"passage": "The judges handed the trophy to [her and Leo] at the end of the science fair.",
+"choices": [
+"her and Leo",
+"she and Leo",
+"Leo and she",
+"herself and Leo"
+],
+"key": 0,
+"why_wrong": [
+"uses the subject form \"she\" after the preposition \"to\"",
+"moves the name first but still uses the subject form after \"to\"",
+"uses a reflexive pronoun although no \"she\" appears earlier in the sentence"
+],
+"explanation": "The pronoun is an object of the preposition \"to\", so the object form \"her\" is correct, and the original is right. \"She\" is a subject form wherever it is placed, and \"herself\" has nothing to refer back to."
+},
+{
+"id": "LV4-G6-11",
+"strand": "PoS",
+"grade": 6,
+"format": "find-error",
+"ccss": "L.6.1a",
+"prompt": "Which sentence contains an error?",
+"passage": null,
+"choices": [
+"Her and Mia set up the telescope before the sky got dark.",
+"The ranger showed Omar and me the way back to the trail.",
+"The coach picked Ivy and him to lead the warm-up before the game.",
+"Ours is the tent with the yellow flag on top."
+],
+"key": 0,
+"why_wrong": [
+"thinks \"me\" is wrong because it comes after a name and \"and\"",
+"thinks \"him\" is wrong whenever it is paired with a name",
+"thinks a possessive pronoun like \"Ours\" cannot begin a sentence"
+],
+"explanation": "\"Her and Mia\" is the subject of \"set up\", so it needs the subject form: \"She and Mia\". In the other sentences \"me\" and \"him\" are objects, and \"Ours\" is a correct stand-alone possessive."
+},
+{
+"id": "LV4-G6-12",
+"strand": "PCAS",
+"grade": 6,
+"format": "find-error",
+"ccss": "L.6.1c",
+"prompt": "Which sentence contains an error?",
+"passage": null,
+"choices": [
+"Students who finish the quiz early may quietly read their library books at their desks.",
+"When we visited the planetarium, you could see the stars move across the dome.",
+"If you want to snorkel, you need a mask that fits well.",
+"I packed my own lunch because I wanted to eat on the trail."
+],
+"key": 1,
+"why_wrong": [
+"thinks \"their\" cannot refer back to \"students\"",
+"thinks using \"you\" twice in one sentence is a shift",
+"thinks repeating \"I\" is an error"
+],
+"explanation": "The planetarium sentence starts with \"we\" and then shifts to \"you\" for the same people. It should say \"we could see\". The other sentences keep the same person and number from start to finish."
+},
+{
+"id": "LV4-G6-13",
+"strand": "PCAS",
+"grade": 6,
+"format": "find-error",
+"ccss": "L.6.1d",
+"prompt": "Which sentence contains an error?",
+"passage": null,
+"choices": [
+"Leo's aunt gave him a compass that once belonged to her father.",
+"After the dog chased the cat around the yard, it hid under the porch.",
+"When the bus stopped, the driver opened its back doors.",
+"The twins said that they had seen a shooting star over the lake last night."
+],
+"key": 1,
+"why_wrong": [
+"thinks \"him\" and \"her\" in one sentence must be confusing, though each has only one possible noun",
+"thinks \"its\" could refer to the driver rather than the bus",
+"thinks \"they\" is unclear even though the twins are the only people named"
+],
+"explanation": "In the dog sentence, \"it\" could mean the dog or the cat, so the reader cannot tell which animal hid. In the other sentences each pronoun has only one noun it can sensibly refer to."
+},
+{
+"id": "LV4-G6-14",
+"strand": "PoS",
+"grade": 6,
+"format": "find-error",
+"ccss": "L.6.1b",
+"prompt": "Which sentence contains an error?",
+"passage": null,
+"choices": [
+"The astronauts themselves designed the experiment on the space station.",
+"I reminded myself to water the plants before we left.",
+"The players gave themself a cheer after the final whistle.",
+"You yourselves chose the name of the class pet."
+],
+"key": 2,
+"why_wrong": [
+"thinks an intensive pronoun cannot come right after the noun it stresses",
+"thinks \"myself\" is never correct",
+"thinks \"yourselves\" cannot follow \"You\""
+],
+"explanation": "The antecedent \"players\" is plural, so the pronoun must be \"themselves\". \"Themselves\", \"myself\" and \"yourselves\" in the other sentences match the people they refer to."
+},
+{
+"id": "LV4-G6-15",
+"strand": "PoS",
+"grade": 6,
+"format": "choose-correct",
+"ccss": "L.6.1a",
+"prompt": "Which sentence is written correctly?",
+"passage": null,
+"choices": [
+"The usher led Ana and I to our seats in the front row.",
+"Him and his brother built a raft from old barrels.",
+"The last two slices of pizza on the table are theirs.",
+"Everyone except Theo and she went swimming in the lake."
+],
+"key": 2,
+"why_wrong": [
+"uses the subject form \"I\" as an object of \"led\"",
+"uses the object form \"Him\" as a subject",
+"uses the subject form \"she\" after the preposition \"except\""
+],
+"explanation": "\"Theirs\" is the correct stand-alone possessive after \"are\". The other sentences use the wrong case: \"I\" as an object, \"Him\" as a subject, and \"she\" after a preposition."
+},
+{
+"id": "LV4-G6-16",
+"strand": "PCAS",
+"grade": 6,
+"format": "choose-correct",
+"ccss": "L.6.1c",
+"prompt": "Which sentence is written correctly?",
+"passage": null,
+"choices": [
+"When my friends and I go fishing, you have to be very patient.",
+"The whales lifted its tails high out of the water.",
+"If a visitor wants a map, he or she can ask at the front desk.",
+"One should always check your tent for holes before a trip."
+],
+"key": 2,
+"why_wrong": [
+"shifts from \"my friends and I\" to \"you\"",
+"shifts from the plural \"whales\" to the singular \"its\"",
+"shifts from \"One\" to \"your\""
+],
+"explanation": "\"A visitor\" is singular, and \"he or she\" is singular and third person, so it agrees. The other sentences shift person (I to you, One to your) or number (whales to its)."
+},
+{
+"id": "LV4-G6-17",
+"strand": "PCAS",
+"grade": 6,
+"format": "choose-correct",
+"ccss": "L.6.1d",
+"prompt": "Which sentence is written correctly?",
+"passage": null,
+"choices": [
+"Jack told Leo that he had won the poetry contest.",
+"Mia took the dirty plates off the plastic trays and washed them in the sink.",
+"The rangers met the campers at the gate and handed them trail maps.",
+"In the brochure, it says the cave tour lasts two hours."
+],
+"key": 2,
+"why_wrong": [
+"leaves \"he\" unclear, since it could mean Jack or Leo",
+"leaves \"them\" unclear, since it could mean the plates or the trays",
+"uses \"it\" with no noun to refer to; the brochure itself should be the subject"
+],
+"explanation": "In the rangers sentence, \"them\" can only mean the campers, since the rangers are doing the handing. The others leave a pronoun unclear (Jack or Leo; plates or trays) or use \"it\" with nothing to refer to."
+},
+{
+"id": "LV4-G6-18",
+"strand": "PoS",
+"grade": 6,
+"format": "identify",
+"ccss": "L.6.1b",
+"prompt": "What is the job of the bracketed pronoun?",
+"passage": "Max taught [himself] to juggle by watching videos and practicing in the garage.",
+"choices": [
+"It receives the action of the verb \"taught\".",
+"It adds emphasis and could be removed without changing the meaning.",
+"It shows who owns something.",
+"It is the subject of the sentence."
+],
+"key": 0,
+"why_wrong": [
+"mistakes this reflexive pronoun for an intensive one; removing it leaves \"Max taught to juggle\", which does not make sense",
+"thinks every -self word shows ownership",
+"thinks the pronoun is the subject because it refers to Max"
+],
+"explanation": "Max is the one taught, so \"himself\" is the object of \"taught\": a reflexive pronoun. It cannot be removed without breaking the sentence, which shows it is not just adding emphasis. It shows no ownership, and the subject is \"Max\"."
+},
+{
+"id": "LV4-G6-19",
+"strand": "PoS",
+"grade": 6,
+"format": "identify",
+"ccss": "L.6.1a",
+"prompt": "Which pronoun in the sentence is in the objective case?",
+"passage": "We asked whether they could lend us their canoe for the weekend.",
+"choices": [
+"We",
+"they",
+"us",
+"their"
+],
+"key": 2,
+"why_wrong": [
+"picks the subject of the whole sentence",
+"picks the subject of the clause \"they could lend\"",
+"picks a possessive pronoun, which shows ownership"
+],
+"explanation": "\"Us\" receives the action of \"lend\" (lend us a canoe), so it is in the objective case. \"We\" and \"they\" are subjects, and \"their\" is possessive."
+},
+{
+"id": "LV4-G6-20",
+"strand": "PCAS",
+"grade": 6,
+"format": "combine-grammar",
+"ccss": "L.6.3a",
+"prompt": "Which choice best combines the sentences without changing their meaning?",
+"passage": "The robot submarine dove to the bottom of the trench. It collected rock samples there. Its crew watched from a ship above.",
+"choices": [
+"The robot submarine dove to the bottom of the trench and collected rock samples while its crew watched from a ship above.",
+"The robot submarine dove to the bottom of the trench to collect rock samples because its crew watched from a ship above.",
+"While the robot submarine collected rock samples, it dove to the bottom of the trench, and its crew watched from a ship above.",
+"The robot submarine's crew dove to the bottom of the trench and collected rock samples while watching from a ship above."
+],
+"key": 0,
+"why_wrong": [
+"adds a cause that the sentences do not state",
+"makes the collecting happen during the dive instead of at the bottom",
+"makes the crew do the diving, which contradicts their watching from the ship"
+],
+"explanation": "The first choice keeps the order (dive, then collect) and shows the watching as happening at the same time with \"while\". The others invent a cause, change the order, or give the diving to the crew."
+}
+]

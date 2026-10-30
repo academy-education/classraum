@@ -1,0 +1,530 @@
+[
+{
+"id": "LV4-MS5-01",
+"strand": "Spell",
+"grade": 5,
+"format": "find-error",
+"ccss": "L.5.2e",
+"misspelled": [
+"libary"
+],
+"correct_spelling": [
+"library"
+],
+"prompt": "Which sentence has a spelling error?",
+"passage": null,
+"choices": [
+"The surprise party stayed a secret until the very last minute.",
+"Dad sliced the pumpkin pie into eight equal parts for dessert.",
+"Our class walked to the libary to return the books we had borrowed.",
+"Hana's grandmother knitted a warm scarf for her eleventh birthday."
+],
+"key": 2,
+"why_wrong": [
+"thinks \"surprise\" is missing an r after the u",
+"thinks \"pumpkin\" should be spelled the way it is often said, without the p",
+"thinks \"eleventh\" has an extra e"
+],
+"explanation": "\"Libary\" leaves out the first r; the word is spelled \"library\". \"Surprise\", \"pumpkin\" and \"eleventh\" are all spelled correctly."
+},
+{
+"id": "LV4-MS5-02",
+"strand": "Spell",
+"grade": 5,
+"format": "choose-correct",
+"ccss": "L.5.2e",
+"misspelled": [
+"beleive",
+"tommorow",
+"peice"
+],
+"correct_spelling": [
+"believe",
+"tomorrow",
+"piece"
+],
+"prompt": "Which sentence has no spelling errors?",
+"passage": null,
+"choices": [
+"I beleive our team can win the game on Saturday.",
+"The weather report says it will snow tommorow morning.",
+"Ivy wrapped the present in shiny paper and a red ribbon.",
+"Leo saved the last peice of cake for his little sister."
+],
+"key": 2,
+"why_wrong": [
+"reverses the i and e in \"believe\"",
+"doubles the m and uses one r in \"tomorrow\"",
+"reverses the i and e in \"piece\""
+],
+"explanation": "Every word in the sentence about Ivy is spelled correctly. The others misspell \"believe\" (i before e), \"tomorrow\" (one m, two r's) and \"piece\" (i before e)."
+},
+{
+"id": "LV4-MS5-03",
+"strand": "Spell",
+"grade": 5,
+"format": "choose-correct",
+"ccss": "L.5.2e",
+"misspelled": [
+"beutiful",
+"freind",
+"vegtable"
+],
+"correct_spelling": [
+"beautiful",
+"friend",
+"vegetable"
+],
+"prompt": "Which sentence has no spelling errors?",
+"passage": null,
+"choices": [
+"Our neighbor's dog barked at the mail carrier again today.",
+"The sunset over the lake was beutiful last night.",
+"My best freind lives two houses down from mine.",
+"Grandma grows every vegtable we eat in the summer."
+],
+"key": 0,
+"why_wrong": [
+"leaves out the a in \"beautiful\"",
+"reverses the i and e in \"friend\"",
+"leaves out the e in the middle of \"vegetable\", the way it is often said"
+],
+"explanation": "Every word in the sentence about the dog is spelled correctly. The others misspell \"beautiful\", \"friend\" and \"vegetable\"."
+},
+{
+"id": "LV4-MS5-04",
+"strand": "Spell",
+"grade": 5,
+"format": "identify",
+"ccss": "L.5.2e",
+"misspelled": [
+"probaly"
+],
+"correct_spelling": [
+"probably"
+],
+"prompt": "Which word in the sentence is spelled incorrectly?",
+"passage": "We will probaly visit the aquarium during our vacation in August.",
+"choices": [
+"probaly",
+"visit",
+"aquarium",
+"vacation"
+],
+"key": 0,
+"why_wrong": [
+"thinks \"visit\" needs a double s",
+"thinks \"aquarium\" should start with \"aqua-\" plus a different ending",
+"thinks \"vacation\" is spelled with \"-sion\""
+],
+"explanation": "\"Probaly\" leaves out the second b; the word is \"probably\". \"Visit\", \"aquarium\" and \"vacation\" are spelled correctly."
+},
+{
+"id": "LV4-MS6-01",
+"strand": "Spell",
+"grade": 6,
+"format": "find-error",
+"ccss": "L.6.2b",
+"misspelled": [
+"goverment"
+],
+"correct_spelling": [
+"government"
+],
+"prompt": "Which sentence has a spelling error?",
+"passage": null,
+"choices": [
+"Scientists measured the depth of the canyon with a laser.",
+"A strong breeze carried the kite high above the field.",
+"The museum's collection includes ancient coins and pottery.",
+"The class wrote a report about how the local goverment spends money."
+],
+"key": 3,
+"why_wrong": [
+"thinks \"canyon\" is spelled with a double n",
+"thinks \"breeze\" ends in -eaze",
+"thinks \"ancient\" follows the i-before-e rule and is spelled \"anceint\""
+],
+"explanation": "\"Goverment\" leaves out the n before -ment; the word is \"government\", from \"govern\". \"Canyon\", \"breeze\" and \"ancient\" are spelled correctly."
+},
+{
+"id": "LV4-MS6-02",
+"strand": "Spell",
+"grade": 6,
+"format": "find-error",
+"ccss": "L.6.2b",
+"misspelled": [
+"embarass"
+],
+"correct_spelling": [
+"embarrass"
+],
+"prompt": "Which sentence has a spelling error?",
+"passage": null,
+"choices": [
+"The council chose a theme for the spring dance.",
+"Jack did not want to embarass his sister in front of her classmates.",
+"Mia's handwriting is neat and easy to read.",
+"Our science teacher showed us a fossilized shark tooth."
+],
+"key": 1,
+"why_wrong": [
+"thinks \"council\" should be \"counsel\" here",
+"thinks \"handwriting\" should be two words",
+"thinks \"fossilized\" needs a double l"
+],
+"explanation": "\"Embarrass\" has a double r and a double s; \"embarass\" leaves out one r. \"Council\", \"handwriting\" and \"fossilized\" are spelled correctly."
+},
+{
+"id": "LV4-MS6-03",
+"strand": "Spell",
+"grade": 6,
+"format": "choose-correct",
+"ccss": "L.6.2b",
+"misspelled": [
+"enviroment",
+"begining",
+"buisness"
+],
+"correct_spelling": [
+"environment",
+"beginning",
+"business"
+],
+"prompt": "Which sentence has no spelling errors?",
+"passage": null,
+"choices": [
+"Recycling helps protect the enviroment for future generations.",
+"The begining of the movie was slow, but the ending was exciting.",
+"The orchestra rehearsed in the auditorium after school.",
+"Omar's uncle runs a small buisness that repairs bicycles."
+],
+"key": 2,
+"why_wrong": [
+"leaves out the n before -ment in \"environment\"",
+"does not double the n before -ing in \"beginning\"",
+"switches the u and i in \"business\""
+],
+"explanation": "Every word in the orchestra sentence is spelled correctly. The others misspell \"environment\", \"beginning\" and \"business\"."
+},
+{
+"id": "LV4-MS6-04",
+"strand": "Spell",
+"grade": 6,
+"format": "identify",
+"ccss": "L.6.2b",
+"misspelled": [
+"arguement"
+],
+"correct_spelling": [
+"argument"
+],
+"prompt": "Which word in the sentence is spelled incorrectly?",
+"passage": "The twins had a long arguement about whose turn it was to choose the Saturday afternoon movie.",
+"choices": [
+"afternoon",
+"arguement",
+"whose",
+"choose"
+],
+"key": 1,
+"why_wrong": [
+"thinks \"afternoon\" should be two words",
+"confuses \"whose\" with \"who's\"",
+"confuses \"choose\" with \"chose\""
+],
+"explanation": "\"Argue\" drops its final e before -ment, so the word is \"argument\". \"Afternoon\", \"whose\" and \"choose\" are spelled correctly for their meanings in the sentence."
+},
+{
+"id": "LV4-MS6-05",
+"strand": "Spell",
+"grade": 6,
+"format": "identify",
+"ccss": "L.6.2b",
+"misspelled": [
+"temprature"
+],
+"correct_spelling": [
+"temperature"
+],
+"prompt": "Which word in the sentence is spelled incorrectly?",
+"passage": "The nurse checked the patient's temprature twice with a digital thermometer.",
+"choices": [
+"nurse",
+"patient's",
+"temprature",
+"thermometer"
+],
+"key": 2,
+"why_wrong": [
+"thinks \"nurse\" is spelled with -erse",
+"thinks the apostrophe in \"patient's\" is a spelling error",
+"thinks \"thermometer\" is spelled with -meter as \"thermomiter\""
+],
+"explanation": "\"Temprature\" leaves out the e after the p, the way the word is often said; it is spelled \"temperature\". The other words are spelled correctly."
+},
+{
+"id": "LV4-MS7-01",
+"strand": "Spell",
+"grade": 7,
+"format": "find-error",
+"ccss": "L.7.2b",
+"misspelled": [
+"maintainance"
+],
+"correct_spelling": [
+"maintenance"
+],
+"prompt": "Which sentence has a spelling error?",
+"passage": null,
+"choices": [
+"The guide explained the difference between a moth and a butterfly.",
+"The building needs regular maintainance to keep the elevators running.",
+"A sudden thunderstorm forced the referee to stop the game.",
+"The diner's menu changes with each season."
+],
+"key": 1,
+"why_wrong": [
+"thinks \"difference\" ends in -ance",
+"thinks \"referee\" has a double r",
+"thinks \"season\" is spelled \"seeson\""
+],
+"explanation": "\"Maintenance\" does not keep the spelling of \"maintain\"; it is spelled m-a-i-n-t-e-n-a-n-c-e. \"Difference\", \"referee\" and \"season\" are spelled correctly."
+},
+{
+"id": "LV4-MS7-02",
+"strand": "Spell",
+"grade": 7,
+"format": "find-error",
+"ccss": "L.7.2b",
+"misspelled": [
+"tounge"
+],
+"correct_spelling": [
+"tongue"
+],
+"prompt": "Which sentence has a spelling error?",
+"passage": null,
+"choices": [
+"Lily's grandfather is an expert at repairing antique clocks.",
+"We waited in line for an hour to see the famous painting.",
+"The mysterious package arrived without a return address.",
+"The giraffe used its long tounge to pull leaves from the branch."
+],
+"key": 3,
+"why_wrong": [
+"thinks \"antique\" ends in -ick",
+"thinks \"famous\" is spelled \"fameous\"",
+"thinks \"mysterious\" is spelled with an i after the m"
+],
+"explanation": "\"Tongue\" is spelled t-o-n-g-u-e; \"tounge\" switches the letters. \"Antique\", \"famous\" and \"mysterious\" are spelled correctly."
+},
+{
+"id": "LV4-MS7-03",
+"strand": "Spell",
+"grade": 7,
+"format": "choose-correct",
+"ccss": "L.7.2b",
+"misspelled": [
+"ocassion",
+"facinate",
+"akward"
+],
+"correct_spelling": [
+"occasion",
+"fascinate",
+"awkward"
+],
+"prompt": "Which sentence has no spelling errors?",
+"passage": null,
+"choices": [
+"Grandma saves her silver bracelet for a special ocassion.",
+"The scientist kept a detailed journal of every experiment.",
+"Volcanoes facinate my younger brother more than anything else.",
+"There was an akward silence after Ben forgot his lines."
+],
+"key": 1,
+"why_wrong": [
+"doubles the s instead of the c in \"occasion\"",
+"leaves out the s before the c in \"fascinate\"",
+"leaves out the w in \"awkward\""
+],
+"explanation": "Every word in the sentence about the scientist is spelled correctly. The others misspell \"occasion\", \"fascinate\" and \"awkward\"."
+},
+{
+"id": "LV4-MS7-04",
+"strand": "Spell",
+"grade": 7,
+"format": "choose-correct",
+"ccss": "L.7.2b",
+"misspelled": [
+"lieutenent",
+"dissapoint",
+"exellent"
+],
+"correct_spelling": [
+"lieutenant",
+"disappoint",
+"excellent"
+],
+"prompt": "Which sentence has no spelling errors?",
+"passage": null,
+"choices": [
+"The lieutenent led the soldiers across the frozen river.",
+"Missing the bus would dissapoint the whole team.",
+"The pharmacist explained how often to take the medicine.",
+"Hana gave an exellent speech about saving the wetlands."
+],
+"key": 2,
+"why_wrong": [
+"uses -ent instead of -ant at the end of \"lieutenant\"",
+"doubles the s instead of the p in \"disappoint\"",
+"leaves out the c in \"excellent\""
+],
+"explanation": "Every word in the pharmacist sentence is spelled correctly. The others misspell \"lieutenant\", \"disappoint\" and \"excellent\"."
+},
+{
+"id": "LV4-MS7-05",
+"strand": "Spell",
+"grade": 7,
+"format": "identify",
+"ccss": "L.7.2b",
+"misspelled": [
+"acheive"
+],
+"correct_spelling": [
+"achieve"
+],
+"prompt": "Which word in the sentence is spelled incorrectly?",
+"passage": "With enough practice, Owen hopes to acheive his goal of running a mile in six minutes.",
+"choices": [
+"practice",
+"acheive",
+"minutes",
+"running"
+],
+"key": 1,
+"why_wrong": [
+"thinks \"practice\" is spelled with -ise",
+"thinks \"minutes\" is spelled \"minuets\"",
+"thinks \"running\" has a single n"
+],
+"explanation": "\"Achieve\" follows i before e after the ch: a-c-h-i-e-v-e. \"Practice\", \"minutes\" and \"running\" are spelled correctly."
+},
+{
+"id": "LV4-MS8-01",
+"strand": "Spell",
+"grade": 8,
+"format": "find-error",
+"ccss": "L.8.2c",
+"misspelled": [
+"flourescent"
+],
+"correct_spelling": [
+"fluorescent"
+],
+"prompt": "Which sentence has a spelling error?",
+"passage": null,
+"choices": [
+"The archaeologists uncovered a well-preserved clay jar.",
+"The flourescent lights in the hallway buzzed all afternoon.",
+"The guest speaker described her career as a marine biologist.",
+"Our town's new recycling program reduced litter in the parks."
+],
+"key": 1,
+"why_wrong": [
+"thinks \"archaeologists\" has an extra a",
+"thinks \"career\" is spelled \"carreer\"",
+"thinks \"recycling\" is spelled \"recyling\""
+],
+"explanation": "\"Fluorescent\" begins with f-l-u-o, not f-l-o-u, which is how \"flour\" is spelled. \"Archaeologists\", \"career\" and \"recycling\" are spelled correctly."
+},
+{
+"id": "LV4-MS8-02",
+"strand": "Spell",
+"grade": 8,
+"format": "choose-correct",
+"ccss": "L.8.2c",
+"misspelled": [
+"concientious",
+"perseverence",
+"sucess"
+],
+"correct_spelling": [
+"conscientious",
+"perseverance",
+"success"
+],
+"prompt": "Which sentence has no spelling errors?",
+"passage": null,
+"choices": [
+"Ruby is a concientious student who always checks her work twice.",
+"The chef's signature dish combines ginger, garlic and lime.",
+"The climbers showed great perseverence during the storm.",
+"The bake sale was a huge sucess thanks to the parent volunteers."
+],
+"key": 1,
+"why_wrong": [
+"leaves out the s before the c in \"conscientious\"",
+"uses -ence instead of -ance at the end of \"perseverance\"",
+"uses one c instead of two in \"success\""
+],
+"explanation": "Every word in the sentence about the chef is spelled correctly. The others misspell \"conscientious\", \"perseverance\" and \"success\"."
+},
+{
+"id": "LV4-MS8-03",
+"strand": "Spell",
+"grade": 8,
+"format": "identify",
+"ccss": "L.8.2c",
+"misspelled": [
+"heirarchy"
+],
+"correct_spelling": [
+"hierarchy"
+],
+"prompt": "Which word in the sentence is spelled incorrectly?",
+"passage": "The article explained the heirarchy of a wolf pack, from the experienced leaders to the youngest pups.",
+"choices": [
+"article",
+"heirarchy",
+"experienced",
+"youngest"
+],
+"key": 1,
+"why_wrong": [
+"thinks \"article\" ends in -cal",
+"thinks \"experienced\" is spelled with -ance",
+"thinks \"youngest\" drops the g"
+],
+"explanation": "\"Hierarchy\" begins h-i-e, not h-e-i as in \"heir\". \"Article\", \"experienced\" and \"youngest\" are spelled correctly."
+},
+{
+"id": "LV4-MS8-04",
+"strand": "Spell",
+"grade": 8,
+"format": "identify",
+"ccss": "L.8.2c",
+"misspelled": [
+"exhilerate"
+],
+"correct_spelling": [
+"exhilarate"
+],
+"prompt": "Which word in the sentence is spelled incorrectly?",
+"passage": "The steep drops of the new roller coaster will exhilerate even the most adventurous riders.",
+"choices": [
+"steep",
+"exhilerate",
+"adventurous",
+"riders"
+],
+"key": 1,
+"why_wrong": [
+"thinks \"steep\" is spelled \"steap\"",
+"thinks \"adventurous\" keeps the e of \"adventure\"",
+"thinks \"riders\" has a double d"
+],
+"explanation": "\"Exhilarate\" has an a after the l: e-x-h-i-l-a-r-a-t-e. \"Steep\", \"adventurous\" and \"riders\" are spelled correctly."
+}
+]

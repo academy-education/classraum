@@ -1,0 +1,794 @@
+[
+{
+"id": "LV4-WS-01",
+"strand": "Style",
+"grade": 5,
+"format": "precise-word",
+"ccss": "W.5.2d",
+"prompt": "Which word would be the most precise replacement for the bracketed word?",
+"passage": "The library was so quiet that Mia [said] her question to the librarian so that no one else would hear.",
+"choices": [
+"shouted",
+"whispered",
+"announced",
+"repeated"
+],
+"key": 1,
+"why_wrong": [
+"chooses a loud word, though Mia did not want anyone else to hear",
+"chooses a word for telling a whole group, the opposite of keeping it private",
+"chooses a word for saying something again, which the sentence never suggests"
+],
+"explanation": "Mia wanted only the librarian to hear, so she spoke very softly: \"whispered\". \"Shouted\" and \"announced\" mean speaking so that many people hear, and \"repeated\" means saying it again."
+},
+{
+"id": "LV4-WS-02",
+"strand": "Style",
+"grade": 5,
+"format": "precise-word",
+"ccss": "W.5.2d",
+"prompt": "Which word would be the most precise replacement for the bracketed word?",
+"passage": "After three hours of hiking in the heat, the hungry campers [ate] every sandwich in the cooler within minutes.",
+"choices": [
+"nibbled",
+"tasted",
+"devoured",
+"packed"
+],
+"key": 2,
+"why_wrong": [
+"chooses a word for small, slow bites, which does not fit finishing every sandwich in minutes",
+"chooses a word for trying a little, not finishing everything",
+"chooses a word that does not mean eating at all"
+],
+"explanation": "Hungry campers who finish every sandwich in minutes are eating quickly and completely: \"devoured\". \"Nibbled\" and \"tasted\" mean eating only a little, and \"packed\" does not mean eating."
+},
+{
+"id": "LV4-WS-03",
+"strand": "Style",
+"grade": 5,
+"format": "precise-word",
+"ccss": "W.5.2d",
+"prompt": "Which word would be the most precise replacement for the bracketed word?",
+"passage": "Water [came] slowly from the cracked pipe all night, leaving a small puddle under the sink by morning.",
+"choices": [
+"gushed",
+"sprayed",
+"poured",
+"trickled"
+],
+"key": 3,
+"why_wrong": [
+"chooses a word for a sudden rush of water, which would leave more than a small puddle",
+"chooses a word for water shooting out in drops, not coming slowly",
+"chooses a word for a steady heavy flow, not a slow one"
+],
+"explanation": "\"Slowly\" and \"a small puddle\" describe a thin, slow flow: \"trickled\". \"Gushed\", \"sprayed\" and \"poured\" all describe much faster or stronger flows."
+},
+{
+"id": "LV4-WS-04",
+"strand": "Style",
+"grade": 6,
+"format": "precise-word",
+"ccss": "W.6.2d",
+"prompt": "Which word would be the most precise replacement for the bracketed word?",
+"passage": "Grandpa [walked] slowly along the beach, stopping now and then to pick up a shell.",
+"choices": [
+"strolled",
+"marched",
+"sprinted",
+"stomped"
+],
+"key": 0,
+"why_wrong": [
+"chooses a word for walking with firm, regular steps, not a slow, relaxed walk",
+"chooses a word for running fast, the opposite of slowly",
+"chooses a word for heavy, angry steps, which nothing in the sentence suggests"
+],
+"explanation": "Walking slowly and stopping for shells describes a relaxed walk: \"strolled\". \"Marched\" and \"stomped\" describe firm or angry steps, and \"sprinted\" means running fast."
+},
+{
+"id": "LV4-WS-05",
+"strand": "Style",
+"grade": 6,
+"format": "precise-word",
+"ccss": "W.6.2d",
+"prompt": "Which word would be the most precise replacement for the bracketed word?",
+"passage": "Each time the glue was too thick, the scientist [changed] the recipe by adding a little more water until it was just right.",
+"choices": [
+"ruined",
+"adjusted",
+"replaced",
+"abandoned"
+],
+"key": 1,
+"why_wrong": [
+"chooses a word that means spoiling the recipe, though the changes made it better",
+"chooses a word for swapping in a new recipe, not making small changes to the same one",
+"chooses a word for giving up, though the scientist kept going until it was right"
+],
+"explanation": "Adding a little water at a time to reach the right thickness means making small changes: \"adjusted\". \"Ruined\" means spoiled, \"replaced\" means swapped for another, and \"abandoned\" means gave up."
+},
+{
+"id": "LV4-WS-06",
+"strand": "Style",
+"grade": 7,
+"format": "precise-word",
+"ccss": "W.7.2d",
+"prompt": "Which word would be the most precise replacement for the bracketed word?",
+"passage": "The crowd [liked] the final song so much that everyone stood and clapped for five minutes.",
+"choices": [
+"tolerated",
+"noticed",
+"adored",
+"remembered"
+],
+"key": 2,
+"why_wrong": [
+"chooses a word for putting up with something, the opposite of a five-minute standing ovation",
+"chooses a word that only means being aware of the song",
+"chooses a word about memory, not about how the crowd felt at the moment"
+],
+"explanation": "Five minutes of standing applause shows very strong enjoyment: \"adored\". \"Tolerated\" means putting up with, \"noticed\" means being aware, and \"remembered\" is about memory."
+},
+{
+"id": "LV4-WS-07",
+"strand": "Style",
+"grade": 7,
+"format": "precise-word",
+"ccss": "W.7.2d",
+"prompt": "Which word would be the most precise replacement for the bracketed word?",
+"passage": "Ms. Reyes's comments on my essay were [nice], pointing out one strong paragraph and gently suggesting two changes.",
+"choices": [
+"glowing",
+"harsh",
+"encouraging",
+"flattering"
+],
+"key": 2,
+"why_wrong": [
+"chooses a word for very high praise, which overstates comments that also suggested changes",
+"chooses a word for unkind criticism, though the suggestions were gentle",
+"chooses a word for praise that is not sincere, which nothing in the sentence suggests"
+],
+"explanation": "Comments that praise one paragraph and gently suggest changes are supportive but balanced: \"encouraging\". \"Glowing\" is all praise, \"harsh\" is unkind, and \"flattering\" suggests insincere praise."
+},
+{
+"id": "LV4-WS-08",
+"strand": "Style",
+"grade": 7,
+"format": "precise-word",
+"ccss": "W.7.2d",
+"prompt": "Which word would be the most precise replacement for the bracketed word?",
+"passage": "The doctor said the medicine would [help] the swelling in Max's ankle within a day or two.",
+"choices": [
+"increase",
+"examine",
+"cover",
+"reduce"
+],
+"key": 3,
+"why_wrong": [
+"chooses a word that means making the swelling worse",
+"chooses a word for looking at something, which medicine cannot do",
+"chooses a word for hiding the swelling, not treating it"
+],
+"explanation": "Medicine that helps swelling makes it go down: \"reduce\". \"Increase\" is the opposite, \"examine\" is what the doctor does, and \"cover\" would only hide it."
+},
+{
+"id": "LV4-WS-09",
+"strand": "Style",
+"grade": 8,
+"format": "precise-word",
+"ccss": "W.8.2d",
+"prompt": "Which word would be the most precise replacement for the bracketed word?",
+"passage": "The long drought had [hurt] the corn so badly that most of the stalks were brown and brittle by July.",
+"choices": [
+"bothered",
+"devastated",
+"disturbed",
+"affected"
+],
+"key": 1,
+"why_wrong": [
+"chooses a word for mild annoyance, far too weak for dead stalks",
+"chooses a word for moving or upsetting something slightly",
+"chooses a word that only says there was some effect, not how severe it was"
+],
+"explanation": "Most stalks brown and brittle means the crop was nearly destroyed: \"devastated\". \"Bothered\" and \"disturbed\" are too weak, and \"affected\" does not show how serious the damage was."
+},
+{
+"id": "LV4-WS-10",
+"strand": "Style",
+"grade": 8,
+"format": "precise-word",
+"ccss": "W.8.2d",
+"prompt": "Which word would be the most precise replacement for the bracketed word?",
+"passage": "The museum's new exhibit [shows] the inventor's notebooks next to the machines she built from them.",
+"choices": [
+"exposes",
+"displays",
+"reveals",
+"conceals"
+],
+"key": 1,
+"why_wrong": [
+"chooses a word that suggests uncovering something shameful or harmful",
+"chooses a word that suggests uncovering a secret, though the notebooks are simply set out",
+"chooses a word that means hiding, the opposite of showing"
+],
+"explanation": "A museum sets objects out for visitors to see: \"displays\". \"Exposes\" and \"reveals\" suggest uncovering something hidden or secret, and \"conceals\" means hiding."
+},
+{
+"id": "LV4-WS-11",
+"strand": "Style",
+"grade": 5,
+"format": "combine",
+"ccss": "L.5.3a",
+"prompt": "Which choice best combines the sentences without changing their meaning?",
+"passage": "Mia practiced her piano piece every day for a month. She played it perfectly at the recital.",
+"choices": [
+"Mia practiced her piano piece every day for a month, but she played it perfectly at the recital.",
+"After practicing her piano piece every day for a month, Mia played it perfectly at the recital.",
+"Mia practiced her piano piece every day for a month because she played it perfectly at the recital.",
+"Mia played her piano piece perfectly at the recital, and then she practiced it every day for a month."
+],
+"key": 1,
+"why_wrong": [
+"keeps every fact but adds \"but\", as if playing well after practice were surprising",
+"keeps every fact but makes the recital the cause of the practice",
+"keeps every fact but puts the practice after the recital"
+],
+"explanation": "The practice came first and led to the perfect performance, which \"After practicing\" shows. The other choices keep the same facts but use a contrast, reverse cause and effect, or reverse the order."
+},
+{
+"id": "LV4-WS-12",
+"strand": "Style",
+"grade": 5,
+"format": "combine",
+"ccss": "L.5.3a",
+"prompt": "Which choice best combines the sentences without changing their meaning?",
+"passage": "The puppy was tired from playing fetch. It fell asleep on the kitchen floor.",
+"choices": [
+"Tired from playing fetch on the kitchen floor, the puppy fell asleep.",
+"The puppy fell asleep on the kitchen floor, tired from playing fetch.",
+"The puppy was tired from playing fetch, or it fell asleep on the kitchen floor.",
+"Although the puppy was tired from playing fetch, it fell asleep on the kitchen floor."
+],
+"key": 1,
+"why_wrong": [
+"moves \"on the kitchen floor\" so it tells where the puppy played, not where it slept",
+"offers the two facts as choices with \"or\", though both happened",
+"adds a contrast, though being tired is a reason to fall asleep"
+],
+"explanation": "The puppy fell asleep on the floor because it was tired, and the phrase \"tired from playing fetch\" keeps that meaning. The others change where the puppy played, offer a choice, or add a contrast."
+},
+{
+"id": "LV4-WS-13",
+"strand": "Style",
+"grade": 6,
+"format": "combine",
+"ccss": "L.6.3a",
+"prompt": "Which choice best combines the sentences without changing their meaning?",
+"passage": "The museum opened a new space exhibit. The exhibit includes a real moon rock. Visitors can touch it.",
+"choices": [
+"Visitors can touch the museum's new space exhibit, which includes a real moon rock from an early mission.",
+"The museum opened a new space exhibit, but it includes a real moon rock that visitors can touch.",
+"The museum opened a new space exhibit that includes a real moon rock visitors can touch.",
+"Because visitors can touch a real moon rock, the museum opened a new space exhibit."
+],
+"key": 2,
+"why_wrong": [
+"says visitors can touch the whole exhibit rather than the moon rock",
+"adds \"but\", though a moon rock is not surprising in a space exhibit",
+"makes touching the rock the reason the exhibit opened"
+],
+"explanation": "The rock is part of the exhibit, and visitors can touch the rock. The \"that\" clause keeps both facts in place. The others change what can be touched, add a contrast, or invent a cause."
+},
+{
+"id": "LV4-WS-14",
+"strand": "Style",
+"grade": 6,
+"format": "combine",
+"ccss": "L.6.3a",
+"prompt": "Which choice best combines the sentences without changing their meaning?",
+"passage": "Diego missed the bus. He walked to school in the rain. He still arrived before the first bell.",
+"choices": [
+"Diego missed the bus because he walked to school in the rain, and he arrived before the first bell.",
+"When Diego arrived before the first bell, he missed the bus and walked to school in the rain.",
+"Although Diego missed the bus and walked to school in the rain, he arrived before the first bell.",
+"Diego missed the bus, walked to school in the rain, and arrived after the first bell."
+],
+"key": 2,
+"why_wrong": [
+"makes the walk the cause of missing the bus, reversing the order of events",
+"puts the arrival first, as if he missed the bus after reaching school",
+"changes \"before the first bell\" to \"after\""
+],
+"explanation": "\"Still\" shows that arriving on time was surprising after missing the bus and walking, so \"Although\" keeps that meaning. The others reverse the cause, scramble the order, or change when he arrived."
+},
+{
+"id": "LV4-WS-15",
+"strand": "Style",
+"grade": 7,
+"format": "combine",
+"ccss": "W.7.5",
+"prompt": "Which choice best combines the sentences without changing their meaning?",
+"passage": "The bridge was built in 1932. It was painted bright orange. The color helps ships see it in fog.",
+"choices": [
+"The bridge was built in 1932 because its bright orange paint helps ships see it in fog.",
+"Built in 1932 to help ships see in fog, the bridge was painted bright orange.",
+"The bridge was painted bright orange in 1932, although the bright color helps ships see it in fog.",
+"The bridge, built in 1932, was painted bright orange, a color that helps ships see it in fog."
+],
+"key": 3,
+"why_wrong": [
+"makes the paint the reason the bridge was built",
+"says the bridge itself was built to help ships see, which the sentences do not say",
+"ties the date to the painting and adds a contrast that makes no sense"
+],
+"explanation": "The phrase \"built in 1932\" and the phrase about the color keep each fact attached to the right thing. The others invent a reason for building, change the bridge's purpose, or add a contrast."
+},
+{
+"id": "LV4-WS-16",
+"strand": "Style",
+"grade": 7,
+"format": "combine",
+"ccss": "W.7.5",
+"prompt": "Which choice best combines the sentences without changing their meaning?",
+"passage": "Hana studied the trail map carefully. She still took a wrong turn at the fork in the trail.",
+"choices": [
+"Hana studied the trail map carefully, so she took a wrong turn at the fork in the trail.",
+"Even though Hana had studied the trail map carefully, she took a wrong turn at the fork.",
+"Hana studied the trail map carefully at the fork in the trail and still took a wrong turn.",
+"Hana took a wrong turn at the fork in the trail until she studied the trail map carefully."
+],
+"key": 1,
+"why_wrong": [
+"makes careful study the cause of the wrong turn",
+"moves the studying to the fork, which the sentences do not say",
+"uses \"until\", which makes no sense with a single wrong turn"
+],
+"explanation": "\"Still\" shows that the wrong turn happened in spite of her careful study, which \"Even though\" keeps. The others make the study the cause, move it to a new place, or use a time word that does not fit."
+},
+{
+"id": "LV4-WS-17",
+"strand": "Style",
+"grade": 7,
+"format": "combine",
+"ccss": "W.7.5",
+"prompt": "Which choice best combines the sentences without changing their meaning?",
+"passage": "The class raised four hundred dollars. The money came from a bake sale. It will pay for new library books.",
+"choices": [
+"The class raised four hundred dollars for a bake sale that will pay for new library books.",
+"The four hundred dollars the class raised at a bake sale will pay for new library books.",
+"The class raised four hundred dollars by selling new library books at a bake sale.",
+"The class raised four hundred dollars at a bake sale, and it paid for new library books."
+],
+"key": 1,
+"why_wrong": [
+"makes the money pay for the bake sale instead of coming from it",
+"says the class sold library books, which the sentences do not say",
+"changes \"will pay\" to \"paid\", as if the books were already bought"
+],
+"explanation": "The money came from the bake sale and will buy books later. The correct choice keeps both facts and the future time. The others reverse where the money went, change what was sold, or change the time."
+},
+{
+"id": "LV4-WS-18",
+"strand": "Style",
+"grade": 8,
+"format": "combine",
+"ccss": "W.8.5",
+"prompt": "Which choice best combines the sentences without changing their meaning?",
+"passage": "Volcanic ash fell on the village for three days. Farmers covered their wells with boards. They wanted to keep the water clean.",
+"choices": [
+"Volcanic ash fell on the village for three days because farmers covered their wells with boards to keep the water clean.",
+"Farmers covered their wells with boards, which kept volcanic ash falling on the village for three days.",
+"Volcanic ash fell on the village for three days after farmers covered their wells with boards to keep the water clean.",
+"To keep the water clean, farmers covered their wells with boards while volcanic ash fell on the village for three days."
+],
+"key": 3,
+"why_wrong": [
+"makes the farmers' boards the cause of the ashfall",
+"says the boards kept the ash falling",
+"places the ashfall after the wells were covered, though the covering was a response to it"
+],
+"explanation": "The farmers covered their wells to protect the water during the ashfall. The correct choice states the purpose and uses \"while\" for the timing. The others invent a cause or put the events in the wrong order."
+},
+{
+"id": "LV4-WS-19",
+"strand": "Style",
+"grade": 8,
+"format": "combine",
+"ccss": "W.8.5",
+"prompt": "Which choice best combines the sentences without changing their meaning?",
+"passage": "The author wrote her first novel at age sixty. She had worked as a nurse for most of her life. The novel became a bestseller.",
+"choices": [
+"The author wrote her first novel, a bestseller about working as a nurse, at age sixty.",
+"The author, who had worked as a nurse for most of her life, wrote her first novel at age sixty, and it became a bestseller.",
+"After the novel became a bestseller, the author worked as a nurse for most of her life.",
+"Although she wrote her first novel at age sixty, the author had worked as a nurse for most of her life, and it became a bestseller."
+],
+"key": 1,
+"why_wrong": [
+"says the novel is about nursing, which the sentences do not say",
+"puts the nursing career after the bestseller, reversing the order",
+"adds a contrast that makes no sense and leaves \"it\" unclear"
+],
+"explanation": "The \"who\" clause adds her career, and \"and it became a bestseller\" adds the result, so every fact stays true. The others invent the book's subject, reverse the order, or add an illogical contrast."
+},
+{
+"id": "LV4-WS-20",
+"strand": "Style",
+"grade": 8,
+"format": "combine",
+"ccss": "W.8.5",
+"prompt": "Which choice best combines the sentences without changing their meaning?",
+"passage": "The city planted rows of trees along Elm Street. Summer temperatures on the street dropped. Shoppers began to linger there.",
+"choices": [
+"Shoppers began to linger on Elm Street, so the city planted rows of trees and summer temperatures dropped.",
+"After the city planted rows of trees along Elm Street, summer temperatures there dropped and shoppers began to linger.",
+"The city planted rows of trees along Elm Street where shoppers lingered, and summer temperatures dropped.",
+"Summer temperatures on Elm Street dropped before the city planted rows of trees, and shoppers began to linger."
+],
+"key": 1,
+"why_wrong": [
+"makes the shoppers the reason the trees were planted",
+"says shoppers were already lingering before the trees, but they began to linger afterward",
+"puts the cooler temperatures before the trees were planted"
+],
+"explanation": "The sentences describe a sequence: trees were planted, the street cooled, and shoppers began to linger. \"After\" keeps that order. The others reverse the cause or change when things happened."
+},
+{
+"id": "LV4-WS-21",
+"strand": "Style",
+"grade": 5,
+"format": "audience-purpose",
+"ccss": "W.5.4",
+"prompt": "The writer wants to replace sentence 3 with a sentence that gives the park director a stronger reason to agree. Which choice does this best?",
+"passage": "(1) Dear Ms. Chen, (2) I am writing to ask whether the city could add a water fountain to the Elm Street playground. (3) It gets hot there. (4) A fountain near the swings would be used every day. (5) Thank you for reading my letter.",
+"choices": [
+"Our family visits the playground almost every weekend in the summer, usually right after lunch on Saturdays.",
+"The playground's slide is the tallest one in our whole town.",
+"On summer afternoons, children at the playground must walk ten minutes to reach any drinking water.",
+"Water fountains come in many shapes and sizes, and some newer models even have low bowls for thirsty dogs."
+],
+"key": 2,
+"why_wrong": [
+"tells about the writer's family instead of a need the director can act on",
+"gives a fact about the slide that has nothing to do with water",
+"gives general facts about fountains, not a reason this playground needs one"
+],
+"explanation": "A park director is persuaded by a real need at the playground. Children walking ten minutes for water on hot afternoons shows that need. The others describe the writer's family, the slide, or fountains in general."
+},
+{
+"id": "LV4-WS-22",
+"strand": "Style",
+"grade": 5,
+"format": "audience-purpose",
+"ccss": "W.5.4",
+"prompt": "The writer is explaining how to plant a seed to a class of kindergarten students. Which revision of sentence 2 best suits this purpose?",
+"passage": "(1) First, fill a paper cup with soil. (2) Place the seed at an appropriate depth in the growing medium. (3) Then sprinkle a little water on top. (4) Put the cup by a sunny window and wait.",
+"choices": [
+"Insert the seed into the growing medium at a depth of approximately one centimeter.",
+"Push the seed into the soil about as deep as the tip of your finger.",
+"Seeds need water, light and air in order to sprout and grow.",
+"Plant the seed correctly so that it will be able to grow."
+],
+"key": 1,
+"why_wrong": [
+"uses technical words like \"medium\" and \"centimeter\" that a kindergartner may not know",
+"gives a fact about seeds instead of the step to do",
+"still does not tell the child how deep to plant the seed"
+],
+"explanation": "Young children need a clear step in familiar words, and \"as deep as the tip of your finger\" gives a depth they can picture. The others are too technical, skip the step, or stay vague."
+},
+{
+"id": "LV4-WS-23",
+"strand": "Style",
+"grade": 6,
+"format": "audience-purpose",
+"ccss": "W.6.4",
+"prompt": "The writer wants to replace sentence 4 with a sentence that would better persuade the principal. Which choice does this best?",
+"passage": "(1) Dear Principal Ward, (2) Our science club would like to plant a garden in the courtyard. (3) Parents have offered to donate soil and seeds. (4) Gardens are fun. (5) We hope you will let us begin this spring.",
+"choices": [
+"Many students would rather spend time outside than sit in a classroom.",
+"Gardening became popular in our town after the farmers' market opened downtown three summers ago.",
+"Some vegetables, such as radishes, can grow from seed in just a few weeks.",
+"A garden would give science classes a place to study soil, insects and plant growth."
+],
+"key": 3,
+"why_wrong": [
+"gives a reason that suggests students want to avoid class, which would not persuade a principal",
+"gives town history that has nothing to do with the school",
+"gives a fact about radishes without connecting it to a reason to say yes"
+],
+"explanation": "A principal cares about learning, so a garden that supports science classes is the strongest reason. The others suggest avoiding class, describe the town, or give an unconnected fact."
+},
+{
+"id": "LV4-WS-24",
+"strand": "Style",
+"grade": 6,
+"format": "audience-purpose",
+"ccss": "W.6.4",
+"prompt": "The writer wants sentence 2 to make a polite request to an adult neighbor. Which revision of sentence 2 does this best?",
+"passage": "(1) Dear Mr. Reed, (2) Give us your ladder. (3) We need to get our cat down from the roof of the shed. (4) We will return it the same day. (5) Thank you, Leo and Ruby",
+"choices": [
+"We need your ladder, and we will come over to get it on Saturday.",
+"Would you be willing to lend us your tall ladder for an hour on Saturday morning?",
+"Ladders can be dangerous if they are not set up on flat, solid ground.",
+"Our own ladder broke last month when it was left out in the rain."
+],
+"key": 1,
+"why_wrong": [
+"still tells the neighbor what will happen instead of asking",
+"gives a safety fact instead of making the request",
+"explains why they have no ladder but never asks for one"
+],
+"explanation": "A polite request to an adult asks rather than tells, and it says how long the ladder is needed. The other choices still demand, give an unrelated fact, or never ask."
+},
+{
+"id": "LV4-WS-25",
+"strand": "Style",
+"grade": 7,
+"format": "audience-purpose",
+"ccss": "W.7.4",
+"prompt": "The writer wants to replace sentence 3 with a sentence that gives the city council stronger evidence. Which choice does this best?",
+"passage": "(1) To the members of the City Council: (2) Our school asks the council to paint a crosswalk at the corner of Oak Avenue and Second Street. (3) Lots of kids cross there. (4) A crosswalk would make drivers slow down and watch for walkers. (5) Thank you for considering our request.",
+"choices": [
+"Many students at our school enjoy walking to class with their friends in the morning, especially when the weather is warm.",
+"Each morning, more than one hundred students cross at that corner, where cars often go faster than the speed limit.",
+"Oak Avenue was named after the oak trees that once lined both sides of the street.",
+"A crosswalk is a marked part of a road where people on foot are allowed to cross."
+],
+"key": 1,
+"why_wrong": [
+"describes students' enjoyment, not the danger at the corner",
+"gives the history of the street's name, which does not support the request",
+"defines a crosswalk, which the council already knows"
+],
+"explanation": "A council deciding on safety needs specific evidence of danger. A count of students and the speeding cars give that evidence. The others describe enjoyment, history, or a definition."
+},
+{
+"id": "LV4-WS-26",
+"strand": "Style",
+"grade": 7,
+"format": "audience-purpose",
+"ccss": "W.7.4",
+"prompt": "The writer wants sentence 2 to tell new members exactly what to bring. Which revision of sentence 2 does this best?",
+"passage": "(1) Welcome to the Sketch Club! (2) Bring the stuff you need. (3) We meet in Room 12 every Thursday after school. (4) Each week, a member chooses something for everyone to draw.",
+"choices": [
+"Being prepared is an important part of becoming a good artist.",
+"The club has met in Room 12 since it was started three years ago.",
+"Please bring a sketchbook, two pencils and an eraser to every meeting.",
+"Members should bring whatever art materials they consider appropriate."
+],
+"key": 2,
+"why_wrong": [
+"gives advice about being prepared without naming any supplies",
+"gives club history instead of a list of supplies",
+"still leaves new members guessing what to bring"
+],
+"explanation": "New members need to know exactly what to bring, and only one choice names the items. The others give general advice, history, or a vague instruction."
+},
+{
+"id": "LV4-WS-27",
+"strand": "Style",
+"grade": 8,
+"format": "audience-purpose",
+"ccss": "W.8.4",
+"prompt": "The writer wants to replace sentence 4 with evidence that would persuade readers who doubt the library is worth its cost. Which choice does this best?",
+"passage": "(1) To the Editor: (2) The city plans to cut the public library's budget by a third next year. (3) That would mean closing on weekends and ending most programs. (4) The library is important to me. (5) I urge readers to tell the council to keep the library fully funded.",
+"choices": [
+"I have visited the library every Saturday since I was six years old, and I still go there to study almost every week.",
+"Libraries were once private collections that only wealthy families could use.",
+"Last year, the library lent more than forty thousand books and gave free homework help to three hundred students.",
+"The library's building has tall windows, a sunny children's room and a comfortable reading room on the second floor."
+],
+"key": 2,
+"why_wrong": [
+"gives a personal habit, which will not convince a doubtful reader",
+"gives history that says nothing about today's library",
+"describes the building, not what the library does for the city"
+],
+"explanation": "Readers who doubt the cost need evidence of how much the library is used. Numbers of books lent and students helped provide that. The others are personal, historical, or about the building."
+},
+{
+"id": "LV4-WS-28",
+"strand": "Style",
+"grade": 8,
+"format": "audience-purpose",
+"ccss": "W.8.4",
+"prompt": "The writer is reporting results in a science lab report. Which revision of sentence 3 best suits this purpose?",
+"passage": "(1) We grew three bean plants for two weeks: one in sunlight, one in shade, and one in a dark closet. (2) The plant in sunlight grew eleven centimeters. (3) The plant in the dark did badly. (4) The plant in shade grew six centimeters.",
+"choices": [
+"After two weeks, the plant kept in the dark had grown two centimeters, and its leaves had turned yellow.",
+"The plant kept in the dark seemed unhappy and weak by the end of the experiment.",
+"Plants use sunlight to make their food through a process called photosynthesis.",
+"Before we started, I predicted that the plant in the dark would not grow as well as the plants in sunlight and shade."
+],
+"key": 0,
+"why_wrong": [
+"describes the plant with feelings instead of measurements",
+"gives background science instead of a result",
+"states a prediction, which belongs before the results"
+],
+"explanation": "A lab report states results precisely, like sentences 2 and 4 do. A measurement and an observed color match that style. The others use feelings, background, or a prediction."
+},
+{
+"id": "LV4-WS-29",
+"strand": "Style",
+"grade": 5,
+"format": "concise-revision",
+"ccss": "W.5.5",
+"prompt": "Which revision of the sentence is clearest and least wordy without changing the meaning?",
+"passage": "Each and every student in the class brought a canned food item to donate to the food drive.",
+"choices": [
+"Each student brought a can.",
+"Each and every student in the class brought a canned food item for the food drive.",
+"Most students in the class brought a canned food item for the food drive.",
+"Every student in the class brought a canned food item for the food drive."
+],
+"key": 3,
+"why_wrong": [
+"drops what the can was for, the food drive",
+"keeps \"Each and every\", which says the same thing twice",
+"changes \"every student\" to \"most students\""
+],
+"explanation": "\"Each and every\" repeats one idea, and \"to donate to\" can be shortened to \"for\". The correct choice does both and keeps every detail. The others drop the food drive, keep the repetition, or change who brought food."
+},
+{
+"id": "LV4-WS-30",
+"strand": "Style",
+"grade": 6,
+"format": "concise-revision",
+"ccss": "W.6.5",
+"prompt": "Which revision of the sentence is clearest and least wordy without changing the meaning?",
+"passage": "At 3:00 p.m. in the afternoon, the team will meet together in the gym to practice for Saturday's game.",
+"choices": [
+"At 3:00, the team will meet in the gym to practice.",
+"In the afternoon, the team will meet in the gym to practice for Saturday's game.",
+"At 3:00 p.m., the team will meet in the gym to practice for Saturday's game.",
+"At 3:00 p.m., the team will meet in the gym for Saturday's game."
+],
+"key": 2,
+"why_wrong": [
+"drops \"p.m.\" and what the practice is for",
+"replaces the exact time with a vague one",
+"changes a practice into the game itself"
+],
+"explanation": "\"In the afternoon\" repeats \"p.m.\", and \"together\" repeats \"meet\". The correct choice removes only those words. The others drop the purpose, blur the time, or turn the practice into the game."
+},
+{
+"id": "LV4-WS-31",
+"strand": "Style",
+"grade": 6,
+"format": "concise-revision",
+"ccss": "W.6.5",
+"prompt": "Which revision of the sentence is clearest and least wordy without changing the meaning?",
+"passage": "The scientist who was in charge of the project explained the results of the experiment to the reporters who had gathered outside.",
+"choices": [
+"The scientist in charge of the project explained the experiment's results to the reporters gathered outside.",
+"The project's scientist explained the results to reporters.",
+"The scientist who was in charge of the project explained the results of the experiment to the reporters.",
+"The scientist in charge explained the experiment's results to the reporters gathered outside."
+],
+"key": 0,
+"why_wrong": [
+"drops that the scientist led the project and that the reporters were gathered outside",
+"keeps the wordy \"who was\" and drops that the reporters were outside",
+"drops which project the scientist was in charge of"
+],
+"explanation": "\"Who was\" and \"who had\" can be removed, and \"the results of the experiment\" can become \"the experiment's results\", without losing any detail. The others drop details or keep the extra words."
+},
+{
+"id": "LV4-WS-32",
+"strand": "Style",
+"grade": 7,
+"format": "concise-revision",
+"ccss": "W.7.5",
+"prompt": "Which revision of the sentence is clearest and least wordy without changing the meaning?",
+"passage": "Because of the fact that the road was closed, we had to take a longer detour that added twenty extra minutes to the trip.",
+"choices": [
+"Because the road was closed, we took a longer detour that added twenty extra minutes to the trip.",
+"Because the road was closed, we took a detour that added minutes to the trip.",
+"We took a detour that added twenty minutes to the trip, so the road was closed.",
+"Because the road was closed, we took a detour that added twenty minutes to the trip."
+],
+"key": 3,
+"why_wrong": [
+"keeps \"longer\" and \"extra\", which repeat what \"added twenty minutes\" already says",
+"drops how many minutes the detour added",
+"turns the closed road into a result of the detour"
+],
+"explanation": "\"Because of the fact that\" can be \"Because\", and \"longer\" and \"extra\" repeat the idea of added time. The correct choice cuts those and keeps the cause and the twenty minutes. The others keep repeats, drop the number, or reverse cause and effect."
+},
+{
+"id": "LV4-WS-33",
+"strand": "Style",
+"grade": 7,
+"format": "concise-revision",
+"ccss": "W.7.5",
+"prompt": "Which revision of the sentence is clearest and least wordy without changing the meaning?",
+"passage": "The old, ancient castle on the hill was built more than eight hundred years ago and still stands there today.",
+"choices": [
+"The ancient castle on the hill still stands.",
+"The castle on the hill was built more than eight hundred years ago and still stands.",
+"The old castle on the hill was built more than eight hundred years ago and still stands today.",
+"The castle on the hill was built about eight hundred years ago and still stands."
+],
+"key": 1,
+"why_wrong": [
+"drops when the castle was built",
+"keeps \"old\" and \"today\", which repeat what the date and \"still stands\" already say",
+"changes \"more than eight hundred years\" to \"about eight hundred years\""
+],
+"explanation": "\"Old\" and \"ancient\" repeat each other and the date, and \"there today\" repeats \"still stands\". The correct choice cuts those words and keeps the exact age. The others drop the date, keep repeats, or change the age."
+},
+{
+"id": "LV4-WS-34",
+"strand": "Style",
+"grade": 8,
+"format": "concise-revision",
+"ccss": "W.8.5",
+"prompt": "Which revision of the sentence is clearest and least wordy without changing the meaning?",
+"passage": "The committee, which was made up of five members, voted unanimously, with all members agreeing, to approve the plan for the new park.",
+"choices": [
+"The committee voted to approve the plan for the new park.",
+"The five-member committee voted unanimously, with all members agreeing, to approve the plan for the new park.",
+"The five-member committee voted unanimously to approve the plan for the new park.",
+"The five-member committee voted unanimously to delay the plan for the new park until next year."
+],
+"key": 2,
+"why_wrong": [
+"drops the size of the committee and that the vote was unanimous",
+"keeps \"with all members agreeing\", which repeats \"unanimously\"",
+"changes \"approve\" to \"delay\""
+],
+"explanation": "\"Which was made up of five members\" can become \"five-member\", and \"with all members agreeing\" repeats \"unanimously\". The correct choice makes both cuts. The others drop facts, keep the repeat, or change the decision."
+},
+{
+"id": "LV4-WS-35",
+"strand": "Style",
+"grade": 8,
+"format": "concise-revision",
+"ccss": "W.8.5",
+"prompt": "Which revision of the sentence is clearest and least wordy without changing the meaning?",
+"passage": "Ruby found a wallet on the sidewalk that was made of brown leather while she was out walking her dog.",
+"choices": [
+"Ruby found a wallet on the sidewalk while walking her dog.",
+"While walking her dog, Ruby found a brown leather wallet on the sidewalk.",
+"Ruby found a brown leather wallet walking her dog on the sidewalk.",
+"Walking her dog, a brown leather wallet was found on the sidewalk by Ruby."
+],
+"key": 1,
+"why_wrong": [
+"drops that the wallet was brown leather",
+"is shorter but makes the wallet seem to be walking the dog",
+"makes the wallet the one walking the dog and adds wordiness"
+],
+"explanation": "The correct choice keeps every detail and puts \"While walking her dog\" next to \"Ruby\", who did the walking. The others drop the description or attach the walking to the wallet."
+},
+{
+"id": "LV4-WS-36",
+"strand": "Style",
+"grade": 8,
+"format": "concise-revision",
+"ccss": "W.8.5",
+"prompt": "Which revision of the sentence is clearest and least wordy without changing the meaning?",
+"passage": "The reason the concert was postponed was due to the fact that the lead singer had a sore throat.",
+"choices": [
+"The concert was postponed due to the fact that the lead singer had a sore throat.",
+"The concert was canceled because the lead singer had a sore throat.",
+"The lead singer had a sore throat because the concert was postponed.",
+"The concert was postponed because the lead singer had a sore throat."
+],
+"key": 3,
+"why_wrong": [
+"keeps the wordy \"due to the fact that\"",
+"changes \"postponed\" to \"canceled\", which means something different",
+"reverses the cause and the effect"
+],
+"explanation": "\"The reason ... was due to the fact that\" can be replaced by \"because\". The correct choice does that and keeps \"postponed\". The others keep the wordy phrase, change the meaning, or reverse cause and effect."
+}
+]

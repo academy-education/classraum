@@ -1,0 +1,534 @@
+[
+{
+"id": "LV4-MP5-01",
+"strand": "Punc",
+"grade": 5,
+"format": "revise",
+"ccss": "L.5.2a",
+"prompt": "Which choice correctly punctuates the bracketed part?",
+"passage": "For the bake sale, Leo brought [muffins cookies and a pan of brownies] from home.",
+"choices": [
+"muffins, cookies and, a pan of brownies",
+"muffins, cookies, and a pan of brownies",
+"muffins cookies, and a pan of brownies",
+"muffins, cookies, and, a pan of brownies"
+],
+"key": 1,
+"why_wrong": [
+"moves the comma to after \"and\", splitting the last item from its connecting word",
+"leaves out the comma between the first two items",
+"adds a comma after \"and\", separating the conjunction from the last item"
+],
+"explanation": "Items in a series are separated by commas, and the comma comes before \"and\", not after it. Only one choice separates all three items correctly without a comma after \"and\"."
+},
+{
+"id": "LV4-MP5-02",
+"strand": "Punc",
+"grade": 5,
+"format": "find-error",
+"ccss": "L.5.2a",
+"prompt": "Which sentence has a punctuation error?",
+"passage": null,
+"choices": [
+"We packed sandwiches, apples, and juice boxes for the picnic.",
+"The puppy sniffed the couch the rug, and the coat rack.",
+"Nora's favorite colors are green, purple, and silver.",
+"Ben fed the cat, watered the plants, and took out the trash."
+],
+"key": 1,
+"why_wrong": [
+"thinks three items in a row need no commas when they are short",
+"thinks colors in a list should not be separated",
+"thinks a series of actions should not be separated by commas"
+],
+"explanation": "The puppy sentence lists three things but has no comma between \"the couch\" and \"the rug\". Each other sentence separates every item in its series with a comma."
+},
+{
+"id": "LV4-MP5-03",
+"strand": "Punc",
+"grade": 5,
+"format": "identify",
+"ccss": "L.5.2a",
+"prompt": "Why are commas used in the sentence?",
+"passage": "Grandpa fixed the gate, painted the fence, and swept the porch before lunch.",
+"choices": [
+"to join two complete sentences",
+"to separate items in a series",
+"to set off an introductory phrase",
+"to set off the name of a person being spoken to"
+],
+"key": 1,
+"why_wrong": [
+"thinks each comma begins a new sentence, though only \"Grandpa\" is a subject",
+"thinks \"Grandpa fixed the gate\" is an opening phrase",
+"thinks \"Grandpa\" is being spoken to, though the sentence is about him"
+],
+"explanation": "The sentence lists three things Grandpa did: fixed the gate, painted the fence, and swept the porch. The commas separate those items in a series. There is only one subject, so the commas do not join sentences."
+},
+{
+"id": "LV4-MP5-04",
+"strand": "Punc",
+"grade": 5,
+"format": "revise",
+"ccss": "L.5.2b",
+"prompt": "Which choice correctly punctuates the bracketed part?",
+"passage": "[After the long bus ride home] everyone was too tired to talk.",
+"choices": [
+"After the long bus ride home",
+"After, the long bus ride home",
+"After the long bus ride home,",
+"After the long bus ride, home"
+],
+"key": 2,
+"why_wrong": [
+"leaves out the comma that should follow the introductory phrase",
+"puts a comma right after \"After\", inside the phrase",
+"puts the comma inside the phrase, splitting \"home\" from \"ride\""
+],
+"explanation": "\"After the long bus ride home\" is an introductory phrase, so a comma follows the whole phrase before the main clause begins. The other choices leave it out or put it inside the phrase."
+},
+{
+"id": "LV4-MP5-05",
+"strand": "Punc",
+"grade": 5,
+"format": "find-error",
+"ccss": "L.5.2b",
+"prompt": "Which sentence has a punctuation error?",
+"passage": null,
+"choices": [
+"When the bell rang, the students lined up at the door.",
+"If it snows tonight, school might start late tomorrow.",
+"Because the river, was rising the town closed the bridge.",
+"Yes, I finished my report on Saturday."
+],
+"key": 2,
+"why_wrong": [
+"thinks a comma cannot follow a \"When\" clause",
+"thinks a comma after an \"If\" clause splits the sentence",
+"thinks \"Yes\" should not be followed by a comma"
+],
+"explanation": "The comma in the river sentence falls inside the introductory clause; it belongs after \"rising\", where the clause ends. The other sentences place a comma right after the opening clause or word."
+},
+{
+"id": "LV4-MP5-06",
+"strand": "Punc",
+"grade": 5,
+"format": "choose-correct",
+"ccss": "L.5.2b",
+"prompt": "Which sentence is punctuated correctly?",
+"passage": null,
+"choices": [
+"Although the movie was long the whole family enjoyed it.",
+"Surprisingly the, bakery was still open at midnight.",
+"To reach the top shelf, Ivy stood on a sturdy chair.",
+"After, the game ended we went out for pizza."
+],
+"key": 2,
+"why_wrong": [
+"leaves out the comma after the introductory clause \"Although the movie was long\"",
+"places the comma after \"the\" instead of after the introductory word",
+"places the comma inside the introductory clause, right after \"After\""
+],
+"explanation": "The comma follows the whole introductory phrase \"To reach the top shelf\". The others leave the comma out, put it after the wrong word, or put it inside the opening clause."
+},
+{
+"id": "LV4-MP5-07",
+"strand": "Punc",
+"grade": 5,
+"format": "revise",
+"ccss": "L.5.2c",
+"prompt": "Which choice correctly punctuates the bracketed part?",
+"passage": "[Thank you Grandma for] the warm socks you knitted for me.",
+"choices": [
+"Thank you Grandma for",
+"Thank you, Grandma, for",
+"Thank you, Grandma for",
+"Thank, you Grandma, for"
+],
+"key": 1,
+"why_wrong": [
+"leaves the name of the person being spoken to without commas",
+"sets off the name with only one comma, so it is not closed off",
+"puts a comma between \"Thank\" and \"you\", and none before the name"
+],
+"explanation": "\"Grandma\" is the person being spoken to, so the name is set off by a comma before and after it. The other choices leave out one or both commas or put a comma in the wrong place."
+},
+{
+"id": "LV4-MP5-08",
+"strand": "Punc",
+"grade": 5,
+"format": "find-error",
+"ccss": "L.5.2c",
+"prompt": "Which sentence has a punctuation error?",
+"passage": null,
+"choices": [
+"You remembered to feed the fish, didn't you?",
+"No, the library is not open on Sundays.",
+"That was a great game wasn't it?",
+"Leo, please hand me the blue marker."
+],
+"key": 2,
+"why_wrong": [
+"thinks a comma cannot come before \"didn't you\"",
+"thinks \"No\" at the start of a sentence needs no comma",
+"thinks a name at the start of a sentence needs no comma"
+],
+"explanation": "\"Wasn't it\" is a tag question, so it must be set off with a comma: \"That was a great game, wasn't it?\" The other sentences correctly set off a tag question, \"No\", and a name."
+},
+{
+"id": "LV4-MP5-09",
+"strand": "Punc",
+"grade": 5,
+"format": "choose-correct",
+"ccss": "L.5.2c",
+"prompt": "Which sentence is punctuated correctly?",
+"passage": null,
+"choices": [
+"No I have not seen your library card anywhere in the house.",
+"Mia, the bus is waiting for you at the end of the driveway.",
+"You're coming to the party on Saturday, aren't you.",
+"Can you help me, with this puzzle Dad?"
+],
+"key": 1,
+"why_wrong": [
+"leaves out the comma after \"No\"",
+"ends a tag question with a period instead of a question mark",
+"puts the comma before \"with\" instead of before \"Dad\", the person being spoken to"
+],
+"explanation": "\"Mia\" is the person being spoken to, and the comma sets her name off. The others leave out the comma after \"No\", end a question with a period, or put the comma in the wrong place."
+},
+{
+"id": "LV4-MP5-10",
+"strand": "Punc",
+"grade": 5,
+"format": "revise",
+"ccss": "L.5.2d",
+"prompt": "Which choice correctly punctuates the bracketed part?",
+"passage": "Our class sang [The River Song] at the spring concert in the gym.",
+"choices": [
+"The River Song",
+"\"The River Song\"",
+"\"The River\" Song",
+"The \"River Song\""
+],
+"key": 1,
+"why_wrong": [
+"leaves the song title without quotation marks",
+"closes the quotation marks before the end of the title",
+"opens the quotation marks after the start of the title"
+],
+"explanation": "The title of a song goes in quotation marks, and the marks must surround the whole title, \"The River Song\". The other choices leave out the marks or place them around only part of the title."
+},
+{
+"id": "LV4-MP5-11",
+"strand": "Punc",
+"grade": 5,
+"format": "find-error",
+"ccss": "L.5.2d",
+"prompt": "Which sentence has a punctuation error?",
+"passage": null,
+"choices": [
+"My favorite poem in the book is \"The Red Kite.\"",
+"Jack read an article called \"How Bees Talk\" for his report.",
+"The chapter Lost in the Woods is the scariest part of the book.",
+"Hana's band played \"Summer Rain\" twice at the fair."
+],
+"key": 2,
+"why_wrong": [
+"thinks the period should go outside the closing quotation mark",
+"thinks article titles do not take quotation marks",
+"thinks song titles do not take quotation marks"
+],
+"explanation": "A chapter title should be in quotation marks: \"Lost in the Woods\". The other sentences put the titles of a poem, an article and a song in quotation marks correctly."
+},
+{
+"id": "LV4-MP5-12",
+"strand": "Punc",
+"grade": 5,
+"format": "identify",
+"ccss": "L.5.2",
+"prompt": "Which word in the sentence needs an apostrophe?",
+"passage": "My brothers bike has a flat tire, so he walked to school today.",
+"choices": [
+"brothers",
+"bike",
+"tire",
+"walked"
+],
+"key": 0,
+"why_wrong": [
+"thinks the thing owned is the word that needs the apostrophe",
+"thinks a noun before a comma needs an apostrophe",
+"thinks a past-tense verb ending in -ed needs an apostrophe"
+],
+"explanation": "The bike belongs to one brother (\"he walked\"), so \"brothers\" should be the possessive \"brother's\". The other words are a plain noun, a noun, and a verb, and none shows ownership."
+},
+{
+"id": "LV4-MP6-01",
+"strand": "Punc",
+"grade": 6,
+"format": "revise",
+"ccss": "L.6.2a",
+"prompt": "Which choice correctly punctuates the bracketed part?",
+"passage": "[The Pacific Ocean the largest ocean on Earth] covers about a third of the planet's surface.",
+"choices": [
+"The Pacific Ocean the largest ocean on Earth",
+"The Pacific Ocean, the largest ocean on Earth",
+"The Pacific Ocean, the largest ocean on Earth,",
+"The Pacific Ocean the largest ocean on Earth,"
+],
+"key": 2,
+"why_wrong": [
+"leaves the extra information unset off, so it runs into the name",
+"opens the extra information with a comma but never closes it",
+"closes the extra information with a comma but never opens it"
+],
+"explanation": "\"The largest ocean on Earth\" renames the Pacific Ocean and could be removed, so it is set off with a comma on both sides. The others use no commas or only one."
+},
+{
+"id": "LV4-MP6-02",
+"strand": "Punc",
+"grade": 6,
+"format": "revise",
+"ccss": "L.6.2a",
+"prompt": "Which choice correctly punctuates the bracketed part?",
+"passage": "Students [who finish the test early] may read quietly at their desks.",
+"choices": [
+"who finish the test early",
+", who finish the test early,",
+", who finish the test early",
+"who finish the test early,"
+],
+"key": 0,
+"why_wrong": [
+"sets off the clause as extra information, which would mean all students finish early",
+"opens a pair of commas but never closes it",
+"adds one comma that separates the subject from its verb"
+],
+"explanation": "The clause tells which students may read, so it is needed and takes no commas. With commas, the sentence would say that all students finish early. A single comma separates the subject from \"may read\"."
+},
+{
+"id": "LV4-MP6-03",
+"strand": "Punc",
+"grade": 6,
+"format": "revise",
+"ccss": "L.6.2a",
+"prompt": "Which choice correctly punctuates the bracketed part?",
+"passage": "The museum's oldest fossil [a fern about 300 million years old] sits in a glass case by the door.",
+"choices": [
+"a fern about 300 million years old",
+"(a fern about 300 million years old",
+", a fern about 300 million years old)",
+"(a fern about 300 million years old)"
+],
+"key": 3,
+"why_wrong": [
+"leaves the extra information with nothing to set it off",
+"opens parentheses but never closes them",
+"opens with a comma and closes with a parenthesis, which do not match"
+],
+"explanation": "The phrase adds extra information about the fossil, so it must be set off on both sides by a matching pair of marks. Only the choice with an opening and a closing parenthesis does that."
+},
+{
+"id": "LV4-MP6-04",
+"strand": "Punc",
+"grade": 6,
+"format": "find-error",
+"ccss": "L.6.2a",
+"prompt": "Which sentence has a punctuation error?",
+"passage": null,
+"choices": [
+"The trail—at least the first mile—is flat and easy.",
+"My cousin (the one who plays drums) is coming to dinner.",
+"The new gym—with its shiny wooden floor, opens next week.",
+"The storm, which knocked out power for two days, finally passed."
+],
+"key": 2,
+"why_wrong": [
+"thinks dashes cannot be used in pairs",
+"thinks parentheses cannot go in the middle of a sentence",
+"thinks a \"which\" clause should not be set off by commas"
+],
+"explanation": "The gym sentence opens the extra information with a dash but closes it with a comma. The pair must match: two dashes or two commas. The other sentences use matching pairs."
+},
+{
+"id": "LV4-MP6-05",
+"strand": "Punc",
+"grade": 6,
+"format": "find-error",
+"ccss": "L.6.2a",
+"prompt": "Which sentence has a punctuation error?",
+"passage": null,
+"choices": [
+"The movie that we saw on Friday had a surprise ending.",
+"Students, who forget their library cards, can borrow books with a note.",
+"My grandmother, who grew up on a farm, still bakes her own bread.",
+"Mount Everest, the tallest mountain on Earth, sits on the border of Nepal and China."
+],
+"key": 1,
+"why_wrong": [
+"thinks every clause in the middle of a sentence needs commas",
+"thinks a \"who\" clause about a grandmother is needed to tell which grandmother",
+"thinks a phrase that renames a mountain is needed information"
+],
+"explanation": "The clause \"who forget their library cards\" tells which students can borrow with a note, so it needs no commas. With commas, it says that all students forget their cards. The other sentences punctuate their clauses and phrases correctly."
+},
+{
+"id": "LV4-MP6-06",
+"strand": "Punc",
+"grade": 6,
+"format": "choose-correct",
+"ccss": "L.6.2a",
+"prompt": "Which sentence is punctuated correctly?",
+"passage": null,
+"choices": [
+"My best friend, Priya lives across the street from the park.",
+"The mayor (who rode her bike to work, waved to the crowd.",
+"The Nile River which flows north, is the longest river in Africa.",
+"The bakery—the one with the green door—sells fresh bagels."
+],
+"key": 3,
+"why_wrong": [
+"opens the name with a comma but does not close it",
+"opens with a parenthesis but closes with a comma",
+"closes the extra information with a comma but leaves out the opening comma"
+],
+"explanation": "The bakery sentence sets off its extra information with a matching pair of dashes. The others open or close the extra information with only one mark or with marks that do not match."
+},
+{
+"id": "LV4-MP6-07",
+"strand": "Punc",
+"grade": 6,
+"format": "revise",
+"ccss": "L.6.2",
+"prompt": "Which revision of the sentence is punctuated correctly?",
+"passage": "[\"Can we leave early today\" asked Theo.]",
+"choices": [
+"\"Can we leave early today?\" asked Theo.",
+"\"Can we leave early today\"? asked Theo.",
+"\"Can we leave early today,\" asked Theo.",
+"\"Can we leave early today.\" asked Theo."
+],
+"key": 0,
+"why_wrong": [
+"puts the question mark outside the quotation marks, though the quoted words are the question",
+"uses a comma, which ends a quoted statement, not a question",
+"ends the quoted question with a period"
+],
+"explanation": "Theo's words are a question, so the question mark goes inside the closing quotation mark. A comma or period would treat the quote as a statement, and a question mark outside the quote would make the whole sentence the question."
+},
+{
+"id": "LV4-MP6-08",
+"strand": "Punc",
+"grade": 6,
+"format": "identify",
+"ccss": "L.6.2a",
+"prompt": "What is the purpose of the dashes in the sentence?",
+"passage": "The last runner—a seventh grader with a sprained ankle—crossed the finish line to loud cheers.",
+"choices": [
+"to show that words have been left out",
+"to join two complete sentences",
+"to introduce a list",
+"to set off extra information about the runner"
+],
+"key": 3,
+"why_wrong": [
+"confuses dashes with an ellipsis, which shows missing words",
+"thinks the words between the dashes are a complete sentence, though they have no verb",
+"thinks the words between the dashes are a list, though they describe one person"
+],
+"explanation": "The words between the dashes tell more about the runner and could be removed without breaking the sentence, so the dashes set off extra information. Nothing is left out, no sentences are joined, and there is no list."
+},
+{
+"id": "LV4-MP6-09",
+"strand": "Punc",
+"grade": 6,
+"format": "identify",
+"ccss": "L.6.2a",
+"prompt": "Why does the sentence NOT need commas around the words \"who live near the river\"?",
+"passage": "People who live near the river must move their cars when the water rises.",
+"choices": [
+"The words tell which people the sentence is about.",
+"The words are extra information that could be removed.",
+"The words come right after the subject.",
+"The words are too short to need commas."
+],
+"key": 0,
+"why_wrong": [
+"gives the reason a clause WOULD need commas, the opposite of this case",
+"thinks position after the subject decides commas, though extra information right after a subject is set off",
+"thinks length decides whether a clause gets commas"
+],
+"explanation": "Without \"who live near the river\", the sentence would tell all people to move their cars, so the clause is needed to identify which people. Needed clauses take no commas. Position and length do not decide it."
+},
+{
+"id": "LV4-MP6-10",
+"strand": "Punc",
+"grade": 6,
+"format": "revise",
+"ccss": "L.6.2",
+"prompt": "Which choice correctly replaces the bracketed word?",
+"passage": "All three [teachers] cars were stuck in the snow in the back parking lot.",
+"choices": [
+"teachers",
+"teacher's",
+"teachers'",
+"teachers's"
+],
+"key": 2,
+"why_wrong": [
+"leaves out the apostrophe, so the word does not show ownership",
+"uses the singular possessive, though the cars belong to three teachers",
+"adds an extra s after the apostrophe on a plural that already ends in s"
+],
+"explanation": "The cars belong to three teachers, a plural noun ending in s, so the possessive adds only an apostrophe: \"teachers'\". \"Teacher's\" is singular, and \"teachers's\" adds an unneeded s."
+},
+{
+"id": "LV4-MP6-11",
+"strand": "Punc",
+"grade": 6,
+"format": "find-error",
+"ccss": "L.6.2a",
+"prompt": "Which sentence has a punctuation error?",
+"passage": null,
+"choices": [
+"Leo's sister (she is in high school) drove us to the game.",
+"Venus the hottest planet is covered in thick clouds.",
+"The robot, built by four sixth graders, won second place.",
+"The club meets on Tuesdays (and sometimes on Fridays)."
+],
+"key": 1,
+"why_wrong": [
+"thinks a complete thought cannot go inside parentheses",
+"thinks a phrase beginning with \"built\" should not be set off",
+"thinks parentheses cannot come at the end of a sentence"
+],
+"explanation": "\"The hottest planet\" renames Venus and is extra information, so it must be set off with commas. The other sentences set off their extra information with commas or parentheses."
+},
+{
+"id": "LV4-MP6-12",
+"strand": "Punc",
+"grade": 6,
+"format": "revise",
+"ccss": "L.6.2",
+"prompt": "Which choice correctly replaces the bracketed word?",
+"passage": "The [childrens] museum downtown has a room full of giant bubbles.",
+"choices": [
+"childrens",
+"childrens'",
+"children's",
+"childs'"
+],
+"key": 2,
+"why_wrong": [
+"leaves out the apostrophe that shows the museum is for children",
+"puts the apostrophe after an s that \"children\" does not need",
+"changes the word to a form that is not the plural of \"child\""
+],
+"explanation": "\"Children\" is already plural and does not end in s, so its possessive is \"children's\". The other choices leave out the apostrophe, place it after an extra s, or use a made-up plural.",
+"nonwords": [
+"childrens",
+"childs"
+]
+}
+]

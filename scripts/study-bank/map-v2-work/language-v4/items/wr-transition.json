@@ -1,0 +1,338 @@
+[
+{
+"id": "LV4-WT-01",
+"strand": "Org",
+"grade": 5,
+"format": "transition",
+"ccss": "W.5.2c",
+"relation": "contrast",
+"option_class": "sentence-adverbs",
+"prompt": "Which word or phrase best fits the blank in sentence 3?",
+"passage": "(1) Most birds in our town fly south when the weather turns cold. (2) Robins, geese and swallows are usually gone by early November. (3) ____, the chickadees at our feeder stay all winter long. (4) Their thick feathers and a steady supply of seeds help them survive the snow.",
+"choices": [
+"For instance,",
+"However,",
+"As a result,",
+"Next,"
+],
+"key": 1,
+"why_wrong": [
+"reads the chickadees as one more example of birds that leave",
+"treats the chickadees staying as caused by the other birds leaving",
+"reads the sentences as steps in a process"
+],
+"explanation": "Sentences 1 and 2 describe birds that leave, and sentence 3 describes birds that stay, which is a contrast. \"However\" signals that. The chickadees are not an example of leaving, not a result of it, and not a next step."
+},
+{
+"id": "LV4-WT-02",
+"strand": "Org",
+"grade": 5,
+"format": "transition",
+"ccss": "W.5.2c",
+"relation": "example",
+"option_class": "sentence-adverbs",
+"prompt": "Which word or phrase best fits the blank in sentence 2?",
+"passage": "(1) Many animals change their behavior to get through the winter. (2) ____, wood frogs freeze almost solid in the fall and thaw out again in the spring. (3) Black bears sleep in dens for months, and squirrels bury thousands of nuts before the first snow.",
+"choices": [
+"Instead,",
+"For instance,",
+"However,",
+"Meanwhile,"
+],
+"key": 1,
+"why_wrong": [
+"suggests the frogs do something in place of changing their behavior",
+"signals a contrast, but freezing is one way of changing behavior for winter",
+"signals two events at the same moment, but sentence 2 is a case of what sentence 1 says"
+],
+"explanation": "Sentence 1 makes a general statement and sentence 2 gives the first case of it, so \"For instance\" fits. Nothing is replaced, nothing contrasts, and the sentences are not about two things happening at once."
+},
+{
+"id": "LV4-WT-03",
+"strand": "Org",
+"grade": 5,
+"format": "transition",
+"ccss": "W.5.2c",
+"relation": "time",
+"option_class": "sentence-adverbs",
+"prompt": "Which word or phrase best fits the blank in sentence 3?",
+"passage": "(1) Making a paper lantern for the night parade took our class a whole afternoon. (2) First, we cut long slits into a folded sheet of colored paper. (3) ____, we unfolded the sheet and rolled it into a tube. (4) Finally, we glued a paper handle across the top.",
+"choices": [
+"Therefore,",
+"Next,",
+"In other words,",
+"Even so,"
+],
+"key": 1,
+"why_wrong": [
+"treats unfolding the sheet as a result of cutting it",
+"treats sentence 3 as a restatement of sentence 2, though it describes a new step",
+"signals something surprising, but the step is an ordinary part of the process"
+],
+"explanation": "The paragraph lists steps with \"First\" and \"Finally\", and sentence 3 is the middle step, so \"Next\" fits. The step is not a result, a restatement, or a surprise."
+},
+{
+"id": "LV4-WT-04",
+"strand": "Org",
+"grade": 5,
+"format": "transition",
+"ccss": "W.5.2c",
+"relation": "result",
+"option_class": "sentence-adverbs",
+"prompt": "Which word or phrase best fits the blank in sentence 3?",
+"passage": "(1) Last spring the creek behind our school was full of plastic bags and bottles. (2) Our science club spent three Saturdays pulling trash out of the water. (3) ____, the creek is clean enough now that ducks have started nesting along its banks.",
+"choices": [
+"For example,",
+"Meanwhile,",
+"Still,",
+"As a result,"
+],
+"key": 3,
+"why_wrong": [
+"treats the clean creek as an example of trash, which makes no sense",
+"signals that the creek became clean during the cleanup instead of because of it",
+"signals a surprise, but a clean creek is what the cleanup was meant to produce"
+],
+"explanation": "The creek is clean because the club removed the trash, so sentence 3 is a result and \"As a result\" fits. It is not an example, not a simultaneous event, and not a surprise."
+},
+{
+"id": "LV4-WT-05",
+"strand": "Org",
+"grade": 6,
+"format": "transition",
+"ccss": "W.6.2c",
+"relation": "addition",
+"option_class": "sentence-adverbs",
+"prompt": "Which word or phrase best fits the blank in sentence 3?",
+"passage": "(1) Our town's new bike lanes have made the streets safer for riders. (2) Since the lanes opened, the number of bike accidents downtown has dropped by half. (3) ____, painting the lanes cost the city far less than repaving the roads would have.",
+"choices": [
+"Instead,",
+"In addition,",
+"Afterward,",
+"Therefore,"
+],
+"key": 1,
+"why_wrong": [
+"suggests the low cost replaced the safety benefit",
+"reads the low cost as something that happened later in time",
+"treats the low cost as a result of fewer accidents"
+],
+"explanation": "Sentence 3 adds a second benefit, the low cost, to the safety benefit in sentences 1 and 2, so \"In addition\" fits. The cost does not replace the first benefit, does not come later in time, and is not caused by fewer accidents."
+},
+{
+"id": "LV4-WT-06",
+"strand": "Org",
+"grade": 6,
+"format": "transition",
+"ccss": "W.6.2c",
+"relation": "concession",
+"option_class": "sentence-adverbs",
+"prompt": "Which word or phrase best fits the blank in sentence 3?",
+"passage": "(1) The trail to Hawk Rock is the steepest one in the state park. (2) It climbs nearly a thousand feet in just two miles, and parts of it are loose gravel. (3) ____, hundreds of hikers make the climb every weekend because the view from the top is the best in the county.",
+"choices": [
+"For example,",
+"Even so,",
+"In addition,",
+"Next,"
+],
+"key": 1,
+"why_wrong": [
+"treats the crowds of hikers as an example of steepness",
+"treats the crowds as one more fact about how hard the trail is",
+"reads the sentences as steps in a process"
+],
+"explanation": "Sentences 1 and 2 describe how hard the trail is, and sentence 3 says many people climb it anyway. \"Even so\" admits the difficulty and then turns to the surprising fact. The crowds are not an example of steepness, not another difficulty, and not a next step."
+},
+{
+"id": "LV4-WT-07",
+"strand": "Org",
+"grade": 6,
+"format": "transition",
+"ccss": "W.6.2c",
+"relation": "clarification",
+"option_class": "sentence-adverbs",
+"prompt": "Which word or phrase best fits the blank in sentence 2?",
+"passage": "(1) Our class pet, a gecko named Pip, is nocturnal. (2) ____, he sleeps through the school day and wakes up after everyone has gone home. (3) On Mondays, Ms. Hall leaves a dim lamp on so that the morning class can sometimes see him move.",
+"choices": [
+"However,",
+"In other words,",
+"Afterward,",
+"Similarly,"
+],
+"key": 1,
+"why_wrong": [
+"signals a contrast, but sentence 2 agrees with sentence 1",
+"treats sleeping in the day as something that happens after being nocturnal",
+"signals a likeness between two different things, though sentence 2 explains the word \"nocturnal\""
+],
+"explanation": "Sentence 2 explains in plain words what \"nocturnal\" means for Pip, so \"In other words\" fits. It does not contrast with sentence 1, does not happen later, and is not a separate added point."
+},
+{
+"id": "LV4-WT-08",
+"strand": "Org",
+"grade": 6,
+"format": "transition",
+"ccss": "W.6.2c",
+"relation": "contrast",
+"option_class": "sentence-adverbs",
+"prompt": "Which word or phrase best fits the blank in sentence 3?",
+"passage": "(1) Our class planned to hold the book fair in the gym on Friday. (2) The gym floor was being refinished that week, though. (3) ____, we set up the tables in the library and the front hallway.",
+"choices": [
+"In addition,",
+"For instance,",
+"Similarly,",
+"Instead,"
+],
+"key": 3,
+"why_wrong": [
+"treats the library as a second place added to the gym, though the gym could not be used",
+"treats the library as an example of the gym being refinished",
+"suggests the library setup is like the floor work, which it is not"
+],
+"explanation": "The class could not use the gym, so it used the library in its place. \"Instead\" signals that one plan replaced another. The library was not an extra site, not an example, and not similar to the floor work."
+},
+{
+"id": "LV4-WT-09",
+"strand": "Org",
+"grade": 7,
+"format": "transition",
+"ccss": "W.7.2c",
+"relation": "time",
+"option_class": "sentence-adverbs",
+"prompt": "Which word or phrase best fits the blank in sentence 3?",
+"passage": "(1) On the morning of the science fair, Omar raced to finish his volcano model at home. (2) He painted the slopes and let the last coat of glue dry by the window. (3) ____, at the school, his partner Ruby was setting up their table and hanging the poster.",
+"choices": [
+"Consequently,",
+"That is,",
+"Nevertheless,",
+"Meanwhile,"
+],
+"key": 3,
+"why_wrong": [
+"treats Ruby's setup as caused by Omar's painting",
+"treats sentence 3 as a restatement of sentence 2, though it describes a different person and place",
+"signals a surprise, but nothing in sentence 3 goes against sentence 2"
+],
+"explanation": "Sentence 3 describes what Ruby was doing at the same time in another place, so \"Meanwhile\" fits. Her setup was not caused by Omar's painting, does not restate it, and does not contrast with it."
+},
+{
+"id": "LV4-WT-10",
+"strand": "Org",
+"grade": 7,
+"format": "transition",
+"ccss": "W.7.2c",
+"relation": "result",
+"option_class": "sentence-adverbs",
+"prompt": "Which word or phrase best fits the blank in sentence 3?",
+"passage": "(1) The town's only grocery store closed in March. (2) The nearest market is now twelve miles away, and the bus goes there just twice a week. (3) ____, the town council voted to open a weekly farmers' market in the library parking lot.",
+"choices": [
+"Moreover,",
+"Nevertheless,",
+"That is,",
+"Therefore,"
+],
+"key": 3,
+"why_wrong": [
+"treats the vote as one more problem added to the list",
+"signals that the vote happened in spite of the problem, though the problem is why it happened",
+"treats the vote as a restatement of sentence 2"
+],
+"explanation": "The council opened a market because the store closed and the nearest one is hard to reach, so sentence 3 is a result and \"Therefore\" fits. The vote is not another problem, not a surprise, and not a restatement."
+},
+{
+"id": "LV4-WT-11",
+"strand": "Org",
+"grade": 7,
+"format": "transition",
+"ccss": "W.7.2c",
+"relation": "example",
+"option_class": "sentence-adverbs",
+"prompt": "Which word or phrase best fits the blank in sentence 2?",
+"passage": "(1) Some useful inventions began as mistakes. (2) ____, a scientist trying to make a very strong glue in 1968 made a weak one instead, which stuck lightly and peeled off cleanly. (3) Years later, that weak glue became the backing for sticky notes.",
+"choices": [
+"Moreover,",
+"Consequently,",
+"For example,",
+"Even so,"
+],
+"key": 2,
+"why_wrong": [
+"adds a new point, though sentence 2 is a case of the point in sentence 1",
+"treats the weak glue as caused by the general statement",
+"signals a surprise, but sentence 2 supports sentence 1"
+],
+"explanation": "Sentence 1 makes a general claim, and sentence 2 tells one case of an invention that began as a mistake, so \"For example\" fits. Sentence 2 is not an added point, not a result, and not a contrast."
+},
+{
+"id": "LV4-WT-12",
+"strand": "Org",
+"grade": 8,
+"format": "transition",
+"ccss": "W.8.2c",
+"relation": "concession",
+"option_class": "sentence-adverbs",
+"prompt": "Which word or phrase best fits the blank in sentence 3?",
+"passage": "(1) Building the new library downtown cost far more than the city first planned. (2) The project ran two years late, and the price nearly doubled. (3) ____, the library has become the busiest public building in the city, with more than a thousand visitors a day.",
+"choices": [
+"Specifically,",
+"Nevertheless,",
+"Besides,",
+"Then,"
+],
+"key": 1,
+"why_wrong": [
+"treats the visitor count as a detail of the cost problem",
+"adds the visitor count as one more problem",
+"reads the visitors as the next step in building the library"
+],
+"explanation": "Sentences 1 and 2 describe problems, and sentence 3 gives a strong result in spite of them, so \"Nevertheless\" fits. Sentence 3 is not a detail of the problems, not another problem, and not a next step."
+},
+{
+"id": "LV4-WT-13",
+"strand": "Org",
+"grade": 8,
+"format": "transition",
+"ccss": "W.8.2c",
+"relation": "addition",
+"option_class": "sentence-adverbs",
+"prompt": "Which word or phrase best fits the blank in sentence 3?",
+"passage": "(1) Planting trees along city streets helps keep neighborhoods cool in summer. (2) Shade from a single large tree can make the sidewalk below it many degrees cooler on a sunny afternoon. (3) ____, street trees soak up rainwater that would flood low roads during heavy storms.",
+"choices": [
+"Otherwise,",
+"Specifically,",
+"Moreover,",
+"Later,"
+],
+"key": 2,
+"why_wrong": [
+"signals what would happen if sentence 2 were not true",
+"treats sentence 3 as a detail of the cooling in sentence 2",
+"reads soaking up rain as something that happens after the cooling"
+],
+"explanation": "Sentence 3 adds a second benefit of street trees, so \"Moreover\" fits. It is not what happens if sentence 2 is false, not a detail of cooling, and not a later step."
+},
+{
+"id": "LV4-WT-14",
+"strand": "Org",
+"grade": 8,
+"format": "transition",
+"ccss": "W.8.2c",
+"relation": "clarification",
+"option_class": "sentence-adverbs",
+"prompt": "Which word or phrase best fits the blank in sentence 2?",
+"passage": "(1) After the inspection, the engineers rated the old river bridge \"structurally deficient.\" (2) ____, at least one of its main parts was in poor condition and needed repair. (3) The bridge stayed open, but heavy trucks were told to use the highway instead.",
+"choices": [
+"Otherwise,",
+"Besides,",
+"That is,",
+"Later,"
+],
+"key": 2,
+"why_wrong": [
+"signals what would happen if the rating were not true",
+"adds a separate point, though sentence 2 explains the rating",
+"places the poor condition after the inspection, though it is what the inspection found"
+],
+"explanation": "Sentence 2 explains what the technical rating in sentence 1 means, so \"That is\" fits. It is not an alternative, not a separate point, and not a later event."
+}
+]

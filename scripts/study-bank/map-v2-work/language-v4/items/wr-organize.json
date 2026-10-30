@@ -1,0 +1,442 @@
+[
+{
+"id": "LV4-WP-01",
+"strand": "Org",
+"grade": 5,
+"format": "placement",
+"ccss": "W.5.2a",
+"prompt": "A student wants to add this sentence to the paragraph: \"They named it after the panels, or boxes, that hold each picture in a comic.\" Where should it be added?",
+"passage": "(1) Last fall, Jack and three friends started a club at Riverside School. (2) Today the Panel Club has twenty members who meet every Tuesday in the art room. (3) At each meeting, they trade comic books and draw their own stories. (4) In May, they plan to print a comic book of their best work.",
+"choices": [
+"After sentence 1",
+"After sentence 2",
+"After sentence 3",
+"After sentence 4"
+],
+"key": 0,
+"why_wrong": [
+"places the explanation of the name after the paragraph has already used the name \"Panel Club\"",
+"places it where \"it\" would seem to mean the meetings or the comic books",
+"places it at the end, where \"it\" would seem to mean the printed comic book"
+],
+"explanation": "Sentence 2 already calls the club \"the Panel Club\", so the reader needs to learn the name before that, right after the club is started in sentence 1. Later, \"it\" would point to the meetings or the printed book."
+},
+{
+"id": "LV4-WP-02",
+"strand": "Org",
+"grade": 5,
+"format": "placement",
+"ccss": "W.5.2a",
+"prompt": "A student wants to add this sentence to the paragraph: \"Camels have many features that help them survive in the desert.\" Where should it be added?",
+"passage": "(1) A thirsty camel can drink about thirty gallons of water in just a few minutes. (2) Its thick lips let it eat thorny desert plants that other animals avoid. (3) Long eyelashes and nostrils it can close keep blowing sand out of its eyes and nose. (4) Even its wide, padded feet help keep it from sinking into soft sand.",
+"choices": [
+"Before sentence 1",
+"After sentence 1",
+"After sentence 2",
+"After sentence 4"
+],
+"key": 0,
+"why_wrong": [
+"places the general statement after the first example, breaking the list of features",
+"places the general statement in the middle of the examples",
+"places the general statement after every example, where \"Even\" in sentence 4 has already signaled the last one"
+],
+"explanation": "The new sentence states the main idea, and sentences 1-4 each give one feature that supports it. A main idea that introduces a list belongs before the list, so it should come before sentence 1."
+},
+{
+"id": "LV4-WP-03",
+"strand": "Org",
+"grade": 5,
+"format": "placement",
+"ccss": "W.5.2a",
+"prompt": "A student wants to add this sentence to the paragraph: \"That night, we slept in a cabin and listened to the waves from our beds.\" Where should it be added?",
+"passage": "(1) On Saturday, our family drove to the coast to see the old lighthouse. (2) We climbed all 120 steps to the top and looked out over the ocean. (3) In the afternoon, we ate lunch at a little shop by the harbor. (4) The next morning, we drove home with a jar of sea glass we had found on the beach.",
+"choices": [
+"After sentence 1",
+"After sentence 2",
+"After sentence 3",
+"After sentence 4"
+],
+"key": 2,
+"why_wrong": [
+"places the night before the climb and the lunch that happened earlier that day",
+"places the night before the afternoon lunch",
+"places the night after the drive home the next morning"
+],
+"explanation": "The paragraph moves through one day: Saturday, the climb, the afternoon, and then the next morning. \"That night\" comes after the afternoon and before the next morning, so it belongs after sentence 3."
+},
+{
+"id": "LV4-WP-04",
+"strand": "Org",
+"grade": 6,
+"format": "placement",
+"ccss": "W.6.2a",
+"prompt": "A student wants to add this sentence to the paragraph: \"One of these puzzles was a jar with a crab inside, and an octopus learned to unscrew the lid.\" Where should it be added?",
+"passage": "(1) Octopuses are among the most intelligent animals in the ocean. (2) In aquariums, they have learned to solve puzzles that test their memory and problem-solving skills. (3) They are also masters of disguise. (4) Special cells in their skin let them change color in less than a second to match the rocks or sand around them.",
+"choices": [
+"After sentence 1",
+"After sentence 2",
+"After sentence 3",
+"After sentence 4"
+],
+"key": 1,
+"why_wrong": [
+"places \"these puzzles\" before any puzzles have been mentioned",
+"places the puzzle example after the paragraph has moved on to disguise",
+"places the puzzle example at the end, after the details about changing color"
+],
+"explanation": "\"These puzzles\" points back to the puzzles named in sentence 2, and sentence 3 turns to a new topic with \"also\". The example belongs right after sentence 2."
+},
+{
+"id": "LV4-WP-05",
+"strand": "Org",
+"grade": 6,
+"format": "placement",
+"ccss": "W.6.2a",
+"prompt": "A student wants to add this sentence to the paragraph: \"By the next morning, the dragon's wings had melted into a pile of slush.\" Where should it be added?",
+"passage": "(1) Every winter, our town holds a snow sculpture contest in the park. (2) Teams have three days to carve their designs from giant blocks of packed snow. (3) Last year, my brother's team built a dragon with wings almost ten feet wide. (4) On the second day, though, the temperature rose above fifty degrees. (5) Even so, the judges gave the team a special prize for the photos they had taken of the finished dragon.",
+"choices": [
+"After sentence 2",
+"After sentence 3",
+"After sentence 4",
+"After sentence 5"
+],
+"key": 2,
+"why_wrong": [
+"mentions the dragon's wings before the dragon has been described",
+"places the melting before the warm weather that caused it",
+"places the melting after \"Even so\", which already responds to a setback"
+],
+"explanation": "The wings melted because of the warm weather in sentence 4, and \"Even so\" in sentence 5 needs a setback right before it. The new sentence fits between them, after sentence 4."
+},
+{
+"id": "LV4-WP-06",
+"strand": "Org",
+"grade": 6,
+"format": "placement",
+"ccss": "W.6.2a",
+"prompt": "A student wants to add this sentence to the paragraph: \"The new sheets are sold to companies that make notebooks, newspapers and boxes.\" Where should it be added?",
+"passage": "(1) Paper can be recycled again and again, but not forever. (2) At a recycling plant, old paper is soaked in water and stirred into a mushy pulp. (3) The pulp is then spread thin, pressed and dried to make new sheets. (4) After five to seven trips through this process, though, the fibers become too short to hold together. (5) At that point, the paper is used for egg cartons or is composted.",
+"choices": [
+"After sentence 1",
+"After sentence 2",
+"After sentence 3",
+"After sentence 4"
+],
+"key": 2,
+"why_wrong": [
+"mentions \"the new sheets\" before the paragraph explains how paper is recycled",
+"mentions \"the new sheets\" while the paper is still pulp",
+"places the sale of new sheets after the fibers have become too short to make sheets"
+],
+"explanation": "\"The new sheets\" are first made in sentence 3, so the sentence about selling them must follow it. Sentence 4 then turns to what happens after many trips, so the new sentence belongs after sentence 3."
+},
+{
+"id": "LV4-WP-07",
+"strand": "Org",
+"grade": 7,
+"format": "placement",
+"ccss": "W.7.2a",
+"prompt": "A student wants to add this sentence to the paragraph: \"Construction began the following spring and took eighteen months.\" Where should it be added?",
+"passage": "(1) For years, the people of Millbrook argued about what to do with the empty lot on Main Street. (2) Some wanted a parking garage to bring more shoppers downtown. (3) Others wanted a park where families could gather. (4) In the end, the town held a vote, and the park won by just forty votes. (5) Today the lot is a green square with benches, a fountain and a small stage for summer concerts.",
+"choices": [
+"After sentence 2",
+"After sentence 3",
+"After sentence 4",
+"After sentence 5"
+],
+"key": 2,
+"why_wrong": [
+"places construction before the town had chosen what to build",
+"places construction before the vote that decided on the park",
+"places construction after the paragraph has described the finished square"
+],
+"explanation": "Construction could only begin after the vote in sentence 4 decided what to build, and sentence 5 describes the finished result. The new sentence belongs between them, after sentence 4."
+},
+{
+"id": "LV4-WP-08",
+"strand": "Org",
+"grade": 7,
+"format": "placement",
+"ccss": "W.7.2a",
+"prompt": "A student wants to add this sentence to the paragraph: \"These are plants that store water in their thick leaves, stems or roots.\" Where should it be added?",
+"passage": "(1) Many desert plants are succulents. (2) The saguaro cactus, for example, can swell to hold hundreds of gallons of water after a single heavy rain. (3) Its ribbed sides fold like an accordion so the stem can grow wider as it fills. (4) During the dry months that follow, the cactus slowly uses up its stored water and shrinks again.",
+"choices": [
+"After sentence 1",
+"After sentence 2",
+"After sentence 3",
+"After sentence 4"
+],
+"key": 0,
+"why_wrong": [
+"places the definition after the example, and \"These\" would have to refer to one cactus",
+"places the definition in the middle of the description of the saguaro",
+"places the definition at the end, far from the word \"succulents\" it explains"
+],
+"explanation": "The plural \"These\" refers to \"succulents\" in sentence 1 and defines the term before the saguaro example. After sentence 2 or later, \"These\" would wrongly point to a single cactus."
+},
+{
+"id": "LV4-WP-09",
+"strand": "Org",
+"grade": 8,
+"format": "placement",
+"ccss": "W.8.2a",
+"prompt": "A student wants to add this sentence to the paragraph: \"Since then, the plants have spread so thickly that puddles are gone within a day of any storm.\" Where should it be added?",
+"passage": "(1) Our class spent the spring designing a rain garden for the low corner of the schoolyard, where puddles stood for days after every storm. (2) First, we tested how fast water soaked into the soil there. (3) Then we chose native plants with deep roots that could survive both floods and dry spells. (4) In April, parents helped us dig a shallow bowl and fill it with sand and compost. (5) We planted forty plants in rings, with the thirstiest ones in the center.",
+"choices": [
+"After sentence 2",
+"After sentence 3",
+"After sentence 4",
+"After sentence 5"
+],
+"key": 3,
+"why_wrong": [
+"has the plants spreading before any plants were chosen",
+"has the plants spreading when they had only been chosen, not planted",
+"has the plants spreading before they were put in the ground"
+],
+"explanation": "\"Since then\" and \"the plants have spread\" both require the planting, which happens in sentence 5. The result belongs at the end, after sentence 5."
+},
+{
+"id": "LV4-WP-10",
+"strand": "Org",
+"grade": 8,
+"format": "placement",
+"ccss": "W.8.2a",
+"prompt": "A student wants to add this sentence to the paragraph: \"His clock lost less than a minute a day, while earlier clocks could drift by fifteen minutes or more.\" Where should it be added?",
+"passage": "(1) Early clocks were driven by falling weights and kept time poorly. (2) In 1656, a Dutch scientist built the first clock controlled by a swinging pendulum. (3) Within a few decades, pendulum clocks were common in homes and churches across Europe. (4) Even so, they were useless on ships, where the rocking of the waves upset the swing.",
+"choices": [
+"After sentence 1",
+"After sentence 2",
+"After sentence 3",
+"After sentence 4"
+],
+"key": 1,
+"why_wrong": [
+"uses \"His\" before the scientist has been mentioned",
+"places the scientist's clock after the paragraph has moved on to clocks in general",
+"places the claim about accuracy after the problem with ships, which breaks the contrast \"Even so\" sets up"
+],
+"explanation": "\"His clock\" refers to the Dutch scientist in sentence 2, and the accuracy explains why pendulum clocks spread in sentence 3. The sentence belongs right after sentence 2."
+},
+{
+"id": "LV4-WI-01",
+"strand": "Org",
+"grade": 5,
+"format": "irrelevant",
+"ccss": "W.5.1b",
+"prompt": "Which sentence should be removed because it does not support the main idea of the paragraph?",
+"passage": "(1) Our cafeteria should switch from paper napkins to cloth ones. (2) Right now the school throws away about four hundred paper napkins every day. (3) Cloth napkins could be washed with the gym towels each night and used again for years. (4) Many restaurants use cloth napkins to make a meal feel more special. (5) Last year, Hillside School made the same change and saved almost two hundred dollars by June. (6) Cloth napkins would make our lunchroom less wasteful.",
+"choices": [
+"Sentence 2",
+"Sentence 3",
+"Sentence 4",
+"Sentence 5"
+],
+"key": 2,
+"why_wrong": [
+"thinks a number about paper napkins is off topic, though it shows the waste",
+"thinks washing with gym towels is a side detail, though it shows cloth napkins can be reused",
+"thinks a story about another school is off topic, though it shows the change saves money"
+],
+"explanation": "The paragraph argues for cloth napkins because they cut waste and save money. Making a meal feel special is a different point about cloth napkins and does not support that claim. The other sentences show the waste, the reuse, and the savings."
+},
+{
+"id": "LV4-WI-02",
+"strand": "Org",
+"grade": 5,
+"format": "irrelevant",
+"ccss": "W.5.2b",
+"prompt": "Which sentence should be removed because it does not support the main idea of the paragraph?",
+"passage": "(1) Hummingbirds are amazing fliers. (2) They can hover in one place by beating their wings in a figure-eight pattern. (3) Hummingbirds build tiny nests out of spider silk and bits of moss. (4) They are the only birds that can fly backward. (5) In a dive, some kinds reach speeds of more than fifty miles per hour. (6) Few other birds can match their skill in the air.",
+"choices": [
+"Sentence 2",
+"Sentence 3",
+"Sentence 4",
+"Sentence 5"
+],
+"key": 1,
+"why_wrong": [
+"thinks the figure-eight detail is too technical, though it explains hovering",
+"thinks flying backward is a fun fact rather than evidence of flying skill",
+"thinks a number about speed is off topic, though it shows flying skill"
+],
+"explanation": "The paragraph is about hummingbirds' flying skill. Nest building is about hummingbirds but not about flying. Hovering, flying backward and diving speed all support the main idea."
+},
+{
+"id": "LV4-WI-03",
+"strand": "Org",
+"grade": 6,
+"format": "irrelevant",
+"ccss": "W.6.1b",
+"prompt": "Which sentence should be removed because it does not support the main idea of the paragraph?",
+"passage": "(1) Camping without a phone can make a trip more relaxing. (2) Many campgrounds now have charging stations near the bathrooms. (3) Without alerts buzzing, campers notice the sound of the creek and the birds. (4) They also tend to spend more time talking with the people around the fire. (5) On our trip to Pine Hollow last June, my family left our phones in the car for three days, and nobody wanted to leave. (6) A phone-free weekend is worth trying.",
+"choices": [
+"Sentence 2",
+"Sentence 3",
+"Sentence 4",
+"Sentence 5"
+],
+"key": 0,
+"why_wrong": [
+"thinks noticing sounds is off topic because it is about nature, not phones",
+"thinks talking around the fire is off topic because it is about people, not phones",
+"thinks a family story is a side detail, though it shows a phone-free trip was relaxing"
+],
+"explanation": "The paragraph argues that leaving the phone behind makes camping relaxing. Charging stations are about phones and camping but do not support that point. The other sentences give reasons and an example."
+},
+{
+"id": "LV4-WI-04",
+"strand": "Org",
+"grade": 6,
+"format": "irrelevant",
+"ccss": "W.6.2b",
+"prompt": "Which sentence should be removed because it does not support the main idea of the paragraph?",
+"passage": "(1) Volunteering at the animal shelter taught me how much work goes into caring for pets. (2) Every morning, the dog kennels have to be scrubbed and refilled with fresh water. (3) Each cat needs its litter box cleaned and its food measured by weight. (4) The volunteers also walk every dog twice a day, even in the rain. (5) Most of the dogs at the shelter are adopted within a month. (6) I will never think of owning a pet as easy again.",
+"choices": [
+"Sentence 2",
+"Sentence 3",
+"Sentence 4",
+"Sentence 5"
+],
+"key": 3,
+"why_wrong": [
+"thinks cleaning kennels is a detail about the building, not about caring for pets",
+"thinks measuring food by weight is too small a detail",
+"thinks walking dogs in the rain is a side story rather than an example of work"
+],
+"explanation": "The paragraph is about how much work pet care takes. How fast dogs are adopted is about the shelter's dogs but not about that work. The other sentences each describe a job that must be done."
+},
+{
+"id": "LV4-WI-05",
+"strand": "Org",
+"grade": 6,
+"format": "irrelevant",
+"ccss": "W.6.1b",
+"prompt": "Which sentence should be removed because it does not support the main idea of the paragraph?",
+"passage": "(1) Our town's library should stay open later on weeknights. (2) Many students have no quiet place at home to do homework after dinner. (3) The library's new mystery shelf has become very popular with adults. (4) Parents who work until six often cannot bring their children before the library closes at seven. (5) When the Brookfield library added two evening hours, student visits nearly doubled. (6) Longer hours would help the people who need the library most.",
+"choices": [
+"Sentence 2",
+"Sentence 3",
+"Sentence 4",
+"Sentence 5"
+],
+"key": 1,
+"why_wrong": [
+"thinks a sentence about homes is off topic, though it shows why students need the library at night",
+"thinks a sentence about parents' jobs is off topic, though it shows why the current hours do not work",
+"thinks an example from another town is off topic, though it shows longer hours bring students in"
+],
+"explanation": "The paragraph argues for later hours. A popular shelf is about the library but gives no reason to stay open later. The other sentences show who needs the evening hours and what happened in another town."
+},
+{
+"id": "LV4-WI-06",
+"strand": "Org",
+"grade": 7,
+"format": "irrelevant",
+"ccss": "W.7.1b",
+"prompt": "Which sentence should be removed because it does not support the main idea of the paragraph?",
+"passage": "(1) Wearing a helmet is the most important thing a cyclist can do to stay safe. (2) Helmets today come in bright colors and many different styles. (3) In a crash, a helmet's foam layer crushes and absorbs force that would otherwise reach the skull. (4) Studies of hospital records have found that helmets cut the risk of serious head injury by more than half. (5) A doctor who treats injured riders in Riverton says almost every bad head injury she sees involves a rider without one. (6) A helmet costs far less than a single night in the hospital.",
+"choices": [
+"Sentence 2",
+"Sentence 3",
+"Sentence 4",
+"Sentence 5"
+],
+"key": 0,
+"why_wrong": [
+"thinks an explanation of how foam works is too technical to support the claim",
+"thinks a statistic is a side detail, though it is evidence for the claim",
+"thinks one doctor's experience is a story, though it supports the claim"
+],
+"explanation": "The paragraph argues that helmets keep cyclists safe. Colors and styles are about helmets but not about safety. The other sentences explain how helmets protect and give evidence that they do."
+},
+{
+"id": "LV4-WI-07",
+"strand": "Org",
+"grade": 7,
+"format": "irrelevant",
+"ccss": "W.7.2b",
+"prompt": "Which sentence should be removed because it does not support the main idea of the paragraph?",
+"passage": "(1) Learning a second language can strengthen a student's memory. (2) Students practice holding many new words in mind and recalling them quickly. (3) Switching between two languages also trains the brain to focus and to ignore distractions. (4) Learning a language also makes travel to other countries easier and more fun. (5) My cousin Theo, who started French in sixth grade, says he now remembers phone numbers after hearing them once. (6) For a stronger memory, a new language is a smart choice.",
+"choices": [
+"Sentence 2",
+"Sentence 3",
+"Sentence 4",
+"Sentence 5"
+],
+"key": 2,
+"why_wrong": [
+"thinks practicing words is about vocabulary, not memory",
+"thinks focus is a different topic from memory, though the sentence explains how the brain is trained",
+"thinks a story about a cousin is a side detail, though it gives an example of better memory"
+],
+"explanation": "The paragraph is about how learning a language helps memory. Easier travel is another benefit of learning a language, but it does not support the point about memory. The other sentences explain or illustrate the memory benefit."
+},
+{
+"id": "LV4-WI-08",
+"strand": "Org",
+"grade": 8,
+"format": "irrelevant",
+"ccss": "W.8.1b",
+"prompt": "Which sentence should be removed because it does not support the main idea of the paragraph?",
+"passage": "(1) Lakeview should turn its unused rail line into a walking and biking trail. (2) A trail would give residents a safe place to exercise away from traffic. (3) Trains are still one of the cheapest ways to move heavy goods across the country. (4) Shops near trails in other towns have reported more customers on weekends. (5) The nearby town of Ashford opened a four-mile rail trail in 2019, and it now draws about two thousand visitors a week. (6) Converting the old line would cost far less than building a new park.",
+"choices": [
+"Sentence 2",
+"Sentence 3",
+"Sentence 4",
+"Sentence 5"
+],
+"key": 1,
+"why_wrong": [
+"thinks exercise is a side benefit rather than a reason for the trail",
+"thinks a sentence about shops is about business, not about the trail",
+"thinks a date and a visitor count from another town are trivia, though they show a trail can succeed"
+],
+"explanation": "The paragraph argues for turning the rail line into a trail. The point that trains are a cheap way to ship goods is about rail lines but does not support a trail, and it even suggests a reason to keep the tracks. The other sentences give benefits and an example."
+},
+{
+"id": "LV4-WI-09",
+"strand": "Org",
+"grade": 8,
+"format": "irrelevant",
+"ccss": "W.8.2b",
+"prompt": "Which sentence should be removed because it does not support the main idea of the paragraph?",
+"passage": "(1) Bright lights near the shore are harming the sea turtles that nest on our beaches. (2) Baby turtles hatch at night and find the ocean by crawling toward the brightest horizon. (3) Lights from hotels and streets pull many hatchlings inland instead, where they are eaten or dry out in the heat. (4) Last summer, volunteers counted more than three hundred hatchlings that had wandered onto the beach road. (5) On stretches of beach that stay dark, most hatchlings head straight for the water. (6) Sea turtles are also threatened by fishing nets and plastic bags in the ocean.",
+"choices": [
+"Sentence 3",
+"Sentence 4",
+"Sentence 5",
+"Sentence 6"
+],
+"key": 3,
+"why_wrong": [
+"thinks the description of hatchlings going inland is a side detail, though it shows the harm",
+"thinks a volunteer count is trivia, though it is evidence of the harm",
+"thinks a sentence about dark beaches is off topic, though it shows the lights are the cause"
+],
+"explanation": "The paragraph is about harm from bright lights. Fishing nets and plastic are real threats to sea turtles but a different point. The other sentences explain and give evidence for the harm lights cause."
+},
+{
+"id": "LV4-WI-10",
+"strand": "Org",
+"grade": 8,
+"format": "irrelevant",
+"ccss": "W.8.1b",
+"prompt": "Which sentence should be removed because it does not support the main idea of the paragraph?",
+"passage": "(1) Schools should teach students how to cook simple, healthy meals. (2) Cooking shows have become some of the most popular programs on television. (3) Students who can cook are less likely to depend on fast food when they live on their own. (4) Cooking also uses math, since recipes must be measured, doubled and divided. (5) At Westfield Middle School, students in a six-week cooking unit said they began making breakfast for their families. (6) A few lessons in the kitchen could serve students for life.",
+"choices": [
+"Sentence 2",
+"Sentence 3",
+"Sentence 4",
+"Sentence 5"
+],
+"key": 0,
+"why_wrong": [
+"thinks a sentence about fast food is about eating out, not cooking lessons",
+"thinks math is a different subject, though the sentence gives a reason cooking belongs in school",
+"thinks a story from another school is a side detail, though it shows lessons change habits"
+],
+"explanation": "The paragraph argues that schools should teach cooking. The popularity of cooking shows is about cooking but gives no reason for schools to teach it. The other sentences give reasons and an example."
+}
+]

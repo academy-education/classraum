@@ -1,0 +1,486 @@
+[
+{
+"id": "LV4-MP7-01",
+"strand": "Punc",
+"grade": 7,
+"format": "revise",
+"ccss": "L.7.2a",
+"prompt": "Which choice correctly punctuates the bracketed part?",
+"passage": "The [cold damp] basement smelled like old cardboard and wet leaves.",
+"choices": [
+"cold damp",
+"cold, damp",
+"cold damp,",
+"cold, damp,"
+],
+"key": 1,
+"why_wrong": [
+"leaves out the comma between two adjectives that each describe the basement equally",
+"puts the comma after the last adjective, between it and the noun",
+"adds a comma between the last adjective and the noun"
+],
+"explanation": "\"Cold\" and \"damp\" each describe the basement and could be switched or joined with \"and\", so they are coordinate adjectives and need a comma between them. No comma goes between the last adjective and the noun."
+},
+{
+"id": "LV4-MP7-02",
+"strand": "Punc",
+"grade": 7,
+"format": "revise",
+"ccss": "L.7.2a",
+"prompt": "Which choice correctly punctuates the bracketed part?",
+"passage": "Grandpa keeps his tools in a [rusty metal] box under the workbench.",
+"choices": [
+"rusty, metal",
+"rusty metal,",
+"rusty metal",
+"rusty, metal,"
+],
+"key": 2,
+"why_wrong": [
+"puts a comma between adjectives that cannot be switched (\"metal rusty box\" does not work)",
+"puts a comma between the last adjective and the noun",
+"adds commas both between the adjectives and before the noun"
+],
+"explanation": "\"Metal box\" works as a unit, and \"rusty\" describes that unit, so the adjectives cannot be switched or joined with \"and\". These are cumulative adjectives, which take no comma."
+},
+{
+"id": "LV4-MP7-03",
+"strand": "Punc",
+"grade": 7,
+"format": "find-error",
+"ccss": "L.7.2a",
+"prompt": "Which sentence has a punctuation error?",
+"passage": null,
+"choices": [
+"The bright, cheerful kitchen was Mom's favorite room.",
+"Three small brown rabbits hopped across the lawn.",
+"She wore a heavy, wool sweater to the football game.",
+"It was a quiet, peaceful morning at the lake."
+],
+"key": 2,
+"why_wrong": [
+"thinks two describing words before a noun never take a comma",
+"thinks three describing words in a row always need commas",
+"thinks \"quiet\" and \"peaceful\" are cumulative"
+],
+"explanation": "\"Wool sweater\" is a unit, and \"heavy\" describes it; you could not say \"wool heavy sweater\", so no comma belongs between them. The other sentences correctly use commas between coordinate adjectives and none between cumulative ones."
+},
+{
+"id": "LV4-MP7-04",
+"strand": "Punc",
+"grade": 7,
+"format": "choose-correct",
+"ccss": "L.7.2a",
+"prompt": "Which sentence is punctuated correctly?",
+"passage": null,
+"choices": [
+"The tall, oak tree shaded the whole backyard.",
+"We carefully waded through the icy rushing stream to the far bank.",
+"A friendly old, dog greeted us at the gate.",
+"The noisy, crowded hallway emptied when the bell rang."
+],
+"key": 3,
+"why_wrong": [
+"puts a comma before \"oak\", which forms a unit with \"tree\"",
+"leaves out the comma between \"icy\" and \"rushing\", which each describe the stream",
+"puts a comma between the last adjective and the noun"
+],
+"explanation": "\"Noisy\" and \"crowded\" each describe the hallway equally, so a comma separates them. The others put a comma before a word that forms a unit with the noun, leave out a needed comma, or put a comma before the noun."
+},
+{
+"id": "LV4-MP7-05",
+"strand": "Punc",
+"grade": 7,
+"format": "identify",
+"ccss": "L.7.2a",
+"prompt": "Why is there a comma between \"thick\" and \"juicy\" in the sentence?",
+"passage": "Dad grilled thick, juicy burgers for the neighborhood picnic.",
+"choices": [
+"The second adjective describes the first one.",
+"The adjectives each describe the burgers and could be switched.",
+"Any two adjectives before a noun take a comma.",
+"The comma separates two complete thoughts."
+],
+"key": 1,
+"why_wrong": [
+"thinks \"juicy\" describes \"thick\" rather than the burgers",
+"overgeneralizes; adjectives like \"rusty metal\" take no comma",
+"thinks the comma joins two sentences, though there is only one verb"
+],
+"explanation": "\"Thick\" and \"juicy\" each describe the burgers, and \"juicy, thick burgers\" works too, so they are coordinate adjectives separated by a comma. Not every pair of adjectives takes a comma, and there is only one clause."
+},
+{
+"id": "LV4-MP7-06",
+"strand": "Punc",
+"grade": 7,
+"format": "blank",
+"ccss": "L.7.2a",
+"prompt": "Which choice correctly completes the sentence?",
+"passage": "For her birthday, Hana got a pair of ____ shoes for the track team.",
+"choices": [
+"new, running",
+"new running,",
+"new running",
+"new, running,"
+],
+"key": 2,
+"why_wrong": [
+"puts a comma between adjectives that cannot be switched (\"running new shoes\" does not work)",
+"puts a comma between the last adjective and the noun",
+"adds commas between the adjectives and before the noun"
+],
+"explanation": "\"Running shoes\" is a unit, and \"new\" describes it, so the adjectives are cumulative and take no comma. A comma also never goes between the last adjective and its noun."
+},
+{
+"id": "LV4-MP7-07",
+"strand": "Punc",
+"grade": 7,
+"format": "revise",
+"ccss": "L.7.2",
+"prompt": "Which choice correctly replaces the bracketed part?",
+"passage": "The power went out during the storm[, we] read by candlelight until midnight.",
+"choices": [
+", we",
+"; we",
+": we",
+" we"
+],
+"key": 1,
+"why_wrong": [
+"joins two complete sentences with only a comma",
+"uses a colon, which introduces an explanation or list, not a second event",
+"runs two complete sentences together with no punctuation"
+],
+"explanation": "Both parts are complete sentences, and a semicolon can join two closely related sentences. A comma alone creates a comma splice, no punctuation creates a run-on, and a colon introduces an explanation or list."
+},
+{
+"id": "LV4-MP7-08",
+"strand": "Punc",
+"grade": 7,
+"format": "find-error",
+"ccss": "L.7.2",
+"prompt": "Which sentence has a punctuation error?",
+"passage": null,
+"choices": [
+"The bus was late; we missed the first half of the play.",
+"Ana loves soccer; her brother prefers chess.",
+"Our team practiced every day; and we won the championship.",
+"The test was hard, but most students finished on time."
+],
+"key": 2,
+"why_wrong": [
+"thinks a semicolon cannot join two short sentences",
+"thinks a semicolon must be followed by a conjunction",
+"thinks a comma before \"but\" is a comma splice"
+],
+"explanation": "A semicolon joins two sentences without a conjunction; with \"and\", a comma is used instead: \"Our team practiced every day, and we won.\" The other sentences use a semicolon alone or a comma with \"but\"."
+},
+{
+"id": "LV4-MP7-09",
+"strand": "Punc",
+"grade": 7,
+"format": "choose-correct",
+"ccss": "L.7.2",
+"prompt": "Which sentence is punctuated correctly?",
+"passage": null,
+"choices": [
+"The museum was closed, however, we enjoyed the gardens outside.",
+"Leo forgot his lunch; luckily, his friend shared a sandwich.",
+"The rain stopped; then, the sun came out and the game, started again.",
+"Our class raised money for the shelter; and the local bakery."
+],
+"key": 1,
+"why_wrong": [
+"joins two sentences with commas around \"however\", which makes a comma splice",
+"adds a comma between \"the game\" and its verb",
+"uses a semicolon before a phrase that is not a complete sentence"
+],
+"explanation": "A semicolon joins Leo's two complete sentences, and a comma follows \"luckily\". The others create a comma splice, separate a subject from its verb, or use a semicolon before a fragment."
+},
+{
+"id": "LV4-MP7-10",
+"strand": "Punc",
+"grade": 7,
+"format": "revise",
+"ccss": "L.7.2",
+"prompt": "Which choice correctly replaces the bracketed part?",
+"passage": "For the hike, bring three things[ a] water bottle, a hat, and a snack.",
+"choices": [
+"; a",
+": a",
+", a",
+" a"
+],
+"key": 1,
+"why_wrong": [
+"uses a semicolon, which joins two sentences, before a list",
+"uses a comma, which makes the list look like more items after \"things\"",
+"leaves no mark to introduce the list"
+],
+"explanation": "\"Bring three things\" is a complete clause that announces a list, so a colon introduces the items. A semicolon joins sentences, a comma blurs where the list starts, and no mark at all runs the list into the clause."
+},
+{
+"id": "LV4-MP7-11",
+"strand": "Punc",
+"grade": 7,
+"format": "find-error",
+"ccss": "L.7.2",
+"prompt": "Which sentence has a punctuation error?",
+"passage": null,
+"choices": [
+"The recipe needs only three ingredients: flour, water, and salt.",
+"My favorite subjects are: science, art, and music.",
+"We had one goal: to finish the mural before the festival.",
+"Dad gave us a choice: clean our rooms or rake the leaves."
+],
+"key": 1,
+"why_wrong": [
+"thinks a colon cannot come before a list",
+"thinks a colon cannot introduce a single phrase",
+"thinks a colon cannot introduce a choice"
+],
+"explanation": "A colon must follow a complete clause. \"My favorite subjects are\" is not complete, so no colon belongs after \"are\". In the other sentences the colon follows a complete clause."
+},
+{
+"id": "LV4-MP8-01",
+"strand": "Punc",
+"grade": 8,
+"format": "revise",
+"ccss": "L.8.2a",
+"prompt": "Which choice correctly punctuates the bracketed part?",
+"passage": "The old house[ it had been empty for twenty years] finally had new owners.",
+"choices": [
+", it had been empty for twenty years,",
+"—it had been empty for twenty years—",
+"—it had been empty for twenty years,",
+" it had been empty for twenty years"
+],
+"key": 1,
+"why_wrong": [
+"sets off a complete sentence with commas, which creates comma splices",
+"opens with a dash but closes with a comma",
+"leaves the break unmarked, so two sentences run together"
+],
+"explanation": "The words in the middle are a complete sentence that breaks into the main one, so a pair of dashes sets them off. Commas cannot hold a complete sentence inside another, the marks must match, and leaving them out makes a run-on."
+},
+{
+"id": "LV4-MP8-02",
+"strand": "Punc",
+"grade": 8,
+"format": "find-error",
+"ccss": "L.8.2a",
+"prompt": "Which sentence has a punctuation error?",
+"passage": null,
+"choices": [
+"We had everything we needed—tents, food, and maps—for the trip.",
+"The winner—and I still can't believe it—was my little brother.",
+"The result—a tie after three overtimes surprised everyone.",
+"Lily finally reached the top of the hill, tired, muddy, and proud."
+],
+"key": 2,
+"why_wrong": [
+"thinks a list cannot go between dashes",
+"thinks a comment from the writer cannot go between dashes",
+"thinks the describing words at the end need dashes instead of commas"
+],
+"explanation": "The result sentence opens the break with a dash but never closes it; a second dash belongs after \"overtimes\". The other sentences close their breaks or use commas correctly."
+},
+{
+"id": "LV4-MP8-03",
+"strand": "Punc",
+"grade": 8,
+"format": "revise",
+"ccss": "L.8.2b",
+"prompt": "A student wants to quote this sentence but leave out the bracketed words. Which choice shows the quotation correctly?",
+"passage": "\"The museum opened its doors [in 1925] and has welcomed millions of visitors since then.\"",
+"choices": [
+"\"The museum opened its doors and has welcomed millions of visitors since then.\"",
+"\"The museum opened its doors ... and has welcomed millions of visitors since then.\"",
+"\"The museum opened its doors—and has welcomed millions of visitors since then.\"",
+"\"The museum opened its doors, and has welcomed millions of visitors since then.\""
+],
+"key": 1,
+"why_wrong": [
+"leaves words out of a quotation without showing that anything is missing",
+"uses a dash, which shows a break in thought, not missing words",
+"adds a comma, which neither shows missing words nor belongs before this \"and\""
+],
+"explanation": "When words are left out of a quotation, an ellipsis marks the spot. Leaving no mark hides the change, a dash signals a break in thought, and a comma does not show an omission."
+},
+{
+"id": "LV4-MP8-04",
+"strand": "Punc",
+"grade": 8,
+"format": "identify",
+"ccss": "L.8.2a",
+"prompt": "Why does the writer use an ellipsis in this sentence?",
+"passage": "\"Well ... I guess we could try one more time,\" said Owen.",
+"choices": [
+"to show that words were left out of a quotation",
+"to show a pause or hesitation",
+"to set off extra information",
+"to join two complete sentences"
+],
+"key": 1,
+"why_wrong": [
+"knows ellipses can mark omissions, but Owen's own words are complete here",
+"thinks the ellipsis sets off extra information, which needs a pair of marks",
+"thinks the ellipsis joins two sentences, though \"Well\" is not a sentence"
+],
+"explanation": "Owen hesitates before answering, and the ellipsis shows that pause in his speech. Nothing has been left out of his words, nothing extra is set off, and no sentences are joined."
+},
+{
+"id": "LV4-MP8-05",
+"strand": "Punc",
+"grade": 8,
+"format": "revise",
+"ccss": "L.8.2a",
+"prompt": "Which choice correctly punctuates the bracketed part?",
+"passage": "The answer[ of course] was hidden in the last chapter all along.",
+"choices": [
+" of course,",
+", of course",
+", of course,",
+"—of course,"
+],
+"key": 2,
+"why_wrong": [
+"closes the interrupting phrase with a comma but never opens it",
+"opens the interrupting phrase with a comma but never closes it",
+"opens with a dash and closes with a comma, which do not match"
+],
+"explanation": "\"Of course\" interrupts the sentence, so it is set off by a matching pair of commas. The other choices use only one mark or marks that do not match."
+},
+{
+"id": "LV4-MP8-06",
+"strand": "Punc",
+"grade": 8,
+"format": "find-error",
+"ccss": "L.8.2a",
+"prompt": "Which sentence has a punctuation error?",
+"passage": null,
+"choices": [
+"The test, I think, will be easier than the last one.",
+"Your idea, however, would cost too much money.",
+"The team in fact, had won every game that season.",
+"Honestly, I expected the movie to be longer."
+],
+"key": 2,
+"why_wrong": [
+"thinks \"I think\" in the middle of a sentence needs no commas",
+"thinks \"however\" should never be set off with commas",
+"thinks a word like \"Honestly\" at the start needs no comma"
+],
+"explanation": "\"In fact\" interrupts the sentence, so it needs a comma before it as well as after: \"The team, in fact, had won\". The other sentences set off their interrupters correctly."
+},
+{
+"id": "LV4-MP8-07",
+"strand": "Punc",
+"grade": 8,
+"format": "choose-correct",
+"ccss": "L.8.2a",
+"prompt": "Which sentence is punctuated correctly?",
+"passage": null,
+"choices": [
+"The winner, was announced at last—it was Hana.",
+"I opened the box and inside—was a tiny kitten.",
+"The storm—if you can believe it, lasted only ten minutes.",
+"I knew one thing for certain: we were completely lost."
+],
+"key": 3,
+"why_wrong": [
+"puts a comma between the subject and its verb",
+"puts a dash between \"inside\" and the verb, where no break belongs",
+"opens the break with a dash and closes it with a comma"
+],
+"explanation": "The colon follows a complete clause and introduces what the one thing was. The others put a comma between a subject and verb, put a dash where there is no break, or mix a dash with a comma."
+},
+{
+"id": "LV4-MP8-08",
+"strand": "Punc",
+"grade": 8,
+"format": "revise",
+"ccss": "L.8.2",
+"prompt": "Which choice correctly replaces the bracketed words?",
+"passage": "Ivy adopted a [three year old] cat from the animal shelter last week.",
+"choices": [
+"three year old",
+"three-year old",
+"three year-old",
+"three-year-old"
+],
+"key": 3,
+"why_wrong": [
+"leaves out the hyphens in a compound adjective before a noun",
+"hyphenates only part of the compound adjective",
+"hyphenates only the last part of the compound adjective"
+],
+"explanation": "\"Three-year-old\" works as one adjective before the noun \"cat\", so all of its parts are joined with hyphens. The other choices leave out one or both hyphens."
+},
+{
+"id": "LV4-MP8-09",
+"strand": "Punc",
+"grade": 8,
+"format": "find-error",
+"ccss": "L.8.2",
+"prompt": "Which sentence has a punctuation error?",
+"passage": null,
+"choices": [
+"Mia said, \"My favorite poem is 'The Lonely Owl.'\"",
+"Theo asked, \"Did the coach really say 'Run three more laps'?\"",
+"Our teacher said, \"Read the chapter called \"Storm Clouds\" tonight.\"",
+"\"I'll be there by noon,\" Dad promised."
+],
+"key": 2,
+"why_wrong": [
+"thinks a title inside a quotation needs double quotation marks",
+"thinks the question mark must go inside the single quotation mark",
+"thinks a comma cannot end a quoted statement before \"Dad promised\""
+],
+"explanation": "A title inside a quotation takes single quotation marks: 'Storm Clouds'. The teacher sentence uses double marks inside double marks. The others punctuate quotations within quotations and dialogue correctly."
+},
+{
+"id": "LV4-MP8-10",
+"strand": "Punc",
+"grade": 8,
+"format": "revise",
+"ccss": "L.8.2a",
+"prompt": "Which revision of the bracketed part is punctuated correctly?",
+"passage": "[\"I was going to tell you, but\" Ana's voice] trailed off as her sister walked in.",
+"choices": [
+"\"I was going to tell you, but,\" Ana's voice",
+"\"I was going to tell you, but.\" Ana's voice",
+"\"I was going to tell you, but...,\" Ana's voice",
+"\"I was going to tell you, but...\" Ana's voice"
+],
+"key": 3,
+"why_wrong": [
+"uses a comma, which ends a complete quoted statement, not words that trail off",
+"uses a period, as if Ana had finished her thought",
+"adds a comma after the ellipsis, which already ends the quoted words"
+],
+"explanation": "Ana's words trail off before she finishes, and an ellipsis shows that. A comma or period would mark the words as complete, and a comma after the ellipsis adds a mark that is not needed."
+},
+{
+"id": "LV4-MP8-11",
+"strand": "Punc",
+"grade": 8,
+"format": "identify",
+"ccss": "L.8.2a",
+"prompt": "What is the purpose of the dash in the sentence?",
+"passage": "There was only one person who could fix the old engine—Grandpa.",
+"choices": [
+"to show that words were left out",
+"to show that the speaker trailed off",
+"to set off a word that names what came before",
+"to separate items in a series"
+],
+"key": 2,
+"why_wrong": [
+"confuses a dash with an ellipsis, which shows omitted words",
+"confuses a sharp break with trailing off, which an ellipsis shows",
+"thinks a single word after a dash is part of a list"
+],
+"explanation": "The dash creates a pause before the word that answers who the one person was: Grandpa. Nothing is left out, the speaker does not trail off, and there is no list."
+}
+]

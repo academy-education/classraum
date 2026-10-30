@@ -1,0 +1,447 @@
+[
+{
+"id": "LV4-G7-01",
+"strand": "PoS",
+"grade": 7,
+"format": "blank",
+"ccss": "L.7.1a",
+"option_class": "relative words",
+"prompt": "Which word or phrase correctly completes the sentence?",
+"passage": "The old barn ____ my grandfather once kept his tractor is now an art studio for the town.",
+"choices": [
+"where",
+"when",
+"which",
+"who"
+],
+"key": 0,
+"why_wrong": [
+"introduces a time, but the clause names a place inside the barn",
+"uses \"which\", but the clause already has its own object (\"his tractor\"), so it would need \"in which\"",
+"uses a pronoun for people to describe a barn"
+],
+"explanation": "The clause tells the place in the barn where something happened, and it is already complete (\"my grandfather once kept his tractor\"), so \"where\" is needed. \"When\" names a time, \"which\" would need \"in\" before it, and \"who\" is for people."
+},
+{
+"id": "LV4-G7-02",
+"strand": "PCAS",
+"grade": 7,
+"format": "blank",
+"ccss": "L.7.1b",
+"option_class": "conjunctive adverbs",
+"prompt": "Which word or phrase correctly completes the sentence?",
+"passage": "The flood washed away two bridges on the river trail; ____, the rangers closed the trail for the rest of the season.",
+"choices": [
+"however",
+"therefore",
+"instead",
+"otherwise"
+],
+"key": 1,
+"why_wrong": [
+"signals a contrast, but closing the trail is what you would expect after the bridges washed away",
+"signals a replacement, but the rangers did not close the trail in place of something else",
+"signals what would happen if the first clause were not true, which does not fit two true events"
+],
+"explanation": "Closing the trail is a result of the bridges washing away, so \"therefore\" links the two clauses. \"However\" signals contrast, \"instead\" a replacement, and \"otherwise\" an alternative outcome."
+},
+{
+"id": "LV4-G7-03",
+"strand": "PoS",
+"grade": 7,
+"format": "blank",
+"ccss": "L.7.1a",
+"option_class": "subordinating conjunctions",
+"prompt": "Which word or phrase correctly completes the sentence?",
+"passage": "____ she had never ridden a horse before, Ruby volunteered to lead the first trail ride at camp.",
+"choices": [
+"Because",
+"Although",
+"Unless",
+"Once"
+],
+"key": 1,
+"why_wrong": [
+"makes her lack of experience the reason she volunteered, which does not follow",
+"makes her lack of experience a condition for volunteering, which does not make sense",
+"treats \"never having ridden\" as a step that had to be finished first"
+],
+"explanation": "Volunteering to lead a ride is surprising for someone who has never ridden, so the clause states a contrast and needs \"Although\". The other words make the inexperience a reason, a condition, or a finished first step."
+},
+{
+"id": "LV4-G7-04",
+"strand": "PCAS",
+"grade": 7,
+"format": "blank",
+"ccss": "L.7.1b",
+"option_class": "coordinating conjunctions",
+"prompt": "Which word or phrase correctly completes the sentence?",
+"passage": "The stage lights flickered twice during the second act, ____ the actors kept going as if nothing had happened.",
+"choices": [
+"so",
+"for",
+"but",
+"or"
+],
+"key": 2,
+"why_wrong": [
+"makes the actors' calm a result of the flickering",
+"makes the actors' calm the reason the lights flickered",
+"offers the two events as choices, though both happened"
+],
+"explanation": "You might expect flickering lights to stop a play, yet the actors kept going, so the clauses contrast and \"but\" joins them. \"So\" and \"for\" set up cause and effect, and \"or\" gives a choice."
+},
+{
+"id": "LV4-G7-05",
+"strand": "PoS",
+"grade": 7,
+"format": "blank",
+"ccss": "L.7.1a",
+"option_class": "subordinating conjunctions",
+"prompt": "Which word or phrase correctly completes the sentence?",
+"passage": "Ivy kept her concert tickets in her zipped coat pocket ____ she would not lose them in the crowd.",
+"choices": [
+"even though",
+"so that",
+"as if",
+"unless"
+],
+"key": 1,
+"why_wrong": [
+"sets up a contrast, but keeping tickets safe is the purpose of zipping them away",
+"compares her action to something imagined",
+"makes not losing them a condition, which reverses the logic"
+],
+"explanation": "The clause gives Ivy's purpose for zipping the tickets in her pocket, so \"so that\" fits. \"Even though\" signals contrast, \"as if\" signals an imagined comparison, and \"unless\" sets up a condition."
+},
+{
+"id": "LV4-G7-06",
+"strand": "PCAS",
+"grade": 7,
+"format": "revise",
+"ccss": "L.7.1c",
+"prompt": "Which revision of the sentence is correct?",
+"passage": "The museum displayed a dinosaur skeleton for visitors [with sharp teeth].",
+"choices": [
+"The museum displayed a dinosaur skeleton for visitors with sharp teeth.",
+"The museum displayed a dinosaur skeleton with sharp teeth for visitors.",
+"With sharp teeth, the museum displayed a dinosaur skeleton for visitors.",
+"The museum, with sharp teeth, displayed a dinosaur skeleton for visitors."
+],
+"key": 1,
+"why_wrong": [
+"leaves the phrase next to \"visitors\", so the visitors seem to have sharp teeth",
+"moves the phrase to the front, where it describes the museum",
+"places the phrase right after \"The museum\", so the museum has the teeth"
+],
+"explanation": "A modifier should sit next to the word it describes. The skeleton has the sharp teeth, so the phrase belongs right after \"skeleton\". The other versions attach the teeth to the visitors or the museum."
+},
+{
+"id": "LV4-G7-07",
+"strand": "PCAS",
+"grade": 7,
+"format": "revise",
+"ccss": "L.7.1c",
+"prompt": "Which revision of the sentence is correct?",
+"passage": "[To earn a spot on the team], hours of practice were needed every week.",
+"choices": [
+"To earn a spot on the team, hours of practice were needed every week.",
+"To earn a spot on the team, Diego needed hours of practice every week.",
+"To earn a spot on the team, practice took Diego hours every week.",
+"To earn a spot on the team, every week needed hours of practice."
+],
+"key": 1,
+"why_wrong": [
+"leaves the opening phrase with no person to do the earning, so \"hours of practice\" seem to earn the spot",
+"puts \"practice\" right after the phrase, so practice seems to earn the spot",
+"puts \"every week\" right after the phrase, so a week seems to earn the spot"
+],
+"explanation": "An opening phrase like \"To earn a spot\" must be followed by the person who does the earning. Only the version that names Diego right after the phrase does that. The others attach the phrase to \"hours\", \"practice\" or \"every week\"."
+},
+{
+"id": "LV4-G7-08",
+"strand": "PoS",
+"grade": 7,
+"format": "revise",
+"ccss": "L.7.1a",
+"prompt": "Which choice correctly replaces the bracketed word?",
+"passage": "The bridge [that] the city built in 1931 still carries traffic across the river every day.",
+"choices": [
+"that",
+"who",
+"where",
+"what"
+],
+"key": 0,
+"why_wrong": [
+"uses a pronoun for people to refer to a bridge",
+"uses a word for places, but the clause needs a word that stands for the bridge itself as the object of \"built\"",
+"uses \"what\", which cannot begin a clause that describes a noun"
+],
+"explanation": "The clause describes \"the bridge\", and the bridge is the thing the city built, so \"that\" is correct and the original is right. \"Who\" is for people, \"where\" would need a clause that is already complete, and \"what\" cannot describe a noun."
+},
+{
+"id": "LV4-G7-09",
+"strand": "PoS",
+"grade": 7,
+"format": "revise",
+"ccss": "L.7.1a",
+"prompt": "Which choice correctly replaces the bracketed word?",
+"passage": "The spring play was canceled [whereas] the lead actor had lost her voice two days before opening night.",
+"choices": [
+"whereas",
+"because",
+"although",
+"so that"
+],
+"key": 1,
+"why_wrong": [
+"sets up a contrast between two facts, but the lost voice explains the canceling",
+"sets up a surprise, but canceling a play is expected when its star cannot speak",
+"makes losing her voice the goal of canceling the play"
+],
+"explanation": "The actor's lost voice is the reason the play was canceled, so \"because\" fits. \"Whereas\" and \"although\" signal contrast, and \"so that\" signals a purpose, which reverses the logic."
+},
+{
+"id": "LV4-G7-10",
+"strand": "PCAS",
+"grade": 7,
+"format": "revise",
+"ccss": "L.7.1a",
+"prompt": "Which choice correctly replaces the bracketed word?",
+"passage": "[What] the scientists discovered inside the cave surprised everyone at the museum.",
+"choices": [
+"What",
+"That",
+"Which",
+"Who"
+],
+"key": 0,
+"why_wrong": [
+"uses \"That\", which leaves \"discovered\" with no object and the subject incomplete",
+"uses a word that introduces a clause describing a noun, but no noun comes before it",
+"uses a pronoun for people, but the scientists discovered a thing"
+],
+"explanation": "The bracketed word begins a noun clause that is the subject of \"surprised\" and also serves as the object of \"discovered\", which \"What\" can do, so the original is correct. \"That\" leaves \"discovered\" without an object, \"Which\" needs a noun before it, and \"Who\" refers to people."
+},
+{
+"id": "LV4-G7-11",
+"strand": "PCAS",
+"grade": 7,
+"format": "find-error",
+"ccss": "L.7.1c",
+"prompt": "Which sentence contains an error?",
+"passage": null,
+"choices": [
+"Covered in mud, the dog waited by the back door for a bath.",
+"Walking along the beach at sunrise, we found a starfish.",
+"Grandpa told us about catching a huge fish in the kitchen.",
+"The girl with the red umbrella waved to us from the bus."
+],
+"key": 2,
+"why_wrong": [
+"thinks a phrase beginning with \"Covered\" cannot describe an animal",
+"thinks any sentence starting with an -ing phrase is wrong",
+"thinks \"with the red umbrella\" is too far from \"waved\""
+],
+"explanation": "\"In the kitchen\" sits next to \"catching a huge fish\", so the fish seems to have been caught in the kitchen. It should say \"Grandpa told us in the kitchen about catching a huge fish.\" In the other sentences each phrase sits next to what it describes."
+},
+{
+"id": "LV4-G7-12",
+"strand": "PCAS",
+"grade": 7,
+"format": "find-error",
+"ccss": "L.7.1c",
+"prompt": "Which sentence contains an error?",
+"passage": null,
+"choices": [
+"The cyclist who won the race waved to the cheering crowd.",
+"Excited about the trip, Hana packed her suitcase two days early.",
+"We adopted a puppy from the animal shelter that has brown spots.",
+"The kite that Ben built flew higher than the oak tree."
+],
+"key": 2,
+"why_wrong": [
+"thinks a \"who\" clause in the middle of a sentence separates the subject from its verb in a wrong way",
+"thinks an opening phrase about feelings cannot describe the subject",
+"thinks \"that Ben built\" is placed too far from \"flew\""
+],
+"explanation": "\"That has brown spots\" comes right after \"shelter\", so the shelter seems to have brown spots. It should follow \"puppy\". In the other sentences every clause or phrase sits next to the noun it describes."
+},
+{
+"id": "LV4-G7-13",
+"strand": "PCAS",
+"grade": 7,
+"format": "find-error",
+"ccss": "L.7.1b",
+"prompt": "Which sentence contains an error?",
+"passage": null,
+"choices": [
+"When the curtain rose, the audience gasped at the giant painted moon.",
+"Hoping to see the comet before the sky grew light outside.",
+"The actor who played the king forgot only one line all night.",
+"Although tickets had sold out, a few seats stayed empty."
+],
+"key": 1,
+"why_wrong": [
+"thinks a sentence may not begin with a \"When\" clause",
+"thinks a \"who\" clause in the middle makes a sentence incomplete",
+"thinks a sentence that begins with \"Although\" must be a fragment"
+],
+"explanation": "\"Hoping to see the comet before the sky grew light outside\" has no subject and no main verb, so it is a fragment. Each other sentence has an independent clause, even when it begins or is interrupted by another clause."
+},
+{
+"id": "LV4-G7-14",
+"strand": "PCAS",
+"grade": 7,
+"format": "find-error",
+"ccss": "L.7.1c",
+"prompt": "Which sentence contains an error?",
+"passage": null,
+"choices": [
+"After finishing the experiment, the beakers were rinsed in the sink.",
+"Exhausted from the long climb, the hikers rested on a flat rock.",
+"To get a good seat, Omar arrived at the stadium an hour early.",
+"Painted bright yellow, the old school bus looked brand new."
+],
+"key": 0,
+"why_wrong": [
+"thinks \"Exhausted\" must describe a thing rather than people",
+"thinks an opening \"To\" phrase always dangles",
+"thinks a phrase beginning with \"Painted\" cannot describe a bus"
+],
+"explanation": "\"After finishing the experiment\" needs the people who finished it right after the comma, but the sentence names \"the beakers\", so the beakers seem to finish the experiment. In the other sentences the opening phrase describes the subject that follows it."
+},
+{
+"id": "LV4-G7-15",
+"strand": "PCAS",
+"grade": 7,
+"format": "choose-correct",
+"ccss": "L.7.1c",
+"prompt": "Which sentence is written correctly?",
+"passage": null,
+"choices": [
+"Hanging on the wall of the gallery, Maya admired the painting.",
+"The waiter served birthday cake to the children on small paper plates.",
+"To catch the early train, an alarm was set for five o'clock.",
+"Wrapped in a warm blanket, the baby fell asleep in the car."
+],
+"key": 3,
+"why_wrong": [
+"makes Maya, not the painting, hang on the wall",
+"places \"on small paper plates\" after \"children\", so the children seem to sit on the plates",
+"leaves no person to catch the train, so the alarm seems to catch it"
+],
+"explanation": "The baby is the one wrapped in a blanket, and \"the baby\" comes right after the phrase, so that sentence is correct. The others attach a modifier to the wrong word or to no doer at all."
+},
+{
+"id": "LV4-G7-16",
+"strand": "PCAS",
+"grade": 7,
+"format": "choose-correct",
+"ccss": "L.7.1b",
+"prompt": "Which sentence is written correctly?",
+"passage": null,
+"choices": [
+"The museum opened a new wing, it holds old cars and trains.",
+"Since the bus was late and the road was covered in ice.",
+"The guide pointed to the map we followed her to the exit.",
+"When the rain stopped, we left the shelter, and the sun came out."
+],
+"key": 3,
+"why_wrong": [
+"joins two complete sentences with only a comma",
+"is a dependent clause with no main clause, so it is a fragment",
+"runs two complete sentences together with no punctuation or conjunction"
+],
+"explanation": "The correct sentence has a dependent clause (\"When the rain stopped\") and two independent clauses joined by a comma and \"and\". The others are a comma splice, a fragment, and a run-on."
+},
+{
+"id": "LV4-G7-17",
+"strand": "PoS",
+"grade": 7,
+"format": "choose-correct",
+"ccss": "L.7.1a",
+"prompt": "Which sentence is written correctly?",
+"passage": null,
+"choices": [
+"The trophy, that sits in the front hall, was won in 1950.",
+"The coach whose team won the title gave a short speech.",
+"The gym which we practice is across the street from the library.",
+"The play what we saw last week had a surprise ending."
+],
+"key": 1,
+"why_wrong": [
+"uses \"that\" for a clause set off by commas, which needs \"which\"",
+"uses \"which\" where the clause needs a word for place, such as \"where\" or \"in which\"",
+"uses \"what\" to begin a clause that describes a noun"
+],
+"explanation": "\"Whose team won the title\" correctly tells which coach. The others misuse a relative word: \"that\" inside commas, \"which\" where a place word is needed, and \"what\" in place of \"that\"."
+},
+{
+"id": "LV4-G7-18",
+"strand": "PCAS",
+"grade": 7,
+"format": "identify",
+"ccss": "L.7.1b",
+"prompt": "Which best describes the structure of the sentence?",
+"passage": "The players stretched on the field while the coach set out the orange cones.",
+"choices": [
+"one independent clause and one dependent clause",
+"two independent clauses",
+"two independent clauses and one dependent clause",
+"one independent clause only"
+],
+"key": 0,
+"why_wrong": [
+"counts \"the coach set out the orange cones\" as independent, ignoring \"while\"",
+"adds a third clause that is not there",
+"thinks \"while the coach set out the orange cones\" is only a phrase, though it has a subject and verb"
+],
+"explanation": "\"The players stretched on the field\" can stand alone. \"While the coach set out the orange cones\" has a subject and verb but begins with \"while\", so it is dependent. That makes one independent and one dependent clause."
+},
+{
+"id": "LV4-G7-19",
+"strand": "PCAS",
+"grade": 7,
+"format": "identify",
+"ccss": "L.7.1a",
+"prompt": "What is the function of the bracketed clause?",
+"passage": "Ruby could not remember [where she had left her house key].",
+"choices": [
+"It acts as a noun, the object of \"remember\".",
+"It describes the noun \"Ruby\".",
+"It tells when Ruby could not remember.",
+"It is a complete sentence on its own."
+],
+"key": 0,
+"why_wrong": [
+"thinks a clause beginning with \"where\" always describes a noun",
+"thinks a clause beginning with \"where\" tells about time",
+"thinks a clause with a subject and verb can always stand alone"
+],
+"explanation": "The clause answers \"remember what?\", so it works as a noun, the object of \"remember\". It does not describe Ruby, it does not tell when, and it cannot stand alone after the word \"where\" without becoming a question."
+},
+{
+"id": "LV4-G7-20",
+"strand": "PCAS",
+"grade": 7,
+"format": "combine-grammar",
+"ccss": "L.7.1b",
+"prompt": "Which choice best combines the sentences without changing their meaning?",
+"passage": "The museum's dinosaur hall reopened on Saturday. It had been closed for two years. Hundreds of families came to see it.",
+"choices": [
+"Because hundreds of families came to see it, the museum's dinosaur hall, which had been closed for two years, reopened on Saturday.",
+"The museum's dinosaur hall had been closed for two years so that hundreds of families could come to see it on Saturday.",
+"The museum's dinosaur hall, which had been closed for two years, reopened on Saturday, and hundreds of families came to see it.",
+"The museum's dinosaur hall reopened on Saturday after hundreds of families came to see it, although it had been closed for two years."
+],
+"key": 2,
+"why_wrong": [
+"makes the families' visit the cause of the reopening",
+"makes the long closing a plan meant to bring families on Saturday",
+"puts the families' visit before the reopening and adds a contrast the sentences do not state"
+],
+"explanation": "The correct choice tucks the closing into a \"which\" clause and joins the reopening and the visit with \"and\", keeping the order of events. The others invent a cause, a purpose, or a contrast, or reverse the order."
+}
+]

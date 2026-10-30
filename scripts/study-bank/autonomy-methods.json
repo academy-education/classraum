@@ -966,6 +966,27 @@
    "author": "agent",
    "grader": "cfg-v2",
    "source": "REGISTER 2026-10-31: map-v2-work/reading-b3 standalone Vocabulary, 80 items, two parallel Claude agent authors, vocab-check.mjs, deal-vocab.mjs; grader v2 pre-screen x2 pending."
+  },
+  "map-language-v4-grammar": {
+   "method_id": "map-lu-v3-insession-rewrite+cfg-v2",
+   "author": "in-session",
+   "grader": "cfg-v2",
+   "authoring_brief": "MAP-LANGUAGE-V3-BRIEF.md",
+   "source": "MAP Language v4 (2026-10-31): second batch under the frozen v3 brief (unchanged text, same method), in-session sub-batches by grade, map-v2-work/language-v4/lu4-check.mjs pre-flight (lu3-check superset), agent-review gate. Note: the author was shown the v3 agent-review results by the coordinator."
+  },
+  "map-language-v4-writing": {
+   "method_id": "map-lu-v3-insession-rewrite+cfg-v2",
+   "author": "in-session",
+   "grader": "cfg-v2",
+   "authoring_brief": "MAP-LANGUAGE-V3-BRIEF.md",
+   "source": "MAP Language v4 (2026-10-31): second batch under the frozen v3 brief (unchanged text, same method), in-session sub-batches by format group, map-v2-work/language-v4/lu4-check.mjs pre-flight (lu3-check superset), agent-review gate. Note: the author was shown the v3 agent-review results by the coordinator."
+  },
+  "map-language-v4-mechanics": {
+   "method_id": "map-lu-v4-mech-insession+cfg-v2",
+   "author": "in-session",
+   "grader": "cfg-v2",
+   "authoring_brief": "MAP-LANGUAGE-V3-BRIEF.md",
+   "source": "MAP Language v4 (2026-10-31): NEW method for Mechanics (v2 mechanics used the grid; v4 applies the v3 brief's five non-grid shapes - blank, revise, find-error, choose-correct, identify - to Punctuation, Capitalization and Spelling); lu4-check.mjs adds the spelling-target oracle guard and case-sensitive capitalization options; agent-review gate. First batch of this method, so it is a bridge."
   }
  }
 }

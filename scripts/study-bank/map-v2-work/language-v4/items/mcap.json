@@ -1,0 +1,354 @@
+[
+{
+"id": "LV4-MC5-01",
+"strand": "Cap",
+"grade": 5,
+"format": "blank",
+"ccss": "L.5.2",
+"prompt": "Which choice correctly completes the sentence?",
+"passage": "For homework, our class read a short story called ____.",
+"choices": [
+"\"The Day it Snowed Frogs\"",
+"\"The Day It Snowed Frogs\"",
+"\"The day It Snowed Frogs\"",
+"\"the Day It Snowed Frogs\""
+],
+"key": 1,
+"why_wrong": [
+"thinks every short word in a title stays lowercase, but \"It\" is a pronoun and is capitalized",
+"leaves the second word, a noun, lowercase",
+"leaves the first word of the title lowercase"
+],
+"explanation": "In a title, the first word and every important word are capitalized, and pronouns like \"It\" count as important even though they are short. Only one choice capitalizes \"The\", \"Day\", \"It\", \"Snowed\" and \"Frogs\"."
+},
+{
+"id": "LV4-MC5-02",
+"strand": "Cap",
+"grade": 5,
+"format": "blank",
+"ccss": "L.5.2",
+"prompt": "Which choice correctly completes the sentence?",
+"passage": "Last year Jack's family moved to the ____, and now they live an hour from the Pacific Ocean.",
+"choices": [
+"west coast",
+"West coast",
+"West Coast",
+"west Coast"
+],
+"key": 2,
+"why_wrong": [
+"treats the name of a region as an ordinary direction",
+"capitalizes only half of the region's two-word name",
+"capitalizes only the second half of the region's name"
+],
+"explanation": "\"West Coast\" here names a region of the country, so both words are capitalized, just like \"Pacific Ocean\". The other choices leave one or both words lowercase."
+},
+{
+"id": "LV4-MC5-03",
+"strand": "Cap",
+"grade": 5,
+"format": "blank",
+"ccss": "L.5.2",
+"prompt": "Which choice correctly completes the sentence?",
+"passage": "This year Ana is taking ____ as her two new classes.",
+"choices": [
+"spanish and science",
+"Spanish and Science",
+"spanish and Science",
+"Spanish and science"
+],
+"key": 3,
+"why_wrong": [
+"leaves the name of a language lowercase",
+"capitalizes a school subject that is not a language or a numbered course",
+"capitalizes the subject and leaves the language lowercase"
+],
+"explanation": "Languages are always capitalized because they come from proper nouns, so \"Spanish\" is capitalized. General school subjects like \"science\" are not."
+},
+{
+"id": "LV4-MC5-04",
+"strand": "Cap",
+"grade": 5,
+"format": "blank",
+"ccss": "L.5.2",
+"prompt": "Which choice correctly completes the sentence?",
+"passage": "After school, Nora walks her dog to the ____ near her house.",
+"choices": [
+"Park on Maple Street",
+"park on Maple Street",
+"park on maple street",
+"Park on maple Street"
+],
+"key": 1,
+"why_wrong": [
+"capitalizes \"park\", which is used here as a general word, not part of a name",
+"leaves the name of the street lowercase",
+"capitalizes the general word and only half of the street name"
+],
+"explanation": "\"Park\" is a general word here, so it stays lowercase. \"Maple Street\" is the name of a particular street, so both words are capitalized."
+},
+{
+"id": "LV4-MC5-05",
+"strand": "Cap",
+"grade": 5,
+"format": "find-error",
+"ccss": "L.5.2",
+"prompt": "Which sentence has a capitalization error?",
+"passage": null,
+"choices": [
+"My aunt lives in the Midwest, about an hour south of Chicago.",
+"We learned about the Great Depression in social studies.",
+"Leo read a poem called \"Footprints In the Snow.\"",
+"Our class sang \"Take Me Out to the Ball Game\" at the picnic."
+],
+"key": 2,
+"why_wrong": [
+"thinks \"south\" should be capitalized because \"Midwest\" is",
+"thinks \"social studies\" should be capitalized like the name of the event",
+"thinks \"to\" and \"the\" in a title should be capitalized"
+],
+"explanation": "In a title, short prepositions like \"in\" stay lowercase unless they come first, so \"In\" should be \"in\". The other sentences capitalize a region, a historical event and a title correctly."
+},
+{
+"id": "LV4-MC5-06",
+"strand": "Cap",
+"grade": 5,
+"format": "find-error",
+"ccss": "L.5.2",
+"prompt": "Which sentence has a capitalization error?",
+"passage": null,
+"choices": [
+"The Red Cross sent volunteers to help after the flood.",
+"Next fall, Ruby will start at Hillside middle school.",
+"Ms. Kim teaches math and French at our school.",
+"We visited a science museum in Boston during spring break."
+],
+"key": 1,
+"why_wrong": [
+"thinks the name of an organization should be lowercase",
+"thinks \"math\" should be capitalized like \"French\"",
+"thinks \"spring break\" names a holiday and should be capitalized"
+],
+"explanation": "\"Hillside Middle School\" is the full name of a particular school, so \"Middle School\" must be capitalized too. The other sentences capitalize an organization, a language and a city correctly."
+},
+{
+"id": "LV4-MC5-07",
+"strand": "Cap",
+"grade": 5,
+"format": "choose-correct",
+"ccss": "L.5.2",
+"prompt": "Which sentence is capitalized correctly?",
+"passage": null,
+"choices": [
+"Our team flew east last spring to play in the national Championship.",
+"Grandpa grew up in the South and moved north after college.",
+"Omar is taking Science and English this year.",
+"We read about the civil war in our history book."
+],
+"key": 1,
+"why_wrong": [
+"capitalizes \"Championship\", a general word that is not part of a name",
+"capitalizes the school subject \"Science\"",
+"leaves the name of a historical event lowercase"
+],
+"explanation": "\"The South\" names a region and is capitalized, while \"north\" is only a direction he moved. The others capitalize a general word or a subject, or leave the name of a war lowercase."
+},
+{
+"id": "LV4-MC5-08",
+"strand": "Cap",
+"grade": 5,
+"format": "identify",
+"ccss": "L.5.2",
+"prompt": "Why is the word \"Northeast\" capitalized in the sentence?",
+"passage": "Ana's family moved from the Northeast to a small town in Texas.",
+"choices": [
+"It shows a direction someone traveled.",
+"It is the first word after \"the\".",
+"It names a region of the country.",
+"It comes before the name of a state."
+],
+"key": 2,
+"why_wrong": [
+"confuses a region with a direction, which is not capitalized",
+"thinks a word after \"the\" is capitalized",
+"thinks a word is capitalized because a proper noun comes later in the sentence"
+],
+"explanation": "\"The Northeast\" names a particular region of the United States, so it is capitalized. Directions are lowercase, and a word is not capitalized because of what comes before or after it."
+},
+{
+"id": "LV4-MC6-01",
+"strand": "Cap",
+"grade": 6,
+"format": "blank",
+"ccss": "L.6.2",
+"prompt": "Which choice correctly completes the sentence?",
+"passage": "After the game, the coach told us that we had played ____",
+"choices": [
+"\"Like true champions.\"",
+"\"like true champions.\"",
+"\"Like True Champions.\"",
+"\"like True champions.\""
+],
+"key": 1,
+"why_wrong": [
+"capitalizes the first word of a quotation that is only part of a sentence",
+"capitalizes every word, as if the phrase were a title",
+"capitalizes a word in the middle of the quoted phrase"
+],
+"explanation": "The quotation is a fragment that finishes the writer's own sentence, so its first word stays lowercase. A capital would be used only if the quotation were a complete sentence."
+},
+{
+"id": "LV4-MC6-02",
+"strand": "Cap",
+"grade": 6,
+"format": "blank",
+"ccss": "L.6.2",
+"prompt": "Which choice correctly completes the sentence?",
+"passage": "The Riverside Public Library is closed today, but the ____ on Elm Street is open until six.",
+"choices": [
+"Library",
+"library",
+"Public Library",
+"public Library"
+],
+"key": 1,
+"why_wrong": [
+"capitalizes a general word because it was part of a name earlier in the sentence",
+"capitalizes words that are not part of a name in this spot",
+"capitalizes half of a general phrase"
+],
+"explanation": "The second library is not named, so \"library\" is a general word and stays lowercase, even though it was capitalized inside the name \"Riverside Public Library\"."
+},
+{
+"id": "LV4-MC6-03",
+"strand": "Cap",
+"grade": 6,
+"format": "revise",
+"ccss": "L.6.2",
+"prompt": "Which choice correctly replaces the bracketed words?",
+"passage": "In social studies, we read the [declaration of independence] aloud.",
+"choices": [
+"declaration of independence",
+"Declaration of Independence",
+"Declaration of independence",
+"declaration Of Independence"
+],
+"key": 1,
+"why_wrong": [
+"leaves the name of a historical document lowercase",
+"capitalizes only the first word of the document's name",
+"capitalizes the short word \"of\" and leaves the first word lowercase"
+],
+"explanation": "The name of a particular historical document is a proper noun, so its main words are capitalized and the short word \"of\" stays lowercase: \"Declaration of Independence\"."
+},
+{
+"id": "LV4-MC6-04",
+"strand": "Cap",
+"grade": 6,
+"format": "revise",
+"ccss": "L.6.2",
+"prompt": "Which choice correctly replaces the bracketed words?",
+"passage": "In [Ancient Rome], people gathered in large public baths to talk and relax.",
+"choices": [
+"Ancient Rome",
+"ancient rome",
+"ancient Rome",
+"Ancient rome"
+],
+"key": 2,
+"why_wrong": [
+"capitalizes \"ancient\", a describing word that is not part of the city's name",
+"leaves the name of the city lowercase",
+"capitalizes the describing word and leaves the city's name lowercase"
+],
+"explanation": "\"Rome\" is the name of a city, so it is capitalized. \"Ancient\" only describes the time period and is not part of the name, so it stays lowercase."
+},
+{
+"id": "LV4-MC6-05",
+"strand": "Cap",
+"grade": 6,
+"format": "find-error",
+"ccss": "L.6.2",
+"prompt": "Which sentence has a capitalization error?",
+"passage": null,
+"choices": [
+"The United Nations has its headquarters in New York City.",
+"Mom said, \"Don't forget your umbrella.\"",
+"During the summer, our town holds a festival on Main Street.",
+"The Mayor of our town cut the ribbon at the new bridge."
+],
+"key": 3,
+"why_wrong": [
+"thinks the name of an international organization should be lowercase",
+"thinks a quoted full sentence should begin with a lowercase letter",
+"thinks the season \"summer\" should be capitalized"
+],
+"explanation": "A title like \"mayor\" is capitalized only when it comes right before a name, as in \"Mayor Park\". Here it is used alone, so it should be lowercase. The other sentences are capitalized correctly."
+},
+{
+"id": "LV4-MC6-06",
+"strand": "Cap",
+"grade": 6,
+"format": "find-error",
+"ccss": "L.6.2",
+"prompt": "Which sentence has a capitalization error?",
+"passage": null,
+"choices": [
+"Our science teacher, Dr. Ruiz, grew up in the Southwest.",
+"My aunt said that the best part of the trip was the food.",
+"We toured the Lincoln memorial on our class trip to Washington.",
+"Ben's grandfather served in World War II."
+],
+"key": 2,
+"why_wrong": [
+"thinks \"science\" should be capitalized because a name follows",
+"thinks a reported statement after \"said that\" begins with a capital",
+"thinks \"World War II\" should be lowercase"
+],
+"explanation": "\"Lincoln Memorial\" is the full name of a particular monument, so \"Memorial\" must be capitalized. The other sentences capitalize a region, a reported statement and a war correctly."
+},
+{
+"id": "LV4-MC6-07",
+"strand": "Cap",
+"grade": 6,
+"format": "choose-correct",
+"ccss": "L.6.2",
+"prompt": "Which sentence is capitalized correctly?",
+"passage": null,
+"choices": [
+"The ship's crew sailed the cargo up the Mississippi river.",
+"Mia goes to a middle school near Westfield High School.",
+"Dad said that We could stay up late on Friday.",
+"The Pilgrims sailed to America on the mayflower in 1620."
+],
+"key": 1,
+"why_wrong": [
+"leaves \"River\" lowercase, though it is part of the river's name",
+"capitalizes \"We\" in the middle of a sentence, though it does not begin a quotation",
+"leaves the name of a particular ship lowercase"
+],
+"explanation": "\"Westfield High School\" is a name and is capitalized, while \"a middle school\" is general and stays lowercase. The others miss part of a river's name, capitalize a word in the middle of a sentence, or leave a ship's name lowercase."
+},
+{
+"id": "LV4-MC6-08",
+"strand": "Cap",
+"grade": 6,
+"format": "identify",
+"ccss": "L.6.2",
+"prompt": "Which word in the sentence should be capitalized?",
+"passage": "Our town library has a whole shelf of books written in korean and Spanish.",
+"choices": [
+"town",
+"library",
+"shelf",
+"korean"
+],
+"key": 3,
+"why_wrong": [
+"thinks \"town\" is part of a name, though no town is named",
+"thinks \"library\" is part of a name, though no library is named",
+"thinks a general noun like \"shelf\" is a proper noun"
+],
+"explanation": "Names of languages are proper nouns, so \"korean\" should be \"Korean\", just as \"Spanish\" is capitalized. \"Town\", \"library\" and \"shelf\" are general nouns here."
+}
+]
