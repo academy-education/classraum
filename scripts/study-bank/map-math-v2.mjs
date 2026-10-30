@@ -12,6 +12,8 @@
  * map-math-v2-b4-num / -data, rank record per area.
  * `--batch n789` (MAP-MATH-V2-N789.prereg.md): Number Systems only, the 9 PART OK items of batches 7-9 under one
  * gate (ids MB7-/MB8-/MB9- via idPattern), 6 author cells, dump-n789, R11 against the 702 earlier MAP ids.
+ * `--batch n11` (MAP-MATH-V2-N11.prereg.md): Number Systems only, the 7 stage-A selections (SELECTION.md) re-issued
+ * MB11-, 4 author cells (N5-N8), dump-n11 (+ every n789 and b10 item), R11 against the 726 earlier MAP ids.
  * map-math-g58-v5.mjs made general to the four MAP maths areas. Inputs: the 11 author files
  * scratchpad/map-v2-math-work/<author>/items.json (221 slots in map-v2-work/math/slots.json, checked per item by
  * map-v2-work/math/math-check.mjs). Every bar runs PER AREA and each area freezes as its own batch.
@@ -166,6 +168,28 @@ export const BATCHES = {
       freeze: { N: 20262112 }, oo: { N: 20262122 }, grade: { N: 20262140 }, cPrime: { N: 20262172 },
     },
   },
+  n11: {
+    // MAP-MATH-V2-N11.prereg.md: the 7 stage-A candidates picked in scratchpad/map-v2-math-b11-work/SELECTION.md
+    // (screened in the authoring loop before write-up), re-issued MB11-N<g>-NN with `selected_from`. Inputs from
+    // map-v2-work/math-n11/build.mjs: slots (cells N5-N8), author files, dump-n11 = dump-b10 + every n789 and b10
+    // item (as screened, revised, frozen, withdrawn), R11 against all 726 earlier MAP ids in it
+    name: 'map-v2 Math batch 11 (Number Systems gate n11)', prereg: 'scripts/study-bank/MAP-MATH-V2-N11.prereg.md',
+    work: ROOT + '/scratchpad/map-math-v2-n11-work', authored: ROOT + '/scratchpad/map-v2-math-n11-work',
+    results: D + 'map-math-v2-n11/', slots: D + 'map-v2-work/math-n11/slots.json', idPrefix: 'MB11',
+    checkArgs: ['--slots', D + 'map-v2-work/math-n11/slots.json', '--prior', ROOT + '/scratchpad/map-v2-math-work/dump-n11-check/prior-math.json', '--families', 'isee,ssat,map'],
+    authorsPresentOnly: true, slotTotal: 7,
+    cohortStem: 'map-math-v2-n11',   // cohort map-math-v2-n11-num
+    cPrime: true, ooPartMax: 60, earlierFile: D + 'map-v2-work/math-n11/EXCLUSIONS-map-n11.txt', earlier: 'dump-n11', earlierDump: ROOT + '/scratchpad/map-v2-math-work/dump-n11/prior-math.json', areas: ['N'], rankRecord: true,
+    candidateChecks: true,   // selftest: candidates absent from earlier/prior, every n789 item present, selected_from
+    // math-check prior = dump-n11 minus every version of each candidate's own held predecessor (frozen_from; the n789
+    // precedent for a candidate's own earlier rows); the R11 earlier set keeps all 726 ids (prereg, deviation 2)
+    checkPriorMinus: D + 'map-v2-work/math-n11/predecessors.json',
+    expect: { authors: 4, earlierN: 726, packets: '7', ranks: { N: '2/3/2/0' } },
+    seed: {
+      screen1Order: 20262201, screen1Deal: 20262202, screen2Order: 20262203, screen2Deal: 20262204,
+      freeze: { N: 20262212 }, oo: { N: 20262222 }, grade: { N: 20262240 }, cPrime: { N: 20262272 },
+    },
+  },
   b10: {
     // MAP-MATH-V2-B10.prereg.md: Operations + Geometry + Statistics, 15 items written before the prereg (stated there)
     name: 'map-v2 Math batch 10 (Operations + Geometry + Statistics)', prereg: 'scripts/study-bank/MAP-MATH-V2-B10.prereg.md',
@@ -218,7 +242,8 @@ function earlierBatchIds() {
   const b1text = t.slice(at), b1 = [...new Set([...b1text.matchAll(/\((MV2-[ONGD][0-9A-Z]*-\d\d)\)/g)].map(m => m[1]))]
   if (b1.length !== 221) die(`${b2x}: batch-1 section names ${b1.length} ids, expected 221`)
   if (B.earlier === 'b1') return { ids: b1, text: b1text }
-  if (B.earlier === 'dump-b6' || B.earlier === 'dump-n789' || B.earlier === 'dump-b10') {   // b10: dump-b10, EXCLUSIONS-map-b10.txt
+  if (B.earlier === 'dump-b6' || B.earlier === 'dump-n789' || B.earlier === 'dump-b10' || B.earlier === 'dump-n11') {   // n11: dump-n11, EXCLUSIONS-map-n11.txt
+      // b10: dump-b10, EXCLUSIONS-map-b10.txt
     // batch 6 prereg: R11 against every earlier MAP maths item in dump-b6 (live, staged, dropped, withdrawn,
     // first-written); graders get EXCLUSIONS-map-b6.txt, which lists each id in parentheses with its prompt.
     // n789: the same rule over dump-n789 (dump-b10 minus the nine candidates), graders get EXCLUSIONS-map-n789.txt
@@ -679,6 +704,26 @@ async function selftest() {
       [slotIds.every(id => !eids.has(id) && !pids.has(id)), `${BATCH}: no candidate is in the R11 earlier set or the math-check prior (${B.earlierDump.replace(ROOT + '/', '')}, ${prior.length} rows)`],
       [['MB6-G6-01', 'MB6-D7-01', 'MB7-N6-01', 'MB8-N7-04', 'MB8-N8-01'].every(x => eids.has(x) && pids.has(x)), `${BATCH}: earlier set keeps the b6 items and the b7/b8 drops`],
       [AUTHORS.every(a => existsSync(`${AUTHORED}/${a}/items.json`)), `${BATCH}: all ${AUTHORS.length} author files present (${AUTHORS.join(' ')})`])
+  }
+  if (B.candidateChecks) {
+    // n11: one prefix (MB11). Every candidate absent from the R11 earlier set AND the math-check prior (no MB11 or
+    // MB11C row at all: the 14 unselected stage-A siblings would be self near-duplicates); every n789 item (frozen and
+    // withdrawn) and every b10 item in both; each author item carries selected_from = a SELECTION.md candidate id
+    const prior = rd(B.earlierDump), pids = new Set(prior.map(x => String(x.id))), eids = new Set(er.ids)
+    const N789 = ['MB7-N7-01', 'MB8-N6-01', 'MB8-N7-01', 'MB8-N7-02', 'MB8-N7-03', 'MB8-N7-05', 'MB9-N5-01', 'MB9-N6-01', 'MB9-N8-01']
+    const B10 = ['MB10-O6-01', 'MB10-O6-02', 'MB10-O6-03', 'MB10-O7-01', 'MB10-O7-02', 'MB10-O8-01', 'MB10-O8-02', 'MB10-G6-01', 'MB10-G7-01', 'MB10-G8-02', 'MB10-D6-01', 'MB10-D6-02', 'MB10-D7-01', 'MB10-D7-02', 'MB10-D7-03']
+    const selText = existsSync(ROOT + '/scratchpad/map-v2-math-b11-work/SELECTION.md') ? readFileSync(ROOT + '/scratchpad/map-v2-math-b11-work/SELECTION.md', 'utf8') : ''
+    const picked = new Set([...selText.matchAll(/\|\s*[A-F]\d\d\s*\|\s*(MB11C-[A-Z0-9]+-[abc])\s*\|/g)].map(m => m[1]))
+    const authored = AUTHORS.filter(a => existsSync(`${AUTHORED}/${a}/items.json`)).flatMap(a => rd(`${AUTHORED}/${a}/items.json`))
+    st.push([[...new Set(slotIds.map(id => id.split('-')[0]))].join() === 'MB11' && ['MB11-N5-01', 'MB11-N8-01'].every(x => ID_RE.test(x)) && !['MB1-N5-01', 'MB11C-N5-01', 'MB110-N5-01', 'MB9-N8-01', 'XMB11-N5-01'].some(x => ID_RE.test(x)), `${BATCH}: ids take MB11 and nothing else`],
+      [slotIds.every(id => !eids.has(id) && !pids.has(id)) && ![...pids].some(x => /^MB11/.test(x)), `${BATCH}: no candidate (and no MB11/MB11C row) in the R11 earlier set or the math-check prior (${B.earlierDump.replace(ROOT + '/', '')}, ${prior.length} rows)`],
+      [[...N789, ...B10].every(x => eids.has(x) && pids.has(x)), `${BATCH}: earlier set and prior hold all 9 n789 items (frozen + withdrawn) and all 15 b10 items`],
+      [AUTHORS.every(a => existsSync(`${AUTHORED}/${a}/items.json`)), `${BATCH}: all ${AUTHORS.length} author files present (${AUTHORS.join(' ')})`],
+      [picked.size === B.slotTotal && authored.length === B.slotTotal && authored.every(i => picked.has(i.selected_from)) && new Set(authored.map(i => i.selected_from)).size === B.slotTotal && rows.every(r => r.selected_from === authored.find(i => i.id === r.id)?.selected_from), `${BATCH}: every item and slot row carries selected_from, one per SELECTION.md pick (${picked.size} picks, ${authored.length} items)`],
+      [(() => { const pm = rd(B.checkPriorMinus), cp = rd(B.checkArgs[B.checkArgs.indexOf('--prior') + 1]), want = prior.filter(x => !Object.values(pm).includes(String(x.id)))
+        const cands = rd(ROOT + '/scratchpad/map-v2-math-b11-work/candidates.json')
+        return Object.keys(pm).length === B.slotTotal && authored.every(i => pm[i.id] === cands.find(c => c.id === i.selected_from)?.frozen_from && i.frozen_from === pm[i.id]) && cp.length === want.length && cp.length < prior.length && JSON.stringify(cp) === JSON.stringify(want) })(),
+        `${BATCH}: math-check prior = the R11 dump minus exactly each candidate's own frozen_from predecessor (all versions); nothing else removed`])
   }
   for (const [ok, msg] of st) if (!ok) { bad++; console.error('FAIL', msg) }
   const n = base.length + st.length
