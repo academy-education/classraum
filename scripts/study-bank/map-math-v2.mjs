@@ -166,6 +166,21 @@ export const BATCHES = {
       freeze: { N: 20262112 }, oo: { N: 20262122 }, grade: { N: 20262140 }, cPrime: { N: 20262172 },
     },
   },
+  b10: {
+    // MAP-MATH-V2-B10.prereg.md: Operations + Geometry + Statistics, 15 items written before the prereg (stated there)
+    name: 'map-v2 Math batch 10 (Operations + Geometry + Statistics)', prereg: 'scripts/study-bank/MAP-MATH-V2-B10.prereg.md',
+    work: ROOT + '/scratchpad/map-math-v2-b10-work', authored: ROOT + '/scratchpad/map-v2-math-b10-work',
+    results: D + 'map-math-v2-b10/', slots: D + 'map-v2-work/math-b10/slots.json', idPrefix: 'MB10',
+    checkArgs: ['--slots', D + 'map-v2-work/math-b10/slots.json', '--prior', ROOT + '/scratchpad/map-v2-math-work/dump-b10/prior-math.json', '--families', 'isee,ssat,map'],
+    authorsPresentOnly: true, slotTotal: 15,
+    cohortStem: 'map-math-v2-b10',   // cohorts map-math-v2-b10-oa, -geo, -data
+    cPrime: true, ooPartMax: 60, earlierFile: D + 'map-v2-work/math-b10/EXCLUSIONS-map-b10.txt', earlier: 'dump-b10', earlierDump: ROOT + '/scratchpad/map-v2-math-work/dump-b10/prior-math.json', areas: ['O', 'G', 'D'], rankRecord: true,
+    expect: { authors: 8, earlierN: 708, packets: '15', ranks: { O: '0/4/3/0', G: '0/1/2/0', D: '0/2/3/0' } },
+    seed: {
+      screen1Order: 20261901, screen1Deal: 20261902, screen2Order: 20261903, screen2Deal: 20261904,
+      freeze: { O: 20261911, G: 20261913, D: 20261914 }, oo: { O: 20261921, G: 20261923, D: 20261924 }, grade: { O: 20261930, G: 20261945, D: 20261960 }, cPrime: { O: 20261971, G: 20261973, D: 20261974 },
+    },
+  },
 }
 export const BATCH = (() => { const i = process.argv.indexOf('--batch'); if (i < 0) return 'b1'; const b = process.argv[i + 1]; process.argv.splice(i, 2); if (!BATCHES[b]) { console.error(`REFUSING: --batch must be one of ${Object.keys(BATCHES).join(' ')}`); process.exit(2) } return b })()
 export const B = BATCHES[BATCH]
@@ -203,7 +218,7 @@ function earlierBatchIds() {
   const b1text = t.slice(at), b1 = [...new Set([...b1text.matchAll(/\((MV2-[ONGD][0-9A-Z]*-\d\d)\)/g)].map(m => m[1]))]
   if (b1.length !== 221) die(`${b2x}: batch-1 section names ${b1.length} ids, expected 221`)
   if (B.earlier === 'b1') return { ids: b1, text: b1text }
-  if (B.earlier === 'dump-b6' || B.earlier === 'dump-n789') {
+  if (B.earlier === 'dump-b6' || B.earlier === 'dump-n789' || B.earlier === 'dump-b10') {   // b10: dump-b10, EXCLUSIONS-map-b10.txt
     // batch 6 prereg: R11 against every earlier MAP maths item in dump-b6 (live, staged, dropped, withdrawn,
     // first-written); graders get EXCLUSIONS-map-b6.txt, which lists each id in parentheses with its prompt.
     // n789: the same rule over dump-n789 (dump-b10 minus the nine candidates), graders get EXCLUSIONS-map-n789.txt
