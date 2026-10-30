@@ -2,7 +2,7 @@
  "runId": "agentreview-audit-cofounder-2026-10-29",
  "reviewer": "6ca6edaf-4044-4eed-84e0-137ebd79a81d",
  "seed": "agentreview-audit-2026-10-29",
- "total": 24,
+ "total": 28,
  "command": "DRAW_IDS_FILE=scripts/study-bank/agent-review/audit-sample.ids.json DRAW_COHORT='ssat-reading-draft-10:2,ssat-reading-draft-11:2,ssat-reading-draft-14:2,ssat-reading-draft-8:2,ssat-reading-draft-9:2,map-language-v2-mechanics:2,map-language-v2-writing:2,map-lu-v3-punctuation:1,map-lu-v6-spelling:2,map-reading-draft-1:1,map-reading-v2-c4:1,map-vocab-v3:1,ssat-verbal-draft-2:1,ssat-verbal-draft-3:1,ssat-verbal-draft-4:1,ssat-verbal-draft-5:1' node scripts/study-bank/draw-review-run.mjs '*' 24 6ca6edaf-4044-4eed-84e0-137ebd79a81d agentreview-audit-cofounder-2026-10-29",
  "cohorts": [
   {
@@ -172,6 +172,30 @@
     "ca4d0e6a-1e65-48cc-a570-6b636810cfb4"
    ],
    "group": null
+  },
+  {
+   "cohort": "map-language-v3-grammar",
+   "cleared": 67,
+   "rank": 1,
+   "n": 2,
+   "ids": [
+    "84a67eb2-e386-4e66-aedc-0cff4c505042",
+    "ec069d60-b561-4e69-9901-a8421e0e935d"
+   ],
+   "group": null,
+   "note": "added 2026-10-30, seed agentreview-audit-v3 (REGISTER); plan entry written 2026-10-31 to match the drawn run"
+  },
+  {
+   "cohort": "map-language-v3-writing",
+   "cleared": 64,
+   "rank": 1,
+   "n": 2,
+   "ids": [
+    "06cd6e5c-77c1-47ed-aa25-cd6c78fba399",
+    "b97cf9b9-941a-4fd1-8551-77ab43fed350"
+   ],
+   "group": null,
+   "note": "added 2026-10-30, seed agentreview-audit-v3 (REGISTER); plan entry written 2026-10-31 to match the drawn run"
   }
  ]
 }

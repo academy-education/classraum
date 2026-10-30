@@ -6594,3 +6594,12 @@ structural checks are pre-flight only. See CLAUDE.md.
   must run BEFORE generation. b10's mapgrep also silently lacked the b9/n789/b10/b11 items; `tools/mapgrep12.mjs`
   adds them and exits 2 on a missing source. **Gate policy from here:** pool per area until n >= 10, then prereg and
   gate (n11 was held by one item at n=5).
+
+- **2026-10-31 — Daniel's SSAT/MAP pre-release audit CLOSED: 28 of 28 `unique`, 0 would_block. Dry run: RELEASE 957
+  across 18 cohorts, hold 0. Awaiting the owner's go for `--apply`.** One note, classified `batch_pattern`
+  (non-blocking): the names "Pruitt" and "Hester" recur across stories (live SSAT 2 passages and ISEE 1; staged ISEE 3,
+  SSAT 3 and ACT 1). New reading-brief rule: no proper name reused across passages; check names against live and
+  staged before staging. audit-sample.json had never received the 4 MAP Language v3 ids added on 10-30 (only the ids
+  file had them); the plan entries were written to match the drawn run, and the release script now reads 28 rows
+  over 18 cohorts. Wave-2 audit `agentreview-audit2-cofounder-2026-10-30` drawn (21 rows); the queue's nextManualDraw
+  was removed.

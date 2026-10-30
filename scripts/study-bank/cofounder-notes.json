@@ -1,11 +1,11 @@
 {
- "built_at": "2026-10-27T12:22:21.829Z",
+ "built_at": "2026-10-30T15:22:39.739Z",
  "reviewer_id": "6ca6edaf-4044-4eed-84e0-137ebd79a81d",
  "counts": {
-  "rows": 1210,
-  "human": 1170,
+  "rows": 1256,
+  "human": 1216,
   "model_assisted_excluded": 40,
-  "review_entries": 181,
+  "review_entries": 182,
   "register_entries": 9
  },
  "taxonomy": {
@@ -445,7 +445,7 @@
    "rationale": "Note reports the missing table, or is assistant-drafted reasoning about it. The review screen never drew item.graphic (fixed in a2f810f2), so this run was judged without its tables. A display defect of the tool, not of the item. Verdicts on this run are model-assisted by the reviewer's own account (owner 2026-10-27: he is not comfortable with science and used AI); science verdicts move to the agent with-source graders.",
    "source": "review",
    "fresh": true,
-   "archived": false,
+   "archived": true,
    "item_sha": "983324af1d0769e508a9b8a6b83dcc96",
    "content_sha": "983324af1d0769e508a9b8a6b83dcc96",
    "classified_by": "claude-opus-5.5 (in-session, 2026-10-27)"
@@ -1072,7 +1072,7 @@
    "rationale": "Note reports the missing table, or is assistant-drafted reasoning about it. The review screen never drew item.graphic (fixed in a2f810f2), so this run was judged without its tables. A display defect of the tool, not of the item. Verdicts on this run are model-assisted by the reviewer's own account (owner 2026-10-27: he is not comfortable with science and used AI); science verdicts move to the agent with-source graders.",
    "source": "review",
    "fresh": true,
-   "archived": false,
+   "archived": true,
    "item_sha": "e48cb921d72f483eafd675467bccab64",
    "content_sha": "e48cb921d72f483eafd675467bccab64",
    "classified_by": "claude-opus-5.5 (in-session, 2026-10-27)"
@@ -1394,7 +1394,7 @@
    "rationale": "Note reports the missing table, or is assistant-drafted reasoning about it. The review screen never drew item.graphic (fixed in a2f810f2), so this run was judged without its tables. A display defect of the tool, not of the item. Verdicts on this run are model-assisted by the reviewer's own account (owner 2026-10-27: he is not comfortable with science and used AI); science verdicts move to the agent with-source graders.",
    "source": "review",
    "fresh": true,
-   "archived": false,
+   "archived": true,
    "item_sha": "9b2a8c625018b0218730e57db1029ab9",
    "content_sha": "9b2a8c625018b0218730e57db1029ab9",
    "classified_by": "claude-opus-5.5 (in-session, 2026-10-27)"
@@ -1534,7 +1534,7 @@
    "rationale": "Note reports the missing table, or is assistant-drafted reasoning about it. The review screen never drew item.graphic (fixed in a2f810f2), so this run was judged without its tables. A display defect of the tool, not of the item. Verdicts on this run are model-assisted by the reviewer's own account (owner 2026-10-27: he is not comfortable with science and used AI); science verdicts move to the agent with-source graders.",
    "source": "review",
    "fresh": true,
-   "archived": false,
+   "archived": true,
    "item_sha": "b347218425cfc1bd80808a65ebe1252b",
    "content_sha": "b347218425cfc1bd80808a65ebe1252b",
    "classified_by": "claude-opus-5.5 (in-session, 2026-10-27)"
@@ -2067,7 +2067,7 @@
    "rationale": "Note reports the missing table, or is assistant-drafted reasoning about it. The review screen never drew item.graphic (fixed in a2f810f2), so this run was judged without its tables. A display defect of the tool, not of the item. Verdicts on this run are model-assisted by the reviewer's own account (owner 2026-10-27: he is not comfortable with science and used AI); science verdicts move to the agent with-source graders.",
    "source": "review",
    "fresh": true,
-   "archived": false,
+   "archived": true,
    "item_sha": "f1790e9445c1344b0cb31733c779e130",
    "content_sha": "f1790e9445c1344b0cb31733c779e130",
    "classified_by": "claude-opus-5.5 (in-session, 2026-10-27)"
@@ -2228,7 +2228,7 @@
    "rationale": "Note reports the missing table, or is assistant-drafted reasoning about it. The review screen never drew item.graphic (fixed in a2f810f2), so this run was judged without its tables. A display defect of the tool, not of the item. Verdicts on this run are model-assisted by the reviewer's own account (owner 2026-10-27: he is not comfortable with science and used AI); science verdicts move to the agent with-source graders.",
    "source": "review",
    "fresh": true,
-   "archived": false,
+   "archived": true,
    "item_sha": "baef130896ff90d4440283b9055c4e58",
    "content_sha": "baef130896ff90d4440283b9055c4e58",
    "classified_by": "claude-opus-5.5 (in-session, 2026-10-27)"
@@ -2623,7 +2623,7 @@
    "rationale": "Note reports the missing table, or is assistant-drafted reasoning about it. The review screen never drew item.graphic (fixed in a2f810f2), so this run was judged without its tables. A display defect of the tool, not of the item. Verdicts on this run are model-assisted by the reviewer's own account (owner 2026-10-27: he is not comfortable with science and used AI); science verdicts move to the agent with-source graders.",
    "source": "review",
    "fresh": true,
-   "archived": false,
+   "archived": true,
    "item_sha": "4149a1dc5d64615958784f3931f9f0dc",
    "content_sha": "4149a1dc5d64615958784f3931f9f0dc",
    "classified_by": "claude-opus-5.5 (in-session, 2026-10-27)"
@@ -2692,7 +2692,7 @@
    "rationale": "Note reports the missing table, or is assistant-drafted reasoning about it. The review screen never drew item.graphic (fixed in a2f810f2), so this run was judged without its tables. A display defect of the tool, not of the item. Verdicts on this run are model-assisted by the reviewer's own account (owner 2026-10-27: he is not comfortable with science and used AI); science verdicts move to the agent with-source graders.",
    "source": "review",
    "fresh": true,
-   "archived": false,
+   "archived": true,
    "item_sha": "d659025dee49eb376e04aa98732e8fff",
    "content_sha": "d659025dee49eb376e04aa98732e8fff",
    "classified_by": "claude-opus-5.5 (in-session, 2026-10-27)"
@@ -3018,7 +3018,7 @@
    "rationale": "Note reports the missing table, or is assistant-drafted reasoning about it. The review screen never drew item.graphic (fixed in a2f810f2), so this run was judged without its tables. A display defect of the tool, not of the item. Verdicts on this run are model-assisted by the reviewer's own account (owner 2026-10-27: he is not comfortable with science and used AI); science verdicts move to the agent with-source graders.",
    "source": "review",
    "fresh": true,
-   "archived": false,
+   "archived": true,
    "item_sha": "39cadf4cef3527beea1ce2851342dc02",
    "content_sha": "39cadf4cef3527beea1ce2851342dc02",
    "classified_by": "claude-opus-5.5 (in-session, 2026-10-27)"
@@ -3133,7 +3133,7 @@
    "rationale": "Verdict \"broken\" (he suspects D, not C) given without the table. The review screen never drew item.graphic (fixed in a2f810f2), so this run was judged without its tables. Not evidence about the item; the agent graders re-check it with the decoded table. Verdicts on this run are model-assisted by the reviewer's own account (owner 2026-10-27: he is not comfortable with science and used AI); science verdicts move to the agent with-source graders.",
    "source": "review",
    "fresh": true,
-   "archived": false,
+   "archived": true,
    "item_sha": "a879784fa5a6ab26a23b01c497fabdf3",
    "content_sha": "a879784fa5a6ab26a23b01c497fabdf3",
    "classified_by": "claude-opus-5.5 (in-session, 2026-10-27)"
@@ -3298,7 +3298,7 @@
    "rationale": "Note reports the missing table, or is assistant-drafted reasoning about it. The review screen never drew item.graphic (fixed in a2f810f2), so this run was judged without its tables. A display defect of the tool, not of the item. Verdicts on this run are model-assisted by the reviewer's own account (owner 2026-10-27: he is not comfortable with science and used AI); science verdicts move to the agent with-source graders.",
    "source": "review",
    "fresh": true,
-   "archived": false,
+   "archived": true,
    "item_sha": "be6136b069f545fe706caa26964ceaac",
    "content_sha": "be6136b069f545fe706caa26964ceaac",
    "classified_by": "claude-opus-5.5 (in-session, 2026-10-27)"
@@ -3459,7 +3459,7 @@
    "rationale": "Note reports the missing table, or is assistant-drafted reasoning about it. The review screen never drew item.graphic (fixed in a2f810f2), so this run was judged without its tables. A display defect of the tool, not of the item. Verdicts on this run are model-assisted by the reviewer's own account (owner 2026-10-27: he is not comfortable with science and used AI); science verdicts move to the agent with-source graders.",
    "source": "review",
    "fresh": true,
-   "archived": false,
+   "archived": true,
    "item_sha": "ff31078b21cc6ba4d62ac3cbe5a83da4",
    "content_sha": "ff31078b21cc6ba4d62ac3cbe5a83da4",
    "classified_by": "claude-opus-5.5 (in-session, 2026-10-27)"
@@ -3975,6 +3975,29 @@
    "item_sha": "afde5c4b4634bcdaf2f8eea317fcdd46",
    "content_sha": "4836a59cb26c7d0a44075d0666092677",
    "classified_by": "claude-opus-5.5 (in-session, 2026-10-23)"
+  },
+  {
+   "review_id": "eb81f493-6729-4121-9581-808c316bfbfe",
+   "item_id": "aa9cd918-0131-4230-9d58-665d991296cb",
+   "run_id": "agentreview-audit-cofounder-2026-10-29",
+   "cohort": "ssat-reading-draft-10",
+   "family": "ssat",
+   "section": "reading",
+   "task": "multiple_choice",
+   "verdict": "unique",
+   "note": "the name pruitt and hester seems to keep repeating itself over in different stories. ",
+   "reviewed_at": "2026-10-30T15:10:29.776+00:00",
+   "defect_type": "batch_pattern",
+   "secondary_types": [],
+   "would_block": false,
+   "scope": "batch",
+   "rationale": "Cross-passage name reuse: \"Pruitt\" and \"Hester\" recur across different stories (live SSAT 2 passages, staged ISEE 3, SSAT 3, ACT 1, live ISEE 1). The key is judged unique and the item is sound; this is a variety/authoring defect, not a block. Authoring rule for future reading briefs: no proper name reused across passages within or across cohorts; check names against the live and staged bank before staging.",
+   "source": "review",
+   "fresh": true,
+   "archived": false,
+   "item_sha": "2aaa4352d6114173bdd163551a715f75",
+   "content_sha": "2aaa4352d6114173bdd163551a715f75",
+   "classified_by": "claude-opus-5.5 (in-session, 2026-10-31)"
   },
   {
    "review_id": "eced1255-036f-4462-a432-3fd097a9eca0",

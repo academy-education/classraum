@@ -1,6 +1,6 @@
 {
- "classified_at": "2026-10-27T12:22:21.149Z",
- "count": 181,
+ "classified_at": "2026-10-31",
+ "count": 182,
  "entries": [
   {
    "review_id": "10202606-bad1-41f5-ae8b-d581f73cf2c3",
@@ -1670,6 +1670,15 @@
    "scope": "item",
    "rationale": "Distractor B has a foothold by inference (earlier complaints the father never heard), but the reviewer judged the key unique: the narrator is never shown learning it and B narrows the story to one fact. Non-blocking; the suggested rewrite of B is an authoring note for future batches, not a repair (the co-founder reviews, he does not write).",
    "classified_by": "claude-opus-5.5 (in-session, 2026-10-27)"
+  },
+  {
+   "review_id": "eb81f493-6729-4121-9581-808c316bfbfe",
+   "defect_type": "batch_pattern",
+   "secondary_types": [],
+   "would_block": false,
+   "scope": "batch",
+   "rationale": "Cross-passage name reuse: \"Pruitt\" and \"Hester\" recur across different stories (live SSAT 2 passages, staged ISEE 3, SSAT 3, ACT 1, live ISEE 1). The key is judged unique and the item is sound; this is a variety/authoring defect, not a block. Authoring rule for future reading briefs: no proper name reused across passages within or across cohorts; check names against the live and staged bank before staging.",
+   "classified_by": "claude-opus-5.5 (in-session, 2026-10-31)"
   }
  ],
  "register": [
