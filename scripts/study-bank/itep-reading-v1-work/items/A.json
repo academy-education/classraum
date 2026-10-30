@@ -1,0 +1,455 @@
+{
+ "author": "A",
+ "sets": [
+  {
+   "set_id": "ITR1-A-P1A",
+   "part": 1,
+   "genre": "school notice",
+   "title": "Badminton tournament moved",
+   "passage": "To all students: The spring badminton tournament will start on Thursday, not Wednesday as we said last week. The floor in the main gym is being repaired, so all games will be played in the small gym next to the library. Players should arrive by 3:30 and wear clean indoor shoes. The school will lend rackets to anyone who needs one, but please bring your own water bottle. Parents are welcome to watch from the upper seats. Mr. Caddick, sports teacher",
+   "names": [
+    "Caddick"
+   ],
+   "other_caps": [
+    "Thursday",
+    "Wednesday",
+    "Mr"
+   ],
+   "items": [
+    {
+     "qid": "ITR1-A-P1A-1",
+     "kind": "detail",
+     "difficulty": "easy",
+     "prompt": "According to the notice, why will the games be played in the small gym?",
+     "choices": [
+      "Another sports team needs to use the main gym.",
+      "The small gym has more seats for parents.",
+      "The small gym is easier for players to find.",
+      "Workers are fixing the floor of the main gym."
+     ],
+     "correct_answer": "Workers are fixing the floor of the main gym.",
+     "why": "The floor in the main gym is being repaired, so all games will be played in the small gym",
+     "explanation": "\"Workers are fixing the floor of the main gym.\" is correct: the notice says \"The floor in the main gym is being repaired, so all games will be played in the small gym\".",
+     "distractor_rationales": [
+      {
+       "choice": "Another sports team needs to use the main gym.",
+       "lure": "contradicted",
+       "reason": "\"Another sports team needs to use the main gym.\" is not the reason given: the notice says \"The floor in the main gym is being repaired, so all games will be played in the small gym\"."
+      },
+      {
+       "choice": "The small gym has more seats for parents.",
+       "lure": "word lure",
+       "reason": "\"The small gym has more seats for parents.\" is not the reason given: parents may \"watch from the upper seats\", but the reason for the move is \"The floor in the main gym is being repaired\"."
+      },
+      {
+       "choice": "The small gym is easier for players to find.",
+       "lure": "word lure",
+       "reason": "\"The small gym is easier for players to find.\" is not the reason given: the small gym is \"next to the library\", but the games move there because \"The floor in the main gym is being repaired\"."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITR1-A-P1B",
+   "part": 1,
+   "genre": "text message",
+   "title": "Borrowing a wetsuit",
+   "passage": "Hi Fenna! Are you still coming snorkelling with my family on Saturday? We leave at eight. My mum says the water at the bay is cold this month, and my old wetsuit is too small for me now. You have two, right? Could I use your blue one for the day? I'll wash it before I give it back. If it's a problem, just tell me and I'll rent one at the beach shop. See you Saturday! Esme",
+   "names": [
+    "Fenna",
+    "Esme"
+   ],
+   "other_caps": [
+    "Saturday",
+    "I'll"
+   ],
+   "items": [
+    {
+     "qid": "ITR1-A-P1B-1",
+     "kind": "purpose",
+     "difficulty": "easy",
+     "prompt": "Why did Esme send this message to Fenna?",
+     "choices": [
+      "to ask if she can use one of Fenna's wetsuits",
+      "to invite Fenna to go snorkelling on Saturday",
+      "to ask Fenna to rent a wetsuit at the shop",
+      "to offer Fenna her old wetsuit for the trip"
+     ],
+     "correct_answer": "to ask if she can use one of Fenna's wetsuits",
+     "why": "Could I use your blue one for the day?",
+     "explanation": "\"to ask if she can use one of Fenna's wetsuits\" is correct: after saying \"my old wetsuit is too small for me now\" and \"You have two, right?\", Esme asks \"Could I use your blue one for the day?\"",
+     "distractor_rationales": [
+      {
+       "choice": "to invite Fenna to go snorkelling on Saturday",
+       "lure": "contradicted",
+       "reason": "\"to invite Fenna to go snorkelling on Saturday\" is wrong: Fenna has already been invited, since Esme asks \"Are you still coming snorkelling with my family on Saturday?\""
+      },
+      {
+       "choice": "to ask Fenna to rent a wetsuit at the shop",
+       "lure": "word lure",
+       "reason": "\"to ask Fenna to rent a wetsuit at the shop\" is wrong: Esme is the one who would rent: \"just tell me and I'll rent one at the beach shop\"."
+      },
+      {
+       "choice": "to offer Fenna her old wetsuit for the trip",
+       "lure": "contradicted",
+       "reason": "\"to offer Fenna her old wetsuit for the trip\" is wrong: Esme says \"my old wetsuit is too small for me now\" and asks to borrow Fenna's: \"Could I use your blue one for the day?\""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITR1-A-P2",
+   "part": 2,
+   "genre": "story",
+   "title": "The long throw",
+   "passage": "Bea had played on her school's flying disc team for three weeks. At practice, her long throws flew straight and far, and her teammates often cheered. In real games, however, something changed. As soon as the disc reached her hands, she felt everyone watching. Each time, she passed it quickly to the closest player.\n\nBefore the last game of the season, the team captain, Dagny, sat down beside her. \"For the first half, just make short, easy passes,\" Dagny said. \"Get used to the noise. After that, look up the field.\" Bea nodded, though her stomach felt tight.\n\nThe first half went slowly. Bea made six short passes, and each one reached a teammate. By the break, her nerves had started to settle, and she noticed that the wind was now blowing toward the other end of the field.\n\nMidway through the second half, Bea caught the disc near her own goal line. Far ahead, her teammate Arlo was running alone, with no defender near him. For a moment she thought about the short pass. Then she stepped forward and threw. The disc rode the wind over every player's head, and Arlo caught it in the end zone. The whole team ran toward Bea, shouting her name.",
+   "names": [
+    "Bea",
+    "Dagny",
+    "Arlo"
+   ],
+   "other_caps": [],
+   "items": [
+    {
+     "qid": "ITR1-A-P2-1",
+     "kind": "main-idea",
+     "difficulty": "medium",
+     "prompt": "What is the story mainly about?",
+     "choices": [
+      "how members of a sports team help one another improve",
+      "a captain who gives a teammate advice before a game",
+      "a player who chooses short passes instead of long throws",
+      "a player who finally makes a long throw in a real game"
+     ],
+     "correct_answer": "a player who finally makes a long throw in a real game",
+     "why": "Then she stepped forward and threw.",
+     "explanation": "\"a player who finally makes a long throw in a real game\" is correct: in games Bea always \"passed it quickly to the closest player\", but in the last game \"Then she stepped forward and threw\" and \"Arlo caught it in the end zone\".",
+     "distractor_rationales": [
+      {
+       "choice": "how members of a sports team help one another improve",
+       "lure": "broader",
+       "reason": "\"how members of a sports team help one another improve\" is too general: the story follows one player, from \"she passed it quickly to the closest player\" to \"Then she stepped forward and threw\", and describes no other player improving."
+      },
+      {
+       "choice": "a captain who gives a teammate advice before a game",
+       "lure": "narrower",
+       "reason": "\"a captain who gives a teammate advice before a game\" covers only paragraph 2 (\"the team captain, Dagny, sat down beside her\"), not the game in which \"Then she stepped forward and threw\"."
+      },
+      {
+       "choice": "a player who chooses short passes instead of long throws",
+       "lure": "central misreading",
+       "reason": "\"a player who chooses short passes instead of long throws\" gets the ending wrong: at the key moment \"she thought about the short pass. Then she stepped forward and threw\" and \"The disc rode the wind over every player's head\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITR1-A-P2-2",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "According to the story, what did Bea do in real games when she got the disc?",
+     "choices": [
+      "She threw it at once to the nearest teammate.",
+      "She threw it as far as she could up the field.",
+      "She held it until the captain told her where to throw.",
+      "She dropped it because her hands were shaking."
+     ],
+     "correct_answer": "She threw it at once to the nearest teammate.",
+     "why": "Each time, she passed it quickly to the closest player.",
+     "explanation": "\"She threw it at once to the nearest teammate.\" is correct: the story says \"Each time, she passed it quickly to the closest player\".",
+     "distractor_rationales": [
+      {
+       "choice": "She threw it as far as she could up the field.",
+       "lure": "word lure",
+       "reason": "\"She threw it as far as she could up the field.\" describes practice, not games: \"At practice, her long throws flew straight and far\", while in games \"she passed it quickly to the closest player\"."
+      },
+      {
+       "choice": "She held it until the captain told her where to throw.",
+       "lure": "contradicted",
+       "reason": "\"She held it until the captain told her where to throw.\" is wrong: she did not wait, because \"she passed it quickly to the closest player\"."
+      },
+      {
+       "choice": "She dropped it because her hands were shaking.",
+       "lure": "contradicted",
+       "reason": "\"She dropped it because her hands were shaking.\" is wrong: the story says what she did with it: \"Each time, she passed it quickly to the closest player\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITR1-A-P2-3",
+     "kind": "vocabulary",
+     "difficulty": "medium",
+     "prompt": "In paragraph 3, the word \"settle\" is closest in meaning to",
+     "choices": [
+      "be decided",
+      "calm down",
+      "move in",
+      "sink down"
+     ],
+     "correct_answer": "calm down",
+     "why": "By the break, her nerves had started to settle",
+     "explanation": "\"calm down\" is correct: after \"Bea made six short passes, and each one reached a teammate\", her nervousness grew less: \"her nerves had started to settle\".",
+     "distractor_rationales": [
+      {
+       "choice": "be decided",
+       "lure": "other meaning",
+       "reason": "\"be decided\" is a meaning of settle for an argument, but nothing is being decided here: \"her nerves had started to settle\" after \"each one reached a teammate\"."
+      },
+      {
+       "choice": "move in",
+       "lure": "other meaning",
+       "reason": "\"move in\" is a meaning of settle for a new home, but the sentence is about feelings: \"her nerves had started to settle\"."
+      },
+      {
+       "choice": "sink down",
+       "lure": "other meaning",
+       "reason": "\"sink down\" is a meaning of settle for dust or sand, but nerves cannot sink; the six successful passes (\"each one reached a teammate\") made her less nervous."
+      }
+     ]
+    },
+    {
+     "qid": "ITR1-A-P2-4",
+     "kind": "inference",
+     "difficulty": "medium",
+     "prompt": "What can be inferred about Dagny?",
+     "choices": [
+      "She wanted Bea to make short passes for the whole game.",
+      "She planned to keep Bea on the bench in the first half.",
+      "She understood that Bea got nervous during games.",
+      "She hoped Bea would throw long from the very start."
+     ],
+     "correct_answer": "She understood that Bea got nervous during games.",
+     "why": "she felt everyone watching",
+     "why2": "Get used to the noise.",
+     "explanation": "\"She understood that Bea got nervous during games.\" is correct: in games Bea \"felt everyone watching\", and Dagny's advice is aimed at exactly that: \"just make short, easy passes\" and \"Get used to the noise.\"",
+     "distractor_rationales": [
+      {
+       "choice": "She wanted Bea to make short passes for the whole game.",
+       "lure": "contradicted",
+       "reason": "\"She wanted Bea to make short passes for the whole game.\" is contradicted: short passes were only \"For the first half\", and then Dagny said \"After that, look up the field.\""
+      },
+      {
+       "choice": "She planned to keep Bea on the bench in the first half.",
+       "lure": "contradicted",
+       "reason": "\"She planned to keep Bea on the bench in the first half.\" is contradicted: Dagny told Bea what to do in that half: \"For the first half, just make short, easy passes\"."
+      },
+      {
+       "choice": "She hoped Bea would throw long from the very start.",
+       "lure": "contradicted",
+       "reason": "\"She hoped Bea would throw long from the very start.\" is contradicted: Dagny said \"For the first half, just make short, easy passes\" and only later \"look up the field\"."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITR1-A-P3",
+   "part": 3,
+   "genre": "informational science",
+   "title": "How the archerfish hunts",
+   "passage": "In the mangrove swamps and river mouths of Southeast Asia and northern Australia lives a small fish with an unusual way of hunting. The archerfish feeds partly on insects that rest on leaves and twigs above the water. Instead of leaping for them, it knocks them down by shooting a thin jet of water from its mouth. A well-aimed shot can hit an insect resting a metre or more above the surface, and the stunned insect drops into the water, where the fish quickly swallows it.\n\nThe fish has no special water gun inside its body. It presses its tongue against a groove in the roof of its mouth, forming a narrow tube, and then snaps its gill covers shut. This squeezes water forward through the tube at high speed. When researchers filmed the jets with high-speed cameras, they noticed something surprising: the back of the jet travels faster than the front. As the jet moves through the air, the rear water catches up with the leading water, so that much of it gathers into one heavy drop near the target.\n\nAiming is a harder problem than it first appears. Light bends as it passes between air and water, so an insect seen from below the surface appears to be in a slightly different place from where it really is. A human spear fisher standing in a stream must learn to aim below the spot where a fish appears to be. The archerfish faces the same puzzle from the other side of the surface, yet it hits targets from many different angles. Experiments suggest that it does not simply line up with the image it sees; instead, it appears to correct for the bending of light, much as an experienced spear fisher does.\n\nYoung archerfish are not born expert shooters. They improve with practice, but laboratory studies suggest they can also improve by watching. In one kind of experiment, young fish were allowed to observe a skilled fish hitting targets that moved across a screen above the tank. Afterwards, many of the watchers hit moving targets far better than before, even though they had barely practised on such targets themselves. Many scientists had once assumed that learning by observation of this kind was limited to animals with large brains, such as apes and some birds.\n\nHunting is also a race. When an insect falls, other fish nearby rush toward it, so the shooter must reach the landing point first. Within roughly a tenth of a second after the insect starts to fall, the archerfish turns and swims toward the place where it will land. It judges this from the insect's early speed, direction and height, rather than waiting to see where it drops.\n\nTaken together, these findings have made the archerfish a favourite subject for scientists who study how animals think. A single hunt combines physics, careful aim, learning and fast prediction. The fish suggests that such skills can develop in an animal whose brain is small and built very differently from our own.",
+   "names": [],
+   "other_caps": [
+    "Southeast",
+    "Asia",
+    "Australia"
+   ],
+   "items": [
+    {
+     "qid": "ITR1-A-P3-1",
+     "kind": "main-idea",
+     "difficulty": "medium",
+     "prompt": "What is the passage mainly about?",
+     "choices": [
+      "how the archerfish's hunting uses several complex skills",
+      "how many different kinds of fish catch insects above water",
+      "how the archerfish shapes its jet into a single heavy drop",
+      "how the archerfish's jet lets it hunt without needing to aim"
+     ],
+     "correct_answer": "how the archerfish's hunting uses several complex skills",
+     "why": "A single hunt combines physics, careful aim, learning and fast prediction.",
+     "explanation": "\"how the archerfish's hunting uses several complex skills\" is correct: the passage moves through the jet, aiming, learning and fast prediction, and sums up: \"A single hunt combines physics, careful aim, learning and fast prediction.\"",
+     "distractor_rationales": [
+      {
+       "choice": "how many different kinds of fish catch insects above water",
+       "lure": "broader",
+       "reason": "\"how many different kinds of fish catch insects above water\" is too general: the passage is about one fish, \"The archerfish feeds partly on insects\"; other fish appear only as rivals that \"rush toward it\"."
+      },
+      {
+       "choice": "how the archerfish shapes its jet into a single heavy drop",
+       "lure": "narrower",
+       "reason": "\"how the archerfish shapes its jet into a single heavy drop\" covers only paragraph 2: \"much of it gathers into one heavy drop near the target\"."
+      },
+      {
+       "choice": "how the archerfish's jet lets it hunt without needing to aim",
+       "lure": "central misreading",
+       "reason": "\"how the archerfish's jet lets it hunt without needing to aim\" is wrong about aiming: \"Aiming is a harder problem than it first appears\", and a hunt needs \"careful aim\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITR1-A-P3-2",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "According to the passage, how does the archerfish produce its jet?",
+     "choices": [
+      "It pumps water through a special tube deep inside its body.",
+      "It uses its tongue to form a tube and pushes water through it.",
+      "It pushes water out through its gills by closing its mouth.",
+      "It fills its mouth with air and then pushes the water out."
+     ],
+     "correct_answer": "It uses its tongue to form a tube and pushes water through it.",
+     "why": "It presses its tongue against a groove in the roof of its mouth, forming a narrow tube",
+     "explanation": "\"It uses its tongue to form a tube and pushes water through it.\" is correct: the fish \"presses its tongue against a groove in the roof of its mouth, forming a narrow tube\", and then \"This squeezes water forward through the tube at high speed.\"",
+     "distractor_rationales": [
+      {
+       "choice": "It pumps water through a special tube deep inside its body.",
+       "lure": "contradicted",
+       "reason": "\"It pumps water through a special tube deep inside its body.\" is contradicted: \"The fish has no special water gun inside its body.\""
+      },
+      {
+       "choice": "It pushes water out through its gills by closing its mouth.",
+       "lure": "word lure",
+       "reason": "\"It pushes water out through its gills by closing its mouth.\" is wrong: the gill covers close, and the water goes \"forward through the tube\" formed in its mouth."
+      },
+      {
+       "choice": "It fills its mouth with air and then pushes the water out.",
+       "lure": "contradicted",
+       "reason": "\"It fills its mouth with air and then pushes the water out.\" is not how the passage describes it: the fish \"snaps its gill covers shut. This squeezes water forward through the tube at high speed\"; no air is involved."
+      }
+     ]
+    },
+    {
+     "qid": "ITR1-A-P3-3",
+     "kind": "vocabulary",
+     "difficulty": "hard",
+     "prompt": "In paragraph 5, the word \"judges\" is closest in meaning to",
+     "choices": [
+      "condemns",
+      "referees",
+      "estimates",
+      "rules on"
+     ],
+     "correct_answer": "estimates",
+     "why": "It judges this from the insect's early speed, direction and height",
+     "explanation": "\"estimates\" is correct: the fish works out \"the place where it will land\" from \"the insect's early speed, direction and height, rather than waiting to see where it drops\".",
+     "distractor_rationales": [
+      {
+       "choice": "condemns",
+       "lure": "other meaning",
+       "reason": "\"condemns\" is a meaning of judge (to blame someone), but the fish blames no one: \"It judges this from the insect's early speed, direction and height\"."
+      },
+      {
+       "choice": "referees",
+       "lure": "other meaning",
+       "reason": "\"referees\" is a meaning of judge for a contest; \"Hunting is also a race\", but the fish is a racer that \"must reach the landing point first\", not an official."
+      },
+      {
+       "choice": "rules on",
+       "lure": "other meaning",
+       "reason": "\"rules on\" is a meaning of judge in a court case; here the fish works out a place from \"the insect's early speed, direction and height\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITR1-A-P3-4",
+     "kind": "inference",
+     "difficulty": "hard",
+     "prompt": "What can be inferred about the laboratory studies of young archerfish?",
+     "choices": [
+      "They showed that young fish improve only through their own practice.",
+      "They showed that watching skilled fish made young fish less accurate.",
+      "They confirmed what scientists had always believed about how fish learn.",
+      "They challenged an earlier belief about which animals learn by watching."
+     ],
+     "correct_answer": "They challenged an earlier belief about which animals learn by watching.",
+     "why": "learning by observation of this kind was limited to animals with large brains",
+     "why2": "an animal whose brain is small",
+     "explanation": "\"They challenged an earlier belief about which animals learn by watching.\" is correct: scientists thought \"learning by observation of this kind was limited to animals with large brains\", yet the watching fish improved and the archerfish is \"an animal whose brain is small\".",
+     "distractor_rationales": [
+      {
+       "choice": "They showed that young fish improve only through their own practice.",
+       "lure": "contradicted",
+       "reason": "\"They showed that young fish improve only through their own practice.\" is contradicted: \"laboratory studies suggest they can also improve by watching\"."
+      },
+      {
+       "choice": "They showed that watching skilled fish made young fish less accurate.",
+       "lure": "contradicted",
+       "reason": "\"They showed that watching skilled fish made young fish less accurate.\" is contradicted: \"many of the watchers hit moving targets far better than before\"."
+      },
+      {
+       "choice": "They confirmed what scientists had always believed about how fish learn.",
+       "lure": "contradicted",
+       "reason": "\"They confirmed what scientists had always believed about how fish learn.\" is contradicted: \"Many scientists had once assumed that learning by observation of this kind was limited to animals with large brains\", and the archerfish has a brain that \"is small\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITR1-A-P3-5",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "According to the passage, why must the archerfish move fast once an insect falls?",
+     "choices": [
+      "Other fish may reach the fallen insect before it does.",
+      "The insect may wake up again and fly away from the water.",
+      "The insect will sink below the surface very quickly.",
+      "Birds above the water may take the insect first."
+     ],
+     "correct_answer": "Other fish may reach the fallen insect before it does.",
+     "why": "other fish nearby rush toward it, so the shooter must reach the landing point first",
+     "explanation": "\"Other fish may reach the fallen insect before it does.\" is correct: the passage says \"other fish nearby rush toward it, so the shooter must reach the landing point first\".",
+     "distractor_rationales": [
+      {
+       "choice": "The insect may wake up again and fly away from the water.",
+       "lure": "contradicted",
+       "reason": "\"The insect may wake up again and fly away from the water.\" is not the reason given: the passage says \"other fish nearby rush toward it, so the shooter must reach the landing point first\"."
+      },
+      {
+       "choice": "The insect will sink below the surface very quickly.",
+       "lure": "contradicted",
+       "reason": "\"The insect will sink below the surface very quickly.\" is not the reason given: the hurry is because \"other fish nearby rush toward it\"."
+      },
+      {
+       "choice": "Birds above the water may take the insect first.",
+       "lure": "word lure",
+       "reason": "\"Birds above the water may take the insect first.\" is not the reason given: the rivals named are fish, \"other fish nearby rush toward it\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITR1-A-P3-6",
+     "kind": "purpose",
+     "difficulty": "hard",
+     "prompt": "Why does the author mention a human spear fisher in paragraph 3?",
+     "choices": [
+      "to show that people aim more accurately than the fish",
+      "to compare the fish's aiming problem with a human one",
+      "to explain why the fish shoots from straight below",
+      "to describe one way that people catch the archerfish"
+     ],
+     "correct_answer": "to compare the fish's aiming problem with a human one",
+     "why": "The archerfish faces the same puzzle from the other side of the surface",
+     "explanation": "\"to compare the fish's aiming problem with a human one\" is correct: the spear fisher \"must learn to aim below the spot where a fish appears to be\", and \"The archerfish faces the same puzzle from the other side of the surface\".",
+     "distractor_rationales": [
+      {
+       "choice": "to show that people aim more accurately than the fish",
+       "lure": "contradicted",
+       "reason": "\"to show that people aim more accurately than the fish\" is wrong: the fish corrects for the bending of light \"much as an experienced spear fisher does\", so the two are compared as similar, not ranked."
+      },
+      {
+       "choice": "to explain why the fish shoots from straight below",
+       "lure": "contradicted",
+       "reason": "\"to explain why the fish shoots from straight below\" is wrong: the archerfish \"hits targets from many different angles\"."
+      },
+      {
+       "choice": "to describe one way that people catch the archerfish",
+       "lure": "word lure",
+       "reason": "\"to describe one way that people catch the archerfish\" is wrong: the spear fisher aims at \"a fish\" in \"a stream\", and the paragraph is about aiming: \"The archerfish faces the same puzzle from the other side of the surface\"."
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

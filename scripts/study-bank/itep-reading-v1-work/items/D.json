@@ -1,0 +1,459 @@
+{
+ "author": "D",
+ "sets": [
+  {
+   "set_id": "ITR1-D-P1A",
+   "part": 1,
+   "genre": "library notice",
+   "title": "Old town photos wanted",
+   "passage": "The Stelbridge library is planning a show about our town in the past, and we need your help. Do you have photographs of Stelbridge that were taken before 1980? Please bring them to the local history room on any Saturday morning in March. A librarian will scan each photo while you wait, and you will take your originals home with you the same day. The copies will hang in the main hall from April. If you know the year or the place, please write it on the back of each photo.",
+   "names": [
+    "Stelbridge"
+   ],
+   "other_caps": [
+    "Saturday",
+    "March",
+    "April"
+   ],
+   "items": [
+    {
+     "qid": "ITR1-D-P1A-1",
+     "kind": "purpose",
+     "difficulty": "easy",
+     "prompt": "Why was this notice written?",
+     "choices": [
+      "to ask people to give their old town photos to the library",
+      "to ask people to take new town photos for a library show",
+      "to ask people to lend their old town photos for copying",
+      "to tell people that a show of old town photos is now open"
+     ],
+     "correct_answer": "to ask people to lend their old town photos for copying",
+     "why": "A librarian will scan each photo while you wait",
+     "explanation": "\"to ask people to lend their old town photos for copying\" is correct: the notice asks readers to \"bring them to the local history room\", where \"A librarian will scan each photo while you wait\", and the owners keep the originals, so the photos are lent and copied.",
+     "distractor_rationales": [
+      {
+       "choice": "to ask people to give their old town photos to the library",
+       "lure": "contradicted",
+       "reason": "\"to ask people to give their old town photos to the library\" is wrong: the photos are only scanned, and \"you will take your originals home with you the same day\"."
+      },
+      {
+       "choice": "to ask people to take new town photos for a library show",
+       "lure": "contradicted",
+       "reason": "\"to ask people to take new town photos for a library show\" is wrong: the library wants photographs \"that were taken before 1980\", not new ones."
+      },
+      {
+       "choice": "to tell people that a show of old town photos is now open",
+       "lure": "contradicted",
+       "reason": "\"to tell people that a show of old town photos is now open\" is wrong: the library \"is planning a show\", and \"The copies will hang in the main hall from April\", so the show has not opened yet."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITR1-D-P1B",
+   "part": 1,
+   "genre": "email",
+   "title": "Borrowing a tripod",
+   "passage": "Hi Tuva,\n\nThanks for showing me your camera on Friday. My group has to film a short video about the school garden for science class, and my phone keeps shaking in my hands. Could I borrow your tripod? I can pick it up from your house on Saturday after my piano lesson, at about two o'clock. We plan to film on Sunday afternoon. I will bring the tripod back to school on Monday morning, before first period.\n\nSee you soon,\nZora",
+   "names": [
+    "Tuva",
+    "Zora"
+   ],
+   "other_caps": [
+    "Friday",
+    "Saturday",
+    "Sunday",
+    "Monday"
+   ],
+   "items": [
+    {
+     "qid": "ITR1-D-P1B-1",
+     "kind": "detail",
+     "difficulty": "easy",
+     "prompt": "When does Zora say she will return the tripod?",
+     "choices": [
+      "on Saturday, after her piano lesson ends",
+      "on Sunday, after her group films the video",
+      "on Friday, after she sees Tuva's camera",
+      "on Monday, before lessons start at school"
+     ],
+     "correct_answer": "on Monday, before lessons start at school",
+     "why": "I will bring the tripod back to school on Monday morning, before first period",
+     "explanation": "\"on Monday, before lessons start at school\" is correct: Zora writes \"I will bring the tripod back to school on Monday morning, before first period\", which is before lessons start.",
+     "distractor_rationales": [
+      {
+       "choice": "on Saturday, after her piano lesson ends",
+       "lure": "word lure",
+       "reason": "\"on Saturday, after her piano lesson ends\" is wrong: Saturday after the piano lesson is when she will \"pick it up from your house\", not return it."
+      },
+      {
+       "choice": "on Sunday, after her group films the video",
+       "lure": "word lure",
+       "reason": "\"on Sunday, after her group films the video\" is wrong: Sunday is only when \"We plan to film\"; she says \"I will bring the tripod back to school on Monday morning\"."
+      },
+      {
+       "choice": "on Friday, after she sees Tuva's camera",
+       "lure": "word lure",
+       "reason": "\"on Friday, after she sees Tuva's camera\" is wrong: Friday is in the past, when Tuva was \"showing me your camera on Friday\"; the tripod comes back \"on Monday morning\"."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITR1-D-P2",
+   "part": 2,
+   "genre": "first-person school life",
+   "title": "The iron at the class museum",
+   "passage": "In October, our history teacher, Ms. Vandell, told us that our class would turn our classroom into a museum for one day. Each of us had to bring an everyday object that was at least fifty years old and write a short label explaining how it was used.\n\nI borrowed my grandmother's old iron. It was black, heavy and a little rusty, and it had to be heated on a stove before anyone could use it. Next to Talvi's painted music box, which played a tune when you opened it, my iron looked boring, and I almost left it in my bag.\n\nMy grandmother helped me with the label. She told me that she pressed her school uniform with the iron every Sunday night. She also told me that she once burned her best blouse because she forgot to test the heat on an old cloth first. I wrote both stories on the card in my neatest handwriting.\n\nOn museum day, the music box got a few smiles, but the iron got questions. Younger students tried to lift it with one hand and laughed when they could not. A father asked how anyone kept the heat even. Two teachers read my label twice.\n\nThat evening I gave the iron back to my grandmother and told her about every visitor. She listened carefully. Then she asked whether she could come to the next museum day herself.",
+   "names": [
+    "Vandell",
+    "Talvi"
+   ],
+   "other_caps": [
+    "October",
+    "Ms",
+    "Sunday"
+   ],
+   "items": [
+    {
+     "qid": "ITR1-D-P2-1",
+     "kind": "main-idea",
+     "difficulty": "medium",
+     "prompt": "What is the passage mainly about?",
+     "choices": [
+      "how everyday objects from long ago can still interest young people today",
+      "how younger students tried to lift a heavy old iron at a class museum",
+      "how an object the writer thought was dull drew interest at a class museum",
+      "how an object the writer was proud of was ignored at a class museum"
+     ],
+     "correct_answer": "how an object the writer thought was dull drew interest at a class museum",
+     "why": "my iron looked boring, and I almost left it in my bag",
+     "explanation": "\"how an object the writer thought was dull drew interest at a class museum\" is correct: the writer first says \"my iron looked boring, and I almost left it in my bag\", but on museum day \"the iron got questions\", and she later \"told her about every visitor\".",
+     "distractor_rationales": [
+      {
+       "choice": "how everyday objects from long ago can still interest young people today",
+       "lure": "broader",
+       "reason": "\"how everyday objects from long ago can still interest young people today\" is too general: the passage is about one class museum and one object, the iron that \"looked boring\" to the writer and then \"got questions\"."
+      },
+      {
+       "choice": "how younger students tried to lift a heavy old iron at a class museum",
+       "lure": "narrower",
+       "reason": "\"how younger students tried to lift a heavy old iron at a class museum\" is only one detail from paragraph 4 (\"Younger students tried to lift it with one hand\"), not the whole passage."
+      },
+      {
+       "choice": "how an object the writer was proud of was ignored at a class museum",
+       "lure": "central misreading",
+       "reason": "\"how an object the writer was proud of was ignored at a class museum\" gets the story backwards: the writer first thought \"my iron looked boring\", and on the day \"the iron got questions\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITR1-D-P2-2",
+     "kind": "vocabulary",
+     "difficulty": "medium",
+     "prompt": "In paragraph 3, the word \"pressed\" is closest in meaning to",
+     "choices": [
+      "pushed",
+      "insisted",
+      "squeezed",
+      "smoothed"
+     ],
+     "correct_answer": "smoothed",
+     "why": "she pressed her school uniform with the iron every Sunday night",
+     "explanation": "\"smoothed\" is correct: an iron \"had to be heated on a stove\" and is used on clothes, so when she \"pressed her school uniform with the iron\" she made it smooth and flat.",
+     "distractor_rationales": [
+      {
+       "choice": "pushed",
+       "lure": "other meaning",
+       "reason": "\"pushed\" is another meaning of the word, but the grandmother used an iron on clothes: she \"pressed her school uniform with the iron\", which makes cloth flat, not moved."
+      },
+      {
+       "choice": "insisted",
+       "lure": "other meaning",
+       "reason": "\"insisted\" means to keep asking a person firmly for something; a uniform is a thing, and she \"pressed her school uniform with the iron\"."
+      },
+      {
+       "choice": "squeezed",
+       "lure": "other meaning",
+       "reason": "\"squeezed\" is used for fruit or hands; an iron heated \"on a stove\" is used to flatten cloth, as when she \"pressed her school uniform with the iron\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITR1-D-P2-3",
+     "kind": "purpose",
+     "difficulty": "medium",
+     "prompt": "Why does the writer mention Talvi's music box in paragraph 2?",
+     "choices": [
+      "to show why the writer's own object seemed boring to her",
+      "to show which object got the most questions on museum day",
+      "to show which object the writer had first planned to bring",
+      "to show what kind of object Ms. Vandell had asked them to bring"
+     ],
+     "correct_answer": "to show why the writer's own object seemed boring to her",
+     "why": "Next to Talvi's painted music box, which played a tune when you opened it, my iron looked boring",
+     "explanation": "\"to show why the writer's own object seemed boring to her\" is correct: the writer says \"Next to Talvi's painted music box, which played a tune when you opened it, my iron looked boring\", so the music box is mentioned as a comparison.",
+     "distractor_rationales": [
+      {
+       "choice": "to show which object got the most questions on museum day",
+       "lure": "contradicted",
+       "reason": "\"to show which object got the most questions on museum day\" is wrong: on museum day \"the music box got a few smiles, but the iron got questions\"."
+      },
+      {
+       "choice": "to show which object the writer had first planned to bring",
+       "lure": "contradicted",
+       "reason": "\"to show which object the writer had first planned to bring\" is wrong: the music box is \"Talvi's painted music box\", and the writer says \"I borrowed my grandmother's old iron\"."
+      },
+      {
+       "choice": "to show what kind of object Ms. Vandell had asked them to bring",
+       "lure": "other",
+       "reason": "\"to show what kind of object Ms. Vandell had asked them to bring\" is wrong: the teacher's instruction is given in paragraph 1, \"an everyday object that was at least fifty years old\", and the music box appears only as the thing beside which \"my iron looked boring\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITR1-D-P2-4",
+     "kind": "inference",
+     "difficulty": "medium",
+     "prompt": "What does the passage suggest about the label the writer made for the iron?",
+     "choices": [
+      "It was written by the grandmother in her own handwriting.",
+      "It told about a mistake the grandmother once made with the iron.",
+      "It said the grandmother used the iron every Saturday morning.",
+      "It told visitors that the iron was heated by electricity."
+     ],
+     "correct_answer": "It told about a mistake the grandmother once made with the iron.",
+     "why": "she once burned her best blouse because she forgot to test the heat on an old cloth first",
+     "why2": "I wrote both stories on the card in my neatest handwriting",
+     "explanation": "\"It told about a mistake the grandmother once made with the iron.\" is correct: the grandmother told her that \"she once burned her best blouse because she forgot to test the heat on an old cloth first\", and then the writer says \"I wrote both stories on the card\", so the label included that mistake.",
+     "distractor_rationales": [
+      {
+       "choice": "It was written by the grandmother in her own handwriting.",
+       "lure": "contradicted",
+       "reason": "\"It was written by the grandmother in her own handwriting.\" is contradicted: the writer says \"I wrote both stories on the card in my neatest handwriting\"."
+      },
+      {
+       "choice": "It said the grandmother used the iron every Saturday morning.",
+       "lure": "contradicted",
+       "reason": "\"It said the grandmother used the iron every Saturday morning.\" is contradicted: the grandmother \"pressed her school uniform with the iron every Sunday night\"."
+      },
+      {
+       "choice": "It told visitors that the iron was heated by electricity.",
+       "lure": "contradicted",
+       "reason": "\"It told visitors that the iron was heated by electricity.\" is contradicted: the iron \"had to be heated on a stove before anyone could use it\"."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set_id": "ITR1-D-P3",
+   "part": 3,
+   "genre": "informational technology",
+   "title": "From hot wires to LEDs",
+   "passage": "For more than a century, the ordinary light bulb was really a small heater that happened to glow. Inside the glass, an electric current passed through a thin wire called a filament, usually made of the metal tungsten. The wire became so hot, well over two thousand degrees, that it gave off light. Yet most of the energy, roughly ninety percent, left the bulb as heat rather than as visible light. Anyone who has touched a lamp that was switched on an hour earlier has learned this quickly.\n\nThe filament also limited how long a bulb could work. At such high temperatures, tiny amounts of tungsten slowly escaped from the surface of the wire, so the filament became thinner in places until it finally broke. A typical bulb lasted about a thousand hours, which is why changing bulbs was once a regular household chore.\n\nLight-emitting diodes, or LEDs, work in a completely different way. An LED is a tiny piece of specially prepared material, called a semiconductor, through which electricity flows. As the current moves through it, energy is released directly as light, with far less wasted as heat. An LED bulb can therefore produce the same amount of light as an old bulb while using less than a fifth of the electricity. Because there is no hot wire to wear thin, many LED bulbs are expected to last fifteen thousand hours or more.\n\nThis does not mean that LEDs stay cool. The electronics in the base of an LED bulb still produce some heat, and heat shortens their working life. For this reason, many LED bulbs have metal fins or a metal base that carries warmth away, and they may fail early if they are fitted inside a closed lamp where hot air is trapped.\n\nThe first LEDs gave off only red light, and later ones added yellow and green, which is why they were used mainly in the small indicator lights on machines. A bright white LED became practical only after engineers developed efficient blue LEDs. Most white LED bulbs today use a blue LED covered with a thin coating that changes part of the blue light into yellow. Our eyes see the mixture as white.\n\nThe change has also affected the way people shop. For decades, customers chose bulbs by their wattage, which measures how much electricity a bulb uses, and treated that number as a measure of brightness. With the old technology the shortcut worked, because a 100-watt bulb was reliably brighter than a 40-watt one. With LEDs it fails: a bulb that gives as much light as the old 60-watt type may use only eight or nine watts. Packages therefore now show lumens, a unit for the amount of light a bulb actually produces. Shoppers have had to learn to read a number that was always the real answer to their question.",
+   "names": [],
+   "other_caps": [
+    "LED",
+    "LEDs"
+   ],
+   "items": [
+    {
+     "qid": "ITR1-D-P3-1",
+     "kind": "main-idea",
+     "difficulty": "medium",
+     "prompt": "Which of the following best states the main idea of the passage?",
+     "choices": [
+      "New technology has made many everyday objects in the home cheaper, safer and easier to use.",
+      "White LED bulbs use a blue light with a coating that turns part of it into yellow.",
+      "LEDs give off more heat than old bulbs, which is why they burn out much sooner.",
+      "LEDs waste far less energy as heat than old bulbs, which has changed how bulbs are chosen."
+     ],
+     "correct_answer": "LEDs waste far less energy as heat than old bulbs, which has changed how bulbs are chosen.",
+     "why": "energy is released directly as light, with far less wasted as heat",
+     "explanation": "\"LEDs waste far less energy as heat than old bulbs, which has changed how bulbs are chosen.\" is correct: the passage contrasts old bulbs, where \"roughly ninety percent, left the bulb as heat\", with LEDs, where \"energy is released directly as light, with far less wasted as heat\", and ends with how \"The change has also affected the way people shop\".",
+     "distractor_rationales": [
+      {
+       "choice": "New technology has made many everyday objects in the home cheaper, safer and easier to use.",
+       "lure": "broader",
+       "reason": "\"New technology has made many everyday objects in the home cheaper, safer and easier to use.\" is too general: the passage is about one object, the light bulb, and about how \"LEDs, work in a completely different way\"."
+      },
+      {
+       "choice": "White LED bulbs use a blue light with a coating that turns part of it into yellow.",
+       "lure": "narrower",
+       "reason": "\"White LED bulbs use a blue light with a coating that turns part of it into yellow.\" is one detail from paragraph 5 (\"a blue LED covered with a thin coating\"), not the point of the whole passage."
+      },
+      {
+       "choice": "LEDs give off more heat than old bulbs, which is why they burn out much sooner.",
+       "lure": "central misreading",
+       "reason": "\"LEDs give off more heat than old bulbs, which is why they burn out much sooner.\" gets the comparison backwards: LEDs release light \"with far less wasted as heat\", and they are \"expected to last fifteen thousand hours or more\" against \"about a thousand hours\" for old bulbs."
+      }
+     ]
+    },
+    {
+     "qid": "ITR1-D-P3-2",
+     "kind": "detail",
+     "difficulty": "medium",
+     "prompt": "Why did an old light bulb eventually stop working?",
+     "choices": [
+      "Its wire slowly lost metal and grew thin until it snapped.",
+      "Its glass slowly turned dark until little light got out.",
+      "Its glass cracked when cool air touched the hot surface.",
+      "Its wire suddenly melted when the current became too strong."
+     ],
+     "correct_answer": "Its wire slowly lost metal and grew thin until it snapped.",
+     "why": "tiny amounts of tungsten slowly escaped from the surface of the wire, so the filament became thinner in places until it finally broke",
+     "explanation": "\"Its wire slowly lost metal and grew thin until it snapped.\" is correct: the passage says \"tiny amounts of tungsten slowly escaped from the surface of the wire, so the filament became thinner in places until it finally broke\".",
+     "distractor_rationales": [
+      {
+       "choice": "Its glass slowly turned dark until little light got out.",
+       "lure": "not in text",
+       "reason": "\"Its glass slowly turned dark until little light got out.\" is wrong: the passage gives a different cause, that \"the filament became thinner in places until it finally broke\"."
+      },
+      {
+       "choice": "Its glass cracked when cool air touched the hot surface.",
+       "lure": "not in text",
+       "reason": "\"Its glass cracked when cool air touched the hot surface.\" is wrong: the passage gives a different cause, in the wire, not the glass: \"tiny amounts of tungsten slowly escaped from the surface of the wire\"."
+      },
+      {
+       "choice": "Its wire suddenly melted when the current became too strong.",
+       "lure": "contradicted",
+       "reason": "\"Its wire suddenly melted when the current became too strong.\" is wrong: the wire failed gradually, as \"tiny amounts of tungsten slowly escaped from the surface of the wire\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITR1-D-P3-3",
+     "kind": "not-except",
+     "difficulty": "hard",
+     "prompt": "All of the following are stated about LED bulbs EXCEPT:",
+     "choices": [
+      "They need much less electricity than old bulbs for the same light.",
+      "Their light slowly becomes weaker as the bulbs grow older.",
+      "Their white light comes from mixing blue light with yellow made by a coating.",
+      "Their packages now give the amount of light they produce in lumens."
+     ],
+     "correct_answer": "Their light slowly becomes weaker as the bulbs grow older.",
+     "why": "heat shortens their working life",
+     "explanation": "\"Their light slowly becomes weaker as the bulbs grow older.\" is correct: the passage discusses how long LED bulbs work (\"expected to last fifteen thousand hours or more\"; \"heat shortens their working life\"; \"they may fail early\"), but it says nothing about their light growing weaker with age.",
+     "distractor_rationales": [
+      {
+       "choice": "They need much less electricity than old bulbs for the same light.",
+       "lure": "stated",
+       "reason": "\"They need much less electricity than old bulbs for the same light.\" is stated: an LED bulb gives \"the same amount of light as an old bulb while using less than a fifth of the electricity\"."
+      },
+      {
+       "choice": "Their white light comes from mixing blue light with yellow made by a coating.",
+       "lure": "stated",
+       "reason": "\"Their white light comes from mixing blue light with yellow made by a coating.\" is stated: white LED bulbs \"use a blue LED covered with a thin coating that changes part of the blue light into yellow\"."
+      },
+      {
+       "choice": "Their packages now give the amount of light they produce in lumens.",
+       "lure": "stated",
+       "reason": "\"Their packages now give the amount of light they produce in lumens.\" is stated: \"Packages therefore now show lumens, a unit for the amount of light a bulb actually produces\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITR1-D-P3-4",
+     "kind": "inference",
+     "difficulty": "hard",
+     "prompt": "It can be inferred that choosing old bulbs by their wattage worked mainly because",
+     "choices": [
+      "wattage was a direct measure of the light that each bulb gave off",
+      "all the old bulbs produced very little heat compared with their light",
+      "all the old bulbs turned electricity into light in much the same way",
+      "the old bulbs used a semiconductor that released energy directly as light"
+     ],
+     "correct_answer": "all the old bulbs turned electricity into light in much the same way",
+     "why": "an electric current passed through a thin wire called a filament",
+     "why2": "With the old technology the shortcut worked, because a 100-watt bulb was reliably brighter than a 40-watt one",
+     "explanation": "\"all the old bulbs turned electricity into light in much the same way\" is correct: every old bulb made light the same way, as \"an electric current passed through a thin wire called a filament\", so more electricity meant more light: \"With the old technology the shortcut worked, because a 100-watt bulb was reliably brighter than a 40-watt one\". When LEDs \"work in a completely different way\", the shortcut fails.",
+     "distractor_rationales": [
+      {
+       "choice": "wattage was a direct measure of the light that each bulb gave off",
+       "lure": "contradicted",
+       "reason": "\"wattage was a direct measure of the light that each bulb gave off\" is contradicted: wattage \"measures how much electricity a bulb uses\", while lumens are \"a unit for the amount of light a bulb actually produces\"."
+      },
+      {
+       "choice": "all the old bulbs produced very little heat compared with their light",
+       "lure": "contradicted",
+       "reason": "\"all the old bulbs produced very little heat compared with their light\" is contradicted: in old bulbs \"roughly ninety percent, left the bulb as heat rather than as visible light\"."
+      },
+      {
+       "choice": "the old bulbs used a semiconductor that released energy directly as light",
+       "lure": "contradicted",
+       "reason": "\"the old bulbs used a semiconductor that released energy directly as light\" is contradicted: old bulbs used \"a thin wire called a filament\"; the semiconductor is how \"LEDs, work in a completely different way\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITR1-D-P3-5",
+     "kind": "purpose",
+     "difficulty": "hard",
+     "prompt": "Why does the writer mention touching a lamp that was switched on an hour earlier?",
+     "choices": [
+      "to warn readers that old lamps can cause serious burns to the skin",
+      "to explain why the filament inside old bulbs was made of tungsten",
+      "to show that LED bulbs are much safer to touch than old bulbs",
+      "to give an everyday example of how much heat old bulbs produced"
+     ],
+     "correct_answer": "to give an everyday example of how much heat old bulbs produced",
+     "why": "Anyone who has touched a lamp that was switched on an hour earlier has learned this quickly",
+     "explanation": "\"to give an everyday example of how much heat old bulbs produced\" is correct: the sentence \"Anyone who has touched a lamp that was switched on an hour earlier has learned this quickly\" comes right after \"most of the energy, roughly ninety percent, left the bulb as heat\", and gives a familiar example of that heat.",
+     "distractor_rationales": [
+      {
+       "choice": "to warn readers that old lamps can cause serious burns to the skin",
+       "lure": "other",
+       "reason": "\"to warn readers that old lamps can cause serious burns to the skin\" is wrong: the sentence follows the claim that \"roughly ninety percent, left the bulb as heat\", and illustrates it; the passage gives readers no safety advice."
+      },
+      {
+       "choice": "to explain why the filament inside old bulbs was made of tungsten",
+       "lure": "word lure",
+       "reason": "\"to explain why the filament inside old bulbs was made of tungsten\" is wrong: tungsten is only named as the usual material (\"usually made of the metal tungsten\"); the lamp sentence comes after the point about heat."
+      },
+      {
+       "choice": "to show that LED bulbs are much safer to touch than old bulbs",
+       "lure": "contradicted",
+       "reason": "\"to show that LED bulbs are much safer to touch than old bulbs\" is wrong: LEDs are not discussed until paragraph 3, and paragraph 4 says \"This does not mean that LEDs stay cool\"."
+      }
+     ]
+    },
+    {
+     "qid": "ITR1-D-P3-6",
+     "kind": "purpose",
+     "difficulty": "hard",
+     "prompt": "What is the main purpose of paragraph 4?",
+     "choices": [
+      "to warn that LED bulbs can still be harmed by their own heat",
+      "to explain why LED bulbs use less electricity than old bulbs",
+      "to describe how a white light is made from a blue LED",
+      "to show that LED bulbs last much longer than the old bulbs"
+     ],
+     "correct_answer": "to warn that LED bulbs can still be harmed by their own heat",
+     "why": "This does not mean that LEDs stay cool",
+     "explanation": "\"to warn that LED bulbs can still be harmed by their own heat\" is correct: paragraph 4 opens with \"This does not mean that LEDs stay cool\" and explains that \"heat shortens their working life\" and \"they may fail early if they are fitted inside a closed lamp where hot air is trapped\".",
+     "distractor_rationales": [
+      {
+       "choice": "to explain why LED bulbs use less electricity than old bulbs",
+       "lure": "other paragraph",
+       "reason": "\"to explain why LED bulbs use less electricity than old bulbs\" is wrong: that is the work of paragraph 3 (\"using less than a fifth of the electricity\"); paragraph 4 is about how \"heat shortens their working life\"."
+      },
+      {
+       "choice": "to describe how a white light is made from a blue LED",
+       "lure": "other paragraph",
+       "reason": "\"to describe how a white light is made from a blue LED\" is wrong: that is paragraph 5 (\"a blue LED covered with a thin coating\"); paragraph 4 is about heat in the bulb's base."
+      },
+      {
+       "choice": "to show that LED bulbs last much longer than the old bulbs",
+       "lure": "other paragraph",
+       "reason": "\"to show that LED bulbs last much longer than the old bulbs\" is wrong: the long life is given in paragraph 3 (\"fifteen thousand hours or more\"); paragraph 4 explains why \"they may fail early\"."
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

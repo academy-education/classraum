@@ -1,0 +1,459 @@
+{
+  "author": "B",
+  "sets": [
+    {
+      "set_id": "ITR1-B-P1A",
+      "part": 1,
+      "genre": "poster",
+      "title": "Bookbinding workshop poster",
+      "passage": "The Art Club is holding a bookbinding workshop on Thursday, 14 March, in Room 12. It starts at 3:30 and finishes at 5:00. You will learn to fold paper, sew the pages together and add a strong cover to make your own notebook. We will give you everything you need, so you just have to bring yourself. The workshop is free, but there are only twenty places. To sign up, write your name on the list outside the art room by Tuesday. Please ask Ms Hesketh if you have any questions.",
+      "names": [
+        "Hesketh"
+      ],
+      "other_caps": [
+        "Art",
+        "Club",
+        "Thursday",
+        "March",
+        "Room",
+        "Tuesday",
+        "Ms"
+      ],
+      "items": [
+        {
+          "qid": "ITR1-B-P1A-1",
+          "kind": "vocabulary",
+          "difficulty": "easy",
+          "prompt": "In the poster, the word \"places\" is closest in meaning to",
+          "choices": [
+            "towns or cities",
+            "spaces for people",
+            "positions in a race",
+            "homes to live in"
+          ],
+          "correct_answer": "spaces for people",
+          "why": "there are only twenty places. To sign up, write your name on the list",
+          "explanation": "\"spaces for people\" is correct: the poster says \"there are only twenty places. To sign up, write your name on the list\", so a place is a space for one student in the workshop.",
+          "distractor_rationales": [
+            {
+              "choice": "towns or cities",
+              "lure": "other meaning",
+              "reason": "\"towns or cities\" is a real meaning of the word, but the workshop happens in one room, \"in Room 12\", and the places are something students take by signing up: \"To sign up, write your name on the list\"."
+            },
+            {
+              "choice": "positions in a race",
+              "lure": "other meaning",
+              "reason": "\"positions in a race\" is a real meaning of the word, but the poster describes a workshop where \"You will learn to fold paper\", not a race; the places are filled when students \"write your name on the list\"."
+            },
+            {
+              "choice": "homes to live in",
+              "lure": "other meaning",
+              "reason": "\"homes to live in\" is a real meaning of the word, but nobody lives at the workshop; the places are limited spots students claim when they \"write your name on the list outside the art room\"."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR1-B-P1B",
+      "part": 1,
+      "genre": "note",
+      "title": "Note about helping at the fruit stall",
+      "passage": "Kirra,\nYour grandpa phoned this morning. His back hurts again, so he asked if you could help at his fruit stall at the market today. He needs you there by nine, not ten like last time, because the market opens an hour earlier in summer. He will stay until it closes at two. Bring a jacket, as the stall is in the shade all morning. He will pay you and give you a bag of plums to take home. I am taking your brother to swimming practice and will be back at noon.\nMum",
+      "names": [
+        "Kirra"
+      ],
+      "other_caps": [
+        "Mum"
+      ],
+      "items": [
+        {
+          "qid": "ITR1-B-P1B-1",
+          "kind": "detail",
+          "difficulty": "easy",
+          "prompt": "Why does Kirra need to arrive at the stall earlier than last time?",
+          "choices": [
+            "Her grandfather's stall is moving to a sunnier part of the market.",
+            "She has to be at swimming practice later today.",
+            "The market starts earlier at this time of year.",
+            "Her grandfather wants to leave the market before lunch."
+          ],
+          "correct_answer": "The market starts earlier at this time of year.",
+          "why": "because the market opens an hour earlier in summer",
+          "explanation": "\"The market starts earlier at this time of year.\" is correct: the note says he needs her \"by nine, not ten like last time, because the market opens an hour earlier in summer\".",
+          "distractor_rationales": [
+            {
+              "choice": "Her grandfather wants to leave the market before lunch.",
+              "lure": "contradicted",
+              "reason": "\"Her grandfather wants to leave the market before lunch.\" is wrong because the note says \"He will stay until it closes at two\"."
+            },
+            {
+              "choice": "Her grandfather's stall is moving to a sunnier part of the market.",
+              "lure": "contradicted",
+              "reason": "\"Her grandfather's stall is moving to a sunnier part of the market.\" is wrong because the note says \"the stall is in the shade all morning\"; the reason for the time is \"because the market opens an hour earlier in summer\"."
+            },
+            {
+              "choice": "She has to be at swimming practice later today.",
+              "lure": "word lure",
+              "reason": "\"She has to be at swimming practice later today.\" is wrong because swimming practice is for her brother: \"I am taking your brother to swimming practice\"."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR1-B-P2",
+      "part": 2,
+      "genre": "informational history",
+      "title": "The picture signs of Hallowmere",
+      "passage": "Three hundred years ago, the main street of Hallowmere looked very different from today. Above almost every shop door hung a painted wooden sign with a picture on it. A baker showed a loaf of bread, a shoemaker showed a boot, and a locksmith showed a large golden key. These pictures rarely changed, and a shop often kept the same sign for a hundred years, even after a new family took it over.\n\nThe pictures had a practical purpose. Many people in the town could not read, so a written name over the door would have helped only a few customers. A picture could be understood by everyone, including farmers who came in from nearby villages on market day.\n\nThe signs also worked as addresses. Houses had no numbers yet, so people gave directions by naming the pictures. A letter might be sent to the tailor beside the green hen, and the messenger would know exactly where to go.\n\nOver time, however, the signs became a problem. Shopkeepers competed to hang the biggest ones, and some stretched halfway across the street. They blocked light from upper windows and creaked loudly in the wind. In 1771, after a heavy sign fell and injured a horse, the town council ordered that every sign be fixed flat against the wall. Later, when the town began to number its houses, many shops replaced their pictures with painted names.",
+      "names": [
+        "Hallowmere"
+      ],
+      "other_caps": [],
+      "items": [
+        {
+          "qid": "ITR1-B-P2-1",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "According to the passage, why did the signs on the main street grow so large?",
+          "choices": [
+            "Painters charged the same amount for a sign of any size.",
+            "Visitors from the villages found small signs hard to see.",
+            "Shop owners were trying to do better than one another.",
+            "The town council asked shops to make their signs bigger."
+          ],
+          "correct_answer": "Shop owners were trying to do better than one another.",
+          "why": "Shopkeepers competed to hang the biggest ones",
+          "explanation": "\"Shop owners were trying to do better than one another.\" is correct: the passage says \"Shopkeepers competed to hang the biggest ones\", so each owner was trying to beat the others.",
+          "distractor_rationales": [
+            {
+              "choice": "Visitors from the villages found small signs hard to see.",
+              "lure": "word lure",
+              "reason": "\"Visitors from the villages found small signs hard to see.\" is wrong because the passage gives a different reason for the size: \"Shopkeepers competed to hang the biggest ones\"; the villagers are mentioned only as people who could understand pictures."
+            },
+            {
+              "choice": "The town council asked shops to make their signs bigger.",
+              "lure": "contradicted",
+              "reason": "\"The town council asked shops to make their signs bigger.\" is wrong because the council acted against the signs: it \"ordered that every sign be fixed flat against the wall\"; the size came from the fact that \"Shopkeepers competed to hang the biggest ones\"."
+            },
+            {
+              "choice": "Painters charged the same amount for a sign of any size.",
+              "lure": "not stated",
+              "reason": "\"Painters charged the same amount for a sign of any size.\" is wrong because the passage explains the size in another way: \"Shopkeepers competed to hang the biggest ones\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR1-B-P2-2",
+          "kind": "vocabulary",
+          "difficulty": "medium",
+          "prompt": "In paragraph 4, the word \"fixed\" is closest in meaning to",
+          "choices": [
+            "repaired",
+            "decided",
+            "attached",
+            "prepared"
+          ],
+          "correct_answer": "attached",
+          "why": "every sign be fixed flat against the wall",
+          "explanation": "\"attached\" is correct: after \"a heavy sign fell and injured a horse\", the council ordered \"every sign be fixed flat against the wall\", meaning attached firmly to the wall so it could not hang out and fall.",
+          "distractor_rationales": [
+            {
+              "choice": "repaired",
+              "lure": "other meaning",
+              "reason": "\"repaired\" is a real meaning of the word, but the order was about where signs went after one \"fell and injured a horse\": every sign had to sit \"flat against the wall\", which is about attaching, not mending."
+            },
+            {
+              "choice": "decided",
+              "lure": "other meaning",
+              "reason": "\"decided\" is a real meaning of the word (a price can be fixed), but a sign cannot be decided \"flat against the wall\"; the phrase describes where the sign is held."
+            },
+            {
+              "choice": "prepared",
+              "lure": "other meaning",
+              "reason": "\"prepared\" is a real meaning of the word (to fix a meal), but a sign prepared \"flat against the wall\" makes no sense after a sign \"fell and injured a horse\"; the order was to hold signs to walls."
+            }
+          ]
+        },
+        {
+          "qid": "ITR1-B-P2-3",
+          "kind": "not-except",
+          "difficulty": "medium",
+          "prompt": "Which of the following is NOT stated about the old signs of Hallowmere?",
+          "choices": [
+            "Farmers who visited from nearby villages could understand them.",
+            "They were taken down when a shop got a new owner.",
+            "They made a creaking noise when it was windy.",
+            "They hung above the doors of most of the shops."
+          ],
+          "correct_answer": "They were taken down when a shop got a new owner.",
+          "why": "even after a new family took it over",
+          "explanation": "\"They were taken down when a shop got a new owner.\" is correct: the passage says the opposite: \"a shop often kept the same sign for a hundred years, even after a new family took it over\".",
+          "distractor_rationales": [
+            {
+              "choice": "They hung above the doors of most of the shops.",
+              "lure": "stated",
+              "reason": "\"They hung above the doors of most of the shops.\" is stated: \"Above almost every shop door hung a painted wooden sign\"."
+            },
+            {
+              "choice": "Farmers who visited from nearby villages could understand them.",
+              "lure": "stated",
+              "reason": "\"Farmers who visited from nearby villages could understand them.\" is stated: \"A picture could be understood by everyone, including farmers who came in from nearby villages\"."
+            },
+            {
+              "choice": "They made a creaking noise when it was windy.",
+              "lure": "stated",
+              "reason": "\"They made a creaking noise when it was windy.\" is stated: the signs \"creaked loudly in the wind\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR1-B-P2-4",
+          "kind": "purpose",
+          "difficulty": "medium",
+          "prompt": "Why does the writer include paragraph 3?",
+          "choices": [
+            "to describe another job the signs did for the town",
+            "to describe how the town first numbered its houses",
+            "to give the main reason that shops used pictures",
+            "to explain why letters often reached the wrong shop"
+          ],
+          "correct_answer": "to describe another job the signs did for the town",
+          "why": "The signs also worked as addresses",
+          "explanation": "\"to describe another job the signs did for the town\" is correct: the paragraph opens \"The signs also worked as addresses\" and shows people giving \"directions by naming the pictures\", a second use beside telling customers what a shop sold.",
+          "distractor_rationales": [
+            {
+              "choice": "to explain why letters often reached the wrong shop",
+              "lure": "contradicted",
+              "reason": "\"to explain why letters often reached the wrong shop\" is wrong because the paragraph says \"the messenger would know exactly where to go\"."
+            },
+            {
+              "choice": "to give the main reason that shops used pictures",
+              "lure": "other paragraph",
+              "reason": "\"to give the main reason that shops used pictures\" is wrong because that reason is in paragraph 2: \"Many people in the town could not read\"; paragraph 3 begins \"The signs also worked as addresses\"."
+            },
+            {
+              "choice": "to describe how the town first numbered its houses",
+              "lure": "contradicted",
+              "reason": "\"to describe how the town first numbered its houses\" is wrong because paragraph 3 says \"Houses had no numbers yet\"; numbering comes only in paragraph 4: \"Later, when the town began to number its houses\"."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "ITR1-B-P3",
+      "part": 3,
+      "genre": "first-person school life",
+      "title": "Pricing the woodwork club's spoons",
+      "passage": "Every December, our school turns the sports hall into a winter fair, and each club gets one table. Last year was the first time the woodwork club took part. There were six of us, and since September we had been carving small wooden spoons in the workshop after school. Each spoon took about three hours: sawing a rough shape from a block, hollowing the bowl with a curved knife, then sanding until the handle felt smooth. By the day of the fair we had forty of them.\n\nWe argued for a week about the price. Hugo said nobody would pay more than two dollars for a spoon, while Imogen wanted five. Our teacher, Mr Lomax, refused to help and told us to decide for ourselves. In the end we chose two dollars, wrote the price on a card and waited. The spoons were gone in less than an hour, and at first we were thrilled. Then Imogen counted the money: eighty dollars, which was barely more than we had spent on wood and sandpaper. Worse, several buyers had called the spoons cute and asked if a machine had made them.\n\nThat evening I worked it out. We had sold around a hundred and twenty hours of careful work for little more than the cost of the wood, and the low price had made people think the spoons were cheap objects rather than things made slowly by hand. Our price had told a story about the spoons, and it was the wrong story.\n\nThis year we took forty spoons to the fair again, but we did two things differently. First, we brought a log, a knife and a half-finished spoon, and took turns carving at the table while people watched. Second, we raised the price to twelve dollars and kept it there all day, with a card explaining that each spoon takes about three hours to make. I was sure we would go home with a full box.\n\nWe did not. We sold twenty-five spoons, fewer than last year, but they brought in three hundred dollars, and we used the money to buy a second set of carving knives. More surprising was the way people behaved. Instead of grabbing a spoon and walking away, they stood at the table and asked questions. An old man told us that his father had carved spoons from apple wood, and he showed us how his father used to hold the knife. Several buyers turned the spoons over in their hands for a long time before choosing one, as if the choice mattered.\n\nNear the end of the afternoon, a girl from year seven asked if she could join the club. Mr Lomax says the real lesson of the day was about business, but I am not so sure. I think the price of a handmade thing is also a message about it. Last year our message was that the spoons were cheap toys. This year it was that someone had spent an afternoon on each one, and people listened.",
+      "names": [
+        "Hugo",
+        "Imogen",
+        "Lomax"
+      ],
+      "other_caps": [
+        "December",
+        "September",
+        "Mr"
+      ],
+      "items": [
+        {
+          "qid": "ITR1-B-P3-1",
+          "kind": "main-idea",
+          "difficulty": "medium",
+          "prompt": "What is the passage mainly about?",
+          "choices": [
+            "How the club sold more spoons this year by lowering the price and carving faster",
+            "How the club spent the money from this year's fair on a second set of carving knives",
+            "How school clubs can earn useful money by selling the crafts they make at school fairs",
+            "How showing the work and charging more changed how buyers treated the club's spoons"
+          ],
+          "correct_answer": "How showing the work and charging more changed how buyers treated the club's spoons",
+          "why": "I think the price of a handmade thing is also a message about it",
+          "explanation": "\"How showing the work and charging more changed how buyers treated the club's spoons\" is correct: the first year's low price made buyers ask \"if a machine had made them\"; this year the club carved \"at the table while people watched\" and charged more, and people \"stood at the table and asked questions\". The writer concludes \"the price of a handmade thing is also a message about it\".",
+          "distractor_rationales": [
+            {
+              "choice": "How school clubs can earn useful money by selling the crafts they make at school fairs",
+              "lure": "broader",
+              "reason": "\"How school clubs can earn useful money by selling the crafts they make at school fairs\" is too general: the passage is about one club and what its price told buyers, ending \"the price of a handmade thing is also a message about it\"."
+            },
+            {
+              "choice": "How the club spent the money from this year's fair on a second set of carving knives",
+              "lure": "narrower",
+              "reason": "\"How the club spent the money from this year's fair on a second set of carving knives\" is one detail from paragraph 5: \"we used the money to buy a second set of carving knives\"."
+            },
+            {
+              "choice": "How the club sold more spoons this year by lowering the price and carving faster",
+              "lure": "central misreading",
+              "reason": "\"How the club sold more spoons this year by lowering the price and carving faster\" is wrong on both points: they sold \"twenty-five spoons, fewer than last year\" after they \"raised the price to twelve dollars\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR1-B-P3-2",
+          "kind": "inference",
+          "difficulty": "hard",
+          "prompt": "What can be inferred about the spoons the club took to this year's fair?",
+          "choices": [
+            "They took less time to make than last year's spoons.",
+            "A number of them were still unsold when the fair ended.",
+            "They were priced lower than the first year's spoons.",
+            "There were fewer of them than the club had the year before."
+          ],
+          "correct_answer": "A number of them were still unsold when the fair ended.",
+          "why": "This year we took forty spoons to the fair again",
+          "why2": "We sold twenty-five spoons",
+          "explanation": "\"A number of them were still unsold when the fair ended.\" is correct: the club \"took forty spoons to the fair again\" but \"sold twenty-five spoons\", so about fifteen were left.",
+          "distractor_rationales": [
+            {
+              "choice": "They took less time to make than last year's spoons.",
+              "lure": "contradicted",
+              "reason": "\"They took less time to make than last year's spoons.\" is contradicted: the card said \"each spoon takes about three hours to make\", the same as last year, when \"Each spoon took about three hours\"."
+            },
+            {
+              "choice": "There were fewer of them than the club had the year before.",
+              "lure": "contradicted",
+              "reason": "\"There were fewer of them than the club had the year before.\" is contradicted: \"we took forty spoons to the fair again\", and last year \"we had forty of them\"."
+            },
+            {
+              "choice": "They were priced lower than the first year's spoons.",
+              "lure": "contradicted",
+              "reason": "\"They were priced lower than the first year's spoons.\" is contradicted: last year \"we chose two dollars\", and this year \"we raised the price to twelve dollars\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR1-B-P3-3",
+          "kind": "detail",
+          "difficulty": "medium",
+          "prompt": "According to the passage, what did some buyers ask at the club's first fair?",
+          "choices": [
+            "how many hours each spoon had taken to carve",
+            "whether the club would take orders for more spoons",
+            "whether a machine had been used to make the spoons",
+            "what kind of wood had been used for the spoons"
+          ],
+          "correct_answer": "whether a machine had been used to make the spoons",
+          "why": "asked if a machine had made them",
+          "explanation": "\"whether a machine had been used to make the spoons\" is correct: the passage says \"several buyers had called the spoons cute and asked if a machine had made them\".",
+          "distractor_rationales": [
+            {
+              "choice": "whether the club would take orders for more spoons",
+              "lure": "not stated",
+              "reason": "\"whether the club would take orders for more spoons\" is wrong because the passage reports a different question from those buyers: they \"asked if a machine had made them\"."
+            },
+            {
+              "choice": "how many hours each spoon had taken to carve",
+              "lure": "word lure",
+              "reason": "\"how many hours each spoon had taken to carve\" is wrong because the time was explained only this year, on \"a card explaining that each spoon takes about three hours to make\"; the first buyers \"asked if a machine had made them\"."
+            },
+            {
+              "choice": "what kind of wood had been used for the spoons",
+              "lure": "word lure",
+              "reason": "\"what kind of wood had been used for the spoons\" is wrong because wood comes up this year, when \"An old man told us that his father had carved spoons from apple wood\"; the first buyers \"asked if a machine had made them\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR1-B-P3-4",
+          "kind": "vocabulary",
+          "difficulty": "hard",
+          "prompt": "In paragraph 4, the word \"raised\" is closest in meaning to",
+          "choices": [
+            "increased",
+            "brought up",
+            "collected",
+            "lifted up"
+          ],
+          "correct_answer": "increased",
+          "why": "raised the price to twelve dollars",
+          "explanation": "\"increased\" is correct: last year \"we chose two dollars\", and this year the club \"raised the price to twelve dollars\", so the price went up.",
+          "distractor_rationales": [
+            {
+              "choice": "lifted up",
+              "lure": "other meaning",
+              "reason": "\"lifted up\" is a real meaning of the word, but a price is not physically lifted; the price went from \"two dollars\" to \"twelve dollars\"."
+            },
+            {
+              "choice": "brought up",
+              "lure": "other meaning",
+              "reason": "\"brought up\" is a real meaning of the word (to raise a child), but the sentence is about money: \"the price to twelve dollars\", up from \"two dollars\"."
+            },
+            {
+              "choice": "collected",
+              "lure": "other meaning",
+              "reason": "\"collected\" is a real meaning of the word (to raise money), but the club did not collect a price; it changed the price from \"two dollars\" to \"twelve dollars and kept it there all day\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR1-B-P3-5",
+          "kind": "not-except",
+          "difficulty": "hard",
+          "prompt": "All of the following happened at this year's fair EXCEPT",
+          "choices": [
+            "A younger student asked to become a member.",
+            "The club lowered its price near the end of the day.",
+            "Club members carved spoons while visitors watched.",
+            "A visitor talked about his father's spoon carving."
+          ],
+          "correct_answer": "The club lowered its price near the end of the day.",
+          "why": "kept it there all day",
+          "explanation": "\"The club lowered its price near the end of the day.\" is correct: the passage says the club \"raised the price to twelve dollars and kept it there all day\".",
+          "distractor_rationales": [
+            {
+              "choice": "Club members carved spoons while visitors watched.",
+              "lure": "stated",
+              "reason": "\"Club members carved spoons while visitors watched.\" is stated in paragraph 4: \"took turns carving at the table while people watched\"."
+            },
+            {
+              "choice": "A visitor talked about his father's spoon carving.",
+              "lure": "stated",
+              "reason": "\"A visitor talked about his father's spoon carving.\" is stated in paragraph 5: \"An old man told us that his father had carved spoons from apple wood\"."
+            },
+            {
+              "choice": "A younger student asked to become a member.",
+              "lure": "stated",
+              "reason": "\"A younger student asked to become a member.\" is stated in paragraph 6: \"a girl from year seven asked if she could join the club\"."
+            }
+          ]
+        },
+        {
+          "qid": "ITR1-B-P3-6",
+          "kind": "inference",
+          "difficulty": "hard",
+          "prompt": "What is most likely true about the price the club chose for its first fair?",
+          "choices": [
+            "It was the amount that Imogen had first suggested.",
+            "It easily covered the cost of the wood and sandpaper.",
+            "It was chosen for the club by their teacher, Mr Lomax.",
+            "It was far below what buyers later proved willing to pay."
+          ],
+          "correct_answer": "It was far below what buyers later proved willing to pay.",
+          "why": "In the end we chose two dollars",
+          "why2": "raised the price to twelve dollars and kept it there all day",
+          "explanation": "\"It was far below what buyers later proved willing to pay.\" is correct: the first price was \"two dollars\", yet this year the club \"raised the price to twelve dollars and kept it there all day\" and still \"sold twenty-five spoons\", so buyers proved willing to pay far more than the first price.",
+          "distractor_rationales": [
+            {
+              "choice": "It was the amount that Imogen had first suggested.",
+              "lure": "contradicted",
+              "reason": "\"It was the amount that Imogen had first suggested.\" is contradicted: \"Imogen wanted five\", but \"we chose two dollars\"."
+            },
+            {
+              "choice": "It was chosen for the club by their teacher, Mr Lomax.",
+              "lure": "contradicted",
+              "reason": "\"It was chosen for the club by their teacher, Mr Lomax.\" is contradicted: \"Mr Lomax, refused to help and told us to decide for ourselves\"."
+            },
+            {
+              "choice": "It easily covered the cost of the wood and sandpaper.",
+              "lure": "contradicted",
+              "reason": "\"It easily covered the cost of the wood and sandpaper.\" is contradicted: the money was \"barely more than we had spent on wood and sandpaper\"."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
