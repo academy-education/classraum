@@ -1,0 +1,902 @@
+[
+ {
+  "id": "ITG3-C001",
+  "author": "A",
+  "part": "Part 1: Sentence Completion",
+  "slot": "B",
+  "len": 4,
+  "difficulty": "medium",
+  "category": "parallel structure",
+  "sub_point": "a list of infinitives"
+ },
+ {
+  "id": "ITG3-C002",
+  "author": "A",
+  "part": "Part 1: Sentence Completion",
+  "slot": "D",
+  "len": 3,
+  "difficulty": "hard",
+  "category": "gerund vs infinitive",
+  "sub_point": "verbs followed by a gerund (enjoy, finish, avoid, mind, keep)"
+ },
+ {
+  "id": "ITG3-C003",
+  "author": "A",
+  "part": "Part 1: Sentence Completion",
+  "slot": "C",
+  "len": 1,
+  "difficulty": "medium",
+  "category": "reported speech",
+  "sub_point": "word order in reported wh-questions"
+ },
+ {
+  "id": "ITG3-E001",
+  "author": "A",
+  "part": "Part 2: Error Identification",
+  "slot": "D",
+  "len": 2,
+  "difficulty": "easy",
+  "category": "subject-verb agreement",
+  "sub_point": "third-person -s with a singular subject (a name, each / every + noun)"
+ },
+ {
+  "id": "ITG3-E002",
+  "author": "A",
+  "part": "Part 2: Error Identification",
+  "slot": "A",
+  "len": 1,
+  "difficulty": "easy",
+  "category": "relative pronouns and clauses",
+  "sub_point": "who vs which (people vs things)"
+ },
+ {
+  "id": "ITG3-E003",
+  "author": "A",
+  "part": "Part 2: Error Identification",
+  "slot": "B",
+  "len": 3,
+  "difficulty": "easy",
+  "category": "count/non-count and quantifiers",
+  "sub_point": "much vs many"
+ },
+ {
+  "id": "ITG3-E004",
+  "author": "A",
+  "part": "Part 2: Error Identification",
+  "slot": "B",
+  "len": 3,
+  "difficulty": "hard",
+  "category": "word form",
+  "sub_point": "noun vs adjective of one root (danger / dangerous)"
+ },
+ {
+  "id": "ITG3-E005",
+  "author": "A",
+  "part": "Part 2: Error Identification",
+  "slot": "D",
+  "len": 1,
+  "difficulty": "medium",
+  "category": "prepositions after a head word",
+  "sub_point": "adjective + preposition (afraid of, proud of, good at)"
+ },
+ {
+  "id": "ITG3-E006",
+  "author": "A",
+  "part": "Part 2: Error Identification",
+  "slot": "B",
+  "len": 3,
+  "difficulty": "medium",
+  "category": "comparatives and superlatives",
+  "sub_point": "-er / -est vs more / most by syllable count"
+ },
+ {
+  "id": "ITG3-E007",
+  "author": "A",
+  "part": "Part 2: Error Identification",
+  "slot": "C",
+  "len": 4,
+  "difficulty": "hard",
+  "category": "passive voice",
+  "sub_point": "present simple passive (is made, are sold)"
+ },
+ {
+  "id": "ITG3-E008",
+  "author": "A",
+  "part": "Part 2: Error Identification",
+  "slot": "C",
+  "len": 4,
+  "difficulty": "medium",
+  "category": "conjunctions and connectors",
+  "sub_point": "and / but / or / so"
+ },
+ {
+  "id": "ITG3-E009",
+  "author": "A",
+  "part": "Part 2: Error Identification",
+  "slot": "A",
+  "len": 2,
+  "difficulty": "hard",
+  "category": "conditionals",
+  "sub_point": "second conditional (if + past, would)"
+ },
+ {
+  "id": "ITG3-E010",
+  "author": "A",
+  "part": "Part 2: Error Identification",
+  "slot": "A",
+  "len": 4,
+  "difficulty": "medium",
+  "category": "verb tense and aspect",
+  "sub_point": "past continuous vs past simple for an interrupted action (when / while)"
+ },
+ {
+  "id": "ITG3-C004",
+  "author": "B",
+  "part": "Part 1: Sentence Completion",
+  "slot": "B",
+  "len": 3,
+  "difficulty": "hard",
+  "category": "modifier placement",
+  "sub_point": "a dangling -ed participle opener (Built in 1900, ...)"
+ },
+ {
+  "id": "ITG3-C005",
+  "author": "B",
+  "part": "Part 1: Sentence Completion",
+  "slot": "A",
+  "len": 4,
+  "difficulty": "medium",
+  "category": "adjective vs adverb",
+  "sub_point": "adjective after a linking verb (seems, smells, feels, looks)"
+ },
+ {
+  "id": "ITG3-C006",
+  "author": "B",
+  "part": "Part 1: Sentence Completion",
+  "slot": "C",
+  "len": 2,
+  "difficulty": "easy",
+  "category": "passive voice",
+  "sub_point": "past simple passive (was built, were invented), including \"was born\""
+ },
+ {
+  "id": "ITG3-E011",
+  "author": "B",
+  "part": "Part 2: Error Identification",
+  "slot": "C",
+  "len": 2,
+  "difficulty": "easy",
+  "category": "comparatives and superlatives",
+  "sub_point": "irregular forms (better, worse, farther, best, worst)"
+ },
+ {
+  "id": "ITG3-E012",
+  "author": "B",
+  "part": "Part 2: Error Identification",
+  "slot": "C",
+  "len": 3,
+  "difficulty": "easy",
+  "category": "relative pronouns and clauses",
+  "sub_point": "whose for possession"
+ },
+ {
+  "id": "ITG3-E013",
+  "author": "B",
+  "part": "Part 2: Error Identification",
+  "slot": "B",
+  "len": 1,
+  "difficulty": "hard",
+  "category": "parallel structure",
+  "sub_point": "a list of gerunds"
+ },
+ {
+  "id": "ITG3-E014",
+  "author": "B",
+  "part": "Part 2: Error Identification",
+  "slot": "A",
+  "len": 4,
+  "difficulty": "easy",
+  "category": "verb tense and aspect",
+  "sub_point": "future perfect and future continuous (by next June / this time tomorrow)"
+ },
+ {
+  "id": "ITG3-E015",
+  "author": "B",
+  "part": "Part 2: Error Identification",
+  "slot": "A",
+  "len": 1,
+  "difficulty": "medium",
+  "category": "modals",
+  "sub_point": "can / could for ability (present vs past)"
+ },
+ {
+  "id": "ITG3-E016",
+  "author": "B",
+  "part": "Part 2: Error Identification",
+  "slot": "B",
+  "len": 2,
+  "difficulty": "hard",
+  "category": "count/non-count and quantifiers",
+  "sub_point": "a few / a little / few / little"
+ },
+ {
+  "id": "ITG3-E017",
+  "author": "B",
+  "part": "Part 2: Error Identification",
+  "slot": "C",
+  "len": 4,
+  "difficulty": "hard",
+  "category": "word form",
+  "sub_point": "verb vs noun of one root (decide / decision)"
+ },
+ {
+  "id": "ITG3-E018",
+  "author": "B",
+  "part": "Part 2: Error Identification",
+  "slot": "D",
+  "len": 3,
+  "difficulty": "medium",
+  "category": "conditionals",
+  "sub_point": "third conditional (if + past perfect, would have)"
+ },
+ {
+  "id": "ITG3-E019",
+  "author": "B",
+  "part": "Part 2: Error Identification",
+  "slot": "D",
+  "len": 2,
+  "difficulty": "hard",
+  "category": "prepositions after a head word",
+  "sub_point": "verb + preposition (depend on, listen to, belong to)"
+ },
+ {
+  "id": "ITG3-E020",
+  "author": "B",
+  "part": "Part 2: Error Identification",
+  "slot": "D",
+  "len": 1,
+  "difficulty": "medium",
+  "category": "subject-verb agreement",
+  "sub_point": "agreement across a prepositional phrase (the box of pencils is)"
+ },
+ {
+  "id": "ITG3-C007",
+  "author": "C",
+  "part": "Part 1: Sentence Completion",
+  "slot": "B",
+  "len": 4,
+  "difficulty": "medium",
+  "category": "comparatives and superlatives",
+  "sub_point": "as ... as vs comparative + than; the same as"
+ },
+ {
+  "id": "ITG3-C008",
+  "author": "C",
+  "part": "Part 1: Sentence Completion",
+  "slot": "A",
+  "len": 1,
+  "difficulty": "hard",
+  "category": "count/non-count and quantifiers",
+  "sub_point": "some vs any in statements, questions and negatives"
+ },
+ {
+  "id": "ITG3-C009",
+  "author": "C",
+  "part": "Part 1: Sentence Completion",
+  "slot": "D",
+  "len": 2,
+  "difficulty": "easy",
+  "category": "conjunctions and connectors",
+  "sub_point": "because vs because of; although vs despite"
+ },
+ {
+  "id": "ITG3-E021",
+  "author": "C",
+  "part": "Part 2: Error Identification",
+  "slot": "B",
+  "len": 3,
+  "difficulty": "easy",
+  "category": "pronoun case and reference",
+  "sub_point": "subject vs object pronoun after verbs and prepositions (for him, with us)"
+ },
+ {
+  "id": "ITG3-E022",
+  "author": "C",
+  "part": "Part 2: Error Identification",
+  "slot": "D",
+  "len": 4,
+  "difficulty": "easy",
+  "category": "modals",
+  "sub_point": "must vs have to; mustn't vs don't have to"
+ },
+ {
+  "id": "ITG3-E023",
+  "author": "C",
+  "part": "Part 2: Error Identification",
+  "slot": "B",
+  "len": 2,
+  "difficulty": "medium",
+  "category": "parallel structure",
+  "sub_point": "a list of adjectives with one noun intruder"
+ },
+ {
+  "id": "ITG3-E024",
+  "author": "C",
+  "part": "Part 2: Error Identification",
+  "slot": "A",
+  "len": 1,
+  "difficulty": "easy",
+  "category": "word form",
+  "sub_point": "noun suffix choice (-tion / -ment / -ness)"
+ },
+ {
+  "id": "ITG3-E025",
+  "author": "C",
+  "part": "Part 2: Error Identification",
+  "slot": "B",
+  "len": 1,
+  "difficulty": "easy",
+  "category": "gerund vs infinitive",
+  "sub_point": "verbs followed by an infinitive (decide, hope, plan, refuse, agree)"
+ },
+ {
+  "id": "ITG3-E026",
+  "author": "C",
+  "part": "Part 2: Error Identification",
+  "slot": "A",
+  "len": 4,
+  "difficulty": "medium",
+  "category": "adjective vs adverb",
+  "sub_point": "good vs well"
+ },
+ {
+  "id": "ITG3-E027",
+  "author": "C",
+  "part": "Part 2: Error Identification",
+  "slot": "D",
+  "len": 4,
+  "difficulty": "hard",
+  "category": "relative pronouns and clauses",
+  "sub_point": "where and when as relative adverbs"
+ },
+ {
+  "id": "ITG3-E028",
+  "author": "C",
+  "part": "Part 2: Error Identification",
+  "slot": "C",
+  "len": 3,
+  "difficulty": "medium",
+  "category": "verb tense and aspect",
+  "sub_point": "irregular past and past-participle forms of common verbs in simple and perfect tenses"
+ },
+ {
+  "id": "ITG3-E029",
+  "author": "C",
+  "part": "Part 2: Error Identification",
+  "slot": "A",
+  "len": 3,
+  "difficulty": "hard",
+  "category": "conditionals",
+  "sub_point": "mixed conditional (past condition, present result)"
+ },
+ {
+  "id": "ITG3-E030",
+  "author": "C",
+  "part": "Part 2: Error Identification",
+  "slot": "C",
+  "len": 2,
+  "difficulty": "hard",
+  "category": "prepositions after a head word",
+  "sub_point": "noun + preposition (reason for, interest in, solution to)"
+ },
+ {
+  "id": "ITG3-C010",
+  "author": "D",
+  "part": "Part 1: Sentence Completion",
+  "slot": "B",
+  "len": 4,
+  "difficulty": "easy",
+  "category": "word form",
+  "sub_point": "negative prefixes (un- / im- / dis- / in-)"
+ },
+ {
+  "id": "ITG3-C011",
+  "author": "D",
+  "part": "Part 1: Sentence Completion",
+  "slot": "D",
+  "len": 2,
+  "difficulty": "medium",
+  "category": "conditionals",
+  "sub_point": "unless / as long as / provided that"
+ },
+ {
+  "id": "ITG3-C012",
+  "author": "D",
+  "part": "Part 1: Sentence Completion",
+  "slot": "A",
+  "len": 3,
+  "difficulty": "hard",
+  "category": "subject-verb agreement",
+  "sub_point": "there is / there are with the noun that follows"
+ },
+ {
+  "id": "ITG3-E031",
+  "author": "D",
+  "part": "Part 2: Error Identification",
+  "slot": "C",
+  "len": 4,
+  "difficulty": "easy",
+  "category": "relative pronouns and clauses",
+  "sub_point": "an extra pronoun repeated inside the relative clause, or a relative pronoun wrongly dropped as a subject"
+ },
+ {
+  "id": "ITG3-E032",
+  "author": "D",
+  "part": "Part 2: Error Identification",
+  "slot": "D",
+  "len": 3,
+  "difficulty": "hard",
+  "category": "reported speech",
+  "sub_point": "say vs tell"
+ },
+ {
+  "id": "ITG3-E033",
+  "author": "D",
+  "part": "Part 2: Error Identification",
+  "slot": "D",
+  "len": 3,
+  "difficulty": "easy",
+  "category": "modals",
+  "sub_point": "must have / can't have for deduction about the past"
+ },
+ {
+  "id": "ITG3-E034",
+  "author": "D",
+  "part": "Part 2: Error Identification",
+  "slot": "D",
+  "len": 2,
+  "difficulty": "hard",
+  "category": "parallel structure",
+  "sub_point": "prefer X to Y with matching forms"
+ },
+ {
+  "id": "ITG3-E035",
+  "author": "D",
+  "part": "Part 2: Error Identification",
+  "slot": "A",
+  "len": 1,
+  "difficulty": "easy",
+  "category": "gerund vs infinitive",
+  "sub_point": "preposition + gerund (interested in, good at, before, without)"
+ },
+ {
+  "id": "ITG3-E036",
+  "author": "D",
+  "part": "Part 2: Error Identification",
+  "slot": "A",
+  "len": 2,
+  "difficulty": "medium",
+  "category": "verb tense and aspect",
+  "sub_point": "past simple vs present perfect, decided by a time marker (yesterday / ever / just / already / so far)"
+ },
+ {
+  "id": "ITG3-E037",
+  "author": "D",
+  "part": "Part 2: Error Identification",
+  "slot": "B",
+  "len": 4,
+  "difficulty": "hard",
+  "category": "passive voice",
+  "sub_point": "present perfect passive (has been repaired)"
+ },
+ {
+  "id": "ITG3-E038",
+  "author": "D",
+  "part": "Part 2: Error Identification",
+  "slot": "C",
+  "len": 2,
+  "difficulty": "medium",
+  "category": "prepositions after a head word",
+  "sub_point": "prepositions of time with dates, days and clock times (in / on / at)"
+ },
+ {
+  "id": "ITG3-E039",
+  "author": "D",
+  "part": "Part 2: Error Identification",
+  "slot": "C",
+  "len": 1,
+  "difficulty": "medium",
+  "category": "adjective vs adverb",
+  "sub_point": "hard / hardly, late / lately, near / nearly"
+ },
+ {
+  "id": "ITG3-E040",
+  "author": "D",
+  "part": "Part 2: Error Identification",
+  "slot": "B",
+  "len": 1,
+  "difficulty": "medium",
+  "category": "pronoun case and reference",
+  "sub_point": "possessive adjective vs possessive pronoun (their / theirs, your / yours)"
+ },
+ {
+  "id": "ITG3-C013",
+  "author": "E",
+  "part": "Part 1: Sentence Completion",
+  "slot": "D",
+  "len": 1,
+  "difficulty": "hard",
+  "category": "prepositions after a head word",
+  "sub_point": "prepositions of place (in / on / at with buildings, streets, vehicles)"
+ },
+ {
+  "id": "ITG3-C014",
+  "author": "E",
+  "part": "Part 1: Sentence Completion",
+  "slot": "B",
+  "len": 2,
+  "difficulty": "medium",
+  "category": "relative pronouns and clauses",
+  "sub_point": "preposition + which (the box in which ...)"
+ },
+ {
+  "id": "ITG3-C015",
+  "author": "E",
+  "part": "Part 1: Sentence Completion",
+  "slot": "C",
+  "len": 4,
+  "difficulty": "easy",
+  "category": "word form",
+  "sub_point": "-ful vs -less adjectives (the root \"care\" is excluded)"
+ },
+ {
+  "id": "ITG3-E041",
+  "author": "E",
+  "part": "Part 2: Error Identification",
+  "slot": "A",
+  "len": 4,
+  "difficulty": "easy",
+  "category": "comparatives and superlatives",
+  "sub_point": "double comparatives (more taller) and much / far + comparative"
+ },
+ {
+  "id": "ITG3-E042",
+  "author": "E",
+  "part": "Part 2: Error Identification",
+  "slot": "C",
+  "len": 1,
+  "difficulty": "easy",
+  "category": "modals",
+  "sub_point": "would for polite requests and would rather"
+ },
+ {
+  "id": "ITG3-E043",
+  "author": "E",
+  "part": "Part 2: Error Identification",
+  "slot": "C",
+  "len": 3,
+  "difficulty": "easy",
+  "category": "gerund vs infinitive",
+  "sub_point": "adjective + infinitive and too / enough + infinitive"
+ },
+ {
+  "id": "ITG3-E044",
+  "author": "E",
+  "part": "Part 2: Error Identification",
+  "slot": "D",
+  "len": 3,
+  "difficulty": "medium",
+  "category": "passive voice",
+  "sub_point": "passive with a modal (must be returned, can be seen)"
+ },
+ {
+  "id": "ITG3-E045",
+  "author": "E",
+  "part": "Part 2: Error Identification",
+  "slot": "D",
+  "len": 4,
+  "difficulty": "medium",
+  "category": "adjective vs adverb",
+  "sub_point": "-ed vs -ing adjectives (bored / boring)"
+ },
+ {
+  "id": "ITG3-E046",
+  "author": "E",
+  "part": "Part 2: Error Identification",
+  "slot": "A",
+  "len": 3,
+  "difficulty": "hard",
+  "category": "conjunctions and connectors",
+  "sub_point": "unless / until / while / whereas"
+ },
+ {
+  "id": "ITG3-E047",
+  "author": "E",
+  "part": "Part 2: Error Identification",
+  "slot": "B",
+  "len": 1,
+  "difficulty": "medium",
+  "category": "pronoun case and reference",
+  "sub_point": "reflexive pronouns (himself, themselves, by herself; never \"hisself\")"
+ },
+ {
+  "id": "ITG3-E048",
+  "author": "E",
+  "part": "Part 2: Error Identification",
+  "slot": "A",
+  "len": 2,
+  "difficulty": "hard",
+  "category": "parallel structure",
+  "sub_point": "parallel that-clauses"
+ },
+ {
+  "id": "ITG3-E049",
+  "author": "E",
+  "part": "Part 2: Error Identification",
+  "slot": "B",
+  "len": 2,
+  "difficulty": "hard",
+  "category": "reported speech",
+  "sub_point": "modal backshift (will -> would, can -> could, may -> might)"
+ },
+ {
+  "id": "ITG3-E050",
+  "author": "E",
+  "part": "Part 2: Error Identification",
+  "slot": "B",
+  "len": 4,
+  "difficulty": "hard",
+  "category": "subject-verb agreement",
+  "sub_point": "compound subject with \"and\" vs a subject followed by \"as well as / along with\""
+ },
+ {
+  "id": "ITG3-C016",
+  "author": "F",
+  "part": "Part 1: Sentence Completion",
+  "slot": "D",
+  "len": 2,
+  "difficulty": "hard",
+  "category": "relative pronouns and clauses",
+  "sub_point": "\"what\" vs \"that / which\" (the thing that = what)"
+ },
+ {
+  "id": "ITG3-C017",
+  "author": "F",
+  "part": "Part 1: Sentence Completion",
+  "slot": "A",
+  "len": 3,
+  "difficulty": "medium",
+  "category": "conditionals",
+  "sub_point": "inverted conditionals (Had I known ..., Should you need ...)"
+ },
+ {
+  "id": "ITG3-C018",
+  "author": "F",
+  "part": "Part 1: Sentence Completion",
+  "slot": "B",
+  "len": 1,
+  "difficulty": "medium",
+  "category": "parallel structure",
+  "sub_point": "matching tenses in a compound predicate"
+ },
+ {
+  "id": "ITG3-E051",
+  "author": "F",
+  "part": "Part 2: Error Identification",
+  "slot": "A",
+  "len": 2,
+  "difficulty": "easy",
+  "category": "count/non-count and quantifiers",
+  "sub_point": "a lot of / plenty of / a great deal of with count and non-count nouns"
+ },
+ {
+  "id": "ITG3-E052",
+  "author": "F",
+  "part": "Part 2: Error Identification",
+  "slot": "B",
+  "len": 1,
+  "difficulty": "easy",
+  "category": "conjunctions and connectors",
+  "sub_point": "however / therefore / moreover as sentence connectors"
+ },
+ {
+  "id": "ITG3-E053",
+  "author": "F",
+  "part": "Part 2: Error Identification",
+  "slot": "D",
+  "len": 1,
+  "difficulty": "easy",
+  "category": "adjective vs adverb",
+  "sub_point": "adverb modifying an adjective (surprisingly easy, really quiet)"
+ },
+ {
+  "id": "ITG3-E054",
+  "author": "F",
+  "part": "Part 2: Error Identification",
+  "slot": "D",
+  "len": 1,
+  "difficulty": "easy",
+  "category": "comparatives and superlatives",
+  "sub_point": "the + superlative + in / of (the tallest in the class)"
+ },
+ {
+  "id": "ITG3-E055",
+  "author": "F",
+  "part": "Part 2: Error Identification",
+  "slot": "C",
+  "len": 4,
+  "difficulty": "medium",
+  "category": "word form",
+  "sub_point": "verbs formed with -en / -ize / -ify (widen, realize, simplify)"
+ },
+ {
+  "id": "ITG3-E056",
+  "author": "F",
+  "part": "Part 2: Error Identification",
+  "slot": "C",
+  "len": 4,
+  "difficulty": "hard",
+  "category": "reported speech",
+  "sub_point": "reporting verb + object + that (promised / warned / reminded someone that)"
+ },
+ {
+  "id": "ITG3-E057",
+  "author": "F",
+  "part": "Part 2: Error Identification",
+  "slot": "A",
+  "len": 3,
+  "difficulty": "medium",
+  "category": "gerund vs infinitive",
+  "sub_point": "verb + object + infinitive (want / ask / tell someone to) vs make / let + bare infinitive"
+ },
+ {
+  "id": "ITG3-E058",
+  "author": "F",
+  "part": "Part 2: Error Identification",
+  "slot": "B",
+  "len": 2,
+  "difficulty": "medium",
+  "category": "passive voice",
+  "sub_point": "continuous passive (is being painted, was being repaired)"
+ },
+ {
+  "id": "ITG3-E059",
+  "author": "F",
+  "part": "Part 2: Error Identification",
+  "slot": "D",
+  "len": 3,
+  "difficulty": "hard",
+  "category": "pronoun case and reference",
+  "sub_point": "pronouns inside a compound subject or object (my sister and I / my sister and me)"
+ },
+ {
+  "id": "ITG3-E060",
+  "author": "F",
+  "part": "Part 2: Error Identification",
+  "slot": "C",
+  "len": 2,
+  "difficulty": "hard",
+  "category": "subject-verb agreement",
+  "sub_point": "indefinite pronouns as subjects (everyone, nobody, something + singular verb); verb only, never a later pronoun"
+ },
+ {
+  "id": "ITG3-C019",
+  "author": "G",
+  "part": "Part 1: Sentence Completion",
+  "slot": "A",
+  "len": 1,
+  "difficulty": "easy",
+  "category": "verb tense and aspect",
+  "sub_point": "present tense in a future time clause (when / as soon as / until + present, not will)"
+ },
+ {
+  "id": "ITG3-C020",
+  "author": "G",
+  "part": "Part 1: Sentence Completion",
+  "slot": "C",
+  "len": 2,
+  "difficulty": "hard",
+  "category": "modals",
+  "sub_point": "be able to where \"can\" has no form (will be able to, has been able to)"
+ },
+ {
+  "id": "ITG3-E061",
+  "author": "G",
+  "part": "Part 2: Error Identification",
+  "slot": "A",
+  "len": 3,
+  "difficulty": "easy",
+  "category": "subject-verb agreement",
+  "sub_point": "agreement in questions and in inverted order (Where are ...? Here comes ...)"
+ },
+ {
+  "id": "ITG3-E062",
+  "author": "G",
+  "part": "Part 2: Error Identification",
+  "slot": "D",
+  "len": 3,
+  "difficulty": "easy",
+  "category": "passive voice",
+  "sub_point": "active form wrongly used where the subject receives the action (the letter wrote -> was written)"
+ },
+ {
+  "id": "ITG3-E063",
+  "author": "G",
+  "part": "Part 2: Error Identification",
+  "slot": "B",
+  "len": 4,
+  "difficulty": "easy",
+  "category": "conjunctions and connectors",
+  "sub_point": "so that (purpose) vs so (result)"
+ },
+ {
+  "id": "ITG3-E064",
+  "author": "G",
+  "part": "Part 2: Error Identification",
+  "slot": "C",
+  "len": 1,
+  "difficulty": "medium",
+  "category": "count/non-count and quantifiers",
+  "sub_point": "each / every + singular vs all + plural"
+ },
+ {
+  "id": "ITG3-E065",
+  "author": "G",
+  "part": "Part 2: Error Identification",
+  "slot": "D",
+  "len": 4,
+  "difficulty": "medium",
+  "category": "conditionals",
+  "sub_point": "conditionals with modals (if ..., you can / might; could have)"
+ },
+ {
+  "id": "ITG3-E066",
+  "author": "G",
+  "part": "Part 2: Error Identification",
+  "slot": "B",
+  "len": 2,
+  "difficulty": "hard",
+  "category": "comparatives and superlatives",
+  "sub_point": "\"the more ..., the more ...\" correlative comparatives"
+ },
+ {
+  "id": "ITG3-E067",
+  "author": "G",
+  "part": "Part 2: Error Identification",
+  "slot": "B",
+  "len": 3,
+  "difficulty": "hard",
+  "category": "reported speech",
+  "sub_point": "pronoun and possessive shifts"
+ },
+ {
+  "id": "ITG3-E068",
+  "author": "G",
+  "part": "Part 2: Error Identification",
+  "slot": "A",
+  "len": 4,
+  "difficulty": "hard",
+  "category": "word form",
+  "sub_point": "person nouns (-er / -or / -ist / -ian)"
+ },
+ {
+  "id": "ITG3-E069",
+  "author": "G",
+  "part": "Part 2: Error Identification",
+  "slot": "A",
+  "len": 2,
+  "difficulty": "medium",
+  "category": "pronoun case and reference",
+  "sub_point": "demonstratives agreeing with noun number (this / these, that / those)"
+ },
+ {
+  "id": "ITG3-E070",
+  "author": "G",
+  "part": "Part 2: Error Identification",
+  "slot": "C",
+  "len": 1,
+  "difficulty": "medium",
+  "category": "prepositions after a head word",
+  "sub_point": "a preposition wrongly added after a verb that takes none (discuss, reach, enter, marry)"
+ }
+]
