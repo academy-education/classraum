@@ -948,6 +948,24 @@
    "author": "in-session",
    "grader": "cfg-v2",
    "source": "REGISTER 2026-10-29: map-v2-work/reading-b2 standalone Vocabulary, 40 items, one in-session Claude author, vocab-check.mjs; grader v2 pre-screen x2."
+  },
+  "map-reading-v4-c1": {
+   "method_id": "map-rd-v4-specaudit+cfg-v2",
+   "author": "agent",
+   "grader": "cfg-v2",
+   "source": "REGISTER 2026-10-31: map-v2-work/reading-b3/BRIEF-B3.md (per-item distractor-family + marker spec in assignments.json, audit.mjs --full flat), four parallel Claude agent authors + coordinator parity edits, 25 passages x 3; grader v2 pre-screen x2 pending. New method, so its first batch gets a bridge spot."
+  },
+  "map-reading-v4-c2": {
+   "method_id": "map-rd-v4-specaudit+cfg-v2",
+   "author": "agent",
+   "grader": "cfg-v2",
+   "source": "REGISTER 2026-10-31: map-v2-work/reading-b3/BRIEF-B3.md (per-item distractor-family + marker spec in assignments.json, audit.mjs --full flat), four parallel Claude agent authors + coordinator parity edits, 25 passages x 3; grader v2 pre-screen x2 pending. New method, so its first batch gets a bridge spot."
+  },
+  "map-vocab-v4": {
+   "method_id": "map-vocab-v4-agents+cfg-v2",
+   "author": "agent",
+   "grader": "cfg-v2",
+   "source": "REGISTER 2026-10-31: map-v2-work/reading-b3 standalone Vocabulary, 80 items, two parallel Claude agent authors, vocab-check.mjs, deal-vocab.mjs; grader v2 pre-screen x2 pending."
   }
  }
 }

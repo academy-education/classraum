@@ -6616,3 +6616,14 @@ structural checks are pre-flight only. See CLAUDE.md.
   Six of v11's 36 PoW items fell to it even with every option passage-anchored. The fix: distractors that also echo
   the stem's purpose, with the key distinguished only by what the passage actually does.
   `score-attack.mjs` now exits 2 when it has no solver file (it printed NaN% and exit 0).
+
+- **2026-10-31 — MAP Reading batch 3 (MRV4) authored and staged; graders running.** 25 passages / 75 items
+  (Literary 39, Informational 36) plus 80 Vocabulary. Staged verified=false as map-reading-v4-c1 (39), -c2 (36) and
+  map-vocab-v4 (80). Method change after MRV3's held round: the distractor families and marker classes (hedge /
+  absolute / should / none) were fixed per item BEFORE writing, so that every key's marker class also appears in a
+  distractor (`reading-b3/assignments.json`). `audit.mjs` enforces word-level parity, and it reproduced MRV3's known
+  tells when run on the MRV3 files (break test). Before parity edits it caught causal words in 15 of 36 central-idea
+  distractors against 2 of 12 keys, the overclaim tell again, and ~14 options were rewritten. Checks: merge 0
+  problems (key uniquely longest 21/75, above the quarter aim), quote 0/695, audit 0, vocab-check 0. Facts the authors
+  were unsure of are listed for the graders (Borrowdale graphite, camel hump fat, axolotl repair, Anning 1828
+  pterosaur, ocean salinity).
