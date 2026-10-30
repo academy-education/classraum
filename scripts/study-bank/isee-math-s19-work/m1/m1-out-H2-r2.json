@@ -1,0 +1,1170 @@
+[
+ {
+  "id": "Q071",
+  "method": "Evaluate area x^2+7x+12 at x=6 (90) and side x+3 (9), divide for the other side (10), perimeter 2(9+10)",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "5d6f2a16",
+    "why": "area / known length -> other side -> perimeter is the same tail; live has no step evaluating or factoring a polynomial area by a binomial side"
+   },
+   {
+    "ref": "ac7286c0",
+    "why": "SAT banner area (x+5)(x-2)=60 solves a quadratic for x; it never divides an area expression by a side to get the other side, which this item needs"
+   }
+  ],
+  "note": "Searched 'area of x^2', '(x + a)(x + b) ... rectangle', side 'x + 3'; no live row divides a polynomial area by a given binomial side."
+ },
+ {
+  "id": "Q072",
+  "method": "Clock-angle relation |30h - 5.5m| = 90 with h=2; solve 5.5m - 60 = 90 for m = 27 3/11",
+  "live_dups": [
+   {
+    "row": "b3086974",
+    "why": "ISEE: angle between hands at 4:40 uses the identical relation angle = |30h - 5.5m|; this item solves that relation for m instead of evaluating it (different unknown in the same relation)"
+   },
+   {
+    "row": "761f9bd1",
+    "why": "ACT: angle between hands at 3:40, same clock-angle relation evaluated where this item solves it"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": "Live has no 'when do hands first form X degrees' item, but the relation is the same."
+ },
+ {
+  "id": "Q073",
+  "method": "Experimental probability 28/50 = 0.56 minus theoretical 1/2 = 0.06",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": "Searched 'experimental', 'theoretical/expected probability', 'flipped N times and lands'; none in live-isee-ssat or dump."
+ },
+ {
+  "id": "Q074",
+  "method": "Evaluate d=16t^2 at t=3 and t=2 and subtract (144-64=80)",
+  "live_dups": [
+   {
+    "row": "71de9399",
+    "why": "ISEE: f(x)=x^2-4x+1, f(-3)-f(3): evaluate a quadratic at two inputs and subtract, the same chain"
+   },
+   {
+    "row": "6dcfd1fa",
+    "why": "SSAT: f(-3)-f(3) for a linear f, same evaluate-twice-and-subtract chain"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "1aab4cea",
+    "why": "h=4w^2+6 evaluated once; lacks the second evaluation and subtraction"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q075",
+  "method": "Recognize x^3-3x^2+3x-1 = (x-1)^3 and cube 10 (or evaluate the cubic at 11 directly)",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "4d3577fd",
+    "why": "evaluate 2x^2-5x at x=-3 is plain substitution; it has no binomial-cube recognition and no cubic term"
+   }
+  ],
+  "note": "Searched 'x^3 - 3x^2', '3x^2 + 3x', 'when x = 11'; only SAT remainder-theorem rows, different chain."
+ },
+ {
+  "id": "Q076",
+  "method": "Radius = distance from origin to (6,8) via Pythagoras (10); area = 3.14 x 100",
+  "live_dups": [
+   {
+    "row": "e5019982",
+    "why": "ISEE: distance between diameter endpoints -> radius -> circle area; contains this whole chain (plus a halving)"
+   },
+   {
+    "row": "681992b4",
+    "why": "SSAT: radius from diameter endpoints by the distance formula, the same distance -> radius step"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q136",
+    "why": "Pythagoras gives a diameter, then circle (semicircle) area; this item's chain is contained in Q136's"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q077",
+  "method": "Fraction of a turn 25/60, times circumference 2(3.14)(6) = 15.7 (arc length)",
+  "live_dups": [
+   {
+    "row": "6d19e446",
+    "why": "ISEE: arc of a 120-degree sector of radius 6 = (angle/360)(2 pi r), the same arc-length chain; converting 25 minutes to 150 degrees is arithmetic glue"
+   },
+   {
+    "row": "44277b63",
+    "why": "ISEE: degrees the minute hand turns in 25 minutes (150), exactly this item's first step on the same 25-minute interval"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q078",
+  "method": "Speed x 1.25 -> time x 1/1.25 = 0.8 -> 20% decrease",
+  "live_dups": [
+   {
+    "row": "97427952",
+    "why": "ISEE: mpg 32 -> 40 (25% more) so cost per mile falls 20%: identical reciprocal-percent relation and numbers"
+   },
+   {
+    "row": "fd866a3f",
+    "why": "SSAT: one third more -> what percent less (25): same reciprocal-percent relation"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q079",
+  "method": "Count multiples of 4 in 2001-2100 (25), subtract centuries not divisible by 400 (2100) -> 24",
+  "live_dups": [
+   {
+    "row": "45ab7521",
+    "why": "SSAT: multiples of 3 but not of 5 in 1-200: count multiples of one number then subtract those also divisible by a second, same chain"
+   },
+   {
+    "row": "6b2b9b6f",
+    "why": "SSAT: divisible by 4 but not by 6, same count-then-subtract-exceptions chain"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": "No leap-year item anywhere in the dump ('leap', 'divisible by 100')."
+ },
+ {
+  "id": "Q080",
+  "method": "r = 12pi/(2pi) = 6; V = 3.14 x 36 x 5",
+  "live_dups": [
+   {
+    "row": "7cfc4bb9",
+    "why": "ISEE: rolled sheet gives circumference 22 -> radius -> cylinder volume pi r^2 h, the same chain"
+   },
+   {
+    "row": "41320d65",
+    "why": "MAP: circumference -> radius -> sphere volume with 3.14, same circumference-to-radius-to-volume chain"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q081",
+  "method": "x = +-7, y = +-4; maximize x - y by largest x and smallest y: 7 - (-4) = 11",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "4ef05271",
+    "why": "SAT: greatest a - b from two allowed ranges uses max-minus-min, but it has no step taking both square roots of x^2 = 49"
+   }
+  ],
+  "note": "Searched 'x^2 = N and y^2', 'greatest possible value of x - y'."
+ },
+ {
+  "id": "Q082",
+  "method": "Multiply remaining factors 0.80 x 0.85 = 0.68 -> single discount 32%",
+  "live_dups": [
+   {
+    "row": "b4925954",
+    "why": "SSAT: +10% then +20% combined = 32%: multiply successive factors and read the single percent, same chain"
+   },
+   {
+    "row": "961704c3",
+    "why": "SAT: 15% off then additional 8% off, multiply factors (solved for the original price)"
+   },
+   {
+    "row": "cab6729d",
+    "why": "ISEE: +20% then -15% successive change, same factor multiplication"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q091",
+    "why": "successive percent factors multiplied (0.8 x 0.8)"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q083",
+  "method": "P(first 6 on roll 3) = (5/6)(5/6)(1/6) = 25/216",
+  "live_dups": [
+   {
+    "row": "cd4279e8",
+    "why": "ACT: probability first heads is on the third flip = q^2 p, the identical chain"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q025",
+    "why": "product of independent spin probabilities; the complement 5/6 is glue"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q084",
+  "method": "Prime-factorize 720 = 2^4 x 3^2 x 5 and add exponents (7)",
+  "live_dups": [
+   {
+    "row": "8422aa76",
+    "why": "ISEE: prime-factorize 180 and add the distinct primes; the factorization is the whole chain, only the final read-off differs"
+   },
+   {
+    "row": "4579a5ee",
+    "why": "SSAT: sum of distinct prime factors of 546, same factorize-and-read-off chain"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q085",
+  "method": "Common denominator: (1+2+...+6)/7 = 21/7 = 3",
+  "live_dups": [
+   {
+    "row": "9b4e6f96",
+    "why": "ISEE: Gauss sum 1+...+190 then a further operation; same consecutive-sum chain, dividing by 7 is glue"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q017",
+    "why": "Gauss/triangular sum 1+...+n is the whole computation here"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q086",
+  "method": "First digit 1-9, middle 0-9, last forced: 9 x 10 = 90",
+  "live_dups": [
+   {
+    "row": "7b2055c8",
+    "why": "ISEE: palindromic clock times counted by choosing the leading digits and mirroring, the same choose-half-and-mirror count"
+   },
+   {
+    "row": "1d6c51a8",
+    "why": "ISEE: three-digit code count by multiplication principle with a restricted first digit"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q087",
+  "method": "Geometric sum of halves = 1 - 1/64 = 63/64",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": "Searched '1/2 + 1/4 + 1/8', '1/64|1/32', 'geometric ... sum'; live geometric-sum rows solve for r, not a halving series."
+ },
+ {
+  "id": "Q088",
+  "method": "Side = sqrt36 = 6; pentagon has 5 exposed sides (3 square + 2 triangle) -> 30",
+  "live_dups": [
+   {
+    "row": "9f2a0176",
+    "why": "ISEE: plus-sign of squares, perimeter 48 -> side via count of exposed edges -> area: same composite-figure relation run in reverse (given perimeter, find area)"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q002",
+    "why": "area -> side -> count exposed sides -> perimeter, the same chain"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q089",
+  "method": "0.125 = 1/8 = 2^-3, so n = -3",
+  "live_dups": [
+   {
+    "row": "f2276aab",
+    "why": "SSAT: (1/2)^-3 uses the same negative-exponent/reciprocal relation, evaluated where this item solves; decimal 0.125 -> 1/8 is glue"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "Q045",
+    "why": "negative exponents evaluated; lacks rewriting 0.125 as a power of 2"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q090",
+  "method": "ab = 48 from area, a^2 + b^2 = 100; (a+b)^2 = 100 + 96 = 196 -> 14",
+  "live_dups": [
+   {
+    "row": "016a95ed",
+    "why": "SSAT: rectangle perimeter 34, diagonal 13 -> area: same identity (a+b)^2 = a^2+b^2+2ab, solved for ab instead of a+b"
+   },
+   {
+    "row": "bcacdc1d",
+    "why": "ISEE: identical rectangle perimeter/diagonal -> area item, same identity"
+   },
+   {
+    "row": "81ce1239",
+    "why": "SSAT: sum 15, sum of squares 137 -> product, same identity, different unknown"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q053",
+    "why": "a+b and ab -> a^2+b^2 is the same identity with a different unknown"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q091",
+  "method": "15 x 0.8 x 0.8 = 9.6 (repeated percent scale)",
+  "live_dups": [
+   {
+    "row": "0122dd0e",
+    "why": "ISEE: 2500 grows 20% then 10%: multiply by successive factors, same chain"
+   },
+   {
+    "row": "6eeeadd8",
+    "why": "ISEE: price +20% then -25%, successive factor multiplication"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q082",
+    "why": "successive percent factors multiplied"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q092",
+  "method": "Sum of squares formula n(n+1)(2n+1)/6 at n=10, or direct addition: 385",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": "Searched '1^2 + 2^2', 'sum of the squares'; only sum-of-squares-of-roots items (different chain)."
+ },
+ {
+  "id": "Q093",
+  "method": "Add 1 + 1/2 + 1/3 + 1/4 + 1/6 + 1/12 over denominator 12: (12+6+4+3+2+1)/12 = 28/12 = 7/3",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "ddef9e0b",
+    "why": "sum of divisors of 20; it has no fraction addition over a common denominator, which this item needs"
+   }
+  ],
+  "note": "Searched 'reciprocals', 'sum of ... divisors'."
+ },
+ {
+  "id": "Q094",
+  "method": "120/n > 10 -> n < 12; count divisors of 120 below 12 (1,2,3,4,5,6,8,10) = 8",
+  "live_dups": [
+   {
+    "row": "d5990c03",
+    "why": "SSAT: 100 / k remainder 4 -> count divisors of 96 that exceed 4: list divisors of a number and count those past a bound, same chain"
+   },
+   {
+    "row": "1aadf036",
+    "why": "ISEE: same divisors-past-a-bound chain on 987"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q095",
+  "method": "C(9,3) - C(5,3) = 84 - 10 = 74 (complement)",
+  "live_dups": [
+   {
+    "row": "6147df29",
+    "why": "ISEE: team of 3 from 5 seniors and 4 juniors with at least one junior = 74: identical numbers and chain"
+   },
+   {
+    "row": "8fee0912",
+    "why": "SAT: committee of 3 from 5 women, 4 men, at least one man = 74, identical"
+   },
+   {
+    "row": "fb7cfaae",
+    "why": "SSAT: same complement count with a 2-person committee"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": "Exact twin of a live ISEE row."
+ },
+ {
+  "id": "Q096",
+  "method": "Worst case: all 12 black and 9 blue, then 1 more = 22",
+  "live_dups": [
+   {
+    "row": "f2ad4e35",
+    "why": "ISEE: socks, worst case take every non-target sock then the needed count (20), same pigeonhole worst-case chain"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q097",
+  "method": "72 x 1000 / 3600 = 20 m/s",
+  "live_dups": [
+   {
+    "row": "a28c3a2a",
+    "why": "ACT: 54 km/h in meters per second, identical conversion chain"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q066",
+    "why": "chain of unit-conversion factors (gal/min -> L/hour)"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q098",
+  "method": "0.4 x 0.30 + 0.6 x 0.45 = 0.39 (weighted percent)",
+  "live_dups": [
+   {
+    "row": "e8fdcdce",
+    "why": "SSAT: 40% band, 25% of band and 30% of non-band in choir: its first step is exactly this weighted total"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q099",
+  "method": "c + w = 30, 2c + 4w = 84 -> 18 chickens",
+  "live_dups": [
+   {
+    "row": "5289a3a6",
+    "why": "ISEE: 30 tickets at $8/$5 totaling $204: same count + weighted-total two-equation system"
+   },
+   {
+    "row": "e4b664a9",
+    "why": "ISEE: quarters and dimes, 32 coins worth $5.90, same system"
+   },
+   {
+    "row": "d126204d",
+    "why": "SSAT: 20 tickets at $8/$5 totaling $124, same system"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": "No animals-and-legs row, but the system is identical."
+ },
+ {
+  "id": "Q100",
+  "method": "60 - two semicircles of r=3 (= one circle, 9 x 3.14) = 31.74",
+  "live_dups": [
+   {
+    "row": "a42ff916",
+    "why": "ACT: rectangle plus a semicircle on a side: rectangle area +/- semicircle areas, same chain"
+   },
+   {
+    "row": "1dab02ca",
+    "why": "ISEE: square area minus an inscribed circle, same subtract-circle-area chain"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q117",
+    "why": "polygon area plus semicircles on sides, same chain"
+   }
+  ],
+  "borderline": [
+   {
+    "ref": "93ee3490",
+    "why": "same rectangle-with-two-semicircles figure but it asks perimeter; it has no circle-area step"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q101",
+  "method": "Solve 2t + 1 = 9 for t = 4, substitute into y = 4t - 3 = 13",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": "Searched 'for a number t', '= 2t', 'x = Nt'; no parametric item in the dump."
+ },
+ {
+  "id": "Q102",
+  "method": "1800/24 = 75 minutes, add to 9:15 -> 10:30",
+  "live_dups": [
+   {
+    "row": "4c19786a",
+    "why": "ACT: 306 km at 90 km/h -> duration, added to a 9:47 start: amount / rate -> duration -> add to clock time, same chain"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "Q037",
+    "why": "adds minutes to a clock time; lacks the amount/rate division"
+   },
+   {
+    "ref": "Q028",
+    "why": "rate -> minutes; lacks adding the duration to a clock time"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q103",
+  "method": "Each new square adds 3 toothpicks after the first 4: 3n + 1 = 76",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "1e838ada",
+    "why": "linear figure pattern 5, 8, 11, ... (add 3 each time) evaluated at n = 50; this item must derive the rule from shared sides, which the live row hands over as listed terms"
+   }
+  ],
+  "note": "Searched 'toothpick/matchstick', 'row of squares'."
+ },
+ {
+  "id": "Q104",
+  "method": "sqrt150 ~ 12.2, sqrt50 ~ 7.1 (bracket between perfect squares), sum ~ 19.3 -> 19",
+  "live_dups": [
+   {
+    "row": "2624c3c5",
+    "why": "MAP: locate sqrt40 and sqrt50 as decimals by bracketing between perfect squares; the same estimation chain, the final addition is glue"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q105",
+  "method": "1 + 3 + ... (n terms) = n^2 = 400 -> n = 20",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "70c5cc57",
+    "why": "sums of first 50 evens and odds; its E - D answer comes by pairing and never uses the n^2 formula this item needs"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q106",
+  "method": "Rewrite 8 x 10^4 as 0.8 x 10^5, add to get 10.0 x 10^5, renormalize to 1.0 x 10^6",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "486cf033",
+    "why": "MAP adds 3.284 x 10^5 + 1.9 x 10^4 + 1.68 x 10^5 (align exponents) but answers in standard form; it has no renormalizing a sum of 10 x 10^5 back into scientific notation"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q107",
+  "method": "Multiples of 9 from 108 to 198; mean = (108+198)/2 = 153",
+  "live_dups": [
+   {
+    "row": "2acefdb2",
+    "why": "ISEE: sum of multiples of 4 between 50 and 150: find first/last multiple and use the average of the endpoints, this item's chain"
+   },
+   {
+    "row": "392a306a",
+    "why": "ACT: mean of integers 12 through 40 = average of the endpoints"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "Q120",
+    "why": "average of an arithmetic list by symmetry; Q120 has no locating of the first/last multiple of 9"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q108",
+  "method": "18 x 35 = 630; keep 78%: 491.40",
+  "live_dups": [
+   {
+    "row": "f022d899",
+    "why": "ISEE: 40 x 25 total, then keep 95% (and a per-item fee): rate x count, then take a percentage cut, same chain"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q109",
+  "method": "M = (4, 6); slope from origin = 6/4 = 3/2",
+  "live_dups": [
+   {
+    "row": "a1d88519",
+    "why": "ISEE: midpoints M and N, then slope MN; midpoint -> slope chain contained"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q110",
+  "method": "(-2)^3 = -8; (-3)^2 = 9; 9 / (1/3) = 27; x 2 = 54; -8 - 54 = -62",
+  "live_dups": [
+   {
+    "row": "fe682145",
+    "why": "SSAT: -3^2 + (-2)^3 - 4(-5)/2, same order-of-operations chain with powers of negatives and division"
+   },
+   {
+    "row": "1b31caad",
+    "why": "ISEE: -3^2 + (-3)^2 - 27 x 3^(-2), same chain"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q111",
+  "method": "x - 3 = +-5 -> x = 8, -2; sum 6",
+  "live_dups": [
+   {
+    "row": "34ca9c91",
+    "why": "SAT: sum of values satisfying (x - 5)^2 = 36, identical chain"
+   },
+   {
+    "row": "0ced4a24",
+    "why": "ISEE: |2x - 5| = 11, sum of two values: same +- split"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q112",
+  "method": "90 two-digit numbers minus 25 with both digits odd = 65",
+  "live_dups": [
+   {
+    "row": "ad752aae",
+    "why": "ISEE: three-digit numbers with at least one 5 = total minus none: same complement digit count"
+   },
+   {
+    "row": "5e2da94e",
+    "why": "ISEE: count numbers with only odd digits, exactly this item's complement set"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q113",
+  "method": "Legs 3k, 4k: 6k^2 = 54 -> k = 3; hypotenuse 5k = 15",
+  "live_dups": [],
+  "batch_dups": [
+   {
+    "row": "Q040",
+    "why": "sides in ratio 4:3, a measure fixes k, hypotenuse/diagonal = 5k: same chain"
+   }
+  ],
+  "borderline": [
+   {
+    "ref": "d9c5d51c",
+    "why": "edges in ratio 1:2:3 with volume -> k; it has no Pythagorean/5k step"
+   }
+  ],
+  "note": "Searched 'legs ... ratio', 'ratio ... area/diagonal/hypotenuse'."
+ },
+ {
+  "id": "Q114",
+  "method": "300 x 1.25 x 150 = 56,250 yen; keep 96% -> 54,000",
+  "live_dups": [
+   {
+    "row": "ff761ac8",
+    "why": "ACT: currency exchange with a 3 percent fee deducted plus chained conversions, same chain"
+   },
+   {
+    "row": "90c83a76",
+    "why": "SSAT: chained currency conversions dollars -> euros -> dollars"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "Q066",
+    "why": "chained unit-conversion factors; lacks the percent-fee deduction"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q115",
+  "method": "Repeated-digit two-digit numbers 11..99 = 9 of 90 -> 1/10",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": "Searched 'two-digit number is chosen', 'digits are the same'; only 'at least one repeated digit' complements on 4-digit codes, different chain."
+ },
+ {
+  "id": "Q116",
+  "method": "(n+1)^2 - n^2 = 2n + 1 = 41 -> n = 20; product 20 x 21 = 420",
+  "live_dups": [],
+  "batch_dups": [
+   {
+    "row": "Q123",
+    "why": "difference of squares factored as (a-b)(a+b); here solved instead of evaluated"
+   }
+  ],
+  "borderline": [
+   {
+    "ref": "1a748528",
+    "why": "which integers are differences of squares, via (a-b)(a+b) parity cases; it has no solving 2n+1 = 41 or product step"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q117",
+  "method": "16 + 4 semicircles of r=2 (= 2 circles, 8 x 3.14) = 41.12",
+  "live_dups": [
+   {
+    "row": "a42ff916",
+    "why": "ACT: rectangle plus semicircle on a side: polygon area + semicircle area, same chain"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q100",
+    "why": "rectangle area +/- semicircle areas"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q118",
+  "method": "Undo: 7 + 3 = 10, x 4 = 40 (value right after +6)",
+  "live_dups": [
+   {
+    "row": "61b2273d",
+    "why": "ISEE: multiply, subtract 8, divide by 2, add 5; final 19; value just after subtracting 8: identical structure"
+   },
+   {
+    "row": "322acefe",
+    "why": "SSAT: double, add 7, divide by 3 = 11, undo the operations"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q057",
+    "why": "work backwards through inverse operations"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q119",
+  "method": "(1/3 - 1/5)/(1/3 + 1/5) = (2/15)/(8/15) = 1/4",
+  "live_dups": [
+   {
+    "row": "cd70e2f1",
+    "why": "ISEE: (3/4 - 1/6) divided by 5/12: combine fractions over a common denominator then divide, same chain"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q120",
+  "method": "Even count: average of 25th and 26th terms (50, 52) -> 51",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "1b16ae0f",
+    "why": "median of 8 values by averaging the middle two; it has no step locating the 25th/26th terms of 2, 4, ..., 100"
+   },
+   {
+    "ref": "Q107",
+    "why": "average of an arithmetic list by symmetry, but Q107 asks mean not median"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q121",
+  "method": "n/(n+1) > 0.8 for n >= 5: count 5/6..9/10 = 5",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": "Searched 'how many of the fractions ... greater than', '1/2, 2/3, 3/4', 'greater than 0.8'; none."
+ },
+ {
+  "id": "Q122",
+  "method": "Days left in March incl. 15th (17) + April 30 + May 4 = 51",
+  "live_dups": [
+   {
+    "row": "e7750c76",
+    "why": "ISEE: March 3 to June 20 counts days across month lengths (then mod 7); same cross-month day count"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q123",
+  "method": "(53 - 47)(53 + 47) = 6 x 100 = 600",
+  "live_dups": [
+   {
+    "row": "8941c2e0",
+    "why": "ISEE: x^2 - y^2 = 39 with x + y = 13 uses the same difference-of-squares factoring, solved where this item evaluates"
+   },
+   {
+    "row": "ab07444c",
+    "why": "SSAT: x - y = 3, x^2 - y^2 = 33, same factoring"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q116",
+    "why": "consecutive squares difference, same identity"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q124",
+  "method": "39/4 / 3/8 = 39/4 x 8/3 = 26",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "61acf37d",
+    "why": "ACT: length / piece length for whole pieces, in decimals; it has no mixed-number fraction division, which is the computation here"
+   }
+  ],
+  "note": "Searched 'cut into pieces', mixed-number lengths with fraction pieces."
+ },
+ {
+  "id": "Q125",
+  "method": "Spacing (9 - (-3))/4 = 3; third point -3 + 9 = 6",
+  "live_dups": [
+   {
+    "row": "f25d6138",
+    "why": "ACT: number 3/5 of the way from -4 to 11 = endpoint + fraction x length, the same chain"
+   },
+   {
+    "row": "e655aff1",
+    "why": "MAP: equally spaced rungs between two elevations, find the 4th: same spacing chain"
+   },
+   {
+    "row": "abf48ed9",
+    "why": "SSAT: point between P and Q twice as far from P: endpoint + fraction x length"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q061",
+    "why": "equally spaced points between endpoints, find one"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q126",
+  "method": "Class A boys 4/9 x 27 = 12; class B 2/3 x 36 = 24; 36/63 = 4/7",
+  "live_dups": [
+   {
+    "row": "075fd889",
+    "why": "ISEE: split 32 by ratio 5:3, take parts of each group and add: ratio -> counts -> combine, same chain"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q127",
+  "method": "Sorted, median = average of 5th and 6th = (80 + x)/2 = 81 -> x = 82",
+  "live_dups": [
+   {
+    "row": "1b16ae0f",
+    "why": "ACT: median of 8 values = average of middle two, the same relation evaluated where this item solves for one middle value"
+   },
+   {
+    "row": "24c247f9",
+    "why": "ISEE: median of 1.5 given, solve for an unknown count via the middle-two average"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q128",
+  "method": "Fix Rosa; choose 2 of the other 6: C(6,2) = 15",
+  "live_dups": [
+   {
+    "row": "8ee46e8e",
+    "why": "SSAT: committee of 3 with Ann and Bob both or neither: the 'both in' case fixes members and chooses the rest from the others, same chain"
+   },
+   {
+    "row": "3c33a154",
+    "why": "ISEE: fix the president, then choose 2 of the remaining 5"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q129",
+  "method": "Next 5-digit palindrome after 15951 is 16061; difference 110",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": "Searched 'odometer', 'palindrome', 'next shows'; live palindrome rows count, they do not find the next one."
+ },
+ {
+  "id": "Q130",
+  "method": "1:02.47 = 62.47 s; 62.47 - 59.85 = 2.62",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": "Searched min:sec formats and 'won by'; none."
+ },
+ {
+  "id": "Q131",
+  "method": "Multiples of 10 dividing 360 <-> divisors of 36: 9",
+  "live_dups": [
+   {
+    "row": "20fbf7cc",
+    "why": "SSAT: divisors of 720 that are multiples of 15 <-> divisors of 48, identical chain"
+   },
+   {
+    "row": "a512a3c8",
+    "why": "ISEE: divisors of 2^4 x 3^3 x 5 that are multiples of 10, identical chain"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q132",
+  "method": "a + 6 = 2(a - 9) -> a = 24",
+  "live_dups": [
+   {
+    "row": "65edd1f7",
+    "why": "SAT: in 6 years twice as old as brother was 4 years ago: future age = 2 x past age, same equation shape"
+   },
+   {
+    "row": "117cc8ec",
+    "why": "ISEE: in 8 years twice as old, same linear age equation"
+   },
+   {
+    "row": "2140c9b6",
+    "why": "SSAT: in 6 years twice as old, same chain"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q133",
+  "method": "Elapsed 9:40 -> 2:10 = 270 minutes; half = 135",
+  "live_dups": [
+   {
+    "row": "edcb26c8",
+    "why": "ACT: start time + duration = arrival time; the same clock-time/elapsed relation with a different unknown; halving is glue"
+   },
+   {
+    "row": "1150b4e2",
+    "why": "ISEE: add a 13 h 20 min duration to a clock time"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q026",
+    "why": "elapsed time between two clock times across noon"
+   },
+   {
+    "row": "Q043",
+    "why": "elapsed time 9:30 a.m. to 2:15 p.m."
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q134",
+  "method": "3 h 36 min = 216 min; 216/1440 = 15%",
+  "live_dups": [
+   {
+    "row": "9ac4e23a",
+    "why": "SSAT: minutes in 2.5% of one week: same percent-of-a-time-period relation, run in reverse"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q135",
+  "method": "Rate 30%/12 min = 2.5%/min; 45% / 2.5 = 18 min",
+  "live_dups": [
+   {
+    "row": "35ed0392",
+    "why": "ISEE: 45 pages in 3 minutes, minutes for 300 pages: unit rate then divide, same proportion chain"
+   },
+   {
+    "row": "2ea09dd8",
+    "why": "SSAT: same unit-rate proportion"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q028",
+    "why": "pages in a time -> time for more pages, same proportion"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q136",
+  "method": "Hypotenuse sqrt(144+256) = 20 = diameter; r = 10; semicircle = 3.14 x 100 / 2 = 157",
+  "live_dups": [
+   {
+    "row": "e5019982",
+    "why": "ISEE: diameter length from Pythagoras/distance -> radius -> circle area; halving for a semicircle is glue"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q076",
+    "why": "Pythagoras -> radius -> circle area"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q137",
+  "method": "Smallest 3-digit square 10^2, largest 31^2: 31 - 10 + 1 = 22",
+  "live_dups": [
+   {
+    "row": "b583a0eb",
+    "why": "ISEE: perfect squares between 30 and 300: bracket by roots and count, identical chain"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q046",
+    "why": "count integers whose square roots lie between bounds; same squares-between-bounds count with given/asked swapped"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q138",
+  "method": "Nearest ten 350 -> 345..354; nearest hundred 300 -> up to 349; intersection 345..349, sum 1735",
+  "live_dups": [
+   {
+    "row": "a3b5382b",
+    "why": "SSAT: N rounds to 7.5 (tenth) and 8 (whole): intersect two rounding intervals, the same chain"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q139",
+  "method": "Profit 1.60n - 80 > 100 -> n > 112.5 -> 113",
+  "live_dups": [
+   {
+    "row": "8d79a1a2",
+    "why": "SAT: setup fee + per-poster cost, sell price, profit at least a target -> least number: identical chain"
+   },
+   {
+    "row": "9d4af4ce",
+    "why": "SAT: C = 8n + 450 plus fee, sell at 23, least n for profit at least 1200, same chain"
+   },
+   {
+    "row": "479f4a1a",
+    "why": "ISEE: per-item margin vs profit target, least number of cases"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q050",
+    "why": "linear inequality solved then rounded up to the least whole number"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q140",
+  "method": "6 divisors needs p^5 or p^2 q; least is 2^2 x 3 = 12",
+  "live_dups": [
+   {
+    "row": "116bfd8e",
+    "why": "SSAT: least number with exactly 12 factors via exponent patterns of the divisor-count formula, identical chain"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ }
+]

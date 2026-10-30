@@ -1,0 +1,999 @@
+[
+ {
+  "id": "Q071",
+  "method": "Factor area x^2+7x+12 by given side x+3 to get other side x+4; perimeter 2(2x+7); substitute x=6.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": "No live row divides a polynomial area by a side."
+ },
+ {
+  "id": "Q072",
+  "method": "Hour hand starts 60 deg ahead; relative speed 5.5 deg/min; solve 5.5t = 60+90 for t.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "b3086974",
+    "why": "evaluates the hand angle at a given time; this item solves for the time using the 5.5 deg/min relative rate"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q073",
+  "method": "Experimental 28/50 = 0.56 minus theoretical 0.5.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q074",
+  "method": "Evaluate 16t^2 at t=3 and t=2 and subtract.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "1aab4cea",
+    "why": "single evaluation of a quadratic formula; no difference of two evaluations"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q075",
+  "method": "Recognize x^3-3x^2+3x-1 = (x-1)^3; compute 10^3.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q076",
+  "method": "Radius = distance from origin to (6,8) = 10 (6-8-10 triple); area = 3.14 x 100.",
+  "live_dups": [
+   {
+    "row": "e5019982",
+    "why": "distance between two points gives the radius (after halving the diameter), then area pi r^2; same distance->radius->area chain"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q077",
+  "method": "25 min = 25/60 of a turn; arc = (5/12) x 2 x 3.14 x 6.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "44277b63",
+    "why": "converts 25 minutes of the minute hand to 150 degrees but stops there; no arc-length step"
+   },
+   {
+    "ref": "6d19e446",
+    "why": "sector arc length from a central angle, but the angle is given, not derived from clock minutes"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q078",
+  "method": "Speed x 1.25 means time x 1/1.25 = 0.8; decrease 20%.",
+  "live_dups": [
+   {
+    "row": "97427952",
+    "why": "32 to 40 mpg (25% more) -> cost per mile x 0.8 -> 20% decrease; identical reciprocal-of-1.25 chain"
+   },
+   {
+    "row": "fd866a3f",
+    "why": "one third more -> other is 3/4 -> 25% less; same reciprocal-percent chain"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q079",
+  "method": "Count multiples of 4 from 2001-2100 (25), remove 2100 (divisible by 100 not 400): 24.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q080",
+  "method": "Circumference 12pi -> r=6; V = 3.14 x 36 x 5.",
+  "live_dups": [
+   {
+    "row": "7cfc4bb9",
+    "why": "circumference (22 cm edge) -> radius -> pi r^2 h; same C->r->volume chain"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "72c9687f",
+    "why": "circumference -> radius -> area, no height/volume step"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q081",
+  "method": "x = +/-7, y = +/-4; maximize x - y with x=7, y=-4.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q082",
+  "method": "Multiply 0.80 x 0.85 = 0.68; single discount 32%.",
+  "live_dups": [
+   {
+    "row": "b4925954",
+    "why": "two successive percent changes combined by multiplying factors (1.1 x 1.2) into one percent"
+   },
+   {
+    "row": "f8a8ccb8",
+    "why": "1.2 x 0.9 -> single percent change; same multiply-factors-to-one-percent chain"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "Q091",
+    "why": "applies the same repeated multiplier but asks for the resulting value, not the equivalent single percent"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q083",
+  "method": "P = (5/6)(5/6)(1/6) = 25/216.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q084",
+  "method": "Factor 720 = 2^4 x 3^2 x 5; add exponents 4+2+1.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "8422aa76",
+    "why": "prime-factorizes 180 but sums the distinct primes, not the exponents"
+   },
+   {
+    "ref": "Q044",
+    "why": "factorizes 120 but sums odd divisors"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q085",
+  "method": "Add numerators 1..6 = 21 over 7 = 3.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q086",
+  "method": "First digit 1-9, middle 0-9, last forced: 9 x 10 = 90.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "7b2055c8",
+    "why": "counts palindromic clock displays with case split by hour length; different structure"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q087",
+  "method": "Finite geometric series 1/2+...+1/64 = 1 - 1/64 = 63/64.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q088",
+  "method": "Area 36 -> side 6; count 5 exposed unit sides of composite figure; 5 x 6.",
+  "live_dups": [],
+  "batch_dups": [
+   {
+    "row": "Q002",
+    "why": "area -> side of a square -> count exposed sides of a composite figure -> perimeter; same chain"
+   }
+  ],
+  "borderline": [
+   {
+    "ref": "9f2a0176",
+    "why": "plus-sign figure counts exposed sides but runs perimeter -> side -> area (reverse direction)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q089",
+  "method": "0.125 = 1/8 = 2^-3, so n = -3.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q090",
+  "method": "ab = 48 from area 24; a^2+b^2 = 100; (a+b)^2 = 100 + 96 = 196; a+b = 14.",
+  "live_dups": [
+   {
+    "row": "016a95ed",
+    "why": "rectangle with given perimeter and diagonal: (l+w)^2 - d^2 = 2lw; same sum/product/sum-of-squares identity with right-triangle hypotenuse"
+   },
+   {
+    "row": "bcacdc1d",
+    "why": "same as 016a95ed (perimeter 34, diagonal 13 -> area 60)"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q091",
+  "method": "Apply x 0.8 twice: 15 x 0.8 x 0.8 = 9.6.",
+  "live_dups": [
+   {
+    "row": "0122dd0e",
+    "why": "apply two successive percent multipliers to a starting quantity and report the value"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "Q082",
+    "why": "multiplies successive discount factors but reports the equivalent single percent"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q092",
+  "method": "Sum of squares formula n(n+1)(2n+1)/6 with n=10 (or add directly) = 385.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q093",
+  "method": "Sum of reciprocals of divisors of 12 = (sum of divisors)/12 = 28/12 = 7/3.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "ddef9e0b",
+    "why": "sum of divisors of 20; no reciprocal / divide-by-n step"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q094",
+  "method": "120/n > 10 means n < 12; count divisors of 120 below 12: 1,2,3,4,5,6,8,10 -> 8.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "d5990c03",
+    "why": "lists divisors of 96 and filters by an inequality, but first subtracts the remainder 4 from 100"
+   },
+   {
+    "ref": "1aadf036",
+    "why": "divisors of 987 greater than 13; extra remainder-subtraction step"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q095",
+  "method": "Complement: C(9,3) - C(5,3) = 84 - 10 = 74.",
+  "live_dups": [
+   {
+    "row": "6147df29",
+    "why": "3 from 5 seniors and 4 juniors with at least one junior = 74; identical numbers and chain"
+   },
+   {
+    "row": "fb7cfaae",
+    "why": "5 boys 4 girls, committee with at least one girl via complement; same chain, committee of 2"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q096",
+  "method": "Worst case: take all 12 black and 9 blue, then 1 more: 22.",
+  "live_dups": [
+   {
+    "row": "f2ad4e35",
+    "why": "sock drawer pigeonhole: exhaust every sock that does not meet the target, then add the needed ones"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "68b3a358",
+    "why": "pigeonhole for 4 of one colour; different worst-case count"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q097",
+  "method": "72 km/h x 1000 m/km / 3600 s/h = 20 m/s.",
+  "live_dups": [
+   {
+    "row": "09826fad",
+    "why": "rate unit conversion converting both numerator and denominator units (mL per 4 s -> L per hour)"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q066",
+    "why": "rate conversion gal/min -> L/hour by multiplying unit factors; same chain"
+   }
+  ],
+  "borderline": [
+   {
+    "ref": "19d064bf",
+    "why": "km/h to m/s conversion appears only as a sub-step of a train-passing problem"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q098",
+  "method": "Weighted percent: 0.4 x 0.30 + 0.6 x 0.45 = 0.39.",
+  "live_dups": [
+   {
+    "row": "253a460b",
+    "why": "60% adults x 45% + 40% non-adults x 5% = percent of all who own a home; identical weighted-percent chain (sat)"
+   },
+   {
+    "row": "4005a61b",
+    "why": "70% of Party A x 60% + 40% of Party B x 40% -> turnout; same chain (sat)"
+   },
+   {
+    "row": "e8fdcdce",
+    "why": "computes 0.4 x 0.25 + 0.6 x 0.30 as its first stage before a conditional step; contains this whole chain"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q099",
+  "method": "Two-variable count/value system: c + w = 30, 2c + 4w = 84 -> c = 18.",
+  "live_dups": [
+   {
+    "row": "5289a3a6",
+    "why": "30 tickets at $8/$5 totaling $204; same count-and-weighted-total system"
+   },
+   {
+    "row": "4a0bd6bd",
+    "why": "34 coins of 5c/10c worth $2.90; same system"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q100",
+  "method": "Rectangle 60 minus two semicircles of radius 3 (= one circle, 9 x 3.14): 31.74.",
+  "live_dups": [
+   {
+    "row": "1dab02ca",
+    "why": "square area minus circle area; same rectangle-minus-circle chain once two semicircles are combined into one circle"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "93ee3490",
+    "why": "same rectangle-with-two-semicircles figure but asks for perimeter, not area"
+   },
+   {
+    "ref": "Q117",
+    "why": "combines semicircles into circles but ADDS them to a square"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q101",
+  "method": "Solve 2t+1 = 9 for t = 4; substitute into y = 4t - 3.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q102",
+  "method": "Time = 1800/24 = 75 min; add to 9:15 -> 10:30 a.m.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "35ed0392",
+    "why": "minutes = pages / rate, but no step of adding the duration to a clock time"
+   },
+   {
+    "ref": "Q043",
+    "why": "rate x elapsed clock time; inverse direction"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q103",
+  "method": "Toothpicks = 3n + 1 (4 for first square, 3 each after); n=25 -> 76.",
+  "live_dups": [
+   {
+    "row": "1e838ada",
+    "why": "linear figure pattern adding 3 each figure (5, 8, 11, ...) evaluated at figure 50; same arithmetic-pattern chain"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q104",
+  "method": "Estimate sqrt150 ~ 12.2 and sqrt50 ~ 7.1, sum ~ 19.3 -> 19.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "Q065",
+    "why": "simplifies radicals exactly; no estimation"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q105",
+  "method": "Sum of first n odd numbers = n^2 = 400 -> n = 20.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "70c5cc57",
+    "why": "uses sums of first 50 evens and odds but asks E - D (pairing), not n^2"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q106",
+  "method": "Rewrite 8 x 10^4 = 0.8 x 10^5; add to 9.2 x 10^5 = 10 x 10^5 = 1.0 x 10^6.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q107",
+  "method": "Multiples of 9 in range: 108 to 198; mean = (108+198)/2 = 153.",
+  "live_dups": [
+   {
+    "row": "2acefdb2",
+    "why": "sum of multiples of 4 between 50 and 150: find first and last multiple, use their average (x count); this item stops at the average"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q108",
+  "method": "Gross 18 x 35 = 630; take home 630 x 0.78.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "294a8e0e",
+    "why": "single percent-off of a price; no rate x hours step"
+   },
+   {
+    "ref": "679e14a6",
+    "why": "percent-of-bill added (x 1.18) rather than withheld; no rate x hours step"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q109",
+  "method": "Midpoint (4, 6); slope from origin 6/4 = 3/2.",
+  "live_dups": [
+   {
+    "row": "a1d88519",
+    "why": "midpoint(s) then slope of the line through them; same midpoint->slope chain"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "823612ed",
+    "why": "midpoint then distance to the origin, not slope"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q110",
+  "method": "Order of operations with negative powers: -8 - 9 / (1/3) x 2 = -62.",
+  "live_dups": [
+   {
+    "row": "fe682145",
+    "why": "-3^2 + (-2)^3 - 4(-5)/2: same order-of-operations-with-signed-powers chain"
+   },
+   {
+    "row": "1b31caad",
+    "why": "-3^2 + (-3)^2 - 27 x 3^(-2): same chain"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q111",
+  "method": "(x-3)^2 = 25 -> x - 3 = +/-5 -> 8 and -2; sum 6 (= 2 x 3).",
+  "live_dups": [
+   {
+    "row": "34ca9c91",
+    "why": "(x-5)^2 = 36, sum of all solutions; identical chain (sat)"
+   },
+   {
+    "row": "0ced4a24",
+    "why": "|2x-5| = 11, sum of the two solutions; same two-branch symmetric-root sum"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q112",
+  "method": "Complement: 90 two-digit numbers minus 5 x 5 with both digits odd = 65.",
+  "live_dups": [
+   {
+    "row": "ad752aae",
+    "why": "at least one digit 5 via total minus none (900 - 8 x 9 x 9); same complement digit-count chain"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q113",
+  "method": "Legs 3k, 4k; area 6k^2 = 54 -> k = 3; hypotenuse 5k = 15.",
+  "live_dups": [],
+  "batch_dups": [
+   {
+    "row": "Q040",
+    "why": "sides in ratio 4:3 scaled by k from a total (perimeter), then diagonal 5k; same 3-4-5 scale chain"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q114",
+  "method": "300 x 1.25 = 375 dollars x 150 = 56,250 yen; keep 96% = 54,000.",
+  "live_dups": [
+   {
+    "row": "ff761ac8",
+    "why": "currency exchange with a percentage fee deducted and conversion rate applied (act)"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "10a7a9a0",
+    "why": "chained unit/currency conversions but no fee"
+   },
+   {
+    "ref": "6326c927",
+    "why": "single currency conversion, no chain or fee"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q115",
+  "method": "Repdigits 11..99: 9 of 90 = 1/10.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q116",
+  "method": "(n+1)^2 - n^2 = 2n + 1 = 41 -> n = 20; product 20 x 21 = 420.",
+  "live_dups": [
+   {
+    "row": "ab07444c",
+    "why": "x - y and x^2 - y^2 given -> x + y -> solve; same difference-of-squares chain (here x - y = 1)"
+   },
+   {
+    "row": "8941c2e0",
+    "why": "x^2 - y^2 = 39 and x + y = 13 -> x; same chain"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "Q123",
+    "why": "difference of squares factoring applied forward to numbers, not solved for unknowns"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q117",
+  "method": "Square 16 plus four semicircles radius 2 (= two circles, 2 x 4 x 3.14): 41.12.",
+  "live_dups": [
+   {
+    "row": "a42ff916",
+    "why": "rectangle area plus semicircle area on a side; same add-semicircles-to-polygon chain (act)"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "Q100",
+    "why": "combines semicircles into a circle but SUBTRACTS from a rectangle"
+   },
+   {
+    "ref": "93ee3490",
+    "why": "rectangle with semicircles but perimeter"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q118",
+  "method": "Work backward: 7 + 3 = 10, x 4 = 40 (value right after adding 6).",
+  "live_dups": [
+   {
+    "row": "61b2273d",
+    "why": "number-machine worked backward and asks the intermediate value right after a step; identical chain"
+   },
+   {
+    "row": "322acefe",
+    "why": "doubled, +7, /3 = 11 worked backward; same chain to the original"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "Q057",
+    "why": "works backward through spending steps, different operations"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q119",
+  "method": "1/3 - 1/5 = 2/15, 1/3 + 1/5 = 8/15; ratio 1/4.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q120",
+  "method": "Median of 50 evens = mean of 25th and 26th terms (50, 52) = 51.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q121",
+  "method": "n/(n+1) > 0.8 iff n > 4: fractions 5/6..9/10 -> 5.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q122",
+  "method": "Count days: Mar 15-31 = 17, April 30, May 1-4 = 4; total 51.",
+  "live_dups": [
+   {
+    "row": "e7750c76",
+    "why": "counts days across month boundaries from March 3 to June 20 before taking mod 7; contains this counting chain"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q123",
+  "method": "(53-47)(53+47) = 6 x 100 = 600.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "Q116",
+    "why": "uses the difference-of-squares identity but solves for consecutive integers"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q124",
+  "method": "9 3/4 / 3/8 = 39/4 x 8/3 = 26.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q125",
+  "method": "Length 12 / 4 = 3; third point = -3 + 3 x 3 = 6.",
+  "live_dups": [],
+  "batch_dups": [
+   {
+    "row": "Q061",
+    "why": "equally spaced points between two endpoints: gap = length / number of parts, then start + k x gap; same chain"
+   }
+  ],
+  "borderline": [
+   {
+    "ref": "abf48ed9",
+    "why": "section point at a 2:1 ratio on a number line; derives the fraction from 'twice as far' rather than equal parts"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q126",
+  "method": "Class A boys 4/9 x 27 = 12, class B boys 2/3 x 36 = 24; 36/63 = 4/7.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "075fd889",
+    "why": "splits a class by ratio into parts then takes fractions; one class only, not combining two"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q127",
+  "method": "Sorted list puts x as 6th value; median = (80 + x)/2 = 81 -> x = 82.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "24c247f9",
+    "why": "median of a frequency list given, solve for a count, not for a value"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q128",
+  "method": "Fix Rosa; choose 2 of remaining 6: C(6,2) = 15.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "8ee46e8e",
+    "why": "fixes required members (both-or-neither) but adds a second case"
+   },
+   {
+    "ref": "3c33a154",
+    "why": "choose one then 2 of the rest, multiplying, not fixing a member"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q129",
+  "method": "Next palindrome after 15951 is 16061; difference 110.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q130",
+  "method": "Convert 1:02.47 = 62.47 s; subtract 59.85 -> 2.62.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q131",
+  "method": "Multiples of 10 dividing 360 = divisors of 36 = 9.",
+  "live_dups": [
+   {
+    "row": "20fbf7cc",
+    "why": "divisors of 720 that are multiples of 15 = divisors of 48; identical chain"
+   },
+   {
+    "row": "a512a3c8",
+    "why": "divisors of 2^4 3^3 5 that are multiples of 10 = divisors of N/10; same chain"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q132",
+  "method": "x + 6 = 2(x - 9) -> x = 24.",
+  "live_dups": [
+   {
+    "row": "65edd1f7",
+    "why": "'In 6 years Dana will be twice as old as her brother was 4 years ago': one linear equation mixing future and past ages (sat)"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "117cc8ec",
+    "why": "age linear equation but between two people at one future time"
+   },
+   {
+    "ref": "2140c9b6",
+    "why": "two-person age relation now and in 6 years"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q133",
+  "method": "Elapsed 9:40 a.m. to 2:10 p.m. = 270 min; halve -> 135.",
+  "live_dups": [],
+  "batch_dups": [
+   {
+    "row": "Q026",
+    "why": "elapsed time across noon between two clock times; this item adds only a halving step"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q134",
+  "method": "3 h 36 min = 216 min; 216/1440 = 15%.",
+  "live_dups": [
+   {
+    "row": "9ac4e23a",
+    "why": "converts a whole week to minutes and links a percent of that time unit; same unit-to-minutes percent chain (inverse direction)"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q135",
+  "method": "12 min per 30% -> rate 0.4 min per %; 45% more -> 18 min.",
+  "live_dups": [
+   {
+    "row": "35ed0392",
+    "why": "direct proportion: given amount in a time, find time for another amount"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q028",
+    "why": "direct proportion: 36 pages in 80 min -> time for 99 pages; same chain"
+   }
+  ],
+  "borderline": [
+   {
+    "ref": "9dd66412",
+    "why": "fraction-full change linked to an amount, solved for capacity rather than time"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q136",
+  "method": "Hypotenuse sqrt(144+256) = 20 -> r = 10; semicircle area 3.14 x 100 / 2 = 157.",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q137",
+  "method": "n^2 in [100, 999] -> n from 10 to 31 -> 22.",
+  "live_dups": [
+   {
+    "row": "b583a0eb",
+    "why": "perfect squares between 30 and 300: count integers whose squares fall in a range; same chain"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "Q046",
+    "why": "counts n with sqrt(n) in a range (counts the squares side, not the roots)"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q138",
+  "method": "Nearest ten 350 -> 345..354; nearest hundred 300 -> <= 349; 345..349 sum 1735.",
+  "live_dups": [
+   {
+    "row": "a3b5382b",
+    "why": "intersect two rounding intervals (nearest tenth and nearest whole) to find admissible N"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q139",
+  "method": "Profit 3n - (80 + 1.4n) > 100 -> n > 112.5 -> 113.",
+  "live_dups": [
+   {
+    "row": "8d79a1a2",
+    "why": "setup fee plus per-unit cost, sale price per unit, least quantity for profit threshold (sat); identical chain"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "479f4a1a",
+    "why": "profit per unit and threshold but no setup fee and rounds to cases"
+   },
+   {
+    "ref": "Q022",
+    "why": "same fixed-plus-per-unit cost model but solves for average cost"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q140",
+  "method": "6 divisors means p^5 or p^2 q; smallest is 2^2 x 3 = 12.",
+  "live_dups": [
+   {
+    "row": "116bfd8e",
+    "why": "least integer with exactly 12 factors via exponent patterns; same chain"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ }
+]

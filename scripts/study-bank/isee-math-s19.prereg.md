@@ -118,3 +118,24 @@ and FOUR choices on the first line. Agents write only their named output file.
 - B4: `isee-math-s19.grade.json` (render sha 6f9c4988) / `.gradekey.json`, anchors `isee-math-s19.grader-anchors.json`
   (= s16's), brief `isee-math-s19-work/packets/GRADER-BRIEF.md`. Aa and Ab, each over halves 1-68 / 69-135: 4 agents.
   Void if M1 drops anything; rebuild.
+
+## M1 result and freeze (2026-10-31, appended after M1; no solver or grader has run)
+
+- First run: both halves missed one plant, each filed as borderline (H1 Q041 = IM16C-14, H2 Q072 = IM16E-02), so the
+  break-test failed on both. Per this prereg each half was re-run ONCE with a sharper brief (the same relation solved
+  for a different unknown is a duplicate; borderline needs a named step the live solution lacks), without describing
+  the plants. Re-run outputs `m1/m1-out-H1-r2.json`, `m1/m1-out-H2-r2.json`: **all 5 plant items caught**.
+- Decision (`m1/m1-decision.json`, coordinator): non-empty live_dups -> drop (**97**); batch-only twins keep the lower
+  Q id (**1** dropped); **37 survive**: A 17 (incl. IM19R-02, R-03), C 7, D 4, F 4, E 3, B 2; 26 medium / 11 hard.
+  Read with s18: the in-session probe did not prevent most method duplicates; 72% of probe-clear items still had a
+  live twin by M1's standard.
+- **Frozen batch** `isee-math-s19-work/isee-math-s19.batch.json` = the 37 survivors selected from the pre-M1 file
+  (sha256 63088a08..., kept as `isee-math-s19.prefreeze.batch.json`), no edits. **sha256
+  958453a1cd6877ea987036aef8b7c8cd19c30eecd9297d6e7a3dcf38d60a00fe.** Both files are now read-only, because a stray
+  re-run of `merge.mjs` overwrote the frozen file once during the rebuild (caught at once, renders rebuilt from the
+  restored file; the same sha reproduced). Re-check on the frozen file: sandbox 37/37, distractors 111/111, key at an
+  extreme 18/36 = 50.0%; key ranks 1/2/3/4 = 10/12/6/9.
+- The pre-M1 packets are VOID. Rebuilt from the frozen file: B3 `isee-math-s19-oo.blind.json` (37 + 100 live control,
+  blind sha 6708e99d) and `.key.json`; B4 `isee-math-s19.grade.json` (render sha 4f6a97c3) and `.gradekey.json`.
+- **B4+B5 hold bar rescaled: HOLD if more than floor(0.281 x 37) = 10 of 37 are dropped.**
+- Form arithmetic: at s17's 79%, about 29 insert; form 9 (+47) is NOT bought by this batch alone.

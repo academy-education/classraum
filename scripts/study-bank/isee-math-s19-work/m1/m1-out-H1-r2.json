@@ -1,0 +1,1303 @@
+[
+ {
+  "id": "Q001",
+  "method": "cancel 14!/12! to 14x13, divide by 2! (=C(14,2))",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "be627be0",
+    "why": "uses n! = n(n-1)! factoring, but Q001 needs the quotient 14!/(12!2!) cancellation and division by 2!, a step absent there"
+   }
+  ],
+  "note": "no live factorial-quotient or C(n,2)-as-factorials item found in dump"
+ },
+ {
+  "id": "Q002",
+  "method": "area/5 -> square area -> side; rectangle 5s by s; perimeter 12s",
+  "live_dups": [
+   {
+    "row": "9f2a0176",
+    "why": "five identical squares, perimeter = 12s <-> area = 5s^2; same relation run in reverse (perimeter->area)"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q088",
+    "why": "area -> side, count exposed unit sides of a composite figure, multiply"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q003",
+  "method": "list factor pairs of 36 (divisors), count unordered pairs incl. 6x6",
+  "live_dups": [
+   {
+    "row": "06412610",
+    "why": "number of divisors of 36: same factor-pair listing, different unknown (9 divisors vs 5 pairs)"
+   },
+   {
+    "row": "76f0c5df",
+    "why": "factors of 36 again; same listing"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q004",
+  "method": "10^n - k = string of 9s with tail digits; add digits",
+  "live_dups": [
+   {
+    "row": "6134bd59",
+    "why": "100,000 - 63 = 99937 digit sum: identical 10^n minus small number method"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q005",
+  "method": "T/x - T/(x+20) = 3, clear denominators, solve quadratic for rate",
+  "live_dups": [
+   {
+    "row": "1fe82a00",
+    "why": "SAT: 300 miles, speed +15 -> 1 hour less, find speed: identical relation and quadratic"
+   },
+   {
+    "row": "e97d0787",
+    "why": "route/12 - route/15 = 10 min: same relation T/r1 - T/r2 = dt, solving for the total instead of the rate"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q009",
+    "why": "same relation T/r1 - T/r2 = dt, Q009 solves for T"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q006",
+  "method": "A=1.2C, B=0.75C, divide multipliers 1.2/0.75 -> 160%",
+  "live_dups": [
+   {
+    "row": "58ad3b7c",
+    "why": "express both prices as multiples of a common base and divide the multipliers to get a percent"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "0b9f70bf",
+    "why": "same 20% more / 25% less multipliers on a common base, but it multiplies them and solves a difference equation; Q006 needs the division 1.2/0.75"
+   },
+   {
+    "ref": "Q078",
+    "why": "ratio of rate multipliers (1/1.25); Q006 needs two percents expressed on a third base"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q007",
+  "method": "axis-parallel legs 9 and 12, Pythagoras for hypotenuse 15, add sides",
+  "live_dups": [
+   {
+    "row": "2c808247",
+    "why": "triangle with axis-parallel legs 8 and 15, Pythagoras then perimeter 40: same chain"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q008",
+  "method": "fold halves the 8-cm side: 12 by 4 rectangle, perimeter 2(12+4)",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": "no live folding-perimeter item; 5096a384 and 41e5c7f2 are corner-to-corner crease (Pythagoras), different"
+ },
+ {
+  "id": "Q009",
+  "method": "w/45 - w/60 = 8, solve linear for w",
+  "live_dups": [
+   {
+    "row": "e97d0787",
+    "why": "d/12 - d/15 = 1/6 h, solve for d: identical chain"
+   },
+   {
+    "row": "913b7525",
+    "why": "d/4 - d/6 = 12 min, solve for d: identical chain"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q005",
+    "why": "same relation T/r1 - T/r2 = dt (Q005 solves for rate)"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q010",
+  "method": "parallel -> slope 4; (13-1)/(k-2)=4, solve k",
+  "live_dups": [
+   {
+    "row": "16f16b5b",
+    "why": "SAT: line through (2,5),(6,k) parallel to given line, find k: identical"
+   },
+   {
+    "row": "9ab58d0c",
+    "why": "SAT: same with unknown x-coordinate"
+   },
+   {
+    "row": "2aeab0fb",
+    "why": "SAT: same"
+   },
+   {
+    "row": "2f7a3e37",
+    "why": "collinear points: set slope equal to known slope and solve for k"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q011",
+  "method": "favorable pairs / C(6,2) = 1/15",
+  "live_dups": [
+   {
+    "row": "9059e282",
+    "why": "2 of 8 chosen, P(married pair) = 4/C(8,2): same favorable-pairs over C(n,2)"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q012",
+  "method": "count squares (31) + cubes (10) - sixth powers (3)",
+  "live_dups": [
+   {
+    "row": "c2b4a2da",
+    "why": "omits squares/cubes: requires the same squares+cubes-sixth-powers count up to N; inverse unknown"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "Q015",
+    "why": "inclusion-exclusion with counts given; Q012 needs counting squares, cubes and sixth powers"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q013",
+  "method": "angles x, x, 3x sum to 180, solve, report 3x",
+  "live_dups": [
+   {
+    "row": "df8046ee",
+    "why": "angles in ratio 2:3:4: parts sum to 180, scale"
+   },
+   {
+    "row": "85fe5d7c",
+    "why": "angles expressed in one variable, sum to 180, solve"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q019",
+    "why": "one-variable triangle angle sum"
+   },
+   {
+    "row": "Q020",
+    "why": "one-variable triangle angle sum"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q014",
+  "method": "list primes p<=24 with 48-p prime",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "53ac1476",
+    "why": "two primes with a given sum, but solved by parity (one must be 2); Q014 needs enumerating all prime pairs"
+   }
+  ],
+  "note": "no Goldbach-count item in dump"
+ },
+ {
+  "id": "Q015",
+  "method": "P(A or B) = (13 + 12 - 3)/52",
+  "live_dups": [
+   {
+    "row": "3327b7b9",
+    "why": "P(multiple of 3 or 4): same inclusion-exclusion probability"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q012",
+    "why": "inclusion-exclusion union count; Q015 needs nothing absent from it"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q016",
+  "method": "6a = 4 x 0.90, solve a",
+  "live_dups": [
+   {
+    "row": "23e9ddf8",
+    "why": "equal-cost exchange rates between fruits; same proportion"
+   },
+   {
+    "row": "b26a31c9",
+    "why": "k1*x = k2*y with one quantity known, solve the other"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q017",
+  "method": "1+2+...+20 = 20x21/2",
+  "live_dups": [
+   {
+    "row": "9b4e6f96",
+    "why": "needs 1+...+190 by the same formula (then a remainder)"
+   },
+   {
+    "row": "a49e86cc",
+    "why": "sum 1..n formula"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q033",
+    "why": "arithmetic-series sum n x average"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q018",
+  "method": "75% of 40 = 30 below her; 10 above; place 11",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": "no percentile/rank item found"
+ },
+ {
+  "id": "Q019",
+  "method": "angles 40, 40+d, 40+2d sum 180, solve d, largest",
+  "live_dups": [
+   {
+    "row": "85fe5d7c",
+    "why": "angles in one variable, sum to 180, solve, largest"
+   },
+   {
+    "row": "608d40c8",
+    "why": "ACT: linear-expression angles sum 180, largest"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q013",
+    "why": "one-variable angle sum"
+   },
+   {
+    "row": "Q020",
+    "why": "one-variable angle sum"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q020",
+  "method": "x + 3x = 180, solve x",
+  "live_dups": [
+   {
+    "row": "85fe5d7c",
+    "why": "angles in one variable summing to 180"
+   },
+   {
+    "row": "a016014a",
+    "why": "one angle given, others in one variable, sum 180"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q013",
+    "why": "one-variable angle sum"
+   },
+   {
+    "row": "Q019",
+    "why": "one-variable angle sum"
+   },
+   {
+    "row": "Q056",
+    "why": "one-variable angle sum to a known total"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q021",
+  "method": "speed = (3/4)/(1/5) = 15/4",
+  "live_dups": [
+   {
+    "row": "516ee410",
+    "why": "speed = distance / time"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q124",
+    "why": "divide one fraction by another in context"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q022",
+  "method": "50 + 3n = 5.5n, solve n",
+  "live_dups": [
+   {
+    "row": "d5b91bbe",
+    "why": "ACT: setup fee + per-unit cost, average cost per unit condition: identical"
+   },
+   {
+    "row": "42395b7d",
+    "why": "fixed fee + per-guest, average cost per guest = 22, solve guests (after finding fee)"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "Q139",
+    "why": "fixed cost + per-unit; Q139 needs a profit inequality and rounding up, Q022 an average-cost equation"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q023",
+  "method": "n multiple of lcm(8,30)=120; check gcd(120,90)=30",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "ac44cdd7",
+    "why": "prime-exponent matching for lcm(n,18); Q023 needs combining a divisibility and a gcd constraint and checking the gcd"
+   },
+   {
+    "ref": "1c2bea78",
+    "why": "same exponent reasoning on lcm; no gcd check step"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q024",
+  "method": "9^y = 3^(2y); 3^(x-2y) = 3^5",
+  "live_dups": [
+   {
+    "row": "331af042",
+    "why": "rewrite 9^x, 27^y, 25^x, 5^y to common base; exponent is a linear combination of x and y"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q025",
+  "method": "P(red)=72/360, P(blue)=120/360, multiply",
+  "live_dups": [
+   {
+    "row": "162c436e",
+    "why": "spinner spun twice, multiply independent probabilities"
+   },
+   {
+    "row": "d37f4d7b",
+    "why": "spinner spun twice, product of probabilities"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "Q042",
+    "why": "products of independent spin probabilities; Q025 also needs degrees -> fraction"
+   }
+  ],
+  "note": "degree->fraction step is covered by live bc584f19/33f08e59 (sector angle <-> share)"
+ },
+ {
+  "id": "Q026",
+  "method": "elapsed time across noon: 10:47 -> 12:00 -> 3:18",
+  "live_dups": [
+   {
+    "row": "889e822c",
+    "why": "ACT: 8:45 a.m. to 5:15 p.m. elapsed across noon (then minus lunch): contains the whole chain"
+   },
+   {
+    "row": "1150b4e2",
+    "why": "start + duration = end across noon; same relation, other unknown"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q043",
+    "why": "elapsed time across noon (then x rate)"
+   },
+   {
+    "row": "Q058",
+    "why": "elapsed time across noon (then minus lunch)"
+   },
+   {
+    "row": "Q133",
+    "why": "elapsed time across noon (then halve)"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q027",
+  "method": "strip s by s/4; 2(s + s/4) = 30; s=12; area s^2",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": "no congruent-strips item found"
+ },
+ {
+  "id": "Q028",
+  "method": "80 min per 36 pages; scale to 99 pages",
+  "live_dups": [
+   {
+    "row": "35ed0392",
+    "why": "45 pages in 3 min, minutes for 300 pages: same unit-rate inverse proportion"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q135",
+    "why": "time scales with amount at a constant rate"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q029",
+  "method": "x + (2x-1) + (x+5) = 36, solve, evaluate longest",
+  "live_dups": [
+   {
+    "row": "608d40c8",
+    "why": "ACT: three linear expressions sum to a known total, solve, evaluate the largest: identical chain"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q030",
+  "method": "2a=3b=4c=k; k/2+k/3+k/4=26",
+  "live_dups": [
+   {
+    "row": "17725ee2",
+    "why": "2/3 A = 3/5 B = 3/8 C, sum 560: same common-value parametrization"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q031",
+  "method": "enumerate 4x3 outcome grid, count products > 6",
+  "live_dups": [
+   {
+    "row": "ef110e92",
+    "why": "two independent uniform picks from different-size sets, enumerate grid, count condition"
+   },
+   {
+    "row": "f770e0cd",
+    "why": "count pairs with product > 10"
+   },
+   {
+    "row": "4eda81fc",
+    "why": "two dice, count products meeting a condition"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q034",
+    "why": "two spins, enumerate grid, count condition"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q032",
+  "method": "greedy: 3 quarters, 1 dime, 2 pennies",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "a4a5213a",
+    "why": "coin-combination counting; Q032 needs the greedy minimum, absent there"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q033",
+  "method": "sum of AP: 46 terms x average 2.5 (or cancel -20..20)",
+  "live_dups": [
+   {
+    "row": "2acefdb2",
+    "why": "sum of an arithmetic sequence: count terms x average of ends"
+   },
+   {
+    "row": "392a306a",
+    "why": "ACT: mean of consecutive integers = average of ends"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q017",
+    "why": "arithmetic-series sum"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q034",
+  "method": "P(second>first) = (1 - P(equal))/2 or count grid",
+  "live_dups": [
+   {
+    "row": "ef110e92",
+    "why": "P(one pick > other) over an outcome grid"
+   },
+   {
+    "row": "8e3e175a",
+    "why": "two dice, count pairs by a comparison of the values"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q031",
+    "why": "two spins, enumerate grid"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q035",
+  "method": "mean of 1..n = (n+1)/2 = 25",
+  "live_dups": [
+   {
+    "row": "392a306a",
+    "why": "ACT: mean of consecutive integers = average of ends; same relation, solving for the end instead"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q107",
+    "why": "mean of an arithmetic sequence = average of ends"
+   },
+   {
+    "row": "Q120",
+    "why": "centre of an arithmetic list = average of middle/ends"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q036",
+  "method": "a^2 + b^2 = c^2 with areas given: 25+144",
+  "live_dups": [
+   {
+    "row": "294efd09",
+    "why": "Pythagorean relation, solving for a leg"
+   },
+   {
+    "row": "2e9619e1",
+    "why": "Pythagorean relation, solving for a leg"
+   },
+   {
+    "row": "05fa09ea",
+    "why": "SAT: distance = sqrt of sum of squares"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q037",
+  "method": "1000 min = 16 h 40 min; add to 9:00 a.m.",
+  "live_dups": [
+   {
+    "row": "27a91e0e",
+    "why": "total minutes converted to h:min and added to a clock time across noon"
+   },
+   {
+    "row": "1150b4e2",
+    "why": "add a duration to a clock time"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q102",
+    "why": "add a computed number of minutes to a start time"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q038",
+  "method": "lcm(6,8)=24; greatest multiple <100 = 96; 96/6 + 96/8",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "3d6ad413",
+    "why": "lcm then extreme multiple in a range; Q038 also divides by each pack size and adds"
+   },
+   {
+    "ref": "61f70c11",
+    "why": "lcm only"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q039",
+  "method": "C(4,2)/2^4",
+  "live_dups": [
+   {
+    "row": "a6942ea8",
+    "why": "exactly 2 successes in 4 independent trials: binomial count"
+   },
+   {
+    "row": "5f6df3d4",
+    "why": "coin tossed 6 times, binomial counts"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q040",
+  "method": "ratio 4:3, perimeter -> 16, 12; Pythagoras diagonal",
+  "live_dups": [],
+  "batch_dups": [
+   {
+    "row": "Q113",
+    "why": "ratio + measure (area) -> dimensions -> Pythagoras hypotenuse"
+   }
+  ],
+  "borderline": [
+   {
+    "ref": "0eca60b9",
+    "why": "ratio + perimeter -> dimensions; Q040 adds the Pythagorean diagonal"
+   },
+   {
+    "ref": "bfa27a05",
+    "why": "same ratio/perimeter step, no diagonal"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q041",
+  "method": "c+a=45, a+3 = 2(c-3), solve",
+  "live_dups": [
+   {
+    "row": "c3fb46ca",
+    "why": "SAT: transfer then twice as many: same transfer-and-multiple equation"
+   },
+   {
+    "row": "92a6f0e0",
+    "why": "transfer between two people then comparison, solve system"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q042",
+  "method": "sum of squared probabilities (1/2)^2+(1/3)^2+(1/6)^2",
+  "live_dups": [
+   {
+    "row": "fea1c2f6",
+    "why": "P(two rolls same) for a non-uniform die = sum of squared face probabilities"
+   },
+   {
+    "row": "5175a4fb",
+    "why": "P(same colour) = sum over colours of P(both)"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q043",
+  "method": "elapsed 9:30 -> 2:15 = 4.75 h; x 0.4",
+  "live_dups": [
+   {
+    "row": "889e822c",
+    "why": "ACT: elapsed time across noon, then multiply by a rate"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q058",
+    "why": "elapsed across noon then scale"
+   },
+   {
+    "row": "Q026",
+    "why": "elapsed time across noon"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q044",
+  "method": "120 = 2^3 x 15; sum divisors of 15",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "ddef9e0b",
+    "why": "sum of divisors; Q044 needs stripping the power of 2 first"
+   },
+   {
+    "ref": "Q131",
+    "why": "restricted divisors via factoring out the restriction; Q131 counts, Q044 sums"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q045",
+  "method": "reciprocals 1/2+1/4=3/4, reciprocal 4/3",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "f2276aab",
+    "why": "negative exponent as reciprocal; Q045 adds fractions and takes the reciprocal of the sum"
+   },
+   {
+    "ref": "Q119",
+    "why": "fraction of reciprocals; different operation"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q046",
+  "method": "square: 9 < n < 49; count 10..48",
+  "live_dups": [
+   {
+    "row": "b583a0eb",
+    "why": "count k with k^2 in a range: same square/root bound conversion, run in reverse"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q137",
+    "why": "n^2 in a range -> count n"
+   }
+  ],
+  "borderline": [
+   {
+    "ref": "Q049",
+    "why": "count integers strictly between bounds"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q047",
+  "method": "n-th term (n+1)^2 - 1 (or n(n+2)); n=20",
+  "live_dups": [
+   {
+    "row": "be1d70ce",
+    "why": "2,6,12,20 = n(n+1), differences rise by 2, find 10th"
+   },
+   {
+    "row": "8b5dc9e5",
+    "why": "second-difference-constant sequence, find nth term"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q048",
+  "method": "sum digits 1-9 (45) + teens (10+45) + 2+0",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "ac91634d",
+    "why": "digit occurrence counting; Q048 sums digit values"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q049",
+  "method": "-17/4=-4.25, 13/3=4.33; integers -4..4",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "1e166a92",
+    "why": "count integers in an interval; Q049 needs converting the fraction bounds, 1e166a92 solves a linear inequality"
+   },
+   {
+    "ref": "Q046",
+    "why": "count integers strictly between bounds after converting them"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q050",
+  "method": "2n/3 - n/4 >= 14 -> n >= 33.6 -> 34",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "48f9311c",
+    "why": "SAT: 'at least k more than' inequality; Q050 needs fraction coefficients and rounding up a non-integer bound"
+   },
+   {
+    "ref": "3fa505f5",
+    "why": "least integer for a linear inequality; no fraction coefficients"
+   },
+   {
+    "ref": "ba57bc8b",
+    "why": "fractions-of-a-number equation; no inequality/ceiling"
+   },
+   {
+    "ref": "Q139",
+    "why": "least integer satisfying a linear inequality"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q051",
+  "method": "(k-4)^2 + 4^2 = 5^2; k = 7 or 1",
+  "live_dups": [
+   {
+    "row": "5086d4ff",
+    "why": "distance formula; same relation solved for the distance instead of a coordinate"
+   },
+   {
+    "row": "39047272",
+    "why": "distance formula (3-4-5 scaled)"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": "the extra step is taking +/- root; under the sharp rule (other variable, same relation) listed as dup"
+ },
+ {
+  "id": "Q052",
+  "method": "each hour runs 50 min: 50/5 x 12 = 120 per hour; x 8",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "8909b764",
+    "why": "rate scaled to a time; Q052 needs subtracting the stopped time each hour"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q053",
+  "method": "a+b=5, ab=6; a^2+b^2 = 25-12 (or factor (x+2)(x+3))",
+  "live_dups": [
+   {
+    "row": "81ce1239",
+    "why": "a^2+b^2 = (a+b)^2 - 2ab, solving for the product"
+   },
+   {
+    "row": "449296b4",
+    "why": "SAT: sum of squares from product and difference"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "Q068",
+    "why": "symmetric function from sum and product, different identity (reciprocals)"
+   },
+   {
+    "ref": "Q090",
+    "why": "(a+b)^2 = a^2+b^2+2ab used to get a sum"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q054",
+  "method": "round to 0.5 x 80 / 0.2 = 200",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "71236c5b",
+    "why": "estimate a product by friendly numbers; Q054 also divides by ~0.2"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q055",
+  "method": "expand: (a+b)^2-(a-b)^2 = 4ab = 28",
+  "live_dups": [],
+  "batch_dups": [
+   {
+    "row": "Q123",
+    "why": "difference of squares (u-v)(u+v) with u=a+b, v=a-b"
+   }
+  ],
+  "borderline": [
+   {
+    "ref": "8941c2e0",
+    "why": "x^2-y^2=(x+y)(x-y); Q055 needs substituting binomials and simplifying to 4ab"
+   },
+   {
+    "ref": "Q116",
+    "why": "difference of consecutive squares = 2n+1"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q056",
+  "method": "x + (2x+30) = 180, larger = 2x+30",
+  "live_dups": [
+   {
+    "row": "0d39e902",
+    "why": "supplementary angles, larger = 3x+24: identical one-variable supplementary equation"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q020",
+    "why": "one-variable angle sum to a known total"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q057",
+  "method": "work backward: (9+3)x2=24, (24+4)x2=56",
+  "live_dups": [
+   {
+    "row": "34a420d4",
+    "why": "half plus $3, then fraction of rest plus $2, $10 left: identical backward chain"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q118",
+    "why": "undo operations in reverse order"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q058",
+  "method": "8:45 -> 5:15 = 8.5 h, minus 0.75, x 5",
+  "live_dups": [
+   {
+    "row": "889e822c",
+    "why": "ACT: 8:45 a.m. to 5:15 p.m. minus unpaid lunch, then x pay rate: identical chain"
+   },
+   {
+    "row": "c555c8eb",
+    "why": "ACT: workday 7:30-4:00 minus 30-min lunch"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q026",
+    "why": "elapsed time across noon"
+   },
+   {
+    "row": "Q043",
+    "why": "elapsed time across noon then scale"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q059",
+  "method": "a+b=10, 9(a-b)=36 -> a=7,b=3",
+  "live_dups": [
+   {
+    "row": "e92f6fea",
+    "why": "digit sum 12, reversed is 18 greater: same system"
+   },
+   {
+    "row": "f49d5766",
+    "why": "digit sum 12, reversed 18 less: same system"
+   },
+   {
+    "row": "455a3dfe",
+    "why": "SAT: reversal difference 9 equation"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q060",
+  "method": "medial triangle = 1/4 area (or subtract 3 corners of 1/4)",
+  "live_dups": [
+   {
+    "row": "29bb739d",
+    "why": "triangle from points on sides: area by subtracting corner triangles each (fraction)(fraction) of the whole: same method"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "72aabff2",
+    "why": "similar-triangle area ratio; Q060 needs the midsegment ratio 1/2"
+   },
+   {
+    "ref": "ed77a6c4",
+    "why": "DE parallel BC area ratio"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q061",
+  "method": "5 gaps: d = (32-7)/5 = 5; 7 + 3d",
+  "live_dups": [
+   {
+    "row": "e655aff1",
+    "why": "MAP: equally spaced rungs between two given elevations, find a rung: identical"
+   },
+   {
+    "row": "0530ce4e",
+    "why": "common difference from two terms, then a term"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q125",
+    "why": "equal division of an interval, find k-th point"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q062",
+  "method": "240 x 0.30 = 72 cal; 72/9 = 8 g",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [],
+  "note": "no calories/percent-then-divide item found"
+ },
+ {
+  "id": "Q063",
+  "method": "DOE = half(AOB) + half(BOC) = 90",
+  "live_dups": [],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "0a03d8f7",
+    "why": "MAP: straight angle split by rays with equal halves; Q063 needs halving both parts and summing"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q064",
+  "method": "rectilinear staircase perimeter = 2(width + height)",
+  "live_dups": [
+   {
+    "row": "8d545633",
+    "why": "L-shape after corner cut keeps the bounding-square perimeter: same principle"
+   },
+   {
+    "row": "ba66cfe2",
+    "why": "L-shape perimeter = bounding rectangle perimeter"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q065",
+  "method": "7rt2 + 3rt2 - 2rt2 = 8rt2",
+  "live_dups": [
+   {
+    "row": "7bcbf5d3",
+    "why": "ACT: sqrt50 + sqrt18 = k sqrt2"
+   },
+   {
+    "row": "51941786",
+    "why": "ACT: sqrt50 + sqrt18 - sqrt8: identical"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "Q104",
+    "why": "simplify radicals then estimate"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q066",
+  "method": "2.5 gal/min x 3.8 L/gal x 60 min",
+  "live_dups": [
+   {
+    "row": "09826fad",
+    "why": "rate x time with unit conversion (mL/s -> L/h)"
+   },
+   {
+    "row": "6f7c8f5b",
+    "why": "leak rate scaled to 2 hours"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q067",
+  "method": "f(3x) - 3f(x) = 12x+7 - 12x-21 = -14",
+  "live_dups": [
+   {
+    "row": "62f7f044",
+    "why": "SAT: linear f evaluated at 3x vs f(x): same setup"
+   },
+   {
+    "row": "72575070",
+    "why": "f(a+2) vs 3f(a) for linear f"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q068",
+  "method": "1/a+1/b = (a+b)/ab = 8/12",
+  "live_dups": [
+   {
+    "row": "e2003494",
+    "why": "a+b=10, ab=20 -> 1/a^2+1/b^2 via common denominator ab: same reciprocal-sum approach"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "27b20581",
+    "why": "sum and product given, finds the numbers; Q068 additionally sums reciprocals"
+   },
+   {
+    "ref": "Q053",
+    "why": "symmetric function from sum/product, different identity"
+   }
+  ],
+  "note": ""
+ },
+ {
+  "id": "Q069",
+  "method": "weighted mean: (4x3 + 10x8 + 6x13)/20",
+  "live_dups": [
+   {
+    "row": "3bf86516",
+    "why": "frequency-weighted mean of scores"
+   },
+   {
+    "row": "5542c814",
+    "why": "weighted mean of two groups"
+   }
+  ],
+  "batch_dups": [
+   {
+    "row": "Q098",
+    "why": "weighted average sum(weight x value)"
+   }
+  ],
+  "borderline": [],
+  "note": ""
+ },
+ {
+  "id": "Q070",
+  "method": "60 min / 40 miles = 1.5 min per mile",
+  "live_dups": [
+   {
+    "row": "4c5f8ba1",
+    "why": "invert a pace: time per unit distance"
+   }
+  ],
+  "batch_dups": [],
+  "borderline": [
+   {
+    "ref": "Q097",
+    "why": "speed unit conversion, not an inversion"
+   }
+  ],
+  "note": ""
+ }
+]

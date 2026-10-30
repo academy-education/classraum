@@ -6680,3 +6680,17 @@ structural checks are pre-flight only. See CLAUDE.md.
   Blind screen: CSE 98.1% FLAG; PoW 76.7%, no flag. Staged verified=false, read back as false. **ACT English
   staged total:** v10 4 + v11 7 + v12 6 = 17 passages. With 38 live that is 55, above the 50 that 10 forms need, once
   Daniel's sittings release them.
+
+- **2026-10-31 — ISEE Math s19: 135 authored → M1 method-duplicate search kept 37.** 345 ideas were probed and about
+  145 dropped before writing. M1 first run: both halves filed a plant as borderline (Q041, Q072), so each re-ran
+  ONCE with a sharper brief (the same relation solved for another unknown counts; borderline needs a named step the
+  live solution lacks). The re-run caught all 5 plants and flagged 97 live method-duplicates plus 1 batch twin.
+  **Of the items that passed the keyword probe, 72% were method duplicates of live rows**, so the keyword probe
+  badly undercounts. ISEE math authoring by idea-then-probe is near exhausted. Frozen at 37 (sha 958453a1,
+  read-only); B3/B4 rebuilt; the hold bar is >10 of 37. Grading is running.
+- **2026-10-31 — MAP Science batch 2: 224 authored** (Life 72 / Physical 72 / Earth 80; reaching 130 per area needs
+  ~67% kept). Prereg MAP-SCIENCE-B2.prereg.md. sci-check b2 rules found 224 ok; the new checks each catch their
+  known batch-1 items. Finding: batch 1's ABS rule allows two absolutes both on distractors, which gives a free
+  double elimination; 22 b2 items were rebalanced by hand and no checker catches it yet. 6 graders (cold, then
+  keyed after a hash) are running; the key-visible audit follows, and release goes on the agent passes (owner rule
+  2026-10-30).
