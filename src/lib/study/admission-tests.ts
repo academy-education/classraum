@@ -27,7 +27,12 @@
  * Physical, Earth and Space). It has no study_topics row, so it is not
  * reachable even after the family flips; the row is created at launch.
  */
-export type AdmissionFamily = 'ssat' | 'isee' | 'map'
+/* iTEP SLATE-Plus (2026-10-31, ITEP-SLATE-BLUEPRINT.md §5) is wired the same
+ * way, HIDDEN: not in SHIPPED_TEST_FAMILIES, its topic rows are on every
+ * hidden list, and only its staged Grammar items exist. Only the three
+ * multiple-choice blocks are wired; Writing and Speaking (phase 3) need
+ * rubrics and the response-family migration first. */
+export type AdmissionFamily = 'ssat' | 'isee' | 'map' | 'itep'
 
 export interface AdmissionSection {
   /** Stable id for this block within its test. */
@@ -35,7 +40,7 @@ export interface AdmissionSection {
   name: string
   /** study_item_bank.section this block draws from. null = not drawn from
    *  the bank (essay prompts, which are free-response). */
-  bankSection: 'verbal' | 'math' | 'reading' | 'writing' | 'language' | 'science' | null
+  bankSection: 'verbal' | 'math' | 'reading' | 'writing' | 'language' | 'science' | 'grammar' | 'listening' | null
   questions: number
   /** 0 = untimed (MAP). The runner then counts elapsed time up and never
    *  auto-submits; see TestSession `untimed`. */
@@ -98,6 +103,45 @@ export const ADMISSION_BLUEPRINT: Record<AdmissionFamily, AdmissionSection[]> = 
     { key: 'language',  name: 'Language Usage',           bankSection: 'language', questions: 39, minutes: 0, choiceCount: 4, scored: true },
     { key: 'math',      name: 'Math',                     bankSection: 'math',     questions: 40, minutes: 0, choiceCount: 4, scored: true },
     { key: 'science',   name: 'Science',                  bankSection: 'science',  questions: 39, minutes: 0, choiceCount: 4, scored: true },
+  ],
+  /*
+   * iTEP SLATE-Plus, in the live demo's order (Grammar, Listening,
+   * Reading). Every item is four-choice, rights-only, equal weight.
+   * Listening and Reading hold NO items yet: a draw of either fails at
+   * "no verified items", and a short draw throws (ITEP_PART_QUOTAS).
+   */
+  itep: [
+    { key: 'grammar',   name: 'Grammar',                  bankSection: 'grammar',   questions: 25, minutes: 10, choiceCount: 4, scored: true },
+    { key: 'listening', name: 'Listening',                bankSection: 'listening', questions: 14, minutes: 20, choiceCount: 4, scored: true },
+    { key: 'reading',   name: 'Reading',                  bankSection: 'reading',   questions: 12, minutes: 20, choiceCount: 4, scored: true },
+  ],
+}
+
+/**
+ * iTEP parts, in delivery order, keyed by study_item_bank.domain (the part
+ * label exactly as banked). Unlike MAP the parts are NOT interleaved and a
+ * thin part is NOT backfilled from another: Part 2 error identification in
+ * a Part 1 completion slot is not the section the student is sitting. So a
+ * short part makes the whole draw short, and an iTEP draw that comes up
+ * short throws (assembleAdmissionSection) rather than serving it.
+ *
+ * `itemsPerGroup` 1 = standalone (one item per group, the bijective-set
+ * rule); >1 = drawn by whole passage at that count.
+ */
+export const ITEP_PART_QUOTAS: Record<'grammar' | 'listening' | 'reading', Array<{ area: string; count: number; itemsPerGroup: number }>> = {
+  grammar: [
+    { area: 'Part 1: Sentence Completion',  count: 13, itemsPerGroup: 1 },
+    { area: 'Part 2: Error Identification', count: 12, itemsPerGroup: 1 },
+  ],
+  listening: [
+    { area: 'Part 1: Short Conversations',  count: 4, itemsPerGroup: 1 },
+    { area: 'Part 2: Conversation',         count: 4, itemsPerGroup: 4 },
+    { area: 'Part 3: Lecture',              count: 6, itemsPerGroup: 6 },
+  ],
+  reading: [
+    { area: 'Part 1: Short Text',           count: 2, itemsPerGroup: 1 },
+    { area: 'Part 2: Intermediate Passage', count: 4, itemsPerGroup: 4 },
+    { area: 'Part 3: Advanced Passage',     count: 6, itemsPerGroup: 6 },
   ],
 }
 
@@ -230,6 +274,7 @@ const SCALE_NOTE: Record<AdmissionFamily, string> = {
    * Revisit only with real-score calibration (students reporting their
    * actual MAP RIT beside our practice score). */
   map: 'Practice percentage only. The real MAP Growth reports a RIT score from an adaptive test calibrated on NWEA\'s item pool; this practice set is fixed and uncalibrated, so no RIT, percentile or grade level is shown.',
+  itep: 'Practice percentage only. The real iTEP SLATE reports a level from 0.0 to 6.0 using a conversion iTEP does not publish, so no iTEP level is shown.',
 }
 
 /**
@@ -307,6 +352,7 @@ export const VERBAL_TYPES: Record<AdmissionFamily, Array<{ kind: VerbalKind; cou
   ssat: [{ kind: 'synonym', count: 30 }, { kind: 'analogy', count: 30 }],
   isee: [{ kind: 'synonym', count: 20 }, { kind: 'sentence completion', count: 20 }],
   map: [], // MAP has no verbal block; its areas are MAP_AREA_QUOTAS
+  itep: [], // iTEP has no verbal block; its parts are ITEP_PART_QUOTAS
 }
 
 /**
@@ -349,6 +395,9 @@ export const ITEMS_PER_PASSAGE: Record<AdmissionFamily, number> = {
   /* MAP Literary and Informational Text draw whole passages at this count
    * (MAP_AREA_QUOTAS `passages`). The draft passages carry 3 each. */
   map: 3,
+  /* Unused by the iTEP draw (ITEP_PART_QUOTAS carries per-part counts);
+   * set to the largest part for anything that reads it generically. */
+  itep: 6,
 }
 
 /**
@@ -544,6 +593,11 @@ export const ADMISSION_TOPIC_SLUGS: Record<string, { family: AdmissionFamily; ke
   // No row and no SECTION_TOPIC entry until Science holds 5 clean forms
   // (MAP-SCIENCE-PLAN §3 items 5-6): the row is the reachability switch.
   'map-science':           { family: 'map', key: 'science' },
+  // iTEP: rows exist (migration 131) but are hidden on every list; the
+  // family is not shipped. Writing and Speaking rows exist with no block.
+  'itep-grammar':          { family: 'itep', key: 'grammar' },
+  'itep-listening':        { family: 'itep', key: 'listening' },
+  'itep-reading':          { family: 'itep', key: 'reading' },
 }
 
 /** The blueprint section a topic slug names, or null if the slug is not

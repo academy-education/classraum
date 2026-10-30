@@ -3,6 +3,7 @@
 import type { Question } from './types'
 import { actLettersFor } from '@/lib/study/act-test'
 import { MathText } from '@/components/ui/MathText'
+import { parseLabelledSegments } from '@/lib/study/labelled-segments'
 
 /**
  * Normalize display text so students don't see raw \n or **bold**
@@ -226,7 +227,7 @@ export function PassageParagraphs({ text }: { text: string }) {
   if (paragraphs.length <= 1) {
     // No paragraph breaks — render with whitespace-pre-wrap so any
     // intra-paragraph line breaks the model emits still show.
-    return <p className="whitespace-pre-wrap"><MathText text={normalized} /></p>
+    return <p className="whitespace-pre-wrap"><SegmentedText text={normalized} /></p>
   }
   return (
     <div className="space-y-3">
@@ -240,10 +241,33 @@ export function PassageParagraphs({ text }: { text: string }) {
           // students to perceive paragraph breaks at a glance.
           style={i === 0 ? undefined : { textIndent: '2.5em' }}
         >
-          <MathText text={p} />
+          <SegmentedText text={p} />
         </p>
       ))}
     </div>
+  )
+}
+
+/**
+ * Passage text with error-identification segments drawn as the test
+ * prints them: "[A: set]" renders as the word underlined with a small A
+ * under it (labelled-segments.ts). Text with no markers renders exactly as
+ * MathText did, so every other passage is unchanged.
+ */
+function SegmentedText({ text }: { text: string }) {
+  const parts = parseLabelledSegments(text)
+  if (!parts.some(p => p.kind === 'segment')) return <MathText text={text} />
+  return (
+    <>
+      {parts.map((p, i) => p.kind === 'text'
+        ? <MathText key={i} text={p.text} />
+        : (
+          <span key={i} className="inline-flex flex-col items-center align-top leading-tight">
+            <span className="underline decoration-2 underline-offset-4 decoration-gray-700"><MathText text={p.text} /></span>
+            <span className="text-[11px] font-semibold text-gray-500 leading-none mt-1" aria-label={`segment ${p.label}`}>{p.label}</span>
+          </span>
+        ))}
+    </>
   )
 }
 

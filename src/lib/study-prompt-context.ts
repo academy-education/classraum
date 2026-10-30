@@ -41,6 +41,7 @@ export type TestFamily =
   | 'ssat'
   | 'isee'
   | 'map'    // MAP Growth (NWEA); bank-only, behind the coming-soon gate
+  | 'itep'   // iTEP SLATE-Plus; bank-only, hidden (not shipped)
 
 interface TopicRow {
   id: string
@@ -123,6 +124,7 @@ function mapTestFamily(slug: string): TestFamily | null {
   if (slug === 'test-ssat') return 'ssat'
   if (slug === 'test-isee') return 'isee'
   if (slug === 'test-map')  return 'map'
+  if (slug === 'test-itep') return 'itep'
   return null
 }
 
@@ -263,6 +265,11 @@ export function testFormatGuidanceEn(family: TestFamily, section: string | null)
       'Format: 4-choice multiple choice, untimed. Reading covers literary text, informational text and vocabulary; Language Usage covers writing for purpose and audience, grammar and usage, and mechanics (punctuation, capitalization, spelling); Math covers operations and algebraic thinking, number systems, geometry, and statistics and probability; Science covers life, physical, and earth and space science (NGSS), with data tables, graphs and experiment descriptions.',
       'Never claim a RIT score, percentile or grade level: those come from NWEA\'s calibrated adaptive test, not from practice items. Calibrate each item to the stated grade.',
     ].join(' ')
+    case 'itep': return [
+      'This is iTEP SLATE-Plus, the English proficiency test for secondary-school students (ages 11-18).',
+      'Format: 4-choice multiple choice, no guessing penalty. Grammar (25 questions, 10 minutes): Part 1 sentence completion (13), Part 2 error identification, choose the marked segment that is NOT correct (12). Listening (14): short conversations, one conversation, one lecture. Reading (12): short texts, a ~200-word passage, a ~500-word passage.',
+      'Never claim an iTEP level (0.0-6.0) or CEFR band: iTEP does not publish its conversion.',
+    ].join(' ')
   }
 }
 
@@ -384,6 +391,11 @@ export function testFormatGuidanceKo(family: TestFamily, section: string | null)
       'MAP Growth(NWEA) — 시간 제한이 없는 K-12 학업 성장 평가, 여기서는 5-8학년 수준.',
       '형식: 4지선다, 시간 제한 없음. 읽기는 문학 지문·정보 지문·어휘, 언어 사용은 목적과 독자에 맞는 글쓰기·문법과 어법·표기(구두점, 대문자, 철자), 수학은 연산과 대수적 사고·수 체계·기하·통계와 확률, 과학은 생명과학·물상과학·지구와 우주과학(NGSS)으로 자료 표·그래프·실험 설명을 포함.',
       'RIT 점수, 백분위, 학년 수준을 절대 주장하지 말 것: 이는 NWEA의 보정된 적응형 시험에서만 나온다. 각 문항은 명시된 학년에 맞출 것.',
+    ].join(' ')
+    case 'itep': return [
+      'iTEP SLATE-Plus — 중고등학생(11-18세)을 위한 영어 능력 시험.',
+      '형식: 4지선다, 추측 감점 없음. 문법(25문항, 10분): 1부 문장 완성(13), 2부 오류 식별 — 표시된 부분 중 틀린 것 고르기(12). 듣기(14): 짧은 대화, 대화 1개, 강의 1개. 독해(12): 짧은 글, 약 200단어 지문, 약 500단어 지문.',
+      'iTEP 레벨(0.0-6.0)이나 CEFR 등급을 절대 주장하지 말 것: iTEP는 환산 방식을 공개하지 않는다.',
     ].join(' ')
   }
 }

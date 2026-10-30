@@ -82,7 +82,10 @@ describe('a drawn form never contains two items from one set', () => {
      */
     const nonReadingDraws = [...src.matchAll(/drawByPassage\(([^)]*)\)/g)]
       .map(m => m[1])
-      .filter(args => !/ITEMS_PER_PASSAGE/.test(args))
+      // iTEP Listening/Reading passage parts (itepPassageItems) are whole
+      // passage sets like reading; itep-wiring.test.ts pins that every
+      // standalone iTEP part, all of Grammar included, is capped at 1.
+      .filter(args => !/ITEMS_PER_PASSAGE|itepPassageItems/.test(args))
     // The whole-section draw and the per-type verbal draw, at minimum.
     expect(nonReadingDraws.length).toBeGreaterThanOrEqual(2)
     for (const args of nonReadingDraws) {

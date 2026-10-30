@@ -1,9 +1,10 @@
 import { dbAdmin } from '@/lib/supabase-admin'
 import { readBankPaged } from '@/lib/study/bank-read'
 import {
-  ADMISSION_BLUEPRINT, drawByPassage, ITEMS_PER_PASSAGE, MAP_AREA_QUOTAS, VERBAL_TYPES, verbalKind,
+  ADMISSION_BLUEPRINT, drawByPassage, ITEMS_PER_PASSAGE, ITEP_PART_QUOTAS, MAP_AREA_QUOTAS, VERBAL_TYPES, verbalKind,
   type AdmissionFamily,
 } from './admission-tests'
+import { hasLabelledSegments } from './labelled-segments'
 import {
   actSection, ENGLISH_PASSAGES, ENGLISH_ITEMS_PER_PASSAGE, ENGLISH_QUOTAS, MATH_QUOTAS, READING_QUOTAS, SCIENCE_QUOTAS,
   READING_GENRE_ORDER, READING_ITEMS_PER_PASSAGE, type ActSectionKey, type ReadingGenre,
@@ -72,6 +73,12 @@ export function shuffleDrawnChoices<T extends { id: string; item: Question }>(
     // bank draw passes through on its way to the caller.
     const item = { ...r.item, bankItemId: r.id }
     if (ORDERED_OR_UNUSED.has(item.type) || item.choices.length < 2) return { ...r, item }
+    /* Error identification (iTEP Grammar Part 2): the choices are the
+     * sentence's own [A:]..[D:] segments, so the letter IS the position and
+     * a reorder would mislabel every option. Exempt only when the passage
+     * markers match the choices exactly, in order (labelled-segments.ts);
+     * the authored key slots are spread at base rate instead. */
+    if (hasLabelledSegments(item)) return { ...r, item }
     return { ...r, item: shuffleChoices(item, hashSeed(`${seed}:${r.id}`)) }
   })
 }
@@ -1672,7 +1679,7 @@ export async function assembleAdmissionSection(p: {
     /* MAP's instructional area lives in the COLUMN; most MAP item JSON has
      * no `domain` (reading and language: 0 of 59 on 2026-10-19). Stamped on
      * the question so the result screen can break the score down by area. */
-    if (p.family === 'map' && !item.domain && row.domain) item.domain = row.domain
+    if ((p.family === 'map' || p.family === 'itep') && !item.domain && row.domain) item.domain = row.domain
     return [{
       id: row.id, item,
       passageGroupId: row.passage_group_id as string | null,
@@ -1738,6 +1745,11 @@ export async function assembleAdmissionSection(p: {
   let orderedBlocks: Array<typeof ranked> | null = null
   if (p.family === 'map') {
     picked = drawMapAreas(ranked, block.bankSection as keyof typeof MAP_AREA_QUOTAS, block.questions, fresh)
+  } else if (p.family === 'itep') {
+    /* Parts are delivered in order and never backfilled, so each part is
+     * its own block for the within-block shuffle below. */
+    orderedBlocks = drawItepParts(ranked, block.bankSection as keyof typeof ITEP_PART_QUOTAS, fresh)
+    picked = orderedBlocks.flat()
   } else if (block.bankSection === 'reading') {
     picked = drawByPassage(ranked, block.questions, ITEMS_PER_PASSAGE[p.family], fresh)
   } else if (block.bankSection === 'verbal' && VERBAL_TYPES[p.family]) {
@@ -1786,11 +1798,17 @@ export async function assembleAdmissionSection(p: {
    * move as units in a seeded order; inside a passage the questions keep
    * their authored order, as the real forms print them. */
   const mixed = orderedBlocks
-    ? orderedBlocks.flatMap((b, i) => seededShuffle(b, `${seed}:order:${i}`))
+    ? orderedBlocks.flatMap((b, i) =>
+        p.family === 'itep' && block.bankSection !== 'grammar'
+          // iTEP Listening/Reading parts are passage sets: keep authored order.
+          ? passagesInSeededOrder(b, authored, `${seed}:order:${i}`)
+          : seededShuffle(b, `${seed}:order:${i}`))
     : block.bankSection === 'reading'
       ? passagesInSeededOrder(picked, authored, seed + ':order')
       : seededShuffle(picked, seed + ':order')
-  assertFullDraw(p.requireFull, { scope: `${p.family}/${block.key}`, want: block.questions, got: mixed.length })
+  /* iTEP has no cross-part backfill, so a short draw is a broken form, not
+   * a thinner one: it always throws, whatever the caller asked for. */
+  assertFullDraw(p.requireFull || p.family === 'itep', { scope: `${p.family}/${block.key}`, want: block.questions, got: mixed.length })
   if (p.studentId && !p.deferExposures) await recordExposures(p.studentId, mixed.map(r => r.id), 'full_test', seed)
 
   return {
@@ -1835,6 +1853,31 @@ export function drawMapAreas<T extends { id: string; domain?: string | null; pas
       : drawByPassage(rest, n - out.length, 1, isFresh)))
   }
   return out.slice(0, n)
+}
+
+/**
+ * iTEP: draw each part to its count (ITEP_PART_QUOTAS), in delivery order,
+ * one array per part. NO backfill across parts: a Part 2 error-ID item in
+ * a Part 1 completion slot is a different section, so a thin part leaves
+ * its part short and says so. The caller treats any shortfall as fatal.
+ */
+export function drawItepParts<T extends { id: string; domain?: string | null; passageGroupId: string | null }>(
+  ranked: T[], section: keyof typeof ITEP_PART_QUOTAS, isFresh?: (row: T) => boolean,
+): T[][] {
+  return ITEP_PART_QUOTAS[section].map(({ area, count, itemsPerGroup }) => {
+    const pool = ranked.filter(r => r.domain === area)
+    /* Standalone parts keep the bijective-set cap of 1 (the
+     * bijective-set-form-leak guard greps for it); only the listening and
+     * reading passage parts take a whole group (itep-wiring.test pins which). */
+    const itepPassageItems = itemsPerGroup
+    const got = (itemsPerGroup === 1
+      ? drawByPassage(pool, count, 1, isFresh)
+      : drawByPassage(pool, count, itepPassageItems, isFresh)).slice(0, count)
+    if (got.length < count) {
+      console.warn(`[assemble] itep/${section} SHORT ON ${area} - wanted ${count}, drew ${got.length} from a pool of ${pool.length}`)
+    }
+    return got
+  })
 }
 
 /** Keep each passage's questions together and in authored order; shuffle

@@ -115,6 +115,9 @@ export const COMING_SOON_HIDDEN_SLUGS: ReadonlySet<string> = new Set([
   'test-ielts',
   'test-toeic',
   'test-gre',
+  // iTEP SLATE (2026-10-31): topic rows exist so staged items can be drawn
+  // and tested, but nothing is announced until the family ships.
+  'test-itep',
 ])
 
 export const COMING_SOON_EXTRA: ReadonlyArray<{ slug: string; name_en: string; name_ko: string }> = [

@@ -55,6 +55,14 @@ export const SECTION_TOPIC: Record<string, Record<string, string>> = {
     mathach: 'fa7876ea-0d61-4623-9b27-47a7fc3a9150',  // isee-math-achievement
     essay:   '423e647d-5f83-471d-85b5-92d8324780d7',  // isee-essay
   },
+  /* iTEP (hidden, not shipped), keyed by blueprint block key. Rows from
+   * database/migrations/131_itep_study_topics.sql; Writing and Speaking
+   * rows exist but have no block yet, so they are not listed. */
+  itep: {
+    grammar:   '28b02a14-4711-4e03-ac24-16764c9e280c',  // itep-grammar
+    listening: '1f5a9b4b-5a97-4ed4-a0ee-00bad3efbef1',  // itep-listening
+    reading:   'f6a1e755-9acd-4c03-bd04-7eefc37c322a',  // itep-reading
+  },
 }
 
 /** Topic for a camp assignment's session: its own section when the

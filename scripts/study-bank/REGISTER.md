@@ -6798,3 +6798,17 @@ structural checks are pre-flight only. See CLAUDE.md.
     in-batch duplicate pairs (same PE, same system: 14 pairs named by both graders, 25 more by one) were missed by XDUP-REVIEW, so the probe needs a
     same-PE-same-system pass inside the batch; and a data item whose table is an exact textbook law (1/d^2, 2t^2,
     a = F/m, standard atmosphere) is either no_source or recognised data, so refuse exact law tables.
+
+- **2026-10-31 — iTEP SLATE wired HIDDEN; Grammar v1 staged 23 verified=false (read back 23 false / 0 true).**
+  `'itep'` is an `AdmissionFamily` (Grammar 25 / Listening 14 / Reading 12; Writing and Speaking not wired) drawn by
+  `drawItepParts` to `ITEP_PART_QUOTAS`, parts in order, **no cross-part backfill**, and any short iTEP draw throws
+  `SectionShortError` whatever the caller asked. The Part 2 blocker above is closed **structurally, not by type**:
+  `shuffleDrawnChoices` skips an item only when its passage carries `[A:]..[D:]` markers equal to its choices in
+  order (`labelled-segments.ts`); a malformed set keeps the shuffle. The runner draws the markers as underlined
+  segments with their letter. Topic rows: migration 131 (test-itep + 5 sections), on every hidden list; not shipped.
+  Insert path `itep-bank-helper.ts stage` (dry run default, verified=false only, refuses verified=true).
+  `verify-itep-draw.ts` (staged included): **Grammar 23 of 25 — Part 1 11 of 13 (C12 dropped, so v1 holds 11),
+  Part 2 12 of 12**; Listening and Reading 0. **Found:** a `test-*` root under `test-prep` is picked up by the
+  test-spec-refresh crons (`listAllSpecTargetsFromDB`), so the iTEP leaves now get daily spec refreshes like IELTS/GRE.
+  The DB rows went live before the code hiding them deploys: until that push, the landing strip lists iTEP SLATE as a
+  locked coming-soon chip and a deep link opens its topic page (the API still refuses a start).

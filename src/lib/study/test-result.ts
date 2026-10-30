@@ -367,7 +367,7 @@ export function scaleFraction(value: number, min: number, max: number): number {
   return Math.max(0, Math.min(1, (value - min) / (max - min)))
 }
 
-export type TestFamily = 'toefl' | 'sat' | 'ssat' | 'isee' | 'act' | 'map' | 'other'
+export type TestFamily = 'toefl' | 'sat' | 'ssat' | 'isee' | 'act' | 'map' | 'itep' | 'other'
 export type SatSection = 'math' | 'reading_writing'
 
 /**
@@ -390,6 +390,7 @@ export function familyFromTopicSlug(slugOrFamily: string | null | undefined): Te
   if (s === 'ssat' || s.startsWith('ssat-')) return 'ssat'
   if (s === 'isee' || s.startsWith('isee-')) return 'isee'
   if (s === 'map' || s.startsWith('map-')) return 'map'
+  if (s === 'itep' || s.startsWith('itep-')) return 'itep'
   // 'act-' shares no prefix with 'sat-' or 'ssat-', so order is not
   // load-bearing here the way it is for ssat/sat — but it sits before the
   // sat line anyway so the block reads as "every family, then the

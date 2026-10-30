@@ -33,7 +33,7 @@ export function bankRowsPerTest(family: string, section: string): number | null 
     const b = ACT_BLUEPRINT.find(s => s.bankSection === section)
     return b ? b.questions : null
   }
-  if (family === 'ssat' || family === 'isee' || family === 'map') {
+  if (family === 'ssat' || family === 'isee' || family === 'map' || family === 'itep') {
     const n = ADMISSION_BLUEPRINT[family as AdmissionFamily]
       .filter(s => s.bankSection === section)
       .reduce((sum, s) => sum + s.questions, 0)

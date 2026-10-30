@@ -86,8 +86,10 @@ function toTopic(row: {
 // 'test-act' left this list 2026-09-03 (B7: ACT Composite shipped). The
 // real gate is SHIPPED_TEST_SLUGS in shipped-tests.ts; this set only has
 // to agree with it for the families that are NOT shipped.
+// 'test-itep' (2026-10-31): wired and hidden, staged items only; a deep
+// link shows Coming soon until the family ships.
 const LOCKED_TOPIC_SLUGS = new Set([
-  'test-ksat', 'test-toeic', 'test-ielts', 'test-ap', 'test-gre',
+  'test-ksat', 'test-toeic', 'test-ielts', 'test-ap', 'test-gre', 'test-itep',
 ])
 
 export default function TopicPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -311,7 +313,11 @@ function TopicInner({ slug }: { slug: string }) {
       // items. If a later sitting or real attempts move it, re-hide here
       // and say why in this comment - the earlier version of this block
       // was stale for twelve days and read as an unhide trigger.
-      const HIDDEN_SUBTOPIC_SLUGS = new Set(['sat-essay', 'act-writing'])
+      //
+      // itep-* (2026-10-31): iTEP SLATE is wired but not shipped; only
+      // staged (verified=false) Grammar items exist. Unhide per section
+      // when it has clean forms, together with the shipped flip.
+      const HIDDEN_SUBTOPIC_SLUGS = new Set(['sat-essay', 'act-writing', 'itep-grammar', 'itep-listening', 'itep-reading', 'itep-writing', 'itep-speaking'])
       const kids = (childRows ?? [])
         .flatMap(c => {
           const kid = toTopic(c)
@@ -1134,7 +1140,7 @@ function TopicInner({ slug }: { slug: string }) {
                          * bare `return` in startBankTest.
                          */
                         const fam = effectiveTopic ? parseTestSlug(effectiveTopic.slug).family : null
-                        if (fam === 'sat' || fam === 'ssat' || fam === 'isee' || fam === 'act' || fam === 'map') {
+                        if (fam === 'sat' || fam === 'ssat' || fam === 'isee' || fam === 'act' || fam === 'map' || fam === 'itep') {
                           requestBankStart()
                         } else {
                           openTestSheet()
@@ -1236,7 +1242,7 @@ function TopicInner({ slug }: { slug: string }) {
  *  "<family>-<section>" for leaves (e.g., toefl-reading, sat-math).
  *  Section name returned in English to match TEST_SPECS' name_en. */
 function parseTestSlug(slug: string): { family: TestFamily | null; section: string | null } {
-  const FAMILIES: TestFamily[] = ['ksat', 'sat', 'toefl', 'toeic', 'ielts', 'act', 'ap', 'gre', 'ssat', 'isee', 'map']
+  const FAMILIES: TestFamily[] = ['ksat', 'sat', 'toefl', 'toeic', 'ielts', 'act', 'ap', 'gre', 'ssat', 'isee', 'map', 'itep']
   // Parent: test-<family> → all sections; defaultsForTestSection returns sections[0].
   const rootMatch = slug.match(/^test-(.+)$/)
   if (rootMatch) {

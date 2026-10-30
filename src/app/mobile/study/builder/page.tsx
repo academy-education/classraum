@@ -35,7 +35,7 @@ const TIME_PRESETS = [15, 30, 45, 60, 90]
  *  locked tests all have a section literally named "Writing"). */
 const OPEN_TEST_ROOT_SLUGS = new Set(['test-sat'])
 /** Mirrors the topic page's HIDDEN_SUBTOPIC_SLUGS. */
-const HIDDEN_BUILDER_SLUGS = new Set(['sat-essay'])
+const HIDDEN_BUILDER_SLUGS = new Set(['sat-essay', 'itep-grammar', 'itep-listening', 'itep-reading', 'itep-writing', 'itep-speaking'])
 
 /** Display label: test sections carry their family ("SAT · Math") so
  *  same-named sections can never be confused; subjects keep their name. */

@@ -94,10 +94,12 @@ async function handlePOST(req: NextRequest) {
     // MAP is wired but NOT shipped: isShippedTestFamily refuses it below
     // until 'map' joins SHIPPED_TEST_FAMILIES.
     : requestedFamily === 'map' ? 'map'
+    // iTEP likewise: wired, hidden, refused by isShippedTestFamily.
+    : requestedFamily === 'itep' ? 'itep'
     : requestedFamily === 'act' ? 'act'
     : 'sat'
   const isToefl = family === 'toefl'
-  const isAdmission = family === 'ssat' || family === 'isee' || family === 'map'
+  const isAdmission = family === 'ssat' || family === 'isee' || family === 'map' || family === 'itep'
   /* ACT is linear with a published blueprint, like SSAT/ISEE, and the
      request's `section` is likewise a BLUEPRINT KEY ('english', 'math',
      'reading', 'science'). bankSection comes from the blueprint, never

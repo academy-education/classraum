@@ -383,6 +383,12 @@ const SECTION_CREDIT_COST: Record<string, Record<string, number>> = {
   // SSAT/ISEE price. Owner decision 2026-10-20 (MAP-LAUNCH-PLAN Q7);
   // Science 2 by owner decision D2 2026-10-27 (MAP-SCIENCE-PLAN).
   map: { reading: 2, language: 2, math: 2, science: 2 },
+  // iTEP SLATE (not shipped; hidden). 2 per section, matching MAP's
+  // per-subject price (ITEP-SLATE-BLUEPRINT §5.2). Grammar is only 10
+  // minutes, so 1 is defensible, but it is listed at 2 pending the
+  // owner's call. Writing and Speaking are listed although not yet served,
+  // so neither can ship at the 1-credit fallback.
+  itep: { grammar: 2, listening: 2, reading: 2, writing: 2, speaking: 2 },
 }
 
 /** Credit cost to start one full test for (family, section). */

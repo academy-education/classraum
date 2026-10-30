@@ -175,7 +175,7 @@ export function TestResultView({
   /* SSAT/ISEE raw score. Derived from rows the submit path already
      writes — study_attempts keeps student_answer null for a blank — so
      this needed no schema change and no second source of truth. */
-  const admission = (model.family === 'ssat' || model.family === 'isee' || model.family === 'map')
+  const admission = (model.family === 'ssat' || model.family === 'isee' || model.family === 'map' || model.family === 'itep')
     ? admissionScoreFromRows(model.family, model.rows, model.correctCount)
     : null
   /* MAP: right answers per instructional area. Self-hides below two areas. */
@@ -466,6 +466,9 @@ export function TestResultView({
                   : model.family === 'map'
                     ? (ko ? 'MAP은 정답만 셉니다. 시간 제한이 없으니 서두르지 말고 모든 문항에 답하세요.'
                           : 'MAP counts right answers only, and it is untimed — take your time and answer everything.')
+                  : model.family === 'itep'
+                    ? (ko ? 'iTEP은 정답만 셉니다. 오답 감점이 없으니 모든 문항에 답하세요.'
+                          : 'iTEP counts right answers only — no penalty, so answer everything.')
                   : (ko ? 'ISEE는 정답만 셉니다. 오답 감점이 없으니 모든 문항에 답하세요.'
                         : 'ISEE counts right answers only — no penalty, so answer everything.')}
               />
