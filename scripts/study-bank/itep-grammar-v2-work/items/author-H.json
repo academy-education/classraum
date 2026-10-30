@@ -1,0 +1,752 @@
+[
+  {
+    "id": "ITG2-C092",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "modals",
+    "varied_dimension": "need to vs mustn't vs don't need to vs had better not, decided by automatic saving and 'causes no harm'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "This app saves your work every few seconds, so you ________ press save yourself, though doing so causes no harm.",
+    "choices": [
+      "need to",
+      "mustn't",
+      "don't need to",
+      "had better not"
+    ],
+    "correct_answer": "don't need to",
+    "explanation": "\"Don't need to\" means something is not necessary but is still allowed. The app already saves your work, so pressing the button is unnecessary, and the sentence says pressing it does no harm, so it is not forbidden either.",
+    "distractor_rationales": {
+      "need to": "The app already saves the work, so pressing the button is not necessary.",
+      "mustn't": "\"Mustn't\" forbids the action, but the sentence says pressing the button causes no harm.",
+      "had better not": "This warns against the action, but pressing the button causes no harm."
+    },
+    "student_error": {
+      "need to": "Learners connect 'save button' with an obligation and miss the reason clause.",
+      "mustn't": "Learners think 'mustn't' is the negative of 'must' meaning 'not necessary', a very common confusion.",
+      "had better not": "Learners use 'had better not' as a general polite negative without checking whether there is any danger."
+    },
+    "key_slot": "C",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C093",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "verb tense and aspect",
+    "varied_dimension": "past simple vs used to + base vs present simple vs be used to + -ing, decided by 'Last Saturday' and 'first'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Last Saturday, Elif ________ her first game app at the coding club.",
+    "choices": [
+      "used to design",
+      "designed",
+      "designs",
+      "is used to designing"
+    ],
+    "correct_answer": "designed",
+    "explanation": "\"Last Saturday\" and \"first\" describe one finished action at a past time, so the past simple \"designed\" is correct. \"Used to\" is only for past habits that happened many times.",
+    "distractor_rationales": {
+      "used to design": "\"Used to\" describes a repeated past habit, but this was one event, her first app.",
+      "designs": "The present simple does not match the past time \"Last Saturday\".",
+      "is used to designing": "\"Be used to + -ing\" means 'be familiar with', and it is present, not a single past event."
+    },
+    "student_error": {
+      "used to design": "Learners use 'used to' for any past action because it sounds past.",
+      "designs": "Learners keep the present tense and ignore the time marker.",
+      "is used to designing": "Learners confuse 'be used to + -ing' with 'used to' for past habits."
+    },
+    "key_slot": "B",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-C094",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "subject-verb agreement",
+    "varied_dimension": "singular vs plural verb after the -s subject 'physics'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Physics ________ difficult at first, but our robot projects make it fun.",
+    "choices": [
+      "are",
+      "sound",
+      "were",
+      "sounds"
+    ],
+    "correct_answer": "sounds",
+    "explanation": "\"Physics\" ends in -s but is the name of one subject, so it takes a singular verb: \"Physics sounds difficult\".",
+    "distractor_rationales": {
+      "are": "\"Are\" is plural, but \"physics\" is singular.",
+      "sound": "\"Sound\" is the plural present form; \"physics\" needs \"sounds\".",
+      "were": "\"Were\" is plural, and \"physics\" is singular."
+    },
+    "student_error": {
+      "are": "Learners see the final -s on 'physics' and treat it as plural.",
+      "sound": "Learners treat 'physics' as a plural noun like 'robots'.",
+      "were": "Learners treat 'physics' as plural and also shift to the past tense."
+    },
+    "key_slot": "D",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-C095",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "relative pronouns and clauses",
+    "varied_dimension": "what vs that vs which vs where after 'exactly' with no head noun",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Good news, team: the robot finally did exactly ________ we programmed it to do!",
+    "choices": [
+      "which",
+      "that",
+      "what",
+      "where"
+    ],
+    "correct_answer": "what",
+    "explanation": "\"What\" means 'the thing that' and contains its own noun. There is no noun before the blank, so \"what\" is needed: the robot did the thing that we programmed it to do.",
+    "distractor_rationales": {
+      "which": "\"Which\" needs a noun before it to refer to; there is none here.",
+      "that": "\"That\" as a relative pronoun also needs a noun before it, such as 'the task that'.",
+      "where": "\"Where\" refers to a place, not to an action the robot did."
+    },
+    "student_error": {
+      "which": "Learners use 'which' as an all-purpose relative pronoun for things.",
+      "that": "Learners translate 'what' directly as 'that' because their first language uses one word for both.",
+      "where": "Learners overuse 'where' as a general connector between clauses."
+    },
+    "key_slot": "C",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-C096",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "adjective vs adverb",
+    "varied_dimension": "an -ly adjective vs three -ly adverbs after the linking verb 'seems'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "With its pink paint and tiny bow, our robot seems ________ to visitors.",
+    "choices": [
+      "oddly",
+      "sadly",
+      "shyly",
+      "lovely"
+    ],
+    "correct_answer": "lovely",
+    "explanation": "After a linking verb like \"seem\", we use an adjective, not an adverb. \"Lovely\" ends in -ly but is an adjective, so it is correct here.",
+    "distractor_rationales": {
+      "oddly": "\"Oddly\" is an adverb; after \"seems\" an adjective is needed.",
+      "sadly": "\"Sadly\" is an adverb and cannot describe the robot after \"seems\".",
+      "shyly": "\"Shyly\" is an adverb; the adjective would be \"shy\"."
+    },
+    "student_error": {
+      "oddly": "Learners think every word after a verb must be an adverb ending in -ly.",
+      "sadly": "Learners treat 'seems' like an action verb and add an -ly adverb.",
+      "shyly": "Learners avoid 'lovely' because they think it is an adverb, and pick another -ly word."
+    },
+    "key_slot": "D",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-C097",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "comparatives and superlatives",
+    "varied_dimension": "base vs comparative vs superlative vs equal-comparison form of the adverb 'fast' after 'much ... than'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "After we replaced its old motor, the robot could get through the maze much ________ than it did before.",
+    "choices": [
+      "fastest",
+      "as fast",
+      "faster",
+      "fast"
+    ],
+    "correct_answer": "faster",
+    "explanation": "\"Than\" compares two things, so a comparative is needed. \"Fast\" is a one-syllable adverb, so its comparative is \"faster\", and \"much\" can strengthen it.",
+    "distractor_rationales": {
+      "fastest": "\"Fastest\" is a superlative and cannot be used with \"than\".",
+      "as fast": "\"As fast\" must be followed by \"as\", not \"than\", and cannot follow \"much\".",
+      "fast": "The base form cannot be used with \"than\"."
+    },
+    "student_error": {
+      "fastest": "Learners use the superlative whenever they want to say 'very fast'.",
+      "as fast": "Learners mix the two comparison patterns 'as ... as' and '-er than'.",
+      "fast": "Learners forget that an adverb also changes form in a comparison."
+    },
+    "key_slot": "C",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-C098",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "conditionals",
+    "varied_dimension": "auxiliary + subject in an inverted third conditional before the participle 'known'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Sorry, everyone! ________ known that the meeting had moved to a video call, I would have joined from home.",
+    "choices": [
+      "Have I",
+      "Were I",
+      "Did I",
+      "Had I"
+    ],
+    "correct_answer": "Had I",
+    "explanation": "\"Had I known\" is an inverted form of \"If I had known\", a third conditional about the past. The result clause \"I would have joined\" confirms the past unreal meaning.",
+    "distractor_rationales": {
+      "Have I": "\"Have\" is present; a past unreal condition needs \"had\".",
+      "Were I": "\"Were I\" inverts a second conditional and needs an adjective or infinitive, not the participle \"known\".",
+      "Did I": "\"Did\" must be followed by a base verb, not \"known\", and does not form an inverted conditional."
+    },
+    "student_error": {
+      "Have I": "Learners keep the auxiliary from the present perfect question 'Have I known ...?'.",
+      "Were I": "Learners have learned 'Were I you' and use 'were' for every inverted conditional.",
+      "Did I": "Learners form a past question with 'did' because the condition is in the past."
+    },
+    "key_slot": "D",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-C099",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "passive voice",
+    "varied_dimension": "passive 'is thought' vs active, present perfect and continuous forms of 'think' before 'to have been'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Surprisingly, the first computer mouse, invented in the 1960s, ________ to have been made mostly of wood.",
+    "choices": [
+      "thinks",
+      "has thought",
+      "is thinking",
+      "is thought"
+    ],
+    "correct_answer": "is thought",
+    "explanation": "\"Is thought to have been\" is a passive reporting structure: people think that the first mouse was made of wood. A mouse cannot think, so the active forms are wrong.",
+    "distractor_rationales": {
+      "thinks": "The active form makes the mouse the thinker, which is impossible.",
+      "has thought": "This is active too: the mouse cannot think anything.",
+      "is thinking": "This active continuous form also makes the mouse the thinker."
+    },
+    "student_error": {
+      "thinks": "Learners translate the structure word for word and miss that it must be passive.",
+      "has thought": "Learners use the present perfect because the fact is about the past.",
+      "is thinking": "Learners use the continuous form because it sounds like current news."
+    },
+    "key_slot": "D",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-C100",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "gerund vs infinitive",
+    "varied_dimension": "purpose infinitive vs for + -ing vs bare and past forms after 'went to the lab'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Hassan went to the computer lab after lunch ________ the new 3D printer.",
+    "choices": [
+      "for using",
+      "to use",
+      "use",
+      "used"
+    ],
+    "correct_answer": "to use",
+    "explanation": "To say why a person does something, English uses \"to\" + base verb: Hassan went there to use the printer.",
+    "distractor_rationales": {
+      "for using": "\"For + -ing\" describes what a thing is for, not why a person does something.",
+      "use": "A base verb cannot follow the clause directly without \"to\".",
+      "used": "A second past verb cannot be added without \"and\"."
+    },
+    "student_error": {
+      "for using": "Learners translate the purpose word in their first language as 'for'.",
+      "use": "Learners drop 'to' as they would after a modal verb.",
+      "used": "Learners make the second verb past to match 'went'."
+    },
+    "key_slot": "B",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C101",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "reported speech",
+    "varied_dimension": "reporting verbs that can vs cannot take a personal object before a that-clause",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "In her message to the coding club, Ms. Rahman ________ that the lab would close early on Friday, so we saved our robot programs on Thursday.",
+    "choices": [
+      "warned us",
+      "announced us",
+      "mentioned us",
+      "suggested us"
+    ],
+    "correct_answer": "warned us",
+    "explanation": "Some reporting verbs, like \"warn\", \"tell\" and \"remind\", take a person directly before a that-clause: \"warned us that ...\". Verbs like \"announce\", \"mention\" and \"suggest\" need \"to us\" or no person at all.",
+    "distractor_rationales": {
+      "announced us": "\"Announce\" cannot take the listener as a direct object before \"that\"; it needs \"announced to us\".",
+      "mentioned us": "\"Mention\" needs \"to us\" before a that-clause; \"mentioned us\" means she talked about us.",
+      "suggested us": "\"Suggest\" cannot take the listener as an object before \"that\"."
+    },
+    "student_error": {
+      "announced us": "Learners copy the pattern of 'told us that' onto every reporting verb.",
+      "mentioned us": "Learners leave out 'to' because their first language marks the listener without a preposition.",
+      "suggested us": "Learners generalise from 'advised us' to 'suggested us'."
+    },
+    "key_slot": "A",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-C102",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "count/non-count and quantifiers",
+    "varied_dimension": "no vs none vs not vs any before 'of them'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "We tested every screw in the spare-parts box, yet ________ of them was the right size for the robot's new arm.",
+    "choices": [
+      "no",
+      "none",
+      "not",
+      "any"
+    ],
+    "correct_answer": "none",
+    "explanation": "Before \"of\" + a pronoun, the negative pronoun \"none\" is needed. \"No\" must be followed directly by a noun, and \"any\" needs a negative verb.",
+    "distractor_rationales": {
+      "no": "\"No\" is a determiner and must come directly before a noun, not before \"of\".",
+      "not": "\"Not\" cannot stand alone as the subject before \"of them\".",
+      "any": "\"Any\" needs a negative verb (was not), but the verb here is positive."
+    },
+    "student_error": {
+      "no": "Learners use 'no' and 'none' as if they were the same word.",
+      "not": "Learners place 'not' where their first language puts its negative word.",
+      "any": "Learners know 'any' goes with negatives and do not notice that the verb is positive."
+    },
+    "key_slot": "B",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-C103",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "pronoun case and reference",
+    "varied_dimension": "object pronoun with particle vs possessive vs bare particle vs plural object pronoun, with the separable phrasal verb 'pick up' and a singular antecedent",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "If the robot falls, pick ________ with both hands and set it upright.",
+    "choices": [
+      "it up",
+      "its",
+      "up",
+      "them up"
+    ],
+    "correct_answer": "it up",
+    "explanation": "With a separable phrasal verb like \"pick up\", an object pronoun goes between the verb and the particle: \"pick it up\". The pronoun must be \"it\" because it refers to one robot.",
+    "distractor_rationales": {
+      "its": "\"Its\" is a possessive and needs a noun after it; it cannot be the object, and \"up\" is missing.",
+      "up": "\"Pick up\" needs an object here; the robot is not named.",
+      "them up": "\"Them\" is plural, but it refers to one robot."
+    },
+    "student_error": {
+      "its": "Learners confuse 'it' and 'its' because they look alike.",
+      "up": "Learners think the object is clear from the context and leave it out.",
+      "them up": "Learners pick the pronoun from the nearby plural 'hands' instead of the robot."
+    },
+    "key_slot": "A",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C104",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "modifier placement",
+    "varied_dimension": "which noun phrase can rename the subject 'Nikhil' in an appositive opener",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "________, Nikhil wrote the program that lets our robot arm sort blocks by color.",
+    "choices": [
+      "A gifted coder",
+      "Gifted coders",
+      "A coder's gift",
+      "The gift of coding"
+    ],
+    "correct_answer": "A gifted coder",
+    "explanation": "An appositive at the start of a sentence must describe the subject that follows the comma. Nikhil is one person who codes well, so \"A gifted coder\" correctly renames him.",
+    "distractor_rationales": {
+      "Gifted coders": "This is plural, but the subject \"Nikhil\" is one person.",
+      "A coder's gift": "This describes a gift, not a person, so it does not match \"Nikhil\".",
+      "The gift of coding": "This names an ability, not a person, so it cannot rename \"Nikhil\"."
+    },
+    "student_error": {
+      "Gifted coders": "Learners ignore the number of the opener and only check its meaning.",
+      "A coder's gift": "Learners choose a phrase with the right words without checking what it refers to.",
+      "The gift of coding": "Learners think any phrase about the topic can introduce the sentence."
+    },
+    "key_slot": "A",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E085",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "conjunctions and connectors",
+    "varied_dimension": "future 'will' wrongly used after the time connector 'as soon as'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "[A: Before you start], plug the robot [B: into the laptop], wait [C: until the battery icon turns green], and tap Connect [D: as soon as the app will find] it.",
+    "choices": [
+      "Before you start",
+      "into the laptop",
+      "until the battery icon turns green",
+      "as soon as the app will find"
+    ],
+    "correct_answer": "as soon as the app will find",
+    "explanation": "After time connectors such as \"as soon as\", \"once\" and \"until\", English uses the present simple for a future event, not \"will\". It should be \"as soon as the app finds it\".",
+    "distractor_rationales": {
+      "Before you start": "Correct: present simple after \"before\" for a future action.",
+      "into the laptop": "Correct: \"plug something into\" a device.",
+      "until the battery icon turns green": "Correct: present simple \"turns\" after \"until\"."
+    },
+    "student_error": {
+      "Before you start": "Learners may expect 'will start' for a future action.",
+      "into the laptop": "Learners may doubt 'into' and expect 'in' or 'to'.",
+      "until the battery icon turns green": "Learners may expect 'will turn' after 'until' and doubt the present tense."
+    },
+    "key_slot": "D",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-E086",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "modals",
+    "varied_dimension": "needn't have + participle (action done unnecessarily) vs didn't need to (action not done)",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "[A: We needn't have brought our own laptops to the workshop], so we [B: left] them at home and [C: borrowed] the ones [D: that the school provided].",
+    "choices": [
+      "We needn't have brought our own laptops to the workshop",
+      "left",
+      "borrowed",
+      "that the school provided"
+    ],
+    "correct_answer": "We needn't have brought our own laptops to the workshop",
+    "explanation": "\"Needn't have brought\" means we brought them although it was not necessary. But the sentence says we left them at home, so it should be \"We didn't need to bring our own laptops\".",
+    "distractor_rationales": {
+      "left": "Correct: irregular past of \"leave\".",
+      "borrowed": "Correct: past simple of \"borrow\"; we took the school's laptops for a time.",
+      "that the school provided": "Correct relative clause with a past simple verb."
+    },
+    "student_error": {
+      "left": "Learners may confuse 'left' with 'leaved' or doubt the irregular form.",
+      "borrowed": "Learners often confuse 'borrow' and 'lend'.",
+      "that the school provided": "Learners may expect 'which' or a past perfect form."
+    },
+    "key_slot": "A",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-E087",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "conditionals",
+    "varied_dimension": "third-person -s wrongly kept on the verb after inverted 'should'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "[A: During today's video lesson], [B: should the Wi-Fi drops], you [C: can rejoin] by clicking the link [D: that Mr. Andersson sent] this morning.",
+    "choices": [
+      "During today's video lesson",
+      "should the Wi-Fi drops",
+      "can rejoin",
+      "that Mr. Andersson sent"
+    ],
+    "correct_answer": "should the Wi-Fi drops",
+    "explanation": "\"Should the Wi-Fi drop\" is an inverted form of \"If the Wi-Fi drops\". After \"should\", the verb must be in the base form, so \"drops\" is wrong.",
+    "distractor_rationales": {
+      "During today's video lesson": "Correct: \"during\" + a noun phrase for a period of time.",
+      "can rejoin": "Correct: modal + base verb.",
+      "that Mr. Andersson sent": "Correct relative clause with an irregular past verb."
+    },
+    "student_error": {
+      "During today's video lesson": "Learners may doubt 'during' and expect 'while'.",
+      "can rejoin": "Learners may expect 'will rejoin' in a conditional.",
+      "that Mr. Andersson sent": "Learners may doubt the past tense next to 'this morning'."
+    },
+    "key_slot": "B",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E088",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "word form",
+    "varied_dimension": "-ible adjective 'sensible' wrongly used for the -ive adjective 'sensitive'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "After Linnea [A: rebuilt] the robot's hand, its touch sensor became [B: much more accurate] and [C: so sensible] that it [D: could feel a single feather] resting on its palm.",
+    "choices": [
+      "rebuilt",
+      "much more accurate",
+      "so sensible",
+      "could feel a single feather"
+    ],
+    "correct_answer": "so sensible",
+    "explanation": "\"Sensible\" means 'reasonable'; \"sensitive\" means 'able to notice very small changes'. A sensor that can feel a feather is sensitive, so it should be \"so sensitive\".",
+    "distractor_rationales": {
+      "rebuilt": "Correct: irregular past of \"rebuild\".",
+      "much more accurate": "Correct comparative of a long adjective, strengthened by \"much\".",
+      "could feel a single feather": "Correct: \"could\" + base verb for past ability."
+    },
+    "student_error": {
+      "rebuilt": "Learners may expect 'rebuilded'.",
+      "much more accurate": "Learners may doubt 'much more' and expect 'more accurater' or 'very more'.",
+      "could feel a single feather": "Learners may expect 'could felt' after a past-tense sentence."
+    },
+    "key_slot": "C",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E089",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "parallel structure",
+    "varied_dimension": "an adjective phrase wrongly placed in a list of noun phrases after 'is known for'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "The new drawing app is known for [A: easy to learn], [B: a huge set of brushes], and [C: free updates] [D: each month].",
+    "choices": [
+      "easy to learn",
+      "a huge set of brushes",
+      "free updates",
+      "each month"
+    ],
+    "correct_answer": "easy to learn",
+    "explanation": "Items in a list must have the same form. After \"known for\", the list needs noun phrases, so the adjective phrase \"easy to learn\" should be a noun phrase such as \"its ease of learning\".",
+    "distractor_rationales": {
+      "a huge set of brushes": "Correct: a noun phrase with a singular head \"set\".",
+      "free updates": "Correct: a plural noun phrase.",
+      "each month": "Correct: \"each\" + a singular noun."
+    },
+    "student_error": {
+      "a huge set of brushes": "Learners may doubt 'a set of' with a plural noun.",
+      "free updates": "Learners may think 'updates' needs an article.",
+      "each month": "Learners may expect 'each months' or 'every months'."
+    },
+    "key_slot": "A",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-E090",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "adjective vs adverb",
+    "varied_dimension": "the -ly adjective 'friendly' wrongly used as an adverb after an action verb",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Our class robot [A: greets] every visitor [B: friendly], [C: answers simple questions], and [D: says goodbye politely].",
+    "choices": [
+      "greets",
+      "friendly",
+      "answers simple questions",
+      "says goodbye politely"
+    ],
+    "correct_answer": "friendly",
+    "explanation": "\"Friendly\" ends in -ly but is an adjective, so it cannot describe how the robot greets. Use \"in a friendly way\" instead.",
+    "distractor_rationales": {
+      "greets": "Correct: present simple with a singular subject.",
+      "answers simple questions": "Correct: present simple, parallel with \"greets\".",
+      "says goodbye politely": "Correct: \"politely\" is an adverb describing how it says goodbye."
+    },
+    "student_error": {
+      "greets": "Learners may forget or doubt the -s for 'robot'.",
+      "answers simple questions": "Learners may expect 'answer to' questions.",
+      "says goodbye politely": "Learners may think 'polite' is needed, mixing up adjectives and adverbs."
+    },
+    "key_slot": "B",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E091",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "prepositions after a head word",
+    "varied_dimension": "'until' wrongly used for a deadline where 'by' is needed",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Bruno [A: has worked] on his app [B: for] ten days and must send it [C: until midnight on Sunday] [D: to] our teacher.",
+    "choices": [
+      "has worked",
+      "for",
+      "until midnight on Sunday",
+      "to"
+    ],
+    "correct_answer": "until midnight on Sunday",
+    "explanation": "\"By\" gives a deadline: the action happens at or before that time. \"Until\" means an action continues up to a time. Sending is one action, so it should be \"by midnight on Sunday\".",
+    "distractor_rationales": {
+      "has worked": "Correct: present perfect with \"for\" a length of time.",
+      "for": "Correct: \"for\" + a length of time (ten days).",
+      "to": "Correct: \"send something to\" a person."
+    },
+    "student_error": {
+      "has worked": "Learners may expect the past simple 'worked'.",
+      "for": "Learners often confuse 'for' and 'since'.",
+      "to": "Learners may doubt 'to' and expect 'for' or no preposition."
+    },
+    "key_slot": "C",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-E092",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "relative pronouns and clauses",
+    "varied_dimension": "'that' wrongly used where 'what' (the thing that) is needed as a subject",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Quick update: [A: That surprised our team most] was [B: how quickly] the robot [C: learned] to recognize faces [D: it had seen only once before].",
+    "choices": [
+      "That surprised our team most",
+      "how quickly",
+      "learned",
+      "it had seen only once before"
+    ],
+    "correct_answer": "That surprised our team most",
+    "explanation": "The subject of \"was\" must be a noun clause meaning 'the thing that surprised our team most'. \"What\" can do this job; \"that\" cannot, so it should be \"What surprised our team most\".",
+    "distractor_rationales": {
+      "how quickly": "Correct: \"how\" + adverb begins a noun clause.",
+      "learned": "Correct: past simple, and \"learn to\" + base verb.",
+      "it had seen only once before": "Correct reduced relative clause with the past perfect for an earlier action."
+    },
+    "student_error": {
+      "how quickly": "Learners may expect 'how quick'.",
+      "learned": "Learners may doubt 'learned' and expect 'learnt' or 'learned recognizing'.",
+      "it had seen only once before": "Learners may think a relative pronoun is required before 'it'."
+    },
+    "key_slot": "A",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-E093",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "comparatives and superlatives",
+    "varied_dimension": "superlative adverb 'best' wrongly used with 'than'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "With practice, Jae [A: now writes] code [B: best] than [C: most] students [D: in the older group].",
+    "choices": [
+      "now writes",
+      "best",
+      "most",
+      "in the older group"
+    ],
+    "correct_answer": "best",
+    "explanation": "\"Than\" needs a comparative. The comparative of the adverb \"well\" is \"better\", so it should be \"better than most students\".",
+    "distractor_rationales": {
+      "now writes": "Correct: present simple with \"now\" for a present habit.",
+      "most": "Correct: \"most students\" means the majority of students.",
+      "in the older group": "Correct: \"in\" a group, with the comparative adjective \"older\"."
+    },
+    "student_error": {
+      "now writes": "Learners may expect 'is writing' after 'now'.",
+      "most": "Learners may expect 'the most' or 'most of'.",
+      "in the older group": "Learners may doubt 'in' and expect 'of' or 'from'."
+    },
+    "key_slot": "B",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-E094",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "gerund vs infinitive",
+    "varied_dimension": "'for + -ing' wrongly used to give a person's purpose",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Natsuki [A: came to school early] [B: on Monday morning] [C: with her toolbox] [D: for fixing] her robot's wheel.",
+    "choices": [
+      "came to school early",
+      "on Monday morning",
+      "with her toolbox",
+      "for fixing"
+    ],
+    "correct_answer": "for fixing",
+    "explanation": "To give the reason a person does something, use \"to\" + base verb: she came early to fix the wheel. \"For + -ing\" tells what a thing is used for.",
+    "distractor_rationales": {
+      "came to school early": "Correct: irregular past of \"come\", and \"to school\" without \"the\".",
+      "on Monday morning": "Correct: \"on\" with a day.",
+      "with her toolbox": "Correct: \"with\" shows what she brought."
+    },
+    "student_error": {
+      "came to school early": "Learners may add 'the' before 'school'.",
+      "on Monday morning": "Learners may use 'in' because of 'in the morning'.",
+      "with her toolbox": "Learners may doubt 'with' and expect 'by'."
+    },
+    "key_slot": "D",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-E095",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "passive voice",
+    "varied_dimension": "present infinitive wrongly used after 'is believed' for a past event",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "The first video call [A: between two distant cities] [B: is believed] [C: to happen] [D: about a hundred years ago].",
+    "choices": [
+      "between two distant cities",
+      "is believed",
+      "to happen",
+      "about a hundred years ago"
+    ],
+    "correct_answer": "to happen",
+    "explanation": "After \"is believed\", an event that happened in the past needs the perfect infinitive. Because the call took place about a hundred years ago, it should be \"to have happened\".",
+    "distractor_rationales": {
+      "between two distant cities": "Correct: \"between\" + two places.",
+      "is believed": "Correct present passive: people believe it now.",
+      "about a hundred years ago": "Correct time phrase with \"ago\"."
+    },
+    "student_error": {
+      "between two distant cities": "Learners may expect 'among' or doubt 'between' with cities.",
+      "is believed": "Learners may expect 'was believed' because the event is in the past.",
+      "about a hundred years ago": "Learners may doubt 'ago' and expect 'before'."
+    },
+    "key_slot": "C",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-E096",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "count/non-count and quantifiers",
+    "varied_dimension": "'no' wrongly used inside a clause already made negative by 'nobody'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Hey team, the robot [A: won't start] today because [B: nobody] [C: remembered] [D: to pack no charger for its battery].",
+    "choices": [
+      "won't start",
+      "nobody",
+      "remembered",
+      "to pack no charger for its battery"
+    ],
+    "correct_answer": "to pack no charger for its battery",
+    "explanation": "\"Nobody\" already makes the sentence negative, so a second negative word is wrong. Use \"any\" or \"a\": \"nobody remembered to pack a charger\".",
+    "distractor_rationales": {
+      "won't start": "Correct: \"won't\" describes the robot refusing to work.",
+      "nobody": "Correct: \"nobody\" is the singular subject of \"remembered\".",
+      "remembered": "Correct: \"remember to\" + base verb for a task someone should do."
+    },
+    "student_error": {
+      "won't start": "Learners may expect 'doesn't start' and doubt 'won't'.",
+      "nobody": "Learners may expect 'anybody' or 'nobody didn't'.",
+      "remembered": "Learners may expect 'remembered bringing'."
+    },
+    "key_slot": "D",
+    "key_len_rank": 4
+  }
+]

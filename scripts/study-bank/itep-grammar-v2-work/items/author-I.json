@@ -1,0 +1,752 @@
+[
+  {
+    "id": "ITG2-C105",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "parallel structure",
+    "varied_dimension": "form of the verb after 'than' that must match a gerund subject (gerund vs bare verb vs past form vs perfect infinitive)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "For many visitors, reading the labels in the town museum is more enjoyable than ________ the audio guide.",
+    "choices": [
+      "listening to",
+      "listen to",
+      "to have listened to",
+      "listened to"
+    ],
+    "correct_answer": "listening to",
+    "explanation": "The two things being compared must have the same form. The subject is the gerund 'reading', so the thing after 'than' must also be a gerund: 'listening to'.",
+    "distractor_rationales": {
+      "listen to": "A bare verb after 'than' does not match the gerund 'reading' and has no subject.",
+      "to have listened to": "A perfect infinitive is not parallel with 'reading' and wrongly places the action in the past.",
+      "listened to": "A past form cannot stand after 'than' here; it has no subject and does not match 'reading'."
+    },
+    "student_error": {
+      "listen to": "Learners who know 'would rather X than Y' use a bare verb after 'than' everywhere.",
+      "to have listened to": "Learners think a longer, more formal verb form sounds more correct.",
+      "listened to": "Learners match the tense of a past experience instead of matching the form of 'reading'."
+    },
+    "key_slot": "A",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C106",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "reported speech",
+    "varied_dimension": "possessive determiner in a reported clause after the speaker's 'my' (his vs our vs your vs their)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Omari said to the guide, \"I found this coin near my grandfather's farm,\" so the guide's notes say Omari found it near ________ grandfather's farm.",
+    "choices": [
+      "his",
+      "our",
+      "your",
+      "their"
+    ],
+    "correct_answer": "his",
+    "explanation": "When we report someone's words, 'my' changes to match the speaker as seen from outside. Omari said 'my grandfather', so in the report it becomes 'his grandfather'.",
+    "distractor_rationales": {
+      "our": "Nobody in the report shares the grandfather with the writer; Omari spoke only of his own.",
+      "your": "'Your' would mean the reader's or the guide's grandfather, but the farm belongs to Omari's grandfather.",
+      "their": "'Their' needs a plural owner, but only Omari is the owner."
+    },
+    "student_error": {
+      "our": "Learners change 'I/my' to the first-person plural because the notes are written by someone else in a group.",
+      "your": "Learners think of the guide as the listener and shift to the listener's pronoun.",
+      "their": "Learners use 'their' as a safe pronoun when they are unsure who the owner is."
+    },
+    "key_slot": "A",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-C107",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "conjunctions and connectors",
+    "varied_dimension": "which connector can follow a preposition to introduce a yes/no question clause",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "My classmates argued over ________ the old bridge was really Roman.",
+    "choices": [
+      "although",
+      "because",
+      "so that",
+      "whether"
+    ],
+    "correct_answer": "whether",
+    "explanation": "After a preposition like 'over', a yes/no question clause starts with 'whether'. The students did not know if the bridge was Roman, so 'whether' is right.",
+    "distractor_rationales": {
+      "although": "'Although' shows contrast and cannot follow the preposition 'over'.",
+      "because": "'Because' gives a reason and cannot be the object of 'over'.",
+      "so that": "'So that' shows purpose and cannot follow 'over'."
+    },
+    "student_error": {
+      "although": "Learners pick a connector they know well without mending what comes before the blank.",
+      "because": "Learners think of the argument as having a cause and reach for 'because'.",
+      "so that": "Learners connect the two parts as purpose without noticing the preposition."
+    },
+    "key_slot": "D",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-C108",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "verb tense and aspect",
+    "varied_dimension": "continuous tense with a duration up to a future point set by 'by the time ... next June'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "By the time the town museum reopens next June, workers ________ its old stone walls for almost three years.",
+    "choices": [
+      "had been repairing",
+      "have been repairing",
+      "will have been repairing",
+      "will be repairing"
+    ],
+    "correct_answer": "will have been repairing",
+    "explanation": "'By the time ... next June' points to a moment in the future, and 'for almost three years' measures an action continuing up to that moment. That needs the future perfect continuous: 'will have been repairing'.",
+    "distractor_rationales": {
+      "had been repairing": "The past perfect continuous measures time up to a past moment, but next June is in the future.",
+      "have been repairing": "The present perfect continuous measures time up to now, not up to next June.",
+      "will be repairing": "The future continuous shows an action in progress at a future time, but it cannot measure a duration up to that time."
+    },
+    "student_error": {
+      "had been repairing": "Learners link 'by the time' with the past perfect because they usually see it in past stories.",
+      "have been repairing": "Learners connect 'for three years' with the present perfect continuous in every case.",
+      "will be repairing": "Learners know 'will' shows the future and stop there, missing the 'have been' needed for duration."
+    },
+    "key_slot": "C",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-C109",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "count/non-count and quantifiers",
+    "varied_dimension": "quantifier after 'far' before a plural count noun with 'for ... to' (too many vs too much vs too little vs enough)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "In the old palace, there were far ________ rooms for the guide to show us every one in a single hour.",
+    "choices": [
+      "enough",
+      "too much",
+      "too many",
+      "too little"
+    ],
+    "correct_answer": "too many",
+    "explanation": "'Rooms' is a plural count noun, so it takes 'many', and 'too ... for someone to do something' means the amount made the action impossible. 'Far' can strengthen 'too many', giving 'far too many rooms'.",
+    "distractor_rationales": {
+      "enough": "'Far' cannot come before 'enough', and 'enough' would not explain why the guide could not show every room.",
+      "too much": "'Much' is used with non-count nouns, but 'rooms' is a plural count noun.",
+      "too little": "'Little' goes with non-count nouns, and the meaning is the opposite of what the sentence needs."
+    },
+    "student_error": {
+      "enough": "Learners connect 'enough' with 'for ... to' patterns like 'big enough for us to sit'.",
+      "too much": "Learners use 'too much' for any large amount, whether the noun is count or non-count.",
+      "too little": "Learners confuse 'little' and 'few' and do not check the meaning."
+    },
+    "key_slot": "C",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-C110",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "word form",
+    "varied_dimension": "hyphenated number-plus-noun adjective before a noun (singular, hyphens, no possessive)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "This letter in the museum was written by a ________ sailor on his first voyage.",
+    "choices": [
+      "twelve years old",
+      "twelve-year-olds",
+      "twelve-year-old",
+      "twelve-year-old's"
+    ],
+    "correct_answer": "twelve-year-old",
+    "explanation": "When an age comes before a noun, it becomes one adjective joined by hyphens, and the noun 'year' stays singular: 'a twelve-year-old sailor'.",
+    "distractor_rationales": {
+      "twelve years old": "This form is used after a verb ('he was twelve years old'), not before a noun.",
+      "twelve-year-olds": "This is a plural noun meaning 'children of twelve', not an adjective for 'sailor'.",
+      "twelve-year-old's": "This is a possessive noun, so it would mean a sailor belonging to a child."
+    },
+    "student_error": {
+      "twelve years old": "Learners move the familiar phrase 'twelve years old' in front of the noun without changing it.",
+      "twelve-year-olds": "Learners add a plural -s because the number is more than one.",
+      "twelve-year-old's": "Learners add 's to show that the age belongs to the sailor."
+    },
+    "key_slot": "C",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-C111",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "C1",
+    "category": "modifier placement",
+    "varied_dimension": "which main clause puts the right noun directly before a sentence-final participial phrase",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "________, carved from a single block of white marble more than two thousand years ago.",
+    "choices": [
+      "The visitors were shown a statue by the guide",
+      "In the main hall, our guide pointed to a statue",
+      "Next to the statue stood our guide",
+      "Our guide talked about a statue for an hour"
+    ],
+    "correct_answer": "In the main hall, our guide pointed to a statue",
+    "explanation": "A participial phrase like 'carved from ... marble' describes the noun just before it. Only 'In the main hall, our guide pointed to a statue' puts 'a statue', the thing that was carved, right before the phrase.",
+    "distractor_rationales": {
+      "The visitors were shown a statue by the guide": "The phrase would follow 'the guide', so it says the guide was carved from marble.",
+      "Next to the statue stood our guide": "The phrase would follow 'our guide', so it says the guide was carved from marble.",
+      "Our guide talked about a statue for an hour": "The phrase would follow 'an hour', which cannot be carved from marble."
+    },
+    "student_error": {
+      "The visitors were shown a statue by the guide": "Learners think any clause that mentions the statue somewhere is enough.",
+      "Next to the statue stood our guide": "Learners like the inverted word order because it sounds literary and advanced.",
+      "Our guide talked about a statue for an hour": "Learners add a time phrase to the end of a clause without thinking about what follows it."
+    },
+    "key_slot": "B",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-C112",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "gerund vs infinitive",
+    "varied_dimension": "subject structure when the action phrase comes after the verb: dummy 'it' + to-infinitive vs gerund or infinitive subject",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "During a class visit, ________ the town museum's old maps with a magnifying glass.",
+    "choices": [
+      "studying is exciting",
+      "to study is exciting",
+      "is exciting to study",
+      "it is exciting to study"
+    ],
+    "correct_answer": "it is exciting to study",
+    "explanation": "When the action ('study the old maps') comes after the adjective, English needs the empty subject 'it' first: 'it is exciting to study the maps'. A gerund or infinitive can be the subject only when it comes before the verb with its object.",
+    "distractor_rationales": {
+      "studying is exciting": "This leaves 'the town museum's old maps' with no verb to belong to.",
+      "to study is exciting": "This also separates the verb from its object, leaving 'the maps' stranded at the end.",
+      "is exciting to study": "The clause has no subject; English requires 'it' here."
+    },
+    "student_error": {
+      "studying is exciting": "Learners know a gerund can be a subject and use it even when its object comes later.",
+      "to study is exciting": "Learners translate a sentence pattern from their first language word by word.",
+      "is exciting to study": "Learners whose first language drops subjects leave out the empty 'it'."
+    },
+    "key_slot": "D",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-C113",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "modals",
+    "varied_dimension": "form that expresses ability after another modal ('might'), where 'can' has no infinitive",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "When the new bridge opens next year, visitors might ________ walk to the island.",
+    "choices": [
+      "can",
+      "being able to",
+      "been able to",
+      "be able to"
+    ],
+    "correct_answer": "be able to",
+    "explanation": "'Can' has no infinitive, so it cannot follow another modal like 'might'. After 'might' we use the base form 'be able to'.",
+    "distractor_rationales": {
+      "can": "Two modals cannot stand together, so 'might can' is wrong.",
+      "being able to": "After a modal the verb must be in the base form, not the -ing form.",
+      "been able to": "'Been' is a past participle and needs 'have'; it cannot follow 'might' directly."
+    },
+    "student_error": {
+      "can": "Learners use 'can' for ability everywhere; some dialects and first languages allow double modals.",
+      "being able to": "Learners confuse 'be' and 'being' after modals.",
+      "been able to": "Learners remember 'have been able to' and drop 'have'."
+    },
+    "key_slot": "D",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-C114",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "passive voice",
+    "varied_dimension": "verb form after 'have + object' when someone else does the work (past participle vs base vs -s vs -ing)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Last month, the village had the old church doors ________ by experts.",
+    "choices": [
+      "mend",
+      "mended",
+      "mending",
+      "mends"
+    ],
+    "correct_answer": "mended",
+    "explanation": "'Have something done' means that someone else does the work for you. The doors receive the action, so we use the past participle: 'had the doors mended by experts'.",
+    "distractor_rationales": {
+      "mend": "'Have + object + base verb' is used when the object does the action, but doors cannot mend anything.",
+      "mending": "The -ing form would mean the doors were doing the mending.",
+      "mends": "A present -s form cannot follow 'had the doors'."
+    },
+    "student_error": {
+      "mend": "Learners know 'had him mend' and use the base verb after any object.",
+      "mending": "Learners use -ing because the work went on for some time.",
+      "mends": "Learners make the verb agree with a singular idea like 'the village'."
+    },
+    "key_slot": "B",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C115",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "conditionals",
+    "varied_dimension": "connector introducing a possible problem that a precaution prepares for (in case vs in case of vs otherwise vs so)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Our teacher explained that the explorers carried extra drinking water ________ the river turned out to be too muddy.",
+    "choices": [
+      "so",
+      "in case",
+      "in case of",
+      "otherwise"
+    ],
+    "correct_answer": "in case",
+    "explanation": "'In case' introduces a clause about something that might happen, and the action before it is a precaution. The explorers took water as a precaution against a muddy river.",
+    "distractor_rationales": {
+      "so": "'So' shows a result, but carrying water could not make the river muddy.",
+      "in case of": "'In case of' must be followed by a noun, not a full clause with a verb.",
+      "otherwise": "'Otherwise' means 'if not', which makes no sense here, and it cannot join two clauses without punctuation."
+    },
+    "student_error": {
+      "so": "Learners link two events with 'so' without mending which is the cause.",
+      "in case of": "Learners remember the fixed phrase 'in case of' and use it before any kind of phrase.",
+      "otherwise": "Learners connect 'otherwise' with warnings and precautions in general."
+    },
+    "key_slot": "B",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-C116",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "prepositions after a head word",
+    "varied_dimension": "preposition governed by the adjective 'responsible'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Ms. Novak is responsible ________ the old coins in our museum.",
+    "choices": [
+      "for",
+      "of",
+      "on",
+      "about"
+    ],
+    "correct_answer": "for",
+    "explanation": "The adjective 'responsible' is followed by 'for' when we name the thing a person looks after. Ms. Novak takes care of the coins, so she is 'responsible for' them.",
+    "distractor_rationales": {
+      "of": "'Responsible of' is not used in English.",
+      "on": "'Responsible on' is not used in English.",
+      "about": "'About' follows feeling words like 'worried', not 'responsible'."
+    },
+    "student_error": {
+      "of": "Learners translate the preposition from their first language, where 'responsible' takes a word like 'of'.",
+      "on": "Learners think of duties being 'on' someone and carry that over.",
+      "about": "Learners use 'about' after adjectives like 'worried' and 'excited' and spread it to others."
+    },
+    "key_slot": "A",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C117",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "adjective vs adverb",
+    "varied_dimension": "which frequency adverb can stand first in a clause without subject-verb inversion",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "________ the river ferry leaves at nine, but on holidays it leaves at noon.",
+    "choices": [
+      "Usually",
+      "Never",
+      "Hardly ever",
+      "Always"
+    ],
+    "correct_answer": "Usually",
+    "explanation": "'Usually' can move to the start of a sentence with normal word order. It also fits the meaning: the ferry leaves at nine most days, but not on holidays.",
+    "distractor_rationales": {
+      "Never": "A negative adverb at the start needs inversion ('Never does the ferry leave'), and the meaning would also be wrong.",
+      "Hardly ever": "A negative adverb at the start needs inversion, so 'Hardly ever the ferry leaves' is wrong.",
+      "Always": "'Always' normally goes before the main verb, not at the start, and it contradicts the holiday exception."
+    },
+    "student_error": {
+      "Never": "Learners put any frequency adverb first because 'Usually' and 'Sometimes' can go there.",
+      "Hardly ever": "Learners treat 'hardly ever' like 'usually' and forget the inversion rule for negative words.",
+      "Always": "Learners move 'always' to the front for emphasis, as some first languages allow."
+    },
+    "key_slot": "A",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-E097",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "parallel structure",
+    "varied_dimension": "verb form after 'than' that must match a gerund after 'interested in'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Alma was more interested in mapping rivers than [A: to climb] mountains, so she [B: spent years] [C: traveling by canoe] [D: rather than] on foot.",
+    "choices": [
+      "to climb",
+      "spent years",
+      "traveling by canoe",
+      "rather than"
+    ],
+    "correct_answer": "to climb",
+    "explanation": "The two things compared after 'more interested in' must have the same form. 'Mapping' is a gerund, so the second part must be 'climbing', not 'to climb'.",
+    "distractor_rationales": {
+      "spent years": "'Spent' is the correct irregular past of 'spend'.",
+      "traveling by canoe": "'Spend time + -ing' is correct, and 'by canoe' is the right way to name transport.",
+      "rather than": "'Rather than' correctly joins 'by canoe' and 'on foot', two phrases of the same kind."
+    },
+    "student_error": {
+      "spent years": "Learners doubt irregular pasts and may think 'spended' is needed.",
+      "traveling by canoe": "Learners expect 'to travel' after 'spent many years'.",
+      "rather than": "Learners may think 'rather than' needs a verb after it, as in 'rather than walk'."
+    },
+    "key_slot": "A",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-E098",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "relative pronouns and clauses",
+    "varied_dimension": "relative pronoun after 'almost all of' referring to things (which vs whom)",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "After the flood, workers [A: dug up] hundreds of old coins, [B: many of them] still bright, and three stone statues, [C: almost all of whom] [D: had broken] into pieces.",
+    "choices": [
+      "dug up",
+      "many of them",
+      "almost all of whom",
+      "had broken"
+    ],
+    "correct_answer": "almost all of whom",
+    "explanation": "In a phrase like 'all of ___' that begins a relative clause, we use 'whom' for people and 'which' for things. Statues are things, so it should be 'almost all of which'.",
+    "distractor_rationales": {
+      "dug up": "'Dug' is the correct irregular past of 'dig'.",
+      "many of them": "'Many of them still bright' is a correct phrase with no verb, so 'them' (not 'which') is right.",
+      "had broken": "The statues broke before the workers dug them up, so the past perfect is correct."
+    },
+    "student_error": {
+      "dug up": "Learners doubt irregular pasts and may expect 'digged'.",
+      "many of them": "Learners think every 'many of ...' after a comma must be 'many of which'.",
+      "had broken": "Learners expect the simple past in every part of a past story."
+    },
+    "key_slot": "C",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-E099",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "modifier placement",
+    "varied_dimension": "sentence-final participial phrase that follows the wrong noun (train instead of castle)",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Ji-ho [A: took a picture of] the old castle [B: from the window] of [C: his train], [D: erected in 1350].",
+    "choices": [
+      "took a picture of",
+      "from the window",
+      "his train",
+      "erected in 1350"
+    ],
+    "correct_answer": "erected in 1350",
+    "explanation": "A participial phrase describes the noun closest to it. Here 'erected in 1350' follows 'his train', so it says the train was erected in 1350; it belongs right after 'the old castle'.",
+    "distractor_rationales": {
+      "took a picture of": "'Took' is the correct irregular past of 'take', and 'a picture of' is the right phrase.",
+      "from the window": "'From the window of' correctly names where Ji-ho took the photo.",
+      "his train": "'His' correctly refers back to Ji-ho."
+    },
+    "student_error": {
+      "took a picture of": "Learners doubt irregular pasts and may expect 'taked' or 'made a picture'.",
+      "from the window": "Learners often confuse 'from', 'through' and 'in' with windows.",
+      "his train": "Learners may think an article like 'the train' is needed instead of a possessive."
+    },
+    "key_slot": "D",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E100",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "adjective vs adverb",
+    "varied_dimension": "frequency adverb placed between a verb and its direct object",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Historians [A: who study] the region [B: explore often] the ruined mills along the river, [C: hoping] to find records [D: that have been lost] for centuries.",
+    "choices": [
+      "who study",
+      "explore often",
+      "hoping",
+      "that have been lost"
+    ],
+    "correct_answer": "explore often",
+    "explanation": "A frequency adverb like 'often' goes before the main verb, not between the verb and its object. It should be 'often explore the ruined mills'.",
+    "distractor_rationales": {
+      "who study": "'Who' is right for people, and 'study' agrees with the plural 'historians'.",
+      "hoping": "The -ing phrase correctly describes the historians and why they explore the mills.",
+      "that have been lost": "The records are still lost now, so the present perfect passive fits 'for centuries'."
+    },
+    "student_error": {
+      "who study": "Learners may expect 'studies' because 'the region' sits right after it.",
+      "hoping": "Learners may think a full clause like 'and they hope' is needed.",
+      "that have been lost": "Learners may expect the simple past 'were lost' because the loss happened long ago."
+    },
+    "key_slot": "B",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-E101",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "prepositions after a head word",
+    "varied_dimension": "preposition governed by the feeling adjective 'proud'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Professor Mensah, [A: whose] students [B: had spent] three years mapping the old river delta, [C: was clearly] very [D: proud on] the finished map.",
+    "choices": [
+      "whose",
+      "had spent",
+      "was clearly",
+      "proud on"
+    ],
+    "correct_answer": "proud on",
+    "explanation": "The adjective 'proud' is always followed by 'of'. It should be 'very proud of the finished map'.",
+    "distractor_rationales": {
+      "whose": "'Whose' correctly shows that the students belong to Professor Mensah.",
+      "had spent": "The students' work came before the moment described, so the past perfect is correct.",
+      "was clearly": "The subject is 'Professor Mensah', which is singular, so 'was' is correct."
+    },
+    "student_error": {
+      "whose": "Learners confuse 'whose' with 'who's' or expect 'who his'.",
+      "had spent": "Learners expect the simple past everywhere in a past sentence.",
+      "was clearly": "Learners make the verb agree with the nearby plural 'students'."
+    },
+    "key_slot": "D",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E102",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "subject-verb agreement",
+    "varied_dimension": "verb number after 'the number of + plural noun'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "The number of visitors [A: are] rising, so the old castle [B: needs] [C: more] guides [D: than before].",
+    "choices": [
+      "are",
+      "needs",
+      "more",
+      "than before"
+    ],
+    "correct_answer": "are",
+    "explanation": "The subject is 'the number', which is singular, even though 'visitors' is plural. So the verb must be 'is rising'.",
+    "distractor_rationales": {
+      "needs": "'The old castle' is singular, so 'needs' is correct.",
+      "more": "'More' is correct before the plural noun 'guides'.",
+      "than before": "'Than before' correctly completes the comparison with 'more'."
+    },
+    "student_error": {
+      "needs": "Learners may think 'need' is right because 'guides' is plural.",
+      "more": "Learners may expect 'much more' or 'many more'.",
+      "than before": "Learners may think 'than' must be followed by a noun or a full clause."
+    },
+    "key_slot": "A",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-E103",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "comparatives and superlatives",
+    "varied_dimension": "number of the noun after 'one of the + superlative'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Built [A: by] farmers long ago, the bridge near Vera's village [B: is] one of [C: the oldest stone bridge] in [D: its region].",
+    "choices": [
+      "by",
+      "is",
+      "the oldest stone bridge",
+      "its region"
+    ],
+    "correct_answer": "the oldest stone bridge",
+    "explanation": "'One of the' picks one item from a group, so the noun after the superlative must be plural: 'one of the oldest stone bridges'.",
+    "distractor_rationales": {
+      "by": "'By' correctly names who built the bridge in a passive phrase.",
+      "is": "The subject is 'the bridge', which is singular, so 'is' is correct.",
+      "its region": "'Its' correctly refers back to the bridge."
+    },
+    "student_error": {
+      "by": "Learners confuse 'by' and 'from' after a past participle.",
+      "is": "Learners expect 'was' because the bridge was built long ago.",
+      "its region": "Learners confuse 'its' with 'it's'."
+    },
+    "key_slot": "C",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-E104",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "conjunctions and connectors",
+    "varied_dimension": "word introducing a yes/no question clause after the preposition 'about' (if vs whether)",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Sipho [A: asked] a question [B: about] [C: if] the river [D: ever dried] up.",
+    "choices": [
+      "asked",
+      "about",
+      "if",
+      "ever dried"
+    ],
+    "correct_answer": "if",
+    "explanation": "After a preposition such as 'about', a yes/no question clause must begin with 'whether', not 'if'. It should be 'a question about whether the river ever dried up'.",
+    "distractor_rationales": {
+      "asked": "'Asked' is the correct past form of 'ask'.",
+      "about": "'A question about' is the correct preposition after 'question'.",
+      "ever dried": "'Ever' correctly goes before the verb in a question about any time in the past."
+    },
+    "student_error": {
+      "asked": "Learners may expect 'asked to' before a question.",
+      "about": "Learners may expect 'a question of' or no preposition at all.",
+      "ever dried": "Learners may think 'ever' only goes with the present perfect."
+    },
+    "key_slot": "C",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-E105",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "reported speech",
+    "varied_dimension": "reflexive pronoun in a reported clause shifting from first to third person",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Anil [A: told] the class that he had built a model of the ancient city wall [B: by myself], using [C: only] cardboard [D: that his sister had saved].",
+    "choices": [
+      "told",
+      "by myself",
+      "only",
+      "that his sister had saved"
+    ],
+    "correct_answer": "by myself",
+    "explanation": "In reported speech, Anil's 'I built it by myself' becomes 'he had built it by himself'. The reflexive pronoun must match the subject 'he'.",
+    "distractor_rationales": {
+      "told": "'Told the class that' is correct; 'tell' takes a person as its object.",
+      "only": "'Only' is correctly placed right before the word it limits, 'cardboard'.",
+      "that his sister had saved": "The sister saved the cardboard before Anil used it, so the past perfect is correct."
+    },
+    "student_error": {
+      "told": "Learners confuse 'told' and 'said' and may think 'said the class' is needed.",
+      "only": "Learners are unsure where 'only' should go in a sentence.",
+      "that his sister had saved": "Learners expect 'which' for things and the simple past everywhere."
+    },
+    "key_slot": "B",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-E106",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "pronoun case and reference",
+    "varied_dimension": "no-compound used after a negated verb (double negative): nothing vs anything",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Although Rafael [A: searched] every shelf [B: on] the top floor, he [C: couldn't find] [D: nothing] about his great-grandfather.",
+    "choices": [
+      "searched",
+      "on",
+      "couldn't find",
+      "nothing"
+    ],
+    "correct_answer": "nothing",
+    "explanation": "Standard English uses only one negative word in a clause. 'Couldn't' is already negative, so it should be 'couldn't find anything'.",
+    "distractor_rationales": {
+      "searched": "'Searched' is the correct past form, and 'search' takes the place as its direct object.",
+      "on": "'On' is the right preposition for a floor of a building.",
+      "couldn't find": "'Couldn't' is the correct past of 'can't' and fits the past story."
+    },
+    "student_error": {
+      "searched": "Learners may think 'searched for' is always required.",
+      "on": "Learners may expect 'in' or 'at' before 'the top floor'.",
+      "couldn't find": "Learners may expect 'didn't can' or the past participle after 'couldn't'."
+    },
+    "key_slot": "D",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E107",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "word form",
+    "varied_dimension": "number-plus-noun adjective written as a plural phrase without a hyphen",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Our [A: two weeks] trip [B: down] the river [C: took] us past [D: many old castles].",
+    "choices": [
+      "two weeks",
+      "down",
+      "took",
+      "many old castles"
+    ],
+    "correct_answer": "two weeks",
+    "explanation": "When a length of time comes before a noun, it becomes one hyphenated adjective with a singular noun: 'our two-week trip'.",
+    "distractor_rationales": {
+      "down": "'Down the river' is the correct way to describe travel along a river.",
+      "took": "'Took' is the correct irregular past of 'take'.",
+      "many old castles": "'Many' is correct before the plural count noun 'castles'."
+    },
+    "student_error": {
+      "down": "Learners may expect 'on' or 'in' the river.",
+      "took": "Learners doubt irregular pasts and may expect 'taked'.",
+      "many old castles": "Learners may expect 'much' or 'a lot' before any large amount."
+    },
+    "key_slot": "A",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-E108",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "verb tense and aspect",
+    "varied_dimension": "past continuous used with the future time marker 'this time tomorrow'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "This time tomorrow, Selin [A: and her] class [B: were walking] [C: through] [D: an old fort].",
+    "choices": [
+      "and her",
+      "were walking",
+      "through",
+      "an old fort"
+    ],
+    "correct_answer": "were walking",
+    "explanation": "'This time tomorrow' is a moment in the future, so an action in progress then needs the future continuous: 'will be walking'.",
+    "distractor_rationales": {
+      "and her": "'Her' correctly refers to Selin.",
+      "through": "'Through' is right for moving inside a place from one side to the other.",
+      "an old fort": "'An' is correct before 'old', which begins with a vowel sound."
+    },
+    "student_error": {
+      "and her": "Learners may expect 'and his' or 'and their' when the subject becomes plural.",
+      "through": "Learners confuse 'through', 'across' and 'into'.",
+      "an old fort": "Learners may choose 'a' because 'fort' begins with a consonant."
+    },
+    "key_slot": "B",
+    "key_len_rank": 4
+  }
+]

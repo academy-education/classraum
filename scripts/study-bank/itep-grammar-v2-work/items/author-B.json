@@ -1,0 +1,752 @@
+[
+  {
+    "id": "ITG2-C014",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "modals",
+    "varied_dimension": "lack of obligation vs prohibition vs obligation (don't have to / mustn't / must / have to), decided by \"optional\"",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "In our plan for the week, Saturday practice is optional, so we ________ come.",
+    "choices": [
+      "don't have to",
+      "mustn't",
+      "must",
+      "have to"
+    ],
+    "correct_answer": "don't have to",
+    "explanation": "When something is optional, there is no obligation, so we use \"don't have to.\" \"Mustn't\" means it is not allowed, and \"must\" and \"have to\" mean it is required, which contradicts \"optional.\"",
+    "distractor_rationales": {
+      "mustn't": "Means coming is forbidden; the practice is only optional.",
+      "must": "Means coming is required, which contradicts \"optional.\"",
+      "have to": "Means coming is required, which contradicts \"optional.\""
+    },
+    "student_error": {
+      "mustn't": "Learners think \"mustn't\" is the negative of \"must\" in meaning, so it should mean \"not necessary.\"",
+      "must": "Learners read \"practice\" as a rule and choose the strongest obligation word.",
+      "have to": "Learners ignore \"optional\" and pick the common everyday obligation form."
+    },
+    "key_slot": "A",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-C015",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "passive voice",
+    "varied_dimension": "active vs simple past passive vs present passive vs past continuous active of \"build\", decided by \"in 2019\" and \"by a local company\"",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Our school's swimming pool ________ in 2019 by a local company.",
+    "choices": [
+      "is built",
+      "was built",
+      "was building",
+      "built"
+    ],
+    "correct_answer": "was built",
+    "explanation": "The pool did not do the building; a company built it, so the verb must be passive. \"In 2019\" is a finished past time, so we need the simple past passive: \"was built.\"",
+    "distractor_rationales": {
+      "is built": "Present passive; \"in 2019\" needs the past.",
+      "was building": "Active past continuous; the pool cannot build anything.",
+      "built": "Active simple past; the pool is not the builder, and \"by a local company\" needs the passive."
+    },
+    "student_error": {
+      "is built": "Learners forget to change the passive auxiliary to past.",
+      "was building": "Learners see \"was\" and think it makes the sentence passive.",
+      "built": "Learners use the past form alone because \"built\" already looks past and complete."
+    },
+    "key_slot": "B",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C016",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "prepositions after a head word",
+    "varied_dimension": "the preposition governed by the verb \"recover\" (from / of / about / against)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "In his match report, the coach wrote that our goalkeeper needed a full week to recover ________ the exhaustion of the tournament.",
+    "choices": [
+      "of",
+      "from",
+      "about",
+      "against"
+    ],
+    "correct_answer": "from",
+    "explanation": "The verb \"recover\" takes the preposition \"from\" before the thing a person gets better after: \"recover from an illness, an injury, or tiredness.\" No other preposition is used with this meaning.",
+    "distractor_rationales": {
+      "of": "\"Recover of\" is not used in modern English.",
+      "about": "\"About\" introduces a topic, not the cause someone gets better from.",
+      "against": "\"Against\" suggests opposition or protection, not getting better."
+    },
+    "student_error": {
+      "of": "Learners copy \"of\" from the nearby phrase \"of the tournament\" or from first-language patterns.",
+      "about": "Learners link \"recover\" to \"feel better about something.\"",
+      "against": "Learners think of fighting tiredness and choose \"against,\" as in \"protect against.\""
+    },
+    "key_slot": "B",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-C017",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "count/non-count and quantifiers",
+    "varied_dimension": "few / a few / little / a little with a plural count noun after \"very\"",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "According to the match report, very ________ fans stayed for the second half because of the cold wind.",
+    "choices": [
+      "a little",
+      "a few",
+      "little",
+      "few"
+    ],
+    "correct_answer": "few",
+    "explanation": "\"Fans\" is a plural count noun, so we need \"few,\" not \"little.\" After \"very\" we use \"few\" without \"a,\" and it means \"not many,\" which fits a report about fans leaving.",
+    "distractor_rationales": {
+      "a little": "Used with non-count nouns, and \"very\" cannot come before \"a.\"",
+      "a few": "\"Very\" cannot come before \"a\"; \"very a few\" is not English.",
+      "little": "Used with non-count nouns, but \"fans\" is countable."
+    },
+    "student_error": {
+      "a little": "Learners treat \"a little\" as a general word for a small amount.",
+      "a few": "Learners know \"fans\" is countable and choose the familiar \"a few\" without noticing \"very.\"",
+      "little": "Learners link \"little\" with \"very\" because \"very little\" is a common phrase."
+    },
+    "key_slot": "D",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-C018",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "verb tense and aspect",
+    "varied_dimension": "past simple vs past continuous vs present perfect vs present perfect continuous for an action interrupted by a \"when\" clause",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "We ________ sprints on the field when lightning suddenly flashed, so we stopped and hurried inside.",
+    "choices": [
+      "ran",
+      "were running",
+      "have run",
+      "have been running"
+    ],
+    "correct_answer": "were running",
+    "explanation": "The sprints were in progress when the lightning interrupted them, and then we stopped. An action in progress that is interrupted by a short past event takes the past continuous: \"were running.\"",
+    "distractor_rationales": {
+      "ran": "Simple past shows a completed action, but we stopped in the middle of the sprints.",
+      "have run": "Present perfect cannot be used with a finished past event like \"when lightning flashed.\"",
+      "have been running": "Present perfect continuous connects to now, but the whole story is in the past."
+    },
+    "student_error": {
+      "ran": "Learners use the simple past for every past action.",
+      "have run": "Learners use the present perfect for any recent past action, as in many first languages.",
+      "have been running": "Learners know the action was ongoing and choose the longest \"continuous\" form."
+    },
+    "key_slot": "B",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C019",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "parallel structure",
+    "varied_dimension": "four forms of \"jog\" (base / -s / past / -ing) completing a list of gerund phrases",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "This week's training plan includes lifting weights on Monday, running hills on Wednesday, and ________ on Friday.",
+    "choices": [
+      "jog around the lake",
+      "jogs around the lake",
+      "jogged around the lake",
+      "jogging around the lake"
+    ],
+    "correct_answer": "jogging around the lake",
+    "explanation": "Items joined in a list must have the same grammatical form. The first two items, \"lifting weights\" and \"running hills,\" are gerund phrases, so the third must be one too: \"jogging around the lake.\"",
+    "distractor_rationales": {
+      "jog around the lake": "Base form breaks the pattern of gerund phrases after \"includes.\"",
+      "jogs around the lake": "A present-tense verb cannot be an object of \"includes\" in a list of gerunds.",
+      "jogged around the lake": "A past-tense verb breaks the list and does not fit after \"includes.\""
+    },
+    "student_error": {
+      "jog around the lake": "Learners treat the last item as a new instruction (\"and jog\") instead of part of the list.",
+      "jogs around the lake": "Learners make it agree with the singular subject \"plan,\" as if it were a second main verb.",
+      "jogged around the lake": "Learners think of the plan as a finished week and use the past."
+    },
+    "key_slot": "D",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-C020",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "pronoun case and reference",
+    "varied_dimension": "possessive adjective vs possessive pronoun vs subject pronoun vs reflexive before a noun",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Sakura forgot ________ goggles, so the coach told her to borrow a pair.",
+    "choices": [
+      "hers",
+      "her",
+      "she",
+      "herself"
+    ],
+    "correct_answer": "her",
+    "explanation": "Before a noun (\"goggles\") we need a possessive adjective: \"her.\" \"Hers\" stands alone without a noun, as in \"The goggles are hers.\"",
+    "distractor_rationales": {
+      "hers": "A possessive pronoun cannot come before a noun.",
+      "she": "A subject pronoun cannot show possession.",
+      "herself": "A reflexive pronoun cannot come before a noun to show possession."
+    },
+    "student_error": {
+      "hers": "Learners think \"hers\" is the \"complete\" possessive, like \"his.\"",
+      "she": "Learners mix up pronoun forms that sound similar.",
+      "herself": "Learners want to stress that the goggles are her own."
+    },
+    "key_slot": "B",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-C021",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "conjunctions and connectors",
+    "varied_dimension": "although (+ clause) vs despite / in spite of / because of (+ noun phrase) before a full clause",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Noah kept running laps ________ it was raining hard.",
+    "choices": [
+      "in spite of",
+      "despite",
+      "although",
+      "because of"
+    ],
+    "correct_answer": "although",
+    "explanation": "\"It was raining hard\" is a full clause with a subject and a verb, so it needs a conjunction: \"although.\" \"Despite,\" \"in spite of\" and \"because of\" must be followed by a noun phrase, such as \"the heavy rain.\"",
+    "distractor_rationales": {
+      "in spite of": "Needs a noun phrase, not a clause with a subject and verb.",
+      "despite": "Needs a noun phrase, not a clause with a subject and verb.",
+      "because of": "Needs a noun phrase, and it also gives the wrong meaning."
+    },
+    "student_error": {
+      "in spite of": "Learners know it has the right meaning and ignore what follows.",
+      "despite": "Learners use \"despite\" like \"although\" because both show contrast.",
+      "because of": "Learners see the rain as the reason for something and use the cause connector."
+    },
+    "key_slot": "C",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-C022",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "modifier placement",
+    "varied_dimension": "which noun the phrase \"with a big red bow\" sits next to (trophy / captain / referee, mid-sentence or fronted)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "The match report says the players and the referee wore plain uniforms, but the trophy was decorated. After the final whistle, ________.",
+    "choices": [
+      "the referee handed the trophy, with a big red bow, to our captain",
+      "the referee handed the trophy to our captain with a big red bow",
+      "the referee, with a big red bow, handed the trophy to our captain",
+      "with a big red bow, the referee handed the trophy to our captain"
+    ],
+    "correct_answer": "the referee handed the trophy, with a big red bow, to our captain",
+    "explanation": "A describing phrase should sit right next to the noun it describes. The first sentence says only the trophy was decorated, so \"with a big red bow\" must come right after \"the trophy.\"",
+    "distractor_rationales": {
+      "the referee handed the trophy to our captain with a big red bow": "The phrase now describes the captain, who wore a plain uniform.",
+      "the referee, with a big red bow, handed the trophy to our captain": "The phrase now describes the referee, who wore a plain uniform.",
+      "with a big red bow, the referee handed the trophy to our captain": "The opening phrase describes the subject, the referee, who wore a plain uniform."
+    },
+    "student_error": {
+      "the referee handed the trophy to our captain with a big red bow": "Learners put all extra information at the end of the sentence.",
+      "the referee, with a big red bow, handed the trophy to our captain": "Learners think commas make an extra phrase fit anywhere.",
+      "with a big red bow, the referee handed the trophy to our captain": "Learners move extra details to the front of the sentence for style without checking which noun they describe."
+    },
+    "key_slot": "A",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C023",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "adjective vs adverb",
+    "varied_dimension": "adjective vs adverb after the linking verb \"felt\" (uncomfortable / comfortable / comfortably / painfully)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Although Bella's new running shoes looked great in the store, after three laps around the track they felt so ________ that she took them off.",
+    "choices": [
+      "uncomfortable",
+      "comfortably",
+      "painfully",
+      "comfortable"
+    ],
+    "correct_answer": "uncomfortable",
+    "explanation": "\"Feel\" here is a linking verb: it describes the shoes, not an action, so it takes an adjective. \"Although\" sets up a contrast with \"looked great,\" and \"she took them off\" shows they hurt, so the adjective must be negative: \"uncomfortable.\"",
+    "distractor_rationales": {
+      "comfortably": "An adverb cannot follow a linking verb, and the meaning breaks the \"although\" contrast.",
+      "painfully": "An adverb cannot follow \"felt\" when it describes the subject.",
+      "comfortable": "Correct form, but nobody takes off shoes because they feel comfortable, and \"although\" needs a contrast."
+    },
+    "student_error": {
+      "comfortably": "Learners think a verb must always be followed by an adverb.",
+      "painfully": "Learners know the shoes hurt and add \"-ly\" because it follows a verb.",
+      "comfortable": "Learners focus on the adjective form and miss the contrast set up by \"although.\""
+    },
+    "key_slot": "A",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-C024",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "reported speech",
+    "varied_dimension": "word order (question vs statement) and tense in a reported wh-question after past \"asked\"",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Before last Saturday's final, Freya walked onto the field and asked the referee ________.",
+    "choices": [
+      "when did the match begin",
+      "when will the match begin",
+      "when the match will begin",
+      "when the match would begin"
+    ],
+    "correct_answer": "when the match would begin",
+    "explanation": "A reported question uses statement word order (subject before verb), with no \"did\" and no inversion. Because \"asked\" is past and the match was last Saturday, \"will\" moves back to \"would.\"",
+    "distractor_rationales": {
+      "when did the match begin": "Uses question word order with \"did,\" which reported questions do not use.",
+      "when will the match begin": "Uses question word order; the subject must come before the verb.",
+      "when the match will begin": "Correct word order, but the match was in the past, so \"will\" must become \"would.\""
+    },
+    "student_error": {
+      "when did the match begin": "Learners copy the direct question exactly.",
+      "when will the match begin": "Learners keep the order of the original question \"When will the match begin?\"",
+      "when the match will begin": "Learners fix the word order but forget to move the tense back."
+    },
+    "key_slot": "D",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-C025",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "word form",
+    "varied_dimension": "verb vs noun vs adjective vs past form of one root (decide) after the modal \"must\"",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "My coach says that before each match, the players must ________ who will be captain.",
+    "choices": [
+      "decision",
+      "decided",
+      "decide",
+      "decisive"
+    ],
+    "correct_answer": "decide",
+    "explanation": "After a modal verb like \"must,\" we use the base form of a verb: \"must decide.\" \"Decision\" is a noun and \"decisive\" is an adjective, so neither can follow \"must\" here.",
+    "distractor_rationales": {
+      "decision": "A noun cannot follow \"must\"; it needs a verb.",
+      "decided": "After \"must\" the verb stays in its base form.",
+      "decisive": "An adjective cannot be the main verb after \"must.\""
+    },
+    "student_error": {
+      "decision": "Learners remember the phrase \"make a decision\" and choose the noun.",
+      "decided": "Learners add \"-ed\" because the sentence talks about choosing.",
+      "decisive": "Learners pick a familiar word from the same family without checking its part of speech."
+    },
+    "key_slot": "C",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-C026",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "subject-verb agreement",
+    "varied_dimension": "singular vs plural, past vs present form of \"be\", with a long prepositional phrase between subject and verb",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Yesterday afternoon, the crate of water bottles for both relay teams ________ delivered to the track.",
+    "choices": [
+      "were",
+      "is",
+      "was",
+      "are"
+    ],
+    "correct_answer": "was",
+    "explanation": "The subject is \"the crate,\" which is singular; \"of water bottles for both relay teams\" only describes it. \"Yesterday afternoon\" needs the past, so the verb is \"was.\"",
+    "distractor_rationales": {
+      "were": "Plural; the verb agrees with \"bottles\" or \"teams\" instead of the subject \"crate.\"",
+      "is": "Singular, but present tense does not fit \"yesterday afternoon.\"",
+      "are": "Plural and present; wrong number and wrong tense."
+    },
+    "student_error": {
+      "were": "Learners make the verb agree with the nearest plural noun.",
+      "is": "Learners find the singular subject but forget the time marker at the start.",
+      "are": "Learners agree with \"teams,\" the noun right before the blank."
+    },
+    "key_slot": "C",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E013",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "parallel structure",
+    "varied_dimension": "infinitive vs gerund phrase as the first item in a list of gerunds after \"avoid\"",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "My coach's advice is to avoid [A: to skip breakfast], [B: staying up late], and [C: worrying] [D: about my time].",
+    "choices": [
+      "to skip breakfast",
+      "staying up late",
+      "worrying",
+      "about my time"
+    ],
+    "correct_answer": "to skip breakfast",
+    "explanation": "Items in a list must share the same form, and \"avoid\" is followed by gerunds. \"Staying up late\" and \"worrying\" are gerunds, so the first item must be \"skipping breakfast,\" not \"to skip breakfast.\"",
+    "distractor_rationales": {
+      "staying up late": "A gerund phrase, correct after \"avoid\" and parallel with the others.",
+      "worrying": "A gerund, parallel with \"staying up late.\"",
+      "about my time": "\"Worry about\" is the correct verb-preposition pair."
+    },
+    "student_error": {
+      "staying up late": "Learners doubt the phrasal verb \"stay up.\"",
+      "worrying": "Learners think it should be \"to worry\" because \"to avoid\" comes earlier.",
+      "about my time": "Learners think \"worry for\" or \"worry of\" is correct."
+    },
+    "key_slot": "A",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-E014",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "modifier placement",
+    "varied_dimension": "a \"with\" phrase describing an object placed after a later noun in a relative clause",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "During practice, Lina [A: finally found] the stopwatch [B: that] the coach [C: had lost] under the bench [D: with a cracked glass face].",
+    "choices": [
+      "finally found",
+      "that",
+      "had lost",
+      "with a cracked glass face"
+    ],
+    "correct_answer": "with a cracked glass face",
+    "explanation": "A describing phrase must sit next to the noun it describes. Here \"with a cracked glass face\" describes the stopwatch, but it comes after \"the bench,\" so it seems to describe the bench. It should follow \"the stopwatch.\"",
+    "distractor_rationales": {
+      "finally found": "Correct simple past of the irregular verb \"find.\"",
+      "that": "Correct relative pronoun for a thing.",
+      "had lost": "Past perfect correctly shows the losing happened before the finding."
+    },
+    "student_error": {
+      "finally found": "Learners doubt the irregular past \"found\" and the adverb position.",
+      "that": "Learners think \"which\" or \"who\" is required here.",
+      "had lost": "Learners think the simple past \"lost\" must be used."
+    },
+    "key_slot": "D",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-E015",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "comparatives and superlatives",
+    "varied_dimension": "comparative \"the better\" vs superlative \"the best\" when comparing more than two",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Arjun is [A: the better runner] [B: on] our team of twelve, but his swimming [C: is still worse] [D: than his younger sister's].",
+    "choices": [
+      "the better runner",
+      "on",
+      "is still worse",
+      "than his younger sister's"
+    ],
+    "correct_answer": "the better runner",
+    "explanation": "When we compare one person with a whole group of more than two, we use the superlative: \"the best runner on our team of twelve.\" \"The better\" is only for comparing two.",
+    "distractor_rationales": {
+      "on": "\"On a team\" is the correct preposition.",
+      "is still worse": "\"Worse\" is the correct irregular comparative of \"bad,\" comparing two people's swimming.",
+      "than his younger sister's": "Correctly compares his swimming with his sister's swimming."
+    },
+    "student_error": {
+      "on": "Learners think \"in our team\" or \"of our team\" is needed.",
+      "is still worse": "Learners expect \"more bad\" or \"worst.\"",
+      "than his younger sister's": "Learners think the possessive \"'s\" is a mistake and want \"than his younger sister.\""
+    },
+    "key_slot": "A",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-E016",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "reported speech",
+    "varied_dimension": "question word order (could we) vs statement order (we could) inside a reported wh-question",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "At the start of the season, Coach Nakamura [A: asked] each of us [B: privately] how far [C: could we] run [D: without stopping].",
+    "choices": [
+      "asked",
+      "privately",
+      "could we",
+      "without stopping"
+    ],
+    "correct_answer": "could we",
+    "explanation": "A reported question uses statement word order: the subject comes before the verb. The sentence should say \"how far we could run,\" not \"how far could we run.\"",
+    "distractor_rationales": {
+      "asked": "Correct past tense reporting verb for a question.",
+      "privately": "A correct adverb describing how he asked.",
+      "without stopping": "\"Without\" is correctly followed by a gerund."
+    },
+    "student_error": {
+      "asked": "Learners think \"asked to\" or \"asked for\" is needed.",
+      "privately": "Learners think an adjective \"private\" should be used.",
+      "without stopping": "Learners think \"without to stop\" or \"without stop\" is correct."
+    },
+    "key_slot": "C",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E017",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "pronoun case and reference",
+    "varied_dimension": "possessive adjective \"their\" used where the possessive pronoun \"theirs\" is needed at the end of a clause",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Our relay team and the visitors [A: crossed] the line [B: together], but the judges [C: quickly decided] that the win [D: was their], not ours.",
+    "choices": [
+      "crossed",
+      "together",
+      "quickly decided",
+      "was their"
+    ],
+    "correct_answer": "was their",
+    "explanation": "\"Their\" must be followed by a noun (\"their win\"). When no noun follows, we use the possessive pronoun, which also matches \"ours\": \"the win was theirs, not ours.\"",
+    "distractor_rationales": {
+      "crossed": "Correct simple past of a regular verb.",
+      "together": "A correct adverb meaning \"at the same time.\"",
+      "quickly decided": "A correct adverb before a simple past verb."
+    },
+    "student_error": {
+      "crossed": "Learners doubt the spelling of the regular past \"crossed.\"",
+      "together": "Learners think \"in the same time\" or \"together with\" is needed.",
+      "quickly decided": "Learners think an adjective \"quick\" can describe a verb."
+    },
+    "key_slot": "D",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-E018",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "gerund vs infinitive",
+    "varied_dimension": "gerund vs infinitive after \"refuse\" (refuse to quit)",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Even after the semifinal loss, Emeka refuses [A: quitting] and [B: hopes to compete] [C: in the regional tournament] [D: next spring].",
+    "choices": [
+      "quitting",
+      "hopes to compete",
+      "in the regional tournament",
+      "next spring"
+    ],
+    "correct_answer": "quitting",
+    "explanation": "The verb \"refuse\" is followed by an infinitive, not a gerund: \"refuses to quit.\" Other verbs like this include \"decide,\" \"hope,\" \"plan\" and \"agree.\"",
+    "distractor_rationales": {
+      "hopes to compete": "\"Hope\" is correctly followed by an infinitive.",
+      "in the regional tournament": "\"Compete in\" is the correct preposition.",
+      "next spring": "Correct time phrase with no preposition before \"next.\""
+    },
+    "student_error": {
+      "hopes to compete": "Learners think \"hopes competing\" is correct, as with \"enjoy.\"",
+      "in the regional tournament": "Learners think \"compete at\" or \"compete on\" is needed.",
+      "next spring": "Learners add \"in\" before \"next spring.\""
+    },
+    "key_slot": "A",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-E019",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "conjunctions and connectors",
+    "varied_dimension": "\"because\" (+ clause) used before a noun phrase where \"because of\" is needed",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "We [A: played] basketball [B: inside the gym] [C: because] the heavy rain [D: this morning].",
+    "choices": [
+      "played",
+      "inside the gym",
+      "because",
+      "this morning"
+    ],
+    "correct_answer": "because",
+    "explanation": "\"Because\" must be followed by a clause with a subject and verb. \"The heavy rain this morning\" is a noun phrase, so we need \"because of.\"",
+    "distractor_rationales": {
+      "played": "Correct simple past of a regular verb.",
+      "inside the gym": "\"Inside\" is a correct preposition of place.",
+      "this morning": "Correct time phrase; no preposition is used with \"this.\""
+    },
+    "student_error": {
+      "played": "Learners think a sport needs \"played the basketball.\"",
+      "inside the gym": "Learners think \"in\" is the only correct preposition.",
+      "this morning": "Learners think it should be \"in this morning.\""
+    },
+    "key_slot": "C",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E020",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "relative pronouns and clauses",
+    "varied_dimension": "\"who\" used where possessive \"whose\" is needed before a noun",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Tariq is [A: the swimmer] [B: who] goggles [C: broke] [D: during the race].",
+    "choices": [
+      "the swimmer",
+      "who",
+      "broke",
+      "during the race"
+    ],
+    "correct_answer": "who",
+    "explanation": "To show possession in a relative clause, we use \"whose\" before the noun: \"the swimmer whose goggles broke.\" \"Who\" cannot show possession.",
+    "distractor_rationales": {
+      "the swimmer": "\"The\" is correct for a specific swimmer.",
+      "broke": "Correct irregular past of \"break.\"",
+      "during the race": "\"During\" is correct before a noun for a period of time."
+    },
+    "student_error": {
+      "the swimmer": "Learners think \"a swimmer\" is needed.",
+      "broke": "Learners think the past of \"break\" is \"breaked.\"",
+      "during the race": "Learners confuse \"during\" and \"while.\""
+    },
+    "key_slot": "B",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-E021",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "subject-verb agreement",
+    "varied_dimension": "verb agreeing with the plural noun inside \"of balls\" instead of the singular head \"bag\"",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "The bag [A: of] balls [B: for] our class [C: sit in the corner] [D: by the door].",
+    "choices": [
+      "of",
+      "for",
+      "sit in the corner",
+      "by the door"
+    ],
+    "correct_answer": "sit in the corner",
+    "explanation": "The subject is \"the bag,\" which is singular; \"of balls\" only describes it. The verb must be singular: \"sits in the corner.\"",
+    "distractor_rationales": {
+      "of": "\"A bag of\" is the correct way to show what the bag holds.",
+      "for": "\"For\" correctly shows who the balls belong to.",
+      "by the door": "\"By\" is a correct preposition meaning \"next to.\""
+    },
+    "student_error": {
+      "of": "Learners use \"with\" for containers, as in \"a bag with balls.\"",
+      "for": "Learners think \"of our class\" is needed.",
+      "by the door": "Learners think \"near of the door\" or \"at the door\" is needed."
+    },
+    "key_slot": "C",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-E022",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "verb tense and aspect",
+    "varied_dimension": "past continuous \"was hearing\" used for the short interrupting event where past simple \"heard\" is needed",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Mateo [A: was still tying] his running shoes in the locker room when he [B: was hearing] the coach [C: calling everyone] [D: out onto the field].",
+    "choices": [
+      "was still tying",
+      "was hearing",
+      "calling everyone",
+      "out onto the field"
+    ],
+    "correct_answer": "was hearing",
+    "explanation": "The longer action in progress takes the past continuous (\"was still tying\"), and the short event that interrupts it takes the past simple: \"when he heard.\" \"Hear\" in this sense is not normally used in the continuous.",
+    "distractor_rationales": {
+      "was still tying": "Correct past continuous for the action in progress.",
+      "calling everyone": "\"Hear someone doing something\" correctly uses the \"-ing\" form.",
+      "out onto the field": "\"Out onto\" correctly shows movement to the field."
+    },
+    "student_error": {
+      "was still tying": "Learners think the simple past \"still tied\" is needed.",
+      "calling everyone": "Learners think \"to call\" or \"call\" is needed after \"the coach.\"",
+      "out onto the field": "Learners think \"out on the field\" or \"to the field\" is needed."
+    },
+    "key_slot": "B",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-E023",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "conditionals",
+    "varied_dimension": "\"will\" in the if-clause of a first conditional where the present simple is needed",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "[A: According to] the training plan, if it [B: will rain] on Saturday, we [C: will train] [D: inside] the gym instead.",
+    "choices": [
+      "According to",
+      "will rain",
+      "will train",
+      "inside"
+    ],
+    "correct_answer": "will rain",
+    "explanation": "In a first conditional, the if-clause uses the present simple and the main clause uses \"will\": \"if it rains on Saturday, we will train inside the gym.\"",
+    "distractor_rationales": {
+      "According to": "\"According to\" is the correct fixed phrase.",
+      "will train": "\"Will\" is correct in the main clause of a first conditional.",
+      "inside": "\"Inside the gym\" is a correct preposition of place."
+    },
+    "student_error": {
+      "According to": "Learners say \"according with\" or \"according of.\"",
+      "will train": "Learners think both clauses need the present, or that \"would\" is needed.",
+      "inside": "Learners think \"inside of the gym\" or \"at the gym\" is required."
+    },
+    "key_slot": "B",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E024",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "word form",
+    "varied_dimension": "noun \"success\" used after \"to\" where the verb \"succeed\" is needed",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Everyone [A: worked] hard [B: all week], so we [C: hope] to [D: success] on Saturday.",
+    "choices": [
+      "worked",
+      "all week",
+      "hope",
+      "success"
+    ],
+    "correct_answer": "success",
+    "explanation": "After \"hope to,\" we need a verb in its base form. \"Success\" is a noun; the verb from the same family is \"succeed\": \"we hope to succeed.\"",
+    "distractor_rationales": {
+      "worked": "Correct simple past of a regular verb.",
+      "all week": "\"All week\" is a correct time phrase with no article.",
+      "hope": "\"Hope\" is correctly followed by \"to\" and a verb."
+    },
+    "student_error": {
+      "worked": "Learners think \"Everyone\" is plural and expect a different verb form.",
+      "all week": "Learners think \"all the week\" is needed.",
+      "hope": "Learners confuse \"hope\" and \"wish.\""
+    },
+    "key_slot": "D",
+    "key_len_rank": 3
+  }
+]

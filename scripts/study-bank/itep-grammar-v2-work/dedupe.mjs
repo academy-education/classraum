@@ -60,7 +60,7 @@ const STOPCAPS = new Set(['I', 'Mr', 'Ms', 'Mrs', 'Dr', 'Coach', 'Professor', 'R
   // common sentence starters (a capital at the start of a sentence is not a name)
   'Yesterday', 'Today', 'Tomorrow', 'Tonight', 'Last', 'Next', 'Usually', 'Often', 'Sometimes', 'Please', 'Instead',
   'Despite', 'However', 'Therefore', 'Moreover', 'Unless', 'Whenever', 'Every', 'Each', 'Most', 'Many', 'Some', 'Both',
-  'Everyone', 'Nobody', 'Someone', 'Anyone', 'Visitors', 'Students', 'Passengers', 'Remember', 'Don\'t', 'Had', 'Were', 'Should'])
+  'Everyone', 'Nobody', 'Someone', 'Anyone', 'Visitors', 'Students', 'Passengers', 'Remember', 'Don\'t', 'Had', 'Were', 'Should', 'Dear', 'Hi', 'Hello', 'Attention', 'Welcome', 'Good'])
 // A sentence-initial -ing / -ed / -ly word (Walking to school, ...; Built in 1900, ...; Luckily, ...) is not a name.
 const initialForm = w => /^[A-Z][a-z]+(ing|ed|ly)$/.test(w)
 
@@ -70,7 +70,7 @@ const sentenceOf = it => {
 }
 const words = s => s.match(/[A-Za-z][A-Za-z'-]*/g) || []
 const lowerSeen = new Set(all.flatMap(it => words(sentenceOf(it)).filter(w => w === w.toLowerCase())))
-const isName = w => /^[A-Z]/.test(w) && !initialForm(w) && !STOPCAPS.has(w) && !STOP.has(w.toLowerCase()) && !lowerSeen.has(w.toLowerCase())
+const isName = w0 => { const w = w0.replace(/'s$/, ''); return /^[A-Z]/.test(w) && !initialForm(w) && !STOPCAPS.has(w) && !STOP.has(w.toLowerCase()) && !lowerSeen.has(w.toLowerCase()) }
 const stem = w => {
   let s = w.toLowerCase().replace(/'s$/, '')
   if (s.length > 4 && s.endsWith('ies')) return s.slice(0, -3) + 'y'
@@ -81,7 +81,7 @@ const isContent = w => w !== 'NAME' && !STOP.has(w.toLowerCase()) && w.length >=
 
 for (const it of all) {
   const ws = words(sentenceOf(it))
-  it.names = new Set(ws.filter(isName))
+  it.names = new Set(ws.filter(isName).map(w => w.replace(/'s$/, '')))
   const masked = ws.map(w => isName(w) ? 'NAME' : w.toLowerCase())
   it.roots = new Set(masked.filter(isContent).map(stem))
   it.keyRoots = new Set(words(it.correct_answer).filter(w => isContent(w) && !isName(w)).map(stem))

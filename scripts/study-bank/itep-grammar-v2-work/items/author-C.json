@@ -1,0 +1,752 @@
+[
+  {
+    "id": "ITG2-C027",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "subject-verb agreement",
+    "varied_dimension": "there + be: is / was / were / are, decided by the plural noun after the verb and the past time marker 'last night'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Last night there ________ dirty paw prints all over the kitchen floor.",
+    "choices": [
+      "is",
+      "was",
+      "were",
+      "are"
+    ],
+    "correct_answer": "were",
+    "explanation": "After 'there', the verb agrees with the noun that follows it. 'Paw prints' is plural and 'last night' is past, so the past plural 'were' is correct.",
+    "distractor_rationales": {
+      "is": "Singular and present; the noun is plural and the time is past.",
+      "was": "Past, but singular; 'paw prints' is plural.",
+      "are": "Plural, but present; 'last night' needs the past."
+    },
+    "student_error": {
+      "is": "Learners treat 'there is' as a fixed phrase and never change it.",
+      "was": "Learners match the past tense but not the plural noun that comes after the verb.",
+      "are": "Learners notice the plural noun but miss the past time marker at the start."
+    },
+    "key_slot": "C",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-C028",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "word form",
+    "varied_dimension": "one root (excite) as noun / adjective (-ed) / adjective (-ing) / verb, decided by the possessive 'his' before the blank",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "My little brother could not hide his ________ when our new puppy arrived home.",
+    "choices": [
+      "excited",
+      "excitement",
+      "exciting",
+      "excites"
+    ],
+    "correct_answer": "excitement",
+    "explanation": "After a possessive like 'his', we need a noun. The noun form of 'excite' is 'excitement', made with the suffix -ment.",
+    "distractor_rationales": {
+      "excited": "An adjective; 'his' must be followed by a noun.",
+      "exciting": "An adjective describing something that causes excitement, not a noun.",
+      "excites": "A verb form; it cannot follow 'his'."
+    },
+    "student_error": {
+      "excited": "Learners know 'he was excited' and reuse the adjective for the feeling itself.",
+      "exciting": "Learners confuse -ing and -ed adjectives and think any -ing word can act as a noun.",
+      "excites": "Learners see a verb they know and add -s because the subject is 'he'."
+    },
+    "key_slot": "B",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-C029",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "passive voice",
+    "varied_dimension": "has/have + been + fixed/fixing: present perfect passive vs present perfect continuous active, with singular vs plural auxiliary",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "The kitchen tap ________, so it does not drip anymore.",
+    "choices": [
+      "have been fixing",
+      "has been fixing",
+      "have been fixed",
+      "has been fixed"
+    ],
+    "correct_answer": "has been fixed",
+    "explanation": "A tap cannot fix anything; someone fixed it, so the passive 'been fixed' is needed. 'The kitchen tap' is singular, so the auxiliary is 'has'.",
+    "distractor_rationales": {
+      "have been fixing": "Active and plural; the tap does not do the fixing, and the subject is singular.",
+      "has been fixing": "Active continuous; it says the tap is doing the fixing.",
+      "have been fixed": "Passive, but 'have' does not agree with the singular subject 'tap'."
+    },
+    "student_error": {
+      "have been fixing": "Learners link 'have been' with the present perfect and choose the -ing form they hear often.",
+      "has been fixing": "Learners forget that the subject receives the action and use the active form.",
+      "have been fixed": "Learners think of 'kitchen' and the plural idea of many pipes instead of the subject 'tap'."
+    },
+    "key_slot": "D",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-C030",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "comparatives and superlatives",
+    "varied_dimension": "heavy / as heavy / heavier / the heaviest, decided by the 'as' that follows the blank after 'not'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Although the new sofa is not ________ as the old one, Elena and her dad still needed help carrying it up the stairs.",
+    "choices": [
+      "heavy",
+      "as heavy",
+      "heavier",
+      "the heaviest"
+    ],
+    "correct_answer": "as heavy",
+    "explanation": "An equal comparison uses 'as + adjective + as'. Because the second 'as' already follows the blank, the blank must be 'as heavy'.",
+    "distractor_rationales": {
+      "heavy": "Without the first 'as', 'not heavy as the old one' is not a complete comparison.",
+      "heavier": "A comparative needs 'than', not 'as'.",
+      "the heaviest": "A superlative compares three or more and cannot be followed by 'as'."
+    },
+    "student_error": {
+      "heavy": "Learners forget the first 'as' because only one is stressed in speech.",
+      "heavier": "Learners see two things being compared and choose the comparative automatically.",
+      "the heaviest": "Learners translate 'the most heavy' from their first language when a sentence sounds strong."
+    },
+    "key_slot": "B",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C031",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "count/non-count and quantifiers",
+    "varied_dimension": "any / some / no / a before a non-count noun inside a negative statement",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "We don't have ________ flour, so Dad can't bake bread this weekend.",
+    "choices": [
+      "any",
+      "some",
+      "no",
+      "a"
+    ],
+    "correct_answer": "any",
+    "explanation": "In negative sentences we use 'any', not 'some'. 'Flour' is non-count, so 'a' is not possible, and 'don't ... no' would be a double negative.",
+    "distractor_rationales": {
+      "some": "'Some' is used in positive statements, not after 'don't'.",
+      "no": "'Don't have no' is a double negative.",
+      "a": "'Flour' is a non-count noun and cannot take 'a'."
+    },
+    "student_error": {
+      "some": "Learners learn 'some' first and use it everywhere.",
+      "no": "In many languages two negatives are normal, so learners copy that pattern.",
+      "a": "Learners count foods like 'a bread' or 'a flour' as in their first language."
+    },
+    "key_slot": "A",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C032",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "pronoun case and reference",
+    "varied_dimension": "you / yourselves / yourself / you yourself as the object of 'cut' when the speaker addresses one person",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "\"Dev, hold the knife by the handle, or you might cut ________,\" Dad said while we were cooking dinner.",
+    "choices": [
+      "you",
+      "yourselves",
+      "yourself",
+      "you yourself"
+    ],
+    "correct_answer": "yourself",
+    "explanation": "When the object is the same person as the subject, English uses a reflexive pronoun. Dad is talking to one person, Dev, so the singular 'yourself' is correct.",
+    "distractor_rationales": {
+      "you": "An object pronoun; the person cut is the same as the subject, so a reflexive is needed.",
+      "yourselves": "Plural; Dad is speaking to Dev alone.",
+      "you yourself": "An emphatic form used next to a subject, not as the object of 'cut'."
+    },
+    "student_error": {
+      "you": "Many languages do not use a reflexive here, so learners use the plain object pronoun.",
+      "yourselves": "Learners know 'you' can be plural and pick the longer form without checking who is addressed.",
+      "you yourself": "Learners have seen 'you yourself said' and think it adds emphasis anywhere."
+    },
+    "key_slot": "C",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-C033",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "relative pronouns and clauses",
+    "varied_dimension": "where / when / which / whose after a time noun ('summer') introducing a complete clause",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Grandma still talks about the rainy summer ________ our whole family moved into the old farmhouse by the river.",
+    "choices": [
+      "where",
+      "when",
+      "which",
+      "whose"
+    ],
+    "correct_answer": "when",
+    "explanation": "After a noun of time like 'summer', the relative adverb 'when' introduces a clause that is already complete. 'Our whole family moved into the old farmhouse' has nothing missing, so 'when' is correct.",
+    "distractor_rationales": {
+      "where": "'Where' follows a place noun; 'summer' is a time.",
+      "which": "'Which' must fill a missing subject or object, but the clause is complete.",
+      "whose": "'Whose' must be followed by a noun that belongs to 'summer'."
+    },
+    "student_error": {
+      "where": "Learners see 'farmhouse' and 'river' later in the sentence and think of a place.",
+      "which": "Learners use 'which' for every non-person noun.",
+      "whose": "Learners confuse 'whose' with other wh- words because they look alike."
+    },
+    "key_slot": "B",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-C034",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "gerund vs infinitive",
+    "varied_dimension": "making / to make / he makes / to making after the preposition 'without'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Felix never comes downstairs for breakfast without ________ his bed first.",
+    "choices": [
+      "making",
+      "to make",
+      "he makes",
+      "to making"
+    ],
+    "correct_answer": "making",
+    "explanation": "After a preposition such as 'without', a verb takes the -ing form. So the correct phrase is 'without making his bed'.",
+    "distractor_rationales": {
+      "to make": "An infinitive cannot follow a preposition.",
+      "he makes": "A preposition cannot be followed by a clause with a subject and verb.",
+      "to making": "'To' is not needed after 'without'; 'without' is already the preposition."
+    },
+    "student_error": {
+      "to make": "Learners use 'to + verb' as the default way to add a second verb.",
+      "he makes": "Learners treat 'without' like a conjunction such as 'before' or 'if'.",
+      "to making": "Learners remember 'look forward to making' and add 'to' before every -ing form."
+    },
+    "key_slot": "A",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-C035",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "verb tense and aspect",
+    "varied_dimension": "mopped / has been mopping / will mop / had mopped, decided by a past 'by the time' clause after the blank",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Nia ________ the whole kitchen floor by the time Mom came home from work.",
+    "choices": [
+      "mopped",
+      "has been mopping",
+      "will mop",
+      "had mopped"
+    ],
+    "correct_answer": "had mopped",
+    "explanation": "'By the time Mom came home' sets a point in the past. An action finished before that past point uses the past perfect, 'had mopped'.",
+    "distractor_rationales": {
+      "mopped": "The past simple does not show that the mopping was finished before Mom came home.",
+      "has been mopping": "Present perfect continuous connects to now, but the time point is in the past.",
+      "will mop": "Future; 'came home' shows the whole sentence is about the past."
+    },
+    "student_error": {
+      "mopped": "Learners use the past simple for every past action and ignore the order of events.",
+      "has been mopping": "Learners connect 'whole floor' with a long action and choose a continuous form.",
+      "will mop": "Learners read 'by the time' as a future expression, as in 'by the time you arrive'."
+    },
+    "key_slot": "D",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C036",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "reported speech",
+    "varied_dimension": "setting / should set / to set / to setting after 'told me' reporting a command",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "When Grandpa called to say he was coming over, Mom told me ________ the table for five people.",
+    "choices": [
+      "setting",
+      "should set",
+      "to set",
+      "to setting"
+    ],
+    "correct_answer": "to set",
+    "explanation": "A command is reported with 'tell + person + to + verb'. Mom's words 'Set the table' become 'Mom told me to set the table'.",
+    "distractor_rationales": {
+      "setting": "'Tell someone' is followed by 'to + verb', not an -ing form.",
+      "should set": "A modal cannot follow 'told me' directly without 'that' and a subject.",
+      "to setting": "After 'told me to', the verb stays in its base form."
+    },
+    "student_error": {
+      "setting": "Learners use the -ing form because the action is happening around that time.",
+      "should set": "Learners turn the command into advice and drop the subject 'I'.",
+      "to setting": "Learners mix 'to + verb' with the -ing pattern of 'look forward to'."
+    },
+    "key_slot": "C",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-C037",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "conditionals",
+    "varied_dimension": "could / can / will be able to / would be able to inside an if-clause whose result clause uses 'would'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Our puppy is very clever, but if she ________ open the fridge, we would have to lock it every night.",
+    "choices": [
+      "could",
+      "can",
+      "will be able to",
+      "would be able to"
+    ],
+    "correct_answer": "could",
+    "explanation": "The result clause 'we would have to lock it' shows an unreal present situation, the second conditional. The if-clause therefore needs a past form, and the past of 'can' is 'could'.",
+    "distractor_rationales": {
+      "can": "A present form belongs to the first conditional, which uses 'will' in the result.",
+      "will be able to": "'Will' is not used in the if-clause of a conditional.",
+      "would be able to": "'Would' belongs in the result clause, not the if-clause."
+    },
+    "student_error": {
+      "can": "Learners think the situation is real now because the puppy 'is very clever'.",
+      "will be able to": "Learners translate a future idea directly into the if-clause.",
+      "would be able to": "Learners copy 'would' from the result clause into both clauses."
+    },
+    "key_slot": "A",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-C038",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "modals",
+    "varied_dimension": "ought to / had better / should have / must before a past participle about a past mistake",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Mom looked at the burnt tray and said, \"Kai, you ________ taken the cookies out of the oven ten minutes ago.\"",
+    "choices": [
+      "ought to",
+      "had better",
+      "should have",
+      "must"
+    ],
+    "correct_answer": "should have",
+    "explanation": "Advice about something in the past that did not happen uses 'should have + past participle'. Only 'should have' can be followed by 'taken'.",
+    "distractor_rationales": {
+      "ought to": "'Ought to' needs 'have' before a past participle: 'ought to have taken'.",
+      "had better": "'Had better' gives advice about now or the future and is followed by a base verb.",
+      "must": "'Must' cannot be followed directly by a past participle."
+    },
+    "student_error": {
+      "ought to": "Learners know 'ought to' means 'should' and forget it also needs 'have' for the past.",
+      "had better": "Learners see 'had' and think it already makes the advice past.",
+      "must": "Learners use 'must' for any strong advice and do not check the verb form after it."
+    },
+    "key_slot": "C",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-C039",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "modifier placement",
+    "varied_dimension": "which subject begins the main clause after an infinitive opener ('To stay fresh ...'): passive salad vs three active subjects",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "To stay fresh until our cousins arrived for dinner, ________ all afternoon.",
+    "choices": [
+      "we chilled the salad",
+      "the fridge chilled the salad",
+      "my aunt chilled the salad",
+      "the salad was chilled"
+    ],
+    "correct_answer": "the salad was chilled",
+    "explanation": "An opening infinitive phrase describes the subject of the main clause. Only the salad needs to stay fresh, so the salad must be the subject: 'the salad was chilled'.",
+    "distractor_rationales": {
+      "we chilled the salad": "This says that we needed to stay fresh, which is a dangling modifier.",
+      "the fridge chilled the salad": "This says the fridge needed to stay fresh.",
+      "my aunt chilled the salad": "This says my aunt needed to stay fresh."
+    },
+    "student_error": {
+      "we chilled the salad": "Learners prefer active sentences with a person as subject and do not check what the opening phrase describes.",
+      "the fridge chilled the salad": "Learners think the thing that makes food cold should be the subject.",
+      "my aunt chilled the salad": "Learners want to name who did the action and ignore the opener."
+    },
+    "key_slot": "D",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E025",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "gerund vs infinitive",
+    "varied_dimension": "an infinitive placed after the preposition 'after' at the very start of the sentence",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "After [A: to tidy his bedroom], Malik [B: is allowed] to play video games [C: for an hour] before [D: going to bed].",
+    "choices": [
+      "to tidy his bedroom",
+      "is allowed",
+      "for an hour",
+      "going to bed"
+    ],
+    "correct_answer": "to tidy his bedroom",
+    "explanation": "'After' is a preposition here, and a verb after a preposition must take the -ing form: 'After tidying his bedroom'. 'Before going to bed' shows the correct pattern later in the same sentence.",
+    "distractor_rationales": {
+      "is allowed": "Correct: 'be allowed to + verb' is a normal passive pattern.",
+      "for an hour": "Correct: 'for' is used with a length of time.",
+      "going to bed": "Correct: '-ing' after the preposition 'before'."
+    },
+    "student_error": {
+      "is allowed": "Learners may think 'allows' or 'is allowing' is needed.",
+      "for an hour": "Learners confuse 'for' and 'during' with periods of time.",
+      "going to bed": "Learners may expect 'to go to bed' after 'before'."
+    },
+    "key_slot": "A",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-E026",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "modals",
+    "varied_dimension": "an extra 'to' after negative 'had better not'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "\"Rosa, you had better [A: not to leave your muddy boots] in the hallway, because Grandma [B: is arriving] tonight and she [C: could easily] [D: trip over them],\" Mom said.",
+    "choices": [
+      "not to leave your muddy boots",
+      "is arriving",
+      "could easily",
+      "trip over them"
+    ],
+    "correct_answer": "not to leave your muddy boots",
+    "explanation": "'Had better' is followed by a base verb, and its negative is 'had better not + verb'. The correct form is 'you had better not leave your muddy boots'.",
+    "distractor_rationales": {
+      "is arriving": "Correct: the present continuous can describe a planned future arrangement.",
+      "could easily": "Correct: 'could' expresses a possibility, and the adverb sits before the main verb.",
+      "trip over them": "Correct: 'trip over' takes an object, and 'them' refers to the boots."
+    },
+    "student_error": {
+      "is arriving": "Learners think a future event must use 'will arrive'.",
+      "could easily": "Learners may think 'can' is needed because the danger is in the present.",
+      "trip over them": "Learners may doubt the preposition 'over' or the plural pronoun."
+    },
+    "key_slot": "A",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-E027",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "parallel structure",
+    "varied_dimension": "a noun ('comfort') inside a list of adjectives after 'is always'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Aunt Lucia's kitchen is always [A: warm], [B: comfort], and [C: filled with] the smell of [D: freshly baked] bread.",
+    "choices": [
+      "warm",
+      "comfort",
+      "filled with",
+      "freshly baked"
+    ],
+    "correct_answer": "comfort",
+    "explanation": "Items in a list must have the same form. 'Warm' and 'filled with ...' describe the kitchen as adjectives, so the noun 'comfort' must become the adjective 'comfortable'.",
+    "distractor_rationales": {
+      "warm": "Correct: an adjective after 'is always'.",
+      "filled with": "Correct: a past participle used as an adjective, with the preposition 'with'.",
+      "freshly baked": "Correct: the adverb 'freshly' modifies the participle 'baked'."
+    },
+    "student_error": {
+      "warm": "Learners may think 'warmly' is needed after 'always'.",
+      "filled with": "Learners confuse 'filled with' and 'full of' and may suspect 'filled of'.",
+      "freshly baked": "Learners may think 'fresh baked' is the correct form."
+    },
+    "key_slot": "B",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E028",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "passive voice",
+    "varied_dimension": "singular 'has' in a present perfect passive whose plural subject is separated by a prepositional phrase",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "The plates [A: from lunch] [B: has been washed], so we [C: can go] [D: to the park soon].",
+    "choices": [
+      "from lunch",
+      "has been washed",
+      "can go",
+      "to the park soon"
+    ],
+    "correct_answer": "has been washed",
+    "explanation": "The subject is 'the plates', which is plural, so the auxiliary must be 'have': 'The plates from lunch have been washed'. 'Lunch' is not the subject.",
+    "distractor_rationales": {
+      "from lunch": "Correct: 'from' shows which meal the plates come from.",
+      "can go": "Correct: 'can' is followed by the base verb.",
+      "to the park soon": "Correct: 'go to' a place, with 'soon' for the near future."
+    },
+    "student_error": {
+      "from lunch": "Learners may expect 'of lunch' or 'at lunch'.",
+      "can go": "Learners may think 'can going' or 'can to go'.",
+      "to the park soon": "Learners may doubt whether 'the' is needed before 'park'."
+    },
+    "key_slot": "B",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-E029",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "pronoun case and reference",
+    "varied_dimension": "a singular reflexive ('himself') referring back to a plural subject at the start of a long list",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "During the holidays, my brothers [A: get up early], [B: make their own] breakfast, and wash the dishes [C: by himself] [D: without being asked].",
+    "choices": [
+      "get up early",
+      "make their own",
+      "by himself",
+      "without being asked"
+    ],
+    "correct_answer": "by himself",
+    "explanation": "A reflexive pronoun must agree with the subject it refers to. The subject is 'my brothers', so it must be 'by themselves'.",
+    "distractor_rationales": {
+      "get up early": "Correct: plural present verb for a routine.",
+      "make their own": "Correct: 'their' agrees with the plural brothers.",
+      "without being asked": "Correct: passive -ing form after the preposition 'without'."
+    },
+    "student_error": {
+      "get up early": "Learners may add -s because a routine sentence often has a singular subject.",
+      "make their own": "Learners may think 'their selves' or 'theirs own' is needed.",
+      "without being asked": "Learners may expect 'without asking' or 'without to be asked'."
+    },
+    "key_slot": "C",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-E030",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "count/non-count and quantifiers",
+    "varied_dimension": "'some' used after the negative adverb 'hardly' instead of 'any'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Uncle Bao [A: had cooked] a big pot of soup for our visit, but my cousins [B: were all so hungry] that there was [C: hardly] [D: some for us].",
+    "choices": [
+      "had cooked",
+      "were all so hungry",
+      "hardly",
+      "some for us"
+    ],
+    "correct_answer": "some for us",
+    "explanation": "'Hardly' has a negative meaning, and negative words are followed by 'any', not 'some'. The correct phrase is 'hardly any for us'.",
+    "distractor_rationales": {
+      "had cooked": "Correct: past perfect for the cooking that happened before the cousins ate.",
+      "were all so hungry": "Correct: plural verb for 'cousins', and 'so ... that' shows a result.",
+      "hardly": "Correct: 'hardly' means 'almost not' and fits the meaning."
+    },
+    "student_error": {
+      "had cooked": "Learners may think the past simple 'cooked' is required.",
+      "were all so hungry": "Learners confuse 'so' and 'such' before an adjective.",
+      "hardly": "Learners confuse 'hardly' with 'hard' and may think 'hard' is meant."
+    },
+    "key_slot": "D",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-E031",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "conjunctions and connectors",
+    "varied_dimension": "'while' (a stretch of time) used where the clause names an end point ('until Dad gets home')",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Before leaving for work, Mom told me, \"Please [A: stay indoors] with your little sister and [B: don't open] the door for [C: anyone] [D: while] Dad gets home.\"",
+    "choices": [
+      "stay indoors",
+      "don't open",
+      "anyone",
+      "while"
+    ],
+    "correct_answer": "while",
+    "explanation": "'While' introduces something that lasts at the same time as another action. 'Dad gets home' is a single moment that ends the waiting, so the connector must be 'until'.",
+    "distractor_rationales": {
+      "stay indoors": "Correct: 'indoors' is an adverb, so no preposition is needed.",
+      "don't open": "Correct: a negative command uses 'don't' + base verb.",
+      "anyone": "Correct: 'anyone' is used in a negative command."
+    },
+    "student_error": {
+      "stay indoors": "Learners may think 'stay in indoors' or 'stay at indoors'.",
+      "don't open": "Learners may expect 'not open' after 'and'.",
+      "anyone": "Learners may think 'someone' or 'no one' is required."
+    },
+    "key_slot": "D",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-E032",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "prepositions after a head word",
+    "varied_dimension": "the noun 'reason' followed by 'of' instead of 'for'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "When Grandpa [A: asked us] why we were moving, Dad [B: explained] that the real reason [C: of our decision] was [D: his new job in the city].",
+    "choices": [
+      "asked us",
+      "explained",
+      "of our decision",
+      "his new job in the city"
+    ],
+    "correct_answer": "of our decision",
+    "explanation": "The noun 'reason' is followed by the preposition 'for': 'the reason for our decision'.",
+    "distractor_rationales": {
+      "asked us": "Correct: 'ask' takes a person as a direct object.",
+      "explained": "Correct: 'explain that ...' needs no object before 'that'.",
+      "his new job in the city": "Correct: a noun phrase completes 'the reason ... was'."
+    },
+    "student_error": {
+      "asked us": "Learners may think 'asked to us' is required.",
+      "explained": "Learners often write 'explained us' by analogy with 'told us'.",
+      "his new job in the city": "Learners may think 'because of his new job' is needed after 'reason'."
+    },
+    "key_slot": "C",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-E033",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "relative pronouns and clauses",
+    "varied_dimension": "'which' used after a place noun when the clause has no missing object ('where' needed)",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Zara, please [A: put away] the cereal in the [B: tall cupboard] [C: which] we [D: always store] dog food.",
+    "choices": [
+      "put away",
+      "tall cupboard",
+      "which",
+      "always store"
+    ],
+    "correct_answer": "which",
+    "explanation": "The clause 'we always store the dog food' is complete, so it cannot use 'which'. After a place like 'cupboard', a complete clause is joined with 'where'.",
+    "distractor_rationales": {
+      "put away": "Correct: 'put away' is a phrasal verb meaning store in its place.",
+      "tall cupboard": "Correct: the adjective 'tall' comes before the noun it describes.",
+      "always store": "Correct: 'always' goes before the main verb."
+    },
+    "student_error": {
+      "put away": "Learners may think 'put' alone or 'put out' is needed.",
+      "tall cupboard": "Learners may think 'high' is needed for furniture, or put the adjective after the noun.",
+      "always store": "Learners often put 'always' after the verb: 'store always'."
+    },
+    "key_slot": "C",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-E034",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "adjective vs adverb",
+    "varied_dimension": "'good' (adjective) used to describe how someone cooks",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Hiro cooks [A: so good] that everyone [B: asks] him [C: to prepare] dinner [D: on weekends].",
+    "choices": [
+      "so good",
+      "asks",
+      "to prepare",
+      "on weekends"
+    ],
+    "correct_answer": "so good",
+    "explanation": "'Good' is an adjective; to describe how someone does an action we use the adverb 'well'. The correct phrase is 'cooks so well'.",
+    "distractor_rationales": {
+      "asks": "Correct: 'everyone' is singular, so the verb takes -s.",
+      "to prepare": "Correct: 'ask someone to do something'.",
+      "on weekends": "Correct: US English uses 'on weekends'."
+    },
+    "student_error": {
+      "asks": "Learners think 'everyone' means many people and use 'ask'.",
+      "to prepare": "Learners may write 'ask him prepare' without 'to'.",
+      "on weekends": "Learners may use 'in weekends' or 'at weekends'."
+    },
+    "key_slot": "A",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E035",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "comparatives and superlatives",
+    "varied_dimension": "'as much ... ' followed by 'than' instead of 'as'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "My new room [A: is bigger] than [B: my old one] and [C: gets] [D: as much sunlight] than the kitchen.",
+    "choices": [
+      "is bigger",
+      "my old one",
+      "gets",
+      "as much sunlight"
+    ],
+    "correct_answer": "as much sunlight",
+    "explanation": "'As much ... ' must be completed with 'as', and 'than' goes with a comparative. Because the sentence continues with 'than', the phrase should be 'more sunlight than the kitchen'.",
+    "distractor_rationales": {
+      "is bigger": "Correct: comparative 'bigger' followed by 'than'.",
+      "my old one": "Correct: 'one' replaces 'room'.",
+      "gets": "Correct: third person singular, sharing the subject 'my new room'."
+    },
+    "student_error": {
+      "is bigger": "Learners may write 'more big'.",
+      "my old one": "Learners may think 'my old' or 'mine old' is enough.",
+      "gets": "Learners may forget the -s or think 'has' is needed."
+    },
+    "key_slot": "D",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-E036",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "conditionals",
+    "varied_dimension": "'will' in the result clause of an unreal second conditional fixed by the fact stated first",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Grandma lives three hours away, but if she [A: lived] closer, I [B: will visit] her [C: every weekend] and [D: help with her garden].",
+    "choices": [
+      "lived",
+      "will visit",
+      "every weekend",
+      "help with her garden"
+    ],
+    "correct_answer": "will visit",
+    "explanation": "The first clause tells us Grandma really lives far away, so 'if she lived closer' is unreal. An unreal present condition takes 'would' in the result: 'I would visit her'.",
+    "distractor_rationales": {
+      "lived": "Correct: the past form for an unreal present condition.",
+      "every weekend": "Correct: no preposition is needed before 'every weekend'.",
+      "help with her garden": "Correct: 'help with' something, sharing 'will/would' with 'visit'."
+    },
+    "student_error": {
+      "lived": "Learners think 'lives' is needed because Grandma lives there now.",
+      "every weekend": "Learners may add 'in' or 'on' before 'every weekend'.",
+      "help with her garden": "Learners may think 'to help' or 'helping' is required."
+    },
+    "key_slot": "B",
+    "key_len_rank": 2
+  }
+]

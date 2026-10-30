@@ -1,0 +1,38 @@
+{
+ "prereg": "scripts/study-bank/ITEP-SLATE-GRAMMAR-V2.prereg.md",
+ "instrument": "AGENT-REVIEW-SSAT-MAP.prereg.md + A1, cold solve first (v1 gate)",
+ "author_brief": "scripts/study-bank/briefs/itep-slate-grammar-v1.md",
+ "author_brief_sha256": "04a045c0c2dbd3e941a625d3ea75ce0294100c7d3f737fd618bfd4c4c500235b",
+ "assigned_sha256": "041257b209328a92c22836f90208e120de919d027610ddb9f2919686364477ca",
+ "grader_brief": "scripts/study-bank/cofounder-grader/COFOUNDER-BRIEF-v2.md",
+ "grader_brief_sha256": "3d032066bcc86fc0a5c5c89d388cf400682f71ee51af45c27ebf246097fd2ad0",
+ "cold_brief_sha256": "694226f5eb4b36ac5575422df858827f4de5d19ddb0b9f4571fa206d84a20eb6",
+ "item_files_sha256": {
+  "author-A.json": "1264baef174ebc5479ad636e300c7a8a1c0aa34ae332fec387fc0df4b1e40642",
+  "author-B.json": "9e09f22315138f007a6fbcbe92def06f73a878acb909da15c5e2cdd6ccca42d7",
+  "author-C.json": "4b62375312c179cab5c8d1edfe93a63eb9d092400d841798099a401b079e9df6",
+  "author-D.json": "3bd9dcde8ffb85b70b805bfe5c562d063f85a5fde9ab8e2b2fc6d2c57f99a2e8",
+  "author-E.json": "25cdb9aca45fbd4fdc00720487fab08cc0d9071e091fcf594f266b791d687804",
+  "author-F.json": "fec0eded13561e892004ec56d1a318ec8ae9a06e6b9591fd6875ec4bbf31bd66",
+  "author-G.json": "d3dcd21977ec6d7160b8d5bdaedd87332c10f985346cd06d4e3140c749ffd4f3",
+  "author-H.json": "91ba453d7fc558ed034908104a76f4f8606d890174b1f885875282ece78a731c",
+  "author-I.json": "03a82f1b79278ebd83c5152d967926331623a7ab51ce97cf48040a1ba1ae8bca",
+  "author-J.json": "9f0cba94760f63f17999c089224e3d1ff03e1db39713cf29ba1f909a44b1eb67"
+ },
+ "packet_root": "scratchpad/itep-grammar-v2",
+ "packets": [
+  42,
+  42,
+  42,
+  42,
+  41,
+  41
+ ],
+ "items": 250,
+ "graders": [
+  "a",
+  "b",
+  "c"
+ ],
+ "cold_sha256": {}
+}

@@ -1,0 +1,776 @@
+[
+  {
+    "id": "ITG2-C118",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "reported speech",
+    "varied_dimension": "tense of 'write' inside reported speech after a past reporting verb, decided by 'the previous day'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "At Friday's meeting, Mr. Castillo said that he ________ to the city council about the broken streetlights the previous day.",
+    "choices": [
+      "writes",
+      "had written",
+      "will write",
+      "is writing"
+    ],
+    "correct_answer": "had written",
+    "explanation": "When a past reporting verb ('said') reports an action that happened before the moment of speaking, the action moves back to the past perfect. 'The previous day' places the writing before Friday, so only 'had written' fits.",
+    "distractor_rationales": {
+      "writes": "Present simple cannot describe a single finished action placed 'the previous day'.",
+      "will write": "Future cannot describe something that happened the previous day.",
+      "is writing": "Present continuous cannot go with a finished past time like 'the previous day'."
+    },
+    "student_error": {
+      "writes": "Learner copies the tense of a habitual statement and forgets to shift the tense back after 'said'.",
+      "will write": "Learner reads 'the previous day' as 'the next day' and treats the letter as a plan.",
+      "is writing": "Learner keeps the speaker's original present tense instead of backshifting."
+    },
+    "key_slot": "B",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-C119",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "parallel structure",
+    "varied_dimension": "verb form of the last item in a list of imperative steps (bare imperative vs -ing vs to-infinitive vs past)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Community board: To join the cleanup, sign the list, pick up some gloves, and ________ outside the library at nine.",
+    "choices": [
+      "meet",
+      "met",
+      "meeting",
+      "to meet"
+    ],
+    "correct_answer": "meet",
+    "explanation": "Items joined by 'and' in a list must have the same form. The first two steps are imperatives ('sign', 'pick up'), so the third must also be the bare imperative 'meet'.",
+    "distractor_rationales": {
+      "met": "A past form breaks the list of instructions.",
+      "meeting": "An -ing form does not match the imperatives 'sign' and 'pick up'.",
+      "to meet": "A to-infinitive does not match the imperatives in the list."
+    },
+    "student_error": {
+      "met": "Learner thinks of the meeting as already planned and slips into the past tense.",
+      "meeting": "Learner treats the list like a list of activities and uses -ing forms.",
+      "to meet": "Learner echoes the opening 'To join' and repeats the infinitive."
+    },
+    "key_slot": "A",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-C120",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "conditionals",
+    "varied_dimension": "modal form in the result clause of a past unreal condition (could have + participle vs can / could / will be able to)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "I told my neighbor, \"If the post office had stayed open a little longer, I ________ Grandma's parcel yesterday afternoon.\"",
+    "choices": [
+      "could have mailed",
+      "can mail",
+      "could mail",
+      "will be able to mail"
+    ],
+    "correct_answer": "could have mailed",
+    "explanation": "An if-clause with the past perfect ('had stayed') describes an unreal past situation. The result is also in the past ('yesterday afternoon'), so it needs a modal + have + past participle: 'could have mailed'.",
+    "distractor_rationales": {
+      "can mail": "Present 'can' cannot describe an imagined result yesterday afternoon.",
+      "could mail": "'Could mail' talks about now or the future, not about yesterday afternoon.",
+      "will be able to mail": "A future form cannot follow a past unreal condition about yesterday."
+    },
+    "student_error": {
+      "can mail": "Learner focuses on ability and ignores the time of the condition.",
+      "could mail": "Learner knows 'could' is used in conditionals but forgets the perfect form for the past.",
+      "will be able to mail": "Learner mixes up the first conditional with the third conditional."
+    },
+    "key_slot": "A",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C121",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "gerund vs infinitive",
+    "varied_dimension": "form of the verb after 'watch + object' (-ing vs to-infinitive vs finite past vs present perfect)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "From a bench outside the post office, Yui watched a small boy ________ a huge box up the steps.",
+    "choices": [
+      "carried",
+      "carrying",
+      "to carry",
+      "has carried"
+    ],
+    "correct_answer": "carrying",
+    "explanation": "After a verb of perception such as 'watch' + object, English uses the -ing form (or the bare infinitive), never 'to' + verb or a finite verb. 'Carrying' shows Yui saw the action in progress.",
+    "distractor_rationales": {
+      "carried": "A finite past verb cannot follow 'watched a small boy'; 'watch' does not take a that-clause.",
+      "to carry": "Perception verbs in the active do not take 'to' + infinitive after the object.",
+      "has carried": "A present perfect verb cannot follow the object of 'watched'."
+    },
+    "student_error": {
+      "carried": "Learner matches the tense of 'watched' and puts the second verb in the past too.",
+      "to carry": "Learner overgeneralizes the pattern 'want someone to do'.",
+      "has carried": "Learner treats the boy as the subject of a new clause and adds a full tense."
+    },
+    "key_slot": "B",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-C122",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "conjunctions and connectors",
+    "varied_dimension": "word linking 'every shop' and 'the bakery' to exclude it (except vs and / from / instead of)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Every shop on our street ________ the bakery opens on Sunday; the baker rests then.",
+    "choices": [
+      "and",
+      "from",
+      "except",
+      "instead of"
+    ],
+    "correct_answer": "except",
+    "explanation": "'Except' means 'but not'. The second part says the baker rests on Sunday, so the bakery is the one shop left out: every shop except the bakery opens.",
+    "distractor_rationales": {
+      "and": "'And' would add the bakery to the shops that open, but the baker rests on Sunday.",
+      "from": "'From the bakery' does not leave anything out and makes no sense here.",
+      "instead of": "'Instead of' means one thing replaces another; it cannot mark one shop that is left out of 'every shop'."
+    },
+    "student_error": {
+      "and": "Learner reads the subject as a simple list of places.",
+      "from": "Learner translates a first-language preposition meaning 'apart from'.",
+      "instead of": "Learner confuses 'instead of' (replacement) with 'except' (exclusion)."
+    },
+    "key_slot": "C",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C123",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "subject-verb agreement",
+    "varied_dimension": "number and tense of 'be + hanging' after a plural subject separated by a relative clause with singular nouns",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "The posters that the art club painted for last month's street festival ________ in the youth center hall until someone took them down yesterday.",
+    "choices": [
+      "is hanging",
+      "was hanging",
+      "were hanging",
+      "are hanging"
+    ],
+    "correct_answer": "were hanging",
+    "explanation": "The subject is 'The posters', which is plural; 'club' and 'festival' belong to the relative clause. The posters were taken down yesterday, so the verb must be plural and past: 'were hanging'.",
+    "distractor_rationales": {
+      "is hanging": "Singular and present: it agrees with 'festival', not 'posters', and the posters are already down.",
+      "was hanging": "Singular: it agrees with the nearest noun, 'festival', instead of 'posters'.",
+      "are hanging": "Plural is right, but the present cannot continue 'until someone took them down yesterday'."
+    },
+    "student_error": {
+      "is hanging": "Learner makes the verb agree with the closest noun and ignores the time clue.",
+      "was hanging": "Learner chooses the past correctly but agrees with 'club' or 'festival'.",
+      "are hanging": "Learner finds the plural subject but does not notice 'took them down yesterday'."
+    },
+    "key_slot": "C",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-C124",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "modifier placement",
+    "varied_dimension": "subject of the main clause after an 'As a volunteer' opener (the volunteer herself vs her possession vs other people vs a thing)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "As a volunteer with three years of experience at the food bank, ________.",
+    "choices": [
+      "new helpers often go to Johanna for advice",
+      "Johanna's advice is useful to new helpers",
+      "every shelf in the room is familiar to Johanna",
+      "Johanna knows exactly where every kind of food belongs"
+    ],
+    "correct_answer": "Johanna knows exactly where every kind of food belongs",
+    "explanation": "An opening phrase like 'As a volunteer...' describes the subject that comes right after the comma. Only Johanna is the volunteer, so 'Johanna' must be the subject of the main clause.",
+    "distractor_rationales": {
+      "new helpers often go to Johanna for advice": "The subject 'new helpers' is plural and are not the experienced volunteer.",
+      "Johanna's advice is useful to new helpers": "The subject is 'advice', and advice cannot be a volunteer; a possessive is not the subject.",
+      "every shelf in the room is familiar to Johanna": "The subject is 'every shelf', so the sentence says a shelf is the volunteer."
+    },
+    "student_error": {
+      "new helpers often go to Johanna for advice": "Learner sees a person as subject and does not check whether it is the right person.",
+      "Johanna's advice is useful to new helpers": "Learner thinks the name 'Johanna's' near the comma is enough to connect the phrase.",
+      "every shelf in the room is familiar to Johanna": "Learner believes the opener can attach to any person mentioned anywhere in the sentence."
+    },
+    "key_slot": "D",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-C125",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "pronoun case and reference",
+    "varied_dimension": "form of 'you' standing alone as a possessive after 'Is this umbrella' (yours vs you're / of you / yourself)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Mrs. Yamamoto held up an umbrella and asked me, \"Is this umbrella ________? It was by the door.\"",
+    "choices": [
+      "you're",
+      "of you",
+      "yours",
+      "yourself"
+    ],
+    "correct_answer": "yours",
+    "explanation": "When no noun follows, English uses a possessive pronoun (mine, yours, hers) to show who owns something. 'Is this umbrella yours?' asks whether it belongs to you.",
+    "distractor_rationales": {
+      "you're": "'You're' means 'you are' and does not show ownership.",
+      "of you": "English does not show ownership with 'of you' after a noun like this.",
+      "yourself": "A reflexive pronoun does not show ownership."
+    },
+    "student_error": {
+      "you're": "Learner confuses words that sound alike (your/you're/yours).",
+      "of you": "Learner translates a first-language pattern like 'de usted' word for word.",
+      "yourself": "Learner thinks a longer 'self' form is needed when the pronoun stands alone at the end."
+    },
+    "key_slot": "C",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-C126",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "word form",
+    "varied_dimension": "noun vs verb spelling of advice/advise after 'some useful'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "The post office clerk gave me some useful ________ about wrapping parcels.",
+    "choices": [
+      "advise",
+      "advice",
+      "advised",
+      "advises"
+    ],
+    "correct_answer": "advice",
+    "explanation": "After 'some useful' we need a noun. 'Advice' (with c) is the noun; 'advise' (with s) is the verb. 'Advice' is uncountable, so it has no -s.",
+    "distractor_rationales": {
+      "advise": "'Advise' is the verb; a noun is needed after 'some useful'.",
+      "advised": "'Advised' is a past verb form, not a noun.",
+      "advises": "'Advises' is a verb with -s, not a noun."
+    },
+    "student_error": {
+      "advise": "Learner mixes up the two spellings because they sound similar.",
+      "advised": "Learner thinks the action happened in the past and adds -ed.",
+      "advises": "Learner treats 'advice' like a countable noun and adds a plural -s to the verb spelling."
+    },
+    "key_slot": "B",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-C127",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "comparatives and superlatives",
+    "varied_dimension": "form of a multiple comparison before 'money as' (twice as much vs twice more / twice as many / two times more)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Youth center notice: Thanks to you, this year's bake sale raised ________ money as last year's sale!",
+    "choices": [
+      "twice more",
+      "twice as much",
+      "twice as many",
+      "two times more"
+    ],
+    "correct_answer": "twice as much",
+    "explanation": "To say something is double, English uses 'twice as ... as'. Because 'money' is uncountable, the pattern is 'twice as much money as'.",
+    "distractor_rationales": {
+      "twice more": "'More' cannot be followed by 'as'; the 'as ... as' pattern needs 'twice as much'.",
+      "twice as many": "'Many' is for countable nouns, but 'money' is uncountable.",
+      "two times more": "'More' does not go with the second 'as'."
+    },
+    "student_error": {
+      "twice more": "Learner translates 'two times more' from a first language and mixes it with 'as'.",
+      "twice as many": "Learner thinks of the coins and bills and treats 'money' as countable.",
+      "two times more": "Learner uses 'two times' with a comparative 'more' as in many first languages."
+    },
+    "key_slot": "B",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-C128",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "verb tense and aspect",
+    "varied_dimension": "form of the irregular verb 'ride' after 'had never' (past participle vs simple past / base / -s)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Before he started delivering meals for the community kitchen, Nnamdi had never ________ a bike on such busy streets.",
+    "choices": [
+      "rode",
+      "ride",
+      "rides",
+      "ridden"
+    ],
+    "correct_answer": "ridden",
+    "explanation": "The past perfect is 'had' + past participle. The past participle of 'ride' is irregular: ride, rode, ridden. So the correct form is 'had never ridden'.",
+    "distractor_rationales": {
+      "rode": "'Rode' is the simple past; after 'had' you need the past participle 'ridden'.",
+      "ride": "The base form cannot follow 'had'.",
+      "rides": "A present -s form cannot follow 'had'."
+    },
+    "student_error": {
+      "rode": "Learner uses the simple past for both forms, as with regular verbs where they are the same.",
+      "ride": "Learner thinks 'never' is followed by the base form, as in 'never ride'.",
+      "rides": "Learner adds -s because the subject 'Nnamdi' is third person singular."
+    },
+    "key_slot": "D",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-C129",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "relative pronouns and clauses",
+    "varied_dimension": "relative word after a comma that refers back to a whole clause (which vs who / what / whatever)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "The corner shop gave every volunteer a free drink, ________ made us smile.",
+    "choices": [
+      "who",
+      "what",
+      "whatever",
+      "which"
+    ],
+    "correct_answer": "which",
+    "explanation": "After a comma, 'which' can refer to the whole idea before it. Here it means 'the fact that the shop gave everyone a drink made us smile'.",
+    "distractor_rationales": {
+      "who": "'Who' refers to people, not to a whole event.",
+      "what": "'What' cannot start a relative clause after a comma that refers back to an idea.",
+      "whatever": "'Whatever' means 'anything that' and cannot refer back to the event."
+    },
+    "student_error": {
+      "who": "Learner links the clause to 'every volunteer' and picks the pronoun for people.",
+      "what": "Learner translates a first-language word that means both 'what' and 'which'.",
+      "whatever": "Learner thinks 'whatever' is a stronger form of 'what'."
+    },
+    "key_slot": "D",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C130",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "passive voice",
+    "varied_dimension": "passive gerund after 'enjoy' with a 'by' agent (being asked vs to be asked / to be asking / having asked)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "My brother enjoys ________ by the staff to help with games.",
+    "choices": [
+      "being asked",
+      "to be asked",
+      "to be asking",
+      "having asked"
+    ],
+    "correct_answer": "being asked",
+    "explanation": "'Enjoy' is followed by an -ing form, never 'to'. The staff do the asking ('by the staff'), so the form must be passive: 'being asked'.",
+    "distractor_rationales": {
+      "to be asked": "'Enjoy' does not take a to-infinitive.",
+      "to be asking": "'Enjoy' does not take a to-infinitive, and the active form does not fit 'by the staff'.",
+      "having asked": "This is active, so it says the brother did the asking, which does not fit 'by the staff'."
+    },
+    "student_error": {
+      "to be asked": "Learner knows the passive but uses the 'want to' pattern after 'enjoy'.",
+      "to be asking": "Learner mixes the progressive with the infinitive after a verb of liking.",
+      "having asked": "Learner chooses an -ing form after 'enjoy' but forgets the passive."
+    },
+    "key_slot": "A",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-E109",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "prepositions after a head word",
+    "varied_dimension": "fixed expression 'at the end of' wrongly replaced by 'in the end' before an 'of' phrase",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "[A: In the end] of the volunteer meeting, Ebba thanked everyone [B: for coming] and reminded us [C: to arrive] [D: on time] for Saturday's cleanup.",
+    "choices": [
+      "In the end",
+      "for coming",
+      "to arrive",
+      "on time"
+    ],
+    "correct_answer": "In the end",
+    "explanation": "'In the end' means 'finally' and is not followed by 'of'. To name the last part of an event we say 'at the end of', so the sentence should begin 'At the end of the volunteer meeting'.",
+    "distractor_rationales": {
+      "In the end": "Wrong here: before 'of the meeting' the fixed phrase is 'at the end of'.",
+      "for coming": "Correct: 'thank someone for' + -ing.",
+      "to arrive": "Correct: 'remind someone to' + verb.",
+      "on time": "Correct: 'on time' means punctually."
+    },
+    "student_error": {
+      "In the end": "Learner knows 'in the end' as a phrase and uses it where 'at the end of' is needed.",
+      "for coming": "Learner expects 'thank to come' by analogy with 'want to come'.",
+      "to arrive": "Learner thinks 'remind' needs a gerund, as in 'remember arriving'.",
+      "on time": "Learner confuses 'on time' with 'in time' and suspects the wrong one."
+    },
+    "key_slot": "A",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-E110",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "verb tense and aspect",
+    "varied_dimension": "past participle of 'give' after 'has already' (gave in place of given)",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Kiran [A: found] a scarf [B: in] the hall and has [C: already] [D: gave] it back to its owner.",
+    "choices": [
+      "found",
+      "in",
+      "already",
+      "gave"
+    ],
+    "correct_answer": "gave",
+    "explanation": "The present perfect is 'has' + past participle. The past participle of 'give' is 'given', not 'gave', so it should be 'has already given'.",
+    "distractor_rationales": {
+      "found": "Correct: 'found' is the irregular past of 'find'.",
+      "in": "Correct: 'in the hall' for inside a room.",
+      "already": "Correct: 'already' goes between 'has' and the participle.",
+      "gave": "Wrong: after 'has' we need the past participle 'given'."
+    },
+    "student_error": {
+      "found": "Learner thinks 'find' needs a regular -ed past ('finded').",
+      "in": "Learner expects 'at the hall' or 'on the hall'.",
+      "already": "Learner thinks 'already' must come at the end of the sentence.",
+      "gave": "Learner uses the simple past after 'has', as with regular verbs."
+    },
+    "key_slot": "D",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E111",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "gerund vs infinitive",
+    "varied_dimension": "to-infinitive wrongly used after 'hear + object' (to call in place of call / calling)",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "While I [A: was waiting] at the bakery counter, I [B: heard] the shopkeeper [C: to call] my name [D: loudly].",
+    "choices": [
+      "was waiting",
+      "heard",
+      "to call",
+      "loudly"
+    ],
+    "correct_answer": "to call",
+    "explanation": "After a verb of perception like 'hear' + object, English uses the bare infinitive or the -ing form: 'heard the shopkeeper call' or 'calling'. 'To call' is not used here.",
+    "distractor_rationales": {
+      "was waiting": "Correct: the past continuous shows the longer action in progress.",
+      "heard": "Correct: irregular past of 'hear'.",
+      "to call": "Wrong: 'hear + object' takes 'call' or 'calling', not 'to call'.",
+      "loudly": "Correct: an adverb describes how she called."
+    },
+    "student_error": {
+      "was waiting": "Learner thinks 'while' needs the simple past 'waited'.",
+      "heard": "Learner expects the regular form 'heared'.",
+      "to call": "Learner overgeneralizes 'ask someone to do' to perception verbs.",
+      "loudly": "Learner thinks the adjective 'loud' should follow 'name'."
+    },
+    "key_slot": "C",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-E112",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "pronoun case and reference",
+    "varied_dimension": "object pronoun 'her' used where the possessive pronoun 'hers' is needed after 'must be'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "The [A: torn] coat [B: lying] on the bench is [C: Andre's], so Lupe says the green one [D: on the hook near the window must be her].",
+    "choices": [
+      "torn",
+      "lying",
+      "Andre's",
+      "on the hook near the window must be her"
+    ],
+    "correct_answer": "on the hook near the window must be her",
+    "explanation": "When a pronoun shows who owns something and no noun follows, it must be a possessive pronoun. The green coat belongs to Lupe, so it must be 'hers', not 'her'.",
+    "distractor_rationales": {
+      "torn": "Correct: 'torn' is the past participle of 'tear', used as an adjective.",
+      "lying": "Correct: 'lie' (be in a flat position) has the -ing form 'lying'.",
+      "Andre's": "Correct: the possessive 's shows the coat belongs to Andre.",
+      "on the hook near the window must be her": "Wrong: a coat cannot be 'her'; the possessive pronoun 'hers' is needed."
+    },
+    "student_error": {
+      "torn": "Learner expects the regular form 'teared'.",
+      "lying": "Learner confuses 'lie' and 'lay' and expects 'laying'.",
+      "Andre's": "Learner thinks a possessive needs 'of Andre'.",
+      "on the hook near the window must be her": "Learner uses the object pronoun because it comes at the end of the sentence."
+    },
+    "key_slot": "D",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-E113",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "conditionals",
+    "varied_dimension": "modal perfect in the result of a real future condition (could have joined in place of can / could join)",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Reminder: If you [A: sign up] at the main desk before Friday, you [B: could have joined] the museum trip [C: on] Saturday [D: free of charge].",
+    "choices": [
+      "sign up",
+      "could have joined",
+      "on",
+      "free of charge"
+    ],
+    "correct_answer": "could have joined",
+    "explanation": "The if-clause is in the present ('sign up ... before Friday'), so it talks about a real future possibility. The result needs 'can join' or 'could join'; 'could have joined' is only for imagined past results.",
+    "distractor_rationales": {
+      "sign up": "Correct: present simple in a first-conditional if-clause.",
+      "could have joined": "Wrong: a modal perfect describes the past and cannot follow a real future condition.",
+      "on": "Correct: 'on' is used with days of the week.",
+      "free of charge": "Correct: a fixed phrase meaning 'without paying'."
+    },
+    "student_error": {
+      "sign up": "Learner thinks the if-clause needs 'will sign up'.",
+      "could have joined": "Learner adds 'have' because 'could have' sounds more polite.",
+      "on": "Learner uses 'in' or 'at' with days.",
+      "free of charge": "Learner expects 'for free of charge' or 'free of charges'."
+    },
+    "key_slot": "B",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-E114",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "comparatives and superlatives",
+    "varied_dimension": "comparative form wrongly used inside 'three times as ... as' (larger in place of large)",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Our new youth center [A: is] [B: three times] as [C: larger] as [D: the old one was].",
+    "choices": [
+      "is",
+      "three times",
+      "larger",
+      "the old one was"
+    ],
+    "correct_answer": "larger",
+    "explanation": "The pattern for 'three times the size' is 'three times as + adjective + as', with the plain adjective. So it should be 'three times as large as', not 'as larger as'.",
+    "distractor_rationales": {
+      "is": "Correct: singular 'is' agrees with 'center'.",
+      "three times": "Correct: 'three times as ... as' is the normal pattern.",
+      "larger": "Wrong: 'as ... as' needs the plain adjective 'large'.",
+      "the old one was": "Correct: 'one' replaces 'youth center', and 'was' agrees with it."
+    },
+    "student_error": {
+      "is": "Learner expects 'are' because of the plural 'times'.",
+      "three times": "Learner thinks 'three times' must be followed by 'more'.",
+      "larger": "Learner mixes the 'as ... as' pattern with comparative '-er than'.",
+      "the old one was": "Learner thinks the verb 'was' cannot end a comparison."
+    },
+    "key_slot": "C",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E115",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "modals",
+    "varied_dimension": "'to' wrongly inserted between the modal 'can' and its verb",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "At the food pantry, I [A: usually] sort the cans, because only adult volunteers can [B: to lift] the [C: heaviest] boxes [D: safely].",
+    "choices": [
+      "usually",
+      "to lift",
+      "heaviest",
+      "safely"
+    ],
+    "correct_answer": "to lift",
+    "explanation": "A modal verb like 'can' is followed by the base form of the verb without 'to'. It should be 'can lift', not 'can to lift'.",
+    "distractor_rationales": {
+      "usually": "Correct: frequency adverbs go before the main verb.",
+      "to lift": "Wrong: 'can' takes the bare verb 'lift'.",
+      "heaviest": "Correct: superlative of 'heavy' (y becomes i).",
+      "safely": "Correct: an adverb describes how they lift."
+    },
+    "student_error": {
+      "usually": "Learner thinks 'usually' must go at the start or end of the sentence.",
+      "to lift": "Learner treats 'can' like 'be able to' or 'want to'.",
+      "heaviest": "Learner expects 'most heavy'.",
+      "safely": "Learner uses the adjective 'safe' after the noun."
+    },
+    "key_slot": "B",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E116",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "subject-verb agreement",
+    "varied_dimension": "plural verb after a singular subject separated by a non-restrictive relative clause (help in place of helps)",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Hyun-woo's grandfather, who [A: lives] [B: next to] us, [C: always] [D: help] at the community garden.",
+    "choices": [
+      "lives",
+      "next to",
+      "always",
+      "help"
+    ],
+    "correct_answer": "help",
+    "explanation": "The subject is 'Hyun-woo's grandfather', which is singular, so the present verb needs -s: 'always helps'. The clause 'who lives next to us' does not change the subject.",
+    "distractor_rationales": {
+      "lives": "Correct: 'who' refers to the grandfather, so 'lives' has -s.",
+      "next to": "Correct: 'next to' means beside.",
+      "always": "Correct: 'always' goes before the main verb.",
+      "help": "Wrong: the singular subject needs 'helps'."
+    },
+    "student_error": {
+      "lives": "Learner thinks the verb after 'who' never takes -s.",
+      "next to": "Learner expects 'next of' or 'near to'.",
+      "always": "Learner puts 'always' after the verb.",
+      "help": "Learner makes the verb agree with 'us', the nearest word."
+    },
+    "key_slot": "D",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-E117",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "relative pronouns and clauses",
+    "varied_dimension": "'what' used in place of 'which' to refer back to a whole clause",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "It rained during the park cleanup, [A: what] meant [B: we] [C: had] to finish [D: indoors].",
+    "choices": [
+      "what",
+      "we",
+      "had",
+      "indoors"
+    ],
+    "correct_answer": "what",
+    "explanation": "To refer back to a whole idea after a comma, English uses 'which': 'It rained, which meant we had to finish indoors.' 'What' cannot be used this way.",
+    "distractor_rationales": {
+      "what": "Wrong: after a comma, a clause about the whole event starts with 'which'.",
+      "we": "Correct: subject pronoun of 'had'.",
+      "had": "Correct: past of 'have to'.",
+      "indoors": "Correct: adverb meaning 'inside a building'."
+    },
+    "student_error": {
+      "what": "Learner translates a first-language word that means both 'what' and 'which'.",
+      "we": "Learner expects the object pronoun 'us' after 'meant'.",
+      "had": "Learner expects 'must' instead of the past of 'have to'.",
+      "indoors": "Learner confuses 'indoors' with the adjective 'indoor'."
+    },
+    "key_slot": "A",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-E118",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "adjective vs adverb",
+    "varied_dimension": "'so' wrongly used before 'a + adjective + noun' where 'such' is needed",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "It was [A: so] a busy morning in the corner shop that the owner [B: hardly] [C: had] time [D: to eat] lunch.",
+    "choices": [
+      "so",
+      "hardly",
+      "had",
+      "to eat"
+    ],
+    "correct_answer": "so",
+    "explanation": "'So' goes before an adjective alone ('so busy'), but before 'a + adjective + noun' we use 'such': 'such a busy morning ... that'.",
+    "distractor_rationales": {
+      "so": "Wrong: before 'a busy morning' the word must be 'such'.",
+      "hardly": "Correct: 'hardly' means 'almost not'.",
+      "had": "Correct: past tense of 'have'.",
+      "to eat": "Correct: 'time to' + verb."
+    },
+    "student_error": {
+      "so": "Learner knows 'so ... that' and uses it before a noun phrase too.",
+      "hardly": "Learner confuses 'hardly' with 'hard' and thinks it means 'with effort'.",
+      "had": "Learner expects 'did have' or 'has' with 'hardly'.",
+      "to eat": "Learner expects 'time for eating'."
+    },
+    "key_slot": "A",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-E119",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "count/non-count and quantifiers",
+    "varied_dimension": "'amount' used with a plural countable noun where 'number' is needed",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Community board: [A: Several] neighbors and a large [B: amount] of teenagers from the youth center [C: have joined] the river cleanup [D: this month].",
+    "choices": [
+      "Several",
+      "amount",
+      "have joined",
+      "this month"
+    ],
+    "correct_answer": "amount",
+    "explanation": "'Amount' is used with uncountable nouns (an amount of water). 'Teenagers' is a plural countable noun, so it should be 'a large number of teenagers'.",
+    "distractor_rationales": {
+      "Several": "Correct: 'several' goes with plural countable nouns.",
+      "amount": "Wrong: 'teenagers' is countable, so 'number' is needed.",
+      "have joined": "Correct: the compound subject is plural.",
+      "this month": "Correct: the present perfect can go with an unfinished time like 'this month'."
+    },
+    "student_error": {
+      "Several": "Learner thinks 'several' needs 'of' ('several of neighbors').",
+      "amount": "Learner uses 'amount' for any large quantity.",
+      "have joined": "Learner makes the verb agree with 'youth center', the nearest noun.",
+      "this month": "Learner thinks the present perfect cannot have a time phrase."
+    },
+    "key_slot": "B",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-E120",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "passive voice",
+    "varied_dimension": "active infinitive wrongly used after 'need' with a thing as subject, where the passive infinitive is needed",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Most of the old benches [A: along] our street [B: are] so worn that they need [C: to replace before the first snow], says [D: a notice] at the library.",
+    "choices": [
+      "along",
+      "are",
+      "to replace before the first snow",
+      "a notice"
+    ],
+    "correct_answer": "to replace before the first snow",
+    "explanation": "The benches cannot replace anything; someone must replace them. So the infinitive must be passive: 'they need to be replaced before the first snow'.",
+    "distractor_rationales": {
+      "along": "Correct: preposition meaning beside the length of a street.",
+      "are": "Correct: 'most of the benches' is plural.",
+      "to replace before the first snow": "Wrong: the benches receive the action, so it must be 'to be replaced'.",
+      "a notice": "Correct: 'notice' is countable here and takes 'a'."
+    },
+    "student_error": {
+      "along": "Learner expects 'on' or 'in' with a street.",
+      "are": "Learner thinks 'most' is singular and expects 'is'.",
+      "to replace before the first snow": "Learner uses the active form because the sentence has no 'by' phrase.",
+      "a notice": "Learner treats 'notice' as uncountable and drops 'a'."
+    },
+    "key_slot": "C",
+    "key_len_rank": 4
+  }
+]

@@ -1,0 +1,752 @@
+[
+  {
+    "id": "ITG2-C079",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "count/non-count and quantifiers",
+    "varied_dimension": "both / either, with or without 'of', decided by a following singular count noun with no determiner",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "For the outdoor festival, the crew placed tall speakers on ________ side of the stage so that people across the whole field could hear the band.",
+    "choices": [
+      "both of",
+      "both",
+      "either",
+      "either of"
+    ],
+    "correct_answer": "either",
+    "explanation": "\"Either\" can be used directly before a singular noun, and \"either side\" means each of the two sides. \"Both\" needs a plural noun (both sides), and \"of\" is only used before a determiner or pronoun (either of the sides, both of them).",
+    "distractor_rationales": {
+      "both of": "\"Both of\" must be followed by a determiner or pronoun and a plural noun (both of the sides); it cannot come before a bare singular noun.",
+      "both": "\"Both\" needs a plural noun: both sides, not both side.",
+      "either of": "\"Either of\" must be followed by a determiner or pronoun (either of the sides); it cannot come directly before \"side\"."
+    },
+    "student_error": {
+      "both of": "Learners think the speakers are on two sides, so they reach for \"both\" and add \"of\" because \"both of them\" is a familiar chunk.",
+      "both": "The meaning is two sides, so learners pick \"both\" without noticing that the noun after the blank is singular.",
+      "either of": "Learners overgeneralise \"either of\" from \"either of you\" and use it before any noun."
+    },
+    "key_slot": "C",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-C080",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A1",
+    "category": "subject-verb agreement",
+    "varied_dimension": "question auxiliary do / does / has / are agreeing with a plural subject placed after it in a wh-question",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Where ________ your two sisters take dance lessons after school?",
+    "choices": [
+      "do",
+      "does",
+      "has",
+      "are"
+    ],
+    "correct_answer": "do",
+    "explanation": "In a present simple question with a main verb (take), we use the auxiliary do or does, and it agrees with the subject that comes after it. \"Your two sisters\" is plural, so the correct auxiliary is \"do\".",
+    "distractor_rationales": {
+      "does": "\"Does\" is for a singular subject; \"your two sisters\" is plural.",
+      "has": "\"Has\" is singular and would need a past participle (taken), not the base form \"take\".",
+      "are": "\"Are\" is used with -ing or an adjective (are taking); it cannot be followed by the base verb \"take\"."
+    },
+    "student_error": {
+      "does": "Learners match the auxiliary to the word just before it (Where) or treat every question as \"does\".",
+      "has": "Learners mix up question patterns and use \"has\" as a general question word, as in some first languages.",
+      "are": "Learners link \"sisters\" with \"are\" because they know \"my sisters are\" and forget that \"take\" needs \"do\"."
+    },
+    "key_slot": "A",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-C081",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "pronoun case and reference",
+    "varied_dimension": "possessive reciprocal each other's vs reflexive and object/possessive pronouns before a noun",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "I loved the duet: Paula and Femi kept looking into ________ eyes so that they could hold the long notes together.",
+    "choices": [
+      "themselves",
+      "theirs",
+      "them",
+      "each other's"
+    ],
+    "correct_answer": "each other's",
+    "explanation": "When two people do something to the other person, we use the reciprocal \"each other\", and its possessive is \"each other's\" before a noun. Paula looked into Femi's eyes and Femi looked into Paula's, so \"each other's eyes\" is correct.",
+    "distractor_rationales": {
+      "themselves": "\"Themselves\" is a reflexive object pronoun; it cannot stand before a noun like \"eyes\", and the action goes from one singer to the other, not back to the same person.",
+      "theirs": "\"Theirs\" is a possessive pronoun that replaces a noun; it cannot come before \"eyes\".",
+      "them": "\"Them\" is an object pronoun and cannot be used as a possessive before a noun."
+    },
+    "student_error": {
+      "themselves": "Learners confuse reflexive and reciprocal pronouns, since many languages use one form for both meanings.",
+      "theirs": "Learners know \"theirs\" is possessive and use it before the noun instead of \"their\".",
+      "them": "Learners use the object form in every position after a preposition-like verb phrase such as \"looking into\"."
+    },
+    "key_slot": "D",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-C082",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "word form",
+    "varied_dimension": "person noun in -ist vs the base noun, the adjective and the abstract noun of one root after 'become an'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Iris paints the sea every weekend and wants to become an ________.",
+    "choices": [
+      "artistic",
+      "art",
+      "artist",
+      "artistry"
+    ],
+    "correct_answer": "artist",
+    "explanation": "After \"become an\" we need a countable noun for a person, because Iris wants to become a kind of person. The person who makes art is an \"artist\".",
+    "distractor_rationales": {
+      "artistic": "\"Artistic\" is an adjective; \"an\" needs a noun after it here.",
+      "art": "\"Art\" is the thing that is made, not the person who makes it.",
+      "artistry": "\"Artistry\" is an uncountable noun for skill; it cannot follow \"an\" and does not name a person."
+    },
+    "student_error": {
+      "artistic": "Learners choose the longer, more advanced-looking form without checking that a noun is needed.",
+      "art": "Learners use the subject name for the person, as in \"I want to become a music\".",
+      "artistry": "Learners guess that a long noun ending must name a person, like \"dentistry\" and \"dentist\" being confused."
+    },
+    "key_slot": "C",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-C083",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "modals",
+    "varied_dimension": "the word after polite 'Would you' that allows a following -ing form (mind vs rather / please / kindly)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Would you ________ switching off your phone before tonight's play begins?",
+    "choices": [
+      "please",
+      "mind",
+      "rather",
+      "kindly"
+    ],
+    "correct_answer": "mind",
+    "explanation": "\"Would you mind\" is a polite request and is followed by an -ing form: Would you mind switching off your phone? \"Would you please\", \"would you kindly\" and \"would you rather\" are all followed by the base verb (switch), not an -ing form.",
+    "distractor_rationales": {
+      "please": "\"Would you please\" needs the base verb: Would you please switch off your phone?",
+      "rather": "\"Would you rather\" asks about a preference and is followed by the base verb, not -ing.",
+      "kindly": "\"Would you kindly\" also needs the base verb: Would you kindly switch off ...?"
+    },
+    "student_error": {
+      "please": "Learners know \"please\" is the polite word and add it without checking the verb form after it.",
+      "rather": "Learners remember \"would rather\" as a fixed polite pattern and use it for requests.",
+      "kindly": "Learners copy the formal \"would you kindly\" from notices and miss that it takes the base verb."
+    },
+    "key_slot": "B",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-C084",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "conjunctions and connectors",
+    "varied_dimension": "concessive connector for an uncertain future condition (even if) vs connectors for a known fact (even though / though) and manner (as if)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Tomorrow evening's outdoor concert will not be cancelled ________ it rains, because the stage has a large roof and the seats are covered.",
+    "choices": [
+      "even if",
+      "though",
+      "even though",
+      "as if"
+    ],
+    "correct_answer": "even if",
+    "explanation": "\"Even if\" introduces a condition that may or may not happen: nobody knows yet whether it will rain tomorrow evening, and the concert will happen either way. \"Even though\" and \"though\" are used for something that is already a known fact.",
+    "distractor_rationales": {
+      "though": "\"Though\" presents a known fact; tomorrow's rain is not known yet.",
+      "even though": "\"Even though\" also states a fact that is true; it cannot introduce an uncertain future possibility.",
+      "as if": "\"As if\" describes how something seems or is done; it does not express a condition or a contrast."
+    },
+    "student_error": {
+      "though": "Learners treat \"though\" as a short form of \"even if\" because both express contrast.",
+      "even though": "Learners see \"even\" in both and think \"even though\" and \"even if\" mean the same thing.",
+      "as if": "Learners notice \"if\" and pick it, thinking any phrase with \"if\" introduces a condition."
+    },
+    "key_slot": "A",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C085",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "prepositions after a head word",
+    "varied_dimension": "particle completing the phrasal verb 'find ___' meaning discover",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "We waited by the stage door to find ________ who won the dance contest.",
+    "choices": [
+      "about",
+      "out",
+      "into",
+      "over"
+    ],
+    "correct_answer": "out",
+    "explanation": "\"Find out\" is a phrasal verb that means to learn or discover a piece of information. We waited to learn the name of the winner, so \"find out\" is correct.",
+    "distractor_rationales": {
+      "about": "\"Find about\" is not an English phrasal verb; we say \"find out about\" or \"hear about\".",
+      "into": "\"Find into\" is not a phrasal verb; \"into\" shows movement inside something.",
+      "over": "\"Find over\" is not a phrasal verb with the meaning of discovering information."
+    },
+    "student_error": {
+      "about": "Learners mix \"find out\" with \"hear about\" or \"learn about\" and use \"about\" alone.",
+      "into": "Learners connect \"find\" with \"look into\" (investigate) and pick the same particle.",
+      "over": "Learners confuse it with \"find\" + \"look over\" or with \"get over\"."
+    },
+    "key_slot": "B",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-C086",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "verb tense and aspect",
+    "varied_dimension": "verb form inside an 'as soon as' clause with a future main clause: present perfect vs will / would / past simple",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Please stay in your seats, because the dancers will come back for a final bow as soon as the music ________.",
+    "choices": [
+      "will stop",
+      "stopped",
+      "would stop",
+      "has stopped"
+    ],
+    "correct_answer": "has stopped",
+    "explanation": "In a time clause after \"as soon as\", \"when\" or \"until\" that refers to the future, English uses a present tense, not \"will\". The present perfect \"has stopped\" shows the music must be finished first, and the main clause \"will come back\" carries the future meaning.",
+    "distractor_rationales": {
+      "will stop": "\"Will\" is not used inside a future time clause after \"as soon as\".",
+      "stopped": "The past simple refers to the past, but the main clause \"will come back\" is about the future.",
+      "would stop": "\"Would\" does not fit a time clause about a real future event."
+    },
+    "student_error": {
+      "will stop": "Learners see that the event is in the future and use \"will\" in both clauses, as many first languages do.",
+      "stopped": "Learners think the music must stop before the dancers return, so they use a past form.",
+      "would stop": "Learners use \"would\" as a polite or general future form in reported or formal sentences."
+    },
+    "key_slot": "D",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-C087",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "adjective vs adverb",
+    "varied_dimension": "order of three adjectives before a noun: opinion, then color, then material",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Everyone laughed when Javier came on stage as the giant in ________ coat.",
+    "choices": [
+      "an orange woolen ugly",
+      "a woolen ugly orange",
+      "an ugly orange woolen",
+      "an orange ugly woolen"
+    ],
+    "correct_answer": "an ugly orange woolen",
+    "explanation": "When several adjectives come before a noun, an opinion adjective (ugly) comes first, then color (orange), then material (woolen). So the correct order is \"an ugly orange woolen coat\".",
+    "distractor_rationales": {
+      "an orange woolen ugly": "Opinion (ugly) should come first, not just before the noun.",
+      "a woolen ugly orange": "Material (woolen) should come last, just before the noun.",
+      "an orange ugly woolen": "Opinion (ugly) should come before color (orange)."
+    },
+    "student_error": {
+      "an orange woolen ugly": "Learners keep the order they thought of the words in, ending with the strongest feeling.",
+      "a woolen ugly orange": "In some first languages the material or other adjectives come in a different order or after the noun.",
+      "an orange ugly woolen": "Learners put the most visible feature, the color, first."
+    },
+    "key_slot": "C",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-C088",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "reported speech",
+    "varied_dimension": "reporting verb that takes object + to-infinitive (advise) vs say / agree / suggest",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "When Mr. Okonkwo watched our first rehearsal, he ________ us to speak more slowly and face the audience.",
+    "choices": [
+      "advised",
+      "said",
+      "agreed",
+      "suggested"
+    ],
+    "correct_answer": "advised",
+    "explanation": "\"Advise\" follows the pattern verb + object + to-infinitive: he advised us to speak more slowly. \"Say\", \"agree\" and \"suggest\" cannot take an object followed by a to-infinitive.",
+    "distractor_rationales": {
+      "said": "\"Say\" does not take a person object; we say \"he told us to\" or \"he said that we should\".",
+      "agreed": "\"Agree\" takes a to-infinitive without an object (he agreed to help), not object + to-infinitive.",
+      "suggested": "\"Suggest\" takes a that-clause or an -ing form (suggested that we speak / suggested speaking), never \"suggested us to\"."
+    },
+    "student_error": {
+      "said": "Learners use \"say\" like \"tell\" because both translate to one verb in many languages.",
+      "agreed": "Learners know \"agree to + verb\" and add an object by analogy with \"ask someone to\".",
+      "suggested": "\"Suggested us to\" is one of the most common learner errors, copied from the pattern of \"advise\" and \"ask\"."
+    },
+    "key_slot": "A",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C089",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "relative pronouns and clauses",
+    "varied_dimension": "active -ing participle in a reduced relative clause vs finite verb forms and the past participle",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "The dancer ________ the long red ribbon at the front of the festival parade is Chloe's older cousin.",
+    "choices": [
+      "held",
+      "holds",
+      "is holding",
+      "holding"
+    ],
+    "correct_answer": "holding",
+    "explanation": "The sentence already has its main verb (is Chloe's older cousin), so the words after \"The dancer\" must be a reduced relative clause. \"Holding\" is short for \"who is holding\" and has an active meaning because the dancer holds the ribbon.",
+    "distractor_rationales": {
+      "held": "As a past tense it would give the sentence two main verbs; as a past participle it would mean the dancer was held, which cannot take the object \"the ribbon\".",
+      "holds": "A finite verb here gives the sentence two main verbs (holds ... is) with no relative pronoun.",
+      "is holding": "This also creates a second main verb; it would need \"who\" before it."
+    },
+    "student_error": {
+      "held": "Learners know reduced relatives often use -ed forms (the picture painted by ...) and overuse them.",
+      "holds": "Learners read \"The dancer holds the ribbon\" as a complete idea and miss the later main verb.",
+      "is holding": "Learners drop the relative pronoun but keep the full verb, as in \"the dancer who is holding\"."
+    },
+    "key_slot": "D",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C090",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "parallel structure",
+    "varied_dimension": "second verb of a compound predicate matching a present continuous first verb (shared 'is')",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "At this moment in our rehearsal, Karim is tuning his guitar and ________ quietly to the drummer about the first song.",
+    "choices": [
+      "talks",
+      "talk",
+      "talking",
+      "talked"
+    ],
+    "correct_answer": "talking",
+    "explanation": "The two verbs share the subject Karim and the helper \"is\": Karim is tuning ... and (is) talking. Both actions are happening at this moment, so both verbs must be in the present continuous.",
+    "distractor_rationales": {
+      "talks": "The present simple is for habits; \"at this moment\" and \"is tuning\" show an action in progress.",
+      "talk": "The base form does not agree with \"Karim\" and does not match \"is tuning\".",
+      "talked": "The past simple clashes with \"at this moment\" and with the present continuous \"is tuning\"."
+    },
+    "student_error": {
+      "talks": "Learners match the verb to the third-person subject (Karim talks) and forget the shared \"is\".",
+      "talk": "Learners think \"and\" starts a new simple verb and use the base form.",
+      "talked": "Learners describing a rehearsal slip into the past tense they use for stories."
+    },
+    "key_slot": "C",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-C091",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "C1",
+    "category": "modifier placement",
+    "varied_dimension": "main-clause subject after an 'After + -ing' opener: the singer as subject vs passive or other subjects",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "After singing her long solo in the spring concert at the city music hall last night, ________.",
+    "choices": [
+      "a wave was given by Lotte",
+      "Lotte waved to the crowd",
+      "flowers were given to Lotte",
+      "the audience cheered for Lotte"
+    ],
+    "correct_answer": "Lotte waved to the crowd",
+    "explanation": "An opening phrase like \"After singing her solo\" has no subject of its own, so it describes the subject of the main clause. Only Lotte sang the solo, so the main clause must begin with \"Lotte\".",
+    "distractor_rationales": {
+      "flowers were given to Lotte": "The subject is \"flowers\", so the sentence says the flowers sang the solo.",
+      "the audience cheered for Lotte": "The subject is \"the audience\", so the sentence says the audience sang her solo.",
+      "a wave was given by Lotte": "The subject is \"a wave\", so the sentence says the wave sang the solo."
+    },
+    "student_error": {
+      "flowers were given to Lotte": "Learners link the opening phrase to whoever is mentioned anywhere in the sentence.",
+      "the audience cheered for Lotte": "Learners choose the most logical next event without checking who did the singing.",
+      "a wave was given by Lotte": "Learners think a passive sentence that mentions Lotte is enough to connect her to the opening phrase."
+    },
+    "key_slot": "B",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-E073",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "parallel structure",
+    "varied_dimension": "third verb in a past-simple list switched to present perfect against a finished past time marker",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "At last year's festival, the club members [A: built] a stage in the park, [B: sewed] all of [C: their own costumes], and [D: have performed three short comedies] for families.",
+    "choices": [
+      "built",
+      "sewed",
+      "their own costumes",
+      "have performed three short comedies"
+    ],
+    "correct_answer": "have performed three short comedies",
+    "explanation": "The three verbs share one subject and describe events at a finished time (last year's festival), so all of them must be past simple: built, sewed and performed. \"Have performed\" is present perfect, which cannot be used with a finished past time.",
+    "distractor_rationales": {
+      "built": "\"Built\" is the correct irregular past of \"build\".",
+      "sewed": "\"Sewed\" is the correct past simple of \"sew\".",
+      "their own costumes": "\"Their\" agrees with the plural \"club members\", and \"own\" correctly strengthens the possessive."
+    },
+    "student_error": {
+      "built": "Learners may expect the regular form \"builded\".",
+      "sewed": "Learners may think the past should be \"sewn\", the participle.",
+      "their own costumes": "Learners may doubt the plural possessive or expect \"theirs\" or \"its\" for a club."
+    },
+    "key_slot": "D",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-E074",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "pronoun case and reference",
+    "varied_dimension": "reflexive pronoun wrongly used for a two-person reciprocal action after a preposition",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "During yesterday's rehearsal, Emi and her partner [A: spun] so quickly that they [B: almost crashed] into [C: themselves] and nearly [D: fell off] the stage.",
+    "choices": [
+      "spun",
+      "almost crashed",
+      "themselves",
+      "fell off"
+    ],
+    "correct_answer": "themselves",
+    "explanation": "When two people do an action to the other person, English uses \"each other\". Emi nearly crashed into her partner and her partner nearly crashed into Emi, so the correct phrase is \"crashed into each other\", not \"themselves\".",
+    "distractor_rationales": {
+      "spun": "\"Spun\" is the correct irregular past of \"spin\".",
+      "almost crashed": "\"Almost\" correctly comes before the past simple verb \"crashed\".",
+      "fell off": "\"Fell off\" is the correct past of \"fall off\" with \"the stage\"."
+    },
+    "student_error": {
+      "spun": "Learners may expect \"spinned\" or \"span\".",
+      "almost crashed": "Learners may think \"almost\" must follow the verb or that a past continuous is needed.",
+      "fell off": "Learners may doubt the particle and expect \"fell from\" or \"fell off of\"."
+    },
+    "key_slot": "C",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-E075",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "reported speech",
+    "varied_dimension": "reporting verb 'explain' needing 'to' before its person object",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Halfway through the concert, the conductor [A: stopped the orchestra], [B: explained] us why the old piano [C: sounded out of tune], and [D: called for] a short break.",
+    "choices": [
+      "stopped the orchestra",
+      "explained",
+      "sounded out of tune",
+      "called for"
+    ],
+    "correct_answer": "explained",
+    "explanation": "\"Explain\" cannot take a person directly as its object; the pattern is \"explain (something) to someone\". The correct phrase is \"explained to us why the old piano sounded out of tune\".",
+    "distractor_rationales": {
+      "stopped the orchestra": "\"Stopped\" is the correct past form and takes \"the orchestra\" as a direct object.",
+      "sounded out of tune": "\"Sound\" is a linking verb followed by an adjective phrase, and the past fits the reported story.",
+      "called for": "\"Call for\" correctly means to ask for or announce something."
+    },
+    "student_error": {
+      "stopped the orchestra": "Learners may expect \"stopped to\" or \"stopped playing\" after \"stop\".",
+      "sounded out of tune": "Learners may expect an adverb after \"sounded\" or a present tense inside \"why\".",
+      "called for": "Learners may doubt the particle and expect \"called\" alone or \"asked for\"."
+    },
+    "key_slot": "B",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-E076",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "gerund vs infinitive",
+    "varied_dimension": "'let' + object followed by a to-infinitive instead of the bare infinitive",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Our choir teacher [A: always lets] us [B: to sing] our [C: favorite songs] [D: after lunch].",
+    "choices": [
+      "always lets",
+      "to sing",
+      "favorite songs",
+      "after lunch"
+    ],
+    "correct_answer": "to sing",
+    "explanation": "After \"let\" + object we use the base verb without \"to\": she lets us sing. Verbs like \"want\", \"ask\" and \"tell\" take \"to\", but \"let\" and \"make\" do not.",
+    "distractor_rationales": {
+      "always lets": "\"Always\" correctly comes before the main verb, and \"lets\" agrees with \"teacher\".",
+      "favorite songs": "\"Favorite\" is the US spelling and \"songs\" is correctly plural after \"our\".",
+      "after lunch": "\"After\" is a preposition followed directly by the noun \"lunch\", with no article for a meal."
+    },
+    "student_error": {
+      "always lets": "Learners may put \"always\" after the verb or forget the -s on \"lets\".",
+      "favorite songs": "Learners may expect a singular noun after \"our favorite\".",
+      "after lunch": "Learners may add an article (after the lunch) as in their first language."
+    },
+    "key_slot": "B",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-E077",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "relative pronouns and clauses",
+    "varied_dimension": "finite present simple used where a reduced -ing relative is needed after the subject noun",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "That boy [A: plays] the guitar [B: on the stage] [C: is] my [D: older brother].",
+    "choices": [
+      "plays",
+      "on the stage",
+      "is",
+      "older brother"
+    ],
+    "correct_answer": "plays",
+    "explanation": "The main verb of the sentence is \"is\", so the words describing the boy must be a reduced relative clause: \"That boy playing the guitar\" (= who is playing). \"Plays\" makes a second main verb.",
+    "distractor_rationales": {
+      "on the stage": "\"On the stage\" is the correct preposition and article for a place.",
+      "is": "\"Is\" is the main verb and agrees with the singular subject \"that boy\".",
+      "older brother": "\"Older\" is the correct comparative for an older sibling."
+    },
+    "student_error": {
+      "on the stage": "Learners may expect \"in the stage\" or \"at stage\".",
+      "is": "Learners may think \"is\" should agree with \"the guitar\" or should be removed.",
+      "older brother": "Learners may expect \"elder\" or \"more old\"."
+    },
+    "key_slot": "A",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E078",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "passive voice",
+    "varied_dimension": "passive of 'give' with the person as subject wrongly followed by 'to' before the thing",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Our choir [A: sang beautifully], and [B: each singer] [C: was] [D: given to] a gold medal.",
+    "choices": [
+      "sang beautifully",
+      "each singer",
+      "was",
+      "given to"
+    ],
+    "correct_answer": "given to",
+    "explanation": "When the person who receives something is the subject of a passive verb, the thing follows directly: each singer was given a gold medal. \"To\" is only used when the thing is the subject: a gold medal was given to each singer.",
+    "distractor_rationales": {
+      "sang beautifully": "\"Sang\" is the correct past of \"sing\", and the adverb \"beautifully\" describes how they sang.",
+      "each singer": "\"Each\" is followed by a singular noun.",
+      "was": "\"Was\" agrees with the singular subject \"each singer\"."
+    },
+    "student_error": {
+      "sang beautifully": "Learners may expect \"sung\" or the adjective \"beautiful\".",
+      "each singer": "Learners may expect a plural noun after \"each\".",
+      "was": "Learners may expect \"were\" because many singers are meant."
+    },
+    "key_slot": "D",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E079",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "verb tense and aspect",
+    "varied_dimension": "'will' inside an 'until' clause after a 'be going to' main clause",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Tonight the ushers [A: are going to keep] the doors [B: closed] until the conductor [C: will give] them [D: a quick signal].",
+    "choices": [
+      "are going to keep",
+      "closed",
+      "will give",
+      "a quick signal"
+    ],
+    "correct_answer": "will give",
+    "explanation": "In a time clause after \"until\", \"when\" or \"as soon as\" that refers to the future, we use the present simple, not \"will\". The correct form is \"until the conductor gives them a quick signal\".",
+    "distractor_rationales": {
+      "are going to keep": "\"Be going to\" correctly expresses a future plan for tonight.",
+      "closed": "\"Closed\" is an adjective describing the state of the doors after \"keep\".",
+      "a quick signal": "The article and the adjective before the noun are correct."
+    },
+    "student_error": {
+      "are going to keep": "Learners may think the main clause needs \"will\" too.",
+      "closed": "Learners may expect \"close\" or \"closing\" after \"keep\".",
+      "a quick signal": "Learners may expect the adverb \"quickly\" or no article."
+    },
+    "key_slot": "C",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E080",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "subject-verb agreement",
+    "varied_dimension": "singular verb in 'here + verb + subject' inversion with a plural subject after it",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "[A: Look]! The music [B: is starting], and here [C: comes] [D: our] dancers!",
+    "choices": [
+      "Look",
+      "is starting",
+      "comes",
+      "our"
+    ],
+    "correct_answer": "comes",
+    "explanation": "After \"here\" at the start of a clause, the verb comes before the subject but still agrees with it. The subject is \"our dancers\", which is plural, so the verb must be \"come\": here come our dancers.",
+    "distractor_rationales": {
+      "Look": "The base form is correct for a command.",
+      "is starting": "The present continuous correctly describes something happening now and agrees with \"the music\".",
+      "our": "\"Our\" is the correct possessive before a noun."
+    },
+    "student_error": {
+      "Look": "Learners may expect \"Looks\" or \"Looking\".",
+      "is starting": "Learners may expect the present simple \"starts\".",
+      "our": "Learners may confuse \"our\" with \"ours\" or \"us\"."
+    },
+    "key_slot": "C",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-E081",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "word form",
+    "varied_dimension": "thing noun used where the -er person noun is needed after 'pictures by'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "This poster for the summer festival [A: promises] [B: two short dance shows], free snacks, and [C: an exhibition] of pictures by [D: a local photograph].",
+    "choices": [
+      "promises",
+      "two short dance shows",
+      "an exhibition",
+      "a local photograph"
+    ],
+    "correct_answer": "a local photograph",
+    "explanation": "Pictures are made by a person, so after \"pictures by\" we need a person noun. A \"photograph\" is the picture itself; the person who takes it is a \"photographer\".",
+    "distractor_rationales": {
+      "promises": "\"Promises\" agrees with the singular subject \"this poster\".",
+      "two short dance shows": "\"Two\" takes a plural noun, and \"dance\" works as a noun modifier before \"shows\".",
+      "an exhibition": "\"An\" is used before the vowel sound at the start of \"exhibition\"."
+    },
+    "student_error": {
+      "promises": "Learners may think \"promise\" agrees with \"festival\" or should be plural.",
+      "two short dance shows": "Learners may expect \"dances shows\" or doubt the order of the words.",
+      "an exhibition": "Learners may use \"a\" because \"exhibition\" is spelled with an \"e\" followed by \"x\"."
+    },
+    "key_slot": "D",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-E082",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "C1",
+    "category": "modifier placement",
+    "varied_dimension": "passive main clause whose subject cannot do the action of an 'After + -ing' opener",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "After [A: practicing] the scene for three hours, [B: the lines were finally memorized by Vikram], so he [C: could relax] [D: during] the dress rehearsal.",
+    "choices": [
+      "practicing",
+      "the lines were finally memorized by Vikram",
+      "could relax",
+      "during"
+    ],
+    "correct_answer": "the lines were finally memorized by Vikram",
+    "explanation": "The opening phrase \"After practicing the scene\" describes the subject of the main clause. Here that subject is \"the lines\", which says the lines practiced the scene. The clause should begin with the person: \"Vikram finally memorized the lines\".",
+    "distractor_rationales": {
+      "practicing": "\"After\" is a preposition, so it is correctly followed by an -ing form.",
+      "could relax": "\"Could\" + base verb correctly expresses past ability.",
+      "during": "\"During\" is correctly followed by a noun phrase (the dress rehearsal)."
+    },
+    "student_error": {
+      "practicing": "Learners may expect \"to practice\" or \"practiced\" after \"After\".",
+      "could relax": "Learners may expect \"could relaxed\" or \"can relax\".",
+      "during": "Learners may confuse \"during\" with \"while\" and expect a clause."
+    },
+    "key_slot": "B",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-E083",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "comparatives and superlatives",
+    "varied_dimension": "singular 'that of' wrongly replacing plural 'those of' in a like-with-like comparison",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Paintings by the younger students were brighter than [A: that] of the older ones, [B: whose work] [C: mostly used] [D: darker colors].",
+    "choices": [
+      "that",
+      "whose work",
+      "mostly used",
+      "darker colors"
+    ],
+    "correct_answer": "that",
+    "explanation": "A comparison must compare the same kinds of things, so we use \"that of\" or \"those of\" to repeat the noun. The noun being repeated is \"paintings\", which is plural, so the correct form is \"those of the older ones\".",
+    "distractor_rationales": {
+      "whose work": "\"Whose\" is the correct possessive relative pronoun for the older students.",
+      "mostly used": "\"Mostly\" correctly modifies the past simple verb \"used\".",
+      "darker colors": "\"Darker\" is the correct comparative of the short adjective \"dark\"."
+    },
+    "student_error": {
+      "whose work": "Learners may confuse \"whose\" with \"who's\" or expect \"which\".",
+      "mostly used": "Learners may expect the adjective \"most\" instead of the adverb.",
+      "darker colors": "Learners may expect \"more dark\"."
+    },
+    "key_slot": "A",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-E084",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "conditionals",
+    "varied_dimension": "wish + past perfect wrongly used for a future event instead of wish + could / would",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Seo-yeon's ballet recital is on Saturday, and she wishes her grandparents [A: had flown in from Busan] to see it, but [B: they] [C: are working] [D: that weekend].",
+    "choices": [
+      "had flown in from Busan",
+      "they",
+      "are working",
+      "that weekend"
+    ],
+    "correct_answer": "had flown in from Busan",
+    "explanation": "\"Wish + past perfect\" expresses regret about the past. The recital is in the future, so a wish about it uses \"could\" or \"would\": she wishes her grandparents could fly in from Busan to see it.",
+    "distractor_rationales": {
+      "they": "\"They\" correctly refers to the plural \"grandparents\".",
+      "are working": "The present continuous correctly describes a future arrangement.",
+      "that weekend": "\"That weekend\" correctly refers back to the weekend of the recital."
+    },
+    "student_error": {
+      "they": "Learners may expect \"them\" or think the pronoun refers to Seo-yeon.",
+      "are working": "Learners may think a future event needs \"will work\".",
+      "that weekend": "Learners may expect \"this weekend\" or \"on that weekend\"."
+    },
+    "key_slot": "A",
+    "key_len_rank": 4
+  }
+]

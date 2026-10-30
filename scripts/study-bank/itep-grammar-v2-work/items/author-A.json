@@ -1,0 +1,752 @@
+[
+  {
+    "id": "ITG2-C001",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "relative pronouns and clauses",
+    "varied_dimension": "who vs which vs whoever vs whichever as the object of a non-defining relative clause whose antecedent is a thing",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "The new microscope, ________ the school bought with money raised at the art fair, is powerful enough to show single cells in an onion skin.",
+    "choices": [
+      "who",
+      "whoever",
+      "which",
+      "whichever"
+    ],
+    "correct_answer": "which",
+    "explanation": "The relative pronoun refers back to \"the new microscope\", which is a thing, so it must be \"which\". \"Who\" is used only for people, and a clause set off by commas cannot use \"whoever\" or \"whichever\", which do not point back to a noun.",
+    "distractor_rationales": {
+      "who": "\"Who\" refers to people; a microscope is a thing.",
+      "whoever": "\"Whoever\" means \"any person who\" and cannot refer back to a noun already named.",
+      "whichever": "\"Whichever\" means \"any one that\" and cannot begin a comma clause about one specific microscope."
+    },
+    "student_error": {
+      "who": "Learners hear \"who\" as the default relative word and use it after any noun, especially when the clause is long and the antecedent is far back.",
+      "whoever": "Learners pick the longer -ever form when the clause is long and the subject (the school) is a group of people.",
+      "whichever": "Learners treat \"whichever\" as a more formal version of \"which\"."
+    },
+    "key_slot": "C",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-C002",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "adjective vs adverb",
+    "varied_dimension": "word form of accurate (adjective, noun, comparative adjective, -ly adverb) after the action verb measure",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Measure each leaf ________ and write its length in your table.",
+    "choices": [
+      "accurately",
+      "accurate",
+      "accuracy",
+      "more accurate"
+    ],
+    "correct_answer": "accurately",
+    "explanation": "The word describes how you measure, so it modifies the verb \"measure\" and must be an adverb. Adverbs of manner are usually formed with -ly: accurate becomes accurately.",
+    "distractor_rationales": {
+      "accurate": "\"Accurate\" is an adjective; it describes a noun, not the action of measuring.",
+      "accuracy": "\"Accuracy\" is a noun and cannot describe how an action is done.",
+      "more accurate": "\"More accurate\" is still an adjective, and nothing here is being compared."
+    },
+    "student_error": {
+      "accurate": "Many learners drop -ly because in their first language the same word works as adjective and adverb.",
+      "accuracy": "Learners pick the noun they have seen on worksheets (\"check your accuracy\") without noticing its word class.",
+      "more accurate": "Learners think a comparative sounds stronger in an instruction."
+    },
+    "key_slot": "A",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C003",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "verb tense and aspect",
+    "varied_dimension": "past simple vs present perfect vs past perfect vs base form of complete, decided by the time marker so far",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "So far this term, we ________ four short quizzes in math class.",
+    "choices": [
+      "completed",
+      "complete",
+      "had completed",
+      "have completed"
+    ],
+    "correct_answer": "have completed",
+    "explanation": "\"So far\" means from a past point up to now, and the term is still going on. Time up to now takes the present perfect: have + past participle.",
+    "distractor_rationales": {
+      "completed": "The past simple describes finished time; \"so far this term\" reaches up to the present.",
+      "complete": "The present simple describes habits or facts, not a total up to now.",
+      "had completed": "The past perfect needs a later past moment to look back from; this sentence is about now."
+    },
+    "student_error": {
+      "completed": "Learners use the past simple for every finished action, ignoring the time marker.",
+      "complete": "Learners whose first language does not mark tense on the verb leave it in the base form.",
+      "had completed": "Learners think \"had\" makes any completed action sound more finished."
+    },
+    "key_slot": "D",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-C004",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "subject-verb agreement",
+    "varied_dimension": "third-person singular -s vs base vs past vs plural progressive of do after each + singular noun in a present timetable",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "On the new timetable, each student in Ingrid's class ________ a quiz every Monday, and the results go up on Tuesday.",
+    "choices": [
+      "does",
+      "do",
+      "did",
+      "are doing"
+    ],
+    "correct_answer": "does",
+    "explanation": "\"Each student\" is singular, so a present simple verb needs -s (do becomes does). The timetable describes a regular present routine (\"the results go up\"), so the present simple \"does\" is correct.",
+    "distractor_rationales": {
+      "do": "\"Do\" is the plural or I/you form; \"each student\" is singular.",
+      "did": "The timetable describes a present routine, as \"the results go up\" shows, so the past is wrong.",
+      "are doing": "\"Are\" is plural and cannot follow the singular \"each student\"."
+    },
+    "student_error": {
+      "do": "Learners agree the verb with the plural idea of many students instead of the singular \"each student\".",
+      "did": "Learners pick the past because a quiz sounds like a finished event.",
+      "are doing": "Learners agree the verb with the nearest group noun (class) or the idea of many students."
+    },
+    "key_slot": "A",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C005",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "pronoun case and reference",
+    "varied_dimension": "subject vs object vs reflexive vs possessive pronoun after the preposition beside",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Our teacher noticed that the new boy was confused by the fractions, so she sat down beside ________ and explained them again.",
+    "choices": [
+      "he",
+      "him",
+      "himself",
+      "his own"
+    ],
+    "correct_answer": "him",
+    "explanation": "A pronoun after a preposition such as \"beside\" takes the object form, so \"him\" is correct. A reflexive pronoun would be used only if the subject of the verb (she) were the same person.",
+    "distractor_rationales": {
+      "he": "\"He\" is a subject pronoun and cannot follow a preposition.",
+      "himself": "A reflexive pronoun must refer to the subject of its clause; the subject here is \"she\", not the boy.",
+      "his own": "\"His own\" needs a noun after it or a possessive meaning; nothing belongs to anyone here."
+    },
+    "student_error": {
+      "he": "Learners keep the subject form because the boy was the subject of the earlier clause.",
+      "himself": "Learners think the reflexive adds emphasis or is more polite.",
+      "his own": "Learners mix up possessive and object forms of the same pronoun."
+    },
+    "key_slot": "B",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-C006",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "count/non-count and quantifiers",
+    "varied_dimension": "much vs many vs few vs bare lot before the non-count noun time in a negative sentence",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "In yesterday's exam, I didn't have ________ time to check my answers.",
+    "choices": [
+      "few",
+      "lot",
+      "many",
+      "much"
+    ],
+    "correct_answer": "much",
+    "explanation": "\"Time\" here is a non-count noun, so it takes \"much\", not \"many\". \"Much\" is common in negative sentences like \"didn't have much time\".",
+    "distractor_rationales": {
+      "few": "\"Few\" is used only with plural count nouns such as \"few minutes\".",
+      "lot": "\"Lot\" needs \"a\" and \"of\": \"a lot of time\".",
+      "many": "\"Many\" is used with plural count nouns; \"time\" is non-count here."
+    },
+    "student_error": {
+      "few": "Learners think of time as minutes and choose a count quantifier.",
+      "lot": "Learners drop the article and \"of\" from \"a lot of\", a common transfer from languages without articles.",
+      "many": "Learners use \"many\" for any large amount, count or non-count."
+    },
+    "key_slot": "D",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C007",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "prepositions after a head word",
+    "varied_dimension": "the preposition governed by the adjective familiar when the subject is a person",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Before you touch any equipment, make sure you are familiar ________ the safety rules on the board.",
+    "choices": [
+      "of",
+      "with",
+      "to",
+      "at"
+    ],
+    "correct_answer": "with",
+    "explanation": "When a person knows something well, English says the person is \"familiar with\" it. \"Familiar to\" is used the other way round, when the thing is known to a person (\"The rules are familiar to me\").",
+    "distractor_rationales": {
+      "of": "\"Familiar\" is not followed by \"of\" in standard English.",
+      "to": "\"Familiar to\" needs the known thing as the subject; here the subject is \"you\", the person.",
+      "at": "\"At\" follows adjectives of skill such as \"good at\", not \"familiar\"."
+    },
+    "student_error": {
+      "of": "Learners copy the pattern of \"aware of\" and \"sure of\", which have a similar meaning.",
+      "to": "Learners have seen \"familiar to\" and do not notice that it reverses who knows what.",
+      "at": "Learners overgeneralise \"good at\" to other adjectives about ability or knowledge."
+    },
+    "key_slot": "B",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-C008",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "comparatives and superlatives",
+    "varied_dimension": "comparative vs superlative, with or without the, -est vs most for the one-syllable adjective hard",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Ravi says that chemistry is ________ subject on this year's timetable.",
+    "choices": [
+      "harder",
+      "the most hard",
+      "hardest",
+      "the hardest"
+    ],
+    "correct_answer": "the hardest",
+    "explanation": "Chemistry is compared with every subject on the timetable, so a superlative is needed, and a superlative before a noun takes \"the\". \"Hard\" has one syllable, so it adds -est rather than using \"most\".",
+    "distractor_rationales": {
+      "harder": "A comparative compares two things and would need \"the\" or \"a\" before \"subject\"; here one subject is compared with all the others.",
+      "the most hard": "One-syllable adjectives such as \"hard\" form the superlative with -est, not \"most\".",
+      "hardest": "A superlative before a singular noun needs \"the\"."
+    },
+    "student_error": {
+      "harder": "Learners mix up comparative and superlative forms when no \"than\" or \"of all\" appears.",
+      "the most hard": "Learners apply the \"most\" rule for long adjectives to every adjective.",
+      "hardest": "Learners whose first language has no articles leave out \"the\"."
+    },
+    "key_slot": "D",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C009",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "passive voice",
+    "varied_dimension": "present simple passive vs active progressive vs active perfect forms of keep with an inanimate subject separated from its verb",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Every evening, the glass slides from our biology lessons ________ in a dry cupboard so that they stay clean.",
+    "choices": [
+      "are kept",
+      "are keeping",
+      "have kept",
+      "had been keeping"
+    ],
+    "correct_answer": "are kept",
+    "explanation": "The slides do not keep anything; someone keeps them, so the verb must be passive (be + past participle). \"Every evening\" describes a routine, so the present simple passive \"are kept\" fits.",
+    "distractor_rationales": {
+      "are keeping": "This is active: it would mean the slides themselves are keeping something.",
+      "have kept": "This is active and has no object; slides cannot keep something themselves.",
+      "had been keeping": "This is active, and the past perfect does not fit a present routine."
+    },
+    "student_error": {
+      "are keeping": "Learners see \"are\" and think the form is already passive.",
+      "have kept": "Learners see the past participle \"kept\" and miss that \"have\" makes it active.",
+      "had been keeping": "Learners see \"been\" and assume a passive meaning."
+    },
+    "key_slot": "A",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-C010",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "gerund vs infinitive",
+    "varied_dimension": "gerund vs to-infinitive vs for + -ing vs to + -ing after the verb finish",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Amara has just finished ________ her science report, so she can help me with mine.",
+    "choices": [
+      "to write",
+      "for writing",
+      "writing",
+      "to writing"
+    ],
+    "correct_answer": "writing",
+    "explanation": "The verb \"finish\" is always followed by an -ing form (a gerund), never by \"to\" + verb. So we say \"finished writing\".",
+    "distractor_rationales": {
+      "to write": "\"Finish\" does not take a to-infinitive.",
+      "for writing": "\"Finish\" takes its object directly, with no preposition.",
+      "to writing": "\"To + -ing\" follows phrases such as \"look forward to\", not \"finish\"."
+    },
+    "student_error": {
+      "to write": "Learners overgeneralise the \"want to / decide to\" pattern to all verbs.",
+      "for writing": "Learners translate a preposition from their first language.",
+      "to writing": "Learners remember that \"to\" can come before -ing in some phrases and mix the two patterns."
+    },
+    "key_slot": "C",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-C011",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "conditionals",
+    "varied_dimension": "present vs past vs future passive in the if-clause of a zero conditional whose result clause is present simple",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "At sea level, if pure water ________ to 100 degrees Celsius, it always boils.",
+    "choices": [
+      "heated",
+      "will be heated",
+      "is heated",
+      "was heated"
+    ],
+    "correct_answer": "is heated",
+    "explanation": "This is a general scientific truth, so it uses the zero conditional: present simple in both clauses. The result \"it always boils\" is present, so the if-clause needs the present passive \"is heated\".",
+    "distractor_rationales": {
+      "heated": "The past form does not match the present result \"always boils\" in a general truth.",
+      "will be heated": "\"Will\" is not used in an if-clause about a general truth.",
+      "was heated": "The past passive clashes with the present result \"it always boils\"."
+    },
+    "student_error": {
+      "heated": "Learners treat \"heated\" as an adjective or drop \"is\" because the verb form looks complete.",
+      "will be heated": "Learners put \"will\" in the if-clause because the heating happens before the boiling.",
+      "was heated": "Learners pick the past because experiments are usually described as finished events."
+    },
+    "key_slot": "C",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-C012",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "modals",
+    "varied_dimension": "past ability could vs present, future and present perfect forms of be able to, decided by a past when-clause",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "When Tomas was only six years old, he ________ count to a thousand without making a single mistake.",
+    "choices": [
+      "could",
+      "is able to",
+      "will be able to",
+      "has been able to"
+    ],
+    "correct_answer": "could",
+    "explanation": "\"When Tomas was only six\" puts the ability in the past, and \"could\" is the past form of \"can\" for general ability. The other options describe present or future ability, or ability up to now.",
+    "distractor_rationales": {
+      "is able to": "This is present; the time clause \"when he was six\" is past.",
+      "will be able to": "This is future and cannot describe a past ability.",
+      "has been able to": "The present perfect cannot be used with a finished past time like \"when he was six\"."
+    },
+    "student_error": {
+      "is able to": "Learners keep the main verb in the present because the ability may still be true.",
+      "will be able to": "Learners confuse ability with a plan or prediction.",
+      "has been able to": "Learners use the present perfect for any ability that started in the past and continues."
+    },
+    "key_slot": "A",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-C013",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "conjunctions and connectors",
+    "varied_dimension": "contrast vs result vs alternative vs condition connector joining two clauses about a test",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "I checked every answer on the math test twice, ________ I still made one small mistake.",
+    "choices": [
+      "so",
+      "but",
+      "or",
+      "if"
+    ],
+    "correct_answer": "but",
+    "explanation": "The second clause is the opposite of what you would expect after checking twice, and \"still\" signals that surprise. A contrast between two clauses is joined with \"but\".",
+    "distractor_rationales": {
+      "so": "\"So\" introduces a result; checking twice does not cause a mistake.",
+      "or": "\"Or\" gives a choice between two possibilities, but both things really happened.",
+      "if": "\"If\" introduces a condition, but making the mistake is not a condition for checking."
+    },
+    "student_error": {
+      "so": "Learners use \"so\" as a general linking word meaning \"and then\".",
+      "or": "Learners confuse \"or\" and \"but\" when both feel like a change of direction.",
+      "if": "Learners read the sentence quickly and treat it as a condition, as in \"twice, if needed\"."
+    },
+    "key_slot": "B",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-E001",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "parallel structure",
+    "varied_dimension": "an -ing item at the head of a list whose other items are to-infinitives after remind + object",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "On exam day, Ms. Haddad reminded us [A: checking our units], [B: to show all of our work], and [C: not to leave] any question blank [D: on the answer sheet].",
+    "choices": [
+      "checking our units",
+      "to show all of our work",
+      "not to leave",
+      "on the answer sheet"
+    ],
+    "correct_answer": "checking our units",
+    "explanation": "\"Remind someone\" is followed by \"to\" + verb, and every item in a list must have the same form. The other items are infinitives, so the first must be \"to check our units\".",
+    "distractor_rationales": {
+      "to show all of our work": "This is a to-infinitive, the form that follows \"reminded us\".",
+      "not to leave": "In a negative infinitive, \"not\" correctly comes before \"to\".",
+      "on the answer sheet": "We write \"on\" a sheet of paper, so the preposition is correct."
+    },
+    "student_error": {
+      "to show all of our work": "Learners doubt \"all of our\" and think \"all our\" is the only correct form.",
+      "not to leave": "Learners expect \"to not leave\" or \"don't leave\" and suspect the word order.",
+      "on the answer sheet": "Learners are unsure whether paper takes \"in\" or \"on\"."
+    },
+    "key_slot": "A",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E002",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "reported speech",
+    "varied_dimension": "unshifted will in a reported promise anchored by the following day after a past reporting verb",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Last Friday, Lucas told me he [A: will finish] his poster [B: for art class] [C: the following day], but he [D: forgot to bring it].",
+    "choices": [
+      "will finish",
+      "for art class",
+      "the following day",
+      "forgot to bring it"
+    ],
+    "correct_answer": "will finish",
+    "explanation": "After a past reporting verb (\"told\"), a future \"will\" shifts back to \"would\". \"The following day\" confirms the whole report is seen from the past, so it should be \"would finish\".",
+    "distractor_rationales": {
+      "for art class": "\"For\" correctly shows the purpose of the poster.",
+      "the following day": "In reported speech, \"tomorrow\" becomes \"the following day\".",
+      "forgot to bring it": "\"Forget to\" + verb means he did not remember to do it, which fits."
+    },
+    "student_error": {
+      "for art class": "Learners are unsure whether a class takes \"for\" or \"in\".",
+      "the following day": "Learners expect the speaker's original word \"tomorrow\".",
+      "forgot to bring it": "Learners confuse \"forget to bring\" with \"forget bringing\"."
+    },
+    "key_slot": "A",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-E003",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "prepositions after a head word",
+    "varied_dimension": "wrong preposition after the adjective afraid, with another adjective + preposition pair correct earlier",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Sofia used to be [A: nervous about] lab work, but this year she [B: has stopped being] [C: afraid from] the gas taps [D: on the long benches].",
+    "choices": [
+      "nervous about",
+      "has stopped being",
+      "afraid from",
+      "on the long benches"
+    ],
+    "correct_answer": "afraid from",
+    "explanation": "The adjective \"afraid\" is followed by \"of\": we are afraid of something. \"From\" is a common translation from other languages but is not used after \"afraid\".",
+    "distractor_rationales": {
+      "nervous about": "\"Nervous\" correctly takes \"about\".",
+      "has stopped being": "\"Stop\" takes an -ing form, and the present perfect fits \"this year\".",
+      "on the long benches": "Things fixed to a surface are \"on\" it, so the preposition is correct."
+    },
+    "student_error": {
+      "nervous about": "Learners expect \"nervous of\" by analogy with \"afraid of\".",
+      "has stopped being": "Learners think \"stop\" should be followed by \"to be\".",
+      "on the long benches": "Learners are unsure whether objects on a table take \"on\" or \"at\"."
+    },
+    "key_slot": "C",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-E004",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "adjective vs adverb",
+    "varied_dimension": "adjective neat where an adverb is needed to describe how the action verb wrote was done",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "I [A: wrote the answers very neat], so [B: my] teacher [C: gave] [D: me a gold star].",
+    "choices": [
+      "wrote the answers very neat",
+      "my",
+      "gave",
+      "me a gold star"
+    ],
+    "correct_answer": "wrote the answers very neat",
+    "explanation": "The word describes how I wrote, so it must be an adverb: \"very neatly\". Adjectives like \"neat\" describe nouns, not actions.",
+    "distractor_rationales": {
+      "my": "\"My\" is the correct possessive before \"teacher\".",
+      "gave": "\"Gave\" is the correct past form of \"give\".",
+      "me a gold star": "After \"give\", the person (me) comes first and then the thing (a gold star)."
+    },
+    "student_error": {
+      "my": "Learners confuse \"my\" and \"mine\" before a noun.",
+      "gave": "Learners overgeneralise -ed and expect \"gived\".",
+      "me a gold star": "Learners think the order must be \"a gold star to me\"."
+    },
+    "key_slot": "A",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-E005",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "count/non-count and quantifiers",
+    "varied_dimension": "many where the following non-count noun time needs much",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Yesterday I [A: had] [B: lots of] homework, so there [C: was] [D: not many] time for TV.",
+    "choices": [
+      "had",
+      "lots of",
+      "was",
+      "not many"
+    ],
+    "correct_answer": "not many",
+    "explanation": "\"Time\" here is a non-count noun, so it takes \"much\": \"not much time\". \"Many\" is only for plural count nouns.",
+    "distractor_rationales": {
+      "had": "\"Had\" is the correct past form of \"have\".",
+      "lots of": "\"Lots of\" works with non-count nouns such as \"homework\".",
+      "was": "\"Time\" is singular non-count, so \"there was\" is correct."
+    },
+    "student_error": {
+      "had": "Learners doubt irregular past forms and expect \"haved\".",
+      "lots of": "Learners think \"lots of\" is only for count nouns.",
+      "was": "Learners think \"there were\" sounds right before a quantity."
+    },
+    "key_slot": "D",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-E006",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "conjunctions and connectors",
+    "varied_dimension": "result connector so used where the clause, signalled by still, contrasts with what came before",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Jun [A: had reviewed] every chapter [B: of the textbook] twice and [C: felt confident] on the morning of the exam, [D: so he still forgot] one important formula.",
+    "choices": [
+      "had reviewed",
+      "of the textbook",
+      "felt confident",
+      "so he still forgot"
+    ],
+    "correct_answer": "so he still forgot",
+    "explanation": "Forgetting a formula is not a result of careful review; it is the opposite of what you expect, and \"still\" marks that contrast. The connector must be \"but\", not \"so\".",
+    "distractor_rationales": {
+      "had reviewed": "The past perfect correctly shows the reviewing happened before the exam morning.",
+      "of the textbook": "\"Of\" correctly links a chapter to the book it belongs to.",
+      "felt confident": "\"Felt\" is the correct past of \"feel\", followed by an adjective."
+    },
+    "student_error": {
+      "had reviewed": "Learners think the past perfect is wrong without a second past event in the same clause.",
+      "of the textbook": "Learners expect \"in the textbook\".",
+      "felt confident": "Learners expect an adverb (\"confidently\") after a verb."
+    },
+    "key_slot": "D",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-E007",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "C1",
+    "category": "modifier placement",
+    "varied_dimension": "main-clause subject that cannot perform the action of an opening -ing phrase",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Looking [A: through the new microscope], [B: the onion cells seemed] [C: much larger] than Yuna [D: had expected].",
+    "choices": [
+      "through the new microscope",
+      "the onion cells seemed",
+      "much larger",
+      "had expected"
+    ],
+    "correct_answer": "the onion cells seemed",
+    "explanation": "An opening -ing phrase describes the subject of the main clause. Here that subject is \"the onion cells\", which cannot look through a microscope; the subject should be the person looking, as in \"Yuna found the onion cells ...\".",
+    "distractor_rationales": {
+      "through the new microscope": "\"Look through\" is the correct verb + preposition for a lens.",
+      "much larger": "\"Much\" correctly strengthens a comparative.",
+      "had expected": "The past perfect correctly shows the expectation came before the looking."
+    },
+    "student_error": {
+      "through the new microscope": "Learners expect \"look in\" or \"look at\" a microscope.",
+      "much larger": "Learners think \"very larger\" or \"more larger\" is needed.",
+      "had expected": "Learners think a simple past \"expected\" is required."
+    },
+    "key_slot": "B",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-E008",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "gerund vs infinitive",
+    "varied_dimension": "to-infinitive after avoid at the end of a clause that also contains a subjunctive after suggest",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "After several of us [A: got] paint on our sleeves, Mr. Petrov [B: suggested] that we [C: wear] old shirts and avoid [D: to lean] on wet tables.",
+    "choices": [
+      "got",
+      "suggested",
+      "wear",
+      "to lean"
+    ],
+    "correct_answer": "to lean",
+    "explanation": "The verb \"avoid\" is always followed by an -ing form, so it should be \"avoid leaning\". The to-infinitive is not used after \"avoid\".",
+    "distractor_rationales": {
+      "got": "\"Got\" is the correct past form of \"get\".",
+      "suggested": "\"Suggested that\" correctly introduces the advice.",
+      "wear": "After \"suggest that\", the base form of the verb is used, so \"we wear\" is correct."
+    },
+    "student_error": {
+      "got": "Learners think \"got\" is too informal or should be \"gotten\".",
+      "suggested": "Learners think \"suggest\" must be followed by \"us\" or \"to\".",
+      "wear": "Learners expect \"should wear\" or \"wore\" to match the past verb \"suggested\"."
+    },
+    "key_slot": "D",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-E009",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "modals",
+    "varied_dimension": "present can for an ability described inside a past when-clause frame",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Last year, when I [A: was in] [B: the beginner group], I [C: can] only [D: add small numbers].",
+    "choices": [
+      "was in",
+      "the beginner group",
+      "can",
+      "add small numbers"
+    ],
+    "correct_answer": "can",
+    "explanation": "The sentence describes ability last year, so it needs the past form \"could\". \"Can\" is for ability now.",
+    "distractor_rationales": {
+      "was in": "\"Was\" is the correct past of \"be\", and we are \"in\" a group.",
+      "the beginner group": "\"The\" is correct because it is one specific group.",
+      "add small numbers": "After a modal, the base form \"add\" is correct, and \"numbers\" is plural."
+    },
+    "student_error": {
+      "was in": "Learners are unsure whether a group takes \"in\" or \"at\".",
+      "the beginner group": "Learners think \"beginner\" must be \"beginners\" or \"beginning\".",
+      "add small numbers": "Learners expect \"to add\" after a modal."
+    },
+    "key_slot": "C",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-E010",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "word form",
+    "varied_dimension": "noun danger after be where the adjective dangerous is needed",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Remember, some liquids [A: on] the top shelf are [B: danger], so you [C: must not] open them [D: without help].",
+    "choices": [
+      "on",
+      "danger",
+      "must not",
+      "without help"
+    ],
+    "correct_answer": "danger",
+    "explanation": "After \"are\", we need an adjective to describe the liquids: \"dangerous\". \"Danger\" is a noun and cannot describe them on its own.",
+    "distractor_rationales": {
+      "on": "Things resting on a shelf are \"on\" it.",
+      "must not": "\"Must not\" correctly expresses a rule against doing something.",
+      "without help": "\"Without\" is followed by a noun, so \"without help\" is correct."
+    },
+    "student_error": {
+      "on": "Learners think \"in\" is needed for things stored in a cupboard or shelf.",
+      "must not": "Learners confuse \"must not\" with \"do not have to\".",
+      "without help": "Learners think \"help\" needs an article (\"a help\")."
+    },
+    "key_slot": "B",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E011",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "passive voice",
+    "varied_dimension": "active teaches with a school-subject subject that cannot do the teaching, where the present simple passive is taught is needed",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "On Mondays, our art lesson [A: begins] [B: at] nine, and French [C: teaches] [D: in Room 12 after lunch].",
+    "choices": [
+      "begins",
+      "at",
+      "teaches",
+      "in Room 12 after lunch"
+    ],
+    "correct_answer": "teaches",
+    "explanation": "French is the subject being taught, not the teacher, so the verb must be passive: \"French is taught\". The present simple passive is is/are + past participle.",
+    "distractor_rationales": {
+      "begins": "A lesson can begin by itself, and \"begins\" agrees with \"lesson\".",
+      "at": "We use \"at\" with clock times.",
+      "in Room 12 after lunch": "We use \"in\" for a room and \"after\" for a time that follows an event."
+    },
+    "student_error": {
+      "begins": "Learners think a lesson must \"be begun\" by someone.",
+      "at": "Learners use \"on\" or \"in\" with clock times.",
+      "in Room 12 after lunch": "Learners think a room number takes \"at\"."
+    },
+    "key_slot": "C",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-E012",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "conditionals",
+    "varied_dimension": "would in the result clause of a zero conditional whose if-clause is present simple",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "If you [A: mix] red and white paint, you [B: would get] pink, [C: a lighter shade] [D: than red on its own].",
+    "choices": [
+      "mix",
+      "would get",
+      "a lighter shade",
+      "than red on its own"
+    ],
+    "correct_answer": "would get",
+    "explanation": "This is a general truth about colors, so it uses the zero conditional: present simple in both clauses. The result should be \"you get pink\"; \"would\" belongs to imagined situations with a past if-clause.",
+    "distractor_rationales": {
+      "mix": "The present simple is correct in the if-clause of a general truth.",
+      "a lighter shade": "\"Lighter\" is the correct comparative of the one-syllable adjective \"light\".",
+      "than red on its own": "\"Than\" follows a comparative, and \"on its own\" means alone."
+    },
+    "student_error": {
+      "mix": "Learners think the if-clause needs \"will mix\" or \"mixed\".",
+      "a lighter shade": "Learners expect \"more light\" for the comparative.",
+      "than red on its own": "Learners confuse \"its\" and \"it's\"."
+    },
+    "key_slot": "B",
+    "key_len_rank": 2
+  }
+]

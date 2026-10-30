@@ -1,0 +1,740 @@
+[
+  {
+    "id": "ITG2-C053",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "comparatives and superlatives",
+    "varied_dimension": "comparative vs superlative, with and without 'the', before 'of all the dishes'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "The green curry was ________ of all the dishes we tried at the new Thai cafe.",
+    "choices": [
+      "spicier",
+      "the spicier",
+      "the spiciest",
+      "a lot spicier"
+    ],
+    "correct_answer": "the spiciest",
+    "explanation": "When one thing is compared with a whole group ('of all the dishes'), English uses 'the' + superlative. A comparative like 'spicier' compares two things and is followed by 'than', not 'of all'.",
+    "distractor_rationales": {
+      "spicier": "A comparative needs 'than'; it cannot be followed by 'of all the dishes'.",
+      "the spicier": "'The + comparative + of' is used only for a choice between two; here there are many dishes.",
+      "a lot spicier": "A comparative with 'a lot' still needs 'than'; 'of all' calls for a superlative."
+    },
+    "student_error": {
+      "spicier": "Learners treat any '-er' form as the 'strongest' form.",
+      "the spicier": "Learners copy 'the spicier of the two' to groups of more than two.",
+      "a lot spicier": "Learners add an intensifier to make the comparative sound like 'the most'."
+    },
+    "key_slot": "C",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C054",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "relative pronouns and clauses",
+    "varied_dimension": "relative word after a comma: which vs that vs whose vs where it",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Mrs. Adeyemi shared her lemon cake recipe, ________ came from her grandmother in Lagos.",
+    "choices": [
+      "that",
+      "whose",
+      "which",
+      "where it"
+    ],
+    "correct_answer": "which",
+    "explanation": "After a comma, an extra-information (non-restrictive) clause about a thing begins with 'which'. 'That' is not used after a comma in this kind of clause.",
+    "distractor_rationales": {
+      "that": "'That' cannot begin a clause set off by a comma.",
+      "whose": "'Whose' must be followed by a noun (whose cake...).",
+      "where it": "'Where' is for places, and the extra 'it' repeats the subject."
+    },
+    "student_error": {
+      "that": "Learners use 'that' for all things, ignoring the comma rule.",
+      "whose": "Learners confuse 'whose' with 'who's' or think it means 'which'.",
+      "where it": "Learners add a pronoun inside the relative clause, as in their first language."
+    },
+    "key_slot": "C",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-C055",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "verb tense and aspect",
+    "varied_dimension": "past simple vs present perfect vs present continuous vs present perfect continuous, decided by 'tomorrow'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Sorry, the flour is gone, but my supplier ________ ten more bags tomorrow.",
+    "choices": [
+      "sent",
+      "has sent",
+      "is sending",
+      "has been sending"
+    ],
+    "correct_answer": "is sending",
+    "explanation": "For a future plan that has already been arranged, English often uses the present continuous: 'is sending ... tomorrow'. Past and perfect forms cannot go with 'tomorrow'.",
+    "distractor_rationales": {
+      "sent": "Past simple cannot describe tomorrow.",
+      "has sent": "The present perfect describes past actions, not a plan for tomorrow.",
+      "has been sending": "This describes an action continuing up to now, not tomorrow."
+    },
+    "student_error": {
+      "sent": "Learners pick the first verb form they know for 'send'.",
+      "has sent": "Learners use the present perfect as a general 'done' tense.",
+      "has been sending": "Learners think a longer form sounds more correct for a business arrangement."
+    },
+    "key_slot": "C",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C056",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "pronoun case and reference",
+    "varied_dimension": "pronoun standing for a plural noun: those vs that vs it vs them",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "The prices at this stall are much lower than ________ at the supermarket on our street.",
+    "choices": [
+      "those",
+      "that",
+      "it",
+      "them"
+    ],
+    "correct_answer": "those",
+    "explanation": "To avoid repeating a noun, we use 'that' for a singular noun and 'those' for a plural noun. 'Prices' is plural, so 'those (prices) at the supermarket' is correct.",
+    "distractor_rationales": {
+      "that": "'That' replaces a singular noun, but 'prices' is plural.",
+      "it": "'It' is singular and cannot be followed by 'at the supermarket' as a replacement for 'prices'.",
+      "them": "'Them' cannot be followed by a describing phrase like 'at the supermarket'."
+    },
+    "student_error": {
+      "that": "Learners remember 'that of' from formal writing and ignore number.",
+      "it": "Learners use 'it' for any thing already mentioned.",
+      "them": "Learners use the object pronoun after 'than'."
+    },
+    "key_slot": "A",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-C057",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "reported speech",
+    "varied_dimension": "future form in reported speech after a past reporting verb: would vs will vs will have vs is going to",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "On Tuesday, the baker promised that she ________ us a loaf of rye bread until the following morning.",
+    "choices": [
+      "would save",
+      "will save",
+      "will have saved",
+      "is going to save"
+    ],
+    "correct_answer": "would save",
+    "explanation": "When we report a promise made in the past, 'will' usually moves back to 'would'. 'The following morning' shows that the whole time frame is in the past, so a present or future form does not fit.",
+    "distractor_rationales": {
+      "will save": "'Will' does not match the past reporting verb 'promised' and the past time 'the following morning'.",
+      "will have saved": "The future perfect looks forward from now, not from Tuesday.",
+      "is going to save": "A present form cannot report a past promise about 'the following morning'."
+    },
+    "student_error": {
+      "will save": "Learners repeat the speaker's original words without backshifting.",
+      "will have saved": "Learners think a perfect form shows the 'later' time.",
+      "is going to save": "Learners keep the present 'going to' because the promise was certain."
+    },
+    "key_slot": "A",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-C058",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "conditionals",
+    "varied_dimension": "result clause after 'if' + past perfect, with a present time marker 'now'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Our recipe says to soak the beans overnight; if we had soaked them last night, they ________ soft enough to cook now.",
+    "choices": [
+      "would have been",
+      "will have been",
+      "have been",
+      "would be"
+    ],
+    "correct_answer": "would be",
+    "explanation": "This is a mixed conditional: an unreal past condition (had soaked last night) with an unreal present result (now). The present result uses 'would' + base verb.",
+    "distractor_rationales": {
+      "would have been": "'Would have been' describes a past result, but 'now' shows the result is in the present.",
+      "will have been": "'Will' is for real future results, not unreal ones.",
+      "have been": "An unreal result needs 'would'; 'have been' states a fact."
+    },
+    "student_error": {
+      "would have been": "Learners always match 'had' with 'would have', the third conditional pattern.",
+      "will have been": "Learners use the first-conditional 'will' after any 'if'.",
+      "have been": "Learners drop the modal and use a perfect form to show the past."
+    },
+    "key_slot": "D",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-C059",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "parallel structure",
+    "varied_dimension": "form of the verb after 'prefer X to ___' : -ing vs base vs past vs third person",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Because she enjoys being creative, Rin prefers cooking her own meals at home to ________ at restaurants.",
+    "choices": [
+      "dining",
+      "dine",
+      "dined",
+      "dines"
+    ],
+    "correct_answer": "dining",
+    "explanation": "In 'prefer X to Y', the two things compared must have the same form. 'Cooking' is a gerund, and 'to' is a preposition here, so the second item must also be a gerund: 'dining'.",
+    "distractor_rationales": {
+      "dine": "'To' in 'prefer ... to' is a preposition, not part of an infinitive, and 'dine' does not match 'cooking'.",
+      "dined": "A past form is not parallel with 'cooking'.",
+      "dines": "A third-person verb cannot follow the preposition 'to'."
+    },
+    "student_error": {
+      "dine": "Learners read 'to dine' as an infinitive.",
+      "dined": "Learners think 'at restaurants' happened in the past.",
+      "dines": "Learners match the verb to 'Rin prefers'."
+    },
+    "key_slot": "A",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-C060",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "conjunctions and connectors",
+    "varied_dimension": "first half of a paired connector before '... but also'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "In its review, the school newspaper called Greta's tomato soup ________ healthy but also delicious.",
+    "choices": [
+      "both",
+      "not only",
+      "either",
+      "neither"
+    ],
+    "correct_answer": "not only",
+    "explanation": "'But also' is always paired with 'not only'. The other pairs are both ... and, either ... or, and neither ... nor.",
+    "distractor_rationales": {
+      "both": "'Both' pairs with 'and', not 'but also'.",
+      "either": "'Either' pairs with 'or'.",
+      "neither": "'Neither' pairs with 'nor'."
+    },
+    "student_error": {
+      "both": "Learners know 'both' means 'two good things' and mix the pairs.",
+      "either": "Learners remember that pairs start with 'either' and stop there.",
+      "neither": "Learners mix up paired connectors that sound similar."
+    },
+    "key_slot": "B",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-C061",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "prepositions after a head word",
+    "varied_dimension": "preposition of place with a vehicle (bus)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Ana ate her packed lunch ________ school bus to the farm.",
+    "choices": [
+      "in",
+      "on the",
+      "at",
+      "onto the"
+    ],
+    "correct_answer": "on the",
+    "explanation": "We use 'on' with buses, trains and planes: 'on the bus'. 'Onto' shows movement to a place, but eating happens in one place.",
+    "distractor_rationales": {
+      "in": "A bus takes 'on', and the noun also needs 'the' here.",
+      "at": "'At' is for a point or address, not for being inside a bus.",
+      "onto the": "'Onto' shows movement, not where an action takes place."
+    },
+    "student_error": {
+      "in": "Learners use 'in' because they are inside the bus, as with 'in the car'.",
+      "at": "Learners use 'at' for any location.",
+      "onto the": "Learners connect 'on the bus' with getting onto it."
+    },
+    "key_slot": "B",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C062",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "word form",
+    "varied_dimension": "adjective vs adverb vs noun from the root 'help', including -ful and -less",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Our waiter, Marco, was so ________ that he brought us extra bread before we even asked for it.",
+    "choices": [
+      "helpless",
+      "unhelpful",
+      "helpfulness",
+      "helpful"
+    ],
+    "correct_answer": "helpful",
+    "explanation": "After 'was so' we need an adjective. '-ful' means 'having' the quality and '-less' means 'without' it, so a waiter who brings bread before we ask is 'helpful'.",
+    "distractor_rationales": {
+      "helpless": "'Helpless' means unable to help yourself, the opposite of the meaning here.",
+      "unhelpful": "An unhelpful waiter would not bring extra bread without being asked.",
+      "helpfulness": "This is a noun; 'was so' needs an adjective."
+    },
+    "student_error": {
+      "helpless": "Learners mix up the suffixes -ful and -less.",
+      "unhelpful": "Learners choose a familiar word without checking the meaning.",
+      "helpfulness": "Learners choose the longest form of the word family."
+    },
+    "key_slot": "D",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-C063",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "gerund vs infinitive",
+    "varied_dimension": "verb form after 'be used to' : base vs -ing vs past vs perfect infinitive",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "After a year of living in Korea, Ahmed is used to ________ spicy food at almost every meal.",
+    "choices": [
+      "eat",
+      "eating",
+      "have eaten",
+      "ate"
+    ],
+    "correct_answer": "eating",
+    "explanation": "In 'be used to' (be familiar with), 'to' is a preposition, so it is followed by a noun or an -ing form: 'is used to eating'. This is different from 'used to eat' for past habits.",
+    "distractor_rationales": {
+      "eat": "'Is used to' needs an -ing form; 'used to eat' (without 'is') is a different structure.",
+      "have eaten": "A preposition cannot be followed by 'have eaten'.",
+      "ate": "A past form cannot follow a preposition."
+    },
+    "student_error": {
+      "eat": "Learners confuse 'be used to' with 'used to' + base verb.",
+      "have eaten": "Learners think a perfect form fits 'after a year'.",
+      "ate": "Learners think the past form shows the past year."
+    },
+    "key_slot": "B",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C064",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "subject-verb agreement",
+    "varied_dimension": "verb after the indefinite pronoun 'nobody' : singular vs plural forms",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Nobody in my family ________ a sweet tooth, so we rarely buy cake.",
+    "choices": [
+      "has",
+      "have",
+      "have got",
+      "were having"
+    ],
+    "correct_answer": "has",
+    "explanation": "Indefinite pronouns such as 'nobody', 'everyone' and 'something' take a singular verb. 'In my family' does not change the subject.",
+    "distractor_rationales": {
+      "have": "'Nobody' is singular, so it takes 'has'.",
+      "have got": "'Have got' is plural; the singular would be 'has got'.",
+      "were having": "This is plural, and 'have a sweet tooth' is not used in the continuous."
+    },
+    "student_error": {
+      "have": "Learners think 'nobody in my family' means many people.",
+      "have got": "Learners match the verb to 'family' members.",
+      "were having": "Learners overuse the continuous form."
+    },
+    "key_slot": "A",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-C065",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "modifier placement",
+    "varied_dimension": "subject of the main clause after the -ed opener 'Baked in a wood-fired oven'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Baked in a wood-fired oven for just ninety seconds at the new cafe on Pine Street, ________.",
+    "choices": [
+      "we loved the smoky crust",
+      "the chef served it with a fresh salad",
+      "there was a smoky taste in every bite",
+      "the pizza came out smoky and crisp"
+    ],
+    "correct_answer": "the pizza came out smoky and crisp",
+    "explanation": "An -ed phrase at the start of a sentence describes the subject that comes right after the comma. Only the pizza was baked, so the main clause must begin with 'the pizza'.",
+    "distractor_rationales": {
+      "we loved the smoky crust": "This says that 'we' were baked in the oven.",
+      "the chef served it with a fresh salad": "This says that the chef was baked.",
+      "there was a smoky taste in every bite": "'There' is not something that can be baked, so the opener has nothing to describe."
+    },
+    "student_error": {
+      "we loved the smoky crust": "Learners think the opener can describe anything mentioned in the sentence.",
+      "the chef served it with a fresh salad": "Learners see 'it' (the pizza) and think the link is clear.",
+      "there was a smoky taste in every bite": "Learners accept 'there was' as a neutral start that fits anywhere."
+    },
+    "key_slot": "D",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E049",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "relative pronouns and clauses",
+    "varied_dimension": "'that' used to open a clause after a comma",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Yesterday a critic [A: ate] lunch [B: at Golden Bowl] [C: on Maple Street], [D: that serves] noodles.",
+    "choices": [
+      "ate",
+      "at Golden Bowl",
+      "on Maple Street",
+      "that serves"
+    ],
+    "correct_answer": "that serves",
+    "explanation": "A clause after a comma that adds extra information about a thing must begin with 'which': 'Golden Bowl ..., which serves noodles'. 'That' cannot follow a comma in this kind of clause.",
+    "distractor_rationales": {
+      "that serves": "After the comma, the clause needs 'which serves'."
+    },
+    "student_error": {
+      "ate": "Irregular past of 'eat'; learners doubt it and expect 'eated'.",
+      "at Golden Bowl": "Learners wonder whether a restaurant takes 'in' or 'at'.",
+      "on Maple Street": "Learners use 'in' or 'at' with street names; US English uses 'on'.",
+      "that serves": "Learners use 'that' for every thing and ignore the comma."
+    },
+    "key_slot": "D",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E050",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "passive voice",
+    "varied_dimension": "simple passive where 'right now' needs the continuous passive",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Today the cafe [A: is serving meals] outside because the dining room [B: is painted] right now [C: by students] [D: from the art club].",
+    "choices": [
+      "is serving meals",
+      "is painted",
+      "by students",
+      "from the art club"
+    ],
+    "correct_answer": "is painted",
+    "explanation": "For an action happening at this moment to something, English uses the continuous passive: 'is being painted right now'. 'Is painted' describes a general fact or a state.",
+    "distractor_rationales": {
+      "is painted": "With 'right now' and an agent ('by students'), the action is in progress, so it must be 'is being painted'."
+    },
+    "student_error": {
+      "is serving meals": "Learners doubt the present continuous for a temporary arrangement 'today'.",
+      "is painted": "Learners use the simple passive for every passive action.",
+      "by students": "Learners are unsure whether a passive agent takes 'by' or 'from'.",
+      "from the art club": "Learners doubt 'from' versus 'of' for membership."
+    },
+    "key_slot": "B",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-E051",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "modals",
+    "varied_dimension": "'must' + base verb used for a deduction about a past action",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Tobi's oven [A: is still warm] and his kitchen [B: smells of cinnamon], so he [C: must bake] [D: some] cookies just before we arrived.",
+    "choices": [
+      "is still warm",
+      "smells of cinnamon",
+      "must bake",
+      "some"
+    ],
+    "correct_answer": "must bake",
+    "explanation": "To make a confident guess about the past from present evidence, use 'must have' + past participle: 'he must have baked some cookies just before we arrived'. 'Must bake' is about the present or future.",
+    "distractor_rationales": {
+      "must bake": "The time is past ('just before we arrived'), so the deduction needs 'must have baked'."
+    },
+    "student_error": {
+      "is still warm": "Learners doubt the position of 'still' with 'be'.",
+      "smells of cinnamon": "Learners are unsure whether 'smell' takes 'of', 'like' or no preposition.",
+      "must bake": "Learners use 'must' + base verb for all deductions.",
+      "some": "Learners think 'some' should be 'any' in a statement about a guess."
+    },
+    "key_slot": "C",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E052",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "gerund vs infinitive",
+    "varied_dimension": "infinitive after 'look forward to', where 'to' is a preposition",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "We [A: told] the cook [B: that] we look forward [C: to try her famous dumplings] [D: next week].",
+    "choices": [
+      "told",
+      "that",
+      "to try her famous dumplings",
+      "next week"
+    ],
+    "correct_answer": "to try her famous dumplings",
+    "explanation": "In 'look forward to', 'to' is a preposition, so it is followed by an -ing form: 'look forward to trying her famous dumplings'.",
+    "distractor_rationales": {
+      "to try her famous dumplings": "After 'look forward', 'to' must be followed by 'trying'."
+    },
+    "student_error": {
+      "told": "Learners mix up 'told' and 'said' before a person.",
+      "that": "Learners think 'that' cannot follow 'told the cook'.",
+      "to try her famous dumplings": "Learners read 'to' as part of an infinitive.",
+      "next week": "Learners doubt a future time with the present 'look forward'."
+    },
+    "key_slot": "C",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-E053",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "conditionals",
+    "varied_dimension": "third-conditional result used where 'right now' needs a present result",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "If Sunil [A: hadn't burned] his hand yesterday, he [B: would have peeled] the potatoes [C: for us] [D: in the kitchen] right now.",
+    "choices": [
+      "hadn't burned",
+      "would have peeled",
+      "for us",
+      "in the kitchen"
+    ],
+    "correct_answer": "would have peeled",
+    "explanation": "This is a mixed conditional: the condition is in the past (yesterday), but the result is in the present (right now). The present result needs 'would' + base verb: 'he would be peeling the potatoes for us right now'.",
+    "distractor_rationales": {
+      "would have peeled": "'Would have peeled' is a past result, which does not fit 'right now'."
+    },
+    "student_error": {
+      "hadn't burned": "Learners doubt the past perfect after 'if' and the form 'burned'.",
+      "would have peeled": "Learners always pair 'had' in the if-clause with 'would have'.",
+      "for us": "Learners doubt 'for' versus 'to' after 'peel'.",
+      "in the kitchen": "Learners doubt 'in' versus 'at' with rooms."
+    },
+    "key_slot": "B",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-E054",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "comparatives and superlatives",
+    "varied_dimension": "comparative used where 'in the entire market' requires a superlative",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "According to the review, [A: the cheaper] stall in the entire market [B: is run] by two brothers [C: who] [D: learned their recipes] in Lima.",
+    "choices": [
+      "the cheaper",
+      "is run",
+      "who",
+      "learned their recipes"
+    ],
+    "correct_answer": "the cheaper",
+    "explanation": "When one thing is compared with all the others in a place, use 'the' + superlative + 'in': 'the cheapest stall in the entire market'. 'The cheaper' compares only two things.",
+    "distractor_rationales": {
+      "the cheaper": "'In the entire market' compares many stalls, so it must be 'the cheapest'."
+    },
+    "student_error": {
+      "the cheaper": "Learners think 'the' + '-er' is the same as the superlative.",
+      "is run": "Learners doubt the irregular participle 'run' in the passive.",
+      "who": "Learners wonder whether people take 'who' or 'which'.",
+      "learned their recipes": "Learners doubt 'learned' versus 'learnt' and the plural 'their'."
+    },
+    "key_slot": "A",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-E055",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "adjective vs adverb",
+    "varied_dimension": "-ing adjective where a person's feeling needs the -ed form",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Ever since a school trip to a bakery, Layla has been [A: interesting] in baking, and she now [B: makes] bread [C: for her family] [D: every weekend].",
+    "choices": [
+      "interesting",
+      "makes",
+      "for her family",
+      "every weekend"
+    ],
+    "correct_answer": "interesting",
+    "explanation": "Adjectives ending in -ed describe how a person feels, and -ing adjectives describe the thing that causes the feeling. Layla feels interest, so she is 'interested in baking'.",
+    "distractor_rationales": {
+      "interesting": "A person who feels interest is 'interested in' something."
+    },
+    "student_error": {
+      "interesting": "Learners mix up -ing and -ed adjectives.",
+      "makes": "Learners doubt the simple present after a present perfect clause.",
+      "for her family": "Learners doubt 'for' versus 'to' after 'make bread'.",
+      "every weekend": "Learners doubt whether 'every' takes a singular noun."
+    },
+    "key_slot": "A",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E056",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "pronoun case and reference",
+    "varied_dimension": "singular demonstrative before a plural noun",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "[A: This] peaches [B: are] soft and juicy, so I'll [C: buy] six [D: for my smoothie].",
+    "choices": [
+      "This",
+      "are",
+      "buy",
+      "for my smoothie"
+    ],
+    "correct_answer": "This",
+    "explanation": "Demonstratives must match the noun: 'this' and 'that' with singular nouns, 'these' and 'those' with plural nouns. 'Peaches' is plural, so it should be 'These peaches'.",
+    "distractor_rationales": {
+      "This": "'Peaches' is plural, so it needs 'These'."
+    },
+    "student_error": {
+      "This": "Learners use 'this' for anything near the speaker without checking number.",
+      "are": "Learners doubt 'are' because they read the subject as 'this'.",
+      "buy": "Learners doubt the base verb after 'I'll'.",
+      "for my smoothie": "Learners doubt 'for' versus 'to' to show purpose."
+    },
+    "key_slot": "A",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-E057",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "subject-verb agreement",
+    "varied_dimension": "plural verb after the indefinite pronoun 'everyone'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "On Sundays my [A: grandparents] [B: make] pancakes, and everyone [C: get] three [D: with honey].",
+    "choices": [
+      "grandparents",
+      "make",
+      "get",
+      "with honey"
+    ],
+    "correct_answer": "get",
+    "explanation": "'Everyone' is singular, so the verb takes -s in the present simple: 'everyone gets three'.",
+    "distractor_rationales": {
+      "get": "'Everyone' takes a singular verb: 'gets'."
+    },
+    "student_error": {
+      "grandparents": "Learners doubt the plural form after 'my'.",
+      "make": "Learners doubt whether 'grandparents' takes 'make' or 'makes'.",
+      "get": "Learners think 'everyone' means many people, so the verb is plural.",
+      "with honey": "Learners doubt 'with' versus 'and' for food toppings."
+    },
+    "key_slot": "C",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-E058",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "verb tense and aspect",
+    "varied_dimension": "past continuous used for a fixed future arrangement",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Chef Moreau [A: has already reserved] the school hall, so next Saturday our club [B: is holding] a bake sale, and [C: we all] [D: were donating] two cakes.",
+    "choices": [
+      "has already reserved",
+      "is holding",
+      "we all",
+      "were donating"
+    ],
+    "correct_answer": "were donating",
+    "explanation": "A fixed plan for the future uses the present continuous: 'next Saturday ... we all are donating two cakes' (or 'will donate'). A past form cannot describe next Saturday.",
+    "distractor_rationales": {
+      "were donating": "'Next Saturday' is in the future, so it should be 'are donating'."
+    },
+    "student_error": {
+      "has already reserved": "Learners doubt the present perfect with 'already'.",
+      "is holding": "Learners doubt the present continuous for a future event.",
+      "we all": "Learners doubt the word order 'we all' versus 'all we'.",
+      "were donating": "Learners lose track of the time marker earlier in the sentence."
+    },
+    "key_slot": "D",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-E059",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "modifier placement",
+    "varied_dimension": "main-clause subject after the -ed opener 'Made with fresh basil'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Made [A: with fresh basil], [B: we found the pasta sauce] at Nora's cafe [C: much tastier] than [D: the one] from a jar.",
+    "choices": [
+      "with fresh basil",
+      "we found the pasta sauce",
+      "much tastier",
+      "the one"
+    ],
+    "correct_answer": "we found the pasta sauce",
+    "explanation": "An -ed phrase at the start describes the subject right after the comma. Here that subject is 'we', so the sentence says that we were made with basil. It should begin with the sauce: 'Made with fresh basil, the pasta sauce at Nora's cafe tasted much better than the one from a jar.'",
+    "distractor_rationales": {
+      "we found the pasta sauce": "The opener 'Made with fresh basil' must describe the subject, and 'we' were not made with basil."
+    },
+    "student_error": {
+      "with fresh basil": "Learners doubt 'with' versus 'from' or 'by' after 'made'.",
+      "we found the pasta sauce": "Learners think the opener can describe any noun in the sentence.",
+      "much tastier": "Learners doubt 'much' versus 'more' before a comparative.",
+      "the one": "Learners doubt 'the one' as a replacement for a singular noun."
+    },
+    "key_slot": "B",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-E060",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "count/non-count and quantifiers",
+    "varied_dimension": "'every' before a plural noun",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Step three: [A: rinse the lettuce], [B: dry it gently], and [C: tear up] [D: every] leaves into small pieces.",
+    "choices": [
+      "rinse the lettuce",
+      "dry it gently",
+      "tear up",
+      "every"
+    ],
+    "correct_answer": "every",
+    "explanation": "'Every' and 'each' are followed by a singular noun, while 'all' takes a plural noun: 'every leaf' or 'all the leaves'.",
+    "distractor_rationales": {
+      "every": "'Leaves' is plural, so the quantifier should be 'all the' (or the noun should be 'leaf')."
+    },
+    "student_error": {
+      "rinse the lettuce": "Learners doubt 'lettuce' as a non-count noun with 'the'.",
+      "dry it gently": "Learners doubt 'it' for lettuce and the adverb 'gently'.",
+      "tear up": "Learners doubt the phrasal verb with 'into'.",
+      "every": "Learners treat 'every' like 'all' and use a plural noun."
+    },
+    "key_slot": "D",
+    "key_len_rank": 1
+  }
+]

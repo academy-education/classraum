@@ -1,0 +1,627 @@
+[
+  {
+    "id": "ITG2-C066",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "conjunctions and connectors",
+    "varied_dimension": "clause-opening connector for a fronted purpose clause: so that vs so vs until vs unless",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "________ the deer would not hear us, we spoke in whispers along the river trail.",
+    "choices": ["So", "Until", "So that", "Unless"],
+    "correct_answer": "So that",
+    "explanation": "The first clause tells us WHY we whispered, so it is a purpose clause, and a purpose clause placed before the main clause must begin with \"so that\". \"So\" alone means \"and as a result\" and cannot open a sentence that way.",
+    "distractor_rationales": {
+      "So": "\"So\" alone joins a result clause after the main clause; it cannot introduce a purpose clause placed first.",
+      "Until": "\"Until\" marks a time limit, and \"until ... would not hear us\" gives no sensible meaning or form here.",
+      "Unless": "\"Unless\" means \"except if\"; \"unless the deer would not hear us\" is not a possible condition for whispering."
+    },
+    "student_error": {
+      "So": "Learners hear \"so\" used for purpose in casual speech and assume it can move to the front like \"so that\".",
+      "Until": "Learners link \"until\" with waiting for animals to stop moving and pick it from the meaning of the scene.",
+      "Unless": "Learners confuse \"unless\" with \"in case\" or \"so that ... not\" because of the negative in the clause."
+    },
+    "key_slot": "C",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-C067",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "parallel structure",
+    "varied_dimension": "word that opens the second of two coordinated subject-complement clauses after 'is that ... and': that vs if vs which vs whether",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Today's good news is that the rain will stop by noon and ________ the trails will reopen this afternoon.",
+    "choices": ["if", "that", "which", "whether"],
+    "correct_answer": "that",
+    "explanation": "The good news is two facts joined by \"and\": \"that the rain will stop\" and \"that the trails will reopen\". Parallel structure repeats the same clause opener, \"that\", for the second fact.",
+    "distractor_rationales": {
+      "if": "\"If\" introduces a question or a condition, but the sentence states a fact as part of the news.",
+      "which": "\"Which\" needs a noun to refer back to and a gap in its clause; \"the trails will reopen\" is a complete clause.",
+      "whether": "\"Whether\" introduces an open question, which cannot be the \"good news\"; it also breaks the parallel with \"that\"."
+    },
+    "student_error": {
+      "if": "Learners treat \"if\" as a general linking word for any second idea.",
+      "which": "Learners use \"which\" to add more information after \"and\", as they do with non-defining relative clauses.",
+      "whether": "Learners think \"whether\" is a formal synonym for \"that\" in reports and forecasts."
+    },
+    "key_slot": "B",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-C068",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "count/non-count and quantifiers",
+    "varied_dimension": "determiner before the non-count noun 'furniture': much vs several vs these vs an",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Our new nature center does not have ________ furniture yet.",
+    "choices": ["much", "an", "several", "these"],
+    "correct_answer": "much",
+    "explanation": "\"Furniture\" is a non-count noun: it has no plural and no \"a/an\". Non-count nouns take \"much\" in negative sentences, so \"much furniture\" is correct.",
+    "distractor_rationales": {
+      "an": "\"An\" is used only with a single countable noun; \"furniture\" is non-count.",
+      "several": "\"Several\" goes with plural count nouns, and \"furniture\" has no plural.",
+      "these": "\"These\" needs a plural noun; \"furniture\" is non-count and takes \"this\"."
+    },
+    "student_error": {
+      "an": "Learners count furniture as single objects, like \"a chair\", and give it an article.",
+      "several": "Learners translate from languages where the word for furniture is countable.",
+      "these": "Learners think of many pieces of furniture and choose a plural determiner."
+    },
+    "key_slot": "A",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-C069",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "comparatives and superlatives",
+    "varied_dimension": "form of the second half of a 'the + comparative ..., the + comparative' pair: the colder vs colder vs the coldest vs more cold",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "The higher Oscar climbed up the hill, ________ the wind felt.",
+    "choices": ["the colder", "colder", "the coldest", "more cold"],
+    "correct_answer": "the colder",
+    "explanation": "In the pattern \"the more ..., the more ...\", both halves need \"the\" plus a comparative. The first half is \"The higher\", so the second must be \"the colder\".",
+    "distractor_rationales": {
+      "colder": "The pattern needs \"the\" before the second comparative as well as the first.",
+      "the coldest": "The pattern uses comparatives, not superlatives.",
+      "more cold": "\"Cold\" is a short adjective, so its comparative is \"colder\", and the pattern also needs \"the\"."
+    },
+    "student_error": {
+      "colder": "Learners think \"the\" belongs only with superlatives and drop it from the second comparative.",
+      "the coldest": "Learners link \"the\" with the superlative and change the form to match it.",
+      "more cold": "Learners overuse \"more\" for every comparative, as in their first language."
+    },
+    "key_slot": "A",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C070",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "pronoun case and reference",
+    "varied_dimension": "substitute pronoun after 'the' standing for a plural noun already named: ones vs one vs it vs these",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Elsa noticed that the maple leaves on the ground were dry and brown, but the ________ still on the branches were soft and green.",
+    "choices": ["one", "these", "it", "ones"],
+    "correct_answer": "ones",
+    "explanation": "To avoid repeating \"leaves\", English uses \"one\" for a singular noun and \"ones\" for a plural noun after \"the\". The verb \"were\" shows the meaning is plural, so \"the ones\" is correct.",
+    "distractor_rationales": {
+      "one": "\"One\" replaces a singular noun, but the verb \"were\" needs a plural subject.",
+      "these": "\"These\" is a determiner or pronoun on its own and cannot follow \"the\".",
+      "it": "\"It\" is a personal pronoun; it cannot follow \"the\" and it is singular."
+    },
+    "student_error": {
+      "one": "Learners know \"the one\" as a fixed phrase and forget to make it plural.",
+      "these": "Learners reach for \"these\" to point to plural things and do not notice the article before the gap.",
+      "it": "Learners replace any repeated noun with \"it\", whatever the number or the article."
+    },
+    "key_slot": "D",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C071",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "relative pronouns and clauses",
+    "varied_dimension": "relative opener for a place inside a container: in which vs which vs in that vs inside what",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "The wooden box ________ the owls sleep hangs high on an old oak tree.",
+    "choices": ["which", "in which", "in that", "inside what"],
+    "correct_answer": "in which",
+    "explanation": "The owls sleep IN the box, so the relative clause needs the preposition: \"the box in which the owls sleep\". After a preposition, English uses \"which\", not \"that\" or \"what\".",
+    "distractor_rationales": {
+      "which": "Without \"in\", the clause says the owls sleep the box, which has no meaning; the preposition is missing.",
+      "in that": "\"That\" cannot follow a preposition in a relative clause.",
+      "inside what": "\"What\" cannot begin a relative clause after a noun like \"box\"."
+    },
+    "student_error": {
+      "which": "Learners drop the preposition because their first language marks place inside the verb.",
+      "in that": "Learners know \"that\" can replace \"which\" and apply it after a preposition too.",
+      "inside what": "Learners use \"what\" as a general relative word, as in \"the thing what I saw\"."
+    },
+    "key_slot": "B",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C072",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "gerund vs infinitive",
+    "varied_dimension": "verb form after 'too + adjective + for + noun': to-infinitive vs gerund vs for + gerund vs perfect participle",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Although the trail map was easy to read, the morning fog was too thick for the hikers ________ the far side of the lake.",
+    "choices": ["spotting", "for spotting", "to spot", "having spotted"],
+    "correct_answer": "to spot",
+    "explanation": "The pattern is \"too + adjective + for + someone + to-infinitive\", just as \"easy to read\" uses an infinitive after an adjective. So the fog was \"too thick for the hikers to spot\" the far side.",
+    "distractor_rationales": {
+      "spotting": "\"Too ... for someone\" is followed by a to-infinitive, not an -ing form.",
+      "for spotting": "\"For\" is already used before \"the hikers\"; a second \"for\" plus -ing does not fit the pattern.",
+      "having spotted": "A perfect participle describes an earlier completed action and cannot complete \"too thick for the hikers\"."
+    },
+    "student_error": {
+      "spotting": "Learners treat \"for the hikers\" as the end of a phrase and add an -ing form as a new action.",
+      "for spotting": "Learners know \"for + -ing\" for purpose (\"a tool for cutting\") and use it after every \"too\".",
+      "having spotted": "Learners copy formal participle openers from reading without knowing where they can go."
+    },
+    "key_slot": "C",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-C073",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "subject-verb agreement",
+    "varied_dimension": "verb agreeing with a long gerund-phrase subject full of plural nouns: is vs are vs were vs have been",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "According to Dr. Lindqvist, watering the young tomato plants in the garden beds early in the morning ________ the best way to keep them healthy.",
+    "choices": ["are", "were", "have been", "is"],
+    "correct_answer": "is",
+    "explanation": "The subject is the whole gerund phrase \"watering the young tomato plants ... in the morning\", and a gerund subject is singular. The plural nouns inside the phrase do not change that, so the verb is \"is\".",
+    "distractor_rationales": {
+      "are": "\"Are\" agrees with \"plants\" or \"beds\", but the real subject is the singular gerund \"watering\".",
+      "were": "\"Were\" is plural (and past), but a gerund subject is singular.",
+      "have been": "\"Have been\" is plural; a gerund subject needs \"has been\" or \"is\"."
+    },
+    "student_error": {
+      "are": "Learners make the verb agree with the nearest noun, \"beds\".",
+      "were": "Learners match the verb to \"plants\" and also move it into the past because the advice was given earlier.",
+      "have been": "Learners use the present perfect for advice that has been true for a long time and match it to the plural nouns."
+    },
+    "key_slot": "D",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-C074",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "conditionals",
+    "varied_dimension": "condition connector whose meaning must fit 'otherwise': as long as vs unless vs even if vs until",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Ranger Silva says campers may swim ________ an adult is watching; otherwise, they must stay ashore.",
+    "choices": ["unless", "as long as", "even if", "until"],
+    "correct_answer": "as long as",
+    "explanation": "\"As long as\" means \"only if\": swimming is allowed on the condition that an adult watches. \"Otherwise\" (if no adult watches) they stay ashore, which confirms this meaning.",
+    "distractor_rationales": {
+      "unless": "\"Unless\" means \"except if\", so the rule would allow swimming only when no adult watches, which contradicts \"otherwise\".",
+      "even if": "\"Even if\" says the condition does not matter, but \"otherwise\" shows that it does.",
+      "until": "\"Until\" sets an end point in time; swimming would stop once an adult started watching, which contradicts the rule."
+    },
+    "student_error": {
+      "unless": "Learners mix up \"unless\" and \"as long as\" because both introduce a condition.",
+      "even if": "Learners treat \"even if\" as a stronger form of \"if\".",
+      "until": "Learners use \"until\" for any condition linked to time, as in \"wait until an adult comes\"."
+    },
+    "key_slot": "B",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-C075",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "modals",
+    "varied_dimension": "modal form for a past event that nearly happened but did not: might have + past participle vs might be + -ing vs would be + -ing vs might have been + past participle",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Last winter, Yusuf ________ his ankle on the icy path, but he grabbed the railing just in time.",
+    "choices": ["might have hurt", "might be hurting", "would be hurting", "might have been hurt"],
+    "correct_answer": "might have hurt",
+    "explanation": "For something that was possible in the past but did not happen, English uses \"might/could have + past participle\". \"Last winter\" and \"just in time\" show the injury was possible but avoided.",
+    "distractor_rationales": {
+      "might be hurting": "This is a present or future possibility and does not match \"Last winter\".",
+      "would be hurting": "This describes an action in progress, not a past possibility that was avoided.",
+      "might have been hurt": "This is passive, so it cannot take the object \"his ankle\"."
+    },
+    "student_error": {
+      "might be hurting": "Learners use the -ing form to show the danger was happening at that moment.",
+      "would be hurting": "Learners think \"would\" is the past of every modal and add -ing for a scene in progress.",
+      "might have been hurt": "Learners know \"Yusuf was hurt\" is passive and carry the passive into the modal form."
+    },
+    "key_slot": "A",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-C076",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "adjective vs adverb",
+    "varied_dimension": "word-form of 'perfect' modifying the adjective 'still': perfectly vs perfect vs perfection vs perfectionist",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "On the last morning of the camping trip, Tae-yang saw that the lake was ________ still, like a mirror.",
+    "choices": ["perfection", "perfect", "perfectionist", "perfectly"],
+    "correct_answer": "perfectly",
+    "explanation": "The gap describes HOW still the lake was, so it modifies the adjective \"still\". Words that modify adjectives are adverbs, so the answer is \"perfectly\".",
+    "distractor_rationales": {
+      "perfection": "\"Perfection\" is a noun and cannot modify the adjective \"still\".",
+      "perfect": "\"Perfect\" is an adjective; one adjective cannot modify another adjective this way.",
+      "perfectionist": "\"Perfectionist\" is a noun for a person and makes no sense before \"still\"."
+    },
+    "student_error": {
+      "perfection": "Learners pick the noun because \"perfection\" describes how beautiful the scene was.",
+      "perfect": "Learners put two adjectives side by side, as in \"a perfect still lake\", and keep the adjective after \"was\".",
+      "perfectionist": "Learners recognise the root and choose the longest, most advanced-looking form."
+    },
+    "key_slot": "D",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-C077",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "prepositions after a head word",
+    "varied_dimension": "what follows the transitive verb 'reached': a direct object vs 'to' + noun vs 'at' + noun vs 'into' + noun",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Before sunset, the tired hikers finally reached ________, where they set up their tents for the night.",
+    "choices": ["to the top meadow", "at the meadow's edge", "the meadow by the stream", "into the open meadow"],
+    "correct_answer": "the meadow by the stream",
+    "explanation": "\"Reach\" in the sense of \"arrive at\" takes a direct object with no preposition: \"reached the meadow\". The \"by\" in the answer belongs inside the noun phrase (\"the meadow by the stream\"), not after the verb.",
+    "distractor_rationales": {
+      "to the top meadow": "\"Reach\" meaning \"arrive at\" takes no \"to\".",
+      "at the meadow's edge": "\"Reach\" takes no \"at\"; \"arrive at\" does, but this verb is \"reached\".",
+      "into the open meadow": "\"Reach\" takes no \"into\"; \"reach into\" is used for putting a hand inside something."
+    },
+    "student_error": {
+      "to the top meadow": "Learners copy the \"to\" from \"go to\" and \"get to\".",
+      "at the meadow's edge": "Learners transfer the preposition from \"arrive at\", which has the same meaning.",
+      "into the open meadow": "Learners add a preposition of entering because the hikers walked into the area."
+    },
+    "key_slot": "C",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-C078",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "passive voice",
+    "varied_dimension": "verb form when the subject receives the action of 'feed': are fed vs feed vs feeds vs fed",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Baby robins ________ by their parents many times every day.",
+    "choices": ["feed", "are fed", "feeds", "fed"],
+    "correct_answer": "are fed",
+    "explanation": "The baby robins do not do the feeding; their parents do. When the subject receives the action and the doer follows \"by\", English uses the passive: \"are fed\".",
+    "distractor_rationales": {
+      "feed": "\"Feed\" is active, so it would mean the babies feed someone; \"by their parents\" needs the passive.",
+      "feeds": "\"Feeds\" is active and singular, but the subject is plural and receives the action.",
+      "fed": "\"Fed\" alone is an active past verb or a participle; the present passive needs \"are\" before it."
+    },
+    "student_error": {
+      "feed": "Learners keep the active verb after a subject that is an animal, as in \"birds eat\".",
+      "feeds": "Learners add -s for the present simple without checking the plural subject.",
+      "fed": "Learners know the passive uses \"fed\" but leave out the form of \"be\"."
+    },
+    "key_slot": "B",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-E061",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "adjective vs adverb",
+    "varied_dimension": "adjective form wrongly used to modify a following adjective after a linking verb (strange quiet -> strangely quiet)",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "In winter, the [A: frozen lake] [B: always becomes] [C: wonderfully white] and [D: strange] quiet.",
+    "choices": ["frozen lake", "always becomes", "wonderfully white", "strange"],
+    "correct_answer": "strange",
+    "explanation": "\"Strange\" modifies the adjective \"quiet\", and words that modify adjectives must be adverbs. It should be \"strangely quiet\", just like \"wonderfully white\" earlier in the sentence.",
+    "distractor_rationales": {
+      "frozen lake": "\"Frozen\" is the correct past participle of \"freeze\" used as an adjective.",
+      "always becomes": "\"Always\" goes before the main verb, and \"becomes\" agrees with \"the frozen lake\".",
+      "wonderfully white": "The adverb \"wonderfully\" correctly modifies the adjective \"white\"."
+    },
+    "student_error": {
+      "frozen lake": "Learners doubt the irregular participle and expect \"freezed\".",
+      "always becomes": "Learners are unsure whether a frequency adverb goes before or after the verb.",
+      "wonderfully white": "Learners think an -ly word cannot come after \"becomes\", which is followed by adjectives."
+    },
+    "key_slot": "D",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-E062",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "prepositions after a head word",
+    "varied_dimension": "unneeded preposition added after the transitive verb 'discuss'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Before [A: setting out] on the overnight hike, the scouts [B: who were leading] the group [C: discussed about] the storm [D: that the radio had predicted].",
+    "choices": ["setting out", "who were leading", "discussed about", "that the radio had predicted"],
+    "correct_answer": "discussed about",
+    "explanation": "\"Discuss\" takes a direct object with no preposition: you discuss something, you do not discuss about it. The correct form is \"discussed the storm\".",
+    "distractor_rationales": {
+      "setting out": "After the preposition \"before\", a gerund is correct.",
+      "who were leading": "\"Who\" refers to the scouts (people), and \"were leading\" agrees with the plural subject.",
+      "that the radio had predicted": "The past perfect correctly shows the prediction came before the discussion."
+    },
+    "student_error": {
+      "setting out": "Learners expect \"to set out\" after \"before\".",
+      "who were leading": "Learners doubt whether \"who\" or \"which\" is used for a group like scouts.",
+      "that the radio had predicted": "Learners think the past perfect is wrong because the main verb is simple past."
+    },
+    "key_slot": "C",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E063",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "reported speech",
+    "varied_dimension": "question word order kept inside a reported yes/no question introduced by 'whether'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "On the second day of the trip, Keiko [A: asked] the ranger [B: whether] [C: would the river trail be open] [D: by the following morning].",
+    "choices": ["asked", "whether", "would the river trail be open", "by the following morning"],
+    "correct_answer": "would the river trail be open",
+    "explanation": "A reported question uses statement word order: subject before verb. After \"whether\", it should be \"the river trail would be open\", not the question order \"would the river trail be open\".",
+    "distractor_rationales": {
+      "asked": "\"Asked\" is the correct reporting verb for a question and takes the ranger as its object.",
+      "whether": "\"Whether\" correctly introduces a reported yes/no question.",
+      "by the following morning": "\"The following morning\" is the correct backshifted form of \"tomorrow morning\"."
+    },
+    "student_error": {
+      "asked": "Learners expect \"asked to the ranger\" or think \"said\" is the reporting verb.",
+      "whether": "Learners believe only \"if\" can introduce a reported yes/no question.",
+      "by the following morning": "Learners keep \"tomorrow\" in reported speech and doubt the changed time phrase."
+    },
+    "key_slot": "C",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-E064",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "word form",
+    "varied_dimension": "adjective used where the -en verb of the same root is needed (wide -> widen)",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Because so many families [A: go] to the park on weekends, the city [B: has decided] to [C: wide] the [D: narrowest walking paths].",
+    "choices": ["go", "has decided", "wide", "narrowest walking paths"],
+    "correct_answer": "wide",
+    "explanation": "After \"to\" we need a verb, but \"wide\" is an adjective. The verb meaning \"make wider\" is \"widen\", so it should be \"to widen the narrowest walking paths\".",
+    "distractor_rationales": {
+      "go": "\"Go\" agrees with the plural subject \"families\" and the present simple fits a weekly habit.",
+      "has decided": "\"Has decided\" agrees with \"the city\" and correctly takes a to-infinitive.",
+      "narrowest walking paths": "\"Narrowest\" is the correct superlative of the short adjective \"narrow\"."
+    },
+    "student_error": {
+      "go": "Learners expect \"goes\" after \"so many\" or think a past tense is needed.",
+      "has decided": "Learners doubt the present perfect and expect \"decided\" or \"have decided\".",
+      "narrowest walking paths": "Learners expect \"most narrow\" for a two-syllable adjective."
+    },
+    "key_slot": "C",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E065",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "parallel structure",
+    "varied_dimension": "-ing phrase wrongly coordinated with a reported that-clause after 'said that ... and'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Our guide said [A: that frogs breathe] through their skin and [B: needing fresh water] [C: to stay healthy], so we [D: should never pollute] ponds.",
+    "choices": ["that frogs breathe", "needing fresh water", "to stay healthy", "should never pollute"],
+    "correct_answer": "needing fresh water",
+    "explanation": "The guide said two things, joined by \"and\", so both must be clauses: \"that frogs breathe through their skin and (that they) need fresh water\". The -ing phrase \"needing fresh water\" breaks the parallel structure.",
+    "distractor_rationales": {
+      "that frogs breathe": "A that-clause correctly follows \"said\", and the present simple states a general fact.",
+      "to stay healthy": "The to-infinitive correctly expresses purpose.",
+      "should never pollute": "\"Should\" plus the base form correctly gives advice, and \"never\" sits before the main verb."
+    },
+    "student_error": {
+      "that frogs breathe": "Learners think reported facts must change to the past (\"breathed\") after \"said\".",
+      "to stay healthy": "Learners expect \"for staying healthy\" to express purpose.",
+      "should never pollute": "Learners put \"never\" after the main verb or expect \"should not never\"."
+    },
+    "key_slot": "B",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-E066",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "verb tense and aspect",
+    "varied_dimension": "present perfect continuous wrongly used for a completed result that matters now (has been finalizing -> has finalized)",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Hanna [A: has been finalizing] her nature notebook, so she [B: can] [C: show] it to [D: us] now.",
+    "choices": ["has been finalizing", "can", "show", "us"],
+    "correct_answer": "has been finalizing",
+    "explanation": "She can show the notebook now because the work is complete, so we need the present perfect for a finished result: \"has finalized\". The continuous form describes an activity still in progress.",
+    "distractor_rationales": {
+      "can": "\"Can\" correctly expresses that she is able to show it.",
+      "show": "After \"can\", the base form of the verb is correct.",
+      "us": "After the preposition \"to\", the object pronoun \"us\" is correct."
+    },
+    "student_error": {
+      "can": "Learners expect \"could\" because the work happened in the past.",
+      "show": "Learners add -s to the verb after \"she\", even after a modal.",
+      "us": "Learners use the subject pronoun \"we\" after a preposition."
+    },
+    "key_slot": "A",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-E067",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "conditionals",
+    "varied_dimension": "future 'will' wrongly used inside a 'provided that' condition clause (won't rain -> doesn't rain)",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Maya's picnic [A: in the park] will go ahead [B: tomorrow] [C: provided that] it [D: won't] rain.",
+    "choices": ["in the park", "tomorrow", "provided that", "won't"],
+    "correct_answer": "won't",
+    "explanation": "In a condition clause introduced by \"provided that\", \"if\" or \"as long as\", English uses the present tense for a future meaning. It should be \"provided that it doesn't rain\".",
+    "distractor_rationales": {
+      "in the park": "\"In\" is the correct preposition for a place inside an area like a park.",
+      "tomorrow": "\"Tomorrow\" correctly matches the future \"will go ahead\".",
+      "provided that": "\"Provided that\" correctly introduces a condition meaning \"only if\"."
+    },
+    "student_error": {
+      "in the park": "Learners confuse \"in\" and \"at\" for places.",
+      "tomorrow": "Learners think a time word must come at the start or end of the sentence.",
+      "provided that": "Learners do not know \"provided that\" and think it is a passive verb."
+    },
+    "key_slot": "D",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-E068",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "passive voice",
+    "varied_dimension": "bare past participle used as the main verb where the past simple passive is needed (planted -> were planted)",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "These tulips [A: planted] by [B: Rohan's grandmother] [C: last autumn], and now they [D: are blooming].",
+    "choices": ["planted", "Rohan's grandmother", "last autumn", "are blooming"],
+    "correct_answer": "planted",
+    "explanation": "The tulips did not plant anything; Rohan's grandmother planted them. The subject receives the action, so the first clause needs the passive \"were planted\".",
+    "distractor_rationales": {
+      "Rohan's grandmother": "The possessive \"'s\" correctly shows whose grandmother it is.",
+      "last autumn": "\"Last autumn\" correctly takes no preposition before \"last\".",
+      "are blooming": "The present continuous correctly describes what is happening now."
+    },
+    "student_error": {
+      "Rohan's grandmother": "Learners write \"grandmother of Rohan\" or doubt the apostrophe.",
+      "last autumn": "Learners add \"in\" before \"last autumn\", as with \"in autumn\".",
+      "are blooming": "Learners think the present continuous cannot follow a past clause."
+    },
+    "key_slot": "A",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-E069",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "count/non-count and quantifiers",
+    "varied_dimension": "count question word 'how many' used with the non-count noun 'luggage'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "[A: How many] luggage [B: did] Ade's family [C: take] on [D: the camping trip]?",
+    "choices": ["How many", "did", "take", "the camping trip"],
+    "correct_answer": "How many",
+    "explanation": "\"Luggage\" is a non-count noun with no plural, so the question must be \"How much luggage\". \"How many\" is only for count nouns, as in \"How many bags\".",
+    "distractor_rationales": {
+      "did": "\"Did\" correctly forms a past simple question.",
+      "take": "After \"did\", the base form \"take\" is correct.",
+      "the camping trip": "\"The\" is correct because the trip is a specific one."
+    },
+    "student_error": {
+      "did": "Learners expect \"does\" or \"do\" because \"family\" can feel singular or plural.",
+      "take": "Learners put the past form \"took\" after \"did\".",
+      "the camping trip": "Learners drop the article or expect \"a\"."
+    },
+    "key_slot": "A",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-E070",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "conjunctions and connectors",
+    "varied_dimension": "'very' used where result 'so ... that' is required (very wet that -> so wet that)",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "[A: After] three days of heavy rain, the [B: steepest hillside] trail [C: had grown] [D: very wet] that the rangers closed it to visitors.",
+    "choices": ["After", "steepest hillside", "had grown", "very wet"],
+    "correct_answer": "very wet",
+    "explanation": "To show a result, English uses \"so + adjective + that\": \"so wet that the rangers closed it\". \"Very\" cannot be followed by a \"that\" result clause.",
+    "distractor_rationales": {
+      "After": "\"After\" correctly places the rain before the trail's condition.",
+      "steepest hillside": "\"Steepest\" is the correct superlative of the short adjective \"steep\".",
+      "had grown": "The past perfect correctly shows the trail became wet before the rangers closed it, and \"grow\" can mean \"become\"."
+    },
+    "student_error": {
+      "After": "Learners expect \"Since\" or \"For\" with a length of time like \"three days\".",
+      "steepest hillside": "Learners expect \"most steep\" or doubt a superlative before a noun used as an adjective.",
+      "had grown": "Learners think the irregular past participle should be \"growed\" or that \"grow\" must mean get bigger."
+    },
+    "key_slot": "D",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E071",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "modifier placement",
+    "varied_dimension": "subject after a reduced 'while + -ing' opener that cannot be the doer of the -ing verb (dangling opener)",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "While waiting [A: for the thunderstorm] to pass, [B: the old tent] [C: stayed] dry inside, and [D: none of us] felt cold.",
+    "choices": ["for the thunderstorm", "the old tent", "stayed", "none of us"],
+    "correct_answer": "the old tent",
+    "explanation": "The opener \"While waiting for the thunderstorm to pass\" has no subject of its own, so it refers to the subject of the main clause. A tent cannot wait; the subject must be the people waiting: \"we stayed dry inside\".",
+    "distractor_rationales": {
+      "for the thunderstorm": "\"Wait for\" is the correct verb + preposition pattern.",
+      "stayed": "\"Stayed\" is a correct linking verb followed by the adjective \"dry\".",
+      "none of us": "\"None of us\" is a correct subject for \"felt cold\"."
+    },
+    "student_error": {
+      "for the thunderstorm": "Learners expect \"wait the thunderstorm\" because their first language uses no preposition.",
+      "stayed": "Learners expect an adverb (\"dryly\") after a verb like \"stayed\".",
+      "none of us": "Learners doubt whether \"none of us\" is followed by a singular or plural verb."
+    },
+    "key_slot": "B",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-E072",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "modals",
+    "varied_dimension": "simple 'could + verb' wrongly used for a specific past possibility that did not happen (could get lost -> could have gotten lost)",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Yesterday, without [A: the map] from our guide, we [B: could easily get lost] in [C: the thick fog] that [D: covered] the hills.",
+    "choices": ["the map", "could easily get lost", "the thick fog", "covered"],
+    "correct_answer": "could easily get lost",
+    "explanation": "\"Yesterday\" shows a past situation, and we did not get lost. For a possibility in the past that did not happen, English uses \"could have + past participle\": \"could easily have gotten lost\".",
+    "distractor_rationales": {
+      "the map": "\"The\" is correct because it is a specific map, the one from our guide.",
+      "the thick fog": "\"The\" is correct with a specific non-count noun described by the clause after it.",
+      "covered": "The past simple \"covered\" correctly matches \"Yesterday\"."
+    },
+    "student_error": {
+      "the map": "Learners drop articles before nouns after \"without\".",
+      "the thick fog": "Learners think a non-count noun like \"fog\" never takes \"the\".",
+      "covered": "Learners expect \"was covering\" for weather that lasted a long time."
+    },
+    "key_slot": "B",
+    "key_len_rank": 4
+  }
+]

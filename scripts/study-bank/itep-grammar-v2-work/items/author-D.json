@@ -1,0 +1,752 @@
+[
+  {
+    "id": "ITG2-C040",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "gerund vs infinitive",
+    "varied_dimension": "verb form after 'stop' (to-infinitive of purpose vs gerund of ceasing vs bare form vs participle), decided by 'had never seen ... so'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Erik had never seen the valley before, so when the bus reached the viewpoint, he stopped ________ a short video of it.",
+    "choices": [
+      "making",
+      "to make",
+      "make",
+      "made"
+    ],
+    "correct_answer": "to make",
+    "explanation": "'Stop + to-infinitive' means to stop one activity in order to do another; 'stop + -ing' means to end an activity. Erik was not already filming a valley he had never seen, so he stopped in order to make a video.",
+    "distractor_rationales": {
+      "making": "'Stopped making' means he ended an activity he was already doing, but he had never seen the valley before.",
+      "make": "A bare verb cannot follow 'stopped' directly.",
+      "made": "A past form cannot follow 'stopped' as its complement."
+    },
+    "student_error": {
+      "making": "Learners memorise 'stop + -ing' as the only pattern and miss the purpose meaning of 'stop to'.",
+      "make": "Learners drop 'to' after a verb, as with modals ('can make').",
+      "made": "Learners copy the past tense of 'stopped' onto the second verb."
+    },
+    "key_slot": "B",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-C041",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "conjunctions and connectors",
+    "varied_dimension": "sentence connector after a semicolon (addition vs contrast vs result vs condition), decided by two independent advantages",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "The night train to the coast costs less than a flight; ________, passengers can watch the sunrise over the sea from their beds.",
+    "choices": [
+      "moreover",
+      "however",
+      "therefore",
+      "otherwise"
+    ],
+    "correct_answer": "moreover",
+    "explanation": "'Moreover' adds a second point that supports the first. Both clauses give advantages of the night train, so the second is an addition, not a contrast or a result.",
+    "distractor_rationales": {
+      "however": "'However' signals a contrast, but both clauses are positive points about the train.",
+      "therefore": "'Therefore' signals a result, but a low price does not cause passengers to see the sunrise.",
+      "otherwise": "'Otherwise' means 'if not', which makes no sense between these two facts."
+    },
+    "student_error": {
+      "however": "Learners treat 'however' as a general linking word after a semicolon.",
+      "therefore": "Learners see two related good points and assume one causes the other.",
+      "otherwise": "Learners confuse 'otherwise' with 'in other ways / also'."
+    },
+    "key_slot": "A",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-C042",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "word form",
+    "varied_dimension": "prefix on the root 'like' (dis- vs un- vs a- vs none), decided by part of speech and the reason clause",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "I get sick on buses, so I ________ long bus trips.",
+    "choices": [
+      "dislike",
+      "unlike",
+      "like",
+      "alike"
+    ],
+    "correct_answer": "dislike",
+    "explanation": "The negative of the verb 'like' is 'dislike', with the prefix dis-. The reason 'I get sick on buses' tells us the feeling is negative.",
+    "distractor_rationales": {
+      "unlike": "'Unlike' is a preposition or adjective ('unlike my sister'), not a verb.",
+      "like": "'Like' is a verb, but getting sick on buses is a reason not to like bus trips.",
+      "alike": "'Alike' is an adjective or adverb meaning 'similar', not a verb."
+    },
+    "student_error": {
+      "unlike": "Learners use un- as the default negative prefix for every word.",
+      "like": "Learners read only the second clause and pick the familiar verb.",
+      "alike": "Learners confuse words that look like 'like' with a different prefix."
+    },
+    "key_slot": "A",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-C043",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "modals",
+    "varied_dimension": "degree of certainty about a specific future event (might vs can vs has to vs is going to), decided by 'we are not sure yet'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Because of the storm, Flight 22 to Seoul ________ be delayed tonight, but we are not sure yet.",
+    "choices": [
+      "can",
+      "has to",
+      "is going to",
+      "might"
+    ],
+    "correct_answer": "might",
+    "explanation": "'Might' expresses a possibility about one specific event that is not certain. The speaker says 'we are not sure yet', so only a possibility modal fits.",
+    "distractor_rationales": {
+      "can": "'Can' describes general possibility or ability, not an uncertain prediction about one specific flight.",
+      "has to": "'Has to' expresses necessity or certainty, which contradicts 'we are not sure yet'.",
+      "is going to": "'Is going to' is a confident prediction, which contradicts 'we are not sure yet'."
+    },
+    "student_error": {
+      "can": "Many first languages use one verb for 'can' and 'may/might', so learners use 'can' for possibility.",
+      "has to": "Learners link the storm to obligation and read 'has to' as 'surely will'.",
+      "is going to": "Learners use 'going to' for any future event without checking the speaker's certainty."
+    },
+    "key_slot": "D",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-C044",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "parallel structure",
+    "varied_dimension": "form of the second half of 'not only ... but also' (to-infinitive vs gerund vs clause vs prepositional phrase), decided by 'not only to visit'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Ines, on this trip I hope not only to visit the old castle but also ________ across the lake.",
+    "choices": [
+      "sailing",
+      "I will sail",
+      "to sail",
+      "for sailing"
+    ],
+    "correct_answer": "to sail",
+    "explanation": "The two halves of 'not only ... but also' must have the same grammatical form. The first half is 'to visit', so the second half must also be a to-infinitive: 'to sail'.",
+    "distractor_rationales": {
+      "sailing": "A gerund does not match 'to visit' and cannot follow 'hope'.",
+      "I will sail": "A full clause does not match the infinitive 'to visit'.",
+      "for sailing": "A prepositional phrase does not match 'to visit' and cannot follow 'hope'."
+    },
+    "student_error": {
+      "sailing": "Learners think '-ing' is the natural form after 'also'.",
+      "I will sail": "Learners start a new clause after 'but', as with ordinary 'but' sentences.",
+      "for sailing": "Learners transfer a purpose pattern ('for + -ing') from their first language."
+    },
+    "key_slot": "C",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-C045",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "comparatives and superlatives",
+    "varied_dimension": "intensifier before a comparative adjective (much vs very vs so vs too)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "To get to the stadium, take the express train; it is ________ faster than the bus.",
+    "choices": [
+      "very",
+      "much",
+      "so",
+      "too"
+    ],
+    "correct_answer": "much",
+    "explanation": "To make a comparative like 'faster' stronger, use 'much', 'far' or 'a lot'. 'Very', 'so' and 'too' go before the plain adjective ('very fast'), not before a comparative.",
+    "distractor_rationales": {
+      "very": "'Very' goes before a plain adjective ('very fast'), not a comparative ('faster').",
+      "so": "'So' goes before a plain adjective ('so fast'), not a comparative.",
+      "too": "'Too' goes before a plain adjective ('too fast'), not a comparative."
+    },
+    "student_error": {
+      "very": "Learners use 'very' as the all-purpose intensifier.",
+      "so": "Learners carry 'so' over from spoken emphasis ('it's so fast').",
+      "too": "Learners confuse 'too' (more than needed) with 'much more'."
+    },
+    "key_slot": "B",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C046",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "passive voice",
+    "varied_dimension": "active vs passive verb form, with and without a modal, for a thing as subject ('bags')",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Please note: all large bags ________ at the desk before passengers get on the ferry.",
+    "choices": [
+      "label",
+      "labeled",
+      "must label",
+      "must be labeled"
+    ],
+    "correct_answer": "must be labeled",
+    "explanation": "Bags do not label anything; people label them, so the verb must be passive. A modal passive is modal + 'be' + past participle: 'must be labeled'.",
+    "distractor_rationales": {
+      "label": "This is active: it says the bags do the labeling.",
+      "labeled": "Without 'are' or 'were', 'labeled' leaves the sentence with no main verb.",
+      "must label": "This is active: it says the bags must label something."
+    },
+    "student_error": {
+      "label": "Learners use the active form because the subject comes first.",
+      "labeled": "Learners think the participle alone makes a passive and forget 'be'.",
+      "must label": "Learners know 'must + verb' but forget to add 'be' for the passive."
+    },
+    "key_slot": "D",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-C047",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "prepositions after a head word",
+    "varied_dimension": "preposition and article before 'morning' after a clock time (in the vs on the vs at vs on)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Passengers, please note that tomorrow the first train to the airport will leave at 5:40 ________ morning.",
+    "choices": [
+      "at",
+      "on",
+      "in the",
+      "on the"
+    ],
+    "correct_answer": "in the",
+    "explanation": "We say 'in the morning', 'in the afternoon' and 'in the evening'. 'On' is used with days and dates, and 'at' with clock times such as 5:40.",
+    "distractor_rationales": {
+      "at": "'At' is used with clock times, not with 'morning'.",
+      "on": "'On' is used with days and dates, and 'morning' here also needs 'the'.",
+      "on the": "'On the morning' needs a following day or date ('on the morning of May 4')."
+    },
+    "student_error": {
+      "at": "Learners repeat 'at' because it already appears with '5:40'.",
+      "on": "Learners connect 'tomorrow' with a day and use 'on'.",
+      "on the": "Learners remember 'on the morning of ...' and use it without the date."
+    },
+    "key_slot": "C",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C048",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "count/non-count and quantifiers",
+    "varied_dimension": "quantifier before the non-count noun 'time' (plenty of vs many vs a few vs a number of)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Don't worry, Pablo; there is ________ time before the bus to the beach leaves.",
+    "choices": [
+      "many",
+      "plenty of",
+      "a few",
+      "a number of"
+    ],
+    "correct_answer": "plenty of",
+    "explanation": "'Time' in this meaning is a non-count noun, and the verb is singular 'is'. 'Plenty of' works with both count and non-count nouns, while 'many', 'a few' and 'a number of' need plural count nouns.",
+    "distractor_rationales": {
+      "many": "'Many' goes with plural count nouns, not with non-count 'time'.",
+      "a few": "'A few' goes with plural count nouns ('a few minutes').",
+      "a number of": "'A number of' goes with plural count nouns and a plural verb."
+    },
+    "student_error": {
+      "many": "Learners translate one word for 'much/many' and choose the more familiar 'many'.",
+      "a few": "Learners think of minutes and treat 'time' as countable.",
+      "a number of": "Learners treat 'a number of' as a general formal quantifier."
+    },
+    "key_slot": "B",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-C049",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "reported speech",
+    "varied_dimension": "reporting verb followed by a personal object + to-infinitive (told vs said vs explained vs spoke)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "When we asked for directions, Mr. Kowalski ________ us to take the second street on the left.",
+    "choices": [
+      "said",
+      "explained",
+      "told",
+      "spoke"
+    ],
+    "correct_answer": "told",
+    "explanation": "'Tell' takes a person as a direct object: 'tell someone to do something'. 'Say' and 'explain' need 'to' before the person, and 'speak' does not report an instruction.",
+    "distractor_rationales": {
+      "said": "'Say' cannot take a person as a direct object ('said to us', not 'said us').",
+      "explained": "'Explain' cannot take a person as a direct object or report an order with 'us to'.",
+      "spoke": "'Speak' does not take a person object and does not report an instruction."
+    },
+    "student_error": {
+      "said": "Learners use 'say' and 'tell' as if they had the same pattern.",
+      "explained": "Learners transfer 'explain someone' from their first language.",
+      "spoke": "Learners choose a general speaking verb without checking its pattern."
+    },
+    "key_slot": "C",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-C050",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "conditionals",
+    "varied_dimension": "verb form in an if-clause matched to a 'would have' result clause (past perfect vs past simple vs would + verb vs present perfect)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Sorry we missed your party! If we ________ the earlier bus, we would have arrived in time.",
+    "choices": [
+      "had caught",
+      "caught",
+      "would catch",
+      "have caught"
+    ],
+    "correct_answer": "had caught",
+    "explanation": "This is an unreal past situation, so it is a third conditional: 'if' + past perfect, then 'would have' + past participle. The if-clause needs 'had caught'.",
+    "distractor_rationales": {
+      "caught": "The past simple belongs in a second conditional, which does not match 'would have arrived'.",
+      "would catch": "'Would' is not used in the if-clause of a conditional.",
+      "have caught": "The present perfect cannot express an unreal past condition."
+    },
+    "student_error": {
+      "caught": "Learners know 'if + past' from the second conditional and stop there.",
+      "would catch": "Learners copy 'would' from the result clause into the if-clause.",
+      "have caught": "Learners match 'have' in 'would have' without adding 'had'."
+    },
+    "key_slot": "A",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-C051",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "adjective vs adverb",
+    "varied_dimension": "late vs lately vs latter vs lateness after 'an hour', decided by the verb 'landed'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "We are sorry to announce that the flight from Madrid landed almost an hour ________ because of fog.",
+    "choices": [
+      "lately",
+      "latter",
+      "lateness",
+      "late"
+    ],
+    "correct_answer": "late",
+    "explanation": "'Late' is both an adjective and an adverb meaning 'after the expected time'. 'Lately' is a different word meaning 'recently', so it cannot describe when the flight landed.",
+    "distractor_rationales": {
+      "lately": "'Lately' means 'recently', not 'after the expected time'.",
+      "latter": "'Latter' means 'the second of two things', not 'after the expected time'.",
+      "lateness": "'Lateness' is a noun and cannot describe how the plane landed."
+    },
+    "student_error": {
+      "lately": "Learners add -ly to make every adverb.",
+      "latter": "Learners confuse 'latter' with 'later' because of the spelling.",
+      "lateness": "Learners pick the noun after 'an hour', thinking of 'an hour of lateness'."
+    },
+    "key_slot": "D",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-C052",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "C1",
+    "category": "modifier placement",
+    "varied_dimension": "position of a relative clause relative to its noun 'the map' (adjacent vs after 'her bed', with that, which or no pronoun)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Back home after the trip, Meera ________ so that she would see it every morning.",
+    "choices": [
+      "hung the map above her bed that she had used in Lisbon",
+      "hung the map above her bed, which she had used in Lisbon",
+      "hung the map above her bed she had used in Lisbon",
+      "hung the map that she had used in Lisbon above her bed"
+    ],
+    "correct_answer": "hung the map that she had used in Lisbon above her bed",
+    "explanation": "A relative clause should come right after the noun it describes. Meera used the map in Lisbon, not the bed in her home, so 'that she had used in Lisbon' must follow 'the map'.",
+    "distractor_rationales": {
+      "hung the map above her bed that she had used in Lisbon": "The clause now follows 'her bed', so it says she used her bed at home in Lisbon.",
+      "hung the map above her bed, which she had used in Lisbon": "'Which' now refers to 'her bed', which she could not have used in Lisbon.",
+      "hung the map above her bed she had used in Lisbon": "The clause still follows 'her bed', so it describes the wrong noun."
+    },
+    "student_error": {
+      "hung the map above her bed that she had used in Lisbon": "Learners keep the verb, object and place together and add the description at the end.",
+      "hung the map above her bed, which she had used in Lisbon": "Learners think a comma lets 'which' point back to any earlier noun.",
+      "hung the map above her bed she had used in Lisbon": "Learners drop the relative pronoun and do not notice which noun the clause now follows."
+    },
+    "key_slot": "D",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E037",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "parallel structure",
+    "varied_dimension": "gerund in the first half of 'both ... and' against a bare infinitive in the second half after 'lets'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Our new airport app lets travelers [A: both booking their tickets online] and [B: choose] their seats [C: before] they [D: arrive at the station].",
+    "choices": [
+      "both booking their tickets online",
+      "choose",
+      "before",
+      "arrive at the station"
+    ],
+    "correct_answer": "both booking their tickets online",
+    "explanation": "The two halves of 'both ... and' must match, and 'let' is followed by a bare infinitive. The correct form is 'lets travelers both book their tickets online and choose their seats'.",
+    "distractor_rationales": {
+      "choose": "Correct: 'lets travelers ... choose' uses the bare infinitive after 'let'.",
+      "before": "Correct: 'before' introduces a time clause.",
+      "arrive at the station": "Correct: a time clause uses the present simple for a future event, and 'arrive at' is the right preposition."
+    },
+    "student_error": {
+      "choose": "Learners think it should be 'choosing' to match the -ing form earlier.",
+      "before": "Learners think 'until' or 'before that' is needed.",
+      "arrive at the station": "Learners expect 'will arrive' or 'arrive to' after a future context."
+    },
+    "key_slot": "A",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-E038",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "verb tense and aspect",
+    "varied_dimension": "present simple used for an action happening 'right now', alongside a correct stative 'knows'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Look, Clara [A: knows] the way, and her brother [B: is walking] [C: behind] her. Their dad [D: buys] the train tickets right now.",
+    "choices": [
+      "knows",
+      "is walking",
+      "behind",
+      "buys"
+    ],
+    "correct_answer": "buys",
+    "explanation": "An action happening at this moment uses the present continuous. 'Right now' shows the action is in progress, so it should be 'is buying'.",
+    "distractor_rationales": {
+      "knows": "Correct: 'know' is a stative verb, so it stays in the present simple.",
+      "is walking": "Correct: the present continuous describes an action happening now.",
+      "behind": "Correct: 'behind her' is a normal preposition of place."
+    },
+    "student_error": {
+      "knows": "Learners think everything happening now needs '-ing' ('is knowing').",
+      "is walking": "Learners think the present simple is the basic form for all statements.",
+      "behind": "Learners think 'behind of her' is needed, by analogy with 'in front of'."
+    },
+    "key_slot": "D",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-E039",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "relative pronouns and clauses",
+    "varied_dimension": "extra subject pronoun repeated inside a subject relative clause, beside a correctly reduced object relative clause",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "The museum [A: we visited] in Kraków had a map [B: that it showed] every room [C: of] the building, [D: including the gift shop].",
+    "choices": [
+      "we visited",
+      "that it showed",
+      "of",
+      "including the gift shop"
+    ],
+    "correct_answer": "that it showed",
+    "explanation": "In a relative clause, the relative pronoun already acts as the subject. Adding 'it' repeats the subject, so the correct form is 'a map that showed every room'.",
+    "distractor_rationales": {
+      "we visited": "Correct: an object relative pronoun can be left out ('the museum (that) we visited').",
+      "of": "Correct: 'every room of the building' is a normal phrase.",
+      "including the gift shop": "Correct: 'including' introduces an example from the list."
+    },
+    "student_error": {
+      "we visited": "Learners think 'that' or 'which' can never be left out.",
+      "of": "Learners expect 'in' after 'room'.",
+      "including the gift shop": "Learners think a full clause such as 'it included' is needed."
+    },
+    "key_slot": "B",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-E040",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "conjunctions and connectors",
+    "varied_dimension": "contrast connector used where the second sentence is a result of the first",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Dear Mom, we [A: arrived in] Rome [B: on Friday]. We [C: were] very tired. [D: However, we slept all afternoon].",
+    "choices": [
+      "arrived in",
+      "on Friday",
+      "were",
+      "However, we slept all afternoon"
+    ],
+    "correct_answer": "However, we slept all afternoon",
+    "explanation": "'However' shows a contrast, but sleeping is a result of being tired. A result connector such as 'Therefore' or 'So' is needed.",
+    "distractor_rationales": {
+      "arrived in": "Correct: we 'arrive in' a city.",
+      "on Friday": "Correct: 'on' is used with days of the week.",
+      "were": "Correct: past simple of 'be' with 'we'."
+    },
+    "student_error": {
+      "arrived in": "Learners say 'arrived to' by analogy with 'went to'.",
+      "on Friday": "Learners use 'in' or 'at' with days.",
+      "were": "Learners use 'was' with every past subject."
+    },
+    "key_slot": "D",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-E041",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "modifier placement",
+    "varied_dimension": "relative clause describing 'the guidebook' placed after 'her backpack'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Fatima put the guidebook in her backpack [A: that listed every museum in Spain], and she [B: brought] two pens [C: so that] she could [D: write] postcards.",
+    "choices": [
+      "that listed every museum in Spain",
+      "brought",
+      "so that",
+      "write"
+    ],
+    "correct_answer": "that listed every museum in Spain",
+    "explanation": "A relative clause should come right after the noun it describes. Here it follows 'her backpack', so it says the backpack listed museums; it should be 'put the guidebook that listed every museum in Spain in her backpack'.",
+    "distractor_rationales": {
+      "brought": "Correct: irregular past of 'bring'.",
+      "so that": "Correct: 'so that' introduces a purpose clause with 'could'.",
+      "write": "Correct: the bare infinitive follows 'could'."
+    },
+    "student_error": {
+      "brought": "Learners write 'bringed' or confuse 'brought' with 'bought'.",
+      "so that": "Learners think 'for' or 'so' alone is needed.",
+      "write": "Learners add 'to' after 'could'."
+    },
+    "key_slot": "A",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG2-E042",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "count/non-count and quantifiers",
+    "varied_dimension": "'a great deal of' used with the plural count noun 'tourists'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Greetings from Greece! A great [A: deal] of tourists [B: were waiting] [C: for the ferry] [D: although] it was only seven o'clock.",
+    "choices": [
+      "deal",
+      "were waiting",
+      "for the ferry",
+      "although"
+    ],
+    "correct_answer": "deal",
+    "explanation": "'A great deal of' is used only with non-count nouns ('a great deal of money'). With a plural count noun like 'tourists', use 'a great number of' or 'a lot of'.",
+    "distractor_rationales": {
+      "were waiting": "Correct: the plural subject 'tourists' takes 'were', and the past continuous fits an action in progress.",
+      "for the ferry": "Correct: we 'wait for' something.",
+      "although": "Correct: 'although' introduces a contrast with the early hour."
+    },
+    "student_error": {
+      "were waiting": "Learners think the singular 'a great deal' needs 'was'.",
+      "for the ferry": "Learners drop 'for' after 'wait' or use 'to'.",
+      "although": "Learners think 'but' or 'despite' is needed."
+    },
+    "key_slot": "A",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-E043",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "reported speech",
+    "varied_dimension": "'said' used with a personal direct object in a reported instruction",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "When we [A: got] [B: to] the airport, the woman at the desk explained that our gate [C: had changed] and [D: said] us that we should hurry.",
+    "choices": [
+      "got",
+      "to",
+      "had changed",
+      "said"
+    ],
+    "correct_answer": "said",
+    "explanation": "'Say' cannot take a person as a direct object. Use 'told us that we should hurry' or 'said to us that we should hurry'.",
+    "distractor_rationales": {
+      "got": "Correct: 'got to' means 'arrived at', in the past simple.",
+      "to": "Correct: 'get to' a place uses 'to'.",
+      "had changed": "Correct: the past perfect shows the change happened before she explained it."
+    },
+    "student_error": {
+      "got": "Learners think 'arrived' is the only correct verb here.",
+      "to": "Learners use 'at' after 'got', thinking of 'arrive at'.",
+      "had changed": "Learners think reported speech keeps 'has changed'."
+    },
+    "key_slot": "D",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-E044",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "prepositions after a head word",
+    "varied_dimension": "'at' used before a day of the week with 'morning', after a reduced relative with 'since'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Attention, travelers: Terminal 2, [A: closed] for repairs [B: since] March, will reopen [C: at Monday morning] [D: before the first flight].",
+    "choices": [
+      "closed",
+      "since",
+      "at Monday morning",
+      "before the first flight"
+    ],
+    "correct_answer": "at Monday morning",
+    "explanation": "When 'morning' follows a day of the week, the day decides the preposition: 'on Monday morning'. 'At' is for clock times such as 'at six o'clock'.",
+    "distractor_rationales": {
+      "closed": "Correct: a reduced relative clause meaning 'which has been closed'.",
+      "since": "Correct: 'since' is used with a starting point such as 'March'.",
+      "before the first flight": "Correct: 'before' introduces a time phrase."
+    },
+    "student_error": {
+      "closed": "Learners think a full verb such as 'was closed' or 'closing' is needed.",
+      "since": "Learners confuse 'since' (starting point) with 'for' (length of time).",
+      "before the first flight": "Learners think 'until' is needed with a future time."
+    },
+    "key_slot": "C",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG2-E045",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "subject-verb agreement",
+    "varied_dimension": "verb agreeing with 'along with' instead of the singular head noun 'grandmother'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Chidi's grandmother, [A: along with] his two cousins, [B: are] flying to Oslo [C: on Friday] [D: to visit him].",
+    "choices": [
+      "along with",
+      "are",
+      "on Friday",
+      "to visit him"
+    ],
+    "correct_answer": "are",
+    "explanation": "A phrase with 'along with' does not make the subject plural. The subject is 'Chidi's grandmother', so the verb must be 'is flying'.",
+    "distractor_rationales": {
+      "along with": "Correct: 'along with' adds extra information inside commas.",
+      "on Friday": "Correct: 'on' is used with days of the week.",
+      "to visit him": "Correct: an infinitive of purpose; 'him' refers to Chidi."
+    },
+    "student_error": {
+      "along with": "Learners think 'and' is needed to join two subjects.",
+      "on Friday": "Learners use 'in' or 'at' with days.",
+      "to visit him": "Learners write 'for visit' or think 'his' is needed."
+    },
+    "key_slot": "B",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG2-E046",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "adjective vs adverb",
+    "varied_dimension": "'hardly' used where the adverb 'hard' (with effort) is needed after 'worked very'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Hi Grandma! I [A: worked] very [B: hardly] to save money [C: for] this trip [D: to Ghana].",
+    "choices": [
+      "worked",
+      "hardly",
+      "for",
+      "to Ghana"
+    ],
+    "correct_answer": "hardly",
+    "explanation": "The adverb of 'hard' is also 'hard': 'work hard'. 'Hardly' means 'almost not', so 'worked very hardly' does not make sense.",
+    "distractor_rationales": {
+      "worked": "Correct: past simple for a finished action.",
+      "for": "Correct: we save money 'for' something.",
+      "to Ghana": "Correct: a trip 'to' a place."
+    },
+    "student_error": {
+      "worked": "Learners think the present perfect 'have worked' is needed.",
+      "for": "Learners use 'to' after 'save money'.",
+      "to Ghana": "Learners write 'in Ghana' or omit the preposition."
+    },
+    "key_slot": "B",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E047",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "C1",
+    "category": "word form",
+    "varied_dimension": "'invaluable' (in- meaning 'very valuable', not 'not valuable') used for something useless",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Because the old map [A: we had brought] [B: lacked] half the streets, it was [C: invaluable] to us, so we [D: threw it away] at the hotel.",
+    "choices": [
+      "we had brought",
+      "lacked",
+      "invaluable",
+      "threw it away"
+    ],
+    "correct_answer": "invaluable",
+    "explanation": "'Invaluable' does not mean 'not valuable'; it means 'extremely useful'. A map missing half the streets was useless, so a word such as 'useless' or 'worthless' is needed.",
+    "distractor_rationales": {
+      "we had brought": "Correct: a relative clause with 'that' left out, and the past perfect for an earlier action.",
+      "lacked": "Correct: 'lack' takes a direct object with no preposition.",
+      "threw it away": "Correct: irregular past of 'throw', with the pronoun between the verb and particle."
+    },
+    "student_error": {
+      "we had brought": "Learners think 'that' is required or that the past simple is needed.",
+      "lacked": "Learners write 'lacked of' by analogy with 'lack of' as a noun.",
+      "threw it away": "Learners write 'threw away it' or 'throwed'."
+    },
+    "key_slot": "C",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG2-E048",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "pronoun case and reference",
+    "varied_dimension": "object pronoun 'me' inside a compound subject",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Every July, [A: I] [B: visit] my aunt in Toronto, and last year my brother and [C: me] [D: stayed] with her for a month.",
+    "choices": [
+      "I",
+      "visit",
+      "me",
+      "stayed"
+    ],
+    "correct_answer": "me",
+    "explanation": "'My brother and ___' is the subject of 'stayed', so it needs the subject pronoun 'I'. Test it by removing 'my brother and': 'I stayed', not 'me stayed'.",
+    "distractor_rationales": {
+      "I": "Correct: subject pronoun for 'visit'.",
+      "visit": "Correct: the present simple shows a habit ('every July').",
+      "stayed": "Correct: the past simple matches 'last year'."
+    },
+    "student_error": {
+      "I": "Learners overcorrect and doubt every 'I'.",
+      "visit": "Learners use the past or '-ing' because the sentence later talks about last year.",
+      "stayed": "Learners think the present perfect is needed for a stay of a month."
+    },
+    "key_slot": "C",
+    "key_len_rank": 2
+  }
+]
