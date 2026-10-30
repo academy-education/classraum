@@ -1,0 +1,275 @@
+{
+ "generated": "2026-10-30",
+ "rule": "owner 2026-10-30: MAP Science no_source alone clears; any other flag (or key not verified) holds",
+ "audit_built_at": "2026-10-30T22:27:50.524Z",
+ "perCohort": {
+  "map-science-v3-life": {
+   "audited": 43,
+   "held": 1,
+   "no_source_only_cleared": 11,
+   "cleared": 42
+  },
+  "map-science-v3-phys": {
+   "audited": 36,
+   "held": 2,
+   "no_source_only_cleared": 0,
+   "cleared": 34
+  },
+  "map-science-v3-earth": {
+   "audited": 46,
+   "held": 0,
+   "no_source_only_cleared": 1,
+   "cleared": 46
+  }
+ },
+ "held": [
+  {
+   "id": "MSB3-L5-16",
+   "cohort": "map-science-v3-life",
+   "passage": "MSB3-L5-16",
+   "reasons": [
+    "a: fact_error: Bean plants grown in plain water with no soil (no mineral nutrients) gaining 30-80 g in six weeks is implausible; a bean seedling without nutrients would gain a few grams. Values look unrealistic, though the key is unaffected."
+   ]
+  },
+  {
+   "id": "MSB3-P6-06",
+   "cohort": "map-science-v3-phys",
+   "passage": "MSB3-P6-06",
+   "reasons": [
+    "a: second_defensible: B 'a molecule': many school texts (e.g. GCSE 'giant covalent structure / macromolecule') describe diamond as one giant molecule in which every atom is covalently bonded. A student taught that framing can defend B. The distractor note targets 'separate small molecules', but the option text says only 'a molecule' and does not carry that restriction."
+   ]
+  },
+  {
+   "id": "MSB3-P6-08",
+   "cohort": "map-science-v3-phys",
+   "passage": "MSB3-P6-08",
+   "reasons": [
+    "a: fact_error: Explanation says the 20-minute point is 'a little below halfway between the 20 and 40 ticks'. Halfway is 30; the point is 32, a little ABOVE halfway. Explanation misdescribes its own figure (key unaffected).",
+    "b: fact_error: Explanation says the 20-minute point (32 °C) is 'a little below halfway between the 20 and 40 ticks'; halfway is 30, so 32 is a little ABOVE halfway. Explanation misdescribes the figure."
+   ]
+  }
+ ],
+ "no_source_only_cleared": [
+  {
+   "id": "MSB3-L5-05",
+   "cohort": "map-science-v3-life",
+   "passage": "MSB3-L5-05",
+   "reasons": [
+    "a: no_source: Knowledge item with no passage or figure; answerable from knowing a cactus's green body is its stem."
+   ]
+  },
+  {
+   "id": "MSB3-L5-11",
+   "cohort": "map-science-v3-life",
+   "passage": "MSB3-L5-11",
+   "reasons": [
+    "a: no_source: Knowledge item with no passage or figure; gizzard is a recall fact."
+   ]
+  },
+  {
+   "id": "MSB3-L5-12",
+   "cohort": "map-science-v3-life",
+   "passage": "MSB3-L5-12",
+   "reasons": [
+    "a: no_source: Knowledge item with no passage or figure; definition of a fossil is recall."
+   ]
+  },
+  {
+   "id": "MSB3-L6-12",
+   "cohort": "map-science-v3-life",
+   "passage": "MSB3-L6-12",
+   "reasons": [
+    "a: no_source: Knowledge item with no passage or figure; artificial selection is a recall definition."
+   ]
+  },
+  {
+   "id": "MSB3-L6-13",
+   "cohort": "map-science-v3-life",
+   "passage": "MSB3-L6-13",
+   "reasons": [
+    "a: no_source: Knowledge item with no passage or figure; chloroplast function is recall."
+   ]
+  },
+  {
+   "id": "MSB3-L7-04",
+   "cohort": "map-science-v3-life",
+   "passage": "MSB3-L7-04",
+   "reasons": [
+    "a: no_source: Knowledge item with no passage or figure; competition vs parasitism/mutualism/predation is recall."
+   ]
+  },
+  {
+   "id": "MSB3-L7-05",
+   "cohort": "map-science-v3-life",
+   "passage": "MSB3-L7-05",
+   "reasons": [
+    "a: no_source: Knowledge item with no passage or figure; mitochondrion function is recall."
+   ]
+  },
+  {
+   "id": "MSB3-L7-06",
+   "cohort": "map-science-v3-life",
+   "passage": "MSB3-L7-06",
+   "reasons": [
+    "a: no_source: Knowledge item with no passage or figure; kidney function is recall."
+   ]
+  },
+  {
+   "id": "MSB3-L7-18",
+   "cohort": "map-science-v3-life",
+   "passage": "MSB3-L7-18",
+   "reasons": [
+    "a: no_source: Knowledge item with no passage or figure; selection acting on population trait distribution is recall."
+   ]
+  },
+  {
+   "id": "MSB3-L8-05",
+   "cohort": "map-science-v3-life",
+   "passage": "MSB3-L8-05",
+   "reasons": [
+    "a: no_source: Knowledge item with no passage or figure; cell division in wound healing is recall."
+   ]
+  },
+  {
+   "id": "MSB3-L8-12",
+   "cohort": "map-science-v3-life",
+   "passage": "MSB3-L8-12",
+   "reasons": [
+    "a: no_source: Knowledge item with no passage or figure; gamete chromosome number is recall."
+   ]
+  },
+  {
+   "id": "MSB3-E5-02",
+   "cohort": "map-science-v3-earth",
+   "passage": "MSB3-E5-02",
+   "reasons": [
+    "a: no_source: A student who knows the inverse-square law gets 3^2 = 9 times without reading the table; the table values are exactly inverse-square, so the stem's 'based on Table 1' is not needed.",
+    "b: no_source: Ratio 1 m vs 3 m is exactly the inverse-square prediction (3^2 = 9); the table is built on 360/d^2 (90, 40, 22.5), so a student who knows the inverse-square law reaches B without reading the table."
+   ]
+  }
+ ],
+ "cleared": [
+  "MSB3-L5-01",
+  "MSB3-L5-02",
+  "MSB3-L5-03",
+  "MSB3-L5-05",
+  "MSB3-L5-07",
+  "MSB3-L5-08",
+  "MSB3-L5-09",
+  "MSB3-L5-10",
+  "MSB3-L5-11",
+  "MSB3-L5-12",
+  "MSB3-L5-15",
+  "MSB3-L6-01",
+  "MSB3-L6-02",
+  "MSB3-L6-07",
+  "MSB3-L6-08",
+  "MSB3-L6-09",
+  "MSB3-L6-10",
+  "MSB3-L6-11",
+  "MSB3-L6-12",
+  "MSB3-L6-13",
+  "MSB3-L6-15",
+  "MSB3-L6-16",
+  "MSB3-L7-01",
+  "MSB3-L7-02",
+  "MSB3-L7-03",
+  "MSB3-L7-04",
+  "MSB3-L7-05",
+  "MSB3-L7-06",
+  "MSB3-L7-08",
+  "MSB3-L7-09",
+  "MSB3-L7-10",
+  "MSB3-L7-14",
+  "MSB3-L7-15",
+  "MSB3-L7-18",
+  "MSB3-L8-02",
+  "MSB3-L8-03",
+  "MSB3-L8-05",
+  "MSB3-L8-06",
+  "MSB3-L8-08",
+  "MSB3-L8-09",
+  "MSB3-L8-10",
+  "MSB3-L8-12",
+  "MSB3-P5-01",
+  "MSB3-P5-02",
+  "MSB3-P5-04",
+  "MSB3-P5-06",
+  "MSB3-P5-07",
+  "MSB3-P5-08",
+  "MSB3-P5-09",
+  "MSB3-P5-11",
+  "MSB3-P5-13",
+  "MSB3-P5-15",
+  "MSB3-P5-16",
+  "MSB3-P6-01",
+  "MSB3-P6-02",
+  "MSB3-P6-03",
+  "MSB3-P6-04",
+  "MSB3-P6-07",
+  "MSB3-P6-09",
+  "MSB3-P6-18",
+  "MSB3-P6-19",
+  "MSB3-P7-01",
+  "MSB3-P7-02",
+  "MSB3-P7-03",
+  "MSB3-P7-04",
+  "MSB3-P7-06",
+  "MSB3-P7-09",
+  "MSB3-P7-14",
+  "MSB3-P7-15",
+  "MSB3-P7-16",
+  "MSB3-P8-03",
+  "MSB3-P8-04",
+  "MSB3-P8-05",
+  "MSB3-P8-07",
+  "MSB3-P8-08",
+  "MSB3-P8-14",
+  "MSB3-E5-01",
+  "MSB3-E5-02",
+  "MSB3-E5-03",
+  "MSB3-E5-08",
+  "MSB3-E5-11",
+  "MSB3-E5-12",
+  "MSB3-E5-14",
+  "MSB3-E5-15",
+  "MSB3-E5-16",
+  "MSB3-E5-18",
+  "MSB3-E5-19",
+  "MSB3-E5-20",
+  "MSB3-E6-01",
+  "MSB3-E6-02",
+  "MSB3-E6-04",
+  "MSB3-E6-06",
+  "MSB3-E6-07",
+  "MSB3-E6-08",
+  "MSB3-E6-09",
+  "MSB3-E6-10",
+  "MSB3-E6-12",
+  "MSB3-E6-13",
+  "MSB3-E6-15",
+  "MSB3-E6-17",
+  "MSB3-E6-18",
+  "MSB3-E6-19",
+  "MSB3-E6-20",
+  "MSB3-E7-03",
+  "MSB3-E7-04",
+  "MSB3-E7-07",
+  "MSB3-E7-11",
+  "MSB3-E7-12",
+  "MSB3-E7-13",
+  "MSB3-E7-14",
+  "MSB3-E7-16",
+  "MSB3-E7-17",
+  "MSB3-E7-18",
+  "MSB3-E7-19",
+  "MSB3-E7-20",
+  "MSB3-E8-02",
+  "MSB3-E8-03",
+  "MSB3-E8-09",
+  "MSB3-E8-15",
+  "MSB3-E8-16",
+  "MSB3-E8-19",
+  "MSB3-E8-20"
+ ]
+}

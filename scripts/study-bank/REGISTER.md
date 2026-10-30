@@ -6753,3 +6753,48 @@ structural checks are pre-flight only. See CLAUDE.md.
   positions, A1.1's letter exclusion was limited to Part 1 in this prereg. The survivors are in
   `itep-grammar-v1.batch.json` (staging shape). Lessons are in `briefs/itep-slate-grammar-v1.pending.md`, including
   a cross-author frame collision that only one grader named.
+
+- **2026-10-31 — MAP Science b3 FULL: stage 1 + returns + stage 2 done; 122 of 230 STAGED verified=false
+  (map-science-v3-life 42 / -phys 34 / -earth 46), read back 122 false / 0 true. NOT released** (owner's standing
+  science rule check first: `node scripts/study-bank/release-map-science-b3full.mjs`, dry run by default; `--apply`
+  writes). Records in `map-v2-work/science-b3full/`: STAGE1-DECISION.json, STAGE2-DECISION.json, cleared.json,
+  STAGED.json, items/{L,P,E}.json (Addendum S fingerprints, checked by the stager).
+  | area | authored | rule 10a | after rules 1-10 | after fresh re-checks | after stage 2 (staged) |
+  |---|---|---|---|---|---|
+  | Life | 75 | 15 | 53 | 43 | 42 |
+  | Physical | 75 | 16 | 46 | 36 | 34 |
+  | Earth | 80 | 13 | 50 | 46 | 46 |
+  - **Scorer** `score-b3full.mjs`: verifies the six cold hashes and keyed = hold packets, applies rules 1-9 under
+    batch 2's binding interpretations (same field for rule 9; b1_stated_law "holds" is not a hit; rule 6 needs each
+    grader to kill 2+; rule 2 the same letter; b2_duplicate the same pair, higher grade / higher slot drops), parses
+    RULE10-MATCHES.md without re-matching, and exits 2 on missing/short input, an unrecorded confirmation, an
+    unrecorded kill count or a stale table entry. Free-text negatives ("none: ...", "n/a (model)", "no") handled;
+    "weak"/"mild"/"partial" values count as hits unless an override records a pass (one: P5-03 g2 "C still plausible").
+  - **Coordinator confirmations (rules 3/5/7), reasoning per item in the decision file.** Confirmed: fact errors
+    P5-14 (superlinear solar oven), P6-15 (rise per gram inverts MS-PS3-4), P7-08 (launcher recoil must be concave in
+    ball mass), E6-05 and E7-06 (a model distractor TRUE in part of the world: Arctic midnight sun; moraine-dammed
+    lakes), E8-10 (B10: four periods, five points); real data L8-11 (two-point threshold), P5-10 (2t^2 ramp = Galileo,
+    banned by name), P6-16 (skydiver 54 m/s), E8-07 (standard atmosphere). Not confirmed: L6-07, L6-14, L8-02, L7-12,
+    P7-07 (rrd); L6-14 and L8-09 readability (the renderer draws a dot per point, so a half-tick x is countable).
+  - **Returns:** 38 single-grader rule-9 questions (no rule-2 return survived) to three fresh Claude re-checkers given
+    only the briefs, the keyed items and the field; 24 second hits dropped (Life 10, Physical 10, Earth 4). Literal
+    application lost both members of two pairs whose partner was dropped by another rule (P5-10/P8-01, L7-16/L8-01).
+  - **Stage 2** (`audit-build-b3full.mjs` → `science-audit-score.mjs` unchanged → `stage2-decide-b3full.mjs`): 125
+    audited, 2 auditors per area (a plain, b adversarial), every key verified by all six. 15 flagged; 12 are
+    `no_source` alone and clear under the owner rule; held L5-16 (bean in plain water gaining 80 g), P6-06 (diamond
+    "a molecule" defensible), P6-08 (explanation misdescribes its own figure). **Owner attention:** E5-02 cleared on
+    the rule as written but it is a DATA item where both auditors showed the table is exactly 1/d^2, so the figure is
+    decoration; the rule was written for standalone knowledge items.
+  - **Predictions:** F1 held (0 EMPTY). F2 held (no cohort hold; unions 15/16/13). F3 FAILED in every area (15/16/13
+    > 6). F4 FAILED in every area (rules 1-9 drops 26.7% / 37.3% / 31.3% before returns, bar 15%). F5 FAILED (B31 and
+    the variable-passage plan recur with 3+ shared items). F6 held (new single-grader patterns in every area, e.g.
+    Life natural-selection template, Physical consecutive-initial names, Earth ratio reconstructable from options).
+  - **10d checker lessons (before the next authoring step):** mechanical patterns that met 10a need a checker + fixture:
+    the shared variable-passage sentence plan ("wrote down / noted the <option>", "first ..., then the second, third
+    and fourth", one-value "in one tray" options), the never-keyed two-letter label, "energy" only on keys, and the
+    stem echo (key alone repeats a stem word stem). B31 (absurd distractors) is semantic and goes to the brief as a
+    pending lesson. From the item rules: invented data still break real laws (superlinear, convex where the device is
+    concave): a checker can at least refuse growing increments where the brief's law is linear or saturating; the
+    in-batch duplicate pairs (same PE, same system: 14 pairs named by both graders, 25 more by one) were missed by XDUP-REVIEW, so the probe needs a
+    same-PE-same-system pass inside the batch; and a data item whose table is an exact textbook law (1/d^2, 2t^2,
+    a = F/m, standard atmosphere) is either no_source or recognised data, so refuse exact law tables.

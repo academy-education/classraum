@@ -1,0 +1,2197 @@
+{
+ "generated": "2026-10-30",
+ "prereg": "scripts/study-bank/MAP-SCIENCE-B3-FULL.prereg.md",
+ "integrity": [
+  "life-g1 cold sha ok, keyed packet = hold",
+  "life-g2 cold sha ok, keyed packet = hold",
+  "phys-g1 cold sha ok, keyed packet = hold",
+  "phys-g2 cold sha ok, keyed packet = hold",
+  "earth-g1 cold sha ok, keyed packet = hold",
+  "earth-g2 cold sha ok, keyed packet = hold"
+ ],
+ "kill_note": "P4 \"reversed pair X/Y\" (earth-g2) marks the key as X or Y, killing the other two; \"all three via P1\" kills 3.",
+ "areas": {
+  "life": {
+   "authored": 75,
+   "denominators": {
+    "items_json": 75,
+    "g1_keyed": 75,
+    "g2_keyed": 75
+   },
+   "flag_counts": {
+    "key_correct_no": 0,
+    "second_defensible": 2,
+    "fact_error": 0,
+    "no_source_yes_data": 6,
+    "rrd": 6,
+    "free_elim": 8,
+    "readability": 2
+   },
+   "rule10_drops": 15,
+   "rule1_9_drops": 20,
+   "rule1_9_only": 7,
+   "second_hit_drops": 10,
+   "dropped": 32,
+   "survivors": 43,
+   "survivor_ids": [
+    "MSB3-L5-01",
+    "MSB3-L5-02",
+    "MSB3-L5-03",
+    "MSB3-L5-05",
+    "MSB3-L5-07",
+    "MSB3-L5-08",
+    "MSB3-L5-09",
+    "MSB3-L5-10",
+    "MSB3-L5-11",
+    "MSB3-L5-12",
+    "MSB3-L5-15",
+    "MSB3-L5-16",
+    "MSB3-L6-01",
+    "MSB3-L6-02",
+    "MSB3-L6-07",
+    "MSB3-L6-08",
+    "MSB3-L6-09",
+    "MSB3-L6-10",
+    "MSB3-L6-11",
+    "MSB3-L6-12",
+    "MSB3-L6-13",
+    "MSB3-L6-15",
+    "MSB3-L6-16",
+    "MSB3-L7-01",
+    "MSB3-L7-02",
+    "MSB3-L7-03",
+    "MSB3-L7-04",
+    "MSB3-L7-05",
+    "MSB3-L7-06",
+    "MSB3-L7-08",
+    "MSB3-L7-09",
+    "MSB3-L7-10",
+    "MSB3-L7-14",
+    "MSB3-L7-15",
+    "MSB3-L7-18",
+    "MSB3-L8-02",
+    "MSB3-L8-03",
+    "MSB3-L8-05",
+    "MSB3-L8-06",
+    "MSB3-L8-08",
+    "MSB3-L8-09",
+    "MSB3-L8-10",
+    "MSB3-L8-12"
+   ],
+   "drops": {
+    "MSB3-L5-04": [
+     "rule 4: no_source_needed yes from both (investigation item)",
+     "rule 9: b1_absolute from both",
+     "rule 9: b3p2_general_knowledge from both"
+    ],
+    "MSB3-L5-06": [
+     "rule 9: b3_claim_marker from both",
+     "rule 10a: B31",
+     "rule 10a: Lamarckian"
+    ],
+    "MSB3-L5-13": [
+     "rule 9 (second hit): b1_absolute: g1 + fresh re-check: Option C alone carries an absolute ('whatever the soil', i.e. regardless of soil); the other three are plain, so 'reject the lone absolute' removes it."
+    ],
+    "MSB3-L5-14": [
+     "rule 9 (second hit): b2_duplicate: g1 + fresh re-check: Both are dead leaves decomposing in soil/bins under 5-LS2-1: the same system on the same PE, differing only in ask (controlled pair vs mass difference)."
+    ],
+    "MSB3-L5-17": [
+     "rule 9: b3_role_statement from both",
+     "rule 10a: variable plan"
+    ],
+    "MSB3-L5-18": [
+     "rule 9: b3_claim_marker from both",
+     "rule 10a: B31"
+    ],
+    "MSB3-L5-19": [
+     "rule 9: b1_absolute from both",
+     "rule 9: b3_claim_marker from both",
+     "rule 10a: B31"
+    ],
+    "MSB3-L6-03": [
+     "rule 9: b3_role_statement from both",
+     "rule 10a: variable plan"
+    ],
+    "MSB3-L6-04": [
+     "rule 9: b3_stem_echo from both",
+     "rule 10a: stem echo"
+    ],
+    "MSB3-L6-05": [
+     "rule 9 (second hit): b1_absolute: g1 + fresh re-check: Option C alone carries an absolute ('with no help from living things'), and D alone a hedge ('most of'); both markers sit singly on distractors.",
+     "rule 9 (second hit): b2_duplicate: g1 + fresh re-check: Both rest on the same concept and system: decomposers break down fallen leaf litter so it does not accumulate / loses mass (L5-14's real-world check states L6-05's key)."
+    ],
+    "MSB3-L6-06": [
+     "rule 10a: Lamarckian"
+    ],
+    "MSB3-L6-14": [
+     "rule 9 (second hit): b2_duplicate: g1 + fresh re-check: Both are MS-LS4-6 items on a favorable trait's frequency rising in a population over years after an environmental change (long-legged lizards, long-spined sticklebacks): same concept on the same PE."
+    ],
+    "MSB3-L6-17": [
+     "rule 9 (second hit): b1_absolute: g1 + fresh re-check: Option A is the lone absolute ('no part in'), and the key is the one modest, limited claim ('A few snails helped'), so the absolute/hedge split points at the key.",
+     "rule 9 (second hit): b3_claim_marker: g2 + fresh re-check: The degree marker 'no part in' (equivalent to 'no effect') sits on option A alone, contrary to the 0/2/4 rule; no reason words appear on any option."
+    ],
+    "MSB3-L6-18": [
+     "rule 9: b3_stem_echo from both",
+     "rule 9: b2_duplicate pair L6-06/L6-18 named by both; L6-18 is the higher grade (or same grade, higher slot)",
+     "rule 10a: stem echo"
+    ],
+    "MSB3-L6-19": [
+     "rule 10a: Lamarckian"
+    ],
+    "MSB3-L7-07": [
+     "rule 9: b2_duplicate pair L6-07/L7-07 named by both; L7-07 is the higher grade (or same grade, higher slot)"
+    ],
+    "MSB3-L7-11": [
+     "rule 4: no_source_needed yes from both (investigation item)",
+     "rule 6: free_elimination from both kills 2/2",
+     "rule 9: b3p2_general_knowledge from both"
+    ],
+    "MSB3-L7-12": [
+     "rule 9: b3_claim_marker from both",
+     "rule 10a: B31"
+    ],
+    "MSB3-L7-13": [
+     "rule 9: b2_duplicate pair L6-06/L7-13 named by both; L7-13 is the higher grade (or same grade, higher slot)",
+     "rule 10a: Lamarckian"
+    ],
+    "MSB3-L7-16": [
+     "rule 9: b3_role_statement from both",
+     "rule 10a: variable plan"
+    ],
+    "MSB3-L7-17": [
+     "rule 9: b2_duplicate pair L7-11/L7-17 named by both; L7-17 is the higher grade (or same grade, higher slot)"
+    ],
+    "MSB3-L7-19": [
+     "rule 9 (second hit): b3_claim_marker: g2 + fresh re-check: The key alone has a concede-then-qualify contrast ('Light enters, but ...'), a marker on one option; option A is also killed by the stem's 'her left eye itself is healthy'."
+    ],
+    "MSB3-L8-01": [
+     "rule 9 (second hit): b2_duplicate: g1 + fresh re-check: Both are MS-LS3-1 items where ultraviolet exposure time (0-3 min on bean seeds; 0-60 s on yeast) is the treatment for genetic damage: the same system on the same PE."
+    ],
+    "MSB3-L8-04": [
+     "rule 9 (second hit): b1_absolute: g1 + fresh re-check: The key is the lone hedged option ('little or no sugar'); no other option carries a hedge or an absolute.",
+     "rule 9 (second hit): b2_duplicate: g1 + fresh re-check: Both keys are the same claim, that loss of a photosynthesis requirement (chloroplasts; carbon dioxide) stops the plant making food/sugar."
+    ],
+    "MSB3-L8-07": [
+     "rule 9 (second hit): b2_duplicate: g1 + fresh re-check: Both are MS-LS4-5 artificial selection (farmers keeping large-eared corn; herds bred for milk): same concept on the same PE, though L8-07's chart read does not need it."
+    ],
+    "MSB3-L8-11": [
+     "rule 4: no_source_needed yes from both (investigation item)",
+     "rule 5: recognised_real_data confirmed",
+     "rule 9: b3p2_general_knowledge from both"
+    ],
+    "MSB3-L8-13": [
+     "rule 9: b3_claim_marker from both",
+     "rule 10a: B31",
+     "rule 10a: Lamarckian"
+    ],
+    "MSB3-L8-14": [
+     "rule 9: b2_duplicate pair L7-07/L8-14 named by both; L8-14 is the higher grade (or same grade, higher slot)"
+    ],
+    "MSB3-L8-15": [
+     "rule 9 (second hit): b2_duplicate: g1 + fresh re-check: Both are MS-LS3-2 asexual-reproduction population counts over days on a one-series line graph (yeast budding, flatworms splitting): the same concept on the same PE."
+    ],
+    "MSB3-L8-16": [
+     "rule 2: second_defensible B from both",
+     "rule 9: b3_role_statement from both",
+     "rule 10a: variable plan"
+    ],
+    "MSB3-L8-17": [
+     "rule 9: b2_duplicate pair L8-04/L8-17 named by both; L8-17 is the higher grade (or same grade, higher slot)"
+    ],
+    "MSB3-L8-18": [
+     "rule 9: b3_stem_echo from both",
+     "rule 10a: stem echo"
+    ]
+   },
+   "duplicate_pairs_both": [
+    {
+     "pair": [
+      "MSB3-L6-06",
+      "MSB3-L6-18"
+     ],
+     "drop": "MSB3-L6-18"
+    },
+    {
+     "pair": [
+      "MSB3-L6-06",
+      "MSB3-L7-13"
+     ],
+     "drop": "MSB3-L7-13"
+    },
+    {
+     "pair": [
+      "MSB3-L6-07",
+      "MSB3-L7-07"
+     ],
+     "drop": "MSB3-L7-07"
+    },
+    {
+     "pair": [
+      "MSB3-L7-07",
+      "MSB3-L8-14"
+     ],
+     "drop": "MSB3-L8-14"
+    },
+    {
+     "pair": [
+      "MSB3-L7-11",
+      "MSB3-L7-17"
+     ],
+     "drop": "MSB3-L7-17"
+    },
+    {
+     "pair": [
+      "MSB3-L8-04",
+      "MSB3-L8-17"
+     ],
+     "drop": "MSB3-L8-17"
+    }
+   ],
+   "returns": [
+    {
+     "id": "MSB3-L5-13",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b1_absolute",
+     "value": "C alone carries 'whatever the soil'"
+    },
+    {
+     "id": "MSB3-L6-05",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b1_absolute",
+     "value": "C carries the lone absolute ('no help from living things')"
+    },
+    {
+     "id": "MSB3-L6-17",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b1_absolute",
+     "value": "A carries the lone absolute ('no part')"
+    },
+    {
+     "id": "MSB3-L6-17",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b3_claim_marker",
+     "value": "A carries the lone 'no part' (no-effect degree word)"
+    },
+    {
+     "id": "MSB3-L7-06",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3_claim_marker",
+     "value": "Each distractor hands the job to another organ (stomach, lungs, heart pumping wastes out), C and D implausible; key the only option not naming another organ"
+    },
+    {
+     "id": "MSB3-L7-19",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b3_claim_marker",
+     "value": "A and C deny the stem's premises, B is absurd; one sensible option (B31)"
+    },
+    {
+     "id": "MSB3-L8-04",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b1_absolute",
+     "value": "Key A carries the lone hedge 'little or no'"
+    },
+    {
+     "id": "MSB3-L8-05",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3_claim_marker",
+     "value": "B (skin grows out of the air) is absurd; key is the longest option"
+    },
+    {
+     "id": "MSB3-L5-14",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b2_duplicate",
+     "value": "g1@L5-03: MSB3-L5-03 and MSB3-L5-14 (leaf breakdown, same PE 5-LS2-1, same grade); concept also in MSB3-L6-05 || g1@L5-14: MSB3-L5-14 and MSB3-L5-03",
+     "pair": [
+      "MSB3-L5-03",
+      "MSB3-L5-14"
+     ]
+    },
+    {
+     "id": "MSB3-L6-05",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b2_duplicate",
+     "value": "g1@L5-03: MSB3-L5-03 and MSB3-L5-14 (leaf breakdown, same PE 5-LS2-1, same grade); concept also in MSB3-L6-05 || g1@L6-05: concept overlaps MSB3-L5-03/L5-14 (leaf decomposition), different PE",
+     "pair": [
+      "MSB3-L5-03",
+      "MSB3-L6-05"
+     ]
+    },
+    {
+     "id": "MSB3-L6-05",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b2_duplicate",
+     "value": "g1@L6-05: concept overlaps MSB3-L5-03/L5-14 (leaf decomposition), different PE",
+     "pair": [
+      "MSB3-L5-14",
+      "MSB3-L6-05"
+     ]
+    },
+    {
+     "id": "MSB3-L6-14",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b2_duplicate",
+     "value": "g1@L6-07: MSB3-L6-07, MSB3-L6-14, MSB3-L7-07, MSB3-L8-14 (trait share rising under selection, MS-LS4-6) || g1@L6-14: MSB3-L6-14 and MSB3-L6-07 (same PE MS-LS4-6, grade 6)",
+     "pair": [
+      "MSB3-L6-07",
+      "MSB3-L6-14"
+     ]
+    },
+    {
+     "id": "MSB3-L8-07",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b2_duplicate",
+     "value": "g1@L6-12: MSB3-L6-12 and MSB3-L8-07 (selective breeding, MS-LS4-5) || g1@L8-07: MSB3-L8-07 and MSB3-L6-12",
+     "pair": [
+      "MSB3-L6-12",
+      "MSB3-L8-07"
+     ]
+    },
+    {
+     "id": "MSB3-L8-04",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b2_duplicate",
+     "value": "g1@L6-13: concept overlaps MSB3-L8-04 / MSB3-L8-17 (photosynthesis makes food)",
+     "pair": [
+      "MSB3-L6-13",
+      "MSB3-L8-04"
+     ]
+    },
+    {
+     "id": "MSB3-L8-01",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b2_duplicate",
+     "value": "g1@L7-16: MSB3-L7-16 and MSB3-L8-01 (UV light harming/mutating cells, MS-LS3-1) || g1@L8-01: MSB3-L8-01 and MSB3-L7-16",
+     "pair": [
+      "MSB3-L7-16",
+      "MSB3-L8-01"
+     ]
+    },
+    {
+     "id": "MSB3-L8-15",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b2_duplicate",
+     "value": "g1@L8-09: MSB3-L8-09 and MSB3-L8-15 (asexual reproduction counts, MS-LS3-2, grade 8) || g1@L8-15: MSB3-L8-15 and MSB3-L8-09",
+     "pair": [
+      "MSB3-L8-09",
+      "MSB3-L8-15"
+     ]
+    }
+   ],
+   "recheck_results": [
+    {
+     "id": "MSB3-L5-13",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b1_absolute",
+     "value": "C alone carries 'whatever the soil'",
+     "recheck": {
+      "id": "MSB3-L5-13",
+      "field": "b1_absolute",
+      "items": [
+       "MSB3-L5-13"
+      ],
+      "hit": "yes",
+      "reason": "Option C alone carries an absolute ('whatever the soil', i.e. regardless of soil); the other three are plain, so 'reject the lone absolute' removes it."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB3-L6-05",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b1_absolute",
+     "value": "C carries the lone absolute ('no help from living things')",
+     "recheck": {
+      "id": "MSB3-L6-05",
+      "field": "b1_absolute",
+      "items": [
+       "MSB3-L6-05"
+      ],
+      "hit": "yes",
+      "reason": "Option C alone carries an absolute ('with no help from living things'), and D alone a hedge ('most of'); both markers sit singly on distractors."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB3-L6-17",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b1_absolute",
+     "value": "A carries the lone absolute ('no part')",
+     "recheck": {
+      "id": "MSB3-L6-17",
+      "field": "b1_absolute",
+      "items": [
+       "MSB3-L6-17"
+      ],
+      "hit": "yes",
+      "reason": "Option A is the lone absolute ('no part in'), and the key is the one modest, limited claim ('A few snails helped'), so the absolute/hedge split points at the key."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB3-L6-17",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b3_claim_marker",
+     "value": "A carries the lone 'no part' (no-effect degree word)",
+     "recheck": {
+      "id": "MSB3-L6-17",
+      "field": "b3_claim_marker",
+      "items": [
+       "MSB3-L6-17"
+      ],
+      "hit": "yes",
+      "reason": "The degree marker 'no part in' (equivalent to 'no effect') sits on option A alone, contrary to the 0/2/4 rule; no reason words appear on any option."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB3-L7-06",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3_claim_marker",
+     "value": "Each distractor hands the job to another organ (stomach, lungs, heart pumping wastes out), C and D implausible; key the only option not naming another organ",
+     "recheck": {
+      "id": "MSB3-L7-06",
+      "field": "b3_claim_marker",
+      "items": [
+       "MSB3-L7-06"
+      ],
+      "hit": "no",
+      "reason": "No reason or degree word on any option; the distractors are organ-substitution misconceptions (another organ takes over, heart cleans blood) of one category, not absurd enough to leave the key as the lone sensible option."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB3-L7-19",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b3_claim_marker",
+     "value": "A and C deny the stem's premises, B is absurd; one sensible option (B31)",
+     "recheck": {
+      "id": "MSB3-L7-19",
+      "field": "b3_claim_marker",
+      "items": [
+       "MSB3-L7-19"
+      ],
+      "hit": "yes",
+      "reason": "The key alone has a concede-then-qualify contrast ('Light enters, but ...'), a marker on one option; option A is also killed by the stem's 'her left eye itself is healthy'."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB3-L8-04",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b1_absolute",
+     "value": "Key A carries the lone hedge 'little or no'",
+     "recheck": {
+      "id": "MSB3-L8-04",
+      "field": "b1_absolute",
+      "items": [
+       "MSB3-L8-04"
+      ],
+      "hit": "yes",
+      "reason": "The key is the lone hedged option ('little or no sugar'); no other option carries a hedge or an absolute."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB3-L8-05",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3_claim_marker",
+     "value": "B (skin grows out of the air) is absurd; key is the longest option",
+     "recheck": {
+      "id": "MSB3-L8-05",
+      "field": "b3_claim_marker",
+      "items": [
+       "MSB3-L8-05"
+      ],
+      "hit": "no",
+      "reason": "No reason or degree word on any option; B (skin from air) is absurd, but A (scab becomes skin) and C (fat cells become skin) are held misconceptions, so the key is not the lone sensible option."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB3-L5-14",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b2_duplicate",
+     "value": "g1@L5-03: MSB3-L5-03 and MSB3-L5-14 (leaf breakdown, same PE 5-LS2-1, same grade); concept also in MSB3-L6-05 || g1@L5-14: MSB3-L5-14 and MSB3-L5-03",
+     "pair": [
+      "MSB3-L5-03",
+      "MSB3-L5-14"
+     ],
+     "recheck": {
+      "id": "MSB3-L5-14",
+      "field": "b2_duplicate",
+      "items": [
+       "MSB3-L5-03",
+       "MSB3-L5-14"
+      ],
+      "hit": "yes",
+      "reason": "Both are dead leaves decomposing in soil/bins under 5-LS2-1: the same system on the same PE, differing only in ask (controlled pair vs mass difference)."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB3-L6-05",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b2_duplicate",
+     "value": "g1@L5-03: MSB3-L5-03 and MSB3-L5-14 (leaf breakdown, same PE 5-LS2-1, same grade); concept also in MSB3-L6-05 || g1@L6-05: concept overlaps MSB3-L5-03/L5-14 (leaf decomposition), different PE",
+     "pair": [
+      "MSB3-L5-03",
+      "MSB3-L6-05"
+     ],
+     "recheck": {
+      "id": "MSB3-L6-05",
+      "field": "b2_duplicate",
+      "items": [
+       "MSB3-L5-03",
+       "MSB3-L6-05"
+      ],
+      "hit": "no",
+      "reason": "L5-03 tests choosing a controlled comparison (only water differs); L6-05 tests decomposers recycling matter under a different PE. The leaf-litter setting overlaps but the concept and key do not."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB3-L6-05",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b2_duplicate",
+     "value": "g1@L6-05: concept overlaps MSB3-L5-03/L5-14 (leaf decomposition), different PE",
+     "pair": [
+      "MSB3-L5-14",
+      "MSB3-L6-05"
+     ],
+     "recheck": {
+      "id": "MSB3-L6-05",
+      "field": "b2_duplicate",
+      "items": [
+       "MSB3-L5-14",
+       "MSB3-L6-05"
+      ],
+      "hit": "yes",
+      "reason": "Both rest on the same concept and system: decomposers break down fallen leaf litter so it does not accumulate / loses mass (L5-14's real-world check states L6-05's key)."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB3-L6-14",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b2_duplicate",
+     "value": "g1@L6-07: MSB3-L6-07, MSB3-L6-14, MSB3-L7-07, MSB3-L8-14 (trait share rising under selection, MS-LS4-6) || g1@L6-14: MSB3-L6-14 and MSB3-L6-07 (same PE MS-LS4-6, grade 6)",
+     "pair": [
+      "MSB3-L6-07",
+      "MSB3-L6-14"
+     ],
+     "recheck": {
+      "id": "MSB3-L6-14",
+      "field": "b2_duplicate",
+      "items": [
+       "MSB3-L6-07",
+       "MSB3-L6-14"
+      ],
+      "hit": "yes",
+      "reason": "Both are MS-LS4-6 items on a favorable trait's frequency rising in a population over years after an environmental change (long-legged lizards, long-spined sticklebacks): same concept on the same PE."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB3-L8-07",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b2_duplicate",
+     "value": "g1@L6-12: MSB3-L6-12 and MSB3-L8-07 (selective breeding, MS-LS4-5) || g1@L8-07: MSB3-L8-07 and MSB3-L6-12",
+     "pair": [
+      "MSB3-L6-12",
+      "MSB3-L8-07"
+     ],
+     "recheck": {
+      "id": "MSB3-L8-07",
+      "field": "b2_duplicate",
+      "items": [
+       "MSB3-L6-12",
+       "MSB3-L8-07"
+      ],
+      "hit": "yes",
+      "reason": "Both are MS-LS4-5 artificial selection (farmers keeping large-eared corn; herds bred for milk): same concept on the same PE, though L8-07's chart read does not need it."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB3-L8-04",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b2_duplicate",
+     "value": "g1@L6-13: concept overlaps MSB3-L8-04 / MSB3-L8-17 (photosynthesis makes food)",
+     "pair": [
+      "MSB3-L6-13",
+      "MSB3-L8-04"
+     ],
+     "recheck": {
+      "id": "MSB3-L8-04",
+      "field": "b2_duplicate",
+      "items": [
+       "MSB3-L6-13",
+       "MSB3-L8-04"
+      ],
+      "hit": "yes",
+      "reason": "Both keys are the same claim, that loss of a photosynthesis requirement (chloroplasts; carbon dioxide) stops the plant making food/sugar."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB3-L8-01",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b2_duplicate",
+     "value": "g1@L7-16: MSB3-L7-16 and MSB3-L8-01 (UV light harming/mutating cells, MS-LS3-1) || g1@L8-01: MSB3-L8-01 and MSB3-L7-16",
+     "pair": [
+      "MSB3-L7-16",
+      "MSB3-L8-01"
+     ],
+     "recheck": {
+      "id": "MSB3-L8-01",
+      "field": "b2_duplicate",
+      "items": [
+       "MSB3-L7-16",
+       "MSB3-L8-01"
+      ],
+      "hit": "yes",
+      "reason": "Both are MS-LS3-1 items where ultraviolet exposure time (0-3 min on bean seeds; 0-60 s on yeast) is the treatment for genetic damage: the same system on the same PE."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB3-L8-15",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b2_duplicate",
+     "value": "g1@L8-09: MSB3-L8-09 and MSB3-L8-15 (asexual reproduction counts, MS-LS3-2, grade 8) || g1@L8-15: MSB3-L8-15 and MSB3-L8-09",
+     "pair": [
+      "MSB3-L8-09",
+      "MSB3-L8-15"
+     ],
+     "recheck": {
+      "id": "MSB3-L8-15",
+      "field": "b2_duplicate",
+      "items": [
+       "MSB3-L8-09",
+       "MSB3-L8-15"
+      ],
+      "hit": "yes",
+      "reason": "Both are MS-LS3-2 asexual-reproduction population counts over days on a one-series line graph (yeast budding, flatworms splitting): the same concept on the same PE."
+     },
+     "counted": true
+    }
+   ],
+   "recorded": [
+    {
+     "id": "MSB3-L5-13",
+     "rule": 6,
+     "note": "free_elimination g2 kills 1: recorded"
+    },
+    {
+     "id": "MSB3-L5-18",
+     "rule": 6,
+     "note": "free_elimination g2 kills 1: recorded"
+    },
+    {
+     "id": "MSB3-L5-19",
+     "rule": 6,
+     "note": "free_elimination g2 kills 1: recorded"
+    },
+    {
+     "id": "MSB3-L6-06",
+     "rule": 6,
+     "note": "free_elimination g2 kills 2: recorded"
+    },
+    {
+     "id": "MSB3-L7-16",
+     "rule": 6,
+     "note": "free_elimination g1 kills 1: recorded"
+    },
+    {
+     "id": "MSB3-L7-19",
+     "rule": 6,
+     "note": "free_elimination g2 kills 1: recorded"
+    },
+    {
+     "id": "MSB3-L5-19",
+     "rule": 9,
+     "note": "single-grader b2_duplicate L5-13/L5-19: target L5-19 already dropped, no return"
+    },
+    {
+     "id": "MSB3-L5-18",
+     "rule": 9,
+     "note": "single-grader b2_duplicate L5-15/L5-18: target L5-18 already dropped, no return"
+    },
+    {
+     "id": "MSB3-L8-14",
+     "rule": 9,
+     "note": "single-grader b2_duplicate L6-07/L8-14: target L8-14 already dropped, no return"
+    },
+    {
+     "id": "MSB3-L8-17",
+     "rule": 9,
+     "note": "single-grader b2_duplicate L6-13/L8-17: target L8-17 already dropped, no return"
+    },
+    {
+     "id": "MSB3-L8-16",
+     "rule": 9,
+     "note": "single-grader b2_duplicate L6-16/L8-16: target L8-16 already dropped, no return"
+    },
+    {
+     "id": "MSB3-L7-13",
+     "rule": 9,
+     "note": "single-grader b2_duplicate L6-18/L7-13: target L7-13 already dropped, no return"
+    }
+   ],
+   "confirmations": [
+    {
+     "id": "MSB3-L6-07",
+     "rule": 5,
+     "field": "recognised_real_data",
+     "graders": [
+      "g1"
+     ],
+     "confirmed": false,
+     "reasoning": "Invented lizard (Sennick) and invented counts 4/24/36 of 100. The Anolis hurricane study measured limb and toepad dimensions, not these shares; a resemblance of topic, not a recognised dataset."
+    },
+    {
+     "id": "MSB3-L6-14",
+     "rule": 5,
+     "field": "recognised_real_data",
+     "graders": [
+      "g1"
+     ],
+     "confirmed": false,
+     "reasoning": "Real species (stickleback) named, but percents 50/40/30/20/35/50/60/70/80 are invented and match no published series. Not a recognised dataset (the real-species naming is a brief-compliance note, not rule 5)."
+    },
+    {
+     "id": "MSB3-L6-14",
+     "rule": 7,
+     "field": "readability",
+     "graders": [
+      "g2"
+     ],
+     "confirmed": false,
+     "reasoning": "Renderer (QuestionGraphicView, line branch) draws a dot at every point; year 3 is the 4th dot, halfway between x ticks 2 and 4 as TICK allows, and its value 20 sits on a y tick (0/20/40/60/80). The batch-1 L8-16 defect was a bend whose x position decided the key; here the asked x is named and countable."
+    },
+    {
+     "id": "MSB3-L7-12",
+     "rule": 5,
+     "field": "recognised_real_data",
+     "graders": [
+      "g1"
+     ],
+     "confirmed": false,
+     "reasoning": "Model item (invented: no): real knowledge is the construct, and g1 itself writes \"model item, so real knowledge; noted\". Rule 5 polices invented systems."
+    },
+    {
+     "id": "MSB3-L8-02",
+     "rule": 5,
+     "field": "recognised_real_data",
+     "graders": [
+      "g1"
+     ],
+     "confirmed": false,
+     "reasoning": "Hump-shaped diversity under intermediate grazing is a general ecological pattern (intermediate disturbance), not a dataset; counts are invented."
+    },
+    {
+     "id": "MSB3-L8-09",
+     "rule": 7,
+     "field": "readability",
+     "graders": [
+      "g2"
+     ],
+     "confirmed": false,
+     "reasoning": "Same renderer reading: a dot per day; day 3 is the 4th dot and the maximum, value 60 = the top y tick (0/15/30/45/60). Countable, and the nearest distractor (44, day 2) is a full tick-band away."
+    },
+    {
+     "id": "MSB3-L8-11",
+     "rule": 5,
+     "field": "recognised_real_data",
+     "graders": [
+      "g1",
+      "g2"
+     ],
+     "confirmed": true,
+     "reasoning": "Two-point discrimination test with fingertip 3 / palm 10 / back of hand 25 / upper arm 40 mm: the canonical Weber experiment at its textbook values. Both graders recognised it."
+    }
+   ]
+  },
+  "phys": {
+   "authored": 75,
+   "denominators": {
+    "items_json": 75,
+    "g1_keyed": 75,
+    "g2_keyed": 75
+   },
+   "flag_counts": {
+    "key_correct_no": 0,
+    "second_defensible": 0,
+    "fact_error": 4,
+    "no_source_yes_data": 8,
+    "rrd": 4,
+    "free_elim": 18,
+    "readability": 0
+   },
+   "rule10_drops": 16,
+   "rule1_9_drops": 28,
+   "rule1_9_only": 13,
+   "second_hit_drops": 10,
+   "dropped": 39,
+   "survivors": 36,
+   "survivor_ids": [
+    "MSB3-P5-01",
+    "MSB3-P5-02",
+    "MSB3-P5-04",
+    "MSB3-P5-06",
+    "MSB3-P5-07",
+    "MSB3-P5-08",
+    "MSB3-P5-09",
+    "MSB3-P5-11",
+    "MSB3-P5-13",
+    "MSB3-P5-15",
+    "MSB3-P5-16",
+    "MSB3-P6-01",
+    "MSB3-P6-02",
+    "MSB3-P6-03",
+    "MSB3-P6-04",
+    "MSB3-P6-06",
+    "MSB3-P6-07",
+    "MSB3-P6-08",
+    "MSB3-P6-09",
+    "MSB3-P6-18",
+    "MSB3-P6-19",
+    "MSB3-P7-01",
+    "MSB3-P7-02",
+    "MSB3-P7-03",
+    "MSB3-P7-04",
+    "MSB3-P7-06",
+    "MSB3-P7-09",
+    "MSB3-P7-14",
+    "MSB3-P7-15",
+    "MSB3-P7-16",
+    "MSB3-P8-03",
+    "MSB3-P8-04",
+    "MSB3-P8-05",
+    "MSB3-P8-07",
+    "MSB3-P8-08",
+    "MSB3-P8-14"
+   ],
+   "drops": {
+    "MSB3-P5-03": [
+     "rule 9 (second hit): b1_stated_law: g1 + fresh re-check: The prior_free claim turns on the greenhouse ending warmer than it started, but no option tests that; the asked shape (cool overnight, warm after sunrise by 10 a.m.) follows from the day-night energy ",
+     "rule 9 (second hit): b3p2_general_knowledge: g1 + fresh re-check: With the figure covered, a student who knows a greenhouse cools at night and is warmed by sunlight after sunrise picks 'dropped, then rose' for 6 p.m. to 10 a.m.; the other three shapes (only falling,"
+    ],
+    "MSB3-P5-05": [
+     "rule 9: b3_claim_marker from both",
+     "rule 10a: B31"
+    ],
+    "MSB3-P5-10": [
+     "rule 5: recognised_real_data confirmed"
+    ],
+    "MSB3-P5-12": [
+     "rule 9: b3_claim_marker from both",
+     "rule 10a: B31"
+    ],
+    "MSB3-P5-14": [
+     "rule 3: fact_error confirmed"
+    ],
+    "MSB3-P5-17": [
+     "rule 9: b3_role_statement from both",
+     "rule 10a: variable plan"
+    ],
+    "MSB3-P5-18": [
+     "rule 9: b3_claim_marker from both",
+     "rule 10a: B31"
+    ],
+    "MSB3-P5-19": [
+     "rule 9 (second hit): b3_claim_marker: g1 + fresh re-check: The distractors are not held misconceptions of the key's kind: 'spin faster to make up for the cloud' is absurd and alone carries a purpose clause, and 'stop until someone resets it' is made wrong onl"
+    ],
+    "MSB3-P6-05": [
+     "rule 6: free_elimination from both kills 3/3"
+    ],
+    "MSB3-P6-10": [
+     "rule 9: b3_role_statement from both",
+     "rule 10a: variable plan"
+    ],
+    "MSB3-P6-11": [
+     "rule 9: b2_duplicate pair P6-05/P6-11 named by both; P6-11 is the higher grade (or same grade, higher slot)"
+    ],
+    "MSB3-P6-12": [
+     "rule 9: b3_claim_marker from both",
+     "rule 10a: B31"
+    ],
+    "MSB3-P6-13": [
+     "rule 9: b3_claim_marker from both",
+     "rule 10a: B31"
+    ],
+    "MSB3-P6-14": [
+     "rule 9 (second hit): b2_duplicate: g2 + fresh re-check: Both are hot water cooling in a cup on MS-PS3-3, both values/read items reading one cooling temperature at a given time (mug M-3 line graph vs metal cup table); same system, concept and ask on the sam"
+    ],
+    "MSB3-P6-15": [
+     "rule 3: fact_error confirmed"
+    ],
+    "MSB3-P6-16": [
+     "rule 4: no_source_needed yes from both (data item)",
+     "rule 5: recognised_real_data confirmed",
+     "rule 9: b1_stated_law from both",
+     "rule 9: b3p2_general_knowledge from both"
+    ],
+    "MSB3-P6-17": [
+     "rule 4: no_source_needed yes from both (investigation item)",
+     "rule 6: free_elimination from both kills 2/2",
+     "rule 9: b3p2_general_knowledge from both"
+    ],
+    "MSB3-P7-05": [
+     "rule 9 (second hit): b3_claim_marker: g1 + fresh re-check: Word counts are balanced (1/2/1/2), but 'middles' and 'magnetic cores' both name the center, which the stem itself says hardly attracts clips, so they contradict the stem's 'two ends'; with 'charge zo"
+    ],
+    "MSB3-P7-07": [
+     "rule 4: no_source_needed yes from both (data item)",
+     "rule 9: b1_stated_law from both"
+    ],
+    "MSB3-P7-08": [
+     "rule 3: fact_error confirmed"
+    ],
+    "MSB3-P7-10": [
+     "rule 9 (second hit): b2_duplicate: g2 + fresh re-check: Both are a lens converging sunlight to a bright spot on MS-PS4-2: P6-13 asks why the spot forms (bending light to meet at one spot) and P7-10 shows brightness peaking at that focal distance, so one it"
+    ],
+    "MSB3-P7-11": [
+     "rule 9: b3_role_statement from both",
+     "rule 10a: variable plan"
+    ],
+    "MSB3-P7-12": [
+     "rule 6: free_elimination from both kills 3/3",
+     "rule 10a: B31"
+    ],
+    "MSB3-P7-13": [
+     "rule 9 (second hit): b3_claim_marker: g1 + fresh re-check: The distractors are of another category: 'a drum shaking the air' is making sound and 'a choir singing in church' is not a reflect/pass/absorb interaction at all, leaving only the echo as a same-categ"
+    ],
+    "MSB3-P7-17": [
+     "rule 9: b3_claim_marker from both",
+     "rule 10a: B31",
+     "rule 10a: energy"
+    ],
+    "MSB3-P7-18": [
+     "rule 9: b3_claim_marker from both",
+     "rule 10a: B31",
+     "rule 10a: energy"
+    ],
+    "MSB3-P7-19": [
+     "rule 9: b1_absolute from both"
+    ],
+    "MSB3-P8-01": [
+     "rule 9: b2_duplicate pair P5-10/P8-01 named by both; P8-01 is the higher grade (or same grade, higher slot)"
+    ],
+    "MSB3-P8-02": [
+     "rule 9: b2_label_shape from both",
+     "rule 9: b3_role_statement from both",
+     "rule 10a: variable plan"
+    ],
+    "MSB3-P8-06": [
+     "rule 9 (second hit): b1_stated_law: g2 + fresh re-check: The asked quantity is a ratio, and the real-world check's own law (product grows in step with the limiting reactant) gives 10 mL / 2 mL = 5 straight from the stem's volumes; the prior_free claim cover"
+    ],
+    "MSB3-P8-09": [
+     "rule 9 (second hit): b2_duplicate: g2 + fresh re-check: Both heat a liquid with a steady heater on MS-PS3-4 and show a linear temperature rise with no leveling (water vs time; oil vs energy added); the ask differs (trend vs interpolate) but the system and "
+    ],
+    "MSB3-P8-10": [
+     "rule 9: b2_duplicate pair P6-05/P8-10 named by both; P8-10 is the higher grade (or same grade, higher slot)",
+     "rule 9: b2_duplicate pair P6-11/P8-10 named by both; P8-10 is the higher grade (or same grade, higher slot)"
+    ],
+    "MSB3-P8-11": [
+     "rule 9 (second hit): b2_duplicate: g2 + fresh re-check: Both are solar heating panels/heaters on MS-PS3-3 testing whether surface color changes the thermal energy collected (P6-02 reads which colored panel collected most; P8-11 isolates inside color), so t"
+    ],
+    "MSB3-P8-12": [
+     "rule 9: b3_claim_marker from both",
+     "rule 10a: B31"
+    ],
+    "MSB3-P8-13": [
+     "rule 9: b3_claim_marker from both",
+     "rule 10a: B31"
+    ],
+    "MSB3-P8-15": [
+     "rule 9: b3p2_general_knowledge from both"
+    ],
+    "MSB3-P8-16": [
+     "rule 9 (second hit): b2_duplicate: g2 + fresh re-check: Both are digital signals sent along a cable with a computer counting bit/picture errors on MS-PS4-3 (boost setting vs errors; cable thickness and distance vs errors), so they share a system and concep"
+    ],
+    "MSB3-P8-17": [
+     "rule 10a: B31",
+     "rule 10a: energy"
+    ],
+    "MSB3-P8-18": [
+     "rule 9: b3_claim_marker from both",
+     "rule 10a: B31",
+     "rule 10a: energy"
+    ]
+   },
+   "duplicate_pairs_both": [
+    {
+     "pair": [
+      "MSB3-P5-10",
+      "MSB3-P8-01"
+     ],
+     "drop": "MSB3-P8-01"
+    },
+    {
+     "pair": [
+      "MSB3-P6-05",
+      "MSB3-P6-11"
+     ],
+     "drop": "MSB3-P6-11"
+    },
+    {
+     "pair": [
+      "MSB3-P6-05",
+      "MSB3-P8-10"
+     ],
+     "drop": "MSB3-P8-10"
+    },
+    {
+     "pair": [
+      "MSB3-P6-11",
+      "MSB3-P8-10"
+     ],
+     "drop": "MSB3-P8-10"
+    }
+   ],
+   "returns": [
+    {
+     "id": "MSB3-P5-03",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b1_stated_law",
+     "value": "fails: 'cools overnight, warms after sunrise' is everyday knowledge that picks 'dropped, then rose'; the claim that only the points show it does not hold for the key's shape"
+    },
+    {
+     "id": "MSB3-P5-03",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3p2_general_knowledge",
+     "value": "6 p.m. to 10 a.m. in a greenhouse: everyday knowledge that it cools overnight and warms after sunrise leaves 'dropped, then rose' as the one expected shape"
+    },
+    {
+     "id": "MSB3-P5-19",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3_claim_marker",
+     "value": "B31: D (spins faster to make up) absurd; C's 'until someone resets it' makes it unbelievable"
+    },
+    {
+     "id": "MSB3-P6-07",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3_bar_extreme",
+     "value": "Key 160 is the only option on a tick label (ticks 0,40,80,120,160; options 20,75,110 all off-tick)"
+    },
+    {
+     "id": "MSB3-P7-05",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3_claim_marker",
+     "value": "B31: 'middles' is not a held misconception"
+    },
+    {
+     "id": "MSB3-P7-13",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3_claim_marker",
+     "value": "B31: two distractors outside the reflect/transmit/absorb category"
+    },
+    {
+     "id": "MSB3-P8-06",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b1_stated_law",
+     "value": "proportional yield; data exactly linear, table decorative"
+    },
+    {
+     "id": "MSB3-P8-11",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b2_duplicate",
+     "value": "g2@P6-02: MSB3-P8-11 (solar collector colour, energy collected) || g2@P8-11: MSB3-P6-02",
+     "pair": [
+      "MSB3-P6-02",
+      "MSB3-P8-11"
+     ]
+    },
+    {
+     "id": "MSB3-P6-14",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b2_duplicate",
+     "value": "g2@P6-08: MSB3-P6-14 (hot water cooling in a cup, same grade) || g2@P6-14: MSB3-P6-08",
+     "pair": [
+      "MSB3-P6-08",
+      "MSB3-P6-14"
+     ]
+    },
+    {
+     "id": "MSB3-P8-09",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b2_duplicate",
+     "value": "g2@P6-09: MSB3-P8-09 (linear heating curve, liquid on a heater) - weak",
+     "pair": [
+      "MSB3-P6-09",
+      "MSB3-P8-09"
+     ]
+    },
+    {
+     "id": "MSB3-P7-10",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b2_duplicate",
+     "value": "g2@P6-13: MSB3-P7-10 (lens focusing sunlight to a bright spot) || g2@P7-10: MSB3-P6-13",
+     "pair": [
+      "MSB3-P6-13",
+      "MSB3-P7-10"
+     ]
+    },
+    {
+     "id": "MSB3-P8-16",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b2_duplicate",
+     "value": "g2@P8-15: MSB3-P8-16 (errors in a digital signal sent through a cable, same PE MS-PS4-3) || g2@P8-16: MSB3-P8-15",
+     "pair": [
+      "MSB3-P8-15",
+      "MSB3-P8-16"
+     ]
+    }
+   ],
+   "recheck_results": [
+    {
+     "id": "MSB3-P5-03",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b1_stated_law",
+     "value": "fails: 'cools overnight, warms after sunrise' is everyday knowledge that picks 'dropped, then rose'; the claim that only the points show it does not hold for the key's shape",
+     "recheck": {
+      "id": "MSB3-P5-03",
+      "field": "b1_stated_law",
+      "items": [
+       "MSB3-P5-03"
+      ],
+      "hit": "yes",
+      "reason": "The prior_free claim turns on the greenhouse ending warmer than it started, but no option tests that; the asked shape (cool overnight, warm after sunrise by 10 a.m.) follows from the day-night energy transfer the standard and real-world check state, so the figure is decoration for this stem."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB3-P5-03",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3p2_general_knowledge",
+     "value": "6 p.m. to 10 a.m. in a greenhouse: everyday knowledge that it cools overnight and warms after sunrise leaves 'dropped, then rose' as the one expected shape",
+     "recheck": {
+      "id": "MSB3-P5-03",
+      "field": "b3p2_general_knowledge",
+      "items": [
+       "MSB3-P5-03"
+      ],
+      "hit": "yes",
+      "reason": "With the figure covered, a student who knows a greenhouse cools at night and is warmed by sunlight after sunrise picks 'dropped, then rose' for 6 p.m. to 10 a.m.; the other three shapes (only falling, only rising, falling then flat through mid-morning) are not plausible to a student who knows the topic."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB3-P5-19",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3_claim_marker",
+     "value": "B31: D (spins faster to make up) absurd; C's 'until someone resets it' makes it unbelievable",
+     "recheck": {
+      "id": "MSB3-P5-19",
+      "field": "b3_claim_marker",
+      "items": [
+       "MSB3-P5-19"
+      ],
+      "hit": "yes",
+      "reason": "The distractors are not held misconceptions of the key's kind: 'spin faster to make up for the cloud' is absurd and alone carries a purpose clause, and 'stop until someone resets it' is made wrong only by an odd reset condition, so the one sensible option is the key (B31); the real tempting alternative, stopping while the cloud is there, is absent."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB3-P6-07",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3_bar_extreme",
+     "value": "Key 160 is the only option on a tick label (ticks 0,40,80,120,160; options 20,75,110 all off-tick)",
+     "recheck": {
+      "id": "MSB3-P6-07",
+      "field": "b3_bar_extreme",
+      "items": [
+       "MSB3-P6-07"
+      ],
+      "hit": "no",
+      "reason": "All four options equal a bar (20 shortest, 160 tallest/top tick, 75, 110); 160 is the only option on a tick label, but B20 puts the top-tick value among the options in every read item and keys it in only some, so that property cannot decide the item without reading Solid Rhee's bar."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB3-P7-05",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3_claim_marker",
+     "value": "B31: 'middles' is not a held misconception",
+     "recheck": {
+      "id": "MSB3-P7-05",
+      "field": "b3_claim_marker",
+      "items": [
+       "MSB3-P7-05"
+      ],
+      "hit": "yes",
+      "reason": "Word counts are balanced (1/2/1/2), but 'middles' and 'magnetic cores' both name the center, which the stem itself says hardly attracts clips, so they contradict the stem's 'two ends'; with 'charge zones' not a real term, the key is the one sensible option (B31)."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB3-P7-13",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3_claim_marker",
+     "value": "B31: two distractors outside the reflect/transmit/absorb category",
+     "recheck": {
+      "id": "MSB3-P7-13",
+      "field": "b3_claim_marker",
+      "items": [
+       "MSB3-P7-13"
+      ],
+      "hit": "yes",
+      "reason": "The distractors are of another category: 'a drum shaking the air' is making sound and 'a choir singing in church' is not a reflect/pass/absorb interaction at all, leaving only the echo as a same-category distractor; and 'muffling' alone signals absorption, so the key is the only sensible option."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB3-P8-06",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b1_stated_law",
+     "value": "proportional yield; data exactly linear, table decorative",
+     "recheck": {
+      "id": "MSB3-P8-06",
+      "field": "b1_stated_law",
+      "items": [
+       "MSB3-P8-06"
+      ],
+      "hit": "yes",
+      "reason": "The asked quantity is a ratio, and the real-world check's own law (product grows in step with the limiting reactant) gives 10 mL / 2 mL = 5 straight from the stem's volumes; the prior_free claim covers the masses, not the ratio asked, so the table is decoration for a student who applies the stated relation."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB3-P8-11",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b2_duplicate",
+     "value": "g2@P6-02: MSB3-P8-11 (solar collector colour, energy collected) || g2@P8-11: MSB3-P6-02",
+     "pair": [
+      "MSB3-P6-02",
+      "MSB3-P8-11"
+     ],
+     "recheck": {
+      "id": "MSB3-P8-11",
+      "field": "b2_duplicate",
+      "items": [
+       "MSB3-P6-02",
+       "MSB3-P8-11"
+      ],
+      "hit": "yes",
+      "reason": "Both are solar heating panels/heaters on MS-PS3-3 testing whether surface color changes the thermal energy collected (P6-02 reads which colored panel collected most; P8-11 isolates inside color), so they share a system and concept on one PE."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB3-P6-14",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b2_duplicate",
+     "value": "g2@P6-08: MSB3-P6-14 (hot water cooling in a cup, same grade) || g2@P6-14: MSB3-P6-08",
+     "pair": [
+      "MSB3-P6-08",
+      "MSB3-P6-14"
+     ],
+     "recheck": {
+      "id": "MSB3-P6-14",
+      "field": "b2_duplicate",
+      "items": [
+       "MSB3-P6-08",
+       "MSB3-P6-14"
+      ],
+      "hit": "yes",
+      "reason": "Both are hot water cooling in a cup on MS-PS3-3, both values/read items reading one cooling temperature at a given time (mug M-3 line graph vs metal cup table); same system, concept and ask on the same PE."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB3-P8-09",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b2_duplicate",
+     "value": "g2@P6-09: MSB3-P8-09 (linear heating curve, liquid on a heater) - weak",
+     "pair": [
+      "MSB3-P6-09",
+      "MSB3-P8-09"
+     ],
+     "recheck": {
+      "id": "MSB3-P8-09",
+      "field": "b2_duplicate",
+      "items": [
+       "MSB3-P6-09",
+       "MSB3-P8-09"
+      ],
+      "hit": "yes",
+      "reason": "Both heat a liquid with a steady heater on MS-PS3-4 and show a linear temperature rise with no leveling (water vs time; oil vs energy added); the ask differs (trend vs interpolate) but the system and concept on the same PE are shared."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB3-P7-10",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b2_duplicate",
+     "value": "g2@P6-13: MSB3-P7-10 (lens focusing sunlight to a bright spot) || g2@P7-10: MSB3-P6-13",
+     "pair": [
+      "MSB3-P6-13",
+      "MSB3-P7-10"
+     ],
+     "recheck": {
+      "id": "MSB3-P7-10",
+      "field": "b2_duplicate",
+      "items": [
+       "MSB3-P6-13",
+       "MSB3-P7-10"
+      ],
+      "hit": "yes",
+      "reason": "Both are a lens converging sunlight to a bright spot on MS-PS4-2: P6-13 asks why the spot forms (bending light to meet at one spot) and P7-10 shows brightness peaking at that focal distance, so one item's key explains the other's data."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB3-P8-16",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b2_duplicate",
+     "value": "g2@P8-15: MSB3-P8-16 (errors in a digital signal sent through a cable, same PE MS-PS4-3) || g2@P8-16: MSB3-P8-15",
+     "pair": [
+      "MSB3-P8-15",
+      "MSB3-P8-16"
+     ],
+     "recheck": {
+      "id": "MSB3-P8-16",
+      "field": "b2_duplicate",
+      "items": [
+       "MSB3-P8-15",
+       "MSB3-P8-16"
+      ],
+      "hit": "yes",
+      "reason": "Both are digital signals sent along a cable with a computer counting bit/picture errors on MS-PS4-3 (boost setting vs errors; cable thickness and distance vs errors), so they share a system and concept on the same PE despite different variables asked."
+     },
+     "counted": true
+    }
+   ],
+   "recorded": [
+    {
+     "id": "MSB3-P5-03",
+     "rule": 4,
+     "note": "no_source_needed yes from g1 only (figure-covered attack not run): recorded"
+    },
+    {
+     "id": "MSB3-P5-05",
+     "rule": 6,
+     "note": "free_elimination g1 kills 2: recorded"
+    },
+    {
+     "id": "MSB3-P5-12",
+     "rule": 6,
+     "note": "free_elimination g1 kills 3, g2 kills 1: recorded"
+    },
+    {
+     "id": "MSB3-P5-18",
+     "rule": 6,
+     "note": "free_elimination g1 kills 3: recorded"
+    },
+    {
+     "id": "MSB3-P7-05",
+     "rule": 6,
+     "note": "free_elimination g1 kills 1, g2 kills 1: recorded"
+    },
+    {
+     "id": "MSB3-P7-13",
+     "rule": 6,
+     "note": "free_elimination g1 kills 2: recorded"
+    },
+    {
+     "id": "MSB3-P7-16",
+     "rule": 6,
+     "note": "free_elimination g2 kills 3: recorded"
+    },
+    {
+     "id": "MSB3-P8-06",
+     "rule": 4,
+     "note": "no_source_needed yes from g2 only (figure-covered attack not run): recorded"
+    },
+    {
+     "id": "MSB3-P8-12",
+     "rule": 6,
+     "note": "free_elimination g1 kills 3: recorded"
+    },
+    {
+     "id": "MSB3-P8-17",
+     "rule": 6,
+     "note": "free_elimination g2 kills 1: recorded"
+    },
+    {
+     "id": "MSB3-P8-18",
+     "rule": 6,
+     "note": "free_elimination g1 kills 1, g2 kills 1: recorded"
+    },
+    {
+     "id": "MSB3-P7-11",
+     "rule": 9,
+     "note": "single-grader b2_duplicate P6-10/P7-11: target P7-11 already dropped, no return"
+    },
+    {
+     "id": "MSB3-P8-12",
+     "rule": 9,
+     "note": "single-grader b2_duplicate P7-19/P8-12: target P8-12 already dropped, no return"
+    }
+   ],
+   "confirmations": [
+    {
+     "id": "MSB3-P5-10",
+     "rule": 5,
+     "field": "recognised_real_data",
+     "graders": [
+      "g2"
+     ],
+     "confirmed": true,
+     "reasoning": "A car rolling from rest down a ramp, distance read each second, 0/2/8/18/32 = 2t^2 exactly: the canonical inclined-plane (Galileo ramp, odd-number rule) experiment, which the brief bans by name and which B32 recorded from pilot 2 (P5-02)."
+    },
+    {
+     "id": "MSB3-P5-14",
+     "rule": 3,
+     "field": "fact_error",
+     "graders": [
+      "g1",
+      "g2"
+     ],
+     "confirmed": true,
+     "reasoning": "Rises 5/10/20/30 for 1-4 mirrors: 2->3 mirrors doubles the rise for +50% light. Light in grows at most linearly with mirrors and losses grow with temperature, so a real oven warms sublinearly (<4x). Superlinear data break the law for this device (B32)."
+    },
+    {
+     "id": "MSB3-P6-15",
+     "rule": 3,
+     "field": "fact_error",
+     "graders": [
+      "g1"
+     ],
+     "confirmed": true,
+     "reasoning": "The passage presents temperature rise DIVIDED by mass as the fair comparison for different masses. Under MS-PS3-4 energy = m*c*dT, so a mass correction multiplies; rise/gram = Q/(m^2 c) has no meaning and teaches the inverse of the standard. Data also need the 200 g sample to take ~33x the 20 g sample's energy (same c) on one plate in 2 min."
+    },
+    {
+     "id": "MSB3-P6-16",
+     "rule": 5,
+     "field": "recognised_real_data",
+     "graders": [
+      "g1",
+      "g2"
+     ],
+     "confirmed": true,
+     "reasoning": "Skydiver reaching ~54 m/s in about 12 s: the real belly-to-earth terminal speed curve."
+    },
+    {
+     "id": "MSB3-P7-07",
+     "rule": 5,
+     "field": "recognised_real_data",
+     "graders": [
+      "g1"
+     ],
+     "confirmed": false,
+     "reasoning": "The table follows a = F/m, a LAW, not a published dataset; the defect is that the stem gives mass and pull (rules 4 and 9 b1_stated_law, both graders), not recognised data."
+    },
+    {
+     "id": "MSB3-P7-08",
+     "rule": 3,
+     "field": "fact_error",
+     "graders": [
+      "g1"
+     ],
+     "confirmed": true,
+     "reasoning": "A fixed spring shares its energy so the launcher gets E*m/(m+M), concave in ball mass m: roll-back increments must shrink (at most ~4x for 4x mass). Table 4/9/15/22 grows 5,6,7 and gives 5.5x: breaks the real law for the device (B32)."
+    }
+   ]
+  },
+  "earth": {
+   "authored": 80,
+   "denominators": {
+    "items_json": 80,
+    "g1_keyed": 80,
+    "g2_keyed": 80
+   },
+   "flag_counts": {
+    "key_correct_no": 0,
+    "second_defensible": 1,
+    "fact_error": 5,
+    "no_source_yes_data": 11,
+    "rrd": 1,
+    "free_elim": 21,
+    "readability": 0
+   },
+   "rule10_drops": 13,
+   "rule1_9_drops": 25,
+   "rule1_9_only": 17,
+   "second_hit_drops": 4,
+   "dropped": 34,
+   "survivors": 46,
+   "survivor_ids": [
+    "MSB3-E5-01",
+    "MSB3-E5-02",
+    "MSB3-E5-03",
+    "MSB3-E5-08",
+    "MSB3-E5-11",
+    "MSB3-E5-12",
+    "MSB3-E5-14",
+    "MSB3-E5-15",
+    "MSB3-E5-16",
+    "MSB3-E5-18",
+    "MSB3-E5-19",
+    "MSB3-E5-20",
+    "MSB3-E6-01",
+    "MSB3-E6-02",
+    "MSB3-E6-04",
+    "MSB3-E6-06",
+    "MSB3-E6-07",
+    "MSB3-E6-08",
+    "MSB3-E6-09",
+    "MSB3-E6-10",
+    "MSB3-E6-12",
+    "MSB3-E6-13",
+    "MSB3-E6-15",
+    "MSB3-E6-17",
+    "MSB3-E6-18",
+    "MSB3-E6-19",
+    "MSB3-E6-20",
+    "MSB3-E7-03",
+    "MSB3-E7-04",
+    "MSB3-E7-07",
+    "MSB3-E7-11",
+    "MSB3-E7-12",
+    "MSB3-E7-13",
+    "MSB3-E7-14",
+    "MSB3-E7-16",
+    "MSB3-E7-17",
+    "MSB3-E7-18",
+    "MSB3-E7-19",
+    "MSB3-E7-20",
+    "MSB3-E8-02",
+    "MSB3-E8-03",
+    "MSB3-E8-09",
+    "MSB3-E8-15",
+    "MSB3-E8-16",
+    "MSB3-E8-19",
+    "MSB3-E8-20"
+   ],
+   "drops": {
+    "MSB3-E5-04": [
+     "rule 4: no_source_needed yes from both (investigation item)",
+     "rule 9: b3_claim_marker from both",
+     "rule 9: b3p2_general_knowledge from both"
+    ],
+    "MSB3-E5-05": [
+     "rule 9: b3_stem_echo from both"
+    ],
+    "MSB3-E5-06": [
+     "rule 9: b3_claim_marker from both"
+    ],
+    "MSB3-E5-07": [
+     "rule 10a: two-letter"
+    ],
+    "MSB3-E5-09": [
+     "rule 9: b2_duplicate pair E5-01/E5-09 named by both; E5-09 is the higher grade (or same grade, higher slot)"
+    ],
+    "MSB3-E5-10": [
+     "rule 6: free_elimination from both kills 2/2",
+     "rule 9: b3_role_statement from both",
+     "rule 9: b3_stem_echo from both",
+     "rule 10a: variable plan"
+    ],
+    "MSB3-E5-13": [
+     "rule 9: b3_claim_marker from both"
+    ],
+    "MSB3-E5-17": [
+     "rule 9: b3p2_general_knowledge from both"
+    ],
+    "MSB3-E6-03": [
+     "rule 9: b3_role_statement from both",
+     "rule 10a: variable plan"
+    ],
+    "MSB3-E6-05": [
+     "rule 3: fact_error confirmed"
+    ],
+    "MSB3-E6-11": [
+     "rule 6: free_elimination from both kills 3/2",
+     "rule 9: b3_claim_marker from both"
+    ],
+    "MSB3-E6-14": [
+     "rule 9 (second hit): b1_absolute: g2 + fresh re-check: Option C \"dries up whenever the Sun heats the ground\" is the lone absolute (whenever = every time) among four claims, on a distractor; B3 requires 0, 2 or 4 absolutes per item."
+    ],
+    "MSB3-E6-16": [
+     "rule 9 (second hit): b2_duplicate: g2 + fresh re-check: Both are grade-6 MS-ESS2-2 data items on mountain glacier movement (Ottar's daily ice flow by month; five glaciers' retreat): the same system and topic on the same PE, though skills and keys differ, w"
+    ],
+    "MSB3-E7-01": [
+     "rule 9: b2_duplicate pair E5-15/E7-01 named by both; E7-01 is the higher grade (or same grade, higher slot)"
+    ],
+    "MSB3-E7-02": [
+     "rule 9: b3_interp_cast from both"
+    ],
+    "MSB3-E7-05": [
+     "rule 9: b3_claim_marker from both"
+    ],
+    "MSB3-E7-06": [
+     "rule 3: fact_error confirmed"
+    ],
+    "MSB3-E7-08": [
+     "rule 10a: two-letter"
+    ],
+    "MSB3-E7-09": [
+     "rule 9 (second hit): b3p2_general_knowledge: g2 + fresh re-check: With the figure covered, a student who knows stars shine steadily (and that twinkling is not a trend) finds only \"constant\" plausible over eight nights; the passage gives no reason for a rise or a ris"
+    ],
+    "MSB3-E7-10": [
+     "rule 9: b3_role_statement from both",
+     "rule 10a: variable plan"
+    ],
+    "MSB3-E7-15": [
+     "rule 10a: two-letter"
+    ],
+    "MSB3-E8-01": [
+     "rule 9 (second hit): b1_name_property: g2 + fresh re-check: \"Brisk\" means fast and the stem asks which island moved fastest per year; the name encodes the tested property (B5 bans fast/slow and similar), here as a lure on a distractor."
+    ],
+    "MSB3-E8-04": [
+     "rule 4: no_source_needed yes from both (investigation item)",
+     "rule 9: b3p2_general_knowledge from both",
+     "rule 10a: B7"
+    ],
+    "MSB3-E8-05": [
+     "rule 9: b3_claim_marker from both"
+    ],
+    "MSB3-E8-06": [
+     "rule 9: b3_claim_marker from both"
+    ],
+    "MSB3-E8-07": [
+     "rule 5: recognised_real_data confirmed",
+     "rule 10a: B7"
+    ],
+    "MSB3-E8-08": [
+     "rule 10a: two-letter"
+    ],
+    "MSB3-E8-10": [
+     "rule 3: fact_error confirmed"
+    ],
+    "MSB3-E8-11": [
+     "rule 9: b1_stated_law from both",
+     "rule 9: b3p2_general_knowledge from both"
+    ],
+    "MSB3-E8-12": [
+     "rule 9: b3_role_statement from both",
+     "rule 10a: variable plan"
+    ],
+    "MSB3-E8-13": [
+     "rule 9: b2_duplicate pair E8-04/E8-13 named by both; E8-13 is the higher grade (or same grade, higher slot)",
+     "rule 10a: B7"
+    ],
+    "MSB3-E8-14": [
+     "rule 9: b3_claim_marker from both"
+    ],
+    "MSB3-E8-17": [
+     "rule 10a: two-letter"
+    ],
+    "MSB3-E8-18": [
+     "rule 9: b2_duplicate pair E8-07/E8-18 named by both; E8-18 is the higher grade (or same grade, higher slot)",
+     "rule 10a: B7"
+    ]
+   },
+   "duplicate_pairs_both": [
+    {
+     "pair": [
+      "MSB3-E5-01",
+      "MSB3-E5-09"
+     ],
+     "drop": "MSB3-E5-09"
+    },
+    {
+     "pair": [
+      "MSB3-E5-15",
+      "MSB3-E7-01"
+     ],
+     "drop": "MSB3-E7-01"
+    },
+    {
+     "pair": [
+      "MSB3-E8-04",
+      "MSB3-E8-13"
+     ],
+     "drop": "MSB3-E8-13"
+    },
+    {
+     "pair": [
+      "MSB3-E8-07",
+      "MSB3-E8-18"
+     ],
+     "drop": "MSB3-E8-18"
+    }
+   ],
+   "returns": [
+    {
+     "id": "MSB3-E5-20",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b3_claim_marker",
+     "value": "B (Earth tilts back and forth each day) near-absurd; mild"
+    },
+    {
+     "id": "MSB3-E6-06",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b3_claim_marker",
+     "value": "B31: C 'space clouds' absurd"
+    },
+    {
+     "id": "MSB3-E6-14",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b1_absolute",
+     "value": "C 'whenever' is the lone absolute-like word; mild"
+    },
+    {
+     "id": "MSB3-E7-03",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3p2_direction",
+     "value": "key is the only wholly flat option (C is flat only after a drop)"
+    },
+    {
+     "id": "MSB3-E7-09",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b1_stated_law",
+     "value": "prior_free claim does not hold: a grade 7 student defaults to a star shining steadily, so \"constant\" is the expected answer without the figure (see no_source_needed)."
+    },
+    {
+     "id": "MSB3-E7-09",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3p2_direction",
+     "value": "key is the only wholly flat option"
+    },
+    {
+     "id": "MSB3-E7-09",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b3p2_general_knowledge",
+     "value": "only 'constant' plausible without the figure"
+    },
+    {
+     "id": "MSB3-E8-01",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b1_name_property",
+     "value": "'Brisk' (distractor) means fast in an item asking which island moved most each year"
+    },
+    {
+     "id": "MSB3-E8-16",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b3p2_direction",
+     "value": "A 'rose' is an incomplete version of the key, and the last point (65) is above the first (60)"
+    },
+    {
+     "id": "MSB3-E6-16",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b2_duplicate",
+     "value": "g2@E6-07: MSB3-E6-07 and MSB3-E6-16 (mountain glacier motion, MS-ESS2-2); mild || g2@E6-16: MSB3-E6-07 and MSB3-E6-16; mild",
+     "pair": [
+      "MSB3-E6-07",
+      "MSB3-E6-16"
+     ]
+    }
+   ],
+   "recheck_results": [
+    {
+     "id": "MSB3-E5-20",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b3_claim_marker",
+     "value": "B (Earth tilts back and forth each day) near-absurd; mild",
+     "recheck": {
+      "id": "MSB3-E5-20",
+      "field": "b3_claim_marker",
+      "items": [
+       "MSB3-E5-20"
+      ],
+      "hit": "no",
+      "reason": "\"each day\" sits on all three distractors and not the key, but it is a time phrase echoing the stem, not a reason or degree word; the distractors are held misconceptions of one category (C geocentric, D rotation/revolution confusion, B tilt), so the key is not the lone sensible option and is not a Yes/No."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB3-E6-06",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b3_claim_marker",
+     "value": "B31: C 'space clouds' absurd",
+     "recheck": {
+      "id": "MSB3-E6-06",
+      "field": "b3_claim_marker",
+      "items": [
+       "MSB3-E6-06"
+      ],
+      "hit": "no",
+      "reason": "No reason marker on any option; the degree word \"most\" sits on two (A, C) and \"then\" on all four. Earth's shadow (A) and distance-dimmed self-glow (D) are commonly held phase misconceptions, so two sensible-sounding distractors remain even though \"space clouds\" (C) is weak."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB3-E6-14",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b1_absolute",
+     "value": "C 'whenever' is the lone absolute-like word; mild",
+     "recheck": {
+      "id": "MSB3-E6-14",
+      "field": "b1_absolute",
+      "items": [
+       "MSB3-E6-14"
+      ],
+      "hit": "yes",
+      "reason": "Option C \"dries up whenever the Sun heats the ground\" is the lone absolute (whenever = every time) among four claims, on a distractor; B3 requires 0, 2 or 4 absolutes per item."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB3-E7-03",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3p2_direction",
+     "value": "key is the only wholly flat option (C is flat only after a drop)",
+     "recheck": {
+      "id": "MSB3-E7-03",
+      "field": "b3p2_direction",
+      "items": [
+       "MSB3-E7-03"
+      ],
+      "hit": "no",
+      "reason": "Flat direction of the key is also carried by C (dropped, then stayed the same); two simple and two compound options; no distractor is an incomplete version of the key."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB3-E7-09",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b1_stated_law",
+     "value": "prior_free claim does not hold: a grade 7 student defaults to a star shining steadily, so \"constant\" is the expected answer without the figure (see no_source_needed).",
+     "recheck": {
+      "id": "MSB3-E7-09",
+      "field": "b1_stated_law",
+      "items": [
+       "MSB3-E7-09"
+      ],
+      "hit": "no",
+      "reason": "MS-ESS1-3 concerns scale properties of solar-system objects and states nothing about one star's night-to-night brightness, so the prior_free claim holds: the standard does not give the answer."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB3-E7-09",
+     "rule": 9,
+     "grader": "g1",
+     "field": "b3p2_direction",
+     "value": "key is the only wholly flat option",
+     "recheck": {
+      "id": "MSB3-E7-09",
+      "field": "b3p2_direction",
+      "items": [
+       "MSB3-E7-09"
+      ],
+      "hit": "no",
+      "reason": "Constant is also carried by C (decreasing, then constant); two simple and two compound options; no distractor is merely an incomplete version of a flat key."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB3-E7-09",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b3p2_general_knowledge",
+     "value": "only 'constant' plausible without the figure",
+     "recheck": {
+      "id": "MSB3-E7-09",
+      "field": "b3p2_general_knowledge",
+      "items": [
+       "MSB3-E7-09"
+      ],
+      "hit": "yes",
+      "reason": "With the figure covered, a student who knows stars shine steadily (and that twinkling is not a trend) finds only \"constant\" plausible over eight nights; the passage gives no reason for a rise or a rise-then-fall, so general knowledge picks the key."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB3-E8-01",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b1_name_property",
+     "value": "'Brisk' (distractor) means fast in an item asking which island moved most each year",
+     "recheck": {
+      "id": "MSB3-E8-01",
+      "field": "b1_name_property",
+      "items": [
+       "MSB3-E8-01"
+      ],
+      "hit": "yes",
+      "reason": "\"Brisk\" means fast and the stem asks which island moved fastest per year; the name encodes the tested property (B5 bans fast/slow and similar), here as a lure on a distractor."
+     },
+     "counted": true
+    },
+    {
+     "id": "MSB3-E8-16",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b3p2_direction",
+     "value": "A 'rose' is an incomplete version of the key, and the last point (65) is above the first (60)",
+     "recheck": {
+      "id": "MSB3-E8-16",
+      "field": "b3p2_direction",
+      "items": [
+       "MSB3-E8-16"
+      ],
+      "hit": "no",
+      "reason": "Rise and fall are each carried by distractors (A, B, C); 2 simple + 2 compound; A \"rose\" covers only weeks 0-6 and the 105 cm fall dominates the period, so the slight net +5 cm does not make it a defensible incomplete key."
+     },
+     "counted": false
+    },
+    {
+     "id": "MSB3-E6-16",
+     "rule": 9,
+     "grader": "g2",
+     "field": "b2_duplicate",
+     "value": "g2@E6-07: MSB3-E6-07 and MSB3-E6-16 (mountain glacier motion, MS-ESS2-2); mild || g2@E6-16: MSB3-E6-07 and MSB3-E6-16; mild",
+     "pair": [
+      "MSB3-E6-07",
+      "MSB3-E6-16"
+     ],
+     "recheck": {
+      "id": "MSB3-E6-16",
+      "field": "b2_duplicate",
+      "items": [
+       "MSB3-E6-07",
+       "MSB3-E6-16"
+      ],
+      "hit": "yes",
+      "reason": "Both are grade-6 MS-ESS2-2 data items on mountain glacier movement (Ottar's daily ice flow by month; five glaciers' retreat): the same system and topic on the same PE, though skills and keys differ, which B7 ('no shared system, no shared concept on the same PE') bars."
+     },
+     "counted": true
+    }
+   ],
+   "recorded": [
+    {
+     "id": "MSB3-E5-02",
+     "rule": 6,
+     "note": "free_elimination g2 kills 3: recorded"
+    },
+    {
+     "id": "MSB3-E5-04",
+     "rule": 6,
+     "note": "free_elimination g1 kills 2: recorded"
+    },
+    {
+     "id": "MSB3-E5-10",
+     "rule": 4,
+     "note": "no_source_needed yes from g1 only (figure-covered attack not run): recorded"
+    },
+    {
+     "id": "MSB3-E5-14",
+     "rule": 6,
+     "note": "free_elimination g2 kills 2: recorded"
+    },
+    {
+     "id": "MSB3-E6-05",
+     "rule": 6,
+     "note": "free_elimination g2 kills 2: recorded"
+    },
+    {
+     "id": "MSB3-E6-07",
+     "rule": 6,
+     "note": "free_elimination g2 kills 3: recorded"
+    },
+    {
+     "id": "MSB3-E6-11",
+     "rule": 4,
+     "note": "no_source_needed yes from g1 only (figure-covered attack not run): recorded"
+    },
+    {
+     "id": "MSB3-E6-13",
+     "rule": 6,
+     "note": "free_elimination g2 kills 2: recorded"
+    },
+    {
+     "id": "MSB3-E6-18",
+     "rule": 6,
+     "note": "free_elimination g2 kills 3: recorded"
+    },
+    {
+     "id": "MSB3-E7-04",
+     "rule": 4,
+     "note": "no_source_needed yes from g1 only (figure-covered attack not run): recorded"
+    },
+    {
+     "id": "MSB3-E7-04",
+     "rule": 6,
+     "note": "free_elimination g1 kills 2: recorded"
+    },
+    {
+     "id": "MSB3-E7-05",
+     "rule": 6,
+     "note": "free_elimination g2 kills 2: recorded"
+    },
+    {
+     "id": "MSB3-E7-09",
+     "rule": 4,
+     "note": "no_source_needed yes from g2 only (figure-covered attack not run): recorded"
+    },
+    {
+     "id": "MSB3-E7-10",
+     "rule": 4,
+     "note": "no_source_needed yes from g1 only (figure-covered attack not run): recorded"
+    },
+    {
+     "id": "MSB3-E7-10",
+     "rule": 6,
+     "note": "free_elimination g1 kills 1, g2 kills 1: recorded"
+    },
+    {
+     "id": "MSB3-E7-20",
+     "rule": 6,
+     "note": "free_elimination g2 kills 2: recorded"
+    },
+    {
+     "id": "MSB3-E8-05",
+     "rule": 6,
+     "note": "free_elimination g2 kills 3: recorded"
+    },
+    {
+     "id": "MSB3-E8-11",
+     "rule": 4,
+     "note": "no_source_needed yes from g2 only (figure-covered attack not run): recorded"
+    },
+    {
+     "id": "MSB3-E8-12",
+     "rule": 4,
+     "note": "no_source_needed yes from g1 only (figure-covered attack not run): recorded"
+    },
+    {
+     "id": "MSB3-E8-12",
+     "rule": 6,
+     "note": "free_elimination g1 kills 1, g2 kills 1: recorded"
+    },
+    {
+     "id": "MSB3-E8-14",
+     "rule": 6,
+     "note": "free_elimination g1 kills 3: recorded"
+    },
+    {
+     "id": "MSB3-E8-20",
+     "rule": 6,
+     "note": "free_elimination g2 kills 2: recorded"
+    },
+    {
+     "id": "MSB3-E8-04",
+     "rule": 9,
+     "note": "single-grader b2_duplicate E5-04/E8-04: target E8-04 already dropped, no return"
+    },
+    {
+     "id": "MSB3-E8-17",
+     "rule": 9,
+     "note": "single-grader b2_duplicate E6-08/E8-17: target E8-17 already dropped, no return"
+    },
+    {
+     "id": "MSB3-E8-12",
+     "rule": 9,
+     "note": "single-grader b2_duplicate E7-10/E8-12: target E8-12 already dropped, no return"
+    }
+   ],
+   "confirmations": [
+    {
+     "id": "MSB3-E6-05",
+     "rule": 3,
+     "field": "fact_error",
+     "graders": [
+      "g1",
+      "g2"
+     ],
+     "confirmed": true,
+     "reasoning": "C \"It will stay in the sky through most June nights\" is TRUE for a student in Canada north of the Arctic Circle (Nunavut, NWT, Yukon), where the key is then false (the Sun does not set). A model distractor must be false (brief); \"most likely\" does not make it false. Raised by both graders."
+    },
+    {
+     "id": "MSB3-E7-06",
+     "rule": 3,
+     "field": "fact_error",
+     "graders": [
+      "g1",
+      "g2"
+     ],
+     "confirmed": true,
+     "reasoning": "B \"The valley will quickly fill with deep lake water\" is a common real outcome: retreating valley glaciers often leave moraine-dammed / proglacial lakes and over-deepened basins. The option text does not carry the rationale's \"all the melted ice\", so it is not a false misconception. Raised by both graders."
+    },
+    {
+     "id": "MSB3-E8-07",
+     "rule": 5,
+     "field": "recognised_real_data",
+     "graders": [
+      "g2"
+     ],
+     "confirmed": true,
+     "reasoning": "1010/900/800/710 hPa at 0-3000 m is the International Standard Atmosphere rounded (1013/899/795/701)."
+    },
+    {
+     "id": "MSB3-E8-10",
+     "rule": 3,
+     "field": "fact_error",
+     "graders": [
+      "g2"
+     ],
+     "confirmed": true,
+     "reasoning": "B10: passage says tonnes recycled \"in each three-month period of one year\" (four periods) but the graph has five points at months 0,3,6,9,12, and the stem asks for \"month 3\". The passage contradicts its own figure."
+    }
+   ]
+  }
+ }
+}

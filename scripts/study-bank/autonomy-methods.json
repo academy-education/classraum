@@ -987,6 +987,24 @@
    "grader": "cfg-v2",
    "authoring_brief": "MAP-LANGUAGE-V3-BRIEF.md",
    "source": "MAP Language v4 (2026-10-31): NEW method for Mechanics (v2 mechanics used the grid; v4 applies the v3 brief's five non-grid shapes - blank, revise, find-error, choose-correct, identify - to Punctuation, Capitalization and Spelling); lu4-check.mjs adds the spelling-target oracle guard and case-sensitive capitalization options; agent-review gate. First batch of this method, so it is a bridge."
+  },
+  "map-science-v3-life": {
+   "method_id": "map-sci-b3full-author+2graders+audit",
+   "author": "agent",
+   "grader": "2 with-source graders + key-visible audit",
+   "source": "MAP-SCIENCE-B3-FULL.prereg.md: one in-session author on seeded slots (science-b3full/BRIEF.md), sci-check --rules b3f + probe-live; 2 fresh with-source graders (rules 1-10, A1 threshold) + fresh re-checks for single-grader returns; key-visible second audit (SCIENCE-AUDIT-BRIEF.md, 2 auditors); Life Science cohort. Release on the two agent passes (owner rule 2026-10-30), never queued for the co-founder"
+  },
+  "map-science-v3-phys": {
+   "method_id": "map-sci-b3full-author+2graders+audit",
+   "author": "agent",
+   "grader": "2 with-source graders + key-visible audit",
+   "source": "MAP-SCIENCE-B3-FULL.prereg.md: one in-session author on seeded slots (science-b3full/BRIEF.md), sci-check --rules b3f + probe-live; 2 fresh with-source graders (rules 1-10, A1 threshold) + fresh re-checks for single-grader returns; key-visible second audit (SCIENCE-AUDIT-BRIEF.md, 2 auditors); Physical Science cohort. Release on the two agent passes (owner rule 2026-10-30), never queued for the co-founder"
+  },
+  "map-science-v3-earth": {
+   "method_id": "map-sci-b3full-author+2graders+audit",
+   "author": "agent",
+   "grader": "2 with-source graders + key-visible audit",
+   "source": "MAP-SCIENCE-B3-FULL.prereg.md: one in-session author on seeded slots (science-b3full/BRIEF.md), sci-check --rules b3f + probe-live; 2 fresh with-source graders (rules 1-10, A1 threshold) + fresh re-checks for single-grader returns; key-visible second audit (SCIENCE-AUDIT-BRIEF.md, 2 auditors); Earth and Space Science cohort. Release on the two agent passes (owner rule 2026-10-30), never queued for the co-founder"
   }
  }
 }

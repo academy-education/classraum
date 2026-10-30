@@ -1,0 +1,5115 @@
+[
+  {
+    "id": "MSB3-P5-01",
+    "map_area": "Physical Science",
+    "grade_target": 5,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 186-195",
+    "dci": "PS2",
+    "ngss_pe": "3-PS2-3",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "values",
+    "ask": "interpolate",
+    "invented": true,
+    "names_used": [
+      "Magnet Ferro-6"
+    ],
+    "passage": "Students hung a steel washer from a spring scale. They held Magnet Ferro-6 under the washer at different distances and read how hard the magnet pulled.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "0 mm",
+        "4 mm",
+        "8 mm",
+        "12 mm",
+        "16 mm"
+      ],
+      "colLabels": [
+        "Pull of the magnet (g)"
+      ],
+      "cells": [
+        [
+          60
+        ],
+        [
+          40
+        ],
+        [
+          22
+        ],
+        [
+          12
+        ],
+        [
+          6
+        ]
+      ],
+      "caption": "Table 1. Pull of the magnet at five distances"
+    },
+    "prompt": "Using Table 1, what is the best estimate of the pull of the magnet when it is 6 mm from the washer?",
+    "choices": [
+      "22 g",
+      "50 g",
+      "17 g",
+      "31 g"
+    ],
+    "correct_answer": "31 g",
+    "key_evidence": {
+      "refs": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "expr": "(v0 + v1) / 2"
+    },
+    "explanation": "6 mm is halfway between 4 mm (40 g) and 8 mm (22 g), so the pull was about 31 g.",
+    "distractor_rationales": [
+      {
+        "choice": "22 g",
+        "fault": "reads the 8 mm row instead of estimating between 4 mm and 8 mm"
+      },
+      {
+        "choice": "50 g",
+        "fault": "estimates between the 0 mm and 4 mm rows"
+      },
+      {
+        "choice": "17 g",
+        "fault": "estimates between the 8 mm and 12 mm rows"
+      }
+    ],
+    "real_world_check": "Magnetic forces get weaker as the distance between the objects increases.",
+    "prior_free": "The standard says magnetic pull depends on distance; it cannot give this magnet's pull at 6 mm."
+  },
+  {
+    "id": "MSB3-P5-02",
+    "map_area": "Physical Science",
+    "grade_target": 5,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 186-195",
+    "dci": "PS4",
+    "ngss_pe": "4-PS4-3",
+    "kind": "data",
+    "stimulus": "line",
+    "format": "trend",
+    "ask": "decrease",
+    "invented": true,
+    "names_used": [
+      "HV-2"
+    ],
+    "passage": "Two scouts tested a pair of model HV-2 walkie-talkies in an open field. One scout walked away, stopping every 200 m to read the signal strength shown on the screen.",
+    "graphic": {
+      "type": "line",
+      "series": [
+        {
+          "points": [
+            [
+              0,
+              100
+            ],
+            [
+              200,
+              80
+            ],
+            [
+              400,
+              58
+            ],
+            [
+              600,
+              34
+            ],
+            [
+              800,
+              8
+            ]
+          ]
+        }
+      ],
+      "xLabel": "Distance apart (m)",
+      "yLabel": "Signal strength (%)",
+      "caption": "Figure 1. Signal strength of the HV-2 walkie-talkies"
+    },
+    "prompt": "Look at Figure 1. As the scouts moved from 0 m to 800 m apart, what happened to the signal strength?",
+    "choices": [
+      "The signal strength decreased.",
+      "The signal strength stayed constant.",
+      "The signal strength increased, then fell.",
+      "The signal strength fell, then leveled off."
+    ],
+    "correct_answer": "The signal strength decreased.",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          100
+        ],
+        [
+          600,
+          34
+        ],
+        [
+          800,
+          8
+        ]
+      ]
+    },
+    "explanation": "Each point is lower than the one before, from 100% to 8%, and the drops get bigger at long distances.",
+    "distractor_rationales": [
+      {
+        "choice": "The signal strength stayed constant.",
+        "fault": "the strength goes from 100% to 8%"
+      },
+      {
+        "choice": "The signal strength increased, then fell.",
+        "fault": "the strength is highest at 0 m, so it never rises first"
+      },
+      {
+        "choice": "The signal strength fell, then leveled off.",
+        "fault": "the biggest drop, 34% to 8%, comes last, so it never levels off"
+      }
+    ],
+    "real_world_check": "Radio signals carry information as waves that weaken as they spread out over greater distances.",
+    "prior_free": "A student might expect the signal to hold steady at long range once it is weak; only the points show it kept falling to 800 m."
+  },
+  {
+    "id": "MSB3-P5-03",
+    "map_area": "Physical Science",
+    "grade_target": 5,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 186-195",
+    "dci": "PS3",
+    "ngss_pe": "4-PS3-2",
+    "kind": "data",
+    "stimulus": "scatter",
+    "format": "trend",
+    "ask": "decrease-then-increase",
+    "invented": true,
+    "names_used": [
+      "Velda"
+    ],
+    "passage": "A sensor in Velda's greenhouse recorded the air temperature every two hours from 6 p.m. until 10 a.m. the next morning.",
+    "graphic": {
+      "type": "scatter",
+      "points": [
+        [
+          0,
+          24
+        ],
+        [
+          2,
+          20
+        ],
+        [
+          4,
+          17
+        ],
+        [
+          6,
+          15
+        ],
+        [
+          8,
+          14
+        ],
+        [
+          10,
+          15
+        ],
+        [
+          12,
+          19
+        ],
+        [
+          14,
+          25
+        ],
+        [
+          16,
+          29
+        ]
+      ],
+      "xLabel": "Hours after 6 p.m.",
+      "yLabel": "Air temperature (°C)",
+      "caption": "Figure 1. Temperature in Velda's greenhouse overnight"
+    },
+    "prompt": "Based on Figure 1, what happened to the air temperature over the 16 hours?",
+    "choices": [
+      "The air temperature decreased.",
+      "The air temperature rose.",
+      "The air temperature declined, then leveled off.",
+      "The air temperature dropped, then rose."
+    ],
+    "correct_answer": "The air temperature dropped, then rose.",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          24
+        ],
+        [
+          8,
+          14
+        ],
+        [
+          16,
+          29
+        ]
+      ]
+    },
+    "explanation": "The temperature falls from 24 °C to 14 °C by 2 a.m., then rises to 29 °C by 10 a.m.",
+    "distractor_rationales": [
+      {
+        "choice": "The air temperature decreased.",
+        "fault": "by 10 a.m. the temperature (29 °C) is above where it started (24 °C)"
+      },
+      {
+        "choice": "The air temperature rose.",
+        "fault": "it first falls from 24 °C to 14 °C"
+      },
+      {
+        "choice": "The air temperature declined, then leveled off.",
+        "fault": "the low temperatures do not last; it climbs again after 8 hours"
+      }
+    ],
+    "real_world_check": "At night a greenhouse loses heat; after sunrise, sunlight transfers energy in and warms it.",
+    "prior_free": "A student might expect the greenhouse to cool and stay cool, or to warm only back to its start; only the points show it ended warmer than it began."
+  },
+  {
+    "id": "MSB3-P5-04",
+    "map_area": "Physical Science",
+    "grade_target": 5,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 186-195",
+    "dci": "PS3",
+    "ngss_pe": "4-PS3-2",
+    "kind": "investigation",
+    "stimulus": "procedure",
+    "format": "claim",
+    "ask": "not-supported",
+    "invented": true,
+    "names_used": [
+      "Odalys"
+    ],
+    "passage": "Odalys put four squares on a table: metal, glass, wood and foam. They had been in the room all day. She set an ice cube of one size on each square at the same moment and timed how long each took to melt. The ice on metal melted in 4 minutes, on glass in 9 minutes, on wood in 15 minutes and on foam in 22 minutes.",
+    "graphic": null,
+    "prompt": "Which claim is NOT supported by Odalys's results?",
+    "choices": [
+      "Heat moved into the ice fastest through the metal square.",
+      "The ice on the foam square took the longest to melt.",
+      "Heat moved more slowly through wood than glass.",
+      "The foam square was the warmest of the four materials."
+    ],
+    "correct_answer": "The foam square was the warmest of the four materials.",
+    "key_evidence": {
+      "refs": [
+        {
+          "quote": "on wood in 15 minutes and on foam in 22 minutes"
+        }
+      ]
+    },
+    "explanation": "All four squares sat in the same room, so they were at room temperature; the foam melted the ice slowest because heat moves through it slowly, not because it was warmest.",
+    "distractor_rationales": [
+      {
+        "choice": "Heat moved into the ice fastest through the metal square.",
+        "fault": "the ice on metal melted first, in 4 minutes"
+      },
+      {
+        "choice": "The ice on the foam square took the longest to melt.",
+        "fault": "the foam ice took 22 minutes, the longest time"
+      },
+      {
+        "choice": "Heat moved more slowly through wood than glass.",
+        "fault": "the ice took 15 minutes on wood and 9 minutes on glass"
+      }
+    ],
+    "real_world_check": "Materials at the same temperature transfer heat at different rates; metals conduct heat quickly and foam slowly."
+  },
+  {
+    "id": "MSB3-P5-05",
+    "map_area": "Physical Science",
+    "grade_target": 5,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 186-195",
+    "dci": "PS1",
+    "ngss_pe": "5-PS1-4",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "process",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "An iron nail left outside in the rain slowly gets a flaky, red-brown coating. The coating is a new substance made from the iron, water and air. What is this process called?",
+    "choices": [
+      "dissolving",
+      "paint peeling",
+      "rusting",
+      "dirt collecting"
+    ],
+    "correct_answer": "rusting",
+    "explanation": "Iron reacting with water and oxygen forms rust, a new substance; this process is rusting.",
+    "distractor_rationales": [
+      {
+        "choice": "dissolving",
+        "fault": "misconception: the iron is dissolving into the rain water rather than forming a new substance"
+      },
+      {
+        "choice": "paint peeling",
+        "fault": "misconception: the coating is old paint coming off, so nothing new forms"
+      },
+      {
+        "choice": "dirt collecting",
+        "fault": "misconception: the red coating is dirt stuck to the nail, not a new substance"
+      }
+    ],
+    "real_world_check": "When some substances are mixed, a new substance with different properties forms, as when iron rusts."
+  },
+  {
+    "id": "MSB3-P5-06",
+    "map_area": "Physical Science",
+    "grade_target": 5,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 186-195",
+    "dci": "PS4",
+    "ngss_pe": "4-PS4-1",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "predicts",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "Two friends talk through a string telephone made of two cups joined by a long string. First they hold the string tight. Then they let the string hang loose and talk the same way. With the loose string, what will most likely happen?",
+    "choices": [
+      "Less of the sound will reach the other cup.",
+      "The sound will travel back to the speaker instead.",
+      "The sound will reach the other cup faster than before.",
+      "The voice will sound just like it did with a tight string."
+    ],
+    "correct_answer": "Less of the sound will reach the other cup.",
+    "explanation": "Sound travels along the string as vibrations; a loose string does not carry the vibrations well, so less sound reaches the other cup.",
+    "distractor_rationales": [
+      {
+        "choice": "The sound will travel back to the speaker instead.",
+        "fault": "misconception: a loose string sends the sound backward"
+      },
+      {
+        "choice": "The sound will reach the other cup faster than before.",
+        "fault": "misconception: a loose string lets sound move along it faster"
+      },
+      {
+        "choice": "The voice will sound just like it did with a tight string.",
+        "fault": "misconception: the cups carry the sound, so the string does not matter"
+      }
+    ],
+    "real_world_check": "Sound is a wave of vibrations that needs matter to travel; a tight string carries the vibrations better than a slack one."
+  },
+  {
+    "id": "MSB3-P5-07",
+    "map_area": "Physical Science",
+    "grade_target": 5,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 196-205",
+    "dci": "PS1",
+    "ngss_pe": "5-PS1-3",
+    "kind": "data",
+    "stimulus": "bar",
+    "format": "conditions",
+    "ask": "least",
+    "invented": true,
+    "names_used": [
+      "Uma",
+      "Ardis",
+      "Thaddeus",
+      "Mountbatten",
+      "Wren"
+    ],
+    "passage": "A class cut five blocks of one size from five different materials and weighed each block.",
+    "graphic": {
+      "type": "bar",
+      "bars": [
+        {
+          "label": "Uma",
+          "value": 48
+        },
+        {
+          "label": "Ardis",
+          "value": 30
+        },
+        {
+          "label": "Thaddeus",
+          "value": 8
+        },
+        {
+          "label": "Mountbatten",
+          "value": 20
+        },
+        {
+          "label": "Wren",
+          "value": 40
+        }
+      ],
+      "xLabel": "Block",
+      "yLabel": "Mass (g)",
+      "caption": "Figure 1. Mass of five blocks of one size"
+    },
+    "prompt": "Based on Figure 1, which block was the lightest?",
+    "choices": [
+      "Uma",
+      "Thaddeus",
+      "Ardis",
+      "Mountbatten"
+    ],
+    "correct_answer": "Thaddeus",
+    "key_evidence": {
+      "refs": [
+        "Thaddeus"
+      ]
+    },
+    "explanation": "The Thaddeus bar is the shortest, about 8 g, below every other block.",
+    "distractor_rationales": [
+      {
+        "choice": "Uma",
+        "fault": "its bar is the tallest, reaching the top tick, 48 g"
+      },
+      {
+        "choice": "Ardis",
+        "fault": "its bar reaches about 30 g"
+      },
+      {
+        "choice": "Mountbatten",
+        "fault": "its bar reaches about 20 g, more than twice the shortest"
+      }
+    ],
+    "real_world_check": "Materials can be told apart by properties such as how heavy an equal-sized piece is."
+  },
+  {
+    "id": "MSB3-P5-08",
+    "map_area": "Physical Science",
+    "grade_target": 5,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 196-205",
+    "dci": "PS3",
+    "ngss_pe": "4-PS3-2",
+    "kind": "data",
+    "stimulus": "bar",
+    "format": "values",
+    "ask": "read",
+    "invented": true,
+    "names_used": [
+      "Cup Adler",
+      "Cup Brigg",
+      "Cup Corbet",
+      "Cup Dunstan",
+      "Cup Esme"
+    ],
+    "passage": "Five cups of water, each wrapped in a different cover, sat in sunlight for one hour. A student found how much the water in each cup warmed.",
+    "graphic": {
+      "type": "bar",
+      "bars": [
+        {
+          "label": "Cup Adler",
+          "value": 16
+        },
+        {
+          "label": "Cup Brigg",
+          "value": 4
+        },
+        {
+          "label": "Cup Corbet",
+          "value": 10
+        },
+        {
+          "label": "Cup Dunstan",
+          "value": 13
+        },
+        {
+          "label": "Cup Esme",
+          "value": 7
+        }
+      ],
+      "xLabel": "Cup",
+      "yLabel": "Rise in water temperature (°C)",
+      "caption": "Figure 1. Warming of five covered cups in sunlight"
+    },
+    "prompt": "Based on Figure 1, about how much did the water in Cup Esme warm?",
+    "choices": [
+      "7 °C",
+      "16 °C",
+      "4 °C",
+      "13 °C"
+    ],
+    "correct_answer": "7 °C",
+    "key_evidence": {
+      "refs": [
+        "Cup Esme"
+      ],
+      "expr": "v0"
+    },
+    "explanation": "The Cup Esme bar sits a little below the 8 tick, at about 7 °C.",
+    "distractor_rationales": [
+      {
+        "choice": "16 °C",
+        "fault": "reads the tallest bar, Cup Adler"
+      },
+      {
+        "choice": "4 °C",
+        "fault": "reads the shortest bar, Cup Brigg"
+      },
+      {
+        "choice": "13 °C",
+        "fault": "reads the bar for Cup Dunstan"
+      }
+    ],
+    "real_world_check": "Light energy that is absorbed is transferred as heat, warming the water.",
+    "prior_free": "The standard says light can transfer energy as heat; it cannot give how much one covered cup warmed."
+  },
+  {
+    "id": "MSB3-P5-09",
+    "map_area": "Physical Science",
+    "grade_target": 5,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 196-205",
+    "dci": "PS2",
+    "ngss_pe": "3-PS2-1",
+    "kind": "investigation",
+    "stimulus": "procedure+table",
+    "format": "conditions",
+    "ask": "least",
+    "invented": true,
+    "names_used": [
+      "Mat Ivor",
+      "Mat Godwin",
+      "Mat Fairbairn",
+      "Mat Hepplewhite"
+    ],
+    "passage": "Students pulled a wooden block across four mats with a spring scale. They pulled slowly and steadily and read the scale while the block slid. They did each pull twice and wrote both readings, because a single reading can be off. They wanted the mat that needed the least force on average. The block and the spring scale were the ones used for every mat.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Mat Ivor",
+        "Mat Godwin",
+        "Mat Fairbairn",
+        "Mat Hepplewhite"
+      ],
+      "colLabels": [
+        "First pull (N)",
+        "Second pull (N)"
+      ],
+      "cells": [
+        [
+          5,
+          7
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          7,
+          2
+        ]
+      ],
+      "caption": "Table 1. Force needed to slide the block"
+    },
+    "prompt": "Based on Table 1, which mat needed the least force on average to slide the block?",
+    "choices": [
+      "Mat Fairbairn",
+      "Mat Ivor",
+      "Mat Godwin",
+      "Mat Hepplewhite"
+    ],
+    "correct_answer": "Mat Fairbairn",
+    "key_evidence": {
+      "refs": [
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ]
+      ]
+    },
+    "explanation": "Mat Fairbairn averages 4 N, less than 6 N, 5 N and 4.5 N for the other mats.",
+    "distractor_rationales": [
+      {
+        "choice": "Mat Ivor",
+        "fault": "its pulls average 6 N, the most"
+      },
+      {
+        "choice": "Mat Godwin",
+        "fault": "it has a low first pull (3 N) but averages 5 N"
+      },
+      {
+        "choice": "Mat Hepplewhite",
+        "fault": "it has the lowest single pull (2 N) but averages 4.5 N"
+      }
+    ],
+    "real_world_check": "Friction between surfaces resists sliding, so different surfaces need different forces."
+  },
+  {
+    "id": "MSB3-P5-10",
+    "map_area": "Physical Science",
+    "grade_target": 5,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 196-205",
+    "dci": "PS2",
+    "ngss_pe": "3-PS2-2",
+    "kind": "investigation",
+    "stimulus": "procedure+table",
+    "format": "values",
+    "ask": "interpolate",
+    "invented": true,
+    "names_used": [
+      "Car J-14"
+    ],
+    "passage": "Students let toy Car J-14 roll down a long ramp from a stop. A camera recorded how far the car had gone at each second, and the students wrote the distances in Table 1. They wanted to estimate where the car was at a time between two readings, so they could check it against the video later. The ramp was not changed between runs.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "0 s",
+        "1 s",
+        "2 s",
+        "3 s",
+        "4 s"
+      ],
+      "colLabels": [
+        "Distance rolled (cm)"
+      ],
+      "cells": [
+        [
+          0
+        ],
+        [
+          2
+        ],
+        [
+          8
+        ],
+        [
+          18
+        ],
+        [
+          32
+        ]
+      ],
+      "caption": "Table 1. Distance rolled by Car J-14"
+    },
+    "prompt": "Using Table 1, what is the best estimate of the distance the car had rolled at 2.5 s?",
+    "choices": [
+      "18 cm",
+      "13 cm",
+      "32 cm",
+      "25 cm"
+    ],
+    "correct_answer": "13 cm",
+    "key_evidence": {
+      "refs": [
+        [
+          2,
+          0
+        ],
+        [
+          3,
+          0
+        ]
+      ],
+      "expr": "(v0 + v1) / 2"
+    },
+    "explanation": "2.5 s is halfway between 2 s (8 cm) and 3 s (18 cm), so the car had rolled about 13 cm.",
+    "distractor_rationales": [
+      {
+        "choice": "18 cm",
+        "fault": "reads the 3 s row instead of estimating"
+      },
+      {
+        "choice": "32 cm",
+        "fault": "reads the 4 s row"
+      },
+      {
+        "choice": "25 cm",
+        "fault": "estimates between the 3 s and 4 s rows"
+      }
+    ],
+    "real_world_check": "Patterns in an object's motion can be used to predict where it will be at another time.",
+    "prior_free": "The standard says motion follows patterns; it cannot give this car's distance at 2.5 s."
+  },
+  {
+    "id": "MSB3-P5-11",
+    "map_area": "Physical Science",
+    "grade_target": 5,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 196-205",
+    "dci": "PS4",
+    "ngss_pe": "4-PS4-1",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "process",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A girl shouts toward a tall rock wall across a field and hears her voice come back a moment later. What process makes the sound come back to her?",
+    "choices": [
+      "air pushing back",
+      "sound waves bouncing back",
+      "wind carrying sound",
+      "sound waves soaking in"
+    ],
+    "correct_answer": "sound waves bouncing back",
+    "explanation": "Sound waves travel to the wall and bounce off (reflect) back to her, which she hears as an echo.",
+    "distractor_rationales": [
+      {
+        "choice": "air pushing back",
+        "fault": "misconception: the air near the wall shoves her voice back like a wall of wind"
+      },
+      {
+        "choice": "wind carrying sound",
+        "fault": "misconception: sound returns only if wind carries it"
+      },
+      {
+        "choice": "sound waves soaking in",
+        "fault": "misconception: the wall soaks up the sound and then gives it back out"
+      }
+    ],
+    "real_world_check": "Sound waves can reflect off hard surfaces; an echo is reflected sound."
+  },
+  {
+    "id": "MSB3-P5-12",
+    "map_area": "Physical Science",
+    "grade_target": 5,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 196-205",
+    "dci": "PS2",
+    "ngss_pe": "3-PS2-1",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "predicts",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A heavy box sits on a smooth floor. Two children push it from opposite sides at the same moment, and each pushes with exactly equal force. What will most likely happen to the box?",
+    "choices": [
+      "The box will spin in a circle.",
+      "The box will move to the strong child.",
+      "The box will slide toward the taller child.",
+      "The box will stay right where it is sitting now."
+    ],
+    "correct_answer": "The box will stay right where it is sitting now.",
+    "explanation": "Equal pushes in opposite directions are balanced forces, so the box's motion does not change; it stays still.",
+    "distractor_rationales": [
+      {
+        "choice": "The box will spin in a circle.",
+        "fault": "misconception: two pushes from opposite sides make an object spin"
+      },
+      {
+        "choice": "The box will move to the strong child.",
+        "fault": "misconception: an object moves toward whoever looks stronger, whatever the forces"
+      },
+      {
+        "choice": "The box will slide toward the taller child.",
+        "fault": "misconception: the taller pusher pushes the box away from them, not toward them"
+      }
+    ],
+    "real_world_check": "Balanced forces do not change an object's motion; unbalanced forces do."
+  },
+  {
+    "id": "MSB3-P5-13",
+    "map_area": "Physical Science",
+    "grade_target": 5,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 196-205",
+    "dci": "PS2",
+    "ngss_pe": "3-PS2-3",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "explains",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "Tomas runs a plastic comb through his dry hair many times. Then he holds the comb near tiny bits of paper on a table, and the bits jump up and stick to the comb. Which best explains this?",
+    "choices": [
+      "Rubbing made the comb sticky, like glue.",
+      "The comb became a magnet when it was rubbed.",
+      "Rubbing gave the comb an electric charge that pulls on the paper.",
+      "Air pressure in the room pushes the little paper bits up onto the comb."
+    ],
+    "correct_answer": "Rubbing gave the comb an electric charge that pulls on the paper.",
+    "explanation": "Rubbing moves electric charge onto the comb, and a charged object pulls on light objects such as paper bits without touching them.",
+    "distractor_rationales": [
+      {
+        "choice": "Rubbing made the comb sticky, like glue.",
+        "fault": "misconception: the paper sticks because rubbing makes a surface sticky"
+      },
+      {
+        "choice": "The comb became a magnet when it was rubbed.",
+        "fault": "misconception: rubbing turns plastic into a magnet"
+      },
+      {
+        "choice": "Air pressure in the room pushes the little paper bits up onto the comb.",
+        "fault": "misconception: air pushes small things toward objects that are held near them"
+      }
+    ],
+    "real_world_check": "Electric charges can push or pull on objects at a distance; a charged comb attracts small pieces of paper."
+  },
+  {
+    "id": "MSB3-P5-14",
+    "map_area": "Physical Science",
+    "grade_target": 5,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 206-215",
+    "dci": "PS3",
+    "ngss_pe": "4-PS3-2",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "values",
+    "ask": "ratio",
+    "invented": true,
+    "names_used": [
+      "SO-2"
+    ],
+    "passage": "Students used 1, 2, 3 or 4 mirrors to reflect sunlight into solar oven SO-2. They measured how much a dish of water inside warmed in ten minutes.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "1 mirror",
+        "2 mirrors",
+        "3 mirrors",
+        "4 mirrors"
+      ],
+      "colLabels": [
+        "Rise in water temperature (°C)"
+      ],
+      "cells": [
+        [
+          5
+        ],
+        [
+          10
+        ],
+        [
+          20
+        ],
+        [
+          30
+        ]
+      ],
+      "caption": "Table 1. Warming in solar oven SO-2"
+    },
+    "prompt": "Based on Table 1, the water warmed how many times as much with 4 mirrors as with 1 mirror?",
+    "choices": [
+      "3 times",
+      "6 times",
+      "25 times",
+      "4 times"
+    ],
+    "correct_answer": "6 times",
+    "key_evidence": {
+      "refs": [
+        [
+          3,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "expr": "v0 / v1"
+    },
+    "explanation": "The water rose 30 °C with 4 mirrors and 5 °C with 1 mirror; 30 / 5 = 6.",
+    "distractor_rationales": [
+      {
+        "choice": "3 times",
+        "fault": "compares 4 mirrors with 2 mirrors (30 / 10)"
+      },
+      {
+        "choice": "25 times",
+        "fault": "subtracts 5 from 30 instead of dividing"
+      },
+      {
+        "choice": "4 times",
+        "fault": "compares the number of mirrors, or uses the 3-mirror row (20 / 5)"
+      }
+    ],
+    "real_world_check": "Reflecting more sunlight onto an object transfers more energy to it, warming it more.",
+    "prior_free": "The standard says light carries energy; it cannot say the warming grew more than the number of mirrors did."
+  },
+  {
+    "id": "MSB3-P5-15",
+    "map_area": "Physical Science",
+    "grade_target": 5,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 206-215",
+    "dci": "PS1",
+    "ngss_pe": "5-PS1-3",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "conditions",
+    "ask": "controlled-pair",
+    "invented": true,
+    "names_used": [
+      "Ty",
+      "Ulvah",
+      "Wolcott",
+      "Featherstone",
+      "Yarna"
+    ],
+    "passage": "Students put 100 g of ice into five boxes and weighed the ice left after one hour. Table 1 shows how each box was made.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Yarna",
+        "Ty",
+        "Ulvah",
+        "Wolcott",
+        "Featherstone"
+      ],
+      "colLabels": [
+        "Material",
+        "Lid",
+        "Wall thickness (cm)"
+      ],
+      "cells": [
+        [
+          "foam",
+          "no",
+          2
+        ],
+        [
+          "metal",
+          "yes",
+          2
+        ],
+        [
+          "foam",
+          "yes",
+          1
+        ],
+        [
+          "metal",
+          "no",
+          2
+        ],
+        [
+          "foam",
+          "yes",
+          2
+        ]
+      ],
+      "caption": "Table 1. How the five ice boxes were made"
+    },
+    "prompt": "The students want to test only whether a lid slows the melting of ice. Which box should they compare with Yarna?",
+    "choices": [
+      "Ty",
+      "Ulvah",
+      "Wolcott",
+      "Featherstone"
+    ],
+    "correct_answer": "Featherstone",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          1
+        ],
+        [
+          4,
+          1
+        ]
+      ]
+    },
+    "explanation": "Featherstone matches Yarna in material (foam) and wall thickness (2 cm) and differs only in having a lid.",
+    "distractor_rationales": [
+      {
+        "choice": "Ty",
+        "fault": "it has a lid but is made of metal, not foam"
+      },
+      {
+        "choice": "Ulvah",
+        "fault": "it has a lid but thinner walls"
+      },
+      {
+        "choice": "Wolcott",
+        "fault": "it has no lid, like Yarna, and is made of metal"
+      }
+    ],
+    "real_world_check": "To test one factor, the two setups compared must match in every other factor."
+  },
+  {
+    "id": "MSB3-P5-16",
+    "map_area": "Physical Science",
+    "grade_target": 5,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 206-215",
+    "dci": "PS4",
+    "ngss_pe": "4-PS4-1",
+    "kind": "data",
+    "stimulus": "line",
+    "format": "values",
+    "ask": "read",
+    "invented": true,
+    "names_used": [
+      "R-7"
+    ],
+    "passage": "A student held a ruler marked R-7 flat on a desk with part of it hanging over the edge. She flicked the free end and counted how many times it vibrated each second.",
+    "graphic": {
+      "type": "line",
+      "series": [
+        {
+          "points": [
+            [
+              5,
+              64
+            ],
+            [
+              10,
+              16
+            ],
+            [
+              15,
+              7
+            ],
+            [
+              20,
+              4
+            ]
+          ]
+        }
+      ],
+      "xLabel": "Length hanging over the edge (cm)",
+      "yLabel": "Vibrations per second",
+      "caption": "Figure 1. Vibrations of ruler R-7"
+    },
+    "prompt": "Based on Figure 1, about how many times per second did the ruler vibrate when 5 cm hung over the edge?",
+    "choices": [
+      "4 vibrations",
+      "40 vibrations",
+      "64 vibrations",
+      "16 vibrations"
+    ],
+    "correct_answer": "64 vibrations",
+    "key_evidence": {
+      "refs": [
+        [
+          5,
+          64
+        ]
+      ],
+      "expr": "v0"
+    },
+    "explanation": "The 5 cm point is the highest on the graph and reaches the top tick, 64 vibrations per second.",
+    "distractor_rationales": [
+      {
+        "choice": "4 vibrations",
+        "fault": "reads the 20 cm point"
+      },
+      {
+        "choice": "40 vibrations",
+        "fault": "reads the 5 cm point as below the 48 tick"
+      },
+      {
+        "choice": "16 vibrations",
+        "fault": "reads the 10 cm point"
+      }
+    ],
+    "real_world_check": "A shorter vibrating object vibrates more times per second, which makes a higher pitch.",
+    "prior_free": "The standard says vibrations make sound; it cannot give how many times this ruler vibrated at 5 cm."
+  },
+  {
+    "id": "MSB3-P5-17",
+    "map_area": "Physical Science",
+    "grade_target": 5,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 206-215",
+    "dci": "PS1",
+    "ngss_pe": "5-PS1-4",
+    "kind": "investigation",
+    "stimulus": "procedure",
+    "format": "variable",
+    "ask": "dependent",
+    "invented": true,
+    "names_used": [
+      "Noor"
+    ],
+    "passage": "Noor asked whether stirring makes salt dissolve faster in water. She weighed a spoonful of salt and wrote down the salt mass weighed first. She poured it into a jar of 300 mL of tap water. In one jar she stirred, and in another she did not. She timed each jar and wrote down the time for the salt to disappear. She also noted the jar color.",
+    "graphic": null,
+    "prompt": "Which quantity can Noor use to answer her question about stirring?",
+    "choices": [
+      "time for the salt to disappear",
+      "jar color",
+      "salt mass weighed first",
+      "300 mL of tap water"
+    ],
+    "correct_answer": "time for the salt to disappear",
+    "key_evidence": {
+      "refs": [
+        {
+          "quote": "She timed each jar and wrote down the time for the salt to disappear"
+        }
+      ]
+    },
+    "explanation": "Only the time for the salt to disappear was measured after stirring, so only it can show whether stirring sped up dissolving.",
+    "distractor_rationales": [
+      {
+        "choice": "jar color",
+        "fault": "jar color says nothing about how fast salt dissolves"
+      },
+      {
+        "choice": "salt mass weighed first",
+        "fault": "it was measured before any stirring, so stirring could not have affected it"
+      },
+      {
+        "choice": "300 mL of tap water",
+        "fault": "this is part of how she set up each jar, not an outcome"
+      }
+    ],
+    "real_world_check": "The dependent variable is the outcome measured after the factor being tested is applied.",
+    "option_roles": [
+      "result",
+      "setting",
+      "result",
+      "setting"
+    ]
+  },
+  {
+    "id": "MSB3-P5-18",
+    "map_area": "Physical Science",
+    "grade_target": 5,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 206-215",
+    "dci": "PS4",
+    "ngss_pe": "4-PS4-3",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "process",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "To send a picture to a phone far away, the picture is first turned into a long pattern of on-and-off signals. What is this step called?",
+    "choices": [
+      "digital encoding",
+      "echoing",
+      "reflecting",
+      "light bending"
+    ],
+    "correct_answer": "digital encoding",
+    "explanation": "Turning information into a pattern of on and off signals is digital encoding, which lets it be sent and rebuilt far away.",
+    "distractor_rationales": [
+      {
+        "choice": "echoing",
+        "fault": "misconception: signals reach a far phone by bouncing like an echo"
+      },
+      {
+        "choice": "reflecting",
+        "fault": "misconception: sending information is just reflecting the picture to the phone"
+      },
+      {
+        "choice": "light bending",
+        "fault": "misconception: a picture is sent by bending light toward the phone"
+      }
+    ],
+    "real_world_check": "Information can be turned into patterns of signals, such as digital codes, to be sent over long distances."
+  },
+  {
+    "id": "MSB3-P5-19",
+    "map_area": "Physical Science",
+    "grade_target": 5,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 206-215",
+    "dci": "PS3",
+    "ngss_pe": "4-PS3-4",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "predicts",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A fan runs on a small solar panel set in bright sunlight. A thick cloud moves in front of the sun for ten minutes. What will most likely happen to the fan during those ten minutes?",
+    "choices": [
+      "The fan will keep turning at full speed.",
+      "The fan will turn more slowly while the cloud is in the way.",
+      "The fan will stop until someone resets it.",
+      "The fan will spin faster to make up for the cloud."
+    ],
+    "correct_answer": "The fan will turn more slowly while the cloud is in the way.",
+    "explanation": "The panel turns light energy into electrical energy; less light reaches it under the cloud, so the fan gets less energy and slows.",
+    "distractor_rationales": [
+      {
+        "choice": "The fan will keep turning at full speed.",
+        "fault": "misconception: a solar fan keeps its speed whatever light reaches the panel"
+      },
+      {
+        "choice": "The fan will stop until someone resets it.",
+        "fault": "misconception: a solar device switches off for good when the light dims"
+      },
+      {
+        "choice": "The fan will spin faster to make up for the cloud.",
+        "fault": "misconception: a device works harder when it gets less energy"
+      }
+    ],
+    "real_world_check": "A solar panel converts light energy into electrical energy; less light gives less electrical energy."
+  },
+  {
+    "id": "MSB3-P6-01",
+    "map_area": "Physical Science",
+    "grade_target": 6,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 189-198",
+    "dci": "PS2",
+    "ngss_pe": "MS-PS2-2",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "values",
+    "ask": "difference",
+    "invented": true,
+    "names_used": [
+      "Boat 22"
+    ],
+    "passage": "Students pulled toy Boat 22 across a pool with 1, 2, 3 or 4 stretched rubber bands side by side. More bands give a stronger pull. They timed how long the boat took to cross.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Run 1",
+        "Run 2",
+        "Run 3",
+        "Run 4"
+      ],
+      "colLabels": [
+        "Rubber bands",
+        "Time to cross (s)"
+      ],
+      "cells": [
+        [
+          1,
+          24
+        ],
+        [
+          2,
+          15
+        ],
+        [
+          3,
+          11
+        ],
+        [
+          4,
+          9
+        ]
+      ],
+      "caption": "Table 1. Time for Boat 22 to cross the pool"
+    },
+    "prompt": "Based on Table 1, how many seconds less did the boat take to cross with 3 bands than with 1 band?",
+    "choices": [
+      "15 s",
+      "24 s",
+      "13 s",
+      "35 s"
+    ],
+    "correct_answer": "13 s",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "expr": "v0 - v1"
+    },
+    "explanation": "With 1 band the boat took 24 s and with 3 bands 11 s; 24 - 11 = 13 s.",
+    "distractor_rationales": [
+      {
+        "choice": "15 s",
+        "fault": "compares 1 band with 4 bands"
+      },
+      {
+        "choice": "24 s",
+        "fault": "reads the 1-band time instead of finding a difference"
+      },
+      {
+        "choice": "35 s",
+        "fault": "adds the 1-band and 3-band times instead of subtracting"
+      }
+    ],
+    "real_world_check": "A larger force on the same mass gives a larger change in motion, so the boat crosses faster.",
+    "prior_free": "The standard says a bigger force speeds an object more; it cannot give how many seconds this boat saved."
+  },
+  {
+    "id": "MSB3-P6-02",
+    "map_area": "Physical Science",
+    "grade_target": 6,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 189-198",
+    "dci": "PS3",
+    "ngss_pe": "MS-PS3-3",
+    "kind": "data",
+    "stimulus": "bar",
+    "format": "conditions",
+    "ask": "greatest",
+    "invented": true,
+    "names_used": [
+      "Array Ione",
+      "Array Jessup",
+      "Array Kinsella",
+      "Array Livingstone",
+      "Array Mapp"
+    ],
+    "passage": "Five solar heating panels, each painted a different color, faced the noon sun. A meter measured how much thermal energy each panel collected in one hour.",
+    "graphic": {
+      "type": "bar",
+      "bars": [
+        {
+          "label": "Array Ione",
+          "value": 12
+        },
+        {
+          "label": "Array Jessup",
+          "value": 30
+        },
+        {
+          "label": "Array Kinsella",
+          "value": 22
+        },
+        {
+          "label": "Array Livingstone",
+          "value": 17
+        },
+        {
+          "label": "Array Mapp",
+          "value": 6
+        }
+      ],
+      "xLabel": "Panel",
+      "yLabel": "Thermal energy collected in 1 hour (kJ)",
+      "caption": "Figure 1. Energy collected by five solar heating panels"
+    },
+    "prompt": "Based on Figure 1, which panel collected the greatest amount of thermal energy?",
+    "choices": [
+      "Array Ione",
+      "Array Kinsella",
+      "Array Livingstone",
+      "Array Jessup"
+    ],
+    "correct_answer": "Array Jessup",
+    "key_evidence": {
+      "refs": [
+        "Array Jessup"
+      ]
+    },
+    "explanation": "The Array Jessup bar is the tallest and reaches the top tick, 30 kJ.",
+    "distractor_rationales": [
+      {
+        "choice": "Array Ione",
+        "fault": "its bar reaches about 12 kJ"
+      },
+      {
+        "choice": "Array Kinsella",
+        "fault": "its bar reaches about 22 kJ, below the top tick"
+      },
+      {
+        "choice": "Array Livingstone",
+        "fault": "its bar reaches about 17 kJ, a little more than halfway up"
+      }
+    ],
+    "real_world_check": "Surfaces of different colors absorb different amounts of sunlight and so collect different amounts of thermal energy."
+  },
+  {
+    "id": "MSB3-P6-03",
+    "map_area": "Physical Science",
+    "grade_target": 6,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 189-198",
+    "dci": "PS4",
+    "ngss_pe": "MS-PS4-3",
+    "kind": "investigation",
+    "stimulus": "procedure+table",
+    "format": "conditions",
+    "ask": "greatest",
+    "invented": true,
+    "names_used": [
+      "Hask",
+      "Quimby",
+      "Castellan",
+      "Wolverstone"
+    ],
+    "passage": "Engineers tested four fiber-optic cables that carry information as pulses of light. They sent a different number of pulses through each cable and counted how many arrived correctly. A pulse that does not arrive correctly is lost. They wanted to know which cable lost the greatest number of pulses, whatever the number sent. All four cables were the same length.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Hask",
+        "Quimby",
+        "Castellan",
+        "Wolverstone"
+      ],
+      "colLabels": [
+        "Pulses sent",
+        "Pulses received correctly"
+      ],
+      "cells": [
+        [
+          1000,
+          985
+        ],
+        [
+          800,
+          740
+        ],
+        [
+          1200,
+          1150
+        ],
+        [
+          500,
+          470
+        ]
+      ],
+      "caption": "Table 1. Light pulses sent through four cables"
+    },
+    "prompt": "Based on Table 1, which cable lost the greatest number of pulses?",
+    "choices": [
+      "Hask",
+      "Castellan",
+      "Quimby",
+      "Wolverstone"
+    ],
+    "correct_answer": "Quimby",
+    "key_evidence": {
+      "refs": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    "explanation": "Quimby sent 800 and received 740, losing 60 pulses, more than 15, 50 or 30 for the others.",
+    "distractor_rationales": [
+      {
+        "choice": "Hask",
+        "fault": "it lost only 15 pulses (1000 - 985)"
+      },
+      {
+        "choice": "Castellan",
+        "fault": "it sent the most pulses but lost 50, fewer than Quimby"
+      },
+      {
+        "choice": "Wolverstone",
+        "fault": "it lost 30 pulses (500 - 470)"
+      }
+    ],
+    "real_world_check": "Information can be sent as pulses of light through fiber-optic cables; some pulses can be lost along the way."
+  },
+  {
+    "id": "MSB3-P6-04",
+    "map_area": "Physical Science",
+    "grade_target": 6,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 189-198",
+    "dci": "PS1",
+    "ngss_pe": "MS-PS1-2",
+    "kind": "investigation",
+    "stimulus": "procedure+table",
+    "format": "values",
+    "ask": "ratio",
+    "invented": true,
+    "names_used": [
+      "Powder Kesh",
+      "Powder Lune",
+      "Powder Maro",
+      "Powder Nib"
+    ],
+    "passage": "Students dropped 1 g of each of four metal powders into a flask of one acid. A balloon on top of each flask caught the gas the reaction made. They measured the volume of gas in each balloon. Gas forming is one sign that a new substance has been made. They used one size of flask and one size of balloon for all four powders.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Powder Kesh",
+        "Powder Lune",
+        "Powder Maro",
+        "Powder Nib"
+      ],
+      "colLabels": [
+        "Gas collected (mL)"
+      ],
+      "cells": [
+        [
+          36
+        ],
+        [
+          4
+        ],
+        [
+          18
+        ],
+        [
+          20
+        ]
+      ],
+      "caption": "Table 1. Gas made by four metal powders"
+    },
+    "prompt": "Based on Table 1, Powder Kesh made how many times as much gas as Powder Lune?",
+    "choices": [
+      "9 times",
+      "5 times",
+      "2 times",
+      "8 times"
+    ],
+    "correct_answer": "9 times",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "expr": "v0 / v1"
+    },
+    "explanation": "Powder Kesh made 36 mL and Powder Lune 4 mL; 36 / 4 = 9.",
+    "distractor_rationales": [
+      {
+        "choice": "5 times",
+        "fault": "compares Powder Nib (20 mL) with Powder Lune"
+      },
+      {
+        "choice": "2 times",
+        "fault": "compares Powder Kesh with Powder Maro (36 / 18)"
+      },
+      {
+        "choice": "8 times",
+        "fault": "subtracts first (36 - 4 = 32) and then divides by 4"
+      }
+    ],
+    "real_world_check": "Substances react to form new substances such as gases, and different substances react by different amounts.",
+    "prior_free": "The standard says reactions make new substances; it cannot give how much more gas one powder made."
+  },
+  {
+    "id": "MSB3-P6-05",
+    "map_area": "Physical Science",
+    "grade_target": 6,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 189-198",
+    "dci": "PS2",
+    "ngss_pe": "MS-PS2-2",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "quantity",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A hockey puck slides across the ice. For its motion to stay exactly as it is (same speed, same direction), which quantity acting on it must be zero?",
+    "choices": [
+      "speed",
+      "the net force",
+      "momentum",
+      "the puck's mass"
+    ],
+    "correct_answer": "the net force",
+    "explanation": "An object's motion changes only when an unbalanced force acts on it, so zero net force means its motion stays the same.",
+    "distractor_rationales": [
+      {
+        "choice": "speed",
+        "fault": "misconception: an object keeps its motion only if it is not moving at all"
+      },
+      {
+        "choice": "momentum",
+        "fault": "misconception: anything that is moving must lose its motion unless something keeps it going"
+      },
+      {
+        "choice": "the puck's mass",
+        "fault": "misconception: heavier objects slow down on their own"
+      }
+    ],
+    "real_world_check": "If the net force on an object is zero, its speed and direction do not change."
+  },
+  {
+    "id": "MSB3-P6-06",
+    "map_area": "Physical Science",
+    "grade_target": 6,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 189-198",
+    "dci": "PS1",
+    "ngss_pe": "MS-PS1-1",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "structure",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "In a diamond, each carbon atom is joined to four others, and the pattern repeats over and over in every direction. What kind of structure is this?",
+    "choices": [
+      "an atom",
+      "a molecule",
+      "a crystal lattice",
+      "an extended mixture"
+    ],
+    "correct_answer": "a crystal lattice",
+    "explanation": "A repeating pattern of bonded atoms that extends in all directions is a crystal lattice, an extended structure.",
+    "distractor_rationales": [
+      {
+        "choice": "an atom",
+        "fault": "misconception: a diamond is one single, giant atom"
+      },
+      {
+        "choice": "a molecule",
+        "fault": "misconception: every substance is made of separate small molecules"
+      },
+      {
+        "choice": "an extended mixture",
+        "fault": "misconception: a solid made of one element repeated is a mixture"
+      }
+    ],
+    "real_world_check": "Some substances are extended structures in which atoms form a repeating pattern, such as diamond."
+  },
+  {
+    "id": "MSB3-P6-07",
+    "map_area": "Physical Science",
+    "grade_target": 6,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 199-208",
+    "dci": "PS1",
+    "ngss_pe": "MS-PS1-2",
+    "kind": "data",
+    "stimulus": "bar",
+    "format": "values",
+    "ask": "read",
+    "invented": true,
+    "names_used": [
+      "Solid Ovra",
+      "Solid Pelk",
+      "Solid Quist",
+      "Solid Rhee",
+      "Solid Sodo"
+    ],
+    "passage": "A chemist heated small samples of five solid substances and recorded the melting point of each.",
+    "graphic": {
+      "type": "bar",
+      "bars": [
+        {
+          "label": "Solid Ovra",
+          "value": 40
+        },
+        {
+          "label": "Solid Pelk",
+          "value": 110
+        },
+        {
+          "label": "Solid Quist",
+          "value": 75
+        },
+        {
+          "label": "Solid Rhee",
+          "value": 160
+        },
+        {
+          "label": "Solid Sodo",
+          "value": 20
+        }
+      ],
+      "xLabel": "Substance",
+      "yLabel": "Melting point (°C)",
+      "caption": "Figure 1. Melting points of five substances"
+    },
+    "prompt": "Based on Figure 1, about what is the melting point of Solid Rhee?",
+    "choices": [
+      "20 °C",
+      "160 °C",
+      "75 °C",
+      "110 °C"
+    ],
+    "correct_answer": "160 °C",
+    "key_evidence": {
+      "refs": [
+        "Solid Rhee"
+      ],
+      "expr": "v0"
+    },
+    "explanation": "The Solid Rhee bar is the tallest and reaches the top tick, 160 °C.",
+    "distractor_rationales": [
+      {
+        "choice": "20 °C",
+        "fault": "reads the shortest bar, Solid Sodo"
+      },
+      {
+        "choice": "75 °C",
+        "fault": "reads the bar for Solid Quist"
+      },
+      {
+        "choice": "110 °C",
+        "fault": "reads the bar for Solid Pelk"
+      }
+    ],
+    "real_world_check": "Each pure substance has its own melting point, a property that helps identify it.",
+    "prior_free": "The standard says substances have characteristic properties; it cannot give this substance's melting point."
+  },
+  {
+    "id": "MSB3-P6-08",
+    "map_area": "Physical Science",
+    "grade_target": 6,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 199-208",
+    "dci": "PS3",
+    "ngss_pe": "MS-PS3-3",
+    "kind": "data",
+    "stimulus": "line",
+    "format": "values",
+    "ask": "read",
+    "invented": true,
+    "names_used": [
+      "M-3"
+    ],
+    "passage": "A student poured hot water into a mug labeled M-3 and read its temperature every five minutes as it cooled on a table.",
+    "graphic": {
+      "type": "line",
+      "series": [
+        {
+          "points": [
+            [
+              0,
+              80
+            ],
+            [
+              5,
+              60
+            ],
+            [
+              10,
+              46
+            ],
+            [
+              15,
+              38
+            ],
+            [
+              20,
+              32
+            ]
+          ]
+        }
+      ],
+      "xLabel": "Time (min)",
+      "yLabel": "Water temperature (°C)",
+      "caption": "Figure 1. Cooling of water in mug M-3"
+    },
+    "prompt": "Based on Figure 1, about what was the water temperature after 20 minutes?",
+    "choices": [
+      "80 °C",
+      "56 °C",
+      "46 °C",
+      "32 °C"
+    ],
+    "correct_answer": "32 °C",
+    "key_evidence": {
+      "refs": [
+        [
+          20,
+          32
+        ]
+      ],
+      "expr": "v0"
+    },
+    "explanation": "The 20-minute point is the lowest on the graph, a little below halfway between the 20 and 40 ticks, at about 32 °C.",
+    "distractor_rationales": [
+      {
+        "choice": "80 °C",
+        "fault": "reads the starting temperature at 0 minutes"
+      },
+      {
+        "choice": "56 °C",
+        "fault": "reads the 20-minute point against the wrong tick, as just below 60"
+      },
+      {
+        "choice": "46 °C",
+        "fault": "reads the 10-minute point"
+      }
+    ],
+    "real_world_check": "Hot water transfers thermal energy to cooler surroundings, cooling fast at first and more slowly as it nears room temperature.",
+    "prior_free": "The standard says thermal energy moves from hot to cold; it cannot give this mug's temperature at 20 minutes."
+  },
+  {
+    "id": "MSB3-P6-09",
+    "map_area": "Physical Science",
+    "grade_target": 6,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 199-208",
+    "dci": "PS3",
+    "ngss_pe": "MS-PS3-4",
+    "kind": "data",
+    "stimulus": "line",
+    "format": "trend",
+    "ask": "increase",
+    "invented": true,
+    "names_used": [
+      "Sabine"
+    ],
+    "passage": "Water in Sabine's pot sat on a burner at one steady setting. A student read the water temperature every two minutes.",
+    "graphic": {
+      "type": "line",
+      "series": [
+        {
+          "points": [
+            [
+              0,
+              20
+            ],
+            [
+              2,
+              32
+            ],
+            [
+              4,
+              44
+            ],
+            [
+              6,
+              56
+            ],
+            [
+              8,
+              68
+            ]
+          ]
+        }
+      ],
+      "xLabel": "Time on the burner (min)",
+      "yLabel": "Water temperature (°C)",
+      "caption": "Figure 1. Heating water in Sabine's pot"
+    },
+    "prompt": "Based on Figure 1, what happened to the water temperature during the 8 minutes?",
+    "choices": [
+      "The temperature increased.",
+      "The temperature fell.",
+      "The temperature dropped, then rose.",
+      "The temperature rose, then leveled off."
+    ],
+    "correct_answer": "The temperature increased.",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          20
+        ],
+        [
+          6,
+          56
+        ],
+        [
+          8,
+          68
+        ]
+      ]
+    },
+    "explanation": "The temperature rises 12 °C every two minutes, from 20 °C to 68 °C, with no flat part.",
+    "distractor_rationales": [
+      {
+        "choice": "The temperature fell.",
+        "fault": "the temperature goes from 20 °C to 68 °C"
+      },
+      {
+        "choice": "The temperature dropped, then rose.",
+        "fault": "the temperature at 2 minutes is already higher than at the start"
+      },
+      {
+        "choice": "The temperature rose, then leveled off.",
+        "fault": "it climbs by the same 12 °C every two minutes and never flattens"
+      }
+    ],
+    "real_world_check": "Steady heating transfers energy to the water at a steady rate, raising its temperature until it nears boiling.",
+    "prior_free": "A student might expect the water to level off at a boiling point; only the points show it was still rising steadily at 68 °C."
+  },
+  {
+    "id": "MSB3-P6-10",
+    "map_area": "Physical Science",
+    "grade_target": 6,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 199-208",
+    "dci": "PS1",
+    "ngss_pe": "MS-PS1-2",
+    "kind": "investigation",
+    "stimulus": "procedure",
+    "format": "variable",
+    "ask": "controlled",
+    "invented": true,
+    "names_used": [
+      "Tadeo"
+    ],
+    "passage": "Tadeo asked whether a new color shows that a new substance forms when two liquids mix. He lined up four cups and poured 50 mL of red cabbage juice into the first cup, then 50 mL into the second, third and fourth cups, and noted the volume of juice in his notebook. He added 1, 2, 3 or 4 drops of a test liquid, and he wrote down the drops of test liquid for each cup. Two cups were glass and two were plastic, so he noted the cup material. He set two cups by the window and two on a shelf and noted the cup spot. Then he watched the colors.",
+    "graphic": null,
+    "prompt": "Which of these had only one value in Tadeo's investigation?",
+    "choices": [
+      "cup material",
+      "cup spot",
+      "drops of test liquid",
+      "volume of juice"
+    ],
+    "correct_answer": "volume of juice",
+    "key_evidence": {
+      "refs": [
+        {
+          "quote": "then 50 mL into the second, third and fourth cups"
+        }
+      ]
+    },
+    "explanation": "Every cup got 50 mL of juice; the cup material, cup spot and drops of test liquid took more than one value.",
+    "distractor_rationales": [
+      {
+        "choice": "cup material",
+        "fault": "two cups were glass and two were plastic"
+      },
+      {
+        "choice": "cup spot",
+        "fault": "two cups sat by the window and two on a shelf"
+      },
+      {
+        "choice": "drops of test liquid",
+        "fault": "the cups got 1, 2, 3 or 4 drops"
+      }
+    ],
+    "real_world_check": "A factor given only one value in every trial cannot explain differences between the trials.",
+    "option_roles": [
+      "setting",
+      "setting",
+      "setting",
+      "setting"
+    ]
+  },
+  {
+    "id": "MSB3-P6-11",
+    "map_area": "Physical Science",
+    "grade_target": 6,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 199-208",
+    "dci": "PS2",
+    "ngss_pe": "MS-PS2-2",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "predicts",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A space probe far from any planet or star is coasting with its engines off. Nothing is pushing or pulling on it. What will most likely happen to its motion?",
+    "choices": [
+      "It will get faster and faster on its own.",
+      "It will keep going at a steady speed.",
+      "It will slowly come to a stop out in space.",
+      "It will slow down, then drift back toward Earth."
+    ],
+    "correct_answer": "It will keep going at a steady speed.",
+    "explanation": "With no net force acting on it, the probe's speed and direction do not change.",
+    "distractor_rationales": [
+      {
+        "choice": "It will get faster and faster on its own.",
+        "fault": "misconception: a moving object speeds up when nothing holds it back"
+      },
+      {
+        "choice": "It will slowly come to a stop out in space.",
+        "fault": "misconception: moving objects naturally slow down and stop"
+      },
+      {
+        "choice": "It will slow down, then drift back toward Earth.",
+        "fault": "misconception: objects in space are always pulled back toward Earth"
+      }
+    ],
+    "real_world_check": "An object with no net force on it keeps moving at a constant speed in a straight line."
+  },
+  {
+    "id": "MSB3-P6-12",
+    "map_area": "Physical Science",
+    "grade_target": 6,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 199-208",
+    "dci": "PS4",
+    "ngss_pe": "MS-PS4-2",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "explains",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "On a still day, Rosa can see her face in a pond. When wind makes ripples on the water, she cannot see her face anymore. Which best explains this?",
+    "choices": [
+      "A smooth surface sends light back in one direction.",
+      "Light does not reach water that is moving.",
+      "Your eyes lose focus whenever the water surface is moving.",
+      "Ripples soak up the light instead of sending it back to you."
+    ],
+    "correct_answer": "A smooth surface sends light back in one direction.",
+    "explanation": "A smooth surface reflects light in one direction and keeps the image; ripples scatter the reflected light in many directions.",
+    "distractor_rationales": [
+      {
+        "choice": "Light does not reach water that is moving.",
+        "fault": "misconception: moving water blocks light from reaching it"
+      },
+      {
+        "choice": "Your eyes lose focus whenever the water surface is moving.",
+        "fault": "misconception: the problem is in the eye, not in how the light reflects"
+      },
+      {
+        "choice": "Ripples soak up the light instead of sending it back to you.",
+        "fault": "misconception: rough water absorbs light rather than scattering it"
+      }
+    ],
+    "real_world_check": "Smooth surfaces reflect light in a regular way that forms an image; rough surfaces scatter it."
+  },
+  {
+    "id": "MSB3-P6-13",
+    "map_area": "Physical Science",
+    "grade_target": 6,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 199-208",
+    "dci": "PS4",
+    "ngss_pe": "MS-PS4-2",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "explains",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "On a sunny day, a magnifying glass held above a leaf makes a small, very bright spot of light on the leaf. Which best explains the bright spot?",
+    "choices": [
+      "The lens bends the light to meet at one spot.",
+      "The lens makes extra light of its own.",
+      "The lens reflects the sunlight back toward the sun again.",
+      "The lens gathers heat from the air around it into one spot."
+    ],
+    "correct_answer": "The lens bends the light to meet at one spot.",
+    "explanation": "Light passing through the curved lens bends (refracts) and comes together at one spot, making it bright.",
+    "distractor_rationales": [
+      {
+        "choice": "The lens makes extra light of its own.",
+        "fault": "misconception: a lens creates light rather than redirecting it"
+      },
+      {
+        "choice": "The lens reflects the sunlight back toward the sun again.",
+        "fault": "misconception: a clear lens works by reflecting light"
+      },
+      {
+        "choice": "The lens gathers heat from the air around it into one spot.",
+        "fault": "misconception: a lens collects warm air rather than light"
+      }
+    ],
+    "real_world_check": "Light bends when it passes from air into glass; a curved lens can bring light rays together at a point."
+  },
+  {
+    "id": "MSB3-P6-14",
+    "map_area": "Physical Science",
+    "grade_target": 6,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 209-218",
+    "dci": "PS3",
+    "ngss_pe": "MS-PS3-3",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "values",
+    "ask": "read",
+    "invented": true,
+    "names_used": [
+      "Cup Uwe",
+      "Cup Valda"
+    ],
+    "passage": "Two cups of 90 °C water cooled on a bench. Cup Uwe was foam and Cup Valda was metal. A student read each temperature every 10 minutes.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "0 min",
+        "10 min",
+        "20 min",
+        "30 min"
+      ],
+      "colLabels": [
+        "Cup Uwe, foam (°C)",
+        "Cup Valda, metal (°C)"
+      ],
+      "cells": [
+        [
+          90,
+          90
+        ],
+        [
+          82,
+          70
+        ],
+        [
+          75,
+          56
+        ],
+        [
+          69,
+          45
+        ]
+      ],
+      "caption": "Table 1. Cooling of a foam cup and a metal cup"
+    },
+    "prompt": "Based on Table 1, what was the temperature of the water in the metal cup after 20 minutes?",
+    "choices": [
+      "45 °C",
+      "56 °C",
+      "75 °C",
+      "70 °C"
+    ],
+    "correct_answer": "56 °C",
+    "key_evidence": {
+      "refs": [
+        [
+          2,
+          1
+        ]
+      ],
+      "expr": "v0"
+    },
+    "explanation": "The metal cup is Cup Valda; its value in the 20-minute row is 56 °C.",
+    "distractor_rationales": [
+      {
+        "choice": "45 °C",
+        "fault": "reads the metal cup at 30 minutes"
+      },
+      {
+        "choice": "75 °C",
+        "fault": "reads the foam cup at 20 minutes"
+      },
+      {
+        "choice": "70 °C",
+        "fault": "reads the metal cup at 10 minutes"
+      }
+    ],
+    "real_world_check": "Metal conducts thermal energy faster than foam, so water in a metal cup cools faster.",
+    "prior_free": "No standard gives these temperatures; the student must find the metal cup's column and the 20-minute row."
+  },
+  {
+    "id": "MSB3-P6-15",
+    "map_area": "Physical Science",
+    "grade_target": 6,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 209-218",
+    "dci": "PS3",
+    "ngss_pe": "MS-PS3-4",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "conditions",
+    "ask": "least",
+    "invented": true,
+    "names_used": [
+      "Sample Wu",
+      "Sample Xanthe",
+      "Sample Yeardley",
+      "Sample Zimmermann"
+    ],
+    "passage": "Students heated four metal samples on one hot plate for two minutes. The samples had different masses, so the students compared the temperature rise for each gram.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Sample Wu",
+        "Sample Xanthe",
+        "Sample Yeardley",
+        "Sample Zimmermann"
+      ],
+      "colLabels": [
+        "Mass (g)",
+        "Temperature rise (°C)"
+      ],
+      "cells": [
+        [
+          50,
+          40
+        ],
+        [
+          100,
+          30
+        ],
+        [
+          20,
+          30
+        ],
+        [
+          200,
+          100
+        ]
+      ],
+      "caption": "Table 1. Four metal samples heated for two minutes"
+    },
+    "prompt": "Based on Table 1, which sample had the smallest temperature rise for each gram of its mass?",
+    "choices": [
+      "Sample Wu",
+      "Sample Xanthe",
+      "Sample Yeardley",
+      "Sample Zimmermann"
+    ],
+    "correct_answer": "Sample Xanthe",
+    "key_evidence": {
+      "refs": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    "explanation": "Sample Xanthe rose 30 °C for 100 g, 0.3 °C per gram, less than 0.8, 1.5 or 0.5 °C per gram for the others.",
+    "distractor_rationales": [
+      {
+        "choice": "Sample Wu",
+        "fault": "it rose 40 °C for 50 g, or 0.8 °C for each gram"
+      },
+      {
+        "choice": "Sample Yeardley",
+        "fault": "it rose 30 °C for only 20 g, or 1.5 °C for each gram"
+      },
+      {
+        "choice": "Sample Zimmermann",
+        "fault": "it had the largest total rise but 0.5 °C for each gram, more than Sample Xanthe"
+      }
+    ],
+    "real_world_check": "The temperature change of a sample depends on the energy transferred, its mass and the kind of material."
+  },
+  {
+    "id": "MSB3-P6-16",
+    "map_area": "Physical Science",
+    "grade_target": 6,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 209-218",
+    "dci": "PS2",
+    "ngss_pe": "MS-PS2-2",
+    "kind": "data",
+    "stimulus": "scatter",
+    "format": "trend",
+    "ask": "increase-then-level",
+    "invented": true,
+    "names_used": [
+      "Ardo"
+    ],
+    "passage": "A skydiver named Ardo jumped from a plane. A sensor recorded how fast he was falling each second before he opened his parachute.",
+    "graphic": {
+      "type": "scatter",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          2,
+          18
+        ],
+        [
+          4,
+          32
+        ],
+        [
+          6,
+          42
+        ],
+        [
+          8,
+          50
+        ],
+        [
+          10,
+          53
+        ],
+        [
+          12,
+          54
+        ],
+        [
+          14,
+          54
+        ]
+      ],
+      "xLabel": "Time after jumping (s)",
+      "yLabel": "Falling speed (m/s)",
+      "caption": "Figure 1. Ardo's falling speed"
+    },
+    "prompt": "Based on Figure 1, what happened to Ardo's speed during the first 14 seconds of his drop?",
+    "choices": [
+      "His speed fell.",
+      "His speed remained constant.",
+      "His speed increased, then leveled off.",
+      "His speed leveled off, then rose."
+    ],
+    "correct_answer": "His speed increased, then leveled off.",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          0
+        ],
+        [
+          8,
+          50
+        ],
+        [
+          12,
+          54
+        ],
+        [
+          14,
+          54
+        ]
+      ]
+    },
+    "explanation": "The speed climbs from 0 to about 50 m/s in 8 seconds, then stays near 53 to 54 m/s.",
+    "distractor_rationales": [
+      {
+        "choice": "His speed fell.",
+        "fault": "his speed goes from 0 to 54 m/s"
+      },
+      {
+        "choice": "His speed remained constant.",
+        "fault": "his speed climbs from 0 to 50 m/s over the first 8 seconds"
+      },
+      {
+        "choice": "His speed leveled off, then rose.",
+        "fault": "the climb comes first and the flat part comes after about 10 seconds"
+      }
+    ],
+    "real_world_check": "Air resistance grows as a falling object speeds up until it balances gravity, and then the speed stops increasing.",
+    "prior_free": "Many students expect a falling person to keep speeding up; only the points show the speed stopped rising near 54 m/s."
+  },
+  {
+    "id": "MSB3-P6-17",
+    "map_area": "Physical Science",
+    "grade_target": 6,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 209-218",
+    "dci": "PS2",
+    "ngss_pe": "MS-PS2-5",
+    "kind": "investigation",
+    "stimulus": "procedure",
+    "format": "claim",
+    "ask": "supported",
+    "invented": true,
+    "names_used": [
+      "Cyrus"
+    ],
+    "passage": "Cyrus placed a compass at different distances from a wire carrying an electric current and recorded how far the needle turned. At 2 cm the needle turned 60 degrees. At 4 cm it turned 35 degrees, at 8 cm it turned 15 degrees, and at 16 cm it turned 5 degrees. With the current switched off, the needle pointed north at every distance.",
+    "graphic": null,
+    "prompt": "Which claim do Cyrus's results support?",
+    "choices": [
+      "The needle turned by the same amount wherever it was placed.",
+      "The wire pulled on the needle with the current turned off.",
+      "The current pushed on the needle more when closer.",
+      "The needle turned less when closer to the wire."
+    ],
+    "correct_answer": "The current pushed on the needle more when closer.",
+    "key_evidence": {
+      "refs": [
+        {
+          "quote": "At 2 cm the needle turned 60 degrees"
+        }
+      ]
+    },
+    "explanation": "The turn was largest at 2 cm and smallest at 16 cm, and only when current flowed, so the current's effect was stronger closer to the wire.",
+    "distractor_rationales": [
+      {
+        "choice": "The needle turned by the same amount wherever it was placed.",
+        "fault": "the turn fell from 60 degrees to 5 degrees as distance grew"
+      },
+      {
+        "choice": "The wire pulled on the needle with the current turned off.",
+        "fault": "with the current off the needle pointed north at every distance"
+      },
+      {
+        "choice": "The needle turned less when closer to the wire.",
+        "fault": "the closest spot, 2 cm, gave the largest turn"
+      }
+    ],
+    "real_world_check": "An electric current makes a magnetic field that acts on a compass needle at a distance and weakens farther away."
+  },
+  {
+    "id": "MSB3-P6-18",
+    "map_area": "Physical Science",
+    "grade_target": 6,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 209-218",
+    "dci": "PS4",
+    "ngss_pe": "MS-PS4-1",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "quantity",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "Lina measures the distance from the top of one ripple to the top of the next ripple on a pond. Which quantity is she measuring?",
+    "choices": [
+      "the wavelength",
+      "the period",
+      "crest height",
+      "average frequency"
+    ],
+    "correct_answer": "the wavelength",
+    "explanation": "The distance from one crest to the next is the wavelength.",
+    "distractor_rationales": [
+      {
+        "choice": "the period",
+        "fault": "misconception: a distance along the ripples is the time between them"
+      },
+      {
+        "choice": "crest height",
+        "fault": "misconception: the size of a ripple is measured from top to top"
+      },
+      {
+        "choice": "average frequency",
+        "fault": "misconception: top-to-top distance tells how many ripples pass each second"
+      }
+    ],
+    "real_world_check": "Wavelength is the distance between matching points on neighboring waves, such as two crests."
+  },
+  {
+    "id": "MSB3-P6-19",
+    "map_area": "Physical Science",
+    "grade_target": 6,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 209-218",
+    "dci": "PS4",
+    "ngss_pe": "MS-PS4-3",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "predicts",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A song is copied 100 times as a digital file, each copy made from the one before. The same song is also copied 100 times on an old analog tape the same way. What will most likely be true of the 100th copies?",
+    "choices": [
+      "Each digital copy will lose a little of the sound.",
+      "Both sets of copies will get noisier at the same rate.",
+      "The analog copies will sound clearer than the digital ones.",
+      "The digital copies will match the first."
+    ],
+    "correct_answer": "The digital copies will match the first.",
+    "explanation": "A digital file is a pattern of numbers that can be copied exactly, while each analog copy picks up a little more noise.",
+    "distractor_rationales": [
+      {
+        "choice": "Each digital copy will lose a little of the sound.",
+        "fault": "misconception: digital copies wear down the way tape copies do"
+      },
+      {
+        "choice": "Both sets of copies will get noisier at the same rate.",
+        "fault": "misconception: digital and analog signals copy the same way"
+      },
+      {
+        "choice": "The analog copies will sound clearer than the digital ones.",
+        "fault": "misconception: analog signals are more reliable to copy"
+      }
+    ],
+    "real_world_check": "Digital signals are more reliable than analog signals for storing and copying information."
+  },
+  {
+    "id": "MSB3-P7-01",
+    "map_area": "Physical Science",
+    "grade_target": 7,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 192-201",
+    "dci": "PS3",
+    "ngss_pe": "MS-PS3-1",
+    "kind": "data",
+    "stimulus": "bar",
+    "format": "values",
+    "ask": "read",
+    "invented": true,
+    "names_used": [
+      "Racer Abbott",
+      "Racer Blythe",
+      "Racer Calder",
+      "Racer Dyce",
+      "Racer Elmo"
+    ],
+    "passage": "Five toy racers rolled across a finish line. A sensor found the kinetic energy of each one as it crossed.",
+    "graphic": {
+      "type": "bar",
+      "bars": [
+        {
+          "label": "Racer Abbott",
+          "value": 12
+        },
+        {
+          "label": "Racer Blythe",
+          "value": 30
+        },
+        {
+          "label": "Racer Calder",
+          "value": 45
+        },
+        {
+          "label": "Racer Dyce",
+          "value": 60
+        },
+        {
+          "label": "Racer Elmo",
+          "value": 20
+        }
+      ],
+      "xLabel": "Racer",
+      "yLabel": "Kinetic energy (J)",
+      "caption": "Figure 1. Kinetic energy of five toy racers"
+    },
+    "prompt": "Based on Figure 1, about how much kinetic energy did Racer Calder have at the finish line?",
+    "choices": [
+      "45 J",
+      "12 J",
+      "60 J",
+      "30 J"
+    ],
+    "correct_answer": "45 J",
+    "key_evidence": {
+      "refs": [
+        "Racer Calder"
+      ],
+      "expr": "v0"
+    },
+    "explanation": "The Racer Calder bar reaches the 45 tick, three quarters of the way up the axis.",
+    "distractor_rationales": [
+      {
+        "choice": "12 J",
+        "fault": "reads the shortest bar, Racer Abbott"
+      },
+      {
+        "choice": "60 J",
+        "fault": "reads the tallest bar, Racer Dyce"
+      },
+      {
+        "choice": "30 J",
+        "fault": "reads the bar for Racer Blythe"
+      }
+    ],
+    "real_world_check": "Kinetic energy depends on an object's mass and speed, so different racers can carry different amounts.",
+    "prior_free": "The standard relates kinetic energy to mass and speed; it cannot give one racer's energy."
+  },
+  {
+    "id": "MSB3-P7-02",
+    "map_area": "Physical Science",
+    "grade_target": 7,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 192-201",
+    "dci": "PS4",
+    "ngss_pe": "MS-PS4-1",
+    "kind": "data",
+    "stimulus": "line",
+    "format": "trend",
+    "ask": "decrease",
+    "invented": true,
+    "names_used": [
+      "Ferris"
+    ],
+    "passage": "A student plucked one string of Ferris's guitar, measured the pitch, then loosened the tuning peg by one turn. She did this again after each turn.",
+    "graphic": {
+      "type": "line",
+      "series": [
+        {
+          "points": [
+            [
+              0,
+              440
+            ],
+            [
+              1,
+              400
+            ],
+            [
+              2,
+              350
+            ],
+            [
+              3,
+              290
+            ],
+            [
+              4,
+              220
+            ]
+          ]
+        }
+      ],
+      "xLabel": "Turns the peg was loosened",
+      "yLabel": "Pitch of the string (Hz)",
+      "caption": "Figure 1. Pitch of one string of Ferris's guitar"
+    },
+    "prompt": "Based on Figure 1, what happened to the pitch of the string as the peg was loosened from 0 to 4 turns?",
+    "choices": [
+      "The pitch of the string stayed constant.",
+      "The pitch of the string increased, then fell.",
+      "The pitch of the string dropped.",
+      "The pitch of the string declined, then leveled off."
+    ],
+    "correct_answer": "The pitch of the string dropped.",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          440
+        ],
+        [
+          3,
+          290
+        ],
+        [
+          4,
+          220
+        ]
+      ]
+    },
+    "explanation": "Each turn gives a lower pitch than the one before, from 440 Hz to 220 Hz, and the drops get larger.",
+    "distractor_rationales": [
+      {
+        "choice": "The pitch of the string stayed constant.",
+        "fault": "the pitch goes from 440 Hz to 220 Hz"
+      },
+      {
+        "choice": "The pitch of the string increased, then fell.",
+        "fault": "the pitch is highest before the peg is turned, so it never rises"
+      },
+      {
+        "choice": "The pitch of the string declined, then leveled off.",
+        "fault": "the biggest drop, 290 to 220 Hz, comes last, so it never levels off"
+      }
+    ],
+    "real_world_check": "A looser string vibrates fewer times per second, so its pitch (frequency) is lower.",
+    "prior_free": "A student may know that loosening lowers the pitch but not whether it keeps falling; only the points show it kept dropping after 4 turns."
+  },
+  {
+    "id": "MSB3-P7-03",
+    "map_area": "Physical Science",
+    "grade_target": 7,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 192-201",
+    "dci": "PS1",
+    "ngss_pe": "MS-PS1-2",
+    "kind": "investigation",
+    "stimulus": "procedure+table",
+    "format": "conditions",
+    "ask": "meets-criterion",
+    "invented": true,
+    "names_used": [
+      "Gil",
+      "Hanra",
+      "Isambard",
+      "Jacqueline"
+    ],
+    "passage": "Students mixed pairs of clear liquids in four cups. They measured the temperature before and after mixing. A temperature change of more than 10 °C was their sign that a chemical reaction had happened. They also watched for bubbles and color, but none of the cups showed either. Each cup held 50 mL of each liquid, poured from one set of bottles.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Gil",
+        "Hanra",
+        "Isambard",
+        "Jacqueline"
+      ],
+      "colLabels": [
+        "Temperature before (°C)",
+        "Temperature after (°C)"
+      ],
+      "cells": [
+        [
+          21,
+          35
+        ],
+        [
+          22,
+          29
+        ],
+        [
+          20,
+          26
+        ],
+        [
+          23,
+          17
+        ]
+      ],
+      "caption": "Table 1. Temperatures of four liquid mixtures"
+    },
+    "prompt": "Based on Table 1, which mixture showed the students' sign of a chemical reaction?",
+    "choices": [
+      "Hanra",
+      "Isambard",
+      "Jacqueline",
+      "Gil"
+    ],
+    "correct_answer": "Gil",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    "explanation": "Gil went from 21 °C to 35 °C, a change of 14 °C, the only change greater than 10 °C.",
+    "distractor_rationales": [
+      {
+        "choice": "Hanra",
+        "fault": "it warmed by only 7 °C"
+      },
+      {
+        "choice": "Isambard",
+        "fault": "it warmed by only 6 °C"
+      },
+      {
+        "choice": "Jacqueline",
+        "fault": "it cooled by 6 °C, less than 10 °C of change"
+      }
+    ],
+    "real_world_check": "A large temperature change when substances are mixed is one piece of evidence that a chemical reaction occurred."
+  },
+  {
+    "id": "MSB3-P7-04",
+    "map_area": "Physical Science",
+    "grade_target": 7,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 192-201",
+    "dci": "PS1",
+    "ngss_pe": "MS-PS1-6",
+    "kind": "investigation",
+    "stimulus": "procedure",
+    "format": "claim",
+    "ask": "supported",
+    "invented": true,
+    "names_used": [
+      "Salt Krev",
+      "Salt Lisle",
+      "Salt Mabe"
+    ],
+    "passage": "Students stirred 10 g of each of three salts into separate cups of 100 mL of water at 22 °C. When Salt Krev dissolved, the water dropped to 14 °C. When Salt Lisle dissolved, the water rose to 34 °C. When Salt Mabe dissolved, the water stayed at 22 °C. No cup bubbled or changed color, and each cup was stirred for one minute with a plastic spoon.",
+    "graphic": null,
+    "prompt": "Which claim do these results support?",
+    "choices": [
+      "Salt Mabe reacted the most of the three.",
+      "Dissolving Salt Lisle gave off thermal energy.",
+      "Salt Krev warmed the water as it dissolved.",
+      "Each of the salts took in thermal energy from the water."
+    ],
+    "correct_answer": "Dissolving Salt Lisle gave off thermal energy.",
+    "key_evidence": {
+      "refs": [
+        {
+          "quote": "When Salt Lisle dissolved, the water rose to 34 °C"
+        }
+      ]
+    },
+    "explanation": "The water warmed from 22 °C to 34 °C as Salt Lisle dissolved, so dissolving Salt Lisle released thermal energy into the water.",
+    "distractor_rationales": [
+      {
+        "choice": "Salt Mabe reacted the most of the three.",
+        "fault": "the Salt Mabe cup did not change temperature at all, so it showed the least sign of energy change"
+      },
+      {
+        "choice": "Salt Krev warmed the water as it dissolved.",
+        "fault": "the Salt Krev cup cooled from 22 °C to 14 °C"
+      },
+      {
+        "choice": "Each of the salts took in thermal energy from the water.",
+        "fault": "the Salt Lisle cup warmed, so Salt Lisle gave energy to the water"
+      }
+    ],
+    "real_world_check": "Some processes release thermal energy and warm their surroundings; others absorb it and cool them."
+  },
+  {
+    "id": "MSB3-P7-05",
+    "map_area": "Physical Science",
+    "grade_target": 7,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 192-201",
+    "dci": "PS2",
+    "ngss_pe": "MS-PS2-3",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "structure",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "Paper clips stick most strongly to the two ends of a bar magnet and hardly at all to its center. What are the two ends called?",
+    "choices": [
+      "middles",
+      "charge zones",
+      "poles",
+      "magnetic cores"
+    ],
+    "correct_answer": "poles",
+    "explanation": "The regions of a magnet where its pull is strongest are its north and south poles.",
+    "distractor_rationales": [
+      {
+        "choice": "middles",
+        "fault": "misconception: a magnet is strongest at its middle"
+      },
+      {
+        "choice": "charge zones",
+        "fault": "misconception: magnetism is the same as electric charge"
+      },
+      {
+        "choice": "magnetic cores",
+        "fault": "misconception: the strong parts of a magnet are inside it, not at its ends"
+      }
+    ],
+    "real_world_check": "A magnet's force is strongest at its poles."
+  },
+  {
+    "id": "MSB3-P7-06",
+    "map_area": "Physical Science",
+    "grade_target": 7,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 192-201",
+    "dci": "PS2",
+    "ngss_pe": "MS-PS2-1",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "predicts",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A swimmer pushes backward on the water with her hands and arms. What does the water most likely do to the swimmer at the same moment?",
+    "choices": [
+      "Her push makes the water carry her along.",
+      "The water moves back but does not push on her.",
+      "The water drives her forward with a force the same size as hers.",
+      "The water pushes her forward with a smaller force."
+    ],
+    "correct_answer": "The water drives her forward with a force the same size as hers.",
+    "explanation": "When the swimmer pushes on the water, the water pushes back on her with a force equal in size and opposite in direction.",
+    "distractor_rationales": [
+      {
+        "choice": "Her push makes the water carry her along.",
+        "fault": "misconception: the swimmer moves because the water flows forward with her"
+      },
+      {
+        "choice": "The water moves back but does not push on her.",
+        "fault": "misconception: a push on something gets no push back"
+      },
+      {
+        "choice": "The water pushes her forward with a smaller force.",
+        "fault": "misconception: the reaction force is weaker than the action force"
+      }
+    ],
+    "real_world_check": "For any pair of interacting objects, the force each exerts on the other is equal in size and opposite in direction."
+  },
+  {
+    "id": "MSB3-P7-07",
+    "map_area": "Physical Science",
+    "grade_target": 7,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 202-211",
+    "dci": "PS2",
+    "ngss_pe": "MS-PS2-2",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "values",
+    "ask": "read",
+    "invented": true,
+    "names_used": [
+      "Cart Kerrigan",
+      "Cart Lysander"
+    ],
+    "passage": "Students pulled two carts with spring scales and measured how fast each one sped up. Cart Kerrigan had a mass of 1 kg and Cart Lysander had a mass of 2 kg.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "1 N pull",
+        "2 N pull",
+        "3 N pull"
+      ],
+      "colLabels": [
+        "Cart Kerrigan (m/s per s)",
+        "Cart Lysander (m/s per s)"
+      ],
+      "cells": [
+        [
+          1,
+          0.5
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          1.5
+        ]
+      ],
+      "caption": "Table 1. How fast two carts sped up"
+    },
+    "prompt": "Based on Table 1, how fast did the 2 kg cart speed up with a 3 N pull?",
+    "choices": [
+      "1.5 m/s per s",
+      "1.0 m/s per s",
+      "3.0 m/s per s",
+      "6.0 m/s per s"
+    ],
+    "correct_answer": "1.5 m/s per s",
+    "key_evidence": {
+      "refs": [
+        [
+          2,
+          1
+        ]
+      ],
+      "expr": "v0"
+    },
+    "explanation": "The 2 kg cart is Cart Lysander; its value in the 3 N row is 1.5 m/s per s.",
+    "distractor_rationales": [
+      {
+        "choice": "1.0 m/s per s",
+        "fault": "reads the 2 kg cart with a 2 N pull"
+      },
+      {
+        "choice": "3.0 m/s per s",
+        "fault": "reads the 1 kg cart with a 3 N pull"
+      },
+      {
+        "choice": "6.0 m/s per s",
+        "fault": "multiplies the pull by the mass (3 × 2) instead of reading the table"
+      }
+    ],
+    "real_world_check": "The same force speeds up a larger mass less, and a larger force speeds up the same mass more.",
+    "prior_free": "The student must match the 2 kg cart to Cart Lysander and read the 3 N row; no standard gives this value."
+  },
+  {
+    "id": "MSB3-P7-08",
+    "map_area": "Physical Science",
+    "grade_target": 7,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 202-211",
+    "dci": "PS2",
+    "ngss_pe": "MS-PS2-1",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "values",
+    "ask": "difference",
+    "invented": true,
+    "names_used": [
+      "Launcher L-5"
+    ],
+    "passage": "Launcher L-5 sits on wheels and fires a ball with one spring. When it fires, the launcher rolls backward. Students fired balls of different masses and measured how far the launcher rolled back.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "10 g ball",
+        "20 g ball",
+        "30 g ball",
+        "40 g ball"
+      ],
+      "colLabels": [
+        "Distance the launcher rolled back (cm)"
+      ],
+      "cells": [
+        [
+          4
+        ],
+        [
+          9
+        ],
+        [
+          15
+        ],
+        [
+          22
+        ]
+      ],
+      "caption": "Table 1. Roll-back of Launcher L-5"
+    },
+    "prompt": "Based on Table 1, how much farther did the launcher roll back when it fired the 40 g ball than when it fired the 10 g ball?",
+    "choices": [
+      "22 cm",
+      "7 cm",
+      "26 cm",
+      "18 cm"
+    ],
+    "correct_answer": "18 cm",
+    "key_evidence": {
+      "refs": [
+        [
+          3,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "expr": "v0 - v1"
+    },
+    "explanation": "The launcher rolled back 22 cm with the 40 g ball and 4 cm with the 10 g ball; 22 - 4 = 18 cm.",
+    "distractor_rationales": [
+      {
+        "choice": "22 cm",
+        "fault": "reads the 40 g row instead of finding a difference"
+      },
+      {
+        "choice": "7 cm",
+        "fault": "compares the 40 g ball with the 30 g ball"
+      },
+      {
+        "choice": "26 cm",
+        "fault": "adds the 10 g and 40 g distances"
+      }
+    ],
+    "real_world_check": "When the launcher pushes the ball forward, the ball pushes the launcher backward with an equal force.",
+    "prior_free": "The standard says forces come in equal and opposite pairs; it cannot give how far this launcher rolled back."
+  },
+  {
+    "id": "MSB3-P7-09",
+    "map_area": "Physical Science",
+    "grade_target": 7,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 202-211",
+    "dci": "PS1",
+    "ngss_pe": "MS-PS1-2",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "conditions",
+    "ask": "meets-criterion",
+    "invented": true,
+    "names_used": [
+      "Sample Ib",
+      "Sample Osric",
+      "Sample Penhaligon",
+      "Sample Quarles"
+    ],
+    "passage": "Water has a density of 1.0 g/mL, and a certain oil has a density of 0.8 g/mL. An object sinks in a liquid that is less dense than it and floats in a liquid that is denser. A student found the density of four solid samples.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Sample Ib",
+        "Sample Osric",
+        "Sample Penhaligon",
+        "Sample Quarles"
+      ],
+      "colLabels": [
+        "Density (g/mL)"
+      ],
+      "cells": [
+        [
+          1.3
+        ],
+        [
+          0.7
+        ],
+        [
+          0.9
+        ],
+        [
+          1.1
+        ]
+      ],
+      "caption": "Table 1. Densities of four solid samples"
+    },
+    "prompt": "Based on Table 1, which sample would sink in the oil but float in the water?",
+    "choices": [
+      "Sample Ib",
+      "Sample Penhaligon",
+      "Sample Osric",
+      "Sample Quarles"
+    ],
+    "correct_answer": "Sample Penhaligon",
+    "key_evidence": {
+      "refs": [
+        [
+          2,
+          0
+        ]
+      ]
+    },
+    "explanation": "Sample Penhaligon, at 0.9 g/mL, is denser than the oil (0.8) and less dense than water (1.0), so it sinks in oil and floats in water.",
+    "distractor_rationales": [
+      {
+        "choice": "Sample Ib",
+        "fault": "at 1.3 g/mL it is denser than water and would sink in both liquids"
+      },
+      {
+        "choice": "Sample Osric",
+        "fault": "at 0.7 g/mL it is less dense than the oil and would float in both"
+      },
+      {
+        "choice": "Sample Quarles",
+        "fault": "at 1.1 g/mL it would sink in the water as well as the oil"
+      }
+    ],
+    "real_world_check": "Density is a property of a substance; an object floats in a liquid denser than itself and sinks in one less dense."
+  },
+  {
+    "id": "MSB3-P7-10",
+    "map_area": "Physical Science",
+    "grade_target": 7,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 202-211",
+    "dci": "PS4",
+    "ngss_pe": "MS-PS4-2",
+    "kind": "data",
+    "stimulus": "scatter",
+    "format": "trend",
+    "ask": "increase-then-decrease",
+    "invented": true,
+    "names_used": [
+      "L-40"
+    ],
+    "passage": "A student held a lens marked L-40 in sunlight and moved a paper screen to different distances behind it. A light meter read how bright the spot on the screen was.",
+    "graphic": {
+      "type": "scatter",
+      "points": [
+        [
+          4,
+          15
+        ],
+        [
+          6,
+          30
+        ],
+        [
+          8,
+          60
+        ],
+        [
+          10,
+          95
+        ],
+        [
+          12,
+          64
+        ],
+        [
+          14,
+          35
+        ],
+        [
+          16,
+          20
+        ],
+        [
+          18,
+          12
+        ]
+      ],
+      "xLabel": "Distance from lens to screen (cm)",
+      "yLabel": "Brightness of the spot (units)",
+      "caption": "Figure 1. Brightness of the spot behind lens L-40"
+    },
+    "prompt": "Based on Figure 1, what happened to the brightness of the spot as the screen moved from 4 cm to 18 cm behind the lens?",
+    "choices": [
+      "The brightness rose.",
+      "The brightness increased, then fell.",
+      "The brightness decreased.",
+      "The brightness declined, then leveled off."
+    ],
+    "correct_answer": "The brightness increased, then fell.",
+    "key_evidence": {
+      "refs": [
+        [
+          4,
+          15
+        ],
+        [
+          10,
+          95
+        ],
+        [
+          18,
+          12
+        ]
+      ]
+    },
+    "explanation": "The spot brightens from 15 to 95 units at 10 cm, then dims to 12 units at 18 cm.",
+    "distractor_rationales": [
+      {
+        "choice": "The brightness rose.",
+        "fault": "at 18 cm the spot (12) is dimmer than at 4 cm (15)"
+      },
+      {
+        "choice": "The brightness decreased.",
+        "fault": "the brightness first climbs from 15 to 95"
+      },
+      {
+        "choice": "The brightness declined, then leveled off.",
+        "fault": "the brightness climbs before it falls, and it keeps falling to 18 cm"
+      }
+    ],
+    "real_world_check": "A lens bends light so the rays meet at one distance; the spot is brightest and smallest there and dimmer nearer or farther.",
+    "prior_free": "A student might expect the spot to keep brightening or keep dimming; only the points show it peaked at 10 cm."
+  },
+  {
+    "id": "MSB3-P7-11",
+    "map_area": "Physical Science",
+    "grade_target": 7,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 202-211",
+    "dci": "PS3",
+    "ngss_pe": "MS-PS3-3",
+    "kind": "investigation",
+    "stimulus": "procedure",
+    "format": "variable",
+    "ask": "controlled",
+    "invented": true,
+    "names_used": [
+      "Sol"
+    ],
+    "passage": "Sol tested which wrap lets cocoa cool the least. He filled four mugs, each with one 250 mL scoop of cocoa from a single pot, and noted the cocoa volume. He wrapped one mug in wool, one in foil, one in paper and one in plastic, and listed the wrap type. He set two mugs on a wood table and two on a stone counter and noted the surface under the mug. He started the first mug's timer at 9:00 and the last at 9:06, and noted each timer start time. After 20 minutes he read each temperature.",
+    "graphic": null,
+    "prompt": "Which of these had only one value in Sol's investigation?",
+    "choices": [
+      "timer start time",
+      "wrap type",
+      "cocoa volume",
+      "surface under the mug"
+    ],
+    "correct_answer": "cocoa volume",
+    "key_evidence": {
+      "refs": [
+        {
+          "quote": "each with one 250 mL scoop of cocoa from a single pot"
+        }
+      ]
+    },
+    "explanation": "Every mug got one 250 mL scoop, so the cocoa volume had one value; the wraps, surfaces and start times varied.",
+    "distractor_rationales": [
+      {
+        "choice": "timer start time",
+        "fault": "the mugs started at times from 9:00 to 9:06"
+      },
+      {
+        "choice": "wrap type",
+        "fault": "the mugs had wool, foil, paper and plastic wraps"
+      },
+      {
+        "choice": "surface under the mug",
+        "fault": "two mugs sat on wood and two on stone"
+      }
+    ],
+    "real_world_check": "A factor that has only one value in every trial cannot cause differences between the trials.",
+    "option_roles": [
+      "setting",
+      "setting",
+      "setting",
+      "setting"
+    ]
+  },
+  {
+    "id": "MSB3-P7-12",
+    "map_area": "Physical Science",
+    "grade_target": 7,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 202-211",
+    "dci": "PS3",
+    "ngss_pe": "MS-PS3-5",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "example",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "Which of these is an example of kinetic energy being passed from one object to another in a collision?",
+    "choices": [
+      "a bat hitting a baseball",
+      "a lamp lighting a room",
+      "the sun heating a sidewalk",
+      "a stretched spring held still"
+    ],
+    "correct_answer": "a bat hitting a baseball",
+    "explanation": "A moving bat collides with the ball and passes some of its kinetic energy to it, so the ball speeds away.",
+    "distractor_rationales": [
+      {
+        "choice": "a lamp lighting a room",
+        "fault": "misconception: any energy passed from one thing to another is kinetic energy in a collision"
+      },
+      {
+        "choice": "the sun heating a sidewalk",
+        "fault": "misconception: sunlight warming a surface is a collision passing kinetic energy"
+      },
+      {
+        "choice": "a stretched spring held still",
+        "fault": "misconception: a stretched spring is passing energy along even while nothing moves"
+      }
+    ],
+    "real_world_check": "When two objects collide, kinetic energy can be transferred from one to the other."
+  },
+  {
+    "id": "MSB3-P7-13",
+    "map_area": "Physical Science",
+    "grade_target": 7,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 202-211",
+    "dci": "PS4",
+    "ngss_pe": "MS-PS4-2",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "example",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "Sound waves that hit a material can be reflected, passed through or absorbed. Which of these is an example of sound being absorbed?",
+    "choices": [
+      "an echo off a cliff",
+      "a drum shaking the air",
+      "a choir singing in church",
+      "a thick rug muffling footsteps"
+    ],
+    "correct_answer": "a thick rug muffling footsteps",
+    "explanation": "A thick, soft rug takes in much of the sound energy of footsteps instead of reflecting it, so the steps sound muffled.",
+    "distractor_rationales": [
+      {
+        "choice": "an echo off a cliff",
+        "fault": "misconception: sound coming back from a cliff has been absorbed by it"
+      },
+      {
+        "choice": "a drum shaking the air",
+        "fault": "misconception: making a sound is the same as absorbing it"
+      },
+      {
+        "choice": "a choir singing in church",
+        "fault": "misconception: sound filling a large room has been absorbed by the room"
+      }
+    ],
+    "real_world_check": "Soft, thick materials absorb sound waves; hard surfaces reflect them."
+  },
+  {
+    "id": "MSB3-P7-14",
+    "map_area": "Physical Science",
+    "grade_target": 7,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 212-221",
+    "dci": "PS3",
+    "ngss_pe": "MS-PS3-3",
+    "kind": "data",
+    "stimulus": "bar",
+    "format": "conditions",
+    "ask": "meets-criterion",
+    "invented": true,
+    "names_used": [
+      "Roof Seward",
+      "Roof Teo",
+      "Roof Underhill",
+      "Roof Vaughan",
+      "Roof Wolstenholme"
+    ],
+    "passage": "Builders tested five roofing materials on model houses in the sun. At noon they read the air temperature in each model attic.",
+    "graphic": {
+      "type": "bar",
+      "bars": [
+        {
+          "label": "Roof Seward",
+          "value": 44
+        },
+        {
+          "label": "Roof Teo",
+          "value": 22
+        },
+        {
+          "label": "Roof Underhill",
+          "value": 37
+        },
+        {
+          "label": "Roof Vaughan",
+          "value": 30
+        },
+        {
+          "label": "Roof Wolstenholme",
+          "value": 27
+        }
+      ],
+      "xLabel": "Roof material",
+      "yLabel": "Attic temperature at noon (°C)",
+      "caption": "Figure 1. Attic temperatures under five roofs"
+    },
+    "prompt": "Based on Figure 1, which roof kept its attic warmer than 22 °C but cooler than 33 °C?",
+    "choices": [
+      "Roof Teo",
+      "Roof Underhill",
+      "Roof Wolstenholme",
+      "Roof Seward"
+    ],
+    "correct_answer": "Roof Wolstenholme",
+    "key_evidence": {
+      "refs": [
+        "Roof Wolstenholme"
+      ]
+    },
+    "explanation": "The Roof Wolstenholme bar sits between the 22 and 33 ticks, at about 27 °C.",
+    "distractor_rationales": [
+      {
+        "choice": "Roof Teo",
+        "fault": "its bar is at the 22 tick, not warmer than 22 °C"
+      },
+      {
+        "choice": "Roof Underhill",
+        "fault": "its bar is above the 33 tick, at about 37 °C"
+      },
+      {
+        "choice": "Roof Seward",
+        "fault": "its bar is the tallest, at 44 °C"
+      }
+    ],
+    "real_world_check": "Materials absorb and transfer different amounts of the sun's energy, so attics under them warm by different amounts."
+  },
+  {
+    "id": "MSB3-P7-15",
+    "map_area": "Physical Science",
+    "grade_target": 7,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 212-221",
+    "dci": "PS1",
+    "ngss_pe": "MS-PS1-4",
+    "kind": "data",
+    "stimulus": "line",
+    "format": "values",
+    "ask": "read",
+    "invented": true,
+    "names_used": [
+      "W-8"
+    ],
+    "passage": "A melted wax labeled W-8 was left to cool in a beaker. A student read its temperature every two minutes.",
+    "graphic": {
+      "type": "line",
+      "series": [
+        {
+          "points": [
+            [
+              0,
+              90
+            ],
+            [
+              2,
+              74
+            ],
+            [
+              4,
+              62
+            ],
+            [
+              6,
+              62
+            ],
+            [
+              8,
+              62
+            ],
+            [
+              10,
+              50
+            ],
+            [
+              12,
+              40
+            ],
+            [
+              14,
+              32
+            ],
+            [
+              16,
+              26
+            ]
+          ]
+        }
+      ],
+      "xLabel": "Time (min)",
+      "yLabel": "Temperature (°C)",
+      "caption": "Figure 1. Cooling of wax W-8"
+    },
+    "prompt": "Based on Figure 1, about what was the temperature of the wax at 16 minutes?",
+    "choices": [
+      "26 °C",
+      "90 °C",
+      "62 °C",
+      "45 °C"
+    ],
+    "correct_answer": "26 °C",
+    "key_evidence": {
+      "refs": [
+        [
+          16,
+          26
+        ]
+      ],
+      "expr": "v0"
+    },
+    "explanation": "The 16-minute point is the lowest on the graph, a little above the 22.5 tick, at about 26 °C.",
+    "distractor_rationales": [
+      {
+        "choice": "90 °C",
+        "fault": "reads the starting point at 0 minutes"
+      },
+      {
+        "choice": "62 °C",
+        "fault": "reads the flat part, from 4 to 8 minutes"
+      },
+      {
+        "choice": "45 °C",
+        "fault": "reads the 16-minute point at the 45 tick"
+      }
+    ],
+    "real_world_check": "A cooling liquid drops in temperature, holds steady while it freezes, then cools again as a solid.",
+    "prior_free": "The standard says temperature relates to particle motion; it cannot give this wax's temperature at 16 minutes."
+  },
+  {
+    "id": "MSB3-P7-16",
+    "map_area": "Physical Science",
+    "grade_target": 7,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 212-221",
+    "dci": "PS1",
+    "ngss_pe": "MS-PS1-6",
+    "kind": "investigation",
+    "stimulus": "procedure+table",
+    "format": "values",
+    "ask": "difference",
+    "invented": true,
+    "names_used": [
+      "Warmer Yusra"
+    ],
+    "passage": "Students tested Warmer Yusra, a hand warmer that heats up when its iron powder reacts with air. They opened the packet in a room at 20 °C and read the temperature of the packet every 10 minutes. They wanted to know how much the reaction warmed the packet over its first half hour, so they kept it on one wooden board the whole time.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "0 min",
+        "10 min",
+        "20 min",
+        "30 min"
+      ],
+      "colLabels": [
+        "Packet temperature (°C)"
+      ],
+      "cells": [
+        [
+          20
+        ],
+        [
+          38
+        ],
+        [
+          47
+        ],
+        [
+          51
+        ]
+      ],
+      "caption": "Table 1. Temperature of Warmer Yusra"
+    },
+    "prompt": "Based on Table 1, by how many degrees did the packet warm from 0 minutes to 30 minutes?",
+    "choices": [
+      "18 °C",
+      "4 °C",
+      "31 °C",
+      "9 °C"
+    ],
+    "correct_answer": "31 °C",
+    "key_evidence": {
+      "refs": [
+        [
+          3,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "expr": "v0 - v1"
+    },
+    "explanation": "The packet went from 20 °C to 51 °C; 51 - 20 = 31 °C.",
+    "distractor_rationales": [
+      {
+        "choice": "18 °C",
+        "fault": "uses only the first 10 minutes"
+      },
+      {
+        "choice": "4 °C",
+        "fault": "uses only the change from 20 to 30 minutes"
+      },
+      {
+        "choice": "9 °C",
+        "fault": "uses only the change from 10 to 20 minutes"
+      }
+    ],
+    "real_world_check": "Some chemical reactions release thermal energy, warming their surroundings.",
+    "prior_free": "The standard says reactions can release energy; it cannot give how much this packet warmed."
+  },
+  {
+    "id": "MSB3-P7-17",
+    "map_area": "Physical Science",
+    "grade_target": 7,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 212-221",
+    "dci": "PS4",
+    "ngss_pe": "MS-PS4-1",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "explains",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A truck with a very loud horn drives past a house, and the window glass rattles. A car with a soft horn drives past, and the glass barely moves. Which best explains the difference?",
+    "choices": [
+      "The glass is pulled toward a loud sound.",
+      "Soft sounds pass through glass and do not touch it.",
+      "The louder sound wave carries more energy to the glass.",
+      "Loud sounds make the air near the window colder and stiffer."
+    ],
+    "correct_answer": "The louder sound wave carries more energy to the glass.",
+    "explanation": "A louder sound has a larger amplitude, so the wave carries more energy, and more energy reaching the glass makes it vibrate more.",
+    "distractor_rationales": [
+      {
+        "choice": "The glass is pulled toward a loud sound.",
+        "fault": "misconception: loud sounds pull on objects instead of carrying energy to them"
+      },
+      {
+        "choice": "Soft sounds pass through glass and do not touch it.",
+        "fault": "misconception: quiet sounds do not interact with materials at all"
+      },
+      {
+        "choice": "Loud sounds make the air near the window colder and stiffer.",
+        "fault": "misconception: loudness changes the temperature of the air"
+      }
+    ],
+    "real_world_check": "The energy a wave carries grows with its amplitude; louder sounds have larger amplitudes."
+  },
+  {
+    "id": "MSB3-P7-18",
+    "map_area": "Physical Science",
+    "grade_target": 7,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 212-221",
+    "dci": "PS3",
+    "ngss_pe": "MS-PS3-5",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "explains",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A girl pumps up a bike tire quickly, pushing the handle down again and again. The bottom of the pump gets warm. Which best explains this?",
+    "choices": [
+      "The pump soaks up heat left over from the sun.",
+      "Warm air from outside gets trapped inside the pump.",
+      "Rubbing your hand on the pump warms your hand, not the pump.",
+      "Work done on the air becomes thermal energy."
+    ],
+    "correct_answer": "Work done on the air becomes thermal energy.",
+    "explanation": "Pushing the handle does work on the air, squeezing it; that energy is transferred and shows up as thermal energy, warming the pump.",
+    "distractor_rationales": [
+      {
+        "choice": "The pump soaks up heat left over from the sun.",
+        "fault": "misconception: the warmth comes from stored sunlight, not from the work"
+      },
+      {
+        "choice": "Warm air from outside gets trapped inside the pump.",
+        "fault": "misconception: the pump fills with air that was already warm"
+      },
+      {
+        "choice": "Rubbing your hand on the pump warms your hand, not the pump.",
+        "fault": "misconception: the pump itself cannot gain thermal energy from pumping"
+      }
+    ],
+    "real_world_check": "When work is done on an object, energy is transferred to it, and some may become thermal energy."
+  },
+  {
+    "id": "MSB3-P7-19",
+    "map_area": "Physical Science",
+    "grade_target": 7,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 212-221",
+    "dci": "PS2",
+    "ngss_pe": "MS-PS2-4",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "predicts",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "Suppose Earth's mass doubled but Earth stayed the same size. What would most likely happen to your weight while standing on it?",
+    "choices": [
+      "You would weigh half what you do now.",
+      "You would weigh four times as much as now.",
+      "You would weigh about twice as much as you do now.",
+      "Your weight would stay the same as it is now."
+    ],
+    "correct_answer": "You would weigh about twice as much as you do now.",
+    "explanation": "Gravitational force grows with mass; at the same distance from the center, twice the mass gives about twice the pull, so twice the weight.",
+    "distractor_rationales": [
+      {
+        "choice": "You would weigh half what you do now.",
+        "fault": "misconception: a more massive planet pulls less"
+      },
+      {
+        "choice": "You would weigh four times as much as now.",
+        "fault": "misconception: doubling a planet's mass squares the pull on you"
+      },
+      {
+        "choice": "Your weight would stay the same as it is now.",
+        "fault": "misconception: weight depends only on your own mass, not on the planet"
+      }
+    ],
+    "real_world_check": "Gravitational force depends on the masses of the objects and the distance between them."
+  },
+  {
+    "id": "MSB3-P8-01",
+    "map_area": "Physical Science",
+    "grade_target": 8,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 195-204",
+    "dci": "PS4",
+    "ngss_pe": "MS-PS4-1",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "values",
+    "ask": "interpolate",
+    "invented": true,
+    "names_used": [
+      "WT-3"
+    ],
+    "passage": "A wave maker in wave tank WT-3 sent waves of different heights (amplitudes) into a sensor that measured the energy each wave delivered.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "1 cm",
+        "2 cm",
+        "3 cm",
+        "4 cm",
+        "5 cm"
+      ],
+      "colLabels": [
+        "Energy delivered (units)"
+      ],
+      "cells": [
+        [
+          2
+        ],
+        [
+          8
+        ],
+        [
+          18
+        ],
+        [
+          32
+        ],
+        [
+          50
+        ]
+      ],
+      "caption": "Table 1. Energy delivered by waves of five amplitudes"
+    },
+    "prompt": "Using Table 1, what is the best estimate of the energy delivered by a wave with an amplitude of 4.5 cm?",
+    "choices": [
+      "32 units",
+      "25 units",
+      "13 units",
+      "41 units"
+    ],
+    "correct_answer": "41 units",
+    "key_evidence": {
+      "refs": [
+        [
+          3,
+          0
+        ],
+        [
+          4,
+          0
+        ]
+      ],
+      "expr": "(v0 + v1) / 2"
+    },
+    "explanation": "4.5 cm is halfway between 4 cm (32 units) and 5 cm (50 units), so the best estimate is about 41 units.",
+    "distractor_rationales": [
+      {
+        "choice": "32 units",
+        "fault": "reads the 4 cm row instead of estimating"
+      },
+      {
+        "choice": "25 units",
+        "fault": "estimates between the 3 cm and 4 cm rows"
+      },
+      {
+        "choice": "13 units",
+        "fault": "estimates between the 2 cm and 3 cm rows"
+      }
+    ],
+    "real_world_check": "A wave with a larger amplitude carries more energy; the energy grows faster than the amplitude.",
+    "prior_free": "The standard says energy rises with amplitude; it cannot give this tank's energy at 4.5 cm."
+  },
+  {
+    "id": "MSB3-P8-02",
+    "map_area": "Physical Science",
+    "grade_target": 8,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 195-204",
+    "dci": "PS1",
+    "ngss_pe": "MS-PS1-4",
+    "kind": "investigation",
+    "stimulus": "procedure",
+    "format": "variable",
+    "ask": "independent",
+    "invented": true,
+    "names_used": [
+      "Aurelio"
+    ],
+    "passage": "Aurelio wanted to see how warmth affects how fast particles of dye spread through water. He filled four clear cups and set the water temperature at 10, 30, 50 or 70 °C by mixing ice water and hot water. He used the kind of cup used in the school lab, four matching glass cups. Into each cup he squeezed three drops of blue dye, and he wrote the number of dye drops on a card. He did all four cups in the morning and noted the time of day he worked. He timed how long the color took to fill each cup.",
+    "graphic": null,
+    "prompt": "Which quantity did Aurelio give four values on purpose?",
+    "choices": [
+      "kind of cup used",
+      "temperature",
+      "number of dye drops",
+      "time of day he worked"
+    ],
+    "correct_answer": "temperature",
+    "key_evidence": {
+      "refs": [
+        {
+          "quote": "set the water temperature at 10, 30, 50 or 70 °C"
+        }
+      ]
+    },
+    "explanation": "Aurelio set four water temperatures, 10, 30, 50 and 70 °C; the cups, the drops and the time of day had one value each.",
+    "distractor_rationales": [
+      {
+        "choice": "kind of cup used",
+        "fault": "all four cups were matching glass lab cups"
+      },
+      {
+        "choice": "number of dye drops",
+        "fault": "every cup got three drops"
+      },
+      {
+        "choice": "time of day he worked",
+        "fault": "he did all four cups in one morning"
+      }
+    ],
+    "real_world_check": "The independent variable is the factor an investigator sets to different values on purpose.",
+    "option_roles": [
+      "setting",
+      "setting",
+      "setting",
+      "setting"
+    ]
+  },
+  {
+    "id": "MSB3-P8-03",
+    "map_area": "Physical Science",
+    "grade_target": 8,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 195-204",
+    "dci": "PS1",
+    "ngss_pe": "MS-PS1-3",
+    "kind": "investigation",
+    "stimulus": "procedure",
+    "format": "claim",
+    "ask": "not-supported",
+    "invented": true,
+    "names_used": [
+      "Bettina"
+    ],
+    "passage": "Bettina tested three fabrics: cotton, which comes from a plant, and nylon and polyester, which are made in factories from oil. She dipped a 10 g square of each fabric in water for one minute and weighed it again. The cotton weighed 31 g, the polyester 14 g and the nylon 12 g. Then she hung all three to dry. The nylon dried in 20 minutes, the polyester in 25 minutes and the cotton in 70 minutes.",
+    "graphic": null,
+    "prompt": "Which claim is NOT supported by Bettina's results?",
+    "choices": [
+      "Cotton dried faster than nylon did.",
+      "Cotton soaked up more water than either factory-made fabric.",
+      "Nylon dried first of the three.",
+      "The fabric holding the most water took longest to dry."
+    ],
+    "correct_answer": "Cotton dried faster than nylon did.",
+    "key_evidence": {
+      "refs": [
+        {
+          "quote": "The nylon dried in 20 minutes, the polyester in 25 minutes and the cotton in 70 minutes"
+        }
+      ]
+    },
+    "explanation": "Nylon dried in 20 minutes and cotton in 70 minutes, so cotton dried more slowly, not faster.",
+    "distractor_rationales": [
+      {
+        "choice": "Cotton soaked up more water than either factory-made fabric.",
+        "fault": "cotton gained 21 g of water; polyester gained 4 g and nylon 2 g"
+      },
+      {
+        "choice": "Nylon dried first of the three.",
+        "fault": "nylon took 20 minutes, the shortest time"
+      },
+      {
+        "choice": "The fabric holding the most water took longest to dry.",
+        "fault": "cotton held the most water and took 70 minutes, the longest"
+      }
+    ],
+    "real_world_check": "Synthetic materials made from natural resources such as oil can have properties different from natural materials."
+  },
+  {
+    "id": "MSB3-P8-04",
+    "map_area": "Physical Science",
+    "grade_target": 8,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 195-204",
+    "dci": "PS3",
+    "ngss_pe": "MS-PS3-3",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "structure",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A car engine gets very hot. Hot liquid from the engine flows through a metal part with many thin fins at the front of the car, and air rushing past the fins carries thermal energy away. What is this part called?",
+    "choices": [
+      "thermostat",
+      "exhaust pipe",
+      "insulation pad",
+      "radiator"
+    ],
+    "correct_answer": "radiator",
+    "explanation": "A radiator passes thermal energy from the hot liquid through its metal fins to the air, cooling the engine.",
+    "distractor_rationales": [
+      {
+        "choice": "thermostat",
+        "fault": "misconception: the part that senses temperature is what removes the heat"
+      },
+      {
+        "choice": "exhaust pipe",
+        "fault": "misconception: an engine gets rid of heat only through its exhaust gases"
+      },
+      {
+        "choice": "insulation pad",
+        "fault": "misconception: thin metal fins keep heat in rather than letting it out"
+      }
+    ],
+    "real_world_check": "Devices such as radiators are designed to increase thermal energy transfer, using thin metal fins with a large surface."
+  },
+  {
+    "id": "MSB3-P8-05",
+    "map_area": "Physical Science",
+    "grade_target": 8,
+    "tier": "low",
+    "difficulty": "easy",
+    "rit_band_target": "RIT 195-204",
+    "dci": "PS2",
+    "ngss_pe": "MS-PS2-5",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "example",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "Which of these is an example of a force that acts without the objects touching?",
+    "choices": [
+      "a hand pushing a cart",
+      "a magnet tugging a nail",
+      "ropes towing a heavy crate",
+      "friction slowing a sliding sled"
+    ],
+    "correct_answer": "a magnet tugging a nail",
+    "explanation": "A magnet pulls on a nail through a magnetic field, so the force acts even when they are apart.",
+    "distractor_rationales": [
+      {
+        "choice": "a hand pushing a cart",
+        "fault": "misconception: a push from a hand acts at a distance, but the hand touches the cart"
+      },
+      {
+        "choice": "ropes towing a heavy crate",
+        "fault": "misconception: a pull through a rope acts without contact, but the rope touches the crate"
+      },
+      {
+        "choice": "friction slowing a sliding sled",
+        "fault": "misconception: friction acts at a distance, but it needs the surfaces to touch"
+      }
+    ],
+    "real_world_check": "Magnetic, electric and gravitational forces can act on objects that are not touching."
+  },
+  {
+    "id": "MSB3-P8-06",
+    "map_area": "Physical Science",
+    "grade_target": 8,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 205-214",
+    "dci": "PS1",
+    "ngss_pe": "MS-PS1-5",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "values",
+    "ask": "ratio",
+    "invented": true,
+    "names_used": [
+      "Solution Pender",
+      "Solution Quell"
+    ],
+    "passage": "When Solution Pender is mixed with Solution Quell, a yellow solid forms. Students mixed different volumes of Solution Pender with plenty of Solution Quell and weighed the dried solid each time.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "2 mL",
+        "4 mL",
+        "6 mL",
+        "10 mL",
+        "12 mL"
+      ],
+      "colLabels": [
+        "Yellow solid formed (mg)"
+      ],
+      "cells": [
+        [
+          30
+        ],
+        [
+          60
+        ],
+        [
+          90
+        ],
+        [
+          150
+        ],
+        [
+          180
+        ]
+      ],
+      "caption": "Table 1. Solid formed from different volumes of Solution Pender"
+    },
+    "prompt": "Based on Table 1, 10 mL of Solution Pender formed how many times the mass of solid that 2 mL formed?",
+    "choices": [
+      "6 times",
+      "120 times",
+      "5 times",
+      "10 times"
+    ],
+    "correct_answer": "5 times",
+    "key_evidence": {
+      "refs": [
+        [
+          3,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "expr": "v0 / v1"
+    },
+    "explanation": "10 mL formed 150 mg and 2 mL formed 30 mg; 150 / 30 = 5.",
+    "distractor_rationales": [
+      {
+        "choice": "6 times",
+        "fault": "uses the 12 mL row (180 mg) instead of the 10 mL row"
+      },
+      {
+        "choice": "120 times",
+        "fault": "subtracts 30 from 150 instead of dividing"
+      },
+      {
+        "choice": "10 times",
+        "fault": "takes the volume, 10 mL, as the answer"
+      }
+    ],
+    "real_world_check": "When one reactant runs out first, the amount of product grows in step with that reactant, since atoms are rearranged, not created.",
+    "prior_free": "The standard says atoms are conserved in reactions; it cannot give how much solid these volumes formed."
+  },
+  {
+    "id": "MSB3-P8-07",
+    "map_area": "Physical Science",
+    "grade_target": 8,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 205-214",
+    "dci": "PS3",
+    "ngss_pe": "MS-PS3-2",
+    "kind": "data",
+    "stimulus": "table",
+    "format": "conditions",
+    "ask": "greatest",
+    "invented": true,
+    "names_used": [
+      "Abernethy",
+      "Bo",
+      "Corliss",
+      "Dunne"
+    ],
+    "passage": "Workers lifted four crates onto shelves. The gravitational potential energy a crate gains equals its weight times the height it is lifted.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Abernethy",
+        "Bo",
+        "Corliss",
+        "Dunne"
+      ],
+      "colLabels": [
+        "Weight (N)",
+        "Height lifted (m)"
+      ],
+      "cells": [
+        [
+          100,
+          3
+        ],
+        [
+          400,
+          1
+        ],
+        [
+          150,
+          4
+        ],
+        [
+          300,
+          1.5
+        ]
+      ],
+      "caption": "Table 1. Four crates lifted onto shelves"
+    },
+    "prompt": "Based on Table 1, which crate gained the greatest gravitational potential energy?",
+    "choices": [
+      "Corliss",
+      "Abernethy",
+      "Bo",
+      "Dunne"
+    ],
+    "correct_answer": "Corliss",
+    "key_evidence": {
+      "refs": [
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ]
+      ]
+    },
+    "explanation": "Corliss gained 150 × 4 = 600 J, more than 300, 400 or 450 J for the others.",
+    "distractor_rationales": [
+      {
+        "choice": "Abernethy",
+        "fault": "it gained 100 × 3 = 300 J"
+      },
+      {
+        "choice": "Bo",
+        "fault": "it is the heaviest but gained 400 × 1 = 400 J"
+      },
+      {
+        "choice": "Dunne",
+        "fault": "it gained 300 × 1.5 = 450 J, less than Corliss"
+      }
+    ],
+    "real_world_check": "Gravitational potential energy depends on both an object's weight and its height."
+  },
+  {
+    "id": "MSB3-P8-08",
+    "map_area": "Physical Science",
+    "grade_target": 8,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 205-214",
+    "dci": "PS4",
+    "ngss_pe": "MS-PS4-1",
+    "kind": "data",
+    "stimulus": "bar",
+    "format": "conditions",
+    "ask": "greatest",
+    "invented": true,
+    "names_used": [
+      "Speaker Ek",
+      "Speaker Fenwright",
+      "Speaker Gareth",
+      "Speaker Hume",
+      "Speaker Inverarity"
+    ],
+    "passage": "A technician played one note at one volume setting through five speakers and measured how far each speaker's cone moved back and forth.",
+    "graphic": {
+      "type": "bar",
+      "bars": [
+        {
+          "label": "Speaker Ek",
+          "value": 8
+        },
+        {
+          "label": "Speaker Fenwright",
+          "value": 3
+        },
+        {
+          "label": "Speaker Gareth",
+          "value": 5
+        },
+        {
+          "label": "Speaker Hume",
+          "value": 6
+        },
+        {
+          "label": "Speaker Inverarity",
+          "value": 2
+        }
+      ],
+      "xLabel": "Speaker",
+      "yLabel": "Back-and-forth motion of the cone (mm)",
+      "caption": "Figure 1. Cone motion of five speakers"
+    },
+    "prompt": "Based on Figure 1, which speaker made sound waves with the greatest amplitude?",
+    "choices": [
+      "Speaker Ek",
+      "Speaker Gareth",
+      "Speaker Hume",
+      "Speaker Inverarity"
+    ],
+    "correct_answer": "Speaker Ek",
+    "key_evidence": {
+      "refs": [
+        "Speaker Ek"
+      ]
+    },
+    "explanation": "The cone of Speaker Ek moved the farthest, 8 mm, and a larger vibration makes a wave of larger amplitude.",
+    "distractor_rationales": [
+      {
+        "choice": "Speaker Gareth",
+        "fault": "its bar is about 5 mm, between the 4 and 6 ticks, below Speaker Ek"
+      },
+      {
+        "choice": "Speaker Hume",
+        "fault": "its bar reaches the 6 tick, three quarters of the way up"
+      },
+      {
+        "choice": "Speaker Inverarity",
+        "fault": "its bar is the shortest, so its waves had the smallest amplitude"
+      }
+    ],
+    "real_world_check": "The amplitude of a sound wave depends on how far the vibrating source moves."
+  },
+  {
+    "id": "MSB3-P8-09",
+    "map_area": "Physical Science",
+    "grade_target": 8,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 205-214",
+    "dci": "PS3",
+    "ngss_pe": "MS-PS3-4",
+    "kind": "data",
+    "stimulus": "line",
+    "format": "values",
+    "ask": "interpolate",
+    "invented": true,
+    "names_used": [
+      "Beaker Jory"
+    ],
+    "passage": "An electric heater added energy to 200 g of cooking oil in Beaker Jory. A student read the oil temperature after each 4 kJ.",
+    "graphic": {
+      "type": "line",
+      "series": [
+        {
+          "points": [
+            [
+              0,
+              20
+            ],
+            [
+              4,
+              30
+            ],
+            [
+              8,
+              40
+            ],
+            [
+              12,
+              50
+            ],
+            [
+              16,
+              60
+            ]
+          ]
+        }
+      ],
+      "xLabel": "Energy added (kJ)",
+      "yLabel": "Oil temperature (°C)",
+      "caption": "Figure 1. Heating cooking oil in Beaker Jory"
+    },
+    "prompt": "Based on Figure 1, what is the best estimate of the oil temperature once 10 kJ had gone into it?",
+    "choices": [
+      "20 °C",
+      "60 °C",
+      "45 °C",
+      "35 °C"
+    ],
+    "correct_answer": "45 °C",
+    "key_evidence": {
+      "refs": [
+        [
+          8,
+          40
+        ],
+        [
+          12,
+          50
+        ]
+      ],
+      "expr": "(v0 + v1) / 2"
+    },
+    "explanation": "10 kJ is halfway between 8 kJ (40 °C) and 12 kJ (50 °C), so about 45 °C.",
+    "distractor_rationales": [
+      {
+        "choice": "20 °C",
+        "fault": "reads the starting temperature"
+      },
+      {
+        "choice": "60 °C",
+        "fault": "reads the last point, at 16 kJ"
+      },
+      {
+        "choice": "35 °C",
+        "fault": "estimates between 4 kJ and 8 kJ"
+      }
+    ],
+    "real_world_check": "Adding energy to a fixed mass of a substance raises its temperature by a steady amount per unit of energy.",
+    "prior_free": "The standard relates energy, mass and temperature change; it cannot give this oil's temperature at 10 kJ."
+  },
+  {
+    "id": "MSB3-P8-10",
+    "map_area": "Physical Science",
+    "grade_target": 8,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 205-214",
+    "dci": "PS2",
+    "ngss_pe": "MS-PS2-2",
+    "kind": "data",
+    "stimulus": "line",
+    "format": "trend",
+    "ask": "no-change",
+    "invented": true,
+    "names_used": [
+      "P-9"
+    ],
+    "passage": "A student gave a puck marked P-9 one push on a long air-hockey table with the air on. A camera measured its speed every second.",
+    "graphic": {
+      "type": "line",
+      "series": [
+        {
+          "points": [
+            [
+              0,
+              1.2
+            ],
+            [
+              1,
+              1.2
+            ],
+            [
+              2,
+              1.2
+            ],
+            [
+              3,
+              1.2
+            ],
+            [
+              4,
+              1.2
+            ]
+          ]
+        }
+      ],
+      "xLabel": "Time after the push (s)",
+      "yLabel": "Speed (m/s)",
+      "caption": "Figure 1. Speed of puck P-9"
+    },
+    "prompt": "Based on Figure 1, what happened to the speed of the puck during the 4 seconds after the push?",
+    "choices": [
+      "The puck's speed fell.",
+      "The puck's speed stayed the same.",
+      "The puck's speed increased, then stayed the same.",
+      "The puck's speed decreased, then remained constant."
+    ],
+    "correct_answer": "The puck's speed stayed the same.",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          1.2
+        ],
+        [
+          4,
+          1.2
+        ]
+      ]
+    },
+    "explanation": "The speed reads 1.2 m/s at every second, so it did not change.",
+    "distractor_rationales": [
+      {
+        "choice": "The puck's speed fell.",
+        "fault": "the speed reads 1.2 m/s at every second"
+      },
+      {
+        "choice": "The puck's speed increased, then stayed the same.",
+        "fault": "there is no early rise; it starts at 1.2 m/s"
+      },
+      {
+        "choice": "The puck's speed decreased, then remained constant.",
+        "fault": "there is no early drop; it starts at 1.2 m/s and stays there"
+      }
+    ],
+    "real_world_check": "With almost no friction and no other force, a moving object keeps its speed.",
+    "prior_free": "Many students expect a sliding puck to slow down; only the points show this one kept the same speed."
+  },
+  {
+    "id": "MSB3-P8-11",
+    "map_area": "Physical Science",
+    "grade_target": 8,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 205-214",
+    "dci": "PS3",
+    "ngss_pe": "MS-PS3-3",
+    "kind": "investigation",
+    "stimulus": "procedure+table",
+    "format": "conditions",
+    "ask": "controlled-pair",
+    "invented": true,
+    "names_used": [
+      "Liefer",
+      "Marchand",
+      "Ravenhurst",
+      "Hollingsworth",
+      "Ilfra"
+    ],
+    "passage": "Students built five model solar water heaters, each a shallow box with a coil of tube inside. They pumped water through each box for 20 minutes in sunlight and measured how much the water warmed. A design that warms the water more collects more energy. They used one pump and the same sunny afternoon for all five. Table 1 shows how each heater was built.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "Ilfra",
+        "Liefer",
+        "Marchand",
+        "Ravenhurst",
+        "Hollingsworth"
+      ],
+      "colLabels": [
+        "Inside color",
+        "Glass cover?",
+        "Tube length (m)"
+      ],
+      "cells": [
+        [
+          "white",
+          "yes",
+          3
+        ],
+        [
+          "black",
+          "yes",
+          3
+        ],
+        [
+          "black",
+          "no",
+          3
+        ],
+        [
+          "black",
+          "yes",
+          5
+        ],
+        [
+          "white",
+          "no",
+          3
+        ]
+      ],
+      "caption": "Table 1. Setup of five model solar heaters"
+    },
+    "prompt": "The students want to test only whether the inside color affects how much the water warms. Which heater should they compare with Ilfra?",
+    "choices": [
+      "Marchand",
+      "Ravenhurst",
+      "Liefer",
+      "Hollingsworth"
+    ],
+    "correct_answer": "Liefer",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ]
+    },
+    "explanation": "Liefer matches Ilfra in having a glass cover and a 3 m tube and differs only in inside color (black against white).",
+    "distractor_rationales": [
+      {
+        "choice": "Marchand",
+        "fault": "it is black inside but has no glass cover"
+      },
+      {
+        "choice": "Ravenhurst",
+        "fault": "it is black inside but has a longer tube"
+      },
+      {
+        "choice": "Hollingsworth",
+        "fault": "it is white inside like Ilfra and also lacks a cover"
+      }
+    ],
+    "real_world_check": "To test one design factor, the two designs compared must match in every other factor."
+  },
+  {
+    "id": "MSB3-P8-12",
+    "map_area": "Physical Science",
+    "grade_target": 8,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 205-214",
+    "dci": "PS2",
+    "ngss_pe": "MS-PS2-4",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "term",
+    "ask": "quantity",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A space probe lands on several planets that have about the same size. On which property of a planet does the strength of its gravitational pull on the probe mainly depend?",
+    "choices": [
+      "its rock color",
+      "the planet's warmth",
+      "the planet's cloudiness",
+      "the planet's mass"
+    ],
+    "correct_answer": "the planet's mass",
+    "explanation": "For planets of about the same size, a larger mass gives a stronger gravitational pull at the surface.",
+    "distractor_rationales": [
+      {
+        "choice": "its rock color",
+        "fault": "misconception: what a planet is made of shows in its color, and color affects gravity"
+      },
+      {
+        "choice": "the planet's warmth",
+        "fault": "misconception: hotter planets pull harder on objects"
+      },
+      {
+        "choice": "the planet's cloudiness",
+        "fault": "misconception: gravity comes from the air pressing down on things"
+      }
+    ],
+    "real_world_check": "Gravitational force depends on the masses of the interacting objects and the distance between them."
+  },
+  {
+    "id": "MSB3-P8-13",
+    "map_area": "Physical Science",
+    "grade_target": 8,
+    "tier": "mid",
+    "difficulty": "medium",
+    "rit_band_target": "RIT 205-214",
+    "dci": "PS2",
+    "ngss_pe": "MS-PS2-5",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "explains",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "Iron filings are sprinkled on a sheet of paper laid over a bar magnet. The filings form curved lines that loop from one end of the magnet to the other. Which best explains this?",
+    "choices": [
+      "The magnet heats the filings so they melt into lines.",
+      "The filings line up along the magnet's field.",
+      "Static charge from the paper pulls the filings into lines.",
+      "Air flowing around the magnet pushes the filings into lines."
+    ],
+    "correct_answer": "The filings line up along the magnet's field.",
+    "explanation": "A magnet has a magnetic field around it; each filing becomes a tiny magnet and lines up with the field, showing its shape.",
+    "distractor_rationales": [
+      {
+        "choice": "The magnet heats the filings so they melt into lines.",
+        "fault": "misconception: magnets act by heating objects"
+      },
+      {
+        "choice": "Static charge from the paper pulls the filings into lines.",
+        "fault": "misconception: the pattern comes from electric charge on the paper"
+      },
+      {
+        "choice": "Air flowing around the magnet pushes the filings into lines.",
+        "fault": "misconception: magnets act by moving the air"
+      }
+    ],
+    "real_world_check": "Magnets have fields that extend into space and act on magnetic materials such as iron."
+  },
+  {
+    "id": "MSB3-P8-14",
+    "map_area": "Physical Science",
+    "grade_target": 8,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 215-224",
+    "dci": "PS2",
+    "ngss_pe": "MS-PS2-2",
+    "kind": "data",
+    "stimulus": "bar",
+    "format": "values",
+    "ask": "difference",
+    "invented": true,
+    "names_used": [
+      "Rocket Quoyle",
+      "Rocket Rook",
+      "Rocket Sabre",
+      "Rocket Tilly",
+      "Rocket Ulla"
+    ],
+    "passage": "Five water rockets of different masses were each launched with one pump of air. Students measured how far each one flew.",
+    "graphic": {
+      "type": "bar",
+      "bars": [
+        {
+          "label": "Rocket Quoyle",
+          "value": 64
+        },
+        {
+          "label": "Rocket Rook",
+          "value": 24
+        },
+        {
+          "label": "Rocket Sabre",
+          "value": 48
+        },
+        {
+          "label": "Rocket Tilly",
+          "value": 56
+        },
+        {
+          "label": "Rocket Ulla",
+          "value": 16
+        }
+      ],
+      "xLabel": "Rocket",
+      "yLabel": "Distance flown (m)",
+      "caption": "Figure 1. Distances flown by five water rockets"
+    },
+    "prompt": "Based on Figure 1, how much farther did Rocket Sabre fly than Rocket Rook?",
+    "choices": [
+      "48 m",
+      "16 m",
+      "56 m",
+      "24 m"
+    ],
+    "correct_answer": "24 m",
+    "key_evidence": {
+      "refs": [
+        "Rocket Sabre",
+        "Rocket Rook"
+      ],
+      "expr": "v0 - v1"
+    },
+    "explanation": "Rocket Sabre reached the 48 tick and Rocket Rook halfway between the 16 and 32 ticks, 24 m; 48 - 24 = 24 m.",
+    "distractor_rationales": [
+      {
+        "choice": "48 m",
+        "fault": "reads the Rocket Sabre bar instead of finding a difference"
+      },
+      {
+        "choice": "16 m",
+        "fault": "compares Rocket Sabre with the tallest bar, Rocket Quoyle"
+      },
+      {
+        "choice": "56 m",
+        "fault": "reads the bar for Rocket Tilly"
+      }
+    ],
+    "real_world_check": "The same push gives lighter objects a greater change in motion, so they fly different distances.",
+    "prior_free": "The standard links force, mass and motion; it cannot give how much farther one rocket flew."
+  },
+  {
+    "id": "MSB3-P8-15",
+    "map_area": "Physical Science",
+    "grade_target": 8,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 215-224",
+    "dci": "PS4",
+    "ngss_pe": "MS-PS4-3",
+    "kind": "data",
+    "stimulus": "scatter",
+    "format": "trend",
+    "ask": "decrease-then-level",
+    "invented": true,
+    "names_used": [
+      "Tiago"
+    ],
+    "passage": "Tiago sent a digital signal through a long cable and turned up the signal boost one step at a time. At each setting a computer counted the errors in every 1000 bits received.",
+    "graphic": {
+      "type": "scatter",
+      "points": [
+        [
+          0,
+          80
+        ],
+        [
+          1,
+          40
+        ],
+        [
+          2,
+          18
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          6,
+          1
+        ],
+        [
+          7,
+          1
+        ]
+      ],
+      "xLabel": "Signal boost setting",
+      "yLabel": "Errors per 1000 bits",
+      "caption": "Figure 1. Errors at eight boost settings"
+    },
+    "prompt": "Based on Figure 1, what happened to the number of errors as the boost went from setting 0 to setting 7?",
+    "choices": [
+      "The error count rose.",
+      "The error count stayed constant.",
+      "The error count leveled off, then fell.",
+      "The error count declined, then leveled off."
+    ],
+    "correct_answer": "The error count declined, then leveled off.",
+    "key_evidence": {
+      "refs": [
+        [
+          0,
+          80
+        ],
+        [
+          3,
+          6
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          7,
+          1
+        ]
+      ]
+    },
+    "explanation": "The errors fall from 80 to 2 by setting 4, then stay near 1 for settings 5 to 7.",
+    "distractor_rationales": [
+      {
+        "choice": "The error count rose.",
+        "fault": "the errors go down from 80 to about 1"
+      },
+      {
+        "choice": "The error count stayed constant.",
+        "fault": "the errors drop by 62 over the first two settings"
+      },
+      {
+        "choice": "The error count leveled off, then fell.",
+        "fault": "the drop comes first and the flat part comes after about setting 4"
+      }
+    ],
+    "real_world_check": "A stronger digital signal is received with fewer errors, until almost none remain.",
+    "prior_free": "A student might expect every extra boost step to keep cutting errors; only the points show the drop stopped near 1."
+  },
+  {
+    "id": "MSB3-P8-16",
+    "map_area": "Physical Science",
+    "grade_target": 8,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 215-224",
+    "dci": "PS4",
+    "ngss_pe": "MS-PS4-3",
+    "kind": "investigation",
+    "stimulus": "procedure+table",
+    "format": "values",
+    "ask": "read",
+    "invented": true,
+    "names_used": [
+      "Link Vane",
+      "Link Wexley"
+    ],
+    "passage": "Engineers sent one picture from a tower to receivers at three distances. Link Vane sent the picture through a thick copper cable. Link Wexley sent the same pulses through a thin copper cable. A computer counted the errors, the spots in the picture that arrived wrong, for each link at each distance. Both cables were made by one company. Table 1 shows the counts.",
+    "graphic": {
+      "type": "table",
+      "rowLabels": [
+        "10 km",
+        "20 km",
+        "30 km"
+      ],
+      "colLabels": [
+        "Link Vane (errors)",
+        "Link Wexley (errors)"
+      ],
+      "cells": [
+        [
+          0,
+          6
+        ],
+        [
+          2,
+          14
+        ],
+        [
+          3,
+          27
+        ]
+      ],
+      "caption": "Table 1. Errors in a picture sent by two links"
+    },
+    "prompt": "Based on Table 1, how many errors did the thin-cable link make at 20 km?",
+    "choices": [
+      "27 errors",
+      "14 errors",
+      "6 errors",
+      "2 errors"
+    ],
+    "correct_answer": "14 errors",
+    "key_evidence": {
+      "refs": [
+        [
+          1,
+          1
+        ]
+      ],
+      "expr": "v0"
+    },
+    "explanation": "The thin-cable link is Link Wexley; its value in the 20 km row is 14 errors.",
+    "distractor_rationales": [
+      {
+        "choice": "27 errors",
+        "fault": "reads the thin-cable link at 30 km"
+      },
+      {
+        "choice": "6 errors",
+        "fault": "reads the thin-cable link at 10 km"
+      },
+      {
+        "choice": "2 errors",
+        "fault": "reads the thick-cable link at 20 km"
+      }
+    ],
+    "real_world_check": "Signals weaken as they travel, and more errors appear at greater distances, especially along some cables.",
+    "prior_free": "The student must match the thin cable to Link Wexley and read the 20 km row; no standard gives this count."
+  },
+  {
+    "id": "MSB3-P8-17",
+    "map_area": "Physical Science",
+    "grade_target": 8,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 215-224",
+    "dci": "PS1",
+    "ngss_pe": "MS-PS1-4",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "explains",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A pot of water on a stove reaches 100 °C and starts to boil. The burner stays on high, but the water stays at 100 °C until it has boiled away. Which best explains this?",
+    "choices": [
+      "The thermometer stops working at 100 °C.",
+      "The added energy goes into turning liquid into gas.",
+      "The pot gets so hot that it holds the extra heat.",
+      "The burner stops heating once the water starts to boil."
+    ],
+    "correct_answer": "The added energy goes into turning liquid into gas.",
+    "explanation": "While water boils, the energy added breaks particles free from the liquid to form gas instead of raising the temperature.",
+    "distractor_rationales": [
+      {
+        "choice": "The thermometer stops working at 100 °C.",
+        "fault": "misconception: the reading stops because the thermometer fails"
+      },
+      {
+        "choice": "The pot gets so hot that it holds the extra heat.",
+        "fault": "misconception: the pot soaks up the energy instead of the water"
+      },
+      {
+        "choice": "The burner stops heating once the water starts to boil.",
+        "fault": "misconception: a stove stops giving energy when water boils"
+      }
+    ],
+    "real_world_check": "During a change of state, added thermal energy changes the state of a substance rather than its temperature."
+  },
+  {
+    "id": "MSB3-P8-18",
+    "map_area": "Physical Science",
+    "grade_target": 8,
+    "tier": "high",
+    "difficulty": "hard",
+    "rit_band_target": "RIT 215-224",
+    "dci": "PS3",
+    "ngss_pe": "MS-PS3-1",
+    "kind": "model",
+    "stimulus": "scenario",
+    "format": "claim",
+    "ask": "explains",
+    "invented": false,
+    "names_used": [],
+    "passage": null,
+    "graphic": null,
+    "prompt": "A girl catches two baseballs of the same mass, one thrown slowly and one thrown fast. The fast one stings her hand much more. Which best explains this?",
+    "choices": [
+      "The faster ball brings more energy of motion to your hand.",
+      "The slow ball is lighter than the fast ball.",
+      "A fast ball heats up in the air and turns as hard as a rock.",
+      "Your hand tenses up more when the ball is thrown slowly to you."
+    ],
+    "correct_answer": "The faster ball brings more energy of motion to your hand.",
+    "explanation": "Kinetic energy grows with speed, so the fast ball carries more energy, which is transferred to the hand when it is caught.",
+    "distractor_rationales": [
+      {
+        "choice": "The slow ball is lighter than the fast ball.",
+        "fault": "misconception: a ball that moves faster must have more mass"
+      },
+      {
+        "choice": "A fast ball heats up in the air and turns as hard as a rock.",
+        "fault": "misconception: speed makes a ball harder"
+      },
+      {
+        "choice": "Your hand tenses up more when the ball is thrown slowly to you.",
+        "fault": "misconception: the sting depends on the catcher, not on the ball's energy"
+      }
+    ],
+    "real_world_check": "Kinetic energy depends on speed as well as mass; a faster object of the same mass has more kinetic energy."
+  }
+]
