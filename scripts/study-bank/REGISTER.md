@@ -6730,3 +6730,14 @@ structural checks are pre-flight only. See CLAUDE.md.
   central key, b3 bars, b3 trends): a rule that FORBIDS a key property creates the inverse tell. Properties must be
   RANDOMIZED at their base rate (key is the tallest bar about 1 in 4, key is the shortest claim about 1 in 4, trend
   key form drawn from the same distribution as distractor forms), never banned.** Pilot 2 follows this principle.
+
+- **2026-10-31 — MAP Science b3 PILOT 2: Earth clean; Physical and Life FAIL under the prereg rule (both graders
+  named the same pattern), though every named pattern was "weak" and rested on n=2.** Physical: both read-item keys
+  are chart extremes (P6-01 shortest, P8-01 top tick). Life: "It remained constant." is a filler distractor in both
+  trend items (g1 called it too few to call); g2 also named general-knowledge keys (L6-01, L6-02, L7-02), and both
+  noted L5-02 is a role-statement lookup. Earth: no shared pattern. All 48 cold picks were on key; no fact errors.
+  The randomize principle removed every b2 and pilot-1 tell. What remains is the pilot instrument's own limit:
+  with 1-3 items per format per area, a two-item coincidence reads as a pattern. **Not re-decided.** For the FULL
+  batch 3 a new prereg adopts the Amendment A1 threshold that works for MAP Language and SSAT/ISEE reading: a pattern
+  named by both graders drops its items only when it touches 3 or more shared items, and holds the area only when
+  cohort-wide (50% or more). That is written before any batch-3 item exists.
