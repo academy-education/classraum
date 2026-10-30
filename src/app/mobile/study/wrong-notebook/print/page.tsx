@@ -65,6 +65,8 @@ function PrintInner() {
     ? search.get('sort')
     : 'newest') as SortKey
   const rawQuery = (search.get('q') ?? '').trim()
+  // The notebook's explanation switch, forwarded so the paper copy matches the screen.
+  const showExplanations = search.get('explanations') !== 'off'
   const { t, language } = useTranslation()
   const ko = language === 'korean'
   const [entries, setEntries] = useState<Entry[]>([])
@@ -234,7 +236,7 @@ function PrintInner() {
                     <div><span className="font-semibold text-gray-500 inline-block w-[88px]">{ko ? '정답' : 'Correct'}:</span> <span className="font-semibold">{e.question.correct_answer}</span></div>
                   </div>
 
-                  {e.ai_explanation && (
+                  {showExplanations && e.ai_explanation && (
                     <div className="text-[13px] leading-relaxed border-l-2 border-gray-300 pl-3 mb-3 text-gray-800">
                       <span className="font-semibold">{ko ? '해설' : 'Explanation'}:</span> <MathText text={e.ai_explanation} />
                     </div>

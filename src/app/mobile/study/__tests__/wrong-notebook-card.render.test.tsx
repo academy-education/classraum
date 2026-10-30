@@ -174,3 +174,19 @@ describe('saved explanations reach the panel in both languages', () => {
     expect(saved.ko.steps).toBe('한국어 단계별 풀이')
   })
 })
+
+describe('notebook-wide explanation switch', () => {
+  const WITH_EXPL = { ...READING, ai_explanation: 'The page says to contact the registrar.' }
+  it('shows the explanation and Explain more when on (the default)', () => {
+    render(<NotebookEntryCard entry={WITH_EXPL as never} index={1} ko={false} />)
+    expect(screen.getByText('The page says to contact the registrar.')).toBeInTheDocument()
+    expect(screen.getByTestId('explain-more')).toBeInTheDocument()
+  })
+  it('hides both when the switch is off', () => {
+    render(<NotebookEntryCard entry={WITH_EXPL as never} index={1} ko={false} showExplanation={false} />)
+    expect(screen.queryByText('The page says to contact the registrar.')).not.toBeInTheDocument()
+    expect(screen.queryByTestId('explain-more')).not.toBeInTheDocument()
+    // the question and the key stay
+    expect(screen.getAllByText('Contact the registrar’s office').length).toBeGreaterThan(0)
+  })
+})

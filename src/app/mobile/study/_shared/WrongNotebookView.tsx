@@ -111,6 +111,18 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
   const [query, setQuery] = useState('')
   const [page, setPage] = useState(0)
   const [reviewedPage, setReviewedPage] = useState(0)
+  /* Explanations on or off for the whole notebook, set once at the top.
+   * Off is for re-trying a question without the answer's reasoning in view.
+   * Remembered per device, and forwarded to the print/PDF view so the paper
+   * copy matches the screen. */
+  const [showExplanations, setShowExplanations] = useState(true)
+  useEffect(() => {
+    try { if (localStorage.getItem('wrongNotebook.showExplanations') === '0') setShowExplanations(false) } catch { /* storage blocked */ }
+  }, [])
+  const setExplanations = useCallback((next: boolean) => {
+    setShowExplanations(next)
+    try { localStorage.setItem('wrongNotebook.showExplanations', next ? '1' : '0') } catch { /* storage blocked */ }
+  }, [])
 
   /**
    * Printing has no meaningful target inside a Capacitor WebView: there is
@@ -264,7 +276,20 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
           subtitle={ko
             ? `틀린 문제 ${entries.length}개를 다시 풀어보고 메모를 남겨보세요.`
             : `Revisit ${entries.length} wrong answers and jot down what tripped you up.`}
-          rightSlot={isNative ? undefined : (
+          rightSlot={<div className="flex items-center gap-2">
+            <button
+              type="button"
+              role="switch"
+              aria-checked={showExplanations}
+              onClick={() => setExplanations(!showExplanations)}
+              className={`tap-target-y inline-flex items-center gap-1.5 h-9 px-3 rounded-full ring-1 shadow-[0_1px_2px_rgba(0,0,0,0.03)] text-[13px] font-medium transition ${showExplanations ? 'bg-indigo-50 ring-indigo-200 text-indigo-700' : 'bg-white ring-gray-200/70 text-gray-600'}`}
+            >
+              <span className={`relative inline-block w-7 h-4 rounded-full transition ${showExplanations ? 'bg-indigo-500' : 'bg-gray-300'}`}>
+                <span className={`absolute top-0.5 w-3 h-3 rounded-full bg-white shadow transition-all ${showExplanations ? 'left-3.5' : 'left-0.5'}`} />
+              </span>
+              {ko ? '해설' : 'Explanations'}
+            </button>
+            {isNative ? null : (
             /* Web only — a Capacitor WebView has no print dialog and no
                reachable file system, so this button would go nowhere on
                native. Hidden, not disabled: a greyed-out button still
@@ -280,6 +305,7 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
                 if (sortKey !== 'newest') params.set('sort', sortKey)
                 const q = query.trim()
                 if (q) params.set('q', q)
+                if (!showExplanations) params.set('explanations', 'off')
                 const qs = params.toString()
                 return qs ? `/mobile/study/wrong-notebook/print?${qs}` : '/mobile/study/wrong-notebook/print'
               })()}
@@ -288,7 +314,8 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
             >
               <Printer className="w-3.5 h-3.5" />{t('study.wrongNotebook.print')}
             </Link>
-          )}
+            )}
+          </div>}
         />
       }
     >
@@ -475,7 +502,7 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
                               <ol className="grid grid-cols-1 2xl:grid-cols-2 gap-3">
                                 {group.rows.map((e, i) => (
                                   <div key={e.attempt_id} style={{ animationDelay: `${Math.min(i, 8) * 40}ms` }} className="animate-card-in opacity-0">
-                                    <NotebookEntryCard entry={e} index={startIdx + i + 1} ko={ko} onToggleReviewed={toggleReviewed} />
+                                    <NotebookEntryCard entry={e} index={startIdx + i + 1} ko={ko} onToggleReviewed={toggleReviewed} showExplanation={showExplanations} />
                                   </div>
                                 ))}
                               </ol>
@@ -539,7 +566,7 @@ export function WrongNotebookInner({ asTab = false }: { asTab?: boolean } = {}) 
                       </summary>
                       <ol className={`px-4 grid grid-cols-1 2xl:grid-cols-2 gap-3 ${reviewedTotalPages > 1 ? '' : 'pb-4'}`}>
                         {visibleReviewed.map((e, i) => (
-                          <NotebookEntryCard key={e.attempt_id} entry={e} index={clampedReviewedPage * PAGE_SIZE + i + 1} ko={ko} onToggleReviewed={toggleReviewed} />
+                          <NotebookEntryCard key={e.attempt_id} entry={e} index={clampedReviewedPage * PAGE_SIZE + i + 1} ko={ko} onToggleReviewed={toggleReviewed} showExplanation={showExplanations} />
                         ))}
                       </ol>
                       {reviewedTotalPages > 1 && (
@@ -663,11 +690,13 @@ function FilterSelect({
  * other options; source-level assertions can pin that the fields are read, but
  * only a render proves the student actually SEES them. The page itself is
  * behind a login, so this is the verification that is available. */
-export function NotebookEntryCard({ entry, index, ko, onToggleReviewed }: {
+export function NotebookEntryCard({ entry, index, ko, onToggleReviewed, showExplanation = true }: {
   entry: Entry
   index: number
   ko: boolean
   onToggleReviewed?: (attemptId: string, next: boolean) => void
+  /** The notebook-wide switch: off hides the explanation and Explain more. */
+  showExplanation?: boolean
 }) {
   const { t } = useTranslation()
   const [note, setNote] = useState(entry.note)
@@ -889,14 +918,15 @@ export function NotebookEntryCard({ entry, index, ko, onToggleReviewed }: {
           </div>
         )}
 
-        {entry.ai_explanation && (
+        {showExplanation && entry.ai_explanation && (
           <div className="mt-3 rounded-xl bg-indigo-50/50 ring-1 ring-indigo-100 px-3 py-2 text-[13px] text-gray-700 leading-relaxed">
             <span className="font-medium text-indigo-700">{t('study.wrongNotebook.explanationLabel')}: </span><MathText text={entry.ai_explanation} />
           </div>
         )}
 
-        {/* On-demand Explain more / ask, same as practice. */}
-        <ExplainMore
+        {/* On-demand Explain more / ask, same as practice. Hidden with the
+            explanation so "off" really hides the reasoning. */}
+        {showExplanation && <ExplainMore
           prompt={entry.question.prompt}
           passage={passageText || undefined}
           choices={entry.question.choices}
@@ -906,7 +936,7 @@ export function NotebookEntryCard({ entry, index, ko, onToggleReviewed }: {
           language={ko ? 'ko' : 'en'}
           attemptId={entry.attempt_id}
           saved={entry.saved}
-        />
+        />}
       </div>
 
       {/* Note editor */}

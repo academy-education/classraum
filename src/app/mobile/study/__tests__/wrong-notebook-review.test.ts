@@ -219,3 +219,15 @@ describe('saved explanations are kept per language', () => {
     expect(EXPLAIN_UI).toMatch(/has\(language\) \|\| !has\(other\) \? language : other/)
   })
 })
+
+describe('explanation switch carries to print/PDF', () => {
+  const view = read('app/mobile/study/_shared/WrongNotebookView.tsx')
+  const print = read('app/mobile/study/wrong-notebook/print/page.tsx')
+  it('the print link forwards explanations=off when the switch is off', () => {
+    expect(view).toMatch(/if \(!showExplanations\) params\.set\('explanations', 'off'\)/)
+  })
+  it('the print page reads it and gates the explanation block on it', () => {
+    expect(print).toMatch(/search\.get\('explanations'\) !== 'off'/)
+    expect(print).toMatch(/\{showExplanations && e\.ai_explanation && \(/)
+  })
+})
