@@ -171,3 +171,117 @@ Tool changes in this batch: `sci-check.mjs` gains `--rules b3` (default stays b1
 b2 break-tests still pass); `sci-spec.mjs` gains TREND_STRIP, ROLE_STATEMENT, ECHO_STOP, RATIONALE, INTENSIFIER;
 fixtures gain the B3 suite (17 clean, 13 new item mutations + 4 new batch mutations). No `src/` change, no database
 write, no new environment variable.
+
+---
+
+# Amendment P2 (2026-10-31): PILOT 2, written before any pilot-2 packet exists
+
+Pilot 1 failed its gate in all three areas (REGISTER 2026-10-31, "MAP Science b3 PILOT failed its gate"). Both graders
+of each area named a cross-item pattern in the COLD pass, and each was the inverse of a batch-2 ban:
+
+| area | pattern both graders named (pilot 1) | the rule it inverted |
+|---|---|---|
+| Life | both trend keys the compound "X, then Y" at C; the key the only option in the data's direction (L7-02, L8-01) | B13 (one frame) left direction as the only difference; FORMAT's ">= 3 directions" pushed options apart |
+| Physical | the top-tick (tallest) value offered and never the key; the shortest bar never offered (P6-02, P7-01) | B17 ("the asked bar is never the tallest") |
+| Earth | claim keys the shortest option (E5-02, E8-01) | B18 balanced markers but left the plain shortest key |
+
+Also recorded, single grader: life-g1 "the key is the only option general knowledge picks"; earth-g2 the "-sk" name
+template (E6-01, E7-01, E8-02); phys-g1/g2 values keys the smallest option twice; earth-g1 absurd model distractors.
+E7-02's fact error (the far point of Earth's orbit put in January) is noted; pilot-1 items are not reused.
+
+**The principle (binding for pilot 2 and the full batch).** A rule that FORBIDS a key property makes that property mark
+a distractor. Properties are RANDOMIZED at their natural base rate and checked as distributions across the batch.
+
+## What changed, before any pilot-2 item was written
+
+| file | change |
+|---|---|
+| `science-pilot/sci-check.mjs` | `--rules b3p2` = every b3 check except **BARTOP** (the ban), plus item check **TRENDDIR** and batch checks **BARPOS, BAREXT, TRENDFORM, RANKBAL, NAMETPL**; `WANT_TREND` gains `decrease-then-level`, `increase-then-decrease`, `decrease-then-increase`. b1 / b2 / b3 output is unchanged: `--selftest` and `--break-test --rules b1|b2|b3` still pass, `science-b3/validate-b3-rules.mjs` still passes, and all 24 pilot-1 items still print ok under `--rules b3` |
+| `science-b3p2/make-slots.mjs` | 24 slots, ids `MSB3Q-*`. Grades, tiers and DCIs from seed 20261231; letters and ranks re-dealt (rank seed 7) to meet every constraint, including batch-wide ones. Per area: 2 read items with different `pos` (tallest / shortest / middle, 2/2/2 across the batch; tallest -> value rank 4, shortest -> 1, middle -> 2 or 3), 1 simple + 1 compound trend key (simple ranks 1-2, compound 3-4), no key rank or key letter repeated within a format, and batch-wide no format past RANKBAL's cap |
+| `science-b3p2/BRIEF-body.md` | the b3 brief with B17 WITHDRAWN and new rules **B20** (read position dealt; both extremes offered in every read item), **B21** (one pool of trend forms; direction never decides), **B22** (ranks per format), **B23** (claim markers at the same rate; no absurd distractors), **B24** (two GK-plausible options in data items; no checker, graders judge), **B25** (no name template) |
+| `science-b3p2/GRADER-BRIEF.md` | asks for patterns in BOTH directions (always on the key / never on the key); `b3_bar_extreme` rewritten for B20; new fields `b3p2_direction`, `b3p2_general_knowledge` |
+| `science-b3p2/EXCLUSIONS-science.txt`, `probe-live.mjs` | batch 3's lists + all 24 pilot-1 items (pilot-1 topics excluded); probe reads batch 3's live snapshot (245 rows, nothing staged since) |
+
+### The new checks, and their break-tests on items whose answers are known
+
+`node scripts/study-bank/map-v2-work/science-b3p2/validate-b3p2-rules.mjs` (exit 0): every check fires on the pattern the
+graders named, the hit disappears when that one check is disabled, and synthetic sets at each band edge land on the
+intended side.
+
+| check | what it tests | pilot 1 (named) | batch 2 (named) | band edges |
+|---|---|---|---|---|
+| TRENDDIR (item) | every direction the key names is on >= 1 distractor; a compound names two different directions | L7-02, L8-01, E6-02 caught (also P7-02, the lone flat option) | fires on L6-09, L8-08 (two of TRENDPAR's four named items), P6-09, P8-09, E6-08, E8-09 | lone rising key fires; two rising distractors pass; "dropped, then declined" fires |
+| TRENDFORM (batch, per area + batch) | key share among compound options, and among simple options, 15-40% once >= 4 such options | Life fires (compound keys 50%, simple 0%) | 25% everywhere: batch 2's trend tell was the trailing clause, which TRENDPAR (kept) catches | 2/8 passes; 3/8 compound with 1/8 simple fires on the simple side; 4/8 fires |
+| BARPOS (batch) | asked bar tallest / shortest / middle each <= ceil(n/3) (+1 once n >= 6), per area and batch, n >= 2 | Physical (middle 2/2) and batch (middle 4/4) fire | Physical (tallest 3/4) fires; also Earth (middle 3/4) and batch (middle 6/12) | 2/2/2 and 3/2/1 pass at n=6; 4/1/1 fires |
+| BAREXT (batch) | the max (top tick) and the min, where offered in >= 3 read items, are the key 15-50% of the time; with >= 3 read items each extreme is offered at least once | batch: top tick offered 3x, key 0x; shortest never offered | Physical: top tick key 3 of 4 (75%), shortest key 0 of 4; Earth top tick key 0 of 4 | offered 6: key 2 and key 1 pass; key 0 and key 4 fire |
+| RANKBAL (batch) | within an area and a format no key rank holds more than ceil(n/4) (+1 once n >= 8) keys, n >= 2; also batch-wide per format | Earth claims (rank 1, 2 of 3) and Physical values (rank 1, 2 of 3) fire | fires 16x (batch-2 slots balanced ranks per cell, not per format); Earth claims fire on rank 2 | claims 1/2/4 pass; 1/1/4 fire |
+| NAMETPL (batch) | name cores in an area share no two-letter ending across >= 3 items | Earth "-sk" (Hesk, Marsk, Tesk) fires | fires 14x on common English endings (-on, -er, -th) | 2 items pass; 3 fire |
+
+**Weaknesses, stated now.** (1) At pilot scale (2 read and 2 trend items per area) BAREXT is not measured per area
+(n < 3) and TRENDFORM's per-area simple side sits under its minimum in Physical; the pilot relies on the batch-level
+measurement plus the slot deal. (2) NAMETPL and RANKBAL over-fire on batch 2's 224 items; both must be recalibrated
+against a known-clean population (for NAMETPL, a base rate of English name endings) before the full batch uses them as
+refusals. (3) B24 (general knowledge picks the key) has no checker; graders judge it. (4) These checks are pre-flight.
+The graders' cross_item_pattern question remains the gate.
+
+## Pilot 2, 24 items (`scratchpad/map-science-b3p2/{L,P,E}/src.mjs` -> `items.json`)
+
+| area | formats |
+|---|---|
+| Life | read (bar, tallest), read (line, middle), trend decrease (simple), trend increase-then-level (compound), interpolation, variable (controlled), claim (predicts), term (process) |
+| Physical | read (bar, shortest), read (line, tallest), trend no-change (simple), trend decrease-then-increase (compound), interpolation, variable (dependent), claim (explains), claim (predicts) |
+| Earth | read (line, shortest), read (bar, middle), trend increase (simple), trend decrease-then-level (compound), interpolation, claim (explains), claim (predicts), term (structure) |
+
+Fresh topics: every pilot-1 and batch-2 topic is excluded, and 16 drafts were rewritten to a different system after
+the probe or a REVIEW adjudication (`science-b3p2/XDUP-REVIEW.md`). One author, in session, no sub-agents.
+
+Stage 0 / 0b results at amendment time: `sci-check --rules b3p2` 8/8/8 ok and `--batch` 24 ok (exit 0; BARPOS 2/2/2,
+BAREXT max and min each offered 6 of 6 and the key 2 of 6, TRENDFORM compound 23% / simple 27%, RANKBAL and NAMETPL
+clean, CLAIMBAL 25% in every area); `probe-live` 0 refused, 19 REVIEW, each answered in XDUP-REVIEW.md.
+
+## Decision rule: unchanged from pilot 1
+
+- **PROCEED to the full batch** only if, in pilot 2's stage 1, **no area has a `cross_item_pattern` named by both of its
+  graders** (rule 10), whether old, inverse or new.
+- **HOLD** otherwise, as pilot 1: a mechanical pattern gets a checker and a break-test on the pilot-2 items it names
+  before any further authoring.
+- One grader's pattern is recorded and passed to the full batch's brief.
+- Drop rules 1-10 apply as written above; rule 9 also covers the new `b3p2_direction` and `b3p2_general_knowledge`
+  fields. Survivors go to stage 2 with the full batch if it proceeds.
+- Two fresh with-source graders per area (6 spawns), cold then keyed, one folder each, spawned by the coordinator from
+  `scratchpad/map-science-b3p2/packets/GRADER-PROMPT.md`. This author stops after the packets.
+
+## Predictions (recorded; none gates)
+
+- **R1:** zero EMPTY slots (true at amendment time).
+- **R2:** none of pilot 1's three inverse patterns (top tick never the key; compound trend keys; shortest claim keys) is
+  named by both graders of any area.
+- **R3:** at least one area has a NEW pattern named by one grader (one author, 24 items; true in every round so far).
+- **R4:** the most likely both-grader pattern, if any: the read-item cast (both extremes offered in every read item) is
+  itself a template a grader can see, or the interpolation casts (each item has one "skips a row" distractor).
+- **R5:** stage-1 drops <= 2 per area.
+
+## Tool fingerprints at amendment P2 (sha256, first 16)
+
+- `map-v2-work/science-b3p2/slots.json` 5a12d8cb6cc869a0
+- `map-v2-work/science-b3p2/make-slots.mjs` 8656ff618b14677c
+- `map-v2-work/science-b3p2/BRIEF-body.md` 76b741d16ebdd977
+- `map-v2-work/science-b3p2/BRIEF.md` 881c65f45a3ef74c
+- `map-v2-work/science-b3p2/BRIEF-grader.md` bea0f43cc696cc77
+- `map-v2-work/science-b3p2/make-brief.mjs` 816b7d431039ade8
+- `map-v2-work/science-b3p2/GRADER-BRIEF.md` f385a183334f7e22
+- `map-v2-work/science-b3p2/validate-b3p2-rules.mjs` 6636168895f85c09
+- `map-v2-work/science-b3p2/probe-live.mjs` 6aa91cc9d591a0fd
+- `map-v2-work/science-b3p2/expand.mjs` 266fc7c912b56623
+- `map-v2-work/science-b3p2/make-exclusions-b3p2.mjs` c677c470ad137f8e
+- `map-v2-work/science-b3p2/EXCLUSIONS-science.txt` cb7a60c20c10e56f
+- `map-v2-work/science-b3p2/XDUP-REVIEW.md` 2b7359be27f47737
+- `map-v2-work/science-pilot/sci-check.mjs` 2c81ca5f2fa32c78
+- `map-v2-work/science-pilot/sci-check.fixtures.mjs` b9c16e97e1c705c8
+- `map-v2-work/science-pilot/sci-spec.mjs` 3b32ae4a0a5bf0ae
+- `map-v2-work/science-pilot/sci-packet.mjs` 66ce8d81fdc382c0
+- `scratchpad/map-science-b3p2/L/items.json` 80c04f79e09aee0e
+- `scratchpad/map-science-b3p2/P/items.json` 20ef47ea6d9fe1b5
+- `scratchpad/map-science-b3p2/E/items.json` 3ecf9c6730c6ac85
+
+No `src/` change, no database write, no new environment variable. The packet builder (`sci-packet.mjs`) is unchanged.

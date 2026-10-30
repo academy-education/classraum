@@ -44,6 +44,10 @@
  *   form refuse, stem route printed as XDUP-REVIEW), KEYDUP same term/trend/claim key twice in one area, MISC a stock
  *   misconception family more than once per author). --break-test --rules b2 proves each is load-bearing;
  *   science-b2/validate-b2-rules.mjs proves each reproduces its known batch-1 finding.
+ *   b3p2 (pilot 2, MAP-SCIENCE-B3.prereg.md amendment P2): every b3 check EXCEPT BARTOP, plus TRENDDIR (item: every
+ *   direction the key names is on a distractor too) and the batch distribution checks BARPOS, BAREXT, TRENDFORM, RANKBAL,
+ *   NAMETPL, which test that a property sits on keys at its base rate instead of banning it (pilot 1's inverse tells).
+ *   Break-tested on real items by science-b3p2/validate-b3p2-rules.mjs (batch 2 + pilot 1) and band-edge sets.
  *
  * Exit codes: 2 unreadable input or empty population (never a number over nothing), 1 any item or batch failure,
  * 0 only when every item prints ok.
@@ -122,7 +126,9 @@ function evalExpr(expr, vals) {
   try { const r = Function(`"use strict"; return (${src})`)(); return Number.isFinite(r) ? { v: r } : { err: `expr "${expr}" does not evaluate to a number with these refs` } } catch (e) { return { err: `expr "${expr}": ${e.message}` } }
 }
 const trendFamilies = s => Object.entries(TREND_WORDS).filter(([, re]) => re.test(s)).map(([k]) => k).sort().join('+')
-const WANT_TREND = { increase: 'increase', decrease: 'decrease', 'no-change': 'same', 'increase-then-level': 'increase+same' }
+const WANT_TREND = { increase: 'increase', decrease: 'decrease', 'no-change': 'same', 'increase-then-level': 'increase+same',
+  // b3p2 (pilot 2): compound keys in every direction, so a compound key is not always "rose, then leveled off"
+  'decrease-then-level': 'decrease+same', 'increase-then-decrease': 'decrease+increase', 'decrease-then-increase': 'decrease+increase' }
 
 /* ---------------- exclusions ---------------- */
 export function loadExclusions(path) {
@@ -141,7 +147,12 @@ export const B1_CHECKS = ['QUAL', 'ROLE', 'LABEL', 'NAMEPROP', 'ABS', 'LAW', 'AB
 export const B2_CHECKS = ['INVENTED', 'LSHAPE', 'TICK', 'XDUP', 'KEYDUP', 'MISC']
 /** Batch-3 checks (MAP-SCIENCE-B3.prereg.md): one per batch-2 rule-10 pattern. `--rules b3` = every b2 check + these. */
 export const B3_CHECKS = ['TRENDPAR', 'ROLESTATE', 'ECHO', 'INTERP', 'BARTOP', 'CLAIMRAT', 'VARTPL', 'CLAIMBAL', 'NAMEREUSE', 'ORDER']
-const RULESETS = ['pilot', 'b1', 'b2', 'b3']
+/** Batch-3 pilot-2 checks (MAP-SCIENCE-B3.prereg.md, amendment P2). The pilot failed with INVERSE tells: a rule that
+ *  forbids a key property makes the property mark a distractor. `--rules b3p2` = every b3 check EXCEPT BARTOP (which
+ *  forbade the asked bar being the chart's extreme) plus per-item TRENDDIR and batch BARPOS, BAREXT, TRENDFORM,
+ *  RANKBAL, NAMETPL, which test that a property sits on keys at its base rate instead of banning it. */
+export const B3P2_CHECKS = ['TRENDDIR', 'BARPOS', 'BAREXT', 'TRENDFORM', 'RANKBAL', 'NAMETPL']
+const RULESETS = ['pilot', 'b1', 'b2', 'b3', 'b3p2']
 /** What a trend option says once its direction words are removed (TRENDPAR). */
 export const trendSkeleton = s => norm(String(s).replace(TREND_STRIP, ' ')).replace(/[.]/g, ' ').replace(/\s+/g, ' ').trim()
 /** Crude stem for ECHO: lower-case, one suffix off. Two words echo when one stem starts the other (>= 4 letters). */
@@ -214,8 +225,8 @@ export function xdupReason(a, b) {
 }
 export function checkItem(it, slot, ex = [], opts = {}) {
   const p = [], add = m => p.push(m)
-  const R = opts.rules ?? 'b1', b1 = R === 'b1' || R === 'b2' || R === 'b3', dis = opts.disabled ?? new Set()
-  const on = id => b1 && !dis.has(id), on2 = id => (R === 'b2' || R === 'b3') && !dis.has(id)
+  const R = opts.rules ?? 'b1', b1 = R === 'b1' || R === 'b2' || R === 'b3' || R === 'b3p2', dis = opts.disabled ?? new Set()
+  const on = id => b1 && !dis.has(id), on2 = id => (R === 'b2' || R === 'b3' || R === 'b3p2') && !dis.has(id)
   if (!slot) return [`SLOT ${it?.id}: not a slot in slots.json`]
   const want = { map_area: slot.area, grade_target: slot.g, tier: slot.tier, difficulty: DIFF[slot.tier], rit_band_target: RIT[slot.g][slot.tier], dci: slot.dci, kind: slot.kind, stimulus: slot.stimulus, format: slot.format, ask: slot.ask, invented: slot.invent }
   for (const [k, v] of Object.entries(want)) if (it[k] !== v) add(`SLOT ${k} is ${JSON.stringify(it[k])}, slot says ${JSON.stringify(v)}`)
@@ -390,11 +401,20 @@ export function checkItem(it, slot, ex = [], opts = {}) {
   }
 
   /* ---------- B3 rules (MAP-SCIENCE-B3.prereg.md; each from a batch-2 rule-10 pattern) ---------- */
-  const on3 = id => R === 'b3' && !dis.has(id)
+  const on3 = id => (R === 'b3' || (R === 'b3p2' && id !== 'BARTOP')) && !dis.has(id), on4 = id => R === 'b3p2' && !dis.has(id)
   // TRENDPAR (Life): the four trend options say the same thing apart from the direction.
   if (on3('TRENDPAR') && slot.format === 'trend') {
     const sk = ch.map(trendSkeleton)
     if (new Set(sk).size > 1) add(`TRENDPAR trend options are not parallel: with the direction words removed they read ${sk.map(x => `"${x}"`).join(' | ')}; write all four in one frame (L5-14's key alone ended "as the water got deeper")`)
+  }
+  // TRENDDIR (b3p2; pilot-1 Life L7-02 / L8-01, Earth E6-02): every direction the key names is carried by at least one
+  // distractor too, so knowing the data's overall direction (from the figure OR from prior knowledge) never decides.
+  // A compound option ("X, then Y") names two DIFFERENT directions ("It dropped, then declined" is one direction twice).
+  if (on4('TRENDDIR') && slot.format === 'trend') {
+    const fam = c => Object.entries(TREND_WORDS).filter(([, re]) => re.test(c)).map(([k]) => k)
+    const kf = fam(key)
+    for (const f of kf) { const n = ch.filter(c => fam(c).includes(f)).length; if (n < 2) add(`TRENDDIR the key is the only option carrying the direction "${f}" (pilot-1 L7-02 / L8-01: direction alone decides); give at least one distractor the same direction in a wrong shape`) }
+    for (const c of ch) if (/\bthen\b/i.test(c) && fam(c).length < 2) add(`TRENDDIR "${c}" is a compound naming one direction twice; a compound names two different directions`)
   }
   // ROLESTATE (Life, Physical, Earth): the procedure must not state any quantity's role.
   if (on3('ROLESTATE') && slot.format === 'variable') {
@@ -461,8 +481,8 @@ export function checkItem(it, slot, ex = [], opts = {}) {
 /* ---------------- batch ---------------- */
 export function checkBatch(items, SLOT, opts = {}) {
   const p = [], add = m => p.push(m), info = []
-  const R = opts.rules ?? 'b1', b1 = R === 'b1' || R === 'b2' || R === 'b3', dis = opts.disabled ?? new Set()
-  const on = id => b1 && !dis.has(id), on2 = id => (R === 'b2' || R === 'b3') && !dis.has(id)
+  const R = opts.rules ?? 'b1', b1 = R === 'b1' || R === 'b2' || R === 'b3' || R === 'b3p2', dis = opts.disabled ?? new Set()
+  const on = id => b1 && !dis.has(id), on2 = id => (R === 'b2' || R === 'b3' || R === 'b3p2') && !dis.has(id)
   const ids = items.map(i => i.id)
   if (new Set(ids).size !== ids.length) add('BATCH duplicate item ids')
   for (const id of Object.keys(SLOT)) if (!ids.includes(id)) add(`BATCH slot ${id} neither written nor marked empty`)
@@ -541,7 +561,7 @@ export function checkBatch(items, SLOT, opts = {}) {
     info.push(`MISC stock-misconception distractors: ${Object.values(per).reduce((n, x) => n + x.length, 0)}`)
   }
   /* ---------- B3 batch rules ---------- */
-  const on3 = id => R === 'b3' && !dis.has(id)
+  const on3 = id => (R === 'b3' || (R === 'b3p2' && id !== 'BARTOP')) && !dis.has(id), on4 = id => R === 'b3p2' && !dis.has(id)
   const areas = [...new Set(live.map(area))]
   // VARTPL (Physical P5-03 / P8-03, Earth E5-12 / E8-17): two variable passages of one area built on one template.
   if (on3('VARTPL')) {
@@ -592,7 +612,102 @@ export function checkBatch(items, SLOT, opts = {}) {
       if (desc > cap) add(`BATCH ORDER ${ar}: ${desc} of ${N.length} numeric items list their distractors in descending order (cap ${cap})`)
     }
   }
+  /* ---------- B3P2 batch rules (pilot 2): distributions at base rate, never bans ---------- */
+  const scopes = [['batch', live], ...areas.map(ar => [ar, live.filter(i => area(i) === ar)])]
+  // BARPOS (pilot-1 Physical g1/g2 + batch-2 Physical P5-07 / P6-14 / P7-01): where the asked bar or point sits in its
+  // chart. Batch 2 asked the tallest; b3's ban made pilot 1 ask a middle bar every time. Each of tallest / shortest /
+  // middle at most ceil(n/3) (+1 once n >= 6), per area and batch-wide, n >= 2.
+  if (on4('BARPOS')) {
+    for (const [nm, pool] of scopes) {
+      const RD = pool.filter(isRead)
+      if (RD.length < 2) { info.push(`BARPOS ${nm}: ${RD.length} read item(s), not measured (n < 2)`); continue }
+      const c = { tallest: 0, shortest: 0, middle: 0 }; for (const i of RD) c[readPos(i)]++
+      const cap = Math.ceil(RD.length / 3) + (RD.length >= 6 ? 1 : 0)
+      info.push(`BARPOS ${nm}: read items ${RD.length}: asked bar tallest ${c.tallest}, shortest ${c.shortest}, middle ${c.middle} (cap ${cap} each; base rate 1/3)`)
+      for (const [k, v] of Object.entries(c)) if (v > cap) add(`BATCH BARPOS ${nm}: the asked bar/point is the ${k} in ${v} of ${RD.length} read items (cap ${cap}); "${k === 'middle' ? 'the tallest / shortest bar is never the answer' : `the ${k} bar is the answer`}" is a rule`)
+    }
+  }
+  // BAREXT (pilot-1 Physical: "the option equal to the axis maximum is never the answer"; "the shortest bar is never
+  // offered"): for each extreme (the chart's max = top tick label, and its min), among read items that OFFER it as an
+  // option, it is the key 15-50% of the time (no-tell about 1/4 to 1/3), measured once offered in >= 3 items; and with
+  // >= 3 read items in scope, each extreme is offered at least once (a cast that never offers it is a template).
+  if (on4('BAREXT')) {
+    for (const [nm, pool] of scopes) {
+      const RD = pool.filter(isRead)
+      if (RD.length < 3) { info.push(`BAREXT ${nm}: ${RD.length} read item(s), not measured (n < 3)`); continue }
+      for (const ex of ['max', 'min']) {
+        const off = RD.filter(i => extremeOption(i, ex) >= 0), k = off.filter(i => i.choices[extremeOption(i, ex)] === i.correct_answer).length
+        info.push(`BAREXT ${nm} ${ex}: offered in ${off.length} of ${RD.length} read items, the key in ${k}${off.length ? ` (${(100 * k / off.length).toFixed(0)}%; band ${100 * BAREXT_BAND[0]}-${100 * BAREXT_BAND[1]}%)` : ''}`)
+        if (!off.length) add(`BATCH BAREXT ${nm}: the chart's ${ex === 'max' ? 'tallest bar (top tick)' : 'shortest bar'} value is offered in none of ${RD.length} read items; the cast is a template`)
+        else if (off.length >= 3 && (k / off.length < BAREXT_BAND[0] || k / off.length > BAREXT_BAND[1])) add(`BATCH BAREXT ${nm}: the ${ex === 'max' ? 'top-tick (tallest) value' : 'shortest-bar value'} is offered in ${off.length} read items and is the key in ${k} (${(100 * k / off.length).toFixed(0)}%; band ${100 * BAREXT_BAND[0]}-${100 * BAREXT_BAND[1]}%): "${k / off.length < BAREXT_BAND[0] ? 'never the answer' : 'always the answer'}"`)
+      }
+    }
+  }
+  // TRENDFORM (pilot-1 Life g1/g2: both trend keys the compound "X, then Y" at C): compound and simple option forms sit
+  // on keys at the rate they sit on options. Among an area's (and the batch's) compound trend options the key share is
+  // 15-40%, and the same among simple options, once >= 4 options of that form are in scope (no-tell 25%).
+  if (on4('TRENDFORM')) {
+    for (const [nm, pool] of scopes) {
+      const TR = pool.filter(i => SLOT[i.id]?.format === 'trend')
+      if (!TR.length) continue
+      for (const [form, test] of [['compound', c => /\bthen\b/i.test(c)], ['simple', c => !/\bthen\b/i.test(c)]]) {
+        const k = TR.filter(i => test(i.correct_answer)).length, d = TR.reduce((s, i) => s + i.choices.filter(c => c !== i.correct_answer && test(c)).length, 0)
+        info.push(`TRENDFORM ${nm} ${form}: on keys ${k}/${TR.length}, on distractors ${d}/${3 * TR.length}${k + d ? `; key share ${(100 * k / (k + d)).toFixed(0)}% (no-tell 25%)` : ''}`)
+        if (k + d >= TRENDFORM_MIN && (k / (k + d) < TRENDFORM_BAND[0] || k / (k + d) > TRENDFORM_BAND[1])) add(`BATCH TRENDFORM ${nm}: of ${k + d} ${form} trend options, ${k} are keys (${(100 * k / (k + d)).toFixed(0)}%; band ${100 * TRENDFORM_BAND[0]}-${100 * TRENDFORM_BAND[1]}%): "${k / (k + d) > TRENDFORM_BAND[1] ? `pick the ${form} option` : `never the ${form} option`}"`)
+      }
+    }
+  }
+  // RANKBAL (pilot-1 Earth g1/g2: claim key shortest in E5-02 and E8-01; Physical: values key smallest in P5-01 and
+  // P7-01; batch-2 Earth: the plain shortest claim): within one area and one format, no key rank (value rank for
+  // values, length rank otherwise) holds more than ceil(n/4) keys (+1 once n >= 8), n >= 2; also batch-wide per format.
+  if (on4('RANKBAL')) {
+    for (const [nm, pool] of scopes) {
+      for (const f of [...new Set(pool.map(i => SLOT[i.id]?.format))].filter(Boolean)) {
+        const F = pool.filter(i => SLOT[i.id]?.format === f)
+        if (F.length < 2) continue
+        const c = { 1: 0, 2: 0, 3: 0, 4: 0 }; for (const i of F) { const r = keyRank(i, f); if (r) c[r]++ }
+        const cap = Math.ceil(F.length / 4) + (F.length >= 8 ? 1 : 0)
+        info.push(`RANKBAL ${nm} ${f}: n=${F.length}, key ${f === 'values' ? 'value' : 'length'} ranks 1:${c[1]} 2:${c[2]} 3:${c[3]} 4:${c[4]} (cap ${cap})`)
+        for (const [r, v] of Object.entries(c)) if (v > cap) add(`BATCH RANKBAL ${nm} ${f}: ${v} of ${F.length} keys are ${f === 'values' ? 'value' : 'length'} rank ${r} (${r === '1' ? (f === 'values' ? 'smallest' : 'shortest') : r === '4' ? (f === 'values' ? 'largest' : 'longest') : `rank ${r}`}; cap ${cap})`)
+      }
+    }
+  }
+  // NAMETPL (pilot-1 Earth g2: "Field Hesk", "Town Marsk", "Ward Tesk"): invented name cores in one area share no
+  // two-letter ending across 3 or more items.
+  if (on4('NAMETPL')) {
+    for (const ar of areas) {
+      const where = {}
+      for (const i of live.filter(x => area(x) === ar)) for (const n of new Set((i.names_used ?? []).map(x => String(x).trim().split(/\s+/).pop()))) {
+        if (!/^[A-Z][a-z]{2,}$/.test(n)) continue
+        ;(where[n.slice(-2)] ??= new Map()).set(i.id, n)
+      }
+      for (const [e, m] of Object.entries(where)) if (m.size >= NAMETPL_MIN) add(`BATCH NAMETPL ${ar}: ${m.size} items' invented names end in "-${e}" (${[...m].map(([id, n]) => `${n} ${id}`).join(', ')}); one name template`)
+    }
+  }
   return { p, info, fatal: false }
+}
+export const BAREXT_BAND = [0.15, 0.5]
+export const TRENDFORM_BAND = [0.15, 0.4]
+export const TRENDFORM_MIN = 4
+export const NAMETPL_MIN = 3
+const isRead = i => i.format === 'values' && i.ask === 'read' && (i.graphic?.type === 'bar' || i.graphic?.type === 'line') && !shapeProblems(i.graphic).length
+const readYs = i => (i.graphic.type === 'bar' ? i.graphic.bars.map(b => b.value) : i.graphic.series[0].points.map(q => q[1]))
+/** tallest | shortest | middle: where the key's value sits among the chart's plotted values. */
+export function readPos(i) {
+  const v = numOf(i.correct_answer)?.v, ys = readYs(i), eq = (a, b) => Math.abs(a - b) < 1e-9
+  return eq(v, Math.max(...ys)) ? 'tallest' : eq(v, Math.min(...ys)) ? 'shortest' : 'middle'
+}
+/** Index of the option equal to the chart's max (or min) value, or -1. */
+export function extremeOption(i, ex) {
+  const ys = readYs(i), t = ex === 'max' ? Math.max(...ys) : Math.min(...ys)
+  return i.choices.findIndex(c => { const n = numOf(c); return n && Math.abs(n.v - t) < 1e-9 })
+}
+/** The key's rank: ascending value rank for values, length rank otherwise (as RANK computes it). */
+export function keyRank(i, f) {
+  const ki = i.choices.indexOf(i.correct_answer)
+  if (ki < 0) return null
+  if (f === 'values') { const ns = i.choices.map(numOf); return ns.every(Boolean) ? 1 + ns.filter(n => n.v < ns[ki].v).length : null }
+  const L = i.choices.map(c => c.length); return 1 + L.filter(v => v < L[ki]).length
 }
 /** VARTPL measures the template batch 2's graders named: the same role-STATEMENT phrases ("for every", "not the same",
  *  "changed") reused across an area's variable passages. Literal four-word overlap and function-word skeleton overlap
@@ -684,7 +799,8 @@ if (isMain) {
   const A = process.argv.slice(2)
   const ri = A.indexOf('--rules'), di = A.indexOf('--disable')
   const RUNOPTS = { rules: ri >= 0 ? A[ri + 1] : 'b1', disabled: new Set(di >= 0 ? A[di + 1].split(',') : []) }
-  if (!RULESETS.includes(RUNOPTS.rules)) { console.error('REFUSING: --rules must be pilot, b1, b2 or b3'); process.exit(2) }
+  if (!RULESETS.includes(RUNOPTS.rules)) { console.error('REFUSING: --rules must be pilot, b1, b2, b3 or b3p2'); process.exit(2) }
+  if (RUNOPTS.rules === 'b3p2' && A.includes('--break-test')) { console.error('REFUSING: b3p2 is break-tested on real items by science-b3p2/validate-b3p2-rules.mjs (batch 2 + pilot 1), not on fixtures'); process.exit(2) }
   if (A.includes('--break-test')) await breakTest(RUNOPTS.rules === 'pilot' ? 'b1' : RUNOPTS.rules)
   if (A.includes('--selftest')) await selftest(RUNOPTS.disabled)
   const die = m => { console.error('REFUSING: ' + m); process.exit(2) }
