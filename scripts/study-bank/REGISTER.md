@@ -3172,6 +3172,23 @@ recorded only in a commit message is a finding nobody reads.
     dangling-modifier template recurs there, that is the second consecutive batch and the brief cut is "blocking".
   - Pre-flight `itep-grammar-check.mjs` gained `--assigned/--author` (per-id table, category check, per-file
     category cap); behaviour without the flag unchanged (pilot re-run PASS).
+- **2026-10-31 — iTEP SLATE Grammar v3 top-up: 90 authored, 87 cleared (Part 1 19/20, Part 2 68/70), STAGED
+  verified=false; Grammar now holds 10 disjoint forms.** `ITEP-SLATE-GRAMMAR-V3.prereg.md`, `itep-grammar-v3-work/`.
+  Frozen brief v1 (no cut: not earned, not broken, no tell named by two graders in two consecutive batches); 7
+  Claude authors with new topic pools and names, Part 2 never assigned modifier placement, sub-points behind v2's
+  item-ground drops withheld, one sub-point per rule across the batch. Dedupe against all 199 banked items
+  (`ref-199.json`) + across authors: 1 collision, revised.
+  - **v2's letter defect is fixed and checked mechanically:** packets dealt per Part 2 key slot (A6 B6 C6 D5 /
+    A6 B6 C5 D6 / A6 B6 C6 D6, no three-runs); `check-packets.mjs` re-reads the written packets before graders and
+    fails v2's real packets and a marginal one-swap break. Result: 0 letter patterns counted, 0 packets held.
+  - **Gate:** 0 of 270 cold picks off key; drops C020 (causal "since", lesson 1 again, 3 graders), E063 (fronted
+    bare "so" purpose clause is not an error, 3 graders), E052 (error repairable outside the keyed segment, 1
+    grader). Pending lessons 11-12. Lesson 1 is one consecutive batch away from a blocking cut.
+  - **Staged** via `itep-bank-helper.ts stage --expect 87 --apply`: 87/87 read back verified=false. Bank Part 1 139,
+    Part 2 147 (key slots A37 B36 C38 D36). `verify-itep-draw.ts` now prints disjoint forms: **10** (Part 1 binds).
+  - Builder deviation, before graders: the plain rejection search could not satisfy all deal constraints in 1000
+    tries, so it now re-orders within a packet and repairs partitions by same-slot swaps; constraints unchanged.
+  - Release still needs Daniel's audit sample and the owner gate; nothing is verified.
 
 
 ## 6. The rule that keeps this honest

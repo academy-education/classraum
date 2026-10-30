@@ -1,0 +1,362 @@
+[
+ {
+  "n": 1,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "Stargazing club newsletter: from next month, our meetings will be held in the small observatory ________ 214 Orion Avenue.",
+  "choices": [
+   "onto",
+   "in",
+   "on",
+   "at"
+  ]
+ },
+ {
+  "n": 2,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Two weeks ago, the planetarium guide [A: said] that the meteor shower [B: will peak] [C: the next evening] and [D: could be seen] without a telescope.",
+  "choices": [
+   "said",
+   "will peak",
+   "the next evening",
+   "could be seen"
+  ]
+ },
+ {
+  "n": 3,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "When we asked about his lantern, Florian [A: told] us [B: I had made] it himself from bamboo [C: that] his grandfather [D: had brought home].",
+  "choices": [
+   "told",
+   "I had made",
+   "that",
+   "had brought home"
+  ]
+ },
+ {
+  "n": 4,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "If this novel [A: would have] a clearer ending, I [B: would gladly recommend] it to [C: everyone] in [D: our book club].",
+  "choices": [
+   "would have",
+   "would gladly recommend",
+   "everyone",
+   "our book club"
+  ]
+ },
+ {
+  "n": 5,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "[A: Where is] the two banners that Ngozi [B: painted] [C: for] [D: her brother's] birthday party?",
+  "choices": [
+   "Where is",
+   "painted",
+   "for",
+   "her brother's"
+  ]
+ },
+ {
+  "n": 6,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "In Mom's office, [A: workers sit] [B: at long desks], and it [C: is always] [D: amazing] quiet.",
+  "choices": [
+   "workers sit",
+   "at long desks",
+   "is always",
+   "amazing"
+  ]
+ },
+ {
+  "n": 7,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "The club president, [A: who had interviewed] [B: three of us] for the treasurer role, [C: phoned] [D: Seung-min and I] on Sunday to share the decision.",
+  "choices": [
+   "who had interviewed",
+   "three of us",
+   "phoned",
+   "Seung-min and I"
+  ]
+ },
+ {
+  "n": 8,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Esther [A: had planned] to mail her pen pal a letter [B: on] Friday, [C: so she forgot] her stamps [D: at home].",
+  "choices": [
+   "had planned",
+   "on",
+   "so she forgot",
+   "at home"
+  ]
+ },
+ {
+  "n": 9,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "________ it rained all morning, many families still came to see the penguins.",
+  "choices": [
+   "because of",
+   "in spite of",
+   "although",
+   "because"
+  ]
+ },
+ {
+  "n": 10,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "[A: A lot] parents [B: spoke to our class] [C: about their jobs] [D: on] Friday.",
+  "choices": [
+   "A lot",
+   "spoke to our class",
+   "about their jobs",
+   "on"
+  ]
+ },
+ {
+  "n": 11,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "If the volunteers [A: didn't rescue] the stranded seal pup last winter, she [B: wouldn't be] swimming [C: happily] [D: alongside the others] now.",
+  "choices": [
+   "didn't rescue",
+   "wouldn't be",
+   "happily",
+   "alongside the others"
+  ]
+ },
+ {
+  "n": 12,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Gabriel says his [A: curiosity about] sea turtles, not the pay, [B: was] the reason [C: of choosing] a job at the aquarium [D: rather than at a bakery].",
+  "choices": [
+   "curiosity about",
+   "was",
+   "of choosing",
+   "rather than at a bakery"
+  ]
+ },
+ {
+  "n": 13,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Mr. Dubois [A: pointed at] the red money tin and said it was [B: your], but [C: theirs] was the one [D: by the door].",
+  "choices": [
+   "pointed at",
+   "your",
+   "theirs",
+   "by the door"
+  ]
+ },
+ {
+  "n": 14,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Before [A: pay] for anything, Esperanza always [B: checks] [C: whether] the price is [D: reasonable].",
+  "choices": [
+   "pay",
+   "checks",
+   "whether",
+   "reasonable"
+  ]
+ },
+ {
+  "n": 15,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Library notice: before they [A: reach] the shelves, all new books [B: in our collection] [C: are quickly sorting] by student volunteers [D: during] lunch.",
+  "choices": [
+   "reach",
+   "in our collection",
+   "are quickly sorting",
+   "during"
+  ]
+ },
+ {
+  "n": 16,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "The poster in the nurse's office [A: suggests] stirring [B: only a few] honey into plain yogurt [C: instead of buying] the sweetened kind, which has [D: far more sugar].",
+  "choices": [
+   "suggests",
+   "only a few",
+   "instead of buying",
+   "far more sugar"
+  ]
+ },
+ {
+  "n": 17,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "School nurse's advice: if your throat feels ________ in the morning, drink some warm water.",
+  "choices": [
+   "very dryly",
+   "dryly",
+   "painfully",
+   "painfully dry"
+  ]
+ },
+ {
+  "n": 18,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Idris [A: likes] the dentist [B: near] our school [C: who her office] [D: has a big fish tank].",
+  "choices": [
+   "likes",
+   "near",
+   "who her office",
+   "has a big fish tank"
+  ]
+ },
+ {
+  "n": 19,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "On the poster [A: beside] the gym, a list of easy [B: exercises] [C: for busy students] [D: are] printed in green.",
+  "choices": [
+   "beside",
+   "exercises",
+   "for busy students",
+   "are"
+  ]
+ },
+ {
+  "n": 20,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "[A: Before] lunch, [B: so everyone] could find our house, we [C: tied] balloons [D: to] the gate.",
+  "choices": [
+   "Before",
+   "so everyone",
+   "tied",
+   "to"
+  ]
+ },
+ {
+  "n": 21,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Soo-ah remembers the day [A: when] she [B: first fed] the turtles, and the coral tank [C: in which] they live, [D: where a diver inspected last month].",
+  "choices": [
+   "when",
+   "first fed",
+   "in which",
+   "where a diver inspected last month"
+  ]
+ },
+ {
+  "n": 22,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "As a reporter for the school newspaper, Santiago has learned to avoid ________ his articles unfinished until the night before a deadline.",
+  "choices": [
+   "leaving",
+   "leave",
+   "left",
+   "to leave"
+  ]
+ },
+ {
+  "n": 23,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "If an order is late, [A: stay calm], [B: explain] the delay, and [C: apology to the customer] [D: before] offering a small discount.",
+  "choices": [
+   "stay calm",
+   "explain",
+   "apology to the customer",
+   "before"
+  ]
+ },
+ {
+  "n": 24,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "The school nurse says that how fast an ankle heals [A: will depend] [B: mostly on] how well you [C: rest] it and [D: stick] the plan.",
+  "choices": [
+   "will depend",
+   "mostly on",
+   "rest",
+   "stick"
+  ]
+ },
+ {
+  "n": 25,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "My tooth [A: ached a lot] yesterday, but today it feels [B: even] [C: worst] [D: than before].",
+  "choices": [
+   "ached a lot",
+   "even",
+   "worst",
+   "than before"
+  ]
+ },
+ {
+  "n": 26,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "The old sewing machine that our class [A: found] at the second-hand market [B: has already oiled], so we [C: can use] it to make bags [D: for the stall].",
+  "choices": [
+   "found",
+   "has already oiled",
+   "can use",
+   "for the stall"
+  ]
+ },
+ {
+  "n": 27,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "\"Babies [A: are] free, so you [B: can] carry [C: yours] in and [D: mustn't buy a ticket],\" the keeper explained to a visitor.",
+  "choices": [
+   "are",
+   "can",
+   "yours",
+   "mustn't buy a ticket"
+  ]
+ },
+ {
+  "n": 28,
+  "kind": "Error Identification",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "This afternoon, the chef let me [A: to stir] the soup, but she [B: told] me [C: not to touch] the knives [D: at all].",
+  "choices": [
+   "to stir",
+   "told",
+   "not to touch",
+   "at all"
+  ]
+ },
+ {
+  "n": 29,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "Since we lowered the prices on our price list, there ________ a big increase in the number of customers at our class stall.",
+  "choices": [
+   "have been",
+   "has been",
+   "is",
+   "are"
+  ]
+ },
+ {
+  "n": 30,
+  "kind": "Sentence Completion",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "________ to leave early, tell Mr. Bakshi at least one hour before your shift begins.",
+  "choices": [
+   "Did you need",
+   "Have you needed",
+   "Should you need",
+   "Had you needed"
+  ]
+ }
+]

@@ -128,3 +128,37 @@ Survivors written by `itep-grammar-v3-work/build-batch.mjs` to `scripts/study-ba
 (v2's shape, cohort `itep-grammar-v3`, `verified=false`, Part 2 `item_type='error_identification'`), then staged
 with `npx tsx scripts/study-bank/itep-bank-helper.ts stage <batch> --expect <n> --apply`, which reads `verified`
 back by row id. Then `npx tsx scripts/study-bank/verify-itep-draw.ts --section grammar` for the form count.
+
+## Results (2026-10-31, recorded after scoring; no rule changed)
+
+- **Authoring:** 7 authors, 90 items; each passed its own pre-flight and dedupe against `ref-199.json`. The
+  cross-author dedupe found 1 collision (E001/E044 key root "return"); author E revised E044. Final pre-flight
+  PASS (90; Part 2 slots A18 B18 C17 D17, length ranks 17/17/18/18; 5 length warnings on easy items); dedupe PASS.
+- **Deal: one mechanics deviation, constraints unchanged.** The plain rejection search found no deal in 1000
+  attempts (three-runs 515, author cap 236, category cap 212 of the rejections). Before any grader, the builder was
+  changed to (a) re-shuffle a packet's order up to 500 times for the three-run rule and (b) repair a partition by
+  seeded same-slot swaps that never raise the violation count. Every constraint in §3 is as written; deal attempt 0
+  passed. Packets: P2 key letters A6 B6 C6 D5 / A6 B6 C5 D6 / A6 B6 C6 D6, P1 within 1, no three-runs, author max
+  6, category max 2. `check-packets.mjs` PASS on the files as written; a marginal break (one D item replaced by an
+  A item in packet 3, A7 B6 C6 D5) fails it.
+- **Gate** (`score.mjs`; grader files copied to `itep-grammar-v3-work/results/`, rescoring the copy reproduces the
+  result; a tampered cold file and a missing grade file each exit 2): 270 cold picks, **0 off key**, 1
+  `also_correct`; 270 keyed verdicts, 7 non-unique. **No letter pattern was counted in any packet** (one grader in
+  packet 3 named a weak pairing `key_position`; no second grader). **Cleared 87 of 90 (Part 1 19/20, Part 2
+  68/70). Band: brief works.** 0 packets held.
+- **Drops (3):**
+  - **C020** (a, b, c): "Since her grandfather taught her last winter" reads causally, so "was able" is also right.
+    The pilot's lesson 1 shape (a time phrase with a second reading) again, three graders.
+  - **E063** (a, b, c keyed; c cold): a fronted "so everyone could ..." purpose clause is acceptable, so no segment
+    is wrong. The author had flagged this item as its weakest.
+  - **E052** (a only): a however-clash repairable at either end (connector or the clause), the lesson 8 shape.
+- **Brief decision after the gate: still no cut.** Lesson 7 (modifier template): not named (one modifier item, by
+  construction). Lesson 8 (error outside one segment): named by ONE grader on E052; blocking needs both. Lesson 1
+  recurred with all three graders (C020), but v2 between did not name it, so v1 and v3 are not consecutive.
+  Recorded as pending lesson 11; if the next Grammar batch names it again, that is two consecutive and the cut is
+  blocking.
+- **Staged:** `itep-grammar-v3.batch.json`, 87 rows, staged with `itep-bank-helper.ts stage --expect 87 --apply`:
+  read back 87 of 87 verified=false (`itep-grammar-v3.batch.staged.json`). Bank: Part 1 139, Part 2 147 (Part 2
+  key slots A37 B36 C38 D36). `verify-itep-draw.ts --section grammar`: FULL 25 of 25, live path still refuses,
+  error-ID order kept; **10 disjoint full Grammar forms** (Part 1 is the binding part: 139 / 13). The script
+  gained one printed line for that count.

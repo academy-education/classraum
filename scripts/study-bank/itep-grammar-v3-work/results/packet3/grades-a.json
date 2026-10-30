@@ -1,0 +1,113 @@
+{
+ "1": {
+  "verdict": "unique"
+ },
+ "2": {
+  "verdict": "unique"
+ },
+ "3": {
+  "verdict": "unique"
+ },
+ "4": {
+  "verdict": "unique"
+ },
+ "5": {
+  "verdict": "unique"
+ },
+ "6": {
+  "verdict": "unique"
+ },
+ "7": {
+  "verdict": "unique"
+ },
+ "8": {
+  "verdict": "unique"
+ },
+ "9": {
+  "verdict": "unique"
+ },
+ "10": {
+  "verdict": "unique"
+ },
+ "11": {
+  "verdict": "unique"
+ },
+ "12": {
+  "verdict": "unique"
+ },
+ "13": {
+  "verdict": "unique"
+ },
+ "14": {
+  "verdict": "unique"
+ },
+ "15": {
+  "verdict": "unique"
+ },
+ "16": {
+  "verdict": "unique"
+ },
+ "17": {
+  "verdict": "unique"
+ },
+ "18": {
+  "verdict": "unique"
+ },
+ "19": {
+  "verdict": "unique"
+ },
+ "20": {
+  "verdict": "broken",
+  "defect_type": "key_wrong",
+  "other": "(no segment)",
+  "reason": "The keyed segment \"so everyone\" is acceptable in normal edited English: \"Before lunch, so everyone could find our house, we tied balloons to the gate\" reads as a fronted purpose clause (so = so that), which is used and understood; at most it is awkward placement. No segment is clearly wrong, so a careful student who says nothing is wrong has a reasonable complaint and the item does not test a clear rule."
+ },
+ "21": {
+  "verdict": "unique"
+ },
+ "22": {
+  "verdict": "unique"
+ },
+ "23": {
+  "verdict": "unique"
+ },
+ "24": {
+  "verdict": "unique"
+ },
+ "25": {
+  "verdict": "unique"
+ },
+ "26": {
+  "verdict": "unique"
+ },
+ "27": {
+  "verdict": "unique"
+ },
+ "28": {
+  "verdict": "unique"
+ },
+ "29": {
+  "verdict": "unique"
+ },
+ "30": {
+  "verdict": "unique"
+ },
+ "batch_patterns": [
+  {
+   "pattern": "key_position",
+   "items": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "evidence": "weak: keys run in doubled letters B,B,A,A,D,D,C,C,A,A across items 2-11; overall distribution balanced (A7 B7 C8 D8) and the doubling stops after item 11"
+  }
+ ]
+}

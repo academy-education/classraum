@@ -39,3 +39,12 @@ Authors never read this file. Folded into v2 at the next cut (BRIEF-VERSIONING.m
 10. **Same rule in two items leaks** (packet 4 grader a: "for using" vs "to use" in two items). Owned sub-points
     stopped lexical collisions but two categories can still test one rule (purpose infinitive under gerund/infinitive
     and under prepositions). Assign rules, not only category labels, across the whole batch.
+
+## 2026-10-31, batch itep-grammar-v3 (90 items, 87 cleared; ITEP-SLATE-GRAMMAR-V3.prereg.md)
+
+11. **Lesson 1 recurred, all three graders** (C020: "Since her grandfather taught her last winter, ... ________
+    able to" reads as causal "since", making the simple past right). Non-consecutive with the pilot (v2 did not name
+    it). v2 of the brief: any tense item opened by since/as/while must force the temporal reading, or avoid those
+    connectors. If the next batch names it, the cut is blocking.
+12. **Fronted bare "so" purpose clauses are not errors** (E063, all three; the author itself flagged it). A Part 2
+    key must be wrong in edited English, not merely less formal than "so that". Fold into lesson 9's rule.

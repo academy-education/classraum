@@ -1,0 +1,181 @@
+{
+ "cohort": "itep-grammar-v3",
+ "total": 90,
+ "graders_per_packet": 3,
+ "packets_held": 0,
+ "denominators": {
+  "cold_picks": 270,
+  "cold_miss": 0,
+  "cold_also_correct": 1,
+  "keyed_verdicts": 270,
+  "keyed_non_unique": 7
+ },
+ "cleared": [
+  "ITG3-C001",
+  "ITG3-C002",
+  "ITG3-C003",
+  "ITG3-C004",
+  "ITG3-C005",
+  "ITG3-C006",
+  "ITG3-C007",
+  "ITG3-C008",
+  "ITG3-C009",
+  "ITG3-C010",
+  "ITG3-C011",
+  "ITG3-C012",
+  "ITG3-C013",
+  "ITG3-C014",
+  "ITG3-C015",
+  "ITG3-C016",
+  "ITG3-C017",
+  "ITG3-C018",
+  "ITG3-C019",
+  "ITG3-E001",
+  "ITG3-E002",
+  "ITG3-E003",
+  "ITG3-E004",
+  "ITG3-E005",
+  "ITG3-E006",
+  "ITG3-E007",
+  "ITG3-E008",
+  "ITG3-E009",
+  "ITG3-E010",
+  "ITG3-E011",
+  "ITG3-E012",
+  "ITG3-E013",
+  "ITG3-E014",
+  "ITG3-E015",
+  "ITG3-E016",
+  "ITG3-E017",
+  "ITG3-E018",
+  "ITG3-E019",
+  "ITG3-E020",
+  "ITG3-E021",
+  "ITG3-E022",
+  "ITG3-E023",
+  "ITG3-E024",
+  "ITG3-E025",
+  "ITG3-E026",
+  "ITG3-E027",
+  "ITG3-E028",
+  "ITG3-E029",
+  "ITG3-E030",
+  "ITG3-E031",
+  "ITG3-E032",
+  "ITG3-E033",
+  "ITG3-E034",
+  "ITG3-E035",
+  "ITG3-E036",
+  "ITG3-E037",
+  "ITG3-E038",
+  "ITG3-E039",
+  "ITG3-E040",
+  "ITG3-E041",
+  "ITG3-E042",
+  "ITG3-E043",
+  "ITG3-E044",
+  "ITG3-E045",
+  "ITG3-E046",
+  "ITG3-E047",
+  "ITG3-E048",
+  "ITG3-E049",
+  "ITG3-E050",
+  "ITG3-E051",
+  "ITG3-E053",
+  "ITG3-E054",
+  "ITG3-E055",
+  "ITG3-E056",
+  "ITG3-E057",
+  "ITG3-E058",
+  "ITG3-E059",
+  "ITG3-E060",
+  "ITG3-E061",
+  "ITG3-E062",
+  "ITG3-E064",
+  "ITG3-E065",
+  "ITG3-E066",
+  "ITG3-E067",
+  "ITG3-E068",
+  "ITG3-E069",
+  "ITG3-E070"
+ ],
+ "dropped": {
+  "ITG3-E052": [
+   "keyed a: alternative/second_defensible: The error is purely logical (contrast connector vs. a consistent pair of clauses). It can be repaired at either end: \"however\" -> \"so\", or \"loves cooking\" -> \"dislikes cooking\" with however kept. A careful student who picked \"loves cooking\" has a reasonable complaint; the sentence gives no grammatical reason to prefer the connector as the faulty segment."
+  ],
+  "ITG3-C020": [
+   "keyed a: alternative/second_defensible: Since can be read causally (Because her grandfather taught her last winter, Farah was able to fold lanterns for the festival without help), which makes simple past natural; nothing in the sentence forces the temporal since-reading that requires has been.",
+   "keyed b: alternative/second_defensible: 'Since' can be read causally (= because): 'Since her grandfather taught her last winter, Farah was able to fold paper lanterns for the festival without any help' is natural edited English about a past festival; nothing in the sentence forces the temporal reading that requires 'has been'.",
+   "keyed c: alternative/second_defensible: \"Since\" reads naturally as causal (= because): \"Since her grandfather taught her last winter, Farah was able to fold paper lanterns for the festival without any help\" is correct, natural edited English describing a past festival. Nothing in the sentence forces the temporal reading that requires has been."
+  ],
+  "ITG3-E063": [
+   "keyed a: broken/key_wrong: The keyed segment \"so everyone\" is acceptable in normal edited English: \"Before lunch, so everyone could find our house, we tied balloons to the gate\" reads as a fronted purpose clause (so = so that), which is used and understood; at most it is awkward placement. No segment is clearly wrong, so a careful student who says nothing is wrong has a reasonable complaint and the item does not test a clear rule.",
+   "keyed b: broken/key_wrong: No segment is clearly wrong: a fronted purpose clause \"so everyone could find our house\" is acceptable in normal edited English (so = so that), and Before / tied / to are all correct, so a careful student finds no error to identify; the item rests on a strict so-that rule at best.",
+   "cold c: also_correct [\"Before\",\"tied\",\"to\"]",
+   "keyed c: broken/key_wrong: The sentence \"Before lunch, so everyone could find our house, we tied balloons to the gate\" is acceptable edited English; a fronted purpose clause with \"so\" (rather than \"so that\") is at most a style preference, and the four segments Before / so everyone / tied / to are all correct, so there is no error to identify. A careful student has a reasonable complaint whatever they pick. Re-author with a real error (e.g. \"so as everyone\" or \"tie\")."
+  ]
+ },
+ "by_part": {
+  "Part 1: Sentence Completion": {
+   "total": 20,
+   "cleared": 19
+  },
+  "Part 2: Error Identification": {
+   "total": 70,
+   "cleared": 68
+  }
+ },
+ "band": "brief works",
+ "packets": [
+  {
+   "packet": "packet1",
+   "size": 30,
+   "hold": false,
+   "patterns": [],
+   "all_batch_patterns": {
+    "a": [],
+    "b": [],
+    "c": []
+   }
+  },
+  {
+   "packet": "packet2",
+   "size": 30,
+   "hold": false,
+   "patterns": [],
+   "all_batch_patterns": {
+    "a": [],
+    "b": [],
+    "c": []
+   }
+  },
+  {
+   "packet": "packet3",
+   "size": 30,
+   "hold": false,
+   "patterns": [],
+   "all_batch_patterns": {
+    "a": [
+     {
+      "pattern": "key_position",
+      "items": [
+       2,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11
+      ],
+      "evidence": "weak: keys run in doubled letters B,B,A,A,D,D,C,C,A,A across items 2-11; overall distribution balanced (A7 B7 C8 D8) and the doubling stops after item 11"
+     }
+    ],
+    "b": [],
+    "c": []
+   }
+  }
+ ]
+}

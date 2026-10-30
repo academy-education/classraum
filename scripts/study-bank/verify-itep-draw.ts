@@ -72,6 +72,9 @@ async function main() {
       got += parts[i].length
       console.log(`  ${parts[i].length >= want ? 'ok   ' : 'SHORT'} ${area}: drew ${parts[i].length} of ${want} (pool ${pool})`)
     })
+    // Disjoint forms: how many full forms the pool holds with no item repeated (the thinnest part decides).
+    const forms = Math.min(...ITEP_PART_QUOTAS[section].map(({ area, count: want }) => Math.floor(rows.filter(r => r.domain === area).length / want)))
+    console.log(`  disjoint full forms (no repeats, staged included): ${forms}`)
     const ok = got === block.questions
     if (!ok) short++
     console.log(`  ${ok ? 'FULL ' : 'SHORT'} itep/${block.key}: ${got} of ${block.questions}${ok ? '' : `, short by ${block.questions - got}`}`)
