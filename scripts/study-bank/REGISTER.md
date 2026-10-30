@@ -6603,3 +6603,16 @@ structural checks are pre-flight only. See CLAUDE.md.
   file had them); the plan entries were written to match the drawn run, and the release script now reads 28 rows
   over 18 cohorts. Wave-2 audit `agentreview-audit2-cofounder-2026-10-30` drawn (21 rows); the queue's nextManualDraw
   was removed.
+
+- **2026-10-31 — ACT English v11 gated: 7 of 12 passages (70 items) staged; queued for a full sitting.** Gate sheet
+  ACT-EN11-GATE.md, 25 agents. With-source: 120/120, all three graders agree with the key. Dropped P1, P2, P3, P9
+  and P10: each had a PoW item `no_source_needed` by 2 or more graders (delete phrase, add sentence, essay purpose,
+  conclusion). P1-Q09 was also called broken by all three graders and by both pre-screen briefs: the key fixes the
+  modifier but "and passed them along" no longer agrees. Blind screen: CSE 98.5% (FLAG, so the sitting oversamples
+  it), PoW 77.8% (under the +15 bar, unlike v10's 86.7%), KoL 94.7% report-only. Staged with BANK_VERIFIED=false;
+  verified read back as false on all 70. **Depth:** if released, 38 + 7 = 45 complete passages, which is 9 forms, so
+  the 10-form floor still needs v10's 4 kept passages (queued) or another 5 passages. **Lesson for v12:** PoW essay
+  purpose, conclusion and add/delete items whose key paraphrases the stated purpose are answerable from the stem.
+  Six of v11's 36 PoW items fell to it even with every option passage-anchored. The fix: distractors that also echo
+  the stem's purpose, with the key distinguished only by what the passage actually does.
+  `score-attack.mjs` now exits 2 when it has no solver file (it printed NaN% and exit 0).

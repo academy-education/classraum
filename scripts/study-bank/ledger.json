@@ -13215,6 +13215,50 @@
           "verdict": "Keys 9/9/9/9 across 36; no cross-item pattern named by the adversarial grader for Reading."
         }
       }
+    },
+    {
+      "id": "act-english-v11-kept-2026-10-31",
+      "createdAt": "2026-10-31",
+      "targetTest": "act",
+      "section": "english",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "spec": {
+        "n": 70,
+        "authors": 1,
+        "method": "one in-session Claude author, gate sheet ACT-EN11-GATE.md (pre-registered before any solver or grader)"
+      },
+      "contentSha": "a1fd9c6c957ef9ff46ac16d22543d44d9d57010289424cb1fc7f34c08a04bb5a",
+      "status": "staged-for-human-review",
+      "cohort": "act-english-v11",
+      "note": "Passages P4 P5 P6 P7 P8 P11 P12 of the frozen 120-item act-english-v11 batch (sha 18a51961); P1 P2 P3 P9 P10 dropped whole at the with-source gate (PoW no_source_needed by 2+; P1-Q09 also broken by both pre-screens). Selection, not an edit. Route: full co-founder sitting, oversampling CSE (blind flag). REGISTER section 5, 2026-10-31.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "a1fd9c6c957ef9ff46ac16d22543d44d9d57010289424cb1fc7f34c08a04bb5a",
+          "verdict": "act-bank-helper check english: structure OK on the kept 70."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "a1fd9c6c957ef9ff46ac16d22543d44d9d57010289424cb1fc7f34c08a04bb5a",
+          "verdict": "3 Claude graders per render (a,b plain; c adversarial): 120/120 all three agree with the key; drop rules dropped P1 P2 P3 P9 P10 (6 PoW items no_source_needed by >=2). Pre-screens A/B: one item both briefs named (P1-Q09 broken) - already dropped."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "a1fd9c6c957ef9ff46ac16d22543d44d9d57010289424cb1fc7f34c08a04bb5a",
+          "verdict": "SCREEN, NOT A VERDICT: 10 split solvers, 1 item per passage per file. CSE 64/65 = 98.5% vs 68.0+15 = FLAG; PoW 28/36 = 77.8% vs 66.7+15 = no flag; KoL 18/19 report-only. Kept: CSE 38/38, PoW 16/21, KoL 10/11. Instrument saturates on ACT verbal; the sitting decides."
+        },
+        "elimination": {
+          "passed": true,
+          "contentSha": "a1fd9c6c957ef9ff46ac16d22543d44d9d57010289424cb1fc7f34c08a04bb5a",
+          "verdict": "Covered by the with-source PoW no_source_needed rule; all 6 hits were in dropped passages."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "a1fd9c6c957ef9ff46ac16d22543d44d9d57010289424cb1fc7f34c08a04bb5a",
+          "verdict": "No Change keyed 26/95 eligible (27.4%); boundary keys in 7 shapes; key uniquely longest 1/94, shortest 14/94; key slots dealt 30/30/30/30. Grader c noted a mild D lean in h1 (13/40) - letters reshuffle at draw time."
+        }
+      }
     }
   ],
   "auditedCohorts": [
