@@ -6585,3 +6585,12 @@ structural checks are pre-flight only. See CLAUDE.md.
   `npx tsx scripts/study-bank/check-raw-math.ts [--all]` exits 1 if any field is still raw after formatting:
   live 11,507 rows / 74,390 fields, 1,501 with a caret before formatting, 0 raw after; `--all` 15,308 rows, 0.
   Tests: math-text (32, two rules break-tested) and a MathText render test.
+
+- **2026-10-30 — MAP Math b12 stage A (OA/Geo/Stats, screen in the loop): 39 candidates, 13 mechanisms, 6 eligible
+  survivors (O 3, G 2, D 1), POOLED and not gated.** Options-only over all candidates 43.6%. See
+  `scratchpad/map-v2-math-b12-work/SELECTION.md`. **Duplicate-check finding:** after generation, the live keyword
+  probe (mf30-kw) found 10 mechanisms that duplicate live SAT/ACT/ISEE/SSAT items, and math-check's near-dup had
+  flagged only 1 of them. **A math-check PART OK is not a duplicate clearance.** The keyword probe stays mandatory and
+  must run BEFORE generation. b10's mapgrep also silently lacked the b9/n789/b10/b11 items; `tools/mapgrep12.mjs`
+  adds them and exits 2 on a missing source. **Gate policy from here:** pool per area until n >= 10, then prereg and
+  gate (n11 was held by one item at n=5).
