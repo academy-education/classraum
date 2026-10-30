@@ -1,0 +1,392 @@
+[
+  {
+    "id": "ITG3-C007",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "comparatives and superlatives",
+    "varied_dimension": "comparison frame of one adjective (as + adj, more + adj, so + adj, bare adj), decided by 'far ... than'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "The zoo's fact sheet says the male mandarin duck is far ________ than the female, which is mostly brown.",
+    "choices": [
+      "as colorful",
+      "more colorful",
+      "so colorful",
+      "colorful"
+    ],
+    "correct_answer": "more colorful",
+    "explanation": "A comparison with \"than\" needs a comparative form. Long adjectives like \"colorful\" form the comparative with \"more\", and \"far\" can strengthen a comparative: far more colorful than.",
+    "distractor_rationales": {
+      "as colorful": "\"as colorful\" must be followed by \"as\", not \"than\", and it cannot follow \"far\".",
+      "so colorful": "\"so colorful\" is used with \"that\" (so colorful that ...), not with \"than\".",
+      "colorful": "The plain adjective cannot be used with \"than\"; a comparative form is needed."
+    },
+    "student_error": {
+      "as colorful": "Learners mix the two comparison patterns and join as ... with than.",
+      "so colorful": "Learners use \"so\" as a general intensifier and forget it does not form a comparison with than.",
+      "colorful": "Learners whose first language marks comparison only with the word for \"than\" leave the adjective unchanged."
+    },
+    "key_slot": "B",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG3-C008",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "count/non-count and quantifiers",
+    "varied_dimension": "quantifier choice (any, some, none, a little) after the negative adverb 'hardly'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "\"By the end of the afternoon feeding,\" the keeper told the visitors, \"there is hardly ________ fish left in the sea lions' bucket.\"",
+    "choices": [
+      "any",
+      "some",
+      "none",
+      "a little"
+    ],
+    "correct_answer": "any",
+    "explanation": "\"Hardly\" makes a clause negative, so it takes \"any\", just as \"not\" does: hardly any fish = almost no fish. \"Some\" belongs in positive statements.",
+    "distractor_rationales": {
+      "some": "\"Some\" is used in positive statements; after the negative word \"hardly\" English uses \"any\".",
+      "none": "\"None\" is a pronoun that cannot come before a noun, and with \"hardly\" it makes a double negative.",
+      "a little": "\"Hardly\" cannot combine with \"a little\"; the meaning \"almost no\" needs \"hardly any\"."
+    },
+    "student_error": {
+      "some": "Learners do not notice that \"hardly\" is negative because it has no \"not\", so they use the positive form.",
+      "none": "Learners who think of \"hardly\" as meaning \"almost\" add a negative word to express \"almost nothing\".",
+      "a little": "Learners link \"a little\" with small amounts of uncountable things and choose it for a small amount of fish."
+    },
+    "key_slot": "A",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG3-C009",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "conjunctions and connectors",
+    "varied_dimension": "cause vs contrast connector and conjunction vs preposition (because of, in spite of, because, although) before a full clause",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "________ it rained all morning, many families still came to see the penguins.",
+    "choices": [
+      "because of",
+      "in spite of",
+      "because",
+      "although"
+    ],
+    "correct_answer": "although",
+    "explanation": "The word \"still\" shows a contrast: the families came even with the rain. A full clause (it rained all morning) follows the blank, so we need the conjunction \"although\", not a preposition.",
+    "distractor_rationales": {
+      "because of": "\"Because of\" is a preposition followed by a noun, and the rain is not the reason the families came.",
+      "in spite of": "\"In spite of\" shows contrast, but it is a preposition and cannot be followed by a full clause like \"it rained\".",
+      "because": "\"Because\" gives a reason, but the rain did not make families come; \"still\" shows a contrast."
+    },
+    "student_error": {
+      "because of": "Learners treat \"because of\" and \"because\" as the same word and use either before a clause.",
+      "in spite of": "Learners match the contrast meaning but forget that \"in spite of\" needs a noun or -ing form.",
+      "because": "Learners choose the most familiar connector without checking whether the meaning is cause or contrast."
+    },
+    "key_slot": "D",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG3-E021",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "pronoun case and reference",
+    "varied_dimension": "subject pronouns used as the object of a verb in a compound object",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "During her talk, a keeper [A: showed] [B: she and I] how to [C: brush] the ponies [D: very gently].",
+    "choices": [
+      "showed",
+      "she and I",
+      "brush",
+      "very gently"
+    ],
+    "correct_answer": "she and I",
+    "explanation": "After a verb such as \"showed\", pronouns are objects, so we need object forms: \"showed her and me\". Take away the other person to check: \"showed I\" is clearly wrong, so \"she and I\" is wrong too.",
+    "distractor_rationales": {
+      "showed": "\"Showed\" is the correct past simple of \"show\".",
+      "brush": "After \"how to\", the base form \"brush\" is correct.",
+      "very gently": "\"Gently\" is an adverb describing how they brush, which is correct."
+    },
+    "student_error": {
+      "showed": "Learners may expect an irregular form like \"shew\" or \"shown\" and doubt the regular past.",
+      "brush": "Learners may think an -ing form (\"how to brushing\") or a past form is needed after \"how to\".",
+      "very gently": "Learners confuse adjective and adverb and may think \"very gentle\" is required."
+    },
+    "key_slot": "B",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG3-E022",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "modals",
+    "varied_dimension": "mustn't (prohibition) used where don't have to (no necessity) is meant",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "\"Babies [A: are] free, so you [B: can] carry [C: yours] in and [D: mustn't buy a ticket],\" the keeper explained to a visitor.",
+    "choices": [
+      "are",
+      "can",
+      "yours",
+      "mustn't buy a ticket"
+    ],
+    "correct_answer": "mustn't buy a ticket",
+    "explanation": "\"Mustn't\" means something is not allowed. Here the baby is free, so buying a ticket is simply not necessary: \"don't have to buy a ticket\".",
+    "distractor_rationales": {
+      "are": "\"Babies\" is plural, so \"are\" is correct.",
+      "can": "\"Can\" correctly shows that the visitor is allowed to carry the baby in.",
+      "yours": "\"Yours\" correctly stands for \"your baby\"."
+    },
+    "student_error": {
+      "are": "Learners sometimes use \"is\" with a general statement about a group and doubt the plural verb.",
+      "can": "Learners may think \"must\" or \"may\" is needed to talk about permission.",
+      "yours": "Learners confuse \"yours\" with \"your\" and may think a noun must follow."
+    },
+    "key_slot": "D",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG3-E023",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "parallel structure",
+    "varied_dimension": "a noun breaking a list of adjective phrases after 'describe ... as'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "The fact sheet describes the snow leopard as [A: shy around people], [B: patience], and [C: surprisingly playful] with [D: its] keepers.",
+    "choices": [
+      "shy around people",
+      "patience",
+      "surprisingly playful",
+      "its"
+    ],
+    "correct_answer": "patience",
+    "explanation": "Items in a list should have the same form. The other two items describe the leopard with adjectives (shy, playful), so the noun \"patience\" should be the adjective \"patient\".",
+    "distractor_rationales": {
+      "shy around people": "\"Shy around people\" is an adjective phrase, which fits the list.",
+      "surprisingly playful": "The adverb \"surprisingly\" correctly modifies the adjective \"playful\".",
+      "its": "\"Its\" is the correct possessive for the leopard (not \"it's\")."
+    },
+    "student_error": {
+      "shy around people": "Learners may think \"shy\" needs \"of\" or \"with\" instead of \"around\".",
+      "surprisingly playful": "Learners may think two -ly or adjective forms are needed (\"surprising playful\").",
+      "its": "Learners often confuse \"its\" and \"it's\", or expect \"his\" or \"her\" for an animal."
+    },
+    "key_slot": "B",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG3-E024",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "word form",
+    "varied_dimension": "adjective used as a subject where the -ness noun is needed",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "[A: Gentle] with animals [B: has always been] the rule volunteers [C: quickly learn] [D: on day one].",
+    "choices": [
+      "Gentle",
+      "has always been",
+      "quickly learn",
+      "on day one"
+    ],
+    "correct_answer": "Gentle",
+    "explanation": "The subject of a sentence must be a noun. The adjective \"gentle\" becomes a noun with the suffix -ness: \"Gentleness with animals has always been the rule.\"",
+    "distractor_rationales": {
+      "has always been": "The subject \"gentleness\" is singular, so \"has always been\" is correct.",
+      "quickly learn": "\"Volunteers\" is plural, so \"learn\" without -s is correct, and the adverb \"quickly\" may come before the verb.",
+      "on day one": "\"On\" is the correct preposition before a day."
+    },
+    "student_error": {
+      "has always been": "Learners may make the verb agree with the plural \"animals\" and want \"have\".",
+      "quickly learn": "Learners overuse third-person -s and may want \"learns\", or doubt the adverb position.",
+      "on day one": "Learners confuse \"on\", \"in\" and \"at\" with time expressions."
+    },
+    "key_slot": "A",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG3-E025",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "gerund vs infinitive",
+    "varied_dimension": "-ing form used after 'decide', which takes a to-infinitive",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Last year Pia [A: finally decided] [B: assisting] the keepers [C: at feeding time] [D: every weekend].",
+    "choices": [
+      "finally decided",
+      "assisting",
+      "at feeding time",
+      "every weekend"
+    ],
+    "correct_answer": "assisting",
+    "explanation": "The verb \"decide\" is followed by a to-infinitive, not an -ing form. The correct sentence is \"Pia finally decided to assist the keepers.\"",
+    "distractor_rationales": {
+      "finally decided": "\"Decided\" is the correct past simple for \"last year\", and \"finally\" correctly modifies it.",
+      "at feeding time": "\"At\" is the correct preposition before a time of day such as \"feeding time\".",
+      "every weekend": "\"Every\" is correctly followed by a singular noun."
+    },
+    "student_error": {
+      "finally decided": "Learners may doubt the adverb position between subject and verb.",
+      "at feeding time": "Learners confuse \"at\", \"in\" and \"on\" with times.",
+      "every weekend": "Learners may think \"every\" needs a plural noun (\"every weekends\")."
+    },
+    "key_slot": "B",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG3-E026",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "adjective vs adverb",
+    "varied_dimension": "adjective 'good' used where the adverb 'well' must describe an action verb",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Our young otter now swims [A: surprisingly good], so the keepers [B: let] him [C: join] [D: the older ones].",
+    "choices": [
+      "surprisingly good",
+      "let",
+      "join",
+      "the older ones"
+    ],
+    "correct_answer": "surprisingly good",
+    "explanation": "\"Swims\" is an action verb, so it needs an adverb to say how the otter swims. The adverb of \"good\" is \"well\": the otter swims surprisingly well.",
+    "distractor_rationales": {
+      "let": "\"Let\" is irregular and its past form is also \"let\", so it is correct here.",
+      "join": "After \"let + object\", the base form without \"to\" is correct.",
+      "the older ones": "\"The older ones\" correctly uses a comparative and \"ones\" for the other otters."
+    },
+    "student_error": {
+      "let": "Learners expect a regular past form like \"letted\".",
+      "join": "Learners add \"to\" after \"let him\" by analogy with \"allow him to\".",
+      "the older ones": "Learners may think a superlative (\"the oldest ones\") is needed after \"the\"."
+    },
+    "key_slot": "A",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG3-E027",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "relative pronouns and clauses",
+    "varied_dimension": "relative adverb 'where' used for the object of a transitive verb instead of 'which'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Soo-ah remembers the day [A: when] she [B: first fed] the turtles, and the coral tank [C: in which] they live, [D: where a diver inspected last month].",
+    "choices": [
+      "when",
+      "first fed",
+      "in which",
+      "where a diver inspected last month"
+    ],
+    "correct_answer": "where a diver inspected last month",
+    "explanation": "\"Where\" means \"in which place\" and cannot be the object of a verb. \"Inspected\" needs an object (the tank), so the relative pronoun must be \"which\": \"which a diver inspected last month\".",
+    "distractor_rationales": {
+      "when": "\"When\" correctly introduces a relative clause after a time noun, \"the day\".",
+      "first fed": "\"Fed\" is the correct irregular past of \"feed\".",
+      "in which": "\"In which\" correctly means \"where\": the turtles live in the tank."
+    },
+    "student_error": {
+      "when": "Learners may think \"which\" or \"that\" is always needed after a noun.",
+      "first fed": "Learners may expect a regular form like \"feeded\".",
+      "in which": "Learners may think a preposition cannot come before \"which\"."
+    },
+    "key_slot": "D",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG3-E028",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "verb tense and aspect",
+    "varied_dimension": "simple past 'drank' used after 'has' where the past participle 'drunk' is needed",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Since the baby hippo [A: arrived] in March, she [B: has gained] forty kilograms and has [C: drank more milk] [D: than any other calf].",
+    "choices": [
+      "arrived",
+      "has gained",
+      "drank more milk",
+      "than any other calf"
+    ],
+    "correct_answer": "drank more milk",
+    "explanation": "The present perfect uses \"has\" plus the past participle. The forms of \"drink\" are drink, drank, drunk, so the correct phrase is \"has drunk more milk\".",
+    "distractor_rationales": {
+      "arrived": "After \"since\", the past simple \"arrived\" marks the starting point, which is correct.",
+      "has gained": "With \"since\", the present perfect \"has gained\" is correct.",
+      "than any other calf": "\"More ... than any other\" with a singular noun is the correct comparison."
+    },
+    "student_error": {
+      "arrived": "Learners may think the present perfect is needed in both parts of a \"since\" sentence.",
+      "has gained": "Learners may choose the past simple \"gained\" because March is in the past.",
+      "than any other calf": "Learners may think a plural noun (\"any other calves\") is needed."
+    },
+    "key_slot": "C",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG3-E029",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "conditionals",
+    "varied_dimension": "past simple in the if-clause of a mixed conditional where past perfect is required",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "If the volunteers [A: didn't rescue] the stranded seal pup last winter, she [B: wouldn't be] swimming [C: happily] [D: alongside the others] now.",
+    "choices": [
+      "didn't rescue",
+      "wouldn't be",
+      "happily",
+      "alongside the others"
+    ],
+    "correct_answer": "didn't rescue",
+    "explanation": "This is a mixed conditional: an unreal past condition (last winter) with a present result (now). The if-clause needs the past perfect: \"If the volunteers hadn't rescued the pup last winter, she wouldn't be swimming now.\"",
+    "distractor_rationales": {
+      "wouldn't be": "The result is about now, so \"wouldn't be\" is correct.",
+      "happily": "The adverb \"happily\" correctly describes how she is swimming.",
+      "alongside the others": "\"Alongside\" correctly means \"next to, together with\"."
+    },
+    "student_error": {
+      "wouldn't be": "Learners who know the third conditional expect \"wouldn't have been\" whenever the condition is past.",
+      "happily": "Learners may think the adjective \"happy\" should follow \"swimming\".",
+      "alongside the others": "Learners may think \"alongside\" needs \"of\" or \"with\" after it."
+    },
+    "key_slot": "A",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG3-E030",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "prepositions after a head word",
+    "varied_dimension": "wrong preposition after the noun 'reason' ('reason of' for 'reason for')",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Gabriel says his [A: curiosity about] sea turtles, not the pay, [B: was] the reason [C: of choosing] a job at the aquarium [D: rather than at a bakery].",
+    "choices": [
+      "curiosity about",
+      "was",
+      "of choosing",
+      "rather than at a bakery"
+    ],
+    "correct_answer": "of choosing",
+    "explanation": "The noun \"reason\" is followed by \"for\", not \"of\": the reason for choosing a job. Each noun has its own preposition, and these must be learned with the noun.",
+    "distractor_rationales": {
+      "curiosity about": "\"Curiosity\" is correctly followed by \"about\".",
+      "was": "The subject is \"curiosity\" (singular), so \"was\" is correct even though \"turtles\" comes just before it.",
+      "rather than at a bakery": "\"At a bakery\" matches \"at the aquarium\", so the comparison is parallel and correct."
+    },
+    "student_error": {
+      "curiosity about": "Learners may expect \"curiosity of\" or \"curiosity for\" by translation.",
+      "was": "Learners make the verb agree with the nearest noun, \"turtles\", and expect \"were\".",
+      "rather than at a bakery": "Learners may think \"rather than\" must be followed by a verb or that \"at\" should be dropped."
+    },
+    "key_slot": "C",
+    "key_len_rank": 2
+  }
+]

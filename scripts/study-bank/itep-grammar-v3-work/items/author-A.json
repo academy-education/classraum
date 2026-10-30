@@ -1,0 +1,392 @@
+[
+  {
+    "id": "ITG3-C001",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "parallel structure",
+    "varied_dimension": "form of 'share' (to-infinitive vs -ing vs past vs third-person present) as the third item in a list of to-infinitives after 'my goals are'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Dear pen pal, my goals are to finish a poem, to read it aloud, and ________ it online.",
+    "choices": [
+      "shared",
+      "to share",
+      "sharing",
+      "shares"
+    ],
+    "correct_answer": "to share",
+    "explanation": "Items joined by 'and' in a list should have the same grammatical form. The first two goals are to-infinitives ('to finish', 'to read'), so the third must be a to-infinitive too: 'to share'.",
+    "distractor_rationales": {
+      "shared": "A past form cannot follow 'my goals are' as the third item of a list of infinitives.",
+      "sharing": "An -ing form breaks the pattern set by 'to finish' and 'to read', so the list is not parallel.",
+      "shares": "A present-tense verb has no subject here and does not match the infinitives in the list."
+    },
+    "student_error": {
+      "shared": "The learner reads 'finish' and 'read' as finished past actions and picks a past form.",
+      "sharing": "Goals are often named with -ing nouns ('my goal is winning'), so the learner switches form mid-list.",
+      "shares": "The learner attaches the verb to the writer's newspaper or adds the habitual third-person -s by habit."
+    },
+    "key_slot": "B",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG3-C002",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "gerund vs infinitive",
+    "varied_dimension": "complement form of 'leave' after 'avoid' (gerund vs to-infinitive vs bare infinitive vs past form), with a preceding 'learned to' as a lure",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "As a reporter for the school newspaper, Santiago has learned to avoid ________ his articles unfinished until the night before a deadline.",
+    "choices": [
+      "to leave",
+      "left",
+      "leave",
+      "leaving"
+    ],
+    "correct_answer": "leaving",
+    "explanation": "The verb 'avoid' is always followed by a gerund (-ing form), never by an infinitive. The 'to' in 'learned to avoid' belongs to 'learned', so the object of 'avoid' is still 'leaving'.",
+    "distractor_rationales": {
+      "to leave": "'Avoid' does not take a to-infinitive.",
+      "left": "A past form cannot be the object of 'avoid'.",
+      "leave": "A bare infinitive cannot follow 'avoid'; only 'learned to' takes the base form, and that slot is already filled by 'avoid'."
+    },
+    "student_error": {
+      "to leave": "The learner copies the pattern of 'learned to' and thinks every verb after it needs 'to'.",
+      "left": "The learner hears the present perfect 'has learned' and matches it with a past form.",
+      "leave": "The learner thinks the 'to' of 'learned to' carries over, so a second base verb follows."
+    },
+    "key_slot": "D",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG3-C003",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "reported speech",
+    "varied_dimension": "word order and do-support inside a reported wh-question (statement order vs question order vs emphatic do vs subject-verb reversal)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "At her first book club, Adaeze asked Mr. Lindgren what time ________ each week.",
+    "choices": [
+      "did the club begin",
+      "the club did begin",
+      "the club began",
+      "began the club"
+    ],
+    "correct_answer": "the club began",
+    "explanation": "When a question is reported after 'asked', it uses statement word order (subject before verb) and no 'did'. The direct question 'What time does the club begin?' becomes 'what time the club began'.",
+    "distractor_rationales": {
+      "did the club begin": "This is direct-question word order; a reported question does not invert or use 'did'.",
+      "the club did begin": "Reported questions do not need 'did'; 'did' here only adds stress, which does not fit a neutral question.",
+      "began the club": "Putting the verb before the subject makes 'the club' look like an object, so the clause has no subject."
+    },
+    "student_error": {
+      "did the club begin": "The learner keeps the order of the direct question because it is the form practised most.",
+      "the club did begin": "The learner remembers that questions need 'did' but also that reported questions use statement order, and combines both.",
+      "began the club": "Learners whose first language puts the verb before the subject in questions reverse the order."
+    },
+    "key_slot": "C",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG3-E001",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "subject-verb agreement",
+    "varied_dimension": "missing third-person -s on the second verb of a compound predicate whose subject is a name",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Dmitri [A: borrows] two novels [B: every] week and [C: usually] [D: return] them early.",
+    "choices": [
+      "borrows",
+      "every",
+      "usually",
+      "return"
+    ],
+    "correct_answer": "return",
+    "explanation": "'Dmitri' is the subject of both verbs joined by 'and'. In the present simple, a singular subject needs -s on each verb, so 'return' should be 'returns'.",
+    "distractor_rationales": {
+      "borrows": "Correct: 'Dmitri' is singular, so the verb takes -s.",
+      "every": "Correct: 'every' is followed by a singular noun, 'week'.",
+      "usually": "Correct: the adverb 'usually' comes before the main verb."
+    },
+    "student_error": {
+      "borrows": "Learners unsure about the -s ending suspect every verb that has one.",
+      "every": "Learners think 'every' needs a plural noun ('every weeks') because it means all of them.",
+      "usually": "Learners confuse the adjective 'usual' and the adverb 'usually'."
+    },
+    "key_slot": "D",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG3-E002",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "relative pronouns and clauses",
+    "varied_dimension": "'which' used for a person in a relative clause where 'who' is needed",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "This book's hero is a girl [A: which] [B: writes] the [C: funniest] letters [D: to her] aunt.",
+    "choices": [
+      "which",
+      "writes",
+      "funniest",
+      "to her"
+    ],
+    "correct_answer": "which",
+    "explanation": "Use 'who' (or 'that') for people and 'which' for things. The relative clause describes 'a girl', a person, so 'which' should be 'who'.",
+    "distractor_rationales": {
+      "writes": "Correct: the subject of the relative clause is 'a girl', which is singular, so 'writes' takes -s.",
+      "funniest": "Correct: 'funny' is a short adjective ending in -y, so its superlative is 'funniest'.",
+      "to her": "Correct: you write letters 'to' someone, and 'her' refers to the girl."
+    },
+    "student_error": {
+      "writes": "Learners think the verb should agree with the nearer plural 'letters' or with 'This book's hero' and doubt the -s.",
+      "funniest": "Learners who learned 'more/most' for long adjectives may expect 'most funny'.",
+      "to her": "Learners mix up 'to' and 'for' with 'write', or 'her' and 'hers'."
+    },
+    "key_slot": "A",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG3-E003",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "count/non-count and quantifiers",
+    "varied_dimension": "'much' used with a plural count noun where 'many' is needed",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Dear pen pal, our library [A: has] [B: too much] books, so I [C: can't] [D: choose one].",
+    "choices": [
+      "has",
+      "too much",
+      "can't",
+      "choose one"
+    ],
+    "correct_answer": "too much",
+    "explanation": "'Much' goes with non-count nouns (much water, much time) and 'many' goes with plural count nouns. 'Books' is a plural count noun, so it should be 'too many books'.",
+    "distractor_rationales": {
+      "has": "Correct: 'our library' is singular, so the verb is 'has'.",
+      "can't": "Correct: 'can't' is followed by the base form 'choose'.",
+      "choose one": "Correct: 'choose' is a base form after 'can't', and 'one' stands for one book."
+    },
+    "student_error": {
+      "has": "Learners see the plural 'books' coming and think the verb should be 'have'.",
+      "can't": "Learners unsure about modals may expect 'can't to' or 'couldn't'.",
+      "choose one": "Learners confuse 'choose' and its past 'chose', or expect 'choose ones'."
+    },
+    "key_slot": "B",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG3-E004",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "word form",
+    "varied_dimension": "noun 'silence' used as an object complement after 'keep it completely', where the adjective 'silent' is needed",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Ms. Achebe's notice asks that students [A: using] the reading room keep it completely [B: silence] and [C: leave] their phones [D: in their lockers].",
+    "choices": [
+      "using",
+      "silence",
+      "leave",
+      "in their lockers"
+    ],
+    "correct_answer": "silence",
+    "explanation": "After 'keep + object', English uses an adjective to describe the object's state (keep it clean, keep it quiet). The adverb 'completely' also needs an adjective to modify, so the noun 'silence' should be the adjective 'silent'.",
+    "distractor_rationales": {
+      "using": "Correct: 'using the reading room' is a reduced relative clause meaning 'who use the reading room'.",
+      "leave": "Correct: after 'asks that', the verb takes the base form, so 'keep' and 'leave' are both base forms.",
+      "in their lockers": "Correct: 'their' refers to the students, and things are kept 'in' a locker."
+    },
+    "student_error": {
+      "using": "Learners expect a full relative clause ('who use') and doubt the -ing form after a noun.",
+      "leave": "Learners see the plural students but think the verb after 'asks that' should be 'leaves' or 'to leave'.",
+      "in their lockers": "Learners mix up 'in' and 'at', or 'their' and 'there'."
+    },
+    "key_slot": "B",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG3-E005",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "prepositions after a head word",
+    "varied_dimension": "wrong preposition 'on' after the adjective 'interested', which governs 'in'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Since [A: joining] the book club, Henrik [B: has become] much more [C: interested] [D: on] poetry.",
+    "choices": [
+      "joining",
+      "has become",
+      "interested",
+      "on"
+    ],
+    "correct_answer": "on",
+    "explanation": "The adjective 'interested' is always followed by 'in': interested in music, interested in poetry. 'On' should be 'in'.",
+    "distractor_rationales": {
+      "joining": "Correct: after the preposition 'since', a verb takes the -ing form.",
+      "has become": "Correct: 'since' marks a period up to now, which needs the present perfect.",
+      "interested": "Correct: a person who feels interest is 'interested'; 'interesting' describes the thing."
+    },
+    "student_error": {
+      "joining": "Learners think 'since' needs a full clause ('since he joined') and doubt the -ing form.",
+      "has become": "Learners use the past simple for every past event and expect 'became'.",
+      "interested": "Learners confuse -ed and -ing adjectives and may want 'interesting'."
+    },
+    "key_slot": "D",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG3-E006",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "comparatives and superlatives",
+    "varied_dimension": "'more' used with the one-syllable adjective 'strong', which takes -er",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Tamsin's first line [A: was] [B: more strong] than mine, but our editors [C: said] my ending felt [D: more powerful].",
+    "choices": [
+      "was",
+      "more strong",
+      "said",
+      "more powerful"
+    ],
+    "correct_answer": "more strong",
+    "explanation": "One-syllable adjectives form the comparative with -er (strong, stronger), while long adjectives use 'more' (more powerful). 'More strong' should be 'stronger'.",
+    "distractor_rationales": {
+      "was": "Correct: 'Tamsin's first line' is singular and the sentence is about the past.",
+      "said": "Correct: 'said' is the past of 'say' and matches the past 'was'.",
+      "more powerful": "Correct: 'powerful' has three syllables, so it takes 'more'."
+    },
+    "student_error": {
+      "was": "Learners think the possessive 'Tamsin's' makes the subject plural and expect 'were'.",
+      "said": "Learners overgeneralise the regular ending and expect 'sayed', or want 'says'.",
+      "more powerful": "Learners overgeneralise -er and expect 'powerfuller'."
+    },
+    "key_slot": "B",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG3-E007",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "passive voice",
+    "varied_dimension": "active continuous form used where a present simple passive is required by a following 'by'-agent and an inanimate subject",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Library notice: before they [A: reach] the shelves, all new books [B: in our collection] [C: are quickly sorting] by student volunteers [D: during] lunch.",
+    "choices": [
+      "reach",
+      "in our collection",
+      "are quickly sorting",
+      "during"
+    ],
+    "correct_answer": "are quickly sorting",
+    "explanation": "The books do not sort anything; volunteers sort them, as the 'by' phrase shows. That needs the present simple passive, 'are + past participle': 'are quickly sorted'.",
+    "distractor_rationales": {
+      "reach": "Correct: in a time clause with 'before', a present-simple routine uses the present simple 'reach'.",
+      "in our collection": "Correct: books are 'in' a collection, and 'our' is the right possessive.",
+      "during": "Correct: 'during' is followed by a noun such as 'lunch'."
+    },
+    "student_error": {
+      "reach": "Learners think 'they' needs a future form ('will reach') or a past form after 'before'.",
+      "in our collection": "Learners mix up 'in', 'of' and 'from' after a noun like 'books'.",
+      "during": "Learners confuse 'during' and 'while' and may want 'while lunch'."
+    },
+    "key_slot": "C",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG3-E008",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "conjunctions and connectors",
+    "varied_dimension": "result connector 'so' used where a contrast connector 'but' is needed between a plan and what went wrong",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Esther [A: had planned] to mail her pen pal a letter [B: on] Friday, [C: so she forgot] her stamps [D: at home].",
+    "choices": [
+      "had planned",
+      "on",
+      "so she forgot",
+      "at home"
+    ],
+    "correct_answer": "so she forgot",
+    "explanation": "'So' introduces a result, but forgetting the stamps was not a result of planning to mail the letter. The two ideas contrast, so the connector should be 'but': 'but she forgot'.",
+    "distractor_rationales": {
+      "had planned": "Correct: the past perfect shows the plan existed before the forgetting.",
+      "on": "Correct: 'on' is used with days of the week.",
+      "at home": "Correct: 'at home' is the normal phrase for leaving something in your house."
+    },
+    "student_error": {
+      "had planned": "Learners avoid the past perfect and think the past simple 'planned' is required.",
+      "on": "Learners mix up 'on', 'in' and 'at' for times and may want 'in Friday'.",
+      "at home": "Learners say 'in home' or 'at the home' by transfer from their first language."
+    },
+    "key_slot": "C",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG3-E009",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "conditionals",
+    "varied_dimension": "'would' placed in the if-clause of a second conditional instead of the past simple",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "If this novel [A: would have] a clearer ending, I [B: would gladly recommend] it to [C: everyone] in [D: our book club].",
+    "choices": [
+      "would have",
+      "would gladly recommend",
+      "everyone",
+      "our book club"
+    ],
+    "correct_answer": "would have",
+    "explanation": "In a second conditional, the if-clause uses the past simple and only the main clause uses 'would'. 'If this novel would have' should be 'If this novel had'.",
+    "distractor_rationales": {
+      "would gladly recommend": "Correct: the main clause of a second conditional uses 'would + base verb', and an adverb can sit between them.",
+      "everyone": "Correct: 'everyone' is one word when it means 'all people'.",
+      "our book club": "Correct: 'our' is the right possessive for a club the writer belongs to."
+    },
+    "student_error": {
+      "would gladly recommend": "Learners are unsure whether an adverb may come between 'would' and the verb.",
+      "everyone": "Learners mix up 'everyone' and 'every one', or expect 'everybody'.",
+      "our book club": "Learners may expect 'my book club' or think a possessive with a group noun is wrong."
+    },
+    "key_slot": "A",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG3-E010",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "verb tense and aspect",
+    "varied_dimension": "past simple used for an action in progress that is interrupted by a 'when' clause, where the past continuous is needed",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "I [A: replied to my pen pal's letter] when my pen [B: ran] dry, so I [C: had to] finish [D: in pencil].",
+    "choices": [
+      "replied to my pen pal's letter",
+      "ran",
+      "had to",
+      "in pencil"
+    ],
+    "correct_answer": "replied to my pen pal's letter",
+    "explanation": "The reply was not finished when the pen ran dry; the writer still had to finish it. An action in progress that is interrupted uses the past continuous: 'was replying to my pen pal's letter'.",
+    "distractor_rationales": {
+      "ran": "Correct: 'ran' is the past of 'run', and the sudden event that interrupts uses the past simple.",
+      "had to": "Correct: 'had to' is the past of 'have to' and is followed by the base form 'finish'.",
+      "in pencil": "Correct: we write 'in pencil' or 'in ink'."
+    },
+    "student_error": {
+      "ran": "Learners overgeneralise the regular ending and expect 'runned', or think it should be 'was running'.",
+      "had to": "Learners confuse 'had to' with 'must' and expect 'must' in the past.",
+      "in pencil": "Learners translate 'with a pencil' and think 'in pencil' is wrong."
+    },
+    "key_slot": "A",
+    "key_len_rank": 4
+  }
+]

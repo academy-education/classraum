@@ -1,0 +1,362 @@
+[
+ {
+  "id": "ITG3-C019",
+  "part": "Part 1: Sentence Completion",
+  "difficulty": "easy",
+  "cefr": "A2",
+  "category": "verb tense and aspect",
+  "varied_dimension": "four forms of 'arrive' (present simple, will-future, past simple, would) after 'as soon as' in a sentence about the future",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "We will cut the birthday cake as soon as Joaquin ________ home.",
+  "choices": [
+   "arrives",
+   "will arrive",
+   "arrived",
+   "would arrive"
+  ],
+  "correct_answer": "arrives",
+  "explanation": "After time words like 'when', 'as soon as' and 'until', English uses the present simple to talk about the future. The main clause has 'will', but the time clause does not, so 'arrives' is correct.",
+  "distractor_rationales": {
+   "will arrive": "'Will' is not used inside a time clause beginning with 'as soon as'.",
+   "arrived": "The cake has not been cut yet; the sentence is about the future, so a past form does not fit.",
+   "would arrive": "'Would' does not match the main clause 'will cut' and is not used in this kind of time clause."
+  },
+  "student_error": {
+   "will arrive": "Learners copy the future 'will' from the main clause into the time clause, as many first languages mark future in both clauses.",
+   "arrived": "Learners treat the arrival as something that happens before the cutting and choose a past form for the earlier event.",
+   "would arrive": "Learners use 'would' as a general polite or future-in-the-past form without matching it to 'will'."
+  },
+  "key_slot": "A",
+  "key_len_rank": 1
+ },
+ {
+  "id": "ITG3-C020",
+  "part": "Part 1: Sentence Completion",
+  "difficulty": "hard",
+  "cefr": "B2",
+  "category": "modals",
+  "varied_dimension": "form of 'be' inside 'be able to' (was / had been / has been / would have been), decided by a 'since' clause reaching up to now",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "Since her grandfather taught her last winter, Farah ________ able to fold paper lanterns for the festival without any help.",
+  "choices": [
+   "was",
+   "had been",
+   "has been",
+   "would have been"
+  ],
+  "correct_answer": "has been",
+  "explanation": "A 'since' clause describes a period that continues up to now, so the main verb needs the present perfect. 'Can' has no perfect form, so English uses 'be able to' in the present perfect: 'has been able to'.",
+  "distractor_rationales": {
+   "was": "'Was able to' is past simple; it does not join a period that runs from last winter up to now.",
+   "had been": "The past perfect needs a later past moment to look back from, and the sentence has none; the period reaches the present.",
+   "would have been": "This form describes an imagined past result under a condition, but nothing in the sentence is imagined."
+  },
+  "student_error": {
+   "was": "Learners see 'last winter' and pick a simple past form, ignoring that 'since' needs a perfect tense.",
+   "had been": "Learners link 'since' with any perfect tense and choose the past perfect because the sentence mentions a past time.",
+   "would have been": "Learners treat 'would have' as a general way to talk about past ability, mixing it with conditional meaning."
+  },
+  "key_slot": "C",
+  "key_len_rank": 2
+ },
+ {
+  "id": "ITG3-E061",
+  "part": "Part 2: Error Identification",
+  "difficulty": "easy",
+  "cefr": "A2",
+  "category": "subject-verb agreement",
+  "varied_dimension": "verb before the subject in a 'Where' question must agree with a plural subject that follows it",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "[A: Where is] the two banners that Ngozi [B: painted] [C: for] [D: her brother's] birthday party?",
+  "choices": [
+   "Where is",
+   "painted",
+   "for",
+   "her brother's"
+  ],
+  "correct_answer": "Where is",
+  "explanation": "In a question the verb comes before the subject, but it still agrees with it. The subject is 'the two banners', which is plural, so the question must begin 'Where are'.",
+  "distractor_rationales": {
+   "painted": "Correct regular past tense for a finished action.",
+   "for": "Correct: something made for an event.",
+   "her brother's": "Correct possessive form before 'birthday party'."
+  },
+  "student_error": {
+   "painted": "Learners may doubt whether a past form fits a present question.",
+   "for": "Learners often confuse 'for' and 'to' with events.",
+   "her brother's": "Learners are unsure where the apostrophe goes and whether 'her' and the possessive can be used together."
+  },
+  "key_slot": "A",
+  "key_len_rank": 3
+ },
+ {
+  "id": "ITG3-E062",
+  "part": "Part 2: Error Identification",
+  "difficulty": "easy",
+  "cefr": "A2",
+  "category": "passive voice",
+  "varied_dimension": "active verb used for a subject that receives the action (the cake delivered -> was delivered)",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Dad [A: has already hung] the lights, and the cake [B: for] [C: our] party [D: delivered] at noon.",
+  "choices": [
+   "has already hung",
+   "for",
+   "our",
+   "delivered"
+  ],
+  "correct_answer": "delivered",
+  "explanation": "A cake cannot deliver anything; someone delivers it. When the subject receives the action, English uses the passive: 'the cake was delivered at noon'.",
+  "distractor_rationales": {
+   "has already hung": "Correct present perfect; 'hung' is the right past participle of 'hang' for objects.",
+   "for": "Correct: a cake for a party.",
+   "our": "Correct possessive adjective before 'party'."
+  },
+  "student_error": {
+   "has already hung": "Learners doubt the irregular participle and the position of 'already'.",
+   "for": "Learners mix up 'for' and 'of' after nouns.",
+   "our": "Learners confuse 'our' with 'ours' before a noun."
+  },
+  "key_slot": "D",
+  "key_len_rank": 3
+ },
+ {
+  "id": "ITG3-E063",
+  "part": "Part 2: Error Identification",
+  "difficulty": "easy",
+  "cefr": "A2",
+  "category": "conjunctions and connectors",
+  "varied_dimension": "purpose clause moved to the front of the sentence needs 'so that', not bare 'so'",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "[A: Before] lunch, [B: so everyone] could find our house, we [C: tied] balloons [D: to] the gate.",
+  "choices": [
+   "Before",
+   "so everyone",
+   "tied",
+   "to"
+  ],
+  "correct_answer": "so everyone",
+  "explanation": "The clause tells the purpose of tying the balloons. A purpose clause at the front of a sentence must begin with 'so that'; a bare 'so' only links a result to what came before it.",
+  "distractor_rationales": {
+   "Before": "Correct preposition of time before 'lunch'.",
+   "tied": "Correct regular past of 'tie'.",
+   "to": "Correct: you tie something to a gate."
+  },
+  "student_error": {
+   "Before": "Learners confuse 'before' and 'ago' for time.",
+   "tied": "Learners may misspell or doubt the past of verbs ending in -ie.",
+   "to": "Learners often choose 'on' or 'at' after 'tie'."
+  },
+  "key_slot": "B",
+  "key_len_rank": 4
+ },
+ {
+  "id": "ITG3-E064",
+  "part": "Part 2: Error Identification",
+  "difficulty": "medium",
+  "cefr": "B1",
+  "category": "count/non-count and quantifiers",
+  "varied_dimension": "'every' must be followed by a singular count noun",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Mrs. Mbeki [A: has invited] us to dinner and [B: would like] every [C: guests] [D: to bring] a dish.",
+  "choices": [
+   "has invited",
+   "would like",
+   "guests",
+   "to bring"
+  ],
+  "correct_answer": "guests",
+  "explanation": "'Every' and 'each' take a singular noun, while 'all' takes a plural one. The sentence needs 'every guest' (or 'all guests').",
+  "distractor_rationales": {
+   "has invited": "Correct present perfect for a recent invitation that matters now.",
+   "would like": "Correct polite form for a wish.",
+   "to bring": "Correct: 'would like someone to do something' takes the to-infinitive."
+  },
+  "student_error": {
+   "has invited": "Learners hesitate between present perfect and past simple for an invitation.",
+   "would like": "Learners confuse 'would like' with 'like'.",
+   "to bring": "Learners often use a bare verb or '-ing' after 'would like someone'."
+  },
+  "key_slot": "C",
+  "key_len_rank": 1
+ },
+ {
+  "id": "ITG3-E065",
+  "part": "Part 2: Error Identification",
+  "difficulty": "medium",
+  "cefr": "B1",
+  "category": "conditionals",
+  "varied_dimension": "modal in the result of a real future condition must not be perfect (could play, not could have played)",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "If it [A: stays] dry [B: on] Friday, our class [C: will] hold the party outside and [D: could have played] games.",
+  "choices": [
+   "stays",
+   "on",
+   "will",
+   "could have played"
+  ],
+  "correct_answer": "could have played",
+  "explanation": "This is a real condition about the future, so the result uses 'will' or a present modal such as 'can' or 'could' plus the base verb. 'Could have played' refers to an imagined past and does not fit Friday.",
+  "distractor_rationales": {
+   "stays": "Correct present simple in the if-clause of a first conditional.",
+   "on": "Correct preposition before a day.",
+   "will": "Correct future in the result of a first conditional."
+  },
+  "student_error": {
+   "stays": "Learners put 'will' in the if-clause as well.",
+   "on": "Learners confuse 'on', 'in' and 'at' with days.",
+   "will": "Learners think the result must use 'would' whenever there is an 'if'."
+  },
+  "key_slot": "D",
+  "key_len_rank": 4
+ },
+ {
+  "id": "ITG3-E066",
+  "part": "Part 2: Error Identification",
+  "difficulty": "hard",
+  "cefr": "B2",
+  "category": "comparatives and superlatives",
+  "varied_dimension": "each half of a 'the + comparative, the + comparative' pattern needs its own 'the'",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "[A: The longer] Solveig practiced the New Year dance with her cousins, [B: calmer] she [C: got] and [D: the happier] her grandmother looked.",
+  "choices": [
+   "The longer",
+   "calmer",
+   "got",
+   "the happier"
+  ],
+  "correct_answer": "calmer",
+  "explanation": "In the pattern 'the more X, the more Y', every comparative part begins with 'the'. The second part must be 'the calmer she got'.",
+  "distractor_rationales": {
+   "The longer": "Correct opening of the correlative comparative.",
+   "got": "Correct past of 'get' meaning 'became'.",
+   "the happier": "Correct: a further part of the same pattern, with 'the' and the -ier comparative."
+  },
+  "student_error": {
+   "The longer": "Learners feel 'the' before a comparative is wrong because they learned 'the' only with superlatives.",
+   "got": "Learners doubt 'get' as a linking verb before an adjective.",
+   "the happier": "Learners are unsure whether 'happy' takes '-ier' or 'more' and whether 'the' belongs there."
+  },
+  "key_slot": "B",
+  "key_len_rank": 2
+ },
+ {
+  "id": "ITG3-E067",
+  "part": "Part 2: Error Identification",
+  "difficulty": "hard",
+  "cefr": "B2",
+  "category": "reported speech",
+  "varied_dimension": "first-person pronoun of the original speaker not shifted to third person in reported speech",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "When we asked about his lantern, Florian [A: told] us [B: I had made] it himself from bamboo [C: that] his grandfather [D: had brought home].",
+  "choices": [
+   "told",
+   "I had made",
+   "that",
+   "had brought home"
+  ],
+  "correct_answer": "I had made",
+  "explanation": "When we report Florian's words, his 'I' becomes 'he'. The word 'himself' and 'his lantern' show that Florian made it, so the clause must be 'he had made it himself'.",
+  "distractor_rationales": {
+   "told": "Correct: 'tell' takes a person object ('told us'), and the reporting 'that' may be left out.",
+   "that": "Correct relative pronoun for a thing ('bamboo that ...').",
+   "had brought home": "Correct past perfect for something that happened before the building."
+  },
+  "student_error": {
+   "told": "Learners confuse 'told' and 'said' and think 'that' must follow.",
+   "that": "Learners hesitate between 'that', 'which' and 'what' as relatives.",
+   "had brought home": "Learners confuse 'brought' with 'bought' and doubt the past perfect."
+  },
+  "key_slot": "B",
+  "key_len_rank": 3
+ },
+ {
+  "id": "ITG3-E068",
+  "part": "Part 2: Error Identification",
+  "difficulty": "hard",
+  "cefr": "B2",
+  "category": "word form",
+  "varied_dimension": "activity noun used where the person noun is required (photography -> photographer)",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "[A: A skilled photography] [B: was hired] to take pictures [C: of] every table at our New Year banquet, and my relatives [D: were thrilled] with them.",
+  "choices": [
+   "A skilled photography",
+   "was hired",
+   "of",
+   "were thrilled"
+  ],
+  "correct_answer": "A skilled photography",
+  "explanation": "Only a person can be hired to take pictures. 'Photography' is the activity; the person who does it is a 'photographer', so the subject must be 'A skilled photographer'.",
+  "distractor_rationales": {
+   "was hired": "Correct passive: someone hired the photographer.",
+   "of": "Correct: take pictures of something.",
+   "were thrilled": "Correct -ed adjective describing how the relatives felt."
+  },
+  "student_error": {
+   "was hired": "Learners use an active form for a subject that receives the action.",
+   "of": "Learners often say 'pictures to' or 'pictures about'.",
+   "were thrilled": "Learners confuse '-ed' and '-ing' adjectives (thrilled / thrilling)."
+  },
+  "key_slot": "A",
+  "key_len_rank": 4
+ },
+ {
+  "id": "ITG3-E069",
+  "part": "Part 2: Error Identification",
+  "difficulty": "medium",
+  "cefr": "B1",
+  "category": "pronoun case and reference",
+  "varied_dimension": "singular demonstrative before a plural noun (this -> these)",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "[A: This] paper cranes on our shelf [B: were folded] [C: by] my grandmother [D: before] I was born.",
+  "choices": [
+   "This",
+   "were folded",
+   "by",
+   "before"
+  ],
+  "correct_answer": "This",
+  "explanation": "A demonstrative must agree with its noun. 'Cranes' is plural, so the sentence needs 'These paper cranes'.",
+  "distractor_rationales": {
+   "were folded": "Correct plural passive for 'cranes'.",
+   "by": "Correct: 'by' names who did the action in a passive.",
+   "before": "Correct conjunction of time."
+  },
+  "student_error": {
+   "were folded": "Learners make the verb agree with the nearer singular 'shelf' or with 'This'.",
+   "by": "Learners use 'from' for the doer in a passive sentence.",
+   "before": "Learners confuse 'before' and 'ago'."
+  },
+  "key_slot": "A",
+  "key_len_rank": 2
+ },
+ {
+  "id": "ITG3-E070",
+  "part": "Part 2: Error Identification",
+  "difficulty": "medium",
+  "cefr": "B1",
+  "category": "prepositions after a head word",
+  "varied_dimension": "preposition added after 'discuss', which takes a direct object",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Our class [A: is planning] to visit Mr. Szabo [B: during] lunch and discuss [C: about] the decorations [D: he wants] for the festival.",
+  "choices": [
+   "is planning",
+   "during",
+   "about",
+   "he wants"
+  ],
+  "correct_answer": "about",
+  "explanation": "'Discuss' takes a direct object with no preposition: we discuss the decorations. The noun 'discussion' takes 'about', which is why learners add it to the verb.",
+  "distractor_rationales": {
+   "is planning": "Correct present continuous for a current plan, followed by 'to visit'.",
+   "during": "Correct preposition before a period of time.",
+   "he wants": "Correct reduced relative clause ('the decorations (that) he wants')."
+  },
+  "student_error": {
+   "is planning": "Learners doubt whether 'plan' takes '-ing' or 'to' after it.",
+   "during": "Learners confuse 'during' and 'while'.",
+   "he wants": "Learners think a relative clause always needs 'that' or 'which'."
+  },
+  "key_slot": "C",
+  "key_len_rank": 1
+ }
+]

@@ -1,0 +1,392 @@
+[
+ {
+  "id": "ITG3-C004",
+  "part": "Part 1: Sentence Completion",
+  "difficulty": "hard",
+  "cefr": "B2",
+  "category": "modifier placement",
+  "varied_dimension": "which noun phrase can be the logical subject of a fronted -ed participle phrase (dangling modifier)",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "Printed in large letters and hung beside the locker room door, ________ reminds every player to drink water before practice.",
+  "choices": [
+   "the coach",
+   "the poster",
+   "the gym",
+   "the speaker"
+  ],
+  "correct_answer": "the poster",
+  "explanation": "A participle phrase at the start of a sentence describes the subject that comes right after the comma. Only a poster can be printed in large letters and hung beside a door, so 'the poster' must be the subject.",
+  "distractor_rationales": {
+   "the coach": "A coach is not printed or hung on a door, so the opening phrase would dangle.",
+   "the gym": "A gym cannot be printed or hung beside a door; the modifier would describe the wrong thing.",
+   "the speaker": "A speaker (person or loudspeaker) is not printed in large letters; the opening phrase would dangle."
+  },
+  "student_error": {
+   "the coach": "Learners pick the person who gives reminders, reading for meaning of 'reminds' and ignoring what the opening phrase must describe.",
+   "the gym": "Learners link 'locker room door' to the gym and choose the place mentioned nearby.",
+   "the speaker": "Learners connect 'reminds' with someone or something that speaks and overlook the participle opener."
+  },
+  "key_slot": "B",
+  "key_len_rank": 3
+ },
+ {
+  "id": "ITG3-C005",
+  "part": "Part 1: Sentence Completion",
+  "difficulty": "medium",
+  "cefr": "B1",
+  "category": "adjective vs adverb",
+  "varied_dimension": "adjective complement vs adverb after the linking verb 'feels'",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "School nurse's advice: if your throat feels ________ in the morning, drink some warm water.",
+  "choices": [
+   "painfully dry",
+   "dryly",
+   "very dryly",
+   "painfully"
+  ],
+  "correct_answer": "painfully dry",
+  "explanation": "'Feels' here is a linking verb: it connects the subject 'your throat' to a word that describes it, so it needs an adjective. 'Painfully dry' is an adverb modifying the adjective 'dry', which is the complement.",
+  "distractor_rationales": {
+   "dryly": "An adverb cannot be the complement of the linking verb 'feels'; the throat itself is described, not an action.",
+   "very dryly": "Still an adverb phrase; a linking verb needs an adjective to describe the subject.",
+   "painfully": "An adverb alone leaves 'feels' with no adjective to describe the throat."
+  },
+  "student_error": {
+   "dryly": "Learners think every word after a verb must be an adverb and add -ly.",
+   "very dryly": "Learners add an intensifier and the -ly ending, treating 'feels' as an action verb.",
+   "painfully": "Learners see a familiar -ly word about pain and stop there, forgetting the describing adjective."
+  },
+  "key_slot": "A",
+  "key_len_rank": 4
+ },
+ {
+  "id": "ITG3-C006",
+  "part": "Part 1: Sentence Completion",
+  "difficulty": "easy",
+  "cefr": "A2",
+  "category": "passive voice",
+  "varied_dimension": "form of 'be born' (past simple passive vs present, present perfect, bare participle, plural)",
+  "prompt": "Choose the word or phrase that correctly completes the sentence.",
+  "passage": "Our dentist, Dr. Okoye, ________ in a small village in 1979.",
+  "choices": [
+   "were born",
+   "has been born",
+   "was born",
+   "born"
+  ],
+  "correct_answer": "was born",
+  "explanation": "We talk about birth with the passive 'be born'. The year 1979 is a finished past time and the subject is one person, so we use 'was born'.",
+  "distractor_rationales": {
+   "were born": "'Were' is for plural subjects or 'you'; Dr. Okoye is one person.",
+   "has been born": "The present perfect cannot be used with a finished past time like 'in 1979'.",
+   "born": "The sentence needs a full verb; 'born' alone has no helping verb 'was'."
+  },
+  "student_error": {
+   "were born": "Learners mix up 'was' and 'were' in the past of 'be'.",
+   "has been born": "Learners use the present perfect for any past event, by first-language transfer.",
+   "born": "Learners treat 'born' as an active past verb ('he born') because many languages express birth actively."
+  },
+  "key_slot": "C",
+  "key_len_rank": 2
+ },
+ {
+  "id": "ITG3-E011",
+  "part": "Part 2: Error Identification",
+  "difficulty": "easy",
+  "cefr": "A2",
+  "category": "comparatives and superlatives",
+  "varied_dimension": "irregular comparative 'worse' vs superlative 'worst' before 'than'",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "My tooth [A: ached a lot] yesterday, but today it feels [B: even] [C: worst] [D: than before].",
+  "choices": [
+   "ached a lot",
+   "even",
+   "worst",
+   "than before"
+  ],
+  "correct_answer": "worst",
+  "explanation": "When we compare two times with 'than', we need the comparative form. The comparative of 'bad' is the irregular 'worse', so the sentence should say 'even worse than before'.",
+  "distractor_rationales": {
+   "ached a lot": "Correct: 'ached' is the past simple for 'yesterday', and 'a lot' modifies the verb.",
+   "even": "Correct: 'even' can strengthen a comparative ('even worse').",
+   "than before": "Correct: 'than before' completes the comparison."
+  },
+  "student_error": {
+   "ached a lot": "Learners doubt the spelling and past form of 'ache' and whether 'a lot' can follow a verb.",
+   "even": "Learners are unsure whether 'even' can go before a comparative.",
+   "than before": "Learners confuse 'than' with 'then'."
+  },
+  "key_slot": "C",
+  "key_len_rank": 2
+ },
+ {
+  "id": "ITG3-E012",
+  "part": "Part 2: Error Identification",
+  "difficulty": "easy",
+  "cefr": "A2",
+  "category": "relative pronouns and clauses",
+  "varied_dimension": "possessive relative 'whose' vs 'who' plus a possessive pronoun",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Idris [A: likes] the dentist [B: near] our school [C: who her office] [D: has a big fish tank].",
+  "choices": [
+   "likes",
+   "near",
+   "who her office",
+   "has a big fish tank"
+  ],
+  "correct_answer": "who her office",
+  "explanation": "To show that something belongs to the person just named, English uses the relative word 'whose', not 'who' plus 'her'. The sentence should say 'the dentist whose office has a big fish tank'.",
+  "distractor_rationales": {
+   "likes": "Correct: 'Idris' is singular, so the verb takes -s.",
+   "near": "Correct: 'near' is a preposition that tells where the dentist is.",
+   "has a big fish tank": "Correct: 'office' is singular, so 'has' agrees with it."
+  },
+  "student_error": {
+   "likes": "Learners forget or doubt the third-person -s.",
+   "near": "Learners think 'near' needs 'to' or 'of' after it.",
+   "has a big fish tank": "Learners make 'has' agree with 'school' or the dentist and doubt it."
+  },
+  "key_slot": "C",
+  "key_len_rank": 3
+ },
+ {
+  "id": "ITG3-E013",
+  "part": "Part 2: Error Identification",
+  "difficulty": "hard",
+  "cefr": "B2",
+  "category": "parallel structure",
+  "varied_dimension": "infinitive breaking a list of gerund subjects",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "According to the school nurse, [A: eating fresh fruit], [B: to sleep] eight hours a night, and [C: stretching after practice] [D: are the easiest] habits for a strong body.",
+  "choices": [
+   "eating fresh fruit",
+   "to sleep",
+   "stretching after practice",
+   "are the easiest"
+  ],
+  "correct_answer": "to sleep",
+  "explanation": "Items joined in a list must have the same grammatical form. The other two subjects are gerunds ('eating', 'stretching'), so the second must be 'sleeping', not the infinitive 'to sleep'.",
+  "distractor_rationales": {
+   "eating fresh fruit": "Correct: a gerund phrase can be a subject and sets the pattern for the list.",
+   "stretching after practice": "Correct: another gerund phrase, parallel with 'eating'.",
+   "are the easiest": "Correct: three joined subjects are plural, and the superlative 'the easiest' fits 'habits'."
+  },
+  "student_error": {
+   "eating fresh fruit": "Learners doubt whether an -ing form can be a sentence subject.",
+   "stretching after practice": "Learners think 'after' should be followed by 'the' or an -ing verb.",
+   "are the easiest": "Learners make the verb agree only with the nearest item and want 'is', or doubt 'the easiest' vs 'the most easy'."
+  },
+  "key_slot": "B",
+  "key_len_rank": 1
+ },
+ {
+  "id": "ITG3-E014",
+  "part": "Part 2: Error Identification",
+  "difficulty": "easy",
+  "cefr": "A2",
+  "category": "verb tense and aspect",
+  "varied_dimension": "present perfect wrongly used where 'by next June' requires the future perfect",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Fitness diary: by next June, I [A: have already swum] [B: two hundred] laps [C: with] [D: my team].",
+  "choices": [
+   "have already swum",
+   "two hundred",
+   "with",
+   "my team"
+  ],
+  "correct_answer": "have already swum",
+  "explanation": "'By next June' points to a time in the future, so the action must be in the future perfect: 'I will already have swum'. The present perfect only reaches up to now.",
+  "distractor_rationales": {
+   "two hundred": "Correct: after a number, 'hundred' has no -s.",
+   "with": "Correct: 'with' shows who the laps are swum together with.",
+   "my team": "Correct: the possessive 'my' before a singular noun."
+  },
+  "student_error": {
+   "two hundred": "Learners add -s and write 'two hundreds'.",
+   "with": "Learners doubt the preposition and try 'by' or 'together'.",
+   "my team": "Learners use 'mine team' or doubt whether 'team' needs a plural verb nearby."
+  },
+  "key_slot": "A",
+  "key_len_rank": 4
+ },
+ {
+  "id": "ITG3-E015",
+  "part": "Part 2: Error Identification",
+  "difficulty": "medium",
+  "cefr": "B1",
+  "category": "modals",
+  "varied_dimension": "present 'can' wrongly used for past ability instead of 'could'",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "Last month I [A: can] only [B: run for] ten minutes, but today I [C: was able to jog] [D: twice as long].",
+  "choices": [
+   "can",
+   "run for",
+   "was able to jog",
+   "twice as long"
+  ],
+  "correct_answer": "can",
+  "explanation": "'Last month' is past time, so past ability needs 'could', not 'can'. The sentence should say 'last month I could only run for ten minutes'.",
+  "distractor_rationales": {
+   "run for": "Correct: a modal is followed by the base verb, and 'for' introduces the length of time.",
+   "was able to jog": "Correct: 'was able to' describes a single past success ('today').",
+   "twice as long": "Correct: 'twice as long' compares with the ten minutes; 'as ten minutes' is understood."
+  },
+  "student_error": {
+   "run for": "Learners think the verb after a modal needs -s or 'to'.",
+   "was able to jog": "Learners think 'today' needs the present 'can' and doubt the past form.",
+   "twice as long": "Learners think 'as long' must be followed by 'as' and a second item, or write 'two times longer'."
+  },
+  "key_slot": "A",
+  "key_len_rank": 1
+ },
+ {
+  "id": "ITG3-E016",
+  "part": "Part 2: Error Identification",
+  "difficulty": "hard",
+  "cefr": "B2",
+  "category": "count/non-count and quantifiers",
+  "varied_dimension": "count quantifier 'a few' with the non-count noun 'honey' (needs 'a little')",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "The poster in the nurse's office [A: suggests] stirring [B: only a few] honey into plain yogurt [C: instead of buying] the sweetened kind, which has [D: far more sugar].",
+  "choices": [
+   "suggests",
+   "only a few",
+   "instead of buying",
+   "far more sugar"
+  ],
+  "correct_answer": "only a few",
+  "explanation": "'Honey' is a non-count noun, so it takes 'a little', not 'a few', which is only for plural count nouns. The sentence should say 'stirring only a little honey'.",
+  "distractor_rationales": {
+   "suggests": "Correct: 'suggest' is followed by an -ing form, and 'poster' is singular.",
+   "instead of buying": "Correct: after the preposition 'of', the verb takes -ing.",
+   "far more sugar": "Correct: 'far' can strengthen 'more', and 'more' works with non-count 'sugar'."
+  },
+  "student_error": {
+   "suggests": "Learners think 'suggest' must be followed by 'to' plus a verb.",
+   "instead of buying": "Learners use 'instead of buy' or 'instead to buy'.",
+   "far more sugar": "Learners think 'many more' or 'much more' is needed and doubt 'far'."
+  },
+  "key_slot": "B",
+  "key_len_rank": 2
+ },
+ {
+  "id": "ITG3-E017",
+  "part": "Part 2: Error Identification",
+  "difficulty": "hard",
+  "cefr": "B2",
+  "category": "word form",
+  "varied_dimension": "verb 'complain' used where the noun 'complaint' is needed after 'made no'",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "After the dentist [A: had filled] his tooth, Ciaran [B: made] no [C: complain about the pain], [D: although] his jaw stayed sore all evening.",
+  "choices": [
+   "had filled",
+   "made",
+   "complain about the pain",
+   "although"
+  ],
+  "correct_answer": "complain about the pain",
+  "explanation": "After 'made no', the sentence needs a noun. 'Complain' is the verb; the noun from the same root is 'complaint', so it should read 'made no complaint about the pain'.",
+  "distractor_rationales": {
+   "had filled": "Correct: the past perfect shows the filling happened before Ciaran's reaction.",
+   "made": "Correct: the irregular past of 'make', used in 'make a complaint'.",
+   "although": "Correct: 'although' joins a contrasting clause."
+  },
+  "student_error": {
+   "had filled": "Learners think a simple past 'filled' is required after 'after' and doubt the past perfect.",
+   "made": "Learners expect 'did no complaint' through first-language transfer.",
+   "although": "Learners think 'although' needs 'but' in the main clause and doubt it."
+  },
+  "key_slot": "C",
+  "key_len_rank": 4
+ },
+ {
+  "id": "ITG3-E018",
+  "part": "Part 2: Error Identification",
+  "difficulty": "medium",
+  "cefr": "B1",
+  "category": "conditionals",
+  "varied_dimension": "result clause of a third conditional using 'would' + base verb instead of 'would have' + participle",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "If Obinna [A: had eaten] breakfast before the race [B: on Friday morning], he [C: probably] [D: would not faint] at the finish line.",
+  "choices": [
+   "had eaten",
+   "on Friday morning",
+   "probably",
+   "would not faint"
+  ],
+  "correct_answer": "would not faint",
+  "explanation": "This is about an unreal past event, so it is a third conditional: 'if' + past perfect, then 'would have' + past participle. The result must be 'would not have fainted'.",
+  "distractor_rationales": {
+   "had eaten": "Correct: the past perfect is used in the 'if' clause for an unreal past.",
+   "on Friday morning": "Correct: 'on' is used with days, including 'on Friday morning'.",
+   "probably": "Correct: the adverb can come before the modal in the result clause."
+  },
+  "student_error": {
+   "had eaten": "Learners think the 'if' clause should use 'would have eaten' or simple past 'ate'.",
+   "on Friday morning": "Learners use 'in' because of 'in the morning'.",
+   "probably": "Learners are unsure where an adverb goes with a modal verb."
+  },
+  "key_slot": "D",
+  "key_len_rank": 3
+ },
+ {
+  "id": "ITG3-E019",
+  "part": "Part 2: Error Identification",
+  "difficulty": "hard",
+  "cefr": "B2",
+  "category": "prepositions after a head word",
+  "varied_dimension": "missing preposition after the phrasal verb 'stick' (stick to a plan)",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "The school nurse says that how fast an ankle heals [A: will depend] [B: mostly on] how well you [C: rest] it and [D: stick] the plan.",
+  "choices": [
+   "will depend",
+   "mostly on",
+   "rest",
+   "stick"
+  ],
+  "correct_answer": "stick",
+  "explanation": "In the meaning 'keep following', the verb 'stick' needs the preposition 'to' before its object. The sentence should end 'and stick to the plan'.",
+  "distractor_rationales": {
+   "will depend": "Correct: a 'how' clause is singular, and 'will' can make a general prediction.",
+   "mostly on": "Correct: 'depend' is followed by 'on', and 'mostly' can come between them.",
+   "rest": "Correct: 'rest' can take an object ('rest your ankle') and agrees with 'you'."
+  },
+  "student_error": {
+   "will depend": "Learners think a noun clause subject needs a plural verb, or doubt 'will' with a general fact.",
+   "mostly on": "Learners say 'depend of' or 'depend from' through first-language transfer, or doubt the adverb position.",
+   "rest": "Learners think 'rest' cannot take an object and want 'rest on it'."
+  },
+  "key_slot": "D",
+  "key_len_rank": 2
+ },
+ {
+  "id": "ITG3-E020",
+  "part": "Part 2: Error Identification",
+  "difficulty": "medium",
+  "cefr": "B1",
+  "category": "subject-verb agreement",
+  "varied_dimension": "verb agreeing with the head noun 'list' across 'of easy exercises for busy students'",
+  "prompt": "Choose the underlined word or phrase that is NOT correct.",
+  "passage": "On the poster [A: beside] the gym, a list of easy [B: exercises] [C: for busy students] [D: are] printed in green.",
+  "choices": [
+   "beside",
+   "exercises",
+   "for busy students",
+   "are"
+  ],
+  "correct_answer": "are",
+  "explanation": "The subject is 'a list', which is singular; 'of easy exercises for busy students' only describes it. The verb must agree with 'list': 'a list ... is printed in green'.",
+  "distractor_rationales": {
+   "beside": "Correct: 'beside' means next to.",
+   "exercises": "Correct: 'exercise' here is countable, so the plural fits 'a list of'.",
+   "for busy students": "Correct: 'for' plus a plural noun phrase says who the exercises are for."
+  },
+  "student_error": {
+   "beside": "Learners confuse 'beside' (next to) with 'besides' (in addition to).",
+   "exercises": "Learners think 'exercise' is always non-count, as in 'take exercise'.",
+   "for busy students": "Learners doubt whether 'busy' needs an article or the noun should be singular."
+  },
+  "key_slot": "D",
+  "key_len_rank": 1
+ }
+]

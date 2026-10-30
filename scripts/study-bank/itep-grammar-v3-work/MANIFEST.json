@@ -1,0 +1,33 @@
+{
+ "prereg": "scripts/study-bank/ITEP-SLATE-GRAMMAR-V3.prereg.md",
+ "instrument": "v2 gate: cold solve, then COFOUNDER-BRIEF-v2 keyed, A1 rules per packet",
+ "author_brief": "scripts/study-bank/briefs/itep-slate-grammar-v1.md",
+ "author_brief_sha256": "04a045c0c2dbd3e941a625d3ea75ce0294100c7d3f737fd618bfd4c4c500235b",
+ "assigned_sha256": "06a4e3fe5c23813d178d6594d7a6feb38e1f12e56d3b9a635579cb6ee3765dea",
+ "ref_sha256": "a3421db5ece1ad53f514e8da8efa06dad4e654d0f7062a1a6a11509a5db5e237",
+ "grader_brief": "scripts/study-bank/cofounder-grader/COFOUNDER-BRIEF-v2.md",
+ "grader_brief_sha256": "3d032066bcc86fc0a5c5c89d388cf400682f71ee51af45c27ebf246097fd2ad0",
+ "cold_brief_sha256": "694226f5eb4b36ac5575422df858827f4de5d19ddb0b9f4571fa206d84a20eb6",
+ "item_files_sha256": {
+  "author-A.json": "be03c153c469bd3a8279c933576da8ab1840fc71a81a140e023486031d3147bc",
+  "author-B.json": "ca70aeecbfaa378015ca78e13803cf0e4bff69382ef5409d7867373e307d1f5c",
+  "author-C.json": "1e328d747d98b82335c041482217234c23d462c4f5be94bd5162c4f6ade699e5",
+  "author-D.json": "4285ee311fecf030ef8c75f816e2954f2317cbbc05a1d356244deef0a9f51e54",
+  "author-E.json": "b0b69b3cf570ea0fd6a7168f4364c8021e0ecd57dc1b301840d02a0748458998",
+  "author-F.json": "f36a296e329d67ff74334ead5db3d5a48617161ef0f412322ec7f4d4b5618130",
+  "author-G.json": "4a94fee2708454f91243b121b50529613c744c89eddad9d43d77afe1a34dba0b"
+ },
+ "packet_root": "scratchpad/itep-grammar-v3",
+ "deal_attempt": 0,
+ "packets": [
+  30,
+  30,
+  30
+ ],
+ "items": 90,
+ "graders": [
+  "a",
+  "b",
+  "c"
+ ]
+}

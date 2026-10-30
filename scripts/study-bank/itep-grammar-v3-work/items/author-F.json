@@ -1,0 +1,392 @@
+[
+  {
+    "id": "ITG3-C016",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "relative pronouns and clauses",
+    "varied_dimension": "free relative 'what' (= the thing that) vs 'that' / 'which' / 'who', decided by a verb at the end of the clause that still needs its object",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "After a day of job shadowing at the clinic, Rania finally understood ________ a physical therapist spends most of her afternoons doing.",
+    "choices": [
+      "who",
+      "which",
+      "that",
+      "what"
+    ],
+    "correct_answer": "what",
+    "explanation": "The clause after 'understood' is missing the object of 'doing', and there is no noun before the blank for a relative pronoun to refer to. 'What' means 'the thing that', so it supplies both the missing object and the antecedent: she understood the thing that a therapist spends her afternoons doing.",
+    "distractor_rationales": {
+      "who": "'Who' refers to a person, but the missing element is the object of 'doing', a task, not a person.",
+      "which": "'Which' as a relative pronoun needs a noun before it to refer back to; there is none after 'understood'.",
+      "that": "'That' would introduce a complete statement, but 'spends most of her afternoons doing' is missing its object, so the clause is incomplete."
+    },
+    "student_error": {
+      "who": "Learners see 'a physical therapist' right after the blank and choose the pronoun for people.",
+      "which": "Learners treat 'which' as a general 'thing' word, like the question word, and forget a relative 'which' needs an antecedent.",
+      "that": "Learners overgeneralise 'understood that ...' (a very common pattern) and do not notice the gap after 'doing'."
+    },
+    "key_slot": "D",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG3-C017",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "conditionals",
+    "varied_dimension": "inverted conditional auxiliary (should / had / did / have + you), decided by an imperative main clause about a future shift",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "________ to leave early, tell Mr. Bakshi at least one hour before your shift begins.",
+    "choices": [
+      "Should you need",
+      "Did you need",
+      "Had you needed",
+      "Have you needed"
+    ],
+    "correct_answer": "Should you need",
+    "explanation": "'Should you need' is an inverted form of 'If you need' and is used for a possible future situation, which fits an instruction with an imperative ('tell'). 'Had you needed' means 'if you had needed' and talks about an unreal past, so it cannot go with an instruction about a coming shift.",
+    "distractor_rationales": {
+      "Did you need": "This is question word order, not a conditional; it cannot begin an 'if' idea before an imperative.",
+      "Had you needed": "This is an inverted third conditional about the unreal past; it needs a result like 'you could have told him', not an instruction for the future.",
+      "Have you needed": "This is a present perfect question, not a conditional, so the sentence has no condition for 'tell' to depend on."
+    },
+    "student_error": {
+      "Did you need": "Learners know that conditionals can start with an inverted auxiliary and choose the most familiar auxiliary, 'did'.",
+      "Had you needed": "Learners who have memorised 'Had I known ...' assume every inverted conditional uses 'had'.",
+      "Have you needed": "Learners copy the inversion pattern onto the present perfect because the shift is still to come and they want a 'present' form."
+    },
+    "key_slot": "A",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG3-C018",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "parallel structure",
+    "varied_dimension": "past simple vs present simple vs present perfect vs -ing as the second verb of a compound predicate joined by 'and then' to a past-simple verb",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Yesterday's careers-day speaker, a pilot named Maren, showed slides about her job and then ________ questions for nearly forty minutes.",
+    "choices": [
+      "takes",
+      "took",
+      "has taken",
+      "taking"
+    ],
+    "correct_answer": "took",
+    "explanation": "The two verbs joined by 'and then' share the subject 'speaker', so they should match: 'showed ... and then took'. Both actions happened yesterday, so both are in the past simple.",
+    "distractor_rationales": {
+      "takes": "The present simple does not match 'showed' and does not fit an event that happened yesterday.",
+      "has taken": "The present perfect cannot be used with a finished time like 'yesterday', and it breaks the match with 'showed'.",
+      "taking": "An -ing form is not a finished verb, so it cannot be the second verb of 'the speaker showed ... and then ___'."
+    },
+    "student_error": {
+      "takes": "Learners look only at the singular subject and add -s, forgetting the time of the event.",
+      "has taken": "Learners use the present perfect for any recent event, transferring from languages where 'yesterday' allows a perfect form.",
+      "taking": "Learners think of 'then taking questions' as a natural spoken sequence and forget it needs a main verb."
+    },
+    "key_slot": "B",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG3-E051",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "count/non-count and quantifiers",
+    "varied_dimension": "'a lot' without 'of' before a plural count noun outside the segment",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "[A: A lot] parents [B: spoke to our class] [C: about their jobs] [D: on] Friday.",
+    "choices": [
+      "A lot",
+      "spoke to our class",
+      "about their jobs",
+      "on"
+    ],
+    "correct_answer": "A lot",
+    "explanation": "Before a noun, the quantifier is 'a lot of', not 'a lot': 'A lot of parents spoke to our class.' 'A lot' without 'of' is used only at the end of a phrase, as in 'They helped a lot.'",
+    "distractor_rationales": {
+      "spoke to our class": "'Speak to' someone is correct, and 'spoke' is the right past form of 'speak'.",
+      "about their jobs": "'Speak about' a topic is correct, and 'their' correctly refers to 'parents'.",
+      "on": "We use 'on' with days of the week: 'on Friday'."
+    },
+    "student_error": {
+      "spoke to our class": "Learners doubt the irregular past 'spoke' and the preposition, thinking it should be 'spoke with' or 'speaked'.",
+      "about their jobs": "Learners wonder whether 'jobs' should be singular or whether 'their' should be 'his'.",
+      "on": "Learners mix up 'on' and 'in' with days because their first language uses one word for both."
+    },
+    "key_slot": "A",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG3-E052",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "conjunctions and connectors",
+    "varied_dimension": "contrast connector 'however' where the logic is result ('therefore') between two clauses",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Kwesi [A: loves cooking]; [B: however], he [C: is applying for] a part-time job [D: at a restaurant].",
+    "choices": [
+      "loves cooking",
+      "however",
+      "is applying for",
+      "at a restaurant"
+    ],
+    "correct_answer": "however",
+    "explanation": "'However' shows a contrast, but there is no contrast here: Kwesi loves cooking, so a restaurant job is the natural result. The connector should be 'therefore'.",
+    "distractor_rationales": {
+      "loves cooking": "'Love' can be followed by an -ing form, and 'loves' agrees with 'Kwesi'.",
+      "is applying for": "The present continuous fits a current plan, and we 'apply for' a job.",
+      "at a restaurant": "'At' is correct for a workplace, and 'a' is right before a singular count noun."
+    },
+    "student_error": {
+      "loves cooking": "Learners think 'love' must be followed by 'to cook' and suspect the -ing form.",
+      "is applying for": "Learners doubt the preposition, thinking it should be 'apply to' or no preposition at all.",
+      "at a restaurant": "Learners transfer 'in' from their first language for workplaces."
+    },
+    "key_slot": "B",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG3-E053",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "adjective vs adverb",
+    "varied_dimension": "adjective form 'amazing' in place of the adverb before another adjective ('amazingly quiet')",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "In Mom's office, [A: workers sit] [B: at long desks], and it [C: is always] [D: amazing] quiet.",
+    "choices": [
+      "workers sit",
+      "at long desks",
+      "is always",
+      "amazing"
+    ],
+    "correct_answer": "amazing",
+    "explanation": "A word that describes an adjective must be an adverb. 'Quiet' is an adjective, so it needs 'amazingly', not 'amazing'.",
+    "distractor_rationales": {
+      "workers sit": "'Workers' is plural, so the verb 'sit' has no -s.",
+      "at long desks": "We sit 'at' a desk, and 'long' correctly describes 'desks'.",
+      "is always": "'Always' comes after the verb 'be', and 'is' agrees with 'it'."
+    },
+    "student_error": {
+      "workers sit": "Learners think a present-tense verb always needs -s and suspect 'sit'.",
+      "at long desks": "Learners use 'on' or 'in' with desks because of their first language.",
+      "is always": "Learners put 'always' before every verb and think it should be 'always is'."
+    },
+    "key_slot": "D",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG3-E054",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "comparatives and superlatives",
+    "varied_dimension": "preposition after a superlative: 'in' where a group of people needs 'of all the ...'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Mosese's uncle [A: drives] [B: a city bus] and [C: seems] the friendliest [D: in] all the drivers.",
+    "choices": [
+      "drives",
+      "a city bus",
+      "seems",
+      "in"
+    ],
+    "correct_answer": "in",
+    "explanation": "After a superlative, we use 'of' before a group of people or things ('the friendliest of all the drivers') and 'in' before a place or single group ('the friendliest in the city'). Here the group is 'all the drivers', so 'in' should be 'of'.",
+    "distractor_rationales": {
+      "drives": "'Uncle' is singular, so 'drives' with -s is correct.",
+      "a city bus": "'A' is correct before a singular count noun, and 'city' can describe 'bus'.",
+      "seems": "'Seem' is a linking verb that can be followed directly by an adjective phrase, and it agrees with 'uncle'."
+    },
+    "student_error": {
+      "drives": "Learners are unsure whether the possessive 'Mosese's uncle' is singular or plural.",
+      "a city bus": "Learners wonder whether it should be 'the city bus' or 'a bus of the city'.",
+      "seems": "Learners think 'seem' must be followed by 'to be'."
+    },
+    "key_slot": "D",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG3-E055",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "word form",
+    "varied_dimension": "noun 'apology' used where the -ize verb 'apologize' is needed in a list of imperatives",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "If an order is late, [A: stay calm], [B: explain] the delay, and [C: apology to the customer] [D: before] offering a small discount.",
+    "choices": [
+      "stay calm",
+      "explain",
+      "apology to the customer",
+      "before"
+    ],
+    "correct_answer": "apology to the customer",
+    "explanation": "The sentence is a list of instructions, so each item needs a verb. 'Apology' is a noun; the verb is 'apologize', so it should be 'apologize to the customer'.",
+    "distractor_rationales": {
+      "stay calm": "'Stay' is a linking verb, so it is followed by the adjective 'calm', not an adverb.",
+      "explain": "'Explain' takes the thing explained as its object: 'explain the delay'.",
+      "before": "'Before' is a preposition here, so it is correctly followed by the -ing form 'offering'."
+    },
+    "student_error": {
+      "stay calm": "Learners think every verb needs an adverb and expect 'stay calmly'.",
+      "explain": "Learners who say 'explain me' are unsure what can follow 'explain'.",
+      "before": "Learners expect 'before to offer' or 'before offer' after a time word."
+    },
+    "key_slot": "C",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG3-E056",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "reported speech",
+    "varied_dimension": "reporting verb 'remind' used without its required person object before a that-clause",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Today [A: I shadowed] a vet, and before we [B: entered] the clinic, she [C: reminded that all visitors] [D: must wear] gloves.",
+    "choices": [
+      "I shadowed",
+      "entered",
+      "reminded that all visitors",
+      "must wear"
+    ],
+    "correct_answer": "reminded that all visitors",
+    "explanation": "In the active voice, 'remind' must have a person object before the that-clause: 'remind someone that ...'. The sentence needs 'she reminded me that all visitors must wear gloves'.",
+    "distractor_rationales": {
+      "I shadowed": "'Shadow' is a regular verb, and the past simple fits a finished event earlier today.",
+      "entered": "'Enter' takes a direct object with no preposition: 'entered the clinic'.",
+      "must wear": "'Must' can stay unchanged in reported speech for a rule, and it is followed by the base form 'wear'."
+    },
+    "student_error": {
+      "I shadowed": "Learners do not know 'shadow' can be a verb and suspect a missing 'did' or a different tense.",
+      "entered": "Learners transfer 'enter into' or 'enter to' from their first language.",
+      "must wear": "Learners who have studied backshift think 'must' always has to change to 'had to'."
+    },
+    "key_slot": "C",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG3-E057",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "gerund vs infinitive",
+    "varied_dimension": "to-infinitive after 'let + object' where a bare infinitive is required, contrasted with 'tell + object + to'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "This afternoon, the chef let me [A: to stir] the soup, but she [B: told] me [C: not to touch] the knives [D: at all].",
+    "choices": [
+      "to stir",
+      "told",
+      "not to touch",
+      "at all"
+    ],
+    "correct_answer": "to stir",
+    "explanation": "'Let' is followed by an object and a bare infinitive without 'to': 'let me stir'. Verbs like 'tell' and 'ask' are different and do take 'to': 'told me not to touch'.",
+    "distractor_rationales": {
+      "told": "'Tell' takes a person object directly ('told me'), and 'told' is the correct irregular past.",
+      "not to touch": "'Tell someone not to do something' is the correct negative pattern, with 'not' before 'to'.",
+      "at all": "'At all' correctly strengthens a negative instruction."
+    },
+    "student_error": {
+      "told": "Learners confuse 'tell' and 'say' and think it should be 'said me' or 'told to me'.",
+      "not to touch": "Learners put 'not' after 'to' ('to not touch') or drop 'to' as they do after 'let'.",
+      "at all": "Learners think 'at all' can only appear in questions."
+    },
+    "key_slot": "A",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG3-E058",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "passive voice",
+    "varied_dimension": "past continuous active 'was fixing' where the past continuous passive 'was being fixed' is needed, signalled by a later 'by'-agent",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Ms. Delacroix [A: had to give her speech] without slides, since the projector [B: was fixing] by a technician [C: during] [D: the entire hour].",
+    "choices": [
+      "had to give her speech",
+      "was fixing",
+      "during",
+      "the entire hour"
+    ],
+    "correct_answer": "was fixing",
+    "explanation": "The projector did not fix anything; it received the action, and 'by a technician' names who did it. An action in progress in the past that is received by the subject needs the past continuous passive: 'was being fixed'.",
+    "distractor_rationales": {
+      "had to give her speech": "'Had to' is the correct past form of 'have to', followed by the base form 'give'.",
+      "during": "'During' is correct before a noun phrase naming a period of time.",
+      "the entire hour": "'The entire hour' is a correct noun phrase after 'during'."
+    },
+    "student_error": {
+      "had to give her speech": "Learners think 'had to' should be followed by a past form ('had to gave') or that 'must' has its own past form.",
+      "during": "Learners confuse 'during' with 'for' or 'while' when talking about a length of time.",
+      "the entire hour": "Learners are unsure whether 'hour' takes 'an' or 'the' and whether 'entire' needs 'the'."
+    },
+    "key_slot": "B",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG3-E059",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "pronoun case and reference",
+    "varied_dimension": "subject pronoun 'I' inside a compound object of a verb ('phoned X and I')",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "The club president, [A: who had interviewed] [B: three of us] for the treasurer role, [C: phoned] [D: Seung-min and I] on Sunday to share the decision.",
+    "choices": [
+      "who had interviewed",
+      "three of us",
+      "phoned",
+      "Seung-min and I"
+    ],
+    "correct_answer": "Seung-min and I",
+    "explanation": "'Seung-min and I' is the object of 'phoned', so the pronoun must be in object form: 'phoned Seung-min and me'. Test it by removing the name: 'phoned me', not 'phoned I'.",
+    "distractor_rationales": {
+      "who had interviewed": "'Who' refers to the president, and the past perfect shows the interviews came before the phone call.",
+      "three of us": "After 'of', the object pronoun 'us' is correct.",
+      "phoned": "The past simple is correct for a finished action on Sunday."
+    },
+    "student_error": {
+      "who had interviewed": "Learners are unsure when to use the past perfect and think the past simple is required.",
+      "three of us": "Learners think the subject form 'we' is needed because the people are doing the interview together.",
+      "phoned": "Learners expect 'phoned to' because their first language uses a preposition with 'call'."
+    },
+    "key_slot": "D",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG3-E060",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "subject-verb agreement",
+    "varied_dimension": "plural main verb after 'everyone' separated from it by a relative clause and a prepositional phrase",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "During the summer, everyone who [A: works] the early shift [B: at the bookstore] [C: have to] arrive [D: before seven o'clock] to unlock the doors.",
+    "choices": [
+      "works",
+      "at the bookstore",
+      "have to",
+      "before seven o'clock"
+    ],
+    "correct_answer": "have to",
+    "explanation": "The subject of the main verb is 'everyone', which is singular even though it refers to many people. The main verb must be 'has to', just as the verb in the relative clause is 'works'.",
+    "distractor_rationales": {
+      "works": "'Who' refers to 'everyone', which is singular, so 'works' is correct.",
+      "at the bookstore": "'At' is correct for a place of work.",
+      "before seven o'clock": "'Before' is correct with a clock time."
+    },
+    "student_error": {
+      "works": "Learners think 'everyone' means many people and expect the plural 'work'.",
+      "at the bookstore": "Learners use 'in' for any building because of first-language transfer.",
+      "before seven o'clock": "Learners confuse 'before' with 'until' or 'by' for a deadline."
+    },
+    "key_slot": "C",
+    "key_len_rank": 2
+  }
+]

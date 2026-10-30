@@ -1,0 +1,392 @@
+[
+  {
+    "id": "ITG3-C013",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "prepositions after a head word",
+    "varied_dimension": "place preposition before a full street address with a house number (at vs on vs in vs onto)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Stargazing club newsletter: from next month, our meetings will be held in the small observatory ________ 214 Orion Avenue.",
+    "choices": [
+      "in",
+      "on",
+      "onto",
+      "at"
+    ],
+    "correct_answer": "at",
+    "explanation": "We use \"at\" with a complete address that includes a house number (at 214 Orion Avenue). \"On\" is used with a street name alone (on Orion Avenue), and \"in\" is used with larger areas such as cities.",
+    "distractor_rationales": {
+      "in": "\"In\" goes with cities, areas and the inside of a building, not with an address that has a number.",
+      "on": "\"On\" goes with a street name alone (on Orion Avenue); once the house number is added, the address takes \"at\".",
+      "onto": "\"Onto\" shows movement to a surface; nothing moves here, so it cannot introduce a location."
+    },
+    "student_error": {
+      "in": "The sentence already says \"in the small observatory\", so learners repeat \"in\" for the address too.",
+      "on": "Learners correctly learn \"on + street\" and keep it even when a house number turns the street into an exact address.",
+      "onto": "Learners who translate one general place word from their first language treat \"onto\" as a stronger form of \"on\"."
+    },
+    "key_slot": "D",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG3-C014",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "relative pronouns and clauses",
+    "varied_dimension": "which preposition comes before relative 'which', decided by the verb at the end of the clause (depends on)",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "\"The star chart ________ our whole club depends was drawn by Ms. Ishikawa many years ago,\" our planetarium guide explained.",
+    "choices": [
+      "which",
+      "on which",
+      "with which",
+      "about which"
+    ],
+    "correct_answer": "on which",
+    "explanation": "The verb \"depend\" always takes \"on\" (the club depends on the chart). When the chart becomes a relative clause, the preposition moves to the front with it: \"the chart on which our club depends\".",
+    "distractor_rationales": {
+      "which": "Without a preposition, \"depends\" is left with nothing to connect it to the chart; the verb needs \"on\".",
+      "with which": "\"Depend\" never takes \"with\"; \"with which\" fits verbs such as \"work\" or \"help\".",
+      "about which": "\"About which\" fits verbs such as \"talk\" or \"write\", not \"depend\"."
+    },
+    "student_error": {
+      "which": "Learners use plain \"which\" for every object relative clause and forget the preposition the verb needs.",
+      "with which": "Learners whose first language uses a 'with' word after 'rely' or 'depend' carry that preposition into English.",
+      "about which": "Learners treat \"about\" as an all-purpose preposition for any topic or thing being discussed."
+    },
+    "key_slot": "B",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG3-C015",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "word form",
+    "varied_dimension": "forms of the root 'harm' (harm / harms / harmful / harmless), decided by the contrast after 'but'",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "The guide said, \"Looking at the Moon is ________, but the Sun can hurt your eyes.\"",
+    "choices": [
+      "harmful",
+      "harms",
+      "harmless",
+      "harm"
+    ],
+    "correct_answer": "harmless",
+    "explanation": "After \"is\" we need an adjective. \"But\" shows a contrast with the Sun, which can hurt your eyes, so the Moon must be safe: \"harmless\" means \"not causing harm\", while \"harmful\" means \"causing harm\".",
+    "distractor_rationales": {
+      "harmful": "\"Harmful\" is the right word class but the wrong meaning; it would say the Moon hurts your eyes too, so \"but\" would make no sense.",
+      "harms": "\"Harms\" is a verb; after \"is\" the sentence needs an adjective.",
+      "harm": "\"Harm\" is a noun or a verb, not an adjective, so it cannot describe \"looking at the Moon\" after \"is\"."
+    },
+    "student_error": {
+      "harmful": "Learners mix up -ful and -less and remember only that both words are about harm.",
+      "harms": "Learners see a subject and add a verb ending without noticing that \"is\" is already the verb.",
+      "harm": "Learners use the root word for every form because their first language does not change the word's shape."
+    },
+    "key_slot": "C",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG3-E041",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "comparatives and superlatives",
+    "varied_dimension": "double comparative: 'much more' placed before an adjective that already ends in -er",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Through Jabari's telescope, [A: Jupiter looked much more] bigger [B: than it] [C: did] [D: in the pictures].",
+    "choices": [
+      "Jupiter looked much more",
+      "than it",
+      "did",
+      "in the pictures"
+    ],
+    "correct_answer": "Jupiter looked much more",
+    "explanation": "\"Bigger\" is already a comparative, so it cannot also take \"more\". \"Much\" can strengthen a comparative on its own: \"Jupiter looked much bigger\".",
+    "distractor_rationales": {
+      "than it": "\"Than\" correctly follows a comparative, and \"it\" correctly refers back to Jupiter.",
+      "did": "\"Did\" correctly replaces \"looked\" and matches the past tense of the sentence.",
+      "in the pictures": "\"In\" is the correct preposition for things shown in pictures."
+    },
+    "student_error": {
+      "than it": "Learners wonder whether the pronoun should be \"its\" or whether \"then\" is meant.",
+      "did": "Learners expect the verb \"looked\" to be repeated and doubt the short auxiliary.",
+      "in the pictures": "Learners often choose \"on the pictures\" because pictures are flat surfaces."
+    },
+    "key_slot": "A",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG3-E042",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "modals",
+    "varied_dimension": "'would rather' takes a bare infinitive, contrasted with 'would love' + to-infinitive",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "[A: I would love] [B: to see Mars], but tonight I would rather [C: to go] [D: to the planetarium].",
+    "choices": [
+      "I would love",
+      "to see Mars",
+      "to go",
+      "to the planetarium"
+    ],
+    "correct_answer": "to go",
+    "explanation": "\"Would rather\" is followed by the base form of the verb without \"to\": \"I would rather go\". \"Would love\", like \"would like\", does take \"to\": \"I would love to see Mars\".",
+    "distractor_rationales": {
+      "I would love": "\"Would love\" is a correct, polite way to say what you want.",
+      "to see Mars": "\"Would love\" is correctly followed by a to-infinitive.",
+      "to the planetarium": "\"Go to\" + place is correct."
+    },
+    "student_error": {
+      "I would love": "Learners think \"would\" must be followed only by a bare verb and doubt \"would love\" as a phrase.",
+      "to see Mars": "After learning that modals take a bare verb, learners wrongly remove \"to\" after \"would love\" as well.",
+      "to the planetarium": "Learners are unsure whether \"go\" takes \"to\" or \"at\" before a building."
+    },
+    "key_slot": "C",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG3-E043",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "gerund vs infinitive",
+    "varied_dimension": "'too + adjective' must be followed by a to-infinitive, not an -ing form",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Liesel said the comet [A: was] [B: too faint] [C: spotting at all] [D: without a strong telescope].",
+    "choices": [
+      "was",
+      "too faint",
+      "spotting at all",
+      "without a strong telescope"
+    ],
+    "correct_answer": "spotting at all",
+    "explanation": "The pattern is \"too + adjective + to + verb\": the comet was too faint to spot at all. An -ing form cannot follow \"too faint\" here.",
+    "distractor_rationales": {
+      "was": "\"Was\" correctly matches the past verb \"said\" and the singular subject \"comet\".",
+      "too faint": "\"Too\" correctly comes before the adjective \"faint\".",
+      "without a strong telescope": "\"Without\" + noun phrase is correct."
+    },
+    "student_error": {
+      "was": "Learners think reported speech must keep the speaker's present tense (\"is\").",
+      "too faint": "Learners confuse \"too\" and \"very\" or put \"enough\"-style word order here.",
+      "without a strong telescope": "Learners wonder whether \"without\" needs \"using\" or another verb after it."
+    },
+    "key_slot": "C",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG3-E044",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "passive voice",
+    "varied_dimension": "modal passive missing 'be' (must + past participle instead of must be + past participle)",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Stargazing club newsletter: [A: Our telescopes] [B: that we lent] [C: to the new members last week] must [D: brought back by Friday].",
+    "choices": [
+      "Our telescopes",
+      "that we lent",
+      "to the new members last week",
+      "brought back by Friday"
+    ],
+    "correct_answer": "brought back by Friday",
+    "explanation": "The telescopes do not bring anything back; someone brings them back, so the verb must be passive. A passive after a modal is \"modal + be + past participle\": \"must be brought back by Friday\".",
+    "distractor_rationales": {
+      "Our telescopes": "The plural subject correctly matches the plural relative clause and modal phrase.",
+      "that we lent": "\"Lent\" is the correct irregular past of \"lend\", and \"that\" correctly introduces the clause.",
+      "to the new members last week": "\"Lend something to someone\" is correct, and \"last week\" fits the past verb \"lent\"."
+    },
+    "student_error": {
+      "Our telescopes": "Learners wonder whether a possessive pronoun can come before a noun that has a long relative clause after it.",
+      "that we lent": "Learners confuse \"lend\" and \"borrow\" and are unsure of the irregular past \"lent\".",
+      "to the new members last week": "Learners doubt whether \"lend\" takes \"to\" or \"for\" before the person."
+    },
+    "key_slot": "D",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG3-E045",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "adjective vs adverb",
+    "varied_dimension": "-ing adjective used for a person's feeling where the -ed form is needed (fascinating by vs fascinated by)",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "After [A: watching the show], [B: most of] the visitors [C: from Oksana's school] [D: were extremely fascinating] by the rings of Saturn.",
+    "choices": [
+      "watching the show",
+      "most of",
+      "from Oksana's school",
+      "were extremely fascinating"
+    ],
+    "correct_answer": "were extremely fascinating",
+    "explanation": "An -ed adjective describes how a person feels, and an -ing adjective describes the thing that causes the feeling. The visitors felt the interest caused by the rings, so they were \"extremely fascinated by\" them.",
+    "distractor_rationales": {
+      "watching the show": "After the preposition \"after\", the -ing form \"watching\" is correct.",
+      "most of": "\"Most of the\" + plural noun is correct.",
+      "from Oksana's school": "\"From\" correctly shows where the visitors came from, and the possessive is correct."
+    },
+    "student_error": {
+      "watching the show": "Learners think a full clause or a to-infinitive is needed after \"after\".",
+      "most of": "Learners often drop \"of\" and write \"most the visitors\", so they doubt the correct form.",
+      "from Oksana's school": "Learners are unsure whether to write \"of\" or \"from\" and where the apostrophe goes."
+    },
+    "key_slot": "D",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG3-E046",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "conjunctions and connectors",
+    "varied_dimension": "'unless' (condition) used where the time limit 'until' is needed with a durative main clause",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "[A: Unless the clouds cleared], we [B: waited outside] the observatory for nearly an hour, [C: while Benedikt] [D: told us old stories about the constellations].",
+    "choices": [
+      "Unless the clouds cleared",
+      "waited outside",
+      "while Benedikt",
+      "told us old stories about the constellations"
+    ],
+    "correct_answer": "Unless the clouds cleared",
+    "explanation": "\"Unless\" means \"if not\" and introduces a condition. The sentence describes waiting that ended when the clouds cleared, which is a time limit, so it needs \"until\": \"Until the clouds cleared, we waited outside\".",
+    "distractor_rationales": {
+      "waited outside": "The past simple fits a finished event, and \"outside\" correctly comes before \"the observatory\".",
+      "while Benedikt": "\"While\" correctly shows that the storytelling happened during the waiting.",
+      "told us old stories about the constellations": "\"Tell\" + person + thing is correct, and \"stories about\" is the right preposition."
+    },
+    "student_error": {
+      "waited outside": "Learners expect \"waited for\" or \"outside of\" and doubt the plain form.",
+      "while Benedikt": "Learners confuse \"while\" with \"whereas\" and think \"while\" can only show contrast or needs an -ing verb.",
+      "told us old stories about the constellations": "Learners mix up \"tell\" and \"say\" and wonder whether \"to us\" is needed."
+    },
+    "key_slot": "A",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG3-E047",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "pronoun case and reference",
+    "varied_dimension": "reflexive pronoun must agree with a compound subject joined by 'and' (themselves, not himself)",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Do-yun and his sister [A: have taught] [B: himself] [C: the names of all eight planets] [D: by using] a phone app.",
+    "choices": [
+      "have taught",
+      "himself",
+      "the names of all eight planets",
+      "by using"
+    ],
+    "correct_answer": "himself",
+    "explanation": "A reflexive pronoun refers back to the whole subject. \"Do-yun and his sister\" is two people, so the pronoun must be plural: \"have taught themselves\".",
+    "distractor_rationales": {
+      "have taught": "The plural \"have\" agrees with the compound subject, and \"taught\" is the correct irregular participle.",
+      "the names of all eight planets": "\"All eight planets\" is correct word order, and \"names of\" is correct.",
+      "by using": "After the preposition \"by\", the -ing form is correct."
+    },
+    "student_error": {
+      "have taught": "Learners match the verb to the nearest noun \"sister\" and expect \"has\", or doubt the irregular form \"taught\".",
+      "the names of all eight planets": "Learners are unsure whether to write \"all the eight planets\" or \"eight all planets\".",
+      "by using": "Learners think a preposition must be followed by a to-infinitive or a bare verb (\"by use\")."
+    },
+    "key_slot": "B",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG3-E048",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "parallel structure",
+    "varied_dimension": "two objects of 'explains' must both be that-clauses; the first is a noun + -ing phrase",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Akosua's report explains [A: Venus being] hotter than Mercury, [B: although] it is farther from the Sun, and [C: that its clouds] [D: trap most of] the heat.",
+    "choices": [
+      "Venus being",
+      "although",
+      "that its clouds",
+      "trap most of"
+    ],
+    "correct_answer": "Venus being",
+    "explanation": "The two things the report explains are joined by \"and\", so they must have the same form. The second is a that-clause (\"that its clouds trap ...\"), so the first must be one too: \"explains that Venus is hotter than Mercury\".",
+    "distractor_rationales": {
+      "although": "\"Although\" correctly introduces a surprising contrast: Venus is hotter even though it is farther away.",
+      "that its clouds": "\"That\" begins a correct noun clause, and \"its\" is the correct possessive (not \"it's\").",
+      "trap most of": "The plural verb \"trap\" agrees with \"clouds\", and \"most of the\" is correct."
+    },
+    "student_error": {
+      "although": "Learners confuse \"although\" with \"because\" or \"despite\" and doubt the contrast.",
+      "that its clouds": "Learners confuse \"its\" with \"it's\".",
+      "trap most of": "Learners match the verb to \"Venus\" or \"its\" and expect \"traps\"."
+    },
+    "key_slot": "A",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG3-E049",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "reported speech",
+    "varied_dimension": "'will' not backshifted to 'would' when the reported future ('the next evening') is already past",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Two weeks ago, the planetarium guide [A: said] that the meteor shower [B: will peak] [C: the next evening] and [D: could be seen] without a telescope.",
+    "choices": [
+      "said",
+      "will peak",
+      "the next evening",
+      "could be seen"
+    ],
+    "correct_answer": "will peak",
+    "explanation": "The guide spoke two weeks ago about the next evening, a time that is now in the past, so \"will\" must move back to \"would\": \"would peak the next evening\". The second verb, \"could be seen\", is already correctly backshifted from \"can\".",
+    "distractor_rationales": {
+      "said": "\"Said that\" correctly introduces reported speech without a person as object.",
+      "the next evening": "In reported speech, \"tomorrow evening\" correctly becomes \"the next evening\".",
+      "could be seen": "\"Can be seen\" correctly backshifts to \"could be seen\" in past reported speech."
+    },
+    "student_error": {
+      "said": "Learners mix up \"said\" and \"told\" and think a person (\"said us\") or \"to us\" is required.",
+      "the next evening": "Learners keep the speaker's words \"tomorrow evening\" and doubt the changed time phrase.",
+      "could be seen": "Learners think the passive with a modal needs \"been\" or that \"can\" should stay unchanged."
+    },
+    "key_slot": "B",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG3-E050",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "subject-verb agreement",
+    "varied_dimension": "singular subject followed by 'as well as' + plural phrase still takes a singular verb",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Samira, [A: as well as] her three teammates, [B: are hoping to sketch] the eclipse [C: from the roof] [D: of their school] on Saturday.",
+    "choices": [
+      "as well as",
+      "are hoping to sketch",
+      "from the roof",
+      "of their school"
+    ],
+    "correct_answer": "are hoping to sketch",
+    "explanation": "A phrase starting with \"as well as\" or \"along with\" adds information but does not change the subject. The subject is only \"Samira\", so the verb must be singular: \"Samira, as well as her three teammates, is hoping to sketch\". Only \"and\" would make the subject plural.",
+    "distractor_rationales": {
+      "as well as": "\"As well as\" correctly adds the teammates as extra information.",
+      "from the roof": "\"Sketch from\" correctly shows the place where the artists are.",
+      "of their school": "\"Their\" correctly refers to all four people, who go to the same school."
+    },
+    "student_error": {
+      "as well as": "Learners think \"as well as\" is only used at the end of a sentence, like \"as well\".",
+      "from the roof": "Learners expect \"on the roof\" and doubt \"from\".",
+      "of their school": "Learners think the pronoun should be \"her\" because the subject is singular."
+    },
+    "key_slot": "B",
+    "key_len_rank": 4
+  }
+]

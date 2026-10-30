@@ -56,9 +56,38 @@ function tryDeal(t) {
   for (const s of L) { let at = 0; P2T.forEach((tg, p) => { packets[p].push(...bySlot[s].slice(at, at + tg[s])); at += tg[s] }); if (at !== bySlot[s].length) return null }
   let at = 0
   P1N.forEach((n, p) => { packets[p].push(...p1.slice(at, at + n)); at += n })
+  // Local repair: swap same-slot Part 2 items (or any two Part 1 items) between packets while that does not
+  // raise the violation count; seeded, so deterministic. Slot targets are preserved by every swap.
+  const over = (arr, key, cap) => { const m = {}; arr.forEach(x => { const k = key(x); m[k] = (m[k] || 0) + 1 }); return Object.values(m).reduce((s, v) => s + Math.max(0, v - cap), 0) }
+  const cost = pk => over(pk.filter(isP2), x => x.key_len_rank, 9) + over(pk, x => x.__author, 6) + over(pk.filter(isP2), x => x.category, 2)
+  const total = () => packets.reduce((s, pk) => s + cost(pk), 0)
+  let c = total()
+  for (let step = 0; step < 20000 && c > 0; step++) {
+    const pa = Math.floor(rand() * 3), pb = (pa + 1 + Math.floor(rand() * 2)) % 3
+    const i = Math.floor(rand() * packets[pa].length), x = packets[pa][i]
+    const cands = packets[pb].map((y, j) => [y, j]).filter(([y]) => isP2(x) ? isP2(y) && y.key_slot === x.key_slot : !isP2(y))
+    if (!cands.length) continue
+    const [, j] = cands[Math.floor(rand() * cands.length)]
+    ;[packets[pa][i], packets[pb][j]] = [packets[pb][j], packets[pa][i]]
+    const c2 = total()
+    if (c2 <= c) c = c2; else [packets[pa][i], packets[pb][j]] = [packets[pb][j], packets[pa][i]]
+  }
+  if (c > 0) return null
   const out = []
   for (let p = 0; p < 3; p++) {
-    const order = shuffleWith(packets[p], rand)
+    // partition constraints (independent of order)
+    const p2items = packets[p].filter(isP2)
+    const rk = {}; p2items.forEach(it => { rk[it.key_len_rank] = (rk[it.key_len_rank] || 0) + 1 }); if (Math.max(...Object.values(rk)) > 9) return null
+    const au = {}; packets[p].forEach(it => { au[it.__author] = (au[it.__author] || 0) + 1 }); if (Math.max(...Object.values(au)) > 6) return null
+    const ca = {}; p2items.forEach(it => { ca[it.category] = (ca[it.category] || 0) + 1 }); if (Math.max(...Object.values(ca)) > 2) return null
+    // order: up to 500 seeded shuffles of this packet until no three consecutive Part 2 keys share a letter
+    let order = null
+    for (let o = 0; o < 500 && !order; o++) {
+      const cand = shuffleWith([...packets[p]], rand)
+      const letters = cand.filter(isP2).map(it => it.key_slot)
+      if (!letters.some((x, i) => i >= 2 && x === letters[i - 1] && x === letters[i - 2])) order = cand
+    }
+    if (!order) return null
     const nP1 = order.filter(i => !isP2(i)).length
     const p1Letters = shuffleWith(Array.from({ length: nP1 }, (_, k) => L[(k + p) % 4]), rand)
     let q = 0
@@ -70,13 +99,6 @@ function tryDeal(t) {
       }
       return { n: i + 1, it, choices }
     })
-    // constraints
-    const p2rows = rows.filter(r => isP2(r.it))
-    const letters = p2rows.map(r => L[r.choices.indexOf(r.it.correct_answer)])
-    for (let i = 2; i < letters.length; i++) if (letters[i] === letters[i - 1] && letters[i] === letters[i - 2]) return null
-    const rk = {}; p2rows.forEach(r => { rk[r.it.key_len_rank] = (rk[r.it.key_len_rank] || 0) + 1 }); if (Math.max(...Object.values(rk)) > 9) return null
-    const au = {}; rows.forEach(r => { const a = r.it.__author; au[a] = (au[a] || 0) + 1 }); if (Math.max(...Object.values(au)) > 6) return null
-    const ca = {}; p2rows.forEach(r => { ca[r.it.category] = (ca[r.it.category] || 0) + 1 }); if (Math.max(...Object.values(ca)) > 2) return null
     out.push(rows)
   }
   return out

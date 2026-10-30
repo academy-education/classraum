@@ -1,0 +1,392 @@
+[
+  {
+    "id": "ITG3-C010",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "word form",
+    "varied_dimension": "choice among four adjectives built with negative prefixes (un- / in- / dis- / im-), decided by which meaning fits a low price",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "This used jacket cost only two dollars, so it was really ________.",
+    "choices": [
+      "unhappy",
+      "inexpensive",
+      "dishonest",
+      "impatient"
+    ],
+    "correct_answer": "inexpensive",
+    "explanation": "A low price makes something inexpensive: in- + expensive means 'not costing much'. The other prefixed words describe a person's feelings or behavior, not the cost of a jacket.",
+    "distractor_rationales": {
+      "unhappy": "Describes a person's feelings; a price cannot be unhappy.",
+      "dishonest": "Describes a person who lies or cheats, not a cheap jacket.",
+      "impatient": "Describes a person who cannot wait; it says nothing about cost."
+    },
+    "student_error": {
+      "unhappy": "Learners know un- as the most common negative prefix and choose it by default.",
+      "dishonest": "Learners link 'dis-' words with buying and selling situations (a seller who cheats) without checking what the word describes.",
+      "impatient": "Learners pick a familiar im- word because they remember 'im-' as a negative prefix before p- words."
+    },
+    "key_slot": "B",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG3-C011",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "conditionals",
+    "varied_dimension": "conditional connector meaning: unless vs if vs as long as vs provided that, decided by a negative main clause",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Hamza will not get his pocket money this week ________ he finishes his chores.",
+    "choices": [
+      "as long as",
+      "if",
+      "provided that",
+      "unless"
+    ],
+    "correct_answer": "unless",
+    "explanation": "'Unless' means 'if not': Hamza gets no money if he does not finish his chores. 'If', 'as long as' and 'provided that' would mean that finishing the chores stops the money, which makes no sense.",
+    "distractor_rationales": {
+      "as long as": "Would mean finishing chores is the condition for NOT getting money.",
+      "if": "Would mean he loses the money because he finishes his chores.",
+      "provided that": "Like 'as long as', it states a condition that makes the result happen, the opposite of what is meant."
+    },
+    "student_error": {
+      "as long as": "Learners treat 'as long as' as a general word for 'on the condition' and ignore the negative main clause.",
+      "if": "Learners default to 'if' for every condition, missing the 'if not' meaning.",
+      "provided that": "Learners pick the most formal-sounding connector, thinking it is the 'advanced' answer."
+    },
+    "key_slot": "D",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG3-C012",
+    "part": "Part 1: Sentence Completion",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "subject-verb agreement",
+    "varied_dimension": "there is / there are agreement plus tense: has been vs have been vs is vs are, decided by a singular noun after 'there' and a 'since' clause",
+    "prompt": "Choose the word or phrase that correctly completes the sentence.",
+    "passage": "Since we lowered the prices on our price list, there ________ a big increase in the number of customers at our class stall.",
+    "choices": [
+      "has been",
+      "are",
+      "have been",
+      "is"
+    ],
+    "correct_answer": "has been",
+    "explanation": "After 'there', the verb agrees with the noun that follows it: 'a big increase' is singular. The 'since' clause needs the present perfect, so 'there has been' is correct.",
+    "distractor_rationales": {
+      "are": "Plural and present simple; the noun 'increase' is singular and 'since' needs the present perfect.",
+      "have been": "Present perfect is right, but 'have' is plural and the noun 'increase' is singular.",
+      "is": "Singular, but present simple does not fit a change that started at a past point with 'since'."
+    },
+    "student_error": {
+      "are": "Learners make the verb agree with 'customers', the nearest plural noun.",
+      "have been": "Learners see 'the number of customers' and treat the whole phrase as plural.",
+      "is": "Learners match the singular noun but forget that 'since' requires the present perfect."
+    },
+    "key_slot": "A",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG3-E031",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "relative pronouns and clauses",
+    "varied_dimension": "extra object pronoun repeated inside a subject relative clause (who he makes them)",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Yaw [A: bought] two wallets [B: from a man] [C: who he makes them] [D: by hand].",
+    "choices": [
+      "bought",
+      "from a man",
+      "who he makes them",
+      "by hand"
+    ],
+    "correct_answer": "who he makes them",
+    "explanation": "In a relative clause, 'who' already is the subject, so no extra pronoun is added. The correct form is 'a man who makes them by hand'.",
+    "distractor_rationales": {
+      "bought": "Correct past form of 'buy'.",
+      "from a man": "'Buy something from someone' is the right preposition.",
+      "by hand": "'By hand' is the fixed phrase for handmade work."
+    },
+    "student_error": {
+      "bought": "Learners doubt irregular pasts and may expect 'buyed'.",
+      "from a man": "Learners often say 'buy from' and 'buy to' interchangeably and may suspect the preposition.",
+      "by hand": "Learners may expect 'with hand' or 'by the hand' and suspect the phrase."
+    },
+    "key_slot": "C",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG3-E032",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "reported speech",
+    "varied_dimension": "say vs tell with a person object at the end of a reported question (had said their parents)",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "After the market closed, Nikolai [A: mentioned] that he [B: had already spent all his savings], and his sister [C: asked] whether he [D: had said their parents].",
+    "choices": [
+      "mentioned",
+      "had already spent all his savings",
+      "asked",
+      "had said their parents"
+    ],
+    "correct_answer": "had said their parents",
+    "explanation": "'Tell' takes a person as its direct object (tell someone); 'say' does not. The correct form is 'whether he had told their parents'.",
+    "distractor_rationales": {
+      "mentioned": "'Mention that ...' is a correct reporting verb.",
+      "had already spent all his savings": "Past perfect correctly shows the spending happened before he mentioned it.",
+      "asked": "'Ask whether' correctly introduces a reported yes/no question."
+    },
+    "student_error": {
+      "mentioned": "Learners may think 'mention' needs 'about' (mention about) and suspect it.",
+      "had already spent all his savings": "Learners unsure of backshift may expect 'has already spent' after a past reporting verb.",
+      "asked": "Learners may expect 'asked if' or a question word order and doubt 'asked whether'."
+    },
+    "key_slot": "D",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG3-E033",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "modals",
+    "varied_dimension": "can't have vs must have for a past deduction contradicted by the evidence (empty wallet)",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Daichi [A: is holding a brand-new kite], and [B: there's nothing] [C: in his wallet], so he [D: can't have spent] his money.",
+    "choices": [
+      "is holding a brand-new kite",
+      "there's nothing",
+      "in his wallet",
+      "can't have spent"
+    ],
+    "correct_answer": "can't have spent",
+    "explanation": "The evidence (a new kite and an empty wallet) shows he certainly spent his money, so the right deduction is 'must have spent'. 'Can't have' is used when we are sure something did NOT happen.",
+    "distractor_rationales": {
+      "is holding a brand-new kite": "Present continuous correctly describes what he is doing now.",
+      "there's nothing": "'There is nothing' correctly agrees with singular 'nothing'.",
+      "in his wallet": "'In' is the right preposition for inside a wallet."
+    },
+    "student_error": {
+      "is holding a brand-new kite": "Learners may think 'hold' cannot be used in the continuous form.",
+      "there's nothing": "Learners may expect 'there isn't nothing' from double-negative transfer, or doubt the contraction.",
+      "in his wallet": "Learners confuse 'in' and 'on' and may suspect the preposition."
+    },
+    "key_slot": "D",
+    "key_len_rank": 3
+  },
+  {
+    "id": "ITG3-E034",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "parallel structure",
+    "varied_dimension": "prefer X to Y with matching gerund forms (earning ... to ask)",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Lwazi [A: has always told us] that he [B: prefers] [C: earning his own pocket money] to [D: ask his family] for it.",
+    "choices": [
+      "has always told us",
+      "prefers",
+      "earning his own pocket money",
+      "ask his family"
+    ],
+    "correct_answer": "ask his family",
+    "explanation": "With 'prefer X to Y', both sides take the same form, and 'to' here is a preposition, so it is followed by a gerund: 'prefers earning his own pocket money to asking his family for it'.",
+    "distractor_rationales": {
+      "has always told us": "Present perfect with 'always' correctly describes something repeated up to now, and 'tell' correctly takes 'us'.",
+      "prefers": "Third-person singular verb agrees with 'he'.",
+      "earning his own pocket money": "A gerund is the correct form after 'prefer' in the 'prefer X to Y' pattern."
+    },
+    "student_error": {
+      "has always told us": "Learners may expect 'has always said us' or doubt the present perfect.",
+      "prefers": "Learners may think 'prefer' needs 'would' or an infinitive.",
+      "earning his own pocket money": "Learners who know 'prefer to + verb' may expect 'to earn' instead of the gerund."
+    },
+    "key_slot": "D",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG3-E035",
+    "part": "Part 2: Error Identification",
+    "difficulty": "easy",
+    "cefr": "A2",
+    "category": "gerund vs infinitive",
+    "varied_dimension": "base verb after the preposition 'before' instead of a gerund (before pay)",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Before [A: pay] for anything, Esperanza always [B: checks] [C: whether] the price is [D: reasonable].",
+    "choices": [
+      "pay",
+      "checks",
+      "whether",
+      "reasonable"
+    ],
+    "correct_answer": "pay",
+    "explanation": "A preposition such as 'before' is followed by a gerund (-ing form), so it should be 'Before paying'.",
+    "distractor_rationales": {
+      "checks": "Present simple with 'always' and third-person -s is correct.",
+      "whether": "'Check whether' correctly introduces a yes/no question.",
+      "reasonable": "'Reasonable' is the correct adjective for a fair price."
+    },
+    "student_error": {
+      "checks": "Learners often drop or doubt the third-person -s.",
+      "whether": "Learners may think 'if' is required and doubt 'whether'.",
+      "reasonable": "Learners may expect the adverb 'reasonably' after 'is', or doubt that a price can be reasonable."
+    },
+    "key_slot": "A",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG3-E036",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "verb tense and aspect",
+    "varied_dimension": "present perfect wrongly used with a finished-past marker (Yesterday ... has bought)",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Yesterday, Ji-woo [A: has bought] a used bicycle [B: from her neighbor] for thirty dollars, and she [C: is going to] paint it [D: herself].",
+    "choices": [
+      "has bought",
+      "from her neighbor",
+      "is going to",
+      "herself"
+    ],
+    "correct_answer": "has bought",
+    "explanation": "'Yesterday' names a finished time in the past, so English uses the past simple: 'Ji-woo bought'. The present perfect cannot be used with a finished time marker.",
+    "distractor_rationales": {
+      "from her neighbor": "'Buy something from someone' takes 'from'.",
+      "is going to": "'Be going to' correctly expresses a plan.",
+      "herself": "The reflexive pronoun correctly refers back to 'she'."
+    },
+    "student_error": {
+      "from her neighbor": "Learners may expect 'of her neighbor' through first-language transfer.",
+      "is going to": "Learners may think 'will' is needed for the future.",
+      "herself": "Learners may expect 'by her own' or 'her self' and doubt the reflexive."
+    },
+    "key_slot": "A",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG3-E037",
+    "part": "Part 2: Error Identification",
+    "difficulty": "hard",
+    "cefr": "B2",
+    "category": "passive voice",
+    "varied_dimension": "active present perfect where the present perfect passive is needed (has already oiled vs has already been oiled)",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "The old sewing machine that our class [A: found] at the second-hand market [B: has already oiled], so we [C: can use] it to make bags [D: for the stall].",
+    "choices": [
+      "found",
+      "has already oiled",
+      "can use",
+      "for the stall"
+    ],
+    "correct_answer": "has already oiled",
+    "explanation": "The sewing machine does not repair anything; someone oiled it. The present perfect passive is 'has already been oiled'.",
+    "distractor_rationales": {
+      "found": "Correct irregular past of 'find' in the relative clause.",
+      "can use": "'Can' plus the base verb is correct.",
+      "for the stall": "'For' correctly shows the purpose of the bags."
+    },
+    "student_error": {
+      "found": "Learners mix up 'found' and 'founded' and may suspect it.",
+      "can use": "Learners may expect 'can to use' or 'can using'.",
+      "for the stall": "Learners may expect 'to the stall' and doubt the preposition."
+    },
+    "key_slot": "B",
+    "key_len_rank": 4
+  },
+  {
+    "id": "ITG3-E038",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "prepositions after a head word",
+    "varied_dimension": "preposition of time before a clock time ('starts in 8 a.m.' instead of 'starts at 8 a.m.')",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "The market [A: is held] [B: on the first Sunday] and [C: starts in] 8 a.m., so Annika [D: plans to arrive] early.",
+    "choices": [
+      "is held",
+      "on the first Sunday",
+      "starts in",
+      "plans to arrive"
+    ],
+    "correct_answer": "starts in",
+    "explanation": "English uses 'at' with clock times (at 8 a.m.), 'on' with days and dates, and 'in' with months and years. It should be 'starts at 8 a.m.'.",
+    "distractor_rationales": {
+      "is held": "The passive 'is held' correctly describes a regular event.",
+      "on the first Sunday": "'On' is correct with days.",
+      "plans to arrive": "'Plan' is followed by a to-infinitive."
+    },
+    "student_error": {
+      "is held": "Learners may expect the active 'holds' and doubt the passive.",
+      "on the first Sunday": "Learners may use 'in' with days, as with months.",
+      "plans to arrive": "Learners may expect 'plans arriving' or 'plans for arriving'."
+    },
+    "key_slot": "C",
+    "key_len_rank": 2
+  },
+  {
+    "id": "ITG3-E039",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "adjective vs adverb",
+    "varied_dimension": "high vs highly: 'highly' (very much) used where the flat adverb 'high' (to a high level) is needed after 'climbed so'",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Ximena [A: noticed] that prices at the market [B: had climbed] so [C: highly] that she [D: could afford] only one book.",
+    "choices": [
+      "noticed",
+      "had climbed",
+      "highly",
+      "could afford"
+    ],
+    "correct_answer": "highly",
+    "explanation": "'High' is both an adjective and an adverb for a level or amount: prices climbed so high. 'Highly' means 'very much' (highly useful, highly recommended) and does not describe how far prices rise.",
+    "distractor_rationales": {
+      "noticed": "Past simple correctly describes what she saw.",
+      "had climbed": "Past perfect correctly shows the rise happened before she noticed it.",
+      "could afford": "'Could' plus the base verb correctly expresses past ability."
+    },
+    "student_error": {
+      "noticed": "Learners may expect 'had noticed' and doubt the simple past.",
+      "had climbed": "Learners may expect 'have climbed' or 'climbed' and suspect the past perfect.",
+      "could afford": "Learners may expect 'could afford to buy' or 'can afford' and doubt the form."
+    },
+    "key_slot": "C",
+    "key_len_rank": 1
+  },
+  {
+    "id": "ITG3-E040",
+    "part": "Part 2: Error Identification",
+    "difficulty": "medium",
+    "cefr": "B1",
+    "category": "pronoun case and reference",
+    "varied_dimension": "possessive adjective used without a noun where a possessive pronoun is needed (your vs yours)",
+    "prompt": "Choose the underlined word or phrase that is NOT correct.",
+    "passage": "Mr. Dubois [A: pointed at] the red money tin and said it was [B: your], but [C: theirs] was the one [D: by the door].",
+    "choices": [
+      "pointed at",
+      "your",
+      "theirs",
+      "by the door"
+    ],
+    "correct_answer": "your",
+    "explanation": "When no noun follows, we use a possessive pronoun: 'it was yours'. 'Your' must be followed by a noun (your tin).",
+    "distractor_rationales": {
+      "pointed at": "'Point at something' is the correct preposition.",
+      "theirs": "A possessive pronoun correctly stands alone as the subject.",
+      "by the door": "'By' correctly means next to."
+    },
+    "student_error": {
+      "pointed at": "Learners may expect 'pointed to' or 'pointed' with no preposition.",
+      "theirs": "Learners may think 'their' or 'their's' is correct.",
+      "by the door": "Learners may expect 'near of the door' from first-language transfer."
+    },
+    "key_slot": "B",
+    "key_len_rank": 1
+  }
+]
