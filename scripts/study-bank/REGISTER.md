@@ -6627,3 +6627,15 @@ structural checks are pre-flight only. See CLAUDE.md.
   problems (key uniquely longest 21/75, above the quarter aim), quote 0/695, audit 0, vocab-check 0. Facts the authors
   were unsure of are listed for the graders (Borrowdale graphite, camel hump fat, axolotl repair, Anning 1828
   pterosaur, ocean salinity).
+
+- **2026-10-31 — MRV4 graded (2 COFOUNDER-BRIEF-v2 graders per packet): passages 15 of 25 kept (45 items), vocabulary
+  79 of 80.** Both passage graders named the same `one_template` pattern on the same 8 theme items (3, 7, 15, 27, 51,
+  61, 72, 75): one distractor is a plot summary that states no lesson and is never the key, so it can be struck on
+  form alone. The parity design fixed the marker words but not this distractor FAMILY. Those 8 passages drop (all
+  Literary). Also dropped: item 52's passage (both graders: second defensible, "more than seven minutes" states the
+  essay's core demand) and item 40's (key_wrong: the key calls Jun "younger", which the passage never says). Kept:
+  Literary 4 passages (12 items), Informational 11 (33). Lists in `scratchpad/map-v4-read-work/KEEP.json`.
+  Vocabulary: 80/80 unique by both. Items 70 and 80 are the same scenario with the same key ("gave away the
+  secret"), so 80 drops as a selection, and 79 survive. Survivors stay staged, release through a Daniel audit
+  sample. **Lesson for MRV5:** theme distractor families must exclude "plot summary / restates events"; every theme
+  distractor must state a lesson. Literary binds MAP Reading (13 per form), so the next batch is Literary-heavy.
